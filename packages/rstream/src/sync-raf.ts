@@ -4,6 +4,37 @@ import { __optsWithID } from "./idgen.js";
 import { Subscription } from "./subscription.js";
 
 /**
+ * Similar to (in in effect the same as the **now deprecated**)
+ * {@link sidechainPartitionRAF}, however more performant & lightweight.
+ * Synchronizes downstream processing w/ `requestAnimationFrame()`. The returned
+ * subscription delays & debounces any high frequency intra-frame input values
+ * and passes only most recent one downstream during next RAF event processing.
+ *
+ * This example uses thi.ng/atom as state container. Also see {@link fromAtom}.
+ *
+ * See {@link sidechainTrigger} from a similar & more general construct.
+ *
+ * @example
+ * ```ts
+ * const atom = defAtom("alice");
+ *
+ * // any changes to the atom will only be received by this subscription
+ * // during next RAF update cycle
+ * syncRAF(fromAtom(atom)).subscribe({
+ *   next({ name }) { document.body.innerText = name; }
+ * });
+ *
+ * // trigger update
+ * atom.reset("bob");
+ * ```
+ *
+ * @param src -
+ * @param opts -
+ */
+export const syncRAF = <T>(src: ISubscribable<T>, opts?: Partial<CommonOpts>) =>
+	src.subscribe(new SyncRAF<T>(__optsWithID(`syncraf-${src.id}`, opts)));
+
+/**
  * See {@link syncRAF} for details.
  */
 export class SyncRAF<T> extends Subscription<T, T> {
@@ -47,37 +78,3 @@ export class SyncRAF<T> extends Subscription<T, T> {
 		this.raf = this.queued = undefined;
 	}
 }
-
-/**
- * Similar to (in in effect the same as the **now deprecated**)
- * {@link sidechainPartitionRAF}, however more performant & lightweight.
- * Synchronizes downstream processing w/ `requestAnimationFrame()`. The returned
- * subscription delays & debounces any high frequency intra-frame input values
- * and passes only most recent one downstream during next RAF event processing.
- *
- * This example uses thi.ng/atom as state container. Also see {@link fromAtom}.
- *
- * @example
- * ```ts
- * const atom = defAtom("alice");
- *
- * // any changes to the atom will only be received by this subscription
- * // during next RAF update cycle
- * syncRAF(fromAtom(atom)).subscribe({
- *   next({ name }) { document.body.innerText = name; }
- * });
- *
- * // trigger update
- * atom.reset("bob");
- * ```
- *
- * @param src -
- * @param opts -
- */
-export const syncRAF = <T>(
-	parent: ISubscribable<T>,
-	opts?: Partial<CommonOpts>
-) =>
-	parent.subscribe(
-		new SyncRAF<T>(__optsWithID(`syncraf-${parent.id}`, opts))
-	);

@@ -1,27 +1,31 @@
 import type { Predicate } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { map } from "@thi.ng/transducers/map";
-import { State, type CommonOpts, type ISubscribable } from "./api.js";
+import {
+	State,
+	type CommonOpts,
+	type ISubscribable,
+	type ISubscription,
+} from "./api.js";
 import { ASidechain } from "./asidechain.js";
 import { __optsWithID } from "./idgen.js";
 import { fromRAF } from "./raf.js";
-import type { Subscription } from "./subscription.js";
 
 export interface SidechainPartitionOpts<T> extends CommonOpts {
 	pred: Predicate<T>;
 }
 
 /**
- * Returns a {@link Subscription} which buffers values from `src` until
- * side chain fires, then emits buffer (unless empty) and repeats
- * process until either input is done.
+ * Returns a subscription which buffers values from `src` until side chain
+ * delivers its next value, then emits buffer (unless empty) and repeats process
+ * until either input is done.
  *
  * @remarks
- * By default, the values read from the side chain are ignored (i.e.
- * only their timing is used), however the `pred`icate option can be
- * used to only trigger for specific values / conditions.
+ * By default, the values read from the side chain are ignored (i.e. only their
+ * timing is used), however the `pred`icate option can be used to only trigger
+ * for specific values / conditions.
  *
- * Also see {@link syncRAF}.
+ * Also see: {@link sidechainToggle}, {@link sidechainTrigger}, {@link syncRAF}.
  *
  * @example
  * ```t
@@ -34,16 +38,19 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  *
  * // queue event processing to only execute during the
  * // requestAnimationFrame cycle (RAF)
- * events.subscribe(sidechainPartition(fromRAF())).subscribe(trace())
+ * sidechainPartition(events, fromRAF()).subscribe(trace())
  * ```
  *
+ * @param src -
  * @param side -
  * @param opts -
  */
-export const sidechainPartition = <A, B>(
-	side: ISubscribable<B>,
-	opts?: Partial<SidechainPartitionOpts<B>>
-): Subscription<A, A[]> => new SidechainPartition<A, B>(side, opts);
+export const sidechainPartition = <T, S>(
+	src: ISubscribable<T>,
+	side: ISubscribable<S>,
+	opts?: Partial<SidechainPartitionOpts<S>>
+): ISubscription<T, T[]> =>
+	src.subscribe(new SidechainPartition<T, S>(side, opts));
 
 /**
  * Syntax sugar for one of most common {@link sidechainPartition} use cases, to
@@ -73,9 +80,7 @@ export const sidechainPartition = <A, B>(
  * @deprecated use {@link syncRAF} instead
  */
 export const sidechainPartitionRAF = <T>(src: ISubscribable<T>) =>
-	src
-		.subscribe<T[]>(sidechainPartition<T, number>(fromRAF()))
-		.transform(map(peek));
+	sidechainPartition<T, number>(src, fromRAF()).transform(map(peek));
 
 export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {
 	buf: T[];

@@ -1,7 +1,7 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { sidechainPartition, Stream, stream } from "../src/index.js";
 import { assertUnsub } from "./utils.js";
-import { group } from "@thi.ng/testament";
 
 let src: Stream<any>, side: Stream<any>, buf: any[];
 
@@ -9,7 +9,7 @@ group(
 	"SidechainPartition",
 	{
 		"partitions (manual)": ({ done }) => {
-			src.subscribe(sidechainPartition(side)).subscribe({
+			sidechainPartition(src, side).subscribe({
 				next(x) {
 					buf.push(x);
 				},
@@ -34,9 +34,9 @@ group(
 		},
 
 		"partitions w/ predicate": ({ done }) => {
-			src.subscribe(
-				sidechainPartition(side, { pred: (x: any) => x === 1 })
-			).subscribe({
+			sidechainPartition(src, side, {
+				pred: (x: any) => x === 1,
+			}).subscribe({
 				next(x) {
 					buf.push(x);
 				},
@@ -59,7 +59,7 @@ group(
 		},
 
 		"unsubscribe chain (from child)": () => {
-			const part = src.subscribe(sidechainPartition(side));
+			const part = sidechainPartition(src, side);
 			const sub = part.subscribe({});
 			sub.unsubscribe();
 			assertUnsub(src);

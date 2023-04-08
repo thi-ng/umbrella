@@ -12,7 +12,7 @@ const check = (
 	expect: any,
 	done: Function
 ) => {
-	src.subscribe(sidechainToggle(side, { initial, pred })).subscribe({
+	sidechainToggle(src, side, { initial, pred }).subscribe({
 		next(x) {
 			buf.push(x);
 		},
@@ -47,7 +47,7 @@ group(
 		},
 
 		"unsubscribe chain (from child)": () => {
-			const part = src.subscribe(sidechainToggle(side));
+			const part = sidechainToggle(src, side);
 			const sub = part.subscribe({});
 			sub.unsubscribe();
 			assertUnsub(src);
