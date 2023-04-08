@@ -8,9 +8,10 @@ import { fattribs } from "./format.js";
  * legacy tooling.
  *
  * @remarks
- * If the `convert: true` attrib is given, all body elements will be
- * automatically converted using {@link convertTree}. The `convert` attrib is
- * NOT going to be serialized in the final output.
+ * If the `__convert` boolean attrib is enabled, all body elements will be
+ * automatically converted using {@link convertTree}. The `__convert` attrib
+ * will be removed afterward and is NOT going to be serialized in the final
+ * output.
  *
  * @param attribs - attributes object
  * @param body - shape primitives
@@ -27,8 +28,8 @@ export const svg = (attribs: any, ...body: any[]): any[] => {
 		"height",
 		"stroke-width"
 	);
-	if (attribs.convert) {
-		delete attribs.convert;
+	if (attribs.__convert) {
+		delete attribs.__convert;
 		body = body.map(convertTree);
 	}
 	return ["svg", attribs, ...body];
