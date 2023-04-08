@@ -136,12 +136,12 @@ const app =
 				// all @thi.ng/geom shapes implement the `IToHiccup` interface
 				// and so can be used directly in @thi.ng/hdom-canvas
 				// visualizations. However, here we're using SVG and hence will
-				// need to provide a `convert` attribute to transform the hiccup
-				// format into a hiccup-svg compatible format see:
+				// need to provide a `__convert` attribute to transform the
+				// hiccup format into a hiccup-svg compatible format see:
 				// https://docs.thi.ng/umbrella/hiccup-svg/modules.html#convertTree
 				svgDoc(
 					{
-						convert: true,
+						__convert: true,
 						width: 480,
 						height: 480,
 						viewBox: "-150 -150 300 300",

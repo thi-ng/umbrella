@@ -381,7 +381,7 @@ sync({
 						height: 300,
 						stroke: "none",
 						fill: "none",
-						convert: true,
+						__convert: true,
 					},
 					[
 						COMMENT,

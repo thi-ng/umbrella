@@ -106,7 +106,7 @@ const svgSwatches = ({ colors, num }: MainOutputs) => <ComponentLike>svg(
 			height: "100vh",
 			viewBox: `0 0 ${num * 5} 100`,
 			preserveAspectRatio: "none",
-			convert: true,
+			__convert: true,
 		},
 		swatchesH(colors, 5, 100)
 	);

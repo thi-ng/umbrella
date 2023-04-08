@@ -46,8 +46,8 @@ const app = ({
 			viewBox: `0 0 ${window.innerWidth} ${window.innerHeight}`,
 			stroke: "none",
 			fill: "none",
-			// convert shape tree into DOM compatible format
-			convert: true,
+			// trigger conversion of shape tree into DOM compatible format
+			__convert: true,
 		},
 		path(raw || [], processed.path, processed.corners || [])
 	),
