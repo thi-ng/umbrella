@@ -15,7 +15,8 @@ export let PRECISION = 3;
 export const setPrecision = (n: number) => (PRECISION = n);
 
 /** @internal */
-export const ff = (x: number) => (x === (x | 0) ? x : x.toFixed(PRECISION));
+export const ff = (x: number) =>
+	x === (x | 0) ? String(x) : x.toFixed(PRECISION);
 
 /** @internal */
 export const fpoint = (p: Vec2Like) => ff(p[0]) + "," + ff(p[1]);
