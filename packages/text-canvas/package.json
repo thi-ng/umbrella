@@ -51,7 +51,7 @@
 		"tools": "workspace:^",
 		"tslib": "^2.5.0",
 		"typedoc": "^0.23.28",
-		"typescript": "^5.0.2"
+		"typescript": "^5.0.4"
 	},
 	"keywords": [
 		"4bit",

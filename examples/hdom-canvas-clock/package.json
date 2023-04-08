@@ -35,7 +35,7 @@
 		"screenshot": "examples/hdom-canvas-clock.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.2",
+		"typescript": "^5.0.4",
 		"vite": "^4.2.1"
 	}
 }

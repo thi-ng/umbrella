@@ -25,7 +25,7 @@
 		"screenshot": "examples/hdom-toggle.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.2",
+		"typescript": "^5.0.4",
 		"vite": "^4.2.1"
 	}
 }

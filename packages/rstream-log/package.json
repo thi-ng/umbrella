@@ -48,7 +48,7 @@
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.28",
-		"typescript": "^5.0.2"
+		"typescript": "^5.0.4"
 	},
 	"keywords": [
 		"datastructure",

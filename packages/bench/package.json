@@ -39,11 +39,11 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
 		"@thi.ng/testament": "^0.3.14",
-		"@types/node": "^18.15.9",
+		"@types/node": "^18.15.11",
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.28",
-		"typescript": "^5.0.2"
+		"typescript": "^5.0.4"
 	},
 	"keywords": [
 		"benchmark",
