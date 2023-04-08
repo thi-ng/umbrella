@@ -1,13 +1,13 @@
 import type { IntBuffer } from "@thi.ng/pixel";
-import { sidechainPartitionRAF } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers/map";
+import { syncRAF } from "@thi.ng/rstream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { map } from "@thi.ng/transducers/map";
 import {
-	type AppState,
-	type Event,
 	SET_IMAGE,
 	SET_KERNEL_OFFSET,
 	SET_KERNEL_WIDTH,
+	type AppState,
+	type Event,
 } from "./api";
 import { dispatch } from "./events";
 import { state } from "./state";
@@ -112,4 +112,4 @@ const app = (state: AppState) => {
 // sidechain to buffer intra-frame state updates. then only passes the
 // most recent one to `app()` and its resulting UI tree to the
 // `updateDOM()` transducer
-sidechainPartitionRAF(state).transform(map(app), updateDOM());
+syncRAF(state).transform(map(app), updateDOM());

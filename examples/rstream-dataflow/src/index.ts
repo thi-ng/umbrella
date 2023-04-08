@@ -3,7 +3,7 @@ import { equiv } from "@thi.ng/equiv";
 import { start } from "@thi.ng/hdom";
 import { getIn } from "@thi.ng/paths";
 import { fromRAF } from "@thi.ng/rstream";
-import { toDot, walk } from "@thi.ng/rstream-dot";
+import { serialize } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { extract, initGraph, mul, node, node1 } from "@thi.ng/rstream-graph";
 import { choices, comp, dedupe, map } from "@thi.ng/transducers";
@@ -167,4 +167,4 @@ start(() => [
 //
 // see for more info:
 // https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot
-console.log(toDot(walk([gestures, raf])));
+console.log(serialize([gestures, raf]));

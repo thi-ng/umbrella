@@ -1,12 +1,6 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { fit, fitClamped } from "@thi.ng/math";
-import {
-	fromAtom,
-	fromDOMEvent,
-	merge,
-	sidechainPartitionRAF,
-	sync,
-} from "@thi.ng/rstream";
+import { fromAtom, fromDOMEvent, merge, sync, syncRAF } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapIndexed } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -85,4 +79,4 @@ const app = () => {
 // sidechain to buffer intra-frame state updates. then only passes the
 // most recent one to `app()` and its resulting UI tree to the
 // `updateDOM()` transducer
-sidechainPartitionRAF(main).transform(map(app()), updateDOM());
+syncRAF(main).transform(map(app()), updateDOM());

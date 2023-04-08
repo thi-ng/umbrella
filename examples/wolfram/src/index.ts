@@ -3,9 +3,9 @@ import { dropdown } from "@thi.ng/hdom-components";
 import {
 	fromIterable,
 	fromRAF,
-	metaStream,
 	reactive,
-	sidechainToggle,
+	sidechainTrigger,
+	stream,
 	sync,
 } from "@thi.ng/rstream";
 import {
@@ -21,6 +21,7 @@ import {
 	range2d,
 	reducer,
 	scan,
+	sideEffect,
 	slidingWindow,
 	str,
 	transduce,
@@ -115,9 +116,7 @@ const app = ({ id, ksize, sim }: any) => [
 
 const rule = reactive(105);
 const kernel = reactive(3);
-const objExport = metaStream<any, boolean>(() =>
-	fromIterable([true, false], { delay: 17 })
-);
+const objExport = stream<number>();
 
 const wolfram = sync<any, any>({
 	src: {
@@ -142,32 +141,35 @@ sync({
 	},
 }).transform(map(app), updateDOM());
 
-// Wavefront OBJ 3D pointcloud export
-// attached as second subscription to wolfram stream
-// uses `objExport` metastream as toggle switch to produce OBJ file
-// and trigger download
-wolfram
-	// always collect new generations
-	// history length same as WIDTH to export square area
-	.transform(slidingWindow(WIDTH))
-	// sidechainToggle is only letting new values through if enabled by
-	// objExport stream
-	.subscribe(sidechainToggle<any, boolean>(objExport, { initial: false }))
+// Wavefront OBJ 3D pointcloud export attached as second subscription to wolfram
+// stream, uses `objExport` stream as trigger to produce OBJ file and trigger
+// download
+sidechainTrigger(
+	wolfram
+		// always collect new generations
+		// history length same as WIDTH to export square area
+		.transform(slidingWindow(WIDTH)),
+	objExport
+)
 	// actual OBJ conversion & export
-	.transform(
-		map((grid) =>
-			transduce(
-				comp(
-					filter((t) => !!t[1]),
-					map(([[x, y]]) => `v ${x} ${y} 0`)
-				),
-				str("\n"),
-				zip(range2d(WIDTH, WIDTH), flatten<number[]>(grid))
-			)
-		),
-		map((obj: string) =>
-			downloadWithMime(`ca-${rule.deref()}.obj`, obj, {
-				mime: "model/obj",
-			})
-		)
+	.subscribe(
+		{
+			next(obj) {
+				downloadWithMime(`ca-${rule.deref()}.obj`, obj, {
+					mime: "model/obj",
+				});
+			},
+		},
+		{
+			xform: map((grid: any[]) =>
+				transduce(
+					comp(
+						filter((t) => !!t[1]),
+						map(([[x, y]]) => `v ${x} ${y} 0`)
+					),
+					str("\n"),
+					zip(range2d(WIDTH, WIDTH), flatten<number[]>(grid))
+				)
+			),
+		}
 	);

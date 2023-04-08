@@ -13,12 +13,11 @@ import {
 } from "@thi.ng/color";
 import { SYSTEM, XsAdd } from "@thi.ng/random";
 import { Stream, debounce, reactive, stream, sync } from "@thi.ng/rstream";
+import { serialize } from "@thi.ng/rstream-dot";
 import { map } from "@thi.ng/transducers";
 import { RANGE_IDs, type MainInputs, type MainOutputs } from "./api";
 import { downloadACT } from "./palette";
 import { attachSerializer, initFromHash } from "./serialize";
-
-// import { toDot, walk } from "@thi.ng/rstream-dot";
 
 const themePart = (
 	range: ColorRangePreset,
@@ -114,20 +113,11 @@ sync({
 // (also uncomment rstream-dot import above)
 // see: https://twitter.com/thing_umbrella/status/1363844585907249156
 
-// console.log(
-//     toDot(
-//         walk(
-//             [
-//                 ...Object.values(parts),
-//                 variance,
-//                 num,
-//                 sorted,
-//                 seed,
-//                 downloadTrigger,
-//             ],
-//             {
-//                 values: true,
-//             }
-//         )
-//     )
-// );
+console.log(
+	serialize(
+		[...Object.values(parts), variance, num, sorted, seed, downloadTrigger],
+		{
+			values: true,
+		}
+	)
+);

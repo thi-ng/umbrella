@@ -1,8 +1,8 @@
 import { div } from "@thi.ng/hiccup-html";
 import {
-	exportJsonTrigger,
-	exportSvgTrigger,
 	geometryStats,
+	jsonExportTrigger,
+	svgExportTrigger,
 } from "../state/process";
 import { smallButton, title } from "./common";
 
@@ -14,6 +14,6 @@ export const exportControls = div(
 		),
 	},
 	title("Export"),
-	smallButton(() => exportSvgTrigger.next(true), "export SVG"),
-	smallButton(() => exportJsonTrigger.next(true), "export JSON")
+	smallButton(() => svgExportTrigger.next(true), "export SVG"),
+	smallButton(() => jsonExportTrigger.next(true), "export JSON")
 );

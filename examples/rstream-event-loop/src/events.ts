@@ -77,7 +77,7 @@ const requestPage = (offset: number) => {
 	// clear any active timeout before creating new one...
 	curr.timeoutID !== undefined && clearTimeout(curr.timeoutID);
 	// simulate pre-loading delay
-	const timeoutID = setTimeout(() => dispatch([PAGE_READY]), 250);
+	const timeoutID = setTimeout(() => dispatch([PAGE_READY]), 500);
 	// IMMUTABLY(!) update app state
 	state.next(
 		setInManyUnsafe(

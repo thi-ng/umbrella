@@ -1,7 +1,7 @@
 import {
-	sidechainPartitionRAF,
 	subscription,
 	sync,
+	syncRAF,
 	type ISubscribable,
 	type ISubscriber,
 } from "@thi.ng/rstream";
@@ -45,7 +45,7 @@ const ctx = {
  * @param ctx - ser context object
  */
 const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
-	sidechainPartitionRAF(tree).transform(updateDOM({ root, ctx }));
+	syncRAF(tree).transform(updateDOM({ root, ctx }));
 
 /**
  * Generic button component.

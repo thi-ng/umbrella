@@ -5,11 +5,11 @@ import { DB } from "./atom";
 import { canvasGestures } from "./canvas";
 import {
 	canvasState,
-	exportJsonTrigger,
-	exportSvgTrigger,
 	geometryStats,
 	imageProcessor,
+	jsonExportTrigger,
 	layerOrder,
+	svgExportTrigger,
 } from "./process";
 
 /**
@@ -24,8 +24,8 @@ export const visualizeTopology = () => {
 		canvasState,
 		canvasGestures,
 		geometryStats,
-		exportSvgTrigger,
-		exportJsonTrigger,
+		svgExportTrigger,
+		jsonExportTrigger,
 		...mapcat((layer) => vals(layer.ctrls), vals(layers)),
 	];
 	console.log(serialize(roots));

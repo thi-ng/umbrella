@@ -1,7 +1,7 @@
-import { sidechainPartitionRAF } from "@thi.ng/rstream";
-import { updateDOM } from "@thi.ng/transducers-hdom";
+import { syncRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
-import { type AppState, NEXT, PREV } from "./api";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { NEXT, PREV, type AppState } from "./api";
 import { dispatch } from "./events";
 import { state } from "./state";
 
@@ -72,4 +72,4 @@ const page = (_: any, pageID: number) => ["h1", `Page: ${pageID}`];
 // sidechain to buffer intra-frame state updates. then only passes the
 // most recent one to `app()` and its resulting UI tree to the
 // `updateDOM()` transducer
-sidechainPartitionRAF(state).transform(map(app), updateDOM());
+syncRAF(state).transform(map(app), updateDOM());

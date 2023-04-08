@@ -14,9 +14,10 @@ keyStreamConditional.next(<any>{});
 
 export const scaleStream = reactive(1);
 export const animationStream = reactive(true);
-export const frameStreamConditional = fromRAF()
-	.subscribe(sidechainToggle<number, boolean>(animationStream))
-	.transform(scan(count()));
+export const frameStreamConditional = sidechainToggle(
+	fromRAF(),
+	animationStream
+).transform(scan(count()));
 
 export type AppState = {
 	scaleValue: number;

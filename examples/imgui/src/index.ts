@@ -30,13 +30,7 @@ import {
 import { GridLayout, gridLayout, layoutBox } from "@thi.ng/layout";
 import { PI, clamp } from "@thi.ng/math";
 import { setInManyUnsafe } from "@thi.ng/paths";
-import {
-	fromAtom,
-	fromDOMEvent,
-	merge,
-	sidechainPartitionRAF,
-	sync,
-} from "@thi.ng/rstream";
+import { fromAtom, fromDOMEvent, merge, sync, syncRAF } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
 import { comp, iterator, map, mapcat, step } from "@thi.ng/transducers";
@@ -563,4 +557,4 @@ const main = sync({
 // sidechain to buffer intra-frame state updates. then only passes the
 // most recent one to `app()` and its resulting UI tree to the
 // `updateDOM()` transducer
-sidechainPartitionRAF(main).transform(map(app()), updateDOM());
+syncRAF(main).transform(map(app()), updateDOM());

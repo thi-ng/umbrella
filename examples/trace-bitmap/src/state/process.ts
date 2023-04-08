@@ -2,11 +2,10 @@ import { isString } from "@thi.ng/checks";
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import {
-	Group,
 	asSvg,
 	group,
-	line,
 	points,
+	polyline,
 	rect,
 	splitArcLength,
 	svgDoc,
@@ -16,10 +15,24 @@ import { type AxiDrawAttribs } from "@thi.ng/geom-axidraw";
 import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { smoothStep } from "@thi.ng/math";
 import { IntBuffer } from "@thi.ng/pixel";
-import { fromView, reactive, stream, sync, syncRAF } from "@thi.ng/rstream";
-import { keep, map, sideEffect } from "@thi.ng/transducers";
+import {
+	Stream,
+	fromView,
+	reactive,
+	sidechainTrigger,
+	stream,
+	sync,
+	syncRAF,
+} from "@thi.ng/rstream";
+import { keep, map } from "@thi.ng/transducers";
 import { mulN2, type Vec, type VecPair } from "@thi.ng/vectors";
-import { DITHER_MODES, THEME, TRACE_MODES, type LayerParams } from "../api";
+import {
+	DITHER_MODES,
+	THEME,
+	TRACE_MODES,
+	type AxiDrawConfig,
+	type LayerParams,
+} from "../api";
 import { DB } from "./atom";
 import { addLayer } from "./layers";
 
@@ -57,8 +70,6 @@ export const canvasState = syncRAF(fromView(DB, { path: ["canvas"] }), {
 	id: "canvasState",
 });
 
-const axiConfig = fromView(DB, { path: ["axi"] });
-
 /**
  * Main stream combinator, initially subscribed only to layer order and the
  * processed image. When adding/removing layers (via {@link addLayer} and
@@ -77,7 +88,7 @@ export const main = sync({
 	src: {
 		__order: layerOrder,
 		__img: imageProcessor,
-		__axi: axiConfig,
+		__axi: <Stream<AxiDrawConfig>>fromView(DB, { path: ["axi"] }),
 	},
 	clean: true,
 	id: "main",
@@ -85,6 +96,7 @@ export const main = sync({
 		const root = group({ stroke: "none" });
 		// need to copy pixel buffer because it will be mutated during vectorization
 		const img = job.__img.copy();
+		const axi = job.__axi;
 		// keep stats
 		let numLines = 0;
 		let numPoints = 0;
@@ -119,16 +131,17 @@ export const main = sync({
 			if (lines && lines.length) {
 				numLines += lines.length;
 				root.children.push(
-					withAttribs(
-						<Group>splitArcLength(
-							group(
-								{ stroke: layer.color },
-								lines.map(([a, b]) => line(a, b))
-							),
-							job.__axi.maxDist
-						)[0],
-						{ __axi: <AxiDrawAttribs>{ interleave: { num: 1 } } },
-						false
+					splitArcLength(
+						group(
+							{
+								stroke: layer.color,
+								__axi: <AxiDrawAttribs>{
+									interleave: { num: 1 },
+								},
+							},
+							lines.map(([a, b]) => polyline([a, b]))
+						),
+						axi.maxDist
 					)
 				);
 			}
@@ -138,7 +151,7 @@ export const main = sync({
 					points(pts, {
 						fill: layer.color,
 						__axi: <AxiDrawAttribs>{
-							interleave: { num: job.__axi.maxPoints },
+							interleave: { num: axi.maxPoints },
 						},
 					})
 				);
@@ -207,52 +220,47 @@ export const scene = sync({
 /**
  * Trigger stream to initiate SVG export.
  */
-export const exportSvgTrigger = stream<boolean>({ id: "triggerSVG" });
+export const svgExportTrigger = stream<boolean>({ id: "triggerSVG" });
 
 /**
  * Stream combinator to perform SVG export.
  */
-sync({
+const svgExportSources = sync({
 	src: {
-		_: exportSvgTrigger,
 		geo: main,
 		img: imageProcessor,
-		canvas: canvasState,
+		bg: fromView(DB, { path: ["canvas", "bg"] }),
 	},
-	reset: true,
-	id: "exportSVG",
-	xform: sideEffect(({ geo, img, canvas }) =>
+});
+
+sidechainTrigger(svgExportSources, svgExportTrigger).subscribe({
+	next: ({ geo, img, bg }) =>
 		downloadWithMime(
 			`trace-${FMT_yyyyMMdd_HHmmss()}.svg`,
 			asSvg(
 				svgDoc(
 					{ stroke: "none" },
-					rect([0, 0], img.size, { fill: canvas.bg }),
+					rect([0, 0], img.size, { fill: bg }),
 					geo
 				)
 			),
 			{ mime: "image/svg+xml" }
-		)
-	),
+		),
 });
 
 /**
  * Trigger stream to initiate SVG export.
  */
-export const exportJsonTrigger = stream<boolean>({ id: "triggerJSON" });
+export const jsonExportTrigger = stream<boolean>({ id: "triggerJSON" });
 
 /**
  * Stream combinator to perform JSON (thi.ng/hiccup) export
  */
-sync({
-	src: { _: exportJsonTrigger, geo: main },
-	reset: true,
-	id: "exportJSON",
-	xform: sideEffect(({ geo }) =>
+sidechainTrigger(main, jsonExportTrigger).subscribe({
+	next: (geo) =>
 		downloadWithMime(
 			`trace-${FMT_yyyyMMdd_HHmmss()}.json`,
 			JSON.stringify(geo.toHiccup()),
 			{ mime: "application/json" }
-		)
-	),
+		),
 });
