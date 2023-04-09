@@ -150,6 +150,7 @@ libraries from this collection.
 - [Building a web editor for creating/testing parse grammars](https://www.youtube.com/watch?v=mXp92s_VP40)
 - [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)
 - [Crash course: TypeScript mapped types in action](https://www.youtube.com/watch?v=jeQ_1oOFlJs)
+- [thi.ng/umbrella livestream #3](https://www.youtube.com/watch?v=_chKFhArGK0)
 
 ## Community, contributing, getting help
 
