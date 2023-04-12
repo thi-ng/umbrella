@@ -38,8 +38,8 @@ export const proximityABGR32 =
 	(col: ReadonlyColor) =>
 		dist(target, intAbgr32Srgb([], col[0]));
 
-export const sort = (
-	colors: ReadonlyColor[],
+export const sort = <T extends ReadonlyColor>(
+	colors: T[],
 	key: Fn<ReadonlyColor, number>,
 	isReverse = false
 ) => sortByCachedKey(colors, key, isReverse ? compareNumDesc : compareNumAsc);
@@ -98,3 +98,8 @@ export const sortMapped = <T extends TypedColor<any>>(
 	});
 	return colors;
 };
+
+export const mostSimilar = <T extends ReadonlyColor>(
+	colors: T[],
+	key: Fn<ReadonlyColor, number>
+) => sort(colors.slice(), key)[0];
