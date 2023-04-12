@@ -65,6 +65,10 @@ export class Node2D
 		return mulV23([], this.invMat, p);
 	}
 
+	mapLocalPointToGlobal(p: ReadonlyVec) {
+		return mulV23([], this.mat, p);
+	}
+
 	mapLocalPointToNode(dest: Node2D, p: ReadonlyVec) {
 		return mulV23(null, dest.invMat, mulV23([], this.mat, p));
 	}

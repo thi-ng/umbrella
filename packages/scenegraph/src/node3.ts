@@ -65,6 +65,10 @@ export class Node3D
 		return mulV344([], this.invMat, p);
 	}
 
+	mapLocalPointToGlobal(p: ReadonlyVec) {
+		return mulV344([], this.mat, p);
+	}
+
 	mapLocalPointToNode(dest: Node3D, p: ReadonlyVec) {
 		return mulV344(null, dest.invMat, mulV344([], this.mat, p)!);
 	}

@@ -93,6 +93,14 @@ export abstract class ANode<T extends ISceneNode<any>> {
 	abstract mapGlobalPoint(p: ReadonlyVec): Vec | undefined;
 
 	/**
+	 * Returns copy of node local space point `p`, transformed into the global
+	 * worldspace.
+	 *
+	 * @param p
+	 */
+	abstract mapLocalPointToGlobal(p: ReadonlyVec): Vec | undefined;
+
+	/**
 	 * Returns copy of node local space point `p`, transformed into the
 	 * coordinate system of `dest` node.
 	 *
