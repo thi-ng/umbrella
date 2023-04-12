@@ -8,7 +8,7 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { GLMat4 } from "./api/glsl.js";
 import type { ShaderUniforms } from "./api/shader.js";
 
-const $ = (a: any, b: any, id: string) => a[id] || b[id].defaultVal || IDENT44;
+const $ = (a: any, b: any, id: string) => a[id] || b[id]?.defaultVal || IDENT44;
 
 /**
  * Computes the inverse transpose of given 4x4 matrix uniform, i.e.
