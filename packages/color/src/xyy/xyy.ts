@@ -19,6 +19,7 @@ export declare class XYY implements TypedColor<XYY> {
 	readonly mode: "xyy";
 	readonly length: 4;
 	readonly range: [ReadonlyColor, ReadonlyColor];
+	readonly xyz: [number, number, number];
 	[Symbol.iterator](): Iterator<number, any, undefined>;
 	clamp(): this;
 	copy(): XYY;

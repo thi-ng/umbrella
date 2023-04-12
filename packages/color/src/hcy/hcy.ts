@@ -20,6 +20,7 @@ export declare class HCY implements TypedColor<HCY> {
 	readonly mode: "hcy";
 	readonly length: 4;
 	readonly range: [ReadonlyColor, ReadonlyColor];
+	readonly xyz: [number, number, number];
 	[Symbol.iterator](): Iterator<number, any, undefined>;
 	clamp(): this;
 	copy(): HCY;

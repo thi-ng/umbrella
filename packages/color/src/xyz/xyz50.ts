@@ -23,6 +23,7 @@ export declare class XYZD50 implements TypedColor<XYZD50> {
 	readonly mode: "xyz50";
 	readonly length: 4;
 	readonly range: [ReadonlyColor, ReadonlyColor];
+	readonly xyz: [number, number, number];
 	[Symbol.iterator](): Iterator<number, any, undefined>;
 	clamp(): this;
 	copy(): XYZD50;

@@ -21,6 +21,7 @@ export declare class LCH implements TypedColor<LCH> {
 	readonly mode: "lch";
 	readonly length: 4;
 	readonly range: [ReadonlyColor, ReadonlyColor];
+	readonly xyz: [number, number, number];
 	[Symbol.iterator](): Iterator<number, any, undefined>;
 	clamp(): this;
 	copy(): LCH;

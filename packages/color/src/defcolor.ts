@@ -87,6 +87,10 @@ export const defColor = <M extends ColorMode, K extends string>(
 			return spec.mode;
 		}
 
+		get xyz(): [number, number, number] {
+			return [this[0], this[1], this[2]];
+		}
+
 		[Symbol.iterator]() {
 			return stridedValues(
 				this.buf,

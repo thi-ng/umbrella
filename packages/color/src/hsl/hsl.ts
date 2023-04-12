@@ -21,6 +21,7 @@ export declare class HSL implements TypedColor<HSL> {
 	readonly mode: "hsl";
 	readonly length: 4;
 	readonly range: [ReadonlyColor, ReadonlyColor];
+	readonly xyz: [number, number, number];
 	[Symbol.iterator](): Iterator<number, any, undefined>;
 	clamp(): this;
 	copy(): HSL;

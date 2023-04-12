@@ -21,6 +21,7 @@ export declare class Oklab implements TypedColor<Oklab> {
 	readonly mode: "oklab";
 	readonly length: 4;
 	readonly range: [ReadonlyColor, ReadonlyColor];
+	readonly xyz: [number, number, number];
 	[Symbol.iterator](): Iterator<number, any, undefined>;
 	clamp(): this;
 	copy(): Oklab;

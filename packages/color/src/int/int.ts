@@ -65,6 +65,15 @@ export abstract class Int32<T extends TypedColor<T>> implements TypedColor<T> {
 		this[0] = (this[0] & 0xffffff) | __scale8bit(x, 24);
 	}
 
+	get xyz(): [number, number, number] {
+		const val = this[0];
+		return [
+			((val >> 16) & 0xff) / 0xff,
+			((val >> 8) & 0xff) / 0xff,
+			(val & 0xff) / 0xff,
+		];
+	}
+
 	*[Symbol.iterator]() {
 		yield this[0];
 	}

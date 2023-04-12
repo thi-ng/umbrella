@@ -209,6 +209,11 @@ export interface TypedColor<T>
 	readonly range: [ReadonlyColor, ReadonlyColor];
 
 	/**
+	 * Returns first 3 color components as tuple/vector. Not to be confused with
+	 * {@link XYZD50} or {@link XYZD65} color modes.
+	 */
+	readonly xyz: [number, number, number];
+	/**
 	 * Clamps all color channels so that colors is inside RGB gamut.
 	 *
 	 * @remarks
