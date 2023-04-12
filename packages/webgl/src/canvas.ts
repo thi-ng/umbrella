@@ -1,5 +1,6 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { isString } from "@thi.ng/checks/is-string";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { WeblGLCanvasOpts } from "./api/canvas.js";
 import type { WebGLExtensionMap } from "./api/ext.js";
 import { error } from "./error.js";
@@ -55,4 +56,21 @@ export const getExtensions = <K extends keyof WebGLExtensionMap>(
 		}
 	}
 	return ext;
+};
+
+/**
+ * Sets clear color to given RGBA `color` and clears viewport's
+ * `COLOR_BUFFER_BIT` and (by default) also `DEPTH_BUFFER_BIT`.
+ *
+ * @param gl
+ * @param color
+ * @param depth
+ */
+export const clearCanvas = (
+	gl: WebGLRenderingContext,
+	[r, g, b, a]: ReadonlyVec,
+	depth = true
+) => {
+	gl.clearColor(r, g, b, a);
+	gl.clear(gl.COLOR_BUFFER_BIT | (depth ? gl.DEPTH_BUFFER_BIT : 0));
 };
