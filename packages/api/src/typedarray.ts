@@ -302,6 +302,55 @@ export function typedArray<T extends Type | GLType | BigType>(
 }
 
 /**
+ * Constructs a typed array for given `type` and populates it with given vector
+ * values.
+ *
+ * @remarks
+ * The size of the array will be `data.length * stride`, where `stride` is the
+ * number of elements per item and defaulting to the size of the first data
+ * item/vector given.
+ *
+ * @example
+ * ```ts
+ * // inferred stride=2 (2d vectors)
+ * typedArrayOfVec("f32", [[1,2], [3,4], [-10,20]]);
+ * // Float32Array(6) [ 1, 2, 3, 4, -10, 20 ]
+ *
+ * // with custom stride=4
+ * typedArrayOfVec("f32", [[1,2], [3,4], [-10,20]], 4);
+ * // Float32Array(12) [ 1, 2, 0, 0, 3,4, 0, 0, -10, 20, 0, 0 ]
+ * ```
+ *
+ * @param type
+ * @param data
+ * @param stride
+ */
+export function typedArrayOfVec<T extends Type | GLType>(
+	type: T,
+	data: Iterable<ArrayLike<number>>,
+	stride?: number
+): TypedArrayTypeMap[T];
+export function typedArrayOfVec<T extends BigType>(
+	type: T,
+	data: Iterable<ArrayLike<bigint>>,
+	stride?: number
+): BigTypedArrayTypeMap[T];
+export function typedArrayOfVec<T extends Type | GLType | BigType>(
+	type: T,
+	data: Iterable<ArrayLike<number | bigint>>,
+	stride?: number
+) {
+	const $data = Array.isArray(data) ? data : [...data];
+	if (stride === undefined) stride = $data[0].length;
+	const num = $data.length;
+	const res = typedArray(<Type>type, num * stride!);
+	for (let i = 0, j = 0; i < num; i++, j += stride!) {
+		res.set($data[i], j);
+	}
+	return res;
+}
+
+/**
  * Takes an {@link NumericArray} and returns its corresponding {@link Type} ID.
  * Standard JS arrays will default to {@link "f64"}.
  *
