@@ -13,6 +13,11 @@ export abstract class ARandom implements IRandom {
 		return (this.int() * INV_MAX - 0.5) * 2 * norm;
 	}
 
+	normMinMax(min: number, max: number) {
+		const x = this.minmax(min, max);
+		return this.float() < 0.5 ? x : -x;
+	}
+
 	minmax(min: number, max: number) {
 		return this.float() * (max - min) + min;
 	}
