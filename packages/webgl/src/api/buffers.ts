@@ -35,6 +35,15 @@ export interface IndexBufferSpec {
 	 * Raw attribute data from which `buffer` will be initialized
 	 */
 	data: IndexBufferData;
+	/**
+	 * Only used if {@link IndexBufferSpec.buffer} is being auto-generated.
+	 * If true (default: false), the buffer will retain a handler to the given
+	 * {@link IndexBufferSpec.data} array and can be later conveniently
+	 * updated via {@link WebGLArrayBuffer.update}.
+	 *
+	 * @defaultValue false
+	 */
+	retain?: boolean;
 }
 
 export interface FboOpts {

@@ -102,6 +102,15 @@ export interface ModelAttributeSpec {
 	 * https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt
 	 */
 	divisor?: number;
+	/**
+	 * Only used if {@link ModelAttributeSpec.buffer} is being auto-generated.
+	 * If true (default: false), the buffer will retain a handler to the given
+	 * {@link ModelAttributeSpec.data} array and can be later conveniently
+	 * updated via {@link WebGLArrayBuffer.update}.
+	 *
+	 * @defaultValue false
+	 */
+	retain?: boolean;
 }
 
 export interface InstancingSpec {

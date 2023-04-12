@@ -91,8 +91,9 @@ export const defBuffer = (
 	gl: WebGLRenderingContext,
 	data?: TypedArray,
 	target = gl.ARRAY_BUFFER,
-	mode = gl.STATIC_DRAW
-) => new WebGLArrayBuffer(gl, data, target, mode);
+	mode = gl.STATIC_DRAW,
+	retain = false
+) => new WebGLArrayBuffer(gl, data, target, mode, retain);
 
 export const compileModel = (
 	gl: WebGLRenderingContext,
@@ -126,7 +127,7 @@ const initBuffer = (
 	if (src.buffer) {
 		src.data && src.buffer.set(<any>src.data);
 	} else {
-		src.buffer = new WebGLArrayBuffer(gl, src.data, type, mode);
+		src.buffer = new WebGLArrayBuffer(gl, src.data, type, mode, src.retain);
 	}
 };
 
