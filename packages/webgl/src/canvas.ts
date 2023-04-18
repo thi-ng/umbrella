@@ -40,6 +40,15 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
 		canvas,
 		gl,
 		ext: getExtensions(gl, opts.ext!),
+		resize: (width: number, height: number) => {
+			adaptDPI(
+				canvas,
+				width,
+				height,
+				opts.autoScale !== false ? window.devicePixelRatio : 1
+			);
+			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+		},
 	};
 };
 
