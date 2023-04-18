@@ -4,7 +4,13 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mixN } from "@thi.ng/vectors/mixn";
 import type { IUpdatable, StateInterpolation, StateUpdate } from "./api.js";
 
-abstract class AState<T> implements IDeref<T>, IUpdatable {
+/**
+ * Abstract base class for simulation state wrappers.
+ *
+ * @remarks
+ * See {@link defNumeric} and {@link defVector}.
+ */
+export abstract class AState<T> implements IDeref<T>, IUpdatable {
 	protected prev: T;
 	protected curr: T;
 

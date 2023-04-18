@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-For a more thorough description of both the problem and solution, please see
+For a more thorough description of both the problem and solution(s), please see
 [Glenn Fiedler's article](https://www.gafferongames.com/post/fix_your_timestep/)
 upon which this implementation is principally based on.
 
@@ -15,13 +15,15 @@ upon which this implementation is principally based on.
 The package provides a configurable [`TimeStep`
 class](https://docs.thi.ng/umbrella/timestep/classes/TimeStep.html) to manage
 the update logic. To participate in these managed updates, the user must provide
-callback functions for the two main phases of the frame update:
+state values/wrappers implementing the [`IUpdatable`
+interface](https://docs.thi.ng/umbrella/timestep/interfaces/IUpdatable.html) for
+the two main phases of the frame update:
 
 - `integrate(dt: number, now: number): void`: Depending on actual elapsed time
 	and the configured timestep, this function might be called several times per
-	update cycle to update the sim to its next desired state to:
-	1. Keep a backup of the current state of the sim (from at the beginning of
-	that function call). This backup is required for the second phase of the update.
+	update cycle to update the sim to its next desired state to: 1. Keep a
+	backup of the current state of the sim (from at the beginning of that
+	function call). This backup is required for the second phase of the update.
 	2. Update the state to the desired next state using the provided timestep
 	`dt` (`now` is only given for information).
 - `interpolate(alpha: number, now: number): void`: In this phase a
@@ -30,9 +32,12 @@ callback functions for the two main phases of the frame update:
   such that it can be used for subsequent rendering/display purposes.
 
 In other words, this means any updatable state value will require 3 versions:
-previous, current, interpolated. For that reason, the package also provides
-wrappers for numeric and vector-based state variables, also illustrated in this
-short example below:
+previous, current, interpolated. Only the interpolated version is to be used for
+rendering (or other outside purposes). For that reason, the package also
+provides wrappers for
+[numeric](https://docs.thi.ng/umbrella/timestep/functions/defNumeric.html) and
+[vector-based](https://docs.thi.ng/umbrella/timestep/functions/defVector.html)
+state variables, also illustrated in the following short example:
 
 ```ts tangle:export/readme.ts
 import { defTimeStep, defNumeric, defVector } from "@thi.ng/timestep";
@@ -43,11 +48,11 @@ const startTime = Date.now();
 // initialize with default options (dt = 1/60 = 60 fps)
 const sim = defTimeStep({ dt: 1/60, startTime });
 
-// update `a` using @ 10 units per second
+// increase `a` using @ 10 units per second
 const a = defNumeric(0, (x, dt) => x + dt * 10);
 
 // update vector `b` using velocity of [-10, 20] (per second)
-// also see thi.ng/vectors for hundreds of vector operations...
+// also see thi.ng/vectors for hundreds of useful vector operations...
 const b = defVector([0, 0], (x, dt) => [x[0] - 10 * dt, x[1] + 20 * dt]);
 
 // even though the sim will update at a fixed 60fps,
@@ -86,9 +91,9 @@ setInterval(() => {
 // 1.028 10.113 [ -10.113, 20.226 ]
 ```
 
-The last row shows that both `a` and `b` have arrived at correct values after 1
-second, even though the 25fps used for triggering the updates are not a multiple
-of the 60fps used by the sim...
+The last row shows that both `a` and `b` arrive at their expected values after 1
+second, even though the 25 fps used for triggering the updates are not a
+multiple of the 60 fps used by the sim...
 
 {{meta.status}}
 
