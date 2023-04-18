@@ -5343,6 +5343,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/timestep@workspace:packages/timestep":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/timestep@workspace:packages/timestep"
+  dependencies:
+    "@microsoft/api-extractor": ^7.34.4
+    "@thi.ng/api": ^8.7.6
+    "@thi.ng/math": ^5.4.7
+    "@thi.ng/testament": ^0.3.15
+    "@thi.ng/vectors": ^7.6.11
+    rimraf: ^4.4.1
+    tools: "workspace:^"
+    typedoc: ^0.23.28
+    typescript: ^5.0.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/transclude@workspace:packages/transclude":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transclude@workspace:packages/transclude"
