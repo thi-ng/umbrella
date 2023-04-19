@@ -19,25 +19,26 @@ state values/wrappers implementing the [`IUpdatable`
 interface](https://docs.thi.ng/umbrella/timestep/interfaces/IUpdatable.html) for
 the two main phases of the frame update:
 
-- `integrate(dt: number, now: number): void`: Depending on actual elapsed time
-	and the configured timestep, this function might be called several times per
-	update cycle to update the sim to its next desired state to: 1. Keep a
-	backup of the current state of the sim (from at the beginning of that
-	function call). This backup is required for the second phase of the update.
+- `integrate(dt: number, ctx: ReadonlyTimeStep): void`: Depending on actual
+	elapsed time and the configured timestep, this function might be called
+	several times per update cycle to update the sim to its next desired state
+	to:
+	1. Backup the current state of the sim (at the beginning of that function
+	call). This backup is required for the second phase of the update.
 	2. Update the state to the desired next state using the provided timestep
-	`dt` (`now` is only given for information).
-- `interpolate(alpha: number, now: number): void`: In this phase a
+	`dt` (`ctx` is only given for information).
+- `interpolate(alpha: number, ctx: ReadonlyTimeStep): void`: In this phase a
   previously backed up state should be linearly interpolated to the current
   state using the provided `alpha` tween factor and the result stored separately
   such that it can be used for subsequent rendering/display purposes.
 
 In other words, this means any updatable state value will require 3 versions:
-previous, current, interpolated. Only the interpolated version is to be used for
-rendering (or other outside purposes). For that reason, the package also
-provides wrappers for
+previous, current (next), interpolated. **Only the interpolated version is to be
+used for rendering (or other outside purposes).** For that reason, the package
+also provides wrappers for
 [numeric](https://docs.thi.ng/umbrella/timestep/functions/defNumeric.html) and
 [vector-based](https://docs.thi.ng/umbrella/timestep/functions/defVector.html)
-state variables, also illustrated in the following short example:
+state variables, illustrated in the following short example:
 
 ```ts tangle:export/readme.ts
 import { defTimeStep, defNumeric, defVector } from "@thi.ng/timestep";
@@ -47,17 +48,18 @@ import { defTimeStep, defNumeric, defVector } from "@thi.ng/timestep";
 // see: https://docs.thi.ng/umbrella/timestep/interfaces/TimestepOpts.html
 const sim = defTimeStep({ dt: 1 / 60, startTime: Date.now() });
 
-// increase `a` using @ 10 units per second
+// define numeric state variable, increase using @ 10 units per second
 const a = defNumeric(0, (x, dt) => x + dt * 10);
 
-// update vector `b` using velocity of [-10, 20] (per second)
-// also see thi.ng/vectors for hundreds of useful vector operations...
+// define vector state variable, update using velocity of [-10, 20] (per second)
+// also see thi.ng/vectors for hundreds of useful vector operations to simplify...
 const b = defVector([0, 0], (x, dt) => [x[0] - 10 * dt, x[1] + 20 * dt]);
 
-// even though the sim will update at a fixed 60fps,
+// even though the sim will update at a fixed (theoretical) 60 fps,
 // the simulated render frame rate here is only 25 fps...
 setInterval(() => {
-	// provide current time and an array of state values (aka IUpdatable impls)
+	// provide current time and an array of state values to update
+	// (any IUpdatable impl can be given here, incl. custom types)
 	sim.update(Date.now(), [a, b]);
 	// show current frame, num updates, time (relative to start) and interpolated state values
 	console.log(sim.frame, sim.updates, sim.current, a.value, b.value);
@@ -93,7 +95,8 @@ setInterval(() => {
 
 Since the 25 fps render framerate is not a multiple of the 60 fps used by the
 sim, the output shows that for each render frame (1st column), there're either 2
-or 3 sim updates performed (to accommodate the 60 fps, value in 2nd column).
+or 3 sim updates performed (2nd column) to accommodate the 60 fps.
+
 This should then also clarify _why_ state interpolation is the final step of
 each update cycle: When multiple updates are performed in a single frame, the
 sim's state is technically _ahead_ of the render time line and therefore we need
