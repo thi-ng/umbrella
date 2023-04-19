@@ -2,7 +2,12 @@ import type { IDeref } from "@thi.ng/api";
 import { mix } from "@thi.ng/math/mix";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mixN } from "@thi.ng/vectors/mixn";
-import type { IUpdatable, StateInterpolation, StateUpdate } from "./api.js";
+import type {
+	IUpdatable,
+	ReadonlyTimeStep,
+	StateInterpolation,
+	StateUpdate,
+} from "./api.js";
 
 /**
  * Abstract base class for simulation state wrappers.
@@ -26,13 +31,13 @@ export abstract class AState<T> implements IDeref<T>, IUpdatable {
 		return this.value;
 	}
 
-	integrate(dt: number, now: number) {
+	integrate(dt: number, ctx: ReadonlyTimeStep) {
 		this.prev = this.curr;
-		this.curr = this.update(this.curr, dt, now);
+		this.curr = this.update(this.curr, dt, ctx);
 	}
 
-	interpolate(alpha: number, now: number): void {
-		this.value = this.mix(this.prev, this.curr, alpha, now);
+	interpolate(alpha: number, ctx: ReadonlyTimeStep): void {
+		this.value = this.mix(this.prev, this.curr, alpha, ctx);
 	}
 }
 

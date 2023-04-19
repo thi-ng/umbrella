@@ -1,10 +1,12 @@
+import type { TimeStep } from "./timestep";
+
 /**
  * Interface for participating in the {@link TimeStep.update} logic.
  */
 export interface IUpdatable {
 	/**
-	 * Main update function for this simulation state. Receives timestep and
-	 * current time (both in seconds). 1st phase of the update cycle.
+	 * 1st phase of the update cycle and main update function for this
+	 * simulation state. Receives timestep (in seconds) and a `ctx` object.
 	 *
 	 * @remarks
 	 * Implementations must perform the following tasks:
@@ -13,14 +15,13 @@ export interface IUpdatable {
 	 * - compute new state based on current state (using `dt`)
 	 * - set current state to newly computed state
 	 *
-	 * @remarks
-	 * The current time `t` is only provided for information. Most update logic
-	 * will (and should) only require the timestep arg `dt`.
+	 * The `ctx` object is only provided for information. Most update logic will
+	 * (and should) only require the timestep arg `dt`.
 	 *
 	 * @param dt
-	 * @param t
+	 * @param ctx
 	 */
-	integrate(dt: number, t: number): void;
+	integrate(dt: number, ctx: ReadonlyTimeStep): void;
 	/**
 	 * Final stage of the update cycle. The `alpha` arg is the tween factor to
 	 * use for interpolating between the backed up `previous` state and the
@@ -32,9 +33,32 @@ export interface IUpdatable {
 	 * should be used for rendering (or other external) purposes.
 	 *
 	 * @param alpha
-	 * @param t
+	 * @param ctx
 	 */
-	interpolate(alpha: number, t: number): void;
+	interpolate(alpha: number, ctx: ReadonlyTimeStep): void;
+}
+
+export interface ReadonlyTimeStep {
+	/**
+	 * Configured timestep (in seconds)
+	 */
+	readonly dt: number;
+	/**
+	 * Current time relative to configured start time (in seconds)
+	 */
+	readonly current: number;
+	/**
+	 * Start time (in seconds)
+	 */
+	readonly start: number;
+	/**
+	 * Current render frame
+	 */
+	readonly frame: number;
+	/**
+	 * Number of sim updates performed in total so far
+	 */
+	readonly updates: number;
 }
 
 export interface TimeStepOpts {
@@ -67,11 +91,11 @@ export interface TimeStepOpts {
 	scale: number;
 }
 
-export type StateUpdate<T> = (curr: T, dt: number, now: number) => T;
+export type StateUpdate<T> = (curr: T, dt: number, ctx: ReadonlyTimeStep) => T;
 
 export type StateInterpolation<T> = (
 	prev: T,
 	curr: T,
 	alpha: number,
-	now: number
+	ctx: ReadonlyTimeStep
 ) => T;

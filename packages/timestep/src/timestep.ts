@@ -48,13 +48,13 @@ export class TimeStep {
 		const n = items.length;
 		const dt = this.dt;
 		while (this.accumulator >= dt) {
-			for (let i = 0; i < n; i++) items[i].integrate(dt, now);
+			for (let i = 0; i < n; i++) items[i].integrate(dt, this);
 			this.accumulator -= dt;
 			this.updates++;
 		}
 		if (interpolate) {
 			const alpha = this.accumulator / dt;
-			for (let i = 0; i < n; i++) items[i].interpolate(alpha, now);
+			for (let i = 0; i < n; i++) items[i].interpolate(alpha, this);
 		}
 		this.frame++;
 	}
