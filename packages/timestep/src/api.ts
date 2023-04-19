@@ -37,7 +37,7 @@ export interface IUpdatable {
 	interpolate(alpha: number, t: number): void;
 }
 
-export interface TimestepOpts {
+export interface TimeStepOpts {
 	/**
 	 * Timestep (in seconds)
 	 *
@@ -45,7 +45,7 @@ export interface TimestepOpts {
 	 */
 	dt: number;
 	/**
-	 * Start time (in seconds)
+	 * Start time (see {@link TimeStepOpts.scale}).
 	 *
 	 * @defaultValue 0
 	 */
@@ -56,6 +56,15 @@ export interface TimestepOpts {
 	 * @defaultValue 1/4
 	 */
 	maxFrameTime: number;
+	/**
+	 * Scale factor used to convert timestamp values to seconds, i.e. those
+	 * timestamps passed via {@link TimeStepOpts.startTime} and those as
+	 * argument given to {@link TimeStep.update}. The default assumes these
+	 * value are in milliseconds.
+	 *
+	 * @defaultValue 0.001
+	 */
+	scale: number;
 }
 
 export type StateUpdate<T> = (curr: T, dt: number, now: number) => T;

@@ -1,24 +1,28 @@
-import type { IUpdatable, TimestepOpts } from "./api.js";
+import type { IUpdatable, TimeStepOpts } from "./api.js";
 
 export class TimeStep {
-	current = -1;
-	accumulator = 0;
+	current = 0;
+	start: number;
 	dt: number;
 	maxFrameTime: number;
+	scale: number;
 
+	accumulator = 0;
 	frame = 0;
 	updates = 0;
 
-	constructor(opts?: Partial<TimestepOpts>) {
+	constructor(opts?: Partial<TimeStepOpts>) {
 		const $opts = {
 			dt: 1 / 60,
 			maxFrameTime: 1 / 4,
 			startTime: 0,
+			scale: 1e-3,
 			...opts,
 		};
 		this.dt = $opts.dt;
 		this.maxFrameTime = $opts.maxFrameTime;
-		this.current = $opts.startTime;
+		this.scale = $opts.scale;
+		this.start = $opts.startTime * this.scale;
 	}
 
 	/**
@@ -37,6 +41,7 @@ export class TimeStep {
 	 * @param interpolate
 	 */
 	update(now: number, items: IUpdatable[], interpolate = true) {
+		now = now * this.scale - this.start;
 		if (this.current < 0) this.current = now;
 		this.accumulator += Math.min(now - this.current, this.maxFrameTime);
 		this.current = now;
@@ -55,4 +60,4 @@ export class TimeStep {
 	}
 }
 
-export const defTimeStep = (opts?: Partial<TimestepOpts>) => new TimeStep(opts);
+export const defTimeStep = (opts?: Partial<TimeStepOpts>) => new TimeStep(opts);
