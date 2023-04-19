@@ -31,7 +31,7 @@
 search of packages relevant to your use cases...**
 
 **This project is NOT a framework!** This mono-repository is home to currently
-179 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
+180 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
 jointly developed collection of packages, tools and general purpose building
 blocks for (non-exhaustive list of topics, see [package overview](#projects)
 below):
@@ -128,11 +128,13 @@ Several generative art projects by [Karsten Schmidt on
 fx(hash)](https://www.fxhash.xyz/u/toxi) have been created exclusively with
 libraries from this collection.
 
-| De/Frag series                                  |                                              |                                                  |
-|-------------------------------------------------|----------------------------------------------|--------------------------------------------------|
-| <img src="./assets/fxhash/defrag1-240.jpg"/>    | <img src="./assets/fxhash/defrag2-240.jpg"/> | <img src="./assets/fxhash/defrag3-240.jpg"/>     |
-| Quasiflock                                      | C-SCAPE                                      | ASCII-SCAPE                                      |
-| <img src="./assets/fxhash/quasiflock-240.jpg"/> | <img src="./assets/fxhash/c-scape-240.jpg"/> | <img src="./assets/fxhash/ascii-scape-240.jpg"/> |
+| De/Frag series                                   |                                              |                                                  |
+|--------------------------------------------------|----------------------------------------------|--------------------------------------------------|
+| <img src="./assets/fxhash/defrag1-240.jpg"/>     | <img src="./assets/fxhash/defrag2-240.jpg"/> | <img src="./assets/fxhash/defrag3-240.jpg"/>     |
+| Quasiflock                                       | C-SCAPE                                      | ASCII-SCAPE                                      |
+| <img src="./assets/fxhash/quasiflock-240.jpg"/>  | <img src="./assets/fxhash/c-scape-240.jpg"/> | <img src="./assets/fxhash/ascii-scape-240.jpg"/> |
+| Bubblemania                                      | Danza (unreleased)                           | S-TRACE (unreleased)                             |
+| <img src="./assets/fxhash/bubblemania-240.jpg"/> | <img src="./assets/fxhash/danza-240.jpg"/>   | <img src="./assets/fxhash/s-trace-240.jpg"/>     |
 
 
 ## Blog posts
@@ -189,25 +191,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-04-08
+As of: 2023-04-19
 
-| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/atom`](./packages/atom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)                           | [changelog](./packages/atom/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom`](./packages/geom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                           | [changelog](./packages/geom/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-fuzz`](./packages/geom-fuzz)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-fuzz.svg)](https://www.npmjs.com/package/@thi.ng/geom-fuzz)                 | [changelog](./packages/geom-fuzz/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-trace-bitmap`](./packages/geom-trace-bitmap) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-trace-bitmap.svg)](https://www.npmjs.com/package/@thi.ng/geom-trace-bitmap) | [changelog](./packages/geom-trace-bitmap/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/grid-iterators`](./packages/grid-iterators)       | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)       | [changelog](./packages/grid-iterators/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas)         | [changelog](./packages/hiccup-canvas/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)               | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)               | [changelog](./packages/hiccup-svg/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel`](./packages/pixel)                         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                         | [changelog](./packages/pixel/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                           | [changelog](./packages/rdom/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-canvas`](./packages/rdom-canvas)             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)             | [changelog](./packages/rdom-canvas/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-components`](./packages/rdom-components)     | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components)     | [changelog](./packages/rdom-components/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rstream`](./packages/rstream)                     | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                     | [changelog](./packages/rstream/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rstream-dot`](./packages/rstream-dot)             | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)             | [changelog](./packages/rstream-dot/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rstream-gestures`](./packages/rstream-gestures)   | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)   | [changelog](./packages/rstream-gestures/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rstream-query`](./packages/rstream-query)         | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)         | [changelog](./packages/rstream-query/CHANGELOG.md)     |
+| Status                                        | Package                                       | Version                                                                                                             | Changelog                                       |
+|:----------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/api`](./packages/api)               | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)               | [changelog](./packages/api/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)           | [changelog](./packages/color/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/random`](./packages/random)         | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)         | [changelog](./packages/random/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/scenegraph`](./packages/scenegraph) | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph) | [changelog](./packages/scenegraph/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-new-yellow) | [`@thi.ng/timestep`](./packages/timestep)     | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)     | [changelog](./packages/timestep/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors)       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)       | [changelog](./packages/vectors/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl`](./packages/webgl)           | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)           | [changelog](./packages/webgl/CHANGELOG.md)      |
 
 ### Fundamentals
 
@@ -239,16 +233,17 @@ As of: 2023-04-08
 
 ### Maths
 
-| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                     |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|-------------------------------------------------|
-| [`@thi.ng/dual-algebra`](./packages/dual-algebra) | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra) | [changelog](./packages/dual-algebra/CHANGELOG.md) | Dual number algebra / automatic differentiation |
-| [`@thi.ng/dsp`](./packages/dsp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                   | [changelog](./packages/dsp/CHANGELOG.md)          | DSP utils, composable signal gens/processors    |
-| [`@thi.ng/fuzzy`](./packages/fuzzy)               | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)               | [changelog](./packages/fuzzy/CHANGELOG.md)        | Fuzzy logic primitives & rule inference engine  |
-| [`@thi.ng/intervals`](./packages/intervals)       | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)       | [changelog](./packages/intervals/CHANGELOG.md)    | Open/closed intervals, queries, set ops         |
-| [`@thi.ng/math`](./packages/math)                 | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                 | [changelog](./packages/math/CHANGELOG.md)         | Assorted common math functions & utilities      |
-| [`@thi.ng/matrices`](./packages/matrices)         | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)         | [changelog](./packages/matrices/CHANGELOG.md)     | Matrix operations                               |
-| [`@thi.ng/sparse`](./packages/sparse)             | [![version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)             | [changelog](./packages/sparse/CHANGELOG.md)       | Sparse matrix & vector impls                    |
-| [`@thi.ng/vectors`](./packages/vectors)           | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)           | [changelog](./packages/vectors/CHANGELOG.md)      | Fixed & arbitrary-length vector ops             |
+| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                                |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|------------------------------------------------------------|
+| [`@thi.ng/dual-algebra`](./packages/dual-algebra) | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra) | [changelog](./packages/dual-algebra/CHANGELOG.md) | Dual number algebra / automatic differentiation            |
+| [`@thi.ng/dsp`](./packages/dsp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                   | [changelog](./packages/dsp/CHANGELOG.md)          | DSP utils, composable signal gens/processors               |
+| [`@thi.ng/fuzzy`](./packages/fuzzy)               | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)               | [changelog](./packages/fuzzy/CHANGELOG.md)        | Fuzzy logic primitives & rule inference engine             |
+| [`@thi.ng/intervals`](./packages/intervals)       | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)       | [changelog](./packages/intervals/CHANGELOG.md)    | Open/closed intervals, queries, set ops                    |
+| [`@thi.ng/math`](./packages/math)                 | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                 | [changelog](./packages/math/CHANGELOG.md)         | Assorted common math functions & utilities                 |
+| [`@thi.ng/matrices`](./packages/matrices)         | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)         | [changelog](./packages/matrices/CHANGELOG.md)     | Matrix operations                                          |
+| [`@thi.ng/sparse`](./packages/sparse)             | [![version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)             | [changelog](./packages/sparse/CHANGELOG.md)       | Sparse matrix & vector impls                               |
+| [`@thi.ng/timestep`](./packages/timestep)         | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)         | [changelog](./packages/timestep/CHANGELOG.md)     | Fixed timestep simulation updates with state interpolation |
+| [`@thi.ng/vectors`](./packages/vectors)           | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)           | [changelog](./packages/vectors/CHANGELOG.md)      | Fixed & arbitrary-length vector ops                        |
 
 ### Randomness
 
