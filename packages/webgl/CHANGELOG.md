@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-04-19T09:28:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [6.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.4.0) (2023-04-19)
+
+#### 🚀 Features
+
+- add retain option to ModelAttributeSpec/IndexBufferSpec ([3db4463](https://github.com/thi-ng/umbrella/commit/3db4463))
+  - update defBuffer()/initBuffer()
+- add clearCanvas() ([ad362f9](https://github.com/thi-ng/umbrella/commit/ad362f9))
+- update glCanvas() return type ([4af5e04](https://github.com/thi-ng/umbrella/commit/4af5e04))
+  - add `resize` handler to result which can later be called to
+    resize the canvas (with DPR) and update the GL viewport
 
 ## [6.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.3.0) (2023-02-05)
 

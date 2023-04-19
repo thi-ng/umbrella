@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-04-19T09:28:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.8.0) (2023-04-19)
+
+#### 🚀 Features
+
+- add typedArrayOfVec() ([39307bf](https://github.com/thi-ng/umbrella/commit/39307bf))
 
 ## [8.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.7.0) (2023-02-05)
 

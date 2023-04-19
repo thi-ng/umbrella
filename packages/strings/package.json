@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/strings",
-	"version": "3.4.4",
+	"version": "3.4.5",
 	"description": "Various string formatting & utility functions",
 	"type": "module",
 	"module": "./index.js",
@@ -34,10 +34,10 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.6",
+		"@thi.ng/api": "^8.8.0",
 		"@thi.ng/errors": "^2.2.15",
 		"@thi.ng/hex": "^2.3.9",
-		"@thi.ng/memoize": "^3.1.29"
+		"@thi.ng/memoize": "^3.1.30"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",

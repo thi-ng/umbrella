@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/math",
-	"version": "5.4.7",
+	"version": "5.4.8",
 	"description": "Assorted common math functions & utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.6"
+		"@thi.ng/api": "^8.8.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
