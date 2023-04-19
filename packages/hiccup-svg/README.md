@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Important](#important)
-  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of-thinggeom--thinghdom-canvas-shape-trees)
+  - [SVG conversion of @thi.ng/geom & @thi.ng/hiccup-canvas shape trees](#svg-conversion-of-thinggeom--thinghiccup-canvas-shape-trees)
   - [Automatic attribute conversions](#automatic-attribute-conversions)
     - [Colors](#colors)
     - [Transforms](#transforms)
@@ -42,33 +42,38 @@ svg.svg({}, svg.circle([0, 0], 100, { fill: "red" }));
 [svg.svg, {}, [svg.circle, [0, 0], 100, { fill: "red" }]]
 ```
 
-### SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees
+### SVG conversion of @thi.ng/geom & @thi.ng/hiccup-canvas shape trees
 
-Since v2.0.0 this package provides a conversion utility to translate the
-more compact syntax used by
+Since v2.0.0 this package provides a conversion utility to translate the more
+compact syntax used by
 [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 and
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
-shape trees (designed for more performant realtime / canvas drawing) into
-a SVG serializable hiccup format.
+[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+shape trees (designed for more performant realtime / canvas drawing) into a SVG
+serializable hiccup format.
 
-The `convertTree()` function takes a pre-normalized hiccup tree of
-hdom-canvas shape definitions and recursively converts it into an hiccup
-flavor which is ready for SVG serialization (i.e. using stringified
-geometry attribs). This conversion also involves translation &
-re-organization of various attributes, as described below. This function
-returns a new tree. The original remains untouched, as will any
-unrecognized tree / shape nodes (those will be transferred as-is to the
-result tree). See example below.
+The
+[`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
+function takes a pre-normalized hiccup tree of geom/hiccup-canvas shape
+definitions and recursively converts it into an hiccup flavor which is ready for
+SVG serialization (i.e. using stringified geometry attribs). This conversion
+also involves translation & re-organization of various attributes. This function
+returns a new tree. The original remains untouched, as will any unrecognized
+tree / shape nodes (those will be transferred as-is to the result tree). See
+example below.
 
-Since v3.7.0 tree conversion can be implicitly triggered by providing a
-`convert: true` attribute to the root `svg()` element.
+Tree conversion can be implicitly triggered by providing a `__convert: true`
+attribute to the root `svg()` element. This conversion also supports the
+`__prec` control attribute which can be used (on a per-shape basis) to control
+the formatting used for various floating point values (except color
+conversions). Child shapes (of a group) inherit the precision setting of their
+parent.
 
 ```ts
 // create SVG root element and convert body
 svg(
-    { width: 100, height: 100, convert: true},
-    ["rect", { fill: [1, 0, 0] }, [0,0], 100, 100]
+    { width: 100, height: 100, __convert: true, __prec: 3 },
+    ["rect", { fill: [1, 0, 0] }, [1.2345, -1.2345], 100, 100]
 )
 // [
 //   'svg',
@@ -79,7 +84,7 @@ svg(
 //     width: 100,
 //     height: 100
 //   },
-//   [ 'rect', { fill: '#ff0000', x: 0, y: 0, width: 100, height: 100 } ]
+//   ['rect', { fill: '#ff0000', x: '1.234', y: '-1.234', width: '100', height: '100' }]
 // ]
 ```
 
@@ -204,7 +209,7 @@ fs.writeFileSync(
     "hello.svg",
     serialize(
         svg.svg(
-            {width: 100, height: 100},
+            { width: 100, height: 100 },
             svg.defs(svg.linearGradient("grad", [0, 0], [0, 1], [[0, "red"], [1, "blue"]])),
             svg.circle([50, 50], 50, { fill: "url(#grad)" }),
             svg.text([50, 55], "Hello", { fill: "white", "text-anchor": "middle" })
@@ -212,10 +217,12 @@ fs.writeFileSync(
     ));
 ```
 
-Minimal example showing SVG conversion of a hdom-canvas scene:
+Minimal example showing SVG conversion of a hiccup-canvas scene (also see
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+for another compatible approach):
 
 ```ts
-// scene tree defined for hdom-canvas
+// scene tree defined for hiccup-canvas
 const scene = [
     ["defs", {},
         ["radialGradient",
@@ -232,7 +239,7 @@ const scene = [
 fs.writeFileSync(
     "radialgradient.svg",
     serialize(
-        svg.svg({ width: 300, height: 300 }, svg.convertTree(scene))
+        svg.svg({ width: 300, height: 300, __convert: true }, scene)
     )
 );
 ```
