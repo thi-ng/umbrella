@@ -324,6 +324,17 @@ export const cosine: FnN = (t) => 1 - (Math.cos(t * PI) * 0.5 + 0.5);
 
 export const decimated: FnN2 = (n, t) => Math.floor(t * n) / n;
 
+/**
+ * Spring oscillator with damping.
+ *
+ * @remarks
+ * Interactive graph:
+ * https://www.desmos.com/calculator/tywbpw8pck
+ *
+ * @param k
+ * @param amp
+ * @param t
+ */
 export const bounce: FnN3 = (k, amp, t) => {
 	const tk = t * k;
 	return 1 - ((amp * Math.sin(tk)) / tk) * Math.cos(t * HALF_PI);
