@@ -16,8 +16,8 @@ import type {
  * See {@link defNumeric} and {@link defVector}.
  */
 export abstract class AState<T> implements IDeref<T>, IUpdatable {
-	protected prev: T;
-	protected curr: T;
+	curr: T;
+	prev: T;
 
 	constructor(
 		public value: T,
