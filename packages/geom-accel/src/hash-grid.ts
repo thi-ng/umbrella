@@ -1,7 +1,8 @@
-import type { Fn, IEmpty } from "@thi.ng/api";
+import type { Fn, IEmpty, Predicate2 } from "@thi.ng/api";
 import type { INeighborhood } from "@thi.ng/distance";
 import { assert } from "@thi.ng/errors/assert";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { equals } from "@thi.ng/vectors/equals";
 import { hash2, hash3 } from "@thi.ng/vectors/hash";
 
 export interface QueryNeighborhoodOpts {
@@ -100,6 +101,50 @@ export abstract class AHashGrid<T> {
 		for (let i = 0; i < num; i++) {
 			entries[--indices[this.hashPos(keyFn(items[i]))]] = i;
 		}
+	}
+
+	/**
+	 * Returns true if an item with given `key` vector has been indexed by the
+	 * hash grid. The optional `equiv` predicate can be used to customize the
+	 * key equality test (called for all items matching the `keys` hash).
+	 *
+	 * @remarks
+	 * Default predicate is: [thi.ng/vectors
+	 * equals()](https://docs.thi.ng/umbrella/vectors/functions/equals.html)
+	 *
+	 * @param key
+	 * @param equiv
+	 */
+	has(key: ReadonlyVec, equiv: Predicate2<ReadonlyVec> = equals) {
+		const { entries, indices, items, keyFn } = this;
+		const h = this.hashPos(key);
+		for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+			if (equiv(keyFn(items[entries[i]]), key)) return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns array of all items (if any) which have been indexed using given
+	 * lookup `key` AND which are passing the given `equiv` predicate (which can
+	 * be used to customize the key equality test).
+	 *
+	 * @remarks
+	 * Default predicate is: [thi.ng/vectors
+	 * equals()](https://docs.thi.ng/umbrella/vectors/functions/equals.html)
+	 *
+	 * @param key
+	 * @param equiv
+	 */
+	get(key: ReadonlyVec, equiv: Predicate2<ReadonlyVec> = equals) {
+		const { entries, indices, items, keyFn } = this;
+		const h = this.hashPos(key);
+		const res: T[] = [];
+		for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+			const val = items[entries[i]];
+			if (equiv(keyFn(val), key)) res.push(val);
+		}
+		return res;
 	}
 
 	/**
