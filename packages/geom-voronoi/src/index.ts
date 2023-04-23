@@ -222,6 +222,32 @@ export class DVMesh<T> {
 		return cells;
 	}
 
+	/**
+	 * Advanced use only. Returns Delaunay triangles as arrays of raw
+	 * [thi.ng/quad-edge
+	 * Edges](https://docs.thi.ng/umbrella/quad-edge/classes/Edge.html).
+	 *
+	 * @remarks
+	 * The actual vertex position associated with each edge can be obtained via
+	 * `e.origin.pos`. Each edge (and each associated {@link Vertex}) also has a
+	 * unique ID, accessible via `e.id` and `e.origin.id`.
+	 */
+	delaunayQE() {
+		const cells: Edge<Vertex<T>>[][] = [];
+		const usedEdges = defBitField(this.nextEID);
+		this.traverse((eab) => {
+			if (!usedEdges.at(eab.id)) {
+				const ebc = eab.lnext;
+				const eca = ebc.lnext;
+				cells.push([eab, ebc, eca]);
+				usedEdges.setAt(eab.id);
+				usedEdges.setAt(ebc.id);
+				usedEdges.setAt(eca.id);
+			}
+		});
+		return cells;
+	}
+
 	voronoi(bounds?: ReadonlyVec[]) {
 		const cells: Vec[][] = [];
 		const bc = bounds && centroid(bounds);
@@ -254,6 +280,29 @@ export class DVMesh<T> {
 				  },
 			false
 		);
+		return cells;
+	}
+
+	/**
+	 * Advanced use only. Returns Voronoi cells as arrays of raw
+	 * [thi.ng/quad-edge
+	 * Edges](https://docs.thi.ng/umbrella/quad-edge/classes/Edge.html).
+	 *
+	 * @remarks
+	 * The actual vertex position associated with each edge can be obtained via
+	 * `e.origin.pos`. Each edge (and each associated {@link Vertex}) also has a
+	 * unique ID, accessible via `e.id` and `e.origin.id`.
+	 */
+	voronoiQE() {
+		const cells: Edge<Vertex<T>>[][] = [];
+		this.traverse((e) => {
+			const first = (e = e.rot);
+			const cell = [];
+			do {
+				cell.push(e);
+			} while ((e = e.lnext) !== first);
+			cells.push(cell);
+		}, false);
 		return cells;
 	}
 
