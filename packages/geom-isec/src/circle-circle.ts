@@ -13,6 +13,18 @@ import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
 import { sub } from "@thi.ng/vectors/sub";
 import { NONE } from "./api.js";
 
+/**
+ * Computes intersection between 2 given circles.
+ *
+ * @remarks
+ * Reference:
+ * https://mathworld.wolfram.com/Circle-CircleIntersection.html (eq. 5)
+ *
+ * @param a
+ * @param b
+ * @param ar
+ * @param br
+ */
 export const intersectCircleCircle = (
 	a: ReadonlyVec,
 	b: ReadonlyVec,
