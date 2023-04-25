@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ramp",
-	"version": "2.1.53",
+	"version": "2.1.54",
 	"description": "Parametric (non-)linearly interpolated 1D lookup tables for remapping values",
 	"type": "module",
 	"module": "./index.js",
@@ -36,9 +36,9 @@
 	"dependencies": {
 		"@thi.ng/arrays": "^2.5.11",
 		"@thi.ng/compare": "^2.1.30",
-		"@thi.ng/math": "^5.4.8",
-		"@thi.ng/transducers": "^8.4.3",
-		"@thi.ng/vectors": "^7.6.12"
+		"@thi.ng/math": "^5.4.9",
+		"@thi.ng/transducers": "^8.4.4",
+		"@thi.ng/vectors": "^7.6.13"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",

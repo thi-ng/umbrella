@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-19T09:28:07Z
+- **Last updated**: 2023-04-25T15:38:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.1.1) (2023-04-25)
+
+#### ♻️ Refactoring
+
+- update AState, expose prev & curr ([8d5356b](https://github.com/thi-ng/umbrella/commit/8d5356b))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.1.0) (2023-04-19)
 
