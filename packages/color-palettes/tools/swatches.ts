@@ -24,7 +24,7 @@ import { THEMES } from "./themes.js";
 
 setPrecision(2);
 
-const RECENT_ID = 191;
+const RECENT_ID = 209;
 
 const BASE_URL =
 	process.argv[2] !== "--local"
@@ -94,7 +94,7 @@ for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 	for (let { id, theme } of themes) {
 		const doc = serialize(
 			svg(
-				{ convert: true, width, height: yOff + cellW * 2 + GAP },
+				{ __convert: true, width, height: yOff + cellW * 2 + GAP },
 				dotsH(theme, R, GAP, { translate: [R, R] }),
 				...mapIndexed(
 					(i, [x, y]) => [
