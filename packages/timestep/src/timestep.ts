@@ -92,3 +92,34 @@ export class TimeStep implements INotify {
 }
 
 export const defTimeStep = (opts?: Partial<TimeStepOpts>) => new TimeStep(opts);
+
+/**
+ * Calls {@link IUpdatable.integrate} for all given items (in given order).
+ *
+ * @param dt
+ * @param ctx
+ * @param items
+ */
+export const integrateAll = (
+	dt: number,
+	ctx: ReadonlyTimeStep,
+	...items: IUpdatable[]
+) => {
+	for (let i = 0, n = items.length; i < n; i++) items[i].integrate(dt, ctx);
+};
+
+/**
+ * Calls {@link IUpdatable.interpolate} for all given items (in given order).
+ *
+ * @param dt
+ * @param ctx
+ * @param items
+ */
+export const interpolateAll = (
+	alpha: number,
+	ctx: ReadonlyTimeStep,
+	...items: IUpdatable[]
+) => {
+	for (let i = 0, n = items.length; i < n; i++)
+		items[i].interpolate(alpha, ctx);
+};
