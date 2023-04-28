@@ -1,15 +1,32 @@
-import type { IUpdatable, TimeStepOpts } from "./api.js";
+import {
+	INotifyMixin,
+	type Event,
+	type INotify,
+	type Listener,
+} from "@thi.ng/api";
+import {
+	EVENT_FRAME,
+	EVENT_INTEGRATE,
+	type IUpdatable,
+	type ReadonlyTimeStep,
+	type TimeStepOpts,
+} from "./api.js";
 
-export class TimeStep {
-	current = 0;
+@INotifyMixin
+export class TimeStep implements INotify {
 	start: number;
 	dt: number;
 	maxFrameTime: number;
 	scale: number;
 
+	t = 0;
+	current = 0;
 	accumulator = 0;
 	frame = 0;
 	updates = 0;
+
+	protected __eventIntegrate: Event;
+	protected __eventFrame: Event;
 
 	constructor(opts?: Partial<TimeStepOpts>) {
 		const $opts = {
@@ -23,7 +40,19 @@ export class TimeStep {
 		this.maxFrameTime = $opts.maxFrameTime;
 		this.scale = $opts.scale;
 		this.start = $opts.startTime * this.scale;
+		this.__eventIntegrate = Object.freeze({
+			id: EVENT_INTEGRATE,
+			target: this,
+		});
+		this.__eventFrame = Object.freeze({ id: EVENT_FRAME, target: this });
 	}
+
+	// @ts-ignore mixin
+	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	// @ts-ignore mixin
+	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	// @ts-ignore mixin
+	notify(event: Event): boolean {}
 
 	/**
 	 * Updates internal time to given new time `now` (in seconds) and performs
@@ -42,21 +71,23 @@ export class TimeStep {
 	 */
 	update(now: number, items: IUpdatable[], interpolate = true) {
 		now = now * this.scale - this.start;
-		if (this.current < 0) this.current = now;
 		this.accumulator += Math.min(now - this.current, this.maxFrameTime);
 		this.current = now;
 		const n = items.length;
 		const dt = this.dt;
 		while (this.accumulator >= dt) {
 			for (let i = 0; i < n; i++) items[i].integrate(dt, this);
+			this.t += dt;
 			this.accumulator -= dt;
 			this.updates++;
+			this.notify(this.__eventIntegrate);
 		}
 		if (interpolate) {
 			const alpha = this.accumulator / dt;
 			for (let i = 0; i < n; i++) items[i].interpolate(alpha, this);
 		}
 		this.frame++;
+		this.notify(this.__eventFrame);
 	}
 }
 

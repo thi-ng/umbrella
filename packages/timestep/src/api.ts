@@ -40,6 +40,10 @@ export interface IUpdatable {
 
 export interface ReadonlyTimeStep {
 	/**
+	 * Simulation time since start (resolution {@link ReadonlyTimeStep.dt}).
+	 */
+	readonly t: number;
+	/**
 	 * Configured timestep (in seconds)
 	 */
 	readonly dt: number;
@@ -99,3 +103,15 @@ export type StateInterpolation<T> = (
 	alpha: number,
 	ctx: ReadonlyTimeStep
 ) => T;
+
+/**
+ * Event ID for {@link TimeStep.addListener} to be notified of individual
+ * {@link IUpdatable.integrate} iterations.
+ */
+export const EVENT_INTEGRATE = "integrate";
+
+/**
+ * Event ID for {@link TimeStep.addListener} to be notified of calls to
+ * {@link TimeStep.update} (triggered at the very end of a frame update).
+ */
+export const EVENT_FRAME = "frame";
