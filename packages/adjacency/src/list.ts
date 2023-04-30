@@ -83,6 +83,10 @@ export class AdjacencyList implements IGraph<number> {
 		return false;
 	}
 
+	hasVertex(id: number) {
+		return !!this.adjacency[id];  
+	}
+
 	hasEdge(from: number, to: number) {
 		const vertex = this.adjacency[from];
 		return vertex ? vertex.includes(to) : false;
