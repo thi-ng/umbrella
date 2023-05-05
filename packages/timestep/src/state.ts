@@ -2,6 +2,7 @@ import type { IDeref } from "@thi.ng/api";
 import { mix } from "@thi.ng/math/mix";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mixN } from "@thi.ng/vectors/mixn";
+import { set } from "@thi.ng/vectors/set";
 import type {
 	IUpdatable,
 	ReadonlyTimeStep,
@@ -39,17 +40,29 @@ export abstract class AState<T> implements IDeref<T>, IUpdatable {
 	interpolate(alpha: number, ctx: ReadonlyTimeStep): void {
 		this.value = this.mix(this.prev, this.curr, alpha, ctx);
 	}
+
+	abstract reset(value: T): void;
 }
 
 export class NumericState extends AState<number> {
 	constructor(x: number, update: StateUpdate<number>) {
 		super(x, update, mix);
 	}
+
+	reset(value: number) {
+		this.prev = this.curr = this.value = value;
+	}
 }
 
 export class VectorState extends AState<ReadonlyVec> {
 	constructor(x: ReadonlyVec, update: StateUpdate<ReadonlyVec>) {
 		super(x, update, (a, b, t) => mixN([], a, b, t));
+	}
+
+	reset(value: ReadonlyVec) {
+		set(this.prev, value);
+		set(this.curr, value);
+		set(this.value, value);
 	}
 }
 
@@ -66,6 +79,10 @@ export const defNumeric = (x: number, update: StateUpdate<number>) =>
 /**
  * Returns a new {@link VectorState} wrapper for given vector `v` and its update
  * function for use with {@link TimeStep.update}.
+ *
+ * @remarks
+ * **IMPORTANT:** The `update` function MUST return a new vector and not mutate
+ * the existing one!
  *
  * @param x
  * @param update
