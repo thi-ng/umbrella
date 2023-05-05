@@ -2,7 +2,8 @@ import type { FloatSym } from "@thi.ng/shader-ast";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { float, FLOAT0, FLOAT05, FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
+import { gensym } from "@thi.ng/shader-ast/ast/idgen";
+import { FLOAT0, FLOAT05, FLOAT1, float } from "@thi.ng/shader-ast/ast/lit";
 import { add, inc, lte, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
@@ -17,9 +18,14 @@ import { clamp01 } from "../math/clamp.js";
  *
  * @param scene -
  * @param numSamples -
+ * @param name -
  */
-export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
-	defn("float", "raymarchAO", ["vec3", "vec3"], (p, n) => {
+export const raymarchAO = (
+	scene: RaymarchScene,
+	numSamples = 5,
+	name = gensym("raymarchAO_")
+) =>
+	defn("float", name, ["vec3", "vec3"], (p, n) => {
 		let r: FloatSym;
 		let w: FloatSym;
 		let d0: FloatSym;

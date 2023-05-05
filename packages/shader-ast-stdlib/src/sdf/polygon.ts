@@ -3,7 +3,7 @@ import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop, ifThen } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { index } from "@thi.ng/shader-ast/ast/indexed";
-import { bvec3, FLOAT1, int, INT0 } from "@thi.ng/shader-ast/ast/lit";
+import { FLOAT1, INT0, bvec3, int } from "@thi.ng/shader-ast/ast/lit";
 import {
 	div,
 	gt,
@@ -18,7 +18,7 @@ import {
 } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { all, _any } from "@thi.ng/shader-ast/builtin/bvec";
+import { _any, all } from "@thi.ng/shader-ast/builtin/bvec";
 import { dot, min, sqrt } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "../math/clamp.js";
 
