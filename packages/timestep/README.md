@@ -31,8 +31,8 @@ upon which this implementation is principally based on.
 The package provides a configurable [`TimeStep`
 class](https://docs.thi.ng/umbrella/timestep/classes/TimeStep.html) to manage
 the update logic. To participate in these managed updates, the user must provide
-state values/wrappers implementing the [`IUpdatable`
-interface](https://docs.thi.ng/umbrella/timestep/interfaces/IUpdatable.html) for
+state values/wrappers implementing the [`ITimeStep`
+interface](https://docs.thi.ng/umbrella/timestep/interfaces/ITimeStep.html) for
 the two main phases of the frame update:
 
 - `integrate(dt: number, ctx: ReadonlyTimeStep): void`: Depending on actual
@@ -75,7 +75,7 @@ const b = defVector([0, 0], (x, dt) => [x[0] - 10 * dt, x[1] + 20 * dt]);
 // the simulated render frame rate here is only 25 fps...
 setInterval(() => {
     // provide current time and an array of state values to update
-    // (any IUpdatable impl can be given here, incl. custom types)
+    // (any ITimeStep impl can be given here, incl. custom types)
     sim.update(Date.now(), [a, b]);
     // show current frame, num updates, time (relative to start) and interpolated state values
     console.log(sim.frame, sim.updates, sim.current, a.value, b.value);
@@ -148,7 +148,7 @@ For Node.js REPL:
 const timestep = await import("@thi.ng/timestep");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 518 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 758 bytes
 
 ## Dependencies
 
