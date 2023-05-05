@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/timestep",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Deterministic fixed timestep simulation updates with state interpolation",
 	"type": "module",
 	"module": "./index.js",
