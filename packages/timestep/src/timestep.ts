@@ -7,7 +7,7 @@ import {
 import {
 	EVENT_FRAME,
 	EVENT_INTEGRATE,
-	type IUpdatable,
+	type ITimeStep,
 	type ReadonlyTimeStep,
 	type TimeStepOpts,
 } from "./api.js";
@@ -55,21 +55,24 @@ export class TimeStep implements INotify {
 	notify(event: Event): boolean {}
 
 	/**
-	 * Updates internal time to given new time `now` (in seconds) and performs
-	 * the required number of fixed timesteps to integrate and interpolate the
-	 * given `state` values.
+	 * Updates internal time to given new time `now` (given value will be scaled
+	 * via {@link TimeStepOpts.scale}) and performs the required number of fixed
+	 * timesteps to integrate and interpolate the given `state` values.
 	 *
 	 * @remarks
-	 * If `interpolate` is false, the {@link IUpdatable.interpolate} phase of
-	 * the update cycle is skipped. This is useful when using this setup to
-	 * simulate sub-steps (e.g. in XPBD) and only requiring the interpolation
-	 * stage for the last step.
+	 * If the scaled time difference since the last step is greater than
+	 * {@link TimeStepOpts.maxFrameTime}, it will be limited to the latter.
+	 *
+	 * If `interpolate` is false, the {@link ITimeStep.interpolate} phase of the
+	 * update cycle is skipped. This is useful when using this setup to simulate
+	 * sub-steps (e.g. in XPBD) and only requiring the interpolation stage for
+	 * the last step.
 	 *
 	 * @param now
 	 * @param items
 	 * @param interpolate
 	 */
-	update(now: number, items: IUpdatable[], interpolate = true) {
+	update(now: number, items: ITimeStep[], interpolate = true) {
 		now = now * this.scale - this.start;
 		this.accumulator += Math.min(now - this.current, this.maxFrameTime);
 		this.current = now;
@@ -94,7 +97,7 @@ export class TimeStep implements INotify {
 export const defTimeStep = (opts?: Partial<TimeStepOpts>) => new TimeStep(opts);
 
 /**
- * Calls {@link IUpdatable.integrate} for all given items (in given order).
+ * Calls {@link ITimeStep.integrate} for all given items (in given order).
  *
  * @param dt
  * @param ctx
@@ -103,13 +106,13 @@ export const defTimeStep = (opts?: Partial<TimeStepOpts>) => new TimeStep(opts);
 export const integrateAll = (
 	dt: number,
 	ctx: ReadonlyTimeStep,
-	...items: IUpdatable[]
+	...items: ITimeStep[]
 ) => {
 	for (let i = 0, n = items.length; i < n; i++) items[i].integrate(dt, ctx);
 };
 
 /**
- * Calls {@link IUpdatable.interpolate} for all given items (in given order).
+ * Calls {@link ITimeStep.interpolate} for all given items (in given order).
  *
  * @param dt
  * @param ctx
@@ -118,7 +121,7 @@ export const integrateAll = (
 export const interpolateAll = (
 	alpha: number,
 	ctx: ReadonlyTimeStep,
-	...items: IUpdatable[]
+	...items: ITimeStep[]
 ) => {
 	for (let i = 0, n = items.length; i < n; i++)
 		items[i].interpolate(alpha, ctx);

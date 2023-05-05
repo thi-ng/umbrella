@@ -4,7 +4,7 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { set } from "@thi.ng/vectors/set";
 import type {
-	IUpdatable,
+	ITimeStep,
 	ReadonlyTimeStep,
 	StateInterpolation,
 	StateUpdate,
@@ -16,7 +16,7 @@ import type {
  * @remarks
  * See {@link defNumeric} and {@link defVector}.
  */
-export abstract class AState<T> implements IDeref<T>, IUpdatable {
+export abstract class AState<T> implements IDeref<T>, ITimeStep {
 	curr: T;
 	prev: T;
 
