@@ -191,14 +191,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-04-25
+As of: 2023-05-05
 
-| Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
-|:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-accel`](./packages/geom-accel)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)         | [changelog](./packages/geom-accel/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-voronoi`](./packages/geom-voronoi)     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)     | [changelog](./packages/geom-voronoi/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/timestep`](./packages/timestep)             | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)             | [changelog](./packages/timestep/CHANGELOG.md)       |
+| Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
+|:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/timestep`](./packages/timestep)                   | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)                   | [changelog](./packages/timestep/CHANGELOG.md)          |
 
 ### Fundamentals
 
