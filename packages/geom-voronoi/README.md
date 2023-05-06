@@ -66,7 +66,7 @@ For Node.js REPL:
 const geomVoronoi = await import("@thi.ng/geom-voronoi");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.35 KB
 
 ## Dependencies
 

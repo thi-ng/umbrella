@@ -270,7 +270,7 @@ For Node.js REPL:
 const colorPalettes = await import("@thi.ng/color-palettes");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.59 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.75 KB
 
 ## Dependencies
 
