@@ -35,12 +35,12 @@
 		"tool:convert": "tools:node-esm tools/convert.ts"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.4",
+		"@microsoft/api-extractor": "^7.34.8",
 		"@thi.ng/api": "^8.7.6",
 		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^4.4.1",
+		"rimraf": "^5.0.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.28",
+		"typedoc": "^0.24.6",
 		"typescript": "^5.0.4"
 	},
 	"keywords": [

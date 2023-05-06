@@ -34,12 +34,12 @@
 		"test": "testament test"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.4",
+		"@microsoft/api-extractor": "^7.34.8",
 		"@thi.ng/testament": "^0.3.15",
-		"@types/node": "^18.15.11",
-		"rimraf": "^4.4.1",
+		"@types/node": "^20.1.0",
+		"rimraf": "^5.0.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.28",
+		"typedoc": "^0.24.6",
 		"typescript": "^5.0.4"
 	},
 	"keywords": [
