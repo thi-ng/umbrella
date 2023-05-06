@@ -1,4 +1,5 @@
-yarn asc assembly/index.ts -b simd.wasm -t simd.wast --optimize --enable simd --runtime stub --importMemory --memoryBase 0
+#!/bin/sh
+yarn asc assembly/index.ts -o simd.wasm -t simd.wast --optimize --enable simd --runtime stub --importMemory --memoryBase 0
 
 # apply binaryen optimizer
 wasm-opt simd.wasm -o opt.wasm -Oz --enable-simd
@@ -14,5 +15,5 @@ cat << EOF > src/binary.ts
  *
  * @internal
  */
-export const BINARY = "$(base64 opt.wasm)";
+export const BINARY = "$(base64 -i opt.wasm)";
 EOF
