@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-05-05T21:29:28Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.13.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.13.14) (2023-05-05)
+
+#### 🩹 Bug fixes
+
+- fix [#399](https://github.com/thi-ng/umbrella/issues/399) update HOF function naming ([f4b62d7](https://github.com/thi-ng/umbrella/commit/f4b62d7))
+  - ensure generated HOFs are using unique names to allow multiple instances
 
 ## [0.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.13.0) (2023-01-10)
 

@@ -3,7 +3,8 @@ import type { FloatSym, FloatTerm, Prim, Term } from "@thi.ng/shader-ast";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { float, FLOAT0, FLOAT05 } from "@thi.ng/shader-ast/ast/lit";
+import { gensym } from "@thi.ng/shader-ast/ast/idgen";
+import { FLOAT0, FLOAT05, float } from "@thi.ng/shader-ast/ast/lit";
 import { add, inc, lt, mul } from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 
@@ -30,7 +31,7 @@ export const additive = <T extends Prim>(
 	type: T,
 	fn: Fn<Term<T>, FloatTerm>,
 	oct: number | FloatTerm = 4,
-	name = "additive"
+	name = gensym("additive_")
 ) =>
 	defn("float", name, [[type], [type], "float"], (pos, shift, decay) => {
 		let n: FloatSym;

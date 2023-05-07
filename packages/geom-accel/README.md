@@ -61,7 +61,7 @@ For Node.js REPL:
 const geomAccel = await import("@thi.ng/geom-accel");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.27 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.35 KB
 
 ## Dependencies
 

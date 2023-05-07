@@ -17,7 +17,7 @@ value. The size of the canvas can be given as a subscription too and if so will
 also automatically trigger resizing of the canvas.
 
 The geometry to rendered to the canvas is expressed as
-[thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/),
+[thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup),
 specifically the flavor used by
 [thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas),
 which (not just coincidentally) is the same as also used by

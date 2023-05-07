@@ -42,12 +42,12 @@
 		"@thi.ng/sparse": "^0.3.48"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.4",
+		"@microsoft/api-extractor": "^7.34.8",
 		"@thi.ng/testament": "^0.3.15",
 		"@thi.ng/vectors": "^7.6.13",
-		"rimraf": "^4.4.1",
+		"rimraf": "^5.0.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.28",
+		"typedoc": "^0.24.6",
 		"typescript": "^5.0.4"
 	},
 	"keywords": [

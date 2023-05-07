@@ -13,10 +13,10 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"@types/node": "^18.15.11",
+		"@types/node": "^20.1.0",
 		"ts-node": "^10.9.1",
 		"typescript": "^5.0.4",
-		"vite": "^4.2.1"
+		"vite": "^4.3.5"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",

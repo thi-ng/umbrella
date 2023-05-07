@@ -2,7 +2,8 @@ import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { brk, forLoop, ifThen } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { float, int, INT0, vec2 } from "@thi.ng/shader-ast/ast/lit";
+import { gensym } from "@thi.ng/shader-ast/ast/idgen";
+import { INT0, float, int, vec2 } from "@thi.ng/shader-ast/ast/lit";
 import { gt, inc, lt, madd } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
@@ -31,7 +32,7 @@ export const raymarchScene = (
 	_opts?: Partial<RaymarchOpts>
 ) => {
 	const opts: RaymarchOpts = {
-		name: "raymarchScene",
+		name: gensym("raymarchScene_"),
 		near: 0.1,
 		far: 10,
 		steps: 100,

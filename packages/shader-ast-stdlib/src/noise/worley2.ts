@@ -2,6 +2,7 @@ import type { Func2, Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { gensym } from "@thi.ng/shader-ast/ast/idgen";
 import { float, vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { add, lt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $, $x, $xy, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
@@ -32,20 +33,28 @@ export const worleyDistManhattan = defn(
 );
 
 /**
- * Higher order function. Computes 2D Worley noise using provided
- * distance function. The returned function takes 2 args: position and
- * jitter amount, the latter in [0..1] interval. Returns noise
- * components as vec2, with the x component containing the distance from
- * closest simplex center and y the noise value. The vector components
- * can be used individually or combined (e.g. `noise.y - noise.x`)...
+ * Higher order function. Computes 2D Worley noise using provided distance
+ * function. The returned function takes 2 args: position and jitter amount, the
+ * latter in [0..1] interval. Returns noise components as vec2, with the x
+ * component containing the distance from closest simplex center and y the noise
+ * value. The vector components can be used individually or combined (e.g.
+ * `noise.y - noise.x`)...
  *
+ * THe optional `name` arg can be used to customize the name of the generated
+ * function.
+ *
+ * @remarks
  * Based on implementation by Stefan Gustavson:
  * http://webstaff.itn.liu.se/~stegu/GLSL-cellular/GLSL-cellular-notes.pdf
  *
  * @param distFn -
+ * @param name -
  */
-export const worley2 = (distFn: Func2<"vec3", "vec3", "vec3">) =>
-	defn("vec2", "worley2", ["vec2", "float"], (P, jitter) => {
+export const worley2 = (
+	distFn: Func2<"vec3", "vec3", "vec3">,
+	name = gensym("worley2_")
+) =>
+	defn("vec2", name, ["vec2", "float"], (P, jitter) => {
 		const K = float(1 / 7);
 		const Ko = float(3 / 7);
 		const oI = sym(vec3(-1, 0, 1));

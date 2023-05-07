@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"typescript": "^5.0.4",
-		"vite": "^4.2.1"
+		"vite": "^4.3.5"
 	},
 	"dependencies": {
 		"@thi.ng/color-palettes": "workspace:^",

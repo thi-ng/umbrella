@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-28T17:22:36Z
+- **Last updated**: 2023-05-05T21:29:28Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.3.0) (2023-05-05)
+
+#### 🚀 Features
+
+- add AState.reset() & impls ([a2c4946](https://github.com/thi-ng/umbrella/commit/a2c4946))
+
+#### ♻️ Refactoring
+
+- rename IUpdatable => ITimeStep ([2cc3951](https://github.com/thi-ng/umbrella/commit/2cc3951))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.2.0) (2023-04-28)
 

@@ -3,7 +3,7 @@ import type { TimeStep } from "./timestep";
 /**
  * Interface for participating in the {@link TimeStep.update} logic.
  */
-export interface IUpdatable {
+export interface ITimeStep {
 	/**
 	 * 1st phase of the update cycle and main update function for this
 	 * simulation state. Receives timestep (in seconds) and a `ctx` object.
@@ -106,7 +106,7 @@ export type StateInterpolation<T> = (
 
 /**
  * Event ID for {@link TimeStep.addListener} to be notified of individual
- * {@link IUpdatable.integrate} iterations.
+ * {@link ITimeStep.integrate} iterations.
  */
 export const EVENT_INTEGRATE = "integrate";
 
