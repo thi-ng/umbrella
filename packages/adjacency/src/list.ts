@@ -60,6 +60,10 @@ export class AdjacencyList implements IGraph<number> {
 		return true;
 	}
 
+	hasVertex(id: number) {
+		return !!this.adjacency[id];
+	}
+
 	addEdge(from: number, to: number) {
 		const vertex = this.ensureVertexData(from);
 		this.ensureVertexData(to);

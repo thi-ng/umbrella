@@ -42,6 +42,12 @@ export interface IGraph<T = number> {
 	 */
 	hasEdge(from: T, to: T): boolean;
 	/**
+	 * Returns true if a vertex exists for the given id.
+	 *
+	 * @param id -
+	 */
+	hasVertex(id: T): boolean;
+	/**
 	 * Returns number of edges for given vertex. By default only outgoing edges
 	 * are counted, but can be customized via given {@link DegreeType}. Note: In
 	 * undirected graphs the `type` has no relevance and essentially is always
