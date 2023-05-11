@@ -1,13 +1,16 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Index, IndexM, Sym } from "../api/nodes.js";
 import type { UintTerm } from "../api/terms.js";
-import type {
-	Indexable,
-	IndexTypeMap,
-	Mat,
-	MatIndexTypeMap,
-	NumericI,
-	Vec,
+import {
+	V2,
+	V3,
+	V4,
+	type IndexTypeMap,
+	type Indexable,
+	type Mat,
+	type MatIndexTypeMap,
+	type NumericI,
+	type Vec,
 } from "../api/types.js";
 import { int } from "./lit.js";
 
@@ -22,9 +25,9 @@ export const index = <T extends Indexable>(
 });
 
 const MAT_VEC: Record<Mat, Vec> = {
-	mat2: "vec2",
-	mat3: "vec3",
-	mat4: "vec4",
+	mat2: V2,
+	mat3: V3,
+	mat4: V4,
 	// mat23: "vec3",
 	// mat24: "vec4",
 	// mat32: "vec2",
