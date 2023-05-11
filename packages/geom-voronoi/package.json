@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-voronoi",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
 	"type": "module",
 	"module": "./index.js",
@@ -34,20 +34,20 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.0",
-		"@thi.ng/bitfield": "^2.2.27",
-		"@thi.ng/checks": "^3.3.12",
-		"@thi.ng/geom-clip-line": "^2.3.15",
-		"@thi.ng/geom-clip-poly": "^2.1.57",
-		"@thi.ng/geom-isec": "^2.1.57",
-		"@thi.ng/geom-poly-utils": "^2.3.41",
-		"@thi.ng/math": "^5.4.9",
-		"@thi.ng/quad-edge": "^3.1.27",
-		"@thi.ng/vectors": "^7.6.13"
+		"@thi.ng/api": "^8.8.1",
+		"@thi.ng/bitfield": "^2.2.28",
+		"@thi.ng/checks": "^3.3.13",
+		"@thi.ng/geom-clip-line": "^2.3.16",
+		"@thi.ng/geom-clip-poly": "^2.1.58",
+		"@thi.ng/geom-isec": "^2.1.58",
+		"@thi.ng/geom-poly-utils": "^2.3.42",
+		"@thi.ng/math": "^5.4.10",
+		"@thi.ng/quad-edge": "^3.1.28",
+		"@thi.ng/vectors": "^7.6.14"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
+		"@thi.ng/testament": "^0.3.16",
 		"rimraf": "^5.0.0",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.6",
