@@ -1,4 +1,5 @@
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { vec2 } from "@thi.ng/shader-ast/ast/lit";
 import { div, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -15,9 +16,9 @@ import { cross2 } from "../math/cross2.js";
  * @param c - vec2
  */
 export const sdfTriangle2 = defn(
-	"float",
+	F,
 	"sdTriangle",
-	["vec2", "vec2", "vec2", "vec2"],
+	[V2, V2, V2, V2],
 	(p, a, b, c) => {
 		let e0: Vec2Sym, e1: Vec2Sym, e2: Vec2Sym;
 		let v0: Vec2Sym, v1: Vec2Sym, v2: Vec2Sym;

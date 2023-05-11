@@ -1,4 +1,5 @@
 import type { FloatSym } from "@thi.ng/shader-ast";
+import { V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
 import { add, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -17,9 +18,9 @@ import { abs, dot, max } from "@thi.ng/shader-ast/builtin/math";
  * @param col3 - vec3
  */
 export const trilight = defn(
-	"vec3",
+	V3,
 	"trilight",
-	["vec3", "vec3", "vec3", "vec3", "vec3"],
+	[V3, V3, V3, V3, V3],
 	(n, l, c1, c2, c3) => {
 		let d: FloatSym;
 		return [

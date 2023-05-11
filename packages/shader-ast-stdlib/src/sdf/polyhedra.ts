@@ -4,6 +4,7 @@ import type {
 	TaggedFn3,
 	Vec3Term,
 } from "@thi.ng/shader-ast";
+import { F, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, PHI, vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { add, reciprocal, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -56,7 +57,7 @@ const defGDF = (
 	TaggedFn2<"vec3", "float", "float">,
 	TaggedFn3<"vec3", "float", "float", "float">
 ] => [
-	defn("float", id, ["vec3", "float"], (p, r) => [
+	defn(F, id, [V3, F], (p, r) => [
 		ret(
 			sub(
 				vecs.reduce(
@@ -67,7 +68,7 @@ const defGDF = (
 			)
 		),
 	]),
-	defn("float", id + "Smooth", ["vec3", "float", "float"], (p, r, e) => [
+	defn(F, id + "Smooth", [V3, F, F], (p, r, e) => [
 		ret(
 			sub(
 				pow(

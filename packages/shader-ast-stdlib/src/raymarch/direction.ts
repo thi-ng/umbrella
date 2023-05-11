@@ -1,4 +1,5 @@
 import type { Vec2Sym } from "@thi.ng/shader-ast";
+import { F, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT2, vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { div, neg, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -12,9 +13,9 @@ import { normalize, radians, tan } from "@thi.ng/shader-ast/builtin/math";
  * @param fov - float vertical FOV (in degrees)
  */
 export const raymarchDir = defn(
-	"vec3",
+	V3,
 	"raymarchDir",
-	["vec2", "vec2", "float"],
+	[V2, V2, F],
 	(frag, res, fov) => {
 		let uv: Vec2Sym;
 		return [

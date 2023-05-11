@@ -1,4 +1,5 @@
 import type { FloatSym, PrimTypeMap } from "@thi.ng/shader-ast";
+import { F, V2, V3, V4 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { add, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
@@ -7,7 +8,7 @@ const $ = <N extends 1 | 2 | 3 | 4, T extends PrimTypeMap[N]>(n: N, type: T) =>
 	defn(
 		type,
 		`mixCubic${n > 1 ? n : ""}`,
-		[type, type, type, type, "float"],
+		[type, type, type, type, F],
 		(a, b, c, d, t) => {
 			let s: FloatSym;
 			let s2: FloatSym;
@@ -32,7 +33,7 @@ const $ = <N extends 1 | 2 | 3 | 4, T extends PrimTypeMap[N]>(n: N, type: T) =>
 		}
 	);
 
-export const mixCubic = $(1, "float");
-export const mixCubic2 = $(2, "vec2");
-export const mixCubic3 = $(3, "vec3");
-export const mixCubic4 = $(4, "vec4");
+export const mixCubic = $(1, F);
+export const mixCubic2 = $(2, V2);
+export const mixCubic3 = $(3, V3);
+export const mixCubic4 = $(4, V4);

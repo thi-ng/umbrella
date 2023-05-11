@@ -1,4 +1,5 @@
 import type { FloatTerm } from "@thi.ng/shader-ast";
+import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
@@ -10,7 +11,7 @@ import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
  * @param a -
  * @param b -
  */
-export const cross2 = defn("float", "cross2", ["vec2", "vec2"], (a, b) => [
+export const cross2 = defn(F, "cross2", [V2, V2], (a, b) => [
 	ret(sub(mul($x(a), $y(b)), mul($y(a), $x(b)))),
 ]);
 

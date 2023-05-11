@@ -1,6 +1,7 @@
+import { V3 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { float, INT0, vec3, VEC3_0 } from "@thi.ng/shader-ast/ast/lit";
+import { INT0, VEC3_0, float, vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { gt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $w, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
 import { exp2 } from "@thi.ng/shader-ast/builtin/math";
@@ -16,7 +17,7 @@ import { exp2 } from "@thi.ng/shader-ast/builtin/math";
  * https://github.com/box/hdrCompressor/blob/master/src/rgbe/rgbe.c
  *
  */
-export const decodeRGBE = defn("vec3", "decodeRGBE", ["ivec4"], (col) => {
+export const decodeRGBE = defn(V3, "decodeRGBE", ["ivec4"], (col) => {
 	return [
 		ret(
 			ternary(

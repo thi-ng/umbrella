@@ -1,4 +1,5 @@
 import type { FloatSym, FloatTerm } from "@thi.ng/shader-ast";
+import { F } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -13,9 +14,9 @@ import { fit1101 } from "../math/fit.js";
  * @param k - float
  */
 export const sdfSmoothSubtract = defn(
-	"float",
+	F,
 	"sdOpSmoothSubtract",
-	["float", "float", "float"],
+	[F, F, F],
 	(a, b, k) => {
 		let h: FloatSym;
 		return [

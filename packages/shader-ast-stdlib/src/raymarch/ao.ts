@@ -1,4 +1,5 @@
 import type { FloatSym } from "@thi.ng/shader-ast";
+import { F, V3 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -25,7 +26,7 @@ export const raymarchAO = (
 	numSamples = 5,
 	name = gensym("raymarchAO_")
 ) =>
-	defn("float", name, ["vec3", "vec3"], (p, n) => {
+	defn(F, name, [V3, V3], (p, n) => {
 		let r: FloatSym;
 		let w: FloatSym;
 		let d0: FloatSym;

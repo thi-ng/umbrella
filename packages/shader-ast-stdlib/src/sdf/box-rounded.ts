@@ -1,4 +1,5 @@
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { F, V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, VEC2_0 } from "@thi.ng/shader-ast/ast/lit";
@@ -21,9 +22,9 @@ import { maxComp2 } from "../math/maxcomp.js";
  * @param r - vec4
  */
 export const sdfBoxRounded = defn(
-	"float",
+	F,
 	"sdfBoxRounded",
-	["vec2", "vec2", "vec4"],
+	[V2, V2, V4],
 	(p, size, r) => {
 		let q: Vec2Sym, t: Vec2Sym, d: FloatSym;
 		return [

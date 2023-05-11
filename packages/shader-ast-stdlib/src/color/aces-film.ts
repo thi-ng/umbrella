@@ -1,3 +1,4 @@
+import { V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
 import { clamp01 } from "../math/clamp.js";
@@ -10,7 +11,7 @@ import { clamp01 } from "../math/clamp.js";
  *
  * @param col -
  */
-export const ACESFilm = defn("vec3", "ACESFilm", ["vec3"], (col) => [
+export const ACESFilm = defn(V3, "ACESFilm", [V3], (col) => [
 	ret(
 		clamp01(
 			div(

@@ -1,12 +1,13 @@
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { ifThen } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import {
-	float,
 	FLOAT0,
 	FLOAT1,
 	FLOAT2,
+	float,
 	vec2,
 } from "@thi.ng/shader-ast/ast/lit";
 import {
@@ -45,9 +46,9 @@ import { cross2 } from "../math/cross2.js";
  * - https://iquilezles.org/articles/distfunctions2d/
  */
 export const sdfQuadratic2 = defn(
-	"float",
+	F,
 	"sdfQuadratic2",
-	["vec2", "vec2", "vec2", "vec2"],
+	[V2, V2, V2, V2],
 	(pos, A, B, C) => {
 		let a: Vec2Sym, b: Vec2Sym, c: Vec2Sym, d: Vec2Sym;
 		let kk: FloatSym, kx: FloatSym, ky: FloatSym, kz: FloatSym;

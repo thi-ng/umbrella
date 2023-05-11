@@ -1,14 +1,15 @@
 import type { Vec2Sym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import {
-	float,
 	FLOAT05,
 	FLOAT1,
+	VEC3_0,
+	float,
 	vec2,
 	vec3,
-	VEC3_0,
 	vec4,
 } from "@thi.ng/shader-ast/ast/lit";
 import { add, gt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -31,7 +32,7 @@ import { permute3 } from "./permute.js";
  *
  * https://github.com/ashima/webgl-noise
  */
-export const snoise2 = defn("float", "snoise2", ["vec2"], (v) => {
+export const snoise2 = defn(F, "snoise2", [V2], (v) => {
 	let C: Vec4Sym;
 	let i: Vec2Sym;
 	let i1: Vec2Sym;

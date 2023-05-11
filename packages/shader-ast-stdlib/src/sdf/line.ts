@@ -1,4 +1,5 @@
 import type { PrimTypeMap, Sym } from "@thi.ng/shader-ast";
+import { F, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
@@ -13,7 +14,7 @@ import { clamp01 } from "../math/clamp.js";
  * @param b -
  */
 const $ = <N extends 2 | 3, T extends PrimTypeMap[N]>(n: N, type: T) =>
-	defn("float", `sdLine${n}`, [type, type, type], (p, a, b) => {
+	defn(F, `sdLine${n}`, [type, type, type], (p, a, b) => {
 		let pa: Sym<T>, ba: Sym<T>;
 		return [
 			(pa = sym(sub(p, a))),
@@ -31,7 +32,7 @@ const $ = <N extends 2 | 3, T extends PrimTypeMap[N]>(n: N, type: T) =>
  * @param a - vec2
  * @param b - vec2
  */
-export const sdfLine2 = $(2, "vec2");
+export const sdfLine2 = $(2, V2);
 
 /**
  * Returns signed distance from `p` to 3D line segment `a` -> `b`.
@@ -40,4 +41,4 @@ export const sdfLine2 = $(2, "vec2");
  * @param a - vec3
  * @param b - vec3
  */
-export const sdfLine3 = $(3, "vec3");
+export const sdfLine3 = $(3, V3);

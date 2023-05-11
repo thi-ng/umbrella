@@ -1,5 +1,6 @@
 import type { Fn2 } from "@thi.ng/api";
 import type { FloatTerm, Vec4Sym } from "@thi.ng/shader-ast";
+import { V4 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -37,7 +38,7 @@ export const porterDuff = (
 	fa: Fn2<FloatTerm, FloatTerm, FloatTerm>,
 	fb: Fn2<FloatTerm, FloatTerm, FloatTerm>
 ) =>
-	defn("vec4", name, ["vec4", "vec4"], (a, b) => {
+	defn(V4, name, [V4, V4], (a, b) => {
 		const sa = fa($w(a), $w(b));
 		const sb = fb($w(a), $w(b));
 		const src = __coeff(a, sa);
