@@ -147,7 +147,7 @@ export const snoise3 = defn(F, "snoise3", [V3], (v) => {
 	];
 });
 
-export const snoiseVec32 = defn(V2, "snoiseVec3", [V3], (p) => {
+export const snoiseVec32 = defn(V2, "snoiseVec32", [V3], (p) => {
 	return [
 		ret(
 			vec2(
