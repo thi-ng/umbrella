@@ -5183,7 +5183,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast-stdlib@^0.13.15, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
+"@thi.ng/shader-ast-stdlib@^0.13.16, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib"
   dependencies:
@@ -5741,7 +5741,7 @@ __metadata:
     "@thi.ng/transducers": ^8.4.5
     "@thi.ng/vector-pools": ^3.1.56
     "@thi.ng/vectors": ^7.6.14
-    "@thi.ng/webgl": ^6.4.3
+    "@thi.ng/webgl": ^6.4.4
     "@types/node": ^20.1.0
     rimraf: ^5.0.0
     tools: "workspace:^"
@@ -5759,7 +5759,7 @@ __metadata:
     "@thi.ng/shader-ast": ^0.12.52
     "@thi.ng/shader-ast-glsl": ^0.4.52
     "@thi.ng/testament": ^0.3.16
-    "@thi.ng/webgl": ^6.4.3
+    "@thi.ng/webgl": ^6.4.4
     "@types/node": ^20.1.0
     rimraf: ^5.0.0
     tools: "workspace:^"
@@ -5768,7 +5768,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/webgl@^6.4.3, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
+"@thi.ng/webgl@^6.4.4, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:
@@ -5785,7 +5785,7 @@ __metadata:
     "@thi.ng/pixel": ^4.2.3
     "@thi.ng/shader-ast": ^0.12.52
     "@thi.ng/shader-ast-glsl": ^0.4.52
-    "@thi.ng/shader-ast-stdlib": ^0.13.15
+    "@thi.ng/shader-ast-stdlib": ^0.13.16
     "@thi.ng/testament": ^0.3.16
     "@thi.ng/transducers": ^8.4.5
     "@thi.ng/vector-pools": ^3.1.56
