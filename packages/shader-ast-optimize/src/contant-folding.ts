@@ -10,10 +10,10 @@ import type {
 	Lit,
 	Op1,
 	Op2,
-	Swizzle,
-	Term,
 	Operator,
+	Swizzle,
 	Swizzle4_1,
+	Term,
 } from "@thi.ng/shader-ast";
 import {
 	isFloat,
@@ -22,7 +22,7 @@ import {
 	isLitVecConst,
 	isUint,
 } from "@thi.ng/shader-ast/ast/checks";
-import { float, int, lit, uint } from "@thi.ng/shader-ast/ast/lit";
+import { FLOAT0, float, int, lit, uint } from "@thi.ng/shader-ast/ast/lit";
 import { allChildren, walk } from "@thi.ng/shader-ast/ast/scope";
 import { LOGGER } from "@thi.ng/shader-ast/logger";
 
@@ -113,13 +113,24 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
 
 		op2: (node) => {
 			const $node = <Op2<any>>node;
-			if (isLitNumericConst($node.l) && isLitNumericConst($node.r)) {
-				const l: number = $node.l.val;
-				const r: number = $node.r.val;
-				let res = maybeFoldMath($node.op, l, r);
-				if (res !== undefined) {
-					return replaceNumericNode(node, res);
-				}
+			const op = $node.op;
+			const l = <Lit<"float" | "int" | "uint">>$node.l;
+			const r = <Lit<"float" | "int" | "uint">>$node.r;
+			const isNumL = isLitNumericConst(l);
+			const isNumR = isLitNumericConst(r);
+			if (isNumL && isNumR) {
+				let res = maybeFoldMath(op, l.val, r.val);
+				if (res !== undefined) return replaceNumericNode(node, res);
+			} else if (op === "*") {
+				if ((isNumL && l.val === 0) || (isNumR && r.val === 0))
+					return replaceNode(node, FLOAT0);
+				if (isNumL && l.val === 1) return replaceNode(node, r);
+				if (isNumR && r.val === 1) return replaceNode(node, l);
+			} else if (op === "/") {
+				if (isNumR && r.val === 1) return replaceNode(node, l);
+			} else if (op === "+" || op === "-") {
+				if (isNumL && l.val === 0) return replaceNode(node, r);
+				if (isNumR && r.val === 0) return replaceNode(node, l);
 			}
 		},
 
