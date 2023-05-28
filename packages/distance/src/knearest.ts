@@ -9,7 +9,8 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared.js";
 /**
  * A {@link INeighborhood} implementation for K-nearest neighbor queries around
  * a given target location, initial query radius and {@link IDistance} metric to
- * determine proximity.
+ * determine proximity. See {@link Radial} for an unbounded and unsorted
+ * version.
  *
  * @remarks
  * The K-nearest neighbors will be accumulated via an internal

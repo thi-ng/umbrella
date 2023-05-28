@@ -97,6 +97,9 @@
 		"./nearest": {
 			"default": "./nearest.js"
 		},
+		"./radial": {
+			"default": "./radial.js"
+		},
 		"./squared": {
 			"default": "./squared.js"
 		}
