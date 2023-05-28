@@ -191,13 +191,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-05-11
+As of: 2023-05-28
 
-| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/shader-ast-glsl`](./packages/shader-ast-glsl)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)     | [changelog](./packages/shader-ast-glsl/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
+| Status                                        | Package                                                         | Version                                                                                                                               | Changelog                                                |
+|:----------------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/distance`](./packages/distance)                       | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)                       | [changelog](./packages/distance/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) |
 
 ### Fundamentals
 
