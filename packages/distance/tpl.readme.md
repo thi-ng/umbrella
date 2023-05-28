@@ -59,6 +59,12 @@ results can be optionally returned in order of proximity (via `.deref()` or
 `.values()`). For K=1 it will be more efficient to use `Nearest` to avoid the
 additional overhead.
 
+#### Radial
+
+An unbounded and unsorted version of [`KNearest`](#knearest), selecting _all_
+items around the target location and given search radius. Qualifying neighbors
+will be accumulated in order of processing via an internal array.
+
 {{meta.status}}
 
 Work is underway integrating this approach into the spatial indexing data
