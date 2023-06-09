@@ -61,6 +61,14 @@ export interface INeighborhood<P, T> extends IReset {
 
 	/**
 	 * Computes distance metric between `pos` and this neighborhood's target
+	 * pos. Returns true if result is <= current radius.
+	 *
+	 * @param pos
+	 */
+	includesPosition(pos: P): boolean;
+
+	/**
+	 * Computes distance metric between `pos` and this neighborhood's target
 	 * pos. If result distance is <= current radius, adds `val` to neighborhood
 	 * and shrinks neighborhood radius to new distance. Returns distance metric.
 	 *

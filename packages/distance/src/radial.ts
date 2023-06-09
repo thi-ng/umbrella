@@ -83,6 +83,10 @@ export class Radial<D, T>
 		return (eucledian ? this.dist.to(d) : d) <= this._r;
 	}
 
+	includesPosition(pos: D) {
+		return this.dist.metric(this.target, pos) < this._r;
+	}
+
 	consider(pos: D, val: T) {
 		const d = this.dist.metric(this.target, pos);
 		if (d <= this._r) {
