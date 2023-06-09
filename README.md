@@ -191,12 +191,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-05-28
+As of: 2023-06-09
 
-| Status                                        | Package                                                         | Version                                                                                                                               | Changelog                                                |
-|:----------------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/distance`](./packages/distance)                       | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)                       | [changelog](./packages/distance/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) |
+| Status                                        | Package                                       | Version                                                                                                             | Changelog                                       |
+|:----------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/distance`](./packages/distance)     | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)     | [changelog](./packages/distance/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-accel`](./packages/geom-accel) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel) | [changelog](./packages/geom-accel/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/webgl`](./packages/webgl)           | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)           | [changelog](./packages/webgl/CHANGELOG.md)      |
 
 ### Fundamentals
 
