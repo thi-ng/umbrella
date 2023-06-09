@@ -90,8 +90,8 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
 export const defBuffer = (
 	gl: WebGLRenderingContext,
 	data?: TypedArray,
-	target = gl.ARRAY_BUFFER,
-	mode = gl.STATIC_DRAW,
+	target: GLenum = gl.ARRAY_BUFFER,
+	mode: GLenum = gl.STATIC_DRAW,
 	retain = false
 ) => new WebGLArrayBuffer(gl, data, target, mode, retain);
 
@@ -188,8 +188,8 @@ export const compileAttribPool = (
 	gl: WebGLRenderingContext,
 	pool: AttribPool,
 	ids?: string[],
-	target = gl.ARRAY_BUFFER,
-	mode = gl.STATIC_DRAW
+	target: GLenum = gl.ARRAY_BUFFER,
+	mode: GLenum = gl.STATIC_DRAW
 ) => {
 	const buf = defBuffer(gl, pool.bytes(), target, mode);
 	const spec = <ModelAttributeSpecs>{};
