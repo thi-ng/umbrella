@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-05-11T12:16:33Z
+- **Last updated**: 2023-06-09T12:24:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.5.0) (2023-06-09)
+
+#### 🚀 Features
+
+- add AHashGrid.hasNeighborhood() ([4378125](https://github.com/thi-ng/umbrella/commit/4378125))
+  - update HashGrid2/3 impls
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.4.0) (2023-04-25)
 

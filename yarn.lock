@@ -3147,7 +3147,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/distance@^2.3.0, @thi.ng/distance@workspace:^, @thi.ng/distance@workspace:packages/distance":
+"@thi.ng/distance@^2.4.0, @thi.ng/distance@workspace:^, @thi.ng/distance@workspace:packages/distance":
   version: 0.0.0-use.local
   resolution: "@thi.ng/distance@workspace:packages/distance"
   dependencies:
@@ -3451,7 +3451,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-accel@^3.4.2, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
+"@thi.ng/geom-accel@^3.5.0, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-accel@workspace:packages/geom-accel"
   dependencies:
@@ -3459,7 +3459,7 @@ __metadata:
     "@thi.ng/api": ^8.8.1
     "@thi.ng/arrays": ^2.5.12
     "@thi.ng/checks": ^3.3.13
-    "@thi.ng/distance": ^2.3.0
+    "@thi.ng/distance": ^2.4.0
     "@thi.ng/equiv": ^2.1.23
     "@thi.ng/errors": ^2.2.16
     "@thi.ng/geom-api": ^3.4.16
@@ -3520,7 +3520,7 @@ __metadata:
     "@thi.ng/compare": ^2.1.31
     "@thi.ng/defmulti": ^2.1.37
     "@thi.ng/geom": ^5.0.3
-    "@thi.ng/geom-accel": ^3.4.2
+    "@thi.ng/geom-accel": ^3.5.0
     "@thi.ng/geom-api": ^3.4.16
     "@thi.ng/geom-clip-line": ^2.3.16
     "@thi.ng/geom-isec": ^2.1.58
@@ -3798,7 +3798,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.16
     "@thi.ng/grid-iterators": ^4.0.3
     "@thi.ng/matrices": ^2.1.55
-    "@thi.ng/pixel": ^4.2.4
+    "@thi.ng/pixel": ^4.2.5
     "@thi.ng/testament": ^0.3.16
     "@thi.ng/vectors": ^7.6.14
     rimraf: ^5.0.0
@@ -3942,7 +3942,7 @@ __metadata:
     "@thi.ng/diff": ^5.1.31
     "@thi.ng/errors": ^2.2.16
     "@thi.ng/hdom": ^9.3.9
-    "@thi.ng/hiccup-canvas": ^2.3.4
+    "@thi.ng/hiccup-canvas": ^2.3.5
     "@thi.ng/testament": ^0.3.16
     rimraf: ^5.0.0
     tools: "workspace:^"
@@ -4037,7 +4037,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-canvas@^2.3.4, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
+"@thi.ng/hiccup-canvas@^2.3.5, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
@@ -4046,7 +4046,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.13
     "@thi.ng/color": ^5.5.2
     "@thi.ng/math": ^5.4.10
-    "@thi.ng/pixel": ^4.2.4
+    "@thi.ng/pixel": ^4.2.5
     "@thi.ng/testament": ^0.3.16
     "@thi.ng/vectors": ^7.6.14
     rimraf: ^5.0.0
@@ -4269,13 +4269,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/k-means@^0.6.14, @thi.ng/k-means@workspace:^, @thi.ng/k-means@workspace:packages/k-means":
+"@thi.ng/k-means@^0.6.15, @thi.ng/k-means@workspace:^, @thi.ng/k-means@workspace:packages/k-means":
   version: 0.0.0-use.local
   resolution: "@thi.ng/k-means@workspace:packages/k-means"
   dependencies:
     "@microsoft/api-extractor": ^7.34.8
     "@thi.ng/api": ^8.8.1
-    "@thi.ng/distance": ^2.3.0
+    "@thi.ng/distance": ^2.4.0
     "@thi.ng/errors": ^2.2.16
     "@thi.ng/random": ^3.4.1
     "@thi.ng/testament": ^0.3.16
@@ -4552,7 +4552,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.34.8
     "@thi.ng/checks": ^3.3.13
     "@thi.ng/math": ^5.4.10
-    "@thi.ng/pixel": ^4.2.4
+    "@thi.ng/pixel": ^4.2.5
     "@thi.ng/testament": ^0.3.16
     rimraf: ^5.0.0
     tools: "workspace:^"
@@ -4567,7 +4567,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.34.8
     "@thi.ng/api": ^8.8.1
-    "@thi.ng/pixel": ^4.2.4
+    "@thi.ng/pixel": ^4.2.5
     "@thi.ng/testament": ^0.3.16
     geotiff: ^2.0.7
     rimraf: ^5.0.0
@@ -4584,7 +4584,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.34.8
     "@thi.ng/api": ^8.8.1
     "@thi.ng/errors": ^2.2.16
-    "@thi.ng/pixel": ^4.2.4
+    "@thi.ng/pixel": ^4.2.5
     "@thi.ng/testament": ^0.3.16
     rimraf: ^5.0.0
     tools: "workspace:^"
@@ -4593,7 +4593,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/pixel@^4.2.3, @thi.ng/pixel@^4.2.4, @thi.ng/pixel@workspace:^, @thi.ng/pixel@workspace:packages/pixel":
+"@thi.ng/pixel@^4.2.3, @thi.ng/pixel@^4.2.5, @thi.ng/pixel@workspace:^, @thi.ng/pixel@workspace:packages/pixel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/pixel@workspace:packages/pixel"
   dependencies:
@@ -4601,9 +4601,9 @@ __metadata:
     "@thi.ng/api": ^8.8.1
     "@thi.ng/binary": ^3.3.25
     "@thi.ng/checks": ^3.3.13
-    "@thi.ng/distance": ^2.3.0
+    "@thi.ng/distance": ^2.4.0
     "@thi.ng/errors": ^2.2.16
-    "@thi.ng/k-means": ^0.6.14
+    "@thi.ng/k-means": ^0.6.15
     "@thi.ng/math": ^5.4.10
     "@thi.ng/porter-duff": ^2.1.33
     "@thi.ng/testament": ^0.3.16
@@ -4810,7 +4810,7 @@ __metadata:
     "@thi.ng/api": ^8.8.1
     "@thi.ng/associative": ^6.2.37
     "@thi.ng/checks": ^3.3.13
-    "@thi.ng/hiccup-canvas": ^2.3.4
+    "@thi.ng/hiccup-canvas": ^2.3.5
     "@thi.ng/rdom": ^0.11.3
     "@thi.ng/rstream": ^8.0.3
     "@thi.ng/testament": ^0.3.16
@@ -5154,7 +5154,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.16
     "@thi.ng/math": ^5.4.10
     "@thi.ng/matrices": ^2.1.55
-    "@thi.ng/pixel": ^4.2.4
+    "@thi.ng/pixel": ^4.2.5
     "@thi.ng/shader-ast": ^0.12.52
     "@thi.ng/testament": ^0.3.16
     "@thi.ng/vectors": ^7.6.14
@@ -5741,7 +5741,7 @@ __metadata:
     "@thi.ng/transducers": ^8.4.5
     "@thi.ng/vector-pools": ^3.1.56
     "@thi.ng/vectors": ^7.6.14
-    "@thi.ng/webgl": ^6.4.5
+    "@thi.ng/webgl": ^6.4.6
     "@types/node": ^20.1.0
     rimraf: ^5.0.0
     tools: "workspace:^"
@@ -5759,7 +5759,7 @@ __metadata:
     "@thi.ng/shader-ast": ^0.12.52
     "@thi.ng/shader-ast-glsl": ^0.4.52
     "@thi.ng/testament": ^0.3.16
-    "@thi.ng/webgl": ^6.4.5
+    "@thi.ng/webgl": ^6.4.6
     "@types/node": ^20.1.0
     rimraf: ^5.0.0
     tools: "workspace:^"
@@ -5768,7 +5768,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/webgl@^6.4.5, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
+"@thi.ng/webgl@^6.4.6, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:
@@ -5782,7 +5782,7 @@ __metadata:
     "@thi.ng/logger": ^1.4.14
     "@thi.ng/matrices": ^2.1.55
     "@thi.ng/memoize": ^3.1.31
-    "@thi.ng/pixel": ^4.2.4
+    "@thi.ng/pixel": ^4.2.5
     "@thi.ng/shader-ast": ^0.12.52
     "@thi.ng/shader-ast-glsl": ^0.4.52
     "@thi.ng/shader-ast-stdlib": ^0.13.16

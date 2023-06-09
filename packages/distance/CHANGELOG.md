@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-05-28T09:56:37Z
+- **Last updated**: 2023-06-09T12:24:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/distance@2.4.0) (2023-06-09)
+
+#### 🚀 Features
+
+- add INeighborhood.includesPosition() ([2018e41](https://github.com/thi-ng/umbrella/commit/2018e41))
+  - update all impls: Nearest/KNearest/Radial
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/distance@2.3.0) (2023-05-28)
 

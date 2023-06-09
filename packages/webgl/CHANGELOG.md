@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-05-11T12:16:33Z
+- **Last updated**: 2023-06-09T12:24:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [6.4.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.4.6) (2023-06-09)
+
+#### 🩹 Bug fixes
+
+- fix arg types for defBuffer()/compileAttribPool() ([71a9e16](https://github.com/thi-ng/umbrella/commit/71a9e16))
 
 ## [6.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.4.0) (2023-04-19)
 
