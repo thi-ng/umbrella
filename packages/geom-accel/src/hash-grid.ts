@@ -182,6 +182,23 @@ export abstract class AHashGrid<T> {
 		opts?: Partial<QueryNeighborhoodOpts>
 	): N;
 
+	/**
+	 * Returns true if any of the indexed items are located within the given
+	 * `neighborhood`.
+	 *
+	 * @remarks
+	 * This method is much faster than {@link AHashGrid.queryNeighborhood} if
+	 * one only wants to check if items are present in given region. The method
+	 * returns as soon as a positive result is found.
+	 *
+	 * @param neighborhood
+	 * @param opts
+	 */
+	abstract hasNeighborhood<N extends INeighborhood<ReadonlyVec, T>>(
+		neighborhood: N,
+		opts?: Partial<QueryNeighborhoodOpts>
+	): boolean;
+
 	abstract hashPos(p: ReadonlyVec): number;
 }
 
@@ -201,13 +218,8 @@ export class HashGrid2<T> extends AHashGrid<T> implements IEmpty<HashGrid2<T>> {
 		neighborhood: N,
 		opts: Partial<QueryNeighborhoodOpts> = {}
 	) {
-		const { entries, indices, invSize, items, keyFn, tableSize } = this;
-		const [qx, qy] = neighborhood.target;
-		const r = opts.r ?? neighborhood.radius;
-		const xmin = ((qx - r) * invSize) | 0;
-		const xmax = ((qx + r) * invSize) | 0;
-		const ymin = ((qy - r) * invSize) | 0;
-		const ymax = ((qy + r) * invSize) | 0;
+		const { entries, indices, items, keyFn, tableSize } = this;
+		const { xmin, xmax, ymin, ymax } = this.queryBounds(neighborhood, opts);
 		for (let x = xmin; x <= xmax; x++) {
 			for (let y = ymin; y <= ymax; y++) {
 				const h = hash2(x, y) % tableSize;
@@ -220,9 +232,42 @@ export class HashGrid2<T> extends AHashGrid<T> implements IEmpty<HashGrid2<T>> {
 		return neighborhood;
 	}
 
+	hasNeighborhood<N extends INeighborhood<ReadonlyVec, T>>(
+		neighborhood: N,
+		opts: Partial<QueryNeighborhoodOpts> = {}
+	) {
+		const { entries, indices, items, keyFn, tableSize } = this;
+		const { xmin, xmax, ymin, ymax } = this.queryBounds(neighborhood, opts);
+		for (let x = xmin; x <= xmax; x++) {
+			for (let y = ymin; y <= ymax; y++) {
+				const h = hash2(x, y) % tableSize;
+				for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+					if (neighborhood.includesPosition(keyFn(items[entries[i]])))
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	hashPos(p: ReadonlyVec) {
 		const s = this.invSize;
 		return hash2(p[0] * s, p[1] * s) % this.tableSize;
+	}
+
+	protected queryBounds<N extends INeighborhood<ReadonlyVec, T>>(
+		neighborhood: N,
+		opts: Partial<QueryNeighborhoodOpts> = {}
+	) {
+		const { invSize } = this;
+		const [qx, qy] = neighborhood.target;
+		const r = opts.r ?? neighborhood.radius;
+		return {
+			xmin: ((qx - r) * invSize) | 0,
+			xmax: ((qx + r) * invSize) | 0,
+			ymin: ((qy - r) * invSize) | 0,
+			ymax: ((qy + r) * invSize) | 0,
+		};
 	}
 }
 
@@ -242,15 +287,11 @@ export class HashGrid3<T> extends AHashGrid<T> implements IEmpty<HashGrid3<T>> {
 		neighborhood: N,
 		opts: Partial<QueryNeighborhoodOpts> = {}
 	) {
-		const { entries, indices, invSize, items, keyFn, tableSize } = this;
-		const [qx, qy, qz] = neighborhood.target;
-		const r = opts.r ?? neighborhood.radius;
-		const xmin = ((qx - r) * invSize) | 0;
-		const xmax = ((qx + r) * invSize) | 0;
-		const ymin = ((qy - r) * invSize) | 0;
-		const ymax = ((qy + r) * invSize) | 0;
-		const zmin = ((qz - r) * invSize) | 0;
-		const zmax = ((qz + r) * invSize) | 0;
+		const { entries, indices, items, keyFn, tableSize } = this;
+		const { xmin, xmax, ymin, ymax, zmin, zmax } = this.queryBounds(
+			neighborhood,
+			opts
+		);
 		for (let x = xmin; x <= xmax; x++) {
 			for (let y = ymin; y <= ymax; y++) {
 				for (let z = zmin; z <= zmax; z++) {
@@ -265,8 +306,52 @@ export class HashGrid3<T> extends AHashGrid<T> implements IEmpty<HashGrid3<T>> {
 		return neighborhood;
 	}
 
+	hasNeighborhood<N extends INeighborhood<ReadonlyVec, T>>(
+		neighborhood: N,
+		opts: Partial<QueryNeighborhoodOpts> = {}
+	) {
+		const { entries, indices, items, keyFn, tableSize } = this;
+		const { xmin, xmax, ymin, ymax, zmin, zmax } = this.queryBounds(
+			neighborhood,
+			opts
+		);
+		for (let x = xmin; x <= xmax; x++) {
+			for (let y = ymin; y <= ymax; y++) {
+				for (let z = zmin; z <= zmax; z++) {
+					const h = hash3(x, y, z) % tableSize;
+					for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+						if (
+							neighborhood.includesPosition(
+								keyFn(items[entries[i]])
+							)
+						)
+							return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
 	hashPos(p: ReadonlyVec) {
 		const s = this.invSize;
 		return hash3(p[0] * s, p[1] * s, p[2] * s) % this.tableSize;
+	}
+
+	protected queryBounds<N extends INeighborhood<ReadonlyVec, T>>(
+		neighborhood: N,
+		opts: Partial<QueryNeighborhoodOpts> = {}
+	) {
+		const { invSize } = this;
+		const [qx, qy, qz] = neighborhood.target;
+		const r = opts.r ?? neighborhood.radius;
+		return {
+			xmin: ((qx - r) * invSize) | 0,
+			xmax: ((qx + r) * invSize) | 0,
+			ymin: ((qy - r) * invSize) | 0,
+			ymax: ((qy + r) * invSize) | 0,
+			zmin: ((qz - r) * invSize) | 0,
+			zmax: ((qz + r) * invSize) | 0,
+		};
 	}
 }
