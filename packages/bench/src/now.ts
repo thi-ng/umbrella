@@ -30,3 +30,12 @@ export const timeDiff: FnU2<Timestamp, number> = (a, b = now()) =>
 	(typeof BigInt !== "undefined"
 		? Number(<bigint>b - <bigint>a)
 		: <number>b - <number>a) * 1e-6;
+
+/**
+ * Takes a duration (either a number or bigint) in nanosec-scale (see
+ * {@link now}) and converts it to a JS number in milliseconds.
+ *
+ * @param t
+ */
+export const asMillis = (t: number | bigint) =>
+	(typeof t === "bigint" ? Number(t) : t) * 1e-6;

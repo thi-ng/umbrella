@@ -2,6 +2,7 @@ export * from "./api.js";
 export * from "./bench.js";
 export * from "./benchmark.js";
 export * from "./now.js";
+export * from "./profiler.js";
 export * from "./suite.js";
 export * from "./timed.js";
 
