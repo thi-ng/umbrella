@@ -44,6 +44,8 @@ return it as milliseconds.
 
 {{pkg.docs}}
 
+### Basic usage
+
 ```ts
 import { timed, bench, benchmark } from "@thi.ng/bench";
 
@@ -157,5 +159,50 @@ option given to `benchmark()` or `suite()`.
 - `FORMAT_DEFAULT` - default plain text formatting
 - `FORMAT_CSV` - Comma-separated values (w/ column header)
 - `FORMAT_MD` - Markdown table format
+
+### Profiling
+
+Since v3.3.0 the package also provides a basic profiler to take named
+measurements and compute derived statistics. The profiler can by dynamically
+enabled/disabled, supports recursion and estimates/subtracts its internal
+overhead. Results can be obtained as JSON objects or CSV.
+
+```ts
+// initialize with 1million warmup iterations to compute internal overhead (takes around ~100ms)
+const profiler = new Profiler({ warmup: 1e6 });
+
+// recursive function
+const countdown = (n, acc = []) => {
+    profiler.start("countdown");
+    if (n > 0) countdown(n - 1, (acc.push(n),acc));
+    profiler.end("countdown");
+    return acc;
+}
+
+countdown(10);
+// [ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ]
+
+countdown(5);
+// [ 5, 4, 3, 2, 1 ]
+
+// obtain results
+profiler.deref()
+// {
+//   countdown: {
+//     id: 'countdown',
+//     total: 0.028939979283999998,
+//     timePerCall: 0.0017023517225882353,
+//     totalPercent: 95.99309794988116,
+//     calls: 17,
+//     callsPercent: 100,
+//     maxDepth: 11
+//   }
+// }
+
+// results formatted as CSV
+console.log(profiler.asCSV())
+// "id","total (ms)","time/call (ms)","total (%)","calls","calls (%)","max depth"
+// "countdown",0.0289,0.0017,17,95.99,100.00,11
+```
 
 <!-- include ../../assets/tpl/footer.md -->
