@@ -1,7 +1,7 @@
-import type { IDeref, IEnable, IObjectOf, IReset } from "@thi.ng/api";
+import type { FnAny, IDeref, IEnable, IObjectOf, IReset } from "@thi.ng/api";
 import type { Timestamp } from "./api.js";
-import { asMillis, now } from "./now.js";
 import { benchResult } from "./bench.js";
+import { asMillis, now } from "./now.js";
 
 interface Profile {
 	t0: Timestamp[];
@@ -29,7 +29,9 @@ export interface ProfileResult {
 	 */
 	timePerCall: number;
 	/**
-	 * Percentage of this profile's time contribution to the profiled grand total.
+	 * Percentage of this profile's time contribution to the profiled grand
+	 * total (the grand total is _not_ wall clock time, but the sum of all
+	 * profiles).
 	 */
 	totalPercent: number;
 	/**
@@ -233,10 +235,72 @@ export class Profiler
 		const t1 = profile.t0.pop()!;
 		if (t1 === undefined)
 			throw new Error(`no active profile for ID: ${id}`);
-		// @ts-ignore num/bigint
-		if (!profile.t0.length) profile.total += t - t1;
-		// @ts-ignore num/bigint
-		this._session!.total = t - this._session!.t0[0];
+		if (!profile.t0.length) {
+			// @ts-ignore num/bigint
+			profile.total += t - t1;
+			// @ts-ignore num/bigint
+			this._session!.total += t - t1;
+		}
+	}
+
+	/**
+	 * Takes a profile `id`, function `fn` and any (optional) arguments. Calls
+	 * `fn` with given args and profiles it using provided ID. Returns result
+	 * of `fn`.
+	 *
+	 * @remarks
+	 * Also see {@link Profiler.wrap}
+	 *
+	 * @param id
+	 * @param fn
+	 */
+	profile<T>(id: string, fn: FnAny<T>, ...args: any[]) {
+		this.start(id);
+		const res = fn.apply(null, args);
+		this.end(id);
+		return res;
+	}
+
+	/**
+	 * Higher-order version of {@link Profiler.profile}. Takes a profile `id`
+	 * and vararg function `fn`. Returns new function which when called, calls
+	 * given `fn` and profiles it using provided `id`, then returns result of
+	 * `fn`.
+	 *
+	 * @example
+	 * ```ts
+	 * const sum = profiler.wrap(
+	 *   "sum",
+	 *   (vec: number[]) => vec.reduce((acc, x) => acc + x, 0)
+	 * );
+	 *
+	 * sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+	 * // 55
+	 *
+	 * profiler.deref()
+	 * // {
+	 * //   sum: {
+	 * //     id: 'sum',
+	 * //     total: 0.015644915291,
+	 * //     timePerCall: 0.015644915291,
+	 * //     totalPercent: 100,
+	 * //     calls: 1,
+	 * //     callsPercent: 100,
+	 * //     maxDepth: 1
+	 * //   }
+	 * // }
+	 * ```
+	 *
+	 * @param id
+	 * @param fn
+	 */
+	wrap<T>(id: string, fn: FnAny<T>) {
+		return (...args: any[]) => {
+			this.start(id);
+			const res = fn.apply(null, args);
+			this.end(id);
+			return res;
+		};
 	}
 
 	/**
@@ -293,8 +357,8 @@ export class Profiler
 					`"${id}"`,
 					total.toFixed(5),
 					timePerCall.toFixed(5),
-					calls,
 					totalPercent.toFixed(2),
+					calls,
 					callsPercent.toFixed(2),
 					maxDepth,
 				].join(",")
