@@ -15,9 +15,9 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"rimraf": "^5.0.0",
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"rimraf": "^5.0.1",
+		"typescript": "^5.1.3",
+		"vite": "^4.3.9"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
