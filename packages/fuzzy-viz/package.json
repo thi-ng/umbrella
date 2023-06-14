@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fuzzy-viz",
-	"version": "2.1.66",
+	"version": "2.1.67",
 	"description": "Visualization, instrumentation & introspection utils for @thi.ng/fuzzy",
 	"type": "module",
 	"module": "./index.js",
@@ -34,17 +34,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.1",
-		"@thi.ng/fuzzy": "^2.1.34",
-		"@thi.ng/hiccup": "^4.2.41",
-		"@thi.ng/hiccup-svg": "^5.0.3",
-		"@thi.ng/math": "^5.4.10",
-		"@thi.ng/strings": "^3.4.6",
-		"@thi.ng/text-canvas": "^2.4.44"
+		"@thi.ng/api": "^8.8.2",
+		"@thi.ng/fuzzy": "^2.1.35",
+		"@thi.ng/hiccup": "^4.2.42",
+		"@thi.ng/hiccup-svg": "^5.0.4",
+		"@thi.ng/math": "^5.4.11",
+		"@thi.ng/strings": "^3.4.7",
+		"@thi.ng/text-canvas": "^2.4.45"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.35.3",
-		"@thi.ng/testament": "^0.3.16",
+		"@thi.ng/testament": "^0.3.17",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

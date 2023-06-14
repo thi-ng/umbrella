@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sexpr",
-	"version": "0.4.39",
+	"version": "0.4.40",
 	"description": "Extensible S-Expression parser & runtime infrastructure",
 	"type": "module",
 	"module": "./index.js",
@@ -34,13 +34,13 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.1",
-		"@thi.ng/checks": "^3.3.13",
-		"@thi.ng/defmulti": "^2.1.37"
+		"@thi.ng/api": "^8.8.2",
+		"@thi.ng/checks": "^3.3.14",
+		"@thi.ng/defmulti": "^2.1.38"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.35.3",
-		"@thi.ng/testament": "^0.3.16",
+		"@thi.ng/testament": "^0.3.17",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

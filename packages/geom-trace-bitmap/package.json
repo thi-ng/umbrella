@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-trace-bitmap",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "Bitmap image to hairline vector and point cloud conversions",
 	"type": "module",
 	"module": "./index.js",
@@ -34,16 +34,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.1",
-		"@thi.ng/errors": "^2.2.16",
-		"@thi.ng/grid-iterators": "^4.0.3",
-		"@thi.ng/matrices": "^2.1.55",
-		"@thi.ng/pixel": "^4.2.5",
-		"@thi.ng/vectors": "^7.6.14"
+		"@thi.ng/api": "^8.8.2",
+		"@thi.ng/errors": "^2.2.17",
+		"@thi.ng/grid-iterators": "^4.0.4",
+		"@thi.ng/matrices": "^2.1.56",
+		"@thi.ng/pixel": "^4.2.6",
+		"@thi.ng/vectors": "^7.6.15"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.35.3",
-		"@thi.ng/testament": "^0.3.16",
+		"@thi.ng/testament": "^0.3.17",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

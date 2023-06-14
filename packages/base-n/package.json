@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/base-n",
-	"version": "2.5.4",
+	"version": "2.5.5",
 	"description": "Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints",
 	"type": "module",
 	"module": "./index.js",
@@ -34,11 +34,11 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/hex": "^2.3.10"
+		"@thi.ng/hex": "^2.3.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.35.3",
-		"@thi.ng/testament": "^0.3.16",
+		"@thi.ng/testament": "^0.3.17",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

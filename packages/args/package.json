@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/args",
-	"version": "2.2.26",
+	"version": "2.2.27",
 	"description": "Declarative, functional & typechecked CLI argument/options parser, value coercions etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.1",
-		"@thi.ng/checks": "^3.3.13",
-		"@thi.ng/errors": "^2.2.16",
-		"@thi.ng/strings": "^3.4.6"
+		"@thi.ng/api": "^8.8.2",
+		"@thi.ng/checks": "^3.3.14",
+		"@thi.ng/errors": "^2.2.17",
+		"@thi.ng/strings": "^3.4.7"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.35.3",
-		"@thi.ng/testament": "^0.3.16",
+		"@thi.ng/testament": "^0.3.17",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",
