@@ -11,13 +11,13 @@ pub fn Slice(comptime S: type, comptime P: type) type {
 
         pub inline fn wrap(slice: S) @This() {
             return .{
-                .ptr = @ptrCast(P, slice.ptr),
+                .ptr = @ptrCast(slice.ptr),
                 .len = slice.len,
             };
         }
 
         pub inline fn toSlice(self: *@This()) S {
-            return @ptrCast(*S, self).*;
+            return @as(*S, @ptrCast(self)).*;
         }
     };
 }
