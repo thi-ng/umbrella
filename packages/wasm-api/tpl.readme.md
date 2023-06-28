@@ -282,44 +282,16 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
-### Zig v0.10.1 or older
-
-```zig
-const std = @import("std");
-
-pub fn build(b: *std.build.Builder) void {
-    // obtain a standard std.build.LibExeObjStep, pre-configured w/ given options
-    // see source comments in imported build.zig for further details...
-    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
-        // Declare extra WASM API packages to use
-        // Each package can also declare dependencies to other such packages
-        // (wasm-api and wasm-api-bindgen are made available everywhere)
-        .packages = &.{
-            .{ .id = "wasm-api-dom", .path = "@thi.ng/wasm-api-dom/zig/lib.zig" },
-            .{ .id = "wasm-api-schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
-        },
-        // (optional) build mode override
-        // if commented out, we can pass CLI args to choose build mode (default: .Debug)
-        .mode = .ReleaseSmall,
-    });
-    // optionally, add further custom configuration
-    // ...
-
-    // finally trigger build
-    lib.install();
-}
-```
-
 ### Zig v0.11.0-dev or newer
 
-(Note: Several new build options have been added, e.g. initial/max memory
-config, autodoc generation)
+**IMPORTANT:** Due to recent syntax changes in Zig v0.11-dev, support for Zig
+v0.10.1 or older had to be removed...
 
 ```zig
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    // obtain a standard std.Build.CompileStep, pre-configured w/ given options
+    // obtain a standard std.Build.Step.Compile, pre-configured w/ given options
     // see source comments in imported build-v0.11.zig for further details...
     var lib = @import("node_modules/@thi.ng/wasm-api/zig/build-v0.11.zig").wasmLib(b, .{
         // Declare extra WASM API modules to use
@@ -336,8 +308,8 @@ pub fn build(b: *std.Build) void {
     // optionally, add further custom configuration
     // ...
 
-    // finally trigger build
-    lib.install();
+    // finally trigger build & install
+    b.installArtifact(lib);
 }
 ```
 
