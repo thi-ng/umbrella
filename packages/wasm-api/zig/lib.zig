@@ -13,7 +13,7 @@ pub fn ptrCast(comptime T: type, ptr: ?*anyopaque) ?T {
     if (ptr == null) return null;
     const info = @typeInfo(T);
     if (info != .Pointer) @compileError("require pointer type");
-    return @ptrCast(T, @alignCast(@alignOf(info.Pointer.child), ptr));
+    return @ptrCast(@alignCast(ptr));
 }
 
 /// JS external part of the custom panic handler
@@ -52,7 +52,7 @@ pub inline fn allocator() ?std.mem.Allocator {
 pub export fn _wasm_allocate(numBytes: usize) usize {
     if (allocator()) |alloc| {
         var mem = alloc.alignedAlloc(u8, 16, numBytes) catch return 0;
-        return @ptrToInt(mem.ptr);
+        return @intFromPtr(mem.ptr);
     }
     return 0;
 }
@@ -62,8 +62,8 @@ pub export fn _wasm_allocate(numBytes: usize) usize {
 /// Note: This is a no-op if no allocator is configured (see `allocator()`)
 pub export fn _wasm_free(addr: [*]u8, numBytes: usize) void {
     if (allocator()) |alloc| {
-        var mem = [2]usize{ @ptrToInt(addr), numBytes };
-        alloc.free(@ptrCast(*[]u8, &mem).*);
+        var mem = [2]usize{ @intFromPtr(addr), numBytes };
+        alloc.free(@as(*[]u8, @ptrCast(&mem)).*);
     }
 }
 
@@ -102,7 +102,7 @@ pub extern "wasmapi" fn printF64(x: f64) void;
 
 /// Prints pointer as hex number using configured JS logger
 pub fn printPtr(ptr: *const anyopaque) void {
-    printU32Hex(@ptrToInt(ptr));
+    printU32Hex(@intFromPtr(ptr));
 }
 
 /// Prints number array using configured JS logger

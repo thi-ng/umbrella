@@ -68,12 +68,12 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
                 self.freeID = self.list.items[id].id;
                 self.list.items[id] = .{ .value = item };
                 self.used += 1;
-                return @intCast(I, id);
+                return @intCast(id);
             } else {
                 const id = self.list.items.len;
                 try self.list.append(.{ .value = item });
                 self.used += 1;
-                return @intCast(I, id);
+                return @intCast(id);
             }
         }
 
