@@ -5,7 +5,7 @@ pub fn build(b: *std.Build) void {
     // Please consult the thi.ng/wasm-api README for details!
     // Outside the umbrella monorepo, the import path for that file will be (usually):
     // node_modules/@thi.ng/wasm-api/zig/build.zig
-    @import("wasm-api-build.zig").wasmLib(b, .{
+    b.installArtifact(@import("wasm-api-build.zig").wasmLib(b, .{
         // Only needed for this monorepo!!
         .base = "../../node_modules",
         // Declare extra WASM API packages to use
@@ -15,5 +15,5 @@ pub fn build(b: *std.Build) void {
         },
         // build mode override
         .optimize = .ReleaseSmall,
-    }).install();
+    }));
 }
