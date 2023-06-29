@@ -5630,7 +5630,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@^0.4.4, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@^0.4.5, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
@@ -5648,7 +5648,7 @@ __metadata:
     "@thi.ng/paths": ^5.1.38
     "@thi.ng/strings": ^3.4.7
     "@thi.ng/testament": ^0.3.17
-    "@thi.ng/wasm-api": ^1.4.9
+    "@thi.ng/wasm-api": ^1.4.10
     rimraf: ^5.0.1
     tools: "workspace:^"
     typedoc: ^0.24.8
@@ -5665,9 +5665,9 @@ __metadata:
     "@microsoft/api-extractor": ^7.35.3
     "@thi.ng/binary": ^3.3.26
     "@thi.ng/testament": ^0.3.17
-    "@thi.ng/wasm-api": ^1.4.9
-    "@thi.ng/wasm-api-bindgen": ^0.4.4
-    "@thi.ng/wasm-api-dom": ^0.11.24
+    "@thi.ng/wasm-api": ^1.4.10
+    "@thi.ng/wasm-api-bindgen": ^0.4.5
+    "@thi.ng/wasm-api-dom": ^0.11.25
     rimraf: ^5.0.1
     tools: "workspace:^"
     typedoc: ^0.24.8
@@ -5675,7 +5675,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@^0.11.24, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@^0.11.25, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -5685,8 +5685,8 @@ __metadata:
     "@thi.ng/errors": ^2.2.17
     "@thi.ng/prefixes": ^2.1.24
     "@thi.ng/testament": ^0.3.17
-    "@thi.ng/wasm-api": ^1.4.9
-    "@thi.ng/wasm-api-bindgen": ^0.4.4
+    "@thi.ng/wasm-api": ^1.4.10
+    "@thi.ng/wasm-api-bindgen": ^0.4.5
     rimraf: ^5.0.1
     tools: "workspace:^"
     typedoc: ^0.24.8
@@ -5701,8 +5701,8 @@ __metadata:
     "@microsoft/api-extractor": ^7.35.3
     "@thi.ng/api": ^8.8.2
     "@thi.ng/testament": ^0.3.17
-    "@thi.ng/wasm-api": ^1.4.9
-    "@thi.ng/wasm-api-bindgen": ^0.4.4
+    "@thi.ng/wasm-api": ^1.4.10
+    "@thi.ng/wasm-api-bindgen": ^0.4.5
     rimraf: ^5.0.1
     tools: "workspace:^"
     typedoc: ^0.24.8
@@ -5710,7 +5710,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@^1.4.9, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@^1.4.10, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:

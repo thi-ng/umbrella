@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-06-14T07:58:51Z
+- **Last updated**: 2023-06-29T07:13:03Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.4.5) (2023-06-29)
+
+#### ♻️ Refactoring
+
+- Zig v0.11-dev syntax updates ([dea00ff](https://github.com/thi-ng/umbrella/commit/dea00ff))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.4.0) (2023-03-27)
 
