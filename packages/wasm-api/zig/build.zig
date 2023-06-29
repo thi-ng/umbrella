@@ -2,7 +2,7 @@
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!
 //! This version of the script is only compatible with:
-//! Zig v0.11.0-dev.2266+49e33a2f2 or newer
+//! Zig 0.11.0-dev.3857+7322aa118 or newer
 //!
 //! Use build.zig (in this same directory) for earlier Zig versions
 
@@ -96,7 +96,7 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
 }
 
 /// Registers a single package and its deps (also injects core wasm-api deps)
-pub fn register(step: *Build.CompileStep, mod: ModuleSpec, opts: WasmLibOpts) void {
+pub fn register(step: *Build.Step.Compile, mod: ModuleSpec, opts: WasmLibOpts) void {
     const num = if (mod.dependencies) |ids| ids.len else 0;
     var dpkgs = step.step.owner.allocator.alloc(Build.ModuleDependency, num + 2) catch unreachable;
     dpkgs[0] = if (step.modules.get(wasmapi)) |m| .{ .name = wasmapi, .module = m } else unreachable;
