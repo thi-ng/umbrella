@@ -320,7 +320,7 @@ via this script. **Please find more details/options in the commented source
 code:**
 
 - [`/zig/build.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build.zig)
-- [`/zig/build-v0.11.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build-v0.11.zig)
+- [`/zig/build-v0.10.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build-v0.10.zig)
 
 ## Naming & structural conventions
 
@@ -403,7 +403,7 @@ folder):
 zig build-lib \
     --pkg-begin wasm-api node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
     -target wasm32-freestanding \
-    -O ReleaseSmall -dynamic \
+    -O ReleaseSmall -dynamic -rdynamic \
     hello.zig
 
 # disassemble WASM
