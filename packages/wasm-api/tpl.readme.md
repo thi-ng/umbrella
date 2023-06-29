@@ -292,8 +292,8 @@ const std = @import("std");
 
 pub fn build(b: *std.Build) void {
     // obtain a standard std.Build.Step.Compile, pre-configured w/ given options
-    // see source comments in imported build-v0.11.zig for further details...
-    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build-v0.11.zig").wasmLib(b, .{
+    // see source comments in imported build.zig for further details...
+    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
         // Declare extra WASM API modules to use
         // Each can also declare dependencies to other modules
         // (`wasm-api` and `wasm-api-bindgen` are made available everywhere)
