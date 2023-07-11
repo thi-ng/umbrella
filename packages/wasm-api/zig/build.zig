@@ -16,8 +16,6 @@ pub const WasmLibOpts = struct {
     base: []const u8 = "node_modules",
     /// Relative path to root source file
     root: []const u8 = "zig/main.zig",
-    /// CURRENTLY UNUSED - Relative path to output directory
-    out: []const u8 = "src",
     /// Additional WASM API support modules.
     /// Only need to specify custom/extra modules
     /// `wasm-api` and `wasm-api-bindgen` are auto-added as dependency for all...
@@ -63,9 +61,6 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
         .optimize = if (opts.optimize) |m| m else b.standardOptimizeOption(.{}),
     });
     if (lib.optimize == .ReleaseSmall or lib.optimize == .ReleaseFast) lib.strip = true;
-
-    // FIXME re-enable once workaround has been identified
-    // lib.setOutputDir(opts.out);
 
     // build flags
     lib.rdynamic = true;
