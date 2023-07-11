@@ -1,7 +1,9 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    // IMPORTANT: This build file is more complicated than needed due to being part of this monorepo
+    // IMPORTANT: Due to being part of this monorepo, this version of the build file is
+    // slighty more complicated than needed...
+    //
     // Please consult the thi.ng/wasm-api README for details!
     // Outside the umbrella monorepo, the import path for that file will be (usually):
     // node_modules/@thi.ng/wasm-api/zig/build.zig
