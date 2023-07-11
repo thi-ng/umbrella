@@ -101,7 +101,7 @@ For Node.js REPL:
 const shaderAstStdlib = await import("@thi.ng/shader-ast-stdlib");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.64 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.82 KB
 
 ## Dependencies
 
@@ -386,6 +386,8 @@ for reference.
 - `orthogonal3`
 - `polar2` / `polar3`
 - `sincos` / `cossin`
+- `smootherStep` / `smootherStep2` / `smootherStep3` / `smootherStep4`
+- `smootherStep01` / `smootherStep01_2` / `smootherStep01_3` / `smootherStep01_4`
 
 ### Oscillators
 

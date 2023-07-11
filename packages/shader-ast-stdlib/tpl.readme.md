@@ -309,6 +309,8 @@ for reference.
 - `orthogonal3`
 - `polar2` / `polar3`
 - `sincos` / `cossin`
+- `smootherStep` / `smootherStep2` / `smootherStep3` / `smootherStep4`
+- `smootherStep01` / `smootherStep01_2` / `smootherStep01_3` / `smootherStep01_4`
 
 ### Oscillators
 
