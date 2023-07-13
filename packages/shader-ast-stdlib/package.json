@@ -179,6 +179,9 @@
 		"./math/sincos": {
 			"default": "./math/sincos.js"
 		},
+		"./math/smoother-step": {
+			"default": "./math/smoother-step.js"
+		},
 		"./matrix/convert": {
 			"default": "./matrix/convert.js"
 		},
