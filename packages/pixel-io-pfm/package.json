@@ -1,0 +1,80 @@
+{
+	"name": "@thi.ng/pixel-io-pfm",
+	"version": "0.0.1",
+	"description": "Portable FloatMap image format support for @thi.ng/pixel",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-pfm#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/errors": "^2.2.17",
+		"@thi.ng/pixel": "^4.2.7"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.35.3",
+		"@thi.ng/testament": "^0.3.17",
+		"rimraf": "^5.0.1",
+		"tools": "workspace:^",
+		"typedoc": "^0.24.8",
+		"typescript": "^5.1.3"
+	},
+	"keywords": [
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./read": {
+			"default": "./read.js"
+		},
+		"./write": {
+			"default": "./write.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2023
+	}
+}
