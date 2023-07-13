@@ -53,6 +53,7 @@ import { writeFileSync } from "fs";
 
 // create 2x2 image
 const img = intBuffer(2, 2, RGB888);
+// set pixel data (R,G,B,Y)
 img.data.set([0xff0000, 0x00ff00, 0x0000ff, 0xffff00]);
 
 // serialize image to PFM byte array and write to file

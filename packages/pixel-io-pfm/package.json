@@ -74,7 +74,7 @@
 		}
 	},
 	"thi.ng": {
-		"status": "alpha",
+		"parent": "@thi.ng/pixel",
 		"year": 2023
 	}
 }

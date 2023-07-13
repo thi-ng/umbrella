@@ -29,7 +29,7 @@ interesting for development purposes & interchange (e.g. for use with Intel's
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-io-pfm%5D+in%3Atitle)
 
@@ -81,6 +81,7 @@ import { writeFileSync } from "fs";
 
 // create 2x2 image
 const img = intBuffer(2, 2, RGB888);
+// set pixel data (R,G,B,Y)
 img.data.set([0xff0000, 0x00ff00, 0x0000ff, 0xffff00]);
 
 // serialize image to PFM byte array and write to file
