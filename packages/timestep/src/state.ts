@@ -32,7 +32,7 @@ export class NumericState implements IDeref<number>, ITimeStep {
 		this.curr = this.update(this.curr, dt, ctx);
 	}
 
-	interpolate(alpha: number): void {
+	interpolate(alpha: number, _: ReadonlyTimeStep): void {
 		this.value = mix(this.prev, this.curr, alpha);
 	}
 }
