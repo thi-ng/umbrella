@@ -31,7 +31,7 @@
 search of packages relevant to your use cases...**
 
 **This project is NOT a framework!** This mono-repository is home to currently
-180 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
+181 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
 jointly developed collection of packages, tools and general purpose building
 blocks for (non-exhaustive list of topics, see [package overview](#projects)
 below):
@@ -273,6 +273,7 @@ As of: 2023-06-29
 | [`@thi.ng/mime`](./packages/mime)                         | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                         | [changelog](./packages/mime/CHANGELOG.md)             | File extension to MIME type mappings            |
 | [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff) | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md) | GeoTIFF reader support for thi.ng/pixel         |
 | [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)   | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md)  | 1/8/16/24bit NetPBM image format reader/writer  |
+| [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)   | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)  | Portable FloatMap image format reader/writer  |
 | [`@thi.ng/prefixes`](./packages/prefixes)                 | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)                 | [changelog](./packages/prefixes/CHANGELOG.md)         | Linked Data, RDF & xmlns prefixes/URLs          |
 | [`@thi.ng/sax`](./packages/sax)                           | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                           | [changelog](./packages/sax/CHANGELOG.md)              | SAX-like XML parser / transducer                |
 | [`@thi.ng/tangle`](./packages/tangle)                     | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                     | [changelog](./packages/tangle/CHANGELOG.md)           | Literate programming utilities                  |
