@@ -12,6 +12,9 @@ const __error = (msg?: string) => {
  * Parses given byte array as PFM image and returns it as thi.ng/pixel
  * [`FloatBuffer`](https://docs.thi.ng/umbrella/pixel/classes/FloatBuffer.html).
  *
+ * @remarks
+ * Format reference: https://pauldebevec.com/Research/HDR/PFM/
+ *
  * @param src
  */
 export const readPFM = (src: Uint8Array) => {
