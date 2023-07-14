@@ -21,8 +21,8 @@ This project is part of the
 
 Portable FloatMap image format support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
 
-Similar to the [NetPBM format
-support](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm),
+Similar to the [NetPBM
+formats](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm),
 the [Portable FloatMap image format](https://pauldebevec.com/Research/HDR/PFM/)
 is extremely simple, uncompressed and mainly interesting for development
 purposes & interchange (e.g. for use with Intel's [Open Image Denoise CLI
@@ -54,7 +54,7 @@ For Node.js REPL:
 const pixelIoPfm = await import("@thi.ng/pixel-io-pfm");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 626 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 768 bytes
 
 ## Dependencies
 
@@ -67,10 +67,10 @@ Package sizes (brotli'd, pre-treeshake): ESM: 626 bytes
 
 The package only provides 2 functions:
 
-- [`asPFM(img: IntBuffer | FloatBuffer):
+- [`asPFM(img: IntBuffer | FloatBuffer, littleEndian?: boolean, linearRGB?: boolean):
   Uint8Array`](https://docs.thi.ng/umbrella/pixel-io-pfm/functions/asPFM.html):
   Serializes an image to PFM and returns result as byte array
-- [`readPFM(buf: Uint8Array):
+- [`readPFM(buf: Uint8Array, linearRGB?: boolean):
   FloatBuffer`](https://docs.thi.ng/umbrella/pixel-io-pfm/functions/readPFM.html):
   Parses byte array as PFM image and returns it as
   [`FloatBuffer`](https://docs.thi.ng/umbrella/pixel/classes/FloatBuffer.html)
