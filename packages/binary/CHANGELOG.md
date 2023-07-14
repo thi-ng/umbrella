@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-06-14T07:58:51Z
+- **Last updated**: 2023-07-14T11:37:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.3.27](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.27) (2023-07-14)
+
+#### ♻️ Refactoring
+
+- update little endian check (`IS_LE` const) ([ee47a7f](https://github.com/thi-ng/umbrella/commit/ee47a7f))
 
 ### [3.3.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.7) (2022-10-26)
 
