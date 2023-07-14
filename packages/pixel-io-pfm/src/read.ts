@@ -13,28 +13,57 @@ const __error = (msg?: string) => {
  * [`FloatBuffer`](https://docs.thi.ng/umbrella/pixel/classes/FloatBuffer.html).
  *
  * @remarks
+ * If `linearRGB` is true (default), the original pixel values are interpreted
+ * as linear RGB and will be converted to sRGB in the result image. If false, no
+ * conversion occurs.
+ *
  * Format reference: https://pauldebevec.com/Research/HDR/PFM/
  *
- * @param src
+ * @param buf
+ * @param linearRGB
  */
-export const readPFM = (src: Uint8Array) => {
-	const view = new DataView(src.buffer, src.byteOffset, src.byteLength);
+export const readPFM = (buf: Uint8Array, linearRGB = true) => {
+	const view = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
 	if (view.getUint16(0, false) !== 0x5046) __error();
 	if (view.getUint8(2) !== 0x0a) __error();
-	const idx = src.indexOf(0x0a, 3);
+	const idx = buf.indexOf(0x0a, 3);
 	if (idx < 0) __error("missing dimensions");
 	const [width, height] = new TextDecoder()
-		.decode(src.subarray(3, idx))
+		.decode(buf.subarray(3, idx))
 		.split(" ")
 		.map((x) => parseInt(x));
-	const idx2 = src.indexOf(0x0a, idx + 1);
+	if (isNaN(width) || isNaN(height) || width < 1 || height < 1)
+		__error("invalid dimensions");
+	const idx2 = buf.indexOf(0x0a, idx + 1);
 	if (idx2 < 0) __error("missing byte order");
-	const isLE =
-		parseFloat(new TextDecoder().decode(src.subarray(idx, idx2))) < 0;
+	const littleEndian =
+		parseFloat(new TextDecoder().decode(buf.subarray(idx, idx2))) < 0;
+	const process = linearRGB ? __linearSrgb : (x: number) => x;
 	const img = floatBuffer(width, height, FLOAT_RGB);
-	const offset = idx2 + 1;
-	for (let i = 0, n = width * height * 3; i < n; i++) {
-		img.data[i] = view.getFloat32(offset + (i << 2), isLE);
+	const strideY = img.stride[1];
+	for (
+		let src = idx2 + 1, dest = (height - 1) * strideY, data = img.data;
+		dest >= 0;
+		dest -= strideY
+	) {
+		for (let x = 0; x < strideY; x++, src += 4) {
+			data[dest + x] = process(view.getFloat32(src, littleEndian));
+		}
 	}
-	return img.flipY();
+	return img;
 };
+
+/**
+ * Maps a single linear RGB channel value to sRGB.
+ *
+ * @remarks
+ * Taken from thi.ng/color.
+ *
+ * Reference: https://en.wikipedia.org/wiki/SRGB
+ *
+ * @param x - channel value
+ *
+ * @internal
+ */
+const __linearSrgb = (x: number) =>
+	x <= 0.003130805 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055;
