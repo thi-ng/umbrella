@@ -1,12 +1,19 @@
-import type { Event, IClear, INotify, Listener } from "@thi.ng/api";
+import type { EVENT_ALL, Event, IClear, INotify, Listener } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { assert } from "@thi.ng/errors/assert";
 
 export const EVENT_ADDED = "added";
 export const EVENT_REMOVED = "removed";
 
+export type IDGenEventType =
+	| typeof EVENT_ADDED
+	| typeof EVENT_REMOVED
+	| typeof EVENT_ALL;
+
 @INotifyMixin
-export class IDGen implements Iterable<number>, IClear, INotify {
+export class IDGen
+	implements Iterable<number>, IClear, INotify<IDGenEventType>
+{
 	readonly ids: number[];
 
 	protected nextID: number;
@@ -166,15 +173,15 @@ export class IDGen implements Iterable<number>, IClear, INotify {
 
 	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
-	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	addListener(id: IDGenEventType, fn: Listener, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
-	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	removeListener(id: IDGenEventType, fn: Listener, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(event: Event): boolean {}
+	notify(event: Event<IDGenEventType>): boolean {}
 
 	protected nextVersion(id: number) {
 		return (
