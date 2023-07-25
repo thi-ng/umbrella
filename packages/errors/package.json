@@ -71,6 +71,9 @@
 		"./deferror": {
 			"default": "./deferror.js"
 		},
+		"./ensure": {
+			"default": "./ensure.js"
+		},
 		"./illegal-arguments": {
 			"default": "./illegal-arguments.js"
 		},
