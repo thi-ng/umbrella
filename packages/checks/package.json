@@ -158,6 +158,9 @@
 		"./is-function": {
 			"default": "./is-function.js"
 		},
+		"./is-generator": {
+			"default": "./is-generator.js"
+		},
 		"./is-hex-color": {
 			"default": "./is-hex-color.js"
 		},

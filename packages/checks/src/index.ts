@@ -26,6 +26,7 @@ export * from "./is-file.js";
 export * from "./is-firefox.js";
 export * from "./is-float-string.js";
 export * from "./is-function.js";
+export * from "./is-generator.js";
 export * from "./is-hex.js";
 export * from "./is-hex-color.js";
 export * from "./is-ie.js";
