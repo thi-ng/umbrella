@@ -1,5 +1,6 @@
 import type {
 	ArrayLikeIterable,
+	EVENT_ALL,
 	Fn0,
 	IClear,
 	IID,
@@ -114,3 +115,10 @@ export interface ECSOpts {
 export const EVENT_ADDED = "added";
 export const EVENT_PRE_DELETE = "pre-delete";
 export const EVENT_CHANGED = "changed";
+
+export type ECSEventType =
+	| typeof EVENT_ADDED
+	| typeof EVENT_PRE_DELETE
+	| typeof EVENT_ALL;
+
+export type ComponentEventType = ECSEventType | typeof EVENT_CHANGED;
