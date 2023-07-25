@@ -1,9 +1,9 @@
 import type {
+	EVENT_ALL,
 	FnO,
 	IClear,
 	IDeref,
 	IID,
-	INotify,
 	IRelease,
 	IWatch,
 	OptPathVal,
@@ -135,7 +135,7 @@ export interface CursorOpts<T> {
 	id: string;
 }
 
-export interface IHistory<T> extends IAtom<T>, IClear, INotify {
+export interface IHistory<T> extends IAtom<T>, IClear {
 	canUndo(): boolean;
 	canRedo(): boolean;
 
@@ -144,3 +144,13 @@ export interface IHistory<T> extends IAtom<T>, IClear, INotify {
 
 	record(): void;
 }
+
+export const EVENT_UNDO = "undo";
+export const EVENT_REDO = "redo";
+export const EVENT_RECORD = "record";
+
+export type HistoryEventType =
+	| typeof EVENT_RECORD
+	| typeof EVENT_UNDO
+	| typeof EVENT_REDO
+	| typeof EVENT_ALL;

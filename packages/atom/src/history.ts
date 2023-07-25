@@ -1,6 +1,7 @@
 import type {
 	DeepPath,
 	Event,
+	INotify,
 	Listener,
 	OptPathVal,
 	Path,
@@ -22,7 +23,15 @@ import { equiv } from "@thi.ng/equiv";
 import { defGetterUnsafe } from "@thi.ng/paths/getter";
 import { setInUnsafe } from "@thi.ng/paths/set-in";
 import { updateInUnsafe } from "@thi.ng/paths/update-in";
-import type { IAtom, IHistory, SwapFn } from "./api.js";
+import {
+	EVENT_RECORD,
+	EVENT_REDO,
+	EVENT_UNDO,
+	type HistoryEventType,
+	type IAtom,
+	type IHistory,
+	type SwapFn,
+} from "./api.js";
 
 export const defHistory = <T>(
 	state: IAtom<T>,
@@ -44,11 +53,7 @@ export const defHistory = <T>(
  * {@link History.redo} and {@link History.record}.
  */
 @INotifyMixin
-export class History<T> implements IHistory<T> {
-	static readonly EVENT_UNDO = "undo";
-	static readonly EVENT_REDO = "redo";
-	static readonly EVENT_RECORD = "record";
-
+export class History<T> implements IHistory<T>, INotify<HistoryEventType> {
 	state: IAtom<T>;
 	maxLen: number;
 	changed: Predicate2<T>;
@@ -113,7 +118,7 @@ export class History<T> implements IHistory<T> {
 			const prev = this.state.deref();
 			this.future.push(prev);
 			const curr = this.state.reset(this.history.pop()!);
-			this.notify({ id: History.EVENT_UNDO, value: { prev, curr } });
+			this.notify({ id: EVENT_UNDO, value: { prev, curr } });
 			return curr;
 		}
 	}
@@ -139,7 +144,7 @@ export class History<T> implements IHistory<T> {
 			const prev = this.state.deref();
 			this.history.push(prev);
 			const curr = this.state.reset(this.future.pop()!);
-			this.notify({ id: History.EVENT_REDO, value: { prev, curr } });
+			this.notify({ id: EVENT_REDO, value: { prev, curr } });
 			return curr;
 		}
 	}
@@ -317,7 +322,7 @@ export class History<T> implements IHistory<T> {
 				history.shift();
 			}
 			history.push(state!);
-			this.notify({ id: History.EVENT_RECORD, value: state });
+			this.notify({ id: EVENT_RECORD, value: state });
 			this.future.length = 0;
 		}
 	}
@@ -369,13 +374,13 @@ export class History<T> implements IHistory<T> {
 
 	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
-	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	addListener(id: HistoryEventType, fn: Listener, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
-	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	removeListener(id: HistoryEventType, fn: Listener, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(e: Event): boolean {}
+	notify(e: Event<HistoryEventType>): boolean {}
 }
