@@ -6,14 +6,15 @@ import {
 } from "@thi.ng/api";
 import {
 	EVENT_FRAME,
-	EVENT_INTEGRATE,
+	EVENT_SUBFRAME,
 	type ITimeStep,
 	type ReadonlyTimeStep,
+	type TimeStepEventType,
 	type TimeStepOpts,
 } from "./api.js";
 
 @INotifyMixin
-export class TimeStep implements INotify {
+export class TimeStep implements INotify<TimeStepEventType> {
 	start: number;
 	dt: number;
 	maxFrameTime: number;
@@ -25,8 +26,8 @@ export class TimeStep implements INotify {
 	frame = 0;
 	updates = 0;
 
-	protected __eventIntegrate: Event;
-	protected __eventFrame: Event;
+	protected __eventFrame: Event<TimeStepEventType>;
+	protected __eventSubFrame: Event<TimeStepEventType>;
 
 	constructor(opts?: Partial<TimeStepOpts>) {
 		const $opts = {
@@ -40,19 +41,19 @@ export class TimeStep implements INotify {
 		this.maxFrameTime = $opts.maxFrameTime;
 		this.scale = $opts.scale;
 		this.start = $opts.startTime * this.scale;
-		this.__eventIntegrate = Object.freeze({
-			id: EVENT_INTEGRATE,
+		this.__eventFrame = Object.freeze({ id: EVENT_FRAME, target: this });
+		this.__eventSubFrame = Object.freeze({
+			id: EVENT_SUBFRAME,
 			target: this,
 		});
-		this.__eventFrame = Object.freeze({ id: EVENT_FRAME, target: this });
 	}
 
 	// @ts-ignore mixin
-	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	addListener(id: TimeStepEventType, fn: Listener, scope?: any): boolean {}
 	// @ts-ignore mixin
-	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	removeListener(id: TimeStepEventType, fn: Listener, scope?: any): boolean {}
 	// @ts-ignore mixin
-	notify(event: Event): boolean {}
+	notify(event: Event<TimeStepEventType>): boolean {}
 
 	/**
 	 * Updates internal time to given new time `now` (given value will be scaled
@@ -83,7 +84,7 @@ export class TimeStep implements INotify {
 			this.t += dt;
 			this.accumulator -= dt;
 			this.updates++;
-			this.notify(this.__eventIntegrate);
+			this.notify(this.__eventSubFrame);
 		}
 		if (interpolate) {
 			const alpha = this.accumulator / dt;
