@@ -55,8 +55,8 @@ export type SOASpecs<K extends string> = Record<K, Partial<SOAAttribSpec>>;
 export type SOATuple<K extends string, V> = Record<K, V>;
 
 export interface SerializerPair<T> {
-	decode: (v: ReadonlyVec) => T;
-	encode: (x: T) => ReadonlyVec;
+	decode: Fn<ReadonlyVec, T>;
+	encode: Fn<T, ReadonlyVec>;
 }
 
 export type SerializerSpecs = Record<string, SerializerPair<any>>;
