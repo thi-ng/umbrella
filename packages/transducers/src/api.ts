@@ -1,4 +1,4 @@
-import type { Comparator, Fn, IObjectOf } from "@thi.ng/api";
+import type { Comparator, Fn, Fn0, IObjectOf } from "@thi.ng/api";
 import type { Reduced } from "./reduced.js";
 
 export type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
@@ -8,8 +8,8 @@ export type TxLike<A, B> = Transducer<A, B> | IXform<A, B>;
 export type ReductionFn<A, B> = (acc: A, x: B) => A | Reduced<A>;
 
 export interface Reducer<A, B> extends Array<any> {
-	[0]: () => A;
-	[1]: (acc: A) => A;
+	[0]: Fn0<A>;
+	[1]: Fn<A, A>;
 	[2]: ReductionFn<A, B>;
 }
 
