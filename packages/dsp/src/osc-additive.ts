@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import { identity, type Fn } from "@thi.ng/api/fn";
 import { gibbs } from "./anti-alias.js";
 import type { StatelessOscillator } from "./api.js";
 import { sin } from "./osc-sin.js";
@@ -59,9 +59,4 @@ export const squareAdditive = (n = 8) =>
  * @param n - number of octaves
  */
 export const sawAdditive = (n = 8) =>
-	additive(
-		sin,
-		(i) => i,
-		(i) => (1 / i) * gibbs(n, i),
-		n
-	);
+	additive(sin, identity, (i) => (1 / i) * gibbs(n, i), n);

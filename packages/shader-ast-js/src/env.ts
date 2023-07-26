@@ -1,3 +1,4 @@
+import { identity } from "@thi.ng/api/fn";
 import { mat22n, mat33n, mat44n } from "@thi.ng/matrices/matn";
 import { mat22v, mat33v, mat44v } from "@thi.ng/matrices/matv";
 import { ZERO3, ZERO4 } from "@thi.ng/vectors/api";
@@ -48,27 +49,25 @@ const SAMPLER_TODO: JSBuiltinsSampler = {
 	textureSize: () => ZERO3,
 };
 
-const ident = (x: any) => x;
-
 export const JS_DEFAULT_ENV: JSEnv = {
 	vec2: VEC2,
 	vec2b: (v) => fromBVec2([], v),
-	vec2i: ident,
+	vec2i: identity,
 	vec2n: (n) => [n, n],
-	vec2u: ident,
+	vec2u: identity,
 
 	vec3: VEC3,
 	vec3b: (v) => fromBVec3([], v),
-	vec3i: ident,
+	vec3i: identity,
 	vec3n: (n) => [n, n, n],
-	vec3u: ident,
+	vec3u: identity,
 	vec3vn: (a, n) => setVN3([], a, n),
 
 	vec4: VEC4,
 	vec4b: (v) => fromBVec4([], v),
-	vec4i: ident,
+	vec4i: identity,
 	vec4n: (n) => [n, n, n, n],
-	vec4u: ident,
+	vec4u: identity,
 	vec4vn: (a, n) => setVN4([], a, n),
 	vec4vnn: (a, z, w) => setVV4([], a, [z, w]),
 	vec4vv: (a, b) => setVV4([], a, b),

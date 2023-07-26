@@ -1,6 +1,7 @@
+import { identity } from "@thi.ng/api";
 import { compare, reverse } from "@thi.ng/compare";
-import * as assert from "assert";
 import { group } from "@thi.ng/testament";
+import * as assert from "assert";
 import { sortByCachedKey } from "../src/index.js";
 
 group("sortCached", {
@@ -12,7 +13,7 @@ group("sortCached", {
 		assert.deepStrictEqual(
 			sortByCachedKey(
 				["a", "bbbb", "ccc", "dd"],
-				(x) => x,
+				identity,
 				reverse(compare)
 			),
 			["dd", "ccc", "bbbb", "a"]

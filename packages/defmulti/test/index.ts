@@ -1,3 +1,4 @@
+import { identity } from "@thi.ng/api";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
@@ -167,7 +168,7 @@ group("defmulti", {
 			new Set([DEFAULT, "odd", "even", "number", "23", "42"])
 		);
 
-		const bar = defmulti((x) => x, {
+		const bar = defmulti(identity, {
 			23: "odd",
 			42: "even",
 			odd: ["number"],

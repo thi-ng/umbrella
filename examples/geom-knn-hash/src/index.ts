@@ -1,3 +1,4 @@
+import { identity } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench";
 import { knearest2 } from "@thi.ng/distance";
 import { HashGrid2 } from "@thi.ng/geom-accel";
@@ -34,7 +35,7 @@ const app = (main: StreamSync<any, any>) => {
 			main.add(gestureStream(el).transform(map((g) => g.pos)), "mpos"),
 	};
 	// initialize 1st point & store in tree for fast KNN searches
-	const tree = new HashGrid2<ReadonlyVec>((p) => p, HASH_CELL_SIZE, 1e5);
+	const tree = new HashGrid2<ReadonlyVec>(identity, HASH_CELL_SIZE, 1e5);
 
 	// return root component function, triggered by each new mouse / touch event
 	return ({ mpos }: { mpos: Vec }) => {
