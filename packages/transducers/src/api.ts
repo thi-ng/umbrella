@@ -3,7 +3,16 @@ import type { Reduced } from "./reduced.js";
 
 export type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
 
+/**
+ * A transducer or a custom type with a {@link IXform} implementation.
+ */
 export type TxLike<A, B> = Transducer<A, B> | IXform<A, B>;
+
+/**
+ * Custom version of {@link TxLike} for use with {@link multiplex} and
+ * {@link multiplexObj}.
+ */
+export type MultiplexTxLike<T, A> = TxLike<T, A> | [TxLike<T, A>, boolean];
 
 export type ReductionFn<A, B> = (acc: A, x: B) => A | Reduced<A>;
 
@@ -20,7 +29,7 @@ export interface Reducer<A, B> extends Array<any> {
  * functions in this package where a `Transducer` arg is expected.
  *
  * @example
- * ```
+ * ```ts
  * class Mul implements IXform<number, number> {
  *   constructor(public factor = 10) {}
  *
