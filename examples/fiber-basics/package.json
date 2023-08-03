@@ -1,0 +1,50 @@
+{
+	"name": "@example/fiber-basics",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Fiber-based cooperative multitasking basics",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open --host",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.1.3",
+		"vite": "^4.3.9"
+	},
+	"dependencies": {
+		"@thi.ng/color": "workspace:^",
+		"@thi.ng/dl-asset": "workspace:^",
+		"@thi.ng/dsp": "workspace:^",
+		"@thi.ng/fibers": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/hiccup-canvas": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/idgen": "workspace:^",
+		"@thi.ng/logger": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/random": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"color",
+			"dl-asset",
+			"dsp",
+			"fibers",
+			"geom",
+			"hiccup-canvas",
+			"idgen",
+			"rdom",
+			"transducers"
+		],
+		"screenshot": "examples/fiber-basics.png"
+	}
+}
