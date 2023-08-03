@@ -53,7 +53,7 @@ For Node.js REPL:
 const wasmApiCanvas = await import("@thi.ng/wasm-api-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.55 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.54 KB
 
 ## Dependencies
 

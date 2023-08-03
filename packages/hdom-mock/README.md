@@ -52,7 +52,7 @@ For Node.js REPL:
 const hdomMock = await import("@thi.ng/hdom-mock");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 972 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 975 bytes
 
 ## Dependencies
 
