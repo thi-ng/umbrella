@@ -121,12 +121,13 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
 	}
 
 	// @ts-ignore: arguments
-	addListener(id: ComponentEventType, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	addListener(id: ComponentEventType, fn: Listener<ComponentEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
-	// prettier-ignore
 	// @ts-ignore: arguments
-	removeListener(id: ComponentEventType, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	removeListener(id: ComponentEventType, fn: Listener<ComponentEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: arguments

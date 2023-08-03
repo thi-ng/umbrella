@@ -49,9 +49,13 @@ export class TimeStep implements INotify<TimeStepEventType> {
 	}
 
 	// @ts-ignore mixin
-	addListener(id: TimeStepEventType, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	addListener(id: TimeStepEventType, fn: Listener<TimeStepEventType>, scope?: any): boolean { }
+
 	// @ts-ignore mixin
-	removeListener(id: TimeStepEventType, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	removeListener(id: TimeStepEventType, fn: Listener<TimeStepEventType>, scope?: any): boolean { }
+
 	// @ts-ignore mixin
 	notify(event: Event<TimeStepEventType>): boolean {}
 
