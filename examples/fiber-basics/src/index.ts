@@ -8,7 +8,7 @@ import { button, canvas, div } from "@thi.ng/hiccup-html";
 import { roundTo } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile } from "@thi.ng/rdom";
-import { concat, range, reverse, zip } from "@thi.ng/transducers";
+import { range, symmetric, zip } from "@thi.ng/transducers";
 
 const SIZE = 640;
 
@@ -51,8 +51,8 @@ const cell = (
 			false,
 			true
 		).take(alpha.length / 2);
-		// fade out loop
-		for (let [a, hh] of zip(alpha, concat(height, reverse(height)))) {
+		// loop to grow/shrink and fade out rect
+		for (let [a, hh] of zip(alpha, symmetric(height))) {
 			// add cell rect to scene
 			scene.children.push(
 				isHoriz
@@ -124,7 +124,7 @@ function* endFrame(canvas: HTMLCanvasElement, scene: Group) {
 	// create main fiber and attach sub-processes
 	const app = fiber();
 	// init child processes to create & draw animation
-	app.forkAll(beginFrame(scene), cellAnim(scene, 400), endFrame(main, scene));
+	app.forkAll(beginFrame(scene), cellAnim(scene, 500), endFrame(main, scene));
 	// kick-off
 	app.run();
 })();
