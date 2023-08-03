@@ -28,8 +28,8 @@ pub const WasmLibOpts = struct {
     initialMemory: ?u64 = null,
     /// Max memory (in bytes, MUST be multiple of 0x10000)
     maxMemory: ?u64 = null,
-    /// If true, build will also generate docs
-    docs: bool = false,
+    // If true, build will also generate docs
+    // docs: bool = false,
 };
 
 /// WASM API sub-module declaration
@@ -67,7 +67,6 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
     lib.import_symbols = true;
     lib.initial_memory = opts.initialMemory;
     lib.max_memory = opts.maxMemory;
-    if (opts.docs) lib.emit_docs = .emit;
 
     // add default dependencies
     lib.addModule(
