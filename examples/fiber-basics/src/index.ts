@@ -8,7 +8,7 @@ import { button, canvas, div } from "@thi.ng/hiccup-html";
 import { roundTo } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile } from "@thi.ng/rdom";
-import { range, symmetric, zip } from "@thi.ng/transducers";
+import { cycle, range, symmetric, zip } from "@thi.ng/transducers";
 
 const SIZE = 640;
 
@@ -16,16 +16,14 @@ const SIZE = 640;
 const cellAnim = (scene: Group, delay = 500) =>
 	function* main(ctx: Fiber) {
 		const w = SIZE / 5;
-		ctx.fork(function* () {
-			for (let x = 0; ; x = (x + 1) % 5) {
-				// each cell as its own child process
-				ctx.fork(
-					cell(scene, x * w, 0, w, SIZE, SYSTEM.float() < 0.5, 0.05)
-				);
-				yield* wait(delay);
-			}
-		});
-		yield* wait();
+		// infinite loop over [0..5) interval
+		for (let x of cycle(range(5))) {
+			// each cell as its own child process
+			ctx.fork(
+				cell(scene, x * w, 0, w, SIZE, SYSTEM.float() < 0.5, 0.05)
+			);
+			yield* wait(delay);
+		}
 	};
 
 const cell = (
