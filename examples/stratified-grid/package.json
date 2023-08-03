@@ -29,7 +29,7 @@
 		"screenshot": "poisson/stratified-grid.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.1.3",
-		"vite": "^4.3.9"
+		"typescript": "^5.1.6",
+		"vite": "^4.4.8"
 	}
 }

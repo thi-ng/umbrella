@@ -7,16 +7,16 @@
         "tools"
     ],
     "devDependencies": {
-        "@microsoft/api-documenter": "^7.22.18",
-        "@microsoft/api-extractor": "^7.35.3",
-        "@types/node": "^20.3.1",
-        "esbuild": "^0.18.2",
+        "@microsoft/api-documenter": "^7.22.32",
+        "@microsoft/api-extractor": "^7.36.3",
+        "@types/node": "^20.4.6",
+        "esbuild": "^0.18.17",
         "html-minifier-terser": "^7.2.0",
         "rimraf": "^5.0.1",
         "tools": "workspace:^",
         "ts-node": "^10.9.1",
         "typedoc": "^0.24.8",
-        "typescript": "^5.1.3"
+        "typescript": "^5.1.6"
     },
     "dependencies": {
         "@ygoe/msgpack": "^1.0.3"
