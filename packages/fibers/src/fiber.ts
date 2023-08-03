@@ -101,6 +101,14 @@ export class Fiber<T = any>
 	}
 
 	/**
+	 * Returns true if this fiber is still in new or active state (i.e. still
+	 * can be processed).
+	 */
+	isActive() {
+		return this.state <= STATE_ACTIVE;
+	}
+
+	/**
 	 * Returns child fiber for given `id`.
 	 *
 	 * @param id
@@ -135,8 +143,7 @@ export class Fiber<T = any>
 		body?: Nullable<Fiber<F> | FiberFactory<F> | Generator<unknown, F>>,
 		opts?: Partial<FiberOpts>
 	) {
-		if (this.state > STATE_ACTIVE)
-			illegalState(`fiber (id: ${this.id}) not active`);
+		if (!this.isActive()) illegalState(`fiber (id: ${this.id}) not active`);
 		const $fiber = fiber(body, {
 			parent: this,
 			logger: this.logger,
