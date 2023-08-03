@@ -68,6 +68,18 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./idgen": {
+			"default": "./idgen.js"
+		},
+		"./monotonic": {
+			"default": "./monotonic.js"
+		},
+		"./prefixed": {
+			"default": "./prefixed.js"
 		}
 	},
 	"thi.ng": {
