@@ -84,7 +84,7 @@ For Node.js REPL:
 const dsp = await import("@thi.ng/dsp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.90 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.91 KB
 
 ## Dependencies
 
@@ -106,6 +106,7 @@ A selection:
 | Screenshot                                                                                                             | Description                                         | Live demo                                             | Source                                                                             |
 |:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>       | Interactive inverse FFT toy synth                   | [Demo](https://demo.thi.ng/umbrella/fft-synth/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>    | Fiber-based cooperative multitasking basics         | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>     | Polygon to cubic curve conversion & visualization   | [Demo](https://demo.thi.ng/umbrella/poly-spline/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/> | Steering behavior drawing with alpha-blended shapes | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>   | WebGL cube maps with async texture loading          | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)   |

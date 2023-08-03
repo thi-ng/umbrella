@@ -129,7 +129,7 @@ For Node.js REPL:
 const distance = await import("@thi.ng/distance");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.26 KB
 
 ## Dependencies
 

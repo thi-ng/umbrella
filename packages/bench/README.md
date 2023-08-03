@@ -73,7 +73,7 @@ For Node.js REPL:
 const bench = await import("@thi.ng/bench");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.94 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.98 KB
 
 ## Dependencies
 

@@ -47,7 +47,7 @@ For Node.js REPL:
 const checks = await import("@thi.ng/checks");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.59 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.60 KB
 
 ## Dependencies
 

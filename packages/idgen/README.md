@@ -14,6 +14,7 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [ID generator with 16 bit range and no versioning](#id-generator-with-16-bit-range-and-no-versioning)
   - [ID generator w/ 24 bit range & 8 bit version range](#id-generator-w-24-bit-range--8-bit-version-range)
@@ -75,13 +76,25 @@ For Node.js REPL:
 const idgen = await import("@thi.ng/idgen");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 792 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 990 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [tslib](https://www.typescriptlang.org/)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
+|:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics) |
 
 ## API
 

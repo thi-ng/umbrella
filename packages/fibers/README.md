@@ -13,6 +13,7 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -55,6 +56,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.85 KB
 - [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
+|:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics) |
 
 ## API
 

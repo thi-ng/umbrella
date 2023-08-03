@@ -173,7 +173,7 @@ For Node.js REPL:
 const transducers = await import("@thi.ng/transducers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 8.64 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 8.70 KB
 
 ## Dependencies
 
@@ -206,6 +206,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images      | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/>             | Interactive visualization of closest points on ellipses                          | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>                     | Interactive inverse FFT toy synth                                                | [Demo](https://demo.thi.ng/umbrella/fft-synth/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                                      | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>                | Visualization of different grid iterator strategies                              | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/>               | hdom update performance benchmark w/ config options                              | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-clock.png" width="240"/>             | Realtime analog clock demo                                                       | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)   |

@@ -107,7 +107,7 @@ For Node.js REPL:
 const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 928 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1014 bytes
 
 ## Dependencies
 

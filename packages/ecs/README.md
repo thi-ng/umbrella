@@ -58,7 +58,7 @@ For Node.js REPL:
 const ecs = await import("@thi.ng/ecs");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.85 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.82 KB
 
 ## Dependencies
 

@@ -312,6 +312,7 @@ console.log(clusters);
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither) - Extensible image dithering w/ various algorithm presets
 - [@thi.ng/pixel-io-geotiff](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-geotiff) - GeoTIFF reader support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/pixel-io-pfm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-pfm) - Portable FloatMap image format support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 
 ## Related packages
 

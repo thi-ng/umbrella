@@ -89,7 +89,7 @@ For Node.js REPL:
 const paths = await import("@thi.ng/paths");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
 
 ## Dependencies
 
