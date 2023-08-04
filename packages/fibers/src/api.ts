@@ -1,4 +1,4 @@
-import type { Fn, IIDGen } from "@thi.ng/api";
+import type { Fn, Fn2, IIDGen } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { Fiber } from "./fiber.js";
 
@@ -39,9 +39,12 @@ export interface FiberOpts {
 	 */
 	deinit: Fn<Fiber, void>;
 	/**
-	 * User deinit handler.
+	 * User error handler. If this function returns true, the error is
+	 * considered caught and will **NOT** put the fiber into an error state.
+	 * Otherwise, the fiber will stop further processing and cancel all child
+	 * fibers (if any).
 	 */
-	catch: Fn<Fiber, boolean>;
+	catch: Fn2<Fiber, Error, boolean>;
 }
 
 export const STATE_NEW = 0;

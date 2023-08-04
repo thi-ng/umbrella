@@ -114,11 +114,7 @@ export class Fiber<T = any>
 	 * @param id
 	 */
 	childForID(id: string) {
-		if (this.children) {
-			for (let child of this.children) {
-				if (child.id === id) return child;
-			}
-		}
+		return this.children?.find((f) => f.id === id);
 	}
 
 	/**
@@ -134,15 +130,44 @@ export class Fiber<T = any>
 	 * wait for all child processes to finish.
 	 *
 	 * Non-active child process (i.e. finished, cancelled or errored) are
-	 * automatically removed from the parent.
+	 * automatically removed from the parent. If the child fiber is needed for
+	 * future inspection, the return value of `fork()` should be stored by the
+	 * user. Whilst still active, child fibers can also be looked up via
+	 * {@link Fiber.childForID}.
+	 *
+	 * @example
+	 * ```ts
+	 * fiber(function* (ctx) {
+	 *   console.log("main start")
+	 *   // create 2 child processes
+	 *   ctx.fork(function* () {
+	 *     console.log("child1 start");
+	 *     yield* wait(500);
+	 *     console.log("child1 end");
+	 *   });
+	 *   // second process will take longer than first
+	 *   ctx.fork(function* () {
+	 *     console.log("child2 start");
+	 *     yield* wait(1000);
+	 *     console.log("child2 end");
+	 *   });
+	 *   // wait for children to complete
+	 *   yield* ctx.join();
+	 *   console.log("main end")
+	 * }).run();
+	 *
+	 * // main start
+	 * // child1 start
+	 * // child2 start
+	 * // child1 end
+	 * // child2 end
+	 * // main end
+	 * ```
 	 *
 	 * @param f
 	 * @param opts
 	 */
-	fork<F>(
-		body?: Nullable<Fiber<F> | FiberFactory<F> | Generator<unknown, F>>,
-		opts?: Partial<FiberOpts>
-	) {
+	fork<F>(body?: Nullable<MaybeFiber<F>>, opts?: Partial<FiberOpts>) {
 		if (!this.isActive()) illegalState(`fiber (id: ${this.id}) not active`);
 		const $fiber = fiber(body, {
 			parent: this,
@@ -159,6 +184,9 @@ export class Fiber<T = any>
 	/**
 	 * Calls {@link Fiber.fork} for all given fibers and returns them as array.
 	 *
+	 * @remarks
+	 * Also see {@link Fiber.join} to wait for all child processes to complete.
+	 *
 	 * @param fibers
 	 */
 	forkAll(...fibers: MaybeFiber[]): Fiber[] {
@@ -168,6 +196,10 @@ export class Fiber<T = any>
 	/**
 	 * Waits for all child processes to complete/terminate. Use as `yield*
 	 * fiber.join()`.
+	 *
+	 * @remarks
+	 * See {@link Fiber.fork}, {@link Fiber.forkAll}.
+	 *
 	 */
 	*join() {
 		this.logger?.debug("waiting for children...");
@@ -177,6 +209,14 @@ export class Fiber<T = any>
 	/**
 	 * Processes a single iteration of this fiber and any of its children. Does
 	 * nothing if the fiber is not active anymore. Returns fiber's state.
+	 *
+	 * @remarks
+	 * New, ininitialized fibers are first initialized via {@link Fiber.init}.
+	 * Likewise, when fibers are terminated (for whatever reason), they will be
+	 * de-initialized via {@link Fiber.deinit}. For all of these cases
+	 * (init/deinit), hooks for user customization are provided via
+	 * {@link FiberOpts.init}, {@link FiberOpts.deinit} and
+	 * {@link FiberOpts.catch}.
 	 */
 	next() {
 		switch (this.state) {
@@ -230,7 +270,7 @@ export class Fiber<T = any>
 	 * Function is a no-op if the fiber is not active anymore.
 	 */
 	cancel() {
-		if (this.state >= STATE_DONE) return;
+		if (!this.isActive()) return;
 		this.logger?.debug("cancel", this.id);
 		if (this.children) {
 			for (let child of this.children) child.cancel();
@@ -251,8 +291,8 @@ export class Fiber<T = any>
 	 *
 	 * @param value
 	 */
-	done(value?: any) {
-		if (this.state >= STATE_DONE) return;
+	done(value?: T) {
+		if (!this.isActive()) return;
 		this.logger?.debug("done", this.id, value);
 		this.value = value;
 		if (this.children) {
@@ -265,20 +305,25 @@ export class Fiber<T = any>
 	}
 
 	/**
-	 * Stops further processing of this fiber and its children (if any) and sets
-	 * this fiber's {@link Fiber.error} value to given `error`. Calls
-	 * {@link Fiber.deinit} and emits {@link EVENT_FIBER_ERROR} event.
+	 * Stops further processing of this fiber, cancels all child processes (if
+	 * any) and sets this fiber's {@link Fiber.error} value to given `error`.
+	 * Calls {@link Fiber.deinit} and emits {@link EVENT_FIBER_ERROR} event.
 	 *
 	 * @remarks
-	 * Function is a no-op if the fiber already is in an error state.
+	 * Function is a no-op if the fiber already is in an error state. See
+	 * {@link FiberOpts.catch} for details about user provided error handling
+	 * and interception logic.
 	 *
 	 * @param err
 	 */
 	catch(err: Error) {
-		if (this.state >= STATE_ERROR || this.user?.catch?.(this)) return;
+		if (this.state >= STATE_ERROR || this.user?.catch?.(this, err)) return;
 		this.logger
 			? this.logger.severe(`error ${this.id}:`, err)
 			: console.warn(`error ${this.id}:`, err);
+		if (this.children) {
+			for (let child of this.children) child.cancel();
+		}
 		this.state = STATE_ERROR;
 		this.error = err;
 		this.deinit();
@@ -318,6 +363,9 @@ export class Fiber<T = any>
 	 * {@link Fiber.next} (indirectly, via a zero-arg helper function passed to
 	 * the `handler`).
 	 *
+	 * Note: **Do not use `setInterval` instead of `setTimeout`**. The given
+	 * `handler` must only manage a single execution step, not multiple.
+	 *
 	 * @example
 	 * ```ts
 	 * // start with custom higher frequency handler
@@ -350,6 +398,6 @@ export class Fiber<T = any>
  * @param opts
  */
 export const fiber = <T>(
-	fiber?: Nullable<Fiber<T> | FiberFactory<T> | Generator<unknown, T>>,
+	fiber?: Nullable<MaybeFiber<T>>,
 	opts?: Partial<FiberOpts>
 ) => (fiber != null && fiber instanceof Fiber ? fiber : new Fiber(fiber, opts));
