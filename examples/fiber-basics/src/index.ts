@@ -34,7 +34,7 @@ const cell = (
 	y: number,
 	w: number,
 	h: number,
-	isHoriz: boolean,
+	isVertical: boolean,
 	ad: number
 ) =>
 	function* (ctx: Fiber) {
@@ -54,17 +54,14 @@ const cell = (
 		// loop to grow/shrink and fade out rect
 		for (let [a, hh] of zip(alpha, symmetric(height))) {
 			// add cell rect to scene
+			const attribs = { fill: setAlpha(null, col, a) };
 			scene.children.push(
-				isHoriz
-					? rect([y, x], [hh, w], {
-							fill: setAlpha(col, col, a),
-					  })
-					: rect([x, y], [w, hh], {
-							fill: setAlpha(col, col, a),
-					  })
+				isVertical
+					? rect([x, y], [w, hh], attribs)
+					: rect([y, x], [hh, w], attribs)
 			);
 			// recursively spawn smaller box w/ 20% chance
-			if (h >= 100 && w > SNAP && SYSTEM.float() < 0.2) {
+			if (h >= 100 && w > SNAP && SYSTEM.float() < 0.25) {
 				// half width
 				const w2 = w / 2;
 				// spawn as child process of cell's parent process (aka main anim)
@@ -75,7 +72,7 @@ const cell = (
 						roundTo(SYSTEM.float(SIZE), SNAP),
 						w2,
 						roundTo(SYSTEM.minmax(0.1, 0.5) * h, SNAP),
-						isHoriz,
+						isVertical,
 						SYSTEM.minmax(0.5, 1) * ad
 					)
 				);
