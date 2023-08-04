@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lsys",
-	"version": "2.1.57",
+	"version": "2.1.58",
 	"description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
 	"type": "module",
 	"module": "./index.js",
@@ -34,17 +34,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.2",
-		"@thi.ng/compose": "^2.1.34",
-		"@thi.ng/errors": "^2.2.17",
-		"@thi.ng/math": "^5.5.0",
-		"@thi.ng/random": "^3.5.0",
-		"@thi.ng/transducers": "^8.4.7",
-		"@thi.ng/vectors": "^7.7.1"
+		"@thi.ng/api": "^8.9.0",
+		"@thi.ng/compose": "^2.1.35",
+		"@thi.ng/errors": "^2.3.0",
+		"@thi.ng/math": "^5.5.1",
+		"@thi.ng/random": "^3.5.1",
+		"@thi.ng/transducers": "^8.5.0",
+		"@thi.ng/vectors": "^7.7.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.3",
-		"@thi.ng/testament": "^0.3.17",
+		"@thi.ng/testament": "^0.3.18",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

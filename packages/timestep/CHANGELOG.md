@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-07-14T11:37:51Z
+- **Last updated**: 2023-08-04T10:58:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.4.2) (2023-08-04)
+
+#### ♻️ Refactoring
+
+- update INotify impl & event types ([02d83e8](https://github.com/thi-ng/umbrella/commit/02d83e8))
+  - rename EVENT_INTEGRATE => EVENT_SUBFRAME
+- update INotify impls ([cbdc527](https://github.com/thi-ng/umbrella/commit/cbdc527))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.4.0) (2023-06-19)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-06-14T07:58:51Z
+- **Last updated**: 2023-08-04T10:58:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.5.0) (2023-08-04)
+
+#### 🚀 Features
+
+- fix [#401](https://github.com/thi-ng/umbrella/issues/401), update multiplex(), step() ([834b076](https://github.com/thi-ng/umbrella/commit/834b076))
+  - add optional support to override single-result unwrapping behavior
+  - update docstrings/examples
+  - add tests
+
+#### ♻️ Refactoring
+
+- update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
+- minor internal updates ([5ffdcbb](https://github.com/thi-ng/umbrella/commit/5ffdcbb))
 
 ## [8.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.4.0) (2023-03-19)
 

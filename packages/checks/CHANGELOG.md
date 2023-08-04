@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-06-14T07:58:51Z
+- **Last updated**: 2023-08-04T10:58:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.4.0) (2023-08-04)
+
+#### 🚀 Features
+
+- add isGenerator() ([af8ffb3](https://github.com/thi-ng/umbrella/commit/af8ffb3))
 
 ### [3.3.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.3.5) (2022-12-16)
 

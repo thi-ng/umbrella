@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-06-14T07:58:51Z
+- **Last updated**: 2023-08-04T10:58:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.2.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@5.2.4) (2023-08-04)
+
+#### ♻️ Refactoring
+
+- update INotify impls, update History ([1ad68f6](https://github.com/thi-ng/umbrella/commit/1ad68f6))
+  - extract EVENT_XXX constants from History
+  - add INotify generics
+- update INotify impls ([cbdc527](https://github.com/thi-ng/umbrella/commit/cbdc527))
 
 ## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@5.2.0) (2023-04-08)
 
