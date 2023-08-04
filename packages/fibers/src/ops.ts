@@ -26,12 +26,12 @@ export const wait = (delay?: number) =>
 		  });
 
 /**
- * Returns co-routine which "blocks" for given number of frames.
+ * Returns ES6 generator which "blocks" for given number of frames.
  *
  * @param delay
  */
 export function* waitFrames(delay: number) {
-	while (delay-- <= 0) yield;
+	while (delay-- > 0) yield;
 }
 
 /**
