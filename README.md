@@ -31,13 +31,14 @@
 search of packages relevant to your use cases...**
 
 **This project is NOT a framework!** This mono-repository is home to currently
-181 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
+182 individual TypeScript/ES6 projects (and 120+ example projects), a wide and
 jointly developed collection of packages, tools and general purpose building
 blocks for (non-exhaustive list of topics, see [package overview](#projects)
 below):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines / DOM
+- Fiber process tree abstraction for ES6 generators (co-routines / cooperative multitasking)
 - Data structures & data transformations for wide range of use cases (maps, sets, heaps, queues, graphs etc.)
 - WebAssembly bridge APIs & data structure bindings code generators for multiple target languages
 - PEG-style functional parser combinators w/ (optional) custom grammar definition language
@@ -109,11 +110,11 @@ There's a steadily growing number (~120) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
-| Example screenshots                                           | (small selection)                                                 |                                                                      |
-|---------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|
-| <img src="./assets/examples/svg-waveform.jpg" width="240"/>   | <img src="./assets/imgui/imgui-all.png" width="240"/>             | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
-| <img src="./assets/examples/shader-ast-evo.jpg" width="240"/> | <img src="./assets/examples/adaptive-threshold.png" width="240"/> | <img src="./assets/examples/crypto-chart.png" width="240"/>          |
-| <img src="./assets/examples/text-canvas.png" width="240"/>    | <img src="./assets/geom/tessel.png" width="240"/>                 | <img src="./assets/examples/soa-ecs-100k.png" width="240"/>          |
+| Example screenshots                                         | (small selection)                                                 |                                                                      |
+|-------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|
+| <img src="./assets/examples/svg-waveform.jpg" width="240"/> | <img src="./assets/imgui/imgui-all.png" width="240"/>             | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
+| <img src="./assets/examples/fiber-basics.png" width="240"/> | <img src="./assets/examples/adaptive-threshold.png" width="240"/> | <img src="./assets/examples/crypto-chart.png" width="240"/>          |
+| <img src="./assets/examples/text-canvas.png" width="240"/>  | <img src="./assets/geom/tessel.png" width="240"/>                 | <img src="./assets/examples/soa-ecs-100k.png" width="240"/>          |
 
 ### awesome.thi.ng
 
@@ -191,18 +192,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-07-14
+As of: 2023-08-04
 
-| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/binary`](./packages/binary)                       | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)                       | [changelog](./packages/binary/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/color`](./packages/color)                         | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                         | [changelog](./packages/color/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/math`](./packages/math)                           | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                           | [changelog](./packages/math/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)           | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/random`](./packages/random)                       | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)                       | [changelog](./packages/random/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/random-fxhash`](./packages/random-fxhash)         | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash)         | [changelog](./packages/random-fxhash/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                   | [changelog](./packages/wasm-api/CHANGELOG.md)          |
+| Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
+|:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/api`](./packages/api)                 | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                 | [changelog](./packages/api/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/checks`](./packages/checks)           | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)           | [changelog](./packages/checks/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/errors`](./packages/errors)           | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)           | [changelog](./packages/errors/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-new-orange)    | [`@thi.ng/fibers`](./packages/fibers)           | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)           | [changelog](./packages/fibers/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/idgen`](./packages/idgen)             | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)             | [changelog](./packages/idgen/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api)       | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)       | [changelog](./packages/wasm-api/CHANGELOG.md)    |
 
 ### Fundamentals
 
@@ -220,6 +220,7 @@ As of: 2023-07-14
 | [`@thi.ng/equiv`](./packages/equiv)           | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)           | [changelog](./packages/equiv/CHANGELOG.md)      | Deep value equivalence checking                          |
 | [`@thi.ng/errors`](./packages/errors)         | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)         | [changelog](./packages/errors/CHANGELOG.md)     | Custom error types                                       |
 | [`@thi.ng/expose`](./packages/expose)         | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)         | [changelog](./packages/expose/CHANGELOG.md)     | Conditional global variable exposition                   |
+| [`@thi.ng/fibers`](./packages/fibers)         | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)         | [changelog](./packages/fibers/CHANGELOG.md)     | Process hierarchies & ops for cooperative multitasking   |
 | [`@thi.ng/hex`](./packages/hex)               | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)               | [changelog](./packages/hex/CHANGELOG.md)        | Hex value formatters for U4-64 words                     |
 | [`@thi.ng/logger`](./packages/logger)         | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)         | [changelog](./packages/logger/CHANGELOG.md)     | Basis infrastructure for arbitrary logging               |
 | [`@thi.ng/memoize`](./packages/memoize)       | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)       | [changelog](./packages/memoize/CHANGELOG.md)    | Function memoization w/ customizable caching             |
@@ -276,7 +277,7 @@ As of: 2023-07-14
 | [`@thi.ng/mime`](./packages/mime)                         | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                         | [changelog](./packages/mime/CHANGELOG.md)             | File extension to MIME type mappings            |
 | [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff) | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md) | GeoTIFF reader support for thi.ng/pixel         |
 | [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)   | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md)  | 1/8/16/24bit NetPBM image format reader/writer  |
-| [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)   | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)  | Portable FloatMap image format reader/writer  |
+| [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)         | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)     | Portable FloatMap image format reader/writer    |
 | [`@thi.ng/prefixes`](./packages/prefixes)                 | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)                 | [changelog](./packages/prefixes/CHANGELOG.md)         | Linked Data, RDF & xmlns prefixes/URLs          |
 | [`@thi.ng/sax`](./packages/sax)                           | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                           | [changelog](./packages/sax/CHANGELOG.md)              | SAX-like XML parser / transducer                |
 | [`@thi.ng/tangle`](./packages/tangle)                     | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                     | [changelog](./packages/tangle/CHANGELOG.md)           | Literate programming utilities                  |
