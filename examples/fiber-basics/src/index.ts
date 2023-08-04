@@ -2,7 +2,7 @@ import { colorFromRange, setAlpha, srgb } from "@thi.ng/color";
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { curve } from "@thi.ng/dsp";
 import { Fiber, fiber, untilPromise, wait } from "@thi.ng/fibers";
-import { Group, group, rect } from "@thi.ng/geom";
+import { Group, group, rect, text } from "@thi.ng/geom";
 import { draw } from "@thi.ng/hiccup-canvas";
 import { button, canvas, div } from "@thi.ng/hiccup-html";
 import { roundTo } from "@thi.ng/math";
@@ -97,6 +97,13 @@ function* endFrame(canvas: HTMLCanvasElement, scene: Group) {
 	const ctx = canvas.getContext("2d")!;
 	while (true) {
 		draw(ctx, scene);
+		draw(
+			ctx,
+			text([10, 20], `${scene.children.length + 4} fibers`, {
+				font: "12px sans-serif",
+				fill: "#000",
+			})
+		);
 		yield;
 	}
 }
