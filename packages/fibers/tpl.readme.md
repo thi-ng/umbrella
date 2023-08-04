@@ -37,13 +37,6 @@ const app = fiber(
 // see: https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#run
 app.run();
 
-// hello
-// <1/4 second delay>
-// fiber!
-// <1 second delay>
-// hello
-// ...
-
 // create a child process which runs semi-independently
 // (only executes if parent is still active)
 // child fibers are auto-removed from parent when they terminate
@@ -98,8 +91,11 @@ The following operators act as basic composition helpers to construct more elabo
 
 - [`all`](https://docs.thi.ng/umbrella/fibers/functions/all.html): wait for all given fibers to complete
 - [`first`](https://docs.thi.ng/umbrella/fibers/functions/first.html): wait for one of the given fibers to complete
+- [`fork`](https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#fork): create & attach a new child process
+- [`forkAll`](https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#forkAll): create & attach multiple child processes
+- [`join`](https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#join): wait for all child processes to complete
 - [`sequence`](https://docs.thi.ng/umbrella/fibers/functions/sequence.html): execute fibers in sequence
-- [`timeSlice`](https://docs.thi.ng/umbrella/fibers/functions/timeSlice.html): execute fiber in chunks of N milliseconds
+- [`timeSlice`](https://docs.thi.ng/umbrella/fibers/functions/timeSlice.html): execute fiber in batches of N milliseconds
 - [`until`](https://docs.thi.ng/umbrella/fibers/functions/until.html): wait until predicate is truthy
 - [`untilEvent`](https://docs.thi.ng/umbrella/fibers/functions/untilEvent.html): wait until event occurs
 - [`untilPromise`](https://docs.thi.ng/umbrella/fibers/functions/untilPromise.html): wait until promise resolves/rejects
