@@ -130,7 +130,7 @@ export const main = sync({
 			}
 			if (lines && lines.length) {
 				numLines += lines.length;
-				root.children.push(
+				root.add(
 					splitArcLength(
 						group(
 							{
@@ -147,7 +147,7 @@ export const main = sync({
 			}
 			if (pts && pts.length) {
 				numPoints += pts.length;
-				root.children.push(
+				root.add(
 					points(pts, {
 						fill: layer.color,
 						__axi: <AxiDrawAttribs>{

@@ -55,7 +55,7 @@ const cell = (
 		for (let [a, hh] of zip(alpha, symmetric(height))) {
 			// add cell rect to scene
 			const attribs = { fill: setAlpha(null, col, a) };
-			scene.children.push(
+			scene.add(
 				isVertical
 					? rect([x, y], [w, hh], attribs)
 					: rect([y, x], [hh, w], attribs)
@@ -84,7 +84,7 @@ const cell = (
 // fiber to clear given geometry group on each iteration
 function* beginFrame(scene: Group) {
 	while (true) {
-		scene.children.length = 0;
+		scene.clear();
 		yield;
 	}
 }
