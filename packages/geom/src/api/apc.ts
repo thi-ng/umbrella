@@ -1,7 +1,8 @@
+import type { IClear } from "@thi.ng/api";
 import type { Attribs, PCLike } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 
-export abstract class APC implements PCLike {
+export abstract class APC implements IClear, PCLike {
 	constructor(public points: Vec[] = [], public attribs?: Attribs) {}
 
 	abstract get type(): number | string;
@@ -12,5 +13,9 @@ export abstract class APC implements PCLike {
 
 	*[Symbol.iterator]() {
 		yield* this.points;
+	}
+
+	clear() {
+		this.points.length = 0;
 	}
 }

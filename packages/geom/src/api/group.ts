@@ -1,9 +1,13 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, IClear } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import { __copyAttribs } from "../internal/copy.js";
 
-export class Group implements IHiccupShape {
+/**
+ * Geometry/shape group container for other {@link IHiccupShape}s, incl. nested
+ * groups.
+ */
+export class Group implements IClear, IHiccupShape {
 	constructor(
 		public attribs?: Attribs,
 		public children: IHiccupShape[] = []
@@ -15,6 +19,23 @@ export class Group implements IHiccupShape {
 
 	*[Symbol.iterator]() {
 		yield* this.children;
+	}
+
+	/**
+	 * Appends given `shapes` to this {@link Group.children} array.
+	 *
+	 * @param shapes
+	 */
+	add(...shapes: IHiccupShape[]) {
+		this.children.push(...shapes);
+		return this;
+	}
+
+	/**
+	 * Removes all children from the group.
+	 */
+	clear() {
+		this.children.length = 0;
 	}
 
 	copy(): Group {

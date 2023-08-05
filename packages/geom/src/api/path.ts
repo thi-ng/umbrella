@@ -1,10 +1,11 @@
+import type { IClear } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { Attribs, IHiccupShape, PathSegment } from "@thi.ng/geom-api";
 import { copy } from "@thi.ng/vectors/copy";
 import { __copyAttribs } from "../internal/copy.js";
 
-export class Path implements IHiccupShape {
+export class Path implements IClear, IHiccupShape {
 	closed = false;
 
 	constructor(
@@ -18,6 +19,10 @@ export class Path implements IHiccupShape {
 
 	*[Symbol.iterator]() {
 		yield* this.segments;
+	}
+
+	clear() {
+		this.segments.length = 0;
 	}
 
 	copy(): Path {
@@ -44,9 +49,9 @@ export class Path implements IHiccupShape {
 		return o instanceof Path && equiv(this.segments, o.segments);
 	}
 
-	add(s: PathSegment) {
+	add(...segments: PathSegment[]) {
 		if (this.closed) illegalState("path already closed");
-		this.segments.push(s);
+		this.segments.push(...segments);
 	}
 
 	toHiccup() {
