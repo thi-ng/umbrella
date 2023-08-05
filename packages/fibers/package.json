@@ -37,6 +37,8 @@
 		"@thi.ng/api": "^8.9.0",
 		"@thi.ng/bench": "^3.4.1",
 		"@thi.ng/checks": "^3.4.0",
+		"@thi.ng/errors": "^2.3.0",
+		"@thi.ng/idgen": "^2.2.0",
 		"@thi.ng/logger": "^1.4.16"
 	},
 	"devDependencies": {
