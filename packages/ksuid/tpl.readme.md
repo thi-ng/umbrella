@@ -10,21 +10,22 @@ Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though the
 added flexibility in terms of configuration & implementation also enables the
 creation of [ULIDs](https://github.com/ulid/spec):
 
-| Feature                               | KSUID default          | ULID default           |
-|---------------------------------------|------------------------|------------------------|
-| Configurable bit size                 | 160 bits               | 128 bits               |
-| Base-N encoding scheme                | base62<sup>(1)</sup>   | base32 (Crockford)     |
-| Timestamp resolution                  | seconds (32 bits)      | milliseconds (48 bits) |
-|                                       | milliseconds (64 bits) |                        |
-| Epoch start time offset               | approx. 2020-09-13     | none                   |
-| Time-only base ID generation          | ✅                      | ✅                      |
-| ID parsing / decomposition            | ✅                      | ✅                      |
-| Configurable RNG source<sup>(2)</sup> | ✅                      | ✅                      |
+| Feature                               | KSUID default                    | ULID default           |
+|---------------------------------------|----------------------------------|------------------------|
+| Configurable bit size                 | 160 bits                         | 128 bits               |
+| Base-N encoding scheme                | base62<sup>(1)</sup>             | base32 (Crockford)     |
+| Timestamp resolution                  | seconds (32 bits)                | milliseconds (48 bits) |
+|                                       | milliseconds (64 bits)           |                        |
+| Epoch start time offset               | approx. 2020-09-13<sup>(2)</sup> | none                   |
+| Time-only base ID generation          | ✅                                | ✅                      |
+| ID parsing / decomposition            | ✅                                | ✅                      |
+| Configurable RNG source<sup>(3)</sup> | ✅                                | ✅                      |
 
 - <sup>(1)</sup> See
   [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
   for alternatives
-- <sup>(2)</sup> Default: `window.crypto`, `Math.random` as fallback
+- <sup>(2)</sup> With the default offset, the max. supported date for `KSUID32` is 2156-10-20T18:54:55Z
+- <sup>(3)</sup> Default: `window.crypto`, `Math.random` as fallback
 
 IDs generated w/ this package are composed of a 32, 48 or 64 bit Unix epochs and
 N additional bits of a random payload (from a configurable source). By default

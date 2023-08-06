@@ -73,8 +73,9 @@ export abstract class AKSUID implements IKSUID {
 		return buf;
 	}
 
-	protected ensureTime(t: number) {
+	protected ensureTime(t: number, max?: number) {
 		assert(t >= 0, "configured base epoch must be in the past");
+		max && assert(t <= max, `given epoch is out of range ([0...${max}])`);
 		return t;
 	}
 

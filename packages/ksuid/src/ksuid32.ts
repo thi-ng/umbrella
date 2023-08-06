@@ -1,6 +1,8 @@
 import { AKSUID } from "./aksuid.js";
 import type { KSUIDOpts } from "./api.js";
 
+const MAX_EPOCH = -1 >>> 0;
+
 export class KSUID32 extends AKSUID {
 	constructor(opts?: Partial<KSUIDOpts>) {
 		super(4, {
@@ -12,7 +14,7 @@ export class KSUID32 extends AKSUID {
 
 	timeOnlyBinary(epoch = Date.now()) {
 		const buf = new Uint8Array(this.size);
-		const t = this.ensureTime(((epoch - this.epoch) / 1000) | 0);
+		const t = this.ensureTime((epoch - this.epoch) / 1000, MAX_EPOCH) >>> 0;
 		buf.set([t >>> 24, (t >> 16) & 0xff, (t >> 8) & 0xff, t & 0xff]);
 		return buf;
 	}
