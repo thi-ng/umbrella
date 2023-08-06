@@ -192,7 +192,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-08-04
+As of: 2023-08-06
 
 | Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
 |:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
@@ -200,7 +200,9 @@ As of: 2023-08-04
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/checks`](./packages/checks)           | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)           | [changelog](./packages/checks/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/errors`](./packages/errors)           | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)           | [changelog](./packages/errors/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-new-orange)    | [`@thi.ng/fibers`](./packages/fibers)           | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)           | [changelog](./packages/fibers/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom`](./packages/geom)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)               | [changelog](./packages/geom/CHANGELOG.md)        |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/idgen`](./packages/idgen)             | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)             | [changelog](./packages/idgen/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/ksuid`](./packages/ksuid)             | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)             | [changelog](./packages/ksuid/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api)       | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)       | [changelog](./packages/wasm-api/CHANGELOG.md)    |
 
