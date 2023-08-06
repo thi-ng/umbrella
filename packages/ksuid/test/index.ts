@@ -83,4 +83,19 @@ group("ksuid", {
 			id2: new Uint8Array([98, 25, 104, 28, 170, 213, 122, 63, 189, 122]),
 		});
 	},
+
+	"epoch bounds": () => {
+		assert.strictEqual(
+			defKSUID32().timeOnly(new Date("2156-10-20T18:54:55Z").getTime()),
+			"aWgEPLxxrZOFaOlDVFHTB3ZiQOO"
+		);
+		assert.throws(() =>
+			defKSUID32().timeOnly(new Date("2156-10-20T18:54:56Z").getTime())
+		);
+		// default epoch offset is approx. 2020-09-13,
+		// so earlier dates are unsupported in this case...
+		assert.throws(() =>
+			defKSUID32().timeOnly(new Date("1999-01-01").getTime())
+		);
+	},
 });
