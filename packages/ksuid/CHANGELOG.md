@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-04T10:58:19Z
+- **Last updated**: 2023-08-06T09:21:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.1.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.1.15) (2023-08-06)
+
+#### 🩹 Bug fixes
+
+- fix [#403](https://github.com/thi-ng/umbrella/issues/403), update KSUID32 epoch handling ([abbfc5a](https://github.com/thi-ng/umbrella/commit/abbfc5a))
+  - update .ensureTime() to check against optional max value
+  - fix int coercion in KSUID32.timeOnlyBinary()
+  - update readme
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.1.0) (2023-02-10)
 

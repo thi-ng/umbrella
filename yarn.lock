@@ -2609,7 +2609,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/base-n@^2.5.6, @thi.ng/base-n@workspace:packages/base-n":
+"@thi.ng/base-n@^2.5.7, @thi.ng/base-n@workspace:packages/base-n":
   version: 0.0.0-use.local
   resolution: "@thi.ng/base-n@workspace:packages/base-n"
   dependencies:
@@ -2757,7 +2757,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.36.3
     "@thi.ng/api": ^8.9.0
-    "@thi.ng/base-n": ^2.5.6
+    "@thi.ng/base-n": ^2.5.7
     "@thi.ng/checks": ^3.4.0
     "@thi.ng/color": ^5.5.6
     "@thi.ng/errors": ^2.3.0
@@ -3406,7 +3406,7 @@ __metadata:
     "@thi.ng/axidraw": ^1.1.9
     "@thi.ng/compare": ^2.1.33
     "@thi.ng/defmulti": ^2.1.39
-    "@thi.ng/geom": ^5.0.7
+    "@thi.ng/geom": ^5.1.0
     "@thi.ng/geom-accel": ^3.5.4
     "@thi.ng/geom-api": ^3.4.20
     "@thi.ng/geom-clip-line": ^2.3.20
@@ -3478,7 +3478,7 @@ __metadata:
     "@thi.ng/api": ^8.9.0
     "@thi.ng/associative": ^6.2.40
     "@thi.ng/color": ^5.5.6
-    "@thi.ng/geom": ^5.0.7
+    "@thi.ng/geom": ^5.1.0
     "@thi.ng/geom-api": ^3.4.20
     "@thi.ng/geom-clip-line": ^2.3.20
     "@thi.ng/geom-resample": ^2.2.20
@@ -3604,7 +3604,7 @@ __metadata:
     "@thi.ng/checks": ^3.4.0
     "@thi.ng/defmulti": ^2.1.39
     "@thi.ng/errors": ^2.3.0
-    "@thi.ng/geom": ^5.0.7
+    "@thi.ng/geom": ^5.1.0
     "@thi.ng/geom-api": ^3.4.20
     "@thi.ng/geom-isoline": ^2.1.58
     "@thi.ng/geom-poly-utils": ^2.3.46
@@ -3718,7 +3718,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@^5.0.7, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@^5.1.0, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -4088,7 +4088,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.36.3
     "@thi.ng/api": ^8.9.0
     "@thi.ng/checks": ^3.4.0
-    "@thi.ng/geom": ^5.0.7
+    "@thi.ng/geom": ^5.1.0
     "@thi.ng/geom-api": ^3.4.20
     "@thi.ng/geom-isec": ^2.1.62
     "@thi.ng/geom-tessellate": ^2.1.62
@@ -4179,7 +4179,7 @@ __metadata:
   resolution: "@thi.ng/ksuid@workspace:packages/ksuid"
   dependencies:
     "@microsoft/api-extractor": ^7.36.3
-    "@thi.ng/base-n": ^2.5.6
+    "@thi.ng/base-n": ^2.5.7
     "@thi.ng/errors": ^2.3.0
     "@thi.ng/random": ^3.5.1
     "@thi.ng/strings": ^3.4.8
@@ -4641,7 +4641,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.36.3
     "@thi.ng/api": ^8.9.0
-    "@thi.ng/base-n": ^2.5.6
+    "@thi.ng/base-n": ^2.5.7
     "@thi.ng/random": ^3.5.1
     "@thi.ng/testament": ^0.3.18
     rimraf: ^5.0.1
