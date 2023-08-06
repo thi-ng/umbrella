@@ -19,7 +19,10 @@ This project is part of the
 
 ## About
 
-Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints.
+Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/85, support for bigints and encoding/decoding of byte arrays.
+
+In addition to the actual converters/encoders, the package also provides the
+plain character strings for each base and variations.
 
 ## Status
 
