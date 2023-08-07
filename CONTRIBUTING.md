@@ -84,13 +84,37 @@ code](#doc-strings) below.
 
 ### Changes to readme files
 
-The readme files for all packages are generated from their respective
-templated versions (`tpl.readme.md` files). Please only ever edit the
-template and then re-generate the actual readme like so:
+The readme files for all packages are generated from their respective templated
+versions (`tpl.readme.md` files), located in each package folder. **Please only
+ever edit the template and then submit a PR for these changes**.
+
+Currently, regenerating the `README.md` files requires additional tooling and is
+therefore not recommended (plus I will regenerate all readmes regularly any
+way). For those interested, the following extra steps are required:
+
+Clone & build the thi.ng font generator project:
 
 ```bash
-cd umbrella
-yarn workspace @thi.ng/<package-name> run doc:readme
+git clone https://github.com/thi-ng/font.git
+```
+
+[build instructions](https://github.com/thi-ng/font#building).
+
+Copy the generated SVG banners:
+
+```bash
+# assuming cwd is the root of the umbrella repo
+cp <path_to_font_repo>/build/*.svg assets/banners/
+```
+
+Re-generate readme(s):
+
+```bash
+# single package only
+(cd packages/<package_name> && yarn doc:readme)
+
+# all packages
+yarn doc:readme
 ```
 
 ### Wiki additions, blog posts, examples
