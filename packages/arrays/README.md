@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners-20220914/thing-arrays.svg?02d7f5d9)
+# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners-20230807/thing-arrays.svg?02d7f5d9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)

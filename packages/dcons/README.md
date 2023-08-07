@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/dcons](https://media.thi.ng/umbrella/banners-20220914/thing-dcons.svg?657d4371)
+# ![@thi.ng/dcons](https://media.thi.ng/umbrella/banners-20230807/thing-dcons.svg?657d4371)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dcons.svg)

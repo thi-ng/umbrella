@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/complex](https://media.thi.ng/umbrella/banners-20220914/thing-complex.svg?d0d78e75)
+# ![@thi.ng/complex](https://media.thi.ng/umbrella/banners-20230807/thing-complex.svg?d0d78e75)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/complex.svg)](https://www.npmjs.com/package/@thi.ng/complex)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/complex.svg)

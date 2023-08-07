@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/geom-clip-line](https://media.thi.ng/umbrella/banners-20220914/thing-geom-clip-line.svg?8ca4f323)
+# ![@thi.ng/geom-clip-line](https://media.thi.ng/umbrella/banners-20230807/thing-geom-clip-line.svg?8ca4f323)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-line.svg)

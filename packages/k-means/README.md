@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/k-means](https://media.thi.ng/umbrella/banners-20220914/thing-k-means.svg?974198f6)
+# ![@thi.ng/k-means](https://media.thi.ng/umbrella/banners-20230807/thing-k-means.svg?974198f6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/k-means.svg)

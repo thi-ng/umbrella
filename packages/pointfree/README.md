@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/pointfree](https://media.thi.ng/umbrella/banners-20220914/thing-pointfree.svg?f42a1008)
+# ![@thi.ng/pointfree](https://media.thi.ng/umbrella/banners-20230807/thing-pointfree.svg?f42a1008)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree.svg)

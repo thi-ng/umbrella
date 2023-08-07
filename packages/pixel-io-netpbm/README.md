@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/pixel-io-netpbm](https://media.thi.ng/umbrella/banners-20220914/thing-pixel-io-netpbm.svg?c4ef1813)
+# ![@thi.ng/pixel-io-netpbm](https://media.thi.ng/umbrella/banners-20230807/thing-pixel-io-netpbm.svg?c4ef1813)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-io-netpbm.svg)

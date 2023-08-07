@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners-20220914/thing-text-canvas.svg?770105b3)
+# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners-20230807/thing-text-canvas.svg?770105b3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-canvas.svg)

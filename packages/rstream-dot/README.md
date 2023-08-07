@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/rstream-dot](https://media.thi.ng/umbrella/banners-20220914/thing-rstream-dot.svg?5b9e009c)
+# ![@thi.ng/rstream-dot](https://media.thi.ng/umbrella/banners-20230807/thing-rstream-dot.svg?5b9e009c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-dot.svg)

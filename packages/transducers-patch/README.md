@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/transducers-patch](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-patch.svg?37747d24)
+# ![@thi.ng/transducers-patch](https://media.thi.ng/umbrella/banners-20230807/thing-transducers-patch.svg?37747d24)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-patch.svg)

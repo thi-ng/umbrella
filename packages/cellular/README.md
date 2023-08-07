@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/cellular](https://media.thi.ng/umbrella/banners-20220914/thing-cellular.svg?4c8cf48e)
+# ![@thi.ng/cellular](https://media.thi.ng/umbrella/banners-20230807/thing-cellular.svg?4c8cf48e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cellular.svg)

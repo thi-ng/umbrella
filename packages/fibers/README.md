@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/fibers](https://media.thi.ng/umbrella/banners-20220914/thing-fibers.svg?d08288cb)
+# ![@thi.ng/fibers](https://media.thi.ng/umbrella/banners-20230807/thing-fibers.svg?d08288cb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fibers.svg)
@@ -199,13 +200,15 @@ For Node.js REPL:
 const fibers = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.88 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.53 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 
 ## Usage examples
@@ -219,6 +222,7 @@ A selection:
 | Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
 |:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-zoom.png" width="240"/>   | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-zoom/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-zoom)   |
 
 ## API
 

@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/dgraph-dot](https://media.thi.ng/umbrella/banners-20220914/thing-dgraph-dot.svg?f014a3fb)
+# ![@thi.ng/dgraph-dot](https://media.thi.ng/umbrella/banners-20230807/thing-dgraph-dot.svg?f014a3fb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph-dot.svg)

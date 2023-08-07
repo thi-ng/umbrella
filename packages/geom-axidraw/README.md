@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/geom-axidraw](https://media.thi.ng/umbrella/banners-20220914/thing-geom-axidraw.svg?97576ad9)
+# ![@thi.ng/geom-axidraw](https://media.thi.ng/umbrella/banners-20230807/thing-geom-axidraw.svg?97576ad9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-axidraw.svg)

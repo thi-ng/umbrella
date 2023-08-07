@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/idgen](https://media.thi.ng/umbrella/banners-20220914/thing-idgen.svg?c0b9cbf9)
+# ![@thi.ng/idgen](https://media.thi.ng/umbrella/banners-20230807/thing-idgen.svg?c0b9cbf9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/idgen.svg)
@@ -95,6 +96,7 @@ A selection:
 | Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
 |:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-zoom.png" width="240"/>   | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-zoom/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-zoom)   |
 
 ## API
 

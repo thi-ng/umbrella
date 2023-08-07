@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/random-fxhash](https://media.thi.ng/umbrella/banners-20220914/thing-random-fxhash.svg?ae3fa3f5)
+# ![@thi.ng/random-fxhash](https://media.thi.ng/umbrella/banners-20230807/thing-random-fxhash.svg?ae3fa3f5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random-fxhash.svg)
@@ -75,7 +76,7 @@ functionality, e.g.:
 
 ## Related packages
 
-- [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints
+- [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/85, support for bigints and encoding/decoding of byte arrays
 
 ## Installation
 

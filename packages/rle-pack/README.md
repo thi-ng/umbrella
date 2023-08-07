@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/rle-pack](https://media.thi.ng/umbrella/banners-20220914/thing-rle-pack.svg?63d8a4bb)
+# ![@thi.ng/rle-pack](https://media.thi.ng/umbrella/banners-20230807/thing-rle-pack.svg?63d8a4bb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rle-pack.svg)

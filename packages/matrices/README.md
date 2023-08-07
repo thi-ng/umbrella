@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/matrices](https://media.thi.ng/umbrella/banners-20220914/thing-matrices.svg?4a7b1186)
+# ![@thi.ng/matrices](https://media.thi.ng/umbrella/banners-20230807/thing-matrices.svg?4a7b1186)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/matrices.svg)

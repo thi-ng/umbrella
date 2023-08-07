@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/text-format](https://media.thi.ng/umbrella/banners-20220914/thing-text-format.svg?c90d9fe3)
+# ![@thi.ng/text-format](https://media.thi.ng/umbrella/banners-20230807/thing-text-format.svg?c90d9fe3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-format.svg)

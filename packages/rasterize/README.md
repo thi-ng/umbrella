@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/rasterize](https://media.thi.ng/umbrella/banners-20220914/thing-rasterize.svg?75411efe)
+# ![@thi.ng/rasterize](https://media.thi.ng/umbrella/banners-20230807/thing-rasterize.svg?75411efe)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rasterize.svg)

@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/bitstream](https://media.thi.ng/umbrella/banners-20220914/thing-bitstream.svg?83eee6da)
+# ![@thi.ng/bitstream](https://media.thi.ng/umbrella/banners-20230807/thing-bitstream.svg?83eee6da)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitstream.svg)

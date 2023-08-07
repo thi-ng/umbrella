@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/pixel-io-geotiff](https://media.thi.ng/umbrella/banners-20220914/thing-pixel-io-geotiff.svg?cf8538e7)
+# ![@thi.ng/pixel-io-geotiff](https://media.thi.ng/umbrella/banners-20230807/thing-pixel-io-geotiff.svg?cf8538e7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-io-geotiff.svg)

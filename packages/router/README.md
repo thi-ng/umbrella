@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/router](https://media.thi.ng/umbrella/banners-20220914/thing-router.svg?2d6dad4b)
+# ![@thi.ng/router](https://media.thi.ng/umbrella/banners-20230807/thing-router.svg?2d6dad4b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/router.svg)

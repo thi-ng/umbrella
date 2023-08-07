@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners-20220914/thing-interceptors.svg?d9ee265e)
+# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners-20230807/thing-interceptors.svg?d9ee265e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)

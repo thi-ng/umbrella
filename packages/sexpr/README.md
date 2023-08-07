@@ -1,6 +1,7 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/sexpr](https://media.thi.ng/umbrella/banners-20220914/thing-sexpr.svg?40c7df44)
+# ![@thi.ng/sexpr](https://media.thi.ng/umbrella/banners-20230807/thing-sexpr.svg?40c7df44)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sexpr.svg)
