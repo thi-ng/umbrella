@@ -111,10 +111,10 @@ import { take } from "@thi.ng/transducers";
 ```
 
 - [add](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/add.ts) - adder
-- [adsr](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/add.ts) - timebased ADSR / AD envelope generator
+- [adsr](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/adsr.ts) - timebased ADSR / AD envelope generator
 - [alt](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/alt.ts) - alternating values
 - [constant](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/const.ts) - constant value
-- [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/cosp.ts) - trig-free cosine osc
+- [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/cosine.ts) - trig-free cosine osc
 - [curve](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/curve.ts) - timebased exponential gain/decay (factory for `madd`)
 - [impulse](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse.ts) - impulse gen
 - [impulseTrain](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse-train.ts) - timebased cyclic impulse
