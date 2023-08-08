@@ -20,6 +20,17 @@ pub fn build(b: *std.Build) void {
 
     b.installArtifact(lib);
 
+    const installDocs = b.addInstallDirectory(.{
+        .source_dir = lib.getEmittedDocs(),
+        // .prefix here means the default build output dir (aka /zig-out)
+        // can be overridden using -p CLI arg (see `docs` script alias in package.json)
+        .install_dir = .prefix,
+        .install_subdir = "docs",
+    });
+
+    const docsStep = b.step("docs", "Generate documentation");
+    docsStep.dependOn(&installDocs.step);
+
     // Alternatively, instead of calling WASM post-processing steps separately,
     // invoke them here instead (the above line needs to be removed then)...
 

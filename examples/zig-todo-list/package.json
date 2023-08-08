@@ -9,6 +9,7 @@
 	"scripts": {
 		"start": "yarn build:zig && vite --open --host",
 		"clean": "rimraf zig-cache zig-out",
+		"docs": "yarn prepare:zig && zig build docs -p .",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
 		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o zig/api-generated.zig src/typedefs.json",
 		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/lib/main.wasm -o src/main.wasm -O3 && wasm-dis -o src/main.wast src/main.wasm",
