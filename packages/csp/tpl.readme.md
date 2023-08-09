@@ -24,9 +24,11 @@
 
 {{meta.status}}
 
-This package might possibly become deprecated soon. See
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-for a similar, but alternative (and actively maintained) approach.
+This package is deprecated. Please see the following actively maintained
+alternatives providing similar functionality:
+
+- [@thi.ng/fibers](https://github.com/thi-ng/umbrella/tree/develop/packages/fibers)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
 {{repo.supportPackages}}
 

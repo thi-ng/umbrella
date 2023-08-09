@@ -48,9 +48,11 @@ ES6 promise based CSP primitives & operations.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcsp%5D+in%3Atitle)
 
-This package might possibly become deprecated soon. See
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-for a similar, but alternative (and actively maintained) approach.
+This package is deprecated. Please see the following actively maintained
+alternatives providing similar functionality:
+
+- [@thi.ng/fibers](https://github.com/thi-ng/umbrella/tree/develop/packages/fibers)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
 ## Related packages
 
