@@ -1,4 +1,4 @@
-import type { Fn, Fn2, IIDGen } from "@thi.ng/api";
+import type { Fn, Fn2, IClear, IIDGen } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { Fiber } from "./fiber.js";
 
@@ -89,3 +89,13 @@ export type FiberEventType =
 	| typeof EVENT_FIBER_CANCELED
 	| typeof EVENT_FIBER_ERROR
 	| "*";
+
+export interface IReadBuffer<T> {
+	readable(): boolean;
+	read(): T | undefined;
+}
+
+export interface IReadWriteBuffer<T> extends IReadBuffer<T>, IClear {
+	writable(): boolean;
+	write(x: T): void;
+}

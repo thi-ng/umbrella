@@ -75,6 +75,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./csp": {
+			"default": "./csp.js"
+		},
 		"./fiber": {
 			"default": "./fiber.js"
 		},
