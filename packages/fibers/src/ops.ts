@@ -108,7 +108,7 @@ export const first = (
  */
 export const all = (fibers: MaybeFiber[], opts?: Partial<FiberOpts>) =>
 	fiber<void>((ctx) => {
-		for (let f of fibers) ctx.fork(f);
+		ctx.forkAll(...fibers);
 		return ctx.join();
 	}, opts);
 
