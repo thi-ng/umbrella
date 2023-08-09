@@ -11,6 +11,7 @@ import type {
 } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { monotonic, prefixed } from "@thi.ng/idgen";
 import type { ILogger } from "@thi.ng/logger";
@@ -169,12 +170,19 @@ export class Fiber<T = any>
 	 */
 	fork<F>(body?: Nullable<MaybeFiber<F>>, opts?: Partial<FiberOpts>) {
 		if (!this.isActive()) illegalState(`fiber (id: ${this.id}) not active`);
-		const $fiber = fiber(body, {
-			parent: this,
-			logger: this.logger,
-			idgen: this.idgen,
-			...opts,
-		});
+		let $fiber: Fiber;
+		if (body instanceof Fiber) {
+			if (body.parent)
+				illegalArgs(`fiber id: ${body.id} already has a parent`);
+			$fiber = body;
+		} else {
+			$fiber = fiber(body, {
+				parent: this,
+				logger: this.logger,
+				idgen: this.idgen,
+				...opts,
+			});
+		}
 		if (!this.children) this.children = [];
 		this.children.push($fiber);
 		this.logger?.debug("forking", $fiber.id);
