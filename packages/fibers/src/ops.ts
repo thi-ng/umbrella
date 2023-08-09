@@ -1,5 +1,8 @@
 import type { Fn0, Nullable, Predicate } from "@thi.ng/api";
+import { shuffle as $shuffle } from "@thi.ng/arrays/shuffle";
 import { now, timeDiff } from "@thi.ng/bench/now";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import {
 	STATE_ACTIVE,
 	STATE_DONE,
@@ -7,6 +10,7 @@ import {
 	type FiberFactory,
 	type FiberOpts,
 	type MaybeFiber,
+	type State,
 } from "./api.js";
 import { Fiber, fiber } from "./fiber.js";
 
@@ -234,3 +238,68 @@ export const untilEvent = (
 		},
 	});
 };
+
+/**
+ * Custom fiber implementation for {@link shuffle}.
+ */
+export class Shuffle extends Fiber {
+	rnd: IRandom;
+
+	constructor(
+		fibers: Iterable<MaybeFiber>,
+		opts?: Partial<FiberOpts & { rnd: IRandom }>
+	) {
+		super((ctx) => ctx.join(), opts);
+		this.rnd = opts?.rnd || SYSTEM;
+		this.forkAll(...fibers);
+	}
+
+	next(): State {
+		if (!this.isActive()) return this.state;
+		$shuffle(this.children!, this.children!.length, this.rnd);
+		return super.next();
+	}
+}
+
+/**
+ * Higher-order fiber for creating a constantly randomized execution order of
+ * given `fibers`, e.g. for distributing workloads. Creates and returns a new
+ * fiber as parent of the given `fibers` which then shuffles their execution
+ * order on each {@link Fiber.next} invocation/update. The fiber terminates when
+ * all children are done.
+ *
+ * @remarks
+ * The `rnd` option can be used to customize the
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * implementation used for shuffling. Defaults to
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html).
+ *
+ * @example
+ * ```ts
+ * import { repeatedly } from "@thi.ng/transducers";
+ *
+ * // create & run fiber with 4 children, executing in random order
+ * shuffle(
+ *   repeatedly(
+ *     (id) => function*() { while(true) { console.log(`worker #{id}`); yield; } },
+ *     4
+ *   )
+ * ).run()
+ *
+ * // worker #0
+ * // worker #1
+ * // worker #3
+ * // worker #3
+ * // worker #2
+ * // worker #0
+ * // worker #2
+ * // ...
+ * ```
+ *
+ * @param fibers
+ * @param opts
+ */
+export const shuffle = (
+	fibers: Iterable<MaybeFiber>,
+	opts?: Partial<FiberOpts & { rnd: IRandom }>
+) => new Shuffle(fibers, opts);
