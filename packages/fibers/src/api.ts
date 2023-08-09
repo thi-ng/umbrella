@@ -31,6 +31,15 @@ export interface FiberOpts {
 	 */
 	parent: Fiber;
 	/**
+	 * If true (default: false), the fiber cancels itself once it has no more
+	 * children. See {@link Fiber.cancel}.
+	 *
+	 * @remarks
+	 * When enabling this option, ensure that the fiber has child processes
+	 * attached **before** execution!
+	 */
+	terminate: boolean;
+	/**
 	 * User init handler
 	 */
 	init: Fn<Fiber, void>;

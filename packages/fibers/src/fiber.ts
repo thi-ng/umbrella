@@ -53,7 +53,8 @@ export class Fiber<T = any>
 	idgen?: IIDGen<string>;
 
 	state: State = STATE_NEW;
-	children?: Fiber[];
+	autoTerminate = false;
+	children: Fiber[] = [];
 	value?: T = undefined;
 	error?: Error;
 	logger?: ILogger;
@@ -64,6 +65,7 @@ export class Fiber<T = any>
 		opts?: Partial<FiberOpts>
 	) {
 		if (opts) {
+			this.autoTerminate = !!opts.terminate;
 			this.logger = opts.logger;
 			this.parent = opts.parent;
 			this.user = {
@@ -79,7 +81,7 @@ export class Fiber<T = any>
 		} else {
 			this.idgen = DEFAULT_ID_GEN;
 		}
-		if (!this.id && this.idgen) this.id = this.idgen.next();
+		if (this.idgen) this.id = this.idgen.next();
 		this.gen = isFunction(gen) ? gen(this) : gen;
 	}
 
@@ -115,7 +117,7 @@ export class Fiber<T = any>
 	 * @param id
 	 */
 	childForID(id: string) {
-		return this.children?.find((f) => f.id === id);
+		return this.children.find((f) => f.id === id);
 	}
 
 	/**
@@ -183,7 +185,6 @@ export class Fiber<T = any>
 				...opts,
 			});
 		}
-		if (!this.children) this.children = [];
 		this.children.push($fiber);
 		this.logger?.debug("forking", $fiber.id);
 		return $fiber;
@@ -211,7 +212,7 @@ export class Fiber<T = any>
 	 */
 	*join() {
 		this.logger?.debug("waiting for children...");
-		while (this.children?.length) yield;
+		while (this.children.length) yield;
 	}
 
 	/**
@@ -234,7 +235,7 @@ export class Fiber<T = any>
 			case STATE_ACTIVE:
 				try {
 					const { children } = this;
-					if (children) {
+					if (children.length) {
 						for (let i = 0, n = children.length; i < n; ) {
 							const child = children[i];
 							if (
@@ -245,6 +246,9 @@ export class Fiber<T = any>
 								n--;
 							} else i++;
 						}
+					} else if (this.autoTerminate) {
+						this.cancel();
+						break;
 					}
 					const res = this.gen ? this.gen.next(this) : NO_RESULT;
 					if (res.done) this.done(res.value);
@@ -266,7 +270,7 @@ export class Fiber<T = any>
 	protected deinit() {
 		this.logger?.debug("deinit", this.id);
 		this.user?.deinit?.(this);
-		if (this.children) this.children = undefined;
+		this.children.length = 0;
 		this.gen = null;
 	}
 
@@ -280,9 +284,7 @@ export class Fiber<T = any>
 	cancel() {
 		if (!this.isActive()) return;
 		this.logger?.debug("cancel", this.id);
-		if (this.children) {
-			for (let child of this.children) child.cancel();
-		}
+		for (let child of this.children) child.cancel();
 		this.deinit();
 		this.state = STATE_CANCELED;
 		this.idgen?.free(this.id);
@@ -303,9 +305,7 @@ export class Fiber<T = any>
 		if (!this.isActive()) return;
 		this.logger?.debug("done", this.id, value);
 		this.value = value;
-		if (this.children) {
-			for (let child of this.children) child.done();
-		}
+		for (let child of this.children) child.done();
 		this.deinit();
 		this.state = STATE_DONE;
 		this.idgen?.free(this.id);
@@ -329,9 +329,7 @@ export class Fiber<T = any>
 		this.logger
 			? this.logger.severe(`error ${this.id}:`, err)
 			: console.warn(`error ${this.id}:`, err);
-		if (this.children) {
-			for (let child of this.children) child.cancel();
-		}
+		for (let child of this.children) child.cancel();
 		this.state = STATE_ERROR;
 		this.error = err;
 		this.deinit();
