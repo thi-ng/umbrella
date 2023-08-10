@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/oquery",
-	"version": "2.1.42",
+	"version": "2.1.43",
 	"description": "Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.1",
-		"@thi.ng/checks": "^3.4.1",
-		"@thi.ng/defmulti": "^2.1.40",
-		"@thi.ng/equiv": "^2.1.26"
+		"@thi.ng/api": "^8.9.2",
+		"@thi.ng/checks": "^3.4.2",
+		"@thi.ng/defmulti": "^2.1.41",
+		"@thi.ng/equiv": "^2.1.27"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.3",
-		"@thi.ng/testament": "^0.3.19",
+		"@thi.ng/testament": "^0.3.20",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",
@@ -90,5 +90,6 @@
 			"rstream-query"
 		],
 		"year": 2020
-	}
+	},
+	"gitHead": "672fb5ede530598da51c9d1cee48fe58c23bad34\n"
 }

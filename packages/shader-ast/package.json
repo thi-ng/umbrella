@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast",
-	"version": "0.12.56",
+	"version": "0.12.57",
 	"description": "DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets",
 	"type": "module",
 	"module": "./index.js",
@@ -37,16 +37,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.1",
-		"@thi.ng/checks": "^3.4.1",
-		"@thi.ng/defmulti": "^2.1.40",
-		"@thi.ng/dgraph": "^2.1.53",
-		"@thi.ng/errors": "^2.3.1",
-		"@thi.ng/logger": "^1.4.17"
+		"@thi.ng/api": "^8.9.2",
+		"@thi.ng/checks": "^3.4.2",
+		"@thi.ng/defmulti": "^2.1.41",
+		"@thi.ng/dgraph": "^2.1.54",
+		"@thi.ng/errors": "^2.3.2",
+		"@thi.ng/logger": "^1.4.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.3",
-		"@thi.ng/testament": "^0.3.19",
+		"@thi.ng/testament": "^0.3.20",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",
@@ -175,5 +175,6 @@
 			"webgl-shadertoy"
 		],
 		"year": 2019
-	}
+	},
+	"gitHead": "672fb5ede530598da51c9d1cee48fe58c23bad34\n"
 }

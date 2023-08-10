@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/morton",
-	"version": "3.1.41",
+	"version": "3.1.42",
 	"description": "Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.1",
-		"@thi.ng/binary": "^3.3.29",
-		"@thi.ng/errors": "^2.3.1",
-		"@thi.ng/math": "^5.5.2"
+		"@thi.ng/api": "^8.9.2",
+		"@thi.ng/binary": "^3.3.30",
+		"@thi.ng/errors": "^2.3.2",
+		"@thi.ng/math": "^5.5.3"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.3",
-		"@thi.ng/testament": "^0.3.19",
+		"@thi.ng/testament": "^0.3.20",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",
@@ -103,5 +103,6 @@
 			"geom-accel"
 		],
 		"year": 2015
-	}
+	},
+	"gitHead": "672fb5ede530598da51c9d1cee48fe58c23bad34\n"
 }

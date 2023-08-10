@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-io-obj",
-	"version": "0.3.59",
+	"version": "0.3.60",
 	"description": "Wavefront OBJ parser (& exporter soon)",
 	"type": "module",
 	"module": "./index.js",
@@ -34,13 +34,13 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.1",
-		"@thi.ng/errors": "^2.3.1",
-		"@thi.ng/vectors": "^7.7.3"
+		"@thi.ng/api": "^8.9.2",
+		"@thi.ng/errors": "^2.3.2",
+		"@thi.ng/vectors": "^7.7.4"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.3",
-		"@thi.ng/testament": "^0.3.19",
+		"@thi.ng/testament": "^0.3.20",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",
@@ -83,5 +83,6 @@
 		"parent": "@thi.ng/geom",
 		"status": "alpha",
 		"year": 2016
-	}
+	},
+	"gitHead": "672fb5ede530598da51c9d1cee48fe58c23bad34\n"
 }

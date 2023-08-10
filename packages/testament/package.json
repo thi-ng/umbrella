@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/testament",
-	"version": "0.3.19",
+	"version": "0.3.20",
 	"description": "Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode, file fixtures",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/logger": "^1.4.17",
+		"@thi.ng/logger": "^1.4.18",
 		"chokidar": "^3.5.3"
 	},
 	"devDependencies": {
@@ -98,5 +98,6 @@
 	"thi.ng": {
 		"status": "alpha",
 		"year": 2021
-	}
+	},
+	"gitHead": "672fb5ede530598da51c9d1cee48fe58c23bad34\n"
 }
