@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/api",
-	"version": "8.9.0",
+	"version": "8.9.1",
 	"description": "Common, generic types, interfaces & mixins",
 	"type": "module",
 	"module": "./index.js",
@@ -38,7 +38,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.3",
-		"@thi.ng/testament": "^0.3.18",
+		"@thi.ng/testament": "^0.3.19",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

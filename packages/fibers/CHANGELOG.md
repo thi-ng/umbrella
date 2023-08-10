@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-05T08:00:59Z
+- **Last updated**: 2023-08-10T12:16:43Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,33 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/fibers@0.2.0) (2023-08-10)
+
+#### 🚀 Features
+
+- ensure no pre-existing parent in Fiber.fork() ([612adf9](https://github.com/thi-ng/umbrella/commit/612adf9))
+- add auto terminate option, update child handling ([e59063d](https://github.com/thi-ng/umbrella/commit/e59063d))
+- add shuffle() operator, update deps ([b3efa79](https://github.com/thi-ng/umbrella/commit/b3efa79))
+- add CSP primitives ([d8fa8ce](https://github.com/thi-ng/umbrella/commit/d8fa8ce))
+  - add fiber-based Channel class
+  - add various buffer implementations
+    - fifo
+    - lifo
+    - sliding
+    - dropping
+
+#### ⏱ Performance improvements
+
+- rewrite FIFOBuffer as ring buffer ([ebac714](https://github.com/thi-ng/umbrella/commit/ebac714))
+  - use old impl as basis for LIFOBuffer only
+  - update other buffer types to use new ring buffer impl
+  - add min. capacity assertion in ctors
+
+#### ♻️ Refactoring
+
+- minor update all() ([52836a8](https://github.com/thi-ng/umbrella/commit/52836a8))
+- update arg types in various ops ([cb3c253](https://github.com/thi-ng/umbrella/commit/cb3c253))
 
 ### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/fibers@0.1.1) (2023-08-05)
 
