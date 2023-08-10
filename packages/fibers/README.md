@@ -233,6 +233,10 @@ implementation, all channel operations are executed in individual fibers to deal
 with the potential blocking behaviors. This is demonstrated in the simple
 example below.
 
+In general, due to fibers not being true multi-threaded processes (all are
+executed in the single thread of the JS engine), any number of fibers can read
+or write to a channel.
+
 Channels can be created like so:
 
 ```ts
@@ -331,7 +335,20 @@ app.run();
 // [DEBUG] app: deinit main
 ```
 
-Additional CSP operators are planned...
+Additional CSP operators are planned, but since everything here is based on
+fibers, the various channel operations can be already combined with the
+[available fiber operators/combinators](#fiber-operators)...
+
+For example, a channel read or write op can be combined with a timeout:
+
+```ts
+const res = (yield* withTimeout(chan.read(), 1000)).deref();
+if (res !== undefined) {
+    console.log("read value", x);
+} else {
+    console.log("read timeout");
+}
+```
 
 ## Status
 
