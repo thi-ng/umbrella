@@ -119,7 +119,7 @@ The following operators act as basic composition helpers to construct more elabo
 - [`forkAll`](https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#forkAll): create & attach multiple child processes
 - [`join`](https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#join): wait for all child processes to complete
 - [`sequence`](https://docs.thi.ng/umbrella/fibers/functions/sequence.html): execute fibers in sequence
-- [`shuffle`](https://docs.thi.ng/umbrella/fibers/functions/shuffle.html): execute fibers in constantly randomized order
+- [`shuffle`](https://docs.thi.ng/umbrella/fibers/functions/shuffle-1.html): execute fibers in constantly randomized order
 - [`timeSlice`](https://docs.thi.ng/umbrella/fibers/functions/timeSlice.html): execute fiber in batches of N milliseconds
 - [`until`](https://docs.thi.ng/umbrella/fibers/functions/until.html): wait until predicate is truthy
 - [`untilEvent`](https://docs.thi.ng/umbrella/fibers/functions/untilEvent.html): wait until event occurs
