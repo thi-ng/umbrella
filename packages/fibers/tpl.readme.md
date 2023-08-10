@@ -243,10 +243,9 @@ const pong = channel<number>();
 app.forkAll(
 	// ping
 	function* () {
-		let x: number | undefined;
 		while (ping.readable()) {
 			// blocking read op
-			x = yield* ping.read();
+			const x = yield* ping.read();
 			// check if channel was closed meanwhile
 			if (x === undefined) break;
 			console.log("PING", x);
@@ -258,9 +257,8 @@ app.forkAll(
 	},
 	// pong (very similar)
 	function* () {
-		let x: number | undefined;
 		while (pong.readable()) {
-			x = yield* pong.read();
+			const x = yield* pong.read();
 			if (x === undefined) break;
 			console.log("PONG", x);
 			yield* ping.write(x + 1);
