@@ -91,11 +91,26 @@ export type FiberEventType =
 	| "*";
 
 export interface IReadBuffer<T> {
+	/**
+	 * Returns true iff the buffer has at least one value available for reading.
+	 */
 	readable(): boolean;
-	read(): T | undefined;
+	/**
+	 * Unguarded read operation. Assumes the caller checked
+	 * {@link IReadBuffer.readable} immediately before. Returns next value from
+	 * buffer.
+	 */
+	read(): T;
 }
 
 export interface IReadWriteBuffer<T> extends IReadBuffer<T>, IClear {
+	/**
+	 * Returns true iff the buffer has at least one slot available for writing.
+	 */
 	writable(): boolean;
+	/**
+	 * Unguarded write operation. Assumes the caller checked
+	 * {@link IReadWriteBuffer.writable} immediately before.
+	 */
 	write(x: T): void;
 }
