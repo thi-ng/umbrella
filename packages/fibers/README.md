@@ -181,42 +181,45 @@ sequence(
 
 ### CSP primitives (Communicating Sequential Processes)
 
-Reference: [Communicating Sequential
-Processes](https://en.wikipedia.org/wiki/Communicating_sequential_processes)
+References:
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Communicating_sequential_processes)
+- [Communicating Sequential Processes, C.A.R.
+Hoare](https://dl.acm.org/doi/pdf/10.1145/359576.359585)
 
 In addition to the operators above, the basic fiber implementation can also be
-used to construct other types of primitives, like these required for
-channel-based communication between processes. The package includes a
-fiber-based read/write channel primitive which can be customized with different
-buffer behaviors to control blocking behaviors and backpressure handling (aka
-attempting to write faster to a channel than values are being read, essentially
-a memory management issue).
+used to construct other types of primitives, like those required for
+channel-based communication between processes, as proposed by Tony Hoare. The
+package includes a fiber-based read/write channel primitive which can be
+customized with different buffer implementations to control blocking behaviors
+and backpressure handling (aka attempting to write faster to a channel than
+values are being read, essentially a memory management issue).
 
 #### Buffering behaviors
 
-The following channel buffer types are included, all accepting a max. capacity
-and all implementing the required
+The following channel buffer types/behaviors are included, all accepting a max.
+capacity and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/fibers/interfaces/IReadWriteBuffer.html)
-interface:
+interface required by the channel:
 
 - [`fifo`](https://docs.thi.ng/umbrella/fibers/functions/fifo.html): First in,
-  first out. Writes to the channel will start blocking once the buffer's
-  capacity is reached, otherwise complete immediately. Likewise, channel reads
-  are non-blocking whilst there're more buffered values available. Reads will
-  only block if the buffer is empty.
-- [`lifo`](https://docs.thi.ng/umbrella/fibers/functions/lifo.html): First in,
-  last out. Read/write behavior is mostly the same as with `fifo`, with the
+  first out ring buffer. Writes to the channel will start blocking once the
+  buffer's capacity is reached, otherwise complete immediately. Likewise,
+  channel reads are non-blocking whilst there're more buffered values available.
+  Reads will only block if the buffer is empty.
+- [`lifo`](https://docs.thi.ng/umbrella/fibers/functions/lifo.html): Last in,
+  first out. Read/write behavior is mostly the same as with `fifo`, with the
   important difference, that (as the name indicates), the last value written
   will be the first value read (i.e. stack behavior).
 - [`sliding`](https://docs.thi.ng/umbrella/fibers/functions/sliding.html):
-  Sliding window buffer. Writes to the channel are **never** blocking! Once the
-  buffer's capacity is reached, a new write will first expunge the oldest
+  Sliding window ring buffer. Writes to the channel are **never** blocking! Once
+  the buffer's capacity is reached, a new write will first expunge the oldest
   buffered value (similar to LRU cache behavior). Read behavior is the same as
   for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/fibers/functions/dropping.html):
-  Dropping buffer. Writes to the channel are **never** blocking! Whilst the
-  buffer's capacity is reached, new writes will be silently ignored. Read
-  behavior is the same as for `fifo`.
+  Dropping value ring buffer. Writes to the channel are **never** blocking!
+  Whilst the buffer's capacity is reached, new writes will be silently ignored.
+  Read behavior is the same as for `fifo`.
 
 #### Channels
 
@@ -256,6 +259,7 @@ import { ConsoleLogger } from "@thi.ng/logger";
 const app = fiber(null, {
     id: "main",
     logger: new ConsoleLogger("app"),
+    // if true, fiber automatically terminates once all child fibers are done
     terminate: true,
 });
 
@@ -269,11 +273,12 @@ app.forkAll(
     function* () {
         while (ping.readable()) {
             // blocking read op
+            // (waits until value is available in `ping` channel)
             const x = yield* ping.read();
             // check if channel was closed meanwhile
             if (x === undefined) break;
             console.log("PING", x);
-            // blocking write op to other channel
+            // possibly blocking (in general) write op to other channel
             yield* pong.write(x);
             // slowdown
             yield* wait(100);
@@ -285,6 +290,7 @@ app.forkAll(
             const x = yield* pong.read();
             if (x === undefined) break;
             console.log("PONG", x);
+            // trigger next iteration
             yield* ping.write(x + 1);
         }
     },
@@ -325,6 +331,8 @@ app.run();
 // [DEBUG] app: deinit main
 ```
 
+Additional CSP operators are planned...
+
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -351,7 +359,7 @@ For Node.js REPL:
 const fibers = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.12 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.25 KB
 
 ## Dependencies
 
@@ -375,7 +383,6 @@ A selection:
 | Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
 |:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-zoom.png" width="240"/>   | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-zoom/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-zoom)   |
 
 ## API
 
