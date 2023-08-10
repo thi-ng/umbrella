@@ -7,7 +7,6 @@ import {
 	STATE_ACTIVE,
 	STATE_DONE,
 	STATE_ERROR,
-	type FiberFactory,
 	type FiberOpts,
 	type MaybeFiber,
 	type State,
@@ -46,7 +45,7 @@ export function* waitFrames(delay: number) {
  * @param opts
  */
 export const sequence = (
-	fibers: Iterable<Fiber | FiberFactory | Generator>,
+	fibers: Iterable<MaybeFiber>,
 	opts?: Partial<FiberOpts>
 ) =>
 	fiber(function* (ctx) {
@@ -83,11 +82,11 @@ export const sequence = (
  * @param opts
  */
 export const first = (
-	fibers: (Fiber | FiberFactory | Generator)[],
+	fibers: Iterable<MaybeFiber>,
 	opts?: Partial<FiberOpts>
 ) =>
 	fiber<Fiber>(function* (ctx) {
-		const $fibers = fibers.map((f) => ctx.fork(f));
+		const $fibers = [...fibers].map((f) => ctx.fork(f));
 		while (true) {
 			for (let f of $fibers) {
 				if (!f.isActive()) return f;
@@ -106,7 +105,7 @@ export const first = (
  * @param fibers
  * @param opts
  */
-export const all = (fibers: MaybeFiber[], opts?: Partial<FiberOpts>) =>
+export const all = (fibers: Iterable<MaybeFiber>, opts?: Partial<FiberOpts>) =>
 	fiber<void>((ctx) => {
 		ctx.forkAll(...fibers);
 		return ctx.join();
@@ -124,15 +123,15 @@ export const all = (fibers: MaybeFiber[], opts?: Partial<FiberOpts>) =>
  * if (res.deref() != null) { ... }
  * ```
  *
- * @param fiber
+ * @param body
  * @param timeout
  * @param opts
  */
 export const withTimeout = (
-	fiber: MaybeFiber,
+	body: MaybeFiber,
 	timeout: number,
 	opts?: Partial<FiberOpts>
-) => first([fiber, wait(timeout)], opts);
+) => first([body, wait(timeout)], opts);
 
 /**
  * Higher-order fiber which repeatedly executes given `fiber` until its
@@ -144,7 +143,7 @@ export const withTimeout = (
  * @param opts
  */
 export const timeSlice = (
-	body: Fiber | FiberFactory | Generator,
+	body: MaybeFiber,
 	maxTime: number,
 	opts?: Partial<FiberOpts>
 ) =>
