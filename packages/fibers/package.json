@@ -52,6 +52,25 @@
 		"typescript": "^5.1.6"
 	},
 	"keywords": [
+		"blocking",
+		"buffer",
+		"cancel",
+		"channel",
+		"communication",
+		"composition",
+		"coroutines",
+		"csp",
+		"event",
+		"fiber",
+		"fork",
+		"generator",
+		"logger",
+		"multitasking",
+		"process",
+		"promise",
+		"scheduler",
+		"shuffle",
+		"time",
 		"typescript"
 	],
 	"publishConfig": {

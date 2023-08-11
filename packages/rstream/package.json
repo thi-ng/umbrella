@@ -70,7 +70,7 @@
 		"transducer",
 		"transformation",
 		"typescript",
-		"webworker"
+		"worker"
 	],
 	"publishConfig": {
 		"access": "public"

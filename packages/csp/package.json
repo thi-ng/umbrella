@@ -56,6 +56,7 @@
 	"keywords": [
 		"async",
 		"channel",
+		"communication",
 		"csp",
 		"datastructure",
 		"multiplex",
