@@ -51,11 +51,11 @@ For Node.js REPL:
 const baseN = await import("@thi.ng/base-n");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 931 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 944 bytes
 
 ## Dependencies
 
-- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
+None
 
 ## API
 

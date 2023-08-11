@@ -1,8 +1,8 @@
-import { defBase } from "./base.js";
+import { __B16_LC_CHARS, defBase } from "./base.js";
 
 export const B16_UC_CHARS = "0123456789ABCDEF";
 
-export const B16_LC_CHARS = "0123456789abcdef";
+export const B16_LC_CHARS = __B16_LC_CHARS;
 
 /**
  * Alias for {@link B16_LC_CHARS}

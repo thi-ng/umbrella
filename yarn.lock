@@ -2614,7 +2614,6 @@ __metadata:
   resolution: "@thi.ng/base-n@workspace:packages/base-n"
   dependencies:
     "@microsoft/api-extractor": ^7.36.3
-    "@thi.ng/hex": ^2.3.14
     "@thi.ng/testament": ^0.3.20
     rimraf: ^5.0.1
     tools: "workspace:^"
