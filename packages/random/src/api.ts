@@ -55,7 +55,7 @@ export interface IRandom extends INorm {
 	 */
 	minmax(min: number, max: number): number;
 	/**
-	 * Returns int in [min..max) interval.
+	 * Returns int in **signed** integer [min..max) interval.
 	 *
 	 * @remarks
 	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
@@ -64,6 +64,16 @@ export interface IRandom extends INorm {
 	 * @param max -
 	 */
 	minmaxInt(min: number, max: number): number;
+	/**
+	 * Returns int in **unsigned** integer [min..max) interval.
+	 *
+	 * @remarks
+	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 *
+	 * @param min -
+	 * @param max -
+	 */
+	minmaxUint(min: number, max: number): number;
 }
 
 export interface ISeedable<T> {

@@ -24,7 +24,11 @@ export abstract class ARandom implements IRandom {
 
 	minmaxInt(min: number, max: number) {
 		min |= 0;
-		max |= 0;
-		return min + ((this.float() * (max - min)) | 0);
+		return min + (this.int() % ((max | 0) - min));
+	}
+
+	minmaxUint(min: number, max: number) {
+		min >>>= 0;
+		return min + (this.int() % ((max >>> 0) - min));
 	}
 }
