@@ -54,7 +54,7 @@ export const defNoise = <T = number>(
 		rnd: SYSTEM,
 		...opts,
 	};
-	return () => (rnd.float() < probability ? a : b);
+	return () => (rnd.probability(probability) ? a : b);
 };
 
 /**

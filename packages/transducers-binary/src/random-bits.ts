@@ -20,4 +20,4 @@ export const randomBits = (
 	num?: number,
 	rnd: IRandom = SYSTEM
 ): IterableIterator<number> =>
-	repeatedly(() => (rnd.float() < prob ? 1 : 0), num);
+	repeatedly(() => (rnd.probability(prob) ? 1 : 0), num);

@@ -213,7 +213,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 		this.insertInLane(node, newNode);
 		let currLevel = node.level;
 		let headLevel = $this.head.level;
-		while (rnd.float() < p) {
+		while (rnd.probability(p)) {
 			// check if new head (at a new level) is needed
 			if (currLevel >= headLevel) {
 				const newHead = new Node<K, V>(

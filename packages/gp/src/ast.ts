@@ -71,7 +71,7 @@ export class AST<OP, T> {
 		if (!loc) return tree;
 		while (true) {
 			let nextLoc: Location<ASTNode<OP, T>> | undefined;
-			if (rnd!.float() < probMutate) {
+			if (rnd!.probability(probMutate)) {
 				loc = loc.replace(
 					this.randomASTNode(0, Math.min(limit - loc.depth, maxDepth))
 				);

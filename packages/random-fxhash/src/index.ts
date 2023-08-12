@@ -64,7 +64,8 @@ export const RND = new SFC32(seed);
  * @param p
  * @param rnd - default {@link RND}
  */
-export const probability = (p: number, rnd: IRandom = RND) => rnd.float() < p;
+export const probability = (p: number, rnd: IRandom = RND) =>
+	rnd.probability(p);
 
 /**
  * Wrapper for {@link  @thi.ng/random#pickRandom}. Returns a random item from

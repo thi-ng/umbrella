@@ -113,7 +113,7 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
 	"/": (ctx) =>
 		ctx.alive && (ctx.theta += ctx.rnd.norm(ctx.delta * ctx.jitter)),
 	// kill branch (stochastic)
-	k: (ctx) => ctx.alive && (ctx.alive = ctx.rnd.float() < ctx.aliveProb),
+	k: (ctx) => ctx.alive && (ctx.alive = ctx.rnd.probability(ctx.aliveProb)),
 	// decay alive probability
 	p: (ctx) => ctx.alive && (ctx.aliveProb *= ctx.decayAlive),
 	// grow alive probability

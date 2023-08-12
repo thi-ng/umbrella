@@ -102,7 +102,7 @@ const randomFn = (ops: Function[]) => (rnd: IRandom) =>
 // AST generation config
 const AST_OPTS: ASTOpts<Function, Vec3Term> = {
 	terminal: (rnd) =>
-		rnd.float() < 0.5
+		rnd.probability(0.5)
 			? UV
 			: vec3(
 					rnd.norm(NORM_SCALE),
@@ -162,10 +162,9 @@ toy.start();
 const update = () => {
 	console.clear();
 	// currTree = ast.randomAST();
-	currTree =
-		SYSTEM.float() < 0.9
-			? ast.mutate(currTree, SYSTEM.minmax(1, 4))
-			: ast.crossoverSingle(currTree, ast.randomAST())[0];
+	currTree = SYSTEM.probability(0.9)
+		? ast.mutate(currTree, SYSTEM.minmax(1, 4))
+		: ast.crossoverSingle(currTree, ast.randomAST())[0];
 	toy.recompile(shaderFunction(currTree), { prec: 4 });
 };
 
