@@ -128,39 +128,22 @@ Creating custom IDs:
 ```ts
 import { BASE36 } from "@thi.ng/base-n";
 
-// no time shift, 64bit random
+// using base36, no time shift, 64bit random part
 const id36 = defKSUID32({ base: BASE36, epoch: 0, bytes: 8 });
 
-id32.next();
+id36.next();
 // '2VOUKH4K59AG0RXR4XH'
 ```
 
 ## Benchmarks
 
-```text
-yarn bench
+Benchmarks can be run via `yarn bench`. All timings in milliseconds (test
+config: Node v20.4.0, MBA M1 2021, 16GB). The benchmark collects N KSUIDs w/
+different configs in an array, with each case being run 100 times.
 
-benchmarking: b62, 128bit, n=10000
-        warmup... 659.22ms (10 runs)
-        executing...
-        total: 6402.18ms, runs: 100
-        mean: 64.02ms, median: 63.50ms, range: [59.98..96.15]
-        q1: 62.64ms, q3: 64.41ms
-        sd: 6.93%
-benchmarking: b62, 64bit, n=10000
-        warmup... 363.35ms (10 runs)
-        executing...
-        total: 3469.28ms, runs: 100
-        mean: 34.69ms, median: 34.41ms, range: [32.61..56.58]
-        q1: 33.35ms, q3: 35.41ms
-        sd: 7.47%
-benchmarking: b62, 32bit, n=10000
-        warmup... 218.78ms (10 runs)
-        executing...
-        total: 2118.93ms, runs: 100
-        mean: 21.19ms, median: 20.95ms, range: [20.20..25.74]
-        q1: 20.71ms, q3: 21.30ms
-        sd: 4.14%
-```
+|                   Title|    Iter|    Size|       Total|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
+|------------------------|-------:|-------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
+|    b62, 128bit, n=10000|     100|       1|     2158.68|   21.59|   21.57|   19.91|   25.91|   20.42|   21.87|    6.26|
+|     b62, 64bit, n=10000|     100|       1|     1200.40|   12.00|   11.95|   11.27|   14.66|   11.82|   12.10|    3.99|
 
 <!-- include ../../assets/tpl/footer.md -->
