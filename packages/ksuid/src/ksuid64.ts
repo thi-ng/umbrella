@@ -27,7 +27,7 @@ export class KSUID64 extends AKSUID {
 	}
 
 	parse(id: string) {
-		const buf = new Uint8Array(this.size);
+		const buf = this.tmp;
 		this.base.decodeBytes(id, buf);
 		return {
 			epoch:
