@@ -39,7 +39,7 @@
 		"@thi.ng/defmulti": "^2.1.41"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.36.3",
+		"@microsoft/api-extractor": "^7.36.4",
 		"@thi.ng/testament": "^0.3.20",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",

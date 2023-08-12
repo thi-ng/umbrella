@@ -7,10 +7,10 @@
         "tools"
     ],
     "devDependencies": {
-        "@microsoft/api-documenter": "^7.22.32",
-        "@microsoft/api-extractor": "^7.36.3",
-        "@types/node": "^20.4.6",
-        "esbuild": "^0.18.17",
+        "@microsoft/api-documenter": "^7.22.33",
+        "@microsoft/api-extractor": "^7.36.4",
+        "@types/node": "^20.4.10",
+        "esbuild": "^0.19.1",
         "html-minifier-terser": "^7.2.0",
         "rimraf": "^5.0.1",
         "tools": "workspace:^",

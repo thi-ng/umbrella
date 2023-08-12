@@ -12,6 +12,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/api": "workspace:^",
 		"@thi.ng/bench": "workspace:^",
 		"@thi.ng/distance": "workspace:^",
 		"@thi.ng/geom-accel": "workspace:^",
@@ -44,6 +45,6 @@
 	},
 	"devDependencies": {
 		"typescript": "^5.1.6",
-		"vite": "^4.4.8"
+		"vite": "^4.4.9"
 	}
 }

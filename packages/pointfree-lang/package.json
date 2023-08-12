@@ -46,7 +46,7 @@
 		"@thi.ng/pointfree": "^3.1.40"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.36.3",
+		"@microsoft/api-extractor": "^7.36.4",
 		"@thi.ng/testament": "^0.3.20",
 		"pegjs": "0.11.0-master.b7b87ea",
 		"rimraf": "^5.0.1",

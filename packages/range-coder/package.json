@@ -37,7 +37,7 @@
 		"@thi.ng/bitstream": "^2.2.25"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.36.3",
+		"@microsoft/api-extractor": "^7.36.4",
 		"@thi.ng/testament": "^0.3.20",
 		"@thi.ng/transducers": "^8.5.2",
 		"rimraf": "^5.0.1",

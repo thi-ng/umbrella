@@ -38,7 +38,7 @@
 		"@thi.ng/random": "^3.5.3"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.36.3",
+		"@microsoft/api-extractor": "^7.36.4",
 		"@thi.ng/api": "^8.9.2",
 		"@thi.ng/dsp": "^4.3.19",
 		"@thi.ng/dsp-io-wav": "^2.1.54",
