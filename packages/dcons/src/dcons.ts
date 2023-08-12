@@ -291,7 +291,7 @@ export class DCons<T>
 			let cell = this._head;
 			while (cell) {
 				const next = cell.next;
-				rnd.float() < 0.5 ? this.asHead(cell) : this.asTail(cell);
+				rnd.probability(0.5) ? this.asHead(cell) : this.asTail(cell);
 				cell = next;
 			}
 		}

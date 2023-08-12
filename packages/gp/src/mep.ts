@@ -94,7 +94,7 @@ export class MEP<OP, T> {
 		const res: MEPChromosome<OP, T> = [];
 		const minLen = Math.min(chromo1.length, chromo2.length);
 		for (let i = 0; i < minLen; i++) {
-			res[i] = rnd.float() < 0.5 ? chromo1[i] : chromo2[i];
+			res[i] = rnd.probability(0.5) ? chromo1[i] : chromo2[i];
 		}
 		return chromo1.length > minLen
 			? res.concat(chromo1.slice(minLen))
@@ -107,7 +107,9 @@ export class MEP<OP, T> {
 		const { rnd, probMutate } = this.opts;
 		const res: MEPChromosome<OP, T> = new Array(chromo.length);
 		for (let i = chromo.length; i-- > 0; ) {
-			res[i] = rnd!.float() < probMutate ? this.randomGene(i) : chromo[i];
+			res[i] = rnd!.probability(probMutate)
+				? this.randomGene(i)
+				: chromo[i];
 		}
 		return res;
 	}
