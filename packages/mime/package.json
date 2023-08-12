@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/mime",
-	"version": "2.2.22",
+	"version": "2.2.23",
 	"description": "650+ file extension to MIME type mappings, based on mime-db",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
-		"@thi.ng/api": "^8.9.2",
-		"@thi.ng/testament": "^0.3.20",
+		"@thi.ng/api": "^8.9.3",
+		"@thi.ng/testament": "^0.3.21",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

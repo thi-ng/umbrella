@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/vectors",
-	"version": "7.7.4",
+	"version": "7.7.5",
 	"description": "Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts",
 	"type": "module",
 	"module": "./index.js",
@@ -34,20 +34,20 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.2",
-		"@thi.ng/binary": "^3.3.30",
-		"@thi.ng/checks": "^3.4.2",
-		"@thi.ng/equiv": "^2.1.27",
-		"@thi.ng/errors": "^2.3.2",
-		"@thi.ng/math": "^5.5.3",
-		"@thi.ng/memoize": "^3.1.35",
-		"@thi.ng/random": "^3.5.3",
-		"@thi.ng/strings": "^3.4.10",
-		"@thi.ng/transducers": "^8.5.2"
+		"@thi.ng/api": "^8.9.3",
+		"@thi.ng/binary": "^3.3.31",
+		"@thi.ng/checks": "^3.4.3",
+		"@thi.ng/equiv": "^2.1.28",
+		"@thi.ng/errors": "^2.3.3",
+		"@thi.ng/math": "^5.5.4",
+		"@thi.ng/memoize": "^3.1.36",
+		"@thi.ng/random": "^3.6.0",
+		"@thi.ng/strings": "^3.4.11",
+		"@thi.ng/transducers": "^8.5.3"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
-		"@thi.ng/testament": "^0.3.20",
+		"@thi.ng/testament": "^0.3.21",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

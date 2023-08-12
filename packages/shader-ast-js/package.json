@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-js",
-	"version": "0.7.66",
+	"version": "0.7.67",
 	"description": "Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -34,18 +34,18 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.2",
-		"@thi.ng/checks": "^3.4.2",
-		"@thi.ng/errors": "^2.3.2",
-		"@thi.ng/math": "^5.5.3",
-		"@thi.ng/matrices": "^2.1.61",
-		"@thi.ng/pixel": "^4.2.11",
-		"@thi.ng/shader-ast": "^0.12.57",
-		"@thi.ng/vectors": "^7.7.4"
+		"@thi.ng/api": "^8.9.3",
+		"@thi.ng/checks": "^3.4.3",
+		"@thi.ng/errors": "^2.3.3",
+		"@thi.ng/math": "^5.5.4",
+		"@thi.ng/matrices": "^2.1.62",
+		"@thi.ng/pixel": "^4.2.12",
+		"@thi.ng/shader-ast": "^0.12.58",
+		"@thi.ng/vectors": "^7.7.5"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
-		"@thi.ng/testament": "^0.3.20",
+		"@thi.ng/testament": "^0.3.21",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

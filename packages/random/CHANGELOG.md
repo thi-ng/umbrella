@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-10T12:25:09Z
+- **Last updated**: 2023-08-12T13:14:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.0) (2023-08-12)
+
+#### 🚀 Features
+
+- add IRandom.minmaxUint() ([6558eb1](https://github.com/thi-ng/umbrella/commit/6558eb1))
+  - clarify .minmaxInt() is for signed (i32)
+  - new .minmaxUint() is for unsigned (u32)
+  - add ARandom.minmaxUint()
+- add IRandom.probability() ([efdd49c](https://github.com/thi-ng/umbrella/commit/efdd49c))
+  - add impl for ARandom base class
+
+#### ⏱ Performance improvements
+
+- increase Crypto default size to 1KB ([a30075a](https://github.com/thi-ng/umbrella/commit/a30075a))
+- minor update randomBytesFrom() ([770dbe5](https://github.com/thi-ng/umbrella/commit/770dbe5))
+  - switch loop direction
 
 ## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.5.0) (2023-07-14)
 
