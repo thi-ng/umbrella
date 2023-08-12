@@ -5,6 +5,7 @@ export const defBase = (chars: string) => new BaseN(chars);
 const ZERO = BigInt(0);
 const MASK = BigInt(255);
 const SHIFT = BigInt(8);
+const MAX_SAFE_INT = BigInt(2 ** 53 - 1);
 
 /** @internal */
 export const __B16_LC_CHARS = "0123456789abcdef";
@@ -33,7 +34,7 @@ export class BaseN implements IBase {
 	}
 
 	encodeBigInt(x: bigint, size = 0) {
-		if (x < BigInt(2 ** 53)) return this.encode(Number(x), size);
+		if (x <= MAX_SAFE_INT) return this.encode(Number(x), size);
 		const { base, N } = this;
 		if (x === ZERO) return __pad(base[0], size, base[0]);
 		const NN = BigInt(N);
@@ -89,8 +90,10 @@ export class BaseN implements IBase {
 }
 
 /** @internal */
-const __pad = (x: string, size: number, fill: string) =>
-	size - x.length > 0 ? fill.repeat(size - x.length) + x : x;
+const __pad = (x: string, size: number, fill: string) => {
+	const d = size - x.length;
+	return d > 0 ? fill.repeat(d) + x : x;
+};
 
 /** @internal */
 const __u8 = (x: number) =>
