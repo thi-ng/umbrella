@@ -18,6 +18,9 @@ export const uuidv4Bytes = (buf?: Uint8Array, rnd?: IRandom) => {
 	return buf;
 };
 
+/** @internal */
+const __buf = new Uint8Array(16);
+
 /**
  * Returns a UUID string, either from given byte array, or if omitted, using a
  * new UUID v4 produced by {@link uuidv4Bytes}.
@@ -26,4 +29,4 @@ export const uuidv4Bytes = (buf?: Uint8Array, rnd?: IRandom) => {
  * @param i - start index
  */
 export const uuid = (id?: ArrayLike<number>, i = 0) =>
-	$uuid(id || uuidv4Bytes(), i);
+	$uuid(id || uuidv4Bytes(__buf), i);
