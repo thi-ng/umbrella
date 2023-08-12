@@ -46,14 +46,14 @@ group("ksuid", {
 			idgen: defKSUID32({ rnd: new XsAdd(0xdecafbad) }),
 			eps: 1000 * 2,
 			epoch: 1673827200987,
-			epochId: "0cvXkpEgU5CRFeBfpf2KrwummtA",
+			epochId: "0cvXkjDAOaQwnLEfa0quXiN152g",
 			id1: new Uint8Array([
-				170, 213, 122, 63, 189, 122, 161, 143, 91, 187, 80, 231, 61, 17,
-				112, 238,
+				238, 112, 17, 61, 231, 80, 187, 91, 143, 161, 122, 189, 63, 122,
+				213, 170,
 			]),
 			id2: new Uint8Array([
-				226, 90, 28, 179, 222, 71, 112, 20, 59, 2, 22, 112, 98, 25, 104,
-				28,
+				28, 104, 25, 98, 112, 22, 2, 59, 20, 112, 71, 222, 179, 28, 90,
+				226,
 			]),
 		});
 	},
@@ -63,12 +63,12 @@ group("ksuid", {
 			idgen: defKSUID64({ rnd: new XsAdd(0xdecafbad) }),
 			eps: 1 * 2,
 			epoch: 1673827200987,
-			epochId: "000029vWC12Ap6k6ZH00XfKuZGp",
+			epochId: "000029vWC12CchKHzJqil6mla0Z",
 			id1: new Uint8Array([
-				189, 122, 161, 143, 91, 187, 80, 231, 61, 17, 112, 238,
+				238, 112, 17, 61, 231, 80, 187, 91, 143, 161, 122, 189,
 			]),
 			id2: new Uint8Array([
-				59, 2, 22, 112, 98, 25, 104, 28, 170, 213, 122, 63,
+				63, 122, 213, 170, 28, 104, 25, 98, 112, 22, 2, 59,
 			]),
 		});
 	},
@@ -78,9 +78,9 @@ group("ksuid", {
 			idgen: defULID({ rnd: new XsAdd(0xdecafbad) }),
 			eps: 1 * 2,
 			epoch: 1673827200987,
-			epochId: "01GPVY0BYVC8CPG75ATNX3ZFBT",
-			id1: new Uint8Array([161, 143, 91, 187, 80, 231, 61, 17, 112, 238]),
-			id2: new Uint8Array([98, 25, 104, 28, 170, 213, 122, 63, 189, 122]),
+			epochId: "01GPVY0BYVFAYKYYPNN8E6G6B2",
+			id1: new Uint8Array([238, 112, 17, 61, 231, 80, 187, 91, 143, 161]),
+			id2: new Uint8Array([122, 189, 63, 122, 213, 170, 28, 104, 25, 98]),
 		});
 	},
 

@@ -15,6 +15,7 @@ export abstract class AKSUID implements IKSUID {
 	readonly encodedSize: number;
 	readonly base: BaseN;
 	readonly epoch: number;
+	protected tmp: Uint8Array;
 	protected rnd?: IRandom;
 	protected pad: (x: any) => string;
 
@@ -28,31 +29,34 @@ export abstract class AKSUID implements IKSUID {
 		this.size = this.epochSize + opts.bytes!;
 		this.encodedSize = this.base.size(2 ** (this.size * 8) - 1);
 		this.pad = padLeft(this.encodedSize, this.base.base[0]);
+		this.tmp = new Uint8Array(this.size);
 	}
 
 	next() {
-		return this.format(this.nextBinary());
+		return this.format(this.nextBinary(this.tmp));
 	}
 
-	nextBinary() {
-		const buf = this.timeOnlyBinary();
+	nextBinary(buf?: Uint8Array) {
+		buf = this.timeOnlyBinary(undefined, buf);
 		return this.rnd
 			? randomBytesFrom(this.rnd, buf, this.epochSize)
 			: randomBytes(buf, this.epochSize);
 	}
 
 	timeOnly(epoch?: number) {
-		return this.format(this.timeOnlyBinary(epoch));
+		return this.format(
+			this.timeOnlyBinary(epoch, this.tmp.fill(0, this.epochSize))
+		);
 	}
 
-	abstract timeOnlyBinary(epoch?: number): Uint8Array;
+	abstract timeOnlyBinary(epoch?: number, buf?: Uint8Array): Uint8Array;
 
 	fromEpoch(epoch?: number) {
-		return this.format(this.fromEpochBinary(epoch));
+		return this.format(this.fromEpochBinary(epoch, this.tmp));
 	}
 
-	fromEpochBinary(epoch?: number) {
-		const buf = this.timeOnlyBinary(epoch);
+	fromEpochBinary(epoch?: number, buf?: Uint8Array) {
+		buf = this.timeOnlyBinary(epoch, buf);
 		return this.rnd
 			? randomBytesFrom(this.rnd, buf, this.epochSize)
 			: randomBytes(buf, this.epochSize);

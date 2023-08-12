@@ -18,9 +18,12 @@ export interface IKSUID {
 	next(): string;
 
 	/**
-	 * Returns a new ID as byte array.
+	 * Returns a new ID as byte array. If `buf` is given, writes result in
+	 * there, else creates new byte array.
+	 *
+	 * @param buf
 	 */
-	nextBinary(): Uint8Array;
+	nextBinary(buf?: Uint8Array): Uint8Array;
 
 	/**
 	 * Returns a new baseN encoded ID string for given `epoch` (default: current
@@ -32,11 +35,13 @@ export interface IKSUID {
 
 	/**
 	 * Binary version of {@link KSUI.timeOnly}, but returns byte array. The
-	 * first `epochSize` bytes will contain the timestamp.
+	 * first `epochSize` bytes will contain the timestamp. If `buf` is given,
+	 * writes result in there, else creates new byte array.
 	 *
 	 * @param epoch -
+	 * @param buf -
 	 */
-	timeOnlyBinary(epoch?: number): Uint8Array;
+	timeOnlyBinary(epoch?: number, buf?: Uint8Array): Uint8Array;
 
 	/**
 	 * Returns a new formatted ID, composed from user supplied timestamp
@@ -48,11 +53,13 @@ export interface IKSUID {
 
 	/**
 	 * Returns a new ID as byte array, composed from user supplied timestamp
-	 * (default: current time) and a random payload.
+	 * (default: current time) and a random payload. If `buf` is given, writes
+	 * result in there, else creates new byte array.
 	 *
 	 * @param epoch
+	 * @param buf
 	 */
-	fromEpochBinary(epoch?: number): Uint8Array;
+	fromEpochBinary(epoch?: number, buf?: Uint8Array): Uint8Array;
 
 	/**
 	 * Returns baseN encoded version of given binary ID (generated via

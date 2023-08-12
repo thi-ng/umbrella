@@ -12,10 +12,13 @@ export class KSUID32 extends AKSUID {
 		});
 	}
 
-	timeOnlyBinary(epoch = Date.now()) {
-		const buf = new Uint8Array(this.size);
+	timeOnlyBinary(epoch = Date.now(), buf?: Uint8Array) {
+		buf = buf || new Uint8Array(this.size);
 		const t = this.ensureTime((epoch - this.epoch) / 1000, MAX_EPOCH) >>> 0;
-		buf.set([t >>> 24, (t >> 16) & 0xff, (t >> 8) & 0xff, t & 0xff]);
+		buf[0] = t >>> 24;
+		buf[1] = (t >> 16) & 0xff;
+		buf[2] = (t >> 8) & 0xff;
+		buf[3] = t & 0xff;
 		return buf;
 	}
 

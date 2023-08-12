@@ -10,21 +10,19 @@ export class KSUID64 extends AKSUID {
 		});
 	}
 
-	timeOnlyBinary(epoch = Date.now()) {
-		const buf = new Uint8Array(this.size);
+	timeOnlyBinary(epoch = Date.now(), buf?: Uint8Array) {
+		buf = buf || new Uint8Array(this.size);
 		const t = this.ensureTime(epoch - this.epoch);
 		const h = (t / 0x1_0000_0000) >>> 0;
 		const l = (t & 0xffff_ffff) >>> 0;
-		buf.set([
-			h >>> 24,
-			(h >> 16) & 0xff,
-			(h >> 8) & 0xff,
-			h & 0xff,
-			l >>> 24,
-			(l >> 16) & 0xff,
-			(l >> 8) & 0xff,
-			l & 0xff,
-		]);
+		buf[0] = h >>> 24;
+		buf[1] = (h >> 16) & 0xff;
+		buf[2] = (h >> 8) & 0xff;
+		buf[3] = h & 0xff;
+		buf[4] = l >>> 24;
+		buf[5] = (l >> 16) & 0xff;
+		buf[6] = (l >> 8) & 0xff;
+		buf[7] = l & 0xff;
 		return buf;
 	}
 
