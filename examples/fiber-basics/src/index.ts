@@ -22,7 +22,7 @@ const cellAnim = (scene: Group, delay: number) =>
 		for (let x of cycle(range(NUM))) {
 			// each cell as its own child process
 			ctx.fork(
-				cell(scene, x * W, 0, W, SIZE, SYSTEM.float() < 0.5, 0.05)
+				cell(scene, x * W, 0, W, SIZE, SYSTEM.probability(0.5), 0.05)
 			);
 			yield* wait(delay);
 		}
@@ -60,8 +60,8 @@ const cell = (
 					? rect([x, y], [w, hh], attribs)
 					: rect([y, x], [hh, w], attribs)
 			);
-			// recursively spawn smaller box w/ 20% chance
-			if (h >= 100 && w > SNAP && SYSTEM.float() < 0.25) {
+			// recursively spawn smaller box w/ given chance
+			if (h >= 100 && w > SNAP && SYSTEM.probability(0.25)) {
 				// half width
 				const w2 = w / 2;
 				// spawn as child process of cell's parent process (aka main anim)
