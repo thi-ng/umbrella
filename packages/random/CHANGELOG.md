@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-12T13:14:08Z
+- **Last updated**: 2023-08-12T16:14:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.1) (2023-08-12)
+
+#### ⏱ Performance improvements
+
+- add/re-use internal buf for uuid() ([6bf7f1d](https://github.com/thi-ng/umbrella/commit/6bf7f1d))
+  - avoid temp allocations (10% faster)
 
 ## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.0) (2023-08-12)
 
