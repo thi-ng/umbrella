@@ -6,7 +6,7 @@ import { SYSTEM } from "./system.js";
  * quality of given {@link IRandom}) PRNG.
  *
  * @remarks
- * Also see {@link fairCoin}.
+ * Also see {@link fairCoin} and {@link IRandom.probability}.
  *
  * @param rnd -
  */

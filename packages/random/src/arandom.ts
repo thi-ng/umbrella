@@ -9,6 +9,10 @@ export abstract class ARandom implements IRandom {
 		return this.int() * INV_MAX * norm;
 	}
 
+	probability(p: number) {
+		return this.float() < p;
+	}
+
 	norm(norm = 1) {
 		return (this.int() * INV_MAX - 0.5) * 2 * norm;
 	}

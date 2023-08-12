@@ -15,7 +15,7 @@ export interface INorm {
 	norm(scale?: number): number;
 	/**
 	 * Similar to {@link INorm.norm}, but returns values in either the
-	 * `[min..max)` or in the `(-max...min]` interval (i.e. excluding values in
+	 * `[min..max)` or in the `(-max...-min]` interval (i.e. excluding values in
 	 * the `(-min..min)` range). Both `min` and `max` MUST be >= 0.
 	 *
 	 * @remarks
@@ -44,6 +44,13 @@ export interface IRandom extends INorm {
 	 * @param max - default 1
 	 */
 	float(max?: number): number;
+	/**
+	 *  Calls {@link IRandom.float} and returns true iff result is < `p`
+	 *  (assumed to be in [0..1] interval).
+	 *
+	 * @param p
+	 */
+	probability(p: number): boolean;
 	/**
 	 * Returns float in [min..max) interval.
 	 *
