@@ -96,7 +96,6 @@ A selection:
 | Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
 |:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-zoom.png" width="240"/>   | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-zoom/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-zoom)   |
 
 ## API
 
