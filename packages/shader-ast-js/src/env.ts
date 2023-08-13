@@ -3,6 +3,7 @@ import { mat22n, mat33n, mat44n } from "@thi.ng/matrices/matn";
 import { mat22v, mat33v, mat44v } from "@thi.ng/matrices/matv";
 import { ZERO3, ZERO4 } from "@thi.ng/vectors/api";
 import { fromBVec2, fromBVec3, fromBVec4 } from "@thi.ng/vectors/convert";
+import { setN2, setN3, setN4 } from "@thi.ng/vectors/setn";
 import { setVN3, setVN4 } from "@thi.ng/vectors/setvn";
 import { setVV4 } from "@thi.ng/vectors/setvv";
 import {
@@ -30,6 +31,21 @@ import { UVEC4 } from "./env/uvec4.js";
 import { VEC2 } from "./env/vec2.js";
 import { VEC3 } from "./env/vec3.js";
 import { VEC4 } from "./env/vec4.js";
+import {
+	POOL_IVEC2,
+	POOL_IVEC3,
+	POOL_IVEC4,
+	POOL_UVEC2,
+	POOL_UVEC3,
+	POOL_UVEC4,
+	POOL_VEC2,
+	POOL_VEC3,
+	POOL_VEC4,
+} from "./pool.js";
+
+const $2 = POOL_VEC2.next.bind(POOL_VEC2);
+const $3 = POOL_VEC3.next.bind(POOL_VEC3);
+const $4 = POOL_VEC4.next.bind(POOL_VEC4);
 
 // TODO texture lookups
 // all texture fns currently return [0,0,0,0] or 0
@@ -50,38 +66,38 @@ const SAMPLER_TODO: JSBuiltinsSampler = {
 };
 
 export const JS_DEFAULT_ENV: JSEnv = {
-	vec2: VEC2,
-	vec2b: (v) => fromBVec2([], v),
+	vec2: VEC2(POOL_VEC2),
+	vec2b: (v) => fromBVec2($2(), v),
 	vec2i: identity,
-	vec2n: (n) => [n, n],
+	vec2n: (n) => setN2($2(), n),
 	vec2u: identity,
 
-	vec3: VEC3,
-	vec3b: (v) => fromBVec3([], v),
+	vec3: VEC3(POOL_VEC3),
+	vec3b: (v) => fromBVec3($3(), v),
 	vec3i: identity,
-	vec3n: (n) => [n, n, n],
+	vec3n: (n) => setN3($3(), n),
 	vec3u: identity,
-	vec3vn: (a, n) => setVN3([], a, n),
+	vec3vn: (a, n) => setVN3($3(), a, n),
 
-	vec4: VEC4,
-	vec4b: (v) => fromBVec4([], v),
+	vec4: VEC4(POOL_VEC4),
+	vec4b: (v) => fromBVec4($4(), v),
 	vec4i: identity,
-	vec4n: (n) => [n, n, n, n],
+	vec4n: (n) => setN4($4(), n),
 	vec4u: identity,
-	vec4vn: (a, n) => setVN4([], a, n),
-	vec4vnn: (a, z, w) => setVV4([], a, [z, w]),
-	vec4vv: (a, b) => setVV4([], a, b),
+	vec4vn: (a, n) => setVN4($4(), a, n),
+	vec4vnn: (a, z, w) => setVV4($4(), a, [z, w]),
+	vec4vv: (a, b) => setVV4($4(), a, b),
 
-	mat2n: (n) => mat22n([], n),
-	mat2vv: (a, b) => mat22v([], a, b),
+	mat2n: (n) => mat22n($4(), n),
+	mat2vv: (a, b) => mat22v($4(), a, b),
 	mat3n: (n) => mat33n([], n),
 	mat3vvv: (a, b, c) => mat33v([], a, b, c),
 	mat4n: (n) => mat44n([], n),
 	mat4vvvv: (a, b, c, d) => mat44v([], a, b, c, d),
 
-	swizzle2: (a, b, c) => swizzle2([], a, b, c),
-	swizzle3: (a, b, c, d) => swizzle3([], a, b, c, d),
-	swizzle4: (a, b, c, d, e) => swizzle4([], a, b, c, d, e),
+	swizzle2: (a, b, c) => swizzle2($2(), a, b, c),
+	swizzle3: (a, b, c, d) => swizzle3($3(), a, b, c, d),
+	swizzle4: (a, b, c, d, e) => swizzle4($4(), a, b, c, d, e),
 	set_swizzle2: setSwizzle2,
 	set_swizzle3: setSwizzle3,
 	set_swizzle4: setSwizzle4,
@@ -130,4 +146,16 @@ export const JS_DEFAULT_ENV: JSEnv = {
 	samplerCube: SAMPLER_TODO,
 	sampler2DShadow: SAMPLER_TODO,
 	samplerCubeShadow: SAMPLER_TODO,
+
+	pools: {
+		vec2: POOL_VEC2,
+		vec3: POOL_VEC3,
+		vec4: POOL_VEC4,
+		ivec2: POOL_IVEC2,
+		ivec3: POOL_IVEC3,
+		ivec4: POOL_IVEC4,
+		uvec2: POOL_UVEC2,
+		uvec3: POOL_UVEC3,
+		uvec4: POOL_UVEC4,
+	},
 };

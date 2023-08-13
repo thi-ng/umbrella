@@ -132,6 +132,9 @@
 		"./env": {
 			"default": "./env.js"
 		},
+		"./pool": {
+			"default": "./pool.js"
+		},
 		"./runtime": {
 			"default": "./runtime.js"
 		},

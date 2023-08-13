@@ -1,7 +1,8 @@
-import type { Fn, Fn2, Fn3, Fn4, Fn5, Fn6 } from "@thi.ng/api";
+import type { Fn, Fn0, Fn2, Fn3, Fn4, Fn5, Fn6, Keys } from "@thi.ng/api";
 import type { Mat } from "@thi.ng/matrices";
 import type { Term } from "@thi.ng/shader-ast";
 import type { BVec, Vec } from "@thi.ng/vectors";
+import type { Pool } from "./pool.js";
 
 export interface JSTarget extends Fn<Term<any>, string> {
 	/**
@@ -32,7 +33,23 @@ export interface JSTarget extends Fn<Term<any>, string> {
 	 * @param tree -
 	 * @param env -
 	 */
-	compile(tree: Term<any>, env?: JSEnv): any;
+	compile(tree: Term<any>, env?: JSEnv): CompileResult;
+}
+
+export interface CompileResult {
+	/**
+	 * Resets all internal vector pools. Will be called automatically if
+	 * compiled tree includes a `main()` function, otherwise **MUST** be called
+	 * manually each time before invoking a compiled entry point function.
+	 */
+	__reset: Fn0<void>;
+	/**
+	 * Returns an object summarizing the number of used objects in each vector
+	 * pool.
+	 */
+	__stats: Fn0<Record<Keys<JSEnv["pools"]>, number>>;
+
+	[id: string]: any;
 }
 
 export interface JSBuiltinsCommon<T> {
@@ -248,6 +265,18 @@ export interface JSEnv {
 	samplerCube: JSBuiltinsSampler;
 	sampler2DShadow: JSBuiltinsSampler;
 	samplerCubeShadow: JSBuiltinsSampler;
+
+	pools: {
+		vec2: Pool;
+		vec3: Pool;
+		vec4: Pool;
+		ivec2: Pool;
+		ivec3: Pool;
+		ivec4: Pool;
+		uvec2: Pool;
+		uvec3: Pool;
+		uvec4: Pool;
+	};
 }
 
 export interface JSTargetOpts {
