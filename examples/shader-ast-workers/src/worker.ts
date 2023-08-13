@@ -20,7 +20,7 @@ import {
 	type Vec2Sym,
 	type Vec3Sym,
 } from "@thi.ng/shader-ast";
-import { renderPixels, targetJS } from "@thi.ng/shader-ast-js";
+import { renderPixels, rgbaBgra8888, targetJS } from "@thi.ng/shader-ast-js";
 import {
 	clamp01,
 	diffuseLighting,
@@ -191,19 +191,16 @@ self.addEventListener("message", (e) => {
 			},
 			// pixel buffer
 			new Uint32Array(job.width * h),
-			// image size
-			job.width,
-			h,
-			// region
-			0,
-			0,
-			job.width,
-			h,
-			// buffer XY offset in image
-			0,
-			job.y1,
-			// image height
-			job.height
+			{
+				// image region size (for this worker)
+				bufW: job.width,
+				bufH: h,
+				offsetY: job.y1,
+				// full image height
+				imgH: job.height,
+				// pixel format conversion to BGRA8888
+				fmt: rgbaBgra8888,
+			}
 		)
 	);
 	console.log(__stats());
