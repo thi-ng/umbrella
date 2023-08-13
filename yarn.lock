@@ -341,12 +341,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/ascii-raymarch@workspace:examples/ascii-raymarch"
   dependencies:
+    "@thi.ng/fibers": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
     "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-glsl": "workspace:^"
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/text-canvas": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
+    "@thi.ng/text-format": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
     typescript: ^5.1.6
     vite: ^4.4.9
   languageName: unknown
