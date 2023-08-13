@@ -224,10 +224,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                               | Description                                  | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>       | 3D wireframe textmode demo                   | [Demo](https://demo.thi.ng/umbrella/text-canvas/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/> | Textmode image warping w/ 16bit color output | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas-image) |
+| Screenshot                                                                                                               | Description                                                       | Live demo                                               | Source                                                                               |
+|:-------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/ascii-raymarch.jpg" width="240"/>  | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>       | 3D wireframe textmode demo                                        | [Demo](https://demo.thi.ng/umbrella/text-canvas/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/> | Textmode image warping w/ 16bit color output                      | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas-image) |
 
 ## API
 
