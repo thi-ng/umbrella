@@ -130,7 +130,7 @@ if (JS_MODE) {
 		// filtered texture lookups:
 		const sampler = defSampler(
 			intBuffer(TW, TH, ABGR8888, texData),
-			"nearest",
+			"linear",
 			"wrap"
 		);
 		JS_DEFAULT_ENV.sampler2D.texture = (_, uv) =>
@@ -139,13 +139,20 @@ if (JS_MODE) {
 		// compile AST to actual JS:
 		// under the hood all vector & matrix operations delegate to
 		// thi.ng/vectors and thi.ng/matrices packages by default
-		const fn = JS.compile(shaderProgram).mainImage;
-		const rt = canvasRenderer(canvas);
+		const { mainImage: main, __reset, __stats } = JS.compile(shaderProgram);
+		const renderFn = canvasRenderer(canvas);
 		let time = 0;
 
 		setInterval(() => {
 			time += 0.05;
-			rt((frag) => fn(frag, size, time));
+			renderFn((frag) => {
+				// reset internal vector pools (see thi.ng/shader-ast-js readme)
+				__reset();
+				// execute shader for given fragment coord
+				return main(frag, size, time);
+			});
+			// log vector pool stats
+			console.log(__stats());
 		}, 16);
 	});
 } else {

@@ -182,8 +182,8 @@ if (JS_MODE) {
 	//
 	// JS Canvas 2D shader emulation from here...
 	//
-	const fn = JS.compile(shaderProgram).mainImage;
-	const rt = canvasRenderer(canvas);
+	const { mainImage: main, __reset, __stats } = JS.compile(shaderProgram);
+	const renderFn = canvasRenderer(canvas);
 	let time = 0;
 
 	setInterval(() => {
@@ -193,7 +193,14 @@ if (JS_MODE) {
 			Math.cos(time / 2) * 0.7,
 			Math.sin(time) * 2.5,
 		];
-		rt((frag) => fn(frag, size, eyePos, lightDir));
+		renderFn((frag) => {
+			// reset internal vector pools (see thi.ng/shader-ast-js readme)
+			__reset();
+			// execute shader for given fragment coord
+			return main(frag, size, eyePos, lightDir);
+		});
+		// log vector pool stats
+		console.log(__stats());
 	}, 16);
 } else {
 	//

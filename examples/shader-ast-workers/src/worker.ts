@@ -154,7 +154,11 @@ const mainImage = defn(
 );
 
 // compile shader AST function to JS
-const shaderFunc = targetJS().compile(program([mainImage])).mainImage;
+const {
+	mainImage: main,
+	__reset,
+	__stats,
+} = targetJS().compile(program([mainImage]));
 
 // moving average transducer (MA period = 10, history = 24 frames)
 const stats = step(comp(sma(10), slidingWindow(24)));
@@ -166,8 +170,9 @@ self.addEventListener("message", (e) => {
 	// render pixel shader function based on worker job spec
 	const [buf, time] = timedResult(() =>
 		renderPixels(
-			(frag) =>
-				shaderFunc(
+			(frag) => {
+				__reset();
+				return main(
 					// frag coord
 					frag,
 					// image size
@@ -182,7 +187,8 @@ self.addEventListener("message", (e) => {
 					[0.707, 0.707, 0],
 					// worker color
 					COLORS[job.id]
-				),
+				);
+			},
 			// pixel buffer
 			new Uint32Array(job.width * h),
 			// image size
@@ -200,6 +206,7 @@ self.addEventListener("message", (e) => {
 			job.height
 		)
 	);
+	console.log(__stats());
 	// submit result
 	$self.postMessage(<WorkerResult>{ buf, stats: stats(time) }, [buf.buffer]);
 });
