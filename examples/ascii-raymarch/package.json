@@ -1,0 +1,38 @@
+{
+	"name": "@example/ascii-raymarch",
+	"private": true,
+	"description": "ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --host --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/fibers": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/shader-ast": "workspace:^",
+		"@thi.ng/shader-ast-js": "workspace:^",
+		"@thi.ng/shader-ast-stdlib": "workspace:^",
+		"@thi.ng/text-canvas": "workspace:^",
+		"@thi.ng/text-format": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": true,
+		"screenshot": "shader-ast/ascii-raymarch.jpg"
+	},
+	"devDependencies": {
+		"typescript": "^5.1.6",
+		"vite": "^4.4.9"
+	}
+}

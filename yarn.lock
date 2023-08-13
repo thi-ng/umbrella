@@ -337,6 +337,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/ascii-raymarch@workspace:examples/ascii-raymarch":
+  version: 0.0.0-use.local
+  resolution: "@example/ascii-raymarch@workspace:examples/ascii-raymarch"
+  dependencies:
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-glsl": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/text-canvas": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^5.1.6
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/async-effect@workspace:examples/async-effect":
   version: 0.0.0-use.local
   resolution: "@example/async-effect@workspace:examples/async-effect"
