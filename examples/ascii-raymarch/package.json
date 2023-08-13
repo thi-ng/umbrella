@@ -29,7 +29,7 @@
 	},
 	"thi.ng": {
 		"readme": true,
-		"screenshot": "shader-ast/ascii-raymarch.jpg"
+		"screenshot": "examples/ascii-raymarch.jpg"
 	},
 	"devDependencies": {
 		"typescript": "^5.1.6",
