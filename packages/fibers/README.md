@@ -397,10 +397,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                              | Description                                                       | Live demo                                            | Source                                                                            |
-|:------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/ascii-raymarch.jpg" width="240"/> | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>     | Fiber-based cooperative multitasking basics                       | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)   |
+| Screenshot                                                                                                            | Description                                                       | Live demo                                            | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/> | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>   | Fiber-based cooperative multitasking basics                       | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)   |
 
 ## API
 
