@@ -349,14 +349,22 @@ export class Fiber<T = any>
 	notify(event: $Event<FiberEventType>): boolean {}
 
 	/**
-	 * Calls {@link Fiber.runWith} using default loop handlers
-	 * (`requestAnimationFrame()` in browsers, `setTimeout(fn, 16)` otherwise).
+	 * Calls {@link Fiber.runWith} using default loop handlers.
+	 *
+	 * @remarks
+	 * Current default handlers:
+	 *
+	 * - `requestAnimationFrame()` in browsers
+	 * - `setImmediate()` in NodeJs
+	 * - `setTimeout(fn, 1)` otherwise
 	 */
 	run() {
 		return this.runWith(
 			typeof requestAnimationFrame === "function"
 				? requestAnimationFrame
-				: (fn) => setTimeout(fn, 16)
+				: typeof setImmediate === "function"
+				? setImmediate
+				: (fn) => setTimeout(fn, 1)
 		);
 	}
 

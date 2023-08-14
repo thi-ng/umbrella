@@ -27,7 +27,7 @@ group(
 					},
 				],
 				{ logger }
-			).runWith(setImmediate);
+			).run();
 			// setTimeout(() => a.cancel(), 5);
 			setTimeout(() => {
 				assert.equal(a.value, 33);
@@ -39,14 +39,16 @@ group(
 			const a = fiber(
 				function* (ctx) {
 					console.log("hello");
+					let added = false;
+					let removed = false;
 					const ev = ctx.fork(
 						untilEvent(
 							{
-								addEventListener(type) {
-									console.log("add event", type);
+								addEventListener() {
+									added = true;
 								},
-								removeEventListener(type) {
-									console.log("remove event", type);
+								removeEventListener() {
+									removed = true;
 								},
 								dispatchEvent() {
 									return true;
@@ -62,9 +64,10 @@ group(
 						return 42;
 					});
 					yield* ctx.join();
-					console.log("end");
 					assert.deepStrictEqual(ev.value, { type: "foo" });
 					assert.strictEqual(waiter.value, 42);
+					assert.ok(added);
+					assert.ok(removed);
 					return { a: ev.value!, b: waiter.value! };
 				},
 				{ logger }
