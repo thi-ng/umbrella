@@ -3,7 +3,6 @@ import { mat22n, mat33n, mat44n } from "@thi.ng/matrices/matn";
 import { mat22v, mat33v, mat44v } from "@thi.ng/matrices/matv";
 import { ZERO3, ZERO4 } from "@thi.ng/vectors/api";
 import { fromBVec2, fromBVec3, fromBVec4 } from "@thi.ng/vectors/convert";
-import { setN2, setN3, setN4 } from "@thi.ng/vectors/setn";
 import { setVN3, setVN4 } from "@thi.ng/vectors/setvn";
 import { setVV4 } from "@thi.ng/vectors/setvv";
 import {
@@ -43,9 +42,17 @@ import {
 	POOL_VEC4,
 } from "./pool.js";
 
-const $2 = POOL_VEC2.next.bind(POOL_VEC2);
-const $3 = POOL_VEC3.next.bind(POOL_VEC3);
-const $4 = POOL_VEC4.next.bind(POOL_VEC4);
+const { next: $2, uniform: $n2 } = POOL_VEC2;
+const { next: $3, uniform: $n3 } = POOL_VEC3;
+const { next: $4, uniform: $n4 } = POOL_VEC4;
+
+const { next: $i2, uniform: $ni2 } = POOL_IVEC2;
+const { next: $i3, uniform: $ni3 } = POOL_IVEC3;
+const { next: $i4, uniform: $ni4 } = POOL_IVEC4;
+
+const { next: $u2, uniform: $nu2 } = POOL_UVEC2;
+const { next: $u3, uniform: $nu3 } = POOL_UVEC3;
+const { next: $u4, uniform: $nu4 } = POOL_UVEC4;
 
 // TODO texture lookups
 // all texture fns currently return [0,0,0,0] or 0
@@ -69,20 +76,20 @@ export const JS_DEFAULT_ENV: JSEnv = {
 	vec2: VEC2(POOL_VEC2),
 	vec2b: (v) => fromBVec2($2(), v),
 	vec2i: identity,
-	vec2n: (n) => setN2($2(), n),
+	vec2n: $n2,
 	vec2u: identity,
 
 	vec3: VEC3(POOL_VEC3),
 	vec3b: (v) => fromBVec3($3(), v),
 	vec3i: identity,
-	vec3n: (n) => setN3($3(), n),
+	vec3n: $n3,
 	vec3u: identity,
 	vec3vn: (a, n) => setVN3($3(), a, n),
 
 	vec4: VEC4(POOL_VEC4),
 	vec4b: (v) => fromBVec4($4(), v),
 	vec4i: identity,
-	vec4n: (n) => setN4($4(), n),
+	vec4n: $n4,
 	vec4u: identity,
 	vec4vn: (a, n) => setVN4($4(), a, n),
 	vec4vnn: (a, z, w) => setVV4($4(), a, [z, w]),
@@ -114,28 +121,28 @@ export const JS_DEFAULT_ENV: JSEnv = {
 	bvec4n: (n) => ((n = !!n), [n, n, n, n]),
 
 	ivec2: IVEC2,
-	ivec2b: (v) => fromBVec2([], v),
-	ivec2n: (n) => [n, n],
+	ivec2b: (v) => fromBVec2($i2(), v),
+	ivec2n: $ni2,
 
 	ivec3: IVEC3,
-	ivec3b: (v) => fromBVec3([], v),
-	ivec3n: (n) => [n, n, n],
+	ivec3b: (v) => fromBVec3($i3(), v),
+	ivec3n: $ni3,
 
 	ivec4: IVEC4,
-	ivec4b: (v) => fromBVec4([], v),
-	ivec4n: (n) => [n, n, n, n],
+	ivec4b: (v) => fromBVec4($i4(), v),
+	ivec4n: $ni4,
 
 	uvec2: UVEC2,
-	uvec2b: (v) => fromBVec2([], v),
-	uvec2n: (n) => [n, n],
+	uvec2b: (v) => fromBVec2($u2(), v),
+	uvec2n: $nu2,
 
 	uvec3: UVEC3,
-	uvec3b: (v) => fromBVec3([], v),
-	uvec3n: (n) => [n, n, n],
+	uvec3b: (v) => fromBVec3($u3(), v),
+	uvec3n: $nu3,
 
 	uvec4: UVEC4,
-	uvec4b: (v) => fromBVec4([], v),
-	uvec4n: (n) => [n, n, n, n],
+	uvec4b: (v) => fromBVec4($u4(), v),
+	uvec4n: $nu4,
 
 	mat2: MAT2,
 	mat3: MAT3,

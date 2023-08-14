@@ -8,6 +8,7 @@ import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import type { Vec } from "@thi.ng/vectors";
 import { set } from "@thi.ng/vectors/set";
 import { setC2, setC3, setC4 } from "@thi.ng/vectors/setc";
+import { setN, setN2, setN3, setN4 } from "@thi.ng/vectors/setn";
 
 /**
  * Manager for re-using pre-allocated memory for various vector ops. If the
@@ -27,35 +28,44 @@ export class Pool implements IReset {
 	items: Vec[];
 	index = 0;
 
+	next: () => Vec;
+	from: (...args: number[]) => Vec;
+	uniform: (n: number) => Vec;
+
 	constructor(type: Type, protected size: number, protected cap: number) {
 		this.mem = typedArray(type, cap * size);
 		this.items = new Array<TypedArray>(cap);
 		for (let i = 0; i < cap; i++) {
 			this.items[i] = this.mem.subarray(i * size, i * size + size);
 		}
+		const next = () => {
+			if (this.index > this.items.length) outOfBounds(this.index);
+			return this.items[this.index++];
+		};
+		let from: (...args: number[]) => Vec;
+		let uniform: (n: number) => Vec;
+		switch (this.size) {
+			case 2:
+				from = (x, y) => setC2(next(), x, y);
+				uniform = (n) => setN2(next(), n);
+			case 3:
+				from = (x, y, z) => setC3(next(), x, y, z);
+				uniform = (n) => setN3(next(), n);
+			case 4:
+				from = (x, y, z, w) => setC4(next(), x, y, z, w);
+				uniform = (n) => setN4(next(), n);
+			default:
+				from = (...args: number[]) => set(next(), args);
+				uniform = (n) => setN(next(), n);
+		}
+		this.next = next;
+		this.from = from;
+		this.uniform = uniform;
 	}
 
 	reset() {
 		this.index = 0;
 		return this;
-	}
-
-	next() {
-		if (this.index > this.items.length) outOfBounds(this.index);
-		return this.items[this.index++];
-	}
-
-	builder(): (...args: number[]) => Vec {
-		switch (this.size) {
-			case 2:
-				return (x, y) => setC2(this.next(), x, y);
-			case 3:
-				return (x, y, z) => setC3(this.next(), x, y, z);
-			case 4:
-				return (x, y, z, w) => setC4(this.next(), x, y, z, w);
-			default:
-				return (...args: number[]) => set(this.next(), args);
-		}
 	}
 }
 

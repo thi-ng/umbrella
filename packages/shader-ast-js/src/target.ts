@@ -84,7 +84,7 @@ const PRELUDE = [
 	.join("\n");
 
 const POOL_PRELUDE = VEC_TYPES.map(
-	(x) => `const $${x} = env.pools.${x}.builder();`
+	(x) => `const $${x} = env.pools.${x}.from;`
 ).join("\n");
 
 const COMPS: any = { x: 0, y: 1, z: 2, w: 3 };
