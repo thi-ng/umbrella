@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-12T13:14:08Z
+- **Last updated**: 2023-08-14T13:30:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [7.7.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.7) (2023-08-14)
+
+#### 🩹 Bug fixes
+
+- fix `FromBVecOpV` result arg type ([2ca2856](https://github.com/thi-ng/umbrella/commit/2ca2856))
 
 ## [7.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.0) (2023-06-16)
 

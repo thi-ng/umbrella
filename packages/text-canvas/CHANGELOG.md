@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-12T13:14:08Z
+- **Last updated**: 2023-08-14T13:30:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.5.0) (2023-08-14)
+
+#### 🚀 Features
+
+- add imageRawFmtOnly() ([1042a40](https://github.com/thi-ng/umbrella/commit/1042a40))
 
 ### [2.4.40](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.4.40) (2023-03-27)
 
