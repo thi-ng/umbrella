@@ -52,6 +52,10 @@
 		"typescript": "^5.1.6"
 	},
 	"keywords": [
+		"2d",
+		"3d",
+		"4d",
+		"argb",
 		"ast",
 		"canvas",
 		"codegen",
@@ -59,7 +63,14 @@
 		"dsl",
 		"emulator",
 		"glsl",
+		"headless",
+		"pixel",
+		"render",
+		"rgb565",
+		"runtime",
 		"shader",
+		"texture",
+		"transpiler",
 		"typescript",
 		"webgl"
 	],
@@ -145,6 +156,7 @@
 	"thi.ng": {
 		"parent": "@thi.ng/shader-ast",
 		"related": [
+			"pixel",
 			"shader-ast-glsl",
 			"shader-ast-stdlib"
 		],
