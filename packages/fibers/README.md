@@ -8,7 +8,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Basic usage](#basic-usage)
@@ -376,7 +376,7 @@ For Node.js REPL:
 const fibers = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.25 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.27 KB
 
 ## Dependencies
 
