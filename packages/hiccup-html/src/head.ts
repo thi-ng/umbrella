@@ -53,11 +53,29 @@ export interface MetaAttribs extends Attribs {
 export const meta = defElement<Partial<MetaAttribs>, never>("meta");
 
 export interface ViewportOpts {
+	/**
+	 * If `< 0`, resolves to `device-width`
+	 */
 	width: number;
+	/**
+	 * If `< 0`, resolves to `device-height`
+	 */
 	height: number;
+	/**
+	 * Minimum scale
+	 */
 	min: number;
+	/**
+	 * Maximum scale
+	 */
 	max: number;
+	/**
+	 * Initial scale (default: 1)
+	 */
 	init: number;
+	/**
+	 * User-scalable (default: true)
+	 */
 	user: boolean;
 	fit: "auto" | "cover" | "contain";
 }
@@ -69,7 +87,7 @@ export const metaViewport = (opts: Partial<ViewportOpts> = {}) =>
 			opts.width &&
 				`width=${opts.width < 0 ? "device-width" : opts.width}`,
 			opts.height &&
-				`width=${opts.height < 0 ? "device-height" : opts.height}`,
+				`height=${opts.height < 0 ? "device-height" : opts.height}`,
 			`initial-scale=${opts.init || 1}`,
 			opts.min && `minimum-scale=${opts.min}`,
 			opts.max && `maximum-scale=${opts.max}`,
