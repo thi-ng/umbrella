@@ -1,3 +1,4 @@
+import type { Keys } from "@thi.ng/api";
 import { empty } from "./empty.js";
 
 /**
@@ -44,13 +45,13 @@ export const selectDefinedKeysMap = <K, V>(
  * @param src - source object
  * @param ks - selected keys
  */
-export const selectKeysObj = <T extends object, K extends keyof T>(
+export const selectKeysObj = <T extends object>(
 	src: T,
-	ks: Iterable<K>
+	ks: Iterable<Keys<T>>
 ): Partial<T> => {
-	const dest: any = {};
+	const dest: Partial<T> = {};
 	for (let k of ks) {
-		src.hasOwnProperty(k) && (dest[k] = (<any>src)[<any>k]);
+		src.hasOwnProperty(k) && (dest[k] = src[k]);
 	}
 	return dest;
 };
