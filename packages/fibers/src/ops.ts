@@ -188,10 +188,9 @@ export function* untilState<T>(state: T, pred: Predicate<T>) {
  * Returns a fiber which "blocks" until the given `promise` resolves or rejects.
  * In the latter case, the fiber will throw the received error.
  *
- * @remove
- * If the erroring fiber was added directly to a {@link FiberPool}, the error
- * will be logged and the fiber removed. See {@link FiberPool.update} for
- * details.
+ * @remarks
+ * If the fiber was added to a parent {@link Fiber}, the error will be logged
+ * and the fiber removed from the parent. See {@link Fiber.next} for details.
  *
  * @param promise
  */

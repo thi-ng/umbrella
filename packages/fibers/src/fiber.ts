@@ -370,7 +370,7 @@ export class Fiber<T = any>
 
 	/**
 	 * Starts fiber execution using the provided higher-order loop/interval
-	 * `handler` (e.g. see {@link Fiber.start}).
+	 * `handler` (e.g. see {@link Fiber.run}).
 	 *
 	 * @remarks
 	 * That given `handler` is used to repeatedly schedule the next execution of
