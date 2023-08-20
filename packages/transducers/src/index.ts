@@ -79,6 +79,7 @@ export * from "./interpolate-linear.js";
 export * from "./interpose.js";
 export * from "./keep.js";
 export * from "./labeled.js";
+export * from "./length.js";
 export * from "./map-deep.js";
 export * from "./map-indexed.js";
 export * from "./map-keys.js";
