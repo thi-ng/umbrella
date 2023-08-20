@@ -198,7 +198,7 @@ For Node.js REPL:
 const rstream = await import("@thi.ng/rstream");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.80 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.85 KB
 
 ## Dependencies
 
@@ -241,6 +241,7 @@ A selection:
 |                                                                                                                                      | Demonstates various rdom usage patterns                                          | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-basics)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.png" width="240"/>            | Minimal rdom-canvas animation                                                    | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-delayed-update.jpg" width="240"/>           | Dynamically loaded images w/ preloader state                                     | [Demo](https://demo.thi.ng/umbrella/rdom-delayed-update/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-delayed-update) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-keys.png" width="240"/>                     | rstream/rdom-based key event state handling and visualization                    | [Demo](https://demo.thi.ng/umbrella/rdom-keys/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-keys)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>                | rdom & hiccup-canvas interop test                                                | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)      |
 |                                                                                                                                      | Full umbrella repo doc string search w/ paginated results                        | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-svg-nodes.png" width="240"/>                | rdom powered SVG graph with draggable nodes                                      | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-svg-nodes)      |
@@ -413,6 +414,7 @@ s.next(42);
 - [fromRAF()](https://docs.thi.ng/umbrella/rstream/functions/fromRAF.html) - requestAnimationFrame() counter (w/ node fallback)
 - [fromView()](https://docs.thi.ng/umbrella/rstream/functions/fromView.html) - derived view value changes (see [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom))
 - [fromWorker()](https://docs.thi.ng/umbrella/rstream/functions/fromWorker.html) - messages received from worker
+- [toggle()](https://docs.thi.ng/umbrella/rstream/functions/toggle.html) - on/off switch-like stream
 - [trigger()](https://docs.thi.ng/umbrella/rstream/functions/trigger.html) - one-off events
 
 ### Meta streams
