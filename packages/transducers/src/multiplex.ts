@@ -16,7 +16,13 @@ import { step } from "./step.js";
  * varying number of) outputs for each received input:** If only a single output
  * is produced per step, the default behavior of {@link step} is to unwrap it,
  * i.e. `[42]` => `42`. To override this behavior, individual transducers given
- * to `multiplex()` can be given as tuple `[xform, false]` (see 2nd example below).
+ * to `multiplex()` can be given as tuple `[xform, false]` (see 2nd example
+ * below).
+ *
+ * Beware: Any reducers used inside a `multiplex` processing lane (i.e. via
+ * {@link scan}) will **not** be able to execute their {@link Reducer}
+ * completion function, thus only reducers without any post-processing step
+ * should be used.
  *
  * @example
  * ```ts
