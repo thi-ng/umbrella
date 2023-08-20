@@ -158,6 +158,9 @@
 		"./multi-trie": {
 			"default": "./multi-trie.js"
 		},
+		"./partition-keys": {
+			"default": "./partition-keys.js"
+		},
 		"./rename-keys": {
 			"default": "./rename-keys.js"
 		},

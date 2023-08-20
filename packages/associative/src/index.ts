@@ -21,6 +21,7 @@ export * from "./merge-deep.js";
 export * from "./merge-with.js";
 export * from "./merge.js";
 export * from "./multi-trie.js";
+export * from "./partition-keys.js";
 export * from "./rename-keys.js";
 export * from "./select-keys.js";
 export * from "./sorted-map.js";
