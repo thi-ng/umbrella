@@ -122,6 +122,9 @@
 		"./first": {
 			"default": "./first.js"
 		},
+		"./from-keys": {
+			"default": "./from-keys.js"
+		},
 		"./hash-map": {
 			"default": "./hash-map.js"
 		},

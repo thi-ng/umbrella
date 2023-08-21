@@ -276,6 +276,9 @@
 		"./last": {
 			"default": "./last.js"
 		},
+		"./length": {
+			"default": "./length.js"
+		},
 		"./line": {
 			"default": "./line.js"
 		},

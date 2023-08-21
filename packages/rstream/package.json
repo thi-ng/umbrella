@@ -180,6 +180,9 @@
 		"./timeout": {
 			"default": "./timeout.js"
 		},
+		"./toggle": {
+			"default": "./toggle.js"
+		},
 		"./trace": {
 			"default": "./trace.js"
 		},
