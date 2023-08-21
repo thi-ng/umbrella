@@ -9,6 +9,7 @@ export * from "./dissoc.js";
 export * from "./empty.js";
 export * from "./equiv-map.js";
 export * from "./first.js";
+export * from "./from-keys.js";
 export * from "./hash-map.js";
 export * from "./indexed.js";
 export * from "./intersection.js";
