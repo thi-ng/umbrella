@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/associative",
 	"version": "6.2.45",
-	"description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations",
+	"description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -62,6 +62,7 @@
 		"intersection",
 		"join",
 		"map",
+		"object",
 		"set",
 		"skiplist",
 		"sort",

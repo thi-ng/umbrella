@@ -53,7 +53,7 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 
 ## Related packages
 
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities
 
 ## Installation
 

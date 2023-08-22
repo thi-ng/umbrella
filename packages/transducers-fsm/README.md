@@ -19,6 +19,7 @@ updated with new features.**
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [Usage examples](#usage-examples)
   - [3-state FSM](#3-state-fsm)
 - [API](#api)
   - [fsm transducer](#fsm-transducer)
@@ -76,6 +77,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 213 bytes
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                                | Description                                                                                | Live demo                                                | Source                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-key-sequences.jpg" width="240"/> | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-key-sequences) |
 
 ## Usage examples
 

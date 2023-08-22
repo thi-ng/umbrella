@@ -34,34 +34,34 @@ This project is part of the
 
 ## About
 
-Alternative Map and Set implementations with customizable equality semantics & supporting operations.
+Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities.
 
 - Array based `ArraySet`, Linked List based `LLSet`,
-  [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap`
-  & `SortedSet` and customizable `EquivMap` implement the full ES6
-  Map/Set APIs and additional features:
-    - range query iterators (via `entries()`, `keys()`, `values()`)
-      (sorted types only)
+  [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap` &
+  `SortedSet` and customizable `EquivMap` implement the full ES6 Map/Set APIs
+  and additional features:
+    - range query iterators (via `entries()`, `keys()`, `values()`) (sorted
+      types only)
     - `ICopy`, `IEmpty` & `IEquiv` implementations
     - `ICompare` implementation for sorted types
-    - multiple value additions / updates / deletions via `into()`,
-      `dissoc()` (maps) and `disj()` (sets)
-    - configurable key equality & comparison (incl. default
-      implementations)
+    - multiple value additions / updates / deletions via `into()`, `dissoc()`
+      (maps) and `disj()` (sets)
+    - configurable key equality & comparison (incl. default implementations)
     - getters w/ optional "not-found" default value
     - `fromObject()` converters (for maps only)
 - `TrieMap` for string-based keys and `MultiTrie` for array-like keys and
   multiple values per key
 - `SparseSet` implementations for numeric values
-- Polymorphic set operations (union, intersection, difference) - works
-  with both native and custom Sets and retains their types
+- Polymorphic set operations (union, intersection, difference) - works with both
+  native and custom Sets and retains their types
 - Natural & selective
   [joins](https://en.wikipedia.org/wiki/Relational_algebra#Joins_and_join-like_operators)
   (incl. key renaming, ported from Clojure)
 - Key-value pair inversion for maps and vanilla objects
     - i.e. swaps `K => V` to `V => K`
 - Single or multi-property index generation for maps and objects
-- Key selection & renaming / transformations for maps and objects
+- Key selection, renaming, segmenting, splitting, transformations for maps and
+  objects
 
 ### Why?
 
@@ -184,7 +184,7 @@ For Node.js REPL:
 const associative = await import("@thi.ng/associative");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.65 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.77 KB
 
 ## Dependencies
 
@@ -208,9 +208,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                            | Description                                       | Live demo | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:----------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
+| Screenshot                                                                                                                | Description                                                                                | Live demo                                                | Source                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>     | Heatmap visualization of this mono-repo's commits                                          |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-key-sequences.jpg" width="240"/> | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-key-sequences) |
 
 ## API
 
