@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/intervals",
-	"version": "4.2.37",
+	"version": "4.2.38",
 	"description": "Closed/open/semi-open interval data type, queries & operations",
 	"type": "module",
 	"module": "./index.js",
@@ -37,14 +37,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.3",
-		"@thi.ng/checks": "^3.4.3",
-		"@thi.ng/dlogic": "^2.1.36",
-		"@thi.ng/errors": "^2.3.3"
+		"@thi.ng/api": "^8.9.4",
+		"@thi.ng/checks": "^3.4.4",
+		"@thi.ng/dlogic": "^2.1.37",
+		"@thi.ng/errors": "^2.3.4"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
-		"@thi.ng/testament": "^0.3.21",
+		"@thi.ng/testament": "^0.3.22",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/gp",
-	"version": "0.4.57",
+	"version": "0.4.58",
 	"description": "Genetic programming helpers & strategies (tree based & multi-expression programming)",
 	"type": "module",
 	"module": "./index.js",
@@ -34,16 +34,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.3",
-		"@thi.ng/errors": "^2.3.3",
-		"@thi.ng/math": "^5.5.4",
-		"@thi.ng/random": "^3.6.1",
-		"@thi.ng/transducers": "^8.5.5",
-		"@thi.ng/zipper": "^2.1.49"
+		"@thi.ng/api": "^8.9.4",
+		"@thi.ng/errors": "^2.3.4",
+		"@thi.ng/math": "^5.5.5",
+		"@thi.ng/random": "^3.6.2",
+		"@thi.ng/transducers": "^8.6.0",
+		"@thi.ng/zipper": "^2.1.50"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
-		"@thi.ng/testament": "^0.3.21",
+		"@thi.ng/testament": "^0.3.22",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.24.8",

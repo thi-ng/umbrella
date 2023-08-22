@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-12T13:14:08Z
+- **Last updated**: 2023-08-22T14:39:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@8.1.0) (2023-08-22)
+
+#### 🚀 Features
+
+- add toggle(), update readme ([1d6d661](https://github.com/thi-ng/umbrella/commit/1d6d661))
 
 # [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@8.0.0) (2023-04-08)
 
