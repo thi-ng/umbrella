@@ -55,13 +55,13 @@ const keys = merge({
 	src: [fromDOMEvent(window, "keydown"), fromDOMEvent(window, "keyup")],
 	// composes transducer (to transform incoming values/events)
 	xform: comp(
-		// disable event propagation
-		sideEffect((e) => e.preventDefault()),
 		// skip key repeats & non-configured keys
 		filter(
 			(e: KeyboardEvent) =>
 				!e.repeat && ALL_KEYS.includes(e.key.toLowerCase())
 		),
+		// disable event propagation
+		sideEffect((e) => e.preventDefault()),
 		// scan is a higher-order transducer to build stepwise reductions
 		// in this case, the "reductions" are objects keeping track of pressed keys
 		// see: https://docs.thi.ng/umbrella/transducers/functions/scan.html
@@ -209,6 +209,7 @@ $compile(
 			// recognized command IDs
 			div(".b", {}, "command: ", commands)
 		),
+		// display configured key sequences and their respective command IDs
 		div(
 			{},
 			"Available command sequences:",
