@@ -1440,6 +1440,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-key-sequences@workspace:examples/rdom-key-sequences":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-key-sequences@workspace:examples/rdom-key-sequences"
+  dependencies:
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.1.6
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-lissajous@workspace:examples/rdom-lissajous":
   version: 0.0.0-use.local
   resolution: "@example/rdom-lissajous@workspace:examples/rdom-lissajous"
