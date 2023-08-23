@@ -84,8 +84,9 @@ const keys = merge({
 keys.subscribe({ next: console.log });
 // { w: true, a: false, s: false, d: false, z: false, x: false, ... }
 
-// transform key states with finite state machine to extract command sequences
-// if a sequence has been matched, this stream will emit respective command IDs
+// now transform keys stream with finite state machine to extract command seqs.
+// for matched sequences, this stream will emit their respective command IDs
+// the FSM is implemented as transducer (see: https://thi.ng/transducers-fsm)
 const commands = keys.transform(
 	fsm<KeySeqState, KeyStates, string>({
 		states: {
@@ -95,10 +96,11 @@ const commands = keys.transform(
 				for (let k in fsmState.choices) {
 					if (!keys[k]) continue;
 					const next = fsmState.choices[k];
+					// found a command?
 					if (typeof next === "string") {
 						// switch the "release" state
 						fsmState.state = "release";
-						// reset trie to root (and send to keyChoices stream [below])
+						// reset choices to beginning
 						fsmState.choices = COMMANDS;
 						// demo only: emit state for UI inspection
 						fsmDebug.next(fsmState);
