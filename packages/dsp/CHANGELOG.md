@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-22T14:39:27Z
+- **Last updated**: 2023-08-24T05:28:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.4.0) (2023-08-24)
+
+#### 🚀 Features
+
+- update modOsc() fmod arg type ([06b0e38](https://github.com/thi-ng/umbrella/commit/06b0e38))
+  - allow numbers as constant freq offset
 
 ### [4.3.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.3.17) (2023-08-04)
 
