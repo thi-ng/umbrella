@@ -1024,6 +1024,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/ifs-fractal@workspace:examples/ifs-fractal":
+  version: 0.0.0-use.local
+  resolution: "@example/ifs-fractal@workspace:examples/ifs-fractal"
+  dependencies:
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/fibers": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    typescript: ^5.1.6
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/imgui-basics@workspace:examples/imgui-basics":
   version: 0.0.0-use.local
   resolution: "@example/imgui-basics@workspace:examples/imgui-basics"

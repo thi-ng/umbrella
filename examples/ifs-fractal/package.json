@@ -1,0 +1,39 @@
+{
+	"name": "@example/ifs-fractal",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Barnsley fern IFS fractal renderer",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.1.6",
+		"vite": "^4.4.9"
+	},
+	"dependencies": {
+		"@thi.ng/dl-asset": "workspace:^",
+		"@thi.ng/fibers": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/matrices": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/random": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"dl-asset",
+			"fibers",
+			"matrices",
+			"pixel",
+			"random"
+		],
+		"screenshot": "examples/ifs-fractal.jpg"
+	}
+}
