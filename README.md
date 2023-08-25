@@ -9,6 +9,7 @@
 - [Getting Started](#getting-started)
   - [Project templates](#project-templates)
 - [Examples & Showcase](#examples--showcase)
+- [#HowToThing](#howtothing)
 - [Blog posts](#blog-posts)
 - [Community, contributing, getting help](#community-contributing-getting-help)
 - [Projects](#projects)
@@ -137,6 +138,19 @@ libraries from this collection.
 | Bubblemania                                      | Danza (unreleased)                           | S-TRACE (unreleased)                             |
 | <img src="./assets/fxhash/bubblemania-240.jpg"/> | <img src="./assets/fxhash/danza-240.jpg"/>   | <img src="./assets/fxhash/s-trace-240.jpg"/>     |
 
+## #HowToThing
+
+Ongoing since August 2023:
+[#HowToThing](https://mastodon.thi.ng/tags/HowToThing) is a series of short
+posts on Mastodon, demonstrating many different techniques, patterns and use
+cases from across the thi.ng/umbrella ecosystem. Each with heavily commented
+code.
+
+- [001: FPS counter with moving average](https://mastodon.thi.ng/@toxi/110898928550740865)
+- [002: Sorting an array by potentially CPU-costly sort criteria](https://mastodon.thi.ng/@toxi/110904190618425908)
+- [003: Multiple key states and extracting commands via FSM](https://mastodon.thi.ng/@toxi/110934031101245644)
+- [004: Creating text-based plots to debug & visualize sequential data](https://mastodon.thi.ng/@toxi/110942967462856117)
+- [005: Barnsley fern IFS fractal](https://mastodon.thi.ng/@toxi/110946943031183702)
 
 ## Blog posts
 
