@@ -21,7 +21,7 @@ export const withoutKeysObj = <T extends object>(
 	for (let k in src) {
 		src.hasOwnProperty(k) &&
 			!ks.has(<Keys<T>>k) &&
-			(dest[k] = src[<Keys<T>>k]);
+			(dest[<Keys<T>>k] = src[<Keys<T>>k]);
 	}
 	return dest;
 };
