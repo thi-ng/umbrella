@@ -79,7 +79,7 @@ Object queries expect an object of the following structure:
 
 A concrete example:
 
-```ts
+```ts tangle:export/readme.ts
 const DB = {
     alice: {
         age: 33,
@@ -104,15 +104,18 @@ const DB = {
 
 To find all answers for the question: Who knows Bob?
 
-```ts
+```ts tangle:export/readme.ts
+import { defQuery } from "@thi.ng/oquery";
+
 // create query w/ custom options
 // (options explained further below...)
 const query = defQuery({ partial: true });
 
-query(DB, null, "knows", "bob");
+console.log(query(DB, null, "knows", "bob"));
 // {
-//   alice: { knows: ["bob"] },
-//   charlie: { knows: ["bob"] }
+//   alice: { knows: [ 'bob' ] },
+//   charlie: { knows: [ 'bob' ] },
+//   dori: { knows: [ 'bob' ] }
 // }
 ```
 
