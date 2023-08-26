@@ -42,8 +42,8 @@
 		"@microsoft/api-extractor": "^7.36.4",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.8",
-		"typescript": "^5.1.6"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"async",

@@ -34,7 +34,7 @@
 		"screenshot": "examples/router-basics.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.1.6",
+		"typescript": "^5.2.2",
 		"vite": "^4.4.9"
 	}
 }
