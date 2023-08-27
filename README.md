@@ -151,6 +151,8 @@ code.
 - [003: Multiple key states and extracting commands via FSM](https://mastodon.thi.ng/@toxi/110934031101245644)
 - [004: Creating text-based plots to debug & visualize sequential data](https://mastodon.thi.ng/@toxi/110942967462856117)
 - [005: Barnsley fern IFS fractal](https://mastodon.thi.ng/@toxi/110946943031183702)
+- [006: Clustering arbitrary n-dimensional data using K-means](https://mastodon.thi.ng/@toxi/110961348580185768)
+- [007: Converting Google Maps bookmarks to KML](https://mastodon.thi.ng/@toxi/110961348580185768)
 
 ## Blog posts
 
