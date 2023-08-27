@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-svg",
-	"version": "5.0.14",
+	"version": "5.0.15",
 	"description": "SVG element functions for @thi.ng/hiccup & related tooling",
 	"type": "module",
 	"module": "./index.js",
@@ -34,13 +34,13 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.4.4",
-		"@thi.ng/color": "^5.5.13",
-		"@thi.ng/prefixes": "^2.1.29"
+		"@thi.ng/checks": "^3.4.5",
+		"@thi.ng/color": "^5.5.14",
+		"@thi.ng/prefixes": "^2.1.30"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
-		"@thi.ng/testament": "^0.3.22",
+		"@thi.ng/testament": "^0.3.23",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.0",

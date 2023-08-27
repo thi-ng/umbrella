@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sax",
-	"version": "2.1.61",
+	"version": "2.1.62",
 	"description": "Transducer-based, SAX-like, non-validating, speedy & tiny XML parser",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.4",
-		"@thi.ng/strings": "^3.4.12",
-		"@thi.ng/transducers": "^8.6.1",
-		"@thi.ng/transducers-fsm": "^2.2.28"
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/strings": "^3.4.13",
+		"@thi.ng/transducers": "^8.6.2",
+		"@thi.ng/transducers-fsm": "^2.2.29"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
-		"@thi.ng/testament": "^0.3.22",
+		"@thi.ng/testament": "^0.3.23",
 		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.0",
