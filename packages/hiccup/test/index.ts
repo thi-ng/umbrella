@@ -2,7 +2,7 @@ import { Atom } from "@thi.ng/atom";
 import { foaf } from "@thi.ng/prefixes";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { serialize } from "../src/index.js";
+import { DOCTYPE_HTML, XML_PROC, serialize } from "../src/index.js";
 
 const _check = (a: any, b: any) => assert.strictEqual(serialize(a), b);
 
@@ -331,8 +331,9 @@ group("serialize", {
 		`<a><b>bbb</b></a>`
 	),
 
-	...check("doctype", ["!DOCTYPE", "html"], "<!DOCTYPE html>\n"),
+	...check("doctype_html", DOCTYPE_HTML, "<!DOCTYPE html>\n"),
 
+	...check("xml_proc", XML_PROC, `<?xml version="1.0" encoding="UTF-8"?>\n`),
 	...check(
 		"?xml",
 		["?xml", { version: "1.0", standalone: "yes" }],
