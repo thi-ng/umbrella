@@ -1,5 +1,5 @@
 import { files, readJSON, writeText } from "@thi.ng/file-io";
-import { serialize } from "@thi.ng/hiccup";
+import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
 import { LOGGER, META_FIELD, type Package } from "./api.js";
 import { shortName } from "./partials/package.js";
@@ -53,7 +53,7 @@ const packages = transduce(
 writeText(
 	"docs.html",
 	serialize([
-		["!DOCTYPE", "html"],
+		DOCTYPE_HTML,
 		[
 			"html",
 			{ lang: "en" },
