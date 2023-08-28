@@ -1,10 +1,16 @@
 import type { FnAny } from "@thi.ng/api";
 
 /**
- * Takes an `init` value and a number of functions and/or function
- * tuples, consisting of: `[fn, ...args]`. Executes each function
- * (or tuple) with the return value of the previous expression inserted
- * as first argument, using `init` for the first expression.
+ * Similar to {@link threadLast}. A dataflow operator to improve the legibility
+ * of long (or deeply nested) call expressions. Takes an `init` value and a
+ * number of functions and/or function tuples, consisting of: `[fn, ...args]`.
+ * Executes each function (or tuple) with the return value of the previous
+ * step/function inserted as **first** argument, using `init` as the first
+ * expression. Returns result of last function/step given.
+ *
+ * @remarks
+ * This operator allows the code to be read more easily in the order of
+ * execution (same as the `->` operator/macro in Clojure).
  *
  * @example
  * ```ts
@@ -12,17 +18,20 @@ import type { FnAny } from "@thi.ng/api";
  * const sub = (a, b) => a - b;
  * const div = (a, b) => a / b;
  *
+ * // without operator: (-5 - 10) / 20
+ * console.log(div(sub(neg(5), 10), 20));
+ * // -0.75
+ *
+ * // rewritten using operator:
  * threadFirst(
  *   5,
  *   neg,       // -5
- *   [sub, 20], // -5 - 20 = -25
- *   [div, 10]  // -25 / 10 = -2.5
+ *   [sub, 10], // (-5) - 10
+ *   [div, 20], // (-5 - 10) / 20
+ *   console.log
  * );
- *
- * // -2.5
+ * // -0.75
  * ```
- *
- * {@link threadLast}
  *
  * @param init - start value
  * @param fns - functions / S-expressions
