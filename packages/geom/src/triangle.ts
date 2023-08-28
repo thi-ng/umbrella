@@ -5,7 +5,7 @@ import { Triangle } from "./api/triangle.js";
 import { __pclike } from "./internal/pclike.js";
 
 export function triangle(a: Vec, b: Vec, c: Vec, attribs?: Attribs): Triangle;
-export function triangle(pts: Vec[], attribs?: Attribs): Triangle;
+export function triangle(pts: Iterable<Vec>, attribs?: Attribs): Triangle;
 export function triangle(...args: any[]) {
 	return __pclike(Triangle, args);
 }

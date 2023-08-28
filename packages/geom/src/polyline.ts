@@ -6,7 +6,7 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { Polyline } from "./api/polyline.js";
 
-export const polyline = (pts: Vec[], attribs?: Attribs) =>
+export const polyline = (pts: Iterable<Vec>, attribs?: Attribs) =>
 	new Polyline(pts, attribs);
 
 /**

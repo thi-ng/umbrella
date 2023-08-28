@@ -1,9 +1,14 @@
 import type { IClear } from "@thi.ng/api";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { Attribs, PCLike } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 
 export abstract class APC implements IClear, PCLike {
-	constructor(public points: Vec[] = [], public attribs?: Attribs) {}
+	points: Vec[];
+
+	constructor(points?: Iterable<Vec>, public attribs?: Attribs) {
+		this.points = points ? ensureArray(points) : [];
+	}
 
 	abstract get type(): number | string;
 

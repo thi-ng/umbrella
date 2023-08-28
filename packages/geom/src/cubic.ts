@@ -9,7 +9,7 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __pclike } from "./internal/pclike.js";
 
 export function cubic(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Cubic;
-export function cubic(pts: Vec[], attribs?: Attribs): Cubic;
+export function cubic(pts: Iterable<Vec>, attribs?: Attribs): Cubic;
 export function cubic(...args: any[]) {
 	return __pclike(Cubic, args);
 }

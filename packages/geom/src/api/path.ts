@@ -1,4 +1,5 @@
 import type { IClear } from "@thi.ng/api";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { Attribs, IHiccupShape, PathSegment } from "@thi.ng/geom-api";
@@ -6,12 +7,12 @@ import { copy } from "@thi.ng/vectors/copy";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Path implements IClear, IHiccupShape {
+	segments: PathSegment[];
 	closed = false;
 
-	constructor(
-		public segments: PathSegment[] = [],
-		public attribs?: Attribs
-	) {}
+	constructor(segments?: Iterable<PathSegment>, public attribs?: Attribs) {
+		this.segments = segments ? ensureArray(segments) : [];
+	}
 
 	get type() {
 		return "path";

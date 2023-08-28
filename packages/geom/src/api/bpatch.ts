@@ -1,8 +1,8 @@
-import { assert } from "@thi.ng/errors/assert";
 import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 import { __copyShape } from "../internal/copy.js";
+import { __ensureNumVerts } from "../internal/pclike.js";
 import { APC } from "./apc.js";
 
 /**
@@ -32,9 +32,9 @@ import { APC } from "./apc.js";
  *
  */
 export class BPatch extends APC implements IHiccupShape {
-	constructor(points: Vec[], attribs?: Attribs) {
-		assert(points.length === 16, "require 16 control points");
+	constructor(points: Iterable<Vec>, attribs?: Attribs) {
 		super(points, attribs);
+		__ensureNumVerts(this.points.length, 16);
 	}
 
 	get type() {

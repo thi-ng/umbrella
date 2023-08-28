@@ -5,7 +5,7 @@ import { Quadratic } from "./api/quadratic.js";
 import { __pclike } from "./internal/pclike.js";
 
 export function quadratic(a: Vec, b: Vec, c: Vec, attribs?: Attribs): Quadratic;
-export function quadratic(pts: Vec[], attribs?: Attribs): Quadratic;
+export function quadratic(pts: Iterable<Vec>, attribs?: Attribs): Quadratic;
 export function quadratic(...args: any[]) {
 	return __pclike(Quadratic, args);
 }
