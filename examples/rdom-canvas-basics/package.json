@@ -16,10 +16,13 @@
 		"vite": "^4.4.9"
 	},
 	"dependencies": {
+		"@thi.ng/compose": "workspace:^",
+		"@thi.ng/dsp": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
 		"@thi.ng/rdom-canvas": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
-		"@thi.ng/transducers": "workspace:^"
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
 	},
 	"browser": {
 		"process": false

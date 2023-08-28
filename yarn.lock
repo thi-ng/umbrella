@@ -1417,10 +1417,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/rdom-canvas-basics@workspace:examples/rdom-canvas-basics"
   dependencies:
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/rdom-canvas": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
     typescript: ^5.2.2
     vite: ^4.4.9
   languageName: unknown
