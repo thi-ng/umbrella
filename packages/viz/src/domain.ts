@@ -43,6 +43,12 @@ export const dataMinLog = <T>(fn: Fn<T, number>, src: T[], base = 10) =>
 export const dataMaxLog = <T>(fn: Fn<T, number>, src: T[], base = 10) =>
 	Math.pow(base, Math.ceil(Math.log(dataMax(fn, src)) / Math.log(base)));
 
+export const dataBoundsLog = <T>(
+	fn: Fn<T, number>,
+	src: T[],
+	base?: number
+) => [dataMinLog(fn, src, base), dataMaxLog(fn, src, base)];
+
 export const dataBounds2Log = <T>(
 	min: Fn<T, number>,
 	max: Fn<T, number>,
