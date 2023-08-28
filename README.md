@@ -143,8 +143,8 @@ libraries from this collection.
 Ongoing since August 2023:
 [#HowToThing](https://mastodon.thi.ng/tags/HowToThing) is a series of short
 posts on Mastodon, demonstrating many different techniques, patterns and use
-cases from across the thi.ng/umbrella ecosystem. Each with heavily commented
-code.
+cases from across the _thi.ng/umbrella_ ecosystem. Each with heavily commented
+code (and sometimes with visual outputs/results).
 
 - [001: FPS counter with moving average](https://mastodon.thi.ng/@toxi/110898928550740865)
 - [002: Sorting an array by potentially CPU-costly sort criteria](https://mastodon.thi.ng/@toxi/110904190618425908)
@@ -153,6 +153,7 @@ code.
 - [005: Barnsley fern IFS fractal](https://mastodon.thi.ng/@toxi/110946943031183702)
 - [006: Clustering arbitrary n-dimensional data using K-means](https://mastodon.thi.ng/@toxi/110961348580185768)
 - [007: Converting Google Maps bookmarks to KML](https://mastodon.thi.ng/@toxi/110961348580185768)
+- [008: CSV parsing into structured data & multi-plot SVG dataviz](https://mastodon.thi.ng/@toxi/110967240994840257)
 
 ## Blog posts
 
