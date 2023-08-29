@@ -10,15 +10,19 @@ import type { Vec } from "@thi.ng/vectors";
 // transform input timestamps into geometry
 const geo = fromRAF().map((time) =>
 	// generate geometry...
+	// see: https://docs.thi.ng/umbrella/compose/functions/threadLast.html
 	threadLast(
 		// 1. form coordinates by combining oscillators into tuples (2d points).
 		// used like this, the oscillators (and therefore `zip` too) are
 		// producing a lazy, but infinite(!) sequence...
+		// depending on oscillator config, this approach can also be used to
+		// generate Lissajous curves...
 		zip(
 			// x-axis oscillator (see thi.ng/dsp readme)
 			// oscillators are also iterable, hence can be used with zip
+			// https://docs.thi.ng/umbrella/dsp/functions/osc-1.html
 			osc(sin, 0.008, 150, 300, time / 300),
-			// y-axis oscillator (with different waveform & slightly offset phase)
+			// y-axis oscillator (with different waveform & phase offset)
 			osc(parabolic, 0.008, 150, 300, time / 100)
 		),
 		// 2. only take first N values from the infinite sequence
@@ -39,15 +43,17 @@ const geo = fromRAF().map((time) =>
 				),
 		],
 		// 4. wrap all shapes into a group shape node
+		// as container for entire scene...
 		[
 			group,
+			// group attributes:
 			// fill canvas w/ background color (see thi.ng/rdom-canvas readme)
 			{ __background: "#0ff" },
 		]
 	)
 );
 
-// create & mount reactive canvas component (w/ fixed size).
+// create & mount reactive HTML canvas component (with fixed size).
 // this DOM component subscribes to the above geometry stream and
 // redraws the canvas with every update/frame...
 $canvas(geo, [600, 600]).mount(document.body);
