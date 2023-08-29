@@ -154,6 +154,7 @@ code (and sometimes with visual outputs/results).
 - [006: Clustering arbitrary n-dimensional data using K-means](https://mastodon.thi.ng/@toxi/110961348580185768)
 - [007: Converting Google Maps bookmarks to KML](https://mastodon.thi.ng/@toxi/110961348580185768)
 - [008: CSV parsing into structured data & multi-plot SVG dataviz](https://mastodon.thi.ng/@toxi/110967240994840257)
+- [009: 2D canvas drawing & `threadLast()` dataflow operator](https://mastodon.thi.ng/@toxi/110972322869333970)
 
 ## Blog posts
 
