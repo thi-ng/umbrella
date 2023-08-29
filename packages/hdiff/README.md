@@ -56,7 +56,7 @@ For Node.js REPL:
 const hdiff = await import("@thi.ng/hdiff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.38 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.39 KB
 
 ### CLI installation & usage
 

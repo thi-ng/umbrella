@@ -86,7 +86,7 @@ For Node.js REPL:
 const viz = await import("@thi.ng/viz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.60 KB
 
 ## Dependencies
 

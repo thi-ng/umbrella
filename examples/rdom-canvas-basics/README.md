@@ -1,6 +1,6 @@
 # rdom-canvas-basics
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/rdom-canvas-basics/)
 
