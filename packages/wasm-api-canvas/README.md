@@ -18,6 +18,7 @@ This project is part of the
 - [API](#api)
   - [Zig bindings](#zig-bindings)
   - [Minimal example](#minimal-example)
+  - [HDPI support](#hdpi-support)
 - [Authors](#authors)
 - [License](#license)
 
@@ -93,10 +94,14 @@ const dom = @import("wasm-api-dom");
 
 // ...
 
+// create canvas element and attached to document.body
 const canvas = dom.createCanvas(&.{
     .width = 320,
     .height = 320,
     .parent = dom.body,
+    // can be customized for HDPI screens (aka window.devicePixelRatio)
+    // see readme section below
+    .dpr = 1,
     .index = 0,
 });
 
@@ -135,6 +140,28 @@ const pattern = canvas2d.createPattern(&pixels, 2, 2, .repeat);
 // use pattern as fill color
 canvas2d.setPatternFill(pattern);
 canvas2d.fillText("WORLD", 10, 120, 0);
+```
+
+### HDPI support
+
+By default, canvas elements are created with a `dpr` (aka
+`window.devicePixelRatio`) of 1. Use `dom.getWindowInfo()` prior to creating the
+canvas to obtain the actual device pixel ratio and adapt the canvas to it.
+
+```zig
+const canvas2d = @import("wasm-api-canvas");
+const dom = @import("wasm-api-dom");
+
+var window: dom.WindowInfo = undefined;
+dom.getWindowInfo(&window);
+
+// create full-window canvas element with correct DPR
+const canvas = dom.createCanvas(&.{
+    .width = window.innerWidth,
+    .height = window.innerHeight,
+    .dpr = window.dpr,
+    .parent = dom.body,
+});
 ```
 
 ## Authors
