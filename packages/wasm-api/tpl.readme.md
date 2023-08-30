@@ -282,10 +282,11 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
-### Zig v0.11.0-dev or newer
+### Zig v0.11.0 or newer
 
-**IMPORTANT:** Due to recent syntax changes in Zig v0.11-dev, support for Zig
-v0.10.1 or older had to be removed...
+**IMPORTANT:** Due to recent [syntax & build system changes in Zig
+v0.11.0](https://ziglang.org/download/0.11.0/release-notes.html), support for
+older Zig versions had to be removed...
 
 ```zig
 const std = @import("std");
@@ -320,7 +321,6 @@ via this script. **Please find more details/options in the commented source
 code:**
 
 - [`/zig/build.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build.zig)
-- [`/zig/build-v0.10.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build-v0.10.zig)
 
 ## Naming & structural conventions
 
