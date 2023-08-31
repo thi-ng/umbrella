@@ -37,7 +37,7 @@ const gameOfLife = defMultiPass({
 			format: TextureFormat.R8,
 			// pre-seed simulation with noise texture
 			image: new Uint8Array(
-				repeatedly(() => (SYSTEM.probability(0.4) ? -1 : 0), W * W)
+				repeatedly(() => (SYSTEM.probability(0.5) ? -1 : 0), W * W)
 			),
 		},
 		// interim buffer for next CA generation
@@ -86,8 +86,9 @@ void main() {
 				// CA simulation rules as look up tables for all possible neighbor counts
 				// enables easy experimentation with new rules...
 				// Game of Life rules: stay alive if 2 or 3, birth if 3 neighbors
-				alive: ["int[]", 8, [0, 0, 1, 1, 0, 0, 0, 0, 0]],
-				birth: ["int[]", 8, [0, 0, 0, 1, 0, 0, 0, 0, 0]],
+				// (require 9 states to cover outcomes for 0-8 neighbors)
+				alive: ["int[]", 9, [0, 0, 1, 1, 0, 0, 0, 0, 0]],
+				birth: ["int[]", 9, [0, 0, 0, 1, 0, 0, 0, 0, 0]],
 			},
 		},
 
