@@ -2132,6 +2132,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/webgl-game-of-life@workspace:examples/webgl-game-of-life":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-game-of-life@workspace:examples/webgl-game-of-life"
+  dependencies:
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/webgl-grid@workspace:examples/webgl-grid":
   version: 0.0.0-use.local
   resolution: "@example/webgl-grid@workspace:examples/webgl-grid"
