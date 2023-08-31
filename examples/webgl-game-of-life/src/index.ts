@@ -53,18 +53,16 @@ const gameOfLife = defMultiPass({
 		{
 			fs: `
 // helper function to read cell state (with wrap-around)
-float read(ivec2 p) {
-    ivec2 ires = ivec2(resolution);
-    // return texelFetch(input0, (p + ires) % ires, 0).r;
-    return texelFetch(input0, (p + resolution) % resolution, 0).r;
+int read(ivec2 p) {
+    return int(texelFetch(input0, (p + resolution) % resolution, 0).r);
 }
 
 void main() {
     ivec2 p = ivec2(gl_FragCoord.xy);
     ivec3 o = ivec3(-1, 0, 1);
     // read cell states & count neighbors
-    float state = read(p);
-    float num = read(p + o.yz);
+    int state = read(p);
+    int num = read(p + o.yz);
     num += read(p + o.yx);
     num += read(p + o.zy);
     num += read(p + o.xy);
@@ -74,7 +72,7 @@ void main() {
     num += read(p + o.xx);
     // apply sim rules from lookup tables (see below)
     // ("output0" refers to first output texture of potentially multiple)
-    output0 = vec4(state > 0.5 ? alive[int(num)] : birth[int(num)]);
+    output0 = vec4(state > 0 ? alive[num] : birth[num]);
 }`,
 			// define texture inputs & outputs (IDs from above `textures` config)
 			inputs: ["curr"],
