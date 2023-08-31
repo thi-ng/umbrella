@@ -156,6 +156,7 @@ code (and sometimes with visual outputs/results).
 - [008: CSV parsing into structured data & multi-plot SVG dataviz](https://mastodon.thi.ng/@toxi/110967240994840257)
 - [009: 2D canvas drawing & `threadLast()` dataflow operator](https://mastodon.thi.ng/@toxi/110972322869333970)
 - [010: Basic web app UI/DOM via Zig/WASM and thi.ng/wasm-api](https://mastodon.thi.ng/@toxi/110975292505640048)
+- [011: 2D cellular automata as WebGL2 multi-pass shader pipeline](https://mastodon.thi.ng/@toxi/110983734311624640)
 
 ## Blog posts
 
