@@ -64,7 +64,7 @@ export interface PassOpts {
 export interface PassUniforms {
 	inputs: never;
 	outputs: never;
-	resolution: "vec2";
+	resolution: "vec2" | "ivec2" | "uvec2";
 	time: "float";
 	[id: string]: UniformDecl;
 }
