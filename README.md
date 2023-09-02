@@ -87,7 +87,7 @@ All packages:
 
 The sheer number and varied nature & purpose of these [packages](#packages)
 makes it impossible to provide traditional "Getting started" tutorials. To
-compensate, this repo provides ~120 [example projects](#examples--showcase),
+compensate, this repo provides ~130 [example projects](#examples--showcase),
 detailed readmes (at the very least for all the larger and/or more important
 packages) and hundreds of small usage examples/snippets in various docstrings.
 
@@ -107,7 +107,7 @@ You might find one of the following template repos an useful starting point:
 
 ## Examples & Showcase
 
-There's a steadily growing number (~120) of standalone examples of different
+There's a steadily growing number (~130) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
@@ -212,23 +212,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-08-31
+As of: 2023-09-02
 
-| Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
-|:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/associative`](./packages/associative) | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative) | [changelog](./packages/associative/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/complex`](./packages/complex)         | [![version](https://img.shields.io/npm/v/@thi.ng/complex.svg)](https://www.npmjs.com/package/@thi.ng/complex)         | [changelog](./packages/complex/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/dsp`](./packages/dsp)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                 | [changelog](./packages/dsp/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom`](./packages/geom)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)               | [changelog](./packages/geom/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup`](./packages/hiccup)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)           | [changelog](./packages/hiccup/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/math`](./packages/math)               | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)               | [changelog](./packages/math/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)               | [changelog](./packages/rdom/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rstream`](./packages/rstream)         | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)         | [changelog](./packages/rstream/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/strings`](./packages/strings)         | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)         | [changelog](./packages/strings/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/text-canvas`](./packages/text-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas) | [changelog](./packages/text-canvas/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/webgl`](./packages/webgl)             | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)             | [changelog](./packages/webgl/CHANGELOG.md)       |
+| Status                                        | Package                                       | Version                                                                                                             | Changelog                                       |
+|:----------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-css`](./packages/hiccup-css) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css) | [changelog](./packages/hiccup-css/CHANGELOG.md) |
 
 ### Fundamentals
 
