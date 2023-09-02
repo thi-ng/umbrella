@@ -1010,6 +1010,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/hiccup-css-image-transition@workspace:examples/hiccup-css-image-transition":
+  version: 0.0.0-use.local
+  resolution: "@example/hiccup-css-image-transition@workspace:examples/hiccup-css-image-transition"
+  dependencies:
+    "@thi.ng/grid-iterators": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/hiccup-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/hydrate-basics@workspace:examples/hydrate-basics":
   version: 0.0.0-use.local
   resolution: "@example/hydrate-basics@workspace:examples/hydrate-basics"
