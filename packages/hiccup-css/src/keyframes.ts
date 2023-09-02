@@ -1,6 +1,7 @@
-import { formatDecls, indent } from "./impl.js";
-import { percent } from "./units.js";
 import type { CSSOpts, RuleFn } from "./api.js";
+import { formatDecls, indent } from "./impl.js";
+
+export type Keyframe = Record<string, any>;
 
 /**
  * Rule function for `@keyframes`. If a single declaration object is given,
@@ -45,9 +46,9 @@ import type { CSSOpts, RuleFn } from "./api.js";
  * @param id -
  * @param stops -
  */
-export function at_keyframes(id: string, stops: any): RuleFn;
-export function at_keyframes(id: string, from: any, to: any): RuleFn;
-export function at_keyframes(id: string, ...args: any[]): RuleFn {
+export function at_keyframes(id: string, stops: Keyframe): RuleFn;
+export function at_keyframes(id: string, from: Keyframe, to: Keyframe): RuleFn;
+export function at_keyframes(id: string, ...args: Keyframe[]): RuleFn {
 	const stops = args.length === 1 ? args[0] : { 0: args[0], 100: args[1] };
 	return (acc: string[], opts: CSSOpts) => {
 		const outer = indent(opts);
@@ -59,7 +60,7 @@ export function at_keyframes(id: string, ...args: any[]): RuleFn {
 				acc.push(
 					[
 						inner,
-						percent(<any>s),
+						s + "%",
 						opts.format.declStart,
 						formatDecls(stops[s], opts),
 						inner,
