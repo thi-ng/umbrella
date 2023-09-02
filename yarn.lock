@@ -4041,7 +4041,7 @@ __metadata:
     "@thi.ng/api": ^8.9.5
     "@thi.ng/diff": ^5.1.38
     "@thi.ng/hiccup": ^4.3.1
-    "@thi.ng/hiccup-css": ^2.1.63
+    "@thi.ng/hiccup-css": ^2.2.0
     "@thi.ng/strings": ^3.4.13
     "@thi.ng/testament": ^0.3.23
     "@types/node": ^20.5.6
@@ -4192,7 +4192,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-css@^2.1.63, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
+"@thi.ng/hiccup-css@^2.2.0, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-css@workspace:packages/hiccup-css"
   dependencies:
