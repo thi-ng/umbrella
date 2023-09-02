@@ -157,6 +157,7 @@ code (and sometimes with visual outputs/results).
 - [009: 2D canvas drawing & `threadLast()` dataflow operator](https://mastodon.thi.ng/@toxi/110972322869333970)
 - [010: Basic web app UI/DOM via Zig/WASM and thi.ng/wasm-api](https://mastodon.thi.ng/@toxi/110975292505640048)
 - [011: 2D cellular automata as WebGL2 multi-pass shader pipeline](https://mastodon.thi.ng/@toxi/110983734311624640)
+- [012: Pure CSS image transition/reveal with thi.ng/hiccup-css](https://mastodon.thi.ng/@toxi/110995613345369326)
 
 ## Blog posts
 
