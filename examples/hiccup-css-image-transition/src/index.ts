@@ -142,7 +142,7 @@ console.log(
 			"html",
 			{ lang: "en" },
 			["head", ["style", css(style)]],
-			["body", ["div.dualimage", {}, repeat(["span"], RES * RES)]],
+			["body", ["div.dualimage", {}, repeat(["span.reveal"], RES * RES)]],
 		],
 	])
 );
