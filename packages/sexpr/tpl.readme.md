@@ -116,6 +116,12 @@ parse(`(* (+ 3 5) 10)`);
 
 ### Interpreter
 
+The below code example implements a small Lisp-like language, complete with
+interpreter and can be used an the basis for an easily extensible (and more
+optimized) setup. Even this barebones implementation allows for defining of
+symbols & functions, lexical scoping, FFI via providing externally defined
+functions via the global environment, variadic math ops...
+
 ```ts tangle:export/readme.ts
 import type { Fn, Fn2 } from "@thi.ng/api";
 import { DEFAULT, defmulti, type MultiFn2 } from "@thi.ng/defmulti";
@@ -261,15 +267,19 @@ for a more in-depth version of this example...
 
 ### Custom syntax
 
-```ts
+```ts tangle:export/readme2.ts
+import { parse } from "@thi.ng/sexpr";
+
 // define syntax overrides (keep default whitespace rules)
 const syntax = {
     scopes: [["<", ">"], ["{", "}"]],
     string: "'"
 };
 
-parse(`<nest { a '2' b 3 }>`, syntax);
+console.log(JSON.stringify(parse(`<nest { a '2' b 3 }>`, syntax), null, 2));
 ```
+
+Resulting JSON output:
 
 ```json
 {
