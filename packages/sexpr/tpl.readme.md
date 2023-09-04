@@ -177,22 +177,10 @@ const mathOp =
 
 // implementations of built-in core functions
 builtins.addAll({
-	"+": mathOp(
-		(acc, x) => acc + x,
-		(x) => x
-	),
-	"*": mathOp(
-		(acc, x) => acc * x,
-		(x) => x
-	),
-	"-": mathOp(
-		(acc, x) => acc - x,
-		(x) => -x
-	),
-	"/": mathOp(
-		(acc, x) => acc / x,
-		(x) => 1 / x
-	),
+	"+": mathOp((acc, x) => acc + x, (x) => x),
+	"*": mathOp((acc, x) => acc * x, (x) => x),
+	"-": mathOp((acc, x) => acc - x, (x) => -x),
+	"/": mathOp((acc, x) => acc / x, (x) => 1 / x),
 
 	// count returns the length of first argument (presumably a string)
 	// (e.g. `(count "abc")` => 3)
@@ -248,6 +236,23 @@ $eval(`(print (join " | " (+ 1 2) (* 3 4) (- 5 6) (/ 7 8)))`, {
 	join: (sep: string, ...xs: any[]) => xs.join(sep),
 });
 // 3 | 12 | -1 | 0.875
+
+// testing lexical scoping...
+// function `foo` has `a` as local (with precedence over global) binding,
+// but function `bar` correctly uses binding of the outer env, even if
+// called from `foo`...
+$eval(`
+(def a 1)
+(defn foo (a) (print "foo" a "bar" (bar)))
+(defn bar () (+ a 1))
+
+(print "root #1" a)
+(foo 100)
+(print "root #2" a)
+`);
+// root #1 1
+// foo 100 bar 2
+// root #2 1
 ```
 
 See
