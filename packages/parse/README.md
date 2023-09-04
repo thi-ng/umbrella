@@ -90,7 +90,7 @@ For Node.js REPL:
 const parse = await import("@thi.ng/parse");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.09 KB
 
 ## Dependencies
 
@@ -189,7 +189,7 @@ in order to decide about successful matching.
 Source:
 [/combinators](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/combinators)
 
-- `alt` / `altD`
+- `alt` / `altS` / `altD`
 - `check`
 - `expect`
 - `lookahead`
@@ -418,7 +418,9 @@ rule references in the grammar definition as well:
 [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 as a useful tool for processing/interpreting/compiling the result AST)
 
-```ts
+```ts tangle:export/readme-sexpr.ts
+import { defContext, defGrammar, print } from "@thi.ng/parse";
+
 // define language via grammar DSL
 // the upper-cased rule names are built-ins
 const lang = defGrammar(`
@@ -435,7 +437,7 @@ const ctx = defContext(`
 `);
 
 // parse & print AST
-print(lang.rules.expr)(ctx)
+print(lang!.rules.expr)(ctx);
 // expr: null
 //   list: null
 //     expr: null
@@ -461,7 +463,7 @@ print(lang.rules.expr)(ctx)
 // true
 
 // the two top-level s-expressions...
-ctx.children
+console.log(ctx.children);
 // [
 //   { id: 'list', state: null, children: [ [Object] ], result: null },
 //   { id: 'list', state: null, children: [ [Object] ], result: null }
@@ -470,28 +472,32 @@ ctx.children
 
 ### SVG path parser example
 
-```ts
+```ts tangle:export/readme-svg.ts
 import {
     INT, WS0,
-    alt, oneOf, seq, zeroOrMore,
-    collect, discard, xform,
-    defContext
+    alt, collect, defContext, discard,
+    oneOf, seq, xform, zeroOrMore
 } from "@thi.ng/parse";
 
 // whitespace parser
-// discard() removes results from AST
+// discard() removes matched result from AST
 const wsc = discard(zeroOrMore(oneOf(" ,")));
 
-// svg path parser rules
+// SVG path parser rules
 // collect() collects child results in array, then removes children
-// INT & WS0 are preset parsers (see section above)
+// INT & WS0 are preset parsers (see readme section above)
 const point = collect(seq([INT, wsc, INT]));
 const move = collect(seq([oneOf("Mm"), WS0, point, WS0]));
 const line = collect(seq([oneOf("Ll"), WS0, point, WS0]));
-const curve = collect(seq([oneOf("Cc"), WS0, point, wsc, point, wsc, point, WS0]));
+const curve = collect(
+    seq([oneOf("Cc"), WS0, point, wsc, point, wsc, point, WS0])
+);
 // xform used here to wrap result in array
 // (to produce same result format as parsers above)
-const close = xform(oneOf("Zz"), ($) => ($.result = [$.result], $));
+const close = xform(
+    oneOf("Zz"),
+    (scope) => ((scope!.result = [scope!.result]), scope)
+);
 
 // main path parser
 const path = collect(zeroOrMore(alt([move, line, curve, close])));
@@ -499,64 +505,125 @@ const path = collect(zeroOrMore(alt([move, line, curve, close])));
 // prepare parse context & reader
 const ctx = defContext("M0,1L2 3c4,5-6,7 8 9z");
 // parse input into AST
-path(ctx);
+console.log(path(ctx));
 // true
 
 // transformed result of AST root node
-ctx.result
-// [["M", [0, 1]], ["L", [2, 3]], ["c", [4, 5], [-6, 7], [8, 9]], ["z"]]
+console.log(ctx.result);
+// [
+//   [ 'M', [ 0, 1 ] ],
+//   [ 'L', [ 2, 3 ] ],
+//   [ 'c', [ 4, 5 ], [ -6, 7 ], [ 8, 9 ] ],
+//   [ 'z' ]
+// ]
 ```
 
 ### RPN parser & interpreter example
 
-```ts
+```ts tangle:export/readme-rpn.ts
+import type { Fn, FnN2 } from "@thi.ng/api";
 import {
     INT, WS0,
-    alt, oneOf, xform, zeroOrMore
-    defContext
+    alt, altS, defContext, xform, zeroOrMore
 } from "@thi.ng/parse";
 
-// data stack for execution
-const stack = [];
+type StackFn = Fn<number[], void>;
+type Op = { arity: number; fn: StackFn };
 
-// operator implementations
-const ops = {
-    "+": (a, b) => a + b,
-    "-": (a, b) => a - b,
-    "*": (a, b) => a * b,
-    "/": (a, b) => a / b,
+// wrapper for pure 2-arity stack functions/ops
+const defOp2 =
+    (fn: FnN2): StackFn =>
+    (stack) => {
+        const b = stack.pop()!;
+        const a = stack.pop()!;
+        stack.push(fn(a, b));
+    };
+
+// operator/word implementations
+const ops: Record<string, Op> = {
+    "+": { arity: 2, fn: defOp2((a, b) => a + b) },
+    "-": { arity: 2, fn: defOp2((a, b) => a - b) },
+    "*": { arity: 2, fn: defOp2((a, b) => a * b) },
+    "/": { arity: 2, fn: defOp2((a, b) => a / b) },
+    // prints top stack item to console
+    print: { arity: 1, fn: (stack) => console.log(stack.pop()) },
+    // duplicates top stack item
+    dup: { arity: 1, fn: (stack) => stack.push(stack[stack.length - 1]) },
+    // swaps two topmost stack items
+    swap: {
+        arity: 2,
+        fn: (stack) => {
+            const a = stack.pop()!;
+            const b = stack.pop()!;
+            stack.push(a, b);
+        },
+    },
 };
 
-// signed integer parser (using INT preset) with transform fn.
-// the user fn here is only used for pushing values on data stack
-// also, if a transform returns null, the parse scope will
-// be removed from the result AST
-const value = xform(INT, (scope) => {
-    stack.push(scope.result);
-    return null;
-});
+// simple RPN parser & interpreter runtime
+const interpret = (src: string, debug = true) => {
+    // data stack for execution
+    const stack: number[] = [];
 
-// parser for any of the registered operators (again w/ transform)
-// the transform here applies the op in RPN fashion to the data stack
-// stack underflow handling omitted for brevity
-const op = xform(oneOf(Object.keys(ops)), (scope) => {
-    const b = stack.pop();
-    const a = stack.pop();
-    stack.push(ops[scope.result](a, b));
-    return null;
-});
+    // signed integer parser (using INT preset) with transform fn.
+    // the user fn here is only used for pushing values on data stack
+    // also, if a transform returns null, the parse scope will
+    // be removed from the result AST
+    const value = xform(INT, (scope) => {
+        stack.push(scope!.result);
+        return null;
+    });
 
-// parser for complete RPN program, combines above two parsers
-// and the whitespace preset as alternatives
-const program = zeroOrMore(alt([value, op, WS0]))
+    // parser (with transform) for any of the registered operators
+    // the transform here applies the op in RPN fashion to the data stack
+    // stack underflow handling omitted for brevity
+    const op = xform(altS(Object.keys(ops)), (scope) => {
+        const id = scope!.result;
+        const { arity, fn } = ops[id];
+        if (debug) console.log(id, stack);
+        if (stack.length < arity) {
+            throw new Error(
+                "stack underflow " +
+                `("${id}" needs ${arity} args, got ${JSON.stringify(stack)})`
+            );
+        }
+        fn(stack);
+        return null;
+    });
 
-// prepare parser context (incl. reader) and execute
-program(defContext("10 5 3 * + -2 * 10 /"));
+    // parser for complete RPN program, combines above two parsers
+    // and the whitespace preset as alternatives
+    const program = zeroOrMore(alt([value, op, WS0]));
+    // apply parser to source code
+    program(defContext(src));
+    // return result stack
+    return stack;
+};
 
-// print result data stack, i.e. result of:
-// (3 * 5 + 10) * -2 / 10 (in infix notation)
-console.log(stack);
-// [-5]
+// checking operator arity
+try { interpret("1 +"); } catch (e) { console.warn(e); }
+// Error: stack underflow ("+" needs 2 args, got [1])
+
+// execute: (3 * 5 + 10) * -2 / 10 (in infix notation)
+interpret("10 5 3 * + -2 * 10 / print");
+// * [ 10, 5, 3 ]
+// + [ 10, 15 ]
+// * [ 25, -2 ]
+// / [ -50, 10 ]
+// print [ -5 ]
+// -5
+
+// execute: ((5 + 3)**2) / 2) - (5 + 3)**2
+interpret("5 3 + dup * dup 2 / swap - print");
+// + [ 5, 3 ]
+// dup [ 8 ]
+// * [ 8, 8 ]
+// dup [ 64 ]
+// / [ 64, 64, 2 ]
+// swap [ 64, 32 ]
+// - [ 32, 64 ]
+// print [ -32 ]
+// -32
 ```
 
 ## Authors
