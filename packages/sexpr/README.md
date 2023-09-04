@@ -171,14 +171,9 @@ parse(`(* (+ 3 5) 10)`);
 ```ts tangle:export/readme.ts
 import type { Fn, Fn2 } from "@thi.ng/api";
 import { DEFAULT, defmulti, type MultiFn3 } from "@thi.ng/defmulti";
-import { assert } from "@thi.ng/errors";
 import {
-    parse,
-    runtime,
-    type ASTNode,
-    type Expression,
-    type Implementations,
-    type Sym,
+    parse, runtime,
+    type ASTNode, type Expression, type Implementations, type Sym
 } from "@thi.ng/sexpr";
 
 // evaluator: parses given source string into an abstract syntax tree (AST) and
@@ -195,8 +190,10 @@ const interpret = runtime<Implementations<any, any>, any, any>({
     // for expression nodes (aka function calls) delegate to builtins
     // (implementations are defined further below)
     expr: (x, env) => builtins(<Sym>x.children[0], x.children, env),
+
     // lookup symbol's value (via its name) in environment
     sym: (x, env) => env[x.value],
+
     // strings and numbers evaluate verbatim
     str: (x) => x.value,
     num: (x) => x.value,
@@ -235,17 +232,19 @@ builtins.addAll({
     "*": mathOp((acc, x) => acc * x, (x) => x),
     "-": mathOp((acc, x) => acc - x, (x) => -x),
     "/": mathOp((acc, x) => acc / x, (x) => 1 / x),
+
     // count returns the length of first argument (presumably a string)
     // (e.g. `(count "abc")` => 3)
     count: (_, [__, arg], env) => interpret(arg, env).length,
+
     // concatenates all args into a space-separated string and prints it
     // returns undefined
-    print: (_, [__, ...args], env) =>
-        console.log(evalArgs(args, env).join(" ")),
+    print: (_, [__, ...args], env) => console.log(evalArgs(args, env).join(" ")),
+
     // defines as new symbol with given value, stores it in the environment and
     // then returns the value, e.g. `(def magic 42)`
-    def: (_, [__, name, value], env) =>
-        (env[(<Sym>name).value] = interpret(value, env)),
+    def: (_, [__, name, value], env) => (env[(<Sym>name).value] = interpret(value, env)),
+
     // defines a new function with given name, args and body, stores it in the
     // environment and returns it, e.g. `(defn madd (a b c) (+ (* a b) c))`
     defn: (_, [__, name, args, ...body], env) => {
@@ -261,14 +260,18 @@ builtins.addAll({
             return body.reduce((_, x) => interpret(x, $env), <any>undefined);
         });
     },
+
     // add default/fallback implementation to allow calling functions defined in
     // the environment (either externally or via `defn`)
     [DEFAULT]: (x: ASTNode, [_, ...args]: ASTNode[], env: any) => {
-        const f = env[(<Sym>x).value];
-        assert(!!f, "missing impl");
+        const name = (<Sym>x).value;
+        const f = env[name];
+        if (!f) throw new Error(`missing impl for: ${name}`);
         return f.apply(null, evalArgs(args, env));
     },
 });
+
+// testing our toy Lisp DSL...
 
 // define symbol and use in another expression
 $eval(`(def chars "abc") (print (count chars) "characters")`);
