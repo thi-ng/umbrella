@@ -170,7 +170,7 @@ parse(`(* (+ 3 5) 10)`);
 
 ```ts tangle:export/readme.ts
 import type { Fn, Fn2 } from "@thi.ng/api";
-import { DEFAULT, defmulti, type MultiFn3 } from "@thi.ng/defmulti";
+import { DEFAULT, defmulti, type MultiFn2 } from "@thi.ng/defmulti";
 import {
     parse, runtime,
     type ASTNode, type Expression, type Implementations, type Sym
@@ -189,7 +189,7 @@ const $eval = (src: string, env: any = {}) =>
 const interpret = runtime<Implementations<any, any>, any, any>({
     // for expression nodes (aka function calls) delegate to builtins
     // (implementations are defined further below)
-    expr: (x, env) => builtins(<Sym>x.children[0], x.children, env),
+    expr: (x, env) => builtins(x.children, env),
 
     // lookup symbol's value (via its name) in environment
     sym: (x, env) => env[x.value],
@@ -202,11 +202,12 @@ const interpret = runtime<Implementations<any, any>, any, any>({
 // another multiple-dispatch function for DSL builtins. we will call this
 // function for each S-expression node and it will delegate to the actual impl
 // based on the expression's first item (i.e. a symbol/fn name)
-const builtins: MultiFn3<Sym, ASTNode[], any, any> = defmulti((x) => x.value);
+const builtins: MultiFn2<ASTNode[], any, any> = defmulti((x) => x[0].value);
 
 // helper function which interprets all given AST nodes and returns an array of
 // their result values
-const evalArgs = (nodes: ASTNode[], env: any) => nodes.map((a) => interpret(a, env));
+const evalArgs = (nodes: ASTNode[], env: any) =>
+    nodes.map((a) => interpret(a, env));
 
 // helper function for basic math ops variable arity.
 // with 2+ args: (+ 1 2 3 4) => 10
@@ -217,7 +218,7 @@ const evalArgs = (nodes: ASTNode[], env: any) => nodes.map((a) => interpret(a, e
 // `(/ 2)` => 1 / 2 => 0.5
 const mathOp =
     (fn: Fn2<number, number, number>, fn1: Fn<number, number>) =>
-    (_: ASTNode, [__, ...args]: ASTNode[], env: any) => {
+    ([_, ...args]: ASTNode[], env: any) => {
         const first = interpret(args[0], env);
         return args.length > 1
             ? // use a reduction for 2+ args
@@ -228,26 +229,39 @@ const mathOp =
 
 // implementations of built-in core functions
 builtins.addAll({
-    "+": mathOp((acc, x) => acc + x, (x) => x),
-    "*": mathOp((acc, x) => acc * x, (x) => x),
-    "-": mathOp((acc, x) => acc - x, (x) => -x),
-    "/": mathOp((acc, x) => acc / x, (x) => 1 / x),
+    "+": mathOp(
+        (acc, x) => acc + x,
+        (x) => x
+    ),
+    "*": mathOp(
+        (acc, x) => acc * x,
+        (x) => x
+    ),
+    "-": mathOp(
+        (acc, x) => acc - x,
+        (x) => -x
+    ),
+    "/": mathOp(
+        (acc, x) => acc / x,
+        (x) => 1 / x
+    ),
 
     // count returns the length of first argument (presumably a string)
     // (e.g. `(count "abc")` => 3)
-    count: (_, [__, arg], env) => interpret(arg, env).length,
+    count: ([_, arg], env) => interpret(arg, env).length,
 
     // concatenates all args into a space-separated string and prints it
     // returns undefined
-    print: (_, [__, ...args], env) => console.log(evalArgs(args, env).join(" ")),
+    print: ([_, ...args], env) => console.log(evalArgs(args, env).join(" ")),
 
     // defines as new symbol with given value, stores it in the environment and
     // then returns the value, e.g. `(def magic 42)`
-    def: (_, [__, name, value], env) => (env[(<Sym>name).value] = interpret(value, env)),
+    def: ([_, name, value], env) =>
+        (env[(<Sym>name).value] = interpret(value, env)),
 
     // defines a new function with given name, args and body, stores it in the
     // environment and returns it, e.g. `(defn madd (a b c) (+ (* a b) c))`
-    defn: (_, [__, name, args, ...body], env) => {
+    defn: ([_, name, args, ...body], env) => {
         // create new vararg function in env
         return (env[(<Sym>name).value] = (...xs: any[]) => {
             // create new local env with arguments bound to named function args
@@ -263,7 +277,7 @@ builtins.addAll({
 
     // add default/fallback implementation to allow calling functions defined in
     // the environment (either externally or via `defn`)
-    [DEFAULT]: (x: ASTNode, [_, ...args]: ASTNode[], env: any) => {
+    [DEFAULT]: ([x, ...args]: ASTNode[], env: any) => {
         const name = (<Sym>x).value;
         const f = env[name];
         if (!f) throw new Error(`missing impl for: ${name}`);
@@ -281,6 +295,7 @@ $eval(`(def chars "abc") (print (count chars) "characters")`);
 $eval(`(defn madd (a b c) (+ (* a b) c)) (print (madd 3 5 (* 5 2)))`);
 // 25
 
+// pre-define function via environment, then use in DSL
 $eval(`(print (join " | " (+ 1 2) (* 3 4) (- 5 6) (/ 7 8)))`, {
     join: (sep: string, ...xs: any[]) => xs.join(sep),
 });
