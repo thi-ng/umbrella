@@ -159,6 +159,7 @@ code (and sometimes with visual outputs/results).
 - [011: 2D cellular automata as WebGL2 multi-pass shader pipeline](https://mastodon.thi.ng/@toxi/110983734311624640)
 - [012: Pure CSS image transition/reveal with thi.ng/hiccup-css](https://mastodon.thi.ng/@toxi/110995613345369326)
 - [013: Lisp interpreter using thi.ng/sexpr & thi.ng/defmulti](https://mastodon.thi.ng/@toxi/111006345413482231)
+- [014: A simple browser REPL for a Lispy mini language](https://mastodon.thi.ng/@toxi/111012777135967117)
 
 ## Blog posts
 
