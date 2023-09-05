@@ -1,0 +1,44 @@
+{
+	"name": "@example/lispy-repl",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Browser REPL for a Lispy S-expression based mini language",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
+	},
+	"dependencies": {
+		"@thi.ng/api": "workspace:^",
+		"@thi.ng/arrays": "workspace:^",
+		"@thi.ng/checks": "workspace:^",
+		"@thi.ng/defmulti": "workspace:^",
+		"@thi.ng/errors": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/sexpr": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"defmulti",
+			"hiccup-html",
+			"rdom",
+			"rstream",
+			"sexpr",
+			"transducers"
+		],
+		"screenshot": "examples/lispy-repl.png"
+	}
+}
