@@ -2,14 +2,22 @@ import { download } from "@thi.ng/dl-asset";
 import { adsr, product } from "@thi.ng/dsp";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";
 import { fiber, timeSliceIterable } from "@thi.ng/fibers";
-import { U32 } from "@thi.ng/hex";
 import { $compile } from "@thi.ng/rdom";
 import { reactive } from "@thi.ng/rstream";
-import { take } from "@thi.ng/transducers";
+import { U32, float, percent } from "@thi.ng/strings";
+import { map, take, throttleTime } from "@thi.ng/transducers";
 import { FS, SEED, Sequencer, randomizeSeed } from "./audio";
 
+interface Progress {
+	total: number;
+	rate: number;
+}
+
+// number of milliseconds per processing slice
+const TIME_SLICE = 16;
+
 // reactive state values
-const progress = reactive(0);
+const progress = reactive<Progress>({ total: 0, rate: 0 });
 const seed = reactive(SEED);
 
 // run audio generation as fiber/co-routine as alternative to having to use a
@@ -47,22 +55,31 @@ const generateAudio = (duration: number) =>
 			(chunk) => {
 				samples.set(chunk, offset);
 				offset += chunk.length;
-				progress.next(offset / duration);
+				progress.next({ total: offset / duration, rate: chunk.length });
 			},
-			// time slice duration
-			16
+			// time slice duration (~60 fps)
+			TIME_SLICE
 		);
 		// convert raw audio into WAV byte array & trigger file download
 		download(
-			`audio-${Date.now()}.wav`,
+			`audio-0x${U32(SEED)}.wav`,
 			wavByteArray(
 				{ sampleRate: FS, channels: 1, length: duration, bits: 16 },
 				samples
 			)
 		);
 		// reset progress
-		progress.next(0);
+		progress.next({ total: 0, rate: 0 });
 	}).run();
+
+// format progress & derived stats
+const formatProgress = ({ total, rate }: Progress) => {
+	if (!total) return "";
+	const perSecond = rate * (1000 / TIME_SLICE);
+	return `${percent(0)(total)} @ ~${~~(
+		perSecond / 1000
+	)}k samples/sec (${float(1)(perSecond / FS)}x realtime)`;
+};
 
 // create & mount minimal UI/DOM (given in thi.ng/hiccup format)
 $compile([
@@ -74,7 +91,7 @@ $compile([
 		{
 			onclick: () => generateAudio(60),
 			// disable button during rendering
-			disabled: progress.map((x) => x > 0),
+			disabled: progress.map(({ total }) => total > 0),
 		},
 		"Render audio",
 	],
@@ -83,12 +100,19 @@ $compile([
 		{
 			onclick: () => seed.next(randomizeSeed()),
 			// disable button during rendering
-			disabled: progress.map((x) => x > 0),
+			disabled: progress.map(({ total }) => total > 0),
 		},
 		"Randomize seed",
 	],
 	// display seed as formatted hex value
-	["span.ml2", {}, seed.map((x) => `0x${U32(x)}`)],
+	["code.ml2.f7", {}, seed.map((x) => `seed: 0x${U32(x)}`)],
 	// progress bar widget will auto-update via reactive `progess` state value
-	["progress.db.mv2.w-100", { value: progress }],
+	["progress.db.mv2.w-100", { value: progress.map((x) => x.total) }],
+	[
+		"div.mb4.code.f7",
+		{},
+		// display progress details, but at throttled framerate (4fps)
+		// (to avoid flickering text)
+		progress.transform(throttleTime(250), map(formatProgress)),
+	],
 ]).mount(document.getElementById("app")!);
