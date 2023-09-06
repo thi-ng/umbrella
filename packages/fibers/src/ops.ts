@@ -1,4 +1,4 @@
-import type { Fn0, Nullable, Predicate } from "@thi.ng/api";
+import type { Fn, Fn0, Nullable, Predicate } from "@thi.ng/api";
 import { shuffle as $shuffle } from "@thi.ng/arrays/shuffle";
 import { now, timeDiff } from "@thi.ng/bench/now";
 import type { IRandom } from "@thi.ng/random";
@@ -155,6 +155,53 @@ export const timeSlice = (
 				if ($fiber.state > STATE_ACTIVE || $fiber.next() > STATE_ACTIVE)
 					return;
 			} while (timeDiff(t0, now()) < maxTime);
+			yield;
+		}
+	}, opts);
+
+/**
+ * Similar to {@link timeSlice}, but for consuming the given iterable in a
+ * time-sliced manner. With each fiber update consumes & buffers values from
+ * `src` in chunks for `maxTime` milliseconds, then passes recorded chunk to
+ * given `consume` function in order to process these values further.
+ *
+ * @example
+ * ```ts
+ * import { range } from "@this.ng/transducers";
+ *
+ * // consume & batch process iterable in 16ms time slices
+ * timeSliceIterable(
+ *   range(1_000_000),
+ *   (chunk) => console.log(chunk),
+ *   16
+ * ).run();
+ * ```
+ *
+ * @param src
+ * @param consume
+ * @param maxTime
+ * @param opts
+ */
+export const timeSliceIterable = <T>(
+	src: Iterable<T>,
+	consume: Fn<T[], void>,
+	maxTime: number,
+	opts?: Partial<FiberOpts>
+) =>
+	fiber(function* () {
+		const iter = src[Symbol.iterator]();
+		while (true) {
+			let t0 = now();
+			const buf: T[] = [];
+			do {
+				const { value, done } = iter.next();
+				if (done) {
+					consume(buf);
+					return;
+				}
+				buf.push(value);
+			} while (timeDiff(t0, now()) < maxTime);
+			consume(buf);
 			yield;
 		}
 	}, opts);
