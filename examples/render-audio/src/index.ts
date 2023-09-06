@@ -64,7 +64,7 @@ const generateAudio = (duration: number) =>
 		progress.next(0);
 	}).run();
 
-// create & mount minimal UI/DOM
+// create & mount minimal UI/DOM (given in thi.ng/hiccup format)
 $compile([
 	"div",
 	{},

@@ -16,7 +16,7 @@ import {
 } from "@thi.ng/dsp";
 import { clamp11 } from "@thi.ng/math";
 import { SYSTEM, XsAdd, pickRandom } from "@thi.ng/random";
-import { map, range } from "@thi.ng/transducers";
+import { repeatedly } from "@thi.ng/transducers";
 
 // sample frequency/rate (in Hz)
 export const FS = 44100;
@@ -59,28 +59,30 @@ export class Sequencer extends AGen<number> {
 		const numNotes = SCALE.length;
 		const noteRange = numOctaves * numNotes;
 		const maxGain = 4 / noteRange;
+		// instantiate a voice for every note in the defined scale & range
 		this.voices = [
-			...map(
+			...repeatedly(
 				(i) =>
 					new Voice(
 						freqForScaleTone(i + baseOctave * numNotes),
 						maxGain
 					),
-				range(noteRange)
+				noteRange
 			),
 		];
-		// LFO for modulating attack length
+		// Sine LFO for slowly modulating attack length
 		this.attackLFO = osc(sin, 0.1 / FS, 0.15 * FS, 0.15 * FS);
 	}
 
+	// produce next sample, combining all voices
 	next() {
 		// always read next value from LFO
 		const attackTime = this.attackLFO.next();
 		// only tiny chance of new note/voice trigger per frame
-		// (`N / FS` means statistically N triggers per second)
+		// (`N / FS` statistically triggers up to N notes per second)
 		if (RND.probability(this.probability)) {
+			// attempt to choose a random free(!) voice
 			for (let i = this.voices.length * 2; i-- > 0; ) {
-				// choose a random free(!) voice
 				const voice = pickRandom(this.voices, RND);
 				if (voice.isFree(this.time)) {
 					// reset & play note
@@ -90,7 +92,7 @@ export class Sequencer extends AGen<number> {
 			}
 		}
 		this.time++;
-		// mixdown all voices & clamp to [-1..1] interval
+		// mixdown all voices & clamp result to [-1..1] interval
 		return clamp11(
 			this.voices.reduce((acc, voice) => acc + voice.gen.next(), 0)
 		);
@@ -154,7 +156,7 @@ class Voice {
 		this.lastTrigger = time;
 	}
 
-	// returns true if voice is playable again (here arbitrarily after 0.5 seconds)
+	// returns true if voice is playable again (here arbitrarily after 0.5 secs)
 	isFree(time: number) {
 		return time - this.lastTrigger > 0.5 * FS;
 	}
