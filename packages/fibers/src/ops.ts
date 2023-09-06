@@ -67,7 +67,7 @@ export const sequence = (
  * Also see {@link withTimeout}, {@link all}.
  *
  * @example
- * ```ta
+ * ```ts
  * // wait until mouse click for max 5 seconds
  * const res = yield* first([
  *   untilEvent(window, "click", { id: "click" }),
