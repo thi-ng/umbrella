@@ -376,7 +376,7 @@ For Node.js REPL:
 const fibers = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.27 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.33 KB
 
 ## Dependencies
 
@@ -402,6 +402,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/> | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>   | Fiber-based cooperative multitasking basics                       | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>    | Barnsley fern IFS fractal renderer                                | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>   | Generative audio synth offline renderer and WAV file export       | [Demo](https://demo.thi.ng/umbrella/render-audio/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)   |
 
 ## API
 
