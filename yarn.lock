@@ -1557,6 +1557,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/render-audio@workspace:examples/render-audio":
+  version: 0.0.0-use.local
+  resolution: "@example/render-audio@workspace:examples/render-audio"
+  dependencies:
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/dsp-io-wav": "workspace:^"
+    "@thi.ng/fibers": "workspace:^"
+    "@thi.ng/hex": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/rotating-voronoi@workspace:examples/rotating-voronoi":
   version: 0.0.0-use.local
   resolution: "@example/rotating-voronoi@workspace:examples/rotating-voronoi"
@@ -3331,7 +3350,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/dsp-io-wav@^2.1.62, @thi.ng/dsp-io-wav@workspace:packages/dsp-io-wav":
+"@thi.ng/dsp-io-wav@^2.1.62, @thi.ng/dsp-io-wav@workspace:^, @thi.ng/dsp-io-wav@workspace:packages/dsp-io-wav":
   version: 0.0.0-use.local
   resolution: "@thi.ng/dsp-io-wav@workspace:packages/dsp-io-wav"
   dependencies:
