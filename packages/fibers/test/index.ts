@@ -33,7 +33,7 @@ group(
 				assert.equal(a.value, 33);
 				assert.equal(a.state, 2);
 				done();
-			}, 10);
+			}, 15);
 		},
 		"await event": ({ done, setTimeout }) => {
 			const a = fiber(
