@@ -39,24 +39,36 @@ export const additive = (
 };
 
 /**
+ * Returns a {@link StatelessOscillator} which constructs a square waveform from
+ * `n` partials. If `useGibbs` is true (default), also applies {@link gibbs} to
+ * each partial.
+ *
+ * @remarks
  * Interactive graph of this oscillator:
  * https://www.desmos.com/calculator/irugw6gnhy
  *
- * @param n - number of octaves
+ * @param n - number of partials
+ * @param useGibbs -
  */
-export const squareAdditive = (n = 8) =>
+export const squareAdditive = (n = 8, useGibbs = true) =>
 	additive(
 		sin,
 		(i) => 2 * (i - 1) + 1,
-		(i) => (1 / (2 * (i - 1) + 1)) * gibbs(n, i),
+		(i) => (1 / (2 * (i - 1) + 1)) * (useGibbs ? gibbs(n, i) : 1),
 		n
 	);
 
 /**
+ * Returns a {@link StatelessOscillator} which constructs a sawtooth waveform
+ * from `n` partials. If `useGibbs` is true (default), also applies
+ * {@link gibbs} to each partial.
+ *
+ * @remarks
  * Interactive graph of this oscillator:
  * https://www.desmos.com/calculator/irugw6gnhy
  *
- * @param n - number of octaves
+ * @param n - number of partials
+ * @param useGibbs -
  */
-export const sawAdditive = (n = 8) =>
-	additive(sin, identity, (i) => (1 / i) * gibbs(n, i), n);
+export const sawAdditive = (n = 8, useGibbs = true) =>
+	additive(sin, identity, (i) => (1 / i) * (useGibbs ? gibbs(n, i) : 1), n);

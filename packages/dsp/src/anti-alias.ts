@@ -4,7 +4,7 @@ import { HALF_PI } from "@thi.ng/math/api";
 /**
  * Reference:
  * - https://en.wikipedia.org/wiki/Gibbs_phenomenon
- * - http://www.musicdsp.org/files/bandlimited.pdf
+ * - https://web.archive.org/web/20031210115616/http://www.musicdsp.org/files/bandlimited.pdf
  *
  * [Interactive graph](https://www.desmos.com/calculator/irugw6gnhy)
  *
