@@ -2,11 +2,23 @@ import { download } from "@thi.ng/dl-asset";
 import { adsr, product } from "@thi.ng/dsp";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";
 import { fiber, timeSliceIterable } from "@thi.ng/fibers";
-import { $compile } from "@thi.ng/rdom";
-import { reactive } from "@thi.ng/rstream";
+import {
+	progress as $progress,
+	button,
+	div,
+	h1,
+	inputRange,
+	option,
+	select,
+	span,
+	type InputNumericAttribs,
+} from "@thi.ng/hiccup-html";
+import { SYSTEM } from "@thi.ng/random";
+import { $compile, $inputNum } from "@thi.ng/rdom";
+import { reactive, type ISubscription } from "@thi.ng/rstream";
 import { U32, float, percent } from "@thi.ng/strings";
 import { map, take, throttleTime } from "@thi.ng/transducers";
-import { FS, SEED, Sequencer, randomizeSeed } from "./audio";
+import { FS, Sequencer } from "./audio";
 
 interface Progress {
 	total: number;
@@ -18,17 +30,24 @@ const TIME_SLICE = 16;
 
 // reactive state values
 const progress = reactive<Progress>({ total: 0, rate: 0 });
-const seed = reactive(SEED);
+const seed = reactive(0xdecafbad);
+const duration = reactive(60);
+const octaves = reactive(4);
+const bpm = reactive(120);
+const noteLength = reactive(0.5);
+const probability = reactive(0.65);
 
 // run audio generation as fiber/co-routine as alternative to having to use a
 // worker in order to not freeze the main browser UI due to long running task.
-// (generating 60 secs of audio takes ~20-25 secs on my MBA M1 2021)
-const generateAudio = (duration: number) =>
+// (with the default settings, generating 60 secs of audio takes ~7-8 secs on my
+// MBA M1 2021). the fiber uses a time slice operator to break up the generation
+// into chunks of 16ms...
+const generateAudio = () =>
 	fiber(function* () {
 		// convert seconds to samples
-		duration *= FS;
+		const numSamples = duration.deref()! * FS;
 		// pre-allocate sample buffer
-		let samples = new Float32Array(duration);
+		let samples = new Float32Array(numSamples);
 		let offset = 0;
 		// render audio in a time-sliced manner of 16ms chunks.
 		// using `yield*` here will cause the main fiber to wait until
@@ -36,16 +55,26 @@ const generateAudio = (duration: number) =>
 		yield* timeSliceIterable(
 			// only take required number of samples (from infinite sequence)
 			take(
-				duration,
+				numSamples,
 				// combine generated audio with a global envelope to fade
 				// everything in & out at beginning/end
 				product(
-					new Sequencer(1, 4, 4 / FS),
+					new Sequencer({
+						baseOctave: 1,
+						numOctaves: octaves.deref()!,
+						bpm: bpm.deref()!,
+						noteLength: noteLength.deref()!,
+						seed: seed.deref()!,
+						probability: probability.deref()!,
+					}),
+					// global volume envelope, configured to user defined
+					// duration with fade in/out
 					adsr({
 						a: 3 * FS,
-						acurve: 10000,
-						slen: 54 * FS,
 						r: 3 * FS,
+						slen: (duration.deref()! - 6) * FS,
+						acurve: 10000,
+						dcurve: 10000,
 					})
 				)
 			),
@@ -55,16 +84,27 @@ const generateAudio = (duration: number) =>
 			(chunk) => {
 				samples.set(chunk, offset);
 				offset += chunk.length;
-				progress.next({ total: offset / duration, rate: chunk.length });
+				progress.next({
+					total: offset / numSamples,
+					rate: chunk.length,
+				});
 			},
-			// time slice duration (~60 fps)
+			// time slice duration (default is ~60 fps)
 			TIME_SLICE
 		);
-		// convert raw audio into WAV byte array & trigger file download
+		// trigger file download
 		download(
-			`audio-0x${U32(SEED)}.wav`,
+			// format filename from params
+			[
+				U32(seed.deref()!),
+				bpm.deref() + "bpm",
+				4 / noteLength.deref()! + "th",
+				octaves.deref() + "oct",
+				probability.deref()! + "prob",
+			].join("-") + ".wav",
+			// file body: convert raw audio into WAV byte array
 			wavByteArray(
-				{ sampleRate: FS, channels: 1, length: duration, bits: 16 },
+				{ sampleRate: FS, channels: 1, length: numSamples, bits: 16 },
 				samples
 			)
 		);
@@ -81,38 +121,92 @@ const formatProgress = ({ total, rate }: Progress) => {
 	)}k samples/sec (${float(1)(perSecond / FS)}x realtime)`;
 };
 
-// create & mount minimal UI/DOM (given in thi.ng/hiccup format)
-$compile([
-	"div",
-	{},
-	["h1", {}, "Stochastic sequencer"],
-	[
-		"button",
-		{
-			onclick: () => generateAudio(60),
-			// disable button during rendering
-			disabled: progress.map(({ total }) => total > 0),
-		},
-		"Render audio",
-	],
-	[
-		"button.ml2",
-		{
-			onclick: () => seed.next(randomizeSeed()),
-			// disable button during rendering
-			disabled: progress.map(({ total }) => total > 0),
-		},
-		"Randomize seed",
-	],
-	// display seed as formatted hex value
-	["code.ml2.f7", {}, seed.map((x) => `seed: 0x${U32(x)}`)],
-	// progress bar widget will auto-update via reactive `progess` state value
-	["progress.db.mv2.w-100", { value: progress.map((x) => x.total) }],
-	[
-		"div.mb4.code.f7",
+const slider = (
+	sub: ISubscription<number, number>,
+	attribs: Partial<InputNumericAttribs>,
+	...label: any[]
+) =>
+	div(
+		".mt2",
 		{},
-		// display progress details, but at throttled framerate (4fps)
-		// (to avoid flickering text)
-		progress.transform(throttleTime(250), map(formatProgress)),
-	],
-]).mount(document.getElementById("app")!);
+		inputRange(".w-50", {
+			...attribs,
+			value: sub,
+			oninput: $inputNum(sub),
+		}),
+		span(".ml2", {}, ...label)
+	);
+
+// create & mount minimal UI/DOM (given in thi.ng/hiccup format)
+$compile(
+	div(
+		".w-100.w-50-l",
+		{},
+		h1({}, "Stochastic sequencer"),
+		slider(
+			duration,
+			{ min: 10, max: 300, step: 10 },
+			"duration: ",
+			duration,
+			" seconds"
+		),
+		slider(bpm, { min: 60, max: 160, step: 1 }, "tempo: ", bpm, " bpm"),
+		div(
+			".mt2",
+			{},
+			select(
+				".w-50",
+				{ onchange: $inputNum(noteLength) },
+				option({ value: 1 }, "1/4"),
+				option({ value: 0.5, selected: true }, "1/8"),
+				option({ value: 0.25 }, "1/16")
+			),
+			span(".ml2", {}, "note length")
+		),
+		slider(octaves, { min: 1, max: 4, step: 1 }, "octaves: ", octaves),
+		slider(
+			probability,
+			{
+				min: 0.2,
+				max: 1,
+				step: 0.05,
+			},
+			"probability: ",
+			probability.map(float(2))
+		),
+		slider(
+			seed,
+			{
+				min: 1,
+				max: 0xffff_ffff,
+				step: 1,
+			},
+			seed.map((x) => `seed: 0x${U32(x)}`)
+		),
+		button(
+			".mt2.w-50.db",
+			{
+				onclick: () => seed.next(SYSTEM.int()),
+			},
+			"Randomize seed"
+		),
+		button(
+			".mt4.w-100.db",
+			{
+				onclick: generateAudio,
+				// disable button during rendering
+				disabled: progress.map(({ total }) => total > 0),
+			},
+			"Render audio"
+		),
+		// progress bar widget will auto-update via reactive `progess` state value
+		$progress(".db.mv2.w-100", { value: progress.map((x) => x.total) }),
+		div(
+			".mb4.code.f7",
+			{},
+			// display formatted progress details, but at throttled framerate (4pfs)
+			// to avoid flickering text
+			progress.transform(throttleTime(250), map(formatProgress))
+		)
+	)
+).mount(document.getElementById("app")!);
