@@ -16,7 +16,7 @@ import {
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $inputNum } from "@thi.ng/rdom";
 import { reactive, type ISubscription } from "@thi.ng/rstream";
-import { U32, float, percent } from "@thi.ng/strings";
+import { U32, defFormat, float, int, percent } from "@thi.ng/strings";
 import { map, take, throttleTime } from "@thi.ng/transducers";
 import { FS, Sequencer } from "./audio";
 
@@ -37,6 +37,34 @@ const bpm = reactive(120);
 const noteLength = reactive(0.5);
 const probability = reactive(0.65);
 
+// formatting template/function for displaying progress info
+const fmtProgress = defFormat([
+	percent(),
+	" @ ~",
+	int,
+	"k samples/sec (",
+	float(1),
+	"x realtime)",
+]);
+
+// formatting template/function for WAV filename
+// the different partials are used to format various synth params
+const fmtFilename = defFormat([
+	U32,
+	"-",
+	int,
+	"sec-",
+	int,
+	"bpm-",
+	int,
+	"th-",
+	int,
+	"oct-",
+	float(2),
+	"prob",
+	".wav",
+]);
+
 // run audio generation as fiber/co-routine as alternative to having to use a
 // worker in order to not freeze the main browser UI due to long running task.
 // (with the default settings, generating 60 secs of audio takes ~7-8 secs on my
@@ -49,9 +77,9 @@ const generateAudio = () =>
 		// pre-allocate sample buffer
 		let samples = new Float32Array(numSamples);
 		let offset = 0;
-		// render audio in a time-sliced manner of 16ms chunks.
-		// using `yield*` here will cause the main fiber to wait until
-		// this render sub-process is complete
+		// render audio in a time-sliced manner of chunks of `TIME_SLICE`
+		// milliseconds. using `yield*` here will cause the main fiber to wait
+		// until this render sub-process is complete
 		yield* timeSliceIterable(
 			// only take required number of samples (from infinite sequence)
 			take(
@@ -95,13 +123,14 @@ const generateAudio = () =>
 		// trigger file download
 		download(
 			// format filename from params
-			[
-				U32(seed.deref()!),
-				bpm.deref() + "bpm",
-				4 / noteLength.deref()! + "th",
-				octaves.deref() + "oct",
-				probability.deref()! + "prob",
-			].join("-") + ".wav",
+			fmtFilename(
+				seed.deref(),
+				duration.deref(),
+				bpm.deref(),
+				4 / noteLength.deref()!,
+				octaves.deref(),
+				probability.deref()
+			),
 			// file body: convert raw audio into WAV byte array
 			wavByteArray(
 				{ sampleRate: FS, channels: 1, length: numSamples, bits: 16 },
@@ -116,9 +145,7 @@ const generateAudio = () =>
 const formatProgress = ({ total, rate }: Progress) => {
 	if (!total) return "";
 	const perSecond = rate * (1000 / TIME_SLICE);
-	return `${percent(0)(total)} @ ~${~~(
-		perSecond / 1000
-	)}k samples/sec (${float(1)(perSecond / FS)}x realtime)`;
+	return fmtProgress(total, perSecond / 1000, perSecond / FS);
 };
 
 const slider = (
