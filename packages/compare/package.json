@@ -72,6 +72,9 @@
 		"./numeric": {
 			"default": "./numeric.js"
 		},
+		"./ops": {
+			"default": "./ops.js"
+		},
 		"./reverse": {
 			"default": "./reverse.js"
 		}
