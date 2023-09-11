@@ -1,19 +1,25 @@
-import type { Fn2, Predicate } from "@thi.ng/api";
+import type { Fn2, Nullable, Predicate } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isSet } from "@thi.ng/checks/is-set";
+import { compare } from "@thi.ng/compare/compare";
+import { compareByKey } from "@thi.ng/compare/keys";
+import { reverse } from "@thi.ng/compare/reverse";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { equiv } from "@thi.ng/equiv";
 import type {
+	ArrayQueryFn,
 	FTerm,
 	KeyQueryFn,
 	KeyQueryOpts,
+	MultiQueryOpts,
 	OTerm,
 	QueryFn,
 	QueryImpl,
 	QueryImpls,
 	QueryObj,
 	QueryOpts,
+	QueryTerm,
 	QueryType,
 	SPInputTerm,
 	SPTerm,
@@ -474,4 +480,49 @@ export const defKeyQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
 			return out;
 		}
 	});
+};
+
+/**
+ * Multi-term query function for collections (arrays) of {@link QueryObj}ects.
+ * Takes a number of {@link QueryTerm}s and matches each term in succession
+ * against the array of results of the previous terms (i.e. each sub-query is
+ * potentially further narrowing the result set). Returns final results,
+ * possibly post-processed, depending on given options.
+ *
+ * @remarks
+ * Each {@link QueryTerm} can provide its own options and post-processing
+ * function. Furthermore, global post-processing (e.g. limiting number of final
+ * results, sorting by key) can be configured via `opts`.
+ *
+ * @param db
+ * @param terms
+ * @param opts
+ */
+export const query = <T extends QueryObj = QueryObj>(
+	db: T[],
+	terms: Nullable<QueryTerm<T>>[],
+	opts: Partial<MultiQueryOpts<T>> = {}
+) => {
+	for (let term of terms) {
+		if (!term) continue;
+		db = <T[]>(
+			(<ArrayQueryFn<T[]>>defQuery<T[]>(term.opts))(
+				db,
+				<string>term.q[0],
+				term.q[1]
+			)
+		);
+		term.post && (db = term.post(db));
+		if (!db.length) return db;
+	}
+	const limit = opts.limit || 0;
+	if (limit > 0 && limit < db.length) {
+		db.length = limit;
+	}
+	if (opts.sort) {
+		db.sort(
+			compareByKey(opts.sort, opts.reverse ? reverse(compare) : compare)
+		);
+	}
+	return db;
 };

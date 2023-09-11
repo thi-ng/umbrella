@@ -1,6 +1,7 @@
 import type {
 	Fn6,
-	IObjectOf,
+	FnU,
+	Keys,
 	NumOrString,
 	Predicate,
 	Predicate2,
@@ -14,7 +15,7 @@ export type SPTerm = Predicate<string> | NumOrString | null;
 
 export type SPInputTerm = SPTerm | NumOrString[] | Set<NumOrString>;
 
-export type QueryObj = IObjectOf<any>;
+export type QueryObj = Record<string, any>;
 
 /**
  * All 27 possible query types.
@@ -83,7 +84,7 @@ export type QueryImpls = Record<QueryType, QueryImpl>;
  * If `res` is provided, results will be injected in that object. Otherwise
  * a new result object will be created.
  */
-export type ObjQueryFn<T extends QueryObj> = (
+export type ObjQueryFn<T extends QueryObj = QueryObj> = (
 	obj: T,
 	s: SPInputTerm,
 	p: SPInputTerm,
@@ -104,8 +105,8 @@ export type ArrayQueryFn<T extends QueryObj[]> = (
 	src: T,
 	p: SPInputTerm,
 	o: OTerm,
-	res?: QueryObj[]
-) => QueryObj[];
+	res?: T
+) => T;
 
 /**
  * Similar to {@link ObjQueryFn}, but only collects and returns a set of
@@ -190,10 +191,10 @@ export interface QueryOpts {
 	 */
 	cwise: boolean;
 	/**
-	 * Only used if `cwise` is enabled. If false (default), an array or Set
+	 * Only used if `cwise` is enabled. If true, ALL of the query elements must
+	 * match (aka intersection query). If false (default), an array or Set
 	 * query term in O(bject) position will succeed if at least ONE of its
-	 * elements is matched (aka union query). If true, ALL of the query elements
-	 * must matched (aka intersection query).
+	 * elements is matched (aka union query). .
 	 *
 	 * @defaultValue false
 	 */
@@ -211,3 +212,35 @@ export interface QueryOpts {
  */
 export interface KeyQueryOpts
 	extends Pick<QueryOpts, "cwise" | "intersect" | "equiv"> {}
+
+export interface QueryTerm<T extends QueryObj = QueryObj> {
+	/**
+	 * Actual query expressed as tuple of `[key, value]` tuple. Predicate
+	 * functions can be used in either position.
+	 */
+	q: [Keys<T> | Predicate<string> | null, any];
+	/**
+	 * Optional function to post-process query results.
+	 */
+	post?: FnU<T[]>;
+	/**
+	 * Query options for this term.
+	 */
+	opts?: Partial<QueryOpts>;
+}
+
+export interface MultiQueryOpts<T extends QueryObj = QueryObj> {
+	/**
+	 * Max number of query results. Default: unlimited
+	 */
+	limit: number;
+	/**
+	 * If given, results are sorted by this key.
+	 */
+	sort: Keys<T>;
+	/**
+	 * Only used if {@link MultiQueryOpts.sort} is given. If true, reverses sort
+	 * order.
+	 */
+	reverse: boolean;
+}
