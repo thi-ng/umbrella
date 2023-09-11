@@ -6,7 +6,12 @@
 
 {{pkg.description}}
 
-This package provides a single higher-order function `defQuery()`, which takes a
+**IMPORTANT: This README is currently somewhat out-of-date and does not yet
+cover new important features introduced with version 2.2.0 onwards, please
+consult API docs (and/or source code) to view newly added functions and their
+usage...**
+
+This package provides a higher-order function `defQuery()`, which takes a
 number of options to configure query behavior and returns an actual query
 function. This returned function can then be used for pattern matching of
 objects and arrays of objects.
@@ -18,7 +23,6 @@ objects and arrays of objects.
 Some of the below features are already partially addressed by other
 thi.ng/umbrella packages, but would benefit from a more unified approach.
 
-- [ ] query joins (AND queries)
 - [ ] optional queries (OR queries)
 - [ ] result projection
 - [ ] result aggregation/grouping
@@ -109,9 +113,9 @@ import { defQuery } from "@thi.ng/oquery";
 
 // create query w/ custom options
 // (options explained further below...)
-const query = defQuery({ partial: true });
+const q = defQuery({ partial: true });
 
-console.log(query(DB, null, "knows", "bob"));
+console.log(q(DB, null, "knows", "bob"));
 // {
 //   alice: { knows: [ 'bob' ] },
 //   charlie: { knows: [ 'bob' ] },
@@ -144,9 +148,9 @@ Further variations:
 key value(s) are matched, using the same logic for the other two terms as in the
 table above.
 
-```ts
+```ts tangle:export/readme.ts
 // Who does Alice know?
-query(DB, "alice", "knows", null)
+q(DB, "alice", "knows", null)
 // { alice: { knows: [ 'bob', 'charlie', 'dori' ] } }
 ```
 
@@ -154,9 +158,9 @@ query(DB, "alice", "knows", null)
 predicate will be matched (again using same rules as above for the other query
 terms).
 
-```ts
+```ts tangle:export/readme.ts
 // Anyone with initial "A" knows Charlie?
-query(DB, (s) => s[0] === "a", "knows", "charlie")
+q(DB, (s) => s[0] === "a", "knows", "charlie")
 // { alice: { knows: [ 'charlie' ] } }
 ```
 
@@ -164,14 +168,16 @@ query(DB, (s) => s[0] === "a", "knows", "charlie")
 this case, only predicate-object patterns are used (**no subject terms**, aka
 array indices in this case).
 
-```ts
-const DBALT = [
+```ts tangle:export/readme.ts
+type Person = { id: string; knows: string[] };
+
+const DBALT: Person[] = [
   { id: "alice", knows: ["bob", "charlie"] },
   { id: "bob", knows: ["alice"] },
   { id: "charlie", knows: ["alice","bob","dori"] },
 ];
 
-defQuery()(DBALT, "knows", "alice")
+defQuery<Person[]>()(DBALT, "knows", "alice")
 // [
 //   { id: 'bob', knows: [ 'alice' ] },
 //   { id: 'charlie', knows: [ 'alice', 'bob', 'dori' ] }
@@ -183,22 +189,22 @@ defQuery()(DBALT, "knows", "alice")
 The following example is using the `DB` object defined [further
 above](#query-patterns)...
 
-```ts
+```ts tangle:export/readme2.ts
 import { defQuery } from "@thi.ng/oquery";
 
 // using partial result objects option for brevity here
-const query = defQuery({ partial: true });
+const q = defQuery({ partial: true });
 
 // find all subjects with `type = "person"` relationship
-query(DB, null, "type", "person");
+q(DB, null, "type", "person");
 // { alice: { type: 'person' }, bob: { type: 'person' } }
 
 // everyone w/ given min age
-query(DB, null, "age", (age) => age >= 33)
+q(DB, null, "age", (age) => age >= 33)
 // { alice: { age: 33 } }
 
 // select only subjects with A/B initials
-query(DB, (id) => id >= "a" && id < "c", null, null)
+q(DB, (id) => id >= "a" && id < "c", null, null)
 // {
 //   alice: { age: 33, knows: [ 'bob', 'charlie', 'dori' ], type: 'person' },
 //   bob: { age: 32, knows: [ 'alice' ], type: 'person', spouse: 'alice' }
@@ -207,7 +213,7 @@ query(DB, (id) => id >= "a" && id < "c", null, null)
 
 Union vs. intersection queries:
 
-```ts
+```ts tangle:export/readme2.ts
 const union = defQuery();
 
 // who knows bob OR charlie?
