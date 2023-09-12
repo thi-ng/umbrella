@@ -1,4 +1,6 @@
+import type { Fn, Fn2 } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
+import { OPERATORS } from "@thi.ng/compare";
 import { isFunction } from "@thi.ng/checks";
 import { div, inputText, pre } from "@thi.ng/hiccup-html";
 import { $compile, $klist } from "@thi.ng/rdom";
@@ -25,9 +27,16 @@ Type your S-expressions in the input box below.
 Press Enter to evaluate.
 
 (def sym val) — define new sym
-(defn sym (a b ...) body-expr ...) — define new function
-(let (sym val ...) body-expr ...) - local symbol bindings
+(defn sym (arg ...) body-expr ...) — define new function
+(fn (arg ...) body-expr ...) — anonymous function
+(let (sym val ...) body-expr ...) — local symbol bindings
+(if test truthy-expr else-expr) — conditional (else-expr is optional)
 (print ...) — print args
+(count x) — number of element in x
+(first x) — first element of x
+(next x) — remaining elements of x
+(map fn list) — list transformation
+(reduce fn acc list) — list reduction
 (env) — print global environment`;
 
 // CSS classes for various REPL item types
@@ -56,17 +65,55 @@ const repl = reactive<REPLItem>({
 const addItem = (type: REPLItemType, value: string) =>
 	repl.next({ id: peek(repl.deref()!).id + 1, type, value });
 
+// helper function for basic math ops variable arity.
+// with 2+ args: (+ 1 2 3 4) => 10
+// and special cases for 1 arg only, i.e.
+// `(+ 2)` => 0 + 2 => 2
+// `(- 2)` => 0 - 2 => -2
+// `(* 2)` => 1 * 2 => 2
+// `(/ 2)` => 1 / 2 => 0.5
+const mathOp =
+	(fn: Fn2<number, number, number>, fn1: Fn<number, number>) =>
+	(first: any, ...args: any[]) => {
+		return args.length > 0
+			? // use a reduction for 2+ args
+			  args.reduce((acc, x) => fn(acc, x), first)
+			: // apply special case unary function
+			  fn1(first);
+	};
+
 // define initial environment, populated with some useful constants and
 // functions...
 const ENV: Record<string, any> = {
+	// prettier-ignore
+	"+": mathOp((acc, x) => acc + x, (x) => x),
+	// prettier-ignore
+	"*": mathOp((acc, x) => acc * x, (x) => x),
+	// prettier-ignore
+	"-": mathOp((acc, x) => acc - x, (x) => -x),
+	// prettier-ignore
+	"/": mathOp((acc, x) => acc / x, (x) => 1 / x),
+
+	...OPERATORS,
+
 	π: Math.PI,
 	sin: Math.sin,
 	cos: Math.cos,
 	sqrt: Math.sqrt,
 	hypot: Math.hypot,
-	sq: (x: number) => x * x,
 	// print args by creating an REPL item
 	print: (...args: any[]) => addItem("print", args.join(" ")),
+	pr: (...args: any[]) =>
+		addItem("print", args.map((x) => JSON.stringify(x)).join(" ")),
+	concat: (list: any[], ...x: any) => list.concat(x),
+	// returns length of first argument (presumably a list or string)
+	// (e.g. `(count "abc")` => 3)
+	count: (arg: any) => arg.length,
+	// returns first item of list/string
+	first: (arg: any) => arg[0],
+	// returns remaining list/string (from 2nd item onward) or undefined if
+	// there're no further items
+	next: (arg: any) => (arg.length > 1 ? arg.slice(1) : undefined),
 	// print a JSON version of the global env
 	env: () =>
 		addItem(
@@ -78,6 +125,30 @@ const ENV: Record<string, any> = {
 			)
 		),
 };
+
+// define more core language terms/functions (add more, if needed...)
+$eval(
+	`
+; partial functional application (currying)
+(defn partial (f x) (fn (y) (f x y)))
+
+; functional composition for 1-arg fns
+(defn comp (f g) (fn (x) (f (g x))))
+
+; functional composition for 2-arg fns
+(defn comp2 (f g) (fn (x y z) (f (g x y) z)))
+
+; list reduction
+(defn reduce (f acc xs) (if xs (reduce f (f acc (first xs)) (next xs)) acc))
+
+; list transformation (expressed as reduction)
+(defn map (f xs) (reduce (fn (acc x) (concat acc (f x))) (list) xs))
+
+; filter list with predicate function
+(defn filter (f xs) (reduce (fn (acc x) (if (f x) (concat acc x) acc)) (list) xs))
+`,
+	ENV
+);
 
 // REPL input & key event handler
 // if user pressed Enter, evaluate input and update REPL stream

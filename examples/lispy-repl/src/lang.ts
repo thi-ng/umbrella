@@ -50,51 +50,8 @@ const interpret = runtime<Implementations<any, any>, any, any>({
 // based on the expression's first item (i.e. a symbol/fn name)
 const builtins: MultiFn2<ASTNode[], any, any> = defmulti((x) => x[0].value);
 
-// helper function for basic math ops variable arity.
-// with 2+ args: (+ 1 2 3 4) => 10
-// and special cases for 1 arg only, i.e.
-// `(+ 2)` => 0 + 2 => 2
-// `(- 2)` => 0 - 2 => -2
-// `(* 2)` => 1 * 2 => 2
-// `(/ 2)` => 1 / 2 => 0.5
-const mathOp =
-	(fn: Fn2<number, number, number>, fn1: Fn<number, number>) =>
-	([_, ...args]: ASTNode[], env: any) => {
-		const first = interpret(args[0], env);
-		return args.length > 1
-			? // use a reduction for 2+ args
-			  evalArgs(args.slice(1), env).reduce((acc, x) => fn(acc, x), first)
-			: // apply special case unary function
-			  fn1(first);
-	};
-
 // implementations of built-in core functions
 builtins.addAll({
-	"+": mathOp(
-		(acc, x) => acc + x,
-		(x) => x
-	),
-	"*": mathOp(
-		(acc, x) => acc * x,
-		(x) => x
-	),
-	"-": mathOp(
-		(acc, x) => acc - x,
-		(x) => -x
-	),
-	"/": mathOp(
-		(acc, x) => acc / x,
-		(x) => 1 / x
-	),
-
-	// count returns the length of first argument (presumably a string)
-	// (e.g. `(count "abc")` => 3)
-	count: ([_, arg], env) => interpret(arg, env).length,
-
-	// concatenates all args into a space-separated string and prints it
-	// returns undefined
-	// print: ([_, ...args], env) => console.log(evalArgs(args, env).join(" ")),
-
 	// defines as new symbol with given value, stores it in the environment and
 	// then returns the value, e.g. `(def magic 42)`
 	def: ([_, name, value], env) =>
@@ -104,22 +61,19 @@ builtins.addAll({
 	// environment and returns it, e.g. `(defn madd (a b c) (+ (* a b) c))`
 	defn: ([_, name, args, ...body], env) => {
 		// create new vararg function in env
-		return (env[(<Sym>name).value] = (...xs: any[]) => {
-			const $args = (<Expression>args).children;
-			assert(
-				$args.length === xs.length,
-				`illegal arity, expected ${$args.length} arguments`
-			);
-			// create new local env with arguments bound to named function args
-			// (i.e. simple lexical scoping)
-			const $env = $args.reduce(
-				(acc, a, i) => ((acc[(<Sym>a).value] = xs[i]), acc),
-				{ ...env }
-			);
-			// execute function body with local env, return result of last expr
-			return body.reduce((_, x) => interpret(x, $env), <any>undefined);
-		});
+		return (env[(<Sym>name).value] = fnImpl(args, body, env));
 	},
+
+	// anonymous function definition
+	fn: ([_, args, ...body], env) => fnImpl(args, body, env),
+
+	// if/then conditional with optional else
+	if: ([_, test, truthy, falsy], env) =>
+		interpret(test, env)
+			? interpret(truthy, env)
+			: falsy
+			? interpret(falsy, env)
+			: undefined,
 
 	// create local symbol/variable bindings, e.g.
 	// `(let (a 1 b 2 c (+ a b)) (print a b c))`
@@ -143,6 +97,8 @@ builtins.addAll({
 		return body.reduce((_, x) => interpret(x, $env), <any>undefined);
 	},
 
+	list: ([_, ...body], env) => evalArgs(body, env),
+
 	// add default/fallback implementation to allow calling functions defined in
 	// the environment (either externally or via `defn`)
 	[DEFAULT]: ([x, ...args]: ASTNode[], env: any) => {
@@ -152,3 +108,21 @@ builtins.addAll({
 		return f.apply(null, evalArgs(args, env));
 	},
 });
+
+const fnImpl =
+	(args: ASTNode, body: ASTNode[], env: any) =>
+	(...xs: any[]) => {
+		const $args = (<Expression>args).children;
+		assert(
+			$args.length === xs.length,
+			`illegal arity, expected ${$args.length} arguments`
+		);
+		// create new local env with arguments bound to named function args
+		// (i.e. simple lexical scoping)
+		const $env = $args.reduce(
+			(acc, a, i) => ((acc[(<Sym>a).value] = xs[i]), acc),
+			{ ...env }
+		);
+		// execute function body with local env, return result of last expr
+		return body.reduce((_, x) => interpret(x, $env), <any>undefined);
+	};
