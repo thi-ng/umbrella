@@ -209,9 +209,16 @@ export interface MultiFnBase<I> {
 	 */
 	callable(...args: any[]): boolean;
 	/**
-	 * Returns a set of all registered dispatch values.
+	 * Returns a Map of all registered dispatch values (incl. rels) and their
+	 * implementations.
 	 */
-	impls(): Set<PropertyKey>;
+	impls(): Map<PropertyKey, I>;
+	/**
+	 * Returns the actual implementation for given dispatch value or undefined
+	 * if no such implementation (and no default impl) exists. Takes all
+	 * dispatch relationships into account.
+	 */
+	implForID(id: PropertyKey): I | undefined;
 	/**
 	 * Updates dispatch hierarchy by declaring dispatch value `id` to
 	 * delegate to `parent`'s implementation. I.e. in terms of dispatch
