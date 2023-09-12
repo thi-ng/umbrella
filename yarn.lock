@@ -4661,6 +4661,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.36.4
     "@thi.ng/api": ^8.9.5
     "@thi.ng/checks": ^3.4.5
+    "@thi.ng/compare": ^2.1.38
     "@thi.ng/defmulti": ^2.1.45
     "@thi.ng/equiv": ^2.1.30
     "@thi.ng/testament": ^0.3.23
