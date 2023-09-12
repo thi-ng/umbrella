@@ -15,6 +15,7 @@ The following default syntax rules are used:
 - **expression delimiters**: `(`, `)`
 - **numbers**: any float notation valid in JS, hex ints prefixed w/ `0x`
 - **string delimiters**: `"`
+- **line comments**: `;`
 
 Everything else is parsed as is, i.e. as symbol.
 
