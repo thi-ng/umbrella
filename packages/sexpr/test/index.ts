@@ -70,6 +70,17 @@ group("sexpr", {
 		});
 	},
 
+	"non-expression root": () => {
+		assert.deepStrictEqual(parse("x"), {
+			type: "root",
+			children: [{ type: "sym", value: "x" }],
+		});
+		assert.deepStrictEqual(parse("23"), {
+			type: "root",
+			children: [{ type: "num", value: 23 }],
+		});
+	},
+
 	"custom syntax": () => {
 		const syntax: Partial<SyntaxOpts> = {
 			scopes: [
@@ -148,5 +159,30 @@ group("sexpr", {
 
 	"missing fn in env": () => {
 		assert.throws(() => $eval("(foo)"));
+	},
+
+	"line comment": () => {
+		assert.deepStrictEqual(
+			parse(`
+; intro
+(def x ; ignore me
+; line 2
+  ; line 3
+23)`),
+			{
+				type: "root",
+				children: [
+					{
+						type: "expr",
+						value: "(",
+						children: [
+							{ type: "sym", value: "def" },
+							{ type: "sym", value: "x" },
+							{ type: "num", value: 23 },
+						],
+					},
+				],
+			}
+		);
 	},
 });

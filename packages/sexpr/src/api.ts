@@ -19,6 +19,11 @@ export interface SyntaxOpts {
 	 * Default: `"`
 	 */
 	string: string;
+	/**
+	 * Single character string for comments (always active until next line break)
+	 * Default: `;`
+	 */
+	comment: string;
 }
 
 export interface Token {
@@ -107,4 +112,5 @@ export const DEFAULT_SYNTAX: SyntaxOpts = {
 	scopes: [["(", ")"]],
 	whiteSpace: /(\s|,)/,
 	string: '"',
+	comment: ";",
 };

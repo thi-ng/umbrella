@@ -20,6 +20,7 @@ export function* tokenize(
 		scopes: rawScopes,
 		whiteSpace,
 		string,
+		comment,
 	} = {
 		...DEFAULT_SYNTAX,
 		...opts,
@@ -29,6 +30,7 @@ export function* tokenize(
 		.join("");
 	let token = "";
 	let isString = false;
+	let isComment = false;
 	let tokenLine = 0;
 	let tokenCol = 0;
 	let line = 0;
@@ -45,7 +47,9 @@ export function* tokenize(
 		} else {
 			col++;
 		}
-		if (!isString) {
+		if (isComment) {
+			if (c === "\n") isComment = false;
+		} else if (!isString) {
 			if (whiteSpace.test(c)) {
 				token && (yield $(token));
 				token = "";
@@ -62,6 +66,8 @@ export function* tokenize(
 				tokenCol = col;
 				token = '"';
 				isString = true;
+			} else if (c === comment) {
+				isComment = true;
 			} else {
 				if (!token) {
 					tokenLine = line;
@@ -78,4 +84,5 @@ export function* tokenize(
 			token += c;
 		}
 	}
+	token && (yield $(token));
 }
