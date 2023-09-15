@@ -11,10 +11,17 @@ import { message } from "./components/message.js";
 import { transformAccount, transformMessage } from "./transforms.js";
 
 // reactive state values (various parts of the UI will subscribe to these)
-const userID = reactive("@toxi@mastodon.thi.ng");
+const userID = reactive(location.hash.substring(1) || "@toxi@mastodon.thi.ng");
 const loadTrigger = reactive(true);
 const messages = stream<Message[]>();
 const mediaSelection = reactive<Nullable<MediaItem>>(null);
+
+// update hash fragment when user ID changes
+userID.subscribe({
+	next(id) {
+		location.hash = id;
+	},
+});
 
 /**
  * Attempts to load JSON from given URL.

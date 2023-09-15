@@ -1,6 +1,6 @@
 # mastodon-feed
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/mastodon-feed/)
 
