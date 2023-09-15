@@ -126,9 +126,16 @@ export const RE_ENTITIES_REV = new RegExp(
 	"g"
 );
 
+export const RE_ENTITIES_NUM = /&#(x?)([0-9a-f]+);/gi;
+
 const $esc = (re: RegExp, index: Record<string, string>) => (src: string) =>
 	src.replace(re, (x) => index[x]);
 
 export const escapeEntities = $esc(RE_ENTITIES, ENTITIES);
 
-export const unescapeEntities = $esc(RE_ENTITIES_REV, ENTITIES_REV);
+export const unescapeEntities = (src: string) =>
+	src
+		.replace(RE_ENTITIES_REV, (x) => ENTITIES_REV[x])
+		.replace(RE_ENTITIES_NUM, (_, hex, x) =>
+			String.fromCharCode(parseInt(x, hex ? 16 : 10))
+		);
