@@ -1,6 +1,11 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { matchPattern, matchStrings, query } from "../src/index.js";
+import {
+	matchMultiple,
+	matchPattern,
+	matchStrings,
+	query,
+} from "../src/index.js";
 
 const DB = [
 	{ id: 0, tags: ["a", "b"] },
@@ -21,7 +26,7 @@ group("oquery matchers", {
 			DB[0],
 		]);
 		assert.deepStrictEqual(
-			query(DB, [matchStrings("tags", ["a", "b"], true)]),
+			query(DB, [matchStrings("tags", ["a", "b"], { union: true })]),
 			[DB[0], DB[1], DB[2], DB[3]]
 		);
 		assert.deepStrictEqual(query(DB, [matchStrings("tags", ["a", "!b"])]), [
@@ -33,7 +38,9 @@ group("oquery matchers", {
 			[DB[2]]
 		);
 		assert.deepStrictEqual(
-			query(DB, [matchStrings("tags", ["a", "!b", "c"], true)]),
+			query(DB, [
+				matchStrings("tags", ["a", "!b", "c"], { union: true }),
+			]),
 			[DB[2], DB[3], DB[4]]
 		);
 		assert.deepStrictEqual(
@@ -41,8 +48,23 @@ group("oquery matchers", {
 			[]
 		);
 		assert.deepStrictEqual(
-			query(DB, [matchStrings("tags", ["c", "d"], true)]),
+			query(DB, [matchStrings("tags", ["c", "d"], { union: true })]),
 			[DB[1], DB[2], DB[4]]
+		);
+	},
+
+	matchMultiple: () => {
+		const $DB = DB.map(({ id, tags }) => ({
+			id,
+			tags: tags.map((t) => ({ name: t })),
+		}));
+		assert.deepStrictEqual(
+			query($DB, [
+				matchMultiple("tags", ["a"], ["b"], {
+					value: (tags) => tags.map((t: any) => t.name),
+				}),
+			]),
+			[$DB[2], $DB[3]]
 		);
 	},
 

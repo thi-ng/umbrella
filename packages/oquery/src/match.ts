@@ -1,22 +1,67 @@
-import type { NumOrString, Predicate, TypedKeys } from "@thi.ng/api";
+import type { Fn, NumOrString, Predicate } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { numericOp, stringOp, type Operator } from "@thi.ng/compare";
 import type { QueryObj, QueryOpts, QueryTerm } from "./api.js";
 
+export interface MatchMultipleOpts<T> {
+	/**
+	 * If true, performs union query. I.e. only one of the provided matches
+	 * needs to succeed.
+	 */
+	union: boolean;
+	/**
+	 * Transformation function to extract an array of values to be matched from
+	 * a query item.
+	 */
+	value: Fn<any, T[]>;
+}
+
 /**
- * Returns a {@link QueryTerm} for use with {@link query} to perform tag-like
- * intersection or union queries with optional negation/exclusions. Matches set
- * of given strings against an item's chosen field of strings and by default
- * only succeeds if all provided strings can be matched.
+ * Syntax sugar for {@link matchMultiple} using string arrays. Matches set of
+ * given strings against an item's chosen field of strings and by default only
+ * succeeds if all provided strings can be matched.
  *
  * @remarks
- * If `union` is true, only one of the provided strings needs to match. Any
- * provided string prefixed with `!` is treated as an exclusion and any item
+ * Any provided string prefixed with `!` is treated as an exclusion and any item
  * which contains any of these exclusions is automatically rejected, even if
- * other strings could be matched. Exclusions _always_ take precedence.
+ * other strings could be matched.
  *
- * Note: This matcher can only be used for item keys of type `string[]`.
+ * See {@link matchMultiple} for more details & code example.
+ *
+ * @param key
+ * @param matches
+ * @param opts
+ * @returns
+ */
+export const matchStrings = <T extends QueryObj = QueryObj>(
+	key: QueryTerm["q"][0],
+	matches: string[],
+	opts?: Partial<MatchMultipleOpts<string>>
+) => {
+	const [includes, excludes] = matches.reduce(
+		(acc, x) => {
+			x[0] === "!" ? acc[1].push(x.substring(1)) : acc[0].push(x);
+			return acc;
+		},
+		<string[][]>[[], []]
+	);
+	return matchMultiple<T, string>(key, includes, excludes, opts);
+};
+
+/**
+ * Returns a {@link QueryTerm} for use with {@link query} to perform set-like
+ * intersection or union queries with optional negation/exclusions. Matches set
+ * of given values against an item's chosen field of values and by default only
+ * succeeds if all provided `includes` can be matched (aka intersection query)
+ * and there're no values from `excludes` present.
+ *
+ * @remarks
+ * If the `union` option is true, only one of the provided values needs to
+ * match. Exclusions _always_ take precedence.
+ *
+ * Note: See {@link matchStrings} for a syntax sugar of this function, aimed at
+ * matching `string[]` options.
  *
  * @example
  * ```ts
@@ -41,46 +86,41 @@ import type { QueryObj, QueryOpts, QueryTerm } from "./api.js";
  * ```
  *
  * @param key
+ * @param matches
  * @param opts
- * @param union
  */
-export const matchStrings = <T extends QueryObj = QueryObj>(
-	key: TypedKeys<T, string[]>,
-	opts: string[],
-	union = false
+export const matchMultiple = <T extends QueryObj = QueryObj, V = any>(
+	key: QueryTerm["q"][0],
+	includes: V[],
+	excludes: V[],
+	opts?: Partial<MatchMultipleOpts<V>>
 ): QueryTerm<T> => {
-	const [positives, negatives] = opts.reduce(
-		(acc, x) => {
-			x[0] === "!" ? acc[1].push(x.substring(1)) : acc[0].push(x);
-			return acc;
-		},
-		<string[][]>[[], []]
-	);
-	if (!negatives.length) {
-		return { q: [key, positives], opts: { intersect: !union } };
-	}
-	return {
-		q: [
-			key,
-			(values: string[]) => {
-				for (let x of negatives) {
-					if (values.includes(x)) return false;
-				}
-				let match = false;
-				for (let x of positives) {
-					if (values.includes(x)) {
-						match = true;
-						if (union) break;
-					} else if (!union) {
-						match = false;
-						break;
-					}
-				}
-				return match;
-			},
-		],
-		opts: { cwise: false },
-	};
+	const { union, value: valueFn } = { union: false, ...opts };
+	return excludes.length
+		? {
+				q: [
+					key,
+					(values: any) => {
+						const $values = valueFn ? valueFn(values) : <V[]>values;
+						for (let x of excludes) {
+							if ($values.includes(x)) return false;
+						}
+						let match = false;
+						for (let x of includes) {
+							if ($values.includes(x)) {
+								match = true;
+								if (union) break;
+							} else if (!union) {
+								match = false;
+								break;
+							}
+						}
+						return match;
+					},
+				],
+				opts: { cwise: false },
+		  }
+		: { q: [key, includes], opts: { intersect: !union } };
 };
 
 /**

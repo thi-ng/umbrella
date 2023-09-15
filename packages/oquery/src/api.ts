@@ -1,4 +1,5 @@
 import type {
+	Fn,
 	Fn6,
 	FnU,
 	Keys,
@@ -237,7 +238,7 @@ export interface MultiQueryOpts<T extends QueryObj = QueryObj> {
 	/**
 	 * If given, results are sorted by this key.
 	 */
-	sort: Keys<T>;
+	sort: Keys<T> | Fn<T, any>;
 	/**
 	 * Only used if {@link MultiQueryOpts.sort} is given. If true, reverses sort
 	 * order.

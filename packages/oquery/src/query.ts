@@ -521,7 +521,10 @@ export const query = <T extends QueryObj = QueryObj>(
 	}
 	if (opts.sort) {
 		db.sort(
-			compareByKey(opts.sort, opts.reverse ? reverse(compare) : compare)
+			compareByKey<T, any>(
+				opts.sort,
+				opts.reverse ? reverse(compare) : compare
+			)
 		);
 	}
 	return db;
