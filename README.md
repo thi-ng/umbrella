@@ -161,6 +161,7 @@ code (and sometimes with visual outputs/results).
 - [013: Lisp interpreter using thi.ng/sexpr & thi.ng/defmulti](https://mastodon.thi.ng/@toxi/111006345413482231)
 - [014: A simple browser REPL for a Lispy mini language](https://mastodon.thi.ng/@toxi/111012777135967117)
 - [015: Generative audio synth offline renderer and WAV file export](https://mastodon.thi.ng/@toxi/111018580750654608)
+- [016: Building a reactive Mastodon UI, parsing & transforming API data](https://mastodon.thi.ng/@toxi/111069280667363259)
 
 ## Blog posts
 
