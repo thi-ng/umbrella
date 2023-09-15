@@ -8,12 +8,23 @@ import { map } from "./map.js";
 import { renamer } from "./renamer.js";
 import { transduce } from "./transduce.js";
 
+/**
+ * Transducer. Takes an object of key mappings and returns function applying
+ * these mapping/renames.
+ *
+ * @remarks
+ * Keys in `kmap` are the new/renamed keys, their values the original names. For
+ * keys which simply should be kept, but not renamed, set their value to `true`.
+ *
+ * @param kmap
+ * @param rfn
+ */
 export function rename<A, B>(
-	kmap: IObjectOf<PropertyKey> | Array<PropertyKey>,
+	kmap: IObjectOf<PropertyKey | boolean> | Array<PropertyKey>,
 	rfn?: Reducer<B, [PropertyKey, A]>
 ): Transducer<A[], B>;
 export function rename<A, B>(
-	kmap: IObjectOf<PropertyKey> | Array<PropertyKey>,
+	kmap: IObjectOf<PropertyKey | boolean> | Array<PropertyKey>,
 	rfn: Reducer<B, [PropertyKey, A]>,
 	src: Iterable<A[]>
 ): IterableIterator<B>;
