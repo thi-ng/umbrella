@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-09-06T13:36:28Z
+- **Last updated**: 2023-09-15T12:33:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.5.0) (2023-09-15)
+
+#### 🚀 Features
+
+- update saw/squareAdditive() ([d11488c](https://github.com/thi-ng/umbrella/commit/d11488c))
+  - add opt arg to disable Gibbs-effect handling
 
 ## [4.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.4.0) (2023-08-24)
 

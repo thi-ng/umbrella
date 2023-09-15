@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/heaps",
-	"version": "2.1.39",
+	"version": "2.1.40",
 	"description": "Various heap implementations for arbitrary values and with customizable ordering",
 	"type": "module",
 	"module": "./index.js",
@@ -36,7 +36,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.5",
-		"@thi.ng/compare": "^2.1.38",
+		"@thi.ng/compare": "^2.2.0",
 		"@thi.ng/equiv": "^2.1.30"
 	},
 	"devDependencies": {
