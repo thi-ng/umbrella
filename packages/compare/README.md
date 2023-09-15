@@ -58,7 +58,7 @@ For Node.js REPL:
 const compare = await import("@thi.ng/compare");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 393 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 598 bytes
 
 ## Dependencies
 
