@@ -348,3 +348,52 @@ export const shuffle = (
 	fibers: Iterable<MaybeFiber>,
 	opts?: Partial<FiberOpts & { rnd: IRandom }>
 ) => new Shuffle(fibers, opts);
+
+/**
+ * Helper function to await fiber-based task completion from within an `async`
+ * context. Wraps given `task` in a fiber with custom {@link FiberOpts.deinit}
+ * and {@link FiberOpts.catch} handlers and executes it. Returns a promise which
+ * resolves with that fiber's final value once its complete. If there is an
+ * error during fiber execution the promise will be rejected with that original
+ * error.
+ *
+ * @remarks
+ * If `opts` are given, their {@link FiberOpts.deinit} and
+ * {@link FiberOpts.catch} handlers will be augmented with resolving/rejecting
+ * the promise. I.e. The promise will NOT be rejected if there's a user-provided
+ * `catch` handler indicating the error has been dealt with.
+ *
+ * @example
+ * ```ts
+ * (async () => {
+ *   // create & spawn task/fiber
+ *   const task = asPromise(function*() {
+ *     for(let i = 0; i< 3; i++) {
+ *       console.log("working...", i);
+ *       yield* wait(1000);
+ *     }
+ *     return 42;
+ *   });
+ *   // now wait for task to complete
+ *   const result = await task;
+ *   console.log("final result", result);
+ * })()
+ * ```
+ *
+ * @param task
+ */
+export const asPromise = <T>(task: MaybeFiber<T>, opts?: Partial<FiberOpts>) =>
+	new Promise<T>((resolve, reject) => {
+		fiber(task, {
+			...opts,
+			deinit: (ctx) => {
+				opts?.deinit && opts.deinit(ctx);
+				ctx.state < STATE_ERROR && resolve(ctx.deref()!);
+			},
+			catch: (ctx, e) => {
+				if (opts?.catch && opts.catch(ctx, e)) return true;
+				reject(e);
+				return false;
+			},
+		}).run();
+	});
