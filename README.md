@@ -217,13 +217,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-09-15
+As of: 2023-09-17
 
 | Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
 |:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/compare`](./packages/compare)         | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)         | [changelog](./packages/compare/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/defmulti`](./packages/defmulti)       | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)       | [changelog](./packages/defmulti/CHANGELOG.md)    |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dsp`](./packages/dsp)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                 | [changelog](./packages/dsp/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/fibers`](./packages/fibers)           | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)           | [changelog](./packages/fibers/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/oquery`](./packages/oquery)           | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)           | [changelog](./packages/oquery/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sexpr`](./packages/sexpr)             | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)             | [changelog](./packages/sexpr/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)         | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)         | [changelog](./packages/strings/CHANGELOG.md)     |
