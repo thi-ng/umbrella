@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-09-15T12:33:37Z
+- **Last updated**: 2023-09-17T15:40:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/fibers@0.5.0) (2023-09-17)
+
+#### 🚀 Features
+
+- add asPromise() fiber-to-promise conversion ([29fc86f](https://github.com/thi-ng/umbrella/commit/29fc86f))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/fibers@0.4.0) (2023-09-06)
 
