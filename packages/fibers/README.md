@@ -114,6 +114,7 @@ app.fork(function* () {
 The following operators act as basic composition helpers to construct more elaborate fiber setups:
 
 - [`all`](https://docs.thi.ng/umbrella/fibers/functions/all.html): wait for all given fibers to complete
+- [`asPromise`](https://docs.thi.ng/umbrella/fibers/functions/asPromise.html): wrap fiber as promise for use in `async` contexts
 - [`first`](https://docs.thi.ng/umbrella/fibers/functions/first.html): wait for one of the given fibers to complete
 - [`fork`](https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#fork): create & attach a new child process
 - [`forkAll`](https://docs.thi.ng/umbrella/fibers/classes/Fiber.html#forkAll): create & attach multiple child processes
@@ -121,6 +122,7 @@ The following operators act as basic composition helpers to construct more elabo
 - [`sequence`](https://docs.thi.ng/umbrella/fibers/functions/sequence.html): execute fibers in sequence
 - [`shuffle`](https://docs.thi.ng/umbrella/fibers/functions/shuffle-1.html): execute fibers in constantly randomized order
 - [`timeSlice`](https://docs.thi.ng/umbrella/fibers/functions/timeSlice.html): execute fiber in batches of N milliseconds
+- [`timeSliceIterable`](https://docs.thi.ng/umbrella/fibers/functions/timeSliceIterable.html): consume iterable in batches of N milliseconds
 - [`until`](https://docs.thi.ng/umbrella/fibers/functions/until.html): wait until predicate is truthy
 - [`untilEvent`](https://docs.thi.ng/umbrella/fibers/functions/untilEvent.html): wait until event occurs
 - [`untilPromise`](https://docs.thi.ng/umbrella/fibers/functions/untilPromise.html): wait until promise resolves/rejects
@@ -376,7 +378,7 @@ For Node.js REPL:
 const fibers = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.33 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.41 KB
 
 ## Dependencies
 
@@ -397,12 +399,13 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                            | Description                                                       | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/> | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>   | Fiber-based cooperative multitasking basics                       | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>    | Barnsley fern IFS fractal renderer                                | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>   | Generative audio synth offline renderer and WAV file export       | [Demo](https://demo.thi.ng/umbrella/render-audio/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)   |
+| Screenshot                                                                                                            | Description                                                                                             | Live demo                                            | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/> | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                                       | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>   | Fiber-based cooperative multitasking basics                                                             | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>    | Barnsley fern IFS fractal renderer                                                                      | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>  | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>   | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)   |
 
 ## API
 
