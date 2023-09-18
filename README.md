@@ -8,10 +8,14 @@
 - [About](#about)
 - [Getting Started](#getting-started)
   - [Project templates](#project-templates)
+  - [#HowToThing](#howtothing)
+  - [Blog posts](#blog-posts)
+  - [Videos](#videos)
 - [Examples & Showcase](#examples--showcase)
-- [#HowToThing](#howtothing)
-- [Blog posts](#blog-posts)
+  - [awesome.thi.ng](#awesomething)
+  - [Generative art projects](#generative-art-projects)
 - [Community, contributing, getting help](#community-contributing-getting-help)
+  - [Wiki](#wiki)
 - [Projects](#projects)
   - [Latest updates](#latest-updates)
 - [Building](#building)
@@ -32,10 +36,10 @@
 search of packages relevant to your use cases...**
 
 **This project is NOT a framework!** This mono-repository is home to currently
-182 individual TypeScript/ES6 projects (and 120+ example projects), a wide and
-jointly developed collection of packages, tools and general purpose building
-blocks for (non-exhaustive list of topics, see [package overview](#projects)
-below):
+183 individual TypeScript packages and 130+ example projects illustrating their
+usage. It's a wide and jointly developed collection of libraries, tools and
+general purpose building blocks for the following non-exhaustive list of topics
+(see [package overview](#projects) below):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines / DOM
@@ -66,8 +70,9 @@ below):
 Once more, **this project is NOT a framework**, provides no turn-key,
 one-size-fits-all approach and instead encourages a mix & match philosophy for
 various key aspects of application design (in & outside the browser).
-Customization points are provided wherever possible and usually only expect
-certain interfaces/type signatures rather than concrete implementations.
+Customization points are provided wherever useful and usually only expect
+certain interfaces/type signatures rather than hard-coded concrete
+implementations.
 
 All packages:
 
@@ -88,11 +93,13 @@ All packages:
 The sheer number and varied nature & purpose of these [packages](#packages)
 makes it impossible to provide traditional "Getting started" tutorials. To
 compensate, this repo provides ~130 [example projects](#examples--showcase),
-detailed readmes (at the very least for all the larger and/or more important
-packages) and hundreds of small usage examples/snippets in various docstrings.
+detailed package readmes (at the very least for all the larger and/or more
+important ones), as well as hundreds of small usage examples/snippets in various
+doc strings.
 
-If unsure about something, please [reach
-out](#community-contributing-getting-help)!
+If you're unsure about something, please [reach
+out](#community-contributing-getting-help)! Any constructive feedback is highly
+appreciated!
 
 ### Project templates
 
@@ -104,6 +111,49 @@ You might find one of the following template repos an useful starting point:
   template repo for generative art projects on the fx(hash) platform
 - [tpl-umbrella-zig](https://github.com/thi-ng/tpl-umbrella-zig): Minimal
   browser project template for hybrid TypeScript & Zig (WebAssembly) apps
+
+### #HowToThing
+
+Ongoing since August 2023:
+[#HowToThing](https://mastodon.thi.ng/tags/HowToThing) is a series of short
+posts on Mastodon, demonstrating many different techniques, patterns and use
+cases from across the _thi.ng/umbrella_ ecosystem. These are not necessarily
+intro examples, but each one comes with heavily commented code (and often with
+visual outputs/results).
+
+- [001: FPS counter with moving average](https://mastodon.thi.ng/@toxi/110898928550740865)
+- [002: Sorting an array by potentially CPU-costly sort criteria](https://mastodon.thi.ng/@toxi/110904190618425908)
+- [003: Multiple key states and extracting commands via FSM](https://mastodon.thi.ng/@toxi/110934031101245644)
+- [004: Creating text-based plots to debug & visualize sequential data](https://mastodon.thi.ng/@toxi/110942967462856117)
+- [005: Barnsley fern IFS fractal](https://mastodon.thi.ng/@toxi/110946943031183702)
+- [006: Clustering arbitrary n-dimensional data using K-means](https://mastodon.thi.ng/@toxi/110955825785005618)
+- [007: Converting Google Maps bookmarks to KML](https://mastodon.thi.ng/@toxi/110961348580185768)
+- [008: CSV parsing into structured data & multi-plot SVG dataviz](https://mastodon.thi.ng/@toxi/110967240994840257)
+- [009: 2D canvas drawing & `threadLast()` dataflow operator](https://mastodon.thi.ng/@toxi/110972322869333970)
+- [010: Basic web app UI/DOM via Zig/WASM and thi.ng/wasm-api](https://mastodon.thi.ng/@toxi/110975292505640048)
+- [011: 2D cellular automata as WebGL2 multi-pass shader pipeline](https://mastodon.thi.ng/@toxi/110983734311624640)
+- [012: Pure CSS image transition/reveal with thi.ng/hiccup-css](https://mastodon.thi.ng/@toxi/110995613345369326)
+- [013: Lisp interpreter using thi.ng/sexpr & thi.ng/defmulti](https://mastodon.thi.ng/@toxi/111006345413482231)
+- [014: A simple browser REPL for a Lispy mini language](https://mastodon.thi.ng/@toxi/111012777135967117)
+- [015: Generative audio synth offline renderer and WAV file export](https://mastodon.thi.ng/@toxi/111018580750654608)
+- [016: Building a reactive Mastodon UI, parsing & transforming API data](https://mastodon.thi.ng/@toxi/111069280667363259)
+
+### Blog posts
+
+- "Of umbrellas, transducers, reactive streams & mushrooms" (ongoing series):
+  - [Part 1 - Project & series overview](https://github.com/thi-ng/blog/blob/main/2019/20190304-of-umbrellas-transducers-reactive-streams-pt1.md)
+  - [Part 2 - HOFs, Transducers, Reducers](https://github.com/thi-ng/blog/blob/main/2019/20190307-of-umbrellas-transducers-reactive-streams-pt2.md)
+  - [Part 3 - Convolution, 1D/2D Cellular automata](https://github.com/thi-ng/blog/blob/main/2019/20190310-of-umbrellas-transducers-reactive-streams-pt3.md)
+  - [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://github.com/thi-ng/blog/blob/main/2019/20190314-of-umbrellas-transducers-reactive-streams-pt4.md)
+- [How to UI in 2018](https://github.com/thi-ng/blog/blob/main/2018/20180204-how-to-ui-in-2018.md)
+- [The Jacob's Ladder of coding](https://github.com/thi-ng/blog/blob/main/2015/20151215-jacobs-ladder-of-coding.md)
+
+### Videos
+
+- [Building a web editor for creating/testing parse grammars](https://www.youtube.com/watch?v=mXp92s_VP40)
+- [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)
+- [Crash course: TypeScript mapped types in action](https://www.youtube.com/watch?v=jeQ_1oOFlJs)
+- [thi.ng/umbrella livestream #3](https://www.youtube.com/watch?v=_chKFhArGK0)
 
 ## Examples & Showcase
 
@@ -137,48 +187,6 @@ libraries from this collection.
 | <img src="./assets/fxhash/quasiflock-240.jpg"/>  | <img src="./assets/fxhash/c-scape-240.jpg"/> | <img src="./assets/fxhash/ascii-scape-240.jpg"/> |
 | Bubblemania                                      | Danza (unreleased)                           | S-TRACE (unreleased)                             |
 | <img src="./assets/fxhash/bubblemania-240.jpg"/> | <img src="./assets/fxhash/danza-240.jpg"/>   | <img src="./assets/fxhash/s-trace-240.jpg"/>     |
-
-## #HowToThing
-
-Ongoing since August 2023:
-[#HowToThing](https://mastodon.thi.ng/tags/HowToThing) is a series of short
-posts on Mastodon, demonstrating many different techniques, patterns and use
-cases from across the _thi.ng/umbrella_ ecosystem. Each with heavily commented
-code (and sometimes with visual outputs/results).
-
-- [001: FPS counter with moving average](https://mastodon.thi.ng/@toxi/110898928550740865)
-- [002: Sorting an array by potentially CPU-costly sort criteria](https://mastodon.thi.ng/@toxi/110904190618425908)
-- [003: Multiple key states and extracting commands via FSM](https://mastodon.thi.ng/@toxi/110934031101245644)
-- [004: Creating text-based plots to debug & visualize sequential data](https://mastodon.thi.ng/@toxi/110942967462856117)
-- [005: Barnsley fern IFS fractal](https://mastodon.thi.ng/@toxi/110946943031183702)
-- [006: Clustering arbitrary n-dimensional data using K-means](https://mastodon.thi.ng/@toxi/110961348580185768)
-- [007: Converting Google Maps bookmarks to KML](https://mastodon.thi.ng/@toxi/110961348580185768)
-- [008: CSV parsing into structured data & multi-plot SVG dataviz](https://mastodon.thi.ng/@toxi/110967240994840257)
-- [009: 2D canvas drawing & `threadLast()` dataflow operator](https://mastodon.thi.ng/@toxi/110972322869333970)
-- [010: Basic web app UI/DOM via Zig/WASM and thi.ng/wasm-api](https://mastodon.thi.ng/@toxi/110975292505640048)
-- [011: 2D cellular automata as WebGL2 multi-pass shader pipeline](https://mastodon.thi.ng/@toxi/110983734311624640)
-- [012: Pure CSS image transition/reveal with thi.ng/hiccup-css](https://mastodon.thi.ng/@toxi/110995613345369326)
-- [013: Lisp interpreter using thi.ng/sexpr & thi.ng/defmulti](https://mastodon.thi.ng/@toxi/111006345413482231)
-- [014: A simple browser REPL for a Lispy mini language](https://mastodon.thi.ng/@toxi/111012777135967117)
-- [015: Generative audio synth offline renderer and WAV file export](https://mastodon.thi.ng/@toxi/111018580750654608)
-- [016: Building a reactive Mastodon UI, parsing & transforming API data](https://mastodon.thi.ng/@toxi/111069280667363259)
-
-## Blog posts
-
-- "Of umbrellas, transducers, reactive streams & mushrooms" (ongoing series):
-  - [Part 1 - Project & series overview](https://github.com/thi-ng/blog/blob/main/2019/20190304-of-umbrellas-transducers-reactive-streams-pt1.md)
-  - [Part 2 - HOFs, Transducers, Reducers](https://github.com/thi-ng/blog/blob/main/2019/20190307-of-umbrellas-transducers-reactive-streams-pt2.md)
-  - [Part 3 - Convolution, 1D/2D Cellular automata](https://github.com/thi-ng/blog/blob/main/2019/20190310-of-umbrellas-transducers-reactive-streams-pt3.md)
-  - [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://github.com/thi-ng/blog/blob/main/2019/20190314-of-umbrellas-transducers-reactive-streams-pt4.md)
-- [How to UI in 2018](https://github.com/thi-ng/blog/blob/main/2018/20180204-how-to-ui-in-2018.md)
-- [The Jacob's Ladder of coding](https://github.com/thi-ng/blog/blob/main/2015/20151215-jacobs-ladder-of-coding.md)
-
-## Videos
-
-- [Building a web editor for creating/testing parse grammars](https://www.youtube.com/watch?v=mXp92s_VP40)
-- [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)
-- [Crash course: TypeScript mapped types in action](https://www.youtube.com/watch?v=jeQ_1oOFlJs)
-- [thi.ng/umbrella livestream #3](https://www.youtube.com/watch?v=_chKFhArGK0)
 
 ## Community, contributing, getting help
 
@@ -285,28 +293,29 @@ As of: 2023-09-17
 
 ### File / file format / hardware support
 
-| Project                                                   | Version                                                                                                                         | Changelog                                             | Description                                     |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------|
-| [`@thi.ng/axidraw`](./packages/axidraw)                   | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)                   | [changelog](./packages/axidraw/CHANGELOG.md)          | Minimal, declarative AxiDraw plotter controller |
-| [`@thi.ng/bencode`](./packages/bencode)                   | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)                   | [changelog](./packages/bencode/CHANGELOG.md)          | Bencode binary format encoding                  |
-| [`@thi.ng/csv`](./packages/csv)                           | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                           | [changelog](./packages/csv/CHANGELOG.md)              | Customizable CSV parser/object mapper           |
-| [`@thi.ng/dot`](./packages/dot)                           | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                           | [changelog](./packages/dot/CHANGELOG.md)              | Graphviz DOM & export                           |
-| [`@thi.ng/dsp-io-wav`](./packages/dsp-io-wav)             | [![version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)             | [changelog](./packages/dsp-io-wav/CHANGELOG.md)       | WAV file format exporter                        |
-| [`@thi.ng/file-io`](./packages/file-io)                   | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                   | [changelog](./packages/file-io/CHANGELOG.md)          | Assorted file I/O utils for NodeJS              |
-| [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)           | [changelog](./packages/geom-io-obj/CHANGELOG.md)      | Wavefront OBJ model parser                      |
-| [`@thi.ng/hiccup-css`](./packages/hiccup-css)             | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)             | [changelog](./packages/hiccup-css/CHANGELOG.md)       | CSS from nested JS data structures              |
-| [`@thi.ng/hiccup-html`](./packages/hiccup-html)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)           | [changelog](./packages/hiccup-html/CHANGELOG.md)      | Type-checked HTML5 element wrappers for hiccup  |
-| [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown)   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)   | [changelog](./packages/hiccup-markdown/CHANGELOG.md)  | Hiccup-to-Markdown serialization                |
-| [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)             | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)             | [changelog](./packages/hiccup-svg/CHANGELOG.md)       | hiccup based SVG vocab                          |
-| [`@thi.ng/iges`](./packages/iges)                         | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                         | [changelog](./packages/iges/CHANGELOG.md)             | IGES format geometry serialization              |
-| [`@thi.ng/markdown-table`](./packages/markdown-table)     | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)     | [changelog](./packages/markdown-table/CHANGELOG.md)   | Markdown table generator / formatter            |
-| [`@thi.ng/mime`](./packages/mime)                         | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                         | [changelog](./packages/mime/CHANGELOG.md)             | File extension to MIME type mappings            |
-| [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff) | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md) | GeoTIFF reader support for thi.ng/pixel         |
-| [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)   | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md)  | 1/8/16/24bit NetPBM image format reader/writer  |
-| [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)         | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)     | Portable FloatMap image format reader/writer    |
-| [`@thi.ng/prefixes`](./packages/prefixes)                 | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)                 | [changelog](./packages/prefixes/CHANGELOG.md)         | Linked Data, RDF & xmlns prefixes/URLs          |
-| [`@thi.ng/sax`](./packages/sax)                           | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                           | [changelog](./packages/sax/CHANGELOG.md)              | SAX-like XML parser / transducer                |
-| [`@thi.ng/tangle`](./packages/tangle)                     | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                     | [changelog](./packages/tangle/CHANGELOG.md)           | Literate programming utilities                  |
+| Project                                                     | Version                                                                                                                           | Changelog                                              | Description                                     |
+|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|-------------------------------------------------|
+| [`@thi.ng/axidraw`](./packages/axidraw)                     | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)                     | [changelog](./packages/axidraw/CHANGELOG.md)           | Minimal, declarative AxiDraw plotter controller |
+| [`@thi.ng/bencode`](./packages/bencode)                     | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)                     | [changelog](./packages/bencode/CHANGELOG.md)           | Bencode binary format encoding                  |
+| [`@thi.ng/csv`](./packages/csv)                             | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                             | [changelog](./packages/csv/CHANGELOG.md)               | Customizable CSV parser/object mapper           |
+| [`@thi.ng/dot`](./packages/dot)                             | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                             | [changelog](./packages/dot/CHANGELOG.md)               | Graphviz DOM & export                           |
+| [`@thi.ng/dsp-io-wav`](./packages/dsp-io-wav)               | [![version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)               | [changelog](./packages/dsp-io-wav/CHANGELOG.md)        | WAV file format exporter                        |
+| [`@thi.ng/file-io`](./packages/file-io)                     | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                     | [changelog](./packages/file-io/CHANGELOG.md)           | Assorted file I/O utils for NodeJS              |
+| [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)             | [changelog](./packages/geom-io-obj/CHANGELOG.md)       | Wavefront OBJ model parser                      |
+| [`@thi.ng/hiccup-css`](./packages/hiccup-css)               | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)               | [changelog](./packages/hiccup-css/CHANGELOG.md)        | CSS from nested JS data structures              |
+| [`@thi.ng/hiccup-html`](./packages/hiccup-html)             | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)             | [changelog](./packages/hiccup-html/CHANGELOG.md)       | Type-checked HTML5 element wrappers for hiccup  |
+| [`@thi.ng/hiccup-html-parse`](./packages/hiccup-html-parse) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html-parse.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html-parse) | [changelog](./packages/hiccup-html-parse/CHANGELOG.md) | HTML parsing & transformation to hiccup format  |
+| [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown)     | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)     | [changelog](./packages/hiccup-markdown/CHANGELOG.md)   | Hiccup-to-Markdown serialization                |
+| [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)               | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)               | [changelog](./packages/hiccup-svg/CHANGELOG.md)        | hiccup based SVG vocab                          |
+| [`@thi.ng/iges`](./packages/iges)                           | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                           | [changelog](./packages/iges/CHANGELOG.md)              | IGES format geometry serialization              |
+| [`@thi.ng/markdown-table`](./packages/markdown-table)       | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)       | [changelog](./packages/markdown-table/CHANGELOG.md)    | Markdown table generator / formatter            |
+| [`@thi.ng/mime`](./packages/mime)                           | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                           | [changelog](./packages/mime/CHANGELOG.md)              | File extension to MIME type mappings            |
+| [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff)   | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md)  | GeoTIFF reader support for thi.ng/pixel         |
+| [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm)     | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)     | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md)   | 1/8/16/24bit NetPBM image format reader/writer  |
+| [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)           | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)      | Portable FloatMap image format reader/writer    |
+| [`@thi.ng/prefixes`](./packages/prefixes)                   | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)                   | [changelog](./packages/prefixes/CHANGELOG.md)          | Linked Data, RDF & xmlns prefixes/URLs          |
+| [`@thi.ng/sax`](./packages/sax)                             | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                             | [changelog](./packages/sax/CHANGELOG.md)               | SAX-like XML parser / transducer                |
+| [`@thi.ng/tangle`](./packages/tangle)                       | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                       | [changelog](./packages/tangle/CHANGELOG.md)            | Literate programming utilities                  |
 
 ### Iterator, stream & sequence processing
 
