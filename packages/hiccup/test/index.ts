@@ -345,4 +345,10 @@ group("serialize", {
 		["foo:div#bar", { prefix: { thi: "http://thi.ng/#", foaf } }, "body"],
 		`<foo:div prefix="thi: http://thi.ng/# foaf: http://xmlns.com/foaf/0.1/" id="bar">body</foo:div>`
 	),
+
+	"escape entities": () =>
+		assert.strictEqual(
+			serialize(["div", "Äöü <&> '\" —"], null, true),
+			"<div>&#xc4;&#xf6;&#xfc; &lt;&amp;&gt; &apos;&quot; &#x2014;</div>"
+		),
 });
