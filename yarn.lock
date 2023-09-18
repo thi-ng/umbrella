@@ -4267,6 +4267,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/hiccup-html-parse@workspace:packages/hiccup-html-parse":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/hiccup-html-parse@workspace:packages/hiccup-html-parse"
+  dependencies:
+    "@microsoft/api-extractor": ^7.36.4
+    "@thi.ng/api": ^8.9.5
+    "@thi.ng/defmulti": ^3.0.0
+    "@thi.ng/parse": ^2.3.1
+    "@thi.ng/strings": ^3.5.0
+    "@thi.ng/testament": ^0.3.23
+    rimraf: ^5.0.1
+    tools: "workspace:^"
+    typedoc: ^0.25.0
+    typescript: ^5.2.2
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/hiccup-html@^2.2.24, @thi.ng/hiccup-html@workspace:^, @thi.ng/hiccup-html@workspace:packages/hiccup-html":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-html@workspace:packages/hiccup-html"
