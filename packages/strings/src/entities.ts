@@ -128,10 +128,14 @@ export const RE_ENTITIES_REV = new RegExp(
 
 export const RE_ENTITIES_NUM = /&#(x?)([0-9a-f]+);/gi;
 
-const $esc = (re: RegExp, index: Record<string, string>) => (src: string) =>
-	src.replace(re, (x) => index[x]);
+export const escapeEntities = (src: string) =>
+	src.replace(RE_ENTITIES, (x) => ENTITIES[x]);
 
-export const escapeEntities = $esc(RE_ENTITIES, ENTITIES);
+export const escapeEntitiesNum = (src: string) =>
+	src.replace(RE_ENTITIES, (x) => {
+		const code = x.charCodeAt(0);
+		return code < 128 ? ENTITIES[x] : `&#x${code.toString(16)};`;
+	});
 
 export const unescapeEntities = (src: string) =>
 	src
