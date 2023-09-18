@@ -1240,7 +1240,7 @@ __metadata:
     "@thi.ng/defmulti": "workspace:^"
     "@thi.ng/fibers": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/parse": "workspace:^"
+    "@thi.ng/hiccup-html-parse": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/strings": "workspace:^"
@@ -4267,7 +4267,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-html-parse@workspace:packages/hiccup-html-parse":
+"@thi.ng/hiccup-html-parse@workspace:^, @thi.ng/hiccup-html-parse@workspace:packages/hiccup-html-parse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-html-parse@workspace:packages/hiccup-html-parse"
   dependencies:

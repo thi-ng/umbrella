@@ -1,6 +1,7 @@
 import { identity } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { parseHtml } from "@thi.ng/hiccup-html-parse";
 import { truncate } from "@thi.ng/strings";
 import { comp, mapKeys, pluck, rename, step } from "@thi.ng/transducers";
 import {
@@ -10,7 +11,6 @@ import {
 	type MediaItem,
 	type Message,
 } from "./api.js";
-import { htmlToHiccup } from "./html.js";
 
 /**
  * Polymorphic function to transform selected HTML elements (given in
@@ -80,10 +80,11 @@ const cleanupElement = defmulti<any[], any>(
  * @param src
  */
 const transformContent = (src: string) =>
-	htmlToHiccup(src, {
+	parseHtml(src, {
+		ignoreElements: ["script"],
 		ignoreAttribs: ["target", "translate"],
 		tx: cleanupElement,
-	});
+	}).result || [];
 
 /**
  * Transforms & filters raw Mastodon API account info into an {@link Account}
