@@ -24,16 +24,18 @@ export interface TransformOpts {
 
 // HTML parse grammar rules (see: thi.ng/parse readme for details)
 // playground URL:
-// https://demo.thi.ng/umbrella/parse-playground/#l9oBVGVsOiAnPCchIDxuYW1lPiA8YXR0cmliPiogKDxlbGJvZHk-IHwgPGVsdm9pZD4hICkgOwplbGJvZHk6ICc-JyEgKDxib2R5PiB8IDxlbD4pKiAiPC8iISA8bmFtZT4hICc-JyEgPT4gaG9pc3QgOwplbHZvaWQ6IDxXUzA-ICIvPiIhIDsKbmFtZTogW2EtejAtOV9cLV0rID0-IGpvaW4gOwphdHRyaWI6IDxXUzE-IDxuYW1lPiA8YXR0dmFsPj8gOwphdHR2YWw6ICc9JyEgKDx2YWw-IHwgPGVtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwplbXB0eTogJyInISAnIichIDsKYm9keTogLig_LSc8JyEpID0-IGpvaW4gOwptYWluOiA8U1RBUlQ-IDxlbD4rIDxFTkQ-ID0-IGhvaXN0IDukbWFpbtk_PGRpdiBpZD0iZm9vIiBhYmMgZGF0YS14eXo9IiI-PGEgaHJlZj0iI2JhciI-YmF6PC9hPjxici8-PC9kaXY-oKCgoA
-const lang = defGrammar(`
+// https://demo.thi.ng/umbrella/parse-playground/#l9oBpWVsOiAnPCchIDxuYW1lPiA8YXR0cmliPiogKDxlbGJvZHk-IHwgPGVsdm9pZD4hICkgOwplbGJvZHk6ICc-JyEgKDxib2R5PiB8IDxlbD4pKiAiPC8iISA8bmFtZT4hICc-JyEgPT4gaG9pc3QgOwplbHZvaWQ6IDxXUzA-ICIvPiIhIDsKbmFtZTogW2EtejAtOV9cLV0rID0-IGpvaW4gOwphdHRyaWI6IDxXUzE-IDxuYW1lPiA8YXR0dmFsPj8gOwphdHR2YWw6ICc9JyEgKDx2YWw-IHwgPGFsdHZhbD4gfCA8ZW1wdHk-IHwgPGFsdGVtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwphbHR2YWw6ICdcJychIC4oPysnXCcnISkgPT4gam9pbiA7CmVtcHR5OiAnIicgJyInIDsKYWx0ZW1wdHk6ICdcJychICdcJychIDsKYm9keTogLig_LSc8JyEpID0-IGpvaW4gOwptYWluOiA8U1RBUlQ-IDxlbD4rIDxFTkQ-ID0-IGhvaXN0IDukbWFpbtlVPGRpdiBpZD0iZm9vIiBib29sIGRhdGEteHl6PSIiIGVtcHR5PScnPjxhIGhyZWY9IiNiYXIiPmJheiA8Yj5ib2xkPC9iPjwvYT48YnIvPjwvZGl2PqCgoKA
+export const lang = defGrammar(`
 el: '<'! <name> <attrib>* (<elbody> | <elvoid>! ) ;
 elbody: '>'! (<body> | <el>)* "</"! <name>! '>'! => hoist ;
 elvoid: <WS0> "/>"! ;
 name: [a-z0-9_\\-]+ => join ;
 attrib: <WS1> <name> <attval>? ;
-attval: '='! (<val> | <empty>) ;
+attval: '='! (<val> | <altval> | <empty> | <altempty>) ;
 val: '"'! .(?+'"'!) => join ;
-empty: '"'! '"'! ;
+altval: '\\''! .(?+'\\''!) => join ;
+empty: '"' '"' ;
+altempty: '\\''! '\\''! ;
 body: .(?-'<'!) => join ;
 main: <START> <el>+ <END> => hoist ;
 `);
