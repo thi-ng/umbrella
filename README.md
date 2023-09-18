@@ -32,8 +32,8 @@
 > [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901)
 > via Twitter
 
-**Please visit [thi.ng](https://thi.ng) for additional information & topic based
-search of packages relevant to your use cases...**
+**Please visit [thi.ng](https://thi.ng) for additional information & [topic based
+search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework!** This mono-repository is home to currently
 183 individual TypeScript packages and 130+ example projects illustrating their
