@@ -35,11 +35,16 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & [topic based
 search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
-**This project is NOT a framework!** This mono-repository is home to currently
-183 individual TypeScript packages and 130+ example projects illustrating their
-usage. It's a wide and jointly developed collection of libraries, tools and
-general purpose building blocks for the following non-exhaustive list of topics
-(see [package overview](#projects) below):
+**This project is NOT a framework and all packages can be used in isolation.**
+
+This mono-repository is home to currently 183 individual TypeScript packages and
+130+ example projects illustrating their usage, currently totalling ~189k SLOC
+and 3700+ source files...
+
+Unlike most other large mono-repos this one is not for a single project, but a
+broad collection of jointly developed, yet largely independent libraries, tools
+and general purpose building blocks for the following _non-exhaustive_ list of
+topics (see [package overview](#projects) below):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines / DOM
@@ -47,32 +52,35 @@ general purpose building blocks for the following non-exhaustive list of topics
 - Data structures & data transformations for wide range of use cases (maps, sets, heaps, queues, graphs etc.)
 - WebAssembly bridge APIs & data structure bindings code generators for multiple target languages
 - PEG-style functional parser combinators w/ (optional) custom grammar definition language
+- Customizable HTML & Markdown parsers
 - 2D geometry generation, shape primitives, math, manipulation, intersections, conversions & visualizations
 - Canvas abstractions, pixel buffers & SVG serialization/conversion
-- Vector, matrix (dense & sparse), ECS implementations with optional support for strided memory layouts
+- Comprehensive function collection (900+) for nD-vectors and matrices (dense & sparse)
+- ECS implementations with optional support for strided memory layouts
 - Semi-declarative WebGL 1/2 abstraction layer
 - DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
-- Value-based equivalence (vs. native object identity)
+- Value-based equivalence (vs. native object identity) and associative data structures (sets, maps)
 - DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT, muxers, rate converters
 - Immutable data handling, state containers, transacted state updates, Undo-Redo history
-- Data driven UI component toolkits (DOM-based, canvas-based, immediate-mode, multiple approaches...)
+- Reactive UI component toolkits (DOM-based, canvas-based, immediate-mode, multiple approaches...)
 - Multi-format, multi-channel pixel buffers (int & float based), conversions, dithering, Porter-Duff alpha-blending operators
-- Color space/format conversions, matrix based color manipulation, gradient generators, color palettes
+- Color space/format conversions, matrix based color manipulation, gradient
+  generators, color palettes, dominant color extraction
 - Date-time abstraction, relative dates, iterators, formatters, math
 - WebWorker workflow abstractions
 - Forth-style pointfree DSL for functional composition and DSL development/extension
 - S-expression parser & runtime (interpreter) infrastructure for custom DSL creation
-- SIMD batch-processing of vector data
+- WASM-based SIMD batch-processing of vector data
 - Pen-plotter (AxiDraw) toolchain & geometry conversions
 - Various interpolations, math helpers, automatic differentiation (Dual numbers)
 - etc.
 
-Once more, **this project is NOT a framework**, provides no turn-key,
-one-size-fits-all approach and instead encourages a mix & match philosophy for
-various key aspects of application design (in & outside the browser).
-Customization points are provided wherever useful and usually only expect
-certain interfaces/type signatures rather than hard-coded concrete
-implementations.
+Once more, **this project is NOT a framework**. There's no turn-key,
+one-size-fits-all approach and instead the overall design philosophy encourages
+a mix & match philosophy for various key aspects of application design (inside &
+outside the browser). Customization points are provided wherever useful and
+usually only expect certain interfaces/type signatures rather than hard-coded
+concrete implementations.
 
 All packages:
 
@@ -225,18 +233,20 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-09-17
+As of: 2023-09-19
 
-| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
-|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/compare`](./packages/compare)         | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)         | [changelog](./packages/compare/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/defmulti`](./packages/defmulti)       | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)       | [changelog](./packages/defmulti/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dsp`](./packages/dsp)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                 | [changelog](./packages/dsp/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/fibers`](./packages/fibers)           | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)           | [changelog](./packages/fibers/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/oquery`](./packages/oquery)           | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)           | [changelog](./packages/oquery/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sexpr`](./packages/sexpr)             | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)             | [changelog](./packages/sexpr/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)         | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)         | [changelog](./packages/strings/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
+| Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
+|:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/compare`](./packages/compare)                     | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)                     | [changelog](./packages/compare/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/defmulti`](./packages/defmulti)                   | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)                   | [changelog](./packages/defmulti/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dsp`](./packages/dsp)                             | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                             | [changelog](./packages/dsp/CHANGELOG.md)               |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/fibers`](./packages/fibers)                       | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)                       | [changelog](./packages/fibers/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup`](./packages/hiccup)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)                       | [changelog](./packages/hiccup/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/hiccup-html-parse`](./packages/hiccup-html-parse) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html-parse.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html-parse) | [changelog](./packages/hiccup-html-parse/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/oquery`](./packages/oquery)                       | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)                       | [changelog](./packages/oquery/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sexpr`](./packages/sexpr)                         | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                         | [changelog](./packages/sexpr/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)                     | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                     | [changelog](./packages/strings/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
 
 ### Fundamentals
 
