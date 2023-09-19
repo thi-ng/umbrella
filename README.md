@@ -247,6 +247,7 @@ As of: 2023-09-19
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sexpr`](./packages/sexpr)                         | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                         | [changelog](./packages/sexpr/CHANGELOG.md)             |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)                     | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                     | [changelog](./packages/strings/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             |
 
 ### Fundamentals
 
