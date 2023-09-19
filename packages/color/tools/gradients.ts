@@ -1,15 +1,13 @@
 import {
-	Color,
 	lch,
 	lchLab,
 	multiColorGradient,
 	oklab,
 	swatchesH,
+	type Color,
 } from "@thi.ng/color";
-import { serialize } from "@thi.ng/hiccup";
-import { svg } from "@thi.ng/hiccup-svg";
 import { map, normRange, push, transduce } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
+import { writeSVG } from "./write.js";
 
 for (let l of [0.5, 0.6, 0.7, 0.8, 0.9]) {
 	const cols = transduce(
@@ -17,15 +15,10 @@ for (let l of [0.5, 0.6, 0.7, 0.8, 0.9]) {
 		push<Color>(),
 		normRange(100, false)
 	);
-
-	writeFileSync(
+	writeSVG(
 		`export/oklab-${l.toFixed(1)}.svg`,
-		serialize(
-			svg(
-				{ width: 500, height: 50, convert: true },
-				swatchesH(cols, 5, 50)
-			)
-		)
+		{ width: 500, height: 50, __convert: true },
+		swatchesH(cols, 5, 50)
 	);
 }
 
@@ -43,12 +36,8 @@ const gradient = multiColorGradient({
 	// easing: (t) => schlick(2, 0.5, t),
 });
 
-writeFileSync(
+writeSVG(
 	`export/lch-multigradient3.svg`,
-	serialize(
-		svg(
-			{ width: 500, height: 50, convert: true },
-			swatchesH(gradient, 5, 50)
-		)
-	)
+	{ width: 500, height: 50, __convert: true },
+	swatchesH(gradient, 5, 50)
 );
