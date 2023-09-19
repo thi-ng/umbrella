@@ -12,11 +12,12 @@ export class ParseContext<T> {
 	protected _curr!: ParseScope<T>;
 
 	protected _maxDepth: number;
+	protected _peakDepth!: number;
 	protected _debug: boolean;
 	protected _retain: boolean;
 
 	constructor(public reader: IReader<T>, opts?: Partial<ContextOpts>) {
-		this.opts = { maxDepth: 32, debug: false, retain: false, ...opts };
+		this.opts = { maxDepth: 64, debug: false, retain: false, ...opts };
 		this._maxDepth = this.opts.maxDepth!;
 		this._debug = this.opts.debug!;
 		this._retain = this.opts.retain!;
@@ -31,6 +32,7 @@ export class ParseContext<T> {
 			result: null,
 		};
 		this._scopes = [this._curr];
+		this._peakDepth = 1;
 		this.reader.isDone(this._curr.state!);
 		return this;
 	}
@@ -47,6 +49,7 @@ export class ParseContext<T> {
 			result: null,
 		};
 		scopes.push(scope);
+		this._peakDepth = Math.max(this._peakDepth, scopes.length);
 		this._debug &&
 			console.log(
 				`${indent(scopes.length)}start: ${id} (${scope.state!.p})`
@@ -152,6 +155,14 @@ export class ParseContext<T> {
 	get children() {
 		const children = this.root.children;
 		return children ? children[0].children : undefined;
+	}
+
+	/**
+	 * Returns max. recursion depth which was actually reached. Will always be
+	 * less or equal configured {@link ContextOpts.maxDepth}.
+	 */
+	get peakDepth() {
+		return this._peakDepth;
 	}
 }
 

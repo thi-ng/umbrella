@@ -69,9 +69,10 @@ export interface Language {
 
 export interface ContextOpts {
 	/**
-	 * Max recursion depth failsafe.
+	 * Max recursion depth failsafe. Parsing will terminate once this limit is
+	 * reached.
 	 *
-	 * @defaultVal 32
+	 * @defaultVal 64
 	 */
 	maxDepth: number;
 	/**
