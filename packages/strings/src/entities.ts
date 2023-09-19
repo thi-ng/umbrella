@@ -128,15 +128,42 @@ export const RE_ENTITIES_REV = new RegExp(
 
 export const RE_ENTITIES_NUM = /&#(x?)([0-9a-f]+);/gi;
 
+/**
+ * Replaces all occurrences of character keys in {@link ENTITIES} with their
+ * named HTML entities.
+ *
+ * @remarks
+ * Only use this function when targetting HTML output. For XML/SVG etc. use
+ * {@link escapeEntitiesNum}.
+ *
+ * @param src
+ */
 export const escapeEntities = (src: string) =>
 	src.replace(RE_ENTITIES, (x) => ENTITIES[x]);
 
+/**
+ * Similar to {@link escapeEntities}, but only uses _named_ entities for `&`,
+ * `<`, `>`, `'`, `"` and numeric entities for all others.
+ *
+ * @remarks
+ * This function is used as default by thi.ng/hiccup `serialize()` to escape
+ * characters and ensure compatibility with XML (which by default only supports
+ * named entities for the above 5 characters).
+ *
+ * @param src
+ */
 export const escapeEntitiesNum = (src: string) =>
 	src.replace(RE_ENTITIES, (x) => {
 		const code = x.charCodeAt(0);
 		return code < 128 ? ENTITIES[x] : `&#x${code.toString(16)};`;
 	});
 
+/**
+ * Replace all known named and numeric entities with their original characters.
+ * Opposite op of {@link escapeEntities} and {@link escapeEntitiesNum}.
+ *
+ * @param src
+ */
 export const unescapeEntities = (src: string) =>
 	src
 		.replace(RE_ENTITIES_REV, (x) => ENTITIES_REV[x])
