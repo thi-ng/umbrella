@@ -33,6 +33,12 @@ export interface ParseOpts {
 	 */
 	dataAttribs: boolean;
 	/**
+	 * Keep comments.
+	 *
+	 * @defaultValue false
+	 */
+	comments: boolean;
+	/**
 	 * Element transform/filter. Receives an hiccup element before its being
 	 * added to its parent. The function has full freedom to replace the element
 	 * with any value. If the function returns a nullish result the element will
@@ -58,9 +64,9 @@ export interface ParseResult {
 
 // HTML parse grammar rules (see: thi.ng/parse readme for details)
 // playground URL:
-// https://demo.thi.ng/umbrella/parse-playground/#l9oDMG5vZGU6ICc8JyEgKDxjZGF0YV9lbD4gfCA8dm9pZF9lbD4gfCA8ZWw-KSA7CmVsOiA8bmFtZT4gPGF0dHJpYj4qICg8ZWxfYm9keT4gfCA8ZWxfY2xvc2U-ISApIDsKZWxfYm9keTogJz4nISAoPGJvZHk-IHwgPG5vZGU-KSogIjwvIiEgPG5hbWU-ISAnPichID0-IGhvaXN0IDsKZWxfY2xvc2U6IDxXUzA-ICIvPiIhIDsKbmFtZTogW0EtWmEtejAtOV86XC1dKyA9PiBqb2luIDsKYXR0cmliOiA8V1MxPiA8bmFtZT4gPGF0dHZhbD4_IDsKYXR0dmFsOiAnPSchICg8dmFsPiB8IDxhbHRfdmFsPiB8IDxlbXB0eT4gfCA8YWx0X2VtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwphbHRfdmFsOiAnXCcnISAuKD8rJ1wnJyEpID0-IGpvaW4gOwplbXB0eTogJyInICciJyA7CmFsdF9lbXB0eTogJ1wnJyEgJ1wnJyEgOwpib2R5OiAuKD8tJzwnISkgPT4gam9pbiA7Cgp2b2lkX2VsOiA8dm9pZF9uYW1lPiA8YXR0cmliPiogPFdTMD4gJy8nPyEgJz4nISA7CnZvaWRfbmFtZTogKCJtZXRhIiB8ICJsaW5rIikgOwoKY2RhdGFfZWw6IDxjZGF0YV9uYW1lPiA8YXR0cmliPiogJz4nISA8Y2RhdGFfYm9keT4gOwpjZGF0YV9uYW1lOiAoInNjcmlwdCIgfCAic3R5bGUiKSA7CmNkYXRhX2JvZHk6IC4oPy08Y2RhdGFfY2xvc2U-ISkgPGNkYXRhX2Nsb3NlPiEgPT4gam9pbiA7CmNkYXRhX2Nsb3NlOiAiPC8iISA8Y2RhdGFfbmFtZT4hICc-JyEgOwoKZG9jdHlwZTogIjwhIiEgKCJkb2N0eXBlIiB8ICJET0NUWVBFIikhIDxXUzE-IDxuYW1lPiAnPichIDxXUzA-IDsKbWFpbjogPFNUQVJUPiA8ZG9jdHlwZT4_IDxub2RlPisgPEVORD4gO6RtYWlu2gEVPCFkb2N0eXBlIGh0bWw-CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ-CiAgPHNjcmlwdCBsYW5nPSJqYXZhc2NyaXB0Ij4KY29uc29sZS5sb2coIjwvIisic2NyaXB0PiIpOwogIDwvc2NyaXB0PgogIDxzdHlsZT4KYm9keSB7IG1hcmdpbjogMDsgfQogIDwvc3R5bGU-CjwvaGVhZD4KPGJvZHk-CiAgPGRpdiBpZD0iZm9vIiBib29sIGRhdGEteHl6PSIiIGVtcHR5PScnPgogICAgPGEgaHJlZj0iI2JhciI-YmF6IDxiPmJvbGQ8L2I-PC9hPjxici8-CiAgPC9kaXY-CjwvYm9keT4KPC9odG1sPqCgoKA
+// https://demo.thi.ng/umbrella/parse-playground/#l9oDY25vZGU6ICc8JyEgKDxjb21tZW50PiB8IDxjZGF0YV9lbD4gfCA8dm9pZF9lbD4gfCA8ZWw-KSA7CmVsOiA8bmFtZT4gPGF0dHJpYj4qICg8ZWxfYm9keT4gfCA8ZWxfY2xvc2U-ISApIDsKZWxfYm9keTogJz4nISAoPGJvZHk-IHwgPG5vZGU-KSogIjwvIiEgPG5hbWU-ISAnPichID0-IGhvaXN0IDsKZWxfY2xvc2U6IDxXUzA-ICIvPiIhIDsKbmFtZTogW0EtWmEtejAtOV86XC1dKyA9PiBqb2luIDsKYXR0cmliOiA8V1MxPiA8bmFtZT4gPGF0dHZhbD4_IDsKYXR0dmFsOiAnPSchICg8dmFsPiB8IDxhbHRfdmFsPiB8IDxlbXB0eT4gfCA8YWx0X2VtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwphbHRfdmFsOiAnXCcnISAuKD8rJ1wnJyEpID0-IGpvaW4gOwplbXB0eTogJyInICciJyA7CmFsdF9lbXB0eTogJ1wnJyEgJ1wnJyEgOwpib2R5OiAuKD8tJzwnISkgPT4gam9pbiA7Cgp2b2lkX2VsOiA8dm9pZF9uYW1lPiA8YXR0cmliPiogPFdTMD4gJy8nPyEgJz4nISA7CnZvaWRfbmFtZTogKCJtZXRhIiB8ICJsaW5rIikgOwoKY2RhdGFfZWw6IDxjZGF0YV9uYW1lPiA8YXR0cmliPiogJz4nISA8Y2RhdGFfYm9keT4gOwpjZGF0YV9uYW1lOiAoInNjcmlwdCIgfCAic3R5bGUiKSA7CmNkYXRhX2JvZHk6IC4oPy08Y2RhdGFfY2xvc2U-ISkgPGNkYXRhX2Nsb3NlPiEgPT4gam9pbiA7CmNkYXRhX2Nsb3NlOiAiPC8iISA8Y2RhdGFfbmFtZT4hICc-JyEgOwoKZG9jdHlwZTogIjwhIiEgKCJkb2N0eXBlIiB8ICJET0NUWVBFIikhIDxXUzE-IDxuYW1lPiAnPichIDxXUzA-IDsKY29tbWVudDogIiEtLSIhIC4oPysiLS0-IiEpID0-IGpvaW4gOwoKbWFpbjogPFNUQVJUPiA8ZG9jdHlwZT4_IDxub2RlPisgPEVORD4gO6RtYWlu2gEyPCFkb2N0eXBlIGh0bWw-CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ-CiAgPCEtLSA8aWdub3JlPjwvaWdub3JlPiAtLT4KICA8c2NyaXB0IGxhbmc9ImphdmFzY3JpcHQiPgpjb25zb2xlLmxvZygiPC8iKyJzY3JpcHQ-Iik7CiAgPC9zY3JpcHQ-CiAgPHN0eWxlPgpib2R5IHsgbWFyZ2luOiAwOyB9CiAgPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KICA8ZGl2IGlkPSJmb28iIGJvb2wgZGF0YS14eXo9IiIgZW1wdHk9Jyc-CiAgICA8YSBocmVmPSIjYmFyIj5iYXogPGI-Ym9sZDwvYj48L2E-PGJyLz4KICA8L2Rpdj4KPC9ib2R5Pgo8L2h0bWw-oKCgoA
 export const lang = defGrammar(`
-node: '<'! (<cdata_el> | <void_el> | <el>) ;
+node: '<'! (<comment> | <cdata_el> | <void_el> | <el>) ;
 el: <name> <attrib>* (<el_body> | <el_close>! ) ;
 el_body: '>'! (<body> | <node>)* "</"! <name>! '>'! => hoist ;
 el_close: <WS0> "/>"! ;
@@ -82,7 +88,9 @@ cdata_body: .(?-<cdata_close>!) <cdata_close>! => join ;
 cdata_close: "</"! <cdata_name>! '>'! ;
 
 doctype: "<!"! ("doctype" | "DOCTYPE")! <WS1> <name> '>'! <WS0> ;
-main: <START> <doctype>? <node>* <END> ;
+comment: "!--"! .(?+"-->"!) => join ;
+
+main: <START> <doctype>? <node>+ <END> ;
 `);
 
 /**
@@ -169,6 +177,10 @@ const transformScope = defmulti<
 
 		node: ({ children }, opts, acc) => {
 			transformScope(children![0], opts, acc);
+		},
+
+		comment: ({ result }, opts, acc) => {
+			if (opts.comments) acc.push(["__COMMENT__", result.trim()]);
 		},
 
 		// element node transformer, collects & filters attributes/children

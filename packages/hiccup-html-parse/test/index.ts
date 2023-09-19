@@ -5,17 +5,18 @@ import { parseHtml } from "../src/index.js";
 const src = `<!doctype html>
 <html lang="en">
 <head>
-	<script lang="javascript">
+  <script lang="javascript">
 console.log("</"+"script>");
-	</script>
-	<style>
+  </script>
+  <style>
 body { margin: 0; }
-	</style>
+  </style>
 </head>
 <body>
-	<div id="foo" bool data-xyz="123" empty=''>
-	<a href="#bar">baz <b>bold</b></a><br/>
-	</div>
+  <div id="foo" bool data-xyz="123" empty=''>
+    <!-- <ignore></ignore> -->
+    <a href="#bar">baz <b>bold</b></a><br/>
+  </div>
 </body>
 </html>`;
 
@@ -50,10 +51,11 @@ group("hiccup-html-parse", {
 		]);
 	},
 
-	ignore: () => {
+	custom: () => {
 		const result = parseHtml(src, {
 			doctype: true,
 			dataAttribs: false,
+			comments: true,
 			ignoreElements: ["head", "b", "br"],
 			ignoreAttribs: ["bool"],
 		});
@@ -65,7 +67,12 @@ group("hiccup-html-parse", {
 				[
 					"body",
 					{},
-					["div", { id: "foo" }, ["a", { href: "#bar" }, "baz "]],
+					[
+						"div",
+						{ id: "foo" },
+						["__COMMENT__", "<ignore></ignore>"],
+						["a", { href: "#bar" }, "baz "],
+					],
 				],
 			],
 		]);
