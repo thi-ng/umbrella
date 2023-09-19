@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-09-06T13:36:28Z
+- **Last updated**: 2023-09-19T10:42:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,27 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.0.0) (2023-09-19)
+
+#### 🛑 Breaking changes
+
+- add SerializeOpts, update serialize() ([442d777](https://github.com/thi-ng/umbrella/commit/442d777))
+- BREAKING CHANGE: update serialize() args, replace with options object
+  - only a breaking change for "advanced" use cases
+  - add SerializeOpts to simplify serialize() args
+  - add customizable entity escaping (via new opts)
+  - add/update tests
+
+#### 🩹 Bug fixes
+
+- update entity escapes in serialize() ([369d83e](https://github.com/thi-ng/umbrella/commit/369d83e))
+  - use [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/main/packages/strings) escapeEntitiesNum() for better XML/SVG compatibility
+  - add tests
+
+#### ♻️ Refactoring
+
+- minor updates ([94b3de6](https://github.com/thi-ng/umbrella/commit/94b3de6))
 
 ## [4.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@4.3.0) (2023-08-27)
 
