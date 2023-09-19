@@ -6,6 +6,7 @@
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
+	"type": "module",
 	"scripts": {
 		"clean": "rimraf node_modules/.cache build out",
 		"build-static": "ts-node src/server/static.ts",

@@ -2,8 +2,6 @@
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"outDir": "./build",
-		"module": "commonjs",
-		"target": "es2017",
 		"sourceMap": true
 	},
 	"include": ["src/**/*"]

@@ -1,5 +1,5 @@
 import { TLRUCache } from "@thi.ng/cache";
-import * as express from "express";
+import express from "express";
 import * as fs from "fs";
 // @ts-ignore
 import * as Bundler from "parcel-bundler";

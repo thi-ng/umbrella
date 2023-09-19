@@ -1,6 +1,6 @@
 import type { Nullable } from "@thi.ng/api";
 import { mergeDeepObj } from "@thi.ng/associative";
-import { serialize } from "@thi.ng/hiccup";
+import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { map } from "@thi.ng/transducers";
 import type { AppContext, HTMLDoc } from "../common/api";
 import { DEFAULT_DOC } from "../common/config";
@@ -20,22 +20,25 @@ import { DEFAULT_DOC } from "../common/config";
  */
 export const html = (doc: HTMLDoc) => {
 	doc = mergeDeepObj(DEFAULT_DOC, doc);
-	return `<!DOCTYPE html>${serialize(
+	return serialize(
 		[
-			"html",
-			{ lang: doc.lang || "en" },
+			DOCTYPE_HTML,
 			[
-				"head",
-				map((meta) => ["meta", meta], doc.head!.meta || []),
-				map((s) => script(null, s), doc.head!.scripts || []),
-				map((link) => ["link", link], doc.head!.links || []),
-				map((css) => ["style", css], doc.head!.styles || []),
-				["title", doc.head!.title || ""],
+				"html",
+				{ lang: doc.lang || "en" },
+				[
+					"head",
+					map((meta) => ["meta", meta], doc.head!.meta || []),
+					map((s) => script(null, s), doc.head!.scripts || []),
+					map((link) => ["link", link], doc.head!.links || []),
+					map((css) => ["style", css], doc.head!.styles || []),
+					["title", doc.head!.title || ""],
+				],
+				["body", doc.ctx!.ui.body, ...doc.body],
 			],
-			["body", doc.ctx!.ui.body, ...doc.body],
 		],
-		doc.ctx
-	)}`;
+		{ ctx: doc.ctx }
+	);
 };
 
 export const script = (
