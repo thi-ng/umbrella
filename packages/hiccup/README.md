@@ -36,7 +36,6 @@ This project is part of the
   - [XML / DTD processing instructions](#xml--dtd-processing-instructions)
 - [API](#api)
   - [serialize()](#serialize)
-  - [escape()](#escape)
 - [Authors](#authors)
 - [License](#license)
 
@@ -45,34 +44,35 @@ This project is part of the
 HTML/SVG/XML serialization of nested data structures, iterables & closures.
 
 Inspired by [Hiccup](https://github.com/weavejester/hiccup) and
-[Reagent](http://reagent-project.github.io/) for Clojure/ClojureScript.
+[Reagent](http://reagent-project.github.io/) for Clojure/ClojureScript, this
+package provides key infrastructure for a number of other related libraries.
 
-Forget all the custom toy DSLs for templating and instead use the full
-power of ES6 to directly define fully data-driven, purely functional and
-easily *composable* components for static serialization to HTML &
-friends.
+Forget all the custom toy DSLs for templating and instead use the full power of
+modern JavaScript to directly define fully data-driven, purely functional and
+easily *composable* components for static serialization to HTML & friends.
 
-This library is suitable for static website generation, server side rendering
+This library is suitable for any SGML-style (HTML/XML/SVG/RSS/Atom etc.)
+serialization, including static website/asset generation, server side rendering
 etc. For interactive use cases, please see companion packages
 [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
-(or the older
+(or the older, now unmaintained
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
 and their various support packages.
 
 ### Features
 
-- Only uses arrays, functions, ES6 iterables / iterators / generators
+- Only uses JS arrays, plain objects, functions, ES6 iterables / iterators / generators
 - Eager & lazy component composition using embedded functions / closures
 - Support for self-closing tags (incl. validation), boolean attributes
-- Arbitrary user context object injection for component functions
-- Dynamic derived attribute value generation via function values
+- Arbitrary user context object injection for embedded component functions
+- Dynamically derived attribute value generation via function values
 - CSS formatting of `style` attribute objects
-- Optional HTML entity encoding
+- Optional HTML/XML entity encoding
 - Support for comments and XML/DTD processing instructions
-- Branch-local behavior control attributes to control serialization
+- Branch-local behavior control attributes to customize serialization
 - Small (1.9KB minified) & fast
 
-(*) Lazy composition here means that functions are only executed at
+<sup>(*)</sup> Lazy composition here means that functions are only executed at
 serialization time. Examples below...
 
 ### Use cases
@@ -86,24 +86,27 @@ serialization time. Examples below...
 
 ### No special sauce needed (or wanted)
 
-Using only vanilla language features simplifies the development,
-composability, reusability and testing of components. Furthermore, no
-custom template parser is required and you're only restricted by the
-expressiveness of the language / environment, not by your template
-engine.
+Using only vanilla language features simplifies the development, removes need
+for extra tooling, improves composability, reusability, transformation and
+testing of components. No custom template parser (a la JSX or Handlebars etc.)
+is required and you're only restricted by the expressiveness of the language /
+environment, not by your template engine.
 
-Components can be defined as simple functions returning arrays or loaded
-via JSON/JSONP.
+Components can be defined as simple arrays and/or functions returning arrays or
+can be dynamically generated or loaded via JSON...
 
 ### What is Hiccup?
 
-For many years, [Hiccup](https://github.com/weavejester/hiccup) has been
-the de-facto standard to encode HTML/XML datastructures in Clojure. This
-library brings & extends this convention into ES6. A valid Hiccup tree
-is any flat (though, usually nested) array of the following possible
-structures. Any functions embedded in the tree are expected to return
-values of the same structure. Please see [examples](#examples) &
-[API](#api) further explanations...
+For many years, [Hiccup](https://github.com/weavejester/hiccup) has been the
+de-facto standard to encode HTML/XML datastructures in Clojure (and many years
+before that, [the overall idea was introduced in Scheme by Oleg Kiselyov and
+Kirill Lisovsky in
+1999](https://web.archive.org/web/20011225105556/http://okmij.org/ftp/Scheme/xml.html)).
+This library brings & extends this convention into ES6. A valid Hiccup tree is
+any flat (though, usually nested) array of the following possible structures.
+Any functions embedded in the tree are expected to return values of the same
+structure. Please see [examples](#examples) & [API](#api) further
+explanations...
 
 ```ts
 ["tag", ...]
@@ -127,6 +130,7 @@ iterable
 - [@thi.ng/hiccup-carbon-icons](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons) - Full set of IBM's Carbon icons in hiccup format
 - [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css) - CSS from nested JS data structures
 - [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure
+- [@thi.ng/hiccup-html-parse](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse) - HTML parsing and transformation to nested JS arrays in hiccup format
 - [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
 
@@ -169,7 +173,7 @@ For Node.js REPL:
 const hiccup = await import("@thi.ng/hiccup");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.09 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
 
 ## Dependencies
 
@@ -205,7 +209,7 @@ A selection:
 ### Tags with Zencoding expansion
 
 Tag names support
-[Zencoding/Emmet](https://docs.emmet.io/abbreviations/syntax/#id-and-class)
+[Emmet/Zencoding](https://docs.emmet.io/abbreviations/syntax/#id-and-class)
 style ID & class attribute expansion:
 
 ```ts
@@ -246,13 +250,10 @@ serialize(
 <div class="notice" selected style="background:#ff0;border:3px solid black">WARNING</div>
 ```
 
-If an attribute specifies a function as value, the function is called
-with the entire attribute object as argument. This allows for the
-dynamic generation of attribute values, based on existing ones. The
-result MUST be a string.
-
-**Function values for event attributes (any attrib name starting with
-"on") WILL BE OMITTED from output.**
+If an attribute specifies a function as value, the function is called with the
+entire attribute object as argument (incl. any `id` or `class` attribs derived
+from an Emmet-style tag name). This allows for the dynamic generation of
+attribute values, based on existing ones. The result MUST be a string.
 
 ```ts
 ["div#foo", { bar: (attribs) => attribs.id + "-bar" }]
@@ -261,6 +262,9 @@ result MUST be a string.
 ```html
 <div id="foo" bar="foo-bar"></div>
 ```
+
+Function values for event attributes (any attrib name starting with
+"on") WILL BE OMITTED from output:
 
 ```ts
 ["div#foo", { onclick: () => alert("foo") }, "click me!"]
@@ -298,9 +302,11 @@ serialize(
 
 ### User context injection
 
-Every component function will receive an arbitrary user defined context
-object as first argument. This context object is passed to `serialize()`
-and is then auto-injected for every component function call.
+Every component function will receive an arbitrary user defined context object
+as first argument. This context object can be passed to
+[`serialize()`](https://docs.thi.ng/umbrella/hiccup/functions/serialize.html)
+via its [options argument]() and is then passed as arg to every component function
+call.
 
 The context object should contain any global component configuration,
 e.g. for theming purposes.
@@ -321,17 +327,18 @@ const theme = {
 
 serialize(
     [section, "Hello world", "Easy theming"],
-    { theme }
+    // pass context object via options
+    { ctx: { theme } }
 );
 // <section class="bg-black moon-gray bt b--dark-gray mt3"><h1 class="white f3">Hello world</h1>Easy theming</section>
 ```
 
-**Note:** Of course the context is ONLY auto-injected for lazily
-embedded component functions (as shown above), i.e. if the functions are
-wrapped in arrays and only called during serialization. If you call a
-component function directly, you MUST pass the context (or `null`) as
-first arg yourself. Likewise, if a component function doesn't make use
-of the context you can either:
+**Note:** Of course the context is ONLY auto-injected for lazily embedded
+component functions (like the examples shown above), i.e. if the functions are
+wrapped in arrays and only called during serialization. If you call such a
+component function directly, you MUST pass the context (or `null`) as first arg
+yourself. Likewise, if a component function doesn't make use of the context you
+can use either:
 
 ```ts
 // skip the context arg and require direct invocation
@@ -362,13 +369,15 @@ Also see
 [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
 for related functionality.
 
-```ts
-const fs = require("fs");
+```ts tangle:export/readme-circles.js
+import { serialize } from "@thi.ng/hiccup";
+import { repeatedly } from "@thi.ng/transducers";
+import { writeFileSync } from "fs";
 
 // creates an unstyled SVG circle element
 // we ignore the first arg (an auto-injected context arg)
 // context handling is described further below
-const circle = (_, x, y, r) => ["circle", { cx: x | 0, cy: y | 0, r: r | 0 }];
+const circle = (_, x, y, r) => ["circle", { cx: ~~x, cy: ~~y, r: ~~r }];
 
 // note how this next component lazily composes `circle`.
 // This form delays evaluation of the `circle` component
@@ -382,22 +391,19 @@ const randomCircle = () => [
     Math.random() * 100
 ];
 
-// generator to produce iterable of `n` calls to `fn`
-function* repeatedly(n, fn) {
-    while (n-- > 0) yield fn();
-}
-
 // generate 100 random circles and write serialized SVG to file
 // `randomCircle` is wrapped
-import { SVG_NS } from "@thi.ng/hiccup";
+import { XML_SVG } from "@thi.ng/prefixes";
 
 const doc = [
-    "svg", { xmlns: SVG_NS, width: 1000, height: 1000 },
+    "svg", { xmlns: XML_SVG, width: 1000, height: 1000 },
         ["g", { fill: "none", stroke: "red" },
-            repeatedly(100, randomCircle)]];
+            repeatedly(randomCircle, 100)]];
 
-fs.writeFileSync("circles.svg", serialize(doc));
+writeFileSync("export/circles.svg", serialize(doc));
 ```
+
+Resulting example output:
 
 ```xml
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
@@ -413,7 +419,9 @@ fs.writeFileSync("circles.svg", serialize(doc));
 
 ### Data-driven component composition
 
-```ts
+```js tangle:export/readme-glossary.js
+import { serialize } from "@thi.ng/hiccup";
+
 // data
 const glossary = {
     foo: "widely used placeholder name in computing",
@@ -438,9 +446,12 @@ const widget = [
         ["h1", "Glossary"],
         [dlList, { id: "glossary" }, glossary]];
 
-// the 2nd arg `true` enforces HTML entity encoding (off by default)
-serialize(widget, null, true);
+// serialize with enforced HTML entity encoding (off by default)
+console.log(serialize(widget, { escape: true }));
 ```
+
+(Re)formatted output (generated HTML will always be dense, without intermittent
+white space):
 
 ```html
 <div class="widget">
@@ -460,7 +471,9 @@ serialize(widget, null, true);
 
 ### Stateful component
 
-```ts
+```js tangle:export/readme-toc.js
+import { serialize } from "@thi.ng/hiccup";
+
 // stateful component to create hierarchically
 // indexed & referencable section headlines:
 // e.g. "sec-1.1.2.3"
@@ -490,11 +503,15 @@ const TOC = [
 // create new indexer instance
 const section = indexer();
 
-serialize([
-    "div.toc",
-    TOC.map(([level, title]) => [section, level, title])
-]);
+console.log(
+    serialize([
+    	"div.toc",
+    	TOC.map(([level, title]) => [section, level, title])
+    ])
+);
 ```
+
+Re-formatted HTML output:
 
 ```html
 <div class="toc">
@@ -519,7 +536,7 @@ hiccup too supports such components since version 2.0.0. However, for
 static serialization only the `render` method is of interest and others
 are ignored.
 
-```ts
+```js
 const component = {
     render: (ctx, title, ...body) => ["section", ["h1", title], ...body]
 };
@@ -536,8 +553,8 @@ behavior of individual elements / tree branches:
   [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
 - **`__serialize`** - if false, skips serialization (hiccup only)
 
-```ts
-serialize(["div.container", ["div", {__skip: true}, "ignore me"]]);
+```js
+serialize(["div.container", ["div", { __skip: true }, "ignore me"]]);
 // <div class="container"></div>
 ```
 
@@ -625,7 +642,7 @@ this are event attributes, i.e. attribute names starting with "on".
 The `style` attribute can ONLY be defined as string or object.
 
 ```ts
-["div", {style: {color: "red", background: "#000"}}]
+["div", { style: { color: "red", background: "#000" } }]
 // <div style="color:red;background:#000;"></div>
 ```
 
@@ -645,7 +662,7 @@ new tree (or undefined).
 ```ts
 const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
 
-serialize([foo, "id", "body"], { foo: { class: "black" }})
+serialize([foo, "id", "body"], { foo: { class: "black" } })
 // <div id="id" class="black">body</div>
 ```
 
@@ -656,15 +673,6 @@ implementation).
 
 Please also see list of supported [behavior control
 attributes](#behavior-control-attributes).
-
-### escape()
-
-Signature: `escape(str: string): string`
-
-Helper function. Applies HTML entity replacement on given string. If
-`serialize()` is called with `true` as 2nd argument, entity encoding is
-done automatically ([list of entities
-considered](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/src/api.ts#L11)).
 
 ## Authors
 
