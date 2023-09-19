@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-31T10:05:26Z
+- **Last updated**: 2023-09-19T12:41:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [6.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.5.0) (2023-09-19)
+
+#### 🚀 Features
+
+- update clearCanvas(), add defaultViewport() ([a7b47a2](https://github.com/thi-ng/umbrella/commit/a7b47a2))
 
 ### [6.4.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.4.20) (2023-08-31)
 
