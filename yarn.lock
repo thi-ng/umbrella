@@ -4281,7 +4281,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.36.4
     "@thi.ng/api": ^8.9.5
     "@thi.ng/defmulti": ^3.0.0
-    "@thi.ng/parse": ^2.3.2
+    "@thi.ng/parse": ^2.4.0
     "@thi.ng/strings": ^3.6.0
     "@thi.ng/testament": ^0.3.23
     rimraf: ^5.0.1
@@ -4318,7 +4318,7 @@ __metadata:
     "@thi.ng/errors": ^2.3.5
     "@thi.ng/hiccup": ^5.0.0
     "@thi.ng/logger": ^1.4.21
-    "@thi.ng/parse": ^2.3.2
+    "@thi.ng/parse": ^2.4.0
     "@thi.ng/strings": ^3.6.0
     "@thi.ng/testament": ^0.3.23
     "@thi.ng/text-canvas": ^2.6.6
@@ -4716,7 +4716,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/parse@^2.3.2, @thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
+"@thi.ng/parse@^2.4.0, @thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/parse@workspace:packages/parse"
   dependencies:
