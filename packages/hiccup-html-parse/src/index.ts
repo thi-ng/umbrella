@@ -50,6 +50,19 @@ export interface ParseOpts {
 	 * text will be skipped/omitted entirely.
 	 */
 	txBody: Fn<string, any>;
+	/**
+	 * Parser's internal max recursion limit. Parsing will terminate once this
+	 * limit is reached.
+	 *
+	 * @defaultValue 64
+	 */
+	maxDepth: number;
+	/**
+	 * True to enable parser debug output. Will emit details of each parse scope.
+	 *
+	 * @defaultValue false
+	 */
+	debug: boolean;
 }
 
 export type Element = [string, Record<string, any>, ...ElementBody[]];
@@ -64,11 +77,11 @@ export interface ParseResult {
 
 // HTML parse grammar rules (see: thi.ng/parse readme for details)
 // playground URL:
-// https://demo.thi.ng/umbrella/parse-playground/#l9oDY25vZGU6ICc8JyEgKDxjb21tZW50PiB8IDxjZGF0YV9lbD4gfCA8dm9pZF9lbD4gfCA8ZWw-KSA7CmVsOiA8bmFtZT4gPGF0dHJpYj4qICg8ZWxfYm9keT4gfCA8ZWxfY2xvc2U-ISApIDsKZWxfYm9keTogJz4nISAoPGJvZHk-IHwgPG5vZGU-KSogIjwvIiEgPG5hbWU-ISAnPichID0-IGhvaXN0IDsKZWxfY2xvc2U6IDxXUzA-ICIvPiIhIDsKbmFtZTogW0EtWmEtejAtOV86XC1dKyA9PiBqb2luIDsKYXR0cmliOiA8V1MxPiA8bmFtZT4gPGF0dHZhbD4_IDsKYXR0dmFsOiAnPSchICg8dmFsPiB8IDxhbHRfdmFsPiB8IDxlbXB0eT4gfCA8YWx0X2VtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwphbHRfdmFsOiAnXCcnISAuKD8rJ1wnJyEpID0-IGpvaW4gOwplbXB0eTogJyInICciJyA7CmFsdF9lbXB0eTogJ1wnJyEgJ1wnJyEgOwpib2R5OiAuKD8tJzwnISkgPT4gam9pbiA7Cgp2b2lkX2VsOiA8dm9pZF9uYW1lPiA8YXR0cmliPiogPFdTMD4gJy8nPyEgJz4nISA7CnZvaWRfbmFtZTogKCJtZXRhIiB8ICJsaW5rIikgOwoKY2RhdGFfZWw6IDxjZGF0YV9uYW1lPiA8YXR0cmliPiogJz4nISA8Y2RhdGFfYm9keT4gOwpjZGF0YV9uYW1lOiAoInNjcmlwdCIgfCAic3R5bGUiKSA7CmNkYXRhX2JvZHk6IC4oPy08Y2RhdGFfY2xvc2U-ISkgPGNkYXRhX2Nsb3NlPiEgPT4gam9pbiA7CmNkYXRhX2Nsb3NlOiAiPC8iISA8Y2RhdGFfbmFtZT4hICc-JyEgOwoKZG9jdHlwZTogIjwhIiEgKCJkb2N0eXBlIiB8ICJET0NUWVBFIikhIDxXUzE-IDxuYW1lPiAnPichIDxXUzA-IDsKY29tbWVudDogIiEtLSIhIC4oPysiLS0-IiEpID0-IGpvaW4gOwoKbWFpbjogPFNUQVJUPiA8ZG9jdHlwZT4_IDxub2RlPisgPEVORD4gO6RtYWlu2gEyPCFkb2N0eXBlIGh0bWw-CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ-CiAgPCEtLSA8aWdub3JlPjwvaWdub3JlPiAtLT4KICA8c2NyaXB0IGxhbmc9ImphdmFzY3JpcHQiPgpjb25zb2xlLmxvZygiPC8iKyJzY3JpcHQ-Iik7CiAgPC9zY3JpcHQ-CiAgPHN0eWxlPgpib2R5IHsgbWFyZ2luOiAwOyB9CiAgPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KICA8ZGl2IGlkPSJmb28iIGJvb2wgZGF0YS14eXo9IiIgZW1wdHk9Jyc-CiAgICA8YSBocmVmPSIjYmFyIj5iYXogPGI-Ym9sZDwvYj48L2E-PGJyLz4KICA8L2Rpdj4KPC9ib2R5Pgo8L2h0bWw-oKCgoA
+// https://demo.thi.ng/umbrella/parse-playground/#l9oDdW5vZGU6ICc8JyEgKDxjb21tZW50PiB8IDxjZGF0YV9lbD4gfCA8dm9pZF9lbD4gfCA8ZWw-KSA7CmVsOiA8bmFtZT4gPGF0dHJpYj4qICg8ZWxfYm9keT4gfCA8ZWxfY2xvc2U-ISApIDsKZWxfYm9keTogPFdTMD4gJz4nISAoPGJvZHk-IHwgPG5vZGU-KSogIjwvIiEgPG5hbWU-ISA8V1MwPiAnPichID0-IGhvaXN0IDsKZWxfY2xvc2U6IDxXUzA-ICIvPiIhIDsKbmFtZTogW0EtWmEtejAtOV86XC1dKyA9PiBqb2luIDsKYXR0cmliOiA8V1MxPiA8bmFtZT4gPGF0dHZhbD4_IDsKYXR0dmFsOiAnPSchICg8dmFsPiB8IDxhbHRfdmFsPiB8IDxlbXB0eT4gfCA8YWx0X2VtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwphbHRfdmFsOiAnXCcnISAuKD8rJ1wnJyEpID0-IGpvaW4gOwplbXB0eTogJyInICciJyA7CmFsdF9lbXB0eTogJ1wnJyEgJ1wnJyEgOwpib2R5OiAuKD8tJzwnISkgPT4gam9pbiA7Cgp2b2lkX2VsOiA8dm9pZF9uYW1lPiA8YXR0cmliPiogPFdTMD4gJy8nPyEgJz4nISA7CnZvaWRfbmFtZTogKCJtZXRhIiB8ICJsaW5rIikgOwoKY2RhdGFfZWw6IDxjZGF0YV9uYW1lPiA8YXR0cmliPiogJz4nISA8Y2RhdGFfYm9keT4gOwpjZGF0YV9uYW1lOiAoInNjcmlwdCIgfCAic3R5bGUiKSA7CmNkYXRhX2JvZHk6IC4oPy08Y2RhdGFfY2xvc2U-ISkgPGNkYXRhX2Nsb3NlPiEgPT4gam9pbiA7CmNkYXRhX2Nsb3NlOiAiPC8iISA8Y2RhdGFfbmFtZT4hIDxXUzA-ICc-JyEgOwoKZG9jdHlwZTogIjwhIiEgKCJkb2N0eXBlIiB8ICJET0NUWVBFIikhIDxXUzE-IDxuYW1lPiAnPichIDxXUzA-IDsKY29tbWVudDogIiEtLSIhIC4oPysiLS0-IiEpID0-IGpvaW4gOwoKbWFpbjogPFNUQVJUPiA8ZG9jdHlwZT4_IDxub2RlPisgPEVORD4gO6RtYWlu2gEyPCFkb2N0eXBlIGh0bWw-CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ-CiAgPCEtLSA8aWdub3JlPjwvaWdub3JlPiAtLT4KICA8c2NyaXB0IGxhbmc9ImphdmFzY3JpcHQiPgpjb25zb2xlLmxvZygiPC8iKyJzY3JpcHQ-Iik7CiAgPC9zY3JpcHQ-CiAgPHN0eWxlPgpib2R5IHsgbWFyZ2luOiAwOyB9CiAgPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KICA8ZGl2IGlkPSJmb28iIGJvb2wgZGF0YS14eXo9IiIgZW1wdHk9Jyc-CiAgICA8YSBocmVmPSIjYmFyIj5iYXogPGI-Ym9sZDwvYj48L2E-PGJyLz4KICA8L2Rpdj4KPC9ib2R5Pgo8L2h0bWw-oKCgoA
 export const lang = defGrammar(`
 node: '<'! (<comment> | <cdata_el> | <void_el> | <el>) ;
 el: <name> <attrib>* (<el_body> | <el_close>! ) ;
-el_body: '>'! (<body> | <node>)* "</"! <name>! '>'! => hoist ;
+el_body: <WS0> '>'! (<body> | <node>)* "</"! <name>! <WS0> '>'! => hoist ;
 el_close: <WS0> "/>"! ;
 name: [A-Za-z0-9_:\\-]+ => join ;
 attrib: <WS1> <name> <attval>? ;
@@ -85,7 +98,7 @@ void_name: ("meta" | "link") ;
 cdata_el: <cdata_name> <attrib>* '>'! <cdata_body> ;
 cdata_name: ("script" | "style") ;
 cdata_body: .(?-<cdata_close>!) <cdata_close>! => join ;
-cdata_close: "</"! <cdata_name>! '>'! ;
+cdata_close: "</"! <cdata_name>! <WS0> '>'! ;
 
 doctype: "<!"! ("doctype" | "DOCTYPE")! <WS1> <name> '>'! <WS0> ;
 comment: "!--"! .(?+"-->"!) => join ;
@@ -107,9 +120,9 @@ export const parseRaw = (src: string, opts?: Partial<ContextOpts>) => {
 };
 
 /**
- * Parses given HTML source string into a collection of elements in
- * thi.ng/hiccup format, using provided options to transform, clean or filter
- * elements.
+ * Trims given HTML source string and attempts to parse it into a collection of
+ * elements in thi.ng/hiccup format, using provided options to transform, clean
+ * or filter elements.
  *
  * @param src
  * @param opts
@@ -120,7 +133,10 @@ export const parseHtml = (
 ): ParseResult => {
 	if (!src) return { type: "success", result: [] };
 	try {
-		const { result, ctx } = parseRaw(src);
+		const { result, ctx } = parseRaw(src.trim(), {
+			debug: opts.debug || false,
+			maxDepth: opts.maxDepth,
+		});
 		const loc = {
 			offset: ctx.state.p,
 			line: ctx.state.l,
@@ -159,7 +175,7 @@ const transformScope = defmulti<
 	void
 >(
 	(x) => x.id,
-	{ cdata_el: "el" },
+	{ cdata_el: "el", void_el: "el" },
 	{
 		[DEFAULT]: (scope: ParseScope<string>) => {
 			throw new Error(`missing impl for scope ID: ${scope.id}`);
