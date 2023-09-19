@@ -17,9 +17,11 @@
 		"@thi.ng/shader-ast": "workspace:^",
 		"@thi.ng/shader-ast-js": "workspace:^",
 		"@thi.ng/shader-ast-stdlib": "workspace:^",
+		"@thi.ng/strings": "workspace:^",
 		"@thi.ng/text-canvas": "workspace:^",
 		"@thi.ng/text-format": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-stats": "workspace:^",
 		"@thi.ng/vectors": "workspace:^"
 	},
 	"browser": {

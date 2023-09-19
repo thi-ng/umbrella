@@ -20,6 +20,7 @@
 		"@thi.ng/dsp": "workspace:^",
 		"@thi.ng/dsp-io-wav": "workspace:^",
 		"@thi.ng/fibers": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/math": "workspace:^",
 		"@thi.ng/random": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
@@ -36,7 +37,12 @@
 			"dsp",
 			"dsp-io-wav",
 			"fibers",
-			"rdom"
+			"hiccup-html",
+			"random",
+			"rdom",
+			"rstream",
+			"strings",
+			"transducers"
 		],
 		"screenshot": "examples/render-audio.png"
 	}
