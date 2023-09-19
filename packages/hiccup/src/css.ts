@@ -6,8 +6,8 @@ export const css = (rules: any) => {
 	let v: any;
 	for (let r in rules) {
 		v = deref(rules[r]);
-		isFunction(v) && (v = v(rules));
-		v != null && (css += `${r}:${v};`);
+		if (isFunction(v)) v = v(rules);
+		if (v != null) css += `${r}:${v};`;
 	}
 	return css;
 };

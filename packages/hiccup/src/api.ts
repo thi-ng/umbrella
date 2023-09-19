@@ -16,6 +16,9 @@ export const COMMENT = "__COMMENT__";
 /** @internal */
 export const CDATA = "!CDATA";
 
+/** @internal */
+export const DOCTYPE = "!DOCTYPE";
+
 /**
  * XML processing instruction in hiccup format.
  *
@@ -27,7 +30,7 @@ export const XML_PROC = ["?xml", { version: "1.0", encoding: "UTF-8" }];
 /**
  * `<!DOCTYPE html>` in hiccup format
  */
-export const DOCTYPE_HTML = ["!DOCTYPE", "html"];
+export const DOCTYPE_HTML = [DOCTYPE, "html"];
 
 /** @internal */
 export const NO_SPANS: {
