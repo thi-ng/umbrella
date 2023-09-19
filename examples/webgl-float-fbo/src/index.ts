@@ -4,11 +4,12 @@ import { mapcat, normRange, repeatedly } from "@thi.ng/transducers";
 import { Vec2 } from "@thi.ng/vectors";
 import {
 	BLEND_NORMAL,
-	defMultiPass,
 	DrawMode,
+	TextureFormat,
+	clearCanvas,
+	defMultiPass,
 	glCanvas,
 	setLogger,
-	TextureFormat,
 } from "@thi.ng/webgl";
 
 // configure logger to view generated shaders in console
@@ -18,6 +19,8 @@ setLogger(new ConsoleLogger("webgl"));
 const NUM_POINTS = 16;
 const VEL_GAIN = 0.005;
 const VEL_BIAS = 0.05 * VEL_GAIN;
+
+const BG_COL = [0, 0, 0, 1];
 
 // buffer to store point coordinates
 // (all coordinates are in [-1,-1] .. [1,1] space)
@@ -104,8 +107,7 @@ const pipeline = defMultiPass({
 
 // pre-fill the offscreen texture with background color
 pipeline.fbos[0].bind();
-gl.clearColor(0, 0, 0, 1);
-gl.clear(gl.COLOR_BUFFER_BIT);
+clearCanvas(gl, BG_COL);
 pipeline.fbos[0].unbind();
 
 const update = () => {

@@ -35,6 +35,7 @@ import {
 import {
 	BLEND_ADD,
 	DrawMode,
+	clearCanvas,
 	compileModel,
 	defShader,
 	draw,
@@ -53,6 +54,8 @@ const W2 = W / 2;
 const ALPHA = 0.3;
 const COLOR = [1, 0.7, 0.1, 0.001];
 const COLOR2 = [0.1, 0.9, 1, 0.001];
+
+const BG_COL = [0, 0, 0, 1];
 
 // component type mapping used to configure ECS and all of its derived types
 interface CompSpecs {
@@ -215,8 +218,7 @@ const app = () => {
 				setVN4(col2, col2, alpha);
 			}
 
-			gl.clearColor(0, 0, 0, 1);
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			clearCanvas(gl, BG_COL);
 			draw(model);
 		},
 	});
