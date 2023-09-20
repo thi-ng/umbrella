@@ -84,6 +84,7 @@ const transformContent = (src: string) =>
 		ignoreElements: ["script"],
 		ignoreAttribs: ["target", "translate"],
 		tx: cleanupElement,
+		whitespace: true,
 	}).result || [];
 
 /**
