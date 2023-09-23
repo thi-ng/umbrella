@@ -14,11 +14,13 @@ import { BINARY, NUM_THEMES } from "./binary.js";
 import { compFilter } from "./filter.js";
 
 /**
- * Returns theme for given ID as CSS hex colors.
+ * Returns theme for given ID as CSS hex colors. If `reverse` is true (default:
+ * false), the theme colors will be returned in reverse order.
  *
  * @param id
+ * @param reverse
  */
-export const asCSS = (id: number) => {
+export const asCSS = (id: number, reverse = false) => {
 	__ensureID(id);
 	const theme: CSSTheme = [];
 	// (<any>theme).__id = id;
@@ -29,16 +31,18 @@ export const asCSS = (id: number) => {
 				U24((BINARY[id] << 16) | (BINARY[id + 1] << 8) | BINARY[id + 2])
 		);
 	}
-	return theme;
+	return reverse ? theme.reverse() : theme;
 };
 
 /**
  * Returns theme for given ID as packed ARGB integers (alpha channel will always
- * be set to 0xff).
+ * be set to 0xff). If `reverse` is true (default: false), the theme colors will
+ * be returned in reverse order.
  *
  * @param id
+ * @param reverse
  */
-export const asInt = (id: number) => {
+export const asInt = (id: number, reverse = false) => {
 	__ensureID(id);
 	const theme: IntTheme = [];
 	id *= 18;
@@ -51,22 +55,27 @@ export const asInt = (id: number) => {
 				0
 		);
 	}
-	return theme;
+	return reverse ? theme.reverse() : theme;
 };
 
 /**
- * Returns theme for given ID as thi.ng/color LCH color vectors.
+ * Returns theme for given ID as thi.ng/color LCH color vectors. If `reverse` is
+ * true (default: false), the theme colors will be returned in reverse order.
  *
  * @param id
+ * @param reverse
  */
-export const asLCH = (id: number): LCHTheme => asRGB(id).map((x) => lch(x));
+export const asLCH = (id: number, reverse = false): LCHTheme =>
+	asRGB(id, reverse).map((x) => lch(x));
 
 /**
- * Returns theme for given ID as thi.ng/color sRGB color vectors.
+ * Returns theme for given ID as thi.ng/color sRGB color vectors. If `reverse`
+ * is true (default: false), the theme colors will be returned in reverse order.
  *
  * @param id
+ * @param reverse
  */
-export const asRGB = (id: number) => {
+export const asRGB = (id: number, reverse = false) => {
 	__ensureID(id);
 	const theme: RGBTheme = <any>[];
 	// (<any>theme).__id = id;
@@ -81,7 +90,7 @@ export const asRGB = (id: number) => {
 			)
 		);
 	}
-	return theme;
+	return reverse ? theme.reverse() : theme;
 };
 
 /**
