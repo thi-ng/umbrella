@@ -130,7 +130,7 @@ iterable
 - [@thi.ng/hiccup-carbon-icons](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons) - Full set of IBM's Carbon icons in hiccup format
 - [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css) - CSS from nested JS data structures
 - [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure
-- [@thi.ng/hiccup-html-parse](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse) - HTML parsing and transformation to nested JS arrays in hiccup format
+- [@thi.ng/hiccup-html-parse](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse) - Well-formed HTML parsing and customizable transformation to nested JS arrays in [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) format
 - [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
 

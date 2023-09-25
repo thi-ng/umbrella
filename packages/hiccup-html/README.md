@@ -164,7 +164,7 @@ welcome!
 
 ## Support packages
 
-- [@thi.ng/hiccup-html-parse](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse) - HTML parsing and transformation to nested JS arrays in hiccup format
+- [@thi.ng/hiccup-html-parse](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse) - Well-formed HTML parsing and customizable transformation to nested JS arrays in [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) format
 
 ## Related packages
 

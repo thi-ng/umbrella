@@ -271,7 +271,7 @@ For Node.js REPL:
 const colorPalettes = await import("@thi.ng/color-palettes");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.75 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.77 KB
 
 ## Dependencies
 
@@ -290,9 +290,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                           | Description                                          | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
+| Screenshot                                                                                                           | Description                                                       | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/> | (Re)Constructing the thi.ng logo using a 2D signed-distance field | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes              | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
 
 ### Usage
 
@@ -302,6 +303,10 @@ import { asCSS, asRGB } from "@thi.ng/color-palettes";
 // get theme for ID
 asCSS(7);
 // ["#2f1864", "#e40302", "#f25c22", "#d987bd", "#44b6e7", "#e3dadd"]
+
+// get in reverse order
+asCSS(7, true);
+// ["#e3dadd", "#44b6e7", "#d987bd", "#f25c22", "#e40302", "#2f1864"]
 
 asInt(7).map(x => x.toString(16));
 // [ 'ff2f1864', 'ffe40302', 'fff25c22', 'ffd987bd', 'ff44b6e7', 'ffe3dadd']

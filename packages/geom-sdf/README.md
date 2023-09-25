@@ -18,6 +18,7 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -134,7 +135,7 @@ For Node.js REPL:
 const geomSdf = await import("@thi.ng/geom-sdf");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.52 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.53 KB
 
 ## Dependencies
 
@@ -150,6 +151,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.52 KB
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                           | Description                                                       | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/> | (Re)Constructing the thi.ng logo using a 2D signed-distance field | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo) |
 
 ## API
 
