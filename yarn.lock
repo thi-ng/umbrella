@@ -672,6 +672,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-sdf-logo@workspace:examples/geom-sdf-logo":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-sdf-logo@workspace:examples/geom-sdf-logo"
+  dependencies:
+    "@thi.ng/color-palettes": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-sdf": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-tessel@workspace:examples/geom-tessel":
   version: 0.0.0-use.local
   resolution: "@example/geom-tessel@workspace:examples/geom-tessel"
@@ -3895,7 +3910,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-sdf@workspace:packages/geom-sdf":
+"@thi.ng/geom-sdf@workspace:^, @thi.ng/geom-sdf@workspace:packages/geom-sdf":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-sdf@workspace:packages/geom-sdf"
   dependencies:
