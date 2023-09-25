@@ -145,6 +145,7 @@ visual outputs/results).
 - [014: A simple browser REPL for a Lispy mini language](https://mastodon.thi.ng/@toxi/111012777135967117)
 - [015: Generative audio synth offline renderer and WAV file export](https://mastodon.thi.ng/@toxi/111018580750654608)
 - [016: Building a reactive Mastodon UI, parsing & transforming API data](https://mastodon.thi.ng/@toxi/111069280667363259)
+- [017: (Re)Constructing the thi.ng logo as 2D signed-distance field](https://mastodon.thi.ng/@toxi/111124858346572300)
 
 ### Blog posts
 
