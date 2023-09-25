@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-axidraw",
-	"version": "0.5.27",
+	"version": "0.5.28",
 	"description": "Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"@thi.ng/axidraw": "^1.1.22",
 		"@thi.ng/compare": "^2.2.0",
 		"@thi.ng/defmulti": "^3.0.0",
-		"@thi.ng/geom": "^5.2.4",
+		"@thi.ng/geom": "^5.2.5",
 		"@thi.ng/geom-accel": "^3.5.17",
 		"@thi.ng/geom-api": "^3.4.33",
 		"@thi.ng/geom-clip-line": "^2.3.33",
