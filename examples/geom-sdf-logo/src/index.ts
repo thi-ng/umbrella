@@ -1,6 +1,5 @@
 import { asCSS } from "@thi.ng/color-palettes";
 import {
-	Polygon,
 	asSvg,
 	bounds,
 	circle,
@@ -8,6 +7,7 @@ import {
 	rect,
 	svgDoc,
 	transform,
+	type Polygon,
 } from "@thi.ng/geom";
 import { asPolygons, asSDF, sample2d } from "@thi.ng/geom-sdf";
 import { rad } from "@thi.ng/math";
@@ -71,6 +71,7 @@ const sineWarp =
 // bounding rect & resolution. we also use the above `sineWarp()` function to
 // transform the sample positions and so create a spatial warping of the SDF.
 // comment out that last arg to compare results without this transform...
+// see https://thi.ng/geom-sdf readme for more info/examples
 const image = sample2d(asSDF(logo), logoBounds, RES, sineWarp(0.02, 25));
 
 // now the reverse op: convert SDF back into geometries...
@@ -89,6 +90,6 @@ const contours = THEME.map((fill, i) =>
 // 2. the`__bleed` control attrib adds some additional page bleed/margin.
 // 3. we reverse the contours array to ensure the largest shapes (i.e. those
 //    with the greatest SDF sample distance) are drawn first
-document.body.innerHTML = asSvg(
+document.getElementById("app")!.innerHTML = asSvg(
 	svgDoc({ __bleed: 10, stroke: "#000" }, ...contours.reverse())
 );
