@@ -1,4 +1,4 @@
-import type { IReset } from "@thi.ng/api";
+import type { ICopy, IReset } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { add } from "./add.js";
 import { AGen } from "./agen.js";
@@ -78,7 +78,7 @@ export interface ADSROpts {
  */
 export const adsr = (opts?: Partial<ADSROpts>) => new ADSR(opts);
 
-export class ADSR extends AGen<number> implements IReset {
+export class ADSR extends AGen<number> implements ICopy<ADSR>, IReset {
 	protected _phase!: EnvPhase;
 	protected _curve!: IGen<number>;
 	protected _atime!: number;
@@ -111,6 +111,19 @@ export class ADSR extends AGen<number> implements IReset {
 		this.setCurveD(opts.dcurve!);
 		this.setGain(opts.gain!);
 		this.reset();
+	}
+
+	copy() {
+		return new ADSR({
+			a: this._atime,
+			d: this._dtime,
+			s: this._sustain,
+			r: this._rtime,
+			acurve: this._acurve,
+			dcurve: this._dcurve,
+			gain: this._gain,
+			slen: this._speriod,
+		});
 	}
 
 	reset() {

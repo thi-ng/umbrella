@@ -1,4 +1,4 @@
-import type { IReset } from "@thi.ng/api";
+import type { ICopy, IReset } from "@thi.ng/api";
 import { AGen } from "./agen.js";
 
 /**
@@ -20,7 +20,10 @@ export const impulseTrainT = <T>(
 export const impulseTrainB = (period: number, start?: number) =>
 	new ImpulseTrain(true, false, period, start);
 
-export class ImpulseTrain<T> extends AGen<T> implements IReset {
+export class ImpulseTrain<T>
+	extends AGen<T>
+	implements ICopy<ImpulseTrain<T>>, IReset
+{
 	protected _startpos: number;
 
 	constructor(
@@ -31,6 +34,15 @@ export class ImpulseTrain<T> extends AGen<T> implements IReset {
 	) {
 		super(_off);
 		this._startpos = --this._pos;
+	}
+
+	copy() {
+		return new ImpulseTrain(
+			this._on,
+			this._off,
+			this._period,
+			this._startpos + 1
+		);
 	}
 
 	reset() {

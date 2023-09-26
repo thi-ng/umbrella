@@ -1,5 +1,6 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { Delay } from "./delay.js";
+import type { ICopy } from "@thi.ng/api";
 
 /**
  * Extension of {@link Delay} which adds sum delayed value multiplied
@@ -14,10 +15,17 @@ import { Delay } from "./delay.js";
 export const feedbackDelay = (n: number, feedback?: number) =>
 	new FeedbackDelay(n, feedback);
 
-export class FeedbackDelay extends Delay<number> {
+export class FeedbackDelay
+	extends Delay<number>
+	implements ICopy<FeedbackDelay>
+{
 	constructor(n: number, protected _feedback = 0.5) {
 		super(n, 0);
 		this.setFeedback(_feedback);
+	}
+
+	copy() {
+		return new FeedbackDelay(this._buf.length, this._feedback);
 	}
 
 	next(x: number) {

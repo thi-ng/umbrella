@@ -1,4 +1,4 @@
-import type { IReset } from "@thi.ng/api";
+import type { ICopy, IReset } from "@thi.ng/api";
 import { AGen } from "./agen.js";
 
 /**
@@ -14,7 +14,7 @@ import { AGen } from "./agen.js";
 export const mul = (factor?: number, start?: number, clamp?: number) =>
 	new Mul(factor, start, clamp);
 
-export class Mul extends AGen<number> implements IReset {
+export class Mul extends AGen<number> implements ICopy<Mul>, IReset {
 	constructor(
 		protected _factor = 1,
 		protected _start = 1,
@@ -22,6 +22,10 @@ export class Mul extends AGen<number> implements IReset {
 	) {
 		super(0);
 		this.reset();
+	}
+
+	copy() {
+		return new Mul(this._factor, this._start, this._clamp);
 	}
 
 	reset() {
