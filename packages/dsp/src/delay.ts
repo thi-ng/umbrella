@@ -1,5 +1,6 @@
 import type { Fn0, IClear, ILength, IReset } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { wrap } from "@thi.ng/math/interval";
 import { AProc } from "./aproc.js";
 
@@ -37,6 +38,8 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
 	 */
 	constructor(n: number, protected _empty: T | Fn0<T>) {
 		super(isFunction(_empty) ? _empty() : _empty);
+		if (n < 1) illegalArgs("delay size must be >= 1");
+		n >>>= 0;
 		this._wpos = n - 1;
 		this._rpos = 0;
 		this._buf = new Array(n);
