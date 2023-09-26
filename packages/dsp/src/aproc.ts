@@ -24,7 +24,9 @@ export abstract class AProc<A, B> implements IProc<A, B>, IXform<A, B> {
 /**
  * Similar to {@link AProc}, but for processors with 2 inputs.
  */
-export abstract class AProc2<A, B, C> implements IProc2<A, B, C> {
+export abstract class AProc2<A, B, C>
+	implements IProc2<A, B, C>, IXform<[A, B], C>
+{
 	constructor(protected _val: C) {}
 
 	deref() {
@@ -32,4 +34,8 @@ export abstract class AProc2<A, B, C> implements IProc2<A, B, C> {
 	}
 
 	abstract next(a: A, b: B): C;
+
+	xform() {
+		return map(([a, b]: [A, B]) => this.next(a, b));
+	}
 }
