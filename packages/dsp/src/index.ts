@@ -50,6 +50,7 @@ export * from "./pipe.js";
 export * from "./power.js";
 export * from "./product.js";
 export * from "./reciprocal.js";
+export * from "./ref.js";
 export * from "./serial.js";
 export * from "./sincos.js";
 export * from "./sum.js";
