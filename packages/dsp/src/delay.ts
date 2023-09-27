@@ -109,14 +109,14 @@ export class Delay<T>
 	}
 
 	/**
-	 * Progresses read & write pos, stores & returns new value.
+	 * Progresses read & write pos, stores new value and returns delayed value.
 	 *
 	 * @param x -
 	 */
 	next(x: T) {
 		this.step();
 		this._buf[this._wpos] = x;
-		return x;
+		return (this._val = this._buf[this._rpos]);
 	}
 
 	/**
