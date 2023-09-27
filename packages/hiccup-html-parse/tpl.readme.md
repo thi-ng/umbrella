@@ -6,8 +6,8 @@
 
 {{pkg.description}}
 
-Note: This parser is intended to work with formed HTML and will likely fail for
-any "quirky" (aka dodgy) markup...
+Note: This parser is intended to work with wellformed HTML and will likely fail
+for any "quirky" (aka malformed/dodgy) markup...
 
 ### Basic usage
 
@@ -57,16 +57,20 @@ console.log(result.result);
 Parser behavior & results can be customized via supplied options and user
 transformation functions:
 
-| Option           | Description                          | Default |
-|------------------|--------------------------------------|---------|
-| `ignoreElements` | Array of element names to ignore     | []      |
-| `ignoreAttribs`  | Array of attribute names to ignore   | []      |
-| `comments`       | Keep `<!-- ... -->` comments         | false   |
-| `doctype`        | Keep `<!doctype ...>` element        | false   |
-| `whitespace`     | Keep whitespace-only text bodies     | false   |
-| `dataAttribs`    | Keep data attribs                    | true    |
-| `tx`             | Element transform/filter function    |         |
-| `txBody`         | Plain text transform/filter function |         |
+| Option           | Description                                         | Default |
+|------------------|-----------------------------------------------------|---------|
+| `ignoreElements` | Array of element names to ignore                    | []      |
+| `ignoreAttribs`  | Array of attribute names to ignore                  | []      |
+| `dataAttribs`    | Keep data attribs                                   | true    |
+| `comments`       | Keep `<!-- ... -->` comments                        | false   |
+| `doctype`        | Keep `<!doctype ...>` element                       | false   |
+| `whitespace`     | Keep whitespace-only text bodies                    | false   |
+| `collapse`       | Collapse whitespace<sup>(1)</sup>                   | true    |
+| `unescape`       | Replace named & numeric HTML entities<sup>(1)</sup> | true    |
+| `tx`             | Element transform/filter function                   |         |
+| `txBody`         | Plain text transform/filter function                |         |
+
+- (1) - Not in CData content sections like inside `<script>` or `<style>` elements
 
 {{meta.status}}
 
