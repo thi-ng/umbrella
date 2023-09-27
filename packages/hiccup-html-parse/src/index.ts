@@ -15,6 +15,12 @@ export interface ParseOpts {
 	 */
 	ignoreAttribs: string[];
 	/**
+	 * Keep data attribs.
+	 *
+	 * @defaultValue true
+	 */
+	dataAttribs: boolean;
+	/**
 	 * Keep `<!doctype ...>` element.
 	 *
 	 * @defaultValue false
@@ -27,11 +33,19 @@ export interface ParseOpts {
 	 */
 	whitespace: boolean;
 	/**
-	 * Keep data attribs.
+	 * If enabled, collapses all whitespace to single space (`\u0020`)
+	 * characters.
 	 *
 	 * @defaultValue true
 	 */
-	dataAttribs: boolean;
+	collapse: boolean;
+	/**
+	 * If enabled, unescapes known named and numeric HTML entities (i.e.
+	 * replaces them with their original characters).
+	 *
+	 * @defaultValue true
+	 */
+	unescape: boolean;
 	/**
 	 * Keep comments.
 	 *
@@ -54,7 +68,7 @@ export interface ParseOpts {
 	 * Parser's internal max recursion limit. Parsing will terminate once this
 	 * limit is reached.
 	 *
-	 * @defaultValue 64
+	 * @defaultValue 128
 	 */
 	maxDepth: number;
 	/**
@@ -77,7 +91,7 @@ export interface ParseResult {
 
 // HTML parse grammar rules (see: thi.ng/parse readme for details)
 // playground URL:
-// https://demo.thi.ng/umbrella/parse-playground/#l9oDdW5vZGU6ICc8JyEgKDxjb21tZW50PiB8IDxjZGF0YV9lbD4gfCA8dm9pZF9lbD4gfCA8ZWw-KSA7CmVsOiA8bmFtZT4gPGF0dHJpYj4qICg8ZWxfYm9keT4gfCA8ZWxfY2xvc2U-ISApIDsKZWxfYm9keTogPFdTMD4gJz4nISAoPGJvZHk-IHwgPG5vZGU-KSogIjwvIiEgPG5hbWU-ISA8V1MwPiAnPichID0-IGhvaXN0IDsKZWxfY2xvc2U6IDxXUzA-ICIvPiIhIDsKbmFtZTogW0EtWmEtejAtOV86XC1dKyA9PiBqb2luIDsKYXR0cmliOiA8V1MxPiA8bmFtZT4gPGF0dHZhbD4_IDsKYXR0dmFsOiAnPSchICg8dmFsPiB8IDxhbHRfdmFsPiB8IDxlbXB0eT4gfCA8YWx0X2VtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwphbHRfdmFsOiAnXCcnISAuKD8rJ1wnJyEpID0-IGpvaW4gOwplbXB0eTogJyInICciJyA7CmFsdF9lbXB0eTogJ1wnJyEgJ1wnJyEgOwpib2R5OiAuKD8tJzwnISkgPT4gam9pbiA7Cgp2b2lkX2VsOiA8dm9pZF9uYW1lPiA8YXR0cmliPiogPFdTMD4gJy8nPyEgJz4nISA7CnZvaWRfbmFtZTogKCJtZXRhIiB8ICJsaW5rIikgOwoKY2RhdGFfZWw6IDxjZGF0YV9uYW1lPiA8YXR0cmliPiogJz4nISA8Y2RhdGFfYm9keT4gOwpjZGF0YV9uYW1lOiAoInNjcmlwdCIgfCAic3R5bGUiKSA7CmNkYXRhX2JvZHk6IC4oPy08Y2RhdGFfY2xvc2U-ISkgPGNkYXRhX2Nsb3NlPiEgPT4gam9pbiA7CmNkYXRhX2Nsb3NlOiAiPC8iISA8Y2RhdGFfbmFtZT4hIDxXUzA-ICc-JyEgOwoKZG9jdHlwZTogIjwhIiEgKCJkb2N0eXBlIiB8ICJET0NUWVBFIikhIDxXUzE-IDxuYW1lPiAnPichIDxXUzA-IDsKY29tbWVudDogIiEtLSIhIC4oPysiLS0-IiEpID0-IGpvaW4gOwoKbWFpbjogPFNUQVJUPiA8ZG9jdHlwZT4_IDxub2RlPisgPEVORD4gO6RtYWlu2gEyPCFkb2N0eXBlIGh0bWw-CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ-CiAgPCEtLSA8aWdub3JlPjwvaWdub3JlPiAtLT4KICA8c2NyaXB0IGxhbmc9ImphdmFzY3JpcHQiPgpjb25zb2xlLmxvZygiPC8iKyJzY3JpcHQ-Iik7CiAgPC9zY3JpcHQ-CiAgPHN0eWxlPgpib2R5IHsgbWFyZ2luOiAwOyB9CiAgPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KICA8ZGl2IGlkPSJmb28iIGJvb2wgZGF0YS14eXo9IiIgZW1wdHk9Jyc-CiAgICA8YSBocmVmPSIjYmFyIj5iYXogPGI-Ym9sZDwvYj48L2E-PGJyLz4KICA8L2Rpdj4KPC9ib2R5Pgo8L2h0bWw-oKCgoA
+// https://demo.thi.ng/umbrella/parse-playground/#l9oD3G5vZGU6ICc8JyEgKDxjb21tZW50PiB8IDxjZGF0YV9lbD4gfCA8dm9pZF9lbD4gfCA8ZWw-KSA7CmVsOiA8bmFtZT4gPGF0dHJpYj4qICg8ZWxfYm9keT4gfCA8ZWxfY2xvc2U-ISApIDsKZWxfYm9keTogPFdTMD4gJz4nISAoPGJvZHk-IHwgPG5vZGU-KSogIjwvIiEgPG5hbWU-ISA8V1MwPiAnPichID0-IGhvaXN0IDsKZWxfY2xvc2U6IDxXUzA-ICIvPiIhIDsKbmFtZTogW0EtWmEtejAtOV86XC1dKyA9PiBqb2luIDsKYXR0cmliOiA8V1MxPiA8bmFtZT4gPGF0dHZhbD4_IDsKYXR0dmFsOiAnPSchICg8dmFsPiB8IDxhbHRfdmFsPiB8IDxlbXB0eT4gfCA8YWx0X2VtcHR5PikgOwp2YWw6ICciJyEgLig_KyciJyEpID0-IGpvaW4gOwphbHRfdmFsOiAnXCcnISAuKD8rJ1wnJyEpID0-IGpvaW4gOwplbXB0eTogJyInICciJyA7CmFsdF9lbXB0eTogJ1wnJyEgJ1wnJyEgOwpib2R5OiAuKD8tJzwnISkgPT4gam9pbiA7Cgp2b2lkX2VsOiA8dm9pZF9uYW1lPiA8YXR0cmliPiogPFdTMD4gJy8nPyEgJz4nISA7CnZvaWRfbmFtZTogKCJhcmVhIiB8ICJiYXNlIiB8ICJiciIgfCAiY29sIiB8ICJlbWJlZCIgfCAiaHIiIHwgImltZyIgfCAiaW5wdXQiIHwgImxpbmsiIHwgIm1ldGEiIHwgInNvdXJjZSIgfCAidHJhY2siIHwgIndiciIpIDsKCmNkYXRhX2VsOiA8Y2RhdGFfbmFtZT4gPGF0dHJpYj4qICc-JyEgPGNkYXRhX2JvZHk-IDsKY2RhdGFfbmFtZTogKCJzY3JpcHQiIHwgInN0eWxlIikgOwpjZGF0YV9ib2R5OiAuKD8tPGNkYXRhX2Nsb3NlPiEpIDxjZGF0YV9jbG9zZT4hID0-IGpvaW4gOwpjZGF0YV9jbG9zZTogIjwvIiEgPGNkYXRhX25hbWU-ISA8V1MwPiAnPichIDsKCmRvY3R5cGU6ICI8ISIhICgiZG9jdHlwZSIgfCAiRE9DVFlQRSIpISA8V1MxPiAuKD8rJz4nISkgPFdTMD4gPT4gam9pbiA7CmNvbW1lbnQ6ICIhLS0iISAuKD8rIi0tPiIhKSA9PiBqb2luIDsKCm1haW46IDxTVEFSVD4gPGRvY3R5cGU-PyA8bm9kZT4rIDxFTkQ-IDukbWFpbtoBMjwhZG9jdHlwZSBodG1sPgo8aHRtbCBsYW5nPSJlbiI-CjxoZWFkPgogIDwhLS0gPGlnbm9yZT48L2lnbm9yZT4gLS0-CiAgPHNjcmlwdCBsYW5nPSJqYXZhc2NyaXB0Ij4KY29uc29sZS5sb2coIjwvIisic2NyaXB0PiIpOwogIDwvc2NyaXB0PgogIDxzdHlsZT4KYm9keSB7IG1hcmdpbjogMDsgfQogIDwvc3R5bGU-CjwvaGVhZD4KPGJvZHk-CiAgPGRpdiBpZD0iZm9vIiBib29sIGRhdGEteHl6PSIiIGVtcHR5PScnPgogICAgPGEgaHJlZj0iI2JhciI-YmF6IDxiPmJvbGQ8L2I-PC9hPjxici8-CiAgPC9kaXY-CjwvYm9keT4KPC9odG1sPqCgoKA
 export const lang = defGrammar(`
 node: '<'! (<comment> | <cdata_el> | <void_el> | <el>) ;
 el: <name> <attrib>* (<el_body> | <el_close>! ) ;
@@ -93,14 +107,14 @@ alt_empty: '\\''! '\\''! ;
 body: .(?-'<'!) => join ;
 
 void_el: <void_name> <attrib>* <WS0> '/'?! '>'! ;
-void_name: ("meta" | "link") ;
+void_name: ("area" | "base" | "br" | "col" | "embed" | "hr" | "img" | "input" | "link" | "meta" | "source" | "track" | "wbr") ;
 
 cdata_el: <cdata_name> <attrib>* '>'! <cdata_body> ;
 cdata_name: ("script" | "style") ;
 cdata_body: .(?-<cdata_close>!) <cdata_close>! => join ;
 cdata_close: "</"! <cdata_name>! <WS0> '>'! ;
 
-doctype: "<!"! ("doctype" | "DOCTYPE")! <WS1> <name> '>'! <WS0> ;
+doctype: "<!"! ("doctype" | "DOCTYPE")! <WS1> .(?+'>'!) <WS0> => join ;
 comment: "!--"! .(?+"-->"!) => join ;
 
 main: <START> <doctype>? <node>+ <END> ;
@@ -129,12 +143,19 @@ export const parseRaw = (src: string, opts?: Partial<ContextOpts>) => {
  */
 export const parseHtml = (
 	src: string,
-	opts: Partial<ParseOpts> = {}
+	opts?: Partial<ParseOpts>
 ): ParseResult => {
 	if (!src) return { type: "success", result: [] };
+	opts = {
+		debug: false,
+		collapse: true,
+		unescape: true,
+		maxDepth: 128,
+		...opts,
+	};
 	try {
 		const { result, ctx } = parseRaw(src.trim(), {
-			debug: opts.debug || false,
+			debug: opts.debug,
 			maxDepth: opts.maxDepth,
 		});
 		const loc = {
@@ -186,7 +207,7 @@ const transformScope = defmulti<
 			if (!children) return;
 			children = children[0].children;
 			if (opts.doctype && children?.[0]) {
-				acc.push(["!DOCTYPE", children[0].children?.[0].result]);
+				acc.push(["!DOCTYPE", children[0].result]);
 			}
 			for (let x of children![1].children!) transformScope(x, opts, acc);
 		},
@@ -222,7 +243,7 @@ const transformScope = defmulti<
 			}
 			if (body) {
 				if (body.result) {
-					el.push(unescapeEntities(body.result.trim()));
+					el.push(body.result.trim());
 				} else if (body.children) {
 					for (let x of body.children!) transformScope(x, opts, el);
 				}
@@ -234,7 +255,8 @@ const transformScope = defmulti<
 		// plain text transform (by default only resolves HTML entities)
 		body: ({ result }, opts, acc) => {
 			if (!opts.whitespace && /^\s+$/.test(result)) return;
-			result = unescapeEntities(result);
+			if (opts.collapse) result = (<string>result).replace(/\s+/gm, " ");
+			if (opts.unescape) result = unescapeEntities(result);
 			result = opts.txBody ? opts.txBody(result) : result;
 			if (result != null) acc.push(result);
 		},

@@ -15,7 +15,7 @@ body { margin: 0; }
 <body>
   <div id="foo" bool data-xyz="123" empty=''>
     <!-- <ignore></ignore> -->
-    <a href="#bar">baz <b>bold</b></a><br/>
+    <a href="#bar">baz        <b>bold</b></a><br/>
   </div>
 </body>
 </html>`;
@@ -56,6 +56,7 @@ group("hiccup-html-parse", {
 			doctype: true,
 			dataAttribs: false,
 			comments: true,
+			collapse: false,
 			ignoreElements: ["head", "b", "br"],
 			ignoreAttribs: ["bool"],
 		});
@@ -71,10 +72,20 @@ group("hiccup-html-parse", {
 						"div",
 						{ id: "foo" },
 						["__COMMENT__", "<ignore></ignore>"],
-						["a", { href: "#bar" }, "baz "],
+						["a", { href: "#bar" }, "baz        "],
 					],
 				],
 			],
+		]);
+	},
+
+	entities: () => {
+		const src = `<body><script>x &lt; 0</script>x &lt; 0</body>`;
+		assert.deepStrictEqual(parseHtml(src).result, [
+			["body", {}, ["script", {}, "x &lt; 0"], "x < 0"],
+		]);
+		assert.deepStrictEqual(parseHtml(src, { unescape: false }).result, [
+			["body", {}, ["script", {}, "x &lt; 0"], "x &lt; 0"],
 		]);
 	},
 });
