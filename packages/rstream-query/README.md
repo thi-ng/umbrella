@@ -17,6 +17,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Visualizing a query's dataflow topology](#visualizing-a-querys-dataflow-topology)
 - [Authors](#authors)
 - [License](#license)
 
@@ -206,6 +207,8 @@ addCity("paris", "france");
 //     { answer: 'berlin is located in germany' },
 //     { answer: 'paris is located in france' } }
 ```
+
+### Visualizing a query's dataflow topology
 
 After setting up the above query and its internal transformations, the
 generated dataflow topology then looks as follows:
