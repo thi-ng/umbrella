@@ -234,15 +234,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-09-25
+As of: 2023-09-28
 
 | Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
 |:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color-palettes`](./packages/color-palettes)       | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)       | [changelog](./packages/color-palettes/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/geom-sdf`](./packages/geom-sdf)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)                   | [changelog](./packages/geom-sdf/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/dot`](./packages/dot)                             | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                             | [changelog](./packages/dot/CHANGELOG.md)               |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dsp`](./packages/dsp)                             | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                             | [changelog](./packages/dsp/CHANGELOG.md)               |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-html-parse`](./packages/hiccup-html-parse) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html-parse.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html-parse) | [changelog](./packages/hiccup-html-parse/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/parse`](./packages/parse)                         | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)                         | [changelog](./packages/parse/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             |
 
 ### Fundamentals
 
