@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-09-25T07:43:28Z
+- **Last updated**: 2023-09-28T05:58:33Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html-parse@0.3.0) (2023-09-28)
+
+#### 🚀 Features
+
+- update grammar, add opts ([a43142d](https://github.com/thi-ng/umbrella/commit/a43142d))
+  - update grammar to improve doctype & void tag handling
+  - add new ParseOpts: collapse & unescape
+  - increase default maxDepth to 128
+  - add/update tests
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html-parse@0.2.0) (2023-09-19)
 

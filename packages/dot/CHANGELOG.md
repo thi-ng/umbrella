@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-27T11:20:59Z
+- **Last updated**: 2023-09-28T05:58:33Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.43](https://github.com/thi-ng/umbrella/tree/@thi.ng/dot@2.1.43) (2023-09-28)
+
+#### 🩹 Bug fixes
+
+- update GraphAttribs.rankDir ([a8d87b7](https://github.com/thi-ng/umbrella/commit/a8d87b7))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dot@2.1.0) (2021-11-17)
 

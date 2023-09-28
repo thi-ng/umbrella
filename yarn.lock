@@ -3271,7 +3271,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.36.4
     "@thi.ng/api": ^8.9.5
     "@thi.ng/dgraph": ^2.1.65
-    "@thi.ng/dot": ^2.1.42
+    "@thi.ng/dot": ^2.1.43
     "@thi.ng/testament": ^0.3.23
     rimraf: ^5.0.1
     tools: "workspace:^"
@@ -3377,7 +3377,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/dot@^2.1.42, @thi.ng/dot@workspace:packages/dot":
+"@thi.ng/dot@^2.1.43, @thi.ng/dot@workspace:packages/dot":
   version: 0.0.0-use.local
   resolution: "@thi.ng/dot@workspace:packages/dot"
   dependencies:
@@ -3491,7 +3491,7 @@ __metadata:
     "@thi.ng/api": ^8.9.5
     "@thi.ng/associative": ^6.3.7
     "@thi.ng/checks": ^3.4.5
-    "@thi.ng/dot": ^2.1.42
+    "@thi.ng/dot": ^2.1.43
     "@thi.ng/equiv": ^2.1.30
     "@thi.ng/errors": ^2.3.5
     "@thi.ng/logger": ^1.4.21
