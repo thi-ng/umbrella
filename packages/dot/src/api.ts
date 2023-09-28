@@ -51,7 +51,7 @@ export interface GraphAttribs {
 	nodesep: number;
 	orientation: "portrait" | "landscape";
 	rank: "same" | "min" | "max" | "source" | "sink";
-	rankdir: "LR" | "TB";
+	rankdir: "LR" | "RL" | "TB" | "BT";
 	ranksep: number;
 	ratio: string;
 	[id: string]: any;
