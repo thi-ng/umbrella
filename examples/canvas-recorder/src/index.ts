@@ -143,7 +143,8 @@ const update = () => {
 
     // You can also record the sketch programatically,
     // when a specific number of frame is reached stop the recorder
-    if (loop === fps * 120) recorder.stop()
+    // You have to add `recorder.start()` after init() and uncomment the line below
+    // if (loop === fps * 120) recorder.stop()
     
     // trigger change at each interval 
     if (loop % 600 === 0) {
@@ -217,6 +218,9 @@ root?.appendChild(canvas)
 root?.appendChild(ui)
 init()
 
+// if you want to start recording the sketch from the beginning
+// uncommment the line below
+recorder.start()
 
 root !== null && $compile(
     div(
