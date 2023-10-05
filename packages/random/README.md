@@ -94,7 +94,7 @@ For Node.js REPL:
 const random = await import("@thi.ng/random");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.87 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.88 KB
 
 ## Dependencies
 
@@ -121,6 +121,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>         | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>          | Generative audio synth offline renderer and WAV file export      | [Demo](https://demo.thi.ng/umbrella/render-audio/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming         | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>        | Responsive & reactively computed stacked column layout           | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-game-of-life.png" width="240"/>    | Game of Life implemented as WebGL2 multi-pass shader pipeline    | [Demo](https://demo.thi.ng/umbrella/webgl-game-of-life/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-game-of-life)    |
 
 ## API
