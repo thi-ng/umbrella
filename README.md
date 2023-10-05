@@ -147,6 +147,7 @@ visual outputs/results).
 - [016: Building a reactive Mastodon UI, parsing & transforming API data](https://mastodon.thi.ng/@toxi/111069280667363259)
 - [017: (Re)Constructing the thi.ng logo as 2D signed-distance field](https://mastodon.thi.ng/@toxi/111124858346572300)
 - [018: Topological sorting, creating & visualizing a task dependency graph](https://mastodon.thi.ng/@toxi/111141659277277568)
+- [019: Building a responsive & reactive stacked column layout](https://mastodon.thi.ng/@toxi/111182345509593440)
 
 ### Blog posts
 
