@@ -1,4 +1,5 @@
 export * from "./api.js";
+export * from "./argmin.js";
 export * from "./arg-sort.js";
 export * from "./binary-search.js";
 export * from "./bisect.js";
@@ -22,4 +23,5 @@ export * from "./sort-cached.js";
 export * from "./starts-with.js";
 export * from "./swap.js";
 export * from "./swizzle.js";
+export * from "./threshold.js";
 export * from "./topo-sort.js";

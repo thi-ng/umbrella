@@ -83,6 +83,9 @@
 		"./arg-sort": {
 			"default": "./arg-sort.js"
 		},
+		"./argmin": {
+			"default": "./argmin.js"
+		},
 		"./binary-search": {
 			"default": "./binary-search.js"
 		},
@@ -148,6 +151,9 @@
 		},
 		"./swizzle": {
 			"default": "./swizzle.js"
+		},
+		"./threshold": {
+			"default": "./threshold.js"
 		},
 		"./topo-sort": {
 			"default": "./topo-sort.js"
