@@ -15,7 +15,7 @@ const randomItems = (num: number): Item[] => [
 			// aspect ratio between 1:3 .. 3:1
 			aspect: SYSTEM.minmax(1 / 3, 3),
 			// pick random color from color range preset
-			// https://github.com/thi-ng/umbrella/blob/develop/packages/color/README.md#color-theme-generation
+			// see: https://thi.ng/color readme for details
 			color: css(colorFromRange("bright")),
 		}),
 		num
@@ -31,15 +31,16 @@ const columnLayout = (
 	gap: number,
 	margin = 0
 ) => {
-	// vertical column offset vector
+	// vector of vertical column offsets
 	const offsets = new Int32Array(cols);
 	// column width
 	const width = (totalWidth - 2 * margin - (cols - 1) * gap) / cols;
+	// return transformation function for single items
 	return (item: Item, id: number) => {
 		// find colum index with smallest offset
 		const column = argMin(offsets);
 		// build result object w/ position & size
-		const res = {
+		const result = {
 			x: (margin + column * (width + gap)) | 0,
 			y: offsets[column],
 			w: width | 0,
@@ -48,19 +49,21 @@ const columnLayout = (
 			item,
 		};
 		// update column offset
-		offsets[column] += res.h + gap;
-		return res;
+		offsets[column] += result.h + gap;
+		return result;
 	};
 };
 
 // build a function which selects the correct number of columns for a given
-// window width. if none of the thresholds/breakpoints match (i.e. for larger
-// window sizes), returns the default value (5)
+// window width. returns default value (here: 5) if none of the thresholds/breakpoints
+// can be matched (i.e. for larger window sizes)
 // see: https://docs.thi.ng/umbrella/arrays/functions/selectThresholdMin.html
-// prettier-ignore
-const columnsForWidth = selectThresholdMin({ 480: 1, 640: 2, 1024: 3, 1280: 4 }, 5);
+const columnsForWidth = selectThresholdMin(
+	{ 480: 1, 640: 2, 1024: 3, 1280: 4 },
+	5
+);
 
-// reactive state values
+// pre-initialize reactive state values
 const items = reactive(randomItems(20));
 const width = reactive(window.innerWidth);
 
@@ -69,13 +72,12 @@ window.addEventListener("resize", () =>
 	setTimeout(() => width.next(window.innerWidth), 50)
 );
 
-// combine reactive values. the resulting stream will update each time one of
-// the inputs has changed... we debounce the `width` stream to avoid unnecessary
-// intermediate DOM updates whilst the browser window is being resized (here
-// only updates every 100ms are propagated, interim size changes discarded)
-const main = sync({
-	src: { items, width: width.subscribe(debounce(100)) },
-});
+// combine reactive values/streams. the resulting stream will update each time
+// one of the inputs has changed... we debounce the `width` stream to avoid
+// unnecessary intermediate DOM updates whilst the browser window is being resized
+// (here a min frequency of 10Hz is enforced)
+// see: https://thi.ng/rstream readme/docs
+const main = sync({ src: { items, width: width.subscribe(debounce(100)) } });
 
 // (reactively) transform combined state to compute fully laid out items
 const listItems = main.map(({ items, width }) =>
@@ -91,21 +93,24 @@ $compile(
 			{},
 			h3(".dib.mv0.mr3", {}, "Stacked column layout"),
 			button(
-				// prettier-ignore
 				// generate N random new items & update state
-				{ onclick: () => items.next(randomItems(SYSTEM.minmaxInt(20, 100))) },
+				// (which in turn retriggers layout & DOM update)
+				{
+					onclick: () =>
+						items.next(randomItems(SYSTEM.minmaxInt(20, 100))),
+				},
 				"Randomize items"
 			)
 		),
-		// abstract list component which subscribes to reactive `listItems` and
-		// transforms each item into a <div>
+		// general purpose list component wrapper which subscribes to reactive
+		// `listItems` and transforms each item into a <div>
 		$list(listItems, "div.relative.w-100", {}, ({ x, y, w, h, id, item }) =>
 			div(
 				".absolute.flex.items-center",
 				{
 					style: {
-						top: y + "px",
 						left: x + "px",
+						top: y + "px",
 						width: w + "px",
 						height: h + "px",
 						background: item.color,
