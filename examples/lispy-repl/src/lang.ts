@@ -1,4 +1,3 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
 import { DEFAULT, defmulti, type MultiFn2 } from "@thi.ng/defmulti";
 import { assert } from "@thi.ng/errors";
 import {

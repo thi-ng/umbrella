@@ -7,6 +7,7 @@ import { $compile, $klist } from "@thi.ng/rdom";
 import { reactive, syncRAF } from "@thi.ng/rstream";
 import { slidingWindow } from "@thi.ng/transducers";
 import { $eval } from "./lang.js";
+import KERNEL from "./kernel.lisp?raw";
 
 // type definition for a single REPL item
 interface REPLItem {
@@ -126,29 +127,9 @@ const ENV: Record<string, any> = {
 		),
 };
 
-// define more core language terms/functions (add more, if needed...)
-$eval(
-	`
-; partial functional application (currying)
-(defn partial (f x) (fn (y) (f x y)))
-
-; functional composition for 1-arg fns
-(defn comp (f g) (fn (x) (f (g x))))
-
-; functional composition for 2-arg fns
-(defn comp2 (f g) (fn (x y z) (f (g x y) z)))
-
-; list reduction
-(defn reduce (f acc xs) (if xs (reduce f (f acc (first xs)) (next xs)) acc))
-
-; list transformation (expressed as reduction)
-(defn map (f xs) (reduce (fn (acc x) (concat acc (f x))) (list) xs))
-
-; filter list with predicate function
-(defn filter (f xs) (reduce (fn (acc x) (if (f x) (concat acc x) acc)) (list) xs))
-`,
-	ENV
-);
+// import & eval more core language terms/functions
+// (add more to kernel.lisp, if needed...)
+$eval(KERNEL, ENV);
 
 // REPL input & key event handler
 // if user pressed Enter, evaluate input and update REPL stream
