@@ -1,17 +1,19 @@
 import { argMin, selectThresholdMin } from "@thi.ng/arrays";
 import { colorFromRange, css } from "@thi.ng/color";
 import { br, button, div, h3 } from "@thi.ng/hiccup-html";
-import { SYSTEM } from "@thi.ng/random";
-import { $compile, $list } from "@thi.ng/rdom";
-import { debounce, reactive, sync } from "@thi.ng/rstream";
+import { SYSTEM, randomID } from "@thi.ng/random";
+import { $compile, $klist, $list } from "@thi.ng/rdom";
+import { debounce, reactive, sync, syncRAF } from "@thi.ng/rstream";
 import { repeatedly } from "@thi.ng/transducers";
 
-type Item = { aspect: number; color: string };
+type Item = { id: string; aspect: number; color: string };
 
 // generates an array of N random items
 const randomItems = (num: number): Item[] => [
 	...repeatedly(
 		() => ({
+			// unique item ID
+			id: randomID(8),
 			// aspect ratio between 1:3 .. 3:1
 			aspect: SYSTEM.minmax(1 / 3, 3),
 			// pick random color from color range preset
@@ -103,21 +105,39 @@ $compile(
 			)
 		),
 		// general purpose list component wrapper which subscribes to reactive
-		// `listItems` and transforms each item into a <div>
-		$list(listItems, "div.relative.w-100", {}, ({ x, y, w, h, id, item }) =>
-			div(
-				".absolute.flex.items-center",
-				{
-					style: {
-						left: x + "px",
-						top: y + "px",
-						width: w + "px",
-						height: h + "px",
-						background: item.color,
+		// `listItems` and transforms each item into a <div>.
+		// $klist() is similar to $list(), but uses unique item information to
+		// determine if an item has changed (or changed position in the list)
+		$klist(
+			listItems,
+			"div.relative.w-100",
+			{},
+			({ w, h, id, item }) =>
+				div(
+					".absolute.flex.items-center",
+					{
+						// to have each item's position & size tweening to their
+						// new values, we add additional subscriptions for each
+						// item's `style` attribute. these subs need to be
+						// sync'd (delayed) with requestAnimationFrame() so that
+						// these subs are not executed for old items when the
+						// entire list of items is being replaced...
+						style: syncRAF(listItems).map((items) => {
+							const { x, y, w, h } = items[id];
+							return {
+								transition: "all 0.5s ease",
+								left: x + "px",
+								top: y + "px",
+								width: w + "px",
+								height: h + "px",
+								background: item.color,
+							};
+						}),
 					},
-				},
-				div(".w-100.tc", {}, `#${id}`, br(), `${w} x ${h}`)
-			)
+					div(".w-100.tc", {}, `#${id}`, br(), `${w} x ${h}`)
+				),
+			// lookup function for each item's unique key/ID
+			(x) => x.item.id
 		)
 	)
 ).mount(document.getElementById("app")!);
