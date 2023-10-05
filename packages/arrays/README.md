@@ -79,6 +79,7 @@ A selection:
 [Generated API docs](https://docs.thi.ng/umbrella/arrays/)
 
 - [arrayIterator()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/iterator.ts)
+- [argMin() / argMax()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/argmin.ts)
 - [argSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/arg-sort.ts)
 - [binarySearch()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/binary-search.ts)
 - [bisect()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/bisect.ts)
@@ -97,6 +98,7 @@ A selection:
 - [multiSwap()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [peek()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/peek.ts)
 - [quickSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/quicksort.ts)
+- [selectThresholdMin() / selectThresholdMax()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/threshold.ts)
 - [shuffle()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [shuffleRange()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [sortByCachedKey()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/sort-cached.ts)
