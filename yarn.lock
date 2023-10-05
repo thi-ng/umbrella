@@ -1952,6 +1952,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/stacked-layout@workspace:examples/stacked-layout":
+  version: 0.0.0-use.local
+  resolution: "@example/stacked-layout@workspace:examples/stacked-layout"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/stratified-grid@workspace:examples/stratified-grid":
   version: 0.0.0-use.local
   resolution: "@example/stratified-grid@workspace:examples/stratified-grid"
