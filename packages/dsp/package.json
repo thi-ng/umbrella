@@ -184,6 +184,9 @@
 		"./mapg": {
 			"default": "./mapg.js"
 		},
+		"./merge": {
+			"default": "./merge.js"
+		},
 		"./mix": {
 			"default": "./mix.js"
 		},
@@ -229,6 +232,9 @@
 		"./osc": {
 			"default": "./osc.js"
 		},
+		"./pan": {
+			"default": "./pan.js"
+		},
 		"./pink-noise": {
 			"default": "./pink-noise.js"
 		},
@@ -243,6 +249,9 @@
 		},
 		"./reciprocal": {
 			"default": "./reciprocal.js"
+		},
+		"./ref": {
+			"default": "./ref.js"
 		},
 		"./serial": {
 			"default": "./serial.js"
