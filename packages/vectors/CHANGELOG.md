@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-29T09:49:09Z
+- **Last updated**: 2023-10-05T11:44:15Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [7.7.16](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.16) (2023-10-05)
+
+#### 🩹 Bug fixes
+
+- update minor()/major() ([88b3008](https://github.com/thi-ng/umbrella/commit/88b3008))
+  - update iteration order of default impls of both fns
 
 ### [7.7.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.7) (2023-08-14)
 

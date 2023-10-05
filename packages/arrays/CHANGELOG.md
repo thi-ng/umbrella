@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-08-27T11:20:58Z
+- **Last updated**: 2023-10-05T11:44:15Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.6.0) (2023-10-05)
+
+#### 🚀 Features
+
+- add argMin()/argMax() ([33512ec](https://github.com/thi-ng/umbrella/commit/33512ec))
+- add selectThresholdMin/Max() fns ([de9ba50](https://github.com/thi-ng/umbrella/commit/de9ba50))
 
 ### [2.5.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.5.15) (2023-08-04)
 

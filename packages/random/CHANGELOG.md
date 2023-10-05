@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-09-19T10:42:50Z
+- **Last updated**: 2023-10-05T11:44:15Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.6.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.6) (2023-10-05)
+
+#### 🩹 Bug fixes
+
+- update ARandom.minmaxInt/Uint() ([33c35b4](https://github.com/thi-ng/umbrella/commit/33c35b4))
+  - fix NaN bug iff min == max
 
 ### [3.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.1) (2023-08-12)
 

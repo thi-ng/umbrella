@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-api",
-	"version": "3.4.33",
+	"version": "3.4.34",
 	"description": "Shared type & interface declarations for @thi.ng/geom packages",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.5",
-		"@thi.ng/vectors": "^7.7.15"
+		"@thi.ng/vectors": "^7.7.16"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
