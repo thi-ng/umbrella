@@ -505,6 +505,15 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "nclslbrn",
+      "name": "Nicolas Lebrun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1374627?v=4",
+      "profile": "https://nicolas-lebrun.fr/contact/",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -513,5 +522,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
