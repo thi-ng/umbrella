@@ -514,6 +514,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "reitzensteinm",
+      "name": "Michael Reitzenstein",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5443160?v=4",
+      "profile": "https://github.com/reitzensteinm",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
