@@ -514,6 +514,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "dawidgorny",
+      "name": "Dawid Górny",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83379?v=4",
+      "profile": "http://dawidgorny.com",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
