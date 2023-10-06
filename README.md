@@ -640,6 +640,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://ul.mantike.pro/"><img src="https://avatars.githubusercontent.com/u/233227?v=4?s=100" width="100px;" alt="Ruslan Prakapchuk"/><br /><sub><b>Ruslan Prakapchuk</b></sub></a><br /><a href="#financial-ul" title="Financial">💵</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://jarrodldavis.com"><img src="https://avatars.githubusercontent.com/u/235875?v=4?s=100" width="100px;" alt="Jarrod Davis"/><br /><sub><b>Jarrod Davis</b></sub></a><br /><a href="#financial-jarrodldavis" title="Financial">💵</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://nicolas-lebrun.fr/contact/"><img src="https://avatars.githubusercontent.com/u/1374627?v=4?s=100" width="100px;" alt="Nicolas Lebrun"/><br /><sub><b>Nicolas Lebrun</b></sub></a><br /><a href="#example-nclslbrn" title="Examples">💡</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/reitzensteinm"><img src="https://avatars.githubusercontent.com/u/5443160?v=4?s=100" width="100px;" alt="Michael Reitzenstein"/><br /><sub><b>Michael Reitzenstein</b></sub></a><br /><a href="#financial-reitzensteinm" title="Financial">💵</a></td>
     </tr>
   </tbody>
 </table>
