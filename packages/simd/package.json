@@ -32,7 +32,7 @@
 		"doc:readme": "yarn doc:stats && tools:readme",
 		"doc:stats": "tools:module-stats",
 		"pub": "yarn npm publish --access public",
-		"test": "node --no-warnings --experimental-wasm-simd --loader ts-node/esm test/index.ts"
+		"test": "node --no-warnings --loader ts-node/esm test/index.ts"
 	},
 	"dependencies": {
 		"@thi.ng/transducers-binary": "^2.1.66"
