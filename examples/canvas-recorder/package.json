@@ -2,7 +2,7 @@
 	"name": "@example/canvas-recorder",
 	"version": "0.0.1",
 	"private": true,
-	"description": "A grid made of type (similar to pixel grid), each loop new char are added from top, left, bottom and right.",
+	"description": "Self-modifying, animated typographic grid with emergent complex patterns",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Nicolas Lebrun <nclslbrn@gmail.com>",
 	"license": "Apache-2.0",
@@ -16,23 +16,22 @@
 		"vite": "^4.4.9"
 	},
 	"dependencies": {
-		"@thi.ng/api": "workspace:^",
+		"@thi.ng/adapt-dpi": "workspace:^",
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
 		"@thi.ng/hiccup-canvas": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/random": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
-		"@thi.ng/rdom-canvas": "workspace:^"
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
 	},
 	"browser": {
 		"process": false
 	},
 	"thi.ng": {
-		"skip": true,
-		"readme": [
-			"hiccup-canvas"
-		],
-		"screenshot": "hiccup-canvas/canvas-recorder.png"
+		"readme": true,
+		"screenshot": "examples/canvas-recorder.png"
 	}
 }

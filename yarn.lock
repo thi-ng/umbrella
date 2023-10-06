@@ -422,6 +422,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/canvas-recorder@workspace:examples/canvas-recorder":
+  version: 0.0.0-use.local
+  resolution: "@example/canvas-recorder@workspace:examples/canvas-recorder"
+  dependencies:
+    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/cellular-automata@workspace:examples/cellular-automata":
   version: 0.0.0-use.local
   resolution: "@example/cellular-automata@workspace:examples/cellular-automata"

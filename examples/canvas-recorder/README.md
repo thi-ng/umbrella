@@ -8,7 +8,8 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 
 ## Authors
 
-- Karsten Schmidt
+- Nicolas Lebrun
+- Karsten Schmidt (refactoring only)
 
 ## License
 
