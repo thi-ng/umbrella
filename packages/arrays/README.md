@@ -69,10 +69,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                            | Description                                            | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>     | k-means clustering visualization                       | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/> | Responsive & reactively computed stacked column layout | [Demo](https://demo.thi.ng/umbrella/stacked-layout/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout) |
+| Screenshot                                                                                                             | Description                                            | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>      | k-means clustering visualization                       | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/> | Randomized 4-point 2D color gradient image generator   | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>  | Responsive & reactively computed stacked column layout | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)  |
 
 ## API
 
