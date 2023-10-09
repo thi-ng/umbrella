@@ -11,6 +11,7 @@ export * from "./transduce.js";
 
 export * from "./comp.js";
 export * from "./compr.js";
+export * from "./consume.js";
 export * from "./deep-transform.js";
 export * from "./juxtr.js";
 export * from "./lookup.js";
