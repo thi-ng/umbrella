@@ -684,6 +684,26 @@ every value produced by the transducer. If `fx` is _not_ given, the
 transducer is assumed to include at least one `sideEffect()` step
 itself. Returns nothing.
 
+#### consume
+
+`consume(src: Iterable<any>): void`
+
+Similar to `run()`, consumes given iterable, presumably for any implicit
+side-effects. Iterable MUST be finite!
+
+```ts
+// here the function given to repeatedly2d() has only a side-effect, however
+// repeatedly2d() itself is lazy. Using consume() then forces this lazy iterator/generator
+// to be realized and so also the side-effects to be executed
+consume(repeatedly2d((x, y) => console.log("output:", [x, y]), 2, 3));
+// output: [ 0, 0 ]
+// output: [ 1, 0 ]
+// output: [ 0, 1 ]
+// output: [ 1, 1 ]
+// output: [ 0, 2 ]
+// output: [ 1, 2 ]
+```
+
 ### Transducers
 
 All of the following functions can be used and composed as transducers.
@@ -797,6 +817,8 @@ transduce(map((x) => x*10), push(), range(4))
 - [rangeNd](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range-nd.ts)
 - [repeat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeat.ts)
 - [repeatedly](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly.ts)
+- [repeatedly2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly2d.ts)
+- [repeatedly3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly3d.ts)
 - [reverse](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/reverse.ts)
 - [sortedKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sorted-keys.ts)
 - [symmetric](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/symmetric.ts)

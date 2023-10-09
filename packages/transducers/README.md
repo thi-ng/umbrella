@@ -52,6 +52,7 @@ This project is part of the
     - [transduce](#transduce)
     - [transduceRight](#transduceright)
     - [run](#run)
+    - [consume](#consume)
   - [Transducers](#transducers)
   - [Generators / Iterators](#generators--iterators)
   - [Reducers](#reducers)
@@ -174,7 +175,7 @@ For Node.js REPL:
 const transducers = await import("@thi.ng/transducers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 8.71 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 8.78 KB
 
 ## Dependencies
 
@@ -201,6 +202,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>                | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                                       | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/big-font.png" width="240"/>                      | Large ASCII font text generator using @thi.ng/rdom                                                      | [Demo](https://demo.thi.ng/umbrella/big-font/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/big-font)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>                   | Figlet-style bitmap font creation with transducers                                                      | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                                                   | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                                       |                                                            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history                                    | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)    |
@@ -851,6 +853,26 @@ every value produced by the transducer. If `fx` is _not_ given, the
 transducer is assumed to include at least one `sideEffect()` step
 itself. Returns nothing.
 
+#### consume
+
+`consume(src: Iterable<any>): void`
+
+Similar to `run()`, consumes given iterable, presumably for any implicit
+side-effects. Iterable MUST be finite!
+
+```ts
+// here the function given to repeatedly2d() has only a side-effect, however
+// repeatedly2d() itself is lazy. Using consume() then forces this lazy iterator/generator
+// to be realized and so also the side-effects to be executed
+consume(repeatedly2d((x, y) => console.log("output:", [x, y]), 2, 3));
+// output: [ 0, 0 ]
+// output: [ 1, 0 ]
+// output: [ 0, 1 ]
+// output: [ 1, 1 ]
+// output: [ 0, 2 ]
+// output: [ 1, 2 ]
+```
+
 ### Transducers
 
 All of the following functions can be used and composed as transducers.
@@ -964,6 +986,8 @@ transduce(map((x) => x*10), push(), range(4))
 - [rangeNd](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range-nd.ts)
 - [repeat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeat.ts)
 - [repeatedly](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly.ts)
+- [repeatedly2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly2d.ts)
+- [repeatedly3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly3d.ts)
 - [reverse](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/reverse.ts)
 - [sortedKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sorted-keys.ts)
 - [symmetric](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/symmetric.ts)
