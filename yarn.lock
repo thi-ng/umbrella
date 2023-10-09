@@ -1373,6 +1373,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/pixel-gradients@workspace:examples/pixel-gradients":
+  version: 0.0.0-use.local
+  resolution: "@example/pixel-gradients@workspace:examples/pixel-gradients"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/color-palettes": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/pixel-indexed@workspace:examples/pixel-indexed":
   version: 0.0.0-use.local
   resolution: "@example/pixel-indexed@workspace:examples/pixel-indexed"
