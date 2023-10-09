@@ -147,6 +147,9 @@
 		"./conj": {
 			"default": "./conj.js"
 		},
+		"./consume": {
+			"default": "./consume.js"
+		},
 		"./converge": {
 			"default": "./converge.js"
 		},
@@ -458,6 +461,12 @@
 		},
 		"./repeatedly": {
 			"default": "./repeatedly.js"
+		},
+		"./repeatedly2d": {
+			"default": "./repeatedly2d.js"
+		},
+		"./repeatedly3d": {
+			"default": "./repeatedly3d.js"
 		},
 		"./reverse": {
 			"default": "./reverse.js"
