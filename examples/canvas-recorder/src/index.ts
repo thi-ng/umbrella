@@ -3,10 +3,10 @@ import { canvasRecorder } from "@thi.ng/dl-asset";
 import { group, text } from "@thi.ng/geom";
 import { draw } from "@thi.ng/hiccup-canvas";
 import { button, canvas, div } from "@thi.ng/hiccup-html";
-import { pickRandom, SYSTEM, XsAdd } from "@thi.ng/random";
+import { SYSTEM, XsAdd, pickRandom } from "@thi.ng/random";
 import { $compile } from "@thi.ng/rdom";
 import { reactive } from "@thi.ng/rstream";
-import { map, range2d, run } from "@thi.ng/transducers";
+import { consume, repeatedly2d } from "@thi.ng/transducers";
 import { addN2, divNI2, maddN2, setN2 } from "@thi.ng/vectors";
 import type { AlterDefinition, State } from "./api";
 import { PALETTES } from "./palettes";
@@ -62,12 +62,13 @@ const init = () => {
 	// Initialize grid (aka array of thi.ng/geom text elements)
 	// each item's actual position will be (re)computed during update()
 	const grid = [
-		...map(
-			([x, y]) =>
+		...repeatedly2d(
+			(x, y) =>
 				text([0, 0], sentence[(x * rows * y) % sentence.length], {
 					fill: "white",
 				}),
-			range2d(cols, rows)
+			cols,
+			rows
 		),
 	];
 
@@ -158,18 +159,16 @@ const update = () => {
 	alterDef.y = alterDef.sel === "y" ? RND.minmaxInt(0, rows) : -1;
 	alterGrid(alterDef);
 
-	// re-compute positions for all text elements
-	// (this code structure is essentially a nested 2D loop over all grid cells)
-	run(
-		map((gridPos) =>
-			maddN2(
-				grid[gridPos[0] * rows + gridPos[1]].pos,
-				gridPos,
-				cellSize,
-				offset
-			)
-		),
-		range2d(cols, rows)
+	// re-compute positions of all text elements: this code structure is
+	// essentially a nested 2D loop over all grid cells and assigns updated
+	// positions to each grid item. the use of `consume()` is needed, since
+	// `repeatedly2d()` itself is lazy...
+	consume(
+		repeatedly2d(
+			(x, y) => maddN2(grid[x * rows + y].pos, [x, y], cellSize, offset),
+			cols,
+			rows
+		)
 	);
 
 	// Draw all characters

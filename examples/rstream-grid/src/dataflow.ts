@@ -1,7 +1,7 @@
 import { group, rect, svg } from "@thi.ng/hiccup-svg";
 import type { EventBus } from "@thi.ng/interceptors";
 import { initGraph, node } from "@thi.ng/rstream-graph";
-import { map, range2d } from "@thi.ng/transducers";
+import { map, repeatedly2d } from "@thi.ng/transducers";
 import * as ev from "./events";
 import * as paths from "./paths";
 
@@ -56,9 +56,10 @@ export function initDataflow(bus: EventBus) {
  */
 const grid = node(
 	map(({ cols, rows }) => [
-		...map(
-			([x, y]) => ["rect", { x, y, width: 1, height: 1 }],
-			range2d(cols, rows)
+		...repeatedly2d(
+			(x, y) => ["rect", { x, y, width: 1, height: 1 }],
+			cols,
+			rows
 		),
 	])
 );
