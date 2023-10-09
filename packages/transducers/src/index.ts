@@ -151,6 +151,8 @@ export * from "./range3d.js";
 export * from "./range-nd.js";
 export * from "./repeat.js";
 export * from "./repeatedly.js";
+export * from "./repeatedly2d.js";
+export * from "./repeatedly3d.js";
 export * from "./reverse.js";
 export * from "./sorted-keys.js";
 export * from "./symmetric.js";
