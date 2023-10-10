@@ -5,12 +5,15 @@ import {
 	colorsFromRange,
 	colorsFromTheme,
 	convert,
+	intAbgr32Srgb,
+	oklab,
+	srgbIntAbgr32,
 } from "@thi.ng/color";
-import { asLCH } from "@thi.ng/color-palettes";
+import { NUM_THEMES, asLCH } from "@thi.ng/color-palettes";
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { button, canvas, div, option, select } from "@thi.ng/hiccup-html";
-import { FLOAT_RGBA, floatBuffer } from "@thi.ng/pixel";
-import { SYSTEM, XsAdd, pickRandom, randomID } from "@thi.ng/random";
+import { defFloatFormat, floatBuffer } from "@thi.ng/pixel";
+import { SYSTEM, XsAdd, randomID } from "@thi.ng/random";
 import { $compile, $input, $inputTrigger } from "@thi.ng/rdom";
 import { stream } from "@thi.ng/rstream";
 
@@ -19,15 +22,12 @@ const RND = SYSTEM;
 // alternatively, use a seedable PRNG:
 // const RND = new XsAdd(0xdecafbad);
 
-// selection of color theme IDs from https://thi.ng/color-palettes
-// (will be used by `palette` strategy below...)
-const THEMES = [46, 54, 100, 126, 139, 145, 184, 187, 191, 218];
-
 // config options for obtaining color themes (see below)
 const OPTS = { num: 4, variance: 0.05, rnd: RND };
 
-// various implementations to choose base colors for the gradient
-// all of the strategies return colors in LCH format
+// various implementations to choose base colors for the gradient. all of the
+// strategies return colors in LCH space (which will later be converted to Oklab
+// and finally to sRGB)
 const STRATEGIES = {
 	// pick randomized colors from predefined color range descriptors
 	// see https://thi.ng/color readme for list of available options (and results)
@@ -55,10 +55,10 @@ const STRATEGIES = {
 		),
 	],
 
-	// choose a random color theme, shuffle it and create slight variations of
-	// each color...
+	// choose a random color palette (from https://thi.ng/color-palettes),
+	// shuffle it and create slight variations of each color...
 	palette: () =>
-		shuffle(asLCH(pickRandom(THEMES, RND)), 6, RND)
+		shuffle(asLCH(RND.int() % NUM_THEMES), 6, RND)
 			.slice(0, 4)
 			.map((x) => analog([], x, 0.1, RND)),
 };
@@ -69,21 +69,41 @@ type Strategy = keyof typeof STRATEGIES;
 const strategy = stream<Strategy>();
 const download = stream<boolean>();
 
-// add gradient image generation as subscription. each time a new value is
-// pushed into the `strategy` stream, this subscription will run and generate a
+// define a custom pixel buffer format to store pixels in the Oklab color space:
+// using Oklab instead of RGB combined with the bicubic image interpolation used
+// to compute the gradient image means the colors will also be interpolated in
+// the Oklab space (which is perceptually better [more correct] than RGB and
+// leads to more pleasing results)...
+const FMT_OKLAB = defFloatFormat({
+	// technically, we're not using the alpha channel here, but it makes it
+	// easier to handle
+	alpha: true,
+	channels: [3, 2, 1, 0],
+	// custom conversions to & from packed integer ABGR format (needed for HTML canvas)
+	convert: {
+		// convert: 32bit int -> sRGB -> Oklab
+		fromABGR: (x, out) =>
+			convert(out || [], intAbgr32Srgb([], x), "oklab", "srgb"),
+		// convert: Oklab -> sRGB -> 32bit int
+		toABGR: (x) => srgbIntAbgr32(convert([], x, "srgb", "oklab")),
+	},
+});
+
+// combine reactive streams and add subscription. each time a new value is
+// pushed into any of the `src` streams, this subscription will run and generate a
 // new image...
 strategy.subscribe({
 	next(id) {
 		const canvas = <HTMLCanvasElement>document.getElementById("main");
-		// prettier-ignore
-		// pick new colors via chosen strategy, convert LCH -> sRGB
+		// pick new colors via chosen strategy, convert LCH -> Oklab
 		// (still all colors in floating point format)
-		const theme = STRATEGIES[id]().map((x) => convert([], x, "srgb", "lch"));
 		// prettier-ignore
-		// create a 2x2 float RGBA image, all (4) pixels pre-initialized w/ theme colors
-		// then resize image to canvas size using bicubic interpolation
-		// then copy pixels to canvas (incl. format conversion)
-		floatBuffer(2, 2, FLOAT_RGBA, typedArrayOfVec("f32", theme))
+		const theme = STRATEGIES[id]().map((x) => convert(oklab(), x, "oklab", "lch"));
+		// create a 2x2 pixels Oklab image, all pixels pre-initialized w/ the
+		// converted theme colors, then resize the image to the canvas size
+		// using bicubic interpolation before copying the pixels to the canvas
+		// (incl. format conversion)
+		floatBuffer(2, 2, FMT_OKLAB, typedArrayOfVec("f32", theme))
 			.resize(canvas.width, canvas.height, "cubic")
 			.blitCanvas(canvas);
 	},
@@ -115,9 +135,8 @@ $compile(
 			// when clicked, simply retrigger with current strategy
 			// (deref() obtains the stream's current value)
 			button(".ml3", { onclick: () => strategy.next(strategy.deref()!) }, "Generate"),
-			// prettier-ignore
 			// $inputTrigger is a event handler to emit `true` on given stream
-			button(".ml3",{ onclick: $inputTrigger(download) }, "Download")
+			button(".ml3", { onclick: $inputTrigger(download) }, "Download")
 		),
 		canvas("#main", { width: 960, height: 540 })
 	)
