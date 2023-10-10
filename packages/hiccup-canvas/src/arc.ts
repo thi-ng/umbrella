@@ -10,10 +10,10 @@ export const circularArc = (
 	r: number,
 	start = 0,
 	end = TAU,
-	antiCCW = false
+	ccw = false
 ) => {
 	ctx.beginPath();
-	ctx.arc(pos[0], pos[1], r, start, end, antiCCW);
+	ctx.arc(pos[0], pos[1], r, start, end, ccw);
 	__endShape(ctx, attribs);
 };
 

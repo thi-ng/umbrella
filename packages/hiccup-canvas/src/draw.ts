@@ -88,9 +88,13 @@ export const draw = (
 			rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
 			break;
 		case "circle":
+			// FIXME need better handling / clarity around arcs & ellipse
+			// see issues #69 & #418
 			circularArc(ctx, attribs, shape[2], shape[3]);
 			break;
 		case "ellipse":
+			// FIXME need better handling / clarity around arcs & ellipse
+			// see issues #69 & #418
 			ellipticArc(
 				ctx,
 				attribs,
@@ -103,7 +107,17 @@ export const draw = (
 			);
 			break;
 		case "arc":
-			circularArc(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+			// FIXME need new type ID for circular arcs
+			// see issues #69 & #418
+			circularArc(
+				ctx,
+				attribs,
+				shape[2],
+				shape[3],
+				shape[4],
+				shape[5],
+				shape[6]
+			);
 			break;
 		case "text":
 			text(ctx, attribs, shape[2], shape[3], shape[4]);

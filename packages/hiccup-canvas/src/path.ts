@@ -90,6 +90,9 @@ export const path = (
 				break;
 			// circular arc rel
 			// Note: NOT compatible w/ SVG arc segments
+			// FIXME need new type ID for circular arcs
+			// see issues #69 & #418
+			// can use ellipse() for elliptic arcs
 			case "a":
 				c = s[2];
 				c = [a[0] + c[0], a[1] + c[1]];
