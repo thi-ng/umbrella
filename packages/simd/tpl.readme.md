@@ -68,7 +68,7 @@ hidden behind feature flags. Currently only fully tested (& testable for
 me) on Node 14.6+.
 
 - [SIMD implementation status](https://github.com/WebAssembly/simd/blob/master/proposals/simd/ImplementationStatus.md)
-- Node (v12.10+): `node --experimental-wasm-simd`
+- Node (v12.10 .. v20.7): `node --experimental-wasm-simd` (flag not needed anymore since v20.8)
 - Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
 
 ### BREAKING CHANGES
