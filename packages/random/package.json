@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/random",
-	"version": "3.6.6",
+	"version": "3.6.7",
 	"description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
 	"type": "module",
 	"module": "./index.js",

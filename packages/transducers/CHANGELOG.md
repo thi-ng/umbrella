@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-09-19T10:42:50Z
+- **Last updated**: 2023-10-11T10:05:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.8.0) (2023-10-11)
+
+#### 🚀 Features
+
+- add repeatedly2d/3d() iterators ([5057939](https://github.com/thi-ng/umbrella/commit/5057939))
+- add consume() helper fn ([e612846](https://github.com/thi-ng/umbrella/commit/e612846))
 
 ## [8.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.7.0) (2023-09-15)
 
