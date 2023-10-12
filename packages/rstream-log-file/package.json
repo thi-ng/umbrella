@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-log-file",
-	"version": "2.1.70",
+	"version": "2.1.71",
 	"description": "File output handler for structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -34,7 +34,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/rstream": "^8.1.9"
+		"@thi.ng/rstream": "^8.1.10"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.4",
