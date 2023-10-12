@@ -2,7 +2,7 @@
 	"name": "@example/poly-subdiv",
 	"version": "0.0.1",
 	"private": true,
-	"description": "Animated polygon subdivisions & visualization",
+	"description": "Animated, iterative polygon subdivisions & visualization",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
