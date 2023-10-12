@@ -64,9 +64,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                                | Description                   | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/> | Minimal rdom-canvas animation | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics) |
+| Screenshot                                                                                                                | Description                                              | Live demo                                                | Source                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>        | Animated, iterative polygon subdivisions & visualization | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/> | Minimal rdom-canvas animation                            | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics) |
 
 ## API
 
