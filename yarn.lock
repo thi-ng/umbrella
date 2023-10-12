@@ -1473,6 +1473,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/poly-subdiv@workspace:examples/poly-subdiv":
+  version: 0.0.0-use.local
+  resolution: "@example/poly-subdiv@workspace:examples/poly-subdiv"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/fibers": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-resample": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/porter-duff@workspace:examples/porter-duff":
   version: 0.0.0-use.local
   resolution: "@example/porter-duff@workspace:examples/porter-duff"
