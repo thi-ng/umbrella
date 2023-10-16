@@ -18,7 +18,7 @@ import {
 } from "@thi.ng/geom";
 import { Sampler } from "@thi.ng/geom-resample";
 import { draw } from "@thi.ng/hiccup-canvas";
-import { clamp, clamp01, fract, mix, norm } from "@thi.ng/math";
+import { clamp, fitClamped, fract, mix } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
 import { $el } from "@thi.ng/rdom";
 import {
@@ -133,7 +133,10 @@ const insetConvex = (poly: Polygon, d = 1) => {
 // more shapes will receive colors towards the end color, if `exp>1` more shapes
 // will receive colors near the start color.
 const tonemap = (poly: Polygon, exp = 0.5) =>
-	cosineColor(GRADIENT, clamp01(norm(area(poly), MIN_AREA, MAX_AREA)) ** exp);
+	cosineColor(
+		GRADIENT,
+		fitClamped(area(poly), MIN_AREA, MAX_AREA, 0, 1) ** exp
+	);
 
 // create canvas element with attribs
 const canvas = <HTMLCanvasElement>(
