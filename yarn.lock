@@ -1505,6 +1505,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/quasi-lattice@workspace:examples/quasi-lattice":
+  version: 0.0.0-use.local
+  resolution: "@example/quasi-lattice@workspace:examples/quasi-lattice"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-voronoi": "workspace:^"
+    "@thi.ng/lowdisc": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/ramp-synth@workspace:examples/ramp-synth":
   version: 0.0.0-use.local
   resolution: "@example/ramp-synth@workspace:examples/ramp-synth"
@@ -4651,7 +4667,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/lowdisc@workspace:packages/lowdisc":
+"@thi.ng/lowdisc@workspace:^, @thi.ng/lowdisc@workspace:packages/lowdisc":
   version: 0.0.0-use.local
   resolution: "@thi.ng/lowdisc@workspace:packages/lowdisc"
   dependencies:

@@ -1,0 +1,40 @@
+{
+	"name": "@example/quasi-lattice",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Quasi-random lattice generator",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
+	},
+	"dependencies": {
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/geom-voronoi": "workspace:^",
+		"@thi.ng/lowdisc": "workspace:^",
+		"@thi.ng/rdom-canvas": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"geom",
+			"geom-voronoi",
+			"lowdisc",
+			"rdom-canvas",
+			"vectors"
+		],
+		"screenshot": "examples/quasi-lattice.png"
+	}
+}
