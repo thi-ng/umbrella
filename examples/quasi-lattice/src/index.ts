@@ -58,9 +58,9 @@ const geo = fromRAF().map((frame) => {
 			// by default the voronoi cells are returned as is, but can be filtered
 			// & clipped using a provided convex boundary polygon (given as array of
 			// vertices)
-			...map((verts) => polygon(verts), mesh.voronoi(BOUNDS)),
+			...map(polygon, mesh.voronoi(BOUNDS)),
 			// alternatively, obtain Delaunay triangles
-			// ...map((verts) => polygon(verts), mesh.delaunay(BOUNDS)),
+			// ...map(polygon, mesh.delaunay(BOUNDS)),
 
 			// include the randomly chosen crystal coefficients as label
 			text([10, 10], JSON.stringify(CRYSTAL)),
