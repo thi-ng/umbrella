@@ -41,8 +41,12 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 */
 	*positions() {
 		const { data, n } = this;
-		for (let i = 0; i < n; i++) {
-			if (data[i >>> 3] & (1 << (~i & 7))) yield i;
+		for (let i = 0; i < n; i += 8) {
+			const x = data[i >>> 3];
+			if (!x) continue;
+			for (let k = 31 - Math.clz32(x); k >= 0; k--) {
+				if (x & (1 << k)) yield i + 7 - k;
+			}
 		}
 	}
 
