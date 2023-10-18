@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-12T11:53:09Z
+- **Last updated**: 2023-10-18T18:06:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.12.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.12.13) (2023-10-18)
+
+#### 🩹 Bug fixes
+
+- update $text() to set el.textContent, simplify ([7cd6cc0](https://github.com/thi-ng/umbrella/commit/7cd6cc0))
 
 ## [0.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.12.0) (2023-08-22)
 

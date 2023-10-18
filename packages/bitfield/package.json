@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bitfield",
-	"version": "2.2.38",
+	"version": "2.3.0",
 	"description": "1D / 2D bit field implementations",
 	"type": "module",
 	"module": "./index.js",
