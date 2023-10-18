@@ -1102,10 +1102,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/imgui-basics@workspace:examples/imgui-basics"
   dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
     "@thi.ng/imgui": "workspace:^"
     "@thi.ng/layout": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/rstream-gestures": "workspace:^"
     typescript: ^5.2.2
@@ -1677,6 +1676,27 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
+"@example/related-images@workspace:examples/related-images":
+  version: 0.0.0-use.local
+  resolution: "@example/related-images@workspace:examples/related-images"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/associative": "workspace:^"
+    "@thi.ng/bitfield": "workspace:^"
+    "@thi.ng/fibers": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/hiccup-markdown": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
     typescript: ^5.2.2
     vite: ^4.4.9
   languageName: unknown
@@ -3084,7 +3104,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/bitfield@^2.2.38, @thi.ng/bitfield@workspace:packages/bitfield":
+"@thi.ng/bitfield@^2.2.38, @thi.ng/bitfield@workspace:^, @thi.ng/bitfield@workspace:packages/bitfield":
   version: 0.0.0-use.local
   resolution: "@thi.ng/bitfield@workspace:packages/bitfield"
   dependencies:
