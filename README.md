@@ -38,8 +38,8 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 **This project is NOT a framework and all packages can be used in isolation.**
 
 This mono-repository is home to currently 183 individual TypeScript packages and
-130+ example projects illustrating their usage, currently totalling ~189k SLOC
-and 3700+ source files...
+~140 example projects illustrating their usage, currently totalling ~191k SLOC
+and ~3800 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet largely independent libraries, tools
@@ -100,7 +100,7 @@ All packages:
 
 The sheer number and varied nature & purpose of these [packages](#packages)
 makes it impossible to provide traditional "Getting started" tutorials. To
-compensate, this repo provides 130+ [example projects](#examples--showcase),
+compensate, this repo provides ~140 [example projects](#examples--showcase),
 detailed package readmes (at the very least for all the larger and/or more
 important ones), as well as hundreds of small usage examples/snippets in various
 doc strings.
@@ -172,7 +172,7 @@ visual outputs/results).
 
 ## Examples & Showcase
 
-There's a steadily growing number (130+) of standalone examples of different
+There's a steadily growing number (~140) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
@@ -240,13 +240,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-10-11
+As of: 2023-10-18
 
-| Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
-|:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/grid-iterators`](./packages/grid-iterators) | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators) | [changelog](./packages/grid-iterators/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas)   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas)   | [changelog](./packages/hiccup-canvas/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers`](./packages/transducers)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)       | [changelog](./packages/transducers/CHANGELOG.md)    |
+| Status                                           | Package                                     | Version                                                                                                           | Changelog                                      |
+|:-------------------------------------------------|:--------------------------------------------|:------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/adjacency`](./packages/adjacency) | [![version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency) | [changelog](./packages/adjacency/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/bitfield`](./packages/bitfield)   | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)   | [changelog](./packages/bitfield/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/fibers`](./packages/fibers)       | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)       | [changelog](./packages/fibers/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/imgui`](./packages/imgui)         | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)         | [changelog](./packages/imgui/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rdom`](./packages/rdom)           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)           | [changelog](./packages/rdom/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rstream`](./packages/rstream)     | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)     | [changelog](./packages/rstream/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/vectors`](./packages/vectors)     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)     | [changelog](./packages/vectors/CHANGELOG.md)   |
 
 ### Fundamentals
 
