@@ -168,11 +168,12 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
 		return this.popCount() / this.length;
 	}
 
-	row(m: number) {
+	row(m: number, viewOnly = false) {
 		ensureIndex(m, 0, this.m);
-		const row = new BitField(this.n);
 		m *= this.stride;
-		row.data.set(this.data.subarray(m, m + this.stride));
+		const data = this.data.subarray(m, m + this.stride);
+		const row = new BitField(this.n, viewOnly ? data : undefined);
+		!viewOnly && row.data.set(data);
 		return row;
 	}
 

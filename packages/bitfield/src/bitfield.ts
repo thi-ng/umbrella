@@ -15,10 +15,22 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	/** Field size in bits (always a multiple of 8) */
 	n: number;
 
-	constructor(bits: number | string | ArrayLike<boolean | number>) {
+	constructor(
+		bits: number | string | ArrayLike<boolean | number>,
+		buf?: Uint8Array
+	) {
 		const isNumber = typeof bits === "number";
 		this.n = align(isNumber ? <number>bits : (<any>bits).length, 8);
-		this.data = new Uint8Array(this.n >>> 3);
+		const numBytes = this.n >>> 3;
+		if (buf) {
+			assert(
+				numBytes === buf.length,
+				`buffer must have length=${this.n >>> 3}`
+			);
+			this.data = buf;
+		} else {
+			this.data = new Uint8Array(numBytes);
+		}
 		!isNumber && this.setRange(0, <any>bits);
 	}
 
