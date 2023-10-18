@@ -240,8 +240,12 @@ export function* untilState<T>(state: T, pred: Predicate<T>) {
  * and the fiber removed from the parent. See {@link Fiber.next} for details.
  *
  * @param promise
+ * @param opts
  */
-export const untilPromise = <T>(promise: PromiseLike<T>) =>
+export const untilPromise = <T>(
+	promise: PromiseLike<T>,
+	opts?: Partial<FiberOpts>
+) =>
 	fiber<T>(function* (ctx) {
 		let error: Nullable<Error>;
 		promise.then(
@@ -252,7 +256,7 @@ export const untilPromise = <T>(promise: PromiseLike<T>) =>
 			if (error) throw error;
 			yield;
 		}
-	});
+	}, opts);
 
 /**
  * Returns fiber which attaches a one-off event handler for event `type` to
