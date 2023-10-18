@@ -66,8 +66,8 @@ export const gallery = async () => {
 			cols: columnsForWidth(width),
 			width,
 			gap: 8,
-			extraHeight: 64,
-			snap: 64,
+			extraHeight: 72,
+			snap: 72,
 		});
 		// compute layout info for each item
 		const result = related.map(layout.fn);
@@ -108,7 +108,7 @@ export const gallery = async () => {
 					img(".w-100", { src: url, alt: "Sorry, no alt text" })
 				),
 				// display tags and similarity score
-				div({}, iterator(tagXform, tags)),
+				div(".mt2", {}, iterator(tagXform, tags)),
 				score >= 0 ? div({}, "score: ", score.toFixed(2)) : null
 			)
 		);
