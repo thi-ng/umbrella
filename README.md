@@ -151,6 +151,7 @@ visual outputs/results).
 - [020: Generating randomized 4-point 2D multicolor gradient maps/images](https://mastodon.thi.ng/@toxi/111205034763399083)
 - [021: Iterative animated convex polygon subdivision & heat map viz](https://mastodon.thi.ng/@toxi/111221943333023306)
 - [022: Quasi-random voronoi lattice generator](https://mastodon.thi.ng/@toxi/111244412425832657)
+- [023: Tag-based Jaccard similarity ranking/filtering using bitfields](https://mastodon.thi.ng/@toxi/111256960928934577)
 
 ### Blog posts
 
