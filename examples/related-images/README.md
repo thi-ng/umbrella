@@ -1,6 +1,6 @@
 # related-images
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/related-images/)
 

@@ -378,7 +378,7 @@ For Node.js REPL:
 const fibers = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.41 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.40 KB
 
 ## Dependencies
 
@@ -406,6 +406,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>    | Barnsley fern IFS fractal renderer                                                                      | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>  | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>    | Animated, iterative polygon subdivisions & visualization                                                | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/> | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>   | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)   |
 
 ## API
