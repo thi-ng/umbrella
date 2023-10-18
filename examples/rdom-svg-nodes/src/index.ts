@@ -1,7 +1,7 @@
 import { defAtom } from "@thi.ng/atom";
 import { equivArrayLike } from "@thi.ng/equiv";
-import { circle, line, svg } from "@thi.ng/hiccup-svg";
-import { $compile, $list } from "@thi.ng/rdom";
+import { circle, line, svg, text } from "@thi.ng/hiccup-svg";
+import { $compile, $list, $replace } from "@thi.ng/rdom";
 import { fromAtom } from "@thi.ng/rstream";
 import { indexed, partition, repeatedly } from "@thi.ng/transducers";
 import { random2 } from "@thi.ng/vectors";
@@ -12,6 +12,9 @@ const R = 20;
 
 // define atom of NUM random points
 const db = defAtom([...repeatedly(() => random2([], R, WIDTH - R), NUM)]);
+
+// reactive subscription for atom changes
+const $db = fromAtom(db);
 
 // ID of currently dragged point
 let clicked = -1;
@@ -35,7 +38,7 @@ $compile(
 		$list(
 			// transform atom view into consecutive pairs:
 			// e.g. [a,b,c,d] => [[a,b],[b,c],[c,d]]
-			fromAtom(db).map((pts) => [...partition(2, 1, pts)]),
+			$db.map((pts) => [...partition(2, 1, pts)]),
 			// list wrapper element & its attribs
 			"g",
 			{ stroke: "#00f" },
@@ -50,7 +53,7 @@ $compile(
 		$list(
 			// transform atom view to label each point with its array index
 			// (needed to determine point selection in mouse event handler)
-			fromAtom(db).map((pts) => [...indexed(0, pts)]),
+			$db.map((pts) => [...indexed(0, pts)]),
 			// list wrapper element & its attribs
 			"g",
 			{ fill: "#00f" },
@@ -65,6 +68,11 @@ $compile(
 				}),
 			// value based equivalence predicate
 			equivArrayLike
+		),
+		$replace(
+			$db.map((x) =>
+				text([10, 20], x.length + " nodes", { fill: "#000" })
+			)
 		)
 	)
 ).mount(document.getElementById("app")!);
