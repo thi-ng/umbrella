@@ -237,23 +237,17 @@ export const $moveTo = (
 export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
 /**
- * Same as `el.innerText = body`, however if `body` is an
+ * Same as `el.textContent = body`, however if `body` is an
  * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) it'll be
- * automatically deref'd and coerced to a string. If `body === undefined` an
- * empty string will be used. For SVG elements a new child text DOM node will be
- * created.
+ * first automatically deref'd and coerced to a string. If `body === undefined`
+ * an empty string will be used.
  *
  * @param el -
  * @param body -
  */
 export const $text = (el: HTMLElement | SVGElement, body: any) => {
 	body = deref(body);
-	body = body !== undefined ? String(body) : "";
-	if (el.namespaceURI === XML_SVG) {
-		$clear(el).appendChild(document.createTextNode(body));
-	} else {
-		(<HTMLElement>el).innerText = body;
-	}
+	el.textContent = body !== undefined ? String(body) : "";
 };
 
 /**
