@@ -650,6 +650,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="http://dawidgorny.com"><img src="https://avatars.githubusercontent.com/u/83379?v=4?s=100" width="100px;" alt="Dawid Górny"/><br /><sub><b>Dawid Górny</b></sub></a><br /><a href="#financial-dawidgorny" title="Financial">💵</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/reitzensteinm"><img src="https://avatars.githubusercontent.com/u/5443160?v=4?s=100" width="100px;" alt="Michael Reitzenstein"/><br /><sub><b>Michael Reitzenstein</b></sub></a><br /><a href="#financial-reitzensteinm" title="Financial">💵</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.samnosenzo.com/"><img src="https://avatars.githubusercontent.com/u/10187776?v=4?s=100" width="100px;" alt="Sam Nosenzo"/><br /><sub><b>Sam Nosenzo</b></sub></a><br /><a href="#financial-snosenzo" title="Financial">💵</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://loskutoff.com/"><img src="https://avatars.githubusercontent.com/u/947595?v=4?s=100" width="100px;" alt="Igor Loskutov"/><br /><sub><b>Igor Loskutov</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Firfi" title="Code">💻</a> <a href="#ideas-Firfi" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>

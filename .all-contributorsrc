@@ -387,6 +387,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/10187776?v=4",
 			"profile": "https://www.samnosenzo.com/",
 			"contributions": ["financial"]
+		},
+		{
+			"login": "Firfi",
+			"name": "Igor Loskutov",
+			"avatar_url": "https://avatars.githubusercontent.com/u/947595?v=4",
+			"profile": "http://loskutoff.com/",
+			"contributions": ["code", "ideas"]
 		}
 	],
 	"contributorsPerLine": 7,
