@@ -73,7 +73,7 @@ For Node.js REPL:
 const adjacency = await import("@thi.ng/adjacency");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.54 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.57 KB
 
 ## Dependencies
 
@@ -104,14 +104,15 @@ TODO
 
 ## Authors
 
-- [Karsten Schmidt](https://thi.ng)
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Igor Loskutov](https://github.com/Firfi)
 
 If this project contributes to an academic publication, please cite it as:
 
 ```bibtex
 @misc{thing-adjacency,
   title = "@thi.ng/adjacency",
-  author = "Karsten Schmidt",
+  author = "Karsten Schmidt and others",
   note = "https://thi.ng/adjacency",
   year = 2018
 }
