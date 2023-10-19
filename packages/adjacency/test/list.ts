@@ -24,4 +24,14 @@ group("adjacency (list)", {
 		);
 		// console.log(m.toString());
 	},
+	hasVertex: () => {
+		const m = defAdjList([
+			[1, 2],
+			[2, 0],
+		]);
+		assert.ok(m.hasVertex(0));
+		assert.ok(m.hasVertex(1));
+		assert.ok(m.hasVertex(2));
+		assert.ok(!m.hasVertex(3));
+	}
 });

@@ -53,6 +53,10 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
 		return this.at(from, to) !== 0;
 	}
 
+	hasVertex(id: number): boolean {
+		return this.degree(id, "inout") > 0;
+	}
+
 	numEdges() {
 		const n = this.data.length;
 		return this.undirected ? n / 2 : n;

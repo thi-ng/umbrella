@@ -3,6 +3,20 @@ import * as assert from "assert";
 import { defBitField } from "../src/index.js";
 
 group("bitfield", {
+  "setAt (boolean)": () => {
+		const bf = defBitField(8);
+		assert.ok(!bf.at(1));
+		bf.setAt(1, true);
+		assert.ok(!!bf.at(1));
+	},
+  
+	"setAt (number)": () => {
+		const bf = defBitField(8);
+		assert.ok(!bf.at(1));
+		bf.setAt(1, 4);
+		assert.ok(!!bf.at(1));
+	},
+  
 	positions: () => {
 		assert.deepStrictEqual(
 			[

@@ -37,4 +37,16 @@ group("adjacency (sparse)", {
 			"edges"
 		);
 	},
+	hasVertex: () => {
+		const m = defAdjMatrix(6, [
+			[0, 1],
+			[5, 4],
+		] satisfies typeof edges, true);
+		assert.ok(m.hasVertex(0));
+		assert.ok(m.hasVertex(5));
+		assert.ok(m.hasVertex(1));
+		assert.ok(m.hasVertex(4));
+		assert.ok(!m.hasVertex(2));
+		assert.ok(!m.hasVertex(3));
+	}
 });
