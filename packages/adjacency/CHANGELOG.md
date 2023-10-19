@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-19T08:38:06Z
+- **Last updated**: 2023-10-19T09:52:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.5.0) (2023-10-19)
+
+#### 🚀 Features
+
+- explicit version bump for @firfi's recent additions ([#400](https://github.com/thi-ng/umbrella/issues/400)) ([0d00025](https://github.com/thi-ng/umbrella/commit/0d00025))
+  - see: [2fd123d741586fe29a8cc63b7aa30f3ea9d35ab2](https://github.com/thi-ng/umbrella/commit/2fd123d741586fe29a8cc63b7aa30f3ea9d35ab2)
+  - update readme with API examples
+
+#### 🩹 Bug fixes
+
+- fix AdjacencyBitMatrix.numVertices() ([bd034ab](https://github.com/thi-ng/umbrella/commit/bd034ab))
 
 ## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.4.0) (2023-10-18)
 
