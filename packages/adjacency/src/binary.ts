@@ -72,7 +72,9 @@ export class AdjacencyBitMatrix implements IGraph<number> {
 	}
 
 	hasVertex(id: number): boolean {
-		return this.mat.popCountRow(id) !== 0 || this.mat.popCountColumn(id) !== 0;
+		return (
+			this.mat.popCountRow(id) !== 0 || this.mat.popCountColumn(id) !== 0
+		);
 	}
 
 	degree(id: number, type: DegreeType = "out") {
