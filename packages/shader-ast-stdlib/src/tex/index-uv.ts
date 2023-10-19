@@ -1,3 +1,4 @@
+import { I, V2 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { float, int, vec2 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, modi, mul } from "@thi.ng/shader-ast/ast/ops";
@@ -11,9 +12,9 @@ import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
  * @param size -
  */
 export const indexToUV = defn(
-	"vec2",
+	V2,
 	"indexToUV",
-	[["int", "i", { prec: "highp" }], ["ivec2"]],
+	[[I, "i", { prec: "highp" }], ["ivec2"]],
 	(i, size) => [
 		ret(
 			vec2(
@@ -32,9 +33,9 @@ export const indexToUV = defn(
  * @param width -
  */
 export const uvToIndex = defn(
-	"int",
+	I,
 	"uvToIndex",
-	["vec2", ["int", "width", { prec: "highp" }]],
+	[V2, [I, "width", { prec: "highp" }]],
 	(uv, width) => [
 		ret(
 			add(

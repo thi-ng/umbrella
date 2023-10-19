@@ -1,12 +1,12 @@
+import { writeText } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";
-import { convertTree, svg } from "@thi.ng/hiccup-svg";
+import { svg } from "@thi.ng/hiccup-svg";
 import { fit } from "@thi.ng/math";
 import { map, range } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
 import {
+	linePlot,
 	linearAxis,
 	linearTicks,
-	linePlot,
 	logAxis,
 	logTicksMajor,
 	logTicksMinor,
@@ -35,51 +35,54 @@ const points = scatterPlot(values, {
 	attribs: { fill: "red", shape: "circle", size: 2 },
 });
 
-writeFileSync(
+const docAttribs = {
+	__convert: true,
+	width: 1280,
+	height: 560,
+	"font-size": "10px",
+};
+
+writeText(
 	"export/line-lin.svg",
 	serialize(
-		convertTree(
-			svg(
-				{ width: 1280, height: 560, "font-size": "10px" },
-				plotCartesian({
-					xaxis,
-					yaxis: linearAxis({
-						domain: [1, 10000],
-						range: [500, 20],
-						pos: 100,
-						labelOffset: [-15, 3],
-						labelAttribs: { "text-anchor": "end" },
-						major: { ticks: linearTicks(1000) },
-					}),
-					plots: [line, points],
-					grid: { xminor: false },
-				})
-			)
+		svg(
+			docAttribs,
+			plotCartesian({
+				xaxis,
+				yaxis: linearAxis({
+					domain: [1, 10000],
+					range: [500, 20],
+					pos: 100,
+					labelOffset: [-15, 3],
+					labelAttribs: { "text-anchor": "end" },
+					major: { ticks: linearTicks(1000) },
+				}),
+				plots: [line, points],
+				grid: { xminor: false },
+			})
 		)
 	)
 );
 
-writeFileSync(
+writeText(
 	"export/line-log.svg",
 	serialize(
-		convertTree(
-			svg(
-				{ width: 1280, height: 560, "font-size": "10px" },
-				plotCartesian({
-					xaxis,
-					yaxis: logAxis({
-						domain: [1, 10000],
-						range: [500, 20],
-						pos: 100,
-						labelOffset: [-15, 3],
-						labelAttribs: { "text-anchor": "end" },
-						major: { ticks: logTicksMajor() },
-						minor: { ticks: logTicksMinor() },
-					}),
-					plots: [line, points],
-					grid: { xminor: false },
-				})
-			)
+		svg(
+			docAttribs,
+			plotCartesian({
+				xaxis,
+				yaxis: logAxis({
+					domain: [1, 10000],
+					range: [500, 20],
+					pos: 100,
+					labelOffset: [-15, 3],
+					labelAttribs: { "text-anchor": "end" },
+					major: { ticks: logTicksMajor() },
+					minor: { ticks: logTicksMinor() },
+				}),
+				plots: [line, points],
+				grid: { xminor: false },
+			})
 		)
 	)
 );

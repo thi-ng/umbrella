@@ -1,4 +1,5 @@
 import type { FloatSym, Vec2Sym, Vec2Term } from "@thi.ng/shader-ast";
+import { V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { mul } from "@thi.ng/shader-ast/ast/ops";
@@ -21,7 +22,7 @@ export const cartesian2 = (v: Vec2Term) => mul(cossin($y(v)), $x(v));
  *
  * @param v -
  */
-export const cartesian3 = defn("vec3", "cartesian3", ["vec3"], (v) => {
+export const cartesian3 = defn(V3, "cartesian3", [V3], (v) => {
 	let r: FloatSym;
 	let t: Vec2Sym;
 	let p: Vec2Sym;

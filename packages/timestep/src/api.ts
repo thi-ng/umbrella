@@ -1,3 +1,4 @@
+import type { EVENT_ALL } from "@thi.ng/api";
 import type { TimeStep } from "./timestep";
 
 /**
@@ -105,13 +106,18 @@ export type StateInterpolation<T> = (
 ) => T;
 
 /**
- * Event ID for {@link TimeStep.addListener} to be notified of individual
- * {@link ITimeStep.integrate} iterations.
- */
-export const EVENT_INTEGRATE = "integrate";
-
-/**
  * Event ID for {@link TimeStep.addListener} to be notified of calls to
  * {@link TimeStep.update} (triggered at the very end of a frame update).
  */
 export const EVENT_FRAME = "frame";
+
+/**
+ * Event ID for {@link TimeStep.addListener} to be notified of individual
+ * {@link ITimeStep.integrate} iterations.
+ */
+export const EVENT_SUBFRAME = "subframe";
+
+export type TimeStepEventType =
+	| typeof EVENT_FRAME
+	| typeof EVENT_SUBFRAME
+	| typeof EVENT_ALL;

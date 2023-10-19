@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers",
-	"version": "8.4.4",
+	"version": "8.8.2",
 	"description": "Lightweight transducer implementations for ES6 / TypeScript",
 	"type": "module",
 	"module": "./index.js",
@@ -38,22 +38,22 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.0",
-		"@thi.ng/arrays": "^2.5.11",
-		"@thi.ng/checks": "^3.3.12",
-		"@thi.ng/compare": "^2.1.30",
-		"@thi.ng/compose": "^2.1.32",
-		"@thi.ng/errors": "^2.2.15",
-		"@thi.ng/math": "^5.4.9",
-		"@thi.ng/random": "^3.4.0"
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/arrays": "^2.6.3",
+		"@thi.ng/checks": "^3.4.5",
+		"@thi.ng/compare": "^2.2.0",
+		"@thi.ng/compose": "^2.1.42",
+		"@thi.ng/errors": "^2.3.5",
+		"@thi.ng/math": "^5.6.2",
+		"@thi.ng/random": "^3.6.8"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"2d",
@@ -69,6 +69,7 @@
 		"frequency",
 		"functional",
 		"fuzzy",
+		"generator",
 		"group-by",
 		"histogram",
 		"interleave",
@@ -84,6 +85,7 @@
 		"set",
 		"sliding-window",
 		"stream",
+		"time",
 		"throttle",
 		"transducer",
 		"transformation",
@@ -144,6 +146,9 @@
 		},
 		"./conj": {
 			"default": "./conj.js"
+		},
+		"./consume": {
+			"default": "./consume.js"
 		},
 		"./converge": {
 			"default": "./converge.js"
@@ -273,6 +278,9 @@
 		},
 		"./last": {
 			"default": "./last.js"
+		},
+		"./length": {
+			"default": "./length.js"
 		},
 		"./line": {
 			"default": "./line.js"
@@ -453,6 +461,12 @@
 		},
 		"./repeatedly": {
 			"default": "./repeatedly.js"
+		},
+		"./repeatedly2d": {
+			"default": "./repeatedly2d.js"
+		},
+		"./repeatedly3d": {
+			"default": "./repeatedly3d.js"
 		},
 		"./reverse": {
 			"default": "./reverse.js"

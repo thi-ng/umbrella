@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/csp](https://media.thi.ng/umbrella/banners-20220914/thing-csp.svg?dd2a4b97)
+# ![@thi.ng/csp](https://media.thi.ng/umbrella/banners-20230807/thing-csp.svg?dd2a4b97)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/csp.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -47,9 +48,11 @@ ES6 promise based CSP primitives & operations.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcsp%5D+in%3Atitle)
 
-This package might possibly become deprecated soon. See
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-for a similar, but alternative (and actively maintained) approach.
+This package is deprecated. Please see the following actively maintained
+alternatives providing similar functionality:
+
+- [@thi.ng/fibers](https://github.com/thi-ng/umbrella/tree/develop/packages/fibers)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
 ## Related packages
 
@@ -75,7 +78,7 @@ For Node.js REPL:
 const csp = await import("@thi.ng/csp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.48 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB
 
 ## Dependencies
 

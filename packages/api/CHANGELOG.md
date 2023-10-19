@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-19T09:28:07Z
+- **Last updated**: 2023-08-27T11:20:58Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.9.0) (2023-08-04)
+
+#### 🚀 Features
+
+- add generics for Event & INotify ([7702882](https://github.com/thi-ng/umbrella/commit/7702882))
+- add basic utility functions: identity, always, never ([4801e2d](https://github.com/thi-ng/umbrella/commit/4801e2d))
+- add generics for INotify, Event, Listener types ([dd0a6ed](https://github.com/thi-ng/umbrella/commit/dd0a6ed))
+- add IIDGen interface ([26cf9d1](https://github.com/thi-ng/umbrella/commit/26cf9d1))
 
 ## [8.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.8.0) (2023-04-19)
 

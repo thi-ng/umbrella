@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/system",
-	"version": "2.1.52",
+	"version": "2.1.73",
 	"description": "Minimal and explicit dependency-injection & lifecycle container for stateful app components",
 	"type": "module",
 	"module": "./index.js",
@@ -37,17 +37,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.0",
-		"@thi.ng/dgraph": "^2.1.48",
-		"@thi.ng/logger": "^1.4.13"
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/dgraph": "^2.1.69",
+		"@thi.ng/logger": "^1.4.21"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"clojure",

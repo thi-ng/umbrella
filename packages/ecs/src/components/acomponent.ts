@@ -7,12 +7,13 @@ import {
 	EVENT_CHANGED,
 	EVENT_PRE_DELETE,
 	type ComponentDefaultValue,
+	type ComponentEventType,
 	type IComponent,
 } from "../api.js";
 
 @INotifyMixin
 export abstract class AComponent<K extends string, VALUES, GET, SET>
-	implements IComponent<K, VALUES, GET, SET>, INotify
+	implements IComponent<K, VALUES, GET, SET>, INotify<ComponentEventType>
 {
 	readonly id: K;
 	abstract readonly size: number;
@@ -120,15 +121,17 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
 	}
 
 	// @ts-ignore: arguments
-	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	addListener(id: ComponentEventType, fn: Listener<ComponentEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: arguments
-	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	removeListener(id: ComponentEventType, fn: Listener<ComponentEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: arguments
-	notify(event: Event): boolean {}
+	notify(event: Event<ComponentEventType>): boolean {}
 
 	notifyChange(id: number): boolean {
 		return this.notify({ id: EVENT_CHANGED, target: this, value: id });

@@ -1,0 +1,36 @@
+{
+	"name": "@example/hiccup-css-image-transition",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Generating pure CSS image transitions",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
+	},
+	"dependencies": {
+		"@thi.ng/grid-iterators": "workspace:^",
+		"@thi.ng/hiccup": "workspace:^",
+		"@thi.ng/hiccup-css": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"grid-iterators",
+			"hiccup-css",
+			"hiccup"
+		],
+		"screenshot": "examples/hiccup-css-image-transition.jpg"
+	}
+}

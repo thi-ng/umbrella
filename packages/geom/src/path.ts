@@ -9,7 +9,7 @@ import { Path } from "./api/path.js";
 import { asCubic } from "./as-cubic.js";
 import { PathBuilder } from "./path-builder.js";
 
-export const path = (segments: PathSegment[], attribs?: Attribs) =>
+export const path = (segments: Iterable<PathSegment>, attribs?: Attribs) =>
 	new Path(segments, attribs);
 
 export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
@@ -23,18 +23,16 @@ export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
 
 export const normalizedPath = (path: Path) =>
 	new Path(
-		[
-			...mapcat(
-				(s) =>
-					s.geo
-						? map<Cubic, PathSegment>(
-								(c) => ({ type: "c", geo: c }),
-								asCubic(s.geo)
-						  )
-						: [{ ...s }],
-				path.segments
-			),
-		],
+		mapcat(
+			(s) =>
+				s.geo
+					? map<Cubic, PathSegment>(
+							(c) => ({ type: "c", geo: c }),
+							asCubic(s.geo)
+					  )
+					: [{ ...s }],
+			path.segments
+		),
 		path.attribs
 	);
 

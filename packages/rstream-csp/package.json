@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-csp",
-	"version": "3.1.51",
+	"version": "3.1.72",
 	"description": "@thi.ng/csp bridge module for @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -34,16 +34,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/csp": "^2.1.48",
-		"@thi.ng/rstream": "^8.0.2"
+		"@thi.ng/csp": "^2.1.69",
+		"@thi.ng/rstream": "^8.2.0"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"async",

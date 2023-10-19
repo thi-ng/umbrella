@@ -12,8 +12,8 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
@@ -24,10 +24,10 @@
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/expose": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/geom-axidraw": "workspace:^",
 		"@thi.ng/geom-trace-bitmap": "workspace:^",
 		"@thi.ng/grid-iterators": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
-		"@thi.ng/logger": "workspace:^",
 		"@thi.ng/math": "workspace:^",
 		"@thi.ng/paths": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
@@ -42,6 +42,7 @@
 		"@thi.ng/rstream-dot": "workspace:^",
 		"@thi.ng/rstream-gestures": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/units": "workspace:^",
 		"@thi.ng/vectors": "workspace:^"
 	},
 	"browser": {

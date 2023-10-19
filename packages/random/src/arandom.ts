@@ -9,6 +9,10 @@ export abstract class ARandom implements IRandom {
 		return this.int() * INV_MAX * norm;
 	}
 
+	probability(p: number) {
+		return this.float() < p;
+	}
+
 	norm(norm = 1) {
 		return (this.int() * INV_MAX - 0.5) * 2 * norm;
 	}
@@ -24,7 +28,13 @@ export abstract class ARandom implements IRandom {
 
 	minmaxInt(min: number, max: number) {
 		min |= 0;
-		max |= 0;
-		return min + ((this.float() * (max - min)) | 0);
+		const range = (max | 0) - min;
+		return range ? min + (this.int() % range) : min;
+	}
+
+	minmaxUint(min: number, max: number) {
+		min >>>= 0;
+		const range = (max >>> 0) - min;
+		return range ? min + (this.int() % range) : min;
 	}
 }

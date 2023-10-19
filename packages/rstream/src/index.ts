@@ -31,6 +31,7 @@ export * from "./sync-raf.js";
 export * from "./timeout.js";
 export * from "./trace.js";
 export * from "./transduce.js";
+export * from "./toggle.js";
 export * from "./trigger.js";
 export * from "./tunnel.js";
 export * from "./tween.js";

@@ -9,17 +9,18 @@
 	"scripts": {
 		"start": "yarn build:zig && vite --open --host",
 		"clean": "rimraf zig-cache zig-out",
+		"docs": "yarn prepare:zig && zig build docs -p .",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
 		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o zig/api-generated.zig src/typedefs.json",
-		"build:zig": "yarn prepare:zig && zig build && wasm-opt src/main.wasm -o src/main.wasm -O3 && wasm-dis -o src/main.wast src/main.wasm",
-		"prepare:zig": "cp ../../node_modules/@thi.ng/wasm-api/zig/build-v0.11.zig wasm-api-build.zig",
+		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/lib/main.wasm -o src/main.wasm -O3 && wasm-dis -o src/main.wast src/main.wasm",
+		"prepare:zig": "cp ../../node_modules/@thi.ng/wasm-api/zig/build.zig wasm-api-build.zig",
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
 		"@thi.ng/wasm-api-bindgen": "workspace:^",
-		"rimraf": "^5.0.0",
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"rimraf": "^5.0.1",
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",

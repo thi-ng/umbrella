@@ -1,6 +1,6 @@
 import { days, FMT_yyyyMMdd, HOUR, hours } from "@thi.ng/date";
 import { serialize } from "@thi.ng/hiccup";
-import { convertTree, svg } from "@thi.ng/hiccup-svg";
+import { svg } from "@thi.ng/hiccup-svg";
 import { float } from "@thi.ng/strings";
 import { readFileSync, writeFileSync } from "fs";
 import {
@@ -59,6 +59,9 @@ const res = plotCartesian({
 writeFileSync(
 	"export/candles.svg",
 	serialize(
-		convertTree(svg({ width: 1280, height: 560, "font-size": "10px" }, res))
+		svg(
+			{ __convert: true, width: 1280, height: 560, "font-size": "10px" },
+			res
+		)
 	)
 );

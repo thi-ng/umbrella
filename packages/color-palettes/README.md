@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/color-palettes](https://media.thi.ng/umbrella/banners-20220914/thing-color-palettes.svg?b1e135aa)
+# ![@thi.ng/color-palettes](https://media.thi.ng/umbrella/banners-20230807/thing-color-palettes.svg?b1e135aa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color-palettes.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Recent additions](#recent-additions)
@@ -270,7 +271,7 @@ For Node.js REPL:
 const colorPalettes = await import("@thi.ng/color-palettes");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.75 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.77 KB
 
 ## Dependencies
 
@@ -289,9 +290,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                           | Description                                          | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
+| Screenshot                                                                                                             | Description                                                       | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/>   | (Re)Constructing the thi.ng logo using a 2D signed-distance field | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/> | Randomized 4-point 2D color gradient image generator              | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/>   | Image dithering and remapping using indexed palettes              | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed)   |
 
 ### Usage
 
@@ -301,6 +304,10 @@ import { asCSS, asRGB } from "@thi.ng/color-palettes";
 // get theme for ID
 asCSS(7);
 // ["#2f1864", "#e40302", "#f25c22", "#d987bd", "#44b6e7", "#e3dadd"]
+
+// get in reverse order
+asCSS(7, true);
+// ["#e3dadd", "#44b6e7", "#d987bd", "#f25c22", "#e40302", "#2f1864"]
 
 asInt(7).map(x => x.toString(16));
 // [ 'ff2f1864', 'ffe40302', 'fff25c22', 'ffd987bd', 'ff44b6e7', 'ffe3dadd']

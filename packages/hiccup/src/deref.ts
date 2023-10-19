@@ -16,7 +16,7 @@ export const derefContext = (ctx: any, keys: PropertyKey[] | undefined) => {
 	const res = { ...ctx };
 	for (let k of keys) {
 		const v = res[k];
-		implementsFunction(v, "deref") && (res[k] = v.deref());
+		if (implementsFunction(v, "deref")) res[k] = v.deref();
 	}
 	return res;
 };

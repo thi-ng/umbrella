@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/geom-resample](https://media.thi.ng/umbrella/banners-20220914/thing-geom-resample.svg?b216a728)
+# ![@thi.ng/geom-resample](https://media.thi.ng/umbrella/banners-20230807/thing-geom-resample.svg?b216a728)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-resample.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -55,7 +56,7 @@ For Node.js REPL:
 const geomResample = await import("@thi.ng/geom-resample");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.31 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.39 KB
 
 ## Dependencies
 
@@ -74,9 +75,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                              | Description                                            | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/> | Animated Voronoi diagram, cubic splines & SVG download | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi) |
+| Screenshot                                                                                                              | Description                                              | Live demo                                              | Source                                                                              |
+|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>      | Animated, iterative polygon subdivisions & visualization | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/> | Animated Voronoi diagram, cubic splines & SVG download   | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi) |
 
 ## API
 

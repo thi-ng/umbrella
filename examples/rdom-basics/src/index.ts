@@ -1,5 +1,7 @@
 import { isString } from "@thi.ng/checks";
 import { delayed } from "@thi.ng/compose";
+import { button, div, h1, li, span } from "@thi.ng/hiccup-html";
+import { SYSTEM, pickRandomUnique } from "@thi.ng/random";
 import { $compile, $list, $replace } from "@thi.ng/rdom";
 import {
 	CloseMode,
@@ -7,13 +9,13 @@ import {
 	fromInterval,
 	fromIterable,
 	metaStream,
-	reactive,
 	stream,
 	sync,
+	toggle,
 } from "@thi.ng/rstream";
-import { choices, map, take } from "@thi.ng/transducers";
+import { choices, dedupe, map, take } from "@thi.ng/transducers";
 
-const blur = reactive(false);
+const blur = toggle(false);
 const body = stream<string>();
 const date = fromInterval(1000).transform(map(() => new Date()));
 const items = stream<any[]>();
@@ -24,83 +26,91 @@ const typewriter = (min: number, max: number) => (src: string) =>
 		(async () => {
 			for (let i = 1; active && i <= src.length; i++) {
 				s.next(src.substring(0, i));
-				await delayed(0, Math.random() * (max - min) + min);
+				await delayed(null, SYSTEM.minmax(min, max));
 			}
-			s.closeIn !== CloseMode.NEVER && s.done();
+			s.done();
 		})();
 		return () => (active = false);
 	});
 
-const names = ["TypeScript", "@thi.ng/rdom", "toxi", "Discord"];
+const names = [
+	"TypeScript",
+	"@thi.ng/rdom",
+	"@thi.ng/rstream",
+	"mastodon.thi.ng",
+	"toxi",
+];
 
-const typing = fromIterable(choices(names), { delay: 2000 }).subscribe(
+const typing = fromIterable(dedupe(choices(names)), { delay: 2000 }).subscribe(
 	metaStream(typewriter(16, 100), { closeOut: CloseMode.NEVER })
 );
 
-const itemChoices = [
-	date.transform(map((d) => d.toISOString())),
-	body,
-	typing,
-	...names,
-];
+const itemChoices = [date.map((d) => d.toISOString()), body, typing, ...names];
 
-const randomizeBody = () => body.next(names[~~(Math.random() * names.length)]);
+const randomizeBody = () =>
+	body.next(pickRandomUnique(1, names, [body.deref()!])[1]);
 
 const randomizeList = () =>
-	items.next([...take(Math.random() * 400 + 100, choices(itemChoices))]);
+	items.next([...take(SYSTEM.minmaxInt(100, 500), choices(itemChoices))]);
 
-const button = (onclick: EventListener, label: string) => [
-	"button.mr2",
-	{ onclick },
-	label,
-];
+const demoButton = (onclick: EventListener, label: string) =>
+	button(".mr2", { onclick }, label);
 
-const mpos = fromDOMEvent(window, "mousemove").transform(
-	map((e) => [e.pageX, e.pageY])
-);
+const mpos = fromDOMEvent(window, "mousemove").map((e) => [e.pageX, e.pageY]);
 
 randomizeBody();
 randomizeList();
 
-const root = $compile([
-	"div.ma3.bg-dark-gray.white",
-	{},
-	[
-		"h1.absolute.white.z1",
-		{
-			class: { blur },
-			style: mpos.transform(
-				map(([x, y]) => ({ left: x + "px", top: y + "px" }))
-			),
-		},
-		$replace(
-			sync({
-				src: { body, mpos },
-				xform: map((x) => [
-					"span",
-					{},
-					x.body,
-					["span.ml2.light-green", {}, `[${x.mpos}]`],
-				]),
-			})
-		),
-	],
-	[
-		"div.mv3",
+$compile(
+	div(
+		".ma3.bg-dark-gray.white",
 		{},
-		button(() => blur.next(!blur.deref()), "toggle blur"),
-		button(randomizeBody, "randomize title"),
-		button(randomizeList, "randomize list"),
-	],
-	["div.hot-pink", {}, date],
-	["div.pink", {}, items.transform(map((x) => `${x.length} items`))],
-	$list(items, "ul.f7", { style: { "column-count": 2 } }, (x) => [
-		"li",
-		{
-			class: isString(x) ? "light-blue" : x === typing ? "red" : "yellow",
-		},
-		x,
-	]),
-]);
-
-root.mount(document.getElementById("app")!);
+		h1(
+			".absolute.white.z1",
+			{
+				class: { blur },
+				style: mpos.map(([x, y]) => ({
+					left: x + "px",
+					top: y + "px",
+				})),
+			},
+			$replace(
+				sync({
+					src: { body, mpos },
+					xform: map((x) =>
+						span({}, x.body, [
+							"span.ml2.light-green",
+							{},
+							`[${x.mpos}]`,
+						])
+					),
+				})
+			)
+		),
+		div(
+			".mv3",
+			{},
+			demoButton(() => blur.next(), "toggle blur"),
+			demoButton(randomizeBody, "randomize title"),
+			demoButton(randomizeList, "randomize list")
+		),
+		div(".hot-pink", {}, date),
+		div(
+			".pink",
+			{},
+			items.map((x) => `${x.length} items`)
+		),
+		$list(items, "ul.f7", { style: { "column-count": 2 } }, (x) =>
+			li(
+				{
+					class: isString(x)
+						? "light-blue"
+						: x === typing
+						? "red"
+						: "yellow",
+				},
+				x
+			)
+		)
+	)
+).mount(document.getElementById("app")!);

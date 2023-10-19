@@ -1,3 +1,4 @@
+import { identity } from "@thi.ng/api/fn";
 import type { Transducer } from "./api.js";
 import { mapcat } from "./mapcat.js";
 
@@ -20,5 +21,5 @@ import { mapcat } from "./mapcat.js";
 export function flatten1<T>(): Transducer<Iterable<T>, T>;
 export function flatten1<T>(src: Iterable<Iterable<T>>): IterableIterator<T>;
 export function flatten1<T>(src?: Iterable<Iterable<T>>): any {
-	return mapcat((x: any) => x, <any>src);
+	return mapcat(identity<any>, <any>src);
 }

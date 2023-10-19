@@ -37,7 +37,7 @@ export function sample<T>(...args: any[]): any {
 	return (rfn: Reducer<any, T>) => {
 		const r = rfn[2];
 		return compR(rfn, (acc, x: T) =>
-			rnd.float() < prob ? r(acc, x) : acc
+			rnd.probability(prob) ? r(acc, x) : acc
 		);
 	};
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/checks",
-	"version": "3.3.12",
+	"version": "3.4.5",
 	"description": "Collection of 70+ type, feature & value checks",
 	"type": "module",
 	"module": "./index.js",
@@ -38,16 +38,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"tslib": "^2.5.0"
+		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"@types/node": "^20.1.0",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"@types/node": "^20.5.6",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"detect",
@@ -157,6 +157,9 @@
 		},
 		"./is-function": {
 			"default": "./is-function.js"
+		},
+		"./is-generator": {
+			"default": "./is-generator.js"
 		},
 		"./is-hex-color": {
 			"default": "./is-hex-color.js"

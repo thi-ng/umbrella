@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/scenegraph](https://media.thi.ng/umbrella/banners-20220914/thing-scenegraph.svg?b46c4533)
+# ![@thi.ng/scenegraph](https://media.thi.ng/umbrella/banners-20230807/thing-scenegraph.svg?b46c4533)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/scenegraph.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -57,7 +58,7 @@ For Node.js REPL:
 const scenegraph = await import("@thi.ng/scenegraph");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 858 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 856 bytes
 
 ## Dependencies
 

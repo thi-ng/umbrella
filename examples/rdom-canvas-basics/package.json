@@ -12,20 +12,23 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	},
 	"dependencies": {
+		"@thi.ng/compose": "workspace:^",
+		"@thi.ng/dsp": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
 		"@thi.ng/rdom-canvas": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
-		"@thi.ng/transducers": "workspace:^"
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
 	},
 	"browser": {
 		"process": false
 	},
 	"thi.ng": {
 		"readme": true,
-		"screenshot": "examples/rdom-canvas-basics.png"
+		"screenshot": "examples/rdom-canvas-basics.jpg"
 	}
 }

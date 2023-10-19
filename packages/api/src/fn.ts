@@ -264,3 +264,20 @@ export type FnN8 = FnU8<number>;
 export type FnN9 = FnU9<number>;
 
 export type FnN10 = FnU10<number>;
+
+/**
+ * Identity function: `(x) => x`
+ *
+ * @param x
+ */
+export const identity = <T>(x: T) => x;
+
+/**
+ * Zero-arg function always returning true.
+ */
+export const always = () => true;
+
+/**
+ * Zero-arg function always returning false.
+ */
+export const never = () => false;

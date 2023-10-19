@@ -12,6 +12,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/api": "workspace:^",
 		"@thi.ng/bench": "workspace:^",
 		"@thi.ng/distance": "workspace:^",
 		"@thi.ng/geom-accel": "workspace:^",
@@ -43,7 +44,7 @@
 		"screenshot": "examples/geom-knn-hash.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	}
 }

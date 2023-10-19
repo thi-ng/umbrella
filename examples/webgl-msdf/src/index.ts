@@ -37,9 +37,11 @@ import {
 	DrawMode,
 	TextureFilter,
 	TextureRepeat,
+	clearCanvas,
 	compileModel,
 	defShader,
 	defTexture,
+	defaultViewport,
 	draw,
 	type GLMat4,
 	type ModelSpec,
@@ -79,6 +81,8 @@ Do not go gentle into that good night.
 Rage, rage against the dying of the light.
 
 Dylan Thomas`;
+
+const BG_COL = [0, 0, 0];
 
 const createText = (
 	gl: WebGLRenderingContext,
@@ -221,7 +225,6 @@ const app = () => {
 	let stars: ModelSpec;
 	let body: ModelSpec;
 	let mouse: ISubscription<any, ReadonlyVec>;
-	let bg = 0;
 	const canvas = canvasWebGL({
 		init: async (el, gl) => {
 			const img = new Image();
@@ -275,9 +278,8 @@ const app = () => {
 			);
 			stars.uniforms!.modelview = <GLMat4>view;
 			stars.uniforms!.time = 10 + time * 0.001;
-			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-			gl.clearColor(bg, bg, bg, 1);
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			defaultViewport(gl);
+			clearCanvas(gl, BG_COL);
 			draw([stars, body]);
 		},
 	});

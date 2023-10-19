@@ -1,4 +1,5 @@
 import type { BVec3Sym, FloatSym, IntSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop, ifThen } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -34,9 +35,9 @@ import { clamp01 } from "../math/clamp.js";
  */
 export const sdfPolygon2 = (N: number) =>
 	defn(
-		"float",
+		F,
 		`sdfPolygon2_${N}`,
-		["vec2", ["vec2[]", "pts", { num: N }]],
+		[V2, ["vec2[]", "pts", { num: N }]],
 		(p, pts) => {
 			let d: FloatSym, s: FloatSym;
 			let b: Vec2Sym, e: Vec2Sym, w: Vec2Sym, t: Vec2Sym;

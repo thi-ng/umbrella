@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/rstream-query](https://media.thi.ng/umbrella/banners-20220914/thing-rstream-query.svg?2cfe42ce)
+# ![@thi.ng/rstream-query](https://media.thi.ng/umbrella/banners-20230807/thing-rstream-query.svg?2cfe42ce)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-query.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Current features](#current-features)
@@ -16,6 +17,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Visualizing a query's dataflow topology](#visualizing-a-querys-dataflow-topology)
 - [Authors](#authors)
 - [License](#license)
 
@@ -205,6 +207,8 @@ addCity("paris", "france");
 //     { answer: 'berlin is located in germany' },
 //     { answer: 'paris is located in france' } }
 ```
+
+### Visualizing a query's dataflow topology
 
 After setting up the above query and its internal transformations, the
 generated dataflow topology then looks as follows:

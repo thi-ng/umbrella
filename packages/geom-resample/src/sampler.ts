@@ -124,6 +124,43 @@ export class Sampler {
 		return t !== undefined ? this.splitAt(t) : undefined;
 	}
 
+	/**
+	 * Returns vertex array for given interval of parametric positions (both
+	 * MUST be in [0..1] range).
+	 *
+	 * @example
+	 * ```ts
+	 * // vertices of a square
+	 * const square = [[0, 0], [100, 0], [100, 100], [0, 100]];
+	 *
+	 * new Sampler(square).extractRange(0.2, 0.7);
+	 * // [[80, 0], [100, 0], [100, 100], [20, 100]]
+	 * ```
+	 *
+	 * @param start
+	 * @param end
+	 */
+	extractRange(start: number, end: number): Vec[] | undefined {
+		if (start > end) {
+			const t = start;
+			start = end;
+			end = t;
+		}
+		const pa = this.pointAt(start);
+		const pb = this.pointAt(end);
+		if (!(pa && pb)) return;
+		const ia = Math.max(1, this.indexAt(start)!);
+		const ib = Math.max(1, this.indexAt(end)!);
+		const verts = this.points.slice(ia, ib);
+		if (!verts.length || !eqDelta(verts[0], pa)) {
+			verts.unshift(pa);
+		}
+		if (!eqDelta(verts[verts.length - 1], pb)) {
+			verts.push(pb);
+		}
+		return verts;
+	}
+
 	indexAt(t: number) {
 		const pts = this.points;
 		const n = pts.length - 1;

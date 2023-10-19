@@ -1,8 +1,9 @@
 import { Atom } from "@thi.ng/atom";
 import { foaf } from "@thi.ng/prefixes";
+import { escapeEntities } from "@thi.ng/strings";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { serialize } from "../src/index.js";
+import { DOCTYPE_HTML, XML_PROC, serialize } from "../src/index.js";
 
 const _check = (a: any, b: any) => assert.strictEqual(serialize(a), b);
 
@@ -304,7 +305,7 @@ group("serialize", {
 		const bar = { render: (_: any, id: any) => [foo, id] };
 		assert.strictEqual(
 			serialize(["section", [bar, "a"], [bar, "b"]], {
-				foo: { class: "foo" },
+				ctx: { foo: { class: "foo" } },
 			}),
 			`<section><div class="foo">a</div><div class="foo">b</div></section>`
 		);
@@ -331,8 +332,9 @@ group("serialize", {
 		`<a><b>bbb</b></a>`
 	),
 
-	...check("doctype", ["!DOCTYPE", "html"], "<!DOCTYPE html>\n"),
+	...check("doctype_html", DOCTYPE_HTML, "<!DOCTYPE html>\n"),
 
+	...check("xml_proc", XML_PROC, `<?xml version="1.0" encoding="UTF-8"?>\n`),
 	...check(
 		"?xml",
 		["?xml", { version: "1.0", standalone: "yes" }],
@@ -344,4 +346,19 @@ group("serialize", {
 		["foo:div#bar", { prefix: { thi: "http://thi.ng/#", foaf } }, "body"],
 		`<foo:div prefix="thi: http://thi.ng/# foaf: http://xmlns.com/foaf/0.1/" id="bar">body</foo:div>`
 	),
+
+	"escape entities": () =>
+		assert.strictEqual(
+			serialize(["div", "Äöü <&> '\" —"], { escape: true }),
+			"<div>&#xc4;&#xf6;&#xfc; &lt;&amp;&gt; &apos;&quot; &#x2014;</div>"
+		),
+
+	"escape entities (custom)": () =>
+		assert.strictEqual(
+			serialize(["div", "Äöü <&> '\" —"], {
+				escape: true,
+				escapeFn: escapeEntities,
+			}),
+			"<div>&Auml;&ouml;&uuml; &lt;&amp;&gt; &apos;&quot; &mdash;</div>"
+		),
 });

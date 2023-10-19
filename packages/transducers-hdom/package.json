@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-hdom",
-	"version": "3.1.53",
+	"version": "3.1.76",
 	"description": "Transducer based UI updater for @thi.ng/hdom",
 	"type": "module",
 	"module": "./index.js",
@@ -34,17 +34,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/hdom": "^9.3.8",
-		"@thi.ng/hiccup": "^4.2.40",
-		"@thi.ng/transducers": "^8.4.4"
+		"@thi.ng/hdom": "^9.3.22",
+		"@thi.ng/hiccup": "^5.0.1",
+		"@thi.ng/transducers": "^8.8.2"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"diff",

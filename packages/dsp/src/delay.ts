@@ -1,5 +1,6 @@
-import type { Fn0, IClear, ILength, IReset } from "@thi.ng/api";
+import type { Fn0, IClear, ICopy, ILength, IReset } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { wrap } from "@thi.ng/math/interval";
 import { AProc } from "./aproc.js";
 
@@ -21,7 +22,10 @@ export const delayT = <T>(n: number, off: T | Fn0<T>) => new Delay<T>(n, off);
  * Ring buffer / delay line for arbitrary values w/ support for tapping
  * at any delay time (within configured buffer size).
  */
-export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
+export class Delay<T>
+	extends AProc<T, T>
+	implements IClear, ICopy<Delay<T>>, ILength, IReset
+{
 	protected _buf: T[];
 	protected _rpos: number;
 	protected _wpos: number;
@@ -37,6 +41,8 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
 	 */
 	constructor(n: number, protected _empty: T | Fn0<T>) {
 		super(isFunction(_empty) ? _empty() : _empty);
+		if (n < 1) illegalArgs("delay size must be >= 1");
+		n >>>= 0;
 		this._wpos = n - 1;
 		this._rpos = 0;
 		this._buf = new Array(n);
@@ -56,6 +62,10 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
 		} else {
 			this._buf.fill(_empty);
 		}
+	}
+
+	copy() {
+		return new Delay<T>(this._buf.length, this._empty);
 	}
 
 	/**
@@ -99,14 +109,14 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
 	}
 
 	/**
-	 * Progresses read & write pos, stores & returns new value.
+	 * Progresses read & write pos, stores new value and returns delayed value.
 	 *
 	 * @param x -
 	 */
 	next(x: T) {
 		this.step();
 		this._buf[this._wpos] = x;
-		return x;
+		return (this._val = this._buf[this._rpos]);
 	}
 
 	/**

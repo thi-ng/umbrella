@@ -48,6 +48,10 @@ export class Nearest<D, T>
 		return (eucledian ? this.dist.to(d) : d) <= this._currR;
 	}
 
+	includesPosition(pos: D) {
+		return this.dist.metric(this.target, pos) < this._currR;
+	}
+
 	consider(pos: D, val: T) {
 		const d = this.dist.metric(this.target, pos);
 		if (d <= this._currR) {

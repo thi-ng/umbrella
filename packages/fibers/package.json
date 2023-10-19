@@ -1,0 +1,111 @@
+{
+	"name": "@thi.ng/fibers",
+	"version": "0.5.5",
+	"description": "Process hierarchies & operators for cooperative multitasking",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/fibers#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/arrays": "^2.6.3",
+		"@thi.ng/bench": "^3.4.6",
+		"@thi.ng/checks": "^3.4.5",
+		"@thi.ng/errors": "^2.3.5",
+		"@thi.ng/idgen": "^2.2.6",
+		"@thi.ng/logger": "^1.4.21",
+		"@thi.ng/random": "^3.6.8"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
+		"tools": "workspace:^",
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
+	},
+	"keywords": [
+		"blocking",
+		"buffer",
+		"cancel",
+		"channel",
+		"communication",
+		"composition",
+		"coroutines",
+		"csp",
+		"event",
+		"fiber",
+		"fork",
+		"generator",
+		"logger",
+		"multitasking",
+		"process",
+		"promise",
+		"scheduler",
+		"shuffle",
+		"time",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./csp": {
+			"default": "./csp.js"
+		},
+		"./fiber": {
+			"default": "./fiber.js"
+		},
+		"./ops": {
+			"default": "./ops.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2023
+	}
+}

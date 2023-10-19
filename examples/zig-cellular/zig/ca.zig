@@ -79,9 +79,9 @@ pub fn update(self: *Self) void {
             const behavior = self.behaviors[@mod(currState, self.behaviors.len)];
             var num: u8 = 0;
             for (behavior.neighbors) |offset| {
-                var xx = wrapAround(i16, x + offset[0], @intCast(i16, self.width));
-                var yy = wrapAround(i16, y + offset[1], @intCast(i16, self.height));
-                if (self.cells[@intCast(usize, yy) * self.width + @intCast(usize, xx)] == nextState) num += 1;
+                var xx = wrapAround(i16, x + offset[0], @as(i16, @intCast(self.width)));
+                var yy = wrapAround(i16, y + offset[1], @as(i16, @intCast(self.height)));
+                if (self.cells[@as(usize, @intCast(yy)) * self.width + @as(usize, @intCast(xx))] == nextState) num += 1;
                 if (num >= behavior.threshold) break;
             }
             self.swap[i] = if (num >= behavior.threshold or self.rnd.float(f32) < behavior.mutate) nextState else currState;

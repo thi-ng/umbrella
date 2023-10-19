@@ -18,7 +18,7 @@ pub const TaskItem = struct {
             .parent = parent,
             .task = .{
                 .body = body,
-                .dateCreated = @intCast(u32, wasm.epoch() / 1000),
+                .dateCreated = @intCast(wasm.epoch() / 1000),
             },
         };
     }
@@ -75,7 +75,7 @@ pub const TaskItem = struct {
     pub fn markDone(self: *TaskItem) void {
         var buf: [32]u8 = undefined;
         self.task.state = .done;
-        self.task.dateDone = @intCast(u32, wasm.epoch() / 1000);
+        self.task.dateDone = @intCast(wasm.epoch() / 1000);
         dom.setInnerText(self.date, todo.formatDateTime(self.task.dateDone, &buf));
         dom.addClass(self.root, "task-done");
         dom.addClass(self.root, "fadeout");

@@ -4,6 +4,7 @@ import type { IRandom } from "@thi.ng/random";
 import { DEFAULT_SEED_128 } from "@thi.ng/random/constants";
 import { pickRandom, pickRandomKey } from "@thi.ng/random/pick-random";
 import { SFC32 } from "@thi.ng/random/sfc32";
+import { pickRandomUnique } from "@thi.ng/random/unique-indices";
 import {
 	weightedRandom,
 	weightedRandomKey,
@@ -63,7 +64,8 @@ export const RND = new SFC32(seed);
  * @param p
  * @param rnd - default {@link RND}
  */
-export const probability = (p: number, rnd: IRandom = RND) => rnd.float() < p;
+export const probability = (p: number, rnd: IRandom = RND) =>
+	rnd.probability(p);
 
 /**
  * Wrapper for {@link  @thi.ng/random#pickRandom}. Returns a random item from
@@ -89,6 +91,9 @@ export const pickKey = <T extends object>(obj: T, rnd: IRandom = RND) =>
  * Repeatedly calls given zero-arg `fn` until it returns a different value than
  * `orig` (using strict equality `===`).
  *
+ * @remarks
+ * Also see {@link pickUnique} for selecting multiple unique items.
+ *
  * @param fn
  * @param orig
  */
@@ -99,6 +104,29 @@ export const pickAlt = <T>(fn: Fn0<T>, orig: T) => {
 	} while (res === orig);
 	return res;
 };
+
+/**
+ * Same as thi.ng/random's [pickRandomUnique](), but pre-configured to use
+ * {@link RND} as default PRNG. Picks up to `k` unique values from `src` array
+ * (each with `maxTrials`) and adds them to given `existing` array (or creates a
+ * new one by default) and returns it.
+ *
+ * @remarks
+ * Internally uses `Array.includes()` to check for duplicates.
+ *
+ * @param k
+ * @param src
+ * @param existing
+ * @param maxTrials
+ * @param rnd
+ */
+export const pickUnique = <T>(
+	k: number,
+	src: T[],
+	existing?: T[],
+	maxTrials = 100,
+	rnd: IRandom = RND
+) => pickRandomUnique(k, src, existing, maxTrials, rnd);
 
 /**
  * One-shot wrapper for

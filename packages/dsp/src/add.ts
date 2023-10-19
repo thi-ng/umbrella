@@ -1,4 +1,4 @@
-import type { IReset } from "@thi.ng/api";
+import type { ICopy, IReset } from "@thi.ng/api";
 import { AGen } from "./agen.js";
 
 /**
@@ -14,7 +14,7 @@ import { AGen } from "./agen.js";
 export const add = (step?: number, start?: number, clamp?: number) =>
 	new Add(step, start, clamp);
 
-export class Add extends AGen<number> implements IReset {
+export class Add extends AGen<number> implements ICopy<Add>, IReset {
 	constructor(
 		protected _step = 1,
 		protected _start = 0,
@@ -22,6 +22,10 @@ export class Add extends AGen<number> implements IReset {
 	) {
 		super(0);
 		this.reset();
+	}
+
+	copy(): Add {
+		return new Add(this._step, this._start, this._clamp);
 	}
 
 	reset() {

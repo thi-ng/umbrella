@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/k-means](https://media.thi.ng/umbrella/banners-20220914/thing-k-means.svg?974198f6)
+# ![@thi.ng/k-means](https://media.thi.ng/umbrella/banners-20230807/thing-k-means.svg?974198f6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/k-means.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -76,37 +77,47 @@ A selection:
 
 [Generated API docs](https://docs.thi.ng/umbrella/k-means/)
 
-Example usage:
+Example usage: Clustering cities by lat/lon location
 
-```ts
-import { kmeans, meansLatLon } from "@thi.ng/k-means";
+```ts tangle:export/readme.ts
 import { HAVERSINE_LATLON } from "@thi.ng/distance";
+import { kmeans, meansLatLon } from "@thi.ng/k-means";
 
-// data from: https://simplemaps.com/data/world-cities
+// data sourced from:
+// https://github.com/OpenDataFormats/worldcities/blob/master/src/data/cities.json
 const cities = [
-    { id: "berlin", latlon: [52.5167, 13.3833] },
-    { id: "boston", latlon: [42.3188, -71.0846] },
-    { id: "detroit", latlon: [42.3834, -83.1024] },
-    { id: "kyoto", latlon: [35.0111, 135.7669] },
-    { id: "london", latlon: [51.5072, -0.1275] },
-    { id: "new york", latlon: [40.6943, -73.9249] },
-    { id: "osaka", latlon: [34.6936, 135.5019] },
-    { id: "paris", latlon: [48.8566, 2.3522] },
-    { id: "philadelphia", latlon: [40.0077, -75.1339] },
-    { id: "tokyo", latlon: [35.6897, 139.6922] },
-    { id: "vienna", latlon: [48.2083, 16.3731] },
+    { id: "anchorage", latlon: [61.21806, -149.90028] },
+    { id: "berlin", latlon: [52.52437, 13.41053] },
+    { id: "boston", latlon: [42.35843, -71.05977] },
+    { id: "calgary", latlon: [51.05011, -114.08529] },
+    { id: "cape town", latlon: [-33.92584, 18.42322] },
+    { id: "detroit", latlon: [42.33143, -83.04575] },
+    { id: "harare", latlon: [-17.82772, 31.05337] },
+    { id: "london", latlon: [51.50853, -0.12574] },
+    { id: "manila", latlon: [14.6042, 120.9822] },
+    { id: "nairobi", latlon: [-1.28333, 36.81667] },
+    { id: "new york", latlon: [40.71427, -74.00597] },
+    { id: "paris", latlon: [48.85341, 2.3488] },
+    { id: "philadelphia", latlon: [39.95233, -75.16379] },
+    { id: "portland", latlon: [45.52345, -122.67621] },
+    { id: "seoul", latlon: [37.566, 126.9784] },
+    { id: "shanghai", latlon: [31.22222, 121.45806] },
+    { id: "tokyo", latlon: [35.6895, 139.69171] },
+    { id: "vancouver", latlon: [49.24966, -123.11934] },
+    { id: "vienna", latlon: [48.20849, 16.37208] },
+    { id: "windhoek", latlon: [-22.55941, 17.08323] },
 ];
 
 // cluster based on lat/lon
 const clusters = kmeans(
-    3,
+    5,
     cities.map((x) => x.latlon),
     {
         // custom centroid calc for geo locations
         // https://docs.thi.ng/umbrella/k-means/functions/meansLatLon.html
         strategy: meansLatLon,
         // custom distance function for geo location (default: DIST_SQ)
-        dist: HAVERSINE_LATLON
+        dist: HAVERSINE_LATLON,
     }
 );
 
@@ -115,9 +126,11 @@ for (let c of clusters) {
     console.log(c.items.map((i) => cities[i].id));
 }
 
-// [ 'boston', 'detroit', 'new york', 'philadelphia' ]
-// [ 'kyoto', 'osaka', 'tokyo' ]
+// [ 'manila', 'seoul', 'shanghai', 'tokyo' ]
 // [ 'berlin', 'london', 'paris', 'vienna' ]
+// [ 'boston', 'detroit', 'new york', 'philadelphia' ]
+// [ 'cape town', 'harare', 'nairobi', 'windhoek' ]
+// [ 'anchorage', 'calgary', 'portland', 'vancouver' ]
 ```
 
 ## Authors

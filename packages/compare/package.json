@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/compare",
-	"version": "2.1.30",
+	"version": "2.2.0",
 	"description": "Comparators with support for types implementing the @thi.ng/api/ICompare interface",
 	"type": "module",
 	"module": "./index.js",
@@ -34,15 +34,15 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.0"
+		"@thi.ng/api": "^8.9.5"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"comparator",
@@ -71,6 +71,9 @@
 		},
 		"./numeric": {
 			"default": "./numeric.js"
+		},
+		"./ops": {
+			"default": "./ops.js"
 		},
 		"./reverse": {
 			"default": "./reverse.js"

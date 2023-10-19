@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners-20220914/thing-dsp.svg?5dc8dc3b)
+# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners-20230807/thing-dsp.svg?5dc8dc3b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -49,12 +50,11 @@ Partially ported from other thi.ng projects (e.g.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdsp%5D+in%3Atitle)
 
-Even though this library is now at v2.0.0 and still retains most of the
-features from earlier versions, all recently added features (IGen's,
-IProc's, composition ops etc.) should be considered "beta" and are
-likely to undergo further (hopefully not too drastic) changes in the
-near future. Also, pending outcomes of ongoing experiments, some aspects
-might be ported to WASM.
+Even though this library is now at v2.0.0 and still retains most of the features
+from earlier versions, all recently added features (IGen's, IProc's, composition
+ops etc.) should be considered "beta" and are likely to undergo further
+(hopefully not too drastic) changes in the near future. Also, pending outcomes
+of ongoing experiments, some aspects might be ported to WASM.
 
 ## Support packages
 
@@ -84,7 +84,7 @@ For Node.js REPL:
 const dsp = await import("@thi.ng/dsp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.90 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 7.30 KB
 
 ## Dependencies
 
@@ -103,13 +103,16 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                             | Description                                         | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>       | Interactive inverse FFT toy synth                   | [Demo](https://demo.thi.ng/umbrella/fft-synth/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>     | Polygon to cubic curve conversion & visualization   | [Demo](https://demo.thi.ng/umbrella/poly-spline/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/> | Steering behavior drawing with alpha-blended shapes | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>   | WebGL cube maps with async texture loading          | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg" width="240"/>      | WebGL screenspace ambient occlusion                 | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)      |
+| Screenshot                                                                                                                | Description                                                 | Live demo                                                | Source                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>          | Interactive inverse FFT toy synth                           | [Demo](https://demo.thi.ng/umbrella/fft-synth/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>       | Fiber-based cooperative multitasking basics                 | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>        | Polygon to cubic curve conversion & visualization           | [Demo](https://demo.thi.ng/umbrella/poly-spline/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/>    | Steering behavior drawing with alpha-blended shapes         | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/> | Minimal rdom-canvas animation                               | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>       | Generative audio synth offline renderer and WAV file export | [Demo](https://demo.thi.ng/umbrella/render-audio/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>      | WebGL cube maps with async texture loading                  | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg" width="240"/>         | WebGL screenspace ambient occlusion                         | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)         |
 
 ## API
 
@@ -117,17 +120,15 @@ A selection:
 
 ### IGen
 
-The following unit generators are infinite data sources based on the
-[`IGen`
+The following unit generators are infinite data sources based on the [`IGen`
 interface](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/api.ts)
-with most being resettable too. The interface is similar to ES6
-iterators in that the next value can be obtained by calling `.next()`,
-however since `IGen`s are always infinite, there's no need to [wrap the
-result
+with most being resettable too. The interface is similar to ES6 iterators in
+that the next value can be obtained by calling `.next()`, however since `IGen`s
+are always infinite, there's no need to [wrap the result
 value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol)
-as is done with ES6 iterables. Furthermore, all gens defined in this
-package do implement `Symbol.iterator` and so can actually be used as
-standard iterables as well.
+as is done with ES6 iterables. Furthermore, all gens defined in this package do
+implement `Symbol.iterator` and so can actually be used as standard iterables as
+well.
 
 `IGen` also implements the
 [`IDeref`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/deref.ts)
@@ -184,10 +185,10 @@ import { take } from "@thi.ng/transducers";
 ```
 
 - [add](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/add.ts) - adder
-- [adsr](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/add.ts) - timebased ADSR / AD envelope generator
+- [adsr](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/adsr.ts) - timebased ADSR / AD envelope generator
 - [alt](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/alt.ts) - alternating values
 - [constant](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/const.ts) - constant value
-- [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/cosp.ts) - trig-free cosine osc
+- [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/cosine.ts) - trig-free cosine osc
 - [curve](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/curve.ts) - timebased exponential gain/decay (factory for `madd`)
 - [impulse](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse.ts) - impulse gen
 - [impulseTrain](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse-train.ts) - timebased cyclic impulse
@@ -198,7 +199,7 @@ import { take } from "@thi.ng/transducers";
 - [reciprocal](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/reciprocal.ts) - fractional sequence (1, 1/2, 1/3, 1/4 etc.)
 - [sincos](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sincos.ts) - trig-free sin/cos LFO
 - [sweep](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sweep.ts) - freq sweep gen w/ phase accumulation for oscillators
-- [whiteNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/pink-noise.ts) - white noise
+- [whiteNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/white-noise.ts) - white noise
 
 #### Higher order generators
 
@@ -260,17 +261,24 @@ Diagram of the FM/AM osc with some low pass filters applied:
 
 ### IProc
 
-The second fundamental interface in this package, similar to `IGen` and
-used to implement processors & transformers of input values (e.g those
-generated by the various `IGen`s available). `IProc` implementations have a
-`.next(x)` method, where `x` is the next input to be processed.
+The second fundamental interface in this package, similar to `IGen` and used to
+implement processors & transformers of input values (e.g those generated by the
+various `IGen`s available). `IProc` implementations have a `.next(x)` method,
+where `x` is the next input to be processed.
 
-The package also provides several approaches to compose multi-step
-processing pipelines (see section further below). Furthermore, all
-implementations in this package implement the [@thi.ng/transducers
-`IXform`
+The package also provides several approaches to compose multi-step processing
+pipelines (see section further below). Furthermore, all implementations in this
+package implement the [@thi.ng/transducers `IXform`
 interface](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/README.md#IXform-interface)
 and so can be directly used in transducer pipelines too.
+
+Additional higher order `IProc` implementations:
+
+- [bounce](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/bounce.ts) - sum multiple inputs
+- [mix](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/mix.ts) - linear interpolation of 2 inputs
+- [multiplex](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/multiplex.ts) - process 1 input into multiple outs
+- [pipe](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/pipe.ts) - `IGen` & multiple `IProc` pipeline setup
+- [serial](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/serial.ts) - serial processing of multiple `IProc`
 
 ```ts
 import { comp, push, take, transduce } from "@thi.ng/transducers";
@@ -309,7 +317,9 @@ const sig = new Float32Array(
 fs.writeFileSync("sig.raw", Buffer.from(sig.buffer));
 ```
 
-The raw audio file can then be converted to WAV via `ffmpeg`:
+Use the [@thi.ng/dsp-io-wav
+package](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp-io-wav/)
+to export as WAV, or alternatively use `ffmpeg` for conversion:
 
 ```bash
 ffmpeg -f f32le -ar 48k -ac 1 -i sig.raw sig.wav -y
@@ -317,8 +327,8 @@ ffmpeg -f f32le -ar 48k -ac 1 -i sig.raw sig.wav -y
 
 #### Filters
 
-The following diagrams show various combinations of oscillator signals
-and their filtered responses (with different cutoff/center frequencies).
+The following diagrams show various combinations of oscillator signals and their
+filtered responses (with different cutoff/center frequencies).
 
 All diagrams were generated with [this
 script](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/tools/generate-diagrams.ts).
@@ -387,7 +397,7 @@ High shelf (gain = -6dB):
 
 ##### State variable filter
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/biquad.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/svf.ts)
 
 - `svfLP` - low pass, resonance
 - `svfHP` - high pass, resonance
@@ -426,10 +436,10 @@ Allpass:
 
 Using the [Filter response
 utils](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/filter-response.ts),
-the following filter types can be evaluated for analyzing their impact
-on specific frequencies (or frequency bands). Any type implementing
-[`IFilter`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/api.ts#L50)
-can be used, currently:
+the following filter types can be evaluated for analyzing their impact on
+specific frequencies (or frequency bands). Any type implementing
+[`IFilter`](https://docs.thi.ng/umbrella/dsp/interfaces/FilterConfig.html) can
+be used, currently:
 
 - 1-pole
 - DC-block
@@ -470,16 +480,16 @@ Basic filter response plot:
 
 [Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/delay.ts)
 
-Ringbuffer / delay line for arbitrary values and support for single &
-multi-taps at any relative positions. Useful fundamental building block
-for various other effects, filters etc.
+Ringbuffer / delay line for arbitrary values and support for single & multi-taps
+at any relative positions. Useful fundamental building block for various other
+effects, filters etc.
 
 #### Feedback delay
 
 [Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/feedback-delay.ts)
 
-Variation of `delay()` which adds a portion of the delayed value to each
-new input and stores result in delay line.
+Variation of `delay()` which adds a portion of the delayed value to each new
+input and stores result in delay line.
 
 #### Filtered feedback delay
 
@@ -492,7 +502,8 @@ Variation of `feedbackDelay()` which processes feedback via given filter /
 
 [Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/waveshaper.ts)
 
-This operator remaps inputs via a user provided function. The following shaping functions are provided:
+This operator remaps inputs via a user provided function. The following shaping
+functions are provided:
 
 - `waveshapeTan` - arctan based (soft-clip/distortion)
 - `waveshapeSigmoid` - sigmoid based, similar to above
@@ -515,9 +526,10 @@ Sine:
 
 #### Foldback distortion
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/waveshaper.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/foldback.ts)
 
-Recursively folds input into `[-thresh .. +thresh]` interval and amplifies it with `amp` (default: 1/thresh).
+Recursively folds input into `[-thresh .. +thresh]` interval and amplifies it
+with `amp` (default: 1/thresh).
 
 Use the [interactive calculator @
 Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.

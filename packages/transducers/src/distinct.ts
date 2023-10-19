@@ -16,6 +16,10 @@ export interface DistinctOpts<T> {
 }
 
 /**
+ * Stateful transducer. Removes any duplicate input values by keeping an
+ * internal cache (user configurable) of previously seen inputs. See
+ * {@link DistinctOpts}.
+ *
  * @example
  * ```ts
  * [...distinct({ key: (x) => x.id }, [{id: 1, x: 2}, {id: 1, x: 3}])]

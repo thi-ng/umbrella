@@ -46,8 +46,11 @@ export const osc = (
  *
  * @example
  * ```ts
- * // FM sin osc using rect osc as modulator
+ * // FM sin osc using rect osc as frequency modulator
  * modOsc(sin, 0.01, osc(rect, 0.1, 0.2))
+ *
+ * // AM sin osc using rect osc as amplitude modulator
+ * modOsc(sin, 0.01, 0, osc(rect, 0.1, 0.2))
  *
  * // FM & AM sin osc using rect osc as fmod and saw as amod
  * modOsc(sin, 0.01, osc(rect, 0.1, 0.2), osc(saw, 0.05))
@@ -64,12 +67,21 @@ export const osc = (
 export const modOsc = (
 	osc: StatelessOscillator,
 	freq: IGen<number> | number,
-	fmod: IGen<number>,
+	fmod: IGen<number> | number,
 	amod: IGen<number> | number = 1,
 	dc?: number,
 	phase?: number
 ) =>
-	new Osc(osc, sum(fmod, isNumber(freq) ? add(freq) : freq), amod, dc, phase);
+	new Osc(
+		osc,
+		sum(
+			isNumber(fmod) ? new Const(fmod) : fmod,
+			isNumber(freq) ? add(freq) : freq
+		),
+		amod,
+		dc,
+		phase
+	);
 
 export class Osc extends AGen<number> {
 	protected _phase!: IGen<number>;

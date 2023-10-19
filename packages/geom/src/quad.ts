@@ -12,13 +12,13 @@ import { __argAttribs } from "./internal/args.js";
 import { __pclike } from "./internal/pclike.js";
 
 export function quad(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Quad;
-export function quad(pts: Vec[], attribs?: Attribs): Quad;
+export function quad(pts: Iterable<Vec>, attribs?: Attribs): Quad;
 export function quad(...args: any[]) {
 	return __pclike(Quad, args);
 }
 
 export function quad3(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Quad;
-export function quad3(pts: Vec[], attribs?: Attribs): Quad;
+export function quad3(pts: Iterable<Vec>, attribs?: Attribs): Quad;
 export function quad3(...args: any[]) {
 	const attr = __argAttribs(args);
 	return new Quad3(args.length === 1 ? args[0] : args, attr);

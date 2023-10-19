@@ -435,7 +435,7 @@ export type BVecOpVV = Fn3<BVec | null, ReadonlyBVec, ReadonlyBVec, BVec>;
 export type BVecOpVN = Fn3<BVec | null, ReadonlyBVec, boolean, BVec>;
 
 export type ToBVecOpV = Fn2<BVec | null, ReadonlyVec, BVec>;
-export type FromBVecOpV = Fn2<BVec | null, ReadonlyBVec, Vec>;
+export type FromBVecOpV = Fn2<Vec | null, ReadonlyBVec, Vec>;
 
 export type MultiBVecOpV = MultiVecOpImpl<BVecOpV>;
 export type MultiBVecOpVV = MultiVecOpImpl<BVecOpVV>;

@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/adapt-dpi](https://media.thi.ng/umbrella/banners-20220914/thing-adapt-dpi.svg?3c0ddd12)
+# ![@thi.ng/adapt-dpi](https://media.thi.ng/umbrella/banners-20230807/thing-adapt-dpi.svg?3c0ddd12)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adapt-dpi.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -67,13 +68,14 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                             | Description                                         | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/> | Steering behavior drawing with alpha-blended shapes | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>    | Entity Component System w/ 100k 3D particles        | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>   | WebGL cube maps with async texture loading          | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>      | WebGL instancing, animated grid                     | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/>      | WebGL MSDF text rendering & particle system         | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)      |
+| Screenshot                                                                                                             | Description                                                              | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/> | Self-modifying, animated typographic grid with emergent complex patterns | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/> | Steering behavior drawing with alpha-blended shapes                      | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>    | Entity Component System w/ 100k 3D particles                             | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>   | WebGL cube maps with async texture loading                               | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>      | WebGL instancing, animated grid                                          | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/>      | WebGL MSDF text rendering & particle system                              | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)      |
 
 ## API
 

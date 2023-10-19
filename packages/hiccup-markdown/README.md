@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-markdown.svg?10b18e65)
+# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners-20230807/thing-hiccup-markdown.svg?10b18e65)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-markdown.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Parser](#parser)
@@ -559,9 +560,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                             | Description                                     | Live demo                                      | Source                                                                      |
-|:-----------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|:-----------------------------------------------|:----------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Markdown to Hiccup to HTML parser / transformer | [Demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown) |
+| Screenshot                                                                                                             | Description                                                        | Live demo                                            | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Markdown to Hiccup to HTML parser / transformer                    | [Demo](https://demo.thi.ng/umbrella/markdown/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>  | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images) |
 
 ## API
 

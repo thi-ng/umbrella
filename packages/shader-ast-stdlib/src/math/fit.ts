@@ -1,4 +1,5 @@
 import type { PrimTerm, Term, TermType } from "@thi.ng/shader-ast";
+import { F } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT05, FLOAT1, FLOAT2 } from "@thi.ng/shader-ast/ast/lit";
@@ -14,12 +15,9 @@ import { clamp01 } from "./clamp.js";
  * @param a -
  * @param b -
  */
-export const fitNorm1 = defn(
-	"float",
-	"fitNorm1",
-	["float", "float", "float"],
-	(x, a, b) => [ret(ternary(neq(a, b), div(sub(x, a), sub(b, a)), FLOAT0))]
-);
+export const fitNorm1 = defn(F, "fitNorm1", [F, F, F], (x, a, b) => [
+	ret(ternary(neq(a, b), div(sub(x, a), sub(b, a)), FLOAT0)),
+]);
 
 /**
  * Fits value `x` from closed interval [a,b] to closed interval [c,d]. No

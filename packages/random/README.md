@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/random](https://media.thi.ng/umbrella/banners-20220914/thing-random.svg?c79b7908)
+# ![@thi.ng/random](https://media.thi.ng/umbrella/banners-20230807/thing-random.svg?c79b7908)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Random distributions](#random-distributions)
@@ -93,7 +94,7 @@ For Node.js REPL:
 const random = await import("@thi.ng/random");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.85 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.88 KB
 
 ## Dependencies
 
@@ -110,14 +111,21 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                                   | Description                                                      | Live demo                                                   | Source                                                                                   |
-|:-----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>          | Probabilistic color theme generator                              | [Demo](https://demo.thi.ng/umbrella/color-themes/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>             | Interactive inverse FFT toy synth                                | [Demo](https://demo.thi.ng/umbrella/fft-synth/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-particles.jpg" width="240"/> | 2D Bezier curve-guided particle system                           | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-particles) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>            | k-means clustering visualization                                 | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>         | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming         | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)        |
+| Screenshot                                                                                                                   | Description                                                              | Live demo                                                   | Source                                                                                   |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>       | Self-modifying, animated typographic grid with emergent complex patterns | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>          | Probabilistic color theme generator                                      | [Demo](https://demo.thi.ng/umbrella/color-themes/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>             | Interactive inverse FFT toy synth                                        | [Demo](https://demo.thi.ng/umbrella/fft-synth/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)             |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-particles.jpg" width="240"/> | 2D Bezier curve-guided particle system                                   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-particles) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>           | Barnsley fern IFS fractal renderer                                       | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>            | k-means clustering visualization                                         | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)            |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>       | Randomized 4-point 2D color gradient image generator                     | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>         | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel         | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>           | Animated, iterative polygon subdivisions & visualization                 | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>          | Generative audio synth offline renderer and WAV file export              | [Demo](https://demo.thi.ng/umbrella/render-audio/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>        | Responsive & reactively computed stacked column layout                   | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-game-of-life.png" width="240"/>    | Game of Life implemented as WebGL2 multi-pass shader pipeline            | [Demo](https://demo.thi.ng/umbrella/webgl-game-of-life/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-game-of-life)    |
 
 ## API
 

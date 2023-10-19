@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/cache](https://media.thi.ng/umbrella/banners-20220914/thing-cache.svg?ea002c07)
+# ![@thi.ng/cache](https://media.thi.ng/umbrella/banners-20230807/thing-cache.svg?ea002c07)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cache.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Available strategies](#available-strategies)
@@ -52,7 +53,7 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 
 ## Related packages
 
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities
 
 ## Installation
 
@@ -74,7 +75,7 @@ For Node.js REPL:
 const cache = await import("@thi.ng/cache");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 982 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 986 bytes
 
 ## Dependencies
 

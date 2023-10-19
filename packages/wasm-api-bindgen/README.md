@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/wasm-api-bindgen](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-bindgen.svg?4570122f)
+# ![@thi.ng/wasm-api-bindgen](https://media.thi.ng/umbrella/banners-20230807/thing-wasm-api-bindgen.svg?4570122f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-bindgen.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Data bindings & code generators](#data-bindings--code-generators)

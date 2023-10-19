@@ -7,14 +7,16 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import {
 	EVENT_ROUTE_CHANGED,
+	EVENT_ROUTE_FAILED,
 	type Route,
 	type RouteMatch,
 	type RouteParamValidator,
 	type RouterConfig,
+	type RouterEventType,
 } from "./api.js";
 
 @INotifyMixin
-export class BasicRouter implements INotify {
+export class BasicRouter implements INotify<RouterEventType> {
 	config: RouterConfig;
 	current: RouteMatch | undefined;
 	routeIndex: Record<string, Route>;
@@ -54,15 +56,17 @@ export class BasicRouter implements INotify {
 
 	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: arguments
-	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	addListener(id: RouterEventType, fn: Listener<RouterEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: arguments
-	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	removeListener(id: RouterEventType, fn: Listener<RouterEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: arguments
-	notify(event: Event): boolean {}
+	notify(event: Event<RouterEventType>): boolean {}
 
 	start() {
 		if (this.config.initialRouteID) {
@@ -73,10 +77,11 @@ export class BasicRouter implements INotify {
 	}
 
 	/**
-	 * Main router function. Attempts to match given input string
-	 * against all configured routes. If none matches, falls back
-	 * to default route. Before returning, triggers event with
-	 * return value as well.
+	 * Main router function. Attempts to match given input string against all
+	 * configured routes. Before returning, triggers {@link EVENT_ROUTE_CHANGED}
+	 * with return value as well. If none of the routes matches, emits
+	 * {@link EVENT_ROUTE_FAILED} and then falls back to configured default
+	 * route.
 	 *
 	 * @param src - route path to match
 	 */
@@ -90,6 +95,7 @@ export class BasicRouter implements INotify {
 		src = src.substring(this.config.prefix!.length);
 		let match = this.matchRoutes(src);
 		if (!match) {
+			this.notify({ id: EVENT_ROUTE_FAILED, value: src });
 			if (!this.handleRouteFailure()) {
 				return;
 			}

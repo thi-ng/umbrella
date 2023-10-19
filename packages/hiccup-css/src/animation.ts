@@ -1,4 +1,4 @@
-import { at_keyframes } from "./keyframes.js";
+import { at_keyframes, type Keyframe } from "./keyframes.js";
 
 export interface AnimationOpts {
 	delay: string;
@@ -12,7 +12,7 @@ export interface AnimationOpts {
 		| "alternate-reverse";
 	duration: string;
 	"fill-mode": "none" | "forwards" | "backwards" | "both";
-	"iteration-count": number;
+	"iteration-count": number | string;
 	"play-state": "unset" | "inherit" | "initial" | "paused" | "running";
 	"timing-function": string;
 }
@@ -58,7 +58,7 @@ export interface AnimationOpts {
 export const animation = (
 	id: string,
 	opts: Partial<AnimationOpts>,
-	...keyframes: any
+	...keyframes: Keyframe[]
 ) => {
 	opts = <any>{
 		duration: "250ms",

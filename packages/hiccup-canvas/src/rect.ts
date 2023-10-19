@@ -18,6 +18,8 @@ export const rect = (
 		return path(ctx, attribs, [
 			["M", [pos[0] + r, pos[1]]],
 			["h", w],
+			// FIXME need new type ID for circular arcs
+			// see issues #69 & #418
 			["a", [r, 0], [r, r], r],
 			["v", h],
 			["a", [0, r], [-r, r], r],

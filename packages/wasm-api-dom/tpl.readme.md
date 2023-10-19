@@ -18,7 +18,9 @@ Current key features for the Zig (WASM) side:
   [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/blob/develop/packages/adapt-dpi))
 - Attribute setters/getters (string, numeric, boolean)
 - `.innerHTML` & `.innerText` setters
-- Event handlers, event types (see generated types in [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/api.zig) for details):
+- Event handlers, event types (see generated types in
+  [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/api.zig)
+  for details):
     - drag 'n drop (WIP)
     - focus
     - input
@@ -84,8 +86,8 @@ For element & event related functionality the following IDs are reserved:
 - `0` `document.head`
 - `1` `document.body`
 
-All are exposed in the Zig module as `window`, `head`, `body` constants to help
-avoiding magic numbers in userland code.
+These are exposed in the Zig module as `window`, `head`, `body` constants to
+help avoiding magic numbers in userland code.
 
 ### DOM tree creation
 
@@ -139,6 +141,16 @@ const handle = dom.createElement(&.{
 The
 [CreateElementOpts](https://docs.thi.ng/umbrella/wasm-api-dom/interfaces/CreateElementOpts.html)
 struct has some additional options and more are planned. All WIP!
+
+#### HTML canvas support
+
+A separate function (`createCanvas()`) with [similar
+options](https://docs.thi.ng/umbrella/wasm-api-dom/interfaces/CreateCanvasOpts.html)
+exist for `<canvas>` elements.
+
+Also see the
+[thi.ng/wasm-api-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas)
+sibling package for working with canvases...
 
 ### Attribute creation & accessors
 

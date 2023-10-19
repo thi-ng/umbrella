@@ -1,4 +1,5 @@
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { brk, forLoop, ifThen } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -40,12 +41,12 @@ export const raymarchScene = (
 		bias: 0.7,
 		..._opts,
 	};
-	return defn("vec2", opts.name, ["vec3", "vec3"], (pos, dir) => {
+	return defn(V2, opts.name, [V3, V3], (pos, dir) => {
 		let total: FloatSym;
 		let res: Vec2Sym;
 		return [
 			(total = sym(float(opts.near))),
-			(res = sym("vec2")),
+			(res = sym(V2)),
 			forLoop(
 				sym(INT0),
 				(i) => lt(i, int(opts.steps)),

@@ -45,8 +45,8 @@
 		"screenshot": "examples/shader-ast-workers.jpg"
 	},
 	"devDependencies": {
-		"esbuild": "^0.17.18",
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"esbuild": "^0.19.2",
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	}
 }

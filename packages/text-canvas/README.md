@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners-20220914/thing-text-canvas.svg?770105b3)
+# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners-20230807/thing-text-canvas.svg?770105b3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-canvas.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -67,7 +68,7 @@ For Node.js REPL:
 const textCanvas = await import("@thi.ng/text-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.41 KB
 
 ## Dependencies
 
@@ -89,10 +90,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                               | Description                                  | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>       | 3D wireframe textmode demo                   | [Demo](https://demo.thi.ng/umbrella/text-canvas/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/> | Textmode image warping w/ 16bit color output | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas-image) |
+| Screenshot                                                                                                               | Description                                                       | Live demo                                               | Source                                                                               |
+|:-------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>    | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>       | 3D wireframe textmode demo                                        | [Demo](https://demo.thi.ng/umbrella/text-canvas/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/> | Textmode image warping w/ 16bit color output                      | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas-image) |
 
 ## API
 

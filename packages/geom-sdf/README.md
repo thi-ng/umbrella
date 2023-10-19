@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/geom-sdf](https://media.thi.ng/umbrella/banners-20220914/thing-geom-sdf.svg?31ffecd1)
+# ![@thi.ng/geom-sdf](https://media.thi.ng/umbrella/banners-20230807/thing-geom-sdf.svg?31ffecd1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-sdf.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [SDF creation](#sdf-creation)
@@ -17,6 +18,7 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -133,7 +135,7 @@ For Node.js REPL:
 const geomSdf = await import("@thi.ng/geom-sdf");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.52 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.53 KB
 
 ## Dependencies
 
@@ -149,6 +151,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.52 KB
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                           | Description                                                       | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/> | (Re)Constructing the thi.ng logo using a 2D signed-distance field | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo) |
 
 ## API
 

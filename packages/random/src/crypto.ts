@@ -23,7 +23,7 @@ export class Crypto
 	/**
 	 * @param size - buffer size in bytes (will be rounded to next multiple of 4)
 	 */
-	constructor(size = 64) {
+	constructor(size = 1024) {
 		super();
 		this.buffer = new Uint8Array((size + 3) & ~3);
 		this.u32 = new Uint32Array(this.buffer.buffer);

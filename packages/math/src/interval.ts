@@ -1,4 +1,4 @@
-import type { FnN, FnN2, FnN3, FnN4, FnU3 } from "@thi.ng/api";
+import type { FnN, FnN2, FnN3, FnN4, FnU2, FnU3 } from "@thi.ng/api";
 
 /**
  * Clamps value `x` to given closed interval.
@@ -36,6 +36,15 @@ export const clamp11: FnN = (x) => (x < -1 ? -1 : x > 1 ? 1 : x);
  * @param x -
  */
 export const clamp05: FnN = (x) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
+
+/**
+ * Returns 2-tuple of [min(x,y), max(x,y)].
+ *
+ * @param x
+ * @param y
+ */
+export const minMax: FnU2<number, [number, number]> = (x, y) =>
+	x < y ? [x, y] : [y, x];
 
 /**
  * Folds `x` back inside closed [min..max] interval. Also see

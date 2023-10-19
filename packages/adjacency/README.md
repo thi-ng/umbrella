@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/adjacency](https://media.thi.ng/umbrella/banners-20220914/thing-adjacency.svg?f522aab9)
+# ![@thi.ng/adjacency](https://media.thi.ng/umbrella/banners-20230807/thing-adjacency.svg?f522aab9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adjacency.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Graph implementations](#graph-implementations)
@@ -72,7 +73,7 @@ For Node.js REPL:
 const adjacency = await import("@thi.ng/adjacency");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.55 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.54 KB
 
 ## Dependencies
 

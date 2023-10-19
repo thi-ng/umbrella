@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/webgl](https://media.thi.ng/umbrella/banners-20220914/thing-webgl.svg?f7d7962f)
+# ![@thi.ng/webgl](https://media.thi.ng/umbrella/banners-20230807/thing-webgl.svg?f7d7962f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Features](#features)
@@ -95,7 +96,7 @@ For Node.js REPL:
 const webgl = await import("@thi.ng/webgl");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.39 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.44 KB
 
 ## Dependencies
 
@@ -137,6 +138,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>            | WebGL multi-colored cube mesh                                    | [Demo](https://demo.thi.ng/umbrella/webgl-cube/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>         | WebGL cube maps with async texture loading                       | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-float-fbo.jpg" width="240"/>       | Drawing to floating point offscreen / multi-pass shader pipeline | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-float-fbo)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-game-of-life.png" width="240"/>    | Game of Life implemented as WebGL2 multi-pass shader pipeline    | [Demo](https://demo.thi.ng/umbrella/webgl-game-of-life/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-game-of-life)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>            | WebGL instancing, animated grid                                  | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/>            | WebGL MSDF text rendering & particle system                      | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)          |
 |                                                                                                                              | Minimal multi-pass / GPGPU example                               | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)     |

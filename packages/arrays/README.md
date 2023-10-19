@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners-20220914/thing-arrays.svg?02d7f5d9)
+# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners-20230807/thing-arrays.svg?02d7f5d9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -49,7 +50,7 @@ For Node.js REPL:
 const arrays = await import("@thi.ng/arrays");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.61 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.75 KB
 
 ## Dependencies
 
@@ -68,15 +69,20 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                        | Description                      | Live demo                                        | Source                                                                        |
-|:------------------------------------------------------------------------------------------------------------------|:---------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/> | k-means clustering visualization | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz) |
+| Screenshot                                                                                                             | Description                                                        | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>      | k-means clustering visualization                                   | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/> | Randomized 4-point 2D color gradient image generator               | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>     | Animated, iterative polygon subdivisions & visualization           | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>  | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>  | Responsive & reactively computed stacked column layout             | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)  |
 
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/arrays/)
 
 - [arrayIterator()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/iterator.ts)
+- [argMin() / argMax()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/argmin.ts)
 - [argSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/arg-sort.ts)
 - [binarySearch()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/binary-search.ts)
 - [bisect()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/bisect.ts)
@@ -95,6 +101,7 @@ A selection:
 - [multiSwap()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [peek()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/peek.ts)
 - [quickSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/quicksort.ts)
+- [selectThresholdMin() / selectThresholdMax()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/threshold.ts)
 - [shuffle()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [shuffleRange()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [sortByCachedKey()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/sort-cached.ts)

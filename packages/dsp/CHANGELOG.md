@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-10-11T10:05:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,44 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.6.0) (2023-09-28)
+
+#### 🚀 Features
+
+- add IXform impl for AProc2 ([5aa6c9b](https://github.com/thi-ng/umbrella/commit/5aa6c9b))
+- add ICopy impls for various IGen's ([7894cd4](https://github.com/thi-ng/umbrella/commit/7894cd4))
+- add merge(), mix(), pan() ([314e9b2](https://github.com/thi-ng/umbrella/commit/314e9b2))
+- add refG()/refP() wrappers ([99f4535](https://github.com/thi-ng/umbrella/commit/99f4535))
+
+#### 🩹 Bug fixes
+
+- enforce integer delay time ([5c21b00](https://github.com/thi-ng/umbrella/commit/5c21b00))
+- return delayed value in Delay.next() ([f2b08db](https://github.com/thi-ng/umbrella/commit/f2b08db))
+
+#### ♻️ Refactoring
+
+- simplify pipe() to reuse serial() ([90910bc](https://github.com/thi-ng/umbrella/commit/90910bc))
+
+## [4.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.5.0) (2023-09-15)
+
+#### 🚀 Features
+
+- update saw/squareAdditive() ([d11488c](https://github.com/thi-ng/umbrella/commit/d11488c))
+  - add opt arg to disable Gibbs-effect handling
+
+## [4.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.4.0) (2023-08-24)
+
+#### 🚀 Features
+
+- update modOsc() fmod arg type ([06b0e38](https://github.com/thi-ng/umbrella/commit/06b0e38))
+  - allow numbers as constant freq offset
+
+### [4.3.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.3.17) (2023-08-04)
+
+#### ♻️ Refactoring
+
+- update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
 
 ## [4.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.3.0) (2023-01-10)
 

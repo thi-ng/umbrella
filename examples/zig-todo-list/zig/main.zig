@@ -1,7 +1,6 @@
 const std = @import("std");
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
-const timer = @import("timer");
 const todo = @import("api.zig");
 const State = @import("state.zig");
 

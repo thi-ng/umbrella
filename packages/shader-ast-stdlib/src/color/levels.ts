@@ -4,17 +4,18 @@ import type {
 	Vec2Term,
 	Vec3Term,
 } from "@thi.ng/shader-ast";
+import { F, M3, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { indexMat } from "@thi.ng/shader-ast/ast/indexed";
 import {
-	float,
 	FLOAT0,
 	FLOAT05,
 	FLOAT1,
-	vec3,
 	VEC3_0,
 	VEC3_1,
+	float,
+	vec3,
 } from "@thi.ng/shader-ast/ast/lit";
 import { lt, madd, mul, reciprocal, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
@@ -28,22 +29,17 @@ import { fit01, fitClamped } from "../math/fit.js";
  * @remarks
  * Reference: https://stackoverflow.com/a/48859502/294515
  */
-export const midLevelGamma = defn(
-	"float",
-	"midLevelGamma",
-	["float"],
-	(mid) => [
-		ret(
-			reciprocal(
-				ternary(
-					lt(mid, FLOAT05),
-					min(float(9.99), madd(float(9), sub(1, mul(mid, 2)), 1)),
-					max(float(0.01), sub(1, sub(mul(mid, 2), 1)))
-				)
+export const midLevelGamma = defn(F, "midLevelGamma", [F], (mid) => [
+	ret(
+		reciprocal(
+			ternary(
+				lt(mid, FLOAT05),
+				min(float(9.99), madd(float(9), sub(1, mul(mid, 2)), 1)),
+				max(float(0.01), sub(1, sub(mul(mid, 2), 1)))
 			)
-		),
-	]
-);
+		)
+	),
+]);
 
 /**
  * Inline function.  Similar to {@link midLevelGamma}, but for RGB values (with
@@ -65,9 +61,9 @@ export const midLevelGammaRGB = (mid: Vec3Term) =>
  * range.
  */
 export const levelAdjustGamma = defn(
-	"float",
+	F,
 	"levelAdjustGamma",
-	["float", "float", "vec2", "vec2"],
+	[F, F, V2, V2],
 	(x, gamma, input, output) => [
 		ret(
 			fit01<FloatTerm>(
@@ -100,9 +96,9 @@ export const levelAdjustGamma = defn(
  * - 2nd column = RGB max values
  */
 export const levelAdjustGammaRGB = defn(
-	"vec3",
+	V3,
 	"levelAdjustGammaRGB",
-	["vec3", "vec3", "mat3", "mat3"],
+	[V3, V3, M3, M3],
 	(x, gamma, input, output) => [
 		ret(
 			fit01<Vec3Term>(

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-09-19T10:42:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,28 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.6.0) (2023-09-19)
+
+#### 🚀 Features
+
+- add escapeEntitiesNum() ([f921491](https://github.com/thi-ng/umbrella/commit/f921491))
+
+## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.5.0) (2023-09-15)
+
+#### 🚀 Features
+
+- add more HTML entities ([9fa5d91](https://github.com/thi-ng/umbrella/commit/9fa5d91))
+- add support for numeric HTML entities ([8d942ba](https://github.com/thi-ng/umbrella/commit/8d942ba))
+  - add `RE_ENTITIES_NUM`
+  - update unescapeEntities() to also support numeric entities
+- add unitless() formatter ([d5025ce](https://github.com/thi-ng/umbrella/commit/d5025ce))
+
+### [3.4.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.4.12) (2023-08-22)
+
+#### 🩹 Bug fixes
+
+- empty string check for capitalize() ([f2dcee5](https://github.com/thi-ng/umbrella/commit/f2dcee5))
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.4.0) (2023-02-27)
 

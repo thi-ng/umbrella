@@ -4,7 +4,7 @@ import type { Vec } from "@thi.ng/vectors";
 import { mixBilinear } from "@thi.ng/vectors/mix-bilinear";
 import { BPatch } from "./api/bpatch.js";
 
-export const bpatch = (pts: Vec[], attribs?: Attribs) =>
+export const bpatch = (pts: Iterable<Vec>, attribs?: Attribs) =>
 	new BPatch(pts, attribs);
 
 export const bpatchFromQuad = (pts: Vec[], attribs?: Attribs) => {

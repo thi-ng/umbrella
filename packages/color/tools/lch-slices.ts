@@ -1,9 +1,8 @@
-import { LCH, lch, rgb } from "@thi.ng/color";
-import { serialize } from "@thi.ng/hiccup";
-import { rect, svg } from "@thi.ng/hiccup-svg";
+import { lch, rgb, type LCH } from "@thi.ng/color";
+import { rect } from "@thi.ng/hiccup-svg";
 import { Z3 } from "@thi.ng/strings";
 import { comp, filter, iterator, map, normRange2d } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
+import { writeSVG } from "./write.js";
 
 const isValidRgb = (lch: LCH) => {
 	const [r, g, b] = rgb(lch);
@@ -26,14 +25,10 @@ const luminanceSlice = (lum: number, n = 100) => [
 ];
 
 const svgSlice = (i: number, lum: number, n?: number) =>
-	writeFileSync(
+	writeSVG(
 		`export/lslice-${Z3(i)}.svg`,
-		serialize(
-			svg(
-				{ width: 600, height: 600, viewBox: "0 0 100 100" },
-				...luminanceSlice(lum, n)
-			)
-		)
+		{ width: 600, height: 600, viewBox: "0 0 100 100" },
+		...luminanceSlice(lum, n)
 	);
 
 for (let i = 0; i < 100; i++) svgSlice(i, i / 100, 200);

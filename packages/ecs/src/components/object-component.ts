@@ -1,11 +1,9 @@
 import type { UIntArray } from "@thi.ng/api";
-import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { assert } from "@thi.ng/errors/assert";
 import type { IMemPoolArray } from "@thi.ng/malloc";
 import type { ObjectComponentOpts } from "../api.js";
 import { AComponent } from "./acomponent.js";
 
-@INotifyMixin
 export class ObjectComponent<K extends string, T> extends AComponent<
 	K,
 	T[],

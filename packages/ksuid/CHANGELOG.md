@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-08-27T11:20:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,31 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.2.0) (2023-08-12)
+
+#### 🚀 Features
+
+- add optional buffer args for various methods ([def0db4](https://github.com/thi-ng/umbrella/commit/def0db4))
+  - update IKSUID interface
+  - update AKSUID to re-use internal byte buffer for string IDs,
+    avoiding allocating new temp arrays
+  - refactor .timeOnlyBinary() to avoid internal temp array
+  - update tests (re-ordered random bytes, due to [770dbe5d8](https://github.com/thi-ng/umbrella/commit/770dbe5d8))
+
+#### ⏱ Performance improvements
+
+- update .parse() ([da6765d](https://github.com/thi-ng/umbrella/commit/da6765d))
+  - avoid allocation
+
+### [3.1.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.1.15) (2023-08-06)
+
+#### 🩹 Bug fixes
+
+- fix [#403](https://github.com/thi-ng/umbrella/issues/403), update KSUID32 epoch handling ([abbfc5a](https://github.com/thi-ng/umbrella/commit/abbfc5a))
+  - update .ensureTime() to check against optional max value
+  - fix int coercion in KSUID32.timeOnlyBinary()
+  - update readme
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.1.0) (2023-02-10)
 

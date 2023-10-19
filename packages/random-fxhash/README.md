@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/random-fxhash](https://media.thi.ng/umbrella/banners-20220914/thing-random-fxhash.svg?ae3fa3f5)
+# ![@thi.ng/random-fxhash](https://media.thi.ng/umbrella/banners-20230807/thing-random-fxhash.svg?ae3fa3f5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random-fxhash.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Further functionality](#further-functionality)
@@ -75,7 +76,7 @@ functionality, e.g.:
 
 ## Related packages
 
-- [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints
+- [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/85, support for bigints and encoding/decoding of byte arrays
 
 ## Installation
 
@@ -89,7 +90,7 @@ For Node.js REPL:
 const randomFxhash = await import("@thi.ng/random-fxhash");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 441 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 469 bytes
 
 **IMPORTANT**: When using this package (or any other packages from this
 monorepo) for [fxhash](https://fxhash.xyz), you MUST use a bundler (e.g. Vite,

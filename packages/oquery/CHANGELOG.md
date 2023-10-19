@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-09-15T12:33:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/oquery@2.2.0) (2023-09-15)
+
+#### 🚀 Features
+
+- add multi-term query() function ([e35519a](https://github.com/thi-ng/umbrella/commit/e35519a))
+  - add/update types
+- add matchers for use w/ query() ([20e1baf](https://github.com/thi-ng/umbrella/commit/20e1baf))
+  - add matchStrings(), matchPattern(), matchCompare()
+  - add tests
+- add matchMultiple(), refactor ([90a7f0b](https://github.com/thi-ng/umbrella/commit/90a7f0b))
+  - add/extract matchMultiple()
+  - add MatchMultipleOpts()
+  - refactor matchStrings() as syntax sugar
+  - update tests
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/oquery@2.1.0) (2021-11-17)
 

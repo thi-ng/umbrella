@@ -12,6 +12,8 @@ import {
 	type IMGUIOpts,
 } from "./api.js";
 
+export const defGUI = (opts: IMGUIOpts) => new IMGUI(opts);
+
 export class IMGUI implements IClear, IToHiccup {
 	attribs!: any;
 	layers: any[];
@@ -29,7 +31,7 @@ export class IMGUI implements IClear, IToHiccup {
 	activeID: string;
 	focusID: string;
 	lastID: string;
-	cursor!: string;
+	cursor: string;
 
 	t0: number;
 	time!: number;
@@ -62,6 +64,7 @@ export class IMGUI implements IClear, IToHiccup {
 		this.states = new Map<string, any>();
 		this.layers = [[], []];
 		this.attribs = {};
+		this.cursor = "default";
 		this.disabledStack = [false];
 		this.setTheme(opts.theme || {});
 		this.draw = true;
@@ -150,7 +153,7 @@ export class IMGUI implements IClear, IToHiccup {
 	 * Removes current theme from stack (unless only one theme left).
 	 */
 	endTheme() {
-		popIfNotLast(this.themeStack);
+		__popIfNotLast(this.themeStack);
 	}
 
 	/**
@@ -158,11 +161,11 @@ export class IMGUI implements IClear, IToHiccup {
 	 * previous theme and returns component result.
 	 *
 	 * @param theme -
-	 * @param comp -
+	 * @param component -
 	 */
-	withTheme<T>(theme: Partial<GUITheme>, comp: Fn0<T>) {
+	withTheme<T>(theme: Partial<GUITheme>, component: Fn0<T>) {
 		this.beginTheme(theme);
-		const res = comp();
+		const res = component();
 		this.themeStack.pop();
 		return res;
 	}
@@ -182,7 +185,7 @@ export class IMGUI implements IClear, IToHiccup {
 	 * Removes current disabled flag from stack (unless only one theme left).
 	 */
 	endDisabled() {
-		popIfNotLast(this.disabledStack);
+		__popIfNotLast(this.disabledStack);
 	}
 
 	/**
@@ -190,11 +193,11 @@ export class IMGUI implements IClear, IToHiccup {
 	 * restores previous disabled state and returns component result.
 	 *
 	 * @param disabled -
-	 * @param comp -
+	 * @param component -
 	 */
-	withDisabled<T>(disabled: boolean, comp: Fn0<T>) {
+	withDisabled<T>(disabled: boolean, component: Fn0<T>) {
 		this.disabledStack.push(disabled);
-		const res = comp();
+		const res = component();
 		this.disabledStack.pop();
 		return res;
 	}
@@ -470,4 +473,5 @@ export class IMGUI implements IClear, IToHiccup {
 	}
 }
 
-const popIfNotLast = (stack: any[]) => stack.length > 1 && stack.pop();
+/** @internal */
+const __popIfNotLast = (stack: any[]) => stack.length > 1 && stack.pop();

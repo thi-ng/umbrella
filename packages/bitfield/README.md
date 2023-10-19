@@ -1,19 +1,21 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/bitfield](https://media.thi.ng/umbrella/banners-20220914/thing-bitfield.svg?d320c323)
+# ![@thi.ng/bitfield](https://media.thi.ng/umbrella/banners-20230807/thing-bitfield.svg?d320c323)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitfield.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -55,7 +57,7 @@ For Node.js REPL:
 const bitfield = await import("@thi.ng/bitfield");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.36 KB
 
 ## Dependencies
 
@@ -63,6 +65,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                            | Description                                                        | Live demo                                            | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/> | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images) |
 
 ## API
 

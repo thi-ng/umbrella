@@ -1,10 +1,10 @@
-import type { FnAny } from "@thi.ng/api";
 import type { IGen, IProc } from "./api.js";
 import { MapG1 } from "./mapg.js";
+import { serial } from "./serial.js";
 
 /**
  * Higher order generator. Composes a new {@link IGen} from given source gen and
- * a number of {@link IProc}s (processed in series, like using {@link serial}).
+ * a number of {@link IProc}s (processed in series, using {@link serial}).
  *
  * @param src -
  * @param proc -
@@ -37,23 +37,7 @@ export function pipe<A, B, C, D, E>(
 	...xs: IProc<any, any>[]
 ): IGen<any>;
 export function pipe(src: IGen<any>, ...procs: IProc<any, any>[]): IGen<any> {
-	let fn: FnAny<any>;
-	const [a, b, c, d] = procs;
-	switch (procs.length) {
-		case 1:
-			fn = (x) => a.next(x);
-			break;
-		case 2:
-			fn = (x) => b.next(a.next(x));
-			break;
-		case 3:
-			fn = (x) => c.next(b.next(a.next(x)));
-			break;
-		case 4:
-			fn = (x) => d.next(c.next(b.next(a.next(x))));
-			break;
-		default:
-			fn = (x) => procs.reduce((x, p) => p.next(x), x);
-	}
-	return new MapG1(fn, src, <any>null);
+	// @ts-ignore
+	const proc = serial<any, any, any>(...procs);
+	return new MapG1(proc.next.bind(proc), src, <any>null);
 }

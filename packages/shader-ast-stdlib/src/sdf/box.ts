@@ -1,4 +1,5 @@
 import type { Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
+import { F, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, VEC2_0, VEC3_0 } from "@thi.ng/shader-ast/ast/lit";
 import { add, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -12,7 +13,7 @@ import { maxComp2, maxComp3 } from "../math/maxcomp.js";
  * @param p - vec2
  * @param size - vec2
  */
-export const sdfBox2 = defn("float", "sdfBox2", ["vec2", "vec2"], (p, size) => {
+export const sdfBox2 = defn(F, "sdfBox2", [V2, V2], (p, size) => {
 	let d: Vec2Sym;
 	return [
 		(d = sym(sub(abs(p), size))),
@@ -26,7 +27,7 @@ export const sdfBox2 = defn("float", "sdfBox2", ["vec2", "vec2"], (p, size) => {
  * @param p - vec3
  * @param size - vec3
  */
-export const sdfBox3 = defn("float", "sdfBox3", ["vec3", "vec3"], (p, size) => {
+export const sdfBox3 = defn(F, "sdfBox3", [V3, V3], (p, size) => {
 	let d: Vec3Sym;
 	return [
 		(d = sym(sub(abs(p), size))),

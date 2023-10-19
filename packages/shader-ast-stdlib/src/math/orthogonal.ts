@@ -1,4 +1,5 @@
 import type { Vec2Term } from "@thi.ng/shader-ast";
+import { V3 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { vec2, vec3 } from "@thi.ng/shader-ast/ast/lit";
@@ -27,7 +28,7 @@ export const perpendicularCW = (v: Vec2Term) => vec2($y(v), neg($x(v)));
  *
  * http://lolengine.net/blog/2013/09/21/picking-orthogonal-vector-combing-coconuts
  */
-export const orthogonal3 = defn("vec3", "orthogonal3", ["vec3"], (v) => [
+export const orthogonal3 = defn(V3, "orthogonal3", [V3], (v) => [
 	ret(
 		ternary(
 			gt(abs($x(v)), abs($z(v))),

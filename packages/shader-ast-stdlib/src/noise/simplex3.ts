@@ -1,12 +1,14 @@
 import type { Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { F, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import {
-	float,
 	FLOAT0,
 	FLOAT05,
 	FLOAT1,
 	FLOAT2,
+	float,
+	vec2,
 	vec3,
 	vec4,
 } from "@thi.ng/shader-ast/ast/lit";
@@ -24,7 +26,7 @@ import {
 } from "@thi.ng/shader-ast/builtin/math";
 import { permute4 } from "./permute.js";
 
-export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
+export const snoise3 = defn(F, "snoise3", [V3], (v) => {
 	let g: Vec3Sym;
 	let j: Vec4Sym;
 	let l: Vec3Sym;
@@ -145,7 +147,20 @@ export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
 	];
 });
 
-export const snoiseVec3 = defn("vec3", "snoiseVec3", ["vec3"], (p) => {
+export const snoiseVec32 = defn(V2, "snoiseVec32", [V3], (p) => {
+	return [
+		ret(
+			vec2(
+				snoise3(p),
+				snoise3(
+					vec3(sub($y(p), 19.1), add($z(p), 33.4), add($x(p), 47.2))
+				)
+			)
+		),
+	];
+});
+
+export const snoiseVec3 = defn(V3, "snoiseVec3", [V3], (p) => {
 	return [
 		ret(
 			vec3(

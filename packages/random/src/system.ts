@@ -8,7 +8,7 @@ const random = Math.random;
  */
 export class SystemRandom extends ARandom {
 	int() {
-		return (random() * 4294967296) /* 2**32 */ >>> 0;
+		return (random() * 0x1_0000_0000) /* 2**32 */ >>> 0;
 	}
 
 	float(norm = 1) {

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/testament",
-	"version": "0.3.15",
+	"version": "0.3.23",
 	"description": "Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode, file fixtures",
 	"type": "module",
 	"module": "./index.js",
@@ -35,15 +35,15 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/logger": "^1.4.13",
+		"@thi.ng/logger": "^1.4.21",
 		"chokidar": "^3.5.3"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"async",

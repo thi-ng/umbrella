@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/viz](https://media.thi.ng/umbrella/banners-20220914/thing-viz.svg?a413e6e2)
+# ![@thi.ng/viz](https://media.thi.ng/umbrella/banners-20230807/thing-viz.svg?a413e6e2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/viz.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -85,7 +86,7 @@ For Node.js REPL:
 const viz = await import("@thi.ng/viz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.62 KB
 
 ## Dependencies
 

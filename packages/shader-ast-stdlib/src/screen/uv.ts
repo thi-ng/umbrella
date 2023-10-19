@@ -1,11 +1,12 @@
 import type { Vec2Sym, Vec2Term, Vec4Term } from "@thi.ng/shader-ast";
+import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { bvec4, vec2, VEC2_1 } from "@thi.ng/shader-ast/ast/lit";
+import { VEC2_1, bvec4, vec2 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $xy, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { greaterThan, lessThan, _any } from "@thi.ng/shader-ast/builtin/bvec";
+import { _any, greaterThan, lessThan } from "@thi.ng/shader-ast/builtin/bvec";
 import { fit0111 } from "../math/fit.js";
 
 /**
@@ -26,9 +27,9 @@ export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
  * @param res - vec2
  */
 export const aspectCorrectedUV = defn(
-	"vec2",
+	V2,
 	"aspectCorrectedUV",
-	["vec2", "vec2"],
+	[V2, V2],
 	(pos, res) => {
 		let uv: Vec2Sym;
 		return [
@@ -49,18 +50,13 @@ export const aspectCorrectedUV = defn(
  * borderMask(vec2(0.2, 0.2), 0.1) // false
  * ```
  */
-export const borderMask = defn(
-	"bool",
-	"borderMask",
-	["vec2", "float"],
-	(uv, width) => [
-		ret(
-			_any(
-				bvec4(
-					lessThan(uv, vec2(width)),
-					greaterThan(add(uv, width), VEC2_1)
-				)
+export const borderMask = defn("bool", "borderMask", [V2, F], (uv, width) => [
+	ret(
+		_any(
+			bvec4(
+				lessThan(uv, vec2(width)),
+				greaterThan(add(uv, width), VEC2_1)
 			)
-		),
-	]
-);
+		)
+	),
+]);

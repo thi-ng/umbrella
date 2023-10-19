@@ -1,18 +1,24 @@
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { fitClamped } from "@thi.ng/math/fit";
 import { fract } from "@thi.ng/math/prec";
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { padRight } from "@thi.ng/strings/pad-right";
 import { repeat } from "@thi.ng/strings/repeat";
 import { map } from "@thi.ng/transducers/map";
+import { max as $max } from "@thi.ng/transducers/max";
+import { min as $min } from "@thi.ng/transducers/min";
 import { BARS_H, BARS_V } from "./api.js";
 
 export const barChartHLines = (
 	height: number,
 	vals: Iterable<number>,
-	min = 0,
-	max = 1
+	min?: number,
+	max?: number
 ) => {
-	const bars = [...map((x) => barVertical(height, x, min, max, ""), vals)];
+	const $vals = ensureArray(vals);
+	min = min !== undefined ? min : $min($vals);
+	max = max !== undefined ? max : $max($vals);
+	const bars = [...map((x) => barVertical(height, x, min, max, ""), $vals)];
 	const num = bars.length;
 	const res: string[] = [];
 	for (let i = 0; i < height; i++) {
@@ -35,9 +41,14 @@ export const barChartHStr = (
 export const barChartVLines = (
 	width: number,
 	vals: Iterable<number>,
-	min = 0,
-	max = 1
-) => [...map((x) => barHorizontal(width, x, min, max), vals)];
+	min?: number,
+	max?: number
+) => {
+	const $vals = ensureArray(vals);
+	min = min !== undefined ? min : $min($vals);
+	max = max !== undefined ? max : $max($vals);
+	return [...map((x) => barHorizontal(width, x, min, max), $vals)];
+};
 
 export const barChartVStr = (
 	width: number,

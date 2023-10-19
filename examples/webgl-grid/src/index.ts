@@ -10,15 +10,19 @@ import {
 	TextureFilter,
 	TextureRepeat,
 	checkerboard,
+	clearCanvas,
 	compileModel,
 	defCubeModel,
 	defShader,
 	defTexture,
+	defaultViewport,
 	draw,
 	type GLMat4,
 	type GLVec3,
 	type ModelSpec,
 } from "@thi.ng/webgl";
+
+const BG_COL = [0.1, 0.1, 0.1];
 
 const app = () => {
 	let model: ModelSpec;
@@ -107,10 +111,8 @@ const app = () => {
 					rotateY(null, normalize3(null, [-0.25, 1, 1]), 0)
 				),
 			});
-			const bg = 0.1;
-			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-			gl.clearColor(bg, bg, bg, 1);
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			defaultViewport(gl);
+			clearCanvas(gl, BG_COL);
 			draw(model);
 		},
 	});

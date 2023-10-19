@@ -216,13 +216,21 @@ export function defmulti<T>(
 		val.add(parent);
 	};
 	fn.impls = () => {
-		const res = new Set<PropertyKey>(Object.keys(impls));
-		for (let id in rels) {
-			findImpl(impls, rels, id) && res.add(id);
+		const res = new Map<PropertyKey, any>();
+		for (let id in impls) {
+			res.set(id, impls[id]);
 		}
-		impls[<any>DEFAULT] && res.add(DEFAULT);
+		for (let id in rels) {
+			const impl = findImpl(impls, rels, id);
+			if (impl) res.set(id, impl);
+		}
+		if (impls[<any>DEFAULT]) {
+			res.set(DEFAULT, impls[<any>DEFAULT]);
+		}
 		return res;
 	};
+	fn.implForID = (id: PropertyKey) =>
+		impls[String(id)] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
 	fn.rels = () => rels;
 	fn.parents = (id: PropertyKey) => rels[<any>id];
 	fn.ancestors = (id: PropertyKey) =>

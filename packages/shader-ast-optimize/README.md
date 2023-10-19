@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/shader-ast-optimize](https://media.thi.ng/umbrella/banners-20220914/thing-shader-ast-optimize.svg?287287ef)
+# ![@thi.ng/shader-ast-optimize](https://media.thi.ng/umbrella/banners-20230807/thing-shader-ast-optimize.svg?287287ef)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-optimize.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Tree optimizations](#tree-optimizations)
@@ -107,7 +108,7 @@ For Node.js REPL:
 const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 928 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1014 bytes
 
 ## Dependencies
 

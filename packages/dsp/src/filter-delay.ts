@@ -3,8 +3,8 @@ import type { IProc } from "./api.js";
 import { Delay } from "./delay.js";
 
 /**
- * Extension of {@link feedbackDelay} with additional filter/proc
- * possibility for the feedback itself (e.g. a low pass filter).
+ * Extension of {@link feedbackDelay} with an additional filter/proc applied to
+ * the feedback itself (e.g. a low pass filter).
  *
  * @param n - delay length
  * @param filter - IProc applied to feedback

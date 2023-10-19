@@ -2,6 +2,14 @@ import type { CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream, Stream } from "./stream.js";
 
+interface EventOpts<T extends Event = Event> extends CommonOpts {
+	/**
+	 * If given, the event stream will be seeded with this (presumably
+	 * compatible event-like) value.
+	 */
+	init: T;
+}
+
 /**
  * Creates a {@link Stream} of events attached to given element / event
  * target and using given event listener options (same as supported by
@@ -16,13 +24,16 @@ export const fromEvent = (
 	src: EventTarget,
 	name: string,
 	listenerOpts: boolean | AddEventListenerOptions = false,
-	streamOpts?: Partial<CommonOpts>
-) =>
-	stream<Event>((stream) => {
+	streamOpts?: Partial<EventOpts>
+) => {
+	const result = stream<Event>((stream) => {
 		let listener = (e: Event) => stream.next(e);
 		src.addEventListener(name, listener, listenerOpts);
 		return () => src.removeEventListener(name, listener, listenerOpts);
 	}, __optsWithID(`event-${name}`, streamOpts));
+	streamOpts?.init !== undefined && result.next(streamOpts.init);
+	return result;
+};
 
 /**
  * Same as {@link fromEvent}, however only supports well-known DOM event
@@ -47,6 +58,6 @@ export const fromDOMEvent = <K extends keyof GlobalEventHandlersEventMap>(
 	src: EventTarget,
 	name: K,
 	listenerOpts: boolean | AddEventListenerOptions = false,
-	streamOpts?: Partial<CommonOpts>
+	streamOpts?: Partial<EventOpts<GlobalEventHandlersEventMap[K]>>
 ): Stream<GlobalEventHandlersEventMap[K]> =>
 	<any>fromEvent(src, name, listenerOpts, streamOpts);

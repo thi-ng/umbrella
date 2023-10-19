@@ -1,3 +1,4 @@
+import { identity } from "@thi.ng/api/fn";
 import { assert } from "@thi.ng/errors/assert";
 import { utf8Decode, utf8Encode } from "@thi.ng/transducers-binary/utf8";
 import type { Vec } from "@thi.ng/vectors";
@@ -12,8 +13,8 @@ import type {
  * Identity serializer pair (no op).
  */
 export const ident = <SerializerPair<Vec>>{
-	decode: (x) => x,
-	encode: (x) => x,
+	decode: identity,
+	encode: identity,
 };
 
 /**

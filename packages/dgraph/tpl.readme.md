@@ -8,6 +8,8 @@ Type-agnostic directed acyclic graph (DAG), using
 [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 maps & sets as backend.
 
+Implementation based on [Stuart Sierra's Clojure version](https://github.com/stuartsierra/dependency).
+
 ### Features
 
 - cycle detection
@@ -40,11 +42,11 @@ maps & sets as backend.
 {{pkg.docs}}
 
 ```ts
-import { DGraph } from "@thi.ng/dgraph";
+import { defDGraph } from "@thi.ng/dgraph";
 
-g = new DGraph();
+g = defDGraph();
 
-// dependencies from a -> b
+// add dependencies (order: a -> b)
 g.addDependency([1, 2], [10, 20]);
 g.addDependency([3, 4], [30, 40]);
 g.addDependency([1, 2], [3, 4]);

@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/base-n](https://media.thi.ng/umbrella/banners-20220914/thing-base-n.svg?ff456543)
+# ![@thi.ng/base-n](https://media.thi.ng/umbrella/banners-20230807/thing-base-n.svg?ff456543)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/base-n.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -19,7 +20,10 @@ This project is part of the
 
 ## About
 
-Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints.
+Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/85, support for bigints and encoding/decoding of byte arrays.
+
+In addition to the actual converters/encoders, the package also provides the
+plain character strings for each base and variations.
 
 ## Status
 
@@ -47,11 +51,11 @@ For Node.js REPL:
 const baseN = await import("@thi.ng/base-n");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 931 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 942 bytes
 
 ## Dependencies
 
-- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
+None
 
 ## API
 

@@ -6,7 +6,7 @@ import { Rect } from "./api/rect.js";
 import { __pclike } from "./internal/pclike.js";
 
 export function line(a: Vec, b: Vec, attribs?: Attribs): Line;
-export function line(pts: Vec[], attribs?: Attribs): Line;
+export function line(pts: Iterable<Vec>, attribs?: Attribs): Line;
 export function line(...args: any[]) {
 	return __pclike(Line, args);
 }

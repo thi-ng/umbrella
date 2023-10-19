@@ -15,10 +15,12 @@ import {
 import {
 	BLEND_ADD,
 	TextureFilter,
+	clearCanvas,
 	compileModel,
 	defCubeModel,
 	defShader,
 	defTextureCubeMap,
+	defaultViewport,
 	draw,
 	type GLMat4,
 	type ModelSpec,
@@ -60,6 +62,8 @@ const CUBE_MAPS = [
 	["maskonaive2", "Maskonaive"],
 ];
 
+const BG_COL = [0.01, 0.01, 0.01];
+
 const app = () => {
 	const selection = reactive(CUBE_MAPS[0][0]);
 	let model: ModelSpec;
@@ -100,7 +104,6 @@ const app = () => {
 		},
 		update: (el, gl, __, time) => {
 			if (!model) return;
-			const bg = 0.01;
 			const p = perspective(
 				[],
 				45,
@@ -122,9 +125,8 @@ const app = () => {
 			);
 			model.uniforms!.mvp = <GLMat4>concat([], p, v, m);
 			adaptDPI(el, window.innerWidth, window.innerHeight);
-			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-			gl.clearColor(bg, bg, bg, 1);
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			defaultViewport(gl);
+			clearCanvas(gl, BG_COL);
 			draw(model);
 		},
 	});

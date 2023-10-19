@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/hdiff](https://media.thi.ng/umbrella/banners-20220914/thing-hdiff.svg?67454ba3)
+# ![@thi.ng/hdiff](https://media.thi.ng/umbrella/banners-20230807/thing-hdiff.svg?67454ba3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdiff.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -55,7 +56,7 @@ For Node.js REPL:
 const hdiff = await import("@thi.ng/hdiff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.38 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.39 KB
 
 ### CLI installation & usage
 

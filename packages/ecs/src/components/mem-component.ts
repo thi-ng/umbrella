@@ -1,4 +1,3 @@
-import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import {
 	typedArray,
 	type Type,
@@ -10,7 +9,6 @@ import type { IMemPoolArray } from "@thi.ng/malloc";
 import type { ICache, MemMappedComponentOpts } from "../api.js";
 import { AComponent } from "./acomponent.js";
 
-@INotifyMixin
 export class MemMappedComponent<K extends string> extends AComponent<
 	K,
 	TypedArray,

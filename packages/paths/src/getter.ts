@@ -13,6 +13,7 @@ import type {
 	Path7,
 	Path8,
 } from "@thi.ng/api";
+import { identity } from "@thi.ng/api/fn";
 import { toPath } from "./path.js";
 
 /**
@@ -107,7 +108,7 @@ export function defGetter(path: Path) {
 	const [a, b, c, d] = ks;
 	switch (ks.length) {
 		case 0:
-			return (s: any) => s;
+			return identity;
 		case 1:
 			return (s: any) => (s != null ? s[a] : undefined);
 		case 2:

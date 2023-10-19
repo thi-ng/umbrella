@@ -156,6 +156,8 @@ addCity("paris", "france");
 //     { answer: 'paris is located in france' } }
 ```
 
+### Visualizing a query's dataflow topology
+
 After setting up the above query and its internal transformations, the
 generated dataflow topology then looks as follows:
 

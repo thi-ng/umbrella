@@ -283,7 +283,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 	protected buf: IBuffer<T>;
 	protected tx: Reducer<DCons<T>, T>;
 	protected writes: DCons<ChannelItem<T>>;
-	protected reads: DCons<(x: T) => void>;
+	protected reads: DCons<Fn<T, void>>;
 	protected txbuf: DCons<T>;
 
 	protected isBusy: boolean;

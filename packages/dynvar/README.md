@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/dynvar](https://media.thi.ng/umbrella/banners-20220914/thing-dynvar.svg?973b46f6)
+# ![@thi.ng/dynvar](https://media.thi.ng/umbrella/banners-20230807/thing-dynvar.svg?973b46f6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dynvar.svg)](https://www.npmjs.com/package/@thi.ng/dynvar)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dynvar.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -52,7 +53,7 @@ For Node.js REPL:
 const dynvar = await import("@thi.ng/dynvar");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 264 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 266 bytes
 
 ## Dependencies
 

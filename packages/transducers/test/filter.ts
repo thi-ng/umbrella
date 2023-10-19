@@ -1,10 +1,8 @@
+import { always, identity, never } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { filter, range } from "../src/index.js";
 
-const identity = (x: any) => x;
-const always = () => true;
-const never = () => false;
 const vowel = (s: string) => /[aeiou]/.test(s);
 const even = (n: number) => n % 2 === 0;
 
@@ -12,7 +10,7 @@ group("filter", {
 	"applies predicate over iterable and forwards values testing truthy":
 		() => {
 			assert.deepStrictEqual(
-				[...filter(identity, [true, false, "a", "", 0, 1, []])],
+				[...filter(identity<any>, [true, false, "a", "", 0, 1, []])],
 				[true, "a", 1, []]
 			);
 			assert.deepStrictEqual(

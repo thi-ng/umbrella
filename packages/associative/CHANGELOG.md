@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-10-18T18:06:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,29 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [6.3.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.3.2) (2023-08-27)
+
+#### ♻️ Refactoring
+
+- update internal types (TS 5.2 update) ([3f686d0](https://github.com/thi-ng/umbrella/commit/3f686d0))
+
+## [6.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.3.0) (2023-08-22)
+
+#### 🚀 Features
+
+- add partitionKeysMap/Obj() ([ca9b460](https://github.com/thi-ng/umbrella/commit/ca9b460))
+- add objectFromKeys() ([0a6ba5f](https://github.com/thi-ng/umbrella/commit/0a6ba5f))
+
+#### 🩹 Bug fixes
+
+- update arg types and generics for selectKeys()/withoutKeys() ([4fa9ea1](https://github.com/thi-ng/umbrella/commit/4fa9ea1))
+
+### [6.2.43](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.2.43) (2023-08-12)
+
+#### ♻️ Refactoring
+
+- update .probability() call sites in various pkgs ([c8c8141](https://github.com/thi-ng/umbrella/commit/c8c8141))
 
 ### [6.2.25](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.2.25) (2023-02-10)
 

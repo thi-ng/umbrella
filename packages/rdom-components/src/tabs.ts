@@ -1,4 +1,4 @@
-import type { Fn, Fn4 } from "@thi.ng/api";
+import { identity, type Fn, type Fn4 } from "@thi.ng/api/fn";
 import type { Attribs } from "@thi.ng/hiccup-html";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import { section } from "@thi.ng/hiccup-html/sections";
@@ -43,7 +43,7 @@ export const tabs = (src: ISubscription<number, number>, opts: TabOpts) => {
 		),
 		$switch<number>(
 			src.transform(dedupe()),
-			(x) => x,
+			identity,
 			sections.reduce((acc, { content }, i) => {
 				acc[i] = async (i) =>
 					section(attribs!.content, await content(i));

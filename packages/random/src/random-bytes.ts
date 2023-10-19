@@ -17,7 +17,7 @@ export const randomBytesFrom = (
 	start = 0,
 	end = buf.length
 ) => {
-	for (let i = end; --i >= start; ) {
+	for (let i = start; i < end; i++) {
 		buf[i] = rnd.int() & 0xff;
 	}
 	return buf;

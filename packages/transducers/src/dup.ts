@@ -4,12 +4,12 @@ import { isString } from "@thi.ng/checks/is-string";
 import { concat } from "./concat.js";
 
 /**
- * Returns the concatentation of `x` with itself. If input is an
- * iterable, it MUST be finite!
+ * Returns the concatentation of `x` with itself. If input is an iterable, it
+ * MUST be finite!
  *
  * @remarks
- * Also see the {@link duplicate} transducer for achieving a different
- * kind of value duplication.
+ * Also see the {@link concat}, {@link duplicate}, {@link repeat} and
+ * {@link repeatedly} for achieving a different kinds of value duplication.
  *
  * @example
  * ```ts

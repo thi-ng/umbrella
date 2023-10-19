@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/logger",
-	"version": "1.4.13",
+	"version": "1.4.21",
 	"description": "Types & basis infrastructure for arbitrary logging (w/ default impls)",
 	"type": "module",
 	"module": "./index.js",
@@ -34,11 +34,11 @@
 		"test": "tools:node-esm test/index.ts"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"console",

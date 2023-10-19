@@ -1,6 +1,7 @@
 export * from "./deferror.js";
 
 export * from "./assert.js";
+export * from "./ensure.js";
 export * from "./illegal-arguments.js";
 export * from "./illegal-arity.js";
 export * from "./illegal-state.js";

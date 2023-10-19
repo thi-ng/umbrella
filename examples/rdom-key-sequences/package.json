@@ -1,0 +1,43 @@
+{
+	"name": "@example/rdom-key-sequences",
+	"version": "0.0.1",
+	"private": true,
+	"description": "rstream & transducer-based FSM for converting key event sequences into high-level commands",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --host --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
+	},
+	"dependencies": {
+		"@thi.ng/arrays": "workspace:^",
+		"@thi.ng/associative": "workspace:^",
+		"@thi.ng/checks": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/strings": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-fsm": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"associative",
+			"hiccup-html",
+			"rdom",
+			"rstream",
+			"transducers",
+			"transducers-fsm"
+		],
+		"screenshot": "examples/rdom-key-sequences.jpg"
+	}
+}

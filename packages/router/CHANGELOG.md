@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-08-27T11:20:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.30](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.2.30) (2023-08-04)
+
+#### ♻️ Refactoring
+
+- update INotify impl ([d36aca6](https://github.com/thi-ng/umbrella/commit/d36aca6))
+- update INotify impls ([cbdc527](https://github.com/thi-ng/umbrella/commit/cbdc527))
 
 ### [3.2.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.2.14) (2022-11-28)
 

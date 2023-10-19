@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners-20220914/thing-vectors.svg?812608c3)
+# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners-20230807/thing-vectors.svg?812608c3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Features](#features)
@@ -174,7 +175,7 @@ For Node.js REPL:
 const vectors = await import("@thi.ng/vectors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.71 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.76 KB
 
 ## Dependencies
 
@@ -199,7 +200,9 @@ A selection:
 
 | Screenshot                                                                                                                           | Description                                                                                  | Live demo                                                   | Source                                                                                   |
 |:-------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>                | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                            | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png" width="240"/>                   | Canvas based dial widget                                                                     | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-dial)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                     | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/>             | Interactive visualization of closest points on ellipses                                      | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg" width="240"/>                      | Doodle w/ K-nearest neighbor search result visualization                                     | [Demo](https://demo.thi.ng/umbrella/geom-knn/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)              |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn-hash.jpg" width="240"/>                 | K-nearest neighbor search in an hash grid                                                    | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn-hash)         |
@@ -212,8 +215,11 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png" width="240"/>                      | Animated sine plasma effect visualized using contour lines                                   | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>                    | k-means clustering visualization                                                             | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                                     |                                                             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                                     | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/quasi-lattice.png" width="240"/>                 | Quasi-random lattice generator                                                               | [Demo](https://demo.thi.ng/umbrella/quasi-lattice/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/quasi-lattice)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>                    | Unison wavetable synth with waveform editor                                                  | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/>               | Steering behavior drawing with alpha-blended shapes                                          | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/>            | Minimal rdom-canvas animation                                                                | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/>              | Animated Voronoi diagram, cubic splines & SVG download                                       | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                                                | [Demo](https://demo.thi.ng/umbrella/scenegraph/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>              | 2D scenegraph & image map based geometry manipulation                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)      |

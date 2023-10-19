@@ -1,4 +1,5 @@
 import type { Sampler2DSym, Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { vec2 } from "@thi.ng/shader-ast/ast/lit";
@@ -43,9 +44,9 @@ const singlePass = (
  * @param dir - blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
  */
 export const blur5 = defn(
-	"vec4",
+	V4,
 	"blur5",
-	["sampler2D", "vec2", "vec2", "vec2"],
+	["sampler2D", V2, V2, V2],
 	(tex, res, uv, dir) => {
 		let col: Vec4Sym;
 		let off: Vec2Sym;
@@ -72,9 +73,9 @@ export const blur5 = defn(
  * @param dir - blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
  */
 export const blur9 = defn(
-	"vec4",
+	V4,
 	"blur9",
-	["sampler2D", "vec2", "vec2", "vec2"],
+	["sampler2D", V2, V2, V2],
 	(tex, res, uv, dir) => {
 		let col: Vec4Sym;
 		let off: Vec2Sym;
@@ -106,9 +107,9 @@ export const blur9 = defn(
  * @param dir - blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
  */
 export const blur13 = defn(
-	"vec4",
+	V4,
 	"blur13",
-	["sampler2D", "vec2", "vec2", "vec2"],
+	["sampler2D", V2, V2, V2],
 	(tex, res, uv, dir) => {
 		let col: Vec4Sym;
 		let off: Vec2Sym;

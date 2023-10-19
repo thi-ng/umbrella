@@ -103,7 +103,7 @@ const app = () => {
 };
 
 // emulate SSR by serializing to HTML
-const html = serialize(app()(state), null, false, true);
+const html = serialize(app()(state), { span: true });
 document.getElementById("app")!.innerHTML = html;
 console.log(html);
 

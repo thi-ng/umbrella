@@ -13,6 +13,7 @@ import {
 	EVENT_ADDED,
 	EVENT_PRE_DELETE,
 	type ComponentID,
+	type ECSEventType,
 	type ECSOpts,
 	type GroupOpts,
 	type IComponent,
@@ -26,7 +27,7 @@ import { Group } from "./groups/group.js";
 let NEXT_GROUP_ID = 0;
 
 @INotifyMixin
-export class ECS<SPEC> implements INotify {
+export class ECS<SPEC> implements INotify<ECSEventType> {
 	idgen: IDGen;
 	pool: IMemPoolArray;
 	components: Map<
@@ -142,13 +143,15 @@ export class ECS<SPEC> implements INotify {
 
 	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
-	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	addListener(id: ECSEventType, fn: Listener<ECSEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
-	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	removeListener(id: ECSEventType, fn: Listener<ECSEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(event: Event): boolean {}
+	notify(event: Event<ECSEventType>): boolean {}
 }

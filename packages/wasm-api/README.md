@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/wasm-api](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api.svg?be328da7)
+# ![@thi.ng/wasm-api](https://media.thi.ng/umbrella/banners-20230807/thing-wasm-api.svg?be328da7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Custom API modules](#custom-api-modules)
@@ -16,8 +17,7 @@ This project is part of the
   - [API module auto-initialization](#api-module-auto-initialization)
 - [Object indices & handles](#object-indices--handles)
 - [Using the Zig build system](#using-the-zig-build-system)
-  - [Zig v0.10.1 or older](#zig-v0101-or-older)
-  - [Zig v0.11.0-dev or newer](#zig-v0110-dev-or-newer)
+  - [Zig v0.11.0 or newer](#zig-v0110-or-newer)
   - [Example projects](#example-projects)
 - [Naming & structural conventions](#naming--structural-conventions)
 - [Status](#status)
@@ -312,46 +312,19 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
-### Zig v0.10.1 or older
+### Zig v0.11.0 or newer
 
-```zig
-const std = @import("std");
-
-pub fn build(b: *std.build.Builder) void {
-    // obtain a standard std.build.LibExeObjStep, pre-configured w/ given options
-    // see source comments in imported build.zig for further details...
-    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
-        // Declare extra WASM API packages to use
-        // Each package can also declare dependencies to other such packages
-        // (wasm-api and wasm-api-bindgen are made available everywhere)
-        .packages = &.{
-            .{ .id = "wasm-api-dom", .path = "@thi.ng/wasm-api-dom/zig/lib.zig" },
-            .{ .id = "wasm-api-schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
-        },
-        // (optional) build mode override
-        // if commented out, we can pass CLI args to choose build mode (default: .Debug)
-        .mode = .ReleaseSmall,
-    });
-    // optionally, add further custom configuration
-    // ...
-
-    // finally trigger build
-    lib.install();
-}
-```
-
-### Zig v0.11.0-dev or newer
-
-(Note: Several new build options have been added, e.g. initial/max memory
-config, autodoc generation)
+**IMPORTANT:** Due to recent [syntax & build system changes in Zig
+v0.11.0](https://ziglang.org/download/0.11.0/release-notes.html), support for
+older Zig versions had to be removed...
 
 ```zig
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    // obtain a standard std.Build.CompileStep, pre-configured w/ given options
-    // see source comments in imported build-v0.11.zig for further details...
-    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build-v0.11.zig").wasmLib(b, .{
+    // obtain a standard std.Build.Step.Compile, pre-configured w/ given options
+    // see source comments in imported build.zig for further details...
+    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
         // Declare extra WASM API modules to use
         // Each can also declare dependencies to other modules
         // (`wasm-api` and `wasm-api-bindgen` are made available everywhere)
@@ -366,8 +339,8 @@ pub fn build(b: *std.Build) void {
     // optionally, add further custom configuration
     // ...
 
-    // finally trigger build
-    lib.install();
+    // finally trigger build & install
+    b.installArtifact(lib);
 }
 ```
 
@@ -378,7 +351,6 @@ via this script. **Please find more details/options in the commented source
 code:**
 
 - [`/zig/build.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build.zig)
-- [`/zig/build-v0.11.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build-v0.11.zig)
 
 ## Naming & structural conventions
 
@@ -501,7 +473,7 @@ folder):
 zig build-lib \
     --pkg-begin wasm-api node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
     -target wasm32-freestanding \
-    -O ReleaseSmall -dynamic \
+    -O ReleaseSmall -dynamic -rdynamic \
     hello.zig
 
 # disassemble WASM

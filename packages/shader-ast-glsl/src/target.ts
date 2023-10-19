@@ -11,6 +11,7 @@ import type {
 	Term,
 	Type,
 } from "@thi.ng/shader-ast";
+import { F, V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { isMat, isVec } from "@thi.ng/shader-ast/ast/checks";
 import { itemType } from "@thi.ng/shader-ast/ast/item";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
@@ -199,13 +200,13 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 	});
 
 	Object.assign(emit, <GLSLTarget>{
-		gl_FragColor: sym("vec4", "gl_FragColor"),
-		gl_FragCoord: sym("vec4", "gl_FragCoord", { const: true }),
+		gl_FragColor: sym(V4, "gl_FragColor"),
+		gl_FragCoord: sym(V4, "gl_FragCoord", { const: true }),
 		gl_FragData: sym("vec4[]", "gl_FragData", { num: 1 }),
 		gl_FrontFacing: sym("bool", "gl_FrontFacing", { const: true }),
-		gl_PointCoord: sym("vec2", "gl_PointCoord", { const: true }),
-		gl_PointSize: sym("float", "gl_PointSize"),
-		gl_Position: sym("vec4", "gl_Position"),
+		gl_PointCoord: sym(V2, "gl_PointCoord", { const: true }),
+		gl_PointSize: sym(F, "gl_PointSize"),
+		gl_Position: sym(V4, "gl_Position"),
 	});
 
 	return <GLSLTarget>emit;

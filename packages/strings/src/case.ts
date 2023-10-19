@@ -19,7 +19,8 @@ export const lower: FnS = (x) => x.toLowerCase();
  *
  * @param x - string to transform
  */
-export const capitalize: FnS = (x) => x[0].toUpperCase() + x.substring(1);
+export const capitalize: FnS = (x) =>
+	x.length ? x[0].toUpperCase() + x.substring(1) : x;
 
 /**
  * Converts a CamelCase string into kebab case, with optional custom

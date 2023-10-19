@@ -181,7 +181,7 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 
 /** @internal */
 const __sdfAttribs = (attribs?: Attribs): Partial<SDFAttribs> =>
-	attribs ? attribs.__sdf : null;
+	attribs ? attribs.__sdf : undefined;
 
 const OPS = <const>["chamfer", "round", "smooth", "steps"];
 

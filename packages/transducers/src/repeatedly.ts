@@ -10,6 +10,7 @@ import type { Fn } from "@thi.ng/api";
  * [...repeatedly(() => Math.floor(Math.random() * 10), 5)]
  * // [7, 0, 9, 3, 1]
  *
+ * // same result as range(5)
  * [...repeatedly((i) => i, 5)]
  * // [0, 1, 2, 3, 4]
  * ```

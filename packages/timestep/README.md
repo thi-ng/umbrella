@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/timestep](https://media.thi.ng/umbrella/banners-20220914/thing-timestep.svg?6570552f)
+# ![@thi.ng/timestep](https://media.thi.ng/umbrella/banners-20230807/thing-timestep.svg?6570552f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/timestep.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Managing fixed timestep updates](#managing-fixed-timestep-updates)
@@ -50,14 +51,16 @@ the two main phases of the frame update:
 
 In other words, this means any updatable state value will require 3 versions:
 previous, current (next), interpolated. **Only the interpolated version is to be
-used for rendering (or other outside purposes).** For that reason, the package
+used for rendering (or other userland purposes).** For that reason, the package
 also provides wrappers for
 [numeric](https://docs.thi.ng/umbrella/timestep/functions/defNumeric.html) and
 [vector-based](https://docs.thi.ng/umbrella/timestep/functions/defVector.html)
-state variables, illustrated in the following short example:
+(arbitrary length and optimized 2D/3D/4D versions) state variables, illustrated
+in the following short example:
 
 ```ts tangle:export/readme.ts
-import { defTimeStep, defNumeric, defVector } from "@thi.ng/timestep";
+import { defTimeStep, defNumeric, defVector2 } from "@thi.ng/timestep";
+import { maddN2 } from "@thi.ng/vectors";
 
 // initialize with default options (i.e. dt = 1/60 = 60 fps)
 // start time is given in milliseconds but will be converted to seconds
@@ -67,9 +70,10 @@ const sim = defTimeStep({ dt: 1 / 60, startTime: Date.now() });
 // define numeric state variable, increase using @ 10 units per second
 const a = defNumeric(0, (x, dt) => x + dt * 10);
 
-// define vector state variable, update using velocity of [-10, 20] (per second)
-// also see thi.ng/vectors for hundreds of useful vector operations to simplify...
-const b = defVector([0, 0], (x, dt) => [x[0] - 10 * dt, x[1] + 20 * dt]);
+// define vector state variable, update by applying velocity of [-10, 20] (per second)
+// also see thi.ng/vectors for hundreds of other useful vector operations...
+// the update function MUST write its result in given vector (1st arg)
+const b = defVector2([0, 0], (v, dt) => maddN2(v, [-10, 20], dt, v));
 
 // even though the sim will update at a fixed (theoretical) 60 fps,
 // the simulated render frame rate here is only 25 fps...
@@ -148,7 +152,7 @@ For Node.js REPL:
 const timestep = await import("@thi.ng/timestep");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 758 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 816 bytes
 
 ## Dependencies
 

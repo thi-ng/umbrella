@@ -1,18 +1,20 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/wasm-api-dom](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-dom.svg?2d6e3998)
+# ![@thi.ng/wasm-api-dom](https://media.thi.ng/umbrella/banners-20230807/thing-wasm-api-dom.svg?2d6e3998)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-dom.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Module initialization](#module-initialization)
   - [ID handles](#id-handles)
   - [DOM tree creation](#dom-tree-creation)
+    - [HTML canvas support](#html-canvas-support)
   - [Attribute creation & accessors](#attribute-creation--accessors)
   - [Event listeners](#event-listeners)
 - [Status](#status)
@@ -39,7 +41,9 @@ Current key features for the Zig (WASM) side:
   [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/blob/develop/packages/adapt-dpi))
 - Attribute setters/getters (string, numeric, boolean)
 - `.innerHTML` & `.innerText` setters
-- Event handlers, event types (see generated types in [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/api.zig) for details):
+- Event handlers, event types (see generated types in
+  [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/api.zig)
+  for details):
     - drag 'n drop (WIP)
     - focus
     - input
@@ -105,8 +109,8 @@ For element & event related functionality the following IDs are reserved:
 - `0` `document.head`
 - `1` `document.body`
 
-All are exposed in the Zig module as `window`, `head`, `body` constants to help
-avoiding magic numbers in userland code.
+These are exposed in the Zig module as `window`, `head`, `body` constants to
+help avoiding magic numbers in userland code.
 
 ### DOM tree creation
 
@@ -160,6 +164,16 @@ const handle = dom.createElement(&.{
 The
 [CreateElementOpts](https://docs.thi.ng/umbrella/wasm-api-dom/interfaces/CreateElementOpts.html)
 struct has some additional options and more are planned. All WIP!
+
+#### HTML canvas support
+
+A separate function (`createCanvas()`) with [similar
+options](https://docs.thi.ng/umbrella/wasm-api-dom/interfaces/CreateCanvasOpts.html)
+exist for `<canvas>` elements.
+
+Also see the
+[thi.ng/wasm-api-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas)
+sibling package for working with canvases...
 
 ### Attribute creation & accessors
 
@@ -283,7 +297,7 @@ For Node.js REPL:
 const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.15 KB
 
 ## Dependencies
 

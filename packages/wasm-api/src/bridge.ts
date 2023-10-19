@@ -18,6 +18,7 @@ import {
 	EVENT_MEMORY_CHANGED,
 	EVENT_PANIC,
 	type BigIntArray,
+	type BridgeEventType,
 	type CoreAPI,
 	type IWasmAPI,
 	type IWasmMemoryAccess,
@@ -46,7 +47,7 @@ export const OutOfMemoryError = defError(() => "Out of memory");
  */
 @INotifyMixin
 export class WasmBridge<T extends WasmExports = WasmExports>
-	implements IWasmMemoryAccess, INotify
+	implements IWasmMemoryAccess, INotify<BridgeEventType>
 {
 	readonly id = "wasmapi";
 
@@ -528,13 +529,15 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 
 	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
-	addListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	addListener(id: BridgeEventType, fn: Listener<BridgeEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
-	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+	// prettier-ignore
+	removeListener(id: BridgeEventType, fn: Listener<BridgeEventType>, scope?: any): boolean {}
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(event: Event): boolean {}
+	notify(event: Event<BridgeEventType>): boolean {}
 }

@@ -5,7 +5,7 @@ export const swatches = (
 	cols: (ReadonlyColor | string)[],
 	shapeFn: Fn2<ReadonlyColor | string, number, any[]>,
 	attribs: IObjectOf<any> = {}
-) => ["g", attribs, ...cols.map(shapeFn)];
+): [string, IObjectOf<any>, ...any[]] => ["g", attribs, ...cols.map(shapeFn)];
 
 export const swatchesH = (
 	cols: (ReadonlyColor | string)[],

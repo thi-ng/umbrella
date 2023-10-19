@@ -12,10 +12,9 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
-		"@thi.ng/hdom": "workspace:^",
-		"@thi.ng/hdom-canvas": "workspace:^",
 		"@thi.ng/imgui": "workspace:^",
 		"@thi.ng/layout": "workspace:^",
+		"@thi.ng/rdom-canvas": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/rstream-gestures": "workspace:^"
 	},
@@ -34,7 +33,7 @@
 		"screenshot": "examples/imgui-basics.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	}
 }

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-09-19T10:42:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.1.30](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-carbon-icons@3.1.30) (2023-09-19)
+
+#### ♻️ Refactoring
+
+- update hiccup/SVG generators ([37c532f](https://github.com/thi-ng/umbrella/commit/37c532f))
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-carbon-icons@3.1.0) (2021-11-17)
 

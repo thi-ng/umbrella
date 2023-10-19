@@ -6,6 +6,7 @@
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
+	"type": "module",
 	"scripts": {
 		"clean": "rimraf node_modules/.cache build out",
 		"build-static": "ts-node src/server/static.ts",
@@ -13,10 +14,10 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"@types/node": "^20.1.0",
+		"@types/node": "^20.5.6",
 		"ts-node": "^10.9.1",
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",

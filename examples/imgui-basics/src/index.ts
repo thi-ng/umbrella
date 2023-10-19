@@ -1,12 +1,11 @@
-import { start } from "@thi.ng/hdom";
-import { canvas } from "@thi.ng/hdom-canvas";
-import { buttonH, DEFAULT_THEME, IMGUI, Key, sliderH } from "@thi.ng/imgui";
+import { buttonH, DEFAULT_THEME, defGUI, Key, sliderH } from "@thi.ng/imgui";
 import { gridLayout } from "@thi.ng/layout";
-import { fromDOMEvent, reactive, tweenNumber } from "@thi.ng/rstream";
+import { $canvas } from "@thi.ng/rdom-canvas";
+import { fromDOMEvent, fromRAF, reactive, tweenNumber } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 
 // GUI initialization
-const gui = new IMGUI({
+const gui = defGUI({
 	theme: {
 		...DEFAULT_THEME,
 		font: "16px 'IBM Plex Mono', monospace",
@@ -15,39 +14,88 @@ const gui = new IMGUI({
 	},
 });
 
-// hdom-canvas component specialization
-// use init lifecycle method to create/attach event listeners
-// and feed relevant details to IMGUI
-const _canvas = {
-	...canvas,
-	init: (el: HTMLCanvasElement) => {
-		// unified mouse & touch event handling
-		gestureStream(el, {}).subscribe({
-			next: (e) => gui.setMouse(e.pos, e.buttons),
-		});
-		// key events are only required to make IMGUI components more accessible
-		// and keyboard controllable.
-		// Important: key events CANNOT ever be attached to a canvas itself...
-		fromDOMEvent(window, "keydown").subscribe({
-			next(e) {
-				if (e.target !== document.body) return;
-				if (
-					e.key === Key.TAB ||
-					e.key === Key.SPACE ||
-					e.key === Key.UP ||
-					e.key === Key.DOWN
-				) {
-					e.preventDefault();
-				}
-				gui.setKey(e);
-			},
-		});
-		fromDOMEvent(window, "keyup").subscribe({
-			next(e) {
-				gui.setKey(e);
-			},
-		});
-	},
+// canvas component initialization, creates/attaches event listeners
+// and feeds relevant details to the GUI instance
+const initGUI = (el: HTMLCanvasElement) => {
+	// unified mouse & touch event handling
+	gestureStream(el).subscribe({
+		next(e) {
+			gui.setMouse(e.pos, e.buttons);
+		},
+	});
+	// key events are only required to make IMGUI components more accessible
+	// and keyboard controllable.
+	// Important: key events CANNOT ever be attached to a canvas itself...
+	fromDOMEvent(window, "keydown").subscribe({
+		next(e) {
+			if (e.target !== document.body) return;
+			if (
+				e.key === Key.TAB ||
+				e.key === Key.SPACE ||
+				e.key === Key.UP ||
+				e.key === Key.DOWN
+			) {
+				e.preventDefault();
+			}
+			gui.setKey(e);
+		},
+	});
+	fromDOMEvent(window, "keyup").subscribe({
+		next(e) {
+			gui.setKey(e);
+		},
+	});
+};
+
+const updateGUI = () => {
+	let res: any;
+	// create grid layout using https://thi.ng/layout
+	// position grid centered in window
+	const rowHeight = 32;
+	const gap = 4;
+	const grid = gridLayout(
+		// start X position
+		16,
+		// start Y position (centered)
+		(window.innerHeight - (2 * rowHeight + gap)) / 2,
+		// layout width
+		window.innerWidth - 32,
+		// single column
+		1,
+		rowHeight,
+		gap
+	);
+	// prep GUI for next frame
+	gui.begin();
+	// volume slider component
+	// returns a number (new value) if user interacted w/ slider
+	res = sliderH(
+		gui,
+		grid,
+		"vol",
+		0,
+		100,
+		1,
+		smoothedVolume.deref()!,
+		`Volume: ${volumeLabel.deref()!}`,
+		() => ""
+	);
+	// update state if needed
+	res !== undefined && volume.next(res);
+
+	// create nested inner grid layout
+	let inner = grid.nest(PRESETS.length);
+	// create button for each volume preset
+	// and update state if a button was pressed
+	for (let preset of PRESETS) {
+		res = buttonH(gui, inner, `bt${preset[0]}`, preset[0]);
+		res && volume.next(preset[2]);
+	}
+
+	// end frame
+	gui.end();
+
+	return gui;
 };
 
 // dummy app state details (using https://thi.ng/rstream)
@@ -79,65 +127,20 @@ const volumeLabel = smoothedVolume.map((x) => {
 	return "";
 });
 
-// hdom update loop
-start(() => {
-	let res: any;
-	// create grid layout using https://thi.ng/layout
-	// position grid centered in window
-	const grid = gridLayout(
-		16,
-		(window.innerHeight - 68) / 2,
-		window.innerWidth - 32,
-		1,
-		32,
-		4
-	);
+// reactive window size (canvas will subscribe to it)
+// the `init` option is needed to ensure the stream is properly seeded
+const windowSize = fromDOMEvent(window, "resize", false, {
+	init: <any>{},
+}).map(() => [window.innerWidth, window.innerHeight]);
 
-	// prep GUI for next frame
-	gui.begin();
-
-	// volume slider component
-	// returns a number (new value) if user interacted w/ slider
-	res = sliderH(
-		gui,
-		grid,
-		"vol",
-		0,
-		100,
-		1,
-		smoothedVolume.deref()!,
-		`Volume: ${volumeLabel.deref()!}`,
-		() => ""
-	);
-	// update state if needed
-	res !== undefined && volume.next(res);
-
-	// create nested inner grid layout
-	let inner = grid.nest(PRESETS.length);
-	// create button for each volume preset
-	// and update state if a button was pressed
-	for (let preset of PRESETS) {
-		res = buttonH(gui, inner, `bt${preset[0]}`, preset[0]);
-		res && volume.next(preset[2]);
-	}
-
-	// end frame
-	gui.end();
-
-	// return main/only component (see definition further above)
-	// the `gui` itself implements the `IToHiccup` interface and therefore
-	// can just be provided as canvas body
-	// (you can also provide other hiccup-canvas shapes/content here)
-	return [
-		_canvas,
-		{
-			// disable hdom diffing for canvas children
-			__diff: false,
-			width: window.innerWidth,
-			height: window.innerHeight,
-			style: { background: gui.theme.globalBg, cursor: gui.cursor },
-			...gui.attribs,
-		},
-		gui,
-	];
-});
+// canvas component
+$canvas(fromRAF().map(updateGUI), windowSize, {
+	// execute above init handler when canvas has been mounted
+	onmount: initGUI,
+	style: {
+		background: gui.theme.globalBg,
+		// update cursor value each frame
+		cursor: fromRAF().map(() => gui.cursor),
+	},
+	...gui.attribs,
+}).mount(document.getElementById("app")!);

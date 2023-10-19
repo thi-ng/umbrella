@@ -269,6 +269,52 @@ export const imageRaw = (
 };
 
 /**
+ * Similar to {@link imageRaw}, but **only** directly modifies the format bits
+ * of the specified region (any character data remains intact).
+ *
+ * @param canvas
+ * @param x
+ * @param y
+ * @param w
+ * @param h
+ * @param pixels
+ */
+export const imageRawFmtOnly = (
+	canvas: Canvas,
+	x: number,
+	y: number,
+	w: number,
+	h: number,
+	pixels: ArrayLike<number>
+) => {
+	x |= 0;
+	y |= 0;
+	w |= 0;
+	h |= 0;
+	const { data, width } = canvas;
+	const {
+		x1,
+		y1,
+		x2,
+		y2,
+		sx,
+		sy,
+		w: iw,
+		h: ih,
+	} = imgRect(canvas, x, y, w, h);
+	if (!iw || !ih) return;
+	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+		let sidx = sx + yy * w;
+		let didx = x1 + dy * width;
+		for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
+			data[didx] =
+				(data[didx] & 0xffff) | ((pixels[sidx++] & 0xffff) << 16);
+			didx++;
+		}
+	}
+};
+
+/**
  * Similar to {@link imageRaw}, but always thresholds pixels given `thresh` and
  * converts groups of 2x4 pixels into Unicode Braille characters. Each written
  * char will use given `format` ID (optional) or default to canvas' currently

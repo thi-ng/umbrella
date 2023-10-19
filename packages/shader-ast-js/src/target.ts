@@ -51,22 +51,26 @@ const OP_IDS: Record<Operator, string> = {
 	">>": "rshift",
 };
 
-const PRELUDE = [
-	"float",
-	"int",
-	"uint",
+const VEC_TYPES = [
 	"vec2",
 	"vec3",
 	"vec4",
-	"bvec2",
-	"bvec3",
-	"bvec4",
 	"ivec2",
 	"ivec3",
 	"ivec4",
 	"uvec2",
 	"uvec3",
 	"uvec4",
+];
+
+const PRELUDE = [
+	"float",
+	"int",
+	"uint",
+	...VEC_TYPES,
+	"bvec2",
+	"bvec3",
+	"bvec4",
 	"mat2",
 	"mat3",
 	"mat4",
@@ -79,9 +83,15 @@ const PRELUDE = [
 	.map((x) => `const ${x} = env.${x};`)
 	.join("\n");
 
+const POOL_PRELUDE = VEC_TYPES.map(
+	(x) => `const $${x} = env.pools.${x}.from;`
+).join("\n");
+
 const COMPS: any = { x: 0, y: 1, z: 2, w: 3 };
 
 const RE_SEMI = /[};]$/;
+
+const RESET = `for(let t in env.pools) env.pools[t].reset();`;
 
 const isIntOrBool = (l: Term<any>) => isInt(l) || isUint(l) || isBool(l);
 
@@ -113,6 +123,9 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 	const $list = (body: Term<any>[], sep = ", ") => body.map(emit).join(sep);
 
 	const $fn = (name: string, args: Term<any>[]) => `${name}(${$list(args)})`;
+
+	const $vecFromPool = ({ val, info, type }: Lit<any>) =>
+		!info ? `$${type}(${$list(val)})` : `env.${type}${info}(${$list(val)})`;
 
 	const $vec = ({ val, info, type }: Lit<any>) =>
 		!info ? `[${$list(val)}]` : `env.${type}${info}(${$list(val)})`;
@@ -157,10 +170,20 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			return res.join(" ");
 		},
 
-		fn: (t) =>
-			`${buildComments(t)}\nfunction ${t.id}(${$list(t.args)}) ${emit(
-				t.scope
-			)}`,
+		fn: (t) => {
+			let body: string;
+			if (t.id === "main") {
+				body = `{\n${RESET}\n${emit(<Scope>{
+					...t.scope,
+					global: true,
+				})}}`;
+			} else {
+				body = emit(t.scope);
+			}
+			return `${buildComments(t)}\nfunction ${t.id}(${$list(
+				t.args
+			)}) ${body}`;
+		},
 
 		for: (t) =>
 			`for(${t.init ? emit(t.init) : ""}; ${emit(t.test)}; ${
@@ -192,15 +215,16 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 				case "vec2":
 				case "vec3":
 				case "vec4":
-				case "bvec2":
-				case "bvec3":
-				case "bvec4":
 				case "ivec2":
 				case "ivec3":
 				case "ivec4":
 				case "uvec2":
 				case "uvec3":
 				case "uvec4":
+					return $vecFromPool(t);
+				case "bvec2":
+				case "bvec3":
+				case "bvec4":
 				case "mat2":
 				case "mat3":
 				case "mat4":
@@ -249,7 +273,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 		scope: (t) => {
 			let res = $list(t.body, ";\n");
 			res += t.body.length && !RE_SEMI.test(res) ? ";" : "";
-			return !t.global ? `{\n${res}\n}` : res;
+			return t.global ? res : `{\n${res}\n}`;
 		},
 
 		swizzle: (t) =>
@@ -269,7 +293,16 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			const exports = buildExports(tree);
 			return new Function(
 				"env",
-				[PRELUDE, emit(tree), "return {", exports, "};"].join("\n")
+				[
+					PRELUDE,
+					POOL_PRELUDE,
+					emit(tree),
+					"return {",
+					`__reset: () => {${RESET}},`,
+					`__stats: () => Object.entries(env.pools).reduce((acc, [k, v]) => (acc[k] = v.index, acc), {}),`,
+					exports,
+					"};",
+				].join("\n")
 			)(env);
 		},
 	});

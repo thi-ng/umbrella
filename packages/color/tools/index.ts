@@ -1,42 +1,33 @@
-import { serialize } from "@thi.ng/hiccup";
-import { svg } from "@thi.ng/hiccup-svg";
-import { writeFileSync } from "fs";
 import {
-	ColorRangePreset,
+	COLOR_RANGES,
+	COSINE_GRADIENTS,
 	colorsFromRange,
 	colorsFromTheme,
-	ColorThemePartTuple,
-	COLOR_RANGES,
 	cosineGradient,
-	CosineGradientPreset,
-	COSINE_GRADIENTS,
-	CSSColorName,
 	distCIEDE2000,
 	lch,
 	proximity,
-	ReadonlyColor,
 	selectChannel,
 	sort,
 	swatchesH,
+	type CSSColorName,
+	type ColorRangePreset,
+	type ColorThemePartTuple,
+	type CosineGradientPreset,
+	type ReadonlyColor,
 } from "../src/index.js";
+import { writeSVG } from "./write.js";
 
 Object.keys(COSINE_GRADIENTS).forEach((id) => {
 	const fname = `export/gradient-${id}-srgb.svg`;
 	console.log(fname);
-	writeFileSync(
+	writeSVG(
 		fname,
-		serialize(
-			svg(
-				{ width: 500, height: 50, convert: true },
-				swatchesH(
-					cosineGradient(
-						100,
-						COSINE_GRADIENTS[<CosineGradientPreset>id]
-					),
-					5,
-					50
-				)
-			)
+		{ width: 500, height: 50, __convert: true },
+		swatchesH(
+			cosineGradient(100, COSINE_GRADIENTS[<CosineGradientPreset>id]),
+			5,
+			50
 		)
 	);
 });
@@ -58,70 +49,58 @@ const sortedRange = (id: string, base: CSSColorName, num: number) =>
 	]);
 
 for (let id in COLOR_RANGES) {
-	writeFileSync(
+	writeSVG(
 		`export/swatches-range-${id}-hue.svg`,
-		serialize(
-			svg(
-				{ width: 500, height: 50, convert: true },
-				swatchesH(
-					sort(
-						[
-							...colorsFromRange(<ColorRangePreset>id, {
-								num: 100,
-								variance: V,
-							}),
-						],
-						selectChannel(2)
-					),
-					5,
-					50
-				)
-			)
+		{ width: 500, height: 50, __convert: true },
+		swatchesH(
+			sort(
+				[
+					...colorsFromRange(<ColorRangePreset>id, {
+						num: 100,
+						variance: V,
+					}),
+				],
+				selectChannel(2)
+			),
+			5,
+			50
 		)
 	);
-	writeFileSync(
+	writeSVG(
 		`export/swatches-range-${id}-chunks.svg`,
-		serialize(
-			svg(
-				{ width: 500, height: 50, convert: true },
-				swatchesH(
-					[
-						...sortedRange(id, "goldenrod", 22),
-						...sortedRange(id, "turquoise", 22),
-						...sortedRange(id, "pink", 22),
-						...sortedRange(id, "black", 11),
-						...sortedRange(id, "gray", 11),
-						...sortedRange(id, "white", 11),
-					],
-					5,
-					50
-				)
-			)
+		{ width: 500, height: 50, __convert: true },
+		swatchesH(
+			[
+				...sortedRange(id, "goldenrod", 22),
+				...sortedRange(id, "turquoise", 22),
+				...sortedRange(id, "pink", 22),
+				...sortedRange(id, "black", 11),
+				...sortedRange(id, "gray", 11),
+				...sortedRange(id, "white", 11),
+			],
+			5,
+			50
 		)
 	);
-	writeFileSync(
+	writeSVG(
 		`export/swatches-range-${id}-mixed.svg`,
-		serialize(
-			svg(
-				{ width: 500, height: 50, convert: true },
-				swatchesH(
+		{ width: 500, height: 50, __convert: true },
+		swatchesH(
+			[
+				...colorsFromTheme(
 					[
-						...colorsFromTheme(
-							[
-								[<ColorRangePreset>id, "goldenrod", 22],
-								[<ColorRangePreset>id, "turquoise", 22],
-								[<ColorRangePreset>id, "pink", 22],
-								[<ColorRangePreset>id, "black", 11],
-								[<ColorRangePreset>id, "gray", 11],
-								[<ColorRangePreset>id, "white", 11],
-							],
-							{ num: 100, variance: V }
-						),
+						[<ColorRangePreset>id, "goldenrod", 22],
+						[<ColorRangePreset>id, "turquoise", 22],
+						[<ColorRangePreset>id, "pink", 22],
+						[<ColorRangePreset>id, "black", 11],
+						[<ColorRangePreset>id, "gray", 11],
+						[<ColorRangePreset>id, "white", 11],
 					],
-					5,
-					50
-				)
-			)
+					{ num: 100, variance: V }
+				),
+			],
+			5,
+			50
 		)
 	);
 }
@@ -136,24 +115,16 @@ const theme: ColorThemePartTuple[] = [
 
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 
-writeFileSync(
+writeSVG(
 	"export/swatches-ex01.svg",
-	serialize(
-		svg(
-			{ width: 1000, height: 50, convert: true },
-			swatchesH(colors, 5, 50)
-		)
-	)
+	{ width: 1000, height: 50, __convert: true },
+	swatchesH(colors, 5, 50)
 );
 
 sorted(colors);
 
-writeFileSync(
+writeSVG(
 	"export/swatches-ex02.svg",
-	serialize(
-		svg(
-			{ width: 1000, height: 50, convert: true },
-			swatchesH(colors, 5, 50)
-		)
-	)
+	{ width: 1000, height: 50, __convert: true },
+	swatchesH(colors, 5, 50)
 );

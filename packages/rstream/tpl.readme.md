@@ -287,6 +287,7 @@ s.next(42);
 - [fromRAF()](https://docs.thi.ng/umbrella/rstream/functions/fromRAF.html) - requestAnimationFrame() counter (w/ node fallback)
 - [fromView()](https://docs.thi.ng/umbrella/rstream/functions/fromView.html) - derived view value changes (see [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom))
 - [fromWorker()](https://docs.thi.ng/umbrella/rstream/functions/fromWorker.html) - messages received from worker
+- [toggle()](https://docs.thi.ng/umbrella/rstream/functions/toggle.html) - on/off switch-like stream
 - [trigger()](https://docs.thi.ng/umbrella/rstream/functions/trigger.html) - one-off events
 
 ### Meta streams

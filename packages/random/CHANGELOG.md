@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-19T09:28:07Z
+- **Last updated**: 2023-10-12T11:53:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,44 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.6.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.6) (2023-10-05)
+
+#### 🩹 Bug fixes
+
+- update ARandom.minmaxInt/Uint() ([33c35b4](https://github.com/thi-ng/umbrella/commit/33c35b4))
+  - fix NaN bug iff min == max
+
+### [3.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.1) (2023-08-12)
+
+#### ⏱ Performance improvements
+
+- add/re-use internal buf for uuid() ([6bf7f1d](https://github.com/thi-ng/umbrella/commit/6bf7f1d))
+  - avoid temp allocations (10% faster)
+
+## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.6.0) (2023-08-12)
+
+#### 🚀 Features
+
+- add IRandom.minmaxUint() ([6558eb1](https://github.com/thi-ng/umbrella/commit/6558eb1))
+  - clarify .minmaxInt() is for signed (i32)
+  - new .minmaxUint() is for unsigned (u32)
+  - add ARandom.minmaxUint()
+- add IRandom.probability() ([efdd49c](https://github.com/thi-ng/umbrella/commit/efdd49c))
+  - add impl for ARandom base class
+
+#### ⏱ Performance improvements
+
+- increase Crypto default size to 1KB ([a30075a](https://github.com/thi-ng/umbrella/commit/a30075a))
+- minor update randomBytesFrom() ([770dbe5](https://github.com/thi-ng/umbrella/commit/770dbe5))
+  - switch loop direction
+
+## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.5.0) (2023-07-14)
+
+#### 🚀 Features
+
+- add pickRandomUnique() ([a70c951](https://github.com/thi-ng/umbrella/commit/a70c951))
+  - add generics for uniqueValuesFrom()
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.4.0) (2023-04-19)
 

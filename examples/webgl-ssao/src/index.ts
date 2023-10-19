@@ -12,6 +12,7 @@ import {
 	TextureFormat,
 	TextureRepeat,
 	checkerboard,
+	clearCanvas,
 	compileModel,
 	defCubeModel,
 	defFBO,
@@ -24,6 +25,7 @@ import {
 	type GLVec3,
 	type ModelSpec,
 	type TextureOpts,
+	defaultViewport,
 } from "@thi.ng/webgl";
 import { CONTROLS, PARAMS, PARAM_DEFS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
@@ -35,6 +37,8 @@ const H = 512;
 const LIGHT_POS = [-5, 1.5, -1];
 const Z_NEAR = 0.1;
 const Z_FAR = 20;
+
+const BG_COL = [0.1, 0.1, 0.1];
 
 // noise texture data for SSAO shader
 const NOISE = new Float32Array([
@@ -166,7 +170,6 @@ const app = () => {
 		},
 		update(_, gl, __, time, frame) {
 			if (frame < 1 || !model) return;
-			const bg = 0.1;
 			const eye = (<IDeref<GLVec3>>model.uniforms!.eyePos).deref();
 			const p = perspective([], 45, W / H, Z_NEAR, Z_FAR);
 			const v = lookAt([], eye, [0, 0, 0], [0, 1, 0]);
@@ -184,13 +187,12 @@ const app = () => {
 			model.uniforms!.proj = <GLMat4>p;
 			gl.viewport(0, 0, W, H);
 			fboGeo.bind();
-			gl.clearColor(bg, bg, bg, 1);
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			clearCanvas(gl, BG_COL);
 			draw(model);
 			fboSSAO.bind();
 			draw(ssaoQuad);
 			fboSSAO.unbind();
-			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+			defaultViewport(gl);
 			draw(finalQuad);
 		},
 	});

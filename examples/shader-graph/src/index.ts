@@ -27,6 +27,7 @@ import {
 } from "@thi.ng/shader-ast-stdlib";
 import { add2, copy, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 import {
+	clearCanvas,
 	compileModel,
 	defQuadModel,
 	defShader,
@@ -46,6 +47,8 @@ const { canvas, gl } = glCanvas({
 	version: 1,
 	parent: document.body,
 });
+
+const BG_COL = [0, 0, 0, 1];
 
 const CTX: AppCtx = {
 	canvas,
@@ -260,8 +263,7 @@ fromRAF().subscribe({
 
 		// then draw all in main canvas
 		gl.viewport(0, 0, CTX.width, CTX.height);
-		gl.clearColor(0, 0, 0, 1);
-		gl.clear(gl.COLOR_BUFFER_BIT);
+		clearCanvas(gl, BG_COL);
 		op1.draw();
 		op2.draw();
 		op3.draw();

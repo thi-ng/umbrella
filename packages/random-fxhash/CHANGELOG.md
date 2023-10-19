@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-08-27T11:20:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.3.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.3.5) (2023-08-12)
+
+#### ♻️ Refactoring
+
+- update .probability() call sites in various pkgs ([c8c8141](https://github.com/thi-ng/umbrella/commit/c8c8141))
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.3.0) (2023-07-14)
+
+#### 🚀 Features
+
+- add pickUnique() ([89f0209](https://github.com/thi-ng/umbrella/commit/89f0209))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.2.0) (2022-05-25)
 

@@ -15,7 +15,7 @@ export interface INorm {
 	norm(scale?: number): number;
 	/**
 	 * Similar to {@link INorm.norm}, but returns values in either the
-	 * `[min..max)` or in the `(-max...min]` interval (i.e. excluding values in
+	 * `[min..max)` or in the `(-max...-min]` interval (i.e. excluding values in
 	 * the `(-min..min)` range). Both `min` and `max` MUST be >= 0.
 	 *
 	 * @remarks
@@ -45,6 +45,13 @@ export interface IRandom extends INorm {
 	 */
 	float(max?: number): number;
 	/**
+	 *  Calls {@link IRandom.float} and returns true iff result is < `p`
+	 *  (assumed to be in [0..1] interval).
+	 *
+	 * @param p
+	 */
+	probability(p: number): boolean;
+	/**
 	 * Returns float in [min..max) interval.
 	 *
 	 * @remarks
@@ -55,7 +62,7 @@ export interface IRandom extends INorm {
 	 */
 	minmax(min: number, max: number): number;
 	/**
-	 * Returns int in [min..max) interval.
+	 * Returns int in **signed** integer [min..max) interval.
 	 *
 	 * @remarks
 	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
@@ -64,6 +71,16 @@ export interface IRandom extends INorm {
 	 * @param max -
 	 */
 	minmaxInt(min: number, max: number): number;
+	/**
+	 * Returns int in **unsigned** integer [min..max) interval.
+	 *
+	 * @remarks
+	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 *
+	 * @param min -
+	 * @param max -
+	 */
+	minmaxUint(min: number, max: number): number;
 }
 
 export interface ISeedable<T> {

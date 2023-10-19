@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/grid-iterators](https://media.thi.ng/umbrella/banners-20220914/thing-grid-iterators.svg?9ea1cbba)
+# ![@thi.ng/grid-iterators](https://media.thi.ng/umbrella/banners-20230807/thing-grid-iterators.svg?9ea1cbba)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/grid-iterators.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Columns](#columns)
@@ -240,7 +241,7 @@ For Node.js REPL:
 const gridIterators = await import("@thi.ng/grid-iterators");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.57 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
 
 ## Dependencies
 
@@ -261,10 +262,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                            | Description                                            | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/> | Visualization of different grid iterator strategies    | [Demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>   | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)   |
+| Screenshot                                                                                                                         | Description                                            | Live demo                                                         | Source                                                                                         |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>              | Visualization of different grid iterator strategies    | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)              |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/> | Generating pure CSS image transitions                  | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-css-image-transition) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)                | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)                |
 
 ## API
 

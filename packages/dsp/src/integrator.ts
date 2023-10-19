@@ -1,4 +1,4 @@
-import type { IReset } from "@thi.ng/api";
+import type { ICopy, IReset } from "@thi.ng/api";
 import { AProc } from "./aproc.js";
 
 /**
@@ -11,9 +11,16 @@ import { AProc } from "./aproc.js";
 export const integrator = (coeff?: number, start?: number) =>
 	new Integrator(coeff, start);
 
-export class Integrator extends AProc<number, number> implements IReset {
+export class Integrator
+	extends AProc<number, number>
+	implements ICopy<Integrator>, IReset
+{
 	constructor(protected _coeff = 1, protected _start = 0) {
 		super(_start);
+	}
+
+	copy() {
+		return new Integrator(this._coeff, this._start);
 	}
 
 	reset() {

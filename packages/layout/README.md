@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners-20220914/thing-layout.svg?4984f585)
+# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners-20230807/thing-layout.svg?4984f585)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/layout.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -54,7 +55,7 @@ For Node.js REPL:
 const layout = await import("@thi.ng/layout");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 620 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 624 bytes
 
 ## Dependencies
 

@@ -1,4 +1,4 @@
-import type { Fn, IID, IObjectOf } from "@thi.ng/api";
+import type { EVENT_ALL, Fn, IID, IObjectOf } from "@thi.ng/api";
 
 /**
  * A validation function for to-be authenticated routes. If this function
@@ -165,3 +165,8 @@ export interface HTMLRouterConfig extends RouterConfig {
 export const EVENT_ROUTE_CHANGED = "route-changed";
 
 export const EVENT_ROUTE_FAILED = "route-failed";
+
+export type RouterEventType =
+	| typeof EVENT_ROUTE_CHANGED
+	| typeof EVENT_ROUTE_FAILED
+	| typeof EVENT_ALL;

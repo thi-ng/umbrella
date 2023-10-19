@@ -40,7 +40,7 @@
 		"screenshot": "examples/webgl-ssao.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.4",
-		"vite": "^4.3.5"
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	}
 }

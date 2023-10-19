@@ -31,6 +31,8 @@ export interface ColumnSpec {
 	tx?: CellTransform;
 }
 
+export type ColumnSpecs = Record<string, ColumnSpec>;
+
 export interface CommonCSVOpts {
 	/**
 	 * Field delimiter character.
@@ -103,7 +105,7 @@ export interface CSVOpts extends CommonCSVOpts {
 	 * If given as object, each key must match an existing/original column name
 	 * (either as per 1st data row or the `header` option).
 	 */
-	cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>;
+	cols: Nullable<ColumnSpec>[] | ColumnSpecs;
 }
 
 export interface CSVFormatOpts {

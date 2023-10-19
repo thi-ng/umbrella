@@ -1,3 +1,4 @@
+import { DOCTYPE_HTML } from "@thi.ng/hiccup/api";
 import { serialize } from "@thi.ng/hiccup/serialize";
 import { DEFAULT_THEME, type Theme } from "./api.js";
 import { compileTheme } from "./theme.js";
@@ -8,7 +9,7 @@ export const generateHtml = (
 	theme: Theme = DEFAULT_THEME
 ) =>
 	serialize([
-		["!DOCTYPE", "html"],
+		DOCTYPE_HTML,
 		[
 			"html",
 			[

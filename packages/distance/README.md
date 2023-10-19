@@ -1,19 +1,21 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/distance](https://media.thi.ng/umbrella/banners-20220914/thing-distance.svg?1deaa6f1)
+# ![@thi.ng/distance](https://media.thi.ng/umbrella/banners-20230807/thing-distance.svg?1deaa6f1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/distance.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Distance metrics](#distance-metrics)
   - [Neighborhoods](#neighborhoods)
     - [Nearest](#nearest)
     - [KNearest](#knearest)
+    - [Radial](#radial)
 - [Status](#status)
 - [Support packages](#support-packages)
 - [Related packages](#related-packages)
@@ -81,6 +83,12 @@ results can be optionally returned in order of proximity (via `.deref()` or
 `.values()`). For K=1 it will be more efficient to use `Nearest` to avoid the
 additional overhead.
 
+#### Radial
+
+An unbounded and unsorted version of [`KNearest`](#knearest), selecting _all_
+items around the target location and given search radius. Qualifying neighbors
+will be accumulated in order of processing via an internal array.
+
 ## Status
 
 **STABLE** - used in production
@@ -122,7 +130,7 @@ For Node.js REPL:
 const distance = await import("@thi.ng/distance");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.26 KB
 
 ## Dependencies
 

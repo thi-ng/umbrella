@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link
+			rel="icon"
+			href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛱️</text></svg>'
+		/>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>ascii-raymarch · @thi.ng/umbrella</title>
+		<link
+			href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			@font-face {
+				font-family: "Iosevka Fixed SS04 Web";
+				font-display: swap;
+				font-weight: 400;
+				font-stretch: normal;
+				font-style: normal;
+				src: url("/assets/iosevka-fixed-ss04-regular.ttf")
+						format("truetype"),
+					url("/assets/iosevka-fixed-ss04-regular.woff2")
+						format("woff2");
+			}
+			body {
+				height: 100vh;
+				overflow: hidden;
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-rows: 1fr 1fr 1fr;
+				background: #000;
+				color: #fff;
+			}
+			pre {
+				font: 10px "Iosevka Fixed SS04 Web", monospace;
+				line-height: 12px;
+				font-weight: 400;
+			}
+			#app {
+				grid-column-start: 2;
+				grid-row-start: 2;
+			}
+			* {
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<pre id="app"></pre>
+		<script type="module" src="/src/index.ts"></script>
+	</body>
+</html>

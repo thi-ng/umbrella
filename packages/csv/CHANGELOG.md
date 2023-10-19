@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-08-28T12:33:46Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.3.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.26) (2023-08-28)
+
+#### ♻️ Refactoring
+
+- add ColumnSpecs alias ([217cb84](https://github.com/thi-ng/umbrella/commit/217cb84))
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.0) (2023-02-05)
 

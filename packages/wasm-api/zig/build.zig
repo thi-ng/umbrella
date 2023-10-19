@@ -1,141 +1,126 @@
 //! Build helpers for using modules/packages distributed via NPM
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!
-//! This version of the script is only compatible with Zig v0.10.1 or older
-//! Use build-v0.11.zig (in this same directory) for newer Zig versions
+//! This version of the script is only compatible with:
+//! Zig 0.11.0-dev.3857+7322aa118 or newer
+//!
+//! Use build.zig (in this same directory) for earlier Zig versions
 
 const std = @import("std");
-
-/// Definition for a (usually hybrid) Zig package which will be distributed via NPM
-pub const Pkg = struct {
-    /// Package ID used for @import
-    id: []const u8,
-    /// Package sub path (appended to base path)
-    path: []const u8,
-    /// Package dependencies aka other package IDs.
-    /// All of them must already have been registered
-    deps: ?[]const []const u8 = null,
-};
-
-pub const PkgOpts = struct {
-    /// Base path to common node_modules directory under which
-    /// all to be imported packages are located
-    base: []const u8 = "node_modules",
-    /// Additional WASM API support packages.
-    /// We don't need to specify core wasmapi, only custom/extra ones
-    /// `wasm-api` and `wasm-api-bindgen` are also auto-added
-    /// as dependency for each of these...
-    packages: ?[]const Pkg = null,
-};
-
-/// Dependency graph for WASM API packages
-/// Expands & resolves the more compact/convenient/human friendly format of PkgOpts
-/// into the data structures used by Zig's build system
-/// Provides a `addAllTo()` function to add all declared packages to a build step
-pub const PkgGraph = struct {
-    arena: std.heap.ArenaAllocator,
-    basePath: []const u8,
-    packages: std.StringArrayHashMap(std.build.Pkg),
-
-    const Self = @This();
-
-    pub fn init(opts: PkgOpts) Self {
-        var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
-        var self = Self{
-            .arena = arena,
-            .basePath = opts.base,
-            .packages = std.StringArrayHashMap(std.build.Pkg).init(arena.allocator()),
-        };
-        const api = "wasm-api";
-        self.packages.put(api, .{
-            .name = api,
-            .source = .{ .path = self.modulePath("@thi.ng/wasm-api/zig/lib.zig") },
-        }) catch unreachable;
-        const apiTypes = "wasm-api-bindgen";
-        self.packages.put(apiTypes, .{
-            .name = apiTypes,
-            .source = .{ .path = self.modulePath("@thi.ng/wasm-api-bindgen/zig/lib.zig") },
-        }) catch unreachable;
-        if (opts.packages) |pkgs| {
-            for (pkgs) |pkg| {
-                self.register(pkg.id, pkg.path, pkg.deps);
-            }
-        }
-        return self;
-    }
-
-    pub fn deinit(self: *const Self) void {
-        self.arena.deinit();
-    }
-
-    /// Registers a single package and its deps (also injects core wasm-api deps)
-    pub fn register(
-        self: *Self,
-        name: []const u8,
-        path: []const u8,
-        dependencies: ?[]const []const u8,
-    ) void {
-        var pkg = std.build.Pkg{
-            .name = name,
-            .source = .{ .path = self.modulePath(path) },
-        };
-        const num = if (dependencies) |deps| deps.len else 0;
-        var dpkgs = self.arena.allocator().alloc(std.build.Pkg, num + 2) catch unreachable;
-        dpkgs[0] = if (self.packages.get("wasm-api")) |p| p else unreachable;
-        dpkgs[1] = if (self.packages.get("wasm-api-bindgen")) |p| p else unreachable;
-        if (dependencies) |deps| {
-            var i: usize = 0;
-            while (i < deps.len) : (i += 1) {
-                if (self.packages.get(deps[i])) |p| {
-                    dpkgs[i + 1] = p;
-                } else @panic("unknown dependency");
-            }
-        }
-        pkg.dependencies = dpkgs;
-        self.packages.put(name, pkg) catch unreachable;
-    }
-
-    /// Adds all registered packages to the given build step
-    pub fn addAllTo(self: *const Self, step: *std.build.LibExeObjStep) void {
-        for (self.packages.values()) |pkg| step.addPackage(pkg);
-    }
-
-    fn modulePath(self: *Self, path: []const u8) []const u8 {
-        return std.fs.path.join(self.arena.allocator(), &.{ self.basePath, path }) catch unreachable;
-    }
-};
+const Build = std.Build;
 
 /// Config options
 pub const WasmLibOpts = struct {
-    /// Relative path to base directory for WASM API packages
+    /// Base path to common node_modules directory under which
+    /// all to be imported modules are located
     base: []const u8 = "node_modules",
     /// Relative path to root source file
     root: []const u8 = "zig/main.zig",
-    /// Relative path to output directory
-    out: []const u8 = "src",
-    /// Package definitions for additional WASM API modules
-    packages: ?[]const Pkg = null,
+    /// Additional WASM API support modules.
+    /// Only need to specify custom/extra modules
+    /// `wasm-api` and `wasm-api-bindgen` are auto-added as dependency for all...
+    modules: ?[]const ModuleSpec = null,
     /// Build mode override (else allows config via CLI args)
-    mode: ?std.builtin.Mode = null,
+    optimize: ?std.builtin.Mode = null,
     /// Additional WASM target features, e.g. `.simd128` to enable SIMD
     features: ?[]const std.Target.wasm.Feature = null,
+    /// Initial memory (in bytes, MUST be multiple of 0x10000)
+    initialMemory: ?u64 = null,
+    /// Max memory (in bytes, MUST be multiple of 0x10000)
+    maxMemory: ?u64 = null,
+    // If true, build will also generate docs
+    // docs: bool = false,
 };
+
+/// WASM API sub-module declaration
+pub const ModuleSpec = struct {
+    /// module import name/ID
+    name: []const u8,
+    /// Relative path to configured base path
+    path: []const u8,
+    /// Module IDs of other modules this module depends on
+    /// Only need to specify custom/extra modules
+    /// `wasm-api` and `wasm-api-bindgen` are auto-added as dependency for all...
+    dependencies: ?[]const []const u8 = null,
+};
+
+const wasmapi = "wasm-api";
+const wasmbind = "wasm-api-bindgen";
 
 /// Creates and returns a build step to build a dynamic WASM library, configured
 /// with given options and package declarations. The given package specs will be inserted
-pub fn wasmLib(b: *std.build.Builder, opts: WasmLibOpts) *std.build.LibExeObjStep {
-    const lib = b.addSharedLibrary("main", opts.root, .unversioned);
-    lib.setTarget(.{
-        .cpu_arch = .wasm32,
-        .os_tag = .freestanding,
-        .cpu_features_add = if (opts.features) |features| std.Target.wasm.featureSet(features) else std.Target.Cpu.Feature.Set.empty,
+pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
+    const lib = b.addSharedLibrary(.{
+        .name = "main",
+        .root_source_file = .{ .path = opts.root },
+        .target = .{
+            .cpu_arch = .wasm32,
+            .os_tag = .freestanding,
+            .cpu_features_add = if (opts.features) |features| std.Target.wasm.featureSet(features) else std.Target.Cpu.Feature.Set.empty,
+        },
+        .optimize = if (opts.optimize) |m| m else b.standardOptimizeOption(.{}),
     });
-    const mode = if (opts.mode) |m| m else b.standardReleaseOptions();
-    lib.setBuildMode(mode);
-    if (mode == .ReleaseSmall or mode == .ReleaseFast) lib.strip = true;
-    const pkgs = PkgGraph.init(.{ .base = opts.base, .packages = opts.packages });
-    defer pkgs.deinit();
-    pkgs.addAllTo(lib);
-    lib.setOutputDir(opts.out);
+    if (lib.optimize == .ReleaseSmall or lib.optimize == .ReleaseFast) lib.strip = true;
+
+    // build flags
+    lib.rdynamic = true;
+    lib.import_symbols = true;
+    lib.initial_memory = opts.initialMemory;
+    lib.max_memory = opts.maxMemory;
+
+    // add default dependencies
+    lib.addModule(
+        wasmapi,
+        b.createModule(.{
+            .source_file = modulePath(b.allocator, opts.base, "@thi.ng/wasm-api/zig/lib.zig"),
+        }),
+    );
+    lib.addModule(
+        wasmbind,
+        b.createModule(.{
+            .source_file = modulePath(b.allocator, opts.base, "@thi.ng/wasm-api-bindgen/zig/lib.zig"),
+        }),
+    );
+    if (opts.modules) |modules| {
+        for (modules) |mod| {
+            register(lib, mod, opts);
+        }
+    }
     return lib;
+}
+
+/// Registers a single package and its deps (also injects core wasm-api deps)
+pub fn register(step: *Build.Step.Compile, mod: ModuleSpec, opts: WasmLibOpts) void {
+    const num = if (mod.dependencies) |ids| ids.len else 0;
+    var dpkgs = step.step.owner.allocator.alloc(Build.ModuleDependency, num + 2) catch unreachable;
+    dpkgs[0] = if (step.modules.get(wasmapi)) |m| .{ .name = wasmapi, .module = m } else unreachable;
+    dpkgs[1] = if (step.modules.get(wasmbind)) |m| .{ .name = wasmbind, .module = m } else unreachable;
+    var i: usize = 2;
+    if (mod.dependencies) |ids| {
+        for (ids) |id| {
+            if (step.modules.get(id)) |m| {
+                if (isDuplicateId(dpkgs[0..i], id)) {
+                    std.log.info("ignoring duplicate dependency: {s}", .{id});
+                    continue;
+                }
+                dpkgs[i] = .{ .name = id, .module = m };
+                i += 1;
+            } else @panic("unknown dependency");
+        }
+    }
+    step.addModule(mod.name, step.step.owner.createModule(.{
+        .source_file = modulePath(step.step.owner.allocator, opts.base, mod.path),
+        .dependencies = dpkgs[0..i],
+    }));
+}
+
+fn isDuplicateId(deps: []Build.ModuleDependency, name: []const u8) bool {
+    for (deps) |d| {
+        if (std.mem.eql(u8, d.name, name)) return true;
+    }
+    return false;
+}
+
+fn modulePath(allocator: std.mem.Allocator, base: []const u8, path: []const u8) Build.FileSource {
+    return .{ .path = std.fs.path.join(allocator, &.{ base, path }) catch unreachable };
 }

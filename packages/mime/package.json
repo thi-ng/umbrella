@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/mime",
-	"version": "2.2.17",
+	"version": "2.2.25",
 	"description": "650+ file extension to MIME type mappings, based on mime-db",
 	"type": "module",
 	"module": "./index.js",
@@ -35,13 +35,13 @@
 		"tool:convert": "tools:node-esm tools/convert.ts"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/api": "^8.7.6",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"database",

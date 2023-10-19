@@ -1,18 +1,29 @@
-import { benchmark } from "@thi.ng/bench";
-import { assert } from "@thi.ng/errors";
-import { defKSUID32, KSUID32 } from "../src";
-
-const opts = { iter: 100, warmup: 10 };
+import { FORMAT_MD, suite } from "@thi.ng/bench";
+import { KSUID32, defKSUID32 } from "@thi.ng/ksuid";
 
 const bench = (id: KSUID32, n = 10000) => {
-	const acc = new Set<string>();
-	for (let i = 0; i < n; i++) acc.add(id.next());
-	assert(acc.size === n, `collision`);
+	let res = new Array(n);
+	return () => {
+		for (let i = 0; i < n; i++) res[i] = id.next();
+		return res;
+	};
 };
 
-// prettier-ignore
-benchmark(() => bench(defKSUID32({ bytes:16 })), { title: "b62, 128bit, n=10000", ...opts });
-// prettier-ignore
-benchmark(() => bench(defKSUID32({ bytes: 8 })), { title: "b62, 64bit, n=10000", ...opts });
-// prettier-ignore
-benchmark(() => bench(defKSUID32({ bytes: 4 })), { title: "b62, 32bit, n=10000", ...opts });
+// console.profile();
+
+suite(
+	[
+		{
+			title: "b62, 128bit, n=10000",
+			fn: bench(defKSUID32({ bytes: 16 })),
+		},
+		{
+			title: "b62, 64bit, n=10000",
+			fn: bench(defKSUID32({ bytes: 8 })),
+		},
+	],
+	{ iter: 100, warmup: 100, size: 1, format: FORMAT_MD }
+);
+
+// console.profileEnd();
+// console.log("done");

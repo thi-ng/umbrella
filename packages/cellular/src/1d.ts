@@ -254,7 +254,7 @@ export class MultiCA1D implements IClear {
 		const fn =
 			target === "prob" ? () => rnd.float() : () => rnd.int() % num;
 		for (let x = 0, width = this.width; x < width; x++) {
-			if (rnd.float() < prob) dest[x] = fn();
+			if (rnd.probability(prob)) dest[x] = fn();
 		}
 		return this;
 	}
@@ -284,10 +284,9 @@ export class MultiCA1D implements IClear {
 		const { width, prob, gens, configs, mask } = this;
 		const [next, curr] = gens;
 		for (let x = 0; x < width; x++) {
-			next[x] =
-				rnd.float() < prob[x]
-					? this.computeCell(configs[mask[x]], x, curr[x])
-					: curr[x];
+			next[x] = rnd.probability(prob[x])
+				? this.computeCell(configs[mask[x]], x, curr[x])
+				: curr[x];
 		}
 		gens.unshift(gens.pop()!);
 	}
@@ -356,7 +355,7 @@ export class MultiCA1D implements IClear {
 		const $ = (id: Target, conf?: Partial<UpdateBufferOpts>) => {
 			conf &&
 				conf.perturb &&
-				rnd.float() < conf.perturb &&
+				rnd.probability(conf.perturb) &&
 				this.setNoise(id, conf.density || 0.05, rnd);
 		};
 		for (let y = 0; y < height; y++) {

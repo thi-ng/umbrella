@@ -159,3 +159,14 @@ export interface PrimTypeMap {
 	3: "vec3";
 	4: "vec4";
 }
+
+export const V2 = "vec2";
+export const V3 = "vec3";
+export const V4 = "vec4";
+
+export const M2 = "mat2";
+export const M3 = "mat3";
+export const M4 = "mat4";
+
+export const F = "float";
+export const I = "int";

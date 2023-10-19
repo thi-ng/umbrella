@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-19T09:28:07Z
+- **Last updated**: 2023-10-18T18:06:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,35 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [7.7.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.19) (2023-10-18)
+
+#### ♻️ Refactoring
+
+- update distJaccard(), add docs ([a5a6256](https://github.com/thi-ng/umbrella/commit/a5a6256))
+
+### [7.7.16](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.16) (2023-10-05)
+
+#### 🩹 Bug fixes
+
+- update minor()/major() ([88b3008](https://github.com/thi-ng/umbrella/commit/88b3008))
+  - update iteration order of default impls of both fns
+
+### [7.7.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.7) (2023-08-14)
+
+#### 🩹 Bug fixes
+
+- fix `FromBVecOpV` result arg type ([2ca2856](https://github.com/thi-ng/umbrella/commit/2ca2856))
+
+## [7.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.0) (2023-06-16)
+
+#### 🚀 Features
+
+- add limit2/3/4() ([46bbf23](https://github.com/thi-ng/umbrella/commit/46bbf23))
+
+#### ⏱ Performance improvements
+
+- avoid/delay sqrt in limit() ([c677a54](https://github.com/thi-ng/umbrella/commit/c677a54))
 
 ### [7.6.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.6.12) (2023-04-19)
 

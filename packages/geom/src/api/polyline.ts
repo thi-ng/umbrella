@@ -3,12 +3,17 @@ import type {
 	IHiccupPathSegment,
 	IHiccupShape,
 } from "@thi.ng/geom-api";
+import type { Vec } from "@thi.ng/vectors";
 import { __copyShape } from "../internal/copy.js";
 import { APC } from "./apc.js";
 
 export class Polyline extends APC implements IHiccupShape, IHiccupPathSegment {
 	get type() {
 		return "polyline";
+	}
+
+	add(...points: Vec[]) {
+		this.points.push(...points);
 	}
 
 	copy(): Polyline {

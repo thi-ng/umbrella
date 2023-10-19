@@ -7,6 +7,7 @@ import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { divN2 } from "@thi.ng/vectors/divn";
 import { eqDelta2 } from "@thi.ng/vectors/eqdelta";
 import { equals2 } from "@thi.ng/vectors/equals";
+import { maddN2 } from "@thi.ng/vectors/maddn";
 import { magSq2 } from "@thi.ng/vectors/magsq";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import { sub2 } from "@thi.ng/vectors/sub";
@@ -257,6 +258,18 @@ export const inv: ComplexOp1 = (a) =>
  * @param a -
  */
 export const log: ComplexOp1 = (a) => [Math.log(abs(a)), arg(a)];
+
+/**
+ * Combined multiply-add: `a * b + c`. The `b` param can be a real number.
+ *
+ * @param a
+ * @param b
+ * @param c
+ */
+export const madd = (a: Complex, b: Complex | number, c: Complex): Complex =>
+	isNumber(b)
+		? maddN2([], a, b, c)
+		: [a[0] * b[0] - a[1] * b[1] + c[0], a[0] * b[1] + a[1] * b[0] + c[1]];
 
 /**
  * Complex number multiplication. Operand `b` can be real or complex.

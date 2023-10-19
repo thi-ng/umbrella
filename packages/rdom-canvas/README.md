@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/rdom-canvas](https://media.thi.ng/umbrella/banners-20220914/thing-rdom-canvas.svg?d17bbfc7)
+# ![@thi.ng/rdom-canvas](https://media.thi.ng/umbrella/banners-20230807/thing-rdom-canvas.svg?d17bbfc7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rdom-canvas.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [General usage](#general-usage)
@@ -141,7 +142,8 @@ A selection:
 | Screenshot                                                                                                                | Description                                             | Live demo                                                | Source                                                                                |
 |:--------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/>  | Interactive visualization of closest points on ellipses | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.png" width="240"/> | Minimal rdom-canvas animation                           | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/quasi-lattice.png" width="240"/>      | Quasi-random lattice generator                          | [Demo](https://demo.thi.ng/umbrella/quasi-lattice/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/quasi-lattice)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/> | Minimal rdom-canvas animation                           | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>     | rdom & hiccup-canvas interop test                       | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>       | Multi-layer vectorization & dithering of bitmap images  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)       |
 

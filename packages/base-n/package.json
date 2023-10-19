@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/base-n",
-	"version": "2.5.3",
-	"description": "Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints",
+	"version": "2.5.13",
+	"description": "Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/85, support for bigints and encoding/decoding of byte arrays",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -33,19 +33,17 @@
 		"pub": "yarn npm publish --access public",
 		"test": "testament test"
 	},
-	"dependencies": {
-		"@thi.ng/hex": "^2.3.9"
-	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"array",
+		"base8",
 		"base16",
 		"base32",
 		"base36",

@@ -242,7 +242,7 @@
 				"}",
 				"",
 				"pub inline fn hasModifier(self: *const KeyEvent, mod: KeyModifier) bool {",
-				"return self.modifiers & @enumToInt(mod) != 0;",
+				"return self.modifiers & @intFromEnum(mod) != 0;",
 				"}"
 			]
 		}

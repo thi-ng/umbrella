@@ -252,6 +252,10 @@ import { asCSS, asRGB } from "@thi.ng/color-palettes";
 asCSS(7);
 // ["#2f1864", "#e40302", "#f25c22", "#d987bd", "#44b6e7", "#e3dadd"]
 
+// get in reverse order
+asCSS(7, true);
+// ["#e3dadd", "#44b6e7", "#d987bd", "#f25c22", "#e40302", "#2f1864"]
+
 asInt(7).map(x => x.toString(16));
 // [ 'ff2f1864', 'ffe40302', 'fff25c22', 'ffd987bd', 'ff44b6e7', 'ffe3dadd']
 

@@ -1,4 +1,5 @@
 import type { Func2, Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
+import { F, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -18,17 +19,14 @@ import {
 } from "@thi.ng/shader-ast/builtin/math";
 import { permute3 } from "./permute.js";
 
-export const worleyDist = defn(
-	"vec3",
-	"worleyDist",
-	["vec3", "vec3"],
-	(a, b) => [ret(add(mul(a, a), mul(b, b)))]
-);
+export const worleyDist = defn(V3, "worleyDist", [V3, V3], (a, b) => [
+	ret(add(mul(a, a), mul(b, b))),
+]);
 
 export const worleyDistManhattan = defn(
-	"vec3",
+	V3,
 	"worleyDistManhatten",
-	["vec3", "vec3"],
+	[V3, V3],
 	(a, b) => [ret(add(abs(a), abs(b)))]
 );
 
@@ -54,7 +52,7 @@ export const worley2 = (
 	distFn: Func2<"vec3", "vec3", "vec3">,
 	name = gensym("worley2_")
 ) =>
-	defn("vec2", name, ["vec2", "float"], (P, jitter) => {
+	defn(V2, name, [V2, F], (P, jitter) => {
 		const K = float(1 / 7);
 		const Ko = float(3 / 7);
 		const oI = sym(vec3(-1, 0, 1));

@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { FnN2 } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom";
 import { isolines, setBorder } from "@thi.ng/geom-isoline";
 import { start } from "@thi.ng/hdom";
@@ -8,10 +8,10 @@ import {
 	comp,
 	iterator,
 	map,
-	mapcat,
 	mapIndexed,
+	mapcat,
 	range,
-	range2d,
+	repeatedly2d,
 } from "@thi.ng/transducers";
 import type { Vec } from "@thi.ng/vectors";
 
@@ -23,7 +23,7 @@ const t0 = Date.now();
 const plasma = (n: number, t: number) => {
 	t = Math.sin(t * 0.005) * 100;
 	const tmod = 123 + 4.5 * Math.sin(t * 0.02);
-	return ([x, y]: number[]) => {
+	return (x: number, y: number) => {
 		x *= 0.1;
 		y *= 0.1;
 		let acc = 0;
@@ -36,8 +36,8 @@ const plasma = (n: number, t: number) => {
 };
 
 // compute full pattern via given fn
-const makeField = (fn: Fn<number[], number>, width: number, height: number) =>
-	setBorder([...map(fn, range2d(width, height))], width, height, 1000);
+const makeField = (fn: FnN2, width: number, height: number) =>
+	setBorder([...repeatedly2d(fn, width, height)], width, height, 1000);
 
 // hdom root component
 const app = () => {

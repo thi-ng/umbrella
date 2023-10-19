@@ -1,0 +1,34 @@
+{
+	"name": "@example/webgl-game-of-life",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Game of Life implemented as WebGL2 multi-pass shader pipeline",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
+	},
+	"dependencies": {
+		"@thi.ng/logger": "workspace:^",
+		"@thi.ng/random": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/webgl": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"random",
+			"webgl"
+		],
+		"screenshot": "examples/webgl-game-of-life.png"
+	}
+}

@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/transducers-fsm](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-fsm.svg?badc9ef5)
+# ![@thi.ng/transducers-fsm](https://media.thi.ng/umbrella/banners-20230807/thing-transducers-fsm.svg?badc9ef5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-fsm.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 **Update 12/2022: This package is considered completed and no longer being
 updated with new features.**
@@ -17,6 +18,7 @@ updated with new features.**
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [Usage examples](#usage-examples)
   - [3-state FSM](#3-state-fsm)
 - [API](#api)
@@ -75,6 +77,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 213 bytes
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                                | Description                                                                                | Live demo                                                | Source                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-key-sequences.jpg" width="240"/> | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-key-sequences) |
 
 ## Usage examples
 

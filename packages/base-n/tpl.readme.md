@@ -6,6 +6,9 @@
 
 {{pkg.description}}
 
+In addition to the actual converters/encoders, the package also provides the
+plain character strings for each base and variations.
+
 {{meta.status}}
 
 {{repo.supportPackages}}

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-10-12T11:53:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.3.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.3.24) (2023-10-11)
+
+#### 🩹 Bug fixes
+
+- fix "ellipse" shape handling (off-by-one error) ([d1985c4](https://github.com/thi-ng/umbrella/commit/d1985c4))
+  - update draw() to include last (CCW flag) shape arg
+  - also related to [#418](https://github.com/thi-ng/umbrella/issues/418)
+- update circular arc handling in draw() ([18173c5](https://github.com/thi-ng/umbrella/commit/18173c5))
+  - actually use CCW shape arg
+  - add issue references for upcoming fixes
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.3.0) (2023-04-08)
 

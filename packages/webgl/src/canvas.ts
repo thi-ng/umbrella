@@ -68,8 +68,12 @@ export const getExtensions = <K extends keyof WebGLExtensionMap>(
 };
 
 /**
- * Sets clear color to given RGBA `color` and clears viewport's
+ * Sets clear color to given RGB(A) `color` and clears viewport's
  * `COLOR_BUFFER_BIT` and (by default) also `DEPTH_BUFFER_BIT`.
+ *
+ * @remarks
+ * If the given color vector only contains RGB values, alpha will default to
+ * 1.0.
  *
  * @param gl
  * @param color
@@ -80,6 +84,14 @@ export const clearCanvas = (
 	[r, g, b, a]: ReadonlyVec,
 	depth = true
 ) => {
-	gl.clearColor(r, g, b, a);
+	gl.clearColor(r, g, b, a != null ? a : 1);
 	gl.clear(gl.COLOR_BUFFER_BIT | (depth ? gl.DEPTH_BUFFER_BIT : 0));
 };
+
+/**
+ * Resets viewport to full drawing buffer size.
+ *
+ * @param gl
+ */
+export const defaultViewport = (gl: WebGLRenderingContext) =>
+	gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);

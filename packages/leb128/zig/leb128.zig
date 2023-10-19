@@ -4,13 +4,13 @@ export var buf: [10]u8 = undefined;
 /// have at least 10 bytes capacity)
 pub fn leb128EncodeU(src: u64, dest: []u8) u8 {
     if (src < 0x80) {
-        dest[0] = @intCast(u8, src & 0x7f);
+        dest[0] = @intCast(src & 0x7f);
         return 1;
     }
     var n: u8 = 0;
     var x: u64 = src;
     while (true) {
-        var byte: u8 = @intCast(u8, x & 0x7f);
+        var byte: u8 = @intCast(x & 0x7f);
         x = x >> 7;
         if (x != 0) {
             byte |= 0x80;
@@ -30,7 +30,7 @@ pub fn leb128DecodeU(src: []u8, num: *u8) u64 {
     var n: u8 = 0;
     while (n < 10) {
         var byte = src[n];
-        res |= @intCast(u64, byte & 0x7f) << shift;
+        res |= @as(u64, @intCast(byte & 0x7f)) << shift;
         shift += 7;
         n += 1;
         if (byte < 0x80) {
@@ -45,15 +45,15 @@ pub fn leb128DecodeU(src: []u8, num: *u8) u64 {
 pub fn leb128EncodeI(src: i64, dest: []u8) u8 {
     const neg: bool = src < 0;
     if (src >= -64 and src < 64) {
-        dest[0] = @intCast(u8, src & 0x3f) |
-            @intCast(u8, @boolToInt(neg)) << 6;
+        dest[0] = @as(u8, @intCast(src & 0x3f)) |
+            @as(u8, @intCast(@intFromBool(neg))) << 6;
         return 1;
     }
     var n: u8 = 0;
     var x: i64 = src;
     var more: bool = true;
     while (more) {
-        var byte: u8 = @intCast(u8, x & 0x7f);
+        var byte: u8 = @intCast(x & 0x7f);
         var sign: bool = (byte & 0x40) > 0;
         x >>= 7;
         if ((x == 0 and !sign) or (x == -1 and sign)) {
@@ -75,7 +75,7 @@ pub fn leb128DecodeI(src: []u8, num: *u8) i64 {
     var byte: u8 = 0;
     while (true) {
         byte = src[n];
-        res |= @intCast(i64, byte & 0x7f) << shift;
+        res |= @as(i64, @intCast(byte & 0x7f)) << shift;
         shift += 7;
         n += 1;
         if ((byte & 0x80) == 0 or n > 9) {
@@ -83,7 +83,7 @@ pub fn leb128DecodeI(src: []u8, num: *u8) i64 {
         }
     }
     if (n < 10 and (byte & 0x40) > 0) {
-        res |= @intCast(i64, -1) << shift;
+        res |= @as(i64, @intCast(-1)) << shift;
     }
     num.* = n;
     return res;
@@ -92,24 +92,24 @@ pub fn leb128DecodeI(src: []u8, num: *u8) i64 {
 /// WASM only. JS interop to exchange data via f64 (for lack of i64/u64
 /// on JS side). Writes results to exported `buf` array and returns
 /// number of bytes used.
-export fn leb128EncodeU64(x: u64) u8 {
+pub export fn leb128EncodeU64(x: u64) u8 {
     return leb128EncodeU(x, buf[0..]);
 }
 
 /// WASM only. JS interop to exchange data via f64 (for lack of i64/u64
 /// on JS side). Consumes bytes from the exported `buf` array and returns
 /// decoded value. Writes number of bytes consumed into `buf[0]`
-export fn leb128DecodeU64() u64 {
+pub export fn leb128DecodeU64() u64 {
     return leb128DecodeU(buf[0..], &buf[0]);
 }
 
 /// See `leb128_encode_u_js`
-export fn leb128EncodeI64(x: i64) u8 {
+pub export fn leb128EncodeI64(x: i64) u8 {
     return leb128EncodeI(x, buf[0..]);
 }
 
 /// See `leb128_decode_u_js`
-export fn leb128DecodeI64() i64 {
+pub export fn leb128DecodeI64() i64 {
     return leb128DecodeI(buf[0..], &buf[0]);
 }
 

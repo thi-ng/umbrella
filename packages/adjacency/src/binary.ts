@@ -22,7 +22,7 @@ export class AdjacencyBitMatrix implements IGraph<number> {
 
 	*edges() {
 		const directed = !this.undirected;
-		for (let i = this.mat.n; i-- > 0; ) {
+		for (let i = this.mat.m; i-- > 0; ) {
 			for (let n of this.neighbors(i)) {
 				if (directed || n > i) {
 					yield <Edge>[i, n];
@@ -85,18 +85,19 @@ export class AdjacencyBitMatrix implements IGraph<number> {
 	}
 
 	neighbors(id: number) {
-		const res: number[] = [];
-		const { data, stride } = this.mat;
-		id *= stride;
-		for (let i = this.mat.n - 1, j = id + stride - 1; i >= 0; i -= 8, j--) {
-			const v = data[j];
-			if (v !== 0) {
-				for (let k = 31 - Math.clz32(v); k >= 0; k--) {
-					(v & (1 << k)) !== 0 && res.push(i - k);
-				}
-			}
+		return [...this.mat.row(id, true).positions()];
+	}
+
+	similarity(id: number, threshold = 0) {
+		const mat = this.mat;
+		const query = mat.row(id, true);
+		const acc: number[][] = [];
+		for (let i = 0, m = mat.m; i < m; i++) {
+			if (i === id) continue;
+			const sim = query.similarity(mat.row(i, true));
+			if (sim >= threshold) acc.push([i, sim]);
 		}
-		return res;
+		return acc.sort((a, b) => b[1] - a[1]);
 	}
 
 	invert(): AdjacencyBitMatrix {

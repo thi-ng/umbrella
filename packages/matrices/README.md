@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/matrices](https://media.thi.ng/umbrella/banners-20220914/thing-matrices.svg?4a7b1186)
+# ![@thi.ng/matrices](https://media.thi.ng/umbrella/banners-20230807/thing-matrices.svg?4a7b1186)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/matrices.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -100,7 +101,9 @@ A selection:
 
 | Screenshot                                                                                                                           | Description                                                                                  | Live demo                                                | Source                                                                                |
 |:-------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/>                 | (Re)Constructing the thi.ng logo using a 2D signed-distance field                            | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export                         | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>                   | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                                                | [Demo](https://demo.thi.ng/umbrella/scenegraph/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>              | 2D scenegraph & image map based geometry manipulation                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>                  | Minimal shader graph developed during livestream #2                                          | [Demo](https://demo.thi.ng/umbrella/shader-graph/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)       |

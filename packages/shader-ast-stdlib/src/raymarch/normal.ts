@@ -1,4 +1,5 @@
 import type { Swizzle2_3, Vec2Sym } from "@thi.ng/shader-ast";
+import { F, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { gensym } from "@thi.ng/shader-ast/ast/idgen";
 import { vec2, vec3 } from "@thi.ng/shader-ast/ast/lit";
@@ -21,7 +22,7 @@ export const raymarchNormal = (
 	scene: RaymarchScene,
 	name = gensym("raymarchNormal_")
 ) =>
-	defn("vec3", name, ["vec3", "float"], (p, smooth) => {
+	defn(V3, name, [V3, F], (p, smooth) => {
 		let dn: Vec2Sym;
 		const comp = (id: Swizzle2_3) =>
 			sub($x(scene(add(p, $(dn, id)))), $x(scene(sub(p, $(dn, id)))));

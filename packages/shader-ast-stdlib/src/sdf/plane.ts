@@ -1,3 +1,4 @@
+import { F, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { add } from "@thi.ng/shader-ast/ast/ops";
 import { dot } from "@thi.ng/shader-ast/builtin/math";
@@ -9,12 +10,9 @@ import { dot } from "@thi.ng/shader-ast/builtin/math";
  * @param normal - vec2
  * @param w - float
  */
-export const sdfPlane2 = defn(
-	"float",
-	"sdPlane2",
-	["vec2", "vec2", "float"],
-	(p, n, w) => [ret(add(dot(p, n), w))]
-);
+export const sdfPlane2 = defn(F, "sdPlane2", [V2, V2, F], (p, n, w) => [
+	ret(add(dot(p, n), w)),
+]);
 
 /**
  * Returns signed distance from `p` to plane defined by `normal` and `w`.
@@ -23,9 +21,6 @@ export const sdfPlane2 = defn(
  * @param normal - vec3
  * @param w - float
  */
-export const sdfPlane3 = defn(
-	"float",
-	"sdPlane3",
-	["vec3", "vec3", "float"],
-	(p, n, w) => [ret(add(dot(p, n), w))]
-);
+export const sdfPlane3 = defn(F, "sdPlane3", [V3, V3, F], (p, n, w) => [
+	ret(add(dot(p, n), w)),
+]);

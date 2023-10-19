@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/date](https://media.thi.ng/umbrella/banners-20220914/thing-date.svg?954b4ac2)
+# ![@thi.ng/date](https://media.thi.ng/umbrella/banners-20230807/thing-date.svg?954b4ac2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/date.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Status](#status)
@@ -57,7 +58,7 @@ For Node.js REPL:
 const date = await import("@thi.ng/date");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.13 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.12 KB
 
 ## Dependencies
 
@@ -73,10 +74,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                            | Description                                                        | Live demo                                           | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits                  |                                                     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/>  | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list)  |
+| Screenshot                                                                                                            | Description                                                                                             | Live demo                                           | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits                                                       |                                                     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>  | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/>  | Zig-based To-Do list, DOM creation, local storage task persistence                                      | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list)  |
 
 ## API
 

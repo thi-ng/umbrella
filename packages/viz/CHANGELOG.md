@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-10-11T10:05:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,27 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.6.0) (2023-10-05)
+
+#### 🚀 Features
+
+- update stackedIntervals(), add docs ([fa7b05c](https://github.com/thi-ng/umbrella/commit/fa7b05c))
+  - store computed number of lanes as "data-num-lanes" attrib in
+    generated top-level group
+  - add doc strings for StackedIntervalOpts
+
+### [0.5.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.5.5) (2023-09-19)
+
+#### ♻️ Refactoring
+
+- update hiccup/SVG generators ([37c532f](https://github.com/thi-ng/umbrella/commit/37c532f))
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.5.0) (2023-08-28)
+
+#### 🚀 Features
+
+- add dataBoundsLog() ([b2b0824](https://github.com/thi-ng/umbrella/commit/b2b0824))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.4.0) (2021-11-17)
 

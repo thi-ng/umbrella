@@ -15,10 +15,22 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	/** Field size in bits (always a multiple of 8) */
 	n: number;
 
-	constructor(bits: number | string | ArrayLike<boolean | number>) {
+	constructor(
+		bits: number | string | ArrayLike<boolean | number>,
+		buf?: Uint8Array
+	) {
 		const isNumber = typeof bits === "number";
 		this.n = align(isNumber ? <number>bits : (<any>bits).length, 8);
-		this.data = new Uint8Array(this.n >>> 3);
+		const numBytes = this.n >>> 3;
+		if (buf) {
+			assert(
+				numBytes === buf.length,
+				`buffer must have length=${this.n >>> 3}`
+			);
+			this.data = buf;
+		} else {
+			this.data = new Uint8Array(numBytes);
+		}
 		!isNumber && this.setRange(0, <any>bits);
 	}
 
@@ -41,8 +53,12 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 */
 	*positions() {
 		const { data, n } = this;
-		for (let i = 0; i < n; i++) {
-			if (data[i >>> 3] & (1 << (~i & 7))) yield i;
+		for (let i = 0; i < n; i += 8) {
+			const x = data[i >>> 3];
+			if (!x) continue;
+			for (let k = 31 - Math.clz32(x); k >= 0; k--) {
+				if (x & (1 << k)) yield i + 7 - k;
+			}
 		}
 	}
 
@@ -150,6 +166,37 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 */
 	density() {
 		return this.popCount() / this.n;
+	}
+
+	/**
+	 * Computes the Jaccard similarity with given `field`. Returns a value in
+	 * [0..1] interval: 1.0 if `a` and `b` are equal, or 0.0 if none of the
+	 * components match.
+	 *
+	 * @remarks
+	 * If `field` is not a `BitField` instance, one will be created for it. The
+	 * resulting sizes of both fields MUST be equal.
+	 *
+	 * Reference: https://en.wikipedia.org/wiki/Jaccard_index
+	 *
+	 * @param field
+	 */
+	similarity(field: BitField | string | ArrayLike<boolean | number>) {
+		const $field = field instanceof BitField ? field : new BitField(field);
+		this.ensureSize($field);
+		const adata = this.data;
+		const bdata = $field.data;
+		let numUnion = 0;
+		let numIsec = 0;
+		for (let i = 0, n = this.n; i < n; i++) {
+			const j = i >>> 3;
+			const k = 1 << (i & 7);
+			const aa = (adata[j] & k) !== 0;
+			const bb = (bdata[j] & k) !== 0;
+			numUnion += ~~(aa || bb);
+			numIsec += ~~(aa && bb);
+		}
+		return numUnion ? numIsec / numUnion : 0;
 	}
 
 	and(field: BitField) {

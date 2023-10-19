@@ -1,0 +1,87 @@
+{
+	"name": "@thi.ng/hiccup-html-parse",
+	"version": "0.3.0",
+	"description": "Well-formed HTML parsing and customizable transformation to nested JS arrays in @thi.ng/hiccup format",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/defmulti": "^3.0.0",
+		"@thi.ng/parse": "^2.4.0",
+		"@thi.ng/strings": "^3.6.0"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
+		"tools": "workspace:^",
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
+	},
+	"keywords": [
+		"ast",
+		"hiccup",
+		"html",
+		"parser",
+		"tree",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/hiccup",
+		"related": [
+			"hiccup-html",
+			"hiccup-markdown",
+			"zipper"
+		],
+		"status": "alpha",
+		"year": 2023
+	}
+}

@@ -14,6 +14,7 @@ import { last } from "@thi.ng/transducers/last";
 import { map } from "@thi.ng/transducers/map";
 import { max } from "@thi.ng/transducers/max";
 import { multiplex } from "@thi.ng/transducers/multiplex";
+import { range } from "@thi.ng/transducers/range";
 import { repeat as $repeat } from "@thi.ng/transducers/repeat";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { scan } from "@thi.ng/transducers/scan";
@@ -94,7 +95,7 @@ export const table = (
 		body
 	);
 	const pads = widths.map((w, i) => PADS[align![i]](w));
-	const colIDs = [...repeatedly((x) => x, numColumns)];
+	const colIDs = [...range(numColumns)];
 	const result = body.map(
 		(row) => colIDs.map((i) => `| ${pads[i](str(row[i]))} `).join("") + "|"
 	);

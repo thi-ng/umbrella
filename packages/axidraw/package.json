@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/axidraw",
-	"version": "1.1.4",
+	"version": "1.1.26",
 	"description": "Minimal AxiDraw plotter/drawing machine controller for Node.js",
 	"type": "module",
 	"module": "./index.js",
@@ -34,25 +34,25 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.0",
-		"@thi.ng/checks": "^3.3.12",
-		"@thi.ng/compose": "^2.1.32",
-		"@thi.ng/date": "^2.4.12",
-		"@thi.ng/errors": "^2.2.15",
-		"@thi.ng/logger": "^1.4.13",
-		"@thi.ng/math": "^5.4.9",
-		"@thi.ng/transducers": "^8.4.4",
-		"@thi.ng/units": "^0.4.3",
-		"@thi.ng/vectors": "^7.6.13",
-		"serialport": "^11.0.0"
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/checks": "^3.4.5",
+		"@thi.ng/compose": "^2.1.42",
+		"@thi.ng/date": "^2.4.22",
+		"@thi.ng/errors": "^2.3.5",
+		"@thi.ng/logger": "^1.4.21",
+		"@thi.ng/math": "^5.6.2",
+		"@thi.ng/transducers": "^8.8.2",
+		"@thi.ng/units": "^0.4.11",
+		"@thi.ng/vectors": "^7.7.19",
+		"serialport": "^11.0.1"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
 		"2d",

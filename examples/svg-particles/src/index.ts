@@ -17,11 +17,8 @@ const updateParticle = (p: any, v: number[]) => {
 	p.cy = y | 0;
 };
 
-const rand = (a: number, b: number) =>
-	SYSTEM.minmax(a, b) * (SYSTEM.float() < 0.5 ? 1 : -1);
-
 const randomParticle = () => {
-	velocities.push([rand(1, 5), rand(1, 5)]);
+	velocities.push([SYSTEM.normMinMax(1, 5), SYSTEM.normMinMax(1, 5)]);
 	return [
 		"circle",
 		{

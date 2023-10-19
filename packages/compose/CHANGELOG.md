@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-10-12T11:53:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.35](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@2.1.35) (2023-08-04)
+
+#### ♻️ Refactoring
+
+- update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@2.1.0) (2021-11-17)
 

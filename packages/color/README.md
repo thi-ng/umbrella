@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/color](https://media.thi.ng/umbrella/banners-20220914/thing-color.svg?c4654abf)
+# ![@thi.ng/color](https://media.thi.ng/umbrella/banners-20230807/thing-color.svg?c4654abf)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-clj)
 
@@ -601,7 +602,7 @@ For Node.js REPL:
 const color = await import("@thi.ng/color");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 15.58 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.56 KB
 
 ## Dependencies
 
@@ -632,12 +633,16 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>                  | Probabilistic color theme generator                                         | [Demo](https://demo.thi.ng/umbrella/color-themes/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                           |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                                 | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>                | Visualization of different grid iterator strategies                         | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export        | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>                    | k-means clustering visualization                                            | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>               | Randomized 4-point 2D color gradient image generator                        | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/>                 | Image dithering and remapping using indexed palettes                        | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>                 | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                    | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/>            | Fork-join worker-based raymarch renderer (JS/CPU only)                      | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>                | Responsive & reactively computed stacked column layout                      | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                      | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)       |
 
 ## API

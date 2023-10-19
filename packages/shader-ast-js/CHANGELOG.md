@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-04-08T11:09:50Z
+- **Last updated**: 2023-08-27T11:20:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,36 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@1.0.0) (2023-08-14)
+
+#### 🛑 Breaking changes
+
+- update renderPixels(), renderBuffer() ([5b2fe9d](https://github.com/thi-ng/umbrella/commit/5b2fe9d))
+- BREAKING CHANGES: replace render functions args with options object
+  - add RenderPixelOpts
+  - update renderPixels()/renderBuffer() to support arbitrary integer pixel formats
+  - add/expose color conversion fns:
+    - rgbaBgra8888() for 32bit targets
+    - rgbaRgb565() for 16bit targets
+
+#### 🚀 Features
+
+- add vector pools for all vector ops ([31271e7](https://github.com/thi-ng/umbrella/commit/31271e7))
+  - add Pool class and impls for [iu]vec2/3/4
+  - update all vector ops to re-use memory from pools
+  - add CompileResult interface w/ `__reset()` and `__stats()` methods
+  - update targetJS() codegens
+
+#### ♻️ Refactoring
+
+- update/extend vector pool handling ([1c22d0c](https://github.com/thi-ng/umbrella/commit/1c22d0c))
+
+### [0.7.64](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.7.64) (2023-08-04)
+
+#### ♻️ Refactoring
+
+- update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
 
 ### [0.7.53](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.7.53) (2023-03-27)
 

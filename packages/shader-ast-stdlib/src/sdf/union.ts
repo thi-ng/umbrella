@@ -1,4 +1,5 @@
 import type { FloatTerm } from "@thi.ng/shader-ast";
+import { V2 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { lt } from "@thi.ng/shader-ast/ast/ops";
@@ -23,6 +24,6 @@ export const sdfUnion = (a: FloatTerm, ...terms: FloatTerm[]) =>
  * @param a -
  * @param b -
  */
-export const sdfUnion2 = defn("vec2", "sdfUnion2", ["vec2", "vec2"], (a, b) => [
+export const sdfUnion2 = defn(V2, "sdfUnion2", [V2, V2], (a, b) => [
 	ret(ternary(lt($x(a), $x(b)), a, b)),
 ]);

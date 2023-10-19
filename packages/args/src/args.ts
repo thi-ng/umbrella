@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import { identity, type Fn } from "@thi.ng/api/fn";
 import { repeat } from "@thi.ng/strings/repeat";
 import type { ArgSpec, KVDict, KVMultiDict, Tuple } from "./api.js";
 import {
@@ -65,7 +65,7 @@ export const flag = <S extends Partial<ArgSpec<boolean>>>(
  *
  * @param spec -
  */
-export const string = $single<string>((x) => x, "STR");
+export const string = $single<string>(identity, "STR");
 
 /**
  * Multi-arg version of {@link string}. Returns a full {@link ArgSpec} for a
@@ -74,7 +74,7 @@ export const string = $single<string>((x) => x, "STR");
  *
  * @param spec -
  */
-export const strings = $multi<string>((x) => x, "STR");
+export const strings = $multi<string>(identity, "STR");
 
 /**
  * Returns a full {@link ArgSpec} for a floating point value arg. The value

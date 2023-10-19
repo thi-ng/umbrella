@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-js",
-	"version": "0.7.57",
+	"version": "1.0.13",
 	"description": "Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -34,24 +34,28 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.0",
-		"@thi.ng/checks": "^3.3.12",
-		"@thi.ng/errors": "^2.2.15",
-		"@thi.ng/math": "^5.4.9",
-		"@thi.ng/matrices": "^2.1.54",
-		"@thi.ng/pixel": "^4.2.2",
-		"@thi.ng/shader-ast": "^0.12.51",
-		"@thi.ng/vectors": "^7.6.13"
+		"@thi.ng/api": "^8.9.5",
+		"@thi.ng/checks": "^3.4.5",
+		"@thi.ng/errors": "^2.3.5",
+		"@thi.ng/math": "^5.6.2",
+		"@thi.ng/matrices": "^2.1.77",
+		"@thi.ng/pixel": "^4.2.26",
+		"@thi.ng/shader-ast": "^0.12.72",
+		"@thi.ng/vectors": "^7.7.19"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.8",
-		"@thi.ng/testament": "^0.3.15",
-		"rimraf": "^5.0.0",
+		"@microsoft/api-extractor": "^7.36.4",
+		"@thi.ng/testament": "^0.3.23",
+		"rimraf": "^5.0.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.24.6",
-		"typescript": "^5.0.4"
+		"typedoc": "^0.25.0",
+		"typescript": "^5.2.2"
 	},
 	"keywords": [
+		"2d",
+		"3d",
+		"4d",
+		"argb",
 		"ast",
 		"canvas",
 		"codegen",
@@ -59,7 +63,14 @@
 		"dsl",
 		"emulator",
 		"glsl",
+		"headless",
+		"pixel",
+		"render",
+		"rgb565",
+		"runtime",
 		"shader",
+		"texture",
+		"transpiler",
 		"typescript",
 		"webgl"
 	],
@@ -132,6 +143,9 @@
 		"./env": {
 			"default": "./env.js"
 		},
+		"./pool": {
+			"default": "./pool.js"
+		},
 		"./runtime": {
 			"default": "./runtime.js"
 		},
@@ -142,6 +156,7 @@
 	"thi.ng": {
 		"parent": "@thi.ng/shader-ast",
 		"related": [
+			"pixel",
 			"shader-ast-glsl",
 			"shader-ast-stdlib"
 		],

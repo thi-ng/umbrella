@@ -122,11 +122,11 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 	}
 
 	leaves() {
-		return filter((node: T) => this.isLeaf(node), this.nodes());
+		return filter((node) => this.isLeaf(node), this.nodes());
 	}
 
 	roots() {
-		return filter((node: T) => this.isRoot(node), this.nodes());
+		return filter((node) => this.isRoot(node), this.nodes());
 	}
 
 	transitiveDependencies(x: T) {

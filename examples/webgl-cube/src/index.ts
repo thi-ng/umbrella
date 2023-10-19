@@ -12,6 +12,7 @@ import { permutations, repeat } from "@thi.ng/transducers";
 import { normalize3 } from "@thi.ng/vectors";
 import {
 	LAMBERT,
+	clearCanvas,
 	compileModel,
 	defShader,
 	draw,
@@ -19,6 +20,8 @@ import {
 	type GLVec3,
 	type ModelSpec,
 } from "@thi.ng/webgl";
+
+const BG_COL = [0, 0, 0, 1];
 
 const cube = (): Partial<ModelSpec> => {
 	const soa = new SOA(36, {
@@ -74,8 +77,7 @@ const app = () => {
 			model.uniforms!.model = <GLMat4>(
 				concat([], rotationX44([], time), rotationY44([], time * 0.66))
 			);
-			gl.clearColor(0, 0, 0, 1);
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			clearCanvas(gl, BG_COL);
 			draw(model);
 		},
 	});

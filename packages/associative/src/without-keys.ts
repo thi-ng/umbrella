@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { Keys } from "@thi.ng/api";
 import { ensureSet } from "./checks.js";
 import { empty } from "./empty.js";
 
@@ -12,14 +12,16 @@ export const withoutKeysMap = <K, V>(src: Map<K, V>, keys: Iterable<K>) => {
 	return dest;
 };
 
-export const withoutKeysObj = <T>(
-	src: IObjectOf<T>,
-	keys: Iterable<PropertyKey>
+export const withoutKeysObj = <T extends object>(
+	src: T,
+	keys: Iterable<Keys<T>>
 ) => {
 	const ks = ensureSet(keys);
-	const dest: IObjectOf<T> = {};
+	const dest: Partial<T> = {};
 	for (let k in src) {
-		src.hasOwnProperty(k) && !ks.has(k) && (dest[k] = src[<any>k]);
+		src.hasOwnProperty(k) &&
+			!ks.has(<Keys<T>>k) &&
+			(dest[<Keys<T>>k] = src[<Keys<T>>k]);
 	}
 	return dest;
 };

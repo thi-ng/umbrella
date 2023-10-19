@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/simd](https://media.thi.ng/umbrella/banners-20220914/thing-simd.svg?4afce80e)
+# ![@thi.ng/simd](https://media.thi.ng/umbrella/banners-20230807/thing-simd.svg?4afce80e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/simd.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
 - [Available functions](#available-functions)
@@ -91,7 +92,7 @@ hidden behind feature flags. Currently only fully tested (& testable for
 me) on Node 14.6+.
 
 - [SIMD implementation status](https://github.com/WebAssembly/simd/blob/master/proposals/simd/ImplementationStatus.md)
-- Node (v12.10+): `node --experimental-wasm-simd`
+- Node (v12.10 .. v20.7): `node --experimental-wasm-simd` (flag not needed anymore since v20.8)
 - Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
 
 ### BREAKING CHANGES

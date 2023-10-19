@@ -4,6 +4,21 @@ import type { Reducer, Transducer } from "./api.js";
 import { compR } from "./compr.js";
 import { __iter } from "./iterator.js";
 
+/**
+ * Transducer. Deduplicates **consecutive** values which are equal according to
+ * given (optional) predicate (default: `===`).
+ *
+ * @remarks
+ * See {@link distinct} to remove **any** duplicates.
+ *
+ * @example
+ * ```ts
+ * [...dedupe([1, 1, 2, 3, 3, 3, 1])]
+ * // [ 1, 2, 3, 1 ]
+ * ```
+ *
+ * @param equiv
+ */
 export function dedupe<T>(equiv?: Predicate2<T>): Transducer<T, T>;
 export function dedupe<T>(src: Iterable<T>): IterableIterator<T>;
 export function dedupe<T>(

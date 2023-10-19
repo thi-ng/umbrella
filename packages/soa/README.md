@@ -1,13 +1,14 @@
 <!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
 
-# ![@thi.ng/soa](https://media.thi.ng/umbrella/banners-20220914/thing-soa.svg?8f7b5e4f)
+# ![@thi.ng/soa](https://media.thi.ng/umbrella/banners-20230807/thing-soa.svg?8f7b5e4f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/soa.svg)](https://www.npmjs.com/package/@thi.ng/soa)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/soa.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and anti-framework.
 
 - [About](#about)
   - [Supported memory layouts](#supported-memory-layouts)
@@ -80,7 +81,7 @@ For Node.js REPL:
 const soa = await import("@thi.ng/soa");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.34 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.35 KB
 
 ## Dependencies
 

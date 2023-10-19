@@ -1,7 +1,14 @@
-import { U8 } from "@thi.ng/hex";
 import type { IBase } from "./api.js";
 
 export const defBase = (chars: string) => new BaseN(chars);
+
+const ZERO = BigInt(0);
+const MASK = BigInt(255);
+const SHIFT = BigInt(8);
+const MAX_SAFE_INT = BigInt(2 ** 53 - 1);
+
+/** @internal */
+export const __B16_LC_CHARS = "0123456789abcdef";
 
 export class BaseN implements IBase {
 	readonly N: number;
@@ -27,12 +34,12 @@ export class BaseN implements IBase {
 	}
 
 	encodeBigInt(x: bigint, size = 0) {
-		if (x < BigInt(2 ** 53)) return this.encode(Number(x), size);
+		if (x <= MAX_SAFE_INT) return this.encode(Number(x), size);
 		const { base, N } = this;
-		if (x === BigInt(0)) return __pad(base[0], size, base[0]);
+		if (x === ZERO) return __pad(base[0], size, base[0]);
 		const NN = BigInt(N);
 		let res = "";
-		while (x > 0) {
+		while (x > ZERO) {
 			res = base[Number(x % NN)] + res;
 			x /= NN;
 		}
@@ -40,9 +47,9 @@ export class BaseN implements IBase {
 	}
 
 	encodeBytes(buf: Uint8Array, size = 0) {
-		let hex = "";
-		for (let i = 0, n = buf.length; i < n; i++) hex += U8(buf[i]);
-		return this.encodeBigInt(BigInt(`0x${hex}`), size);
+		let hex = "0x";
+		for (let i = 0, n = buf.length; i < n; i++) hex += __u8(buf[i]);
+		return this.encodeBigInt(BigInt(hex), size);
 	}
 
 	decode(x: string) {
@@ -57,7 +64,7 @@ export class BaseN implements IBase {
 	decodeBigInt(x: string): bigint {
 		const { index, N } = this;
 		const NN = BigInt(N);
-		let res = BigInt(0);
+		let res = ZERO;
 		for (let n = x.length - 1, i = 0; i <= n; i++) {
 			res += BigInt(index[x[i]]) * NN ** BigInt(n - i);
 		}
@@ -66,10 +73,8 @@ export class BaseN implements IBase {
 
 	decodeBytes(x: string, buf: Uint8Array): Uint8Array {
 		let y = this.decodeBigInt(x);
-		const M = BigInt(255);
-		const SHIFT = BigInt(8);
 		for (let i = buf.length; i-- > 0; ) {
-			buf[i] = Number(y & M);
+			buf[i] = Number(y & MASK);
 			y >>= SHIFT;
 		}
 		return buf;
@@ -84,5 +89,12 @@ export class BaseN implements IBase {
 	}
 }
 
-const __pad = (x: string, size: number, fill: string) =>
-	size - x.length > 0 ? fill.repeat(size - x.length) + x : x;
+/** @internal */
+const __pad = (x: string, size: number, fill: string) => {
+	const d = size - x.length;
+	return d > 0 ? fill.repeat(d) + x : x;
+};
+
+/** @internal */
+const __u8 = (x: number) =>
+	__B16_LC_CHARS[(x >>> 4) & 0xf] + __B16_LC_CHARS[x & 0xf];

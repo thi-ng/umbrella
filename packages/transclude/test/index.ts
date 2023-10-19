@@ -1,3 +1,4 @@
+import { identity } from "@thi.ng/api";
 import { fileFixture, fixturePath, group } from "@thi.ng/testament";
 import assert from "assert";
 import {
@@ -26,7 +27,7 @@ group("transclude", {
 		const src = transcludeFile<Package>(fixturePath("main.md"), {
 			user: DUMMY_PKG,
 			templates: {
-				...packageTemplates<Package>((x) => x, {
+				...packageTemplates<Package>(identity, {
 					hdContributors: "##### Collaborators\n\n",
 				}),
 			},

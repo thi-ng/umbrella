@@ -2,13 +2,14 @@ import type { FnN, FnN2 } from "@thi.ng/api";
 
 const F64 = new Float64Array(1);
 const F32 = new Float32Array(F64.buffer);
+const U8 = new Uint8Array(F64.buffer);
 const I32 = new Int32Array(F64.buffer);
 const U32 = new Uint32Array(F64.buffer);
 
 /**
  * This value is true iff the environment is Little Endian.
  */
-export const IS_LE = ((F64[0] = 2), U32[1] === 0x40000000);
+export const IS_LE = ((U32[0] = 1), U8[0] === 1);
 
 export const floatToIntBits: FnN = (x) => ((F32[0] = x), I32[0]);
 
