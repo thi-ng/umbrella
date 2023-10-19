@@ -123,4 +123,8 @@ graph.addEdge(4, 5);
 graph.removeEdge(0, 1);
 ```
 
+GraphViz visualization of the above example graph:
+
+![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/adjacency/readme.png)
+
 <!-- include ../../assets/tpl/footer.md -->
