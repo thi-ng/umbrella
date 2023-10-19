@@ -1,5 +1,5 @@
-import { abs, add, Complex, mul } from "@thi.ng/complex";
-import { canvas, formatCanvas, SHADES_ASCII_16 } from "@thi.ng/text-canvas";
+import { abs, add, mul, type Complex } from "@thi.ng/complex";
+import { SHADES_ASCII_16, canvas, formatCanvas } from "@thi.ng/text-canvas";
 import { map, range2d, run } from "@thi.ng/transducers";
 import { fit2 } from "@thi.ng/vectors";
 
