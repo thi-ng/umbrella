@@ -36,7 +36,7 @@ export class AdjacencyBitMatrix implements IGraph<number> {
 	}
 
 	numVertices(): number {
-		return this.mat.n;
+		return this.mat.m;
 	}
 
 	/**
