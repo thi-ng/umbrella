@@ -152,6 +152,7 @@ visual outputs/results).
 - [021: Iterative animated convex polygon subdivision & heat map viz](https://mastodon.thi.ng/@toxi/111221943333023306)
 - [022: Quasi-random voronoi lattice generator](https://mastodon.thi.ng/@toxi/111244412425832657)
 - [023: Tag-based Jaccard similarity ranking/filtering using bitfields](https://mastodon.thi.ng/@toxi/111256960928934577)
+- [024: 2.5D hidden line visualization of digital elevation files (DEM)](https://mastodon.thi.ng/@toxi/111269505611983570)
 
 ### Blog posts
 
