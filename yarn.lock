@@ -715,6 +715,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-terrain-viz@workspace:examples/geom-terrain-viz":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-terrain-viz@workspace:examples/geom-terrain-viz"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.4.9
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-tessel@workspace:examples/geom-tessel":
   version: 0.0.0-use.local
   resolution: "@example/geom-tessel@workspace:examples/geom-tessel"
