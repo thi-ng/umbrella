@@ -44,14 +44,14 @@
 		"@thi.ng/transducers": "^8.8.2",
 		"@thi.ng/units": "^0.4.11",
 		"@thi.ng/vectors": "^7.7.19",
-		"serialport": "^11.0.1"
+		"serialport": "^12.0.0"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.36.4",
+		"@microsoft/api-extractor": "^7.38.0",
 		"@thi.ng/testament": "^0.3.23",
-		"rimraf": "^5.0.1",
+		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.0",
+		"typedoc": "^0.25.2",
 		"typescript": "^5.2.2"
 	},
 	"keywords": [
