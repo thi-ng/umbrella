@@ -1,7 +1,7 @@
 import type { MultiVecOpV } from "./api.js";
-import { vop } from "./vop.js";
 import { mag } from "./mag.js";
 import { setC2, setC3 } from "./setc.js";
+import { vop } from "./vop.js";
 
 const sqrt = Math.sqrt;
 const asin = Math.asin;
@@ -41,5 +41,7 @@ export const polar3 = polar.add(3, (out, a) => {
 	const y = a[1];
 	const z = a[2];
 	const r = sqrt(x * x + y * y + z * z);
-	return setC3(out || a, r, asin(z / r), atan2(y, x));
+	return r > 0
+		? setC3(out || a, r, asin(z / r), atan2(y, x))
+		: setC3(out || a, 0, 0, 0);
 });
