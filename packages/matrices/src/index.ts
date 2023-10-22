@@ -12,6 +12,7 @@ export * from "./determinant.js";
 export * from "./diag.js";
 export * from "./div.js";
 export * from "./divn.js";
+export * from "./fit.js";
 export * from "./frustum.js";
 export * from "./identity.js";
 export * from "./invert.js";
