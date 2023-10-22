@@ -82,7 +82,7 @@ For Node.js REPL:
 const matrices = await import("@thi.ng/matrices");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.02 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.08 KB
 
 ## Dependencies
 
@@ -125,6 +125,7 @@ A selection:
 
 ### Matrix creation
 
+- `fit23` / `fit44`
 - `rotation22` / `rotation23`
 - `rotationAroundAxis33` / `rotationAroundAxis44`
 - `rotationX33` / `rotationX44`

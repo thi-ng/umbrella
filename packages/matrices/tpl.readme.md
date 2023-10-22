@@ -48,6 +48,7 @@ sensible).
 
 ### Matrix creation
 
+- `fit23` / `fit44`
 - `rotation22` / `rotation23`
 - `rotationAroundAxis33` / `rotationAroundAxis44`
 - `rotationX33` / `rotationX44`
