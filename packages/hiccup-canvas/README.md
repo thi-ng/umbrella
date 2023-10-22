@@ -32,10 +32,10 @@ This project is part of the
   - [Path](#path)
     - [SVG paths with arc segments](#svg-paths-with-arc-segments)
   - [Points](#points)
-  - [Packed points](#packed-points)
   - [Text](#text)
   - [Image](#image)
   - [Gradients](#gradients)
+  - [Using flat, packed vertex buffers](#using-flat-packed-vertex-buffers)
 - [Attributes](#attributes)
   - [Color attributes](#color-attributes)
     - [String](#string)
@@ -96,7 +96,7 @@ For Node.js REPL:
 const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.43 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.52 KB
 
 ## Dependencies
 
@@ -314,34 +314,6 @@ The following shape specific attributes are used:
 - `shape`: `circle` or `rect` (default)
 - `size`: point size (radius for circles, width for rects) - default: 1
 
-### Packed points
-
-Similar to `points`, but uses a single packed buffer for all point
-coordinates.
-
-```ts
-["packedPoints", attribs, [x1,y1, x2,y2,...]]
-```
-
-Optional start index, number of points, component & point stride lengths
-(number of indices between each vector component and each point
-respectively) can be given as attributes.
-
-Defaults:
-
-- start index: 0
-- number of points: (array_length - start) / estride
-- component stride: 1
-- element stride: 2
-
-```ts
-["packedPoints", { cstride: 1, estride: 4 },
-    [x1, y1, 0, 0, x2, y2, 0, 0, ...]]
-
-["packedPoints", { offset: 8, num: 3, cstride: 4, estride: 1 },
-    [0, 0, 0, 0, 0, 0, 0, 0, x1, x2, x3, 0, y1, y2, y3, 0...]]
-```
-
 ### Text
 
 ```ts
@@ -385,6 +357,42 @@ a gradient in a `fill` or `stroke` attribute, e.g. `{stroke: "$foo" }`
     {id: "foo", from: [x1,y1], to: [x2, y2], r1: r1, r2: r2 },
     [[offset1, color1], [offset2, color2], ...]
 ]
+```
+
+### Using flat, packed vertex buffers
+
+The `points`, `polyline` and `polygon` shape types also provide alternative
+versions, each allowing the use of a single packed buffer (e.g. typed array) for
+all point coordinates instead of individual arrays/views per vertex. This much
+simplifies & speeds up WASM interop usecases, which can now skip creating vector
+views of a vertexbuffer memory region.
+
+```ts
+["packedPoints", attribs, [x1,y1, x2,y2,...]]
+
+["packedPolyline", attribs, [x1,y1, x2,y2,...]]
+
+["packedPolygon", attribs, [x1,y1, x2,y2,...]]
+```
+
+Optional start index, number of points, component & element stride lengths (i.e.
+the number of indices between each vector x/y component and/or each point
+respectively) can be given as attributes and thus these packaged shapes support
+both AOS and SOA memory layouts/arrangements.
+
+Defaults:
+
+- start index: 0
+- number of vertices: (array_length - start) / estride
+- component stride: 1
+- element stride: 2
+
+```ts
+["packedPoints", { cstride: 1, estride: 4 },
+    [x1, y1, 0, 0, x2, y2, 0, 0, ...]]
+
+["packedPoints", { offset: 8, num: 3, cstride: 4, estride: 1 },
+    [0, 0, 0, 0, 0, 0, 0, 0, x1, x2, x3, 0, y1, y2, y3, 0...]]
 ```
 
 ## Attributes
