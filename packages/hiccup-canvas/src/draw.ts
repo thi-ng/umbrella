@@ -13,8 +13,8 @@ import { line, lines } from "./line.js";
 import { packedPoints } from "./packed-points.js";
 import { path } from "./path.js";
 import { points } from "./points.js";
-import { polygon } from "./polygon.js";
-import { polyline } from "./polyline.js";
+import { packedPolygon, polygon } from "./polygon.js";
+import { packedPolyline, polyline } from "./polyline.js";
 import { rect } from "./rect.js";
 import { text } from "./text.js";
 
@@ -78,8 +78,14 @@ export const draw = (
 		case "polyline":
 			polyline(ctx, attribs, shape[2]);
 			break;
+		case "packedPolyline":
+			packedPolyline(ctx, attribs, shape[2]);
+			break;
 		case "polygon":
 			polygon(ctx, attribs, shape[2]);
+			break;
+		case "packedPolygon":
+			packedPolygon(ctx, attribs, shape[2]);
 			break;
 		case "path":
 			path(ctx, attribs, shape[2]);

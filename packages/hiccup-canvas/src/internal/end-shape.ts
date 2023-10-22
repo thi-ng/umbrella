@@ -3,10 +3,11 @@ import type { IObjectOf } from "@thi.ng/api";
 /** @internal */
 export const __endShape = (
 	ctx: CanvasRenderingContext2D,
-	attribs: IObjectOf<any>
+	attribs: IObjectOf<any>,
+	doFill = true
 ) => {
 	let v: any;
-	if ((v = attribs.fill) && v !== "none") {
+	if (doFill && (v = attribs.fill) && v !== "none") {
 		ctx.fill();
 	}
 	if ((v = attribs.stroke) && v !== "none") {
