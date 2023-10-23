@@ -175,7 +175,7 @@ For Node.js REPL:
 const vectors = await import("@thi.ng/vectors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.79 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.80 KB
 
 ## Dependencies
 
@@ -224,6 +224,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                                                | [Demo](https://demo.thi.ng/umbrella/scenegraph/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>              | 2D scenegraph & image map based geometry manipulation                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>                  | Minimal shader graph developed during livestream #2                                          | [Demo](https://demo.thi.ng/umbrella/shader-graph/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>                     | Fitting, transforming & plotting 10k data points per frame using SIMD                        | [Demo](https://demo.thi.ng/umbrella/simd-plot/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)             |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>                  | Entity Component System w/ 100k 3D particles                                                 | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)               | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)               |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/spline-tangent.png" width="240"/>                | Compute cubic spline position & tangent using Dual Numbers                                   | [Demo](https://demo.thi.ng/umbrella/spline-tangent/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/spline-tangent)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>                   | 3D wireframe textmode demo                                                                   | [Demo](https://demo.thi.ng/umbrella/text-canvas/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)           |

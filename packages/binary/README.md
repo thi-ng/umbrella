@@ -68,9 +68,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                             | Description                                         | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/> | hdom update performance benchmark w/ config options | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2) |
+| Screenshot                                                                                                             | Description                                                           | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/> | hdom update performance benchmark w/ config options                   | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>       | Fitting, transforming & plotting 10k data points per frame using SIMD | [Demo](https://demo.thi.ng/umbrella/simd-plot/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)       |
 
 ## API
 

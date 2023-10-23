@@ -17,6 +17,7 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [MemPool](#mempool)
   - [`malloc(size: number)`](#mallocsize-number)
@@ -153,6 +154,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.71 KB
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                       | Description                                                           | Live demo                                       | Source                                                                       |
+|:-----------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|:------------------------------------------------|:-----------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/> | Fitting, transforming & plotting 10k data points per frame using SIMD | [Demo](https://demo.thi.ng/umbrella/simd-plot/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot) |
 
 ## API
 

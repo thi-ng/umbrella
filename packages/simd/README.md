@@ -18,6 +18,7 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -138,6 +139,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
 ## Dependencies
 
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                       | Description                                                           | Live demo                                       | Source                                                                       |
+|:-----------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|:------------------------------------------------|:-----------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/> | Fitting, transforming & plotting 10k data points per frame using SIMD | [Demo](https://demo.thi.ng/umbrella/simd-plot/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot) |
 
 ## API
 
