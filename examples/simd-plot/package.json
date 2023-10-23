@@ -1,0 +1,49 @@
+{
+	"name": "@example/simd-plot",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Fitting, transforming & plotting 10k data points per frame using SIMD",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --host --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.5.0"
+	},
+	"dependencies": {
+		"@thi.ng/binary": "workspace:^",
+		"@thi.ng/color": "workspace:^",
+		"@thi.ng/colored-noise": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/malloc": "workspace:^",
+		"@thi.ng/matrices": "workspace:^",
+		"@thi.ng/rdom-canvas": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/simd": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"skip": true,
+		"readme": [
+			"binary",
+			"color",
+			"colored-noise",
+			"malloc",
+			"matrices",
+			"rdom-canvas",
+			"rstream",
+			"simd",
+			"vectors"
+		],
+		"screenshot": "examples/simd-plot.png"
+	}
+}

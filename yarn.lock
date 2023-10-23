@@ -2041,6 +2041,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/simd-plot@workspace:examples/simd-plot":
+  version: 0.0.0-use.local
+  resolution: "@example/simd-plot@workspace:examples/simd-plot"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
 "@example/soa-ecs@workspace:examples/soa-ecs":
   version: 0.0.0-use.local
   resolution: "@example/soa-ecs@workspace:examples/soa-ecs"
