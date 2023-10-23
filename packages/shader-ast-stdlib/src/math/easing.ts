@@ -1,3 +1,5 @@
+import type { Fn } from "@thi.ng/api";
+import type { FloatSym, ScopeBody } from "@thi.ng/shader-ast";
 import { F } from "@thi.ng/shader-ast/api/types";
 import { ifThen, ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -26,25 +28,29 @@ import {
 } from "@thi.ng/shader-ast/ast/ops";
 import { cos, exp2, pow, sin, sqrt } from "@thi.ng/shader-ast/builtin/math";
 
-export const easeInSine = defn(F, null, [F], (x) => [
+/**
+ * Higher order function to wrap a given easing function body as proper
+ * shader-ast function
+ */
+const defEasing = (fn: Fn<FloatSym, ScopeBody>) => defn(F, null, [F], fn);
+
+export const easeInSine = defEasing((x) => [
 	ret(sub(FLOAT1, cos(mul(x, HALF_PI)))),
 ]);
 
-export const easeOutSine = defn(F, null, [F], (x) => [
-	ret(sin(mul(x, HALF_PI))),
-]);
+export const easeOutSine = defEasing((x) => [ret(sin(mul(x, HALF_PI)))]);
 
-export const easeInOutSine = defn(F, null, [F], (x) => [
+export const easeInOutSine = defEasing((x) => [
 	ret(div(neg(sub(cos(mul(PI, x)), FLOAT1)), FLOAT2)),
 ]);
 
-export const easeInQuad = defn(F, null, [F], (x) => [ret(pow(x, FLOAT2))]);
+export const easeInQuad = defEasing((x) => [ret(pow(x, FLOAT2))]);
 
-export const easeOutQuad = defn(F, null, [F], (x) => [
+export const easeOutQuad = defEasing((x) => [
 	ret(sub(FLOAT1, pow(sub(FLOAT1, x), FLOAT2))),
 ]);
 
-export const easeInOutQuad = defn(F, null, [F], (x) => [
+export const easeInOutQuad = defEasing((x) => [
 	ret(
 		ternary(
 			lt(x, FLOAT05),
@@ -54,13 +60,13 @@ export const easeInOutQuad = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInCubic = defn(F, null, [F], (x) => [ret(pow(x, float(3)))]);
+export const easeInCubic = defEasing((x) => [ret(pow(x, float(3)))]);
 
-export const easeOutCubic = defn(F, null, [F], (x) => [
+export const easeOutCubic = defEasing((x) => [
 	ret(sub(FLOAT1, pow(sub(FLOAT1, x), float(3)))),
 ]);
 
-export const easeInOutCubic = defn(F, null, [F], (x) => [
+export const easeInOutCubic = defEasing((x) => [
 	ret(
 		ternary(
 			lt(x, FLOAT05),
@@ -73,13 +79,13 @@ export const easeInOutCubic = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInQuart = defn(F, null, [F], (x) => [ret(pow(x, float(4)))]);
+export const easeInQuart = defEasing((x) => [ret(pow(x, float(4)))]);
 
-export const easeOutQuart = defn(F, null, [F], (x) => [
+export const easeOutQuart = defEasing((x) => [
 	ret(sub(FLOAT1, pow(sub(FLOAT1, x), float(4)))),
 ]);
 
-export const easeInOutQuart = defn(F, null, [F], (x) => [
+export const easeInOutQuart = defEasing((x) => [
 	ret(
 		ternary(
 			lt(x, FLOAT05),
@@ -92,13 +98,13 @@ export const easeInOutQuart = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInQuint = defn(F, null, [F], (x) => [ret(pow(x, float(5)))]);
+export const easeInQuint = defEasing((x) => [ret(pow(x, float(5)))]);
 
-export const easeOutQuint = defn(F, null, [F], (x) => [
+export const easeOutQuint = defEasing((x) => [
 	ret(sub(FLOAT1, pow(sub(FLOAT1, x), float(5)))),
 ]);
 
-export const easeInOutQuint = defn(F, null, [F], (x) => [
+export const easeInOutQuint = defEasing((x) => [
 	ret(
 		ternary(
 			lt(x, FLOAT05),
@@ -111,13 +117,13 @@ export const easeInOutQuint = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInExpo = defn(F, null, [F], (x) => [
+export const easeInExpo = defEasing((x) => [
 	ret(
 		ternary(eq(x, FLOAT0), FLOAT0, exp2(sub(mul(float(10), x), float(10))))
 	),
 ]);
 
-export const easeOutExpo = defn(F, null, [F], (x) => [
+export const easeOutExpo = defEasing((x) => [
 	ret(
 		ternary(
 			eq(x, FLOAT1),
@@ -127,7 +133,7 @@ export const easeOutExpo = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInOutExpo = defn(F, null, [F], (x) => [
+export const easeInOutExpo = defEasing((x) => [
 	ret(
 		ternary(
 			eq(x, FLOAT0),
@@ -148,15 +154,15 @@ export const easeInOutExpo = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInCirc = defn(F, null, [F], (x) => [
+export const easeInCirc = defEasing((x) => [
 	ret(sub(FLOAT1, sqrt(sub(FLOAT1, pow(x, FLOAT2))))),
 ]);
 
-export const easeOutCirc = defn(F, null, [F], (x) => [
+export const easeOutCirc = defEasing((x) => [
 	ret(sqrt(sub(FLOAT1, pow(sub(x, FLOAT1), FLOAT2)))),
 ]);
 
-export const easeInOutCirc = defn(F, null, [F], (x) => [
+export const easeInOutCirc = defEasing((x) => [
 	ret(
 		ternary(
 			lt(x, FLOAT05),
@@ -177,14 +183,14 @@ export const easeInOutCirc = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInBack = defn(F, null, [F], (x) => {
+export const easeInBack = defEasing((x) => {
 	const c1 = 1.70158;
 	const c3 = c1 + 1;
 
 	return [ret(sub(mul(c3, pow(x, float(3))), mul(c1, pow(x, FLOAT2))))];
 });
 
-export const easeOutBack = defn(F, null, [F], (x) => {
+export const easeOutBack = defEasing((x) => {
 	const c1 = 1.70158;
 	const c3 = c1 + 1;
 
@@ -198,7 +204,7 @@ export const easeOutBack = defn(F, null, [F], (x) => {
 	];
 });
 
-export const easeInOutBack = defn(F, null, [F], (x) => {
+export const easeInOutBack = defEasing((x) => {
 	const c1 = 1.70158;
 	const c2 = c1 * 1.525;
 
@@ -234,7 +240,7 @@ export const easeInOutBack = defn(F, null, [F], (x) => {
 	];
 });
 
-export const easeInElastic = defn(F, null, [F], (x) => [
+export const easeInElastic = defEasing((x) => [
 	ret(
 		ternary(
 			eq(x, FLOAT0),
@@ -251,7 +257,7 @@ export const easeInElastic = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeOutElastic = defn(F, null, [F], (x) => [
+export const easeOutElastic = defEasing((x) => [
 	ret(
 		ternary(
 			lte(x, FLOAT0),
@@ -269,7 +275,7 @@ export const easeOutElastic = defn(F, null, [F], (x) => [
 	),
 ]);
 
-export const easeInOutElastic = defn(F, null, [F], (x) => {
+export const easeInOutElastic = defEasing((x) => {
 	const c5 = div(TAU, 4.5);
 
 	return [
@@ -308,7 +314,7 @@ export const easeInOutElastic = defn(F, null, [F], (x) => {
 	];
 });
 
-export const easeOutBounce = defn(F, null, [F], (x) => {
+export const easeOutBounce = defEasing((x) => {
 	const n1 = 7.5625;
 	const d1 = float(2.75);
 
@@ -339,11 +345,11 @@ export const easeOutBounce = defn(F, null, [F], (x) => {
 	];
 });
 
-export const easeInBounce = defn(F, null, [F], (x) => [
+export const easeInBounce = defEasing((x) => [
 	ret(sub(FLOAT1, easeOutBounce(sub(FLOAT1, x)))),
 ]);
 
-export const easeInOutBounce = defn(F, null, [F], (x) => [
+export const easeInOutBounce = defEasing((x) => [
 	ret(
 		ternary(
 			lt(x, FLOAT05),
