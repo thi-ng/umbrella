@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/router",
-	"version": "3.2.35",
+	"version": "3.2.36",
 	"description": "Generic router for browser & non-browser based applications",
 	"type": "module",
 	"module": "./index.js",
@@ -34,15 +34,15 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.5",
-		"@thi.ng/checks": "^3.4.5",
-		"@thi.ng/equiv": "^2.1.30",
-		"@thi.ng/errors": "^2.3.5",
+		"@thi.ng/api": "^8.9.6",
+		"@thi.ng/checks": "^3.4.6",
+		"@thi.ng/equiv": "^2.1.31",
+		"@thi.ng/errors": "^2.3.6",
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.0",
-		"@thi.ng/testament": "^0.3.23",
+		"@thi.ng/testament": "^0.3.24",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.2",

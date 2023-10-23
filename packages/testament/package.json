@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/testament",
-	"version": "0.3.23",
+	"version": "0.3.24",
 	"description": "Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode, file fixtures",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/logger": "^1.4.21",
+		"@thi.ng/logger": "^1.4.22",
 		"chokidar": "^3.5.3"
 	},
 	"devDependencies": {

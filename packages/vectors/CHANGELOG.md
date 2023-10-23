@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-18T18:06:31Z
+- **Last updated**: 2023-10-23T07:37:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [7.7.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.20) (2023-10-23)
+
+#### 🩹 Bug fixes
+
+- fix polar3() for 0-vectors (related [#421](https://github.com/thi-ng/umbrella/issues/421)) ([89db88f](https://github.com/thi-ng/umbrella/commit/89db88f))
+  - fix NaN in result if input is [0,0,0]
 
 ### [7.7.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.19) (2023-10-18)
 

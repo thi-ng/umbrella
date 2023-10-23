@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-12T11:53:09Z
+- **Last updated**: 2023-10-23T07:37:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.4.0) (2023-10-23)
+
+#### 🚀 Features
+
+- add/update packed shape support ([14ce2f8](https://github.com/thi-ng/umbrella/commit/14ce2f8))
+  - add packedPolyline() / packedPolygon() fns
+  - update draw() to add support for new shape types
 
 ### [2.3.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.3.24) (2023-10-11)
 
