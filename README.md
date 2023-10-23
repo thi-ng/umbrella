@@ -241,17 +241,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-10-18
+As of: 2023-10-23
 
-| Status                                           | Package                                     | Version                                                                                                           | Changelog                                      |
-|:-------------------------------------------------|:--------------------------------------------|:------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/adjacency`](./packages/adjacency) | [![version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency) | [changelog](./packages/adjacency/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/bitfield`](./packages/bitfield)   | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)   | [changelog](./packages/bitfield/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/fibers`](./packages/fibers)       | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)       | [changelog](./packages/fibers/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/imgui`](./packages/imgui)         | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)         | [changelog](./packages/imgui/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rdom`](./packages/rdom)           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)           | [changelog](./packages/rdom/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rstream`](./packages/rstream)     | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)     | [changelog](./packages/rstream/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/vectors`](./packages/vectors)     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)     | [changelog](./packages/vectors/CHANGELOG.md)   |
+| Status                                        | Package                                             | Version                                                                                                                   | Changelog                                          |
+|:----------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas) | [changelog](./packages/hiccup-canvas/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/matrices`](./packages/matrices)           | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)           | [changelog](./packages/matrices/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors)             | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)             | [changelog](./packages/vectors/CHANGELOG.md)       |
 
 ### Fundamentals
 
