@@ -130,6 +130,9 @@
 		"./divn": {
 			"default": "./divn.js"
 		},
+		"./fit": {
+			"default": "./fit.js"
+		},
 		"./frustum": {
 			"default": "./frustum.js"
 		},
