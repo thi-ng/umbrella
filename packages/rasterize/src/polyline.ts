@@ -5,7 +5,7 @@ import { drawLine } from "./line.js";
 
 export const drawPolyLine = <T extends any[] | TypedArray, P>(
 	grid: IGrid2D<T, P>,
-	pts: number[][],
+	pts: ArrayLike<number>[],
 	val: P | Shader2D<P>,
 	closed = false
 ) => {

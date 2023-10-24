@@ -6,7 +6,7 @@ import type { Shader2D } from "./api.js";
 
 /** @internal */
 export const __draw2D = <T extends any[] | TypedArray, P>(
-	pts: Nullable<Iterable<number[]>>,
+	pts: Nullable<Iterable<ArrayLike<number>>>,
 	grid: IGrid2D<T, P>,
 	val: P | Shader2D<P>
 ) =>
@@ -16,7 +16,7 @@ export const __draw2D = <T extends any[] | TypedArray, P>(
 
 /** @internal */
 export const __drawSolid2D = <T extends any[] | TypedArray, P>(
-	pts: Nullable<Iterable<number[]>>,
+	pts: Nullable<Iterable<ArrayLike<number>>>,
 	grid: IGrid2D<T, P>,
 	val: P
 ) => {
@@ -40,7 +40,7 @@ export const __drawSolid2D = <T extends any[] | TypedArray, P>(
 
 /** @internal */
 export const __drawShader2D = <T extends any[] | TypedArray, P>(
-	pts: Nullable<Iterable<number[]>>,
+	pts: Nullable<Iterable<ArrayLike<number>>>,
 	grid: IGrid2D<T, P>,
 	shader: Shader2D<P>
 ) => {

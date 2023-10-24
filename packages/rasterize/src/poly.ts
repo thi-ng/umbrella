@@ -18,7 +18,7 @@ import { ensureShader2D } from "./checks.js";
  */
 export const fillPoly = <T extends any[] | TypedArray, P>(
 	grid: IGrid2D<T, P>,
-	pts: number[][],
+	pts: ArrayLike<number>[],
 	val: P | Shader2D<P>
 ) => {
 	const numP = pts.length;
