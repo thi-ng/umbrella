@@ -31,6 +31,7 @@ export * from "./math/osc.js";
 export * from "./math/polar.js";
 export * from "./math/sincos.js";
 export * from "./math/smoother-step.js";
+export * from "./math/easing.js";
 
 export * from "./matrix/lookat.js";
 export * from "./matrix/mvp.js";
