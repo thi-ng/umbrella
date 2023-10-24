@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/compose",
-	"version": "2.1.43",
+	"version": "2.1.44",
 	"description": "Optimized functional composition helpers",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",
-		"@thi.ng/errors": "^2.3.6"
+		"@thi.ng/errors": "^2.4.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.0",
