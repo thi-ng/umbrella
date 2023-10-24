@@ -30,8 +30,8 @@ export const scopedChildren = (t: Term<any>) =>
 		? (<Func<any>>t).scope.body
 		: t.tag === "if"
 		? (<Branch>t).f
-			? (<Branch>t).t.body.concat((<Branch>t).f!.body)
-			: (<Branch>t).t.body
+			? [(<Branch>t).test, ...(<Branch>t).t.body, ...(<Branch>t).f!.body]
+			: [(<Branch>t).test, ...(<Branch>t).t.body]
 		: undefined;
 
 /**
