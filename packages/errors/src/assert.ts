@@ -16,6 +16,7 @@ export const assert = (
 		  !!process.env.UMBRELLA_ASSERTS
 		: (<any>import.meta).env
 		? (<any>import.meta).env.MODE !== "production" ||
+		  !!(<any>import.meta).env.UMBRELLA_ASSERTS ||
 		  !!(<any>import.meta).env.VITE_UMBRELLA_ASSERTS
 		: true
 )
