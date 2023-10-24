@@ -1,13 +1,10 @@
-import type { Vec2Sym, Vec2Term, Vec4Term } from "@thi.ng/shader-ast";
+import type { Vec2Term, Vec4Term } from "@thi.ng/shader-ast";
 import { F, V2 } from "@thi.ng/shader-ast/api/types";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { VEC2_1, bvec4, vec2 } from "@thi.ng/shader-ast/ast/lit";
-import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
-import { $x, $xy, $y } from "@thi.ng/shader-ast/ast/swizzle";
-import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $xy, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { _any, greaterThan, lessThan } from "@thi.ng/shader-ast/builtin/bvec";
-import { fit0111 } from "../math/fit.js";
 
 /**
  * Computes UV coord in [0..1] interval from given `fragCoord` and screen `res`.
@@ -24,20 +21,15 @@ export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
  * scaled by the aspect ratio `resx / resy`.
  *
  * @param fragCoord - vec2
- * @param res - vec2
+ * @param resolution - vec2
  */
 export const aspectCorrectedUV = defn(
 	V2,
-	"aspectCorrectedUV",
+	"aspectCorrectedUV2",
 	[V2, V2],
-	(pos, res) => {
-		let uv: Vec2Sym;
-		return [
-			(uv = sym(fit0111(div(pos, res)))),
-			assign($x(uv), mul($x(uv), div($x(res), $y(res)))),
-			ret(uv),
-		];
-	}
+	(fragCoord, resolution) => [
+		ret(div(sub(mul(2, fragCoord), resolution), $y(resolution))),
+	]
 );
 
 /**
