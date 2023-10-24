@@ -153,6 +153,7 @@ visual outputs/results).
 - [022: Quasi-random voronoi lattice generator](https://mastodon.thi.ng/@toxi/111244412425832657)
 - [023: Tag-based Jaccard similarity ranking/filtering using bitfields](https://mastodon.thi.ng/@toxi/111256960928934577)
 - [024: 2.5D hidden line visualization of digital elevation files (DEM)](https://mastodon.thi.ng/@toxi/111269505611983570)
+- [025: Fitting, transforming & plotting 10k data points per frame using SIMD](https://mastodon.thi.ng/@toxi/111283262419126958)
 
 ### Blog posts
 
@@ -241,13 +242,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-10-23
+As of: 2023-10-24
 
-| Status                                        | Package                                             | Version                                                                                                                   | Changelog                                          |
-|:----------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas) | [changelog](./packages/hiccup-canvas/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/matrices`](./packages/matrices)           | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)           | [changelog](./packages/matrices/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors)             | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)             | [changelog](./packages/vectors/CHANGELOG.md)       |
+| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
+|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/errors`](./packages/errors)                       | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)                       | [changelog](./packages/errors/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/expose`](./packages/expose)                       | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)                       | [changelog](./packages/expose/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rasterize`](./packages/rasterize)                 | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)                 | [changelog](./packages/rasterize/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
 
 ### Fundamentals
 
