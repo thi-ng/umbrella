@@ -22,6 +22,7 @@ export const exposeGlobal = (id: string, value: any, always = false) => {
 				  !!process.env.UMBRELLA_GLOBALS
 				: (<any>import.meta).env
 				? (<any>import.meta).env.MODE !== "production" ||
+				  !!(<any>import.meta).env.UMBRELLA_GLOBALS ||
 				  !!(<any>import.meta).env.VITE_UMBRELLA_GLOBALS
 				: true))
 	) {
