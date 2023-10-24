@@ -68,6 +68,7 @@ export * from "./sdf/mirror.js";
 export * from "./sdf/plane.js";
 export * from "./sdf/polyhedra.js";
 export * from "./sdf/polygon.js";
+export * from "./sdf/polyline.js";
 export * from "./sdf/repeat.js";
 export * from "./sdf/repeat-polar.js";
 export * from "./sdf/round.js";
