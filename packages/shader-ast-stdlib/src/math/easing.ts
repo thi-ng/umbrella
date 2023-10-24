@@ -1,5 +1,4 @@
-import type { Fn } from "@thi.ng/api";
-import type { FloatSym, ScopeBody } from "@thi.ng/shader-ast";
+import type { FnBody1 } from "@thi.ng/shader-ast";
 import { F } from "@thi.ng/shader-ast/api/types";
 import { ifThen, ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -29,10 +28,12 @@ import {
 import { cos, exp2, pow, sin, sqrt } from "@thi.ng/shader-ast/builtin/math";
 
 /**
- * Higher order function to wrap a given easing function body as proper
- * shader-ast function
+ * Higher order helper function to wrap a given easing function body as proper
+ * shader-ast function.
+ *
+ * @param body
  */
-const defEasing = (fn: Fn<FloatSym, ScopeBody>) => defn(F, null, [F], fn);
+export const defEasing = (body: FnBody1<"float">) => defn(F, null, [F], body);
 
 export const easeInSine = defEasing((x) => [
 	ret(sub(FLOAT1, cos(mul(x, HALF_PI)))),
