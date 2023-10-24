@@ -312,6 +312,21 @@ for reference.
 - `smootherStep` / `smootherStep2` / `smootherStep3` / `smootherStep4`
 - `smootherStep01` / `smootherStep01_2` / `smootherStep01_3` / `smootherStep01_4`
 
+### Easing functions
+
+[/src/math/easing.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/easing.ts)
+
+- `easeInBack` / `easeOutBack` / `easeInOutBack`
+- `easeInBounce` / `easeOutBounce` / `easeInOutBounce`
+- `easeInCirc` / `easeOutCirc` / `easeInOutCirc`
+- `easeInCubic` / `easeOutCubic` / `easeInOutCubic`
+- `easeInElastic` / `easeOutElastic` / `easeInOutElastic`
+- `easeInExpo` / `easeOutExpo` / `easeInOutExpo`
+- `easeInQuad` / `easeOutQuad` / `easeInOutQuad`
+- `easeInQuart` / `easeOutQuart` / `easeInOutQuart`
+- `easeInQuint` / `easeOutQuint` / `easeInOutQuint`
+- `easeInSine` / `easeOutSine` / `easeInOutSine`
+
 ### Oscillators
 
 [/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/osc.ts)

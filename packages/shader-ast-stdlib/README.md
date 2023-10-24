@@ -27,6 +27,7 @@ This project is part of the
   - [Fog](#fog)
   - [Lighting](#lighting)
   - [Math](#math)
+  - [Easing functions](#easing-functions)
   - [Oscillators](#oscillators)
   - [Matrix operations](#matrix-operations)
   - [Noise / randomness](#noise--randomness)
@@ -102,7 +103,7 @@ For Node.js REPL:
 const shaderAstStdlib = await import("@thi.ng/shader-ast-stdlib");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.82 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.62 KB
 
 ## Dependencies
 
@@ -391,6 +392,21 @@ for reference.
 - `smootherStep` / `smootherStep2` / `smootherStep3` / `smootherStep4`
 - `smootherStep01` / `smootherStep01_2` / `smootherStep01_3` / `smootherStep01_4`
 
+### Easing functions
+
+[/src/math/easing.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/easing.ts)
+
+- `easeInBack` / `easeOutBack` / `easeInOutBack`
+- `easeInBounce` / `easeOutBounce` / `easeInOutBounce`
+- `easeInCirc` / `easeOutCirc` / `easeInOutCirc`
+- `easeInCubic` / `easeOutCubic` / `easeInOutCubic`
+- `easeInElastic` / `easeOutElastic` / `easeInOutElastic`
+- `easeInExpo` / `easeOutExpo` / `easeInOutExpo`
+- `easeInQuad` / `easeOutQuad` / `easeInOutQuad`
+- `easeInQuart` / `easeOutQuart` / `easeInOutQuart`
+- `easeInQuint` / `easeOutQuint` / `easeInOutQuint`
+- `easeInSine` / `easeOutSine` / `easeInOutSine`
+
 ### Oscillators
 
 [/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/osc.ts)
@@ -491,14 +507,15 @@ for reference.
 
 ## Authors
 
-- [Karsten Schmidt](https://thi.ng)
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Yury Hantsouski](https://github.com/Hantsouski)
 
 If this project contributes to an academic publication, please cite it as:
 
 ```bibtex
 @misc{thing-shader-ast-stdlib,
   title = "@thi.ng/shader-ast-stdlib",
-  author = "Karsten Schmidt",
+  author = "Karsten Schmidt and others",
   note = "https://thi.ng/shader-ast-stdlib",
   year = 2019
 }
