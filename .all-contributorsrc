@@ -394,6 +394,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/947595?v=4",
 			"profile": "http://loskutoff.com/",
 			"contributions": ["code", "ideas"]
+		},
+		{
+			"login": "Hantsouski",
+			"name": "Yury",
+			"avatar_url": "https://avatars.githubusercontent.com/u/17182335?v=4",
+			"profile": "https://github.com/Hantsouski",
+			"contributions": ["code", "ideas", "financial"]
 		}
 	],
 	"contributorsPerLine": 7,

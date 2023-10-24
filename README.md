@@ -649,6 +649,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://www.samnosenzo.com/"><img src="https://avatars.githubusercontent.com/u/10187776?v=4?s=100" width="100px;" alt="Sam Nosenzo"/><br /><sub><b>Sam Nosenzo</b></sub></a><br /><a href="#financial-snosenzo" title="Financial">💵</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://loskutoff.com/"><img src="https://avatars.githubusercontent.com/u/947595?v=4?s=100" width="100px;" alt="Igor Loskutov"/><br /><sub><b>Igor Loskutov</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Firfi" title="Code">💻</a> <a href="#ideas-Firfi" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Hantsouski"><img src="https://avatars.githubusercontent.com/u/17182335?v=4?s=100" width="100px;" alt="Yury"/><br /><sub><b>Yury</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Hantsouski" title="Code">💻</a> <a href="#ideas-Hantsouski" title="Ideas, Planning, & Feedback">🤔</a> <a href="#financial-Hantsouski" title="Financial">💵</a></td>
+    </tr>
   </tbody>
 </table>
 
