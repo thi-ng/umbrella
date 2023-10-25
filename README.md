@@ -154,6 +154,7 @@ visual outputs/results).
 - [023: Tag-based Jaccard similarity ranking/filtering using bitfields](https://mastodon.thi.ng/@toxi/111256960928934577)
 - [024: 2.5D hidden line visualization of digital elevation files (DEM)](https://mastodon.thi.ng/@toxi/111269505611983570)
 - [025: Fitting, transforming & plotting 10k data points per frame using SIMD](https://mastodon.thi.ng/@toxi/111283262419126958)
+- [026: Shader meta-programming to generate animated function plots](https://mastodon.thi.ng/@toxi/111295842650216136)
 
 ### Blog posts
 
