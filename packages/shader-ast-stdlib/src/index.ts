@@ -23,6 +23,7 @@ export * from "./math/cross2.js";
 export * from "./math/dist-chebyshev.js";
 export * from "./math/dist-manhattan.js";
 export * from "./math/fit.js";
+export * from "./math/interval.js";
 export * from "./math/magsq.js";
 export * from "./math/maxcomp.js";
 export * from "./math/mincomp.js";

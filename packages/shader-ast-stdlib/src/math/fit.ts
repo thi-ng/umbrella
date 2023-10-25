@@ -20,6 +20,22 @@ export const fitNorm1 = defn(F, "fitNorm1", [F, F, F], (x, a, b) => [
 ]);
 
 /**
+ * Similar to {@link fitNorm1} but also for vector types and without checking if
+ * `a == b`. Scales value `x` from closed interval [a,b] to closed [0,1]
+ * interval. No clamping performed.
+ *
+ * @param x
+ * @param a
+ * @param b
+ * @returns
+ */
+export const fitNorm = <T extends PrimTerm>(
+	x: T,
+	a: T,
+	b: T
+): Term<TermType<T>> => div(sub(x, a), sub(b, a));
+
+/**
  * Fits value `x` from closed interval [a,b] to closed interval [c,d]. No
  * clamping performed.
  *
@@ -36,21 +52,6 @@ export const fit = <T extends PrimTerm>(
 	c: T,
 	d: T
 ): Term<TermType<T>> => mix(c, d, fitNorm(x, a, b));
-
-/**
- * Scales value `x` from closed interval [a,b] to closed [0,1] interval. No
- * clamping performed.
- *
- * @param x
- * @param a
- * @param b
- * @returns
- */
-export const fitNorm = <T extends PrimTerm>(
-	x: T,
-	a: T,
-	b: T
-): Term<TermType<T>> => div(sub(x, a), sub(b, a));
 
 /**
  * Same as {@link fit}, but first clamps `x` to closed [a,b] interval.
