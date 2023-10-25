@@ -129,6 +129,9 @@
 		"./fog/linear": {
 			"default": "./fog/linear.js"
 		},
+		"./isec/point": {
+			"default": "./isec/point.js"
+		},
 		"./light/lambert": {
 			"default": "./light/lambert.js"
 		},
@@ -332,6 +335,9 @@
 		},
 		"./tex/read-index": {
 			"default": "./tex/read-index.js"
+		},
+		"./viz/function": {
+			"default": "./viz/function.js"
 		}
 	},
 	"thi.ng": {
