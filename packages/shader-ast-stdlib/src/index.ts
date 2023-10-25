@@ -87,3 +87,5 @@ export * from "./tex/blur.js";
 export * from "./tex/index-coord.js";
 export * from "./tex/index-uv.js";
 export * from "./tex/read-index.js";
+
+export * from "./viz/function.js";
