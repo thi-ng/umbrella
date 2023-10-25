@@ -232,8 +232,9 @@ export const defShader = (
 	const srcFS = isFunction(spec.fs)
 		? shaderSourceFromAST(spec, "fs", version, opts)
 		: prepareShaderSource(spec, "fs", version);
-	LOGGER.debug(srcVS);
-	LOGGER.debug(srcFS);
+	const logger = opts?.logger || LOGGER;
+	logger.debug(srcVS);
+	logger.debug(srcFS);
 	initShaderExtensions(gl, spec.ext);
 	const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
 	const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);

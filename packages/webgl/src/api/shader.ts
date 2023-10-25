@@ -9,6 +9,7 @@ import type {
 	IRelease,
 	NumericArray,
 } from "@thi.ng/api";
+import type { ILogger } from "@thi.ng/logger";
 import type { Func, Sym } from "@thi.ng/shader-ast";
 import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -294,6 +295,10 @@ export interface ShaderPresetOpts<T> {
 }
 
 export interface DefShaderOpts {
+	/**
+	 * Logger to use for compiled shader output (if not given uses current {@link LOGGER}).
+	 */
+	logger: ILogger;
 	/**
 	 * Number of fractional digits for GLSL float literals
 	 */
