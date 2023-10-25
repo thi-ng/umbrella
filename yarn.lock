@@ -1926,6 +1926,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/shader-ast-easings@workspace:examples/shader-ast-easings":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-easings@workspace:examples/shader-ast-easings"
+  dependencies:
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    "@thi.ng/webgl-shadertoy": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
 "@example/shader-ast-evo@workspace:examples/shader-ast-evo":
   version: 0.0.0-use.local
   resolution: "@example/shader-ast-evo@workspace:examples/shader-ast-evo"
