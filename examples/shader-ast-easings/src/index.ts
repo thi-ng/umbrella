@@ -6,7 +6,6 @@ import {
 	distance,
 	div,
 	float,
-	fract,
 	ifThen,
 	lte,
 	madd,
@@ -93,7 +92,7 @@ const main: MainImageFn<DemoUniforms> = (gl, unis) => {
 		// $xy() is a vector swizzle (e.g. in GLSL: gl_FragCoord.xy)
 		(uv = sym(div($xy(gl.gl_FragCoord), unis.resolution))),
 		// loop & slow down animation
-		(t = sym(fract(mul(0.5, unis.time)))),
+		(t = sym(std.foldback01(mul(0.5, unis.time)))),
 		// for each given easing function code we first generate a viewport
 		// region check and an associated function call (incl. function
 		// definition) to visualize that easing function...
