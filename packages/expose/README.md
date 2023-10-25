@@ -58,7 +58,7 @@ For Node.js REPL:
 const expose = await import("@thi.ng/expose");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 201 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 205 bytes
 
 ## Dependencies
 

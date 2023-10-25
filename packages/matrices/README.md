@@ -82,7 +82,7 @@ For Node.js REPL:
 const matrices = await import("@thi.ng/matrices");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.08 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.11 KB
 
 ## Dependencies
 

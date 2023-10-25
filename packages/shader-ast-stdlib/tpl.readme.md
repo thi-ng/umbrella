@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-A growing collection (currently ~170) of useful functions & higher order
+A growing collection (currently ~225) of useful functions & higher order
 constructs (incl. meta programming approaches) for GPU / shader programming,
 acting as optional standard library for
 [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
@@ -282,6 +282,13 @@ for reference.
 - `fogExp`
 - `fogExp2`
 
+### Intersection tests
+
+[/src/isec](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/isec/)
+
+- `isPointInCircle`
+- `isPointInRect`
+
 ### Lighting
 
 [/src/light](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/light/)
@@ -389,6 +396,8 @@ for reference.
 - `sdfLine3`
 - `sdfPlane2`
 - `sdfPlane3`
+- `sdfPolygon2`
+- `sdfPolyline2`
 - `sdfQuadratic2`
 - `sdfSphere`
 - `sdfTorus`
@@ -424,5 +433,12 @@ for reference.
 - `indexToCoord` / `coordToIndex`
 - `indexToUV` / `uvToIndex`
 - `readIndex1` / `readIndex2` / `readIndex3` / `readIndex4`
+
+### Visualization
+
+[/src/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/viz/)
+
+- `functionDomainMapper`
+- `functionSampler`
 
 <!-- include ../../assets/tpl/footer.md -->
