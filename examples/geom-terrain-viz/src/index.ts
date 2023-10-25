@@ -8,7 +8,7 @@ import {
 	convolveImage,
 	defSampler,
 	floatBufferFromImage,
-	imagePromise,
+	imageFromURL,
 	type FloatSampler,
 } from "@thi.ng/pixel";
 import { $canvas } from "@thi.ng/rdom-canvas";
@@ -112,7 +112,7 @@ const hiddenPolyline = (pts: ReadonlyVec[], horizon: ReadonlyVec[]) => {
 		)
 	);
 	// load image, convert to grayscale floating point image buffer
-	let img = floatBufferFromImage(await imagePromise(IMG), FLOAT_GRAY);
+	let img = floatBufferFromImage(await imageFromURL(IMG), FLOAT_GRAY);
 	// optionally blur the image with a bit of gaussian blur to reduce noise/jitter
 	// see https://thi.ng/pixel readme for alternatives
 	img = convolveImage(img, { kernel: GAUSSIAN(BLUR) });

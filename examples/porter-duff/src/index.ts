@@ -1,7 +1,7 @@
 import {
-	canvas2d,
-	imagePromise,
 	ABGR8888,
+	canvas2d,
+	imageFromURL,
 	intBufferFromCanvas,
 	intBufferFromImage,
 } from "@thi.ng/pixel";
@@ -39,7 +39,7 @@ const MODES = {
 
 const IDS = <(keyof typeof MODES)[]>Object.keys(MODES);
 
-Promise.all([IMG, IMG2].map((x) => imagePromise(x)))
+Promise.all([IMG, IMG2].map((x) => imageFromURL(x)))
 	.then(([circle, plus]) => {
 		const srcBuf = intBufferFromImage(circle, ABGR8888).premultiply();
 		const destBuf = intBufferFromImage(plus, ABGR8888).premultiply();

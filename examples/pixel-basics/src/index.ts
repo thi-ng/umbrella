@@ -2,7 +2,7 @@ import {
 	canvas2d,
 	GRAY8,
 	GRAY_ALPHA8,
-	imagePromise,
+	imageFromURL,
 	intBufferFromImage,
 	RGB565,
 } from "@thi.ng/pixel";
@@ -10,7 +10,7 @@ import { SRC_OVER_I } from "@thi.ng/porter-duff";
 import IMG from "./haystack.jpg";
 import LOGO from "./logo-64.png";
 
-Promise.all([IMG, LOGO].map((x) => imagePromise(x))).then(([img, logo]) => {
+Promise.all([IMG, LOGO].map((x) => imageFromURL(x))).then(([img, logo]) => {
 	// init 16bit int RGB pixel buffer from image (resized to 256x256)
 	const buf = intBufferFromImage(img, RGB565, 256, 256);
 

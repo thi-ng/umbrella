@@ -3,7 +3,7 @@ import {
 	ARGB8888,
 	canvas2d,
 	defIndexed,
-	imagePromise,
+	imageFromURL,
 	IntBuffer,
 	intBufferFromImage,
 	range,
@@ -14,7 +14,7 @@ import IMG from "./test.jpg";
 const ORDERED = false;
 
 (async () => {
-	const img = await imagePromise(IMG);
+	const img = await imageFromURL(IMG);
 
 	const root = document.getElementById("app")!;
 	root.appendChild(img);

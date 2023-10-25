@@ -1,6 +1,6 @@
 import { fiber, untilPromise } from "@thi.ng/fibers";
 import { div } from "@thi.ng/hiccup-html";
-import { imagePromise } from "@thi.ng/pixel";
+import { imageFromURL } from "@thi.ng/pixel";
 import { $replace } from "@thi.ng/rdom";
 import { reactive, stream } from "@thi.ng/rstream";
 import { percent } from "@thi.ng/strings";
@@ -17,7 +17,7 @@ export const preload = async () => {
 	// (to which the returned UI component subscribes to, see further below...)
 	fiber(function* () {
 		for (let i = 0; i < DB.length; i++) {
-			const img = yield* untilPromise(imagePromise(DB[i].url));
+			const img = yield* untilPromise(imageFromURL(DB[i].url));
 			// if image loading fails, update reactive error state & stop
 			if (!img) {
 				error.next(`error loading image (#${i}): ${DB[i].url}`);

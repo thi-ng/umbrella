@@ -2,7 +2,7 @@ import type { IObjectOf } from "@thi.ng/api";
 import {
 	canvas2d,
 	GRAY8,
-	imagePromise,
+	imageFromURL,
 	IntBuffer,
 	intBufferFromImage,
 } from "@thi.ng/pixel";
@@ -23,7 +23,7 @@ import {
 import IMG from "./michelangelo.png";
 
 (async () => {
-	const img = await imagePromise(IMG);
+	const img = await imageFromURL(IMG);
 
 	const root = document.getElementById("app")!;
 	root.appendChild(img);

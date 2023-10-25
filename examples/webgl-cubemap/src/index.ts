@@ -3,6 +3,7 @@ import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL, dropdown } from "@thi.ng/hdom-components";
 import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
+import { imageFromURL } from "@thi.ng/pixel";
 import { fromPromise, metaStream, reactive } from "@thi.ng/rstream";
 import {
 	assign,
@@ -148,21 +149,10 @@ const app = () => {
 	];
 };
 
-const imagePromise = (url: string) =>
-	new Promise<HTMLImageElement>((resolve, fail) => {
-		const img = new Image();
-		img.onload = () => resolve(img);
-		img.onerror = (e) => {
-			console.warn("error loading: " + url);
-			fail(e);
-		};
-		img.src = url;
-	});
-
 const loadCubeMap = (base: string) =>
 	Promise.all(
 		["posx", "negx", "posy", "negy", "posz", "negz"].map((id) =>
-			imagePromise(base + id + ".jpg")
+			imageFromURL(base + id + ".jpg")
 		)
 	);
 

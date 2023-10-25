@@ -1,15 +1,15 @@
 import {
+	FLOAT_GRAY,
 	canvas2d,
 	floatBufferFromImage,
-	FLOAT_GRAY,
-	imagePromise,
+	imageFromURL,
 	normalMap,
 } from "@thi.ng/pixel";
 import TEX from "./tex.png";
 
 (async () => {
 	// load texture image
-	const img = await imagePromise(TEX);
+	const img = await imageFromURL(TEX);
 	document.body.appendChild(img);
 	// convert image to grayscale float buffer
 	const buf = floatBufferFromImage(img, FLOAT_GRAY);

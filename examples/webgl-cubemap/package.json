@@ -17,6 +17,7 @@
 		"@thi.ng/hdom": "workspace:^",
 		"@thi.ng/hdom-components": "workspace:^",
 		"@thi.ng/matrices": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/shader-ast": "workspace:^",
 		"@thi.ng/webgl": "workspace:^"

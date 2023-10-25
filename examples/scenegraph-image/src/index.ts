@@ -3,7 +3,7 @@ import { group, polyline } from "@thi.ng/geom";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { mulV23 } from "@thi.ng/matrices";
-import { GRAY8, imagePromise, intBufferFromImage } from "@thi.ng/pixel";
+import { GRAY8, imageFromURL, intBufferFromImage } from "@thi.ng/pixel";
 import { Node2D } from "@thi.ng/scenegraph";
 import { map, range } from "@thi.ng/transducers";
 import { setN2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
@@ -45,7 +45,7 @@ class ImgNode extends Node2D {
 	}
 }
 
-imagePromise(LOGO).then((img) => {
+imageFromURL(LOGO).then((img) => {
 	// mouse pos
 	let mouse: Vec = [0, 0];
 

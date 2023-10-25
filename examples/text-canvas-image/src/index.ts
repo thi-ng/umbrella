@@ -1,4 +1,4 @@
-import { imagePromise, intBufferFromImage, RGB565 } from "@thi.ng/pixel";
+import { imageFromURL, intBufferFromImage, RGB565 } from "@thi.ng/pixel";
 import { canvas, formatCanvas, setAt } from "@thi.ng/text-canvas";
 import { FMT_HTML565 } from "@thi.ng/text-format";
 import IMG from "./test.png";
@@ -9,7 +9,7 @@ const H = 48;
 
 (async () => {
 	const el = document.getElementById("app")!;
-	const img = await imagePromise(IMG);
+	const img = await imageFromURL(IMG);
 	const iw = img.width;
 	const ih = img.height;
 	// create 16bit color buffer from image

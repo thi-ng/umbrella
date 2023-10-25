@@ -3,7 +3,7 @@ import { mod } from "@thi.ng/math";
 import {
 	GRAY8,
 	IntBuffer,
-	imagePromise,
+	imageFromURL,
 	intBufferFromImage,
 } from "@thi.ng/pixel";
 import { read } from "@thi.ng/pixel-io-netpbm";
@@ -28,7 +28,7 @@ export const loadImage = async (file: File) => {
 		buf = await readPBM(file);
 	} else {
 		const url = URL.createObjectURL(file);
-		const img = await imagePromise(url);
+		const img = await imageFromURL(url);
 		URL.revokeObjectURL(url);
 		buf = intBufferFromImage(img, GRAY8);
 	}
