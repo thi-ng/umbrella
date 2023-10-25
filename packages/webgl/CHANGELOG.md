@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-23T07:37:38Z
+- **Last updated**: 2023-10-25T12:40:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [6.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.6.0) (2023-10-25)
+
+#### 🚀 Features
+
+- update DefShaderOpts & defShader() ([800318f](https://github.com/thi-ng/umbrella/commit/800318f))
+  - add `logger` option to use temp. logger for compiled GLSL output
 
 ## [6.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.5.0) (2023-09-19)
 

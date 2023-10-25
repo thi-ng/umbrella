@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-24T08:38:23Z
+- **Last updated**: 2023-10-25T12:40:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.15.0) (2023-10-25)
+
+#### 🚀 Features
+
+- add sdfPolyline2() ([4b6c6b7](https://github.com/thi-ng/umbrella/commit/4b6c6b7))
+- add fitNorm() ([d5f21c5](https://github.com/thi-ng/umbrella/commit/d5f21c5))
+- add isPointInCircle(), isPointInRect() ([de4b1ab](https://github.com/thi-ng/umbrella/commit/de4b1ab))
+- add functionSampler() HOF plotting ([c6140b4](https://github.com/thi-ng/umbrella/commit/c6140b4))
+
+#### ⏱ Performance improvements
+
+- optimize aspectCorrectedUV2() ([733331a](https://github.com/thi-ng/umbrella/commit/733331a))
 
 ### [0.14.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.14.20) (2023-10-24)
 
