@@ -212,6 +212,15 @@ export const foldback: FnN2 = (e, x) =>
 	x < -e || x > e ? Math.abs(Math.abs((x - e) % (4 * e)) - 2 * e) - e : x;
 
 /**
+ * Similar to {@link foldback}, but with fixed target range: Folds `x` into the
+ * closed [0..1] interval, using infinite internal reflection on either side of
+ * the interval.
+ *
+ * @param x
+ */
+export const foldback01: FnN = (x) => ((x = Math.abs(x) % 2) > 1 ? 2 - x : x);
+
+/**
  * Returns true iff `x` is in closed interval `[min .. max]`
  *
  * @param x -
