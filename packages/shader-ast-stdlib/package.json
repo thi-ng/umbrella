@@ -162,6 +162,9 @@
 		"./math/fit": {
 			"default": "./math/fit.js"
 		},
+		"./math/interval": {
+			"default": "./math/interval.js"
+		},
 		"./math/magsq": {
 			"default": "./math/magsq.js"
 		},

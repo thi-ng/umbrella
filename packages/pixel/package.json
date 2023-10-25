@@ -189,6 +189,9 @@
 		"./format/rgb888": {
 			"default": "./format/rgb888.js"
 		},
+		"./image": {
+			"default": "./image.js"
+		},
 		"./int": {
 			"default": "./int.js"
 		},
