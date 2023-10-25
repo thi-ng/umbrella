@@ -32,7 +32,7 @@ import {
 	type IntSampler,
 	type Rotation,
 } from "./api.js";
-import { canvasPixels, imageCanvas } from "./canvas.js";
+import { canvasPixels } from "./canvas.js";
 import {
 	ensureAlpha,
 	ensureChannel,
@@ -41,6 +41,7 @@ import {
 } from "./checks.js";
 import { ABGR8888 } from "./format/abgr8888.js";
 import { defIntFormat } from "./format/int-format.js";
+import { imageCanvas } from "./image.js";
 import {
 	__compileGrayFromABGR,
 	__compileGrayToABGR,
