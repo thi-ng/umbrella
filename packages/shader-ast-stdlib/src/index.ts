@@ -11,6 +11,8 @@ export * from "./fog/exp.js";
 export * from "./fog/exp2.js";
 export * from "./fog/linear.js";
 
+export * from "./isec/point.js";
+
 export * from "./light/lambert.js";
 export * from "./light/trilight.js";
 
