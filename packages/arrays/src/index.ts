@@ -18,6 +18,7 @@ export * from "./iterator.js";
 export * from "./levenshtein.js";
 export * from "./peek.js";
 export * from "./quicksort.js";
+export * from "./rotate.js";
 export * from "./shuffle.js";
 export * from "./sort-cached.js";
 export * from "./starts-with.js";

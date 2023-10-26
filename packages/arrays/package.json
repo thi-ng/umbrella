@@ -137,6 +137,9 @@
 		"./quicksort": {
 			"default": "./quicksort.js"
 		},
+		"./rotate": {
+			"default": "./rotate.js"
+		},
 		"./shuffle": {
 			"default": "./shuffle.js"
 		},
