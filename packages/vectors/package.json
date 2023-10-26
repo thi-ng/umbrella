@@ -722,11 +722,20 @@
 		"./vec-of": {
 			"default": "./vec-of.js"
 		},
+		"./vec2-api": {
+			"default": "./vec2-api.js"
+		},
 		"./vec2": {
 			"default": "./vec2.js"
 		},
+		"./vec3-api": {
+			"default": "./vec3-api.js"
+		},
 		"./vec3": {
 			"default": "./vec3.js"
+		},
+		"./vec4-api": {
+			"default": "./vec4-api.js"
 		},
 		"./vec4": {
 			"default": "./vec4.js"
