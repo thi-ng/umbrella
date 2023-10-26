@@ -161,11 +161,12 @@ For Node.js REPL:
 const cellular = await import("@thi.ng/cellular");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.40 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.36 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)

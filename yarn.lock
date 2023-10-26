@@ -3211,6 +3211,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.38.0
     "@thi.ng/api": ^8.9.6
+    "@thi.ng/arrays": ^2.6.5
     "@thi.ng/checks": ^3.4.6
     "@thi.ng/errors": ^2.4.0
     "@thi.ng/random": ^3.6.10

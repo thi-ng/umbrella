@@ -1,4 +1,5 @@
 import type { IClear, TypedArray, UIntArray } from "@thi.ng/api";
+import { rotateTyped } from "@thi.ng/arrays/rotate";
 import { isBigInt } from "@thi.ng/checks/is-bigint";
 import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "@thi.ng/random";
@@ -370,11 +371,11 @@ export class MultiCA1D implements IClear {
 
 	rotate(target: Target | "all", dir: number) {
 		if (target === "all") {
-			__rotate(this.current, dir);
-			__rotate(this.mask, dir);
-			__rotate(this.prob, dir);
+			rotateTyped(this.current, dir);
+			rotateTyped(this.mask, dir);
+			rotateTyped(this.prob, dir);
 		} else {
-			__rotate(this._getTarget(target)[0], dir);
+			rotateTyped(this._getTarget(target)[0], dir);
 		}
 	}
 
@@ -408,18 +409,6 @@ const __compileSpec = ({
 				? (y) => (++y >= states ? 0 : y)
 				: (y) => (++y >= max ? max : y),
 	};
-};
-
-const __rotate = (buf: TypedArray, dir: number) => {
-	if (dir < 0) {
-		const tmp = buf.slice(0, -dir);
-		buf.copyWithin(0, -dir);
-		buf.set(tmp, buf.length + dir);
-	} else if (dir > 0) {
-		const tmp = buf.slice(buf.length - dir);
-		buf.copyWithin(dir, 0);
-		buf.set(tmp, 0);
-	}
 };
 
 /**
