@@ -9,6 +9,10 @@ export * from "./vec2.js";
 export * from "./vec3.js";
 export * from "./vec4.js";
 
+export * from "./vec2-api.js";
+export * from "./vec3-api.js";
+export * from "./vec4-api.js";
+
 export * from "./vop.js";
 export * from "./abs.js";
 export * from "./acos.js";

@@ -450,32 +450,127 @@ export type MultiCompareOp = MultiVecOpImpl<CompareOp>;
 
 export type DistanceFn = VecOpRoVV<number>;
 
-const mi = -Infinity;
-const mx = Infinity;
+/**
+ * An object of the most common vector operations implemented for a specific
+ * vector size. See {@link VEC2}, {@link VEC3}, {@link VEC4}.
+ *
+ * @remarks
+ * Using this interface simplifies other performance-critical use
+ * cases/algorithms which target different dimensionalities (e.g. 2d/3d), but
+ * which should use the size-optimized vector operations (avoiding the small
+ * overhead of their nD vector versions which would likely be used otherwise).
+ *
+ * @example
+ * ```ts
+ * interface Particle {
+ *   pos: Vec;
+ *   dir: Vec;
+ *   targetDir: Vec;
+ *   speed: number;
+ *   turnSpeed: number;
+ * }
+ *
+ * const updateParticle = (p: Particle, api: VecAPI) => {
+ *   // interpolate current direction toward target dir
+ *   api.mixN(null, p.dir, p.targetDir, p.turnSpeed);
+ *   // normalize direction
+ *   api.normalize(null, p.dir);
+ *   // add scaled direction to position (and store as new position)
+ *   return api.maddN(p.pos, p.dir, p.speed, p.pos);
+ * };
+ *
+ * // 2d version
+ *
+ * let p2d: Particle = {
+ *   pos: [10,20], dir: [0,1], targetDir: [1,0], speed: 5, turnSpeed: 0.1
+ * };
+ *
+ * updateParticle(p2d, VEC2_API);
+ * // [ 10.552, 24.969 ]
+ *
+ * // 3d version
+ *
+ * let p3d: Particle = {
+ *   pos: [10,20,30], dir: [0,1,0], targetDir: [0,0,1], speed: 5, turnSpeed: 0.1
+ * };
+ *
+ * updateParticle(p3d, VEC3_API);
+ * // [ 10, 24.969, 30.552 ]
+ * ```
+ */
+export interface VecAPI {
+	abs: VecOpV;
+	acos: VecOpV;
+	add: VecOpVV;
+	addN: VecOpVN;
+	addm: VecOpVVV;
+	addmN: VecOpVVN;
+	asin: VecOpV;
+	atan: VecOpV;
+	atan2: VecOpVV;
+	ceil: VecOpV;
+	clamp: VecOpVVV;
+	clamp01: VecOpV;
+	cos: VecOpV;
+	degrees: VecOpV;
+	dist: DistanceFn;
+	distSq: DistanceFn;
+	div: VecOpVV;
+	divN: VecOpVN;
+	dot: VecOpRoVV<number>;
+	eqDelta: VecOpRoVVO<boolean, number>;
+	equals: VecOpRoVV<boolean>;
+	exp: VecOpV;
+	exp2: VecOpV;
+	fit: VecOpVVVVV;
+	fit01: VecOpVVV;
+	floor: VecOpV;
+	fmod: VecOpVV;
+	fract: VecOpV;
+	invSqrt: VecOpV;
+	mag: VecOpRoV<number>;
+	magSq: VecOpRoV<number>;
+	log: VecOpV;
+	log2: VecOpV;
+	madd: VecOpVVV;
+	maddN: VecOpVNV;
+	major: VecOpRoV<number>;
+	max: VecOpVV;
+	min: VecOpVV;
+	minor: VecOpRoV<number>;
+	mix: VecOpVVV;
+	mixN: VecOpVVN;
+	mod: VecOpVV;
+	modN: VecOpVN;
+	msub: VecOpVVV;
+	msubN: VecOpVNV;
+	mul: VecOpVV;
+	mulN: VecOpVN;
+	normalize: VecOpV;
+	pow: VecOpVV;
+	powN: VecOpVN;
+	radians: VecOpV;
+	round: VecOpVV;
+	set: VecOpV;
+	setN: VecOpN;
+	sign: VecOpV;
+	sin: VecOpV;
+	smoothstep: VecOpVVV;
+	sqrt: VecOpV;
+	step: VecOpVV;
+	sub: VecOpVV;
+	subN: VecOpVN;
+	subm: VecOpVVV;
+	submN: VecOpVVN;
+	tan: VecOpV;
 
-export const MIN2: ReadonlyVec = Object.freeze([mi, mi]);
-export const MAX2: ReadonlyVec = Object.freeze([mx, mx]);
-export const ONE2: ReadonlyVec = Object.freeze([1, 1]);
-export const ZERO2: ReadonlyVec = Object.freeze([0, 0]);
-export const X2: ReadonlyVec = Object.freeze([1, 0]);
-export const Y2: ReadonlyVec = Object.freeze([0, 1]);
-
-export const MIN3: ReadonlyVec = Object.freeze([mi, mi, mi]);
-export const MAX3: ReadonlyVec = Object.freeze([mx, mx, mx]);
-export const ONE3: ReadonlyVec = Object.freeze([1, 1, 1]);
-export const ZERO3: ReadonlyVec = Object.freeze([0, 0, 0]);
-export const X3: ReadonlyVec = Object.freeze([1, 0, 0]);
-export const Y3: ReadonlyVec = Object.freeze([0, 1, 0]);
-export const Z3: ReadonlyVec = Object.freeze([0, 0, 1]);
-
-export const MIN4: ReadonlyVec = Object.freeze([mi, mi, mi, mi]);
-export const MAX4: ReadonlyVec = Object.freeze([mx, mx, mx, mx]);
-export const ONE4: ReadonlyVec = Object.freeze([1, 1, 1, 1]);
-export const ZERO4: ReadonlyVec = Object.freeze([0, 0, 0, 0]);
-export const X4: ReadonlyVec = Object.freeze([1, 0, 0, 0]);
-export const Y4: ReadonlyVec = Object.freeze([0, 1, 0, 0]);
-export const Z4: ReadonlyVec = Object.freeze([0, 0, 1, 0]);
-export const W4: ReadonlyVec = Object.freeze([0, 0, 0, 1]);
+	eq: CompareOp;
+	neq: CompareOp;
+	gt: CompareOp;
+	gte: CompareOp;
+	lt: CompareOp;
+	lte: CompareOp;
+}
 
 export type Template = (syms: string[], i?: number) => string;
 
@@ -504,3 +599,30 @@ export interface ToStringOpts {
 	 */
 	wrap: ArrayLike<string>;
 }
+
+const mi = -Infinity;
+const mx = Infinity;
+
+export const MIN2: ReadonlyVec = Object.freeze([mi, mi]);
+export const MAX2: ReadonlyVec = Object.freeze([mx, mx]);
+export const ONE2: ReadonlyVec = Object.freeze([1, 1]);
+export const ZERO2: ReadonlyVec = Object.freeze([0, 0]);
+export const X2: ReadonlyVec = Object.freeze([1, 0]);
+export const Y2: ReadonlyVec = Object.freeze([0, 1]);
+
+export const MIN3: ReadonlyVec = Object.freeze([mi, mi, mi]);
+export const MAX3: ReadonlyVec = Object.freeze([mx, mx, mx]);
+export const ONE3: ReadonlyVec = Object.freeze([1, 1, 1]);
+export const ZERO3: ReadonlyVec = Object.freeze([0, 0, 0]);
+export const X3: ReadonlyVec = Object.freeze([1, 0, 0]);
+export const Y3: ReadonlyVec = Object.freeze([0, 1, 0]);
+export const Z3: ReadonlyVec = Object.freeze([0, 0, 1]);
+
+export const MIN4: ReadonlyVec = Object.freeze([mi, mi, mi, mi]);
+export const MAX4: ReadonlyVec = Object.freeze([mx, mx, mx, mx]);
+export const ONE4: ReadonlyVec = Object.freeze([1, 1, 1, 1]);
+export const ZERO4: ReadonlyVec = Object.freeze([0, 0, 0, 0]);
+export const X4: ReadonlyVec = Object.freeze([1, 0, 0, 0]);
+export const Y4: ReadonlyVec = Object.freeze([0, 1, 0, 0]);
+export const Z4: ReadonlyVec = Object.freeze([0, 0, 1, 0]);
+export const W4: ReadonlyVec = Object.freeze([0, 0, 0, 1]);
