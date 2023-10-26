@@ -12,7 +12,8 @@ currently available.
 This package provides **over 875(!) largely code generated functions** and
 supporting types to perform vector operations on fixed and arbitrary-length
 vectors, both packed and strided (i.e. where individual vector components are
-not successive array elements, for example in SOA memory layouts).
+not successive array elements, for example in [SOA memory
+layouts](https://en.wikipedia.org/wiki/AoS_and_SoA)).
 
 Includes componentwise logic operations for boolean vectors, componentwise
 comparisons for numeric vectors and componentwise binary ops for signed &
@@ -33,6 +34,16 @@ unsigned integer vectors.
   [`add`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/add.ts)
   performs vector addition on arbitrary-length vectors, `add2`, `add3`, `add4`
   are the optimized version for fixed-length vectors...
+- Pluggable interface: The [`VecAPI`
+  interface](https://docs.thi.ng/umbrella/vectors/interfaces/VecAPI.html)
+  defines objects of the ~70 most common vector operations implemented for
+  specific vector sizes. Using this interface simplifies performance-critical
+  use cases & algorithms which target different dimensions (e.g. 2d/3d),
+  but should use the avaiable size-optimized vector ops. See
+  [`VEC2`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec2-api.ts),
+  [`VEC3`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec3-api.ts)
+  and
+  [`VEC4`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec4-api.ts)
 - Extensible: Custom vector ops can be defined in a similar manner using the
   provided code generation helpers (see
   [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
@@ -105,6 +116,12 @@ reasons the same changes have been applied to this package...
 
 {{repo.examples}}
 
+## API
+
+{{pkg.docs}}
+
+### Basic usage
+
 ```ts
 import * as v from "@thi.ng/vectors";
 
@@ -158,9 +175,48 @@ v.hash([1, 2, 3])
 // 2383338936
 ```
 
-## API
+Using the
+[`VecAPI`](https://docs.thi.ng/umbrella/vectors/interfaces/VecAPI.html)
+implementation objects to use size-optimized vector ops in a pluggable manner
+(this is in addition/alternative to using the standard set of polymorphic
+functions for similar results).
 
-{{pkg.docs}}
+```ts
+import { VEC2, VEC3, type Vec, type VecAPI } from "@thi.ng/vectors";
+
+interface Particle {
+	pos: Vec;
+	dir: Vec;
+	targetDir: Vec;
+	speed: number;
+	turnSpeed: number;
+}
+
+const updateParticle = (p: Particle, { maddN, mixN, normalize }: VecAPI) => {
+	// interpolate current direction toward target dir
+	mixN(null, p.dir, p.targetDir, p.turnSpeed);
+	// normalize direction
+	normalize(null, p.dir);
+	// add scaled direction to position (and store as new position)
+	return maddN(p.pos, p.dir, p.speed, p.pos);
+};
+
+// 2d version
+let p2d: Particle = {
+	pos: [10, 20], dir: [0, 1], targetDir: [1, 0], speed: 5, turnSpeed: 0.1,
+};
+
+updateParticle(p2d, VEC2);
+// [ 10.552, 24.969 ]
+
+// 3d version
+let p3d: Particle = {
+	pos: [10, 20, 30], dir: [0, 1, 0], targetDir: [0, 0, 1], speed: 5, turnSpeed: 0.1,
+};
+
+updateParticle(p3d, VEC3);
+// [ 10, 24.969, 30.552 ]
+```
 
 ### Naming conventions
 

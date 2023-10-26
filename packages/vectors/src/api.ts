@@ -451,7 +451,7 @@ export type MultiCompareOp = MultiVecOpImpl<CompareOp>;
 export type DistanceFn = VecOpRoVV<number>;
 
 /**
- * An object of the most common vector operations implemented for a specific
+ * An object of the ~70 most common vector operations implemented for a specific
  * vector size. See {@link VEC2}, {@link VEC3}, {@link VEC4}.
  *
  * @remarks
@@ -485,7 +485,7 @@ export type DistanceFn = VecOpRoVV<number>;
  *   pos: [10,20], dir: [0,1], targetDir: [1,0], speed: 5, turnSpeed: 0.1
  * };
  *
- * updateParticle(p2d, VEC2_API);
+ * updateParticle(p2d, VEC2);
  * // [ 10.552, 24.969 ]
  *
  * // 3d version
@@ -494,7 +494,7 @@ export type DistanceFn = VecOpRoVV<number>;
  *   pos: [10,20,30], dir: [0,1,0], targetDir: [0,0,1], speed: 5, turnSpeed: 0.1
  * };
  *
- * updateParticle(p3d, VEC3_API);
+ * updateParticle(p3d, VEC3);
  * // [ 10, 24.969, 30.552 ]
  * ```
  */
