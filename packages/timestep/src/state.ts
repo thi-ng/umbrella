@@ -1,8 +1,14 @@
 import type { IDeref } from "@thi.ng/api";
 import { mix } from "@thi.ng/math/mix";
-import type { ReadonlyVec, Vec, VecOpV, VecOpVVN } from "@thi.ng/vectors";
-import { mixN, mixN2, mixN3, mixN4 } from "@thi.ng/vectors/mixn";
-import { set, set2, set3, set4 } from "@thi.ng/vectors/set";
+import type {
+	ReadonlyVec,
+	Vec,
+	VecAPI,
+	VecOpV,
+	VecOpVVN,
+} from "@thi.ng/vectors";
+import { mixN2, mixN3, mixN4 } from "@thi.ng/vectors/mixn";
+import { set2, set3, set4 } from "@thi.ng/vectors/set";
 import type { ITimeStep, ReadonlyTimeStep, StateUpdate } from "./api.js";
 
 export class NumericState implements IDeref<number>, ITimeStep {
@@ -40,15 +46,18 @@ export class NumericState implements IDeref<number>, ITimeStep {
 export class VectorState implements IDeref<ReadonlyVec>, ITimeStep {
 	prev: Vec;
 	curr: Vec;
+	setFn: VecOpV;
+	mixFn: VecOpVVN;
 
 	constructor(
+		api: Pick<VecAPI, "set" | "mixN">,
 		public value: Vec,
-		public setFn: VecOpV,
-		public mixFn: VecOpVVN,
 		public update: StateUpdate<ReadonlyVec>
 	) {
-		this.prev = [...value];
-		this.curr = [...value];
+		this.setFn = api.set;
+		this.mixFn = api.mixN;
+		this.prev = this.setFn([], value);
+		this.curr = this.setFn([], value);
 	}
 
 	deref(): ReadonlyVec {
@@ -90,19 +99,25 @@ export const defNumeric = (x: number, update: StateUpdate<number>) =>
 
 /**
  * Returns a new {@link VectorState} wrapper for given vector `v` (arbitrary
- * length) and its update function for use with {@link TimeStep.update}.
+ * length) and its update function for use with {@link TimeStep.update}. The
+ * `api` object is used to provide dedicated vector ops used internally.
  *
  * @remarks
- * **IMPORTANT:** The `update` function MUST manipulate the vector received as
- * 1st arg (which is {@link VectorState.curr}).
+ * **IMPORTANT:** The `update` function MUST update the vector received as 1st
+ * arg (which is {@link VectorState.curr}).
  *
- * Also see {@link defVector2}, {@link defVector3}, {@link defVector4}.
+ * Also see {@link defVector2}, {@link defVector3}, {@link defVector4} for
+ * pre-configured versions.
  *
- * @param x
+ * @param api
+ * @param v
  * @param update
  */
-export const defVector = (v: ReadonlyVec, update: StateUpdate<ReadonlyVec>) =>
-	new VectorState(v, set, mixN, update);
+export const defVector = (
+	api: Pick<VecAPI, "set" | "mixN">,
+	v: ReadonlyVec,
+	update: StateUpdate<ReadonlyVec>
+) => new VectorState(api, v, update);
 
 /**
  * 2D optimized version of {@link defVector}.
@@ -111,7 +126,7 @@ export const defVector = (v: ReadonlyVec, update: StateUpdate<ReadonlyVec>) =>
  * @param update
  */
 export const defVector2 = (v: ReadonlyVec, update: StateUpdate<ReadonlyVec>) =>
-	new VectorState(v, set2, mixN2, update);
+	new VectorState({ set: set2, mixN: mixN2 }, v, update);
 
 /**
  * 3D optimized version of {@link defVector}.
@@ -120,7 +135,7 @@ export const defVector2 = (v: ReadonlyVec, update: StateUpdate<ReadonlyVec>) =>
  * @param update
  */
 export const defVector3 = (v: ReadonlyVec, update: StateUpdate<ReadonlyVec>) =>
-	new VectorState(v, set3, mixN3, update);
+	new VectorState({ set: set3, mixN: mixN3 }, v, update);
 
 /**
  * 4D optimized version of {@link defVector}.
@@ -129,4 +144,4 @@ export const defVector3 = (v: ReadonlyVec, update: StateUpdate<ReadonlyVec>) =>
  * @param update
  */
 export const defVector4 = (v: ReadonlyVec, update: StateUpdate<ReadonlyVec>) =>
-	new VectorState(v, set4, mixN4, update);
+	new VectorState({ set: set4, mixN: mixN4 }, v, update);
