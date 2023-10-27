@@ -13,7 +13,7 @@ import { clamp4 } from "@thi.ng/vectors/clamp";
 import { declareIndices } from "@thi.ng/vectors/compile/accessors";
 import { eqDelta4 } from "@thi.ng/vectors/eqdelta";
 import { stridedValues } from "@thi.ng/vectors/iterator";
-import { randMinMax } from "@thi.ng/vectors/random";
+import { randMinMax } from "@thi.ng/vectors/rand-minmax";
 import { set4 } from "@thi.ng/vectors/set";
 import type {
 	ChannelSpec,
