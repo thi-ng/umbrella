@@ -19,15 +19,20 @@ const BMAX = [WIDTH - PAD, HEIGHT - PAD];
 
 // boid behavior options
 const BEHAVIOR: Partial<BoidOpts> = {
+	// min distance to enforce to neighbors
 	minDist: 30,
+	// max distance to consider for neighbors
 	maxDist: 80,
+	// force multiplier
 	maxForce: 2,
+	// max speed (per second)
 	maxSpeed: 50,
 	// sub-behavior weights/importance
+	// change to prioritize/de-emphasize
 	alignment: 1,
 	cohesion: 0.1,
 	separation: 2,
-
+	// optional constraint (here to keep boids within screen bounds)
 	constrain: (p) => clamp2(p, p, BMIN, BMAX),
 };
 
