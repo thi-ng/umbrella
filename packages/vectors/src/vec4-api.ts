@@ -54,13 +54,11 @@ import { normalize4 } from "./normalize.js";
 import { pow4 } from "./pow.js";
 import { powN4 } from "./pown.js";
 import { radians4 } from "./radians.js";
-import {
-	randMinMax4,
-	randNorm4,
-	randNormDistrib4,
-	random4,
-	randomDistrib4,
-} from "./random.js";
+import { randDistrib4 } from "./rand-distrib.js";
+import { randMinMax4 } from "./rand-minmax.js";
+import { randNorm4 } from "./rand-norm.js";
+import { randNormDistrib4 } from "./rand-normdistrib.js";
+import { random4 } from "./random.js";
 import { round4 } from "./round.js";
 import { set4 } from "./set.js";
 import { setN4 } from "./setn.js";
@@ -130,7 +128,7 @@ export const VEC4: VecAPI = {
 	powN: powN4,
 	radians: radians4,
 	random: random4,
-	randomDistrib: randomDistrib4,
+	randomDistrib: randDistrib4,
 	randMinMax: randMinMax4,
 	randNorm: randNorm4,
 	randNormDistrib: randNormDistrib4,

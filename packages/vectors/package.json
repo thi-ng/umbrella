@@ -569,6 +569,18 @@
 		"./radians": {
 			"default": "./radians.js"
 		},
+		"./rand-distrib": {
+			"default": "./rand-distrib.js"
+		},
+		"./rand-minmax": {
+			"default": "./rand-minmax.js"
+		},
+		"./rand-norm": {
+			"default": "./rand-norm.js"
+		},
+		"./rand-normdistrib": {
+			"default": "./rand-normdistrib.js"
+		},
 		"./random": {
 			"default": "./random.js"
 		},

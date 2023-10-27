@@ -54,13 +54,11 @@ import { normalize3 } from "./normalize.js";
 import { pow3 } from "./pow.js";
 import { powN3 } from "./pown.js";
 import { radians3 } from "./radians.js";
-import {
-	randMinMax3,
-	randNorm3,
-	randNormDistrib3,
-	random3,
-	randomDistrib3,
-} from "./random.js";
+import { randDistrib3 } from "./rand-distrib.js";
+import { randMinMax3 } from "./rand-minmax.js";
+import { randNorm3 } from "./rand-norm.js";
+import { randNormDistrib3 } from "./rand-normdistrib.js";
+import { random3 } from "./random.js";
 import { round3 } from "./round.js";
 import { set3 } from "./set.js";
 import { setN3 } from "./setn.js";
@@ -130,7 +128,7 @@ export const VEC3: VecAPI = {
 	powN: powN3,
 	radians: radians3,
 	random: random3,
-	randomDistrib: randomDistrib3,
+	randomDistrib: randDistrib3,
 	randMinMax: randMinMax3,
 	randNorm: randNorm3,
 	randNormDistrib: randNormDistrib3,
