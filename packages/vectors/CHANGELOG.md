@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-23T07:37:37Z
+- **Last updated**: 2023-10-27T16:56:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.8.0) (2023-10-27)
+
+#### 🚀 Features
+
+- add mag2/3/4() ([3a4063a](https://github.com/thi-ng/umbrella/commit/3a4063a))
+- add VecAPI interface  & VEC2/3/4 impls ([f06b900](https://github.com/thi-ng/umbrella/commit/f06b900))
+- update VecAPI & presets ([0d9f62b](https://github.com/thi-ng/umbrella/commit/0d9f62b))
+
+#### ♻️ Refactoring
+
+- split up random fns into separate files ([5c0e4ec](https://github.com/thi-ng/umbrella/commit/5c0e4ec))
+  - rename randomDistrib() => randDistrib()
+  - deprecate old name
+  - update imports
+  - update pkg exports
 
 ### [7.7.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.7.20) (2023-10-23)
 

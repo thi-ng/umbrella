@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/egf",
-	"version": "0.6.78",
+	"version": "0.6.79",
 	"description": "Extensible Graph Format",
 	"type": "module",
 	"module": "./index.js",
@@ -30,14 +30,14 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",
-		"@thi.ng/associative": "^6.3.14",
+		"@thi.ng/associative": "^6.3.15",
 		"@thi.ng/checks": "^3.4.6",
 		"@thi.ng/dot": "^2.1.44",
 		"@thi.ng/errors": "^2.4.0",
 		"@thi.ng/logger": "^1.4.22",
 		"@thi.ng/prefixes": "^2.2.2",
 		"@thi.ng/strings": "^3.6.2",
-		"@thi.ng/transducers-binary": "^2.1.72"
+		"@thi.ng/transducers-binary": "^2.1.73"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.0",

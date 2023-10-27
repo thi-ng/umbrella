@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-23T07:37:37Z
+- **Last updated**: 2023-10-27T16:56:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.2.65](https://github.com/thi-ng/umbrella/tree/@thi.ng/cellular@0.2.65) (2023-10-27)
+
+#### ♻️ Refactoring
+
+- update MultiCA1D.rotate() ([f8fbac6](https://github.com/thi-ng/umbrella/commit/f8fbac6))
+  - re-use impl from [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays)
+  - update deps, readme
 
 ### [0.2.47](https://github.com/thi-ng/umbrella/tree/@thi.ng/cellular@0.2.47) (2023-08-12)
 

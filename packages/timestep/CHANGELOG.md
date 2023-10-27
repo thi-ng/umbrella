@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-23T07:37:37Z
+- **Last updated**: 2023-10-27T16:56:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.5.0) (2023-10-27)
+
+#### 🚀 Features
+
+- update VectorState, add VecAPI support ([f0aeb7e](https://github.com/thi-ng/umbrella/commit/f0aeb7e))
+  - update VectorState ctor & defVector() args
 
 ### [0.4.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestep@0.4.2) (2023-08-04)
 
