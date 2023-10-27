@@ -187,7 +187,7 @@ For Node.js REPL:
 const vectors = await import("@thi.ng/vectors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.38 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.52 KB
 
 ## Dependencies
 
@@ -213,6 +213,7 @@ A selection:
 | Screenshot                                                                                                                           | Description                                                                                  | Live demo                                                   | Source                                                                                   |
 |:-------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>                | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                            | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/boid-basics.png" width="240"/>                   | Basic 2D boid simulation and spatial indexing neighbor lookups                               | [Demo](https://demo.thi.ng/umbrella/boid-basics/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/boid-basics)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png" width="240"/>                   | Canvas based dial widget                                                                     | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-dial)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                     | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/>             | Interactive visualization of closest points on ellipses                                      | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity)     |
