@@ -37,7 +37,7 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to currently 183 individual TypeScript packages and
+This mono-repository is home to currently 184 individual TypeScript packages and
 ~140 example projects illustrating their usage, currently totalling ~191k SLOC
 and ~3800 source files...
 
@@ -243,16 +243,20 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-10-25
+As of: 2023-10-27
 
 | Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
 |:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/errors`](./packages/errors)                       | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)                       | [changelog](./packages/errors/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/expose`](./packages/expose)                       | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)                       | [changelog](./packages/expose/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rasterize`](./packages/rasterize)                 | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)                 | [changelog](./packages/rasterize/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/arrays`](./packages/arrays)                       | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)                       | [changelog](./packages/arrays/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-cyan-new)      | [`@thi.ng/boids`](./packages/boids)                         | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)                         | [changelog](./packages/boids/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/cellular`](./packages/cellular)                   | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)                   | [changelog](./packages/cellular/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/color`](./packages/color)                         | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                         | [changelog](./packages/color/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom`](./packages/geom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                           | [changelog](./packages/geom/CHANGELOG.md)              |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/math`](./packages/math)                           | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                           | [changelog](./packages/math/CHANGELOG.md)              |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel`](./packages/pixel)                         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                         | [changelog](./packages/pixel/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/timestep`](./packages/timestep)                   | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)                   | [changelog](./packages/timestep/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/vectors`](./packages/vectors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                     | [changelog](./packages/vectors/CHANGELOG.md)           |
 
 ### Fundamentals
 
@@ -416,6 +420,7 @@ As of: 2023-10-25
 
 | Project                                                       | Version                                                                                                                             | Changelog                                               | Description                                         |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|
+| [`@thi.ng/boids`](./packages/boids)                           | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)                           | [changelog](./packages/boids/CHANGELOG.md)              | Configurable n-dimensional boids simulation         |
 | [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              | Color conversions, gradients                        |
 | [`@thi.ng/color-palettes`](./packages/color-palettes)         | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)         | [changelog](./packages/color-palettes/CHANGELOG.md)     | Collection of image-based color palettes            |
 | [`@thi.ng/dgraph-dot`](./packages/dgraph-dot)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)                 | [changelog](./packages/dgraph-dot/CHANGELOG.md)         | Dependency graph -> Graphviz                        |
