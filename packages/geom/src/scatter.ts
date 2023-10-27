@@ -1,7 +1,7 @@
 import type { IShape } from "@thi.ng/geom-api";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Vec } from "@thi.ng/vectors";
-import { randMinMax } from "@thi.ng/vectors/random";
+import { randMinMax } from "@thi.ng/vectors/rand-minmax";
 import { bounds } from "./bounds.js";
 import { pointInside } from "./point-inside.js";
 
