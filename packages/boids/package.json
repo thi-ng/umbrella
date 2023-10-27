@@ -1,0 +1,83 @@
+{
+	"name": "@thi.ng/boids",
+	"version": "0.0.1",
+	"description": "n-dimensional boids simulation with highly configurable behaviors",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/boids#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.9.6",
+		"@thi.ng/distance": "^2.4.24",
+		"@thi.ng/geom-accel": "^3.5.24",
+		"@thi.ng/timestep": "^0.4.22",
+		"@thi.ng/vectors": "^7.7.22"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.38.0",
+		"@thi.ng/testament": "^0.3.24",
+		"rimraf": "^5.0.5",
+		"tools": "workspace:^",
+		"typedoc": "^0.25.2",
+		"typescript": "^5.2.2"
+	},
+	"keywords": [
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./boid": {
+			"default": "./boid.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2023
+	}
+}

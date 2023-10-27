@@ -3189,6 +3189,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/boids@workspace:^, @thi.ng/boids@workspace:packages/boids":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/boids@workspace:packages/boids"
+  dependencies:
+    "@microsoft/api-extractor": ^7.38.0
+    "@thi.ng/api": ^8.9.6
+    "@thi.ng/distance": ^2.4.24
+    "@thi.ng/geom-accel": ^3.5.24
+    "@thi.ng/testament": ^0.3.24
+    "@thi.ng/timestep": ^0.4.22
+    "@thi.ng/vectors": ^7.7.22
+    rimraf: ^5.0.5
+    tools: "workspace:^"
+    typedoc: ^0.25.2
+    typescript: ^5.2.2
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/cache@workspace:^, @thi.ng/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@thi.ng/cache@workspace:packages/cache"
@@ -5790,7 +5808,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/timestep@workspace:packages/timestep":
+"@thi.ng/timestep@^0.4.22, @thi.ng/timestep@workspace:^, @thi.ng/timestep@workspace:packages/timestep":
   version: 0.0.0-use.local
   resolution: "@thi.ng/timestep@workspace:packages/timestep"
   dependencies:
