@@ -1,5 +1,13 @@
-import { group } from "@thi.ng/testament";
 import { eqDelta } from "@thi.ng/math";
+import { group } from "@thi.ng/testament";
+import {
+	eqDelta2,
+	eqDelta3,
+	eqDelta4,
+	maddN2,
+	maddN3,
+	maddN4,
+} from "@thi.ng/vectors";
 import * as assert from "assert";
 import {
 	defNumeric,
@@ -8,7 +16,6 @@ import {
 	defVector3,
 	defVector4,
 } from "../src/index.js";
-import { eqDelta2, maddN2, maddN3, maddN4 } from "@thi.ng/vectors";
 
 group("timestep", {
 	numeric: () => {
@@ -33,7 +40,7 @@ group("timestep", {
 		];
 		sim.update(61 * (1000 / 60), states);
 		assert.ok(eqDelta2(states[0].deref(), [-10, 20], 0.001));
-		assert.ok(eqDelta2(states[1].deref(), [-10, 20, -30], 0.001));
-		assert.ok(eqDelta2(states[2].deref(), [-10, 20, -30, 40], 0.001));
+		assert.ok(eqDelta3(states[1].deref(), [-10, 20, -30], 0.001));
+		assert.ok(eqDelta4(states[2].deref(), [-10, 20, -30, 40], 0.001));
 	},
 });
