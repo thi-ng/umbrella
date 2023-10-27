@@ -155,6 +155,7 @@ visual outputs/results).
 - [024: 2.5D hidden line visualization of digital elevation files (DEM)](https://mastodon.thi.ng/@toxi/111269505611983570)
 - [025: Fitting, transforming & plotting 10k data points per frame using SIMD](https://mastodon.thi.ng/@toxi/111283262419126958)
 - [026: Shader meta-programming to generate animated function plots](https://mastodon.thi.ng/@toxi/111295842650216136)
+- [027: Flocking sim with neighborhood queries to visualize proximity](https://mastodon.thi.ng/@toxi/111308439597090930)
 
 ### Blog posts
 
@@ -179,11 +180,11 @@ There's a steadily growing number (~140) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
-| Example screenshots                                         | (small selection)                                                 |                                                                      |
-|-------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|
-| <img src="./assets/examples/svg-waveform.jpg" width="240"/> | <img src="./assets/imgui/imgui-all.png" width="240"/>             | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
-| <img src="./assets/examples/fiber-basics.png" width="240"/> | <img src="./assets/examples/adaptive-threshold.png" width="240"/> | <img src="./assets/examples/crypto-chart.png" width="240"/>          |
-| <img src="./assets/examples/text-canvas.png" width="240"/>  | <img src="./assets/geom/tessel.png" width="240"/>                 | <img src="./assets/examples/soa-ecs-100k.png" width="240"/>          |
+| Example screenshots                                             | (small selection)                                                  |                                                                      |
+|-----------------------------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------|
+| <img src="./assets/examples/boid-basics.png" width="240"/>      | <img src="./assets/imgui/imgui-all.png" width="240"/>              | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
+| <img src="./assets/examples/geom-terrain-viz.jpg" width="240"/> | <img src="./assets/examples/poly-subdiv.jpg" width="240"/>         | <img src="./assets/examples/crypto-chart.png" width="240"/>          |
+| <img src="./assets/examples/stacked-layout.png" width="240"/>   | <img src="./assets/examples/webgl-channel-mixer.jpg" width="240"/> | <img src="./assets/geom/tessel.png" width="240"/>                    |
 
 ### awesome.thi.ng
 
