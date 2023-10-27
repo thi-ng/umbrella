@@ -16,6 +16,7 @@ import type {
 	Tuple,
 	TypedArray,
 } from "@thi.ng/api";
+import type { IRandom } from "@thi.ng/random";
 
 export interface Vec extends Iterable<number>, ILength {
 	[id: number]: number;
@@ -530,6 +531,7 @@ export interface VecAPI {
 	invSqrt: VecOpV;
 	mag: VecOpRoV<number>;
 	magSq: VecOpRoV<number>;
+	limit: VecOpVN;
 	log: VecOpV;
 	log2: VecOpV;
 	madd: VecOpVVV;
@@ -550,6 +552,11 @@ export interface VecAPI {
 	pow: VecOpVV;
 	powN: VecOpVN;
 	radians: VecOpV;
+	random: VecOpOOO<number, number, IRandom>;
+	randomDistrib: VecOpFNO;
+	randMinMax: VecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>;
+	randNorm: (v: Vec | null, n?: number, rnd?: IRandom) => Vec;
+	randNormDistrib: VecOpNFO;
 	round: VecOpVV;
 	set: VecOpV;
 	setN: VecOpN;
@@ -563,6 +570,7 @@ export interface VecAPI {
 	subm: VecOpVVV;
 	submN: VecOpVVN;
 	tan: VecOpV;
+	trunc: VecOpV;
 
 	eq: CompareOp;
 	neq: CompareOp;

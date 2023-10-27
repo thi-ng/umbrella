@@ -28,6 +28,7 @@ import { fract2 } from "./fract.js";
 import { gt2 } from "./gt.js";
 import { gte2 } from "./gte.js";
 import { invSqrt2 } from "./invsqrt.js";
+import { limit2 } from "./limit.js";
 import { log2 } from "./log.js";
 import { log_22 } from "./log_2.js";
 import { lt2 } from "./lt.js";
@@ -53,6 +54,13 @@ import { normalize2 } from "./normalize.js";
 import { pow2 } from "./pow.js";
 import { powN2 } from "./pown.js";
 import { radians2 } from "./radians.js";
+import {
+	randMinMax2,
+	randNorm2,
+	randNormDistrib2,
+	random2,
+	randomDistrib2,
+} from "./random.js";
 import { round2 } from "./round.js";
 import { set2 } from "./set.js";
 import { setN2 } from "./setn.js";
@@ -66,6 +74,7 @@ import { subm2 } from "./subm.js";
 import { submN2 } from "./submn.js";
 import { subN2 } from "./subn.js";
 import { tan2 } from "./tan.js";
+import { trunc2 } from "./trunc.js";
 
 export const VEC2: VecAPI = {
 	abs: abs2,
@@ -101,6 +110,7 @@ export const VEC2: VecAPI = {
 	maddN: maddN2,
 	mag: mag2,
 	magSq: magSq2,
+	limit: limit2,
 	log: log2,
 	log2: log_22,
 	major: major2,
@@ -119,6 +129,11 @@ export const VEC2: VecAPI = {
 	pow: pow2,
 	powN: powN2,
 	radians: radians2,
+	random: random2,
+	randomDistrib: randomDistrib2,
+	randMinMax: randMinMax2,
+	randNorm: randNorm2,
+	randNormDistrib: randNormDistrib2,
 	round: round2,
 	set: set2,
 	setN: setN2,
@@ -132,6 +147,7 @@ export const VEC2: VecAPI = {
 	subm: subm2,
 	submN: submN2,
 	tan: tan2,
+	trunc: trunc2,
 
 	eq: eq2,
 	neq: neq2,
