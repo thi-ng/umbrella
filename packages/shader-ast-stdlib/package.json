@@ -86,6 +86,7 @@
 		"./*.d.ts",
 		"color",
 		"fog",
+		"isec",
 		"light",
 		"math",
 		"matrix",
@@ -93,7 +94,8 @@
 		"raymarch",
 		"screen",
 		"sdf",
-		"tex"
+		"tex",
+		"viz"
 	],
 	"exports": {
 		".": {
