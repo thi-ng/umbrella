@@ -70,6 +70,13 @@ export class Boid implements ITimeStep {
 		this.region = new Radial<Boid>(distance, pos, 1);
 	}
 
+	/**
+	 * Integration step of the thi.ng/timestep update cycle. See
+	 * [`ITimeStep`](https://docs.thi.ng/umbrella/timestep/interfaces/ITimeStep.html)
+	 *
+	 * @param dt
+	 * @param ctx
+	 */
 	integrate(dt: number, ctx: ReadonlyTimeStep): void {
 		this.cachedNeighbors = this.neighbors(
 			this.opts.maxDist,
@@ -78,10 +85,30 @@ export class Boid implements ITimeStep {
 		integrateAll(dt, ctx, this.vel, this.pos);
 	}
 
+	/**
+	 * Interplation step of the thi.ng/timestep update cycle. See
+	 * [`ITimeStep`](https://docs.thi.ng/umbrella/timestep/interfaces/ITimeStep.html)
+	 *
+	 * @param dt
+	 * @param ctx
+	 */
 	interpolate(alpha: number, ctx: ReadonlyTimeStep): void {
 		interpolateAll(alpha, ctx, this.vel, this.pos);
 	}
 
+	/**
+	 * Queries the spatial index for other boids in the current region, or if
+	 * `pos` is given also moves the search region to new position before
+	 * querying.
+	 *
+	 * @remarks
+	 * IMPORTANT: The returned array will always contain the current boid itself
+	 * too. Filtering has been left out here for performance reasons and is left
+	 * to downstream code.
+	 *
+	 * @param r
+	 * @param pos
+	 */
 	neighbors(r: number, pos?: Vec) {
 		const region = this.region;
 		if (pos) region.target = pos;
@@ -161,6 +188,15 @@ export class Boid implements ITimeStep {
 	}
 }
 
+/**
+ * Returns a new {@link Boid} instance configured to use optimized 2D vector
+ * operations.
+ *
+ * @param accel
+ * @param pos
+ * @param vel
+ * @param opts
+ */
 export const defBoid2 = (
 	accel: HashGrid2<Boid>,
 	pos: Vec,
@@ -168,6 +204,15 @@ export const defBoid2 = (
 	opts: Partial<BoidOpts>
 ) => new Boid(accel, VEC2, DIST_SQ2, pos, vel, opts);
 
+/**
+ * Returns a new {@link Boid} instance configured to use optimized 3D vector
+ * operations.
+ *
+ * @param accel
+ * @param pos
+ * @param vel
+ * @param opts
+ */
 export const defBoid3 = (
 	accel: HashGrid3<Boid>,
 	pos: Vec,
