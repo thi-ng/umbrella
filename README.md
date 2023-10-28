@@ -199,13 +199,13 @@ Several generative art projects by [Karsten Schmidt on
 fx(hash)](https://www.fxhash.xyz/u/toxi) have been created exclusively with
 libraries from this collection.
 
-| De/Frag series                                   |                                              |                                                  |
-|--------------------------------------------------|----------------------------------------------|--------------------------------------------------|
-| <img src="./assets/fxhash/defrag1-240.jpg"/>     | <img src="./assets/fxhash/defrag2-240.jpg"/> | <img src="./assets/fxhash/defrag3-240.jpg"/>     |
-| Quasiflock                                       | C-SCAPE                                      | ASCII-SCAPE                                      |
-| <img src="./assets/fxhash/quasiflock-240.jpg"/>  | <img src="./assets/fxhash/c-scape-240.jpg"/> | <img src="./assets/fxhash/ascii-scape-240.jpg"/> |
-| Bubblemania                                      | Danza (unreleased)                           | S-TRACE (unreleased)                             |
-| <img src="./assets/fxhash/bubblemania-240.jpg"/> | <img src="./assets/fxhash/danza-240.jpg"/>   | <img src="./assets/fxhash/s-trace-240.jpg"/>     |
+| De/Frag series                                                                                         |                                                                                                    |                                                                                                        |
+|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| <a href="https://www.fxhash.xyz/generative/981"><img src="./assets/fxhash/defrag1-240.jpg"/></a>       | <a href="https://www.fxhash.xyz/generative/3496"><img src="./assets/fxhash/defrag2-240.jpg"/></a>  | <a href="https://www.fxhash.xyz/generative/4304"><img src="./assets/fxhash/defrag3-240.jpg"/></a>      |
+| Quasiflock                                                                                             | C-SCAPE                                                                                            | ASCII-SCAPE                                                                                            |
+| <a href="https://www.fxhash.xyz/generative/6671"><img src="./assets/fxhash/quasiflock-240.jpg"/></a>   | <a href="https://www.fxhash.xyz/generative/13992"><img src="./assets/fxhash/c-scape-240.jpg"/></a> | <a href="https://www.fxhash.xyz/generative/16205"><img src="./assets/fxhash/ascii-scape-240.jpg"/></a> |
+| Bubblemania                                                                                            | Danza (unreleased)                                                                                 | S-TRACE (unreleased)                                                                                   |
+| <a href="https://www.fxhash.xyz/generative/26702"><img src="./assets/fxhash/bubblemania-240.jpg"/></a> | <img src="./assets/fxhash/danza-240.jpg"/>                                                         | <img src="./assets/fxhash/s-trace-240.jpg"/>                                                           |
 
 ## Community, contributing, getting help
 
