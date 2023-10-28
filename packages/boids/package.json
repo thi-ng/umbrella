@@ -49,7 +49,18 @@
 		"typescript": "^5.2.2"
 	},
 	"keywords": [
-		"typescript"
+		"nd",
+		"2d",
+		"3d",
+		"behavior",
+		"boids",
+		"flocking",
+		"points",
+		"simulation",
+		"spatial",
+		"time",
+		"typescript",
+		"vector"
 	],
 	"publishConfig": {
 		"access": "public"
