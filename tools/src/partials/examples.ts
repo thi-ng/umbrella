@@ -51,15 +51,17 @@ export const examplesTable = (pkgName: string) => {
 		headers.shift();
 		keys.shift();
 	}
+	const [numProjects, verb] =
+		examples.length > 1
+			? ["Several projects", "are"]
+			: ["One project", "is"];
 	return examples.length
 		? [
 				"## Usage examples",
 				"",
-				"Several demos in this repo's",
+				`${numProjects} in this repo's`,
 				link("/examples", `${CONFIG.branchURL}/examples`),
-				"directory are using this package.",
-				"",
-				"A selection:",
+				`directory ${verb} using this package:`,
 				"",
 				tableKeys(headers, <any>keys, examples),
 		  ].join("\n")
