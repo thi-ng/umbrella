@@ -13,6 +13,7 @@ This project is part of the
 - [About](#about)
   - [Managing fixed timestep updates](#managing-fixed-timestep-updates)
 - [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -132,6 +133,10 @@ after 1 second (25 frames)...
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btimestep%5D+in%3Atitle)
+
+## Related packages
+
+- [@thi.ng/boids](https://github.com/thi-ng/umbrella/tree/develop/packages/boids) - n-dimensional boids simulation with highly configurable behaviors
 
 ## Installation
 
