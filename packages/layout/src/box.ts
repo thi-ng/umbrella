@@ -1,4 +1,4 @@
-import type { LayoutBox } from "./api.js";
+import type { CellSpan, LayoutBox } from "./api.js";
 
 export const layoutBox = (
 	x: number,
@@ -7,5 +7,15 @@ export const layoutBox = (
 	h: number,
 	cw: number,
 	ch: number,
-	gap: number
-): LayoutBox => ({ x, y, w, h, cw, ch, gap });
+	gap: number,
+	span?: CellSpan
+): LayoutBox => ({
+	x,
+	y,
+	w,
+	h,
+	cw,
+	ch,
+	gap,
+	span: span || [~~(w / cw), ~~(h / ch)],
+});

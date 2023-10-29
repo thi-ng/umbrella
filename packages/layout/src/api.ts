@@ -1,3 +1,5 @@
+export type CellSpan = [number, number];
+
 export interface LayoutBox {
 	/**
 	 * Top-left corner X
@@ -29,13 +31,17 @@ export interface LayoutBox {
 	 * Gutter size.
 	 */
 	gap: number;
+	/**
+	 *
+	 */
+	span: CellSpan;
 }
 
 export interface ILayout<O, T> {
 	next(opts?: O): T;
 }
 
-export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
+export interface IGridLayout extends ILayout<CellSpan, LayoutBox> {
 	readonly x: number;
 	readonly y: number;
 	readonly width: number;
@@ -64,8 +70,8 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
 	 *
 	 * @param size -
 	 */
-	spansForSize(size: ArrayLike<number>): [number, number];
-	spansForSize(w: number, h: number): [number, number];
+	spanForSize(size: ArrayLike<number>): CellSpan;
+	spanForSize(w: number, h: number): CellSpan;
 
 	/**
 	 * Returns a squared {@link LayoutBox} based on this layout's column
@@ -111,6 +117,7 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
 	 *
 	 * @param cols - columns in nested layout
 	 * @param spans - default [1, 1] (i.e. size of single cell)
+	 * @param gap - gap for child layout
 	 */
-	nest(cols: number, spans?: [number, number]): IGridLayout;
+	nest(cols: number, spans?: CellSpan, gap?: number): IGridLayout;
 }
