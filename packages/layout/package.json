@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/layout",
 	"version": "2.1.35",
-	"description": "Configurable nested 2D grid layout manager",
+	"description": "Configurable nested 2D grid layout generators",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -82,9 +82,15 @@
 		},
 		"./grid-layout": {
 			"default": "./grid-layout.js"
+		},
+		"./stacked-layout": {
+			"default": "./stacked-layout.js"
 		}
 	},
 	"thi.ng": {
+		"related": [
+			"imgui"
+		],
 		"year": 2019
 	}
 }

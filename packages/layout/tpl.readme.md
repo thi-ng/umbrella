@@ -7,10 +7,9 @@
 {{pkg.description}}
 
 Currently, this package features two grid layout strategies (each based on
-requesting/allocating cells of a desired size), as well as more [general
-supporting
-types](https://github.com/thi-ng/umbrella/tree/develop/packages/layout/src/api.ts)
-to define other layout types / implementations.
+requesting/allocating cells of a desired size), as well as more general
+supporting types to define other layout types / implementations using the same
+shared API.
 
 A brief overview and comparison of the available strategies is provided further
 below.
