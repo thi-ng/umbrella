@@ -1,9 +1,9 @@
 import { br, div } from "@thi.ng/hiccup-html";
 import {
-	StackedLayout,
 	stackedLayout,
 	type CellSpan,
 	type LayoutBox,
+	type StackedLayout,
 } from "@thi.ng/layout";
 import { SYSTEM, pickRandom, pickRandomUnique } from "@thi.ng/random";
 import { $compile, type ComponentLike } from "@thi.ng/rdom";
@@ -45,10 +45,13 @@ const COLORS = [
 // formatting helper
 const px = (x: number) => x + "px";
 
+// remembering last picked color
 let color: string = "";
 
+// create an absolute positioned <div> for the given raw layout info
 const defCell = (box: LayoutBox, depth: number): ComponentLike => {
 	const { x, y, w, h, span } = box;
+	// pick a random color which is not the same as last one (max. 10 attempts)
 	color = pickRandomUnique(1, COLORS[depth], [color], 10, RND).pop()!;
 	return div(
 		`.absolute.bg-${color}.pa2.f7`,
@@ -60,6 +63,7 @@ const defCell = (box: LayoutBox, depth: number): ComponentLike => {
 				height: px(h),
 			},
 		},
+		// cell body content
 		span.join("x"),
 		br(),
 		`(d:${depth})`
@@ -110,7 +114,7 @@ const cellIterator = (
 			if (span[0] > 1 && depth < maxDepth && RND.probability(NEST_PROB)) {
 				// choose number of columns in child layout
 				const numCols = RND.minmaxInt(2, 4);
-				// return iterable of nested cells
+				// recursion warning: return iterable of nested layout/cells
 				return cellIterator(
 					layout.nest(numCols, [span[0], 1]),
 					numCols,
