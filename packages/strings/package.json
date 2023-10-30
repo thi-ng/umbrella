@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/strings",
-	"version": "3.6.2",
+	"version": "3.6.3",
 	"description": "Various string formatting & utility functions",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 		"@thi.ng/api": "^8.9.6",
 		"@thi.ng/errors": "^2.4.0",
 		"@thi.ng/hex": "^2.3.18",
-		"@thi.ng/memoize": "^3.1.39"
+		"@thi.ng/memoize": "^3.1.40"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.0",

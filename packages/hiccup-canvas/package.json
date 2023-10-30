@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-canvas",
-	"version": "2.4.3",
+	"version": "2.4.4",
 	"description": "Hiccup shape tree renderer for vanilla Canvas 2D contexts",
 	"type": "module",
 	"module": "./index.js",
@@ -36,10 +36,10 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",
 		"@thi.ng/checks": "^3.4.6",
-		"@thi.ng/color": "^5.5.27",
-		"@thi.ng/math": "^5.7.0",
-		"@thi.ng/pixel": "^4.3.0",
-		"@thi.ng/vectors": "^7.8.0"
+		"@thi.ng/color": "^5.5.28",
+		"@thi.ng/math": "^5.7.1",
+		"@thi.ng/pixel": "^4.3.1",
+		"@thi.ng/vectors": "^7.8.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.0",
