@@ -4,7 +4,7 @@ import type { CellSpan, IGridLayout, LayoutBox } from "./api.js";
 /** @internal */
 export const __DEFAULT_SPANS: CellSpan = [1, 1];
 
-export class GridLayout implements IGridLayout {
+export class GridLayout implements IGridLayout<GridLayout> {
 	readonly parent: GridLayout | null;
 	readonly cols: number;
 	readonly width: number;
@@ -97,7 +97,7 @@ export class GridLayout implements IGridLayout {
 		return box;
 	}
 
-	nest(cols: number, spans?: CellSpan, gap = this.gap): IGridLayout {
+	nest(cols: number, spans?: CellSpan, gap = this.gap): GridLayout {
 		const { x, y, w } = this.next(spans);
 		return new GridLayout(this, x, y, w, cols, this.cellH, gap);
 	}

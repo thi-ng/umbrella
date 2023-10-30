@@ -41,7 +41,8 @@ export interface ILayout<O, T> {
 	next(opts?: O): T;
 }
 
-export interface IGridLayout extends ILayout<CellSpan, LayoutBox> {
+export interface IGridLayout<T extends IGridLayout<T>>
+	extends ILayout<CellSpan, LayoutBox> {
 	readonly x: number;
 	readonly y: number;
 	readonly width: number;
@@ -119,5 +120,5 @@ export interface IGridLayout extends ILayout<CellSpan, LayoutBox> {
 	 * @param spans - default [1, 1] (i.e. size of single cell)
 	 * @param gap - gap for child layout
 	 */
-	nest(cols: number, spans?: CellSpan, gap?: number): IGridLayout;
+	nest(cols: number, spans?: CellSpan, gap?: number): T;
 }
