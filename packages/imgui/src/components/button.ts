@@ -36,7 +36,7 @@ const mkLabel = (
 
 export const buttonH = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	label?: string,
 	labelHover = label,
@@ -62,7 +62,7 @@ export const buttonH = (
 
 export const buttonV = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	rows: number,
 	label?: string,

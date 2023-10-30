@@ -38,7 +38,7 @@ const arcVerts = (
 
 export const ring = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	min: number,
 	max: number,
@@ -82,7 +82,7 @@ export const ring = (
 
 export const ringGroup = (
 	gui: IMGUI,
-	layout: IGridLayout,
+	layout: IGridLayout<any>,
 	id: string,
 	min: number,
 	max: number,

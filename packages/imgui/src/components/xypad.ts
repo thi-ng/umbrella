@@ -36,7 +36,7 @@ import { tooltipRaw } from "./tooltip.js";
  */
 export const xyPad = (
 	gui: IMGUI,
-	layout: IGridLayout,
+	layout: IGridLayout<any>,
 	id: string,
 	min: Vec,
 	max: Vec,

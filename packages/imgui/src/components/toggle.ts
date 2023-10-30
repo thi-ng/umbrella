@@ -21,7 +21,7 @@ import { textLabelRaw } from "./textlabel.js";
  */
 export const toggle = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	val: boolean,
 	square?: boolean,

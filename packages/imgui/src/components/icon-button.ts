@@ -9,7 +9,7 @@ import { textLabelRaw } from "./textlabel.js";
 
 export const iconButton = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	icon: any,
 	iconW: number,
@@ -24,7 +24,7 @@ export const iconButton = (
 		: iconW + 2 * pad;
 	const bodyH = iconH + pad;
 	const { x, y, w, h } = isLayout(layout)
-		? layout.next(layout.spansForSize(bodyW, bodyH))
+		? layout.next(layout.spanForSize(bodyW, bodyH))
 		: layout;
 	const key = hash([x, y, w, h, ~~gui.disabled]);
 	const mkIcon = (hover: boolean) => {

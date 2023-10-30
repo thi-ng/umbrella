@@ -17,7 +17,7 @@ import { tooltipRaw } from "./tooltip.js";
 
 export const sliderV = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	min: number,
 	max: number,
@@ -48,7 +48,7 @@ export const sliderV = (
 
 export const sliderVGroup = (
 	gui: IMGUI,
-	layout: IGridLayout,
+	layout: IGridLayout<any>,
 	id: string,
 	min: number,
 	max: number,

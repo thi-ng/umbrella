@@ -12,7 +12,7 @@ import { tooltipRaw } from "./tooltip.js";
 
 export const textField = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	label: string,
 	filter: Predicate<string> = () => true,

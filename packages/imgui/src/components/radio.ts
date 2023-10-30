@@ -6,7 +6,7 @@ import { toggle } from "./toggle.js";
 
 export const radio = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	horizontal: boolean,
 	sel: number,

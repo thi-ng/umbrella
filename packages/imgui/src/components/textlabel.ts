@@ -9,7 +9,7 @@ import { layoutBox } from "../layout.js";
 
 export const textLabel = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	label: string,
 	pad = false
 ) => {

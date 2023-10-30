@@ -20,7 +20,7 @@ import { buttonH } from "./button.js";
  */
 export const dropdown = (
 	gui: IMGUI,
-	layout: IGridLayout | LayoutBox,
+	layout: IGridLayout<any> | LayoutBox,
 	id: string,
 	sel: number,
 	items: string[],
