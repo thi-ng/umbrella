@@ -60,16 +60,21 @@ export class StackedLayout extends GridLayout {
 		return cell;
 	}
 
-	largestSpan(): CellSpan {
+	largestSpan(maxSpan: CellSpan = [Infinity, Infinity]): CellSpan {
 		const { offsets, cols } = this;
 		const minID = argMin(offsets);
 		const y = offsets[minID];
+		let result: CellSpan | undefined;
 		for (let i = minID + 1; i < cols; i++) {
 			if (offsets[i] > y) {
-				return [i - minID, offsets[i] - y];
+				result = [i - minID, offsets[i] - y];
+				break;
 			}
 		}
-		return [cols - minID, offsets[argMax(offsets)] - y];
+		if (!result) result = [cols - minID, offsets[argMax(offsets)] - y];
+		result[0] = Math.min(result[0], maxSpan[0]);
+		result[1] = Math.min(result[1], maxSpan[1]);
+		return result;
 	}
 
 	propagateSize(rspan: number): void {
