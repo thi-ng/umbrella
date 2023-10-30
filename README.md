@@ -156,6 +156,7 @@ visual outputs/results).
 - [025: Fitting, transforming & plotting 10k data points per frame using SIMD](https://mastodon.thi.ng/@toxi/111283262419126958)
 - [026: Shader meta-programming to generate animated function plots](https://mastodon.thi.ng/@toxi/111295842650216136)
 - [027: Flocking sim with neighborhood queries to visualize proximity](https://mastodon.thi.ng/@toxi/111308439597090930)
+- [028: Randomized, space-filling, nested 2D grid layout generator](https://mastodon.thi.ng/@toxi/111324566926701431)
 
 ### Blog posts
 
