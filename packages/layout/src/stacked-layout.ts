@@ -2,6 +2,19 @@ import { argMax, argMin } from "@thi.ng/arrays/argmin";
 import type { CellSpan, LayoutBox } from "./api.js";
 import { GridLayout, __DEFAULT_SPANS } from "./grid-layout.js";
 
+/**
+ * An extension of {@link GridLayout} which tracks individual column-based
+ * heights and so can create more complex, irregular, packed, space-filling
+ * layout arrangements. This layout algorithm prioritizes the column(s) with the
+ * lowest height.
+ *
+ * The class also provides a {@link StackedLayout.availableSpan} method to find
+ * available space and help equalize columns and fill/allocate any bottom gaps.
+ *
+ * **IMPORTANT:** As with {@link GridLayout}, nested layouts MUST be completed
+ * first before requesting new cells (aka {@link LayoutBox}es) from a parent,
+ * otherwise unintended overlaps will occur.
+ */
 export class StackedLayout extends GridLayout {
 	offsets: Uint32Array;
 	currSpan = 1;
@@ -60,7 +73,22 @@ export class StackedLayout extends GridLayout {
 		return cell;
 	}
 
-	largestSpan(maxSpan: CellSpan = [Infinity, Infinity]): CellSpan {
+	/**
+	 * Finds the largest available span of free area, such that if it'll be
+	 * allocated via {@link StackedLayout.next} or {@link StackedLayout.nest},
+	 * the impacted columns will all have the same height, and that height will
+	 * match that of the next column after (if any). Repeated use of this method
+	 * can be used to fill up (aka equalize) any bottom gaps of a layout
+	 * container until all columns are equal. If the function returns a vertical
+	 * span of 0, all columns are equalized already.
+	 *
+	 * @remarks
+	 * An optional `maxSpan` can be provided to constrain the returned span (by
+	 * default unconstrained).
+	 *
+	 * @param maxSpan
+	 */
+	availableSpan(maxSpan: CellSpan = [Infinity, Infinity]): CellSpan {
 		const { offsets, cols } = this;
 		const minID = argMin(offsets);
 		const y = offsets[minID];
