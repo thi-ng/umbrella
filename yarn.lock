@@ -1245,6 +1245,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/layout-gridgen@workspace:examples/layout-gridgen":
+  version: 0.0.0-use.local
+  resolution: "@example/layout-gridgen@workspace:examples/layout-gridgen"
+  dependencies:
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/layout": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
 "@example/lispy-repl@workspace:examples/lispy-repl":
   version: 0.0.0-use.local
   resolution: "@example/lispy-repl@workspace:examples/lispy-repl"
