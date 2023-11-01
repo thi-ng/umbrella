@@ -20,7 +20,7 @@ import { shortName } from "./partials/package.js";
 
 const W = 16;
 const LW = 150;
-const GAP = 10;
+const MARGIN = 10;
 
 const packages = [...files("packages", "package.json", 2)].map((f) =>
 	readJSON(f, LOGGER)
@@ -112,7 +112,9 @@ const HEIGHT = row * W + LW;
 
 const doc = svg(
 	{
-		viewBox: `-${GAP} -${GAP} ${WIDTH + 2 * GAP} ${HEIGHT + 2 * GAP}`,
+		// viewBox: `-${GAP} -${GAP} ${WIDTH + 2 * GAP} ${HEIGHT + 2 * GAP}`,
+		width: WIDTH + MARGIN + "px",
+		height: HEIGHT + MARGIN + "px",
 		fill: "#000",
 		"font-size": "12px",
 		"font-family": "'IBM Plex Mono', monospace",
