@@ -100,13 +100,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.74 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Screenshot                                                                                                           | Description                      | Live demo | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:---------------------------------|:----------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/> | Generate SVG using pointfree DSL |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg) |
+| Screenshot                                                                                                            | Description                                                                    | Live demo                                            | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/>  | Generate SVG using pointfree DSL                                               |                                                      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)  |
 
 ## Command line usage
 

@@ -73,13 +73,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1018 bytes
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Screenshot                                                                                                | Description                               | Live demo                                         | Source                                                                         |
-|:----------------------------------------------------------------------------------------------------------|:------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png" width="240"/> | Animated, recursive polygon tessellations | [Demo](https://demo.thi.ng/umbrella/geom-tessel/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel) |
+| Screenshot                                                                                                            | Description                                                                    | Live demo                                            | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png" width="240"/>             | Animated, recursive polygon tessellations                                      | [Demo](https://demo.thi.ng/umbrella/geom-tessel/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom) |
 
 ## API
 
