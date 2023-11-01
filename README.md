@@ -157,6 +157,7 @@ visual outputs/results).
 - [026: Shader meta-programming to generate animated function plots](https://mastodon.thi.ng/@toxi/111295842650216136)
 - [027: Flocking sim with neighborhood queries to visualize proximity](https://mastodon.thi.ng/@toxi/111308439597090930)
 - [028: Randomized, space-filling, nested 2D grid layout generator](https://mastodon.thi.ng/@toxi/111324566926701431)
+- [029: Forth-like DSL & livecoding playground for 2D geometry generation](https://mastodon.thi.ng/@toxi/111335025037332972)
 
 ### Blog posts
 
