@@ -245,10 +245,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-10-30
+As of: 2023-11-01
 
 | Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
 |:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom`](./packages/geom)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)               | [changelog](./packages/geom/CHANGELOG.md)        |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/imgui`](./packages/imgui)             | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)             | [changelog](./packages/imgui/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/layout`](./packages/layout)           | [![version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)           | [changelog](./packages/layout/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
