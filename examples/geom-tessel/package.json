@@ -15,11 +15,11 @@
 		"@thi.ng/compose": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
 		"@thi.ng/geom-api": "workspace:^",
-		"@thi.ng/hdom-canvas": "workspace:^",
 		"@thi.ng/math": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-canvas": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
-		"@thi.ng/transducers-hdom": "workspace:^",
 		"@thi.ng/vectors": "workspace:^"
 	},
 	"browser": {

@@ -4,6 +4,7 @@ import {
 	asPolygon,
 	centroid,
 	circle,
+	group,
 	Polygon,
 	polygon,
 	tessellate,
@@ -12,11 +13,11 @@ import {
 	TESSELLATE_TRI_FAN,
 } from "@thi.ng/geom";
 import type { IShape, Tessellator } from "@thi.ng/geom-api";
-import { canvas } from "@thi.ng/hdom-canvas";
 import { deg, fit01, fit11 } from "@thi.ng/math";
-import { fromInterval, sync } from "@thi.ng/rstream";
+import { $compile } from "@thi.ng/rdom";
+import { $canvas } from "@thi.ng/rdom-canvas";
+import { fromRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
-import { updateDOM } from "@thi.ng/transducers-hdom";
 import { polar, type Vec } from "@thi.ng/vectors";
 
 type Tint = (p: Polygon) => string;
@@ -69,50 +70,43 @@ const tintedPoly = (tint: Tint, points: Vec[]) => {
 };
 
 /**
- * Creates a regular polygon, then recursively subdivides it and tints
+ * Creates a regular polygon, then recursively subdivides it and tints each
+ * resulting shape using {@link tintedPoly}.
  */
 const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
-	return tessellate(
-		asPolygon(
-			circle([0, 0], W2),
-			Math.floor(fit11(Math.sin(t), MIN_RES, MAX_RES))
-		),
-		tessel
-	).map(partial(tintedPoly, tint));
+	return map(
+		partial(tintedPoly, tint),
+		tessellate(
+			asPolygon(
+				circle([0, 0], W2),
+				Math.floor(fit11(Math.sin(t), MIN_RES, MAX_RES))
+			),
+			tessel
+		)
+	);
 };
 
-const main = sync({
-	src: {
-		time: fromInterval(16),
-	},
-}).transform(
-	// root component function
-	map(({ time }) => {
-		time *= 0.1;
-		// create tessellation
-		// resulting array contains Polygon2 values
-		// Polygon2 implements the .toHiccup() method for
-		// auto-conversion during hdom tree normalization
-		const cells = tessellation(time, SUBDIVS, partial(arclengthToHSL, 250));
-		return [
-			"div.ma2.sans-serif",
-			["div", `Cells: ${cells.length}`],
-			[
-				canvas,
-				{ width: 600, height: 600 },
-				// ["polygon", { stroke: "black" }, vertices(asPolygon(circle([300, 300], 300), 3))],
-				[
-					"g",
-					{
-						translate: [300, 300],
-						// rotate: (time / 10) % TAU,
-						stroke: "#000",
-						weight: 0.25,
-					},
-					...cells,
-				],
-			],
-		];
-	}),
-	updateDOM()
-);
+// reactive stream of tessellations based on requestAnimationFrame(), with each
+// frame potentially producing a different result geometry. the canvas component
+// will then subscribe to this stream and redraw automatically.
+const main = fromRAF().map((time) => {
+	time *= 0.1;
+	// create tessellation and wrap as thi.ng/geom group
+	return group(
+		{
+			__clear: true,
+			translate: [300, 300],
+			// rotate: (time / 10) % TAU,
+			stroke: "#000",
+			weight: 0.25,
+		},
+		tessellation(time, SUBDIVS, partial(arclengthToHSL, 250))
+	);
+});
+
+$compile([
+	"div.ma2.sans-serif",
+	{},
+	["div", {}, "cells: ", main.map((x) => x.children.length)],
+	$canvas(main, [600, 600]),
+]).mount(document.getElementById("app")!);
