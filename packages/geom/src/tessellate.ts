@@ -7,7 +7,9 @@ import { quadFan } from "@thi.ng/geom-tessellate/quad-fan";
 import { rimTris } from "@thi.ng/geom-tessellate/rim-tris";
 import { tessellate as _tessellate } from "@thi.ng/geom-tessellate/tessellate";
 import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { Vec } from "@thi.ng/vectors";
+import { Group } from "./api/group.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
@@ -19,17 +21,21 @@ import { vertices } from "./vertices.js";
  * more details.
  *
  * @remarks
- * Implemented for all shapes supported by {@link vertices}.
+ * Implemented for all shapes supported by {@link vertices}. For groups, every
+ * child shape will be tessellated individually.
  *
  * @param shape
  * @param tessellators
  */
-export const tessellate = defmulti<IShape, Tessellator[], Vec[][]>(
+export const tessellate = defmulti<IShape, Tessellator[], Iterable<Vec[]>>(
 	__dispatch,
 	{},
 	{
 		[DEFAULT]: ($: IShape, fns: Tessellator[]) =>
 			_tessellate(vertices($), fns),
+
+		group: ($, fns) =>
+			mapcat((x) => _tessellate(vertices(x), fns), (<Group>$).children),
 	}
 );
 
