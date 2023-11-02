@@ -13,12 +13,12 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
-		"@thi.ng/hdom-components": "workspace:^",
-		"@thi.ng/math": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-components": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
-		"@thi.ng/transducers-binary": "workspace:^",
-		"@thi.ng/transducers-hdom": "workspace:^"
+		"@thi.ng/transducers-binary": "workspace:^"
 	},
 	"browser": {
 		"process": false,

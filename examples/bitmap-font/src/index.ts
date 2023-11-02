@@ -1,7 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { dropdown } from "@thi.ng/hdom-components";
-import { clamp } from "@thi.ng/math";
-import { Stream, reactive, sync, type ISubscriber } from "@thi.ng/rstream";
+import { div, inputText, pre } from "@thi.ng/hiccup-html";
+import { $compile, $input } from "@thi.ng/rdom";
+import { staticDropdownAlt } from "@thi.ng/rdom-components";
+import { Stream, reactive, sync } from "@thi.ng/rstream";
 import {
 	comp,
 	map,
@@ -14,17 +15,15 @@ import {
 	zip,
 } from "@thi.ng/transducers";
 import { bits } from "@thi.ng/transducers-binary";
-import { updateDOM } from "@thi.ng/transducers-hdom";
 import { FONT } from "./font";
 
-const emitOnStream = (stream: ISubscriber<any>) => (e: Event) =>
-	stream.next((<HTMLSelectElement>e.target).value);
+// retrieve font bytes for given char (only printable ASCII range supported)
+const lookupChar = (c: string) => {
+	const idx = c.charCodeAt(0) - 32;
+	return idx >= 0 && idx < FONT.length ? FONT[idx] : FONT[0];
+};
 
-// retrieve font bytes for given char
-const lookupChar = (c: string) =>
-	FONT[clamp(c.charCodeAt(0) - 32, 0, FONT.length - 1)];
-
-// re-usable transducer
+// re-usable transducer to join a given array of characters into a single string
 const xfJoin = map((x: string[]) => x.join(""));
 
 // higher order transducer to transform single char from string
@@ -43,74 +42,71 @@ const xfChar = (i: number, on: string, off: string) =>
 	);
 
 // transform entire string
-const banner = ({ input, on, off }: IObjectOf<string>) =>
+const banner = ({ text, on, off }: IObjectOf<string>) =>
 	transduce(
 		comp(
-			// dynamically create `xfChar` transducers for each char
-			// and run them in parallel via `multiplex()`
+			// dynamically create `xfChar` transducers for each char of the
+			// input string and run them in parallel via `multiplex()`
 			// @ts-ignore
-			multiplex.apply(null, [
-				...map((i) => xfChar(i, on, off), range(input.length)),
-			]),
+			multiplex(...map((i) => xfChar(i, on, off), range(text.length))),
 			// then join the results for each line
 			xfJoin
 		),
-		// use `str()` reducer to build string result
+		// use `str()` reducer to build string result of lines
 		str("\n"),
 		// convert input string into stream of row-major bitmap font tuples
 		// @ts-ignore
-		zip.apply(null, [...map(lookupChar, input || " ")])
+		zip(...map(lookupChar, text || " "))
 	);
 
 // dropdown menu for on/off bits
-const charSelector = (stream: Stream<string>) => [
-	dropdown,
-	{
-		class: "ml3",
-		onchange: emitOnStream(stream),
-	},
-	[
-		["#", "#"],
-		["@", "@"],
-		["*", "*"],
-		["X", "X"],
-		["/", "/"],
-		["=", "="],
-		["-", "-"],
-		["^", "^"],
-		[".", "."],
-		[" ", "space"],
-	],
-	stream.deref(),
-];
-
-// main UI root component
-const app = ({ raw, result }: any) => [
-	"div",
-	[
-		"div",
+const charSelector = (stream: Stream<string>) =>
+	staticDropdownAlt(
 		[
-			"input",
-			{
-				oninput: emitOnStream(input),
-				value: raw,
-			},
+			["#", "#"],
+			["@", "@"],
+			["*", "*"],
+			["X", "X"],
+			["/", "/"],
+			["|", "|"],
+			["=", "="],
+			["-", "-"],
+			["_", "_"],
+			["^", "^"],
+			[".", "."],
+			[" ", "space"],
 		],
-		charSelector(on),
-		charSelector(off),
-	],
-	["pre.code.w-100.pa2.overflow-x-auto.bg-washed-yellow", result],
-];
+		stream,
+		{
+			attribs: {
+				class: "ml3",
+				onchange: $input(stream),
+			},
+			label: (x) => x[1],
+			value: (x) => x[0],
+		}
+	);
 
 // reactive stream setup
-const input = reactive("8BIT POWER!");
+const text = reactive("8BIT POWER!");
 const on = reactive("/");
 const off = reactive(" ");
 
-// transforming stream combinator
-const xformer = sync({ src: { input, on, off } }).transform(map(banner));
+// transforming stream combinator: combines user input and char choices, then
+// transforms all to build the bigfont result string
+const result = sync({ src: { text, on, off } }).transform(map(banner));
 
-const main = sync({ src: { raw: input, result: xformer } });
-main.transform(map(app), updateDOM());
+$compile(
+	div(
+		{},
+		div(
+			{},
+			inputText({ oninput: $input(text), value: text }),
+			charSelector(on),
+			charSelector(off)
+		),
+		pre(".code.w-100.pa2.overflow-x-auto.bg-washed-yellow", {}, result)
+	)
+).mount(document.getElementById("app")!);
 
 // input.next(transduce(map((x: number) => String.fromCharCode(x)), str(), range(32, 127)));
