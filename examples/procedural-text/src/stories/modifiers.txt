@@ -1,0 +1,13 @@
+# variable lookups and assignments can be augmented with modifiers
+# currently available options are:
+# ;cap => capitalize
+# ;uc => uppercase
+# ;lc => lowercase
+
+[name]
+asterix
+obelix
+
+capitalized: <hero=name;cap>
+uppercase: <hero;uc>
+lowercase: <hero;lc>

@@ -1,0 +1,50 @@
+# first some variable bindings...
+# var names are enclosed in [...], then followed by possible values (1 per line)
+# each value can also include refs to other vars (via <...>)
+# these refs will be recursively expanded with each use
+
+[name]
+Alice
+Bob
+
+[place]
+town
+the mountains
+the woods
+
+[activity]
+cycling and <activity_alt>
+hiking
+skiing
+swimming
+walking
+
+[activity_alt]
+sleeping
+snacking
+
+[remark]
+funny story
+as one does
+
+[intro]
+Once upon a time
+In the winter that year
+Last week
+
+[drama]
+<hero1> got lost and <hero2> took <delay> to find them again
+<hero1> got quickly bored and <hero2> was a bit upset they had to leave so early
+
+[delay]
+quite a while
+many nerve-racking hours
+
+# our modular main story, at last...
+# here we create 2 new vars (hero1 & hero2), each initialized with random values
+# if multiple values are available for a var, each time a new value is picked,
+# we ensure it's different than the last picked value...
+
+<intro>, <hero1=name> and <hero2=name> went to <place> (<remark>). <hero1> did some <activity>, but <hero2> chose <activity> instead. Then, <drama>.
+
+The end.

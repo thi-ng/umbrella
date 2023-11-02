@@ -1581,6 +1581,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/procedural-text@workspace:examples/procedural-text":
+  version: 0.0.0-use.local
+  resolution: "@example/procedural-text@workspace:examples/procedural-text"
+  dependencies:
+    "@thi.ng/defmulti": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/parse": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-components": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
 "@example/quasi-lattice@workspace:examples/quasi-lattice":
   version: 0.0.0-use.local
   resolution: "@example/quasi-lattice@workspace:examples/quasi-lattice"

@@ -1,0 +1,32 @@
+# given a variable assignment like <hero=name>, we can use dots in the name
+# to lookup derived variables with their name based on current value(s)
+# 
+# (1) assume the assignment of <hero=name> picked value `a`
+# (2) now the var lookup <hero.job> will look for a var called `a.job`
+# (3) there's only one option for `a.job`, i.e. `astronaut`
+# (4) the lookup `hero.job.desc` will then look for `astronaut.desc`
+
+[name]
+a
+b
+
+[a.job]
+astronaut
+
+[b.job]
+baker
+
+[astronaut.desc]
+shooting for the stars
+flying to the moon
+
+[baker.desc]
+baking <bake> and <bake>
+
+[bake]
+bread
+cake
+pastry
+tarts
+
+<hero=name;cap> is a <hero.job;uc>, <hero.job.desc>.

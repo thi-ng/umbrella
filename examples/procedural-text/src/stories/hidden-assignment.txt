@@ -1,0 +1,12 @@
+[name]
+asterix
+obelix
+
+# normally variable assignments are also causing the chosen value
+# to be emitted as part of the generated text. sometimes it is
+# useful to NOT do so and emission can be surpressed/hidden by using
+# the prefix `!` as part of the assignment, like so:
+
+<!hero=name>
+
+My name is <hero;cap>.

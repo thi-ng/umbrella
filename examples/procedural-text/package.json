@@ -1,0 +1,44 @@
+{
+	"name": "@example/procedural-text",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Procedural text generation using a custom parse grammar",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --host --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.5.0"
+	},
+	"dependencies": {
+		"@thi.ng/defmulti": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/parse": "workspace:^",
+		"@thi.ng/random": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-components": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/strings": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"defmulti",
+			"hiccup-html",
+			"parse",
+			"rdom",
+			"rdom-components",
+			"rstream",
+			"strings"
+		],
+		"screenshot": "examples/"
+	}
+}
