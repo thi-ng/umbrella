@@ -38,7 +38,7 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 **This project is NOT a framework and all packages can be used in isolation.**
 
 This mono-repository is home to currently 184 individual TypeScript packages and
-~140 example projects illustrating their usage, currently totalling ~191k SLOC
+~145 example projects illustrating their usage, currently totalling ~191k SLOC
 and ~3800 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
@@ -100,7 +100,7 @@ All packages:
 
 The sheer number and varied nature & purpose of these [packages](#packages)
 makes it impossible to provide traditional "Getting started" tutorials. To
-compensate, this repo provides ~140 [example projects](#examples--showcase),
+compensate, this repo provides ~145 [example projects](#examples--showcase),
 detailed package readmes (at the very least for all the larger and/or more
 important ones), as well as hundreds of small usage examples/snippets in various
 doc strings.
@@ -158,6 +158,7 @@ visual outputs/results).
 - [027: Flocking sim with neighborhood queries to visualize proximity](https://mastodon.thi.ng/@toxi/111308439597090930)
 - [028: Randomized, space-filling, nested 2D grid layout generator](https://mastodon.thi.ng/@toxi/111324566926701431)
 - [029: Forth-like DSL & livecoding playground for 2D geometry generation](https://mastodon.thi.ng/@toxi/111335025037332972)
+- [030: Procedural stochastic text generation via custom DSL & parse grammar](https://mastodon.thi.ng/@toxi/111347074558293056)
 
 ### Blog posts
 
@@ -178,7 +179,7 @@ visual outputs/results).
 
 ## Examples & Showcase
 
-There's a steadily growing number (~140) of standalone examples of different
+There's a steadily growing number (~145) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
