@@ -1,6 +1,6 @@
 # procedural-text
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/procedural-text/)
 

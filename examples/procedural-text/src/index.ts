@@ -5,9 +5,10 @@ import { staticDropdownAlt } from "@thi.ng/rdom-components";
 import { reactive, stream } from "@thi.ng/rstream";
 import { interpose } from "@thi.ng/transducers";
 import STORY1 from "./stories/alice-bob.txt";
-import STORY4 from "./stories/dynamic-lookups.txt";
-import STORY3 from "./stories/hidden-assignment.txt";
 import STORY2 from "./stories/modifiers.txt";
+import STORY3 from "./stories/hidden-assignment.txt";
+import STORY4 from "./stories/dynamic-lookups.txt";
+import STORY5 from "./stories/ngrams-5.txt";
 import { generateStory } from "./story.js";
 
 const STORIES = {
@@ -15,6 +16,7 @@ const STORIES = {
 	Modifiers: STORY2,
 	"Hidden assignments": STORY3,
 	"Dynamic lookups": STORY4,
+	"N-grams": STORY5,
 };
 
 // reactive state values
@@ -31,6 +33,9 @@ const storyID = reactive<keyof typeof STORIES>("Alice & Bob").subscribe({
 		storyInput.next(await response.text());
 		// trigger story regeneration
 		regenerate.next(true);
+		// force editor to show beginning of file
+		const editor = <HTMLTextAreaElement>document.getElementById("editor")!;
+		editor.selectionStart = editor.selectionEnd = 0;
 	},
 });
 
@@ -43,10 +48,10 @@ const generated = regenerate.map(() => {
 	const result = generateStory(input, { vars: {}, rnd: SYSTEM });
 	// possibly return error message
 	if (result.err) {
-		return div(".bg-red.white.pa3.h-100", {}, result.err.message);
+		return div(".bg-red.white.pr3.h-100", {}, result.err.message);
 	} else {
 		return div(
-			".ph3",
+			".pr3",
 			{},
 			// post-process generated text to handle paragraphs & linebreaks
 			...result.result
@@ -83,7 +88,7 @@ $compile(
 				},
 			},
 			// editor, subscribed & feeding back to storyInput
-			textArea(".db.w-100.pa2.bg-lightest-blue.black.code.f6", {
+			textArea("#editor.db.w-100.pa2.bg-lightest-blue.black.code.f6", {
 				value: storyInput,
 				oninput: $input(storyInput),
 			}),

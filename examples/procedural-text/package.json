@@ -2,7 +2,7 @@
 	"name": "@example/procedural-text",
 	"version": "0.0.1",
 	"private": true,
-	"description": "Procedural text generation using a custom parse grammar",
+	"description": "Procedural stochastic text generation via custom DSL, parse grammar & AST transformation",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
@@ -34,11 +34,13 @@
 			"defmulti",
 			"hiccup-html",
 			"parse",
+			"random",
 			"rdom",
 			"rdom-components",
 			"rstream",
-			"strings"
+			"strings",
+			"transducers"
 		],
-		"screenshot": "examples/"
+		"screenshot": "examples/procedural-text.jpg"
 	}
 }

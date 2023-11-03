@@ -15,6 +15,7 @@ the woods
 [activity]
 cycling and <activity_alt>
 hiking
+shopping for supplies
 skiing
 swimming
 walking
@@ -25,7 +26,7 @@ snacking
 
 [remark]
 funny story
-as one does
+as they usually do
 
 [intro]
 Once upon a time
@@ -34,17 +35,27 @@ Last week
 
 [drama]
 <hero1> got lost and <hero2> took <delay> to find them again
-<hero1> got quickly bored and <hero2> was a bit upset they had to leave so early
+<hero1> got quickly <drama_reason> and wanted to go <relax> instead. <hero2> was a bit upset they had to leave so early
+
+[drama_reason]
+bored
+cold
+exhausted
 
 [delay]
 quite a while
 many nerve-racking hours
+
+[relax]
+for some drinks
+meet some friends
+back home to watch a movie
 
 # our modular main story, at last...
 # here we create 2 new vars (hero1 & hero2), each initialized with random values
 # if multiple values are available for a var, each time a new value is picked,
 # we ensure it's different than the last picked value...
 
-<intro>, <hero1=name> and <hero2=name> went to <place> (<remark>). <hero1> did some <activity>, but <hero2> chose <activity> instead. Then, <drama>.
+<intro>, <hero1=name> and <hero2=name> went to <place> (<remark>). <hero1> did some <activity>, but <hero2> chose to go <activity> instead. Pretty soon, <drama>.
 
 The end.

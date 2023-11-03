@@ -154,7 +154,13 @@ const expandVar = ({ children }: ParseScope<string>, story: StoryContext) => {
 	// provide current story context obj as shared state
 	const result = generateStory(choice, story);
 	// bail if there were any errors
-	if (result.err) throw new Error(`error expanding variable: ${id}`);
+	if (result.err) {
+		throw new Error(
+			result.err.message.includes("recursion")
+				? `error expanding variable: ${id} (cycle detected)`
+				: result.err.message
+		);
+	}
 	// apply modifiers, if any...
 	let value = result.result;
 	if (children![1].children) {
