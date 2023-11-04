@@ -123,14 +123,20 @@ a.eqDelta(a.add(99, "t"), 100)
 a.compare(a.add(1, "s"))
 // -1000
 
-// compute difference between dates (in milliseconds)
+// compute (signed) difference between dates (in milliseconds)
 difference(a, "1970-01-01") === a.getTime()
 // true
 
-difference("2021-02", "2020-02")
+// difference = a - b
+difference("2020-02", "2021-02")
+// -31622400000
+
+// always produces unsigned result
+absDifference("2020-02", "2021-02")
 // 31622400000
 
-difference("2021-02", "2020-02") / DAY
+// compute abs difference in days
+asDays(absDifference("2020-02", "2021-02"))
 // 366 (because 2020 was a leap year)
 ```
 
