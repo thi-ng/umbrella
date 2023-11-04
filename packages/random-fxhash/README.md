@@ -36,14 +36,14 @@ which is also provided by the
 parent package.
 
 This support package provides a singleton implementation (`RND`) of that PRNG,
-pre-seeded with the global `fxhash` var injected by the platform. Of course
-pre-seeding with a transaction hash is only possible when using this package in
-the browser and in conjunction with a [fxhash HTML
+pre-seeded with the global `$fx.hash` (formerly `fxhash`) var injected by the
+platform SDK. Of course pre-seeding with a transaction hash is only possible
+when using this package in the browser and in conjunction with a [fxhash HTML
 template](https://www.fxhash.xyz/doc/artist/guide-publish-generative-token#3-ways-to-start-a-project).
-If the global `fxhash` var is not defined, the `RND` instance will be seeded
-with a default seed (but can also be re-seeded later on). This also allows this
-package to be used outside the browser env, where the fxhash provided code
-snippet isn't available...
+If the global `$fx.hash` or `fxhash` var is _not_ defined, the `RND` instance
+will be seeded with a default seed (but can also be re-seeded later on). This
+also allows this package to be used outside the browser env, where the fxhash
+provided code snippet isn't available...
 
 Additionally, the package also provides various wrappers for other commonly used
 utilities from the @thi.ng/random package. These are wrapped in such a way that
@@ -90,7 +90,7 @@ For Node.js REPL:
 const randomFxhash = await import("@thi.ng/random-fxhash");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 469 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 481 bytes
 
 **IMPORTANT**: When using this package (or any other packages from this
 monorepo) for [fxhash](https://fxhash.xyz), you MUST use a bundler (e.g. Vite,
