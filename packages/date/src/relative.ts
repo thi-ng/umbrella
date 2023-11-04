@@ -132,13 +132,28 @@ export const relative = (
 
 /**
  * Returns the signed difference in milliseconds between given two dates `a` and
- * `b`.
+ * `b` (as `diff = a - b`).
+ *
+ * @remarks
+ * Also see {@link absDifference}.
  *
  * @param a -
  * @param b -
  */
 export const difference = (a: MaybeDate, b: MaybeDate) =>
 	ensureEpoch(a) - ensureEpoch(b);
+
+/**
+ * Returns the unsigned difference in milliseconds between given dates.
+ *
+ * @remarks
+ * Also see {@link difference} for signed difference.
+ *
+ * @param a
+ * @param b
+ */
+export const absDifference = (a: MaybeDate, b: MaybeDate) =>
+	Math.abs(difference(a, b));
 
 /**
  * Computes and decomposes difference between given dates. Returns tuple of:
