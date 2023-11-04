@@ -11,6 +11,7 @@ import {
 } from "@thi.ng/random/weighted-random";
 
 declare var fxhash: string;
+declare var $fx: { hash: string };
 
 /**
  * Takes a `fxhash` compatible base58 transaction hash, parses it into 4
