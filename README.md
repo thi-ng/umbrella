@@ -659,6 +659,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Hantsouski"><img src="https://avatars.githubusercontent.com/u/17182335?v=4?s=100" width="100px;" alt="Yury"/><br /><sub><b>Yury</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Hantsouski" title="Code">💻</a> <a href="#ideas-Hantsouski" title="Ideas, Planning, & Feedback">🤔</a> <a href="#financial-Hantsouski" title="Financial">💵</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jffaust"><img src="https://avatars.githubusercontent.com/u/4367222?v=4?s=100" width="100px;" alt="Jean-Frédéric Faust"/><br /><sub><b>Jean-Frédéric Faust</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=jffaust" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ajffaust" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>

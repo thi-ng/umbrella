@@ -401,6 +401,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/17182335?v=4",
 			"profile": "https://github.com/Hantsouski",
 			"contributions": ["code", "ideas", "financial"]
+		},
+		{
+			"login": "jffaust",
+			"name": "Jean-Frédéric Faust",
+			"avatar_url": "https://avatars.githubusercontent.com/u/4367222?v=4",
+			"profile": "https://github.com/jffaust",
+			"contributions": ["code", "bug"]
 		}
 	],
 	"contributorsPerLine": 7,
