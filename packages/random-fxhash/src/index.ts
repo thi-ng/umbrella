@@ -45,6 +45,8 @@ export const seedFromHash = (hash: string) =>
 let seed: number[];
 if (typeof fxhash === "string") {
 	seed = seedFromHash(fxhash);
+} else if (typeof $fx?.hash === "string") {
+	seed = seedFromHash($fx.hash);
 } else {
 	seed = DEFAULT_SEED_128;
 	console.warn("fxhash PRNG not found, using default seed", seed, "\n\n");
