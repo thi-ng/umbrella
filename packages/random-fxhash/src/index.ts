@@ -43,7 +43,9 @@ export const seedFromHash = (hash: string) =>
 		);
 
 let seed: number[];
-if (typeof $fx?.hash === "string") {
+if (typeof fxhash === "string") {
+	seed = seedFromHash(fxhash);
+} else if (typeof $fx?.hash === "string") {
 	seed = seedFromHash($fx.hash);
 } else {
 	seed = DEFAULT_SEED_128;
