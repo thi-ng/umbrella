@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-23T07:37:37Z
+- **Last updated**: 2023-11-04T22:20:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.3.18](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.3.18) (2023-11-04)
+
+#### 🩹 Bug fixes
+
+- add TS ambient decl for `$fx` ([171b717](https://github.com/thi-ng/umbrella/commit/171b717))
 
 ### [0.3.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.3.5) (2023-08-12)
 

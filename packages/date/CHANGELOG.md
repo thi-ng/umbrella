@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-11-01T11:05:34Z
+- **Last updated**: 2023-11-04T22:20:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@2.5.0) (2023-11-04)
+
+#### 🚀 Features
+
+- add durationAs() & asXXX() duration helpers ([ad17cee](https://github.com/thi-ng/umbrella/commit/ad17cee))
+- add absDifference(), add/update docs ([9b54f6c](https://github.com/thi-ng/umbrella/commit/9b54f6c))
 
 ### [2.4.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@2.4.10) (2023-03-27)
 

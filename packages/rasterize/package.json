@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rasterize",
-	"version": "1.0.56",
+	"version": "1.0.57",
 	"description": "2D shape drawing & rasterization",
 	"type": "module",
 	"module": "./index.js",
@@ -37,10 +37,10 @@
 		"@thi.ng/api": "^8.9.6",
 		"@thi.ng/checks": "^3.4.6",
 		"@thi.ng/equiv": "^2.1.31",
-		"@thi.ng/grid-iterators": "^4.0.28",
+		"@thi.ng/grid-iterators": "^4.0.29",
 		"@thi.ng/porter-duff": "^2.1.46",
-		"@thi.ng/random": "^3.6.11",
-		"@thi.ng/transducers": "^8.8.7"
+		"@thi.ng/random": "^3.6.12",
+		"@thi.ng/transducers": "^8.8.8"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.0",

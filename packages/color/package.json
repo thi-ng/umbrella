@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color",
-	"version": "5.5.28",
+	"version": "5.5.29",
 	"description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
 	"type": "module",
 	"module": "./index.js",
@@ -39,18 +39,18 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",
-		"@thi.ng/arrays": "^2.7.1",
+		"@thi.ng/arrays": "^2.7.2",
 		"@thi.ng/binary": "^3.3.35",
 		"@thi.ng/checks": "^3.4.6",
 		"@thi.ng/compare": "^2.2.2",
 		"@thi.ng/compose": "^2.1.45",
-		"@thi.ng/defmulti": "^3.0.3",
+		"@thi.ng/defmulti": "^3.0.4",
 		"@thi.ng/errors": "^2.4.0",
 		"@thi.ng/math": "^5.7.1",
-		"@thi.ng/random": "^3.6.11",
-		"@thi.ng/strings": "^3.6.3",
-		"@thi.ng/transducers": "^8.8.7",
-		"@thi.ng/vectors": "^7.8.1"
+		"@thi.ng/random": "^3.6.12",
+		"@thi.ng/strings": "^3.6.4",
+		"@thi.ng/transducers": "^8.8.8",
+		"@thi.ng/vectors": "^7.8.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.0",
