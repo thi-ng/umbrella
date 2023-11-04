@@ -174,6 +174,22 @@ export type Precision = "y" | "M" | "d" | "h" | "m" | "s" | "t";
 
 export type Period = Precision | "w" | "q";
 
+/**
+ * Object which maps {@link Period} IDs to their respective values (in
+ * milliseconds).
+ */
+export const PERIODS: Record<Period, number> = {
+	y: YEAR,
+	M: MONTH,
+	d: DAY,
+	h: HOUR,
+	m: MINUTE,
+	s: SECOND,
+	t: 1,
+	w: WEEK,
+	q: 3 * MONTH,
+};
+
 export type FormatFn = Fn2<Date, boolean, string>;
 
 export type MaybeDate = DateTime | Date | number | string;

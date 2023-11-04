@@ -1,10 +1,12 @@
 import {
-	YEAR,
-	MONTH,
 	DAY,
 	HOUR,
 	MINUTE,
+	MONTH,
+	PERIODS,
 	SECOND,
+	WEEK,
+	YEAR,
 	type Precision,
 } from "./api.js";
 
@@ -52,3 +54,66 @@ export const composeDuration = (parts: Partial<Record<Precision, number>>) => {
 	dur += parts.t || 0;
 	return dur;
 };
+
+/**
+ * Calculates the given duration in units of given `prec`ision.
+ *
+ * @example
+ * ```ts
+ * durationAs("d", difference("2023-02-01T12:00:00Z", "2023-01-01"))
+ * // 31.5
+ * ```
+ *
+ * @param prec
+ * @param dur
+ */
+export const durationAs = (prec: Precision, dur: number) => dur / PERIODS[prec];
+
+/**
+ * Returns duration in seconds.
+ *
+ * @param dur
+ */
+export const asSeconds = (dur: number) => dur / SECOND;
+
+/**
+ * Returns duration in minutes.
+ *
+ * @param dur
+ */
+export const asMinutes = (dur: number) => dur / MINUTE;
+
+/**
+ * Returns duration in hours.
+ *
+ * @param dur
+ */
+export const asHours = (dur: number) => dur / HOUR;
+
+/**
+ * Returns duration in days.
+ *
+ * @param dur
+ */
+export const asDays = (dur: number) => dur / DAY;
+
+/**
+ * Returns duration in weeks.
+ *
+ * @param dur
+ */
+export const asWeeks = (dur: number) => dur / WEEK;
+
+/**
+ * Returns duration in months (as defined by {@link MONTH})..
+ *
+ * @param dur
+ */
+export const asMonths = (dur: number) => dur / MONTH;
+
+/**
+ * Returns duration in years (as defined by {@link YEAR}).
+ *
+ * @param dur
+ */
+export const asYears = (dur: number) => dur / YEAR;
