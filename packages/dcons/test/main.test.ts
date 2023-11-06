@@ -1,0 +1,163 @@
+import { compareNumDesc } from "@thi.ng/compare";
+import { XsAdd } from "@thi.ng/random";
+import { range } from "@thi.ng/transducers";
+import { expect, test } from "bun:test";
+import { AList, DCons, defDCons } from "../src/index.js";
+
+let a: DCons<any>, src: number[];
+
+const init = () => {
+	src = [1, 2, 3, 4, 5];
+	a = defDCons(src);
+};
+
+test("is instanceof", () => {
+	init();
+	expect(a instanceof AList).toBeTrue();
+	expect(a instanceof DCons).toBeTrue();
+});
+
+test("has length", () => {
+	init();
+	expect(a.length).toBe(5);
+	a = defDCons();
+	expect(a.length).toBe(0);
+});
+
+test("is iterable", () => {
+	init();
+	expect([...a]).toEqual(src);
+});
+
+test("is seqable", () => {
+	init();
+	expect(a.seq()!.first()).toBe(1);
+	expect(a.seq()!.next()!.first()).toBe(2);
+	expect(a.seq(3)!.first()).toBe(4);
+	expect(a.seq(3)!.next()!.first()).toBe(5);
+	expect(a.seq(3)!.next()!.next()).toBeUndefined();
+	expect(a.seq(2, 2)).toBeUndefined();
+	expect(a.seq(2, 3)!.first()).toBe(3);
+	expect(a.seq(2, 3)!.next()).toBeUndefined();
+});
+
+test("shuffle", () => {
+	init();
+	expect([...a.shuffle(undefined, new XsAdd(0x12345678))]).toEqual([
+		3, 5, 1, 4, 2,
+	]);
+	expect([
+		...defDCons(range(10)).shuffle(undefined, new XsAdd(0x12345678)),
+	]).toEqual([3, 0, 7, 8, 5, 2, 9, 1, 6, 4]);
+	expect([...defDCons().shuffle()]).toEqual([]);
+	expect([...defDCons([1]).shuffle()]).toEqual([1]);
+});
+
+test("sort", () => {
+	init();
+	expect([...defDCons().sort()]).toEqual([]);
+	expect([...defDCons([1]).sort()]).toEqual([1]);
+	expect([...defDCons([1, -1]).sort()]).toEqual([-1, 1]);
+	expect([...defDCons([8, -1, 17, 5, 8, 3, 11]).sort()]).toEqual([
+		-1, 3, 5, 8, 8, 11, 17,
+	]);
+	expect([
+		...defDCons([8, -1, 17, 5, 8, 3, 11]).sort(compareNumDesc),
+	]).toEqual([17, 11, 8, 8, 5, 3, -1]);
+});
+
+test("works as stack", () => {
+	init();
+	expect(a.push(10).pop()).toBe(10);
+	expect(a.pop()).toBe(5);
+	a = defDCons();
+	expect(a.pop()).toBeUndefined();
+});
+
+test("works as queue", () => {
+	init();
+	expect(a.push(10).drop()).toBe(1);
+	expect(a.drop()).toBe(2);
+	expect(a.drop()).toBe(3);
+	expect(a.drop()).toBe(4);
+	expect(a.drop()).toBe(5);
+	expect(a.drop()).toBe(10);
+	expect(a.drop()).toBeUndefined();
+});
+
+test("toString", () => {
+	init();
+	expect(defDCons([, null, 0, 1, ["a", "b"], "ab"]).toString()).toBe(
+		"undefined, null, 0, 1, a,b, ab"
+	);
+});
+
+// interface $ConsCell<T> {
+// 	value: T;
+// 	next: $ConsCell<T> | undefined;
+// 	prev: $ConsCell<T> | undefined;
+// }
+
+// abstract class $AList<T> {
+// 	protected _head: $ConsCell<T> | undefined;
+
+// 	constructor(src?: Iterable<T>) {
+// 		src && this.into(src);
+// 	}
+
+// 	abstract append(x: T): $ConsCell<T>;
+
+// 	abstract prepend(n: T): $ConsCell<T>;
+
+// 	into(src: Iterable<T>): this {
+// 		for (let x of src) {
+// 			this.append(x);
+// 		}
+// 		return this;
+// 	}
+// }
+
+// class $DCons<T> extends $AList<T> {
+// 	public _tail: $ConsCell<T> | undefined;
+
+// 	constructor(src?: Iterable<T>) {
+// 		super(src);
+// 	}
+
+// 	append(value: T): $ConsCell<T> {
+// 		console.log("pre-append", value, !!this._head, !!this._tail);
+// 		if (this._tail) {
+// 			const cell = <$ConsCell<T>>{ value, prev: this._tail };
+// 			this._tail.next = cell;
+// 			this._tail = cell;
+// 			return cell;
+// 		} else {
+// 			return this.prepend(value);
+// 		}
+// 	}
+
+// 	prepend(value: T): $ConsCell<T> {
+// 		const cell = <$ConsCell<T>>{ value, next: this._head };
+// 		if (this._head) {
+// 			this._head.prev = cell;
+// 		} else {
+// 			this._tail = cell;
+// 		}
+// 		this._head = cell;
+// 		return cell;
+// 	}
+
+// 	into(src: Iterable<T>): this {
+// 		for (let x of src) {
+// 			this.append(x);
+// 			console.log("post-append", x, !!this._head, !!this._tail);
+// 		}
+// 		return this;
+// 	}
+// }
+
+// test("foo", () => {
+// 	const bar = new $DCons();
+// 	bar.into([1, 2]);
+// 	console.log(bar);
+// });
