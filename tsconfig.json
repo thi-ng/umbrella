@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"module": "es2020",
+		"module": "esnext",
 		"target": "es2020",
 		"declaration": true,
 		"declarationMap": true,
@@ -11,7 +11,7 @@
 		"noUnusedLocals": true,
 		"verbatimModuleSyntax": true,
 		"preserveConstEnums": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"strict": true,
 		"strictNullChecks": true
 	},

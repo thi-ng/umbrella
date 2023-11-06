@@ -6752,6 +6752,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bun-types@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "bun-types@npm:1.0.9"
+  checksum: 1cc5b9c65e2f92352c008a835ab8f53c098308570bf537ea8fc49ef4307be2f794db16fe3743c3aa61da89717b53efae3c5714930ce36b33f96d1917017e839c
+  languageName: node
+  linkType: hard
+
 "bytes@npm:3.1.2":
   version: 3.1.2
   resolution: "bytes@npm:3.1.2"
@@ -8834,6 +8841,7 @@ __metadata:
     "@types/node": ^20.8.7
     "@ygoe/msgpack": ^1.0.3
     all-contributors-cli: ^6.26.1
+    bun-types: ^1.0.9
     esbuild: ^0.19.5
     html-minifier-terser: ^7.2.0
     rimraf: ^5.0.5
