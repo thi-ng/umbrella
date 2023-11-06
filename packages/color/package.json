@@ -30,7 +30,7 @@
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
-		"test": "testament test",
+		"test": "bun test",
 		"tool:limits": "tools:node-esm tools/limits.ts",
 		"tool:maxchroma": "tools:node-esm tools/max-chroma.ts",
 		"tool:strategies": "tools:node-esm tools/strategies.ts",

@@ -32,7 +32,7 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"doc:readme-types": "npx wasm-api-bindgen --lang ts -o export/api.ts --lang zig -o export/api.zig export/readme-types.json",
 		"pub": "yarn npm publish --access public",
-		"test": "testament test"
+		"test": "bun test"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",

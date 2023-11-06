@@ -32,7 +32,7 @@
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
-		"test": "testament test"
+		"test": "bun test"
 	},
 	"dependencies": {
 		"@thi.ng/base-n": "^2.5.14",

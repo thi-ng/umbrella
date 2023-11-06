@@ -31,7 +31,7 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"pub:wip": "yarn npm publish --access public --no-git-tag-version",
-		"test": "testament test"
+		"test": "bun test"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",
