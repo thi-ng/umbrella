@@ -1,19 +1,19 @@
 {
 	"compilerOptions": {
-		"module": "esnext",
-		"target": "es2020",
 		"declaration": true,
 		"declarationMap": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"importHelpers": true,
-		"noUnusedParameters": true,
-		"noUnusedLocals": true,
-		"verbatimModuleSyntax": true,
-		"preserveConstEnums": true,
+		"module": "esnext",
 		"moduleResolution": "bundler",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"preserveConstEnums": true,
 		"strict": true,
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"target": "es2020",
+		"verbatimModuleSyntax": true
 	},
 	"exclude": ["./**/node_modules", "./**/test/fixtures"]
 }
