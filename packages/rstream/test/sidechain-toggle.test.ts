@@ -1,15 +1,14 @@
 import type { Predicate } from "@thi.ng/api";
-import * as assert from "assert";
+import { beforeEach, expect, test } from "bun:test";
 import { sidechainToggle, Stream, stream } from "../src/index.js";
 import { assertUnsub } from "./utils.js";
-import { group } from "@thi.ng/testament";
 
 let src: Stream<any>, side: Stream<any>, buf: any[];
 
 const check = (
 	initial: any,
 	pred: Predicate<any> | undefined,
-	expect: any,
+	_expected: any,
 	done: Function
 ) => {
 	sidechainToggle(src, side, { initial, pred }).subscribe({
@@ -17,7 +16,7 @@ const check = (
 			buf.push(x);
 		},
 		done() {
-			assert.deepStrictEqual(buf, expect);
+			expect(buf).toEqual(_expected);
 			done();
 		},
 	});
@@ -31,36 +30,30 @@ const check = (
 	src.done();
 };
 
-group(
-	"SidechainToggle",
-	{
-		"toggles (initially on)": ({ done }) => {
-			check(true, undefined, [1, 2, 5], done);
-		},
+beforeEach(() => {
+	src = stream();
+	side = stream();
+	buf = [];
+});
 
-		"toggles (initially off)": ({ done }) => {
-			check(false, undefined, [3, 4], done);
-		},
+test("toggles (initially on)", (done) => {
+	check(true, undefined, [1, 2, 5], done);
+});
 
-		"toggles w/ predicate": ({ done }) => {
-			check(true, (x) => x === 0, [1, 2], done);
-		},
+test("toggles (initially off)", (done) => {
+	check(false, undefined, [3, 4], done);
+});
 
-		"unsubscribe chain (from child)": () => {
-			const part = sidechainToggle(src, side);
-			const sub = part.subscribe({});
-			sub.unsubscribe();
-			assertUnsub(src);
-			assertUnsub(side);
-			assertUnsub(part);
-			assertUnsub(sub);
-		},
-	},
-	{
-		beforeEach: () => {
-			src = stream();
-			side = stream();
-			buf = [];
-		},
-	}
-);
+test("toggles w/ predicate", (done) => {
+	check(true, (x) => x === 0, [1, 2], done);
+});
+
+test("unsubscribe chain (from child)", () => {
+	const part = sidechainToggle(src, side);
+	const sub = part.subscribe({});
+	sub.unsubscribe();
+	assertUnsub(src);
+	assertUnsub(side);
+	assertUnsub(part);
+	assertUnsub(sub);
+});

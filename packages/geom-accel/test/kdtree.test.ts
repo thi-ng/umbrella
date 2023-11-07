@@ -1,7 +1,6 @@
-import { group } from "@thi.ng/testament";
 import { mapIndexed } from "@thi.ng/transducers";
 import { distHaversineLatLon, type ReadonlyVec } from "@thi.ng/vectors";
-import * as assert from "assert";
+import { beforeEach, describe, expect, test } from "bun:test";
 import { KdTreeMap, KdTreeSet } from "../src/index.js";
 
 const pts3D = new Set<ReadonlyVec>([
@@ -28,75 +27,63 @@ const pairs2D = new Set(
 let treeMap: KdTreeMap<ReadonlyVec, any>;
 let treeSet: KdTreeSet<ReadonlyVec>;
 
-group(
-	"KdTreeMap - 3D",
-	{
-		ctor: () => {
-			assert.deepEqual(treeMap.dim, 3);
-			assert.deepEqual(treeMap.height, 2);
-		},
-	},
-	{
-		beforeEach: () => {
-			treeMap = new KdTreeMap(3, pairs3D);
-		},
-	}
-);
+describe("KdTreeMap - 3D", () => {
+	beforeEach(() => {
+		treeMap = new KdTreeMap(3, pairs3D);
+	});
 
-group(
-	"KdTreeMap - 2D",
-	{
-		ctor: () => {
-			assert.deepEqual(treeMap.dim, 2);
-			assert.deepEqual(treeMap.height, 3);
-			assert.deepEqual(treeMap.size, 4);
-		},
-		query: () => {
-			assert.deepEqual(treeMap.query([85, 180], Infinity, 1), [
-				[[70, 180], 2],
-			]);
-		},
-		"haversine distance / query": () => {
-			treeMap = new KdTreeMap(2, pairs2D, distHaversineLatLon);
-			assert.deepEqual(treeMap.query([85, 180], Infinity, 1), [
-				[[85, 0], 1],
-			]);
-		},
-	},
-	{
-		beforeEach: () => {
-			treeMap = new KdTreeMap(2, pairs2D);
-		},
-	}
-);
+	test("ctor", () => {
+		expect(treeMap.dim).toBe(3);
+		expect(treeMap.height).toBe(2);
+	});
+});
 
-group(
-	"KdTreeSet - 2D",
-	{
-		ctor: () => {
-			assert.deepEqual(treeSet.size, 4);
-		},
-		query: () => {
-			assert.deepEqual(treeSet.query([85, 180], Infinity, 1), [
-				[
-					[70, 180],
-					[70, 180],
-				],
-			]);
-		},
-		"haversine distance / query": () => {
-			treeSet = new KdTreeSet(2, pts2D, distHaversineLatLon);
-			assert.deepEqual(treeSet.query([85, 180], Infinity, 1), [
-				[
-					[85, 0],
-					[85, 0],
-				],
-			]);
-		},
-	},
-	{
-		beforeEach: () => {
-			treeSet = new KdTreeSet(2, pts2D);
-		},
-	}
-);
+describe("KdTreeMap - 2D", () => {
+	beforeEach(() => {
+		treeMap = new KdTreeMap(2, pairs2D);
+	});
+
+	test("ctor", () => {
+		expect(treeMap.dim).toBe(2);
+		expect(treeMap.height).toBe(3);
+		expect(treeMap.size).toBe(4);
+	});
+
+	test("query", () => {
+		expect(treeMap.query([85, 180], Infinity, 1)).toEqual([[[70, 180], 2]]);
+	});
+
+	test("haversine distance / query", () => {
+		treeMap = new KdTreeMap(2, pairs2D, distHaversineLatLon);
+		expect(treeMap.query([85, 180], Infinity, 1)).toEqual([[[85, 0], 1]]);
+	});
+});
+
+describe("KdTreeSet - 2D", () => {
+	beforeEach(() => {
+		treeSet = new KdTreeSet(2, pts2D);
+	});
+
+	test("ctor", () => {
+		expect(treeSet.size).toBe(4);
+	});
+
+	test("query", () => {
+		expect(treeSet.query([85, 180], Infinity, 1)).toEqual([
+			[
+				[70, 180],
+				[70, 180],
+			],
+		]);
+	});
+
+	test("haversine distance / query", () => {
+		treeSet = new KdTreeSet(2, pts2D, distHaversineLatLon);
+		expect(treeSet.query([85, 180], Infinity, 1)).toEqual([
+			[
+				[85, 0],
+				[85, 0],
+			],
+		]);
+	});
+});

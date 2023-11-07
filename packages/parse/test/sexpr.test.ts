@@ -1,5 +1,4 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { defContext, defGrammar, type ParseScope } from "../src/index.js";
 
 const grammar = `
@@ -23,110 +22,108 @@ const prune = (scope: ParseScope<any>) => {
 	return scope;
 };
 
-group("parse", {
-	"s-expr": () => {
-		const lang = defGrammar(grammar);
-		assert.ok(!!lang);
-		const ctx = defContext(
-			`(def hello (x) (str "hello, " x))\n\n(print (hello -12.3))`
-		);
-		assert.ok(lang!.rules.prog(ctx));
-		const tree = prune(ctx.root);
-		assert.deepStrictEqual(tree, {
-			id: "root",
-			children: [
-				{
-					id: "expr",
-					children: [
-						{
-							id: "list",
-							children: [
-								{
-									id: "expr",
-									children: [
-										{
-											id: "sym",
-											result: "def",
-										},
-										{
-											id: "sym",
-											result: "hello",
-										},
-										{
-											id: "list",
-											children: [
-												{
-													id: "expr",
-													children: [
-														{
-															id: "sym",
-															result: "x",
-														},
-													],
-												},
-											],
-										},
-										{
-											id: "list",
-											children: [
-												{
-													id: "expr",
-													children: [
-														{
-															id: "sym",
-															result: "str",
-														},
-														{
-															id: "string",
-															result: "hello, ",
-														},
-														{
-															id: "sym",
-															result: "x",
-														},
-													],
-												},
-											],
-										},
-									],
-								},
-							],
-						},
-						{
-							id: "list",
-							children: [
-								{
-									id: "expr",
-									children: [
-										{
-											id: "sym",
-											result: "print",
-										},
-										{
-											id: "list",
-											children: [
-												{
-													id: "expr",
-													children: [
-														{
-															id: "sym",
-															result: "hello",
-														},
-														{
-															id: "real",
-															result: -12.3,
-														},
-													],
-												},
-											],
-										},
-									],
-								},
-							],
-						},
-					],
-				},
-			],
-		});
-	},
+test("s-expr", () => {
+	const lang = defGrammar(grammar);
+	expect(lang).toBeDefined();
+	const ctx = defContext(
+		`(def hello (x) (str "hello, " x))\n\n(print (hello -12.3))`
+	);
+	expect(lang!.rules.prog(ctx)).toBeTrue();
+	const tree = prune(ctx.root);
+	expect(tree).toEqual(<any>{
+		id: "root",
+		children: [
+			{
+				id: "expr",
+				children: [
+					{
+						id: "list",
+						children: [
+							{
+								id: "expr",
+								children: [
+									{
+										id: "sym",
+										result: "def",
+									},
+									{
+										id: "sym",
+										result: "hello",
+									},
+									{
+										id: "list",
+										children: [
+											{
+												id: "expr",
+												children: [
+													{
+														id: "sym",
+														result: "x",
+													},
+												],
+											},
+										],
+									},
+									{
+										id: "list",
+										children: [
+											{
+												id: "expr",
+												children: [
+													{
+														id: "sym",
+														result: "str",
+													},
+													{
+														id: "string",
+														result: "hello, ",
+													},
+													{
+														id: "sym",
+														result: "x",
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+					{
+						id: "list",
+						children: [
+							{
+								id: "expr",
+								children: [
+									{
+										id: "sym",
+										result: "print",
+									},
+									{
+										id: "list",
+										children: [
+											{
+												id: "expr",
+												children: [
+													{
+														id: "sym",
+														result: "hello",
+													},
+													{
+														id: "real",
+														result: -12.3,
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		],
+	});
 });

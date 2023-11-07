@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { Atom, Cursor, defAtom, defCursor } from "../src/index.js";
 
 interface State {
@@ -21,38 +21,33 @@ let a: Atom<State>;
 let c: Cursor<any>;
 let src: any;
 
-const init = () => {
+beforeEach(() => {
 	src = { a: { b: { c: 23, g: { h: 88 } }, d: { e: 42 } }, f: 66 };
 	a = defAtom<State>(src);
-};
+});
 
 test("can be deref'd (a)", () => {
-	init();
 	c = defCursor(a, ["a"]);
 	expect(c.parent).toBe(a);
 	expect(c.deref()).toEqual(src.a);
 });
 
 test("can be deref'd (a.b)", () => {
-	init();
 	c = defCursor(a, ["a", "b"]);
 	expect(c.deref()).toEqual(src.a.b);
 });
 
 test("can be deref'd (a.b.c)", () => {
-	init();
 	c = defCursor(a, ["a", "b", "c"]);
 	expect(c.deref()).toBe(src.a.b.c);
 });
 
 test("can be deref'd (path array)", () => {
-	init();
 	c = defCursor(a, ["a", "b", "g", "h"]);
 	expect(c.deref()).toBe(src.a.b.g.h);
 });
 
 test("doesn't fail w/ invalid path", () => {
-	init();
 	c = defCursor(<Atom<any>>a, ["a", "b", "x", "y", "z"]);
 	expect(c.deref()).toBeUndefined();
 	c = defCursor(new Atom<any>(null), ["a"]);
@@ -62,7 +57,6 @@ test("doesn't fail w/ invalid path", () => {
 });
 
 test("can be validated", () => {
-	init();
 	c = defCursor(a, ["a", "b", "c"], { validate: isNumber });
 	expect(c.reset(42)).toBe(42);
 	expect(c.reset("a")).toBe(42);
@@ -73,7 +67,6 @@ test("can be validated", () => {
 });
 
 test("can be swapped'd (a.b.c)", () => {
-	init();
 	c = defCursor(a, ["a", "b", "c"]);
 	expect(c.swap((x) => x + 1)).toBe(src.a.b.c + 1);
 	expect(c.deref()).toBe(src.a.b.c + 1);
@@ -87,7 +80,6 @@ test("can be swapped'd (a.b.c)", () => {
 });
 
 test("can be reset (a.b.c)", () => {
-	init();
 	c = defCursor(a, ["a", "b", "c"]);
 	expect(c.reset(100)).toBe(100);
 	expect(c.deref()).toBe(100);
@@ -97,7 +89,6 @@ test("can be reset (a.b.c)", () => {
 });
 
 test("can update invalid path (x.y.z)", () => {
-	init();
 	c = defCursor(<Atom<any>>a, ["x", "y", "z"]);
 	let add = (x: any) => (x != null ? x + 1 : 0);
 	expect(c.swap(add)).toBe(0);
@@ -111,7 +102,6 @@ test("can update invalid path (x.y.z)", () => {
 });
 
 test("reflects parent update", () => {
-	init();
 	c = defCursor(a, ["a", "d"]);
 	expect(c.deref()).toEqual(src.a.d);
 	let src2 = { a: { b: { c: 23 }, d: { e: 42 } }, f: 66 };
@@ -120,7 +110,6 @@ test("reflects parent update", () => {
 });
 
 test("can be released", () => {
-	init();
 	c = defCursor(a, ["a"]);
 	let id = c.id;
 	expect((<any>a)._watches[id]).not.toBeNull();
@@ -130,7 +119,6 @@ test("can be released", () => {
 });
 
 test("can add & remove watch", () => {
-	init();
 	c = defCursor(a, ["a", "b", "c"]);
 	expect(c.addWatch("foo", () => {})).toBeTrue();
 	expect(
@@ -141,7 +129,6 @@ test("can add & remove watch", () => {
 });
 
 test("can be watched", () => {
-	init();
 	c = defCursor(a, ["a", "b", "c"]);
 	c.addWatch("foo", (id, prev, curr) => {
 		expect(id).toBe("foo");

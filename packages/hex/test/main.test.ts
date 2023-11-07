@@ -1,5 +1,4 @@
-import * as assert from "assert";
-import { group } from "@thi.ng/testament";
+import { expect, test } from "bun:test";
 import {
 	U16,
 	U16BE,
@@ -22,42 +21,40 @@ import {
 
 const BUF = [1, 2, 3, 4, 0x10, 0x20, 0x30, 0x40];
 
-group("hex", {
-	U16: () => {
-		assert.strictEqual(U16(0xaa55), "aa55");
-		assert.strictEqual(U16BE(BUF, 0), "0102");
-		assert.strictEqual(U16BE(BUF, 4), "1020");
-		assert.strictEqual(U16LE(BUF, 0), "0201");
-		assert.strictEqual(U16LE(BUF, 4), "2010");
-	},
+test("U16", () => {
+	expect(U16(0xaa55)).toBe("aa55");
+	expect(U16BE(BUF, 0)).toBe("0102");
+	expect(U16BE(BUF, 4)).toBe("1020");
+	expect(U16LE(BUF, 0)).toBe("0201");
+	expect(U16LE(BUF, 4)).toBe("2010");
+});
 
-	U24: () => {
-		assert.strictEqual(U24(0xffaa55), "ffaa55");
-		assert.strictEqual(U24BE(BUF, 0), "010203");
-		assert.strictEqual(U24BE(BUF, 4), "102030");
-		assert.strictEqual(U24LE(BUF, 0), "030201");
-		assert.strictEqual(U24LE(BUF, 4), "302010");
-	},
+test("U24", () => {
+	expect(U24(0xffaa55)).toBe("ffaa55");
+	expect(U24BE(BUF, 0)).toBe("010203");
+	expect(U24BE(BUF, 4)).toBe("102030");
+	expect(U24LE(BUF, 0)).toBe("030201");
+	expect(U24LE(BUF, 4)).toBe("302010");
+});
 
-	U32: () => {
-		assert.strictEqual(U32(0xdecafbad), "decafbad");
-		assert.strictEqual(U32BE(BUF, 0), "01020304");
-		assert.strictEqual(U32BE(BUF, 4), "10203040");
-		assert.strictEqual(U32LE(BUF, 0), "04030201");
-		assert.strictEqual(U32LE(BUF, 4), "40302010");
-	},
+test("U32", () => {
+	expect(U32(0xdecafbad)).toBe("decafbad");
+	expect(U32BE(BUF, 0)).toBe("01020304");
+	expect(U32BE(BUF, 4)).toBe("10203040");
+	expect(U32LE(BUF, 0)).toBe("04030201");
+	expect(U32LE(BUF, 4)).toBe("40302010");
+});
 
-	U48: () => {
-		assert.strictEqual(U48(0xffeeddccbbaa), "ffeeddccbbaa");
-		assert.strictEqual(U48HL(0xffee, 0xddccbbaa), "ffeeddccbbaa");
-		assert.strictEqual(U48BE(BUF, 0), "010203041020");
-		assert.strictEqual(U48LE(BUF, 0), "201004030201");
-	},
+test("U48", () => {
+	expect(U48(0xffeeddccbbaa)).toBe("ffeeddccbbaa");
+	expect(U48HL(0xffee, 0xddccbbaa)).toBe("ffeeddccbbaa");
+	expect(U48BE(BUF, 0)).toBe("010203041020");
+	expect(U48LE(BUF, 0)).toBe("201004030201");
+});
 
-	U64: () => {
-		assert.strictEqual(U64(2 ** 53 - 1), "001fffffffffffff");
-		assert.strictEqual(U64HL(0xffeeddcc, 0x88776655), "ffeeddcc88776655");
-		assert.strictEqual(U64BE(BUF, 0), "0102030410203040");
-		assert.strictEqual(U64LE(BUF, 0), "4030201004030201");
-	},
+test("U64", () => {
+	expect(U64(2 ** 53 - 1)).toBe("001fffffffffffff");
+	expect(U64HL(0xffeeddcc, 0x88776655)).toBe("ffeeddcc88776655");
+	expect(U64BE(BUF, 0)).toBe("0102030410203040");
+	expect(U64LE(BUF, 0)).toBe("4030201004030201");
 });

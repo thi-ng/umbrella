@@ -1,7 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { roundTo } from "@thi.ng/math";
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import {
 	classify,
 	evaluate,
@@ -23,33 +22,29 @@ const temp = variable([-20, 40], {
 	hot: sigmoid(29.99, 2),
 });
 
-group("lvar", {
-	eval: () => {
-		assert.deepStrictEqual(
-			roundVals(evaluate(temp, 18)),
-			roundVals({
-				freezing: 0,
-				cold: 0.5,
-				warm: 0.6,
-				hot: 0,
-			})
-		);
-		assert.deepStrictEqual(
-			roundVals(evaluate(temp, 28)),
-			roundVals({
-				freezing: 0,
-				cold: 0,
-				warm: 0.4,
-				hot: 0.018,
-			})
-		);
-	},
+test("eval", () => {
+	expect(roundVals(evaluate(temp, 18))).toEqual(
+		roundVals({
+			freezing: 0,
+			cold: 0.5,
+			warm: 0.6,
+			hot: 0,
+		})
+	);
+	expect(roundVals(evaluate(temp, 28))).toEqual(
+		roundVals({
+			freezing: 0,
+			cold: 0,
+			warm: 0.4,
+			hot: 0.018,
+		})
+	);
+});
 
-	classify: () => {
-		assert.strictEqual(classify(temp, -1), "freezing");
-		assert.strictEqual(classify(temp, 0), "freezing");
-		assert.strictEqual(classify(temp, 10), "cold");
-		assert.strictEqual(classify(temp, 20), "warm");
-		assert.strictEqual(classify(temp, 30), "hot");
-	},
+test("classify", () => {
+	expect(classify(temp, -1)).toBe("freezing");
+	expect(classify(temp, 0)).toBe("freezing");
+	expect(classify(temp, 10)).toBe("cold");
+	expect(classify(temp, 20)).toBe("warm");
+	expect(classify(temp, 30)).toBe("hot");
 });

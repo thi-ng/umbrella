@@ -1,5 +1,4 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import {
 	FLOAT_GRAY,
 	FLOAT_GRAY_ALPHA,
@@ -7,44 +6,40 @@ import {
 	FLOAT_RGBA,
 } from "../src/index.js";
 
-group("float", {
-	FLOAT_GRAY: () => {
-		assert.deepStrictEqual(FLOAT_GRAY.fromABGR(0x80333333), [0.2]);
-		assert.deepStrictEqual(FLOAT_GRAY.fromABGR(0x80666666), [0.4]);
-		assert.deepStrictEqual(FLOAT_GRAY.fromABGR(0x80999999), [0.6]);
-		assert.deepStrictEqual(FLOAT_GRAY.fromABGR(0x80cccccc), [0.8]);
-		assert.deepStrictEqual(FLOAT_GRAY.fromABGR(0x80ffffff), [1]);
-		assert.strictEqual(FLOAT_GRAY.toABGR([0.25]), 0xff404040);
-		assert.strictEqual(FLOAT_GRAY.toABGR([0.5]), 0xff808080);
-		assert.strictEqual(FLOAT_GRAY.toABGR([0.75]), 0xffbfbfbf);
-	},
+test("FLOAT_GRAY", () => {
+	expect(FLOAT_GRAY.fromABGR(0x80333333)).toEqual([0.2]);
+	expect(FLOAT_GRAY.fromABGR(0x80666666)).toEqual([0.4]);
+	expect(FLOAT_GRAY.fromABGR(0x80999999)).toEqual([0.6]);
+	expect(FLOAT_GRAY.fromABGR(0x80cccccc)).toEqual([0.8]);
+	expect(FLOAT_GRAY.fromABGR(0x80ffffff)).toEqual([1]);
+	expect(FLOAT_GRAY.toABGR([0.25])).toBe(0xff404040);
+	expect(FLOAT_GRAY.toABGR([0.5])).toBe(0xff808080);
+	expect(FLOAT_GRAY.toABGR([0.75])).toBe(0xffbfbfbf);
+});
 
-	FLOAT_GRAY_ALPHA: () => {
-		assert.deepStrictEqual(
-			FLOAT_GRAY_ALPHA.fromABGR(0x80333333),
-			[0.2, 0.5019607843137255]
-		);
-		assert.deepStrictEqual(FLOAT_GRAY_ALPHA.fromABGR(0x666666), [0.4, 0]);
-		assert.deepStrictEqual(FLOAT_GRAY_ALPHA.fromABGR(0xff999999), [0.6, 1]);
-		assert.strictEqual(FLOAT_GRAY_ALPHA.toABGR([0.25, 0]), 0x00404040);
-		assert.strictEqual(FLOAT_GRAY_ALPHA.toABGR([0.5, 0.5]), 0x80808080);
-		assert.strictEqual(FLOAT_GRAY_ALPHA.toABGR([0.75, 1]), 0xffbfbfbf);
-	},
+test("FLOAT_GRAY_ALPHA", () => {
+	expect(FLOAT_GRAY_ALPHA.fromABGR(0x80333333)).toEqual([
+		0.2, 0.5019607843137255,
+	]);
+	expect(FLOAT_GRAY_ALPHA.fromABGR(0x666666)).toEqual([0.4, 0]);
+	expect(FLOAT_GRAY_ALPHA.fromABGR(0xff999999)).toEqual([0.6, 1]);
+	expect(FLOAT_GRAY_ALPHA.toABGR([0.25, 0])).toBe(0x00404040);
+	expect(FLOAT_GRAY_ALPHA.toABGR([0.5, 0.5])).toBe(0x80808080);
+	expect(FLOAT_GRAY_ALPHA.toABGR([0.75, 1])).toBe(0xffbfbfbf);
+});
 
-	FLOAT_RGB: () => {
-		assert.deepStrictEqual(FLOAT_RGB.fromABGR(0x80336699), [0.6, 0.4, 0.2]);
-		assert.deepStrictEqual(FLOAT_RGB.fromABGR(0xff00ff00), [0, 1, 0]);
-		assert.strictEqual(FLOAT_RGB.toABGR([0.6, 0.4, 0.2]), 0xff336699);
-		assert.strictEqual(FLOAT_RGB.toABGR([0, 1, 0]), 0xff00ff00);
-	},
+test("FLOAT_RGB", () => {
+	expect(FLOAT_RGB.fromABGR(0x80336699)).toEqual([0.6, 0.4, 0.2]);
+	expect(FLOAT_RGB.fromABGR(0xff00ff00)).toEqual([0, 1, 0]);
+	expect(FLOAT_RGB.toABGR([0.6, 0.4, 0.2])).toBe(0xff336699);
+	expect(FLOAT_RGB.toABGR([0, 1, 0])).toBe(0xff00ff00);
+});
 
-	FLOAT_RGBA: () => {
-		assert.deepStrictEqual(
-			FLOAT_RGBA.fromABGR(0x80336699),
-			[0.6, 0.4, 0.2, 0.5019607843137255]
-		);
-		assert.deepStrictEqual(FLOAT_RGBA.fromABGR(0xff00ff00), [0, 1, 0, 1]);
-		assert.strictEqual(FLOAT_RGBA.toABGR([0.6, 0.4, 0.2, 0.5]), 0x80336699);
-		assert.strictEqual(FLOAT_RGBA.toABGR([0, 1, 0, 1]), 0xff00ff00);
-	},
+test("FLOAT_RGBA", () => {
+	expect(FLOAT_RGBA.fromABGR(0x80336699)).toEqual([
+		0.6, 0.4, 0.2, 0.5019607843137255,
+	]);
+	expect(FLOAT_RGBA.fromABGR(0xff00ff00)).toEqual([0, 1, 0, 1]);
+	expect(FLOAT_RGBA.toABGR([0.6, 0.4, 0.2, 0.5])).toBe(0x80336699);
+	expect(FLOAT_RGBA.toABGR([0, 1, 0, 1])).toBe(0xff00ff00);
 });

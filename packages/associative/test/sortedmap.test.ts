@@ -2,17 +2,16 @@ import { shuffle } from "@thi.ng/arrays";
 import { equiv } from "@thi.ng/equiv";
 import { XsAdd } from "@thi.ng/random";
 import { range, repeat, zip } from "@thi.ng/transducers";
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { SortedMap, defSortedMap } from "../src/index.js";
 
 let m: SortedMap<any, any>;
 
-const init = () => {
+beforeEach(() => {
 	m = defSortedMap({ a: 1, b: 2, c: 3 });
-};
+});
 
 test("size", () => {
-	init();
 	expect(m.size).toBe(3);
 	m.set("a", 10);
 	expect(m.size).toBe(3);
@@ -25,7 +24,6 @@ test("size", () => {
 });
 
 test("clear", () => {
-	init();
 	m.clear();
 	expect(m.size).toBe(0);
 	expect([...m.entries()]).toEqual([]);
@@ -34,7 +32,6 @@ test("clear", () => {
 });
 
 test("empty", () => {
-	init();
 	const m2 = m.empty();
 	expect(m.size).toBe(3);
 	expect(m2.size).toBe(0);
@@ -42,18 +39,15 @@ test("empty", () => {
 });
 
 test("copy", () => {
-	init();
 	expect(m.copy()).toEqual(m);
 });
 
 test("equiv", () => {
-	init();
 	expect(equiv(m.copy(), m)).toBeTrue();
 	expect(equiv(m, new SortedMap<any, any>())).toBeFalse();
 });
 
 test("has", () => {
-	init();
 	expect(m.has("a")).toBeTrue();
 	expect(m.has("b")).toBeTrue();
 	expect(m.has("c")).toBeTrue();
@@ -63,14 +57,12 @@ test("has", () => {
 });
 
 test("first", () => {
-	init();
 	expect(["a", 1]).toEqual(m.first()!);
 	m.set("A", 10);
 	expect(["A", 10]).toEqual(m.first()!);
 });
 
 test("get", () => {
-	init();
 	expect(m.get("a")).toBe(1);
 	expect(m.get("b")).toBe(2);
 	expect(m.get("c")).toBe(3);
@@ -80,7 +72,6 @@ test("get", () => {
 });
 
 test("entries", () => {
-	init();
 	expect([...m]).toEqual([
 		["a", 1],
 		["b", 2],
@@ -93,7 +84,6 @@ test("entries", () => {
 // },
 
 test("entries a", () => {
-	init();
 	expect([...m.entries("a")]).toEqual([
 		["a", 1],
 		["b", 2],
@@ -106,7 +96,6 @@ test("entries a", () => {
 // },
 
 test("entries aa", () => {
-	init();
 	expect([...m.entries("aa")]).toEqual([
 		["b", 2],
 		["c", 3],
@@ -118,7 +107,6 @@ test("entries aa", () => {
 // },
 
 test("entries bb", () => {
-	init();
 	expect([...m.entries("bb")]).toEqual([["c", 3]]);
 });
 
@@ -127,7 +115,6 @@ test("entries bb", () => {
 // },
 
 test("entries c", () => {
-	init();
 	expect([...m.entries("c")]).toEqual([["c", 3]]);
 });
 
@@ -136,7 +123,6 @@ test("entries c", () => {
 // },
 
 test("entries 0", () => {
-	init();
 	expect([...m.entries("0")]).toEqual([
 		["a", 1],
 		["b", 2],
@@ -149,7 +135,6 @@ test("entries 0", () => {
 // });
 
 test("entries d", () => {
-	init();
 	expect([...m.entries("d")]).toEqual([]);
 });
 
@@ -158,7 +143,6 @@ test("entries d", () => {
 // },
 
 test("keys", () => {
-	init();
 	expect([...m.keys()]).toEqual(["a", "b", "c"]);
 	m.set("aa", 0);
 	m.set("d", 0);
@@ -166,7 +150,6 @@ test("keys", () => {
 });
 
 test("values", () => {
-	init();
 	expect([...m.values()]).toEqual([1, 2, 3]);
 	m.set("aa", 0);
 	m.set("d", 0);
@@ -174,7 +157,6 @@ test("values", () => {
 });
 
 test("comparator", () => {
-	init();
 	m = defSortedMap(
 		{ a: 1, b: 2, c: 3 },
 		{
@@ -189,7 +171,6 @@ test("comparator", () => {
 });
 
 test("fuzz", () => {
-	init();
 	const keys = [...range(32)];
 	for (let i = 0; i < 1000; i++) {
 		m = new SortedMap(zip(shuffle(keys.slice()), repeat(1)));
@@ -198,7 +179,6 @@ test("fuzz", () => {
 });
 
 test("fuzzSetDelete", () => {
-	init();
 	const s = defSortedMap<number, number>(null, {
 		compare: (a, b) => a - b,
 	});
@@ -211,7 +191,6 @@ test("fuzzSetDelete", () => {
 });
 
 test("updateValue", () => {
-	init();
 	m = defSortedMap(
 		[
 			["one", 1],

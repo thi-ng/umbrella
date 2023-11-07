@@ -1,4 +1,4 @@
 import { expect, test } from "bun:test";
 // import { } from "../src/index.js";
 
-test("geom-sdf", () => {});
+test.todo("geom-sdf", () => {});

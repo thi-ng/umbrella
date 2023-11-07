@@ -1,6 +1,5 @@
 import { IntersectionType } from "@thi.ng/geom-api";
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import {
 	intersectLinePolylineAll,
 	intersectRayPolylineAll,
@@ -13,133 +12,93 @@ const pts = [
 	[0, 100],
 ];
 
-group("polyline", {
-	"ray (x)": () => {
-		assert.deepStrictEqual(
-			intersectRayPolylineAll([-50, 25], [1, 0], pts, false),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [[100, 25]],
-			}
-		);
-		assert.deepStrictEqual(
-			intersectRayPolylineAll([-50, 25], [1, 0], pts, true),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [
-					[0, 25],
-					[100, 25],
-				],
-			}
-		);
-	},
+test("ray (x)", () => {
+	expect(intersectRayPolylineAll([-50, 25], [1, 0], pts, false)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [[100, 25]],
+	});
+	expect(intersectRayPolylineAll([-50, 25], [1, 0], pts, true)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [
+			[0, 25],
+			[100, 25],
+		],
+	});
+});
 
-	"ray (y)": () => {
-		assert.deepStrictEqual(
-			intersectRayPolylineAll([50, -50], [0, 1], pts, false),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [
-					[50, 0],
-					[50, 75],
-				],
-			}
-		);
-		assert.deepStrictEqual(
-			intersectRayPolylineAll([50, -50], [0, 1], pts, true),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [
-					[50, 0],
-					[50, 75],
-				],
-			}
-		);
-	},
+test("ray (y)", () => {
+	expect(intersectRayPolylineAll([50, -50], [0, 1], pts, false)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [
+			[50, 0],
+			[50, 75],
+		],
+	});
+	expect(intersectRayPolylineAll([50, -50], [0, 1], pts, true)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [
+			[50, 0],
+			[50, 75],
+		],
+	});
+});
 
-	"line (x)": () => {
-		assert.deepStrictEqual(
-			intersectLinePolylineAll([-50, 25], [50, 25], pts, false),
-			{
-				type: IntersectionType.NONE,
-			}
-		);
-		assert.deepStrictEqual(
-			intersectLinePolylineAll([-50, 25], [110, 25], pts, false),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [[100, 25]],
-			}
-		);
-		assert.deepStrictEqual(
-			intersectLinePolylineAll([-50, 25], [50, 25], pts, true),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [[0, 25]],
-			}
-		);
-		assert.deepStrictEqual(
-			intersectLinePolylineAll([-50, 25], [110, 25], pts, true),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [
-					[0, 25],
-					[100, 25],
-				],
-			}
-		);
-	},
+test("line (x)", () => {
+	expect(intersectLinePolylineAll([-50, 25], [50, 25], pts, false)).toEqual({
+		type: IntersectionType.NONE,
+	});
+	expect(intersectLinePolylineAll([-50, 25], [110, 25], pts, false)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [[100, 25]],
+	});
+	expect(intersectLinePolylineAll([-50, 25], [50, 25], pts, true)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [[0, 25]],
+	});
+	expect(intersectLinePolylineAll([-50, 25], [110, 25], pts, true)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [
+			[0, 25],
+			[100, 25],
+		],
+	});
+});
 
-	"line (y)": () => {
-		assert.deepStrictEqual(
-			intersectLinePolylineAll([50, -25], [50, -20], pts, false),
-			{
-				type: IntersectionType.NONE,
-			}
-		);
-		assert.deepStrictEqual(
-			intersectLinePolylineAll([50, -25], [50, 50], pts, false),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [[50, 0]],
-			}
-		);
-		assert.deepStrictEqual(
-			intersectLinePolylineAll([50, -25], [50, 100], pts, false),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [
-					[50, 0],
-					[50, 75],
-				],
-			}
-		);
-	},
+test("line (y)", () => {
+	expect(intersectLinePolylineAll([50, -25], [50, -20], pts, false)).toEqual({
+		type: IntersectionType.NONE,
+	});
+	expect(intersectLinePolylineAll([50, -25], [50, 50], pts, false)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [[50, 0]],
+	});
+	expect(intersectLinePolylineAll([50, -25], [50, 100], pts, false)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [
+			[50, 0],
+			[50, 75],
+		],
+	});
+});
 
-	"ray minD/maxD": () => {
-		const I = Infinity;
-		assert.deepStrictEqual(
-			intersectRayPolylineAll([50, 25], [1, 0], pts, true, -I, I),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [
-					[0, 25],
-					[100, 25],
-				],
-			}
-		);
-		assert.deepStrictEqual(
-			intersectRayPolylineAll([-50, 25], [1, 0], pts, true, 60),
-			{
-				type: IntersectionType.INTERSECT,
-				isec: [[100, 25]],
-			}
-		);
-		assert.deepStrictEqual(
-			intersectRayPolylineAll([50, 25], [1, 0], pts, true, 0, 10),
-			{
-				type: IntersectionType.NONE,
-			}
-		);
-	},
+test("ray minD/maxD", () => {
+	const I = Infinity;
+	expect(intersectRayPolylineAll([50, 25], [1, 0], pts, true, -I, I)).toEqual(
+		{
+			type: IntersectionType.INTERSECT,
+			isec: [
+				[0, 25],
+				[100, 25],
+			],
+		}
+	);
+	expect(intersectRayPolylineAll([-50, 25], [1, 0], pts, true, 60)).toEqual({
+		type: IntersectionType.INTERSECT,
+		isec: [[100, 25]],
+	});
+	expect(intersectRayPolylineAll([50, 25], [1, 0], pts, true, 0, 10)).toEqual(
+		{
+			type: IntersectionType.NONE,
+		}
+	);
 });

@@ -1,5 +1,4 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { parseOBJ } from "../src/index.js";
 
 const src = `
@@ -49,79 +48,77 @@ const cubeFaces = [
 	{ v: [2, 7, 4, 1] },
 ];
 
-group("geom-io-obj", {
-	"cube (default)": () => {
-		const model = parseOBJ(src);
-		assert.deepStrictEqual(model.vertices, cubeVerts);
-		assert.strictEqual(model.objects.length, 2);
-		assert.strictEqual(model.objects[1].id, "cube");
-		assert.deepStrictEqual(model.objects[1].groups, [
-			{
-				id: "default",
-				smooth: false,
-				mtl: "noise",
-				lines: [],
-				faces: cubeFaces.slice(0, 3),
-			},
-			{
-				id: "other",
-				smooth: true,
-				mtl: "noise",
-				lines: [],
-				faces: cubeFaces.slice(3),
-			},
-		]);
-		assert.deepStrictEqual(model.mtlLibs, ["cube.mtl"]);
-	},
+test("cube (default)", () => {
+	const model = parseOBJ(src);
+	expect(model.vertices).toEqual(cubeVerts);
+	expect(model.objects.length).toBe(2);
+	expect(model.objects[1].id).toBe("cube");
+	expect(model.objects[1].groups).toEqual([
+		{
+			id: "default",
+			smooth: false,
+			mtl: "noise",
+			lines: [],
+			faces: cubeFaces.slice(0, 3),
+		},
+		{
+			id: "other",
+			smooth: true,
+			mtl: "noise",
+			lines: [],
+			faces: cubeFaces.slice(3),
+		},
+	]);
+	expect(model.mtlLibs).toEqual(["cube.mtl"]);
+});
 
-	"cube (no obj, no groups)": () => {
-		const model = parseOBJ(src, { objects: false, groups: false });
-		assert.deepStrictEqual(model.vertices, cubeVerts);
-		assert.strictEqual(model.objects.length, 1);
-		assert.strictEqual(model.objects[0].id, "default");
-		assert.deepStrictEqual(model.objects[0].groups, [
-			{
-				id: "default",
-				smooth: true,
-				mtl: "noise",
-				lines: [],
-				faces: cubeFaces,
-			},
-		]);
-	},
+test("cube (no obj, no groups)", () => {
+	const model = parseOBJ(src, { objects: false, groups: false });
+	expect(model.vertices).toEqual(cubeVerts);
+	expect(model.objects.length).toBe(1);
+	expect(model.objects[0].id).toBe("default");
+	expect(model.objects[0].groups).toEqual([
+		{
+			id: "default",
+			smooth: true,
+			mtl: "noise",
+			lines: [],
+			faces: cubeFaces,
+		},
+	]);
+});
 
-	"cube (tessel)": () => {
-		const model = parseOBJ(src, {
-			objects: false,
-			groups: false,
-			tessellate: true,
-		});
-		assert.deepStrictEqual(model.objects[0].groups, [
-			{
-				id: "default",
-				smooth: true,
-				mtl: "noise",
-				lines: [],
-				faces: [
-					{ v: [3, 2, 1] },
-					{ v: [3, 1, 0] },
-					{ v: [7, 6, 5] },
-					{ v: [7, 5, 4] },
-					{ v: [5, 0, 1] },
-					{ v: [5, 1, 4] },
-					{ v: [7, 2, 3] },
-					{ v: [7, 3, 6] },
-					{ v: [6, 3, 0] },
-					{ v: [6, 0, 5] },
-					{ v: [2, 7, 4] },
-					{ v: [2, 4, 1] },
-				],
-			},
-		]);
-	},
+test("cube (tessel)", () => {
+	const model = parseOBJ(src, {
+		objects: false,
+		groups: false,
+		tessellate: true,
+	});
+	expect(model.objects[0].groups).toEqual([
+		{
+			id: "default",
+			smooth: true,
+			mtl: "noise",
+			lines: [],
+			faces: [
+				{ v: [3, 2, 1] },
+				{ v: [3, 1, 0] },
+				{ v: [7, 6, 5] },
+				{ v: [7, 5, 4] },
+				{ v: [5, 0, 1] },
+				{ v: [5, 1, 4] },
+				{ v: [7, 2, 3] },
+				{ v: [7, 3, 6] },
+				{ v: [6, 3, 0] },
+				{ v: [6, 0, 5] },
+				{ v: [2, 7, 4] },
+				{ v: [2, 4, 1] },
+			],
+		},
+	]);
+});
 
-	comments: () => {
-		const model = parseOBJ(src, { comments: true });
-		assert.deepStrictEqual(model.comments, ["test cube", "quad faces"]);
-	},
+test("comments", () => {
+	const model = parseOBJ(src, { comments: true });
+	expect(model.comments).toEqual(["test cube", "quad faces"]);
 });

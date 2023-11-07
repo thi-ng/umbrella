@@ -1,4 +1,3 @@
-import { group } from "@thi.ng/testament";
 import {
 	comp,
 	filter,
@@ -7,7 +6,7 @@ import {
 	partition,
 	take,
 } from "@thi.ng/transducers";
-import * as assert from "assert";
+import { beforeEach, expect, test } from "bun:test";
 import { Stream, fromIterable, type ISubscriber } from "../src/index.js";
 
 let src: Stream<number>;
@@ -20,58 +19,52 @@ let check = (expected: any, done: Function) => {
 			buf.push(x);
 		},
 		done() {
-			assert.deepStrictEqual(buf, expected);
+			expect(buf).toEqual(expected);
 			done();
 		},
 	};
 };
 
-group(
-	"transducers",
-	{
-		"works chained": ({ done }) => {
-			src.transform(map((x) => x * 10))
-				.transform(map((x) => x + 1))
-				.subscribe(check([101, 201, 301], done));
-		},
+beforeEach(() => {
+	src = fromIterable(data);
+});
 
-		"works combined": ({ done }) => {
-			src.subscribe(check([101, 201, 301], done), {
-				xform: comp(
-					map((x: number) => x * 10),
-					map((x: number) => x + 1)
-				),
-			});
-		},
+test("works chained", (done) => {
+	src.transform(map((x) => x * 10))
+		.transform(map((x) => x + 1))
+		.subscribe(check([101, 201, 301], done));
+});
 
-		"does early termination": ({ done }) => {
-			src.subscribe(check([data[0], data[1]], done), { xform: take(2) });
-		},
+test("works combined", (done) => {
+	src.subscribe(check([101, 201, 301], done), {
+		xform: comp(
+			map((x: number) => x * 10),
+			map((x: number) => x + 1)
+		),
+	});
+});
 
-		"emits multiple values": ({ done }) => {
-			src.subscribe(check([10, 10, 20], done), {
-				xform: comp(
-					mapcat((x) => [x, x]),
-					take(3)
-				),
-			});
-		},
+test("does early termination", (done) => {
+	src.subscribe(check([data[0], data[1]], done), { xform: take(2) });
+});
 
-		"filters values": ({ done }) => {
-			src.subscribe(check([10, 30], done), {
-				xform: filter((x: number) => x % 20 > 0),
-			});
-		},
+test("emits multiple values", (done) => {
+	src.subscribe(check([10, 10, 20], done), {
+		xform: comp(
+			mapcat((x) => [x, x]),
+			take(3)
+		),
+	});
+});
 
-		"emits remaining": ({ done }) => {
-			src.subscribe(check([[10, 20], [30]], done), {
-				xform: partition(2, true),
-			});
-		},
-	},
-	{
-		beforeEach: () => {
-			src = fromIterable(data);
-		},
-	}
-);
+test("filters values", (done) => {
+	src.subscribe(check([10, 30], done), {
+		xform: filter((x: number) => x % 20 > 0),
+	});
+});
+
+test("emits remaining", (done) => {
+	src.subscribe(check([[10, 20], [30]], done), {
+		xform: partition(2, true),
+	});
+});

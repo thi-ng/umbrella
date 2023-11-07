@@ -1,4 +1,4 @@
 import { expect, test } from "bun:test";
 // import { } from "../src/index.js"
 
-test("shader-ast-optimize", () => {});
+test.todo("shader-ast-optimize", () => {});

@@ -1,5 +1,4 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import {
 	defContext,
 	defGrammar,
@@ -10,98 +9,96 @@ import {
 	stringD,
 } from "../src/index.js";
 
-group("lookahead", {
-	"oneof (no capture)": () => {
-		const ctx = defContext("ababaaabbabba");
-		assert.ok(join(lookahead(oneOf("ab"), stringD("abba")))(ctx));
-		assert.strictEqual(ctx.result, "ababaa");
-		assert.deepStrictEqual(ctx.state, {
-			p: 6,
-			l: 1,
-			c: 7,
-			done: false,
-			last: "a",
-		});
-		assert.ok(string("abba")(ctx));
-		assert.ok(!ctx.done);
-	},
+test("oneof (no capture)", () => {
+	const ctx = defContext("ababaaabbabba");
+	expect(join(lookahead(oneOf("ab"), stringD("abba")))(ctx)).toBeTrue();
+	expect(ctx.result).toBe("ababaa");
+	expect(ctx.state).toEqual({
+		p: 6,
+		l: 1,
+		c: 7,
+		done: false,
+		last: "a",
+	});
+	expect(string("abba")(ctx)).toBeTrue();
+	expect(ctx.done).toBeFalse();
+});
 
-	"oneof (capture)": () => {
-		const ctx = defContext("ababaaabbabba");
-		assert.ok(join(lookahead(oneOf("ab"), string("abba"), true))(ctx));
-		assert.strictEqual(ctx.result, "ababaaabba");
-		assert.deepStrictEqual(ctx.state, {
-			p: 10,
-			l: 1,
-			c: 11,
-			done: false,
-			last: "a",
-		});
-		assert.ok(string("bba")(ctx));
-		assert.ok(ctx.done);
-	},
+test("oneof (capture)", () => {
+	const ctx = defContext("ababaaabbabba");
+	expect(join(lookahead(oneOf("ab"), string("abba"), true))(ctx)).toBeTrue();
+	expect(ctx.result).toBe("ababaaabba");
+	expect(ctx.state).toEqual({
+		p: 10,
+		l: 1,
+		c: 11,
+		done: false,
+		last: "a",
+	});
+	expect(string("bba")(ctx)).toBeTrue();
+	expect(ctx.done).toBeTrue();
+});
 
-	"string (no capture)": () => {
-		const ctx = defContext("abababbabba");
-		assert.ok(join(lookahead(string("ab"), stringD("abba")))(ctx));
-		assert.strictEqual(ctx.result, "abab");
-		assert.deepStrictEqual(ctx.state, {
-			p: 4,
-			l: 1,
-			c: 5,
-			done: false,
-			last: "b",
-		});
-		assert.ok(string("abba")(ctx));
-		assert.ok(!ctx.done);
-	},
+test("string (no capture)", () => {
+	const ctx = defContext("abababbabba");
+	expect(join(lookahead(string("ab"), stringD("abba")))(ctx)).toBeTrue();
+	expect(ctx.result).toBe("abab");
+	expect(ctx.state).toEqual({
+		p: 4,
+		l: 1,
+		c: 5,
+		done: false,
+		last: "b",
+	});
+	expect(string("abba")(ctx)).toBeTrue();
+	expect(ctx.done).toBeFalse();
+});
 
-	"string (capture)": () => {
-		const ctx = defContext("abababbabba");
-		assert.ok(join(lookahead(string("ab"), string("abba"), true))(ctx));
-		assert.strictEqual(ctx.result, "abababba");
-		assert.deepStrictEqual(ctx.state, {
-			p: 8,
-			l: 1,
-			c: 9,
-			done: false,
-			last: "a",
-		});
-		assert.ok(string("bba")(ctx));
-		assert.ok(ctx.done);
-	},
+test("string (capture)", () => {
+	const ctx = defContext("abababbabba");
+	expect(join(lookahead(string("ab"), string("abba"), true))(ctx)).toBeTrue();
+	expect(ctx.result).toBe("abababba");
+	expect(ctx.state).toEqual({
+		p: 8,
+		l: 1,
+		c: 9,
+		done: false,
+		last: "a",
+	});
+	expect(string("bba")(ctx)).toBeTrue();
+	expect(ctx.done).toBeTrue();
+});
 
-	"grammar (no capture)": () => {
-		const ctx = defContext("ababaaabbabba");
-		const lang = defGrammar(`foo: [ab](?-"abba"!) => join ;`);
-		assert.ok(lang);
-		assert.ok(lang.rules.foo(ctx));
-		assert.strictEqual(ctx.result, "ababaa");
-		assert.deepStrictEqual(ctx.state, {
-			p: 6,
-			l: 1,
-			c: 7,
-			done: false,
-			last: "a",
-		});
-		assert.ok(string("abba")(ctx));
-		assert.ok(!ctx.done);
-	},
+test("grammar (no capture)", () => {
+	const ctx = defContext("ababaaabbabba");
+	const lang = defGrammar(`foo: [ab](?-"abba"!) => join ;`);
+	expect(lang).toBeDefined();
+	expect(lang!.rules.foo(ctx)).toBeTrue();
+	expect(ctx.result).toBe("ababaa");
+	expect(ctx.state).toEqual({
+		p: 6,
+		l: 1,
+		c: 7,
+		done: false,
+		last: "a",
+	});
+	expect(string("abba")(ctx)).toBeTrue();
+	expect(ctx.done).toBeFalse();
+});
 
-	"grammar (capture)": () => {
-		const ctx = defContext("ababaaabbabba");
-		const lang = defGrammar(`foo: [ab](?+"abba") => join ;`);
-		assert.ok(lang);
-		assert.ok(lang.rules.foo(ctx));
-		assert.strictEqual(ctx.result, "ababaaabba");
-		assert.deepStrictEqual(ctx.state, {
-			p: 10,
-			l: 1,
-			c: 11,
-			done: false,
-			last: "a",
-		});
-		assert.ok(string("bba")(ctx));
-		assert.ok(ctx.done);
-	},
+test("grammar (capture)", () => {
+	const ctx = defContext("ababaaabbabba");
+	const lang = defGrammar(`foo: [ab](?+"abba") => join ;`);
+	expect(lang).toBeDefined();
+	expect(lang!.rules.foo(ctx)).toBeTrue();
+	expect(ctx.result).toBe("ababaaabba");
+	expect(ctx.state).toEqual({
+		p: 10,
+		l: 1,
+		c: 11,
+		done: false,
+		last: "a",
+	});
+	expect(string("bba")(ctx)).toBeTrue();
+	expect(ctx.done).toBeTrue();
 });

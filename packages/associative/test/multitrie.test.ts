@@ -1,9 +1,9 @@
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { MultiTrie } from "../src/index.js";
 
 let root: MultiTrie<string, string>;
 
-const init = () => {
+beforeEach(() => {
 	root = new MultiTrie();
 	root.add("hey", "en");
 	root.add("hello", "en");
@@ -12,10 +12,9 @@ const init = () => {
 	root.add("hola", "es");
 	root.add("hold", "en");
 	root.add("hej", "se");
-};
+});
 
 test("keys", () => {
-	init();
 	expect(new Set(root.keys())).toEqual(
 		new Set(["hey", "hello", "hallo", "hallo", "hola", "hold", "hej"])
 	);
@@ -31,7 +30,6 @@ test("keys", () => {
 });
 
 test("keys (words)", () => {
-	init();
 	const t = new MultiTrie<string[], string>();
 	t.add("foo bar baz".split(" "), "a");
 	t.add("foo boo zoo".split(" "), "b");
@@ -41,7 +39,6 @@ test("keys (words)", () => {
 });
 
 test("values", () => {
-	init();
 	expect(new Set(root.values())).toEqual(
 		new Set(["en", "es", "de", "de-at", "se"])
 	);
@@ -49,7 +46,6 @@ test("values", () => {
 });
 
 test("delete", () => {
-	init();
 	expect(root.delete("he")).toBeTrue();
 	expect(new Set(root.keys())).toEqual(new Set(["hola", "hold", "hallo"]));
 	expect(root.delete("hallo", "de")).toBeTrue();
@@ -59,7 +55,6 @@ test("delete", () => {
 });
 
 test("known prefix", () => {
-	init();
 	expect(root.knownPrefix("hole")).toEqual(["h", "o", "l"]);
 	expect(root.knownPrefix("whole")).toEqual([]);
 });

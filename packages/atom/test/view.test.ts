@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import {
 	View,
 	defAtom,
@@ -17,12 +17,11 @@ interface State {
 let a: Atom<State>;
 let v: IView<number>;
 
-const init = () => {
+beforeEach(() => {
 	a = defAtom({ a: 1, b: { c: 2, d: 3 }, e: 4 });
-};
+});
 
 test("can be created from atom", () => {
-	init();
 	v = defView(a, ["e"]);
 	expect(v instanceof View).toBeTrue();
 	expect(v.deref()).toBe(4);
@@ -32,7 +31,6 @@ test("can be created from atom", () => {
 });
 
 test("can be created from cursor", () => {
-	init();
 	let c = defCursor(a, ["b"]);
 	v = defView(c, ["d"]);
 	expect(v instanceof View).toBeTrue();
@@ -43,20 +41,17 @@ test("can be created from cursor", () => {
 });
 
 test("can be deref'd", () => {
-	init();
 	expect(defView(a, ["b", "c"]).deref()).toBe(2);
 	expect(defView(defCursor(a, ["b"]), ["d"]).deref()).toBe(3);
 });
 
 test("can be deref'd w/ transformer", () => {
-	init();
 	v = defView(a, ["b", "c"], (x) => x * 10);
 	expect(v.deref()).toBe(20);
 	expect(v.deref()).toBe(20);
 });
 
 test("can read .value", () => {
-	init();
 	expect(defView(a, ["b", "c"]).value).toBe(2);
 	expect(defView(defCursor(a, ["b"]), ["d"]).value).toBe(3);
 	// expect(new View(new Cursor(a, "b"), "d").value, 3);
@@ -64,7 +59,6 @@ test("can read .value", () => {
 });
 
 test("reflects updates", () => {
-	init();
 	v = defView(a, ["b", "c"], (x) => x * 10);
 	expect(v.changed()).toBeTrue();
 	expect(v.deref()).toBe(20);
@@ -76,7 +70,6 @@ test("reflects updates", () => {
 });
 
 test("reflects updates (initially undefined)", () => {
-	init();
 	const _a = <Atom<any>>a;
 	const v = defView(_a, ["f"]);
 	expect(v.changed()).toBeTrue();
@@ -88,7 +81,6 @@ test("reflects updates (initially undefined)", () => {
 });
 
 test("can be released", () => {
-	init();
 	v = defView(a, ["b", "c"]);
 	expect(v.deref()).toBe(2);
 	expect(v.changed()).toBeFalse();
@@ -100,7 +92,6 @@ test("can be released", () => {
 });
 
 test("is lazy by default", () => {
-	init();
 	let x: number | undefined;
 	v = defView(a, ["b", "c"], (y) => ((x = y), y * 10));
 	expect(x).toBeUndefined();
@@ -112,7 +103,6 @@ test("is lazy by default", () => {
 });
 
 test("can be eager", () => {
-	init();
 	let x: number | undefined;
 	v = defView(a, ["b", "c"], (y) => ((x = y), y * 10), false);
 	expect(x).toBe(2);

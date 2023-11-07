@@ -1,6 +1,5 @@
 import type { ISeqable } from "@thi.ng/api";
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { concat, ensureSeq, iterator } from "../src/index.js";
 
 export class Range implements ISeqable<number> {
@@ -26,17 +25,14 @@ export class Range implements ISeqable<number> {
 	}
 }
 
-group("custom", {
-	basics: () => {
-		assert.strictEqual(ensureSeq(new Range(0)), undefined);
-		assert.strictEqual(new Range(0).seq(), undefined);
-		assert.strictEqual(new Range(1).seq()!.first(), 0);
-		assert.strictEqual(new Range(1).seq()!.next(), undefined);
-		assert.deepStrictEqual([...iterator(new Range(3))], [0, 1, 2]);
-		assert.deepStrictEqual([...iterator(new Range(0))], []);
-		assert.deepStrictEqual(
-			[...iterator(concat(new Range(3), new Range(0), new Range(4)))],
-			[0, 1, 2, 0, 1, 2, 3]
-		);
-	},
+test("basics", () => {
+	expect<any>(ensureSeq(new Range(0))).toBe(undefined);
+	expect<any>(new Range(0).seq()).toBe(undefined);
+	expect<any>(new Range(1).seq()!.first()).toBe(0);
+	expect<any>(new Range(1).seq()!.next()).toBe(undefined);
+	expect([...iterator(new Range(3))]).toEqual([0, 1, 2]);
+	expect([...iterator(new Range(0))]).toEqual([]);
+	expect([
+		...iterator(concat(new Range(3), new Range(0), new Range(4))),
+	]).toEqual([0, 1, 2, 0, 1, 2, 3]);
 });

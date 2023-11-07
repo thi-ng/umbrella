@@ -1,5 +1,4 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import {
 	matchMultiple,
 	matchPattern,
@@ -15,77 +14,54 @@ const DB = [
 	{ id: 4, tags: ["c"] },
 ];
 
-group("oquery matchers", {
-	matchStrings: () => {
-		assert.deepStrictEqual(query(DB, [matchStrings("tags", ["a"])]), [
-			DB[0],
-			DB[2],
-			DB[3],
-		]);
-		assert.deepStrictEqual(query(DB, [matchStrings("tags", ["a", "b"])]), [
-			DB[0],
-		]);
-		assert.deepStrictEqual(
-			query(DB, [matchStrings("tags", ["a", "b"], { union: true })]),
-			[DB[0], DB[1], DB[2], DB[3]]
-		);
-		assert.deepStrictEqual(query(DB, [matchStrings("tags", ["a", "!b"])]), [
-			DB[2],
-			DB[3],
-		]);
-		assert.deepStrictEqual(
-			query(DB, [matchStrings("tags", ["a", "!b", "c"])]),
-			[DB[2]]
-		);
-		assert.deepStrictEqual(
-			query(DB, [
-				matchStrings("tags", ["a", "!b", "c"], { union: true }),
-			]),
-			[DB[2], DB[3], DB[4]]
-		);
-		assert.deepStrictEqual(
-			query(DB, [matchStrings("tags", ["c", "d"])]),
-			[]
-		);
-		assert.deepStrictEqual(
-			query(DB, [matchStrings("tags", ["c", "d"], { union: true })]),
-			[DB[1], DB[2], DB[4]]
-		);
-	},
+test("matchStrings", () => {
+	expect(query(DB, [matchStrings("tags", ["a"])])).toEqual([
+		DB[0],
+		DB[2],
+		DB[3],
+	]);
+	expect(query(DB, [matchStrings("tags", ["a", "b"])])).toEqual([DB[0]]);
+	expect(
+		query(DB, [matchStrings("tags", ["a", "b"], { union: true })])
+	).toEqual([DB[0], DB[1], DB[2], DB[3]]);
+	expect(query(DB, [matchStrings("tags", ["a", "!b"])])).toEqual([
+		DB[2],
+		DB[3],
+	]);
+	expect(query(DB, [matchStrings("tags", ["a", "!b", "c"])])).toEqual([
+		DB[2],
+	]);
+	expect(
+		query(DB, [matchStrings("tags", ["a", "!b", "c"], { union: true })])
+	).toEqual([DB[2], DB[3], DB[4]]);
+	expect(query(DB, [matchStrings("tags", ["c", "d"])])).toEqual([]);
+	expect(
+		query(DB, [matchStrings("tags", ["c", "d"], { union: true })])
+	).toEqual([DB[1], DB[2], DB[4]]);
+});
 
-	matchMultiple: () => {
-		const $DB = DB.map(({ id, tags }) => ({
-			id,
-			tags: tags.map((t) => ({ name: t })),
-		}));
-		assert.deepStrictEqual(
-			query($DB, [
-				matchMultiple("tags", ["a"], ["b"], {
-					value: (tags) => tags.map((t: any) => t.name),
-				}),
-			]),
-			[$DB[2], $DB[3]]
-		);
-	},
+test("matchMultiple", () => {
+	const $DB = DB.map(({ id, tags }) => ({
+		id,
+		tags: tags.map((t) => ({ name: t })),
+	}));
+	expect(
+		query($DB, [
+			matchMultiple("tags", ["a"], ["b"], {
+				value: (tags) => tags.map((t: any) => t.name),
+			}),
+		])
+	).toEqual([$DB[2], $DB[3]]);
+});
 
-	matchPattern: () => {
-		assert.deepStrictEqual(query(DB, [matchPattern("extra", "*")]), [
-			DB[3],
-		]);
-		assert.deepStrictEqual(query(DB, [matchPattern("id", "=2")]), [DB[2]]);
-		assert.deepStrictEqual(query(DB, [matchPattern("id", ">2")]), [
-			DB[3],
-			DB[4],
-		]);
-	},
+test("matchPattern", () => {
+	expect(query(DB, [matchPattern("extra", "*")])).toEqual([DB[3]]);
+	expect(query(DB, [matchPattern("id", "=2")])).toEqual([DB[2]]);
+	expect(query(DB, [matchPattern("id", ">2")])).toEqual([DB[3], DB[4]]);
+});
 
-	combined: () => {
-		assert.deepStrictEqual(
-			query(DB, [
-				matchStrings("tags", ["a"]),
-				matchPattern("tags", "a{2,}"),
-			]),
-			[DB[3]]
-		);
-	},
+test("combined", () => {
+	expect(
+		query(DB, [matchStrings("tags", ["a"]), matchPattern("tags", "a{2,}")])
+	).toEqual([DB[3]]);
 });

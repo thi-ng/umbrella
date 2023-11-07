@@ -1,6 +1,5 @@
 import { compare } from "@thi.ng/compare";
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { beforeEach, expect, test } from "bun:test";
 import { Heap } from "../src/index.js";
 
 const rcmp: (a: number, b: number) => number = (a, b) => b - a;
@@ -8,97 +7,82 @@ const rcmp: (a: number, b: number) => number = (a, b) => b - a;
 const src = [5, 2, 10, 20, 15, 18, 23, 22, -1];
 let h: Heap<any>;
 
-group(
-	"Heap",
-	{
-		length: () => {
-			assert.strictEqual(h.length, src.length);
-		},
+beforeEach(() => {
+	h = new Heap(src);
+});
 
-		copy: () => {
-			assert.deepStrictEqual(drain(h.copy()), drain(h));
-			h = new Heap(src, { compare: rcmp });
-			assert.deepStrictEqual(drain(h.copy()), drain(h));
-		},
+test("length", () => {
+	expect(h.length).toBe(src.length);
+});
 
-		peek: () => {
-			assert.strictEqual(h.peek(), -1);
-			h.push(-2);
-			assert.strictEqual(h.peek(), -2);
-		},
+test("copy", () => {
+	expect(drain(h.copy())).toEqual(drain(h));
+	h = new Heap(src, { compare: rcmp });
+	expect(drain(h.copy())).toEqual(drain(h));
+});
 
-		pop: () => {
-			assert.deepStrictEqual(drain(h), src.slice().sort(compare));
-			h = new Heap(src, { compare: rcmp });
-			assert.deepStrictEqual(
-				drain(h),
-				src.slice().sort(compare).reverse()
-			);
-		},
+test("peek", () => {
+	expect(h.peek()).toBe(-1);
+	h.push(-2);
+	expect(h.peek()).toBe(-2);
+});
 
-		into: () => {
-			assert.deepStrictEqual(
-				drain(h.into(src)),
-				src.concat(src).sort(compare)
-			);
-		},
+test("pop", () => {
+	expect(drain(h)).toEqual(src.slice().sort(compare));
+	h = new Heap(src, { compare: rcmp });
+	expect(drain(h)).toEqual(src.slice().sort(compare).reverse());
+});
 
-		pushPop: () => {
-			assert.strictEqual(h.pushPop(-2), -2);
-			assert.strictEqual(h.length, src.length);
-			assert.strictEqual(h.pushPop(-1), -1);
-			assert.strictEqual(h.length, src.length);
-			assert.strictEqual(h.pushPop(11), -1);
-			assert.strictEqual(h.length, src.length);
-			assert.strictEqual(h.pushPop(24), 2);
-			assert.strictEqual(h.length, src.length);
-		},
+test("into", () => {
+	expect(drain(h.into(src))).toEqual(src.concat(src).sort(compare));
+});
 
-		min: () => {
-			assert.deepStrictEqual(h.min(0), []);
-			assert.deepStrictEqual(h.min(1), [-1]);
-			assert.deepStrictEqual(h.min(2), [-1, 2]);
-			assert.deepStrictEqual(h.min(3), [-1, 2, 5]);
-			assert.deepStrictEqual(h.min(4), [-1, 2, 5, 10]);
-			assert.deepStrictEqual(h.min(), src.slice().sort(compare));
-		},
+test("pushPop", () => {
+	expect(h.pushPop(-2)).toBe(-2);
+	expect(h.length).toBe(src.length);
+	expect(h.pushPop(-1)).toBe(-1);
+	expect(h.length).toBe(src.length);
+	expect(h.pushPop(11)).toBe(-1);
+	expect(h.length).toBe(src.length);
+	expect(h.pushPop(24)).toBe(2);
+	expect(h.length).toBe(src.length);
+});
 
-		max: () => {
-			assert.deepStrictEqual(h.max(0), []);
-			assert.deepStrictEqual(h.max(1), [23]);
-			assert.deepStrictEqual(h.max(2), [23, 22]);
-			assert.deepStrictEqual(h.max(3), [23, 22, 20]);
-			assert.deepStrictEqual(h.max(4), [23, 22, 20, 18]);
-			assert.deepStrictEqual(
-				h.max(),
-				src.slice().sort(compare).reverse()
-			);
-		},
+test("min", () => {
+	expect(h.min(0)).toEqual([]);
+	expect(h.min(1)).toEqual([-1]);
+	expect(h.min(2)).toEqual([-1, 2]);
+	expect(h.min(3)).toEqual([-1, 2, 5]);
+	expect(h.min(4)).toEqual([-1, 2, 5, 10]);
+	expect(h.min()).toEqual(src.slice().sort(compare));
+});
 
-		parent: () => {
-			assert.strictEqual(h.parent(0), undefined);
-			assert.strictEqual(h.parent(1), -1);
-			assert.strictEqual(h.parent(2), -1);
-			assert.strictEqual(h.parent(3), 2);
-			assert.strictEqual(h.parent(4), 2);
-			assert.strictEqual(h.parent(5), 10);
-			assert.strictEqual(h.parent(6), 10);
-		},
+test("max", () => {
+	expect(h.max(0)).toEqual([]);
+	expect(h.max(1)).toEqual([23]);
+	expect(h.max(2)).toEqual([23, 22]);
+	expect(h.max(3)).toEqual([23, 22, 20]);
+	expect(h.max(4)).toEqual([23, 22, 20, 18]);
+	expect(h.max()).toEqual(src.slice().sort(compare).reverse());
+});
 
-		children: () => {
-			assert.deepStrictEqual(h.children(0), [2, 10]);
-			assert.deepStrictEqual(h.children(1), [5, 15]);
-			assert.deepStrictEqual(h.children(2), [18, 23]);
-			assert.deepStrictEqual(h.children(3), [22, 20]);
-			assert.deepStrictEqual(h.children(4), undefined);
-		},
-	},
-	{
-		beforeEach: () => {
-			h = new Heap(src);
-		},
-	}
-);
+test("parent", () => {
+	expect(h.parent(0)).toBe(undefined);
+	expect(h.parent(1)).toBe(-1);
+	expect(h.parent(2)).toBe(-1);
+	expect(h.parent(3)).toBe(2);
+	expect(h.parent(4)).toBe(2);
+	expect(h.parent(5)).toBe(10);
+	expect(h.parent(6)).toBe(10);
+});
+
+test("children", () => {
+	expect(h.children(0)).toEqual([2, 10]);
+	expect(h.children(1)).toEqual([5, 15]);
+	expect(h.children(2)).toEqual([18, 23]);
+	expect(h.children(3)).toEqual([22, 20]);
+	expect(h.children(4)).toBeUndefined();
+});
 
 const drain = (h: Heap<any>) => {
 	const res = [];

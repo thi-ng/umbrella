@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import {
 	Atom,
 	Transacted,
@@ -16,19 +16,17 @@ interface State {
 let db: Atom<State>;
 let tx: Transacted<State>;
 
-const init = () => {
+beforeEach(() => {
 	db = defAtom({ a: 1, b: 2 });
 	tx = defTransacted(db);
-};
+});
 
 test("initial", () => {
-	init();
 	expect(db.deref()).toEqual({ a: 1, b: 2 });
 	expect(tx.deref()).toEqual(db.deref());
 });
 
 test("transaction", () => {
-	init();
 	tx.begin();
 	expect(tx.deref()).toEqual({ a: 1, b: 2 });
 	expect(() => tx.begin()).toThrow();
@@ -43,7 +41,6 @@ test("transaction", () => {
 });
 
 test("cancel", () => {
-	init();
 	tx.begin();
 	tx.swapIn(["a"], (x) => x + 10);
 	expect(tx.deref()).toEqual({ a: 11, b: 2 });
@@ -54,7 +51,6 @@ test("cancel", () => {
 });
 
 test("no edits outside tx", () => {
-	init();
 	const _tx = <Transacted<any>>tx;
 	expect(() => _tx.reset({})).toThrow();
 	expect(() => _tx.swap(() => ({}))).toThrow();
@@ -64,7 +60,6 @@ test("no edits outside tx", () => {
 });
 
 test("no ext edits inside tx", () => {
-	init();
 	tx.begin();
 	tx.resetIn(["a"], 10);
 	expect(() => db.resetIn(["a"], 2)).toThrow();
@@ -82,7 +77,6 @@ test("no ext edits inside tx", () => {
 });
 
 test("beginTransaction", () => {
-	init();
 	tx = beginTransaction(db);
 	expect(tx instanceof Transacted).toBeTrue();
 	tx.resetIn(["a"], 10);
@@ -91,7 +85,6 @@ test("beginTransaction", () => {
 });
 
 test("race (2x transactions)", () => {
-	init();
 	let tx1 = beginTransaction(db);
 	let tx2 = beginTransaction(db);
 	tx1.resetIn(["a"], 10);
@@ -103,7 +96,6 @@ test("race (2x transactions)", () => {
 });
 
 test("nested transactions", () => {
-	init();
 	let tx1 = beginTransaction(db);
 	tx1.resetIn(["a"], 10);
 	let tx2 = beginTransaction(tx1);
@@ -116,7 +108,6 @@ test("nested transactions", () => {
 });
 
 test("watches", () => {
-	init();
 	let count = 0;
 	const _tx = <Transacted<any>>tx;
 	_tx.addWatch("foo", (id, old, curr) => {
@@ -133,7 +124,6 @@ test("watches", () => {
 });
 
 test("view (lazy)", () => {
-	init();
 	const acc: any[] = [];
 	const _tx = <Transacted<any>>tx;
 	const view = defView(_tx, ["a"], (x) => (acc.push(x), x), true);
@@ -147,7 +137,6 @@ test("view (lazy)", () => {
 });
 
 test("view (eager)", () => {
-	init();
 	const acc: any[] = [];
 	const _tx = <Transacted<any>>tx;
 	const view = defView(_tx, ["a"], (x) => (acc.push(x), x), false);

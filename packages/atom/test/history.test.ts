@@ -1,15 +1,14 @@
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { Atom, defCursor, defHistory } from "../src/index.js";
 
 let a: Atom<any>;
 let add = (x: number) => x + 1;
 
-const init = () => {
+beforeEach(() => {
 	a = new Atom({ a: 10, b: { c: 20, d: 30 }, e: 40 });
-};
+});
 
 test("has initial state", () => {
-	init();
 	let c = defCursor(a, ["b", "c"]);
 	let h = defHistory(c, 3);
 	expect(h.history.length).toBe(0);
@@ -18,7 +17,6 @@ test("has initial state", () => {
 });
 
 test("does record & shift (simple)", () => {
-	init();
 	let c = defCursor(a, ["b", "c"]);
 	let h = defHistory(c, 3);
 	h.swap(add);
@@ -39,7 +37,6 @@ test("does record & shift (simple)", () => {
 });
 
 test("does record & shift (nested)", () => {
-	init();
 	let c = defCursor(a, ["b"]);
 	let h = defHistory(c, 3);
 	h.swap((s) => ({ ...s, c: 21 }));
@@ -75,7 +72,6 @@ test("does record & shift (nested)", () => {
 });
 
 test("doesn't record if same val", () => {
-	init();
 	let h = defHistory(a, 3);
 	h.reset(a.deref());
 	expect(h.history.length).toBe(0);
@@ -84,7 +80,6 @@ test("doesn't record if same val", () => {
 });
 
 test("does undo / redo", () => {
-	init();
 	let c = defCursor(a, ["b", "c"]);
 	let h = defHistory(c, 3);
 	h.swap(add); // 21

@@ -1,4 +1,4 @@
 import { expect, test } from "bun:test";
 // import * as errors from "../src/index.js"
 
-test("errors", () => {});
+test.todo("errors", () => {});

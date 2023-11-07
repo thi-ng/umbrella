@@ -1,36 +1,32 @@
 import { compareNumDesc } from "@thi.ng/compare";
 import { XsAdd } from "@thi.ng/random";
 import { range } from "@thi.ng/transducers";
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { AList, DCons, defDCons } from "../src/index.js";
 
 let a: DCons<any>, src: number[];
 
-const init = () => {
+beforeEach(() => {
 	src = [1, 2, 3, 4, 5];
 	a = defDCons(src);
-};
+});
 
 test("is instanceof", () => {
-	init();
 	expect(a instanceof AList).toBeTrue();
 	expect(a instanceof DCons).toBeTrue();
 });
 
 test("has length", () => {
-	init();
 	expect(a.length).toBe(5);
 	a = defDCons();
 	expect(a.length).toBe(0);
 });
 
 test("is iterable", () => {
-	init();
 	expect([...a]).toEqual(src);
 });
 
 test("is seqable", () => {
-	init();
 	expect(a.seq()!.first()).toBe(1);
 	expect(a.seq()!.next()!.first()).toBe(2);
 	expect(a.seq(3)!.first()).toBe(4);
@@ -42,7 +38,6 @@ test("is seqable", () => {
 });
 
 test("shuffle", () => {
-	init();
 	expect([...a.shuffle(undefined, new XsAdd(0x12345678))]).toEqual([
 		3, 5, 1, 4, 2,
 	]);
@@ -54,7 +49,6 @@ test("shuffle", () => {
 });
 
 test("sort", () => {
-	init();
 	expect([...defDCons().sort()]).toEqual([]);
 	expect([...defDCons([1]).sort()]).toEqual([1]);
 	expect([...defDCons([1, -1]).sort()]).toEqual([-1, 1]);
@@ -67,7 +61,6 @@ test("sort", () => {
 });
 
 test("works as stack", () => {
-	init();
 	expect(a.push(10).pop()).toBe(10);
 	expect(a.pop()).toBe(5);
 	a = defDCons();
@@ -75,7 +68,6 @@ test("works as stack", () => {
 });
 
 test("works as queue", () => {
-	init();
 	expect(a.push(10).drop()).toBe(1);
 	expect(a.drop()).toBe(2);
 	expect(a.drop()).toBe(3);
@@ -86,7 +78,6 @@ test("works as queue", () => {
 });
 
 test("toString", () => {
-	init();
 	expect(defDCons([, null, 0, 1, ["a", "b"], "ab"]).toString()).toBe(
 		"undefined, null, 0, 1, a,b, ab"
 	);

@@ -1,4 +1,4 @@
 import { expect, test } from "bun:test";
 // import { } from "../src/index.js"
 
-test("dual-algebra", () => {});
+test.todo("dual-algebra", () => {});

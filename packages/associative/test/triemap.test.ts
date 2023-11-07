@@ -1,21 +1,22 @@
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { TrieMap } from "../src/index.js";
 
 let root: TrieMap<string>;
 
-const init = () =>
-	(root = new TrieMap([
-		["hey", "en"],
-		["hello", "en"],
-		["hallo", "de"],
-		["hallo", "de-at"],
-		["hola", "es"],
-		["hold", "en"],
-		["hej", "se"],
-	]));
+beforeEach(
+	() =>
+		(root = new TrieMap([
+			["hey", "en"],
+			["hello", "en"],
+			["hallo", "de"],
+			["hallo", "de-at"],
+			["hola", "es"],
+			["hold", "en"],
+			["hej", "se"],
+		]))
+);
 
 test("keys", () => {
-	init();
 	expect(new Set(root.keys())).toEqual(
 		new Set(["hey", "hello", "hallo", "hallo", "hola", "hold", "hej"])
 	);
@@ -25,7 +26,6 @@ test("keys", () => {
 });
 
 test("values", () => {
-	init();
 	expect(new Set(root.values())).toEqual(
 		new Set(["en", "es", "de-at", "se"])
 	);
@@ -33,7 +33,6 @@ test("values", () => {
 });
 
 test("delete", () => {
-	init();
 	expect(root.delete("he")).toBeTrue();
 	expect(new Set(root.keys())).toEqual(new Set(["hola", "hold", "hallo"]));
 	expect(root.delete("hallo")).toBeTrue();
@@ -43,13 +42,11 @@ test("delete", () => {
 });
 
 test("known prefix", () => {
-	init();
 	expect(root.knownPrefix("hole")).toEqual("hol");
 	expect(root.knownPrefix("whole")).toBeUndefined();
 });
 
 test("suffixes", () => {
-	init();
 	expect([...root.suffixes("he")]).toEqual(["j", "llo", "y"]);
 	expect([...root.suffixes("he", true)]).toEqual(["hej", "hello", "hey"]);
 });

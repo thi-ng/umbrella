@@ -1,5 +1,5 @@
 import { equiv } from "@thi.ng/equiv";
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { ECS, Group } from "../src/index.js";
 
 const collect = (g: Group<any, any>) => {
@@ -10,12 +10,11 @@ const collect = (g: Group<any, any>) => {
 
 let ecs: ECS<any>;
 
-const init = () => {
+beforeEach(() => {
 	ecs = new ECS({ capacity: 16 });
-};
+});
 
 test("group", () => {
-	init();
 	const a = ecs.defComponent({ id: "a", default: () => "a" })!;
 	const b = ecs.defComponent({ id: "b", type: "f32", size: 2 })!;
 	const g = ecs.defGroup([a, b]);

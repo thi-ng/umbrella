@@ -1,8 +1,8 @@
-import * as assert from "assert";
+import { assert } from "@thi.ng/errors";
 import { State, type ISubscription } from "../src/index.js";
 
 export const assertState = (x: ISubscription<any, any>, state: State) =>
-	assert.strictEqual(x.getState(), state, `${x.id} != ${State[state]}`);
+	assert(x.getState() === state, `${x.id} != ${State[state]}`);
 
 export const assertIdle = (x: ISubscription<any, any>) =>
 	assertState(x, State.IDLE);

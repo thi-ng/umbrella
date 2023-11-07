@@ -1,5 +1,4 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { beforeEach, expect, test } from "bun:test";
 import {
 	State,
 	Stream,
@@ -12,95 +11,81 @@ import { TIMEOUT } from "./config.js";
 let src: Stream<number>;
 let data = [10, 20, 30];
 
-group(
-	"fromIterable",
-	{
-		"is a stream": () => {
-			assert.ok(src instanceof Stream);
-			assert.ok(src instanceof Subscription);
-		},
+beforeEach(() => {
+	src = fromIterable(data);
+});
 
-		"has an ID": () => {
-			assert.ok(src.id.startsWith("iterable-"));
-		},
+test("is a stream", () => {
+	expect(src instanceof Stream).toBeTrue();
+	expect(src instanceof Subscription).toBeTrue();
+});
 
-		"starts in IDLE state": () => {
-			assert.strictEqual(src.getState(), State.IDLE);
-		},
+test("has an ID", () => {
+	expect(src.id.startsWith("iterable-")).toBeTrue();
+});
 
-		"delivers all values": ({ done }) => {
-			let buf: any[] = [];
-			src.subscribe({
-				next(x) {
-					buf.push(x);
-				},
-				done() {
-					assert.deepStrictEqual(buf, data);
-					done();
-				},
-			});
-		},
+test("starts in IDLE state", () => {
+	expect(src.getState()).toBe(State.IDLE);
+});
 
-		finishes: ({ done }) => {
-			let sub: ISubscription<any, any> = src.subscribe({
-				next() {},
-				done() {
-					assert.strictEqual(
-						src.getState(),
-						State.DONE,
-						"src not done"
-					);
-					assert.strictEqual(
-						sub.getState(),
-						State.DONE,
-						"sub not done"
-					);
-					done();
-				},
-			});
+test("delivers all values", (done) => {
+	let buf: any[] = [];
+	src.subscribe({
+		next(x) {
+			buf.push(x);
 		},
+		done() {
+			expect(buf).toEqual(data);
+			done();
+		},
+	});
+});
 
-		"works with delay": ({ done }) => {
-			let buf: any[] = [];
-			let t0 = Date.now();
-			src = fromIterable(data, { delay: 10 });
-			src.subscribe({
-				next(x) {
-					buf.push(x);
-				},
-				done() {
-					assert.deepStrictEqual(buf, data);
-					assert.ok(Date.now() - t0 >= (data.length + 1) * 10);
-					done();
-				},
-			});
+test("finishes", (done) => {
+	let sub: ISubscription<any, any> = src.subscribe({
+		next() {},
+		done() {
+			expect(src.getState()).toBe(State.DONE);
+			expect(sub.getState()).toBe(State.DONE);
+			done();
 		},
+	});
+});
 
-		"can be cancelled": ({ done, setTimeout }) => {
-			let buf: any[] = [];
-			let doneCalled = false;
-			src = fromIterable(data, { delay: TIMEOUT });
-			src.subscribe({
-				next(x) {
-					buf.push(x);
-				},
-				done() {
-					doneCalled = true;
-				},
-			});
-			setTimeout(() => src.cancel(), TIMEOUT * 1.5);
-			setTimeout(() => {
-				assert.deepStrictEqual(buf, [data[0]]);
-				assert.ok(!doneCalled);
-				done();
-			}, TIMEOUT * 4);
+test("works with delay", (done) => {
+	let buf: any[] = [];
+	let t0 = Date.now();
+	src = fromIterable(data, { delay: 10 });
+	src.subscribe({
+		next(x) {
+			buf.push(x);
 		},
-	},
-	{
-		maxTrials: 3,
-		timeOut: TIMEOUT * 5,
-		beforeEach: () => {
-			src = fromIterable(data);
+		done() {
+			expect(buf).toEqual(data);
+			expect(Date.now() - t0 >= (data.length + 1) * 10).toBeTrue();
+			done();
 		},
-	}
-);
+	});
+});
+
+test("can be cancelled", (done) => {
+	let buf: any[] = [];
+	let doneCalled = false;
+	src = fromIterable(data, { delay: TIMEOUT });
+	src.subscribe({
+		next(x) {
+			buf.push(x);
+		},
+		done() {
+			doneCalled = true;
+		},
+	});
+	setTimeout(() => src.cancel(), TIMEOUT * 1.5);
+	setTimeout(() => {
+		expect(buf).toEqual([data[0]]);
+		expect(doneCalled).toBeFalse();
+		done();
+	}, TIMEOUT * 4);
+});
+// maxTrials: 3,
+// timeOut: TIMEOUT * 5,

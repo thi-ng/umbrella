@@ -1,29 +1,21 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { aseq } from "../src/index.js";
 
-group("aseq", {
-	basics: () => {
-		assert.strictEqual(aseq(null), undefined);
-		assert.strictEqual(aseq([]), undefined);
-		assert.strictEqual(aseq([1])!.first(), 1);
-		assert.strictEqual(aseq([1])!.next(), undefined);
-		assert.strictEqual(aseq([1, 2])!.first(), 1);
-		// prettier-ignore
-		assert.strictEqual(aseq([1, 2])!.next()!.first(), 2);
-		// prettier-ignore
-		assert.strictEqual(aseq([1, 2])!.next()!.next(), undefined);
-		// prettier-ignore
-		assert.strictEqual(aseq([1, 2, 3])!.next()!.next()!.first(), 3);
-	},
+test("basics", () => {
+	expect(aseq(null)).toBeUndefined();
+	expect(aseq([])).toBeUndefined();
+	expect(aseq([1])!.first()).toBe(1);
+	expect(aseq([1])!.next()).toBeUndefined();
+	expect(aseq([1, 2])!.first()).toBe(1);
+	expect(aseq([1, 2])!.next()!.first()).toBe(2);
+	expect(aseq([1, 2])!.next()!.next()).toBeUndefined();
+	expect(aseq([1, 2, 3])!.next()!.next()!.first()).toBe(3);
+});
 
-	range: () => {
-		assert.strictEqual(aseq([0, 1, 2, 3], 2, 2), undefined);
-		assert.strictEqual(aseq([0, 1, 2, 3], 3, 2), undefined);
-		assert.strictEqual(aseq([0, 1, 2, 3], 2, 4)!.first(), 2);
-		// prettier-ignore
-		assert.strictEqual(aseq([0, 1, 2, 3], 2, 4)!.next()!.first(), 3);
-		// prettier-ignore
-		assert.strictEqual(aseq([0, 1, 2, 3], 2, 4)!.next()!.next(), undefined);
-	},
+test("range", () => {
+	expect(aseq([0, 1, 2, 3], 2, 2)).toBeUndefined();
+	expect(aseq([0, 1, 2, 3], 3, 2)).toBeUndefined();
+	expect(aseq([0, 1, 2, 3], 2, 4)!.first()).toBe(2);
+	expect(aseq([0, 1, 2, 3], 2, 4)!.next()!.first()).toBe(3);
+	expect(aseq([0, 1, 2, 3], 2, 4)!.next()!.next()).toBeUndefined();
 });

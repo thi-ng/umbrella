@@ -1,15 +1,14 @@
 import { equiv } from "@thi.ng/equiv";
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { ECS, MemMappedComponent } from "../src/index.js";
 
 let ecs: ECS<any>;
 
-const init = () => {
+beforeEach(() => {
 	ecs = new ECS({ capacity: 16 });
-};
+});
 
 test("defComponent (minimal)", () => {
-	init();
 	const a = ecs.defComponent({ id: "a", type: "f32" })!;
 	expect(a instanceof MemMappedComponent).toBeTrue();
 	expect(a.dense instanceof Uint8Array).toBeTrue();
@@ -23,7 +22,6 @@ test("defComponent (minimal)", () => {
 });
 
 test("defComponent (w/ type)", () => {
-	init();
 	const a = ecs.defComponent({ id: "a", type: "u8" })!;
 	expect(a.vals instanceof Uint8Array).toBeTrue();
 	expect(a.dense.length).toBe(ecs.idgen.capacity);
@@ -34,7 +32,6 @@ test("defComponent (w/ type)", () => {
 });
 
 test("defComponent (w/ size)", () => {
-	init();
 	const a = ecs.defComponent({ id: "a", type: "f32", size: 2 })!;
 	expect(a.vals instanceof Float32Array).toBeTrue();
 	expect(a.vals.length).toBe(ecs.idgen.capacity * 2);
@@ -52,7 +49,6 @@ test("defComponent (w/ size)", () => {
 });
 
 test("add (w/ default val)", () => {
-	init();
 	const a = ecs.defComponent({
 		id: "a",
 		type: "f32",
@@ -69,7 +65,6 @@ test("add (w/ default val)", () => {
 });
 
 test("values / packedValues", () => {
-	init();
 	const a = ecs.defComponent({
 		id: "a",
 		type: "f32",
@@ -91,7 +86,6 @@ test("values / packedValues", () => {
 });
 
 test("resize", () => {
-	init();
 	const a = ecs.defComponent({
 		id: "a",
 		type: "f32",

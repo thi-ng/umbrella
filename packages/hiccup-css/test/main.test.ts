@@ -1,12 +1,11 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import {
+	PRETTY,
 	animation,
 	at_import,
 	at_keyframes,
 	at_media,
 	css,
-	PRETTY,
 } from "../src/index.js";
 
 const rules = {
@@ -16,150 +15,125 @@ const rules = {
 	f: { foo: (rules: any) => rules.bar, bar: 1 },
 };
 
-group("hiccup-css", {
-	"rules only": () => {
-		assert.throws(() => css("a"));
-		assert.strictEqual(css({}), "");
-		assert.strictEqual(css(rules.a), "color:red;");
-		assert.strictEqual(css(rules.b), "border:0;");
-		assert.strictEqual(css(rules.c), "font:14px Inconsolata,monospace;");
-		assert.strictEqual(css(rules.f), "foo:1;bar:1;");
-	},
+test("rules only", () => {
+	expect(() => css("a")).toThrow();
+	expect(css({})).toBe("");
+	expect(css(rules.a)).toBe("color:red;");
+	expect(css(rules.b)).toBe("border:0;");
+	expect(css(rules.c)).toBe("font:14px Inconsolata,monospace;");
+	expect(css(rules.f)).toBe("foo:1;bar:1;");
+});
 
-	simple: () => {
-		assert.strictEqual(css(["a"]), "");
-		assert.strictEqual(css(["a", rules.a]), "a{color:red;}");
-		assert.strictEqual(
-			css([
-				["a", rules.a],
-				["b", rules.b],
-			]),
-			"a{color:red;}b{border:0;}"
-		);
-		assert.strictEqual(
-			css(["a", "b", rules.a, rules.b]),
-			"a,b{color:red;border:0;}"
-		);
-	},
+test("simple", () => {
+	expect(css(["a"])).toBe("");
+	expect(css(["a", rules.a])).toBe("a{color:red;}");
+	expect(
+		css([
+			["a", rules.a],
+			["b", rules.b],
+		])
+	).toBe("a{color:red;}b{border:0;}");
+	expect(css(["a", "b", rules.a, rules.b])).toBe("a,b{color:red;border:0;}");
+});
 
-	nested: () => {
-		assert.strictEqual(
-			css(["a", [":link", rules.a], [":visited", rules.b]]),
-			"a:link{color:red;}a:visited{border:0;}"
-		);
-		assert.strictEqual(
-			css(["p", ["a", [":link", rules.a], [":visited", rules.b]]]),
-			"p a:link{color:red;}p a:visited{border:0;}"
-		);
-		assert.strictEqual(
-			css([
+test("nested", () => {
+	expect(css(["a", [":link", rules.a], [":visited", rules.b]])).toBe(
+		"a:link{color:red;}a:visited{border:0;}"
+	);
+	expect(css(["p", ["a", [":link", rules.a], [":visited", rules.b]]])).toBe(
+		"p a:link{color:red;}p a:visited{border:0;}"
+	);
+	expect(
+		css([
+			"#id",
+			["h1", {}, {}],
+			["h2", "h3", ["div", {}], ["[attr]", ["span", rules.a]]],
+		])
+	).toBe(
+		"#id h1{}#id h2 div,#id h3 div{}#id h2[attr] span,#id h3[attr] span{color:red;}"
+	);
+});
+
+test("pretty", () => {
+	expect(
+		css(
+			[
 				"#id",
-				["h1", {}, {}],
-				["h2", "h3", ["div", {}], ["[attr]", ["span", rules.a]]],
-			]),
-			"#id h1{}#id h2 div,#id h3 div{}#id h2[attr] span,#id h3[attr] span{color:red;}"
-		);
-	},
+				["h1", rules.a, rules.b],
+				["h2", "h3", ["div", rules.b], ["[attr]", ["span", rules.a]]],
+			],
+			{ format: PRETTY }
+		)
+	).toBe(
+		"#id h1 {\n    color: red;\n    border: 0;\n}\n\n#id h2 div, #id h3 div {\n    border: 0;\n}\n\n#id h2[attr] span, #id h3[attr] span {\n    color: red;\n}\n"
+	);
+});
 
-	pretty: () => {
-		assert.strictEqual(
-			css(
+test("@import", () => {
+	expect(css(at_import("foo.css"))).toBe("@import url(foo.css);");
+	expect(css([at_import("foo.css"), ["div", {}]])).toBe(
+		"@import url(foo.css);div{}"
+	);
+	expect(css([[at_import("foo.css")], ["div", {}]])).toBe(
+		"@import url(foo.css);div{}"
+	);
+	expect(css(at_import("foo.css", "screen", "print"))).toBe(
+		"@import url(foo.css) screen,print;"
+	);
+});
+
+test("@keyframes", () => {
+	expect(
+		css(
+			at_keyframes("fadein", {
+				0: { opacity: 0 },
+				100: { opacity: 1 },
+			})
+		)
+	).toBe("@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}");
+	expect(css(at_keyframes("fadein", { opacity: 0 }, { opacity: 1 }))).toBe(
+		"@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}"
+	);
+});
+
+test("@media", () => {
+	expect(css(at_media({ screen: true }, []))).toBe("@media screen{}");
+	expect(css(at_media({ screen: false }, []))).toBe("@media not screen{}");
+	expect(css(at_media({ screen: false, print: true }, []))).toBe(
+		"@media not screen and print{}"
+	);
+	expect(css(at_media({ screen: "only" }, []))).toBe("@media only screen{}");
+	expect(
+		css(at_media({ "min-width": "10rem" }, ["div", [".foo", rules.a]]))
+	).toBe("@media (min-width:10rem){div .foo{color:red;}}");
+	expect(
+		css(
+			at_media({ screen: true, print: true }, [
+				["div", [".foo", rules.a]],
 				[
-					"#id",
-					["h1", rules.a, rules.b],
-					[
-						"h2",
-						"h3",
-						["div", rules.b],
-						["[attr]", ["span", rules.a]],
-					],
+					at_media({ print: true, "max-width": "20rem" }, [
+						"div",
+						rules.b,
+					]),
 				],
-				{ format: PRETTY }
-			),
-			"#id h1 {\n    color: red;\n    border: 0;\n}\n\n#id h2 div, #id h3 div {\n    border: 0;\n}\n\n#id h2[attr] span, #id h3[attr] span {\n    color: red;\n}\n"
-		);
-	},
+			])
+		)
+	).toBe(
+		"@media screen and print{div .foo{color:red;}@media print and (max-width:20rem){div{border:0;}}}"
+	);
+});
 
-	"@import": () => {
-		assert.strictEqual(css(at_import("foo.css")), "@import url(foo.css);");
-		assert.strictEqual(
-			css([at_import("foo.css"), ["div", {}]]),
-			"@import url(foo.css);div{}"
-		);
-		assert.strictEqual(
-			css([[at_import("foo.css")], ["div", {}]]),
-			"@import url(foo.css);div{}"
-		);
-		assert.strictEqual(
-			css(at_import("foo.css", "screen", "print")),
-			"@import url(foo.css) screen,print;"
-		);
-	},
-
-	"@keyframes": () => {
-		assert.strictEqual(
-			css(
-				at_keyframes("fadein", {
-					0: { opacity: 0 },
-					100: { opacity: 1 },
-				})
-			),
-			"@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}"
-		);
-		assert.strictEqual(
-			css(at_keyframes("fadein", { opacity: 0 }, { opacity: 1 })),
-			"@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}"
-		);
-	},
-
-	"@media": () => {
-		assert.strictEqual(
-			css(at_media({ screen: true }, [])),
-			"@media screen{}"
-		);
-		assert.strictEqual(
-			css(at_media({ screen: false }, [])),
-			"@media not screen{}"
-		);
-		assert.strictEqual(
-			css(at_media({ screen: false, print: true }, [])),
-			"@media not screen and print{}"
-		);
-		assert.strictEqual(
-			css(at_media({ screen: "only" }, [])),
-			"@media only screen{}"
-		);
-		assert.strictEqual(
-			css(at_media({ "min-width": "10rem" }, ["div", [".foo", rules.a]])),
-			"@media (min-width:10rem){div .foo{color:red;}}"
-		);
-		assert.strictEqual(
-			css(
-				at_media({ screen: true, print: true }, [
-					["div", [".foo", rules.a]],
-					[
-						at_media({ print: true, "max-width": "20rem" }, [
-							"div",
-							rules.b,
-						]),
-					],
-				])
-			),
-			"@media screen and print{div .foo{color:red;}@media print and (max-width:20rem){div{border:0;}}}"
-		);
-	},
-
-	animation: () => {
-		assert.strictEqual(
-			css(
-				animation(
-					"delayed-fade-in",
-					{ delay: "0.5s" },
-					{ opacity: 0 },
-					{ opacity: 1 }
-				)
-			),
-			"@keyframes delayed-fade-in{0%{opacity:0;}100%{opacity:1;}}.delayed-fade-in{animation-duration:250ms;animation-name:delayed-fade-in;animation-delay:0.5s;}"
-		);
-	},
+test("animation", () => {
+	expect(
+		css(
+			animation(
+				"delayed-fade-in",
+				{ delay: "0.5s" },
+				{ opacity: 0 },
+				{ opacity: 1 }
+			)
+		)
+	).toBe(
+		"@keyframes delayed-fade-in{0%{opacity:0;}100%{opacity:1;}}.delayed-fade-in{animation-duration:250ms;animation-name:delayed-fade-in;animation-delay:0.5s;}"
+	);
 });

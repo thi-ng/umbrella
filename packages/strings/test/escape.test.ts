@@ -1,15 +1,12 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { escape, unescape } from "../src/index.js";
 
 const SRC = "\ta\nb😎c£\\\x00";
 
-group("escape", {
-	escape: () => {
-		assert.strictEqual(escape(SRC), "\\ta\\nb\\U0001f60ec\\u00a3\\\\\\0");
-	},
+test("escape", () => {
+	expect(escape(SRC)).toBe("\\ta\\nb\\U0001f60ec\\u00a3\\\\\\0");
+});
 
-	roundtrip: () => {
-		assert.strictEqual(unescape(escape(SRC)), SRC);
-	},
+test("roundtrip", () => {
+	expect(unescape(escape(SRC))).toBe(SRC);
 });

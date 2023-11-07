@@ -1,7 +1,6 @@
 import type { Fn2 } from "@thi.ng/api";
 import { defmulti } from "@thi.ng/defmulti";
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import {
 	parse,
 	runtime,
@@ -38,151 +37,146 @@ ops.addAll({
 
 ops.setDefault((x, [_, ...args], env) => {
 	const f = env[(<Sym>x).value];
-	assert.ok(!!f, "missing impl");
+	expect(f).toBeFunction();
 	return f.apply(
 		null,
 		args.map((a) => rt(a, env))
 	);
 });
 
-group("sexpr", {
-	basic: () => {
-		assert.deepStrictEqual(parse(tokenize(`(+ 1 (len "234"))`)), {
-			type: "root",
-			children: [
-				{
-					type: "expr",
-					value: "(",
-					children: [
-						{ type: "sym", value: "+" },
-						{ type: "num", value: 1 },
-						{
-							type: "expr",
-							value: "(",
-							children: [
-								{ type: "sym", value: "len" },
-								{ type: "str", value: "234" },
-							],
-						},
-					],
-				},
-			],
-		});
-	},
-
-	"non-expression root": () => {
-		assert.deepStrictEqual(parse("x"), {
-			type: "root",
-			children: [{ type: "sym", value: "x" }],
-		});
-		assert.deepStrictEqual(parse("23"), {
-			type: "root",
-			children: [{ type: "num", value: 23 }],
-		});
-	},
-
-	"custom syntax": () => {
-		const syntax: Partial<SyntaxOpts> = {
-			scopes: [
-				["<", ">"],
-				["{", "}"],
-			],
-			string: "'",
-		};
-		assert.deepStrictEqual(parse(`<nest { a '2' b 3 }>`, syntax), {
-			type: "root",
-			children: [
-				{
-					type: "expr",
-					value: "<",
-					children: [
-						{
-							type: "sym",
-							value: "nest",
-						},
-						{
-							type: "expr",
-							value: "{",
-							children: [
-								{
-									type: "sym",
-									value: "a",
-								},
-								{
-									type: "str",
-									value: "2",
-								},
-								{
-									type: "sym",
-									value: "b",
-								},
-								{
-									type: "num",
-									value: 3,
-								},
-							],
-						},
-					],
-				},
-			],
-		});
-	},
-
-	unmatched: () => {
-		assert.throws(() => parse(`(`));
-		assert.throws(() => parse(`((`));
-		assert.throws(() => parse(`(()`));
-	},
-
-	math: () => {
-		assert.strictEqual(
-			$eval(
-				`(/
-                    (-
-                        (* (count "abc") (+ 100 (* 3 4 5)))
-                        foo)
-                    100)`,
-				{ foo: -20 }
-			),
-			(3 * (100 + 3 * 4 * 5) - -20) / 100
-		);
-	},
-
-	"fn in env": () => {
-		assert.strictEqual(
-			$eval(`(join (+ 1 2) (+ 3 4))`, {
-				join: (...xs: any[]) => xs.join(","),
-			}),
-			"3,7"
-		);
-	},
-
-	"missing fn in env": () => {
-		assert.throws(() => $eval("(foo)"));
-	},
-
-	"line comment": () => {
-		assert.deepStrictEqual(
-			parse(`
-; intro
-(def x ; ignore me
-; line 2
-  ; line 3
-23)`),
+test("basic", () => {
+	expect(parse(tokenize(`(+ 1 (len "234"))`))).toEqual({
+		type: "root",
+		children: [
 			{
-				type: "root",
+				type: "expr",
+				value: "(",
 				children: [
+					{ type: "sym", value: "+" },
+					{ type: "num", value: 1 },
 					{
 						type: "expr",
 						value: "(",
 						children: [
-							{ type: "sym", value: "def" },
-							{ type: "sym", value: "x" },
-							{ type: "num", value: 23 },
+							{ type: "sym", value: "len" },
+							{ type: "str", value: "234" },
 						],
 					},
 				],
-			}
-		);
-	},
+			},
+		],
+	});
+});
+
+test("non-expression root", () => {
+	expect(parse("x")).toEqual({
+		type: "root",
+		children: [{ type: "sym", value: "x" }],
+	});
+	expect(parse("23")).toEqual({
+		type: "root",
+		children: [{ type: "num", value: 23 }],
+	});
+});
+
+test("custom syntax", () => {
+	const syntax: Partial<SyntaxOpts> = {
+		scopes: [
+			["<", ">"],
+			["{", "}"],
+		],
+		string: "'",
+	};
+	expect(parse(`<nest { a '2' b 3 }>`, syntax)).toEqual({
+		type: "root",
+		children: [
+			{
+				type: "expr",
+				value: "<",
+				children: [
+					{
+						type: "sym",
+						value: "nest",
+					},
+					{
+						type: "expr",
+						value: "{",
+						children: [
+							{
+								type: "sym",
+								value: "a",
+							},
+							{
+								type: "str",
+								value: "2",
+							},
+							{
+								type: "sym",
+								value: "b",
+							},
+							{
+								type: "num",
+								value: 3,
+							},
+						],
+					},
+				],
+			},
+		],
+	});
+});
+
+test("unmatched", () => {
+	expect(() => parse(`(`)).toThrow();
+	expect(() => parse(`((`)).toThrow();
+	expect(() => parse(`(()`)).toThrow();
+});
+
+test("math", () => {
+	expect(
+		$eval(
+			`(/
+                    (-
+                        (* (count "abc") (+ 100 (* 3 4 5)))
+                        foo)
+                    100)`,
+			{ foo: -20 }
+		)
+	).toBe((3 * (100 + 3 * 4 * 5) - -20) / 100);
+});
+
+test("fn in env", () => {
+	expect(
+		$eval(`(join (+ 1 2) (+ 3 4))`, {
+			join: (...xs: any[]) => xs.join(","),
+		})
+	).toBe("3,7");
+});
+
+test("missing fn in env", () => {
+	expect(() => $eval("(foo)")).toThrow();
+});
+
+test("line comment", () => {
+	expect(
+		parse(`
+; intro
+(def x ; ignore me
+; line 2
+  ; line 3
+23)`)
+	).toEqual({
+		type: "root",
+		children: [
+			{
+				type: "expr",
+				value: "(",
+				children: [
+					{ type: "sym", value: "def" },
+					{ type: "sym", value: "x" },
+					{ type: "num", value: 23 },
+				],
+			},
+		],
+	});
 });

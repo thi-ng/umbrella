@@ -1,10 +1,10 @@
-import { expect, test } from "bun:test";
+import { beforeEach, expect, test } from "bun:test";
 import { LRUCache } from "../src/index.js";
 
 let c: LRUCache<string, number>;
 let evicts: any[];
 
-const init = () => {
+beforeEach(() => {
 	evicts = [];
 	c = new LRUCache(
 		[
@@ -17,10 +17,9 @@ const init = () => {
 			release: (k, v) => evicts.push([k, v]),
 		}
 	);
-};
+});
 
 test("max length", () => {
-	init();
 	expect(c.length).toBe(3);
 	c.set("d", 4);
 	expect(c.length).toBe(4);
@@ -30,7 +29,6 @@ test("max length", () => {
 });
 
 test("get", () => {
-	init();
 	expect(c.get("a")).toBe(1);
 	expect(c.get("b")).toBe(2);
 	expect([...c.keys()]).toEqual(["c", "a", "b"]);

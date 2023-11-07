@@ -1,4 +1,4 @@
 import { expect, test } from "bun:test";
 // import {} from "../src/index.js"
 
-test("rstream-dot", () => {});
+test.todo("rstream-dot", () => {});

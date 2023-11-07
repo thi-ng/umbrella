@@ -1,5 +1,4 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { parseHtml } from "../src/index.js";
 
 const src = `<!doctype html>
@@ -20,72 +19,70 @@ body { margin: 0; }
 </body>
 </html>`;
 
-group("hiccup-html-parse", {
-	basics: () => {
-		const result = parseHtml(src);
-		assert.deepStrictEqual(result.result, [
+test("basics", () => {
+	const result = parseHtml(src);
+	expect(result.result).toEqual([
+		[
+			"html",
+			{ lang: "en" },
 			[
-				"html",
-				{ lang: "en" },
+				"head",
+				{},
 				[
-					"head",
-					{},
-					[
-						"script",
-						{ lang: "javascript" },
-						'console.log("</"+"script>");',
-					],
-					["style", {}, "body { margin: 0; }"],
+					"script",
+					{ lang: "javascript" },
+					'console.log("</"+"script>");',
 				],
+				["style", {}, "body { margin: 0; }"],
+			],
+			[
+				"body",
+				{},
 				[
-					"body",
-					{},
-					[
-						"div",
-						{ id: "foo", bool: true, "data-xyz": "123" },
-						["a", { href: "#bar" }, "baz ", ["b", {}, "bold"]],
-						["br", {}],
-					],
+					"div",
+					{ id: "foo", bool: true, "data-xyz": "123" },
+					["a", { href: "#bar" }, "baz ", ["b", {}, "bold"]],
+					["br", {}],
 				],
 			],
-		]);
-	},
+		],
+	]);
+});
 
-	custom: () => {
-		const result = parseHtml(src, {
-			doctype: true,
-			dataAttribs: false,
-			comments: true,
-			collapse: false,
-			ignoreElements: ["head", "b", "br"],
-			ignoreAttribs: ["bool"],
-		});
-		assert.deepStrictEqual(result.result, [
-			["!DOCTYPE", "html"],
+test("custom", () => {
+	const result = parseHtml(src, {
+		doctype: true,
+		dataAttribs: false,
+		comments: true,
+		collapse: false,
+		ignoreElements: ["head", "b", "br"],
+		ignoreAttribs: ["bool"],
+	});
+	expect(result.result).toEqual(<any[]>[
+		["!DOCTYPE", "html"],
+		[
+			"html",
+			{ lang: "en" },
 			[
-				"html",
-				{ lang: "en" },
+				"body",
+				{},
 				[
-					"body",
-					{},
-					[
-						"div",
-						{ id: "foo" },
-						["__COMMENT__", "<ignore></ignore>"],
-						["a", { href: "#bar" }, "baz        "],
-					],
+					"div",
+					{ id: "foo" },
+					["__COMMENT__", "<ignore></ignore>"],
+					["a", { href: "#bar" }, "baz        "],
 				],
 			],
-		]);
-	},
+		],
+	]);
+});
 
-	entities: () => {
-		const src = `<body><script>x &lt; 0</script>x &lt; 0</body>`;
-		assert.deepStrictEqual(parseHtml(src).result, [
-			["body", {}, ["script", {}, "x &lt; 0"], "x < 0"],
-		]);
-		assert.deepStrictEqual(parseHtml(src, { unescape: false }).result, [
-			["body", {}, ["script", {}, "x &lt; 0"], "x &lt; 0"],
-		]);
-	},
+test("entities", () => {
+	const src = `<body><script>x &lt; 0</script>x &lt; 0</body>`;
+	expect(parseHtml(src).result).toEqual([
+		["body", {}, ["script", {}, "x &lt; 0"], "x < 0"],
+	]);
+	expect(parseHtml(src, { unescape: false }).result).toEqual([
+		["body", {}, ["script", {}, "x &lt; 0"], "x &lt; 0"],
+	]);
 });

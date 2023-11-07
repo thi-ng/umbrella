@@ -1,25 +1,22 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
-import { defContext, FLOAT } from "../src/index.js";
+import { expect, test } from "bun:test";
+import { FLOAT, defContext } from "../src/index.js";
 
-group("parse", {
-	float: () => {
-		[
-			"1",
-			"-1",
-			"+1",
-			"1.",
-			"1.01",
-			".1",
-			"-.1",
-			"1.2e3",
-			"-1.2e-3",
-			".1e+3",
-			"-1-",
-		].forEach((x) => {
-			const ctx = defContext(x);
-			assert.ok(FLOAT(ctx), x);
-			assert.strictEqual(ctx.scope.children![0].result, parseFloat(x), x);
-		});
-	},
+test("float", () => {
+	[
+		"1",
+		"-1",
+		"+1",
+		"1.",
+		"1.01",
+		".1",
+		"-.1",
+		"1.2e3",
+		"-1.2e-3",
+		".1e+3",
+		"-1-",
+	].forEach((x) => {
+		const ctx = defContext(x);
+		expect(FLOAT(ctx)).toBeTrue();
+		expect(ctx.scope.children![0].result).toBe(parseFloat(x));
+	});
 });
