@@ -178,15 +178,22 @@ const runTests = async (opts: TestamentArgs) => {
 		imports.push(import(src));
 	};
 
+	const cwd = process.cwd();
 	for (let src of opts.rest) {
-		src = resolve(src);
-		if (statSync(src).isDirectory()) {
-			for (let f of files(src, /\.[jt]s$/)) {
+		const resolvedPath = resolve(src);
+		if (!resolvedPath.startsWith(cwd)) {
+			process.stderr.write(
+				`illegal path (${src}), only sub-directories are supported\n`
+			);
+			process.exit(1);
+		}
+		if (statSync(resolvedPath).isDirectory()) {
+			for (let f of files(resolvedPath, /\.[jt]s$/)) {
 				if (excludes.some((prefix) => f.startsWith(prefix))) continue;
 				enque(f);
 			}
 		} else {
-			enque(src);
+			enque(resolvedPath);
 		}
 	}
 
