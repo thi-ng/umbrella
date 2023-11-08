@@ -5060,7 +5060,7 @@ __metadata:
     "@thi.ng/api": ^8.9.6
     "@thi.ng/pixel": ^4.3.2
     "@thi.ng/testament": ^0.3.24
-    geotiff: ^2.1.0
+    geotiff: 2.0.7
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -7543,9 +7543,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"geotiff@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "geotiff@npm:2.1.0"
+"geotiff@npm:2.0.7":
+  version: 2.0.7
+  resolution: "geotiff@npm:2.0.7"
   dependencies:
     "@petamoriken/float16": ^3.4.7
     lerc: ^3.0.0
@@ -7554,8 +7554,7 @@ __metadata:
     quick-lru: ^6.1.1
     web-worker: ^1.2.0
     xml-utils: ^1.0.2
-    zstddec: ^0.1.0
-  checksum: b9fa2688cc6b2fd885059091f18eaf788df45ee261890c1da16c0e90e5e3680b501613554fb080d0823c842971818b9335c837ee39bfc816d7a2e395f122a3ec
+  checksum: d64bd3c3cf0342368899fe693059520e003a6610515760e6afe1cb4191397e5fc180591f2aa75729bb0283190eda0574e10e3da0241be2556cbedc5c50222f69
   languageName: node
   linkType: hard
 
@@ -9678,12 +9677,5 @@ __metadata:
   bin:
     z-schema: bin/z-schema
   checksum: afa4e0039a104a53eeb6977bf754ef44e32042aecbf3b5eb18b82649763abd5c2608e47d6d6902291359b41e76130594d7f2b6132316d819c3529f17d4d3464d
-  languageName: node
-  linkType: hard
-
-"zstddec@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "zstddec@npm:0.1.0"
-  checksum: 76113b43ec4031f9a120285c830e43bafae4c25c0a72f7a9e228af815c3e52432a8414c5d4eb6cfd3282443a4a3d2bc18b445dd702e770b1e330b6e39081750f
   languageName: node
   linkType: hard

@@ -35,7 +35,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",
 		"@thi.ng/pixel": "^4.3.2",
-		"geotiff": "^2.1.0"
+		"geotiff": "2.0.7"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.2",
