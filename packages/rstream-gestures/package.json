@@ -37,10 +37,10 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.6",
+		"@thi.ng/api": "^1.0.0",
 		"@thi.ng/checks": "^3.4.6",
 		"@thi.ng/math": "^5.7.1",
-		"@thi.ng/rstream": "^8.2.7",
+		"@thi.ng/rstream": "^0.9.0",
 		"@thi.ng/transducers": "^8.8.8"
 	},
 	"devDependencies": {
