@@ -1,7 +1,7 @@
 // thing:no-export
 import { watch } from "chokidar";
 import { readdirSync, statSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { normalize, resolve } from "path";
 import { GLOBAL_OPTS, type TestResult } from "./api.js";
 import { execute } from "./exec.js";
 import { isString } from "./utils.js";
@@ -180,7 +180,7 @@ const runTests = async (opts: TestamentArgs) => {
 
 	const cwd = process.cwd();
 	for (let src of opts.rest) {
-		const resolvedPath = resolve(src);
+		const resolvedPath = resolve(normalize(src));
 		if (!resolvedPath.startsWith(cwd)) {
 			process.stderr.write(
 				`illegal path (${src}), only sub-directories are supported\n`
