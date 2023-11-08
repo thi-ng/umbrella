@@ -1,5 +1,4 @@
 import { radix } from "@thi.ng/strings";
-import { group } from "@thi.ng/testament";
 import {
 	comp,
 	iterator,
@@ -9,7 +8,7 @@ import {
 	range,
 	run,
 } from "@thi.ng/transducers";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { bits, partitionBits } from "../src/index.js";
 
 const src = [0xff, 0xa5, 0xfe, 0xf7];
@@ -25,16 +24,10 @@ const xformB = (n: number) =>
 	);
 
 const check = (n: number) =>
-	assert.deepStrictEqual(
-		[...iterator(xform(n), src)],
-		[...iterator(xformB(n), src)],
-		`bits=${n}`
-	);
+	expect([...iterator(xform(n), src)]).toEqual([...iterator(xformB(n), src)]);
 
-group("partitionBits", {
-	"all sizes": () =>
-		run(
-			map((n: number) => check(n)),
-			range(1, 33)
-		),
-});
+test("all sizes", () =>
+	run(
+		map((n: number) => check(n)),
+		range(1, 33)
+	));

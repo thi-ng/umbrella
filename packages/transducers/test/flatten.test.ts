@@ -1,37 +1,31 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { flatten, range } from "../src/index.js";
 
-group("flatten", {
-	"empty arrays": () => {
-		assert.deepStrictEqual([...flatten([])], []);
-		assert.deepStrictEqual([...flatten([[], []])], []);
-	},
+test("empty arrays", () => {
+	expect([...flatten([])]).toEqual([]);
+	expect([...flatten([[], []])]).toEqual([]);
+});
 
-	arrays: () => {
-		assert.deepStrictEqual([...flatten([undefined])], [undefined]);
-		assert.deepStrictEqual(
-			[...flatten([[undefined], null])],
-			[undefined, null]
-		);
-	},
+test("arrays", () => {
+	expect([...flatten([undefined])]).toEqual([undefined]);
+	expect([...flatten([[undefined], null])]).toEqual([undefined, null]);
+});
 
-	strings: () => {
-		assert.deepStrictEqual([...flatten(["", "a"])], ["", "a"]);
-		assert.deepStrictEqual([...flatten([[], ["a"], ""])], ["a", ""]);
-	},
+test("strings", () => {
+	expect([...flatten(["", "a"])]).toEqual(["", "a"]);
+	expect([...flatten([[], ["a"], ""])]).toEqual(["a", ""]);
+});
 
-	"strings (atomic)": () => {
-		assert.deepStrictEqual([...flatten([["abc"]])], ["abc"]);
-		assert.deepStrictEqual([...flatten(["abc"])], ["abc"]);
-		assert.deepStrictEqual([...flatten("abc")], ["abc"]);
-		assert.deepStrictEqual([...flatten([""])], [""]);
-		assert.deepStrictEqual([...flatten("")], [""]);
-	},
+test("strings (atomic)", () => {
+	expect([...flatten([["abc"]])]).toEqual(["abc"]);
+	expect([...flatten(["abc"])]).toEqual(["abc"]);
+	expect([...flatten("abc")]).toEqual(["abc"]);
+	expect([...flatten([""])]).toEqual([""]);
+	expect([...flatten("")]).toEqual([""]);
+});
 
-	iterators: () => {
-		assert.deepStrictEqual([...flatten(range(0))], []);
-		assert.deepStrictEqual([...flatten([range(0)])], []);
-		assert.deepStrictEqual([...flatten([range(2), range(0)])], [0, 1]);
-	},
+test("iterators", () => {
+	expect([...flatten(range(0))]).toEqual([]);
+	expect([...flatten([range(0)])]).toEqual([]);
+	expect<any>([...flatten([range(2), range(0)])]).toEqual([0, 1]);
 });

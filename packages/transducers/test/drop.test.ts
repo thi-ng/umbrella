@@ -1,21 +1,18 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { expect, test } from "bun:test";
 import { drop, range } from "../src/index.js";
 
-group("drop", {
-	"starts iterating after N items": () => {
-		assert.deepStrictEqual([...drop(0, [true, false])], [true, false]);
-		assert.deepStrictEqual([...drop(1, [true, false])], [false]);
-		assert.deepStrictEqual([...drop(2, [true, false])], []);
-		assert.deepStrictEqual([...drop(3, [true, false])], []);
-		assert.deepStrictEqual([...drop(2, range(0, 4))], [2, 3]);
-		assert.deepStrictEqual([...drop(0, ["", "ab", "c"])], ["", "ab", "c"]);
-		assert.deepStrictEqual([...drop(1, ["", "ab", "c"])], ["ab", "c"]);
-		assert.deepStrictEqual([...drop(2, ["", "ab", "c"])], ["c"]);
-		assert.deepStrictEqual([...drop(0, "")], []);
-		assert.deepStrictEqual([...drop(1, "")], []);
-		assert.deepStrictEqual([...drop(0, "abc")], ["a", "b", "c"]);
-		assert.deepStrictEqual([...drop(1, "abc")], ["b", "c"]);
-		assert.deepStrictEqual([...drop(2, "abc")], ["c"]);
-	},
+test("starts iterating after N items", () => {
+	expect([...drop(0, [true, false])]).toEqual([true, false]);
+	expect([...drop(1, [true, false])]).toEqual([false]);
+	expect([...drop(2, [true, false])]).toEqual([]);
+	expect([...drop(3, [true, false])]).toEqual([]);
+	expect([...drop(2, range(0, 4))]).toEqual([2, 3]);
+	expect([...drop(0, ["", "ab", "c"])]).toEqual(["", "ab", "c"]);
+	expect([...drop(1, ["", "ab", "c"])]).toEqual(["ab", "c"]);
+	expect([...drop(2, ["", "ab", "c"])]).toEqual(["c"]);
+	expect([...drop(0, "")]).toEqual([]);
+	expect([...drop(1, "")]).toEqual([]);
+	expect([...drop(0, "abc")]).toEqual(["a", "b", "c"]);
+	expect([...drop(1, "abc")]).toEqual(["b", "c"]);
+	expect([...drop(2, "abc")]).toEqual(["c"]);
 });

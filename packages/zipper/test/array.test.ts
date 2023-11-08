@@ -1,303 +1,244 @@
-import { group } from "@thi.ng/testament";
-import * as assert from "assert";
+import { beforeEach, expect, test } from "bun:test";
 import { arrayZipper, Location } from "../src/index.js";
 
 let src: any[];
 let a: Location<number | number[] | (number | number[])[]>;
 
-group(
-	"arrayZipper",
-	{
-		isBranch: () => {
-			assert.ok(a.isBranch);
-			assert.ok(!a.next!.isBranch);
-			assert.ok(a.next!.next!.isBranch);
-		},
+beforeEach(() => {
+	src = [1, [2, [3], 4], 5];
+	a = arrayZipper(src);
+});
 
-		isFirst: () => {
-			assert.ok(a.isFirst);
-			assert.ok(a.next!.isFirst);
-			assert.ok(!a.next!.next!.isFirst);
-			assert.ok(a.next!.next!.next!.isFirst);
-		},
+test("isBranch", () => {
+	expect(a.isBranch).toBeTrue();
+	expect(a.next!.isBranch).toBeFalse();
+	expect(a.next!.next!.isBranch).toBeTrue();
+});
 
-		isLast: () => {
-			assert.ok(a.isLast);
-			assert.ok(a.down!.rightmost.isLast);
-			assert.ok(!a.next!.isLast);
-			assert.ok(!a.next!.next!.isLast);
-			assert.ok(a.next!.next!.next!.rightmost!.isLast);
-		},
+test("isFirst", () => {
+	expect(a.isFirst).toBeTrue();
+	expect(a.next!.isFirst).toBeTrue();
+	expect(a.next!.next!.isFirst).toBeFalse();
+	expect(a.next!.next!.next!.isFirst).toBeTrue();
+});
 
-		down: () => {
-			assert.deepStrictEqual(a.down!.node, 1);
-			assert.deepStrictEqual(a.down!.down, undefined);
-			assert.deepStrictEqual(a.down!.right!.down!.right!.down!.node, 3);
-		},
+test("isLast", () => {
+	expect(a.isLast).toBeTrue();
+	expect(a.down!.rightmost.isLast).toBeTrue();
+	expect(a.next!.isLast).toBeFalse();
+	expect(a.next!.next!.isLast).toBeFalse();
+	expect(a.next!.next!.next!.rightmost!.isLast).toBeTrue();
+});
 
-		up: () => {
-			assert.deepStrictEqual(a.up, undefined);
-			assert.deepStrictEqual(a.down!.up, a);
-			assert.deepStrictEqual(a.down!.next!.down!.up!.up, a);
-			assert.deepStrictEqual(a.down!.next!.down!.up!.node, [2, [3], 4]);
-		},
+test("down", () => {
+	expect<any>(a.down!.node).toEqual(1);
+	expect<any>(a.down!.down).toEqual(undefined);
+	expect<any>(a.down!.right!.down!.right!.down!.node).toEqual(3);
+});
 
-		right: () => {
-			assert.deepStrictEqual(a.right!, undefined);
-			assert.deepStrictEqual(a.down!.right!.node, [2, [3], 4]);
-			assert.deepStrictEqual(a.down!.right!.right!.node, 5);
-			assert.deepStrictEqual(a.down!.right!.right!.right, undefined);
-		},
+test("up", () => {
+	expect<any>(a.up).toEqual(undefined);
+	expect<any>(a.down!.up).toEqual(a);
+	expect<any>(a.down!.next!.down!.up!.up).toEqual(a);
+	expect<any>(a.down!.next!.down!.up!.node).toEqual([2, [3], 4]);
+});
 
-		left: () => {
-			assert.deepStrictEqual(a.left!, undefined);
-			assert.deepStrictEqual(a.down!.left!, undefined);
-			assert.deepStrictEqual(a.down!.right!.left!.node, 1);
-			assert.deepStrictEqual(a.down!.right!.right!.left!.node, [
-				2,
-				[3],
-				4,
-			]);
-		},
+test("right", () => {
+	expect<any>(a.right!).toEqual(undefined);
+	expect<any>(a.down!.right!.node).toEqual([2, [3], 4]);
+	expect<any>(a.down!.right!.right!.node).toEqual(5);
+	expect<any>(a.down!.right!.right!.right).toEqual(undefined);
+});
 
-		next: () => {
-			assert.deepStrictEqual(a.next!.node, 1);
-			assert.deepStrictEqual(a.next!.next!.node, [2, [3], 4]);
-			assert.deepStrictEqual(a.next!.next!.next!.node, 2);
-			assert.deepStrictEqual(a.next!.next!.next!.next!.node, [3]);
-			assert.deepStrictEqual(a.next!.next!.next!.next!.next!.node, 3);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.node,
-				4
-			);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.next!.node,
-				5
-			);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.next!.next,
-				undefined
-			);
-		},
+test("left", () => {
+	expect<any>(a.left!).toEqual(undefined);
+	expect<any>(a.down!.left!).toEqual(undefined);
+	expect<any>(a.down!.right!.left!.node).toEqual(1);
+	expect<any>(a.down!.right!.right!.left!.node).toEqual([2, [3], 4]);
+});
 
-		prev: () => {
-			assert.deepStrictEqual(a.prev, undefined);
-			assert.deepStrictEqual(a.next!.prev!.node, src);
-			assert.deepStrictEqual(a.next!.next!.prev!.node, 1);
-			assert.deepStrictEqual(a.next!.next!.next!.prev!.node, [2, [3], 4]);
-		},
+test("next", () => {
+	expect<any>(a.next!.node).toEqual(1);
+	expect<any>(a.next!.next!.node).toEqual([2, [3], 4]);
+	expect<any>(a.next!.next!.next!.node).toEqual(2);
+	expect<any>(a.next!.next!.next!.next!.node).toEqual([3]);
+	expect<any>(a.next!.next!.next!.next!.next!.node).toEqual(3);
+	expect<any>(a.next!.next!.next!.next!.next!.next!.node).toEqual(4);
+	expect<any>(a.next!.next!.next!.next!.next!.next!.next!.node).toEqual(5);
+	expect<any>(a.next!.next!.next!.next!.next!.next!.next!.next).toEqual(
+		undefined
+	);
+});
 
-		rightmost: () => {
-			assert.deepStrictEqual(a.rightmost, a);
-			assert.deepStrictEqual(a.rightmost.node, src);
-			assert.deepStrictEqual(a.rightmost.next!.node, 1);
-			assert.deepStrictEqual(a.next!.rightmost.node, 5);
-			assert.deepStrictEqual(a.next!.rightmost.next!, undefined);
-			assert.deepStrictEqual(a.next!.next!.rightmost.node, 5);
-			assert.deepStrictEqual(a.next!.next!.next!.rightmost.node, 4);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.rightmost.node,
-				3
-			);
-		},
+test("prev", () => {
+	expect<any>(a.prev).toEqual(undefined);
+	expect<any>(a.next!.prev!.node).toEqual(src);
+	expect<any>(a.next!.next!.prev!.node).toEqual(1);
+	expect<any>(a.next!.next!.next!.prev!.node).toEqual([2, [3], 4]);
+});
 
-		leftmost: () => {
-			assert.deepStrictEqual(a.leftmost, a);
-			assert.deepStrictEqual(a.leftmost.node, src);
-			assert.deepStrictEqual(a.leftmost.next!.node, 1);
-			assert.deepStrictEqual(a.next!.rightmost.leftmost.node, 1);
-			assert.deepStrictEqual(a.next!.leftmost.node, 1);
-			assert.deepStrictEqual(a.next!.leftmost.next!.node, [2, [3], 4]);
-			assert.deepStrictEqual(a.next!.next!.leftmost.next!.node, [
-				2,
-				[3],
-				4,
-			]);
-			assert.deepStrictEqual(a.next!.next!.next!.leftmost.next!.node, [
-				3,
-			]);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.rightmost.leftmost.node,
-				2
-			);
-		},
+test("rightmost", () => {
+	expect<any>(a.rightmost).toEqual(a);
+	expect<any>(a.rightmost.node).toEqual(src);
+	expect<any>(a.rightmost.next!.node).toEqual(1);
+	expect<any>(a.next!.rightmost.node).toEqual(5);
+	expect<any>(a.next!.rightmost.next!).toEqual(undefined);
+	expect<any>(a.next!.next!.rightmost.node).toEqual(5);
+	expect<any>(a.next!.next!.next!.rightmost.node).toEqual(4);
+	expect<any>(a.next!.next!.next!.next!.next!.rightmost.node).toEqual(3);
+});
 
-		"replace (next)": () => {
-			assert.deepStrictEqual(a.replace(10).root, 10);
-			assert.deepStrictEqual(a.next!.replace(10).root, [
-				10,
-				[2, [3], 4],
-				5,
-			]);
-			assert.deepStrictEqual(a.next!.next!.replace(10).root, [1, 10, 5]);
+test("leftmost", () => {
+	expect<any>(a.leftmost).toEqual(a);
+	expect<any>(a.leftmost.node).toEqual(src);
+	expect<any>(a.leftmost.next!.node).toEqual(1);
+	expect<any>(a.next!.rightmost.leftmost.node).toEqual(1);
+	expect<any>(a.next!.leftmost.node).toEqual(1);
+	expect<any>(a.next!.leftmost.next!.node).toEqual([2, [3], 4]);
+	expect<any>(a.next!.next!.leftmost.next!.node).toEqual([2, [3], 4]);
+	expect<any>(a.next!.next!.next!.leftmost.next!.node).toEqual([3]);
+	expect<any>(a.next!.next!.next!.rightmost.leftmost.node).toEqual(2);
+});
 
-			assert.deepStrictEqual(a.next!.next!.next!.replace(10).root, [
-				1,
-				[10, [3], 4],
-				5,
-			]);
-			assert.deepStrictEqual(a.next!.next!.next!.next!.replace(10).root, [
-				1,
-				[2, 10, 4],
-				5,
-			]);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.replace(10).root,
-				[1, [2, [10], 4], 5]
-			);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.replace(10).root,
-				[1, [2, [3], 10], 5]
-			);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.next!.replace(10).root,
-				[1, [2, [3], 4], 10]
-			);
-			assert.throws(
-				() =>
-					a.next!.next!.next!.next!.next!.next!.next!.next!.replace(
-						10
-					).root
-			);
-		},
+test("replace (next)", () => {
+	expect<any>(a.replace(10).root).toEqual(10);
+	expect<any>(a.next!.replace(10).root).toEqual([10, [2, [3], 4], 5]);
+	expect<any>(a.next!.next!.replace(10).root).toEqual([1, 10, 5]);
 
-		insertLeft: () => {
-			assert.throws(() => a.insertLeft(10));
-			assert.deepStrictEqual(a.next!.insertLeft(10).root, [
-				10,
-				1,
-				[2, [3], 4],
-				5,
-			]);
-			assert.deepStrictEqual(a.next!.next!.insertLeft(10).root, [
-				1,
-				10,
-				[2, [3], 4],
-				5,
-			]);
-			assert.deepStrictEqual(a.next!.next!.next!.insertLeft(10).root, [
-				1,
-				[10, 2, [3], 4],
-				5,
-			]);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.insertLeft(10).root,
-				[1, [2, 10, [3], 4], 5]
-			);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.insertLeft(10).root,
-				[1, [2, [10, 3], 4], 5]
-			);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.insertLeft(10).root,
-				[1, [2, [3], 10, 4], 5]
-			);
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.next!.insertLeft(10).root,
-				[1, [2, [3], 4], 10, 5]
-			);
-		},
+	expect<any>(a.next!.next!.next!.replace(10).root).toEqual([
+		1,
+		[10, [3], 4],
+		5,
+	]);
+	expect<any>(a.next!.next!.next!.next!.replace(10).root).toEqual([
+		1,
+		[2, 10, 4],
+		5,
+	]);
+	expect<any>(a.next!.next!.next!.next!.next!.replace(10).root).toEqual([
+		1,
+		[2, [10], 4],
+		5,
+	]);
+	expect<any>(a.next!.next!.next!.next!.next!.next!.replace(10).root).toEqual(
+		[1, [2, [3], 10], 5]
+	);
+	expect<any>(
+		a.next!.next!.next!.next!.next!.next!.next!.replace(10).root
+	).toEqual([1, [2, [3], 4], 10]);
+	expect(
+		() => a.next!.next!.next!.next!.next!.next!.next!.next!.replace(10).root
+	).toThrow();
+});
 
-		insertRight: () => {
-			assert.throws(() => a.insertRight(10));
-			assert.deepStrictEqual(a.next!.insertRight(10).root, [
-				1,
-				10,
-				[2, [3], 4],
-				5,
-			]);
+test("insertLeft", () => {
+	expect(() => a.insertLeft(10)).toThrow();
+	expect<any>(a.next!.insertLeft(10).root).toEqual([10, 1, [2, [3], 4], 5]);
+	expect<any>(a.next!.next!.insertLeft(10).root).toEqual([
+		1,
+		10,
+		[2, [3], 4],
+		5,
+	]);
+	expect<any>(a.next!.next!.next!.insertLeft(10).root).toEqual([
+		1,
+		[10, 2, [3], 4],
+		5,
+	]);
+	expect<any>(a.next!.next!.next!.next!.insertLeft(10).root).toEqual([
+		1,
+		[2, 10, [3], 4],
+		5,
+	]);
+	expect<any>(a.next!.next!.next!.next!.next!.insertLeft(10).root).toEqual([
+		1,
+		[2, [10, 3], 4],
+		5,
+	]);
+	expect<any>(
+		a.next!.next!.next!.next!.next!.next!.insertLeft(10).root
+	).toEqual([1, [2, [3], 10, 4], 5]);
+	expect<any>(
+		a.next!.next!.next!.next!.next!.next!.next!.insertLeft(10).root
+	).toEqual([1, [2, [3], 4], 10, 5]);
+});
 
-			assert.deepStrictEqual(a.next!.next!.insertRight(10).root, [
-				1,
-				[2, [3], 4],
-				10,
-				5,
-			]);
+test("insertRight", () => {
+	expect(() => a.insertRight(10)).toThrow();
+	expect<any>(a.next!.insertRight(10).root).toEqual([1, 10, [2, [3], 4], 5]);
 
-			assert.deepStrictEqual(a.next!.next!.next!.insertRight(10).root, [
-				1,
-				[2, 10, [3], 4],
-				5,
-			]);
+	expect<any>(a.next!.next!.insertRight(10).root).toEqual([
+		1,
+		[2, [3], 4],
+		10,
+		5,
+	]);
 
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.insertRight(10).root,
-				[1, [2, [3], 10, 4], 5]
-			);
+	expect<any>(a.next!.next!.next!.insertRight(10).root).toEqual([
+		1,
+		[2, 10, [3], 4],
+		5,
+	]);
 
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.insertRight(10).root,
-				[1, [2, [3, 10], 4], 5]
-			);
+	expect<any>(a.next!.next!.next!.next!.insertRight(10).root).toEqual([
+		1,
+		[2, [3], 10, 4],
+		5,
+	]);
 
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.insertRight(10).root,
-				[1, [2, [3], 4, 10], 5]
-			);
+	expect<any>(a.next!.next!.next!.next!.next!.insertRight(10).root).toEqual([
+		1,
+		[2, [3, 10], 4],
+		5,
+	]);
 
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.next!.next!.next!.insertRight(10)
-					.root,
-				[1, [2, [3], 4], 5, 10]
-			);
-		},
+	expect<any>(
+		a.next!.next!.next!.next!.next!.next!.insertRight(10).root
+	).toEqual([1, [2, [3], 4, 10], 5]);
 
-		insertChild: () => {
-			assert.deepStrictEqual(a.insertChild(10).root, [
-				10,
-				1,
-				[2, [3], 4],
-				5,
-			]);
-			assert.throws(() => a.next!.insertChild(10));
+	expect<any>(
+		a.next!.next!.next!.next!.next!.next!.next!.insertRight(10).root
+	).toEqual([1, [2, [3], 4], 5, 10]);
+});
 
-			assert.deepStrictEqual(a.next!.next!.insertChild(10).root, [
-				1,
-				[10, 2, [3], 4],
-				5,
-			]);
-			assert.throws(() => a.next!.next!.next!.insertChild(10));
+test("insertChild", () => {
+	expect<any>(a.insertChild(10).root).toEqual([10, 1, [2, [3], 4], 5]);
+	expect(() => a.next!.insertChild(10)).toThrow();
 
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.insertChild(10).root,
-				[1, [2, [10, 3], 4], 5]
-			);
-		},
+	expect<any>(a.next!.next!.insertChild(10).root).toEqual([
+		1,
+		[10, 2, [3], 4],
+		5,
+	]);
+	expect(() => a.next!.next!.next!.insertChild(10)).toThrow();
 
-		appendChild: () => {
-			assert.deepStrictEqual(a.appendChild(10).root, [
-				1,
-				[2, [3], 4],
-				5,
-				10,
-			]);
-			assert.throws(() => a.next!.appendChild(10));
+	expect<any>(a.next!.next!.next!.next!.insertChild(10).root).toEqual([
+		1,
+		[2, [10, 3], 4],
+		5,
+	]);
+});
 
-			assert.deepStrictEqual(a.next!.next!.appendChild(10).root, [
-				1,
-				[2, [3], 4, 10],
-				5,
-			]);
-			assert.throws(() => a.next!.next!.next!.appendChild(10));
+test("appendChild", () => {
+	expect<any>(a.appendChild(10).root).toEqual([1, [2, [3], 4], 5, 10]);
+	expect(() => a.next!.appendChild(10)).toThrow();
 
-			assert.deepStrictEqual(
-				a.next!.next!.next!.next!.appendChild(10).root,
-				[1, [2, [3, 10], 4], 5]
-			);
-		},
+	expect<any>(a.next!.next!.appendChild(10).root).toEqual([
+		1,
+		[2, [3], 4, 10],
+		5,
+	]);
+	expect(() => a.next!.next!.next!.appendChild(10)).toThrow();
 
-		update: () => {
-			assert.deepStrictEqual(
-				a.next!.next!.next!.update((x, n: number) => <number>x * n, 10)
-					.root,
-				[1, [20, [3], 4], 5]
-			);
-		},
-	},
-	{
-		beforeEach: () => {
-			src = [1, [2, [3], 4], 5];
-			a = arrayZipper(src);
-		},
-	}
-);
+	expect<any>(a.next!.next!.next!.next!.appendChild(10).root).toEqual([
+		1,
+		[2, [3, 10], 4],
+		5,
+	]);
+});
+
+test("update", () => {
+	expect<any>(
+		a.next!.next!.next!.update((x, n: number) => <number>x * n, 10).root
+	).toEqual([1, [20, [3], 4], 5]);
+});
