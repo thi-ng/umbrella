@@ -1,3 +1,5 @@
+import type { Predicate } from "@thi.ng/api";
+import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
 import { readdirSync, statSync } from "fs";
@@ -6,11 +8,13 @@ import { isDirectory } from "./dir.js";
 
 /**
  * Recursively reads given directory (up to given max. depth, default: infinite)
- * and yields sequence of file names matching given extension (or regexp).
+ * and yields sequence of file names matching given extension (or regexp or
+ * predicate).
  *
  * @remarks
- * If NO `match` is given, all files will be matched. Directory names will not
- * be tested and are always traversed (up to given `maxDepth`).
+ * Files will be matched using their _full_ relative sub-path (starting with
+ * given `dir`). If NO `match` is given, all files will be matched. Directories
+ * will *not* be tested and are always traversed (up to given `maxDepth`).
  *
  * The optional `logger` is only used to log errors for files which couldn't be
  * accessed.
@@ -22,26 +26,26 @@ import { isDirectory } from "./dir.js";
  */
 export const files = (
 	dir: string,
-	match: string | RegExp = "",
+	match: string | RegExp | Predicate<string> = "",
 	maxDepth = Infinity,
 	logger?: ILogger
 ) => __files(dir, match, logger, maxDepth, 0);
 
 function* __files(
 	dir: string,
-	match: string | RegExp = "",
+	match: string | RegExp | Predicate<string> = "",
 	logger?: ILogger,
 	maxDepth = Infinity,
 	depth = 0
 ): IterableIterator<string> {
 	if (depth >= maxDepth) return;
-	const re = __ensureRegEx(match);
+	const pred = __ensurePred(match);
 	for (let f of readdirSync(dir).sort()) {
 		const curr = dir + sep + f;
 		try {
 			if (isDirectory(curr)) {
 				yield* __files(curr, match, logger, maxDepth, depth + 1);
-			} else if (re.test(f)) {
+			} else if (pred(curr)) {
 				yield curr;
 			}
 		} catch (e) {
@@ -56,7 +60,7 @@ function* __files(
  * sub-directories in given `dir`. Normal files are being ignored.
  *
  * @remarks
- * Unlike the regex matching in {@link files}, here the regex will be applied to
+ * Like the matcher in {@link files}, the regex or predicate will be applied to
  * the _full_ sub-path (starting with `dir`) in order to determine a match.
  *
  * @param dir
@@ -66,25 +70,25 @@ function* __files(
  */
 export const dirs = (
 	dir: string,
-	match: string | RegExp = "",
+	match: string | RegExp | Predicate<string> = "",
 	maxDepth = Infinity,
 	logger?: ILogger
 ) => __dirs(dir, match, logger, maxDepth, 0);
 
 function* __dirs(
 	dir: string,
-	match: string | RegExp = "",
+	match: string | RegExp | Predicate<string> = "",
 	logger?: ILogger,
 	maxDepth = Infinity,
 	depth = 0
 ): IterableIterator<string> {
 	if (depth >= maxDepth) return;
-	const re = __ensureRegEx(match);
+	const pred = __ensurePred(match);
 	for (let f of readdirSync(dir).sort()) {
 		const curr = dir + sep + f;
 		try {
 			if (statSync(curr).isDirectory()) {
-				if (re.test(curr)) yield curr;
+				if (pred(curr)) yield curr;
 				yield* __dirs(curr, match, logger, maxDepth, depth + 1);
 			}
 		} catch (e) {
@@ -95,5 +99,11 @@ function* __dirs(
 }
 
 /** @internal */
-const __ensureRegEx = (match: string | RegExp) =>
+const __ensureRegEx = (match: string | RegExp | Predicate<string>) =>
 	isString(match) ? new RegExp(`${match.replace(/\./g, "\\.")}$`) : match;
+
+const __ensurePred = (match: string | RegExp | Predicate<string>) =>
+	isFunction(match)
+		? match
+		: ((match = __ensureRegEx(match)),
+		  (x: string) => (<RegExp>match).test(x));
