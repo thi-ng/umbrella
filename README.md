@@ -85,13 +85,15 @@ concrete implementations.
 All packages:
 
 - are versioned independently
+- tested via [bun.sh](https://bun.sh)
 - released via [thi.ng/monopub](https://github.com/thi-ng/monopub)
-- distributed as ESM modules (ES2020 syntax) with export maps, TypeScript
+- distributed as ESM modules (ES2022 syntax) with export maps, TypeScript
   typings & change logs
 - highly modular with largely only a single function / class (only closely
   related functions) per file to help w/ selective imports and tree shaking
 - provide re-exports of all their publics for full library imports
-- have either none or only `@thi.ng` internal runtime dependencies (w/ very few exceptions!)
+- have either none or only `@thi.ng` internal runtime dependencies (w/ very few
+  exceptions! All dependencies are listed in each package readme)
 - declare public interfaces, enums & types in an `api.ts` file
 - have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
 - licensed under [Apache Software License 2.0](#license)
@@ -530,8 +532,8 @@ in the wiki for further details.
 
 (Most, but not all packages have tests)
 
-Due to various build/config issues/complexities, we're now using our own minimal
-test runner
+Tests for almost all packages are run via [bun.sh](https://bun.sh). For a couple
+of packages we're still using our own minimal test runner
 [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/develop/packages/testament)
 
 ```bash

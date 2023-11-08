@@ -1,46 +1,46 @@
 {
-    "private": true,
-    "type": "module",
-    "workspaces": [
-        "packages/*",
-        "examples/*",
-        "tools"
-    ],
-    "devDependencies": {
-        "@microsoft/api-documenter": "^7.23.9",
-        "@microsoft/api-extractor": "^7.38.0",
-        "@types/node": "^20.8.7",
-        "all-contributors-cli": "^6.26.1",
-        "esbuild": "^0.19.5",
-        "html-minifier-terser": "^7.2.0",
-        "rimraf": "^5.0.5",
-        "tools": "workspace:^",
-        "ts-node": "^10.9.1",
-        "typedoc": "^0.25.2",
-        "typescript": "^5.2.2"
-    },
-    "dependencies": {
-        "@ygoe/msgpack": "^1.0.3"
-    },
-    "scripts": {
-        "@thi.ng": "yarn workspaces foreach -pv --include '@thi.ng/*'",
-        "@example": "yarn workspaces foreach -pv --include '@example/*'",
-        "build": "yarn @thi.ng -t run build",
-        "clean": "yarn @thi.ng run clean",
-        "doc": "yarn @thi.ng run doc",
-        "doc:ae": "yarn @thi.ng run doc:ae && scripts/collect-apis",
-        "doc:readme": "yarn @thi.ng run doc:readme",
-        "doc:stats": "yarn @thi.ng run doc:stats",
-        "doc:examples": "tools:node-esm tools/src/readme-examples.ts",
-        "examples": "yarn @example run build",
-        "pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && tools:node-esm tools/src/deploy-docs.ts",
-        "test": "yarn build && yarn test:only",
-        "test:only": "yarn @thi.ng run test",
-        "tool:deps": "tools:node-esm tools/src/adjacency.ts",
-        "tool:exports": "tools:node-esm tools/src/check-exports.ts",
-        "tool:imports": "tools:node-esm tools/src/check-imports.ts",
-        "tool:prune": "tools:node-esm tools/src/prune-changelogs.ts",
-        "tool:searchindex": "tools:node-esm tools/src/build-search-index.ts"
-    },
-    "packageManager": "yarn@3.2.1"
+	"private": true,
+	"type": "module",
+	"workspaces": [
+		"packages/*",
+		"examples/*",
+		"tools"
+	],
+	"devDependencies": {
+		"@microsoft/api-documenter": "^7.23.9",
+		"@microsoft/api-extractor": "^7.38.0",
+		"@types/node": "^20.8.7",
+		"all-contributors-cli": "^6.26.1",
+		"bun-types": "^1.0.9",
+		"esbuild": "^0.19.5",
+		"html-minifier-terser": "^7.2.0",
+		"rimraf": "^5.0.5",
+		"tools": "workspace:^",
+		"ts-node": "^10.9.1",
+		"typedoc": "^0.25.2",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"@ygoe/msgpack": "^1.0.3"
+	},
+	"scripts": {
+		"@thi.ng": "yarn workspaces foreach -pv --include '@thi.ng/*'",
+		"@example": "yarn workspaces foreach -pv --include '@example/*'",
+		"build": "yarn @thi.ng -t run build",
+		"clean": "yarn @thi.ng run clean",
+		"doc": "yarn @thi.ng run doc",
+		"doc:ae": "yarn @thi.ng run doc:ae && scripts/collect-apis",
+		"doc:readme": "yarn @thi.ng run doc:readme",
+		"doc:examples": "bun tools/src/readme-examples.ts",
+		"examples": "yarn @example run build",
+		"pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && bun tools/src/deploy-docs.ts",
+		"test": "yarn build && yarn test:only",
+		"test:only": "bun test",
+		"tool:deps": "bun tools/src/adjacency.ts",
+		"tool:exports": "bun tools/src/check-exports.ts",
+		"tool:imports": "bun tools/src/check-imports.ts",
+		"tool:prune": "bun tools/src/prune-changelogs.ts",
+		"tool:searchindex": "bun tools/src/build-search-index.ts"
+	},
+	"packageManager": "yarn@3.2.1"
 }

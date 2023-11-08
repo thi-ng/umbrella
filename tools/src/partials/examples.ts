@@ -1,7 +1,6 @@
-import { readJSON } from "@thi.ng/file-io";
+import { dirs, readJSON } from "@thi.ng/file-io";
 import { tableKeys } from "@thi.ng/markdown-table";
-import { readdirSync } from "fs";
-import { META_FIELD } from "../api.js";
+import { LOGGER, META_FIELD } from "../api.js";
 import { CONFIG } from "../config.js";
 import { thumb } from "./asset.js";
 import { link } from "./link.js";
@@ -10,9 +9,9 @@ import { shortName } from "./package.js";
 export const examplesTable = (pkgName: string) => {
 	const examples = [];
 	let hasImg = false;
-	for (let ex of readdirSync(CONFIG.exampleDir)) {
+	for (let ex of dirs(CONFIG.exampleDir, "", 1)) {
 		try {
-			const expkg = readJSON(`${CONFIG.exampleDir}/${ex}/package.json`);
+			const expkg = readJSON(`${ex}/package.json`);
 			const meta = expkg[META_FIELD] || {};
 			const explicitInclude =
 				Array.isArray(meta.readme) &&
@@ -43,7 +42,9 @@ export const examplesTable = (pkgName: string) => {
 				};
 				examples.push(body);
 			}
-		} catch (_) {}
+		} catch (e) {
+			LOGGER.warn("error reading example", e);
+		}
 	}
 	const headers = ["Screenshot", "Description", "Live demo", "Source"];
 	const keys = ["img", "desc", "demo", "src"];

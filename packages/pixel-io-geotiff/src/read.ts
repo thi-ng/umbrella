@@ -1,6 +1,6 @@
 import { typedArrayType, type TypedArray } from "@thi.ng/api";
 import { FLOAT_GRAY_RANGE, floatBuffer, type FloatBuffer } from "@thi.ng/pixel";
-import { Pool, fromArrayBuffer } from "geotiff";
+import { Pool, fromArrayBuffer, type GeoTIFFImage } from "geotiff";
 
 export interface GeoTiffOpts {
 	/**
@@ -30,7 +30,7 @@ export interface GeoTiffOpts {
 export const readGeoTiff = async (
 	src: ArrayBufferView,
 	opts: Partial<GeoTiffOpts> = {}
-) => {
+): Promise<{ img: FloatBuffer; tiff: GeoTIFFImage }> => {
 	const tiff = await fromArrayBuffer(src.buffer);
 	const tiffImg = await tiff.getImage();
 	const width = tiffImg.getWidth();

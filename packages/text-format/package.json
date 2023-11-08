@@ -28,10 +28,9 @@
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
-		"test": "testament test"
+		"test": "bun test"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.6",

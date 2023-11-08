@@ -10,7 +10,7 @@ type TypedArray =
 	| Uint32Array;
 
 export const isTypedArray = (x: any): x is TypedArray =>
-	x &&
+	!!x &&
 	(x instanceof Float32Array ||
 		x instanceof Float64Array ||
 		x instanceof Uint32Array ||

@@ -10,6 +10,11 @@ export class DRing<T>
 	extends AList<DRing<T>, T>
 	implements ICopy<DRing<T>>, ICompare<DRing<T>>, IEmpty<DRing<T>>
 {
+	constructor(src?: Iterable<T>) {
+		super();
+		src && this.into(src);
+	}
+
 	get tail() {
 		return this._head ? this._head.prev : undefined;
 	}

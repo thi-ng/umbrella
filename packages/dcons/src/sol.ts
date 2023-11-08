@@ -27,7 +27,8 @@ type SOFn<T> = Fn2<SOL<T>, ConsCell<T>, ConsCell<T>>;
  */
 export class SOL<T> extends DCons<T> {
 	constructor(protected _reorder: SOFn<T>, src?: Iterable<T>) {
-		super(src);
+		super();
+		src && this.into(src);
 	}
 
 	copy() {

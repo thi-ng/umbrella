@@ -1,8 +1,9 @@
 import { isString } from "@thi.ng/checks";
-import { readJSON, readText } from "@thi.ng/file-io";
+import { dirs, readJSON, readText } from "@thi.ng/file-io";
 import { bytes, camel } from "@thi.ng/strings";
+import { map } from "@thi.ng/transducers";
 import { execFileSync } from "child_process";
-import { readdirSync } from "fs";
+import { basename } from "path";
 import { META_FIELD, RE_PKG, type Config, type Package } from "../api.js";
 import { link } from "./link.js";
 import { list } from "./list.js";
@@ -35,7 +36,7 @@ export const pkgLink = (config: Config, name: string) => {
 
 export const packageList = (
 	config: Config,
-	pkgShortNames: string[],
+	pkgShortNames: Iterable<string>,
 	title: string
 ) => {
 	const items = [];
@@ -60,7 +61,7 @@ export const supportPackages = (config: Config, pkgName: string) => {
 	const pkgShortName = shortName(pkgName);
 	return packageList(
 		config,
-		readdirSync("../").filter((x) => x.startsWith(pkgShortName + "-")),
+		map(basename, dirs("../", new RegExp(`/${pkgShortName}-`), 1)),
 		"Support packages"
 	);
 };

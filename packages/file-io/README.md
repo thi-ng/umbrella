@@ -44,7 +44,7 @@ For Node.js REPL:
 const fileIo = await import("@thi.ng/file-io");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.25 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.26 KB
 
 ## Dependencies
 

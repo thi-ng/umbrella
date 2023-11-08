@@ -12,7 +12,7 @@ export const transclude = <T>(
 	ctx: SomeRequired<TranscludeCtx<T>, Mandatory>,
 	path: string
 ) => {
-	const $ctx = {
+	const $ctx: TranscludeCtx<T> = {
 		logger: DEFAULT_LOGGER,
 		match: /\{\{([a-z0-9.]+)([^}]*)\}\}/gi,
 		pre: [],

@@ -24,6 +24,7 @@ jobs:
                   node-version: ">=18.0.0"
                   cache: "yarn"
             - uses: goto-bus-stop/setup-zig@v2
+            - uses: oven-sh/setup-bun@v1
               with:
                   version: 0.11.0
             - run: yarn install --immutable
