@@ -38,12 +38,12 @@
 		"@thi.ng/wasm-api": "^1.4.31"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.38.0",
+		"@microsoft/api-extractor": "^7.38.2",
 		"@thi.ng/testament": "^0.3.24",
 		"@thi.ng/wasm-api-bindgen": "^0.4.27",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.2",
+		"typedoc": "^0.25.3",
 		"typescript": "^5.2.2"
 	},
 	"keywords": [

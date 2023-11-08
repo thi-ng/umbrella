@@ -33,10 +33,10 @@
 		"test": "bun test"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.38.0",
+		"@microsoft/api-extractor": "^7.38.2",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.2",
+		"typedoc": "^0.25.3",
 		"typescript": "^5.2.2"
 	},
 	"keywords": [

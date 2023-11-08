@@ -39,12 +39,12 @@
 		"@thi.ng/strings": "^3.6.4"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.38.0",
+		"@microsoft/api-extractor": "^7.38.2",
 		"@thi.ng/atom": "^5.2.12",
 		"@thi.ng/testament": "^0.3.24",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.2",
+		"typedoc": "^0.25.3",
 		"typescript": "^5.2.2"
 	},
 	"keywords": [
