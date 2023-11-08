@@ -59,6 +59,7 @@ export class Fiber<T = any>
 	error?: Error;
 	logger?: ILogger;
 	user?: Partial<Pick<FiberOpts, "init" | "deinit" | "catch">>;
+	_promise?: Promise<T | undefined>;
 
 	constructor(
 		gen?: Nullable<FiberFactory<T> | Generator<unknown, T>>,
@@ -92,6 +93,37 @@ export class Fiber<T = any>
 	*[Symbol.iterator]() {
 		while (this.state <= STATE_ACTIVE && this.next() <= STATE_ACTIVE) yield;
 		return this.value;
+	}
+
+	/**
+	 * Returns a promise which only resolves when the fiber is not active
+	 * anymore. If there was an unhandled error during the fiber execution the
+	 * promise will reject, else if the fiber (incl. children) completed on its
+	 * own or was cancelled, the promise resolves with the fiber's final
+	 * (possibly `undefined`) value.
+	 *
+	 * @remarks
+	 * The promise assumes the fiber either already has been (or will be)
+	 * scheduled & executed via other means. This promise only repeatedly checks
+	 * for any state changes of this fiber (at a configurable
+	 * frequency/interval), but does *NOT* trigger fiber execution!
+	 *
+	 * @param delay
+	 */
+	promise(delay = 1) {
+		return (
+			this._promise ||
+			(this._promise = new Promise((resolve, reject) => {
+				const timerID = setInterval(() => {
+					if (this.state > STATE_ACTIVE) {
+						clearInterval(timerID);
+						this.state < STATE_ERROR
+							? resolve(this.value)
+							: reject(this.error);
+					}
+				}, delay);
+			}))
+		);
 	}
 
 	/**
