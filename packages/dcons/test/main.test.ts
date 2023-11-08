@@ -16,6 +16,10 @@ test("is instanceof", () => {
 	expect(a instanceof DCons).toBeTrue();
 });
 
+test("has tail", () => {
+	expect(a.tail).toBeDefined();
+});
+
 test("has length", () => {
 	expect(a.length).toBe(5);
 	a = defDCons();
@@ -82,73 +86,3 @@ test("toString", () => {
 		"undefined, null, 0, 1, a,b, ab"
 	);
 });
-
-// interface $ConsCell<T> {
-// 	value: T;
-// 	next: $ConsCell<T> | undefined;
-// 	prev: $ConsCell<T> | undefined;
-// }
-
-// abstract class $AList<T> {
-// 	protected _head: $ConsCell<T> | undefined;
-
-// 	constructor(src?: Iterable<T>) {
-// 		src && this.into(src);
-// 	}
-
-// 	abstract append(x: T): $ConsCell<T>;
-
-// 	abstract prepend(n: T): $ConsCell<T>;
-
-// 	into(src: Iterable<T>): this {
-// 		for (let x of src) {
-// 			this.append(x);
-// 		}
-// 		return this;
-// 	}
-// }
-
-// class $DCons<T> extends $AList<T> {
-// 	public _tail: $ConsCell<T> | undefined;
-
-// 	constructor(src?: Iterable<T>) {
-// 		super(src);
-// 	}
-
-// 	append(value: T): $ConsCell<T> {
-// 		console.log("pre-append", value, !!this._head, !!this._tail);
-// 		if (this._tail) {
-// 			const cell = <$ConsCell<T>>{ value, prev: this._tail };
-// 			this._tail.next = cell;
-// 			this._tail = cell;
-// 			return cell;
-// 		} else {
-// 			return this.prepend(value);
-// 		}
-// 	}
-
-// 	prepend(value: T): $ConsCell<T> {
-// 		const cell = <$ConsCell<T>>{ value, next: this._head };
-// 		if (this._head) {
-// 			this._head.prev = cell;
-// 		} else {
-// 			this._tail = cell;
-// 		}
-// 		this._head = cell;
-// 		return cell;
-// 	}
-
-// 	into(src: Iterable<T>): this {
-// 		for (let x of src) {
-// 			this.append(x);
-// 			console.log("post-append", x, !!this._head, !!this._tail);
-// 		}
-// 		return this;
-// 	}
-// }
-
-// test("foo", () => {
-// 	const bar = new $DCons();
-// 	bar.into([1, 2]);
-// 	console.log(bar);
-// });

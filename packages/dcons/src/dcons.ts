@@ -25,6 +25,11 @@ export class DCons<T>
 {
 	protected _tail: ConsCell<T> | undefined;
 
+	constructor(src?: Iterable<T>) {
+		super();
+		src && this.into(src);
+	}
+
 	get tail() {
 		return this._tail;
 	}
