@@ -12,7 +12,7 @@
 		"preserveConstEnums": true,
 		"strict": true,
 		"strictNullChecks": true,
-		"target": "es2020",
+		"target": "es2022",
 		"verbatimModuleSyntax": true
 	},
 	"exclude": ["./**/node_modules", "./**/test/fixtures"]
