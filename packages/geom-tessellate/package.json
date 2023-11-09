@@ -98,5 +98,6 @@
 	"thi.ng": {
 		"parent": "@thi.ng/geom",
 		"year": 2013
-	}
+	},
+	"gitHead": "9f4d8ad79bca1d68214fbc9bbc5fb55f5a445f7e\n"
 }
