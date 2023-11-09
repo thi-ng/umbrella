@@ -24,7 +24,8 @@
 		"@thi.ng/rdom-components": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/strings": "workspace:^",
-		"@thi.ng/transducers": "workspace:^"
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-binary": "workspace:^"
 	},
 	"browser": {
 		"process": false

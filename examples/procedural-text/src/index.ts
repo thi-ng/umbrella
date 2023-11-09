@@ -3,7 +3,8 @@ import { SYSTEM } from "@thi.ng/random";
 import { $compile, $input, $inputTrigger, $replace } from "@thi.ng/rdom";
 import { staticDropdownAlt } from "@thi.ng/rdom-components";
 import { reactive, stream } from "@thi.ng/rstream";
-import { interpose } from "@thi.ng/transducers";
+import { filter, interpose } from "@thi.ng/transducers";
+import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
 import STORY1 from "./stories/alice-bob.txt";
 import STORY2 from "./stories/modifiers.txt";
 import STORY3 from "./stories/hidden-assignment.txt";
@@ -17,7 +18,13 @@ const STORIES = {
 	"Hidden assignments": STORY3,
 	"Dynamic lookups": STORY4,
 	"N-grams": STORY5,
+	Custom: "",
 };
+
+const initial =
+	location.hash.length > 1
+		? new TextDecoder().decode(base64Decode(location.hash.substring(1)))
+		: "";
 
 // reactive state values
 // regeneration trigger
@@ -25,7 +32,11 @@ const regenerate = reactive(true);
 // story source code (initially idle)
 const storyInput = stream<string>();
 // story template chooser with attached dynamic loader
-const storyID = reactive<keyof typeof STORIES>("Alice & Bob").subscribe({
+const storyID = reactive<keyof typeof STORIES>(
+	initial ? "Custom" : "Alice & Bob"
+);
+
+storyID.transform(filter((x) => x !== "Custom")).subscribe({
 	next: async (id) => {
 		// look up & load related preset URL
 		const response = await fetch(STORIES[id]);
@@ -61,6 +72,23 @@ const generated = regenerate.map(() => {
 		);
 	}
 });
+
+// add another subscription to update the URL hash with an base64 encoded
+// version of the input...
+regenerate.subscribe({
+	next() {
+		location.hash = base64Encode(
+			new TextEncoder().encode(storyInput.deref() || "")
+		);
+	},
+});
+
+// if the user supplied an initial text via the URL hash, we use it here to seed
+// the editor and trigger story regeneration...
+if (initial) {
+	storyInput.next(initial);
+	regenerate.next(true);
+}
 
 // build & mount reactive UI components
 $compile(

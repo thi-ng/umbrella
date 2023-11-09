@@ -1594,6 +1594,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-binary": "workspace:^"
     typescript: ^5.2.2
     vite: ^4.5.0
   languageName: unknown
