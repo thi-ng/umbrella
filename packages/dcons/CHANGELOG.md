@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-10-23T07:37:37Z
+- **Last updated**: 2023-11-09T10:02:12Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.71](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.2.71) (2023-11-09)
+
+#### 🩹 Bug fixes
+
+- update ctors due to ES2022 class field init order ([4958b49](https://github.com/thi-ng/umbrella/commit/4958b49))
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
 
 ### [3.2.50](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.2.50) (2023-08-12)
 

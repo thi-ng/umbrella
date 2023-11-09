@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/range-coder",
-	"version": "2.1.38",
+	"version": "2.1.39",
 	"description": "Binary data range encoder / decoder",
 	"type": "module",
 	"module": "./index.js",
@@ -33,12 +33,12 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/bitstream": "^2.2.30"
+		"@thi.ng/bitstream": "^2.2.31"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.2",
-		"@thi.ng/testament": "^0.3.24",
-		"@thi.ng/transducers": "^8.8.4",
+		"@thi.ng/testament": "^0.4.0",
+		"@thi.ng/transducers": "^8.8.9",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",

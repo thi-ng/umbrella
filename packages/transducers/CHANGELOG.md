@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-11-04T22:20:11Z
+- **Last updated**: 2023-11-09T10:02:12Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [8.8.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.8.9) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages T-Z) ([020ef6c](https://github.com/thi-ng/umbrella/commit/020ef6c))
 
 ### [8.8.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.8.7) (2023-10-30)
 
