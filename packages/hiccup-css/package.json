@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-css",
-	"version": "2.2.14",
+	"version": "2.2.15",
 	"description": "CSS from nested JS data structures",
 	"type": "module",
 	"module": "./index.js",
@@ -33,14 +33,14 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.7",
-		"@thi.ng/checks": "^3.4.7",
-		"@thi.ng/errors": "^2.4.1",
-		"@thi.ng/transducers": "^8.8.9"
+		"@thi.ng/api": "^8.9.8",
+		"@thi.ng/checks": "^3.4.8",
+		"@thi.ng/errors": "^2.4.2",
+		"@thi.ng/transducers": "^8.8.10"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.2",
-		"@thi.ng/testament": "^0.4.0",
+		"@thi.ng/testament": "^0.4.1",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",

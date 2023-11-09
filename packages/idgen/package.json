@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/idgen",
-	"version": "2.2.10",
+	"version": "2.2.11",
 	"description": "Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use",
 	"type": "module",
 	"module": "./index.js",
@@ -33,13 +33,13 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.7",
-		"@thi.ng/errors": "^2.4.1",
+		"@thi.ng/api": "^8.9.8",
+		"@thi.ng/errors": "^2.4.2",
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.2",
-		"@thi.ng/testament": "^0.4.0",
+		"@thi.ng/testament": "^0.4.1",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",

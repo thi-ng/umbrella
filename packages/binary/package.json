@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/binary",
-	"version": "3.3.36",
+	"version": "3.3.37",
 	"description": "100+ assorted binary / bitwise operations, conversions, utilities, lookup tables",
 	"type": "module",
 	"module": "./index.js",
@@ -33,11 +33,11 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.7"
+		"@thi.ng/api": "^8.9.8"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.2",
-		"@thi.ng/testament": "^0.4.0",
+		"@thi.ng/testament": "^0.4.1",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",

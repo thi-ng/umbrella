@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/csp",
-	"version": "2.1.76",
+	"version": "2.1.77",
 	"description": "ES6 promise based CSP primitives & operations",
 	"type": "module",
 	"module": "./index.js",
@@ -37,16 +37,16 @@
 		"testnode": "tsc -p test && node build/test/node.js"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.7",
-		"@thi.ng/arrays": "^2.7.3",
-		"@thi.ng/checks": "^3.4.7",
-		"@thi.ng/dcons": "^3.2.71",
-		"@thi.ng/errors": "^2.4.1",
-		"@thi.ng/transducers": "^8.8.9"
+		"@thi.ng/api": "^8.9.8",
+		"@thi.ng/arrays": "^2.7.4",
+		"@thi.ng/checks": "^3.4.8",
+		"@thi.ng/dcons": "^3.2.72",
+		"@thi.ng/errors": "^2.4.2",
+		"@thi.ng/transducers": "^8.8.10"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.2",
-		"@thi.ng/testament": "^0.4.0",
+		"@thi.ng/testament": "^0.4.1",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",
