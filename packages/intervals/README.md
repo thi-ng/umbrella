@@ -65,7 +65,7 @@ For Node.js REPL:
 const intervals = await import("@thi.ng/intervals");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.54 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.64 KB
 
 ## Dependencies
 

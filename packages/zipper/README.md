@@ -69,7 +69,7 @@ For Node.js REPL:
 const zipper = await import("@thi.ng/zipper");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 945 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.01 KB
 
 ## Dependencies
 

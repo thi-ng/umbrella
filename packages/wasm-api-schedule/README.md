@@ -100,7 +100,7 @@ For Node.js REPL:
 const wasmApiSchedule = await import("@thi.ng/wasm-api-schedule");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 397 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 495 bytes
 
 ## Dependencies
 

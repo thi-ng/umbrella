@@ -74,7 +74,7 @@ For Node.js REPL:
 const adjacency = await import("@thi.ng/adjacency");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.57 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.74 KB
 
 ## Dependencies
 

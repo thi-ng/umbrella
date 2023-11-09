@@ -146,7 +146,7 @@ For Node.js REPL:
 const malloc = await import("@thi.ng/malloc");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.71 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.81 KB
 
 ## Dependencies
 

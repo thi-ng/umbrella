@@ -109,7 +109,7 @@ For Node.js REPL:
 const iterators = await import("@thi.ng/iterators");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.38 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB
 
 ## Dependencies
 

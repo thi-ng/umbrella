@@ -81,7 +81,7 @@ For Node.js REPL:
 const soa = await import("@thi.ng/soa");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.35 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.45 KB
 
 ## Dependencies
 

@@ -49,7 +49,7 @@ For Node.js REPL:
 const compose = await import("@thi.ng/compose");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 751 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 858 bytes
 
 ## Dependencies
 

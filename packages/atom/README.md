@@ -123,7 +123,7 @@ For Node.js REPL:
 const atom = await import("@thi.ng/atom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.79 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.97 KB
 
 ## Dependencies
 

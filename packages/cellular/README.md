@@ -161,7 +161,7 @@ For Node.js REPL:
 const cellular = await import("@thi.ng/cellular");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.36 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.48 KB
 
 ## Dependencies
 

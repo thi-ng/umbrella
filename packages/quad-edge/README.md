@@ -66,7 +66,7 @@ For Node.js REPL:
 const quadEdge = await import("@thi.ng/quad-edge");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 473 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 559 bytes
 
 ## Dependencies
 

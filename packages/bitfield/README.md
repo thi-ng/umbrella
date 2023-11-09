@@ -57,7 +57,7 @@ For Node.js REPL:
 const bitfield = await import("@thi.ng/bitfield");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.36 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.46 KB
 
 ## Dependencies
 

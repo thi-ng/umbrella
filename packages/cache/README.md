@@ -75,7 +75,7 @@ For Node.js REPL:
 const cache = await import("@thi.ng/cache");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 986 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 

@@ -69,7 +69,7 @@ For Node.js REPL:
 const args = await import("@thi.ng/args");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.39 KB
 
 ## Dependencies
 

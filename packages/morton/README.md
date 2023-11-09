@@ -64,7 +64,7 @@ For Node.js REPL:
 const morton = await import("@thi.ng/morton");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.90 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.00 KB
 
 ## Dependencies
 

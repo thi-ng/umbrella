@@ -84,7 +84,7 @@ For Node.js REPL:
 const gp = await import("@thi.ng/gp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.29 KB
 
 ## Dependencies
 
