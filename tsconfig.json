@@ -13,6 +13,7 @@
 		"strict": true,
 		"strictNullChecks": true,
 		"target": "es2022",
+		"useDefineForClassFields": true,
 		"verbatimModuleSyntax": true
 	},
 	"exclude": ["./**/node_modules", "./**/test/fixtures"]
