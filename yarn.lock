@@ -1412,6 +1412,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/pixel-colormatrix@workspace:examples/pixel-colormatrix":
+  version: 0.0.0-use.local
+  resolution: "@example/pixel-colormatrix@workspace:examples/pixel-colormatrix"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
 "@example/pixel-dither@workspace:examples/pixel-dither":
   version: 0.0.0-use.local
   resolution: "@example/pixel-dither@workspace:examples/pixel-dither"
