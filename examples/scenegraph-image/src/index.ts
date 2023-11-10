@@ -3,7 +3,12 @@ import { group, polyline } from "@thi.ng/geom";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { mulV23 } from "@thi.ng/matrices";
-import { GRAY8, imageFromURL, intBufferFromImage } from "@thi.ng/pixel";
+import {
+	FLOAT_GRAY,
+	defSampler,
+	floatBufferFromImage,
+	imageFromURL,
+} from "@thi.ng/pixel";
 import { Node2D } from "@thi.ng/scenegraph";
 import { map, range } from "@thi.ng/transducers";
 import { setN2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
@@ -57,7 +62,10 @@ imageFromURL(LOGO).then((img) => {
 	const imgRoot = new Node2D("imgroot", main, [0, 0], 0, 2);
 	const geom = new Node2D("waves", main, [0, 0], 0, 1, <any>null);
 
-	const imgMap = intBufferFromImage(img, GRAY8, 256, 256);
+	// create pixel buffer & sampler allowing for interpolated sub-pixel access
+	const imgMap = floatBufferFromImage(img, FLOAT_GRAY, 256, 256);
+	const sampler = defSampler(imgMap, "cubic", "clamp");
+
 	const imgNode = new ImgNode(
 		"img",
 		imgRoot,
@@ -83,8 +91,8 @@ imageFromURL(LOGO).then((img) => {
 
 	// main hdom root component / app
 	const app = () => {
-		imgRoot.rotate += 0.02;
-		imgRoot.scale = setN2([], sin(imgRoot.rotate, 0.5, 2, 3.5));
+		imgRoot.rotate += 0.0075;
+		imgRoot.scale = setN2([], sin(imgRoot.rotate, 0.25, 1.5, 4));
 		imgRoot.update();
 
 		const waves = map(
@@ -92,14 +100,14 @@ imageFromURL(LOGO).then((img) => {
 				polyline([
 					...map((x) => {
 						const q = geom.mapLocalPointToNode(imgNode, [x, y]);
-						const r = (imgMap.getAt(q[0], q[1]) * 5) / 255;
-						return [x, sin(x, 0.05, r, y)];
+						const r = sampler(q[0], q[1])[0] * 5;
+						return [x, y + sin(x, 0.05, r)];
 					}, range(-200, 200)),
 				]),
 			range(-200, 200, 5)
 		);
 
-		geom.body = group({ stroke: "#fff", weight: 0.5 }, [...waves]);
+		geom.body = group({ stroke: "#fff", weight: 1 }, [...waves]);
 		return [
 			"div.sans-serif.pl3",
 			["h1", "scenegraph node-to-node UV mapping"],
