@@ -8,7 +8,7 @@
 	"license": "Apache-2.0",
 	"type": "module",
 	"scripts": {
-		"start": "vite --open",
+		"start": "vite --host --open",
 		"build": "tsc && vite build --base='./'",
 		"build:cli": "tsc -p tsconfig-cli.json",
 		"preview": "vite preview --host --open"

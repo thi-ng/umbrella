@@ -15,7 +15,7 @@
 		"rstream"
 	],
 	"scripts": {
-		"start": "vite --open",
+		"start": "vite --host --open",
 		"build": "tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},

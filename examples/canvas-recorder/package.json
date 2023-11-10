@@ -7,7 +7,7 @@
 	"author": "Nicolas Lebrun <nclslbrn@gmail.com>",
 	"license": "Apache-2.0",
 	"scripts": {
-		"start": "vite --open",
+		"start": "vite --host --open",
 		"build": "tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
