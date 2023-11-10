@@ -44,10 +44,6 @@ export class Node2D
 		);
 	}
 
-	deleteChild(node: number | Node2D) {
-		return this._deleteChild(node, Node2D);
-	}
-
 	update() {
 		if (this.enabled) {
 			this.mat = transform23([], this.translate, this.rotate, this.scale);

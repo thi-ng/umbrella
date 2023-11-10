@@ -1,4 +1,5 @@
 import type { Nullable } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { assert } from "@thi.ng/errors/assert";
 import type { Mat } from "@thi.ng/matrices";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -22,7 +23,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
 		this.parent = parent;
 		this.children = [];
 		if (parent) {
-			parent.children.push(<any>this);
+			parent.appendChild(this);
 		}
 		this.body = body;
 		this.mat = [];
@@ -46,7 +47,15 @@ export abstract class ANode<T extends ISceneNode<any>> {
 		return this;
 	}
 
-	abstract deleteChild(node: number | T): boolean;
+	deleteChild(node: number | T) {
+		const { children } = this;
+		const i = isNumber(node) ? node : children.indexOf(<any>node);
+		if (i >= 0 && i < children.length) {
+			children.splice(i, 1);
+			return true;
+		}
+		return false;
+	}
 
 	abstract update(): void;
 
@@ -120,18 +129,6 @@ export abstract class ANode<T extends ISceneNode<any>> {
 	 * @param p -
 	 */
 	containsLocalPoint(_: ReadonlyVec) {
-		return false;
-	}
-
-	protected _deleteChild(node: number | T, clazz: any) {
-		const i =
-			node instanceof clazz
-				? this.children.indexOf(<any>node)
-				: <number>node;
-		if (i !== -1) {
-			this.children.splice(i, 1);
-			return true;
-		}
 		return false;
 	}
 }

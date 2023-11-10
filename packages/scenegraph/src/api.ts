@@ -9,6 +9,12 @@ export interface ISceneNode<T extends ISceneNode<T>> extends IID<string> {
 	mat: Mat;
 	invMat: Mat;
 
+	appendChild(node: T): this;
+
+	insertChild(i: number, node: T): this;
+
+	deleteChild(node: number | T): boolean;
+
 	update(): void;
 
 	draw<D>(ctx: D): void;

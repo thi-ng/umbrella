@@ -44,10 +44,6 @@ export class Node3D
 		);
 	}
 
-	deleteChild(node: number | Node3D) {
-		return this._deleteChild(node, Node3D);
-	}
-
 	update() {
 		if (this.enabled) {
 			this.mat = transform44([], this.translate, this.rotate, this.scale);
