@@ -15,7 +15,8 @@ import { reactive, sync, type ISubscription } from "@thi.ng/rstream";
 import IMG from "./dolomites-960x940.jpg";
 
 // image adjustment params
-const temp = reactive(0);
+const tempBY = reactive(0);
+const tempGM = reactive(0);
 const sat = reactive(1);
 const con = reactive(1);
 const bri = reactive(0);
@@ -30,7 +31,7 @@ const ctrl = (
 ) =>
 	div(
 		{},
-		label(".w4.dib", { for: id }, id),
+		label(".w5.dib", { for: id }, id),
 		inputRange(".w4", {
 			id,
 			min,
@@ -72,7 +73,8 @@ function* segmented(buf: TypedArray, size: number, stride = size) {
 				ctrl("brightness", bri, -0.5, 0.5),
 				ctrl("contrast", con, 0, 2),
 				ctrl("saturation", sat, 0, 2),
-				ctrl("temperature", temp, -0.25, 0.25)
+				ctrl("temp (blue/yellow)", tempBY, -0.25, 0.25),
+				ctrl("temp (green/magenta)", tempGM, -0.25, 0.25)
 			),
 			canvas({
 				id: "preview",
@@ -86,12 +88,14 @@ function* segmented(buf: TypedArray, size: number, stride = size) {
 
 	// combine reactive image params, add subscription to transform image and
 	// copy result to canvas
-	sync({ src: { exp, bri, con, sat, temp } }).subscribe({
-		next({ exp, bri, con, sat, temp }) {
+	sync({
+		src: { exp, bri, con, sat, tempBY, tempGM },
+	}).subscribe({
+		next({ exp, bri, con, sat, tempBY, tempGM }) {
 			// compose color transformation matrix from multiple adjustments
 			const mat = concat(
 				// color temperature (relative, 0.0 = original)
-				temperatureMat(temp),
+				temperatureMat(tempBY, tempGM),
 				// saturation (absolute, 1.0 = original)
 				saturationMat(sat),
 				// contrast (absolute, 1.0 = original)
