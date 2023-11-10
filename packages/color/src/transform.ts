@@ -123,11 +123,18 @@ export const hueRotateMat = (theta: number): ColorMatrix => {
     ];
 };
 
+/**
+ * Color temperature adjustment matrix. `x` controls blue/yellow, `y` controls
+ * green/magenta axis (both params in [-1,1] range).
+ *
+ * @param x
+ * @param y
+ */
 // prettier-ignore
-export const temperatureMat = (x: number): ColorMatrix => [
-    1 + x, 0, 0, 0, 0,
-    0, 1, 0, 0, 0,
-    0, 0, 1 - x, 0, 0,
+export const temperatureMat = (x: number, y = 0): ColorMatrix => [
+    1 + x + y, 0, 0, 0, 0,
+    0, 1 - y, 0, 0, 0,
+    0, 0, 1 - x + y, 0, 0,
     0, 0, 0, 1, 0
 ];
 
