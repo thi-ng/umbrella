@@ -233,7 +233,7 @@ export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
 		y: number,
 		width: number,
 		height: number
-	): IPixelBuffer<T, P>;
+	): IPixelBuffer<T, P> | undefined;
 }
 
 export interface IBlit<T extends IPixelBuffer> {

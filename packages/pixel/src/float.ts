@@ -375,6 +375,7 @@ export class FloatBuffer
 			this.width,
 			this.height
 		);
+		if (w < 1 || h < 1) return;
 		return this.blit(new FloatBuffer(w, h, this.format), {
 			sx,
 			sy,

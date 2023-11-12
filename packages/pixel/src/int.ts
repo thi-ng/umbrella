@@ -178,8 +178,8 @@ export class IntBuffer
 		return 2;
 	}
 
-	as(fmt: IntFormat) {
-		return this.getRegion(0, 0, this.width, this.height, fmt);
+	as(fmt: IntFormat): IntBuffer {
+		return this.getRegion(0, 0, this.width, this.height, fmt)!;
 	}
 
 	copy() {
@@ -326,6 +326,7 @@ export class IntBuffer
 			this.width,
 			this.height
 		);
+		if (w < 1 || h < 1) return;
 		return this.blit(new IntBuffer(w, h, fmt || this.format), {
 			sx,
 			sy,
