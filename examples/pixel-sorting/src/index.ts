@@ -11,7 +11,12 @@ import {
 	type InputNumericAttribs,
 } from "@thi.ng/hiccup-html";
 import { closedOpen, intersection } from "@thi.ng/intervals";
-import { ABGR8888, IntBuffer, intBufferFromImage } from "@thi.ng/pixel";
+import {
+	ABGR8888,
+	imageFromFile,
+	intBufferFromImage,
+	type IntBuffer,
+} from "@thi.ng/pixel";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $replace, Component, type NumOrElement } from "@thi.ng/rdom";
 import { CloseMode, Stream, reactive, stream, sync } from "@thi.ng/rstream";
@@ -112,14 +117,8 @@ const result = sync({
 // triggers reading file as an image
 // once ready, puts image into `image` stream for further processing
 file.subscribe({
-	next(file) {
-		const url = URL.createObjectURL(file);
-		const img = new Image();
-		img.onload = () => {
-			image.next(img);
-			URL.revokeObjectURL(url); // house keeping!
-		};
-		img.src = url;
+	next: async (file) => {
+		image.next(await imageFromFile(file));
 	},
 });
 
@@ -203,7 +202,7 @@ $compile(
 			label(".dib.w4", { for: "file" }, "Image"),
 			inputFile({
 				id: "file",
-				accept: ["image/jpg", "image/png", "image/gif"],
+				accept: ["image/jpeg", "image/png", "image/gif"],
 				multiple: false,
 				onchange: (e) =>
 					file.next((<HTMLInputElement>e.target).files![0]),
