@@ -249,9 +249,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-11-08
+As of: 2023-11-12
 
-Updated all packages.
+| Status                                           | Package                                       | Version                                                                                                             | Changelog                                       |
+|:-------------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/color`](./packages/color)           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)           | [changelog](./packages/color/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/example`](./packages/example)       | [![version](https://img.shields.io/npm/v/@thi.ng/example.svg)](https://www.npmjs.com/package/@thi.ng/example)       | [changelog](./packages/example/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel`](./packages/pixel)           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)           | [changelog](./packages/pixel/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)             | [changelog](./packages/rdom/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/scenegraph`](./packages/scenegraph) | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph) | [changelog](./packages/scenegraph/CHANGELOG.md) |
 
 ### Fundamentals
 
