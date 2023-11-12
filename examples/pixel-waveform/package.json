@@ -1,0 +1,32 @@
+{
+	"name": "@example/pixel-waveform",
+	"version": "0.0.1",
+	"private": true,
+	"description": "RGB waveform image analysis",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --host --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.5.0"
+	},
+	"dependencies": {
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": true,
+		"screenshot": "examples/pixel-waveform.jpg"
+	}
+}

@@ -1498,6 +1498,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/pixel-waveform@workspace:examples/pixel-waveform":
+  version: 0.0.0-use.local
+  resolution: "@example/pixel-waveform@workspace:examples/pixel-waveform"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    typescript: ^5.2.2
+    vite: ^4.5.0
+  languageName: unknown
+  linkType: soft
+
 "@example/pointfree-geom@workspace:examples/pointfree-geom":
   version: 0.0.0-use.local
   resolution: "@example/pointfree-geom@workspace:examples/pointfree-geom"
