@@ -15,12 +15,15 @@ import { reactive, sync, type ISubscription } from "@thi.ng/rstream";
 import IMG from "./dolomites-960x940.jpg";
 
 // image adjustment params
+const saturation = reactive(1);
+const contrast = reactive(1);
+const brightness = reactive(0);
+const exposure = reactive(1);
+// color temperature (blue/yellow and green/magenta)
 const tempBY = reactive(0);
 const tempGM = reactive(0);
-const sat = reactive(1);
-const con = reactive(1);
-const bri = reactive(0);
-const exp = reactive(1);
+// preview A/B split position
+const split = reactive(0);
 
 // UI widgets for a single image param
 const ctrl = (
@@ -49,6 +52,12 @@ function* segmented(buf: TypedArray, size: number, stride = size) {
 	}
 }
 
+// extract local X position from mouse event and update split pos (for A/B comparison)
+const setSplitPos = (e: MouseEvent) =>
+	split.next(
+		e.clientX - (<HTMLElement>e.target).getBoundingClientRect().left
+	);
+
 // main app init
 (async () => {
 	// create floating point pixel buffer from image
@@ -69,49 +78,69 @@ function* segmented(buf: TypedArray, size: number, stride = size) {
 				".mb3",
 				{},
 				// UI controls for various image adjustments
-				ctrl("exposure", exp, 0, 2),
-				ctrl("brightness", bri, -0.5, 0.5),
-				ctrl("contrast", con, 0, 2),
-				ctrl("saturation", sat, 0, 2),
+				ctrl("exposure", exposure, 0, 2),
+				ctrl("brightness", brightness, -0.5, 0.5),
+				ctrl("contrast", contrast, 0, 2),
+				ctrl("saturation", saturation, 0, 2),
 				ctrl("temp (blue/yellow)", tempBY, -0.25, 0.25),
 				ctrl("temp (green/magenta)", tempGM, -0.25, 0.25)
 			),
-			canvas({
-				id: "preview",
+			canvas("#preview.pointer", {
 				width: srcImg.width,
 				height: srcImg.height,
+				title: "Click & drag to set split position",
+				onmousedown: setSplitPos,
+				onmousemove: (e) => {
+					if (e.buttons & 1) setSplitPos(e);
+				},
 			})
 		)
 	).mount(document.getElementById("app")!);
 	// keep reference to the preview canvas
 	const preview = <HTMLCanvasElement>document.getElementById("preview");
 
-	// combine reactive image params, add subscription to transform image and
-	// copy result to canvas
-	sync({
-		src: { exp, bri, con, sat, tempBY, tempGM },
-	}).subscribe({
-		next({ exp, bri, con, sat, tempBY, tempGM }) {
-			// compose color transformation matrix from multiple adjustments
-			const mat = concat(
-				// color temperature (relative, 0.0 = original)
-				temperatureMat(tempBY, tempGM),
-				// saturation (absolute, 1.0 = original)
-				saturationMat(sat),
-				// contrast (absolute, 1.0 = original)
-				contrastMat(con),
-				// brightness offset (relative, 0.0 = original)
-				brightnessMat(bri),
-				// exposure/scale (absolute, 1.0 = original)
-				exposureMat(exp)
-			);
+	// initialize split display position to 50% (for A/B comparison)
+	split.next(srcImg.width >> 1);
 
-			// transform pixels using above matrix
-			for (let i = 0, n = srcPixels.length; i < n; i++) {
-				transform(destPixels[i], mat, srcPixels[i], false);
-			}
-			// copy result image to canvas
-			destImg.blitCanvas(preview);
+	// combine reactive image params, transform image whenever any param changes
+	// and return tuple of [src image, result image]
+	const images = sync({
+		src: { exposure, brightness, contrast, saturation, tempBY, tempGM },
+	}).map(({ exposure, brightness, contrast, saturation, tempBY, tempGM }) => {
+		// compose color transformation matrix from multiple adjustments
+		const mat = concat(
+			// color temperature (relative, 0.0 = original)
+			temperatureMat(tempBY, tempGM),
+			// saturation (absolute, 1.0 = original)
+			saturationMat(saturation),
+			// contrast (absolute, 1.0 = original)
+			contrastMat(contrast),
+			// brightness offset (relative, 0.0 = original)
+			brightnessMat(brightness),
+			// exposure/scale (absolute, 1.0 = original)
+			exposureMat(exposure)
+		);
+		// transform pixels using above matrix
+		for (let i = 0, n = srcPixels.length; i < n; i++) {
+			transform(destPixels[i], mat, srcPixels[i], false);
+		}
+		// return tuple of images
+		return [srcImg, destImg];
+	});
+
+	// combine transformed result with split pos and copy images to canvas (with
+	// A/B region split). we keep this as a separate processing step so that
+	// when only the split position is changed, we DON'T needlessly recompute
+	// the transformed image...
+	sync({ src: { images, split } }).subscribe({
+		next({ images: [src, dest], split }) {
+			// show transformed on the LHS
+			dest.getRegion(0, 0, split, dest.height)?.blitCanvas(preview);
+			// show original on the RHS
+			src.getRegion(split, 0, src.width - split, src.height)?.blitCanvas(
+				preview,
+				{ x: split }
+			);
 		},
 	});
 })();
