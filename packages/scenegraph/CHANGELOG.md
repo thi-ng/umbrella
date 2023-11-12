@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-11-09T10:28:19Z
+- **Last updated**: 2023-11-12T16:43:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/scenegraph@1.0.0) (2023-11-12)
+
+#### 🛑 Breaking changes
+
+- update ISceneNode, ANode ([a2a2694](https://github.com/thi-ng/umbrella/commit/a2a2694))
+- BREAKING CHANGE: add child ops to ISceneNode interface
+  - update ANode.deleteChild()
+  - simplify Node2/3 impls
 
 ### [0.6.32](https://github.com/thi-ng/umbrella/tree/@thi.ng/scenegraph@0.6.32) (2023-11-09)
 

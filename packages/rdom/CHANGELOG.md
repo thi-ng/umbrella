@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-11-09T10:28:19Z
+- **Last updated**: 2023-11-12T16:43:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.13.0) (2023-11-12)
+
+#### 🚀 Features
+
+- add $wrapEl() DOM element component wrapper ([298e9a1](https://github.com/thi-ng/umbrella/commit/298e9a1))
+- update $compile() to support existing DOM elements ([859521a](https://github.com/thi-ng/umbrella/commit/859521a))
+- update $attribs() to return element ([1f82021](https://github.com/thi-ng/umbrella/commit/1f82021))
 
 ### [0.12.21](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.12.21) (2023-11-09)
 

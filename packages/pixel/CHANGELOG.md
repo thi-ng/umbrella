@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-11-09T10:28:19Z
+- **Last updated**: 2023-11-12T16:43:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@5.0.0) (2023-11-12)
+
+#### 🛑 Breaking changes
+
+- update getRegion() return type ([6c22953](https://github.com/thi-ng/umbrella/commit/6c22953))
+- BREAKING CHANGE: update getRegion() to return undefined
+  if result region < 1 pixel
+  - add size checks to impls in IntBuffer/FloatBuffer
 
 ### [4.3.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@4.3.3) (2023-11-09)
 

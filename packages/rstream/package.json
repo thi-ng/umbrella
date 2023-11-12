@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream",
-	"version": "8.2.9",
+	"version": "8.2.10",
 	"description": "Reactive streams & subscription primitives for constructing dataflow graphs / pipelines",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.8",
 		"@thi.ng/arrays": "^2.7.4",
-		"@thi.ng/associative": "^6.3.19",
+		"@thi.ng/associative": "^6.3.20",
 		"@thi.ng/atom": "^5.2.14",
 		"@thi.ng/checks": "^3.4.8",
 		"@thi.ng/errors": "^2.4.2",
 		"@thi.ng/logger": "^1.4.24",
-		"@thi.ng/transducers": "^8.8.10"
+		"@thi.ng/transducers": "^8.8.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.2",
