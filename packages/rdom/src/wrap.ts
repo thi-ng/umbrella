@@ -1,6 +1,6 @@
 import type { Fn2 } from "@thi.ng/api";
-import type { IMountWithState, NumOrElement } from "./api.js";
-import { $el, $html, $remove, $text } from "./dom.js";
+import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import { $addChild, $el, $html, $remove, $text } from "./dom.js";
 import { SCHEDULER } from "./scheduler.js";
 
 const wrapper =
@@ -43,3 +43,21 @@ export const $wrapText = wrapper($text);
  * @param body - optional initial body
  */
 export const $wrapHtml = wrapper($html);
+
+/**
+ * {@link IComponent} wrapper for an existing DOM element. When mounted, the
+ * given element will be (re)attached to the parent node provided at that time.
+ *
+ * @param el
+ */
+export const $wrapEl = (el: Element): IComponent => ({
+	async mount(parent, idx) {
+		$addChild(parent, el, idx);
+		return (this.el = el);
+	},
+	async unmount() {
+		$remove(this.el!);
+		this.el = undefined;
+	},
+	update() {},
+});
