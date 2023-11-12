@@ -15,9 +15,16 @@ import type { IComponent } from "./api.js";
 export const isComment = (tree: any[]) => tree[0] === COMMENT;
 
 /**
- * Returns true, if given value has a {@link IComponent.mount} function.
+ * Returns true if given value has a {@link IComponent.mount} function.
  *
  * @param x
  */
 export const isComponent = (x: any): x is IComponent<any> =>
 	implementsFunction(x, "mount");
+
+/**
+ * Returns true if given value is a DOM element.
+ *
+ * @param x
+ */
+export const isElement = (x: any): x is Element => x instanceof Element;

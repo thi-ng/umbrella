@@ -3,21 +3,22 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isSubscribable } from "@thi.ng/rstream/checks";
 import type { CompiledComponent, IComponent, NumOrElement } from "./api.js";
-import { isComponent } from "./checks.js";
+import { isComponent, isElement } from "./checks.js";
 import { $el, $remove, $tree } from "./dom.js";
 import { SCHEDULER } from "./scheduler.js";
-import { $sub, $SubA } from "./sub.js";
-import { $wrapText } from "./wrap.js";
+import { $SubA, $sub } from "./sub.js";
+import { $wrapEl, $wrapText } from "./wrap.js";
 
 /**
  * Compiles a tree of components given in any supported format incl. reactive
  * state values into a single, nested {@link IComponent}.
  *
  * @remarks
- * Supported formats:
+ * Supported formats/values:
  *
  * - hiccup component trees, i.e. `["tag#id.class", attribs, [...]]`
  * - {@link IComponent} instances
+ * - pre-existing DOM elements
  * - [`ISubscribable`](https://docs.thi.ng/umbrella/rstream/interfaces/ISubscribable.html)
  *   instances
  * - [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
@@ -40,6 +41,8 @@ export const $compile = (tree: any): IComponent =>
 		? tree
 		: isSubscribable(tree)
 		? $sub(tree, "span")
+		: tree instanceof Element
+		? $wrapEl(tree)
 		: $wrapText("span", null, tree);
 
 const walk = (
@@ -65,7 +68,7 @@ const isComplexComponent = (x: any) => {
 			if (isComplexComponent(x[i])) return true;
 		}
 	}
-	return isSubscribable(x) || isComponent(x);
+	return isSubscribable(x) || isComponent(x) || isElement(x);
 };
 
 const complexComponent = (tree: any[]): CompiledComponent => ({
