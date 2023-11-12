@@ -300,6 +300,7 @@ export const $attribs = (el: Element, attribs: any) => {
 	for (let id in attribs) {
 		setAttrib(el, id, attribs[id], attribs);
 	}
+	return el;
 };
 
 const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
