@@ -23,7 +23,8 @@ Promise.all([IMG, LOGO].map((x) => imageFromURL(x))).then(([img, logo]) => {
 	});
 
 	// extract sub-image
-	const region = buf.getRegion(32, 96, 128, 64);
+	// (method returns undefined if result region is < 1 pixel)
+	const region = buf.getRegion(32, 96, 128, 64)!;
 	// copy region back at new position
 	region.blit(buf, { dx: 96, dy: 32 });
 
