@@ -278,7 +278,7 @@ For Node.js REPL:
 const rdom = await import("@thi.ng/rdom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.12 KB
 
 ## Dependencies
 
@@ -312,6 +312,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>   | Matrix-based image color adjustments                                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>     | Randomized 4-point 2D color gradient image generator                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>       | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                                        | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-waveform.jpg" width="240"/>      | RGB waveform image analysis                                                                             | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-waveform)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/>      | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang                          | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>         | Animated, iterative polygon subdivisions & visualization                                                | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg" width="240"/>     | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/procedural-text)     |
