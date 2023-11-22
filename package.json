@@ -7,18 +7,18 @@
 		"tools"
 	],
 	"devDependencies": {
-		"@microsoft/api-documenter": "^7.23.11",
-		"@microsoft/api-extractor": "^7.38.2",
-		"@types/node": "^20.9.0",
+		"@microsoft/api-documenter": "^7.23.12",
+		"@microsoft/api-extractor": "^7.38.3",
+		"@types/node": "^20.9.4",
 		"all-contributors-cli": "^6.26.1",
-		"bun-types": "^1.0.10",
-		"esbuild": "^0.19.5",
+		"bun-types": "^1.0.13",
+		"esbuild": "^0.19.7",
 		"html-minifier-terser": "^7.2.0",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"ts-node": "^10.9.1",
 		"typedoc": "^0.25.3",
-		"typescript": "^5.2.2"
+		"typescript": "^5.3.2"
 	},
 	"dependencies": {
 		"@ygoe/msgpack": "^1.0.3"
@@ -35,7 +35,7 @@
 		"examples": "yarn @example run build",
 		"pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && bun tools/src/deploy-docs.ts",
 		"test": "yarn build && yarn test:only",
-		"test:only": "bun test",
+		"test:only": "bun test packages",
 		"tool:deps": "bun tools/src/adjacency.ts",
 		"tool:exports": "bun tools/src/check-exports.ts",
 		"tool:imports": "bun tools/src/check-imports.ts",

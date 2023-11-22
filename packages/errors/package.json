@@ -33,13 +33,13 @@
 		"test": "bun test"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.38.2",
+		"@microsoft/api-extractor": "^7.38.3",
 		"@thi.ng/testament": "^0.4.1",
-		"@types/node": "^20.9.0",
+		"@types/node": "^20.9.4",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",
-		"typescript": "^5.2.2"
+		"typescript": "^5.3.2"
 	},
 	"keywords": [
 		"assert",

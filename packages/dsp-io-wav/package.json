@@ -40,12 +40,12 @@
 		"@thi.ng/transducers-binary": "^2.1.78"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.38.2",
+		"@microsoft/api-extractor": "^7.38.3",
 		"@thi.ng/testament": "^0.4.1",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",
-		"typescript": "^5.2.2"
+		"typescript": "^5.3.2"
 	},
 	"keywords": [
 		"8bit",
