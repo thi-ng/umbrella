@@ -41,6 +41,10 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
 		this.level = level;
 	}
 
+	enabled(level: LogLevel) {
+		return this.level <= level;
+	}
+
 	next(x: LogEntry) {
 		x[0] >= this.level && super.next(x);
 	}
