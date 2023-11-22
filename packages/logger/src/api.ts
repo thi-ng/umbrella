@@ -21,6 +21,13 @@ export interface ILogger {
 	 */
 	level: LogLevel;
 
+	/**
+	 * Returns true if the logger is currently enabled for given `level`.
+	 *
+	 * @param level
+	 */
+	enabled(level: LogLevel): boolean;
+
 	fine(...args: any[]): void;
 	debug(...args: any[]): void;
 	info(...args: any[]): void;

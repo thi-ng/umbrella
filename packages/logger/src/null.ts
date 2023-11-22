@@ -6,6 +6,7 @@ import { LogLevel, type ILogger } from "./api.js";
  */
 export const NULL_LOGGER: ILogger = Object.freeze({
 	level: LogLevel.NONE,
+	enabled: () => false,
 	fine() {},
 	debug() {},
 	info() {},

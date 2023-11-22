@@ -12,6 +12,10 @@ export abstract class ALogger implements ILogger {
 		this.level = typeof level === "string" ? LogLevel[level] : level;
 	}
 
+	enabled(level: LogLevel) {
+		return this.level <= level;
+	}
+
 	fine(...args: any[]): void {
 		this.level <= LogLevel.FINE && this.log(LogLevel.FINE, args);
 	}
