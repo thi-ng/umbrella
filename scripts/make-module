@@ -23,7 +23,7 @@ touch "$MODULE"/src/index.ts "$MODULE"/tools/index.ts
 cp packages/api/LICENSE "$MODULE"/
 
 echo "writing test skeleton..."
-cat << EOF > "$MODULE"/test/index.ts
+cat << EOF > "$MODULE"/test/main.test.ts
 import { expect, test } from "bun:test";
 // import { } from "../src/index.js"
 
