@@ -1,4 +1,5 @@
 import { ArraySet, MultiTrie } from "@thi.ng/associative";
+import { timed } from "@thi.ng/bench";
 import {
 	files,
 	readJSON,
@@ -6,8 +7,7 @@ import {
 	writeFile,
 	writeJSON,
 } from "@thi.ng/file-io";
-// @ts-ignore
-import msgpack from "@ygoe/msgpack";
+import { serialize } from "@thi.ng/msgpack";
 import { execFileSync } from "child_process";
 import { LOGGER } from "./api.js";
 import { build, defEncoder } from "./search.js";
@@ -106,7 +106,12 @@ const packed = build(
 
 writeJSON("assets/search.json", packed, null, 0, LOGGER);
 // msgpack'd binary version
-writeFile("assets/search.bin", msgpack.serialize(packed), {}, LOGGER);
+writeFile(
+	"assets/search.bin",
+	timed(() => serialize(packed, { initial: 1024 * 1024 }), "msgpack"),
+	{},
+	LOGGER
+);
 execFileSync("gzip", "-9 -f assets/search.bin".split(" "));
 
 console.log("uploading...");

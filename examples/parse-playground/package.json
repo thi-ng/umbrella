@@ -17,14 +17,14 @@
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/hiccup-carbon-icons": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/msgpack": "workspace:^",
 		"@thi.ng/parse": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rdom-components": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/strings": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
-		"@thi.ng/transducers-binary": "workspace:^",
-		"@ygoe/msgpack": "^1.0.3"
+		"@thi.ng/transducers-binary": "workspace:^"
 	},
 	"browser": {
 		"process": false,

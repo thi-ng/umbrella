@@ -3,6 +3,7 @@ import { timedResult } from "@thi.ng/bench";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { DOWNLOAD, withSize } from "@thi.ng/hiccup-carbon-icons";
 import { anchor, div, h1, main, textArea } from "@thi.ng/hiccup-html";
+import { deserialize, serialize } from "@thi.ng/msgpack";
 import { defContext, defGrammar, print, type Language } from "@thi.ng/parse";
 import { $compile } from "@thi.ng/rdom";
 import {
@@ -16,8 +17,6 @@ import { CloseMode, metaStream, reactive, sync } from "@thi.ng/rstream";
 import { interpolate } from "@thi.ng/strings";
 import { filter, map, pluck, range } from "@thi.ng/transducers";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
-// @ts-ignore
-import { deserialize, serialize } from "@ygoe/msgpack";
 import type { ParseResult, Status } from "./api";
 import {
 	BG_COLS,

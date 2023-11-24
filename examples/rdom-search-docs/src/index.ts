@@ -1,5 +1,6 @@
 import { timed } from "@thi.ng/bench";
 import { anchor, div, inputText } from "@thi.ng/hiccup-html";
+import { deserialize } from "@thi.ng/msgpack";
 import { $list, $text, Component, type IComponent } from "@thi.ng/rdom";
 import {
 	Stream,
@@ -8,7 +9,6 @@ import {
 	type ISubscription,
 } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
-import msgpack from "@ygoe/msgpack";
 import { Pagination, pageControls } from "./pagination";
 import { search, type SearchIndex } from "./search";
 
@@ -61,7 +61,7 @@ class DocSearch extends Component {
 			if (resp.status >= 400)
 				throw new Error("Failed to load search index");
 			const buf = await resp.arrayBuffer();
-			const index: SearchIndex = timed(() => msgpack.deserialize(buf));
+			const index: SearchIndex = timed(() => deserialize(buf));
 
 			// remove preloader
 			this.$remove(loader);

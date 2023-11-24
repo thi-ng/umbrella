@@ -18,10 +18,10 @@
 		"@thi.ng/equiv": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/math": "workspace:^",
+		"@thi.ng/msgpack": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
-		"@thi.ng/transducers": "workspace:^",
-		"@ygoe/msgpack": "^1.0.3"
+		"@thi.ng/transducers": "workspace:^"
 	},
 	"browser": {
 		"process": false,
