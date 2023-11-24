@@ -46,7 +46,13 @@
 		"typescript": "^5.3.2"
 	},
 	"keywords": [
-		"typescript"
+		"binary",
+		"decode",
+		"encode",
+		"fileformat",
+		"msgpack",
+		"typescript",
+		"utf8"
 	],
 	"publishConfig": {
 		"access": "public"
