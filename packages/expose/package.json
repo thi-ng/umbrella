@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/expose",
-	"version": "1.2.4",
+	"version": "1.2.5",
 	"description": "Conditional global variable exposition",
 	"type": "module",
 	"module": "./index.js",
@@ -34,7 +34,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/testament": "^0.4.1",
+		"@thi.ng/testament": "^0.4.2",
 		"@types/node": "^20.9.5",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",

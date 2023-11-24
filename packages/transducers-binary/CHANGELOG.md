@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-11-09T10:28:19Z
+- **Last updated**: 2023-11-24T09:35:46Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.79](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.79) (2023-11-24)
+
+#### ♻️ Refactoring
+
+- update utf8 fns ([9e8cf2d](https://github.com/thi-ng/umbrella/commit/9e8cf2d))
+  - deprecate utf8Length() (migrated to [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/main/packages/strings))
 
 ### [2.1.76](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.76) (2023-11-09)
 

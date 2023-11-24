@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/emoji",
-	"version": "0.1.14",
+	"version": "0.1.15",
 	"description": "Bi-directional lookup tables mapping emoji names & their characters",
 	"type": "module",
 	"module": "./index.js",
@@ -34,7 +34,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/testament": "^0.4.1",
+		"@thi.ng/testament": "^0.4.2",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",
