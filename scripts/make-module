@@ -24,13 +24,22 @@ cp packages/api/LICENSE "$MODULE"/
 
 echo "writing test skeleton..."
 cat << EOF > "$MODULE"/test/index.ts
-import { group } from "@thi.ng/testament";
-// import * as assert from "assert";
-// import { } from "../src/index.js";
+import { expect, test } from "bun:test";
+// import { } from "../src/index.js"
 
-group("$1", {
+test.todo("$1", () => {});
+EOF
 
-});
+echo "writing test tsconfig..."
+cat << EOF > "$MODULE"/test/tsconfig.json
+{
+	"extends": "../../../tsconfig.json",
+	"compilerOptions": {
+		"types": ["bun-types"],
+		"noEmit": true
+	},
+	"include": ["./**/*.ts"]
+}
 EOF
 
 echo "writing bench skeleton..."
@@ -79,21 +88,20 @@ cat << EOF > "$MODULE"/package.json
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
-		"test": "testament test"
+		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.8.2"
+		"@thi.ng/api": "^8.9.8"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.38.0",
-		"@thi.ng/testament": "^0.3.23",
+		"@microsoft/api-extractor": "^7.38.3",
+		"@thi.ng/testament": "^0.4.1",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.2",
-		"typescript": "^5.2.2"
+		"typedoc": "^0.25.3",
+		"typescript": "^5.3.2"
 	},
 	"keywords": [
 		"typescript"
