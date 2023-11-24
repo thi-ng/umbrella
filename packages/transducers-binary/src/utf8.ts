@@ -1,3 +1,7 @@
+import {
+	fromUtf8CodePoint,
+	utf8Length as $utf8Length,
+} from "@thi.ng/strings/utf8";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
 import { iterator, iterator1 } from "@thi.ng/transducers/iterator";
@@ -60,12 +64,12 @@ export function utf8Decode(src?: Iterable<number>): any {
 								state = 0;
 								return r(
 									acc,
-									codePoint(
+									fromUtf8CodePoint(
 										((u0 & 7) << 18) |
 											(u1 << 12) |
 											(u2 << 6) |
 											u3
-									)
+									)!
 								);
 							}
 							state = 4;
@@ -76,13 +80,13 @@ export function utf8Decode(src?: Iterable<number>): any {
 								state = 0;
 								return r(
 									acc,
-									codePoint(
+									fromUtf8CodePoint(
 										((u0 & 3) << 24) |
 											(u1 << 18) |
 											(u2 << 12) |
 											(u3 << 6) |
 											u4
-									)
+									)!
 								);
 							}
 							state = 5;
@@ -91,14 +95,14 @@ export function utf8Decode(src?: Iterable<number>): any {
 							state = 0;
 							return r(
 								acc,
-								codePoint(
+								fromUtf8CodePoint(
 									((u0 & 1) << 30) |
 										(u1 << 24) |
 										(u2 << 18) |
 										(u3 << 12) |
 										(u4 << 6) |
 										(x & 0x3f)
-								)
+								)!
 							);
 					}
 					return acc;
@@ -184,32 +188,9 @@ export function utf8Encode(src?: string): any {
 		  };
 }
 
-const codePoint = (x: number) =>
-	x < 0x10000
-		? String.fromCharCode(x)
-		: ((x -= 0x10000),
-		  String.fromCharCode(0xd800 | (x >> 10), 0xdc00 | (x & 0x3ff)));
-
-export const utf8Length = (str: string) => {
-	const n = str.length;
-	let len = 0;
-	for (let i = 0; i < n; ++i) {
-		let u = str.charCodeAt(i);
-		if (u >= 0xd800 && u <= 0xdfff) {
-			u = (0x10000 + ((u & 0x3ff) << 10)) | (str.charCodeAt(++i) & 0x3ff);
-		}
-		len +=
-			u <= 0x7f
-				? 1
-				: u <= 0x7ff
-				? 2
-				: u <= 0xffff
-				? 3
-				: u <= 0x1fffff
-				? 4
-				: u <= 0x3ffffff
-				? 5
-				: 6;
-	}
-	return len;
-};
+/**
+ * Re-export of [utf8Length()](https://docs.thi.ng/umbrella/strings/functions/utf8Length.html).
+ *
+ * @deprecated migrated to thi.ng/strings pkg
+ */
+export const utf8Length = $utf8Length;
