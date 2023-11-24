@@ -83,17 +83,20 @@ const obj = {
 // encode to byte array
 const bytes = serialize(obj);
 console.log(bytes);
+// Uint8Array(114) [ 137, 168, 115, 109, 97, 108, 108, ... ]
 
 // comparison with JSON
 const json = JSON.stringify(obj);
 const ratio = bytes.length / json.length;
 console.log(`msgpack: ${bytes.length}, json: ${json.length}, ratio: ${ratio.toFixed(2)}`);
+// msgpack: 114, json: 178, ratio: 0.64
 
 // roundtrip
 const obj2 = deserialize(bytes);
 
 // check equality
 console.log(equiv(obj, obj2));
+// true
 ```
 
 ## Authors

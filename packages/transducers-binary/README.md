@@ -68,7 +68,7 @@ For Node.js REPL:
 const transducersBinary = await import("@thi.ng/transducers-binary");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.51 KB
 
 ## Dependencies
 
@@ -77,6 +77,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples
