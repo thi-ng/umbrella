@@ -38,6 +38,7 @@
 		"@thi.ng/errors": "^2.4.2",
 		"@thi.ng/hex": "^2.3.20",
 		"@thi.ng/random": "^3.6.14",
+		"@thi.ng/strings": "^3.6.6",
 		"@thi.ng/transducers": "^8.8.11"
 	},
 	"devDependencies": {
@@ -110,6 +111,5 @@
 			"unionstruct"
 		],
 		"year": 2018
-	},
-	"gitHead": "9f4d8ad79bca1d68214fbc9bbc5fb55f5a445f7e\n"
+	}
 }

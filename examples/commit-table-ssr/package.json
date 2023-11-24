@@ -14,7 +14,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"@types/node": "^20.9.4",
+		"@types/node": "^20.9.5",
 		"ts-node": "^10.9.1",
 		"typescript": "^5.3.2",
 		"vite": "^5.0.2"

@@ -381,7 +381,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@types/express": ^4.17.21
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     express: ^4.18.2
     ts-node: ^10.9.1
     typescript: ^5.3.2
@@ -1234,6 +1234,7 @@ __metadata:
     "@thi.ng/dl-asset": "workspace:^"
     "@thi.ng/hiccup-carbon-icons": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/msgpack": "workspace:^"
     "@thi.ng/parse": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rdom-components": "workspace:^"
@@ -1241,7 +1242,6 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
-    "@ygoe/msgpack": ^1.0.3
     typescript: ^5.3.2
     vite: ^5.0.2
   languageName: unknown
@@ -1627,10 +1627,10 @@ __metadata:
     "@thi.ng/equiv": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/math": "workspace:^"
+    "@thi.ng/msgpack": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    "@ygoe/msgpack": ^1.0.3
     typescript: ^5.3.2
     vite: ^5.0.2
   languageName: unknown
@@ -3154,7 +3154,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/api": ^8.9.8
     "@thi.ng/testament": ^0.4.1
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -3285,7 +3285,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/testament": ^0.4.1
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     tslib: ^2.6.2
@@ -3768,7 +3768,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/testament": ^0.4.1
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -3782,7 +3782,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/testament": ^0.4.1
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -4354,7 +4354,7 @@ __metadata:
     "@thi.ng/hiccup-css": ^2.2.16
     "@thi.ng/strings": ^3.6.6
     "@thi.ng/testament": ^0.4.1
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -4944,6 +4944,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/msgpack@workspace:^, @thi.ng/msgpack@workspace:packages/msgpack":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/msgpack@workspace:packages/msgpack"
+  dependencies:
+    "@microsoft/api-extractor": ^7.38.3
+    "@thi.ng/checks": ^3.4.8
+    "@thi.ng/errors": ^2.4.2
+    "@thi.ng/strings": ^3.6.6
+    "@thi.ng/testament": ^0.4.1
+    rimraf: ^5.0.5
+    tools: "workspace:^"
+    typedoc: ^0.25.3
+    typescript: ^5.3.2
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/oquery@workspace:packages/oquery":
   version: 0.0.0-use.local
   resolution: "@thi.ng/oquery@workspace:packages/oquery"
@@ -5455,7 +5471,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/rstream": ^8.2.10
     "@thi.ng/testament": ^0.4.1
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -5690,7 +5706,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/testament": ^0.4.1
     "@thi.ng/transducers-binary": ^2.1.78
-    assemblyscript: 0.27.21
+    assemblyscript: 0.27.22
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -5891,6 +5907,7 @@ __metadata:
     "@thi.ng/errors": ^2.4.2
     "@thi.ng/hex": ^2.3.20
     "@thi.ng/random": ^3.6.14
+    "@thi.ng/strings": ^3.6.6
     "@thi.ng/testament": ^0.4.1
     "@thi.ng/transducers": ^8.8.11
     rimraf: ^5.0.5
@@ -6208,7 +6225,7 @@ __metadata:
     "@thi.ng/vector-pools": ^3.1.86
     "@thi.ng/vectors": ^7.8.5
     "@thi.ng/webgl": ^6.6.8
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -6226,7 +6243,7 @@ __metadata:
     "@thi.ng/shader-ast-glsl": ^0.4.81
     "@thi.ng/testament": ^0.4.1
     "@thi.ng/webgl": ^6.6.8
-    "@types/node": ^20.9.4
+    "@types/node": ^20.9.5
     rimraf: ^5.0.5
     tools: "workspace:^"
     typedoc: ^0.25.3
@@ -6378,12 +6395,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.9.4":
-  version: 20.9.4
-  resolution: "@types/node@npm:20.9.4"
+"@types/node@npm:^20.9.5":
+  version: 20.9.5
+  resolution: "@types/node@npm:20.9.5"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 619144cfee8235f692009e4268a8b80ef4ec496670273ab1cef04e4a053b471f391af6701e65f2f91a107256933d902b6caec079d551b109e981b0b706624815
+  checksum: 050ebd958e31ad21143f93614a25b15a8de5d0004338359409f76a661f734c4549698d852f21176c62f5661dacb572a090669cffef93cf6361c959e4d27d8d95
   languageName: node
   linkType: hard
 
@@ -6408,13 +6425,6 @@ __metadata:
     "@types/mime": "*"
     "@types/node": "*"
   checksum: b6ac93d471fb0f53ddcac1f9b67572a09cd62806f7db5855244b28f6f421139626f24799392566e97d1ffc61b12f9de7f30380c39fcae3c8a161fe161d44edf2
-  languageName: node
-  linkType: hard
-
-"@ygoe/msgpack@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@ygoe/msgpack@npm:1.0.3"
-  checksum: c9a130cafc75f167974c99b6f7dce68838ec99485a664471bd1d6f1f2265c3cc1f9411594d1e8a86a11189c0d2c1c54d1dea8d00c3cc5d848b0ccc84174b05df
   languageName: node
   linkType: hard
 
@@ -6613,16 +6623,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"assemblyscript@npm:0.27.21":
-  version: 0.27.21
-  resolution: "assemblyscript@npm:0.27.21"
+"assemblyscript@npm:0.27.22":
+  version: 0.27.22
+  resolution: "assemblyscript@npm:0.27.22"
   dependencies:
     binaryen: 116.0.0-nightly.20231102
     long: ^5.2.1
   bin:
     asc: bin/asc.js
     asinit: bin/asinit.js
-  checksum: cb9f29e81f7bf7e4d3cc4aafce7bc4ffe297a056613ef79e6a6f1a4b9345cfe7634562a63c0f46cfff9024ba1af3e7449881fefa963e0aafbda822fa15c26cc4
+  checksum: 201800301cd9346285d4fe3a2c456cbc707c4f51049558bd941e2b4f3f01dd9ae95c6b08123f174811805396a8b8832b38baf415383970d2a70b6bfbf70b03d7
   languageName: node
   linkType: hard
 
@@ -6712,10 +6722,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bun-types@npm:^1.0.13":
-  version: 1.0.13
-  resolution: "bun-types@npm:1.0.13"
-  checksum: 94794d8486d65be68dae71b56fbf9253486aea65c419d4237d8b4ef0a05bafad769715fb4783c1a00057eefaa654b6a6db69a47d4f85b43fbd4f5d4dd92716ab
+"bun-types@npm:^1.0.14":
+  version: 1.0.14
+  resolution: "bun-types@npm:1.0.14"
+  checksum: f1cfe8804d3813d0ef5560cbcfb7eb021d974864b28a999d668d741a6e97017b95f90a489f4ede1fe01b7341a20c50be71de489175b601e0445fd3480f9709f9
   languageName: node
   linkType: hard
 
@@ -8776,10 +8786,9 @@ __metadata:
   dependencies:
     "@microsoft/api-documenter": ^7.23.12
     "@microsoft/api-extractor": ^7.38.3
-    "@types/node": ^20.9.4
-    "@ygoe/msgpack": ^1.0.3
+    "@types/node": ^20.9.5
     all-contributors-cli: ^6.26.1
-    bun-types: ^1.0.13
+    bun-types: ^1.0.14
     esbuild: ^0.19.7
     html-minifier-terser: ^7.2.0
     rimraf: ^5.0.5

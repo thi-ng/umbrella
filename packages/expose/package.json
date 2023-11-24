@@ -35,7 +35,7 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
 		"@thi.ng/testament": "^0.4.1",
-		"@types/node": "^20.9.4",
+		"@types/node": "^20.9.5",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.3",
@@ -66,6 +66,5 @@
 			"default": "./index.js"
 		}
 	},
-	"thi.ng": {},
-	"gitHead": "9f4d8ad79bca1d68214fbc9bbc5fb55f5a445f7e\n"
+	"thi.ng": {}
 }
