@@ -37,9 +37,9 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to currently 184 individual TypeScript packages and
-~145 example projects illustrating their usage, currently totalling ~191k SLOC
-and ~3800 source files...
+This mono-repository is home to currently 185 individual TypeScript packages and
+~145 example projects illustrating their usage, currently totalling ~195k SLOC
+and ~3850 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet largely independent libraries, tools
@@ -249,15 +249,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-11-12
+As of: 2023-11-24
 
-| Status                                           | Package                                       | Version                                                                                                             | Changelog                                       |
-|:-------------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/color`](./packages/color)           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)           | [changelog](./packages/color/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/example`](./packages/example)       | [![version](https://img.shields.io/npm/v/@thi.ng/example.svg)](https://www.npmjs.com/package/@thi.ng/example)       | [changelog](./packages/example/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel`](./packages/pixel)           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)           | [changelog](./packages/pixel/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)             | [changelog](./packages/rdom/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/scenegraph`](./packages/scenegraph) | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph) | [changelog](./packages/scenegraph/CHANGELOG.md) |
+| Status                                           | Package                                                       | Version                                                                                                                             | Changelog                                               |
+|:-------------------------------------------------|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/logger`](./packages/logger)                         | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                         | [changelog](./packages/logger/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-new-yellow)    | [`@thi.ng/msgpack`](./packages/msgpack)                       | [![version](https://img.shields.io/npm/v/@thi.ng/msgpack.svg)](https://www.npmjs.com/package/@thi.ng/msgpack)                       | [changelog](./packages/msgpack/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rstream-log`](./packages/rstream-log)               | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)               | [changelog](./packages/rstream-log/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/strings`](./packages/strings)                       | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                       | [changelog](./packages/strings/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) |
 
 ### Fundamentals
 
@@ -331,6 +331,7 @@ As of: 2023-11-12
 | [`@thi.ng/iges`](./packages/iges)                           | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                           | [changelog](./packages/iges/CHANGELOG.md)              | IGES format geometry serialization              |
 | [`@thi.ng/markdown-table`](./packages/markdown-table)       | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)       | [changelog](./packages/markdown-table/CHANGELOG.md)    | Markdown table generator / formatter            |
 | [`@thi.ng/mime`](./packages/mime)                           | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                           | [changelog](./packages/mime/CHANGELOG.md)              | File extension to MIME type mappings            |
+| [`@thi.ng/msgpack`](./packages/msgpack)                     | [![version](https://img.shields.io/npm/v/@thi.ng/msgpack.svg)](https://www.npmjs.com/package/@thi.ng/msgpack)                     | [changelog](./packages/msgpack/CHANGELOG.md)           | Msgpack serialization/deserialization           |
 | [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff)   | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md)  | GeoTIFF reader support for thi.ng/pixel         |
 | [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm)     | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)     | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md)   | 1/8/16/24bit NetPBM image format reader/writer  |
 | [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)           | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)      | Portable FloatMap image format reader/writer    |
