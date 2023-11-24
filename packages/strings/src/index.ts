@@ -32,6 +32,7 @@ export * from "./trim.js";
 export * from "./truncate.js";
 export * from "./truncate-left.js";
 export * from "./units.js";
+export * from "./utf8.js";
 export * from "./uuid.js";
 export * from "./vector.js";
 export * from "./wrap.js";
