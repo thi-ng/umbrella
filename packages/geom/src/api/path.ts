@@ -42,7 +42,7 @@ export class Path implements IClear, IHiccupShape {
 
 	withAttribs(attribs: Attribs): Path {
 		const res = new Path(this.segments, attribs);
-		res.closed = true;
+		res.closed = this.closed;
 		return res;
 	}
 
