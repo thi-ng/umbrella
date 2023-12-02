@@ -42,7 +42,7 @@
 		"assemblyscript": "0.27.22",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.3",
+		"typedoc": "^0.25.4",
 		"typescript": "^5.3.2"
 	},
 	"keywords": [
