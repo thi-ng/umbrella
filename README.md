@@ -249,15 +249,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-11-24
+As of: 2023-12-03
 
-| Status                                           | Package                                                       | Version                                                                                                                             | Changelog                                               |
-|:-------------------------------------------------|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/logger`](./packages/logger)                         | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                         | [changelog](./packages/logger/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-new-yellow)    | [`@thi.ng/msgpack`](./packages/msgpack)                       | [![version](https://img.shields.io/npm/v/@thi.ng/msgpack.svg)](https://www.npmjs.com/package/@thi.ng/msgpack)                       | [changelog](./packages/msgpack/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rstream-log`](./packages/rstream-log)               | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)               | [changelog](./packages/rstream-log/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/strings`](./packages/strings)                       | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                       | [changelog](./packages/strings/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) |
+| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
+|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/geom`](./packages/geom)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)       | [changelog](./packages/geom/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-new-yellow) | [`@thi.ng/msgpack`](./packages/msgpack) | [![version](https://img.shields.io/npm/v/@thi.ng/msgpack.svg)](https://www.npmjs.com/package/@thi.ng/msgpack) | [changelog](./packages/msgpack/CHANGELOG.md) |
 
 ### Fundamentals
 
