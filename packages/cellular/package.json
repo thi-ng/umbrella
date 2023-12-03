@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/cellular",
-	"version": "0.2.71",
+	"version": "0.2.72",
 	"description": "Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -33,16 +33,16 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.9",
-		"@thi.ng/arrays": "^2.7.5",
-		"@thi.ng/checks": "^3.4.9",
-		"@thi.ng/errors": "^2.4.3",
-		"@thi.ng/random": "^3.6.15",
-		"@thi.ng/transducers": "^8.8.12"
+		"@thi.ng/api": "^8.9.10",
+		"@thi.ng/arrays": "^2.7.6",
+		"@thi.ng/checks": "^3.4.10",
+		"@thi.ng/errors": "^2.4.4",
+		"@thi.ng/random": "^3.6.16",
+		"@thi.ng/transducers": "^8.8.13"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/testament": "^0.4.2",
+		"@thi.ng/testament": "^0.4.3",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.4",

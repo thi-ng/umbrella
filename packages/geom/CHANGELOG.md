@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-11-24T09:35:46Z
+- **Last updated**: 2023-12-03T12:13:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [6.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.0.6) (2023-12-03)
+
+#### 🩹 Bug fixes
+
+- fix [#431](https://github.com/thi-ng/umbrella/issues/431) update Path.withAttribs() impl ([eaad1cd](https://github.com/thi-ng/umbrella/commit/eaad1cd))
+  - keep closed state of new path the same as original
 
 ### [6.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.0.2) (2023-11-09)
 

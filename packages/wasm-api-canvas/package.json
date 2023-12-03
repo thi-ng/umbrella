@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-canvas",
-	"version": "0.1.43",
+	"version": "0.1.44",
 	"description": "HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/binary": "^3.3.38",
-		"@thi.ng/wasm-api": "^1.4.34",
-		"@thi.ng/wasm-api-dom": "^0.11.51"
+		"@thi.ng/binary": "^3.3.39",
+		"@thi.ng/wasm-api": "^1.4.35",
+		"@thi.ng/wasm-api-dom": "^0.11.52"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/testament": "^0.4.2",
-		"@thi.ng/wasm-api-bindgen": "^0.4.30",
+		"@thi.ng/testament": "^0.4.3",
+		"@thi.ng/wasm-api-bindgen": "^0.4.31",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.4",
