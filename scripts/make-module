@@ -93,14 +93,13 @@ cat << EOF > "$MODULE"/package.json
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.8"
+		"@thi.ng/api": "^8.9.10"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/testament": "^0.4.1",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.3",
+		"typedoc": "^0.25.4",
 		"typescript": "^5.3.2"
 	},
 	"keywords": [
