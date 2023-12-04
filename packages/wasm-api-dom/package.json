@@ -45,7 +45,6 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/testament": "^0.4.3",
 		"@thi.ng/wasm-api-bindgen": "^0.4.31",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",

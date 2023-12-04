@@ -50,7 +50,6 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
 		"@thi.ng/date": "^2.5.4",
-		"@thi.ng/testament": "^0.4.3",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.4",
