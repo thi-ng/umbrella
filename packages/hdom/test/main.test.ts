@@ -34,6 +34,18 @@ check(
 );
 
 check(
+	"emmet class + class attr (array)",
+	["div.foo", { class: ["bar", "baz"] }],
+	["div", { class: "foo bar baz" }]
+);
+
+check(
+	"emmet class + class attr (obj)",
+	["div.foo", { class: { bar: true, foo: false } }],
+	["div", { class: "bar" }]
+);
+
+check(
 	"emmet id + class + attrib",
 	["div#id.foo.bar", { extra: 23 }, "hi"],
 	["div", { id: "id", class: "foo bar", extra: 23 }, "hi"]
