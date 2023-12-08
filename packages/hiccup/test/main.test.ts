@@ -29,6 +29,24 @@ check(
 );
 
 check(
+	"div w/ class attrib (string)",
+	["div", { class: "bar baz" }, "foo"],
+	`<div class="bar baz">foo</div>`
+);
+
+check(
+	"div w/ class attrib (array)",
+	["div", { class: ["bar", "baz"] }, "foo"],
+	`<div class="bar baz">foo</div>`
+);
+
+check(
+	"div w/ class attrib (obj)",
+	["div", { class: { bar: true, baz: false } }, "foo"],
+	`<div class="bar">foo</div>`
+);
+
+check(
 	"div w/ class merging (string)",
 	["div.foo", { class: "bar baz" }, "foo"],
 	`<div class="foo bar baz">foo</div>`

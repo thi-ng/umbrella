@@ -35,9 +35,9 @@ import { isString } from "@thi.ng/checks/is-string";
 export const mergeClasses = (existing: string, val: any) => {
 	val = deref(val);
 	if (val == null) return existing;
-	if (isString(val)) return existing + " " + val;
-	if (isArray(val)) return existing + " " + val.join(" ");
-	const classes = new Set(existing.split(" "));
+	if (isArray(val)) val = val.join(" ");
+	if (isString(val)) return existing ? existing + " " + val : val;
+	const classes = new Set(existing ? existing.split(" ") : undefined);
 	for (let id in val) {
 		deref(val[id]) ? classes.add(id) : classes.delete(id);
 	}
