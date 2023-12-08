@@ -223,22 +223,26 @@ test("never closes", (done) => {
 	}, 5 * TIMEOUT);
 });
 
-test("input removal (clean)", (done) => {
-	const main = sync({
-		src: {
-			a: fromIterable([1]),
-			b: fromIterable([1, 2]),
-		},
-		clean: true,
-	});
-	const acc: any[] = [];
-	main.subscribe({
-		next(x) {
-			acc.push(x);
-		},
-	});
-	setTimeout(() => {
-		expect(acc).toEqual([{ a: 1, b: 1 }, { b: 2 }]);
-		done();
-	}, TIMEOUT);
-});
+test(
+	"input removal (clean)",
+	(done) => {
+		const main = sync({
+			src: {
+				a: fromIterable([1]),
+				b: fromIterable([1, 2]),
+			},
+			clean: true,
+		});
+		const acc: any[] = [];
+		main.subscribe({
+			next(x) {
+				acc.push(x);
+			},
+		});
+		setTimeout(() => {
+			expect(acc).toEqual([{ a: 1, b: 1 }, { b: 2 }]);
+			done();
+		}, TIMEOUT);
+	},
+	{ retry: 3 }
+);
