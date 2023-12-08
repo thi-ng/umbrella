@@ -280,12 +280,15 @@ export const $html = (
  *   `attribs` object and return value used
  * - array values are converted into space-delimited string
  *
- * CSS classs are to given as `class` attribute, with its value either a string
- * or an object of booleans. If the latter, the given class names are either
- * added to or removed from the current list of classes.
+ * CSS classes can be given as `class` attribute, with its value either a
+ * string, a string array or an object of booleans. If the latter, the given
+ * class names are either added to or removed from the current list of classes.
+ * See
+ * [`mergeClasses()`](https://docs.thi.ng/umbrella/hiccup/functions/mergeClasses.html)
+ * for details.
  *
  * CSS style rules can be defined via the `style` attrib. Please {@link $style}
- * for further details.
+ *  for further details.
  *
  * Data attributes are to be given as object under the `data` attribute name,
  * with its values being merged with the element's current `dataset` property.
