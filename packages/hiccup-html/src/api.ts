@@ -629,7 +629,7 @@ export interface Attribs
 	autocapitalize: AttribVal<
 		"off" | "on" | "sentences" | "words" | "characters"
 	>;
-	class: AttribVal<string | IObjectOf<BooleanAttrib>>;
+	class: AttribVal<string | string[] | IObjectOf<BooleanAttrib>>;
 	contenteditable: BooleanAttrib;
 	data: IObjectOf<AttribVal<string | number | boolean>>;
 	dir: AttribVal<"rtl" | "ltr">;
