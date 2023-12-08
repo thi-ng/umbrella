@@ -5347,6 +5347,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/rdom-forms@workspace:^, @thi.ng/rdom-forms@workspace:packages/rdom-forms":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/rdom-forms@workspace:packages/rdom-forms"
+  dependencies:
+    "@microsoft/api-extractor": ^7.38.3
+    "@thi.ng/api": ^8.9.10
+    "@thi.ng/checks": ^3.4.10
+    "@thi.ng/defmulti": ^3.0.8
+    "@thi.ng/hiccup-html": ^2.2.37
+    "@thi.ng/rdom": ^0.13.2
+    "@thi.ng/rstream": ^8.2.12
+    rimraf: ^5.0.5
+    tools: "workspace:^"
+    typedoc: ^0.25.4
+    typescript: ^5.3.2
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/rdom@^0.13.2, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rdom@workspace:packages/rdom"

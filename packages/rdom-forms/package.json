@@ -1,0 +1,86 @@
+{
+	"name": "@thi.ng/rdom-forms",
+	"version": "0.0.1",
+	"description": "Data-driven declarative HTML form generation",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-forms#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.9.10",
+		"@thi.ng/checks": "^3.4.10",
+		"@thi.ng/defmulti": "^3.0.8",
+		"@thi.ng/hiccup-html": "^2.2.37",
+		"@thi.ng/rdom": "^0.13.2",
+		"@thi.ng/rstream": "^8.2.12"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.38.3",
+		"rimraf": "^5.0.5",
+		"tools": "workspace:^",
+		"typedoc": "^0.25.4",
+		"typescript": "^5.3.2"
+	},
+	"keywords": [
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./compile": {
+			"default": "./compile.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/rdom",
+		"related": [
+			"rdom-components"
+		],
+		"status": "alpha",
+		"year": 2023
+	}
+}
