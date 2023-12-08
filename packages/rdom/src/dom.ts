@@ -381,14 +381,8 @@ const updateValueAttrib = (el: HTMLInputElement, value: any) => {
 		case "password":
 		case "search":
 		case "number":
-		case "email":
 		case "url":
 		case "tel":
-		case "date":
-		case "datetime-local":
-		case "time":
-		case "week":
-		case "month":
 			if ((ev = el.value) !== undefined && isString(value)) {
 				const off =
 					value.length - (ev.length - (el.selectionStart || 0));
