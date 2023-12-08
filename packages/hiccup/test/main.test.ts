@@ -35,6 +35,12 @@ check(
 );
 
 check(
+	"div w/ class merging (array)",
+	["div.foo", { class: ["bar", "baz"] }, "foo"],
+	`<div class="foo bar baz">foo</div>`
+);
+
+check(
 	"div w/ class merging (obj)",
 	["div.foo", { class: { foo: false, bar: true } }],
 	`<div class="bar"></div>`
