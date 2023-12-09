@@ -521,7 +521,17 @@ yarn workspace @thi.ng/transducers run build
 # or
 
 (cd packages/transducers && yarn build)
+
+# or
+
+(cd packages/transducers && yarn build:esbuild)
 ```
+
+Note: The `yarn build` script alias will also generate TS type declaration
+files. However, this step is only needed if updating the public API of a
+package. If you're confident it's not needed, using the `build:esbuild` alias is
+sufficient and much faster. Also, TS declaration files can be manually rebuilt
+via `build:decl`...
 
 ### Building example projects
 
@@ -567,10 +577,10 @@ Maintaining a large monorepo like this requires a lot of infrastructure and I'm
 grateful for the tooling provided by the following projects to simplify those
 tasks:
 
+- [bun](https://bun.sh)
 - [esbuild](https://github.com/evanw/esbuild)
 - [html-minifier-terser](https://terser.org/html-minifier-terser/)
 - [rimraf](https://github.com/isaacs/rimraf)
-- [ts-node](https://typestrong.org/ts-node)
 - [typedoc](https://typedoc.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](http://vitejs.dev/)
