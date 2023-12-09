@@ -381,20 +381,21 @@ export const compileForm: MultiFn2<
 					},
 					opts
 				);
-				const ctrl = radio(
-					__attribs(
-						{ ...opts.typeAttribs?.radio },
-						{ onchange: () => val.value!.next(item.value) },
-						{
-							...val,
-							id,
-							name: val.name || val.id,
-							value: item.value,
-						},
-						opts,
-						"checked"
-					)
-				);
+				const ctrl = radio({
+					...opts.typeAttribs?.radio,
+					...val.attribs,
+					onchange:
+						val.value && __useValues(opts)
+							? () => val.value!.next(item.value)
+							: undefined,
+					id: __genID(id, opts),
+					name: val.name || val.id,
+					checked:
+						val.value && __useValues(opts)
+							? val.value.map((x) => x === item.value)
+							: undefined,
+					value: item.value,
+				});
 				return div(
 					{ ...opts.typeAttribs?.radioItem },
 					...(opts.behaviors?.radioLabelBefore
