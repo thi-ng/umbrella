@@ -5,7 +5,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Attribs } from "@thi.ng/hiccup-html";
+import type { Attribs, FormAttribs } from "@thi.ng/hiccup-html";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import {
 	form as $form,
@@ -38,6 +38,7 @@ import {
 	$replace,
 	type ComponentLike,
 } from "@thi.ng/rdom";
+import type { ISubscribable } from "@thi.ng/rstream";
 import type {
 	Color,
 	Container,
@@ -75,13 +76,30 @@ import type {
 	Week,
 } from "./api.js";
 
-export const form = (...items: FormItem[]): Form => ({
+export const form = (
+	attribs: Partial<FormAttribs>,
+	...items: FormItem[]
+): Form => ({
 	type: "form",
+	attribs,
 	items,
 });
 
-export const container = (...items: FormItem[]): Container => ({
+export const container = (
+	attribs: Partial<Attribs>,
+	...items: FormItem[]
+): Container => ({
 	type: "container",
+	attribs,
+	items,
+});
+
+export const group = (
+	spec: Omit<Group, "type" | "id" | "items"> & { id?: string },
+	...items: FormItem[]
+): Group => ({
+	...spec,
+	type: "group",
 	items,
 });
 
@@ -92,9 +110,20 @@ export const custom = (body: ComponentLike): Custom => ({
 
 let __nextID = 0;
 
+type PartialSpec<T extends Value> = Omit<T, "type" | "id"> & { id?: string };
+
+type ReadonlyPartialSpec<T extends Value, V = string> = Omit<
+	T,
+	"type" | "id" | "readonly" | "value"
+> & {
+	id?: string;
+	readonly: true;
+	value?: ISubscribable<V>;
+};
+
 const $ =
-	<T extends FormItem>(type: string, defaults?: Partial<T>) =>
-	(spec: Omit<T, "type" | "id"> & { id?: string }): T =>
+	<T extends Value, R = string>(type: string, defaults?: Partial<T>) =>
+	(spec: PartialSpec<T> | ReadonlyPartialSpec<T, R>): T =>
 		<any>{
 			id: spec.id || `${type}-${__nextID++}`,
 			type,
@@ -102,36 +131,37 @@ const $ =
 			...spec,
 		};
 
-export const group = $<Group>("group");
-export const toggle = $<Toggle>("toggle");
-export const trigger = $<Trigger>("trigger");
-export const num = $<Num>("num");
-export const range = $<Range>("range");
 export const color = $<Color>("color");
-export const file = $<FileVal>("file");
-export const multiFile = $<MultiFileVal>("multiFile");
-export const str = $<Str>("str");
-export const text = $<Text>("text");
-export const search = $<Str>("search");
-export const email = $<Email>("email", { autocomplete: true });
-export const phone = $<Email>("tel", { autocomplete: true });
-export const url = $<UrlVal>("url");
-export const password = $<Password>("password", { autocomplete: true });
 export const date = $<DateVal>("date");
 export const dateTime = $<DateTime>("dateTime");
-export const time = $<Time>("time");
-export const week = $<Week>("week");
+export const email = $<Email>("email", { autocomplete: true });
+export const file = $<FileVal, never>("file");
 export const month = $<Month>("month");
-export const selectStr = $<SelectStr>("selectStr");
+export const multiFile = $<MultiFileVal, never>("multiFile");
+export const multiSelectNum = $<MultiSelectNum, number>("multiSelectNum");
 export const multiSelectStr = $<MultiSelectStr>("multiSelectStr");
-export const selectNum = $<SelectNum>("selectNum");
-export const multiSelectNum = $<MultiSelectNum>("multiSelectNum");
-export const radioNum = $<RadioNum>("radioNum");
+export const num = $<Num, number>("num");
+export const password = $<Password>("password", { autocomplete: true });
+export const phone = $<Email>("tel", { autocomplete: true });
+export const radioNum = $<RadioNum, number>("radioNum");
 export const radioStr = $<RadioStr>("radioStr");
+export const range = $<Range, number>("range");
+export const search = $<Str>("search");
+export const selectNum = $<SelectNum, number>("selectNum");
+export const selectStr = $<SelectStr>("selectStr");
+export const str = $<Str, string>("str");
+export const text = $<Text>("text");
+export const time = $<Time>("time");
+export const toggle = $<Toggle, boolean>("toggle");
+export const trigger = $<Trigger>("trigger");
+export const url = $<UrlVal>("url");
+export const week = $<Week>("week");
 
+/** @internal */
 const __genID = (id: string, opts: Partial<FormOpts>) =>
 	opts.prefix ? opts.prefix + id : id;
 
+/** @internal */
 const __genLabel = (
 	x: Pick<Value, "id" | "label" | "desc" | "labelAttribs" | "descAttribs">,
 	opts: Partial<FormOpts>
@@ -142,23 +172,30 @@ const __genLabel = (
 		x.desc ? span({ ...opts.descAttribs, ...x.descAttribs }, x.desc) : null
 	);
 
+/** @internal */
 const __genList = (id: string, list: NumOrString[]) =>
 	datalist({ id: id + "--list" }, ...list.map((value) => option({ value })));
 
+/** @internal */
 const __genCommon = (
 	val: Value & { list?: any[] },
 	opts: Partial<FormOpts>
 ) => {
 	const res: ComponentLike[] = [];
-	if (val.label !== false && opts.behaviors?.labels !== false)
+	if (val.label !== false && opts.behaviors?.labels !== false) {
 		res.push(__genLabel(val, opts));
-	if (val.list) res.push(__genList(__genID(val.id, opts), val.list));
+	}
+	if (val.list) {
+		res.push(__genList(__genID(val.id, opts), val.list));
+	}
 	return res;
 };
 
+/** @internal */
 const __attribs = (
 	attribs: Partial<Attribs>,
-	val: Value & { value: any; list?: any[] },
+	events: Partial<Attribs>,
+	val: Value & { value?: any; list?: any[] },
 	opts: Partial<FormOpts>,
 	value: string | false = "value"
 ) => {
@@ -168,16 +205,24 @@ const __attribs = (
 		name: val.name || val.id,
 		list: val.list ? id + "--list" : undefined,
 		required: val.required,
+		readonly: val.readonly,
 	});
-	if (value) attribs[value] = val.value;
+	if (!val.readonly) {
+		Object.assign(attribs, events);
+	}
+	if (value !== false) {
+		attribs[value] = val.value;
+	}
 	return attribs;
 };
 
+/** @internal */
 const __component = (
-	val: Value & { value: any; list?: any[] },
+	val: Value & { value?: any; list?: any[] },
 	opts: Partial<FormOpts>,
 	el: Fn<Partial<Attribs>, ComponentLike> | FnAny<ComponentLike>,
 	attribs: Partial<Attribs>,
+	events: Partial<Attribs>,
 	value: string | false = "value",
 	...body: any[]
 ) =>
@@ -185,29 +230,40 @@ const __component = (
 		{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
 		...__genCommon(val, opts),
 		// @ts-ignore extra args
-		el(__attribs(attribs, val, opts, value), ...body)
+		el(__attribs(attribs, events, val, opts, value), ...body)
 	);
 
+/** @internal */
 const __edit = <T extends Str>(val: T) => {
-	if (val.match) {
+	if (val.pattern) {
 		let match: Predicate<string>;
-		if (isFunction(val.match)) {
-			match = val.match;
+		if (isFunction(val.pattern)) {
+			match = val.pattern;
 		} else {
-			const re = isString(val.match) ? new RegExp(val.match) : val.match;
+			const re = isString(val.pattern)
+				? new RegExp(val.pattern)
+				: val.pattern;
 			match = (x: string) => re.test(x);
 		}
 		return (e: InputEvent) => {
 			const target = <HTMLInputElement>e.target;
 			const body = target.value;
 			const ok = match(body);
-			if (ok) val.value.next(body);
+			if (ok) val.value!.next(body);
 			$attribs(target, { invalid: !ok });
 		};
 	}
-	return $input(val.value);
+	return $input(val.value!);
 };
 
+/**
+ * Compiles given {@link FormItem} spec into a hiccup/rdom component, using
+ * provided options to customize attributes and behaviors.
+ *
+ * @remarks
+ * This function is polymorphic and dynamically extensible for new/custom form
+ * element types. See thi.ng/defmulti readme for instructions.
+ */
 export const compileForm: MultiFn2<
 	FormItem,
 	Partial<FormOpts>,
@@ -252,8 +308,11 @@ export const compileForm: MultiFn2<
 		group: ($val, opts) => {
 			const val = <Group>$val;
 			const children: ComponentLike[] = [];
-			if (val.label)
-				children.push(legend({ ...opts.groupLabelAttribs }, val.label));
+			if (val.label) {
+				children.push(
+					legend({ ...opts.typeAttribs?.groupLabel }, val.label)
+				);
+			}
 			return fieldset(
 				{ ...opts.typeAttribs?.group, ...val.attribs },
 				...children,
@@ -263,27 +322,33 @@ export const compileForm: MultiFn2<
 
 		custom: (val) => (<Custom>val).body,
 
-		toggle: ($val, opts) =>
-			__component(
-				<Toggle>$val,
-				opts,
-				checkbox,
-				{
-					...opts.typeAttribs?.toggle,
-					onchange: $inputCheckbox((<Toggle>$val).value),
-				},
-				"checked"
-			),
+		toggle: ($val, opts) => {
+			const val = <Toggle>$val;
+			const label = __genLabel(val, opts);
+			const ctrl = checkbox(
+				__attribs(
+					{ ...opts.typeAttribs?.toggle },
+					{ onchange: $inputCheckbox((<Toggle>$val).value!) },
+					val,
+					opts,
+					"checked"
+				)
+			);
+			return div(
+				{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
+				...(opts.behaviors?.toggleLabelBefore !== false
+					? [label, ctrl]
+					: [ctrl, label])
+			);
+		},
 
 		trigger: ($val, opts) =>
 			__component(
 				<Trigger>$val,
 				opts,
 				button,
-				{
-					...opts.typeAttribs?.trigger,
-					onchange: $inputTrigger((<Trigger>$val).value),
-				},
+				{ ...opts.typeAttribs?.trigger },
+				{ onchange: $inputTrigger((<Trigger>$val).value!) },
 				false,
 				(<Trigger>$val).title
 			),
@@ -308,16 +373,21 @@ export const compileForm: MultiFn2<
 					opts
 				);
 				const ctrl = radio({
+					...opts.typeAttribs?.radio,
 					...val.attribs,
-					onchange: () => val.value.next(item.value),
+					onchange: val.value
+						? () => val.value!.next(item.value)
+						: undefined,
 					id: __genID(id, opts),
 					name: val.name || val.id,
-					checked: val.value.map((x) => x === item.value),
+					checked: val.value
+						? val.value.map((x) => x === item.value)
+						: undefined,
 					value: item.value,
 				});
 				return div(
 					{ ...opts.typeAttribs?.radioItem },
-					...(opts.behaviors?.radioLabelBefore !== false
+					...(opts.behaviors?.radioLabelBefore
 						? [label, ctrl]
 						: [ctrl, label])
 				);
@@ -325,22 +395,25 @@ export const compileForm: MultiFn2<
 			return div(
 				{
 					...opts.wrapperAttribs,
-					...opts.typeAttribs?.radio,
+					...opts.typeAttribs?.radioWrapper,
 					...val.wrapperAttribs,
 				},
 				...__genCommon(val, opts),
 				div(
-					{ ...opts.typeAttribs?.radioItemWrapper },
+					{ ...opts.typeAttribs?.radioItems },
 					...val.items.map($option)
 				)
 			);
 		},
 
 		color: ($val, opts) =>
-			__component(<Color>$val, opts, inputColor, {
-				...opts.typeAttribs?.color,
-				onchange: $input((<Color>$val).value),
-			}),
+			__component(
+				<Color>$val,
+				opts,
+				inputColor,
+				{ ...opts.typeAttribs?.color },
+				{ onchange: $input((<Color>$val).value!) }
+			),
 
 		file: ($val, opts) => {
 			const val = <FileVal>$val;
@@ -351,12 +424,14 @@ export const compileForm: MultiFn2<
 				inputFile,
 				{
 					...opts.typeAttribs?.num,
-					onchange: isMulti
-						? $inputFiles((<MultiFileVal>$val).value)
-						: $inputFile(val.value),
 					accept: val.accept,
 					capture: val.capture,
 					multiple: isMulti,
+				},
+				{
+					onchange: isMulti
+						? $inputFiles((<MultiFileVal>$val).value!)
+						: $inputFile(val.value!),
 				},
 				false
 			);
@@ -364,15 +439,20 @@ export const compileForm: MultiFn2<
 
 		num: ($val, opts) => {
 			const val = <Num>$val;
-			return __component(val, opts, inputNumber, {
-				...opts.typeAttribs?.num,
-				onchange: $inputNum(val.value),
-				min: val.min,
-				max: val.max,
-				step: val.step,
-				placeholder: val.placeholder,
-				size: val.size,
-			});
+			return __component(
+				val,
+				opts,
+				inputNumber,
+				{
+					...opts.typeAttribs?.num,
+					min: val.min,
+					max: val.max,
+					step: val.step,
+					placeholder: val.placeholder,
+					size: val.size,
+				},
+				{ onchange: $inputNum(val.value!) }
+			);
 		},
 
 		range: ($val, opts) => {
@@ -382,25 +462,30 @@ export const compileForm: MultiFn2<
 			return div(
 				{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
 				...__genCommon(val, opts),
-				inputRange(
-					__attribs(
-						{
-							...opts.typeAttribs?.range,
-							[edit]: $inputNum(val.value),
-							min: val.min,
-							max: val.max,
-							step: val.step,
-						},
-						val,
-						opts
-					)
-				),
-				val.vlabel !== false
-					? span(
-							{ ...opts.rangeLabelAttribs },
-							val.value.map((x) => x.toFixed(val.vlabelPrec ?? 3))
-					  )
-					: undefined
+				div(
+					{},
+					inputRange(
+						__attribs(
+							{
+								...opts.typeAttribs?.range,
+								min: val.min,
+								max: val.max,
+								step: val.step,
+							},
+							{ [edit]: $inputNum(val.value!) },
+							val,
+							opts
+						)
+					),
+					val.value && val.vlabel !== false
+						? span(
+								{ ...opts.typeAttribs?.rangeLabel },
+								val.value.map((x) =>
+									x.toFixed(val.vlabelPrec ?? 3)
+								)
+						  )
+						: undefined
+				)
 			);
 		},
 
@@ -411,43 +496,59 @@ export const compileForm: MultiFn2<
 				($val.type !== "str" ? $val.type : "text");
 			const edit =
 				opts.behaviors?.strOnInput === false ? "onchange" : "oninput";
-			return __component(val, opts, inputText, {
-				...(opts.typeAttribs?.[val.type] || opts.typeAttribs?.str),
-				[edit]: __edit(val),
-				type,
-				autocomplete: (<any>val).autocomplete,
-				minlength: val.min,
-				maxlength: val.max,
-				placeholder: val.placeholder,
-				pattern: isString(val.match) ? val.match : undefined,
-				size: val.size,
-			});
+			return __component(
+				val,
+				opts,
+				inputText,
+				{
+					...(opts.typeAttribs?.[val.type] || opts.typeAttribs?.str),
+					type,
+					autocomplete: (<any>val).autocomplete,
+					minlength: val.min,
+					maxlength: val.max,
+					placeholder: val.placeholder,
+					pattern: isString(val.pattern) ? val.pattern : undefined,
+					size: val.size,
+				},
+				{ [edit]: __edit(val) }
+			);
 		},
 
 		text: ($val, opts) => {
 			const val = <Text>$val;
 			const edit =
 				opts.behaviors?.textOnInput === false ? "onchange" : "oninput";
-			return __component(val, opts, textArea, {
-				...opts.typeAttribs?.text,
-				[edit]: $input(val.value),
-				cols: val.cols,
-				rows: val.rows,
-				placeholder: val.placeholder,
-			});
+			return __component(
+				val,
+				opts,
+				textArea,
+				{
+					...opts.typeAttribs?.text,
+					cols: val.cols,
+					rows: val.rows,
+					placeholder: val.placeholder,
+				},
+				{ [edit]: $input(val.value!) }
+			);
 		},
 
 		date: ($val, opts) => {
 			const val = <DateVal>$val;
 			const type = { dateTime: "datetime-local" }[$val.type] || $val.type;
-			return __component(val, opts, inputText, {
-				...(opts.typeAttribs?.[$val.type] || opts.typeAttribs?.date),
-				onchange: $input(val.value),
-				type,
-				min: val.min,
-				max: val.max,
-				step: val.step,
-			});
+			return __component(
+				val,
+				opts,
+				inputText,
+				{
+					...(opts.typeAttribs?.[$val.type] ||
+						opts.typeAttribs?.date),
+					type,
+					min: val.min,
+					max: val.max,
+					step: val.step,
+				},
+				{ onchange: $input(val.value!) }
+			);
 		},
 
 		select: ($val, opts) => {
@@ -463,14 +564,17 @@ export const compileForm: MultiFn2<
 					item.label || item.value
 				);
 			};
-			const $select = (sel: NumOrString) =>
+			const $select = (sel?: NumOrString) =>
 				select(
 					__attribs(
 						{
-							...opts.typeAttribs?.select,
+							...(opts.typeAttribs?.[val.type] ||
+								opts.typeAttribs?.select),
+						},
+						{
 							onchange: isNumeric
-								? $inputNum(val.value)
-								: $input(val.value),
+								? $inputNum(val.value!)
+								: $input(val.value!),
 						},
 						val,
 						opts,
@@ -488,7 +592,7 @@ export const compileForm: MultiFn2<
 			return div(
 				{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
 				...__genCommon(val, opts),
-				$replace(val.value.map($select))
+				val.value ? $replace(val.value.map($select)) : $select()
 			);
 		},
 
@@ -498,13 +602,17 @@ export const compileForm: MultiFn2<
 			const coerce: Fn<HTMLOptionElement, NumOrString> = isNumeric
 				? (x) => parseFloat(x.value)
 				: (x) => x.value;
-			const sel = val.value.map((x) => (isArray(x) ? x : [x]));
+			const sel = val.value
+				? val.value.map((x) => (isArray(x) ? x : [x]))
+				: null;
 			const $option = ($item: any | SelectItem<any>) => {
 				const item = isPlainObject($item) ? $item : { value: $item };
 				return option(
 					{
 						value: item.value,
-						selected: sel.map(($sel) => $sel.includes(item.value)),
+						selected: sel
+							? sel.map(($sel) => $sel.includes(item.value))
+							: false,
 					},
 					item.label || item.value
 				);
@@ -514,17 +622,20 @@ export const compileForm: MultiFn2<
 				opts,
 				select,
 				{
-					...opts.typeAttribs?.multiSelect,
+					...(opts.typeAttribs?.[val.type] ||
+						opts.typeAttribs?.multiSelect),
+					multiple: true,
+					size: val.size,
+				},
+				{
 					onchange: (e: InputEvent) => {
-						val.value.next(
+						val.value!.next(
 							[
 								...(<HTMLSelectElement>e.target)
 									.selectedOptions,
 							].map(coerce)
 						);
 					},
-					multiple: true,
-					size: val.size,
 				},
 				false,
 				...val.items.map((item) =>

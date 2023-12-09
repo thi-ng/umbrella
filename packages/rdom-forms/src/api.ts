@@ -3,6 +3,7 @@ import type {
 	Attribs,
 	FormAttribs,
 	InputFileAttribs,
+	InputRadioAttribs,
 } from "@thi.ng/hiccup-html";
 import type { ComponentLike } from "@thi.ng/rdom";
 import type { ISubscriber, ISubscription } from "@thi.ng/rstream";
@@ -14,7 +15,13 @@ export interface CommonAttribs {
 }
 
 export interface FormItem {
+	/**
+	 * Value/widget type identifier. Used by {@link compileForm} to delegate
+	 */
 	type: string;
+	/**
+	 * Attrib overrides for the actual input element.
+	 */
 	attribs?: Partial<Attribs>;
 }
 
@@ -46,17 +53,24 @@ export interface Value extends FormItem, Partial<CommonAttribs> {
 	label?: string | false;
 	desc?: any;
 	required?: boolean;
+	readonly?: boolean;
 }
 
-export interface Num extends Value {
+export interface WithPresets<T> {
+	/**
+	 * Array of possible preset values.
+	 */
+	list?: T[];
+}
+
+export interface Num extends Value, WithPresets<number> {
 	type: "num";
-	list?: number[];
 	min?: number;
 	max?: number;
 	placeholder?: string;
 	size?: number;
 	step?: number;
-	value: ISubscription<number, number>;
+	value?: ISubscription<number, number>;
 }
 
 export interface Range extends Omit<Num, "type" | "placeholder" | "size"> {
@@ -65,15 +79,14 @@ export interface Range extends Omit<Num, "type" | "placeholder" | "size"> {
 	vlabelPrec?: number;
 }
 
-export interface Str extends Value {
+export interface Str extends Value, WithPresets<string> {
 	type: "str";
-	list?: string[];
 	min?: number;
 	max?: number;
-	match?: string | RegExp | Predicate<string>;
+	pattern?: string | RegExp | Predicate<string>;
 	placeholder?: string;
 	size?: number;
-	value: ISubscription<string, string>;
+	value?: ISubscription<string, string>;
 }
 
 export interface Email extends Omit<Str, "type"> {
@@ -100,22 +113,20 @@ export interface Text extends Value {
 	cols?: number;
 	rows?: number;
 	placeholder?: string;
-	value: ISubscription<string, string>;
+	value?: ISubscription<string, string>;
 }
 
-export interface Color extends Value {
+export interface Color extends Value, WithPresets<string> {
 	type: "color";
-	list?: string[];
-	value: ISubscription<string, string>;
+	value?: ISubscription<string, string>;
 }
 
-export interface DateTime extends Value {
+export interface DateTime extends Value, WithPresets<string> {
 	type: "dateTime";
 	min?: string;
 	max?: string;
 	step?: number;
-	list?: string[];
-	value: ISubscription<string, string>;
+	value?: ISubscription<string, string>;
 }
 
 export interface DateVal extends Omit<DateTime, "type"> {
@@ -136,7 +147,7 @@ export interface Month extends Omit<DateTime, "type" | "list"> {
 
 export interface Select<T> extends Value {
 	items: (T | SelectItem<T> | SelectItemGroup<T>)[];
-	value: ISubscription<T, T>;
+	value?: ISubscription<T, T>;
 }
 
 export interface SelectItemGroup<T> {
@@ -159,7 +170,7 @@ export interface SelectNum extends Select<number> {
 
 export interface MultiSelect<T> extends Value {
 	items: (T | SelectItem<T> | SelectItemGroup<T>)[];
-	value: ISubscription<T[], T[]>;
+	value?: ISubscription<T[], T[]>;
 	size?: number;
 }
 
@@ -173,18 +184,18 @@ export interface MultiSelectNum extends MultiSelect<number> {
 
 export interface Toggle extends Value {
 	type: "toggle";
-	value: ISubscription<boolean, boolean>;
+	value?: ISubscription<boolean, boolean>;
 }
 
 export interface Trigger extends Value {
 	type: "trigger";
 	title: string;
-	value: ISubscriber<boolean>;
+	value?: ISubscriber<boolean>;
 }
 
 export interface Radio<T> extends Value {
 	items: (T | SelectItem<T>)[];
-	value: ISubscription<T, T>;
+	value?: ISubscription<T, T>;
 }
 
 export interface RadioNum extends Radio<number> {
@@ -199,18 +210,18 @@ export interface FileVal extends Value {
 	type: "file";
 	accept?: string[];
 	capture?: InputFileAttribs["capture"];
-	value: ISubscriber<File>;
+	value?: ISubscriber<File>;
 }
 
 export interface MultiFileVal extends Value {
 	type: "multiFile";
 	accept?: string[];
-	value: ISubscriber<FileList>;
+	value?: ISubscriber<FileList>;
 }
 
 type KnownTypes =
-	| Container
 	| Color
+	| Container
 	| DateTime
 	| DateVal
 	| Email
@@ -224,6 +235,8 @@ type KnownTypes =
 	| Password
 	| Phone
 	| Range
+	| SelectNum
+	| SelectStr
 	| Str
 	| Text
 	| Time
@@ -232,33 +245,96 @@ type KnownTypes =
 	| UrlVal
 	| Week;
 
-type KnownTypeAttribs =
-	| KnownTypes["type"]
-	| "radio"
-	| "radioItem"
-	| "radioItemLabel"
-	| "radioItemWrapper"
-	| "select";
-
+/**
+ * Type specific attribute overrides
+ */
 export interface TypeAttribs
-	extends Record<KnownTypeAttribs, Partial<Attribs>> {
+	extends Record<KnownTypes["type"], Partial<Attribs>> {
 	form: Partial<FormAttribs>;
+	/**
+	 * Attribs for {@link group} label elements
+	 */
+	groupLabel: Partial<Attribs>;
+	/**
+	 * Attribs for the actual {@link radio} `<input>` element
+	 */
+	radio: Partial<InputRadioAttribs>;
+	/**
+	 * Attribs for the outermost {@link radio} group wrapper element (incl. main
+	 * group label)
+	 */
+	radioWrapper: Partial<Attribs>;
+	/**
+	 * Attribs for the wrapper element only containing the {@link radio} items.
+	 */
+	radioItems: Partial<Attribs>;
+	/**
+	 * Attribs for the wrapper element of a single {@link radio} item (incl.
+	 * input element and its label)
+	 */
+	radioItem: Partial<Attribs>;
+	/**
+	 * Attribs for a single {@link radio} item's label
+	 */
+	radioItemLabel: Partial<Attribs>;
+	/**
+	 * Attribs for {@link range} label elements
+	 */
+	rangeLabelAttribs: Partial<Attribs>;
+
 	[id: string]: Partial<Attribs>;
 }
 
 export interface FormOpts extends CommonAttribs {
+	/**
+	 * ID prefix to prepend for all {@link FormItem}s. Needed if the a form is
+	 * to used in multiple places at the same time.
+	 */
 	prefix: string;
+	/**
+	 * Type specific behavior options.
+	 */
 	behaviors: Partial<BehaviorOpts>;
+	/**
+	 * Type specific attrib overrides
+	 */
 	typeAttribs: Partial<TypeAttribs>;
-	groupLabelAttribs: Partial<Attribs>;
-	rangeLabelAttribs: Partial<Attribs>;
 }
 
 export interface BehaviorOpts {
+	/**
+	 * If false, no label elements will be generated.
+	 *
+	 * @defaultValue true
+	 */
 	labels: boolean;
+	/**
+	 * Unless false, {@link range} widgets will emit `oninput` events, if false
+	 * only `onchange` events.
+	 *
+	 * @defaultValue true
+	 */
 	rangeOnInput: boolean;
+	/**
+	 * Unless false, {@link str}-like widgets will emit `oninput` events, if
+	 * false only `onchange` events.
+	 *
+	 * @defaultValue true
+	 */
 	strOnInput: boolean;
+	/**
+	 * Unless false, {@link text} elements will emit `oninput` events, if false
+	 * only `onchange` events.
+	 *
+	 * @defaultValue true
+	 */
 	textOnInput: boolean;
+	/**
+	 * If true, the label for individual radio items will come before the actual
+	 * input element. By default, the order is reversed.
+	 *
+	 * @defaultValue false
+	 */
 	radioLabelBefore: boolean;
 	toggleLabelBefore: boolean;
 }
