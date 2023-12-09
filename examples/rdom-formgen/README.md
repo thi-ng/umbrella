@@ -1,6 +1,6 @@
 # rdom-formgen
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/rdom-formgen/)
 
