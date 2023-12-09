@@ -2,7 +2,7 @@ import { selectDefinedKeysObj } from "@thi.ng/associative";
 
 export const normalizePackage = (pkg: any) => {
 	pkg.type = "module";
-	!pkg.engines && (pkg.engines = { node: ">=14" });
+	!pkg.engines && (pkg.engines = { node: ">=18" });
 	delete pkg.main;
 	delete pkg["umd:main"];
 
