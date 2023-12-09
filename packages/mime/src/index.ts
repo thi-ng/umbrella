@@ -54,3 +54,5 @@ export const preferredExtension = (mime: string, fallback = "bin") => {
 		? ext.find((x) => x[0] !== "*") || ext[0].substring(1)
 		: fallback;
 };
+
+export * from "./presets.js";
