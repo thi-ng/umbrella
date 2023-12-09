@@ -26,7 +26,7 @@ jobs:
             - uses: goto-bus-stop/setup-zig@v2
             - uses: oven-sh/setup-bun@v1
               with:
-                  version: 0.11.0
+                  bun-version: latest
             - run: yarn install --immutable
             - run: yarn test
             - run: yarn tool:imports
