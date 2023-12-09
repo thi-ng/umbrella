@@ -27,7 +27,9 @@
 	"author": "Karsten Schmidt (https://thi.ng)",
 	"license": "Apache-2.0",
 	"scripts": {
-		"build": "yarn clean && tsc --declaration && yarn build:peg",
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --minify-syntax --tsconfig=tsconfig.json --outdir=. src/**/*.ts && yarn build:peg",
 		"build:peg": "pegjs -f es -o parser.js src/grammar.pegjs",
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
@@ -46,6 +48,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
+		"esbuild": "^0.19.8",
 		"pegjs": "0.11.0-master.b7b87ea",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",

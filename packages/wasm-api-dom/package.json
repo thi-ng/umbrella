@@ -27,7 +27,9 @@
 	],
 	"license": "Apache-2.0",
 	"scripts": {
-		"build": "yarn clean && tsc --declaration",
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --minify-syntax --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"build:types": "npx wasm-api-bindgen -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc generated",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
@@ -46,6 +48,7 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
 		"@thi.ng/wasm-api-bindgen": "^0.4.32",
+		"esbuild": "^0.19.8",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.4",
