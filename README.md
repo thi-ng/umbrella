@@ -37,8 +37,8 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to currently 185 individual TypeScript packages and
-~145 example projects illustrating their usage, currently totalling ~195k SLOC
+This mono-repository is home to currently 186 individual TypeScript packages and
+~150 example projects illustrating their usage, currently totalling ~195k SLOC
 and ~3850 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
@@ -102,7 +102,7 @@ All packages:
 
 The sheer number and varied nature & purpose of these [packages](#packages)
 makes it impossible to provide traditional "Getting started" tutorials. To
-compensate, this repo provides ~145 [example projects](#examples--showcase),
+compensate, this repo provides ~150 [example projects](#examples--showcase),
 detailed package readmes (at the very least for all the larger and/or more
 important ones), as well as hundreds of small usage examples/snippets in various
 doc strings.
@@ -181,7 +181,7 @@ visual outputs/results).
 
 ## Examples & Showcase
 
-There's a steadily growing number (~145) of standalone examples of different
+There's a steadily growing number (~150) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
@@ -249,12 +249,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-12-03
+As of: 2023-12-09
 
-| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
-|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/geom`](./packages/geom)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)       | [changelog](./packages/geom/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-new-yellow) | [`@thi.ng/msgpack`](./packages/msgpack) | [![version](https://img.shields.io/npm/v/@thi.ng/msgpack.svg)](https://www.npmjs.com/package/@thi.ng/msgpack) | [changelog](./packages/msgpack/CHANGELOG.md) |
+| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
+|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup`](./packages/hiccup)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)           | [changelog](./packages/hiccup/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/mime`](./packages/mime)               | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)               | [changelog](./packages/mime/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/rdom`](./packages/rdom)               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)               | [changelog](./packages/rdom/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/rdom-forms`](./packages/rdom-forms)   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)   | [changelog](./packages/rdom-forms/CHANGELOG.md)  |
 
 ### Fundamentals
 
@@ -411,6 +414,7 @@ As of: 2023-12-03
 | [`@thi.ng/rdom`](./packages/rdom)                               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                               | [changelog](./packages/rdom/CHANGELOG.md)                | Reactive, diff-less, async UI components         |
 | [`@thi.ng/rdom-canvas`](./packages/rdom-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)                 | [changelog](./packages/rdom-canvas/CHANGELOG.md)         | rdom component wrapper for thi.ng/hiccup-canvas  |
 | [`@thi.ng/rdom-components`](./packages/rdom-components)         | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components)         | [changelog](./packages/rdom-components/CHANGELOG.md)     | Unstyled, customizable component collection      |
+| [`@thi.ng/rdom-forms`](./packages/rdom-forms)                   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)                   | [changelog](./packages/rdom-forms/CHANGELOG.md)          | Datadriven HTML form generation                  |
 | [`@thi.ng/router`](./packages/router)                           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                           | [changelog](./packages/router/CHANGELOG.md)              | Customizable browser & non-browser router        |
 | [`@thi.ng/text-canvas`](./packages/text-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)                 | [changelog](./packages/text-canvas/CHANGELOG.md)         | Text-mode canvas, drawing, tables, charts        |
 | [`@thi.ng/text-format`](./packages/text-format)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)                 | [changelog](./packages/text-format/CHANGELOG.md)         | Color text formatting w/ ANSI & HTML presets     |
@@ -571,7 +575,6 @@ tasks:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](http://vitejs.dev/)
 - [@thi.ng/monopub](https://github.com/thi-ng/monopub)
-- [@ygoe/msgpack](https://github.com/ygoe/msgpack.js)
 
 ## License
 
