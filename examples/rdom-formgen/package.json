@@ -1,0 +1,40 @@
+{
+	"name": "@example/rdom-formgen",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Basic usage of the declarative rdom-forms generator",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --host --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.3.2",
+		"vite": "^5.0.4"
+	},
+	"dependencies": {
+		"@thi.ng/hiccup": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/mime": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-forms": "workspace:^",
+		"@thi.ng/rstream": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"hiccup-html",
+			"pixel",
+			"rdom",
+			"rdom-forms",
+			"rstream"
+		],
+		"screenshot": "examples/rdom-formgen.jpg"
+	}
+}

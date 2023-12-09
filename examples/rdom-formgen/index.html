@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link
+			rel="icon"
+			href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛱️</text></svg>'
+		/>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>rdom-formgen · @thi.ng/umbrella</title>
+		<link
+			href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			input,
+			textarea,
+			select[multiple] {
+				box-sizing: border-box;
+				border: 0;
+				padding: 0.5rem;
+			}
+
+			input[type="color"],
+			input[type="range"],
+			input[type="file"] {
+				padding: 0;
+			}
+
+			input:required,
+			select:required,
+			textarea:required {
+				border-left: 0.5rem solid #ff6;
+			}
+
+			input[type="text"]:valid,
+			input[type="number"]:valid,
+			input[type="password"]:valid,
+			input[type="email"]:valid,
+			input[type="tel"]:valid,
+			input[type="url"]:valid,
+			input[type="date"]:valid,
+			input[type="datetime-local"]:valid,
+			input[type="week"]:valid,
+			input[type="month"]:valid,
+			input[type="time"]:valid {
+				border-left: 0.5rem solid #9f9;
+			}
+
+			input:invalid {
+				border-left: 0.5rem solid #f99;
+			}
+
+			fieldset:disabled {
+				opacity: 0.33;
+			}
+
+			.thumbnails {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 0.5rem;
+			}
+
+			@media screen and (min-width: 30rem) {
+				.thumbnails {
+					grid-template-columns: 1fr 1fr 1fr 1fr;
+				}
+			}
+
+			@media screen and (min-width: 60rem) {
+				#form {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					gap: 1rem;
+				}
+
+				.widget {
+					display: grid;
+					grid-template-columns: 8rem 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body class="sans-serif">
+		<div id="app"></div>
+		<div>
+			<a
+				class="link"
+				href="https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen"
+				>Source code</a
+			>
+		</div>
+		<script type="module" src="/src/index.ts"></script>
+	</body>
+</html>
