@@ -68,7 +68,7 @@ For Node.js REPL:
 const rdomForms = await import("@thi.ng/rdom-forms");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.10 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.13 KB
 
 ## Dependencies
 

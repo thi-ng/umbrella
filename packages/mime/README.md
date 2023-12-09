@@ -63,7 +63,7 @@ For Node.js REPL:
 const mime = await import("@thi.ng/mime");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.51 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.55 KB
 
 ## Dependencies
 
