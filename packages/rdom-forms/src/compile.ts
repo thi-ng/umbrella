@@ -200,18 +200,24 @@ const __attribs = (
 	value: string | false = "value"
 ) => {
 	const id = __genID(val.id, opts);
-	Object.assign(attribs, val.attribs, {
-		id,
-		name: val.name || val.id,
-		list: val.list ? id + "--list" : undefined,
-		required: val.required,
-		readonly: val.readonly,
-	});
-	if (!val.readonly) {
-		Object.assign(attribs, events);
-	}
-	if (value !== false) {
-		attribs[value] = val.value;
+	Object.assign(
+		attribs,
+		{
+			id,
+			name: val.name || val.id,
+			list: val.list ? id + "--list" : undefined,
+			required: val.required,
+			readonly: val.readonly,
+		},
+		val.attribs
+	);
+	if (__useValues(opts)) {
+		if (!val.readonly) {
+			Object.assign(attribs, events);
+		}
+		if (value !== false) {
+			attribs[value] = val.value;
+		}
 	}
 	return attribs;
 };
@@ -255,6 +261,9 @@ const __edit = <T extends Str>(val: T) => {
 	}
 	return $input(val.value!);
 };
+
+const __useValues = (opts: Partial<FormOpts>) =>
+	opts.behaviors?.values !== false;
 
 /**
  * Compiles given {@link FormItem} spec into a hiccup/rdom component, using
@@ -372,19 +381,20 @@ export const compileForm: MultiFn2<
 					},
 					opts
 				);
-				const ctrl = radio({
-					...opts.typeAttribs?.radio,
-					...val.attribs,
-					onchange: val.value
-						? () => val.value!.next(item.value)
-						: undefined,
-					id: __genID(id, opts),
-					name: val.name || val.id,
-					checked: val.value
-						? val.value.map((x) => x === item.value)
-						: undefined,
-					value: item.value,
-				});
+				const ctrl = radio(
+					__attribs(
+						{ ...opts.typeAttribs?.radio },
+						{ onchange: () => val.value!.next(item.value) },
+						{
+							...val,
+							id,
+							name: val.name || val.id,
+							value: item.value,
+						},
+						opts,
+						"checked"
+					)
+				);
 				return div(
 					{ ...opts.typeAttribs?.radioItem },
 					...(opts.behaviors?.radioLabelBefore
@@ -477,7 +487,7 @@ export const compileForm: MultiFn2<
 							opts
 						)
 					),
-					val.value && val.vlabel !== false
+					val.value && val.vlabel !== false && __useValues(opts)
 						? span(
 								{ ...opts.typeAttribs?.rangeLabel },
 								val.value.map((x) =>
@@ -592,7 +602,9 @@ export const compileForm: MultiFn2<
 			return div(
 				{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
 				...__genCommon(val, opts),
-				val.value ? $replace(val.value.map($select)) : $select()
+				val.value && __useValues(opts)
+					? $replace(val.value.map($select))
+					: $select()
 			);
 		},
 
@@ -602,9 +614,10 @@ export const compileForm: MultiFn2<
 			const coerce: Fn<HTMLOptionElement, NumOrString> = isNumeric
 				? (x) => parseFloat(x.value)
 				: (x) => x.value;
-			const sel = val.value
-				? val.value.map((x) => (isArray(x) ? x : [x]))
-				: null;
+			const sel =
+				val.value && __useValues(opts)
+					? val.value.map((x) => (isArray(x) ? x : [x]))
+					: null;
 			const $option = ($item: any | SelectItem<any>) => {
 				const item = isPlainObject($item) ? $item : { value: $item };
 				return option(

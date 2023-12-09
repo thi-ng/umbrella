@@ -309,6 +309,12 @@ export interface BehaviorOpts {
 	 */
 	labels: boolean;
 	/**
+	 * If false, no `value` attributes and event handlers will be generated.
+	 *
+	 * @defaultValue true
+	 */
+	values: boolean;
+	/**
 	 * Unless false, {@link range} widgets will emit `oninput` events, if false
 	 * only `onchange` events.
 	 *
