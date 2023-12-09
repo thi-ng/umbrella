@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-dom",
-	"version": "0.11.52",
+	"version": "0.11.53",
 	"description": "Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications",
 	"type": "module",
 	"module": "./index.js",
@@ -37,15 +37,15 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "^2.2.26",
-		"@thi.ng/api": "^8.9.10",
-		"@thi.ng/errors": "^2.4.4",
-		"@thi.ng/prefixes": "^2.2.6",
-		"@thi.ng/wasm-api": "^1.4.35"
+		"@thi.ng/adapt-dpi": "^2.2.27",
+		"@thi.ng/api": "^8.9.11",
+		"@thi.ng/errors": "^2.4.5",
+		"@thi.ng/prefixes": "^2.2.7",
+		"@thi.ng/wasm-api": "^1.4.36"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/wasm-api-bindgen": "^0.4.31",
+		"@thi.ng/wasm-api-bindgen": "^0.4.32",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.4",

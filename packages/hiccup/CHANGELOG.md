@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-03T12:13:31Z
+- **Last updated**: 2023-12-09T19:12:03Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.1.0) (2023-12-09)
+
+#### 🚀 Features
+
+- allow `class` attrib as string array ([448edd0](https://github.com/thi-ng/umbrella/commit/448edd0))
+  - update mergeClasses()
+  - update docs & tests
+
+#### 🩹 Bug fixes
+
+- fix mergeClasses(), add tests ([c734794](https://github.com/thi-ng/umbrella/commit/c734794))
 
 ### [5.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.0.6) (2023-11-09)
 

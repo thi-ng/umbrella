@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/arrays",
-	"version": "2.7.6",
+	"version": "2.7.7",
 	"description": "Array / Arraylike utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -33,12 +33,12 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.10",
-		"@thi.ng/checks": "^3.4.10",
-		"@thi.ng/compare": "^2.2.6",
-		"@thi.ng/equiv": "^2.1.35",
-		"@thi.ng/errors": "^2.4.4",
-		"@thi.ng/random": "^3.6.16"
+		"@thi.ng/api": "^8.9.11",
+		"@thi.ng/checks": "^3.4.11",
+		"@thi.ng/compare": "^2.2.7",
+		"@thi.ng/equiv": "^2.1.36",
+		"@thi.ng/errors": "^2.4.5",
+		"@thi.ng/random": "^3.6.17"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

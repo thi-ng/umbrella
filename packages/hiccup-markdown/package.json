@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-markdown",
-	"version": "3.2.46",
+	"version": "3.2.47",
 	"description": "Markdown parser & serializer from/to Hiccup format",
 	"type": "module",
 	"module": "./index.js",
@@ -33,17 +33,17 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.10",
-		"@thi.ng/arrays": "^2.7.6",
-		"@thi.ng/checks": "^3.4.10",
-		"@thi.ng/defmulti": "^3.0.8",
-		"@thi.ng/emoji": "^0.1.16",
-		"@thi.ng/errors": "^2.4.4",
-		"@thi.ng/hiccup": "^5.0.9",
+		"@thi.ng/api": "^8.9.11",
+		"@thi.ng/arrays": "^2.7.7",
+		"@thi.ng/checks": "^3.4.11",
+		"@thi.ng/defmulti": "^3.0.9",
+		"@thi.ng/emoji": "^0.1.17",
+		"@thi.ng/errors": "^2.4.5",
+		"@thi.ng/hiccup": "^5.1.0",
 		"@thi.ng/logger": "^2.0.1",
-		"@thi.ng/parse": "^2.4.8",
-		"@thi.ng/strings": "^3.7.1",
-		"@thi.ng/text-canvas": "^2.6.21"
+		"@thi.ng/parse": "^2.4.9",
+		"@thi.ng/strings": "^3.7.2",
+		"@thi.ng/text-canvas": "^2.6.22"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

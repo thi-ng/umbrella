@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/boids",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"description": "n-dimensional boids simulation with highly configurable behaviors",
 	"type": "module",
 	"module": "./index.js",
@@ -33,11 +33,11 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.10",
-		"@thi.ng/distance": "^2.4.32",
-		"@thi.ng/geom-accel": "^3.5.32",
-		"@thi.ng/timestep": "^0.5.7",
-		"@thi.ng/vectors": "^7.8.7"
+		"@thi.ng/api": "^8.9.11",
+		"@thi.ng/distance": "^2.4.33",
+		"@thi.ng/geom-accel": "^3.5.33",
+		"@thi.ng/timestep": "^0.5.8",
+		"@thi.ng/vectors": "^7.8.8"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

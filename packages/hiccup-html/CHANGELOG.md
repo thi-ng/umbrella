@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-03T12:13:31Z
+- **Last updated**: 2023-12-09T19:12:03Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.3.0) (2023-12-09)
+
+#### 🚀 Features
+
+- update Attribs.class type, allow string array ([e82c3b4](https://github.com/thi-ng/umbrella/commit/e82c3b4))
 
 ### [2.2.33](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.2.33) (2023-11-09)
 

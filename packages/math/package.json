@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/math",
-	"version": "5.7.5",
+	"version": "5.7.6",
 	"description": "Assorted common math functions & utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -36,7 +36,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.10"
+		"@thi.ng/api": "^8.9.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

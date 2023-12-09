@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/heaps",
-	"version": "2.1.46",
+	"version": "2.1.47",
 	"description": "Various heap implementations for arbitrary values and with customizable ordering",
 	"type": "module",
 	"module": "./index.js",
@@ -34,9 +34,9 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.10",
-		"@thi.ng/compare": "^2.2.6",
-		"@thi.ng/equiv": "^2.1.35"
+		"@thi.ng/api": "^8.9.11",
+		"@thi.ng/compare": "^2.2.7",
+		"@thi.ng/equiv": "^2.1.36"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
