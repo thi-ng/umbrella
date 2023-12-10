@@ -1,4 +1,5 @@
 import type { IntBuffer } from "@thi.ng/pixel";
+import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { syncRAF } from "@thi.ng/rstream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { map } from "@thi.ng/transducers/map";
@@ -44,7 +45,7 @@ const fileChooser = [
 		"input.f7",
 		{
 			type: "file",
-			accept: "image/png, image/jpeg, image/webp",
+			accept: MIME_IMAGE_COMMON,
 			onchange: (e: any) => dispatch([SET_IMAGE, e.target.files[0]]),
 		},
 	],

@@ -6,6 +6,7 @@ import {
 	main,
 	type InputFileAttribs,
 } from "@thi.ng/hiccup-html";
+import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { $compile, $inputTrigger } from "@thi.ng/rdom";
 import { inputVectorCoord, staticDropdown } from "@thi.ng/rdom-components";
 import { Stream, reactive, stream, sync } from "@thi.ng/rstream";
@@ -106,7 +107,7 @@ $compile(
 			{},
 			fileButton(
 				{
-					accept: ["image/jpeg", "image/png", "image/webp"],
+					accept: MIME_IMAGE_COMMON,
 					onchange: (e) =>
 						src.next((<HTMLInputElement>e.target).files![0]),
 				},

@@ -87,8 +87,7 @@ const FORM = f.container(
 			min: 0,
 			max: 100,
 			value: range,
-			// vlabel: false,
-			vlabelPrec: 0,
+			vlabel: 0,
 			list: [0, 20, 25, 33, 50, 66, 75, 80, 100],
 		}),
 		f.color({

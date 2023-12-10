@@ -20,9 +20,11 @@
 		"@thi.ng/color": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/intervals": "workspace:^",
+		"@thi.ng/mime": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/random": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-forms": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},

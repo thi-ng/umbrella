@@ -1,16 +1,8 @@
 import { timed } from "@thi.ng/bench";
 import { abgr32, luminanceAbgr32, sortMapped } from "@thi.ng/color";
-import {
-	checkbox,
-	div,
-	h1,
-	inputFile,
-	inputNumber,
-	inputRange,
-	label,
-	type InputNumericAttribs,
-} from "@thi.ng/hiccup-html";
+import { div, h1 } from "@thi.ng/hiccup-html";
 import { closedOpen, intersection } from "@thi.ng/intervals";
+import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import {
 	ABGR8888,
 	imageFromFile,
@@ -19,7 +11,14 @@ import {
 } from "@thi.ng/pixel";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $replace, Component, type NumOrElement } from "@thi.ng/rdom";
-import { CloseMode, Stream, reactive, stream, sync } from "@thi.ng/rstream";
+import {
+	compileForm,
+	container,
+	file,
+	range,
+	toggle,
+} from "@thi.ng/rdom-forms";
+import { CloseMode, reactive, stream, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 
 interface ProcessParams {
@@ -41,7 +40,7 @@ const pixelSortBuffer = (
 	buf: IntBuffer,
 	{ iter, horizontal, reverse, min, max }: ProcessParams
 ) => {
-	const { pixels, width, height } = buf;
+	const { data, width, height } = buf;
 	const row = closedOpen(0, width);
 	const column = closedOpen(0, height);
 	for (let i = iter; i-- > 0; ) {
@@ -61,7 +60,7 @@ const pixelSortBuffer = (
 		// if vertical order, there will be `width` elements between each selected pixel
 		const strip = abgr32.mapBuffer(
 			// buffer to map
-			pixels,
+			data,
 			// num pixels to map
 			(horizontal ? ix : iy).size,
 			// start index in pixel buffer
@@ -84,7 +83,7 @@ const processImage = (img: HTMLImageElement, opts: ProcessParams) =>
 	timed(() => pixelSortBuffer(intBufferFromImage(img, ABGR8888), opts));
 
 // stream of input files
-const file = stream<File>();
+const imgFile = stream<File>();
 // images read from files
 const image = stream<HTMLImageElement>();
 
@@ -116,7 +115,7 @@ const result = sync({
 
 // triggers reading file as an image
 // once ready, puts image into `image` stream for further processing
-file.subscribe({
+imgFile.subscribe({
 	next: async (file) => {
 		image.next(await imageFromFile(file));
 	},
@@ -144,87 +143,54 @@ class PixelCanvas extends Component {
 	}
 }
 
-// UI component, grouping a form field label & input slider
-// slider is linked w/ given value stream
-const labeledRange = (
-	stream: Stream<number>,
-	id: string,
-	labelBody: string,
-	opts: Partial<InputNumericAttribs>
-) => {
-	const onchange = (e: InputEvent) =>
-		stream.next(parseInt((<HTMLInputElement>e.target).value));
-	return div(
-		".mb2",
-		{},
-		label(".dib.w4", { for: id }, labelBody),
-		inputRange({
-			...opts,
-			id,
-			value: stream,
-			onchange,
-		}),
-		inputNumber(".ml3.w4.tr", {
-			...opts,
-			value: stream,
-			onchange,
-		})
-	);
-};
-
-// UI component, grouping a form field label & checkbox
-// checkbox is linked w/ given value stream
-const labeledCheckbox = (
-	stream: Stream<boolean>,
-	id: string,
-	labelBody: string
-) =>
-	div(
-		".mb2",
-		{},
-		label(".dib.w4", { for: id }, labelBody),
-		checkbox({
-			id,
-			checked: stream,
-			onchange: (e) =>
-				stream.next(!!(<HTMLInputElement>e.target).checked),
-		})
-	);
-
 // compile & mount main UI
 $compile(
 	div(
 		{},
 		h1({}, "Glitch my pic!"),
-		div(
-			".mb2",
-			{},
-			label(".dib.w4", { for: "file" }, "Image"),
-			inputFile({
-				id: "file",
-				accept: ["image/jpeg", "image/png", "image/gif"],
-				multiple: false,
-				onchange: (e) =>
-					file.next((<HTMLInputElement>e.target).files![0]),
-			})
+		compileForm(
+			container(
+				{ class: "mb2" },
+				file({
+					label: "Image",
+					accept: MIME_IMAGE_COMMON,
+					value: imgFile,
+				}),
+				range({
+					label: "Iterations",
+					min: 0,
+					max: 50000,
+					step: 1000,
+					value: iter,
+				}),
+				range({
+					label: "Min. scatter",
+					min: 0,
+					max: 200,
+					step: 5,
+					value: min,
+				}),
+				range({
+					label: "Max. scatter",
+					min: 0,
+					max: 200,
+					step: 5,
+					value: max,
+				}),
+				toggle({ label: "Horizontal", value: horizontal }),
+				toggle({ label: "Reverse order", value: reverse })
+			),
+			{
+				labelAttribs: { class: "dib w4 v-top" },
+				wrapperAttribs: { class: "mb2" },
+				typeAttribs: {
+					range: { class: "w4 w5-l" },
+					rangeWrapper: { class: "dib" },
+					rangeLabel: { class: "ml3 v-top" },
+				},
+				behaviors: { rangeLabelFmt: 0 },
+			}
 		),
-		labeledRange(iter, "iter", "Iterations", {
-			min: 0,
-			max: 50000,
-			step: 1000,
-		}),
-		labeledRange(min, "min", "Min. scatter", {
-			min: 0,
-			max: 200,
-			step: 5,
-		}),
-		labeledRange(max, "max", "Max. scatter", {
-			min: 0,
-			max: 200,
-			step: 5,
-		}),
-		labeledCheckbox(horizontal, "horizontal", "Horizontal"),
-		labeledCheckbox(reverse, "order", "Reverse order"),
 		div({}, $replace(result.map((buf) => new PixelCanvas(buf))))
 	)
 ).mount(document.getElementById("app")!);

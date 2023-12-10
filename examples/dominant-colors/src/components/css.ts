@@ -4,7 +4,7 @@ import type { DominantColor } from "../api";
 
 export const cssPalette = (colors: DominantColor[]) =>
 	ul(
-		".dib.w-25.ma0.pa0.list",
+		".dib.w4.ma0.pa0.list",
 		{},
 		...colors
 			.map((c) => css(c.col))
@@ -25,7 +25,7 @@ export const cssPalette = (colors: DominantColor[]) =>
 							["circle", { fill: c, cx: 0.5, cy: 0.5, r: 0.5 }],
 						],
 					],
-					["span.ml5", {}, c]
+					["span.absolute.ml4.pl2", {}, c]
 				)
 			)
 	);

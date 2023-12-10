@@ -1,4 +1,5 @@
 import { div, h3, inputFile } from "@thi.ng/hiccup-html";
+import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import {
 	FLOAT_RGB,
 	IntBuffer,
@@ -28,7 +29,7 @@ $compile(
 		{},
 		h3({}, "Image RGB waveform"),
 		inputFile(".mb3", {
-			accept: ["image/jpeg", "image/png", "image/gif"],
+			accept: MIME_IMAGE_COMMON,
 			multiple: false,
 			onchange: (e) => file.next((<HTMLInputElement>e.target).files![0]),
 		}),

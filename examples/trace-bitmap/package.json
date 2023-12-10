@@ -29,6 +29,7 @@
 		"@thi.ng/grid-iterators": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/math": "workspace:^",
+		"@thi.ng/mime": "workspace:^",
 		"@thi.ng/paths": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/pixel-dither": "workspace:^",

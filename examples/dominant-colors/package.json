@@ -24,9 +24,11 @@
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/hiccup-svg": "workspace:^",
+		"@thi.ng/mime": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rdom-components": "workspace:^",
+		"@thi.ng/rdom-forms": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/strings": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"

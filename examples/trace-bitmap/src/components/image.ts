@@ -1,4 +1,5 @@
 import { div, inputColor, inputNumber } from "@thi.ng/hiccup-html";
+import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { fromView } from "@thi.ng/rstream";
 import { DITHER_MODES, THEME, type DitherMode, type ImageParam } from "../api";
 import { DB } from "../state/atom";
@@ -33,10 +34,7 @@ export const imageControls = div(
 	fileButton(
 		{
 			accept: [
-				"image/jpeg",
-				"image/png",
-				"image/gif",
-				"image/webp",
+				...MIME_IMAGE_COMMON,
 				"image/x-portable-bitmap",
 				"image/x-portable-pixmap",
 				"image/x-portable-graymap",

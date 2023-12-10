@@ -1,23 +1,30 @@
 import { isMobile } from "@thi.ng/checks";
-import { button, div, h1, inputFile, label, span } from "@thi.ng/hiccup-html";
-import { $compile, $inputFile, $inputTrigger, $replace } from "@thi.ng/rdom";
-import { staticRadio } from "@thi.ng/rdom-components";
+import { button, div, h1 } from "@thi.ng/hiccup-html";
+import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
+import { $compile, $replace } from "@thi.ng/rdom";
+import {
+	compileForm,
+	container,
+	file,
+	radioStr,
+	range,
+	trigger,
+} from "@thi.ng/rdom-forms";
 import { reactive, stream, sync } from "@thi.ng/rstream";
 import { float } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import type { SortMode } from "./api";
 import { cssPalette } from "./components/css";
 import { PixelCanvas } from "./components/pixelcanvas";
-import { slider } from "./components/slider";
 import { downloadACT } from "./palette";
 import { postProcess, processImage } from "./process";
 
 // stream of input files
-const file = stream<File>();
+const imgFile = stream<File>();
 // images read from files
 const image = stream<HTMLImageElement>();
 // number of dominant colors to extract
-const num = reactive(8);
+const num = reactive(6);
 // min chromacity of result colors (percent)
 const minChroma = reactive(10);
 // min cluster area (percent)
@@ -52,7 +59,7 @@ const result = sync({
 
 // new values pushed into `file` will trigger reading file as an image
 // once ready, puts image into `image` stream for further processing
-file.subscribe({
+imgFile.subscribe({
 	next(file) {
 		const url = URL.createObjectURL(file);
 		const img = new Image();
@@ -69,42 +76,60 @@ $compile(
 	div(
 		".lh-copy.f6.f5-ns",
 		{},
-		h1(".ma0", {}, "Dominant colors"),
-		inputFile(".db.mv3", {
-			accept: ["image/jpg", "image/png", "image/gif", "image/webp"],
-			multiple: false,
-			onchange: $inputFile(file),
-		}),
-		slider(num, "max. colors", {
-			min: 2,
-			max: 16,
-			step: 1,
-		}),
-		slider(minChroma, "min. chroma", {
-			min: 0,
-			max: 100,
-			step: 5,
-		}),
-		slider(minArea, "min. area", {
-			min: 0,
-			max: 25,
-			step: 0.5,
-		}),
-		div(".mv3", {}, "Sort colors by:"),
-		staticRadio<SortMode>(["hue", "luma", "area"], <any>sortMode, {
-			label: (id, radio) =>
-				label(
-					".db",
-					{ for: id },
-					span(".dib.w-50.w-25-ns", {}, id),
-					radio
-				),
-		}),
-		button(".db.mv3", { onclick: $inputTrigger(update) }, "update"),
+		h1(".mh0.mb3", {}, "Dominant colors"),
+		compileForm(
+			container(
+				{},
+				file({
+					attribs: { class: "mb3" },
+					label: "Image",
+					accept: MIME_IMAGE_COMMON,
+					value: imgFile,
+				}),
+				range({
+					label: "Max. colors",
+					min: 2,
+					max: 16,
+					value: num,
+				}),
+				range({
+					label: "Min. chroma",
+					min: 0,
+					max: 100,
+					step: 5,
+					value: minChroma,
+				}),
+				range({
+					label: "Min. area",
+					min: 0,
+					max: 25,
+					step: 0.5,
+					value: minArea,
+					vlabel: 1,
+				}),
+				radioStr({
+					label: "Sort colors by:",
+					items: ["hue", "luma", "area"],
+					value: <any>sortMode,
+				}),
+				trigger({ label: false, title: "Update", value: update })
+			),
+			{
+				wrapperAttribs: { class: "mb0" },
+				labelAttribs: { class: "dib w4 v-top" },
+				typeAttribs: {
+					rangeLabel: { class: "dib ml3 v-top" },
+					rangeWrapper: { class: "dib w5" },
+					trigger: { class: "mv3" },
+				},
+				behaviors: { rangeLabelFmt: 0, radioLabelBefore: true },
+			}
+		),
 		// this part of the UI will be replaced for each new processed image
 		$replace(
 			result.map((res) =>
 				div(
+					".mt3",
 					{},
 					cssPalette(res.colors),
 					// resized image as canvas

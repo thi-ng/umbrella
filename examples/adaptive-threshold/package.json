@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
+		"@thi.ng/mime": "workspace:^",
 		"@thi.ng/paths": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",

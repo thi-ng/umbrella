@@ -8,11 +8,13 @@ import {
 	temperatureMat,
 	transform,
 } from "@thi.ng/color";
-import { canvas, div, h3, inputRange, label } from "@thi.ng/hiccup-html";
+import { canvas, div, h3 } from "@thi.ng/hiccup-html";
 import { FLOAT_RGBA, floatBufferFromImage, imageFromURL } from "@thi.ng/pixel";
-import { $compile, $inputNum } from "@thi.ng/rdom";
+import { $compile } from "@thi.ng/rdom";
+import { compileForm, container, range } from "@thi.ng/rdom-forms";
 import { reactive, sync, type ISubscription } from "@thi.ng/rstream";
 import IMG from "./dolomites-960x940.jpg";
+import { percent } from "@thi.ng/strings";
 
 // image adjustment params
 const saturation = reactive(1);
@@ -25,28 +27,24 @@ const tempGM = reactive(0);
 // preview A/B split position
 const split = reactive(0);
 
-// UI widgets for a single image param
+// UI slider widget for a single image param
 const ctrl = (
-	id: string,
+	label: string,
 	value: ISubscription<number, number>,
 	min: number,
 	max: number
 ) =>
-	div(
-		{},
-		label(".w5.dib", { for: id }, id),
-		inputRange(".w4", {
-			id,
-			min,
-			max,
-			step: 0.01,
-			value,
-			oninput: $inputNum(value),
-		})
-	);
+	range({
+		label,
+		min,
+		max,
+		step: 0.01,
+		list: [(min + max) / 2], // create a tick mark for center position
+		value,
+	});
 
 // iterator to segment a typed array buffer into vector views of `size`
-function* segmented(buf: TypedArray, size: number, stride = size) {
+function* mapBuffer(buf: TypedArray, size: number, stride = size) {
 	for (let i = 0; i < buf.length; i += stride) {
 		yield buf.subarray(i, i + size);
 	}
@@ -66,24 +64,35 @@ const setSplitPos = (e: MouseEvent) =>
 	const destImg = srcImg.copy();
 	// pre-create vectors views for each pixel in both src & dest images
 	// this helps performance & avoids any other additional memory allocations
-	const srcPixels = [...segmented(srcImg.data, 4)];
-	const destPixels = [...segmented(destImg.data, 4)];
+	const srcPixels = [...mapBuffer(srcImg.data, 4)];
+	const destPixels = [...mapBuffer(destImg.data, 4)];
 
 	// create UI/DOM
 	await $compile(
 		div(
 			{},
 			h3(".mb3", {}, "Matrix-based image color adjustments"),
-			div(
-				".mb3",
-				{},
-				// UI controls for various image adjustments
-				ctrl("exposure", exposure, 0, 2),
-				ctrl("brightness", brightness, -0.5, 0.5),
-				ctrl("contrast", contrast, 0, 2),
-				ctrl("saturation", saturation, 0, 2),
-				ctrl("temp (blue/yellow)", tempBY, -0.25, 0.25),
-				ctrl("temp (green/magenta)", tempGM, -0.25, 0.25)
+			compileForm(
+				container(
+					{ class: "mb3" },
+					ctrl("exposure", exposure, 0, 2),
+					ctrl("brightness", brightness, -0.25, 0.25),
+					ctrl("contrast", contrast, 0, 2),
+					ctrl("saturation", saturation, 0, 2),
+					ctrl("temp (blue/yellow)", tempBY, -0.25, 0.25),
+					ctrl("temp (green/magenta)", tempGM, -0.25, 0.25)
+				),
+				{
+					labelAttribs: { class: "dib w5 v-top" },
+					typeAttribs: {
+						range: { class: "dib w4 w5-l" },
+						rangeLabel: { class: "ml3 v-top" },
+						rangeWrapper: { class: "dib" },
+					},
+					behaviors: {
+						rangeLabelFmt: percent(0),
+					},
+				}
 			),
 			canvas("#preview.pointer", {
 				width: srcImg.width,
