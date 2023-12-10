@@ -6,6 +6,7 @@ export * from "./count.js";
 export * from "./edit.js";
 export * from "./float.js";
 export * from "./gray.js";
+export * from "./int.js";
 export * from "./logic.js";
 export * from "./mask.js";
 export * from "./one-hot.js";
