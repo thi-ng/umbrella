@@ -357,7 +357,7 @@ export const compileForm: MultiFn2<
 				opts,
 				button,
 				{ ...opts.typeAttribs?.trigger },
-				{ onchange: $inputTrigger((<Trigger>$val).value!) },
+				{ onclick: $inputTrigger((<Trigger>$val).value!) },
 				false,
 				(<Trigger>$val).title
 			),
