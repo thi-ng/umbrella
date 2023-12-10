@@ -1,4 +1,4 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Fn, Predicate } from "@thi.ng/api";
 import type {
 	Attribs,
 	FormAttribs,
@@ -75,8 +75,7 @@ export interface Num extends Value, WithPresets<number> {
 
 export interface Range extends Omit<Num, "type" | "placeholder" | "size"> {
 	type: "range";
-	vlabel?: boolean;
-	vlabelPrec?: number;
+	vlabel?: boolean | number | Fn<number, string>;
 }
 
 export interface Str extends Value, WithPresets<string> {
@@ -280,7 +279,12 @@ export interface TypeAttribs
 	/**
 	 * Attribs for {@link range} label elements
 	 */
-	rangeLabelAttribs: Partial<Attribs>;
+	rangeLabel: Partial<Attribs>;
+	/**
+	 * Attribs for the wrapper element of a single {@link range} widget (incl.
+	 * input element and optional value label)
+	 */
+	rangeWrapper: Partial<Attribs>;
 
 	[id: string]: Partial<Attribs>;
 }
@@ -342,5 +346,17 @@ export interface BehaviorOpts {
 	 * @defaultValue false
 	 */
 	radioLabelBefore: boolean;
+	/**
+	 * Number of fractional digits for range sliders.
+	 *
+	 * @defaultValue 2
+	 */
+	rangeLabelFmt: number | Fn<number, string>;
+	/**
+	 * If true, the label for toggle widgets will come before the actual
+	 * input element. By default, the order is reversed.
+	 *
+	 * @defaultValue false
+	 */
 	toggleLabelBefore: boolean;
 }

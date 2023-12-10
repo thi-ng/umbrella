@@ -470,33 +470,39 @@ export const compileForm: MultiFn2<
 			const val = <Range>$val;
 			const edit =
 				opts.behaviors?.rangeOnInput === false ? "onchange" : "oninput";
+			const children: ComponentLike[] = [
+				inputRange(
+					__attribs(
+						{
+							...opts.typeAttribs?.range,
+							min: val.min,
+							max: val.max,
+							step: val.step,
+						},
+						{ [edit]: $inputNum(val.value!) },
+						val,
+						opts
+					)
+				),
+			];
+			if (val.value && val.vlabel !== false && __useValues(opts)) {
+				const fmt =
+					val.vlabel === true || val.vlabel === undefined
+						? opts.behaviors?.rangeLabelFmt ?? 2
+						: val.vlabel;
+				children.push(
+					span(
+						{ ...opts.typeAttribs?.rangeLabel },
+						val.value.map(
+							isFunction(fmt) ? fmt : (x) => x.toFixed(fmt)
+						)
+					)
+				);
+			}
 			return div(
 				{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
 				...__genCommon(val, opts),
-				div(
-					{},
-					inputRange(
-						__attribs(
-							{
-								...opts.typeAttribs?.range,
-								min: val.min,
-								max: val.max,
-								step: val.step,
-							},
-							{ [edit]: $inputNum(val.value!) },
-							val,
-							opts
-						)
-					),
-					val.value && val.vlabel !== false && __useValues(opts)
-						? span(
-								{ ...opts.typeAttribs?.rangeLabel },
-								val.value.map((x) =>
-									x.toFixed(val.vlabelPrec ?? 3)
-								)
-						  )
-						: undefined
-				)
+				div({ ...opts.typeAttribs?.rangeWrapper }, ...children)
 			);
 		},
 
