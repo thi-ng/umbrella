@@ -1,4 +1,4 @@
-import type { FnN, FnN2 } from "@thi.ng/api";
+import type { FnN, FnN2, FnN3 } from "@thi.ng/api";
 
 const F64 = new Float64Array(1);
 const F32 = new Float32Array(F64.buffer);
@@ -78,35 +78,37 @@ export const floatToSortableInt: FnN = (x) => {
 	return x < 0 ? ~i | (1 << 31) : i;
 };
 
-const clamp11: FnN = (x) => (x < -1 ? -1 : x > 1 ? 1 : x);
+/** @internal */
+const __f2u: FnN3 = (x, n, p) =>
+	x < 0 ? (x < -1 ? n : x * n) : x > 1 ? p : x * p;
 
 /**
  * Converts normalized float ([-1..1] range) to u8.
  *
  * @param x -
  */
-export const f32u8: FnN = (x) => (clamp11(x) * 0x7f) & 0xff;
+export const f32u8: FnN = (x) => __f2u(x, 0x80, 0x7f) & 0xff;
 
 /**
  * Converts normalized float ([-1..1] range) to u16.
  *
  * @param x -
  */
-export const f32u16: FnN = (x) => (clamp11(x) * 0x7fff) & 0xffff;
+export const f32u16: FnN = (x) => __f2u(x, 0x8000, 0x7fff) & 0xffff;
 
 /**
  * Converts normalized float ([-1..1] range) to u24.
  *
  * @param x -
  */
-export const f32u24: FnN = (x) => (clamp11(x) * 0x7fffff) & 0xffffff;
+export const f32u24: FnN = (x) => __f2u(x, 0x80_0000, 0x7f_ffff) & 0xff_ffff;
 
 /**
  * Converts normalized float ([-1..1] range) to u32.
  *
  * @param x -
  */
-export const f32u32: FnN = (x) => (clamp11(x) * 0x7fffffff) >>> 0;
+export const f32u32: FnN = (x) => __f2u(x, 0x8000_0000, 0x7fff_ffff) >>> 0;
 
 /**
  * Reverse op of {@link f32u8}.
@@ -114,7 +116,7 @@ export const f32u32: FnN = (x) => (clamp11(x) * 0x7fffffff) >>> 0;
  * @param x -
  */
 export const u8f32: FnN = (x) => (
-	(x &= 0xff), (x | ((x >> 7) * 0xffffff00)) / 0x7f
+	(x &= 0xff), (x | ((x >> 7) * 0xffff_ff00)) / (0x7f + (x >> 7))
 );
 
 /**
@@ -123,7 +125,7 @@ export const u8f32: FnN = (x) => (
  * @param x -
  */
 export const u16f32: FnN = (x) => (
-	(x &= 0xffff), (x | ((x >> 15) * 0xffff0000)) / 0x7fff
+	(x &= 0xffff), (x | ((x >> 15) * 0xffff_0000)) / (0x7fff + (x >> 15))
 );
 
 /**
@@ -132,7 +134,7 @@ export const u16f32: FnN = (x) => (
  * @param x -
  */
 export const u24f32: FnN = (x) => (
-	(x &= 0xffffff), (x | ((x >> 23) * 0xff000000)) / 0x7fffff
+	(x &= 0xffffff), (x | ((x >> 23) * 0xff00_0000)) / (0x7f_ffff + (x >> 23))
 );
 
 /**
@@ -140,4 +142,4 @@ export const u24f32: FnN = (x) => (
  *
  * @param x -
  */
-export const u32f32: FnN = (x) => (x | 0) / 0x7fffffff;
+export const u32f32: FnN = (x) => (x | 0) / (0x7fff_ffff + (x >>> 31));
