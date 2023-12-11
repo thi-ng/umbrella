@@ -98,7 +98,7 @@ All packages:
 - have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
 - licensed under [Apache Software License 2.0](#license)
 
-<sup>(1)</sup> since 2023-12-11
+<sup>(1)</sup> since 2023-12-11, more info on [Mastodon](https://mastodon.thi.ng/@toxi/111561398967420903)
 
 ## Getting started
 
