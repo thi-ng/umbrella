@@ -122,8 +122,8 @@ type ReadonlyPartialSpec<T extends Value, V = string> = Omit<
 };
 
 const $ =
-	<T extends Value, R = string>(type: string, defaults?: Partial<T>) =>
-	(spec: PartialSpec<T> | ReadonlyPartialSpec<T, R>): T =>
+	<T extends Value, V = string>(type: string, defaults?: Partial<T>) =>
+	(spec: PartialSpec<T> | ReadonlyPartialSpec<T, V>): T =>
 		<any>{
 			id: spec.id || `${type}-${__nextID++}`,
 			type,
@@ -138,8 +138,6 @@ export const email = $<Email>("email", { autocomplete: true });
 export const file = $<FileVal, never>("file");
 export const month = $<Month>("month");
 export const multiFile = $<MultiFileVal, never>("multiFile");
-export const multiSelectNum = $<MultiSelectNum, number>("multiSelectNum");
-export const multiSelectStr = $<MultiSelectStr>("multiSelectStr");
 export const num = $<Num, number>("num");
 export const password = $<Password>("password", { autocomplete: true });
 export const phone = $<Email>("tel", { autocomplete: true });
@@ -147,8 +145,6 @@ export const radioNum = $<RadioNum, number>("radioNum");
 export const radioStr = $<RadioStr>("radioStr");
 export const range = $<Range, number>("range");
 export const search = $<Str>("search");
-export const selectNum = $<SelectNum, number>("selectNum");
-export const selectStr = $<SelectStr>("selectStr");
 export const str = $<Str, string>("str");
 export const text = $<Text>("text");
 export const time = $<Time>("time");
@@ -156,6 +152,26 @@ export const toggle = $<Toggle, boolean>("toggle");
 export const trigger = $<Trigger>("trigger");
 export const url = $<UrlVal>("url");
 export const week = $<Week>("week");
+
+export const selectNum = <T extends number = number>(
+	spec: PartialSpec<SelectNum<T>> | ReadonlyPartialSpec<SelectNum<T>>
+) => $<SelectNum<T>>("selectNum")(spec);
+
+export const selectStr = <T extends string = string>(
+	spec: PartialSpec<SelectStr<T>> | ReadonlyPartialSpec<SelectStr<T>>
+) => $<SelectStr<T>>("selectStr")(spec);
+
+export const multiSelectNum = <T extends number = number>(
+	spec:
+		| PartialSpec<MultiSelectNum<T>>
+		| ReadonlyPartialSpec<MultiSelectNum<T>>
+) => $<MultiSelectNum<T>>("multiSelectNum")(spec);
+
+export const multiSelectStr = <T extends string = string>(
+	spec:
+		| PartialSpec<MultiSelectStr<T>>
+		| ReadonlyPartialSpec<MultiSelectStr<T>>
+) => $<MultiSelectStr<T>>("multiSelectStr")(spec);
 
 /** @internal */
 const __genID = (id: string, opts: Partial<FormOpts>) =>

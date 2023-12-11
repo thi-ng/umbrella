@@ -159,11 +159,11 @@ export interface SelectItem<T> {
 	desc?: string;
 }
 
-export interface SelectStr extends Select<string> {
+export interface SelectStr<T extends string = string> extends Select<T> {
 	type: "selectStr";
 }
 
-export interface SelectNum extends Select<number> {
+export interface SelectNum<T extends number = number> extends Select<T> {
 	type: "selectNum";
 }
 
@@ -173,11 +173,13 @@ export interface MultiSelect<T> extends Value {
 	size?: number;
 }
 
-export interface MultiSelectStr extends MultiSelect<string> {
+export interface MultiSelectStr<T extends string = string>
+	extends MultiSelect<T> {
 	type: "multiSelectStr";
 }
 
-export interface MultiSelectNum extends MultiSelect<number> {
+export interface MultiSelectNum<T extends number = number>
+	extends MultiSelect<T> {
 	type: "multiSelectNum";
 }
 
