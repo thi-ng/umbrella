@@ -71,6 +71,7 @@ export const NO_CLOSE_EMPTY = tagMap(
 
 /** @internal */
 export const ATTRIB_JOIN_DELIMS: Record<string, string> = {
+	class: " ",
 	accept: ",",
 	sizes: ",",
 	srcset: ",",
