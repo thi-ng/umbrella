@@ -110,7 +110,7 @@ export const serialize = (src: any, opts?: Partial<EncodeOpts>) => {
 	};
 
 	const encode = (x: any, isResolving = false) => {
-		if (x === null || x === undefined) {
+		if (x == null) {
 			add8(0xc0);
 			return;
 		}
