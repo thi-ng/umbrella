@@ -138,7 +138,7 @@ For Node.js REPL:
 const dualAlgebra = await import("@thi.ng/dual-algebra");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 990 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 991 bytes
 
 ## Dependencies
 

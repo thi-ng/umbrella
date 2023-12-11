@@ -55,7 +55,7 @@ For Node.js REPL:
 const rangeCoder = await import("@thi.ng/range-coder");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 618 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 622 bytes
 
 ## Dependencies
 

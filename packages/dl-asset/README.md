@@ -56,7 +56,7 @@ For Node.js REPL:
 const dlAsset = await import("@thi.ng/dl-asset");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 578 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 576 bytes
 
 ## Dependencies
 

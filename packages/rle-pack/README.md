@@ -82,7 +82,7 @@ For Node.js REPL:
 const rlePack = await import("@thi.ng/rle-pack");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 636 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 637 bytes
 
 ## Dependencies
 

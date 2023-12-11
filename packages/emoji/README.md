@@ -66,7 +66,7 @@ For Node.js REPL:
 const emoji = await import("@thi.ng/emoji");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.75 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.78 KB
 
 ## Dependencies
 

@@ -602,7 +602,7 @@ For Node.js REPL:
 const color = await import("@thi.ng/color");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 15.69 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.70 KB
 
 ## Dependencies
 

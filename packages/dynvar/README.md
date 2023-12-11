@@ -53,7 +53,7 @@ For Node.js REPL:
 const dynvar = await import("@thi.ng/dynvar");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 266 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 265 bytes
 
 ## Dependencies
 

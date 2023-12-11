@@ -49,7 +49,7 @@ For Node.js REPL:
 const kMeans = await import("@thi.ng/k-means");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 878 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 868 bytes
 
 ## Dependencies
 

@@ -184,7 +184,7 @@ For Node.js REPL:
 const associative = await import("@thi.ng/associative");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.89 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.97 KB
 
 ## Dependencies
 

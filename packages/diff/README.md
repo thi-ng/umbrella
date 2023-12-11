@@ -48,7 +48,7 @@ For Node.js REPL:
 const diff = await import("@thi.ng/diff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 

@@ -78,7 +78,7 @@ For Node.js REPL:
 const sax = await import("@thi.ng/sax");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.61 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.39 KB
 
 ## Dependencies
 

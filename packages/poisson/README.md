@@ -73,7 +73,7 @@ For Node.js REPL:
 const poisson = await import("@thi.ng/poisson");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 783 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 767 bytes
 
 ## Dependencies
 

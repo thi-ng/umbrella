@@ -71,7 +71,7 @@ For Node.js REPL:
 const lsys = await import("@thi.ng/lsys");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 690 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 691 bytes
 
 ## Dependencies
 

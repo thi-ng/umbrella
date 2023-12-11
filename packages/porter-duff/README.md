@@ -75,7 +75,7 @@ For Node.js REPL:
 const porterDuff = await import("@thi.ng/porter-duff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.04 KB
 
 ## Dependencies
 

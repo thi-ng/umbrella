@@ -67,7 +67,7 @@ For Node.js REPL:
 const distanceTransform = await import("@thi.ng/distance-transform");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 633 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 635 bytes
 
 ## Dependencies
 

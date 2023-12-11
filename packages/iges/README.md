@@ -58,7 +58,7 @@ For Node.js REPL:
 const iges = await import("@thi.ng/iges");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.44 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.40 KB
 
 ## Dependencies
 

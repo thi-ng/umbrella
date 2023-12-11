@@ -70,7 +70,7 @@ For Node.js REPL:
 const geomSubdivCurve = await import("@thi.ng/geom-subdiv-curve");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 656 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 661 bytes
 
 ## Dependencies
 

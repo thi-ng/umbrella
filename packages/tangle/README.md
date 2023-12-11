@@ -322,7 +322,7 @@ For Node.js REPL:
 const tangle = await import("@thi.ng/tangle");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.84 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.83 KB
 
 ## Dependencies
 

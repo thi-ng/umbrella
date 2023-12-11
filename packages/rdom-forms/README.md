@@ -68,7 +68,7 @@ For Node.js REPL:
 const rdomForms = await import("@thi.ng/rdom-forms");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.13 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.18 KB
 
 ## Dependencies
 
@@ -81,13 +81,17 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.13 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Screenshot                                                                                                          | Description                                         | Live demo                                          | Source                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/> | Basic usage of the declarative rdom-forms generator | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen) |
+| Screenshot                                                                                                               | Description                                                                 | Live demo                                               | Source                                                                               |
+|:-------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/big-font.png" width="240"/>          | Large ASCII font text generator using @thi.ng/rdom                          | [Demo](https://demo.thi.ng/umbrella/big-font/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/big-font)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>   | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/> | Matrix-based image color adjustments                                        | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>     | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>      | Basic usage of the declarative rdom-forms generator                         | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)      |
 
 ## API
 

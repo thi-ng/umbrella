@@ -253,7 +253,7 @@ For Node.js REPL:
 const imgui = await import("@thi.ng/imgui");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.69 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.65 KB
 
 ## Dependencies
 

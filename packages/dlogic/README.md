@@ -55,7 +55,7 @@ For Node.js REPL:
 const dlogic = await import("@thi.ng/dlogic");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 378 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 376 bytes
 
 ## Dependencies
 

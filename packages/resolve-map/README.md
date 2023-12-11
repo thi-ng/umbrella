@@ -74,7 +74,7 @@ For Node.js REPL:
 const resolveMap = await import("@thi.ng/resolve-map");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.01 KB
 
 ## Dependencies
 

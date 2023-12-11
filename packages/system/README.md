@@ -54,7 +54,7 @@ For Node.js REPL:
 const system = await import("@thi.ng/system");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 489 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 490 bytes
 
 ## Dependencies
 

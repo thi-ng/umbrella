@@ -65,7 +65,7 @@ For Node.js REPL:
 const fsm = await import("@thi.ng/fsm");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.32 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.31 KB
 
 ## Dependencies
 

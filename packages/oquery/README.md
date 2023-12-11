@@ -79,7 +79,7 @@ For Node.js REPL:
 const oquery = await import("@thi.ng/oquery");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.66 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.67 KB
 
 ## Dependencies
 

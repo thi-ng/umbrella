@@ -87,7 +87,7 @@ For Node.js REPL:
 const pointfreeLang = await import("@thi.ng/pointfree-lang");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.74 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.73 KB
 
 ## Dependencies
 

@@ -59,7 +59,7 @@ For Node.js REPL:
 const geomClosestPoint = await import("@thi.ng/geom-closest-point");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 

@@ -92,7 +92,7 @@ For Node.js REPL:
 const dcons = await import("@thi.ng/dcons");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.57 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.54 KB
 
 ## Dependencies
 

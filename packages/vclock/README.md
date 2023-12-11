@@ -87,7 +87,7 @@ For Node.js REPL:
 const vclock = await import("@thi.ng/vclock");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 432 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 431 bytes
 
 ## Dependencies
 

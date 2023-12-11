@@ -56,7 +56,7 @@ For Node.js REPL:
 const markdownTable = await import("@thi.ng/markdown-table");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 622 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 613 bytes
 
 ## Dependencies
 

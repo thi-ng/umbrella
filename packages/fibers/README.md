@@ -378,7 +378,7 @@ For Node.js REPL:
 const fibers = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.60 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.64 KB
 
 ## Dependencies
 

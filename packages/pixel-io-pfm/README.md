@@ -55,7 +55,7 @@ For Node.js REPL:
 const pixelIoPfm = await import("@thi.ng/pixel-io-pfm");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 768 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 747 bytes
 
 ## Dependencies
 

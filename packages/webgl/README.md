@@ -96,7 +96,7 @@ For Node.js REPL:
 const webgl = await import("@thi.ng/webgl");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.60 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.48 KB
 
 ## Dependencies
 

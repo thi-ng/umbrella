@@ -158,7 +158,7 @@ For Node.js REPL:
 const timestep = await import("@thi.ng/timestep");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 973 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 
