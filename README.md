@@ -85,7 +85,7 @@ concrete implementations.
 All packages:
 
 - are versioned independently
-- tested via [bun.sh](https://bun.sh)
+- built via [esbuild](https://esbuild.github.io/)<sup>(1)</sup> and tested via [bun.sh](https://bun.sh)
 - released via [thi.ng/monopub](https://github.com/thi-ng/monopub)
 - distributed as ESM modules (ES2022 syntax) with export maps, TypeScript
   typings & change logs
@@ -97,6 +97,8 @@ All packages:
 - declare public interfaces, enums & types in an `api.ts` file
 - have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
 - licensed under [Apache Software License 2.0](#license)
+
+<sup>(1)</sup> since 2023-12-11
 
 ## Getting started
 
@@ -249,15 +251,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-12-09
+As of: 2023-12-11
 
-| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
-|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup`](./packages/hiccup)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)           | [changelog](./packages/hiccup/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/mime`](./packages/mime)               | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)               | [changelog](./packages/mime/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/rdom`](./packages/rdom)               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)               | [changelog](./packages/rdom/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/rdom-forms`](./packages/rdom-forms)   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)   | [changelog](./packages/rdom-forms/CHANGELOG.md)  |
+| Status                                           | Package                                       | Version                                                                                                             | Changelog                                       |
+|:-------------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/binary`](./packages/binary)         | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)         | [changelog](./packages/binary/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hdom`](./packages/hdom)             | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)             | [changelog](./packages/hdom/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rdom`](./packages/rdom)             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)             | [changelog](./packages/rdom/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-forms`](./packages/rdom-forms) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms) | [changelog](./packages/rdom-forms/CHANGELOG.md) |
 
 ### Fundamentals
 
