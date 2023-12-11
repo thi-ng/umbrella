@@ -1,16 +1,12 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isArray as isa } from "@thi.ng/checks/is-array";
-import { isNotStringAndIterable as isi } from "@thi.ng/checks/is-not-string-iterable";
-import { isString as iss } from "@thi.ng/checks/is-string";
-import { SVG_TAGS } from "@thi.ng/hiccup/api";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
+import { isString } from "@thi.ng/checks/is-string";
+import { ATTRIB_JOIN_DELIMS, SVG_TAGS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
 import { formatPrefixes } from "@thi.ng/hiccup/prefix";
 import { XML_SVG } from "@thi.ng/prefixes/xml";
 import type { HDOMImplementation, HDOMOpts } from "./api.js";
-
-const isArray = isa;
-const isNotStringAndIterable = isi;
-const isString = iss;
 
 const maybeInitElement = <T>(el: T, tree: any) =>
 	tree.__init && tree.__init.apply(tree.__this, [el, ...tree.__args]);
@@ -221,53 +217,64 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
 	implementsFunction(val, "deref") && (val = val.deref());
 	if (id.startsWith("__")) return;
 	const isListener = id[0] === "o" && id[1] === "n";
-	if (!isListener && typeof val === "function") {
-		val = val(attribs);
-	}
-	if (val !== undefined && val !== false) {
-		switch (id) {
-			case "style":
-				setStyle(el, val);
-				break;
-			case "value":
-				updateValueAttrib(<HTMLInputElement>el, val);
-				break;
-			case "prefix":
-				el.setAttribute(id, isString(val) ? val : formatPrefixes(val));
-				break;
-			case "accesskey":
-				(<any>el).accessKey = val;
-				break;
-			case "contenteditable":
-				(<any>el).contentEditable = val;
-				break;
-			case "tabindex":
-				(<any>el).tabIndex = val;
-				break;
-			case "align":
-			case "autocapitalize":
-			case "checked":
-			case "dir":
-			case "draggable":
-			case "hidden":
-			case "id":
-			case "lang":
-			case "namespaceURI":
-			case "scrollTop":
-			case "scrollLeft":
-			case "title":
-				// TODO add more properties / enumerated attribs?
-				(<any>el)[id] = val;
-				break;
-			default:
-				isListener
-					? setListener(el, id.substring(2), val)
-					: el.setAttribute(id, val === true ? "" : val);
+	if (isListener) {
+		if (isString(val)) {
+			el.setAttribute(id, val);
+		} else {
+			id = id.substring(2);
+			isArray(val)
+				? el.addEventListener(id, val[0], val[1])
+				: el.addEventListener(id, val);
 		}
-	} else {
-		el.hasAttribute(id)
-			? el.removeAttribute("title")
-			: (<any>el)[id] && ((<any>el)[id] = null);
+		return el;
+	}
+	if (typeof val === "function") val = val(attribs);
+	if (isArray(val)) val = val.join(ATTRIB_JOIN_DELIMS[id] || " ");
+	switch (id) {
+		case "style":
+			setStyle(el, val);
+			break;
+		case "value":
+			updateValueAttrib(<HTMLInputElement>el, val);
+			break;
+		case "prefix":
+			el.setAttribute(id, isString(val) ? val : formatPrefixes(val));
+			break;
+		case "accesskey":
+		case "accessKey":
+			(<any>el).accessKey = val;
+			break;
+		case "contenteditable":
+		case "contentEditable":
+			(<any>el).contentEditable = val;
+			break;
+		case "tabindex":
+		case "tabIndex":
+			(<any>el).tabIndex = val;
+			break;
+		case "align":
+		case "autocapitalize":
+		case "checked":
+		case "dir":
+		case "draggable":
+		case "hidden":
+		case "id":
+		case "indeterminate":
+		case "lang":
+		case "namespaceURI":
+		case "scrollLeft":
+		case "scrollTop":
+		case "selectionEnd":
+		case "selectionStart":
+		case "slot":
+		case "spellcheck":
+		case "title":
+			(<any>el)[id] = val;
+			break;
+		default:
+			val === false || val == null
+				? el.removeAttribute(id)
+				: el.setAttribute(id, val === true ? id : val);
 	}
 	return el;
 };
