@@ -58,6 +58,7 @@
 			"geom-trace-bitmap",
 			"grid-iterators",
 			"hiccup-html",
+			"mime",
 			"pixel",
 			"pixel-dither",
 			"pixel-io-netpbm",

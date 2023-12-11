@@ -59,6 +59,8 @@
 		"declarative",
 		"graphics",
 		"hiccup",
+		"rdom",
+		"reactive",
 		"scenegraph",
 		"typescript",
 		"ui",

@@ -29,7 +29,9 @@
 	},
 	"thi.ng": {
 		"readme": [
+			"hiccup",
 			"hiccup-html",
+			"mime",
 			"pixel",
 			"rdom",
 			"rdom-forms",

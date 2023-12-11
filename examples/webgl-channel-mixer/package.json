@@ -34,6 +34,7 @@
 		"readme": [
 			"dl-asset",
 			"hiccup-html",
+			"mime",
 			"rdom",
 			"rdom-components",
 			"rstream",

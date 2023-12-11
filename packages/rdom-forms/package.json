@@ -51,7 +51,18 @@
 		"typescript": "^5.3.2"
 	},
 	"keywords": [
-		"typescript"
+		"browser",
+		"component",
+		"declarative",
+		"dom",
+		"form",
+		"hiccup",
+		"html",
+		"rdom",
+		"rstream",
+		"reactive",
+		"typescript",
+		"ui"
 	],
 	"publishConfig": {
 		"access": "public"

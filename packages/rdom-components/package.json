@@ -57,6 +57,7 @@
 		"dom",
 		"hiccup",
 		"html",
+		"rdom",
 		"reactive",
 		"rstream",
 		"typescript",

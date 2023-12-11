@@ -39,9 +39,11 @@
 			"color",
 			"hiccup-html",
 			"intervals",
+			"mime",
 			"pixel",
 			"random",
 			"rdom",
+			"rdom-forms",
 			"rstream"
 		],
 		"screenshot": "examples/pixel-sorting.png"

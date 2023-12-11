@@ -32,7 +32,8 @@
 		"readme": [
 			"color",
 			"pixel",
-			"rdom"
+			"rdom",
+			"rdom-forms"
 		],
 		"screenshot": "examples/pixel-colormatrix.jpg"
 	}

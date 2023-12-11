@@ -20,7 +20,7 @@
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/paths": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
-		"@thi.ng/rdom-components": "workspace:^",
+		"@thi.ng/rdom-forms": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/strings": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
@@ -32,7 +32,7 @@
 		"readme": [
 			"hiccup-html",
 			"rdom",
-			"rdom-components",
+			"rdom-forms",
 			"rstream",
 			"strings",
 			"transducers"

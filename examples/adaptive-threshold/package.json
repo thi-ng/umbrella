@@ -27,6 +27,7 @@
 	},
 	"thi.ng": {
 		"readme": [
+			"mime",
 			"pixel",
 			"rstream",
 			"transducers",
