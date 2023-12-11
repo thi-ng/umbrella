@@ -2,8 +2,14 @@ import type { Fn, Predicate } from "@thi.ng/api";
 import type {
 	Attribs,
 	FormAttribs,
+	InputAttribs,
+	InputCheckboxAttribs,
 	InputFileAttribs,
+	InputNumericAttribs,
 	InputRadioAttribs,
+	InputTextAttribs,
+	SelectAttribs,
+	TextAreaAttribs,
 } from "@thi.ng/hiccup-html";
 import type { ComponentLike } from "@thi.ng/rdom";
 import type { ISubscriber, ISubscription } from "@thi.ng/rstream";
@@ -54,6 +60,7 @@ export interface Value extends FormItem, Partial<CommonAttribs> {
 	desc?: any;
 	required?: boolean;
 	readonly?: boolean;
+	attribs?: Partial<InputAttribs>;
 }
 
 export interface WithPresets<T> {
@@ -71,6 +78,7 @@ export interface Num extends Value, WithPresets<number> {
 	size?: number;
 	step?: number;
 	value?: ISubscription<number, number>;
+	attribs?: Partial<InputNumericAttribs>;
 }
 
 export interface Range extends Omit<Num, "type" | "placeholder" | "size"> {
@@ -86,6 +94,7 @@ export interface Str extends Value, WithPresets<string> {
 	placeholder?: string;
 	size?: number;
 	value?: ISubscription<string, string>;
+	attribs?: Partial<InputTextAttribs>;
 }
 
 export interface Email extends Omit<Str, "type"> {
@@ -113,6 +122,7 @@ export interface Text extends Value {
 	rows?: number;
 	placeholder?: string;
 	value?: ISubscription<string, string>;
+	attribs?: Partial<TextAreaAttribs>;
 }
 
 export interface Color extends Value, WithPresets<string> {
@@ -147,6 +157,7 @@ export interface Month extends Omit<DateTime, "type" | "list"> {
 export interface Select<T> extends Value {
 	items: (T | SelectItem<T> | SelectItemGroup<T>)[];
 	value?: ISubscription<T, T>;
+	attribs?: Partial<Omit<SelectAttribs, "multiple">>;
 }
 
 export interface SelectItemGroup<T> {
@@ -171,6 +182,7 @@ export interface MultiSelect<T> extends Value {
 	items: (T | SelectItem<T> | SelectItemGroup<T>)[];
 	value?: ISubscription<T[], T[]>;
 	size?: number;
+	attribs?: Partial<Omit<SelectAttribs, "multiple">>;
 }
 
 export interface MultiSelectStr<T extends string = string>
@@ -192,11 +204,13 @@ export interface Trigger extends Value {
 	type: "trigger";
 	title: string;
 	value?: ISubscriber<boolean>;
+	attribs?: Partial<InputCheckboxAttribs>;
 }
 
 export interface Radio<T> extends Value {
 	items: (T | SelectItem<T>)[];
 	value?: ISubscription<T, T>;
+	attribs?: Partial<InputRadioAttribs>;
 }
 
 export interface RadioNum extends Radio<number> {
@@ -212,12 +226,14 @@ export interface FileVal extends Value {
 	accept?: string[];
 	capture?: InputFileAttribs["capture"];
 	value?: ISubscriber<File>;
+	attribs?: Partial<InputFileAttribs>;
 }
 
 export interface MultiFileVal extends Value {
 	type: "multiFile";
 	accept?: string[];
 	value?: ISubscriber<FileList>;
+	attribs?: Partial<InputFileAttribs>;
 }
 
 type KnownTypes =
