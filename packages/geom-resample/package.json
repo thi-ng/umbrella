@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-resample",
-	"version": "2.3.13",
+	"version": "2.3.14",
 	"description": "Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation",
 	"type": "module",
 	"module": "./index.js",
@@ -35,12 +35,12 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.4.11",
-		"@thi.ng/geom-api": "^3.4.49",
-		"@thi.ng/geom-closest-point": "^2.1.87",
-		"@thi.ng/geom-isec": "^2.1.91",
-		"@thi.ng/math": "^5.7.6",
-		"@thi.ng/vectors": "^7.8.8"
+		"@thi.ng/checks": "^3.4.12",
+		"@thi.ng/geom-api": "^3.4.50",
+		"@thi.ng/geom-closest-point": "^2.1.88",
+		"@thi.ng/geom-isec": "^2.1.92",
+		"@thi.ng/math": "^5.7.7",
+		"@thi.ng/vectors": "^7.8.9"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

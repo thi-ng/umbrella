@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-09T19:12:03Z
+- **Last updated**: 2023-12-11T10:07:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [9.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.4.0) (2023-12-11)
+
+#### 🚀 Features
+
+- update setAttrib(), more alignment w/ rdom logic ([639ca71](https://github.com/thi-ng/umbrella/commit/639ca71))
 
 ### [9.3.27](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.3.27) (2023-11-09)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api",
-	"version": "1.4.36",
+	"version": "1.4.37",
 	"description": "Generic, modular, extensible API bridge and infrastructure for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
@@ -36,13 +36,13 @@
 		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi zig/lib.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.11",
-		"@thi.ng/arrays": "^2.7.7",
-		"@thi.ng/checks": "^3.4.11",
-		"@thi.ng/errors": "^2.4.5",
-		"@thi.ng/hex": "^2.3.23",
-		"@thi.ng/idgen": "^2.2.14",
-		"@thi.ng/logger": "^2.0.1"
+		"@thi.ng/api": "^8.9.12",
+		"@thi.ng/arrays": "^2.7.8",
+		"@thi.ng/checks": "^3.4.12",
+		"@thi.ng/errors": "^2.4.6",
+		"@thi.ng/hex": "^2.3.24",
+		"@thi.ng/idgen": "^2.2.15",
+		"@thi.ng/logger": "^2.0.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-09T19:12:03Z
+- **Last updated**: 2023-12-11T10:07:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.13.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.13.4) (2023-12-11)
+
+#### ♻️ Refactoring
+
+- update boolean attrib handling in setAttrib() ([96a21ab](https://github.com/thi-ng/umbrella/commit/96a21ab))
 
 ### [0.13.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.13.3) (2023-12-09)
 

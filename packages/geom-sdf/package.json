@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-sdf",
-	"version": "0.2.86",
+	"version": "0.2.87",
 	"description": "2D Signed Distance Field creation from @thi.ng/geom shapes, conversions, sampling, combinators",
 	"type": "module",
 	"module": "./index.js",
@@ -35,18 +35,18 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.11",
-		"@thi.ng/checks": "^3.4.11",
-		"@thi.ng/defmulti": "^3.0.9",
-		"@thi.ng/errors": "^2.4.5",
-		"@thi.ng/geom": "^6.0.7",
-		"@thi.ng/geom-api": "^3.4.49",
-		"@thi.ng/geom-isoline": "^2.1.87",
-		"@thi.ng/geom-poly-utils": "^2.3.75",
-		"@thi.ng/geom-resample": "^2.3.13",
-		"@thi.ng/math": "^5.7.6",
-		"@thi.ng/transducers": "^8.8.14",
-		"@thi.ng/vectors": "^7.8.8"
+		"@thi.ng/api": "^8.9.12",
+		"@thi.ng/checks": "^3.4.12",
+		"@thi.ng/defmulti": "^3.0.10",
+		"@thi.ng/errors": "^2.4.6",
+		"@thi.ng/geom": "^6.0.8",
+		"@thi.ng/geom-api": "^3.4.50",
+		"@thi.ng/geom-isoline": "^2.1.88",
+		"@thi.ng/geom-poly-utils": "^2.3.76",
+		"@thi.ng/geom-resample": "^2.3.14",
+		"@thi.ng/math": "^5.7.7",
+		"@thi.ng/transducers": "^8.8.15",
+		"@thi.ng/vectors": "^7.8.9"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

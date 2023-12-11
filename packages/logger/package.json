@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/logger",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Types & basis infrastructure for arbitrary logging (w/ default impls)",
 	"type": "module",
 	"module": "./index.js",

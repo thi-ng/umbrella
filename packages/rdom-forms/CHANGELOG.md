@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-09T19:12:03Z
+- **Last updated**: 2023-12-11T10:07:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-forms@0.2.0) (2023-12-11)
+
+#### 🚀 Features
+
+- update range() value label handling ([41f97d3](https://github.com/thi-ng/umbrella/commit/41f97d3))
+- add value type generics for selectXX/multiSelectXX ([55d9897](https://github.com/thi-ng/umbrella/commit/55d9897))
+- make attribs type-specifc ([5c6de7f](https://github.com/thi-ng/umbrella/commit/5c6de7f))
+
+#### 🩹 Bug fixes
+
+- fix trigger() event handler ([9faaf26](https://github.com/thi-ng/umbrella/commit/9faaf26))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-forms@0.1.0) (2023-12-09)
 

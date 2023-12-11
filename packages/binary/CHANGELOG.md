@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-09T19:12:03Z
+- **Last updated**: 2023-12-11T10:07:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.4.0) (2023-12-11)
+
+#### 🚀 Features
+
+- add signed/unsigned int conversions ([9f23ae6](https://github.com/thi-ng/umbrella/commit/9f23ae6))
+
+#### 🩹 Bug fixes
+
+- update precision for float/uint conversions (both ways) ([5289c40](https://github.com/thi-ng/umbrella/commit/5289c40))
+  - add tests
 
 ### [3.3.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.36) (2023-11-09)
 
