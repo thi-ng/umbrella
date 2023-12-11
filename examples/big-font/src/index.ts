@@ -1,15 +1,15 @@
 import type { Keys } from "@thi.ng/api";
-import {
-	checkbox,
-	div,
-	inputRange,
-	inputText,
-	label,
-	pre,
-} from "@thi.ng/hiccup-html";
+import { div, pre } from "@thi.ng/hiccup-html";
 import { getIn, setIn } from "@thi.ng/paths";
-import { $compile, $input, $inputCheckbox, $inputNum } from "@thi.ng/rdom";
-import { staticDropdown } from "@thi.ng/rdom-components";
+import { $compile } from "@thi.ng/rdom";
+import {
+	compileForm,
+	container,
+	range,
+	selectStr,
+	str,
+	toggle,
+} from "@thi.ng/rdom-forms";
 import { reactive, sync } from "@thi.ng/rstream";
 import { repeat } from "@thi.ng/strings";
 import { map, repeatedly } from "@thi.ng/transducers";
@@ -151,45 +151,43 @@ const main = sync({
 	),
 });
 
-// helper component to wrap form elements
-const formParam = (el: [string, ...any[]]) => {
-	const id = el[1].id;
-	return div(".mb3", {}, label(".dib.w4.ttu", { for: id }, id), el);
-};
-
 // compile UI
 $compile(
 	div(
 		{},
-		formParam(
-			inputText(".w5", {
-				id: "text",
-				autofocus: true,
-				oninput: $input(msg),
-				value: msg,
-			})
-		),
-		formParam(
-			staticDropdown<FontID, FontID>(FONT_NAMES, font, {
-				attribs: { id: "font", class: "w5" },
-			})
-		),
-		formParam(
-			inputRange(".w4", {
-				id: "spacing",
-				oninput: $inputNum(spacing),
-				min: 0,
-				max: 4,
-				step: 1,
-				value: spacing,
-			})
-		),
-		formParam(
-			checkbox({
-				id: "kerning",
-				oninput: $inputCheckbox(kerning),
-				checked: kerning,
-			})
+		compileForm(
+			container(
+				{},
+				str({
+					label: "text",
+					attribs: { autofocus: true },
+					value: msg,
+				}),
+				selectStr({
+					label: "font",
+					items: FONT_NAMES,
+					value: font,
+				}),
+				range({
+					label: "spacing",
+					min: 0,
+					max: 4,
+					step: 1,
+					value: spacing,
+					vlabel: false,
+				}),
+				toggle({ label: "kerning", value: kerning })
+			),
+			{
+				labelAttribs: { class: "dib w4 ttu" },
+				wrapperAttribs: { class: "mb3" },
+				typeAttribs: {
+					range: { class: "w5" },
+					rangeWrapper: { class: "dib" },
+					select: { class: "w5 ttu" },
+					str: { class: "w5" },
+				},
+			}
 		),
 		pre({}, main)
 	)
