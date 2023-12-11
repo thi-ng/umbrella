@@ -365,7 +365,7 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 			if (idx < 0) {
 				val === false || val == null
 					? el.removeAttribute(id)
-					: el.setAttribute(id, val);
+					: el.setAttribute(id, val === true ? id : val);
 			} else {
 				const ns = PREFIXES[id.substring(0, idx)];
 				val === false || val == null
