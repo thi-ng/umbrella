@@ -84,7 +84,9 @@ cat << EOF > "$MODULE"/package.json
 	"author": "$AUTHOR ($AUTHOR_URL)",
 	"license": "Apache-2.0",
 	"scripts": {
-		"build": "yarn clean && tsc --declaration",
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",

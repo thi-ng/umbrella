@@ -26,7 +26,7 @@
 	"scripts": {
 		"build": "yarn build:esbuild && yarn build:decl",
 		"build:decl": "tsc --declaration --emitDeclarationOnly",
-		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --minify-syntax --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc caches components groups",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
