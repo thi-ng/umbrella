@@ -10,6 +10,22 @@ This implementation is a full rewrite & refactor of
 [@ygoe/msgpack.js](https://github.com/ygoe/msgpack.js), based on this
 [specification](https://github.com/msgpack/msgpack/blob/8aa09e2a6a9180a49fc62ecfefe149f063cc5e4b/spec.md).
 
+### Supported values
+
+- numbers (i8/16/32, u8/16/32, bigint signed/unsigned 64bit range, floats)
+- strings (converted to UTF-8)
+- plain JS objects
+- arrays
+- typed arrays (as bytes)
+- `Date` objects
+- `null`
+
+Custom types can be serialized via a user-provided `resolve()` function which is
+expected to produce a msgpack-compatible representation of the custom type(s).
+
+As with `JSON.stringify()`, `undefined` values will be serialized as `null` and
+object keys with `undefined` will be entirely omitted in the serialization.
+
 {{meta.status}}
 
 {{repo.supportPackages}}
