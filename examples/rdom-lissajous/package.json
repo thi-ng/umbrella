@@ -30,6 +30,7 @@
 			"hiccup-html",
 			"rdom",
 			"rdom-canvas",
+			"rdom-forms",
 			"rstream",
 			"transducers"
 		],

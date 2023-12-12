@@ -92,6 +92,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/> | Matrix-based image color adjustments                                        | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>     | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>      | Basic usage of the declarative rdom-forms generator                         | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>    | rdom & hiccup-canvas interop test                                           | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)    |
 
 ## API
 
