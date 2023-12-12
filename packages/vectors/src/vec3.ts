@@ -14,7 +14,6 @@ import {
 } from "./api.js";
 import { AVec } from "./avec.js";
 import { intoStridedBuffer, mapStridedBuffer } from "./buffer.js";
-import { declareIndices } from "./compile/accessors.js";
 import { eqDelta3 } from "./eqdelta.js";
 import { hash } from "./hash.js";
 import { stridedValues, vecIterator } from "./iterator.js";
@@ -87,9 +86,6 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
 	static readonly ZERO = new Vec3(<NumericArray>ZERO3);
 	static readonly ONE = new Vec3(<NumericArray>ONE3);
 
-	x!: number;
-	y!: number;
-	z!: number;
 	[id: number]: number;
 
 	constructor(buf?: NumericArray, offset = 0, stride = 1) {
@@ -102,6 +98,54 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
 
 	get length() {
 		return 3;
+	}
+
+	get [0]() {
+		return this.buf[this.offset];
+	}
+
+	set [0](x: number) {
+		this.buf[this.offset] = x;
+	}
+
+	get [1]() {
+		return this.buf[this.offset + this.stride];
+	}
+
+	set [1](y: number) {
+		this.buf[this.offset + this.stride] = y;
+	}
+
+	get [2]() {
+		return this.buf[this.offset + 2 * this.stride];
+	}
+
+	set [2](z: number) {
+		this.buf[this.offset + 2 * this.stride] = z;
+	}
+
+	get x() {
+		return this.buf[this.offset];
+	}
+
+	set x(x: number) {
+		this.buf[this.offset] = x;
+	}
+
+	get y() {
+		return this.buf[this.offset + this.stride];
+	}
+
+	set y(y: number) {
+		this.buf[this.offset + this.stride] = y;
+	}
+
+	get z() {
+		return this.buf[this.offset + 2 * this.stride];
+	}
+
+	set z(z: number) {
+		this.buf[this.offset + 2 * this.stride] = z;
 	}
 
 	copy() {
@@ -128,8 +172,6 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
 		return [this.x, this.y, this.z];
 	}
 }
-
-declareIndices(Vec3.prototype, ["x", "y", "z"]);
 
 export const vec3 = (x = 0, y = 0, z = 0) => new Vec3([x, y, z]);
 

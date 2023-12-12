@@ -14,7 +14,6 @@ import {
 } from "./api.js";
 import { AVec } from "./avec.js";
 import { intoStridedBuffer, mapStridedBuffer } from "./buffer.js";
-import { declareIndices } from "./compile/accessors.js";
 import { eqDelta4 } from "./eqdelta.js";
 import { hash } from "./hash.js";
 import { stridedValues, vecIterator } from "./iterator.js";
@@ -87,10 +86,6 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
 	static readonly ZERO = new Vec4(<NumericArray>ZERO4);
 	static readonly ONE = new Vec4(<NumericArray>ONE4);
 
-	x!: number;
-	y!: number;
-	z!: number;
-	w!: number;
 	[id: number]: number;
 
 	constructor(buf?: NumericArray, offset = 0, stride = 1) {
@@ -103,6 +98,70 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
 
 	get length() {
 		return 4;
+	}
+
+	get [0]() {
+		return this.buf[this.offset];
+	}
+
+	set [0](x: number) {
+		this.buf[this.offset] = x;
+	}
+
+	get [1]() {
+		return this.buf[this.offset + this.stride];
+	}
+
+	set [1](y: number) {
+		this.buf[this.offset + this.stride] = y;
+	}
+
+	get [2]() {
+		return this.buf[this.offset + 2 * this.stride];
+	}
+
+	set [2](z: number) {
+		this.buf[this.offset + 2 * this.stride] = z;
+	}
+
+	get [3]() {
+		return this.buf[this.offset + 3 * this.stride];
+	}
+
+	set [3](w: number) {
+		this.buf[this.offset + 3 * this.stride] = w;
+	}
+
+	get x() {
+		return this.buf[this.offset];
+	}
+
+	set x(x: number) {
+		this.buf[this.offset] = x;
+	}
+
+	get y() {
+		return this.buf[this.offset + this.stride];
+	}
+
+	set y(y: number) {
+		this.buf[this.offset + this.stride] = y;
+	}
+
+	get z() {
+		return this.buf[this.offset + 2 * this.stride];
+	}
+
+	set z(z: number) {
+		this.buf[this.offset + 2 * this.stride] = z;
+	}
+
+	get w() {
+		return this.buf[this.offset + 3 * this.stride];
+	}
+
+	set w(w: number) {
+		this.buf[this.offset + 3 * this.stride] = w;
 	}
 
 	copy() {
@@ -129,8 +188,6 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
 		return [this.x, this.y, this.z, this.w];
 	}
 }
-
-declareIndices(Vec4.prototype, ["x", "y", "z", "w"]);
 
 export const vec4 = (x = 0, y = 0, z = 0, w = 0) => new Vec4([x, y, z, w]);
 
