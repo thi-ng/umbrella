@@ -1,8 +1,8 @@
 import type { IDeref } from "@thi.ng/api";
-import { INFORMATION, withSize } from "@thi.ng/hiccup-carbon-icons";
-import { div, inputRange, label } from "@thi.ng/hiccup-html";
+import { div } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
+import { compileForm, container, range } from "@thi.ng/rdom-forms";
 import {
 	fromDOMEvent,
 	fromRAF,
@@ -11,33 +11,6 @@ import {
 	type ISubscription,
 } from "@thi.ng/rstream";
 import { map, slidingWindow } from "@thi.ng/transducers";
-
-const slider = (
-	dest: ISubscription<number, number>,
-	desc: string,
-	tooltip: string,
-	attribs?: any
-) =>
-	div(
-		null,
-		label(
-			{ class: "dib w-50", for: `input-${desc}` },
-			["i.mr2", { data: { tooltip } }, withSize(INFORMATION, "12px")],
-			`${desc}: `,
-			dest.transform(map((x) => x.toFixed(2)))
-		),
-		inputRange({
-			id: `input-${desc}`,
-			class: "dib w-50",
-			min: 0,
-			max: 10,
-			step: 0.1,
-			...attribs,
-			value: dest,
-			oninput: (e: InputEvent) =>
-				dest.next(parseFloat((<HTMLInputElement>e.target).value)),
-		})
-	);
 
 const lissajous = (
 	a: number,
@@ -101,23 +74,59 @@ const dots: ISubscription<any, any[]> = sync({
 $compile(
 	div(
 		null,
-		div(
-			{ class: "w-50-ns center-ns ma3" },
-			slider(a, "A", "Curve parameter"),
-			slider(b, "B", "Curve parameter"),
-			slider(num, "Length", "Trail length / number of dots", {
-				min: 1,
-				max: 100,
-				step: 1,
-			}),
-			slider(radius, "Radius", "Dot radius", {
-				min: 1,
-				max: 50,
-			}),
-			slider(scale, "Scale", "Scale factor", {
-				max: 1,
-				step: 0.01,
-			})
+		compileForm(
+			container(
+				{ class: "w-70-m w-50-l center-ns ma3" },
+				range({
+					value: a,
+					label: "Curve A",
+					min: 0,
+					max: 10,
+					step: 0.1,
+				}),
+				range({
+					value: b,
+					label: "Curve B",
+					min: 0,
+					max: 10,
+					step: 0.1,
+				}),
+				range({
+					value: num,
+					label: "Trail length",
+					min: 1,
+					max: 100,
+					vlabel: 0,
+				}),
+				range({
+					value: radius,
+					label: "Dot radius",
+					min: 1,
+					max: 50,
+					vlabel: 0,
+				}),
+				range({
+					value: scale,
+					label: "Scale",
+					min: 0,
+					max: 1,
+					step: 0.01,
+				})
+			),
+			{
+				wrapperAttribs: {
+					style: {
+						display: "grid",
+						"grid-template-columns": "1fr 2fr",
+						gap: "0.5rem",
+					},
+				},
+				labelAttribs: { class: "v-top" },
+				typeAttribs: {
+					range: { class: "w-70" },
+					rangeLabel: { class: "dib pl3 v-top tr" },
+				},
+			}
 		),
 		// subscribe canvas component to above reactive value
 		$canvas(dots, size)

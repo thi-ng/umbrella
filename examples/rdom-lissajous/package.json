@@ -13,10 +13,10 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
-		"@thi.ng/hiccup-carbon-icons": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rdom-canvas": "workspace:^",
+		"@thi.ng/rdom-forms": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
