@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-11T10:07:09Z
+- **Last updated**: 2023-12-12T15:03:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/msgpack@0.1.4) (2023-12-12)
+
+#### ♻️ Refactoring
+
+- update null handling in serialize() ([a96732d](https://github.com/thi-ng/umbrella/commit/a96732d))
+  - add/update tests
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/msgpack@0.1.0) (2023-11-24)
 
