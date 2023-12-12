@@ -251,14 +251,16 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-12-11
+As of: 2023-12-12
 
 | Status                                           | Package                                       | Version                                                                                                             | Changelog                                       |
 |:-------------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/binary`](./packages/binary)         | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)         | [changelog](./packages/binary/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hdom`](./packages/hdom)             | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)             | [changelog](./packages/hdom/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/msgpack`](./packages/msgpack) | [![version](https://img.shields.io/npm/v/@thi.ng/msgpack.svg)](https://www.npmjs.com/package/@thi.ng/msgpack) | [changelog](./packages/msgpack/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rdom`](./packages/rdom)             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)             | [changelog](./packages/rdom/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-forms`](./packages/rdom-forms) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms) | [changelog](./packages/rdom-forms/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/vectors`](./packages/vectors) | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors) | [changelog](./packages/vectors/CHANGELOG.md) |
 
 ### Fundamentals
 
