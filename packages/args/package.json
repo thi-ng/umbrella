@@ -38,6 +38,7 @@
 		"@thi.ng/api": "^8.9.12",
 		"@thi.ng/checks": "^3.4.12",
 		"@thi.ng/errors": "^2.4.6",
+		"@thi.ng/logger": "^2.0.2",
 		"@thi.ng/strings": "^3.7.3"
 	},
 	"devDependencies": {
@@ -58,6 +59,7 @@
 		"declarative",
 		"functional",
 		"hex",
+		"logger",
 		"nodejs",
 		"parser",
 		"tuple",

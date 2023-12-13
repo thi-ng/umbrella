@@ -1,6 +1,6 @@
 import { illegalArgs } from "@thi.ng/errors";
 import { ConsoleLogger } from "@thi.ng/logger/console";
-import type { CLIAppConfig, Command, UsageOpts } from "./api.js";
+import type { CLIAppConfig, Command, CommandCtx, UsageOpts } from "./api.js";
 import { parse } from "./parse.js";
 import { usage } from "./usage.js";
 import { padRight } from "@thi.ng/strings/pad-right";
@@ -8,7 +8,11 @@ import type { IObjectOf } from "@thi.ng/api";
 
 export const cliApp = async <T extends object>(config: CLIAppConfig<T>) => {
 	const argv = config.argv || process.argv.slice(2);
-	let usageOpts = { prefix: "", ...config.usage };
+	let usageOpts = {
+		prefix: "",
+		color: process.env.NO_COLOR !== "1",
+		...config.usage,
+	};
 	try {
 		let cmdID: string;
 		let cmd: Command<any, T>;
@@ -30,19 +34,19 @@ export const cliApp = async <T extends object>(config: CLIAppConfig<T>) => {
 			usageOpts,
 			start,
 		});
-		const inputsOk =
-			parsed && cmd.inputs !== undefined
-				? cmd.inputs === parsed.rest.length
-				: true;
-		if (!(parsed && inputsOk)) {
+		if (!parsed) process.exit(1);
+		if (cmd.inputs !== undefined && cmd.inputs !== parsed.rest.length) {
 			process.stderr.write(`expected ${cmd.inputs || 0} input(s)\n`);
 			__usageAndExit(config, usageOpts);
 		}
-		await cmd.fn({
-			logger: new ConsoleLogger("app", "DEBUG"),
-			opts: parsed!.result,
-			inputs: parsed!.rest,
-		});
+		const ctx: CommandCtx<any, T> = {
+			logger: new ConsoleLogger("app", "INFO"),
+			opts: parsed.result,
+			inputs: parsed.rest,
+		};
+		if (config.pre) await config.pre(ctx, cmd);
+		await cmd.fn(ctx);
+		if (config.post) await config.post(ctx, cmd);
 	} catch (e) {
 		process.stderr.write((<Error>e).message + "\n\n");
 		__usageAndExit(config, usageOpts);

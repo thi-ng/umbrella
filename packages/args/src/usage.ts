@@ -1,4 +1,5 @@
 import type { IObjectOf, Pair } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { lengthAnsi } from "@thi.ng/strings/ansi";
 import { capitalize, kebab } from "@thi.ng/strings/case";
 import { padRight } from "@thi.ng/strings/pad-right";
@@ -26,10 +27,11 @@ export const usage = <T extends IObjectOf<any>>(
 		groups: ["flags", "main"],
 		...opts,
 	};
-	const theme =
-		opts.color !== false
-			? { ...DEFAULT_THEME, ...opts.color }
-			: <ColorTheme>{};
+	const theme = isPlainObject(opts.color)
+		? { ...DEFAULT_THEME, ...opts.color }
+		: opts.color
+		? DEFAULT_THEME
+		: <ColorTheme>{};
 	const indent = repeat(" ", opts.paramWidth!);
 	const format = (ids: string[]) =>
 		ids.map((id) => argUsage(id, specs[id], opts, theme, indent));

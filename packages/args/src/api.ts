@@ -1,4 +1,4 @@
-import type { Fn, IDeref, IObjectOf } from "@thi.ng/api";
+import type { Fn, Fn2, IDeref, IObjectOf } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 
 export interface ArgSpecBase {
@@ -126,9 +126,13 @@ export interface UsageOpts {
 	/**
 	 * If false, ANSI colors will be stripped from output.
 	 *
+	 * @remarks
+	 * When using {@link cliApp}, the default for this value will depend on the
+	 * `NO_COLOR` env var being set. See https://no-color.org/ for details.
+	 *
 	 * @defaultValue true
 	 */
-	color: Partial<ColorTheme> | false;
+	color: Partial<ColorTheme> | boolean;
 	/**
 	 * If true (default), display argument default values. Nullish or false
 	 * default values will never be shown.
@@ -223,6 +227,16 @@ export interface CLIAppConfig<OPTS extends object> {
 	 * `process.argv.slice(2)`
 	 */
 	argv?: string[];
+	/**
+	 * Lifecycle hook. Function which will be called just before the actual
+	 * command handler, e.g. for setup/config purposes.
+	 */
+	pre?: Fn2<CommandCtx<OPTS, OPTS>, Command<any, OPTS>, Promise<void>>;
+	/**
+	 * Lifecycle hook. Function which will be called just after the actual
+	 * command handler, e.g. for teardown purposes.
+	 */
+	post?: Fn2<CommandCtx<OPTS, OPTS>, Command<any, OPTS>, Promise<void>>;
 }
 
 export interface Command<T extends BASE, BASE extends object> {
@@ -235,7 +249,8 @@ export interface Command<T extends BASE, BASE extends object> {
 	 */
 	opts: Args<Omit<T, keyof BASE>>;
 	/**
-	 * Number of required rest input value (after all options)
+	 * Number of required rest input value (after all parsed options). Leave
+	 * unset to allow any number.
 	 */
 	inputs?: number;
 	/**
@@ -245,7 +260,18 @@ export interface Command<T extends BASE, BASE extends object> {
 }
 
 export interface CommandCtx<T extends BASE, BASE extends object> {
+	/**
+	 * Logger to be used by all commands. By default uses a console logger with
+	 * log level INFO. Can be customized via {@link CLIAppConfig.pre}.
+	 */
 	logger: ILogger;
+	/**
+	 * Parsed CLI args (according to provided command spec)
+	 */
 	opts: T;
+	/**
+	 * Array of remaining CLI args (after parsed options). Individual commands
+	 * can specify the number of items required via {@link Command.inputs}.
+	 */
 	inputs: string[];
 }
