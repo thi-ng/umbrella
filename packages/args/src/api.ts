@@ -1,4 +1,5 @@
 import type { Fn, IDeref, IObjectOf } from "@thi.ng/api";
+import type { ILogger } from "@thi.ng/logger";
 
 export interface ArgSpecBase {
 	/**
@@ -195,4 +196,56 @@ export class Tuple<T> implements IDeref<T[]> {
 	deref() {
 		return this.value;
 	}
+}
+
+export interface CLIAppConfig<OPTS extends object> {
+	/**
+	 * Shared args for all commands
+	 */
+	opts: Args<OPTS>;
+	/**
+	 * Command spec registry
+	 */
+	commands: IObjectOf<Command<any, OPTS>>;
+	/**
+	 * If true, the app will only use the single command entry in
+	 * {@link CLIAppConfig.commands} and not expect the first CLI args to be a
+	 * command name.
+	 */
+	single?: boolean;
+	/**
+	 * Usage options, same as {@link UsageOpts}. Usage will be shown
+	 * automatically in case of arg parse errors.
+	 */
+	usage: Partial<UsageOpts>;
+	/**
+	 * Arguments vector to use for arg parsing. If omitted, uses
+	 * `process.argv.slice(2)`
+	 */
+	argv?: string[];
+}
+
+export interface Command<T extends BASE, BASE extends object> {
+	/**
+	 * Command description (short, single line)
+	 */
+	desc: string;
+	/**
+	 * Command specific CLI arg specs
+	 */
+	opts: Args<Omit<T, keyof BASE>>;
+	/**
+	 * Number of required rest input value (after all options)
+	 */
+	inputs?: number;
+	/**
+	 * Actual command function/implementation.
+	 */
+	fn: Fn<CommandCtx<T, BASE>, Promise<void>>;
+}
+
+export interface CommandCtx<T extends BASE, BASE extends object> {
+	logger: ILogger;
+	opts: T;
+	inputs: string[];
 }
