@@ -230,10 +230,15 @@ export interface CLIAppConfig<
 	 */
 	usage: Partial<UsageOpts>;
 	/**
-	 * Arguments vector to use for arg parsing. If omitted, uses
-	 * `process.argv.slice(2)`
+	 * Arguments vector to use for arg parsing. If omitted, uses `process.argv`
 	 */
 	argv?: string[];
+	/**
+	 * {@link CLIAppConfig.argv} index to start parsing from.
+	 *
+	 * @defaultValue 2
+	 */
+	start?: number;
 	/**
 	 * {@link CommandCtx} augmentation handler, i.e. an async function which
 	 * will be called just before the actual command for additional setup/config

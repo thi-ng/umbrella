@@ -18,7 +18,7 @@ export const cliApp = async <
 >(
 	config: CLIAppConfig<OPTS, CTX>
 ) => {
-	const argv = config.argv || process.argv.slice(2);
+	const argv = config.argv || process.argv;
 	let usageOpts = {
 		prefix: "",
 		color: process.env.NO_COLOR !== "1",
@@ -27,18 +27,18 @@ export const cliApp = async <
 	try {
 		let cmdID: string;
 		let cmd: Command<any, OPTS, CTX>;
-		let start = 0;
+		let start = config.start ?? 2;
 		if (config.single) {
 			// single command mode, use 1st available name
 			cmdID = Object.keys(config.commands)[0];
 			if (!cmdID) illegalArgs("no command provided");
 			cmd = config.commands[cmdID];
 		} else {
-			start = 1;
-			cmdID = argv[0];
+			cmdID = argv[start];
 			cmd = config.commands[cmdID];
 			usageOpts.prefix += __descriptions(config.commands);
 			if (!cmd) __usageAndExit(config, usageOpts);
+			start++;
 		}
 		let parsed: ParseResult<OPTS> | undefined;
 		try {
