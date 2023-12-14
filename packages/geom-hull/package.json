@@ -59,7 +59,7 @@
 		"access": "public"
 	},
 	"engines": {
-		"node": ">=12.7"
+		"node": ">=18"
 	},
 	"files": [
 		"./*.js",

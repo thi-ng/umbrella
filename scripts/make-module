@@ -111,6 +111,9 @@ cat << EOF > "$MODULE"/package.json
 	"publishConfig": {
 		"access": "public"
 	},
+	"engines": {
+		"node": ">=18"
+	},
 	"browser": {
 		"process": false,
 		"setTimeout": false
