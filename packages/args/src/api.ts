@@ -202,7 +202,14 @@ export class Tuple<T> implements IDeref<T[]> {
 	}
 }
 
-export interface CLIAppConfig<OPTS extends object> {
+export interface CLIAppConfig<
+	OPTS extends object,
+	CTX extends CommandCtx<OPTS, OPTS> = CommandCtx<OPTS, OPTS>
+> {
+	/**
+	 * App (CLI command) short name.
+	 */
+	name: string;
 	/**
 	 * Shared args for all commands
 	 */
@@ -210,7 +217,7 @@ export interface CLIAppConfig<OPTS extends object> {
 	/**
 	 * Command spec registry
 	 */
-	commands: IObjectOf<Command<any, OPTS>>;
+	commands: IObjectOf<Command<any, OPTS, CTX>>;
 	/**
 	 * If true, the app will only use the single command entry in
 	 * {@link CLIAppConfig.commands} and not expect the first CLI args to be a
@@ -228,18 +235,24 @@ export interface CLIAppConfig<OPTS extends object> {
 	 */
 	argv?: string[];
 	/**
-	 * Lifecycle hook. Function which will be called just before the actual
-	 * command handler, e.g. for setup/config purposes.
+	 * {@link CommandCtx} augmentation handler, i.e. an async function which
+	 * will be called just before the actual command for additional setup/config
+	 * purposes. The context object returned will be the one passed to the
+	 * command.
 	 */
-	pre?: Fn2<CommandCtx<OPTS, OPTS>, Command<any, OPTS>, Promise<void>>;
+	ctx: Fn2<CommandCtx<OPTS, OPTS>, Command<any, OPTS, CTX>, Promise<CTX>>;
 	/**
 	 * Lifecycle hook. Function which will be called just after the actual
 	 * command handler, e.g. for teardown purposes.
 	 */
-	post?: Fn2<CommandCtx<OPTS, OPTS>, Command<any, OPTS>, Promise<void>>;
+	post?: Fn2<CTX, Command<any, OPTS, CTX>, Promise<void>>;
 }
 
-export interface Command<T extends BASE, BASE extends object> {
+export interface Command<
+	OPTS extends BASE,
+	BASE extends object,
+	CTX extends CommandCtx<OPTS, BASE> = CommandCtx<OPTS, BASE>
+> {
 	/**
 	 * Command description (short, single line)
 	 */
@@ -247,7 +260,7 @@ export interface Command<T extends BASE, BASE extends object> {
 	/**
 	 * Command specific CLI arg specs
 	 */
-	opts: Args<Omit<T, keyof BASE>>;
+	opts: Args<Omit<OPTS, keyof BASE>>;
 	/**
 	 * Number of required rest input value (after all parsed options). Leave
 	 * unset to allow any number.
@@ -256,10 +269,10 @@ export interface Command<T extends BASE, BASE extends object> {
 	/**
 	 * Actual command function/implementation.
 	 */
-	fn: Fn<CommandCtx<T, BASE>, Promise<void>>;
+	fn: Fn<CTX, Promise<void>>;
 }
 
-export interface CommandCtx<T extends BASE, BASE extends object> {
+export interface CommandCtx<OPTS extends BASE, BASE extends object> {
 	/**
 	 * Logger to be used by all commands. By default uses a console logger with
 	 * log level INFO. Can be customized via {@link CLIAppConfig.pre}.
@@ -268,7 +281,7 @@ export interface CommandCtx<T extends BASE, BASE extends object> {
 	/**
 	 * Parsed CLI args (according to provided command spec)
 	 */
-	opts: T;
+	opts: OPTS;
 	/**
 	 * Array of remaining CLI args (after parsed options). Individual commands
 	 * can specify the number of items required via {@link Command.inputs}.

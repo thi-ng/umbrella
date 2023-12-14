@@ -6,7 +6,12 @@ import { usage } from "./usage.js";
 import { padRight } from "@thi.ng/strings/pad-right";
 import type { IObjectOf } from "@thi.ng/api";
 
-export const cliApp = async <T extends object>(config: CLIAppConfig<T>) => {
+export const cliApp = async <
+	OPTS extends object,
+	CTX extends CommandCtx<OPTS, OPTS>
+>(
+	config: CLIAppConfig<OPTS, CTX>
+) => {
 	const argv = config.argv || process.argv.slice(2);
 	let usageOpts = {
 		prefix: "",
@@ -15,7 +20,7 @@ export const cliApp = async <T extends object>(config: CLIAppConfig<T>) => {
 	};
 	try {
 		let cmdID: string;
-		let cmd: Command<any, T>;
+		let cmd: Command<any, OPTS, CTX>;
 		let start = 0;
 		if (config.single) {
 			// single command mode, use 1st available name
@@ -29,7 +34,7 @@ export const cliApp = async <T extends object>(config: CLIAppConfig<T>) => {
 			usageOpts.prefix += __descriptions(config.commands);
 			if (!cmd) __usageAndExit(config, usageOpts);
 		}
-		const parsed = parse<T>({ ...config.opts, ...cmd.opts }, argv, {
+		const parsed = parse<OPTS>({ ...config.opts, ...cmd.opts }, argv, {
 			showUsage: false,
 			usageOpts,
 			start,
@@ -39,12 +44,14 @@ export const cliApp = async <T extends object>(config: CLIAppConfig<T>) => {
 			process.stderr.write(`expected ${cmd.inputs || 0} input(s)\n`);
 			__usageAndExit(config, usageOpts);
 		}
-		const ctx: CommandCtx<any, T> = {
-			logger: new ConsoleLogger("app", "INFO"),
-			opts: parsed.result,
-			inputs: parsed.rest,
-		};
-		if (config.pre) await config.pre(ctx, cmd);
+		const ctx: CTX = await config.ctx(
+			{
+				logger: new ConsoleLogger(config.name, "INFO"),
+				opts: parsed.result,
+				inputs: parsed.rest,
+			},
+			cmd
+		);
 		await cmd.fn(ctx);
 		if (config.post) await config.post(ctx, cmd);
 	} catch (e) {
@@ -53,15 +60,15 @@ export const cliApp = async <T extends object>(config: CLIAppConfig<T>) => {
 	}
 };
 
-const __usageAndExit = <T extends object>(
-	config: CLIAppConfig<T>,
+const __usageAndExit = (
+	config: CLIAppConfig<any, any>,
 	usageOpts: Partial<UsageOpts>
 ) => {
 	process.stderr.write(usage(config.opts, usageOpts));
 	process.exit(1);
 };
 
-const __descriptions = (commands: IObjectOf<Command<any, any>>) =>
+const __descriptions = (commands: IObjectOf<Command<any, any, any>>) =>
 	[
 		"\nAvailable commands:\n",
 		...Object.keys(commands).map(
