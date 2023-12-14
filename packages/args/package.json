@@ -86,6 +86,9 @@
 		"./args": {
 			"default": "./args.js"
 		},
+		"./cli": {
+			"default": "./cli.js"
+		},
 		"./coerce": {
 			"default": "./coerce.js"
 		},

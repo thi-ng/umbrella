@@ -103,6 +103,9 @@
 		"./gray": {
 			"default": "./gray.js"
 		},
+		"./int": {
+			"default": "./int.js"
+		},
 		"./logic": {
 			"default": "./logic.js"
 		},
