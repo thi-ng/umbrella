@@ -95,10 +95,11 @@ cat << EOF > "$MODULE"/package.json
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.10"
+		"@thi.ng/api": "^8.9.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
+		"esbuild": "^0.19.8",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.4",
