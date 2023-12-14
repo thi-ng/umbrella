@@ -5287,6 +5287,7 @@ __metadata:
     "@thi.ng/args": ^2.2.46
     "@thi.ng/bench": ^3.4.14
     "@thi.ng/errors": ^2.4.6
+    "@thi.ng/file-io": ^1.0.5
     "@thi.ng/logger": ^2.0.2
     "@thi.ng/pointfree": ^3.1.55
     esbuild: ^0.19.8
