@@ -23,9 +23,9 @@ const formatCond = (cond: any) => {
 		if (cond.hasOwnProperty(c)) {
 			let v = cond[c];
 			if (v === true) {
-				v = c;
+				v = MEDIA_TYPES.has(c) ? c : `(${c})`;
 			} else if (v === false) {
-				v = "not " + c;
+				v = "not " + (MEDIA_TYPES.has(c) ? c : `(${c})`);
 			} else if (v === "only") {
 				v += " " + c;
 			} else {
@@ -36,3 +36,5 @@ const formatCond = (cond: any) => {
 	}
 	return acc.join(" and ");
 };
+
+const MEDIA_TYPES = new Set(["all", "print", "screen"]);

@@ -121,6 +121,12 @@ test("@media", () => {
 	).toBe(
 		"@media screen and print{div .foo{color:red;}@media print and (max-width:20rem){div{border:0;}}}"
 	);
+	expect(css(at_media({ "prefers-reduced-motion": true }, []))).toBe(
+		`@media (prefers-reduced-motion){}`
+	);
+	expect(css(at_media({ "prefers-reduced-motion": false }, []))).toBe(
+		`@media not (prefers-reduced-motion){}`
+	);
 });
 
 test("animation", () => {
