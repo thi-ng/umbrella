@@ -1,10 +1,16 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { ConsoleLogger } from "@thi.ng/logger/console";
-import type { CLIAppConfig, Command, CommandCtx, UsageOpts } from "./api.js";
+import { padRight } from "@thi.ng/strings/pad-right";
+import type {
+	CLIAppConfig,
+	Command,
+	CommandCtx,
+	ParseResult,
+	UsageOpts,
+} from "./api.js";
 import { parse } from "./parse.js";
 import { usage } from "./usage.js";
-import { padRight } from "@thi.ng/strings/pad-right";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const cliApp = async <
 	OPTS extends object,
@@ -34,11 +40,14 @@ export const cliApp = async <
 			usageOpts.prefix += __descriptions(config.commands);
 			if (!cmd) __usageAndExit(config, usageOpts);
 		}
-		const parsed = parse<OPTS>({ ...config.opts, ...cmd.opts }, argv, {
-			showUsage: false,
-			usageOpts,
-			start,
-		});
+		let parsed: ParseResult<OPTS> | undefined;
+		try {
+			parsed = parse<OPTS>({ ...config.opts, ...cmd.opts }, argv, {
+				showUsage: true,
+				usageOpts,
+				start,
+			});
+		} catch (_) {}
 		if (!parsed) process.exit(1);
 		if (cmd.inputs !== undefined && cmd.inputs !== parsed.rest.length) {
 			process.stderr.write(`expected ${cmd.inputs || 0} input(s)\n`);
@@ -56,7 +65,7 @@ export const cliApp = async <
 		if (config.post) await config.post(ctx, cmd);
 	} catch (e) {
 		process.stderr.write((<Error>e).message + "\n\n");
-		__usageAndExit(config, usageOpts);
+		process.exit(1);
 	}
 };
 
