@@ -1,0 +1,116 @@
+{
+	"name": "@thi.ng/meta-css",
+	"version": "0.0.1",
+	"description": "Data-driven CSS component & framework codegen",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"bin": {
+		"metacss": "bin/metacss"
+	},
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/meta-css#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.9.12",
+		"@thi.ng/args": "^2.2.46",
+		"@thi.ng/arrays": "^2.7.8",
+		"@thi.ng/checks": "^3.4.12",
+		"@thi.ng/errors": "^2.4.6",
+		"@thi.ng/file-io": "^1.0.5",
+		"@thi.ng/hiccup-css": "^2.2.20",
+		"@thi.ng/logger": "^2.0.2",
+		"@thi.ng/paths": "^5.1.53",
+		"@thi.ng/strings": "^3.7.3",
+		"@thi.ng/text-format": "^1.4.21",
+		"@thi.ng/transducers": "^8.8.15"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.38.3",
+		"esbuild": "^0.19.8",
+		"rimraf": "^5.0.5",
+		"tools": "workspace:^",
+		"typedoc": "^0.25.4",
+		"typescript": "^5.3.2"
+	},
+	"keywords": [
+		"browser",
+		"cli",
+		"codegen",
+		"component",
+		"css",
+		"export",
+		"fileformat",
+		"generator",
+		"json",
+		"template",
+		"typescript",
+		"ui"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts",
+		"bin",
+		"specs"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./convert": {
+			"default": "./convert.js"
+		},
+		"./generate": {
+			"default": "./generate.js"
+		},
+		"./utils": {
+			"default": "./utils.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"hiccup-css"
+		],
+		"status": "alpha",
+		"year": 2023
+	}
+}

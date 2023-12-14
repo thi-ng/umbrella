@@ -5094,6 +5094,33 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/meta-css@workspace:packages/meta-css":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/meta-css@workspace:packages/meta-css"
+  dependencies:
+    "@microsoft/api-extractor": ^7.38.3
+    "@thi.ng/api": ^8.9.12
+    "@thi.ng/args": ^2.2.46
+    "@thi.ng/arrays": ^2.7.8
+    "@thi.ng/checks": ^3.4.12
+    "@thi.ng/errors": ^2.4.6
+    "@thi.ng/file-io": ^1.0.5
+    "@thi.ng/hiccup-css": ^2.2.20
+    "@thi.ng/logger": ^2.0.2
+    "@thi.ng/paths": ^5.1.53
+    "@thi.ng/strings": ^3.7.3
+    "@thi.ng/text-format": ^1.4.21
+    "@thi.ng/transducers": ^8.8.15
+    esbuild: ^0.19.8
+    rimraf: ^5.0.5
+    tools: "workspace:^"
+    typedoc: ^0.25.4
+    typescript: ^5.3.2
+  bin:
+    metacss: bin/metacss
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/mime@^2.3.1, @thi.ng/mime@workspace:^, @thi.ng/mime@workspace:packages/mime":
   version: 0.0.0-use.local
   resolution: "@thi.ng/mime@workspace:packages/mime"

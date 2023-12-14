@@ -1,0 +1,379 @@
+{
+	"media": {
+		"ns": { "min-width": "30rem" },
+		"m": { "min-width": "30rem", "max-width": "60rem" },
+		"l": {
+			"min-width": "60rem"
+		},
+		"dark": {
+			"prefers-color-scheme": "dark"
+		},
+		"light": {
+			"prefers-color-scheme": "light"
+		},
+		"anim": {
+			"prefers-reduced-motion": false
+		},
+		"noanim": {
+			"prefers-reduced-motion": true
+		}
+	},
+	"indexed": {
+		"margins": [0, 0.25, 0.5, 1, 2],
+		"borders-r": [0, 0.125, 0.25, 0.5, 1],
+		"borders-w": [0, 0.125, 0.25, 0.5, 1, 2],
+		"sizes-abs": [1, 2, 4, 8, 16],
+		"sizes-rel": [
+			10, 20, 25, 30, 33, 34, 40, 50, 60, 66, 70, 75, 80, 90, 100
+		],
+		"tens": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+		"cols-rows": {
+			"1": "1fr",
+			"2": "1fr 1fr",
+			"3": "1fr 1fr 1fr",
+			"4": "repeat(4,1fr)",
+			"5": "repeat(5,1fr)",
+			"6": "repeat(6,1fr)",
+			"7": "repeat(7,1fr)",
+			"8": "repeat(8,1fr)",
+			"9": "repeat(9,1fr)",
+			"10": "repeat(10,1fr)"
+		},
+		"var-palette": {
+			"vcol1": "var(--color1)",
+			"vcol2": "var(--color2)",
+			"vcol3": "var(--color3)",
+			"vcol4": "var(--color4)",
+			"vcol5": "var(--color5)",
+			"vcol6": "var(--color6)",
+			"vcol7": "var(--color7)",
+			"vcol8": "var(--color8)"
+		},
+		"__grays_comment": "Tachyons CSS colors",
+		"grays": {
+			"black": "#000",
+			"near-black": "#111",
+			"dark-gray": "#333",
+			"mid-gray": "#555",
+			"gray": "#777",
+			"silver": "#999",
+			"light-silver": "#aaa",
+			"moon-gray": "#ccc",
+			"light-gray": "#eee",
+			"near-white": "#f4f4f4",
+			"white": "#fff",
+			"transparent": "transparent"
+		},
+		"__palette_comment": "Tachyons CSS colors",
+		"palette": {
+			"dark-red": "#e7040f",
+			"red": "#ff4136",
+			"light-red": "#ff725c",
+			"orange": "#ff6300",
+			"gold": "#ffb700",
+			"yellow": "#ffd700",
+			"light-yellow": "#fbf1a9",
+			"purple": "#5e2ca5",
+			"light-purple": "#a463f2",
+			"dark-pink": "#d5008f",
+			"hot-pink": "#ff41b4",
+			"pink": "#ff80cc",
+			"light-pink": "#ffa3d7",
+			"dark-green": "#137752",
+			"green": "#19a974",
+			"light-green": "#9eebcf",
+			"navy": "#001b44",
+			"dark-blue": "#00449e",
+			"blue": "#357edd",
+			"light-blue": "#96ccff",
+			"lightest-blue": "#cdecff",
+			"washed-blue": "#f6fffe",
+			"washed-green": "#e8fdf5",
+			"washed-yellow": "#fffceb",
+			"washed-red": "#ffdfdf"
+		},
+		"display": {
+			"b": "block",
+			"g": "grid",
+			"i": "inline",
+			"ib": "inline-block",
+			"t": "table",
+			"tc": "table-cell",
+			"tr": "table-row",
+			"n": "none"
+		},
+		"cursors": {
+			"auto": "auto",
+			"default": "default",
+			"none": "none",
+			"context": "context-menu",
+			"help": "help",
+			"pointer": "pointer",
+			"progress": "progress",
+			"wait": "wait",
+			"cell": "cell",
+			"cross": "crosshair",
+			"text": "text",
+			"vtext": "vertical-text",
+			"alias": "alias",
+			"copy": "copy",
+			"move": "move",
+			"no-drop": "no-drop",
+			"forbidden": "not-allowed",
+			"grab": "grab",
+			"grabbing": "grabbing",
+			"e": "e-resize",
+			"n": "n-resize",
+			"ne": "ne-resize",
+			"nw": "nw-resize",
+			"s": "s-resize",
+			"se": "se-resize",
+			"sw": "sw-resize",
+			"w": "w-resize",
+			"ew": "ew-resize",
+			"ns": "ns-resize",
+			"news": "nesw-resize",
+			"nwse": "nwse-resize",
+			"col": "col-resize",
+			"row": "row-resize",
+			"scroll": "all-scroll",
+			"in": "zoom-in",
+			"out": "zoom-out"
+		}
+	},
+	"specs": [
+		{
+			"comment": "display modes",
+			"prefix": "d",
+			"index": "v",
+			"prop": "display",
+			"items": "display",
+			"unit": "display",
+			"file": "display.ts",
+			"responsive": true
+		},
+		{
+			"comment": "abs widths",
+			"prefix": "w",
+			"index": "i1",
+			"prop": "width",
+			"items": "sizes-abs",
+			"file": "size.ts",
+			"responsive": true
+		},
+		{
+			"comment": "relative widths",
+			"prefix": "w",
+			"index": "v",
+			"prop": "width",
+			"items": "sizes-rel",
+			"unit": "%",
+			"file": "size.ts",
+			"responsive": true
+		},
+		{
+			"comment": "abs heights",
+			"prefix": "h",
+			"index": "i1",
+			"prop": "height",
+			"items": "sizes-abs",
+			"file": "size.ts"
+		},
+		{
+			"comment": "relative heights",
+			"prefix": "h",
+			"index": "v",
+			"prop": "height",
+			"items": "sizes-rel",
+			"unit": "%",
+			"file": "size.ts"
+		},
+		{
+			"comment": "paddings",
+			"prefix": "p",
+			"index": "i",
+			"prop": "padding",
+			"items": "margins",
+			"file": "margin.ts",
+			"var": "all"
+		},
+		{
+			"comment": "margins",
+			"prefix": "m",
+			"index": "i",
+			"prop": "margin",
+			"items": "margins",
+			"file": "margin.ts",
+			"var": "all"
+		},
+		{
+			"comment": "border radius",
+			"prefix": "br",
+			"index": "i",
+			"prop": "border-radius",
+			"items": "borders-r",
+			"file": "border.ts"
+		},
+		{
+			"prefix": "br*",
+			"index": "i",
+			"def": {
+				"border-top*-radius": "*",
+				"border-bottom*-radius": "*"
+			},
+			"items": "borders-r",
+			"file": "border.ts",
+			"var": "h"
+		},
+		{
+			"prefix": "br*",
+			"index": "i",
+			"def": {
+				"border*-left-radius": "*",
+				"border*-right-radius": "*"
+			},
+			"items": "borders-r",
+			"file": "border.ts",
+			"var": "v"
+		},
+		{
+			"comment": "border widths",
+			"prefix": "bw*",
+			"index": "i",
+			"def": {
+				"border*-style": "solid",
+				"border*-width": "*"
+			},
+			"items": "borders-w",
+			"file": "border.ts",
+			"var": "atrbl"
+		},
+		{
+			"comment": "border colors",
+			"prefix": "border-",
+			"index": "v",
+			"prop": "border-color",
+			"items": "var-palette",
+			"unit": "var-palette",
+			"file": "border.ts"
+		},
+		{
+			"prefix": "border-",
+			"index": "v",
+			"prop": "border-color",
+			"items": "palette",
+			"unit": "palette",
+			"file": "border.ts"
+		},
+		{
+			"prefix": "border-",
+			"index": "v",
+			"prop": "border-color",
+			"items": "grays",
+			"unit": "grays",
+			"file": "border.ts"
+		},
+		{
+			"comment": "text colors",
+			"prefix": "",
+			"index": "v",
+			"prop": "color",
+			"items": "var-palette",
+			"unit": "var-palette",
+			"file": "palette.ts"
+		},
+		{
+			"prefix": "",
+			"index": "v",
+			"prop": "color",
+			"items": "palette",
+			"unit": "palette",
+			"file": "palette.ts"
+		},
+		{
+			"prefix": "",
+			"index": "v",
+			"prop": "color",
+			"items": "grays",
+			"unit": "grays",
+			"file": "palette.ts"
+		},
+		{
+			"comment": "background colors",
+			"prefix": "bg-",
+			"index": "v",
+			"prop": "background-color",
+			"items": "var-palette",
+			"unit": "var-palette",
+			"file": "palette.ts"
+		},
+		{
+			"prefix": "bg-",
+			"index": "v",
+			"prop": "background-color",
+			"items": "palette",
+			"unit": "palette",
+			"file": "palette.ts"
+		},
+		{
+			"prefix": "bg-",
+			"index": "v",
+			"prop": "background-color",
+			"items": "grays",
+			"unit": "grays",
+			"file": "palette.ts"
+		},
+		{
+			"prefix": "o",
+			"index": "v",
+			"prop": "opacity",
+			"items": "tens",
+			"file": "palette.ts",
+			"unit": "norm",
+			"comment": "opacities"
+		},
+		{
+			"comment": "bg transitions",
+			"prefix": "bg-anim",
+			"index": "i1",
+			"def": { "transition": "*s background-color ease-in-out" },
+			"items": [0.1, 0.2, 0.5],
+			"unit": null,
+			"file": "background.ts"
+		},
+		{
+			"prefix": "cursor-",
+			"index": "v",
+			"prop": "cursor",
+			"items": "cursors",
+			"unit": "cursors",
+			"file": "cursor.ts"
+		},
+		{
+			"comment": "grid column layout",
+			"prefix": "gc",
+			"index": "v",
+			"prop": "grid-template-columns",
+			"items": "cols-rows",
+			"unit": "cols-rows",
+			"file": "grid.ts"
+		},
+		{
+			"comment": "grid row layout",
+			"prefix": "gr",
+			"index": "v",
+			"prop": "grid-template-rows",
+			"items": "cols-rows",
+			"unit": "cols-rows",
+			"file": "grid.ts"
+		},
+		{
+			"comment": "grid gaps",
+			"prefix": "gap",
+			"index": "i",
+			"prop": "gap",
+			"items": "borders-w",
+			"file": "grid.ts"
+		}
+	]
+}
