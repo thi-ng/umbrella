@@ -87,14 +87,21 @@ export const PRESETS_TPL = {
 
 export type PresetID = Keys<typeof PRESETS_TPL>;
 
-export type FormatPresets = Record<PresetID, Fn<any, string>>;
+export type FormatPresets = Record<PresetID, Fn<any, string>> & {
+	format: StringFormat;
+};
 
 export interface StringFormat {
 	/**
-	 * Function translating canvas character format codes to the actual
-	 * output format. This function will only be called when needed,
-	 * i.e. when a character's format is different than that of the
-	 * previous.
+	 * Coerces `x` into a string and wraps it with formatting corresponding to
+	 * provided `code`.  See {@link StringFormat.start} and
+	 * {@link StringFormat.end}.
+	 */
+	format(code: number, x: any): string;
+	/**
+	 * Function translating format codes (e.g. {@link BG_RED}) to the actual
+	 * output format. This function will only be called when needed, i.e. when a
+	 * character's format is different than that of the previous.
 	 */
 	start: Fn<number, string>;
 	/**

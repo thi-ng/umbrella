@@ -5,6 +5,7 @@ import type { StringFormat } from "./api.js";
  * plain text.
  */
 export const FMT_NONE: StringFormat = {
+	format: (_, x) => String(x),
 	prefix: "",
 	suffix: "\n",
 	start: () => "",

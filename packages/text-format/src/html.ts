@@ -20,8 +20,8 @@ export const formatHtml = ({
 	bold,
 	dim,
 	underline,
-}: HtmlFormatOpts): StringFormat => ({
-	start: memoize1((x: number) => {
+}: HtmlFormatOpts): StringFormat => {
+	const start = memoize1((x: number) => {
 		let y = x & 0xf;
 		let res = `<span ${attrib}="${fg}${
 			colors[(y - 1) | ((x >> 1) & 0x8)]
@@ -32,11 +32,16 @@ export const formatHtml = ({
 		x & 0x800 && (res += dim + delim);
 		x & 0x1000 && (res += underline + delim);
 		return res + '">';
-	}),
-	end: "</span>",
-	prefix: "",
-	suffix: "<br/>",
-});
+	});
+	const end = "</span>";
+	return {
+		format: (code, x) => start(code) + x + end,
+		start,
+		end,
+		prefix: "",
+		suffix: "<br/>",
+	};
+};
 
 /**
  * Preset HTML string formatter for use w/ default format IDs, generating
@@ -109,15 +114,20 @@ export const FMT_HTML_TACHYONS = formatHtml({
  *
  * @param prop -
  */
-export const FMT_HTML565 = (prop = "color"): StringFormat => ({
-	start: memoize1(
-		(x) =>
+export const FMT_HTML565 = (prop = "color"): StringFormat => {
+	const start = memoize1(
+		(x: number) =>
 			`<span style="${prop}:#${U8((x >> 11) * F5)}${U8(
 				((x >> 5) & 0x3f) * F6
 			)}${U8((x & 0x1f) * F5)}">`
-	),
-	end: "</span>",
-	prefix: "",
-	suffix: "<br/>",
-	zero: true,
-});
+	);
+	const end = "</span>";
+	return {
+		format: (code, x) => start(code) + x + end,
+		start,
+		end,
+		prefix: "",
+		suffix: "<br/>",
+		zero: true,
+	};
+};

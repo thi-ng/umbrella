@@ -13,6 +13,7 @@ const ANSI_FLAGS = ["", "1", "2", "1;2", "4", "1;4", "2;4", "1;2;4"];
  * https://stackoverflow.com/a/33206814/294515
  */
 export const FMT_ANSI16: StringFormat = {
+	format: (code, x) => FMT_ANSI16.start(code) + x + FMT_ANSI16.end,
 	start: memoize1((x: number) => {
 		let res = [];
 		let y = x & 0xf;
@@ -39,6 +40,7 @@ export const FMT_ANSI16: StringFormat = {
  * Also see {@link format256}.
  */
 export const FMT_ANSI256: StringFormat = {
+	format: (code, x) => FMT_ANSI256.start(code) + x + FMT_ANSI256.end,
 	start: (x: number) => `\x1b[38;5;${x & 0xff};48;5;${x >>> 8}m`,
 	end: ANSI_RESET,
 	prefix: ANSI_RESET,
@@ -61,6 +63,7 @@ const F6 = 255 / 63;
  * https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
  */
 export const FMT_ANSI565: StringFormat = {
+	format: (code, x) => FMT_ANSI565.start(code) + x + FMT_ANSI565.end,
 	start: (x: number) =>
 		`\x1b[38;2;${(((x >> 11) & 31) * F5) | 0};${
 			(((x >> 5) & 63) * F6) | 0

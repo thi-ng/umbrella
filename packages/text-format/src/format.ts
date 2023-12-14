@@ -22,21 +22,25 @@ import {
  * @param code -
  */
 export const defFormat = (fmt: StringFormat, code: number) => (x: any) =>
-	fmt.start(code) + x + fmt.end;
+	fmt.format(code, x);
 
 /**
  * Takes a {@link StringFormat} impl supporting preset format ID constants (e.g.
  * {@link FG_GREEN}) and returns an object of formatting functions for each
  * `FG_XXX` preset ID.
  *
+ * @remarks
+ * The underlying {@link StringFormat} can be obtained from the result object
+ * via `.format`.
+ *
  * @param fmt -
  */
-export const defFormatPresets = (fmt: StringFormat): FormatPresets =>
+export const defFormatPresets = (format: StringFormat): FormatPresets =>
 	Object.keys(PRESETS_TPL).reduce(
 		(acc, id) => (
-			(acc[id] = defFormat(fmt, PRESETS_TPL[<PresetID>id])), acc
+			(acc[id] = defFormat(format, PRESETS_TPL[<PresetID>id])), acc
 		),
-		<any>{}
+		<any>{ format }
 	);
 
 /**
