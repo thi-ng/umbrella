@@ -11,6 +11,10 @@
 		"build": "tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
+	"devDependencies": {
+		"typescript": "^5.3.2",
+		"vite": "^5.0.4"
+	},
 	"dependencies": {
 		"@thi.ng/adapt-dpi": "workspace:^",
 		"@thi.ng/hdom": "workspace:^",
@@ -43,9 +47,5 @@
 			"webgl-msdf"
 		],
 		"screenshot": "examples/webgl-msdf.jpg"
-	},
-	"devDependencies": {
-		"typescript": "^5.3.2",
-		"vite": "^5.0.4"
 	}
 }

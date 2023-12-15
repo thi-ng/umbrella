@@ -44,7 +44,6 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@types/node": "^20.10.2",
 		"esbuild": "^0.19.8",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
