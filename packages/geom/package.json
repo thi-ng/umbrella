@@ -33,7 +33,7 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
-		"tool:bpatch": "tools:node-esm tools/bpatch.ts"
+		"tool:bpatch": "bun tools/bpatch.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.12",

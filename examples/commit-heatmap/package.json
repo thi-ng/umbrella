@@ -9,7 +9,7 @@
 	"type": "module",
 	"scripts": {
 		"clean": "rimraf .cache build out",
-		"build": "tools:node-esm src/index.ts"
+		"build": "bun src/index.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",

@@ -24,7 +24,7 @@
 	"author": "Karsten Schmidt (https://thi.ng)",
 	"license": "Apache-2.0",
 	"scripts": {
-		"bench": "tools:node-esm bench/index.ts",
+		"bench": "bun bench/index.ts",
 		"build": "yarn build:esbuild && yarn build:decl",
 		"build:decl": "tsc --declaration --emitDeclarationOnly",
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",

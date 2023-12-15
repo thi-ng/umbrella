@@ -33,7 +33,7 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
-		"tool:convert": "tools:node-esm tools/convert.ts"
+		"tool:convert": "bun tools/convert.ts"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

@@ -33,12 +33,12 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
-		"tool:bars": "tools:node-esm tools/bars.ts",
-		"tool:candles": "tools:node-esm tools/candles.ts",
-		"tool:covid": "tools:node-esm tools/covid-bars.ts",
-		"tool:intervals": "tools:node-esm tools/intervals.ts",
-		"tool:line": "tools:node-esm tools/line.ts",
-		"tool:tags": "tools:node-esm tools/tagcloud.ts"
+		"tool:bars": "bun tools/bars.ts",
+		"tool:candles": "bun tools/candles.ts",
+		"tool:covid": "bun tools/covid-bars.ts",
+		"tool:intervals": "bun tools/intervals.ts",
+		"tool:line": "bun tools/line.ts",
+		"tool:tags": "bun tools/tagcloud.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.12",

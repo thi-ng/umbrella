@@ -33,10 +33,10 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
-		"tool:limits": "tools:node-esm tools/limits.ts",
-		"tool:maxchroma": "tools:node-esm tools/max-chroma.ts",
-		"tool:strategies": "tools:node-esm tools/strategies.ts",
-		"tool:swatches": "tools:node-esm tools/index.ts"
+		"tool:limits": "bun tools/limits.ts",
+		"tool:maxchroma": "bun tools/max-chroma.ts",
+		"tool:strategies": "bun tools/strategies.ts",
+		"tool:swatches": "bun tools/index.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.12",

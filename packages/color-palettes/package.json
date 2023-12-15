@@ -25,7 +25,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn build:esbuild && yarn build:decl",
-		"build:binary": "tools:node-esm tools/encode.ts",
+		"build:binary": "bun tools/encode.ts",
 		"build:decl": "tsc --declaration --emitDeclarationOnly",
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
@@ -34,7 +34,7 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
-		"tool:swatches": "tools:node-esm tools/swatches.ts"
+		"tool:swatches": "bun tools/swatches.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.12",

@@ -9401,10 +9401,6 @@ __metadata:
 "tools@workspace:^, tools@workspace:tools":
   version: 0.0.0-use.local
   resolution: "tools@workspace:tools"
-  bin:
-    "tools:module-stats": bin/module-stats.mjs
-    "tools:node-esm": bin/node-esm.mjs
-    "tools:readme": bin/readme.mjs
   languageName: unknown
   linkType: soft
 
