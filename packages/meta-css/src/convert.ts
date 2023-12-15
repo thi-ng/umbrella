@@ -2,7 +2,7 @@ import type { IObjectOf } from "@thi.ng/api";
 import { flag, string, strings, type Command } from "@thi.ng/args";
 import { peek } from "@thi.ng/arrays";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
-import { readText } from "@thi.ng/file-io";
+import { readJSON, readText } from "@thi.ng/file-io";
 import {
 	COMPACT,
 	PRETTY,
@@ -11,9 +11,8 @@ import {
 	type Format,
 } from "@thi.ng/hiccup-css";
 import { type ILogger } from "@thi.ng/logger";
-import { camel } from "@thi.ng/strings";
 import { basename, resolve } from "path";
-import type { AppCtx, CommonOpts } from "./api.js";
+import type { AppCtx, CommonOpts, CompiledSpecs } from "./api.js";
 import { maybeWriteText } from "./utils.js";
 
 type State = "sel" | "class" | "nest";
@@ -43,57 +42,50 @@ interface ProcessCtx {
 interface ProcessOpts {
 	logger: ILogger;
 	format: Format;
-	outDir: string;
-	include?: string[];
 	noHeader: boolean;
 	specs: CompiledSpecs;
 }
 
-interface CompiledSpecs {
-	__MEDIA_QUERIES__: IObjectOf<any>;
-	[id: string]: IObjectOf<any>;
-}
-
 export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
-	desc: "Convert meta declarations to CSS",
+	desc: "Convert & bundle meta declarations to CSS",
 	opts: {
-		specs: string({ alias: "s", optional: false, desc: "Specs dir" }),
+		specs: string({
+			alias: "s",
+			optional: false,
+			desc: "Path to generated JSON defs",
+		}),
 		include: strings({
 			alias: "I",
 			desc: "Include CSS files (only in 1st input)",
 		}),
-		pretty: flag({ alias: "p", default: false, desc: "Pretty print CSS" }),
-		noHeader: flag({
-			default: false,
-			desc: "Don't emit generated header comment",
-		}),
+		pretty: flag({ alias: "p", desc: "Pretty print CSS" }),
+		noHeader: flag({ desc: "Don't emit generated header comment" }),
 	},
 	fn: async ({
 		logger,
-		opts: { specs, out, pretty, noHeader, include },
+		opts: { specs: $specs, out, pretty, noHeader, include },
 		inputs,
 	}) => {
-		const specDir = resolve(specs);
+		const specs = readJSON(resolve($specs), logger);
 		const format = pretty ? PRETTY : COMPACT;
-		logger.debug("importing specs:", specDir);
-		const module = await import(specDir);
-		await Promise.all(
-			inputs.map((file, i) =>
+		const bundle: string[] = include
+			? include.map((x) => readText(resolve(x), logger).trim())
+			: [];
+		bundle.push(
+			...inputs.map((file) =>
 				processFile(resolve(file), {
 					logger,
-					specs: module,
-					outDir: out,
+					specs,
 					format,
 					noHeader,
-					include: i === 0 ? include : undefined,
-				})
+				}).join("\n")
 			)
 		);
+		maybeWriteText(out, bundle, logger);
 	},
 };
 
 const QUERY_SEP = ":";
-
 const PATH_SEP = "///";
 
 const defScope = (parent?: Scope): Scope => ({
@@ -126,14 +118,18 @@ const endScope = (ctx: ProcessCtx) => {
 const buildScopePath = (scopes: Scope[]) =>
 	scopes.map((x) => x.sel.join(",")).join(PATH_SEP);
 
-const buildDecls = (selectorPath: string, ids: string[], specs: any) => {
+const buildDecls = (
+	selectorPath: string,
+	ids: string[],
+	specs: CompiledSpecs
+) => {
 	const root: any[] = [];
 	let parent = root;
 	const levels = selectorPath.split(PATH_SEP);
 	for (let i = 0; i < levels.length; i++) {
 		const curr = levels[i].split(",");
 		if (i == levels.length - 1) {
-			curr.push(Object.assign({}, ...ids.map((x) => specs[x])));
+			curr.push(Object.assign({}, ...ids.map((x) => specs.defs[x])));
 		}
 		parent.push(curr);
 		parent = curr;
@@ -174,7 +170,7 @@ const mergeMediaQueries = (mediaQueryDefs: IObjectOf<any>, query: string) =>
 
 const processFile = (
 	path: string,
-	{ logger, format, specs, outDir, noHeader, include }: ProcessOpts
+	{ logger, format, specs, noHeader }: ProcessOpts
 ) => {
 	const root = defScope();
 	const initial = defScope(root);
@@ -184,7 +180,7 @@ const processFile = (
 		scopes: [initial],
 	};
 
-	const mediaQueryIDs = new Set(Object.keys(specs.__MEDIA_QUERIES__));
+	const mediaQueryIDs = new Set(Object.keys(specs.media));
 	let mediaQueryRules: IObjectOf<Record<string, string[]>> = {};
 
 	for (let token of readText(path, logger).split(/\s+/)) {
@@ -217,13 +213,12 @@ const processFile = (
 				} else if (token === "}") {
 					endScope(ctx);
 				} else {
-					let { token: $token, query } = parseMediaQueryToken(
+					let { token: id, query } = parseMediaQueryToken(
 						token,
 						mediaQueryIDs
 					);
-					const id = camel($token);
-					const spec = specs[id];
-					if (!spec) illegalArgs(`unknown rule: ${id}`);
+					const spec = specs.defs[id];
+					if (!spec) illegalArgs(`unknown rule ID: ${id}`);
 					if (query) {
 						if (!mediaQueryRules[query])
 							mediaQueryRules[query] = {};
@@ -244,9 +239,7 @@ const processFile = (
 	logger.debug("root", root);
 	logger.debug("responsives", mediaQueryRules);
 
-	const serialized: string[] = include
-		? include.map((x) => readText(resolve(x), logger).trim())
-		: [];
+	const serialized: string[] = [];
 	if (!noHeader) {
 		serialized.push(
 			`/*! generated by thi.ng/meta-css from ${basename(
@@ -262,21 +255,10 @@ const processFile = (
 		);
 		logger.debug("responsive rules", queryID, rules);
 		serialized.push(
-			css(
-				at_media(
-					mergeMediaQueries(specs.__MEDIA_QUERIES__, queryID),
-					rules
-				),
-				{
-					format,
-				}
-			)
+			css(at_media(mergeMediaQueries(specs.media, queryID), rules), {
+				format,
+			})
 		);
 	}
-	maybeWriteText(
-		outDir,
-		`/${basename(path).replace(".meta", ".css")}`,
-		serialized,
-		logger
-	);
+	return serialized;
 };

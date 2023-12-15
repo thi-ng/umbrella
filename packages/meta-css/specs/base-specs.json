@@ -1,4 +1,8 @@
 {
+	"info": {
+		"name": "MetaCSS base specs",
+		"version": "0.0.1"
+	},
 	"media": {
 		"ns": { "min-width": "30rem" },
 		"m": { "min-width": "30rem", "max-width": "60rem" },
@@ -148,18 +152,14 @@
 			"index": "v",
 			"prop": "display",
 			"items": "display",
-			"unit": "display",
-			"file": "display.ts",
-			"responsive": true
+			"unit": "display"
 		},
 		{
 			"comment": "abs widths",
 			"prefix": "w",
 			"index": "i1",
 			"prop": "width",
-			"items": "sizes-abs",
-			"file": "size.ts",
-			"responsive": true
+			"items": "sizes-abs"
 		},
 		{
 			"comment": "relative widths",
@@ -167,17 +167,14 @@
 			"index": "v",
 			"prop": "width",
 			"items": "sizes-rel",
-			"unit": "%",
-			"file": "size.ts",
-			"responsive": true
+			"unit": "%"
 		},
 		{
 			"comment": "abs heights",
 			"prefix": "h",
 			"index": "i1",
 			"prop": "height",
-			"items": "sizes-abs",
-			"file": "size.ts"
+			"items": "sizes-abs"
 		},
 		{
 			"comment": "relative heights",
@@ -185,8 +182,7 @@
 			"index": "v",
 			"prop": "height",
 			"items": "sizes-rel",
-			"unit": "%",
-			"file": "size.ts"
+			"unit": "%"
 		},
 		{
 			"comment": "paddings",
@@ -194,7 +190,6 @@
 			"index": "i",
 			"prop": "padding",
 			"items": "margins",
-			"file": "margin.ts",
 			"var": "all"
 		},
 		{
@@ -203,7 +198,6 @@
 			"index": "i",
 			"prop": "margin",
 			"items": "margins",
-			"file": "margin.ts",
 			"var": "all"
 		},
 		{
@@ -211,8 +205,7 @@
 			"prefix": "br",
 			"index": "i",
 			"prop": "border-radius",
-			"items": "borders-r",
-			"file": "border.ts"
+			"items": "borders-r"
 		},
 		{
 			"prefix": "br*",
@@ -222,7 +215,6 @@
 				"border-bottom*-radius": "*"
 			},
 			"items": "borders-r",
-			"file": "border.ts",
 			"var": "h"
 		},
 		{
@@ -233,7 +225,6 @@
 				"border*-right-radius": "*"
 			},
 			"items": "borders-r",
-			"file": "border.ts",
 			"var": "v"
 		},
 		{
@@ -245,33 +236,29 @@
 				"border*-width": "*"
 			},
 			"items": "borders-w",
-			"file": "border.ts",
 			"var": "atrbl"
 		},
 		{
 			"comment": "border colors",
-			"prefix": "border-",
+			"prefix": "b--",
 			"index": "v",
 			"prop": "border-color",
 			"items": "var-palette",
-			"unit": "var-palette",
-			"file": "border.ts"
+			"unit": "var-palette"
 		},
 		{
-			"prefix": "border-",
+			"prefix": "b--",
 			"index": "v",
 			"prop": "border-color",
 			"items": "palette",
-			"unit": "palette",
-			"file": "border.ts"
+			"unit": "palette"
 		},
 		{
-			"prefix": "border-",
+			"prefix": "b--",
 			"index": "v",
 			"prop": "border-color",
 			"items": "grays",
-			"unit": "grays",
-			"file": "border.ts"
+			"unit": "grays"
 		},
 		{
 			"comment": "text colors",
@@ -279,24 +266,21 @@
 			"index": "v",
 			"prop": "color",
 			"items": "var-palette",
-			"unit": "var-palette",
-			"file": "palette.ts"
+			"unit": "var-palette"
 		},
 		{
 			"prefix": "",
 			"index": "v",
 			"prop": "color",
 			"items": "palette",
-			"unit": "palette",
-			"file": "palette.ts"
+			"unit": "palette"
 		},
 		{
 			"prefix": "",
 			"index": "v",
 			"prop": "color",
 			"items": "grays",
-			"unit": "grays",
-			"file": "palette.ts"
+			"unit": "grays"
 		},
 		{
 			"comment": "background colors",
@@ -304,31 +288,27 @@
 			"index": "v",
 			"prop": "background-color",
 			"items": "var-palette",
-			"unit": "var-palette",
-			"file": "palette.ts"
+			"unit": "var-palette"
 		},
 		{
 			"prefix": "bg-",
 			"index": "v",
 			"prop": "background-color",
 			"items": "palette",
-			"unit": "palette",
-			"file": "palette.ts"
+			"unit": "palette"
 		},
 		{
 			"prefix": "bg-",
 			"index": "v",
 			"prop": "background-color",
 			"items": "grays",
-			"unit": "grays",
-			"file": "palette.ts"
+			"unit": "grays"
 		},
 		{
 			"prefix": "o",
 			"index": "v",
 			"prop": "opacity",
 			"items": "tens",
-			"file": "palette.ts",
 			"unit": "norm",
 			"comment": "opacities"
 		},
@@ -338,16 +318,14 @@
 			"index": "i1",
 			"def": { "transition": "*s background-color ease-in-out" },
 			"items": [0.1, 0.2, 0.5],
-			"unit": null,
-			"file": "background.ts"
+			"unit": null
 		},
 		{
 			"prefix": "cursor-",
 			"index": "v",
 			"prop": "cursor",
 			"items": "cursors",
-			"unit": "cursors",
-			"file": "cursor.ts"
+			"unit": "cursors"
 		},
 		{
 			"comment": "grid column layout",
@@ -355,8 +333,7 @@
 			"index": "v",
 			"prop": "grid-template-columns",
 			"items": "cols-rows",
-			"unit": "cols-rows",
-			"file": "grid.ts"
+			"unit": "cols-rows"
 		},
 		{
 			"comment": "grid row layout",
@@ -364,16 +341,14 @@
 			"index": "v",
 			"prop": "grid-template-rows",
 			"items": "cols-rows",
-			"unit": "cols-rows",
-			"file": "grid.ts"
+			"unit": "cols-rows"
 		},
 		{
 			"comment": "grid gaps",
 			"prefix": "gap",
 			"index": "i",
 			"prop": "gap",
-			"items": "borders-w",
-			"file": "grid.ts"
+			"items": "borders-w"
 		}
 	]
 }

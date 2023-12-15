@@ -16,8 +16,7 @@ cliApp<CommonOpts, AppCtx<any>>({
 	opts: {
 		out: string({
 			alias: "o",
-			default: "",
-			desc: "Output dir (or stdout)",
+			desc: "Output file (or stdout)",
 		}),
 		verbose: flag({
 			alias: "v",
