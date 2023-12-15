@@ -1,7 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 import { padRight } from "@thi.ng/strings/pad-right";
+import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
 import type {
 	CLIAppConfig,
 	Command,
@@ -19,9 +20,10 @@ export const cliApp = async <
 	config: CLIAppConfig<OPTS, CTX>
 ) => {
 	const argv = config.argv || process.argv;
-	let usageOpts = {
+	const isColor = !process.env.NO_COLOR;
+	const usageOpts = {
 		prefix: "",
-		color: process.env.NO_COLOR !== "1",
+		color: isColor,
 		...config.usage,
 	};
 	try {
@@ -56,6 +58,7 @@ export const cliApp = async <
 		const ctx: CTX = await config.ctx(
 			{
 				logger: new ConsoleLogger(config.name, "INFO"),
+				format: isColor ? PRESET_ANSI16 : PRESET_NONE,
 				opts: parsed.result,
 				inputs: parsed.rest,
 			},

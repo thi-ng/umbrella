@@ -1,5 +1,6 @@
 import type { Fn, Fn2, IDeref, IObjectOf } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
+import type { FormatPresets } from "@thi.ng/text-format";
 
 export interface ArgSpecBase {
 	/**
@@ -283,6 +284,15 @@ export interface CommandCtx<OPTS extends BASE, BASE extends object> {
 	 * log level INFO. Can be customized via {@link CLIAppConfig.pre}.
 	 */
 	logger: ILogger;
+	/**
+	 * `NO_COLOR`-aware text formatting presets. If color output is NOT disabled
+	 * via the `NO_COLOR` env var, this defaults to
+	 * [`PRESET_ANSI16`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/README.md),
+	 * otherwise `PRESET_NONE` (i.e. same API, but ignoring any color requests).
+	 *
+	 * See https://no-color.org for context.
+	 */
+	format: FormatPresets;
 	/**
 	 * Parsed CLI args (according to provided command spec)
 	 */
