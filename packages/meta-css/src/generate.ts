@@ -1,3 +1,4 @@
+// thing:no-export
 import type { Fn, IObjectOf, Nullable } from "@thi.ng/api";
 import { int, type Command } from "@thi.ng/args";
 import { isArray, isPlainObject, isString } from "@thi.ng/checks";

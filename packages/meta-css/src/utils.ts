@@ -1,3 +1,4 @@
+// thing:no-export
 import { isString } from "@thi.ng/checks";
 import { writeText } from "@thi.ng/file-io";
 import type { ILogger } from "@thi.ng/logger";

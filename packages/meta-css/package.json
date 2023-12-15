@@ -27,9 +27,9 @@
 	"author": "Karsten Schmidt (https://thi.ng)",
 	"license": "Apache-2.0",
 	"scripts": {
-		"build": "yarn build:esbuild && yarn build:decl",
+		"build": "yarn build:esbuild",
 		"build:decl": "tsc --declaration --emitDeclarationOnly",
-		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"build:esbuild": "bun build --outfile=index.js --target bun --minify --bundle src/index.ts",
 		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
@@ -77,9 +77,6 @@
 	"browser": {
 		"process": false,
 		"setTimeout": false
-	},
-	"engines": {
-		"node": ">=18"
 	},
 	"files": [
 		"./*.js",

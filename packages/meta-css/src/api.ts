@@ -1,3 +1,4 @@
+// thing:no-export
 import type { IObjectOf } from "@thi.ng/api";
 import type { CommandCtx } from "@thi.ng/args";
 import type { FormatPresets } from "@thi.ng/text-format";
