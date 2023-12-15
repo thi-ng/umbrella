@@ -8,13 +8,13 @@
 
 This package provides CLI multi-tool to:
 
-1. Generate entire CSS frameworks from a number of JSON specs. This incudes
-   arbitrary media queries (all combinable), arbitrary look-up tables for
-   colors, margins, sizes, timings etc., and generation of all combinatorial
-   versions of various rules/declarations. Generated definitions are exported as
-   JS/TS source files which are then used for phase 2:
-2. Compile actual CSS from MetaCSS stylesheets. These specs support selector
-   nesting and compose full CSS rules from lists of the utility classes
+1. Generate entire CSS frameworks from a number of JSON specs. These specs can
+   incude arbitrary media queries (all combinable), arbitrary lookup tables for
+   colors, margins, sizes, timings etc. This process generates all combinatorial
+   versions of various rules/declarations and exports them as another JSON files
+   to be used for phase 2:
+2. Compile & bundle actual CSS from MetaCSS stylesheets. These specs support
+   selector nesting and compose full CSS rules from lists of the utility classes
    generated in step 1. Each class can be prefixed with an arbitrary number of
    media query IDs. The resulting CSS will only contain referenced rules and can
    be generated in minified or pretty printed formats.
@@ -72,7 +72,7 @@ Usage: metacss <cmd> --help
 Available commands:
 
 convert         : Convert meta declarations to CSS
-generate        : Generate MetaCSS lookup tables from JSON
+generate        : Generate MetaCSS specs
 
 
 Flags:
@@ -81,18 +81,18 @@ Flags:
 
 Main:
 
--o STR, --out STR       Output dir (or stdout) (default: "")
+-o STR, --out STR       Output file (or stdout)
 ```
 
 ### Generate framework code for bundled base definitions
 
-First we need to generate a number of JS (or TS) source files from given
-generator specs (in JSON format). These will be used as lookup tables for later
-CSS translation.
+To create a custom framework, we first need to generate CSS utility classes from
+given JSON generator specs. For simplicity these will be stored as JSON too and
+then used as lookup tables for actual CSS translation in the next step.
 
 ```bash
-# write generated JS sources to ./src/generated
-metacss generate --out src/generated node_modules/@thi.ng/meta-css/specs/base-specs.json
+# write generated CSS classes (in JSON)
+metacss generate --out src/framework.json node_modules/@thi.ng/meta-css/specs/base-specs.json
 ```
 
 ### Generate CSS from meta specs
@@ -120,7 +120,7 @@ Simple HTML example using custom MetaCSS styles (generated below):
 
 #### readme.meta
 
-The naming convention used by the [default
+The naming convention used by the [default framework
 specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/base-specs.json)
 so far is loosely/partially based on [tachyons.io](https://tachyons.io), with
 the important difference of media query handling. Here, any class token can be
@@ -138,8 +138,8 @@ body { ma0 dark:bg-black dark:white bg-white black }
 
 .bt-group-v > a {
 	db w100 l:w50 ph3 pv2 bwb1
-	dark:bg-dark-red dark:white dark:border-dark-gray
-	light:bg-washed-red light:dark-red light:border-moon-gray
+	dark:bg-dark-red dark:white dark:b--dark-gray
+	light:bg-washed-red light:dark-red light:b--moon-gray
 	{
 		:hover { bg-gold black anim:bg-anim2 }
 		:first-child { brt3 }
@@ -150,8 +150,8 @@ body { ma0 dark:bg-black dark:white bg-white black }
 
 ```bash
 # if not out dir is specified writes result to stdout
-# use previously generated specs for resolving
-metacss convert --pretty --specs src/generated/index.mjs readme.meta
+# use previously generated specs for resolving all identifiers & media queries
+metacss convert --pretty --specs src/framework.json readme.meta
 ```
 
 #### Resulting CSS output
