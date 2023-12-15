@@ -208,7 +208,7 @@ For Node.js REPL:
 const textFormat = await import("@thi.ng/text-format");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.63 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.69 KB
 
 ## Dependencies
 

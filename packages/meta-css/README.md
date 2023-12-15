@@ -79,10 +79,13 @@ Package sizes (brotli'd, pre-treeshake): ESM: 10.20 KB
 - [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 

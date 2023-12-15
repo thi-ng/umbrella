@@ -95,6 +95,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.73 KB
 - [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
 - [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
 
