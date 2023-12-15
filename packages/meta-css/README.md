@@ -65,24 +65,13 @@ The generator specs for a basic, configurable framework are in
 ## Installation
 
 ```bash
-yarn add @thi.ng/meta-css
+npx @thi.ng/meta-css --help
 ```
 
-ES module import:
+Distributed as CLI bundle with **no runtime dependencies**. The following
+dependencies are used to and (partially) included in the bundle.
 
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/meta-css"></script>
-```
-
-[Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const metaCss = await import("@thi.ng/meta-css");
-```
-
-Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 10.20 KB
 
 ## Dependencies
 
@@ -98,8 +87,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## CLI
-
-[Generated API docs](https://docs.thi.ng/umbrella/meta-css/)
 
 ### Basic usage example
 
@@ -203,7 +190,7 @@ readme2.meta:
 We will merge the definitions in this file with the ones from the file above
 (i.e. adding & overriding some of the declarations):
 
-```text tangle:export/readme.meta
+```text tangle:export/readme2.meta
 #app { pa2 }
 
 .bt-group-v > a {

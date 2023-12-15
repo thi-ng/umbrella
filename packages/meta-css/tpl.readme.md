@@ -39,7 +39,12 @@ The generator specs for a basic, configurable framework are in
 
 ## Installation
 
-{{pkg.install}}
+```bash
+npx @thi.ng/meta-css --help
+```
+
+Distributed as CLI bundle with **no runtime dependencies**. The following
+dependencies are used to and (partially) included in the bundle.
 
 {{pkg.size}}
 
@@ -50,8 +55,6 @@ The generator specs for a basic, configurable framework are in
 {{repo.examples}}
 
 ## CLI
-
-{{pkg.docs}}
 
 ### Basic usage example
 
@@ -157,7 +160,7 @@ readme2.meta:
 We will merge the definitions in this file with the ones from the file above
 (i.e. adding & overriding some of the declarations):
 
-```text tangle:export/readme.meta
+```text tangle:export/readme2.meta
 #app { pa2 }
 
 .bt-group-v > a {
