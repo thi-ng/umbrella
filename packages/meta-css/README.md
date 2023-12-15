@@ -17,10 +17,10 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [CLI](#cli)
   - [Basic usage example](#basic-usage-example)
-  - [Generate framework code for bundled base definitions](#generate-framework-code-for-bundled-base-definitions)
-  - [Generate CSS from meta specs](#generate-css-from-meta-specs)
+  - [Generating framework code for bundled base definitions](#generating-framework-code-for-bundled-base-definitions)
+  - [Generating CSS from meta specs](#generating-css-from-meta-specs)
     - [index.html](#indexhtml)
-    - [readme.meta](#readmemeta)
+    - [\*.meta stylesheets](#meta-stylesheets)
     - [Resulting CSS output](#resulting-css-output)
 - [Authors](#authors)
 - [License](#license)
@@ -38,9 +38,11 @@ This package provides CLI multi-tool to:
    to be used for phase 2:
 2. Compile & bundle actual CSS from MetaCSS stylesheets. These specs support
    selector nesting and compose full CSS rules from lists of the utility classes
-   generated in step 1. Each class can be prefixed with an arbitrary number of
-   media query IDs. The resulting CSS will only contain referenced rules and can
-   be generated in minified or pretty printed formats.
+   generated in step 1. Selectors, declarations and media query criteria will be
+   deduplicated and merged from multiple input files. Each item (utility class
+   name) can be prefixed with an arbitrary number of media query IDs. The
+   resulting CSS will only contain referenced rules and can be generated in
+   minified or pretty printed formats.
 
 Final CSS generation itself is handled by
 [thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/a0fa6d715f1b9e3edb405cfb42c03daefec340b4/packages/hiccup-css/)
@@ -80,7 +82,7 @@ For Node.js REPL:
 const metaCss = await import("@thi.ng/meta-css");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
 
 ## Dependencies
 
@@ -92,8 +94,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.15 KB
 - [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
@@ -132,7 +132,7 @@ Main:
 -o STR, --out STR       Output file (or stdout)
 ```
 
-### Generate framework code for bundled base definitions
+### Generating framework code for bundled base definitions
 
 To create a custom framework, we first need to generate CSS utility classes from
 given JSON generator specs. For simplicity these will be stored as JSON too and
@@ -143,7 +143,7 @@ then used as lookup tables for actual CSS translation in the next step.
 metacss generate --out src/framework.json node_modules/@thi.ng/meta-css/specs/base-specs.json
 ```
 
-### Generate CSS from meta specs
+### Generating CSS from meta specs
 
 Simple HTML example using custom MetaCSS styles (generated below):
 
@@ -153,7 +153,7 @@ Simple HTML example using custom MetaCSS styles (generated below):
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" href="readme.css"/>
+        <link rel="stylesheet" href="bundle.css"/>
     </head>
     <body>
         <div id="app" class="bt-group-v">
@@ -166,7 +166,7 @@ Simple HTML example using custom MetaCSS styles (generated below):
 </html>
 ```
 
-#### readme.meta
+#### \*.meta stylesheets
 
 The naming convention used by the [default framework
 specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/base-specs.json)
@@ -178,6 +178,8 @@ prefix, multiple query IDs can be combined freely. E.g. the token
 `dark:anim:bg-anim2` will auto-create a merged CSS `@media`-query block for the
 query IDs `dark` and `anim` and only emit the definition of `bg-anim2` for this
 combination (see generated CSS further below).
+
+readme.meta:
 
 ```text tangle:export/readme.meta
 body { ma0 dark:bg-black dark:white bg-white black }
@@ -196,16 +198,34 @@ body { ma0 dark:bg-black dark:white bg-white black }
 }
 ```
 
+readme2.meta:
+
+We will merge the definitions in this file with the ones from the file above
+(i.e. adding & overriding some of the declarations):
+
+```text tangle:export/readme.meta
+#app { pa2 }
+
+.bt-group-v > a {
+    bwb3
+    {
+        :first-child { brt4 }
+        :last-child { brb4 }
+    }
+}
+```
+
 ```bash
 # if not out dir is specified writes result to stdout
 # use previously generated specs for resolving all identifiers & media queries
-metacss convert --pretty --specs src/framework.json readme.meta
+metacss convert --pretty --specs src/framework.json readme.meta readme2.meta
 ```
 
 #### Resulting CSS output
 
 ```css
-/*! generated by thi.ng/meta-css from readme.meta @ 2023-12-14T20:44:35.307Z */
+/*! generated by thi.ng/meta-css @ 2023-12-15T14:08:31.214Z */
+
 body {
     margin: 0rem;
     background-color: #fff;
@@ -214,23 +234,7 @@ body {
 
 #app {
     margin: 1rem;
-}
-
-.bt-group-v > a:hover {
-    background-color: #ffb700;
-    color: #000;
-}
-
-.bt-group-v > a:first-child {
-    border-top-left-radius: 0.500rem;
-    border-top-right-radius: 0.500rem;
-}
-
-.bt-group-v > a:last-child {
-    border-bottom-left-radius: 0.500rem;
-    border-bottom-right-radius: 0.500rem;
-    border-bottom-style: solid;
-    border-bottom-width: 0rem;
+    padding: 0.500rem;
 }
 
 .bt-group-v > a {
@@ -241,7 +245,24 @@ body {
     padding-top: 0.500rem;
     padding-bottom: 0.500rem;
     border-bottom-style: solid;
-    border-bottom-width: 0.125rem;
+    border-bottom-width: 0.500rem;
+}
+
+.bt-group-v > a:hover {
+    background-color: #ffb700;
+    color: #000;
+}
+
+.bt-group-v > a:first-child {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.bt-group-v > a:last-child {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-bottom-style: solid;
+    border-bottom-width: 0rem;
 }
 
 @media (prefers-color-scheme:dark) {
