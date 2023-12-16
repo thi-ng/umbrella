@@ -1,6 +1,6 @@
 // thing:no-export
 import type { IObjectOf } from "@thi.ng/api";
-import type { CommandCtx } from "@thi.ng/args";
+import { flag, string, strings, type CommandCtx } from "@thi.ng/args";
 import type { FormatPresets } from "@thi.ng/text-format";
 
 export interface CommonOpts {
@@ -20,9 +20,9 @@ export interface CompiledSpecs {
 }
 
 export interface GeneratorConfig {
-	info: SpecInfo;
-	media: IObjectOf<string>;
-	indexed: IObjectOf<any>;
+	info?: SpecInfo;
+	media?: IObjectOf<string>;
+	tables?: IObjectOf<any>;
 	specs: Spec[];
 }
 
@@ -35,7 +35,7 @@ export interface Spec {
 	prefix: string;
 	prop: string | string[];
 	def?: Record<string, string>;
-	items: string | any[];
+	items: string | any[] | IObjectOf<any>;
 	index?: Index;
 	unit?: string | null;
 	comment?: string;
@@ -43,3 +43,33 @@ export interface Spec {
 }
 
 export type Index = "i" | "i1" | "v";
+
+export const ARG_SPECS = {
+	specs: string({
+		alias: "s",
+		optional: false,
+		desc: "Path to generated JSON defs",
+	}),
+};
+
+export const ARG_INCLUDE = {
+	include: strings({
+		alias: "I",
+		desc: "Include CSS files (prepend)",
+	}),
+};
+
+export const ARG_PRETTY = {
+	pretty: flag({ alias: "p", desc: "Pretty print CSS" }),
+};
+
+export const ARG_NO_HEADER = {
+	noHeader: flag({ desc: "Don't emit generated header comment" }),
+};
+
+export const ARG_WATCH = {
+	watch: flag({
+		alias: "w",
+		desc: "Watch input files for changes",
+	}),
+};

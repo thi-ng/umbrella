@@ -1,11 +1,13 @@
 // thing:no-export
-import type { Fn, IObjectOf, Nullable } from "@thi.ng/api";
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import { int, type Command } from "@thi.ng/args";
 import { isArray, isPlainObject, isString } from "@thi.ng/checks";
 import { assert, illegalArgs } from "@thi.ng/errors";
-import { readJSON } from "@thi.ng/file-io";
+import { files, readJSON } from "@thi.ng/file-io";
 import { PRECISION, percent, px, rem, setPrecision } from "@thi.ng/hiccup-css";
 import { permutations } from "@thi.ng/transducers";
+import { statSync } from "fs";
+import { resolve } from "path";
 import type {
 	AppCtx,
 	CommonOpts,
@@ -62,22 +64,32 @@ export const GENERATE: Command<
 			opts: { prec, out },
 			inputs,
 		} = ctx;
-		const config: GeneratorConfig = readJSON(inputs[0], logger);
-		const result: CompiledSpecs = {
-			info: config.info!,
-			media: config.media || {},
-			defs: generateAll(config, prec),
+		const root = resolve(inputs[0]);
+		if (!statSync(root).isDirectory())
+			illegalArgs(`${root} is not a directory`);
+		const specs: CompiledSpecs = {
+			info: { name: "TODO", version: "0.0.0" },
+			media: {},
+			defs: {},
 		};
-
-		maybeWriteText(out, JSON.stringify(result), logger);
+		for (let input of files(root, ".json")) {
+			const config = readJSON<GeneratorConfig>(input, logger);
+			Object.assign(specs.info, config.info);
+			Object.assign(specs.media, config.media);
+			generateAll(config, specs.defs, prec);
+		}
+		maybeWriteText(out, JSON.stringify(specs), logger);
 	},
 };
 
-const generateAll = (config: GeneratorConfig, prec: number) => {
+export const generateAll = (
+	config: GeneratorConfig,
+	defs: IObjectOf<any> = {},
+	prec = 3
+) => {
 	setPrecision(prec);
-	const defs: IObjectOf<any> = {};
 	for (let spec of config.specs) {
-		const vars = resolveVariations(spec.var);
+		const vars = __variations(spec.var);
 		if (spec.def) {
 			for (let vid of vars) {
 				genVariationDef(defs, config, spec, vid);
@@ -104,7 +116,7 @@ const generateAll = (config: GeneratorConfig, prec: number) => {
 	return defs;
 };
 
-const genVariation = (
+export const genVariation = (
 	defs: IObjectOf<any>,
 	config: GeneratorConfig,
 	spec: Spec,
@@ -112,7 +124,7 @@ const genVariation = (
 ) => {
 	const prefix = spec.prefix.replace("*", varID);
 	const props = __props(spec.prop, varID);
-	const unit = __unit(config, spec.unit);
+	const unit = __unit(config, spec);
 	const items = __items(config, spec.items);
 	items.forEach((x, i) => {
 		const id = __name(prefix, spec.index, x, i);
@@ -122,14 +134,14 @@ const genVariation = (
 	});
 };
 
-const genVariationDef = (
+export const genVariationDef = (
 	defs: IObjectOf<any>,
 	config: GeneratorConfig,
-	spec: Pick<Spec, "prefix" | "index" | "items" | "def" | "unit">,
+	spec: Spec,
 	varID: string
 ) => {
 	const prefix = spec.prefix.replace("*", varID);
-	const unit = __unit(config, spec.unit);
+	const unit = __unit(config, spec);
 	const items = __items(config, spec.items);
 	const $var = (<any>VARIATIONS)[varID];
 	items.forEach((x, i) => {
@@ -165,18 +177,22 @@ const __index = (index: Index | undefined, x: any, i: number) => {
 
 const __value = (x: any, unit?: Fn<any, string>) => (unit ? unit(x) : x);
 
-const __unit = (specs: GeneratorConfig, id: Nullable<string>) => {
-	if (id === undefined) return rem;
-	if (id === null) return (x: any) => String(x);
-	if (UNITS[id]) return UNITS[id];
-	return specs.indexed[id!]
-		? (x: any) => specs.indexed[id!][x]
-		: illegalArgs(`invalid unit: ${id}`);
+const __unit = (specs: GeneratorConfig, { unit, items }: Spec) => {
+	if (unit === undefined) return rem;
+	if (unit === null)
+		return isPlainObject(items)
+			? (x: any) => (<any>items)[x]
+			: (x: any) => String(x);
+	if (UNITS[unit]) return UNITS[unit];
+	return specs.tables?.[unit!]
+		? (x: any) => specs.tables![unit!][x]
+		: illegalArgs(`invalid unit: ${unit}`);
 };
 
 const __items = (specs: GeneratorConfig, $items: any) => {
 	let items = $items;
-	if (isString(items)) items = specs.indexed[items];
+	if (isString(items))
+		items = specs.tables?.[items] || illegalArgs(`invalid index: ${items}`);
 	if (isPlainObject(items)) return Object.keys(items);
 	return isArray(items) ? items : illegalArgs($items);
 };
@@ -184,7 +200,7 @@ const __items = (specs: GeneratorConfig, $items: any) => {
 const __props = (props: string | string[], varID: string) =>
 	(isString(props) ? [props] : props).map((x) => x.replace("*", varID));
 
-const resolveVariations = (vars?: string | string[]) => {
+const __variations = (vars?: string | string[]) => {
 	if (!vars) return [""];
 	if (isString(vars)) {
 		return (

@@ -5,6 +5,7 @@ import { PRESET_ANSI16 } from "@thi.ng/text-format";
 import { join } from "node:path";
 import type { AppCtx, CommonOpts } from "./api.js";
 import { CONVERT } from "./convert.js";
+import { EXPORT } from "./export.js";
 import { GENERATE } from "./generate.js";
 
 const PKG = readJSON(join((<any>import.meta).dir, "package.json"));
@@ -23,6 +24,7 @@ cliApp<CommonOpts, AppCtx<any>>({
 	},
 	commands: {
 		convert: CONVERT,
+		export: EXPORT,
 		generate: GENERATE,
 	},
 	ctx: async (ctx) => {
