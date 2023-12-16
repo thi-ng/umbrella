@@ -1,0 +1,48 @@
+{
+	"specs": [
+		{
+			"prefix": "cursor-",
+			"index": "v",
+			"prop": "cursor",
+			"items": {
+				"auto": "auto",
+				"default": "default",
+				"none": "none",
+				"context": "context-menu",
+				"help": "help",
+				"pointer": "pointer",
+				"progress": "progress",
+				"wait": "wait",
+				"cell": "cell",
+				"cross": "crosshair",
+				"text": "text",
+				"vtext": "vertical-text",
+				"alias": "alias",
+				"copy": "copy",
+				"move": "move",
+				"no-drop": "no-drop",
+				"forbidden": "not-allowed",
+				"grab": "grab",
+				"grabbing": "grabbing",
+				"e": "e-resize",
+				"n": "n-resize",
+				"ne": "ne-resize",
+				"nw": "nw-resize",
+				"s": "s-resize",
+				"se": "se-resize",
+				"sw": "sw-resize",
+				"w": "w-resize",
+				"ew": "ew-resize",
+				"ns": "ns-resize",
+				"news": "nesw-resize",
+				"nwse": "nwse-resize",
+				"col": "col-resize",
+				"row": "row-resize",
+				"scroll": "all-scroll",
+				"in": "zoom-in",
+				"out": "zoom-out"
+			},
+			"unit": null
+		}
+	]
+}

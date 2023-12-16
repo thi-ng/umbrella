@@ -1,0 +1,26 @@
+{
+	"info": {
+		"name": "MetaCSS base",
+		"version": "0.0.1"
+	},
+	"media": {
+		"ns": { "min-width": "30rem" },
+		"m": { "min-width": "30rem", "max-width": "60rem" },
+		"l": {
+			"min-width": "60rem"
+		},
+		"dark": {
+			"prefers-color-scheme": "dark"
+		},
+		"light": {
+			"prefers-color-scheme": "light"
+		},
+		"anim": {
+			"prefers-reduced-motion": false
+		},
+		"noanim": {
+			"prefers-reduced-motion": true
+		}
+	},
+	"specs": []
+}

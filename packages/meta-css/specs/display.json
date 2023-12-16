@@ -1,0 +1,21 @@
+{
+	"specs": [
+		{
+			"comment": "display modes",
+			"prefix": "d",
+			"index": "v",
+			"prop": "display",
+			"items": {
+				"b": "block",
+				"g": "grid",
+				"i": "inline",
+				"ib": "inline-block",
+				"n": "none",
+				"t": "table",
+				"tc": "table-cell",
+				"tr": "table-row"
+			},
+			"unit": null
+		}
+	]
+}

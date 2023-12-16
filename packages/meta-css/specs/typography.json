@@ -1,0 +1,41 @@
+{
+	"tables": {
+		"font-families": {
+			"system": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+			"sans-serif": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+			"serif": "Georgia, 'Times New Roman', Times, serif",
+			"monospace": "Monaco, Menlo, Consolas, 'Courier New', monospace"
+		},
+		"100s": [100, 200, 300, 400, 500, 600, 700, 800, 900]
+	},
+	"specs": [
+		{
+			"comment": "font families",
+			"prefix": "",
+			"index": "v",
+			"prop": "font-family",
+			"items": "font-families",
+			"unit": "font-families"
+		},
+		{
+			"comment": "font weights",
+			"prefix": "fw",
+			"index": "v",
+			"def": { "font-weight": "*" },
+			"items": "100s",
+			"unit": null
+		},
+		{
+			"comment": "text decorations",
+			"prefix": "",
+			"index": "v",
+			"prop": "text-decoration",
+			"items": {
+				"underline": "underline",
+				"no-underline": "none",
+				"strike": "line-through"
+			},
+			"unit": null
+		}
+	]
+}

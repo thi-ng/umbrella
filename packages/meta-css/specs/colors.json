@@ -1,0 +1,141 @@
+{
+	"tables": {
+		"var-palette": {
+			"vcol1": "var(--color1)",
+			"vcol2": "var(--color2)",
+			"vcol3": "var(--color3)",
+			"vcol4": "var(--color4)",
+			"vcol5": "var(--color5)",
+			"vcol6": "var(--color6)",
+			"vcol7": "var(--color7)",
+			"vcol8": "var(--color8)",
+			"vcol9": "var(--color9)",
+			"vcol10": "var(--color10)",
+			"vcol11": "var(--color11)",
+			"vcol12": "var(--color12)",
+			"vcol13": "var(--color13)",
+			"vcol14": "var(--color14)",
+			"vcol15": "var(--color15)",
+			"vcol16": "var(--color16)"
+		},
+		"__grays_comment": "Tachyons CSS colors",
+		"grays": {
+			"black": "#000",
+			"near-black": "#111",
+			"dark-gray": "#333",
+			"mid-gray": "#555",
+			"gray": "#777",
+			"silver": "#999",
+			"light-silver": "#aaa",
+			"moon-gray": "#ccc",
+			"light-gray": "#eee",
+			"near-white": "#f4f4f4",
+			"white": "#fff",
+			"transparent": "transparent"
+		},
+		"__palette_comment": "Tachyons CSS colors",
+		"palette": {
+			"dark-red": "#e7040f",
+			"red": "#ff4136",
+			"light-red": "#ff725c",
+			"orange": "#ff6300",
+			"gold": "#ffb700",
+			"yellow": "#ffd700",
+			"light-yellow": "#fbf1a9",
+			"purple": "#5e2ca5",
+			"light-purple": "#a463f2",
+			"dark-pink": "#d5008f",
+			"hot-pink": "#ff41b4",
+			"pink": "#ff80cc",
+			"light-pink": "#ffa3d7",
+			"dark-green": "#137752",
+			"green": "#19a974",
+			"light-green": "#9eebcf",
+			"navy": "#001b44",
+			"dark-blue": "#00449e",
+			"blue": "#357edd",
+			"light-blue": "#96ccff",
+			"lightest-blue": "#cdecff",
+			"washed-blue": "#f6fffe",
+			"washed-green": "#e8fdf5",
+			"washed-yellow": "#fffceb",
+			"washed-red": "#ffdfdf"
+		}
+	},
+	"specs": [
+		{
+			"comment": "border colors",
+			"prefix": "b--",
+			"index": "v",
+			"prop": "border-color",
+			"items": "var-palette",
+			"unit": "var-palette"
+		},
+		{
+			"prefix": "b--",
+			"index": "v",
+			"prop": "border-color",
+			"items": "palette",
+			"unit": "palette"
+		},
+		{
+			"prefix": "b--",
+			"index": "v",
+			"prop": "border-color",
+			"items": "grays",
+			"unit": "grays"
+		},
+		{
+			"comment": "text colors",
+			"prefix": "",
+			"index": "v",
+			"prop": "color",
+			"items": "var-palette",
+			"unit": "var-palette"
+		},
+		{
+			"prefix": "",
+			"index": "v",
+			"prop": "color",
+			"items": "palette",
+			"unit": "palette"
+		},
+		{
+			"prefix": "",
+			"index": "v",
+			"prop": "color",
+			"items": "grays",
+			"unit": "grays"
+		},
+		{
+			"comment": "background colors",
+			"prefix": "bg-",
+			"index": "v",
+			"prop": "background-color",
+			"items": "var-palette",
+			"unit": "var-palette"
+		},
+		{
+			"prefix": "bg-",
+			"index": "v",
+			"prop": "background-color",
+			"items": "palette",
+			"unit": "palette"
+		},
+		{
+			"prefix": "bg-",
+			"index": "v",
+			"prop": "background-color",
+			"items": "grays",
+			"unit": "grays"
+		},
+		{
+			"comment": "opacities",
+			"prefix": "o",
+			"index": "v",
+			"prop": "opacity",
+			"items": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+			"unit": "norm"
+		}
+	]
+}

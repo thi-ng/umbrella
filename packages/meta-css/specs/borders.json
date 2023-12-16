@@ -1,0 +1,46 @@
+{
+	"tables": {
+		"borders-r": [0, 0.125, 0.25, 0.5, 1],
+		"borders-w": [0, 0.125, 0.25, 0.5, 1, 2]
+	},
+	"specs": [
+		{
+			"comment": "border radius",
+			"prefix": "br",
+			"index": "i",
+			"prop": "border-radius",
+			"items": "borders-r"
+		},
+		{
+			"prefix": "br*",
+			"index": "i",
+			"def": {
+				"border-top*-radius": "*",
+				"border-bottom*-radius": "*"
+			},
+			"items": "borders-r",
+			"var": "h"
+		},
+		{
+			"prefix": "br*",
+			"index": "i",
+			"def": {
+				"border*-left-radius": "*",
+				"border*-right-radius": "*"
+			},
+			"items": "borders-r",
+			"var": "v"
+		},
+		{
+			"comment": "border widths",
+			"prefix": "bw*",
+			"index": "i",
+			"def": {
+				"border*-style": "solid",
+				"border*-width": "*"
+			},
+			"items": "borders-w",
+			"var": "atrbl"
+		}
+	]
+}
