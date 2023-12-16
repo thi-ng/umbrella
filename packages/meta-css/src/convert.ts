@@ -14,7 +14,7 @@ import {
 } from "@thi.ng/hiccup-css";
 import { type ILogger } from "@thi.ng/logger";
 import { Stream, reactive, sync } from "@thi.ng/rstream";
-import { Z3 } from "@thi.ng/strings";
+import { Z3, split } from "@thi.ng/strings";
 import { assocObj, map } from "@thi.ng/transducers";
 import { watch } from "fs";
 import { resolve } from "path";
@@ -140,7 +140,7 @@ const watchInputs = async (ctx: AppCtx<ConvertOpts>, specs: CompiledSpecs) => {
 	// close watchers when Ctrl-C is pressed
 	process.on("SIGINT", close);
 	while (active) {
-		await delayed(null, 1000);
+		await delayed(null, 250);
 	}
 };
 
@@ -207,57 +207,66 @@ const processSpec = (
 		scopes: [initial],
 	};
 
-	for (let token of src.split(/\s+/)) {
-		let $scope = ctx.curr;
-		switch ($scope.state) {
-			case "sel":
-			case "nest":
-				if (token === "{") {
-					if ($scope.state === "sel") {
-						$scope.sel = $scope.sel.map((x) => x.replace(",", ""));
-						$scope.path = buildScopePath(ctx.scopes);
-					}
-					$scope.state = "class";
-				} else if (token === "}") {
-					endScope(ctx);
-				} else {
-					const last = peek($scope.sel);
-					if (!last || last.endsWith(",")) {
-						$scope.sel.push(token);
+	for (let line of split(src)) {
+		// filter out line comments
+		if (!line || /^\s*\/\//.test(line)) continue;
+		for (let token of split(line, /\s+/g)) {
+			if (!token) continue;
+			let $scope = ctx.curr;
+			switch ($scope.state) {
+				case "sel":
+				case "nest":
+					if (token === "{") {
+						if ($scope.state === "sel") {
+							$scope.sel = $scope.sel.map((x) =>
+								x.replace(",", "")
+							);
+							$scope.path = buildScopePath(ctx.scopes);
+						}
+						$scope.state = "class";
+					} else if (token === "}") {
+						endScope(ctx);
 					} else {
-						$scope.sel[$scope.sel.length - 1] += " " + token;
+						const last = peek($scope.sel);
+						if (!last || last.endsWith(",")) {
+							$scope.sel.push(token);
+						} else {
+							$scope.sel[$scope.sel.length - 1] += " " + token;
+						}
 					}
-				}
-				break;
-			case "class":
-				if (token === "{") {
-					$scope.state = "nest";
-					ctx.scopes.push((ctx.curr = defScope($scope)));
-				} else if (token === "}") {
-					endScope(ctx);
-				} else {
-					let { token: id, query } = parseMediaQueryToken(
-						token,
-						mediaQueryIDs
-					);
-					if (!specs.defs[id]) illegalArgs(`unknown rule ID: ${id}`);
-					if (query) {
-						if (!mediaQueryRules[query])
-							mediaQueryRules[query] = {};
-						(
-							mediaQueryRules[query][$scope.path] ||
-							(mediaQueryRules[query][$scope.path] = new Set())
-						).add(id);
+					break;
+				case "class":
+					if (token === "{") {
+						$scope.state = "nest";
+						ctx.scopes.push((ctx.curr = defScope($scope)));
+					} else if (token === "}") {
+						endScope(ctx);
 					} else {
-						(
-							plainRules[$scope.path] ||
-							(plainRules[$scope.path] = new Set())
-						).add(id);
+						let { token: id, query } = parseMediaQueryToken(
+							token,
+							mediaQueryIDs
+						);
+						if (!specs.defs[id])
+							illegalArgs(`unknown rule ID: ${id}`);
+						if (query) {
+							if (!mediaQueryRules[query])
+								mediaQueryRules[query] = {};
+							(
+								mediaQueryRules[query][$scope.path] ||
+								(mediaQueryRules[query][$scope.path] =
+									new Set())
+							).add(id);
+						} else {
+							(
+								plainRules[$scope.path] ||
+								(plainRules[$scope.path] = new Set())
+							).add(id);
+						}
 					}
-				}
-				break;
-			default:
-				illegalState($scope.state);
+					break;
+				default:
+					illegalState($scope.state);
+			}
 		}
 	}
 };
