@@ -101,8 +101,14 @@ const watchInputs = async (ctx: AppCtx<ConvertOpts>, specs: CompiledSpecs) => {
 		return {
 			input,
 			watcher: watch(file, {}, (event) => {
-				if (event === "change") input.next(readText(file, ctx.logger));
-				else {
+				if (event === "change") {
+					try {
+						input.next(readText(file, ctx.logger));
+					} catch (e) {
+						ctx.logger.warn((<Error>e).message);
+						close();
+					}
+				} else {
 					ctx.logger.warn(`input removed:`, file);
 					close();
 				}
@@ -118,13 +124,17 @@ const watchInputs = async (ctx: AppCtx<ConvertOpts>, specs: CompiledSpecs) => {
 		),
 	}).subscribe({
 		next(ins) {
-			processInputs(
-				ctx,
-				specs,
-				Object.keys(ins)
-					.sort()
-					.map((k) => ins[k])
-			);
+			try {
+				processInputs(
+					ctx,
+					specs,
+					Object.keys(ins)
+						.sort()
+						.map((k) => ins[k])
+				);
+			} catch (e) {
+				ctx.logger.warn((<Error>e).message);
+			}
 		},
 	});
 	// close watchers when Ctrl-C is pressed
