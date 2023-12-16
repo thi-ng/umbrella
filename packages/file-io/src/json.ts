@@ -2,7 +2,7 @@ import type { Fn3, NumOrString } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import { readText, writeText } from "./text.js";
 
-export const readJSON = (path: string, logger?: ILogger) =>
+export const readJSON = <T = any>(path: string, logger?: ILogger): T =>
 	JSON.parse(readText(path, logger));
 
 /**
