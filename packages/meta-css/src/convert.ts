@@ -73,6 +73,7 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 		...ARG_WATCH,
 		force: strings({
 			desc: "CSS classes to force include (wildcards supported)",
+			delim: ",",
 		}),
 	},
 	fn: async (ctx) => {

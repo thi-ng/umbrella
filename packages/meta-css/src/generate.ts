@@ -37,17 +37,26 @@ const VARIATIONS = {
 	h: ["-left", "-right"],
 	v: ["-top", "-bottom"],
 	t: ["-top"],
+	top: ["top"],
 	b: ["-bottom"],
+	bottom: ["bottom"],
 	r: ["-right"],
+	right: ["right"],
 	l: ["-left"],
+	left: ["left"],
+	x: ["-x"],
+	y: ["-y"],
 };
 
 const VAR_IDS = {
 	all: ["a", "h", "v", "t", "r", "b", "l"],
 	trbl: ["t", "r", "b", "l"],
+	TRBL: ["top", "right", "bottom", "left"],
 	atrbl: ["a", "t", "r", "b", "l"],
 	h: ["l", "r"],
 	v: ["t", "b"],
+	xy: ["x", "y"],
+	axy: ["a", "x", "y"],
 };
 
 export const GENERATE: Command<
@@ -189,7 +198,7 @@ const __unit = (specs: GeneratorConfig, { unit, items }: Spec) => {
 	if (unit === null)
 		return isPlainObject(items)
 			? (x: any) => (<any>items)[x]
-			: (x: any) => String(x);
+			: (x: any) => x;
 	if (UNITS[unit]) return UNITS[unit];
 	return specs.tables?.[unit!]
 		? (x: any) => specs.tables![unit!][x]
