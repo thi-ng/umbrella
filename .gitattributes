@@ -4,6 +4,7 @@
 *.mp4	-text
 *.pdf	-text
 *.png	-text
-*.gz    -text
+*.gz	-text
+*.meta	linguist-language=text
 tools/doc/* linguist-documentation
 yarn.lock -diff
