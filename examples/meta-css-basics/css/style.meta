@@ -1,0 +1,105 @@
+// media query prefixes can be used on any class
+// these prefixes are declared as part of the framework generation specs
+// the query IDs of the default specs are (see base-specs.json for details):
+// ns: aka "not small" screens
+// m: medium sized screens
+// l: large screens
+// noanim: if prefers-reduced-motion is enabled
+// anim: only if prefers-reduced-motion is disabled (i.e. anims are enabled)
+
+// syntax for nested selectors:
+//
+// selector {
+//   class-id1 class-id2 ...
+//   {
+//     nested-sel {
+//       class-id1 ...
+//     }
+//   }
+// }
+
+body {
+	system ma3 dark:bg-near-black dark:light-gray bg-light-gray dark-gray
+}
+
+// shared styles for all headlines
+h1, h2, h3, h4, h5, h6 { mt0 mb2 lh-solid { p { mt2 lh-solid } } }
+
+// set font sizes & colors for each heading level
+h1 { ns:f-title f-subtitle dark:orange light:dark-pink { p { f1 } } }
+h2 { ns:f-subtitle f1 dark:gold light:hot-pink { p { f2 } } }
+h3 { dark:yellow light:pink f1 { p { f2 } } }
+h4 { dark:light-yellow light:light-pink f2 { p { f3 } } }
+h5 { f3 { p { f4 } } }
+h6 { f4 { p { f5 } } }
+
+// configure body copy
+section { l:w66 m:w80 mb4 { >p { tj } } }
+p { mt0 mb3 lh-copy }
+
+
+ul, ol { list pl0 lh-double }
+
+pre {
+	dark:bg-dark-blue dark:white light:bg-light-blue light:black
+	relative pa3 br3 lh-copy f6 overflow-x-scroll
+	{ >div.lang { absolute z-1 top-0 right-0 bg-blue pa2 brl3 brt0 f7 } }
+}
+
+a:link, a:visited { dark:white black fw700 }
+a:hover { dark:hot-pink purple }
+
+.swatches {
+	dg gap3 gc2 m:gc4 l:gc5 mb4
+	{ div { pa2 h3 ns:h4 br3 } }
+}
+
+.group-v {
+	dg gap1
+	{
+		a {
+			pa3
+			{
+				// use --color1 var (defined in index.html) for hover
+				:hover { bg-vcol1 }
+				:first-child { brt3 }
+				:last-child { brb3 }
+			}
+		}
+	}
+}
+
+.group-h {
+	// only enable grid for larger screens
+	dg gap1
+	{
+		a {
+			ns:h3 pa3
+			{
+				// use --color2 var (defined in index.html) for hover
+				:hover { bg-vcol2 }
+				:first-child { ns:brl3 }
+				:last-child { ns:brr3 }
+			}
+		}
+	}
+}
+
+// configure grid columns to reflect number of items
+.group-h[data-items="2"] { gc2 }
+.group-h[data-items="3"] { gc3 }
+.group-h[data-items="4"] { ns:gc4 }
+.group-h[data-items="5"] { ns:gc5 }
+
+.group-v, .group-h {
+	mb3
+	{
+		a {
+			db dark:bg-dark-gray bg-moon-gray no-underline
+			{
+				// use --color3 var (defined in index.html) for hover
+				:hover { vcol3 anim:bg-anim2 }
+			}
+		}
+	}
+}

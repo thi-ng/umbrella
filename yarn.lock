@@ -1338,6 +1338,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/meta-css-basics@workspace:examples/meta-css-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/meta-css-basics@workspace:examples/meta-css-basics"
+  dependencies:
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.3.2
+    vite: ^5.0.4
+  languageName: unknown
+  linkType: soft
+
 "@example/multitouch@workspace:examples/multitouch":
   version: 0.0.0-use.local
   resolution: "@example/multitouch@workspace:examples/multitouch"
@@ -5074,7 +5087,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/meta-css@workspace:packages/meta-css":
+"@thi.ng/meta-css@workspace:^, @thi.ng/meta-css@workspace:packages/meta-css":
   version: 0.0.0-use.local
   resolution: "@thi.ng/meta-css@workspace:packages/meta-css"
   dependencies:
