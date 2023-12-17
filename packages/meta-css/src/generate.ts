@@ -8,18 +8,20 @@ import { PRECISION, percent, px, rem, setPrecision } from "@thi.ng/hiccup-css";
 import { permutations } from "@thi.ng/transducers";
 import { statSync } from "fs";
 import { resolve } from "path";
-import type {
-	AppCtx,
-	CommonOpts,
-	CompiledSpecs,
-	GeneratorConfig,
-	Index,
-	Spec,
+import {
+	ARG_PRETTY,
+	type AppCtx,
+	type CommonOpts,
+	type CompiledSpecs,
+	type GeneratorConfig,
+	type Index,
+	type Spec,
 } from "./api.js";
 import { maybeWriteText } from "./utils.js";
 
 interface GenerateOpts extends CommonOpts {
 	prec: number;
+	pretty: boolean;
 }
 
 const UNITS: Record<string, Fn<any, any>> = {
@@ -55,13 +57,14 @@ export const GENERATE: Command<
 > = {
 	desc: "Generate MetaCSS specs",
 	opts: {
+		...ARG_PRETTY,
 		prec: int({ default: 3, desc: "Number of fractional digits" }),
 	},
 	inputs: 1,
 	fn: async (ctx) => {
 		const {
 			logger,
-			opts: { prec, out },
+			opts: { prec, out, pretty },
 			inputs,
 		} = ctx;
 		const root = resolve(inputs[0]);
@@ -78,7 +81,11 @@ export const GENERATE: Command<
 			Object.assign(specs.media, config.media);
 			generateAll(config, specs.defs, prec);
 		}
-		maybeWriteText(out, JSON.stringify(specs), logger);
+		maybeWriteText(
+			out,
+			JSON.stringify(specs, null, pretty ? 4 : 0),
+			logger
+		);
 	},
 };
 
