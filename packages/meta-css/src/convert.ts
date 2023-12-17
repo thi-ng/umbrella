@@ -1,6 +1,6 @@
 // thing:no-export
 import type { IObjectOf } from "@thi.ng/api";
-import type { Command } from "@thi.ng/args";
+import { strings, type Command } from "@thi.ng/args";
 import { peek } from "@thi.ng/arrays";
 import { delayed } from "@thi.ng/compose";
 import { assert, illegalArgs, illegalState } from "@thi.ng/errors";
@@ -15,7 +15,7 @@ import {
 import { type ILogger } from "@thi.ng/logger";
 import { Stream, reactive, sync } from "@thi.ng/rstream";
 import { Z3, split } from "@thi.ng/strings";
-import { assocObj, map } from "@thi.ng/transducers";
+import { assocObj, filter, map } from "@thi.ng/transducers";
 import { watch } from "fs";
 import { resolve } from "path";
 import {
@@ -35,6 +35,7 @@ type State = "sel" | "class" | "nest";
 interface ConvertOpts extends CommonOpts {
 	specs: string;
 	include?: string[];
+	force?: string[];
 	pretty: boolean;
 	noHeader: boolean;
 	watch: boolean;
@@ -70,25 +71,38 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
 		...ARG_WATCH,
+		force: strings({
+			desc: "CSS classes to force include (wildcards supported)",
+		}),
 	},
 	fn: async (ctx) => {
 		const specs = readJSON<CompiledSpecs>(
 			resolve(ctx.opts.specs),
 			ctx.logger
 		);
+		const forceRules = processForceIncludes(
+			specs,
+			ctx.opts.force || [],
+			ctx.logger
+		);
 		if (ctx.opts.watch) {
-			await watchInputs(ctx, specs);
+			await watchInputs(ctx, specs, forceRules);
 		} else {
 			processInputs(
 				ctx,
 				specs,
+				forceRules,
 				ctx.inputs.map((file) => readText(resolve(file), ctx.logger))
 			);
 		}
 	},
 };
 
-const watchInputs = async (ctx: AppCtx<ConvertOpts>, specs: CompiledSpecs) => {
+const watchInputs = async (
+	ctx: AppCtx<ConvertOpts>,
+	specs: CompiledSpecs,
+	forceRules: ReturnType<typeof processForceIncludes>
+) => {
 	let active = true;
 	const close = () => {
 		ctx.logger.info("closing watchers...");
@@ -130,6 +144,7 @@ const watchInputs = async (ctx: AppCtx<ConvertOpts>, specs: CompiledSpecs) => {
 				processInputs(
 					ctx,
 					specs,
+					forceRules,
 					// process in deterministic order (same as given in CLI)
 					Object.keys(ins)
 						.sort()
@@ -150,6 +165,7 @@ const watchInputs = async (ctx: AppCtx<ConvertOpts>, specs: CompiledSpecs) => {
 const processInputs = (
 	{ logger, opts: { include, noHeader, out, pretty } }: AppCtx<ConvertOpts>,
 	specs: CompiledSpecs,
+	forceRules: ReturnType<typeof processForceIncludes>,
 	inputs: string[]
 ) => {
 	const procOpts: ProcessOpts = {
@@ -157,8 +173,8 @@ const processInputs = (
 		specs,
 		format: pretty ? PRETTY : COMPACT,
 		mediaQueryIDs: new Set(Object.keys(specs.media)),
-		mediaQueryRules: {},
-		plainRules: {},
+		mediaQueryRules: { ...forceRules.mediaQueryRules },
+		plainRules: { ...forceRules.plainRules },
 	};
 	const bundle: string[] = include
 		? include.map((x) => readText(resolve(x), logger).trim())
@@ -192,6 +208,38 @@ const processPlainRules = (
 	const rules = buildDecls(plainRules, specs);
 	logger.debug("plain rules", rules);
 	result.push(css(rules, { format }));
+};
+
+const processForceIncludes = (
+	specs: CompiledSpecs,
+	classes: string[],
+	logger: ILogger
+) => {
+	const mediaQueryIDs = new Set(Object.keys(specs.media));
+	const allIDs = new Set(Object.keys(specs.defs));
+	const mediaQueryRules: IObjectOf<IObjectOf<Set<string>>> = {};
+	const plainRules: IObjectOf<Set<string>> = {};
+	for (let id of classes) {
+		const { token, query } = parseMediaQueryToken(id, mediaQueryIDs);
+		let matches: string[];
+		if (token.includes("*")) {
+			const re = new RegExp(`^${token.replace("*", ".*")}$`);
+			matches = [...filter((x) => re.test(x), allIDs)];
+		} else {
+			if (allIDs.has(token)) {
+				matches = [token];
+			} else {
+				logger.warn(`unknown include rule ID: ${id}, skipping...`);
+				continue;
+			}
+		}
+		for (let match of matches) {
+			query
+				? addMediaQueryDef(mediaQueryRules, query, `.${match}`, match)
+				: addPlainDef(plainRules, `.${match}`, match);
+		}
+	}
+	return { mediaQueryRules, plainRules };
 };
 
 const processSpec = (
@@ -248,18 +296,14 @@ const processSpec = (
 						if (!specs.defs[id])
 							illegalArgs(`unknown rule ID: ${id}`);
 						if (query) {
-							if (!mediaQueryRules[query])
-								mediaQueryRules[query] = {};
-							(
-								mediaQueryRules[query][$scope.path] ||
-								(mediaQueryRules[query][$scope.path] =
-									new Set())
-							).add(id);
+							addMediaQueryDef(
+								mediaQueryRules,
+								query,
+								$scope.path,
+								id
+							);
 						} else {
-							(
-								plainRules[$scope.path] ||
-								(plainRules[$scope.path] = new Set())
-							).add(id);
+							addPlainDef(plainRules, $scope.path, id);
 						}
 					}
 					break;
@@ -351,3 +395,22 @@ const mergeMediaQueries = (mediaQueryDefs: IObjectOf<any>, query: string) =>
 	query
 		.split(QUERY_SEP)
 		.reduce((acc, id) => Object.assign(acc, mediaQueryDefs[id]), <any>{});
+
+const addMediaQueryDef = (
+	mediaQueryRules: IObjectOf<IObjectOf<Set<string>>>,
+	query: string,
+	path: string,
+	id: string
+) => {
+	if (!mediaQueryRules[query]) mediaQueryRules[query] = {};
+	(
+		mediaQueryRules[query][path] ||
+		(mediaQueryRules[query][path] = new Set())
+	).add(id);
+};
+
+const addPlainDef = (
+	plainRules: IObjectOf<Set<string>>,
+	path: string,
+	id: string
+) => (plainRules[path] || (plainRules[path] = new Set())).add(id);
