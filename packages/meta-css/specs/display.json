@@ -7,9 +7,11 @@
 			"prop": "display",
 			"items": {
 				"b": "block",
+				"f": "flex",
 				"g": "grid",
 				"i": "inline",
 				"ib": "inline-block",
+				"if": "inline-flex",
 				"ig": "inline-grid",
 				"n": "none",
 				"t": "table",

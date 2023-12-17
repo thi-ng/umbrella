@@ -1,0 +1,28 @@
+{
+	"tables": {
+		"overflow": ["hidden", "scroll", "auto", "visible"]
+	},
+	"specs": [
+		{
+			"prefix": "overflow",
+			"index": "v",
+			"def": { "overflow": "*" },
+			"items": "overflow",
+			"unit": null
+		},
+		{
+			"prefix": "overflow-x-",
+			"index": "v",
+			"def": { "overflow-x": "*" },
+			"items": "overflow",
+			"unit": null
+		},
+		{
+			"prefix": "overflow-y-",
+			"index": "v",
+			"def": { "overflow-y": "*" },
+			"items": "overflow",
+			"unit": null
+		}
+	]
+}

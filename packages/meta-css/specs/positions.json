@@ -1,0 +1,31 @@
+{
+	"tables": {
+		"pos": [-2, -1, 0, 1, 2]
+	},
+	"specs": [
+		{
+			"prefix": "",
+			"index": "v",
+			"prop": "position",
+			"items": ["absolute", "relative", "fixed"],
+			"unit": null
+		},
+		{
+			"comment": "positions",
+			"prefix": "*-",
+			"index": "v",
+			"def": {
+				"*": "*"
+			},
+			"items": "pos",
+			"var": "TRBL"
+		},
+		{
+			"prefix": "z-",
+			"index": "v",
+			"prop": "z-index",
+			"items": [0, 1, 2, 3, 4, 5, 999, 9999],
+			"unit": null
+		}
+	]
+}
