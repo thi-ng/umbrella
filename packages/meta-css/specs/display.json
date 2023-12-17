@@ -10,6 +10,7 @@
 				"g": "grid",
 				"i": "inline",
 				"ib": "inline-block",
+				"ig": "inline-grid",
 				"n": "none",
 				"t": "table",
 				"tc": "table-cell",

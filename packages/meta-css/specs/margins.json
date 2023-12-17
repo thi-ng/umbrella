@@ -1,42 +1,8 @@
 {
 	"tables": {
-		"margins": [0, 0.25, 0.5, 1, 2],
-		"sizes-abs": [1, 2, 4, 8, 16],
-		"sizes-rel": [
-			10, 20, 25, 30, 33, 34, 40, 50, 60, 66, 70, 75, 80, 90, 100
-		]
+		"margins": [0, 0.25, 0.5, 1, 2]
 	},
 	"specs": [
-		{
-			"comment": "abs widths",
-			"prefix": "w",
-			"index": "i1",
-			"prop": "width",
-			"items": "sizes-abs"
-		},
-		{
-			"comment": "relative widths",
-			"prefix": "w",
-			"index": "v",
-			"prop": "width",
-			"items": "sizes-rel",
-			"unit": "%"
-		},
-		{
-			"comment": "abs heights",
-			"prefix": "h",
-			"index": "i1",
-			"prop": "height",
-			"items": "sizes-abs"
-		},
-		{
-			"comment": "relative heights",
-			"prefix": "h",
-			"index": "v",
-			"prop": "height",
-			"items": "sizes-rel",
-			"unit": "%"
-		},
 		{
 			"comment": "paddings",
 			"prefix": "p",

@@ -18,11 +18,40 @@
 			"unit": "font-families"
 		},
 		{
+			"comment": "font scale",
+			"prefix": "f",
+			"index": "i1",
+			"prop": "font-size",
+			"items": [3, 2.25, 1.5, 1.25, 1, 0.875, 0.75]
+		},
+		{
+			"comment": "named font scales",
+			"prefix": "f-",
+			"index": "v",
+			"prop": "font-size",
+			"items": {
+				"title": "6rem",
+				"subtitle": "5rem"
+			},
+			"unit": null
+		},
+		{
 			"comment": "font weights",
 			"prefix": "fw",
 			"index": "v",
 			"def": { "font-weight": "*" },
 			"items": "100s",
+			"unit": null
+		},
+		{
+			"comment": "named font weights",
+			"prefix": "",
+			"index": "v",
+			"prop": "font-weight",
+			"items": {
+				"normal": 400,
+				"b": 700
+			},
 			"unit": null
 		},
 		{
@@ -35,6 +64,63 @@
 				"no-underline": "none",
 				"strike": "line-through"
 			},
+			"unit": null
+		},
+		{
+			"prefix": "tt",
+			"index": "v",
+			"prop": "text-transform",
+			"items": {
+				"c": "capitalize",
+				"l": "lowercase",
+				"i": "initial",
+				"n": "none",
+				"u": "uppercase",
+				"fw": "full-width",
+				"fsk": "full-size-kana"
+			},
+			"unit": null
+		},
+		{
+			"prefix": "t",
+			"index": "v",
+			"prop": "text-align",
+			"items": {
+				"c": "center",
+				"j": "justify",
+				"l": "left",
+				"r": "right"
+			},
+			"unit": null
+		},
+		{
+			"prefix": "v-",
+			"index": "v",
+			"prop": "vertical-align",
+			"items": {
+				"btm": "bottom",
+				"mid": "middle",
+				"top": "top"
+			},
+			"unit": null
+		},
+		{
+			"prefix": "lh-",
+			"index": "v",
+			"prop": "line-height",
+			"items": {
+				"solid": 1,
+				"title": 1.25,
+				"copy": 1.5,
+				"double": 2
+			},
+			"unit": null
+		},
+		{
+			"prefix": "ws-",
+			"index": "v",
+			"prop": "white-space",
+			"items": ["normal", "nowrap", "pre"],
 			"unit": null
 		}
 	]
