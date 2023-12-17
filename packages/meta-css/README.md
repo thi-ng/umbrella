@@ -15,6 +15,7 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [CLI](#cli)
   - [Basic usage example](#basic-usage-example)
   - [Generating framework code for bundled base definitions](#generating-framework-code-for-bundled-base-definitions)
@@ -71,7 +72,7 @@ npx @thi.ng/meta-css --help
 Distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are used to and (partially) included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 10.20 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.18 KB
 
 ## Dependencies
 
@@ -88,6 +89,16 @@ Package sizes (brotli'd, pre-treeshake): ESM: 10.20 KB
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Screenshot                                                                                                             | Description                           | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/> | Basic thi.ng/meta-css usage & testbed | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics) |
 
 ## CLI
 
