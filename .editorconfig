@@ -3,10 +3,10 @@
 # top-most EditorConfig file
 root = true
 
-[*.{c,css,html,js,json,md,rs,svg,ts,wat,zig}]
-indent_style = tab
-indent_size = 4
-end_of_line = lf
+[*.{c,css,html,js,json,md,meta,svg,ts,wat,zig}]
 charset = utf-8
-trim_trailing_whitespace = true
+end_of_line = lf
+indent_size = 4
+indent_style = tab
 insert_final_newline = true
+trim_trailing_whitespace = true
