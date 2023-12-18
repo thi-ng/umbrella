@@ -1,0 +1,13 @@
+// each line of this file defines a CSS class (or class pattern)
+// which will always be included in the resulting CSS, even if
+// none of the declarations in the processed *.meta file(s) are
+// making use of them. this is needed for classes which are
+// only referenced from TS/JS code (and with their IDs possibly
+// assembled dynamically...)
+
+// in the case of this example, we only need to ensure the following
+// color classes are included...
+
+bg-*
+black
+white

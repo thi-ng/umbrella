@@ -9,8 +9,8 @@
 	"scripts": {
 		"start": "vite --host --open",
 		"css:gen": "../../node_modules/.bin/metacss generate --out css/framework.json ../../packages/meta-css/specs",
-		"css:watch": "../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force 'bg-*,black,white' -I css/normalize.css css/style.meta",
-		"css:build": "../../node_modules/.bin/metacss convert --no-header --out css/style.css --specs css/framework.json --force 'bg-*,black,white' -I css/normalize.css css/style.meta",
+		"css:watch": "../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt -I css/normalize.css css/style.meta",
+		"css:build": "../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt -I css/normalize.css css/style.meta",
 		"build": "tsc && yarn css:build && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
