@@ -64,7 +64,7 @@ interface ProcessOpts {
 }
 
 export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
-	desc: "Convert & bundle meta stylesheets to CSS",
+	desc: "Transpile & bundle meta stylesheets to CSS",
 	opts: {
 		...ARG_SPECS,
 		...ARG_INCLUDE,
@@ -72,6 +72,7 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 		...ARG_NO_HEADER,
 		...ARG_WATCH,
 		force: strings({
+			alias: "f",
 			desc: "CSS classes to force include (wildcards are supported, @-prefix will read from file)",
 			delim: ",",
 		}),

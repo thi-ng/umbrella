@@ -41,7 +41,7 @@ cliApp<CommonOpts, AppCtx<any>>({
                █ █ │
 
 Usage: metacss <cmd> [opts] input [...]
-Usage: metacss <cmd> --help\n`,
+       metacss <cmd> --help\n`,
 		showGroupNames: true,
 		paramWidth: 24,
 	},
