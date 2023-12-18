@@ -81,6 +81,12 @@
 		},
 		"./null": {
 			"default": "./null.js"
+		},
+		"./stream": {
+			"default": "./stream.js"
+		},
+		"./utils": {
+			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {
