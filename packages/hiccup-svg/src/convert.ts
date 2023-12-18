@@ -127,7 +127,7 @@ export const convertTree = (tree: any): any[] | null => {
 			);
 			break;
 		case "rect": {
-			const r = tree[5] || 0;
+			const r = tree[5] ?? attribs.r ?? 0;
 			result = roundedRect(
 				tree[2],
 				tree[3],
