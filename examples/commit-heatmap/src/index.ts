@@ -25,7 +25,7 @@ import {
 	sortedKeys,
 	transduce,
 } from "@thi.ng/transducers";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
@@ -104,8 +104,14 @@ const MAX_DATE = Date.now();
  * @param repoPath -
  */
 const gitLog2 = (repoPath: string) =>
-	execSync(
-		`git log --pretty=format:"%ad${SEP}%s" --date=iso-strict --name-only`,
+	execFileSync(
+		"git",
+		[
+			"log",
+			`--pretty=format:%ad${SEP}%s`,
+			"--date=iso-strict",
+			"--name-only",
+		],
 		{
 			cwd: resolve(repoPath),
 			maxBuffer: 16 * 1024 * 1024,
@@ -199,7 +205,7 @@ console.log(
 	`total commits:        ${totalCommits}
 total file changes:   ${totalChanges}
 max files per commit: ${maxFiles}
-total releases:         ${releases}`
+total releases:       ${releases}`
 );
 
 const NUM_PKG = Object.keys(commitsByPackage).length;

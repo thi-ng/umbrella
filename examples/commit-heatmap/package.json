@@ -9,7 +9,7 @@
 	"type": "module",
 	"scripts": {
 		"clean": "rimraf .cache build out",
-		"build": "bun src/index.ts"
+		"build": "bun build --target node --outfile=index.js src/index.ts && node index.js"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
