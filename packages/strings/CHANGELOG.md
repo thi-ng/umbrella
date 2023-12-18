@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-11T10:07:09Z
+- **Last updated**: 2023-12-18T13:41:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.7.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.7.4) (2023-12-18)
+
+#### 🩹 Bug fixes
+
+- improve split() regexp handling ([65fe14b](https://github.com/thi-ng/umbrella/commit/65fe14b))
+  - ensure given regexp has global flag enabled
 
 ## [3.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.7.0) (2023-11-24)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom",
-	"version": "9.4.0",
+	"version": "9.4.1",
 	"description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
 	"type": "module",
 	"module": "./index.js",
@@ -38,18 +38,18 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.12",
-		"@thi.ng/checks": "^3.4.12",
-		"@thi.ng/diff": "^5.1.45",
-		"@thi.ng/equiv": "^2.1.37",
-		"@thi.ng/errors": "^2.4.6",
-		"@thi.ng/hiccup": "^5.1.1",
-		"@thi.ng/logger": "^2.0.2",
-		"@thi.ng/prefixes": "^2.2.8"
+		"@thi.ng/api": "^8.9.13",
+		"@thi.ng/checks": "^3.4.13",
+		"@thi.ng/diff": "^5.1.46",
+		"@thi.ng/equiv": "^2.1.38",
+		"@thi.ng/errors": "^2.4.7",
+		"@thi.ng/hiccup": "^5.1.2",
+		"@thi.ng/logger": "^2.1.0",
+		"@thi.ng/prefixes": "^2.2.9"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/atom": "^5.2.18",
+		"@thi.ng/atom": "^5.2.19",
 		"esbuild": "^0.19.8",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",

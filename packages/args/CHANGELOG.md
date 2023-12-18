@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-11T10:07:09Z
+- **Last updated**: 2023-12-18T13:41:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,24 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.3.0) (2023-12-18)
+
+#### 🚀 Features
+
+- add cliApp() runner ([b2248fa](https://github.com/thi-ng/umbrella/commit/b2248fa))
+- update lifecycle hooks, add NO_COLOR support, add docs ([4a0ebda](https://github.com/thi-ng/umbrella/commit/4a0ebda))
+  - add CLIAppConfig pre/post lifecycle hooks
+  - update UsageOpts.color handling
+  - add `NO_COLOR` env var support in cliApp()
+  - add doc strings
+  - update deps
+- update cliApp() to support command context extensions ([61d9fb8](https://github.com/thi-ng/umbrella/commit/61d9fb8))
+- update cliApp() error handling ([019e5a1](https://github.com/thi-ng/umbrella/commit/019e5a1))
+- update argv handling in cliApp() ([b1ed768](https://github.com/thi-ng/umbrella/commit/b1ed768))
+- add NO_COLOR aware formatters to CommandCtx ([0e7ddda](https://github.com/thi-ng/umbrella/commit/0e7ddda))
+  - update deps
+- update cliApp() to use StreamLogger (target: process.stderr) ([b249295](https://github.com/thi-ng/umbrella/commit/b249295))
 
 ### [2.2.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.2.28) (2023-08-04)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/system",
-	"version": "2.1.86",
+	"version": "2.1.87",
 	"description": "Minimal and explicit dependency-injection & lifecycle container for stateful app components",
 	"type": "module",
 	"module": "./index.js",
@@ -38,9 +38,9 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.12",
-		"@thi.ng/dgraph": "^2.1.82",
-		"@thi.ng/logger": "^2.0.2"
+		"@thi.ng/api": "^8.9.13",
+		"@thi.ng/dgraph": "^2.1.83",
+		"@thi.ng/logger": "^2.1.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

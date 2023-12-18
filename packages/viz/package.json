@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/viz",
-	"version": "0.6.16",
+	"version": "0.6.17",
 	"description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
 	"type": "module",
 	"module": "./index.js",
@@ -41,17 +41,17 @@
 		"tool:tags": "bun tools/tagcloud.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.12",
-		"@thi.ng/arrays": "^2.7.8",
-		"@thi.ng/associative": "^6.3.24",
-		"@thi.ng/checks": "^3.4.12",
-		"@thi.ng/math": "^5.7.7",
-		"@thi.ng/strings": "^3.7.3",
-		"@thi.ng/transducers": "^8.8.15"
+		"@thi.ng/api": "^8.9.13",
+		"@thi.ng/arrays": "^2.7.9",
+		"@thi.ng/associative": "^6.3.25",
+		"@thi.ng/checks": "^3.4.13",
+		"@thi.ng/math": "^5.7.8",
+		"@thi.ng/strings": "^3.7.4",
+		"@thi.ng/transducers": "^8.8.16"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
-		"@thi.ng/date": "^2.5.6",
+		"@thi.ng/date": "^2.5.7",
 		"esbuild": "^0.19.8",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",

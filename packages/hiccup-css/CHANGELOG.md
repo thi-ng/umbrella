@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-11T10:07:09Z
+- **Last updated**: 2023-12-18T13:41:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@2.3.0) (2023-12-18)
+
+#### 🚀 Features
+
+- update float value formatter, add tests ([00ee4f7](https://github.com/thi-ng/umbrella/commit/00ee4f7))
+
+#### 🩹 Bug fixes
+
+- update conditional formatting ([f126005](https://github.com/thi-ng/umbrella/commit/f126005))
+  - add tests
 
 ### [2.2.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@2.2.14) (2023-11-09)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/memoize",
-	"version": "3.1.46",
+	"version": "3.1.47",
 	"description": "Function memoization with configurable caching",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.12"
+		"@thi.ng/api": "^8.9.13"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

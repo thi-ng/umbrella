@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-11T10:07:09Z
+- **Last updated**: 2023-12-18T13:41:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@2.1.0) (2023-12-18)
+
+#### 🚀 Features
+
+- add StreamLogger (for Node/Bun) ([d4c8fe2](https://github.com/thi-ng/umbrella/commit/d4c8fe2))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@2.0.0) (2023-11-24)
 
