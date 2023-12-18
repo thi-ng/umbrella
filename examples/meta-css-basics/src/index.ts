@@ -1,21 +1,20 @@
 import {
 	anchor,
 	div,
-	para,
-	section,
-	type Attribs,
-	ul,
-	li,
-	pre,
-	h3,
 	h5,
+	li,
+	para,
+	pre,
+	section,
+	ul,
+	type Attribs,
 } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { map, range } from "@thi.ng/transducers";
 
-type Item = { href: string; title: string };
+type Link = { href: string; title: string };
 
-const LINKS: Item[] = [
+const LINKS: Link[] = [
 	{ href: "https://thi.ng/", title: "thi.ng website" },
 	{ href: "https://mastodon.thi.ng", title: "Mastodon" },
 	{ href: "https://github.com/thi-ng/", title: "GitHub" },
@@ -23,6 +22,15 @@ const LINKS: Item[] = [
 		href: "https://github.com/sponsors/postspectacular/",
 		title: "Sponsors",
 	},
+];
+
+// prettier-ignore
+const COLORS = [
+	"dark-red", "red", "light-red", "orange", "gold",
+	"yellow", "light-yellow", "purple", "light-purple", "dark-pink",
+	"hot-pink", "pink", "light-pink", "dark-green", "green",
+	"light-green", "navy", "dark-blue", "blue", "light-blue",
+	"lightest-blue", "washed-blue", "washed-green", "washed-yellow", "washed-red",
 ];
 
 const swatches = (colors: string[]) =>
@@ -53,39 +61,13 @@ const typeSection = (level: number) =>
 	);
 
 // a simple div of links
-const linkGroup = (attribs: Partial<Attribs>, items: Item[]) =>
+const linkGroup = (attribs: Partial<Attribs>, items: Link[]) =>
 	div(attribs, ...items.map(({ href, title }) => anchor({ href }, title)));
 
 $compile(
 	div(
 		{},
-		swatches([
-			"dark-red",
-			"red",
-			"light-red",
-			"orange",
-			"gold",
-			"yellow",
-			"light-yellow",
-			"purple",
-			"light-purple",
-			"dark-pink",
-			"hot-pink",
-			"pink",
-			"light-pink",
-			"dark-green",
-			"green",
-			"light-green",
-			"navy",
-			"dark-blue",
-			"blue",
-			"light-blue",
-			"lightest-blue",
-			"washed-blue",
-			"washed-green",
-			"washed-yellow",
-			"washed-red",
-		]),
+		swatches(COLORS),
 		linkGroup({ class: "group-v" }, LINKS),
 		linkGroup({ class: "group-h", data: { items: LINKS.length } }, LINKS),
 		...map(typeSection, range(1, 5)),
@@ -129,8 +111,8 @@ Usage: metacss <cmd> [opts] input [...]
 Available commands:
 
 convert         : Convert & bundle meta stylesheets to CSS
-export          : Export generated framework as CSS
-generate        : Generate MetaCSS framework
+export          : Export entire generated framework as CSS
+generate        : Generate framework rules from specs
 
 Flags:
 
