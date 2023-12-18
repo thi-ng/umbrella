@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-18T13:41:19Z
+- **Last updated**: 2023-12-18T19:40:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.1.1) (2023-12-18)
+
+#### ♻️ Refactoring
+
+- update export cmd args ([7a2feaf](https://github.com/thi-ng/umbrella/commit/7a2feaf))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.1.0) (2023-12-18)
 
