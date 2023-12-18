@@ -64,7 +64,7 @@ interface ProcessOpts {
 }
 
 export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
-	desc: "Convert & bundle meta declarations to CSS",
+	desc: "Convert & bundle meta stylesheets to CSS",
 	opts: {
 		...ARG_SPECS,
 		...ARG_INCLUDE,

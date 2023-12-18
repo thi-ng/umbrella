@@ -22,7 +22,7 @@ interface ExportOpts extends CommonOpts {
 }
 
 export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
-	desc: "Export CSS framework",
+	desc: "Export entire generated framework as CSS",
 	opts: {
 		...ARG_INCLUDE,
 		...ARG_PRETTY,

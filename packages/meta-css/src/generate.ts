@@ -64,7 +64,7 @@ export const GENERATE: Command<
 	CommonOpts,
 	AppCtx<GenerateOpts>
 > = {
-	desc: "Generate MetaCSS specs",
+	desc: "Generate framework rules from specs",
 	opts: {
 		...ARG_PRETTY,
 		prec: int({ default: 3, desc: "Number of fractional digits" }),
