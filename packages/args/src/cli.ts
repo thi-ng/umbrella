@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { ConsoleLogger } from "@thi.ng/logger/console";
+import { StreamLogger } from "@thi.ng/logger/stream";
 import { padRight } from "@thi.ng/strings/pad-right";
 import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
 import type {
@@ -57,7 +57,7 @@ export const cliApp = async <
 		}
 		const ctx: CTX = await config.ctx(
 			{
-				logger: new ConsoleLogger(config.name, "INFO"),
+				logger: new StreamLogger(process.stderr, config.name, "INFO"),
 				format: isColor ? PRESET_ANSI16 : PRESET_NONE,
 				opts: parsed.result,
 				inputs: parsed.rest,
