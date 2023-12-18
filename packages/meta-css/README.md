@@ -13,7 +13,10 @@ This project is part of the
 - [About](#about)
   - [Generate](#generate)
   - [Convert](#convert)
+    - [Including custom CSS files](#including-custom-css-files)
+  - [Force inclusion of unreferenced classes](#force-inclusion-of-unreferenced-classes)
   - [Export](#export)
+    - [Media queries](#media-queries)
 - [Framework generation rules](#framework-generation-rules)
 - [Status](#status)
 - [Related packages](#related-packages)
@@ -32,7 +35,7 @@ This project is part of the
 
 ## About
 
-Data-driven CSS component & framework codegen.
+Data-driven CSS component & framework codegen, transpiler, bundler.
 
 This package provides a CLI multi-tool to:
 
@@ -105,19 +108,46 @@ Main:
 -s STR, --specs STR     [required] Path to generated JSON defs
 ```
 
+#### Including custom CSS files
+
+One or more existing CSS files can be included & prepended to the output via the
+`--include`/`-I` arg (which can be given multiple times). These files are used
+as-is and will **not** be transformed or reformatted in any way.
+
+### Force inclusion of unreferenced classes
+
+Only the CSS classes (and their optionally associated media queries) referenced
+in a `.meta` stylesheet will appear in the export CSS bundle. This ensures that
+the resulting CSS will only contain what's actually used. However, this also
+means any CSS classes (and optionally, their media query qualifiers) which are
+otherwise referenced (e.g. from JS/TS source code or HTML docs) **will not** be
+included by default and they will need to be listed manually for forced inclusion.
+
+This can be achieved via the `--force`/`-f` arg (also can be given multiple
+times). This option also supports basic `*`-wildcard patterns, e.g. `bg-*` to
+include all classes with prefix `bg-`. Furthermore, for larger projects it's
+useful to store these names/patterns in a separate file. For that purpose, use
+the `@` prefix (e.g. `-f @includes.txt`) to indicate reading from file (only
+reading from a single file is supported at current)...
+
 ### Export
 
 The `export` command is intended for those who're only interested in the CSS
 framework generation aspect of this toolchain. This command merely takes an
 existing generated framework JSON file and serializes it to a single CSS file,
-e.g. to be then used with other CSS tooling (e.g. `postcss`). Users can choose
-to generate variations of all defined utility classes for any of the defined
-media query IDs. This will create suffixed versions of all classes (with their
-appropriate media query wrappers) and cause a potentially massive output
-(depending on the overall number/complexity of the generated classes).
+e.g. to be then used with other CSS tooling (e.g. `postcss`).
 
-As with the `convert` command, additional CSS files can be included (prepended)
-in the output file.
+#### Media queries
+
+Users can choose to generate variations of all defined utility classes for any
+of the framework-defined media query IDs. This will create suffixed versions of
+all classes (with their appropriate media query wrappers) and cause a
+potentially massive output (depending on the overall number/complexity of the
+generated classes). Again, the idea is that the resulting CSS file will be
+post-processed with 3rd party CSS tooling...
+
+As with the `convert` command, additional CSS files can also be included
+(prepended) in the output file.
 
 ```text
 metacss export --help
