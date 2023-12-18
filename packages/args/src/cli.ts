@@ -86,5 +86,5 @@ const __descriptions = (commands: IObjectOf<Command<any, any, any>>) =>
 		...Object.keys(commands).map(
 			(x) => `${padRight(16)(x)}: ${commands[x].desc}`
 		),
-		"\n\n",
+		"\n",
 	].join("\n");
