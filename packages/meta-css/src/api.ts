@@ -60,7 +60,7 @@ export const ARG_INCLUDE = {
 };
 
 export const ARG_PRETTY = {
-	pretty: flag({ alias: "p", desc: "Pretty print CSS" }),
+	pretty: flag({ alias: "p", desc: "Pretty print output" }),
 };
 
 export const ARG_NO_HEADER = {

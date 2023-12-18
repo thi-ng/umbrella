@@ -108,7 +108,7 @@ For Node.js REPL:
 const logger = await import("@thi.ng/logger");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 591 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 695 bytes
 
 ## Dependencies
 

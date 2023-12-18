@@ -59,7 +59,7 @@ Usage: metacss generate [opts] input-dir
 
 Flags:
 
--p, --pretty            Pretty print CSS
+-p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
 
 Main:
@@ -80,8 +80,9 @@ Selectors, declarations and media query criteria will be deduplicated and merged
 from multiple input files.  The resulting CSS will only contain referenced rules
 and can be generated in minified or pretty printed formats (it's also possible
 to force include CSS classes which are otherwise unreferenced, using the
-`--force` CLI arg). Additionally, multiple .meta files can be watched and will
-be merged, existing CSS files can be included (prepended) in the bundled outout
+`--force` CLI arg). Additionally, multiple .meta files can be watched for
+changes, their definitions will be merged, and existing CSS files can be
+included (prepended) in the bundled outout too.
 
 ```text
 metacss convert --help
@@ -91,7 +92,7 @@ Usage: metacss convert [opts] input [...]
 Flags:
 
 --no-header             Don't emit generated header comment
--p, --pretty            Pretty print CSS
+-p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
 -w, --watch             Watch input files for changes
 
@@ -126,7 +127,7 @@ Usage: metacss export [opts] input
 Flags:
 
 --no-header             Don't emit generated header comment
--p, --pretty            Pretty print CSS
+-p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
 
 Main:
@@ -238,7 +239,7 @@ CSS translation in the next step.
 
 ```bash
 # write generated CSS classes (in JSON)
-metacss generate --out src/framework.json node_modules/@thi.ng/meta-css/specs
+metacss generate --out framework.json node_modules/@thi.ng/meta-css/specs
 ```
 
 ### Generating CSS from `.meta` stylesheets
@@ -296,7 +297,7 @@ We will merge the definitions in this file with the ones from the file above
 ```bash
 # if not out dir is specified writes result to stdout
 # use previously generated specs for resolving all identifiers & media queries
-metacss convert --pretty --specs src/framework.json readme.meta readme2.meta
+metacss convert --pretty --specs framework.json readme.meta readme2.meta
 ```
 
 #### Resulting CSS output
