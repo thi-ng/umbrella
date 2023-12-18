@@ -4029,7 +4029,7 @@ __metadata:
     "@thi.ng/api": ^8.9.13
     "@thi.ng/fuzzy": ^2.1.54
     "@thi.ng/hiccup": ^5.1.2
-    "@thi.ng/hiccup-svg": ^5.0.40
+    "@thi.ng/hiccup-svg": ^5.1.0
     "@thi.ng/math": ^5.7.8
     "@thi.ng/strings": ^3.7.4
     "@thi.ng/text-canvas": ^2.6.25
@@ -4124,7 +4124,7 @@ __metadata:
     "@thi.ng/axidraw": ^1.1.42
     "@thi.ng/compare": ^2.2.9
     "@thi.ng/defmulti": ^3.0.11
-    "@thi.ng/geom": ^6.0.11
+    "@thi.ng/geom": ^6.0.12
     "@thi.ng/geom-accel": ^3.5.36
     "@thi.ng/geom-api": ^3.4.52
     "@thi.ng/geom-clip-line": ^2.3.52
@@ -4196,7 +4196,7 @@ __metadata:
     "@thi.ng/api": ^8.9.13
     "@thi.ng/associative": ^6.3.25
     "@thi.ng/color": ^5.6.6
-    "@thi.ng/geom": ^6.0.11
+    "@thi.ng/geom": ^6.0.12
     "@thi.ng/geom-api": ^3.4.52
     "@thi.ng/geom-clip-line": ^2.3.52
     "@thi.ng/geom-resample": ^2.3.16
@@ -4322,7 +4322,7 @@ __metadata:
     "@thi.ng/checks": ^3.4.13
     "@thi.ng/defmulti": ^3.0.11
     "@thi.ng/errors": ^2.4.7
-    "@thi.ng/geom": ^6.0.11
+    "@thi.ng/geom": ^6.0.12
     "@thi.ng/geom-api": ^3.4.52
     "@thi.ng/geom-isoline": ^2.1.90
     "@thi.ng/geom-poly-utils": ^2.3.78
@@ -4436,7 +4436,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@^6.0.11, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@^6.0.12, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -4461,7 +4461,7 @@ __metadata:
     "@thi.ng/geom-subdiv-curve": ^2.1.94
     "@thi.ng/geom-tessellate": ^2.1.95
     "@thi.ng/hiccup": ^5.1.2
-    "@thi.ng/hiccup-svg": ^5.0.40
+    "@thi.ng/hiccup-svg": ^5.1.0
     "@thi.ng/math": ^5.7.8
     "@thi.ng/matrices": ^2.3.0
     "@thi.ng/random": ^3.6.19
@@ -4747,7 +4747,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@^5.0.40, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@^5.1.0, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
@@ -4823,7 +4823,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/api": ^8.9.13
     "@thi.ng/checks": ^3.4.13
-    "@thi.ng/geom": ^6.0.11
+    "@thi.ng/geom": ^6.0.12
     "@thi.ng/geom-api": ^3.4.52
     "@thi.ng/geom-isec": ^2.1.94
     "@thi.ng/geom-tessellate": ^2.1.95
