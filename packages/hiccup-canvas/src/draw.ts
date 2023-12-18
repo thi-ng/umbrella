@@ -91,7 +91,15 @@ export const draw = (
 			path(ctx, attribs, shape[2]);
 			break;
 		case "rect":
-			rect(ctx, attribs, shape[2], shape[3], shape[4], shape[5]);
+			rect(
+				ctx,
+				attribs,
+				shape[2],
+				shape[3],
+				shape[4],
+				// support rounded rects via `r` attrib
+				shape[5] ?? origAttribs.r
+			);
 			break;
 		case "circle":
 			// FIXME need better handling / clarity around arcs & ellipse
