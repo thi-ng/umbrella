@@ -6,6 +6,8 @@ import {
 	at_keyframes,
 	at_media,
 	css,
+	rem,
+	setPrecision,
 } from "../src/index.js";
 
 const rules = {
@@ -142,4 +144,14 @@ test("animation", () => {
 	).toBe(
 		"@keyframes delayed-fade-in{0%{opacity:0;}100%{opacity:1;}}.delayed-fade-in{animation-duration:250ms;animation-name:delayed-fade-in;animation-delay:0.5s;}"
 	);
+});
+
+test("float format", () => {
+	setPrecision(4);
+	expect(
+		css([
+			"a",
+			{ a: rem(0.1), b: rem(0), c: rem(0.0), d: rem(-0), e: rem(0.0001) },
+		])
+	).toBe("a{a:.1rem;b:0rem;c:0rem;d:0rem;e:.0001rem;}");
 });

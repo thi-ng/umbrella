@@ -10,7 +10,10 @@ export let PRECISION = 4;
 export const setPrecision = (n: number) => (PRECISION = n);
 
 /** @internal */
-const ff = (x: number) => (x === (x | 0) ? String(x) : x.toFixed(PRECISION));
+const ff = (x: number) =>
+	x === (x | 0)
+		? String(x)
+		: x.toFixed(PRECISION).replace(/^0./, ".").replace(/0+$/, "");
 
 export const em = (x: number) => `${ff(x)}em`;
 export const ex = (x: number) => `${ff(x)}ex`;
