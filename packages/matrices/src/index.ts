@@ -42,6 +42,7 @@ export * from "./quat-euler.js";
 export * from "./quat-m33.js";
 export * from "./quat-m44.js";
 export * from "./rotation-around-axis.js";
+export * from "./rotation-around-point.js";
 export * from "./rotation.js";
 export * from "./row.js";
 export * from "./scale.js";

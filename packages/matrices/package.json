@@ -221,6 +221,9 @@
 		"./rotation-around-axis": {
 			"default": "./rotation-around-axis.js"
 		},
+		"./rotation-around-point": {
+			"default": "./rotation-around-point.js"
+		},
 		"./rotation": {
 			"default": "./rotation.js"
 		},
