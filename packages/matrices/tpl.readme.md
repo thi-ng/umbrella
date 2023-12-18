@@ -51,6 +51,7 @@ sensible).
 - `fit23` / `fit44`
 - `rotation22` / `rotation23`
 - `rotationAroundAxis33` / `rotationAroundAxis44`
+- `rotationAroundPoint23`
 - `rotationX33` / `rotationX44`
 - `rotationY33` / `rotationY44`
 - `rotationZ33` / `rotationZ44`
