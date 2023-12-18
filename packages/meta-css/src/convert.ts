@@ -72,7 +72,7 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 		...ARG_NO_HEADER,
 		...ARG_WATCH,
 		force: strings({
-			desc: "CSS classes to force include (wildcards supported)",
+			desc: "CSS classes to force include (wildcards are supported, @-prefix will read from file)",
 			delim: ",",
 		}),
 	},
@@ -220,7 +220,13 @@ const processForceIncludes = (
 	const allIDs = new Set(Object.keys(specs.defs));
 	const mediaQueryRules: IObjectOf<IObjectOf<Set<string>>> = {};
 	const plainRules: IObjectOf<Set<string>> = {};
+	if (classes.length && classes[0][0] === "@") {
+		classes = [
+			...split(readText(resolve(classes[0].substring(1)), logger)),
+		];
+	}
 	for (let id of classes) {
+		if (!id || id.startsWith("//")) continue;
 		const { token, query } = parseMediaQueryToken(id, mediaQueryIDs);
 		let matches: string[];
 		if (token.includes("*")) {
@@ -235,6 +241,7 @@ const processForceIncludes = (
 			}
 		}
 		for (let match of matches) {
+			logger.debug("including class:", match);
 			query
 				? addMediaQueryDef(mediaQueryRules, query, `.${match}`, match)
 				: addPlainDef(plainRules, `.${match}`, match);

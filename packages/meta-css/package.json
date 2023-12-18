@@ -81,6 +81,9 @@
 		"process": false,
 		"setTimeout": false
 	},
+	"engines": {
+		"node": ">=18"
+	},
 	"files": [
 		"./*.js",
 		"./*.d.ts",
@@ -90,18 +93,6 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
-		},
-		"./api": {
-			"default": "./api.js"
-		},
-		"./convert": {
-			"default": "./convert.js"
-		},
-		"./generate": {
-			"default": "./generate.js"
-		},
-		"./utils": {
-			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {
