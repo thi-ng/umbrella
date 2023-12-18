@@ -8,6 +8,9 @@
  * This function is ~2x faster for large strings (benchmarked with 8MB & 16MB
  * inputs), with dramatically lower memory consumption.
  *
+ * If given an regexp as `delim`, the function ensures the regexp has its global
+ * flag enabled.
+ *
  * @param src -
  * @param delim -
  * @param includeDelim -
@@ -20,7 +23,14 @@ export function* split(
 	let i = 0;
 	const n = src.length;
 	const include = ~~includeDelim;
-	const re = typeof delim === "string" ? new RegExp(delim, "g") : delim;
+	let re: RegExp;
+	if (typeof delim === "string") {
+		re = new RegExp(delim, "g");
+	} else if (!delim.flags.includes("g")) {
+		re = new RegExp(delim, delim.flags + "g");
+	} else {
+		re = delim;
+	}
 	for (; i < n; ) {
 		const m = re.exec(src);
 		if (!m) {
