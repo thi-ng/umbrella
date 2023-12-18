@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-18T13:41:20Z
+- **Last updated**: 2023-12-18T22:05:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.3.0) (2023-12-18)
+
+#### 🚀 Features
+
+- add rotationAroundPoint23() ([7b3ed38](https://github.com/thi-ng/umbrella/commit/7b3ed38))
 
 ### [2.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.2.7) (2023-11-09)
 
