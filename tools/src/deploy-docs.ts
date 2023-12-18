@@ -109,7 +109,7 @@ for (let id of packages) {
 	invalidations.push(`${S3_PREFIX}/${id}/*`);
 }
 
-execFileSync("scripts/node-esm", ["tools/src/doc-table.ts"]);
+execFileSync("bun", ["tools/src/doc-table.ts"]);
 execFileSync(
 	"aws",
 	`s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`.split(" ")
