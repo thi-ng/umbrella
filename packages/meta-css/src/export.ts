@@ -1,7 +1,8 @@
 // thing:no-export
-import { string, type Command } from "@thi.ng/args";
+import { strings, type Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
 import { COMPACT, PRETTY, at_media, css } from "@thi.ng/hiccup-css";
+import type { ILogger } from "@thi.ng/logger";
 import { resolve } from "path";
 import {
 	ARG_INCLUDE,
@@ -12,13 +13,12 @@ import {
 	type CompiledSpecs,
 } from "./api.js";
 import { generateHeader, maybeWriteText } from "./utils.js";
-import type { ILogger } from "@thi.ng/logger";
 
 interface ExportOpts extends CommonOpts {
 	pretty: boolean;
 	noHeader: boolean;
 	include?: string[];
-	media?: string;
+	media?: string[];
 }
 
 export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
@@ -27,9 +27,10 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 		...ARG_INCLUDE,
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
-		media: string({
+		media: strings({
 			alias: "m",
 			desc: "Media query IDs (use 'ALL' for all)",
+			delim: ",",
 		}),
 	},
 	inputs: 1,
@@ -51,14 +52,13 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 
 export const serializeSpecs = (
 	specs: CompiledSpecs,
-	media: string | undefined,
+	media: string[] | undefined,
 	pretty: boolean,
 	logger: ILogger
 ) => {
 	const rules: any[] = defSuffixed("", specs);
 	if (media) {
-		const mediaIDs =
-			media === "ALL" ? Object.keys(specs.media) : media.split(",");
+		const mediaIDs = media[0] === "ALL" ? Object.keys(specs.media) : media;
 		for (let id of mediaIDs) {
 			const query = specs.media[id];
 			if (query) {
