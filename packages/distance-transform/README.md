@@ -84,8 +84,9 @@ and
 packages...
 
 ```ts
+import { pixelCanvas2d } from "@thi.ng/canvas";
 import { distanceTransform } from "@thi.ng/distance-transform";
-import { floatBuffer, intBuffer, canvas2d, GRAY8, FLOAT_GRAY } from "@thi.ng/pixel";
+import { floatBuffer, intBuffer, GRAY8, FLOAT_GRAY } from "@thi.ng/pixel";
 import { SYSTEM } from "@thi.ng/random";
 
 // create image with 100 random pixels set
@@ -101,7 +102,7 @@ const dt = distanceTransform(img, EUCLEDIAN);
 const dtImg = floatBuffer(img.width, img.height, FLOAT_GRAY, dt);
 
 // ...and display (browser only)
-const { canvas } = canvas2d(img.width, img.height, document.body);
+const { canvas } = pixelCanvas2d(img.width, img.height, document.body);
 dtImg.blitCanvas(canvas);
 ```
 

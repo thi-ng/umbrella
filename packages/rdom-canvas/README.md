@@ -119,13 +119,13 @@ For Node.js REPL:
 const rdomCanvas = await import("@thi.ng/rdom-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 722 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 694 bytes
 
 ## Dependencies
 
-- [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/develop/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
+- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)

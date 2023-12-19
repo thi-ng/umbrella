@@ -297,12 +297,12 @@ For Node.js REPL:
 const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.26 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.25 KB
 
 ## Dependencies
 
-- [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/develop/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)

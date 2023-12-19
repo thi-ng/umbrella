@@ -96,13 +96,13 @@ For Node.js REPL:
 const webgl = await import("@thi.ng/webgl");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.48 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.47 KB
 
 ## Dependencies
 
-- [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/develop/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
+- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
