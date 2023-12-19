@@ -1,6 +1,9 @@
+import {
+	canvas2d,
+	type Canvas2DOpts,
+	type CanvasContext,
+} from "@thi.ng/canvas";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { canvas2d } from "./canvas.js";
-import type { CanvasContext } from "./api.js";
 
 /**
  * Creates canvas for given image and draws image, optionally with given
@@ -17,11 +20,13 @@ export const imageCanvas = (
 	img: HTMLImageElement,
 	width?: number,
 	height = width,
-	parent?: HTMLElement
+	parent?: HTMLElement,
+	opts?: Partial<Canvas2DOpts>
 ): CanvasContext => {
-	const ctx = isNumber(width)
-		? canvas2d(width, height, parent)
-		: canvas2d(img.width, img.height, parent);
+	const ctx =
+		isNumber(width) && isNumber(height)
+			? canvas2d(width, height, parent, opts)
+			: canvas2d(img.width, img.height, parent, opts);
 	ctx.ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
 	return ctx;
 };

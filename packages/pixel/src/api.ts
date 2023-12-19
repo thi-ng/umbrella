@@ -12,6 +12,7 @@ import type {
 	TypedArray,
 	UintType,
 } from "@thi.ng/api";
+import type { CanvasContext } from "@thi.ng/canvas";
 
 /**
  * ABGR 8bit lane/channel IDs
@@ -202,11 +203,6 @@ export interface FloatFormat extends IABGRConvert<NumericArray> {
 	 * @param val
 	 */
 	getNormalized(val: number): number;
-}
-
-export interface CanvasContext {
-	canvas: HTMLCanvasElement;
-	ctx: CanvasRenderingContext2D;
 }
 
 export interface RawPixelBuffer extends CanvasContext {
@@ -518,15 +514,3 @@ export interface NormalMapOpts {
 export type IntSampler = FnU2<number>;
 
 export type FloatSampler = FnU2<number, NumericArray>;
-
-export interface Canvas2DOpts {
-	/**
-	 * (Native) options passed to `canvas.getContext("2d")`
-	 */
-	ctx: CanvasRenderingContext2DSettings;
-	/**
-	 * If true, adds CSS rule to force canvas being displayed properly pixelated
-	 * (no smoothing)
-	 */
-	pixelated: boolean;
-}

@@ -37,6 +37,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.13",
 		"@thi.ng/binary": "^3.4.1",
+		"@thi.ng/canvas": "^0.0.1",
 		"@thi.ng/checks": "^3.4.13",
 		"@thi.ng/distance": "^2.4.36",
 		"@thi.ng/errors": "^2.4.7",
