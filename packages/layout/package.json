@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/layout",
-	"version": "3.0.9",
+	"version": "3.0.10",
 	"description": "Configurable nested 2D grid layout generators",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/arrays": "^2.7.10",
+		"@thi.ng/arrays": "^2.7.11",
 		"@thi.ng/checks": "^3.4.14"
 	},
 	"devDependencies": {

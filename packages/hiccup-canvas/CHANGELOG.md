@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-19T11:01:47Z
+- **Last updated**: 2023-12-19T12:24:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.5.2) (2023-12-19)
+
+#### 🩹 Bug fixes
+
+- fix rounded rect attrib handling ([ee79d01](https://github.com/thi-ng/umbrella/commit/ee79d01))
 
 ## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.5.0) (2023-12-18)
 

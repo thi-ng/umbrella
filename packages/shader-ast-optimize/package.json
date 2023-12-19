@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-optimize",
-	"version": "0.3.35",
+	"version": "0.3.36",
 	"description": "Shader AST code optimization passes/strategies",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"@thi.ng/defmulti": "^3.0.12",
 		"@thi.ng/logger": "^2.1.1",
 		"@thi.ng/math": "^5.7.9",
-		"@thi.ng/shader-ast": "^0.12.87"
+		"@thi.ng/shader-ast": "^0.12.88"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

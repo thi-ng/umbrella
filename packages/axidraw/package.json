@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/axidraw",
-	"version": "1.1.43",
+	"version": "1.1.44",
 	"description": "Minimal AxiDraw plotter/drawing machine controller for Node.js",
 	"type": "module",
 	"module": "./index.js",
@@ -42,9 +42,9 @@
 		"@thi.ng/errors": "^2.4.8",
 		"@thi.ng/logger": "^2.1.1",
 		"@thi.ng/math": "^5.7.9",
-		"@thi.ng/transducers": "^8.8.17",
+		"@thi.ng/transducers": "^8.8.18",
 		"@thi.ng/units": "^0.4.21",
-		"@thi.ng/vectors": "^7.8.12",
+		"@thi.ng/vectors": "^7.8.13",
 		"serialport": "^12.0.0"
 	},
 	"devDependencies": {
