@@ -98,7 +98,7 @@ export const draw = (
 				shape[3],
 				shape[4],
 				// support rounded rects via `r` attrib
-				shape[5] ?? origAttribs.r
+				shape[5] ?? origAttribs?.r
 			);
 			break;
 		case "circle":
