@@ -9,6 +9,8 @@
  * @param width - uncompensated pixel width
  * @param height - uncompensated pixel height
  * @param dpr - device pixel ratio
+ *
+ * @deprecated migrated to thi.ng/canvas package
  */
 export const adaptDPI = (
 	canvas: HTMLCanvasElement,
