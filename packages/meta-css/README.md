@@ -35,7 +35,7 @@ This project is part of the
 
 ## About
 
-Data-driven CSS component & framework codegen, transpiler, bundler.
+Data-driven CSS framework codegen, transpiler & bundler.
 
 This package provides a CLI multi-tool to:
 
