@@ -39,8 +39,8 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "^2.2.28",
 		"@thi.ng/api": "^8.9.13",
+		"@thi.ng/canvas": "^0.0.1",
 		"@thi.ng/errors": "^2.4.7",
 		"@thi.ng/prefixes": "^2.2.9",
 		"@thi.ng/wasm-api": "^1.4.38"

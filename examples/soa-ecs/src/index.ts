@@ -1,4 +1,4 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { adaptDPI } from "@thi.ng/canvas";
 import { ECS, type GroupInfo, type GroupTuple } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";

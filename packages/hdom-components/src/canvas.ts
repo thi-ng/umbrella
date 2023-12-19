@@ -1,4 +1,4 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { adaptDPI } from "@thi.ng/canvas";
 
 export type CanvasContext =
 	| CanvasRenderingContext2D

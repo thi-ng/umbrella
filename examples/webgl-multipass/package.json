@@ -12,6 +12,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/shader-ast": "workspace:^",
 		"@thi.ng/shader-ast-stdlib": "workspace:^",

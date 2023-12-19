@@ -1,5 +1,5 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { NumOrString } from "@thi.ng/api";
+import { adaptDPI } from "@thi.ng/canvas";
 import { assert } from "@thi.ng/errors/assert";
 import {
 	WasmStringSlice,

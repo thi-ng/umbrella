@@ -16,7 +16,7 @@
 		"vite": "^5.0.4"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "workspace:^",
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/hdom": "workspace:^",
 		"@thi.ng/hdom-components": "workspace:^",
 		"@thi.ng/math": "workspace:^",
@@ -37,7 +37,7 @@
 	},
 	"thi.ng": {
 		"readme": [
-			"adapt-dpi",
+			"canvas",
 			"matrices",
 			"shader-ast",
 			"transducers",

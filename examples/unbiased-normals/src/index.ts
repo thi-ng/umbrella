@@ -1,3 +1,4 @@
+import { pixelCanvas2d } from "@thi.ng/canvas";
 import { sin } from "@thi.ng/dsp";
 import {
 	concat,
@@ -9,7 +10,7 @@ import {
 	viewport,
 	type Mat,
 } from "@thi.ng/matrices";
-import { GRAY8, IntBuffer, canvas2d, intBufferFromCanvas } from "@thi.ng/pixel";
+import { GRAY8, IntBuffer, intBufferFromCanvas } from "@thi.ng/pixel";
 import { repeatedly } from "@thi.ng/transducers";
 import {
 	add3,
@@ -19,7 +20,7 @@ import {
 } from "@thi.ng/vectors";
 
 // create canvas & pixel buffer
-const { canvas, ctx } = canvas2d(960, 540, document.body);
+const { canvas, ctx } = pixelCanvas2d(960, 540, document.body);
 ctx.font = "18px Arial";
 ctx.fillStyle = "yellow";
 

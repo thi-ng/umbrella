@@ -12,9 +12,9 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/color": "workspace:^",
 		"@thi.ng/grid-iterators": "workspace:^",
-		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
 	"browser": {
@@ -24,6 +24,7 @@
 	},
 	"thi.ng": {
 		"readme": [
+			"canvas",
 			"color",
 			"grid-iterators",
 			"transducers"

@@ -447,7 +447,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/canvas-recorder@workspace:examples/canvas-recorder"
   dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/dl-asset": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/hiccup-canvas": "workspace:^"
@@ -662,7 +662,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/geom-fuzz-basics@workspace:examples/geom-fuzz-basics"
   dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/geom-fuzz": "workspace:^"
     "@thi.ng/hiccup-canvas": "workspace:^"
@@ -801,9 +801,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/grid-iterators@workspace:examples/grid-iterators"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/color": "workspace:^"
     "@thi.ng/grid-iterators": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: ^5.3.2
     vite: ^5.0.4
@@ -1083,6 +1083,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/hiccup-canvas-basics@workspace:examples/hiccup-canvas-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/hiccup-canvas-basics@workspace:examples/hiccup-canvas-basics"
+  dependencies:
+    typescript: ^5.3.2
+    vite: ^5.0.4
+  languageName: unknown
+  linkType: soft
+
 "@example/hiccup-css-image-transition@workspace:examples/hiccup-css-image-transition":
   version: 0.0.0-use.local
   resolution: "@example/hiccup-css-image-transition@workspace:examples/hiccup-css-image-transition"
@@ -1115,6 +1124,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/ifs-fractal@workspace:examples/ifs-fractal"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/dl-asset": "workspace:^"
     "@thi.ng/fibers": "workspace:^"
     "@thi.ng/math": "workspace:^"
@@ -1407,6 +1417,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/pixel-basics@workspace:examples/pixel-basics"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/porter-duff": "workspace:^"
     typescript: ^5.3.2
@@ -1436,6 +1447,7 @@ __metadata:
   resolution: "@example/pixel-dither@workspace:examples/pixel-dither"
   dependencies:
     "@thi.ng/api": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-dither": "workspace:^"
     typescript: ^5.3.2
@@ -1466,6 +1478,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/pixel-indexed@workspace:examples/pixel-indexed"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/color-palettes": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-dither": "workspace:^"
@@ -1478,6 +1491,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/pixel-normal-map@workspace:examples/pixel-normal-map"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     typescript: ^5.3.2
     vite: ^5.0.4
@@ -1508,6 +1522,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/pixel-waveform@workspace:examples/pixel-waveform"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/mime": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
@@ -1609,6 +1624,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/porter-duff@workspace:examples/porter-duff"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/porter-duff": "workspace:^"
     typescript: ^5.3.2
@@ -1671,8 +1687,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/rasterize-blend@workspace:examples/rasterize-blend"
   dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
     "@thi.ng/api": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/dsp": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/rasterize": "workspace:^"
@@ -2209,7 +2225,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/soa-ecs@workspace:examples/soa-ecs"
   dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/ecs": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
@@ -2454,6 +2470,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/unbiased-normals@workspace:examples/unbiased-normals"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/dsp": "workspace:^"
     "@thi.ng/matrices": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
@@ -2503,7 +2520,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/webgl-cubemap@workspace:examples/webgl-cubemap"
   dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/dsp": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
@@ -2548,7 +2565,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/webgl-grid@workspace:examples/webgl-grid"
   dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
     "@thi.ng/math": "workspace:^"
@@ -2565,7 +2582,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/webgl-msdf@workspace:examples/webgl-msdf"
   dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
     "@thi.ng/math": "workspace:^"
@@ -2587,6 +2604,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/webgl-multipass@workspace:examples/webgl-multipass"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
@@ -3154,7 +3172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/adapt-dpi@^2.2.28, @thi.ng/adapt-dpi@workspace:^, @thi.ng/adapt-dpi@workspace:packages/adapt-dpi":
+"@thi.ng/adapt-dpi@workspace:packages/adapt-dpi":
   version: 0.0.0-use.local
   resolution: "@thi.ng/adapt-dpi@workspace:packages/adapt-dpi"
   dependencies:
@@ -3411,6 +3429,19 @@ __metadata:
     "@thi.ng/transducers": ^8.8.16
     esbuild: ^0.19.8
     rimraf: ^5.0.5
+    typedoc: ^0.25.4
+    typescript: ^5.3.2
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/canvas@^0.0.1, @thi.ng/canvas@workspace:^, @thi.ng/canvas@workspace:packages/canvas":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/canvas@workspace:packages/canvas"
+  dependencies:
+    "@microsoft/api-extractor": ^7.38.3
+    esbuild: ^0.19.8
+    rimraf: ^5.0.5
+    tools: "workspace:^"
     typedoc: ^0.25.4
     typescript: ^5.3.2
   languageName: unknown
@@ -4482,8 +4513,8 @@ __metadata:
   resolution: "@thi.ng/hdom-components@workspace:packages/hdom-components"
   dependencies:
     "@microsoft/api-extractor": ^7.38.3
-    "@thi.ng/adapt-dpi": ^2.2.28
     "@thi.ng/api": ^8.9.13
+    "@thi.ng/canvas": ^0.0.1
     "@thi.ng/checks": ^3.4.13
     "@thi.ng/math": ^5.7.8
     "@thi.ng/transducers": ^8.8.16
@@ -5163,6 +5194,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.38.3
     "@thi.ng/api": ^8.9.13
     "@thi.ng/binary": ^3.4.1
+    "@thi.ng/canvas": ^0.0.1
     "@thi.ng/checks": ^3.4.13
     "@thi.ng/distance": ^2.4.36
     "@thi.ng/errors": ^2.4.7
@@ -5358,9 +5390,9 @@ __metadata:
   resolution: "@thi.ng/rdom-canvas@workspace:packages/rdom-canvas"
   dependencies:
     "@microsoft/api-extractor": ^7.38.3
-    "@thi.ng/adapt-dpi": ^2.2.28
     "@thi.ng/api": ^8.9.13
     "@thi.ng/associative": ^6.3.25
+    "@thi.ng/canvas": ^0.0.1
     "@thi.ng/checks": ^3.4.13
     "@thi.ng/hiccup-canvas": ^2.5.0
     "@thi.ng/rdom": ^0.13.5
@@ -6206,8 +6238,8 @@ __metadata:
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
     "@microsoft/api-extractor": ^7.38.3
-    "@thi.ng/adapt-dpi": ^2.2.28
     "@thi.ng/api": ^8.9.13
+    "@thi.ng/canvas": ^0.0.1
     "@thi.ng/errors": ^2.4.7
     "@thi.ng/prefixes": ^2.2.9
     "@thi.ng/wasm-api": ^1.4.38
@@ -6292,9 +6324,9 @@ __metadata:
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:
     "@microsoft/api-extractor": ^7.38.3
-    "@thi.ng/adapt-dpi": ^2.2.28
     "@thi.ng/api": ^8.9.13
     "@thi.ng/associative": ^6.3.25
+    "@thi.ng/canvas": ^0.0.1
     "@thi.ng/checks": ^3.4.13
     "@thi.ng/equiv": ^2.1.38
     "@thi.ng/errors": ^2.4.7

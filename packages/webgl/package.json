@@ -39,9 +39,9 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "^2.2.28",
 		"@thi.ng/api": "^8.9.13",
 		"@thi.ng/associative": "^6.3.25",
+		"@thi.ng/canvas": "^0.0.1",
 		"@thi.ng/checks": "^3.4.13",
 		"@thi.ng/equiv": "^2.1.38",
 		"@thi.ng/errors": "^2.4.7",

@@ -1,4 +1,4 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { adaptDPI } from "@thi.ng/canvas";
 import { isString } from "@thi.ng/checks/is-string";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { WeblGLCanvasOpts } from "./api/canvas.js";

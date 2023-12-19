@@ -1,8 +1,9 @@
+import { canvas2d } from "@thi.ng/canvas";
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { fiber, timeSlice } from "@thi.ng/fibers";
 import { mix } from "@thi.ng/math";
 import { mulV23 } from "@thi.ng/matrices";
-import { FLOAT_GRAY, canvas2d, floatBuffer } from "@thi.ng/pixel";
+import { FLOAT_GRAY, floatBuffer } from "@thi.ng/pixel";
 import { weightedRandom } from "@thi.ng/random";
 
 // render config

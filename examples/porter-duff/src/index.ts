@@ -1,6 +1,6 @@
+import { pixelCanvas2d } from "@thi.ng/canvas";
 import {
 	ABGR8888,
-	canvas2d,
 	imageFromURL,
 	intBufferFromCanvas,
 	intBufferFromImage,
@@ -44,10 +44,13 @@ Promise.all([IMG, IMG2].map((x) => imageFromURL(x)))
 		const srcBuf = intBufferFromImage(circle, ABGR8888).premultiply();
 		const destBuf = intBufferFromImage(plus, ABGR8888).premultiply();
 
-		const ctx = canvas2d(destBuf.width * 4, (destBuf.height + 20) * 3);
-		document.getElementById("app")!.appendChild(ctx.canvas);
+		const { canvas, ctx } = pixelCanvas2d(
+			destBuf.width * 4,
+			(destBuf.height + 20) * 3,
+			document.getElementById("app")!
+		);
 
-		const res = intBufferFromCanvas(ctx.canvas);
+		const res = intBufferFromCanvas(canvas);
 
 		for (let y = 0, i = 0; y < 3; y++) {
 			for (let x = 0; x < 4; x++, i++) {
@@ -59,15 +62,15 @@ Promise.all([IMG, IMG2].map((x) => imageFromURL(x)))
 		}
 
 		res.postmultiply();
-		res.blitCanvas(ctx.canvas);
+		res.blitCanvas(canvas);
 
-		ctx.ctx.fillStyle = "black";
-		ctx.ctx.font = "12px Arial";
-		ctx.ctx.textAlign = "center";
+		ctx.fillStyle = "black";
+		ctx.font = "12px Arial";
+		ctx.textAlign = "center";
 
 		for (let y = 0, i = 0; y < 3; y++) {
 			for (let x = 0; x < 4; x++, i++) {
-				ctx.ctx.fillText(
+				ctx.fillText(
 					IDS[i],
 					(x + 0.5) * destBuf.width,
 					(y + 1) * (destBuf.height + 20) - 6

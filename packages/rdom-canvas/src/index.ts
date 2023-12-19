@@ -1,6 +1,6 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { Fn, Fn2, Fn3, IToHiccup } from "@thi.ng/api";
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
+import { adaptDPI } from "@thi.ng/canvas";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { draw } from "@thi.ng/hiccup-canvas/draw";
 import type { IComponent, IMountWithState, NumOrElement } from "@thi.ng/rdom";

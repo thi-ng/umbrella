@@ -1,3 +1,4 @@
+import { pixelCanvas2d } from "@thi.ng/canvas";
 import { hueRgb, srgbCss } from "@thi.ng/color";
 import {
 	diagonal2d,
@@ -13,12 +14,11 @@ import {
 	zigzagDiagonal2d,
 	zigzagRows2d,
 } from "@thi.ng/grid-iterators";
-import { canvas2d } from "@thi.ng/pixel";
 import { concat, cycle } from "@thi.ng/transducers";
 
 const W = 256;
 const H = 256;
-const { canvas, ctx } = canvas2d(W, H, document.getElementById("app")!);
+const { canvas, ctx } = pixelCanvas2d(W, H, document.getElementById("app")!);
 
 const NB: any = 16;
 const BW = Math.ceil(W / NB);

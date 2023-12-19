@@ -12,7 +12,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "workspace:^",
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/dsp": "workspace:^",
 		"@thi.ng/hdom": "workspace:^",
 		"@thi.ng/hdom-components": "workspace:^",
@@ -29,7 +29,7 @@
 	},
 	"thi.ng": {
 		"readme": [
-			"adapt-dpi",
+			"canvas",
 			"dsp",
 			"hdom-components",
 			"matrices",

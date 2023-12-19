@@ -1,7 +1,7 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { NumericArray } from "@thi.ng/api";
+import { adaptiveCanvas2d } from "@thi.ng/canvas";
 import { osc, sin } from "@thi.ng/dsp";
-import { canvas2d, floatBufferFromCanvas } from "@thi.ng/pixel";
+import { floatBufferFromCanvas } from "@thi.ng/pixel";
 import {
 	defBlendF,
 	drawCircle,
@@ -11,8 +11,7 @@ import {
 import { Agent } from "./agent.js";
 
 // create canvas and adapt to screen's DPR
-const { canvas } = canvas2d(640, 640, document.body);
-adaptDPI(canvas, canvas.width, canvas.height);
+const { canvas } = adaptiveCanvas2d(640, 640, document.body);
 // pre-create image data
 const data = new ImageData(canvas.width, canvas.height);
 // create RGBA floating point pixel buffer for drawing

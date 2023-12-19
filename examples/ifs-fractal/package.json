@@ -16,6 +16,7 @@
 		"vite": "^5.0.4"
 	},
 	"dependencies": {
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/fibers": "workspace:^",
 		"@thi.ng/math": "workspace:^",
@@ -28,6 +29,7 @@
 	},
 	"thi.ng": {
 		"readme": [
+			"canvas",
 			"dl-asset",
 			"fibers",
 			"matrices",

@@ -16,8 +16,8 @@
 		"vite": "^5.0.4"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "workspace:^",
 		"@thi.ng/api": "workspace:^",
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/dsp": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/rasterize": "workspace:^",
@@ -28,7 +28,7 @@
 	},
 	"thi.ng": {
 		"readme": [
-			"adapt-dpi",
+			"canvas",
 			"dsp",
 			"pixel",
 			"rasterize",

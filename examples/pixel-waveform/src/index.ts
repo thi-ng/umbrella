@@ -1,10 +1,10 @@
+import { pixelCanvas2d } from "@thi.ng/canvas";
 import { div, h3, inputFile } from "@thi.ng/hiccup-html";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import {
 	FLOAT_RGB,
 	IntBuffer,
 	Lane,
-	canvas2d,
 	floatBuffer,
 	imageFromFile,
 	intBufferFromImage,
@@ -72,7 +72,7 @@ file.subscribe({
 			}
 		}
 		// create canvas and copy in waveform
-		const { canvas } = canvas2d(wav.width, wav.height);
+		const { canvas } = pixelCanvas2d(wav.width, wav.height);
 		wav.blitCanvas(canvas);
 		// update UI with new elements
 		result.next(

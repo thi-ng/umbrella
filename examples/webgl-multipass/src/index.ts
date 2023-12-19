@@ -1,4 +1,5 @@
-import { FLOAT_GRAY, canvas2d, floatBuffer } from "@thi.ng/pixel";
+import { pixelCanvas2d } from "@thi.ng/canvas";
+import { FLOAT_GRAY, floatBuffer } from "@thi.ng/pixel";
 import {
 	$x,
 	$xyz,
@@ -107,7 +108,7 @@ const toy = defMultiPass({
 
 toy.update(0);
 
-const canv = canvas2d(32, 32, document.body);
+const canv = pixelCanvas2d(32, 32, document.body);
 floatBuffer(
 	32,
 	32,

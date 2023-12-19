@@ -1,4 +1,4 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { adaptiveCanvas2d } from "@thi.ng/canvas";
 import { circle, group, star, vertices } from "@thi.ng/geom";
 import {
 	compFill,
@@ -38,11 +38,7 @@ const curvePos = (
 	ay: number
 ) => [Math.sin(t * fx) * ax + W / 2, Math.cos(t * fy) * ay + W / 2];
 
-const canvas: HTMLCanvasElement = document.createElement("canvas");
-document.body.appendChild(canvas);
-adaptDPI(canvas, W, W);
-
-const ctx = canvas.getContext("2d")!;
+const { canvas, ctx } = adaptiveCanvas2d(W, W, document.body);
 
 fromInterval(1000 / 30).subscribe({
 	next(t: number) {

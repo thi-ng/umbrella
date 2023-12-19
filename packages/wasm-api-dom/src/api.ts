@@ -72,7 +72,7 @@ export interface WasmDomImports extends WebAssembly.ModuleImports {
 	 * Resizes the canvas element for given `elementID` to provided size (in CSS
 	 * pixels). The given device pixel ratio `dpr` will be used to adjust the
 	 * actual number of physical pixels. See
-	 * [thi.ng/adapt-dpi](https://thi.ng/adapt-dpi) for reference.
+	 * [thi.ng/canvas](https://thi.ng/canvas) for reference.
 	 *
 	 * @param elementID
 	 * @param width

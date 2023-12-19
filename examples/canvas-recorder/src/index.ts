@@ -1,9 +1,9 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { adaptDPI } from "@thi.ng/canvas";
 import { canvasRecorder } from "@thi.ng/dl-asset";
 import { group, text } from "@thi.ng/geom";
 import { draw } from "@thi.ng/hiccup-canvas";
 import { button, canvas, div } from "@thi.ng/hiccup-html";
-import { SYSTEM, XsAdd, pickRandom } from "@thi.ng/random";
+import { SYSTEM, pickRandom } from "@thi.ng/random";
 import { $compile } from "@thi.ng/rdom";
 import { reactive } from "@thi.ng/rstream";
 import { consume, repeatedly2d } from "@thi.ng/transducers";

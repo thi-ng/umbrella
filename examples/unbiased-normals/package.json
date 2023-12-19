@@ -16,6 +16,7 @@
 		"vite": "^5.0.4"
 	},
 	"dependencies": {
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/dsp": "workspace:^",
 		"@thi.ng/matrices": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
@@ -27,6 +28,7 @@
 	},
 	"thi.ng": {
 		"readme": [
+			"canvas",
 			"matrices",
 			"pixel",
 			"vectors"
