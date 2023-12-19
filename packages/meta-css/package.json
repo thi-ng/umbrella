@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/meta-css",
 	"version": "0.1.1",
-	"description": "Data-driven CSS component & framework codegen, transpiler, bundler",
+	"description": "Data-driven CSS framework codegen, transpiler & bundler",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
