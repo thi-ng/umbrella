@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sparse",
-	"version": "0.3.83",
+	"version": "0.3.84",
 	"description": "Sparse vector & matrix implementations",
 	"type": "module",
 	"module": "./index.js",
@@ -34,9 +34,9 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.13",
-		"@thi.ng/errors": "^2.4.7",
-		"@thi.ng/transducers": "^8.8.16"
+		"@thi.ng/api": "^8.9.14",
+		"@thi.ng/errors": "^2.4.8",
+		"@thi.ng/transducers": "^8.8.17"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

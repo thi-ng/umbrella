@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/meta-css",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Data-driven CSS framework codegen, transpiler & bundler",
 	"type": "module",
 	"module": "./index.js",
@@ -38,19 +38,19 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.13",
-		"@thi.ng/args": "^2.3.0",
-		"@thi.ng/arrays": "^2.7.9",
-		"@thi.ng/checks": "^3.4.13",
-		"@thi.ng/compose": "^2.1.52",
-		"@thi.ng/errors": "^2.4.7",
-		"@thi.ng/file-io": "^1.1.0",
-		"@thi.ng/hiccup-css": "^2.3.0",
-		"@thi.ng/logger": "^2.1.0",
-		"@thi.ng/rstream": "^8.2.15",
-		"@thi.ng/strings": "^3.7.4",
-		"@thi.ng/text-format": "^2.0.0",
-		"@thi.ng/transducers": "^8.8.16"
+		"@thi.ng/api": "^8.9.14",
+		"@thi.ng/args": "^2.3.1",
+		"@thi.ng/arrays": "^2.7.10",
+		"@thi.ng/checks": "^3.4.14",
+		"@thi.ng/compose": "^2.1.53",
+		"@thi.ng/errors": "^2.4.8",
+		"@thi.ng/file-io": "^1.1.1",
+		"@thi.ng/hiccup-css": "^2.3.1",
+		"@thi.ng/logger": "^2.1.1",
+		"@thi.ng/rstream": "^8.2.16",
+		"@thi.ng/strings": "^3.7.5",
+		"@thi.ng/text-format": "^2.0.1",
+		"@thi.ng/transducers": "^8.8.17"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",
