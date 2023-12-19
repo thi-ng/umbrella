@@ -95,7 +95,7 @@ cat << EOF > "$MODULE"/package.json
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.12"
+		"@thi.ng/api": "^8.9.13"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.38.3",

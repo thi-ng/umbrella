@@ -43,7 +43,6 @@
 		"@microsoft/api-extractor": "^7.38.3",
 		"esbuild": "^0.19.8",
 		"rimraf": "^5.0.5",
-		"tools": "workspace:^",
 		"typedoc": "^0.25.4",
 		"typescript": "^5.3.2"
 	},

@@ -40,7 +40,6 @@
 		"util": false
 	},
 	"devDependencies": {
-		"tools": "workspace:^",
 		"typescript": "^5.3.2"
 	}
 }
