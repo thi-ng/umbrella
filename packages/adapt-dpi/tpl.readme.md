@@ -2,6 +2,10 @@
 
 <!-- toc -->
 
+> [!IMPORTANT]
+> This package has been deprecated and merged into
+> [@thi.ng/canvas](https://github.com/thi-ng/umbrella/blob/develop/packages/canvas/).
+
 ## About
 
 {{pkg.description}}

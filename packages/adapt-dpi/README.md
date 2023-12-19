@@ -14,10 +14,13 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
+
+> [!IMPORTANT]
+> This package has been deprecated and merged into
+> [@thi.ng/canvas](https://github.com/thi-ng/umbrella/blob/develop/packages/canvas/).
 
 ## About
 
@@ -30,7 +33,7 @@ size, and resizes canvas pixel buffer itself based on DPR (e.g. 2x size).
 
 ## Status
 
-**STABLE** - used in production
+**DEPRECATED** - superseded by other package(s)
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Badapt-dpi%5D+in%3Atitle)
 
@@ -59,21 +62,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 135 bytes
 ## Dependencies
 
 None
-
-## Usage examples
-
-Several projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory are using this package:
-
-| Screenshot                                                                                                             | Description                                                              | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/> | Self-modifying, animated typographic grid with emergent complex patterns | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/> | Steering behavior drawing with alpha-blended shapes                      | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>    | Entity Component System w/ 100k 3D particles                             | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>   | WebGL cube maps with async texture loading                               | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>      | WebGL instancing, animated grid                                          | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/>      | WebGL MSDF text rendering & particle system                              | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)      |
 
 ## API
 

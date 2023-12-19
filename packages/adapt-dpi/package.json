@@ -63,6 +63,7 @@
 		}
 	},
 	"thi.ng": {
+		"status": "deprecated",
 		"year": 2015
 	}
 }
