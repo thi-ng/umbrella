@@ -34,7 +34,7 @@ h5 { f3 { p { f4 } } }
 h6 { f4 { p { f5 } } }
 
 // configure body copy
-section { l:w66 m:w80 mb4 { >p { tj } } }
+section { l:w66 m:w80 mb4 center { >p { tj } } }
 p { mt0 mb3 lh-copy }
 
 
@@ -42,7 +42,7 @@ ul, ol { list pl0 lh-double }
 
 pre {
 	dark:bg-dark-blue dark:white light:bg-light-blue light:black
-	relative pa3 br3 lh-copy f6 overflow-x-scroll
+	relative pa3 br3 lh-copy f6 overflow-x-scroll i-shadow-4
 	{ >div.lang { absolute z-1 top-0 right-0 bg-blue pa2 brl3 brt0 f7 } }
 }
 
@@ -51,7 +51,7 @@ a:hover { dark:hot-pink purple }
 
 .swatches {
 	dg gap3 gc2 m:gc4 l:gc5 mb4
-	{ div { pa2 h3 ns:h4 br3 } }
+	{ div { pa3 h3 ns:h4 br3 i-shadow-3 } }
 }
 
 .group-v {
