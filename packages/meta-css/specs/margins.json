@@ -18,6 +18,16 @@
 			"prop": "margin",
 			"items": "margins",
 			"var": "all"
+		},
+		{
+			"prefix": "",
+			"index": "v",
+			"def": {
+				"margin-left": "*",
+				"margin-right": "*"
+			},
+			"items": { "center": "auto" },
+			"unit": null
 		}
 	]
 }

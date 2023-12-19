@@ -1,0 +1,30 @@
+{
+	"specs": [
+		{
+			"comment": "box shadows",
+			"prefix": "shadow-*",
+			"index": "i1",
+			"def": { "box-shadow": "*" },
+			"items": [
+				"0 0 2px 0px #0003",
+				"0 0 4px #0003",
+				"0 0 4px 1px #0003",
+				"0 0 8px 2px #0003"
+			],
+			"unit": null
+		},
+		{
+			"comment": "box shadows (inset)",
+			"prefix": "i-shadow-*",
+			"index": "i1",
+			"def": { "box-shadow": "*" },
+			"items": [
+				"0 0 2px 0px #0003 inset",
+				"0 0 4px #0003 inset",
+				"0 0 4px 1px #0003 inset",
+				"0 0 8px 2px #0003 inset"
+			],
+			"unit": null
+		}
+	]
+}
