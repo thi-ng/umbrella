@@ -34,10 +34,10 @@ region.blit(buf, { dx: 96, dy: 32 });
 
 // create html canvas
 // (returns obj of canvas & 2d context)
-const ctx = pixelCanvas2d(buf.width, buf.height * 3);
+const { canvas } = pixelCanvas2d(buf.width, buf.height * 3, document.body);
 
 // write pixel buffer to canvas
-buf.blitCanvas(ctx.canvas);
+buf.blitCanvas(canvas);
 
 // manipulate single color channel
 const id = 0;
@@ -50,8 +50,6 @@ for (let y = 0; y < ch.height; y += 2) {
 // replace original channel
 buf.setChannel(id, ch);
 // write pixel buffer to new position
-buf.blitCanvas(ctx.canvas, { y: buf.height });
+buf.blitCanvas(canvas, { y: buf.height });
 // create & write grayscale version
-buf.as(GRAY8).blitCanvas(ctx.canvas, { y: buf.height * 2 });
-
-document.body.appendChild(ctx.canvas);
+buf.as(GRAY8).blitCanvas(canvas, { y: buf.height * 2 });
