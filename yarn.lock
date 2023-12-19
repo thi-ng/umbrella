@@ -1087,6 +1087,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/hiccup-canvas-basics@workspace:examples/hiccup-canvas-basics"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/color-palettes": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
     typescript: ^5.3.2
     vite: ^5.0.4
   languageName: unknown

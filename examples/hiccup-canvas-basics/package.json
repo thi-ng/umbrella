@@ -1,0 +1,42 @@
+{
+	"name": "@example/hiccup-canvas-basics",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Basic hiccup-based canvas drawing",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --host --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.3.2",
+		"vite": "^5.0.4"
+	},
+	"dependencies": {
+		"@thi.ng/canvas": "workspace:^",
+		"@thi.ng/color": "workspace:^",
+		"@thi.ng/color-palettes": "workspace:^",
+		"@thi.ng/hiccup-canvas": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/random": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"canvas",
+			"color",
+			"color-palettes",
+			"hiccup-canvas",
+			"random",
+			"transducers"
+		],
+		"screenshot": "examples/hiccup-canvas-basics.png"
+	}
+}
