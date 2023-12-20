@@ -22,8 +22,11 @@ body {
 	system ma3 dark:bg-near-black dark:light-gray bg-light-gray dark-gray
 }
 
+// text selection
+::selection { bg-yellow black }
+
 // shared styles for all headlines
-h1, h2, h3, h4, h5, h6 { mt0 mb2 lh-solid { p { mt2 lh-solid } } }
+h1, h2, h3, h4, h5, h6 { mt0 mb2 lh-solid ls--1 { p { mt2 lh-solid } } }
 
 // set font sizes & colors for each heading level
 h1 { ns:f-title f-subtitle dark:orange light:dark-pink { p { f1 } } }
@@ -34,9 +37,8 @@ h5 { f3 { p { f4 } } }
 h6 { f4 { p { f5 } } }
 
 // configure body copy
-section { l:w66 m:w80 mb4 center { >p { tj } } }
+section { l:w-66 m:w-80 mb4 center { >p { tj } } }
 p { mt0 mb3 lh-copy }
-
 
 ul, ol { list pl0 lh-double }
 
@@ -47,7 +49,7 @@ pre {
 }
 
 a:link, a:visited { dark:white black fw700 }
-a:hover { dark:hot-pink purple }
+a:hover { dark:hot-pink dark-pink }
 
 .swatches {
 	dg gap3 gc2 m:gc4 l:gc5 mb4
