@@ -11,11 +11,12 @@ This package provides a CLI multi-tool to:
 ### Generate
 
 The `generate` command is used to generate custom CSS frameworks from a number
-of JSON rule specs. This process creates all desired, combinatorial versions of
-various rules/declarations and exports them to another JSON file used as
-intermediatary for the other commands provided by this toolchain. The
-syntax/format of the generator rules is explained further on. These rules can be
-split up into multiple files, can incude arbitrary media query criteria (all
+of extremely compact, parametric JSON rule specs. This process creates all
+desired, combinatorial versions of various rules/declarations and exports them
+to another JSON file used as intermediatary for the other commands provided by
+this toolchain. The [syntax/format of the generator
+rules](#framework-generation-rules) is explained further on. These rules can be
+split up into multiple files, can define arbitrary media query criteria (all
 later combinable), shared lookup tables for colors, margins, sizes, timings etc.
 
 The package provides generator specs for a basic, configurable,
@@ -47,10 +48,16 @@ The `convert` command is used to compile & bundle actual CSS from user-provided
 MetaCSS stylesheets (`*.meta` files) and the JSON framework specs created by the
 `generate` command. The meta-stylesheets support any CSS selectors, are nestable
 and compose full CSS declarations from lists of the utility classes in the
-generated framework. Each item (aka utility class name) can be prefixed with an
-arbitrary number of media query IDs (also custom defined in the framework).
+generated framework.
+
+Each item (aka utility class name) can be prefixed with an arbitrary number of
+media query IDs (also custom defined in the framework): e.g. `dark:bg-black`
+might refer to a CSS class to set a black ground, with the `dark:` prefix
+referring to a defined media query which only applies this class when dark mode
+is enabled...
+
 Selectors, declarations and media query criteria will be deduplicated and merged
-from multiple input files.  The resulting CSS will only contain referenced rules
+from multiple input files. The resulting CSS will only contain referenced rules
 and can be generated in minified or pretty printed formats (it's also possible
 to force include CSS classes which are otherwise unreferenced, using the
 `--force` CLI arg). Additionally, multiple .meta files can be watched for
@@ -82,16 +89,17 @@ Main:
 
 One or more existing CSS files can be included & prepended to the output via the
 `--include`/`-I` arg (which can be given multiple times). These files are used
-as-is and will **not** be transformed or reformatted in any way.
+verbatim and will **not** be transformed or reformatted in any way.
 
-### Force inclusion of unreferenced classes
+#### Force inclusion of unreferenced classes
 
 Only the CSS classes (and their optionally associated media queries) referenced
 in a `.meta` stylesheet will appear in the export CSS bundle. This ensures that
-the resulting CSS will only contain what's actually used. However, this also
-means any CSS classes (and optionally, their media query qualifiers) which are
-otherwise referenced (e.g. from JS/TS source code or HTML docs) **will not** be
-included by default and they will need to be listed manually for forced inclusion.
+the resulting CSS will only contain what's actually used (same effect as
+tree-shaking, only vastly more efficient). However, this also means any CSS
+classes (and optionally, their media query qualifiers) which are otherwise
+referenced (e.g. from JS/TS source code or HTML docs) **will not** be included
+by default and they will need to be listed manually for forced inclusion.
 
 This can be achieved via the `--force`/`-f` arg (also can be given multiple
 times). This option also supports basic `*`-wildcard patterns, e.g. `bg-*` to
@@ -144,8 +152,122 @@ Note: In all cases, final CSS generation itself is handled by
 
 ## Framework generation rules
 
-TODO — for now please see bundled example specs in
-[/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/)...
+TODO
+
+This section gives an overview of the JSON format used to generate CSS
+frameworks of dozens (usually hundreds) of utility classes, including many
+possible variations (per spec). E.g. the following spec document uses a small,
+single generative rule description to declare altogether 21 utility classes for
+various possible margins (where 21 = 3 values provided × 7 variations):
+
+### Example spec
+
+(For each additional value added to `values`, 7 more classes will be generated...)
+
+```json tangle:export/readme-margins.json
+{
+	"specs": [
+		{
+			"name": "m<vid><k>",
+			"props": "margin<var>",
+			"values": [0, 0.5, 1],
+			"unit": "rem",
+			"var": ["a", "t", "r", "b", "l", "h", "v"]
+		}
+	]
+}
+```
+
+Assuming the above spec has been saved to a JSON file in the `myspecs` directory:
+
+```bash
+# the `generate` cmd is directory based and will read all
+# JSON files in the provided dir (recursively)...
+
+# if no `--out` file is given, the result will go to stdout
+metacss generate --pretty myspecs
+```
+
+This command (with the above spec) will generate the following output (we're only interested in the entries under `defs`):
+
+```json
+{
+    "info": {
+        "name": "TODO",
+        "version": "0.0.0"
+    },
+    "media": {},
+    "defs": {
+        "ma0": { "margin": "0rem" },
+        "ma1": { "margin": ".5rem" },
+        "ma2": { "margin": "1rem" },
+        "mh0": { "margin-left": "0rem", "margin-right": "0rem" },
+        "mh1": { "margin-left": ".5rem", "margin-right": ".5rem" },
+        "mh2": { "margin-left": "1rem", "margin-right": "1rem" },
+        "mv0": { "margin-top": "0rem", "margin-bottom": "0rem" },
+        "mv1": { "margin-top": ".5rem", "margin-bottom": ".5rem" },
+        "mv2": { "margin-top": "1rem", "margin-bottom": "1rem" },
+        "mt0": { "margin-top": "0rem" },
+        "mt1": { "margin-top": ".5rem" },
+        "mt2": { "margin-top": "1rem" },
+        "mr0": { "margin-right": "0rem" },
+        "mr1": { "margin-right": ".5rem" },
+        "mr2": { "margin-right": "1rem" },
+        "mb0": { "margin-bottom": "0rem" },
+        "mb1": { "margin-bottom": ".5rem" },
+        "mb2": { "margin-bottom": "1rem" },
+        "ml0": { "margin-left": "0rem" },
+        "ml1": { "margin-left": ".5rem" },
+        "ml2": { "margin-left": "1rem" }
+    }
+}
+```
+
+When later used, we can then refer to each of these classes by their generated
+names, e.g. `ma0` to disable all margins or `mh2` to set both left & right
+margins to 1 rem (in this case)...
+
+### Parametric IDs
+
+The following patterns can (and should) be used in a spec's `name` and `props` values to generate multiple derived values (more examples below).
+
+| **ID**  | **Value**               |
+|---------|-------------------------|
+| `<vid>` | Current variation ID    |
+| `<var>` | Current variation value |
+| `<k>`   | Current key             |
+| `<v>`   | Current value           |
+
+TODO explain meanings of these terms...
+
+### Variations
+
+Variations can be requested by providing an array of valid variation IDs. If
+used, `<vid>` or `<var>` parameters must be used in the `name` or else naming
+conflicts will occur.
+
+| **ID**     | **Expanded values**   |
+|------------|-----------------------|
+| `""`       | `[""]`                |
+| `"a"`      | `[""]`                |
+| `"b"`      | `["-bottom"]`         |
+| `"bottom"` | `["bottom"]`          |
+| `"h"`      | `["-left", "-right"]` |
+| `"l"`      | `["-left"]`           |
+| `"left"`   | `["left"]`            |
+| `"r"`      | `["-right"]`          |
+| `"right"`  | `["right"]`           |
+| `"t"`      | `["-top"]`            |
+| `"top"`    | `["top"]`             |
+| `"v"`      | `["-top", "-bottom"]` |
+| `"x"`      | `["-x"]`              |
+| `"y"`      | `["-y"]`              |
+
+### Base framework specs
+
+The package includes a large number of useful specs in
+[/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/).
+These are provided as starting point to define your custom framework(s)...
 
 {{meta.status}}
 
@@ -245,7 +367,7 @@ body { ma0 dark:bg-black dark:white bg-white black }
 #app { ma3 }
 
 .bt-group-v > a {
-	db w100 l:w50 ph3 pv2 bwb1
+	db w-100 l:w-50 ph3 pv2 bwb1
 	dark:bg-purple dark:white dark:b--black
 	light:bg-light-blue light:black light:b--white
 	{
