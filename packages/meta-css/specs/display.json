@@ -1,11 +1,9 @@
 {
 	"specs": [
 		{
-			"comment": "display modes",
-			"prefix": "d",
-			"index": "v",
-			"prop": "display",
-			"items": {
+			"name": "d<k>",
+			"props": "display",
+			"values": {
 				"b": "block",
 				"f": "flex",
 				"g": "grid",
@@ -17,8 +15,7 @@
 				"t": "table",
 				"tc": "table-cell",
 				"tr": "table-row"
-			},
-			"unit": null
+			}
 		}
 	]
 }

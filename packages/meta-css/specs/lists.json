@@ -1,11 +1,9 @@
 {
 	"specs": [
 		{
-			"prefix": "",
-			"index": "v",
-			"prop": "list-style",
-			"items": { "list": "none" },
-			"unit": null
+			"name": "<k>",
+			"props": "list-style",
+			"values": { "list": "none" }
 		}
 	]
 }

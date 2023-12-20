@@ -1,23 +1,7 @@
 {
 	"tables": {
-		"var-palette": {
-			"vcol1": "var(--color1)",
-			"vcol2": "var(--color2)",
-			"vcol3": "var(--color3)",
-			"vcol4": "var(--color4)",
-			"vcol5": "var(--color5)",
-			"vcol6": "var(--color6)",
-			"vcol7": "var(--color7)",
-			"vcol8": "var(--color8)",
-			"vcol9": "var(--color9)",
-			"vcol10": "var(--color10)",
-			"vcol11": "var(--color11)",
-			"vcol12": "var(--color12)",
-			"vcol13": "var(--color13)",
-			"vcol14": "var(--color14)",
-			"vcol15": "var(--color15)",
-			"vcol16": "var(--color16)"
-		},
+		"__var_comment": "16 custom CSS color slots",
+		"var-palette": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 		"__grays_comment": "Tachyons CSS colors",
 		"grays": {
 			"black": "#000",
@@ -64,78 +48,66 @@
 	},
 	"specs": [
 		{
-			"comment": "border colors",
-			"prefix": "b--",
-			"index": "v",
-			"prop": "border-color",
-			"items": "var-palette",
-			"unit": "var-palette"
+			"name": "b--vcol<v>",
+			"props": { "border-color": "var(--color<v>)" },
+			"values": "var-palette"
 		},
 		{
-			"prefix": "b--",
-			"index": "v",
-			"prop": "border-color",
-			"items": "palette",
-			"unit": "palette"
+			"name": "b--<k>",
+			"props": "border-color",
+			"values": "palette"
 		},
 		{
-			"prefix": "b--",
-			"index": "v",
-			"prop": "border-color",
-			"items": "grays",
-			"unit": "grays"
+			"name": "b--<k>",
+			"props": "border-color",
+			"values": "grays"
 		},
 		{
-			"comment": "text colors",
-			"prefix": "",
-			"index": "v",
-			"prop": "color",
-			"items": "var-palette",
-			"unit": "var-palette"
+			"name": "vcol<v>",
+			"props": { "color": "var(--color<v>)" },
+			"values": "var-palette"
 		},
 		{
-			"prefix": "",
-			"index": "v",
-			"prop": "color",
-			"items": "palette",
-			"unit": "palette"
+			"name": "<k>",
+			"props": "color",
+			"values": "palette"
 		},
 		{
-			"prefix": "",
-			"index": "v",
-			"prop": "color",
-			"items": "grays",
-			"unit": "grays"
+			"name": "<k>",
+			"props": "color",
+			"values": "grays"
 		},
 		{
-			"comment": "background colors",
-			"prefix": "bg-",
-			"index": "v",
-			"prop": "background-color",
-			"items": "var-palette",
-			"unit": "var-palette"
+			"name": "bg-vcol<v>",
+			"props": { "background-color": "var(--color<v>)" },
+			"values": "var-palette"
 		},
 		{
-			"prefix": "bg-",
-			"index": "v",
-			"prop": "background-color",
-			"items": "palette",
-			"unit": "palette"
+			"name": "bg-<k>",
+			"props": "background-color",
+			"values": "palette"
 		},
 		{
-			"prefix": "bg-",
-			"index": "v",
-			"prop": "background-color",
-			"items": "grays",
-			"unit": "grays"
+			"name": "bg-<k>",
+			"props": "background-color",
+			"values": "grays"
 		},
 		{
-			"comment": "opacities",
-			"prefix": "o",
-			"index": "v",
-			"prop": "opacity",
-			"items": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-			"unit": "norm"
+			"name": "o-<k>",
+			"props": "opacity",
+			"values": {
+				"0": 0,
+				"10": 0.1,
+				"20": 0.2,
+				"30": 0.3,
+				"40": 0.4,
+				"50": 0.5,
+				"60": 0.6,
+				"70": 0.7,
+				"80": 0.8,
+				"90": 0.9,
+				"100": 1
+			}
 		}
 	]
 }

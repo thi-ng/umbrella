@@ -4,28 +4,21 @@
 	},
 	"specs": [
 		{
-			"prefix": "",
-			"index": "v",
-			"prop": "position",
-			"items": ["absolute", "relative", "fixed"],
-			"unit": null
+			"name": "<v>",
+			"props": "position",
+			"values": ["absolute", "relative", "fixed", "sticky"]
 		},
 		{
-			"comment": "positions",
-			"prefix": "*-",
-			"index": "v",
-			"def": {
-				"*": "*"
-			},
-			"items": "pos",
-			"var": "TRBL"
+			"name": "<var>-<v>",
+			"props": "<var>",
+			"values": "pos",
+			"unit": "rem",
+			"var": ["top", "right", "bottom", "left"]
 		},
 		{
-			"prefix": "z-",
-			"index": "v",
-			"prop": "z-index",
-			"items": [0, 1, 2, 3, 4, 5, 999, 9999],
-			"unit": null
+			"name": "z-<v>",
+			"props": "z-index",
+			"values": [0, 1, 2, 3, 4, 5, 999, 9999]
 		}
 	]
 }

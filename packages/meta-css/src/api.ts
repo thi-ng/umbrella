@@ -1,5 +1,5 @@
 // thing:no-export
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, NumOrString } from "@thi.ng/api";
 import { flag, string, strings, type CommandCtx } from "@thi.ng/args";
 import type { FormatPresets } from "@thi.ng/text-format";
 
@@ -22,7 +22,7 @@ export interface CompiledSpecs {
 export interface GeneratorConfig {
 	info?: SpecInfo;
 	media?: IObjectOf<string>;
-	tables?: IObjectOf<any>;
+	tables?: IObjectOf<IObjectOf<NumOrString> | string[] | number[]>;
 	specs: Spec[];
 }
 
@@ -32,14 +32,12 @@ export interface SpecInfo {
 }
 
 export interface Spec {
-	prefix: string;
-	prop: string | string[];
-	def?: Record<string, string>;
-	items: string | any[] | IObjectOf<any>;
-	index?: Index;
-	unit?: string | null;
-	comment?: string;
-	var?: string | string[];
+	name: string;
+	key?: "v" | "i" | "i1";
+	props: string | IObjectOf<NumOrString>;
+	values: IObjectOf<NumOrString> | string[] | number[] | string;
+	unit?: string;
+	var?: string[];
 }
 
 export type Index = "i" | "i1" | "v";

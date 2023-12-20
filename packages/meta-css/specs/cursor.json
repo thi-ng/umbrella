@@ -1,10 +1,9 @@
 {
 	"specs": [
 		{
-			"prefix": "cursor-",
-			"index": "v",
-			"prop": "cursor",
-			"items": {
+			"name": "cursor-<k>",
+			"props": "cursor",
+			"values": {
 				"auto": "auto",
 				"default": "default",
 				"none": "none",
@@ -41,8 +40,7 @@
 				"scroll": "all-scroll",
 				"in": "zoom-in",
 				"out": "zoom-out"
-			},
-			"unit": null
+			}
 		}
 	]
 }

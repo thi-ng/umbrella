@@ -5,42 +5,40 @@
 	},
 	"specs": [
 		{
-			"comment": "border radius",
-			"prefix": "br",
-			"index": "i",
-			"prop": "border-radius",
-			"items": "borders-r"
+			"name": "br<k>",
+			"props": "border-radius",
+			"values": "borders-r",
+			"unit": "rem"
 		},
 		{
-			"prefix": "br*",
-			"index": "i",
-			"def": {
-				"border-top*-radius": "*",
-				"border-bottom*-radius": "*"
+			"name": "br<vid><k>",
+			"props": {
+				"border-top<var>-radius": "<v>",
+				"border-bottom<var>-radius": "<v>"
 			},
-			"items": "borders-r",
-			"var": "h"
+			"values": "borders-r",
+			"unit": "rem",
+			"var": ["l", "r"]
 		},
 		{
-			"prefix": "br*",
-			"index": "i",
-			"def": {
-				"border*-left-radius": "*",
-				"border*-right-radius": "*"
+			"name": "br<vid><k>",
+			"props": {
+				"border<var>-left-radius": "<v>",
+				"border<var>-right-radius": "<v>"
 			},
-			"items": "borders-r",
-			"var": "v"
+			"values": "borders-r",
+			"unit": "rem",
+			"var": ["t", "b"]
 		},
 		{
-			"comment": "border widths",
-			"prefix": "bw*",
-			"index": "i",
-			"def": {
-				"border*-style": "solid",
-				"border*-width": "*"
+			"name": "bw<vid><k>",
+			"props": {
+				"border<var>-style": "solid",
+				"border<var>-width": "<v>"
 			},
-			"items": "borders-w",
-			"var": "atrbl"
+			"values": "borders-w",
+			"unit": "rem",
+			"var": ["", "t", "r", "b", "l"]
 		}
 	]
 }

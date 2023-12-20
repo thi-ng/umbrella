@@ -1,41 +1,36 @@
 {
 	"tables": {
-		"cols-rows": {
-			"1": "1fr",
-			"2": "1fr 1fr",
-			"3": "1fr 1fr 1fr",
-			"4": "repeat(4,1fr)",
-			"5": "repeat(5,1fr)",
-			"6": "repeat(6,1fr)",
-			"7": "repeat(7,1fr)",
-			"8": "repeat(8,1fr)",
-			"9": "repeat(9,1fr)",
-			"10": "repeat(10,1fr)"
-		}
+		"cols-rows": [
+			"1fr",
+			"1fr 1fr",
+			"1fr 1fr 1fr",
+			"repeat(4,1fr)",
+			"repeat(5,1fr)",
+			"repeat(6,1fr)",
+			"repeat(7,1fr)",
+			"repeat(8,1fr)",
+			"repeat(9,1fr)",
+			"repeat(10,1fr)"
+		]
 	},
 	"specs": [
 		{
-			"comment": "grid column layout",
-			"prefix": "gc",
-			"index": "v",
-			"prop": "grid-template-columns",
-			"items": "cols-rows",
-			"unit": "cols-rows"
+			"name": "gc<k>",
+			"key": "i1",
+			"props": "grid-template-columns",
+			"values": "cols-rows"
 		},
 		{
-			"comment": "grid row layout",
-			"prefix": "gr",
-			"index": "v",
-			"prop": "grid-template-rows",
-			"items": "cols-rows",
-			"unit": "cols-rows"
+			"name": "gr<k>",
+			"key": "i1",
+			"props": "grid-template-rows",
+			"values": "cols-rows"
 		},
 		{
-			"comment": "grid gaps",
-			"prefix": "gap",
-			"index": "i",
-			"prop": "gap",
-			"items": [0, 0.125, 0.25, 0.5, 1, 2]
+			"name": "gap<k>",
+			"props": "gap",
+			"values": [0, 0.125, 0.25, 0.5, 1, 2],
+			"unit": "rem"
 		}
 	]
 }

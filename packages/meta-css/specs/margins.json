@@ -4,30 +4,26 @@
 	},
 	"specs": [
 		{
-			"comment": "paddings",
-			"prefix": "p",
-			"index": "i",
-			"prop": "padding",
-			"items": "margins",
-			"var": "all"
+			"name": "p<vid><k>",
+			"props": "padding<var>",
+			"values": "margins",
+			"unit": "rem",
+			"var": ["a", "h", "v", "t", "r", "b", "l"]
 		},
 		{
-			"comment": "margins",
-			"prefix": "m",
-			"index": "i",
-			"prop": "margin",
-			"items": "margins",
-			"var": "all"
+			"name": "m<vid><k>",
+			"props": "margin<var>",
+			"values": "margins",
+			"unit": "rem",
+			"var": ["a", "h", "v", "t", "r", "b", "l"]
 		},
 		{
-			"prefix": "",
-			"index": "v",
-			"def": {
-				"margin-left": "*",
-				"margin-right": "*"
+			"name": "<k>",
+			"props": {
+				"margin-left": "<v>",
+				"margin-right": "<v>"
 			},
-			"items": { "center": "auto" },
-			"unit": null
+			"values": { "center": "auto" }
 		}
 	]
 }

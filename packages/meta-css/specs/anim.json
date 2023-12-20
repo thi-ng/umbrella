@@ -1,11 +1,10 @@
 {
 	"specs": [
 		{
-			"comment": "bg transitions",
-			"prefix": "bg-anim",
-			"index": "i1",
-			"def": { "transition": "*s background-color ease-in-out" },
-			"items": [0.15, 0.25, 0.5],
+			"name": "bg-anim<k>",
+			"key": "i1",
+			"props": { "transition": "<v>s background-color ease-in-out" },
+			"values": [0.15, 0.25, 0.5],
 			"unit": null
 		}
 	]

@@ -4,25 +4,10 @@
 	},
 	"specs": [
 		{
-			"prefix": "overflow",
-			"index": "v",
-			"def": { "overflow": "*" },
-			"items": "overflow",
-			"unit": null
-		},
-		{
-			"prefix": "overflow-x-",
-			"index": "v",
-			"def": { "overflow-x": "*" },
-			"items": "overflow",
-			"unit": null
-		},
-		{
-			"prefix": "overflow-y-",
-			"index": "v",
-			"def": { "overflow-y": "*" },
-			"items": "overflow",
-			"unit": null
+			"name": "overflow<var>-<v>",
+			"props": { "overflow<var>": "<v>" },
+			"values": "overflow",
+			"var": ["", "x", "y"]
 		}
 	]
 }

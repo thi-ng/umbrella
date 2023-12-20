@@ -1,43 +1,36 @@
+import { NULL_LOGGER } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
-import { generateAll } from "../src/generate.js";
+import { expandSpec } from "../src/generate.js";
 
-test("index items", () => {
+test("variations", () => {
 	expect(
-		generateAll({
-			tables: {
-				test: { foo: "f", bar: "b" },
+		expandSpec(
+			{},
+			{
+				name: "bw<vid><k>",
+				props: "border<var>-width",
+				values: [0, 0.5, 1],
+				unit: "rem",
+				var: ["", "t", "r", "b", "l"],
 			},
-			specs: [
-				{
-					prefix: "pre-",
-					index: "v",
-					prop: "p",
-					items: "test",
-					unit: "test",
-				},
-			],
-		})
+			{},
+			NULL_LOGGER
+		)
 	).toEqual({
-		"pre-foo": { p: "f" },
-		"pre-bar": { p: "b" },
-	});
-});
-
-test("inline items", () => {
-	expect(
-		generateAll({
-			specs: [
-				{
-					prefix: "pre-",
-					index: "v",
-					prop: "p",
-					items: { foo: "f", bar: "b" },
-					unit: null,
-				},
-			],
-		})
-	).toEqual({
-		"pre-foo": { p: "f" },
-		"pre-bar": { p: "b" },
+		bw0: { "border-width": "0rem" },
+		bw1: { "border-width": ".5rem" },
+		bw2: { "border-width": "1rem" },
+		bwb0: { "border-bottom-width": "0rem" },
+		bwb1: { "border-bottom-width": ".5rem" },
+		bwb2: { "border-bottom-width": "1rem" },
+		bwl0: { "border-left-width": "0rem" },
+		bwl1: { "border-left-width": ".5rem" },
+		bwl2: { "border-left-width": "1rem" },
+		bwr0: { "border-right-width": "0rem" },
+		bwr1: { "border-right-width": ".5rem" },
+		bwr2: { "border-right-width": "1rem" },
+		bwt0: { "border-top-width": "0rem" },
+		bwt1: { "border-top-width": ".5rem" },
+		bwt2: { "border-top-width": "1rem" },
 	});
 });

@@ -7,48 +7,42 @@
 	},
 	"specs": [
 		{
-			"comment": "abs widths",
-			"prefix": "w",
-			"index": "i1",
-			"prop": "width",
-			"items": "sizes-abs"
+			"name": "w<k>",
+			"key": "i1",
+			"props": "width",
+			"values": "sizes-abs",
+			"unit": "rem"
 		},
 		{
-			"comment": "relative widths",
-			"prefix": "w",
-			"index": "v",
-			"prop": "width",
-			"items": "sizes-rel",
+			"name": "w-<v>",
+			"props": "width",
+			"values": "sizes-rel",
 			"unit": "%"
 		},
 		{
-			"comment": "max width (abs)",
-			"prefix": "mw",
-			"index": "i1",
-			"prop": "max-width",
-			"items": "sizes-abs"
+			"name": "mw<k>",
+			"key": "i1",
+			"props": "max-width",
+			"values": "sizes-abs",
+			"unit": "rem"
 		},
 		{
-			"comment": "max width (rel)",
-			"prefix": "mw",
-			"index": "v",
-			"prop": "max-width",
-			"items": "sizes-rel",
+			"name": "mw-<v>",
+			"props": "max-width",
+			"values": "sizes-rel",
 			"unit": "%"
 		},
 		{
-			"comment": "abs heights",
-			"prefix": "h",
-			"index": "i1",
-			"prop": "height",
-			"items": "sizes-abs"
+			"name": "h<k>",
+			"key": "i1",
+			"props": "height",
+			"values": "sizes-abs",
+			"unit": "rem"
 		},
 		{
-			"comment": "relative heights",
-			"prefix": "h",
-			"index": "v",
-			"prop": "height",
-			"items": "sizes-rel",
+			"name": "h-<v>",
+			"props": "height",
+			"values": "sizes-rel",
 			"unit": "%"
 		}
 	]
