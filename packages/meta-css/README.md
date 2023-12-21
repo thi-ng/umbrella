@@ -27,24 +27,6 @@ This project is part of the
   - [Parametric IDs](#parametric-ids)
 - [Bundled CSS base framework](#bundled-css-base-framework)
   - [Classes by category](#classes-by-category)
-    - [Animations / transitions](#animations--transitions)
-    - [Border radius](#border-radius)
-    - [Border width](#border-width)
-    - [Colors](#colors)
-    - [Cursors](#cursors)
-    - [Width](#width)
-    - [Max. width](#max-width)
-    - [Height](#height)
-    - [Display mode](#display-mode)
-    - [Grid layout](#grid-layout)
-    - [Lists](#lists)
-    - [Padding](#padding)
-    - [Margin](#margin)
-    - [Overflow](#overflow)
-    - [Positions](#positions)
-    - [Z-indices](#z-indices)
-    - [Shadow](#shadow)
-    - [Typography](#typography)
   - [Media queries](#media-queries)
 - [Status](#status)
 - [Related packages](#related-packages)
@@ -431,77 +413,117 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 ### Classes by category
 
-#### Animations / transitions
+#### Animations / transitions <!-- notoc -->
 
 `bg-anim1` / `bg-anim2` / `bg-anim3`
 
-#### Border radius
+#### Border radius <!-- notoc -->
 
 `br0` / `br1` / `br2` / `br3` / `br4` / `brb0` / `brb1` / `brb2` / `brb3` / `brb4` / `brl0` / `brl1` / `brl2` / `brl3` / `brl4` / `brr0` / `brr1` / `brr2` / `brr3` / `brr4` / `brt0` / `brt1` / `brt2` / `brt3` / `brt4`
 
-#### Border width
+#### Border width <!-- notoc -->
 
 `bw0` / `bw1` / `bw2` / `bw3` / `bw4` / `bw5` / `bwb0` / `bwb1` / `bwb2` / `bwb3` / `bwb4` / `bwb5` / `bwl0` / `bwl1` / `bwl2` / `bwl3` / `bwl4` / `bwl5` / `bwr0` / `bwr1` / `bwr2` / `bwr3` / `bwr4` / `bwr5` / `bwt0` / `bwt1` / `bwt2` / `bwt3` / `bwt4` / `bwt5`
 
-#### Colors
+#### Colors <!-- notoc -->
 
 `b--black` / `b--blue` / `b--dark-blue` / `b--dark-gray` / `b--dark-green` / `b--dark-pink` / `b--dark-red` / `b--gold` / `b--gray` / `b--green` / `b--hot-pink` / `b--light-blue` / `b--light-gray` / `b--light-green` / `b--light-pink` / `b--light-purple` / `b--light-red` / `b--light-silver` / `b--light-yellow` / `b--lightest-blue` / `b--mid-gray` / `b--moon-gray` / `b--navy` / `b--near-black` / `b--near-white` / `b--orange` / `b--pink` / `b--purple` / `b--red` / `b--silver` / `b--transparent` / `b--vcol1` / `b--vcol10` / `b--vcol11` / `b--vcol12` / `b--vcol13` / `b--vcol14` / `b--vcol15` / `b--vcol16` / `b--vcol2` / `b--vcol3` / `b--vcol4` / `b--vcol5` / `b--vcol6` / `b--vcol7` / `b--vcol8` / `b--vcol9` / `b--washed-blue` / `b--washed-green` / `b--washed-red` / `b--washed-yellow` / `b--white` / `b--yellow` / `bg-black` / `bg-blue` / `bg-dark-blue` / `bg-dark-gray` / `bg-dark-green` / `bg-dark-pink` / `bg-dark-red` / `bg-gold` / `bg-gray` / `bg-green` / `bg-hot-pink` / `bg-light-blue` / `bg-light-gray` / `bg-light-green` / `bg-light-pink` / `bg-light-purple` / `bg-light-red` / `bg-light-silver` / `bg-light-yellow` / `bg-lightest-blue` / `bg-mid-gray` / `bg-moon-gray` / `bg-navy` / `bg-near-black` / `bg-near-white` / `bg-orange` / `bg-pink` / `bg-purple` / `bg-red` / `bg-silver` / `bg-transparent` / `bg-vcol1` / `bg-vcol10` / `bg-vcol11` / `bg-vcol12` / `bg-vcol13` / `bg-vcol14` / `bg-vcol15` / `bg-vcol16` / `bg-vcol2` / `bg-vcol3` / `bg-vcol4` / `bg-vcol5` / `bg-vcol6` / `bg-vcol7` / `bg-vcol8` / `bg-vcol9` / `bg-washed-blue` / `bg-washed-green` / `bg-washed-red` / `bg-washed-yellow` / `bg-white` / `bg-yellow` / `black` / `blue` / `dark-blue` / `dark-gray` / `dark-green` / `dark-pink` / `dark-red` / `gold` / `gray` / `green` / `hot-pink` / `light-blue` / `light-gray` / `light-green` / `light-pink` / `light-purple` / `light-red` / `light-silver` / `light-yellow` / `lightest-blue` / `mid-gray` / `moon-gray` / `navy` / `near-black` / `near-white` / `o-0` / `o-10` / `o-100` / `o-20` / `o-30` / `o-40` / `o-50` / `o-60` / `o-70` / `o-80` / `o-90` / `orange` / `pink` / `purple` / `red` / `silver` / `transparent` / `vcol1` / `vcol10` / `vcol11` / `vcol12` / `vcol13` / `vcol14` / `vcol15` / `vcol16` / `vcol2` / `vcol3` / `vcol4` / `vcol5` / `vcol6` / `vcol7` / `vcol8` / `vcol9` / `washed-blue` / `washed-green` / `washed-red` / `washed-yellow` / `white` / `yellow`
 
-#### Cursors
+#### Cursors <!-- notoc -->
 
 `cursor-alias` / `cursor-auto` / `cursor-cell` / `cursor-col` / `cursor-context` / `cursor-copy` / `cursor-cross` / `cursor-default` / `cursor-e` / `cursor-ew` / `cursor-forbidden` / `cursor-grab` / `cursor-grabbing` / `cursor-help` / `cursor-in` / `cursor-move` / `cursor-n` / `cursor-ne` / `cursor-news` / `cursor-no-drop` / `cursor-none` / `cursor-ns` / `cursor-nw` / `cursor-nwse` / `cursor-out` / `cursor-pointer` / `cursor-progress` / `cursor-row` / `cursor-s` / `cursor-scroll` / `cursor-se` / `cursor-sw` / `cursor-text` / `cursor-vtext` / `cursor-w` / `cursor-wait`
 
-#### Width
+#### Width <!-- notoc -->
 
 `w-10` / `w-100` / `w-20` / `w-25` / `w-30` / `w-33` / `w-34` / `w-40` / `w-50` / `w-60` / `w-66` / `w-70` / `w-75` / `w-80` / `w-90` / `w1` / `w2` / `w3` / `w4` / `w5`
 
-#### Max. width
+#### Max. width <!-- notoc -->
 
 `mw-10` / `mw-100` / `mw-20` / `mw-25` / `mw-30` / `mw-33` / `mw-34` / `mw-40` / `mw-50` / `mw-60` / `mw-66` / `mw-70` / `mw-75` / `mw-80` / `mw-90` / `mw1` / `mw2` / `mw3` / `mw4` / `mw5`
 
-#### Height
+#### Height <!-- notoc -->
 
 `h-10` / `h-100` / `h-20` / `h-25` / `h-30` / `h-33` / `h-34` / `h-40` / `h-50` / `h-60` / `h-66` / `h-70` / `h-75` / `h-80` / `h-90` / `h1` / `h2` / `h3` / `h4` / `h5`
 
-#### Display mode
+#### Display mode <!-- notoc -->
 
 `db` / `df` / `dg` / `di` / `dib` / `dif` / `dig` / `dn` / `dt` / `dtc` / `dtr`
 
-#### Grid layout
+#### Grid layout <!-- notoc -->
 
 `gap0` / `gap1` / `gap2` / `gap3` / `gap4` / `gap5` / `gc1` / `gc10` / `gc2` / `gc3` / `gc4` / `gc5` / `gc6` / `gc7` / `gc8` / `gc9` / `gr1` / `gr10` / `gr2` / `gr3` / `gr4` / `gr5` / `gr6` / `gr7` / `gr8` / `gr9`
 
-#### Lists
+#### Lists <!-- notoc -->
 
 `list`
 
-#### Padding
+#### Padding <!-- notoc -->
 
 `pa0` / `pa1` / `pa2` / `pa3` / `pa4` / `pb0` / `pb1` / `pb2` / `pb3` / `pb4` / `ph0` / `ph1` / `ph2` / `ph3` / `ph4` / `pl0` / `pl1` / `pl2` / `pl3` / `pl4` / `pr0` / `pr1` / `pr2` / `pr3` / `pr4` / `pt0` / `pt1` / `pt2` / `pt3` / `pt4` / `pv0` / `pv1` / `pv2` / `pv3` / `pv4`
 
-#### Margin
+#### Margin <!-- notoc -->
 
 `center` / `ma0` / `ma1` / `ma2` / `ma3` / `ma4` / `mb0` / `mb1` / `mb2` / `mb3` / `mb4` / `mh0` / `mh1` / `mh2` / `mh3` / `mh4` / `ml0` / `ml1` / `ml2` / `ml3` / `ml4` / `mr0` / `mr1` / `mr2` / `mr3` / `mr4` / `mt0` / `mt1` / `mt2` / `mt3` / `mt4` / `mv0` / `mv1` / `mv2` / `mv3` / `mv4`
 
-#### Overflow
+#### Overflow <!-- notoc -->
 
 `overflow-auto` / `overflow-hidden` / `overflow-scroll` / `overflow-visible` / `overflow-x-auto` / `overflow-x-hidden` / `overflow-x-scroll` / `overflow-x-visible` / `overflow-y-auto` / `overflow-y-hidden` / `overflow-y-scroll` / `overflow-y-visible`
 
-#### Positions
+#### Positions <!-- notoc -->
 
 `absolute` / `bottom--1` / `bottom--2` / `bottom-0` / `bottom-1` / `bottom-2` / `fixed` / `left--1` / `left--2` / `left-0` / `left-1` / `left-2` / `relative` / `right--1` / `right--2` / `right-0` / `right-1` / `right-2` / `sticky` / `top--1` / `top--2` / `top-0` / `top-1` / `top-2`
 
-#### Z-indices
+#### Z-indices <!-- notoc -->
 
 `z-0` / `z-1` / `z-2` / `z-3` / `z-4` / `z-5` / `z-999` / `z-9999`
 
-#### Shadow
+#### Shadow <!-- notoc -->
 
 `i-shadow-1` / `i-shadow-2` / `i-shadow-3` / `i-shadow-4` / `shadow-1` / `shadow-2` / `shadow-3` / `shadow-4`
 
-#### Typography
+#### Font families <!-- notoc -->
 
-`b` / `f-subtitle` / `f-title` / `f1` / `f2` / `f3` / `f4` / `f5` / `f6` / `f7` / `fw100` / `fw200` / `fw300` / `fw400` / `fw500` / `fw600` / `fw700` / `fw800` / `fw900` / `lh-copy` / `lh-double` / `lh-solid` / `lh-title` / `ls--1` / `ls--2` / `ls-0` / `ls-1` / `ls-2` / `ls-3` / `monospace` / `no-underline` / `normal` / `sans-serif` / `serif` / `small-caps` / `strike` / `system` / `tc` / `tj` / `tl` / `tr` / `ttc` / `ttfsk` / `ttfw` / `tti` / `ttl` / `ttn` / `ttu` / `underline` / `v-btm` / `v-mid` / `v-top` / `ws-0` / `ws-1` / `ws-2`
+`monospace` / `sans-serif` / `serif` / `system`
+
+#### Font sizes <!-- notoc -->
+
+`f-subtitle` / `f-title` / `f1` / `f2` / `f3` / `f4` / `f5` / `f6` / `f7`
+
+#### Font weights <!-- notoc -->
+
+`b` / `fw100` / `fw200` / `fw300` / `fw400` / `fw500` / `fw600` / `fw700` / `fw800` / `fw900` / `normal`
+
+#### Font variants <!-- notoc -->
+
+`small-caps`
+
+#### Text decorations <!-- notoc -->
+
+`no-underline` / `strike` / `underline`
+
+#### Text transforms <!-- notoc -->
+
+`ttc` / `ttfsk` / `ttfw` / `tti` / `ttl` / `ttn` / `ttu`
+
+#### Text align <!-- notoc -->
+
+`tc` / `tj` / `tl` / `tr`
+
+#### Vertical align <!-- notoc -->
+
+`v-btm` / `v-mid` / `v-top`
+
+#### Line heights <!-- notoc -->
+
+`lh-copy` / `lh-double` / `lh-solid` / `lh-title`
+
+#### Whitespace <!-- notoc -->
+
+`ws-0` / `ws-1` / `ws-2`
+
+#### Letter spacing <!-- notoc -->
+
+`ls--1` / `ls--2` / `ls-0` / `ls-1` / `ls-2` / `ls-3`
 
 ### Media queries
 

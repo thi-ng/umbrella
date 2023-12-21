@@ -48,7 +48,7 @@ const doc: string[] = [
 	"",
 	...mapcat(
 		([group, ids]) => [
-			`#### ${capitalize(group)}\n`,
+			`#### ${capitalize(group)} <!-- notoc -->\n`,
 			ids.map((x) => `\`${x}\``).join(" / "),
 			"",
 		],

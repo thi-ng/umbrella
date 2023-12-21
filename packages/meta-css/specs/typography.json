@@ -10,13 +10,13 @@
 	},
 	"specs": [
 		{
-			"user": "typography",
+			"user": "font families",
 			"name": "<k>",
 			"props": "font-family",
 			"values": "families"
 		},
 		{
-			"user": "typography",
+			"user": "font sizes",
 			"name": "f<k>",
 			"key": "i1",
 			"props": "font-size",
@@ -24,7 +24,7 @@
 			"unit": "rem"
 		},
 		{
-			"user": "typography",
+			"user": "font sizes",
 			"name": "f-<k>",
 			"props": "font-size",
 			"values": {
@@ -33,13 +33,13 @@
 			}
 		},
 		{
-			"user": "typography",
+			"user": "font weights",
 			"name": "fw<v>",
 			"props": "font-weight",
 			"values": "100s"
 		},
 		{
-			"user": "typography",
+			"user": "font weights",
 			"name": "<k>",
 			"props": "font-weight",
 			"values": {
@@ -48,14 +48,14 @@
 			}
 		},
 		{
-			"user": "typography",
+			"user": "font variants",
 			"name": "<k>",
 			"key": "v",
 			"props": "font-variant",
 			"values": ["small-caps"]
 		},
 		{
-			"user": "typography",
+			"user": "text decorations",
 			"name": "<k>",
 			"props": "text-decoration",
 			"values": {
@@ -65,7 +65,7 @@
 			}
 		},
 		{
-			"user": "typography",
+			"user": "text transforms",
 			"name": "tt<k>",
 			"props": "text-transform",
 			"values": {
@@ -79,7 +79,7 @@
 			}
 		},
 		{
-			"user": "typography",
+			"user": "text align",
 			"name": "t<k>",
 			"props": "text-align",
 			"values": {
@@ -90,7 +90,7 @@
 			}
 		},
 		{
-			"user": "typography",
+			"user": "vertical align",
 			"name": "v-<k>",
 			"props": "vertical-align",
 			"values": {
@@ -100,7 +100,7 @@
 			}
 		},
 		{
-			"user": "typography",
+			"user": "line heights",
 			"name": "lh-<k>",
 			"props": "line-height",
 			"values": {
@@ -111,13 +111,13 @@
 			}
 		},
 		{
-			"user": "typography",
+			"user": "whitespace",
 			"name": "ws-<k>",
 			"props": "white-space",
 			"values": ["normal", "nowrap", "pre"]
 		},
 		{
-			"user": "typography",
+			"user": "letter spacing",
 			"name": "ls-<k>",
 			"props": "letter-spacing",
 			"values": {
