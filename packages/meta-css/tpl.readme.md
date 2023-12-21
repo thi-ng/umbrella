@@ -10,14 +10,15 @@ This package provides a CLI multi-tool to:
 
 ### Generate
 
-The `generate` command is used to generate custom CSS frameworks from a number
-of extremely compact, parametric JSON rule specs. This process creates all
-desired, combinatorial versions of various rules/declarations and exports them
-to another JSON file used as intermediatary for the other commands provided by
-this toolchain. The [syntax/format of the generator
-rules](#framework-generation-rules) is explained further on. These rules can be
-split up into multiple files, can define arbitrary media query criteria (all
-later combinable), shared lookup tables for colors, margins, sizes, timings etc.
+The `generate` command is used to generate custom frameworks of CSS utility
+classes from a number of extremely compact, parametric JSON rule specs. This
+process creates all desired, combinatorial versions of various
+rules/declarations and exports them to another JSON file used as intermediatary
+for the other commands provided by this toolchain. The [syntax/format of the
+generator rules](#framework-generation-rules) is explained further on. These
+rule specs can be split up into multiple files for better handling, can define
+arbitrary media query criteria (all later combinable), shared lookup tables for
+colors, margins, sizes, timings etc.
 
 The package provides generator specs for a basic, configurable,
 [tachyons.io](https://tachyons.io)-derived CSS framework in the
@@ -106,23 +107,31 @@ times). This option also supports basic `*`-wildcard patterns, e.g. `bg-*` to
 include all classes with prefix `bg-`. Furthermore, for larger projects it's
 useful to store these names/patterns in a separate file. For that purpose, use
 the `@` prefix (e.g. `-f @includes.txt`) to indicate reading from file (only
-reading from a single file is supported at current)...
+reading from a single file is supported at current)... See the [meta-css-basics
+example
+project](https://github.com/thi-ng/umbrella/blob/develop/examples/meta-css-basics)
+for concrete usage...
 
 ### Export
 
-The `export` command is intended for those who're only interested in the CSS
-framework generation aspect of this toolchain. This command merely takes an
+The `export` command is intended for those who're mainly interested in the CSS
+framework generation aspects of this toolchain. This command merely takes an
 existing generated framework JSON file and serializes it to a single CSS file,
 e.g. to be then used with other CSS tooling (e.g. `postcss`).
 
 #### Media queries
 
 Users can choose to generate variations of all defined utility classes for any
-of the framework-defined media query IDs. This will create suffixed versions of
-all classes (with their appropriate media query wrappers) and cause a
-potentially massive output (depending on the overall number/complexity of the
+of the framework-defined media query IDs. This will create additional suffixed
+versions of all classes (with their appropriate media query wrappers) and cause
+a potentially massive output (depending on the overall number/complexity of the
 generated classes). Again, the idea is that the resulting CSS file will be
 post-processed with 3rd party CSS tooling...
+
+For example, if the framework contains a CSS class `w-50` (e.g. to set the width
+to 50%) and media queries for different screen sizes (e.g. named `ns`, `l`),
+then the export with said media queries will also generate classes `w-50-ns`
+and `w-50-l` (incl. their corresponding `@media` wrappers).
 
 As with the `convert` command, additional CSS files can also be included
 (prepended) in the output file.
@@ -152,25 +161,59 @@ Note: In all cases, final CSS generation itself is handled by
 
 ## Framework generation rules
 
-TODO
-
 This section gives an overview of the JSON format used to generate CSS
 frameworks of dozens (usually hundreds) of utility classes, including many
-possible variations (per spec). E.g. the following spec document uses a small,
-single generative rule description to declare altogether 21 utility classes for
-various possible margins (where 21 = 3 values provided × 7 variations):
+possible variations (per spec).
+
+### Overall file structure
+
+Generation specs use a simple JSON structure as shown below. The specs can be
+split over multiple files within a directory and will all be merged by the
+`generate` command of the toolchain.
+
+```json
+{
+	// optional meta data (later used for comment injection in generated CSS)
+	"info": {
+		"name": "Framework name",
+		"version": "0.0.0",
+	},
+	// optional media queries and their criteria
+	"media": {
+		"large": { "min-width": "60rem" },
+		"dark": { "prefers-color-scheme": "dark" }
+	},
+	// optional shared values/LUTs (arrays or objects)
+	"tables": {
+		"margins": [0, 0.25, 0.5, 1, 2, 4]
+	},
+	// array of actual generation specs
+	"specs": [
+		...
+	]
+}
+```
 
 ### Example spec
 
-(For each additional value added to `values`, 7 more classes will be generated...)
+The following generator document uses a single small generative rule spec to
+declare altogether 21 utility classes for various possible margins (where 21 = 3
+margin sizes provided × 7 variations).
+
+For each additional value added to the `margins` table, 7 more CSS classes will be
+generated. The `name` (class) and `props` (CSS property name) are parametric and
+will be explained in more detail further below.
 
 ```json tangle:export/readme-margins.json
 {
+	"tables": {
+		"margins": [0, 0.5, 1]
+	},
 	"specs": [
 		{
 			"name": "m<vid><k>",
 			"props": "margin<var>",
-			"values": [0, 0.5, 1],
+			"values": "margins",
 			"unit": "rem",
 			"var": ["a", "t", "r", "b", "l", "h", "v"]
 		}
@@ -178,7 +221,8 @@ various possible margins (where 21 = 3 values provided × 7 variations):
 }
 ```
 
-Assuming the above spec has been saved to a JSON file in the `myspecs` directory:
+Assuming the above spec has been saved to a JSON file in the `myspecs`
+directory:
 
 ```bash
 # the `generate` cmd is directory based and will read all
@@ -188,7 +232,8 @@ Assuming the above spec has been saved to a JSON file in the `myspecs` directory
 metacss generate --pretty myspecs
 ```
 
-This command (with the above spec) will generate the following output (we're only interested in the entries under `defs`):
+This command (with the above spec) will generate the following output (here
+we're only interested in the entries under `classes`):
 
 ```json
 {
@@ -197,7 +242,7 @@ This command (with the above spec) will generate the following output (we're onl
         "version": "0.0.0"
     },
     "media": {},
-    "defs": {
+    "classes": {
         "ma0": { "margin": "0rem" },
         "ma1": { "margin": ".5rem" },
         "ma2": { "margin": "1rem" },
@@ -225,22 +270,66 @@ This command (with the above spec) will generate the following output (we're onl
 
 When later used, we can then refer to each of these classes by their generated
 names, e.g. `ma0` to disable all margins or `mh2` to set both left & right
-margins to 1 rem (in this case)...
+margins to `1rem` (in this case)...
 
-### Parametric IDs
+### Spec structure
 
-The following patterns can (and should) be used in a spec's `name` and `props` values to generate multiple derived values (more examples below).
+An individual generator spec JSON object can contain the following keys:
 
-| **ID**  | **Value**               |
-|---------|-------------------------|
-| `<vid>` | Current variation ID    |
-| `<var>` | Current variation value |
-| `<k>`   | Current key             |
-| `<v>`   | Current value           |
+| **ID**   | **Type**                | **Description**                                              |
+|----------|-------------------------|--------------------------------------------------------------|
+| `name`   | string                  | Parametric name for the generated CSS class(es)              |
+| `props`  | string or object        | CSS property name(s), possibly parametric                    |
+| `values` | string, array or object | Values to be assigned to CSS properties, possibly parametric |
+| `unit`   | string, optional        | CSS unit to use for values                                   |
+| `key`    | string, optional        | Method for deriving keys from current value                  |
+| `var`    | string[], optional      | Array of variation IDs (see section below)                   |
+| `user`   | any, optional           | Custom user data, comments, metadata etc.                    |
 
-TODO explain meanings of these terms...
+The number of generated CSS classes per spec is number of items in `values`
+multiplied with the number of variations in `var` (if any).
 
-### Variations
+Any `user` data will be stored (as is) with each generated CSS class, but
+currently has no other direct use in the toolchain and is meant for additional
+user-defined tooling.
+
+#### Values
+
+The `values` are used to populate the `props` (CSS properties). If `values` is a string it will be used
+
+#### Key value generation
+
+The `key` field is only used when `values` is resolving to an array. In this
+case this field determines how a "key" value (aka the `<k>` param for string
+interpolation, see below) will be derived for each value in `values`:
+
+| **`key`** | **`values`**    | **Description**         | **Examples** |
+|-----------|-----------------|-------------------------|--------------|
+| `v`       | `[10, 20, ...]` | Actual array item value | 10, 20, ...  |
+| `i`       | `[10, 20, ...]` | Array item index        | 0, 1,...     |
+| `i1`      | `[10, 20, ...]` | Array item index + 1    | 1, 2,...     |
+
+If `values` resolves to an object, the `<k>` param will always be the key of the
+currently processed value.
+
+```json
+{
+	"name": "test-<k>",
+	"props": "test-prop",
+	"values": { "abc": 23, "xyz": 42 }
+}
+```
+
+The above spec will generate the following (some parts omitted):
+
+```json
+{
+	"test-abc": { "test-prop": 23 },
+	"test-xyz": { "test-prop": 42 },
+}
+```
+
+#### Variations
 
 Variations can be requested by providing an array of valid variation IDs. If
 used, `<vid>` or `<var>` parameters must be used in the `name` or else naming
@@ -263,11 +352,21 @@ conflicts will occur.
 | `"x"`      | `["-x"]`              |
 | `"y"`      | `["-y"]`              |
 
-### Base framework specs
+### Parametric IDs
 
-The package includes a large number of useful specs in
-[/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/).
-These are provided as starting point to define your custom framework(s)...
+The following parameters can (and should) be used in a spec's `name` and `props`
+values to generate multiple derived values (more examples below).
+
+- `<vid>` is a value from the ID column of variations table above. If no
+  variations are requested, its value will be an empty string.
+- `<var>` is one of the expanded values for the current variation (2nd column of
+  variations table)
+- `<v>` is the currently processed value of a spec's `values`.
+- `<k>` is the key (possibly computed) for the currently processed item of a
+  spec's `values` and will depend on the type of `values` (see below)
+
+
+<!-- include export/framework.md -->
 
 {{meta.status}}
 
