@@ -10,11 +10,13 @@
 	},
 	"specs": [
 		{
+			"user": "typography",
 			"name": "<k>",
 			"props": "font-family",
 			"values": "families"
 		},
 		{
+			"user": "typography",
 			"name": "f<k>",
 			"key": "i1",
 			"props": "font-size",
@@ -22,6 +24,7 @@
 			"unit": "rem"
 		},
 		{
+			"user": "typography",
 			"name": "f-<k>",
 			"props": "font-size",
 			"values": {
@@ -30,11 +33,13 @@
 			}
 		},
 		{
+			"user": "typography",
 			"name": "fw<v>",
 			"props": "font-weight",
 			"values": "100s"
 		},
 		{
+			"user": "typography",
 			"name": "<k>",
 			"props": "font-weight",
 			"values": {
@@ -43,12 +48,14 @@
 			}
 		},
 		{
+			"user": "typography",
 			"name": "<k>",
 			"key": "v",
 			"props": "font-variant",
 			"values": ["small-caps"]
 		},
 		{
+			"user": "typography",
 			"name": "<k>",
 			"props": "text-decoration",
 			"values": {
@@ -58,6 +65,7 @@
 			}
 		},
 		{
+			"user": "typography",
 			"name": "tt<k>",
 			"props": "text-transform",
 			"values": {
@@ -71,6 +79,7 @@
 			}
 		},
 		{
+			"user": "typography",
 			"name": "t<k>",
 			"props": "text-align",
 			"values": {
@@ -81,6 +90,7 @@
 			}
 		},
 		{
+			"user": "typography",
 			"name": "v-<k>",
 			"props": "vertical-align",
 			"values": {
@@ -90,6 +100,7 @@
 			}
 		},
 		{
+			"user": "typography",
 			"name": "lh-<k>",
 			"props": "line-height",
 			"values": {
@@ -100,11 +111,13 @@
 			}
 		},
 		{
+			"user": "typography",
 			"name": "ws-<k>",
 			"props": "white-space",
 			"values": ["normal", "nowrap", "pre"]
 		},
 		{
+			"user": "typography",
 			"name": "ls-<k>",
 			"props": "letter-spacing",
 			"values": {

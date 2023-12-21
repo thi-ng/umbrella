@@ -1,6 +1,7 @@
 {
 	"specs": [
 		{
+			"user": "lists",
 			"name": "<k>",
 			"props": "list-style",
 			"values": { "list": "none" }

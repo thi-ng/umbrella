@@ -1,6 +1,7 @@
 {
 	"specs": [
 		{
+			"user": "animations / transitions",
 			"name": "bg-anim<k>",
 			"key": "i1",
 			"props": { "transition": "<v>s background-color ease-in-out" },

@@ -1,6 +1,7 @@
 {
 	"specs": [
 		{
+			"user": "display mode",
 			"name": "d<k>",
 			"props": "display",
 			"values": {

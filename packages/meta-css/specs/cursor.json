@@ -1,6 +1,7 @@
 {
 	"specs": [
 		{
+			"user": "cursors",
 			"name": "cursor-<k>",
 			"props": "cursor",
 			"values": {

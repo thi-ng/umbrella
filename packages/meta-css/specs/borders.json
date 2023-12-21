@@ -5,12 +5,14 @@
 	},
 	"specs": [
 		{
+			"user": "border radius",
 			"name": "br<k>",
 			"props": "border-radius",
 			"values": "borders-r",
 			"unit": "rem"
 		},
 		{
+			"user": "border radius",
 			"name": "br<vid><k>",
 			"props": {
 				"border-top<var>-radius": "<v>",
@@ -21,6 +23,7 @@
 			"var": ["l", "r"]
 		},
 		{
+			"user": "border radius",
 			"name": "br<vid><k>",
 			"props": {
 				"border<var>-left-radius": "<v>",
@@ -31,6 +34,7 @@
 			"var": ["t", "b"]
 		},
 		{
+			"user": "border width",
 			"name": "bw<vid><k>",
 			"props": {
 				"border<var>-style": "solid",

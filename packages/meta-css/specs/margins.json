@@ -4,6 +4,7 @@
 	},
 	"specs": [
 		{
+			"user": "padding",
 			"name": "p<vid><k>",
 			"props": "padding<var>",
 			"values": "margins",
@@ -11,6 +12,7 @@
 			"var": ["a", "h", "v", "t", "r", "b", "l"]
 		},
 		{
+			"user": "margin",
 			"name": "m<vid><k>",
 			"props": "margin<var>",
 			"values": "margins",
@@ -18,6 +20,7 @@
 			"var": ["a", "h", "v", "t", "r", "b", "l"]
 		},
 		{
+			"user": "margin",
 			"name": "<k>",
 			"props": {
 				"margin-left": "<v>",

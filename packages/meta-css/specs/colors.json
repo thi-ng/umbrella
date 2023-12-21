@@ -48,51 +48,61 @@
 	},
 	"specs": [
 		{
+			"user": "colors",
 			"name": "b--vcol<v>",
 			"props": { "border-color": "var(--color<v>)" },
 			"values": "var-palette"
 		},
 		{
+			"user": "colors",
 			"name": "b--<k>",
 			"props": "border-color",
 			"values": "palette"
 		},
 		{
+			"user": "colors",
 			"name": "b--<k>",
 			"props": "border-color",
 			"values": "grays"
 		},
 		{
+			"user": "colors",
 			"name": "vcol<v>",
 			"props": { "color": "var(--color<v>)" },
 			"values": "var-palette"
 		},
 		{
+			"user": "colors",
 			"name": "<k>",
 			"props": "color",
 			"values": "palette"
 		},
 		{
+			"user": "colors",
 			"name": "<k>",
 			"props": "color",
 			"values": "grays"
 		},
 		{
+			"user": "colors",
 			"name": "bg-vcol<v>",
 			"props": { "background-color": "var(--color<v>)" },
 			"values": "var-palette"
 		},
 		{
+			"user": "colors",
 			"name": "bg-<k>",
 			"props": "background-color",
 			"values": "palette"
 		},
 		{
+			"user": "colors",
 			"name": "bg-<k>",
 			"props": "background-color",
 			"values": "grays"
 		},
 		{
+			"user": "colors",
 			"name": "o-<k>",
 			"props": "opacity",
 			"values": {

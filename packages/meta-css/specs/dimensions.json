@@ -7,6 +7,7 @@
 	},
 	"specs": [
 		{
+			"user": "width",
 			"name": "w<k>",
 			"key": "i1",
 			"props": "width",
@@ -14,12 +15,14 @@
 			"unit": "rem"
 		},
 		{
+			"user": "width",
 			"name": "w-<v>",
 			"props": "width",
 			"values": "sizes-rel",
 			"unit": "%"
 		},
 		{
+			"user": "max. width",
 			"name": "mw<k>",
 			"key": "i1",
 			"props": "max-width",
@@ -27,12 +30,14 @@
 			"unit": "rem"
 		},
 		{
+			"user": "max. width",
 			"name": "mw-<v>",
 			"props": "max-width",
 			"values": "sizes-rel",
 			"unit": "%"
 		},
 		{
+			"user": "height",
 			"name": "h<k>",
 			"key": "i1",
 			"props": "height",
@@ -40,6 +45,7 @@
 			"unit": "rem"
 		},
 		{
+			"user": "height",
 			"name": "h-<v>",
 			"props": "height",
 			"values": "sizes-rel",

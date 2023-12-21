@@ -9,12 +9,14 @@
 	},
 	"specs": [
 		{
+			"user": "shadow",
 			"name": "shadow-<k>",
 			"key": "i1",
 			"props": "box-shadow",
 			"values": "shadows"
 		},
 		{
+			"user": "shadow",
 			"name": "i-shadow-<k>",
 			"key": "i1",
 			"props": { "box-shadow": "<v> inset" },

@@ -4,11 +4,13 @@
 	},
 	"specs": [
 		{
+			"user": "positions",
 			"name": "<v>",
 			"props": "position",
 			"values": ["absolute", "relative", "fixed", "sticky"]
 		},
 		{
+			"user": "positions",
 			"name": "<var>-<v>",
 			"props": "<var>",
 			"values": "pos",
@@ -16,6 +18,7 @@
 			"var": ["top", "right", "bottom", "left"]
 		},
 		{
+			"user": "z-indices",
 			"name": "z-<v>",
 			"props": "z-index",
 			"values": [0, 1, 2, 3, 4, 5, 999, 9999]
