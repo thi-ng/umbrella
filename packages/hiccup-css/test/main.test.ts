@@ -151,7 +151,14 @@ test("float format", () => {
 	expect(
 		css([
 			"a",
-			{ a: rem(0.1), b: rem(0), c: rem(0.0), d: rem(-0), e: rem(0.0001) },
+			{
+				a: rem(0.1),
+				b: rem(0),
+				c: rem(0.0),
+				d: rem(-0),
+				e: rem(0.0001),
+				f: rem(-0.120001),
+			},
 		])
-	).toBe("a{a:.1rem;b:0rem;c:0rem;d:0rem;e:.0001rem;}");
+	).toBe("a{a:.1rem;b:0rem;c:0rem;d:0rem;e:.0001rem;f:-.12rem;}");
 });
