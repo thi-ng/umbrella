@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/meta-css",
-	"version": "0.1.3",
+	"version": "0.2.0",
 	"description": "Data-driven CSS framework codegen, transpiler & bundler",
 	"type": "module",
 	"module": "./index.js",
@@ -45,7 +45,7 @@
 		"@thi.ng/compose": "^2.1.53",
 		"@thi.ng/errors": "^2.4.8",
 		"@thi.ng/file-io": "^1.1.2",
-		"@thi.ng/hiccup-css": "^2.3.2",
+		"@thi.ng/hiccup-css": "^2.3.3",
 		"@thi.ng/logger": "^2.1.1",
 		"@thi.ng/rstream": "^8.2.17",
 		"@thi.ng/strings": "^3.7.5",
