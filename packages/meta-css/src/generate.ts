@@ -100,7 +100,7 @@ export const GENERATE: Command<
 		const result: CompiledSpecs = {
 			info: { name: "TODO", version: "0.0.0" },
 			media: {},
-			defs: {},
+			classes: {},
 		};
 		setPrecision(prec);
 		for (let input of files(root, ".json")) {
@@ -108,7 +108,7 @@ export const GENERATE: Command<
 			Object.assign(result.info, config.info);
 			Object.assign(result.media, config.media);
 			for (let spec of config.specs) {
-				expandSpec(config, spec, result.defs, logger);
+				expandSpec(config, spec, result.classes, logger);
 			}
 		}
 		maybeWriteText(
@@ -143,8 +143,9 @@ export const expandSpec = (
 				values[currKey]
 			);
 			const currValue = __value(values[currKey], spec.unit);
-			if (!defs[name]) defs[name] = {};
-			else if (!ownNames.has(name))
+			if (!defs[name]) {
+				defs[name] = spec.user != null ? { __user: spec.user } : {};
+			} else if (!ownNames.has(name))
 				illegalArgs(`duplicate class ID: ${name}`);
 			ownNames.add(name);
 			for (let [k, v] of Object.entries(props)) {
@@ -182,7 +183,9 @@ const __items = (spec: Spec, config: Pick<GeneratorConfig, "tables">) => {
 			? (v) => String(v)
 			: spec.key === "i1"
 			? (_, i) => String(i + 1)
-			: (_, i) => String(i);
+			: spec.key === undefined
+			? (_, i) => String(i)
+			: illegalArgs(`invalid key type: ${spec.key}`);
 	return (<any[]>$values).reduce(
 		(acc: IObjectOf<NumOrString>, x: any, i: number) => {
 			acc[keyFn(x, i)] = x;

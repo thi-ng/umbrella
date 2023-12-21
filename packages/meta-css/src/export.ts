@@ -1,4 +1,5 @@
 // thing:no-export
+import type { IObjectOf } from "@thi.ng/api";
 import { strings, type Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
 import { COMPACT, PRETTY, at_media, css } from "@thi.ng/hiccup-css";
@@ -56,14 +57,14 @@ export const serializeSpecs = (
 	pretty: boolean,
 	logger: ILogger
 ) => {
-	const rules: any[] = defSuffixed("", specs);
+	const rules: any[] = __suffixed("", specs);
 	if (media) {
 		const mediaIDs = media[0] === "ALL" ? Object.keys(specs.media) : media;
 		for (let id of mediaIDs) {
 			const query = specs.media[id];
 			if (query) {
 				rules.push(
-					at_media(specs.media[id], defSuffixed("-" + id, specs))
+					at_media(specs.media[id], __suffixed("-" + id, specs))
 				);
 			} else {
 				logger.warn(`invalid media query ID: ${id}, skipping...`);
@@ -73,5 +74,18 @@ export const serializeSpecs = (
 	return css(rules, { format: pretty ? PRETTY : COMPACT });
 };
 
-const defSuffixed = (suffix: string, specs: CompiledSpecs) =>
-	Object.entries(specs.defs).map(([id, def]) => [`.${id}${suffix}`, def]);
+/** @internal */
+const __suffixed = (suffix: string, specs: CompiledSpecs) =>
+	Object.entries(specs.classes).map(([id, props]) => [
+		`.${id}${suffix}`,
+		__withoutUser(props),
+	]);
+
+/** @internal */
+const __withoutUser = (props: IObjectOf<any>) => {
+	if ("__user" in props) {
+		props = { ...props };
+		delete props.__user;
+	}
+	return props;
+};

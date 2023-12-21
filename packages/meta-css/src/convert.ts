@@ -218,7 +218,7 @@ const processForceIncludes = (
 	logger: ILogger
 ) => {
 	const mediaQueryIDs = new Set(Object.keys(specs.media));
-	const allIDs = new Set(Object.keys(specs.defs));
+	const allIDs = new Set(Object.keys(specs.classes));
 	const mediaQueryRules: IObjectOf<IObjectOf<Set<string>>> = {};
 	const plainRules: IObjectOf<Set<string>> = {};
 	if (classes.length && classes[0][0] === "@") {
@@ -302,8 +302,8 @@ const processSpec = (
 							token,
 							mediaQueryIDs
 						);
-						if (!specs.defs[id])
-							illegalArgs(`unknown rule ID: ${id}`);
+						if (!specs.classes[id])
+							illegalArgs(`unknown class ID: ${id}`);
 						if (query) {
 							addMediaQueryDef(
 								mediaQueryRules,
@@ -366,7 +366,9 @@ const buildDeclsForPath = (
 	for (let i = 0; i < parts.length; i++) {
 		const curr = parts[i].split(",");
 		if (i == parts.length - 1) {
-			curr.push(Object.assign({}, ...map((x) => specs.defs[x], ids)));
+			const obj = Object.assign({}, ...map((x) => specs.classes[x], ids));
+			if ("__user" in obj) delete obj.__user;
+			curr.push(obj);
 		}
 		parent.push(curr);
 		parent = curr;

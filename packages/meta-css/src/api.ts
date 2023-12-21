@@ -14,7 +14,7 @@ export interface AppCtx<T extends CommonOpts>
 }
 
 export interface CompiledSpecs {
-	defs: IObjectOf<any>;
+	classes: IObjectOf<any>;
 	media: IObjectOf<any>;
 	info: SpecInfo;
 }
@@ -38,6 +38,7 @@ export interface Spec {
 	values: IObjectOf<NumOrString> | string[] | number[] | string;
 	unit?: string;
 	var?: string[];
+	user?: any;
 }
 
 export type Index = "i" | "i1" | "v";
