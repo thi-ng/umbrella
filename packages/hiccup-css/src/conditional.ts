@@ -25,7 +25,7 @@ const formatCond = (cond: any) => {
 			if (v === true) {
 				v = MEDIA_TYPES.has(c) ? c : `(${c})`;
 			} else if (v === false) {
-				v = "not " + (MEDIA_TYPES.has(c) ? c : `(${c})`);
+				v = `(not ${MEDIA_TYPES.has(c) ? c : `(${c})`})`;
 			} else if (v === "only") {
 				v += " " + c;
 			} else {

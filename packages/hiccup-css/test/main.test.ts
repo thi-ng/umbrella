@@ -100,9 +100,9 @@ test("@keyframes", () => {
 
 test("@media", () => {
 	expect(css(at_media({ screen: true }, []))).toBe("@media screen{}");
-	expect(css(at_media({ screen: false }, []))).toBe("@media not screen{}");
+	expect(css(at_media({ screen: false }, []))).toBe("@media (not screen){}");
 	expect(css(at_media({ screen: false, print: true }, []))).toBe(
-		"@media not screen and print{}"
+		"@media (not screen) and print{}"
 	);
 	expect(css(at_media({ screen: "only" }, []))).toBe("@media only screen{}");
 	expect(
@@ -127,7 +127,7 @@ test("@media", () => {
 		`@media (prefers-reduced-motion){}`
 	);
 	expect(css(at_media({ "prefers-reduced-motion": false }, []))).toBe(
-		`@media not (prefers-reduced-motion){}`
+		`@media (not (prefers-reduced-motion)){}`
 	);
 });
 
