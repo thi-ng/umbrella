@@ -1,6 +1,6 @@
 // thing:no-export
 import type { IObjectOf } from "@thi.ng/api";
-import { strings, type Command } from "@thi.ng/args";
+import { strings, type Command, string } from "@thi.ng/args";
 import { peek } from "@thi.ng/arrays";
 import { delayed } from "@thi.ng/compose";
 import { assert, illegalArgs, illegalState } from "@thi.ng/errors";
@@ -35,6 +35,7 @@ type State = "sel" | "class" | "nest";
 interface ConvertOpts extends CommonOpts {
 	specs: string;
 	include?: string[];
+	eval?: string;
 	force?: string[];
 	pretty: boolean;
 	noHeader: boolean;
@@ -71,8 +72,13 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
 		...ARG_WATCH,
+		eval: string({
+			alias: "e",
+			desc: "eval meta stylesheet in given string (ignores other inputs & includes)",
+		}),
 		force: strings({
 			alias: "f",
+			hint: "STR",
 			desc: "CSS classes to force include (wildcards are supported, @-prefix will read from file)",
 			delim: ",",
 		}),
@@ -89,6 +95,8 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 		);
 		if (ctx.opts.watch) {
 			await watchInputs(ctx, specs, forceRules);
+		} else if (ctx.opts.eval) {
+			processInputs(ctx, specs, forceRules, [ctx.opts.eval]);
 		} else {
 			processInputs(
 				ctx,
