@@ -335,8 +335,11 @@ and ALWAYS combined using `and`:
 |------------------------|----------------------|
 | `"min-width": "10rem"` | `(min-width: 10rem)` |
 | `print: true`          | `print`              |
-| `print: false`         | `not print`          |
+| `print: false`         | `(not print)`        |
 | `print: "only"`        | `only print`         |
+
+Note: In CSS Level 3, the `not` operator can't be used to negate an individual
+media feature expression, only an entire media query.
 
 ```ts
 css.css(

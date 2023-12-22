@@ -117,7 +117,7 @@ For Node.js REPL:
 const hiccupCss = await import("@thi.ng/hiccup-css");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.13 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
 
 ## Dependencies
 
@@ -403,8 +403,11 @@ and ALWAYS combined using `and`:
 |------------------------|----------------------|
 | `"min-width": "10rem"` | `(min-width: 10rem)` |
 | `print: true`          | `print`              |
-| `print: false`         | `not print`          |
+| `print: false`         | `(not print)`        |
 | `print: "only"`        | `only print`         |
+
+Note: In CSS Level 3, the `not` operator can't be used to negate an individual
+media feature expression, only an entire media query.
 
 ```ts
 css.css(
