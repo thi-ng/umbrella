@@ -17,6 +17,12 @@
 				"tc": "table-cell",
 				"tr": "table-row"
 			}
+		},
+		{
+			"user": "visibility",
+			"name": "<v>",
+			"props": { "visibility": "<v> !important" },
+			"values": ["hidden", "visible"]
 		}
 	]
 }

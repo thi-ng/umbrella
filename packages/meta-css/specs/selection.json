@@ -1,0 +1,15 @@
+{
+	"specs": [
+		{
+			"user": "selection",
+			"name": "noselect",
+			"props": {
+				"-webkit-user-select": "<v>",
+				"-moz-user-selec": "<v>",
+				"-ms-user-select": "<v>",
+				"user-select": "<v>"
+			},
+			"values": ["none"]
+		}
+	]
+}
