@@ -121,7 +121,7 @@ export const GENERATE: Command<
 
 /** @internal */
 export const expandSpec = (
-	config: Pick<GeneratorConfig, "tables">,
+	config: Pick<GeneratorConfig, "tables" | "vars">,
 	spec: Spec,
 	defs: IObjectOf<any>,
 	logger: ILogger
@@ -132,7 +132,7 @@ export const expandSpec = (
 	const ownNames = new Set<string>();
 	for (let currVarID of variationIDs) {
 		for (let [varValue, currKey] of permutations(
-			VARIATIONS[currVarID],
+			config.vars?.[currVarID] || VARIATIONS[currVarID],
 			Object.keys(values)
 		)) {
 			const name = __withVariations(

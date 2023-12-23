@@ -23,6 +23,7 @@ export interface GeneratorConfig {
 	info?: SpecInfo;
 	media?: IObjectOf<string>;
 	tables?: IObjectOf<IObjectOf<NumOrString> | string[] | number[]>;
+	vars?: IObjectOf<string[]>;
 	specs: Spec[];
 }
 
