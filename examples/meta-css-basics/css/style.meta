@@ -44,16 +44,16 @@ ul, ol { list pl0 lh-double }
 
 pre {
 	dark:bg-dark-blue dark:white light:bg-light-blue light:black
-	relative pa3 br3 lh-copy f6 overflow-x-scroll i-shadow-4
+	relative pa3 br3 lh-copy f6 overflow-x-scroll box-shadow-i-4
 	{ >div.lang { absolute z-1 top-0 right-0 bg-blue pa2 brl3 brt0 f7 } }
 }
 
-a:link, a:visited { dark:white black fw700 }
+a:link, a:visited { dark:white black fw700 pa2 br-pill bw1 b--red }
 a:hover { dark:hot-pink dark-pink }
 
 .swatches {
-	dg gap3 gc2 m:gc4 l:gc5 mb4
-	{ div { pa3 h3 ns:h4 br3 i-shadow-3 } }
+	dg gap3 grid-cols-2 m:grid-cols-4 l:grid-cols-5 mb4
+	{ div { pa3 h3 ns:h4 br3 box-shadow-i-3 } }
 }
 
 .group-v {
@@ -88,10 +88,10 @@ a:hover { dark:hot-pink dark-pink }
 }
 
 // configure grid columns to reflect number of items
-.group-h[data-items="2"] { gc2 }
-.group-h[data-items="3"] { gc3 }
-.group-h[data-items="4"] { ns:gc4 }
-.group-h[data-items="5"] { ns:gc5 }
+.group-h[data-items="2"] { grid-cols-2 }
+.group-h[data-items="3"] { grid-cols-3 }
+.group-h[data-items="4"] { ns:grid-cols-4 }
+.group-h[data-items="5"] { ns:grid-cols-5 }
 
 .group-v, .group-h {
 	mb3
