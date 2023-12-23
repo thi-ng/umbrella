@@ -1,0 +1,26 @@
+{
+	"specs": [
+		{
+			"user": "background",
+			"name": "bg-<v>",
+			"props": "background-size",
+			"values": ["cover", "contain"]
+		},
+		{
+			"user": "background",
+			"name": "bg-pos-<k>",
+			"props": "background-position",
+			"values": {
+				"n": "top",
+				"ne": "top right",
+				"e": "right",
+				"se": "bottom right",
+				"s": "bottom",
+				"sw": "bottom left",
+				"w": "left",
+				"nw": "top left",
+				"center": "center"
+			}
+		}
+	]
+}

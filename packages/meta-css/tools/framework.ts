@@ -1,7 +1,7 @@
 import { readJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { capitalize } from "@thi.ng/strings";
-import { Reducer, groupByObj, mapcat, pairs } from "@thi.ng/transducers";
+import { Reducer, groupByObj, mapcat } from "@thi.ng/transducers";
 import { CompiledSpecs } from "../src/api.js";
 import { GENERATE } from "../src/generate.js";
 
@@ -47,14 +47,13 @@ const doc: string[] = [
 	"### Classes by category",
 	"",
 	...mapcat(
-		([group, ids]) => [
-			`#### ${capitalize(group)} <!-- notoc -->\n`,
-			ids.map((x) => `\`${x}\``).join(" / "),
+		(groupID) => [
+			`#### ${capitalize(groupID)} <!-- notoc -->\n`,
+			grouped[groupID].map((x) => `\`${x}\``).join(" / "),
 			"",
 		],
-		pairs(grouped)
+		Object.keys(grouped).sort()
 	),
-	"",
 	"### Media queries",
 	"",
 	...Object.entries(specs.media).map(

@@ -2,54 +2,72 @@
 	"tables": {
 		"sizes-abs": [1, 2, 4, 8, 16],
 		"sizes-rel": [
-			10, 20, 25, 30, 33, 34, 40, 50, 60, 66, 70, 75, 80, 90, 100
+			10, 16, 17, 20, 25, 30, 33, 34, 40, 50, 60, 66, 67, 70, 75, 80, 83,
+			84, 90, 100
 		]
+	},
+	"vars": {
+		"w": ["width"],
+		"h": ["height"]
 	},
 	"specs": [
 		{
-			"user": "width",
-			"name": "w<k>",
+			"user": "<var>",
+			"name": "<vid><k>",
 			"key": "i1",
-			"props": "width",
+			"props": "<var>",
 			"values": "sizes-abs",
-			"unit": "rem"
+			"unit": "rem",
+			"var": ["w", "h"]
 		},
 		{
-			"user": "width",
-			"name": "w-<v>",
-			"props": "width",
+			"user": "<var>",
+			"name": "<vid>-<v>",
+			"props": "<var>",
 			"values": "sizes-rel",
-			"unit": "%"
+			"unit": "%",
+			"var": ["w", "h"]
 		},
 		{
-			"user": "max. width",
-			"name": "mw<k>",
+			"user": "min. <var>",
+			"name": "min<vid><k>",
 			"key": "i1",
-			"props": "max-width",
+			"props": "min-<var>",
 			"values": "sizes-abs",
-			"unit": "rem"
+			"unit": "rem",
+			"var": ["w", "h"]
 		},
 		{
-			"user": "max. width",
-			"name": "mw-<v>",
-			"props": "max-width",
+			"user": "min. <var>",
+			"name": "min<vid>-<v>",
+			"props": "min-<var>",
 			"values": "sizes-rel",
-			"unit": "%"
+			"unit": "%",
+			"var": ["w", "h"]
 		},
 		{
-			"user": "height",
-			"name": "h<k>",
+			"user": "max. <var>",
+			"name": "max<vid><k>",
 			"key": "i1",
-			"props": "height",
+			"props": "max-<var>",
 			"values": "sizes-abs",
-			"unit": "rem"
+			"unit": "rem",
+			"var": ["w", "h"]
 		},
 		{
-			"user": "height",
-			"name": "h-<v>",
-			"props": "height",
+			"user": "max. <var>",
+			"name": "max<vid>-<v>",
+			"props": "max-<var>",
 			"values": "sizes-rel",
-			"unit": "%"
+			"unit": "%",
+			"var": ["w", "h"]
+		},
+		{
+			"name": "v<vid>-<v>",
+			"props": "<var>",
+			"values": [25, 50, 75, 100],
+			"unit": "v<vid>",
+			"var": ["w", "h"]
 		}
 	]
 }

@@ -1,0 +1,43 @@
+{
+	"tables": {
+		"shadows": [
+			"0 0 2px 0px #0003",
+			"0 0 4px #0003",
+			"0 0 4px 1px #0003",
+			"0 0 8px 2px #0003"
+		]
+	},
+	"specs": [
+		{
+			"user": "shadow",
+			"name": "box-shadow-<k>",
+			"key": "i1",
+			"props": "box-shadow",
+			"values": "shadows"
+		},
+		{
+			"user": "shadow",
+			"name": "box-shadow-i-<k>",
+			"key": "i1",
+			"props": { "box-shadow": "<v> inset" },
+			"values": "shadows"
+		},
+		{
+			"user": "shadow",
+			"name": "text-shadow-<k>",
+			"key": "i1",
+			"props": "text-shadow",
+			"values": [
+				"1px 1px 2px #0003",
+				"1px 1px 4px #0003",
+				"1px 1px 8px #0003",
+				"2px 2px 2px #0003",
+				"2px 2px 4px #0003",
+				"2px 2px 8px #0003",
+				"3px 3px 2px #0003",
+				"3px 3px 4px #0003",
+				"3px 3px 8px #0003"
+			]
+		}
+	]
+}

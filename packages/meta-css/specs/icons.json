@@ -1,0 +1,30 @@
+{
+	"specs": [
+		{
+			"user": "icons",
+			"name": "icon-<k>",
+			"key": "i1",
+			"props": {
+				"display": "inline-block",
+				"width": "<v>",
+				"height": "<v>"
+			},
+			"values": [3, 2.25, 1.5, 1.25, 1, 0.875, 0.75],
+			"unit": "rem"
+		},
+		{
+			"user": "icons",
+			"name": "icon-<k>",
+			"props": {
+				"display": "inline-block",
+				"width": "<v>",
+				"height": "<v>"
+			},
+			"values": {
+				"title": 6,
+				"subtitle": 5
+			},
+			"unit": "rem"
+		}
+	]
+}

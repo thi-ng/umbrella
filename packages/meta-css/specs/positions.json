@@ -7,7 +7,7 @@
 			"user": "positions",
 			"name": "<v>",
 			"props": "position",
-			"values": ["absolute", "relative", "fixed", "sticky"]
+			"values": ["absolute", "relative", "fixed", "static", "sticky"]
 		},
 		{
 			"user": "positions",

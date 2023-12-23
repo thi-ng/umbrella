@@ -28,9 +28,10 @@
 			"name": "f-<k>",
 			"props": "font-size",
 			"values": {
-				"title": "6rem",
-				"subtitle": "5rem"
-			}
+				"title": 6,
+				"subtitle": 5
+			},
+			"unit": "rem"
 		},
 		{
 			"user": "font weights",
@@ -49,10 +50,15 @@
 		},
 		{
 			"user": "font variants",
-			"name": "<k>",
-			"key": "v",
+			"name": "<v>",
 			"props": "font-variant",
 			"values": ["small-caps"]
+		},
+		{
+			"user": "font style",
+			"name": "<v>",
+			"props": "font-style",
+			"values": ["italic"]
 		},
 		{
 			"user": "text decorations",
@@ -94,6 +100,7 @@
 			"name": "v-<k>",
 			"props": "vertical-align",
 			"values": {
+				"base": "baseline",
 				"btm": "bottom",
 				"mid": "middle",
 				"top": "top"

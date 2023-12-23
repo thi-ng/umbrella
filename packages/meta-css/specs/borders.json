@@ -34,6 +34,12 @@
 			"var": ["t", "b"]
 		},
 		{
+			"user": "border radius",
+			"name": "br-<k>",
+			"props": "border-radius",
+			"values": { "100": "100%", "pill": "9999px" }
+		},
+		{
 			"user": "border width",
 			"name": "bw<vid><k>",
 			"props": {
@@ -42,6 +48,17 @@
 			},
 			"values": "borders-w",
 			"unit": "rem",
+			"var": ["", "t", "r", "b", "l"]
+		},
+		{
+			"user": "border width",
+			"name": "bw<vid>-<v>px",
+			"props": {
+				"border<var>-style": "solid",
+				"border<var>-width": "<v>"
+			},
+			"values": [1],
+			"unit": "px",
 			"var": ["", "t", "r", "b", "l"]
 		}
 	]

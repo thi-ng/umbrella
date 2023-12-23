@@ -1,0 +1,38 @@
+{
+	"specs": [
+		{
+			"user": "aspect ratios",
+			"name": "aspect-ratio-<k>",
+			"props": {
+				"height": 0,
+				"position": "relative",
+				"padding-bottom": "<v>"
+			},
+			"values": {
+				"16x9": 56.25,
+				"9x16": 177.7777,
+				"4x3": 75,
+				"3x4": 133.3333,
+				"6x4": 66.6666,
+				"4x6": 150,
+				"1x1": 100
+			},
+			"unit": "%"
+		},
+		{
+			"user": "aspect ratios",
+			"name": "aspect-ratio-object",
+			"props": {
+				"position": "absolute",
+				"top": 0,
+				"bottom": 0,
+				"left": 0,
+				"right": 0,
+				"width": "100%",
+				"height": "100%",
+				"z-index": 100
+			},
+			"values": [""]
+		}
+	]
+}
