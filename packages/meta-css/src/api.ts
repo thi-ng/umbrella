@@ -15,6 +15,7 @@ export interface AppCtx<T extends CommonOpts>
 
 export interface CompiledSpecs {
 	classes: IObjectOf<any>;
+	decls: any[];
 	media: IObjectOf<any>;
 	info: SpecInfo;
 }
@@ -24,6 +25,7 @@ export interface GeneratorConfig {
 	media?: IObjectOf<string>;
 	tables?: IObjectOf<IObjectOf<NumOrString> | string[] | number[]>;
 	vars?: IObjectOf<string[]>;
+	decls?: any[];
 	specs: Spec[];
 }
 
@@ -57,6 +59,10 @@ export const ARG_INCLUDE = {
 		alias: "I",
 		desc: "Include CSS files (prepend)",
 	}),
+};
+
+export const ARG_EXCLUDE_DECLS = {
+	noDecls: flag({ alias: "d", desc: "Don't emit framework decls" }),
 };
 
 export const ARG_PRETTY = {

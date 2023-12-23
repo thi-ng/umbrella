@@ -1,6 +1,6 @@
 // thing:no-export
 import type { IObjectOf } from "@thi.ng/api";
-import { strings, type Command, string } from "@thi.ng/args";
+import { string, strings, type Command } from "@thi.ng/args";
 import { peek } from "@thi.ng/arrays";
 import { delayed } from "@thi.ng/compose";
 import { assert, illegalArgs, illegalState } from "@thi.ng/errors";
@@ -19,6 +19,7 @@ import { assocObj, filter, map } from "@thi.ng/transducers";
 import { watch } from "fs";
 import { resolve } from "path";
 import {
+	ARG_EXCLUDE_DECLS,
 	ARG_INCLUDE,
 	ARG_NO_HEADER,
 	ARG_PRETTY,
@@ -38,6 +39,7 @@ interface ConvertOpts extends CommonOpts {
 	eval?: string;
 	force?: string[];
 	pretty: boolean;
+	noDecls: boolean;
 	noHeader: boolean;
 	watch: boolean;
 }
@@ -69,6 +71,7 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 	opts: {
 		...ARG_SPECS,
 		...ARG_INCLUDE,
+		...ARG_EXCLUDE_DECLS,
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
 		...ARG_WATCH,
@@ -173,7 +176,10 @@ const watchInputs = async (
 };
 
 const processInputs = (
-	{ logger, opts: { include, noHeader, out, pretty } }: AppCtx<ConvertOpts>,
+	{
+		logger,
+		opts: { include, noDecls, noHeader, out, pretty },
+	}: AppCtx<ConvertOpts>,
 	specs: CompiledSpecs,
 	forceRules: ReturnType<typeof processForceIncludes>,
 	inputs: string[]
@@ -190,6 +196,9 @@ const processInputs = (
 		? include.map((x) => readText(resolve(x), logger).trim())
 		: [];
 	if (!noHeader) bundle.push(generateHeader(specs));
+	if (!noDecls && specs.decls.length) {
+		bundle.push(css(specs.decls, { format: procOpts.format }));
+	}
 	inputs.forEach((input) => processSpec(input, procOpts));
 	processPlainRules(bundle, procOpts);
 	processMediaQueries(bundle, procOpts);
@@ -212,12 +221,12 @@ const processMediaQueries = (
 };
 
 const processPlainRules = (
-	result: string[],
+	bundle: string[],
 	{ logger, specs, format, plainRules }: ProcessOpts
 ) => {
 	const rules = buildDecls(plainRules, specs);
 	logger.debug("plain rules", rules);
-	result.push(css(rules, { format }));
+	bundle.push(css(rules, { format }));
 };
 
 const processForceIncludes = (

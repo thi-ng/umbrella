@@ -101,12 +101,14 @@ export const GENERATE: Command<
 			info: { name: "TODO", version: "0.0.0" },
 			media: {},
 			classes: {},
+			decls: [],
 		};
 		setPrecision(prec);
 		for (let input of files(root, ".json")) {
 			const config = readJSON<GeneratorConfig>(input, logger);
 			Object.assign(result.info, config.info);
 			Object.assign(result.media, config.media);
+			if (config.decls) result.decls.push(...config.decls);
 			for (let spec of config.specs) {
 				expandSpec(config, spec, result.classes, logger);
 			}

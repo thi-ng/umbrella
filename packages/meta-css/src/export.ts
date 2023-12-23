@@ -6,6 +6,7 @@ import { COMPACT, PRETTY, at_media, css } from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
 import { resolve } from "path";
 import {
+	ARG_EXCLUDE_DECLS,
 	ARG_INCLUDE,
 	ARG_NO_HEADER,
 	ARG_PRETTY,
@@ -17,6 +18,7 @@ import { generateHeader, maybeWriteText } from "./utils.js";
 
 interface ExportOpts extends CommonOpts {
 	pretty: boolean;
+	noDecls: boolean;
 	noHeader: boolean;
 	include?: string[];
 	media?: string[];
@@ -26,6 +28,7 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 	desc: "Export entire generated framework as CSS",
 	opts: {
 		...ARG_INCLUDE,
+		...ARG_EXCLUDE_DECLS,
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
 		media: strings({
@@ -38,7 +41,7 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 	fn: async (ctx) => {
 		const {
 			logger,
-			opts: { include, media, noHeader, pretty, out },
+			opts: { include, media, noDecls, noHeader, pretty, out },
 			inputs,
 		} = ctx;
 		const specs = readJSON<CompiledSpecs>(resolve(inputs[0]), logger);
@@ -46,6 +49,11 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 			? include.map((x) => readText(resolve(x), logger).trim())
 			: [];
 		if (!noHeader) bundle.push(generateHeader(specs));
+		if (!noDecls && specs.decls.length) {
+			bundle.push(
+				css(specs.decls, { format: pretty ? PRETTY : COMPACT })
+			);
+		}
 		bundle.push(serializeSpecs(specs, media, pretty, logger));
 		maybeWriteText(out, bundle, logger);
 	},
