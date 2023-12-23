@@ -117,6 +117,10 @@ split over multiple files within a directory and will all be merged by the
     "tables": {
         "margins": [0, 0.25, 0.5, 1, 2, 4]
     },
+    // optional shared variations
+    "vars": {
+        "size": ["width", "height"]
+    },
     // array of actual generation specs
     "specs": [
         //...
@@ -434,8 +438,7 @@ Flags:
 
 Main:
 
--e STR, --eval STR      eval meta stylesheet in given string (ignores other inpu
-                        ts & includes)
+-e STR, --eval STR      eval meta stylesheet in given string (ignores other inputs & includes)
 -f STR, --force STR     [multiple] CSS classes to force include (wildcards are
                         supported, @-prefix will read from file)
 -I STR, --include STR   [multiple] Include CSS files (prepend)
@@ -718,17 +721,29 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 ### Classes by category
 
+#### Accessibility <!-- notoc -->
+
+`screen-reader` / `screen-reader-focus`
+
 #### Animations / transitions <!-- notoc -->
 
 `bg-anim1` / `bg-anim2` / `bg-anim3`
 
+#### Aspect ratios <!-- notoc -->
+
+`aspect-ratio-16x9` / `aspect-ratio-1x1` / `aspect-ratio-3x4` / `aspect-ratio-4x3` / `aspect-ratio-4x6` / `aspect-ratio-6x4` / `aspect-ratio-9x16` / `aspect-ratio-object`
+
+#### Background <!-- notoc -->
+
+`bg-contain` / `bg-cover` / `bg-pos-center` / `bg-pos-e` / `bg-pos-n` / `bg-pos-ne` / `bg-pos-nw` / `bg-pos-s` / `bg-pos-se` / `bg-pos-sw` / `bg-pos-w`
+
 #### Border radius <!-- notoc -->
 
-`br0` / `br1` / `br2` / `br3` / `br4` / `brb0` / `brb1` / `brb2` / `brb3` / `brb4` / `brl0` / `brl1` / `brl2` / `brl3` / `brl4` / `brr0` / `brr1` / `brr2` / `brr3` / `brr4` / `brt0` / `brt1` / `brt2` / `brt3` / `brt4`
+`br-100` / `br-pill` / `br0` / `br1` / `br2` / `br3` / `br4` / `brb0` / `brb1` / `brb2` / `brb3` / `brb4` / `brl0` / `brl1` / `brl2` / `brl3` / `brl4` / `brr0` / `brr1` / `brr2` / `brr3` / `brr4` / `brt0` / `brt1` / `brt2` / `brt3` / `brt4`
 
 #### Border width <!-- notoc -->
 
-`bw0` / `bw1` / `bw2` / `bw3` / `bw4` / `bw5` / `bwb0` / `bwb1` / `bwb2` / `bwb3` / `bwb4` / `bwb5` / `bwl0` / `bwl1` / `bwl2` / `bwl3` / `bwl4` / `bwl5` / `bwr0` / `bwr1` / `bwr2` / `bwr3` / `bwr4` / `bwr5` / `bwt0` / `bwt1` / `bwt2` / `bwt3` / `bwt4` / `bwt5`
+`bw-1px` / `bw0` / `bw1` / `bw2` / `bw3` / `bw4` / `bw5` / `bwb-1px` / `bwb0` / `bwb1` / `bwb2` / `bwb3` / `bwb4` / `bwb5` / `bwl-1px` / `bwl0` / `bwl1` / `bwl2` / `bwl3` / `bwl4` / `bwl5` / `bwr-1px` / `bwr0` / `bwr1` / `bwr2` / `bwr3` / `bwr4` / `bwr5` / `bwt-1px` / `bwt0` / `bwt1` / `bwt2` / `bwt3` / `bwt4` / `bwt5`
 
 #### Colors <!-- notoc -->
 
@@ -738,53 +753,9 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 `cursor-alias` / `cursor-auto` / `cursor-cell` / `cursor-col` / `cursor-context` / `cursor-copy` / `cursor-cross` / `cursor-default` / `cursor-e` / `cursor-ew` / `cursor-forbidden` / `cursor-grab` / `cursor-grabbing` / `cursor-help` / `cursor-in` / `cursor-move` / `cursor-n` / `cursor-ne` / `cursor-news` / `cursor-no-drop` / `cursor-none` / `cursor-ns` / `cursor-nw` / `cursor-nwse` / `cursor-out` / `cursor-pointer` / `cursor-progress` / `cursor-row` / `cursor-s` / `cursor-scroll` / `cursor-se` / `cursor-sw` / `cursor-text` / `cursor-vtext` / `cursor-w` / `cursor-wait`
 
-#### Width <!-- notoc -->
-
-`w-10` / `w-100` / `w-20` / `w-25` / `w-30` / `w-33` / `w-34` / `w-40` / `w-50` / `w-60` / `w-66` / `w-70` / `w-75` / `w-80` / `w-90` / `w1` / `w2` / `w3` / `w4` / `w5`
-
-#### Max. width <!-- notoc -->
-
-`mw-10` / `mw-100` / `mw-20` / `mw-25` / `mw-30` / `mw-33` / `mw-34` / `mw-40` / `mw-50` / `mw-60` / `mw-66` / `mw-70` / `mw-75` / `mw-80` / `mw-90` / `mw1` / `mw2` / `mw3` / `mw4` / `mw5`
-
-#### Height <!-- notoc -->
-
-`h-10` / `h-100` / `h-20` / `h-25` / `h-30` / `h-33` / `h-34` / `h-40` / `h-50` / `h-60` / `h-66` / `h-70` / `h-75` / `h-80` / `h-90` / `h1` / `h2` / `h3` / `h4` / `h5`
-
 #### Display mode <!-- notoc -->
 
 `db` / `df` / `dg` / `di` / `dib` / `dif` / `dig` / `dn` / `dt` / `dtc` / `dtr`
-
-#### Grid layout <!-- notoc -->
-
-`gap0` / `gap1` / `gap2` / `gap3` / `gap4` / `gap5` / `gc1` / `gc10` / `gc2` / `gc3` / `gc4` / `gc5` / `gc6` / `gc7` / `gc8` / `gc9` / `gr1` / `gr10` / `gr2` / `gr3` / `gr4` / `gr5` / `gr6` / `gr7` / `gr8` / `gr9`
-
-#### Lists <!-- notoc -->
-
-`list`
-
-#### Padding <!-- notoc -->
-
-`pa0` / `pa1` / `pa2` / `pa3` / `pa4` / `pb0` / `pb1` / `pb2` / `pb3` / `pb4` / `ph0` / `ph1` / `ph2` / `ph3` / `ph4` / `pl0` / `pl1` / `pl2` / `pl3` / `pl4` / `pr0` / `pr1` / `pr2` / `pr3` / `pr4` / `pt0` / `pt1` / `pt2` / `pt3` / `pt4` / `pv0` / `pv1` / `pv2` / `pv3` / `pv4`
-
-#### Margin <!-- notoc -->
-
-`center` / `ma0` / `ma1` / `ma2` / `ma3` / `ma4` / `mb0` / `mb1` / `mb2` / `mb3` / `mb4` / `mh0` / `mh1` / `mh2` / `mh3` / `mh4` / `ml0` / `ml1` / `ml2` / `ml3` / `ml4` / `mr0` / `mr1` / `mr2` / `mr3` / `mr4` / `mt0` / `mt1` / `mt2` / `mt3` / `mt4` / `mv0` / `mv1` / `mv2` / `mv3` / `mv4`
-
-#### Overflow <!-- notoc -->
-
-`overflow-auto` / `overflow-hidden` / `overflow-scroll` / `overflow-visible` / `overflow-x-auto` / `overflow-x-hidden` / `overflow-x-scroll` / `overflow-x-visible` / `overflow-y-auto` / `overflow-y-hidden` / `overflow-y-scroll` / `overflow-y-visible`
-
-#### Positions <!-- notoc -->
-
-`absolute` / `bottom--1` / `bottom--2` / `bottom-0` / `bottom-1` / `bottom-2` / `fixed` / `left--1` / `left--2` / `left-0` / `left-1` / `left-2` / `relative` / `right--1` / `right--2` / `right-0` / `right-1` / `right-2` / `sticky` / `top--1` / `top--2` / `top-0` / `top-1` / `top-2`
-
-#### Z-indices <!-- notoc -->
-
-`z-0` / `z-1` / `z-2` / `z-3` / `z-4` / `z-5` / `z-999` / `z-9999`
-
-#### Shadow <!-- notoc -->
-
-`i-shadow-1` / `i-shadow-2` / `i-shadow-3` / `i-shadow-4` / `shadow-1` / `shadow-2` / `shadow-3` / `shadow-4`
 
 #### Font families <!-- notoc -->
 
@@ -794,13 +765,81 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 `f-subtitle` / `f-title` / `f1` / `f2` / `f3` / `f4` / `f5` / `f6` / `f7`
 
-#### Font weights <!-- notoc -->
+#### Font style <!-- notoc -->
 
-`b` / `fw100` / `fw200` / `fw300` / `fw400` / `fw500` / `fw600` / `fw700` / `fw800` / `fw900` / `normal`
+`italic`
 
 #### Font variants <!-- notoc -->
 
 `small-caps`
+
+#### Font weights <!-- notoc -->
+
+`b` / `fw100` / `fw200` / `fw300` / `fw400` / `fw500` / `fw600` / `fw700` / `fw800` / `fw900` / `normal`
+
+#### Grid layout <!-- notoc -->
+
+`align-items-center` / `align-items-end` / `align-items-start` / `align-items-stretch` / `align-self-center` / `align-self-end` / `align-self-start` / `align-self-stretch` / `gap-1px` / `gap-2px` / `gap-4px` / `gap-8px` / `gap0` / `gap1` / `gap2` / `gap3` / `gap4` / `gap5` / `grid-cols-1` / `grid-cols-10` / `grid-cols-2` / `grid-cols-3` / `grid-cols-4` / `grid-cols-5` / `grid-cols-6` / `grid-cols-7` / `grid-cols-8` / `grid-cols-9` / `grid-rows-1` / `grid-rows-10` / `grid-rows-2` / `grid-rows-3` / `grid-rows-4` / `grid-rows-5` / `grid-rows-6` / `grid-rows-7` / `grid-rows-8` / `grid-rows-9` / `justify-items-center` / `justify-items-end` / `justify-items-start` / `justify-items-stretch` / `justify-self-center` / `justify-self-end` / `justify-self-start` / `justify-self-stretch`
+
+#### Height <!-- notoc -->
+
+`h-10` / `h-100` / `h-16` / `h-17` / `h-20` / `h-25` / `h-30` / `h-33` / `h-34` / `h-40` / `h-50` / `h-60` / `h-66` / `h-67` / `h-70` / `h-75` / `h-80` / `h-83` / `h-84` / `h-90` / `h1` / `h2` / `h3` / `h4` / `h5`
+
+#### Icons <!-- notoc -->
+
+`icon-1` / `icon-2` / `icon-3` / `icon-4` / `icon-5` / `icon-6` / `icon-7` / `icon-subtitle` / `icon-title`
+
+#### Letter spacing <!-- notoc -->
+
+`ls--1` / `ls--2` / `ls-0` / `ls-1` / `ls-2` / `ls-3`
+
+#### Line heights <!-- notoc -->
+
+`lh-copy` / `lh-double` / `lh-solid` / `lh-title`
+
+#### Lists <!-- notoc -->
+
+`list`
+
+#### Margin <!-- notoc -->
+
+`center` / `ma0` / `ma1` / `ma2` / `ma3` / `ma4` / `mb0` / `mb1` / `mb2` / `mb3` / `mb4` / `mh0` / `mh1` / `mh2` / `mh3` / `mh4` / `ml0` / `ml1` / `ml2` / `ml3` / `ml4` / `mr0` / `mr1` / `mr2` / `mr3` / `mr4` / `mt0` / `mt1` / `mt2` / `mt3` / `mt4` / `mv0` / `mv1` / `mv2` / `mv3` / `mv4`
+
+#### Max. height <!-- notoc -->
+
+`maxh-10` / `maxh-100` / `maxh-16` / `maxh-17` / `maxh-20` / `maxh-25` / `maxh-30` / `maxh-33` / `maxh-34` / `maxh-40` / `maxh-50` / `maxh-60` / `maxh-66` / `maxh-67` / `maxh-70` / `maxh-75` / `maxh-80` / `maxh-83` / `maxh-84` / `maxh-90` / `maxh1` / `maxh2` / `maxh3` / `maxh4` / `maxh5`
+
+#### Max. width <!-- notoc -->
+
+`maxw-10` / `maxw-100` / `maxw-16` / `maxw-17` / `maxw-20` / `maxw-25` / `maxw-30` / `maxw-33` / `maxw-34` / `maxw-40` / `maxw-50` / `maxw-60` / `maxw-66` / `maxw-67` / `maxw-70` / `maxw-75` / `maxw-80` / `maxw-83` / `maxw-84` / `maxw-90` / `maxw1` / `maxw2` / `maxw3` / `maxw4` / `maxw5`
+
+#### Min. height <!-- notoc -->
+
+`minh-10` / `minh-100` / `minh-16` / `minh-17` / `minh-20` / `minh-25` / `minh-30` / `minh-33` / `minh-34` / `minh-40` / `minh-50` / `minh-60` / `minh-66` / `minh-67` / `minh-70` / `minh-75` / `minh-80` / `minh-83` / `minh-84` / `minh-90` / `minh1` / `minh2` / `minh3` / `minh4` / `minh5`
+
+#### Min. width <!-- notoc -->
+
+`minw-10` / `minw-100` / `minw-16` / `minw-17` / `minw-20` / `minw-25` / `minw-30` / `minw-33` / `minw-34` / `minw-40` / `minw-50` / `minw-60` / `minw-66` / `minw-67` / `minw-70` / `minw-75` / `minw-80` / `minw-83` / `minw-84` / `minw-90` / `minw1` / `minw2` / `minw3` / `minw4` / `minw5`
+
+#### Overflow <!-- notoc -->
+
+`overflow-auto` / `overflow-hidden` / `overflow-scroll` / `overflow-visible` / `overflow-x-auto` / `overflow-x-hidden` / `overflow-x-scroll` / `overflow-x-visible` / `overflow-y-auto` / `overflow-y-hidden` / `overflow-y-scroll` / `overflow-y-visible`
+
+#### Padding <!-- notoc -->
+
+`pa0` / `pa1` / `pa2` / `pa3` / `pa4` / `pb0` / `pb1` / `pb2` / `pb3` / `pb4` / `ph0` / `ph1` / `ph2` / `ph3` / `ph4` / `pl0` / `pl1` / `pl2` / `pl3` / `pl4` / `pr0` / `pr1` / `pr2` / `pr3` / `pr4` / `pt0` / `pt1` / `pt2` / `pt3` / `pt4` / `pv0` / `pv1` / `pv2` / `pv3` / `pv4`
+
+#### Positions <!-- notoc -->
+
+`absolute` / `bottom--1` / `bottom--2` / `bottom-0` / `bottom-1` / `bottom-2` / `fixed` / `left--1` / `left--2` / `left-0` / `left-1` / `left-2` / `relative` / `right--1` / `right--2` / `right-0` / `right-1` / `right-2` / `static` / `sticky` / `top--1` / `top--2` / `top-0` / `top-1` / `top-2`
+
+#### Shadow <!-- notoc -->
+
+`box-shadow-1` / `box-shadow-2` / `box-shadow-3` / `box-shadow-4` / `box-shadow-i-1` / `box-shadow-i-2` / `box-shadow-i-3` / `box-shadow-i-4` / `text-shadow-1` / `text-shadow-2` / `text-shadow-3` / `text-shadow-4` / `text-shadow-5` / `text-shadow-6` / `text-shadow-7` / `text-shadow-8` / `text-shadow-9`
+
+#### Text align <!-- notoc -->
+
+`tc` / `tj` / `tl` / `tr`
 
 #### Text decorations <!-- notoc -->
 
@@ -810,25 +849,25 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 `ttc` / `ttfsk` / `ttfw` / `tti` / `ttl` / `ttn` / `ttu`
 
-#### Text align <!-- notoc -->
+#### Undefined <!-- notoc -->
 
-`tc` / `tj` / `tl` / `tr`
+`vh-100` / `vh-25` / `vh-50` / `vh-75` / `vw-100` / `vw-25` / `vw-50` / `vw-75`
 
 #### Vertical align <!-- notoc -->
 
-`v-btm` / `v-mid` / `v-top`
-
-#### Line heights <!-- notoc -->
-
-`lh-copy` / `lh-double` / `lh-solid` / `lh-title`
+`v-base` / `v-btm` / `v-mid` / `v-top`
 
 #### Whitespace <!-- notoc -->
 
 `ws-0` / `ws-1` / `ws-2`
 
-#### Letter spacing <!-- notoc -->
+#### Width <!-- notoc -->
 
-`ls--1` / `ls--2` / `ls-0` / `ls-1` / `ls-2` / `ls-3`
+`w-10` / `w-100` / `w-16` / `w-17` / `w-20` / `w-25` / `w-30` / `w-33` / `w-34` / `w-40` / `w-50` / `w-60` / `w-66` / `w-67` / `w-70` / `w-75` / `w-80` / `w-83` / `w-84` / `w-90` / `w1` / `w2` / `w3` / `w4` / `w5`
+
+#### Z-indices <!-- notoc -->
+
+`z-0` / `z-1` / `z-2` / `z-3` / `z-4` / `z-5` / `z-999` / `z-9999`
 
 ### Media queries
 

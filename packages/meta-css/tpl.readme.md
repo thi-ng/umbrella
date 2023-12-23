@@ -80,6 +80,10 @@ split over multiple files within a directory and will all be merged by the
 	"tables": {
 		"margins": [0, 0.25, 0.5, 1, 2, 4]
 	},
+	// optional shared variations
+	"vars": {
+		"size": ["width", "height"]
+	},
 	// array of actual generation specs
 	"specs": [
 		//...
@@ -397,8 +401,7 @@ Flags:
 
 Main:
 
--e STR, --eval STR      eval meta stylesheet in given string (ignores other inpu
-                        ts & includes)
+-e STR, --eval STR      eval meta stylesheet in given string (ignores other inputs & includes)
 -f STR, --force STR     [multiple] CSS classes to force include (wildcards are
                         supported, @-prefix will read from file)
 -I STR, --include STR   [multiple] Include CSS files (prepend)
