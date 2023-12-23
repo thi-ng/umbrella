@@ -142,9 +142,29 @@ export const expandSpec = (
 				currKey,
 				values[currKey]
 			);
-			const currValue = __value(values[currKey], spec.unit);
+			const unit = spec.unit
+				? __withVariations(
+						spec.unit,
+						currVarID,
+						varValue,
+						currKey,
+						values[currKey]
+				  )
+				: undefined;
+			const currValue = __value(values[currKey], unit);
 			if (!defs[name]) {
-				defs[name] = spec.user != null ? { __user: spec.user } : {};
+				defs[name] =
+					spec.user != null
+						? {
+								__user: __withVariations(
+									spec.user,
+									currVarID,
+									varValue,
+									currKey,
+									values[currKey]
+								),
+						  }
+						: {};
 			} else if (!ownNames.has(name))
 				illegalArgs(`duplicate class ID: ${name}`);
 			ownNames.add(name);
@@ -157,7 +177,7 @@ export const expandSpec = (
 					values[currKey]
 				);
 				const val = __withVariations(
-					!spec.unit || isString(v) ? v : UNITS[spec.unit](v),
+					!unit || isString(v) ? String(v) : UNITS[unit](v),
 					currVarID,
 					varValue,
 					currKey,
