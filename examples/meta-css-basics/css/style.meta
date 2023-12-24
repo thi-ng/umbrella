@@ -48,7 +48,7 @@ pre {
 	{ >div.lang { absolute z-1 top-0 right-0 bg-blue pa2 brl3 brt0 f7 } }
 }
 
-a:link, a:visited { dark:white black fw700 pa2 br-pill bw1 b--red }
+a:link, a:visited { dark:white black fw700 }
 a:hover { dark:hot-pink dark-pink }
 
 .swatches {
@@ -57,7 +57,7 @@ a:hover { dark:hot-pink dark-pink }
 }
 
 .group-v {
-	dg gap1
+	dg gap-1px
 	{
 		a {
 			pa3
@@ -73,10 +73,10 @@ a:hover { dark:hot-pink dark-pink }
 
 .group-h {
 	// only enable grid for larger screens
-	dg gap1
+	dg gap-1px
 	{
 		a {
-			ns:h3 pa3
+			ns:h4 pa3
 			{
 				// use --color2 var (defined in index.html) for hover
 				:hover { bg-vcol2 }
