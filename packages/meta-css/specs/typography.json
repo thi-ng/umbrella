@@ -2,6 +2,8 @@
 	"tables": {
 		"families": {
 			"system": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+			"system-sans-serif": "sans-serif",
+			"system-serif": "serif",
 			"sans-serif": "'Helvetica Neue', Helvetica, Arial, sans-serif",
 			"serif": "Georgia, 'Times New Roman', Times, serif",
 			"monospace": "Monaco, Menlo, Consolas, 'Courier New', monospace"
@@ -111,6 +113,7 @@
 			"name": "lh-<k>",
 			"props": "line-height",
 			"values": {
+				"0": 0,
 				"solid": 1,
 				"title": 1.25,
 				"copy": 1.5,
