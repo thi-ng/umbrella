@@ -128,6 +128,6 @@ const wrap = (str: string | undefined, width: number) =>
 		? wordWrapLines(str, {
 				width,
 				splitter: SPLIT_ANSI,
-				hard: true,
+				hard: false,
 		  })
 		: [];
