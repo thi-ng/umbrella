@@ -45,14 +45,20 @@ This project is part of the
 Data-driven CSS framework codegen, transpiler & bundler.
 
 This toolchain and the overall workflow proposed by it is heavily building atop
-the concept of _CSS utility classes_ and how they're utilized (as you might know
-from using Tachyons, Turret or the newer Tailwind projects). How and where those
-CSS classes are applied is however a defining point of difference to other
-existing approaches. This readme aims to provide a thorough overview and some
+the concept of _CSS utility classes_ (as known from Tachyons, Turret or the
+newer Tailwind projects). How and where those CSS classes are applied is however
+a defining point of difference to other existing approaches. Furthermore, using
+JSON as data format for expressing generative rules and as intermediate format
+for generated frameworks, removes the need for any complex CSS-related
+dependencies and makes it trivial to build secondary tooling around (e.g. part
+of this readme is an auto-generated report of the included base framework
+specs).
+
+This readme aims to provide a thorough overview of this toolchain and some
 concrete usage examples...
 
 Note: In all cases, final CSS generation itself is handled by
-[thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/)
+[thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/).
 
 **👷🏻 This is all WIP!** Also see included & linked examples for basic usage...
 
@@ -108,12 +114,13 @@ split over multiple files within a directory and will all be merged by the
         "name": "Framework name",
         "version": "0.0.0",
     },
-    // optional media queries and their criteria
+    // optional media queries and their criteria, will be merged from multiple spec files
     "media": {
         "large": { "min-width": "60rem" },
         "dark": { "prefers-color-scheme": "dark" }
     },
     // optional shared values/LUTs (arrays or objects)
+    // tables are always local to the current spec file only...
     "tables": {
         "margins": [0, 0.25, 0.5, 1, 2, 4]
     },
@@ -121,6 +128,11 @@ split over multiple files within a directory and will all be merged by the
     "vars": {
         "size": ["width", "height"]
     },
+    // optional thi.ng/hiccup-css declarations which will be part of the framework
+    // (e.g. for CSS reset purposes), will be merged from multiple spec files
+    "decls": [
+        ["html", { "box-sizing": "border-box" }]
+    ],
     // array of actual generation specs
     "specs": [
         //...
@@ -431,6 +443,7 @@ Usage: metacss convert [opts] input [...]
 
 Flags:
 
+-d, --no-decls          Don't emit framework decls
 --no-header             Don't emit generated header comment
 -p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
@@ -438,7 +451,8 @@ Flags:
 
 Main:
 
--e STR, --eval STR      eval meta stylesheet in given string (ignores other inputs & includes)
+-e STR, --eval STR      eval meta stylesheet in given string (ignores other
+                        inputs & includes)
 -f STR, --force STR     [multiple] CSS classes to force include (wildcards are
                         supported, @-prefix will read from file)
 -I STR, --include STR   [multiple] Include CSS files (prepend)
@@ -702,6 +716,7 @@ Usage: metacss export [opts] input
 
 Flags:
 
+-d, --no-decls          Don't emit framework decls
 --no-header             Don't emit generated header comment
 -p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
@@ -709,7 +724,7 @@ Flags:
 Main:
 
 -I STR, --include STR   [multiple] Include CSS files (prepend)
--m STR, --media STR     Media query IDs (use 'ALL' for all)
+-m ID, --media ID       [multiple] Media query IDs (use 'ALL' for all)
 -o STR, --out STR       Output file (or stdout)
 ```
 
@@ -759,7 +774,7 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Font families <!-- notoc -->
 
-`monospace` / `sans-serif` / `serif` / `system`
+`monospace` / `sans-serif` / `serif` / `system` / `system-sans-serif` / `system-serif`
 
 #### Font sizes <!-- notoc -->
 
@@ -795,7 +810,7 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Line heights <!-- notoc -->
 
-`lh-copy` / `lh-double` / `lh-solid` / `lh-title`
+`lh-0` / `lh-copy` / `lh-double` / `lh-solid` / `lh-title`
 
 #### Lists <!-- notoc -->
 
@@ -833,6 +848,10 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 `absolute` / `bottom--1` / `bottom--2` / `bottom-0` / `bottom-1` / `bottom-2` / `fixed` / `left--1` / `left--2` / `left-0` / `left-1` / `left-2` / `relative` / `right--1` / `right--2` / `right-0` / `right-1` / `right-2` / `static` / `sticky` / `top--1` / `top--2` / `top-0` / `top-1` / `top-2`
 
+#### Selection <!-- notoc -->
+
+`noselect`
+
 #### Shadow <!-- notoc -->
 
 `box-shadow-1` / `box-shadow-2` / `box-shadow-3` / `box-shadow-4` / `box-shadow-i-1` / `box-shadow-i-2` / `box-shadow-i-3` / `box-shadow-i-4` / `text-shadow-1` / `text-shadow-2` / `text-shadow-3` / `text-shadow-4` / `text-shadow-5` / `text-shadow-6` / `text-shadow-7` / `text-shadow-8` / `text-shadow-9`
@@ -856,6 +875,10 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 #### Vertical align <!-- notoc -->
 
 `v-base` / `v-btm` / `v-mid` / `v-top`
+
+#### Visibility <!-- notoc -->
+
+`hidden` / `visible`
 
 #### Whitespace <!-- notoc -->
 
@@ -900,7 +923,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.31 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.38 KB
 
 ## Dependencies
 
