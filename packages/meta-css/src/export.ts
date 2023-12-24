@@ -33,6 +33,7 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 		...ARG_NO_HEADER,
 		media: strings({
 			alias: "m",
+			hint: "ID",
 			desc: "Media query IDs (use 'ALL' for all)",
 			delim: ",",
 		}),
