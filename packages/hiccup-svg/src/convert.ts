@@ -4,6 +4,7 @@ import { circle } from "./circle.js";
 import { ellipse } from "./ellipse.js";
 import { PRECISION, fattribs, setPrecision } from "./format.js";
 import { linearGradient, radialGradient } from "./gradients.js";
+import { __groupLayerID } from "./group.js";
 import { image } from "./image.js";
 import { hline, line, vline } from "./line.js";
 import { path } from "./path.js";
@@ -52,6 +53,9 @@ const precisionStack: number[] = [];
  * conversions). See {@link setPrecision}. Child shapes (of a group) inherit the
  * precision setting of their parent.
  *
+ * Also see {@link group} for handling of the special `__inkscapeLayer` group
+ * attrib.
+ *
  * To control the formatting precision for colors, use [the relevant function in
  * the thi.ng/color
  * package](https://docs.thi.ng/umbrella/color/functions/setPrecision.html).
@@ -79,6 +83,7 @@ export const convertTree = (tree: any): any[] | null => {
 		case "a":
 		case "g":
 			result = [type, fattribs(attribs)];
+			if (tree[0] === "g") __groupLayerID(result[1]);
 			for (let i = 2, n = tree.length; i < n; i++) {
 				const c = convertTree(tree[i]);
 				c != null && result.push(c);
