@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-22T17:55:14Z
+- **Last updated**: 2023-12-26T14:10:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.4.0) (2023-12-26)
+
+#### 🚀 Features
+
+- add support for file-local variation defs ([3a8e1a3](https://github.com/thi-ng/umbrella/commit/3a8e1a3))
+- support parametric units in generator specs ([004a23d](https://github.com/thi-ng/umbrella/commit/004a23d))
+- add support for hiccup-css declarations ([cd2ceca](https://github.com/thi-ng/umbrella/commit/cd2ceca))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.3.0) (2023-12-22)
 

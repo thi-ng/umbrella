@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-19T11:01:47Z
+- **Last updated**: 2023-12-26T14:10:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.3.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.3.2) (2023-12-26)
+
+#### 🩹 Bug fixes
+
+- update word wrap behavior in usage() ([60b1580](https://github.com/thi-ng/umbrella/commit/60b1580))
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.3.0) (2023-12-18)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-19T11:01:47Z
+- **Last updated**: 2023-12-26T14:10:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/prefixes@2.3.0) (2023-12-26)
+
+#### 🚀 Features
+
+- add Inkscape XML NS ([6b26d16](https://github.com/thi-ng/umbrella/commit/6b26d16))
 
 ### [2.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/prefixes@2.2.3) (2023-11-09)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/tangle",
-	"version": "0.1.71",
+	"version": "0.1.72",
 	"description": "Literate programming code block tangling / codegen utility, inspired by org-mode & noweb",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.14",
-		"@thi.ng/args": "^2.3.1",
+		"@thi.ng/args": "^2.3.2",
 		"@thi.ng/checks": "^3.4.14",
 		"@thi.ng/compare": "^2.2.10",
 		"@thi.ng/date": "^2.5.8",
