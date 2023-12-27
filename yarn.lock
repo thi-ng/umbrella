@@ -1805,6 +1805,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/rdom-lazy-load@workspace:examples/rdom-lazy-load"
   dependencies:
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: ^5.3.2

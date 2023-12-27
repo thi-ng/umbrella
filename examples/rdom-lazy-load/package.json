@@ -7,14 +7,16 @@
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
 	"scripts": {
-		"start": "vite --host --open",
+		"start": "yarn css:build && yarn start:only",
+		"start:only": "vite --host --open",
 		"css:gen": "../../node_modules/.bin/metacss generate --pretty --out css/framework.json ../../packages/meta-css/specs",
-		"css:watch": "../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt -I css/anim.css css/style.meta",
-		"css:build": "../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt -I css/anim.css css/style.meta",
-		"build": "tsc && yarn css:build && vite build --base='./'",
+		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt -I css/anim.css css/style.meta",
+		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt -I css/anim.css css/style.meta",
+		"build": "yarn css:build && tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
+		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.3.2",
 		"vite": "^5.0.4"
 	},
