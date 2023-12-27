@@ -6,6 +6,7 @@ export * from "./dom.js";
 export * from "./event.js";
 export * from "./idgen.js";
 export * from "./klist.js";
+export * from "./lazy.js";
 export * from "./list.js";
 export * from "./object.js";
 export * from "./promise.js";
