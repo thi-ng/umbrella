@@ -1,0 +1,13 @@
+body { sans-serif white }
+h1 { ma0 }
+a { db b ma3 black }
+
+#intro { vh-100 pa3 bg-dark-gray }
+
+
+.lazy-item {
+	h5
+	{
+		>div { h-100 pa3 }
+	}
+}

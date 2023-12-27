@@ -1,0 +1,9 @@
+bg-dark-red
+bg-dark-blue
+bg-purple
+bg-green
+bg-gold
+bg-yellow
+bg-light-blue
+bg-dark-blue
+bg-pink

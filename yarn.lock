@@ -1801,6 +1801,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-lazy-load@workspace:examples/rdom-lazy-load":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-lazy-load@workspace:examples/rdom-lazy-load"
+  dependencies:
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.3.2
+    vite: ^5.0.4
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-lissajous@workspace:examples/rdom-lissajous":
   version: 0.0.0-use.local
   resolution: "@example/rdom-lissajous@workspace:examples/rdom-lissajous"
