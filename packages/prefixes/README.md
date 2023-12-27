@@ -58,7 +58,7 @@ For Node.js REPL:
 const prefixes = await import("@thi.ng/prefixes");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.08 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.10 KB
 
 ## Dependencies
 

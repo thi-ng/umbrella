@@ -28,8 +28,10 @@
 		"process": false
 	},
 	"thi.ng": {
-		"skip": true,
-		"readme": false,
-		"screenshot": "examples/"
+		"readme": [
+			"meta-css",
+			"rdom"
+		],
+		"screenshot": "examples/rdom-lazy-load.png"
 	}
 }

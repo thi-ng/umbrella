@@ -943,13 +943,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 11.38 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Screenshot                                                                                                             | Description                           | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/> | Basic thi.ng/meta-css usage & testbed | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics) |
+| Screenshot                                                                                                             | Description                              | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/> | Basic thi.ng/meta-css usage & testbed    | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lazy-load.png" width="240"/>  | Lazy loading components via @thi.ng/rdom | [Demo](https://demo.thi.ng/umbrella/rdom-lazy-load/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lazy-load)  |
 
 ## Authors
 
