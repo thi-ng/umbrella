@@ -6,36 +6,34 @@
 
 ## Development mode
 
-Unlike most other examples in this repo, this project requires a different approach during development (i.e. if you want to experiment with the source code):
+**To just run & build this example, use the usual `yarn start` or `yarn build`
+and see the [build instructions further below](#building).**
+
+If you want to experiment with the source code and specifically the MetaCSS
+styles, this project requires a different approach during development:
 
 ### MetaCSS transpiler
 
 Open a terminal and use the
 [thi.ng/meta-css](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css)
-toolchain to generate the utility classes for a CSS framework, here using the default
-specs:
-
-```bash
-# from the repo root directory
-(cd examples/meta-css-basics && yarn css:gen)
-```
-
-This will create a new JSON file (`/css/framework.json`) with hundreds of CSS
-class definitions in this example's `/css` directory...
-
-We can then start the transpiler/bundler in watch mode to compile MetaCSS
+toolchain to first generate utility classes for a CSS framework and then start the transpiler/bundler in watch mode to compile MetaCSS
 stylesheets (i.e.
 [`/css/style.meta`](https://github.com/thi-ng/umbrella/blob/develop/examples/meta-css-basics/css/style.meta))
 to actual CSS, using the just generated framework specs:
 
 ```bash
+# from the repo root directory
 (cd examples/meta-css-basics && yarn css:watch)
 ```
 
-This command will start watching the [`/css/style.meta`
+The first stage of this command will create a new JSON file
+(`/css/framework.json`) with hundreds of CSS class definitions in this example's
+`/css` directory...
+
+Secondly, it will start watching the [`/css/style.meta`
 stylesheet](https://github.com/thi-ng/umbrella/blob/develop/examples/meta-css-basics/css/style.meta)
-for changes and write the results to `/css/style.css`. This output file is also
-watched by Vite and which will then reload everything in the browser...
+for changes and write transpiled results to `/css/style.css`. This output file
+is also watched by Vite and which will then reload everything in the browser...
 
 The `style.meta` file contains further comments, but please also do consult the
 [thi.ng/meta-css](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css)
@@ -47,7 +45,7 @@ Open a second terminal and start the ViteJS dev server (same as for all the
 other examples):
 
 ```bash
-(cd examples/meta-css-basics && yarn start)
+(cd examples/meta-css-basics && yarn start:only)
 ```
 
 ## Building
