@@ -84,7 +84,7 @@ frameworks (in the hope they'll be shared back similarly)...
 ```text
 metacss generate --help
 
-Usage: metacss generate [opts] input-dir
+Usage: metacss generate [opts] inputs...
 
 Flags:
 
@@ -104,8 +104,8 @@ frameworks of dozens (usually hundreds) of utility classes, including many
 possible variations (per spec).
 
 Generation specs use a simple JSON structure as shown below. The specs can be
-split over multiple files within a directory and will all be merged by the
-`generate` command of the toolchain.
+split over multiple files and will all be merged by the `generate` command of
+the toolchain.
 
 ```json5
 {
@@ -167,15 +167,12 @@ will be explained in more detail further below.
 }
 ```
 
-Assuming the above spec has been saved to a JSON file in the `myspecs`
-directory...
+Assuming the above spec has been saved to file `myspecs.json`...
 
 ```bash
-# the `generate` cmd is directory based and will read all
-# JSON files in the provided dir (recursively)...
-
+# the generate cmd can merge specs from multiple input files
 # if no `--out` file is given, the result will go to stdout
-metacss generate --pretty myspecs
+metacss generate --pretty myspecs.json
 ```
 
 ...this command (with the above spec) will generate the following output (here
@@ -742,7 +739,7 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Animations / transitions <!-- notoc -->
 
-`bg-anim1` / `bg-anim2` / `bg-anim3`
+`bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3`
 
 #### Aspect ratios <!-- notoc -->
 
@@ -923,7 +920,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.38 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.46 KB
 
 ## Dependencies
 

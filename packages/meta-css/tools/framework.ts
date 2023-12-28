@@ -1,4 +1,4 @@
-import { readJSON, writeText } from "@thi.ng/file-io";
+import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { capitalize } from "@thi.ng/strings";
 import { Reducer, groupByObj, mapcat } from "@thi.ng/transducers";
@@ -18,7 +18,7 @@ await GENERATE.fn({
 		out: FRAMEWORK,
 	},
 	format: <any>null,
-	inputs: ["specs"],
+	inputs: [...files("specs", ".json")],
 });
 
 const specs = readJSON<CompiledSpecs>(FRAMEWORK);

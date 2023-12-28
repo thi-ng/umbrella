@@ -3,7 +3,7 @@
 	"specs": [
 		{
 			"user": "animations / transitions",
-			"name": "fadein-<k>",
+			"name": "fadein<k>",
 			"key": "i1",
 			"props": { "animation": "fadein <v> ease-in-out forwards" },
 			"values": [0.25, 0.5, 1],

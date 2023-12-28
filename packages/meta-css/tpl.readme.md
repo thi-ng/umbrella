@@ -47,7 +47,7 @@ frameworks (in the hope they'll be shared back similarly)...
 ```text
 metacss generate --help
 
-Usage: metacss generate [opts] input-dir
+Usage: metacss generate [opts] inputs...
 
 Flags:
 
@@ -67,8 +67,8 @@ frameworks of dozens (usually hundreds) of utility classes, including many
 possible variations (per spec).
 
 Generation specs use a simple JSON structure as shown below. The specs can be
-split over multiple files within a directory and will all be merged by the
-`generate` command of the toolchain.
+split over multiple files and will all be merged by the `generate` command of
+the toolchain.
 
 ```json5
 {
@@ -130,15 +130,12 @@ will be explained in more detail further below.
 }
 ```
 
-Assuming the above spec has been saved to a JSON file in the `myspecs`
-directory...
+Assuming the above spec has been saved to file `myspecs.json`...
 
 ```bash
-# the `generate` cmd is directory based and will read all
-# JSON files in the provided dir (recursively)...
-
+# the generate cmd can merge specs from multiple input files
 # if no `--out` file is given, the result will go to stdout
-metacss generate --pretty myspecs
+metacss generate --pretty myspecs.json
 ```
 
 ...this command (with the above spec) will generate the following output (here
