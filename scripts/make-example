@@ -19,6 +19,21 @@ cat << EOF > "$MODULE"/src/vite-env.d.ts
 /// <reference types="vite/client" />
 EOF
 
+echo "creating /css folder..."
+mkdir -p "$MODULE"/css
+cat << EOF > "$MODULE"/css/style.meta
+// @thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use yarn css:build or yarn css:watch to transpile to CSS
+
+body { system-sans-serif }
+EOF
+
+cat << EOF > "$MODULE"/css/includes.txt
+// list CSS class names to force include in generated CSS
+// (one class per line, basic wildcards supported)
+EOF
+
 echo "writing package.json..."
 cat << EOF > "$MODULE"/package.json
 {
@@ -30,11 +45,16 @@ cat << EOF > "$MODULE"/package.json
 	"author": "$AUTHOR <$EMAIL>",
 	"license": "Apache-2.0",
 	"scripts": {
-		"start": "vite --host --open",
-		"build": "tsc && vite build --base='./'",
+		"start": "yarn css:build && yarn start:only",
+		"start:only": "vite --host --open",
+		"css:gen": "../../node_modules/.bin/metacss generate --pretty --out css/framework.json ../../packages/meta-css/specs/*.json",
+		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/style.meta",
+		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt css/style.meta",
+		"build": "yarn css:build && tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
+		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.3.2",
 		"vite": "^5.0.4"
 	},
@@ -48,7 +68,7 @@ cat << EOF > "$MODULE"/package.json
 	"thi.ng": {
 		"skip": true,
 		"readme": false,
-		"screenshot": "examples/"
+		"screenshot": "examples/$1.png"
 	}
 }
 EOF
@@ -76,11 +96,9 @@ cat << EOF > "$MODULE"/index.html
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>$1 · @thi.ng/umbrella</title>
-	<link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
-	<style>
-	</style>
+	<link href="/css/style.css" rel="stylesheet">
 </head>
-<body class="sans-serif">
+<body>
 	<div id="app"></div>
 	<div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/$1">Source code</a></div>
 	<script type="module" src="/src/index.ts"></script>
