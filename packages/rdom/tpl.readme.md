@@ -144,6 +144,7 @@ code examples:
 
 - [$klist](https://docs.thi.ng/umbrella/rdom/functions/_klist.html)
 - [$list](https://docs.thi.ng/umbrella/rdom/functions/_list.html)
+- [$lazy](https://docs.thi.ng/umbrella/rdom/functions/_lazy.html)
 - [$object](https://docs.thi.ng/umbrella/rdom/functions/_object-1.html)
 - [$promise](https://docs.thi.ng/umbrella/rdom/functions/_promise-1.html)
 - [$refresh](https://docs.thi.ng/umbrella/rdom/functions/_refresh.html)
@@ -151,6 +152,7 @@ code examples:
 - [$sub](https://docs.thi.ng/umbrella/rdom/functions/_sub-1.html)
 - [$subObject](https://docs.thi.ng/umbrella/rdom/functions/_subObject.html)
 - [$switch](https://docs.thi.ng/umbrella/rdom/functions/_switch.html)
+- [$wrapEl](https://docs.thi.ng/umbrella/rdom/functions/_wrapEl.html)
 - [$wrapHtml](https://docs.thi.ng/umbrella/rdom/functions/_wrapHtml.html)
 - [$wrapText](https://docs.thi.ng/umbrella/rdom/functions/_wrapText.html)
 

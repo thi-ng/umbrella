@@ -107,6 +107,9 @@
 		"./klist": {
 			"default": "./klist.js"
 		},
+		"./lazy": {
+			"default": "./lazy.js"
+		},
 		"./list": {
 			"default": "./list.js"
 		},
