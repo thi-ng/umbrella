@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-26T14:10:51Z
+- **Last updated**: 2023-12-28T23:24:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.5.0) (2023-12-28)
+
+#### 🚀 Features
+
+- add supported for quoted fns ([5d8e2fc](https://github.com/thi-ng/umbrella/commit/5d8e2fc))
+- update generate cmd input handling ([c156762](https://github.com/thi-ng/umbrella/commit/c156762))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.4.0) (2023-12-26)
 

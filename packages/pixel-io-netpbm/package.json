@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-io-netpbm",
-	"version": "2.1.94",
+	"version": "2.1.95",
 	"description": "Multi-format NetPBM reader & writer support for @thi.ng/pixel",
 	"type": "module",
 	"module": "./index.js",
@@ -35,9 +35,9 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.14",
-		"@thi.ng/errors": "^2.4.8",
-		"@thi.ng/pixel": "^6.0.1"
+		"@thi.ng/api": "^8.9.15",
+		"@thi.ng/errors": "^2.4.9",
+		"@thi.ng/pixel": "^6.0.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
