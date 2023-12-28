@@ -1,12 +1,21 @@
 {
+	"decls": [["@keyframes", "fadein", { "opacity": 0 }, { "opacity": 1 }]],
 	"specs": [
+		{
+			"user": "animations / transitions",
+			"name": "fadein-<k>",
+			"key": "i1",
+			"props": { "animation": "fadein <v> ease-in-out forwards" },
+			"values": [0.25, 0.5, 1],
+			"unit": "second"
+		},
 		{
 			"user": "animations / transitions",
 			"name": "bg-anim<k>",
 			"key": "i1",
-			"props": { "transition": "<v>s background-color ease-in-out" },
+			"props": { "transition": "<v> background-color ease-in-out" },
 			"values": [0.15, 0.25, 0.5],
-			"unit": null
+			"unit": "second"
 		}
 	]
 }

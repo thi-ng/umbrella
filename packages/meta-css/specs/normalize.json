@@ -1,5 +1,6 @@
 {
 	"decls": [
+		["@comment", "----- start: CSS normalization -----"],
 		[":root", { "font-size": "16px" }],
 		["html", { "line-height": 1.15, "-webkit-text-size-adjust": "100%" }],
 		["body", { "margin": 0 }],
@@ -150,7 +151,8 @@
 			"ul li",
 			[":first-child", { "margin-top": 0 }],
 			[":last-child", { "margin-bottom": 0 }]
-		]
+		],
+		["@comment", "----- end: CSS normalization -----"]
 	],
 	"specs": []
 }
