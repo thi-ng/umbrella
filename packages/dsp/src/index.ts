@@ -39,6 +39,7 @@ export * from "./osc-dsf.js";
 export * from "./osc-mix.js";
 export * from "./osc-parabolic.js";
 export * from "./osc-rect.js";
+export * from "./osc-square-sin.js";
 export * from "./osc-saw.js";
 export * from "./osc-sin.js";
 export * from "./osc-tri.js";
