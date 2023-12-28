@@ -42,7 +42,7 @@
 		"screenshot": "examples/geom-voronoi-mst.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.3.2",
-		"vite": "^5.0.4"
+		"typescript": "^5.3.3",
+		"vite": "^5.0.10"
 	}
 }

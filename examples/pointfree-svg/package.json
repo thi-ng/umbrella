@@ -17,7 +17,7 @@
 		"@thi.ng/pointfree-lang": "workspace:^"
 	},
 	"devDependencies": {
-		"typescript": "^5.3.2"
+		"typescript": "^5.3.3"
 	},
 	"thi.ng": {
 		"online": false,
