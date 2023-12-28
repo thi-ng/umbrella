@@ -9,7 +9,7 @@ const colors = [
 	"gold",
 	"yellow",
 	"light-blue",
-	"dark-blue",
+	"light-green",
 	"pink",
 ];
 
@@ -28,7 +28,7 @@ const lazyLoad = (i: number) => {
 		"div.lazy-item",
 		{},
 		async () => [
-			`div.fadein.bg-${colors[i % colors.length]}`,
+			`div.bg-${colors[i % colors.length]}`,
 			{},
 			["h1", {}, `Lazy load #${i + 1}`],
 			["p", {}, `(initialized after ${Date.now() - t0} ms)`],

@@ -12,6 +12,6 @@ a { db b ma3 black }
 .lazy-item {
 	h5
 	{
-		>div { h-100 pa3 }
+		>div { h-100 pa3 anim:fadein3 }
 	}
 }

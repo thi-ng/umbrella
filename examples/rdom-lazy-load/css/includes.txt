@@ -5,5 +5,5 @@ bg-green
 bg-gold
 bg-yellow
 bg-light-blue
-bg-dark-blue
+bg-light-green
 bg-pink
