@@ -3,7 +3,7 @@ import type { Fn, Fn2, IObjectOf, NumOrString } from "@thi.ng/api";
 import { int, type Command } from "@thi.ng/args";
 import { isArray, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { files, readJSON } from "@thi.ng/file-io";
+import { readJSON } from "@thi.ng/file-io";
 import {
 	deg,
 	em,
@@ -24,7 +24,6 @@ import {
 } from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
 import { permutations } from "@thi.ng/transducers";
-import { statSync } from "fs";
 import { resolve } from "path";
 import {
 	ARG_PRETTY,
@@ -87,16 +86,12 @@ export const GENERATE: Command<
 		...ARG_PRETTY,
 		prec: int({ default: 3, desc: "Number of fractional digits" }),
 	},
-	inputs: 1,
 	fn: async (ctx) => {
 		const {
 			logger,
 			opts: { prec, out, pretty },
 			inputs,
 		} = ctx;
-		const root = resolve(inputs[0]);
-		if (!statSync(root).isDirectory())
-			illegalArgs(`${root} is not a directory`);
 		const result: CompiledSpecs = {
 			info: { name: "TODO", version: "0.0.0" },
 			media: {},
@@ -104,8 +99,8 @@ export const GENERATE: Command<
 			decls: [],
 		};
 		setPrecision(prec);
-		for (let input of files(root, ".json")) {
-			const config = readJSON<GeneratorConfig>(input, logger);
+		for (let input of inputs) {
+			const config = readJSON<GeneratorConfig>(resolve(input), logger);
 			Object.assign(result.info, config.info);
 			Object.assign(result.media, config.media);
 			if (config.decls) result.decls.push(...config.decls);
