@@ -8,6 +8,7 @@ import { readJSON, readText } from "@thi.ng/file-io";
 import {
 	COMPACT,
 	PRETTY,
+	QUOTED_FNS,
 	at_media,
 	css,
 	type Format,
@@ -197,7 +198,9 @@ const processInputs = (
 		: [];
 	if (!noHeader) bundle.push(generateHeader(specs));
 	if (!noDecls && specs.decls.length) {
-		bundle.push(css(specs.decls, { format: procOpts.format }));
+		bundle.push(
+			css(specs.decls, { format: procOpts.format, fns: QUOTED_FNS })
+		);
 	}
 	inputs.forEach((input) => processSpec(input, procOpts));
 	processPlainRules(bundle, procOpts);
@@ -215,6 +218,7 @@ const processMediaQueries = (
 		result.push(
 			css(at_media(mergeMediaQueries(specs.media, queryID), rules), {
 				format,
+				fns: QUOTED_FNS,
 			})
 		);
 	}
@@ -226,7 +230,7 @@ const processPlainRules = (
 ) => {
 	const rules = buildDecls(plainRules, specs);
 	logger.debug("plain rules", rules);
-	bundle.push(css(rules, { format }));
+	bundle.push(css(rules, { format, fns: QUOTED_FNS }));
 };
 
 const processForceIncludes = (

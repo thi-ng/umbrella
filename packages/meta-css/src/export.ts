@@ -2,7 +2,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { strings, type Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
-import { COMPACT, PRETTY, at_media, css } from "@thi.ng/hiccup-css";
+import { COMPACT, PRETTY, QUOTED_FNS, at_media, css } from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
 import { resolve } from "path";
 import {
@@ -52,7 +52,10 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 		if (!noHeader) bundle.push(generateHeader(specs));
 		if (!noDecls && specs.decls.length) {
 			bundle.push(
-				css(specs.decls, { format: pretty ? PRETTY : COMPACT })
+				css(specs.decls, {
+					format: pretty ? PRETTY : COMPACT,
+					fns: QUOTED_FNS,
+				})
 			);
 		}
 		bundle.push(serializeSpecs(specs, media, pretty, logger));
@@ -80,7 +83,7 @@ export const serializeSpecs = (
 			}
 		}
 	}
-	return css(rules, { format: pretty ? PRETTY : COMPACT });
+	return css(rules, { format: pretty ? PRETTY : COMPACT, fns: QUOTED_FNS });
 };
 
 /** @internal */
