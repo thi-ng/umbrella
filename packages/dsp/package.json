@@ -32,7 +32,8 @@
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
-		"test": "bun test"
+		"test": "bun test",
+		"tool:diagrams": "bun tools/generate-diagrams.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.14",
@@ -222,6 +223,9 @@
 		},
 		"./osc-sin": {
 			"default": "./osc-sin.js"
+		},
+		"./osc-square-sin": {
+			"default": "./osc-square-sin.js"
 		},
 		"./osc-tri": {
 			"default": "./osc-tri.js"

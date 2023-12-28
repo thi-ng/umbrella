@@ -84,7 +84,7 @@ For Node.js REPL:
 const dsp = await import("@thi.ng/dsp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 7.52 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 7.57 KB
 
 ## Dependencies
 
@@ -253,6 +253,7 @@ Diagram of the FM/AM osc with some low pass filters applied:
 - [saw](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-saw.ts)
 - [sawAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
 - [squareAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
+- [squareSin](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-square-sin.ts)
 - [sin](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-sin.ts)
 - [tri](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-tri.ts)
 - [wavetable](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-wavetable.ts)

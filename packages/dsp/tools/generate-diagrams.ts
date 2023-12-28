@@ -1,24 +1,28 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { cosineColor, COSINE_GRADIENTS } from "@thi.ng/color";
+import { COSINE_GRADIENTS, cosineColor } from "@thi.ng/color";
+import { writeText } from "@thi.ng/file-io";
 import {
 	asSvg,
+	rect as grect,
 	group,
 	line,
 	polyline,
-	rect as grect,
 	svgDoc,
 } from "@thi.ng/geom";
 import type { IHiccupShape } from "@thi.ng/geom-api";
-import { fit, fit11, fitClamped, PI } from "@thi.ng/math";
-import { map, mapcat, mapIndexed, range, take, zip } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
+import { ConsoleLogger } from "@thi.ng/logger";
+import { PI, fit, fit11, fitClamped } from "@thi.ng/math";
+import { map, mapIndexed, mapcat, range, take, zip } from "@thi.ng/transducers";
 import {
+	IGen,
+	IProc,
+	StatelessOscillator,
 	allpass,
 	biquadBP,
-	biquadHiShelf,
 	biquadHP,
-	biquadLoShelf,
+	biquadHiShelf,
 	biquadLP,
+	biquadLoShelf,
 	biquadNotch,
 	biquadPeak,
 	curve,
@@ -28,9 +32,7 @@ import {
 	foldback,
 	freqMs,
 	freqRange,
-	IGen,
 	impulseTrainT,
-	IProc,
 	mixOscHOF,
 	modOsc,
 	msFrames,
@@ -42,7 +44,6 @@ import {
 	rect,
 	saw,
 	sin,
-	StatelessOscillator,
 	svfAllpass,
 	svfBP,
 	svfHP,
@@ -78,10 +79,12 @@ const BASE_DIR = "export/";
 const X = 30;
 const YSCALE = 50;
 
+const LOGGER = new ConsoleLogger("dsp");
+
 const label = (x: number, y: number, body: string) =>
 	<IHiccupShape>{
 		toHiccup() {
-			return ["text", { stroke: "none" }, [x, y + 2], body];
+			return ["text", { stroke: "none", fill: "#000" }, [x, y + 2], body];
 		},
 	};
 
@@ -96,15 +99,16 @@ const write = (
 	yfmt: Fn<number, string> = (y) => y.toFixed(2),
 	num = labels.length
 ) =>
-	writeFileSync(
+	writeText(
 		BASE_DIR + fname,
 		asSvg(
 			svgDoc(
 				{
 					viewBox: `-10 -${YSCALE + 10} 570 ${2 * YSCALE + 40}`,
-					"font-family": "Inconsolata",
+					"font-family": "sans-serif",
 					"font-size": "8px",
 					"text-anchor": "end",
+					stroke: "none",
 					// "dominant-baseline": "middle"
 				},
 				// axis & labels
@@ -165,7 +169,8 @@ const write = (
 					labels
 				)
 			)
-		)
+		),
+		LOGGER
 	);
 
 const compute = (gen: IGen<number>, procs: IProc<number, number>[]) => [
