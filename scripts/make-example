@@ -48,7 +48,7 @@ cat << EOF > "$MODULE"/package.json
 	"scripts": {
 		"start": "yarn css:build && yarn start:only",
 		"start:only": "vite --host --open",
-		"css:gen": "../../node_modules/.bin/metacss generate --out css/framework.json ../../packages/meta-css/specs/*.json",
+		"css:gen": "../../node_modules/.bin/metacss generate --out css/framework.json ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json",
 		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
 		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
 		"build": "yarn css:build && tsc && vite build --base='./'",
