@@ -1,7 +1,24 @@
 {
 	"tables": {
 		"__var_comment": "16 custom CSS color slots",
-		"var-palette": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+		"var-palette": [
+			"var(--color1)",
+			"var(--color2)",
+			"var(--color3)",
+			"var(--color4)",
+			"var(--color5)",
+			"var(--color6)",
+			"var(--color7)",
+			"var(--color8)",
+			"var(--color9)",
+			"var(--color10)",
+			"var(--color11)",
+			"var(--color12)",
+			"var(--color13)",
+			"var(--color14)",
+			"var(--color15)",
+			"var(--color16)"
+		],
 		"__grays_comment": "Tachyons CSS colors",
 		"grays": {
 			"black": "#000",
@@ -19,6 +36,7 @@
 		},
 		"__palette_comment": "Tachyons CSS colors",
 		"palette": {
+			"current": "currentColor",
 			"dark-red": "#e7040f",
 			"red": "#ff4136",
 			"light-red": "#ff725c",
@@ -46,11 +64,15 @@
 			"washed-red": "#ffdfdf"
 		}
 	},
+	"vars": {
+		"fill-stroke": ["fill", "stroke"]
+	},
 	"specs": [
 		{
 			"user": "colors",
-			"name": "b--vcol<v>",
-			"props": { "border-color": "var(--color<v>)" },
+			"name": "b--vcol<k>",
+			"key": "i1",
+			"props": { "border-color": "<v>" },
 			"values": "var-palette"
 		},
 		{
@@ -67,8 +89,9 @@
 		},
 		{
 			"user": "colors",
-			"name": "vcol<v>",
-			"props": { "color": "var(--color<v>)" },
+			"name": "vcol<k>",
+			"key": "i1",
+			"props": { "color": "<v>" },
 			"values": "var-palette"
 		},
 		{
@@ -85,8 +108,9 @@
 		},
 		{
 			"user": "colors",
-			"name": "bg-vcol<v>",
-			"props": { "background-color": "var(--color<v>)" },
+			"name": "bg-vcol<k>",
+			"key": "i1",
+			"props": { "background-color": "<v>" },
 			"values": "var-palette"
 		},
 		{
@@ -100,6 +124,28 @@
 			"name": "bg-<k>",
 			"props": "background-color",
 			"values": "grays"
+		},
+		{
+			"user": "colors",
+			"name": "<var>-vcol<k>",
+			"key": "i1",
+			"props": { "<var>": "<v>" },
+			"values": "var-palette",
+			"var": ["fill-stroke"]
+		},
+		{
+			"user": "colors",
+			"name": "<var>-<k>",
+			"props": { "<var>": "<v>" },
+			"values": "palette",
+			"var": ["fill-stroke"]
+		},
+		{
+			"user": "colors",
+			"name": "<var>-<k>",
+			"props": { "<var>": "<v>" },
+			"values": "grays",
+			"var": ["fill-stroke"]
 		},
 		{
 			"user": "colors",
