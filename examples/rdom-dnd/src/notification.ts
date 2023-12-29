@@ -2,7 +2,6 @@ import {
 	CHECKMARK_FILLED,
 	INFORMATION_FILLED,
 	WARNING_ALT_FILLED,
-	withSize,
 } from "@thi.ng/hiccup-carbon-icons";
 import { div, i } from "@thi.ng/hiccup-html";
 import { Component, type NumOrElement } from "@thi.ng/rdom";
@@ -13,13 +12,13 @@ const ICONS = {
 	warn: WARNING_ALT_FILLED,
 };
 
-export interface NotifyOpts {
+export interface NotifyItem {
 	type: keyof typeof ICONS;
 	msg: string;
 }
 
-export class Notification extends Component<NotifyOpts> {
-	timeout!: number;
+export class Notification extends Component<NotifyItem> {
+	timeout!: ReturnType<typeof setTimeout>;
 
 	async mount(parent: Element, index?: NumOrElement) {
 		return (this.el = this.$el(
@@ -31,19 +30,18 @@ export class Notification extends Component<NotifyOpts> {
 		));
 	}
 
-	update(msg: NotifyOpts) {
+	update(msg: NotifyItem) {
 		this.$tree(
 			div(
 				".notification",
 				{ data: { type: msg.type } },
-				i(null, withSize(ICONS[msg.type], "1rem")),
+				i(null, ICONS[msg.type]),
 				msg.msg
 			),
 			this.$clear()
 		);
 		this.$attribs({ hidden: false });
 		clearTimeout(this.timeout);
-		// @ts-ignore
 		this.timeout = setTimeout(() => this.$attribs({ hidden: true }), 2000);
 	}
 

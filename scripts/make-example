@@ -21,16 +21,17 @@ EOF
 
 echo "creating /css folder..."
 mkdir -p "$MODULE"/css
-cat << EOF > "$MODULE"/css/style.meta
+cat << EOF > "$MODULE"/css/style.mcss
 // @thi.ng/meta-css stylesheet
 // see package readme for more details/usage
-// use yarn css:build or yarn css:watch to transpile to CSS
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src
 
 body { system-sans-serif }
 EOF
 
 cat << EOF > "$MODULE"/css/includes.txt
-// list CSS class names to force include in generated CSS
+// list of CSS class names to force-include in generated CSS
 // (one class per line, basic wildcards supported)
 EOF
 
@@ -47,9 +48,9 @@ cat << EOF > "$MODULE"/package.json
 	"scripts": {
 		"start": "yarn css:build && yarn start:only",
 		"start:only": "vite --host --open",
-		"css:gen": "../../node_modules/.bin/metacss generate --pretty --out css/framework.json ../../packages/meta-css/specs/*.json",
-		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/style.meta",
-		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt css/style.meta",
+		"css:gen": "../../node_modules/.bin/metacss generate --out css/framework.json ../../packages/meta-css/specs/*.json",
+		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
+		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
 		"build": "yarn css:build && tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},

@@ -27,6 +27,8 @@ zig-out
 
 examples-private
 examples/*/wasm-api-build.zig
+examples/*/css/framework.json
+examples/*/css/style.css
 node_modules
 packages/*/tools
 
