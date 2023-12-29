@@ -129,6 +129,10 @@ export function add<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
 export function add<T extends IVec>(l: Term<T>, r: IntTerm | number): Op2<T>;
 // prettier-ignore
+export function add<T extends UVec>(l: UintTerm | number, r: Term<T>): Op2<T>;
+// prettier-ignore
+export function add<T extends UVec>(l: Term<T>, r: UintTerm | number): Op2<T>;
+// prettier-ignore
 export function add(l: Term<any> | number, r: Term<any> | number): Op2<any> {
     return op2("+", l, r);
 }
@@ -144,7 +148,11 @@ export function sub<T extends Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2
 // prettier-ignore
 export function sub<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
-export function sub<T extends IVec>(l: Term<T>, r: IntTerm| number): Op2<T>;
+export function sub<T extends IVec>(l: Term<T>, r: IntTerm | number): Op2<T>;
+// prettier-ignore
+export function sub<T extends UVec>(l: UintTerm | number, r: Term<T>): Op2<T>;
+// prettier-ignore
+export function sub<T extends UVec>(l: Term<T>, r: UintTerm | number): Op2<T>;
 export function sub(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 	return op2("-", l, r);
 }
@@ -161,6 +169,10 @@ export function mul<T extends Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2
 export function mul<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
 export function mul<T extends IVec>(l: Term<T>, r: IntTerm | number): Op2<T>;
+// prettier-ignore
+export function mul<T extends UVec>(l: UintTerm | number, r: Term<T>): Op2<T>;
+// prettier-ignore
+export function mul<T extends UVec>(l: Term<T>, r: UintTerm | number): Op2<T>;
 export function mul(l: Mat2Term, r: Vec2Term): Op2<"vec2">;
 export function mul(l: Mat3Term, r: Vec3Term): Op2<"vec3">;
 export function mul(l: Mat4Term, r: Vec4Term): Op2<"vec4">;
@@ -190,6 +202,10 @@ export function div<T extends Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2
 export function div<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
 export function div<T extends IVec>(l: Term<T>, r: IntTerm | number): Op2<T>;
+// prettier-ignore
+export function div<T extends UVec>(l: UintTerm | number, r: Term<T>): Op2<T>;
+// prettier-ignore
+export function div<T extends UVec>(l: Term<T>, r: UintTerm | number): Op2<T>;
 export function div(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 	return op2("/", l, r);
 }
