@@ -11,7 +11,7 @@ test("variations", () => {
 				props: "border<var>-width",
 				values: [0, 0.5, 1],
 				unit: "rem",
-				var: ["", "t", "r", "b", "l"],
+				vars: ["", "t", "r", "b", "l"],
 			},
 			{},
 			NULL_LOGGER
