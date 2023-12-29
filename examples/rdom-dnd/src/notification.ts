@@ -4,17 +4,17 @@ import {
 	WARNING_ALT_FILLED,
 	withSize,
 } from "@thi.ng/hiccup-carbon-icons";
-import { div, span } from "@thi.ng/hiccup-html";
+import { div, i } from "@thi.ng/hiccup-html";
 import { Component, type NumOrElement } from "@thi.ng/rdom";
 
-const PRESETS = {
-	info: { class: "bg-lightest-blue blue", icon: INFORMATION_FILLED },
-	success: { class: "bg-washed-green dark-green", icon: CHECKMARK_FILLED },
-	warn: { class: "bg-washed-red dark-red", icon: WARNING_ALT_FILLED },
+const ICONS = {
+	info: INFORMATION_FILLED,
+	success: CHECKMARK_FILLED,
+	warn: WARNING_ALT_FILLED,
 };
 
 export interface NotifyOpts {
-	type: keyof typeof PRESETS;
+	type: keyof typeof ICONS;
 	msg: string;
 }
 
@@ -32,11 +32,11 @@ export class Notification extends Component<NotifyOpts> {
 	}
 
 	update(msg: NotifyOpts) {
-		const config = PRESETS[msg.type];
 		this.$tree(
 			div(
-				{ class: `w-100 ph3 pv2 mv2 br-pill ${config.class}` },
-				span({ class: "icon mr2" }, withSize(config.icon, "16px")),
+				".notification",
+				{ data: { type: msg.type } },
+				i(null, withSize(ICONS[msg.type], "1rem")),
 				msg.msg
 			),
 			this.$clear()

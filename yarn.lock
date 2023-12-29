@@ -1767,6 +1767,7 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/hiccup-carbon-icons": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: ^5.3.3

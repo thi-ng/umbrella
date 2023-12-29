@@ -1,0 +1,28 @@
+body { sans-serif ma3 }
+svg { fill-current }
+a { black }
+
+#app { mb3 }
+
+#bank1 .dropzone { bg-dark-red { [data-active=true] { bg-orange } } }
+#bank2 .dropzone { bg-blue { [data-active=true] { bg-light-blue } } }
+
+.dropzone { v-top dib mr1 mb1 w4 h4 pa4 br3 }
+
+.dragbt {
+	w3 h3 bg-black white
+	{
+		svg { relative top-0 dib ma3 }
+	}
+}
+
+.notification {
+	w-100 ph3 pv2 mv2 br-pill
+	{
+		i { mr2 v-mid }
+	}
+}
+.notification[data-type=info] { bg-lightest-blue blue }
+.notification[data-type=success] { bg-washed-green dark-green }
+.notification[data-type=warn] { bg-washed-red dark-red }
+

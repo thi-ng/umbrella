@@ -6,7 +6,6 @@ interface DraggableOpts {
 	scope?: string;
 	dropzone: string;
 	start: any;
-	hover: any;
 	end: any;
 	onstart?: Fn<DragEvent, void>;
 	onend?: Fn<DragEvent, void>;
@@ -23,7 +22,6 @@ export class Draggable extends Component {
 			dropzone: "dropzone",
 			start: { opacity: 0.5 },
 			end: { opacity: null },
-			hover: { background: "yellow" },
 			...opts,
 		};
 	}
@@ -54,20 +52,30 @@ export class Draggable extends Component {
 		const isDropZone = (e: DragEvent) =>
 			this.active &&
 			(<HTMLElement>e.target).dataset.dropzone === opts.dropzone;
-		const undoHover = objWithNull(opts.hover);
 		// add event handlers to configured DOM scope
 		this.$attribs(
 			{
 				ondragover: (e: DragEvent) => e.preventDefault(),
 				ondragenter: (e: DragEvent) =>
-					isDropZone(e) && this.$style(opts.hover, <Element>e.target),
+					isDropZone(e) &&
+					this.$attribs(
+						{ data: { active: true } },
+						<Element>e.target
+					),
 				ondragleave: (e: DragEvent) =>
-					isDropZone(e) && this.$style(undoHover, <Element>e.target),
+					isDropZone(e) &&
+					this.$attribs(
+						{ data: { active: false } },
+						<Element>e.target
+					),
 				ondrop: (e: DragEvent) => {
 					e.preventDefault();
 					if (isDropZone(e)) {
 						this.$style(opts.end);
-						this.$style(undoHover, <Element>e.target);
+						this.$attribs(
+							{ data: { active: false } },
+							<Element>e.target
+						);
 						this.$moveTo(<Element>e.target);
 						opts.ondrop && opts.ondrop(e);
 					}
@@ -82,6 +90,3 @@ export class Draggable extends Component {
 		return this.el!;
 	}
 }
-
-const objWithNull = (obj: any) =>
-	Object.keys(obj).reduce((acc: any, id) => ((acc[id] = null), acc), {});
