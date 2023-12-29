@@ -6,6 +6,7 @@ import type {
 	Branch,
 	Decl,
 	FnCall,
+	ForLoop,
 	Func,
 	FuncReturn,
 	Lit,
@@ -20,19 +21,31 @@ import type { Type } from "../api/types.js";
 import { isMat, isTerm, isVec } from "./checks.js";
 
 /**
- * Helper function for {@link walk}. Returns child nodes for any control
- * flow nodes containing a child scope.
+ * Helper function for {@link walk}. Returns child nodes (incl. tests in
+ * conditionals) for any control flow nodes containing a child scope.
  *
  * {@link allChildren}
  */
-export const scopedChildren = (t: Term<any>) =>
-	t.tag === "fn" || t.tag === "for" || t.tag == "while"
-		? (<Func<any>>t).scope.body
-		: t.tag === "if"
-		? (<Branch>t).f
-			? [(<Branch>t).test, ...(<Branch>t).t.body, ...(<Branch>t).f!.body]
-			: [(<Branch>t).test, ...(<Branch>t).t.body]
-		: undefined;
+export const scopedChildren = (t: Term<any>) => {
+	let children: Term<any>[];
+	switch (t.tag) {
+		case "scope":
+			return (<Scope>t).body;
+		case "fn":
+			return (<Func<any>>t).scope.body;
+		case "for":
+			children = [(<ForLoop>t).test, ...(<ForLoop>t).scope.body];
+			if ((<ForLoop>t).init) children.push((<ForLoop>t).init!);
+			if ((<ForLoop>t).iter) children.push((<ForLoop>t).iter!);
+			return children;
+		case "while":
+			return [(<ForLoop>t).test, ...(<Func<any>>t).scope.body];
+		case "if":
+			children = [(<Branch>t).test, ...(<Branch>t).t.body];
+			if ((<Branch>t).f) children.push(...(<Branch>t).f!.body);
+			return children;
+	}
+};
 
 /**
  * Helper function for {@link walk}. Returns an array of all child nodes for
@@ -45,7 +58,7 @@ export const allChildren = (t: Term<any>) =>
 	(t.tag === "scope"
 		? (<Scope>t).body
 		: t.tag === "ternary"
-		? [(<Ternary<any>>t).t, (<Ternary<any>>t).f]
+		? [(<Ternary<any>>t).test, (<Ternary<any>>t).t, (<Ternary<any>>t).f]
 		: t.tag === "ret"
 		? [(<FuncReturn<any>>t).val]
 		: t.tag === "call" || t.tag === "call_i"
