@@ -36,15 +36,13 @@ export interface SpecInfo {
 
 export interface Spec {
 	name: string;
-	key?: "v" | "i" | "i1";
+	key?: "v" | "i" | "i+1";
 	props: string | IObjectOf<NumOrString>;
 	values: IObjectOf<NumOrString> | string[] | number[] | string;
 	unit?: string;
-	var?: string[];
+	vars?: string[];
 	user?: any;
 }
-
-export type Index = "i" | "i1" | "v";
 
 export const ARG_SPECS = {
 	specs: string({

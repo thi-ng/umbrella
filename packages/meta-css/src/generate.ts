@@ -123,7 +123,7 @@ export const expandSpec = (
 	defs: IObjectOf<any>,
 	logger: ILogger
 ) => {
-	const variationIDs = isArray(spec.var) ? spec.var : [""];
+	const variationIDs = isArray(spec.vars) ? spec.vars : [""];
 	const props = isString(spec.props) ? { [spec.props]: "<v>" } : spec.props!;
 	const values = __items(spec, config);
 	const ownNames = new Set<string>();
@@ -198,7 +198,7 @@ const __items = (spec: Spec, config: Pick<GeneratorConfig, "tables">) => {
 	const keyFn: Fn2<any, number, string> =
 		spec.key === "v"
 			? (v) => String(v)
-			: spec.key === "i1"
+			: spec.key === "i+1"
 			? (_, i) => String(i + 1)
 			: spec.key === undefined
 			? (_, i) => String(i)
