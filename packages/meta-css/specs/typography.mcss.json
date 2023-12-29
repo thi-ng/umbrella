@@ -20,7 +20,7 @@
 		{
 			"user": "font sizes",
 			"name": "f<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": "font-size",
 			"values": [3, 2.25, 1.5, 1.25, 1, 0.875, 0.75],
 			"unit": "rem"

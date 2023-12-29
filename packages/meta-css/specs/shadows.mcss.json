@@ -11,21 +11,21 @@
 		{
 			"user": "shadow",
 			"name": "box-shadow-<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": "box-shadow",
 			"values": "shadows"
 		},
 		{
 			"user": "shadow",
 			"name": "box-shadow-i-<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": { "box-shadow": "<v> inset" },
 			"values": "shadows"
 		},
 		{
 			"user": "shadow",
 			"name": "text-shadow-<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": "text-shadow",
 			"values": [
 				"1px 1px 2px #0003",

@@ -14,11 +14,11 @@
 		{
 			"user": "<var>",
 			"name": "<vid><k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": "<var>",
 			"values": "sizes-abs",
 			"unit": "rem",
-			"var": ["w", "h"]
+			"vars": ["w", "h"]
 		},
 		{
 			"user": "<var>",
@@ -26,16 +26,16 @@
 			"props": "<var>",
 			"values": "sizes-rel",
 			"unit": "%",
-			"var": ["w", "h"]
+			"vars": ["w", "h"]
 		},
 		{
 			"user": "min. <var>",
 			"name": "min<vid><k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": "min-<var>",
 			"values": "sizes-abs",
 			"unit": "rem",
-			"var": ["w", "h"]
+			"vars": ["w", "h"]
 		},
 		{
 			"user": "min. <var>",
@@ -43,16 +43,16 @@
 			"props": "min-<var>",
 			"values": "sizes-rel",
 			"unit": "%",
-			"var": ["w", "h"]
+			"vars": ["w", "h"]
 		},
 		{
 			"user": "max. <var>",
 			"name": "max<vid><k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": "max-<var>",
 			"values": "sizes-abs",
 			"unit": "rem",
-			"var": ["w", "h"]
+			"vars": ["w", "h"]
 		},
 		{
 			"user": "max. <var>",
@@ -60,14 +60,14 @@
 			"props": "max-<var>",
 			"values": "sizes-rel",
 			"unit": "%",
-			"var": ["w", "h"]
+			"vars": ["w", "h"]
 		},
 		{
 			"name": "v<vid>-<v>",
 			"props": "<var>",
 			"values": [25, 50, 75, 100],
 			"unit": "v<vid>",
-			"var": ["w", "h"]
+			"vars": ["w", "h"]
 		}
 	]
 }

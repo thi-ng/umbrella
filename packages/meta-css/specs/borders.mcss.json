@@ -20,7 +20,7 @@
 			},
 			"values": "borders-r",
 			"unit": "rem",
-			"var": ["l", "r"]
+			"vars": ["l", "r"]
 		},
 		{
 			"user": "border radius",
@@ -31,7 +31,7 @@
 			},
 			"values": "borders-r",
 			"unit": "rem",
-			"var": ["t", "b"]
+			"vars": ["t", "b"]
 		},
 		{
 			"user": "border radius",
@@ -48,7 +48,7 @@
 			},
 			"values": "borders-w",
 			"unit": "rem",
-			"var": ["", "t", "r", "b", "l"]
+			"vars": ["", "t", "r", "b", "l"]
 		},
 		{
 			"user": "border width",
@@ -59,7 +59,7 @@
 			},
 			"values": [1],
 			"unit": "px",
-			"var": ["", "t", "r", "b", "l"]
+			"vars": ["", "t", "r", "b", "l"]
 		}
 	]
 }

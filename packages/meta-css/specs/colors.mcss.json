@@ -71,7 +71,7 @@
 		{
 			"user": "colors",
 			"name": "b--vcol<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": { "border-color": "<v>" },
 			"values": "var-palette"
 		},
@@ -90,7 +90,7 @@
 		{
 			"user": "colors",
 			"name": "vcol<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": { "color": "<v>" },
 			"values": "var-palette"
 		},
@@ -109,7 +109,7 @@
 		{
 			"user": "colors",
 			"name": "bg-vcol<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": { "background-color": "<v>" },
 			"values": "var-palette"
 		},
@@ -128,24 +128,24 @@
 		{
 			"user": "colors",
 			"name": "<var>-vcol<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": { "<var>": "<v>" },
 			"values": "var-palette",
-			"var": ["fill-stroke"]
+			"vars": ["fill-stroke"]
 		},
 		{
 			"user": "colors",
 			"name": "<var>-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "palette",
-			"var": ["fill-stroke"]
+			"vars": ["fill-stroke"]
 		},
 		{
 			"user": "colors",
 			"name": "<var>-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "grays",
-			"var": ["fill-stroke"]
+			"vars": ["fill-stroke"]
 		},
 		{
 			"user": "colors",

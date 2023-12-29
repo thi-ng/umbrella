@@ -8,7 +8,7 @@
 			"name": "overflow<var>-<v>",
 			"props": { "overflow<var>": "<v>" },
 			"values": "overflow",
-			"var": ["", "x", "y"]
+			"vars": ["", "x", "y"]
 		}
 	]
 }

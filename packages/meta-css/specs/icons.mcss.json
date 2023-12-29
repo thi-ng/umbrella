@@ -3,7 +3,7 @@
 		{
 			"user": "icons",
 			"name": "icon-<k>",
-			"key": "i1",
+			"key": "i+1",
 			"props": {
 				"display": "inline-block",
 				"width": "<v>",
