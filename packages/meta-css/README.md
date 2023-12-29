@@ -44,42 +44,51 @@ This project is part of the
 
 Data-driven CSS framework codegen, transpiler & bundler.
 
-This toolchain and the overall workflow proposed by it is heavily building atop
-the concept of _CSS utility classes_ (as known from Tachyons, Turret or the
-newer Tailwind projects). How and where those CSS classes are applied is however
-a defining point of difference to other existing approaches. Furthermore, using
-JSON as data format for expressing generative rules and as intermediate format
-for generated frameworks, removes the need for any complex CSS-related
-dependencies and makes it trivial to build secondary tooling around (e.g. part
-of this readme is an auto-generated report of the included base framework
-specs).
+This toolkit (started as experiment in 2016) and the overall design approach and
+workflows proposed by it are heavily building atop the concept of _CSS utility
+classes_ (as known from [Tachyons](https://tachyons.io/),
+[Turret](https://turretcss.com/) or the newer
+[Tailwind](https://tailwindcss.com/) projects). How and where those CSS classes
+are defined and later applied is however a major defining point of difference to
+these other existing approaches and will be explained in this document. To
+remove the need for any complex & bloated CSS-related dependencies (parsers
+etc.) and to simplify building secondary tooling (e.g. part of this readme is an
+[auto-generated report of the included base framework
+specs](#bundled-css-base-framework)), we're using JSON — rather than CSS — as
+data format to: 1) express the _generative_ rules to define all the CSS classes,
+declarations, media query criteria which are forming a framework and
+2) as intermediate data format for a generated CSS framework itself. **The
+entire toolkit (incl. all bundled dependencies) is currently only 32KB!**
 
 This readme aims to provide a thorough overview of this toolchain and some
 concrete usage examples...
 
 Note: In all cases, final CSS generation itself is handled by
 [thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/).
+Please see its readme for further useful information.
 
-**👷🏻 This is all WIP!** Also see included & linked examples for basic usage...
+**👷🏻 This is all WIP!** See included & [linked examples](#usage-examples) for
+concrete usage...
 
 ## Generating CSS frameworks
 
-The `generate` command is used to generate custom frameworks with (likely)
-hundreds of CSS utility classes from a number of extremely compact, parametric
-JSON rule specs. This process generates all desired, combinatorial versions of
-various rules/declarations and exports them to another JSON file used as
-intermediary for the other commands provided by this toolchain. The
-[syntax/format of the generator rules](#framework-generation-specs--syntax) is explained
-further on. These rule specs can be split up into multiple files for better
-handling, can define [arbitrary media query criteria]() (all later combinable),
-shared lookup tables for colors, margins, sizes, timings etc.
+The `generate` command is used to generate custom CSS frameworks with (likely)
+hundreds of utility classes, all derived from a number of extremely compact,
+parametric JSON rule specs. This process generates all desired, combinatorial
+versions of various rules/declarations and exports them to a framework JSON file
+used as intermediary stage for the other commands provided by this toolchain.
+The [syntax/format of the generator rules](#framework-generation-specs--syntax)
+is explained further on. These rule specs can be split up into multiple files
+for better handling, can define [arbitrary media query
+criteria](#media-query-definitions) (all later combinable), shared lookup tables
+for colors, margins, sizes, timings etc.
 
-The package includes generator specs for a basic, fully customizable,
-[tachyons.io](https://tachyons.io)-derived [CSS
-framework](#bundled-css-base-framework). These specs and resulting framework are
-still being worked on and are used for some example projects in this repo, but
-are mostly intended as basic starting points for creating other custom
-frameworks (in the hope they'll be shared back similarly)...
+The package includes dozens of generator specs for a basic, fully customizable,
+Tachyons-derived [CSS framework](#bundled-css-base-framework). These specs and
+resulting framework are still being worked on and are used for some example
+projects in this repo, but are mostly intended as basic starting points for
+creating other custom frameworks (_in the hope some useful specs will be shared back
+similarly_)...
 
 ```text
 metacss generate --help
@@ -100,8 +109,8 @@ Main:
 ### Framework generation specs & syntax
 
 This section gives an overview of the JSON format used to generate CSS
-frameworks of dozens (usually hundreds) of utility classes, including many
-possible variations (per spec).
+frameworks of dozens (usually hundreds or thousands) of utility classes,
+including many possible variations (per spec).
 
 Generation specs use a simple JSON structure as shown below. The specs can be
 split over multiple files and will all be merged by the `generate` command of
@@ -117,14 +126,15 @@ the toolchain.
     // optional media queries and their criteria, will be merged from multiple spec files
     "media": {
         "large": { "min-width": "60rem" },
-        "dark": { "prefers-color-scheme": "dark" }
+        "dark": { "prefers-color-scheme": "dark" },
+        "anim": { "prefers-reduced-motion": false }
     },
     // optional shared values/LUTs (arrays or objects)
-    // tables are always local to the current spec file only...
+    // (local to the current file only)
     "tables": {
         "margins": [0, 0.25, 0.5, 1, 2, 4]
     },
-    // optional shared variations
+    // optional shared variations (local to current file only)
     "vars": {
         "size": ["width", "height"]
     },
@@ -150,7 +160,7 @@ For each additional value added to the `margins` table, 7 more CSS classes will 
 generated. The `name` (class) and `props` (CSS property name) are parametric and
 will be explained in more detail further below.
 
-```json tangle:export/readme-margins.json
+```json tangle:export/readme-margins.mcss.json
 {
     "tables": {
         "margins": [0, 0.5, 1]
@@ -161,18 +171,18 @@ will be explained in more detail further below.
             "props": "margin<var>",
             "values": "margins",
             "unit": "rem",
-            "var": ["a", "t", "r", "b", "l", "h", "v"]
+            "vars": ["a", "t", "r", "b", "l", "h", "v"]
         }
     ]
 }
 ```
 
-Assuming the above spec has been saved to file `myspecs.json`...
+Assuming the above spec has been saved to file `margins.mcss.json`...
 
 ```bash
 # the generate cmd can merge specs from multiple input files
 # if no `--out` file is given, the result will go to stdout
-metacss generate --pretty myspecs.json
+metacss generate --pretty margins.mcss.json
 ```
 
 ...this command (with the above spec) will generate the following output (here
@@ -221,26 +231,28 @@ An individual generator spec JSON object can contain the following keys:
 
 | **ID**   | **Type**                | **Description**                                              |
 |----------|-------------------------|--------------------------------------------------------------|
+| `key`    | string, optional        | Method for deriving keys from current value                  |
 | `name`   | string                  | Parametric name for the generated CSS class(es)              |
 | `props`  | string or object        | CSS property name(s), possibly parametric                    |
-| `values` | string, array or object | Values to be assigned to CSS properties, possibly parametric |
 | `unit`   | string, optional        | CSS unit to use for values                                   |
-| `key`    | string, optional        | Method for deriving keys from current value                  |
-| `var`    | string[], optional      | Array of variation IDs (see section below)                   |
-| `user`   | any, optional           | Custom user data, comments, metadata etc.                    |
+| `user`   | any, optional           | Custom, arbitrary user data, comments, metadata etc.         |
+| `values` | string, array or object | Values to be assigned to CSS properties, possibly parametric |
+| `vars`   | string[], optional      | Array of variation IDs (see section below)                   |
 
 The number of generated CSS classes per spec is the number of items in `values`
 multiplied by the number of variations in `var` (if any).
 
 Any `user` data will be stored (as is) with each generated CSS class, but
-currently has no other direct use in the toolchain and is meant for additional
-user-defined tooling.
+currently has no direct use in the toolchain and is purely intended for
+additional user-defined custom tooling.
 
 #### Variations
 
 Variations can be requested by providing an array of valid variation IDs. If
-used, `<vid>` or `<var>` parameters must be used in the `name` or else naming
-conflicts will occur.
+used, `<vid>` or `<var>` parameters **must** be used in the `name` or else
+naming conflicts will occur.
+
+The following variation presets are available:
 
 | **ID**     | **Expanded values**   |
 |------------|-----------------------|
@@ -259,26 +271,60 @@ conflicts will occur.
 | `"x"`      | `["-x"]`              |
 | `"y"`      | `["-y"]`              |
 
+Custom, file-local variations can also be used (parameters in `name` and `props`
+will be explained next), e.g.:
+
+```json tangle:export/readme-custom-vars.mcss.json
+{
+    "vars": {
+        "svg": ["fill", "stroke"]
+    },
+    "specs": [
+        {
+            "name": "<var>-<k>",
+            "props": { "<var>": "<v>" },
+            "values": { "black": "#000", "white": "#fff", "current": "currentColor" },
+            "vars": ["svg"]
+        }
+    ]
+}
+```
+
+This spec will generate the following classes:
+
+```json
+{
+    "fill-black": { "fill": "#000" },
+    "fill-white": { "fill": "#fff" },
+    "fill-current": { "fill": "currentColor" },
+    "stroke-black": { "stroke": "#000" },
+    "stroke-white": { "stroke": "#fff" },
+    "stroke-current": { "stroke": "currentColor" }
+}
+```
+
 #### Parametric IDs
 
 The following parameters can (and should) be used in a spec's `name` and `props`
 to generate multiple pattern-based values (more examples below).
 
-- `<vid>` is a value from the ID column of the above variations table. If no
-  variations are requested, its value will be an empty string.
-- `<var>` is one of the expanded values for the current variation (2nd column of
-  variations table). If no variations are defined, this too will be an empty
-  string.
+- `<vid>` is the ID of the currently processed variation (e.g. a value from the
+  ID column in the above table). If no variations are requested, this value will
+  be an empty string.
+- `<var>` is one of the expanded values for the current variation (e.g. 2nd
+  column of variations table). If no variations are defined, this too will be an
+  empty string.
 - `<v>` is the currently processed value of a spec's `values`.
-- `<k>` is the key (possibly derived) for the currently processed value of a
-  spec's `values` and will depend on the type of `values` (see below)
+- `<k>` is the (possibly derived) key for the currently processed value of a
+  spec's `values` collection and will depend on the type of `values` (see [key
+  value generation](#key-value-generation))
 
 #### Values
 
 The `values` are used to populate the `props` (CSS properties). If `values` is a
 string it will be used as table-name to look up in the current spec file's
-`tables`, an object storing values which should be shared among specs (only in
-the same file).
+`tables`, an object storing value collections which should be shared among specs
+(only in the same file).
 
 Other allowed types of `values`: string array, numeric array or object of
 key-value pairs (where values are strings or numbers too). The following
@@ -293,7 +339,7 @@ Using a named `tables` entry:
     },
     "specs": [
         {
-            "name": "test<v>",
+            "name": "test-<v>",
             "props": "color",
             "values": "test"
         }
@@ -305,7 +351,7 @@ Using an array directly (here only showing the spec itself for brevity):
 
 ```json
 {
-    "name": "test<v>",
+    "name": "test-<v>",
     "props": "color",
     "values": ["red", "green", "blue"]
 }
@@ -315,7 +361,7 @@ Using an object (ignoring the keys, only using the values here):
 
 ```json
 {
-    "name": "test<v>",
+    "name": "test-<v>",
     "props": "color",
     "values": { "r": "red", "g": "green", "b": "blue"}
 }
@@ -363,13 +409,13 @@ Will result in these definitions:
 
 The `key` field is only used when `values` is resolving to an array. In this
 case this field determines how a "key" value (aka the `<k>` param for string
-interpolation, see below) will be derived for each value in `values`:
+interpolation) will be derived for each value in `values`:
 
 | **`key`** | **`values`**    | **Description**         | **Examples** |
 |-----------|-----------------|-------------------------|--------------|
 | `v`       | `[10, 20, ...]` | Actual array item value | 10, 20, ...  |
 | `i`       | `[10, 20, ...]` | Array item index        | 0, 1,...     |
-| `i1`      | `[10, 20, ...]` | Array item index + 1    | 1, 2,...     |
+| `i+1`     | `[10, 20, ...]` | Array item index + 1    | 1, 2,...     |
 
 If `values` resolves to an object, the `<k>` param will always be the key of the
 currently processed value.
@@ -413,7 +459,7 @@ specs](https://github.com/thi-ng/umbrella/blob/982fff7bfcc48f108b6ad88f854ef00be
 ## Converting meta stylesheets to CSS
 
 The `convert` command is used to compile & bundle actual CSS from user-provided
-MetaCSS stylesheets (`*.meta` files) and the JSON framework specs created by the
+MetaCSS stylesheets (`*.mcss` files) and the JSON framework specs created by the
 `generate` command. The meta-stylesheets support any CSS selectors, are nestable
 and compose full CSS declarations from lists of the utility classes in the
 generated framework.
@@ -429,7 +475,7 @@ from multiple input files. **The resulting CSS will only contain referenced
 rules** and can be generated in minified or pretty printed formats (it's also
 possible to [force include CSS classes which are otherwise
 unreferenced](#force-inclusion-of-unreferenced-classes)). Additionally, multiple
-`.meta` stylesheets can be watched for changes (their definitions getting
+`.mcss` stylesheets can be watched for changes (their definitions getting
 merged), and existing CSS files can be included (prepended) in the bundled
 output too.
 
@@ -480,8 +526,8 @@ selector {
 
 #### Class identifiers & media query prefixes
 
-As indicated by the above file structure, `*.meta` stylesheets purely consist of
-CSS selectors and the names of the generated framework-defined utility classes.
+As indicated by the above file structure, `*.mcss` stylesheets purely consist of
+CSS selectors and the names of the utility classes defined in a generated framework.
 For example, using the [bundled framework specs](#bundled-css-base-framework),
 this simple meta-stylesheet `body { ma0 monospace blue }` creates a CSS rule for
 `body` with the definitions of the generated `ma0`, `monospace` and `blue`
@@ -498,11 +544,11 @@ body {
 #### Media query prefixes
 
 This toolchain doesn't pre-generate media-query-specific versions of any CSS
-class, and any class ID/token can be prefixed with any number of media query IDs
-(separated by `:`). These [media queries are defined as part of the framework
-generation specs](#media-query-definitions) and when used as a prefix, multiple
-query IDs can be combined freely. For example, the meta-stylesheet `a:hover {
-dark:bg-blue dark:anim:bg-anim2 }` will auto-create two separate CSS
+class, and any utility class ID/token can be prefixed with any number of media
+query IDs (separated by `:`). These [media queries are defined as part of the
+framework generation specs](#media-query-definitions) and when used as a prefix,
+multiple query IDs can be combined freely. For example, the meta-stylesheet
+`a:hover { dark:bg-blue dark:anim:bg-anim2 }` will auto-create two separate CSS
 `@media`-query blocks for the query IDs `dark` and `(dark AND anim)`:
 
 ```css
@@ -521,9 +567,9 @@ dark:bg-blue dark:anim:bg-anim2 }` will auto-create two separate CSS
 
 A more detailed example, split over two files (for merging & bundling):
 
-readme.meta:
+readme.mcss:
 
-```text tangle:export/readme.meta
+```text tangle:export/readme.mcss
 body {
     // no margins
     ma0
@@ -549,16 +595,17 @@ body {
 }
 ```
 
-readme2.meta:
+readme2.mcss:
 
 We will merge the definitions in this file with the ones above (i.e. adding &
 overriding some of the declarations, here: a larger border radius):
 
-```text tangle:export/readme2.meta
+```text tangle:export/readme2.mcss
 #app { pa2 }
 
 .bt-group-v > a {
     {
+        // override border radii
         :first-child { brt4 }
         :last-child { brb4 }
     }
@@ -568,10 +615,10 @@ overriding some of the declarations, here: a larger border radius):
 ```bash
 # if no --out dir is specified, writes result to stdout...
 # use previously generated framework for resolving all identifiers & media queries
-metacss convert --pretty --specs framework.json readme.meta readme2.meta
+metacss convert --pretty --specs framework.json readme.mcss readme2.mcss
 ```
 
-Resulting CSS bundle output:
+Resulting merged CSS bundle output:
 
 ```css
 /*! MetaCSS base v0.0.1 - generated by thi.ng/meta-css @ 2023-12-18T12:22:36.548Z */
@@ -665,7 +712,7 @@ verbatim and will **not** be transformed or reformatted in any way.
 ### Force inclusion of unreferenced classes
 
 Only the CSS classes (and their optionally associated media queries) referenced
-in a `.meta` stylesheet will appear in the export CSS bundle. This ensures that
+in a `.mcss` stylesheet will appear in the export CSS bundle. This ensures that
 the resulting CSS will only contain what's actually used (same effect as
 tree-shaking, only vastly more efficient). However, this also means any CSS
 classes (and optionally, their media query qualifiers) which are otherwise
@@ -759,7 +806,7 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Colors <!-- notoc -->
 
-`b--black` / `b--blue` / `b--dark-blue` / `b--dark-gray` / `b--dark-green` / `b--dark-pink` / `b--dark-red` / `b--gold` / `b--gray` / `b--green` / `b--hot-pink` / `b--light-blue` / `b--light-gray` / `b--light-green` / `b--light-pink` / `b--light-purple` / `b--light-red` / `b--light-silver` / `b--light-yellow` / `b--lightest-blue` / `b--mid-gray` / `b--moon-gray` / `b--navy` / `b--near-black` / `b--near-white` / `b--orange` / `b--pink` / `b--purple` / `b--red` / `b--silver` / `b--transparent` / `b--vcol1` / `b--vcol10` / `b--vcol11` / `b--vcol12` / `b--vcol13` / `b--vcol14` / `b--vcol15` / `b--vcol16` / `b--vcol2` / `b--vcol3` / `b--vcol4` / `b--vcol5` / `b--vcol6` / `b--vcol7` / `b--vcol8` / `b--vcol9` / `b--washed-blue` / `b--washed-green` / `b--washed-red` / `b--washed-yellow` / `b--white` / `b--yellow` / `bg-black` / `bg-blue` / `bg-dark-blue` / `bg-dark-gray` / `bg-dark-green` / `bg-dark-pink` / `bg-dark-red` / `bg-gold` / `bg-gray` / `bg-green` / `bg-hot-pink` / `bg-light-blue` / `bg-light-gray` / `bg-light-green` / `bg-light-pink` / `bg-light-purple` / `bg-light-red` / `bg-light-silver` / `bg-light-yellow` / `bg-lightest-blue` / `bg-mid-gray` / `bg-moon-gray` / `bg-navy` / `bg-near-black` / `bg-near-white` / `bg-orange` / `bg-pink` / `bg-purple` / `bg-red` / `bg-silver` / `bg-transparent` / `bg-vcol1` / `bg-vcol10` / `bg-vcol11` / `bg-vcol12` / `bg-vcol13` / `bg-vcol14` / `bg-vcol15` / `bg-vcol16` / `bg-vcol2` / `bg-vcol3` / `bg-vcol4` / `bg-vcol5` / `bg-vcol6` / `bg-vcol7` / `bg-vcol8` / `bg-vcol9` / `bg-washed-blue` / `bg-washed-green` / `bg-washed-red` / `bg-washed-yellow` / `bg-white` / `bg-yellow` / `black` / `blue` / `dark-blue` / `dark-gray` / `dark-green` / `dark-pink` / `dark-red` / `gold` / `gray` / `green` / `hot-pink` / `light-blue` / `light-gray` / `light-green` / `light-pink` / `light-purple` / `light-red` / `light-silver` / `light-yellow` / `lightest-blue` / `mid-gray` / `moon-gray` / `navy` / `near-black` / `near-white` / `o-0` / `o-10` / `o-100` / `o-20` / `o-30` / `o-40` / `o-50` / `o-60` / `o-70` / `o-80` / `o-90` / `orange` / `pink` / `purple` / `red` / `silver` / `transparent` / `vcol1` / `vcol10` / `vcol11` / `vcol12` / `vcol13` / `vcol14` / `vcol15` / `vcol16` / `vcol2` / `vcol3` / `vcol4` / `vcol5` / `vcol6` / `vcol7` / `vcol8` / `vcol9` / `washed-blue` / `washed-green` / `washed-red` / `washed-yellow` / `white` / `yellow`
+`b--black` / `b--blue` / `b--current` / `b--dark-blue` / `b--dark-gray` / `b--dark-green` / `b--dark-pink` / `b--dark-red` / `b--gold` / `b--gray` / `b--green` / `b--hot-pink` / `b--light-blue` / `b--light-gray` / `b--light-green` / `b--light-pink` / `b--light-purple` / `b--light-red` / `b--light-silver` / `b--light-yellow` / `b--lightest-blue` / `b--mid-gray` / `b--moon-gray` / `b--navy` / `b--near-black` / `b--near-white` / `b--orange` / `b--pink` / `b--purple` / `b--red` / `b--silver` / `b--transparent` / `b--vcol1` / `b--vcol10` / `b--vcol11` / `b--vcol12` / `b--vcol13` / `b--vcol14` / `b--vcol15` / `b--vcol16` / `b--vcol2` / `b--vcol3` / `b--vcol4` / `b--vcol5` / `b--vcol6` / `b--vcol7` / `b--vcol8` / `b--vcol9` / `b--washed-blue` / `b--washed-green` / `b--washed-red` / `b--washed-yellow` / `b--white` / `b--yellow` / `bg-black` / `bg-blue` / `bg-current` / `bg-dark-blue` / `bg-dark-gray` / `bg-dark-green` / `bg-dark-pink` / `bg-dark-red` / `bg-gold` / `bg-gray` / `bg-green` / `bg-hot-pink` / `bg-light-blue` / `bg-light-gray` / `bg-light-green` / `bg-light-pink` / `bg-light-purple` / `bg-light-red` / `bg-light-silver` / `bg-light-yellow` / `bg-lightest-blue` / `bg-mid-gray` / `bg-moon-gray` / `bg-navy` / `bg-near-black` / `bg-near-white` / `bg-orange` / `bg-pink` / `bg-purple` / `bg-red` / `bg-silver` / `bg-transparent` / `bg-vcol1` / `bg-vcol10` / `bg-vcol11` / `bg-vcol12` / `bg-vcol13` / `bg-vcol14` / `bg-vcol15` / `bg-vcol16` / `bg-vcol2` / `bg-vcol3` / `bg-vcol4` / `bg-vcol5` / `bg-vcol6` / `bg-vcol7` / `bg-vcol8` / `bg-vcol9` / `bg-washed-blue` / `bg-washed-green` / `bg-washed-red` / `bg-washed-yellow` / `bg-white` / `bg-yellow` / `black` / `blue` / `current` / `dark-blue` / `dark-gray` / `dark-green` / `dark-pink` / `dark-red` / `fill-black` / `fill-blue` / `fill-current` / `fill-dark-blue` / `fill-dark-gray` / `fill-dark-green` / `fill-dark-pink` / `fill-dark-red` / `fill-gold` / `fill-gray` / `fill-green` / `fill-hot-pink` / `fill-light-blue` / `fill-light-gray` / `fill-light-green` / `fill-light-pink` / `fill-light-purple` / `fill-light-red` / `fill-light-silver` / `fill-light-yellow` / `fill-lightest-blue` / `fill-mid-gray` / `fill-moon-gray` / `fill-navy` / `fill-near-black` / `fill-near-white` / `fill-orange` / `fill-pink` / `fill-purple` / `fill-red` / `fill-silver` / `fill-transparent` / `fill-vcol1` / `fill-vcol10` / `fill-vcol11` / `fill-vcol12` / `fill-vcol13` / `fill-vcol14` / `fill-vcol15` / `fill-vcol16` / `fill-vcol2` / `fill-vcol3` / `fill-vcol4` / `fill-vcol5` / `fill-vcol6` / `fill-vcol7` / `fill-vcol8` / `fill-vcol9` / `fill-washed-blue` / `fill-washed-green` / `fill-washed-red` / `fill-washed-yellow` / `fill-white` / `fill-yellow` / `gold` / `gray` / `green` / `hot-pink` / `light-blue` / `light-gray` / `light-green` / `light-pink` / `light-purple` / `light-red` / `light-silver` / `light-yellow` / `lightest-blue` / `mid-gray` / `moon-gray` / `navy` / `near-black` / `near-white` / `o-0` / `o-10` / `o-100` / `o-20` / `o-30` / `o-40` / `o-50` / `o-60` / `o-70` / `o-80` / `o-90` / `orange` / `pink` / `purple` / `red` / `silver` / `stroke-black` / `stroke-blue` / `stroke-current` / `stroke-dark-blue` / `stroke-dark-gray` / `stroke-dark-green` / `stroke-dark-pink` / `stroke-dark-red` / `stroke-gold` / `stroke-gray` / `stroke-green` / `stroke-hot-pink` / `stroke-light-blue` / `stroke-light-gray` / `stroke-light-green` / `stroke-light-pink` / `stroke-light-purple` / `stroke-light-red` / `stroke-light-silver` / `stroke-light-yellow` / `stroke-lightest-blue` / `stroke-mid-gray` / `stroke-moon-gray` / `stroke-navy` / `stroke-near-black` / `stroke-near-white` / `stroke-orange` / `stroke-pink` / `stroke-purple` / `stroke-red` / `stroke-silver` / `stroke-transparent` / `stroke-vcol1` / `stroke-vcol10` / `stroke-vcol11` / `stroke-vcol12` / `stroke-vcol13` / `stroke-vcol14` / `stroke-vcol15` / `stroke-vcol16` / `stroke-vcol2` / `stroke-vcol3` / `stroke-vcol4` / `stroke-vcol5` / `stroke-vcol6` / `stroke-vcol7` / `stroke-vcol8` / `stroke-vcol9` / `stroke-washed-blue` / `stroke-washed-green` / `stroke-washed-red` / `stroke-washed-yellow` / `stroke-white` / `stroke-yellow` / `transparent` / `vcol1` / `vcol10` / `vcol11` / `vcol12` / `vcol13` / `vcol14` / `vcol15` / `vcol16` / `vcol2` / `vcol3` / `vcol4` / `vcol5` / `vcol6` / `vcol7` / `vcol8` / `vcol9` / `washed-blue` / `washed-green` / `washed-red` / `washed-yellow` / `white` / `yellow`
 
 #### Cursors <!-- notoc -->
 
@@ -947,6 +994,7 @@ directory are using this package:
 | Screenshot                                                                                                             | Description                              | Live demo                                             | Source                                                                             |
 |:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/> | Basic thi.ng/meta-css usage & testbed    | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-dnd.png" width="240"/>        | rdom drag & drop example                 | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lazy-load.png" width="240"/>  | Lazy loading components via @thi.ng/rdom | [Demo](https://demo.thi.ng/umbrella/rdom-lazy-load/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lazy-load)  |
 
 ## Authors
