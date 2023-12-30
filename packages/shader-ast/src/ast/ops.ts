@@ -16,8 +16,8 @@ import type {
 } from "../api/terms.js";
 import type {
 	Comparable,
-	Int,
 	IVec,
+	Int,
 	Mat,
 	NumericF,
 	NumericI,
@@ -349,4 +349,38 @@ export function bitxor<T extends UVec>(l: UintTerm | number, r: Term<T>): Term<T
 // prettier-ignore
 export function bitxor(l: Term<any> | number, r: Term<any> | number): Op2<any> {
     return op2("^", l, r, undefined);
+}
+
+/**
+ * @reference
+ * GLSL ES Specification 3.0, page 71
+ *
+ * @param l
+ * @param r
+ */
+// prettier-ignore
+export function lshift<A extends IVec, B extends A>(l: Term<A>, r: Term<B> | IntTerm): Term<A>;
+// prettier-ignore
+export function lshift<A extends UVec, B extends A>(l: Term<A>, r: Term<B> | UintTerm): Term<A>;
+export function lshift(l: IntTerm, r: IntTerm): IntTerm;
+export function lshift(l: UintTerm, r: UintTerm): UintTerm;
+export function lshift(l: Term<any>, r: Term<any>): Op2<any> {
+	return op2("<<", l, r, undefined);
+}
+
+/**
+ * @reference
+ * GLSL ES Specification 3.0, page 71
+ *
+ * @param l
+ * @param r
+ */
+// prettier-ignore
+export function rshift<A extends IVec, B extends A>(l: Term<A>, r: Term<B> | IntTerm): Term<A>;
+// prettier-ignore
+export function rshift<A extends UVec, B extends A>(l: Term<A>, r: Term<B> | UintTerm): Term<A>;
+export function rshift(l: IntTerm, r: IntTerm): IntTerm;
+export function rshift(l: UintTerm, r: UintTerm): UintTerm;
+export function rshift(l: Term<any>, r: Term<any>): Op2<any> {
+	return op2(">>", l, r, undefined);
 }
