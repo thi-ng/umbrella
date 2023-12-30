@@ -168,6 +168,8 @@ export interface JSBuiltinsIntVec
 		JSBuiltinsVecCompare {
 	modivn: Fn2<Vec, number, Vec>;
 	modinv: Fn2<number, Vec, Vec>;
+	lshiftvn: Fn2<Vec, number, Vec>;
+	rshiftvn: Fn2<Vec, number, Vec>;
 }
 
 export interface JSBuiltinsMat

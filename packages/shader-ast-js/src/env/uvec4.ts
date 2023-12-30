@@ -6,9 +6,9 @@ import { bitXorU4 } from "@thi.ng/vectors/bit-xor";
 import { divNU4, divU4 } from "@thi.ng/vectors/divi";
 import { fmod4 } from "@thi.ng/vectors/fmod";
 import { fmodN4 } from "@thi.ng/vectors/fmodn";
-import { lshiftU4 } from "@thi.ng/vectors/lshift";
+import { lshiftNU4, lshiftU4 } from "@thi.ng/vectors/lshift";
 import { mulNU4, mulU4 } from "@thi.ng/vectors/muli";
-import { rshiftU4 } from "@thi.ng/vectors/rshift";
+import { rshiftNU4, rshiftU4 } from "@thi.ng/vectors/rshift";
 import { subNU4, subU4 } from "@thi.ng/vectors/subi";
 import type { JSBuiltinsIntVec } from "../api.js";
 import { POOL_UVEC4 } from "../pool.js";
@@ -35,8 +35,10 @@ export const UVEC4: JSBuiltinsIntVec = {
 	subnv: (a, b) => subU4(null, uniform(a), b),
 	bitand: (a, b) => bitAndU4(next(), a, b),
 	lshift: (a, b) => lshiftU4(next(), a, b),
+	lshiftvn: (a, b) => lshiftNU4(next(), a, b),
 	bitnot1: (a) => bitNotU4(next(), a),
 	bitor: (a, b) => bitOrU4(next(), a, b),
 	rshift: (a, b) => rshiftU4(next(), a, b),
+	rshiftvn: (a, b) => rshiftNU4(next(), a, b),
 	bitxor: (a, b) => bitXorU4(next(), a, b),
 };
