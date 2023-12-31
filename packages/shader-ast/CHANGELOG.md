@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-28T23:24:39Z
+- **Last updated**: 2023-12-31T09:44:23Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.13.0) (2023-12-31)
+
+#### 🚀 Features
+
+- add uvec support for basic math ops ([#435](https://github.com/thi-ng/umbrella/issues/435)) ([c21e975](https://github.com/thi-ng/umbrella/commit/c21e975))
+  - update function signatures for basic math ops: add, sub, mul, div
+- fix [#435](https://github.com/thi-ng/umbrella/issues/435), add lshift/rshift ops ([a986766](https://github.com/thi-ng/umbrella/commit/a986766))
+
+#### 🩹 Bug fixes
+
+- fix [#436](https://github.com/thi-ng/umbrella/issues/436), update scope traversal ([4c082d7](https://github.com/thi-ng/umbrella/commit/4c082d7))
+  - update scopedChildren() & allChildren()
 
 ### [0.12.79](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.12.79) (2023-11-09)
 
