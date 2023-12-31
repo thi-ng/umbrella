@@ -1,28 +1,56 @@
-// swizzle gen:
-// console.log([...permutations("xyz","xyz")].map((x) =>`"${x.join("")}"`).join(" | "))
+type SwizzleXY_1 = "x" | "y";
+type SwizzleXY_2 = `${SwizzleXY_1}${SwizzleXY_1}`;
+type SwizzleXY_3 = `${SwizzleXY_2}${SwizzleXY_1}`;
+type SwizzleXY_4 = `${SwizzleXY_3}${SwizzleXY_1}`;
+type SwizzleRG_1 = "r" | "g";
+type SwizzleRG_2 = `${SwizzleRG_1}${SwizzleRG_1}`;
+type SwizzleRG_3 = `${SwizzleRG_2}${SwizzleRG_1}`;
+type SwizzleRG_4 = `${SwizzleRG_3}${SwizzleRG_1}`;
+type SwizzleST_1 = "s" | "t";
+type SwizzleST_2 = `${SwizzleST_1}${SwizzleST_1}`;
+type SwizzleST_3 = `${SwizzleST_2}${SwizzleST_1}`;
+type SwizzleST_4 = `${SwizzleST_3}${SwizzleST_1}`;
 
-export type Swizzle2_1 = "x" | "y";
-export type Swizzle2_2 = "xx" | "xy" | "yx" | "yy";
-// prettier-ignore
-export type Swizzle2_3 = "xxx" | "xxy" | "xyx" | "xyy" | "yxx" | "yxy" | "yyx" | "yyy";
-// prettier-ignore
-export type Swizzle2_4 = "xxxx" | "xxxy" | "xxyx" | "xxyy" | "xyxx" | "xyxy" | "xyyx" | "xyyy" | "yxxx" | "yxxy" | "yxyx" | "yxyy" | "yyxx" | "yyxy" | "yyyx" | "yyyy";
+type SwizzleXYZ_1 = SwizzleXY_1 | "z";
+type SwizzleXYZ_2 = `${SwizzleXYZ_1}${SwizzleXYZ_1}`;
+type SwizzleXYZ_3 = `${SwizzleXYZ_2}${SwizzleXYZ_1}`;
+type SwizzleXYZ_4 = `${SwizzleXYZ_3}${SwizzleXYZ_1}`;
+type SwizzleRGB_1 = SwizzleRG_1 | "b";
+type SwizzleRGB_2 = `${SwizzleRGB_1}${SwizzleRGB_1}`;
+type SwizzleRGB_3 = `${SwizzleRGB_2}${SwizzleRGB_1}`;
+type SwizzleRGB_4 = `${SwizzleRGB_3}${SwizzleRGB_1}`;
+type SwizzleSTP_1 = SwizzleST_1 | "p";
+type SwizzleSTP_2 = `${SwizzleSTP_1}${SwizzleSTP_1}`;
+type SwizzleSTP_3 = `${SwizzleSTP_2}${SwizzleSTP_1}`;
+type SwizzleSTP_4 = `${SwizzleSTP_3}${SwizzleSTP_1}`;
 
-export type Swizzle3_1 = "x" | "y" | "z";
-// prettier-ignore
-export type Swizzle3_2 = "xx" | "xy" | "xz" | "yx" | "yy" | "yz" | "zx" | "zy" | "zz";
-// prettier-ignore
-export type Swizzle3_3 = "xxx" | "xxy" | "xxz" | "xyx" | "xyy" | "xyz" | "xzx" | "xzy" | "xzz" | "yxx" | "yxy" | "yxz" | "yyx" | "yyy" | "yyz" | "yzx" | "yzy" | "yzz" | "zxx" | "zxy" | "zxz" | "zyx" | "zyy" | "zyz" | "zzx" | "zzy" | "zzz";
-// prettier-ignore
-export type Swizzle3_4 = "xxxx" | "xxxy" | "xxxz" | "xxyx" | "xxyy" | "xxyz" | "xxzx" | "xxzy" | "xxzz" | "xyxx" | "xyxy" | "xyxz" | "xyyx" | "xyyy" | "xyyz" | "xyzx" | "xyzy" | "xyzz" | "xzxx" | "xzxy" | "xzxz" | "xzyx" | "xzyy" | "xzyz" | "xzzx" | "xzzy" | "xzzz" | "yxxx" | "yxxy" | "yxxz" | "yxyx" | "yxyy" | "yxyz" | "yxzx" | "yxzy" | "yxzz" | "yyxx" | "yyxy" | "yyxz" | "yyyx" | "yyyy" | "yyyz" | "yyzx" | "yyzy" | "yyzz" | "yzxx" | "yzxy" | "yzxz" | "yzyx" | "yzyy" | "yzyz" | "yzzx" | "yzzy" | "yzzz" | "zxxx" | "zxxy" | "zxxz" | "zxyx" | "zxyy" | "zxyz" | "zxzx" | "zxzy" | "zxzz" | "zyxx" | "zyxy" | "zyxz" | "zyyx" | "zyyy" | "zyyz" | "zyzx" | "zyzy" | "zyzz" | "zzxx" | "zzxy" | "zzxz" | "zzyx" | "zzyy" | "zzyz" | "zzzx" | "zzzy" | "zzzz";
+type SwizzleXYZW_1 = SwizzleXYZ_1 | "w";
+type SwizzleXYZW_2 = `${SwizzleXYZW_1}${SwizzleXYZW_1}`;
+type SwizzleXYZW_3 = `${SwizzleXYZW_2}${SwizzleXYZW_1}`;
+type SwizzleXYZW_4 = `${SwizzleXYZW_3}${SwizzleXYZW_1}`;
+type SwizzleRGBA_1 = SwizzleRGB_1 | "a";
+type SwizzleRGBA_2 = `${SwizzleRGBA_1}${SwizzleRGBA_1}`;
+type SwizzleRGBA_3 = `${SwizzleRGBA_2}${SwizzleRGBA_1}`;
+type SwizzleRGBA_4 = `${SwizzleRGBA_3}${SwizzleRGBA_1}`;
+type SwizzleSTPQ_1 = SwizzleSTP_1 | "q";
+type SwizzleSTPQ_2 = `${SwizzleSTPQ_1}${SwizzleSTPQ_1}`;
+type SwizzleSTPQ_3 = `${SwizzleSTPQ_2}${SwizzleSTPQ_1}`;
+type SwizzleSTPQ_4 = `${SwizzleSTPQ_3}${SwizzleSTPQ_1}`;
 
-export type Swizzle4_1 = "x" | "y" | "z" | "w";
-// prettier-ignore
-export type Swizzle4_2 = "xx" | "xy" | "xz" | "xw" | "yx" | "yy" | "yz" | "yw" | "zx" | "zy" | "zz" | "zw" | "wx" | "wy" | "wz" | "ww";
-// prettier-ignore
-export type Swizzle4_3 = "xxx" | "xxy" | "xxz" | "xxw" | "xyx" | "xyy" | "xyz" | "xyw" | "xzx" | "xzy" | "xzz" | "xzw" | "xwx" | "xwy" | "xwz" | "xww" | "yxx" | "yxy" | "yxz" | "yxw" | "yyx" | "yyy" | "yyz" | "yyw" | "yzx" | "yzy" | "yzz" | "yzw" | "ywx" | "ywy" | "ywz" | "yww" | "zxx" | "zxy" | "zxz" | "zxw" | "zyx" | "zyy" | "zyz" | "zyw" | "zzx" | "zzy" | "zzz" | "zzw" | "zwx" | "zwy" | "zwz" | "zww" | "wxx" | "wxy" | "wxz" | "wxw" | "wyx" | "wyy" | "wyz" | "wyw" | "wzx" | "wzy" | "wzz" | "wzw" | "wwx" | "wwy" | "wwz" | "www";
-// prettier-ignore
-export type Swizzle4_4 = "xxxx" | "xxxy" | "xxxz" | "xxxw" | "xxyx" | "xxyy" | "xxyz" | "xxyw" | "xxzx" | "xxzy" | "xxzz" | "xxzw" | "xxwx" | "xxwy" | "xxwz" | "xxww" | "xyxx" | "xyxy" | "xyxz" | "xyxw" | "xyyx" | "xyyy" | "xyyz" | "xyyw" | "xyzx" | "xyzy" | "xyzz" | "xyzw" | "xywx" | "xywy" | "xywz" | "xyww" | "xzxx" | "xzxy" | "xzxz" | "xzxw" | "xzyx" | "xzyy" | "xzyz" | "xzyw" | "xzzx" | "xzzy" | "xzzz" | "xzzw" | "xzwx" | "xzwy" | "xzwz" | "xzww" | "xwxx" | "xwxy" | "xwxz" | "xwxw" | "xwyx" | "xwyy" | "xwyz" | "xwyw" | "xwzx" | "xwzy" | "xwzz" | "xwzw" | "xwwx" | "xwwy" | "xwwz" | "xwww" | "yxxx" | "yxxy" | "yxxz" | "yxxw" | "yxyx" | "yxyy" | "yxyz" | "yxyw" | "yxzx" | "yxzy" | "yxzz" | "yxzw" | "yxwx" | "yxwy" | "yxwz" | "yxww" | "yyxx" | "yyxy" | "yyxz" | "yyxw" | "yyyx" | "yyyy" | "yyyz" | "yyyw" | "yyzx" | "yyzy" | "yyzz" | "yyzw" | "yywx" | "yywy" | "yywz" | "yyww" | "yzxx" | "yzxy" | "yzxz" | "yzxw" | "yzyx" | "yzyy" | "yzyz" | "yzyw" | "yzzx" | "yzzy" | "yzzz" | "yzzw" | "yzwx" | "yzwy" | "yzwz" | "yzww" | "ywxx" | "ywxy" | "ywxz" | "ywxw" | "ywyx" | "ywyy" | "ywyz" | "ywyw" | "ywzx" | "ywzy" | "ywzz" | "ywzw" | "ywwx" | "ywwy" | "ywwz" | "ywww" | "zxxx" | "zxxy" | "zxxz" | "zxxw" | "zxyx" | "zxyy" | "zxyz" | "zxyw" | "zxzx" | "zxzy" | "zxzz" | "zxzw" | "zxwx" | "zxwy" | "zxwz" | "zxww" | "zyxx" | "zyxy" | "zyxz" | "zyxw" | "zyyx" | "zyyy" | "zyyz" | "zyyw" | "zyzx" | "zyzy" | "zyzz" | "zyzw" | "zywx" | "zywy" | "zywz" | "zyww" | "zzxx" | "zzxy" | "zzxz" | "zzxw" | "zzyx" | "zzyy" | "zzyz" | "zzyw" | "zzzx" | "zzzy" | "zzzz" | "zzzw" | "zzwx" | "zzwy" | "zzwz" | "zzww" | "zwxx" | "zwxy" | "zwxz" | "zwxw" | "zwyx" | "zwyy" | "zwyz" | "zwyw" | "zwzx" | "zwzy" | "zwzz" | "zwzw" | "zwwx" | "zwwy" | "zwwz" | "zwww" | "wxxx" | "wxxy" | "wxxz" | "wxxw" | "wxyx" | "wxyy" | "wxyz" | "wxyw" | "wxzx" | "wxzy" | "wxzz" | "wxzw" | "wxwx" | "wxwy" | "wxwz" | "wxww" | "wyxx" | "wyxy" | "wyxz" | "wyxw" | "wyyx" | "wyyy" | "wyyz" | "wyyw" | "wyzx" | "wyzy" | "wyzz" | "wyzw" | "wywx" | "wywy" | "wywz" | "wyww" | "wzxx" | "wzxy" | "wzxz" | "wzxw" | "wzyx" | "wzyy" | "wzyz" | "wzyw" | "wzzx" | "wzzy" | "wzzz" | "wzzw" | "wzwx" | "wzwy" | "wzwz" | "wzww" | "wwxx" | "wwxy" | "wwxz" | "wwxw" | "wwyx" | "wwyy" | "wwyz" | "wwyw" | "wwzx" | "wwzy" | "wwzz" | "wwzw" | "wwwx" | "wwwy" | "wwwz" | "wwww";
+export type Swizzle2_1 = SwizzleXY_1 | SwizzleRG_1 | SwizzleST_1;
+export type Swizzle2_2 = SwizzleXY_2 | SwizzleRG_2 | SwizzleST_2;
+export type Swizzle2_3 = SwizzleXY_3 | SwizzleRG_3 | SwizzleST_3;
+export type Swizzle2_4 = SwizzleXY_4 | SwizzleRG_4 | SwizzleST_4;
+
+export type Swizzle3_1 = SwizzleXYZ_1 | SwizzleRGB_1 | SwizzleSTP_1;
+export type Swizzle3_2 = SwizzleXYZ_2 | SwizzleRGB_2 | SwizzleSTP_2;
+export type Swizzle3_3 = SwizzleXYZ_3 | SwizzleRGB_3 | SwizzleSTP_3;
+export type Swizzle3_4 = SwizzleXYZ_4 | SwizzleRGB_4 | SwizzleSTP_4;
+
+export type Swizzle4_1 = SwizzleXYZW_1 | SwizzleRGBA_1 | SwizzleSTPQ_1;
+export type Swizzle4_2 = SwizzleXYZW_2 | SwizzleRGBA_2 | SwizzleSTPQ_2;
+export type Swizzle4_3 = SwizzleXYZW_3 | SwizzleRGBA_3 | SwizzleSTPQ_3;
+export type Swizzle4_4 = SwizzleXYZW_4 | SwizzleRGBA_4 | SwizzleSTPQ_4;
 
 export type Swizzle2 = Swizzle2_1 | Swizzle2_2 | Swizzle2_3 | Swizzle2_4;
 export type Swizzle3 = Swizzle3_1 | Swizzle3_2 | Swizzle3_3 | Swizzle3_4;
