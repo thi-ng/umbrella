@@ -251,13 +251,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-12-29
+As of: 2023-12-31
 
-| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
-|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dsp`](./packages/dsp)           | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)           | [changelog](./packages/dsp/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/meta-css`](./packages/meta-css) | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css) | [changelog](./packages/meta-css/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom`](./packages/rdom)         | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)         | [changelog](./packages/rdom/CHANGELOG.md)     |
+| Status                                           | Package                                             | Version                                                                                                                   | Changelog                                          |
+|:-------------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/meta-css`](./packages/meta-css)           | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)           | [changelog](./packages/meta-css/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/shader-ast`](./packages/shader-ast)       | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)       | [changelog](./packages/shader-ast/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/shader-ast-js`](./packages/shader-ast-js) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js) | [changelog](./packages/shader-ast-js/CHANGELOG.md) |
 
 ### Fundamentals
 
