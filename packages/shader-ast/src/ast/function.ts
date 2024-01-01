@@ -45,14 +45,13 @@ const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
  */
 export function defn<
 	T extends Type,
-    Args extends VariadicArgs<Type[]>,
-    Xs extends VariadicTypeOfArg<Args>,
+    Args extends VariadicArgs<Type[]>
 >(
 	type: T,
 	name: Nullable<string>,
 	args: [...Args],
-	body: VariadicFnBody<Xs>
-): VariadicTaggedFn<Xs, T>;
+	body: VariadicFnBody<VariadicTypeOfArg<Args>>
+): VariadicTaggedFn<VariadicTypeOfArg<Args>, T>;
 export function defn(type: Type, id: Nullable<string>, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => ScopeBody): Func<any> {
     id = id || gensym();
     const args = _args.map(defArg);
