@@ -121,9 +121,9 @@ export function add<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, 
 export function add<T extends Int | "float">(l: number, r: Term<T>): Op2<T>;
 export function add<T extends Int | "float">(l: Term<T>, r: number): Op2<T>;
 // prettier-ignore
-export function add<T extends Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
+export function add<T extends 'float' | Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
-export function add<T extends Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
+export function add<T extends 'float' | Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
 // prettier-ignore
 export function add<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
@@ -142,9 +142,9 @@ export function sub<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, 
 export function sub<T extends Int | "float">(l: number, r: Term<T>): Op2<T>;
 export function sub<T extends Int | "float">(l: Term<T>, r: number): Op2<T>;
 // prettier-ignore
-export function sub<T extends Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
+export function sub<T extends 'float' | Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
-export function sub<T extends Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
+export function sub<T extends 'float' | Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
 // prettier-ignore
 export function sub<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
@@ -162,9 +162,9 @@ export function mul<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, 
 export function mul<T extends Int | "float">(l: number, r: Term<T>): Op2<T>;
 export function mul<T extends Int | "float">(l: Term<T>, r: number): Op2<T>;
 // prettier-ignore
-export function mul<T extends Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
+export function mul<T extends 'float' | Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
-export function mul<T extends Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
+export function mul<T extends 'float' | Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
 // prettier-ignore
 export function mul<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
@@ -195,9 +195,9 @@ export function div<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, 
 export function div<T extends Int | "float">(l: number, r: Term<T>): Op2<T>;
 export function div<T extends Int | "float">(l: Term<T>, r: number): Op2<T>;
 // prettier-ignore
-export function div<T extends Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
+export function div<T extends 'float' | Vec | Mat>(l: FloatTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore
-export function div<T extends Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
+export function div<T extends 'float' | Vec | Mat>(l: Term<T>, r: FloatTerm | number): Op2<T>;
 // prettier-ignore
 export function div<T extends IVec>(l: IntTerm | number, r: Term<T>): Op2<T>;
 // prettier-ignore

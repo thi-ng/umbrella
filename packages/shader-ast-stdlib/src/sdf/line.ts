@@ -1,4 +1,4 @@
-import type { PrimTypeMap, Sym } from "@thi.ng/shader-ast";
+import type { PrimTypeMap } from "@thi.ng/shader-ast";
 import { F, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
@@ -15,10 +15,11 @@ import { clamp01 } from "../math/clamp.js";
  */
 const $ = <N extends 2 | 3, T extends PrimTypeMap[N]>(n: N, type: T) =>
 	defn(F, `sdLine${n}`, [type, type, type], (p, a, b) => {
-		let pa: Sym<T>, ba: Sym<T>;
+		const pa = sym(sub(p, a));
+		const ba = sym(sub(b, a));
 		return [
-			(pa = sym(sub(p, a))),
-			(ba = sym(sub(b, a))),
+			pa,
+			ba,
 			ret(
 				length(sub(pa, mul(ba, clamp01(div(dot(pa, ba), dot(ba, ba))))))
 			),
