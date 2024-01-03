@@ -4,7 +4,7 @@ import { add2 } from "./add.js";
 import { addm2 } from "./addm.js";
 import { addmN2 } from "./addmn.js";
 import { addN2 } from "./addn.js";
-import type { VecAPI } from "./api.js";
+import { ONE2, ZERO2, type VecAPI } from "./api.js";
 import { asin2 } from "./asin.js";
 import { atan2, atan_22 } from "./atan.js";
 import { ceil2 } from "./ceil.js";
@@ -61,7 +61,7 @@ import { randNormDistrib2 } from "./rand-normdistrib.js";
 import { random2 } from "./random.js";
 import { round2 } from "./round.js";
 import { set2 } from "./set.js";
-import { setN2 } from "./setn.js";
+import { ones, setN2, zeroes } from "./setn.js";
 import { sign2 } from "./sign.js";
 import { sin2 } from "./sin.js";
 import { smoothStep2 } from "./smoothstep.js";
@@ -75,6 +75,12 @@ import { tan2 } from "./tan.js";
 import { trunc2 } from "./trunc.js";
 
 export const VEC2: VecAPI = {
+	ZERO: ZERO2,
+	ONE: ONE2,
+
+	zeroes: () => zeroes(2),
+	ones: () => ones(2),
+
 	abs: abs2,
 	acos: acos2,
 	add: add2,

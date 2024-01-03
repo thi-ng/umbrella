@@ -4,7 +4,7 @@ import { add4 } from "./add.js";
 import { addm4 } from "./addm.js";
 import { addmN4 } from "./addmn.js";
 import { addN4 } from "./addn.js";
-import type { VecAPI } from "./api.js";
+import { ONE4, ZERO4, type VecAPI } from "./api.js";
 import { asin4 } from "./asin.js";
 import { atan4, atan_24 } from "./atan.js";
 import { ceil4 } from "./ceil.js";
@@ -61,7 +61,7 @@ import { randNormDistrib4 } from "./rand-normdistrib.js";
 import { random4 } from "./random.js";
 import { round4 } from "./round.js";
 import { set4 } from "./set.js";
-import { setN4 } from "./setn.js";
+import { ones, setN4, zeroes } from "./setn.js";
 import { sign4 } from "./sign.js";
 import { sin4 } from "./sin.js";
 import { smoothStep4 } from "./smoothstep.js";
@@ -75,6 +75,12 @@ import { tan4 } from "./tan.js";
 import { trunc4 } from "./trunc.js";
 
 export const VEC4: VecAPI = {
+	ZERO: ZERO4,
+	ONE: ONE4,
+
+	zeroes: () => zeroes(4),
+	ones: () => ones(4),
+
 	abs: abs4,
 	acos: acos4,
 	add: add4,

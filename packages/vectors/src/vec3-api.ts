@@ -4,7 +4,7 @@ import { add3 } from "./add.js";
 import { addm3 } from "./addm.js";
 import { addmN3 } from "./addmn.js";
 import { addN3 } from "./addn.js";
-import type { VecAPI } from "./api.js";
+import { ONE3, ZERO3, type VecAPI } from "./api.js";
 import { asin3 } from "./asin.js";
 import { atan3, atan_23 } from "./atan.js";
 import { ceil3 } from "./ceil.js";
@@ -61,7 +61,7 @@ import { randNormDistrib3 } from "./rand-normdistrib.js";
 import { random3 } from "./random.js";
 import { round3 } from "./round.js";
 import { set3 } from "./set.js";
-import { setN3 } from "./setn.js";
+import { ones, setN3, zeroes } from "./setn.js";
 import { sign3 } from "./sign.js";
 import { sin3 } from "./sin.js";
 import { smoothStep3 } from "./smoothstep.js";
@@ -75,6 +75,12 @@ import { tan3 } from "./tan.js";
 import { trunc3 } from "./trunc.js";
 
 export const VEC3: VecAPI = {
+	ZERO: ZERO3,
+	ONE: ONE3,
+
+	zeroes: () => zeroes(3),
+	ones: () => ones(3),
+
 	abs: abs3,
 	acos: acos3,
 	add: add3,

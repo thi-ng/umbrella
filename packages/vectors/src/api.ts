@@ -500,6 +500,12 @@ export type DistanceFn = VecOpRoVV<number>;
  * ```
  */
 export interface VecAPI {
+	ZERO: ReadonlyVec;
+	ONE: ReadonlyVec;
+
+	zeroes: Fn0<Vec>;
+	ones: Fn0<Vec>;
+
 	abs: VecOpV;
 	acos: VecOpV;
 	add: VecOpVV;
@@ -548,7 +554,7 @@ export interface VecAPI {
 	msubN: VecOpVNV;
 	mul: VecOpVV;
 	mulN: VecOpVN;
-	normalize: VecOpV;
+	normalize: VecOpVO<number>;
 	pow: VecOpVV;
 	powN: VecOpVN;
 	radians: VecOpV;
