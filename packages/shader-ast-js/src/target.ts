@@ -87,7 +87,20 @@ const POOL_PRELUDE = VEC_TYPES.map(
 	(x) => `const $${x} = env.pools.${x}.from;`
 ).join("\n");
 
-const COMPS: any = { x: 0, y: 1, z: 2, w: 3 };
+const COMPS: Record<string, 0 | 1 | 2 | 3> = {
+	x: 0,
+	y: 1,
+	z: 2,
+	w: 3,
+	r: 0,
+	g: 1,
+	b: 2,
+	a: 3,
+	s: 0,
+	t: 1,
+	p: 2,
+	q: 3,
+};
 
 const RE_SEMI = /[};]$/;
 
