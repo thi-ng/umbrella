@@ -13,23 +13,75 @@ export type SDFCombineOp = "union" | "isec" | "diff";
 export type FieldCoeff<T = number> = Fn<ReadonlyVec, T>;
 
 /**
+ * Modifier options for {@link withSDFModifiers} and basis for
+ * {@link SDFAttribs}.
+ */
+export interface SDFModifiers {
+	/**
+	 * If true, only the absolute (unsigned) distance will be used. For closed
+	 * shapes the default is false, for lines/curves the default is true (since
+	 * there's no real interior).
+	 *
+	 * @remarks
+	 * See {@link withSDFModifiers} for order of application.
+	 *
+	 * @defaultValue false
+	 */
+	abs: boolean;
+	/**
+	 * If true (default: false), the sign of the resulting distance will be
+	 * flipped. Useful for boolean operations.
+	 *
+	 * @remarks
+	 * See {@link withSDFModifiers} for order of application.
+	 *
+	 * @defaultValue false
+	 */
+	flip: boolean;
+	/**
+	 * Subtracts given value from actual distance, thereby creating an
+	 * offsetting effect. If given as function, it will be called with the
+	 * current SDF query point and the return value will be used as param.
+	 *
+	 * @remarks
+	 * See {@link withSDFModifiers} for order of application.
+	 *
+	 * @defaultValue 0
+	 */
+	offset: number | FieldCoeff;
+	/**
+	 * If given, the actual distance will be clamped to this value as lower
+	 * bound.
+	 *
+	 * @remarks
+	 * See {@link withSDFModifiers} for order of application.
+	 *
+	 * @defaultValue -Infinity
+	 */
+	min: number;
+	/**
+	 * If given, the actual distance will be clamped to this value as upper
+	 * bound.
+	 *
+	 * @remarks
+	 * See {@link withSDFModifiers} for order of application.
+	 *
+	 * @defaultValue Infinity
+	 */
+	max: number;
+}
+
+/**
  * Options object to customize geometry -> SDF conversions. Given as value to
- * the special `__sdf` shape attribute.
+ * the special `__sdf` shape attribute. Also see {@link asSDF},
+ * {@link withSDFAttribs}.
  *
  * @example
  * ```ts
  * const sdf = asSDF(circle(100, { __sdf: { abs: true } }));
  * ```
  */
-export interface SDFAttribs {
-	/**
-	 * If true, only the absolute (unsigned) distance will be used. For closed
-	 * shapes the default is false, for lines/curves the default is true (since
-	 * there's no real interior).
-	 *
-	 * @defaultValue false
-	 */
-	abs: boolean;
+export interface SDFAttribs extends SDFModifiers {
 	/**
 	 * Advanced usage only. If true (default: false), the SDF will be wrapped
 	 * with a bounding box pre-check.
@@ -47,21 +99,6 @@ export interface SDFAttribs {
 	 * @defaultValue "union"
 	 */
 	combine: SDFCombineOp;
-	/**
-	 * If true (default: false), the sign of the resulting distance will be
-	 * flipped. Useful for boolean operations.
-	 *
-	 * @defaultValue false
-	 */
-	flip: boolean;
-	/**
-	 * Subtracts given value from actual distance, thereby creating an
-	 * offsetting effect. If given as function, it will be called with the
-	 * current SDF query point and the return value will be used as param.
-	 *
-	 * @defaultValue 0
-	 */
-	offset: number | FieldCoeff;
 	/**
 	 * Coefficient for smooth union, intersection, difference ops (only
 	 * supported for `group()` shapes). If given as function, it will be called

@@ -1,4 +1,3 @@
-import { isFunction } from "@thi.ng/checks/is-function";
 import { distSq2, type ReadonlyVec } from "@thi.ng/vectors";
 import { sub2 } from "@thi.ng/vectors/sub";
 import type { SDFAttribs, SDFn } from "./api.js";
@@ -13,39 +12,26 @@ import {
 	distQuadratic2,
 	distSegment2,
 } from "./dist.js";
-import { abs as $abs, flip as $flip, offset as $offset } from "./ops.js";
+import { DEFAULT_MODS, withSDFModifiers } from "./ops.js";
 
 /** @internal */
 export const DEFAULT_ATTRIBS: SDFAttribs = {
-	abs: false,
+	...DEFAULT_MODS,
 	bounds: false,
 	chamfer: 0,
 	combine: "union",
-	flip: false,
-	offset: 0,
 	round: 0,
 	smooth: 0,
 };
 
 /**
- * Applies any SDF modifiers specified via {@link SDFAttribs} to the given
- * distance function. Returns a possibly updated distance function.
- *
- * @remarks
- * Order of application is: abs, offset, flip
+ * Syntax sugar for {@link withSDFModifiers}.
  *
  * @param fn
  * @param attribs
  */
-export const withSDFAttribs = (fn: SDFn, attribs?: Partial<SDFAttribs>) => {
-	if (attribs) {
-		const { abs, flip, offset } = { ...DEFAULT_ATTRIBS, ...attribs };
-		if (abs) fn = $abs(fn);
-		if (isFunction(offset) || offset > 0) fn = $offset(fn, offset);
-		if (flip) fn = $flip(fn);
-	}
-	return fn;
-};
+export const withSDFAttribs = (fn: SDFn, attribs?: Partial<SDFAttribs>) =>
+	attribs ? withSDFModifiers(fn, attribs) : fn;
 
 export const arc2 = (
 	center: ReadonlyVec,
