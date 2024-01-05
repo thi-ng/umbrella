@@ -1,71 +1,45 @@
 import { identity } from "@thi.ng/api";
 import type { IDistance } from "@thi.ng/distance";
 import { DIST_SQ2, DIST_SQ3 } from "@thi.ng/distance/squared";
-import type {
-	AHashGrid,
-	HashGrid2,
-	HashGrid3,
-} from "@thi.ng/geom-accel/hash-grid";
 import type { ITimeStep, ReadonlyTimeStep } from "@thi.ng/timestep";
 import { VectorState, defVector } from "@thi.ng/timestep/state";
 import { integrateAll, interpolateAll } from "@thi.ng/timestep/timestep";
 import type { ReadonlyVec, Vec, VecAPI } from "@thi.ng/vectors";
-import { addW4 } from "@thi.ng/vectors/addw";
 import { VEC2 } from "@thi.ng/vectors/vec2-api";
 import { VEC3 } from "@thi.ng/vectors/vec3-api";
-import type { BoidOpts } from "./api.js";
+import type { BoidOpts, IBoidAccel, IBoidBehavior } from "./api.js";
+import { blendedBehaviorUpdate } from "./behaviors/update.js";
 import { Radial } from "./region.js";
 
 export class Boid implements ITimeStep {
 	pos: VectorState;
 	vel: VectorState;
-	opts: BoidOpts;
+
+	api: VecAPI;
+	accel: IBoidAccel;
+	behaviors: IBoidBehavior[];
 	region: Radial<Boid>;
-
-	protected cachedNeighbors!: Boid[];
-
-	protected tmpSep: Vec = [];
-	protected tmpAlign: Vec = [];
-	protected tmpCoh: Vec = [];
+	opts: BoidOpts;
 
 	constructor(
-		public readonly accel: AHashGrid<Boid>,
-		public readonly api: VecAPI,
+		opts: BoidOpts,
+		api: VecAPI,
 		distance: IDistance<ReadonlyVec>,
 		pos: Vec,
-		vel: Vec,
-		opts: Partial<BoidOpts>
+		vel: Vec
 	) {
-		this.opts = {
-			constrain: identity,
-			maxSpeed: 10,
-			maxForce: 1,
-			minDist: 20,
-			maxDist: 50,
-			separation: 2,
-			alignment: 1,
-			cohesion: 1,
-			...opts,
-		};
+		this.api = api;
+		this.opts = { maxForce: 1, ...opts };
+		this.accel = this.opts.accel;
+		this.behaviors = this.opts.behaviors;
+		const update = this.opts.update || blendedBehaviorUpdate;
+		const constrain = this.opts.constrain || identity;
+		const { add, limit, maddN } = api;
 		this.vel = defVector(api, vel, (vel) =>
-			api.limit(
-				vel,
-				addW4(
-					vel,
-					vel,
-					this.separate(),
-					this.align(),
-					this.cohesion(),
-					1,
-					this.opts.separation,
-					this.opts.alignment,
-					this.opts.cohesion
-				),
-				this.opts.maxSpeed
-			)
+			limit(vel, add(vel, vel, update(this)), this.opts.maxSpeed)
 		);
 		this.pos = defVector(api, pos, (pos, dt) =>
-			this.opts.constrain(api.maddN(pos, this.vel.curr, dt, pos))
+			constrain(maddN(pos, this.vel.curr, dt, pos), this)
 		);
 		this.region = new Radial<Boid>(distance, pos, 1);
 	}
@@ -78,10 +52,6 @@ export class Boid implements ITimeStep {
 	 * @param ctx
 	 */
 	integrate(dt: number, ctx: ReadonlyTimeStep): void {
-		this.cachedNeighbors = this.neighbors(
-			this.opts.maxDist,
-			this.pos.value
-		);
 		integrateAll(dt, ctx, this.vel, this.pos);
 	}
 
@@ -116,61 +86,17 @@ export class Boid implements ITimeStep {
 		return this.accel.queryNeighborhood(region).deref();
 	}
 
-	protected separate() {
-		const { maddN, magSq, setN, sub } = this.api;
-		const pos = this.pos.value;
-		const neighbors = this.neighbors(this.opts.minDist);
-		const num = neighbors.length;
-		const delta: Vec = [];
-		const steer = setN(this.tmpSep, 0);
-		let n: Boid;
-		for (let i = 0; i < num; i++) {
-			n = neighbors[i];
-			if (n !== this) {
-				sub(delta, pos, n.pos.curr);
-				maddN(steer, delta, 1 / (magSq(delta) + 1e-6), steer);
-			}
-		}
-		return this.computeSteer(steer, num);
-	}
-
-	protected align() {
-		const { add, setN } = this.api;
-		const neighbors = this.cachedNeighbors;
-		const num = neighbors.length;
-		const sum = setN(this.tmpAlign, 0);
-		let n: Boid;
-		for (let i = 0; i < num; i++) {
-			n = neighbors[i];
-			if (n !== this) add(sum, sum, n.vel.curr);
-		}
-		return this.computeSteer(sum, num);
-	}
-
-	protected cohesion() {
-		const { add, mulN, setN } = this.api;
-		const neighbors = this.cachedNeighbors;
-		const num = neighbors.length;
-		const sum = setN(this.tmpCoh, 0);
-		let n: Boid;
-		for (let i = 0; i < num; i++) {
-			n = neighbors[i];
-			if (n !== this) add(sum, sum, n.pos.curr);
-		}
-		return num > 0 ? this.steerTowards(mulN(sum, sum, 1 / num)) : sum;
-	}
-
-	protected steerTowards(target: ReadonlyVec, out: Vec = target) {
+	steerTowards(target: ReadonlyVec, out: Vec = target) {
 		return this.limitSteer(this.api.sub(out, target, this.pos.curr));
 	}
 
-	protected computeSteer(steer: Vec, num: number) {
+	computeSteer(steer: Vec, num: number) {
 		return this.limitSteer(
 			num > 0 ? this.api.mulN(steer, steer, 1 / num) : steer
 		);
 	}
 
-	protected limitSteer(steer: Vec) {
+	limitSteer(steer: Vec) {
 		const { limit, magSq, msubN } = this.api;
 		const m = magSq(steer);
 		return m > 0
@@ -179,10 +105,10 @@ export class Boid implements ITimeStep {
 					msubN(
 						steer,
 						steer,
-						this.opts.maxSpeed ** 2 / m,
+						this.opts.maxSpeed / Math.sqrt(m),
 						this.vel.curr
 					),
-					this.opts.maxForce
+					this.opts.maxForce!
 			  )
 			: steer;
 	}
@@ -197,12 +123,8 @@ export class Boid implements ITimeStep {
  * @param vel
  * @param opts
  */
-export const defBoid2 = (
-	accel: HashGrid2<Boid>,
-	pos: Vec,
-	vel: Vec,
-	opts: Partial<BoidOpts>
-) => new Boid(accel, VEC2, DIST_SQ2, pos, vel, opts);
+export const defBoid2 = (pos: Vec, vel: Vec, opts: BoidOpts) =>
+	new Boid(opts, VEC2, DIST_SQ2, pos, vel);
 
 /**
  * Returns a new {@link Boid} instance configured to use optimized 3D vector
@@ -213,9 +135,5 @@ export const defBoid2 = (
  * @param vel
  * @param opts
  */
-export const defBoid3 = (
-	accel: HashGrid3<Boid>,
-	pos: Vec,
-	vel: Vec,
-	opts: Partial<BoidOpts>
-) => new Boid(accel, VEC3, DIST_SQ3, pos, vel, opts);
+export const defBoid3 = (pos: Vec, vel: Vec, opts: BoidOpts) =>
+	new Boid(opts, VEC3, DIST_SQ3, pos, vel);
