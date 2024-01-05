@@ -1,0 +1,24 @@
+{
+	"specs": [
+		{
+			"user": "scrolling",
+			"name": "ss-<v>",
+			"props": {
+				"scroll-snap-type": "<v> mandatory"
+			},
+			"values": ["x", "y", "both"]
+		},
+		{
+			"user": "scrolling",
+			"name": "ss-<v>",
+			"props": "scroll-snap-align",
+			"values": ["start", "end", "center"]
+		},
+		{
+			"user": "scrolling",
+			"name": "ss-<v>",
+			"props": "scroll-snap-stop",
+			"values": ["normal", "always"]
+		}
+	]
+}
