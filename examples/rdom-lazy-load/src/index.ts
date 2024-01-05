@@ -52,6 +52,6 @@ const intro = [
 ];
 
 // main UI
-$compile(["div", {}, intro, ...map(lazyLoad, range(20))]).mount(
+$compile(["div#main", {}, intro, ...map(lazyLoad, range(20))]).mount(
 	document.getElementById("app")!
 );

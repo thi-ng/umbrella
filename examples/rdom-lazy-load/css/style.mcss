@@ -9,11 +9,14 @@ h1 { ma0 }
 
 a { db b ma3 black }
 
-#intro { vh-100 pa3 bg-dark-gray }
+#intro { vh-100 pa3 bg-dark-gray ss-start }
+
+#main { ss-y vh-100 overflow-y-scroll }
 
 .lazy-item {
-	h5
+	h5 ss-start
 	{
 		>div { h-100 pa3 anim:fadein3 }
+		:last-child { ss-end }
 	}
 }
