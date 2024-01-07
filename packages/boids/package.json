@@ -91,7 +91,9 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+		"behaviors",
+		"internal"
 	],
 	"exports": {
 		".": {
