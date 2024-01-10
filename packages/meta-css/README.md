@@ -787,11 +787,11 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Animations / transitions <!-- notoc -->
 
-`bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3`
+`bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3` / `fadeout1` / `fadeout2` / `fadeout3`
 
 #### Aspect ratios <!-- notoc -->
 
-`aspect-ratio-16x9` / `aspect-ratio-1x1` / `aspect-ratio-3x4` / `aspect-ratio-4x3` / `aspect-ratio-4x6` / `aspect-ratio-6x4` / `aspect-ratio-9x16` / `aspect-ratio-object`
+`aspect-ratio-16x9` / `aspect-ratio-1x1` / `aspect-ratio-1x2` / `aspect-ratio-2x1` / `aspect-ratio-2x3` / `aspect-ratio-3x2` / `aspect-ratio-3x4` / `aspect-ratio-4x3` / `aspect-ratio-5x7` / `aspect-ratio-7x5` / `aspect-ratio-9x16` / `bg-aspect-ratio-16x9` / `bg-aspect-ratio-1x1` / `bg-aspect-ratio-1x2` / `bg-aspect-ratio-2x1` / `bg-aspect-ratio-2x3` / `bg-aspect-ratio-3x2` / `bg-aspect-ratio-3x4` / `bg-aspect-ratio-4x3` / `bg-aspect-ratio-5x7` / `bg-aspect-ratio-7x5` / `bg-aspect-ratio-9x16` / `bg-aspect-ratio-object`
 
 #### Background <!-- notoc -->
 
@@ -815,7 +815,11 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Display mode <!-- notoc -->
 
-`db` / `df` / `dg` / `di` / `dib` / `dif` / `dig` / `dn` / `dt` / `dtc` / `dtr`
+`db` / `di` / `dib` / `dif` / `dig` / `dn` / `dt` / `dtc` / `dtr` / `flex` / `grid`
+
+#### Flex layout <!-- notoc -->
+
+`align-content-center` / `align-content-end` / `align-content-start` / `flex-column` / `flex-column-reverse` / `flex-grow0` / `flex-grow1` / `flex-nowrap` / `flex-row` / `flex-row-reverse` / `flex-shrink0` / `flex-shrink1` / `flex-wrap` / `flex-wrap-reverse` / `justify-content-center` / `justify-content-end` / `justify-content-start`
 
 #### Font families <!-- notoc -->
 
@@ -863,7 +867,7 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Margin <!-- notoc -->
 
-`center` / `ma0` / `ma1` / `ma2` / `ma3` / `ma4` / `mb0` / `mb1` / `mb2` / `mb3` / `mb4` / `mh0` / `mh1` / `mh2` / `mh3` / `mh4` / `ml0` / `ml1` / `ml2` / `ml3` / `ml4` / `mr0` / `mr1` / `mr2` / `mr3` / `mr4` / `mt0` / `mt1` / `mt2` / `mt3` / `mt4` / `mv0` / `mv1` / `mv2` / `mv3` / `mv4`
+`center` / `ma0` / `ma1` / `ma2` / `ma3` / `ma4` / `ma5` / `mb0` / `mb1` / `mb2` / `mb3` / `mb4` / `mb5` / `mbe-0` / `mbe-1` / `mbe-2` / `mbe-3` / `mbe-4` / `mbe-5` / `mbs-0` / `mbs-1` / `mbs-2` / `mbs-3` / `mbs-4` / `mbs-5` / `mh0` / `mh1` / `mh2` / `mh3` / `mh4` / `mh5` / `ml0` / `ml1` / `ml2` / `ml3` / `ml4` / `ml5` / `mr0` / `mr1` / `mr2` / `mr3` / `mr4` / `mr5` / `mt0` / `mt1` / `mt2` / `mt3` / `mt4` / `mt5` / `mv0` / `mv1` / `mv2` / `mv3` / `mv4` / `mv5`
 
 #### Max. height <!-- notoc -->
 
@@ -887,11 +891,19 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Padding <!-- notoc -->
 
-`pa0` / `pa1` / `pa2` / `pa3` / `pa4` / `pb0` / `pb1` / `pb2` / `pb3` / `pb4` / `ph0` / `ph1` / `ph2` / `ph3` / `ph4` / `pl0` / `pl1` / `pl2` / `pl3` / `pl4` / `pr0` / `pr1` / `pr2` / `pr3` / `pr4` / `pt0` / `pt1` / `pt2` / `pt3` / `pt4` / `pv0` / `pv1` / `pv2` / `pv3` / `pv4`
+`pa0` / `pa1` / `pa2` / `pa3` / `pa4` / `pa5` / `pb0` / `pb1` / `pb2` / `pb3` / `pb4` / `pb5` / `pbe-0` / `pbe-1` / `pbe-2` / `pbe-3` / `pbe-4` / `pbe-5` / `pbs-0` / `pbs-1` / `pbs-2` / `pbs-3` / `pbs-4` / `pbs-5` / `ph0` / `ph1` / `ph2` / `ph3` / `ph4` / `ph5` / `pl0` / `pl1` / `pl2` / `pl3` / `pl4` / `pl5` / `pr0` / `pr1` / `pr2` / `pr3` / `pr4` / `pr5` / `pt0` / `pt1` / `pt2` / `pt3` / `pt4` / `pt5` / `pv0` / `pv1` / `pv2` / `pv3` / `pv4` / `pv5`
 
 #### Positions <!-- notoc -->
 
 `absolute` / `bottom--1` / `bottom--2` / `bottom-0` / `bottom-1` / `bottom-2` / `fixed` / `left--1` / `left--2` / `left-0` / `left-1` / `left-2` / `relative` / `right--1` / `right--2` / `right-0` / `right-1` / `right-2` / `static` / `sticky` / `top--1` / `top--2` / `top-0` / `top-1` / `top-2`
+
+#### Print <!-- notoc -->
+
+`break-after-avoid` / `break-after-avoid-column` / `break-after-avoid-page` / `break-after-column` / `break-after-left` / `break-after-page` / `break-after-recto` / `break-after-right` / `break-after-verso` / `break-before-avoid` / `break-before-avoid-column` / `break-before-avoid-page` / `break-before-column` / `break-before-left` / `break-before-page` / `break-before-recto` / `break-before-right` / `break-before-verso`
+
+#### Scrolling <!-- notoc -->
+
+`ss-always` / `ss-both` / `ss-center` / `ss-end` / `ss-normal` / `ss-start` / `ss-x` / `ss-y`
 
 #### Selection <!-- notoc -->
 
@@ -923,7 +935,7 @@ Currently available CSS classes in MetaCSS base v0.0.1:
 
 #### Visibility <!-- notoc -->
 
-`hidden` / `visible`
+`collapse` / `hidden` / `visible`
 
 #### Whitespace <!-- notoc -->
 
@@ -1015,4 +1027,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2023 Karsten Schmidt // Apache License 2.0
+&copy; 2023 - 2024 Karsten Schmidt // Apache License 2.0

@@ -1,6 +1,10 @@
 {
 	"tables": {
-		"margins": [0, 0.25, 0.5, 1, 2]
+		"margins": [0, 0.25, 0.5, 1, 2, 4]
+	},
+	"vars": {
+		"s": ["start"],
+		"e": ["end"]
 	},
 	"specs": [
 		{
@@ -27,6 +31,22 @@
 				"margin-right": "<v>"
 			},
 			"values": { "center": "auto" }
+		},
+		{
+			"user": "padding",
+			"name": "pb<vid>-<k>",
+			"props": "padding-block-<var>",
+			"values": "margins",
+			"unit": "rem",
+			"vars": ["s", "e"]
+		},
+		{
+			"user": "margin",
+			"name": "mb<vid>-<k>",
+			"props": "margin-block-<var>",
+			"values": "margins",
+			"unit": "rem",
+			"vars": ["s", "e"]
 		}
 	]
 }

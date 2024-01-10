@@ -2,27 +2,27 @@
 	"specs": [
 		{
 			"user": "display mode",
-			"name": "d<k>",
+			"name": "<k>",
 			"props": "display",
 			"values": {
-				"b": "block",
-				"f": "flex",
-				"g": "grid",
-				"i": "inline",
-				"ib": "inline-block",
-				"if": "inline-flex",
-				"ig": "inline-grid",
-				"n": "none",
-				"t": "table",
-				"tc": "table-cell",
-				"tr": "table-row"
+				"db": "block",
+				"flex": "flex",
+				"grid": "grid",
+				"di": "inline",
+				"dib": "inline-block",
+				"dif": "inline-flex",
+				"dig": "inline-grid",
+				"dn": "none",
+				"dt": "table",
+				"dtc": "table-cell",
+				"dtr": "table-row"
 			}
 		},
 		{
 			"user": "visibility",
 			"name": "<v>",
 			"props": { "visibility": "<v> !important" },
-			"values": ["hidden", "visible"]
+			"values": ["hidden", "visible", "collapse"]
 		}
 	]
 }

@@ -3,8 +3,8 @@
 		"align": ["start", "end", "center", "stretch"]
 	},
 	"vars": {
-		"align": ["align"],
-		"justify": ["justify"],
+		"align": [""],
+		"justify": [""],
 		"cols": ["columns"],
 		"rows": ["rows"]
 	},
@@ -44,15 +44,15 @@
 		},
 		{
 			"user": "grid layout",
-			"name": "<var>-self-<v>",
-			"props": "<var>-self",
+			"name": "<vid>-self-<v>",
+			"props": "<vid>-self",
 			"values": "align",
 			"vars": ["align", "justify"]
 		},
 		{
 			"user": "grid layout",
-			"name": "<var>-items-<v>",
-			"props": "<var>-items",
+			"name": "<vid>-items-<v>",
+			"props": "<vid>-items",
 			"values": "align",
 			"vars": ["align", "justify"]
 		}

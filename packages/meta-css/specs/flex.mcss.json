@@ -1,0 +1,39 @@
+{
+	"tables": {
+		"align": ["start", "end", "center"]
+	},
+	"vars": {
+		"align": [""],
+		"justify": [""],
+		"grow": [""],
+		"shrink": [""]
+	},
+	"specs": [
+		{
+			"user": "flex layout",
+			"name": "flex-<v>",
+			"props": "flex-direction",
+			"values": ["column", "column-reverse", "row", "row-reverse"]
+		},
+		{
+			"user": "flex layout",
+			"name": "<vid>-content-<v>",
+			"props": "<vid>-content",
+			"values": "align",
+			"vars": ["align", "justify"]
+		},
+		{
+			"user": "flex layout",
+			"name": "flex-<v>",
+			"props": "flex-wrap",
+			"values": ["wrap", "nowrap", "wrap-reverse"]
+		},
+		{
+			"user": "flex layout",
+			"name": "flex-<vid><v>",
+			"props": "flex-<vid>",
+			"values": [0, 1],
+			"vars": ["grow", "shrink"]
+		}
+	]
+}

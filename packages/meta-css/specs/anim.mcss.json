@@ -1,13 +1,21 @@
 {
-	"decls": [["@keyframes", "fadein", { "opacity": 0 }, { "opacity": 1 }]],
+	"decls": [
+		["@keyframes", "fadein", { "opacity": 0 }, { "opacity": 1 }],
+		["@keyframes", "fadeout", { "opacity": 1 }, { "opacity": 0 }]
+	],
+	"vars": {
+		"in": [""],
+		"out": [""]
+	},
 	"specs": [
 		{
 			"user": "animations / transitions",
-			"name": "fadein<k>",
+			"name": "fade<vid><k>",
 			"key": "i+1",
-			"props": { "animation": "fadein <v> ease-in-out forwards" },
+			"props": { "animation": "fade<vid> <v> ease-in-out forwards" },
 			"values": [0.25, 0.5, 1],
-			"unit": "second"
+			"unit": "second",
+			"vars": ["in", "out"]
 		},
 		{
 			"user": "animations / transitions",
