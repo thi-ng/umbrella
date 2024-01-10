@@ -52,12 +52,12 @@ a:link, a:visited { dark:white black fw700 }
 a:hover { dark:hot-pink dark-pink }
 
 .swatches {
-	dg gap3 grid-cols-2 m:grid-cols-4 l:grid-cols-5 mb4
+	grid gap3 grid-cols-2 m:grid-cols-4 l:grid-cols-5 mb4
 	{ div { pa3 h3 ns:h4 br3 box-shadow-i-3 } }
 }
 
 .group-v {
-	dg gap-1px
+	grid gap-1px
 	{
 		a {
 			pa3
@@ -73,7 +73,7 @@ a:hover { dark:hot-pink dark-pink }
 
 .group-h {
 	// only enable grid for larger screens
-	dg gap-1px
+	grid gap-1px
 	{
 		a {
 			ns:h4 pa3
