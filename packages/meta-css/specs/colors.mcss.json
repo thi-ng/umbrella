@@ -70,7 +70,7 @@
 	"specs": [
 		{
 			"user": "colors",
-			"name": "b--vcol<k>",
+			"name": "b--color<k>",
 			"key": "i+1",
 			"props": { "border-color": "<v>" },
 			"values": "var-palette"
@@ -89,7 +89,7 @@
 		},
 		{
 			"user": "colors",
-			"name": "vcol<k>",
+			"name": "color<k>",
 			"key": "i+1",
 			"props": { "color": "<v>" },
 			"values": "var-palette"
@@ -108,7 +108,7 @@
 		},
 		{
 			"user": "colors",
-			"name": "bg-vcol<k>",
+			"name": "bg-color<k>",
 			"key": "i+1",
 			"props": { "background-color": "<v>" },
 			"values": "var-palette"
@@ -127,7 +127,7 @@
 		},
 		{
 			"user": "colors",
-			"name": "<var>-vcol<k>",
+			"name": "<var>-color<k>",
 			"key": "i+1",
 			"props": { "<var>": "<v>" },
 			"values": "var-palette",
