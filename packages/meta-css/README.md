@@ -775,9 +775,9 @@ Main:
 
 ## Bundled CSS base framework
 
-The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are provided as starting point to define your custom framework(s)...
+The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...
 
-Currently available CSS classes in MetaCSS base v0.0.1:
+Currently, there are 927 CSS utility classes defined in MetaCSS base v0.0.1:
 
 ### Classes by category
 

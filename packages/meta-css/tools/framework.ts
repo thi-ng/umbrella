@@ -35,14 +35,16 @@ const grouped = groupByObj(
 	Object.entries(specs.classes)
 );
 
+const num = Object.keys(specs.classes).length;
+
 // console.log(grouped);
 
 const doc: string[] = [
 	"## Bundled CSS base framework",
 	"",
-	"The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are provided as starting point to define your custom framework(s)...",
+	"The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...",
 	"",
-	`Currently available CSS classes in ${specs.info.name} v${specs.info.version}:`,
+	`Currently, there are ${num} CSS utility classes defined in ${specs.info.name} v${specs.info.version}:`,
 	"",
 	"### Classes by category",
 	"",
