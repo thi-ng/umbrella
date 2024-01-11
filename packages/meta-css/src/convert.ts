@@ -58,7 +58,7 @@ interface ProcessCtx {
 	scopes: Scope[];
 }
 
-interface ProcessOpts {
+export interface ProcessOpts {
 	logger: ILogger;
 	format: Format;
 	specs: CompiledSpecs;
@@ -208,7 +208,7 @@ const processInputs = (
 	maybeWriteText(out, bundle, logger);
 };
 
-const processMediaQueries = (
+export const processMediaQueries = (
 	result: string[],
 	{ logger, specs, format, mediaQueryRules }: ProcessOpts
 ) => {
@@ -224,7 +224,7 @@ const processMediaQueries = (
 	}
 };
 
-const processPlainRules = (
+export const processPlainRules = (
 	bundle: string[],
 	{ logger, specs, format, plainRules }: ProcessOpts
 ) => {
@@ -272,7 +272,7 @@ const processForceIncludes = (
 	return { mediaQueryRules, plainRules };
 };
 
-const processSpec = (
+export const processSpec = (
 	src: string,
 	{ specs, mediaQueryIDs, mediaQueryRules, plainRules }: ProcessOpts
 ) => {
@@ -323,7 +323,7 @@ const processSpec = (
 							token,
 							mediaQueryIDs
 						);
-						if (!specs.classes[id])
+						if (!specs.classes[id] && !id.includes("="))
 							illegalArgs(`unknown class ID: ${id}`);
 						if (query) {
 							addMediaQueryDef(
@@ -387,7 +387,10 @@ const buildDeclsForPath = (
 	for (let i = 0; i < parts.length; i++) {
 		const curr = parts[i].split(",");
 		if (i == parts.length - 1) {
-			const obj = Object.assign({}, ...map((x) => specs.classes[x], ids));
+			const obj = Object.assign(
+				{},
+				...map((x) => classOrVarDecl(specs, x), ids)
+			);
 			if ("__user" in obj) delete obj.__user;
 			curr.push(obj);
 		}
@@ -446,3 +449,10 @@ const addPlainDef = (
 	path: string,
 	id: string
 ) => (plainRules[path] || (plainRules[path] = new Set())).add(id);
+
+const classOrVarDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
+	const idx = id.indexOf("=");
+	return idx > 0
+		? { [`--${id.substring(0, idx)}`]: id.substring(idx + 1) }
+		: specs.classes[id];
+};
