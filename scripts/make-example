@@ -19,20 +19,40 @@ cat << EOF > "$MODULE"/src/vite-env.d.ts
 /// <reference types="vite/client" />
 EOF
 
+cat << EOF > "$MODULE"/src/components.mcss
+// put component specific thi.ng/meta-css style defs here...
+// these will be included in the generated CSS via the \`css:build\`
+// and \`css:watch\` script aliases in \`package.json\`
+EOF
+
 echo "creating /css folder..."
 mkdir -p "$MODULE"/css
 cat << EOF > "$MODULE"/css/style.mcss
-// @thi.ng/meta-css stylesheet
+// thi.ng/meta-css stylesheet
 // see package readme for more details/usage
-// use `yarn css:build` or `yarn css:watch` to transpile to CSS
-// also see component-specific *.mcss files in /src
+// use \`yarn css:build\` or \`yarn css:watch\` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
 
-body { system-sans-serif }
+// (optional) variable declarations
+:root {
+	// color1=#fff
+}
+
+body { system-sans-serif ma3 }
 EOF
 
 cat << EOF > "$MODULE"/css/includes.txt
 // list of CSS class names to force-include in generated CSS
 // (one class per line, basic wildcards supported)
+EOF
+
+cat << EOF > "$MODULE"/css/custom.mcss.json
+{
+	"tables": {},
+	"vars": {},
+	"decls": [],
+	"specs": []
+}
 EOF
 
 echo "writing package.json..."
@@ -56,8 +76,8 @@ cat << EOF > "$MODULE"/package.json
 	},
 	"devDependencies": {
 		"@thi.ng/meta-css": "workspace:^",
-		"typescript": "^5.3.2",
-		"vite": "^5.0.4"
+		"typescript": "^5.3.3",
+		"vite": "^5.0.10"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
