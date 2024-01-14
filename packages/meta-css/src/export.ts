@@ -1,6 +1,6 @@
 // thing:no-export
 import type { IObjectOf } from "@thi.ng/api";
-import { strings, type Command } from "@thi.ng/args";
+import type { Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
 import { COMPACT, PRETTY, QUOTED_FNS, at_media, css } from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
@@ -8,7 +8,9 @@ import { resolve } from "path";
 import {
 	ARG_EXCLUDE_DECLS,
 	ARG_INCLUDE,
+	ARG_MEDIA_QUERIES,
 	ARG_NO_HEADER,
+	ARG_ONLY_DECLS,
 	ARG_PRETTY,
 	type AppCtx,
 	type CommonOpts,
@@ -19,6 +21,7 @@ import { generateHeader, maybeWriteText } from "./utils.js";
 interface ExportOpts extends CommonOpts {
 	pretty: boolean;
 	noDecls: boolean;
+	onlyDecls: boolean;
 	noHeader: boolean;
 	include?: string[];
 	media?: string[];
@@ -29,20 +32,16 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 	opts: {
 		...ARG_INCLUDE,
 		...ARG_EXCLUDE_DECLS,
+		...ARG_ONLY_DECLS,
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
-		media: strings({
-			alias: "m",
-			hint: "ID",
-			desc: "Media query IDs (use 'ALL' for all)",
-			delim: ",",
-		}),
+		...ARG_MEDIA_QUERIES,
 	},
 	inputs: 1,
 	fn: async (ctx) => {
 		const {
 			logger,
-			opts: { include, media, noDecls, noHeader, pretty, out },
+			opts: { include, media, noDecls, noHeader, onlyDecls, pretty, out },
 			inputs,
 		} = ctx;
 		const specs = readJSON<CompiledSpecs>(resolve(inputs[0]), logger);
@@ -58,7 +57,9 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 				})
 			);
 		}
-		bundle.push(serializeSpecs(specs, media, pretty, logger));
+		if (!onlyDecls) {
+			bundle.push(serializeSpecs(specs, media, pretty, logger));
+		}
 		maybeWriteText(out, bundle, logger);
 	},
 };

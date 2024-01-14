@@ -63,6 +63,19 @@ export const ARG_EXCLUDE_DECLS = {
 	noDecls: flag({ alias: "d", desc: "Don't emit framework decls" }),
 };
 
+export const ARG_MEDIA_QUERIES = {
+	media: strings({
+		alias: "m",
+		hint: "ID",
+		desc: "Media query IDs (use 'ALL' for all)",
+		delim: ",",
+	}),
+};
+
+export const ARG_ONLY_DECLS = {
+	onlyDecls: flag({ desc: "Only emit framework decls" }),
+};
+
 export const ARG_PRETTY = {
 	pretty: flag({ alias: "p", desc: "Pretty print output" }),
 };
