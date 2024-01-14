@@ -1,7 +1,8 @@
 {
 	"decls": [
 		["@keyframes", "fadein", { "opacity": 0 }, { "opacity": 1 }],
-		["@keyframes", "fadeout", { "opacity": 1 }, { "opacity": 0 }]
+		["@keyframes", "fadeout", { "opacity": 1 }, { "opacity": 0 }],
+		["@keyframes", "spin", { "rotate": 0 }, { "rotate": "1turn" }]
 	],
 	"vars": {
 		"in": [""],
@@ -24,6 +25,20 @@
 			"props": { "transition": "<v> background-color ease-in-out" },
 			"values": [0.15, 0.25, 0.5],
 			"unit": "second"
+		},
+		{
+			"user": "animations / transitions",
+			"name": "spin<k>",
+			"key": "i+1",
+			"props": { "animation": "spin <v> linear infinite" },
+			"values": [0.75, 1.5, 2.5],
+			"unit": "second"
+		},
+		{
+			"user": "animations / transitions",
+			"name": "anim-<v>",
+			"props": "animation-direction",
+			"values": ["normal", "reverse", "alternate", "alternate-reverse"]
 		}
 	]
 }
