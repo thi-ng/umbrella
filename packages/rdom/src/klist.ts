@@ -3,7 +3,6 @@ import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
-import { $moveTo } from "./dom.js";
 import { __nextID } from "./idgen.js";
 import { $subWithID } from "./sub.js";
 
@@ -90,7 +89,7 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 		super();
 	}
 
-	async mount(parent: Element, index: NumOrElement, state: T[]) {
+	async mount(parent: ParentNode, index: NumOrElement, state: T[]) {
 		this.items = [];
 		this.cache = new Map();
 		this.el = this.$el(this.tag, this.attribs, null, parent, index);
@@ -141,7 +140,7 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 
 		const insert = async (item: KListItem) => {
 			if (cache!.has(item.k)) {
-				$moveTo(parent!, item.v.el!, next);
+				this.$moveTo(parent!, item.v.el!, next);
 				next = item.v.el!;
 			} else {
 				cache!.set(item.k, item);

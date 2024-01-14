@@ -111,7 +111,7 @@ export const $refresh = <T>(
 
 export class Switch<T> extends Component implements IMountWithState<T> {
 	protected val?: T;
-	protected parent?: Element;
+	protected parent?: ParentNode;
 	protected inner?: IComponent<T>;
 	protected index?: NumOrElement;
 
@@ -128,7 +128,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
 		super();
 	}
 
-	async mount(parent: Element, index: NumOrElement, val: T) {
+	async mount(parent: ParentNode, index: NumOrElement, val: T) {
 		this.parent = parent;
 		this.index = index;
 		await this.update(val);

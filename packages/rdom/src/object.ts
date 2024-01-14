@@ -115,7 +115,7 @@ export class $Object<T extends object, K extends Keys<T>>
 		this.obj = fromObject(src, opts);
 	}
 
-	async mount(parent: Element, index: NumOrElement = -1, state?: T) {
+	async mount(parent: ParentNode, index: NumOrElement = -1, state?: T) {
 		state !== undefined && this.obj.next(state);
 		this.inner = this.$compile(await this.ctor(this.obj.streams));
 		this.el = await this.inner.mount(parent, index);

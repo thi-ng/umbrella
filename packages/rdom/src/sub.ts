@@ -6,7 +6,6 @@ import { __nextID } from "@thi.ng/rstream/idgen";
 import { Subscription } from "@thi.ng/rstream/subscription";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
 import { $attribs } from "./dom.js";
-import { SCHEDULER } from "./scheduler.js";
 import { $wrapText } from "./wrap.js";
 
 /**
@@ -74,7 +73,7 @@ export class $Sub<T = any> extends Subscription<T, T> {
 		super(undefined, { id: id || `rdom$sub-${__nextID()}` });
 	}
 
-	async mount(parent: Element, index: NumOrElement = -1) {
+	async mount(parent: ParentNode, index: NumOrElement = -1) {
 		return (this.el = await this.inner.mount(
 			parent,
 			index,
@@ -84,7 +83,6 @@ export class $Sub<T = any> extends Subscription<T, T> {
 
 	async unmount() {
 		this.unsubscribe();
-		SCHEDULER.cancel(this);
 		this.el = undefined;
 		await this.inner.unmount();
 	}
@@ -94,7 +92,7 @@ export class $Sub<T = any> extends Subscription<T, T> {
 	}
 
 	next(x: T) {
-		SCHEDULER.add(this, () => this.el && this.inner.update(x));
+		if (this.el) this.inner.update(x);
 	}
 }
 
@@ -108,10 +106,6 @@ export class $SubA extends Subscription<any, any> {
 	}
 
 	next(a: any) {
-		const $ = this.comp;
-		SCHEDULER.add(
-			$,
-			() => $.el && $attribs($.el, this.setter(this.attr, a))
-		);
+		if (this.comp.el) $attribs(this.comp.el, this.setter(this.attr, a));
 	}
 }

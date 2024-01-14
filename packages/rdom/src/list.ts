@@ -79,7 +79,7 @@ export class List<T> extends Component implements IMountWithState<T[]> {
 		super();
 	}
 
-	async mount(parent: Element, index: NumOrElement, state: T[]) {
+	async mount(parent: ParentNode, index: NumOrElement, state: T[]) {
 		this.prev = [];
 		this.items = [];
 		this.el = this.$el(this.tag, this.attribs, null, parent, index);

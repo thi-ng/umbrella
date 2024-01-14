@@ -23,7 +23,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	el?: Element;
 
 	abstract mount(
-		parent: Element,
+		parent: ParentNode,
 		index?: NumOrElement,
 		...xs: any[]
 	): Promise<Element>;
@@ -50,7 +50,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 		tag: string,
 		attribs?: any,
 		body?: any,
-		parent = this.el,
+		parent: ParentNode | undefined = this.el,
 		idx?: NumOrElement
 	) {
 		return $el(tag, attribs, body, parent, idx);
@@ -64,7 +64,11 @@ export abstract class Component<T = any> implements IComponent<T> {
 	 * @param parent
 	 * @param idx
 	 */
-	$comment(body: string | string[], parent = this.el, idx?: NumOrElement) {
+	$comment(
+		body: string | string[],
+		parent: ParentNode | undefined = this.el,
+		idx?: NumOrElement
+	) {
 		return $comment(body, parent, idx);
 	}
 
@@ -94,7 +98,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	 * @param root
 	 * @param index
 	 */
-	$tree(tree: any, root = this.el!, index?: NumOrElement) {
+	$tree(tree: any, root: ParentNode = this.el!, index?: NumOrElement) {
 		return $tree(tree, root, index);
 	}
 
@@ -109,7 +113,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	 * @param body
 	 * @param el
 	 */
-	$text(body: any, el: HTMLElement = <HTMLElement>this.el!) {
+	$text(body: any, el: HTMLElement | SVGElement = <HTMLElement>this.el!) {
 		$text(el, body);
 	}
 
@@ -171,7 +175,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	 * @param el
 	 * @param idx
 	 */
-	$moveTo(newParent: Element, el = this.el!, idx?: NumOrElement) {
+	$moveTo(newParent: ParentNode, el = this.el!, idx?: NumOrElement) {
 		$moveTo(newParent, el, idx);
 	}
 }

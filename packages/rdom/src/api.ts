@@ -22,7 +22,7 @@ export interface IComponent<T = any> {
 	 * mount the component in the parent element and SHOULD default to
 	 * -1, causing the component to be appended to (rather than inserted
 	 * into) the list of children. The `index` arg MUST be passed to any
-	 * DOM creation functions used within `mount()` (e.g. {@link el},
+	 * DOM creation functions used within `mount()` (e.g. {@link $el},
 	 * {@link $tree}). Likewise, for control-flow or wrapper components,
 	 * the `index` arg MUST be used when mounting child components
 	 * in-place of the wrapper component itself (e.g. see {@link $list},
@@ -35,7 +35,11 @@ export interface IComponent<T = any> {
 	 * @param idx -
 	 * @param xs -
 	 */
-	mount(parent: Element, idx?: NumOrElement, ...xs: any[]): Promise<Element>;
+	mount(
+		parent: ParentNode,
+		idx?: NumOrElement,
+		...xs: any[]
+	): Promise<Element>;
 	/**
 	 * Async component lifecycle method to remove the component from the
 	 * target DOM and release any other internal resources (e.g.
@@ -67,7 +71,7 @@ export interface IMountWith<T, M> extends IComponent<T> {
 	 * @param index -
 	 * @param state -
 	 */
-	mount(parent: Element, index: NumOrElement, state: M): Promise<Element>;
+	mount(parent: ParentNode, index: NumOrElement, state: M): Promise<Element>;
 
 	/**
 	 * Same like {@link IComponent.update}, but new `state` value arg is
@@ -98,28 +102,4 @@ export type ComponentLike = IComponent | [string, ...(any | null)[]];
 
 export type Callback = Fn0<void>;
 
-export type Task = Fn0<void>;
-
 export type NumOrElement = number | Element;
-
-/**
- * Interface for task schedulers. See {@link NullScheduler} and
- * {@link RAFScheduler}.
- */
-export interface IScheduler {
-	/**
-	 * Registers a new task for processing. The `scope` arg is used to uniquely
-	 * associate the task with a given component.
-	 *
-	 * @param scope -
-	 * @param task -
-	 */
-	add(scope: any, task: Task): void;
-	/**
-	 * Attempts to cancel all tasks for given `scope`. Depending on
-	 * implementation and timing this might not be possible (anymore).
-	 *
-	 * @param scope -
-	 */
-	cancel(scope: any): void;
-}

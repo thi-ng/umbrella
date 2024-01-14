@@ -37,7 +37,7 @@ export class $Lazy extends Component {
 		super();
 	}
 
-	async mount(parent: Element, index?: NumOrElement | undefined) {
+	async mount(parent: ParentNode, index?: NumOrElement | undefined) {
 		this.el = this.$el(this.tag, this.attribs, null, parent, index);
 		this.observer = new IntersectionObserver(([item]) => {
 			if (item.isIntersecting) {

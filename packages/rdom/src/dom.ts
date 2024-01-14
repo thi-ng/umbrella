@@ -48,7 +48,7 @@ import { isComment, isComponent } from "./checks.js";
  */
 export const $tree = async (
 	tree: any,
-	parent: Element,
+	parent: ParentNode,
 	idx: NumOrElement = -1
 ): Promise<any> =>
 	isArray(tree)
@@ -65,7 +65,7 @@ export const $tree = async (
 		? $el("span", null, tree, <HTMLElement>parent, idx)
 		: null;
 
-const $treeElem = (tree: any, parent: Element, idx: NumOrElement) => {
+const $treeElem = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 	const tag = tree[0];
 	// [tag, attribs, ...body]
 	return isString(tag)
@@ -80,7 +80,7 @@ const $treeElem = (tree: any, parent: Element, idx: NumOrElement) => {
 		  unsupported(`tag: ${tag}`);
 };
 
-const $treeTag = (tree: any, parent: Element, idx: NumOrElement) => {
+const $treeTag = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 	const n = tree.length;
 	const { 0: tag, 1: attribs, 2: body } = tree;
 	if (n === 3 && (isString(body) || isNumber(body))) {
@@ -99,7 +99,7 @@ const $treeTag = (tree: any, parent: Element, idx: NumOrElement) => {
 	return parent;
 };
 
-const $treeIter = (tree: any, parent: Element) => {
+const $treeIter = (tree: any, parent: ParentNode) => {
 	for (let t of tree) {
 		$tree(t, parent);
 	}
@@ -132,7 +132,7 @@ export const $el = (
 	tag: string,
 	attribs: any,
 	body?: any,
-	parent?: Element,
+	parent?: ParentNode,
 	idx: NumOrElement = -1
 ) => {
 	const match = RE_TAG.exec(tag);
@@ -170,7 +170,7 @@ export const $el = (
  */
 export const $comment = (
 	body: string | string[],
-	parent?: Element,
+	parent?: ParentNode,
 	idx: NumOrElement = -1
 ) => {
 	const comment = document.createComment(
@@ -194,8 +194,8 @@ export const $comment = (
  * @param idx
  */
 export const $addChild = (
-	parent: Element,
-	child: Element | Comment,
+	parent: ParentNode,
+	child: Node | Comment,
 	idx: NumOrElement = -1
 ) => {
 	isNumber(idx)
@@ -221,7 +221,7 @@ export const $remove = (el: Element | Comment) => el && el.remove();
  * @param idx
  */
 export const $moveTo = (
-	newParent: Element,
+	newParent: ParentNode,
 	el: Element | Comment,
 	idx: NumOrElement = -1
 ) => {
@@ -398,7 +398,7 @@ const updateValueAttrib = (el: HTMLInputElement, value: any) => {
 	}
 };
 
-const updateDataAttribs = (el: HTMLElement, attribs: any) => {
+const updateDataAttribs = (el: HTMLOrSVGElement, attribs: any) => {
 	const data = el.dataset;
 	for (let id in attribs) {
 		const v = deref(attribs[id]);

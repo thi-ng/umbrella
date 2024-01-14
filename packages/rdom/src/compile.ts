@@ -5,7 +5,6 @@ import { isSubscribable } from "@thi.ng/rstream/checks";
 import type { CompiledComponent, IComponent, NumOrElement } from "./api.js";
 import { isComponent, isElement } from "./checks.js";
 import { $el, $remove, $tree } from "./dom.js";
-import { SCHEDULER } from "./scheduler.js";
 import { $SubA, $sub } from "./sub.js";
 import { $wrapEl, $wrapText } from "./wrap.js";
 
@@ -72,7 +71,7 @@ const isComplexComponent = (x: any) => {
 };
 
 const complexComponent = (tree: any[]): CompiledComponent => ({
-	async mount(parent: Element, index: NumOrElement = -1) {
+	async mount(parent: ParentNode, index: NumOrElement = -1) {
 		this.subs = [];
 		walk((x, path) => {
 			isSubscribable(x) &&
@@ -88,27 +87,24 @@ const complexComponent = (tree: any[]): CompiledComponent => ({
 		return this.el;
 	},
 	async unmount() {
-		SCHEDULER.cancel(this);
 		if (this.children) {
 			for (let c of this.children) {
 				await c.unmount();
 			}
 		}
 		this.subs && this.subs.forEach((s) => s.unsubscribe());
-		$remove(this.el!);
-		this.children = undefined;
-		this.subs = undefined;
-		this.el = undefined;
+		this.el && $remove(this.el);
+		this.el = this.children = this.subs = undefined;
 	},
 	update() {},
 });
 
 const basicComponent = (tree: any): CompiledComponent => ({
-	async mount(parent: Element, index: NumOrElement = -1) {
+	async mount(parent: ParentNode, index: NumOrElement = -1) {
 		return (this.el = await $tree(tree, parent, index));
 	},
 	async unmount() {
-		$remove(this.el!);
+		this.el && $remove(this.el);
 		this.el = undefined;
 	},
 	update() {},

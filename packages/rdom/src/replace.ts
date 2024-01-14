@@ -42,11 +42,11 @@ export const $replace = <T>(src: ISubscribable<T>) =>
 	$subWithID(src, new Replace<T>(), __nextID("replace", src));
 
 export class Replace<T> extends Component implements IMountWithState<T> {
-	protected parent?: Element;
+	protected parent?: ParentNode;
 	protected inner?: IComponent<T>;
 	protected index?: NumOrElement;
 
-	async mount(parent: Element, index: NumOrElement, val: T) {
+	async mount(parent: ParentNode, index: NumOrElement, val: T) {
 		this.parent = parent;
 		this.index = index;
 		await this.update(val);

@@ -34,7 +34,7 @@ export class $Promise extends Component {
 		super();
 	}
 
-	async mount(parent: Element, index: NumOrElement) {
+	async mount(parent: ParentNode, index: NumOrElement) {
 		try {
 			this.inner = this.$compile(await this.promise);
 		} catch (e) {
