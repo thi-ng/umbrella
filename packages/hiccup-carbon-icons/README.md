@@ -166,4 +166,4 @@ If this project contributes to an academic publication, please cite it as:
 The copyright of the original icons is with IBM. The icons were published under
 the same license as this package.
 
-&copy; 2018 - 2023 // Apache License 2.0
+&copy; 2018 - 2024 // Apache License 2.0

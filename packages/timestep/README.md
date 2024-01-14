@@ -137,7 +137,7 @@ after 1 second (25 frames)...
 
 ## Related packages
 
-- [@thi.ng/boids](https://github.com/thi-ng/umbrella/tree/develop/packages/boids) - n-dimensional boids simulation with highly configurable behaviors
+- [@thi.ng/boids](https://github.com/thi-ng/umbrella/tree/develop/packages/boids) - n-dimensional boids simulation with modular behavior system
 
 ## Installation
 
@@ -200,4 +200,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2023 Karsten Schmidt // Apache License 2.0
+&copy; 2023 - 2024 Karsten Schmidt // Apache License 2.0
