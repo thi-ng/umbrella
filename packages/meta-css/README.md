@@ -22,6 +22,7 @@ anti-framework.
     - [Properties](#properties)
     - [Key value generation](#key-value-generation)
   - [Media query definitions](#media-query-definitions)
+  - [Custom declarations](#custom-declarations)
 - [Converting meta stylesheets to CSS](#converting-meta-stylesheets-to-css)
   - [Meta-stylesheets syntax](#meta-stylesheets-syntax)
     - [Class identifiers & media query prefixes](#class-identifiers--media-query-prefixes)
@@ -79,10 +80,11 @@ parametric JSON rule specs. This process generates all desired, combinatorial
 versions of various rules/declarations and exports them to a framework JSON file
 used as intermediary stage for the other commands provided by this toolchain.
 The [syntax/format of the generator rules](#framework-generation-specs--syntax)
-is explained further on. These rule specs can be split up into multiple files
-for better handling, can define [arbitrary media query
-criteria](#media-query-definitions) (all later combinable), shared lookup tables
-for colors, margins, sizes, timings etc.
+is explained further on. These framework specs can be split up into multiple
+files for better handling and organization, can define [CSS base
+declarations](#custom-declarations) (e.g. for normalization purposes),
+[arbitrary media query criteria](#media-query-definitions) (all later
+combinable), shared lookup tables for colors, margins, sizes, timings etc.
 
 The package includes dozens of generator specs for a basic, fully customizable,
 Tachyons-derived [CSS framework](#bundled-css-base-framework). These specs and
@@ -457,6 +459,27 @@ ALWAYS combined using `and`:
 See [media queries in the bundled base
 specs](https://github.com/thi-ng/umbrella/blob/982fff7bfcc48f108b6ad88f854ef00be4078510/packages/meta-css/specs/_info.json#L6-L24)
 
+### Custom declarations
+
+Each of the JSON spec files can provide fixed CSS declarations via the `decls`
+key. These declarations are to be given in
+[thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/)
+format and are passed as is to the CSS serializer used by the `convert` and
+`export` commands. Please see
+[`/specs/normalize.mcss.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/normalize.mcss.json)
+for examples and the [thi.ng/hiccup-css
+readme](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/README.md)
+for detailed reference.
+
+```json
+{
+    "decls": [
+        [":root", { "font-size": "16px" }],
+        ["*", { "margin": 0 }]
+    ]
+}
+```
+
 ## Converting meta stylesheets to CSS
 
 The `convert` command is used to compile & bundle actual CSS from user-provided
@@ -737,6 +760,33 @@ framework generation aspects of this toolchain. This command merely takes an
 existing generated framework JSON file and serializes it to a single CSS file,
 e.g. to be then used with other CSS tooling (e.g. `postcss`).
 
+As with the `convert` command, additional CSS files can also be included
+(prepended) in the output file.
+
+If the `--only-decls` option is used, **only** the [framework
+declarations](#custom-declarations) but none of the generated utility classes
+will be exported.
+
+```text
+metacss export --help
+
+Usage: metacss export [opts] input
+
+Flags:
+
+-d, --no-decls          Don't emit framework decls
+--no-header             Don't emit generated header comment
+--only-decls            Only emit framework decls
+-p, --pretty            Pretty print output
+-v, --verbose           Display extra process information
+
+Main:
+
+-I STR, --include STR   [multiple] Include CSS files (prepend)
+-m ID, --media ID       [multiple] Media query IDs (use 'ALL' for all)
+-o STR, --out STR       Output file (or stdout)
+```
+
 ### Media query variations
 
 Users can choose to generate variations of all defined utility classes for any
@@ -751,33 +801,11 @@ to 50%) and media queries for different screen sizes (e.g. named `ns`, `l`),
 then the export with said media queries will also generate classes `w-50-ns`
 and `w-50-l` (incl. their corresponding `@media` wrappers).
 
-As with the `convert` command, additional CSS files can also be included
-(prepended) in the output file.
-
-```text
-metacss export --help
-
-Usage: metacss export [opts] input
-
-Flags:
-
--d, --no-decls          Don't emit framework decls
---no-header             Don't emit generated header comment
--p, --pretty            Pretty print output
--v, --verbose           Display extra process information
-
-Main:
-
--I STR, --include STR   [multiple] Include CSS files (prepend)
--m ID, --media ID       [multiple] Media query IDs (use 'ALL' for all)
--o STR, --out STR       Output file (or stdout)
-```
-
 ## Bundled CSS base framework
 
 The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...
 
-Currently, there are 927 CSS utility classes defined in MetaCSS base v0.0.1:
+Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 ### Classes by category
 
@@ -787,7 +815,7 @@ Currently, there are 927 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Animations / transitions <!-- notoc -->
 
-`bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3` / `fadeout1` / `fadeout2` / `fadeout3`
+`anim-alternate` / `anim-alternate-reverse` / `anim-normal` / `anim-reverse` / `bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3` / `fadeout1` / `fadeout2` / `fadeout3` / `spin1` / `spin2` / `spin3`
 
 #### Aspect ratios <!-- notoc -->
 
@@ -980,7 +1008,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.50 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.54 KB
 
 ## Dependencies
 
