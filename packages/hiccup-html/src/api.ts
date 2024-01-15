@@ -641,6 +641,7 @@ export interface Attribs
 	scrollLeft: NumericAttrib;
 	scrollTop: NumericAttrib;
 	spellcheck: BooleanAttrib;
+	slot: string;
 	style: AttribVal<
 		| string
 		| Partial<

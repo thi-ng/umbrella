@@ -58,3 +58,9 @@ export interface IFrameAttribs
 }
 
 export const iframe = defElement<Partial<IFrameAttribs>>("iframe");
+
+export interface SlotAttribs extends Attribs {
+	name: string;
+}
+
+export const slot = defElement<Partial<SlotAttribs>>("slot");
