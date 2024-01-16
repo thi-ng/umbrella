@@ -26,6 +26,7 @@ import type { ILogger } from "@thi.ng/logger";
 import { permutations } from "@thi.ng/transducers";
 import { resolve } from "path";
 import {
+	ARG_OUTPUT,
 	ARG_PRETTY,
 	type AppCtx,
 	type CommonOpts,
@@ -36,6 +37,7 @@ import {
 import { maybeWriteText } from "./utils.js";
 
 interface GenerateOpts extends CommonOpts {
+	out?: string;
 	prec: number;
 	pretty: boolean;
 }
@@ -83,6 +85,7 @@ export const GENERATE: Command<
 > = {
 	desc: "Generate framework rules from specs",
 	opts: {
+		...ARG_OUTPUT,
 		...ARG_PRETTY,
 		prec: int({ default: 3, desc: "Number of fractional digits" }),
 	},

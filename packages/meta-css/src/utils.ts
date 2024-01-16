@@ -3,7 +3,7 @@ import { isString } from "@thi.ng/checks";
 import { writeText } from "@thi.ng/file-io";
 import type { ILogger } from "@thi.ng/logger";
 import { resolve } from "path";
-import type { CompiledSpecs } from "./api";
+import type { CompiledSpecs } from "./api.js";
 
 export const maybeWriteText = (
 	out: string | undefined,
@@ -11,7 +11,9 @@ export const maybeWriteText = (
 	logger: ILogger
 ) => {
 	body = isString(body) ? body : body.join("\n");
-	out ? writeText(resolve(out), body, logger) : console.log(body);
+	out
+		? writeText(resolve(out), body, logger)
+		: process.stdout.write(body + "\n");
 };
 
 export const generateHeader = ({ info: { name, version } }: CompiledSpecs) =>

@@ -4,7 +4,6 @@ import { flag, string, strings, type CommandCtx } from "@thi.ng/args";
 import type { FormatPresets } from "@thi.ng/text-format";
 
 export interface CommonOpts {
-	out?: string;
 	verbose: boolean;
 }
 
@@ -59,8 +58,24 @@ export const ARG_INCLUDE = {
 	}),
 };
 
+export const ARG_EVAL = {
+	eval: string({
+		alias: "e",
+		desc: "eval meta stylesheet in given string (ignores other inputs & includes)",
+	}),
+};
+
 export const ARG_EXCLUDE_DECLS = {
 	noDecls: flag({ alias: "d", desc: "Don't emit framework decls" }),
+};
+
+export const ARG_FORCE_INCLUDE = {
+	force: strings({
+		alias: "f",
+		hint: "STR",
+		desc: "CSS classes to force include (wildcards are supported, @-prefix will read from file)",
+		delim: ",",
+	}),
 };
 
 export const ARG_MEDIA_QUERIES = {
@@ -74,6 +89,13 @@ export const ARG_MEDIA_QUERIES = {
 
 export const ARG_ONLY_DECLS = {
 	onlyDecls: flag({ desc: "Only emit framework decls" }),
+};
+
+export const ARG_OUTPUT = {
+	out: string({
+		alias: "o",
+		desc: "Output file (or stdout)",
+	}),
 };
 
 export const ARG_PRETTY = {

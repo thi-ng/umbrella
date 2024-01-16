@@ -1,9 +1,10 @@
-import { cliApp, flag, string } from "@thi.ng/args";
+import { cliApp, flag } from "@thi.ng/args";
 import { readJSON } from "@thi.ng/file-io";
 import { LogLevel } from "@thi.ng/logger";
 import { PRESET_ANSI16 } from "@thi.ng/text-format";
 import { join } from "node:path";
 import type { AppCtx, CommonOpts } from "./api.js";
+import { BUNDLE } from "./bundle.js";
 import { CONVERT } from "./convert.js";
 import { EXPORT } from "./export.js";
 import { GENERATE } from "./generate.js";
@@ -13,16 +14,13 @@ const PKG = readJSON(join((<any>import.meta).dir, "package.json"));
 cliApp<CommonOpts, AppCtx<any>>({
 	name: "metacss",
 	opts: {
-		out: string({
-			alias: "o",
-			desc: "Output file (or stdout)",
-		}),
 		verbose: flag({
 			alias: "v",
 			desc: "Display extra process information",
 		}),
 	},
 	commands: {
+		bundle: BUNDLE,
 		convert: CONVERT,
 		export: EXPORT,
 		generate: GENERATE,

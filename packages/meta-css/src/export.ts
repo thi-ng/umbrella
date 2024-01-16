@@ -11,6 +11,7 @@ import {
 	ARG_MEDIA_QUERIES,
 	ARG_NO_HEADER,
 	ARG_ONLY_DECLS,
+	ARG_OUTPUT,
 	ARG_PRETTY,
 	type AppCtx,
 	type CommonOpts,
@@ -19,6 +20,7 @@ import {
 import { generateHeader, maybeWriteText } from "./utils.js";
 
 interface ExportOpts extends CommonOpts {
+	out?: string;
 	pretty: boolean;
 	noDecls: boolean;
 	onlyDecls: boolean;
@@ -33,6 +35,7 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 		...ARG_INCLUDE,
 		...ARG_EXCLUDE_DECLS,
 		...ARG_ONLY_DECLS,
+		...ARG_OUTPUT,
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
 		...ARG_MEDIA_QUERIES,
