@@ -3,13 +3,13 @@
 // use `yarn css:build` or `yarn css:watch` to transpile to CSS
 // also see component-specific *.mcss files in /src
 
-body { sans-serif white }
+body { sans-serif color-white }
 
 h1 { ma0 }
 
-a { db b ma3 black }
+a { db b ma3 color-black }
 
-#intro { vh-100 pa3 bg-dark-gray ss-start }
+#intro { vh-100 pa3 bg-color-dark-gray ss-start }
 
 #main { ss-y vh-100 overflow-y-scroll }
 

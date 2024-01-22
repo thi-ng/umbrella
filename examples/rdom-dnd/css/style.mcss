@@ -4,11 +4,11 @@
 // also see component-specific *.mcss files in /src
 
 body { sans-serif ma3 }
-svg { fill-current }
-a { black }
+svg { fill-color-current }
+a { color-black }
 
 #app { mb3 }
 
 // drop zone styles 
-#bank1 .dropzone { bg-dark-red { [data-active=true] { bg-orange } } }
-#bank2 .dropzone { bg-blue { [data-active=true] { bg-light-blue } } }
+#bank1 .dropzone { bg-color-dark-red { [data-active=true] { bg-color-orange } } }
+#bank2 .dropzone { bg-color-blue { [data-active=true] { bg-color-light-blue } } }

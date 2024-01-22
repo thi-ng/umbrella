@@ -39,7 +39,7 @@ const swatches = (colors: string[]) =>
 		{},
 		...map((id) => {
 			const color = /^(navy|purple|dark-)/.test(id) ? "white" : "black";
-			return div(`.bg-${id}.${color}`, {}, id);
+			return div(`.bg-color-${id}.color-${color}`, {}, id);
 		}, colors)
 	);
 
@@ -95,7 +95,7 @@ $compile(
 		),
 		pre(
 			{ data: { lang: "bash" } },
-			div(".lang", {}, "Bash"),
+			// div(".lang", {}, "Bash"),
 			`$ npx @thi.ng/meta-css --help
 
  █ █   █           │
@@ -110,17 +110,13 @@ Usage: metacss <cmd> [opts] input [...]
 
 Available commands:
 
-convert         : Convert & bundle meta stylesheets to CSS
+convert         : Transpile (and optionally bundle) meta stylesheets to CSS
 export          : Export entire generated framework as CSS
 generate        : Generate framework rules from specs
 
 Flags:
 
--v, --verbose           Display extra process information
-
-Main:
-
--o STR, --out STR       Output file (or stdout)`
+-v, --verbose           Display extra process information`
 		)
 	)
 ).mount(document.getElementById("app")!);

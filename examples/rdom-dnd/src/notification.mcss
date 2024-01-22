@@ -5,6 +5,6 @@
 		i { mr2 v-mid }
 	}
 }
-.notification[data-type=info] { bg-lightest-blue blue }
-.notification[data-type=success] { bg-washed-green dark-green }
-.notification[data-type=warn] { bg-washed-red dark-red }
+.notification[data-type=info] { bg-color-lightest-blue color-blue }
+.notification[data-type=success] { bg-color-washed-green color-dark-green }
+.notification[data-type=warn] { bg-color-washed-red color-dark-red }

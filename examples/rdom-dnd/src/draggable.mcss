@@ -1,10 +1,10 @@
 .dropzone { v-top dib mr1 mb1 w4 h4 pa4 br3 }
 
 // hint: declare hover state style for a dropzone like so:
-// #wrapperid .dropzone { { [data-active=true] { bg-yellow } } }
+// #wrapperid .dropzone { { [data-active=true] { bg-color-yellow } } }
 
 .drag {
-	w3 h3 bg-black white br2
+	w3 h3 bg-color-black color-white br2
 	{
 		svg { relative top-0 dib ma3 w2 }
 	}

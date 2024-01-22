@@ -19,20 +19,20 @@
 // }
 
 body {
-	system ma3 dark:bg-near-black dark:light-gray bg-light-gray dark-gray
+	system ma3 dark:bg-color-near-black dark:color-light-gray bg-color-light-gray color-dark-gray
 }
 
 // text selection
-::selection { bg-yellow black }
+::selection { bg-color-yellow color-black }
 
 // shared styles for all headlines
 h1, h2, h3, h4, h5, h6 { mt0 mb2 lh-solid ls--1 { p { mt2 lh-solid } } }
 
 // set font sizes & colors for each heading level
-h1 { ns:f-title f-subtitle dark:orange light:dark-pink { p { f1 } } }
-h2 { ns:f-subtitle f1 dark:gold light:hot-pink { p { f2 } } }
-h3 { dark:yellow light:pink f1 { p { f2 } } }
-h4 { dark:light-yellow light:light-pink f2 { p { f3 } } }
+h1 { ns:f-title f-subtitle dark:color-orange light:color-dark-pink { p { f1 } } }
+h2 { ns:f-subtitle f1 dark:color-gold light:color-hot-pink { p { f2 } } }
+h3 { dark:color-yellow light:color-pink f1 { p { f2 } } }
+h4 { dark:color-light-yellow light:color-light-pink f2 { p { f3 } } }
 h5 { f3 { p { f4 } } }
 h6 { f4 { p { f5 } } }
 
@@ -43,13 +43,17 @@ p { mt0 mb3 lh-copy }
 ul, ol { list pl0 lh-double }
 
 pre {
-	dark:bg-dark-blue dark:white light:bg-light-blue light:black
+	dark:bg-color-dark-blue dark:color-white light:bg-color-light-blue light:color-black
 	relative pa3 br3 lh-copy f6 overflow-x-scroll box-shadow-i-4
-	{ >div.lang { absolute z-1 top-0 right-0 bg-blue pa2 brl3 brt0 f7 } }
+	{
+		::after {
+			absolute z-1 top-0 right-0 bg-color-blue color-white pa2 brl3 brt0 f7 content-data-lang
+		}
+	}
 }
 
-a:link, a:visited { dark:white black fw700 }
-a:hover { dark:hot-pink dark-pink }
+a:link, a:visited { dark:color-white color-black fw700 }
+a:hover { dark:color-hot-pink color-dark-pink }
 
 .swatches {
 	grid gap3 grid-cols-2 m:grid-cols-4 l:grid-cols-5 mb4
@@ -63,7 +67,7 @@ a:hover { dark:hot-pink dark-pink }
 			pa3
 			{
 				// use --color1 var (defined in index.html) for hover
-				:hover { bg-vcol1 }
+				:hover { bg-color1 }
 				:first-child { brt3 }
 				:last-child { brb3 }
 			}
@@ -79,7 +83,7 @@ a:hover { dark:hot-pink dark-pink }
 			ns:h4 pa3
 			{
 				// use --color2 var (defined in index.html) for hover
-				:hover { bg-vcol2 }
+				:hover { bg-color2 }
 				:first-child { ns:brl3 }
 				:last-child { ns:brr3 }
 			}
@@ -97,10 +101,10 @@ a:hover { dark:hot-pink dark-pink }
 	mb3
 	{
 		a {
-			db dark:bg-dark-gray bg-moon-gray no-underline
+			db dark:bg-color-dark-gray bg-color-moon-gray no-underline
 			{
 				// use --color3 var (defined in index.html) for hover
-				:hover { vcol3 anim:bg-anim2 }
+				:hover { color3 anim:bg-anim2 }
 			}
 		}
 	}

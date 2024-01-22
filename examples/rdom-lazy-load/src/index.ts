@@ -28,7 +28,7 @@ const lazyLoad = (i: number) => {
 		"div.lazy-item",
 		{},
 		async () => [
-			`div.bg-${colors[i % colors.length]}`,
+			`div.bg-color-${colors[i % colors.length]}`,
 			{},
 			["h1", {}, `Lazy load #${i + 1}`],
 			["p", {}, `(initialized after ${Date.now() - t0} ms)`],
