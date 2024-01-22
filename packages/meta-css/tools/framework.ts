@@ -1,4 +1,5 @@
 import { files, readJSON, writeText } from "@thi.ng/file-io";
+import { compare } from "@thi.ng/compare";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { capitalize } from "@thi.ng/strings";
 import { Reducer, groupByObj, mapcat } from "@thi.ng/transducers";
@@ -37,6 +38,27 @@ const grouped = groupByObj(
 
 const num = Object.keys(specs.classes).length;
 
+const parseClass = (name: string) =>
+	name.split(/(\d+)/).map((x) => {
+		let y = parseInt(x);
+		return isNaN(y) ? x : y;
+	});
+
+const $compare = (a: string, b: string) => {
+	if (/\d+/.test(a) && /\d+/.test(b)) {
+		const aa = parseClass(a);
+		const bb = parseClass(b);
+		const n = aa.length;
+		if (n === bb.length) {
+			for (let i = 0; i < n; i++) {
+				if (aa[i] !== bb[i]) return compare(aa[i], bb[i]);
+			}
+			return 0;
+		}
+		return aa.length - bb.length;
+	}
+	return compare(a, b);
+};
 // console.log(grouped);
 
 const doc: string[] = [
@@ -51,7 +73,10 @@ const doc: string[] = [
 	...mapcat(
 		(groupID) => [
 			`#### ${capitalize(groupID)} <!-- notoc -->\n`,
-			grouped[groupID].map((x) => `\`${x}\``).join(" / "),
+			grouped[groupID]
+				.sort($compare)
+				.map((x) => `\`${x}\``)
+				.join(" / "),
 			"",
 		],
 		Object.keys(grouped).sort()
