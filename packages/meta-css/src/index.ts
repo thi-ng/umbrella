@@ -4,7 +4,6 @@ import { LogLevel } from "@thi.ng/logger";
 import { PRESET_ANSI16 } from "@thi.ng/text-format";
 import { join } from "node:path";
 import type { AppCtx, CommonOpts } from "./api.js";
-import { BUNDLE } from "./bundle.js";
 import { CONVERT } from "./convert.js";
 import { EXPORT } from "./export.js";
 import { GENERATE } from "./generate.js";
@@ -20,7 +19,6 @@ cliApp<CommonOpts, AppCtx<any>>({
 		}),
 	},
 	commands: {
-		bundle: BUNDLE,
 		convert: CONVERT,
 		export: EXPORT,
 		generate: GENERATE,

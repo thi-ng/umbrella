@@ -65,10 +65,6 @@ export const ARG_EVAL = {
 	}),
 };
 
-export const ARG_EXCLUDE_DECLS = {
-	noDecls: flag({ alias: "d", desc: "Don't emit framework decls" }),
-};
-
 export const ARG_FORCE_INCLUDE = {
 	force: strings({
 		alias: "f",
@@ -100,6 +96,10 @@ export const ARG_OUTPUT = {
 
 export const ARG_PRETTY = {
 	pretty: flag({ alias: "p", desc: "Pretty print output" }),
+};
+
+export const ARG_NO_DECLS = {
+	noDecls: flag({ alias: "d", desc: "Don't emit framework decls" }),
 };
 
 export const ARG_NO_HEADER = {

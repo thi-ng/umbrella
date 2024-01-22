@@ -1,5 +1,5 @@
 // thing:no-export
-import type { IObjectOf } from "@thi.ng/api";
+import type { Fn0, IObjectOf } from "@thi.ng/api";
 import { flag, type Command } from "@thi.ng/args";
 import { peek } from "@thi.ng/arrays";
 import { delayed } from "@thi.ng/compose";
@@ -14,16 +14,18 @@ import {
 	type Format,
 } from "@thi.ng/hiccup-css";
 import { type ILogger } from "@thi.ng/logger";
-import { split } from "@thi.ng/strings";
-import { filter, map } from "@thi.ng/transducers";
+import { Stream, reactive, sync } from "@thi.ng/rstream";
+import { Z4, split } from "@thi.ng/strings";
+import { assocObj, filter, map } from "@thi.ng/transducers";
 import { watch } from "fs";
 import { resolve } from "path";
 import {
 	ARG_EVAL,
-	ARG_EXCLUDE_DECLS,
 	ARG_FORCE_INCLUDE,
 	ARG_INCLUDE,
+	ARG_NO_DECLS,
 	ARG_NO_HEADER,
+	ARG_OUTPUT,
 	ARG_PRETTY,
 	ARG_SPECS,
 	ARG_WATCH,
@@ -36,10 +38,12 @@ import { generateHeader, maybeWriteText } from "./utils.js";
 type State = "sel" | "class" | "nest";
 
 interface ConvertOpts extends CommonOpts {
+	out?: string;
 	specs: string;
 	include?: string[];
 	eval?: string;
 	force?: string[];
+	bundle: boolean;
 	pretty: boolean;
 	noDecls: boolean;
 	noHeader: boolean;
@@ -70,16 +74,18 @@ export interface ProcessOpts {
 }
 
 export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
-	desc: "Transpile individual meta stylesheets to CSS",
+	desc: "Transpile (and optionally bundle) meta stylesheets to CSS",
 	opts: {
-		...ARG_SPECS,
-		...ARG_INCLUDE,
 		...ARG_EVAL,
-		...ARG_EXCLUDE_DECLS,
+		...ARG_NO_DECLS,
 		...ARG_FORCE_INCLUDE,
-		...ARG_PRETTY,
+		...ARG_INCLUDE,
 		...ARG_NO_HEADER,
+		...ARG_OUTPUT,
+		...ARG_PRETTY,
+		...ARG_SPECS,
 		...ARG_WATCH,
+		bundle: flag({ alias: "b", desc: "Bundle inputs (see `out` option)" }),
 		noWrite: flag({ desc: "Don't write files, use stdout only" }),
 	},
 	fn: async (ctx) => {
@@ -92,30 +98,48 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 			ctx.opts.force || [],
 			ctx.logger
 		);
-		if (ctx.opts.watch) {
-			await watchInputs(ctx, specs, forceRules);
-		} else if (ctx.opts.eval) {
-			try {
-				processInputs(ctx, specs, forceRules, [ctx.opts.eval]);
-			} catch (e) {
-				ctx.logger.warn((<Error>e).message);
+		if (ctx.opts.bundle) {
+			if (ctx.opts.watch) {
+				await watchBundleInputs(ctx, specs, forceRules);
+			} else {
+				processInputs(
+					ctx,
+					specs,
+					forceRules,
+					ctx.opts.eval
+						? [ctx.opts.eval]
+						: ctx.inputs.map((file) =>
+								readText(resolve(file), ctx.logger)
+						  ),
+					ctx.opts.out
+				);
 			}
 		} else {
-			for (let file of ctx.inputs) {
+			if (ctx.opts.watch) {
+				await watchInputs(ctx, specs, forceRules);
+			} else if (ctx.opts.eval) {
 				try {
-					file = resolve(file);
-					const outFile = !ctx.opts.noWrite
-						? file.replace(/\.mcss$/, ".css")
-						: undefined;
-					processInputs(
-						ctx,
-						specs,
-						forceRules,
-						[readText(file, ctx.logger)],
-						outFile
-					);
+					processInputs(ctx, specs, forceRules, [ctx.opts.eval]);
 				} catch (e) {
 					ctx.logger.warn((<Error>e).message);
+				}
+			} else {
+				for (let file of ctx.inputs) {
+					try {
+						file = resolve(file);
+						const outFile = !ctx.opts.noWrite
+							? file.replace(/\.mcss$/, ".css")
+							: undefined;
+						processInputs(
+							ctx,
+							specs,
+							forceRules,
+							[readText(file, ctx.logger)],
+							outFile
+						);
+					} catch (e) {
+						ctx.logger.warn((<Error>e).message);
+					}
 				}
 			}
 		}
@@ -128,18 +152,18 @@ const watchInputs = async (
 	forceRules: ReturnType<typeof processForceIncludes>
 ) => {
 	let active = true;
+	let inputs: { close: Fn0<void> }[];
 	const close = () => {
-		if (!inputs) return;
 		ctx.logger.info("closing watchers...");
 		inputs.forEach((watcher) => watcher.close());
 		active = false;
 	};
-	const inputs = ctx.inputs.map((file) => {
+	inputs = ctx.inputs.map((file) => {
 		file = resolve(file);
 		const outFile = !ctx.opts.noWrite
 			? file.replace(/\.mcss$/, ".css")
 			: undefined;
-		const process = () => {
+		const $process = () => {
 			try {
 				processInputs(
 					ctx,
@@ -148,20 +172,87 @@ const watchInputs = async (
 					[readText(file, ctx.logger)],
 					outFile
 				);
+				return true;
 			} catch (e) {
-				ctx.logger.warn((<Error>e).message);
-				close();
+				ctx.logger.warn((<Error>e).message + ": " + file);
+				if (inputs) close();
 			}
 		};
-		process();
+		if (!$process()) process.exit(1);
 		return watch(file, {}, (event) => {
 			if (event === "change") {
-				process();
+				$process();
 			} else {
 				ctx.logger.warn(`input removed:`, file);
 				close();
 			}
 		});
+	});
+	ctx.logger.info("waiting for changes, press ctrl+c to cancel...");
+	// close watchers when ctrl-c is pressed
+	process.on("SIGINT", close);
+	while (active) {
+		await delayed(null, 250);
+	}
+};
+
+const watchBundleInputs = async (
+	ctx: AppCtx<ConvertOpts>,
+	specs: CompiledSpecs,
+	forceRules: ReturnType<typeof processForceIncludes>
+) => {
+	let active = true;
+	const close = () => {
+		ctx.logger.info("closing watchers...");
+		inputs.forEach((i) => i.watcher.close());
+		active = false;
+	};
+	const inputs = ctx.inputs.map((file, i) => {
+		file = resolve(file);
+		const input = reactive(readText(file, ctx.logger), {
+			id: `in${Z4(i)}`,
+		});
+		return {
+			input,
+			watcher: watch(file, {}, (event) => {
+				if (event === "change") {
+					try {
+						input.next(readText(file, ctx.logger));
+					} catch (e) {
+						ctx.logger.warn((<Error>e).message);
+						close();
+					}
+				} else {
+					ctx.logger.warn(`input removed:`, file);
+					close();
+				}
+			}),
+		};
+	});
+	sync({
+		src: assocObj<Stream<string>>(
+			map(
+				({ input }) => <[string, Stream<string>]>[input.id, input],
+				inputs
+			)
+		),
+	}).subscribe({
+		next(ins) {
+			try {
+				processInputs(
+					ctx,
+					specs,
+					forceRules,
+					// process in deterministic order (same as given in CLI)
+					Object.keys(ins)
+						.sort()
+						.map((k) => ins[k]),
+					ctx.opts.out
+				);
+			} catch (e) {
+				ctx.logger.warn((<Error>e).message);
+			}
+		},
 	});
 	// close watchers when ctrl-c is pressed
 	process.on("SIGINT", close);

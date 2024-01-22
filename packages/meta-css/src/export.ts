@@ -6,9 +6,9 @@ import { COMPACT, PRETTY, QUOTED_FNS, at_media, css } from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
 import { resolve } from "path";
 import {
-	ARG_EXCLUDE_DECLS,
 	ARG_INCLUDE,
 	ARG_MEDIA_QUERIES,
+	ARG_NO_DECLS,
 	ARG_NO_HEADER,
 	ARG_ONLY_DECLS,
 	ARG_OUTPUT,
@@ -33,7 +33,7 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 	desc: "Export entire generated framework as CSS",
 	opts: {
 		...ARG_INCLUDE,
-		...ARG_EXCLUDE_DECLS,
+		...ARG_NO_DECLS,
 		...ARG_ONLY_DECLS,
 		...ARG_OUTPUT,
 		...ARG_PRETTY,
