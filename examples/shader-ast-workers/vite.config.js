@@ -1,3 +1,4 @@
 export default {
-    worker: { format: "es" },
+	build: { target: "esnext" },
+	worker: { format: "es" },
 };
