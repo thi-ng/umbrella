@@ -443,13 +443,13 @@ for detailed reference.
 ## Converting meta stylesheets to CSS
 
 The `convert` command is used to compile & bundle actual CSS from user-provided
-MetaCSS stylesheets (`*.mcss` files) and the JSON framework specs created by the
+MetaCSS stylesheets (`.mcss` files) and the JSON framework specs created by the
 `generate` command. The meta-stylesheets support any CSS selectors, are nestable
 and compose full CSS declarations from lists of the utility classes in the
 generated framework.
 
 Each item (aka utility class name) can be prefixed with an arbitrary number of
-media query IDs (also custom defined in the framework): e.g. `dark:bg-black`
+media query IDs (also custom defined in the framework): e.g. `dark:bg-color-black`
 might refer to a CSS class to set a black ground, with the `dark:` prefix
 referring to a defined media query which only applies this class when dark mode
 is enabled...
@@ -460,8 +460,7 @@ rules** and can be generated in minified or pretty printed formats (it's also
 possible to [force include CSS classes which are otherwise
 unreferenced](#force-inclusion-of-unreferenced-classes)). Additionally, multiple
 `.mcss` stylesheets can be watched for changes (their definitions getting
-merged), and existing CSS files can be included (prepended) in the bundled
-output too.
+merged), and existing CSS files can be included (prepended) in the output(s) too.
 
 ```text
 metacss convert --help
@@ -470,8 +469,10 @@ Usage: metacss convert [opts] input [...]
 
 Flags:
 
+-b, --bundle            Bundle inputs (see `out` option)
 -d, --no-decls          Don't emit framework decls
 --no-header             Don't emit generated header comment
+--no-write              Don't write files, use stdout only
 -p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
 -w, --watch             Watch input files for changes
@@ -486,6 +487,16 @@ Main:
 -o STR, --out STR       Output file (or stdout)
 -s STR, --specs STR     [required] Path to generated JSON defs
 ```
+
+Notes:
+
+- The `--no-write` flag is only used if `--bundle` is **disabled**
+- The `--out` file arg is only used if `--bundle` is **enabled**
+
+If bundling is disabled (default), each input `.mcss` file is converted
+individually and results are written to the same directory, but using `.css` as
+file extension (and unless `--no-write` is enabled). This behavior is intended
+for local style definitions of web components.
 
 ### Meta-stylesheets syntax
 
@@ -510,7 +521,7 @@ selector {
 
 #### Class identifiers & media query prefixes
 
-As indicated by the above file structure, `*.mcss` stylesheets purely consist of
+As indicated by the above file structure, `.mcss` stylesheets purely consist of
 CSS selectors and the names of the utility classes defined in a generated framework.
 For example, using the [bundled framework specs](#bundled-css-base-framework),
 this simple meta-stylesheet `body { ma0 monospace blue }` creates a CSS rule for
@@ -532,7 +543,7 @@ class, and any utility class ID/token can be prefixed with any number of media
 query IDs (separated by `:`). These [media queries are defined as part of the
 framework generation specs](#media-query-definitions) and when used as a prefix,
 multiple query IDs can be combined freely. For example, the meta-stylesheet
-`a:hover { dark:bg-blue dark:anim:bg-anim2 }` will auto-create two separate CSS
+`a:hover { dark:bg-color-blue dark:anim:bg-anim2 }` will auto-create two separate CSS
 `@media`-query blocks for the query IDs `dark` and `(dark AND anim)`:
 
 ```css
@@ -558,21 +569,21 @@ body {
 	// no margins
 	ma0
 	// default colors
-	bg-white black
+	bg-color-white color-black
 	// colors for dark mode
-	dark:bg-black dark:white
+	dark:bg-color-black dark:color-white
 }
 
 #app { ma3 }
 
 .bt-group-v > a {
 	db w-100 l:w-50 ph3 pv2 bwb1
-	dark:bg-purple dark:white dark:b--black
-	light:bg-light-blue light:black light:b--white
+	dark:bg-color-purple dark:color-white dark:b--color-black
+	light:bg-color-light-blue light:color-black light:b--color-white
 
 	// nested selectors
 	{
-		:hover { bg-gold black anim:bg-anim2 }
+		:hover { bg-color-gold color-black anim:bg-anim2 }
 		:first-child { brt3 }
 		:last-child { brb3 bwb0 }
 	}

@@ -483,13 +483,13 @@ for detailed reference.
 ## Converting meta stylesheets to CSS
 
 The `convert` command is used to compile & bundle actual CSS from user-provided
-MetaCSS stylesheets (`*.mcss` files) and the JSON framework specs created by the
+MetaCSS stylesheets (`.mcss` files) and the JSON framework specs created by the
 `generate` command. The meta-stylesheets support any CSS selectors, are nestable
 and compose full CSS declarations from lists of the utility classes in the
 generated framework.
 
 Each item (aka utility class name) can be prefixed with an arbitrary number of
-media query IDs (also custom defined in the framework): e.g. `dark:bg-black`
+media query IDs (also custom defined in the framework): e.g. `dark:bg-color-black`
 might refer to a CSS class to set a black ground, with the `dark:` prefix
 referring to a defined media query which only applies this class when dark mode
 is enabled...
@@ -500,8 +500,7 @@ rules** and can be generated in minified or pretty printed formats (it's also
 possible to [force include CSS classes which are otherwise
 unreferenced](#force-inclusion-of-unreferenced-classes)). Additionally, multiple
 `.mcss` stylesheets can be watched for changes (their definitions getting
-merged), and existing CSS files can be included (prepended) in the bundled
-output too.
+merged), and existing CSS files can be included (prepended) in the output(s) too.
 
 ```text
 metacss convert --help
@@ -510,8 +509,10 @@ Usage: metacss convert [opts] input [...]
 
 Flags:
 
+-b, --bundle            Bundle inputs (see `out` option)
 -d, --no-decls          Don't emit framework decls
 --no-header             Don't emit generated header comment
+--no-write              Don't write files, use stdout only
 -p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
 -w, --watch             Watch input files for changes
@@ -526,6 +527,16 @@ Main:
 -o STR, --out STR       Output file (or stdout)
 -s STR, --specs STR     [required] Path to generated JSON defs
 ```
+
+Notes:
+
+- The `--no-write` flag is only used if `--bundle` is **disabled**
+- The `--out` file arg is only used if `--bundle` is **enabled**
+
+If bundling is disabled (default), each input `.mcss` file is converted
+individually and results are written to the same directory, but using `.css` as
+file extension (and unless `--no-write` is enabled). This behavior is intended
+for local style definitions of web components.
 
 ### Meta-stylesheets syntax
 
@@ -550,7 +561,7 @@ selector {
 
 #### Class identifiers & media query prefixes
 
-As indicated by the above file structure, `*.mcss` stylesheets purely consist of
+As indicated by the above file structure, `.mcss` stylesheets purely consist of
 CSS selectors and the names of the utility classes defined in a generated framework.
 For example, using the [bundled framework specs](#bundled-css-base-framework),
 this simple meta-stylesheet `body { ma0 monospace blue }` creates a CSS rule for
@@ -572,7 +583,7 @@ class, and any utility class ID/token can be prefixed with any number of media
 query IDs (separated by `:`). These [media queries are defined as part of the
 framework generation specs](#media-query-definitions) and when used as a prefix,
 multiple query IDs can be combined freely. For example, the meta-stylesheet
-`a:hover { dark:bg-blue dark:anim:bg-anim2 }` will auto-create two separate CSS
+`a:hover { dark:bg-color-blue dark:anim:bg-anim2 }` will auto-create two separate CSS
 `@media`-query blocks for the query IDs `dark` and `(dark AND anim)`:
 
 ```css
@@ -598,21 +609,21 @@ body {
     // no margins
     ma0
     // default colors
-    bg-white black
+    bg-color-white color-black
     // colors for dark mode
-    dark:bg-black dark:white
+    dark:bg-color-black dark:color-white
 }
 
 #app { ma3 }
 
 .bt-group-v > a {
     db w-100 l:w-50 ph3 pv2 bwb1
-    dark:bg-purple dark:white dark:b--black
-    light:bg-light-blue light:black light:b--white
+    dark:bg-color-purple dark:color-white dark:b--color-black
+    light:bg-color-light-blue light:color-black light:b--color-white
 
     // nested selectors
     {
-        :hover { bg-gold black anim:bg-anim2 }
+        :hover { bg-color-gold color-black anim:bg-anim2 }
         :first-child { brt3 }
         :last-child { brb3 bwb0 }
     }
@@ -805,7 +816,7 @@ and `w-50-l` (incl. their corresponding `@media` wrappers).
 
 The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...
 
-Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
+Currently, there are 940 CSS utility classes defined in MetaCSS base v0.0.1:
 
 ### Classes by category
 
@@ -819,7 +830,7 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Aspect ratios <!-- notoc -->
 
-`aspect-ratio-16x9` / `aspect-ratio-1x1` / `aspect-ratio-1x2` / `aspect-ratio-2x1` / `aspect-ratio-2x3` / `aspect-ratio-3x2` / `aspect-ratio-3x4` / `aspect-ratio-4x3` / `aspect-ratio-5x7` / `aspect-ratio-7x5` / `aspect-ratio-9x16` / `bg-aspect-ratio-16x9` / `bg-aspect-ratio-1x1` / `bg-aspect-ratio-1x2` / `bg-aspect-ratio-2x1` / `bg-aspect-ratio-2x3` / `bg-aspect-ratio-3x2` / `bg-aspect-ratio-3x4` / `bg-aspect-ratio-4x3` / `bg-aspect-ratio-5x7` / `bg-aspect-ratio-7x5` / `bg-aspect-ratio-9x16` / `bg-aspect-ratio-object`
+`aspect-ratio-1x1` / `aspect-ratio-1x2` / `aspect-ratio-2x1` / `aspect-ratio-2x3` / `aspect-ratio-3x2` / `aspect-ratio-3x4` / `aspect-ratio-4x3` / `aspect-ratio-5x7` / `aspect-ratio-7x5` / `aspect-ratio-9x16` / `aspect-ratio-16x9` / `bg-aspect-ratio-1x1` / `bg-aspect-ratio-1x2` / `bg-aspect-ratio-2x1` / `bg-aspect-ratio-2x3` / `bg-aspect-ratio-3x2` / `bg-aspect-ratio-3x4` / `bg-aspect-ratio-4x3` / `bg-aspect-ratio-5x7` / `bg-aspect-ratio-7x5` / `bg-aspect-ratio-9x16` / `bg-aspect-ratio-16x9` / `bg-aspect-ratio-object`
 
 #### Background <!-- notoc -->
 
@@ -827,15 +838,19 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Border radius <!-- notoc -->
 
-`br-100` / `br-pill` / `br0` / `br1` / `br2` / `br3` / `br4` / `brb0` / `brb1` / `brb2` / `brb3` / `brb4` / `brl0` / `brl1` / `brl2` / `brl3` / `brl4` / `brr0` / `brr1` / `brr2` / `brr3` / `brr4` / `brt0` / `brt1` / `brt2` / `brt3` / `brt4`
+`br0` / `br1` / `br2` / `br3` / `br4` / `br-100` / `br-pill` / `brb0` / `brb1` / `brb2` / `brb3` / `brb4` / `brl0` / `brl1` / `brl2` / `brl3` / `brl4` / `brr0` / `brr1` / `brr2` / `brr3` / `brr4` / `brt0` / `brt1` / `brt2` / `brt3` / `brt4`
 
 #### Border width <!-- notoc -->
 
-`bw-1px` / `bw0` / `bw1` / `bw2` / `bw3` / `bw4` / `bw5` / `bwb-1px` / `bwb0` / `bwb1` / `bwb2` / `bwb3` / `bwb4` / `bwb5` / `bwl-1px` / `bwl0` / `bwl1` / `bwl2` / `bwl3` / `bwl4` / `bwl5` / `bwr-1px` / `bwr0` / `bwr1` / `bwr2` / `bwr3` / `bwr4` / `bwr5` / `bwt-1px` / `bwt0` / `bwt1` / `bwt2` / `bwt3` / `bwt4` / `bwt5`
+`bw0` / `bw1` / `bw2` / `bw3` / `bw4` / `bw5` / `bw-1px` / `bwb0` / `bwb1` / `bwb2` / `bwb3` / `bwb4` / `bwb5` / `bwb-1px` / `bwl0` / `bwl1` / `bwl2` / `bwl3` / `bwl4` / `bwl5` / `bwl-1px` / `bwr0` / `bwr1` / `bwr2` / `bwr3` / `bwr4` / `bwr5` / `bwr-1px` / `bwt0` / `bwt1` / `bwt2` / `bwt3` / `bwt4` / `bwt5` / `bwt-1px`
 
 #### Colors <!-- notoc -->
 
-`b--black` / `b--blue` / `b--color1` / `b--color10` / `b--color11` / `b--color12` / `b--color13` / `b--color14` / `b--color15` / `b--color16` / `b--color2` / `b--color3` / `b--color4` / `b--color5` / `b--color6` / `b--color7` / `b--color8` / `b--color9` / `b--current` / `b--dark-blue` / `b--dark-gray` / `b--dark-green` / `b--dark-pink` / `b--dark-red` / `b--gold` / `b--gray` / `b--green` / `b--hot-pink` / `b--light-blue` / `b--light-gray` / `b--light-green` / `b--light-pink` / `b--light-purple` / `b--light-red` / `b--light-silver` / `b--light-yellow` / `b--lightest-blue` / `b--mid-gray` / `b--moon-gray` / `b--navy` / `b--near-black` / `b--near-white` / `b--orange` / `b--pink` / `b--purple` / `b--red` / `b--silver` / `b--transparent` / `b--washed-blue` / `b--washed-green` / `b--washed-red` / `b--washed-yellow` / `b--white` / `b--yellow` / `bg-black` / `bg-blue` / `bg-color1` / `bg-color10` / `bg-color11` / `bg-color12` / `bg-color13` / `bg-color14` / `bg-color15` / `bg-color16` / `bg-color2` / `bg-color3` / `bg-color4` / `bg-color5` / `bg-color6` / `bg-color7` / `bg-color8` / `bg-color9` / `bg-current` / `bg-dark-blue` / `bg-dark-gray` / `bg-dark-green` / `bg-dark-pink` / `bg-dark-red` / `bg-gold` / `bg-gray` / `bg-green` / `bg-hot-pink` / `bg-light-blue` / `bg-light-gray` / `bg-light-green` / `bg-light-pink` / `bg-light-purple` / `bg-light-red` / `bg-light-silver` / `bg-light-yellow` / `bg-lightest-blue` / `bg-mid-gray` / `bg-moon-gray` / `bg-navy` / `bg-near-black` / `bg-near-white` / `bg-orange` / `bg-pink` / `bg-purple` / `bg-red` / `bg-silver` / `bg-transparent` / `bg-washed-blue` / `bg-washed-green` / `bg-washed-red` / `bg-washed-yellow` / `bg-white` / `bg-yellow` / `black` / `blue` / `color1` / `color10` / `color11` / `color12` / `color13` / `color14` / `color15` / `color16` / `color2` / `color3` / `color4` / `color5` / `color6` / `color7` / `color8` / `color9` / `current` / `dark-blue` / `dark-gray` / `dark-green` / `dark-pink` / `dark-red` / `fill-black` / `fill-blue` / `fill-color1` / `fill-color10` / `fill-color11` / `fill-color12` / `fill-color13` / `fill-color14` / `fill-color15` / `fill-color16` / `fill-color2` / `fill-color3` / `fill-color4` / `fill-color5` / `fill-color6` / `fill-color7` / `fill-color8` / `fill-color9` / `fill-current` / `fill-dark-blue` / `fill-dark-gray` / `fill-dark-green` / `fill-dark-pink` / `fill-dark-red` / `fill-gold` / `fill-gray` / `fill-green` / `fill-hot-pink` / `fill-light-blue` / `fill-light-gray` / `fill-light-green` / `fill-light-pink` / `fill-light-purple` / `fill-light-red` / `fill-light-silver` / `fill-light-yellow` / `fill-lightest-blue` / `fill-mid-gray` / `fill-moon-gray` / `fill-navy` / `fill-near-black` / `fill-near-white` / `fill-orange` / `fill-pink` / `fill-purple` / `fill-red` / `fill-silver` / `fill-transparent` / `fill-washed-blue` / `fill-washed-green` / `fill-washed-red` / `fill-washed-yellow` / `fill-white` / `fill-yellow` / `gold` / `gray` / `green` / `hot-pink` / `light-blue` / `light-gray` / `light-green` / `light-pink` / `light-purple` / `light-red` / `light-silver` / `light-yellow` / `lightest-blue` / `mid-gray` / `moon-gray` / `navy` / `near-black` / `near-white` / `o-0` / `o-10` / `o-100` / `o-20` / `o-30` / `o-40` / `o-50` / `o-60` / `o-70` / `o-80` / `o-90` / `orange` / `pink` / `purple` / `red` / `silver` / `stroke-black` / `stroke-blue` / `stroke-color1` / `stroke-color10` / `stroke-color11` / `stroke-color12` / `stroke-color13` / `stroke-color14` / `stroke-color15` / `stroke-color16` / `stroke-color2` / `stroke-color3` / `stroke-color4` / `stroke-color5` / `stroke-color6` / `stroke-color7` / `stroke-color8` / `stroke-color9` / `stroke-current` / `stroke-dark-blue` / `stroke-dark-gray` / `stroke-dark-green` / `stroke-dark-pink` / `stroke-dark-red` / `stroke-gold` / `stroke-gray` / `stroke-green` / `stroke-hot-pink` / `stroke-light-blue` / `stroke-light-gray` / `stroke-light-green` / `stroke-light-pink` / `stroke-light-purple` / `stroke-light-red` / `stroke-light-silver` / `stroke-light-yellow` / `stroke-lightest-blue` / `stroke-mid-gray` / `stroke-moon-gray` / `stroke-navy` / `stroke-near-black` / `stroke-near-white` / `stroke-orange` / `stroke-pink` / `stroke-purple` / `stroke-red` / `stroke-silver` / `stroke-transparent` / `stroke-washed-blue` / `stroke-washed-green` / `stroke-washed-red` / `stroke-washed-yellow` / `stroke-white` / `stroke-yellow` / `transparent` / `washed-blue` / `washed-green` / `washed-red` / `washed-yellow` / `white` / `yellow`
+`b--color-black` / `b--color-blue` / `b--color-current` / `b--color-dark-blue` / `b--color-dark-gray` / `b--color-dark-green` / `b--color-dark-pink` / `b--color-dark-red` / `b--color-gold` / `b--color-gray` / `b--color-green` / `b--color-hot-pink` / `b--color-light-blue` / `b--color-light-gray` / `b--color-light-green` / `b--color-light-pink` / `b--color-light-purple` / `b--color-light-red` / `b--color-light-silver` / `b--color-light-yellow` / `b--color-lightest-blue` / `b--color-mid-gray` / `b--color-moon-gray` / `b--color-navy` / `b--color-near-black` / `b--color-near-white` / `b--color-orange` / `b--color-pink` / `b--color-purple` / `b--color-red` / `b--color-silver` / `b--color-transparent` / `b--color-washed-blue` / `b--color-washed-green` / `b--color-washed-red` / `b--color-washed-yellow` / `b--color-white` / `b--color-yellow` / `b--color1` / `b--color2` / `b--color3` / `b--color4` / `b--color5` / `b--color6` / `b--color7` / `b--color8` / `b--color9` / `b--color10` / `b--color11` / `b--color12` / `b--color13` / `b--color14` / `b--color15` / `b--color16` / `bg-color-black` / `bg-color-blue` / `bg-color-current` / `bg-color-dark-blue` / `bg-color-dark-gray` / `bg-color-dark-green` / `bg-color-dark-pink` / `bg-color-dark-red` / `bg-color-gold` / `bg-color-gray` / `bg-color-green` / `bg-color-hot-pink` / `bg-color-light-blue` / `bg-color-light-gray` / `bg-color-light-green` / `bg-color-light-pink` / `bg-color-light-purple` / `bg-color-light-red` / `bg-color-light-silver` / `bg-color-light-yellow` / `bg-color-lightest-blue` / `bg-color-mid-gray` / `bg-color-moon-gray` / `bg-color-navy` / `bg-color-near-black` / `bg-color-near-white` / `bg-color-orange` / `bg-color-pink` / `bg-color-purple` / `bg-color-red` / `bg-color-silver` / `bg-color-transparent` / `bg-color-washed-blue` / `bg-color-washed-green` / `bg-color-washed-red` / `bg-color-washed-yellow` / `bg-color-white` / `bg-color-yellow` / `bg-color1` / `bg-color2` / `bg-color3` / `bg-color4` / `bg-color5` / `bg-color6` / `bg-color7` / `bg-color8` / `bg-color9` / `bg-color10` / `bg-color11` / `bg-color12` / `bg-color13` / `bg-color14` / `bg-color15` / `bg-color16` / `color-black` / `color-blue` / `color-current` / `color-dark-blue` / `color-dark-gray` / `color-dark-green` / `color-dark-pink` / `color-dark-red` / `color-gold` / `color-gray` / `color-green` / `color-hot-pink` / `color-light-blue` / `color-light-gray` / `color-light-green` / `color-light-pink` / `color-light-purple` / `color-light-red` / `color-light-silver` / `color-light-yellow` / `color-lightest-blue` / `color-mid-gray` / `color-moon-gray` / `color-navy` / `color-near-black` / `color-near-white` / `color-orange` / `color-pink` / `color-purple` / `color-red` / `color-silver` / `color-transparent` / `color-washed-blue` / `color-washed-green` / `color-washed-red` / `color-washed-yellow` / `color-white` / `color-yellow` / `color1` / `color2` / `color3` / `color4` / `color5` / `color6` / `color7` / `color8` / `color9` / `color10` / `color11` / `color12` / `color13` / `color14` / `color15` / `color16` / `fill-color-black` / `fill-color-blue` / `fill-color-current` / `fill-color-dark-blue` / `fill-color-dark-gray` / `fill-color-dark-green` / `fill-color-dark-pink` / `fill-color-dark-red` / `fill-color-gold` / `fill-color-gray` / `fill-color-green` / `fill-color-hot-pink` / `fill-color-light-blue` / `fill-color-light-gray` / `fill-color-light-green` / `fill-color-light-pink` / `fill-color-light-purple` / `fill-color-light-red` / `fill-color-light-silver` / `fill-color-light-yellow` / `fill-color-lightest-blue` / `fill-color-mid-gray` / `fill-color-moon-gray` / `fill-color-navy` / `fill-color-near-black` / `fill-color-near-white` / `fill-color-orange` / `fill-color-pink` / `fill-color-purple` / `fill-color-red` / `fill-color-silver` / `fill-color-transparent` / `fill-color-washed-blue` / `fill-color-washed-green` / `fill-color-washed-red` / `fill-color-washed-yellow` / `fill-color-white` / `fill-color-yellow` / `fill-color1` / `fill-color2` / `fill-color3` / `fill-color4` / `fill-color5` / `fill-color6` / `fill-color7` / `fill-color8` / `fill-color9` / `fill-color10` / `fill-color11` / `fill-color12` / `fill-color13` / `fill-color14` / `fill-color15` / `fill-color16` / `o-0` / `o-10` / `o-20` / `o-30` / `o-40` / `o-50` / `o-60` / `o-70` / `o-80` / `o-90` / `o-100` / `stroke-color-black` / `stroke-color-blue` / `stroke-color-current` / `stroke-color-dark-blue` / `stroke-color-dark-gray` / `stroke-color-dark-green` / `stroke-color-dark-pink` / `stroke-color-dark-red` / `stroke-color-gold` / `stroke-color-gray` / `stroke-color-green` / `stroke-color-hot-pink` / `stroke-color-light-blue` / `stroke-color-light-gray` / `stroke-color-light-green` / `stroke-color-light-pink` / `stroke-color-light-purple` / `stroke-color-light-red` / `stroke-color-light-silver` / `stroke-color-light-yellow` / `stroke-color-lightest-blue` / `stroke-color-mid-gray` / `stroke-color-moon-gray` / `stroke-color-navy` / `stroke-color-near-black` / `stroke-color-near-white` / `stroke-color-orange` / `stroke-color-pink` / `stroke-color-purple` / `stroke-color-red` / `stroke-color-silver` / `stroke-color-transparent` / `stroke-color-washed-blue` / `stroke-color-washed-green` / `stroke-color-washed-red` / `stroke-color-washed-yellow` / `stroke-color-white` / `stroke-color-yellow` / `stroke-color1` / `stroke-color2` / `stroke-color3` / `stroke-color4` / `stroke-color5` / `stroke-color6` / `stroke-color7` / `stroke-color8` / `stroke-color9` / `stroke-color10` / `stroke-color11` / `stroke-color12` / `stroke-color13` / `stroke-color14` / `stroke-color15` / `stroke-color16`
+
+#### Content <!-- notoc -->
+
+`content-data-lang` / `content-href` / `content-id` / `content-name` / `content-slot` / `content-title`
 
 #### Cursors <!-- notoc -->
 
@@ -871,11 +886,11 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Grid layout <!-- notoc -->
 
-`align-items-center` / `align-items-end` / `align-items-start` / `align-items-stretch` / `align-self-center` / `align-self-end` / `align-self-start` / `align-self-stretch` / `gap-1px` / `gap-2px` / `gap-4px` / `gap-8px` / `gap0` / `gap1` / `gap2` / `gap3` / `gap4` / `gap5` / `grid-cols-1` / `grid-cols-10` / `grid-cols-2` / `grid-cols-3` / `grid-cols-4` / `grid-cols-5` / `grid-cols-6` / `grid-cols-7` / `grid-cols-8` / `grid-cols-9` / `grid-rows-1` / `grid-rows-10` / `grid-rows-2` / `grid-rows-3` / `grid-rows-4` / `grid-rows-5` / `grid-rows-6` / `grid-rows-7` / `grid-rows-8` / `grid-rows-9` / `justify-items-center` / `justify-items-end` / `justify-items-start` / `justify-items-stretch` / `justify-self-center` / `justify-self-end` / `justify-self-start` / `justify-self-stretch`
+`align-items-center` / `align-items-end` / `align-items-start` / `align-items-stretch` / `align-self-center` / `align-self-end` / `align-self-start` / `align-self-stretch` / `gap0` / `gap1` / `gap2` / `gap3` / `gap4` / `gap5` / `gap-1px` / `gap-2px` / `gap-4px` / `gap-8px` / `grid-cols-1` / `grid-cols-2` / `grid-cols-3` / `grid-cols-4` / `grid-cols-5` / `grid-cols-6` / `grid-cols-7` / `grid-cols-8` / `grid-cols-9` / `grid-cols-10` / `grid-rows-1` / `grid-rows-2` / `grid-rows-3` / `grid-rows-4` / `grid-rows-5` / `grid-rows-6` / `grid-rows-7` / `grid-rows-8` / `grid-rows-9` / `grid-rows-10` / `justify-items-center` / `justify-items-end` / `justify-items-start` / `justify-items-stretch` / `justify-self-center` / `justify-self-end` / `justify-self-start` / `justify-self-stretch`
 
 #### Height <!-- notoc -->
 
-`h-10` / `h-100` / `h-16` / `h-17` / `h-20` / `h-25` / `h-30` / `h-33` / `h-34` / `h-40` / `h-50` / `h-60` / `h-66` / `h-67` / `h-70` / `h-75` / `h-80` / `h-83` / `h-84` / `h-90` / `h1` / `h2` / `h3` / `h4` / `h5`
+`h1` / `h2` / `h3` / `h4` / `h5` / `h-10` / `h-16` / `h-17` / `h-20` / `h-25` / `h-30` / `h-33` / `h-34` / `h-40` / `h-50` / `h-60` / `h-66` / `h-67` / `h-70` / `h-75` / `h-80` / `h-83` / `h-84` / `h-90` / `h-100` / `vh-25` / `vh-50` / `vh-75` / `vh-100`
 
 #### Icons <!-- notoc -->
 
@@ -883,7 +898,7 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Letter spacing <!-- notoc -->
 
-`ls--1` / `ls--2` / `ls-0` / `ls-1` / `ls-2` / `ls-3`
+`ls-0` / `ls-1` / `ls-2` / `ls-3` / `ls--1` / `ls--2`
 
 #### Line heights <!-- notoc -->
 
@@ -899,19 +914,19 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Max. height <!-- notoc -->
 
-`maxh-10` / `maxh-100` / `maxh-16` / `maxh-17` / `maxh-20` / `maxh-25` / `maxh-30` / `maxh-33` / `maxh-34` / `maxh-40` / `maxh-50` / `maxh-60` / `maxh-66` / `maxh-67` / `maxh-70` / `maxh-75` / `maxh-80` / `maxh-83` / `maxh-84` / `maxh-90` / `maxh1` / `maxh2` / `maxh3` / `maxh4` / `maxh5`
+`maxh1` / `maxh2` / `maxh3` / `maxh4` / `maxh5` / `maxh-10` / `maxh-16` / `maxh-17` / `maxh-20` / `maxh-25` / `maxh-30` / `maxh-33` / `maxh-34` / `maxh-40` / `maxh-50` / `maxh-60` / `maxh-66` / `maxh-67` / `maxh-70` / `maxh-75` / `maxh-80` / `maxh-83` / `maxh-84` / `maxh-90` / `maxh-100`
 
 #### Max. width <!-- notoc -->
 
-`maxw-10` / `maxw-100` / `maxw-16` / `maxw-17` / `maxw-20` / `maxw-25` / `maxw-30` / `maxw-33` / `maxw-34` / `maxw-40` / `maxw-50` / `maxw-60` / `maxw-66` / `maxw-67` / `maxw-70` / `maxw-75` / `maxw-80` / `maxw-83` / `maxw-84` / `maxw-90` / `maxw1` / `maxw2` / `maxw3` / `maxw4` / `maxw5`
+`maxw1` / `maxw2` / `maxw3` / `maxw4` / `maxw5` / `maxw-10` / `maxw-16` / `maxw-17` / `maxw-20` / `maxw-25` / `maxw-30` / `maxw-33` / `maxw-34` / `maxw-40` / `maxw-50` / `maxw-60` / `maxw-66` / `maxw-67` / `maxw-70` / `maxw-75` / `maxw-80` / `maxw-83` / `maxw-84` / `maxw-90` / `maxw-100`
 
 #### Min. height <!-- notoc -->
 
-`minh-10` / `minh-100` / `minh-16` / `minh-17` / `minh-20` / `minh-25` / `minh-30` / `minh-33` / `minh-34` / `minh-40` / `minh-50` / `minh-60` / `minh-66` / `minh-67` / `minh-70` / `minh-75` / `minh-80` / `minh-83` / `minh-84` / `minh-90` / `minh1` / `minh2` / `minh3` / `minh4` / `minh5`
+`minh1` / `minh2` / `minh3` / `minh4` / `minh5` / `minh-10` / `minh-16` / `minh-17` / `minh-20` / `minh-25` / `minh-30` / `minh-33` / `minh-34` / `minh-40` / `minh-50` / `minh-60` / `minh-66` / `minh-67` / `minh-70` / `minh-75` / `minh-80` / `minh-83` / `minh-84` / `minh-90` / `minh-100`
 
 #### Min. width <!-- notoc -->
 
-`minw-10` / `minw-100` / `minw-16` / `minw-17` / `minw-20` / `minw-25` / `minw-30` / `minw-33` / `minw-34` / `minw-40` / `minw-50` / `minw-60` / `minw-66` / `minw-67` / `minw-70` / `minw-75` / `minw-80` / `minw-83` / `minw-84` / `minw-90` / `minw1` / `minw2` / `minw3` / `minw4` / `minw5`
+`minw1` / `minw2` / `minw3` / `minw4` / `minw5` / `minw-10` / `minw-16` / `minw-17` / `minw-20` / `minw-25` / `minw-30` / `minw-33` / `minw-34` / `minw-40` / `minw-50` / `minw-60` / `minw-66` / `minw-67` / `minw-70` / `minw-75` / `minw-80` / `minw-83` / `minw-84` / `minw-90` / `minw-100`
 
 #### Overflow <!-- notoc -->
 
@@ -923,7 +938,7 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Positions <!-- notoc -->
 
-`absolute` / `bottom--1` / `bottom--2` / `bottom-0` / `bottom-1` / `bottom-2` / `fixed` / `left--1` / `left--2` / `left-0` / `left-1` / `left-2` / `relative` / `right--1` / `right--2` / `right-0` / `right-1` / `right-2` / `static` / `sticky` / `top--1` / `top--2` / `top-0` / `top-1` / `top-2`
+`absolute` / `bottom-0` / `bottom-1` / `bottom-2` / `bottom--1` / `bottom--2` / `fixed` / `left-0` / `left-1` / `left-2` / `left--1` / `left--2` / `relative` / `right-0` / `right-1` / `right-2` / `right--1` / `right--2` / `static` / `sticky` / `top-0` / `top-1` / `top-2` / `top--1` / `top--2`
 
 #### Print <!-- notoc -->
 
@@ -953,10 +968,6 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 `ttc` / `ttfsk` / `ttfw` / `tti` / `ttl` / `ttn` / `ttu`
 
-#### Undefined <!-- notoc -->
-
-`vh-100` / `vh-25` / `vh-50` / `vh-75` / `vw-100` / `vw-25` / `vw-50` / `vw-75`
-
 #### Vertical align <!-- notoc -->
 
 `v-base` / `v-btm` / `v-mid` / `v-top`
@@ -971,7 +982,7 @@ Currently, there are 934 CSS utility classes defined in MetaCSS base v0.0.1:
 
 #### Width <!-- notoc -->
 
-`w-10` / `w-100` / `w-16` / `w-17` / `w-20` / `w-25` / `w-30` / `w-33` / `w-34` / `w-40` / `w-50` / `w-60` / `w-66` / `w-67` / `w-70` / `w-75` / `w-80` / `w-83` / `w-84` / `w-90` / `w1` / `w2` / `w3` / `w4` / `w5`
+`vw-25` / `vw-50` / `vw-75` / `vw-100` / `w1` / `w2` / `w3` / `w4` / `w5` / `w-10` / `w-16` / `w-17` / `w-20` / `w-25` / `w-30` / `w-33` / `w-34` / `w-40` / `w-50` / `w-60` / `w-66` / `w-67` / `w-70` / `w-75` / `w-80` / `w-83` / `w-84` / `w-90` / `w-100`
 
 #### Z-indices <!-- notoc -->
 
@@ -1008,7 +1019,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.54 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.80 KB
 
 ## Dependencies
 
