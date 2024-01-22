@@ -77,13 +77,13 @@
 		},
 		{
 			"user": "colors",
-			"name": "b--<k>",
+			"name": "b--color-<k>",
 			"props": "border-color",
 			"values": "palette"
 		},
 		{
 			"user": "colors",
-			"name": "b--<k>",
+			"name": "b--color-<k>",
 			"props": "border-color",
 			"values": "grays"
 		},
@@ -96,13 +96,13 @@
 		},
 		{
 			"user": "colors",
-			"name": "<k>",
+			"name": "color-<k>",
 			"props": "color",
 			"values": "palette"
 		},
 		{
 			"user": "colors",
-			"name": "<k>",
+			"name": "color-<k>",
 			"props": "color",
 			"values": "grays"
 		},
@@ -115,13 +115,13 @@
 		},
 		{
 			"user": "colors",
-			"name": "bg-<k>",
+			"name": "bg-color-<k>",
 			"props": "background-color",
 			"values": "palette"
 		},
 		{
 			"user": "colors",
-			"name": "bg-<k>",
+			"name": "bg-color-<k>",
 			"props": "background-color",
 			"values": "grays"
 		},
@@ -135,14 +135,14 @@
 		},
 		{
 			"user": "colors",
-			"name": "<var>-<k>",
+			"name": "<var>-color-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "palette",
 			"vars": ["fill-stroke"]
 		},
 		{
 			"user": "colors",
-			"name": "<var>-<k>",
+			"name": "<var>-color-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "grays",
 			"vars": ["fill-stroke"]

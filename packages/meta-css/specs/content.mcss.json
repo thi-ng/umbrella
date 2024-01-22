@@ -1,0 +1,10 @@
+{
+	"specs": [
+		{
+			"user": "content",
+			"name": "content-<v>",
+			"props": { "content": "attr(<v>)" },
+			"values": ["id", "href", "name", "slot", "title", "data-lang"]
+		}
+	]
+}

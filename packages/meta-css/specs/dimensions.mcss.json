@@ -63,6 +63,7 @@
 			"vars": ["w", "h"]
 		},
 		{
+			"user": "<var>",
 			"name": "v<vid>-<v>",
 			"props": "<var>",
 			"values": [25, 50, 75, 100],
