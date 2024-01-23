@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-31T09:44:24Z
+- **Last updated**: 2024-01-23T15:58:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.9.0) (2024-01-23)
+
+#### 🚀 Features
+
+- update VecAPI & impls ([3bdccf0](https://github.com/thi-ng/umbrella/commit/3bdccf0))
+  - add ZERO/ONE consts
+  - add zeroes()/ones()
 
 ### [7.8.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.8.10) (2023-12-12)
 

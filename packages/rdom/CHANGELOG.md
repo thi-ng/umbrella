@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-31T09:44:24Z
+- **Last updated**: 2024-01-23T15:58:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.0.0) (2024-01-23)
+
+#### 🛑 Breaking changes
+
+- remove scheduler, update IComponent signatures ([3728c9b](https://github.com/thi-ng/umbrella/commit/3728c9b))
+- BREAKING CHANGE: remove scheduler, update IComponent and
+  various DOM update fn signatures
+  - remove scheduler support since never used (other than
+    default/dummy `NullScheduler`) and `RAFScheduler` logic is
+    better handled via `synRAF()` or similar (also see [#402](https://github.com/thi-ng/umbrella/issues/402))
+  - update IComponent.mount() signature to use `ParentNode
+    as type for `parent` arg, e.g. to support use w/ `ShadowRoot`
+  - update various DOM update fns with same parent arg type
+  - update all utility components/wrappers
 
 ## [0.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.14.0) (2023-12-28)
 

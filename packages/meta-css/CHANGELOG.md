@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-31T09:44:23Z
+- **Last updated**: 2024-01-23T15:58:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.6.0) (2024-01-23)
+
+#### 🚀 Features
+
+- update .mcss syntax, support var assignments ([468c9c5](https://github.com/thi-ng/umbrella/commit/468c9c5))
+  - update syntax to support `varname=value` assignments (incl. media prefixes)
+  - add tests
+- add --only-decls option for export cmd ([ef8ef65](https://github.com/thi-ng/umbrella/commit/ef8ef65))
+- update/add/rename commands ([3628c4c](https://github.com/thi-ng/umbrella/commit/3628c4c))
+  - rename `convert` => `bundle`
+  - add new `convert` command to transpile individual stylesheets
+  - update CLI arg specs/re-use
+- merge bundle & convert cmds ([a2187cb](https://github.com/thi-ng/umbrella/commit/a2187cb))
 
 ### [0.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.5.1) (2023-12-31)
 

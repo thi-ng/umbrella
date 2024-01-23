@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-12-31T09:44:24Z
+- **Last updated**: 2024-01-23T15:58:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.4.0) (2024-01-23)
+
+#### 🚀 Features
+
+- add slot() element factory ([c7612a4](https://github.com/thi-ng/umbrella/commit/c7612a4))
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.3.0) (2023-12-09)
 
