@@ -61,18 +61,12 @@ wrapper provides a component which subscribes to a stream of hiccup-based scene
 descriptions (trees) and then translates each scene-value into HTML Canvas API
 draw calls.
 
-### Async updates, scheduling & life cycle methods
+### Async updates & life cycle methods
 
 Since there's no central coordination in _rdom_ (neither explicitly nor
 implicitly), each component can (and does) update whenever its state value has
 changed. Likewise, components are free to directly manipulate the DOM through
-other means, as hinted at earlier. Various _rdom_ control constructs are
-dispatching component updates via a central scheduler. By default this is only a
-dummy implementation which processes tasks immediately. However, as usual _rdom_
-only relies on the
-[`IScheduler`](https://docs.thi.ng/umbrella/rdom/interfaces/IScheduler.html)
-interface and so supports other implementations, like
-[`RAFScheduler`](https://docs.thi.ng/umbrella/rdom/classes/RAFScheduler.html).
+other means, as hinted at earlier.
 
 The [`IComponent`](https://docs.thi.ng/umbrella/rdom/interfaces/icomponent.html)
 interface is at the heart of _rdom_. It defines three lifecycle methods to:

@@ -193,7 +193,7 @@ For Node.js REPL:
 const hiccupHtml = await import("@thi.ng/hiccup-html");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.47 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.49 KB
 
 ## Dependencies
 

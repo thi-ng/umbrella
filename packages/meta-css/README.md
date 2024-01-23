@@ -1019,7 +1019,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.80 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.77 KB
 
 ## Dependencies
 
