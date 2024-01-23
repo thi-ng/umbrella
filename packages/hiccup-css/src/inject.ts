@@ -12,14 +12,13 @@ export const injectStyleSheet = (css: string, first = false) =>
 	appendStyleSheet(css, document.head, first);
 
 /**
- * Injects given CSS string as <style> element and attaches it to `parent`. If
+ * Injects given CSS string as `<style>` element and attaches it to `parent`. If
  * `first` is true, inserts it as first child, else (default) appends it.
  * Returns created style DOM element.
  *
  * @param css
  * @param parent
  * @param first
- * @returns
  */
 export const appendStyleSheet = (
 	css: string,
@@ -28,6 +27,7 @@ export const appendStyleSheet = (
 ) => {
 	const sheet = document.createElement("style");
 	sheet.setAttribute("type", "text/css");
+	// TODO remove support for oldskool style elements
 	if ((<any>sheet).styleSheet !== undefined) {
 		(<any>sheet).styleSheet.cssText = css;
 	} else {
