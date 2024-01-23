@@ -122,9 +122,6 @@
 		"./replace": {
 			"default": "./replace.js"
 		},
-		"./scheduler": {
-			"default": "./scheduler.js"
-		},
 		"./sub": {
 			"default": "./sub.js"
 		},

@@ -120,6 +120,9 @@
 		"./behaviors/dynamic": {
 			"default": "./behaviors/dynamic.js"
 		},
+		"./behaviors/follow": {
+			"default": "./behaviors/follow.js"
+		},
 		"./behaviors/separation": {
 			"default": "./behaviors/separation.js"
 		},
