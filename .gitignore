@@ -41,4 +41,5 @@ packages/*/tools
 !.yarn/versions
 
 !examples/**/*.d.ts
+!examples/*/vite.config.js
 !fixtures
