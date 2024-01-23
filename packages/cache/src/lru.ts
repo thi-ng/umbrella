@@ -101,8 +101,13 @@ export class LRUCache<K, V> implements ICache<K, V> {
 	set(key: K, value: V) {
 		const size = this.opts.ksize(key) + this.opts.vsize(value);
 		const e = this.map.get(key);
-		this._size += Math.max(0, size - (e ? e.value.s : 0));
-		this.ensureSize() && this.doSetEntry(e, key, value, size);
+		const additionalSize = Math.max(0, size - (e ? e.value.s : 0));
+		this._size += additionalSize;
+		if (this.ensureSize()) {
+			this.doSetEntry(e, key, value, size);
+		} else {
+			this._size -= additionalSize;
+		}
 		return value;
 	}
 
