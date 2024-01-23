@@ -14,8 +14,8 @@ export const separation = (
 		weight: __ensureFn(weight),
 		update: (boid) => {
 			const { maddN, magSq, setN, sub } = boid.api;
-			const pos = boid.pos.value;
-			const neighbors = boid.neighbors($minDist(boid), boid.pos.curr);
+			const pos = boid.pos.curr;
+			const neighbors = boid.neighbors($minDist(boid), pos);
 			const num = neighbors.length;
 			let n: Boid;
 			setN(force, 0);
