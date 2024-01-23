@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { files } from "@thi.ng/file-io";
+import { files, readJSON } from "@thi.ng/file-io";
 import { preferredType } from "@thi.ng/mime";
 import { execFileSync } from "child_process";
 import { existsSync } from "fs";
@@ -16,6 +16,12 @@ const EXAMPLE = process.argv[2];
 if (!EXAMPLE) {
 	console.warn("\nUsage: deploy-example.ts <example-name>");
 	exit(1);
+}
+
+const PKG = readJSON(`examples/${EXAMPLE}/package.json`);
+if (PKG["thi.ng"]?.online === false) {
+	console.log("example marked as offline-only, skipping...");
+	process.exit(0);
 }
 
 const BUILD = `examples/${EXAMPLE}/dist/`;
@@ -79,13 +85,14 @@ uploadAssets("js", { ext: ".js", depth: 2 });
 uploadAssets("", { ext: ".js", depth: 1 });
 uploadAssets("", { ext: ".html" });
 
-console.log("invaliding", DEST_DIR);
-
-execFileSync(
-	"aws",
-	`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${DEST_DIR}/* --profile ${PROFILE}`.split(
-		" "
-	)
-);
+if (!args.has("no-invalidate")) {
+	console.log("invaliding", DEST_DIR);
+	execFileSync(
+		"aws",
+		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${DEST_DIR}/* --profile ${PROFILE}`.split(
+			" "
+		)
+	);
+}
 
 console.log("done");
