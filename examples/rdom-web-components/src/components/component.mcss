@@ -1,0 +1,10 @@
+article {
+	b mb3 pa2 bw2 b--color1 color1
+	{
+		section { mb1 }
+	}
+}
+
+// slotted children
+// map component's `highlight` attrib to color2
+::slotted(*) { pa2 bg-color2 }

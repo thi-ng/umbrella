@@ -1,0 +1,8 @@
+// @thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src
+
+body { system-sans-serif ma3 }
+
+button { db pa3 bw0 bg-color1 color-white }
