@@ -35,6 +35,7 @@
 		"util": false
 	},
 	"thi.ng": {
+		"online": false,
 		"readme": [
 			"cache",
 			"hiccup",
