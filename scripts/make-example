@@ -69,8 +69,8 @@ cat << EOF > "$MODULE"/package.json
 		"start": "yarn css:build && yarn start:only",
 		"start:only": "vite --host --open",
 		"css:gen": "../../node_modules/.bin/metacss generate --out css/framework.json ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json",
-		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
-		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
+		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --bundle --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
+		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --bundle --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
 		"build": "yarn css:build && tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
@@ -87,7 +87,6 @@ cat << EOF > "$MODULE"/package.json
 		"process": false
 	},
 	"thi.ng": {
-		"skip": true,
 		"readme": false,
 		"screenshot": "examples/$1.png"
 	}
@@ -102,6 +101,13 @@ cat << EOF > "$MODULE"/tsconfig.json
 	"compilerOptions": {
 	}
 }
+EOF
+
+echo "writing vite.config.js..."
+cat << EOF > "$MODULE"/vite.config.js
+export default {
+	build: { target: "esnext" },
+};
 EOF
 
 echo "writing index.html..."
@@ -148,7 +154,7 @@ Please refer to the instructions on the wiki:
 
 ## License
 
-&copy; 2023 $AUTHOR // Apache Software License 2.0
+&copy; 2024 $AUTHOR // Apache Software License 2.0
 EOF
 
 echo "refreshing monorepo index..."
