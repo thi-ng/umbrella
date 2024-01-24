@@ -1,10 +1,9 @@
 import type { Predicate } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
 import { readdirSync, statSync } from "fs";
 import { sep } from "path";
 import { isDirectory } from "./dir.js";
+import { __ensurePred } from "./internal/ensure.js";
 
 /**
  * Recursively reads given directory (up to given max. depth, default: infinite)
@@ -31,6 +30,7 @@ export const files = (
 	logger?: ILogger
 ) => __files(dir, match, logger, maxDepth, 0);
 
+/** @internal */
 function* __files(
 	dir: string,
 	match: string | RegExp | Predicate<string> = "",
@@ -75,6 +75,7 @@ export const dirs = (
 	logger?: ILogger
 ) => __dirs(dir, match, logger, maxDepth, 0);
 
+/** @internal */
 function* __dirs(
 	dir: string,
 	match: string | RegExp | Predicate<string> = "",
@@ -97,13 +98,3 @@ function* __dirs(
 		}
 	}
 }
-
-/** @internal */
-const __ensureRegEx = (match: string | RegExp | Predicate<string>) =>
-	isString(match) ? new RegExp(`${match.replace(/\./g, "\\.")}$`) : match;
-
-const __ensurePred = (match: string | RegExp | Predicate<string>) =>
-	isFunction(match)
-		? match
-		: ((match = __ensureRegEx(match)),
-		  (x: string) => (<RegExp>match).test(x));
