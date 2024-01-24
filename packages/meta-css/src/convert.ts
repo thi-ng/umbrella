@@ -2,7 +2,6 @@
 import type { Fn0, IObjectOf } from "@thi.ng/api";
 import { flag, type Command } from "@thi.ng/args";
 import { peek } from "@thi.ng/arrays";
-import { delayed } from "@thi.ng/compose";
 import { assert, illegalArgs, illegalState } from "@thi.ng/errors";
 import { readJSON, readText } from "@thi.ng/file-io";
 import {
@@ -151,12 +150,10 @@ const watchInputs = async (
 	specs: CompiledSpecs,
 	forceRules: ReturnType<typeof processForceIncludes>
 ) => {
-	let active = true;
 	let inputs: { close: Fn0<void> }[];
 	const close = () => {
 		ctx.logger.info("closing watchers...");
 		inputs.forEach((watcher) => watcher.close());
-		active = false;
 	};
 	inputs = ctx.inputs.map((file) => {
 		file = resolve(file);
@@ -191,9 +188,6 @@ const watchInputs = async (
 	ctx.logger.info("waiting for changes, press ctrl+c to cancel...");
 	// close watchers when ctrl-c is pressed
 	process.on("SIGINT", close);
-	while (active) {
-		await delayed(null, 250);
-	}
 };
 
 const watchBundleInputs = async (
@@ -201,11 +195,9 @@ const watchBundleInputs = async (
 	specs: CompiledSpecs,
 	forceRules: ReturnType<typeof processForceIncludes>
 ) => {
-	let active = true;
 	const close = () => {
 		ctx.logger.info("closing watchers...");
 		inputs.forEach((i) => i.watcher.close());
-		active = false;
 	};
 	const inputs = ctx.inputs.map((file, i) => {
 		file = resolve(file);
@@ -256,9 +248,6 @@ const watchBundleInputs = async (
 	});
 	// close watchers when ctrl-c is pressed
 	process.on("SIGINT", close);
-	while (active) {
-		await delayed(null, 250);
-	}
 };
 
 export const processInputs = (
