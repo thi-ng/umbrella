@@ -9,4 +9,5 @@ export * from "./mask.js";
 export * from "./read.js";
 export * from "./temp.js";
 export * from "./text.js";
+export * from "./watch.js";
 export * from "./write.js";
