@@ -11,7 +11,7 @@ import { Border } from "@thi.ng/text-canvas/api";
 import { formatCanvas } from "@thi.ng/text-canvas/format";
 import { tableCanvas } from "@thi.ng/text-canvas/table";
 
-interface SerializeState {
+export interface SerializeState {
 	indent: number;
 	sep: string;
 	id?: number;
@@ -24,6 +24,7 @@ export const serialize = (tree: any, ctx: any) =>
 		.replace(/\n{3,}/g, "\n\n")
 		.trim();
 
+/** @internal */
 const __serialize = (tree: any, ctx: any, state: SerializeState): string => {
 	if (tree == null) return "";
 	if (Array.isArray(tree)) {
@@ -74,6 +75,7 @@ const __serialize = (tree: any, ctx: any, state: SerializeState): string => {
 	return tree.toString();
 };
 
+/** @internal */
 const __serializeIter = (
 	iter: Iterable<any>,
 	ctx: any,
@@ -87,13 +89,16 @@ const __serializeIter = (
 	return res.join(state.sep);
 };
 
+/** @internal */
 const __heading =
 	(level: number) => (el: any[], ctx: any, state: SerializeState) =>
 		`\n${repeat("#", level)} ${__body(el, ctx, state)}\n`;
 
+/** @internal */
 const __body = (el: any[], ctx: any, state: SerializeState) =>
 	__serializeIter(el[2], ctx, state);
 
+/** @internal */
 const __resolve = (x: any) => (isFunction(x) ? x() : x);
 
 export const serializeElement = defmulti<any, any, SerializeState, string>(

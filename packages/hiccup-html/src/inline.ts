@@ -9,7 +9,7 @@ import type {
 } from "./api.js";
 import { defElement, defElements } from "./def.js";
 
-interface AnchorAttribs extends RelAttribs, ReferrerAttribs {
+export interface AnchorAttribs extends RelAttribs, ReferrerAttribs {
 	download: StringAttrib;
 	href: StringAttrib;
 	hreflang: StringAttrib;

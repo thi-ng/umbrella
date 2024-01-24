@@ -76,11 +76,12 @@ export const defWord = (
 };
 
 /**
- * Like {@link word}, but automatically calls {@link unwrap} on result context
- * to produced unwrapped value/tuple.
+ * Like {@link defWord}, but automatically calls {@link unwrap} on result
+ * context to produced unwrapped value/tuple.
  *
- * **Importatant:** Words defined with this function CANNOT be used as
- * part of a larger stack program, only for standalone use.
+ * @remarks
+ * **Importatant:** Words defined with this function CANNOT be used as part of a
+ * larger stack program, only for standalone use.
  *
  * @param prog -
  * @param n -

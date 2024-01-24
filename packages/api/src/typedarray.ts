@@ -352,7 +352,7 @@ export function typedArrayOfVec<T extends Type | GLType | BigType>(
 
 /**
  * Takes an {@link NumericArray} and returns its corresponding {@link Type} ID.
- * Standard JS arrays will default to {@link "f64"}.
+ * Standard JS arrays will default to "f64".
  *
  * @param x -
  */

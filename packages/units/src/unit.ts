@@ -131,7 +131,9 @@ export const prefix = (id: Prefix, unit: MaybeUnit, coherent = false) => {
 		: illegalArgs("unit isn't coherent");
 };
 
-type QUnit<T extends number | number[]> = T extends number ? Unit : Unit[];
+export type QUnit<T extends number | number[]> = T extends number
+	? Unit
+	: Unit[];
 
 /**
  * Wrapper for scalar or vector quantities. See {@link quantity}.

@@ -3,6 +3,10 @@ import type { KMeansOpts } from "@thi.ng/k-means";
 import { kmeans } from "@thi.ng/k-means/kmeans";
 import type { FloatBuffer } from "./float.js";
 
+/**
+ * Options for {@link dominantColors}, an extension of
+ * [KMeansOpts](https://docs.thi.ng/umbrella/k-means/interfaces/KMeansOpts.html).
+ */
 export interface DominantColorOpts extends KMeansOpts {
 	/**
 	 * Predicate used to only include pixels in the analysis for which the

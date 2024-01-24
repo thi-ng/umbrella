@@ -5,7 +5,7 @@ import { AGen } from "./agen.js";
  * Returns new multiply gen, producing `y(t) = factor * y(t-1)`, using
  * given `factor` and `start` values.
  *
- * Also see {@link exp}.
+ * Also see {@link curve}.
  *
  * @param factor -
  * @param start -

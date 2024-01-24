@@ -5,7 +5,7 @@ import { range } from "@thi.ng/transducers/range";
 import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
-interface RandomOpts2D extends GridIterOpts2D {
+export interface RandomOpts2D extends GridIterOpts2D {
 	/**
 	 * PRNG instance to use
 	 *

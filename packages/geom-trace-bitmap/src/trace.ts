@@ -12,13 +12,14 @@ import { borderX, borderXY, borderY } from "./border.js";
 
 /**
  * Main conversion/extraction function. According to given
- * {@link TraceBitmapOpts.flags}, extracts line segments and/or points from
- * given pixel buffer and returns object of results. By default _all_ line
- * directions and points are processed. If {@link TraceBitmapOpts.mat} is given,
- * all coordinates are transformed with that matrix.
+ * {@link TraceBitmapOpts.dir}, extracts line segments and/or points from given
+ * pixel buffer and returns object of results. By default _all_ line directions
+ * and points are processed. If {@link TraceBitmapOpts.mat} is given, all
+ * coordinates are transformed with that matrix.
  *
  * ```ts
- * traceBitmap({ img: ..., flags: Trace.DIAGONAL })
+ * // extract horizontal line segments
+ * traceBitmap({ img: ..., dir: ["h"] })
  * // { lines: [...], points: [] }
  * ```
  *

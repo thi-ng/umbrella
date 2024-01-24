@@ -1,7 +1,7 @@
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
 import type { Stringer } from "./api.js";
 
-type UnitDefs = [number, string, number?][];
+export type UnitDefs = [number, string, number?][];
 
 export const units: (
 	exp: UnitDefs,

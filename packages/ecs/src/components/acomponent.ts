@@ -120,17 +120,15 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
 		return false;
 	}
 
-	// @ts-ignore: arguments
+	// @ts-ignore: mixin
 	// prettier-ignore
 	addListener(id: ComponentEventType, fn: Listener<ComponentEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
-	// @ts-ignore: arguments
+	// @ts-ignore: mixin
 	// prettier-ignore
 	removeListener(id: ComponentEventType, fn: Listener<ComponentEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.notify} */
-	// @ts-ignore: arguments
+	// @ts-ignore: mixin
 	notify(event: Event<ComponentEventType>): boolean {}
 
 	notifyChange(id: number): boolean {

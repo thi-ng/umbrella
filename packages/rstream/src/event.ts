@@ -2,7 +2,7 @@ import type { CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream, Stream } from "./stream.js";
 
-interface EventOpts<T extends Event = Event> extends CommonOpts {
+export interface EventOpts<T extends Event = Event> extends CommonOpts {
 	/**
 	 * If given, the event stream will be seeded with this (presumably
 	 * compatible event-like) value.

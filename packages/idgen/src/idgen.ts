@@ -168,17 +168,14 @@ export class IDGen
 		return id >= 0 && rawID < this.nextID && this.ids[rawID] === id;
 	}
 
-	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	addListener(id: IDGenEventType, fn: Listener<IDGenEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	removeListener(id: IDGenEventType, fn: Listener<IDGenEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
 	notify(event: Event<IDGenEventType>): boolean {}
 

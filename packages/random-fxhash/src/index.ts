@@ -71,8 +71,9 @@ export const probability = (p: number, rnd: IRandom = RND) =>
 	rnd.probability(p);
 
 /**
- * Wrapper for {@link  @thi.ng/random#pickRandom}. Returns a random item from
- * given `choices`.
+ * Wrapper for
+ * [pickRandom()](https://docs.thi.ng/umbrella/random/functions/pickRandom.html).
+ * Returns a random item from given `choices`.
  *
  * @param choices
  * @param rnd - default {@link RND}
@@ -81,8 +82,9 @@ export const pick = <T>(choices: T[], rnd: IRandom = RND) =>
 	pickRandom(choices, rnd);
 
 /**
- * Wrapper for {@link  @thi.ng/random#pickKey}. Returns a random key from given
- * `object`.
+ * Wrapper for
+ * [pickRandomKey()](https://docs.thi.ng/umbrella/random/functions/pickRandomKey.html).
+ * Returns a random key from given `object`.
  *
  * @param obj
  * @param rnd - default {@link RND}

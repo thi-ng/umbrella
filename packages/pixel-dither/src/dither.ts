@@ -3,10 +3,9 @@ import { range } from "@thi.ng/pixel/range";
 import type { DitherKernel, DitherOpts } from "./api.js";
 
 /**
- * Generic kernel-based dithering. Takes a {@link DitherKernelFactory} and
- * integer pixel buffer (multiple channels supported). Applies dithering to all
- * (or configured) channels using provided options. Returns modified pixel
- * buffer.
+ * Generic kernel-based dithering. Takes a {@link DitherKernel} and integer
+ * pixel buffer (multiple channels supported). Applies dithering to all (or
+ * configured) channels using provided options. Returns modified pixel buffer.
  *
  * @param kernel -
  * @param img -

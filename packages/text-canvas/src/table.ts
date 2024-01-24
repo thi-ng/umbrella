@@ -16,7 +16,7 @@ import { fillRect, strokeRect } from "./rect.js";
 import { horizontalOnly, verticalOnly } from "./style.js";
 import { textLines } from "./text.js";
 
-type RawCell = {
+export type RawCell = {
 	body: string;
 	format?: number;
 	height?: number;
@@ -24,7 +24,7 @@ type RawCell = {
 	wrap?: boolean;
 };
 
-type Cell = { body: string[]; format?: number; height?: number };
+export type Cell = { body: string[]; format?: number; height?: number };
 
 export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
 	const b = opts.border !== undefined ? opts.border : Border.ALL;

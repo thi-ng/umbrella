@@ -22,9 +22,10 @@ import { varToHiccup } from "./var.js";
  * outputs) and/or produce secondary results (e.g. visualizations). The latter
  * can be obtained through the
  * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) mechanism
- * implemented by the returned function. Since {@link defuzz} might call the
- * strategy multiple times (i.e. if there are multiple output vars used),
- * `.deref()` will always return an array of secondary results.
+ * implemented by the returned function. Since
+ * [`defuzz()`](https://docs.thi.ng/umbrella/fuzzy/functions/defuzz.html) might
+ * call the strategy multiple times (i.e. if there are multiple output vars
+ * used), `.deref()` will always return an array of secondary results.
  *
  * Note: The secondary results from the instrumentation function will persist &
  * accumulate. If re-using the instrumented strategy for multiple `defuzz()`

@@ -6,7 +6,7 @@ import { compR } from "./compr.js";
 import { iterator } from "./iterator.js";
 import { isReduced } from "./reduced.js";
 
-type MaybeIterable<T> = Nullable<Iterable<T>>;
+export type MaybeIterable<T> = Nullable<Iterable<T>>;
 
 /**
  * Transducer. Takes a function `fn` which will be applied to each input

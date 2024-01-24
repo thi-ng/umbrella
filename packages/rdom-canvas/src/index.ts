@@ -34,7 +34,8 @@ export interface CanvasOpts {
 
 /**
  * Reactive [thi.ng/hiccup-canvas](https://thi.ng/hiccup-canvas) component
- * wrapper. Returns a canvas component wrapped in a {@link $sub} and
+ * wrapper. Returns a canvas component wrapped in a
+ * [$sub](https://docs.thi.ng/umbrella/rdom/functions/_sub-1.html) and
  * updates/re-renders canvas with each new input received from `body`.
  *
  * @remarks

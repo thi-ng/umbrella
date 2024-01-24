@@ -281,7 +281,7 @@ export interface Command<
 export interface CommandCtx<OPTS extends BASE, BASE extends object> {
 	/**
 	 * Logger to be used by all commands. By default uses a console logger with
-	 * log level INFO. Can be customized via {@link CLIAppConfig.pre}.
+	 * log level INFO. Can be customized via {@link CLIAppConfig.ctx}.
 	 */
 	logger: ILogger;
 	/**

@@ -6,7 +6,7 @@ import { Component } from "./component.js";
 import { __nextID } from "./idgen.js";
 import { $subWithID } from "./sub.js";
 
-interface KListItem {
+export interface KListItem {
 	k: NumOrString;
 	v: IComponent;
 }

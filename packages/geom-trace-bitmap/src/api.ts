@@ -55,8 +55,9 @@ export interface TraceOpts {
 
 export interface TraceBitmapOpts extends TraceOpts {
 	/**
-	 * Optional sequence of {@link Trace} directions/modes to perform. By
-	 * default _all_ directions are traced in this order:
+	 * Optional sequence of {@link TraceDir} or {@link TraceDirImpl}
+	 * directions/modes to perform. By default _all_ directions are traced in
+	 * this order:
 	 *
 	 * - (h)orizontal
 	 * - (v)ertical

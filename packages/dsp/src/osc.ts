@@ -15,7 +15,7 @@ import { sum } from "./sum.js";
  * If `freq` is a number, it must be given as normalized frequency (same for
  * `phase`). If `freq` is an `IGen`, it must be configured to produce normalized
  * frequency values (e.g. if using an `Osc` by setting its `amp` to a normalized
- * freq and its `dc` offset to `baseFreq * TAU`). Also see {@link fmodOsc} for
+ * freq and its `dc` offset to `baseFreq * TAU`). Also see {@link modOsc} for
  * syntax sugar. The `phase` arg is only used if `freq` is NOT an `IGen`.
  *
  * The oscillator initializes to zero and its

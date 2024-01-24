@@ -28,7 +28,7 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  * Also see: {@link sidechainToggle}, {@link sidechainTrigger}, {@link syncRAF}.
  *
  * @example
- * ```t
+ * ```ts
  * // merge various event streams
  * events = merge([
  *     fromEvent(document,"mousemove"),

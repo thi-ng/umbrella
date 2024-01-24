@@ -16,8 +16,6 @@ import { __ensureAlpha } from "./internal/ensure.js";
  * @remarks
  * If `out` is null, the resulting color will be written back into `src`.
  *
- * Also see {@link TypedColor.invert}.
- *
  * @param out - result
  * @param src - source color
  */
@@ -28,9 +26,6 @@ export const invertRgb: ColorOp = (out, src) => {
 
 /**
  * Inverts the lowest 24 bits of an ARGB int. Does not modify alpha.
- *
- * @remarks
- * Also see {@link TypedColor.invert}.
  *
  * @param src - packed RGB int
  */

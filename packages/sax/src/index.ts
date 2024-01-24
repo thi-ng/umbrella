@@ -15,9 +15,9 @@ export interface ParseOpts {
 	 */
 	entities: boolean;
 	/**
-	 * If `true`, include children tags in {@link ELEM_END} events. For very
-	 * large documents, this should be disabled to save (or even fit
-	 * into) memory.
+	 * If `true`, include children tags in {@link Type.ELEM_END} events. For
+	 * very large documents, this should be disabled to save (or even fit into)
+	 * memory.
 	 *
 	 * Default: true
 	 */

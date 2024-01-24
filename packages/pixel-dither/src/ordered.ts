@@ -27,7 +27,7 @@ const init = (
 
 /**
  * Creates a Bayer matrix of given kernel size (power of 2) for ordered
- * dithering and use with {@link ditherPixels}
+ * dithering and use with {@link orderedDither}.
  *
  * @remarks
  * Reference:

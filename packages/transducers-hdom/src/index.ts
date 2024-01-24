@@ -6,9 +6,10 @@ import type { Transducer } from "@thi.ng/transducers";
 import { scan } from "@thi.ng/transducers/scan";
 
 /**
- * Side-effecting & stateful transducer which receives {@link
- * @thi.ng/hdom} component trees, diffs each against previous value and applies
- * required changes to browser DOM starting at given root element.
+ * Side-effecting & stateful transducer which receives
+ * [thi.ng/hdom](https://thi.ng/hdom) component trees, diffs each against
+ * previous value and applies required changes to browser DOM starting at given
+ * root element.
  *
  * By default, incoming values are first normalized using hdom's
  * [`normalizeTree()`](https://docs.thi.ng/umbrella/hdom/functions/normalizeTree.html)

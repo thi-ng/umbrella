@@ -5,7 +5,9 @@ import { compR } from "@thi.ng/transducers/compr";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 
 /**
- * {@link en.wikipedia.org/wiki/Momentum_(technical_analysis)}
+ * @remarks
+ * Reference:
+ * https://en.wikipedia.org/wiki/Momentum_(technical_analysis)
  *
  * Note: the number of results will be `period` less than the number
  * of processed inputs.

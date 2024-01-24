@@ -8,6 +8,6 @@ import { swapLane13 } from "@thi.ng/binary/swizzle";
 export const intArgb32Abgr32 = swapLane13;
 
 /**
- * Alias for {@link intArgbAbgr}.
+ * Semantic sugar, alias for {@link intArgb32Abgr32}.
  */
 export const intAbgr32Argb32 = swapLane13;

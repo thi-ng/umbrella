@@ -507,8 +507,7 @@ export const max = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
 	i.lopen ? (x <= i.l ? i.l + eps : x) : x < i.l ? i.l : x;
 
 /**
- * Clamps `x` to interval `i`, using {@link Interval.min} and
- * {@link Interval.max}.
+ * Clamps `x` to interval `i`, using {@link min} and {@link max}.
  *
  * @param i -
  * @param x -

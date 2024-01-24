@@ -3,7 +3,7 @@ import type { ConsCell } from "@thi.ng/dcons";
 import { DCons } from "@thi.ng/dcons/dcons";
 import type { ICache } from "../api.js";
 
-type LRUEntry<T> = { k: number; v: T };
+export type LRUEntry<T> = { k: number; v: T };
 
 export class LRU<T> implements ICache<T> {
 	items: DCons<LRUEntry<T>>;

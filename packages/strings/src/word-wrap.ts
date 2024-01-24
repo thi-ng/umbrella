@@ -5,11 +5,9 @@ import { split } from "./split.js";
 /**
  * Internal representation of a single line (for word wrapping purposes). A thin
  * wrapper of individual word and the _logical_ line length (rather than the
- * actualy string width).
- *
- * @internal
+ * actually string width).
  */
-class Line {
+export class Line {
 	n = 0;
 	w: string[] = [];
 

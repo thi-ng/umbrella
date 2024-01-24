@@ -8,7 +8,7 @@ import { DCons } from "./dcons.js";
  * returns cell containing original cell's value after re-ordering. E.g. in
  * transpose strategy the original cell's value will now be in predecessor.
  */
-type SOFn<T> = Fn2<SOL<T>, ConsCell<T>, ConsCell<T>>;
+export type SOFn<T> = Fn2<SOL<T>, ConsCell<T>, ConsCell<T>>;
 
 /**
  * Self-organizing version of {@link DCons} using given re-ordering function.

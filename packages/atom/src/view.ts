@@ -117,8 +117,8 @@ export function defViewUnsafe<T = undefined>(
  * atom.
  *
  * @remarks
- * Views can be created directly or via the {@link IViewable.addView} method of
- * the parent state. Views can be
+ * Views can be created via {@link defView} or {@link defViewUnsafe} which are
+ * given a parent state container. Views can be
  * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref}'d
  * like atoms and polled for value changes using {@link IView.changed}. The
  * transformer is only applied once per value change and its result cached until

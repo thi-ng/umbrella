@@ -80,7 +80,7 @@ export interface ParseOpts {
 }
 
 export type Element = [string, Record<string, any>, ...ElementBody[]];
-type ElementBody = string | Element;
+export type ElementBody = string | Element;
 
 export interface ParseResult {
 	type: "success" | "partial" | "fail" | "error";

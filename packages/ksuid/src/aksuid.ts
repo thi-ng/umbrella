@@ -7,7 +7,7 @@ import { padLeft } from "@thi.ng/strings/pad-left";
 import type { IKSUID, KSUIDOpts } from "./api.js";
 
 /**
- * Abstract base class for both 32 & 64bit implementations. See {@link KSUID}
+ * Abstract base class for both 32 & 64bit implementations. See {@link KSUID32}
  * and {@link KSUID64}.
  */
 export abstract class AKSUID implements IKSUID {

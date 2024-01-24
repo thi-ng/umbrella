@@ -189,7 +189,10 @@ export abstract class AList<L extends AList<any, T>, T>
 
 	abstract prepend(n: T): ConsCell<T>;
 
-	/** {@inheritDoc @thi.ng/transducers#IReducible.$reduce} */
+	/**
+	 * Implementation of
+	 * [IReducible.$reduce](https://docs.thi.ng/umbrella/transducers/interfaces/IReducible.html#_reduce._reduce-1)
+	 */
 	$reduce(rfn: ReductionFn<any, T>, acc: any) {
 		let cell = this._head;
 		for (let n = this._length; n-- > 0 && !isReduced(acc); ) {

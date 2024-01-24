@@ -13,7 +13,7 @@ import { compare } from "@thi.ng/compare/compare";
 import { equiv } from "@thi.ng/equiv";
 import type { HeapOpts } from "./api.js";
 
-interface Node<T> {
+export interface Node<T> {
 	v?: T;
 	c: Node<T>[];
 	p?: Node<T>;

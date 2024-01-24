@@ -65,7 +65,7 @@ export interface ModelSpec {
 export interface ModelAttributeSpec {
 	/**
 	 * Backing {@link WebGLArrayBuffer} instance. Usually this will be
-	 * auto-initialized by {@link compileBuffers}
+	 * auto-initialized by {@link compileModel}.
 	 */
 	buffer?: IWebGLBuffer<AttribBufferData>;
 	/**

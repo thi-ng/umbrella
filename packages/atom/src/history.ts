@@ -372,17 +372,14 @@ export class History<T> implements IHistory<T>, INotify<HistoryEventType> {
 		return true;
 	}
 
-	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	addListener(id: HistoryEventType, fn: Listener<HistoryEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	removeListener(id: HistoryEventType, fn: Listener<HistoryEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
 	notify(e: Event<HistoryEventType>): boolean {}
 }

@@ -33,14 +33,15 @@ export class Pointer<T> implements IDeref<T> {
 }
 
 /**
- * Generic pointer facility for {@link WASM64} target, which on
- * {@link Pointer64.deref()} calls wrapper function (provided as ctor arg) to
- * realise the pointer's target value. The pointer's target address can be
- * accessed via {@link Pointer.addr} (read/write).
+ * Generic pointer facility for
+ * [`WASM64`](https://docs.thi.ng/umbrella/wasm-api-bindgen/variables/WASM64.html)
+ * target, which on {@link Pointer64.deref()} calls wrapper function (provided
+ * as ctor arg) to realize the pointer's target value. The pointer's target
+ * address can be accessed via {@link Pointer.addr} (read/write).
  *
  * @remarks
  * The pointer always behaves like `volatile`, i.e. memoization of target values
- * is purposfully avoided and the wrapper function is executed anew _each_ time
+ * is purposefully avoided and the wrapper function is executed anew _each_ time
  * the pointer is deref'd.
  */
 export class Pointer64<T> implements IDeref<T> {

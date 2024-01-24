@@ -1,6 +1,6 @@
 import type { ParseState, IReader } from "../api.js";
 
-class ArrayReader<T> implements IReader<T> {
+export class ArrayReader<T> implements IReader<T> {
 	constructor(protected _src: ArrayLike<T>) {}
 
 	read(state: ParseState<T>): T {

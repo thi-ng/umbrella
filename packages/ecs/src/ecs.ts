@@ -141,17 +141,14 @@ export class ECS<SPEC> implements INotify<ECSEventType> {
 		}
 	}
 
-	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	addListener(id: ECSEventType, fn: Listener<ECSEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	removeListener(id: ECSEventType, fn: Listener<ECSEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
 	notify(event: Event<ECSEventType>): boolean {}
 }

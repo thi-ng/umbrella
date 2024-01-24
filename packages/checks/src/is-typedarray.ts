@@ -1,4 +1,4 @@
-type TypedArray =
+export type TypedArray =
 	| Float32Array
 	| Float64Array
 	| Int8Array

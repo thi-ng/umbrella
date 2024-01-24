@@ -9,7 +9,9 @@ import { abs, dot, max } from "@thi.ng/shader-ast/builtin/math";
 /**
  * Tom Forsyth's Trilight lighting model.
  *
- * {@link tomforsyth1000.github.io/papers/trilight/trilight.html}
+ * @remarks
+ * Reference:
+ * https://tomforsyth1000.github.io/papers/trilight/trilight.html
  *
  * @param surfNormal - vec3
  * @param lightDir - vec3

@@ -55,8 +55,8 @@ export interface PubSubOpts<A, B, T> {
  * receive the transformed inputs.
  *
  * {@link PubSub} supports dynamic topic subscriptions and unsubscriptions via
- * {@link PubSub.(subscribeTopic:1)} and {@link PubSub.unsubscribeTopic}.
- * However, the standard {@link ISubscribable.(subscribe:1)} /
+ * {@link PubSub.subscribeTopic} and {@link PubSub.unsubscribeTopic}. However,
+ * the standard {@link ISubscribable.subscribe} /
  * {@link ISubscribable.unsubscribe} methods are NOT supported (since
  * meaningless) and will throw an error! `unsubscribe()` can only be called
  * WITHOUT argument to unsubscribe the entire `PubSub` instance (incl. all topic
@@ -88,14 +88,14 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 	}
 
 	/**
-	 * Unsupported. Use {@link PubSub.(subscribeTopic:1)} instead.
+	 * Unsupported. Use {@link PubSub.subscribeTopic} instead.
 	 */
 	subscribe(): Subscription<B, any> {
 		return unsupported(`use subscribeTopic() instead`);
 	}
 
 	/**
-	 * Unsupported. Use {@link PubSub.(subscribeTopic:1)} instead.
+	 * Unsupported. Use {@link PubSub.subscribeTopic} instead.
 	 */
 	transform(): Subscription<B, any> {
 		return unsupported(`use subscribeTopic() instead`);

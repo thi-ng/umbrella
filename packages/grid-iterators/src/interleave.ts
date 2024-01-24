@@ -3,7 +3,7 @@ import { range2d } from "@thi.ng/transducers/range2d";
 import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
-interface InterleaveOpts2D extends GridIterOpts2D {
+export interface InterleaveOpts2D extends GridIterOpts2D {
 	/**
 	 * Row or column stride.
 	 *

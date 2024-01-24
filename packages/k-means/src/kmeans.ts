@@ -66,7 +66,6 @@ export const kmeans = <T extends ReadonlyVec>(
  * fulfilled (e.g. due to lower number of samples and/or distance metric).
  * Throws an error if `samples` are empty.
  *
- * @remarks
  * References:
  * - https://en.wikipedia.org/wiki/K-means%2B%2B
  * - http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf
@@ -184,7 +183,7 @@ export const medians: CentroidStrategy = () => {
  * @remarks
  * When using this strategy, you should also use the
  * [`HAVERSINE_LATLON`](https://docs.thi.ng/umbrella/distance/variables/HAVERSINE_LATLON.html)
- * distance metric for {@link KMeansOpts.distance}.
+ * distance metric for {@link KMeansOpts.dist}.
  *
  * @example
  * ```ts

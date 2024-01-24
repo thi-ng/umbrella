@@ -431,7 +431,7 @@ export interface ConvolutionKernelSpec {
 
 export interface PoolKernelSpec {
 	/**
-	 * Code template function for {@link defPoolKernel}.
+	 * Code template function for {@link defKernel}.
 	 */
 	pool: PoolTemplate;
 	/**

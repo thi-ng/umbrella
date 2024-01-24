@@ -1,7 +1,7 @@
 import type { PointTransform2D } from "./api.js";
 
 /**
- * No-op / identity {@link PointTransform}.
+ * No-op / identity {@link PointTransform2D}.
  */
 export const ident: PointTransform2D = () => (x, y) => [x, y];
 
@@ -13,12 +13,12 @@ export const flipXY: PointTransform2D = (cols, rows) => (x, y) =>
 	[cols - 1 - x, rows - 1 - y];
 
 /**
- * {@link PointTransform} to swaps X & Y coords.
+ * {@link PointTransform2D} to swaps X & Y coords.
  */
 export const swapXY: PointTransform2D = () => (x, y) => [y, x];
 
 /**
- * Higher order {@link PointTransform} to compose given transforms in
+ * Higher order {@link PointTransform2D} to compose given transforms in
  * left-to-right order.
  *
  * @param a

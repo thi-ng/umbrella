@@ -156,7 +156,7 @@ export const forkJoin = <IN, MSG, RES, OUT>(
 	});
 };
 
-type Sliceable<T> = ArrayLike<T> & {
+export type Sliceable<T> = ArrayLike<T> & {
 	slice(a: number, b?: number): Sliceable<T>;
 };
 

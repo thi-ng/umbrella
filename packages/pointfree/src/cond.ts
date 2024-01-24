@@ -28,9 +28,9 @@ export const defCond =
 	};
 
 /**
- * Non-HOF version of {@link cond}, expects `test` result and both branches on
- * d-stack. Executes `thenq` word/quotation if `test` is truthy, else
- * runs `elseq`.
+ * Non-HOF version of {@link defCond}, expects `test` result and both branches
+ * on d-stack. Executes `thenq` word/quotation if `test` is truthy, else runs
+ * `elseq`.
  *
  * ( test thenq elseq -- ? )
  *

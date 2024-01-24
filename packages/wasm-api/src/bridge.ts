@@ -527,17 +527,14 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		return el!;
 	}
 
-	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	addListener(id: BridgeEventType, fn: Listener<BridgeEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: mixin
 	// prettier-ignore
 	removeListener(id: BridgeEventType, fn: Listener<BridgeEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
 	notify(event: Event<BridgeEventType>): boolean {}
 }

@@ -3,7 +3,7 @@ import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { AGen } from "./agen.js";
 
-type PNoiseCoeffs = Tuple<number, 5>;
+export type PNoiseCoeffs = Tuple<number, 5>;
 const AMP = <PNoiseCoeffs>[3.8024, 2.9694, 2.597, 3.087, 3.4006];
 const PROB = <PNoiseCoeffs>[0.00198, 0.0128, 0.049, 0.17, 0.682];
 

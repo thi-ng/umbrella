@@ -409,7 +409,7 @@ export const imageCanvasBraille = (
 };
 
 /**
- * Same as {@link imageCanvasBrailler}, but returns resulting canvas as plain
+ * Same as {@link imageCanvasBraille}, but returns resulting canvas as plain
  * string (of Unicode Braille characters).
  *
  * @param src -

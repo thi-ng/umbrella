@@ -25,7 +25,7 @@ import { vertices } from "./vertices.js";
  * - {@link Ellipse}
  * - {@link Line}
  * - {@link Path}
- * - {@link Poly}
+ * - {@link Polygon}
  * - {@link Polyline}
  * - {@link Quad}
  * - {@link Quadratic}

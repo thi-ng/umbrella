@@ -143,7 +143,7 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  * cells in the environment by default. It's the user's responsibility to manage
  * the mask and select/enable other (if any) CA configs for individual cells
  * (usually cell ranges). The values stored in this array correspond to the
- * indices of the {@link MultiCA1D.config} array given at construction.
+ * indices of the {@link MultiCA1D.configs} array given at construction.
  *
  * ### Limits
  *

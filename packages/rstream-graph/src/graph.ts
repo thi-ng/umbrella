@@ -96,7 +96,7 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  * @param spec -
  * @param id -
  */
-const nodeFromSpec =
+export const nodeFromSpec =
 	(state: IAtom<any>, spec: NodeSpec, id: string) =>
 	(resolve: ResolveFn): Node => {
 		const ins = prepareNodeInputs(spec.ins, state, resolve);

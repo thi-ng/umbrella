@@ -11,7 +11,6 @@ import { fromPromise } from "./promise.js";
  * If any of the promises rejects, all others will do so too. In this case the
  * stream calls {@link ISubscriber.error} in all of its subscribers.
  *
- * @remarks
  * Type signature updated to use `Awaited<T>`, a new core type introduced in
  * TypeScript 4.5.
  *

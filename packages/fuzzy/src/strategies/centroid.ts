@@ -11,7 +11,7 @@ import { defaultOpts } from "./opts.js";
  * to {@link bisectorStrategy}, but with lower computational cost. Use `samples`
  * option to adjust precision.
  *
- * @see {@Link DefuzzStrategyOpts}
+ * Also see {@link DefuzzStrategyOpts}
  *
  * @example
  * ```ts

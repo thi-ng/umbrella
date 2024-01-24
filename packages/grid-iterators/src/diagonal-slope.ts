@@ -2,7 +2,7 @@ import { assert } from "@thi.ng/errors/assert";
 import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
-interface DiagonalSlopeOpts extends GridIterOpts2D {
+export interface DiagonalSlopeOpts extends GridIterOpts2D {
 	/**
 	 * Diagonal slope / step size
 	 */

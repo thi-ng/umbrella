@@ -54,17 +54,14 @@ export class BasicRouter implements INotify<RouterEventType> {
 		}
 	}
 
-	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
 	// @ts-ignore: arguments
 	// prettier-ignore
 	addListener(id: RouterEventType, fn: Listener<RouterEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
 	// @ts-ignore: arguments
 	// prettier-ignore
 	removeListener(id: RouterEventType, fn: Listener<RouterEventType>, scope?: any): boolean {}
 
-	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: arguments
 	notify(event: Event<RouterEventType>): boolean {}
 

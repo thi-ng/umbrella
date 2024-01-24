@@ -1,6 +1,6 @@
 import type { ParseState, IReader } from "../api.js";
 
-class StringReader implements IReader<string> {
+export class StringReader implements IReader<string> {
 	constructor(protected _src: string) {}
 
 	read(state: ParseState<string>): string {

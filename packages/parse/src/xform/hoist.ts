@@ -13,7 +13,7 @@ export const xfHoist: ScopeTransform<any> = (scope) => {
 
 /**
  * Moves the result of first child node to this node, then discards all
- * children. Also see {@link hoistR}.
+ * children. Also see {@link hoistResult}.
  *
  * @param scope -
  */

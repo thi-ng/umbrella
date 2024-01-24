@@ -3,12 +3,12 @@ import type { StridedVec } from "@thi.ng/vectors";
 import { AVecList } from "./alist.js";
 import type { VecFactory } from "./api.js";
 
-interface Cell<T extends StridedVec> {
+export interface Cell<T extends StridedVec> {
 	prev: CellVec<T> | null;
 	next: CellVec<T> | null;
 }
 
-type CellVec<T extends StridedVec> = T & Cell<T>;
+export type CellVec<T extends StridedVec> = T & Cell<T>;
 
 export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
 	head: CellVec<T> | null;

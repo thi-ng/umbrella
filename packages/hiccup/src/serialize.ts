@@ -117,7 +117,7 @@ export interface SerializeOpts {
  * (or `undefined`).
  *
  * If the `ctx` option is given it'll be passed to each embedded component fns.
- * Optionally call {@link derefContext} prior to {@link serialize} to auto-deref
+ * Optionally call {@link derefContext} prior to `serialize()` to auto-deref
  * context keys with values implementing the
  * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
  * interface.

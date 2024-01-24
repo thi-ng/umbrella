@@ -9,7 +9,7 @@ import { defaultOpts } from "./opts.js";
  * @remarks
  * Use `samples` option to adjust precision.
  *
- * @see {@Link DefuzzStrategyOpts}
+ * Also see {@link DefuzzStrategyOpts}
  *
  * @example
  * ```ts
@@ -62,7 +62,7 @@ export const meanOfMaximaStrategy = (
  * @remarks
  * Use `samples` option to adjust precision.
  *
- * @see {@Link DefuzzStrategyOpts}
+ * Also see {@link DefuzzStrategyOpts}
  *
  * @example
  * ```ts
@@ -110,7 +110,7 @@ export const firstOfMaximaStrategy = (
  * @remarks
  * Use `samples` option to adjust precision.
  *
- * @see {@Link DefuzzStrategyOpts}
+ * Also see {@link DefuzzStrategyOpts}
  *
  * @example
  * ```ts

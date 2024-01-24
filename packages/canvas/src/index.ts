@@ -36,7 +36,7 @@ export interface CanvasContext {
  * @remarks
  * By default the actual pixel size of the canvas will depend of the
  * `windowDevicePixelRatio` of the current `window` object. To force a specific
- * fixed scale, use the {@link Canvas2DOpts.dpr} option. Also see
+ * fixed scale, use the {@link AdaptiveCanvas2DOpts.dpr} option. Also see
  * {@link adaptDPI} for details.
  *
  * @param width -

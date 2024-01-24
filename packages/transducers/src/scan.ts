@@ -10,7 +10,6 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  * too as arg. Use `null` or `undefined` to use the given reducer's
  * default.
  *
- * @remarks
  * Reference:
  * https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function
  *

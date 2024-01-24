@@ -178,7 +178,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 /**
  * Point-based quadtree for nD keys and optional value association. Supports
  * radial range queries and key removal with tree pruning. See
- * {@link ndQuadtreeFromMinMax}.
+ * {@link NdQuadtreeMap.fromMinMax}.
  *
  * @remarks
  * Partially ported from Clojure version of thi.ng/geom.

@@ -37,7 +37,7 @@ export const defLoop = (test: StackProc, body: StackProc) => {
 };
 
 /**
- * Non-HOF version of {@link loop}. Expects test result and body quotation /
+ * Non-HOF version of {@link defLoop}. Expects test result and body quotation /
  * word on d-stack.
  *
  * ( testq bodyq -- ? )

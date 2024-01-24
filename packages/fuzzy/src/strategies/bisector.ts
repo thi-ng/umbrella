@@ -12,7 +12,7 @@ import { defaultOpts } from "./opts.js";
  * @remarks
  * Use `samples` option to adjust precision.
  *
- * @see {@Link DefuzzStrategyOpts}
+ * Also see {@link DefuzzStrategyOpts}
  *
  * @example
  * ```ts

@@ -34,7 +34,7 @@ export interface IKSUID {
 	timeOnly(epoch?: number): string;
 
 	/**
-	 * Binary version of {@link KSUI.timeOnly}, but returns byte array. The
+	 * Binary version of {@link IKSUID.timeOnly}, but returns byte array. The
 	 * first `epochSize` bytes will contain the timestamp. If `buf` is given,
 	 * writes result in there, else creates new byte array.
 	 *

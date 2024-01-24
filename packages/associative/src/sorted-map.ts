@@ -20,6 +20,7 @@ interface SortedMapState<K, V> {
 	size: number;
 }
 
+/** @internal */
 class Node<K, V> {
 	next: Node<K, V> | undefined;
 	prev: Node<K, V> | undefined;

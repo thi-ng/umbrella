@@ -4,7 +4,7 @@ import { ConsoleLogger } from "@thi.ng/logger";
 import { resolve } from "path";
 import type { TranscludeCtx } from "./api.js";
 
-type Mandatory = "src" | "templates" | "user";
+export type Mandatory = "src" | "templates" | "user";
 
 const DEFAULT_LOGGER = new ConsoleLogger("transclude");
 

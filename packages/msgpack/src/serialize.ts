@@ -3,7 +3,7 @@ import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { utf8Encode } from "@thi.ng/strings/utf8";
 
-interface EncodeOpts {
+export interface EncodeOpts {
 	/**
 	 * Initial buffer size in bytes.
 	 *

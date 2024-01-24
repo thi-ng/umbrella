@@ -160,7 +160,7 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
 	 * Wraps given partial `sub` in a {@link Subscription} and attaches it as
 	 * child subscription. If `opts` defines a transducer (via `xform` key),
 	 * input values will be transformed first before reaching the child sub's
-	 * {@link ISubsciber.next} handler. Any further downstream subscriptions
+	 * {@link ISubscriber.next} handler. Any further downstream subscriptions
 	 * attached to the returned wrapped sub will also only receive those
 	 * transformed values.
 	 *

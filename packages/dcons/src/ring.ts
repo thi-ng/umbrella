@@ -126,7 +126,10 @@ export class DRing<T>
 		return this;
 	}
 
-	/** {@inheritDoc @thi.ng/api#ISeqable.seq} */
+	/**
+	 * Implementation of
+	 * [ISeqable.seq](https://docs.thi.ng/umbrella/api/interfaces/ISeqable.html#seq.seq-1)
+	 */
 	seq() {
 		const $seq = (cell: ConsCell<T>): ISeq<T> => ({
 			first() {

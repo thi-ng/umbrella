@@ -5,7 +5,7 @@ export type CanvasContext =
 	| WebGLRenderingContext
 	| WebGL2RenderingContext;
 
-interface Canvas2DContextAttributes {
+export interface Canvas2DContextAttributes {
 	alpha?: boolean;
 	storage?: boolean;
 	willReadFrequently?: boolean;

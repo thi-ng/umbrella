@@ -28,8 +28,8 @@ import { isComment, isComponent } from "./checks.js";
  * Supports elements given in these forms:
  *
  * - {@link IComponent} instance
- * - {@link IDeref} instance (must resolve to another supported type in this
- *   list)
+ * - [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
+ *   instance (must resolve to another supported type in this list)
  * - `["div#id.class", {...attribs}, ...children]`
  * - `[COMMENT, "foo", "bar"...]` (DOM comment node)
  * - `[IComponent, ...mountargs]`

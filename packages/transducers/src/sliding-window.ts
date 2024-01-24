@@ -4,15 +4,15 @@ import { compR } from "./compr.js";
 import { __iter } from "./iterator.js";
 
 /**
- * Sliding window transducer, similar to `partition(size, 1)`, but
- * supports initially partially filled windows, if `partial` is set to
- * true (default). Each emitted window is a shallow copy of the internal
- * accumulation buffer.
+ * Sliding window transducer, similar to `partition(size, 1)`, but supports
+ * initially partially filled windows, if `partial` is set to true (default).
+ * Each emitted window is a shallow copy of the internal accumulation buffer.
  *
  * @remarks
- * If `size` implements {@link IDeref}, the window size will be
- * re-evaluated for each new input and therefore can be used as
- * mechanism to dynamically adjust the window size.
+ * If `size` implements
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html), the
+ * window size will be re-evaluated for each new input and therefore can be used
+ * as mechanism to dynamically adjust the window size.
  *
  * @example
  * ```ts

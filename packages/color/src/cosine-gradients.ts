@@ -187,8 +187,8 @@ export const cosineColor = (spec: CosGradientSpec, t: number): Color =>
  * re-interpreted and/or transformed into another {@link Color} type.
  *
  * @remarks
- * For CSS/SVG use cases you could use {@link srgba} as transformation function
- * to not convert, but reinterpret & wrap raw color values as SRGBA.
+ * For CSS/SVG use cases you could use {@link srgb} as transformation function
+ * to not convert, but to reinterpret & wrap raw color values as SRGBA.
  *
  * @param n -
  * @param spec -

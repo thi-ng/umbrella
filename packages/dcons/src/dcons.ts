@@ -252,7 +252,10 @@ export class DCons<T>
 		}
 	}
 
-	/** {@inheritDoc @thi.ng/api#ISeqable.seq} */
+	/**
+	 * Implementation of
+	 * [ISeqable.seq](https://docs.thi.ng/umbrella/api/interfaces/ISeqable.html#seq.seq-1)
+	 */
 	seq(start = 0, end = this.length) {
 		if (start >= end || start < 0) return;
 		let cell = this.nthCell(start);

@@ -125,7 +125,7 @@ export const snormEinstein: FnN2 = (x, y) => (x + y) / (1 + x * y);
 
 /**
  * HOF t-norm. Constructs a new t-norm based on given t-norms for disjoint
- * subintervals, completing remaining regions via {@link min}.
+ * subintervals, completing remaining regions via {@link tnormMin}.
  *
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Construction_of_t-norms#Ordinal_sums
