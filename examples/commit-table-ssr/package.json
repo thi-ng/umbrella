@@ -8,8 +8,7 @@
 	"license": "Apache-2.0",
 	"type": "module",
 	"scripts": {
-		"clean": "rimraf node_modules/.cache build out",
-		"build-static": "ts-node src/server/static.ts",
+		"build": "bun src/server/static.ts",
 		"start": "bun src/server/index.ts",
 		"preview": "vite preview --host --open"
 	},
@@ -21,6 +20,7 @@
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/associative": "workspace:^",
 		"@thi.ng/cache": "workspace:^",
+		"@thi.ng/file-io": "workspace:^",
 		"@thi.ng/hiccup": "workspace:^",
 		"@thi.ng/resolve-map": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
@@ -35,7 +35,6 @@
 		"util": false
 	},
 	"thi.ng": {
-		"online": false,
 		"readme": [
 			"cache",
 			"hiccup",
