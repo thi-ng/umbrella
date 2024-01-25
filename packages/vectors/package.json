@@ -392,6 +392,9 @@
 		"./limit": {
 			"default": "./limit.js"
 		},
+		"./linear-regression": {
+			"default": "./linear-regression.js"
+		},
 		"./log": {
 			"default": "./log.js"
 		},
@@ -616,6 +619,9 @@
 		},
 		"./rshift": {
 			"default": "./rshift.js"
+		},
+		"./rss": {
+			"default": "./rss.js"
 		},
 		"./safe-div": {
 			"default": "./safe-div.js"
