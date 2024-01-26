@@ -410,6 +410,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/blurhash@workspace:examples/blurhash":
+  version: 0.0.0-use.local
+  resolution: "@example/blurhash@workspace:examples/blurhash"
+  dependencies:
+    "@thi.ng/blurhash": "workspace:^"
+    "@thi.ng/canvas": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/mime": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-forms": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: ^5.3.3
+    vite: ^5.0.10
+  languageName: unknown
+  linkType: soft
+
 "@example/boid-basics@workspace:examples/boid-basics":
   version: 0.0.0-use.local
   resolution: "@example/boid-basics@workspace:examples/boid-basics"
@@ -3446,6 +3464,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/blurhash@workspace:^, @thi.ng/blurhash@workspace:packages/blurhash":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/blurhash@workspace:packages/blurhash"
+  dependencies:
+    "@microsoft/api-extractor": ^7.39.0
+    "@thi.ng/api": ^8.9.17
+    "@thi.ng/base-n": ^2.5.25
+    "@thi.ng/canvas": ^0.1.4
+    "@thi.ng/errors": ^2.4.11
+    "@thi.ng/math": ^5.7.12
+    esbuild: ^0.19.10
+    rimraf: ^5.0.5
+    tools: "workspace:^"
+    typedoc: ^0.25.4
+    typescript: ^5.3.3
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/boids@workspace:^, @thi.ng/boids@workspace:packages/boids":
   version: 0.0.0-use.local
   resolution: "@thi.ng/boids@workspace:packages/boids"
@@ -5064,7 +5100,6 @@ __metadata:
     "@thi.ng/args": ^2.3.5
     "@thi.ng/arrays": ^2.7.14
     "@thi.ng/checks": ^3.4.17
-    "@thi.ng/compose": ^2.1.56
     "@thi.ng/errors": ^2.4.11
     "@thi.ng/file-io": ^1.1.5
     "@thi.ng/hiccup-css": ^2.4.0

@@ -50,6 +50,15 @@
 		"typescript": "^5.3.3"
 	},
 	"keywords": [
+		"abgr",
+		"blur",
+		"blurhash",
+		"canvas",
+		"color",
+		"decode",
+		"encode",
+		"image",
+		"pixel",
 		"typescript"
 	],
 	"publishConfig": {
