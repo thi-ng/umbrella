@@ -108,6 +108,9 @@
 		"./text": {
 			"default": "./text.js"
 		},
+		"./watch": {
+			"default": "./watch.js"
+		},
 		"./write": {
 			"default": "./write.js"
 		}

@@ -42,7 +42,6 @@
 		"@thi.ng/args": "^2.3.5",
 		"@thi.ng/arrays": "^2.7.14",
 		"@thi.ng/checks": "^3.4.17",
-		"@thi.ng/compose": "^2.1.56",
 		"@thi.ng/errors": "^2.4.11",
 		"@thi.ng/file-io": "^1.1.5",
 		"@thi.ng/hiccup-css": "^2.4.0",

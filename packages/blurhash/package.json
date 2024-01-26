@@ -81,6 +81,9 @@
 		},
 		"./decode": {
 			"default": "./decode.js"
+		},
+		"./encode": {
+			"default": "./encode.js"
 		}
 	},
 	"thi.ng": {
