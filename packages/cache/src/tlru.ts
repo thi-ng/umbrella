@@ -60,23 +60,13 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 	set(key: K, value: V, ttl = this.opts.ttl) {
 		const size = this.opts.ksize(key) + this.opts.vsize(value);
 		const e = this.map.get(key);
-		this._size += Math.max(0, size - (e ? e.value.s : 0));
+		const additionalSize = Math.max(0, size - (e ? e.value.s : 0));
+		this._size += additionalSize;
 		if (this.ensureSize()) {
 			const t = Date.now() + ttl;
-			if (e) {
-				e.value.v = value;
-				e.value.s = size;
-				e.value.t = t;
-				this.items.asTail(e);
-			} else {
-				this.items.push({
-					k: key,
-					v: value,
-					s: size,
-					t,
-				});
-				this.map.set(key, this.items.tail!);
-			}
+			this.doSetTlruEntry(e, key, value, size, t);
+		} else {
+			this._size -= additionalSize;
 		}
 		return value;
 	}
@@ -112,5 +102,23 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 			cell = cell.next;
 		}
 		return super.ensureSize();
+	}
+
+	protected doSetTlruEntry(
+		e: ConsCell<TLRUCacheEntry<K, V>> | undefined,
+		k: K,
+		v: V,
+		s: number,
+		t: number
+	) {
+		if (e) {
+			e.value.v = v;
+			e.value.s = s;
+			e.value.t = t;
+			this.items.asTail(e);
+		} else {
+			this.items.push({ k, v, s, t });
+			this.map.set(k, this.items.tail!);
+		}
 	}
 }
