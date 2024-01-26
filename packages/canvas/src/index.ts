@@ -73,7 +73,7 @@ export const canvas2d = (
 	width: number,
 	height = width,
 	parent?: HTMLElement | null,
-	opts: Partial<Canvas2DOpts> = {}
+	opts?: Partial<Canvas2DOpts>
 ) => adaptiveCanvas2d(width, height, parent, { dpr: 1, ...opts });
 
 /**
@@ -89,13 +89,39 @@ export const pixelCanvas2d = (
 	width: number,
 	height = width,
 	parent?: HTMLElement | null,
-	opts: Partial<Canvas2DOpts> = {}
+	opts?: Partial<Canvas2DOpts>
 ) =>
 	adaptiveCanvas2d(width, height, parent, {
 		dpr: 1,
 		pixelated: true,
 		...opts,
 	});
+
+/**
+ * Creates a canvas and draws given image into it. The `width` and `height`
+ * params default to the actual image size, but can be used to resize the image
+ * (canvas).
+ *
+ * @remarks
+ * See {@link adaptiveCanvas2d} for more details.
+ *
+ * @param img
+ * @param width
+ * @param height
+ * @param parent
+ * @param opts
+ */
+export const imageCanvas = (
+	img: HTMLImageElement,
+	width = img.width,
+	height = img.height,
+	parent?: HTMLElement | null,
+	opts?: Partial<Canvas2DOpts>
+) => {
+	const res = canvas2d(width, height, parent, opts);
+	res.ctx.drawImage(img, 0, 0, res.canvas.width, res.canvas.height);
+	return res;
+};
 
 /**
  * Sets the canvas size to given `width` & `height` (given as CSS pixels, but
