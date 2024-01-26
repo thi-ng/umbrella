@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-01-23T15:58:27Z
+- **Last updated**: 2024-01-26T18:03:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.6.0) (2024-01-26)
+
+#### 🚀 Features
+
+- add base83 chars & preset ([5e09baf](https://github.com/thi-ng/umbrella/commit/5e09baf))
+  - add `B83_CHARS` and `BASE83`
+
+#### ⏱ Performance improvements
+
+- memoize value padding (encoding w/ size) ([62ccf80](https://github.com/thi-ng/umbrella/commit/62ccf80))
+  - migrate padding into BaseN class
+  - add BaseN.clear() for clearing memoization cache
 
 ### [2.5.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.5.11) (2023-08-14)
 

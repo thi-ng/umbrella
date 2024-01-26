@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/canvas",
-	"version": "0.1.4",
+	"version": "0.2.0",
 	"description": "Canvas creation & HDPI support helpers",
 	"type": "module",
 	"module": "./index.js",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/router",
-	"version": "3.2.49",
+	"version": "3.2.50",
 	"description": "Generic router for browser & non-browser based applications",
 	"type": "module",
 	"module": "./index.js",
@@ -35,8 +35,8 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.17",
-		"@thi.ng/checks": "^3.4.17",
+		"@thi.ng/api": "^8.9.18",
+		"@thi.ng/checks": "^3.4.18",
 		"@thi.ng/equiv": "^2.1.42",
 		"@thi.ng/errors": "^2.4.11",
 		"tslib": "^2.6.2"

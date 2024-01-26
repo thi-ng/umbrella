@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/binary",
-	"version": "3.4.5",
+	"version": "3.4.6",
 	"description": "100+ assorted binary / bitwise operations, conversions, utilities, lookup tables",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.17"
+		"@thi.ng/api": "^8.9.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",

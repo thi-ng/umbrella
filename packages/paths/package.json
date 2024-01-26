@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/paths",
-	"version": "5.1.58",
+	"version": "5.1.59",
 	"description": "Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing",
 	"type": "module",
 	"module": "./index.js",
@@ -35,8 +35,8 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.17",
-		"@thi.ng/checks": "^3.4.17",
+		"@thi.ng/api": "^8.9.18",
+		"@thi.ng/checks": "^3.4.18",
 		"@thi.ng/errors": "^2.4.11"
 	},
 	"devDependencies": {

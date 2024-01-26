@@ -9,15 +9,8 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/msgpack@0.1.4) (2023-12-12)
-
-#### ♻️ Refactoring
-
-- update null handling in serialize() ([a96732d](https://github.com/thi-ng/umbrella/commit/a96732d))
-  - add/update tests
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/msgpack@0.1.0) (2023-11-24)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/blurhash@0.1.0) (2024-01-26)
 
 #### 🚀 Features
 
-- import as new package ([0c3a3a6](https://github.com/thi-ng/umbrella/commit/0c3a3a6))
+- import as new pkg ([5d39cda](https://github.com/thi-ng/umbrella/commit/5d39cda))
