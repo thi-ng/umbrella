@@ -1,0 +1,29 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+
+body {
+	system-sans-serif ma3
+	bg-color-light-gray color-dark-gray
+	dark:bg-color-dark-gray dark:color-light-gray
+}
+
+#images, .widget {
+	mb4
+	ns:grid ns:grid-cols-2 ns:gap4 l:w-50
+}
+
+#hash {
+	w-100 l:w-50 b pa2 mb3 bw0 monospace
+	dark:bg-color-black dark:color-white
+}
+
+.widget input { db mt3 ns:mt0 w-100 }
+.widget .value { db mt2 f7 }
+
+label { b { .desc { db f7 normal } } }
+
+h1 { f-subtitle ls--2 lh-solid mb4 }
+h2 { f1 ls--1 mb2 }
+
+canvas { w-100 }
