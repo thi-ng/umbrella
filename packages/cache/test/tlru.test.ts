@@ -1,5 +1,5 @@
 import { delayed } from "@thi.ng/compose";
-import { beforeEach, expect, test } from "bun:test";
+import { beforeEach, describe, expect, test } from "bun:test";
 import { TLRUCache } from "../src/index.js";
 
 let c: TLRUCache<string, number>;
@@ -67,4 +67,55 @@ test("getSet ttl", async () => {
 	]);
 	expect([...c.keys()]).toEqual(["a"]);
 	expect([...c.values()]).toEqual([10]);
+});
+
+describe("maxsize", () => {
+	test("adding element smaller than maxsize", () => {
+		const cache = new TLRUCache(
+			[
+				["a", "foo"],
+				["b", "bar"],
+			],
+			{
+				maxlen: 3,
+				ttl: 1000,
+				maxsize: 8,
+				ksize: (k) => k.length,
+				vsize: (v) => v.length,
+				release: (k, v) => evicts.push([k, v]),
+			}
+		);
+
+		expect(cache.length).toBe(2);
+		cache.set("c", "qux");
+		expect(cache.length).toBe(2);
+		expect(evicts).toEqual([["a", "foo"]]);
+	});
+
+	test("adding element bigger than maxsize", () => {
+		const cache = new TLRUCache(
+			[
+				["a", "foo"],
+				["b", "bar"],
+			],
+			{
+				maxlen: 3,
+				ttl: 1000,
+				maxsize: 8,
+				ksize: (k) => k.length,
+				vsize: (v) => v.length,
+				release: (k, v) => evicts.push([k, v]),
+			}
+		);
+
+		expect(cache.length).toBe(2);
+		cache.set("c", "123456789");
+		expect(cache.length).toBe(0);
+		expect(evicts).toEqual([
+			["a", "foo"],
+			["b", "bar"],
+		]);
+		cache.set("d", "12");
+		expect(cache.length).toBe(1);
+	});
 });
