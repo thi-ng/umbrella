@@ -37,9 +37,9 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to currently 187 individual TypeScript packages and
-~150 example projects illustrating their usage, currently totalling ~198k SLOC
-and ~3860 source files...
+This mono-repository is home to currently 189 individual TypeScript
+libraries/packages and 153 example projects illustrating their usage, currently
+totalling ~200k SLOC and ~3890 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet largely independent libraries, tools
@@ -251,17 +251,24 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-01-23
+As of: 2024-01-26
 
-| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
-|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/boids`](./packages/boids)             | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)             | [changelog](./packages/boids/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-sdf`](./packages/geom-sdf)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)       | [changelog](./packages/geom-sdf/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-css`](./packages/hiccup-css)   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)   | [changelog](./packages/hiccup-css/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/meta-css`](./packages/meta-css)       | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)       | [changelog](./packages/meta-css/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom`](./packages/rdom)               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)               | [changelog](./packages/rdom/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)         | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)         | [changelog](./packages/vectors/CHANGELOG.md)     |
+| Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
+|:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/base-n`](./packages/base-n)           | [![version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)           | [changelog](./packages/base-n/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/blurhash`](./packages/blurhash)       | [![version](https://img.shields.io/npm/v/@thi.ng/blurhash.svg)](https://www.npmjs.com/package/@thi.ng/blurhash)       | [changelog](./packages/blurhash/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/boids`](./packages/boids)             | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)             | [changelog](./packages/boids/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/cache`](./packages/cache)             | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)             | [changelog](./packages/cache/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/canvas`](./packages/canvas)           | [![version](https://img.shields.io/npm/v/@thi.ng/canvas.svg)](https://www.npmjs.com/package/@thi.ng/canvas)           | [changelog](./packages/canvas/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/file-io`](./packages/file-io)         | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)         | [changelog](./packages/file-io/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-sdf`](./packages/geom-sdf)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)       | [changelog](./packages/geom-sdf/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-css`](./packages/hiccup-css)   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)   | [changelog](./packages/hiccup-css/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/math`](./packages/math)               | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)               | [changelog](./packages/math/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/meta-css`](./packages/meta-css)       | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)       | [changelog](./packages/meta-css/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel`](./packages/pixel)             | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)             | [changelog](./packages/pixel/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)               | [changelog](./packages/rdom/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/vectors`](./packages/vectors)         | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)         | [changelog](./packages/vectors/CHANGELOG.md)     |
 
 ### Fundamentals
 
@@ -402,6 +409,7 @@ As of: 2024-01-23
 
 | Project                                                         | Version                                                                                                                               | Changelog                                                | Description                                      |
 |-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|--------------------------------------------------|
+| [`@thi.ng/blurhash`](./packages/blurhash)                       | [![version](https://img.shields.io/npm/v/@thi.ng/blurhash.svg)](https://www.npmjs.com/package/@thi.ng/blurhash)                       | [changelog](./packages/blurhash/CHANGELOG.md)            | Fast image blurhash encoder/decoder              |
 | [`@thi.ng/canvas`](./packages/canvas)                           | [![version](https://img.shields.io/npm/v/@thi.ng/canvas.svg)](https://www.npmjs.com/package/@thi.ng/canvas)                           | [changelog](./packages/canvas/CHANGELOG.md)              | Canvas creation & HDPI support helpers           |
 | [`@thi.ng/dl-asset`](./packages/dl-asset)                       | [![version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)                       | [changelog](./packages/dl-asset/CHANGELOG.md)            | Asset/canvas/file download helpers               |
 | [`@thi.ng/emoji`](./packages/emoji)                             | [![version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)                             | [changelog](./packages/emoji/CHANGELOG.md)               | Bi-directional emoji lookup tables (names/chars) |
