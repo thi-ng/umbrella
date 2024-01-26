@@ -21,7 +21,7 @@ anti-framework.
 
 ## About
 
-Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/85, support for bigints and encoding/decoding of byte arrays.
+Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/83/85, support for bigints and encoding/decoding of byte arrays.
 
 In addition to the actual converters/encoders, the package also provides the
 plain character strings for each base and variations.
@@ -52,7 +52,7 @@ For Node.js REPL:
 const baseN = await import("@thi.ng/base-n");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.01 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.07 KB
 
 ## Dependencies
 

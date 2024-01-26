@@ -188,7 +188,7 @@ For Node.js REPL:
 const vectors = await import("@thi.ng/vectors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.74 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.89 KB
 
 ## Dependencies
 

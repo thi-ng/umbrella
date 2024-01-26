@@ -65,7 +65,7 @@ For Node.js REPL:
 const canvas = await import("@thi.ng/canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 279 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 348 bytes
 
 ## Dependencies
 
@@ -79,6 +79,7 @@ directory are using this package:
 
 | Screenshot                                                                                                                  | Description                                                                                  | Live demo                                                  | Source                                                                                  |
 |:----------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>             | Interactive & reactive image blurhash generator                                              | [Demo](https://demo.thi.ng/umbrella/blurhash/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)             |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>      | Self-modifying, animated typographic grid with emergent complex patterns                     | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-fuzz.png" width="240"/>                | geom-fuzz basic shape & fill examples                                                        | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-fuzz-basics)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>       | Visualization of different grid iterator strategies                                          | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)       |
