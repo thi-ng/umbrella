@@ -34,7 +34,17 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": true,
+		"readme": [
+			"blurhash",
+			"canvas",
+			"hiccup-html",
+			"meta-css",
+			"mime",
+			"pixel",
+			"rdom",
+			"rdom-forms",
+			"rstream"
+		],
 		"screenshot": "examples/blurhash.jpg"
 	}
 }
