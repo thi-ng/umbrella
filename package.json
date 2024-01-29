@@ -19,8 +19,8 @@
 		"typescript": "^5.3.3"
 	},
 	"scripts": {
-		"@thi.ng": "yarn workspaces foreach -pv --include '@thi.ng/*'",
-		"@example": "yarn workspaces foreach -pv --include '@example/*'",
+		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",
+		"@example": "yarn workspaces foreach -pv --all --include '@example/*'",
 		"build": "yarn @thi.ng -t run build",
 		"build:decl": "yarn @thi.ng -t run build:decl",
 		"build:esbuild": "yarn @thi.ng -t run build:esbuild",
@@ -39,5 +39,5 @@
 		"tool:prune": "bun tools/src/prune-changelogs.ts",
 		"tool:searchindex": "bun tools/src/build-search-index.ts"
 	},
-	"packageManager": "yarn@3.7.0"
+	"packageManager": "yarn@4.0.2"
 }
