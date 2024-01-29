@@ -11,6 +11,9 @@ This is a standalone project, maintained as part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and
 anti-framework.
 
+> [!NOTE]
+> 🚀 Help me to work full-time on these projects by [sponsoring me on GitHub](https://github.com/sponsors/postspectacular) ❤️
+
 - [About](#about)
   - [From hdom to rdom: Reactive UIs without virtual DOMs](#from-hdom-to-rdom-reactive-uis-without-virtual-doms)
   - [Targetted, isolated updates](#targetted-isolated-updates)

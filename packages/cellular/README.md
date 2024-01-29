@@ -11,6 +11,9 @@ This is a standalone project, maintained as part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and
 anti-framework.
 
+> [!NOTE]
+> 🚀 Help me to work full-time on these projects by [sponsoring me on GitHub](https://github.com/sponsors/postspectacular) ❤️
+
 - [About](#about)
   - [Neighborhoods](#neighborhoods)
   - [Rule encoding](#rule-encoding)

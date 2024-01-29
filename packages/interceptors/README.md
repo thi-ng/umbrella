@@ -11,6 +11,9 @@ This is a standalone project, maintained as part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo and
 anti-framework.
 
+> [!NOTE]
+> 🚀 Help me to work full-time on these projects by [sponsoring me on GitHub](https://github.com/sponsors/postspectacular) ❤️
+
 **Update 12/2022: This package is considered completed and no longer being
 updated with new features. Please consider using
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
