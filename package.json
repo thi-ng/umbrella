@@ -39,5 +39,5 @@
 		"tool:prune": "bun tools/src/prune-changelogs.ts",
 		"tool:searchindex": "bun tools/src/build-search-index.ts"
 	},
-	"packageManager": "yarn@3.2.1"
+	"packageManager": "yarn@3.7.0"
 }
