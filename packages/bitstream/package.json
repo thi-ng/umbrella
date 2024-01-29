@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bitstream",
-	"version": "2.2.42",
+	"version": "2.2.43",
 	"description": "ES6 iterator based read/write bit streams with support for variable word widths",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.4.12"
+		"@thi.ng/errors": "^2.4.13"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -80,5 +80,6 @@
 			"range-coder",
 			"rle-pack"
 		]
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

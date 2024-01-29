@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/canvas",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "Canvas creation & HDPI support helpers",
 	"type": "module",
 	"module": "./index.js",
@@ -74,5 +74,6 @@
 	},
 	"thi.ng": {
 		"year": 2023
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

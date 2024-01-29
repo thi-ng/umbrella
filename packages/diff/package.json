@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/diff",
-	"version": "5.1.52",
+	"version": "5.1.53",
 	"description": "Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs",
 	"type": "module",
 	"module": "./index.js",
@@ -35,8 +35,8 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/equiv": "^2.1.43"
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/equiv": "^2.1.44"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -74,5 +74,6 @@
 		"./object": {
 			"default": "./object.js"
 		}
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/prefixes",
-	"version": "2.3.4",
+	"version": "2.3.5",
 	"description": "50+ Linked Data vocabulary prefixes and their namespace URLs",
 	"type": "module",
 	"module": "./index.js",
@@ -105,5 +105,6 @@
 			"rdom"
 		],
 		"year": 2020
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

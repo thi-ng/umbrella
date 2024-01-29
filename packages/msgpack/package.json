@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/msgpack",
-	"version": "0.1.11",
+	"version": "0.1.12",
 	"description": "Small & fast msgpack serialization & deserialization",
 	"type": "module",
 	"module": "./index.js",
@@ -35,9 +35,9 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.4.19",
-		"@thi.ng/errors": "^2.4.12",
-		"@thi.ng/strings": "^3.7.10"
+		"@thi.ng/checks": "^3.4.20",
+		"@thi.ng/errors": "^2.4.13",
+		"@thi.ng/strings": "^3.7.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -83,5 +83,6 @@
 	"thi.ng": {
 		"status": "alpha",
 		"year": 2023
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

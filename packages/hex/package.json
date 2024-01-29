@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hex",
-	"version": "2.3.31",
+	"version": "2.3.32",
 	"description": "Hex string formatters for 4/8/16/24/32/48/64bit words",
 	"type": "module",
 	"module": "./index.js",
@@ -68,5 +68,6 @@
 			"base-n"
 		],
 		"year": 2020
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

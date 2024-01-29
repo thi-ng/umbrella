@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/imgui",
-	"version": "2.2.26",
+	"version": "2.2.27",
 	"description": "Immediate mode GUI with flexible state handling & data only shape output",
 	"type": "module",
 	"module": "./index.js",
@@ -35,16 +35,16 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/checks": "^3.4.19",
-		"@thi.ng/geom": "^6.0.20",
-		"@thi.ng/geom-api": "^3.4.59",
-		"@thi.ng/geom-isec": "^2.1.101",
-		"@thi.ng/geom-tessellate": "^2.1.102",
-		"@thi.ng/layout": "^3.0.15",
-		"@thi.ng/math": "^5.8.1",
-		"@thi.ng/transducers": "^8.8.23",
-		"@thi.ng/vectors": "^7.10.1"
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/checks": "^3.4.20",
+		"@thi.ng/geom": "^6.0.21",
+		"@thi.ng/geom-api": "^3.4.60",
+		"@thi.ng/geom-isec": "^2.1.102",
+		"@thi.ng/geom-tessellate": "^2.1.103",
+		"@thi.ng/layout": "^3.0.16",
+		"@thi.ng/math": "^5.8.2",
+		"@thi.ng/transducers": "^8.8.24",
+		"@thi.ng/vectors": "^7.10.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -157,5 +157,6 @@
 			"rdom-canvas"
 		],
 		"year": 2019
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

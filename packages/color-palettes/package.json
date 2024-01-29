@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color-palettes",
-	"version": "1.2.26",
+	"version": "1.2.27",
 	"description": "Collection of 200+ image based color themes & composable theme query filters",
 	"type": "module",
 	"module": "./index.js",
@@ -37,12 +37,12 @@
 		"tool:swatches": "bun tools/swatches.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/base-n": "^2.6.1",
-		"@thi.ng/checks": "^3.4.19",
-		"@thi.ng/color": "^5.6.13",
-		"@thi.ng/errors": "^2.4.12",
-		"@thi.ng/hex": "^2.3.31"
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/base-n": "^2.6.2",
+		"@thi.ng/checks": "^3.4.20",
+		"@thi.ng/color": "^5.6.14",
+		"@thi.ng/errors": "^2.4.13",
+		"@thi.ng/hex": "^2.3.32"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -89,5 +89,6 @@
 	"thi.ng": {
 		"parent": "@thi.ng/color",
 		"year": 2021
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

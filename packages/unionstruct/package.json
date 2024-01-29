@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/unionstruct",
-	"version": "2.1.43",
+	"version": "2.1.44",
 	"description": "C-style struct, union and bitfield read/write views of ArrayBuffers",
 	"type": "module",
 	"module": "./index.js",
@@ -79,5 +79,6 @@
 			"soa"
 		],
 		"year": 2017
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

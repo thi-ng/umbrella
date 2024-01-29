@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ecs",
-	"version": "0.7.92",
+	"version": "0.7.93",
 	"description": "Entity Component System based around typed arrays & sparse sets",
 	"type": "module",
 	"module": "./index.js",
@@ -35,21 +35,21 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/associative": "^6.3.32",
-		"@thi.ng/binary": "^3.4.7",
-		"@thi.ng/checks": "^3.4.19",
-		"@thi.ng/dcons": "^3.2.85",
-		"@thi.ng/errors": "^2.4.12",
-		"@thi.ng/idgen": "^2.2.22",
-		"@thi.ng/logger": "^2.1.5",
-		"@thi.ng/malloc": "^6.1.61",
-		"@thi.ng/transducers": "^8.8.23",
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/associative": "^6.3.33",
+		"@thi.ng/binary": "^3.4.8",
+		"@thi.ng/checks": "^3.4.20",
+		"@thi.ng/dcons": "^3.2.86",
+		"@thi.ng/errors": "^2.4.13",
+		"@thi.ng/idgen": "^2.2.23",
+		"@thi.ng/logger": "^2.1.6",
+		"@thi.ng/malloc": "^6.1.62",
+		"@thi.ng/transducers": "^8.8.24",
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
-		"@thi.ng/equiv": "^2.1.43",
+		"@thi.ng/equiv": "^2.1.44",
 		"esbuild": "^0.19.10",
 		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.4",
@@ -121,5 +121,6 @@
 	"thi.ng": {
 		"status": "alpha",
 		"year": 2019
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/webgl",
-	"version": "6.6.22",
+	"version": "6.6.23",
 	"description": "WebGL & GLSL abstraction layer",
 	"type": "module",
 	"module": "./index.js",
@@ -39,22 +39,22 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/associative": "^6.3.32",
-		"@thi.ng/canvas": "^0.2.1",
-		"@thi.ng/checks": "^3.4.19",
-		"@thi.ng/equiv": "^2.1.43",
-		"@thi.ng/errors": "^2.4.12",
-		"@thi.ng/logger": "^2.1.5",
-		"@thi.ng/matrices": "^2.3.7",
-		"@thi.ng/memoize": "^3.1.53",
-		"@thi.ng/pixel": "^6.1.1",
-		"@thi.ng/shader-ast": "^0.13.3",
-		"@thi.ng/shader-ast-glsl": "^0.4.93",
-		"@thi.ng/shader-ast-stdlib": "^0.16.18",
-		"@thi.ng/transducers": "^8.8.23",
-		"@thi.ng/vector-pools": "^3.1.99",
-		"@thi.ng/vectors": "^7.10.1"
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/associative": "^6.3.33",
+		"@thi.ng/canvas": "^0.2.2",
+		"@thi.ng/checks": "^3.4.20",
+		"@thi.ng/equiv": "^2.1.44",
+		"@thi.ng/errors": "^2.4.13",
+		"@thi.ng/logger": "^2.1.6",
+		"@thi.ng/matrices": "^2.3.8",
+		"@thi.ng/memoize": "^3.1.54",
+		"@thi.ng/pixel": "^6.1.2",
+		"@thi.ng/shader-ast": "^0.13.4",
+		"@thi.ng/shader-ast-glsl": "^0.4.94",
+		"@thi.ng/shader-ast-stdlib": "^0.16.19",
+		"@thi.ng/transducers": "^8.8.24",
+		"@thi.ng/vector-pools": "^3.1.100",
+		"@thi.ng/vectors": "^7.10.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -218,5 +218,6 @@
 			"vector-pools"
 		],
 		"year": 2014
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

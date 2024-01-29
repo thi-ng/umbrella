@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/args",
-	"version": "2.3.7",
+	"version": "2.3.8",
 	"description": "Declarative, functional & typechecked CLI argument/options parser, value coercions etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -35,12 +35,12 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/checks": "^3.4.19",
-		"@thi.ng/errors": "^2.4.12",
-		"@thi.ng/logger": "^2.1.5",
-		"@thi.ng/strings": "^3.7.10",
-		"@thi.ng/text-format": "^2.0.6"
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/checks": "^3.4.20",
+		"@thi.ng/errors": "^2.4.13",
+		"@thi.ng/logger": "^2.1.6",
+		"@thi.ng/strings": "^3.7.11",
+		"@thi.ng/text-format": "^2.0.7"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -101,5 +101,6 @@
 	},
 	"thi.ng": {
 		"year": 2018
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

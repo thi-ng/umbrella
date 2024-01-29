@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/checks",
-	"version": "3.4.19",
+	"version": "3.4.20",
 	"description": "Collection of 70+ type, feature & value checks",
 	"type": "module",
 	"module": "./index.js",
@@ -278,5 +278,6 @@
 		"./is-zero": {
 			"default": "./is-zero.js"
 		}
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

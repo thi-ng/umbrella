@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dlogic",
-	"version": "2.1.52",
+	"version": "2.1.53",
 	"description": "Assorted digital logic ops / constructs",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19"
+		"@thi.ng/api": "^8.9.20"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -69,5 +69,6 @@
 	},
 	"thi.ng": {
 		"year": 2017
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

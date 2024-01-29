@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-axidraw",
-	"version": "0.5.58",
+	"version": "0.5.59",
 	"description": "Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands",
 	"type": "module",
 	"module": "./index.js",
@@ -35,18 +35,18 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/arrays": "^2.7.16",
-		"@thi.ng/axidraw": "^1.1.49",
-		"@thi.ng/compare": "^2.2.15",
-		"@thi.ng/defmulti": "^3.0.17",
-		"@thi.ng/geom": "^6.0.20",
-		"@thi.ng/geom-accel": "^3.5.43",
-		"@thi.ng/geom-api": "^3.4.59",
-		"@thi.ng/geom-clip-line": "^2.3.59",
-		"@thi.ng/geom-isec": "^2.1.101",
-		"@thi.ng/transducers": "^8.8.23",
-		"@thi.ng/vectors": "^7.10.1"
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/arrays": "^2.7.17",
+		"@thi.ng/axidraw": "^1.1.50",
+		"@thi.ng/compare": "^2.2.16",
+		"@thi.ng/defmulti": "^3.0.18",
+		"@thi.ng/geom": "^6.0.21",
+		"@thi.ng/geom-accel": "^3.5.44",
+		"@thi.ng/geom-api": "^3.4.60",
+		"@thi.ng/geom-clip-line": "^2.3.60",
+		"@thi.ng/geom-isec": "^2.1.102",
+		"@thi.ng/transducers": "^8.8.24",
+		"@thi.ng/vectors": "^7.10.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
@@ -120,5 +120,6 @@
 		],
 		"status": "alpha",
 		"year": 2022
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }

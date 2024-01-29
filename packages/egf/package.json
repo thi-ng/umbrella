@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/egf",
-	"version": "0.6.97",
+	"version": "0.6.98",
 	"description": "Extensible Graph Format",
 	"type": "module",
 	"module": "./index.js",
@@ -30,19 +30,19 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.19",
-		"@thi.ng/associative": "^6.3.32",
-		"@thi.ng/checks": "^3.4.19",
-		"@thi.ng/dot": "^2.1.57",
-		"@thi.ng/errors": "^2.4.12",
-		"@thi.ng/logger": "^2.1.5",
-		"@thi.ng/prefixes": "^2.3.4",
-		"@thi.ng/strings": "^3.7.10",
-		"@thi.ng/transducers-binary": "^2.1.90"
+		"@thi.ng/api": "^8.9.20",
+		"@thi.ng/associative": "^6.3.33",
+		"@thi.ng/checks": "^3.4.20",
+		"@thi.ng/dot": "^2.1.58",
+		"@thi.ng/errors": "^2.4.13",
+		"@thi.ng/logger": "^2.1.6",
+		"@thi.ng/prefixes": "^2.3.5",
+		"@thi.ng/strings": "^3.7.11",
+		"@thi.ng/transducers-binary": "^2.1.91"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
-		"@thi.ng/equiv": "^2.1.43",
+		"@thi.ng/equiv": "^2.1.44",
 		"esbuild": "^0.19.10",
 		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.4",
@@ -101,5 +101,6 @@
 	"thi.ng": {
 		"status": "alpha",
 		"year": 2020
-	}
+	},
+	"gitHead": "20909ffc46f23f61ec7647e8d27ed17752ce9828\n"
 }
