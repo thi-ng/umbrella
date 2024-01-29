@@ -19,6 +19,7 @@ import { copyright } from "./partials/license.js";
 import {
 	packageBanner,
 	packageCitation,
+	packageCount,
 	packageDeps,
 	packageDesc,
 	packageInstallation,
@@ -33,6 +34,7 @@ try {
 
 	const templates: IObjectOf<TemplateFn<Config>> = {
 		...packageTemplates<Config>((x) => x.root),
+		"pkg.count": packageCount,
 		"pkg.description": ({ user }) => packageDesc(user, user.root),
 		"pkg.deps": ({ user }) => packageDeps(user, user.root),
 		"pkg.size": packageSize,

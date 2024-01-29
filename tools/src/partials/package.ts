@@ -164,3 +164,5 @@ export const packageCitation = (config: Config, name: string) => {
 }
 \`\`\``;
 };
+
+export const packageCount = () => String([...dirs("../", "", 1)].length);
