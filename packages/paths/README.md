@@ -31,7 +31,7 @@
   - [Higher-order accessors](#higher-order-accessors)
   - [First order operators](#first-order-operators)
   - [Deletions](#deletions)
-  - [PPP - Prototype pollution potential](#ppp---prototype-pollution-potential)
+  - [Prototype pollution](#prototype-pollution)
   - [Structural sharing](#structural-sharing)
   - [Mutable setter](#mutable-setter)
   - [Path checking](#path-checking)
@@ -95,7 +95,7 @@ For Node.js REPL:
 const paths = await import("@thi.ng/paths");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.13 KB
 
 ## Dependencies
 
@@ -289,18 +289,24 @@ const state2 = deleteIn(state, ["a","b","c"]);
 state2.a.b.c;
 ```
 
-### PPP - Prototype pollution potential
+### Prototype pollution
 
-Mainly a potential concern for the non-typechecked versions - currently,
-none of the setter/update/mutation functions explicitly disallow
-updating an object's `__proto__` property. However, the package provides
-the `isProtoPath()` and `disallowProtoPath()` helpers which can & should be
-used in conjunction with the setters in situations where it's advisable
-to do so.
+Mainly a potential concern for the non-typechecked versions - currently, only
+the mutation functions (i.e. `mutIn`, `mutInUnsafe()` etc.) explicitly disallow
+updating an object's `__proto__`, `prototype` or `constructor` properties.
+However, the package provides the
+[`disallowProtoPath()`](https://docs.thi.ng/umbrella/paths/functions/disallowProtoPath.html)
+helper which can be used in conjunction with the other setters in situations
+where it's advisable to do so.
 
 ```ts
-setIn({}, disallowProtoPath("__proto__.foo", true));
-// Uncaught Error: unsafe path: '__proto__.foo'
+// always checked for pollution
+mutIn({}, ["__proto__", "polluted"], true);
+// Uncaught Error: illegal argument(s): illegal path: ["__proto__","polluted"]
+
+// manually checked
+setIn({}, disallowProtoPath("__proto__.polluted"), true);
+// Uncaught Error: illegal argument(s): illegal path: "__proto__.polluted"
 ```
 
 ### Structural sharing
