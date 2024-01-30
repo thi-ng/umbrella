@@ -33,6 +33,9 @@ Inspired by Stuart Sierra's
 [component](https://github.com/stuartsierra/component) framework for
 Clojure/ClojureScript.
 
+Uses a declarative approach to define system components with a simple [lifecycle
+API](https://docs.thi.ng/umbrella/system/interfaces/ILifecycle.html).
+
 ## Status
 
 **STABLE** - used in production
@@ -59,7 +62,7 @@ For Node.js REPL:
 const system = await import("@thi.ng/system");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 490 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 539 bytes
 
 ## Dependencies
 
