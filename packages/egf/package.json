@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/egf",
-	"version": "0.6.99",
+	"version": "0.6.100",
 	"description": "Extensible Graph Format",
 	"type": "module",
 	"module": "./index.js",
@@ -30,19 +30,19 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.21",
-		"@thi.ng/associative": "^6.3.34",
-		"@thi.ng/checks": "^3.4.21",
-		"@thi.ng/dot": "^2.1.59",
-		"@thi.ng/errors": "^2.4.14",
-		"@thi.ng/logger": "^2.1.7",
-		"@thi.ng/prefixes": "^2.3.6",
-		"@thi.ng/strings": "^3.7.12",
-		"@thi.ng/transducers-binary": "^2.1.92"
+		"@thi.ng/api": "^8.9.22",
+		"@thi.ng/associative": "^6.3.35",
+		"@thi.ng/checks": "^3.4.22",
+		"@thi.ng/dot": "^2.1.60",
+		"@thi.ng/errors": "^2.4.15",
+		"@thi.ng/logger": "^2.1.8",
+		"@thi.ng/prefixes": "^2.3.7",
+		"@thi.ng/strings": "^3.7.13",
+		"@thi.ng/transducers-binary": "^2.1.93"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
-		"@thi.ng/equiv": "^2.1.45",
+		"@thi.ng/equiv": "^2.1.46",
 		"esbuild": "^0.19.10",
 		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.4",

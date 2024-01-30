@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/compare",
-	"version": "2.2.17",
+	"version": "2.2.18",
 	"description": "Comparators with support for types implementing the @thi.ng/api/ICompare interface",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.21"
+		"@thi.ng/api": "^8.9.22"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
