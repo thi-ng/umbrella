@@ -104,3 +104,37 @@ test("non-lifecycle objects", async () => {
 	await sys.start();
 	await sys.stop();
 });
+
+test("failed start, stop existing", async () => {
+	interface Foo {
+		a: ILifecycle;
+		b: ILifecycle;
+		c: ILifecycle;
+	}
+
+	const order: string[] = [];
+	const fn = (id: string) => async () => {
+		order.push(id);
+		return true;
+	};
+
+	const sys = defSystem<Foo>({
+		a: { factory: () => ({ start: fn("a1"), stop: fn("a2") }) },
+		b: {
+			factory: () => ({ start: fn("b1"), stop: fn("b2") }),
+			deps: ["a"],
+		},
+		c: {
+			factory: () => ({
+				start: async () => {
+					order.push("c");
+					return false;
+				},
+			}),
+			deps: ["a", "b"],
+		},
+	});
+
+	expect(await sys.start()).toBe(false);
+	expect(order).toEqual(["a1", "b1", "c", "b2", "a2"]);
+});

@@ -4,22 +4,26 @@ import { NULL_LOGGER } from "@thi.ng/logger/null";
 
 export interface ILifecycle {
 	/**
-	 * Starts component. Defined as async method to simplify internal
-	 * use of `await` for starting any child/sub-components. Usually
-	 * called by {@link System.start} which synchronously starts all of
-	 * its components in dependency order.
+	 * Starts component. Defined as async method to simplify internal use of
+	 * `await` for starting any child/sub-components. Usually called by
+	 * {@link System.start} which synchronously starts all of its components in
+	 * dependency order.
 	 *
-	 * Returns false to indicate component startup failed and to cancel
-	 * initialization of dependent components. Alternatively, an error
-	 * can be thrown, but it's the user's responsibility to catch it.
+	 * Returns false to indicate component startup failed and to cancel startup
+	 * of any further components. Alternatively, an error can be thrown, but
+	 * it's the user's responsibility to catch it.
+	 *
+	 * If a component's start method returns false, any already started
+	 * components will be stopped (see {@link ILifecycle.stop}) in reverse
+	 * order.
 	 */
 	start?(): Promise<boolean>;
 	/**
 	 * Similar to {@link ILifecycle.start} but for stopping components.
 	 *
-	 * Returns false to indicate component startup failed and log a
-	 * warning message to the console. Unlike with `start()`, returning
-	 * false will NOT stop decommision other components.
+	 * Returns false to indicate component shutdown failed. Unlike with
+	 * {@link ILifecycle.start}, returning false will **not** stop the shutdown
+	 * of other components.
 	 */
 	stop?(): Promise<boolean>;
 	// allow extension and disable weak type detection

@@ -7,6 +7,11 @@ import {
 	type SystemSpecs,
 } from "./api.js";
 
+/**
+ * Syntax sugar for {@link System} constructor.
+ *
+ * @param map
+ */
 export const defSystem = <T extends SystemMap<T>>(map: SystemSpecs<T>) =>
 	new System<T>(map);
 
@@ -31,18 +36,23 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
 	}
 
 	/**
-	 * Initializes all system components in dependency order. If any
-	 * component's `start()` method returns false, system start up will
-	 * be stopped and this method returns false itself.
+	 * Initializes all system components in dependency order. If any component's
+	 * `start()` method returns false, system start up will be stopped, any
+	 * already started components will be stopped (in reverse order) and this
+	 * method returns false itself.
 	 *
-	 * Also any errors thrown during child component startup will not be
-	 * intercepted.
+	 * @remarks
+	 * Any errors thrown during child component startup (or shutdown) will
+	 * **not** be intercepted.
 	 */
 	async start() {
-		for (let id of this.topology) {
+		const topo = this.topology;
+		for (let i = 0; i < topo.length; i++) {
+			const id = topo[i];
 			const comp = this.components[id];
 			if (comp.start && !(await comp.start())) {
 				LOGGER.warn(`error starting component: ${String(id)}`);
+				await this.__stop(topo, i);
 				return false;
 			}
 		}
@@ -59,21 +69,34 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
 	 * intercepted.
 	 */
 	async stop() {
-		const topo = this.topology;
-		for (let i = topo.length; i-- > 0; ) {
+		return this.__stop(this.topology);
+	}
+
+	/**
+	 * Syntax sugar for `stop() && start()` sequence. The restart phase will
+	 * only be executed if **all** components could be stopped successfully.
+	 */
+	async reset() {
+		return (await this.stop()) && (await this.start());
+	}
+
+	/**
+	 * Calls {@link ILifecycle.stop} on the `n` first items in given topo array
+	 * (in reverse order).
+	 *
+	 * @param topo
+	 * @param n
+	 */
+	protected async __stop(topo: Keys<T>[], n = topo.length) {
+		let result = true;
+		for (let i = n; i-- > 0; ) {
 			const id = topo[i];
 			const comp = this.components[id];
 			if (comp.stop && !(await comp.stop())) {
 				LOGGER.warn(`error stopping component: ${String(id)}`);
+				result = false;
 			}
 		}
-		return true;
-	}
-
-	/**
-	 * Syntax sugar for `stop() && start()` sequence.
-	 */
-	async reset() {
-		return (await this.stop()) && (await this.start());
+		return result;
 	}
 }
