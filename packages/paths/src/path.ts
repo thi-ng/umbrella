@@ -1,11 +1,19 @@
 import type { NumOrString, Path } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { isProtoPath } from "@thi.ng/checks/is-proto-path";
 import { isString } from "@thi.ng/checks/is-string";
-import { assert } from "@thi.ng/errors/assert";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 /**
  * Converts the given key path to canonical form (array).
+ *
+ * @remarks
+ * If given path is an array, performs a safety check to ensure that all path
+ * items are strings or numbers and that illegal paths like `[["__proto__"],
+ * "foo"]` will be disallowed (throws an error).
+ *
+ * Also see {@link disallowProtoPath}.
  *
  * ```
  * toPath("a.b.c");
@@ -20,16 +28,20 @@ import { assert } from "@thi.ng/errors/assert";
  *
  * @param path -
  */
-export const toPath = (path: Path): readonly NumOrString[] =>
-	isArray(path)
-		? <any[]>path
-		: isString(path)
-		? path.length > 0
-			? path.split(".")
-			: []
-		: path != null
-		? [path]
-		: [];
+export const toPath = (path: Path): readonly NumOrString[] => {
+	if (isArray(path)) {
+		if (!path.every((x) => isString(x) || isNumber(x))) __illegal(path);
+		return <any[]>path;
+	} else {
+		return isString(path)
+			? path.length > 0
+				? path.split(".")
+				: []
+			: path != null
+			? <any[]>[path]
+			: [];
+	}
+};
 
 /**
  * Takes an arbitrary object and lookup path. Descends into object along
@@ -59,10 +71,11 @@ export const exists = (obj: any, path: Path) => {
 };
 
 /**
- * Helper function to analyze given `path` using
+ * Helper function. First converts given `path` using {@link toPath} and then
+ * analyzes it via
  * [`isProtoPath()`](https://docs.thi.ng/umbrella/checks/functions/isProtoPath.html).
  * Throws an error if path contains any property which might lead to prototype
- * poisoning.
+ * poisoning. Returns converted path if valid.
  *
  * @remarks
  * The following properties are considered illegal.
@@ -73,6 +86,12 @@ export const exists = (obj: any, path: Path) => {
  *
  * @param path -
  */
-export const disallowProtoPath = (path: Path) => (
-	assert(!isProtoPath(path), `unsafe path: '${path}'`), path
-);
+export const disallowProtoPath = (path: Path): readonly NumOrString[] => {
+	const $path = toPath(path);
+	if (isProtoPath($path)) __illegal(path);
+	return $path;
+};
+
+/** @internal */
+const __illegal = (path: any) =>
+	illegalArgs(`illegal path: ${JSON.stringify(path)}`);

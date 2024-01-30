@@ -170,4 +170,6 @@ test("exists", () => {
 test("mutIn", () => {
 	const a: any = {};
 	expect(() => mutIn(a, ["__proto__", "polluted"], true)).toThrow();
+	expect(() => mutIn(a, <any>[["__proto__"], "polluted"], true)).toThrow();
+	expect(() => mutIn(a, <any>[[["__proto__"]], "polluted"], true)).toThrow();
 });
