@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-01-29T21:04:46Z
+- **Last updated**: 2024-01-30T15:21:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@2.2.0) (2024-01-30)
+
+#### 🚀 Features
+
+- update start/stop logic ([71f2dc5](https://github.com/thi-ng/umbrella/commit/71f2dc5))
+  - update System.start() to stop already started components if current
+  component startup failed
+  - update System.stop() to only return true if _all_ components did shutdown
+  - update docs
+  - add tests
 
 ### [2.1.80](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@2.1.80) (2023-11-09)
 

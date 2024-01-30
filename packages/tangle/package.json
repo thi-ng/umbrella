@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/tangle",
-	"version": "0.1.78",
+	"version": "0.1.79",
 	"description": "Literate programming code block tangling / codegen utility, inspired by org-mode & noweb",
 	"type": "module",
 	"module": "./index.js",
@@ -36,20 +36,20 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.20",
-		"@thi.ng/args": "^2.3.8",
-		"@thi.ng/checks": "^3.4.20",
-		"@thi.ng/compare": "^2.2.16",
-		"@thi.ng/date": "^2.5.14",
-		"@thi.ng/errors": "^2.4.13",
-		"@thi.ng/file-io": "^1.2.2",
-		"@thi.ng/logger": "^2.1.6",
-		"@thi.ng/strings": "^3.7.11",
-		"@thi.ng/transducers": "^8.8.24"
+		"@thi.ng/api": "^8.9.21",
+		"@thi.ng/args": "^2.3.9",
+		"@thi.ng/checks": "^3.4.21",
+		"@thi.ng/compare": "^2.2.17",
+		"@thi.ng/date": "^2.5.15",
+		"@thi.ng/errors": "^2.4.14",
+		"@thi.ng/file-io": "^1.2.3",
+		"@thi.ng/logger": "^2.1.7",
+		"@thi.ng/strings": "^3.7.12",
+		"@thi.ng/transducers": "^8.8.25"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",
-		"@thi.ng/testament": "^0.4.12",
+		"@thi.ng/testament": "^0.4.13",
 		"esbuild": "^0.19.10",
 		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.4",
