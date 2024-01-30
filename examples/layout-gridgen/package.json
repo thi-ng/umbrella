@@ -31,7 +31,14 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": true,
+		"readme": [
+			"hiccup-html",
+			"layout",
+			"meta-css",
+			"random",
+			"rdom",
+			"transducers"
+		],
 		"screenshot": "examples/layout-gridgen.png"
 	}
 }
