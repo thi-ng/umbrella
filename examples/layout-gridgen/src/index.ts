@@ -1,4 +1,4 @@
-import { br, div } from "@thi.ng/hiccup-html";
+import { br, div, main } from "@thi.ng/hiccup-html";
 import {
 	stackedLayout,
 	type CellSpan,
@@ -30,16 +30,16 @@ const COLORS = [
 		"dark-red",
 		"gold",
 		"yellow",
-		"navy.white",
+		"navy.color-white",
 		"blue",
 		"light-blue",
 		"dark-pink",
 		"hot-pink",
 		"light-green",
 	],
-	["black-80.white", "black-60.white", "black-40.white"],
-	["purple.white", "light-purple.white"],
-	["dark-green.white", "green.white"],
+	["dark-gray.color-white", "gray.color-white", "moon-gray.color-black"],
+	["purple.color-white", "light-purple.color-white"],
+	["dark-green.color-white", "green.color-white"],
 ];
 
 // formatting helper
@@ -54,7 +54,7 @@ const defCell = (box: LayoutBox, depth: number): ComponentLike => {
 	// pick a random color which is not the same as last one (max. 10 attempts)
 	color = pickRandomUnique(1, COLORS[depth], [color], 10, RND).pop()!;
 	return div(
-		`.absolute.bg-${color}.pa2.f7`,
+		`.cell.bg-color-${color}`,
 		{
 			style: {
 				left: px(x),
@@ -142,7 +142,7 @@ const mainLayout = stackedLayout(
 );
 
 // generate DOM elements
-const grid = div(".relative.w-100", {}, ...cellIterator(mainLayout, NUM_CELLS));
+const grid = main({}, ...cellIterator(mainLayout, NUM_CELLS));
 
 // compile & mount
 $compile(grid).mount(document.getElementById("app")!);

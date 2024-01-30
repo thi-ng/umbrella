@@ -1286,6 +1286,7 @@ __metadata:
   dependencies:
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/layout": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/random": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
