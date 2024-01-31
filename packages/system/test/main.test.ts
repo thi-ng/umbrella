@@ -138,3 +138,27 @@ test("failed start, stop existing", async () => {
 	expect(await sys.start()).toBe(false);
 	expect(order).toEqual(["a1", "b1", "c", "b2", "a2"]);
 });
+
+test("pass system to lifecycle", async () => {
+	interface App {
+		foo: ILifecycle<App>;
+	}
+
+	const sys = defSystem<App>({
+		foo: {
+			factory: () => ({
+				start: async (sys) => {
+					expect(sys.components.foo).toBeDefined();
+					return true;
+				},
+				stop: async (sys) => {
+					expect(sys.components.foo).toBeDefined();
+					return true;
+				},
+			}),
+		},
+	});
+
+	expect(await sys.start()).toBeTrue();
+	expect(await sys.stop()).toBeTrue();
+});

@@ -1,8 +1,9 @@
 import type { Fn, Keys } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
+import type { System } from "./system.js";
 
-export interface ILifecycle {
+export interface ILifecycle<T extends SystemMap<T> = any> {
 	/**
 	 * Starts component. Defined as async method to simplify internal use of
 	 * `await` for starting any child/sub-components. Usually called by
@@ -17,7 +18,7 @@ export interface ILifecycle {
 	 * components will be stopped (see {@link ILifecycle.stop}) in reverse
 	 * order.
 	 */
-	start?(): Promise<boolean>;
+	start?(sys: System<T>): Promise<boolean>;
 	/**
 	 * Similar to {@link ILifecycle.start} but for stopping components.
 	 *
@@ -25,7 +26,7 @@ export interface ILifecycle {
 	 * {@link ILifecycle.start}, returning false will **not** stop the shutdown
 	 * of other components.
 	 */
-	stop?(): Promise<boolean>;
+	stop?(sys: System<T>): Promise<boolean>;
 	// allow extension and disable weak type detection
 	// https://github.com/thi-ng/umbrella/issues/247#issuecomment-687196363
 	[id: string]: any;

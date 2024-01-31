@@ -15,7 +15,7 @@ import {
 export const defSystem = <T extends SystemMap<T>>(map: SystemSpecs<T>) =>
 	new System<T>(map);
 
-export class System<T extends SystemMap<T>> implements ILifecycle {
+export class System<T extends SystemMap<T>> implements ILifecycle<T> {
 	components: T;
 	topology: Keys<T>[];
 	graph: DGraph<Keys<T>>;
@@ -50,7 +50,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
 		for (let i = 0; i < topo.length; i++) {
 			const id = topo[i];
 			const comp = this.components[id];
-			if (comp.start && !(await comp.start())) {
+			if (comp.start && !(await comp.start(this))) {
 				LOGGER.warn(`error starting component: ${String(id)}`);
 				await this.__stop(topo, i);
 				return false;
@@ -92,7 +92,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
 		for (let i = n; i-- > 0; ) {
 			const id = topo[i];
 			const comp = this.components[id];
-			if (comp.stop && !(await comp.stop())) {
+			if (comp.stop && !(await comp.stop(this))) {
 				LOGGER.warn(`error stopping component: ${String(id)}`);
 				result = false;
 			}
