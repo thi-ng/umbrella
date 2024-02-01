@@ -39,12 +39,23 @@ export interface ILifecycle<T extends SystemMap<T> = any> {
 export type SystemMap<T> = Record<Keys<T>, ILifecycle>;
 
 /**
- * Component initialization function.
+ * Async system component initialization function.
  */
-export type ComponentFactory<T extends SystemMap<T>> = Fn<T, ILifecycle>;
+export type ComponentFactory<T extends SystemMap<T>> = Fn<
+	T,
+	Promise<ILifecycle>
+>;
 
 export interface SystemSpec<T extends SystemMap<T>> {
+	/**
+	 * Async system component initialization function.
+	 */
 	factory: ComponentFactory<T>;
+	/**
+	 * Component IDs which this component directly depends on. Used to construct
+	 * the system's dependency graph and to initialize (and later start)
+	 * components in the correct order.
+	 */
 	deps?: Keys<T>[];
 }
 

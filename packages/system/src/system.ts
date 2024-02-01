@@ -10,20 +10,27 @@ import {
 /**
  * Syntax sugar for {@link System} constructor.
  *
- * @param map
+ * @param specs
  */
-export const defSystem = <T extends SystemMap<T>>(map: SystemSpecs<T>) =>
-	new System<T>(map);
+export const defSystem = <T extends SystemMap<T>>(specs: SystemSpecs<T>) =>
+	new System<T>(specs);
 
 export class System<T extends SystemMap<T>> implements ILifecycle<T> {
-	components: T;
-	topology: Keys<T>[];
-	graph: DGraph<Keys<T>>;
+	components!: T;
+	topology!: Keys<T>[];
+	graph!: DGraph<Keys<T>>;
 
-	constructor(map: SystemSpecs<T>) {
+	constructor(protected specs: SystemSpecs<T>) {}
+
+	/**
+	 * Builds the system component dependency graph and initializes all
+	 * components using their async {@link SystemSpec.factory} functions.
+	 * Returns the initialized system.
+	 */
+	async init() {
 		this.graph = new DGraph<Keys<T>>();
-		for (let id in map) {
-			const deps = map[id].deps;
+		for (let id in this.specs) {
+			const deps = this.specs[id].deps;
 			deps
 				? this.graph.addDependencies(<Keys<T>>id, deps)
 				: this.graph.addNode(<Keys<T>>id);
@@ -31,8 +38,11 @@ export class System<T extends SystemMap<T>> implements ILifecycle<T> {
 		this.topology = this.graph.sort();
 		this.components = <any>{};
 		for (let id of this.topology) {
-			this.components[id] = <any>map[id].factory(this.components);
+			this.components[id] = <any>(
+				await this.specs[id].factory(this.components)
+			);
 		}
+		return this;
 	}
 
 	/**
@@ -46,6 +56,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle<T> {
 	 * **not** be intercepted.
 	 */
 	async start() {
+		if (!this.graph) await this.init();
 		const topo = this.topology;
 		for (let i = 0; i < topo.length; i++) {
 			const id = topo[i];

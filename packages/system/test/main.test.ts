@@ -53,16 +53,16 @@ test("basic", async () => {
 
 	const foo = defSystem<FooSys>({
 		db: {
-			factory: (deps) => new DB(deps.logger, deps.state),
+			factory: async (deps) => new DB(deps.logger, deps.state),
 			deps: ["logger", "state"],
 		},
-		logger: { factory: () => new Logger() },
+		logger: { factory: async () => new Logger() },
 		state: {
-			factory: ({ logger }) => new Cache(logger),
+			factory: async ({ logger }) => new Cache(logger),
 			deps: ["logger"],
 		},
 		dummy: {
-			factory: ({ logger }) => ({
+			factory: async ({ logger }) => ({
 				async start() {
 					logger.info("start dummy");
 					return true;
@@ -96,10 +96,10 @@ test("non-lifecycle objects", async () => {
 		x: number;
 	}
 
-	const sys = defSystem<{ foo: Foo; bar: { foo: Foo } }>({
-		foo: { factory: () => ({ x: 42 }) },
-		bar: { factory: ({ foo }) => ({ foo }), deps: ["foo"] },
-	});
+	const sys = await defSystem<{ foo: Foo; bar: { foo: Foo } }>({
+		foo: { factory: async () => ({ x: 42 }) },
+		bar: { factory: async ({ foo }) => ({ foo }), deps: ["foo"] },
+	}).init();
 	expect(sys.components.foo).toBe(sys.components.bar.foo);
 	await sys.start();
 	await sys.stop();
@@ -119,13 +119,13 @@ test("failed start, stop existing", async () => {
 	};
 
 	const sys = defSystem<Foo>({
-		a: { factory: () => ({ start: fn("a1"), stop: fn("a2") }) },
+		a: { factory: async () => ({ start: fn("a1"), stop: fn("a2") }) },
 		b: {
-			factory: () => ({ start: fn("b1"), stop: fn("b2") }),
+			factory: async () => ({ start: fn("b1"), stop: fn("b2") }),
 			deps: ["a"],
 		},
 		c: {
-			factory: () => ({
+			factory: async () => ({
 				start: async () => {
 					order.push("c");
 					return false;
@@ -146,7 +146,7 @@ test("pass system to lifecycle", async () => {
 
 	const sys = defSystem<App>({
 		foo: {
-			factory: () => ({
+			factory: async () => ({
 				start: async (sys) => {
 					expect(sys.components.foo).toBeDefined();
 					return true;
