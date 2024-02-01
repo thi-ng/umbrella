@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-01-31T12:41:36Z
+- **Last updated**: 2024-02-01T13:52:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.0.0) (2024-02-01)
+
+#### 🛑 Breaking changes
+
+- Async component factories ([998409d](https://github.com/thi-ng/umbrella/commit/998409d))
+- BREAKING CHANGE: Component factory functions are async now
+  - add async System.init()
+  - update System ctor
+  - add/update docs
+  - update tests
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@2.3.0) (2024-01-31)
 
