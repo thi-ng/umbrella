@@ -4,8 +4,8 @@ import { formatDecls, indent } from "./impl.js";
 export type Keyframe = Record<string, any>;
 
 /**
- * Rule function for `@keyframes`. If a single declaration object is given,
- * it's keys are used as keyframe stops and their values as their declarations
+ * Rule function for `@keyframes`. If a single declaration object is given, it's
+ * keys are used as keyframe stops and their values as their declarations
  * objects. This way any number of stops can be specified.
  *
  * @example
@@ -24,8 +24,9 @@ export type Keyframe = Record<string, any>;
  * // }
  * ```
  *
- * If called with two objects, the first one provides the declarations for the
- * 0% keyframe and the 2nd for the 100% keyframe.
+ * If called with two or more objects, the each object provides the declarations
+ * for equally spaced keyframes, e.g. if given 3 objects, their respective times
+ * will be at 0%, 50%, 100%.
  *
  * @example
  * ```ts
@@ -49,7 +50,13 @@ export type Keyframe = Record<string, any>;
 export function at_keyframes(id: string, stops: Keyframe): RuleFn;
 export function at_keyframes(id: string, from: Keyframe, to: Keyframe): RuleFn;
 export function at_keyframes(id: string, ...args: Keyframe[]): RuleFn {
-	const stops = args.length === 1 ? args[0] : { 0: args[0], 100: args[1] };
+	const stops =
+		args.length === 1
+			? args[0]
+			: args.reduce((acc, x, i) => {
+					acc[((i / (args.length - 1)) * 100) | 0] = x;
+					return acc;
+			  }, {});
 	return (acc: string[], opts: CSSOpts) => {
 		const outer = indent(opts);
 		opts.depth++;

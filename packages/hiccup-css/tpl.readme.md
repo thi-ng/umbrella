@@ -403,7 +403,7 @@ css.css(
 ```ts
 css.css(
     css.at_keyframes(
-        "fadein",
+        "rgbfade",
         {
             0: {
                 color: "red"
@@ -421,7 +421,7 @@ css.css(
 ```
 
 ```css
-@keyframes fadein {
+@keyframes rgbfade {
 
     0% {
         color: red;
