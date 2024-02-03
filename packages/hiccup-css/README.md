@@ -122,7 +122,7 @@ For Node.js REPL:
 const hiccupCss = await import("@thi.ng/hiccup-css");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.15 KB
 
 ## Dependencies
 
@@ -476,7 +476,7 @@ css.css(
 ```ts
 css.css(
     css.at_keyframes(
-        "fadein",
+        "rgbfade",
         {
             0: {
                 color: "red"
@@ -494,7 +494,7 @@ css.css(
 ```
 
 ```css
-@keyframes fadein {
+@keyframes rgbfade {
 
     0% {
         color: red;
