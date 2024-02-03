@@ -1,0 +1,7 @@
+{
+	"logLevel": "DEBUG",
+	"traceEvents": true,
+	"colors": ["dark-red", "orange", "hot-pink", "purple", "dark-blue"],
+	"maxCounters": 5,
+	"maxValue": 10
+}

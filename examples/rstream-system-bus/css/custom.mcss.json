@@ -1,0 +1,27 @@
+{
+	"tables": {},
+	"vars": {
+		"in": ["ease-out"],
+		"out": ["linear"]
+	},
+	"decls": [
+		["@keyframes", "item-in", { "opacity": 0 }, { "opacity": 1 }],
+		[
+			"@keyframes",
+			"item-out",
+			{ "height": "4rem", "opacity": 1 },
+			{ "height": "2rem", "opacity": 0 },
+			{ "height": 0, "opacity": 0 }
+		]
+	],
+	"specs": [
+		{
+			"name": "item-<vid><k>",
+			"key": "i+1",
+			"props": { "animation": "item-<vid> <v> <var> forwards" },
+			"values": [0.25, 0.5, 1],
+			"unit": "second",
+			"vars": ["in", "out"]
+		}
+	]
+}

@@ -2086,6 +2086,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rstream-system-bus@workspace:examples/rstream-system-bus":
+  version: 0.0.0-use.local
+  resolution: "@example/rstream-system-bus@workspace:examples/rstream-system-bus"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/dgraph-dot": "workspace:^"
+    "@thi.ng/hiccup-carbon-icons": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/system": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.3.3"
+    vite: "npm:^5.0.10"
+  languageName: unknown
+  linkType: soft
+
 "@example/scenegraph-image@workspace:examples/scenegraph-image":
   version: 0.0.0-use.local
   resolution: "@example/scenegraph-image@workspace:examples/scenegraph-image"
@@ -3752,7 +3773,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/dgraph-dot@workspace:packages/dgraph-dot":
+"@thi.ng/dgraph-dot@workspace:^, @thi.ng/dgraph-dot@workspace:packages/dgraph-dot":
   version: 0.0.0-use.local
   resolution: "@thi.ng/dgraph-dot@workspace:packages/dgraph-dot"
   dependencies:
@@ -5942,7 +5963,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/system@workspace:packages/system":
+"@thi.ng/system@workspace:^, @thi.ng/system@workspace:packages/system":
   version: 0.0.0-use.local
   resolution: "@thi.ng/system@workspace:packages/system"
   dependencies:

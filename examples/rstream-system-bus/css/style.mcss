@@ -1,0 +1,35 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+body {
+	system-sans-serif l:w-50 w-100 ma3
+	bg-color-near-white color-black
+	dark:bg-color-near-black dark:color-white
+}
+
+#app { mv3 }
+
+.counter {
+	{
+		button {
+			dib mb1 pa2 w4 h3 bw0 v-top tl f4
+			color-white bg-anim3
+			cursor-pointer noselect
+			{
+				:disabled { bg-color-gray color-moon-gray cursor-auto }
+			}
+		}
+		small { db f7 }
+		.close {
+			dib w3 h3 ph2 tc f7
+			bg-color-gray fill-color-current
+			dark:bg-color-dark-gray
+		}
+	}
+}
+
+
+.item-show { anim:item-in2 }
+.item-hide { anim:item-out1 }

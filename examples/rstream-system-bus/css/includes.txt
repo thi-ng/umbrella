@@ -1,0 +1,4 @@
+// list of CSS class names to force-include in generated CSS
+// (one class per line, basic wildcards supported)
+
+bg-color-*
