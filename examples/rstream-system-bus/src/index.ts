@@ -11,17 +11,13 @@ import { defSystem, type ILifecycle, type SystemMap } from "@thi.ng/system";
 import { noop, sideEffect } from "@thi.ng/transducers";
 import CONFIG from "./config.json?url";
 
-// helper type to auto-complete event names
-type EventID =
-	| "add-counter"
-	| "remove-counter"
-	| "counter-done"
-	| "inc-counter";
-
 // events are just simple tuples
 type Event =
 	| ["add-counter", null]
 	| ["remove-counter" | "inc-counter" | "counter-done", number];
+
+// helper type to auto-complete event names
+type EventID = Event[0];
 
 type Bus = PubSub<Event, Event, EventID>;
 
@@ -252,11 +248,16 @@ const app = defSystem<App>({
 
 // initialize all components in topological order (determined by the `deps`
 // given for each system component)
-await app.start();
-
-// optional: output the system graph as graphviz format
-// see readme for generated diagram
-console.log(toDot(app.graph, { id: (id) => id, attribs: { rankdir: "RL" } }));
+try {
+	await app.start();
+	// optional: output the system graph as graphviz format
+	// see readme for generated diagram
+	console.log(
+		toDot(app.graph, { id: (id) => id, attribs: { rankdir: "RL" } })
+	);
+} catch (e) {
+	console.warn("couldn't start app:", (<Error>e).message);
+}
 
 // digraph g {
 // rankdir="RL";

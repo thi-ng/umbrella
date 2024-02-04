@@ -4,7 +4,7 @@
 // also see component-specific *.mcss files in /src folder
 
 body {
-	system-sans-serif l:w-50 w-100 ma3
+	system-sans-serif ns:w-80 l:w-50 ma3
 	bg-color-near-white color-black
 	dark:bg-color-near-black dark:color-white
 }
