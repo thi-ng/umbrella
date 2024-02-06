@@ -6,6 +6,8 @@ import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
 import { imageFromURL } from "@thi.ng/pixel";
 import { fromPromise, metaStream, reactive } from "@thi.ng/rstream";
 import {
+	M4,
+	V3,
 	assign,
 	defMain,
 	mul,
@@ -41,13 +43,13 @@ const CUBEMAP_SHADER: ShaderSpec = {
 		]),
 	],
 	attribs: {
-		position: "vec3",
+		position: V3,
 	},
 	varying: {
-		vnormal: "vec3",
+		vnormal: V3,
 	},
 	uniforms: {
-		mvp: "mat4",
+		mvp: M4,
 		tex: "samplerCube",
 	},
 	state: {

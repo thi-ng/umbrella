@@ -1,5 +1,6 @@
 import {
 	$xy,
+	F,
 	add,
 	distance,
 	eq,
@@ -89,7 +90,7 @@ const toy = shaderToy({
 	main: mainImage,
 	uniforms: {
 		// brightness factor for colored rings
-		bright: ["float", 1],
+		bright: [F, 1],
 	},
 });
 

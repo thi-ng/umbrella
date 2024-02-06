@@ -7,6 +7,9 @@ import { SYSTEM } from "@thi.ng/random";
 import { fromDOMEvent, type ISubscription } from "@thi.ng/rstream";
 import {
 	$w,
+	F,
+	M4,
+	V3,
 	add,
 	assign,
 	defMain,
@@ -196,17 +199,17 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
 				]),
 			],
 			attribs: {
-				position: "vec3",
-				dir: "vec3",
-				id: "float",
+				position: V3,
+				dir: V3,
+				id: F,
 			},
 			varying: {
-				valpha: "float",
+				valpha: F,
 			},
 			uniforms: {
-				modelview: "mat4",
-				proj: "mat4",
-				time: "float",
+				modelview: M4,
+				proj: M4,
+				time: F,
 			},
 			state: {
 				blend: true,

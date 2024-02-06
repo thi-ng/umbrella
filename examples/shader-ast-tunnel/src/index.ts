@@ -5,6 +5,10 @@ import {
 	$xy,
 	$xyz,
 	$y,
+	F,
+	S2D,
+	V2,
+	V4,
 	add,
 	assign,
 	atan,
@@ -51,9 +55,9 @@ const JS = targetJS();
 
 // https://www.shadertoy.com/view/Ms2SWW (by iq)
 const mainImage = defn(
-	"vec4",
+	V4,
 	"mainImage",
-	["vec2", "vec2", "float", "sampler2D"],
+	[V2, V2, F, S2D],
 	(frag, res, time, tex) => {
 		let p: Vec2Sym;
 		let q: Vec2Sym;
@@ -181,9 +185,9 @@ if (JS_MODE) {
 					]),
 				],
 				uniforms: {
-					resolution: ["vec2", [W, H]],
-					time: "float",
-					tex: ["sampler2D", 0],
+					resolution: [V2, [W, H]],
+					time: F,
+					tex: [S2D, 0],
 				},
 			}),
 			textures: [

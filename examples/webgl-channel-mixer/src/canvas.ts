@@ -2,6 +2,7 @@ import { downloadCanvas } from "@thi.ng/dl-asset";
 import { Component, type NumOrElement } from "@thi.ng/rdom";
 import type { ISubscribable } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
+import { F, S2D, V2, V4 } from "@thi.ng/shader-ast";
 import {
 	FX_SHADER_SPEC_UV,
 	Texture,
@@ -69,13 +70,13 @@ export class WebGLImageCanvas extends Component {
 	fragColor = vec4(dest, 1.);
 				}`,
 				uniforms: {
-					tex: "sampler2D",
-					chanR: ["vec4", DEFAULT_R],
-					chanG: ["vec4", DEFAULT_G],
-					chanB: ["vec4", DEFAULT_B],
-					exposure: "vec2",
-					maskX: ["float", 0.5],
-					sepWidth: "float",
+					tex: S2D,
+					chanR: [V4, DEFAULT_R],
+					chanG: [V4, DEFAULT_G],
+					chanB: [V4, DEFAULT_B],
+					exposure: V2,
+					maskX: [F, 0.5],
+					sepWidth: F,
 				},
 			}),
 			textures: [this.tex],

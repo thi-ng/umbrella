@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { mat23to44 } from "@thi.ng/matrices";
+import { F, S2D } from "@thi.ng/shader-ast";
 import {
 	FBO,
 	FX_SHADER_SPEC_UV,
@@ -42,11 +43,11 @@ export class OpNode<T extends UserUniforms> {
 			...FX_SHADER_SPEC_UV,
 			fs: <any>spec.main,
 			uniforms: <any>{
-				u_in0: ["sampler2D", 0],
-				u_in1: ["sampler2D", 1],
-				u_in2: ["sampler2D", 2],
-				u_in3: ["sampler2D", 3],
-				u_time: ["float", 0],
+				u_in0: [S2D, 0],
+				u_in1: [S2D, 1],
+				u_in2: [S2D, 2],
+				u_in3: [S2D, 3],
+				u_time: [F, 0],
 				...spec.unis,
 			},
 		});

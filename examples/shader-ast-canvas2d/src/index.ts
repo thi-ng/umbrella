@@ -1,6 +1,9 @@
 import {
 	$x,
 	$y,
+	F,
+	V2,
+	V4,
 	add,
 	cos,
 	defn,
@@ -26,14 +29,14 @@ const gl = targetGLSL();
 // ported from: http://glslsandbox.com/e#55242.0
 const main = defn(
 	// return type
-	"vec4",
+	V4,
 	// func name
 	"main",
 	// args (names are optional)
 	[
-		["vec2", "fragCoord"],
-		["vec2", "res"],
-		["float", "time"],
+		[V2, "fragCoord"],
+		[V2, "res"],
+		[F, "time"],
 	],
 	// bound args given to function body
 	(frag, res, time) => {

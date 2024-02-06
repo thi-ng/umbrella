@@ -1,5 +1,8 @@
 import {
 	$xy,
+	F,
+	V2,
+	V4,
 	assign,
 	cos,
 	defMain,
@@ -36,7 +39,7 @@ const JS = targetJS();
 
 // scene definition for raymarch function. uses SDF primitive functions
 // included in "standard library" bundled with shader-ast pkg
-const scene = defn("float", "scene", ["vec2"], (pos) => {
+const scene = defn(F, "scene", [V2], (pos) => {
 	let d1: FloatSym;
 	let d2: FloatSym;
 	let d3: FloatSym;
@@ -64,7 +67,7 @@ const scene = defn("float", "scene", ["vec2"], (pos) => {
 
 // main fragment shader function
 // again uses several shader-ast std lib helpers
-const mainImage = defn("vec4", "mainImage", ["vec2", "vec2"], (frag, res) => {
+const mainImage = defn(V4, "mainImage", [V2, V2], (frag, res) => {
 	let uv: Vec2Sym;
 	let d: FloatSym;
 	let f = 100;
@@ -145,10 +148,10 @@ if (JS_MODE) {
 			]),
 		],
 		attribs: {
-			position: "vec2",
+			position: V2,
 		},
 		uniforms: {
-			resolution: ["vec2", [W, H]],
+			resolution: [V2, [W, H]],
 		},
 	});
 	// compile model (attrib buffers)

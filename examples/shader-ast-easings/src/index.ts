@@ -2,6 +2,9 @@ import { ConsoleLogger } from "@thi.ng/logger";
 import {
 	$xy,
 	$y,
+	F,
+	V2,
+	V4,
 	defn,
 	distance,
 	div,
@@ -161,71 +164,66 @@ const easingVisualization = (
 	// shader uniforms
 	unis: DemoUniforms
 ) =>
-	defn(
-		"vec4",
-		null,
-		["vec2", "vec2", "vec2", "float"],
-		(p, frag, mpos, t) => {
-			let q: Vec2Sym, col: Vec4Sym;
-			let d: FloatSym, d2: FloatSym;
-			// pre-compute min/max bounds
-			const bmin = vec2(minx + w * MARGIN, miny + h * MARGIN);
-			const bmax = vec2(minx + w * (1 - MARGIN), miny + h * (1 - MARGIN));
-			// pre-configure the plotting function
-			const sampler = std.functionSampler(
-				easingFn,
-				std.functionDomainMapper(bmin, bmax)
-			);
-			// now the actual function body
-			return [
-				// compute the current (time based) curve position (in given screen space)
-				(q = sym(madd(vec2(t, easingFn(t)), sub(bmax, bmin), bmin))),
-				// compute distance to the dot at current position `q` (then threshold)
-				(d = sym(step(float(unis.radius), distance(p, q)))),
-				// compute distance to the curve/polyline (then threshold),
-				(d2 = sym(
-					smoothstep(
-						unis.thickness,
-						float(0),
-						sampler(frag, unis.resolution)
-					)
-				)),
-				// choose color for whichever shape is closest
-				(col = sym(
-					ternary(
-						lte(d, d2),
-						unis.dotColor,
-						// compute gradient for curve color
-						mix(
-							unis.curveColor1,
-							unis.curveColor2,
-							$y(std.fitNorm<Vec2Term>(p, bmin, bmax))
-						)
-					)
-				)),
-				// if either `d` or `d2` are 1 return background color
-				// (also choose bg color based on mouse position / hover state)
-				ret(
+	defn(V4, null, [V2, V2, V2, F], (p, frag, mpos, t) => {
+		let q: Vec2Sym, col: Vec4Sym;
+		let d: FloatSym, d2: FloatSym;
+		// pre-compute min/max bounds
+		const bmin = vec2(minx + w * MARGIN, miny + h * MARGIN);
+		const bmax = vec2(minx + w * (1 - MARGIN), miny + h * (1 - MARGIN));
+		// pre-configure the plotting function
+		const sampler = std.functionSampler(
+			easingFn,
+			std.functionDomainMapper(bmin, bmax)
+		);
+		// now the actual function body
+		return [
+			// compute the current (time based) curve position (in given screen space)
+			(q = sym(madd(vec2(t, easingFn(t)), sub(bmax, bmin), bmin))),
+			// compute distance to the dot at current position `q` (then threshold)
+			(d = sym(step(float(unis.radius), distance(p, q)))),
+			// compute distance to the curve/polyline (then threshold),
+			(d2 = sym(
+				smoothstep(
+					unis.thickness,
+					float(0),
+					sampler(frag, unis.resolution)
+				)
+			)),
+			// choose color for whichever shape is closest
+			(col = sym(
+				ternary(
+					lte(d, d2),
+					unis.dotColor,
+					// compute gradient for curve color
 					mix(
-						col,
-						// choose bg color based on mouse position
-						mix(
-							unis.bgColor,
-							unis.bgHoverColor,
-							float(
-								std.isPointInRect(
-									mpos,
-									vec2(minx, miny),
-									vec2(w, h)
-								)
-							)
-						),
-						min(d, d2)
+						unis.curveColor1,
+						unis.curveColor2,
+						$y(std.fitNorm<Vec2Term>(p, bmin, bmax))
 					)
-				),
-			];
-		}
-	);
+				)
+			)),
+			// if either `d` or `d2` are 1 return background color
+			// (also choose bg color based on mouse position / hover state)
+			ret(
+				mix(
+					col,
+					// choose bg color based on mouse position
+					mix(
+						unis.bgColor,
+						unis.bgHoverColor,
+						float(
+							std.isPointInRect(
+								mpos,
+								vec2(minx, miny),
+								vec2(w, h)
+							)
+						)
+					),
+					min(d, d2)
+				)
+			),
+		];
+	});
 
 // for simplicity, use a square aspect ratio for the canvas (use smallest side)
 const W = Math.min(window.innerWidth, window.innerHeight - 32);
@@ -245,13 +243,13 @@ const toy = shaderToy({
 	main,
 	// custom uniforms with default values
 	uniforms: {
-		thickness: ["float", 0.2],
-		radius: ["float", 0.005],
-		bgColor: ["vec4", [0.2, 0.2, 0.25, 1]],
-		bgHoverColor: ["vec4", [0.3, 0.3, 0.35, 1]],
-		curveColor1: ["vec4", [1, 1, 1, 1]],
-		curveColor2: ["vec4", [0, 0.8, 1, 1]],
-		dotColor: ["vec4", [1, 0, 0.8, 1]],
+		thickness: [F, 0.2],
+		radius: [F, 0.005],
+		bgColor: [V4, [0.2, 0.2, 0.25, 1]],
+		bgHoverColor: [V4, [0.3, 0.3, 0.35, 1]],
+		curveColor1: [V4, [1, 1, 1, 1]],
+		curveColor2: [V4, [0, 0.8, 1, 1]],
+		dotColor: [V4, [1, 0, 0.8, 1]],
 	},
 	// GLSL code generation options (here to configure logger & float precision)
 	// (see console for generated shader source code)

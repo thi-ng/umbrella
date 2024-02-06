@@ -6,6 +6,9 @@ import { fract } from "@thi.ng/math";
 import { ortho } from "@thi.ng/matrices";
 import {
 	$y,
+	M4,
+	V2,
+	V4,
 	assign,
 	defMain,
 	float,
@@ -156,15 +159,15 @@ const pointShader: ShaderSpec = {
 		defMain(() => [assign(outs.fragColor, ins.vcol)]),
 	],
 	attribs: {
-		position: "vec2",
+		position: V2,
 	},
 	varying: {
-		vcol: "vec4",
+		vcol: V4,
 	},
 	uniforms: {
-		proj: "mat4",
-		color: "vec4",
-		color2: "vec4",
+		proj: M4,
+		color: V4,
+		color2: V4,
 	},
 	state: {
 		depth: false,

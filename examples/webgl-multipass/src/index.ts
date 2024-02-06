@@ -3,6 +3,8 @@ import { FLOAT_GRAY, floatBuffer } from "@thi.ng/pixel";
 import {
 	$x,
 	$xyz,
+	F,
+	V2,
 	assign,
 	defMain,
 	fract,
@@ -67,8 +69,8 @@ const toy = defMultiPass({
 			inputs: [],
 			outputs: ["foo", "bar"],
 			uniforms: {
-				time: "float",
-				resolution: "vec2",
+				time: F,
+				resolution: V2,
 			},
 			uniformVals: {
 				// foo: () => Math.random()
@@ -99,8 +101,8 @@ const toy = defMultiPass({
 			inputs: ["foo", "bar"],
 			outputs: [],
 			uniforms: {
-				resolution: "vec2",
-				time: "float",
+				resolution: V2,
+				time: F,
 			},
 		},
 	],

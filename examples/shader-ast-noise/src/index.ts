@@ -1,5 +1,8 @@
 import {
 	$xy,
+	F,
+	V2,
+	V4,
 	add,
 	assign,
 	defMain,
@@ -32,25 +35,20 @@ const GL = targetGLSL({ version: GLSLVersion.GLES_100 }); // WebGL
 const JS = targetJS();
 
 // https://www.shadertoy.com/view/Ms2SWW (by iq)
-const mainImage = defn(
-	"vec4",
-	"mainImage",
-	["vec2", "vec2", "float"],
-	(fragCoord, res, time) => {
-		let uv: Vec2Sym;
-		let col: FloatSym;
-		return [
-			(uv = sym(aspectCorrectedUV(fragCoord, res))),
-			// dynamically create a multi-octave version of `snoise2`
-			// computed over 4 octaves w/ given phase shift and decay
-			// factor (both per octave)
-			(col = sym(
-				additive("vec2", snoise2, 4)(add(uv, time), vec2(2), float(0.5))
-			)),
-			ret(vec4(vec3(fit1101(col)), 1)),
-		];
-	}
-);
+const mainImage = defn(V4, "mainImage", [V2, V2, F], (fragCoord, res, time) => {
+	let uv: Vec2Sym;
+	let col: FloatSym;
+	return [
+		(uv = sym(aspectCorrectedUV(fragCoord, res))),
+		// dynamically create a multi-octave version of `snoise2`
+		// computed over 4 octaves w/ given phase shift and decay
+		// factor (both per octave)
+		(col = sym(
+			additive(V2, snoise2, 4)(add(uv, time), vec2(2), float(0.5))
+		)),
+		ret(vec4(vec3(fit1101(col)), 1)),
+	];
+});
 
 // build call graph for given entry function, sort in topological order
 // and bundle all functions in a global scope for code generation...
@@ -115,11 +113,11 @@ if (JS_MODE) {
 			]),
 		],
 		attribs: {
-			position: "vec2",
+			position: V2,
 		},
 		uniforms: {
-			resolution: ["vec2", [W, H]],
-			time: "float",
+			resolution: [V2, [W, H]],
+			time: F,
 		},
 	});
 	// compile model (attrib buffers)

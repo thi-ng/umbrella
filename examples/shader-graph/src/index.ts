@@ -6,6 +6,11 @@ import { gestureStream } from "@thi.ng/rstream-gestures";
 import { Node2D } from "@thi.ng/scenegraph";
 import {
 	$x,
+	F,
+	M4,
+	S2D,
+	V2,
+	V3,
 	add,
 	assign,
 	defMain,
@@ -86,18 +91,18 @@ const CTX: AppCtx = {
 				]),
 			],
 			attribs: {
-				position: "vec2",
-				uv: "vec2",
+				position: V2,
+				uv: V2,
 			},
 			varying: {
-				v_uv: "vec2",
+				v_uv: V2,
 			},
 			uniforms: {
-				tex: "sampler2D",
-				model: "mat4",
+				tex: S2D,
+				model: M4,
 				// 2D projection matrix
 				proj: [
-					"mat4",
+					M4,
 					<GLMat4>ortho([], 0, canvas.width, canvas.height, 0, -1, 1),
 				],
 			},
@@ -167,9 +172,9 @@ const op1 = new OpNode(CTX, {
 	],
 	// will be exposed as user controllable parameters
 	unis: {
-		center: ["vec2", [0.5, 0.5]],
-		rings: ["float", 16],
-		speed: ["float", -0.1],
+		center: [V2, [0.5, 0.5]],
+		rings: [F, 16],
+		speed: [F, -0.1],
 	},
 	// texture inputs from other shader nodes
 	inputs: [],
@@ -195,9 +200,9 @@ const op2 = new OpNode(CTX, {
 		]),
 	],
 	unis: {
-		shiftR: ["vec2", [0.1, 0]],
-		shiftG: ["vec2", [0.05, 0]],
-		shiftB: ["vec2", [0.02, 0]],
+		shiftR: [V2, [0.1, 0]],
+		shiftG: [V2, [0.05, 0]],
+		shiftB: [V2, [0.02, 0]],
 	},
 	inputs: [op1.tex],
 	node: new QuadNode("op2", CONTENT, [0, 132], 0, CTX.texSize),
@@ -215,7 +220,7 @@ const op3 = new OpNode(CTX, {
 							// functional programming / composition for shaders
 							// additive is a HOF to calculate multi-octave noise
 							// with configurable behavior
-							additive("vec3", snoise3, 2)(
+							additive(V3, snoise3, 2)(
 								vec3(ins.v_uv, mul(unis.u_time, 0.005)),
 								vec3(2),
 								float(1)

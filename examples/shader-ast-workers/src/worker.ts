@@ -3,6 +3,9 @@ import { hueRgb } from "@thi.ng/color";
 import {
 	$x,
 	$xyz,
+	V2,
+	V3,
+	V4,
 	assign,
 	defn,
 	float,
@@ -46,7 +49,7 @@ import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
 const COLORS = [...map((i) => hueRgb([], i), normRange(NUM_WORKERS))];
 
 // shader AST functions from the shader-ast-raymarch example
-const scene = defn("vec2", "scene", ["vec3"], (pos) => {
+const scene = defn(V2, "scene", [V3], (pos) => {
 	let d1: FloatSym;
 	let d2: FloatSym;
 	let d3: FloatSym;
@@ -79,9 +82,9 @@ const scene = defn("vec2", "scene", ["vec3"], (pos) => {
 // the only difference to the original example is the addition of the `tint`
 // color param to uniquely color each worker's computed region
 const mainImage = defn(
-	"vec4",
+	V4,
 	"mainImage",
-	["vec2", "vec2", "vec3", "vec3", "vec3"],
+	[V2, V2, V3, V3, V3],
 	(frag, res, eyePos, lightDir, tint) => {
 		let dir: Vec3Sym;
 		let result: Vec2Sym;

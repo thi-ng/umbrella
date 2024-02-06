@@ -1,5 +1,6 @@
 import { red } from "@thi.ng/colored-noise";
 import { ConsoleLogger } from "@thi.ng/logger";
+import { V2, V4 } from "@thi.ng/shader-ast";
 import { mapcat, normRange, repeatedly } from "@thi.ng/transducers";
 import { Vec2 } from "@thi.ng/vectors";
 import {
@@ -80,12 +81,12 @@ const pipeline = defMultiPass({
 			outputs: ["stage1"],
 			// custom shader attributes (MUST be same as defined above in `model`)
 			attribs: {
-				position: "vec2",
+				position: V2,
 			},
 			// custom shader uniforms
 			// (here we're drawing with a very faint white, only 0.5% alpha)
 			uniforms: {
-				color: ["vec4", [1, 1, 1, 0.005]],
+				color: [V4, [1, 1, 1, 0.005]],
 			},
 			// GL state flags/config
 			state: {

@@ -1,5 +1,6 @@
 import { ConsoleLogger } from "@thi.ng/logger";
 import { SYSTEM } from "@thi.ng/random";
+import { V3 } from "@thi.ng/shader-ast";
 import { repeatedly } from "@thi.ng/transducers";
 import {
 	TextureFormat,
@@ -106,8 +107,8 @@ void main() {
 			outputs: [],
 			// custom uniforms for cell state colors
 			uniforms: {
-				alive: ["vec3", [1, 1, 1]],
-				dead: ["vec3", [0, 0, 1]],
+				alive: [V3, [1, 1, 1]],
+				dead: [V3, [0, 0, 1]],
 			},
 		},
 	],
