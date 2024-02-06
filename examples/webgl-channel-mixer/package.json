@@ -24,6 +24,7 @@
 		"@thi.ng/rdom-components": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/rstream-gestures": "workspace:^",
+		"@thi.ng/shader-ast": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/webgl": "workspace:^"
 	},

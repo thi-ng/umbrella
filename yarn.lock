@@ -2577,6 +2577,7 @@ __metadata:
     "@thi.ng/rdom-components": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.3.3"
@@ -2624,6 +2625,7 @@ __metadata:
   dependencies:
     "@thi.ng/colored-noise": "workspace:^"
     "@thi.ng/logger": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
@@ -2638,6 +2640,7 @@ __metadata:
   dependencies:
     "@thi.ng/logger": "workspace:^"
     "@thi.ng/random": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.3.3"

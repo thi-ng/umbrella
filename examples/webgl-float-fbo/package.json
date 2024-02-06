@@ -18,6 +18,7 @@
 	"dependencies": {
 		"@thi.ng/colored-noise": "workspace:^",
 		"@thi.ng/logger": "workspace:^",
+		"@thi.ng/shader-ast": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/vectors": "workspace:^",
 		"@thi.ng/webgl": "workspace:^"

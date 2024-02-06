@@ -18,6 +18,7 @@
 	"dependencies": {
 		"@thi.ng/logger": "workspace:^",
 		"@thi.ng/random": "workspace:^",
+		"@thi.ng/shader-ast": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/webgl": "workspace:^"
 	},
