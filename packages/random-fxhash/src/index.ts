@@ -1,5 +1,5 @@
 import type { Fn0 } from "@thi.ng/api";
-import { B58_CHARS_LC } from "@thi.ng/base-n/58";
+import { B58_CHARS_LC } from "@thi.ng/base-n/chars/58";
 import type { IRandom } from "@thi.ng/random";
 import { DEFAULT_SEED_128 } from "@thi.ng/random/constants";
 import { pickRandom, pickRandomKey } from "@thi.ng/random/pick-random";
