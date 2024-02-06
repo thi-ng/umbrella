@@ -21,12 +21,13 @@ const bytes = new Uint8Array(
 
 const src = `// thing:no-export
 // generated @ ${FMT_yyyyMMdd_HHmmss()} - DO NOT EDIT!
-import { BASE64 } from "@thi.ng/base-n/64";
+import { B64_CHARS } from "@thi.ng/base-n/chars/64";
+import { BaseNDecoder } from "@thi.ng/base-n/decode";
 
 export const NUM_THEMES = ${THEMES.length};
 
 /** @internal */
-export const BINARY = BASE64.decodeBytes(
+export const BINARY = new BaseNDecoder(B64_CHARS).decodeBytes(
 	"${BASE64.encodeBytes(bytes)}",
 	new Uint8Array(NUM_THEMES * 18)
 );
