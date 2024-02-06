@@ -67,7 +67,7 @@ For Node.js REPL:
 const webglMsdf = await import("@thi.ng/webgl-msdf");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.56 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.57 KB
 
 ## Dependencies
 

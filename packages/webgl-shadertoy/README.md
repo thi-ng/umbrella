@@ -61,7 +61,7 @@ For Node.js REPL:
 const webglShadertoy = await import("@thi.ng/webgl-shadertoy");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 666 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 693 bytes
 
 ## Dependencies
 

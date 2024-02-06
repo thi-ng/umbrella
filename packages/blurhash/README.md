@@ -73,7 +73,7 @@ For Node.js REPL:
 const blurhash = await import("@thi.ng/blurhash");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.17 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.21 KB
 
 ## Dependencies
 
