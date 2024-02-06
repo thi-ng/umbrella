@@ -49,7 +49,7 @@ export interface MetaStreamOpts extends CommonOpts {
  * // transform each received odd number into a stream
  * // producing 3 copies of that number in the metastream
  * // even numbers are ignored
- * a = metastream(
+ * a = metaStream(
  *   (x) => (x & 1)
  *     ? fromIterable(tx.repeat(x, 3), { delay: 100 })
  *     : null

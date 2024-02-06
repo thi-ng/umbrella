@@ -1,4 +1,5 @@
 import { isNode } from "@thi.ng/checks/is-node";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { fromInterval } from "./interval.js";
@@ -13,6 +14,14 @@ export interface FromRAFOpts extends CommonOpts {
 	 * @defaultValue false
 	 */
 	timestamp: boolean;
+	/**
+	 * Only used if {@link FromRAFOpts.timestamp} is enabled. If given as
+	 * number, the value will be subtracted from all emitted timestamps. If this
+	 * option is set to true, the timestamps will be automatically zero-adjusted
+	 * such that the first emitted value will be zero. If undefined (default),
+	 * the browser supplied timestamps will be used as is.
+	 */
+	t0: number | boolean;
 }
 
 /**
@@ -34,7 +43,12 @@ export const fromRAF = (opts: Partial<FromRAFOpts> = {}) =>
 		: stream<number>((stream) => {
 				let i = 0;
 				let isActive = true;
+				let t0 = isNumber(opts.t0) ? opts.t0 : undefined;
 				const loop: FrameRequestCallback = (time) => {
+					if (opts.timestamp && opts.t0) {
+						if (t0 === undefined) t0 = time;
+						time -= t0;
+					}
 					isActive && stream.next(opts.timestamp ? time : i++);
 					isActive && (id = requestAnimationFrame(loop));
 				};
