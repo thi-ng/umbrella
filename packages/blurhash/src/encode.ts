@@ -1,5 +1,6 @@
 import type { FnN, FnN3, FnN4 } from "@thi.ng/api";
-import { BASE83 } from "@thi.ng/base-n/83";
+import { B83_CHARS } from "@thi.ng/base-n/chars/83";
+import { BaseNEncoder } from "@thi.ng/base-n/encode";
 import { imageCanvas } from "@thi.ng/canvas";
 import { signedPow } from "@thi.ng/math/abs";
 import { clamp } from "@thi.ng/math/interval";
@@ -7,6 +8,8 @@ import { __ensureDetail, __ensureSize } from "./internal/ensure";
 import { __fromLinear, __toLinear } from "./internal/linear";
 
 const { PI, cos, floor } = Math;
+
+const BASE83 = new BaseNEncoder(B83_CHARS);
 
 /**
  * Computes the blurhash for the given ABGR 32bit pixel array, image size and
