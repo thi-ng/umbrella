@@ -1,3 +1,4 @@
+import { S2D, V2 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
@@ -27,7 +28,7 @@ export const PASSTHROUGH_FS_UV: ShaderFn = (_, unis, ins, outs) => [
 export const FX_SHADER_SPEC: ShaderSpec = {
 	vs: PASSTHROUGH_VS,
 	fs: PASSTHROUGH_FS,
-	attribs: { position: "vec2" },
+	attribs: { position: V2 },
 	varying: {},
 	uniforms: {},
 	state: { depth: false },
@@ -37,9 +38,9 @@ export const FX_SHADER_SPEC: ShaderSpec = {
 export const FX_SHADER_SPEC_UV: ShaderSpec = {
 	vs: PASSTHROUGH_VS_UV,
 	fs: PASSTHROUGH_FS_UV,
-	attribs: { position: "vec2", uv: "vec2" },
-	varying: { v_uv: "vec2" },
-	uniforms: { tex: "sampler2D" },
+	attribs: { position: V2, uv: V2 },
+	varying: { v_uv: V2 },
+	uniforms: { tex: S2D },
 	state: { depth: false },
 	ext: {},
 };

@@ -5,6 +5,7 @@ import {
 } from "@thi.ng/shader-ast-stdlib/light/lambert";
 import { transformMVP } from "@thi.ng/shader-ast-stdlib/matrix/mvp";
 import { surfaceNormal } from "@thi.ng/shader-ast-stdlib/matrix/normal";
+import { M4, S2D, V2, V3 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { vec4 } from "@thi.ng/shader-ast/ast/lit";
@@ -66,32 +67,30 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
 	],
 	// pre: ALIAS_TEXTURE,
 	attribs: {
-		position: "vec3",
-		normal: "vec3",
-		...(opts.uv ? { [opts.uv]: "vec2" } : null),
-		...(opts.color && !opts.instanceColor
-			? { [opts.color]: "vec3" }
-			: null),
-		...(opts.instancePos ? { [opts.instancePos]: "vec3" } : null),
-		...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null),
+		position: V3,
+		normal: V3,
+		...(opts.uv ? { [opts.uv]: V2 } : null),
+		...(opts.color && !opts.instanceColor ? { [opts.color]: V3 } : null),
+		...(opts.instancePos ? { [opts.instancePos]: V3 } : null),
+		...(opts.instanceColor ? { [opts.instanceColor]: V3 } : null),
 	},
 	varying: {
-		vcolor: "vec3",
-		vnormal: "vec3",
-		...(opts.uv ? { vuv: "vec2" } : null),
+		vcolor: V3,
+		vnormal: V3,
+		...(opts.uv ? { vuv: V2 } : null),
 	},
 	uniforms: {
-		model: "mat4",
-		view: "mat4",
-		proj: "mat4",
-		normalMat: ["mat4", autoNormalMatrix2()],
-		lightDir: ["vec3", [0, 1, 0]],
-		lightCol: ["vec3", [1, 1, 1]],
+		model: M4,
+		view: M4,
+		proj: M4,
+		normalMat: [M4, autoNormalMatrix2()],
+		lightDir: [V3, [0, 1, 0]],
+		lightCol: [V3, [1, 1, 1]],
 		...defMaterial(
 			{ diffuseCol: [1, 1, 1], ...opts.material },
 			{ specularCol: false }
 		),
-		...(opts.uv ? { tex: "sampler2D" } : null),
+		...(opts.uv ? { tex: S2D } : null),
 	},
 	state: {
 		depth: true,

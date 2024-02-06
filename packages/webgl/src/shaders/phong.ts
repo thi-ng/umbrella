@@ -1,4 +1,5 @@
 import type { Sym } from "@thi.ng/shader-ast";
+import { F, M4, V3 } from "@thi.ng/shader-ast/api/types";
 import { diffuseLighting } from "@thi.ng/shader-ast-stdlib/light/lambert";
 import { surfaceNormal } from "@thi.ng/shader-ast-stdlib/matrix/normal";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
@@ -80,29 +81,27 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
 		}),
 	],
 	attribs: {
-		position: "vec3",
-		normal: "vec3",
-		...(opts.color && !opts.instanceColor
-			? { [opts.color]: "vec3" }
-			: null),
-		...(opts.instancePos ? { [opts.instancePos]: "vec3" } : null),
-		...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null),
+		position: V3,
+		normal: V3,
+		...(opts.color && !opts.instanceColor ? { [opts.color]: V3 } : null),
+		...(opts.instancePos ? { [opts.instancePos]: V3 } : null),
+		...(opts.instanceColor ? { [opts.instanceColor]: V3 } : null),
 	},
 	varying: {
-		vnormal: "vec3",
-		veye: "vec3",
-		vlight: "vec3",
-		vcolor: "vec3",
+		vnormal: V3,
+		veye: V3,
+		vlight: V3,
+		vcolor: V3,
 	},
 	uniforms: {
-		model: "mat4",
-		normalMat: ["mat4", autoNormalMatrix1()],
-		view: "mat4",
-		proj: "mat4",
-		shininess: ["float", 32],
-		eyePos: "vec3",
-		lightPos: ["vec3", [0, 0, 2]],
-		lightCol: ["vec3", [1, 1, 1]],
+		model: M4,
+		normalMat: [M4, autoNormalMatrix1()],
+		view: M4,
+		proj: M4,
+		shininess: [F, 32],
+		eyePos: V3,
+		lightPos: [V3, [0, 0, 2]],
+		lightCol: [V3, [1, 1, 1]],
 		...defMaterial(opts.material),
 	},
 	state: {

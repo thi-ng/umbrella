@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
+import { S2D, V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { INT0, ivec2 } from "@thi.ng/shader-ast/ast/lit";
@@ -122,16 +123,13 @@ const initShader = (
 		vs: pass.vs || PASSTHROUGH_VS,
 		fs: pass.fs,
 		attribs: pass.attribs || {
-			position: "vec2",
+			position: V2,
 		},
 		varying: pass.varying,
 		uniforms: <ShaderUniformSpecs>{
 			...pass.uniforms,
 			...transduce(
-				map(
-					(i) =>
-						<[string, UniformDecl]>[`input${i}`, ["sampler2D", i]]
-				),
+				map((i) => <[string, UniformDecl]>[`input${i}`, [S2D, i]]),
 				assocObj(),
 				range(numIns)
 			),
@@ -140,10 +138,7 @@ const initShader = (
 			? transduce(
 					map(
 						(i) =>
-							<[string, ShaderOutputSpec]>[
-								`output${i}`,
-								["vec4", i],
-							]
+							<[string, ShaderOutputSpec]>[`output${i}`, [V4, i]]
 					),
 					assocObj(),
 					range(numOuts)

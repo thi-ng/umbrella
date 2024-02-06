@@ -1,3 +1,4 @@
+import { V3 } from "@thi.ng/shader-ast/api/types";
 import type { GLSL } from "./api/glsl.js";
 import type { Material } from "./api/material.js";
 import type { ShaderUniformSpecs } from "./api/shader.js";
@@ -9,9 +10,9 @@ export const DEFAULT_MATERIAL: Material = {
 };
 
 const TYPES: Record<keyof Material, GLSL> = {
-	ambientCol: "vec3",
-	diffuseCol: "vec3",
-	specularCol: "vec3",
+	ambientCol: V3,
+	diffuseCol: V3,
+	specularCol: V3,
 };
 
 export const defMaterial = (
