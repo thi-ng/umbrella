@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dcons",
-	"version": "3.2.88",
+	"version": "3.2.89",
 	"description": "Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors)",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 		"@thi.ng/equiv": "^2.1.46",
 		"@thi.ng/errors": "^2.4.15",
 		"@thi.ng/random": "^3.6.29",
-		"@thi.ng/transducers": "^8.8.26"
+		"@thi.ng/transducers": "^8.9.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/blurhash",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "Fast, optimized TS implementation of the Wolt Blurhash algorithm",
 	"type": "module",
 	"module": "./index.js",
@@ -36,10 +36,10 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.22",
-		"@thi.ng/base-n": "^2.6.4",
+		"@thi.ng/base-n": "^2.7.0",
 		"@thi.ng/canvas": "^0.2.4",
 		"@thi.ng/errors": "^2.4.15",
-		"@thi.ng/math": "^5.8.4"
+		"@thi.ng/math": "^5.9.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",

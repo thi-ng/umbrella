@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/base-n",
-	"version": "2.6.4",
+	"version": "2.7.0",
 	"description": "Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/83/85, support for bigints and encoding/decoding of byte arrays",
 	"type": "module",
 	"module": "./index.js",

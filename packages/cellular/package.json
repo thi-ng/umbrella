@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/cellular",
-	"version": "0.2.85",
+	"version": "0.2.86",
 	"description": "Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 		"@thi.ng/checks": "^3.4.22",
 		"@thi.ng/errors": "^2.4.15",
 		"@thi.ng/random": "^3.6.29",
-		"@thi.ng/transducers": "^8.8.26"
+		"@thi.ng/transducers": "^8.9.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.39.0",

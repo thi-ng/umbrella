@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-01-30T21:37:19Z
+- **Last updated**: 2024-02-06T23:18:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.115](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl-shadertoy@0.4.115) (2024-02-06)
+
+#### ♻️ Refactoring
+
+- use shader type consts ([813d277](https://github.com/thi-ng/umbrella/commit/813d277))
 
 ### [0.4.95](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl-shadertoy@0.4.95) (2023-11-09)
 

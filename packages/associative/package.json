@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/associative",
-	"version": "6.3.35",
+	"version": "6.3.36",
 	"description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -40,11 +40,11 @@
 		"@thi.ng/binary": "^3.4.10",
 		"@thi.ng/checks": "^3.4.22",
 		"@thi.ng/compare": "^2.2.18",
-		"@thi.ng/dcons": "^3.2.88",
+		"@thi.ng/dcons": "^3.2.89",
 		"@thi.ng/equiv": "^2.1.46",
 		"@thi.ng/errors": "^2.4.15",
 		"@thi.ng/random": "^3.6.29",
-		"@thi.ng/transducers": "^8.8.26",
+		"@thi.ng/transducers": "^8.9.0",
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-html",
-	"version": "2.4.5",
+	"version": "2.4.6",
 	"description": "100+ type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure",
 	"type": "module",
 	"module": "./index.js",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-carbon-icons",
-	"version": "3.1.47",
+	"version": "3.1.48",
 	"description": "Full set of IBM's Carbon icons in hiccup format",
 	"type": "module",
 	"module": "./index.js",
