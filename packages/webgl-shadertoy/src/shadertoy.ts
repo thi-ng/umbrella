@@ -1,3 +1,4 @@
+import { F, I, V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain, defn } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
@@ -86,20 +87,20 @@ export const shaderToy = <U extends ShaderToyUniforms>(
 						defMain(() => [
 							assign(
 								outputs.fragColor,
-								defn("vec4", "mainImage", [], () =>
+								defn(V4, "mainImage", [], () =>
 									main(gl, <any>unis)
 								)()
 							),
 						]),
 					],
 					attribs: {
-						position: "vec2",
+						position: V2,
 					},
 					uniforms: {
-						resolution: "vec2",
-						mouse: ["vec2", [0, 0]],
-						mouseButtons: ["int", 0],
-						time: "float",
+						resolution: V2,
+						mouse: [V2, [0, 0]],
+						mouseButtons: [I, 0],
+						time: F,
 						...opts.uniforms,
 					},
 				},
