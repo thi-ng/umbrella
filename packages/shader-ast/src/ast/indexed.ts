@@ -2,6 +2,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { Index, IndexM, Sym } from "../api/nodes.js";
 import type { UintTerm } from "../api/terms.js";
 import {
+	F,
 	V2,
 	V3,
 	V4,
@@ -48,6 +49,6 @@ export function indexMat(m: Sym<any>, a: number, b?: number): any {
 		val: m,
 	};
 	return b !== undefined
-		? { tag: "idx", type: "float", id: int(b), val: idx }
+		? { tag: "idx", type: F, id: int(b), val: idx }
 		: idx;
 }

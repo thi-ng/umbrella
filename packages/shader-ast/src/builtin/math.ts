@@ -1,23 +1,23 @@
 import type { FnCall, Sym, Term } from "../api/nodes.js";
 import type {
-	BoolTerm,
 	BVec2Term,
 	BVec3Term,
 	BVec4Term,
+	BoolTerm,
 	FloatTerm,
-	IntTerm,
 	IVec2Term,
 	IVec3Term,
 	IVec4Term,
-	UintTerm,
+	IntTerm,
 	UVec2Term,
 	UVec3Term,
 	UVec4Term,
+	UintTerm,
 	Vec2Term,
 	Vec3Term,
 	Vec4Term,
 } from "../api/terms.js";
-import type { Mat, Prim, Vec } from "../api/types.js";
+import { F, type Mat, type Prim, type Vec } from "../api/types.js";
 import { builtinCall } from "../ast/function.js";
 import { matchingBoolType, matchingPrimFor } from "../ast/item.js";
 
@@ -54,10 +54,10 @@ export const normalize = <T extends Vec>(v: Term<T>) =>
  * @param v -
  */
 export const length = <T extends Vec>(v: Term<T>) =>
-	builtinCall("length", "float", v);
+	builtinCall("length", F, v);
 
 export const distance = <A extends Vec, B extends A>(a: Term<A>, b: Term<B>) =>
-	builtinCall("distance", "float", a, b);
+	builtinCall("distance", F, a, b);
 
 /**
  * Returns dot product of given vectors.
@@ -66,7 +66,7 @@ export const distance = <A extends Vec, B extends A>(a: Term<A>, b: Term<B>) =>
  * @param b -
  */
 export const dot = <A extends Vec, B extends A>(a: Term<A>, b: Term<B>) =>
-	builtinCall("dot", "float", a, b);
+	builtinCall("dot", F, a, b);
 
 /**
  * Returns cross product of given 3D vectors.
@@ -141,7 +141,7 @@ export function mod<A extends Prim, B extends A>(a: Term<A>, b: Term<B>): FnCall
 export function mod<A extends Prim>(a: Term<A>, b: FloatTerm): FnCall<A>;
 export function mod(a: Term<any>, b: Term<any>): FnCall<any> {
 	const f = builtinCall("mod", a.type, a, b);
-	b.type === "float" && (f.info = "n");
+	b.type === F && (f.info = "n");
 	return f;
 }
 
@@ -163,7 +163,7 @@ export function mix<A extends Prim, B extends A, C extends B>(a: Term<A>, b: Ter
 export function mix<A extends Prim, B extends A>(a: Term<A>, b: Term<B>, c: FloatTerm): FnCall<A>;
 export function mix(a: Term<any>, b: Term<any>, c: Term<any>): FnCall<any> {
 	const f = builtinCall("mix", a.type, a, b, c);
-	c.type === "float" && (f.info = "n");
+	c.type === F && (f.info = "n");
 	return f;
 }
 

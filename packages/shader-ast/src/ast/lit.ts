@@ -17,9 +17,13 @@ import type {
 	Vec4Term,
 } from "../api/terms.js";
 import {
+	B,
+	F,
+	I,
 	M2,
 	M3,
 	M4,
+	U,
 	V2,
 	V3,
 	V4,
@@ -39,16 +43,15 @@ export const lit = <T extends Type>(type: T, val: any, info?: string): Lit<T> =>
 				val,
 		  };
 
-export const bool = (x: NumericB) => lit("bool", isNumber(x) ? !!x : x);
+export const bool = (x: NumericB) => lit(B, isNumber(x) ? !!x : x);
 
-export const float = (x: NumericB) =>
-	lit("float", isBoolean(x) ? (<any>x) & 1 : x);
+export const float = (x: NumericB) => lit(F, isBoolean(x) ? (<any>x) & 1 : x);
 
 export const int = (x: NumericB) =>
-	lit("int", isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x | 0 : x);
+	lit(I, isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x | 0 : x);
 
 export const uint = (x: NumericB) =>
-	lit("uint", isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x >>> 0 : x);
+	lit(U, isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x >>> 0 : x);
 
 const wrap =
 	<T extends Type>(type: T, ctor: Fn<any, Term<T>>) =>
@@ -65,7 +68,7 @@ const wrap =
  *
  * @param x -
  */
-export const wrapFloat = wrap("float", float);
+export const wrapFloat = wrap(F, float);
 
 /**
  * Takes a plain number or numeric term and wraps it as signed integer
@@ -73,7 +76,7 @@ export const wrapFloat = wrap("float", float);
  *
  * @param x -
  */
-export const wrapInt = wrap("int", int);
+export const wrapInt = wrap(I, int);
 
 /**
  * Takes a plain number or numeric term and wraps it as unsigned integer
@@ -81,7 +84,7 @@ export const wrapInt = wrap("int", int);
  *
  * @param x -
  */
-export const wrapUint = wrap("uint", uint);
+export const wrapUint = wrap(U, uint);
 
 /**
  * Takes a plain number or numeric term and wraps it as boolean literal
@@ -89,7 +92,7 @@ export const wrapUint = wrap("uint", uint);
  *
  * @param x -
  */
-export const wrapBool = wrap("bool", bool);
+export const wrapBool = wrap(B, bool);
 
 export const TRUE = bool(true);
 export const FALSE = bool(false);

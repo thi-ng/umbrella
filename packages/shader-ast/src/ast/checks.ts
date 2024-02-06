@@ -3,7 +3,16 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import type { Lit, Term } from "../api/nodes.js";
 import type { BoolTerm, FloatTerm, IntTerm, UintTerm } from "../api/terms.js";
-import type { BVec, IVec, UVec, Vec } from "../api/types.js";
+import {
+	B,
+	F,
+	I,
+	U,
+	type BVec,
+	type IVec,
+	type UVec,
+	type Vec,
+} from "../api/types.js";
 
 const RE_VEC = /^[iub]?vec[234]$/;
 const RE_MAT = /^mat[234]$/;
@@ -19,22 +28,22 @@ export const isTerm = (t: any): t is Term<any> =>
 /**
  * Returns true, if given term evaluates to a boolean value.
  */
-export const isBool = (t: Term<any>): t is BoolTerm => t.type === "bool";
+export const isBool = (t: Term<any>): t is BoolTerm => t.type === B;
 
 /**
  * Returns true, if given term evaluates to a float value.
  */
-export const isFloat = (t: Term<any>): t is FloatTerm => t.type === "float";
+export const isFloat = (t: Term<any>): t is FloatTerm => t.type === F;
 
 /**
  * Returns true, if given term evaluates to a signed integer value.
  */
-export const isInt = (t: Term<any>): t is IntTerm => t.type === "int";
+export const isInt = (t: Term<any>): t is IntTerm => t.type === I;
 
 /**
  * Returns true, if given term evaluates to an unsigned integer value.
  */
-export const isUint = (t: Term<any>): t is UintTerm => t.type === "uint";
+export const isUint = (t: Term<any>): t is UintTerm => t.type === U;
 
 /**
  * Returns true, if given term is a literal.

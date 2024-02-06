@@ -28,7 +28,17 @@ import type {
 	Vec3Term,
 	Vec4Term,
 } from "../api/terms.js";
-import type { BVec, IVec, Type, UVec, Vec } from "../api/types.js";
+import {
+	B,
+	F,
+	I,
+	U,
+	type BVec,
+	type IVec,
+	type Type,
+	type UVec,
+	type Vec,
+} from "../api/types.js";
 
 // prettier-ignore
 export function $<T extends Swizzle2>(a: Vec2Term, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "float", "vec2", "vec3", "vec4">>;
@@ -62,12 +72,12 @@ export function $(val: Term<any>, id: string): Swizzle<any> {
 		tag: "swizzle",
 		type:
 			type === "i"
-				? rtype("int", "ivec")
+				? rtype(I, "ivec")
 				: type === "u"
-				? rtype("uint", "uvec")
+				? rtype(U, "uvec")
 				: type === "b"
-				? rtype("bool", "bvec")
-				: rtype("float", "vec"),
+				? rtype(B, "bvec")
+				: rtype(F, "vec"),
 		val,
 		id,
 	};

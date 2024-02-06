@@ -2,12 +2,12 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { FnCall, Sym, Term } from "../api/nodes.js";
 import type {
 	FloatTerm,
-	IntTerm,
 	ISampler2DTerm,
 	ISampler3DTerm,
 	ISamplerCubeTerm,
 	IVec2Term,
 	IVec3Term,
+	IntTerm,
 	Sampler2DTerm,
 	Sampler3DTerm,
 	SamplerCubeTerm,
@@ -18,7 +18,16 @@ import type {
 	Vec3Term,
 	Vec4Term,
 } from "../api/terms.js";
-import type { IVec, Prim, Sampler, Vec } from "../api/types.js";
+import {
+	F,
+	I,
+	U,
+	V4,
+	type IVec,
+	type Prim,
+	type Sampler,
+	type Vec,
+} from "../api/types.js";
 import { isVec } from "../ast/checks.js";
 import { builtinCall } from "../ast/function.js";
 
@@ -27,15 +36,15 @@ const texRetType = (sampler: Term<Sampler>) => {
 	const shadow = sampler.type.indexOf("Shadow") > 0;
 	return t === "s"
 		? shadow
-			? "float"
-			: "vec4"
+			? F
+			: V4
 		: t === "i"
 		? shadow
-			? "int"
+			? I
 			: "ivec4"
 		: t === "u"
 		? shadow
-			? "uint"
+			? U
 			: "uvec4"
 		: illegalArgs(`unknown sampler type ${sampler.type}`);
 };
