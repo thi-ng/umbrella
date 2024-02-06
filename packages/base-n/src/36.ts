@@ -1,6 +1,6 @@
 import { defBase } from "./base.js";
-
-export const B36_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+import * as c from "./chars/36.js";
+export * from "./chars/36.js";
 
 /**
  * Digits: 0-9 A-Z
@@ -8,4 +8,4 @@ export const B36_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Base36
  */
-export const BASE36 = defBase(B36_CHARS);
+export const BASE36 = defBase(c.B36_CHARS);

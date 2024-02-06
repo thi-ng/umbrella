@@ -1,7 +1,17 @@
-export interface IBase {
-	readonly N: number;
-	readonly base: string;
+export interface IBase extends BaseCommon, IBaseEncode, IBaseDecode {}
 
+export interface BaseCommon {
+	/**
+	 * The base of this implementation.
+	 */
+	readonly N: number;
+	/**
+	 * The character set (as string) used for the encoding.
+	 */
+	readonly base: string;
+}
+
+export interface IBaseEncode {
 	/**
 	 * Encodes `x` into a baseN encoded string. `x` MUST be < 2^53. Use
 	 * `encodeBigInt()` for arbitrary values. If the optional `size > 0` the
@@ -31,6 +41,13 @@ export interface IBase {
 	 */
 	encodeBytes(buf: Uint8Array, size?: number): string;
 
+	size(x: number): number;
+}
+
+/**
+ * Base-n decode-only interface.
+ */
+export interface IBaseDecode {
 	/**
 	 * Decodes baseN encoded string `x` into a numeric value. Assumes the
 	 * resulting `x` will be < 2^53. Use `decodeBigInt()` for arbitrary values.

@@ -1,7 +1,6 @@
-import { B36_CHARS } from "./36.js";
 import { defBase } from "./base.js";
-
-export const B62_CHARS = B36_CHARS + "abcdefghijklmnopqrstuvwxyz";
+import * as c from "./chars/62.js";
+export * from "./chars/62.js";
 
 /**
  * Digits: 0-9 A-Z a-z
@@ -9,4 +8,4 @@ export const B62_CHARS = B36_CHARS + "abcdefghijklmnopqrstuvwxyz";
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Base62
  */
-export const BASE62 = defBase(B62_CHARS);
+export const BASE62 = defBase(c.B62_CHARS);

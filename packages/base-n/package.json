@@ -44,12 +44,15 @@
 	"keywords": [
 		"array",
 		"base8",
+		"base10",
 		"base16",
+		"base26",
 		"base32",
 		"base36",
 		"base58",
 		"base62",
 		"base64",
+		"base83",
 		"base85",
 		"bigint",
 		"binary",
@@ -67,7 +70,8 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+		"chars"
 	],
 	"exports": {
 		".": {
@@ -75,6 +79,9 @@
 		},
 		"./16": {
 			"default": "./16.js"
+		},
+		"./26": {
+			"default": "./26.js"
 		},
 		"./32": {
 			"default": "./32.js"
@@ -105,6 +112,39 @@
 		},
 		"./base": {
 			"default": "./base.js"
+		},
+		"./chars/16": {
+			"default": "./chars/16.js"
+		},
+		"./chars/26": {
+			"default": "./chars/26.js"
+		},
+		"./chars/32": {
+			"default": "./chars/32.js"
+		},
+		"./chars/36": {
+			"default": "./chars/36.js"
+		},
+		"./chars/58": {
+			"default": "./chars/58.js"
+		},
+		"./chars/62": {
+			"default": "./chars/62.js"
+		},
+		"./chars/64": {
+			"default": "./chars/64.js"
+		},
+		"./chars/83": {
+			"default": "./chars/83.js"
+		},
+		"./chars/85": {
+			"default": "./chars/85.js"
+		},
+		"./decode": {
+			"default": "./decode.js"
+		},
+		"./encode": {
+			"default": "./encode.js"
 		}
 	},
 	"thi.ng": {

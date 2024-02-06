@@ -1,7 +1,6 @@
-import { B62_CHARS } from "./62.js";
 import { defBase } from "./base.js";
-
-export const B64_CHARS = B62_CHARS + "+/";
+import * as c from "./chars/64.js";
+export * from "./chars/64.js";
 
 /**
  * Digits: 0-9 A-Z a-z + /
@@ -11,4 +10,4 @@ export const B64_CHARS = B62_CHARS + "+/";
  *
  * Note: This encoder does NOT perform automatic padding (i.e. `=`-suffixes)
  */
-export const BASE64 = defBase(B64_CHARS);
+export const BASE64 = defBase(c.B64_CHARS);

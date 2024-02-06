@@ -1,9 +1,8 @@
-import { B62_CHARS } from "./62.js";
 import { defBase } from "./base.js";
-
-export const B83_CHARS = B62_CHARS + "#$%*+,-.:;=?@[]^_{|}~";
+import * as c from "./chars/83.js";
+export * from "./chars/83.js";
 
 /**
  * Reference: https://github.com/woltapp/blurhash/blob/master/Algorithm.md#base-83
  */
-export const BASE83 = defBase(B83_CHARS);
+export const BASE83 = defBase(c.B83_CHARS);
