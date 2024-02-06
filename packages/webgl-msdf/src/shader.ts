@@ -1,4 +1,5 @@
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { F, M4, S2D, V2, V3, V4 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { discard, ifThen } from "@thi.ng/shader-ast/ast/controlflow";
 import { defMain, defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -22,24 +23,19 @@ export interface MSDFShaderOpts {
 	color: boolean;
 }
 
-export const median3 = defn("float", "median3", ["vec3"], (v) => [
+export const median3 = defn(F, "median3", [V3], (v) => [
 	ret(max(min($x(v), $y(v)), min(max($x(v), $y(v)), $z(v)))),
 ]);
 
-export const msdfSample = defn(
-	"vec2",
-	"msdfSample",
-	["sampler2D", "vec2"],
-	(tex, uv) => {
-		let sd: FloatSym;
-		let w: FloatSym;
-		return [
-			(sd = sym(sub(median3($xyz(texture(tex, uv))), FLOAT05))),
-			(w = sym(clamp(add(div(sd, fwidth(sd)), FLOAT05), FLOAT0, FLOAT1))),
-			ret(vec2(sd, w)),
-		];
-	}
-);
+export const msdfSample = defn(V2, "msdfSample", [S2D, V2], (tex, uv) => {
+	let sd: FloatSym;
+	let w: FloatSym;
+	return [
+		(sd = sym(sub(median3($xyz(texture(tex, uv))), FLOAT05))),
+		(w = sym(clamp(add(div(sd, fwidth(sd)), FLOAT05), FLOAT0, FLOAT1))),
+		ret(vec2(sd, w)),
+	];
+});
 
 export const msdfShader = (opts: Partial<MSDFShaderOpts> = {}): ShaderSpec => ({
 	vs: (gl, unis, ins, outs) => [
@@ -69,21 +65,21 @@ export const msdfShader = (opts: Partial<MSDFShaderOpts> = {}): ShaderSpec => ({
 		OES_standard_derivatives: true,
 	},
 	attribs: {
-		position: "vec3",
-		uv: "vec2",
-		...(opts.color ? { color: "vec4" } : null),
+		position: V3,
+		uv: V2,
+		...(opts.color ? { color: V4 } : null),
 	},
 	varying: {
-		vuv: "vec2",
-		...(opts.color ? { vcolor: "vec4" } : null),
+		vuv: V2,
+		...(opts.color ? { vcolor: V4 } : null),
 	},
 	uniforms: {
-		modelview: "mat4",
-		proj: "mat4",
-		tex: "sampler2D",
-		thresh: ["float", 1e-3],
-		bg: ["vec4", <GLVec4>ZERO4],
-		...(!opts.color ? { fg: ["vec4", <GLVec4>ONE4] } : null),
+		modelview: M4,
+		proj: M4,
+		tex: S2D,
+		thresh: [F, 1e-3],
+		bg: [V4, <GLVec4>ZERO4],
+		...(!opts.color ? { fg: [V4, <GLVec4>ONE4] } : null),
 	},
 	state: {
 		blend: true,
