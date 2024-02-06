@@ -4,6 +4,7 @@ export * from "./angle.js";
 export * from "./crossing.js";
 export * from "./eqdelta.js";
 export * from "./extrema.js";
+export * from "./easing.js";
 export * from "./fit.js";
 export * from "./int.js";
 export * from "./interval.js";

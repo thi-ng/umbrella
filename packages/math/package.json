@@ -51,6 +51,7 @@
 		"animation",
 		"bezier",
 		"cubic",
+		"easing",
 		"hermite",
 		"interpolation",
 		"interval",
@@ -88,6 +89,9 @@
 		},
 		"./crossing": {
 			"default": "./crossing.js"
+		},
+		"./easing": {
+			"default": "./easing.js"
 		},
 		"./eqdelta": {
 			"default": "./eqdelta.js"
