@@ -168,5 +168,10 @@ export const M2 = "mat2";
 export const M3 = "mat3";
 export const M4 = "mat4";
 
+export const B = "bool";
 export const F = "float";
 export const I = "int";
+export const U = "uint";
+
+export const S2D = "sampler2D";
+export const S3D = "sampler3D";
