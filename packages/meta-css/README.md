@@ -820,7 +820,7 @@ and `w-50-l` (incl. their corresponding `@media` wrappers).
 
 The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...
 
-Currently, there are 940 CSS utility classes defined in MetaCSS base v0.0.1:
+Currently, there are 940 CSS utility classes defined in MetaCSS base v0.7.0:
 
 ### Classes by category
 
@@ -1023,7 +1023,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.74 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.13 KB
 
 ## Dependencies
 
