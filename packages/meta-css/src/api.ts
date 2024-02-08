@@ -1,6 +1,6 @@
 // thing:no-export
 import type { IObjectOf, NumOrString } from "@thi.ng/api";
-import { flag, string, strings, type CommandCtx } from "@thi.ng/args";
+import { flag, int, string, strings, type CommandCtx } from "@thi.ng/args";
 import type { FormatPresets } from "@thi.ng/text-format";
 
 export interface CommonOpts {
@@ -51,6 +51,10 @@ export const ARG_SPECS = {
 	}),
 };
 
+export const ARG_BUNDLE = {
+	bundle: flag({ alias: "b", desc: "Bundle inputs (see `out` option)" }),
+};
+
 export const ARG_INCLUDE = {
 	include: strings({
 		alias: "I",
@@ -92,6 +96,10 @@ export const ARG_OUTPUT = {
 		alias: "o",
 		desc: "Output file (or stdout)",
 	}),
+};
+
+export const ARG_PREC = {
+	prec: int({ default: 3, desc: "Number of fractional digits" }),
 };
 
 export const ARG_PRETTY = {

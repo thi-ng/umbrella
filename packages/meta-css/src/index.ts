@@ -5,6 +5,7 @@ import { PRESET_ANSI16 } from "@thi.ng/text-format";
 import { join } from "node:path";
 import type { AppCtx, CommonOpts } from "./api.js";
 import { CONVERT } from "./convert.js";
+import { DEVELOP } from "./develop.js";
 import { EXPORT } from "./export.js";
 import { GENERATE } from "./generate.js";
 
@@ -20,6 +21,7 @@ cliApp<CommonOpts, AppCtx<any>>({
 	},
 	commands: {
 		convert: CONVERT,
+		develop: DEVELOP,
 		export: EXPORT,
 		generate: GENERATE,
 	},

@@ -1,9 +1,9 @@
 // thing:no-export
 import type { Fn, Fn2, IObjectOf, NumOrString } from "@thi.ng/api";
-import { int, type Command } from "@thi.ng/args";
+import type { Command } from "@thi.ng/args";
 import { isArray, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { readJSON } from "@thi.ng/file-io";
+import { readText } from "@thi.ng/file-io";
 import {
 	deg,
 	em,
@@ -24,22 +24,24 @@ import {
 } from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
 import { permutations } from "@thi.ng/transducers";
-import { resolve } from "path";
 import {
 	ARG_OUTPUT,
+	ARG_PREC,
 	ARG_PRETTY,
+	ARG_WATCH,
 	type AppCtx,
 	type CommonOpts,
 	type CompiledSpecs,
 	type GeneratorConfig,
 	type Spec,
 } from "./api.js";
-import { maybeWriteText } from "./utils.js";
+import { watchInputs as $watch, maybeWriteText } from "./utils.js";
 
-interface GenerateOpts extends CommonOpts {
+export interface GenerateOpts extends CommonOpts {
 	out?: string;
 	prec: number;
 	pretty: boolean;
+	watch: boolean;
 }
 
 export const UNITS: Record<string, Fn<any, any>> = {
@@ -86,37 +88,73 @@ export const GENERATE: Command<
 	desc: "Generate framework rules from specs",
 	opts: {
 		...ARG_OUTPUT,
+		...ARG_PREC,
 		...ARG_PRETTY,
-		prec: int({ default: 3, desc: "Number of fractional digits" }),
+		...ARG_WATCH,
 	},
-	fn: async (ctx) => {
-		const {
-			logger,
-			opts: { prec, out, pretty },
-			inputs,
-		} = ctx;
-		const result: CompiledSpecs = {
-			info: { name: "TODO", version: "0.0.0" },
-			media: {},
-			classes: {},
-			decls: [],
-		};
-		setPrecision(prec);
-		for (let input of inputs) {
-			const config = readJSON<GeneratorConfig>(resolve(input), logger);
-			Object.assign(result.info, config.info);
-			Object.assign(result.media, config.media);
-			if (config.decls) result.decls.push(...config.decls);
-			for (let spec of config.specs) {
-				expandSpec(config, spec, result.classes, logger);
-			}
-		}
-		maybeWriteText(
-			out,
-			JSON.stringify(result, null, pretty ? 4 : 0),
-			logger
+	fn: generateCommand,
+};
+
+export async function generateCommand(ctx: AppCtx<GenerateOpts>) {
+	if (ctx.opts.watch) {
+		await watchInputs(ctx);
+	} else {
+		await generateFramework(
+			ctx.inputs.map((path) => readText(path, ctx.logger)),
+			ctx.opts,
+			ctx.logger
 		);
-	},
+	}
+}
+
+/** @internal */
+const watchInputs = async (ctx: AppCtx<GenerateOpts>) => {
+	$watch(ctx.inputs, ctx.logger).subscribe({
+		next(inputs) {
+			try {
+				generateFramework(
+					// process in deterministic order (same as given in CLI)
+					Object.keys(inputs)
+						.sort()
+						.map((k) => inputs[k]),
+					ctx.opts,
+					ctx.logger
+				);
+			} catch (e) {
+				ctx.logger.warn((<Error>e).message);
+			}
+		},
+	});
+};
+
+/** @internal */
+const generateFramework = async (
+	inputs: string[],
+	opts: GenerateOpts,
+	logger: ILogger
+) => {
+	const result: CompiledSpecs = {
+		info: { name: "TODO", version: "0.0.0" },
+		media: {},
+		classes: {},
+		decls: [],
+	};
+	setPrecision(opts.prec);
+	for (let input of inputs) {
+		const config: GeneratorConfig = JSON.parse(input);
+		Object.assign(result.info, config.info);
+		Object.assign(result.media, config.media);
+		if (config.decls) result.decls.push(...config.decls);
+		for (let spec of config.specs) {
+			expandSpec(config, spec, result.classes, logger);
+		}
+	}
+	maybeWriteText(
+		opts.out,
+		JSON.stringify(result, null, opts.pretty ? 4 : 0),
+		logger
+	);
+	return result;
 };
 
 /** @internal */
