@@ -13,10 +13,11 @@ const logger = new ConsoleLogger("meta-css", "INFO");
 await GENERATE.fn({
 	logger,
 	opts: {
+		out: FRAMEWORK,
 		prec: 3,
 		pretty: true,
 		verbose: false,
-		out: FRAMEWORK,
+		watch: false,
 	},
 	format: <any>null,
 	inputs: [...files("specs", ".json")],
