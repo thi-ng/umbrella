@@ -434,6 +434,20 @@ export const $style = (el: Element, rules: string | any) => {
 };
 
 /**
+ * Adds or removes the given CSS classes from a DOM element. If a class is
+ * currently present it will be removed, otherwise added.
+ *
+ * @param el
+ * @param classes
+ */
+export const $toggleClasses = (el: Element, ...classes: string[]) => {
+	const list = el.classList;
+	for (let c of classes) {
+		list.contains(c) ? list.remove(c) : list.add(c);
+	}
+};
+
+/**
  * @internal
  */
 const PREFIXES: IObjectOf<string> = {
