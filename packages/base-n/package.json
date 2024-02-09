@@ -77,6 +77,9 @@
 		".": {
 			"default": "./index.js"
 		},
+		"./10": {
+			"default": "./10.js"
+		},
 		"./16": {
 			"default": "./16.js"
 		},
@@ -112,6 +115,9 @@
 		},
 		"./base": {
 			"default": "./base.js"
+		},
+		"./chars/10": {
+			"default": "./chars/10.js"
 		},
 		"./chars/16": {
 			"default": "./chars/16.js"
