@@ -1,3 +1,18 @@
+> [!IMPORTANT]
+> ‼️ Announcing the thi.ng user survey 2024 📋
+>
+> [Participate in the survey here!](https://forms.gle/XacbSDEmQMPZg8197)
+>
+> **To achieve a better sample size, I'd highly appreciate if you could
+> circulate the link to this survey in your own networks.**
+>
+> The survey is anonymous and will remain open until 23:59 (CET) on February 29,
+> 2024. I will then share a public summary of the results on
+> [Mastodon](https://mastodon.thi.ng/@toxi) in the days following (do keep an
+> eye on the
+> [#ThingUmbrella](https://mastodon.thi.ng/@toxi/tagged/ThingUmbrella)
+> hashtag)...
+
 ![thi.ng/umbrella](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-umbrella-masthead.jpg)
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/thi-ng/umbrella/test.yml?branch=main)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
