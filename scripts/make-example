@@ -10,9 +10,10 @@ mkdir -p "$MODULE"
 echo "creating /src folder..."
 mkdir -p "$MODULE"/src
 cat << EOF > "$MODULE"/src/index.ts
+import { div } from "@thi.ng/hiccup-html";
 import { \$compile } from "@thi.ng/rdom";
 
-\$compile(["div", {}, "hello"]).mount(document.getElementById("app")!);
+\$compile(div({}, "hello")).mount(document.getElementById("app")!);
 EOF
 
 cat << EOF > "$MODULE"/src/vite-env.d.ts
@@ -68,19 +69,19 @@ cat << EOF > "$MODULE"/package.json
 	"scripts": {
 		"start": "yarn css:build && yarn start:only",
 		"start:only": "vite --host --open",
-		"css:gen": "../../node_modules/.bin/metacss generate --out css/framework.json ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json",
-		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --bundle --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
-		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --bundle --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss src/*.mcss",
+		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss src/*.mcss",
+		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss src/*.mcss",
 		"build": "yarn css:build && tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
 		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.10"
+		"vite": "^5.1.1"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/rdom": "workspace:^"
 	},
 	"browser": {
