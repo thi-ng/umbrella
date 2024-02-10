@@ -21,6 +21,7 @@ const processPackage = (id: string) => {
 	const hasBin = existsSync(`${pkkRoot}/bin`);
 	const hasInclude = existsSync(`${pkkRoot}/include`);
 	const hasSchema = existsSync(`${pkkRoot}/schema`);
+	const hasSpecs = existsSync(`${pkkRoot}/specs`);
 	const hasZig = existsSync(`${pkkRoot}/zig`);
 	const oldFiles = new Set(pkg.files);
 	const newFiles = [
@@ -29,6 +30,7 @@ const processPackage = (id: string) => {
 		...(hasBin ? ["bin"] : []),
 		...(hasInclude ? ["include"] : []),
 		...(hasSchema ? ["schema"] : []),
+		...(hasSpecs ? ["specs"] : []),
 		...(hasZig ? ["zig"] : []),
 		...srcDirs,
 	];
