@@ -1,5 +1,15 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
+> [!IMPORTANT]
+> ‼️ Announcing the thi.ng user survey 2024 📋
+>
+> [Please participate in the survey here!](https://forms.gle/XacbSDEmQMPZg8197)\
+> (open until end of February)
+>
+> **To achieve a better sample size, I'd highly appreciate if you could
+> circulate the link to this survey in your own networks.**
+>
+> [Discussion](https://github.com/thi-ng/umbrella/discussions/447)
 
 # ![@thi.ng/rdom](https://media.thi.ng/umbrella/banners-20230807/thing-rdom.svg?2193a58e)
 
@@ -280,7 +290,7 @@ For Node.js REPL:
 const rdom = await import("@thi.ng/rdom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.99 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.02 KB
 
 ## Dependencies
 

@@ -1,17 +1,13 @@
 > [!IMPORTANT]
 > ‼️ Announcing the thi.ng user survey 2024 📋
 >
-> [Participate in the survey here!](https://forms.gle/XacbSDEmQMPZg8197)
+> [Please participate in the survey here!](https://forms.gle/XacbSDEmQMPZg8197)\
+> (open until end of February)
 >
 > **To achieve a better sample size, I'd highly appreciate if you could
 > circulate the link to this survey in your own networks.**
 >
-> The survey is anonymous and will remain open until 23:59 (CET) on February 29,
-> 2024. I will then share a public summary of the results on
-> [Mastodon](https://mastodon.thi.ng/@toxi) in the days following (do keep an
-> eye on the
-> [#ThingUmbrella](https://mastodon.thi.ng/@toxi/tagged/ThingUmbrella)
-> hashtag)...
+> [Discussion](https://github.com/thi-ng/umbrella/discussions/447)
 
 ![thi.ng/umbrella](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-umbrella-masthead.jpg)
 
@@ -52,13 +48,13 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to currently 189 individual TypeScript
+This mono-repository is home to 189 individual TypeScript
 libraries/packages and 153 example projects illustrating their usage, currently
 totalling ~200k SLOC and ~3890 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
-broad collection of jointly developed, yet largely independent libraries, tools
-and general purpose building blocks for the following _non-exhaustive_ list of
+broad collection of jointly developed, yet independent libraries, tools and
+general purpose building blocks for the following _non-exhaustive_ list of
 topics (see [package overview](#projects) below):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
@@ -87,30 +83,30 @@ topics (see [package overview](#projects) below):
 - S-expression parser & runtime (interpreter) infrastructure for custom DSL creation
 - WASM-based SIMD batch-processing of vector data
 - Pen-plotter (AxiDraw) toolchain & geometry conversions
-- Various interpolations, math helpers, automatic differentiation (Dual numbers)
+- Interpolations, math helpers, automatic differentiation (Dual numbers)
 - etc.
 
 Once more, **this project is NOT a framework**. There's no turn-key,
 one-size-fits-all approach and instead the overall design philosophy encourages
-a mix & match philosophy for various key aspects of application design (inside &
-outside the browser). Customization points are provided wherever useful and
-usually only expect certain interfaces/type signatures rather than hard-coded
-concrete implementations.
+a mix & match philosophy for key aspects of application design (inside & outside
+the browser). Customization points are provided wherever useful and usually only
+expect certain interfaces/type signatures rather than hard-coded concrete
+implementations.
 
 All packages:
 
 - are versioned independently
+- have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
 - built via [esbuild](https://esbuild.github.io/)<sup>(1)</sup> and tested via [bun.sh](https://bun.sh)
 - released via [thi.ng/monopub](https://github.com/thi-ng/monopub)
 - distributed as ESM modules (ES2022 syntax) with export maps, TypeScript
   typings & change logs
-- highly modular with largely only a single function / class (only closely
+- highly modular with often only a single function / class (incl. closely
   related functions) per file to help w/ selective imports and tree shaking
 - provide re-exports of all their publics for full library imports
 - have either none or only `@thi.ng` internal runtime dependencies (w/ very few
   exceptions! All dependencies are listed in each package readme)
 - declare public interfaces, enums & types in an `api.ts` file
-- have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
 - licensed under [Apache Software License 2.0](#license)
 
 <sup>(1)</sup> since 2023-12-11, more info on [Mastodon](https://mastodon.thi.ng/@toxi/111561398967420903)
@@ -119,10 +115,12 @@ All packages:
 
 The sheer number and varied nature & purpose of these [packages](#packages)
 makes it impossible to provide traditional "Getting started" tutorials. To
-compensate, this repo provides ~150 [example projects](#examples--showcase),
+compensate, this repo provides 150+ [example projects](#examples--showcase),
 detailed package readmes (at the very least for all the larger and/or more
-important ones), as well as hundreds of small usage examples/snippets in various
-doc strings.
+important ones), as well as hundreds of small usage examples/snippets in doc
+strings.
+
+**Documentation and changelogs for all packages: [docs.thi.ng](https://docs.thi.ng/)**
 
 If you're unsure about something, please [reach
 out](#community-contributing-getting-help)! Any constructive feedback is highly
@@ -143,8 +141,8 @@ You might find one of the following template repos an useful starting point:
 
 Ongoing since August 2023:
 [#HowToThing](https://mastodon.thi.ng/tags/HowToThing) is a series of short
-posts on Mastodon, demonstrating many different techniques, patterns and use
-cases from across the _thi.ng/umbrella_ ecosystem. These are not necessarily
+posts on Mastodon, demonstrating a range of different techniques, patterns and
+use cases from across the _thi.ng/umbrella_ ecosystem. These are not necessarily
 intro examples, but each one comes with heavily commented code (and often with
 visual outputs/results).
 
@@ -191,6 +189,8 @@ visual outputs/results).
 
 ### Videos
 
+(FIXME: Recently I closed my Google account and still have to migrate the below videos, currently defunkt)
+
 - [Building a web editor for creating/testing parse grammars](https://www.youtube.com/watch?v=mXp92s_VP40)
 - [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)
 - [Crash course: TypeScript mapped types in action](https://www.youtube.com/watch?v=jeQ_1oOFlJs)
@@ -218,8 +218,8 @@ repo, which will be used to build a showcase site... Thank you!
 ### Generative art projects
 
 Several generative art projects by [Karsten Schmidt on
-fx(hash)](https://www.fxhash.xyz/u/toxi) have been created exclusively with
-libraries from this collection.
+fx(hash)](https://www.fxhash.xyz/u/toxi) were created exclusively with libraries
+from this collection.
 
 | De/Frag series                                                                                         |                                                                                                    |                                                                                                        |
 |--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
@@ -231,15 +231,16 @@ libraries from this collection.
 
 ## Community, contributing, getting help
 
-Join the (still new) [discussions here on
+Join the [discussions here on
 Github](https://github.com/thi-ng/umbrella/discussions), get in touch via
 [Mastodon](https://mastodon.thi.ng/@toxi) or use the [issue
 tracker](https://github.com/thi-ng/umbrella/issues). If you'd like to contribute
 in other ways, please first read [this document](./CONTRIBUTING.md).
 
 In general, we welcome contributions of all kinds (docs, examples, bug fixes,
-feature requests, financial contributions etc.). You can find a fairly detailed
-overview for contributors here:
+feature requests, [financial
+contributions](https://github.com/sponsors/postspectacular/) etc.). You can find
+a detailed overview for contributors here:
 [CONTRIBUTING.md](https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md).
 
 **Note: The default branch for this repo is `develop` and all PRs should be
@@ -250,8 +251,8 @@ recently released version(s)!**.
 
 ### Wiki
 
-So far the [wiki](https://github.com/thi-ng/umbrella/wiki) has only been updated
-sporadically, but please be sure to check it out for project-wide
+To date, the [wiki](https://github.com/thi-ng/umbrella/wiki) has only been
+updated sporadically, but please be sure to check it out for project-wide
 [glossary](https://github.com/thi-ng/umbrella/wiki/Glossary), information,
 cookbooks, useful snippets etc.
 
@@ -555,7 +556,7 @@ yarn workspace @thi.ng/transducers run build
 ```
 
 Note: The `yarn build` script alias will also generate TS type declaration
-files. However, this step is only needed if updating the public API of a
+files. This step is only needed if updating the public API of a
 package. If you're confident it's not needed, using the `build:esbuild` alias is
 sufficient and much faster. Also, TS declaration files can be manually rebuilt
 via `build:decl`...
@@ -591,12 +592,12 @@ Autogenerated documentation (using
 yarn doc
 ```
 
-Furthermore, an experimental [tsdoc](https://github.com/microsoft/tsdoc)-based
+<!-- Furthermore, an experimental [tsdoc](https://github.com/microsoft/tsdoc)-based
 documentation repo provides an alternative markdown output including
 cross-references between all packages, but currently isn't frequently updated
 (only every few months):
 
-https://github.com/thi-ng/umbrella-docs-temp
+https://github.com/thi-ng/umbrella-docs-temp -->
 
 ## Acknowledgements
 
@@ -615,7 +616,7 @@ tasks:
 
 ## License
 
-&copy; 2015 - 2023 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2024 Karsten Schmidt // Apache Software License 2.0
 
 ## Contributors ✨
 
