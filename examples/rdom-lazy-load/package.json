@@ -9,9 +9,8 @@
 	"scripts": {
 		"start": "yarn css:build && yarn start:only",
 		"start:only": "vite --host --open",
-		"css:gen": "../../node_modules/.bin/metacss generate --out css/framework.json ../../node_modules/@thi.ng/meta-css/specs/*.mcss.json",
-		"css:watch": "yarn css:gen && ../../node_modules/.bin/metacss convert --bundle --watch --pretty --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss",
-		"css:build": "yarn css:gen && ../../node_modules/.bin/metacss convert --bundle --out css/style.css --specs css/framework.json --force @css/includes.txt css/*.mcss",
+		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
+		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
 		"build": "yarn css:build && tsc && vite build --base='./'",
 		"preview": "vite preview --host --open"
 	},
