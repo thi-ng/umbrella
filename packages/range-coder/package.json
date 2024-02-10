@@ -38,11 +38,11 @@
 		"@thi.ng/bitstream": "^2.2.45"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.39.0",
+		"@microsoft/api-extractor": "^7.40.1",
 		"@thi.ng/transducers": "^8.8.26",
-		"esbuild": "^0.19.10",
+		"esbuild": "^0.20.0",
 		"rimraf": "^5.0.5",
-		"typedoc": "^0.25.4",
+		"typedoc": "^0.25.7",
 		"typescript": "^5.3.3"
 	},
 	"keywords": [

@@ -45,10 +45,10 @@
 		"@thi.ng/transducers": "^8.9.0"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.39.0",
-		"esbuild": "^0.19.10",
+		"@microsoft/api-extractor": "^7.40.1",
+		"esbuild": "^0.20.0",
 		"rimraf": "^5.0.5",
-		"typedoc": "^0.25.4",
+		"typedoc": "^0.25.7",
 		"typescript": "^5.3.3"
 	},
 	"keywords": [

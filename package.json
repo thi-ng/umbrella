@@ -7,15 +7,15 @@
 		"tools"
 	],
 	"devDependencies": {
-		"@microsoft/api-documenter": "^7.23.15",
-		"@microsoft/api-extractor": "^7.39.0",
+		"@microsoft/api-documenter": "^7.23.23",
+		"@microsoft/api-extractor": "^7.40.1",
 		"all-contributors-cli": "^6.26.1",
-		"bun-types": "^1.0.20",
-		"esbuild": "^0.19.10",
+		"bun-types": "^1.0.26",
+		"esbuild": "^0.20.0",
 		"html-minifier-terser": "^7.2.0",
 		"rimraf": "^5.0.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.4",
+		"typedoc": "^0.25.7",
 		"typescript": "^5.3.3"
 	},
 	"scripts": {

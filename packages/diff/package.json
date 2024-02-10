@@ -39,9 +39,9 @@
 		"@thi.ng/equiv": "^2.1.46"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.39.0",
+		"@microsoft/api-extractor": "^7.40.1",
 		"rimraf": "^5.0.5",
-		"typedoc": "^0.25.4",
+		"typedoc": "^0.25.7",
 		"typescript": "^5.3.3"
 	},
 	"keywords": [
