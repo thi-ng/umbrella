@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-06T23:18:11Z
+- **Last updated**: 2024-02-10T08:59:56Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.1.0) (2024-02-10)
+
+#### 🚀 Features
+
+- add $toggleClasses() DOM util ([31d19b1](https://github.com/thi-ng/umbrella/commit/31d19b1))
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.0.0) (2024-01-23)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dual-algebra",
-	"version": "0.4.56",
+	"version": "0.4.57",
 	"description": "Multivariate dual number algebra, automatic differentiation",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.22"
+		"@thi.ng/api": "^8.9.23"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

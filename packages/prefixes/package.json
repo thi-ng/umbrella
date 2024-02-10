@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/prefixes",
-	"version": "2.3.7",
+	"version": "2.3.8",
 	"description": "50+ Linked Data vocabulary prefixes and their namespace URLs",
 	"type": "module",
 	"module": "./index.js",
