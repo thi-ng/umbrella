@@ -5416,8 +5416,10 @@ __metadata:
   resolution: "@thi.ng/ramp@workspace:packages/ramp"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.40.1"
+    "@thi.ng/api": "npm:^8.9.23"
     "@thi.ng/arrays": "npm:^2.7.20"
     "@thi.ng/compare": "npm:^2.2.19"
+    "@thi.ng/errors": "npm:^2.4.16"
     "@thi.ng/math": "npm:^5.9.1"
     "@thi.ng/transducers": "npm:^8.9.1"
     "@thi.ng/vectors": "npm:^7.10.6"
