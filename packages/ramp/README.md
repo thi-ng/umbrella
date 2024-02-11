@@ -18,7 +18,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 190 standalone projects, maintained as part
+> This is one of 189 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -31,14 +31,15 @@
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [Numeric ramps](#numeric-ramps)
-  - [nD Vector ramps](#nd-vector-ramps)
+  - [Numeric](#numeric)
+  - [nD vectors](#nd-vectors)
+  - [Nested objects](#nested-objects)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-Extensible, interpolated nD lookup tables for parameter tweening.
+Extensible, arbitrary type interpolation/tweening.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ramp/readme.png)
 
@@ -68,12 +69,14 @@ For Node.js REPL:
 const ramp = await import("@thi.ng/ramp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.57 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.26 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
@@ -92,7 +95,7 @@ directory is using this package:
 
 [Generated API docs](https://docs.thi.ng/umbrella/ramp/)
 
-### Numeric ramps
+### Numeric
 
 ```ts tangle:export/readme.ts
 import { linear, hermite } from "@thi.ng/ramp";
@@ -118,7 +121,7 @@ for(let i = 0; i <= 10; i++) {
 // 1   0.00 0.00
 ```
 
-### nD Vector ramps
+### nD vectors
 
 ```ts tangle:export/readme-vector.ts
 import { HERMITE_V, ramp } from "@thi.ng/ramp";
@@ -127,32 +130,65 @@ import { FORMATTER, VEC3 } from "@thi.ng/vectors";
 // use the generic `ramp()` factory function with a custom implementation
 // see: https://docs.thi.ng/umbrella/ramp/interfaces/RampImpl.html
 const rgb = ramp(
-    // use linear vector interpolation with Vec3 API
+    // use a vector interpolation preset with the VEC3 API
     HERMITE_V(VEC3),
     // keyframes
     [
-        [0.1, [1, 0, 0]], // red
+        [0.0, [1, 0, 0]], // red
         [0.5, [0, 1, 0]], // green
-        [0.9, [0, 0, 1]], // blue
+        [1.0, [0, 0, 1]], // blue
     ]
 );
 
-for (let i = 0; i <= 10; i++) {
-    const t = i / 10;
+for (let i = 0; i <= 20; i++) {
+    const t = i / 20;
     console.log(t, FORMATTER(rgb.at(t)));
 }
 
-// 0   [1.000, 0.000, 0.000]
-// 0.1 [1.000, 0.000, 0.000]
-// 0.2 [0.750, 0.250, 0.000]
-// 0.3 [0.500, 0.500, 0.000]
-// 0.4 [0.250, 0.750, 0.000]
-// 0.5 [0.000, 1.000, 0.000]
-// 0.6 [0.000, 0.750, 0.250]
-// 0.7 [0.000, 0.500, 0.500]
-// 0.8 [0.000, 0.250, 0.750]
-// 0.9 [0.000, 0.000, 1.000]
-// 1   [0.000, 0.000, 1.000]
+// 0    [1.000, 0.000, 0.000]
+// 0.05 [0.972, 0.028, 0.000]
+// 0.1  [0.896, 0.104, 0.000]
+// 0.15 [0.784, 0.216, 0.000]
+// 0.2  [0.648, 0.352, 0.000]
+// 0.25 [0.500, 0.500, 0.000]
+// 0.3  [0.352, 0.648, 0.000]
+// 0.35 [0.216, 0.784, 0.000]
+// 0.4  [0.104, 0.896, 0.000]
+// 0.45 [0.028, 0.972, 0.000]
+// 0.5  [0.000, 1.000, 0.000]
+// 0.55 [0.000, 0.972, 0.028]
+// 0.6  [0.000, 0.896, 0.104]
+// 0.65 [0.000, 0.784, 0.216]
+// 0.7  [0.000, 0.648, 0.352]
+// 0.75 [0.000, 0.500, 0.500]
+// 0.8  [0.000, 0.352, 0.648]
+// 0.85 [0.000, 0.216, 0.784]
+// 0.9  [0.000, 0.104, 0.896]
+// 0.95 [0.000, 0.028, 0.972]
+// 1    [0.000, 0.000, 1.000]
+```
+
+### Nested objects
+
+```ts tangle:export/readme-nested.ts
+import { LINEAR_N, HERMITE_V, ramp } from "@thi.ng/ramp";
+
+const r = ramp(
+    nested({
+        a: LINEAR_N,
+        b: nested({
+            c: HERMITE_V(v.VEC2)
+        })
+    }),
+    [
+        [0, { a: 0, b: { c: [100, 100] }}],
+        [0.5, {a: 10, b: {c:[300,50]}}],
+        [1, {a: -10, b: {c:[200,120]}}]
+    ]
+);
+
+console.log([...r.interpolatedPoints(20)]);
+
 ```
 
 ## Authors
