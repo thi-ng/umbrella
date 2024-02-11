@@ -1,5 +1,5 @@
 import { fract } from "@thi.ng/math";
-import type { IRamp } from "@thi.ng/ramp";
+import type { Ramp } from "@thi.ng/ramp";
 
 let actx: AudioContext | undefined;
 let buf: AudioBuffer;
@@ -24,7 +24,7 @@ export const stopAudio = () => {
 	actx = undefined;
 };
 
-export const updateAudio = (ramp: IRamp, detune = 0.01) => {
+export const updateAudio = (ramp: Ramp<number>, detune = 0.01) => {
 	if (!actx) return;
 	const left = buf.getChannelData(0);
 	const right = buf.getChannelData(1);

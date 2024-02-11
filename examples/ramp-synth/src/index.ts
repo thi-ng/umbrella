@@ -1,7 +1,7 @@
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { fitClamped, fract } from "@thi.ng/math";
-import { HermiteRamp, LinearRamp, type IRamp } from "@thi.ng/ramp";
+import { HERMITE_N, LINEAR_N, hermite, type Frame } from "@thi.ng/ramp";
 import { repeatedly } from "@thi.ng/transducers";
 import { setC2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 import {
@@ -45,14 +45,11 @@ const updateMarker = (id: number, mpos: ReadonlyVec) => {
 };
 
 const toggleRampMode = () => {
-	ramp =
-		ramp instanceof LinearRamp
-			? new HermiteRamp(ramp.stops)
-			: new LinearRamp(ramp.stops);
+	ramp.impl = ramp.impl === LINEAR_N ? HERMITE_N : LINEAR_N;
 	updateAudio(ramp);
 };
 
-let ramp: IRamp = new HermiteRamp(PRESETS[0].map((p) => (<any>p).slice()));
+let ramp = hermite(PRESETS[0].map((p) => (<any>p).slice()));
 
 const mpos: Vec = [-1, -1];
 
@@ -173,7 +170,7 @@ window.addEventListener("keydown", (e) => {
 		case "r":
 			ramp.stops = [
 				...repeatedly(
-					() => [Math.random(), Math.random()],
+					() => <Frame<number>>[Math.random(), Math.random()],
 					Math.random() * 37 + 3
 				),
 			];

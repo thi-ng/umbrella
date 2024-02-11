@@ -1,5 +1,5 @@
 import { peek } from "@thi.ng/arrays";
-import type { IRamp } from "@thi.ng/ramp";
+import type { Ramp } from "@thi.ng/ramp";
 import { map } from "@thi.ng/transducers";
 
 const tick = (x: number) => [
@@ -14,7 +14,7 @@ const tick = (x: number) => [
 	],
 ];
 
-export const rampViz = (ramp: IRamp, width: number, height: number) => {
+export const rampViz = (ramp: Ramp<number>, width: number, height: number) => {
 	const cp = ramp.stops;
 	return [
 		"g",
@@ -25,7 +25,7 @@ export const rampViz = (ramp: IRamp, width: number, height: number) => {
 			[
 				[0, 1],
 				[0, 1 - cp[0][1]],
-				...map((p) => [p[0], 1 - p[1]], ramp.interpolatedPoints()),
+				...map((p) => [p[0], 1 - p[1]], ramp.samples(200)),
 				[1, 1 - peek(cp)[1]],
 				[1, 1],
 			],
