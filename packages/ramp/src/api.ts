@@ -1,12 +1,26 @@
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { Fn2 } from "@thi.ng/api";
 
-export interface IRamp {
-	stops: Vec[];
+export type Frame<T> = [number, T];
 
-	at(t: number): number;
-	bounds(): RampBounds;
-	interpolatedPoints(res?: number): Iterable<ReadonlyVec>;
-	addStopAt(t: number, y: number, eps?: number): boolean;
+export interface RampImpl<T> {
+	min: Fn2<T | null, T, T>;
+	max: Fn2<T | null, T, T>;
+	at: (stops: Frame<T>[], index: number, t: number) => T;
+	interpolate: {
+		size: number;
+		left: number;
+		right: number;
+		fn: (stops: Frame<T>[], res: number) => Iterable<Frame<T>>;
+	};
+}
+
+export interface IRamp<T> {
+	stops: Frame<T>[];
+
+	at(t: number): T;
+	bounds(): RampBounds<T>;
+	interpolatedPoints(res?: number): Iterable<Frame<T>>;
+	addStopAt(t: number, y: T, eps?: number): boolean;
 	removeStopAt(t: number, eps?: number): boolean;
 	closestIndex(t: number, eps?: number): number;
 	clampedIndexTime(i: number, t: number, eps?: number): number;
@@ -14,13 +28,13 @@ export interface IRamp {
 	uniform(): void;
 }
 
-export interface RampBounds {
-	min: number;
-	max: number;
+export interface RampBounds<T> {
+	min: T;
+	max: T;
 	minT: number;
 	maxT: number;
 }
 
-export interface RampConstructor {
-	new (stops: Vec[]): IRamp;
+export interface RampConstructor<T> {
+	new (impl: RampImpl<T>, stops: Frame<T>[]): IRamp<T>;
 }

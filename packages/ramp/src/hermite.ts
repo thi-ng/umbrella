@@ -1,54 +1,82 @@
 import { norm } from "@thi.ng/math/fit";
 import { mix, mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
-import { comp } from "@thi.ng/transducers/comp";
-import { extendSides } from "@thi.ng/transducers/extend-sides";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
 import { normRange } from "@thi.ng/transducers/norm-range";
-import { partition } from "@thi.ng/transducers/partition";
-import type { Vec } from "@thi.ng/vectors";
-import { ARamp } from "./aramp.js";
+import type { Vec, VecAPI } from "@thi.ng/vectors";
+import { mixHermiteCardinal } from "@thi.ng/vectors/mix-hermite";
+import type { Frame, RampImpl } from "./api.js";
+import { Ramp } from "./ramp.js";
 
-export const hermite = (stops?: Vec[]) => new HermiteRamp(stops);
+/**
+ * Syntax sugar for creating a numeric {@link Ramp} using the {@link HERMITE_N}
+ * ramp hermite spline interpolation impl and given stops (aka keyframes,
+ * minimum 2 required).
+ *
+ * @remarks
+ * For vector-valued hermite ramps, use {@link ramp} with {@link HERMITE_V}.
+ *
+ * References:
+ * - https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+ *
+ * Also see:
+ * - https://docs.thi.ng/umbrella/math/functions/mixCubicHermite.html
+ * - https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html
+ *
+ * @param stops
+ */
+export const hermite = (stops: Frame<number>[]) => new Ramp(HERMITE_N, stops);
 
-export class HermiteRamp extends ARamp {
-	at(t: number) {
-		const stops = this.stops;
+export const HERMITE_N: RampImpl<number> = {
+	min: (acc, x) => Math.min(acc ?? Infinity, x),
+	max: (acc, x) => Math.max(acc ?? -Infinity, x),
+	at: (stops, i, t) => {
 		const n = stops.length - 1;
-		const i = this.timeIndex(t);
-		if (i < 0) {
-			return stops[0][1];
-		} else if (i >= n) {
-			return stops[n][1];
-		} else {
-			const a = stops[Math.max(i - 1, 0)];
-			const [bx, by] = stops[Math.max(i, 0)];
-			const [cx, cy] = stops[Math.min(i + 1, n)];
-			const d = stops[Math.min(i + 2, n)];
+		const a = stops[Math.max(i - 1, 0)];
+		const [bx, by] = stops[Math.max(i, 0)];
+		const [cx, cy] = stops[Math.min(i + 1, n)];
+		const d = stops[Math.min(i + 2, n)];
+		const t1 = tangentCardinal(a[1], cy, 0, a[0], cx);
+		const t2 = tangentCardinal(by, d[1], 0, bx, d[0]);
+		return mixCubicHermite(by, t1, cy, t2, norm(t, bx, cx));
+	},
+	interpolate: {
+		size: 4,
+		left: 1,
+		right: 1,
+		fn: ([a, [bx, by], [cx, cy], d], res) => {
 			const t1 = tangentCardinal(a[1], cy, 0, a[0], cx);
 			const t2 = tangentCardinal(by, d[1], 0, bx, d[0]);
-			return mixCubicHermite(by, t1, cy, t2, norm(t, bx, cx));
-		}
-	}
+			return map(
+				(t) => [mix(bx, cx, t), mixCubicHermite(by, t1, cy, t2, t)],
+				normRange(res, false)
+			);
+		},
+	},
+};
 
-	interpolatedPoints(res = 20) {
-		return iterator(
-			comp(
-				partition(4, 1),
-				mapcat(([a, [bx, by], [cx, cy], d]) => {
-					const t1 = tangentCardinal(a[1], cy, 0, a[0], cx);
-					const t2 = tangentCardinal(by, d[1], 0, bx, d[0]);
-					return map(
-						(t) => [
-							mix(bx, cx, t),
-							mixCubicHermite(by, t1, cy, t2, t),
-						],
-						normRange(res, false)
-					);
-				})
+export const HERMITE_V = <T extends Vec>(vec: VecAPI): RampImpl<T> => ({
+	min: (acc, x) => <T>vec.min(acc, acc || vec.setN([], Infinity), x),
+	max: (acc, x) => <T>vec.max(acc, acc || vec.setN([], -Infinity), x),
+	at: (stops, i, t) => {
+		const n = stops.length - 1;
+		const [, a] = stops[Math.max(i - 1, 0)];
+		const [bt, b] = stops[Math.max(i, 0)];
+		const [ct, c] = stops[Math.min(i + 1, n)];
+		const [, d] = stops[Math.min(i + 2, n)];
+		return <T>mixHermiteCardinal([], a, b, c, d, norm(t, bt, ct), 0);
+	},
+	interpolate: {
+		size: 4,
+		left: 1,
+		right: 1,
+		fn: ([[, a], [bt, b], [ct, c], [, d]], res) =>
+			map(
+				(t) =>
+					<Frame<T>>[
+						mix(bt, ct, t),
+						mixHermiteCardinal([], a, b, c, d, t, 0),
+					],
+				normRange(res, false)
 			),
-			extendSides(this.stops, 1, 2)
-		);
-	}
-}
+	},
+});

@@ -18,7 +18,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 190 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -31,12 +31,14 @@
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Numeric ramps](#numeric-ramps)
+  - [nD Vector ramps](#nd-vector-ramps)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-Parametric (non-)linearly interpolated 1D lookup tables for remapping values.
+Extensible, interpolated nD lookup tables for parameter tweening.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ramp/readme.png)
 
@@ -66,7 +68,7 @@ For Node.js REPL:
 const ramp = await import("@thi.ng/ramp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.57 KB
 
 ## Dependencies
 
@@ -90,18 +92,17 @@ directory is using this package:
 
 [Generated API docs](https://docs.thi.ng/umbrella/ramp/)
 
-```ts
+### Numeric ramps
+
+```ts tangle:export/readme.ts
 import { linear, hermite } from "@thi.ng/ramp";
 
 const rampL = linear([[0.1, 0], [0.5, 1], [0.9, 0]]);
 const rampH = hermite([[0.1, 0], [0.5, 1], [0.9, 0]]);
 
 for(let i = 0; i <= 10; i++) {
-    console.log(
-        i / 10,
-        rampL.at(i / 10).toFixed(2),
-        rampH.at(i / 10).toFixed(2)
-    );
+    const t = i / 10;
+    console.log(t, rampL.at(t).toFixed(2), rampH.at(t).toFixed(2));
 }
 
 // 0   0.00 0.00
@@ -115,6 +116,43 @@ for(let i = 0; i <= 10; i++) {
 // 0.8 0.25 0.16
 // 0.9 0.00 0.00
 // 1   0.00 0.00
+```
+
+### nD Vector ramps
+
+```ts tangle:export/readme-vector.ts
+import { HERMITE_V, ramp } from "@thi.ng/ramp";
+import { FORMATTER, VEC3 } from "@thi.ng/vectors";
+
+// use the generic `ramp()` factory function with a custom implementation
+// see: https://docs.thi.ng/umbrella/ramp/interfaces/RampImpl.html
+const rgb = ramp(
+    // use linear vector interpolation with Vec3 API
+    HERMITE_V(VEC3),
+    // keyframes
+    [
+        [0.1, [1, 0, 0]], // red
+        [0.5, [0, 1, 0]], // green
+        [0.9, [0, 0, 1]], // blue
+    ]
+);
+
+for (let i = 0; i <= 10; i++) {
+    const t = i / 10;
+    console.log(t, FORMATTER(rgb.at(t)));
+}
+
+// 0   [1.000, 0.000, 0.000]
+// 0.1 [1.000, 0.000, 0.000]
+// 0.2 [0.750, 0.250, 0.000]
+// 0.3 [0.500, 0.500, 0.000]
+// 0.4 [0.250, 0.750, 0.000]
+// 0.5 [0.000, 1.000, 0.000]
+// 0.6 [0.000, 0.750, 0.250]
+// 0.7 [0.000, 0.500, 0.500]
+// 0.8 [0.000, 0.250, 0.750]
+// 0.9 [0.000, 0.000, 1.000]
+// 1   [0.000, 0.000, 1.000]
 ```
 
 ## Authors
