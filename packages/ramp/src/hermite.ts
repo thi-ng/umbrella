@@ -1,7 +1,5 @@
 import { norm } from "@thi.ng/math/fit";
-import { mix, mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
-import { map } from "@thi.ng/transducers/map";
-import { normRange } from "@thi.ng/transducers/norm-range";
+import { mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
 import type { Vec, VecAPI } from "@thi.ng/vectors";
 import { mixHermiteCardinal } from "@thi.ng/vectors/mix-hermite";
 import type { Frame, RampImpl } from "./api.js";
@@ -39,19 +37,6 @@ export const HERMITE_N: RampImpl<number> = {
 		const t2 = tangentCardinal(by, d[1], 0, bx, d[0]);
 		return mixCubicHermite(by, t1, cy, t2, norm(t, bx, cx));
 	},
-	interpolate: {
-		size: 4,
-		left: 1,
-		right: 1,
-		fn: ([a, [bx, by], [cx, cy], d], res) => {
-			const t1 = tangentCardinal(a[1], cy, 0, a[0], cx);
-			const t2 = tangentCardinal(by, d[1], 0, bx, d[0]);
-			return map(
-				(t) => [mix(bx, cx, t), mixCubicHermite(by, t1, cy, t2, t)],
-				normRange(res, false)
-			);
-		},
-	},
 };
 
 export const HERMITE_V = <T extends Vec>(vec: VecAPI): RampImpl<T> => ({
@@ -64,19 +49,5 @@ export const HERMITE_V = <T extends Vec>(vec: VecAPI): RampImpl<T> => ({
 		const [ct, c] = stops[Math.min(i + 1, n)];
 		const [, d] = stops[Math.min(i + 2, n)];
 		return <T>mixHermiteCardinal([], a, b, c, d, norm(t, bt, ct), 0);
-	},
-	interpolate: {
-		size: 4,
-		left: 1,
-		right: 1,
-		fn: ([[, a], [bt, b], [ct, c], [, d]], res) =>
-			map(
-				(t) =>
-					<Frame<T>>[
-						mix(bt, ct, t),
-						mixHermiteCardinal([], a, b, c, d, t, 0),
-					],
-				normRange(res, false)
-			),
 	},
 });

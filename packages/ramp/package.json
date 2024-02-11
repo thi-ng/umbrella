@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/ramp",
 	"version": "2.1.103",
-	"description": "Extensible, interpolated nD lookup tables for parameter tweening",
+	"description": "Extensible keyframe interpolation/tweening of arbitrary, nested types",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -35,8 +35,10 @@
 		"test": "bun test"
 	},
 	"dependencies": {
+		"@thi.ng/api": "^8.9.23",
 		"@thi.ng/arrays": "^2.7.20",
 		"@thi.ng/compare": "^2.2.19",
+		"@thi.ng/errors": "^2.4.16",
 		"@thi.ng/math": "^5.9.1",
 		"@thi.ng/transducers": "^8.9.1",
 		"@thi.ng/vectors": "^7.10.6"
@@ -65,6 +67,8 @@
 		"keyframe",
 		"linear",
 		"lut",
+		"nested",
+		"object",
 		"ramp",
 		"spline",
 		"timeline",
@@ -93,6 +97,9 @@
 		},
 		"./linear": {
 			"default": "./linear.js"
+		},
+		"./nested": {
+			"default": "./nested.js"
 		},
 		"./ramp": {
 			"default": "./ramp.js"

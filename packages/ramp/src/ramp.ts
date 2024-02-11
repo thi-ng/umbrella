@@ -5,12 +5,9 @@ import { compareNumAsc } from "@thi.ng/compare/numeric";
 import { assert } from "@thi.ng/errors/assert";
 import { absDiff } from "@thi.ng/math/abs";
 import { clamp } from "@thi.ng/math/interval";
-import { comp } from "@thi.ng/transducers/comp";
-import { concat } from "@thi.ng/transducers/concat";
-import { extendSides } from "@thi.ng/transducers/extend-sides";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { partition } from "@thi.ng/transducers/partition";
+import { mix } from "@thi.ng/math/mix";
+import { map } from "@thi.ng/transducers/map";
+import { normRange } from "@thi.ng/transducers/norm-range";
 import type { Frame, IRamp, RampBounds, RampImpl } from "./api.js";
 
 /**
@@ -26,6 +23,7 @@ export const ramp = <T>(impl: RampImpl<T>, stops: Frame<T>[]) =>
 export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 	constructor(public impl: RampImpl<T>, public stops: Frame<T>[]) {
 		assert(stops.length >= 2, `require at least 2 keyframes/stops`);
+		this.sort();
 	}
 
 	copy() {
@@ -52,23 +50,13 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 		}
 	}
 
-	interpolatedPoints(res = 20) {
-		const {
-			impl: {
-				interpolate: { left, right, size, fn },
-			},
-			stops,
-		} = this;
-		return concat(
-			iterator(
-				comp(
-					partition(size, 1),
-					mapcat((chunk) => fn(chunk, res))
-				),
-				extendSides(stops, left, right)
-			),
-			[peek(stops)]
-		);
+	samples(res = 100) {
+		const t0 = this.stops[0][0];
+		const t1 = peek(this.stops)[0];
+		return map((t) => {
+			t = mix(t0, t1, t);
+			return <Frame<T>>[t, this.at(t)];
+		}, normRange(res));
 	}
 
 	bounds(): RampBounds<T> {
