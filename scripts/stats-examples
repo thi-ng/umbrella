@@ -30,4 +30,4 @@ for m in $modules; do
 done
 
 echo "---"
-awk -F ',' '{ files+=$2; comments+=$3; sloc+=$4 } END { print "files:", files, "\tcode:", sloc, "\ttotal:", sloc + comments }' $out
+awk -F ',' '{ files+=$2; comments+=$3; sloc+=$4 } END { print "files:", files, "\tcode:", sloc, "\tcomments:", comments, "\ttotal:", sloc + comments }' $out
