@@ -92,6 +92,12 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./domain": {
+			"default": "./domain.js"
+		},
+		"./group": {
+			"default": "./group.js"
+		},
 		"./hermite": {
 			"default": "./hermite.js"
 		},
