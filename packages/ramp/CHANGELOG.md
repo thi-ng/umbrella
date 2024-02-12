@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:56Z
+- **Last updated**: 2024-02-12T16:09:52Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,36 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ramp@3.0.0) (2024-02-12)
+
+#### 🛑 Breaking changes
+
+- add support for arbitrary value types ([08e12c3](https://github.com/thi-ng/umbrella/commit/08e12c3))
+- BREAKING CHANGE: add support for arbitrary value types, package restructure
+  - add unified Ramp class, remove obsolete ARamp, LinearRamp, HermiteRamp
+  - add interpolation presets to be used with generic Ramp
+    - LINEAR_N, LINEAR_V (numeric/vector valued)
+    - HERMITE_N, HERMITE_V
+  - update `linear()` & `hermite()` factory fns
+  - update Ramp ctor to ensure min. 2 keyframes/stops are provided
+  - add new types
+  - update/extend readme
+  - update pkg meta
+- add nested type support, simplify RampImpl ([0daa663](https://github.com/thi-ng/umbrella/commit/0daa663))
+- BREAKING CHANGE: rename interpolatedPoints() => samples()
+  - add nested() RampImpl
+  - update IRamp interface
+  - simplify RampImpl interface
+
+#### 🚀 Features
+
+- add time domain fns, grouped ramps, update API ([62c01d1](https://github.com/thi-ng/umbrella/commit/62c01d1))
+  - add time domain functions
+  - add group() ramp for nested, independent ramps
+  - add RampOpts
+  - extract IReadonlyRamp, update IRamp
+  - update/fix IRamp.addStopAt() to .setStopAt()
 
 ### [2.1.83](https://github.com/thi-ng/umbrella/tree/@thi.ng/ramp@2.1.83) (2023-11-09)
 
