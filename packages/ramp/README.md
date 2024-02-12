@@ -34,6 +34,7 @@
   - [Numeric](#numeric)
   - [nD vectors](#nd-vectors)
   - [Nested objects](#nested-objects)
+  - [Grouped & nested ramps](#grouped--nested-ramps)
 - [Authors](#authors)
 - [License](#license)
 
@@ -74,7 +75,7 @@ For Node.js REPL:
 const ramp = await import("@thi.ng/ramp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.25 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.66 KB
 
 ## Dependencies
 
@@ -195,7 +196,7 @@ const r = ramp(
 
 // produce an iterator of N uniformly spaced sample points
 // across the full range of the ramp
-console.log([...r.interpolatedPoints(10)]);
+console.log([...r.samples(10)]);
 
 // [
 // 	[0, { a: 0, b: { c: [100, 100] } }],
@@ -210,6 +211,22 @@ console.log([...r.interpolatedPoints(10)]);
 // 	[0.9, { a: -6, b: { c: [210.4, 112.72] } }],
 // 	[1, { a: -10, b: { c: [200, 120] } }]
 // ]
+```
+
+### Grouped & nested ramps
+
+```ts tangle:export/readme-group.ts
+import { LINEAR_V, group, linear, ramp, wrap } from "@thi.ng/ramp";
+import { VEC2 } from "@thi.ng/vectors";
+
+const example = group({
+    // child timeline with looping behavior
+    a: linear([[0,0], [20, 100]], { domain: wrap }),
+    // another child timeline
+    b: linear([[10, 100], [90, 200]])
+});
+
+console.log([...example.samples(20)]);
 ```
 
 ## Authors
