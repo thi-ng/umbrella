@@ -1703,6 +1703,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/ramp-scroll-anim@workspace:examples/ramp-scroll-anim":
+  version: 0.0.0-use.local
+  resolution: "@example/ramp-scroll-anim@workspace:examples/ramp-scroll-anim"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hiccup-css": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/ramp": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: "npm:^5.3.3"
+    vite: "npm:^5.1.1"
+  languageName: unknown
+  linkType: soft
+
 "@example/ramp-synth@workspace:examples/ramp-synth":
   version: 0.0.0-use.local
   resolution: "@example/ramp-synth@workspace:examples/ramp-synth"

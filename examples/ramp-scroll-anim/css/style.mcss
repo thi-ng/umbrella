@@ -1,0 +1,20 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+body {
+	system-sans-serif ma3 mt5 pt4
+	bg-color-washed-green color-dark-gray
+}
+
+#hello, #world { fixed f-title }
+
+#header, #footer {
+	fixed f1 h3 lh-solid v-mid monospace
+	bg-color-dark-gray color-white
+	overflow-x-hidden
+}
+
+#header { top-0 }
+#footer { bottom-0 }
