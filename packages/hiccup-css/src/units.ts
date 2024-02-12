@@ -19,8 +19,14 @@ const ff = (x: number) =>
 				.replace(/^-0./, "-.")
 				.replace(/0+$/, "");
 
+export const cap = (x: number) => `${ff(x)}cap`;
+export const ch = (x: number) => `${ff(x)}ch`;
+export const cm = (x: number) => `${ff(x)}cm`;
 export const em = (x: number) => `${ff(x)}em`;
 export const ex = (x: number) => `${ff(x)}ex`;
+export const inch = (x: number) => `${ff(x)}in`;
+export const lh = (x: number) => `${ff(x)}lh`;
+export const mm = (x: number) => `${ff(x)}mm`;
 export const rem = (x: number) => `${ff(x)}rem`;
 export const percent = (x: number) => `${ff(x)}%`;
 export const px = (x: number) => `${ff(x)}px`;
