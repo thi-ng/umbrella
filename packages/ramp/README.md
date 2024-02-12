@@ -75,7 +75,7 @@ For Node.js REPL:
 const ramp = await import("@thi.ng/ramp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.66 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.67 KB
 
 ## Dependencies
 
@@ -89,13 +89,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.66 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
-|:------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/> | Unison wavetable synth with waveform editor | [Demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth) |
+| Screenshot                                                                                                              | Description                                              | Live demo                                              | Source                                                                              |
+|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-scroll-anim.png" width="240"/> | Scroll-based, reactive, multi-param CSS animation basics | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-scroll-anim) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>       | Unison wavetable synth with waveform editor              | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)       |
 
 ## API
 
@@ -216,17 +217,29 @@ console.log([...r.samples(10)]);
 ### Grouped & nested ramps
 
 ```ts tangle:export/readme-group.ts
-import { LINEAR_V, group, linear, ramp, wrap } from "@thi.ng/ramp";
-import { VEC2 } from "@thi.ng/vectors";
+import { group, linear, wrap } from "@thi.ng/ramp";
 
 const example = group({
     // child timeline with looping behavior
-    a: linear([[0,0], [20, 100]], { domain: wrap }),
+    a: linear([[0, 0], [20, 100]], { domain: wrap }),
     // another child timeline
-    b: linear([[10, 100], [90, 200]])
+    b: linear([[10, 100], [90, 200]]),
 });
 
-console.log([...example.samples(20)]);
+console.log(JSON.stringify([...example.samples(10, 0, 100)]));
+// [
+// 	[0, { a: 0, b: 100 }],
+// 	[10, { a: 50, b: 100 }],
+// 	[20, { a: 100, b: 112.5 }],
+// 	[30, { a: 50, b: 125 }],
+// 	[40, { a: 100, b: 137.5 }],
+// 	[50, { a: 50, b: 150 }],
+// 	[60, { a: 0, b: 162.5 }],
+// 	[70, { a: 50, b: 175 }],
+// 	[80, { a: 0, b: 187.5 }],
+// 	[90, { a: 50, b: 200 }],
+// 	[100, { a: 50, b: 200 }]
+// ]
 ```
 
 ## Authors

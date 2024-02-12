@@ -132,7 +132,7 @@ For Node.js REPL:
 const hiccupCss = await import("@thi.ng/hiccup-css");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.21 KB
 
 ## Dependencies
 
@@ -147,10 +147,11 @@ Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                         | Description                                         | Live demo                                                         | Source                                                                                         |
-|:-----------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/>             | hdom update performance benchmark w/ config options | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/> | Generating pure CSS image transitions               | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-css-image-transition) |
+| Screenshot                                                                                                                         | Description                                              | Live demo                                                         | Source                                                                                         |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/>             | hdom update performance benchmark w/ config options      | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)             |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/> | Generating pure CSS image transitions                    | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-css-image-transition) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-scroll-anim.png" width="240"/>            | Scroll-based, reactive, multi-param CSS animation basics | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-scroll-anim)            |
 
 ## API
 
