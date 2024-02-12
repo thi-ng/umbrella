@@ -8,21 +8,41 @@ import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
 import { map } from "@thi.ng/transducers/map";
 import { normRange } from "@thi.ng/transducers/norm-range";
-import type { Frame, IRamp, RampBounds, RampImpl } from "./api.js";
+import type {
+	Frame,
+	IRamp,
+	RampBounds,
+	RampDomain,
+	RampImpl,
+	RampOpts,
+} from "./api.js";
+import { unconstrained } from "./domain.js";
 
 /**
  * Syntax sugar for {@link Ramp} constructor using the given ramp interpolation
- * impl and stops (aka keyframes, minimum 2).
+ * `impl`, keyframes `stops` (minimum 2) and options.
  *
  * @param impl
  * @param stops
+ * @param opts
  */
-export const ramp = <T>(impl: RampImpl<T>, stops: Frame<T>[]) =>
-	new Ramp<T>(impl, stops);
+export const ramp = <T>(
+	impl: RampImpl<T>,
+	stops: Frame<T>[],
+	opts?: Partial<RampOpts>
+) => new Ramp<T>(impl, stops, opts);
 
 export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
-	constructor(public impl: RampImpl<T>, public stops: Frame<T>[]) {
+	domain: RampDomain;
+
+	constructor(
+		public impl: RampImpl<T>,
+		public stops: Frame<T>[],
+		opts?: Partial<RampOpts>
+	) {
 		assert(stops.length >= 2, `require at least 2 keyframes/stops`);
+		const $opts = { domain: unconstrained, ...opts };
+		this.domain = $opts.domain;
 		this.sort();
 	}
 
@@ -37,26 +57,35 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 		return new Ramp<T>(this.impl, []);
 	}
 
+	/**
+	 * Samples the ramp at given time `t` and returns interpolated value.
+	 *
+	 * @remarks
+	 * The given `t` is first processed by the configured time
+	 * {@link Ramp.domain} function.
+	 *
+	 * @param t
+	 */
 	at(t: number) {
-		const { impl, stops } = this;
+		const { domain, impl, stops } = this;
 		const n = stops.length - 1;
+		const first = stops[0];
+		const last = stops[n];
+		t = domain(t, first[0], last[0]);
 		const i = this.timeIndex(t);
-		if (i < 0) {
-			return stops[0][1];
-		} else if (i >= n) {
-			return stops[n][1];
-		} else {
-			return impl.at(stops, i, t);
-		}
+		return i < 0 ? first[1] : i >= n ? last[1] : impl.at(stops, i, t);
 	}
 
-	samples(res = 100) {
-		const t0 = this.stops[0][0];
-		const t1 = peek(this.stops)[0];
+	samples(n = 100, start?: number, end?: number) {
+		if (start == undefined || end == undefined) {
+			const bounds = this.timeBounds();
+			start = start ?? bounds[0];
+			end = end ?? bounds[1];
+		}
 		return map((t) => {
-			t = mix(t0, t1, t);
+			t = mix(start!, end!, t);
 			return <Frame<T>>[t, this.at(t)];
-		}, normRange(res));
+		}, normRange(n));
 	}
 
 	bounds(): RampBounds<T> {
@@ -65,9 +94,9 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 		let min: T | null = null;
 		let max: T | null = null;
 		for (let i = n; i-- > 0; ) {
-			const y = stops[i][1];
-			min = impl.min(min, y);
-			max = impl.max(max, y);
+			const val = stops[i][1];
+			min = impl.min(min, val);
+			max = impl.max(max, val);
 		}
 		return {
 			min: min!,
@@ -77,12 +106,18 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 		};
 	}
 
-	addStopAt(t: number, y: T, eps = 0.01) {
-		if (this.closestIndex(t, eps) !== -1) {
-			this.stops.push([t, y]);
+	timeBounds(): [number, number] {
+		return [this.stops[0][0], peek(this.stops)[0]];
+	}
+
+	setStopAt(t: number, val: T, eps = 0.01) {
+		const idx = this.closestIndex(t, eps);
+		if (idx < 0) {
+			this.stops.push([t, val]);
 			this.sort();
 			return true;
 		}
+		this.stops[idx][1] = val;
 		return false;
 	}
 

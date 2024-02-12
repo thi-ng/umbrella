@@ -1,6 +1,6 @@
 import { fit, norm } from "@thi.ng/math/fit";
 import type { Vec, VecAPI } from "@thi.ng/vectors";
-import type { Frame, RampImpl } from "./api.js";
+import type { Frame, RampImpl, RampOpts } from "./api.js";
 import { Ramp } from "./ramp.js";
 
 /**
@@ -12,8 +12,10 @@ import { Ramp } from "./ramp.js";
  * For vector-valued linear ramps, use {@link ramp} with {@link LINEAR_V}.
  *
  * @param stops
+ * @param opts
  */
-export const linear = (stops: Frame<number>[]) => new Ramp(LINEAR_N, stops);
+export const linear = (stops: Frame<number>[], opts?: Partial<RampOpts>) =>
+	new Ramp(LINEAR_N, stops, opts);
 
 export const LINEAR_N: RampImpl<number> = {
 	min: (acc, x) => Math.min(acc ?? Infinity, x),

@@ -2,7 +2,7 @@ import { norm } from "@thi.ng/math/fit";
 import { mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
 import type { Vec, VecAPI } from "@thi.ng/vectors";
 import { mixHermiteCardinal } from "@thi.ng/vectors/mix-hermite";
-import type { Frame, RampImpl } from "./api.js";
+import type { Frame, RampImpl, RampOpts } from "./api.js";
 import { Ramp } from "./ramp.js";
 
 /**
@@ -21,8 +21,10 @@ import { Ramp } from "./ramp.js";
  * - https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html
  *
  * @param stops
+ * @param opts
  */
-export const hermite = (stops: Frame<number>[]) => new Ramp(HERMITE_N, stops);
+export const hermite = (stops: Frame<number>[], opts?: Partial<RampOpts>) =>
+	new Ramp(HERMITE_N, stops, opts);
 
 export const HERMITE_N: RampImpl<number> = {
 	min: (acc, x) => Math.min(acc ?? Infinity, x),
