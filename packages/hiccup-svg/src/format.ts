@@ -109,7 +109,7 @@ const ftransforms = (attribs: any) => {
 	if (
 		(v = attribs.transform) ||
 		attribs.translate ||
-		attribs.scale ||
+		attribs.scale != null ||
 		attribs.rotate
 	) {
 		if (v) {
@@ -140,7 +140,7 @@ const buildTransform = (attribs: any) => {
 		tx.push(isString(v) ? v : `rotate(${ff((v * 180) / Math.PI)})`);
 		delete attribs.rotate;
 	}
-	if ((v = attribs.scale)) {
+	if ((v = attribs.scale) != null) {
 		tx.push(
 			isString(v)
 				? v
