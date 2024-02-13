@@ -45,5 +45,5 @@ export const path = (
 				res.push(fpoints((<any>seg).slice(1), ","));
 		}
 	}
-	return ["path", fattribs({ ...attribs, d: res.join("") }), ...body];
+	return ["path", fattribs({ d: res.join(""), ...attribs }), ...body];
 };
