@@ -151,3 +151,39 @@ export const fastCos: FnN = (theta) => {
  * @param theta - in radians
  */
 export const fastSin: FnN = (theta) => fastCos(HALF_PI - theta);
+
+/**
+ * Converts angle from DMS to decimal.
+ *
+ * @remarks
+ * See {@link toDMS} for reverse op.
+ *
+ * Reference:
+ * https://en.wikipedia.org/wiki/Decimal_degrees
+ *
+ * @param deg
+ * @param min
+ * @param sec
+ */
+export const fromDMS = (deg: number, min: number, sec: number) =>
+	deg + min / 60 + sec / 3600;
+
+/**
+ * Converts decimal angle to DMS. Returns result as 3-tuple with the first item
+ * (degrees) having the same sign as the input.
+ *
+ * @remarks
+ * See {@link fromDMS} for reverse op.
+ *
+ * Reference: https://en.wikipedia.org/wiki/Decimal_degrees
+ *
+ * @param theta
+ */
+export const toDMS = (theta: number) => {
+	const sign = Math.sign(theta);
+	theta = Math.abs(theta);
+	const deg = Math.trunc(theta);
+	theta = (theta - deg) * 60;
+	const min = Math.trunc(theta);
+	return [deg * sign, min, (theta - min) * 60];
+};
