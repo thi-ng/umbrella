@@ -1,6 +1,5 @@
 import type { Fn, Keys } from "@thi.ng/api";
-import type { ILogger } from "@thi.ng/logger";
-import { NULL_LOGGER } from "@thi.ng/logger/null";
+import { ROOT } from "@thi.ng/logger/root";
 import type { System } from "./system.js";
 
 export interface ILifecycle<T extends SystemMap<T> = any> {
@@ -69,12 +68,7 @@ export type SystemSpecs<T extends SystemMap<T>> = Record<
 	SystemSpec<T>
 >;
 
-/** @internal */
-export let LOGGER = NULL_LOGGER;
-
 /**
- * Sets package logger to given instance.
- *
- * @param logger -
+ * See [thi.ng/logger](https://docs.thi.ng/umbrella/logger/) for usage.
  */
-export const setLogger = (logger: ILogger) => (LOGGER = logger);
+export const LOGGER = ROOT.childLogger("system");
