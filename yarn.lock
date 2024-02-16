@@ -5719,7 +5719,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.23"
     "@thi.ng/checks": "npm:^3.4.23"
-    "@thi.ng/errors": "npm:^2.4.16"
     "@thi.ng/logger": "npm:^2.1.10"
     "@thi.ng/rstream": "npm:^8.3.2"
     "@thi.ng/strings": "npm:^3.7.14"
