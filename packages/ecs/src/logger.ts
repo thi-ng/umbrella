@@ -1,6 +1,6 @@
-import type { ILogger } from "@thi.ng/logger";
-import { NULL_LOGGER } from "@thi.ng/logger/null";
+import { ROOT } from "@thi.ng/logger/root";
 
-export let LOGGER = NULL_LOGGER;
-
-export const setLogger = (logger: ILogger) => (LOGGER = logger);
+/**
+ * See [thi.ng/logger](https://docs.thi.ng/umbrella/logger/) for usage.
+ */
+export const LOGGER = ROOT.childLogger("ecs");
