@@ -1,12 +1,12 @@
 import { identity } from "@thi.ng/api";
-import { ConsoleLogger } from "@thi.ng/logger";
+import { MemoryLogger } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
 import {
 	DEFAULT,
+	LOGGER,
 	defmulti,
 	defmultiN,
 	implementations,
-	setLogger,
 } from "../src/index.js";
 
 test("flatten", () => {
@@ -64,8 +64,11 @@ test("sexpr", () => {
 
 	expect(exec(["+", ["*", 10, ["+", 1, 2, 3]], 6])).toBe(66);
 
-	setLogger(new ConsoleLogger("defmulti"));
+	LOGGER.set(new MemoryLogger());
 	expect(exec.add("number", (x) => x * 2)).toBeTrue();
+	expect((<MemoryLogger>LOGGER.parent).messages()).toEqual([
+		"overwriting 'number' impl",
+	]);
 	expect(exec(["+", ["*", 10, ["+", 1, 2, 3]], 6])).toBe(
 		(1 * 2 + 2 * 2 + 3 * 2) * 10 * 2 + 6 * 2
 	);
