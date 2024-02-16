@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-16T20:01:44Z
+- **Last updated**: 2024-02-16T20:48:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@5.0.1) (2024-02-16)
+
+#### 🩹 Bug fixes
+
+- fix Logger.logEntry() & .childLogger() impls ([3484617](https://github.com/thi-ng/umbrella/commit/3484617))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@5.0.0) (2024-02-16)
 
