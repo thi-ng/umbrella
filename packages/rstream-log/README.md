@@ -61,7 +61,7 @@ filtering.
 
 ## Related packages
 
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger) - Types & basis infrastructure for arbitrary logging (w/ default impls)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger) - Basis types for arbitrary & hierarchical logging
 
 ## Installation
 
@@ -83,13 +83,12 @@ For Node.js REPL:
 const rstreamLog = await import("@thi.ng/rstream-log");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 857 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 707 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)

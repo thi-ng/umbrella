@@ -91,7 +91,7 @@ For Node.js REPL:
 const vectorPools = await import("@thi.ng/vector-pools");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.03 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.02 KB
 
 ## Dependencies
 

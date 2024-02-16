@@ -213,7 +213,7 @@ For Node.js REPL:
 const rstream = await import("@thi.ng/rstream");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.16 KB
 
 ## Dependencies
 

@@ -166,7 +166,7 @@ For Node.js REPL:
 const interceptors = await import("@thi.ng/interceptors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
 
 ## Dependencies
 
