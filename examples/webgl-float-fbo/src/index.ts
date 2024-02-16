@@ -1,5 +1,5 @@
 import { red } from "@thi.ng/colored-noise";
-import { ConsoleLogger } from "@thi.ng/logger";
+import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { V2, V4 } from "@thi.ng/shader-ast";
 import { mapcat, normRange, repeatedly } from "@thi.ng/transducers";
 import { Vec2 } from "@thi.ng/vectors";
@@ -10,11 +10,10 @@ import {
 	clearCanvas,
 	defMultiPass,
 	glCanvas,
-	setLogger,
 } from "@thi.ng/webgl";
 
 // configure logger to view generated shaders in console
-setLogger(new ConsoleLogger("webgl"));
+ROOT.set(new ConsoleLogger());
 
 // config
 const NUM_POINTS = 16;
@@ -43,7 +42,6 @@ const VELOCITIES = [
 const { gl } = glCanvas({
 	width: 512,
 	height: 512,
-	autoScale: false,
 	parent: document.body,
 	version: 2,
 });

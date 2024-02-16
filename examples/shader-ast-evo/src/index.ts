@@ -1,5 +1,5 @@
 import { AST, type ASTNode, type ASTOpts } from "@thi.ng/gp";
-import { ConsoleLogger } from "@thi.ng/logger";
+import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { SYSTEM, type IRandom } from "@thi.ng/random";
 import {
 	$,
@@ -41,7 +41,7 @@ import {
 	snoise3,
 	snoiseVec3,
 } from "@thi.ng/shader-ast-stdlib";
-import { glCanvas, setLogger } from "@thi.ng/webgl";
+import { glCanvas } from "@thi.ng/webgl";
 import {
 	shaderToy,
 	type MainImageFn,
@@ -49,7 +49,7 @@ import {
 } from "@thi.ng/webgl-shadertoy";
 
 // enable logging to show generated shader code
-setLogger(new ConsoleLogger("webgl"));
+ROOT.set(new ConsoleLogger());
 
 const MAX_DEPTH = 11;
 const NORM_SCALE = 1;

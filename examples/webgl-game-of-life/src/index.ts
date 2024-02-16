@@ -1,17 +1,11 @@
-import { ConsoleLogger } from "@thi.ng/logger";
+import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { SYSTEM } from "@thi.ng/random";
 import { V3 } from "@thi.ng/shader-ast";
 import { repeatedly } from "@thi.ng/transducers";
-import {
-	TextureFormat,
-	defMultiPass,
-	glCanvas,
-	passCopy,
-	setLogger,
-} from "@thi.ng/webgl";
+import { TextureFormat, defMultiPass, glCanvas, passCopy } from "@thi.ng/webgl";
 
 // configure a logger to display generated shaders in console
-setLogger(new ConsoleLogger("webgl"));
+ROOT.set(new ConsoleLogger());
 
 // simulation size
 const W = 512;
