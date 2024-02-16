@@ -44,10 +44,10 @@ infrastructure, with logged values transformable via
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 Several built-in transformers are provided.
 
-The `Logger` class provided by this package implements the
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+The `Logger` class in this package implements the
+[@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 `ILogger` interface and uses `LogLevel` enums to configure levels /
-filtering.
+filtering. See that package for more details.
 
 ## Status
 
@@ -83,7 +83,7 @@ For Node.js REPL:
 const rstreamLog = await import("@thi.ng/rstream-log");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 707 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 715 bytes
 
 ## Dependencies
 
@@ -98,41 +98,37 @@ Package sizes (brotli'd, pre-treeshake): ESM: 707 bytes
 
 [Generated API docs](https://docs.thi.ng/umbrella/rstream-log/)
 
-```ts
-import { LogLevel } from "@thi.ng/api";
-import * as log from "@thi.ng/rstream-log";
+```ts tangle:export/readme.ts
+import { LogLevel } from "@thi.ng/logger";
+import { Logger, formatString, writeConsole } from "@thi.ng/rstream-log";
 
-const logger = new log.Logger("main");
+const logger = new Logger("main");
 // or with min level
-const logger = new log.Logger("main", LogLevel.DEBUG);
+const logger = new Logger("main", LogLevel.DEBUG);
+// or min level given as string
+const logger = new Logger("main", "DEBUG");
 
 // add console output w/ string formatter (a transducer)
-logger.subscribe(log.writeConsole(), log.formatString());
+// each logger instance has a rstream Stream instance
+// allowing for downstream processing
+logger.stream.transform(formatString()).subscribe(writeConsole());
 
 logger.debug("hello world");
-// [DEBUG] [main] 2018-01-20T09:04:05.198Z hello world
+// [DEBUG] main: 2024-02-16T20:38:11.143Z hello world
 
 logger.warn("eek");
-// [WARN] [main] 2018-01-20T09:04:16.913Z eek
+// [WARN] main: 2024-02-16T20:38:11.144Z eek
 
-// each logger instance is a rstream StreamMerge instance
-// allowing to form logger hierarchies
-
-const mod1 = new log.Logger("module-1", LogLevel.INFO);
-// pipe mod1 into main logger
-logger.add(mod1);
+// loggers can form hierarchies by creating/attaching child loggers
+const child = logger.childLogger("child", LogLevel.INFO);
 
 import { postWorker } from "@thi.ng/rstream";
 // additionally send messages from this logger to worker
-mod1.subscribe(postWorker("log-worker.js"));
+child.stream.subscribe(postWorker("log-worker.js"));
 
-mod1.info("hi from sub-module");
-
-// only shown in console:
-// [INFO] [module-1] 2018-01-20T09:05:21.198Z hi from sub-module
+child.info("hi from submodule");
+// [INFO] child: 2024-02-16T20:38:11.145Z hi from submodule
 ```
-
-TODO
 
 ## Authors
 
