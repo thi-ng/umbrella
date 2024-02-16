@@ -1,11 +1,16 @@
 import { ALogger } from "@thi.ng/logger/alogger";
-import { LogLevel, type ILogger, type LogEntry } from "@thi.ng/logger/api";
-import { Stream, type ISubscriber, CloseMode } from "@thi.ng/rstream";
+import {
+	LogLevel,
+	type ILogger,
+	type LogEntry,
+	type LogLevelName,
+} from "@thi.ng/logger/api";
+import { CloseMode, Stream, type ISubscriber } from "@thi.ng/rstream";
 
 export class Logger extends ALogger implements ISubscriber<LogEntry> {
 	stream: Stream<LogEntry>;
 
-	constructor(id: string, level?: LogLevel, parent?: ILogger) {
+	constructor(id: string, level?: LogLevel | LogLevelName, parent?: ILogger) {
 		super(id, level, parent);
 		this.stream = new Stream<LogEntry>({
 			id: this.id,
@@ -14,7 +19,7 @@ export class Logger extends ALogger implements ISubscriber<LogEntry> {
 	}
 
 	next(x: LogEntry) {
-		x[0] >= this.level && this.stream.next(x);
+		this.logEntry(x);
 	}
 
 	done() {
@@ -26,10 +31,13 @@ export class Logger extends ALogger implements ISubscriber<LogEntry> {
 	}
 
 	logEntry(e: LogEntry): void {
-		if (this.level <= e[0]) this.stream.next(e);
+		if (e[0] >= this.level) {
+			this.stream.next(e);
+			this.parent && this.parent.logEntry(e);
+		}
 	}
 
-	childLogger(id: string, level?: LogLevel): ILogger {
-		return new Logger(id, level ?? this.level, this.parent);
+	childLogger(id: string, level?: LogLevel): Logger {
+		return new Logger(id, level ?? this.level, this);
 	}
 }
