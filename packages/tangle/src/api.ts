@@ -1,6 +1,5 @@
 import type { Fn2, FnAnyT, IObjectOf, Predicate } from "@thi.ng/api";
-import { LogLevel, type ILogger } from "@thi.ng/logger";
-import { ConsoleLogger } from "@thi.ng/logger/console";
+import { ConsoleLogger, LogLevel, ROOT, type ILogger } from "@thi.ng/logger";
 
 export interface Block {
 	id: string;
@@ -127,8 +126,7 @@ export const COMMENT_FORMATS: IObjectOf<string | [string, string]> = {
 	zig: C,
 };
 
-export let LOGGER: ILogger = new ConsoleLogger("tangle", LogLevel.INFO);
-
-export const setLogger = (logger: ILogger) => {
-	LOGGER = logger;
-};
+/**
+ * See [thi.ng/logger](https://docs.thi.ng/umbrella/logger/) for usage.
+ */
+export const LOGGER = ROOT.addChild(new ConsoleLogger("tangle", LogLevel.INFO));
