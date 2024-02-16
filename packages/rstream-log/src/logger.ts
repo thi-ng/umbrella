@@ -1,76 +1,35 @@
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { LogLevel, type LogEntry } from "@thi.ng/logger/api";
-import { CloseMode, type ISubscribable } from "@thi.ng/rstream/api";
-import { __nextID } from "@thi.ng/rstream/idgen";
-import { StreamMerge } from "@thi.ng/rstream/merge";
-import type { ILogger } from "./api.js";
+import { ALogger } from "@thi.ng/logger/alogger";
+import { LogLevel, type ILogger, type LogEntry } from "@thi.ng/logger/api";
+import { Stream, type ISubscriber, CloseMode } from "@thi.ng/rstream";
 
-export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
-	level: LogLevel;
+export class Logger extends ALogger implements ISubscriber<LogEntry> {
+	stream: Stream<LogEntry>;
 
-	constructor();
-	constructor(id: string);
-	constructor(id: string, level: LogLevel);
-	constructor(
-		id: string,
-		sources: Iterable<ISubscribable<LogEntry>>,
-		level?: LogLevel
-	);
-	constructor(...args: any[]) {
-		let id;
-		let level = LogLevel.FINE;
-		let src;
-		switch (args.length) {
-			case 0:
-				break;
-			case 1:
-				id = args[0];
-				break;
-			case 2:
-				[id, level] = args;
-				break;
-			case 3:
-				[id, src, level] = args;
-				src = [...src];
-				break;
-			default:
-				illegalArity(args.length);
-		}
-		id = id || `logger-${__nextID()}`;
-		super({ src, id, closeIn: CloseMode.NEVER, closeOut: CloseMode.NEVER });
-		this.level = level;
-	}
-
-	enabled(level: LogLevel) {
-		return this.level <= level;
+	constructor(id: string, level?: LogLevel, parent?: ILogger) {
+		super(id, level, parent);
+		this.stream = new Stream<LogEntry>({
+			id: this.id,
+			closeOut: CloseMode.NEVER,
+		});
 	}
 
 	next(x: LogEntry) {
-		x[0] >= this.level && super.next(x);
+		x[0] >= this.level && this.stream.next(x);
 	}
 
-	fine(...args: any[]) {
-		this.log(LogLevel.FINE, args);
+	done() {
+		this.stream.done();
 	}
 
-	debug(...args: any[]) {
-		this.log(LogLevel.DEBUG, args);
+	error(e: Error) {
+		return this.stream.error(e);
 	}
 
-	info(...args: any[]) {
-		this.log(LogLevel.INFO, args);
+	logEntry(e: LogEntry): void {
+		if (this.level <= e[0]) this.stream.next(e);
 	}
 
-	warn(...args: any[]) {
-		this.log(LogLevel.WARN, args);
-	}
-
-	severe(...args: any[]) {
-		this.log(LogLevel.SEVERE, args);
-	}
-
-	protected log(level: LogLevel, args: any[]) {
-		this.level <= level &&
-			super.next(<LogEntry>[level, this.id, Date.now(), ...args]);
+	childLogger(id: string, level?: LogLevel): ILogger {
+		return new Logger(id, level ?? this.level, this.parent);
 	}
 }

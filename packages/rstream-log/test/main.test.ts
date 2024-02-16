@@ -20,7 +20,7 @@ const counter = () => {
 test("all", () => {
 	const logger = new Logger("foo", LogLevel.FINE);
 	const acc: string[] = [];
-	const sub = logger
+	const sub = logger.stream
 		.transform(formatString(counter()))
 		.subscribe(collect(acc));
 	logger.fine("hello");
@@ -36,5 +36,5 @@ test("all", () => {
 		`[SEVERE] foo: 5 hello 42 [{"a":[23]}]`,
 	]);
 	sub.unsubscribe();
-	expect(logger.getState()).toBe(State.ACTIVE);
+	expect(logger.stream.getState()).toBe(State.ACTIVE);
 });
