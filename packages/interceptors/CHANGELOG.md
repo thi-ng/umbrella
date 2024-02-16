@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:56Z
+- **Last updated**: 2024-02-16T20:01:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.42](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.42) (2024-02-16)
+
+#### ♻️ Refactoring
+
+- update LOGGER handling ([df5c874](https://github.com/thi-ng/umbrella/commit/df5c874))
 
 ### [3.2.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.24) (2023-11-09)
 

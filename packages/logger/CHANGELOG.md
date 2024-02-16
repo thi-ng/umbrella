@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:56Z
+- **Last updated**: 2024-02-16T20:01:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.0.0) (2024-02-16)
+
+#### 🛑 Breaking changes
+
+- update/extend ILogger interface ([887e839](https://github.com/thi-ng/umbrella/commit/887e839))
+- BREAKING CHANGE: update/extend ILogger interface to support
+  hierarchies of loggers
+  - update ALogger impl, update ctor
+  - update ConsoleLogger, MemoryLogger, StreamLogger classes
+  - update NULL_LOGGER
+  - add ROOT logger and ProxyLogger class
+  - add/update docs
+  - update tests
+  - update pkg exports
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@2.1.0) (2023-12-18)
 

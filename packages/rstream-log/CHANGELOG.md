@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:57Z
+- **Last updated**: 2024-02-16T20:01:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@5.0.0) (2024-02-16)
+
+#### 🛑 Breaking changes
+
+- update Logger impl, remove obsolete types ([36c8649](https://github.com/thi-ng/umbrella/commit/36c8649))
+- BREAKING CHANGE: update Logger, remove obsolete types
+  - Logger now a subclass of `ALogger` & implementing `ISubscriber` interface
+    - instead of extending rstream `StreamMerge`, now exposes a `Stream` via `.stream`
+    - adding child loggers now handled via `ILogger.childLogger()` or `ILogger.addChild()`
+  - update tests
 
 ### [4.1.84](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@4.1.84) (2023-11-24)
 

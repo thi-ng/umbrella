@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:57Z
+- **Last updated**: 2024-02-16T20:01:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [6.6.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.6.28) (2024-02-16)
+
+#### ♻️ Refactoring
+
+- update LOGGER handling ([744ebed](https://github.com/thi-ng/umbrella/commit/744ebed))
 
 ### [6.6.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.6.26) (2024-02-06)
 
