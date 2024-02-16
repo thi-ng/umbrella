@@ -1,5 +1,6 @@
 import { isNumber } from "@thi.ng/checks";
 import { exposeGlobal } from "@thi.ng/expose";
+import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { fromAtom } from "@thi.ng/rstream";
 import { charRange } from "@thi.ng/strings";
 import {
@@ -133,7 +134,7 @@ const app = () => {
 	];
 };
 
-// setLogger(new ConsoleLogger("rstream"));
+// ROOT.set(new ConsoleLogger());
 
 // main state value subscription
 const main = fromAtom(DB);

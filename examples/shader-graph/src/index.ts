@@ -1,5 +1,6 @@
 import type { Nullable } from "@thi.ng/api";
 import { exposeGlobal } from "@thi.ng/expose";
+import { ConsoleLogger } from "@thi.ng/logger";
 import { ortho } from "@thi.ng/matrices";
 import { fromRAF } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
@@ -32,6 +33,7 @@ import {
 } from "@thi.ng/shader-ast-stdlib";
 import { add2, copy, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 import {
+	LOGGER,
 	clearCanvas,
 	compileModel,
 	defQuadModel,
@@ -42,7 +44,7 @@ import {
 import type { AppCtx } from "./api";
 import { OpNode } from "./opnode";
 
-// setLogger(new ConsoleLogger("webgl", LogLevel.DEBUG));
+// LOGGER.set(new ConsoleLogger());
 
 const { canvas, gl } = glCanvas({
 	width: 1280,

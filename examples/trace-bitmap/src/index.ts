@@ -1,7 +1,9 @@
 import { exposeGlobal } from "@thi.ng/expose";
-import { div, h3 } from "@thi.ng/hiccup-html";
+import { div } from "@thi.ng/hiccup-html";
+import { ConsoleLogger } from "@thi.ng/logger";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
+import { LOGGER } from "@thi.ng/rstream";
 import { THEME } from "./api";
 import { axidrawControls } from "./components/axidraw";
 import { exportControls } from "./components/export";
@@ -15,7 +17,7 @@ import { canvasState, scene } from "./state/process";
 import { visualizeTopology } from "./state/viz";
 
 // enable for logging all thi.ng/rstream constructs
-// setLogger(new ConsoleLogger("rs", "INFO"));
+// LOGGER.set(new ConsoleLogger("rs", "INFO"));
 
 //////////////////////////////// IMPORTANT! ////////////////////////////////////
 // Please ensure you read the detailed comments in /src/components/*.ts and
