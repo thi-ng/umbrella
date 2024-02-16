@@ -290,7 +290,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 	protected unhandledError(e: any) {
 		// ensure error is at least logged to console
 		// even if default NULL_LOGGER is used...
-		(LOGGER !== NULL_LOGGER ? LOGGER : console).warn(
+		(LOGGER.parent !== NULL_LOGGER ? LOGGER : console).warn(
 			this.id,
 			"unhandled error:",
 			e
