@@ -1,5 +1,10 @@
 import { ALogger } from "./alogger.js";
-import { LogLevel, type LogLevelName } from "./api.js";
+import {
+	LogLevel,
+	type LogEntry,
+	type LogLevelName,
+	type ILogger,
+} from "./api.js";
 import { expandArgsJSON } from "./utils.js";
 
 /**
@@ -10,15 +15,22 @@ import { expandArgsJSON } from "./utils.js";
 export class StreamLogger extends ALogger {
 	constructor(
 		protected target: NodeJS.WriteStream,
-		id: string,
-		level: LogLevel | LogLevelName = LogLevel.FINE
+		id?: string,
+		level?: LogLevel | LogLevelName,
+		parent?: ILogger
 	) {
-		super(id, level);
+		super(id, level, parent);
 	}
 
-	protected log(level: LogLevel, args: any[]): void {
+	childLogger(id?: string, level?: LogLevel): StreamLogger {
+		return new StreamLogger(this.target, id, level ?? this.level, this);
+	}
+
+	logEntry(e: LogEntry) {
+		if (e[0] < this.level) return;
 		this.target.write(
-			`[${LogLevel[level]}] ${this.id}: ${expandArgsJSON(args)}\n`
+			`[${LogLevel[e[0]]}] ${e[1]}: ${expandArgsJSON(e.slice(3))}\n`
 		);
+		this.parent && this.parent.logEntry(e);
 	}
 }

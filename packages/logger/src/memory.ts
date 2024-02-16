@@ -1,16 +1,28 @@
 import { ALogger } from "./alogger.js";
-import type { LogEntry, LogLevel, LogLevelName } from "./api.js";
+import type { ILogger, LogEntry, LogLevel, LogLevelName } from "./api.js";
 import { expandArgs } from "./utils.js";
 
 export class MemoryLogger extends ALogger {
 	journal: LogEntry[] = [];
 
 	constructor(
-		id: string,
+		id?: string,
 		level?: LogLevel | LogLevelName,
+		parent?: ILogger,
 		public limit = 1e3
 	) {
-		super(id, level);
+		super(id, level, parent);
+	}
+
+	childLogger(id?: string, level?: LogLevel): MemoryLogger {
+		return new MemoryLogger(id, level ?? this.level, this, this.limit);
+	}
+
+	logEntry(e: LogEntry) {
+		if (e[0] < this.level) return;
+		if (this.journal.length >= this.limit) this.journal.shift();
+		this.journal.push([e[0], e[1], e[2], ...expandArgs(e.slice(3))]);
+		this.parent && this.parent.logEntry(e);
 	}
 
 	/**
@@ -30,10 +42,5 @@ export class MemoryLogger extends ALogger {
 	 */
 	messages() {
 		return this.journal.map((x) => x.slice(3).join(" "));
-	}
-
-	protected log(level: LogLevel, args: any[]) {
-		if (this.journal.length >= this.limit) this.journal.shift();
-		this.journal.push([level, this.id, Date.now(), ...expandArgs(args)]);
 	}
 }

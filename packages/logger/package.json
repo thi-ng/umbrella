@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/logger",
 	"version": "2.1.10",
-	"description": "Types & basis infrastructure for arbitrary logging (w/ default impls)",
+	"description": "Basis types for arbitrary & hierarchical logging",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -80,6 +80,9 @@
 		},
 		"./null": {
 			"default": "./null.js"
+		},
+		"./root": {
+			"default": "./root.js"
 		},
 		"./stream": {
 			"default": "./stream.js"

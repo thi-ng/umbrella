@@ -9,7 +9,7 @@ const journalWithoutTimestamp = (journal: LogEntry[]) =>
 	});
 
 test("memory", () => {
-	const logger = new MemoryLogger("test", LogLevel.DEBUG, 3);
+	const logger = new MemoryLogger("test", LogLevel.DEBUG, undefined, 3);
 	logger.fine(1, 2, 3);
 	logger.debug(1, 2, 3);
 	logger.info([1, 2, 3]);
