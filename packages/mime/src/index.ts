@@ -1,5 +1,18 @@
 import { DB } from "./generated.js";
 
+/**
+ * Decodes list of extensions, taking compressible flag into account.
+ *
+ * @internal
+ */
+const __ext = (val: string) => val.substring(~~(val[0] === "1")).split(",");
+
+const __group = (mime: string) => {
+	const [prefix, suffix] = mime.split("/");
+	const group = DB[prefix];
+	return group ? group[suffix] : undefined;
+};
+
 // https://www.iana.org/assignments/media-types/
 
 export const MIME_TYPES = ((defs: any) => {
@@ -8,7 +21,7 @@ export const MIME_TYPES = ((defs: any) => {
 		const group = defs[groupID];
 		for (let type in group) {
 			const mime = groupID + "/" + type;
-			for (let e of group[type].split(",")) {
+			for (let e of __ext(group[type])) {
 				const isLowPri = e[0] === "*";
 				const ext = isLowPri ? e.substring(1) : e;
 				let coll = res[ext];
@@ -49,12 +62,13 @@ export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
  * @param fallback -
  */
 export const preferredExtension = (mime: string, fallback = "bin") => {
-	const [prefix, suffix] = mime.split("/");
-	const group = DB[prefix];
-	const ext = group ? group[suffix].split(",") : undefined;
+	const group = __group(mime);
+	const ext = group ? __ext(group) : undefined;
 	return ext
 		? ext.find((x) => x[0] !== "*") || ext[0].substring(1)
 		: fallback;
 };
+
+export const isCompressible = (mime: string) => !!(__group(mime)?.[0] === "1");
 
 export * from "./presets.js";
