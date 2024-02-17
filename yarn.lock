@@ -3875,7 +3875,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.23"
     "@thi.ng/checks": "npm:^3.4.23"
-    "@thi.ng/mime": "npm:^2.4.0"
+    "@thi.ng/mime": "npm:^2.5.0"
     esbuild: "npm:^0.20.0"
     rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.7"
@@ -5157,7 +5157,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/mime@npm:^2.4.0, @thi.ng/mime@workspace:^, @thi.ng/mime@workspace:packages/mime":
+"@thi.ng/mime@npm:^2.5.0, @thi.ng/mime@workspace:^, @thi.ng/mime@workspace:packages/mime":
   version: 0.0.0-use.local
   resolution: "@thi.ng/mime@workspace:packages/mime"
   dependencies:
