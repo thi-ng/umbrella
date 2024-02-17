@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { readFileSync, writeFileSync } from "fs";
+import { readJSON, writeText } from "@thi.ng/file-io";
 
 const RE_IGNORE = /^\w+\/vnd\./;
 
@@ -51,44 +51,54 @@ const LO_PRIORITIES: IObjectOf<string> = {
 };
 
 // Source: https://raw.githubusercontent.com/jshttp/mime-db/master/db.json
-const src = JSON.parse(readFileSync("tools/mime-db.json", "utf-8"));
+const src = readJSON("tools/mime-db.json");
 
 // Destination index w/ prefilled types not included in mime-db
 const dest: IObjectOf<IObjectOf<string>> = {
-	// see: https://twitter.com/toxi/status/1378719456269058058
+	// see: https://www.rfc-editor.org/rfc/rfc4288#section-3.2
 	application: {
-		"x-sidefx-houdini-project": "hip,hipnc,hiplc",
-		"x-sidefx-houdini-asset": "hda",
+		"vnd.sidefx.houdini-project": "hip,hipnc,hiplc",
+		"vnd.sidefx.houdini-asset": "hda",
+	},
+	audio: {
+		// included in db, but weird order of extensions
+		aac: "aac,adts",
 	},
 	image: {
+		jpeg: "jpg,jpeg,jpe",
+		// https://github.com/phoboslab/qoi/issues/167
+		qoi: "qoi",
 		// http://fileformats.archiveteam.org/wiki/Radiance_HDR
 		"vnd.radiance": "hdr,*pic,rgbe,xyze",
 	},
 	model: {
+		// https://www.iana.org/assignments/media-types/model/step
+		step: "step,stp,stpnc,p21",
 		// Houdini default extension for binary STL models
 		"stl+binary": "bstl",
 		// Houdini geometry formats
-		"x-sidefx-houdini": "geo",
-		"x-sidefx-houdini+binary": "bgeo",
-	},
-	text: {
-		javascript: "js,mjs",
+		"vnd.sidefx.houdini": "geo",
+		"vnd.sidefx.houdini+binary": "bgeo",
 	},
 };
 
 // build index
 for (let type in src) {
 	const ext = src[type].extensions;
+	const compress = ~~src[type].compressible;
 	if (!ext || (RE_IGNORE.test(type) && !INCLUDE.has(type))) continue;
 	const [prefix, suffix] = type.split("/");
 	let group = dest[prefix];
 	if (!group) {
 		dest[prefix] = group = {};
 	}
-	const $ext = ext
-		.map((e: string) => (LO_PRIORITIES[e] === type ? "*" : "") + e)
-		.join(",");
-	group[suffix] = $ext;
+	// skip processing entries which already have manual overrides (from above)
+	const $ext =
+		group[suffix] ??
+		ext
+			.map((e: string) => (LO_PRIORITIES[e] === type ? "*" : "") + e)
+			.join(",");
+	group[suffix] = compress ? compress + $ext : $ext;
 }
 
 // sort groups
@@ -109,7 +119,7 @@ const body = `// thing:no-export
 export const DB: Record<string, Record<string, string>> = ${JSON.stringify(
 	result,
 	null,
-	4
+	"\t"
 )}`;
 
-writeFileSync("src/generated.ts", body, "utf-8");
+writeText("src/generated.ts", body);
