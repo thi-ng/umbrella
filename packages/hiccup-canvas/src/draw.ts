@@ -10,6 +10,7 @@ import {
 	__restoreState,
 } from "./internal/state.js";
 import { line, lines } from "./line.js";
+import { packedLines } from "./packed-lines.js";
 import { packedPoints } from "./packed-points.js";
 import { path } from "./path.js";
 import { points } from "./points.js";
@@ -68,6 +69,9 @@ export const draw = (
 			break;
 		case "lines":
 			lines(ctx, attribs, shape[2]);
+			break;
+		case "packedLines":
+			packedLines(ctx, attribs, origAttribs, shape[2]);
 			break;
 		case "hline":
 			line(ctx, attribs, [-1e6, shape[2]], [1e6, shape[2]]);
