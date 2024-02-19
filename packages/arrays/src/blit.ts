@@ -1,4 +1,4 @@
-import type { TypedArray } from "@thi.ng/api";
+import type { Fn3, TypedArray } from "@thi.ng/api";
 
 /**
  * Selectively copies all non-`mask` values from `src` into `dest` starting from
@@ -47,6 +47,44 @@ export function blit1d(dest: any[], x: number, src: ArrayLike<any>, mask: any) {
 	for (let i = 0; i < sw; i++) {
 		const val = src[sx + i];
 		val !== mask && (dest[dx + i] = val);
+	}
+	return dest;
+}
+
+/**
+ * Similar to {@link blit1d}, but uses a predicate function to
+ * determine/transform copied values. The predicate is called with the src, and
+ * dest item values and src index. The result of that function is written to the
+ * `dest` array. If the predicate returns `undefined`, no value will be written.
+ *
+ * @param dest
+ * @param dx
+ * @param src
+ * @param pred
+ */
+export function blitPred1d<T extends TypedArray>(
+	dest: T,
+	dx: number,
+	src: ArrayLike<number>,
+	pred: Fn3<number, number, number, number | undefined>
+): T;
+export function blitPred1d<T>(
+	dest: T[],
+	dx: number,
+	src: ArrayLike<T>,
+	pred: Fn3<T, T, number, T | undefined>
+): T[];
+export function blitPred1d(
+	dest: any[],
+	x: number,
+	src: ArrayLike<any>,
+	pred: any
+) {
+	const [sx, sw, dx, dw] = __clip(0, src.length, x, dest.length);
+	if (sw < 1 || dx >= dw) return dest;
+	for (let i = 0; i < sw; i++) {
+		const val = pred(src[sx + i], dest[dx + i], sx + i);
+		val !== undefined && (dest[dx + i] = val);
 	}
 	return dest;
 }
