@@ -6,6 +6,8 @@
 
 {{pkg.description}}
 
+![Terminal based textmode bar plots](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/multi-barplot.png)
+
 {{meta.status}}
 
 {{repo.supportPackages}}
@@ -122,9 +124,9 @@ package):
 
 ```ts
 // Terminal
-console.log(formatCanvas(canvas, FMT_ANSI16));
+process.stdout.write(formatCanvas(canvas, FMT_ANSI16));
 // or
-console.log(formatCanvas(canvas, FMT_ANSI256));
+console.log(formatCanvas(canvas, FMT_ANSI16));
 
 // Browser
 const el = document.createElement("pre");
@@ -170,23 +172,22 @@ each newly pushed one being intersected with the previous top-of-stack rect:
 
 ### Drawing functions
 
-- `line`
-- `hline`
-- `vline`
-- `circle`
+- `line()`
+- `hline()`
+- `vline()`
+- `circle()`
 
-- `clear`
-- `fillRect`
-- `strokeRect`
+- `clear()`
+- `fillRect()`
+- `strokeRect()`
 
 ### Image functions
 
-- `blit`
-- `resize`
-- `extract`
-- `scrollV`
-- `image` / `imageRaw` / `imageCanvas565` / `imageString565`
-- `imageBraille` / `imageCanvasBraille` / `imageStringBraille`
+- `blit()` / `blitMask()` / `blitBarsV()`
+- `image()` / `imageRaw()` / `imageCanvas565()` / `imageString565()`
+- `imageBraille()` / `imageCanvasBraille()` / `imageStringBraille()`
+- `resize()` / `extract()`
+- `scrollV()`
 
 ```ts
 import { RGB565 } from "@thi.ng/pixel";
@@ -206,19 +207,19 @@ console.log(imageString565(img));
 
 ### Text functions
 
-- `textLine`
-- `textLines`
-- `textColumn` (word wrapped)
-- `textBox` (word wrapped)
+- `textLine()`
+- `textLines()`
+- `textColumn()` (word wrapped)
+- `textBox()` (word wrapped)
 
 ### Bars & bar charts
 
-The following are string builders only, draw result via text functions:
+The following are string builders only, draw result via [text functions](#text-functions):
 
-- `barHorizontal`
-- `barVertical`
-- `barChartHStr`
-- `barChartVStr`
+- `barHorizontal()`
+- `barVertical()`
+- `barChartHStr()`
+- `barChartVStr()`
 
 ### Tables
 
@@ -240,7 +241,7 @@ Table cell contents will be word-wrapped. By default, individual words longer
 than the configured cell width will be truncated, but can be forced to wrap by
 enabling the `hard` option (see example below).
 
-```ts
+```ts tangle:export/readme-table.ts
 import { repeatedly } from "@thi.ng/transducers";
 import * as tc from "@thi.ng/text-canvas";
 import * as tf from "@thi.ng/text-format";
@@ -248,7 +249,7 @@ import * as tf from "@thi.ng/text-format";
 // generate 20 random values
 const data = repeatedly(() => Math.random(), 20)
 // format as bar chart string
-const chart = tc.barChartHStr(4, data, 0, 1);
+const chart = tc.barChartVStr(4, data, 0, 1);
 
 // create text canvas
 const canvas = new tc.Canvas(64, 20);
@@ -307,44 +308,11 @@ as content.
 
 ### 3D wireframe cube example
 
-```text
-       ┌───┐
-  ┌──────────────────────┐
-  │ @thi.ng/text-canvas  │
-  │ wireframe cube       │++++++++++
-  │                      │          +++++++++++    ┌───┐
-  │ x: 0.42              │                     ++++│ 6 │
-  │ y: 0.30              │        ┌───┐ ++++++++   └───┘
-  └──────────────────────┘++++++++│ 7 │+           +
-           +         └───┘        └───┘            +
-            +          +           +              +
-            +          +           +              +
-             +         +           +             +
-             +         +          +              +
-             +          +         +              +
-              +         +         +             +
-              +         +         +             +
-               +        +        ┌───┐         +
-               +         +      +│ 3 │         +
-                +       ┌───┐+++ └───┘        +
-                +       │ 0 │       +         +
-                 +      └───┘        +        +
-                 +       +            +      +
-                 +       +             +     +
-                  +     +               +   +
-                  +     +                +  +
-                   +    +                 ┌───┐
-                   +    +                 │ 2 │
-                    +   +               ++└───┘
-                    +   +            +++
-                     + +           ++
-                     + +        +++
-                      ++      ++
-````
+![3D wireframe cube](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/3dcube.png)
 
 Code for this above example output (CLI version):
 
-```ts
+```ts tangle:export/readme-cube.ts
 import * as geom from "@thi.ng/geom";
 import * as mat from "@thi.ng/matrices";
 import * as tc from "@thi.ng/text-canvas";
@@ -408,13 +376,64 @@ setInterval(() => {
             padding: [1, 0]
         }
     );
-    // draw canvas
-    console.clear();
     // output as ANSI formatted string
-    console.log(tc.formatCanvas(canvas, tf.FMT_ANSI16));
-    // output as plain text
+    process.stdout.write(
+		tf.ANSI_SYNC_START +
+		tf.ANSI_CLEAR_SCREEN +
+		tf.ANSI_HOME +
+		tc.formatCanvas(canvas, tf.FMT_ANSI16) +
+		tf.ANSI_SYNC_END
+	);
+    // ...our output as plain text
     // console.log(tc.formatCanvas(canvas));
-}, 15);
+}, 16);
+```
+
+### Multiple bar plots with additive blending
+
+```ts tangle:export/readme-barplot.ts
+import { HERMITE_V, VEC4, ramp } from "@thi.ng/ramp";
+import { canvas, formatCanvas, plotBarChartV } from "@thi.ng/text-canvas";
+import { FG_BLUE, FG_GRAY, FG_GREEN, FG_RED, FMT_ANSI16 } from "@thi.ng/text-format";
+
+// define curves for 4 params which will be computed via
+// cubic hermite interpolation
+const curves = ramp(
+	// use VEC4 interpolation preset
+	HERMITE_V(VEC4),
+	// keyframes
+	[
+		[0.0, [1, 0, 0.33, 0]],
+		[0.5, [0, 1, 0.06, -0.3]],
+		[1.0, [0, 0, 1, 0.5]],
+	]
+);
+
+const W = 100;
+const H = 24;
+const samples: number[][] = [];
+
+// sample curves
+for (let i = 0; i < W; i++) {
+	samples.push(<number[]>curves.at(i / (W - 1)));
+}
+
+// create empty canvas
+const plot = canvas(W, H);
+
+// create all 4 bar plots in the same canvas, by default uses additive blending
+// to composite each plot layer
+plotBarChartV(
+	plot,
+	{ min: 0, max: 1 },
+	{ data: samples.map((x) => x[0]), color: FG_RED },
+	{ data: samples.map((x) => x[1]), color: FG_GREEN },
+	{ data: samples.map((x) => x[2]), color: FG_BLUE },
+	{ data: samples.map((x) => x[3]), color: FG_GRAY }
+);
+
+// format & print canvas using ANSI colors
+console.log(formatCanvas(plot, FMT_ANSI16));
 ```
 
 <!-- include ../../assets/tpl/footer.md -->
