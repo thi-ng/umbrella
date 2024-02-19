@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/text-canvas",
 	"version": "2.6.38",
-	"description": "Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)",
+	"description": "Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. ANSI/HTML)",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -68,18 +68,23 @@
 		"braille",
 		"canvas",
 		"circle",
+		"clipping",
 		"color",
 		"datastructure",
+		"dataviz",
 		"drawing",
 		"format",
 		"image",
 		"line",
+		"plot",
 		"rect",
 		"rgb",
+		"shape",
 		"table",
 		"text",
 		"theme",
 		"typescript",
+		"visualization",
 		"wordwrap"
 	],
 	"publishConfig": {
@@ -119,6 +124,9 @@
 		},
 		"./line": {
 			"default": "./line.js"
+		},
+		"./plot": {
+			"default": "./plot.js"
 		},
 		"./rect": {
 			"default": "./rect.js"
