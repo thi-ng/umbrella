@@ -286,12 +286,12 @@ the number of indices between each vector x/y component and/or each point
 respectively) can be given as attributes and thus these packaged shapes support
 both AOS and SOA memory layouts/arrangements.
 
-Defaults:
+Options & defaults:
 
-- start index: 0
-- number of vertices: (array_length - start) / estride
-- component stride: 1
-- element stride: 2
+- `start`: start index = 0
+- `num`: number of vertices = `(array_length - start) / estride`
+- `cstride`: component stride = 1
+- `estride`: element stride = 2
 
 ```ts
 ["packedPoints", { cstride: 1, estride: 4 },
