@@ -33,11 +33,13 @@
 		"pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && bun tools/src/deploy-docs.ts",
 		"test": "yarn build:esbuild && yarn test:only",
 		"test:only": "bun test packages",
+		"tool:cleanup": "bun tools/src/cleanup.ts",
 		"tool:deps": "bun tools/src/adjacency.ts",
-		"tool:exports": "bun tools/src/check-exports.ts",
+		"tool:exports": "bun tools/src/generate-export-maps.ts && bun tools/src/check-exports.ts",
 		"tool:imports": "bun tools/src/check-imports.ts",
 		"tool:prune": "bun tools/src/prune-changelogs.ts",
-		"tool:searchindex": "bun tools/src/build-search-index.ts"
+		"tool:searchindex": "bun tools/src/build-search-index.ts",
+		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn doc:readme && yarn tool:searchindex && yarn tool:deps"
 	},
 	"packageManager": "yarn@4.0.2"
 }
