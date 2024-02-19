@@ -2,7 +2,19 @@ import { memoize1 } from "@thi.ng/memoize/memoize1";
 import type { StringFormat } from "./api.js";
 import { defFormat } from "./format.js";
 
-const ANSI_RESET = `\x1b[0m`;
+export const ANSI_RESET = "\x1b[0m";
+
+// https://gitlab.com/gnachman/iterm2/-/wikis/synchronized-updates-spec#control-sequence
+export const ANSI_SYNC_START = "\x1bP=1s\x1b\\";
+export const ANSI_SYNC_END = "\x1bP=2s\x1b\\";
+
+// https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
+export const ANSI_HOME = "\x1b[H";
+export const ANSI_HOME_LINE = "\x1b[0G";
+export const ANSI_HOME_PREV_LINE = "\x1b[1F";
+
+export const ANSI_CLEAR_SCREEN = "\x1b[2J";
+export const ANSI_CLEAR_LINE = "\x1b[2K";
 
 const ANSI_FLAGS = ["", "1", "2", "1;2", "4", "1;4", "2;4", "1;2;4"];
 
