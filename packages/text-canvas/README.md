@@ -406,7 +406,7 @@ const W = 64;
 const H = 32;
 
 // create text canvas
-const canvas = new tc.Canvas(W, H, tf.BG_BLACK, tf.STYLE_THIN);
+const canvas = new tc.Canvas(W, H, tf.BG_BLACK, tc.STYLE_THIN);
 
 // cube corner vertices
 const cube = geom.vertices(geom.center(geom.aabb(1))!);
