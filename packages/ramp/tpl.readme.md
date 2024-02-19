@@ -66,8 +66,8 @@ for(let i = 0; i <= 10; i++) {
 ### nD vectors
 
 ```ts tangle:export/readme-vector.ts
-import { HERMITE_V, ramp } from "@thi.ng/ramp";
-import { FORMATTER, VEC3 } from "@thi.ng/vectors";
+import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
+import { FORMATTER } from "@thi.ng/vectors";
 
 // use the generic `ramp()` factory function with a custom implementation
 // see: https://docs.thi.ng/umbrella/ramp/interfaces/RampImpl.html
@@ -113,8 +113,7 @@ for (let i = 0; i <= 20; i++) {
 ### Nested objects
 
 ```ts tangle:export/readme-nested.ts
-import { HERMITE_V, LINEAR_N, nested, ramp } from "@thi.ng/ramp";
-import { VEC2 } from "@thi.ng/vectors";
+import { HERMITE_V, LINEAR_N, VEC2, nested, ramp } from "@thi.ng/ramp";
 
 const r = ramp(
 	nested({
