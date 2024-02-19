@@ -65,7 +65,7 @@ For Node.js REPL:
 const fuzzyViz = await import("@thi.ng/fuzzy-viz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.01 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.00 KB
 
 ## Dependencies
 
@@ -88,19 +88,18 @@ variable](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy#linguis
 
 ![fuzzy set visualization of the example l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar-2.svg)
 
-```ts
+```ts tangle:export/readme-svg.ts
+import { invSigmoid, sigmoid, trapezoid, variable } from "@thi.ng/fuzzy";
 import { varToSvg } from "@thi.ng/fuzzy-viz";
+import { writeFileSync } from "fs";
 
 // temperature sets (in celsius)
-const temp = variable(
-    [-20, 40],
-    {
-        freezing: invSigmoid(0, 2),
-        cold: trapezoid(-1, 2, 16, 20),
-        warm: trapezoid(15, 20, 30, 34),
-        hot: sigmoid(32, 2)
-    }
-);
+const temp = variable([-20, 40], {
+    freezing: invSigmoid(0, 2),
+    cold: trapezoid(-1, 2, 16, 20),
+    warm: trapezoid(15, 20, 30, 34),
+    hot: sigmoid(32, 2),
+});
 
 // generate & write SVG file
 writeFileSync("temperature.svg", varToSvg(temp, { samples: 200 }));
@@ -130,10 +129,13 @@ accumulate. If re-using the instrumented strategy for multiple `defuzz()`
 invocations, it's highly recommended to clear any previous results using
 `.clear()`.
 
-```ts
+```ts tangle:export/readme-ascii.ts
+import { centroidStrategy, gaussian } from "@thi.ng/fuzzy";
+import { fuzzySetToAscii, instrumentStrategy } from "@thi.ng/fuzzy-viz";
+
 const strategy = instrumentStrategy(
-  cogStrategy({ samples: 1000 }),
-  fuzzySetToAscii({ width: 40, height: 8 })
+    centroidStrategy({ samples: 1000 }),
+    fuzzySetToAscii({ width: 40, height: 8 })
 );
 
 // apply strategy as normal (well, usually done via defuzz())
