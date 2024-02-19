@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/csp",
-	"version": "2.1.96",
+	"version": "2.1.97",
 	"description": "ES6 promise based CSP primitives & operations",
 	"type": "module",
 	"module": "./index.js",
@@ -40,11 +40,11 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.23",
-		"@thi.ng/arrays": "^2.7.20",
+		"@thi.ng/arrays": "^2.8.0",
 		"@thi.ng/checks": "^3.4.23",
-		"@thi.ng/dcons": "^3.2.91",
+		"@thi.ng/dcons": "^3.2.92",
 		"@thi.ng/errors": "^2.4.16",
-		"@thi.ng/transducers": "^8.9.2"
+		"@thi.ng/transducers": "^8.9.3"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:56Z
+- **Last updated**: 2024-02-19T15:50:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.5.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.5.14) (2024-02-19)
+
+#### 🩹 Bug fixes
+
+- fix [#448](https://github.com/thi-ng/umbrella/issues/448), pass vertex layout opts to packedPolyline()/packedPolygon() ([eb2bdc0](https://github.com/thi-ng/umbrella/commit/eb2bdc0))
+  - update args for packedPolyline()/packedPolygon()
+  - update draw() delegation call sites
 
 ### [2.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.5.2) (2023-12-19)
 

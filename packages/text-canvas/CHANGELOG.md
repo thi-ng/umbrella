@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:57Z
+- **Last updated**: 2024-02-19T15:50:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,28 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@3.0.0) (2024-02-19)
+
+#### 🛑 Breaking changes
+
+- add plotting, additive blending/blitting, refactor bar chart fns ([7cd6d41](https://github.com/thi-ng/umbrella/commit/7cd6d41))
+- BREAKING CHANGE: swap naming of barChartH/V fns, update args for blit()/blitMask()
+  - swap naming of barChartH/V fns:
+    - barChartHLines/Str() <=> barChartVLines/Str()
+  - add plotBarsV() multi-plot function
+  - add blitBarsV() fn w/ support for custom blending fns
+    - add blendBarsVAdd() additive blending fn
+    - add BLEND_ADD lookup table for additive blending using ANSI16 colors
+  - update arg order of blit()/blitMask() fns
+  - add Canvas.empty(), Canvas.clear() fns
+
+#### ♻️ Refactoring
+
+- unify plotting function naming ([cb275ae](https://github.com/thi-ng/umbrella/commit/cb275ae))
+  - plotBarsV() => plotBarChartV()
+  - lineChart() => plotLineChart()
+  - migrate line chart fns to plot.ts
 
 ### [2.6.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.6.17) (2023-11-09)
 

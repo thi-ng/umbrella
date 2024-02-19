@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-arc",
-	"version": "2.1.108",
+	"version": "2.1.109",
 	"description": "2D circular / elliptic arc operations",
 	"type": "module",
 	"module": "./index.js",
@@ -36,10 +36,10 @@
 	},
 	"dependencies": {
 		"@thi.ng/checks": "^3.4.23",
-		"@thi.ng/geom-api": "^3.4.65",
-		"@thi.ng/geom-resample": "^2.3.29",
+		"@thi.ng/geom-api": "^3.4.66",
+		"@thi.ng/geom-resample": "^2.3.30",
 		"@thi.ng/math": "^5.10.0",
-		"@thi.ng/vectors": "^7.10.7"
+		"@thi.ng/vectors": "^7.10.8"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

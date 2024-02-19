@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-10T08:59:56Z
+- **Last updated**: 2024-02-19T15:50:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.4.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.4.12) (2024-02-19)
+
+#### 🩹 Bug fixes
+
+- update zero check in floatToSortableInt() (fix [#450](https://github.com/thi-ng/umbrella/issues/450)) ([c2dc294](https://github.com/thi-ng/umbrella/commit/c2dc294))
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.4.0) (2023-12-11)
 
