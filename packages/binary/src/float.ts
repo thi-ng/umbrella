@@ -73,7 +73,7 @@ export const uintBitsToFloat64: FnN2 = (hi, lo) => {
  * @param x - value to convert
  */
 export const floatToSortableInt: FnN = (x) => {
-	if (x === -0) x = 0;
+	if (x === 0) return 0;
 	const i = floatToIntBits(x);
 	return x < 0 ? ~i | (1 << 31) : i;
 };
