@@ -16,10 +16,11 @@ export const polygon = (
 export const packedPolygon = (
 	ctx: CanvasRenderingContext2D,
 	attribs: IObjectOf<any>,
+	opts: IObjectOf<any>,
 	pts: ArrayLike<number>
 ) => {
 	if (pts.length < 2) return;
-	__drawPackedPoly(ctx, attribs, pts);
+	__drawPackedPoly(ctx, opts, pts);
 	ctx.closePath();
 	__endShape(ctx, attribs);
 };
@@ -49,7 +50,7 @@ export const __drawPoly = (
  * Shared internal helper for packed polygon & polyline fns.
  *
  * @param ctx - canvas context
- * @param ctx - shape attribs (incl. packing config)
+ * @param opts - original shape atttribs (here only for packing config)
  * @param pts - flat vertex buffer
  *
  * @internal

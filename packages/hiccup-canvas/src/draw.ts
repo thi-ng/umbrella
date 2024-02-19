@@ -79,13 +79,13 @@ export const draw = (
 			polyline(ctx, attribs, shape[2]);
 			break;
 		case "packedPolyline":
-			packedPolyline(ctx, attribs, shape[2]);
+			packedPolyline(ctx, attribs, origAttribs, shape[2]);
 			break;
 		case "polygon":
 			polygon(ctx, attribs, shape[2]);
 			break;
 		case "packedPolygon":
-			packedPolygon(ctx, attribs, shape[2]);
+			packedPolygon(ctx, attribs, origAttribs, shape[2]);
 			break;
 		case "path":
 			path(ctx, attribs, shape[2]);

@@ -16,9 +16,10 @@ export const polyline = (
 export const packedPolyline = (
 	ctx: CanvasRenderingContext2D,
 	attribs: IObjectOf<any>,
+	opts: IObjectOf<any>,
 	pts: ArrayLike<number>
 ) => {
 	if (pts.length < 2) return;
-	__drawPackedPoly(ctx, attribs, pts);
+	__drawPackedPoly(ctx, opts, pts);
 	__endShape(ctx, attribs, false);
 };
