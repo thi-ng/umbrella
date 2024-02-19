@@ -201,7 +201,7 @@ const html = defFormatPresets(FMT_HTML_TACHYONS);
 
 ## Related packages
 
-- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas) - Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)
+- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas) - Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. ANSI/HTML)
 
 ## Installation
 
@@ -223,7 +223,7 @@ For Node.js REPL:
 const textFormat = await import("@thi.ng/text-format");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.69 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.80 KB
 
 ## Dependencies
 

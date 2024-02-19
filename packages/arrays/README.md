@@ -65,7 +65,7 @@ For Node.js REPL:
 const arrays = await import("@thi.ng/arrays");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.89 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.91 KB
 
 ## Dependencies
 
