@@ -109,6 +109,9 @@
 		},
 		"./ramp": {
 			"default": "./ramp.js"
+		},
+		"./vector": {
+			"default": "./vector.js"
 		}
 	},
 	"thi.ng": {

@@ -1,4 +1,5 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn, Fn2 } from "@thi.ng/api";
+import type { Vec, VecOpN, VecOpVV, VecOpVVN } from "@thi.ng/vectors";
 
 export type Frame<T> = [number, T];
 
@@ -78,3 +79,14 @@ export interface RampBounds<T> {
 }
 
 export type RampDomain = (t: number, min: number, max: number) => number;
+
+/**
+ * Operations required for vector interpolations.
+ */
+export interface VecAPI {
+	min: VecOpVV;
+	max: VecOpVV;
+	mixN: VecOpVVN;
+	setN: VecOpN;
+	vecOf: Fn<number, Vec>;
+}

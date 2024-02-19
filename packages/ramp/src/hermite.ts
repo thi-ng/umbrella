@@ -1,8 +1,8 @@
 import { norm } from "@thi.ng/math/fit";
 import { mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
-import type { Vec, VecAPI } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
 import { mixHermiteCardinal } from "@thi.ng/vectors/mix-hermite";
-import type { Frame, RampImpl, RampOpts } from "./api.js";
+import type { Frame, RampImpl, RampOpts, VecAPI } from "./api.js";
 import { Ramp } from "./ramp.js";
 
 /**
@@ -41,9 +41,15 @@ export const HERMITE_N: RampImpl<number> = {
 	},
 };
 
+/**
+ * Vector version of {@link HERMITE_N}. Use with any of the supplied vector APIs:
+ * {@link VEC} (arbitrary size), {@link VEC2}, {@link VEC3} or {@link VEC4}.
+ *
+ * @param vec
+ */
 export const HERMITE_V = <T extends Vec>(vec: VecAPI): RampImpl<T> => ({
-	min: (acc, x) => <T>vec.min(acc, acc || vec.setN([], Infinity), x),
-	max: (acc, x) => <T>vec.max(acc, acc || vec.setN([], -Infinity), x),
+	min: (acc, x) => <T>vec.min(acc, acc || vec.vecOf(Infinity), x),
+	max: (acc, x) => <T>vec.max(acc, acc || vec.vecOf(-Infinity), x),
 	at: (stops, i, t) => {
 		const n = stops.length - 1;
 		const [, a] = stops[Math.max(i - 1, 0)];

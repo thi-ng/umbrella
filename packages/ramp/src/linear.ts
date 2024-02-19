@@ -1,6 +1,6 @@
 import { fit, norm } from "@thi.ng/math/fit";
-import type { Vec, VecAPI } from "@thi.ng/vectors";
-import type { Frame, RampImpl, RampOpts } from "./api.js";
+import type { Vec } from "@thi.ng/vectors";
+import type { Frame, RampImpl, RampOpts, VecAPI } from "./api.js";
 import { Ramp } from "./ramp.js";
 
 /**
@@ -27,9 +27,15 @@ export const LINEAR_N: RampImpl<number> = {
 	},
 };
 
+/**
+ * Vector version of {@link LINEAR_N}. Use with any of the supplied vector APIs:
+ * {@link VEC} (arbitrary size), {@link VEC2}, {@link VEC3} or {@link VEC4}.
+ *
+ * @param vec
+ */
 export const LINEAR_V = <T extends Vec>(vec: VecAPI): RampImpl<T> => ({
-	min: (acc, x) => <T>vec.min(acc, acc || vec.setN([], Infinity), x),
-	max: (acc, x) => <T>vec.max(acc, acc || vec.setN([], -Infinity), x),
+	min: (acc, x) => <T>vec.min(acc, acc || vec.vecOf(Infinity), x),
+	max: (acc, x) => <T>vec.max(acc, acc || vec.vecOf(-Infinity), x),
 	at: (stops, i, t) => {
 		const a = stops[i];
 		const b = stops[i + 1];
