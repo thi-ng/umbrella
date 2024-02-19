@@ -1,15 +1,37 @@
-import type { NumOrString, UIntArray } from "@thi.ng/api";
-import { blit1d } from "@thi.ng/arrays/blit";
+import type { FnN2, FnN4, NumOrString, UIntArray } from "@thi.ng/api";
+import { blit1d, blitPred1d } from "@thi.ng/arrays/blit";
 import { peek } from "@thi.ng/arrays/peek";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp0 } from "@thi.ng/math/interval";
+import {
+	FG_BLUE,
+	FG_CYAN,
+	FG_GRAY,
+	FG_GREEN,
+	FG_LIGHT_BLUE,
+	FG_LIGHT_CYAN,
+	FG_LIGHT_GRAY,
+	FG_LIGHT_GREEN,
+	FG_LIGHT_MAGENTA,
+	FG_LIGHT_RED,
+	FG_LIGHT_YELLOW,
+	FG_MAGENTA,
+	FG_RED,
+	FG_YELLOW,
+	FG_WHITE,
+} from "@thi.ng/text-format";
 import { FMT_ANSI565 } from "@thi.ng/text-format/ansi";
-import { SHADES_BLOCK, type ClipRect, type ImageOpts } from "./api.js";
+import {
+	SHADES_BLOCK,
+	type BlendFn,
+	type ClipRect,
+	type ImageOpts,
+} from "./api.js";
 import { Canvas, canvas } from "./canvas.js";
 import { formatCanvas } from "./format.js";
 import { charCode, intersectRect } from "./utils.js";
 
-export const blit = (dest: Canvas, x: number, y: number, src: Canvas) => {
+const __initBlit = (dest: Canvas, x: number, y: number, src: Canvas) => {
 	x |= 0;
 	y |= 0;
 	const { data: sbuf, width: sw, height: sh } = src;
@@ -27,6 +49,20 @@ export const blit = (dest: Canvas, x: number, y: number, src: Canvas) => {
 	if (!iw || !ih) return;
 	const sx = clamp0(x1 - x);
 	const sy = clamp0(y1 - y);
+	return { sbuf, dbuf, sw, dw, x, y, x1, y1, y2, iw, ih, sx, sy };
+};
+
+/**
+ *
+ * @param dest
+ * @param src
+ * @param x
+ * @param y
+ */
+export const blit = (dest: Canvas, src: Canvas, x = 0, y = 0) => {
+	const state = __initBlit(dest, x, y, src);
+	if (!state) return;
+	const { sbuf, dbuf, x1, y1, y2, sx, sy, iw, sw, dw } = state;
 	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
 		let sidx = sx + yy * sw;
 		let didx = x1 + dy * dw;
@@ -37,7 +73,7 @@ export const blit = (dest: Canvas, x: number, y: number, src: Canvas) => {
 /**
  * Similar to {@link blit}. Pastes `src` {@link Canvas} into `dest` at given
  * position and uses `mask` to exclude pixels from being copied (and therefore
- * achieve a form of 1bit transparency, similar to GIFs), i.e. only non-`mask`
+ * achieve a form of on/off transparency, similar to GIFs), i.e. only non-`mask`
  * pixels/chars will be copied. Supports region clipping.
  *
  * @example
@@ -72,35 +108,21 @@ export const blit = (dest: Canvas, x: number, y: number, src: Canvas) => {
  * ```
  *
  * @param dest
+ * @param src
  * @param x
  * @param y
- * @param src
  * @param mask
  */
 export const blitMask = (
 	dest: Canvas,
-	x: number,
-	y: number,
 	src: Canvas,
+	x = 0,
+	y = 0,
 	mask: NumOrString = 0x20
 ) => {
-	x |= 0;
-	y |= 0;
-	const { data: sbuf, width: sw, height: sh } = src;
-	const { data: dbuf, width: dw } = dest;
-	const {
-		x1,
-		y1,
-		y2,
-		w: iw,
-		h: ih,
-	} = intersectRect(
-		{ x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
-		peek(dest.clipRects)
-	);
-	if (!iw || !ih) return;
-	const sx = clamp0(x1 - x);
-	const sy = clamp0(y1 - y);
+	const state = __initBlit(dest, x, y, src);
+	if (!state) return;
+	const { sbuf, dbuf, x1, y1, y2, sx, sy, iw, sw, dw } = state;
 	mask = charCode(mask, 0);
 	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
 		let sidx = sx + yy * sw;
@@ -109,11 +131,226 @@ export const blitMask = (
 	}
 };
 
+export const blitBarsV = (
+	dest: Canvas,
+	src: Canvas,
+	x = 0,
+	y = 0,
+	blend: BlendFn = blendBarsVAdd
+) => {
+	const state = __initBlit(dest, x, y, src);
+	if (!state) return;
+	const { sbuf, dbuf, x1, y1, y2, sx, sy, iw, sw, dw } = state;
+	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+		let sidx = sx + yy * sw;
+		let didx = x1 + dy * dw;
+		blitPred1d(dbuf, didx, sbuf.subarray(sidx, sidx + iw), (a, b, x) => {
+			const ac = a & 0xffff;
+			return ac === 0x20
+				? undefined
+				: ac > 0x2580 && ac < 0x2589
+				? blend(a, b, x, yy)
+				: a;
+		});
+	}
+};
+
+/**
+ * Blending function for {@link blendBarsVAdd}. Additive blending for vertical
+ * box drawing characters.
+ *
+ * @param a
+ * @param b
+ */
+export const blendBarsVAdd: FnN4 = (a, b) => {
+	const ac = a & 0xffff;
+	const fmtA = (a >> 16) & 0x1f;
+	const fgA = fmtA & 0x1f;
+	const bc = b & 0xffff;
+	const fmtB = b >> 16;
+	const bgB = fmtB >> 5;
+	const fgB = fmtB & 0x1f;
+	let col: number;
+	let col2: number;
+	if (bc === 0x20) {
+		col = __blend(fgA, bgB) || fgA;
+		return ac == 0x2588
+			? (col << 21) | 0x20
+			: (bgB << 21) | (col << 16) | ac;
+	}
+	if (ac <= bc) {
+		col2 = bc > 0x2584 ? fgB : bgB;
+		col = __blend(fgA, col2);
+		return (col2 << 21) | (col << 16) | ((ac + bc) >> 1);
+	} else {
+		col = __blend(fgA, fgB) || fgA;
+		col2 = __blend(fgA, bgB) || fgA;
+		return (col2 << 21) | (col << 16) | bc;
+	}
+};
+
+/** @internal */
+const __blend: FnN2 = (a, b) => BLEND_ADD[b]?.[a] || BLEND_ADD[a]?.[b] || 0;
+
+/**
+ * @remarks
+ * Lookups in this index are symmetrical (see {@link __blend}). Grays are
+ * handled via the last group of entries.
+ *
+ * The order of entries in each group should be B,G,R,C,M,Y, followed by light
+ * versions (in same order)
+ */
+export const BLEND_ADD: Record<number, Record<number, number>> = {
+	// primary
+	[FG_BLUE]: {
+		[FG_BLUE]: FG_LIGHT_BLUE,
+		[FG_GREEN]: FG_CYAN,
+		[FG_RED]: FG_MAGENTA,
+		[FG_CYAN]: FG_LIGHT_CYAN,
+		[FG_MAGENTA]: FG_LIGHT_MAGENTA,
+		[FG_YELLOW]: FG_LIGHT_GRAY,
+		[FG_LIGHT_BLUE]: FG_LIGHT_CYAN,
+		[FG_LIGHT_GREEN]: FG_LIGHT_CYAN,
+		[FG_LIGHT_RED]: FG_LIGHT_MAGENTA,
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+	[FG_GREEN]: {
+		[FG_GREEN]: FG_LIGHT_GREEN,
+		[FG_RED]: FG_YELLOW,
+		[FG_CYAN]: FG_LIGHT_CYAN,
+		[FG_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_YELLOW]: FG_LIGHT_YELLOW,
+		[FG_LIGHT_BLUE]: FG_LIGHT_CYAN,
+		[FG_LIGHT_GREEN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_RED]: FG_LIGHT_YELLOW,
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+	[FG_RED]: {
+		[FG_RED]: FG_LIGHT_RED,
+		[FG_CYAN]: FG_LIGHT_GRAY,
+		[FG_MAGENTA]: FG_LIGHT_MAGENTA,
+		[FG_YELLOW]: FG_LIGHT_YELLOW,
+		[FG_LIGHT_BLUE]: FG_LIGHT_MAGENTA,
+		[FG_LIGHT_GREEN]: FG_LIGHT_YELLOW,
+		[FG_LIGHT_RED]: FG_LIGHT_GRAY,
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+
+	// secondary
+	[FG_CYAN]: {
+		[FG_CYAN]: FG_LIGHT_CYAN,
+		[FG_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_YELLOW]: FG_LIGHT_GRAY,
+		[FG_LIGHT_BLUE]: FG_LIGHT_CYAN,
+		[FG_LIGHT_GREEN]: FG_LIGHT_CYAN,
+		[FG_LIGHT_RED]: FG_LIGHT_GRAY,
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+	[FG_MAGENTA]: {
+		[FG_MAGENTA]: FG_LIGHT_MAGENTA,
+		[FG_YELLOW]: FG_LIGHT_GRAY,
+		[FG_LIGHT_BLUE]: FG_LIGHT_MAGENTA,
+		[FG_LIGHT_GREEN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_RED]: FG_LIGHT_GRAY,
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+	[FG_YELLOW]: {
+		[FG_YELLOW]: FG_LIGHT_YELLOW,
+		[FG_LIGHT_BLUE]: FG_LIGHT_GRAY,
+		[FG_LIGHT_GREEN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_RED]: FG_LIGHT_GRAY,
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+
+	// light primary
+	[FG_LIGHT_BLUE]: {
+		[FG_LIGHT_BLUE]: FG_LIGHT_GRAY,
+	},
+	[FG_LIGHT_GREEN]: {
+		[FG_LIGHT_GREEN]: FG_LIGHT_GRAY,
+	},
+	[FG_LIGHT_RED]: {
+		[FG_LIGHT_RED]: FG_LIGHT_GRAY,
+	},
+
+	// light secondary
+	[FG_LIGHT_CYAN]: {
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+	},
+	[FG_LIGHT_MAGENTA]: {
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+	},
+	[FG_LIGHT_YELLOW]: {
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+
+	// grays
+	[FG_GRAY]: {
+		[FG_BLUE]: FG_LIGHT_BLUE,
+		[FG_GREEN]: FG_LIGHT_GREEN,
+		[FG_RED]: FG_LIGHT_RED,
+		[FG_CYAN]: FG_LIGHT_CYAN,
+		[FG_MAGENTA]: FG_LIGHT_MAGENTA,
+		[FG_YELLOW]: FG_LIGHT_YELLOW,
+		[FG_GRAY]: FG_LIGHT_GRAY,
+		[FG_LIGHT_BLUE]: FG_LIGHT_GRAY,
+		[FG_LIGHT_GREEN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_RED]: FG_LIGHT_GRAY,
+		[FG_LIGHT_CYAN]: FG_LIGHT_GRAY,
+		[FG_LIGHT_MAGENTA]: FG_LIGHT_GRAY,
+		[FG_LIGHT_YELLOW]: FG_LIGHT_GRAY,
+	},
+	[FG_LIGHT_GRAY]: {
+		[FG_BLUE]: FG_WHITE,
+		[FG_GREEN]: FG_WHITE,
+		[FG_RED]: FG_WHITE,
+		[FG_CYAN]: FG_WHITE,
+		[FG_MAGENTA]: FG_WHITE,
+		[FG_YELLOW]: FG_WHITE,
+		[FG_GRAY]: FG_WHITE,
+		[FG_LIGHT_BLUE]: FG_WHITE,
+		[FG_LIGHT_GREEN]: FG_WHITE,
+		[FG_LIGHT_RED]: FG_WHITE,
+		[FG_LIGHT_CYAN]: FG_WHITE,
+		[FG_LIGHT_MAGENTA]: FG_WHITE,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+		[FG_LIGHT_GRAY]: FG_WHITE,
+	},
+	[FG_WHITE]: {
+		[FG_BLUE]: FG_WHITE,
+		[FG_CYAN]: FG_WHITE,
+		[FG_GRAY]: FG_WHITE,
+		[FG_GREEN]: FG_WHITE,
+		[FG_RED]: FG_WHITE,
+		[FG_MAGENTA]: FG_WHITE,
+		[FG_YELLOW]: FG_WHITE,
+		[FG_LIGHT_BLUE]: FG_WHITE,
+		[FG_LIGHT_CYAN]: FG_WHITE,
+		[FG_LIGHT_GRAY]: FG_WHITE,
+		[FG_LIGHT_GREEN]: FG_WHITE,
+		[FG_LIGHT_MAGENTA]: FG_WHITE,
+		[FG_LIGHT_RED]: FG_WHITE,
+		[FG_LIGHT_YELLOW]: FG_WHITE,
+	},
+};
+
 export const resize = (canvas: Canvas, newWidth: number, newHeight: number) => {
 	if (canvas.width === newWidth && canvas.height === newHeight) return;
 	const dest = new Canvas(newWidth, newHeight);
 	dest.data.fill(charCode(0x20, canvas.format));
-	blit(dest, 0, 0, canvas);
+	blit(dest, canvas);
 	canvas.data = dest.data;
 	canvas.size[0] = newWidth;
 	canvas.size[1] = newHeight;
@@ -137,7 +374,7 @@ export const extract = (
 	h: number
 ) => {
 	const dest = new Canvas(w, h, canvas.format, peek(canvas.styles));
-	blit(dest, -x, -y, canvas);
+	blit(dest, canvas, -x, -y);
 	return dest;
 };
 

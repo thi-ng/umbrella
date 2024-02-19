@@ -9,7 +9,16 @@ import { max as $max } from "@thi.ng/transducers/max";
 import { min as $min } from "@thi.ng/transducers/min";
 import { BARS_H, BARS_V } from "./api.js";
 
-export const barChartHLines = (
+/**
+ * Visualizes given values (in `[min..max]`interval) as vertical bar chart.
+ * Returns array of line strings.
+ *
+ * @param height
+ * @param vals
+ * @param min
+ * @param max
+ */
+export const barChartVLines = (
 	height: number,
 	vals: Iterable<number>,
 	min?: number,
@@ -31,14 +40,31 @@ export const barChartHLines = (
 	return res;
 };
 
-export const barChartHStr = (
+/**
+ * Same as {@link barChartVLines}, but returns result as single string.
+ *
+ * @param height
+ * @param vals
+ * @param min
+ * @param max
+ */
+export const barChartVStr = (
 	height: number,
 	vals: Iterable<number>,
 	min?: number,
 	max?: number
-) => barChartHLines(height, vals, min, max).join("\n");
+) => barChartVLines(height, vals, min, max).join("\n");
 
-export const barChartVLines = (
+/**
+ * Visualizes given values (in `[min..max]`interval) as horizontal bar chart.
+ * Returns array of line strings.
+ *
+ * @param height
+ * @param vals
+ * @param min
+ * @param max
+ */
+export const barChartHLines = (
 	width: number,
 	vals: Iterable<number>,
 	min?: number,
@@ -50,12 +76,20 @@ export const barChartVLines = (
 	return [...map((x) => barHorizontal(width, x, min, max), $vals)];
 };
 
-export const barChartVStr = (
+/**
+ * Same as {@link barChartVLines}, but returns result as single string.
+ *
+ * @param height
+ * @param vals
+ * @param min
+ * @param max
+ */
+export const barChartHStr = (
 	width: number,
 	vals: Iterable<number>,
 	min?: number,
 	max?: number
-) => barChartVLines(width, vals, min, max).join("\n");
+) => barChartHLines(width, vals, min, max).join("\n");
 
 export const barHorizontal = (width: number, x: number, min = 0, max = 1) =>
 	bar(BARS_H, width, false, x, min, max, "");

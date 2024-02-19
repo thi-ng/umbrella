@@ -16,6 +16,13 @@ export enum Border {
 	FRAME_V = 6,
 }
 
+export type BlendFn = (
+	src: number,
+	dest: number,
+	x: number,
+	y: number
+) => number;
+
 export interface TableOpts {
 	cols: { width: number /* align?: Align*/ }[];
 	style?: StrokeStyle;

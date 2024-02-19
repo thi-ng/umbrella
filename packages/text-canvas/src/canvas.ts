@@ -4,6 +4,8 @@ import {
 	type ICopy,
 	type IGrid2D,
 	type NumOrString,
+	type IEmpty,
+	type IClear,
 } from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { peek } from "@thi.ng/arrays/peek";
@@ -17,7 +19,13 @@ import { STYLE_ASCII, type ClipRect, type StrokeStyle } from "./api.js";
 import { charCode, intersectRect } from "./utils.js";
 
 @IGrid2DMixin
-export class Canvas implements ICopy<Canvas>, IGrid2D<Uint32Array, number> {
+export class Canvas
+	implements
+		IClear,
+		ICopy<Canvas>,
+		IEmpty<Canvas>,
+		IGrid2D<Uint32Array, number>
+{
 	data: Uint32Array;
 	size: [number, number];
 	stride: [number, number];
@@ -67,6 +75,14 @@ export class Canvas implements ICopy<Canvas>, IGrid2D<Uint32Array, number> {
 		res.styles = this.styles.slice();
 		res.clipRects = this.clipRects.slice();
 		return res;
+	}
+
+	empty() {
+		return new Canvas(this.width, this.height);
+	}
+
+	clear() {
+		this.data.fill(0x20);
 	}
 
 	// @ts-ignore mixin

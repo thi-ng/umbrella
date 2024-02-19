@@ -6,6 +6,7 @@ export * from "./format.js";
 export * from "./hvline.js";
 export * from "./image.js";
 export * from "./line.js";
+export * from "./plot.js";
 export * from "./rect.js";
 export * from "./table.js";
 export * from "./text.js";
