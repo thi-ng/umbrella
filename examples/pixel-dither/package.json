@@ -17,7 +17,6 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
-		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/pixel-dither": "workspace:^"
 	},

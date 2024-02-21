@@ -1,6 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
 import { exposeGlobal } from "@thi.ng/expose";
-import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { fromAtom } from "@thi.ng/rstream";
 import { charRange } from "@thi.ng/strings";
 import {
@@ -16,9 +15,9 @@ import {
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, type UICell } from "./api";
 import {
+	DB,
 	blurCell,
 	cancelCell,
-	DB,
 	focusCell,
 	graph,
 	updateCell,

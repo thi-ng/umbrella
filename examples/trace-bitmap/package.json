@@ -28,6 +28,7 @@
 		"@thi.ng/geom-trace-bitmap": "workspace:^",
 		"@thi.ng/grid-iterators": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/logger": "workspace:^",
 		"@thi.ng/math": "workspace:^",
 		"@thi.ng/mime": "workspace:^",
 		"@thi.ng/paths": "workspace:^",

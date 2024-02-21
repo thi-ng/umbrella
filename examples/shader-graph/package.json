@@ -14,6 +14,7 @@
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/expose": "workspace:^",
+		"@thi.ng/logger": "workspace:^",
 		"@thi.ng/matrices": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/rstream-gestures": "workspace:^",
