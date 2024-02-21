@@ -54,7 +54,29 @@
 		"typescript": "^5.3.3"
 	},
 	"keywords": [
-		"typescript"
+		"avif",
+		"batch",
+		"bitmap",
+		"blur",
+		"color",
+		"crop",
+		"composite",
+		"exif",
+		"fileformat",
+		"gif",
+		"image",
+		"jpeg",
+		"nested",
+		"pipeline",
+		"png",
+		"process",
+		"resize",
+		"svg",
+		"tiff",
+		"transformation",
+		"tree",
+		"typescript",
+		"webp"
 	],
 	"publishConfig": {
 		"access": "public"
