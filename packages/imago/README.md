@@ -27,20 +27,23 @@
 
 - [About](#about)
   - [Basic example](#basic-example)
-  - [Supported operations](#supported-operations)
-    - [blur](#blur)
-    - [composite](#composite)
-    - [crop](#crop)
-    - [dither](#dither)
-    - [exif](#exif)
-    - [extend](#extend)
-    - [gamma](#gamma)
-    - [grayscale](#grayscale)
-    - [hsbl](#hsbl)
-    - [nest](#nest)
-    - [output](#output)
-    - [resize](#resize)
-    - [rotate](#rotate)
+- [Supported operations](#supported-operations)
+  - [blur](#blur)
+  - [composite](#composite)
+    - [Common options](#common-options)
+    - [Bitmap layers](#bitmap-layers)
+    - [SVG layers](#svg-layers)
+  - [crop](#crop)
+  - [dither](#dither)
+  - [exif](#exif)
+  - [extend](#extend)
+  - [gamma](#gamma)
+  - [grayscale](#grayscale)
+  - [hsbl](#hsbl)
+  - [nest](#nest)
+  - [output](#output)
+  - [resize](#resize)
+  - [rotate](#rotate)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -55,7 +58,7 @@ JSON & API-based declarative and extensible image processing trees/pipelines.
 Spiritual successor of an eponymous, yet never fully published
 CLojure/Java-based image processor from 2014...
 
-In this new version all image I/O and processing is delegated to
+In this new TypeScript version all image I/O and processing is delegated to
 [sharp](https://sharp.pixelplumbing.com) and
 [@thi.ng/pixel](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel).
 
@@ -68,8 +71,9 @@ The following pipeline performs the following steps:
 - auto-rotate image (using EXIF orientation info)
 - add 5% white border (size relative to shortest side)
 - proportionally resize to 1920px (by default longest side)
-- overlay logo, positioned at 45%/5% (left/bottom)
-- output this stage as high quality AVIF
+- overlay bitmap logo layer, positioned at 45% left / 5% bottom
+- add custom EXIF metadata
+- output this current stage as high quality AVIF
 - crop center square region
 - output as JPEG thumbnail
 
@@ -90,6 +94,15 @@ The following pipeline performs the following steps:
             }
         ]
     },
+    {
+        "type": "exif",
+        "tags": {
+            "IFD0": {
+                "Copyright": "Karsten Schmidt",
+                "Software": "@thi.ng/imago"
+            }
+        }
+    },
     { "type": "output", "path": "image-1920.avif", "avif": { "quality": 80 } },
     { "type": "crop", "size": [240, 240], "gravity": "c" },
     { "type": "output", "path": "thumb.jpg" }
@@ -109,29 +122,46 @@ await processImage(
 );
 ```
 
-### Supported operations
+## Supported operations
 
 TODO write docs
 
-#### blur
+### blur
 
 Gaussian blur
 
-#### composite
+- radius
 
-Compositing multiple layers
+### composite
 
-##### Common options
+Compositing multiple layers:
 
-##### Bitmap layers
+#### Common options
 
-##### SVG layers
+- blend mode
+- gravity or position
+- tiled repetition
 
-#### crop
+#### Bitmap layers
 
-#### dither
+- resizable
 
-Supported dither modes (from [thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel-dither)):
+#### SVG layers
+
+- from file or inline doc
+
+### crop
+
+Cropping a part of the image
+
+- from edges or region
+- supports px or percent units
+- proportional to a given reference side/size
+
+### dither
+
+Supported dither modes from
+[thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel-dither):
 
 - "atkinson"
 - "burkes"
@@ -143,32 +173,35 @@ Supported dither modes (from [thi.ng/pixel-dither](https://github.com/thi-ng/umb
 - "sierra"
 - "stucki"
 
-#### exif
+### exif
 
-Set EXIF metadata (must be given directly before [output](#output))
+Set EXIF metadata (can only be given directly before [output](#output))
 
-#### extend
+### extend
 
 Add pixels on all sides of the image
 
-#### gamma
+- supports px or percent units
+- proportional to a given reference side/size
+
+### gamma
 
 Perform gamma correction (forward or reverse)
 
-#### grayscale
+### grayscale
 
 Grayscale conversion
 
-#### hsbl
+### hsbl
 
-Hue, saturation, brightbness and lightness adjustments
+Hue, saturation, brightness and lightness adjustments
 
-#### nest
+### nest
 
 Nested branch/pipeline of operations with no effect on image state of
 current/parent pipeline...
 
-#### output
+### output
 
 File output in any of these formats:
 
@@ -182,11 +215,16 @@ File output in any of these formats:
 - tiff
 - webp
 
-#### resize
+### resize
 
-Resize image, with gravity, fit modes, choice of size units
+Resizing image
 
-#### rotate
+- gravity or position
+- fit modes
+- supports px or percent units
+- proportional to a given reference side/size
+
+### rotate
 
 Auto-rotate, rotate and/or mirror image
 
