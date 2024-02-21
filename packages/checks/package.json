@@ -113,6 +113,12 @@
 		"./is-array": {
 			"default": "./is-array.js"
 		},
+		"./is-arraybufferlike": {
+			"default": "./is-arraybufferlike.js"
+		},
+		"./is-arraybufferview": {
+			"default": "./is-arraybufferview.js"
+		},
 		"./is-arraylike": {
 			"default": "./is-arraylike.js"
 		},

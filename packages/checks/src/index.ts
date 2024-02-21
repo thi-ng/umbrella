@@ -11,6 +11,8 @@ export * from "./has-websocket.js";
 export * from "./implements-function.js";
 export * from "./is-alphanum.js";
 export * from "./is-array.js";
+export * from "./is-arraybufferlike.js";
+export * from "./is-arraybufferview.js";
 export * from "./is-arraylike.js";
 export * from "./is-ascii.js";
 export * from "./is-async-iterable.js";
