@@ -1,0 +1,91 @@
+{
+	"name": "@thi.ng/imago",
+	"version": "0.0.1",
+	"description": "JSON & API-based declarative and extensible image processing trees/pipelines",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/imago#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.9.24",
+		"@thi.ng/checks": "^3.4.24",
+		"@thi.ng/defmulti": "^3.0.24",
+		"@thi.ng/errors": "^2.4.17",
+		"@thi.ng/file-io": "^1.3.1",
+		"@thi.ng/logger": "^3.0.1",
+		"@thi.ng/pixel": "^6.1.9",
+		"@thi.ng/pixel-dither": "^1.1.107",
+		"sharp": "^0.33.2"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.40.1",
+		"@thi.ng/vectors": "^7.10.5",
+		"esbuild": "^0.20.0",
+		"rimraf": "^5.0.5",
+		"typedoc": "^0.25.7",
+		"typescript": "^5.3.3"
+	},
+	"keywords": [
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./ops": {
+			"default": "./ops.js"
+		},
+		"./proc": {
+			"default": "./proc.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2024
+	}
+}
