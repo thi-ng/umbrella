@@ -1,8 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { pixelCanvas2d } from "@thi.ng/canvas";
 import {
 	GRAY8,
 	IntBuffer,
+	canvasFromPixelBuffer,
 	imageFromURL,
 	intBufferFromImage,
 } from "@thi.ng/pixel";
@@ -28,8 +28,8 @@ const root = document.getElementById("app")!;
 root.appendChild(img);
 
 const processImage = (buf: IntBuffer, id: string, kernel: DitherKernel) => {
-	const { canvas, ctx } = pixelCanvas2d(buf.width, buf.height, root);
-	ditherWith(kernel, buf.copy()).blitCanvas(canvas);
+	const canvas = canvasFromPixelBuffer(ditherWith(kernel, buf.copy()), root);
+	const ctx = canvas.getContext("2d")!;
 	ctx.fillStyle = "white";
 	ctx.fillRect(0, buf.height - 12, ctx.measureText(id).width + 8, 12);
 	ctx.fillStyle = "red";
@@ -39,16 +39,16 @@ const processImage = (buf: IntBuffer, id: string, kernel: DitherKernel) => {
 const buf = intBufferFromImage(img, GRAY8);
 
 Object.entries(<IObjectOf<DitherKernel>>{
-	ATKINSON: ATKINSON,
-	BURKES: BURKES,
-	DIFFUSION_ROW: DIFFUSION_ROW,
-	DIFFUSION_COLUMN: DIFFUSION_COLUMN,
-	DIFFUSION_2D: DIFFUSION_2D,
-	FLOYD_STEINBERG: FLOYD_STEINBERG,
-	JARVIS_JUDICE_NINKE: JARVIS_JUDICE_NINKE,
-	SIERRA2: SIERRA2,
-	STUCKI: STUCKI,
-	THRESHOLD: THRESHOLD,
+	ATKINSON,
+	BURKES,
+	DIFFUSION_ROW,
+	DIFFUSION_COLUMN,
+	DIFFUSION_2D,
+	FLOYD_STEINBERG,
+	JARVIS_JUDICE_NINKE,
+	SIERRA2,
+	STUCKI,
+	THRESHOLD,
 	CUSTOM: {
 		ox: [1],
 		oy: [1],
