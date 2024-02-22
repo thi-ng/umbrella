@@ -170,6 +170,36 @@ File output in any of these formats:
 - tiff
 - webp
 
+#### Templated output paths
+
+Output paths can contain `{id}`-templated parts which will be replaced/expanded.
+The following built-in IDs are supported and custom IDs will be looked up via
+the
+[pathParts](https://docs.thi.ng/umbrella/imago/interfaces/ImgProcOpts.html#pathParts)
+options provided to
+[processImage()](https://docs.thi.ng/umbrella/imago/functions/processImage.html).
+Any others will remain as is. Custom IDs take precedence over built-in ones.
+
+- `name`: original base filename (w/o ext)
+- `sha1`/`sha224`/`sha256`/`sha384`/`sha512`: truncated hash of output (8 chars)
+- `w`: current image width
+- `h`: current image height
+- `date`: yyyyMMdd date format, e.g. 20240223
+- `time`: HHmmss time format, e.g. 234459
+- `year`: 4-digit year
+- `month`: 2-digit month
+- `week`: 2-digit week
+- `day`: 2-digit day in month
+- `hour`: 2-digit hour (24h system)
+- `minute`: 2-digit minute
+- `second`: 2-digit second
+
+Output paths can contain sub-directories which will be automatically created
+(relative to the [configured output
+dir](https://docs.thi.ng/umbrella/imago/interfaces/ImgProcOpts.html#outDir)).
+For example, the path template `{year}/{month}/{day}/{name}-{sha1}.jpg` might
+get replaced to: `2024/02/22/test-123cafe4.jpg`...
+
 ### resize
 
 Resizing image
