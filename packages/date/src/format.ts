@@ -208,6 +208,10 @@ export const defFormat =
  */
 export const FMT_yyyyMMdd = defFormat(["yyyy", "-", "MM", "-", "dd"]);
 /**
+ * Format preset, e.g. `20200919`
+ */
+export const FMT_yyyyMMdd_ALT = defFormat(["yyyy", "MM", "dd"]);
+/**
  * Format preset, e.g. `9/19/2020`
  */
 export const FMT_Mdyyyy = defFormat(["M", "/", "d", "/", "yyyy"]);
@@ -236,6 +240,10 @@ export const FMT_hm = defFormat(["h", ":", "mm", " ", "A"]);
  * Format preset, e.g. `17:08:01`
  */
 export const FMT_HHmmss = defFormat(["HH", ":", "mm", ":", "ss"]);
+/**
+ * Format preset, e.g. `17:08:01`
+ */
+export const FMT_HHmmss_ALT = defFormat(["HH", "mm", "ss"]);
 /**
  * Format preset, e.g. `5:08:01 PM`
  */
