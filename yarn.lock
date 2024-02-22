@@ -5068,6 +5068,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.24"
     "@thi.ng/checks": "npm:^3.4.24"
+    "@thi.ng/date": "npm:^2.5.18"
     "@thi.ng/defmulti": "npm:^3.0.24"
     "@thi.ng/errors": "npm:^2.4.17"
     "@thi.ng/file-io": "npm:^1.3.1"
