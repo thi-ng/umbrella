@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-22T11:59:16Z
+- **Last updated**: 2024-02-22T23:15:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.16.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.16.28) (2024-02-22)
+
+#### ♻️ Refactoring
+
+- update object destructuring in all pkgs & examples ([f36aeb0](https://github.com/thi-ng/umbrella/commit/f36aeb0))
 
 ### [0.16.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.16.22) (2024-02-06)
 

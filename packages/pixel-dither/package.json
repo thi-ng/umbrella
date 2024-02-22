@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-dither",
-	"version": "1.1.108",
+	"version": "1.1.109",
 	"description": "Extensible image dithering w/ various algorithm presets",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 	"dependencies": {
 		"@thi.ng/checks": "^3.5.0",
 		"@thi.ng/math": "^5.10.2",
-		"@thi.ng/pixel": "^6.1.10"
+		"@thi.ng/pixel": "^6.1.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/timestep",
-	"version": "0.5.27",
+	"version": "0.5.28",
 	"description": "Deterministic fixed timestep simulation updates with state interpolation",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.25",
 		"@thi.ng/math": "^5.10.2",
-		"@thi.ng/vectors": "^7.10.10"
+		"@thi.ng/vectors": "^7.10.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",
