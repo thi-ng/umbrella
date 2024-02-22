@@ -60,6 +60,7 @@
 	},
 	"keywords": [
 		"browser",
+		"bun",
 		"bundler",
 		"cli",
 		"codegen",
@@ -72,6 +73,7 @@
 		"generator",
 		"generative",
 		"json",
+		"no-browser",
 		"transpiler",
 		"typescript",
 		"ui"
