@@ -23,7 +23,7 @@ const xform = comp(
 	map((line) => RE_IMPORT.exec(line)),
 	filter((x) => !!x),
 	map((x) =>
-		x![1].indexOf("@thi.ng") === 0
+		x![1].startsWith("@thi.ng")
 			? x![1].split("/").slice(0, 2).join("/")
 			: x![1]
 	)
@@ -42,8 +42,19 @@ const updateImports = (root: string, latest = false) => {
 	let edit = false;
 	const pairs: [string, string][] = [];
 	for (let d of mergedDeps) {
-		if (!d.startsWith("@thi.ng")) continue;
-		if (deps.has(d) && !pkg.dependencies[d]) {
+		if (!d.startsWith("@thi.ng")) {
+			if (d.startsWith("node:") || d.startsWith("bun:") || d === "tslib")
+				continue;
+			if (deps.has(d) && !pkg.dependencies[d]) {
+				console.log("missing 3rd party dependency:", d);
+				process.exit(1);
+			} else if (!deps.has(d)) {
+				delete pkg.dependencies[d];
+				edit = true;
+			} else {
+				pairs.push([d, pkg.dependencies[d]]);
+			}
+		} else if (deps.has(d) && !pkg.dependencies[d]) {
 			const depPkg = readJSON(`packages/${shortName(d)}/package.json`);
 			pairs.push([d, latest ? "workspace:^" : `^${depPkg.version}`]);
 			edit = true;
