@@ -138,10 +138,16 @@ function* __points(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { clip, delayDown, delayUp, down, skip, speed, sort, interleave } = {
-		sort: pointsByNearestNeighbor(),
-		...__axiAttribs(attribs),
-	};
+	const {
+		sort = pointsByNearestNeighbor(),
+		clip,
+		delayDown,
+		delayUp,
+		down,
+		interleave,
+		skip,
+		speed,
+	} = __axiAttribs(attribs);
 	const clipPts = clip || opts?.clip;
 	if (clipPts) {
 		pts = pts.filter((p) => !!pointInPolygon2(p, clipPts));

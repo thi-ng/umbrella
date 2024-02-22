@@ -45,7 +45,7 @@ export function hexDump(...args: any[]): any {
 	if (iter) {
 		return iter;
 	}
-	const { cols, address } = <HexDumpOpts>{ cols: 16, address: 0, ...args[0] };
+	const { cols = 16, address = 0 } = <HexDumpOpts>args[0];
 	return comp(
 		padLast(cols, 0),
 		map(

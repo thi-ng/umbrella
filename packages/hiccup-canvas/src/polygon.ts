@@ -60,12 +60,7 @@ export const __drawPackedPoly = (
 	opts: IObjectOf<any>,
 	pts: ArrayLike<number>
 ) => {
-	const { start, cstride, estride } = {
-		start: 0,
-		cstride: 1,
-		estride: 2,
-		...opts,
-	};
+	const { start = 0, cstride = 1, estride = 2 } = opts;
 	let num =
 		opts && opts.num != null
 			? opts.num

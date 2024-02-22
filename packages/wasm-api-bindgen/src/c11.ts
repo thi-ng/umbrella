@@ -62,10 +62,7 @@ export interface C11Opts extends CodeGenOptsBase {
  * @param opts
  */
 export const C11 = (opts: Partial<C11Opts> = {}) => {
-	const { typePrefix } = {
-		typePrefix: "",
-		...opts,
-	};
+	const { typePrefix = "" } = opts;
 	const INDENT = "    ";
 	const SCOPES: [RegExp, RegExp] = [/\{$/, /^\}[ A-Za-z0-9_]*[;,]?$/];
 

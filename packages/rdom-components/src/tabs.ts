@@ -30,7 +30,7 @@ export interface TabOpts {
 }
 
 export const tabs = (src: ISubscription<number, number>, opts: TabOpts) => {
-	const { attribs, head, sections } = <TabOpts>{ attribs: {}, ...opts };
+	const { attribs = {}, head, sections } = opts;
 	return div(
 		attribs!.wrapper,
 		$list(

@@ -106,13 +106,7 @@ export const traceLines = (
 	tx: PointTransform2D,
 	acc: VecPair[] = []
 ) => {
-	let { img, select, clear, last, min, max } = {
-		clear: 0,
-		last: true,
-		min: 2,
-		max: Infinity,
-		...opts,
-	};
+	let { clear = 0, last = true, min = 2, max = Infinity, img, select } = opts;
 	min--;
 	let curr: [number, number][] = [];
 	let prevBorder = false;

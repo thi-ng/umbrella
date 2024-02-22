@@ -30,14 +30,9 @@ import type { ToStringOpts } from "./api.js";
  * @param width -
  */
 export const defFormat = (
-	opts?: Partial<ToStringOpts>
+	opts: Partial<ToStringOpts> = {}
 ): Stringer<Iterable<number>> => {
-	const { prec, width, delim, wrap } = {
-		prec: 3,
-		delim: ", ",
-		wrap: "[]",
-		...opts,
-	};
+	const { prec = 3, delim = ", ", wrap = "[]", width } = opts;
 	const fmt = width ? floatFixedWidth(width, prec) : float(prec);
 	return (src) => {
 		let res: string[] = [];

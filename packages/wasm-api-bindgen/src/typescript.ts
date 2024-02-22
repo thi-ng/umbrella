@@ -70,12 +70,7 @@ export interface TSOpts extends CodeGenOptsBase {
  * @param opts
  */
 export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
-	const { indent } = <TSOpts>{
-		indent: "\t",
-		stringType: "slice",
-		...opts,
-	};
-
+	const { indent = "\t" } = opts;
 	const SCOPES: [RegExp, RegExp] = [/\{$/, /(?<!\{.*)\}\)?[;,]?$/];
 
 	const gen: ICodeGen = {

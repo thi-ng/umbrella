@@ -17,11 +17,7 @@ import { preseed, sum } from "./utils.js";
  * @param opts -
  */
 export function* pink(opts?: Partial<ColoredNoiseOpts>) {
-	const { bins, scale, rnd } = {
-		...DEFAULT_OPTS,
-		bins: 8,
-		...opts,
-	};
+	const { bins = 8, scale, rnd } = { ...DEFAULT_OPTS, ...opts };
 	const state = preseed(bins, scale, rnd);
 	const invN = 1 / bins;
 	let acc = sum(state);

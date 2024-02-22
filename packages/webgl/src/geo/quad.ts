@@ -20,8 +20,8 @@ export interface QuadOpts {
 	center: boolean;
 }
 
-export const defQuadModel = (opts?: Partial<QuadOpts>): ModelSpec => {
-	let { size, uv, center } = { size: 2, uv: true, center: true, ...opts };
+export const defQuadModel = (opts: Partial<QuadOpts> = {}): ModelSpec => {
+	let { size = 2, uv = true, center = true } = opts;
 	size *= 0.5;
 	const o = center ? 0 : size;
 	return {

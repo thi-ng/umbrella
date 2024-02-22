@@ -22,8 +22,8 @@ const BMAX64 = BigInt("0xffffffffffffffff");
 const MIN64 = Number(BMIN64);
 const MAX64 = Number(BMAX64);
 
-export const serialize = (src: any, opts?: Partial<EncodeOpts>) => {
-	const { initial, resolve } = { initial: 256, ...opts };
+export const serialize = (src: any, opts: Partial<EncodeOpts> = {}) => {
+	const { initial = 256, resolve } = opts;
 	let buf = new Uint8Array(initial);
 	let view = new DataView(buf.buffer);
 	let pos = 0;

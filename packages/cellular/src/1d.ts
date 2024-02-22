@@ -348,11 +348,14 @@ export class MultiCA1D implements IClear {
 			pixels.length >= this.width * height,
 			"target pixel buffer too small"
 		);
-		const { cells, mask, prob, probabilistic, rnd, onupdate } = {
-			probabilistic: false,
-			rnd: SYSTEM,
-			...opts,
-		};
+		const {
+			probabilistic = false,
+			rnd = SYSTEM,
+			cells,
+			mask,
+			prob,
+			onupdate,
+		} = opts;
 		const $ = (id: Target, conf?: Partial<UpdateBufferOpts>) => {
 			conf &&
 				conf.perturb &&

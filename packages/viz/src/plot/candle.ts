@@ -51,13 +51,13 @@ export const candlePlot =
 		];
 	};
 
-export const candle = (opts?: Partial<CandleShapeOpts>) => {
-	const { up, down, title, width } = {
-		up: () => ({ stroke: [1, 0, 0], fill: [1, 0, 0] }),
-		down: () => ({ stroke: [0, 0.8, 0], fill: [0, 0.8, 0] }),
-		width: 5,
-		...opts,
-	};
+export const candle = (opts: Partial<CandleShapeOpts> = {}) => {
+	const {
+		up = () => ({ stroke: [1, 0, 0], fill: [1, 0, 0] }),
+		down = () => ({ stroke: [0, 0.8, 0], fill: [0, 0.8, 0] }),
+		width = 5,
+		title,
+	} = opts;
 	const w = width / 2;
 	return (raw: Candle, candle: MappedCandle, x: number, isUp: boolean) => {
 		const { o, h, l, c } = candle;

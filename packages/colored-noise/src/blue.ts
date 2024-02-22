@@ -7,10 +7,7 @@ import { preseed, sum } from "./utils.js";
  * @param opts -
  */
 export function* blue(opts?: Partial<ColoredNoiseOpts>) {
-	const { bins, scale, rnd } = {
-		...DEFAULT_OPTS,
-		...opts,
-	};
+	const { bins, scale, rnd } = { ...DEFAULT_OPTS, ...opts };
 	const state = preseed(bins, scale, rnd);
 	state.forEach((x, i) => (state[i] = i & 1 ? x : -x));
 	const invN = 1 / bins;

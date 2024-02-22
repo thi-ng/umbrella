@@ -137,14 +137,13 @@ export function partitionSync<T>(...args: any[]): any {
 	const iter = __iter(partitionSync, args, iterator);
 	if (iter) return iter;
 
-	const { key, mergeOnly, reset, all, backPressure } = <PartitionSyncOpts<T>>{
-		key: <any>identity,
-		mergeOnly: false,
-		reset: true,
-		all: true,
-		backPressure: 0,
-		...args[1],
-	};
+	const {
+		key = <Fn<T, PropertyKey>>identity,
+		mergeOnly = false,
+		reset = true,
+		all = true,
+		backPressure = 0,
+	} = <PartitionSyncOpts<T>>args[1];
 	const requiredKeys: Set<PropertyKey> = isArray(args[0])
 		? new Set(args[0])
 		: args[0];

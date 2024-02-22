@@ -417,7 +417,7 @@ export const image = (
 	w: number,
 	h: number,
 	pixels: ArrayLike<number>,
-	opts?: Partial<ImageOpts>
+	opts: Partial<ImageOpts> = {}
 ) => {
 	x |= 0;
 	y |= 0;
@@ -435,14 +435,13 @@ export const image = (
 		h: ih,
 	} = imgRect(canvas, x, y, w, h);
 	if (!iw || !ih) return;
-	const { chars, format, gamma, invert, bits } = {
-		chars: SHADES_BLOCK,
-		format: canvas.format,
-		gamma: 1,
-		invert: false,
-		bits: 8,
-		...opts,
-	};
+	const {
+		chars = SHADES_BLOCK,
+		format = canvas.format,
+		gamma = 1,
+		invert = false,
+		bits = 8,
+	} = opts;
 	const fmt = isNumber(format) ? () => format : format;
 	const max = (1 << bits) - 1;
 	const mask = invert ? max : 0;

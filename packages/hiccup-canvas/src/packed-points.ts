@@ -23,13 +23,7 @@ const __drawPoints = (
 	cmd: "fill" | "stroke",
 	cmdR: "fillRect" | "strokeRect"
 ) => {
-	const { start, cstride, estride, size } = {
-		start: 0,
-		cstride: 1,
-		estride: 2,
-		size: 1,
-		...opts,
-	};
+	const { start = 0, cstride = 1, estride = 2, size = 1 } = opts;
 	let num =
 		opts && opts.num != null
 			? opts.num

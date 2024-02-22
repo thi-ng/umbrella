@@ -113,18 +113,12 @@ const initKernel = (
 /** @internal */
 const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
 	const {
+		channel = 0,
+		offset = 0,
+		scale = 1,
+		stride: sampleStride = 1,
 		kernel,
-		channel,
-		stride: sampleStride,
-		scale,
-		offset,
-	} = {
-		channel: 0,
-		offset: 0,
-		scale: 1,
-		stride: 1,
-		...opts,
-	};
+	} = opts;
 	const size = kernel.size;
 	const [kw, kh] = __asIntVec(size);
 	const [strideX, strideY] = __asIntVec(sampleStride);

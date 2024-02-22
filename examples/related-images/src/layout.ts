@@ -18,19 +18,13 @@ interface LayoutOpts {
 // and a function to query the final (or current) max height...
 export const columnLayout = (opts: LayoutOpts) => {
 	const {
+		gap = 8,
+		margin = 0,
+		extraHeight = 0,
+		snap = 1,
 		cols,
 		width: totalWidth,
-		gap,
-		margin,
-		extraHeight,
-		snap,
-	} = {
-		gap: 8,
-		margin: 0,
-		extraHeight: 0,
-		snap: 1,
-		...opts,
-	};
+	} = opts;
 	// vector of vertical column offsets
 	const offsets = new Int32Array(cols);
 	// column width

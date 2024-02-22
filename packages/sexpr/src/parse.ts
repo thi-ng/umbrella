@@ -33,10 +33,7 @@ export const parse = (
 	src: string | Iterable<Token>,
 	opts?: Partial<SyntaxOpts>
 ) => {
-	const { scopes } = {
-		...DEFAULT_SYNTAX,
-		...opts,
-	};
+	const { scopes } = { ...DEFAULT_SYNTAX, ...opts };
 	const scopeOpen = scopes.map((x) => x[0]);
 	const scopeClose = scopes.map((x) => x[1]);
 	const tree: ASTNode[] = [{ type: "root", children: [] }];

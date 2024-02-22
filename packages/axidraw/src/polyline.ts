@@ -16,14 +16,10 @@ import { DOWN, MOVE, PEN, UP } from "./commands.js";
  */
 export function* polyline(
 	pts: ReadonlyVec[],
-	opts: Partial<PolylineOpts>
+	opts: Partial<PolylineOpts> = {}
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { speed, delayDown, delayUp, down, onlyGeo } = {
-		speed: 1,
-		onlyGeo: false,
-		...opts,
-	};
+	const { speed = 1, onlyGeo = false, delayDown, delayUp, down } = opts;
 	if (onlyGeo) {
 		for (let p of pts) yield MOVE(p, speed);
 		return;

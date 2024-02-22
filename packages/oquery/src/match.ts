@@ -93,9 +93,9 @@ export const matchMultiple = <T extends QueryObj = QueryObj, V = any>(
 	key: QueryTerm["q"][0],
 	includes: V[],
 	excludes: V[],
-	opts?: Partial<MatchMultipleOpts<V>>
+	opts: Partial<MatchMultipleOpts<V>> = {}
 ): QueryTerm<T> => {
-	const { union, value: valueFn } = { union: false, ...opts };
+	const { union = false, value: valueFn } = opts;
 	return excludes.length
 		? {
 				q: [

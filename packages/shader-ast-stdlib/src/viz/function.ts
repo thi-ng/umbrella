@@ -89,20 +89,13 @@ export interface FnSampleOpts {
 export const functionSampler = (
 	fn: Func1<"float", "float">,
 	map: Func2<"vec2", "vec2", "vec2">,
-	opts?: Partial<FnSampleOpts>
+	opts: Partial<FnSampleOpts> = {}
 ) => {
-	const { min, max, radius, step, area } = {
-		min: 0,
-		max: 1,
-		radius: 1,
-		step: 4,
-		area: false,
-		...opts,
-	};
+	const { min = 0, max = 1, radius = 1, steps = 4, area = false } = opts;
 	return defn(F, undefined, [V2, V2], (frag, res) => {
 		let count: FloatSym, total: FloatSym;
 		let q: Vec2Sym;
-		const invStep = float((2 * radius) / step);
+		const invStep = float((2 * radius) / steps);
 		return [
 			(q = sym(map(frag, res))),
 			// bail out early if outside [min..max] interval

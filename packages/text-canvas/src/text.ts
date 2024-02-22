@@ -116,19 +116,14 @@ export const textBox = (
 	width: number,
 	height: number,
 	txt: string,
-	opts?: Partial<TextBoxOpts>
+	opts: Partial<TextBoxOpts> = {}
 ) => {
 	const {
-		format,
+		format = canvas.format,
+		hard = false,
+		padding: [padX, padY] = [0, 0],
 		style,
-		padding: [padX, padY],
-		hard,
-	} = {
-		format: canvas.format,
-		padding: [0, 0],
-		hard: false,
-		...opts,
-	};
+	} = opts;
 	const currFmt = canvas.format;
 	canvas.format = format;
 	style && beginStyle(canvas, style);

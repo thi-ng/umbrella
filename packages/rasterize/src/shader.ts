@@ -49,11 +49,7 @@ export interface RandomShaderOpts<T> {
 export const defNoise = <T = number>(
 	opts: RandomShaderOpts<T>
 ): Shader2D<T> => {
-	const { probability, rnd, a, b } = {
-		probability: 0.5,
-		rnd: SYSTEM,
-		...opts,
-	};
+	const { probability = 0.5, rnd = SYSTEM, a, b } = opts;
 	return () => (rnd.probability(probability) ? a : b);
 };
 

@@ -19,18 +19,13 @@ export function formatCSV(
 	src: Iterable<CSVRow | CSVRecord>
 ): IterableIterator<string>;
 export function formatCSV(
-	opts?: Partial<CSVFormatOpts>,
+	opts: Partial<CSVFormatOpts> = {},
 	src?: Iterable<CSVRow | CSVRecord>
 ): any {
 	return isIterable(src)
 		? iterator(formatCSV(opts), src)
 		: (rfn: Reducer<any, string>) => {
-				let { header, cols, delim, quote } = {
-					delim: ",",
-					quote: `"`,
-					cols: [],
-					...opts,
-				};
+				let { cols = [], delim = ",", quote = '"', header } = opts;
 				let colTx: Nullable<Stringer<any>>[];
 				const reQuote = new RegExp(quote, "g");
 				const reduce = rfn[2];

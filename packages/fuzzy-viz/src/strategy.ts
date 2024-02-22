@@ -106,14 +106,9 @@ export const fuzzySetToSvg =
 		serialize(convertTree(fuzzySetToHiccup(opts)(fn, domain, res)));
 
 export const fuzzySetToAscii =
-	(opts?: Partial<AsciiVizOpts>): InstrumentFn<string> =>
+	(opts: Partial<AsciiVizOpts> = {}): InstrumentFn<string> =>
 	(fn, domain, res) => {
-		const { width, height, empty } = {
-			width: 100,
-			height: 16,
-			empty: ".",
-			...opts,
-		};
+		const { width = 100, height = 16, empty = "." } = opts;
 		const [min, max] = domain;
 		const delta = (max - min) / width;
 		const vals: number[] = [];

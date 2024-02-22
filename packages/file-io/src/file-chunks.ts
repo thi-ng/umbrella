@@ -42,13 +42,11 @@ export interface FileChunkOpts {
  * @param path
  * @param opts
  */
-export async function* fileChunks(path: string, opts?: Partial<FileChunkOpts>) {
-	let { logger, size, start, end } = {
-		size: 1024,
-		start: 0,
-		end: Infinity,
-		...opts,
-	};
+export async function* fileChunks(
+	path: string,
+	opts: Partial<FileChunkOpts> = {}
+) {
+	let { size = 1024, start = 0, end = Infinity, logger } = opts;
 	logger &&
 		logger.debug(`start reading file chunks (size: 0x${size}): ${path}`);
 	let fd: Nullable<FileHandle> = undefined;

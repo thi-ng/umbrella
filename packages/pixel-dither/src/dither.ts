@@ -14,13 +14,9 @@ import type { DitherKernel, DitherOpts } from "./api.js";
 export const ditherWith = (
 	kernel: DitherKernel,
 	img: IntBuffer,
-	opts?: Partial<DitherOpts>
+	opts: Partial<DitherOpts> = {}
 ) => {
-	const { channels, bleed, threshold } = {
-		bleed: 1,
-		threshold: 0.5,
-		...opts,
-	};
+	const { bleed = 1, threshold = 0.5, channels } = opts;
 	const { format, width, height } = img;
 	const { ox, oy, weights, shift } = kernel;
 	let p: number, err: number;

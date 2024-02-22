@@ -17,11 +17,7 @@ import type { StratifiedGridOpts } from "./api.js";
  * @param opts -
  */
 export function* stratifiedGrid2(opts: StratifiedGridOpts) {
-	let { rnd, separation: sep } = {
-		rnd: SYSTEM,
-		separation: Math.SQRT1_2,
-		...opts,
-	};
+	let { rnd = SYSTEM, separation: sep = Math.SQRT1_2 } = opts;
 	sep *= sep;
 	const scale =
 		opts.scale !== undefined
@@ -68,11 +64,7 @@ export function* stratifiedGrid2(opts: StratifiedGridOpts) {
  * @param opts -
  */
 export function* stratifiedGrid3(opts: StratifiedGridOpts) {
-	let { rnd, separation: sep } = {
-		rnd: SYSTEM,
-		separation: Math.SQRT1_2,
-		...opts,
-	};
+	let { rnd = SYSTEM, separation: sep = Math.SQRT1_2 } = opts;
 	sep *= sep;
 	const scale =
 		opts.scale !== undefined

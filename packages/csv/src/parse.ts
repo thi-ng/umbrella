@@ -96,8 +96,15 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 	return isIterable(src)
 		? iterator1(parseCSV(opts), src)
 		: (rfn: Reducer<any, CSVRecord>) => {
-				const { all, cols, delim, quote, comment, trim, header } = {
-					all: true,
+				const {
+					all = true,
+					cols,
+					comment,
+					delim,
+					header,
+					quote,
+					trim,
+				} = {
 					...DEFAULT_OPTS,
 					...opts,
 				};
@@ -207,8 +214,14 @@ export function parseCSVSimple(
 	return isIterable(src)
 		? iterator1(parseCSVSimple(opts), src)
 		: (rfn: Reducer<any, CSVRecord>) => {
-				const { cols, delim, quote, comment, trim, header } = {
-					header: true,
+				const {
+					header = true,
+					cols,
+					comment,
+					delim,
+					quote,
+					trim,
+				} = {
 					...DEFAULT_OPTS,
 					...opts,
 				};

@@ -21,21 +21,13 @@ export const varToHiccup = (
 	opts: Partial<VizualizeVarOpts> = {}
 ) => {
 	const {
-		samples,
-		width,
-		height,
-		labels,
-		stroke: strokeFn,
-		fill: fillFn,
-	} = {
-		samples: 200,
-		width: 600,
-		height: 100,
-		labels: true,
-		stroke: (x: number) => `hsl(${(x * 360) | 0},100%,40%)`,
-		fill: (x: number) => `hsla(${(x * 360) | 0},100%,50%,20%)`,
-		...opts,
-	};
+		samples = 200,
+		width = 600,
+		height = 100,
+		labels = true,
+		stroke: strokeFn = (x: number) => `hsl(${(x * 360) | 0},100%,40%)`,
+		fill: fillFn = (x: number) => `hsla(${(x * 360) | 0},100%,50%,20%)`,
+	} = opts;
 	const keys = Object.keys(terms);
 	const dt = (max - min) / samples;
 	const ds = width / samples;

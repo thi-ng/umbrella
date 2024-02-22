@@ -23,14 +23,11 @@ import { __asVec } from "./internal/utils.js";
  * @param src -
  * @param opts -
  */
-export const normalMap = (src: FloatBuffer, opts?: Partial<NormalMapOpts>) => {
-	const { channel, step, scale, z } = {
-		channel: 0,
-		step: 0,
-		scale: 1,
-		z: 1,
-		...opts,
-	};
+export const normalMap = (
+	src: FloatBuffer,
+	opts: Partial<NormalMapOpts> = {}
+) => {
+	const { channel = 0, step = 0, scale = 1, z = 1 } = opts;
 	ensureChannel(src.format, channel);
 	const spec = [-1, ...new Array(step).fill(0), 1];
 	const [sx, sy] = __asVec(scale);

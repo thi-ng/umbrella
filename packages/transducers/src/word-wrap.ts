@@ -41,11 +41,7 @@ export function wordWrap(...args: any[]): any {
 		return iter;
 	}
 	const lineLength = args[0];
-	const { delim, always } = <WordWrapOpts>{
-		delim: 1,
-		always: true,
-		...args[1],
-	};
+	const { delim = 1, always = true } = <WordWrapOpts>args[1];
 	return partitionBy(() => {
 		let n = 0;
 		let flag = false;

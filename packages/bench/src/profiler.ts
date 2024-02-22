@@ -67,12 +67,8 @@ export class Profiler
 	protected _enabled!: boolean;
 	protected _overhead = 0;
 
-	constructor(opts?: Partial<ProfilerOpts>) {
-		const { warmup, enabled } = {
-			warmup: 1e6,
-			enabled: true,
-			...opts,
-		};
+	constructor(opts: Partial<ProfilerOpts> = {}) {
+		const { warmup = 1e6, enabled = true } = opts;
 		this.enable();
 		if (warmup > 0) this.warmup(warmup);
 		enabled ? this.reset() : this.disable();

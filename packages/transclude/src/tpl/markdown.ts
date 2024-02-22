@@ -36,6 +36,18 @@ export interface TOCOpts {
 	 *
 	 */
 	title: string;
+	/**
+	 * Placeholder pattern for injected TOC
+	 *
+	 * @defaultValue "\<!-- toc --\>"
+	 */
+	match: string | RegExp;
+	/**
+	 * Test pattern for disabling TOC. If this pattern is found no TOC will be injected.
+	 *
+	 * @defaultValue "\<!-- notoc --\>"
+	 */
+	disable: RegExp;
 }
 
 /**
@@ -46,15 +58,15 @@ export interface TOCOpts {
  * @param opts
  */
 export const toc =
-	(opts?: Partial<TOCOpts>): TemplateFn =>
+	(opts: Partial<TOCOpts> = {}): TemplateFn =>
 	({ src, eol }) => {
-		const { min, max, match, disable, title } = {
-			min: 2,
-			max: 4,
-			match: "<!-- toc -->",
-			disable: /<\!-- notoc -->/i,
-			...opts,
-		};
+		const {
+			min = 2,
+			max = 4,
+			match = /<\!-- toc -->/i,
+			disable = /<\!-- notoc -->/i,
+			title,
+		} = opts;
 		const isHeading = new RegExp(`^#{${min},${max}}\\s`);
 		const reHeading = new RegExp(`^(#{${min},${max}})\\s(.+)`);
 		const toc = transduce(

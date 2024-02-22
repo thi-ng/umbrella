@@ -117,11 +117,7 @@ function bmi(state: IAtom<BMIState>) {
 	// computes new BMI value (if weight was changed) or
 	// new weight value (if BMI was changed by user)
 	const calc = (updateWeight = false) => {
-		let { height, weight, bmi } = state.deref() || {
-			height: 0,
-			weight: 0,
-			bmi: 0,
-		};
+		let { height = 0, weight = 0, bmi = 0 } = state.deref();
 		height *= 0.01;
 		if (updateWeight) {
 			state.resetIn(["weight"], bmi * height * height);
