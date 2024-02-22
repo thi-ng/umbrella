@@ -85,6 +85,7 @@ export const processImage = async (
 	ensureSize(meta);
 	const ctx: ImgProcCtx = {
 		path: isString(src) ? src : parentCtx?.path,
+		outputs: parentCtx ? parentCtx.outputs : [],
 		logger: opts.logger || LOGGER,
 		size: [meta.width!, meta.height!],
 		channels: meta.channels!,
@@ -112,7 +113,7 @@ export const processImage = async (
 			},
 		});
 	}
-	return img;
+	return { img, meta, outputs: ctx.outputs };
 };
 
 /**
@@ -315,6 +316,7 @@ export const process = defmulti<
 					formatPath(opts.path, ctx, <OutputSpec>spec, data)
 				);
 				writeFile(path, data, null, ctx.logger);
+				ctx.outputs.push(path);
 				if (meta) {
 					writeJSON(
 						path + ".meta.json",
@@ -362,6 +364,7 @@ export const process = defmulti<
 				formatPath(opts.path, ctx, <OutputSpec>spec, result)
 			);
 			writeFile(path, result, null, ctx.logger);
+			ctx.outputs.push(path);
 			return [input, false];
 		},
 

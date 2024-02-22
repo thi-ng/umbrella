@@ -223,8 +223,11 @@ export interface ImgProcCtx {
 	channels: 1 | 2 | 3 | 4;
 	meta: Metadata;
 	logger: ILogger;
-	// bake: boolean;
 	opts: Partial<ImgProcOpts>;
+	/**
+	 * Paths of all exported images.
+	 */
+	outputs: string[];
 }
 
 export const GRAVITY_POSITION: Record<Gravity, string> = {
