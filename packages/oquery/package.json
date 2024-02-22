@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/oquery",
-	"version": "2.2.24",
+	"version": "2.2.25",
 	"description": "Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays of objects",
 	"type": "module",
 	"module": "./index.js",
@@ -35,11 +35,11 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.24",
-		"@thi.ng/checks": "^3.4.24",
-		"@thi.ng/compare": "^2.2.20",
-		"@thi.ng/defmulti": "^3.0.24",
-		"@thi.ng/equiv": "^2.1.48"
+		"@thi.ng/api": "^8.9.25",
+		"@thi.ng/checks": "^3.5.0",
+		"@thi.ng/compare": "^2.2.21",
+		"@thi.ng/defmulti": "^3.0.25",
+		"@thi.ng/equiv": "^2.1.49"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

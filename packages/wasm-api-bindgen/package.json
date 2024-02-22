@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-bindgen",
-	"version": "0.4.50",
+	"version": "0.4.51",
 	"description": "Polyglot bindings code generators for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
@@ -37,19 +37,19 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.24",
-		"@thi.ng/args": "^2.3.15",
-		"@thi.ng/arrays": "^2.8.1",
-		"@thi.ng/binary": "^3.4.13",
-		"@thi.ng/checks": "^3.4.24",
-		"@thi.ng/compare": "^2.2.20",
-		"@thi.ng/defmulti": "^3.0.24",
-		"@thi.ng/errors": "^2.4.17",
-		"@thi.ng/file-io": "^1.3.1",
-		"@thi.ng/logger": "^3.0.1",
-		"@thi.ng/paths": "^5.1.66",
-		"@thi.ng/strings": "^3.7.15",
-		"@thi.ng/wasm-api": "^1.4.53"
+		"@thi.ng/api": "^8.9.25",
+		"@thi.ng/args": "^2.3.16",
+		"@thi.ng/arrays": "^2.8.2",
+		"@thi.ng/binary": "^3.4.14",
+		"@thi.ng/checks": "^3.5.0",
+		"@thi.ng/compare": "^2.2.21",
+		"@thi.ng/defmulti": "^3.0.25",
+		"@thi.ng/errors": "^2.4.18",
+		"@thi.ng/file-io": "^1.3.2",
+		"@thi.ng/logger": "^3.0.2",
+		"@thi.ng/paths": "^5.1.67",
+		"@thi.ng/strings": "^3.7.16",
+		"@thi.ng/wasm-api": "^1.4.54"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

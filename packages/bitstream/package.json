@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bitstream",
-	"version": "2.2.47",
+	"version": "2.2.48",
 	"description": "ES6 iterator based read/write bit streams with support for variable word widths",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.4.17"
+		"@thi.ng/errors": "^2.4.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

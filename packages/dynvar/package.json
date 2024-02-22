@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dynvar",
-	"version": "0.3.60",
+	"version": "0.3.61",
 	"description": "Dynamically scoped variable bindings",
 	"type": "module",
 	"module": "./index.js",
@@ -35,8 +35,8 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.24",
-		"@thi.ng/errors": "^2.4.17"
+		"@thi.ng/api": "^8.9.25",
+		"@thi.ng/errors": "^2.4.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

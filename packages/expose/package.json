@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/expose",
-	"version": "1.2.19",
+	"version": "1.2.20",
 	"description": "Conditional global variable exposition",
 	"type": "module",
 	"module": "./index.js",
