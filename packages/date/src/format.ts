@@ -241,7 +241,7 @@ export const FMT_hm = defFormat(["h", ":", "mm", " ", "A"]);
  */
 export const FMT_HHmmss = defFormat(["HH", ":", "mm", ":", "ss"]);
 /**
- * Format preset, e.g. `17:08:01`
+ * Format preset, e.g. `170801`
  */
 export const FMT_HHmmss_ALT = defFormat(["HH", "mm", "ss"]);
 /**
@@ -272,6 +272,35 @@ export const FMT_ISO_SHORT = defFormat(
 export const FMT_ISO = defFormat(
     ["yyyy", "-", "MM", "-", "dd", "T", "HH", ":", "mm", ":", "ss", ".", "SS", "ZZ"]
 );
+
+/**
+ * Format preset, 4-digit year only
+ */
+export const FMT_yyyy = defFormat(["yyyy"]);
+/**
+ * Format preset, 2-digit month only
+ */
+export const FMT_MM = defFormat(["MM"]);
+/**
+ * Format preset, 2-digit week in year only
+ */
+export const FMT_ww = defFormat(["ww"]);
+/**
+ * Format preset, 2-digit day in month only
+ */
+export const FMT_dd = defFormat(["dd"]);
+/**
+ * Format preset, 2-digit hour only
+ */
+export const FMT_HH = defFormat(["HH"]);
+/**
+ * Format preset, 2-digit minute only
+ */
+export const FMT_mm = defFormat(["mm"]);
+/**
+ * Format preset, 2-digit second only
+ */
+export const FMT_ss = defFormat(["ss"]);
 
 /**
  * Takes a `date` and optional reference `base` date and (also optional
