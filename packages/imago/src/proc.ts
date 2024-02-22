@@ -357,15 +357,11 @@ export const process = defmulti<
 			if (opts.tile) output = output.tile(opts.tile);
 			if (format) output = output.toFormat(<any>format);
 			const result = await output.toBuffer();
-			writeFile(
-				join(
-					outDir,
-					formatPath(opts.path, ctx, <OutputSpec>spec, result)
-				),
-				result,
-				null,
-				ctx.logger
+			const path = join(
+				outDir,
+				formatPath(opts.path, ctx, <OutputSpec>spec, result)
 			);
+			writeFile(path, result, null, ctx.logger);
 			return [input, false];
 		},
 
