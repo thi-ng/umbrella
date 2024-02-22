@@ -1,4 +1,5 @@
 import type { Keys } from "@thi.ng/api";
+import type { ILogger } from "@thi.ng/logger";
 import type {
 	AvifOptions,
 	Blend,
@@ -10,6 +11,7 @@ import type {
 	JpegOptions,
 	JxlOptions,
 	KernelEnum,
+	Metadata,
 	PngOptions,
 	TiffOptions,
 	TileOptions,
@@ -188,3 +190,49 @@ export interface RotateSpec extends ProcSpec {
 	flipX?: boolean;
 	flipY?: boolean;
 }
+
+export interface ImgProcOpts {
+	/**
+	 * Logger instance to use (by default uses builtin module logger, linked to
+	 * umbrella `ROOT` logger)
+	 */
+	logger: ILogger;
+	/**
+	 * Base directory for {@link output} steps
+	 */
+	outDir: string;
+}
+
+export interface ImgProcCtx {
+	path?: string;
+	size: Dim;
+	channels: 1 | 2 | 3 | 4;
+	meta: Metadata;
+	logger: ILogger;
+	// bake: boolean;
+	opts: Partial<ImgProcOpts>;
+}
+
+export const GRAVITY_POSITION: Record<Gravity, string> = {
+	c: "center",
+	e: "right",
+	n: "top",
+	ne: "right top",
+	nw: "left top",
+	s: "bottom",
+	se: "right bottom",
+	sw: "left bottom",
+	w: "left",
+};
+
+export const GRAVITY_MAP: Record<Gravity, string> = {
+	n: "north",
+	ne: "northeast",
+	se: "southeast",
+	s: "south",
+	sw: "southwest",
+	w: "west",
+	nw: "northwest",
+	e: "east",
+	c: "center",
+};

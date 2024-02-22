@@ -1,9 +1,9 @@
 import { typedArray } from "@thi.ng/api";
-import { isArray, isArrayLike, isNumber, isString } from "@thi.ng/checks";
+import { isArrayBufferView, isNumber, isString } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
 import { readText, writeFile, writeJSON } from "@thi.ng/file-io";
-import { ROOT, type ILogger } from "@thi.ng/logger";
+import { ROOT } from "@thi.ng/logger";
 import { ABGR8888, GRAY8, Lane, intBuffer } from "@thi.ng/pixel";
 import {
 	ATKINSON,
@@ -21,82 +21,43 @@ import {
 	type DitherKernel,
 } from "@thi.ng/pixel-dither";
 import { join, resolve } from "path";
-import sharp, { type Metadata, type OverlayOptions, type Sharp } from "sharp";
-import type {
-	BlurSpec,
-	Color,
-	CompLayer,
-	CompSpec,
-	CropSpec,
-	Dim,
-	DitherMode,
-	DitherSpec,
-	EXIFSpec,
-	ExtendSpec,
-	GammaSpec,
-	Gravity,
-	GrayscaleSpec,
-	HSBLSpec,
-	ImgLayer,
-	NestSpec,
-	OutputSpec,
-	ProcSpec,
-	ResizeSpec,
-	RotateSpec,
-	SVGLayer,
-	Sides,
-	Size,
-	SizeRef,
-	SizeUnit,
+import sharp, { type OverlayOptions, type Sharp } from "sharp";
+import {
+	GRAVITY_POSITION,
+	type BlurSpec,
+	type CompLayer,
+	type CompSpec,
+	type CropSpec,
+	type Dim,
+	type DitherMode,
+	type DitherSpec,
+	type EXIFSpec,
+	type ExtendSpec,
+	type GammaSpec,
+	type GrayscaleSpec,
+	type HSBLSpec,
+	type ImgLayer,
+	type ImgProcCtx,
+	type ImgProcOpts,
+	type NestSpec,
+	type OutputSpec,
+	type ProcSpec,
+	type ResizeSpec,
+	type RotateSpec,
+	type SVGLayer,
 } from "./api.js";
+import { formatPath } from "./path.js";
+import {
+	coerceColor,
+	computeMargins,
+	computeSize,
+	ensureSize,
+	gravityPosition,
+	positionOrGravity,
+} from "./units.js";
 
 // ROOT.set(new ConsoleLogger());
 export const LOGGER = ROOT.childLogger("imgproc");
-
-export interface ImgProcOpts {
-	/**
-	 * Logger instance to use (by default uses builtin module logger, linked to
-	 * umbrella `ROOT` logger)
-	 */
-	logger: ILogger;
-	/**
-	 * Base directory for {@link output} steps
-	 */
-	outDir: string;
-}
-
-export interface ImgProcCtx {
-	size: Dim;
-	channels: 1 | 2 | 3 | 4;
-	meta: Metadata;
-	logger: ILogger;
-	// bake: boolean;
-	opts: Partial<ImgProcOpts>;
-}
-
-const GRAVITY_POSITION: Record<Gravity, string> = {
-	c: "center",
-	e: "right",
-	n: "top",
-	ne: "right top",
-	nw: "left top",
-	s: "bottom",
-	se: "right bottom",
-	sw: "left bottom",
-	w: "left",
-};
-
-const GRAVITY_MAP: Record<Gravity, string> = {
-	n: "north",
-	ne: "northeast",
-	se: "southeast",
-	s: "south",
-	sw: "southwest",
-	w: "west",
-	nw: "northwest",
-	e: "east",
-	c: "center",
-};
 
 const DITHER_KERNELS: Record<Exclude<DitherMode, "bayer">, DitherKernel> = {
 	atkinson: ATKINSON,
@@ -110,31 +71,23 @@ const DITHER_KERNELS: Record<Exclude<DitherMode, "bayer">, DitherKernel> = {
 	stucki: STUCKI,
 };
 
-export const isArrayBufferLike = (x: any): x is ArrayBufferLike =>
-	x instanceof ArrayBuffer || x instanceof SharedArrayBuffer;
-
-export const isArrayBufferView = (x: any): x is ArrayBufferView =>
-	x != null &&
-	isArrayBufferLike(x.buffer) &&
-	isNumber(x.byteOffset) &&
-	isNumber(x.byteLength);
-
 export const processImage = async (
 	src: string | Buffer | Sharp,
 	procs: ProcSpec[],
-	opts: Partial<ImgProcOpts> = {}
+	opts: Partial<ImgProcOpts> = {},
+	parentCtx?: ImgProcCtx
 ) => {
 	let img =
-		isString(src) || isArrayBufferLike((<any>src).buffer)
+		isString(src) || isArrayBufferView((<any>src).buffer)
 			? sharp(<string | Buffer>src)
 			: <Sharp>src;
 	const meta = await img.metadata();
-	__ensureSize(meta);
+	ensureSize(meta);
 	const ctx: ImgProcCtx = {
+		path: isString(src) ? src : parentCtx?.path,
 		logger: opts?.logger || LOGGER,
 		size: [meta.width!, meta.height!],
 		channels: meta.channels!,
-		// bake: true,
 		meta,
 		opts,
 	};
@@ -208,7 +161,7 @@ export const process = defmulti<
 			if (border == null && size == null)
 				illegalArgs("require `border` or `size` option");
 			if (border != null) {
-				const sides = __margins(border, ctx.size, ref, unit);
+				const sides = computeMargins(border, ctx.size, ref, unit);
 				const [left, right, top, bottom] = sides;
 				return [
 					input.extract({
@@ -220,19 +173,15 @@ export const process = defmulti<
 					true,
 				];
 			}
-			const $size = __size(size!, ctx.size, unit);
+			const $size = computeSize(size!, ctx.size, unit);
 			let left = 0,
 				top = 0;
 			if (pos) {
 				({ left = 0, top = 0 } =
-					__positionOrGravity(pos, gravity, $size, ctx.size, unit) ||
+					positionOrGravity(pos, gravity, $size, ctx.size, unit) ||
 					{});
 			} else {
-				[left, top] = __gravityPosition(
-					gravity || "c",
-					$size,
-					ctx.size
-				);
+				[left, top] = gravityPosition(gravity || "c", $size, ctx.size);
 			}
 			return [
 				input.extract({
@@ -301,7 +250,7 @@ export const process = defmulti<
 
 		extend: async (spec, input, ctx) => {
 			const { bg, border, mode, ref, unit } = <ExtendSpec>spec;
-			const sides = __margins(border, ctx.size, ref, unit);
+			const sides = computeMargins(border, ctx.size, ref, unit);
 			const [left, right, top, bottom] = sides;
 			return [
 				input.extend({
@@ -309,7 +258,7 @@ export const process = defmulti<
 					right,
 					top,
 					bottom,
-					background: bg ? __color(bg) : "white",
+					background: coerceColor(bg || "#000"),
 					extendWith: mode,
 				}),
 				true,
@@ -345,16 +294,15 @@ export const process = defmulti<
 		nest: async (spec, input, ctx) => {
 			const { procs } = <NestSpec>spec;
 			ctx.logger.debug("--- nest start ---");
-			await processImage(input.clone(), procs, ctx.opts);
+			await processImage(input.clone(), procs, ctx.opts, ctx);
 			ctx.logger.debug("--- nest end ---");
-			// ctx.bake = false;
-			return [input, false];
+			return <[Sharp, boolean]>[input, false];
 		},
 
 		output: async (spec, input, ctx) => {
 			const opts = <OutputSpec>spec;
+			const outDir = resolve(ctx.opts.outDir || ".");
 			let output = input.clone();
-			const path = join(resolve(ctx.opts.outDir || "."), opts.path);
 			if (opts.raw) {
 				const { alpha = false, meta = false } =
 					opts.raw !== true ? opts.raw : {};
@@ -362,8 +310,8 @@ export const process = defmulti<
 				const { data, info } = await output
 					.raw()
 					.toBuffer({ resolveWithObject: true });
-				ctx.logger.info("writing raw binary:", path);
-				writeFile(path, data);
+				const path = join(outDir, formatPath(opts.path, data, ctx));
+				writeFile(path, data, null, ctx.logger);
 				if (meta) {
 					writeJSON(
 						path + ".meta.json",
@@ -386,7 +334,6 @@ export const process = defmulti<
 				case "jpg":
 				case "jpeg":
 					if (opts.jpeg) output = output.jpeg(opts.jpeg);
-					format = "jpeg";
 					break;
 				case "jp2":
 					if (opts.jp2) output = output.jp2(opts.jp2);
@@ -406,19 +353,19 @@ export const process = defmulti<
 			}
 			if (opts.tile) output = output.tile(opts.tile);
 			if (format) output = output.toFormat(<any>format);
-			ctx.logger.info(
-				"writing file:",
-				path,
-				"using format:",
-				format || "???"
+			const result = await output.toBuffer();
+			writeFile(
+				join(outDir, formatPath(opts.path, result, ctx)),
+				result,
+				null,
+				ctx.logger
 			);
-			await output.toFile(path);
 			return [input, false];
 		},
 
 		resize: async (spec, input, ctx) => {
 			const { bg, filter, fit, gravity, size, unit } = <ResizeSpec>spec;
-			const [width, height] = __size(size, ctx.size, unit);
+			const [width, height] = computeSize(size, ctx.size, unit);
 			return [
 				input.resize({
 					width,
@@ -426,7 +373,7 @@ export const process = defmulti<
 					fit,
 					kernel: filter,
 					position: gravity ? GRAVITY_POSITION[gravity] : undefined,
-					background: bg ? __color(bg) : undefined,
+					background: bg ? coerceColor(bg) : undefined,
 				}),
 				true,
 			];
@@ -436,12 +383,12 @@ export const process = defmulti<
 			const { angle, bg, flipX, flipY } = <RotateSpec>spec;
 			if (flipX) input = input.flop();
 			if (flipY) input = input.flip();
-			return [input.rotate(angle, { background: __color(bg) }), true];
+			return [input.rotate(angle, { background: coerceColor(bg) }), true];
 		},
 	}
 );
 
-const defLayer = defmulti<
+export const defLayer = defmulti<
 	CompLayer,
 	Sharp,
 	ImgProcCtx,
@@ -455,7 +402,7 @@ const defLayer = defmulti<
 			const input = sharp(path);
 			const meta = await input.metadata();
 			let imgSize: Dim = [meta.width!, meta.height!];
-			const $pos = __positionOrGravity(
+			const $pos = positionOrGravity(
 				pos,
 				gravity,
 				imgSize,
@@ -463,8 +410,8 @@ const defLayer = defmulti<
 				unit
 			);
 			if (!size) return { input: path, ...$pos, ...opts };
-			__ensureSize(meta);
-			imgSize = __size(size, imgSize, unit);
+			ensureSize(meta);
+			imgSize = computeSize(size, imgSize, unit);
 			return {
 				input: await input
 					.resize(imgSize[0], imgSize[1])
@@ -482,124 +429,9 @@ const defLayer = defmulti<
 			const h = +(/height="(\d+)"/.exec(body)?.[1] || 0);
 			return {
 				input: Buffer.from(body),
-				...__positionOrGravity(pos, gravity, [w, h], ctx.size, unit),
+				...positionOrGravity(pos, gravity, [w, h], ctx.size, unit),
 				...opts,
 			};
 		},
 	}
 );
-
-const round = Math.round;
-
-const __ensureSize = (meta: Metadata) =>
-	!(isNumber(meta.width) && isNumber(meta.height)) &&
-	illegalArgs("can't determine image size");
-
-const __color = (col: Color) =>
-	isString(col)
-		? col
-		: isArrayLike(col)
-		? { r: col[0], g: col[1], b: col[2], alpha: col[3] ?? 1 }
-		: col;
-
-const __positionOrGravity = (
-	pos: CompLayer["pos"],
-	gravity: Gravity | undefined,
-	[w, h]: Dim,
-	[parentW, parentH]: Dim,
-	unit: SizeUnit = "px"
-) => {
-	if (!pos) return gravity ? { gravity: GRAVITY_MAP[gravity] } : undefined;
-	const isPC = unit === "%";
-	let { l, r, t, b } = pos;
-	if (l != null) l = round(isPC ? (l * parentW) / 100 : l);
-	if (r != null) l = round(parentW - (isPC ? (r * parentW) / 100 : r) - w);
-	if (t != null) t = round(isPC ? (t * parentH) / 100 : t);
-	if (b != null) t = round(parentH - (isPC ? (b * parentH) / 100 : b) - h);
-	return { left: l, top: t };
-};
-
-const __gravityPosition = (
-	gravity: Gravity,
-	[w, h]: Dim,
-	[parentW, parentH]: Dim
-) => [
-	gravity.includes("w")
-		? 0
-		: gravity.includes("e")
-		? parentW - w
-		: (parentW - w) >> 1,
-	gravity.includes("n")
-		? 0
-		: gravity.includes("s")
-		? parentH - h
-		: (parentH - h) >> 1,
-];
-
-const __refSize = ([w, h]: Dim, ref?: SizeRef) => {
-	switch (ref) {
-		case "w":
-			return w;
-		case "h":
-			return h;
-		case "max":
-			return Math.max(w, h);
-		case "min":
-		default:
-			return Math.min(w, h);
-	}
-};
-
-const __size = (size: Size, curr: Dim, unit: SizeUnit = "px"): Dim => {
-	const aspect = curr[0] / curr[1];
-	let res: Dim;
-	if (isNumber(size)) {
-		res = aspect > 1 ? [size, size / aspect] : [size * aspect, size];
-	} else {
-		const [w, h] = size;
-		res =
-			w >= 0
-				? h >= 0
-					? size
-					: [w, w / aspect]
-				: h > 0
-				? [w * aspect, h]
-				: illegalArgs(
-						`require at least width or height, but got: ${JSON.stringify(
-							size
-						)}`
-				  );
-	}
-	if (unit === "%") {
-		res[0] *= curr[0] / 100;
-		res[1] *= curr[1] / 100;
-	}
-	res[0] = round(res[0]);
-	res[1] = round(res[1]);
-	return res;
-};
-
-const __margins = (
-	size: Size | Sides,
-	curr: Dim,
-	ref: SizeRef = "min",
-	unit: SizeUnit = "px"
-) => {
-	let res: Sides;
-	const refSide = __refSize(curr, ref);
-	const isPC = unit === "%";
-	if (isArray(size) && size.length === 4) {
-		res = <Sides>(
-			(isPC
-				? size.map((x) => round((x * refSide) / 100))
-				: size.map(round))
-		);
-	} else if (isNumber(size)) {
-		const w = round(isPC ? (refSide * size) / 100 : size);
-		res = [w, w, w, w];
-	} else {
-		const [w, h] = __size(size, curr, unit);
-		res = [w, w, h, h];
-	}
-	return res;
-};
