@@ -11,7 +11,7 @@ import {
 	push,
 	transduce,
 } from "@thi.ng/transducers";
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { barChart, labeledTickX, labeledTickY } from "./viz.js";
 
 const BASE_DIR = "../../packages/";

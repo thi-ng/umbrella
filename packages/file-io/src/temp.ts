@@ -2,9 +2,9 @@ import type { TypedArray } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
 import { randomID } from "@thi.ng/random/random-id";
-import { realpathSync, writeFileSync } from "fs";
-import { tmpdir } from "os";
-import { sep } from "path";
+import { realpathSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { sep } from "node:path";
 import { ensureDirForFile } from "./dir.js";
 
 export const createTempFile = (

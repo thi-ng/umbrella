@@ -1,6 +1,6 @@
 import * as g from "@thi.ng/geom";
 import * as lsys from "@thi.ng/lsys";
-import * as fs from "fs";
+import * as fs from "node:fs";
 
 // example L-Systems shown above
 interface Example {

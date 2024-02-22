@@ -20,7 +20,7 @@ import {
 	orderedDither,
 	type DitherKernel,
 } from "@thi.ng/pixel-dither";
-import { join, resolve } from "path";
+import { join, resolve } from "node:path";
 import sharp, { type OverlayOptions, type Sharp } from "sharp";
 import {
 	GRAVITY_POSITION,

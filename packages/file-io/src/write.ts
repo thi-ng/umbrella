@@ -1,7 +1,7 @@
 import type { TypedArray } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
-import { writeFileSync, type WriteFileOptions } from "fs";
+import { writeFileSync, type WriteFileOptions } from "node:fs";
 import { ensureDirForFile } from "./dir.js";
 /**
  * Writes `body` as to given `path` (using optional `opts` to define encoding).

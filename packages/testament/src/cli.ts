@@ -1,7 +1,7 @@
 // thing:no-export
 import { watch } from "chokidar";
-import { readdirSync, statSync, writeFileSync } from "fs";
-import { normalize, resolve } from "path";
+import { readdirSync, statSync, writeFileSync } from "node:fs";
+import { normalize, resolve } from "node:path";
 import { GLOBAL_OPTS, type TestResult } from "./api.js";
 import { execute } from "./exec.js";
 import { isString } from "./utils.js";

@@ -9,7 +9,7 @@ import {
 	transcludeFile,
 	type TemplateFn,
 } from "@thi.ng/transclude";
-import { execFileSync } from "child_process";
+import { execFileSync } from "node:child_process";
 import { LOGGER, type Config } from "./api.js";
 import { CONFIG, initConfig } from "./config.js";
 import { blogPosts } from "./partials/blog.js";

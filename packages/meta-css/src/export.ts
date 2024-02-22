@@ -4,7 +4,7 @@ import type { Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
 import { COMPACT, PRETTY, QUOTED_FNS, at_media, css } from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
-import { resolve } from "path";
+import { resolve } from "node:path";
 import {
 	ARG_INCLUDE,
 	ARG_MEDIA_QUERIES,

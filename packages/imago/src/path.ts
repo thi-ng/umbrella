@@ -1,8 +1,8 @@
 import type { TypedArray } from "@thi.ng/api";
 import { FMT_HHmmss_ALT, FMT_yyyyMMdd_ALT } from "@thi.ng/date";
 import { illegalArgs as unsupported } from "@thi.ng/errors";
-import { createHash } from "crypto";
-import { basename } from "path";
+import { createHash } from "node:crypto";
+import { basename } from "node:path";
 import type { ImgProcCtx } from "./api.js";
 
 /**

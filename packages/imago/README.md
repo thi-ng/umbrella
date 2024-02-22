@@ -244,33 +244,25 @@ Auto-rotate, rotate and/or mirror image
 yarn add @thi.ng/imago
 ```
 
-ES module import:
-
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/imago"></script>
-```
-
-[Skypack documentation](https://docs.skypack.dev/)
-
 For Node.js REPL:
 
 ```js
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.42 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.14 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/develop/packages/date)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither)
-- [sharp](https://sharp.pixelplumbing.com)
 
 ## API
 

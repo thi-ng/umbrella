@@ -1,5 +1,5 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { strings, string, flag, parse } from "@thi.ng/args";
 import { convertXML } from "./convert.js";
 import { COMPACT_FORMAT, DEFAULT_FORMAT } from "./format.js";

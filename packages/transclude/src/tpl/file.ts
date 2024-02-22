@@ -1,5 +1,5 @@
 import { readText } from "@thi.ng/file-io";
-import { resolve } from "path";
+import { resolve } from "node:path";
 import type { TemplateFn } from "../api.js";
 
 /**

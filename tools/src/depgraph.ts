@@ -9,7 +9,7 @@ import {
 	transduce,
 	zip,
 } from "@thi.ng/transducers";
-import { execFileSync } from "child_process";
+import { execFileSync } from "node:child_process";
 
 // load package.json of all packages in monorepo and extract key details...
 const packages = [...map(readJSON, files("packages", "package.json", 2))];

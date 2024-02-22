@@ -2,9 +2,9 @@ import type { IObjectOf } from "@thi.ng/api";
 import { unescape } from "@thi.ng/strings/escape";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";
 import { base64Decode } from "@thi.ng/transducers-binary/base64";
-import { execFileSync } from "child_process";
-import { readFileSync } from "fs";
-import { resolve as resolvePath } from "path";
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { resolve as resolvePath } from "node:path";
 import { IS_NODE, NODE_ONLY, type TagParser } from "./api.js";
 
 export const BUILTINS: IObjectOf<TagParser> = {

@@ -1,6 +1,6 @@
 import type { ILogger } from "@thi.ng/logger";
-import { createHash } from "crypto";
-import { readFileSync } from "fs";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 
 export type HashAlgo =
 	| "gost-mac"

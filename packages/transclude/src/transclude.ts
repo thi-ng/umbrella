@@ -1,7 +1,7 @@
 import type { SomeRequired } from "@thi.ng/api";
 import { readText } from "@thi.ng/file-io/text";
 import { ConsoleLogger } from "@thi.ng/logger";
-import { resolve } from "path";
+import { resolve } from "node:path";
 import type { TranscludeCtx } from "./api.js";
 
 export type Mandatory = "src" | "templates" | "user";

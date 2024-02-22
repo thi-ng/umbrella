@@ -1,5 +1,5 @@
 import type { ILogger } from "@thi.ng/logger";
-import { unlinkSync } from "fs";
+import { unlinkSync } from "node:fs";
 
 /**
  * Deletes file at given path. If `dryRun` is true (default: false), the file

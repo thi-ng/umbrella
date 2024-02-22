@@ -21,7 +21,7 @@ import { isReduced } from "./reduced.js";
  *
  * @example
  * ```ts
- * import { spawn } from "child_process"
+ * import { spawn } from "node:child_process"
  * import { fromNodeJS, trace } from "@thi.ng/rstream";
  *
  * const cmd = spawn("ls", ["-la"]);

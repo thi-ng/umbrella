@@ -1,5 +1,5 @@
 import { files, readJSON, readText, writeJSON } from "@thi.ng/file-io";
-import { readdirSync, statSync } from "fs";
+import { readdirSync, statSync } from "node:fs";
 import { LOGGER } from "./api.js";
 import { normalizePackage } from "./normalize-package.js";
 

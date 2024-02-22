@@ -25,9 +25,9 @@ import {
 	sortedKeys,
 	transduce,
 } from "@thi.ng/transducers";
-import { execFileSync } from "child_process";
-import { writeFileSync } from "fs";
-import { resolve } from "path";
+import { execFileSync } from "node:child_process";
+import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 interface Commit {
 	date?: string;

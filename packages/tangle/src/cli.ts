@@ -9,7 +9,7 @@ import {
 } from "@thi.ng/args";
 import { readJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
-import { resolve } from "path";
+import { resolve } from "node:path";
 import type { TangleCtx } from "./api.js";
 import { tangleFile } from "./tangle.js";
 

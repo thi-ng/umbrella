@@ -1,5 +1,5 @@
 import type { ISubscriber } from "@thi.ng/rstream";
-import { appendFile } from "fs";
+import { appendFile } from "node:fs";
 
 export const writeFile = (path: string): ISubscriber<string> => ({
 	next(msg) {

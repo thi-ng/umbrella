@@ -1,5 +1,5 @@
 import type { ILogger } from "@thi.ng/logger";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 
 /**
  * Reads given file `path` into a byte array.

@@ -8,7 +8,7 @@ import {
 	writeJSON,
 } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/msgpack";
-import { execFileSync } from "child_process";
+import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
 import { build, defEncoder } from "./search.js";
 

@@ -1,6 +1,6 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import type { ILogger } from "@thi.ng/logger";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { writeFile } from "./write.js";
 
 /**

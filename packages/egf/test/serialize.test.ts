@@ -1,6 +1,6 @@
 import { rdf, schema } from "@thi.ng/prefixes";
 import { expect, test } from "bun:test";
-// import { writeFileSync } from "fs";
+// import { writeFileSync } from "node:fs";
 import { toEGF } from "../src/index.js";
 
 test("basics", () => {

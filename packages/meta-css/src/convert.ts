@@ -16,8 +16,8 @@ import { type ILogger } from "@thi.ng/logger";
 import { sync } from "@thi.ng/rstream";
 import { split } from "@thi.ng/strings";
 import { filter, map } from "@thi.ng/transducers";
-import { watch } from "fs";
-import { resolve } from "path";
+import { watch } from "node:fs";
+import { resolve } from "node:path";
 import {
 	ARG_BUNDLE,
 	ARG_EVAL,

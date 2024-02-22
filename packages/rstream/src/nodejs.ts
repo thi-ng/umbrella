@@ -1,5 +1,5 @@
 import { rechunk } from "@thi.ng/transducers/rechunk";
-import type { Readable } from "stream";
+import type { Readable } from "node:stream";
 import { stream, type Stream } from "./stream.js";
 import type { Subscription } from "./subscription.js";
 
@@ -36,7 +36,7 @@ export const fromNodeJS = <T>(
  *
  * @example
  * ```ts
- * import { spawn } from "child_process"
+ * import { spawn } from "node:child_process"
  * import { linesFromNodeJS, trace } from "@thi.ng/rstream";
  *
  * const cmd = spawn("ls", ["-la"]);

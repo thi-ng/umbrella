@@ -7,7 +7,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { readText } from "@thi.ng/file-io";
 import { split } from "@thi.ng/strings";
 import { assocObj, map, transduce } from "@thi.ng/transducers";
-import { extname, isAbsolute, resolve, sep } from "path";
+import { extname, isAbsolute, resolve, sep } from "node:path";
 import {
 	BLOCK_FORMATS,
 	COMMENT_FORMATS,

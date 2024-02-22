@@ -4,8 +4,8 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
 import * as $prefixes from "@thi.ng/prefixes";
 import { unescape } from "@thi.ng/strings/escape";
-import { readFileSync } from "fs";
-import { dirname, resolve as resolvePath } from "path";
+import { readFileSync } from "node:fs";
+import { dirname, resolve as resolvePath } from "node:path";
 import {
 	IS_NODE,
 	type Node,

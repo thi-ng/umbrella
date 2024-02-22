@@ -1,5 +1,5 @@
 import { files } from "@thi.ng/file-io";
-import { unlinkSync } from "fs";
+import { unlinkSync } from "node:fs";
 
 for (let f of files("packages", ".map")) {
 	if (f.indexOf("/lib/") === -1) {

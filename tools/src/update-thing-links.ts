@@ -1,7 +1,7 @@
 import { deleteFile, readJSON, tempFilePath, writeText } from "@thi.ng/file-io";
 import { getIn } from "@thi.ng/paths";
-import { execFileSync } from "child_process";
-import { readdirSync, statSync } from "fs";
+import { execFileSync } from "node:child_process";
+import { readdirSync, statSync } from "node:fs";
 import { LOGGER } from "./api.js";
 
 const baseDir = "./packages/";

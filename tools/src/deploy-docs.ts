@@ -1,5 +1,5 @@
 import { dirs, files, readText, writeText } from "@thi.ng/file-io";
-import { execFileSync } from "child_process";
+import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
 
 const AWS_PROFILE = "--profile thing-umbrella";

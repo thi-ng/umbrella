@@ -5,8 +5,8 @@ import { timedResult } from "@thi.ng/bench";
 import { readJSON, readText, writeFile } from "@thi.ng/file-io";
 import { LogLevel } from "@thi.ng/logger";
 import { ensureStack, type StackContext } from "@thi.ng/pointfree";
-import { readFileSync, readdirSync } from "fs";
-import { resolve } from "path";
+import { readFileSync, readdirSync } from "node:fs";
+import { resolve } from "node:path";
 import { ffi, run, runU } from "./runtime.js";
 
 interface CLIOpts {

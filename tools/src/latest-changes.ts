@@ -9,7 +9,7 @@ import {
 	push,
 	transduce,
 } from "@thi.ng/transducers";
-import { execFileSync } from "child_process";
+import { execFileSync } from "node:child_process";
 
 const sha = process.argv[2];
 

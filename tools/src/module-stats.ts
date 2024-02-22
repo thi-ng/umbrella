@@ -1,6 +1,6 @@
 import { readJSON, writeJSON } from "@thi.ng/file-io";
-import { execFileSync } from "child_process";
-import { existsSync, mkdirSync } from "fs";
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync } from "node:fs";
 import { LOGGER } from "./api.js";
 
 const pkg = readJSON("package.json", LOGGER);

@@ -1,5 +1,5 @@
 import * as tx from "@thi.ng/transducers";
-import * as fs from "fs";
+import * as fs from "node:fs";
 import { Channel, Mult } from "../src/index.js";
 
 // compose transducer to split source file into words

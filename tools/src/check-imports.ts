@@ -11,7 +11,7 @@ import {
 	mapcat,
 	transduce,
 } from "@thi.ng/transducers";
-import { readdirSync, statSync } from "fs";
+import { readdirSync, statSync } from "node:fs";
 import { LOGGER } from "./api.js";
 import { shortName } from "./partials/package.js";
 

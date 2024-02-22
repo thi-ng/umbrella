@@ -1,6 +1,6 @@
 import { equivSet } from "@thi.ng/equiv";
 import { readJSON, writeJSON } from "@thi.ng/file-io";
-import { existsSync, readdirSync, statSync } from "fs";
+import { existsSync, readdirSync, statSync } from "node:fs";
 import { LOGGER } from "./api.js";
 
 const subdirs = (root: string, ignore = ["zig-cache"]) => {

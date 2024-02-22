@@ -17,7 +17,7 @@ import { illegalArgs } from "@thi.ng/errors";
 import { readJSON, readText, writeJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
 import { mutIn } from "@thi.ng/paths";
-import { dirname, resolve } from "path";
+import { dirname, resolve } from "node:path";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,

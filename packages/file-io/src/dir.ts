@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, statSync } from "fs";
-import { dirname } from "path";
+import { existsSync, mkdirSync, statSync } from "node:fs";
+import { dirname } from "node:path";
 
 /**
  * Assumes given path is to a directory. Checks if the dir exists and if not

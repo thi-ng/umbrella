@@ -1,6 +1,6 @@
 import { fileFixture, fixturePath, group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { tangleFile, tangleString } from "../src/index.js";
 
 group("tangle", {

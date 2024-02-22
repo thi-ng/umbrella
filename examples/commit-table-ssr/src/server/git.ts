@@ -9,8 +9,8 @@ import {
 	transduce,
 	zip,
 } from "@thi.ng/transducers";
-import { execSync } from "child_process";
-import { resolve } from "path";
+import { execSync } from "node:child_process";
+import { resolve } from "node:path";
 import type { Commit } from "../common/api";
 
 /**

@@ -3,8 +3,8 @@ import { delayed } from "@thi.ng/compose";
 import { FMT_yyyyMMdd } from "@thi.ng/date";
 import { dirs, writeJSON } from "@thi.ng/file-io";
 import { add, map, range, vals } from "@thi.ng/transducers";
-import { request } from "https";
-import { basename } from "path";
+import { request } from "node:https";
+import { basename } from "node:path";
 import { LOGGER } from "./api.js";
 
 const currDate = FMT_yyyyMMdd();

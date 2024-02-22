@@ -10,8 +10,8 @@ import {
 import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
-import { watch as $watch, existsSync, type FSWatcher } from "fs";
-import { join } from "path";
+import { watch as $watch, existsSync, type FSWatcher } from "node:fs";
+import { join } from "node:path";
 import { isDirectory } from "./dir.js";
 import { __ensurePred } from "./internal/ensure.js";
 

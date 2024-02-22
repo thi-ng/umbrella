@@ -5,8 +5,8 @@ import type { ILogger } from "@thi.ng/logger";
 import { Stream, reactive, sync } from "@thi.ng/rstream";
 import { Z4 } from "@thi.ng/strings";
 import { assocObj, map } from "@thi.ng/transducers";
-import { watch } from "fs";
-import { resolve } from "path";
+import { watch } from "node:fs";
+import { resolve } from "node:path";
 import type { CompiledSpecs } from "./api.js";
 
 export const maybeWriteText = (

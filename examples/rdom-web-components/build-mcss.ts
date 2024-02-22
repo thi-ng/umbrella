@@ -1,5 +1,5 @@
 import { files } from "@thi.ng/file-io";
-import { spawn, execFileSync } from "child_process";
+import { spawn, execFileSync } from "node:child_process";
 
 // this build script is used to invoke the thi.ng/meta-css toolchain
 // for both dev mode (incl. file watching of .mcss files) and for

@@ -1,13 +1,13 @@
 import { MemoryLogger } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import {
 	EVENT_MEMORY_CHANGED,
 	WasmBridge,
 	type IWasmAPI,
 	type WasmExports,
 } from "../src/index.js";
-import { resolve } from "path";
+import { resolve } from "node:path";
 
 test("allocators", async (done) => {
 	interface Allocators extends WasmExports {

@@ -1,6 +1,6 @@
 import type { ILogger } from "@thi.ng/logger";
-import { readFileSync } from "fs";
-import { join, resolve } from "path";
+import { readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 
 /**
  * Only available for NodeJS. Returns path for given local fixture path, i.e.

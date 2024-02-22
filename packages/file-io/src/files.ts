@@ -1,7 +1,7 @@
 import type { Predicate } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
-import { readdirSync, statSync } from "fs";
-import { sep } from "path";
+import { readdirSync, statSync } from "node:fs";
+import { sep } from "node:path";
 import { isDirectory } from "./dir.js";
 import { __ensurePred } from "./internal/ensure.js";
 
