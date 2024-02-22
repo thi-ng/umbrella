@@ -73,7 +73,7 @@ The following pipeline performs the following steps:
 - proportionally resize to 1920px (by default longest side)
 - overlay bitmap logo layer, positioned at 45% left / 5% bottom
 - add custom EXIF metadata
-- output this current stage as high quality AVIF
+- output this current stage as high quality AVIF (using templated output path)
 - crop center square region
 - output as JPEG thumbnail
 
@@ -103,9 +103,13 @@ The following pipeline performs the following steps:
             }
         }
     },
-    { "type": "output", "path": "image-1920.avif", "avif": { "quality": 80 } },
+    {
+        "type": "output",
+        "path": "{name}-{sha256}-{w}x{h}.avif",
+        "avif": { "quality": 80 }
+    },
     { "type": "crop", "size": [240, 240], "gravity": "c" },
-    { "type": "output", "path": "thumb.jpg" }
+    { "type": "output", "path": "{name}-thumb.jpg" }
 ]
 ```
 
@@ -254,7 +258,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.85 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.42 KB
 
 ## Dependencies
 

@@ -61,12 +61,16 @@
 		"color",
 		"crop",
 		"composite",
+		"dither",
 		"exif",
 		"fileformat",
 		"gif",
+		"grayscale",
 		"image",
 		"jpeg",
 		"nested",
+		"no-browser",
+		"nodejs",
 		"pipeline",
 		"png",
 		"process",
@@ -102,8 +106,14 @@
 		"./ops": {
 			"default": "./ops.js"
 		},
+		"./path": {
+			"default": "./path.js"
+		},
 		"./proc": {
 			"default": "./proc.js"
+		},
+		"./units": {
+			"default": "./units.js"
 		}
 	},
 	"thi.ng": {
