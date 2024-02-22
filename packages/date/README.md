@@ -73,7 +73,7 @@ For Node.js REPL:
 const date = await import("@thi.ng/date");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.36 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.38 KB
 
 ## Dependencies
 

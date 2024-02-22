@@ -48,8 +48,8 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to 189 individual TypeScript
-libraries/packages and 153 example projects illustrating their usage, currently
+This mono-repository is home to 190 individual TypeScript
+libraries/packages and 155 example projects illustrating their usage, currently
 totalling ~200k SLOC and ~3890 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
@@ -97,8 +97,8 @@ All packages:
 
 - are versioned independently
 - have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
-- built via [esbuild](https://esbuild.github.io/)<sup>(1)</sup> and tested via [bun.sh](https://bun.sh)
-- released via [thi.ng/monopub](https://github.com/thi-ng/monopub)
+- built via [esbuild](https://esbuild.github.io/) and tested via [bun.sh](https://bun.sh)
+- released via [thi.ng/monopub](https://github.com/thi-ng/monopub) publishing toolchain
 - distributed as ESM modules (ES2022 syntax) with export maps, TypeScript
   typings & change logs
 - highly modular with often only a single function / class (incl. closely
@@ -109,16 +109,15 @@ All packages:
 - declare public interfaces, enums & types in an `api.ts` file
 - licensed under [Apache Software License 2.0](#license)
 
-<sup>(1)</sup> since 2023-12-11, more info on [Mastodon](https://mastodon.thi.ng/@toxi/111561398967420903)
-
 ## Getting started
 
+A common misconception is to think of this repo as single project. It is not!
 The sheer number and varied nature & purpose of these [packages](#packages)
-makes it impossible to provide traditional "Getting started" tutorials. To
-compensate, this repo provides 150+ [example projects](#examples--showcase),
-detailed package readmes (at the very least for all the larger and/or more
-important ones), as well as hundreds of small usage examples/snippets in doc
-strings.
+makes it impossible to provide traditional "Getting started" tutorials. There
+would have to be dozens of them... To compensate, this repo provides 150+
+[example projects](#examples--showcase), detailed package readmes (at the very
+least for all the larger and/or more important ones), as well as hundreds of
+small usage examples/snippets in doc strings.
 
 **Documentation and changelogs for all packages: [docs.thi.ng](https://docs.thi.ng/)**
 
@@ -267,21 +266,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-02-19
+As of: 2024-02-22
 
-| Status                                           | Package                                             | Version                                                                                                                   | Changelog                                          |
-|:-------------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/arrays`](./packages/arrays)               | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)               | [changelog](./packages/arrays/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/binary`](./packages/binary)               | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)               | [changelog](./packages/binary/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/file-io`](./packages/file-io)             | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)             | [changelog](./packages/file-io/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz)         | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz)         | [changelog](./packages/fuzzy-viz/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas) | [changelog](./packages/hiccup-canvas/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/mime`](./packages/mime)                   | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                   | [changelog](./packages/mime/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/ramp`](./packages/ramp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)                   | [changelog](./packages/ramp/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rstream-log`](./packages/rstream-log)     | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)     | [changelog](./packages/rstream-log/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/text-canvas`](./packages/text-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)     | [changelog](./packages/text-canvas/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/text-format`](./packages/text-format)     | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)     | [changelog](./packages/text-format/CHANGELOG.md)   |
-
+| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
+|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks) | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks) | [changelog](./packages/checks/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)     | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)     | [changelog](./packages/date/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/imago`](./packages/imago)   | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)   | [changelog](./packages/imago/CHANGELOG.md)  |
 
 ### Fundamentals
 

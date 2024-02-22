@@ -65,7 +65,7 @@ For Node.js REPL:
 const testament = await import("@thi.ng/testament");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.08 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB
 
 ## Dependencies
 
