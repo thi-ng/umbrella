@@ -85,7 +85,7 @@ export const processImage = async (
 	ensureSize(meta);
 	const ctx: ImgProcCtx = {
 		path: isString(src) ? src : parentCtx?.path,
-		logger: opts?.logger || LOGGER,
+		logger: opts.logger || LOGGER,
 		size: [meta.width!, meta.height!],
 		channels: meta.channels!,
 		meta,
@@ -310,7 +310,10 @@ export const process = defmulti<
 				const { data, info } = await output
 					.raw()
 					.toBuffer({ resolveWithObject: true });
-				const path = join(outDir, formatPath(opts.path, data, ctx));
+				const path = join(
+					outDir,
+					formatPath(opts.path, ctx, <OutputSpec>spec, data)
+				);
 				writeFile(path, data, null, ctx.logger);
 				if (meta) {
 					writeJSON(
@@ -355,7 +358,10 @@ export const process = defmulti<
 			if (format) output = output.toFormat(<any>format);
 			const result = await output.toBuffer();
 			writeFile(
-				join(outDir, formatPath(opts.path, result, ctx)),
+				join(
+					outDir,
+					formatPath(opts.path, ctx, <OutputSpec>spec, result)
+				),
 				result,
 				null,
 				ctx.logger

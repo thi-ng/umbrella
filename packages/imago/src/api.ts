@@ -1,4 +1,4 @@
-import type { Keys } from "@thi.ng/api";
+import type { Fn3, Keys, TypedArray } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type {
 	AvifOptions,
@@ -201,6 +201,20 @@ export interface ImgProcOpts {
 	 * Base directory for {@link output} steps
 	 */
 	outDir: string;
+	/**
+	 * An object with custom output path replacements for {@link formatPath}. If
+	 * a given replacement value is a function, it will be called with the
+	 * current {@link ImgProcCtx}, the current {@link OutputSpec} (e.g. to
+	 * obtain configured options) and the already serialized image as buffer.
+	 *
+	 * @remarks
+	 * Replacement IDs in this object will take precedence over built-in
+	 * replacement IDs, e.g. allowing to override `name`, `date` etc.
+	 */
+	pathParts: Record<
+		string,
+		Fn3<ImgProcCtx, OutputSpec, Buffer | TypedArray, string> | string
+	>;
 }
 
 export interface ImgProcCtx {

@@ -3,13 +3,16 @@ import { FMT_HHmmss_ALT, FMT_yyyyMMdd_ALT } from "@thi.ng/date";
 import { illegalArgs as unsupported } from "@thi.ng/errors";
 import { createHash } from "node:crypto";
 import { basename } from "node:path";
-import type { ImgProcCtx } from "./api.js";
+import type { ImgProcCtx, OutputSpec } from "./api.js";
+import { isFunction } from "@thi.ng/checks";
 
 /**
  * Expands/replaces all `{xyz}`-templated identifiers in given file path.
  *
  * @remarks
- * The following IDs are supported. Any others will remain as is.
+ * The following built-in IDs are supported and custom IDs will be looked up via
+ * the {@link ImgProcOpts.pathParts} options provided to {@link processImage}.
+ * Any others will remain as is. Custom IDs take precedence over built-in ones.
  *
  * - date: yyyyMMdd
  * - time: HHmmss
@@ -19,15 +22,21 @@ import type { ImgProcCtx } from "./api.js";
  * - h: current height
  *
  * @param path
- * @param buf
  * @param ctx
+ * @param spec
+ * @param buf
  */
 export const formatPath = (
 	path: string,
-	buf: Buffer | TypedArray,
-	ctx: ImgProcCtx
+	ctx: ImgProcCtx,
+	spec: OutputSpec,
+	buf: Buffer | TypedArray
 ) =>
 	path.replace(/\{(\w+)\}/g, (match, id) => {
+		const custom = ctx.opts.pathParts?.[id];
+		if (custom != null) {
+			return isFunction(custom) ? custom(ctx, spec, buf) : custom;
+		}
 		switch (id) {
 			case "name": {
 				!path &&
