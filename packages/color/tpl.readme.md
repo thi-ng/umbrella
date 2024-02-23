@@ -8,14 +8,6 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
 
 {{pkg.description}}
 
----
-
-**Note: Version 3.0.0 constitutes an almost complete overhaul of the entire
-package, providing a more simple and flexible API, as well as various new
-additional features (compared to previous versions).**
-
----
-
 ### Supported color spaces / modes
 
 Fast color model/space conversions (any direction) between (in alphabetical
@@ -82,7 +74,9 @@ given. See [next section](#storage--memory-mapping).
 
 Some examples:
 
-```ts
+```ts tangle:export/readme1.ts
+import { css, labD50, rgb, srgb } from "@thi.ng/color";
+
 srgb("#ff0")
 // $Color { offset: 0, stride: 1, buf: [ 1, 1, 0, 1 ] }
 
@@ -143,7 +137,9 @@ all vector functions.
 
 ![Memory diagram of densely packed buffer](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/mapped-colors-01.png)
 
-```ts
+```ts tangle:export/readme2.ts
+import { Hue, css, namedHueRgb, rgb, srgb } from "@thi.ng/color";
+
 const memory = new Float32Array(16);
 
 // create RGBA color views of buffer: num, start index, strides
@@ -176,7 +172,7 @@ colors[0].deref()
 
 ![Memory diagram of strided & interleaved buffer](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/mapped-colors-02.png)
 
-```ts
+```ts tangle:export/readme2.ts
 // here we create a *strided* WebGL attrib buffer for 3 points
 // each point defines a: 3D position, UV coords and RGB(A) color
 const attribs = new Float32Array([
@@ -188,13 +184,13 @@ const attribs = new Float32Array([
 
 // create strided view of colors
 // 3 items, start index 5, component stride 1, element stride 9
-colors = srgb.mapBuffer(attribs, 3, 5, 1, 9);
+const colors2 = srgb.mapBuffer(attribs, 3, 5, 1, 9);
 
-css(colors[0])
+css(colors2[0])
 // '#408000'
-css(colors[1])
+css(colors2[1])
 // '#808040'
-css(colors[2])
+css(colors2[2])
 // '#00ff80'
 ```
 
@@ -206,13 +202,22 @@ sampled directly and/or mixed with a base color (of any type) to produce
 randomized variations. Furthermore, multiple such ranges can be combined into a
 weighted set to define probabilistic color themes.
 
-```ts
+```ts tangle:export/readme-range.ts
+import {
+	COLOR_RANGES,
+	colorFromRange,
+	colorsFromRange,
+	colorsFromTheme,
+	hsv,
+	lch,
+} from "@thi.ng/color";
+
 // single random color drawn from the "bright" color range preset
 colorFromRange("bright");
 // [ 0.7302125322518669, 0.8519945301256682, 0.8134374983367859, 1 ]
 
 // single random color based on given raw HSV base color and preset
-colorFromRange("warm", { base: hsv(0.33, 1, 1) })
+colorFromRange("warm", { base: hsv(0.33, 1, 1) });
 // $Color {
 //   offset: 0,
 //   stride: 1,
@@ -229,25 +234,32 @@ colors.next();
 // }
 
 // 10 cool reds, w/ ±10% hue variance
-[...colorsFromRange("cool", { num: 10, base: lch(1, 0.8, 0), variance: 0.1 })]
+[...colorsFromRange("cool", { num: 10, base: lch(1, 0.8, 0), variance: 0.1 })];
 
 // generate colors based on given (weighted) textual description(s)
 // here using named CSS colors, but could also be or typed colors or raw LCH tuples
-[...colorsFromTheme(
-    [["warm", "goldenrod"], ["cool", "springgreen", 0.1]],
-    { num: 100, variance: 0.05 }
-)]
+[
+	...colorsFromTheme(
+		[
+			["warm", "goldenrod"],
+			["cool", "springgreen", 0.1],
+		],
+		{ num: 100, variance: 0.05 }
+	),
+];
 
 // theme parts can also be given in the format used internally
 // all keys are optional (range, base, weight),
 // but at least `range` or `base` must be given...
-[...colorsFromTheme(
-    [
-        { range: "warm", base: "goldenrod" },
-        { range: COLOR_RANGES.cool, base: hsv(0, 1, 0.5), weight: 0.1 }
-    ],
-    { num: 100, variance: 0.05 }
-)]
+[
+	...colorsFromTheme(
+		[
+			{ range: "warm", base: "goldenrod" },
+			{ range: COLOR_RANGES.cool, base: hsv(0, 1, 0.5), weight: 0.1 },
+		],
+		{ num: 100, variance: 0.05 }
+	),
+];
 ```
 
 This table below shows three sets of sample swatches for each color range preset
@@ -298,8 +310,8 @@ and the following color theme (raw samples and chunked & sorted):
 
 Full example:
 
-```ts
-import { colorsFromTheme, swatchesH } from "@thi.ng/color";
+```ts tangle:export/readme-theme.ts
+import { colorsFromTheme, swatchesH, type ColorThemePartTuple } from "@thi.ng/color";
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
 import { writeFileSync } from "fs";
@@ -307,23 +319,22 @@ import { writeFileSync } from "fs";
 // color theme definition using:
 // color range preset names, CSS colors and weights
 const theme: ColorThemePartTuple[] = [
-    ["cool", "goldenrod"],
-    ["hard", "hotpink", 0.1],
-    ["fresh", "springgreen", 0.1],
+	["cool", "goldenrod"],
+	["hard", "hotpink", 0.1],
+	["fresh", "springgreen", 0.1],
 ];
-
 
 // generate 200 LCH colors based on above description
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 
 // create SVG doc of color swatches (hiccup format)
 const doc = svg(
-    { width: 1000, height: 50, convert: true },
-    swatchesH(colors, 5, 50)
+	{ width: 1000, height: 50, __convert: true },
+	swatchesH(colors, 5, 50)
 );
 
 // serialize to SVG file
-writeFileSync("export/swatches-ex01.svg", serialize(doc));
+writeFileSync("swatches-ex01.svg", serialize(doc));
 ```
 
 ![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
@@ -348,11 +359,26 @@ number). The following comparators are bundled:
 - `proximity(target, distFn)` - sort by distance to target color using given distance function
 - `luminance` / `luminanceRgb` / `luminanceSrgb` etc.
 
-```ts
-// (see above example)
+```ts tangle:export/readme-sort-theme.ts
+import {
+	colorsFromTheme,
+	distCIEDE2000,
+	lch,
+	proximity,
+	sort,
+	type ColorThemePartTuple,
+} from "@thi.ng/color";
+
+// (theme from above example)
+const theme: ColorThemePartTuple[] = [
+	["cool", "goldenrod"],
+	["hard", "hotpink", 0.1],
+	["fresh", "springgreen", 0.1],
+];
+
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 
-sortColors(colors, proximity(lch("#fff"), distCIEDE2000()));
+sort(colors, proximity(lch("#fff"), distCIEDE2000()));
 ```
 
 ![sorted color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex02.svg)
@@ -368,31 +394,35 @@ See the [pixel sorting
 example](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)
 for a concrete use case...
 
-```ts
+```ts tangle:export/readme-sort-buffer.ts
+import { css, luminanceSrgb, sortMapped, srgb } from "@thi.ng/color";
+
 // memory buffer of 4 sRGB colors
-const buf = new Float32Array([0,1,0,1, 0,0.5,0,1, 0,0.25,0,1, 0,0.75,0,1]);
+const buf = new Float32Array([
+	0, 1, 0, 1, 0, 0.5, 0, 1, 0, 0.25, 0, 1, 0, 0.75, 0, 1,
+]);
 
 // map buffer (creates 4 SRGB instances linked to the buffer)
 const pix = srgb.mapBuffer(buf);
 
 // display original order
-pix.map(css);
+console.log(pix.map((x) => css(x)));
 // [ '#00ff00', '#008000', '#004000', '#00bf00' ]
 
 // sort colors (buffer!) by luminance
 sortMapped(pix, luminanceSrgb);
 
 // new order
-pix.map(css);
+console.log(pix.map((x) => css(x)));
 // [ '#004000', '#008000', '#00bf00', '#00ff00' ]
 
 // buffer contents have been re-ordered
-buf
+console.log(buf);
 // Float32Array(16) [
-//     0, 0.25, 0, 1,    0,
-//   0.5,    0, 1, 0, 0.75,
-//     0,    1, 0, 1,    0,
-//     1
+//     0, 0.25, 0, 1,
+//     0, 0.5, 0, 1,
+//     0, 0.75, 0, 1,
+//     0, 1, 0, 1
 // ]
 ```
 
@@ -407,7 +437,12 @@ delegates to type specific strategies. See `GradientOpts` for details.
 
 ![LCH example gradient](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/lch-gradient.svg)
 
-```ts
+```ts tangle:export/readme-multi-color-gradient.ts
+import { lch, multiColorGradient, swatchesH } from "@thi.ng/color";
+import { serialize } from "@thi.ng/hiccup";
+import { svg } from "@thi.ng/hiccup-svg";
+import { writeFileSync } from "fs";
+
 const L = 0.8;
 const C = 0.8;
 
@@ -425,10 +460,10 @@ const gradient = multiColorGradient({
 });
 
 writeFileSync(
-    `export/lch-gradient.svg`,
+    "lch-gradient.svg",
     serialize(
         svg(
-            { width: 500, height: 50, convert: true },
+            { width: 500, height: 50, __convert: true },
             swatchesH(gradient, 5, 50)
         )
     )
@@ -472,9 +507,13 @@ The following presets are bundled (in [`cosine-gradients.ts`](https://github.com
 The `cosineCoeffs()` function can be used to compute the cosine gradient
 coefficients between 2 start/end colors:
 
-```ts
+```ts tangle:export/readme-cosine-gradient.ts
+import { css, cosineCoeffs, cosineGradient } from "@thi.ng/color";
+
 // compute gradient coeffs between red / green
-cosineGradient(10, cosineCoeffs([1,0,1,1], [0,1,0,1])).map(css)
+console.log(
+	cosineGradient(10, cosineCoeffs([1, 0, 1, 1], [0, 1, 0, 1])).map((x) => css(x))
+);
 // '#ff00ff'
 // '#f708f7'
 // '#e11ee1'
@@ -493,16 +532,38 @@ The `multiCosineGradient()` function returns an iterator of raw RGB
 colors based on given gradient stops. This iterator computes a cosine
 gradient between each color stop and yields a sequence of RGB values.
 
-```ts
-multiCosineGradient({
-    num: 10,
-    // gradient stops (normalized positions)
-    stops: [[0.1, [1, 0, 0, 1]], [0.5, [0, 1, 0, 1]], [0.9, [0, 0, 1, 1]]],
-    // optional color transform/coercion
-    tx: srgba
-})
+```ts tangle:export/readme-multi-cosine-gradient.ts
+import { css, multiCosineGradient, srgb } from "@thi.ng/color";
+
+const gradient = multiCosineGradient({
+	num: 10,
+	// gradient stops (normalized positions)
+	stops: [
+		[0.1, [1, 0, 0, 1]],
+		[0.5, [0, 1, 0, 1]],
+		[0.9, [0, 0, 1, 1]],
+	],
+	// optional color transform/coercion
+	tx: srgb
+});
+
+console.log(gradient);
+// [
+// 	[1, 0, 0, 1],
+// 	[1, 0, 0, 1],
+// 	[0.854, 0.146, 0, 1],
+// 	[0.5, 0.5, 0, 1],
+// 	[0.146, 0.854, 0, 1],
+// 	[0, 1, 0, 1],
+// 	[0, 0.854, 0.146, 1],
+// 	[0, 0.5, 0.5, 1],
+// 	[0, 0.146, 0.853, 1],
+// 	[0, 0, 1, 1],
+// 	[0, 0, 1, 1]
+// ]
+
 // convert to CSS
-.map(css)
+console.log(gradient.map((x) => css(x)));
 // [
 //   "#ff0000",
 //   "#ff0000",
@@ -537,7 +598,9 @@ including parametric preset transforms:
 - luminance to alpha
 
 Transformation matrices can be combined using matrix multiplication /
-concatenation (see `concat()`) for more efficient application.
+concatenation (see
+[`concat()`](https://docs.thi.ng/umbrella/color/functions/concat.html)) for more
+efficient application.
 
 {{meta.status}}
 
