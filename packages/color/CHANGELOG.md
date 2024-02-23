@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-22T11:59:16Z
+- **Last updated**: 2024-02-23T15:42:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.6.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.6.24) (2024-02-23)
+
+#### 🩹 Bug fixes
+
+- allow base color opt in colorFromRange() ([4e7e7fe](https://github.com/thi-ng/umbrella/commit/4e7e7fe))
+- fix/update readme code examples, tangle all ([6eb48ac](https://github.com/thi-ng/umbrella/commit/6eb48ac))
 
 ## [5.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.6.0) (2023-11-12)
 

@@ -3795,7 +3795,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.9.25"
     "@thi.ng/base-n": "npm:^2.7.3"
     "@thi.ng/checks": "npm:^3.5.0"
-    "@thi.ng/color": "npm:^5.6.23"
+    "@thi.ng/color": "npm:^5.6.24"
     "@thi.ng/errors": "npm:^2.4.18"
     "@thi.ng/hex": "npm:^2.3.37"
     esbuild: "npm:^0.20.0"
@@ -3805,7 +3805,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/color@npm:^5.6.23, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
+"@thi.ng/color@npm:^5.6.24, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
   version: 0.0.0-use.local
   resolution: "@thi.ng/color@workspace:packages/color"
   dependencies:
@@ -4316,7 +4316,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.9.25"
     "@thi.ng/fuzzy": "npm:^2.1.68"
     "@thi.ng/hiccup": "npm:^5.1.14"
-    "@thi.ng/hiccup-svg": "npm:^5.2.15"
+    "@thi.ng/hiccup-svg": "npm:^5.2.16"
     "@thi.ng/math": "npm:^5.10.2"
     "@thi.ng/strings": "npm:^3.7.16"
     "@thi.ng/text-canvas": "npm:^3.0.3"
@@ -4406,7 +4406,7 @@ __metadata:
     "@thi.ng/axidraw": "npm:^1.1.59"
     "@thi.ng/compare": "npm:^2.2.21"
     "@thi.ng/defmulti": "npm:^3.0.25"
-    "@thi.ng/geom": "npm:^6.0.30"
+    "@thi.ng/geom": "npm:^6.0.31"
     "@thi.ng/geom-accel": "npm:^3.5.53"
     "@thi.ng/geom-api": "npm:^3.4.69"
     "@thi.ng/geom-clip-line": "npm:^2.3.69"
@@ -4473,8 +4473,8 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.25"
     "@thi.ng/associative": "npm:^6.3.42"
-    "@thi.ng/color": "npm:^5.6.23"
-    "@thi.ng/geom": "npm:^6.0.30"
+    "@thi.ng/color": "npm:^5.6.24"
+    "@thi.ng/geom": "npm:^6.0.31"
     "@thi.ng/geom-api": "npm:^3.4.69"
     "@thi.ng/geom-clip-line": "npm:^2.3.69"
     "@thi.ng/geom-resample": "npm:^2.3.33"
@@ -4593,7 +4593,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.5.0"
     "@thi.ng/defmulti": "npm:^3.0.25"
     "@thi.ng/errors": "npm:^2.4.18"
-    "@thi.ng/geom": "npm:^6.0.30"
+    "@thi.ng/geom": "npm:^6.0.31"
     "@thi.ng/geom-api": "npm:^3.4.69"
     "@thi.ng/geom-isoline": "npm:^2.1.107"
     "@thi.ng/geom-poly-utils": "npm:^2.3.95"
@@ -4701,7 +4701,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@npm:^6.0.30, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@npm:^6.0.31, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -4726,7 +4726,7 @@ __metadata:
     "@thi.ng/geom-subdiv-curve": "npm:^2.1.111"
     "@thi.ng/geom-tessellate": "npm:^2.1.112"
     "@thi.ng/hiccup": "npm:^5.1.14"
-    "@thi.ng/hiccup-svg": "npm:^5.2.15"
+    "@thi.ng/hiccup-svg": "npm:^5.2.16"
     "@thi.ng/math": "npm:^5.10.2"
     "@thi.ng/matrices": "npm:^2.3.17"
     "@thi.ng/random": "npm:^3.6.32"
@@ -4808,7 +4808,7 @@ __metadata:
     "@thi.ng/diff": "npm:^5.1.58"
     "@thi.ng/errors": "npm:^2.4.18"
     "@thi.ng/hdom": "npm:^9.4.16"
-    "@thi.ng/hiccup-canvas": "npm:^2.5.17"
+    "@thi.ng/hiccup-canvas": "npm:^2.5.18"
     esbuild: "npm:^0.20.0"
     rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.7"
@@ -4897,14 +4897,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-canvas@npm:^2.5.17, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
+"@thi.ng/hiccup-canvas@npm:^2.5.18, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.25"
     "@thi.ng/checks": "npm:^3.5.0"
-    "@thi.ng/color": "npm:^5.6.23"
+    "@thi.ng/color": "npm:^5.6.24"
     "@thi.ng/math": "npm:^5.10.2"
     "@thi.ng/pixel": "npm:^6.1.11"
     "@thi.ng/vectors": "npm:^7.10.11"
@@ -4996,13 +4996,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@npm:^5.2.15, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@npm:^5.2.16, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/checks": "npm:^3.5.0"
-    "@thi.ng/color": "npm:^5.6.23"
+    "@thi.ng/color": "npm:^5.6.24"
     "@thi.ng/prefixes": "npm:^2.3.10"
     esbuild: "npm:^0.20.0"
     rimraf: "npm:^5.0.5"
@@ -5092,7 +5092,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.25"
     "@thi.ng/checks": "npm:^3.5.0"
-    "@thi.ng/geom": "npm:^6.0.30"
+    "@thi.ng/geom": "npm:^6.0.31"
     "@thi.ng/geom-api": "npm:^3.4.69"
     "@thi.ng/geom-isec": "npm:^2.1.111"
     "@thi.ng/geom-tessellate": "npm:^2.1.112"
@@ -5727,7 +5727,7 @@ __metadata:
     "@thi.ng/associative": "npm:^6.3.42"
     "@thi.ng/canvas": "npm:^0.2.7"
     "@thi.ng/checks": "npm:^3.5.0"
-    "@thi.ng/hiccup-canvas": "npm:^2.5.17"
+    "@thi.ng/hiccup-canvas": "npm:^2.5.18"
     "@thi.ng/rdom": "npm:^1.1.6"
     "@thi.ng/rstream": "npm:^8.3.7"
     esbuild: "npm:^0.20.0"
