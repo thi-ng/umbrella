@@ -137,7 +137,7 @@ const $rnd = (ranges: Range[], rnd: IRandom) =>
  */
 export const colorFromRange = (
 	range: ColorRange | keyof typeof COLOR_RANGES,
-	opts?: Partial<Pick<ColorRangeOpts, "variance" | "eps" | "rnd">>
+	opts?: Partial<Pick<ColorRangeOpts, "base" | "variance" | "eps" | "rnd">>
 ): LCH => {
 	range = {
 		...DEFAULT_RANGE,
