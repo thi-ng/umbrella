@@ -33,6 +33,7 @@
     - [Common options](#common-options)
     - [Bitmap layers](#bitmap-layers)
     - [SVG layers](#svg-layers)
+    - [Text layers](#text-layers)
   - [crop](#crop)
   - [dither](#dither)
   - [exif](#exif)
@@ -46,6 +47,7 @@
   - [resize](#resize)
   - [rotate](#rotate)
 - [Status](#status)
+- [Metadata handling](#metadata-handling)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -67,11 +69,11 @@ In this new TypeScript version all image I/O and processing is delegated to
 
 Transformation trees/pipelines are simple JSON objects (but can be programmatically created):
 
-The following pipeline performs the following steps:
+The following pipeline performs these steps (in sequence):
 
-- auto-rotate image (using EXIF orientation info)
+- auto-rotate image (using EXIF orientation info, if available)
 - add 5% white border (size relative to shortest side)
-- proportionally resize to 1920px (by default longest side)
+- proportionally resize image to 1920px (longest side by default)
 - overlay bitmap logo layer, positioned at 45% left / 5% bottom
 - add custom EXIF metadata
 - output this current stage as high quality AVIF (using templated output path)
@@ -80,11 +82,11 @@ The following pipeline performs the following steps:
 
 ```json tangle:export/readme-example1.json
 [
-    { "type": "rotate" },
-    { "type": "extend", "border": 5, "unit": "%", "ref": "min", "bg": "#fff" },
-    { "type": "resize", "size": 1920 },
+    { "op": "rotate" },
+    { "op": "extend", "border": 5, "unit": "%", "ref": "min", "bg": "#fff" },
+    { "op": "resize", "size": 1920 },
     {
-        "type": "composite",
+        "op": "composite",
         "layers": [
             {
                 "type": "img",
@@ -96,7 +98,7 @@ The following pipeline performs the following steps:
         ]
     },
     {
-        "type": "exif",
+        "op": "exif",
         "tags": {
             "IFD0": {
                 "Copyright": "Karsten Schmidt",
@@ -105,12 +107,13 @@ The following pipeline performs the following steps:
         }
     },
     {
-        "type": "output",
+        "op": "output",
+        "id": "hires",
         "path": "{name}-{sha256}-{w}x{h}.avif",
         "avif": { "quality": 80 }
     },
-    { "type": "crop", "size": [240, 240], "gravity": "c" },
-    { "type": "output", "path": "{name}-thumb.jpg" }
+    { "op": "crop", "size": [240, 240], "gravity": "c" },
+    { "op": "output", "id": "thumb", "path": "{name}-thumb.jpg" }
 ]
 ```
 
@@ -155,6 +158,14 @@ Compositing multiple layers:
 
 - from file or inline doc
 
+#### Text layers
+
+- optional background color (alpha supported)
+- text color
+- horizontal/vertical text align
+- font family & size
+- constrained to text box
+
 ### crop
 
 Cropping a part of the image
@@ -180,7 +191,7 @@ Supported dither modes from
 
 ### exif
 
-Set EXIF metadata (can only be given directly before [output](#output))
+Set custom EXIF metadata (can be given multiple times, will be merged)
 
 ### extend
 
@@ -188,6 +199,7 @@ Add pixels on all sides of the image
 
 - supports px or percent units
 - proportional to a given reference side/size
+- can be individually configured per side
 
 ### gamma
 
@@ -203,8 +215,8 @@ Hue, saturation, brightness and lightness adjustments
 
 ### nest
 
-Nested branch/pipeline of operations with no effect on image state of
-current/parent pipeline...
+Performing nested branches/pipelines of operations with no effect on image state
+of current/parent pipeline...
 
 ### output
 
@@ -261,13 +273,22 @@ Resizing image
 
 ### rotate
 
-Auto-rotate, rotate and/or mirror image
+Auto-rotate, rotate by angle and/or flip image along x/y
 
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bimago%5D+in%3Atitle)
+
+## Metadata handling
+
+By default all input metadata will be lost in the outputs. The `keepEXIF` and
+`keepICC` options can be used to retain EXIF and/or ICC profile information
+(only if also supported in the output format).
+
+**Important:** Retaining EXIF and merging it with [custom additions](#exif) is
+still WIP...
 
 ## Installation
 
@@ -281,7 +302,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.17 KB
 
 ## Dependencies
 
@@ -294,6 +315,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.29 KB
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither)
+- [exif-reader](https://github.com/devongovett/exif-reader)
 - [sharp](https://sharp.pixelplumbing.com)
 
 ## API
