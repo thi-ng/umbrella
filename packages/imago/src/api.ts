@@ -1,4 +1,4 @@
-import type { Fn3, Keys, TypedArray } from "@thi.ng/api";
+import type { Fn, Fn3, Keys, TypedArray } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type {
 	AvifOptions,
@@ -12,7 +12,9 @@ import type {
 	JxlOptions,
 	KernelEnum,
 	Metadata,
+	OverlayOptions,
 	PngOptions,
+	Sharp,
 	TiffOptions,
 	TileOptions,
 	WebpOptions,
@@ -54,17 +56,31 @@ export interface Position {
 	b?: number;
 }
 
+export type Processor = Fn3<
+	ProcSpec,
+	Sharp,
+	ImgProcCtx,
+	Promise<[Sharp, boolean]>
+>;
+
+export type CompLayerFn = Fn3<
+	CompLayer,
+	Sharp,
+	ImgProcCtx,
+	Promise<OverlayOptions>
+>;
+
 export interface ProcSpec {
-	type: string;
+	op: string;
 }
 
 export interface BlurSpec extends ProcSpec {
-	type: "blur";
+	op: "blur";
 	radius: number;
 }
 
 export interface CompSpec extends ProcSpec {
-	type: "composite";
+	op: "composite";
 	layers: CompLayer[];
 }
 
@@ -91,8 +107,21 @@ export interface SVGLayer extends CompLayerBase {
 	path: string;
 }
 
+export interface TextLayer extends CompLayerBase {
+	type: "text";
+	textGravity: Gravity;
+	bg: string;
+	body: string | Fn<ImgProcCtx, string>;
+	color: string;
+	font: string;
+	fontSize: number | string;
+	padding: number;
+	path: string;
+	size: [number, number];
+}
+
 export interface CropSpec extends ProcSpec {
-	type: "crop";
+	op: "crop";
 	border?: Size | Sides;
 	gravity?: Gravity;
 	pos?: Position;
@@ -102,7 +131,7 @@ export interface CropSpec extends ProcSpec {
 }
 
 export interface DitherSpec extends ProcSpec {
-	type: "dither";
+	op: "dither";
 	mode: DitherMode;
 	num: number;
 	rgb?: boolean;
@@ -110,12 +139,12 @@ export interface DitherSpec extends ProcSpec {
 }
 
 export interface EXIFSpec extends ProcSpec {
-	type: "exif";
+	op: "exif";
 	tags: Exif;
 }
 
 export interface ExtendSpec extends ProcSpec {
-	type: "extend";
+	op: "extend";
 	bg?: Color;
 	border: Size | Sides;
 	mode?: ExtendWith;
@@ -124,17 +153,17 @@ export interface ExtendSpec extends ProcSpec {
 }
 
 export interface GammaSpec extends ProcSpec {
-	type: "gamma";
+	op: "gamma";
 	gamma: number;
 }
 
 export interface GrayscaleSpec extends ProcSpec {
-	type: "gray";
+	op: "gray";
 	gamma?: number | boolean;
 }
 
 export interface HSBLSpec extends ProcSpec {
-	type: "hsbl";
+	op: "hsbl";
 	h?: number;
 	s?: number;
 	b?: number;
@@ -142,12 +171,25 @@ export interface HSBLSpec extends ProcSpec {
 }
 
 export interface NestSpec extends ProcSpec {
-	type: "nest";
-	procs: ProcSpec[];
+	op: "nest";
+	/**
+	 * Array of one or more arrays of processing pipeline specs. All pipelines
+	 * are spawned via `Promise.all()` and each one receives a separate clone of
+	 * the current input image.
+	 */
+	procs: ProcSpec[][];
 }
 
 export interface OutputSpec extends ProcSpec {
-	type: "output";
+	op: "output";
+	/**
+	 * Unique ID of this output, used to record the file path in the `outputs`
+	 * object returned by {@link processImage}.
+	 */
+	id: string;
+	/**
+	 * Possibly templated output path. See {@link formatPath} for details.
+	 */
 	path: string;
 	avif?: AvifOptions;
 	gif?: GifOptions;
@@ -174,7 +216,7 @@ export interface OutputSpec extends ProcSpec {
 }
 
 export interface ResizeSpec extends ProcSpec {
-	type: "resize";
+	op: "resize";
 	bg?: Color;
 	filter?: Keys<KernelEnum>;
 	fit?: Keys<FitEnum>;
@@ -184,7 +226,7 @@ export interface ResizeSpec extends ProcSpec {
 }
 
 export interface RotateSpec extends ProcSpec {
-	type: "rotate";
+	op: "rotate";
 	angle?: number;
 	bg: Color;
 	flipX?: boolean;
@@ -201,6 +243,22 @@ export interface ImgProcOpts {
 	 * Base directory for {@link output} steps
 	 */
 	outDir: string;
+	/**
+	 * By default all input metadata will be lost in the output(s). If this
+	 * option is enabled, keeps existing EXIF data and attaches it to output
+	 * (also where the output format actually supports it).
+	 *
+	 * @remarks
+	 * TODO currently still unsupported
+	 */
+	keepEXIF: boolean;
+	/**
+	 * By default all input metadata will be lost in the output(s). If this
+	 * option is enabled, keeps existing ICC profile from input image and
+	 * attaches it to output (also where the output format actually supports
+	 * it).
+	 */
+	keepICC: boolean;
 	/**
 	 * An object with custom output path replacements for {@link formatPath}. If
 	 * a given replacement value is a function, it will be called with the
@@ -220,14 +278,15 @@ export interface ImgProcOpts {
 export interface ImgProcCtx {
 	path?: string;
 	size: Dim;
-	channels: 1 | 2 | 3 | 4;
 	meta: Metadata;
+	exif: Exif;
+	iccFile?: string;
 	logger: ILogger;
 	opts: Partial<ImgProcOpts>;
 	/**
 	 * Paths of all exported images.
 	 */
-	outputs: string[];
+	outputs: Record<string, string>;
 }
 
 export const GRAVITY_POSITION: Record<Gravity, string> = {

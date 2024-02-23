@@ -16,9 +16,9 @@ import type {
 } from "./api.js";
 
 export const defSpec =
-	<T extends ProcSpec>(type: T["type"]) =>
-	(opts: Omit<T, "type">): T =>
-		<T>{ type, ...opts };
+	<T extends ProcSpec>(op: T["op"]) =>
+	(opts: Omit<T, "op">): T =>
+		<T>{ op, ...opts };
 
 export const blur = defSpec<BlurSpec>("blur");
 

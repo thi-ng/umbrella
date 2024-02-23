@@ -44,6 +44,7 @@
 		"@thi.ng/logger": "^3.0.2",
 		"@thi.ng/pixel": "^6.1.11",
 		"@thi.ng/pixel-dither": "^1.1.109",
+		"exif-reader": "^2.0.1",
 		"sharp": "^0.33.2"
 	},
 	"devDependencies": {
@@ -95,7 +96,9 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+		"layers",
+		"ops"
 	],
 	"exports": {
 		".": {

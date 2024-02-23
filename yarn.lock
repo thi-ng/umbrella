@@ -5077,6 +5077,7 @@ __metadata:
     "@thi.ng/pixel-dither": "npm:^1.1.109"
     "@thi.ng/vectors": "npm:^7.10.11"
     esbuild: "npm:^0.20.0"
+    exif-reader: "npm:^2.0.1"
     rimraf: "npm:^5.0.5"
     sharp: "npm:^0.33.2"
     typedoc: "npm:^0.25.7"
@@ -7731,6 +7732,13 @@ __metadata:
   version: 1.8.1
   resolution: "etag@npm:1.8.1"
   checksum: 571aeb3dbe0f2bbd4e4fadbdb44f325fc75335cd5f6f6b6a091e6a06a9f25ed5392f0863c5442acb0646787446e816f13cbfc6edce5b07658541dff573cab1ff
+  languageName: node
+  linkType: hard
+
+"exif-reader@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "exif-reader@npm:2.0.1"
+  checksum: 127c174c9ffed1634c10afd1457ff996f000449c21d0b4b4bb5d77a477d33850bfb3491c8b1de190b51fa93a066dbeecd87c2595ad386e585aa1410b08a467fb
   languageName: node
   linkType: hard
 
