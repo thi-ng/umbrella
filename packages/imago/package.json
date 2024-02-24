@@ -36,6 +36,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.25",
+		"@thi.ng/associative": "^6.3.42",
 		"@thi.ng/checks": "^3.5.0",
 		"@thi.ng/date": "^2.7.0",
 		"@thi.ng/defmulti": "^3.0.25",
@@ -44,7 +45,7 @@
 		"@thi.ng/logger": "^3.0.2",
 		"@thi.ng/pixel": "^6.1.11",
 		"@thi.ng/pixel-dither": "^1.1.109",
-		"exif-reader": "^2.0.1",
+		"@thi.ng/prefixes": "^2.3.10",
 		"sharp": "^0.33.2"
 	},
 	"devDependencies": {
