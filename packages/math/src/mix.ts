@@ -1,6 +1,5 @@
 import type { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
 import { EPS, HALF_PI, PI } from "./api.js";
-import { easeInElastic } from "./easing.js";
 
 /**
  * Linear interpolation without clamping. Computes `a + (b - a) * t`
@@ -284,8 +283,6 @@ export const tangentDiff3 = (
 export const tween =
 	(f: (t: number) => number, from: number, to: number) => (t: number) =>
 		mix(from, to, f(t));
-
-tween(easeInElastic, 0, 100);
 
 /**
  * Circular interpolation (ease out): `sqrt(1 - (1 - t)^2)`
