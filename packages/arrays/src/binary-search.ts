@@ -20,6 +20,8 @@ import { compareNumAsc } from "@thi.ng/compare/numeric";
  *
  * @example
  * ```ts
+ * import { binarySearch } from "@thi.ng/arrays";
+ *
  * binarySearch([2, 4, 6], 5);
  * // -3
  * ```
@@ -156,6 +158,8 @@ export const binarySearch32 = (buf: ArrayLike<number>, x: number) => {
  *
  * @example
  * ```ts
+ * import { binarySearch, bsLT } from "@thi.ng/arrays";
+ *
  * bsLT(binarySearch([10, 20, 30, 40], 25))
  * // 1
  * ```
@@ -178,6 +182,8 @@ export const bsLE: FnN = (i) => (i < 0 ? -i - 2 : i);
  *
  * @example
  * ```ts
+ * import { binarySearch, bsGT } from "@thi.ng/arrays";
+ *
  * src = [10, 20, 30, 40];
  *
  * bsGT(binarySearch(src, 25), src.length)

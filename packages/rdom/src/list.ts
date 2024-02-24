@@ -23,6 +23,9 @@ import { $subWithID } from "./sub.js";
  *
  * @example
  * ```ts
+ * import { $list } from "@thi.ng/rdom";
+ * import { reactive } from "@thi.ng/rstream";
+ *
  * const items = reactive([{id: "a"}, {id: "b"}, {id: "c"}]);
  *
  * $list(
@@ -45,7 +48,6 @@ import { $subWithID } from "./sub.js";
  * // creates D
  * // keeps C
  * ```
- *
  *
  * @param src -
  * @param tag -

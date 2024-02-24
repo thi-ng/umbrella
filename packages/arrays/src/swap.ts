@@ -28,6 +28,8 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
  *
  * @example
  * ```ts
+ * import { multiSwap } from "@thi.ng/arrays";
+ *
  * a = [2, 1];
  * b = [20, 10];
  * c = [40, 30];

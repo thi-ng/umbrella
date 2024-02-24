@@ -10,6 +10,8 @@ import type { Predicate2 } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { argMin } from "@thi.ng/arrays";
+ *
  * argMin([42, 11, 66, 23])
  * // 1
  *

@@ -130,6 +130,8 @@ export class Sampler {
 	 *
 	 * @example
 	 * ```ts
+	 * import { Sampler } from "@thi.ng/geom-resample";
+	 *
 	 * // vertices of a square
 	 * const square = [[0, 0], [100, 0], [100, 100], [0, 100]];
 	 *

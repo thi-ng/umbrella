@@ -12,6 +12,8 @@ import { Add } from "./add.js";
  *
  * @example
  * ```ts
+ * import { line } from "@thi.ng/dsp";
+ *
  * line(0, 1, 5).take(7)
  * // [ 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ]
  * ```

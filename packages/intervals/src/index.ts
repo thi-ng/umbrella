@@ -240,6 +240,8 @@ export const values = (i: Readonly<Interval>, step: number) =>
  *
  * @example
  * ```ts
+ * import { samples, closed } from "@thi.ng/intervals";
+ *
  * [...samples(closed(10, 12), 5)]
  * // [10, 10.5, 11, 11.5, 12]
  *

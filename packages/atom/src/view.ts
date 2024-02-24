@@ -139,6 +139,8 @@ export function defViewUnsafe<T = undefined>(
  *
  * @example
  * ```ts
+ * import { defAtom, defView } from "@thi.ng/atom";
+ *
  * a = defAtom({ a: { b: 1 } });
  * v = defView(a, ["a", "b"], (x) => x * 10);
  *

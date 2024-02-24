@@ -101,6 +101,8 @@ export const setLane2 = (x: number, y: number, lane: Lane2) => {
  *
  * @example
  * ```ts
+ * import { swizzle } from "@thi.ng/binary";
+ *
  * swizzle(0x12345678, 3, 2, 1, 0) // 0x78563412
  * swizzle(0x12345678, 1, 0, 3, 2) // 0x34127856
  * swizzle(0x12345678, 2, 2, 0, 0) // 0x56561212
@@ -158,6 +160,8 @@ export const swizzle4 = (
  *
  * @example
  * ```ts
+ * import { mux } from "@thi.ng/binary";
+ *
  * mux(0x12345678, 0xaaaa5555, 0xffff0000)
  * // 0xaaaa5678
  *
@@ -184,6 +188,8 @@ export const flip8: FnN = (x) =>
  *
  * @example
  * ```ts
+ * import { flip16 } from "@thi.ng/binary";
+ *
  * flip16(0x12345678)
  * // 0x56781234
  * ```

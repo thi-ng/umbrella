@@ -10,6 +10,8 @@ import type { Fn } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { swizzle } from "@thi.ng/arrays";
+ *
  * swizzle([0, 0, 0])([1, 2, 3, 4])    // [ 1, 1, 1 ]
  * swizzle([1, 1, 3, 3])([1, 2, 3, 4]) // [ 2, 2, 4, 4 ]
  * swizzle([2, 0])([1, 2, 3])          // [ 3, 1 ]

@@ -219,6 +219,8 @@ export interface BigTypedArrayTypeMap extends Record<BigType, BigTypedArray> {
  *
  * @example
  * ```ts
+ * import { asNativeType } from "@thi.ng/api";
+ *
  * asNativeType(GLType.F32) => "f32"
  * asNativeType("f32") => "f32"
  * ```
@@ -235,6 +237,8 @@ export const asNativeType = (type: GLType | Type): Type => {
  *
  * @example
  * ```ts
+ * import { asGLType } from "@thi.ng/api";
+ *
  * asGLType("f32") => GLType.F32
  * asGLType(GLType.F32) => GLType.F32
  * ```
@@ -312,6 +316,8 @@ export function typedArray<T extends Type | GLType | BigType>(
  *
  * @example
  * ```ts
+ * import { typedArrayOfVec } from "@thi.ng/api";
+ *
  * // inferred stride=2 (2d vectors)
  * typedArrayOfVec("f32", [[1,2], [3,4], [-10,20]]);
  * // Float32Array(6) [ 1, 2, 3, 4, -10, 20 ]

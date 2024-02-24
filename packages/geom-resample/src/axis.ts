@@ -14,6 +14,8 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  *
  * @example
  * ```ts
+ * import { sampleUniformX } from "@thi.ng/geom-resample";
+ *
  * sampleUniformX([[0, 0], [3, 5], [5, 2]], 0, 5)
  * // [
  * //   [ 0, 0 ],

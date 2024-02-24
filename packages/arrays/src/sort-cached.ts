@@ -20,6 +20,8 @@ import { multiSwap } from "./swap.js";
  *
  * @example
  * ```ts
+ * import { sortByCachedKey } from "@thi.ng/arrays";
+ *
  * // sort by length in descending order
  * sortByCachedKey(["a","bbbb","ccc","dd"], (x) => x.length, (a, b) => b - a);
  * // [ 'bbbb', 'ccc', 'dd', 'a' ]

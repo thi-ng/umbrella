@@ -194,6 +194,8 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
  *
  * @example
  * ```ts
+ * import { parseCSVSimple, float } from "@thi.ng/csv";
+ *
  * [...parseCSVSimple({ cols: [float(), ,float()]}, ["a,b,c","1,2,3","4,5,6"])]
  * // [ [ 1, 3 ], [ 4, 6 ] ]
  * ```

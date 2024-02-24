@@ -153,13 +153,19 @@ export class AxiDraw implements IReset {
 	 * Reference:
 	 * - http://evil-mad.github.io/EggBot/ebb.html
 	 *
+	 * Also see {@link complete}.
+	 *
 	 * @example
 	 * ```ts
+	 * import { AxiDraw, polyline, START, STOP } from "@thi.ng/axidraw";
+	 *
+	 * const axi = new AxiDraw();
+	 *
 	 * // execute start sequence, draw a triangle, then exec stop sequence
 	 * axi.draw([
-	 *   ["start"],
-	 *   ...axi.polyline([[50,50], [100,50], [75, 100], [50,50]]),
-	 *   ["stop"]
+	 *   START,
+	 *   ...polyline([[50, 50], [100, 50], [75, 100], [50, 50]]),
+	 *   STOP
 	 * ]);
 	 * ```
 	 *

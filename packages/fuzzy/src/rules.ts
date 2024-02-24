@@ -18,6 +18,8 @@ import { snormMax, tnormMin, tnormProduct } from "./tnorms.js";
  *
  * @example
  * ```ts
+ * import { rule } from "@thi.ng/fuzzy";
+ *
  * // given 3 LVars from a classic fuzzy logic example:
  * // food, service, tip
  *

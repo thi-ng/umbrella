@@ -40,6 +40,8 @@ export const defFilter =
  *
  * @example
  * ```ts
+ * import { compFilter, chroma, luma, cssThemes } from "@thi.ng/color-palettes";
+ *
  * // pre-compose combined query filter
  * const pastels = compFilter(
  *   // require all theme colors to have max 25% chroma

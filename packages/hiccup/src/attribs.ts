@@ -19,6 +19,8 @@ import { isString } from "@thi.ng/checks/is-string";
  *
  * @example
  * ```ts
+ * import { mergeClasses } from "@thi.ng/hiccup";
+ *
  * mergeClasses("foo bar", { foo: false, baz: true })
  * // "bar baz"
  *

@@ -38,6 +38,8 @@ export const decomposeDuration = (dur: number) => {
  *
  * @example
  * ```ts
+ * import { composeDuration } from "@thi.ng/date";
+ *
  * composeDuration({ h: 12, m: 34, s: 56 })
  * // 45296000
  * ```
@@ -60,6 +62,7 @@ export const composeDuration = (parts: Partial<Record<Precision, number>>) => {
  *
  * @example
  * ```ts
+ * import { durationAs } from "@thi.ng/date";
  * durationAs("d", difference("2023-02-01T12:00:00Z", "2023-01-01"))
  * // 31.5
  * ```

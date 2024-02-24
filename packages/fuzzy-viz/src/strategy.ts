@@ -34,6 +34,9 @@ import { varToHiccup } from "./var.js";
  *
  * @example
  * ```ts
+ * import { cogStrategy, gaussian } from "@thi.ng/fuzzy";
+ * import { instrumentStrategy, fuzzySetToAscii } from "@thi.ng/fuzzy-viz";
+ *
  * const strategy = instrumentStrategy(
  *   cogStrategy({ samples: 1000 }),
  *   fuzzySetToAscii({ width: 40, height: 8 })

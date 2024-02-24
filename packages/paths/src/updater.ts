@@ -33,6 +33,8 @@ import { defSetter } from "./setter.js";
  *
  * @example
  * ```ts
+ * import { defUpdaterUnsafe } from "@thi.ng/paths";
+ *
  * const incB = defUpdaterUnsafe("a.b", (x, n) => x + n);
  * // or
  * const incB = defUpdaterUnsafe(["a", "b"], (x, n) => x + n);

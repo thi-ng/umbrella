@@ -15,6 +15,8 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  *
  * @example
  * ```ts
+ * import { clipPolylineWith } from "@thi.ng/geom-clip-line";
+ *
  * const pts = [[0, 0], [1, 0], [1, 1], [2, 1], [3, 1], [4, 0], [5, 0]];
  *
  * // isolate horizontal chunks

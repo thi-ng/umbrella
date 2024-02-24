@@ -82,6 +82,7 @@ export interface RadialPaletteOpts extends BasePaletteOpts {
  *
  * @example
  * ```ts
+ * import { AxiDraw, linearPalette } from "@thi.ng/axidraw";
  * import { points } from "@thi.ng/geom";
  * import { asAxiDraw } from "@thi.ng/geom-axidraw";
  * import { repeatedly } from "@thi.ng/transducers";

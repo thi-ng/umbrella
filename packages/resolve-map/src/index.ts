@@ -75,6 +75,8 @@ export interface ResolveOpts {
  *
  * @example
  * ```ts
+ * import { resolve } from "@thi.ng/resolve-map";
+ *
  * // `c` references sibling `d`
  * // `d` references parent `a`
  * resolve({ a: 1, b: { c: "@d", d: "@/a" } })

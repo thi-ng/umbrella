@@ -89,6 +89,7 @@ export const mixNNNN: ColorMixFn = mixN4;
  *
  * @example
  * ```ts
+ * import { mix, rgb, RED, GREEN } from "@thi.ng/color";
  * import { circular } from "@thi.ng/math";
  *
  * mix([], rgb("#f00"), rgb("#0f0"), 0.5);

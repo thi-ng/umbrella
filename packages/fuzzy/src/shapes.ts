@@ -174,6 +174,8 @@ export const invAlphaCut =
  *
  * @example
  * ```ts
+ * import { compose, tnormMin, triangle } from "@thi.ng/fuzzy";
+ *
  * const f = compose(tnormMin, 1, triangle(0,2,4), triangle(1,3,5));
  * f(1); // 0
  * f(2); // 0.5
@@ -183,6 +185,8 @@ export const invAlphaCut =
  *
  * @example
  * ```ts
+ * import { compose, triangle } from "@thi.ng/fuzzy";
+ *
  * // M-like shape w/ peaks at 3 & 5
  * const M = compose(
  *   Math.max,

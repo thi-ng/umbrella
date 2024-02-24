@@ -172,6 +172,8 @@ export class Fiber<T = any>
 	 *
 	 * @example
 	 * ```ts
+	 * import { fiber } from "@thi.ng/fibers";
+	 *
 	 * fiber(function* (ctx) {
 	 *   console.log("main start")
 	 *   // create 2 child processes
@@ -414,6 +416,8 @@ export class Fiber<T = any>
 	 *
 	 * @example
 	 * ```ts
+	 * import { fiber } from "@thi.ng/fibers";
+	 *
 	 * // start with custom higher frequency handler
 	 * fiber(function*() {
 	 *   while(true) {

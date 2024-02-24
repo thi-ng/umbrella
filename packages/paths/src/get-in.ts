@@ -24,6 +24,8 @@ import { defGetter } from "./getter.js";
  *
  * @example
  * ```ts
+ * import { getInUnsafe } from "@thi.ng/paths";
+ *
  * getInUnsafe({ a: { b: { c: 23 } } }, "a.b.c");
  * // 23
  * ```
@@ -43,6 +45,8 @@ export const getInUnsafe = <T = any>(state: any, path: Path): T | undefined =>
  *
  * @example
  * ```ts
+ * import { getIn } from "@thi.ng/paths";
+ *
  * // type checked path and inferred return type
  * getIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
  * // 23

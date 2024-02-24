@@ -46,6 +46,8 @@ export const osc = (
  *
  * @example
  * ```ts
+ * import { modOsc, osc, saw, sin, rect } from "@thi.ng/dsp";
+ *
  * // FM sin osc using rect osc as frequency modulator
  * modOsc(sin, 0.01, osc(rect, 0.1, 0.2))
  *

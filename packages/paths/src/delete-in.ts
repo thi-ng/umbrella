@@ -26,8 +26,10 @@ import { updateIn } from "./update-in.js";
  *
  * @example
  * ```ts
+ * import { deleteInUnsafe } from "@thi.ng/paths";
+ *
  * // unchecked
- * deleteIn({ a: { b: { c: 23 } } }, "a.b.c");
+ * deleteInUnsafe({ a: { b: { c: 23 } } }, "a.b.c");
  * // { a: { b: { } } }
  * ```
  *
@@ -50,6 +52,8 @@ export const deleteInUnsafe = (state: any, path: Path): any =>
  *
  * @example
  * ```ts
+ * import { deleteIn } from "@thi.ng/paths";
+ *
  * // type checked
  * deleteIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
  *

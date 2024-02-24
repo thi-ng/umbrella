@@ -12,6 +12,8 @@ import { SYSTEM } from "./system.js";
  *
  * @example
  * ```ts
+ * import { randomID } from "@thi.ng/random";
+ *
  * randomID()
  * "qgdt"
  *

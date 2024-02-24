@@ -6,7 +6,7 @@ import { eqDelta } from "./eqdelta.js";
  * Returns true if line A rises up over B.
  *
  * @example
- * ```ts
+ * ```text
  * b1  a2
  *   \/
  *   /\
@@ -25,7 +25,7 @@ export const isCrossOver: FnU4<number, boolean> = (a1, a2, b1, b2) =>
  * Returns true if line A rises up over B.
  *
  * @example
- * ```ts
+ * ```text
  * a1  b2
  *   \/
  *   /\

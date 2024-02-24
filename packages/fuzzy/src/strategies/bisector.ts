@@ -16,6 +16,8 @@ import { defaultOpts } from "./opts.js";
  *
  * @example
  * ```ts
+ * import { bisectorStrategy, trapezoid } from "@thi.ng/fuzzy";
+ *
  * bisectorStrategy()(trapezoid(0,1,5,6), [0,6])
  * // 2.97
  *

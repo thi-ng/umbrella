@@ -23,6 +23,8 @@ export type Derefed<T> = T extends IDeref<any> ? ReturnType<T["deref"]> : T;
  *
  * @example
  * ```ts
+ * import type { DerefedKeys, IDeref } from "@thi.ng/api";
+ *
  * interface Foo {
  *     a: IDeref<string>;
  *     b: IDeref<number>;

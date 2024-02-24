@@ -42,6 +42,8 @@ import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
  *
  * @example
  * ```ts
+ * import { circle, vertices } from "@thi.ng/geom";
+ *
  * // using default
  * vertices(circle(100))
  *

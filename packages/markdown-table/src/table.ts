@@ -43,7 +43,9 @@ const SEPS: Record<Align, Stringer<number>> = {
  *
  * @example
  * ```ts
- * markdownTable(
+ * import { table } from "@thi.ng/markdown-table";
+ *
+ * table(
  *   ["ID", "Actor", "Comment"],
  *   [
  *     [1, "Alice"],
@@ -113,6 +115,8 @@ export const table = (
  *
  * @example
  * ```ts
+ * import { tableKeys } from "@thi.ng/markdown-table";
+ *
  * tableKeys(
  *   ["ID", "Actor", "Comment"],
  *   ["id", "name", (x) => x.hint],

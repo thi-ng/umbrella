@@ -7,6 +7,8 @@ import { MASKS } from "./constants.js";
  *
  * @example
  * ```ts
+ * import { defMask } from "@thi.ng/binary";
+ *
  * defMask(1,31).toString(16) // 7ffffffe
  * defMask(3,8).toString(16)  // f8
  * ```

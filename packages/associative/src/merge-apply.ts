@@ -38,6 +38,8 @@ export const mergeApplyMap = <K, V>(
  *
  * @example
  * ```ts
+ * import { mergeApplyObj } from "@thi.ng/associative";
+ *
  * mergeApplyObj(
  *   { a: "hello", b: 23, c: 12 },
  *   { a: (x) => x + " world", b: 42 }

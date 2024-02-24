@@ -17,6 +17,8 @@ import { setIn } from "./set-in.js";
  *
  * @example
  * ```ts
+ * import { setInManyUnsafe } from "@thi.ng/paths";
+ *
  * setInManyUnsafe(
  *   {},
  *   // pair #1

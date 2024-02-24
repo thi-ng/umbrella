@@ -15,6 +15,8 @@ import { defaultOpts } from "./opts.js";
  *
  * @example
  * ```ts
+ * import { centroidStrategy, trapezoid } from "@thi.ng/fuzzy";
+ *
  * centroidStrategy()(trapezoid(0,1,5,6), [0,6])
  * // 3.0000000000000004
  *

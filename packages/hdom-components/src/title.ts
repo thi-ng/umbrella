@@ -23,6 +23,8 @@ export interface TitleOpts {
  *
  * @example
  * ```ts
+ * import { title } from "@thi.ng/hdom-components";
+ *
  * const h1 = title();
  * const h2 = title({ element: "h2", attribs: { class: "blue" }});
  *

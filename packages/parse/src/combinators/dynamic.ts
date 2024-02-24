@@ -8,6 +8,8 @@ import type { ParseContext } from "../context.js";
  *
  * @examples
  * ```ts
+ * import { defContext, dynamic } from "@thi.ng/parse";
+ *
  * const parser = dynamic<string>();
  * parser.set(lit("a"));
  *

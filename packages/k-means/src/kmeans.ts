@@ -187,6 +187,9 @@ export const medians: CentroidStrategy = () => {
  *
  * @example
  * ```ts
+ * import { kmeans, meansLatLon } from "@thi.ng/k-means";
+ * import { HAVERSINE_LATLON } from "@thi.ng/distance";
+ *
  * kmeans(3, [...], { strategy: meansLatLon, dist: HAVERSINE_LATLON })
  * ```
  *

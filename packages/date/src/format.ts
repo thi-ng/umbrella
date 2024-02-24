@@ -171,6 +171,8 @@ export const FORMATTERS: Record<string, FormatFn> = {
  *
  * @example
  * ```ts
+ * import { defFormat } from "@thi.ng/date";
+ *
  * const fmt = defFormat(["yyyy", "-", "MM", "-", "dd"]);
  *
  * fmt(new Date(2015, 3, 23))
@@ -316,6 +318,8 @@ export const FMT_ss = defFormat(["ss"]);
  *
  * @example
  * ```ts
+ * import { formatRelative } from "@thi.ng/date";
+ *
  * formatRelative("2020-06-01", "2021-07-01")
  * // "1 year ago"
  *
@@ -386,6 +390,8 @@ export const formatRelative = (
  *
  * @example
  * ```ts
+ * import { formatRelativeParts } from "@thi.ng/date";
+ *
  * // with default precision (seconds)
  * formatRelativeParts("2022-09-01 12:23:24", "2021-07-01 12:05")
  * // "in 1 year, 2 months, 21 hours, 18 minutes, 24 seconds"
@@ -422,6 +428,8 @@ export const formatRelativeParts = (
  *
  * @example
  * ```ts
+ * import { formatDuration } from "@thi.ng/date";
+ *
  * formatDuration(45296000)
  * // "12 h, 34 min, 56 s"
  *

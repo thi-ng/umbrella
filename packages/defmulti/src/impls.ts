@@ -19,6 +19,8 @@ import type { Implementation, MultiFn } from "./api.js";
  *
  * @example
  * ```ts
+ * import { defmulti, implementations } from "@thi.ng/defmulti";
+ *
  * foo = defmulti((x) => x.id);
  * bar = defmulti((x) => x.id);
  * bax = defmulti((x) => x.id);

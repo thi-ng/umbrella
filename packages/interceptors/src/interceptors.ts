@@ -64,6 +64,9 @@ export const dispatchNow =
  *
  * @example
  * ```ts
+ * import { Atom } from "@thi.ng/atom";
+ * import { EvenBus, snapshot, valueSetter } from "@thi.ng/interceptors";
+ *
  * state = new Atom({});
  * history = new History(state);
  * bus = new EventBus(state);
@@ -244,6 +247,7 @@ export const ensureParamRange = (
  *
  * @example
  * ```ts
+ * // (bus here is an EventBus instance)
  * bus.dispatch(["setFoo", 23])
  * ```
  *
@@ -272,6 +276,7 @@ export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
  *
  * @example
  * ```ts
+ * // (bus here is an EventBus instance)
  * bus.dispatch(["incFoo", 1]) // results in value = value + 1
  * ```
  *

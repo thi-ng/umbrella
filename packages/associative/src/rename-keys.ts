@@ -64,6 +64,8 @@ export const renameKeysObj = <T>(
  *
  * @example
  * ```ts
+ * import { renameTransformedKeys } from "@thi.ng/associative";
+ *
  * renameTransformedKeys(
  *   // source object
  *   { a: 1, b: 2, c: null },

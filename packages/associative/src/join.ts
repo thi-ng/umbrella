@@ -16,6 +16,8 @@ import { selectKeysObj } from "./select-keys.js";
  *
  * @example
  * ```ts
+ * import { join } from "@thi.ng/associative";
+ *
  * join(
  *   new Set([
  *     {id: 1, name: "foo"},
@@ -73,6 +75,8 @@ export const join = <A, B>(
  *
  * @example
  * ```ts
+ * import { joinWith } from "@thi.ng/associative";
+ *
  * joinWith(
  *   new Set([
  *     {id: 1, name: "foo"},

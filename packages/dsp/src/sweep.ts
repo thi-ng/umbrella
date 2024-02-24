@@ -9,6 +9,8 @@ import { curve } from "./curve.js";
  *
  * @example
  * ```ts
+ * import { adsr, osc, sin, sweep } from "@thi.ng/dsp";
+ *
  * // render 2 sec osc sweep from 100 - 10000Hz
  * // FS = 44100
  * osc(

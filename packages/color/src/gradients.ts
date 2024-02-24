@@ -20,9 +20,13 @@ import { mix as $mix } from "./mix.js";
  *
  * @example
  * ```ts
+ * import { lch, multiColorGradient, swatchesH } from "@thi.ng/color";
+ * import { serialize } from "@thi.ng/hiccup";
+ * import { svg } from "@thi.ng/hiccup-svg";
+ *
  * gradient = multiColorGradient({
  *   num: 100,
- *   // LAB color stops
+ *   // LCH color stops
  *   stops: [
  *     // pink red
  *     [0, lch(0.8, 0.8, 0)],
@@ -37,10 +41,10 @@ import { mix as $mix } from "./mix.js";
  *
  * // write gradient as SVG swatches
  * writeFileSync(
- *   `export/lch-multigradient.svg`,
+ *   `lch-multigradient.svg`,
  *   serialize(
  *     svg(
- *       { width: 500, height: 50, convert: true },
+ *       { width: 500, height: 50, __convert: true },
  *       swatchesH(gradient, 5, 50)
  *     )
  *   )

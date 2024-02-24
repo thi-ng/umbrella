@@ -32,6 +32,8 @@ import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
  *
  * @example
  * ```ts
+ * import { circle, group, inscribedSquare, splitArcLength } from "@thi.ng/geom";
+ *
  * // circle (to be sampled as octagon)
  * const a = circle(100, { stroke: "red", __samples: 8 });
  *

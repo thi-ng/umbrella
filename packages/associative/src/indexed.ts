@@ -9,6 +9,8 @@ import { selectKeysObj } from "./select-keys.js";
  *
  * @example
  * ```ts
+ * import { indexed } from "@thi.ng/associative";
+ *
  * indexed(
  *   new Set([{a: 1, b: 1}, {a: 1, b: 2}, {a: 1, b: 1, c: 2}]),
  *   ["a","b"]

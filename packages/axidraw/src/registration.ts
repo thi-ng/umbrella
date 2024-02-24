@@ -11,7 +11,12 @@ import { DOWN, MOVE, UP } from "./commands.js";
  *
  * @example
  * ```ts
- * axi.draw(registrationMark([20, 20]))
+ * import { AxiDraw, registrationMark } from "@thi.ng/axidraw";
+ *
+ * const axi = new AxiDraw();
+ *
+ * // draw registration mark @ 20,20 with radius 10
+ * axi.draw(registrationMark([20, 20], 10))
  * ```
  *
  * @param pos

@@ -26,6 +26,9 @@ import { DisjointSet } from "./disjoint-set.js";
  *
  * @example
  * ```ts
+ * import { mst } from "@thi.ng/adjacency";
+ * import { distSq } from "@thi.ng/vectors";
+ *
  * // 2D vectors
  * verts = [[0,0], [0,1], [1,1], [1,2], [4,2]]
  *
@@ -36,8 +39,8 @@ import { DisjointSet } from "./disjoint-set.js";
  *   edges,
  *   // max vertex ID
  *   4,
- *   // cost function (cartesian distance, from @thi.ng/vectors pkg)
- *   ([a,b]) => distSq(verts[a], verts[b]),
+ *   // cost function (cartesian distance)
+ *   ([a, b]) => distSq(verts[a], verts[b]),
  *   // edge vertex IDs
  *   (e) => e
  * )

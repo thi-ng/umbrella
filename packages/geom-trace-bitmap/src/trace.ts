@@ -18,6 +18,8 @@ import { borderX, borderXY, borderY } from "./border.js";
  * coordinates are transformed with that matrix.
  *
  * ```ts
+ * import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
+ *
  * // extract horizontal line segments
  * traceBitmap({ img: ..., dir: ["h"] })
  * // { lines: [...], points: [] }

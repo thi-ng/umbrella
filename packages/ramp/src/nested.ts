@@ -17,6 +17,8 @@ export type NestedImpl<T extends Record<string, any>> = {
  *
  * @example
  * ```ts
+ * import { ramp, nested, LINEAR_N, HERMITE_N } from "@thi.ng/ramp";
+ *
  * const example = ramp(
  *   // nested ramp spec w/ interpolation modes for each key
  *   nested({a: LINEAR_N, b: HERMITE_N }),

@@ -22,6 +22,8 @@ export const commonKeysMap = <K>(
  *
  * @example
  * ```ts
+ * import { commonKeysObj } from "@thi.ng/associative";
+ *
  * commonKeys({ a: 1, b: 2 }, { c: 10, b: 20, a: 30 })
  * // [ "a", "b" ]
  * ```

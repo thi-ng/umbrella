@@ -27,6 +27,8 @@ declare var $fx: { hash: string };
  *
  * @example
  * ```ts
+ * import { seedFromHash, RND } from "@thi.ng/random-fxhash";
+ *
  * RND.seed(seedFromHash("ookorwLedQrCTPesBcUPrR2oRbPHgsAxe9xgCSNq4XAuZSaCvaB"));
  * ```
  *

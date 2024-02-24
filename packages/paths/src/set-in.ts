@@ -23,6 +23,8 @@ import { defSetter } from "./setter.js";
  *
  * @example
  * ```ts
+ * import { setInUnsafe } from "@thi.ng/paths";
+ *
  * setInUnsafe({}, "a.b.c", 23);
  * // { a: { b: { c: 23} } }
  * ```
@@ -42,6 +44,8 @@ export const setInUnsafe = <T>(state: any, path: Path, val: T): any =>
  *
  * @example
  * ```ts
+ * import { setIn } from "@thi.ng/paths";
+ *
  * // type checked path & value
  * setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], 24);
  * // { a: { b: { c: 24 } } }

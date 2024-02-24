@@ -4,6 +4,7 @@
  *
  * @example
  * ```ts
+ * import { formatPrefixes } from "@thi.ng/hiccup";
  * import { foaf, xsd } from "@thi.ng/prefixes";
  *
  * formatPrefixes({ foaf, xsd })

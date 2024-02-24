@@ -152,6 +152,8 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  *
  * @example
  * ```ts
+ * import { MultiCA1D } from "@thi.ng/cellular";
+ *
  * // classic Wolfram Rule 110 automata
  * const wolfram = new MultiCA1D(
  *   [{

@@ -13,6 +13,8 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  *
  * @example
  * ```ts
+ * import { circle } from "@thi.ng/geom";
+ *
  * // a circle which will be drawn at 25% speed
  * circle(100, { __axi: { speed: 0.25 } });
  * ```

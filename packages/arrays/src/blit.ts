@@ -11,6 +11,8 @@ import type { Fn3, TypedArray } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { blit1d } from "@thi.ng/arrays";
+ *
  * blit1d(
  *    // dest array
  *    [1, 1, 1, 1, 1, 1, 1, 1, 1],

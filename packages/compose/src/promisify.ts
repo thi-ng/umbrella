@@ -10,6 +10,8 @@ import type { Fn, Fn2 } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { promisify } from "@thi.ng/compose";
+ *
  * (async () => {
  *    const body = await promisify(partial(fs.readFile, "foo.txt"));
  *    console.log(body.toString());

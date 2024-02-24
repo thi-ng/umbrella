@@ -14,6 +14,8 @@ import { illegalState } from "@thi.ng/errors";
  *
  * @example
  * ```ts
+ * import { topoSort } from "@thi.ng/arrays";
+ *
  * const graph = {
  *   a: { deps: ["c", "b"] },
  *   b: {},

@@ -267,12 +267,14 @@ export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
  *
  * @example
  * ```ts
+ * import { multiCosineGradient, srgb } from "@thi.ng/color";
+ *
  * multiCosineGradient({
  *   num: 10,
  *   // gradient stops (normalized positions)
  *   stops: [[0.1, [1, 0, 0, 1]], [0.5, [0, 1, 0, 1]], [0.9, [0, 0, 1, 1]]],
  *   // optional color transform/coercion
- *   tx: srgba
+ *   tx: srgb
  * })
  * ```
  *

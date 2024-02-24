@@ -20,6 +20,8 @@ import { swap } from "./swap.js";
  *
  * @example
  * ```ts
+ * import { quickSort } from "@thi.ng/arrays";
+ *
  * a = [4, 3, 1, 8, 5]
  * b = [40, 30, 10, 80, 50]
  * c = [-4, -3, -1, -8, -5]

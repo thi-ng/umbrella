@@ -9,8 +9,11 @@ import type { ReadonlyMat } from "./api.js";
  *
  * @example
  * ```ts
- * out[0] = dot(v, column(m, 0))
- * out[1] = dot(v, column(m, 1))
+ * import { column } from "@thi.ng/matrices";
+ * import { dot2 } from "@thi.ng/vectors";
+ *
+ * out[0] = dot2(v, column(m, 0))
+ * out[1] = dot2(v, column(m, 1))
  * ```
  *
  * @param out -
@@ -27,9 +30,12 @@ export const mulVM23 = mulVM22;
  *
  * @example
  * ```ts
- * out[0] = dot(v, column(m, 0))
- * out[1] = dot(v, column(m, 1))
- * out[2] = dot(v, column(m, 2))
+ * import { column } from "@thi.ng/matrices";
+ * import { dot3 } from "@thi.ng/vectors";
+ *
+ * out[0] = dot3(v, column([], m, 0))
+ * out[1] = dot3(v, column([], m, 1))
+ * out[2] = dot3(v, column([], m, 2))
  * ```
  *
  * @param out -
@@ -44,10 +50,13 @@ export const mulVM33 = (out: Vec | null, v: ReadonlyVec, m: ReadonlyMat) =>
  *
  * @example
  * ```ts
- * out[0] = dot(v, column(m, 0))
- * out[1] = dot(v, column(m, 1))
- * out[2] = dot(v, column(m, 2))
- * out[3] = dot(v, column(m, 3))
+ * import { column } from "@thi.ng/matrices";
+ * import { dot3 } from "@thi.ng/vectors";
+ *
+ * out[0] = dot3(v, column([], m, 0))
+ * out[1] = dot3(v, column([], m, 1))
+ * out[2] = dot3(v, column([], m, 2))
+ * out[3] = dot3(v, column([], m, 3))
  * ```
  *
  * @param out -

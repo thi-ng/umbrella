@@ -22,6 +22,9 @@ import { $wrapText } from "./wrap.js";
  *
  * @example
  * ```ts
+ * import { $sub } from "@thi.ng/rdom";
+ * import { reactive } from "@thi.ng/rstream";
+ *
  * const src = reactive(42).map((x) => `value: ${x}`);
  *
  * $sub(src, "div", { class: "red" }).mount(document.body);

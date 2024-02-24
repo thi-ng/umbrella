@@ -13,6 +13,8 @@ import { decomposeDuration } from "./duration.js";
  *
  * @example
  * ```ts
+ * import { defTimecode } from "@thi.ng/date";
+ *
  * a = defTimecode(30);
  * a(HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
  * // "01:02:03:04"

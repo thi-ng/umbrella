@@ -9,6 +9,8 @@ import { Component } from "./component.js";
  *
  * @example
  * ```ts
+ * import { $promise, type ComponentLike } from "@thi.ng/rdom";
+ *
  * const prom = Promise.resolve<ComponentLike>(
  *   ["div", {}, "Resolved!"]
  * );

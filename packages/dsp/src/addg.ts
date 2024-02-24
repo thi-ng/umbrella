@@ -12,7 +12,9 @@ import { MapG1 } from "./mapg.js";
  *
  * @example
  * ```ts
- * addg(constant(1), 10).take(5)
+ * import { addG, constant } from "@thi.ng/dsp";
+ *
+ * addG(constant(1), 10).take(5)
  * // [ 10, 11, 12, 13, 14 ]
  * ```
  *

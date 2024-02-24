@@ -10,6 +10,8 @@ export type Keyframe = Record<string, any>;
  *
  * @example
  * ```ts
+ * import { at_keyframes, css } from "@thi.ng/hiccup-css";
+ *
  * css(at_keyframes("fadein", {0: {opacity: 0}, 100: {opacity: 1}}))
  * // @keyframes fadein {
  * //
@@ -30,6 +32,8 @@ export type Keyframe = Record<string, any>;
  *
  * @example
  * ```ts
+ * import { at_keyframes, css } from "@thi.ng/hiccup-css";
+ *
  * css(at_keyframes("fadein", {opacity: 0}, {opacity: 1}));
  * // @keyframes fadein {
  * //

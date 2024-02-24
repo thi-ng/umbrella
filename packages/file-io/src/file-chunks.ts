@@ -34,6 +34,8 @@ export interface FileChunkOpts {
  *
  * @example
  * ```ts
+ * import { fileChunks } from "@thi.ng/file-io";
+ *
  * for await(let buf of fileChunks("file.bin", { start: 16*1024*1024 })) {
  *   // ...
  * }

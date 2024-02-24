@@ -262,6 +262,8 @@ const themePartFromString = (part: string) =>
  *
  * @example
  * ```ts
+ * import { colorsFromTheme } from "@thi.ng/color";
+ *
  * [...colorsFromTheme(
  *   [["cool", "aliceblue"], ["bright", "orange", 0.25], ["hotpink", 0.1]],
  *   { num: 10 }

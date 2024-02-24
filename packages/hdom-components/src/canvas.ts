@@ -99,6 +99,8 @@ const _canvas = (
  *
  * @example
  * ```ts
+ * import { canvasWebGL } from "@thi.ng/hdom-components";
+ *
  * const glcanvas = canvasWebGL({
  *   render(canv, gl, hctx, time, frame, ...args) {
  *     const col = 0.5 + 0.5 * Math.sin(time);

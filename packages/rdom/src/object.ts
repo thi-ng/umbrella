@@ -35,6 +35,8 @@ import { $subWithID } from "./sub.js";
  *
  * @example
  * ```ts
+ * import { $object, type ComponentLike } from "@thi.ng/rdom";
+ *
  * const obj = $object(
  *   // source object (for seeding)
  *   { id: "a", name: "foo", ignore: 23 },
@@ -65,6 +67,9 @@ export const $object = <T extends object, K extends Keys<T>>(
  *
  * @example
  * ```ts
+ * import { $subObject, type ComponentLike } from "@thi.ng/rdom";
+ * import { reactive } from "@thi.ng/rstream";
+ *
  * interface Foo {
  *   id: string;
  *   name: string;

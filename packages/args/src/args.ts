@@ -260,6 +260,8 @@ export const kvPairsMulti = <S extends Partial<ArgSpec<KVMultiDict>>>(
  *
  * @example
  * ```ts
+ * import { coerceInt, parse, tuple } from "@thi.ng/args";
+ *
  * parse({ a: tuple(coerceInt, 2, {})}, ["--a", "1,2"])
  * // {
  * //   result: { a: Tuple { value: [1, 2] } },

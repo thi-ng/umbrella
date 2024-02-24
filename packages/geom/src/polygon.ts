@@ -39,6 +39,8 @@ export const star = (
  *
  * @example
  * ```ts
+ * import { starWithCentroid } from "@thi.ng/geom";
+ *
  * starWithCentroid([100,200], 50, 5, [1, 0.5])
  * // Polygon {
  * //   points: [

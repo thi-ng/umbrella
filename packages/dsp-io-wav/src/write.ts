@@ -64,11 +64,13 @@ export const wavHeader = (spec: WavSpec): BinStructItem[] => {
  * @example
  * ```ts
  * import { osc, sin } from "@thi.ng/dsp";
+ * import { wavByteArray } from "@thi.ng/dsp-io-wav";
+ * import { writeFileSync } from "fs";
  *
  * const FS = 48000;
  *
  * // write 1 second 24bit mono WAV file, 440Hz sine
- * fs.writeFileSync(
+ * writeFileSync(
  *   "sine-440.wav",
  *   wavByteArray(
  *     { sampleRate: FS, channels: 1, length: FS, bits: 24 },

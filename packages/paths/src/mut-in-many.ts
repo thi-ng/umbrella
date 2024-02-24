@@ -16,6 +16,8 @@ import { mutIn } from "./mut-in.js";
  *
  * @example
  * ```ts
+ * import { mutInManyUnsafe } from "@thi.ng/paths";
+ *
  * mutInManyUnsafe(
  *   { a: { b: 1 }, x: { y: { z: 2 } } },
  *   // pair #1

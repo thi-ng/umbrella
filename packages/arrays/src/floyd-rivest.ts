@@ -16,6 +16,8 @@ import { swap } from "./swap.js";
  *
  * @example
  * ```ts
+ * import { floydRivest } from "@thi.ng/arrays";
+ *
  * floydRivest([5, 3, -1, -10, 20, 7, 0, 4, 2], 3);
  * // [ -10, 0, -1, 2, 3,  4, 5, 20, 7 ]
  * ```

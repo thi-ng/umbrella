@@ -30,6 +30,8 @@ import { defSetter } from "./setter.js";
  *
  * @example
  * ```ts
+ * import { updateInUnsafe } from "@thi.ng/paths";
+ *
  * add = (x: number, y: number) => x + y;
  * updateInUnsafe({ a: { b: { c: 23 } } }, "a.b.c", add, 10);
  * // { a: { b: { c: 33 } } }

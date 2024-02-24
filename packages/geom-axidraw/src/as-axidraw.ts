@@ -51,6 +51,9 @@ import { pointsByNearestNeighbor } from "./sort.js";
  *
  * @example
  * ```ts
+ * import { circle } from "@thi.ng/geom";
+ * import { asAxiDraw } from "@thi.ng/geom-axidraw";
+ *
  * [...asAxiDraw(circle(100), { samples: 100 })]
  * [
  *   [ 'm', [ 10, 0 ] ],

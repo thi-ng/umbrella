@@ -73,6 +73,8 @@ export const monthNames = () => LOCALE.months.slice();
  *
  * @example
  * ```ts
+ * import { withLocale } from "@thi.ng/date";
+ *
  * withLocale(FR_LONG, () => units(1, "y"));
  * // "1 année"
  *
@@ -121,6 +123,8 @@ export const units = (
  *
  * @example
  * ```ts
+ * import { withLocale } from "@thi.ng/date";
+ *
  * withLocale(DE_LONG, () => unitsLessThan(1, "y"));
  * // "weniger als 1 Jahr"
  * ```

@@ -12,6 +12,8 @@ import { sortByCachedKey } from "./sort-cached.js";
  *
  * @example
  * ```ts
+ * import { argSort, swizzle } from "@thi.ng/arrays";
+ *
  * const src = ["a", "c", "d", "b"];
  *
  * argSort(src)

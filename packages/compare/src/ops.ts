@@ -33,6 +33,8 @@ const __ensure = <T extends NumOrString>(op: string | Predicate2<T>) => {
  *
  * @example
  * ```ts
+ * import { stringOp } from "@thi.ng/compare";
+ *
  * const equalsABC = stringOp("=", "abc");
  *
  * ["xyz", "abc", "def"].map(equalsABC)
@@ -68,6 +70,8 @@ export const stringOp = (op: Operator | Predicate2<string>, x: string) => {
  *
  * @example
  * ```ts
+ * import { numericOp } from "@thi.ng/compare";
+ *
  * const lessThan42 = numericOp("<", 42);
  *
  * lessThan42(41)

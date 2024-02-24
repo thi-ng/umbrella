@@ -7,6 +7,8 @@ import type { LVar, LVarDomain } from "./api.js";
  *
  * @example
  * ```ts
+ * import { variable, invSigmoid, sigmoid, trapezoid } from "@thi.ng/fuzzy";
+ *
  * // temperature sets (in celsius)
  * const temp = variable([-20, 40], {
  *   freezing: invSigmoid(0, 2),
@@ -35,6 +37,8 @@ export const variable = <K extends string>(
  *
  * @example
  * ```ts
+ * import { classify, variable, invSigmoid, sigmoid, trapezoid } from "@thi.ng/fuzzy";
+ *
  * // temperature sets (in celsius)
  * const temp = variable([-20, 40], {
  *   freezing: invSigmoid(0, 2),
@@ -74,6 +78,8 @@ export const classify = <K extends string>(
  *
  * @example
  * ```ts
+ * import { evaluate, variable, invSigmoid, sigmoid, trapezoid } from "@thi.ng/fuzzy";
+ *
  * // temperature sets (in celsius)
  * const temp = variable([-20, 40], {
  *   freezing: invSigmoid(0, 2),

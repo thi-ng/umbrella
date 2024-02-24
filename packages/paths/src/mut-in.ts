@@ -21,13 +21,17 @@ import { defMutator } from "./mutator.js";
  * The type parameter `T` can be used to indicate the type of the nested
  * value to be mutated (default: `any`).
  *
+ * Also see {@link defMutatorUnsafe}.
+ *
  * @example
  * ```ts
- * mutIn({ a: { b: [10, 20] } }, "a.b.1", 23);
+ * import { mutInUnsafe } from "@thi.ng/paths";
+ *
+ * mutInUnsafe({ a: { b: [10, 20] } }, "a.b.1", 23);
  * // { a: { b: [ 10, 23 ] } }
  *
- * // fails (see `mutator` docs)
- * mutIn({}, "a.b.c", 23);
+ * // fails (see `defMutator()` docs)
+ * mutInUnsafe({}, "a.b.c", 23);
  * // undefined
  * ```
  *
@@ -49,6 +53,8 @@ export const mutInUnsafe = <T = any>(state: any, path: Path, val: T): any =>
  *
  * @example
  * ```ts
+ * import { muIn } from "@thi.ng/paths";
+ *
  * mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23)
  * // { a: { b: [ 10, 23 ] } }
  * ```

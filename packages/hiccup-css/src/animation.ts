@@ -24,6 +24,8 @@ export interface AnimationOpts {
  *
  * @example
  * ```ts
+ * import { animation, css } from "@thi.ng/hiccup-css";
+ *
  * css(
  *   animation(
  *     "fadein",

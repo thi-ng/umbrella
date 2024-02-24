@@ -12,6 +12,8 @@ import { defBitField } from "@thi.ng/bitfield/bitfield";
  *
  * @example
  * ```ts
+ * import { diamondSquare } from "@thi.ng/grid-iterators";
+ *
  * // generate coords for a 17x17 grid
  * [...diamondSquare(4)]
  * // [

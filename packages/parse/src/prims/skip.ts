@@ -9,6 +9,8 @@ import type { Parser } from "../api.js";
  *
  * @example
  * ```ts
+ * import { defContext, litD, noneOfP, seqD, skipWhile } from "@thi.ng/parse";
+ *
  * const comment = seqD([litD("#"), skipWhile(noneOfP("\n")), NL]);
  *
  * const ctx = defContext("# ignore more!\n");

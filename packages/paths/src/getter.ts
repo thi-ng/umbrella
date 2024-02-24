@@ -27,6 +27,8 @@ import { toPath } from "./path.js";
  *
  * @example
  * ```ts
+ * import { defGetterUnsafe } from "@thi.ng/paths";
+ *
  * const g = defGetterUnsafe("a.b.c");
  *
  * g({ a: { b: { c: 23} } }) // 23
@@ -60,6 +62,8 @@ export const defGetterUnsafe = <T = any>(path: Path): Fn<any, T | undefined> =>
  *
  * @example
  * ```ts
+ * import { defGetter } from "@thi.ng/paths";
+ *
  * interface Foo {
  *   a: { b: { c: number; } }
  * }

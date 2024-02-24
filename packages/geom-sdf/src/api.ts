@@ -78,6 +78,9 @@ export interface SDFModifiers {
  *
  * @example
  * ```ts
+ * import { circle } from "@thi.ng/geom";
+ * import { asSDF } from "@thi.ng/geom-sdf";
+ *
  * const sdf = asSDF(circle(100, { __sdf: { abs: true } }));
  * ```
  */

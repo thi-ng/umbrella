@@ -1,5 +1,6 @@
 import type { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
 import { EPS, HALF_PI, PI } from "./api.js";
+import { easeInElastic } from "./easing.js";
 
 /**
  * Linear interpolation without clamping. Computes `a + (b - a) * t`
@@ -14,7 +15,7 @@ export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
  * Bilinear interpolation of given values (`a`,`b`,`c`,`d`).
  *
  * @example
- * ```ts
+ * ```text
  * c    d
  * +----+
  * |    |
@@ -255,6 +256,27 @@ export const tangentDiff3 = (
  * Returns function which takes normalized time (in [0,1] range) as single arg
  * and returns interpolated value.
  *
+ * @example
+ * ```ts
+ * import { easeInOut2, tween } from "@thi.ng/math";
+ *
+ * // create tweening function
+ * const anim = tween(easeInOut2, 100, 200);
+ *
+ * for(let i=0; i<=10; i++) console.log(anim(i/10));
+ * // 100
+ * // 102
+ * // 108
+ * // 118
+ * // 132
+ * // 150
+ * // 168
+ * // 182
+ * // 192
+ * // 198
+ * // 200
+ * ```
+ *
  * @param f -
  * @param from -
  * @param to -
@@ -262,6 +284,8 @@ export const tangentDiff3 = (
 export const tween =
 	(f: (t: number) => number, from: number, to: number) => (t: number) =>
 		mix(from, to, f(t));
+
+tween(easeInElastic, 0, 100);
 
 /**
  * Circular interpolation (ease out): `sqrt(1 - (1 - t)^2)`
@@ -296,14 +320,18 @@ export const invCircular: FnN = (t) => 1 - circular(1 - t);
  * positive the lens has dilating characteristics and will spread values near
  * `pos` towards the edges.
  *
- * Also see {@link schlick} for an alternative approach.
+ * Also see {@link schlick} for an alternative approach and {@link tween} for
+ * reference to below example.
  *
  * @example
  * ```ts
+ * import { mix, lens, tween } from "@thi.ng/math";
+ * import { partial } from "@thi.ng/compose";
+ *
  * // interpolated position in [100..400] interval for given `t`
  * y = mix(100, 400, lens(0.5, 1, t));
  *
- * // or build tween function via `tween()`
+ * // or compose tween function via `tween()` & `partial()`
  * f = tween(partial(lens, 0.5, 1), 100, 400);
  *
  * f(t)

@@ -65,6 +65,8 @@ export const matchStrings = <T extends QueryObj = QueryObj>(
  *
  * @example
  * ```ts
+ * import { query, matchStrings } from "@thi.ng/oquery";
+ *
  * const DB = [
  *   { id: 1, tags: ["a", "b"] },
  *   { id: 2, tags: ["c", "b"] },
@@ -139,6 +141,8 @@ export const matchMultiple = <T extends QueryObj = QueryObj, V = any>(
  *
  * @example
  * ```ts
+ * import { query, matchPattern } from "@thi.ng/oquery";
+ *
  * const DB = [
  *   { id: "aaa", score: 32 },
  *   { id: "bbbb", score: 60 },

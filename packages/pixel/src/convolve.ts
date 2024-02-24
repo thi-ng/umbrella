@@ -316,6 +316,8 @@ export const POOL_MAX: PoolTemplate = (body) => `Math.max(${body.join(",")})`;
  *
  * @example
  * ```ts
+ * import { convolveChannel, POOL_THRESHOLD } from "@thi.ng/pixel";
+ *
  * // 3x3 adaptive threshold w/ bias = 1
  * convolveChannel(src, { kernel: { pool: POOL_THRESHOLD(1), size: 3 }});
  * ```

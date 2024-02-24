@@ -29,6 +29,8 @@ export type GroupImpl<T extends Record<string, any>> = {
  *
  * @example
  * ```ts
+ * import { group, hermite, linear } from "@thi.ng/ramp";
+ *
  * const example = group({
  *   // named, independent child ramps/timelines
  *   a: linear([[0.1, 0], [0.5, -10]]),

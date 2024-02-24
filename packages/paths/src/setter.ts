@@ -48,6 +48,8 @@ import { toPath } from "./path.js";
  *
  * @example
  * ```ts
+ * import { defSetterUnsafe } from "@thi.ng/paths";
+ *
  * s = defSetterUnsafe("a.b.c");
  * // or
  * s = defSetterUnsafe(["a", "b", "c"]);
@@ -64,6 +66,8 @@ import { toPath } from "./path.js";
  *
  * @example
  * ```ts
+ * import { defSetterUnsafe } from "@thi.ng/paths";
+ *
  * s = defSetterUnsafe("a.b.c");
  *
  * a = { x: { y: { z: 1 } } };
@@ -90,6 +94,8 @@ export const defSetterUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
  *
  * @example
  * ```ts
+ * import { defSetter } from "@thi.ng/paths";
+ *
  * type State = { a: { b: number } };
  *
  * const setB = defSetter<State, "a", "b">(["a", "b"]);
@@ -100,6 +106,8 @@ export const defSetterUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
  *
  * @example
  * ```ts
+ * import { defSetter } from "@thi.ng/paths";
+ *
  * type State = { a: { b: number } };
  *
  * const path = <const>["a","b"];

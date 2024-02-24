@@ -149,6 +149,9 @@ export class Channel<T> {
  *
  * @example
  * ```ts
+ * import { channel, sliding } from "@thi.ng/fibers";
+ * import { ConsoleLogger } from "@thi.ng/logger";
+ *
  * // create unbuffered channel with single value capacity
  * const chan = channel();
  *

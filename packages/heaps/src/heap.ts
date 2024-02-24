@@ -13,6 +13,12 @@ import { compare } from "@thi.ng/compare/compare";
 import { equiv } from "@thi.ng/equiv";
 import type { HeapOpts } from "./api.js";
 
+/**
+ * Functional syntax sugar for {@link Heap} constructor.
+ *
+ * @param values
+ * @param opts
+ */
 export const defHeap = <T>(
 	values?: Iterable<T> | null,
 	opts?: Partial<HeapOpts<T>>
@@ -25,6 +31,8 @@ export const defHeap = <T>(
  *
  * @example
  * ```ts
+ * import { Heap } from "@thi.ng/heap";
+ *
  * h = new Heap([20, 5, 10]);
  * h.push(15);
  *

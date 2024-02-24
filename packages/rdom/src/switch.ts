@@ -35,6 +35,9 @@ import { $wrapText } from "./wrap.js";
  *
  * @example
  * ```ts
+ * import { $switch } from "@thi.ng/rdom";
+ * import { fromInterval } from "@thi.ng/rstream";
+ *
  * $switch(
  *   fromInterval(1000),
  *   (x) => x % 3,
@@ -89,6 +92,9 @@ export const $switch = <T>(
  *
  * @example
  * ```ts
+ * import { $refresh } from "@thi.ng/rdom";
+ * import { fromInterval } from "@thi.ng/rstream";
+ *
  * $refresh(fromInterval(1000), async (x) => ["div", {}, x])
  * ```
  *

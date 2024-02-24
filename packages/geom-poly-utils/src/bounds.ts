@@ -20,10 +20,13 @@ import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
  *
  * @example
  * ```ts
+ * import { bounds } from "@thi.ng/geom-poly-utils";
+ * import { MAX2, MIN2 } from "@thi.ng/vectors";
+ *
  * points = [[-1,-2], [5,-3], [0,4]];
  *
  * bounds(points, [...MAX2], [...MIN2])
- * // [[-1,-3],[5,4]]
+ * // [[-1, -3], [5, 4]]
  * ```
  *
  * Returns 2-tuple of modified `[vmin, vmax]`.

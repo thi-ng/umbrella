@@ -38,6 +38,8 @@ export const xfPrint = (fn: Fn<string, void> = console.log) => {
  *
  * @example
  * ```ts
+ * import { defContext, lit, oneOrMore, seq, ALPHA } from "@thi.ng/parse";
+ *
  * print(seq([lit("["), oneOrMore(ALPHA), lit("]")]))(defContext("[abc]"))
  * // seq: null
  * //   lit: "["

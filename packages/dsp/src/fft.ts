@@ -42,6 +42,8 @@ export const copyComplex = (complex: ComplexArray): ComplexArray => [
  *
  * @example
  * ```ts
+ * import { conjugate } from "@thi.ng/dsp";
+ *
  * conjugate([0, 3, 2, 1], true)
  * // Float64Array [ 0, 3, 2, 1, 0, -1, -2, -3 ]
  *
@@ -57,6 +59,8 @@ export const copyComplex = (complex: ComplexArray): ComplexArray => [
  *
  * @example
  * ```ts
+ * import { conjugate, ifft } from "@thi.ng/dsp";
+ *
  * // generate single-period sine (window size = 16)
  * ifft(conjugate([0, -8, 0, 0, 0, 0, 0, 0]))[0]
  * // [

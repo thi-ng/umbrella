@@ -40,8 +40,10 @@ export interface DipOpts {
  *
  * @example
  * ```ts
+ * import { dip, MOVE } from "@thi.ng/axidraw";
+ *
  * // simple 2x up/down
- * [...DIP(2)]
+ * [...dip(2)]
  * // [
  * //   [ "d", undefined ],
  * //   [ "u", undefined ],
@@ -50,7 +52,7 @@ export interface DipOpts {
  * // ]
  *
  * // 3x dipping with custom up/down delays, each time at a random position
- * [...DIP(3, {
+ * [...dip(3, {
  *   down: 300,
  *   up: 400,
  *   commands: () => [ MOVE([Math.random()* 5, Math.random()* 5]) ]

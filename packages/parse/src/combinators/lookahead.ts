@@ -27,6 +27,8 @@ import type { Parser } from "../api.js";
  *
  * @example
  * ```ts
+ * import { defContext, lookahead, oneOf, stringD } from "@thi.ng/parse";
+ *
  * const ctx = defContext("ababaaabbabba");
  *
  * // consume while 'a' or `b` and until 1st occurrence of "abba"...
@@ -45,6 +47,8 @@ import type { Parser } from "../api.js";
  *
  * @example
  * ```ts
+ * import { defContext, lookahead, oneOf, string } from "@thi.ng/parse";
+ *
  * const ctx = defContext("ababaaabbabba");
  *
  * // capturing lookahead

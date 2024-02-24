@@ -16,6 +16,9 @@ import { sub } from "@thi.ng/vectors/sub";
  *
  * @example
  * ```ts
+ * import { closestT } from "@thi.ng/geom-closest-point";
+ * import { mixN } from "@thi.ng/vectors";
+ *
  * mixN([], a, b, closestT(p, a, b))
  * ```
  *

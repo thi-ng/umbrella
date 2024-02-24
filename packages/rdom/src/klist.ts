@@ -26,6 +26,9 @@ export interface KListItem {
  *
  * @example
  * ```ts
+ * import { $klist } from "@thi.ng/rdom";
+ * import { reactive } from "@thi.ng/rstream";
+ *
  * const items = reactive([{id: "a", val: 1}, {id: "b", val: 2}, {id: "c", val: 3}]);
  *
  * $klist(

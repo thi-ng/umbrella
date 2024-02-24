@@ -200,6 +200,8 @@ export const catr = (ctx: StackContext) => {
  *
  * @example
  * ```ts
+ * import { runU, mapll, mul } from "@thi.ng/pointfree";
+ *
  * runU([[1, 2, 3, 4], [10, mul], mapll])
  * // [ 10, 20, 30, 40]
  * ```
@@ -210,6 +212,8 @@ export const catr = (ctx: StackContext) => {
  *
  * @example
  * ```ts
+ * import { list, mapl, mul, pushr, runU } from "@thi.ng/pointfree";
+ *
  * runU([list, [1, 2, 3, 4], [10, mul, pushr], mapl])
  * // [ 10, 20, 30, 40 ]
  * ```
@@ -218,6 +222,8 @@ export const catr = (ctx: StackContext) => {
  *
  * @example
  * ```ts
+ * import { collect, mapl, mul, runU } from "@thi.ng/pointfree";
+ *
  * runU([[1, 2, 3, 4], [10, mul], mapl, 4, collect])
  * // [ 10, 20, 30, 40 ]
  * ```
@@ -244,6 +250,8 @@ export const mapl = (ctx: StackContext) => {
  *
  * @example
  * ```ts
+ * import { mapll, mul, runU } from "@thi.ng/pointfree";
+ *
  * runU([[1, 2, 3, 4], [10, mul], mapll])
  * // [ 10, 20, 30, 40]
  * ```
@@ -386,6 +394,8 @@ export const setat = (ctx: StackContext) => {
  *
  * @example
  * ```ts
+ * import { bindkeys, runU } from "@thi.ng/pointfree";
+ *
  * runU([1,2,3, ["a","b","c"], {}, bindkeys])
  * // { c: 3, b: 2, a: 1 }
  * ```

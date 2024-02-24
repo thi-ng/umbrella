@@ -22,6 +22,8 @@ import type { IDistance, Metric } from "./api.js";
  *
  * @example
  * ```ts
+ * import { MANHATTAN2 } from "@thi.ng/distance";
+ *
  * MANHATTAN2.metric([0,0], [10,20])
  * // 30
  *
@@ -38,7 +40,7 @@ import type { IDistance, Metric } from "./api.js";
  * // 30
  *
  * // however, starting w/ eucledian dist first
- * e = mag([10, 20])
+ * e = Math.hypot(10, 20)
  * // 22.360679774997898
  *
  * m = MANHATTAN2.to(e)

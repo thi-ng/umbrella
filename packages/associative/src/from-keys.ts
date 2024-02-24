@@ -9,6 +9,8 @@ import { isFunction } from "@thi.ng/checks/is-function";
  *
  * @example
  * ```ts
+ * import { objectFromKeys } from "@thi.ng/associative";
+ *
  * objectFromKeys(["a", "b", "c"], 1)
  * // { a: 1, b: 1, c: 1 }
  *

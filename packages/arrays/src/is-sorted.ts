@@ -13,6 +13,8 @@ import { compare } from "@thi.ng/compare/compare";
  *
  * @example
  * ```ts
+ * import { isSorted } from "@thi.ng/arrays";
+ *
  * isSorted([3, 2, 1])
  * // false
  *

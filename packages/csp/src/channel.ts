@@ -206,6 +206,8 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 	 *
 	 * @example
 	 * ```ts
+	 * import { Channel } from "@thi.ng/csp";
+	 *
 	 * Channel.mergeTuples([
 	 *   Channel.from([1, 2, 3]),
 	 *   Channel.from([10, 20, 30]),

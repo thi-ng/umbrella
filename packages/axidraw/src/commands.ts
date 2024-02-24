@@ -114,6 +114,8 @@ export const COMMENT = (msg: string): CommentCommand => ["comment", msg];
  *
  * @example
  * ```ts
+ * import { complete, MOVE } from "@thi.ng/axidraw";
+ *
  * [...complete([ MOVE([0, 0]) ])]
  * // [ ["start"], ["M", [0, 0]], ["stop"] ]
  * ```

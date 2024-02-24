@@ -6,6 +6,9 @@ import { maybeParseFloat } from "@thi.ng/strings/parse";
  *
  * @example
  * ```ts
+ * import { $compile, $input } from "@thi.ng/rdom";
+ * import { reactive } from "@thi.ng/rstream";
+ *
  * const name = reactive("");
  *
  * $compile(

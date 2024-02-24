@@ -18,6 +18,8 @@ import { MAdd } from "./madd.js";
  *
  * @example
  * ```ts
+ * import { curve } from "@thi.ng/dsp";
+ *
  * curve(-1, 1, 5, 0.1).take(7)
  * // [
  * //   -1,

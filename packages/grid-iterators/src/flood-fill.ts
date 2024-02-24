@@ -14,6 +14,8 @@ import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
  *
  * @example
  * ```ts
+ * import { floodFill } from "@thi.ng/grid-iterators";
+ *
  * const img = [
  *   1,0,1,0,
  *   0,0,0,0,

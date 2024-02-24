@@ -10,6 +10,8 @@ import type { TypedArray } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { fillRange } from "@thi.ng/arrays";
+ *
  * fillRange(new Array(5))
  * // [ 0, 1, 2, 3, 4 ]
  *

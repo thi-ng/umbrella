@@ -68,6 +68,8 @@ export const sequence = (
  *
  * @example
  * ```ts
+ * import { first, untilEvent, wait } from "@thi.ng/fibers";
+ *
  * // wait until mouse click for max 5 seconds
  * const res = yield* first([
  *   untilEvent(window, "click", { id: "click" }),
@@ -117,6 +119,8 @@ export const all = (fibers: Iterable<MaybeFiber>, opts?: Partial<FiberOpts>) =>
  *
  * @example
  * ```ts
+ * import { untilPromise, withTimeout } from "@thi.ng/fibers";
+ *
  * // wait for fetch response max. 5 seconds
  * const res = yield* withTimeout(untilPromise(fetch("example.json")), 5000);
  *
@@ -167,6 +171,7 @@ export const timeSlice = (
  *
  * @example
  * ```ts
+ * import { timeSliceIterable } from "@thi.ng/fibers";
  * import { range } from "@this.ng/transducers";
  *
  * // consume & batch process iterable in 16ms time slices
@@ -325,6 +330,7 @@ export class Shuffle extends Fiber {
  *
  * @example
  * ```ts
+ * import { shuffle } from "@thi.ng/fibers";
  * import { repeatedly } from "@thi.ng/transducers";
  *
  * // create & run fiber with 4 children, executing in random order
@@ -369,6 +375,8 @@ export const shuffle = (
  *
  * @example
  * ```ts
+ * import { asPromise } from "@thi.ng/fibers";
+ *
  * (async () => {
  *   // create & spawn task/fiber
  *   const task = asPromise(function*() {

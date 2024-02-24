@@ -12,6 +12,8 @@ import { $stackFn } from "./word.js";
  *
  * @example
  * ```ts
+ * import { dec, dup, ispos, print, runU } from "@thi.ng/pointfree";
+ *
  * run([loop([dup, ispos], [dup, print, dec])], [[3]])
  * // 3
  * // 2
@@ -57,7 +59,9 @@ export const loopq = (ctx: StackContext) => {
  *
  * @example
  * ```ts
- * pf.run([3, ["i=", pf.swap, pf.add, pf.print], pf.dotimes])
+ * import { add, print, swap, runU } from "@thi.ng/pointfree";
+ *
+ * run([3, ["i=", swap, add, print], dotimes])
  * // i=0
  * // i=1
  * // i=2
@@ -65,13 +69,15 @@ export const loopq = (ctx: StackContext) => {
  *
  * With empty body acts as finite range generator 0 .. n:
  *
- * ```
+ * ```ts
+ * import { collect, cpdr, dotimes, movrd, runU } from "@thi.ng/pointfree";
+ *
  * // range gen
- * pf.run([3, [], pf.dotimes])
+ * run([3, [], dotimes])
  * [ [ 0, 1, 2 ], [], {} ]
  *
  * // range gen (collect results as array)
- * pf.runU([3, pf.cpdr, [], pf.dotimes, pf.movrd, pf.collect])
+ * runU([3, cpdr, [], dotimes, movrd, collect])
  * // [ 0, 1, 2 ]
  * ```
  *

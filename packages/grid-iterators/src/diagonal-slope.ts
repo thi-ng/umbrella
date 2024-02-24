@@ -17,6 +17,8 @@ export interface DiagonalSlopeOpts extends GridIterOpts2D {
  *
  * @example
  * ```ts
+ * import { diagonalSlopeY } from "@thi.ng/grid-iterators";
+ *
  * // iterate grid in diagonals of 1:3 ratio (x:y)
  * [...diagonalSlopeY({ cols: 5, step: 3 })]
  * // [

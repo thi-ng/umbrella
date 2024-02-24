@@ -15,6 +15,8 @@ export const polyline = (pts: Iterable<Vec>, attribs?: Attribs) =>
  *
  * @example
  * ```ts
+ * import { spiral } from "@thi.ng/geom";
+ *
  * // 4 full turns over 80 steps
  * spiral([0, 0], 5, 100, 0, Math.PI * 2 * 4, 80);
  * ```

@@ -48,8 +48,8 @@ const DEFAULT_LOAD = 0.75;
  *
  * @example
  * ```ts
- * import { HashMap } from "@thi.ng/associative"
- * import { hash } from "@thi.ng/vectors"
+ * import { HashMap } from "@thi.ng/associative";
+ * import { hash } from "@thi.ng/vectors";
  *
  * m = new HashMap([], { hash })
  * m.set([1, 2], "a");

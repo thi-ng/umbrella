@@ -157,6 +157,8 @@ export interface QueryOpts {
 	 *
 	 * @example
 	 * ```ts
+	 * import { defQuery } from "@thi.ng/oquery";
+	 *
 	 * const DB = { a: { id: 1, name: "alice" }, b: { name: "bob" } };
 	 *
 	 * defQuery({ partial: false })(DB, null, "id", 1)
@@ -180,6 +182,8 @@ export interface QueryOpts {
 	 *
 	 * @example
 	 * ```ts
+	 * import { defQuery } from "@thi.ng/oquery";
+	 *
 	 * const DB = { a: { knows: ["b","c"] }, b: { knows: ["a","c"] }};
 	 * defQuery({ cwise: true })(DB, null, "knows", "b")
 	 * // { a: { knows: ["b","c"] } }

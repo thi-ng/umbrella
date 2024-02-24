@@ -10,6 +10,8 @@
  *
  * @example
  * ```ts
+ * import { selectThresholdMin } from "@thi.ng/arrays";
+ *
  * const numColumns = selectThresholdMin({ 480: 1, 640: 2, 960: 3 }, 4);
  *
  * numColumns(320) // 1

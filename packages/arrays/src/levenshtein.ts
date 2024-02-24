@@ -17,6 +17,8 @@ const eqStrict = (a: any, b: any) => a === b;
  *
  * @example
  * ```ts
+ * import { levenshtein } from "@thi.ng/arrays";
+ *
  * levenshtein([1, 2, 3, 4, 5], [1, 2, 4, 3, 5]);
  * // 2
  *

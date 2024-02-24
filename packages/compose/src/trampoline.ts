@@ -16,6 +16,8 @@ import type { Fn0 } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { trampoline } from "@thi.ng/compose";
+ *
  * const countdown = (acc, x) =>
  *   x >= 0 ?
  *     () => (acc.push(x), countdown(acc, x-1)) :

@@ -13,6 +13,8 @@ import { defaultOpts } from "./opts.js";
  *
  * @example
  * ```ts
+ * import { meanOfMaximaStrategy, trapezoid } from "@thi.ng/fuzzy";
+ *
  * meanOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
  * // 3
  *
@@ -66,6 +68,8 @@ export const meanOfMaximaStrategy = (
  *
  * @example
  * ```ts
+ * import { firstOfMaximaStrategy, trapezoid } from "@thi.ng/fuzzy";
+ *
  * firstOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
  * // 1.02
  *
@@ -114,6 +118,8 @@ export const firstOfMaximaStrategy = (
  *
  * @example
  * ```ts
+ * import { lastOfMaximaStrategy, trapezoid } from "@thi.ng/fuzzy";
+ *
  * lastOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
  * // 4.98
  *

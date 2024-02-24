@@ -51,6 +51,8 @@ const FACTORIES: Record<ColorMode, ColorFactory<any>> = {
  *
  * @example
  * ```ts
+ * import { color } from "@thi.ng/color";
+ *
  * color("springgreen");
  * // $Color [srgb] { offset: 0, stride: 1, buf: [ 0, 1, 0.498, 1 ] }
  *

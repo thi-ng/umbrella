@@ -162,6 +162,8 @@ export class Profiler
 	 *
 	 * * @example
 	 * ```ts
+	 * import { Profiler } from "@thi.ng/bench";
+	 *
 	 * const profiler = new Profiler();
 	 *
 	 * // recursive function
@@ -265,6 +267,10 @@ export class Profiler
 	 *
 	 * @example
 	 * ```ts
+	 * import { Profiler } from "@thi.ng/bench";
+	 *
+	 * const profiler = new Profiler();
+	 *
 	 * const sum = profiler.wrap(
 	 *   "sum",
 	 *   (vec: number[]) => vec.reduce((acc, x) => acc + x, 0)

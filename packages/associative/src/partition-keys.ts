@@ -33,6 +33,8 @@ export const partitionKeysMap = <K, V>(
  *
  * @example
  * ```ts
+ * import { partitionKeysObj } from "@thi.ng/associative";
+ *
  * partitionKeysObj({ a: 1, b: 2, c: 3, d: 4 }, ["a", "c", "e"])
  * // [
  * //  { a: 1, c: 3 },

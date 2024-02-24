@@ -19,6 +19,8 @@ import { DEFAULT, defmulti } from "./defmulti.js";
  *
  * @example
  * ```ts
+ * import { defmultiN } from "@thi.ng/defmulti";
+ *
  * const foo = defmultiN<string>({
  *   0: () => "zero",
  *   1: (x) => `one: ${x}`,

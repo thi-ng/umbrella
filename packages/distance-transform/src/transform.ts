@@ -20,9 +20,13 @@ import { EUCLEDIAN } from "./metric.js";
  *
  * @example
  * ```ts
- * // this example uses functionality from these packages:
- * // - thi.ng/pixel
- * // - thi.ng/random
+ * import { distanceTransform, EUCLEDIAN } from "@thi.ng/distance-transform";
+ * import {
+ *   intBuffer, GRAY8,
+ *   floatBuffer, FLOAT_GRAY
+ *   canvasFromPixelBuffer
+ * } from "@thi.ng/pixel";
+ * import { SYSTEM } from "@thi.ng/random";
  *
  * // create image with 100 random pixels set
  * const img = intBuffer(256, 256, GRAY8);
@@ -34,8 +38,8 @@ import { EUCLEDIAN } from "./metric.js";
  * const dt = distanceTransform(img, EUCLEDIAN);
  * // wrap as float pixel buffer
  * const dtImg = floatBuffer(img.width, img.height, FLOAT_GRAY, dt);
- * // ...and display
- * dtImg.blitCanvas(canvas2d(img.width, img.height, document.body).canvas);
+ * // ...create & copy to a canvas to display
+ * canvasFromPixelBuffer(dtImg, document.body);
  * ```
  *
  * @param grid -

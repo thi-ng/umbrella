@@ -14,6 +14,8 @@ import type { FnAny } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { threadLast } from "@thi.ng/compose";
+ *
  * const neg = (x) => -x;
  * const sub = (a, b) => a - b;
  * const div = (a, b) => a / b;

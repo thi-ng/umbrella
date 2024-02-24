@@ -51,30 +51,34 @@ export const sort = <T extends ReadonlyColor>(
  * memory.
  *
  * ```ts
+ * import { css, luminanceSrgb, sortMapped, srgb } from "@thi.ng/color";
+ *
  * // memory buffer of 4 sRGB colors
- * const buf = new Float32Array([0,1,0,1, 0,0.5,0,1, 0,0.25,0,1, 0,0.75,0,1]);
+ * const buf = new Float32Array([
+ *   0, 1, 0, 1, 0, 0.5, 0, 1, 0, 0.25, 0, 1, 0, 0.75, 0, 1,
+ * ]);
  *
  * // map buffer (creates 4 SRGB instances linked to the buffer)
  * const pix = srgb.mapBuffer(buf);
  *
  * // display original order
- * pix.map(css);
+ * console.log(pix.map((x) => css(x)));
  * // [ '#00ff00', '#008000', '#004000', '#00bf00' ]
  *
  * // sort colors (buffer!) by luminance
  * sortMapped(pix, luminanceSrgb);
  *
  * // new order
- * pix.map(css);
+ * console.log(pix.map((x) => css(x)));
  * // [ '#004000', '#008000', '#00bf00', '#00ff00' ]
  *
  * // buffer contents have been re-ordered
- * buf
+ * console.log(buf);
  * // Float32Array(16) [
- * //     0, 0.25, 0, 1,    0,
- * //   0.5,    0, 1, 0, 0.75,
- * //     0,    1, 0, 1,    0,
- * //     1
+ * //     0, 0.25, 0, 1,
+ * //     0, 0.5, 0, 1,
+ * //     0, 0.75, 0, 1,
+ * //     0, 1, 0, 1
  * // ]
  * ```
  *

@@ -10,6 +10,8 @@ import type { IObjectOf } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { invertMap } from "@thi.ng/associative";
+ *
  * invertMap(new Map(), new Map([["a", 1], ["b", 2]]));
  * // Map { 1 => 'a', 2 => 'b' }
  * ```
@@ -32,6 +34,8 @@ export const invertMap = <K, V>(src: Map<K, V>, dest?: Map<V, K>) => {
  *
  * @example
  * ```ts
+ * import { invertMap } from "@thi.ng/associative";
+ *
  * invertObj({a: 1, b: 2})
  * // { '1': 'a', '2': 'b' }
  * ```

@@ -157,7 +157,7 @@ export abstract class AHashGrid<T> {
 	 * import { knearest2 } from "@thi.ng/distance";
 	 * import { HashGrid2 } from "@thi.ng/geom-accel";
 	 * import { repeatedly } from "@thi.ng/transducers";
-	 * import { ReadonlyVec, random2 } from "@thi.ng/vectors";
+	 * import { random2, type ReadonlyVec } from "@thi.ng/vectors";
 	 *
 	 * // generate 1000 random points in [-500..500) interval
 	 * const pts = [...repeatedly(() => random2([], -500, 500), 1000)];
