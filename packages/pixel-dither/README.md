@@ -80,7 +80,7 @@ For Node.js REPL:
 const pixelDither = await import("@thi.ng/pixel-dither");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.07 KB
 
 ## Dependencies
 

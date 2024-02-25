@@ -302,11 +302,12 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.17 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.06 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/develop/packages/date)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
@@ -315,7 +316,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.17 KB
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither)
-- [exif-reader](https://github.com/devongovett/exif-reader)
+- [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [sharp](https://sharp.pixelplumbing.com)
 
 ## API

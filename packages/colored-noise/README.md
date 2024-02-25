@@ -388,7 +388,7 @@ For Node.js REPL:
 const coloredNoise = await import("@thi.ng/colored-noise");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 496 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 494 bytes
 
 ## Dependencies
 

@@ -65,7 +65,7 @@ For Node.js REPL:
 const fuzzyViz = await import("@thi.ng/fuzzy-viz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1023 bytes
 
 ## Dependencies
 

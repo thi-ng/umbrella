@@ -77,7 +77,7 @@ For Node.js REPL:
 const rdomComponents = await import("@thi.ng/rdom-components");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.30 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.29 KB
 
 ## Dependencies
 
