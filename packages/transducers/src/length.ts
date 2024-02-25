@@ -11,6 +11,8 @@ import type { ILength } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { length } from "@thi.ng/transducers";
+ *
  * [...length(0, ["a", "bc", "def"])]
  * // [1, 2, 3]
  * ```

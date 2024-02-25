@@ -14,6 +14,8 @@ import { isReduced, reduced, unreduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { add, juxtR, reduce, reductions, str } from "@thi.ng/transducers";
+ *
  * reduce(juxtR(add(), reductions(add()), str("-")), [1, 2, 3, 4]);
  * // [ 10, [ 0, 1, 3, 6, 10 ], '1-2-3-4' ]
  * ```

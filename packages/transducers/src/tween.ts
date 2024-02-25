@@ -64,6 +64,8 @@ export interface TweenOpts<A, B, C> {
  *
  * @example
  * ```ts
+ * import { tween } from "@thi.ng/transducers";
+ *
  * [...tween({
  *   num: 10,
  *   min: 0,
@@ -80,6 +82,7 @@ export interface TweenOpts<A, B, C> {
  *
  * @example
  * ```ts
+ * import { tween } from "@thi.ng/transducers";
  * import { mix, smoothStep } from "@thi.ng/math"
  *
  * [...tween({

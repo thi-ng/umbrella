@@ -22,6 +22,8 @@ import { defWorker } from "./defworker.js";
  *
  * @example
  * ```ts
+ * import { postWorker, stream } from "@thi.ng/rstream";
+ *
  * // worker source code
  * src = `self.onmessage = (e) => console.log("worker", e.data);`;
  *

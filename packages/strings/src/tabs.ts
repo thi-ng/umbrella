@@ -8,6 +8,8 @@ const nextTab = (x: number, tabSize: number) =>
  *
  * @example
  * ```ts
+ * import { tabsToSpaces } from "@thi.ng/strings";
+ *
  * console.log(
  *   tabsToSpaces("0\t1\t2", 10)
  *   + "\n" +

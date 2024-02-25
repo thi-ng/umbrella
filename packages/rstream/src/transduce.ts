@@ -13,10 +13,13 @@ import type { Subscription } from "./subscription.js";
  *
  * @example
  * ```ts
+ * import { fromIterable, transduce } from "@thi.ng/rstream";
+ * import { add, map, range } from "@thi.ng/transducers";
+ *
  * transduce(
- *   fromIterable(tx.range(10)),
- *   tx.map((x) => x * 10),
- *   tx.add()
+ *   fromIterable(range(10)),
+ *   map((x) => x * 10),
+ *   add()
  * ).then((x) => console.log("result", x))
  *
  * // result 450

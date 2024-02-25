@@ -9,6 +9,8 @@ import { iterator } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { range, takeLast } from "@thi.ng/transducers";
+ *
  * [...takeLast(3, range(10))]
  * // [ 7, 8, 9 ]
  * ```

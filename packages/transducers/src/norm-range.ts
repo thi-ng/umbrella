@@ -7,6 +7,8 @@ import { map } from "./map.js";
  *
  * @example
  * ```ts
+ * import { normRange } from "@thi.ng/transducers";
+ *
  * [...normRange(4)]
  * // [0, 0.25, 0.5, 0.75, 1.0]
  *

@@ -46,7 +46,10 @@ export interface FSMOpts<T extends FSMState, A, B> {
  *
  * @example
  * ```ts
- * testFSM = {
+ * import { fsm } from "@thi.ng/transducers-fsm";
+ * import { comp, iterator, map, range, takeNth } from "@thi.ng/transducers";
+ *
+ * const testFSM = {
  *     states: {
  *         skip: (state, x) => {
  *             if (x < 20) {
@@ -77,19 +80,14 @@ export interface FSMOpts<T extends FSMState, A, B> {
  *     init: () => ({ state: "skip", count: 0 })
  * }
  *
- * [...tx.iterator(fsm.fsm(testFSM), tx.range(100))]
+ * [...iterator(fsm(testFSM), range(100))]
  * // [ 5, 6, 7, 8, 9, 15, 16, 17, 18, 19 ]
  *
  * // as part of composed transducers...
- *
- * [...tx.iterator(
- *   tx.comp(tx.takeNth(2), fsm.fsm(testFSM)),
- *   tx.range(100))]
+ * [...iterator(comp(takeNth(2), fsm(testFSM)), range(100))]
  * // [ 10, 12, 14, 16, 18 ]
  *
- * [...tx.iterator(
- *   tx.comp(fsm.fsm(testFSM), tx.map((x) => x * 10)),
- *   tx.range(100))]
+ * [...iterator(comp(fsm(testFSM), map((x) => x * 10)), range(100))]
  * // [ 50, 60, 70, 80, 90, 150, 160, 170, 180, 190 ]
  * ```
  *

@@ -14,6 +14,8 @@
  *
  * @example
  * ```ts
+ * import { zip } from "@thi.ng/transducers";
+ *
  * zip([1, 2, 3], [3, 4, 5, 0, 9])
  * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
  *

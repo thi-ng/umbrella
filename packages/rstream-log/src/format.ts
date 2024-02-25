@@ -27,6 +27,10 @@ export const formatString = (
  *
  * @example
  * ```ts
+ * import { Logger, formatString, maskSecrets, writeConsole } from "@thi.ng/rstream-log";
+ *
+ * const logger = new Logger();
+ *
  * logger.transform(
  *   formatString(),
  *   maskSecrets([/(?<=[A-Z0-9_]\=)\w+/g])

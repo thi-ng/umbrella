@@ -9,13 +9,17 @@ import { repeatedly } from "./repeatedly.js";
  * If `weights` is given, it must have at least the same size as `choices`. If
  * omitted, each choice will have same probability.
  *
+ * @remarks
+ * Internally uses
+ * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
+ *
  * @example
  * ```ts
+ * import { choices, frequencies, take, transduce } from "@thi.ng/transducers";
+ *
  * transduce(take(1000), frequencies(), choices("abcd", [1, 0.5, 0.25, 0.125]))
  * // Map { 'c' => 132, 'a' => 545, 'b' => 251, 'd' => 72 }
  * ```
- *
- * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html)
  *
  * @param choices -
  * @param weights -

@@ -7,6 +7,8 @@ import type { Fn0, ISeq } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { cons, lazyseq } from "@thi.ng/seq";
+ *
  * const rnd = () => lazyseq(() => cons(Math.random(), rnd()));
  * const a = rnd();
  *

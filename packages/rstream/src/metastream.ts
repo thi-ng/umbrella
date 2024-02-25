@@ -46,12 +46,15 @@ export interface MetaStreamOpts extends CommonOpts {
  *
  * @example
  * ```ts
+ * import { fromIterable, metaStream, trace } from "@thi.ng/rstream";
+ * import { repeat } from "@thi.ng/transducers";
+ *
  * // transform each received odd number into a stream
  * // producing 3 copies of that number in the metastream
  * // even numbers are ignored
  * a = metaStream(
  *   (x) => (x & 1)
- *     ? fromIterable(tx.repeat(x, 3), { delay: 100 })
+ *     ? fromIterable(repeat(x, 3), { delay: 100 })
  *     : null
  * );
  *
@@ -72,13 +75,16 @@ export interface MetaStreamOpts extends CommonOpts {
  *
  * @example
  * ```ts
+ * import { fromIterable, metaStream, trace, CloseMode } from "@thi.ng/rstream";
+ * import { repeat } from "@thi.ng/transducers";
+ *
  * // infinite inputs
  * a = fromIterable(
- *   tx.repeat("a"),
+ *   repeat("a"),
  *   { delay: 1000, closeOut: CloseMode.NEVER }
  * );
  * b = fromIterable(
- *   tx.repeat("b"),
+ *   repeat("b"),
  *   { delay: 1000, closeOut: CloseMode.NEVER }
  * );
  *

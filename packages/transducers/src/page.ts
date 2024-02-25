@@ -14,6 +14,8 @@ import { take } from "./take.js";
  *
  * @example
  * ```ts
+ * import { page, range } from "@thi.ng/transducers";
+ *
  * [...page(0, 5, range(12))]
  * // [ 0, 1, 2, 3, 4 ]
  *

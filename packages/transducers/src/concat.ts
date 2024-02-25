@@ -8,6 +8,8 @@ import { ensureIterable } from "@thi.ng/arrays/ensure-iterable";
  *
  * @example
  * ```ts
+ * import { concat } from "@thi.ng/transducers";
+ *
  * [...concat([1, 2, 3], null, [4, 5])]
  * // [ 1, 2, 3, 4, 5 ]
  *

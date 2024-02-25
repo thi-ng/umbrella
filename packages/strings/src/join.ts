@@ -8,11 +8,15 @@ import type { Stringer } from "./api.js";
  *
  * @example
  * ```ts
+ * import { format, join } from "@thi.ng/strings";
+ * import { partial } from "@thi.ng/compose";
+ *
  * const slashes = join("/");
  *
  * slashes([1, 2, 3]);
  * // "1/2/3"
  *
+ * // pre-compose formatter function w/ partial arguments
  * const formatOBJFace = partial(
  *   format, ["f ", slashes, " ", slashes, " ", slashes]
  * );

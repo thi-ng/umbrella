@@ -22,6 +22,8 @@ import type { PatchArrayOp } from "./api.js";
  *
  * @example
  * ```ts
+ * import { patchArray, Patch } from "@thi.ng/transducers-patch";
+ *
  * // direct invocation
  * patchArray(
  *     true,

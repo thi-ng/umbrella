@@ -13,6 +13,8 @@ import { zip } from "./zip.js";
  *
  * @example
  * ```ts
+ * import { rangeNd } from "@thi.ng/transducers";
+ *
  * [...rangeNd([2])]
  * // [ [ 0 ], [ 1 ] ]
  *

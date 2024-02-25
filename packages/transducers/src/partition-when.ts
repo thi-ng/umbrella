@@ -10,6 +10,8 @@ import { isReduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { partitionWhen } from "@thi.ng/transducers";
+ *
  * [...partitionWhen((x) => !!x, [0, 1, 0, 0, 1, 1, 0, 1])]
  * // [ [ 0 ], [ 1, 0, 0 ], [ 1 ], [ 1, 0 ], [ 1 ] ]
  * ```

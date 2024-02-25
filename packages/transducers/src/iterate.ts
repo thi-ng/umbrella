@@ -12,6 +12,8 @@ import type { Fn2 } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { iterate } from "@thi.ng/transducers";
+ *
  * [...iterate((x) => x * 2, 1, 5)]
  * // [ 1, 2, 4, 8, 16 ]
  *

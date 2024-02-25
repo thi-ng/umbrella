@@ -43,6 +43,8 @@ export const fromEvent = (
  *
  * @example
  * ```ts
+ * import { fromDOMEvent, fromEvent } from "@thi.ng/rstream";
+ *
  * fromDOMEvent(document.body, "mousemove"); // Stream<MouseEvent>
  * fromEvent(document.body, "mousemove"); // Stream<Event>
  * ```

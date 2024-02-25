@@ -35,6 +35,8 @@ import {
  *
  * @example
  * ```ts
+ * import { lookup } from "@thi.ng/vectors";
+ *
  * lookup("a")(0) // a[ia]
  * lookup("a")(1) // a[ia * sa]
  * lookup("a")(2) // a[ia + 2 * sa]

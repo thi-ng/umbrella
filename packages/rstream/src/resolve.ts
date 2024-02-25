@@ -23,8 +23,11 @@ export interface ResolverOpts extends IID<string> {
  *
  * @example
  * ```ts
+ * import { fromIterable, resolve, trace } from "@thi.ng/rstream";
+ * import { delayed } from "@thi.ng/transducers";
+ *
  * fromIterable([1, 2, 3], 100)
- *   .transform(tx.delayed(1000))
+ *   .transform(delayed(1000))
  *   .subscribe(resolve())
  *   .subscribe(trace("result"))
  * // result 1

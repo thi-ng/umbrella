@@ -15,12 +15,14 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  * behavior allows a {@link mapcat} user functions to benefit from reduced
  * results.
  *
- * Also see:
- * - {@link concat}
- * - {@link mapcat}
+ * Also see {@link concat}, {@link mapcat}.
  *
  * @example
  * ```ts
+ * import {
+ *   cat, comp, iterator, map, mapcat, mapIndexed, reduced
+ * } from "@thi.ng/transducers";
+ *
  * [...iterator(comp(map((x) => [x, x]), cat()), [1, 2, 3, 4])]
  * // [ 1, 1, 2, 2, 3, 3, 4, 4 ]
  *

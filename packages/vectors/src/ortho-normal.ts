@@ -10,6 +10,8 @@ import { sub3 } from "./sub.js";
  *
  * @example
  * ```ts
+ * import { orthoNormal3 } from "@thi.ng/vectors";
+ *
  * orthoNormal3([], [0, 0, 0], [1, 0, 0], [0, 1, 0])
  * // [0, 0, 1]
  * ```

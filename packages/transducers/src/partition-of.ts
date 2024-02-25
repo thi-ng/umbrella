@@ -9,6 +9,8 @@ import { partitionBy } from "./partition-by.js";
  *
  * @example
  * ```ts
+ * import { partitionOf } from "@thi.ng/transducers";
+ *
  * [...partitionOf([3,2,4], range(20))]
  * // [ [ 0, 1, 2 ],
  * //   [ 3, 4 ],

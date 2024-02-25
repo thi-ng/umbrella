@@ -7,6 +7,8 @@ import type { FnU3 } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { repeatedly3d } from "@thi.ng/transducers";
+ *
  * [...repeatedly3d((x, y, z) => [(x+1)*10, (y+1)*100, (z+1)*1000], 2, 2, 2)]
  * // [
  * //   [ 10, 100, 1000 ], [ 20, 100, 1000 ], [ 10, 200, 1000 ], [ 20, 200, 1000 ],

@@ -9,6 +9,8 @@ import { metaStream, type MetaStreamOpts } from "./metastream.js";
  *
  * @example
  * ```ts
+ * import { debounce, fromIterable } from "@thi.ng/rstream";
+ *
  * const src = fromIterable([1, 2, 3], { delay: 10 })
  * src.subscribe(debounce(20)).subscribe({ next: console.log });
  * // 3

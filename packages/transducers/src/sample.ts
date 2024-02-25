@@ -11,6 +11,8 @@ import { __iter } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { range, sample } from "@thi.ng/transducers";
+ *
  * // 10% probability
  * [...sample(0.1, range(100))]
  * // [ 3, 24, 25, 36, 43, 49, 59, 64, 82, 86, 89 ]

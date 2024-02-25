@@ -9,6 +9,8 @@
  *
  * @example
  * ```ts
+ * import { computeCursorPos } from "@thi.ng/strings";
+ *
  * computeCursorPos("thi.ng\numbrella", 10);
  * // [ 2, 4 ]
  *

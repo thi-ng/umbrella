@@ -29,9 +29,11 @@ export interface StructField extends Array<any> {
  *
  * @example
  * ```ts
- * tx.transduce(
- *     tx.struct([["id", 1, (id) => id[0]], ["pos", 2], ["vel", 2], ["color", 4]]),
- *     tx.push(),
+ * import { push, struct, transduce } from "@thi.ng/transducers";
+ *
+ * transduce(
+ *     struct([["id", 1, (id) => id[0]], ["pos", 2], ["vel", 2], ["color", 4]]),
+ *     push(),
  *     [0, 100, 200, -1, 0, 1, 0.5, 0, 1, 1, 0, 0, 5, 4, 0, 0, 1, 1]
  * )
  * // [ { color: [ 1, 0.5, 0, 1 ],

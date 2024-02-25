@@ -9,11 +9,13 @@ import type { ToStringOpts } from "./api.js";
  * formatted string representation.
  *
  * @remarks
- * See {@link ToStringOpts} for further details. Also see {@link setFormat} to
- * set default formatter.
+ * See {@link ToStringOpts} for further details. Also see {@link FORMATTER} and
+ * {@link setFormat} to set default formatter.
  *
  * @example
  * ```ts
+ * import { defFormat } from "@thi.ng/vectors";
+ *
  * defFormat()([1, -2, 3])
  * // [1.000, -2.000, 3.000]
  *

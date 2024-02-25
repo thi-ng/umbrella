@@ -13,6 +13,8 @@ import { __iter } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { dedupe } from "@thi.ng/transducers";
+ *
  * [...dedupe([1, 1, 2, 3, 3, 3, 1])]
  * // [ 1, 2, 3, 1 ]
  * ```

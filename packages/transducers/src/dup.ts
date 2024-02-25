@@ -13,6 +13,8 @@ import { concat } from "./concat.js";
  *
  * @example
  * ```ts
+ * import { dup } from "@thi.ng/transducers";
+ *
  * dup("hello"); // "hellohello"
  * dup([1, 2, 3]); // [1, 2, 3, 1, 2, 3]
  * dup(range(3)); // IterableIterator<number>

@@ -28,6 +28,8 @@ export const capitalize: FnS = (x) =>
  *
  * @example
  * ```ts
+ * import { kebab } from "@thi.ng/strings";
+ *
  * kebab("FooBar23Baz");
  * // "foo-bar23-baz"
  * ```

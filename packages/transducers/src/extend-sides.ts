@@ -12,6 +12,8 @@ import { repeat } from "./repeat.js";
  *
  * @example
  * ```ts
+ * import { extendSides } from "@thi.ng/transducers";
+ *
  * [...extendSides([1, 2, 3])]
  * // [ 1,  1, 2, 3,  3]
  *

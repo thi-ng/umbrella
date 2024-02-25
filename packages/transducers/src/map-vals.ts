@@ -14,6 +14,8 @@ import { map } from "./map.js";
  *
  * @example
  * ```ts
+ * import { mapVals } from "@thi.ng/transducers";
+ *
  * [...mapVals((x)=> x * 10, [{a: 1, b: 2}, {c: 3, d: 4}])]
  * // [ { a: 10, b: 20 }, { c: 30, d: 40 } ]
  * ```

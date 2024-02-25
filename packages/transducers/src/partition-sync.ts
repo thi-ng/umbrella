@@ -77,6 +77,8 @@ export interface PartitionSyncOpts<T> {
  *
  * @example
  * ```ts
+ * import { partitionSync } from "@thi.ng/transducers";
+ *
  * src = [
  *   ["a", 1], ["a", 2], ["d", 100], ["b", 10],
  *   ["b", 11], ["c", 0], ["a", 3]
@@ -96,7 +98,10 @@ export interface PartitionSyncOpts<T> {
  * available (with other values in the tuple remaining). Compare with
  * above example:
  *
+ * @example
  * ```ts
+ * import { partitionSync } from "@thi.ng/transducers";
+ *
  * // passing `false` to disable tuple reset
  * [...partitionSync(
  *   ["a", "b"],

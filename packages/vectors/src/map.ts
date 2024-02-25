@@ -27,11 +27,13 @@ import type {
  *
  * @example
  * ```ts
+ * import { add2, mapVV, Vec2 } from "@thi.ng/vectors";
+ *
  * // each input buffer contains 2 2D vectors, but using
  * // different strided data layouts
  * mapVV(
  *   // transformation function
- *   add,
+ *   add2,
  *   // init output buffer view
  *   new Vec2(),
  *   // wrap 1st input buffer & configure offset & component stride
@@ -53,15 +55,18 @@ import type {
  * allocate any further objects.
  *
  * ```ts
+ * import { add2, Vec2 } from "@thi.ng/vectors";
+ * import { map, run, zip } from "@thi.ng/transducers";
+ *
  * // output buffer
  * const out = new Array(4);
  *
- * tx.run(
- *   tx.map(([o, a, b]) => add(o, a, b)),
- *   tx.zip(
- *      Vec2.iterator(out, 2),
- *      Vec2.iterator([1,0,2,0,0,0,0,0,3,0,4,0,0,0,0,0], 2, 0, 2, 8),
- *      Vec2.iterator([0,10,0,0,20,0,0,30,0,0,40], 2, 1, 3, 6),
+ * run(
+ *   map(([o, a, b]) => add2(o, a, b)),
+ *   zip(
+ *     Vec2.iterator(out, 2),
+ *     Vec2.iterator([1,0,2,0,0,0,0,0,3,0,4,0,0,0,0,0], 2, 0, 2, 8),
+ *     Vec2.iterator([0,10,0,0,20,0,0,30,0,0,40], 2, 1, 3, 6),
  *   )
  * );
  *
@@ -103,6 +108,8 @@ export const mapVV = (
  *
  * @example
  * ```ts
+ * import { mapV, swapXY, Vec2 } from "@thi.ng/vectors";
+ *
  * // 4x 2D vectors in SOA layout
  * // i.e. [x1, x2, x3, x4, y1, y2, y3, y4]
  * buf = [1, 3, 5, 7, 2, 4, 6, 8];

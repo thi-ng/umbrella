@@ -12,6 +12,8 @@ import {
  *
  * @example
  * ```ts
+ * import { defFormat, FMT_ANSI16, FG_RED } from "@thi.ng/text-format";
+ *
  * const red = defFormat(FMT_ANSI16, FG_RED);
  *
  * red("hello");

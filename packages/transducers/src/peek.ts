@@ -9,6 +9,8 @@ import { map } from "./map.js";
  *
  * @example
  * ```ts
+ * import { peek } from "@thi.ng/transducers";
+ *
  * [...peek([ [1, 2, 3], [4, 5] ])]
  * // [ 3, 5 ]
  * ```

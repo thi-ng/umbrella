@@ -12,6 +12,8 @@ import { __iter } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { assocObj, mapIndexed, transduce } from "@thi.ng/transducers";
+ *
  * transduce(
  *   mapIndexed((i, x) => ["id" + i, x * 10], 42),
  *   assocObj(),

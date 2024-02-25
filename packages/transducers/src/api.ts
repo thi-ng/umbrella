@@ -45,6 +45,11 @@ export interface Reducer<A, B> extends Array<any> {
  *
  * @example
  * ```ts
+ * import {
+ *   comp, drop, map, push, range, transduce
+ *   type IXform
+ * } from "@thi.ng/transducers";
+ *
  * class Mul implements IXform<number, number> {
  *   constructor(public factor = 10) {}
  *

@@ -11,11 +11,12 @@ import { fromPromise } from "./promise.js";
  * If any of the promises rejects, all others will do so too. In this case the
  * stream calls {@link ISubscriber.error} in all of its subscribers.
  *
- * Type signature updated to use `Awaited<T>`, a new core type introduced in
- * TypeScript 4.5.
+ * Also see {@link fromPromise}, {@link resolve}.
  *
  * @example
  * ```ts
+ * import { fromPromises } from "@thi.ng/rstream";
+ *
  * fromPromises([
  *     Promise.resolve(1),
  *     Promise.resolve(2),
@@ -32,6 +33,8 @@ import { fromPromise } from "./promise.js";
  * (however this approach provides no ordering guarantees):
  *
  * ```ts
+ * import { fromIterable, resolve, trace } from "@thi.ng/rstream";
+ *
  * fromIterable([
  *     Promise.resolve(1),
  *     new Promise(() => setTimeout(() => { throw new Error("eeek"); }, 10)),

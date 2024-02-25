@@ -13,7 +13,9 @@ import { reduced } from "./reduced.js";
  *
  * @example
  * ```ts
- * reduce(every((x)=> x > 0), [1,2,-1,3]);
+ * import { every } from "@thi.ng/transducers";
+ *
+ * every((x)=> x > 0, [1,2,-1,3]);
  * // false
  * ```
  *

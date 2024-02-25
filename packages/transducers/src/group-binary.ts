@@ -26,6 +26,8 @@ const branchPred =
  *
  * @example
  * ```ts
+ * import { groupBinary, reduce } from "@thi.ng/transducers";
+ *
  * tree = reduce(
  *   groupBinary(4, x => x.id & 0xf),
  *   [{id: 3}, {id: 8}, {id: 15}, {id: 0}]
@@ -43,6 +45,8 @@ const branchPred =
  *
  * @example
  * ```ts
+ * import { groupBinary, identity, push, reduce } from "@thi.ng/transducers";
+ *
  * tree = reduce(
  *   groupBinary(4, identity, ()=>[], push(), 0, 1),
  *   [1,2,3,4,5,6,7]
@@ -59,6 +63,8 @@ const branchPred =
  *
  * @example
  * ```ts
+ * import { frequencies, groupBinary, reduce } from "@thi.ng/transducers";
+ *
  * tree = reduce(
  *   groupBinary(3, (x: string) => x.length, null, frequencies()),
  *   "aa bbb dddd ccccc bbb eeee fff".split(" ")

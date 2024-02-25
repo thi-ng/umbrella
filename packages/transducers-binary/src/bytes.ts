@@ -84,6 +84,11 @@ export const str = (x: string): BinStructItem => ["str", x];
  *
  * @example
  * ```ts
+ * import {
+ *   asBytes, f32, i16, str, u32,
+ *   hexDumpString
+ * } from "@thi.ng/transducers-binary";
+ *
  * hexDumpString({}, asBytes([
  *   str("hello!"),
  *   u32(0xdecafbad),

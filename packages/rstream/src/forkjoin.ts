@@ -186,6 +186,8 @@ export type Sliceable<T> = ArrayLike<T> & {
  *
  * @example
  * ```ts
+ * import { forkBuffer, forkJoin, joinBuffer } from "@thi.ng/rstream";
+ *
  * forkJoin<number[], number[], number[], number[]>({
  *     src,
  *     // job definition / split buffer into chunks (min size 256 values)

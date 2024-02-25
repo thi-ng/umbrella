@@ -28,6 +28,8 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  *
  * @example
  * ```ts
+ * import { fromIterable, merge, trace } from "@thi.ng/rstream";
+ *
  * merge({
  *     // input streams w/ different frequencies
  *     src: [
@@ -55,6 +57,8 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  *
  * @example
  * ```ts
+ * import { fromIterable, merge } from "@thi.ng/rstream";
+ *
  * merge({
  *     src: [
  *         fromIterable([1, 2, 3]).transform(tx.labeled("a")),

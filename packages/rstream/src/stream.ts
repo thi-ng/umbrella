@@ -41,6 +41,8 @@ import { Subscription } from "./subscription.js";
  *
  * @example
  * ```ts
+ * import { stream, subscription, trace } from "@thi.ng/rstream";
+ *
  * a = stream((s) => {
  *     s.next(1);
  *     s.next(2);

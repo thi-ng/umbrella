@@ -7,6 +7,8 @@ import type { Fn } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { repeatedly } from "@thi.ng/transducers";
+ *
  * [...repeatedly(() => Math.floor(Math.random() * 10), 5)]
  * // [7, 0, 9, 3, 1]
  *

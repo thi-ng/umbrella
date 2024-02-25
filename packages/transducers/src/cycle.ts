@@ -8,6 +8,8 @@
  *
  * @example
  * ```ts
+ * import { cycle, range, take } from "@thi.ng/transducers";
+ *
  * // take 5 from infinite sequence
  * [...take(5, cycle([1, 2, 3]))]
  * // [1, 2, 3, 1, 2]

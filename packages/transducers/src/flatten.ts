@@ -13,6 +13,8 @@ import { flattenWith } from "./flatten-with.js";
  *
  * @example
  * ```ts
+ * import { flatten } from "@thi.ng/transducers";
+ *
  * [...flatten([[1, [2, 3]], ["abc", "cde"]])]
  * // [1, 2, 3, "abc", "def"]
  *

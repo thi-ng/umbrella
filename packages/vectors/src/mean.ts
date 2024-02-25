@@ -14,6 +14,8 @@ import { sum } from "./sum.js";
  *
  * @example
  * ```ts
+ * import { mean } from "@thi.ng/vectors";
+ *
  * mean([], [[3, 10, 400], [4, 30, 100], [1, 40, 200], [2, 20, 300]])
  * // [ 2.5, 25, 250 ]
  * ```
@@ -35,6 +37,8 @@ export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
  *
  * @example
  * ```ts
+ * import { vmean } from "@thi.ng/vectors";
+ *
  * vmean([5, 10, 15, 20])
  * // 12.5
  * ```

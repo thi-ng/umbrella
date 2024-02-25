@@ -12,6 +12,8 @@ import { $$reduce } from "./reduce.js";
  *
  * @example
  * ```ts
+ * import { filter, normCount, transduce } from "@thi.ng/transducers";
+ *
  * const items = [1,2,3,1,1,4,2,5,1,2];
  *
  * // compute percentage of values < 3

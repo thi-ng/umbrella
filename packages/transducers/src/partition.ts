@@ -10,6 +10,8 @@ import { __iter, iterator } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { partition } from "@thi.ng/transducers";
+ *
  * [...partition(3, range(10))]
  * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ] ]
  *

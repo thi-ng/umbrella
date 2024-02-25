@@ -16,6 +16,9 @@ import { Subscription } from "./subscription.js";
  *
  * @example
  * ```ts
+ * import { defAtom } from "@thi.ng/atom";
+ * import { fromAtom, syncRAF } from "@thi.ng/rstream";
+ *
  * const atom = defAtom("alice");
  *
  * // any changes to the atom will only be received by this subscription

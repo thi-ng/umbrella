@@ -26,8 +26,13 @@ const imul = Math.imul;
  * Hash collisions:
  *
  * ```ts
+ * import { hash } from "@thi.ng/vectors";
+ * import {
+ *   conj, map, normRange, permutations, range2d, transduce
+ * } from "@thi.ng/transducers";
+ *
  * // integer grid coords
- * uniq = tx.transduce(tx.map(v.hash32), tx.conj(), tx.range2d(0x1000, 0x1000)).size
+ * uniq = transduce(map(hash), conj(), range2d(0x1000, 0x1000)).size
  * // 16744420
  *
  * // collision rate
@@ -35,10 +40,10 @@ const imul = Math.imul;
  * // 0.1955 %
  *
  * // normalized grid coords
- * uniq = tx.transduce(
- *   tx.map(v.hash32),
- *   tx.conj(),
- *   tx.permutations(tx.normRange(1000), tx.normRange(1000))
+ * uniq = transduce(
+ *   map(hash),
+ *   conj(),
+ *   permutations(normRange(1000), normRange(1000))
  * ).size
  * // 1001895
  *

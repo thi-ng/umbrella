@@ -30,6 +30,8 @@ import { sync } from "./sync.js";
  *
  * @example
  * ```ts
+ * import { stream, tween } from "@thi.ng/rstream";
+ *
  * val = stream();
  *
  * tween(

@@ -10,6 +10,8 @@ const re = new RegExp(src.split("").join("|"), "g");
  *
  * @example
  * ```ts
+ * import { slugify } from "@thi.ng/strings";
+ *
  * slugify("Me, myself (& ëye) 😀!")
  * // "me-myself-and-eye"
  * ```
@@ -37,6 +39,8 @@ export const slugify: Stringer<string> = (str: string) => {
  *
  * @example
  * ```ts
+ * import { slugifyGH } from "@thi.ng/strings";
+ *
  * slugifyGH("Me, myself (& ëye) 😀!")
  * // "me-myself--ëye-"
  * ```

@@ -9,6 +9,8 @@ import { $$reduce } from "./reduce.js";
  *
  * @example
  * ```ts
+ * import { normFrequenciesAuto } from "@thi.ng/transducers";
+ *
  * const items = [1, 2, 3, 1, 1, 4, 2, 5, 1, 2];
  *
  * normFrequenciesAuto(items)

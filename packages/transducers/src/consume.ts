@@ -8,6 +8,8 @@
  *
  * @example
  * ```ts
+ * import { consume, repeatedly2d } from "@thi.ng/transducers";
+ *
  * consume(repeatedly2d((x, y) => console.log("output:", [x, y]), 2, 3));
  * // output: [ 0, 0 ]
  * // output: [ 1, 0 ]

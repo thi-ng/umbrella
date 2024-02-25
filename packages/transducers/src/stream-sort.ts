@@ -11,6 +11,8 @@ import { __iter, iterator } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { streamSort } from "@thi.ng/transducers";
+ *
  * [...streamSort(4, [5,9,2,6,4,1,3,8,7,0])]
  * // [ 2, 4, 1, 3, 5, 6, 0, 7, 8, 9 ]
  * ```

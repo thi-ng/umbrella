@@ -12,6 +12,8 @@ import { reduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { range, takeWhile } from "@thi.ng/transducers";
+ *
  * [...takeWhile((x) => x < 5, range(10))]
  * // [ 0, 1, 2, 3, 4 ]
  * ```

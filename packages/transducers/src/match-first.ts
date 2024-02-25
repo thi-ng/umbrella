@@ -11,7 +11,10 @@ import { take } from "./take.js";
  *
  * @example
  * ```ts
+ * import { comp, filter, take } from "@thi.ng/transducers";
+ *
  * comp(filter(pred), take(1))
+ * // [Function]
  * ```
  *
  * Yields none or only the first value which passed the predicate check
@@ -20,6 +23,8 @@ import { take } from "./take.js";
  *
  * @example
  * ```ts
+ * import { comp, map, matchFirst, push, transduce } from "@thi.ng/transducers";
+ *
  * matchFirst((x) => x >= 5, [3, 1, 4, 2, 6, 5])
  * // 6
  *
@@ -28,10 +33,10 @@ import { take } from "./take.js";
  *     matchFirst((x) => x >= 5),
  *     map((x) => x * 10)
  *   ),
- *   last(),
+ *   push(),
  *   [3, 1, 4, 2, 6, 5]
  * )
- * // 60
+ * // [60]
  * ```
  *
  * @param pred - predicate function

@@ -16,6 +16,8 @@ import { isReduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { padLast } from "@thi.ng/transducers";
+ *
  * [...padLast(8, 0, [1, 2, 3, 4, 5])]
  * // [ 1, 2, 3, 4, 5, 0, 0, 0 ]
  *

@@ -10,6 +10,8 @@ import type { IObjectOf } from "@thi.ng/api";
  *
  * @example
  * ```ts
+ * import { pairs } from "@thi.ng/transducers";
+ *
  * [...pairs({ a: 1, b: 2 })]
  * // [['a', 1], ['b', 2]]
  * ```

@@ -13,6 +13,8 @@ import { __iter } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { mapNth } from "@thi.ng/transducers";
+ *
  * [...mapNth(3, (x) => x * 10, range(1,10))]
  * // [ 10, 2, 3, 40, 5, 6, 70, 8, 9 ]
  *

@@ -8,6 +8,8 @@ import { __ensureInputs } from "./internal/ensure.js";
  *
  * @example
  * ```ts
+ * import { median } from "@thi.ng/vectors";
+ *
  * median([], [[3, 10, 400], [4, 30, 100], [1, 40, 200], [2, 20, 300]])
  * // [ 3, 30, 300 ]
  * ```
@@ -30,7 +32,9 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
  *
  * @example
  * ```ts
- * vmean([10, 20, 5, 15])
+ * import { vmedian } from "@thi.ng/vectors";
+ *
+ * vmedian([10, 20, 5, 15])
  * // 10
  * ```
  *

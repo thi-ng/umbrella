@@ -15,6 +15,8 @@ import { isReduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { rechunk } from "@thi.ng/transducers";
+ *
  * [...rechunk(/-/, ["abc-d", "ef-g-", "hij", "-k-lm"])]
  * // [ "abc", "def", "g", "hij", "k", "lm" ]
  * ```

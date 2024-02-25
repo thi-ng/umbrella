@@ -15,7 +15,21 @@ import { truncate } from "./truncate.js";
  *
  * @example
  * ```ts
+ * import { center, wrap } from "@thi.ng/strings";
+ *
  * center(20, "<>")(wrap(" ")("thi.ng"))
+ * // "<><><> thi.ng <><><>"
+ * ```
+ *
+ * @example
+ * ```ts
+ * import { comp } from "@thi.ng/compose";
+ * import { center, wrap } from "@thi.ng/strings";
+ *
+ * // compose formatting function
+ * const fmt = comp(center(20,"<>"), wrap(" "));
+ *
+ * fmt("thi.ng")
  * // "<><><> thi.ng <><><>"
  * ```
  *

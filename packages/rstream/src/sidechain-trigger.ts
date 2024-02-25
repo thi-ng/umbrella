@@ -27,6 +27,8 @@ export interface SidechainTriggerOpts<T> extends CommonOpts {
  *
  * @example
  * ```ts
+ * import { reactive, stream, sidechainTrigger, trace } from "@thi.ng/rstream";
+ *
  * const src = reactive("payload");
  *
  * const side = stream();

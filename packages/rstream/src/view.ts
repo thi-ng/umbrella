@@ -34,6 +34,9 @@ export type FromViewUnsafeOpts<T> = FromViewOpts<Path, any, T>;
 
  * @example
  * ```ts
+ * import { defAtom } from "@thi.ng/atom";
+ * import { fromViewUnsafe, trace } from "@thi.ng/rstream";
+ *
  * const db = defAtom<any>({ a: 1, b: { c: 2 }});
  *
  * // create stream of `c` value changes
@@ -91,6 +94,9 @@ export const fromViewUnsafe = <T>(
  *
  * @example
  * ```ts
+ * import { defAtom } from "@thi.ng/atom";
+ * import { fromView, trace } from "@thi.ng/rstream";
+ *
  * const db = defAtom<any>({ a: 1, b: { c: 2 }});
  *
  * fromView(

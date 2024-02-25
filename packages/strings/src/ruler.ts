@@ -6,6 +6,8 @@ import { repeat } from "./repeat.js";
  *
  * @example
  * ```ts
+ * import { ruler } from "@thi.ng/strings";
+ *
  * console.log(ruler(40))
  * // |''''|''''|''''|''''|''''|''''|''''|''''
  *
@@ -30,6 +32,8 @@ export const ruler = (width: number, major = 5, a = "|", b = "'") =>
  *
  * @example
  * ```ts
+ * import { grid } from "@thi.ng/strings";
+ *
  * console.log(grid(3, 3, 4, 2));
  * // +---+---+---+
  * // |   |   |   |

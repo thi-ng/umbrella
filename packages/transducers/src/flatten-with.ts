@@ -21,6 +21,8 @@ export type MaybeIterable<T> = Nullable<Iterable<T>>;
  *
  * @example
  * ```ts
+ * import { flattenWith } from "@thi.ng/transducers";
+ *
  * // custom predicate which converts objects into key/val tuples,
  * // returns iterables as is and null for everything else
  * const pred = (x) =>

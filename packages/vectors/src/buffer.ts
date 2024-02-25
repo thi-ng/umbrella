@@ -13,6 +13,8 @@ import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api.js";
  *
  * @example
  * ```ts
+ * import { mapBuffer } from "@thi.ng/vectors";
+ *
  * mapBuffer("f32", new ArrayBuffer(32), 4, 2)
  * // [
  * //   Float32Array [ 0, 0 ],

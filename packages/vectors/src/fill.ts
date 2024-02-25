@@ -10,6 +10,8 @@ import { set } from "./set.js";
  *
  * @example
  * ```ts
+ * import { fill, Vec2 } from "@thi.ng/vectors";
+ *
  * fill(
  *   new Vec2(new Float32Array(12)),
  *   new Vec2([1, 2]),

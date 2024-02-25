@@ -56,10 +56,13 @@ import { LOGGER } from "./logger.js";
  *
  * @example
  * ```ts
+ * import { subscription, trace } from "@thi.ng/rstream";
+ * import { filter } from "@thi.ng/transducers";
+ *
  * // as reactive value mechanism (same as with stream() above)
  * s = subscription();
  * s.subscribe(trace("s1"));
- * s.subscribe(trace("s2"), { xform: tx.filter((x) => x > 25) });
+ * s.subscribe(trace("s2"), { xform: filter((x) => x > 25) });
  *
  * // external trigger
  * s.next(23);

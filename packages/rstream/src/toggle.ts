@@ -9,6 +9,8 @@ import { Subscription } from "./subscription.js";
  *
  * @examples
  * ```ts
+ * import { toggle, trace } from "@thi.ng/rstream";
+ *
  * const mute = toggle(false);
  *
  * mute.subscribe(trace("mute"));

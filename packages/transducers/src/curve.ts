@@ -15,6 +15,8 @@
  *
  * @example
  * ```ts
+ * import { curve } from "@thi.ng/transducers";
+ *
  * [...curve(50, 100, 10, 2)]
  * // [
  * //   50,

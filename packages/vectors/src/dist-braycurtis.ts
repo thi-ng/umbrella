@@ -8,6 +8,8 @@ import type { DistanceFn } from "./api.js";
  *
  * @example
  * ```ts
+ * import { distBrayCurtis } from "@thi.ng/vectors";
+ *
  * distBrayCurtis([6, 7, 4], [10, 0, 6])
  * // 0.393939...
  * ```

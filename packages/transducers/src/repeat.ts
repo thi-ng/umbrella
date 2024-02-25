@@ -6,6 +6,8 @@
  *
  * @example
  * ```ts
+ * import { repeat } from "@thi.ng/transducers";
+ *
  * [...repeat(42, 5)]
  * // [42, 42, 42, 42, 42]
  * ```

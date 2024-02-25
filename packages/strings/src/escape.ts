@@ -61,6 +61,8 @@ export const escape = (src: string) =>
  *
  * @example
  * ```ts
+ * import { unescape } from "@thi.ng/strings";
+ *
  * unescape("\\ud83d\\ude0e \\U0001f60e")
  * // '😎'
  * ```

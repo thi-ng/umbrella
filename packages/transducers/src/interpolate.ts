@@ -30,6 +30,8 @@ import { partition } from "./partition.js";
  *
  * @example
  * ```ts
+ * import { interpolate } from "@thi.ng/transducers";
+ *
  * [...interpolate(
  *   ([a, b], t) => a + (b - a) * t,
  *   2,

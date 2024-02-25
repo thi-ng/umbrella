@@ -5,6 +5,8 @@ import type { Stringer } from "./api.js";
  *
  * @example
  * ```ts
+ * import { hstr } from "@thi.ng/strings";
+ *
  * hstr("abc")  // "3Habc"
  * hstr(123.45) // "6H123.45"
  * hstr("")     // "0H"

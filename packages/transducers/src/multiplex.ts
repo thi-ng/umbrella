@@ -26,6 +26,8 @@ import { step } from "./step.js";
  *
  * @example
  * ```ts
+ * import { iterator, map, multiplex } from "@thi.ng/transducers";
+ *
  * [...iterator(
  *   multiplex(
  *     map(x => x.charAt(0)),
@@ -40,6 +42,8 @@ import { step } from "./step.js";
  *
  * @example
  * ```ts
+ * import { iterator, map, mapcat, multiplex } from "@thi.ng/transducers";
+ *
  * [...iterator(
  *   multiplex(
  *     // override default unwrap behavior for this transducer

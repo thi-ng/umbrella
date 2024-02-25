@@ -9,13 +9,16 @@ import { mul } from "./mul.js";
  *
  * @example
  * ```ts
- * const distXZ = weightedDistance(dist3, [1,0,1]);
+ * import { dist3, weightedDistance, ONE3, ZERO3 } from "@thi.ng/vectors";
+ *
+ * // custom distance function, ignoring Y-component
+ * const distXZ = weightedDistance(dist3, [1, 0, 1]);
  *
  * // distance in XZ plane only
  * distXZ(ONE3, ZERO3);
  * // 1.4142135623730951
  *
- * // compare with full eucledian distance
+ * // compare with full Eucledian distance
  * dist3(ONE3, ZERO3);
  * // 1.7320508075688772
  * ```

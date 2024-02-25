@@ -10,6 +10,8 @@ import { iterator1 } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { map } from "@thi.ng/transducers";
+ *
  * [...map((x) => x * 10, [1, 2, 3])]
  * // [ 10, 20, 30 ]
  * ```

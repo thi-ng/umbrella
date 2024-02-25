@@ -192,12 +192,21 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
  *
  * @example
  * ```ts
+ * import {
+ *   add, defn, float, mul, neg, ret, scope, vec2
+ *   $x, $y
+ * } from "@thi.ng/shader-ast";
+ * import { targetGLSL } from "@thi.ng/shader-ast-glsl";
+ * import { constantFolding } from "@thi.ng/shader-ast-optimize";
+ *
+ * // function def
  * const foo = defn("float", "foo", ["float"], (x) => [
  *   ret(mul(x, add(neg(float(10)), float(42))))]
  * )
  *
  * const bar = vec2(100, 200);
  *
+ * // program def
  * const prog = scope([
  *   foo,
  *   foo(add(float(1), float(2))),
@@ -205,6 +214,7 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
  * ], true);
  *
  * // serialized (GLSL)
+ * const glsl = targetGLSL();
  * glsl(prog);
  *
  * // float foo(in float _sym0) {
@@ -227,6 +237,7 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
  * glsl(expr)
  * // (4.0 * vec2(2.0).x)
  *
+ * // optimize single expression
  * glsl(constantFolding(expr))
  * // 8.0
  * ```

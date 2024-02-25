@@ -9,8 +9,13 @@ import { $$reduce } from "./reduce.js";
  * Similar to {@link frequencies}, but with each bin value normalized to given
  * `norm`.
  *
+ * @remarks
+ * Also see {@link normFrequenciesAuto}.
+ *
  * @example
  * ```ts
+ * import { normFrequencies } from "@thi.ng/transducers";
+ *
  * const items = [1, 2, 3, 1, 1, 4, 2, 5, 1, 2];
  *
  * normFrequencies(10, items)

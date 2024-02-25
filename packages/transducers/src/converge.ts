@@ -21,6 +21,8 @@ import { ensureReduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { converge, iterate } from "@thi.ng/transducers";
+ *
  * // process as long as difference to prev value is >= 0.01
  * [...converge(
  *       // predicate

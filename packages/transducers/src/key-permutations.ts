@@ -20,6 +20,8 @@ import { permutations } from "./permutations.js";
  *
  * @example
  * ```ts
+ * import { keyPermutations } from "@thi.ng/transducers";
+ *
  * [...keyPermutations({ a: [1, 2], b: [true, false], c: ["X", "Y"] })]
  * // [
  * //   { a: 1, b: true, c: 'X' },

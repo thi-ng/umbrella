@@ -78,6 +78,10 @@ export const blit = (dest: Canvas, src: Canvas, x = 0, y = 0) => {
  *
  * @example
  * ```ts
+ * import {
+ *   blitMask, canvas, canvasFromText, clear, formatCanvas
+ * } from "@thi.ng/text-canvas";
+ *
  * // source canvas
  * const a = canvasFromText([
  *   "###==###",

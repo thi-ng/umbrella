@@ -98,6 +98,8 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
  *
  * @example
  * ```ts
+ * import { fromObject } from "@thi.ng/rstream";
+ *
  * type Foo = { a?: number; b: string; };
  *
  * const obj = fromObject(<Foo>{ a: 1, b: "foo" })
@@ -114,6 +116,8 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
  *
  * @example
  * ```ts
+ * import { fromObject, trace } from "@thi.ng/rstream";
+ *
  * const obj = fromObject(<Foo>{}, ["a", "b"], { initial: false });
  * obj.streams.a.subscribe(trace("a"));
  * obj.streams.b.subscribe(trace("b"));

@@ -15,6 +15,8 @@ import { str } from "./str.js";
  *
  * @example
  * ```ts
+ * import { palindrome } from "@thi.ng/transducers";
+ *
  * palindrome("hello"); // "helloolleh"
  * palindrome([1, 2, 3]); // [1, 2, 3, 3, 2, 1]
  * palindrome(range(3)); // IterableIterator<number>

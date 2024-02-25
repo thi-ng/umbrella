@@ -9,6 +9,8 @@ import { map } from "./map.js";
  *
  * @example
  * ```ts
+ * import { pluck } from "@thi.ng/transducers";
+ *
  * [...pluck("id", [{id: 1}, {id: 2}, {}])]
  * // [ 1, 2, undefined ]
  * ```

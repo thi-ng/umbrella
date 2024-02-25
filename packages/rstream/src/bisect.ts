@@ -15,6 +15,8 @@ import { PubSub } from "./pubsub.js";
  *
  * @example
  * ```ts
+ * import { bisect, fromIterable, trace } from "@thi.ng/rstream";
+ *
  * fromIterable([1, 2, 3, 4]).subscribe(
  *   bisect(
  *     (x) => !!(x & 1),
@@ -32,10 +34,13 @@ import { PubSub } from "./pubsub.js";
  *
  * @example
  * ```ts
+ * import { bisect, subscription, trace } from "@thi.ng/rstream";
+ * import { map } from "@thi.ng/transducers";
+ *
  * const odd = subscription();
  * const even = subscription();
  * odd.subscribe(trace("odd"));
- * odd.subscribe(trace("odd x10"), map((x) => x * 10));
+ * odd.subscribe(trace("odd x10"), { xform: map((x) => x * 10) });
  * even.subscribe(trace("even"));
  *
  * fromIterable([1, 2, 3, 4]).subscribe(

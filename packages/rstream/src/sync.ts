@@ -109,6 +109,8 @@ export interface StreamSyncOpts<
  *
  * @example
  * ```ts
+ * import { stream, sync, trace } from "@thi.ng/rstream";
+ *
  * const a = stream();
  * const b = stream();
  * s = sync({ src: { a, b } }).subscribe(trace("result: "));

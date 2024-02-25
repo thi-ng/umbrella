@@ -4,6 +4,8 @@
  *
  * @example
  * ```ts
+ * import { lookup1d, map } from "@thi.ng/transducers";
+ *
  * [...map(lookup1d([10, 20, 30]), [2,0,1])]
  * // [ 30, 10, 20 ]
  * ```
@@ -26,6 +28,8 @@ export const lookup1d =
  *
  * @example
  * ```ts
+ * import { lookup2d, map, range, range2d } from "@thi.ng/transducers";
+ *
  * [...map(lookup2d([...range(9)], 3), range2d(2, -1, 0, 3))]
  * // [ 2, 1, 0, 5, 4, 3, 8, 7, 6 ]
  * ```

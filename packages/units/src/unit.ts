@@ -116,6 +116,8 @@ export const asUnit = (id: string): Unit => {
  *
  * @example
  * ```ts
+ * import { prefix, M } from "@thi.ng/units";
+ *
  * // create kilometer unit from (builtin) meter
  * const KM = prefix("k", M);
  * ```
@@ -165,6 +167,8 @@ export class Quantity<T extends number | number[]> implements IDeref<T> {
  *
  * @example
  * ```ts
+ * import { convert, div, quantity, NONE } from "@thi.ng/units";
+ *
  * const speedOfLight = quantity(299792458, "m/s");
  *
  * // compute wavelength of a WiFi signal in millimeters
@@ -310,6 +314,8 @@ export function div(
  *
  * @example
  * ```ts
+ * import { reciprocal, S } from "@thi.ng/units";
+ *
  * const HZ = reciprocal(S, true);
  * ```
  *
@@ -337,6 +343,8 @@ export function reciprocal(
  * new unit itself is considered coherent and can be prefixed later.
  *
  * ```ts
+ * import { div, pow, M, S } from "@thi.ng/units";
+ *
  * // create kilometer unit from (builtin) meter
  * const SQ_METER = pow(M, 2);
  *

@@ -10,10 +10,12 @@ import { iterator1 } from "./iterator.js";
  *
  * @example
  * ```ts
+ * import { toggle } from "@thi.ng/transducers";
+ *
  * [...toggle(1, 0, false, [1, 2, 3, 4])]
  * // [ 1, 0, 1, 0 ]
  *
- * [...tx.toggle("on", "off", true, [1, 2, 3, 4])]
+ * [...toggle("on", "off", true, [1, 2, 3, 4])]
  * // [ 'off', 'on', 'off', 'on' ]
  * ```
  *

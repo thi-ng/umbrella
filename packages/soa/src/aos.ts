@@ -24,6 +24,8 @@ import { prepareSpec } from "./utils.js";
  *
  * @example
  * ```ts
+ * import { aos } from "@thi.ng/soa";
+ *
  * aos(
  *   1024,
  *   {

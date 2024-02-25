@@ -24,6 +24,8 @@ import { now, timeDiff } from "./utils.js";
  *
  * @example
  * ```ts
+ * import { test } from "@thi.ng/testament";
+ *
  * // test failure after multiple attempts
  * await test("foo", () => { throw new Error(23); }, { maxTrials: 3 })();
  * // [DEBUG ] retrying 'foo'...

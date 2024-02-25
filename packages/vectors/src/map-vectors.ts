@@ -22,13 +22,15 @@ import { isNumber } from "@thi.ng/checks/is-number";
  *
  * @example
  * ```ts
+ * import { addN2, mapVectors, mixN2 } from "@thi.ng/vectors";
+ *
  * mapVectors(addN2, [], [[1, 2], [10, 20]], 100)
  * // [ [ 101, 102 ], [ 110, 120 ] ]
  *
- * mapVectors(add2, [], [[1, 2], [10, 20]], [[100,200],[1000,2000]])
+ * mapVectors(add2, [], [[1, 2], [10, 20]], [[100, 200], [1000, 2000]])
  * // [ [ 101, 202 ], [ 1010, 2020 ] ]
  *
- * mapVectors(mixN2, null, [[1,2],[100,200]], [[10,20],[1000,2000]], 0.5)
+ * mapVectors(mixN2, null, [[1, 2], [100, 200]], [[10, 20], [1000, 2000]], 0.5)
  * // [ [ 5.5, 11 ], [ 550, 1100 ] ]
  * ```
  *

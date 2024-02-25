@@ -29,6 +29,8 @@ export interface FilterFuzzyOpts<A, B> {
  *
  * @example
  * ```ts
+ * import { filterFuzzy } from "@thi.ng/transducers";
+ *
  * [...filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
  * // ["hello", "hallo", "heyoka"]
  * ```

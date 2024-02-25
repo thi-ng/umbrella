@@ -21,6 +21,8 @@ import type { TransformSpec } from "./api.js";
  *
  * @example
  * ```ts
+ * import { deepTransform } from "@thi.ng/transducers";
+ *
  * // source object to be transformed
  * src = {
  *    meta: {
@@ -35,11 +37,11 @@ import type { TransformSpec } from "./api.js";
  * // deep transformation spec
  * spec = [
  *    // root transform (called last)
- *    ({type, meta, title, body}) => ["div", {class: type}, title, meta, body],
+ *    ({ type, meta, title, body }) => ["div", { class: type }, title, meta, body],
  *    // object of transform sub-specs
  *    {
  *      meta: [
- *        ({author, date}) => ["div.meta", author, `(${date})`],
+ *        ({ author, date }) => ["div.meta", author, `(${date})`],
  *        {
  *          author: ({email, name}) => ["a", {href: `mailto:${email}`}, name],
  *          date: (d) => new Date(d).toLocaleString()

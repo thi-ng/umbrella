@@ -6,7 +6,9 @@ import { ensureArray } from "@thi.ng/arrays/ensure-array";
  *
  * @example
  * ```ts
- * [...tx.reverse("hello world")]
+ * import { reverse } from "@thi.ng/transducers";
+ *
+ * [...reverse("hello world")]
  * // [ "d", "l", "r", "o", "w", " ", "o", "l", "l", "e", "h" ]
  * ```
  *

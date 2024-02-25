@@ -7,6 +7,8 @@ import type { Stringer } from "./api.js";
  *
  * @example
  * ```ts
+ * import { trim } from "@thi.ng/strings";
+ *
  * trim()("  Hello   ")
  * // "Hello"
  *

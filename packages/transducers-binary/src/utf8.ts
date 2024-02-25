@@ -117,6 +117,9 @@ export function utf8Decode(src?: Iterable<number>): any {
  *
  * @example
  * ```ts
+ * import { hexDump, utf8Encode } from "@thi.ng/transducers-binary";
+ * import { comp, str, transduce } from "@thi.ng/transducers";
+ *
  * transduce(
  *   comp(utf8Encode(), hexDump()),
  *   str("\n"),

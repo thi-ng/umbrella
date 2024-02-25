@@ -7,18 +7,14 @@ import { iterator } from "./iterator.js";
 import { takeLast } from "./take-last.js";
 
 /**
- * Transducer composition / syntax sugar for:
+ * Similar to {@link matchFirst}, but matches yields none or only the **last**
+ * value which passed the predicate check. If `src` input is given, returns last
+ * match found (or `undefined`).
  *
  * @example
  * ```ts
- * comp(filter(pred), takeLast(1))
- * ```
+ * import { comp, map, matchLast, push, transduce } from "@thi.ng/transducers";
  *
- * Yields none or only the last value which passed the predicate check.
- * If `src` input is given, returns last match found (or `undefined`).
- *
- * @example
- * ```ts
  * matchLast((x) => x >= 5, [3, 1, 6, 5, 4, 2])
  * // 5
  *
@@ -27,8 +23,8 @@ import { takeLast } from "./take-last.js";
  *     matchLast((x) => x >= 5),
  *     map((x) => x * 10)
  *   ),
- *   last(),
- *   [3, 1, 4, 2, 6, 5]
+ *   push(),
+ *   [3, 1, 6, 5, 4, 2]
  * )
  * // 50
  * ```

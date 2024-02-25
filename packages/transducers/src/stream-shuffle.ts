@@ -34,6 +34,9 @@ export interface StreamShuffleOpts {
  *
  * @example
  * ```ts
+ * import { range, streamShuffle } from "@thi.ng/transducers";
+ * import { XsAdd } from "@thi.ng/random";
+ *
  * [...streamShuffle(5, range(10))]
  * // [ 3, 2, 5, 0, 8, 7, 1, 6, 4, 9 ]
  *

@@ -22,6 +22,8 @@ import type { HexDumpOpts } from "./api.js";
  *
  * @example
  * ```ts
+ * import { hexDump } from "@thi.ng/transducers-binary";
+ *
  * src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
  *
  * [...hexDump({ cols: 8, address: 0x400 }, src)]

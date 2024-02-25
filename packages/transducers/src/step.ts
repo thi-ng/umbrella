@@ -16,6 +16,8 @@ import { isReduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { filter, map, macat, step, take } from "@thi.ng/transducers";
+ *
  * // single result (unwrapped, default)
  * step(map(x => x * 10))(1);
  * // 10

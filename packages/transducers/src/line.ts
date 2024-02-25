@@ -15,6 +15,8 @@ import { normRange } from "./norm-range.js";
  *
  * @example
  * ```ts
+ * import { line } from "@thi.ng/transducers";
+ *
  * [...line(50, 100, 10)]
  * // [
  * //    50, 55, 60, 65, 70,

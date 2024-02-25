@@ -10,6 +10,8 @@ import { ensureReduced, reduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import { comp, map, range, take } from "@thi.ng/transducers";
+ *
  * [...iterator(comp(take(5), map((x) => x * 10)), range(10))]
  * // [ 0, 10, 20, 30, 40 ]
  * ```

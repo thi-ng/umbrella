@@ -10,6 +10,8 @@ import { throttle } from "./throttle.js";
  *
  * @example
  * ```ts
+ * import { range, takeNth } from "@thi.ng/transducers";
+ *
  * [...takeNth(3, range(10))]
  * // [ 0, 3, 6, 9 ]
  * ```

@@ -29,6 +29,8 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  *
  * @example
  * ```ts
+ * import { fromEvent, fromRAF, merge, sidechainPartition, trace } from "@thi.ng/rstream";
+ *
  * // merge various event streams
  * events = merge([
  *     fromEvent(document,"mousemove"),
@@ -67,6 +69,9 @@ export const sidechainPartition = <T, S>(
  *
  * @example
  * ```ts
+ * import { defAtom } from "@thi.ng/atom";
+ * import { sideChainPartitionRAF } from "@thi.ng/rstream";
+ *
  * const atom = defAtom("alice");
  *
  * // any change to the atom will only be applied during next RAF update

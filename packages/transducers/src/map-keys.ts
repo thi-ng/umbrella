@@ -12,6 +12,8 @@ import { map } from "./map.js";
  *
  * @example
  * ```ts
+ * import { mapKeys } from "@thi.ng/transducers";
+ *
  * [...mapKeys(
  *   {
  *     a: (x) => x != null ? x * 10 : x,

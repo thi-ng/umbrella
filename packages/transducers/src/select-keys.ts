@@ -14,6 +14,8 @@ import { map } from "./map.js";
  *
  * @example
  * ```ts
+ * import { selectKeys } from "@thi.ng/transducers";
+ *
  * [...selectKeys(
  *   ["id", "age"],
  *   [

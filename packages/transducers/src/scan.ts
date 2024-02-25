@@ -15,6 +15,10 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  *
  * @example
  * ```ts
+ * import {
+ *   add, comp, last, length, multiplex, range, scan, transduce
+ * } from "@thi.ng/transducers";
+ *
  * [...iterator(scan(add()), range(10))]
  * // [ 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 ]
  *

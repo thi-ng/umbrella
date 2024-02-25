@@ -11,6 +11,8 @@ import { rename } from "./rename.js";
  *
  * @example
  * ```ts
+ * import { multiplexObj } from "@thi.ng/transducers";
+ *
  * [...multiplexObj(
  *   {
  *     initial: map(x => x.charAt(0)),

@@ -37,8 +37,11 @@ export interface FromAtomOpts<T> extends CommonOpts {
  *
  * @example
  * ```ts
- * db = new Atom({ a: 23, b: 88 });
- * cursor = new Cursor(db, "a")
+ * import { defAtom, defCursor } from "@thi.ng/atom";
+ * import { fromCursor } from "@thi.ng/rstream";
+ *
+ * db = defAtom({ a: 23, b: 88 });
+ * cursor = defCursor(db, "a")
  *
  * rs.fromAtom(cursor).subscribe(rs.trace("cursor val:"))
  * // cursor val: 23

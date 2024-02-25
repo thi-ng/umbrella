@@ -45,6 +45,8 @@ const mapSubject =
  *
  * @example
  * ```ts
+ * import { asTriples } from "@thi.ng/rstream-query";
+ *
  * src = {
  *   "@thi.ng/rstream-query": {
  *     type: "project",

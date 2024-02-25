@@ -65,6 +65,8 @@ export const merge: FnU2<VClock> = (a, b) =>
  *
  * @example
  * ```ts
+ * import { signedSkew } from "@thi.ng/vclock";
+ *
  * signedSkew({a: 1, b: 4, c: 2}, {a: 2, c: 20})
  * // -18
  * ```
@@ -102,6 +104,8 @@ export const absSkew: FnU2<VClock, number> = (a, b) =>
  *
  * @example
  * ```ts
+ * import { compare } from "@thi.ng/vclock";
+ *
  * compare({ a: 1, b: 2 }, { a: 3, b: 2 }); // -1
  * compare({ a: 3, b: 2 }, { a: 3, b: 2 }); // 0 (equal)
  * compare({ a: 3, b: 2 }, { a: 2, b: 3 }); // 0 (conflict)

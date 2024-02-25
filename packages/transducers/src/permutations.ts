@@ -11,6 +11,8 @@ import { range } from "./range.js";
  *
  * @example
  * ```ts
+ * import { permutations } from "@thi.ng/transducers";
+ *
  * [...permutations("ab", range(3))]
  * // [ ['a', 0], ['a', 1], ['a', 2],
  * //   ['b', 0], ['b', 1], ['b', 2] ]
@@ -76,6 +78,8 @@ export function* permutations(...src: any[]): IterableIterator<any[]> {
  *
  * @example
  * ```ts
+ * import { permutationsN } from "@thi.ng/transducers";
+ *
  * [...permutationsN(2)]
  * // [ [0, 0], [0, 1], [1, 0], [1, 1] ]
  *

@@ -17,6 +17,8 @@ import type { Reducer, ReductionFn } from "./api.js";
  *
  * @example
  * ```ts
+ * import { compR } from "@thi.ng/transducers";
+ *
  * compR(rfn, fn)
  * // [rfn[0], rfn[1], fn]
  * ```

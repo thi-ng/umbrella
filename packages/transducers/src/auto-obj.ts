@@ -8,6 +8,8 @@ import { reduce, reducer } from "./reduce.js";
  *
  * @example
  * ```ts
+ * import { autoObj } from "@thi.ng/transducers";
+ *
  * autoObj("id", ["foo", "bar", "baz"])
  * // { id0: "foo", id1: "bar", id2: "baz" }
  * ```
