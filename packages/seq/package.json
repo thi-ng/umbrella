@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/seq",
-	"version": "0.4.62",
+	"version": "0.4.63",
 	"description": "Various implementations of the @thi.ng/api `ISeq` interface / sequence abstraction",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.25",
+		"@thi.ng/api": "^8.9.26",
 		"@thi.ng/checks": "^3.5.0"
 	},
 	"devDependencies": {

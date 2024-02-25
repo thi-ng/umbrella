@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/random",
-	"version": "3.6.32",
+	"version": "3.6.33",
 	"description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.25",
+		"@thi.ng/api": "^8.9.26",
 		"@thi.ng/checks": "^3.5.0",
 		"@thi.ng/errors": "^2.4.18",
 		"@thi.ng/hex": "^2.3.37"

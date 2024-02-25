@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-format",
-	"version": "2.1.2",
+	"version": "2.1.3",
 	"description": "Customizable color text formatting with presets for ANSI & HTML",
 	"type": "module",
 	"module": "./index.js",
@@ -35,9 +35,9 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.25",
+		"@thi.ng/api": "^8.9.26",
 		"@thi.ng/hex": "^2.3.37",
-		"@thi.ng/memoize": "^3.1.59"
+		"@thi.ng/memoize": "^3.1.60"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",
