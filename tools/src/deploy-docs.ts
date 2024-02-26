@@ -1,13 +1,15 @@
 import { dirs, files, readText, writeText } from "@thi.ng/file-io";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
+import {
+	AWS_PROFILE,
+	CF_DISTRO_DOCS,
+	S3_BUCKET_DOCS,
+	S3_OPTS,
+	S3_PREFIX,
+} from "./aws-config.js";
 
-const AWS_PROFILE = "--profile thing-umbrella";
-const S3_BUCKET = "s3://docs.thi.ng";
-const S3_PREFIX = "/umbrella";
-const S3_OPTS = `${AWS_PROFILE} --acl public-read`;
 const SYNC_OPTS = `${S3_OPTS} --include "*" --exclude "*.sass" --exclude "*.ts"`;
-const CF_DISTRO = "E2855K70PVNL1D";
 
 const MINIFY_OPTS =
 	"--file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true";
@@ -68,7 +70,7 @@ const syncPackage = (id: string, root: string) => {
 	LOGGER.info(
 		execFileSync(
 			"aws",
-			`s3 sync ${root} ${S3_BUCKET}${S3_PREFIX}/${id} ${SYNC_OPTS}`.split(
+			`s3 sync ${root} ${S3_BUCKET_DOCS}${S3_PREFIX}/${id} ${SYNC_OPTS}`.split(
 				" "
 			)
 		).toString()
@@ -79,7 +81,7 @@ const invalidatePaths = (paths: string) => {
 	LOGGER.info("invalidating CDN paths:", paths);
 	execFileSync(
 		"aws",
-		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${paths} ${AWS_PROFILE}`.split(
+		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${paths} ${AWS_PROFILE}`.split(
 			" "
 		)
 	);
@@ -97,22 +99,23 @@ const processPackage = (id: string) => {
 	}
 };
 
-const packages =
-	process.argv.length > 2
-		? process.argv.slice(2)
-		: [...dirs("packages", "", 1)];
+const doAll = process.argv.length < 3;
+
+const packages = doAll ? [...dirs("packages", "", 1)] : process.argv.slice(2);
 
 const invalidations: string[] = [];
+if (doAll) invalidations.push(`/${S3_PREFIX}/*`);
+
 for (let id of packages) {
 	id = id.replace("packages/", "");
 	processPackage(id);
-	invalidations.push(`${S3_PREFIX}/${id}/*`);
+	if (!doAll) invalidations.push(`${S3_PREFIX}/${id}/*`);
 }
 
 execFileSync("bun", ["tools/src/doc-table.ts"]);
 execFileSync(
 	"aws",
-	`s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`.split(" ")
+	`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`.split(" ")
 );
 
 invalidatePaths(`/index.html ${invalidations.join(" ")}`);

@@ -53,6 +53,7 @@ export interface PackageMeta {
 	readme: string[] | boolean;
 	related: string[];
 	screenshot: string;
+	shortlink: boolean;
 	skip: boolean;
 	skypack: boolean;
 	status: string;

@@ -4,6 +4,12 @@ import { preferredType } from "@thi.ng/mime";
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { exit } from "node:process";
+import {
+	AWS_PROFILE,
+	CF_DISTRO_EXAMPLES,
+	S3_BUCKET_EXAMPLES,
+	S3_OPTS,
+} from "./aws-config";
 
 interface UploadOpts {
 	ext: string;
@@ -26,11 +32,7 @@ if (PKG["thi.ng"]?.online === false) {
 
 const BUILD = `examples/${EXAMPLE}/dist/`;
 const DEST_DIR = `/umbrella/${EXAMPLE}`;
-const BUCKET = `s3://demo.thi.ng${DEST_DIR}`;
-const CF_DISTRO = "EL2F1HMDPZ2RL";
-const PROFILE = "thing-umbrella";
-const OPTS = `--profile ${PROFILE} --acl public-read`;
-const COMPRESS_OPTS = `${OPTS} --content-encoding br`;
+const COMPRESS_OPTS = `${S3_OPTS} --content-encoding br`;
 
 const NEVER_COMPRESS = new Set(["mp4"]);
 
@@ -47,7 +49,7 @@ const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
 	if (!existsSync(root)) return;
 	opts = { ext: "", compress: true, depth: Infinity, ...opts };
 	for (let f of files(root, opts.ext!, opts.depth)) {
-		const fd = `${BUCKET}/${f
+		const fd = `${S3_BUCKET_EXAMPLES}/${DEST_DIR}/${f
 			.replace(BUILD, "")
 			.substring(dir === "" ? 1 : 0)}`;
 		const ext = f.substring(f.lastIndexOf(".") + 1);
@@ -65,7 +67,7 @@ const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
 		} else {
 			execFileSync(
 				"aws",
-				`s3 cp ${f} ${fd} ${OPTS} --content-type ${type}`.split(" ")
+				`s3 cp ${f} ${fd} ${S3_OPTS} --content-type ${type}`.split(" ")
 			);
 		}
 	}
@@ -89,7 +91,7 @@ if (!args.has("no-invalidate")) {
 	console.log("invaliding", DEST_DIR);
 	execFileSync(
 		"aws",
-		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${DEST_DIR}/* --profile ${PROFILE}`.split(
+		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths ${DEST_DIR}/* ${AWS_PROFILE}`.split(
 			" "
 		)
 	);

@@ -1,22 +1,29 @@
-import { deleteFile, readJSON, tempFilePath, writeText } from "@thi.ng/file-io";
+import { DAY, durationAs } from "@thi.ng/date";
+import {
+	deleteFile,
+	dirs,
+	readJSON,
+	tempFilePath,
+	writeText,
+} from "@thi.ng/file-io";
 import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { head, html, meta, title } from "@thi.ng/hiccup-html";
 import { getIn } from "@thi.ng/paths";
 import { execFileSync } from "node:child_process";
-import { readdirSync, statSync } from "node:fs";
-import { LOGGER } from "./api.js";
+import { LOGGER, type Package } from "./api.js";
+import { S3_OPTS } from "./aws-config.js";
+
+const CACHE_CTRL = `max-age=${durationAs("s", DAY * 30)}`;
 
 const baseDir = "./packages/";
 const tmpFile = tempFilePath();
 
-for (let f of readdirSync(baseDir)) {
-	f = baseDir + f;
-	if (f.indexOf(".DS_Store") >= 0 || !statSync(f).isDirectory) continue;
+for (let f of dirs(baseDir, "", 1)) {
 	try {
-		const pkg = readJSON(f + "/package.json", LOGGER);
+		const pkg = readJSON<Package>(f + "/package.json", LOGGER);
 		const id = pkg.name.split("/")[1];
 		if (getIn(pkg, ["thi.ng", "shortlink"]) === false) {
-			console.log(`\tskipping: ${id}`);
+			LOGGER.info(`\tskipping pkg: ${id}`);
 			continue;
 		}
 		const branch = getIn(pkg, ["thi.ng", "branch"]) || "develop";
@@ -26,7 +33,7 @@ for (let f of readdirSync(baseDir)) {
 				{},
 				meta({ charset: "UTF-8" }),
 				meta({
-					content: pkg.keywords.join(","),
+					content: pkg.keywords?.join(",") || "",
 					name: "keywords",
 				}),
 				meta(<any>{
@@ -62,11 +69,11 @@ for (let f of readdirSync(baseDir)) {
 			)
 		);
 		const $html = serialize([DOCTYPE_HTML, doc]);
-		console.log($html, "\n-------");
-		writeText(tmpFile, $html);
+		// console.log($html, "\n-------");
+		writeText(tmpFile, $html, LOGGER);
 		execFileSync(
 			"aws",
-			`s3 cp ${tmpFile} s3://thi.ng/${id} --profile thing-umbrella --acl public-read --content-type text/html --cache-control max-age=2592000`.split(
+			`s3 cp ${tmpFile} s3://thi.ng/${id} ${S3_OPTS} --content-type text/html --cache-control ${CACHE_CTRL}`.split(
 				" "
 			)
 		);

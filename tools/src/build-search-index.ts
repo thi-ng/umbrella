@@ -10,6 +10,7 @@ import {
 import { serialize } from "@thi.ng/msgpack";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
+import { AWS_PROFILE, CF_DISTRO_DOCS, S3_PREFIX } from "./aws-config.js";
 import { build, defEncoder } from "./search.js";
 
 const RE_DOC_START = /^\s*\/\*\*$/;
@@ -122,4 +123,11 @@ console.log(
 			" "
 		)
 	).toString()
+);
+
+execFileSync(
+	"aws",
+	`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${S3_PREFIX}/search-index-latest.bin ${AWS_PROFILE}`.split(
+		" "
+	)
 );
