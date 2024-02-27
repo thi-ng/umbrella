@@ -76,9 +76,10 @@ The following pipeline performs these steps (in sequence):
 - proportionally resize image to 1920px (longest side by default)
 - overlay bitmap logo layer, positioned at 45% left / 5% bottom
 - add custom EXIF metadata
-- output this current stage as high quality AVIF (using templated output path)
+- output this current stage as high quality AVIF (and record expanded output path)
 - crop center square region
-- output as JPEG thumbnail
+- output as JPEG thumbnail (and record in outputs)
+- compute [blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash) (and record in outputs)
 
 ```json tangle:export/readme-example1.json
 [
@@ -113,7 +114,8 @@ The following pipeline performs these steps (in sequence):
         "avif": { "quality": 80 }
     },
     { "op": "crop", "size": [240, 240], "gravity": "c" },
-    { "op": "output", "id": "thumb", "path": "{name}-thumb.jpg" }
+    { "op": "output", "id": "thumb", "path": "{name}-thumb.jpg" },
+    { "op": "output", "id": "hash", "path": "", blurhash: { detail: 4 } }
 ]
 ```
 
@@ -232,6 +234,11 @@ File output in any of these formats:
 - tiff
 - webp
 
+Alternatively, a
+[blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash) of
+the image can be computed and stored in the outputs. In this case, no file will
+be written.
+
 #### Templated output paths
 
 Output paths can contain `{id}`-templated parts which will be replaced/expanded.
@@ -302,12 +309,13 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.06 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.16 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
+- [@thi.ng/blurhash](https://github.com/thi-ng/umbrella/tree/develop/packages/blurhash)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/develop/packages/date)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
