@@ -1,15 +1,20 @@
 // thing:no-export
+import { encode } from "@thi.ng/blurhash";
+import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { writeFile, writeJSON } from "@thi.ng/file-io";
 import { join, resolve } from "node:path";
+import type { Sharp } from "sharp";
 import type { ImgProcCtx, OutputSpec, Processor } from "../api.js";
 import { formatPath } from "../path.js";
-import type { Sharp } from "sharp";
-import { isPlainObject } from "@thi.ng/checks";
 
 export const outputProc: Processor = async (spec, input, ctx) => {
 	const opts = <OutputSpec>spec;
 	const outDir = resolve(ctx.opts.outDir || ".");
 	let output = input.clone();
+	if (opts.blurhash) {
+		await outputBlurHash(opts, output, ctx);
+		return [input, false];
+	}
 	if (opts.raw) {
 		await outputRaw(opts, output, ctx, outDir);
 		return [input, false];
@@ -78,6 +83,7 @@ const outputRaw = async (
 		: {};
 	if (alpha) output = output.ensureAlpha();
 	const { data, info } = await output
+		.ensureAlpha()
 		.raw()
 		.toBuffer({ resolveWithObject: true });
 	const path = join(outDir, formatPath(opts.path, ctx, opts, data));
@@ -92,4 +98,26 @@ const outputRaw = async (
 			ctx.logger
 		);
 	}
+};
+
+const outputBlurHash = async (
+	opts: OutputSpec,
+	output: Sharp,
+	ctx: ImgProcCtx
+) => {
+	const { data, info } = await output
+		.ensureAlpha()
+		.raw()
+		.toBuffer({ resolveWithObject: true });
+	const detail = opts.blurhash!.detail || 4;
+	const [dx, dy] = isNumber(detail) ? [detail, detail] : detail;
+	const hash = encode(
+		new Uint32Array(data.buffer),
+		info.width,
+		info.height,
+		dx,
+		dy
+	);
+	ctx.logger.debug("computed blurhash:", hash);
+	ctx.outputs[opts.id] = hash;
 };

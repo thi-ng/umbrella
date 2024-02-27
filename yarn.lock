@@ -3689,7 +3689,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/blurhash@workspace:^, @thi.ng/blurhash@workspace:packages/blurhash":
+"@thi.ng/blurhash@npm:^0.1.10, @thi.ng/blurhash@workspace:^, @thi.ng/blurhash@workspace:packages/blurhash":
   version: 0.0.0-use.local
   resolution: "@thi.ng/blurhash@workspace:packages/blurhash"
   dependencies:
@@ -5068,6 +5068,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.26"
     "@thi.ng/associative": "npm:^6.3.43"
+    "@thi.ng/blurhash": "npm:^0.1.10"
     "@thi.ng/checks": "npm:^3.5.0"
     "@thi.ng/date": "npm:^2.7.1"
     "@thi.ng/defmulti": "npm:^3.0.26"

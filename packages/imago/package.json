@@ -37,6 +37,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.26",
 		"@thi.ng/associative": "^6.3.43",
+		"@thi.ng/blurhash": "^0.1.10",
 		"@thi.ng/checks": "^3.5.0",
 		"@thi.ng/date": "^2.7.1",
 		"@thi.ng/defmulti": "^3.0.26",

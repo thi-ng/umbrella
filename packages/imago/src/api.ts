@@ -189,14 +189,54 @@ export interface OutputSpec extends ProcSpec {
 	id: string;
 	/**
 	 * Possibly templated output path. See {@link formatPath} for details.
+	 * Ignored if {@link OutputSpec.blurhash} is being used.
 	 */
 	path: string;
+	/**
+	 * AVIF output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#avif)
+	 */
 	avif?: AvifOptions;
+	/**
+	 * If given, ONLY the blurhash of the image will be computed and stored in
+	 * the `outputs` object returned by {@link processImage}. The
+	 * {@link OutputSpec.path} will be ignored and no file will be written.
+	 *
+	 * @remarks
+	 * Important: Ensure the image has already been downsized to ~50-500 pixels.
+	 * Larger images are causing unnecessary & long processing...
+	 */
+	blurhash?: {
+		/**
+		 * Blurhash detail setting in 1-9 range, possibly given separately for
+		 * X/Y axis.
+		 *
+		 * @defaultValue 4
+		 */
+		detail?: number | [number, number];
+	};
+	/**
+	 * GIF output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#gif)
+	 */
 	gif?: GifOptions;
+	/**
+	 * JPEG 2000 output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#jp2)
+	 */
 	jp2?: Jp2Options;
+	/**
+	 * JPEG output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#jpeg)
+	 */
 	jpeg?: JpegOptions;
+	/**
+	 * JPEG XL output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#jxl)
+	 */
 	jxl?: JxlOptions;
+	/**
+	 * PNG output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#avif)
+	 */
 	png?: PngOptions;
+	/**
+	 * Raw binary output options.
+	 */
 	raw?:
 		| boolean
 		| {
@@ -210,8 +250,17 @@ export interface OutputSpec extends ProcSpec {
 				 */
 				meta?: boolean;
 		  };
+	/**
+	 * Tiled format output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#tile)
+	 */
 	tile?: TileOptions;
+	/**
+	 * TIFF output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#tiff)
+	 */
 	tiff?: TiffOptions;
+	/**
+	 * WebP output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#webp)
+	 */
 	webp?: WebpOptions;
 }
 
