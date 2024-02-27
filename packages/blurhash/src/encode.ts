@@ -4,8 +4,8 @@ import { BaseNEncoder } from "@thi.ng/base-n/encode";
 import { imageCanvas } from "@thi.ng/canvas";
 import { signedPow } from "@thi.ng/math/abs";
 import { clamp } from "@thi.ng/math/interval";
-import { __ensureDetail, __ensureSize } from "./internal/ensure";
-import { __fromLinear, __toLinear } from "./internal/linear";
+import { __ensureDetail, __ensureSize } from "./internal/ensure.js";
+import { __fromLinear, __toLinear } from "./internal/linear.js";
 
 const { PI, cos, floor } = Math;
 

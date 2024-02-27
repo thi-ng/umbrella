@@ -2,8 +2,8 @@ import { B83_CHARS } from "@thi.ng/base-n/chars/83";
 import { BaseNDecoder } from "@thi.ng/base-n/decode";
 import { canvas2d, type Canvas2DOpts } from "@thi.ng/canvas";
 import { signedPow } from "@thi.ng/math/abs";
-import { __ensureSize } from "./internal/ensure";
-import { __fromLinear, __toLinear } from "./internal/linear";
+import { __ensureSize } from "./internal/ensure.js";
+import { __fromLinear, __toLinear } from "./internal/linear.js";
 
 const { PI, cos, floor } = Math;
 
