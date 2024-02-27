@@ -3689,7 +3689,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/blurhash@npm:^0.1.10, @thi.ng/blurhash@workspace:^, @thi.ng/blurhash@workspace:packages/blurhash":
+"@thi.ng/blurhash@npm:^0.1.11, @thi.ng/blurhash@workspace:^, @thi.ng/blurhash@workspace:packages/blurhash":
   version: 0.0.0-use.local
   resolution: "@thi.ng/blurhash@workspace:packages/blurhash"
   dependencies:
@@ -3718,7 +3718,7 @@ __metadata:
     "@thi.ng/geom-closest-point": "npm:^2.1.108"
     "@thi.ng/geom-resample": "npm:^2.3.34"
     "@thi.ng/math": "npm:^5.10.3"
-    "@thi.ng/timestep": "npm:^0.5.29"
+    "@thi.ng/timestep": "npm:^0.5.30"
     "@thi.ng/vectors": "npm:^7.10.12"
     esbuild: "npm:^0.20.0"
     rimraf: "npm:^5.0.5"
@@ -5068,7 +5068,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.26"
     "@thi.ng/associative": "npm:^6.3.43"
-    "@thi.ng/blurhash": "npm:^0.1.10"
+    "@thi.ng/blurhash": "npm:^0.1.11"
     "@thi.ng/checks": "npm:^3.5.0"
     "@thi.ng/date": "npm:^2.7.1"
     "@thi.ng/defmulti": "npm:^3.0.26"
@@ -6286,7 +6286,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/timestep@npm:^0.5.29, @thi.ng/timestep@workspace:^, @thi.ng/timestep@workspace:packages/timestep":
+"@thi.ng/timestep@npm:^0.5.30, @thi.ng/timestep@workspace:^, @thi.ng/timestep@workspace:packages/timestep":
   version: 0.0.0-use.local
   resolution: "@thi.ng/timestep@workspace:packages/timestep"
   dependencies:
