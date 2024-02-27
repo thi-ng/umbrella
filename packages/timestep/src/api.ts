@@ -1,5 +1,5 @@
 import type { EVENT_ALL } from "@thi.ng/api";
-import type { TimeStep } from "./timestep";
+import type { TimeStep } from "./timestep.js";
 
 /**
  * Interface for participating in the {@link TimeStep.update} logic.
