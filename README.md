@@ -266,14 +266,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-02-25
+As of: 2024-02-27
 
-| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
-|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks) | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks) | [changelog](./packages/checks/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/color`](./packages/color) | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color) | [changelog](./packages/color/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)     | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)     | [changelog](./packages/date/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/imago`](./packages/imago)   | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)   | [changelog](./packages/imago/CHANGELOG.md)  |
+| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
+|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/blurhash`](./packages/blurhash) | [![version](https://img.shields.io/npm/v/@thi.ng/blurhash.svg)](https://www.npmjs.com/package/@thi.ng/blurhash) | [changelog](./packages/blurhash/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/imago`](./packages/imago)       | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)       | [changelog](./packages/imago/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/timestep`](./packages/timestep) | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep) | [changelog](./packages/timestep/CHANGELOG.md) |
+
 
 ### Fundamentals
 
