@@ -280,8 +280,8 @@ Dates can be formatted as relative descriptions using
 [`formatRelative()`](https://docs.thi.ng/umbrella/date/functions/formatRelative.html)
 and
 [`formatRelativeParts()`](https://docs.thi.ng/umbrella/date/functions/formatRelativeParts.html).
-Both functions use the currently active [locale](#locales) and accept an optional
-reference date (default: now).
+Both functions use the currently active [locale](#locales) and accept an
+optional reference date (default: `now()`).
 
 ```ts
 setLocale(EN_LONG);
@@ -374,8 +374,10 @@ string literal, prefix the term with `\\`.
 
 The following preset formatters are available:
 
+- `FMT_ISO` - `"2020-09-13T21:42:07.123Z"`
 - `FMT_ISO_SHORT` - `"2020-09-13T21:42:07Z"`
 - `FMT_yyyyMMdd` - `"2020-09-13"`
+- `FMT_yyyyMMdd_ALT` - `"20200913"`
 - `FMT_Mdyyyy` - `"9/13/2020"`
 - `FMT_MMMdyyyy` - `"Sep 13 2020"`
 - `FMT_dMyyyy` - `"13/9/2020"`
@@ -384,7 +386,25 @@ The following preset formatters are available:
 - `FMT_HHmm` - `"21:42"`
 - `FMT_hm` - `"9:42 PM"`
 - `FMT_HHmmss` - `"21:42:07"`
+- `FMT_HHmmss_ALT` - `"214207"`
 - `FMT_hms` - `"9:42:07 PM"`
+- `FMT_yyyy` - `"2020"` (4 digit year)
+- `FMT_MM` - `"12"` (2 digit month)
+- `FMT_ww` - `"52"` (2 digit week)
+- `FMT_dd` - `"28"` (2 digit day in month)
+- `FMT_HH` - `"23"` (2 digit hour, 24h system)
+- `FMT_mm` - `"59"` (2 digit minute)
+- `FMT_ss` - `"01"` (2 digit second)
+
+All formatters are fully composable/nestable, i.e. new formats can be created
+using existing formats like so:
+
+```ts
+import { defFormat, FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
+
+defFormat([FMT_yyyyMMdd, " @ ", FMT_HHmmss])();
+// "2024-02-28 @ 12:05:47"
+```
 
 ### Timecodes
 
