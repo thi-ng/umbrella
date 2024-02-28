@@ -1,27 +1,35 @@
 import { unionR } from "@thi.ng/associative";
 import { compareByKeys2 } from "@thi.ng/compare";
-import { files, readJSON, readText } from "@thi.ng/file-io";
+import { dirs, files, readJSON, readText } from "@thi.ng/file-io";
+import { split } from "@thi.ng/strings";
 import {
 	assocObj,
 	comp,
 	conj,
 	filter,
+	keep,
 	keys,
 	map,
 	mapcat,
+	pluck,
+	push,
 	transduce,
 } from "@thi.ng/transducers";
-import { readdirSync, statSync } from "node:fs";
 import { LOGGER } from "./api.js";
 import { shortName } from "./partials/package.js";
 
+const PKG_ROOT = "packages";
+const EX_ROOT = "examples";
+
 const RE_IMPORT = /\}? from "(?!\.)([a-z0-9@/.-]+)";/;
 
+const NON_COMMENT_LINES = filter((line: string) => !/^\s+\*\s/.test(line));
+
 const xform = comp(
-	mapcat((f: string) => readText(f, LOGGER).split("\n")),
-	filter((line) => !/^\s+\*\s/.test(line)),
+	mapcat((f: string) => split(readText(f, LOGGER))),
+	NON_COMMENT_LINES,
 	map((line) => RE_IMPORT.exec(line)),
-	filter((x) => !!x),
+	keep(),
 	map((x) =>
 		x![1].startsWith("@thi.ng")
 			? x![1].split("/").slice(0, 2).join("/")
@@ -32,8 +40,8 @@ const xform = comp(
 const usedDependencies = (rootDir: string) =>
 	transduce(xform, conj(), files(rootDir, ".ts"));
 
-const updateImports = (root: string, latest = false) => {
-	console.log(root);
+const updateImports = (root: string, latest = false, exitOnFail = true) => {
+	LOGGER.info("checking", root);
 	const pkgPath = root + "/package.json";
 	const deps = usedDependencies(root + "/src");
 	const pkg = readJSON(pkgPath);
@@ -46,8 +54,8 @@ const updateImports = (root: string, latest = false) => {
 			if (d.startsWith("node:") || d.startsWith("bun:") || d === "tslib")
 				continue;
 			if (deps.has(d) && !pkg.dependencies[d]) {
-				console.log("missing 3rd party dependency:", d);
-				process.exit(1);
+				LOGGER.warn("missing 3rd party dependency:", d);
+				exitOnFail && process.exit(1);
 			} else if (!deps.has(d)) {
 				delete pkg.dependencies[d];
 				edit = true;
@@ -55,7 +63,7 @@ const updateImports = (root: string, latest = false) => {
 				pairs.push([d, pkg.dependencies[d]]);
 			}
 		} else if (deps.has(d) && !pkg.dependencies[d]) {
-			const depPkg = readJSON(`packages/${shortName(d)}/package.json`);
+			const depPkg = readJSON(`${PKG_ROOT}/${shortName(d)}/package.json`);
 			pairs.push([d, latest ? "workspace:^" : `^${depPkg.version}`]);
 			edit = true;
 		} else if (!deps.has(d)) {
@@ -68,21 +76,41 @@ const updateImports = (root: string, latest = false) => {
 	if (edit) {
 		const result = assocObj(pairs.sort(compareByKeys2(0, 1)));
 		console.log(JSON.stringify(result, null, 2));
-		process.exit(1);
-	} else {
-		console.log("ok");
+		exitOnFail && process.exit(1);
 	}
 };
 
-const updateProjects = (parent: string, latest = false) => {
-	for (let pkg of readdirSync(parent)) {
-		pkg = `${parent}/${pkg}`;
-		if (statSync(pkg).isDirectory()) {
-			try {
-				updateImports(pkg, latest);
-			} catch (e) {
-				console.warn("\terror processing package", pkg);
-			}
+const checkLocalImports = (root: string, exitOnFail = true) => {
+	for (let f of files(root + "/src", ".ts")) {
+		const badImports = transduce(
+			comp(
+				NON_COMMENT_LINES,
+				map((line) => /from "(\.\/[a-z0-9/-]+)"/.exec(line!)),
+				keep(),
+				pluck(1)
+			),
+			push(),
+			split(readText(f, LOGGER))
+		);
+		if (badImports.length) {
+			LOGGER.warn("bad local imports:", f, badImports);
+			exitOnFail && process.exit(1);
+		}
+	}
+};
+
+const checkPackage = (root: string, latest = false) => {
+	updateImports(root, latest, root.startsWith(PKG_ROOT));
+	if (root.startsWith(PKG_ROOT)) checkLocalImports(root);
+};
+
+const checkPackages = (parent: string, latest = false) => {
+	for (let pkg of dirs(parent, "", 1)) {
+		try {
+			checkPackage(pkg, latest);
+		} catch (e) {
+			LOGGER.warn("\terror processing package", pkg);
+			console.log(e);
 		}
 	}
 };
@@ -90,7 +118,7 @@ const updateProjects = (parent: string, latest = false) => {
 const project = process.argv[2];
 
 project
-	? project === "examples"
-		? updateProjects("examples", true)
-		: updateImports(project, project.startsWith("examples"))
-	: updateProjects("packages");
+	? project === EX_ROOT
+		? checkPackages(EX_ROOT, true)
+		: checkPackage(project, project.startsWith(EX_ROOT))
+	: checkPackages(PKG_ROOT);
