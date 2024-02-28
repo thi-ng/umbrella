@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup",
-	"version": "5.1.15",
+	"version": "5.1.16",
 	"description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
 	"type": "module",
 	"module": "./index.js",
@@ -38,7 +38,7 @@
 		"@thi.ng/api": "^8.9.26",
 		"@thi.ng/checks": "^3.5.0",
 		"@thi.ng/errors": "^2.4.18",
-		"@thi.ng/strings": "^3.7.17"
+		"@thi.ng/strings": "^3.7.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

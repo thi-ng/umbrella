@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-27T20:35:06Z
+- **Last updated**: 2024-02-28T14:23:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.4.1) (2024-02-28)
+
+#### 🩹 Bug fixes
+
+- fix typedarray input handling in processImage() ([075ecaa](https://github.com/thi-ng/umbrella/commit/075ecaa))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.4.0) (2024-02-27)
 
