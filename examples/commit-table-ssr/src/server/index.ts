@@ -1,12 +1,16 @@
 import { TLRUCache } from "@thi.ng/cache";
+import { readText, writeJSON } from "@thi.ng/file-io";
+import { ConsoleLogger } from "@thi.ng/logger";
 import express from "express";
-import * as fs from "node:fs";
-// @ts-ignore fixme
-import * as Bundler from "parcel-bundler";
-import type { Commit } from "../common/api";
-import { ctx } from "../common/config";
-import { buildRepoTableHTML } from "./build-table";
-import { repoCommits } from "./git";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { createServer as createViteServer } from "vite";
+import type { Commit } from "../common/api.js";
+import { ctx } from "../common/config.js";
+import { buildRepoTableHTML } from "./build-table.js";
+import { repoCommits } from "./git.js";
+
+const LOGGER = new ConsoleLogger("server");
 
 // building the repo commit table takes quite some time
 // therefore we cache results with 1h expiry time
@@ -18,49 +22,65 @@ const htmlCache = new TLRUCache<string, string>(undefined, {
 	ttl: 60 * 60 * 1000,
 });
 
-const bundler = new Bundler("index.html", {
-	outDir: "./out",
-	outFile: "index.html",
-	publicUrl: "/out",
-});
-
 const getCommits = async () => {
 	const commits = [...repoCommits(ctx.repo.path)];
-	fs.writeFileSync("commits.json", JSON.stringify(commits));
+	writeJSON("commits.json", commits, undefined, undefined, LOGGER);
 	return commits;
 };
 
-const app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// route for browser version
-// here we simply redirect to the Parcel managed client version
-app.get("/", (_, res) => {
-	res.redirect("/out/");
-});
+async function createServer() {
+	const app = express();
 
-// route for the client to retrieve the commit log as JSON
-app.get("/commits", (_, res) => {
-	// retrieve raw commit log from cache or
-	// (re)create if missing...
-	rawCache
-		.getSet(ctx.repo.path, getCommits)
-		.then((commits) => res.type("json").send(commits));
-});
+	// https://vitejs.dev/guide/ssr#setting-up-the-dev-server
+	const vite = await createViteServer({
+		server: { middlewareMode: true },
+		appType: "custom",
+	});
 
-// route for server-side rendering
-// uses both caches
-app.get("/ssr", (_, res) => {
-	// retrieve rendered html from cache or
-	// (re)create if missing...
-	htmlCache
-		.getSet(ctx.repo.path, async () =>
-			buildRepoTableHTML(await rawCache.getSet(ctx.repo.path, getCommits))
-		)
-		.then((doc) => res.send(doc));
-});
+	// route for browser version
+	app.get("/", async (req, res, next) => {
+		try {
+			const template = await vite.transformIndexHtml(
+				req.originalUrl,
+				readText(resolve(__dirname, "../../index.html"), LOGGER)
+			);
+			res.status(200).set({ "Content-Type": "text/html" }).end(template);
+		} catch (e) {
+			vite.ssrFixStacktrace(<Error>e);
+			next(e);
+		}
+	});
 
-app.use(express.static("."));
-app.use(bundler.middleware());
+	// route for the client to retrieve the commit log as JSON
+	app.get("/commits", (_, res) => {
+		// retrieve raw commit log from cache or
+		// (re)create if missing...
+		rawCache
+			.getSet(ctx.repo.path, getCommits)
+			.then((commits) => res.type("json").send(commits));
+	});
 
-console.log("starting server @ http://localhost:8080");
-app.listen(8080);
+	// route for server-side rendering
+	// uses both caches
+	app.get("/ssr", (_, res) => {
+		// retrieve rendered html from cache or
+		// (re)create if missing...
+		htmlCache
+			.getSet(ctx.repo.path, async () =>
+				buildRepoTableHTML(
+					await rawCache.getSet(ctx.repo.path, getCommits)
+				)
+			)
+			.then((doc) => res.send(doc));
+	});
+
+	// inject middleware after our routes, else our handlers will not be used!
+	app.use(vite.middlewares);
+
+	LOGGER.info("starting server @ http://localhost:5173");
+	app.listen(5173);
+}
+
+createServer();
