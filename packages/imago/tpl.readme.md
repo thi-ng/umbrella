@@ -15,7 +15,8 @@ In this new TypeScript version all image I/O and processing is delegated to
 
 ### Basic example
 
-Transformation trees/pipelines are simple JSON objects (but can be programmatically created):
+Transformation trees/pipelines are simple JSON objects (but can be
+programmatically created):
 
 The following pipeline performs these steps (in sequence):
 
@@ -24,10 +25,13 @@ The following pipeline performs these steps (in sequence):
 - proportionally resize image to 1920px (longest side by default)
 - overlay bitmap logo layer, positioned at 45% left / 5% bottom
 - add custom EXIF metadata
-- output this current stage as high quality AVIF (and record expanded output path)
+- output this current stage as high quality AVIF (and record expanded output
+  path)
 - crop center square region
 - output as JPEG thumbnail (and record in outputs)
-- compute [blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash) (and record in outputs)
+- compute
+  [blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash)
+  (and record in outputs)
 
 ```json tangle:export/readme-example1.json
 [
@@ -63,11 +67,12 @@ The following pipeline performs these steps (in sequence):
 	},
 	{ "op": "crop", "size": [240, 240], "gravity": "c" },
 	{ "op": "output", "id": "thumb", "path": "{name}-thumb.jpg" },
-	{ "op": "output", "id": "hash", "path": "", blurhash: { detail: 4 } }
+	{ "op": "output", "id": "hash", "path": "", blurhash: 4 }
 ]
 ```
 
-Then to process an image:
+Then to process an image using above JSON spec (there're also API wrappers to
+create these operator specs programmatically):
 
 ```ts tangle:export/readme1.ts
 import { processImage } from "@thi.ng/imago";
@@ -92,17 +97,26 @@ Gaussian blur
 
 ### composite
 
-Compositing multiple layers:
+Compositing multiple layers. The following layer types are available, and custom
+layer types can be registered via the polymorphic
+[`defLayer()`](https://docs.thi.ng/umbrella/imago/functions/defLayer.html)
+function.
 
 #### Common options
 
 - blend mode
-- gravity or position
+- position & origin
+- gravity
 - tiled repetition
 
-#### Bitmap layers
+#### Bitmap image layers
 
 - resizable
+
+#### Color layers
+
+- size
+- fill color (w/ alpha)
 
 #### SVG layers
 
@@ -238,6 +252,28 @@ Auto-rotate, rotate by angle and/or flip image along x/y
 
 {{meta.blogPosts}}
 
+## Positions & sizes
+
+Border sizes, general dimensions, and positions can be specified in pixels
+(default) or as percentages (using `unit: "%"`). For the latter case, an
+additional reference side (`ref` option) can be provided. The default ref is
+`min`, referring to whatever is the smaller side of an image.
+
+The `ref` option/reference side can take the following values (default: `both`):
+
+- `both`: image width for horizontal uses, image height for vertical uses
+- `min`: smaller side of an image (aka `min(width,height)`)
+- `max`: larger side of an image (aka `min(width,height)`)
+- `w`: image width
+- `h`: image height
+
+### Gravity
+
+In some operations positioning or alignment can be abstractly stated via one of
+the following gravity values:
+
+![diagram of the 9 possible gravity directions](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imago/gravity.png)
+
 ## Metadata handling
 
 By default all input metadata will be lost in the outputs. The `keepEXIF` and
@@ -263,6 +299,85 @@ still WIP...
 
 {{pkg.docs}}
 
-TODO
+```ts tangle:export/readme-api.ts
+import {
+	colorLayer,
+	composite,
+	crop,
+	extend,
+	imageLayer,
+	nest,
+	output,
+	processImage,
+	resize,
+	rotate,
+} from "@thi.ng/imago";
+import { ConsoleLogger } from "@thi.ng/logger";
+
+const res = await processImage(
+	// input image (can also be a typed array or buffer)
+	"test.jpg",
+	// operator pipeline
+	[
+		// auto-rotate (EXIF orientation)
+		rotate({}),
+		// composite w/ semi-transparent color layer (screen)
+		composite({
+			layers: [
+				colorLayer({
+					// magenta with 50% opacity
+					bg: "#f0f8",
+					blend: "screen",
+					// layer size is 50x100% of image
+					size: [50, 100],
+					// aligned left (west)
+					gravity: "w",
+					// size given in percent
+					unit: "%",
+				}),
+			],
+		}),
+		// nested operations each operate on a clone of the current (already
+		// semi-transformed) image, they have no impact on the processing pipeline
+		// of their parent(s)
+		// multiple child pipelines can be spawned, here only a single one
+		nest({
+			procs: [
+				// this pipeline only creates blurhash (stored in `outputs` of result)
+				[resize({ size: 100 }), output({ id: "hash", blurhash: 5 })],
+			],
+		}),
+		// crop to 3:2 aspect ratio
+		crop({ size: 100, aspect: 1.5, unit: "%" }),
+		// back in the main pipleline, add 5% white border (based on smallest side)
+		extend({ border: 5, unit: "%", bg: "white", ref: "min" }),
+		// resize image to 1920 wide
+		resize({ size: 1920 }),
+		// add logo watermark centered horizontally and near the bottom
+		composite({
+			layers: [
+				imageLayer({
+					path: "logo-128.png",
+					unit: "%",
+					origin: "s",
+					pos: { r: 50, b: 5 },
+					ref: "both",
+					blend: "screen",
+				}),
+			],
+		}),
+		output({ id: "main", path: "{date}-1920-frame.jpg" }),
+	],
+	{
+		logger: new ConsoleLogger("img"),
+	}
+);
+
+console.log(res.outputs);
+// {
+//   main: "...../20240229-1920-frame.jpg",
+//   hash: "eQEBz9}]0{5Pxat9n,WnRkWVR%Rks:xHoLoMoMf$R%WUjJxHt5I.I:",
+// }
+```
 
 <!-- include ../../assets/tpl/footer.md -->
