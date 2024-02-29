@@ -49,11 +49,11 @@ export const additive = <T extends Prim>(
 						n,
 						add(
 							n,
-							mul(amp, fn(<any>add(<any>pos, mul(i, <any>shift))))
+							mul(amp, fn(add(pos, mul(i, shift))))
 						)
 					),
 					assign(amp, mul(amp, decay)),
-					assign(pos, <any>mul(<any>pos, 2)),
+					assign(pos, mul(pos, 2)),
 				]
 			),
 			ret(n),

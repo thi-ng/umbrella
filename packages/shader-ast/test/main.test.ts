@@ -13,6 +13,7 @@ import {
 	vec2,
 	vec3,
 	type Lit,
+	type Sym,
 } from "../src/index.js";
 
 test("op2 type infer mulvv", () => {
@@ -244,4 +245,36 @@ test("texture", () => {
 		tag: "call_i",
 		type: "vec4",
 	});
+});
+
+test("type infer of defn", () => {
+	const f = defn(
+		"void",
+		undefined,
+		[],
+		() => []
+	);
+	const g = defn(
+		"void",
+		undefined,
+		["float", "int"],
+		(x, y) => {
+			const a: Sym<"float"> = x;
+			const b: Sym<"int"> = y;
+			return [a, b];
+		}
+	);
+	const h = defn(
+		"void",
+		undefined,
+		["int", ["float", "x"]],
+		(x, y) => {
+			const a: Sym<"int"> = x;
+			const b: Sym<"float"> = y;
+			return [a, b];
+		}
+	);
+	f();
+	g(sym("float"), sym("int"));
+	h(sym("int"), sym("float"));
 });

@@ -1,14 +1,4 @@
-import type {
-	Func0,
-	Func1,
-	Func2,
-	Func3,
-	Func4,
-	Func5,
-	Func6,
-	Func7,
-	Func8,
-} from "./function.js";
+import type { VariadicFunc as FuncVar, VariadicSyms } from "./function.js";
 import type { Operator } from "./ops.js";
 import type { SymOpts } from "./syms.js";
 import type { Tag } from "./tags.js";
@@ -115,43 +105,36 @@ export interface Func<T extends Type> extends Term<T>, Scoped {
 	deps: Func<any>[];
 }
 
-export interface TaggedFn0<T extends Type> extends Func0<T>, Func<T> {
-	args: [];
+export interface VariadicTaggedFn<Xs extends Type[], T extends Type>
+	extends FuncVar<Xs, T>,
+		Func<T> {
+	args: VariadicSyms<Xs>;
 }
 
+/** @deprecated */
+export interface TaggedFn0<T extends Type> extends VariadicTaggedFn<[], T> {}
+/** @deprecated */
 export interface TaggedFn1<A extends Type, T extends Type>
-	extends Func1<A, T>,
-		Func<T> {
-	args: [Sym<A>];
-}
-
+	extends VariadicTaggedFn<[A], T> {}
+/** @deprecated */
 export interface TaggedFn2<A extends Type, B extends Type, T extends Type>
-	extends Func2<A, B, T>,
-		Func<T> {
-	args: [Sym<A>, Sym<B>];
-}
-
+	extends VariadicTaggedFn<[A, B], T> {}
+/** @deprecated */
 export interface TaggedFn3<
 	A extends Type,
 	B extends Type,
 	C extends Type,
 	T extends Type
-> extends Func3<A, B, C, T>,
-		Func<T> {
-	args: [Sym<A>, Sym<B>, Sym<C>];
-}
-
+> extends VariadicTaggedFn<[A, B, C], T> {}
+/** @deprecated */
 export interface TaggedFn4<
 	A extends Type,
 	B extends Type,
 	C extends Type,
 	D extends Type,
 	T extends Type
-> extends Func4<A, B, C, D, T>,
-		Func<T> {
-	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>];
-}
-
+> extends VariadicTaggedFn<[A, B, C, D], T> {}
+/** @deprecated */
 export interface TaggedFn5<
 	A extends Type,
 	B extends Type,
@@ -159,11 +142,8 @@ export interface TaggedFn5<
 	D extends Type,
 	E extends Type,
 	T extends Type
-> extends Func5<A, B, C, D, E, T>,
-		Func<T> {
-	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>];
-}
-
+> extends VariadicTaggedFn<[A, B, C, D, E], T> {}
+/** @deprecated */
 export interface TaggedFn6<
 	A extends Type,
 	B extends Type,
@@ -172,11 +152,8 @@ export interface TaggedFn6<
 	E extends Type,
 	F extends Type,
 	T extends Type
-> extends Func6<A, B, C, D, E, F, T>,
-		Func<T> {
-	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>];
-}
-
+> extends VariadicTaggedFn<[A, B, C, D, E, F], T> {}
+/** @deprecated */
 export interface TaggedFn7<
 	A extends Type,
 	B extends Type,
@@ -186,11 +163,8 @@ export interface TaggedFn7<
 	F extends Type,
 	G extends Type,
 	T extends Type
-> extends Func7<A, B, C, D, E, F, G, T>,
-		Func<T> {
-	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>];
-}
-
+> extends VariadicTaggedFn<[A, B, C, D, E, F, G], T> {}
+/** @deprecated */
 export interface TaggedFn8<
 	A extends Type,
 	B extends Type,
@@ -201,10 +175,7 @@ export interface TaggedFn8<
 	G extends Type,
 	H extends Type,
 	T extends Type
-> extends Func8<A, B, C, D, E, F, G, H, T>,
-		Func<T> {
-	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, Sym<H>];
-}
+> extends VariadicTaggedFn<[A, B, C, D, E, F, G, H], T> {}
 
 export interface FnCall<T extends Type> extends Term<T> {
 	id: string;

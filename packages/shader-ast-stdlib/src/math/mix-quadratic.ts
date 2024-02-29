@@ -16,10 +16,10 @@ const $ = <N extends 1 | 2 | 3 | 4, T extends PrimTypeMap[N]>(n: N, type: T) =>
 				ret(
 					add(
 						add(
-							mul(<any>a, mul(s, s)),
-							mul(<any>b, mul(2, mul(s, t)))
+							mul(a, mul(s, s)),
+							mul(b, mul(2, mul(s, t)))
 						),
-						mul(<any>c, mul(t, t))
+						mul(c, mul(t, t))
 					)
 				),
 			];
