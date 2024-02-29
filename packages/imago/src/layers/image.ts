@@ -1,9 +1,8 @@
-// thing:no-export
 import sharp from "sharp";
 import type { CompLayerFn, Dim, ImgLayer } from "../api.js";
 import { computeSize, ensureSize, positionOrGravity } from "../units.js";
 
-export const imageLayer: CompLayerFn = async (layer, _, ctx) => {
+export const imageLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 	const {
 		type: __,
 		gravity,
@@ -18,7 +17,7 @@ export const imageLayer: CompLayerFn = async (layer, _, ctx) => {
 	const meta = await input.metadata();
 	let imgSize: Dim = [meta.width!, meta.height!];
 	if (size) imgSize = computeSize(size, imgSize, ref, unit);
-	const $pos = positionOrGravity(pos, gravity, imgSize, ctx.size, ref, unit);
+	const $pos = positionOrGravity(imgSize, ctx.size, layer);
 	if (!size) return { input: path, ...$pos, ...opts };
 	ensureSize(meta);
 	return {

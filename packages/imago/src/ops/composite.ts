@@ -1,10 +1,10 @@
-// thing:no-export
 import { defmulti } from "@thi.ng/defmulti";
 import type { OverlayOptions, Sharp } from "sharp";
 import type { CompLayerBase, CompSpec, ImgProcCtx, Processor } from "../api.js";
-import { imageLayer } from "../layers/image.js";
-import { svgLayer } from "../layers/svg.js";
-import { textLayer } from "../layers/text.js";
+import { colorLayerImpl } from "../layers/color.js";
+import { imageLayerImpl } from "../layers/image.js";
+import { svgLayerImpl } from "../layers/svg.js";
+import { textLayerImpl } from "../layers/text.js";
 
 export const compositeProc: Processor = async (spec, input, ctx) => {
 	const { layers } = <CompSpec>spec;
@@ -24,8 +24,9 @@ export const defLayer = defmulti<
 	(x) => x.type,
 	{},
 	{
-		img: imageLayer,
-		svg: svgLayer,
-		text: textLayer,
+		color: colorLayerImpl,
+		img: imageLayerImpl,
+		svg: svgLayerImpl,
+		text: textLayerImpl,
 	}
 );

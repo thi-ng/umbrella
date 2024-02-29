@@ -1,4 +1,3 @@
-// thing:no-export
 import { encode } from "@thi.ng/blurhash";
 import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { writeFile, writeJSON } from "@thi.ng/file-io";
@@ -6,6 +5,7 @@ import { join, resolve } from "node:path";
 import type { Sharp } from "sharp";
 import type { ImgProcCtx, OutputSpec, Processor } from "../api.js";
 import { formatPath } from "../path.js";
+import { illegalArgs } from "@thi.ng/errors";
 
 export const outputProc: Processor = async (spec, input, ctx) => {
 	const opts = <OutputSpec>spec;
@@ -15,6 +15,7 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 		await outputBlurHash(opts, output, ctx);
 		return [input, false];
 	}
+	if (!opts.path) illegalArgs("output path missing");
 	if (opts.raw) {
 		await outputRaw(opts, output, ctx, outDir);
 		return [input, false];
@@ -86,7 +87,7 @@ const outputRaw = async (
 		.ensureAlpha()
 		.raw()
 		.toBuffer({ resolveWithObject: true });
-	const path = join(outDir, formatPath(opts.path, ctx, opts, data));
+	const path = join(outDir, formatPath(opts.path!, ctx, opts, data));
 	writeFile(path, data, null, ctx.logger);
 	ctx.outputs[opts.id] = path;
 	if (meta) {
@@ -109,7 +110,7 @@ const outputBlurHash = async (
 		.ensureAlpha()
 		.raw()
 		.toBuffer({ resolveWithObject: true });
-	const detail = opts.blurhash!.detail || 4;
+	const detail = opts.blurhash === true ? 4 : opts.blurhash!;
 	const [dx, dy] = isNumber(detail) ? [detail, detail] : detail;
 	const hash = encode(
 		new Uint32Array(data.buffer),

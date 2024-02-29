@@ -1,5 +1,6 @@
 import type {
 	BlurSpec,
+	ColorLayer,
 	CompLayerBase,
 	CompSpec,
 	CropSpec,
@@ -32,6 +33,8 @@ export const defLayerSpec =
 export const blur = defSpec<BlurSpec>("blur");
 
 export const composite = defSpec<CompSpec>("composite");
+
+export const colorLayer = defLayerSpec<ColorLayer>("color");
 
 export const imageLayer = defLayerSpec<ImgLayer>("img");
 

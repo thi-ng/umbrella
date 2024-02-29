@@ -1,13 +1,13 @@
-// thing:no-export
 import { readText } from "@thi.ng/file-io";
 import type { CompLayerFn, SVGLayer } from "../api.js";
 import { positionOrGravity } from "../units.js";
 
-export const svgLayer: CompLayerFn = async (layer, _, ctx) => {
+export const svgLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 	let {
 		type: __,
 		body,
 		gravity,
+		origin,
 		path,
 		pos,
 		ref,
@@ -19,7 +19,7 @@ export const svgLayer: CompLayerFn = async (layer, _, ctx) => {
 	const h = +(/height="(\d+)"/.exec(body)?.[1] || 0);
 	return {
 		input: Buffer.from(body),
-		...positionOrGravity(pos, gravity, [w, h], ctx.size, ref, unit),
+		...positionOrGravity([w, h], ctx.size, layer),
 		...opts,
 	};
 };

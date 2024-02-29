@@ -106,14 +106,11 @@ test("positionOrGravity (%)", () => {
 		],
 	]) {
 		expect(
-			positionOrGravity(
+			positionOrGravity(computeSize(size, SIZE, ref, "%"), SIZE, {
 				pos,
-				null,
-				computeSize(size, SIZE, ref, "%"),
-				SIZE,
 				ref,
-				"%"
-			)
+				unit: "%",
+			})
 		).toEqual(result!);
 	}
 });

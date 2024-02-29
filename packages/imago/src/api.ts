@@ -20,6 +20,15 @@ import type {
 	WebpOptions,
 } from "sharp";
 
+/**
+ * ```text
+ * nw -- n -- ne
+ *  |    |    |
+ *  w -- c -- e
+ *  |    |    |
+ * sw -- s -- se
+ * ```
+ */
 export type Gravity = "c" | "e" | "n" | "ne" | "nw" | "s" | "se" | "sw" | "w";
 
 export type DitherMode =
@@ -88,9 +97,10 @@ export interface CompLayerBase {
 	type: string;
 	blend?: Blend;
 	/**
-	 * Abstracted layer position. If given, takes precedence over
-	 * {@link CompLayerBase.position}. If neither gravity or position are
-	 * configured, the layer will be centered.
+	 * Abstracted layer position. This option is only used if no
+	 * {@link CompLayerBase.position} is specified. It also controls alignment
+	 * of tiling when {@link CompLayerBase.tile} is enabled. If neither gravity
+	 * or position are configured, the layer will be centered.
 	 */
 	gravity?: Gravity;
 	/**
@@ -99,11 +109,24 @@ export interface CompLayerBase {
 	 * values are overriding left/top (in case of conflict).
 	 *
 	 * @remarks
-	 * Note: This option is only used if no {@link CompLayerBase.gravity} is
-	 * specified. If neither gravity or position are configured, the layer will
-	 * be centered.
+	 * Note: This option takes precedence over {@link CompLayerBase.gravity}. If
+	 * neither gravity or position are configured, the layer will be centered.
 	 */
 	pos?: Position;
+	/**
+	 * Origin/reference point for the given layer position
+	 * {@link CompLayerBase.pos}. Only used if position is given.
+	 *
+	 * @remarks
+	 * The given value specifies one of the 9 points in the layer which is to be
+	 * used for the layer position (e.g. "se" for south-east aka bottom-right
+	 * corner).
+	 *
+	 * If not given, it will be auto-determined by provided position config,
+	 * e.g. a `pos` with right & top coords will have an implicit origin of `ne`
+	 * (aka north-east). See gravity diagram {@link Gravity}.
+	 */
+	origin?: Gravity;
 	/**
 	 * Only used if {@link CompLayerBase.unit} is percent (`%`). Reference side
 	 * ID for computing positions and sizes. See {@link SizeRef} for details.
@@ -111,6 +134,10 @@ export interface CompLayerBase {
 	 * @defaultValue "min"
 	 */
 	ref?: SizeRef;
+	/**
+	 * If true, the layer will be repeated across the entire image with the
+	 * given {@link CompLayerBase.gravity}.
+	 */
 	tile?: boolean;
 	/**
 	 * Unit to use for {@link CompLayerBase.position} and sizes (where
@@ -122,6 +149,12 @@ export interface CompLayerBase {
 	unit?: SizeUnit;
 	// allow custom extensions
 	[id: string]: any;
+}
+
+export interface ColorLayer extends CompLayerBase {
+	type: "color";
+	bg: Color;
+	size?: Size;
 }
 
 export interface ImgLayer extends CompLayerBase {
@@ -153,6 +186,7 @@ export interface CropSpec extends ProcSpec {
 	op: "crop";
 	border?: Size | Sides;
 	gravity?: Gravity;
+	origin?: Gravity;
 	pos?: Position;
 	ref?: SizeRef;
 	size?: Size;
@@ -164,7 +198,7 @@ export interface DitherSpec extends ProcSpec {
 	mode: DitherMode;
 	num: number;
 	rgb?: boolean;
-	size: 2 | 4 | 8;
+	size?: 2 | 4 | 8;
 }
 
 export interface EXIFSpec extends ProcSpec {
@@ -218,9 +252,9 @@ export interface OutputSpec extends ProcSpec {
 	id: string;
 	/**
 	 * Possibly templated output path. See {@link formatPath} for details.
-	 * Ignored if {@link OutputSpec.blurhash} is being used.
+	 * Ignored if {@link OutputSpec.blurhash} is being used, otherwise **required**.
 	 */
-	path: string;
+	path?: string;
 	/**
 	 * AVIF output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#avif)
 	 */
@@ -231,18 +265,13 @@ export interface OutputSpec extends ProcSpec {
 	 * {@link OutputSpec.path} will be ignored and no file will be written.
 	 *
 	 * @remarks
+	 * The value given is the blurhash detail setting in the [1,9] range (usual
+	 * default is 4), possibly given separately for X/Y axes.
+	 *
 	 * Important: Ensure the image has already been downsized to ~50-500 pixels.
 	 * Larger images are causing unnecessary & long processing...
 	 */
-	blurhash?: {
-		/**
-		 * Blurhash detail setting in 1-9 range, possibly given separately for
-		 * X/Y axis.
-		 *
-		 * @defaultValue 4
-		 */
-		detail?: number | [number, number];
-	};
+	blurhash?: true | number | [number, number];
 	/**
 	 * GIF output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#gif)
 	 */
@@ -299,7 +328,7 @@ export interface ResizeSpec extends ProcSpec {
 	filter?: Keys<KernelEnum>;
 	fit?: Keys<FitEnum>;
 	gravity?: Gravity;
-	ref: SizeRef;
+	ref?: SizeRef;
 	size: Size;
 	unit?: SizeUnit;
 }
@@ -307,7 +336,7 @@ export interface ResizeSpec extends ProcSpec {
 export interface RotateSpec extends ProcSpec {
 	op: "rotate";
 	angle?: number;
-	bg: Color;
+	bg?: Color;
 	flipX?: boolean;
 	flipY?: boolean;
 }

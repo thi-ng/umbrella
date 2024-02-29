@@ -1,11 +1,9 @@
-// thing:no-export
 import { isFunction } from "@thi.ng/checks";
-import { writeText } from "@thi.ng/file-io";
 import { XML_SVG } from "@thi.ng/prefixes";
 import type { CompLayerFn, Dim, TextLayer } from "../api.js";
-import { computeSize, positionOrGravity } from "../units.js";
+import { computeSize, gravityFlags, positionOrGravity } from "../units.js";
 
-export const textLayer: CompLayerFn = async (layer, _, ctx) => {
+export const textLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 	const {
 		type: __,
 		bg = "transparent",
@@ -16,6 +14,7 @@ export const textLayer: CompLayerFn = async (layer, _, ctx) => {
 		textGravity = "c",
 		body,
 		gravity,
+		origin,
 		path,
 		pos,
 		ref,
@@ -25,9 +24,7 @@ export const textLayer: CompLayerFn = async (layer, _, ctx) => {
 	} = <TextLayer>layer;
 	let bounds: Dim;
 	const [w, h] = (bounds = computeSize(size, ctx.size, ref, unit));
-	const [isE, isW, isN, isS] = ["e", "w", "n", "s"].map((x) =>
-		textGravity.includes(x)
-	);
+	const [isE, isW, isN, isS] = gravityFlags(textGravity);
 	const x = isW ? padding : isE ? w - padding : w / 2;
 	const y = isN ? padding : isS ? h - padding : h / 2;
 	const align = isW ? "start" : isE ? "end" : "middle";
@@ -39,10 +36,10 @@ export const textLayer: CompLayerFn = async (layer, _, ctx) => {
 		`<text x="${x}" y="${y}" text-anchor="${align}" dy="${valign}em" fill="${color}" font-family="${font}" font-size="${fontSize}">${$body}</text>`,
 		`</svg>`,
 	].join("");
-	writeText("text-debug.svg", svg);
+	// writeText("text-debug.svg", svg);
 	return {
 		input: Buffer.from(svg),
-		...positionOrGravity(pos, gravity, bounds, ctx.size, ref, unit),
+		...positionOrGravity(bounds, ctx.size, layer),
 		...opts,
 	};
 };

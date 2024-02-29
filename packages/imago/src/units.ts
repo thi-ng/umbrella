@@ -1,13 +1,12 @@
-import type { Nullable } from "@thi.ng/api";
 import { isArray, isArrayLike, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import type { Metadata } from "sharp";
 import {
 	GRAVITY_MAP,
 	type Color,
-	type CompLayerBase,
 	type Dim,
 	type Gravity,
+	type Position,
 	type Sides,
 	type Size,
 	type SizeRef,
@@ -33,20 +32,26 @@ export const coerceColor = (col: Color) =>
  * The given `size` MUST already be resolved (in pixels), e.g. via an earlier
  * call to {@link computeSize}. `parentSize` is also in pixels.
  *
- * @param pos
- * @param gravity
  * @param size
  * @param parentSize
- * @param ref
- * @param unit
+ * @param opts
  */
 export const positionOrGravity = (
-	pos: CompLayerBase["pos"],
-	gravity: Nullable<Gravity>,
 	[w, h]: Dim,
 	parentSize: Dim,
-	ref?: SizeRef,
-	unit: SizeUnit = "px"
+	{
+		pos,
+		gravity,
+		origin,
+		ref,
+		unit = "px",
+	}: {
+		pos?: Position;
+		gravity?: Gravity;
+		origin?: Gravity;
+		ref?: SizeRef;
+		unit?: SizeUnit;
+	}
 ) => {
 	if (!pos) return gravity ? { gravity: GRAVITY_MAP[gravity] } : undefined;
 	const [parentW, parentH] = parentSize;
@@ -58,12 +63,22 @@ export const positionOrGravity = (
 		unit
 	);
 	let left: number | undefined, top: number | undefined;
-	if (pos.l != null) left = round(l);
-	if (pos.r != null) left = round(parentW - r - w);
-	if (pos.t != null) top = round(t);
-	if (pos.b != null) top = round(parentH - b - h);
+	const [isE, isW, isN, isS] = origin ? gravityFlags(origin) : [];
+	const w2 = w >> 1;
+	const h2 = h >> 1;
+	if (pos.l != null)
+		left = round(l) + (origin ? (isW ? 0 : isE ? -w : -w2) : 0);
+	if (pos.r != null)
+		left = round(parentW - r) + (origin ? (isW ? 0 : isE ? -w : -w2) : -w);
+	if (pos.t != null)
+		top = round(t) + (origin ? (isN ? 0 : isS ? -h : -h2) : 0);
+	if (pos.b != null)
+		top = round(parentH - b) + (origin ? (isN ? 0 : isS ? -h : -h2) : -h);
 	return { left, top };
 };
+
+export const gravityFlags = (gravity: Gravity) =>
+	["e", "w", "n", "s"].map((x) => gravity.includes(x));
 
 export const gravityPosition = (
 	gravity: Gravity,
@@ -89,22 +104,22 @@ export const refSize = ([w, h]: Dim, ref?: SizeRef): Dim => {
 			return [w, w];
 		case "h":
 			return [h, h];
-		case "both":
-			return [w, h];
 		case "max":
 			v = Math.max(w, h);
 			return [v, v];
 		case "min":
-		default:
 			v = Math.min(w, h);
 			return [v, v];
+		case "both":
+		default:
+			return [w, h];
 	}
 };
 
 export const computeSize = (
 	size: Size,
 	curr: Dim,
-	ref: SizeRef = "min",
+	ref?: SizeRef,
 	unit: SizeUnit = "px"
 ): Dim => {
 	const aspect = curr[0] / curr[1];
@@ -145,7 +160,7 @@ export const computeSize = (
 export const computeMargins = (
 	size: Size | Sides,
 	curr: Dim,
-	ref: SizeRef = "min",
+	ref?: SizeRef,
 	unit: SizeUnit = "px"
 ) => {
 	let res: Sides;

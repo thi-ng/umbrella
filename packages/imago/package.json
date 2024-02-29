@@ -109,6 +109,57 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./layers/color": {
+			"default": "./layers/color.js"
+		},
+		"./layers/image": {
+			"default": "./layers/image.js"
+		},
+		"./layers/svg": {
+			"default": "./layers/svg.js"
+		},
+		"./layers/text": {
+			"default": "./layers/text.js"
+		},
+		"./ops/blur": {
+			"default": "./ops/blur.js"
+		},
+		"./ops/composite": {
+			"default": "./ops/composite.js"
+		},
+		"./ops/crop": {
+			"default": "./ops/crop.js"
+		},
+		"./ops/dither": {
+			"default": "./ops/dither.js"
+		},
+		"./ops/exif": {
+			"default": "./ops/exif.js"
+		},
+		"./ops/extend": {
+			"default": "./ops/extend.js"
+		},
+		"./ops/gamma": {
+			"default": "./ops/gamma.js"
+		},
+		"./ops/grayscale": {
+			"default": "./ops/grayscale.js"
+		},
+		"./ops/hsbl": {
+			"default": "./ops/hsbl.js"
+		},
+		"./ops/nest": {
+			"default": "./ops/nest.js"
+		},
+		"./ops/output": {
+			"default": "./ops/output.js"
+		},
+		"./ops/resize": {
+			"default": "./ops/resize.js"
+		},
+		"./ops/rotate": {
+			"default": "./ops/rotate.js"
+		},
 		"./ops": {
 			"default": "./ops.js"
 		},

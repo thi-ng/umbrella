@@ -1,4 +1,3 @@
-// thing:no-export
 import type { Sharp } from "sharp";
 import type { NestSpec, Processor } from "../api.js";
 import { processImage } from "../proc.js";

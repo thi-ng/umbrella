@@ -1,4 +1,3 @@
-// thing:no-export
 import { typedArray } from "@thi.ng/api";
 import { ABGR8888, GRAY8, Lane, intBuffer } from "@thi.ng/pixel";
 import {
@@ -19,6 +18,9 @@ import {
 import sharp from "sharp";
 import type { DitherMode, DitherSpec, Processor } from "../api.js";
 
+/**
+ * @internal
+ */
 const DITHER_KERNELS: Record<Exclude<DitherMode, "bayer">, DitherKernel> = {
 	atkinson: ATKINSON,
 	burkes: BURKES,

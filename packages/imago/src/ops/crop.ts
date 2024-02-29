@@ -1,4 +1,3 @@
-// thing:no-export
 import { illegalArgs } from "@thi.ng/errors";
 import type { CropSpec, Processor } from "../api.js";
 import {
@@ -30,7 +29,7 @@ export const cropProc: Processor = async (spec, input, ctx) => {
 		top = 0;
 	if (pos) {
 		({ left = 0, top = 0 } =
-			positionOrGravity(pos, gravity, $size, ctx.size, ref, unit) || {});
+			positionOrGravity($size, ctx.size, <CropSpec>spec) || {});
 	} else {
 		[left, top] = gravityPosition(gravity || "c", $size, ctx.size);
 	}

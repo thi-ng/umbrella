@@ -1,4 +1,3 @@
-// thing:no-export
 import type { BlurSpec, Processor } from "../api.js";
 
 export const blurProc: Processor = async (spec, input) => {

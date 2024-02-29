@@ -1,4 +1,3 @@
-// thing:no-export
 import type { ExtendSpec, Processor } from "../api.js";
 import { coerceColor, computeMargins } from "../units.js";
 
