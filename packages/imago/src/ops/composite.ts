@@ -1,7 +1,7 @@
 // thing:no-export
 import { defmulti } from "@thi.ng/defmulti";
 import type { OverlayOptions, Sharp } from "sharp";
-import type { CompLayer, CompSpec, ImgProcCtx, Processor } from "../api.js";
+import type { CompLayerBase, CompSpec, ImgProcCtx, Processor } from "../api.js";
 import { imageLayer } from "../layers/image.js";
 import { svgLayer } from "../layers/svg.js";
 import { textLayer } from "../layers/text.js";
@@ -16,7 +16,7 @@ export const compositeProc: Processor = async (spec, input, ctx) => {
 };
 
 export const defLayer = defmulti<
-	CompLayer,
+	CompLayerBase,
 	Sharp,
 	ImgProcCtx,
 	Promise<OverlayOptions>

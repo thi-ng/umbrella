@@ -64,7 +64,7 @@ export type Processor = Fn3<
 >;
 
 export type CompLayerFn = Fn3<
-	CompLayer,
+	CompLayerBase,
 	Sharp,
 	ImgProcCtx,
 	Promise<OverlayOptions>
@@ -81,10 +81,8 @@ export interface BlurSpec extends ProcSpec {
 
 export interface CompSpec extends ProcSpec {
 	op: "composite";
-	layers: CompLayer[];
+	layers: CompLayerBase[];
 }
-
-export type CompLayer = ImgLayer | SVGLayer;
 
 export interface CompLayerBase {
 	type: string;
