@@ -2,7 +2,7 @@
 import { isFunction } from "@thi.ng/checks";
 import { writeText } from "@thi.ng/file-io";
 import { XML_SVG } from "@thi.ng/prefixes";
-import type { CompLayerFn, TextLayer } from "../api.js";
+import type { CompLayerFn, Dim, TextLayer } from "../api.js";
 import { computeSize, positionOrGravity } from "../units.js";
 
 export const textLayer: CompLayerFn = async (layer, _, ctx) => {
@@ -18,11 +18,13 @@ export const textLayer: CompLayerFn = async (layer, _, ctx) => {
 		gravity,
 		path,
 		pos,
+		ref,
 		size,
 		unit,
 		...opts
 	} = <TextLayer>layer;
-	const [w, h] = computeSize(size, ctx.size, unit);
+	let bounds: Dim;
+	const [w, h] = (bounds = computeSize(size, ctx.size, ref, unit));
 	const [isE, isW, isN, isS] = ["e", "w", "n", "s"].map((x) =>
 		textGravity.includes(x)
 	);
@@ -40,7 +42,7 @@ export const textLayer: CompLayerFn = async (layer, _, ctx) => {
 	writeText("text-debug.svg", svg);
 	return {
 		input: Buffer.from(svg),
-		...positionOrGravity(pos, gravity, [w, h], ctx.size, unit),
+		...positionOrGravity(pos, gravity, bounds, ctx.size, ref, unit),
 		...opts,
 	};
 };

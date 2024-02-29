@@ -3,8 +3,8 @@ import { GRAVITY_POSITION, type Processor, type ResizeSpec } from "../api.js";
 import { coerceColor, computeSize } from "../units.js";
 
 export const resizeProc: Processor = async (spec, input, ctx) => {
-	const { bg, filter, fit, gravity, size, unit } = <ResizeSpec>spec;
-	const [width, height] = computeSize(size, ctx.size, unit);
+	const { bg, filter, fit, gravity, ref, size, unit } = <ResizeSpec>spec;
+	const [width, height] = computeSize(size, ctx.size, ref, unit);
 	return [
 		input.resize({
 			width,

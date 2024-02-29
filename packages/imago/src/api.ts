@@ -40,7 +40,7 @@ export type Size = number | Dim;
 
 export type Sides = [number, number, number, number];
 
-export type SizeRef = "min" | "max" | "w" | "h";
+export type SizeRef = "min" | "max" | "w" | "h" | "both";
 
 export type SizeUnit = "px" | "%";
 
@@ -89,16 +89,47 @@ export type CompLayer = ImgLayer | SVGLayer;
 export interface CompLayerBase {
 	type: string;
 	blend?: Blend;
+	/**
+	 * Abstracted layer position. If given, takes precedence over
+	 * {@link CompLayerBase.position}. If neither gravity or position are
+	 * configured, the layer will be centered.
+	 */
 	gravity?: Gravity;
+	/**
+	 * Partial layer position given in units of {@link CompLayerBase.unit}. At
+	 * most 2 coordinate can be given here (e.g. left & top). The right & bottom
+	 * values are overriding left/top (in case of conflict).
+	 *
+	 * @remarks
+	 * Note: This option is only used if no {@link CompLayerBase.gravity} is
+	 * specified. If neither gravity or position are configured, the layer will
+	 * be centered.
+	 */
 	pos?: Position;
+	/**
+	 * Only used if {@link CompLayerBase.unit} is percent (`%`). Reference side
+	 * ID for computing positions and sizes. See {@link SizeRef} for details.
+	 *
+	 * @defaultValue "min"
+	 */
+	ref?: SizeRef;
 	tile?: boolean;
+	/**
+	 * Unit to use for {@link CompLayerBase.position} and sizes (where
+	 * supported). If `%`, the given values are interpreted as percentages,
+	 * relative to configured {@link CompLayerBase.ref} side.
+	 *
+	 * @defaultValue "px"
+	 */
 	unit?: SizeUnit;
+	// allow custom extensions
+	[id: string]: any;
 }
 
 export interface ImgLayer extends CompLayerBase {
+	type: "img";
 	path: string;
 	size?: Size;
-	unit?: SizeUnit;
 }
 
 export interface SVGLayer extends CompLayerBase {
@@ -109,7 +140,6 @@ export interface SVGLayer extends CompLayerBase {
 
 export interface TextLayer extends CompLayerBase {
 	type: "text";
-	textGravity: Gravity;
 	bg: string;
 	body: string | Fn<ImgProcCtx, string>;
 	color: string;
@@ -117,7 +147,8 @@ export interface TextLayer extends CompLayerBase {
 	fontSize: number | string;
 	padding: number;
 	path: string;
-	size: [number, number];
+	size: Dim;
+	textGravity: Gravity;
 }
 
 export interface CropSpec extends ProcSpec {
@@ -270,6 +301,7 @@ export interface ResizeSpec extends ProcSpec {
 	filter?: Keys<KernelEnum>;
 	fit?: Keys<FitEnum>;
 	gravity?: Gravity;
+	ref: SizeRef;
 	size: Size;
 	unit?: SizeUnit;
 }
@@ -333,7 +365,8 @@ export interface ImgProcCtx {
 	logger: ILogger;
 	opts: Partial<ImgProcOpts>;
 	/**
-	 * Paths of all exported images.
+	 * Paths of all exported images, keyed by IDs given via {@link OutputSpec} /
+	 * {@link output}.
 	 */
 	outputs: Record<string, string>;
 }

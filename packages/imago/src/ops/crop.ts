@@ -25,12 +25,12 @@ export const cropProc: Processor = async (spec, input, ctx) => {
 			true,
 		];
 	}
-	const $size = computeSize(size!, ctx.size, unit);
+	const $size = computeSize(size!, ctx.size, ref, unit);
 	let left = 0,
 		top = 0;
 	if (pos) {
 		({ left = 0, top = 0 } =
-			positionOrGravity(pos, gravity, $size, ctx.size, unit) || {});
+			positionOrGravity(pos, gravity, $size, ctx.size, ref, unit) || {});
 	} else {
 		[left, top] = gravityPosition(gravity || "c", $size, ctx.size);
 	}

@@ -9,6 +9,7 @@ export const imageLayer: CompLayerFn = async (layer, _, ctx) => {
 		gravity,
 		path,
 		pos,
+		ref,
 		size,
 		unit,
 		...opts
@@ -16,13 +17,13 @@ export const imageLayer: CompLayerFn = async (layer, _, ctx) => {
 	const input = sharp(path);
 	const meta = await input.metadata();
 	let imgSize: Dim = [meta.width!, meta.height!];
-	const $pos = positionOrGravity(pos, gravity, imgSize, ctx.size, unit);
+	if (size) imgSize = computeSize(size, imgSize, ref, unit);
+	const $pos = positionOrGravity(pos, gravity, imgSize, ctx.size, ref, unit);
 	if (!size) return { input: path, ...$pos, ...opts };
 	ensureSize(meta);
-	imgSize = computeSize(size, imgSize, unit);
 	return {
 		input: await input
-			.resize(imgSize[0], imgSize[1])
+			.resize(imgSize[0], imgSize[1], { fit: "fill" })
 			.png({ compressionLevel: 0 })
 			.toBuffer(),
 		...$pos,
