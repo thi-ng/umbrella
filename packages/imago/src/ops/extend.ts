@@ -12,7 +12,7 @@ export const extendProc: Processor = async (spec, input, ctx) => {
 			right,
 			top,
 			bottom,
-			background: coerceColor(bg || "#000"),
+			background: coerceColor(bg || "#0000"),
 			extendWith: mode,
 		}),
 		true,
