@@ -1,5 +1,6 @@
 import type {
 	BlurSpec,
+	CompLayerBase,
 	CompSpec,
 	CropSpec,
 	DitherSpec,
@@ -8,11 +9,14 @@ import type {
 	GammaSpec,
 	GrayscaleSpec,
 	HSBLSpec,
+	ImgLayer,
 	NestSpec,
 	OutputSpec,
 	ProcSpec,
 	ResizeSpec,
 	RotateSpec,
+	SVGLayer,
+	TextLayer,
 } from "./api.js";
 
 export const defSpec =
@@ -20,9 +24,20 @@ export const defSpec =
 	(opts: Omit<T, "op">): T =>
 		<T>{ op, ...opts };
 
+export const defLayerSpec =
+	<T extends CompLayerBase>(type: T["type"]) =>
+	(opts: Omit<T, "op">): T =>
+		<T>{ type, ...opts };
+
 export const blur = defSpec<BlurSpec>("blur");
 
 export const composite = defSpec<CompSpec>("composite");
+
+export const imageLayer = defLayerSpec<ImgLayer>("img");
+
+export const svgLayer = defLayerSpec<SVGLayer>("svg");
+
+export const textLayer = defLayerSpec<TextLayer>("text");
 
 export const crop = defSpec<CropSpec>("crop");
 
