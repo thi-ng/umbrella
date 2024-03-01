@@ -109,6 +109,8 @@ map.get(b);
 Using custom implementations:
 
 ```ts
+import { defArraySet } from "@thi.ng/associative";
+
 set = defArraySet();
 set.add(a);
 set.add({a: 1});
@@ -118,6 +120,8 @@ set.has(b);
 set.has({a: 1});
 // true
 
+import { defLLSet } from "@thi.ng/associative";
+
 set = defLLSet();
 set.add(a);
 set.add({a: 1});
@@ -126,6 +130,8 @@ set.has(b);
 // true
 set.has({a: 1});
 // true
+
+import { defEquivMap } from "@thi.ng/associative";
 
 // by default EquivMap uses ArraySet for its canonical keys
 map = defEquivMap();
@@ -139,6 +145,7 @@ map.get(b);
 
 // Hash map w/ user supplied hash code function
 // (here using `hash` function for arrays)
+import { defHashMap } from "@thi.ng/associative";
 import { hash } from "@thi.ng/vectors"
 
 m = defHashMap([], { hash })
@@ -146,6 +153,8 @@ m.set([1, 2], "a");
 m.set([3, 4, 5], "b");
 m.set([1, 2], "c");
 // HashMap { [ 1, 2 ] => 'c', [ 3, 4, 5 ] => 'b' }
+
+import { defSortedSet, defSortedMap } from "@thi.ng/associative";
 
 set = defSortedSet([a, [-1, 2], [-1, -2]]);
 // SortedSet { [ -1, -2 ], [ -1, 2 ], [ 1, 2 ] }
@@ -273,6 +282,8 @@ Data structure description:
 #### Ranged queries
 
 ```ts
+import { defSortedMap } from "@thi.ng/associative";
+
 map = defSortedMap([
     ["c", 3], ["a", 1], ["d", 4], ["b", 2]
 ]);
@@ -324,6 +335,8 @@ they retain their original insertion order. For some use cases (e.g.
 deduplication of values), this property can be very useful.
 
 ```ts
+import { defSparseSet } from "@thi.ng/associative";
+
 // create sparse set for value range 0 - 99 (uint8 backed)
 const a = defSparseSet(100);
 a.into([99, 42, 66, 23, 66, 42]);
@@ -356,6 +369,8 @@ The implementations here too feature ES6 Map-like API, similar to other types in
 this package, with some further trie-specific additions.
 
 ```ts
+import { defTrieMap } from "@thi.ng/associative";
+
 const trie = defTrieMap([
   ["hey", "en"],
   ["hello", "en"],
@@ -384,6 +399,8 @@ multiple values per key. Values are stored in sets whose implementation can be
 configured via ctor options.
 
 ```ts
+import { defMultiTrie } from "@thi.ng/associative";
+
 // init w/ custom value set type (here only for illustration)
 const t = defMultiTrie<string[], string>(null, { vals: () => new ArraySet() });
 

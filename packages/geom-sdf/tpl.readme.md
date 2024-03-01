@@ -45,10 +45,12 @@ parametric) via a shape `group()`'s
 e.g.
 
 ```ts
+import { group, rectFromCentroid } from "@thi.ng/geom";
+
 group({ __sdf: { combine: "diff", chamfer: 50 }}, [
     rectFromCentroid([-50,-50], 200),
     rectFromCentroid([50,50], 200),
-])
+]);
 ```
 
 | Operator | Union                                                                                                    | Difference                                                                                              | Intersection                                                                                            |

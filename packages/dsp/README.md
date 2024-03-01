@@ -137,6 +137,8 @@ well.
 interface to obtain the gen's current (last generated) value.
 
 ```ts
+import { curve } from "@thi.ng/dsp";
+
 // create exponential curve from 0 - 10 over 5 steps
 const c = curve(0, 10, 5);
 
@@ -218,6 +220,8 @@ import { take } from "@thi.ng/transducers";
 - [modOsc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc.ts) - FM / FMAM oscillator builder
 
 ```ts
+import { osc, modOsc, saw, sin } from "@thi.ng/dsp";
+
 const FS = 44100;
 
 // simple 100Hz sine oscillator
@@ -449,6 +453,8 @@ be used, currently:
 - Biquad
 
 ```ts
+import { biquadPeak, freqRange, filterResponse } from "@thi.ng/dsp";
+
 // peak biquad @ 5kHz w/ -60dB gain
 const coeffs = biquadPeak(5000 / FS, 10, -60).filterCoeffs();
 // {

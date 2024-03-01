@@ -93,90 +93,92 @@ directory is using this package:
 [Generated API docs](https://docs.thi.ng/umbrella/intervals/)
 
 ```ts
+import * as i from "@thi.ng/intervals";
+
 // [0 .. +∞] (fully closed)
-a = withMin(0);
+const a = i.withMin(0);
 
 // [-∞ .. 1) (open on RHS)
-b = withMax(1, true);
+const b = i.withMax(1, true);
 
-i = intersection(a, b);
-i.toString();
+const c = i.intersection(a, b);
+c.toString();
 // [0 .. 1)
 
 // parse from string
-interval("[0 .. 1)")
+i.interval("[0 .. 1)")
 // Interval { l: 0, r: 1, lopen: false, ropen: true }
 
-contains(i, 1);
+i.contains(c, 1);
 // or
-i.contains(1);
+c.contains(1);
 // false (because interval is open on RHS)
 
-contains(i, 0.999999);
+i.contains(c, 0.999999);
 // true
 
 // classify interval relative to point (true if RHS < x)
-isBefore(i, -1)
+i.isBefore(c, -1)
 // false
 
-isBefore(i, 1)
+i.isBefore(c, 1)
 // true
 
 // classify interval relative to point (true if LHS > x)
-isAfter(i, -1);
+i.isAfter(c, -1);
 // true
 
-isAfter(i, 1);
+i.isAfter(c, 1);
 // false
 
 // grow interval to include 2 => [0 ... 2]
-i2 = include(i, 2);
+const c2 = i.include(c, 2);
 
 // sort order: LHS -> RHS
-compare(i, i2);
+i.compare(c, c2);
 // -1
 
 // classify WRT given interval arg
 // returns Classifier enum
-classify(i, infinity());
+i.classify(c, i.infinity());
 // 3 (aka Classifier.SUBSET)
 
 // create transformed interval
 // (here scaled around centroid)
-transform(i, (x) => x + (x - centroid(i)) * 2).toString();
+i.transform(c, (x) => x + (x - i.centroid(c)) * 2).toString();
 // [-1 .. 2)
 
 // iterator of decimated interval values
-[...values(i, 0.25)];
+[...i.values(c, 0.25)];
 // [ 0, 0.25, 0.5, 0.75 ]
 
 // close RHS
-i.ropen = false;
+c.ropen = false;
 
 // iterator of 0.25-spaced values in interval
-[...values(i, 0.25)];
+[...i.values(c, 0.25)];
 // [ 0, 0.25, 0.5, 0.75, 1 ] => now includes 1
 
 // iterator of n equidistant samples
-[...samples(i, 4)]
+[...i.samples(c, 4)]
 // [ 0, 0.3333333333333333, 0.6666666666666666, 1 ]
 
 // constrain values to interval (taking openness into account)
-max(interval("(0..1)"), -2)
+i.max(i.interval("(0..1)"), -2)
 // 0.000001
 
 // if given value is outside interval, uses opt epsilon value
 // to return closest inside value (default: 1e-6)...
-max(interval("(0..1)"), -2, 1e-3)
+i.max(i.interval("(0..1)"), -2, 1e-3)
 // 0.001
 
-min(interval("(0..1)"), 2, 1e-3)
+i.min(i.interval("(0..1)"), 2, 1e-3)
 // 0.999
 
 // clamp on both sides
-clamp(interval("[0..1)"), -2, 1e-3)
+i.clamp(i.interval("[0..1)"), -2, 1e-3)
 // 0
-clamp(interval("[0..1)"), 2, 1e-3)
+i.clamp(i.interval("[0..1)"), 2, 1e-3)
 // 0.999
 ```
 

@@ -256,6 +256,8 @@ defaults/outputs.
 Example with custom link elements:
 
 ```ts
+import { parse, type TagTransforms } from "@thi.ng/hiccup-markdown";
+
 const tags: Partial<TagTransforms> = {
     link: (ctx, href, body) => ["a.link.blue", { href }, ...body]
 };

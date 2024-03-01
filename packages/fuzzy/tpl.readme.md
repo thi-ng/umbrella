@@ -96,6 +96,11 @@ package provides utilities to visualize the fuzzy sets of an L-var.
 l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar-2.svg)
 
 ```ts
+import {
+	variable, invSigmoid, sigmoid, trapezoid,
+	evaluate, classify
+} from "@thi.ng/fuzzy";
+
 // temperature sets (in celsius)
 const temp = variable(
   // value domain
@@ -139,6 +144,11 @@ Logic](https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_
 tutorial](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/fuzzy-matrix-dernoncourt.png)
 
 ```ts
+import {
+	variable, ramp, invRamp, gaussian, triangle,
+	or, defuzz, meanOfMaximaStrategy
+} from "@thi.ng/fuzzy";
+
 // define fuzzy input variables
 const inputs = {
   food: variable([0, 10], {
@@ -211,6 +221,9 @@ Here is the ASCII art output for the
 and using `tnormMin` (the default) to transform each rule's output set(s):
 
 ```ts
+import { defuzz, centroidStrategy } from "@thi.ng/fuzzy";
+import { instrumentStrategy, fuzzySetToAscii } from "@thi.ng/fuzzy-viz";
+
 // wrap existing strategy
 const strat = instrumentStrategy(centroidStrategy(), fuzzySetToAscii());
 

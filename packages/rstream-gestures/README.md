@@ -212,6 +212,9 @@ zoom value. This can be done by supplying a stream/subscription as part of the
 config options:
 
 ```ts
+import { reactive } from "@thi.ng/rstream";
+import { gestureStream } from "@thi.ng/rstream-gestures";
+
 // create stream for initial zoom value & for resetting
 const zoomReset = reactive(1);
 

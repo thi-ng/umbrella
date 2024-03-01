@@ -84,10 +84,14 @@ offers complete freedom WRT how user state is & can be organized. Also,
 things like undo / redo become easier to handle this way.
 
 ```ts
+import { Atom, History } from "@thi.ng/atom";
+import { toggle } from "@thi.ng/imgui";
+
 // example state (see @thi.ng/atom)
 const STATE = new History(new Atom({ foo: true }));
 
-...
+//...IMGUI initialization omitted here
+
 // get atom snapshot
 const curr = STATE.deref();
 

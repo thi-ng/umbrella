@@ -140,11 +140,14 @@ paths.into(["src/channel.ts", "src/mult.ts", "src/pubsub.ts"]);
 ### Channel merging
 
 ```ts
+import { Channel } from "@thi.ng/csp";
+import { push } from "@thi.ng/transducers";
+
 Channel.merge([
     Channel.range(0, 3),
     Channel.range(10, 15),
     Channel.range(100, 110)
-]).reduce(tx.push()).then(console.log);
+]).reduce(push()).then(console.log);
 
 // [ 0, 100, 101, 102, 103, 1, 2, 104, 105, 10, 11, 12, 13, 106, 14, 107, 108, 109 ]
 
@@ -181,10 +184,13 @@ Channel.mergeTuples([
 ### PubSub
 
 ```ts
+import { Channel, PubSub } from "@thi.ng/csp";
+import { map } from "@thi.ng/transducers";
+
 // define a channel publisher with transducer and topic function applied to each item
 // the input channel receives names and transforms them into indexable objects
 const pub = new PubSub(
-    new Channel<any>("users", tx.map((x: string) => ({ type: x.charAt(0), val: x }))),
+    new Channel<any>("users", map((x: string) => ({ type: x.charAt(0), val: x }))),
     (x) => x.type
 );
 

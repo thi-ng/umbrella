@@ -320,6 +320,8 @@ The `NativePool` class provides a stub/polyfill implementation of the
 with no further management of the returned arrays.
 
 ```ts
+import { NativePool } from "@thi.ng/malloc";
+
 const pool = new NativePool();
 
 const a = pool.mallocAs(Type.F32, 4);

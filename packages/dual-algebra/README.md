@@ -63,6 +63,8 @@ Some examples (see further below for code example):
 Alternatively, use convenience fns to create dual numbers:
 
 ```ts
+import { $, $2, $3, dual } from "@thi.ng/dual-algebra";
+
 $(5)     // [5, 0]
 $(5, 1)  // [5, 1]
 

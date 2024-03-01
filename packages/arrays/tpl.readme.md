@@ -74,6 +74,8 @@ queries using `binarySearch()`.
 - `bsEQ()` - Merely syntax sugar, casting any non-found result indices to -1
 
 ```ts
+import { binarySearch, bsGT, bsLT } from "@thi.ng/arrays";
+
 const src = [10, 20, 30, 40];
 
 bsLT(binarySearch(src, 25))

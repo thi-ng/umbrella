@@ -107,6 +107,8 @@ samplers can be created with the following filters & wrap modes:
 - `"repeat"` - edge pixels are repeated
 
 ```ts
+import { intBuffer, defSampler, ABGR8888 } from "@thi.ng/pixel";
+
 const src = intBuffer(4, 4, ABGR8888);
 
 // fill w/ random colors
@@ -244,6 +246,10 @@ function...
 <small>Picture credit: [/u/kristophershinn](https://www.reddit.com/r/EarthPorn/comments/j3z0f6/fall_in_yosemite_valley_oc3186_3983/)</small>
 
 ```ts
+import { floatBuffer, dominantColors, FLOAT_RGB } from "@thi.ng/pixel";
+import { read } from "@thi.ng/pixel-io-netpbm";
+import { readFileSync } from "fs";
+
 // read test PPM image and convert into float RGB format
 const img = floatBuffer(read(readFileSync(`test.ppm`)), FLOAT_RGB);
 

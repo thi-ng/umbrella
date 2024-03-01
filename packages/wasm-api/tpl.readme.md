@@ -94,11 +94,8 @@ export class CustomAPI implements IWasmAPI {
         };
     }
 }
-```
 
-Now we can supply this custom API when creating the main WASM bridge:
-
-```ts
+// now we can supply this custom API when creating the main WASM bridge:
 export const bridge = new WasmBridge([new CustomAPI()]);
 ```
 
@@ -189,6 +186,8 @@ file and
 for more details...
 
 ```ts
+// (see sections further below for bridge initialization...)
+
 try {
     // allocate 256 bytes of memory for passing a string to WASM side
     // the function returns a tuple of `[address, len]`

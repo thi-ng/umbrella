@@ -109,6 +109,8 @@ Note: `DateTime` instances also define the above keys as properties, plus
 getters for week-in-year (`.w`) and quarter (`.q`).
 
 ```ts
+import { dateTime } from "@thi.ng/date";
+
 // create w/ current date (or pass epoch, string, Date or DateTime instances)
 const a = dateTime();
 // DateTime { y: 2020, M: 8, d: 19, h: 12, m: 17, s: 16, t: 884 }
@@ -153,6 +155,8 @@ offset period. Period identifiers are any `Precision` ID (see above) or `w`
 (week, aka 7 days) or `q` (quarter, aka 3 months):
 
 ```ts
+import { dateTime, difference, absDifference, asDays } from "@thi.ng/date";
+
 const a = dateTime();
 // DateTime { y: 2020, M: 8, d: 19, h: 12, m: 17, s: 16, t: 884 }
 
@@ -215,6 +219,8 @@ purposes (i.e. as axis tick label generators for
 - `milliseconds()`
 
 ```ts
+import { months, FMT_yyyyMMdd } from "@thi.ng/date";
+
 [...months("2021-01-03", "2021-07-16")]
 // [
 //   1609459200000,
@@ -246,6 +252,8 @@ Relative dates can be obtained via
 or [`relative()`](https://docs.thi.ng/umbrella/date/functions/relative.html).
 
 ```ts
+import { dateTime, parseRelative } from "@thi.ng/date";
+
 const now = dateTime();
 // DateTime { y: 2021, M: 2, d: 21, h: 14, m: 26, s: 0, t: 661 }
 
@@ -273,6 +281,12 @@ Both functions use the currently active [locale](#locales) and accept an
 optional reference date (default: `now()`).
 
 ```ts
+import {
+    setLocale, withLocale, DE_LONG, EN_LONG,
+    formatRelative, formatRelativeParts, formatDuration,
+    decomposeDifference
+} from "@thi.ng/date";
+
 setLocale(EN_LONG);
 
 formatRelative("2020-06-01", "2021-07-01")
@@ -407,15 +421,17 @@ part is non-zero. The 4 separators between each field can be customized via 2nd
 arg (default: all `:`).
 
 ```ts
-a = defTimecode(30);
+import { defTimecode, DAY, HOUR, MINUTE, SECOND } from "@thi.ng/date";
+
+const a = defTimecode(30);
 a(1*HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
 // "01:02:03:04"
 
 a(DAY);
 // "01:00:00:00:00"
 
-b = defTimecode(30, ["d ", "h ", "' ", '" ']);
-b(Day + HOUR + 2*MINUTE + 3*SECOND + 999)
+const b = defTimecode(30, ["d ", "h ", "' ", '" ']);
+b(DAY + HOUR + 2*MINUTE + 3*SECOND + 999)
 // "01d 01h 02' 03" 29"
 ```
 
@@ -438,9 +454,14 @@ by the current `LOCALE` (default: `EN_SHORT`) and can be set/changed via the
 `setLocale()` function:
 
 ```ts
+import {
+    dateTime, defFormat, setLocale,
+    EN_SHORT, EN_LONG
+} from "@thi.ng/date";
+
 const fmt = defFormat(["E", " ", "d", " ", "MMM", " ", "yyyy"]);
 
-setLocale(EN_SHORT); // default
+setLocale(EN_SHORT); // also the default
 // {
 //   months: [
 //     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -463,6 +484,8 @@ to only temporarily set a locale and execute a function with it, then
 automatically restoring the currently active locale.
 
 ```ts
+import { dateTime, withLocale, FR_LONG } from "@thi.ng/date";
+
 fmt(dateTime());
 // 'Fri 16 Jul 2021'
 

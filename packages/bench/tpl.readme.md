@@ -93,6 +93,10 @@ Also see the [formatting](#output-formatting) section below for other output
 options. This example uses the default format...
 
 ```ts
+import { benchmark } from "@thi.ng/bench";
+
+// fib() function is from previous example above...
+
 benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 // benchmarking: fib
 //         warmup... 3707.17ms (5 runs)
@@ -123,14 +127,18 @@ Multiple benchmarks can be run sequentially as suite (also returns an array of
 all results):
 
 ```ts
-b.suite(
+import { suite, FORMAT_MD } from "@thi.ng/bench";
+
+// fib2() function defined in earlier example above...
+
+suite(
     [
         { title: "fib2(10)", fn: () => fib2(10) },
         { title: "fib2(20)", fn: () => fib2(20) },
         { title: "fib2(30)", fn: () => fib2(30) },
         { title: "fib2(40)", fn: () => fib2(40) },
     ],
-    { iter: 10, size: 100000, warmup: 5, format: b.FORMAT_MD }
+    { iter: 10, size: 100000, warmup: 5, format: FORMAT_MD }
 )
 
 // |                   Title|    Iter|    Size|       Total|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
@@ -168,6 +176,8 @@ enabled/disabled, supports recursion and estimates/subtracts its internal
 overhead. Results can be obtained as JSON objects or CSV.
 
 ```ts
+import { Profiler } from "@thi.ng/bench";
+
 // initialize with 1million warmup iterations to compute internal overhead (takes around ~100ms)
 const profiler = new Profiler({ warmup: 1e6 });
 

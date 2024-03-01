@@ -151,13 +151,23 @@ String formatters can also be used in an ad-hoc manner, without requiring any of
 the other text canvas functionality.
 
 ```ts
+import { defFormat, FMT_HTML_INLINE_CSS, FG_LIGHT_RED, BG_GRAY } from "@thi.ng/text-format";
+
 // create & use a HTML formatter
 defFormat(FMT_HTML_INLINE_CSS, FG_LIGHT_RED | BG_GRAY)("hello")
 // "<span style="color:#f55;background:#555;">hello</span>"
+```
+
+```ts
+import { defFormat, FMT_ANSI16, FG_LIGHT_RED, BG_GRAY } from "@thi.ng/text-format";
 
 // create & use an ANSI formatter
 defFormat(FMT_ANSI16, FG_LIGHT_RED | BG_GRAY)("hello")
 // "\x1B[91;100mhello\x1B[0m"
+```
+
+```ts
+import { defAnsi16, FG_LIGHT_RED, BG_GRAY } from "@thi.ng/text-format";
 
 // ANSI syntax sugar (same result as above)
 defAnsi16(FG_LIGHT_RED | BG_GRAY)("hello")
@@ -170,6 +180,8 @@ can be used to create formatting functions for all 16 preset [foreground color
 IDs](#colors) for a given string format strategy:
 
 ```ts
+import { defFormatPresets, FMT_ANSI16, FMT_HTML_TACHYONS } from "@thi.ng/text-format";
+
 // since v1.3.0 also available as PRESET_ANSI16
 const ansi = defFormatPresets(FMT_ANSI16);
 

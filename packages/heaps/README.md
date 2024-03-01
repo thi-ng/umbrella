@@ -121,6 +121,8 @@ ordering:
 - The queue is iterable (in priority order, according to given comparator)
 
 ```ts
+import { defPriorityQueue } from "@thi.ng/heaps";
+
 // use default config
 const queue = defPriorityQueue();
 

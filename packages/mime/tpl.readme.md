@@ -84,6 +84,8 @@ Reverse lookups are possible too, using `preferredExtension()`
 (also supports fallback):
 
 ```ts
+import { preferredExtension } from "@thi.ng/mime";
+
 preferredExtension("image/svg+xml");
 // "svg"
 
@@ -103,6 +105,8 @@ if a MIME type is compressible (gzippable). This information can be obtained via
 provided...
 
 ```ts
+import { isCompressible } from "@thi.ng/mime";
+
 isCompressible("text/javascript");
 // true
 

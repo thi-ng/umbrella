@@ -108,6 +108,8 @@ directory are using this package:
 ### Canvas creation
 
 ```ts
+import { canvas } from "@thi.ng/text-canvas";
+
 const c = canvas(width, height, format?, style?);
 ```
 
@@ -173,7 +175,10 @@ These color IDs MUST be prefixed with either `FG_` (foreground) or `BG_`
 Format IDs can be combined via the binary OR operator (`|`), e.g.:
 
 ```ts
-setFormat(canvas, FG_BLACK | BG_LIGHT_CYAN | BOLD | UNDERLINE);
+import { setFormat } from "@thi.ng/text-canvas";
+import * as tf from "@thi.ng/text-format";
+
+setFormat(canvas, tf.FG_BLACK | tf.BG_LIGHT_CYAN | tf.BOLD | tf.UNDERLINE);
 ```
 
 ### String conversion format presets
@@ -196,6 +201,9 @@ package):
   information discarded, e.g. for [`NO_COLOR`](https://no-color.org/) support)
 
 ```ts
+import { formatCanvas } from "@thi.ng/text-canvas";
+import { FMT_ANSI16, FMT_HTML_TACHYONS } from "@thi.ng/text-format";
+
 // Terminal
 process.stdout.write(formatCanvas(canvas, FMT_ANSI16));
 // or

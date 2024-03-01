@@ -218,6 +218,9 @@ or write to a channel.
 Channels can be created like so:
 
 ```ts
+import { channel, sliding } from "@thi.ng/fibers";
+import { ConsoleLogger } from "@thi.ng/logger";
+
 // create unbuffered channel with single value capacity
 const chan1 = channel();
 
@@ -320,6 +323,10 @@ fibers, the various channel operations can be already combined with the
 For example, a channel read or write op can be combined with a timeout:
 
 ```ts
+import { withTimeout } from "@thi.ng/fibers";
+
+// ...then, inside a fiber function...
+
 const res = (yield* withTimeout(chan.read(), 1000)).deref();
 if (res !== undefined) {
 	console.log("read value", x);

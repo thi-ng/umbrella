@@ -90,6 +90,8 @@ but JS can only represent integers (w/o loss of precision) up to
 technically the max. supported word width is 64 bits.
 
 ```ts
+import { BitOutputStream } from "@thi.ng/bitstream";
+
 out = new BitOutputStream();
 // write 3-bit number (only the lowest 3 bits are used, here 0x05)
 out.write(0xf5, 3);
@@ -129,7 +131,7 @@ Using `input.seek(pos)`, the read position can be repositioned within
 stream limits.
 
 ```ts
-// get input from output stream...
+// get input from output stream (see above)...
 // (for reference, the ^ indicate the start of each bit field)
 [...out.reader()].join("")
 // "10111001101101111011001010111110111010110110101010101010100101010101010101"
@@ -148,6 +150,8 @@ out.reader().readStruct([["a", 3], ["b", 7], ["c", 32], ["d", 16], ["e", 16]]);
 // or read a number of fixed size words (here also from given pos)
 out.reader().seek(10).readWords(4, 16).map(x=>x.toString(16));
 // [ 'deca', 'fbad', 'aaaa', '5555' ]
+
+import { BitInputStream } from "@thi.ng/bitstream";
 
 src = new Uint8Array([0xf1,0xe2,0xd3,0xc4,0xb5,0xa6,0x97,0x88]);
 // create stream from bit 36

@@ -174,6 +174,8 @@ recursively. The predicate function is used to select eligible grid cells
 (e.g. "pixels" of sorts).
 
 ```ts
+import { floodFill } from "@thi.ng/grid-iterators";
+
 // source "image"
 const img = [
     "█", " ", " ", " ", "█",

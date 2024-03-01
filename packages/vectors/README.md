@@ -447,6 +447,8 @@ Component wise op with 2 input vectors:
 | `remainder` | ✓       | 2-4   |         |              | (C behavior)    |
 
 ```ts
+import { add, add2, addU2, addS2 } from "@thi.ng/vectors";
+
 // generic
 add([], [1, 2, 3, 4, 5], [10, 20, 30, 40, 50]);
 // [11, 22, 33, 44, 55]

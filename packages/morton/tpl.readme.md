@@ -53,6 +53,8 @@ TypeScript projects using this class should set their compile target (in
 `tsconfig.json`) to `"ESNext"` to enable `BigInt` support.
 
 ```ts
+import { ZCurve } from "@thi.ng/morton";
+
 // create new Z-curve for 3D positions and 16bit value range
 const z = new ZCurve(3, 16);
 

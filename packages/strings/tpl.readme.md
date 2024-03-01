@@ -113,6 +113,8 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 ### Basic usage examples
 
 ```ts
+import { defFormat, float, percent } from "@thi.ng/strings";
+
 // create a custom string formatter
 const fmt = defFormat([
     "Price: ",

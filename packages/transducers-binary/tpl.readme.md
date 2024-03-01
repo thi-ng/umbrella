@@ -35,26 +35,24 @@ iterable for direct use.
 
 {{pkg.docs}}
 
-```ts
-import * as tx from "@thi.ng/transducers";
-import * as txb from "@thi.ng/transducers-binary";
-```
-
 ### Random bits
 
 ```ts
+import { take } from "@thi.ng/transducers";
+import { randomBits } from "@thi.ng/transducers-binary";
+
 // 10 samples with 50% probability of drawing a 1
-[...txb.randomBits(0.5, 10)]
+[...randomBits(0.5, 10)]
 // [ 1, 0, 1, 1, 0, 1, 0, 1, 1, 0 ]
 
 // infinite iterator without 2nd arg, so limit with `take()`
-[...tx.take(10, txb.randomBits(0.1))]
+[...take(10, randomBits(0.1))]
 // [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ]
 
 import { Smush32 } from "@thi.ng/random";
 
 // with seeded PRNG
-[...txb.randomBits(0.5, 10, new Smush32(12345678))]
+[...randomBits(0.5, 10, new Smush32(12345678))]
 // [ 0, 0, 1, 1, 0, 0, 0, 0, 1, 0 ]
 ```
 
@@ -65,9 +63,11 @@ transducers. [See code
 here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/hex-dump.ts).
 
 ```ts
+import { hexDump } from "@thi.ng/transducers-binary";
+
 src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
 
-[...txb.hexDump({ cols: 8, address: 0x100 }, src)]
+[...hexDump({ cols: 8, address: 0x100 }, src)]
 // [ '00000100 | 41 42 43 44 45 46 47 48 | ABCDEFGH',
 //   '00000108 | 49 4a 21 30 31 32 33 7e | IJ!0123~',
 //   '00000110 | 7a 79 78 00 00 00 00 00 | zyx.....' ]
@@ -81,6 +81,9 @@ reducer transforms a stream of declarative data definitions (optionally
 with Little-Endian encoding) into an `Uint8Array`.
 
 ```ts
+import * as tx from "@thi.ng/transducers";
+import * as txb from "@thi.ng/transducers-binary";
+
 const bytes = txb.bytes(
     // initial buffer capacity (grows on demand)
     32,
@@ -109,18 +112,21 @@ console.log(tx.str("\n", txb.hexDump({}, bytes)));
 Decompose / transform a stream of fixed size words into their bits:
 
 ```ts
-[...txb.bits(8, [0xf0, 0xaa])];
+import { comp, map, partition, str, transduce } from "@thi.ng/transducers";
+import { bits } from "@thi.ng/transducers-binary";
+
+[...bits(8, [0xf0, 0xaa])];
 // [ 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
 
 console.log(
-    tx.transduce(
-        tx.comp(
-            txb.bits(8),
-            tx.map((x) => (x ? "#" : ".")),
-            tx.partition(8),
-            tx.map((x) => x.join(""))
+    transduce(
+        comp(
+            bits(8),
+            map((x) => (x ? "#" : ".")),
+            partition(8),
+            map((x) => x.join(""))
         ),
-        tx.str("\n"),
+        str("\n"),
         [0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00]
     )
 );
@@ -138,7 +144,10 @@ Extended to transform longer strings (taken from the [bitmap-font
 example](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font),
 [live demo](https://demo.thi.ng/umbrella/bitmap-font/)):
 
-```ts
+```js
+import * as tx from "@thi.ng/transducers";
+import { bits } from "@thi.ng/transducers-binary";
+
 // font lookup table
 const chars = {
     a: [0x00, 0x18, 0x3c, 0x66, 0x66, 0x7e, 0x66, 0x00],
@@ -152,7 +161,7 @@ const xfJoin = tx.map((x) => x.join(""));
 const xfChar = (i) =>
     tx.comp(
         tx.pluck(i),
-        txb.bits(8),
+        bits(8),
         tx.map((x) => (x ? "#" : ".")),
         tx.partition(8),
         xfJoin
@@ -192,10 +201,16 @@ strings, these transducers stepwise convert byte values to base64 and
 back.
 
 ```ts
+import * as tx from "@thi.ng/transducers";
+import {
+	base64Decode, base64Encode,
+	utf8Decode, utf8Encode
+} from "@thi.ng/transducers-binary";
+
 // here we first add an offset (0x80) to allow negative values to be encoded
 // (URL safe results can be produced via opt arg to `base64Encode`)
 enc = tx.transduce(
-    tx.comp(tx.map((x) => x + 0x80), txb.base64Encode()),
+    tx.comp(tx.map((x) => x + 0x80), base64Encode()),
     tx.str(),
     tx.range(-8, 8)
 );
@@ -215,13 +230,13 @@ enc = tx.transduce(
 // [ -8, -7, -6, -5, -4, -3, -2, -1 ]
 
 buf = tx.transduce(
-    tx.comp(txb.utf8Encode(), txb.base64Encode()),
+    tx.comp(utf8Encode(), base64Encode()),
     tx.str(),
     "beer (🍺) or hot beverage (☕️)"
 );
 // "YmVlciAo8J+Nuikgb3IgaG90IGJldmVyYWdlICjimJXvuI4p"
 
-tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf);
+tx.transduce(tx.comp(base64Decode(), utf8Decode()), tx.str(), buf);
 // "beer (🍺) or hot beverage (☕️)"
 ```
 

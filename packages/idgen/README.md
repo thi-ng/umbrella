@@ -103,13 +103,11 @@ directory is using this package:
 
 [Generated API docs](https://docs.thi.ng/umbrella/idgen/)
 
-```ts
-import { idgen } from "@thi.ng/idgen";
-```
-
 ### ID generator with 16 bit range and no versioning
 
 ```ts
+import { idgen } from "@thi.ng/idgen";
+
 const ids = idgen(16, 0);
 
 ids.next();
@@ -142,6 +140,8 @@ ids.next()
 ### ID generator w/ 24 bit range & 8 bit version range
 
 ```ts
+import { idgen } from "@thi.ng/idgen";
+
 // the 8bit version range is being deduced automatically (32-24 = 8),
 // but can also be overwritten
 const ids = idgen(24);
@@ -174,6 +174,8 @@ ids.has(a);
 ### IDGen is iterable
 
 ```ts
+import { idgen } from "@thi.ng/idgen";
+
 const ids = ig.idgen(8);
 
 ids.next();

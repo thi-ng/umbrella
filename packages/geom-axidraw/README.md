@@ -92,6 +92,8 @@ any package-specific attribs must be stored under the `__axi` key:
   custom drawing tools](#supporting-custom-drawing-tools).
 
 ```ts
+import { circle } from "@thi.ng/geom";
+
 // a circle which will be plotted at only 10% of the normal speed
 circle(100, { __axi: { speed: 0.1 } })
 ```

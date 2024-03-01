@@ -119,6 +119,8 @@ diffused/distributed to neighbors. This approach makes it very easy to define
 custom dither configs, like so:
 
 ```ts
+import { ditherWith, type DitherKernel } from "@thi.ng/pixel-dither";
+
 const CUSTOM: DitherKernel = {
     // X offsets of neighbor pixels to update
     ox: [1],

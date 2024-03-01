@@ -93,6 +93,8 @@ most dimensions' base units usually using a factor of 1 and no offset.
 For example, here's how we can define kilograms and meters:
 
 ```ts
+import { coherent, unit } from "@thi.ng/units";
+
 // kilogram, SI dimension 0
 const KG = coherent(0);
 // { dim: [ 1, 0, 0, 0, 0, 0, 0 ], scale: 1, offset: 0, coherent: true }
@@ -114,6 +116,8 @@ More complex units like electrical resistance (e.g. ohm) are based on more than
 a single dimension:
 
 ```ts
+import { div, A, V } from "@thi.ng/units";
+
 // ohm = volt / ampere
 div(V, A)
 // { dim: [ 1, 2, -3, -2, 0, 0,  0 ], scale: 1, offset: 0, coherent: true }
@@ -129,6 +133,8 @@ Btw. The
 function can be used to format a unit's dimension vector:
 
 ```ts
+import { div, formatSI, A, V } from "@thi.ng/units";
+
 formatSI(div(V, A));
 // "kg·m2·s-3·A-2"
 ```
@@ -411,6 +417,8 @@ Existing coherent units can be
 produce derived versions:
 
 ```ts
+import { prefix, Hz } from "@thi.ng/units";
+
 // define micrometer (also available as preset)
 prefix("µ", "m")
 // { dim: [ 0, 1, 0, 0, 0, 0, 0 ], scale: 0.000001, offset: 0, coherent: false }
@@ -435,6 +443,8 @@ The following combinators can be used to derive scaled and/or more complex units
   Creates reciprocal of given unit (e.g. Hz ⇒ 1/second)
 
 ```ts
+import { div, mul, pow, prefix, reciprocal, bit, m, s } from "@thi.ng/units";
+
 // acceleration (meter per second squared)
 const m_s2 = div(m, pow(s, 2));
 // { dim: [ 0, 1, -2, 0, 0, 0,  0 ], scale: 1, offset: 0, coherent: false }
@@ -464,6 +474,8 @@ nonsense).
 Units can be specified in various ways:
 
 ```ts
+import { convert, div, reciprocal, h, km_h, mph, yd } from "@thi.ng/units";
+
 // convert from km/h to mph using unit names
 convert(100, "km/h", "mph");
 // 62.13711922373341
@@ -485,6 +497,8 @@ Another example using dimensionless units (here angles, arc second ⇒ radian) t
 compute the distance of 10 arcsec on the earth surface (in meters):
 
 ```ts
+import { convert, R } from "@thi.ng/units";
+
 // earth radius in meters
 // (also available as quantity EARTH_RADIUS, see section below)
 const R = 6371000;
@@ -509,6 +523,8 @@ Quantities are created via
  quantities). Use [`convert()`](#unit-conversions) otherwise!
 
  ```ts
+import { convert, div, quantity } from "@thi.ng/units";
+
 // (also available as preset)
 const speedOfLight = quantity(299792458, "m/s");
 
@@ -520,6 +536,8 @@ convert(div(speedOfLight, quantity(2.4,"GHz")), "mm");
 Some examples using vector quantities:
 
 ```ts
+import { convert, mul, quantity, NONE } from "@thi.ng/units";
+
 // DIN A4 paper size (also available as preset)
 const A4 = quantity([210, 297], "mm");
 
@@ -541,6 +559,8 @@ mul(A4, quantity(300, "dpi")).deref()
 When combining different quantities, their units do not need to be the same:
 
 ```ts
+import { convert, mul, quantity } from "@thi.ng/units";
+
 // compute 10 mm x 2 inch and convert to square centimeter
 convert(mul(quantity(10, "mm"), quantity(2, "in")), "cm2")
 // 5.08

@@ -49,37 +49,38 @@ Planned features:
 | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-0.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-1.png) |
 | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-2.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-3.png) |
 
-```ts
-import * as lsys from "@thi.ng/lsys";
-import * as g from "@thi.ng/geom";
-import * as fs from "fs";
+```ts tangle:export/readme-1.ts
+import { expand, interpret, turtle2d, TURTLE_IMPL_2D } from "@thi.ng/lsys";
+import { asSvg, svgDoc, polyline } from "@thi.ng/geom";
+import { writeFileSync } from "node:fs";
+
+const PI = Math.PI;
+const impl = TURTLE_IMPL_2D;
 
 // example L-Systems shown above
 
 const examples = [
-    { rules: { s: "[f++f++f]", f: "f+f--f+f" }, delta: Math.PI / 3, iter: 5 },
-    { rules: { s: "[f-f-f-f-f-f-f-f]", f: "f---f+f+f+f+f+f+f---f" }, delta: Math.PI / 4, iter: 6 },
-    { rules: { s: "[x]", x: "-yf+xfx+fy-", y: "+xf-yfy-fx+" }, delta: Math.PI / 2, iter: 7 },
-    { rules: { s: "[a]", a: "a-b--b+a++aa+b-", b: "+a-bb--b-a++a+b" }, delta: Math.PI / 3, iter: 5 }
+    { rules: { s: "[f++f++f]", f: "f+f--f+f" }, delta: PI / 3, iter: 5 },
+    { rules: { s: "[f-f-f-f-f-f-f-f]", f: "f---f+f+f+f+f+f+f---f" }, delta: PI / 4, iter: 6 },
+    { rules: { s: "[x]", x: "-yf+xfx+fy-", y: "+xf-yfy-fx+" }, delta: PI / 2, iter: 7 },
+    { rules: { s: "[a]", a: "a-b--b+a++aa+b-", b: "+a-bb--b-a++a+b" }, delta: PI / 3, iter: 5 }
 ];
 
-const impl = lsys.TURTLE_IMPL_2D;
-
 examples.forEach(({ rules, delta, iter }, i) =>
-    fs.writeFileSync(
+    writeFileSync(
         `lsys-ex${i}.svg`,
-        g.asSvg(
-            g.svgDoc(
-                { stroke: "#00f", "stroke-width": 0.25, width: 600, height: 600 },
-                ...lsys.interpret(
+        asSvg(
+            svgDoc(
+                { stroke: "#00f", weight: 0.25, width: 600, height: 600 },
+                ...interpret(
                     // create turtle instance with customized delta (rot angle)
-                    lsys.turtle2d({ delta }),
+                    turtle2d({ delta }),
                     // customize implementation to process syms "a" & "b" as "f"
                     { ...impl, a: impl.f, b: impl.f },
                     // recursively expand start rule "s"
-                    lsys.expand(rules, "s", iter)
+                    expand(rules, "s", iter)
                     //convert result paths to polylines for SVG export
-                ).paths.map(g.polyline)
+                ).paths.map(polyline)
             )
         )
     )
@@ -95,12 +96,16 @@ looking structures, like shown in the following example:
 
  ![stochastic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-tree.png)
 
-```ts
+```ts tangle:export/readme-2.ts
+import { expand, interpret, turtle2d, TURTLE_IMPL_2D } from "@thi.ng/lsys";
 import { XsAdd } from "@thi.ng/random";
 
-lsys.interpret(
+const PI = Math.PI;
+const impl = TURTLE_IMPL_2D;
+
+interpret(
     // create turtle instance with customized delta (rot angle)
-    lsys.turtle2d({
+    turtle2d({
         // initial movement step distance
         step: 20,
         // initial direction
@@ -123,7 +128,7 @@ lsys.interpret(
     // recursively expand start rule "s" by ping-ponging between f & g
     // (only difference between f & g is swapped branch orientations)
     // see description of all symbols further below
-    lsys.expand(
+    expand(
         {
             s: "[f]",
             f: "a[kp!>/-g]/a[kp!>/+g]",

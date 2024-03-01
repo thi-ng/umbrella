@@ -181,6 +181,9 @@ transducer will cause early termination once that element has been
 processed.
 
 ```ts
+import { parse, Type } from "@thi.ng/sax";
+import * as tx from "@thi.ng/transducers";
+
 svg=`
 <?xml version="1.0"?>
 <svg version="1.1" height="300" width="300" xmlns="http://www.w3.org/2000/svg">
@@ -199,9 +202,9 @@ svg=`
 [...tx.iterator(
     tx.comp(
         // transform into parse events (see parser options below)
-        sax.parse({ children: true }),
+        parse({ children: true }),
         // match 1st group end
-        tx.matchFirst((e) => e.type == sax.Type.ELEM_END && e.tag == "g"),
+        tx.matchFirst((e) => e.type == Type.ELEM_END && e.tag == "g"),
         // extract group's children
         tx.mapcat((e) => e.children),
         // select circles only
@@ -229,6 +232,8 @@ format.
 
 ```ts
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";
+import { parse } from "@thi.ng/sax";
+import * as tx from "@thi.ng/transducers";
 
 // coerces given attribute IDs into numeric values and
 // keeps all other attribs
@@ -272,7 +277,7 @@ parseElement.add(DEFAULT, () => null);
 // the `last()` reducer just returns the ultimate value
 // which in this case is the SVG root element's ELEM_END parse event
 // this also contains all children (by default)
-parseElement(tx.transduce(sax.parse(), tx.last(), svg));
+parseElement(tx.transduce(parse(), tx.last(), svg));
 
 // ["svg",
 //     {
@@ -315,10 +320,13 @@ description and input position will be produced (but no JS error will be
 thrown) and the entire transducer pipeline stopped.
 
 ```ts
-[...tx.iterator(sax.parse(), `a`)]
+import { parse } from "@thi.ng/sax";
+import { iterator } from "@thi.ng/transducers";
+
+[...iterator(parse(), `a`)]
 // [ { type: 7, body: 'unexpected char: \'a\' @ pos 1' } ]
 
-[...tx.iterator(sax.parse(), `<a><b></c></a>`)]
+[...iterator(parse(), `<a><b></c></a>`)]
 // [ { type: 4, tag: 'a', attribs: {} },
 //   { type: 4, tag: 'b', attribs: {} },
 //   { type: 7, body: 'unmatched tag: c @ pos 7' } ]

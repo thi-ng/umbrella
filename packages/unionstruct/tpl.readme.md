@@ -78,6 +78,8 @@ This library provides this similarly in JS. The field spec format,
 bitfields and alignment are described further below.
 
 ```ts
+import { union } from "@thi.ng/unionstruct";
+
 typedef_header = [
     ["flags", "u32"],
     ["state", "struct", [
@@ -159,6 +161,8 @@ Same as `union`, but field start addresses are arranged sequentially (and aligne
 Returns bit size of given field spec, taking into account alignment.
 
 ```ts
+import { sizeOf } from "@thi.ng/unionstruct";
+
 // struct
 sizeOf([["a", "u32", 14], ["b", "u32", 6], ["c","u8"]]);
 // 40
@@ -166,7 +170,6 @@ sizeOf([["a", "u32", 14], ["b", "u32", 6], ["c","u8"]]);
 // union
 sizeOf([["a", "u32", 14], ["b", "u32", 6], ["c","u8"]], true);
 // 14
-
 ```
 
 ### Alignment
@@ -198,6 +201,8 @@ word boundary, the field will be padded invisibly, based on its type
 (has no impact on size of last field).
 
 ```ts
+import { struct } from "@thi.ng/unionstruct";
+
 bitfields = struct([
     // 2 packed bitfields (20 bits)
     ["a", "u32", 14],

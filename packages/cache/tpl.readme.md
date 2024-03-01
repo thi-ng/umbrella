@@ -160,8 +160,10 @@ instance's default (provided via ctor option arg). If no instance TTL is
 given, TTL defaults to 1 hour.
 
 ```ts
+import { TLRUCache } from "@thi.ng/cache";
+
 // same opts as LRUCache, but here with custom TTL period (in ms)
-tlru = new cache.TLRUCache(null, { ttl: 10000 });
+tlru = new TLRUCache(null, { ttl: 10000 });
 
 // with item specific TTL (500ms)
 tlru.set("foo", 42, 500)
@@ -172,8 +174,10 @@ tlru.set("foo", 42, 500)
 Similar to LRU, but removes most recently accessed items first. [Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies#Most_recently_used_(MRU))
 
 ```ts
+import { MRUCache } from "@thi.ng/cache";
+
 // same opts as LRUCache
-mru = new cache.MRUCache();
+mru = new MRUCache();
 ```
 
 <!-- include ../../assets/tpl/footer.md -->

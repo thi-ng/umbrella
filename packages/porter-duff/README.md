@@ -150,6 +150,8 @@ New operators (e.g. for blend modes) can be easily defined via
 to extract blend coefficients from the src & dest colors:
 
 ```ts
+import { porterDuffInt } from "@thi.ng/porter-duff";
+
 // coefficient functions take the normalized alpha values
 // of both colors as arguments, but unused here...
 const customOp = porterDuffInt(() => -0.5, () => 1);

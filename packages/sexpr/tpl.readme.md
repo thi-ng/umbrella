@@ -50,6 +50,8 @@ details. Any whitespace is skipped and whitespace characters are
 configurable.
 
 ```ts
+import { tokenize } from "@thi.ng/sexpr";
+
 [...tokenize(`(* (+ 3 5) 10)`)];
 // [
 //   { value: '(', line: 0, col: 0 },
@@ -70,6 +72,8 @@ The `parse` function takes a source string or iterable of tokens and
 parses it into an AST.
 
 ```ts
+import { tokenize, parse } from "@thi.ng/sexpr";
+
 parse(tokenize(`(* (+ 3 5) 10)`));
 // or directly from string
 parse(`(* (+ 3 5) 10)`);
