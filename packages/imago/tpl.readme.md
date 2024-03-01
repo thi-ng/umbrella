@@ -215,6 +215,7 @@ Any others will remain as is. Custom IDs take precedence over built-in ones.
 - `sha1`/`sha224`/`sha256`/`sha384`/`sha512`: truncated hash of output (8 chars)
 - `w`: current image width
 - `h`: current image height
+- `aspect`: "p" (portrait), "l" (landscape) or "sq" (square)
 - `date`: yyyyMMdd date format, e.g. 20240223
 - `time`: HHmmss time format, e.g. 234459
 - `year`: 4-digit year
@@ -299,6 +300,8 @@ still WIP...
 
 {{pkg.docs}}
 
+### Multistage processing pipeline
+
 ```ts tangle:export/readme-api.ts
 import {
 	colorLayer,
@@ -309,13 +312,13 @@ import {
 	nest,
 	output,
 	processImage,
+	rawLayer,
 	resize,
 	rotate,
 } from "@thi.ng/imago";
 import { ConsoleLogger } from "@thi.ng/logger";
 
 const res = await processImage(
-	// input image (can also be a typed array or buffer)
 	"test.jpg",
 	// operator pipeline
 	[
@@ -335,6 +338,20 @@ const res = await processImage(
 					// size given in percent
 					unit: "%",
 				}),
+				// diagonal hairline pattern overlay (with tiling) from raw
+				// pixel data in ABGR format, i.e. 0xAABBGGRR
+				rawLayer({
+					// prettier-ignore
+					buffer: new Uint32Array([
+						0x00000000, 0x00000000, 0x00000000, 0x80ffffff,
+						0x00000000, 0x00000000, 0x80ffffff, 0x00000000,
+						0x00000000, 0x80ffffff, 0x00000000, 0x00000000,
+						0x80ffffff, 0x00000000, 0x00000000, 0x00000000,
+					]),
+					channels: 4,
+					size: [4, 4],
+					tile: true,
+				}),
 			],
 		}),
 		// nested operations each operate on a clone of the current (already
@@ -344,14 +361,14 @@ const res = await processImage(
 		nest({
 			procs: [
 				// this pipeline only creates blurhash (stored in `outputs` of result)
-				[resize({ size: 100 }), output({ id: "hash", blurhash: 5 })],
+				[resize({ size: 100 }), output({ id: "hash", blurhash: true })],
 			],
 		}),
-		// crop to 3:2 aspect ratio
-		crop({ size: 100, aspect: 1.5, unit: "%" }),
+		// crop to 3:2 aspect ratio (always based on longest side)
+		crop({ size: 100, aspect: 3 / 2, unit: "%" }),
 		// back in the main pipleline, add 5% white border (based on smallest side)
 		extend({ border: 5, unit: "%", bg: "white", ref: "min" }),
-		// resize image to 1920 wide
+		// resize image to 1920 (largest side)
 		resize({ size: 1920 }),
 		// add logo watermark centered horizontally and near the bottom
 		composite({
@@ -360,7 +377,7 @@ const res = await processImage(
 					path: "logo-128.png",
 					unit: "%",
 					origin: "s",
-					pos: { r: 50, b: 5 },
+					pos: { l: 50, b: 5 },
 					ref: "both",
 					blend: "screen",
 				}),
@@ -375,8 +392,8 @@ const res = await processImage(
 
 console.log(res.outputs);
 // {
-//   main: "...../20240229-1920-frame.jpg",
-//   hash: "eQEBz9}]0{5Pxat9n,WnRkWVR%Rks:xHoLoMoMf$R%WUjJxHt5I.I:",
+//   hash: "UVKmR.^SIVR$_NRiM{jupLRjjEWC%goxofoM",
+//   main: "...../20240301-144948-1920-frame.jpg",
 // }
 ```
 
