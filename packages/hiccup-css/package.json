@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-css",
-	"version": "2.6.6",
+	"version": "2.6.7",
 	"description": "CSS from nested JS data structures",
 	"type": "module",
 	"module": "./index.js",
@@ -35,10 +35,10 @@
 		"test": "bun test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.26",
-		"@thi.ng/checks": "^3.5.0",
-		"@thi.ng/errors": "^2.4.18",
-		"@thi.ng/transducers": "^8.9.7"
+		"@thi.ng/api": "^8.9.27",
+		"@thi.ng/checks": "^3.5.1",
+		"@thi.ng/errors": "^2.4.19",
+		"@thi.ng/transducers": "^8.9.8"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",
