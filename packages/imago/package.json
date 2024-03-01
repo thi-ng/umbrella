@@ -115,6 +115,9 @@
 		"./layers/image": {
 			"default": "./layers/image.js"
 		},
+		"./layers/raw": {
+			"default": "./layers/raw.js"
+		},
 		"./layers/svg": {
 			"default": "./layers/svg.js"
 		},
