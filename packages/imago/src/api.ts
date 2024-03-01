@@ -58,6 +58,10 @@ export type Color =
 	| number[]
 	| { r: number; g: number; b: number; alpha?: number };
 
+/**
+ * Position defined by max. 2 components/coordinates. If none are defined, the
+ * position will be interpreted as centered.
+ */
 export interface Position {
 	l?: number;
 	r?: number;
@@ -82,11 +86,18 @@ export type CompLayerFn = Fn3<
 >;
 
 export interface ProcSpec {
+	/**
+	 * Unique processor ID. Used to by {@link processor} to select correct
+	 * implementation.
+	 */
 	op: string;
 }
 
 export interface BlurSpec extends ProcSpec {
 	op: "blur";
+	/**
+	 * Blur radius in pixels (can be fractional)
+	 */
 	radius: number;
 }
 
@@ -405,6 +416,19 @@ export interface ResizeSpec extends ProcSpec {
 	fit?: Keys<FitEnum>;
 	gravity?: Gravity;
 	ref?: SizeRef;
+	/**
+	 * New size of the image, expressed in pixels or percentages.
+	 *
+	 * @remarks
+	 * If using pixels and size is a single number, it will be interpreted as
+	 * the target size of the longest side and the other side scaled
+	 * proportionally, using current aspect ratio.
+	 *
+	 * If given as `[width,height]` tuple, a negative value for a side makes
+	 * that side proportionally scaled. relative to the other. E.g. a size of
+	 * `[1280,-1]` scales the image to 1280 pixels wide and the height computed
+	 * based on current aspect ratio.
+	 */
 	size: Size;
 	unit?: SizeUnit;
 }
@@ -455,7 +479,7 @@ export interface ImgProcOpts {
 	 */
 	pathParts: Record<
 		string,
-		Fn3<ImgProcCtx, OutputSpec, Buffer | TypedArray, string> | string
+		Fn3<ImgProcCtx, OutputSpec, BufferLike, string> | string
 	>;
 }
 

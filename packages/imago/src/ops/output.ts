@@ -84,7 +84,6 @@ const outputRaw = async (
 		: {};
 	if (alpha) output = output.ensureAlpha();
 	const { data, info } = await output
-		.ensureAlpha()
 		.raw()
 		.toBuffer({ resolveWithObject: true });
 	const path = join(outDir, formatPath(opts.path!, ctx, opts, data));

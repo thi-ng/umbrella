@@ -1,10 +1,9 @@
-import type { TypedArray } from "@thi.ng/api";
 import { isArrayBufferView, isString } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import { createTempFile, deleteFile } from "@thi.ng/file-io";
 import { ROOT } from "@thi.ng/logger";
 import sharp, { type Sharp } from "sharp";
-import type { ImgProcCtx, ImgProcOpts, ProcSpec } from "./api.js";
+import type { BufferLike, ImgProcCtx, ImgProcOpts, ProcSpec } from "./api.js";
 import { blurProc } from "./ops/blur.js";
 import { compositeProc } from "./ops/composite.js";
 import { cropProc } from "./ops/crop.js";
@@ -39,14 +38,14 @@ export const LOGGER = ROOT.childLogger("imgproc");
  * @param parentCtx
  */
 export const processImage = async (
-	src: string | TypedArray | Buffer | ArrayBuffer | Sharp,
+	src: string | BufferLike | ArrayBuffer | Sharp,
 	specs: ProcSpec[],
 	opts: Partial<ImgProcOpts> = {},
 	parentCtx?: ImgProcCtx
 ) => {
 	let img =
 		isString(src) || isArrayBufferView(src)
-			? sharp(<string | Buffer>src)
+			? sharp(<string | BufferLike>src)
 			: <Sharp>src;
 	const meta = await img.metadata();
 	ensureSize(meta);
