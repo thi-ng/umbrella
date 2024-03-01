@@ -67,7 +67,7 @@ The following pipeline performs these steps (in sequence):
 	},
 	{ "op": "crop", "size": [240, 240], "gravity": "c" },
 	{ "op": "output", "id": "thumb", "path": "{name}-thumb.jpg" },
-	{ "op": "output", "id": "hash", "path": "", blurhash: 4 }
+	{ "op": "output", "id": "hash", "blurhash": 4 }
 ]
 ```
 
@@ -118,6 +118,10 @@ function.
 - size
 - fill color (w/ alpha)
 
+#### Raw bitmap layers
+
+- from typed array or buffer
+
 #### SVG layers
 
 - from file or inline doc
@@ -134,7 +138,7 @@ function.
 
 Cropping a part of the image
 
-- from edges or region
+- from edges, defined region or size & aspect ratio only
 - supports px or percent units
 - proportional to a given reference side/size
 
@@ -320,7 +324,10 @@ import { ConsoleLogger } from "@thi.ng/logger";
 
 const res = await processImage(
 	"test.jpg",
-	// operator pipeline
+	// operator pipeline (i.e. a nested array of operator spec objects)
+	// the functions used here are merely syntax sugar for generating
+	// the spec objects to provide an anchor point for docs
+	// (ongoing effort, but since still a new project, mostly still forthcoming...)
 	[
 		// auto-rotate (EXIF orientation)
 		rotate({}),

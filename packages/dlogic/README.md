@@ -1,16 +1,5 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-> [!IMPORTANT]
-> ‼️ Announcing the thi.ng user survey 2024 📋
->
-> [Please participate in the survey here!](https://forms.gle/XacbSDEmQMPZg8197)\
-> (open until end of February)
->
-> **To achieve a better sample size, I'd highly appreciate if you could
-> circulate the link to this survey in your own networks.**
->
-> [Discussion](https://github.com/thi-ng/umbrella/discussions/447)
-
 # ![@thi.ng/dlogic](https://media.thi.ng/umbrella/banners-20230807/thing-dlogic.svg?9d5fe6c8)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)
@@ -22,7 +11,7 @@
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
-> 🚀 Help me to work full-time on these projects by [sponsoring me on
+> 🚀 Please help me to work full-time on these projects by [sponsoring me on
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)

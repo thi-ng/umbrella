@@ -1,16 +1,5 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-> [!IMPORTANT]
-> ‼️ Announcing the thi.ng user survey 2024 📋
->
-> [Please participate in the survey here!](https://forms.gle/XacbSDEmQMPZg8197)\
-> (open until end of February)
->
-> **To achieve a better sample size, I'd highly appreciate if you could
-> circulate the link to this survey in your own networks.**
->
-> [Discussion](https://github.com/thi-ng/umbrella/discussions/447)
-
 # ![@thi.ng/imago](https://media.thi.ng/umbrella/banners-20230807/thing-imago.svg?5b75bcfc)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)
@@ -22,7 +11,7 @@
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
-> 🚀 Help me to work full-time on these projects by [sponsoring me on
+> 🚀 Please help me to work full-time on these projects by [sponsoring me on
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
@@ -33,6 +22,7 @@
     - [Common options](#common-options)
     - [Bitmap image layers](#bitmap-image-layers)
     - [Color layers](#color-layers)
+    - [Raw bitmap layers](#raw-bitmap-layers)
     - [SVG layers](#svg-layers)
     - [Text layers](#text-layers)
   - [crop](#crop)
@@ -123,7 +113,7 @@ The following pipeline performs these steps (in sequence):
     },
     { "op": "crop", "size": [240, 240], "gravity": "c" },
     { "op": "output", "id": "thumb", "path": "{name}-thumb.jpg" },
-    { "op": "output", "id": "hash", "path": "", blurhash: 4 }
+    { "op": "output", "id": "hash", "blurhash": 4 }
 ]
 ```
 
@@ -174,6 +164,10 @@ function.
 - size
 - fill color (w/ alpha)
 
+#### Raw bitmap layers
+
+- from typed array or buffer
+
 #### SVG layers
 
 - from file or inline doc
@@ -190,7 +184,7 @@ function.
 
 Cropping a part of the image
 
-- from edges or region
+- from edges, defined region or size & aspect ratio only
 - supports px or percent units
 - proportional to a given reference side/size
 
@@ -392,7 +386,10 @@ import { ConsoleLogger } from "@thi.ng/logger";
 
 const res = await processImage(
     "test.jpg",
-    // operator pipeline
+    // operator pipeline (i.e. a nested array of operator spec objects)
+    // the functions used here are merely syntax sugar for generating
+    // the spec objects to provide an anchor point for docs
+    // (ongoing effort, but since still a new project, mostly still forthcoming...)
     [
         // auto-rotate (EXIF orientation)
         rotate({}),
