@@ -244,6 +244,22 @@ export interface TextLayer extends CompLayer {
 
 export interface CropSpec extends ProcSpec {
 	op: "crop";
+	/**
+	 * Target aspect ratio. Only used if {@link CropSpec.size} is given as
+	 * single numeric value (pixels or percentage). If the aspect ratio is >1,
+	 * the general aspect of the cropped image will remain principally the same,
+	 * i.e. a portait image will remain portait (but cropped), ditto for
+	 * landscape. If the given aspect raatio is <1, the aspect of the image will
+	 * be flipped/swapped, i.e. a portait aspect becomes landscape and vice
+	 * versa.
+	 *
+	 * @example
+	 * ```js
+	 * // crop image to 3:2 aspect ratio
+	 * { op: "crop", size: 100, unit: "%", aspect: 3/2 }
+	 * ```
+	 */
+	aspect?: number;
 	border?: Size | Sides;
 	gravity?: Gravity;
 	origin?: Gravity;

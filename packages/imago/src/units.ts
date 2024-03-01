@@ -157,6 +157,30 @@ export const computeSize = (
 	return res;
 };
 
+export const computeSizeWithAspect = (
+	size: number,
+	[w, h]: Dim,
+	aspect: number,
+	unit: SizeUnit = "px",
+	clamp = true
+): Dim => {
+	const origAspect = w / h;
+	const min = Math.min(w, h);
+	const max = Math.max(w, h);
+	let res: Dim;
+	if (unit === "%") {
+		size = (size / 100) * max;
+	}
+	if (clamp) {
+		size = Math.min(size, max);
+		if (size / aspect > min) size = min * aspect;
+	}
+	res = origAspect > 1 ? [size, size / aspect] : [size / aspect, size];
+	res[0] = round(res[0]);
+	res[1] = round(res[1]);
+	return res;
+};
+
 export const computeMargins = (
 	size: Size | Sides,
 	curr: Dim,

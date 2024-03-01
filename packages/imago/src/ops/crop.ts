@@ -1,14 +1,16 @@
+import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import type { CropSpec, Processor } from "../api.js";
+import type { CropSpec, Dim, Processor } from "../api.js";
 import {
 	computeMargins,
 	computeSize,
+	computeSizeWithAspect,
 	gravityPosition,
 	positionOrGravity,
 } from "../units.js";
 
 export const cropProc: Processor = async (spec, input, ctx) => {
-	const { border, gravity, pos, size, ref, unit } = <CropSpec>spec;
+	const { aspect, border, gravity, pos, size, ref, unit } = <CropSpec>spec;
 	if (border == null && size == null)
 		illegalArgs("require `border` or `size` option");
 	if (border != null) {
@@ -24,7 +26,14 @@ export const cropProc: Processor = async (spec, input, ctx) => {
 			true,
 		];
 	}
-	const $size = computeSize(size!, ctx.size, ref, unit);
+	let $size: Dim;
+	if (aspect != undefined) {
+		if (!isNumber(size))
+			illegalArgs("size must be numeric if aspect is used");
+		$size = computeSizeWithAspect(size, ctx.size, aspect, unit);
+	} else {
+		$size = computeSize(size!, ctx.size, ref, unit);
+	}
 	let left = 0,
 		top = 0;
 	if (pos) {
