@@ -2,17 +2,18 @@ import { isFunction } from "@thi.ng/checks";
 import { XML_SVG } from "@thi.ng/prefixes";
 import type { CompLayerFn, Dim, TextLayer } from "../api.js";
 import { computeSize, gravityFlags, positionOrGravity } from "../units.js";
+import { readText } from "@thi.ng/file-io";
 
 export const textLayerImpl: CompLayerFn = async (layer, _, ctx) => {
-	const {
+	let {
 		type: __,
-		bg = "transparent",
-		color = "white",
+		bg = "#0000",
+		body = "",
+		color = "#fff",
 		font = "sans-serif",
 		fontSize = 16,
 		padding = 0,
 		textGravity = "c",
-		body,
 		gravity,
 		origin,
 		path,
@@ -29,6 +30,7 @@ export const textLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 	const y = isN ? padding : isS ? h - padding : h / 2;
 	const align = isW ? "start" : isE ? "end" : "middle";
 	const valign = isN ? 0.75 : isS ? 0 : 0.25;
+	if (path) body = readText(path, ctx.logger);
 	const $body = isFunction(body) ? body(ctx) : body;
 	const svg = [
 		`<svg xmlns="${XML_SVG}" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`,

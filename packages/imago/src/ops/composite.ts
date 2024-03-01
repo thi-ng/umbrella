@@ -1,8 +1,9 @@
 import { defmulti } from "@thi.ng/defmulti";
 import type { OverlayOptions, Sharp } from "sharp";
-import type { CompLayerBase, CompSpec, ImgProcCtx, Processor } from "../api.js";
+import type { CompLayer, CompSpec, ImgProcCtx, Processor } from "../api.js";
 import { colorLayerImpl } from "../layers/color.js";
 import { imageLayerImpl } from "../layers/image.js";
+import { rawLayerImpl } from "../layers/raw.js";
 import { svgLayerImpl } from "../layers/svg.js";
 import { textLayerImpl } from "../layers/text.js";
 
@@ -16,7 +17,7 @@ export const compositeProc: Processor = async (spec, input, ctx) => {
 };
 
 export const defLayer = defmulti<
-	CompLayerBase,
+	CompLayer,
 	Sharp,
 	ImgProcCtx,
 	Promise<OverlayOptions>
@@ -26,6 +27,7 @@ export const defLayer = defmulti<
 	{
 		color: colorLayerImpl,
 		img: imageLayerImpl,
+		raw: rawLayerImpl,
 		svg: svgLayerImpl,
 		text: textLayerImpl,
 	}

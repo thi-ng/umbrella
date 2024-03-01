@@ -1,7 +1,7 @@
 import type {
 	BlurSpec,
 	ColorLayer,
-	CompLayerBase,
+	CompLayer,
 	CompSpec,
 	CropSpec,
 	DitherSpec,
@@ -14,6 +14,7 @@ import type {
 	NestSpec,
 	OutputSpec,
 	ProcSpec,
+	RawLayer,
 	ResizeSpec,
 	RotateSpec,
 	SVGLayer,
@@ -34,12 +35,34 @@ export const blur = defSpec<BlurSpec>("blur");
 
 export const composite = defSpec<CompSpec>("composite");
 
+/**
+ * Creates a new {@link ColorLayer} spec with given opts (for use with
+ * {@link composite} /  {@link CompSpec}).
+ */
 export const colorLayer = defLayerSpec<ColorLayer>("color");
 
+/**
+ * Creates a new {@link ImgLayer} spec with given opts (for use with
+ * {@link composite} /  {@link CompSpec}).
+ */
 export const imageLayer = defLayerSpec<ImgLayer>("img");
 
+/**
+ * Creates a new {@link RawLayer} spec with given opts (for use with
+ * {@link composite} /  {@link CompSpec}).
+ */
+export const rawLayer = defLayerSpec<RawLayer>("raw");
+
+/**
+ * Creates a new {@link SVGLayer} spec with given opts (for use with
+ * {@link composite} /  {@link CompSpec}).
+ */
 export const svgLayer = defLayerSpec<SVGLayer>("svg");
 
+/**
+ * Creates a new {@link TextLayer} spec with given opts (for use with
+ * {@link composite} /  {@link CompSpec}).
+ */
 export const textLayer = defLayerSpec<TextLayer>("text");
 
 export const crop = defSpec<CropSpec>("crop");

@@ -1,4 +1,4 @@
-import type { Fn, Fn3, Keys, TypedArray } from "@thi.ng/api";
+import type { Fn, Fn3, Keys, Range1_4, TypedArray } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type {
 	AvifOptions,
@@ -65,6 +65,8 @@ export interface Position {
 	b?: number;
 }
 
+export type BufferLike = TypedArray | Buffer;
+
 export type Processor = Fn3<
 	ProcSpec,
 	Sharp,
@@ -73,7 +75,7 @@ export type Processor = Fn3<
 >;
 
 export type CompLayerFn = Fn3<
-	CompLayerBase,
+	CompLayer,
 	Sharp,
 	ImgProcCtx,
 	Promise<OverlayOptions>
@@ -90,32 +92,43 @@ export interface BlurSpec extends ProcSpec {
 
 export interface CompSpec extends ProcSpec {
 	op: "composite";
-	layers: CompLayerBase[];
+	layers: CompLayer[];
 }
 
-export interface CompLayerBase {
+export interface CompLayer {
+	/**
+	 * Unique layer type, used by {@link composite} and {@link defLayer} to
+	 * select correct layer implementation.
+	 */
 	type: string;
+	/**
+	 * Layer blend mode. See [Sharp
+	 * docs](https://sharp.pixelplumbing.com/api-composite#composite) for list
+	 * of available modes.
+	 *
+	 * @defaultValue "over"
+	 */
 	blend?: Blend;
 	/**
 	 * Abstracted layer position. This option is only used if no
-	 * {@link CompLayerBase.position} is specified. It also controls alignment
-	 * of tiling when {@link CompLayerBase.tile} is enabled. If neither gravity
+	 * {@link CompLayer.pos} is specified. It also controls alignment
+	 * of tiling when {@link CompLayer.tile} is enabled. If neither gravity
 	 * or position are configured, the layer will be centered.
 	 */
 	gravity?: Gravity;
 	/**
-	 * Partial layer position given in units of {@link CompLayerBase.unit}. At
+	 * Partial layer position given in units of {@link CompLayer.unit}. At
 	 * most 2 coordinate can be given here (e.g. left & top). The right & bottom
 	 * values are overriding left/top (in case of conflict).
 	 *
 	 * @remarks
-	 * Note: This option takes precedence over {@link CompLayerBase.gravity}. If
+	 * Note: This option takes precedence over {@link CompLayer.gravity}. If
 	 * neither gravity or position are configured, the layer will be centered.
 	 */
 	pos?: Position;
 	/**
 	 * Origin/reference point for the given layer position
-	 * {@link CompLayerBase.pos}. Only used if position is given.
+	 * {@link CompLayer.pos}. Only used if position is given.
 	 *
 	 * @remarks
 	 * The given value specifies one of the 9 points in the layer which is to be
@@ -128,21 +141,21 @@ export interface CompLayerBase {
 	 */
 	origin?: Gravity;
 	/**
-	 * Only used if {@link CompLayerBase.unit} is percent (`%`). Reference side
+	 * Only used if {@link CompLayer.unit} is percent (`%`). Reference side
 	 * ID for computing positions and sizes. See {@link SizeRef} for details.
 	 *
-	 * @defaultValue "min"
+	 * @defaultValue "both"
 	 */
 	ref?: SizeRef;
 	/**
 	 * If true, the layer will be repeated across the entire image with the
-	 * given {@link CompLayerBase.gravity}.
+	 * given {@link CompLayer.gravity}.
 	 */
 	tile?: boolean;
 	/**
-	 * Unit to use for {@link CompLayerBase.position} and sizes (where
+	 * Unit to use for {@link CompLayer.pos} and sizes (where
 	 * supported). If `%`, the given values are interpreted as percentages,
-	 * relative to configured {@link CompLayerBase.ref} side.
+	 * relative to configured {@link CompLayer.ref} side.
 	 *
 	 * @defaultValue "px"
 	 */
@@ -151,35 +164,82 @@ export interface CompLayerBase {
 	[id: string]: any;
 }
 
-export interface ColorLayer extends CompLayerBase {
+export interface ColorLayer extends CompLayer {
 	type: "color";
+	/**
+	 * Layer fill/background color.
+	 */
 	bg: Color;
 	size?: Size;
 }
 
-export interface ImgLayer extends CompLayerBase {
+export interface ImgLayer extends CompLayer {
 	type: "img";
-	path: string;
+	/**
+	 * Image as buffer (must be in one of sharp's supported image formats, use
+	 * {@link rawLayer} / {@link RawLayer} for compositing raw image data)
+	 */
+	buffer?: BufferLike;
+	/**
+	 * File path to image, alternative to {@link ImgLayer.buffer}.
+	 */
+	path?: string;
+	/**
+	 * Layer target size (in units defined via {@link CompLayer.unit})
+	 */
 	size?: Size;
 }
 
-export interface SVGLayer extends CompLayerBase {
-	type: "svg";
-	body: string;
-	path: string;
+export interface RawLayer extends CompLayer {
+	type: "raw";
+	buffer: BufferLike;
+	channels: Range1_4;
+	size: [number, number];
 }
 
-export interface TextLayer extends CompLayerBase {
+export interface SVGLayer extends CompLayer {
+	type: "svg";
+	/**
+	 * Inline SVG document, alternative to {@link SVGLayer.path}.
+	 */
+	body?: string;
+	/**
+	 * File path to SVG document.
+	 */
+	path?: string;
+}
+
+export interface TextLayer extends CompLayer {
 	type: "text";
-	bg: string;
-	body: string | Fn<ImgProcCtx, string>;
-	color: string;
-	font: string;
-	fontSize: number | string;
-	padding: number;
-	path: string;
+	/**
+	 * Background color.
+	 *
+	 * @defaultValue "#0000"
+	 */
+	bg?: string;
+	/**
+	 * Body text. Alternative to {@link TextLayer.path}. If given as function,
+	 * the function will be called with the processing context and must return a
+	 * string.
+	 *
+	 * @defaultValue ""
+	 */
+	body?: string | Fn<ImgProcCtx, string>;
+	/**
+	 * Text color
+	 *
+	 * @defaultValue "#fff"
+	 */
+	color?: string;
+	font?: string;
+	fontSize?: number | string;
+	padding?: number;
+	path?: string;
+	/**
+	 * Layer/textbox size. Required
+	 */
 	size: Dim;
-	textGravity: Gravity;
+	textGravity?: Gravity;
 }
 
 export interface CropSpec extends ProcSpec {
