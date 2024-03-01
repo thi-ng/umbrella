@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-02-28T14:23:30Z
+- **Last updated**: 2024-03-01T15:07:40Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,39 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.5.0) (2024-03-01)
+
+#### 🚀 Features
+
+- update/improve/fix fluid position handling ([55284cd](https://github.com/thi-ng/umbrella/commit/55284cd))
+  - update computeSize(), computMargins(), refSize(), positionOrGravity()
+  - update CompLayerBase
+  - add `ref`-side support for crop, resize, and all comp layer types
+  - update imageLayer(), use "fill" mode for resizing
+  - add tests
+  - add docs
+- add defLayerSpec() and layer factory fns ([2fc4334](https://github.com/thi-ng/umbrella/commit/2fc4334))
+- add/update layer types, positioning, origin, gravity ([eae646f](https://github.com/thi-ng/umbrella/commit/eae646f))
+- add RawLayer, update other layer types ([ad59ce3](https://github.com/thi-ng/umbrella/commit/ad59ce3))
+  - add rawLayer() & impl
+  - update CompLayer types & impls
+  - update imageLayer() to support buffer inputs
+  - add docs
+- add suport for cropping with aspect ratio ([2b3db06](https://github.com/thi-ng/umbrella/commit/2b3db06))
+- add `aspect` format ID for formatPath() ([25d8377](https://github.com/thi-ng/umbrella/commit/25d8377))
+- update resize, add support for proportional resize ([6b13b0d](https://github.com/thi-ng/umbrella/commit/6b13b0d))
+  - update resizeProc() to handle scalar `size` to scale proportionally
+    with automatic aspect detection
+
+#### 🩹 Bug fixes
+
+- use transparent black as default `extend()` bg color ([d5a98ef](https://github.com/thi-ng/umbrella/commit/d5a98ef))
+
+#### ♻️ Refactoring
+
+- update defLayer() & CompLayerFn args ([294c6d0](https://github.com/thi-ng/umbrella/commit/294c6d0))
+- update types, add docs, minor changes ([e3de1e2](https://github.com/thi-ng/umbrella/commit/e3de1e2))
 
 ### [0.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.4.1) (2024-02-28)
 
