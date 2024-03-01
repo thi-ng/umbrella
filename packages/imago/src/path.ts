@@ -31,6 +31,7 @@ const _ = undefined;
  * - sha1/224/256/384/512: truncated hash of output
  * - w: current width
  * - h: current height
+ * - aspect: "p" (portrait), "l" (landscape) or "sq" (square)
  * - date: yyyyMMdd
  * - time: HHmmss
  * - year: 4-digit year
@@ -79,6 +80,10 @@ export const formatPath = (
 				return String(ctx.size[0]);
 			case "h":
 				return String(ctx.size[1]);
+			case "aspect": {
+				const [w, h] = ctx.size;
+				return w > h ? "l" : w < h ? "p" : "sq";
+			}
 			case "date":
 				return FMT_yyyyMMdd_ALT(_, true);
 			case "time":
