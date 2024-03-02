@@ -63,6 +63,8 @@ ported from [Factor](http://factorcode.org) and
 (details explained further below)
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // define word to compute dot product of two vectors
 const dotp = pf.word([pf.vmul, [pf.add], 0, pf.foldl]);
 // another word to normalize a vector (uses `dotp`)
@@ -170,7 +172,9 @@ on the stack as is. Therefore, a stack program like: `[1, 2, pf.add]`
 compiles to:
 
 ```ts
-pf.add(pf.push(2)(pf.push(1)(<initial context>)))
+import * as pf from "@thi.ng/pointfree";
+
+pf.add(pf.push(2)(pf.push(1)(/* <initial context> */)))
 ```
 
 #### About stack effects
@@ -204,6 +208,8 @@ section of the result stack. This is merely syntax sugar and we use this
 for some of the examples below.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // calculate (1 + 2 + 3) * 10
 pf.run(
     // a pointfree stack program w/ stack effects
@@ -231,6 +237,8 @@ value(s) from result context.
 stack programs. Their use case is purely standalone application.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // define new word to compute multiply-add:
 // ( x y z -- x*y+z )
 const madd = pf.word([pf.invrot, pf.mul, pf.add]);
@@ -255,6 +263,8 @@ smaller re-usable units, words, quotations. These often extremely small
 words can be much easier tested and reused.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // compute square of x
 // ( x -- x*x )
 const pow2 = pf.word([pf.dup, pf.mul]);
@@ -290,6 +300,8 @@ execution. Quotations can be nested, composed and are executed via
 This example uses a quoted form of the above `pow2` word:
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.runU(
     [
         // push quotation on stack
@@ -313,6 +325,8 @@ all other values in the quotation are passed as arguments. The result of
 the function call is placed back on the stack.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.runU(
     [
         [(a,b) => a + b, 1, 2],
@@ -329,6 +343,8 @@ functional composition of two quotations is the same as concatenating
 two arrays**:
 
 ```js
+import * as pf from "@thi.ng/pointfree";
+
 const add10 = [10, pf.add];
 const mul10 = [10, pf.mul];
 
@@ -346,6 +362,8 @@ Also see [the section about combinators](#dataflow-combinators) for more
 advanced options.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // build & execute curried quotation
 pf.run([10, [pf.add], pf.pushl, pf.exec], [[13]]);
 // 23
@@ -355,6 +373,8 @@ Furthermore, the ES6 spread operator can be used to dissolve a quotation
 in a larger word/program (i.e. as a form of inlining code).
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // a quotation is just an array of values/words
 // this function is a quotation generator
 const tupleQ = (n) => [n, pf.collect];
@@ -397,6 +417,8 @@ restores them again after. Most other combinators are internally built
 on `dip` and/or `keep`.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // remove `20` before executing quot, then restores after
 // with the effect of apply qout to 2nd topmost value (here: 10)
 pf.run([10, 20, [pf.inc], pf.dip])[0]
@@ -415,6 +437,8 @@ Calls a quotation with a value on the d-stack, restoring the value after
 quotation finished.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // here `add` would normally consume two stack values
 // but `keep2` restores them again after the quot has run
 pf.run([1, 2, [pf.add], pf.keep2])[0]
@@ -430,6 +454,8 @@ pf.run([1, 2, [pf.add], pf.keep2])[0]
 value, then applies second quot to the same value.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.run([2, [10, pf.add], [10, pf.mul], pf.bi])[0]
 // [12, 20]
 
@@ -441,6 +467,8 @@ pf.run([2, 10, 100, [pf.add, pf.add], [pf.mul, pf.mul], pf.bi3])[0]
 `tri` takes 3 quotations, else same as `bi`:
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.run([10, [pf.dec], [pf.dup, pf.mul], [pf.inc], pf.tri])[0]
 // [9, 100, 11]
 ```
@@ -455,6 +483,8 @@ pf.run([10, [pf.dec], [pf.dup, pf.mul], [pf.inc], pf.tri])[0]
 ( x y p q -- px qy )
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.run([10, 20, [pf.inc], [pf.dec], pf.bis])[0]
 // [11, 19]
 
@@ -474,6 +504,8 @@ Applies the quotation `q` to `x`, then to `y`.
 ( x y q -- qx qy )
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.run([10, 20, [pf.inc], pf.bia])[0]
 // [11, 21]
 
@@ -499,6 +531,8 @@ produce a result array (only flat results pushed on stack), whereas
 value on the stack and applies quotation for each.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // multiply each array item * 10
 pf.runU([[1, 2, 3, 4], [10, pf.mul], pf.mapll]);
 // [ 10, 20, 30, 40 ]
@@ -542,13 +576,17 @@ object back on stack at the end. Throws error if there're less remaining
 stack values than keys in given array.
 
 ```ts
-runU([1, 2, 3, ["a","b","c"], {}, bindkeys])
+import * as pf from "@thi.ng/pointfree";
+
+pf.runU([1, 2, 3, ["a","b","c"], {}, pf.bindkeys])
 // { c: 3, b: 2, a: 1 }
 ```
 
 #### Combine array transform op with deeper stack values
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // helper word to extract a 8bit range from a 32bit int
 // `x` is the orig number, `s` bit shift amount
 // ( x s -- x byte )
@@ -576,6 +614,8 @@ splitBytes([[0xdecafbad]]);
 See `cond` documentation further below...
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // negate TOS item ONLY if negative, else do nothing
 const abs = pf.wordU([pf.dup, pf.isneg, pf.cond(pf.neg)]);
 
@@ -589,6 +629,8 @@ abs([42])
 ```
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // `cases()` is similar to JS `switch() { case ... }`
 const classify = (x) =>
     pf.unwrap(
@@ -619,6 +661,8 @@ as test produces a truthy result. There's also `loopq` which reads its
 arguments (same as `loop`) from the stack.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // print countdown from 3
 pf.run(
     [
@@ -642,6 +686,8 @@ counter based iterations. Like `loopq` it's not an higher-order word and
 works with a body quotation, which is executed `n` times.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.run([3, ["counter: ", pf.swap, pf.add, pf.print], pf.dotimes])
 // counter: 0
 // counter: 1
@@ -652,6 +698,8 @@ pf.run([3, ["counter: ", pf.swap, pf.add, pf.print], pf.dotimes])
 looping constructs:
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // 2D range/grid loop
 //
 // (cols rows body -- ? )
@@ -706,6 +754,8 @@ several words available for moving data between main ("D-stack") and the
 r-stack and to manipulate the structure of the R-stack itself.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 // this example partitions the main stack into triples
 
 // helper word to check if there're values on d-stack
@@ -935,6 +985,8 @@ body within an implicit `try .. catch` and if an error was thrown pushes
 it on stack and executes error quotation.
 
 ```ts
+import * as pf from "@thi.ng/pointfree";
+
 pf.runU([
     // body quotation
     [pf.div],

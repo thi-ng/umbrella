@@ -660,6 +660,8 @@ repo, but also any user defined custom types:
 - [streams](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 class Foo {
     constructor(val) {
         this.value = val;
@@ -766,6 +768,8 @@ Any remaining arguments are sourced from the component call site as
 this simple example demonstrates:
 
 ```ts
+import { start } from "@thi.ng/hdom";
+
 // wrap in closure to allow multiple instances
 const canvas = () => {
     return {

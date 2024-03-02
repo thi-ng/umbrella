@@ -134,17 +134,19 @@ Signature: `butLast<T>(input: Iterable<T>) => IterableIterator<T>`
 Yields iterator of all but the last value of input.
 
 ```ts
-[...ti.butLast([])]
+import { butLast, range } from "@thi.ng/iterators";
+
+[...butLast([])]
 // []
-[...ti.butLast([1])]
+[...butLast([1])]
 // []
-[...ti.butLast([1,2])]
+[...butLast([1,2])]
 // [ 1 ]
-[...ti.butLast([1,2,3])]
+[...butLast([1,2,3])]
 // [ 1, 2 ]
-[...ti.butLast("hello")]
+[...butLast("hello")]
 // [ "h", "e", "l", "l" ]
-[...ti.butLast(ti.range(10))]
+[...butLast(range(10))]
 // [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 ```
 
@@ -160,9 +162,11 @@ iterators. The original input is only consumed when attempting to read
 beyond current cache boundary.
 
 ```ts
-c = ti.cached(ti.range(10));
-a = c();
-b = c();
+import { cached, range } from "@thi.ng/iterators";
+
+const c = cached(range(10));
+const a = c();
+const b = c();
 a.next();
 // { done: false, value: 0 } -> from original
 b.next();
@@ -172,15 +176,17 @@ b.next();
 a.next();
 // { done: false, value: 1 } -> from cache
 
-angles = ti.cached(ti.range(0, 360, 45));
+const angles = cached(range(0, 360, 45));
 [...angles()]
 // [ 0, 45, 90, 135, 180, 225, 270, 315 ]
 
-ti.zip(
+import { juxt, map, zip } from "@thi.ng/iterators";
+
+zip(
     angles(),
-    ti.map(
-        ti.juxt(Math.sin, Math.cos),
-        ti.map(
+    map(
+        juxt(Math.sin, Math.cos),
+        map(
             (x)=> x * 180 / Math.PI,
             angles()
         )
@@ -205,10 +211,12 @@ For practical purposes none but the last input should be infinite. Any
 `null` or `undefined` input arguments are skipped in the output.
 
 ```ts
-[... ti.concat([1, 2, 3], [10, 20, 30], [100, 200, 300])]
+import { concat } from "@thi.ng/iterators";
+
+[...concat([1, 2, 3], [10, 20, 30], [100, 200, 300])]
 // [ 1, 2, 3, 10, 20, 30, 100, 200, 300 ]
 
-[...ti.concat.apply(null, ["abc", null, [1, 2, 3]])]
+[...concat.apply(null, ["abc", null, [1, 2, 3]])]
 // [ "a", "b", "c", 1, 2, 3 ]
 ```
 
@@ -220,23 +228,27 @@ Helper function returning a new fn which takes any number of args and
 always returns `x`.
 
 ```ts
+import {
+    constantly, filter, map, reduce, repeatedly, takeWhile
+} from "@thi.ng/iterators";
+
 // define an iterable of unknown size
-iter = ti.takeWhile(x => x < 0.98, ti.repeatedly(()=> Math.random()));
+iter = takeWhile(x => x < 0.98, repeatedly(()=> Math.random()));
 
 // use map & reduce to determine size of iterable:
 // `constantly` as mapping fn maps all values to 1
 // then reduce is used to sum
-ti.reduce((a, b)=> a + b, 0, ti.map(ti.constantly(1), iter))
+reduce((a, b)=> a + b, 0, map(constantly(1), iter))
 // 241 (varying)
 
 // some complex data transformation
-times10 = (flt, coll) => [...ti.map(x => x * 10, ti.filter(flt, coll))];
+times10 = (flt, coll) => [...map(x => x * 10, filter(flt, coll))];
 
 // some user selectable config
 filterModes = {
     odd: x => (x % 2) == 1,
     even: x => (x % 2) == 0,
-    all: ti.constantly(true)
+    all: constantly(true)
 };
 
 // use `constantly` as pluggable bypass filter predicate fn
@@ -262,7 +274,9 @@ sequence of input. **Important:** Input MUST be finite, use `take` to
 truncate input or output if necessary.
 
 ```ts
-[... ti.take(10, ti.cycle(ti.range(3)))]
+import { cycle, range, take } from "@thi.ng/iterators";
+
+[...take(10, cycle(range(3)))]
 // [0, 1, 2, 0, 1, 2, 0, 1, 2, 0]
 ```
 
@@ -274,7 +288,9 @@ Produces iterator which discards successive duplicate values from input.
 **Important:** Uses `===` for equality checks.
 
 ```ts
-[... ti.dedupe([1, 2, 2, 3, 4, 4, 4, 3])]
+import { dedupe } from "@thi.ng/iterators";
+
+[...dedupe([1, 2, 2, 3, 4, 4, 4, 3])]
 // [1, 2, 3, 4, 3]
 ```
 
@@ -286,10 +302,12 @@ Like `dedupe`, but uses given function `equiv` to determine equivalence
 of successive values.
 
 ```ts
+import { dedupeWith } from "@thi.ng/iterators";
+
 var coll = [{ a: 1 }, { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 2 }, { a: 3 }];
 var eq = (a, b) => a.a === b.a;
 
-[...ti.dedupeWith(eq, coll)]
+[...dedupeWith(eq, coll)]
 // [ { a: 1 }, { a: 2, b: 2 }, { a: 3 } ]
 ```
 
@@ -301,11 +319,13 @@ Yields iterator of all non-`null` and non-`undefined` values of input
 (e.g. a sparse array).
 
 ```ts
+import { dense } from "@thi.ng/iterators";
+
 var a = []
 a[10] = 1;
 a[20] = 2;
 
-[...ti.dense(a)]
+[...dense(a)]
 // [1, 2]
 ```
 
@@ -317,11 +337,15 @@ Consumes & discards up to `n` items from input and returns remaining
 (possibly exhausted) iterator.
 
 ```ts
-[... ti.drop(5, ti.range(10))]
+import { drop, range, take } from "@thi.ng/iterators";
+
+[...drop(5, range(10))]
 // [5, 6, 7, 8, 9]
-[... ti.drop(5, ti.range(3))]
+
+[...drop(5, range(3))]
 // []
-[... ti.take(5, ti.drop(5, ti.range()))]
+
+[...take(5, drop(5, range()))]
 // [ 5, 6, 7, 8, 9 ]
 ```
 
@@ -332,9 +356,11 @@ Signature: `dropNth<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 Produces iterator which drops every `n`th item from input.
 
 ```ts
-[... ti.dropNth(2, ti.range(10))]
+import { dropNth, range } from "@thi.ng/iterators";
+
+[...dropNth(2, range(10))]
 // [0, 2, 4, 6, 8]
-[... ti.dropNth(3, ti.range(10))]
+[...dropNth(3, range(10))]
 // [ 0, 1, 3, 4, 6, 7, 9 ]
 ```
 
@@ -347,7 +373,9 @@ Consumes input and calls `pred` for each item. Discards all items whilst
 iterator.
 
 ```ts
-[... ti.dropWhile((x) => x < 5, ti.range(10))]
+import { dropWhile, range } from "@thi.ng/iterators";
+
+[...dropWhile((x) => x < 5, range(10))]
 // [5, 6, 7, 8, 9]
 ```
 
@@ -363,20 +391,22 @@ If input is empty/exhausted prior to execution, `every` will return
 `false`.
 
 ```ts
-var nums = ti.iterator([2, 4, 6, 8, 10]);
+import { every, iterator } from "@thi.ng/iterators";
 
-ti.every((x) => (x % 2) === 0, nums);
+var nums = iterator([2, 4, 6, 8, 10]);
+
+every((x) => (x % 2) === 0, nums);
 // true, all passed
 nums.next()
 // { value: undefined, done: true }
 
-nums = ti.iterator([2, 3, 4]);
-ti.every((x) => (x % 2) === 0, nums);
+nums = iterator([2, 3, 4]);
+every((x) => (x % 2) === 0, nums);
 // false, `every` stopped at `3`
 nums.next()
 // { value: 4, done: false }
 
-ti.every((x) => true, [])
+every((x) => true, [])
 // false (empty input)
 ```
 
@@ -388,8 +418,11 @@ Consumes input and calls `pred` for each item. Yields iterator of items
 for which `pred` returned `true`.
 
 ```ts
-var multOf3 = (x) => (x % 3) === 0;
-[... ti.filter(multOf3, ti.range(10))];
+import { filter, range } from "@thi.ng/iterators";
+
+const multOf3 = (x: number) => (x % 3) === 0;
+
+[...filter(multOf3, range(10))];
 // [ 0, 3, 6, 9 ]
 ```
 
@@ -403,14 +436,16 @@ Produces iterator which recursively flattens input (using
 `objectIterator`, see below).
 
 ```ts
-[... ti.flatten([1, [2, 3], [4, [5, ["abc"]]]])]
+import { flatten } from "@thi.ng/iterators";
+
+[...flatten([1, [2, 3], [4, [5, ["abc"]]]])]
 // [ 1, 2, 3, 4, 5, "abc" ]
 
-[...ti.flatten([{ a: 1 }, { a: 23, b: 42, c: [1, 2, 3] }])]
+[...flatten([{ a: 1 }, { a: 23, b: 42, c: [1, 2, 3] }])]
 // ["a", 1, "a", 23, "b", 42, "c", 1, 2, 3]
 
 // don't flatten objects
-[...ti.flatten([{ a: 1 }, [1, 2, 3], { a: 23, b: 42, c: [1, 2, 3] }], false)]
+[...flatten([{ a: 1 }, [1, 2, 3], { a: 23, b: 42, c: [1, 2, 3] }], false)]
 // [ { a: 1 }, 1, 2, 3, { a: 23, b: 42, c: [ 1, 2, 3 ] } ]
 ```
 
@@ -428,15 +463,17 @@ flattened**. If a value is returned it MUST be iterable.
 The default transformer used by `flatten` is:
 
 ```ts
-let defaultTx = x =>
+import { flattenWith, map, maybeIterator, maybeObjectIterator } from "@thi.ng/iterators";
+
+const defaultTx = x =>
     (typeof x !== "string" && (maybeIterator(x) || maybeObjectIterator(x))) ||
     undefined;
 
 // transformer allowing any iterable and strings
 // if `x` is a string, return its numeric charcode sequence for flattening
-let tx = x => typeof x == "string" ? ti.map(x => x.charCodeAt(0), x) : ti.maybeIterator(x);
+const tx = x => typeof x == "string" ? map(x => x.charCodeAt(0), x) : maybeIterator(x);
 
-[...ti.flattenWith(tx, ["ROOT", undefined, ["CHILD_1", null, ["CHILD_2"]]])]
+[...flattenWith(tx, ["ROOT", undefined, ["CHILD_1", null, ["CHILD_2"]]])]
 // [ 82, 79, 79, 84, undefined, 67, 72, 73, 76, 68, 95, 49, null, 67, 72, 73, 76, 68, 95, 50 ]
 ```
 
@@ -454,10 +491,12 @@ first 3 are being potentially patched, how many depends on the number of
 `ctor` fns supplied.
 
 ```ts
+import { fnil, reduce } from "@thi.ng/iterators";
+
 hello = (greet, name) => `${greet}, ${name}!`;
 
-helloEN = ti.fnil(hello, () => "Hi", () => "user");
-helloDE = ti.fnil(hello, () => "Hallo", () => `Teilnehmer #${(Math.random()*100)|0}`);
+helloEN = fnil(hello, () => "Hi", () => "user");
+helloDE = fnil(hello, () => "Hallo", () => `Teilnehmer #${(Math.random()*100)|0}`);
 
 helloEN(); // "Hi, user!"
 helleEN(null,"toxi"); // "Hi, toxi!"
@@ -467,7 +506,7 @@ helloDE(); // "Hallo, Teilnehmer #42!"
 
 inc = x => x + 1
 // build new fn which calls ctor to supply 0 if arg is null or undefined
-adder = ti.fnil(inc, () => 0);
+adder = fnil(inc, () => 0);
 
 adder();
 // 1 => returns 0 (from ctor fn) + 1
@@ -481,7 +520,7 @@ updateWith = f => (obj, id) => { return obj[id] = f(obj[id]), obj; }
 
 // accumulate letter frequencies of string into object
 // fnil is used here to avoid `NaN` each time an yet unknown letter is encountered
-ti.reduce(updateWith(adder), {}, "abracadabra");
+reduce(updateWith(adder), {}, "abracadabra");
 // { a: 5, b: 2, r: 2, c: 1, d: 1 }
 ```
 
@@ -506,20 +545,22 @@ cache uses
 to avoid unnecessary copying during window sliding.
 
 ```ts
+import { fork, map, partition, reduce, repeatedly } from "@thi.ng/iterators";
+
 // stream of random numbers, as sliding partitions of 5 values
-src = ti.partition(5, 1, ti.repeatedly(()=> (Math.random() * 100) | 0, 10));
+src = partition(5, 1, repeatedly(()=> (Math.random() * 100) | 0, 10));
 
 // setup forking, only caching single value
-f = ti.fork(src, 1);
+f = fork(src, 1);
 
 // create 4 forks (by calling f()), each with their own transformer:
 raw = f();
 // simple moving average
-sma = ti.map((part)=> ti.reduce((a, b) => a + b, 0, part) / part.length, f());
+sma = map((part)=> reduce((a, b) => a + b, 0, part) / part.length, f());
 // minimum
-min = ti.map((part)=> ti.reduce((a, b) => Math.min(a, b), 100, part), f());
+min = map((part)=> reduce((a, b) => Math.min(a, b), 100, part), f());
 // maximum
-max = ti.map((part)=> ti.reduce((a, b) => Math.max(a, b), -1, part), f());
+max = map((part)=> reduce((a, b) => Math.max(a, b), -1, part), f());
 
 // consume the forks in synchronized manner
 for(let part of raw) {
@@ -545,19 +586,21 @@ finite. Implementation uses `JSON.stringify` to determine key equality.
 If no `key` fn is given, the original values will be used as key.
 
 ```ts
+import { frequencies, filter } from "@thi.ng/iterators";
+
 // without key fn
-[... ti.frequencies([[1,2], [2,3], [1,2], [2,4]])]
+[...frequencies([[1,2], [2,3], [1,2], [2,4]])]
 // [ [[1, 2], 2],
 //   [[2, 3], 1],
 //   [[2, 4], 1] ]
 
 // with key fn
-[... ti.frequencies([1, 2, 3, 4, 5, 9, 3], (x) => x & ~1)]
+[...frequencies([1, 2, 3, 4, 5, 9, 3], (x) => x & ~1)]
 // [ [ 0, 1 ], [ 2, 3 ], [ 4, 2 ], [ 8, 1 ] ]
 
 // letter frequencies
 var isLetter = (x) => /[a-z]/i.test(x);
-[... ti.frequencies(ti.filter(isLetter, "hello world!"))].sort((a, b) => b[1] - a[1])
+[...frequencies(filter(isLetter, "hello world!"))].sort((a, b) => b[1] - a[1])
 // [ ["l", 3], ["o", 2], ["h", 1], ["e", 1], ["w", 1], ["r", 1], ["d", 1] ]
 ```
 
@@ -570,6 +613,8 @@ items grouped by result of `key` fn. **Important:** The input MUST be
 finite. Implementation uses `JSON.stringify` to determine key equality.
 
 ```ts
+import { groupBy } from "@thi.ng/iterators";
+
 // group into multiples of 2
 groupBy((x) => x & ~1, [1, 2, 3, 4, 5, 9, 3])
 // { '0': [ 1 ], '2': [ 2, 3, 3 ], '4': [ 4, 5 ], '8': [ 9 ] }
@@ -589,18 +634,20 @@ Signature: `identity<T>(x: T) => T`
 Helper function. Simply returns its argument.
 
 ```ts
-ti.identity() // undefined
-ti.identity(null) // null
-ti.identity(42) // 42
+import { identity, every, fnil } from "@thi.ng/iterators";
+
+identity() // undefined
+identity(null) // null
+identity(42) // 42
 
 tests = [true, true, undefined, true]
 
 // all tests succeeded?
-ti.every(ti.identity, tests);
+every(identity, tests);
 // false
 
 // mark missing test results as success
-ti.every(ti.fnil(ti.identity, () => true), tests);
+every(fnil(identity, () => true), tests);
 // true
 ```
 
@@ -611,7 +658,8 @@ Signature: `indexed<T>(input: Iterable<T>) => IterableIterator<[number, T]>`
 Yields iterator producing `[index, value]` pairs of input.
 
 ```ts
-[...ti.indexed("hello")]
+import { indexed } from "@thi.ng/iterators";
+[...indexed("hello")]
 // [ [ 0, "h" ], [ 1, "e" ], [ 2, "l" ], [ 3, "l" ], [ 4, "o" ] ]
 ```
 
@@ -624,7 +672,9 @@ interleaved items from each input. Terminates as soon as one of the
 inputs is exhausted.
 
 ```ts
-[... ti.interleave(ti.range(), ti.range(100, 200), ti.range(200, 205))]
+import { interleave, range } from "@thi.ng/iterators";
+
+[...interleave(range(), range(100, 200), range(200, 205))]
 // [ 0, 100, 200, 1, 101, 201, 2, 102, 202, 3, 103, 203, 4, 104, 204 ]
 ```
 
@@ -636,7 +686,9 @@ Produces an iterator which injects `x` between each item from input
 `iter`.
 
 ```ts
-[... ti.interpose("/", ti.range(5))]
+import { interpose, range } from "@thi.ng/iterators";
+
+[...interpose("/", range(5))]
 // [ 0, "/", 1, "/", 2, "/", 3, "/", 4 ]
 ```
 
@@ -650,7 +702,9 @@ Produces an iterator of the infinite results of iteratively applying
 **Important:** Use `take` to truncate sequence.
 
 ```ts
-[... ti.take(10, ti.iterate((x) => x * 2, 1))]
+import { iterate, take } from "@thi.ng/iterators";
+
+[...take(10, iterate((x) => x * 2, 1))]
 // [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 ]
 ```
 
@@ -671,7 +725,9 @@ applying each input function to `x` (juxtoposition of the given
 transformation functions).
 
 ```ts
-var kernel = ti.juxt(
+import { juxt, map, range } from "@thi.ng/iterators";
+
+var kernel = juxt(
     (x) => x - 1,
     (x) => x,
     (x) => x + 1
@@ -679,7 +735,7 @@ var kernel = ti.juxt(
 kernel(1)
 // [0, 1, 2]
 
-[... ti.map(kernel, ti.range(3))]
+[...map(kernel, range(3))]
 // [ [-1, 0, 1], [0, 1, 2], [1, 2, 3] ]
 ```
 
@@ -692,11 +748,13 @@ Consumes a **finite** iterator and returns last item.
 **Important:** Never attempt to use with an infinite input!
 
 ```ts
-ti.last(ti.range(10))
+import { last, range, take } from "@thi.ng/iterators";
+
+last(range(10))
 // 9
 
 // last item of truncated infinite input
-ti.last(ti.take(10, ti.range()))
+last(take(10, range()))
 // 9
 ```
 
@@ -711,10 +769,12 @@ arguments as there are inputs to `map`. Provides a fast path for single
 input mapping.
 
 ```ts
-[... ti.map((x)=> x*10, ti.range(10))]
+import { map, range } from "@thi.ng/iterators";
+
+[...map((x)=> x*10, range(10))]
 // [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
 
-[... ti.map((x, y, z) => [x, y, z], ti.range(5), ti.range(0, 100, 10), ti.range(0, 1000, 100))]
+[...map((x, y, z) => [x, y, z], range(5), range(0, 100, 10), range(0, 1000, 100))]
 // [ [0, 0, 0], [1, 10, 100], [2, 20, 200], [3, 30, 300], [4, 40, 400] ]
 ```
 
@@ -728,10 +788,12 @@ the first level of nesting is removed). `null` or `undefined` values
 returned by the mapping fn are skipped in the output.
 
 ```ts
-[... ti.mapcat((x) => ti.repeat(x, 3), "hello")]
+import { mapcat, range, repeat } from "@thi.ng/iterators";
+
+[...mapcat((x) => repeat(x, 3), "hello")]
 // [ "h", "h", "h", "e", "e", "e", "l", "l", "l", "l", "l", "l", "o", "o", "o" ]
 
-[...ti.mapcat((x) => x < 5 ? ti.repeat(x,x) : null, ti.range(10))]
+[...mapcat((x) => x < 5 ? repeat(x,x) : null, range(10))]
 // [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4 ]
 ```
 
@@ -743,7 +805,9 @@ Like `map`, but too passes a monotonically increasing `index` as first
 argument to mapping fn.
 
 ```ts
-[... ti.mapIndexed((i, a, b) => [i, a, b], "hello", "there")]
+import { mapIndexed } from "@thi.ng/iterators";
+
+[...mapIndexed((i, a, b) => [i, a, b], "hello", "there")]
 // [ [0, "h", "t"],
 //   [1, "e", "h"],
 //   [2, "l", "e"],
@@ -772,7 +836,9 @@ Signature: `objectIterator(x: any) => IterableIterator<any[]>`
 Produces iterator of an object"s key/value pairs.
 
 ```ts
-[... ti.objectIterator({a: 23, b: 42, c: [1, 2, 3]})]
+import { objectIterator } from "@thi.ng/iterators";
+
+[...objectIterator({a: 23, b: 42, c: [1, 2, 3]})]
 // [ ["a", 23], ["b", 42], ["c", [1, 2, 3]] ]
 ```
 
@@ -787,17 +853,19 @@ partitions. If `all = true`, the last partition produced may have less
 than `n` items (though never empty).
 
 ```ts
-[... ti.partition(3, 3, ti.range(10))]
+import { partition, range } from "@thi.ng/iterators";
+
+[...partition(3, 3, range(10))]
 // [ [0, 1, 2], [3, 4, 5], [6, 7, 8] ]
 
-[... ti.partition(3, 3, ti.range(10), true)]
+[...partition(3, 3, range(10), true)]
 // [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [9] ]
 
-[... ti.partition(3, 1, ti.range(10))]
+[...partition(3, 1, range(10))]
 // [ [0, 1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5],
 //   [4, 5, 6], [5, 6, 7], [6, 7, 8], [7, 8, 9] ]
 
-[... ti.partition(3, 5, ti.range(10))]
+[...partition(3, 5, range(10))]
 // [ [0, 1, 2], [5, 6, 7] ]
 ```
 
@@ -809,7 +877,9 @@ Produces iterator of partitions/chunks of input values. Applies `fn` to
 each item and starts new partition each time `fn` returns new result.
 
 ```ts
-[... ti.partitionBy((x) => x / 5 | 0, ti.range(11))]
+import { partitionBy, range } from "@thi.ng/iterators";
+
+[...partitionBy((x) => x / 5 | 0, range(11))]
 // [ [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10] ]
 ```
 
@@ -821,7 +891,9 @@ Produces iterator which consumes input and yields values with given
 probability (0 .. 1 range).
 
 ```ts
-[... ti.randomSample(0.1, ti.range(100))]
+import { randomSample, range } from "@thi.ng/iterators";
+
+[...randomSample(0.1, range(100))]
 // [ 10, 13, 16, 21, 22, 24, 32, 35, 37, 81, 93 ]
 ```
 
@@ -833,28 +905,30 @@ Produces iterator of monotonically increasing or decreasing values with
 optional `step` value.
 
 - If called without arguments, produces values from 0 .. +∞.
-- If called with 1 arg: 0 ... n (exclusive)
+- If called with 1 arg: 0 ...n (exclusive)
 - If called with 2 arg: `from` ... `to` (exclusive)
 
 If `from` > `to` and no `step` is given, a `step` of `-1` is used.
 
 ```ts
-[... ti.take(5, ti.range())]
+import { take, range } from "@thi.ng/iterators";
+
+[...take(5, range())]
 // [0, 1, 2, 3, 4]
 
-[... ti.range(5)]
+[...range(5)]
 // [0, 1, 2, 3, 4]
 
-[... ti.range(100, 105)]
+[...range(100, 105)]
 // [100, 101, 102, 103, 104]
 
-[... ti.range(5,0)]
+[...range(5,0)]
 // [5, 4, 3, 2, 1]
 
-[... ti.range(0, 50, 10)]
+[...range(0, 50, 10)]
 // [0, 10, 20, 30, 40]
 
-[... ti.range(50, -1, -10)]
+[...range(50, -1, -10)]
 // [50, 40, 30, 20, 10, 0]
 ```
 
@@ -870,11 +944,20 @@ unwrapped and returned as final result.
 If input is empty, returns initial `acc`umulator arg.
 
 ```ts
-ti.reduce((acc, x) => acc + x, 0, ti.range(10))
+import { reduce, reduced, range } from "@thi.ng/iterators";
+
+reduce((acc, x) => acc + x, 0, range(10))
 // 45
 
 // infinite input with early termination
-ti.reduce((acc, x) => { return acc += x, acc >= 15 ? ti.reduced(acc) : acc }, 0, ti.range())
+reduce(
+    (acc, x) => {
+        acc += x;
+        return acc >= 15 ? reduced(acc) : acc;
+    },
+    0,
+    range()
+)
 // 15
 ```
 
@@ -891,11 +974,20 @@ operation](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch39.html)
 (with the exception of possible early bail out via `reduced`).
 
 ```ts
-[... ti.reductions((acc, x) => acc + x, 0, ti.range(10))]
+import { reductions, reduced, range } from "@thi.ng/iterators";
+
+[...reductions((acc, x) => acc + x, 0, range(10))]
 // [ 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 ]
 
 // with early termination
-[... ti.reductions((acc, x) => { return acc += x, acc >= 15 ? ti.reduced(acc) : acc }, 0, ti.range())]
+[...reductions(
+    (acc, x) => {
+        acc += x;
+        return acc >= 15 ? reduced(acc) : acc
+    },
+    0,
+    range()
+)]
 // [ 0, 1, 3, 6, 10, 15 ]
 ```
 
@@ -914,10 +1006,11 @@ Produces an iterator of infinite (by default) repetitions of value `x`.
 If `n` is given, produces only that many values.
 
 ```ts
-[... ti.take(5, ti.repeat(42))]
+import { repeat, take } from "@thi.ng/iterators";
+[...take(5, repeat(42))]
 // [42, 42, 42, 42, 42]
 
-[... ti.repeat(42, 5)]
+[...repeat(42, 5)]
 // [42, 42, 42, 42, 42]
 ```
 
@@ -929,10 +1022,12 @@ Produces an iterator of infinite (by default) results of calling the
 no-arg `fn` repeatedly. If `n` is given, produces only that many values.
 
 ```ts
-[... ti.take(3, ti.repeatedly(() => Math.random()))]
+import { repeatedly, take } from "@thi.ng/iterators";
+
+[...take(3, repeatedly(() => Math.random()))]
 // [ 0.9620186971807614, 0.8191901643942394, 0.5964328949163533 ]
 
-[... ti.repeatedly(() => Math.random(), 3)]
+[...repeatedly(() => Math.random(), 3)]
 // [ 0.46381477224416057, 0.22568030685532992, 0.5494769470662977 ]
 ```
 
@@ -945,13 +1040,15 @@ Yields iterator **lazily** producing reverse result order of input
 for this purpose), the function first consumes & caches input as array.
 
 ```ts
-[...ti.reverse([1, 2, 3])]
+import { iterate, reverse, take } from "@thi.ng/iterators";
+
+[...reverse([1, 2, 3])]
 // [3, 2, 1]
 
-[...ti.reverse("hello")]
+[...reverse("hello")]
 // [ "o", "l", "l", "e", "h" ]
 
-[...ti.reverse(ti.take(10, ti.iterate(x => x * 2, 1)))]
+[...reverse(take(10, iterate(x => x * 2, 1)))]
 // [ 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 ]
 ```
 
@@ -964,15 +1061,17 @@ Consumes iterator and calls `pred` for each item. When `pred` returns
 of the items pass the predicate, the function returns `undefined`.
 
 ```ts
-var nums = ti.iterator([1, 2, 3]);
+import { iterator, some } from "@thi.ng/iterators";
 
-ti.some((x) => (x % 2) === 0, nums);
+var nums = iterator([1, 2, 3]);
+
+some((x) => (x % 2) === 0, nums);
 // 2, the 1st value which passed
 nums.next()
 // { value: 3, done: false }
 
-nums = ti.iterator([1, 2, 3]);
-ti.some((x) => x > 3, nums);
+nums = iterator([1, 2, 3]);
+some((x) => x > 3, nums);
 // undefined
 nums.next()
 // { value: undefined, done: true }
@@ -986,7 +1085,9 @@ Produces iterator of the first `n` values of input (or less than `n`, if
 input is too short...)
 
 ```ts
-[... ti.take(3, ti.range())]
+import { range, take } from "@thi.ng/iterators";
+
+[...take(3, range())]
 // [ 0, 1, 2 ]
 ```
 
@@ -997,7 +1098,9 @@ Signature: `takeNth<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 Produces an iterator only yielding every `n`th item from input.
 
 ```ts
-[... ti.takeNth(3, ti.range(10))]
+import { range, takeNth } from "@thi.ng/iterators";
+
+[...takeNth(3, range(10))]
 // [ 0, 3, 6, 9 ]
 ```
 
@@ -1013,10 +1116,13 @@ value failing the given `pred` will be lost when working with the
 original iterator *after* `takeWhile`.
 
 ```ts
-var input = ti.range(10);
-[... ti.takeWhile((x)=> x < 5, input)]
+import { range, takeWhile } from "@thi.ng/iterators";
+
+var input = range(10);
+[...takeWhile((x)=> x < 5, input)]
 // [ 0, 1, 2, 3, 4 ]
-[... input]
+
+[...input]
 // note: `5` is missing (the value which failed takeWhile)
 // [ 6, 7, 8, 9 ]
 ```
@@ -1031,10 +1137,12 @@ less than `n`, if input is too short...)
 **Important:** Never attempt to use with infinite inputs!
 
 ```ts
-[... ti.takeLast(5, ti.range(1000))]
+import { range, takeLast } from "@thi.ng/iterators";
+
+[...takeLast(5, range(1000))]
 // [ 995, 996, 997, 998, 999 ]
 
-[... ti.takeLast(5, ti.range(3))]
+[...takeLast(5, range(3))]
 // [ 0, 1, 2 ]
 ```
 
@@ -1058,6 +1166,8 @@ above). If the fn returns `null` or `undefined`, no children will be
 visited.
 
 ```ts
+import { walk } from "@thi.ng/iterators";
+
 // dummy SVG document
 let doc = {
     tag: "svg",
@@ -1085,7 +1195,7 @@ let circleTX = x => {
 };
 
 // transform doc
-ti.walk(circleTX, (x) => x.content, doc);
+walk(circleTX, (x) => x.content, doc);
 
 doc.content[0].content[1]
 // { tag: "circle", attr: { x: 83.9269, y: 31.129, r: 5 } }
@@ -1113,8 +1223,10 @@ above). If the fn returns `null` or `undefined`, no children will be
 visited.
 
 ```ts
+import { map, walkIterator } from "@thi.ng/iterators";
+
 // pre-order traversal
-[...ti.map(JSON.stringify, ti.walkIterator([[[1, [2]], [3, [4]]], [5]], false))]
+[...map(JSON.stringify, walkIterator([[[1, [2]], [3, [4]]], [5]], false))]
 // [ "[[[1,[2]],[3,[4]]],[5]]",
 //   "[[1,[2]],[3,[4]]]",
 //   "[1,[2]]",
@@ -1129,7 +1241,7 @@ visited.
 //   "5" ]
 
 // post-order traversal
-[...ti.map(JSON.stringify, ti.walkIterator([[[1, [2]], [3, [4]]], [5]], true))]
+[...map(JSON.stringify, walkIterator([[[1, [2]], [3, [4]]], [5]], true))]
 // [ "1",
 //   "2",
 //   "[2]",
@@ -1154,10 +1266,12 @@ given target object (if `target` is missing, returns new object). Stops
 as soon as either input is exhausted.
 
 ```ts
-ti.zip("abcdef", ti.range())
+import { map, range, zip } from "@thi.ng/iterators";
+
+zip("abcdef", range())
 // { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5 }
 
-ti.zip(ti.range(5,10), ti.range(100,200), new Uint8Array(16))
+zip(range(5,10), range(100,200), new Uint8Array(16))
 // [ 0, 0, 0, 0, 0, 100, 101, 102, 103, 104, 0, 0, 0, 0, 0, 0 ]
 
 var langs=[
@@ -1166,7 +1280,7 @@ var langs=[
     {id: "ts", name: "TypeScript"}
 ];
 
-ti.zip(ti.map((x)=> x.id, langs), langs)
+zip(map((x)=> x.id, langs), langs)
 // { js: { id: "js", name: "JavaScript" },
 //   clj: { id: "clj", name: "Clojure" },
 //   ts: { id: "ts", name: "TypeScript" } }
