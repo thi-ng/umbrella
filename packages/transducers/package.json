@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers",
-	"version": "8.9.8",
+	"version": "8.9.9",
 	"description": "Lightweight transducer implementations for ES6 / TypeScript",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.27",
-		"@thi.ng/arrays": "^2.8.4",
+		"@thi.ng/arrays": "^2.8.5",
 		"@thi.ng/checks": "^3.5.1",
 		"@thi.ng/compare": "^2.2.23",
 		"@thi.ng/compose": "^2.1.66",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel",
-	"version": "6.1.14",
+	"version": "6.1.15",
 	"description": "Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"@thi.ng/binary": "^3.4.16",
 		"@thi.ng/canvas": "^0.2.8",
 		"@thi.ng/checks": "^3.5.1",
-		"@thi.ng/distance": "^2.4.56",
+		"@thi.ng/distance": "^2.4.57",
 		"@thi.ng/errors": "^2.4.19",
-		"@thi.ng/k-means": "^0.6.71",
+		"@thi.ng/k-means": "^0.6.72",
 		"@thi.ng/math": "^5.10.4",
-		"@thi.ng/porter-duff": "^2.1.69"
+		"@thi.ng/porter-duff": "^2.1.70"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",
