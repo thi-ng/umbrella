@@ -216,6 +216,8 @@ Tag names support
 style ID & class attribute expansion:
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 serialize(
     ["div#yo.hello.world", "Look ma, ", ["strong", "no magic!"]]
 );
@@ -236,6 +238,8 @@ If the 2nd array element is not a plain object, it's treated as normal
 child node (see previous example).
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 serialize(
     ["div.notice",
         {
@@ -288,6 +292,8 @@ Function values for event attributes (any attrib name starting with
 ### Simple components
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 const thumb = (src) => ["img.thumb", { src, alt: "thumbnail" }];
 
 serialize(
@@ -315,6 +321,8 @@ The context object should contain any global component configuration,
 e.g. for theming purposes.
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 const header = (ctx, body) =>
     ["h1", ctx.theme.title, body];
 
@@ -344,6 +352,8 @@ yourself. Likewise, if a component function doesn't make use of the context you
 can use either:
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 // skip the context arg and require direct invocation
 const div = (attribs, body) => ["div", attribs, body];
 
@@ -354,6 +364,8 @@ serialize(div({id: "foo"}, "bar"));
 Or...
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 // ignore the first arg (context) and support both direct & indirect calls
 const div = (_, attribs, body) => ["div", attribs, body];
 
@@ -567,7 +579,10 @@ Single or multiline comments can be included using the special `COMMENT`
 tag (`__COMMENT__`) (always WITHOUT attributes!).
 
 ```ts
+import { COMMENT } from "@thi.ng/hiccup";
+
 [COMMENT, "Hello world"]
+// serializes to:
 // <!-- Hello world -->
 
 [COMMENT, "Hello", "world"]
@@ -663,6 +678,8 @@ that function is called. The return value the function MUST be a valid
 new tree (or undefined).
 
 ```ts
+import { serialize } from "@thi.ng/hiccup";
+
 const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
 
 serialize([foo, "id", "body"], { foo: { class: "black" } })

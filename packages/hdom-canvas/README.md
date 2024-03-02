@@ -209,6 +209,8 @@ set to `false` to skip unnecessary diffing and force redraws.
 To disable the automatic background clearing of the canvas, set the `__clear` attribute to `false`.
 
 ```ts
+import { canvas } from "@thi.ng/hdom-components";
+
 [canvas, { width: 100, height: 100, __clear: false }, ...]
 ```
 
@@ -220,6 +222,8 @@ context accordingly before any shapes are processed. For fullscreen
 canvases simply set the `width` & `height` attribs to:
 
 ```ts
+import { canvas } from "@thi.ng/hdom-components";
+
 [canvas,
     {
         width: window.innerWidth,

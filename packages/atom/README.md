@@ -216,6 +216,8 @@ values. These updates are handled via immutable setters provided by
 [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths).
 
 ```ts
+import { defAtom } from "@thi.ng/atom";
+
 const db = defAtom({ a: { b: 1, c: 2 } });
 
 // type checked access
@@ -277,6 +279,8 @@ e.g. `Atom`, `Cursor` or `History` instances. `Transacted` also implements
 `IAtom` itself...
 
 ```ts
+import { defAtom, defTransacted } from "@thi.ng/atom";
+
 const db = defAtom<any>({ a: 1, b: 2 });
 const tx = defTransacted(db);
 
@@ -285,7 +289,7 @@ tx.begin();
 
 // alternatively use syntax sugar for:
 // `defTransacted(db).begin()`
-tx = beginTransaction(db);
+// tx = beginTransaction(db);
 
 // perform multiple updates
 // (none of them are applied to the parent state
@@ -320,6 +324,10 @@ supported and attempting to do so will throw an error. However, nested
 transactions can be achieved by wrapping another `Transacted` container.
 
 ```ts
+import { beginTransaction } from "@thi.ng/atom";
+
+// (db defined earlier...)
+
 const tx1 = beginTransaction(db);
 tx1.resetIn(["a"], 10);
 
@@ -342,6 +350,10 @@ to signal race conditions due to erroneous / out-of-phase state update
 logic.
 
 ```ts
+import { beginTransaction } from "@thi.ng/atom";
+
+// (db defined earlier...)
+
 const tx = beginTransaction(db);
 tx.resetIn(["a"], 10);
 
@@ -370,6 +382,8 @@ I.e. any change to a cursor's value propagates up the hierarchy of
 parent states and also triggers any watches attached to the parent.
 
 ```ts
+import { defAtom, defCursor } from "@thi.ng/atom";
+
 a = defAtom({a: {b: {c: 1}}})
 // cursor to `b` value
 b = defCursor(a, "a.b")
@@ -390,6 +404,8 @@ rather wide than deep (my personal limit is 3-4 levels) to minimize the
 length of the propagation chain and maximize structural sharing.
 
 ```ts
+import { defAtom, defCursor, defCursorUnsafe } from "@thi.ng/atom";
+
 // main state
 main = defAtom({ a: { b: { c: 23 }, d: { e: 42 } }, f: 66 });
 
@@ -420,6 +436,8 @@ and the ability to (optionally) produce transformed versions of such a
 value. The `View` type provides exactly this functionality:
 
 ```ts
+import { defAtom, defView, defViewUnsafe } from "@thi.ng/atom";
+
 db = defAtom({ a: 1, b: { c: 2 } });
 
 // create a view for a's value
@@ -475,6 +493,8 @@ Related, the actual value change predicate can be customized. If not
 given, the default `@thi.ng/equiv` will be used.
 
 ```ts
+import { defAtom, defView } from "@thi.ng/atom";
+
 let x = 0;
 let a = defAtom({ value: 1 })
 
@@ -632,6 +652,8 @@ watches are notified. By default, the history has length of 100 steps,
 though this is configurable via ctor args.
 
 ```ts
+import { defAtom, defHistory } from "@thi.ng/atom";
+
 // create history w/ max. 100 steps
 db = defHistory(defAtom({ a: 1 }), 100)
 db.deref()

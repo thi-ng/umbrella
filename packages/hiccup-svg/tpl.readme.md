@@ -14,11 +14,13 @@ context object, they can ONLY be invoked directly, i.e. they MUST be
 called like:
 
 ```ts
+import { circle, svg } from "@thi.ng/hiccup-svg";
+
 // correct (direct invocation)
-svg.svg({}, svg.circle([0, 0], 100, { fill: "red" }));
+svg({}, circle([0, 0], 100, { fill: "red" }));
 
 // incorrect / unsupported (lazy evaluation)
-[svg.svg, {}, [svg.circle, [0, 0], 100, { fill: "red" }]]
+[svg, {}, [circle, [0, 0], 100, { fill: "red" }]]
 ```
 
 ### SVG conversion of @thi.ng/geom & @thi.ng/hiccup-canvas shape trees
@@ -49,6 +51,8 @@ conversions). Child shapes (of a group) inherit the precision setting of their
 parent.
 
 ```ts
+import { svg } from "@thi.ng/hiccup-svg";
+
 // create SVG root element and convert body
 svg(
     { width: 100, height: 100, __convert: true, __prec: 3 },
@@ -163,6 +167,10 @@ Minimal example showing SVG conversion of a hiccup-canvas scene (also see
 for another compatible approach):
 
 ```ts
+import { svg } from "@thi.ng/hiccup-svg";
+import { serialize } from "@thi.ng/hiccup";
+import { writeFileSync } from "node:fs";
+
 // scene tree defined for hiccup-canvas
 const scene = [
     ["defs", {},
@@ -177,10 +185,10 @@ const scene = [
     ["circle", { fill: "$sun" }, [110, 120], 50],
 ];
 
-fs.writeFileSync(
+writeFileSync(
     "radialgradient.svg",
     serialize(
-        svg.svg({ width: 300, height: 300, __convert: true }, scene)
+        svg({ width: 300, height: 300, __convert: true }, scene)
     )
 );
 ```

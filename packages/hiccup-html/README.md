@@ -342,6 +342,8 @@ will be appended to the tag name and merely acts as syntax sugar for
 providing an element ID and/or CSS classes.
 
 ```ts
+import { defElement } from "@thi.ng/hiccup-html";
+
 const el = defElement<any>("a");
 ```
 
@@ -358,6 +360,8 @@ const el = defElement<any>("a");
 | `el("#id.foo", null, "body")`     | `["a#id.foo", null, "body"]`     |
 
 ```ts
+import { defElement } from "@thi.ng/hiccup-html";
+
 // with default attribs
 const el = defElement<any>("a", { b: 1 });
 ```

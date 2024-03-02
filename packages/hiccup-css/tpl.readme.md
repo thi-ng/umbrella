@@ -97,13 +97,15 @@ format preset, see examples further below.
 This feature is only intended for setting an element's `.style` attrib:
 
 ```ts
-css.css({
+import { css, percent, px } from "@thi.ng/hiccup-css";
+
+css({
     position: "absolute",
     border: 0,
     // function is evaluated during serialization
-    top: () => css.percent((Math.random() * 100) | 0),
+    top: () => percent((Math.random() * 100) | 0),
     // the entire properties object is passed to functions
-    left: (props) => css.px(props.border),
+    left: (props) => px(props.border),
     // arrays are joined with `,`
     // nested arrays are joined w/ ` `
     font: [["72px", "ComicSans"], "sans-serif"]
@@ -115,13 +117,15 @@ css.css({
 ### Basic selectors
 
 ```ts
-css.css(
+import { css, rem, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
     [
         ["html", "body", { margin: 0, padding: 0 }],
-        ["div", { "max-width": css.rem(30)}],
+        ["div", { "max-width": rem(30)}],
         ["div.title", { color: "red" }]
     ],
-    { format: css.PRETTY }
+    { format: PRETTY }
 );
 ```
 
@@ -143,16 +147,18 @@ div.title {
 ### Property object merging & re-use
 
 ```ts
+import { css, PRETTY } from "@thi.ng/hiccup-css";
+
 // re-usable property snippets
 const border = { border: "1px solid black" };
 const red = { color: "red" };
 
-css.css(
+css(
     [
         ["#foo", { background: "white" }, border, red],
         ["#bar", { background: "yellow", color: "black" }, border]
     ],
-    { format: css.PRETTY }
+    { format: PRETTY }
 );
 ```
 
@@ -235,13 +241,15 @@ selectors are computed using the cartesian product of any selectors in
 the current scope and their previously defined parents:
 
 ```ts
-css.css(
-    ["header", "footer", { "font-size": css.rem(1.25) },
+import { css, rem, withAttrib, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
+    ["header", "footer", { "font-size": rem(1.25) },
         ["nav", { background: "#000", color: "#666" },
             ["ul", { "list-style": "none" }],
-            ["li", { padding: css.rem(0.5) },
-                [css.withAttrib("selected"), { color: "#0cf" }]]]],
-    { format: css.PRETTY }
+            ["li", { padding: rem(0.5) },
+                [withAttrib("selected"), { color: "#0cf" }]]]],
+    { format: PRETTY }
 )
 ```
 
@@ -273,9 +281,11 @@ header, footer {
 Pseudo-classes follow the same pattern as other nested selectors shown above:
 
 ```ts
-css.css(
+import { css, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
     ["p", ["a", [":link", {color: "red"}], [":visited", {border: 0}]]],
-    { format: css.PRETTY }
+    { format: PRETTY }
 );
 ```
 
@@ -306,9 +316,11 @@ p a:visited {
 on property values is planned, but currently low priority.)
 
 ```ts
-css.css(
+import { css, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
     ["div", {"border-radius": "4px"}],
-    { autoprefix: ["border-radius"], format: css.PRETTY }
+    { autoprefix: ["border-radius"], format: PRETTY }
 );
 ```
 
@@ -342,20 +354,22 @@ Note: In CSS Level 3, the `not` operator can't be used to negate an individual
 media feature expression, only an entire media query.
 
 ```ts
-css.css(
-    css.at_media(
-        { screen: true, "min-width": css.rem(10) },
+import { css, at_media, percent, rem, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
+    at_media(
+        { screen: true, "min-width": rem(10) },
         [
-            [".col", { width: css.percent(50)}],
+            [".col", { width: percent(50)}],
             [
-                css.at_media(
+                at_media(
                     { "min-width": "20rem" },
-                    [".col", { padding: css.rem(1) }]
+                    [".col", { padding: rem(1) }]
                 )
             ]
         ]
     ),
-    { format: css.PRETTY }
+    { format: PRETTY }
 );
 ```
 
@@ -380,9 +394,11 @@ css.css(
 ### Keyframes
 
 ```ts
-css.css(
-    css.at_keyframes("fadein", { opacity: 0 }, { opacity: 1 }),
-    { format: css.PRETTY }
+import { css, at_keyframes, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
+    at_keyframes("fadein", { opacity: 0 }, { opacity: 1 }),
+    { format: PRETTY }
 );
 ```
 
@@ -401,8 +417,10 @@ css.css(
 ```
 
 ```ts
-css.css(
-    css.at_keyframes(
+import { css, at_keyframes, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
+    at_keyframes(
         "rgbfade",
         {
             0: {
@@ -416,7 +434,7 @@ css.css(
             }
         }
     ),
-    { format: css.PRETTY }
+    { format: PRETTY }
 );
 ```
 
@@ -446,13 +464,15 @@ given animation `opts`. Only the `duration`option is given a default
 value (250ms), all others are optional.
 
 ```ts
+import { css, animation } from "@thi.ng/hiccup-css";
+
 css(
-  animation(
-    "delayed-fade-in",
-    { delay: "0.5s" },
-    { opacity: 0 },
-    { opacity: 1 }
-  )
+	animation(
+		"delayed-fade-in",
+		{ delay: "0.5s" },
+		{ opacity: 0 },
+		{ opacity: 1 }
+	)
 );
 ```
 
@@ -480,8 +500,10 @@ Results in:
 CSS strings can be installed into the DOM `<head>` element via `injectStyleSheet()`:
 
 ```ts
-css.injectStyleSheet(
-    css.css([
+import { css, injectStyleSheet } from "@thi.ng/hiccup-css";
+
+injectStyleSheet(
+    css([
         "body", { background: "#000", color: "#fff" }
     ])
 );
@@ -502,7 +524,9 @@ the `CSSOpts` object passed to `css()`. This form is mainly used by the
 various `at_*()` functions provided (e.g. `at_media()` example above).
 
 ```ts
-css.css(at_import("foo.css", "screen"));
+import { css, at_import } from "@thi.ng/hiccup-css";
+
+css(at_import("foo.css", "screen"));
 // "@import url(foo.css) screen;"
 ```
 
@@ -510,10 +534,12 @@ The following example illustrates the head position placement, using the
 `comment()` function to emit CSS comments.
 
 ```ts
-css.css([
+import { css, comment } from "@thi.ng/hiccup-css";
+
+css([
     // comments are usually omitted with the default format (css.COMPACT)
     // pass `true` as 2nd arg to force inclusion
-    css.comment("generated, please don't edit", true),
+    comment("generated, please don't edit", true),
     ["div", { margin: 0 }]
 ]);
 // "/*generated, don't edit*/div{margin:0;}"
@@ -544,6 +570,8 @@ called with all remaining elements in the same array. I.e. `["@import",
 of a scope.
 
 ```ts
+import * as css from "@thi.ng/hiccup-css";
+
 const styles = [
     ["@comment", " CSS from JSON"],
     ["@import", "print.css", "print"],
@@ -558,12 +586,12 @@ css.css(styles, { format: css.PRETTY, fns: css.QUOTED_FNS });
 
 // btw. QUOTED_FNS is simply:
 const QUOTED_FNS = {
-    "@comment": comment,
-    "@import": at_import,
-    "@keyframes": at_keyframes,
-    "@media": at_media,
-    "@namespace": at_namespace,
-    "@supports": at_supports,
+    "@comment": css.comment,
+    "@import": css.at_import,
+    "@keyframes": css.at_keyframes,
+    "@media": css.at_media,
+    "@namespace": css.at_namespace,
+    "@supports": css.at_supports,
 }
 ```
 

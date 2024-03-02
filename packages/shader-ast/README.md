@@ -439,6 +439,12 @@ other TS/JS function and will return a function call AST node with the
 supplied args.
 
 ```ts
+import {
+    clamp, defn, dot, float, ret, sym, ternary,
+    type FloatSym
+ } from "@thi.ng/shader-ast";
+ import { fit1101 } from "@thi.ng/shader-ast-stdlib";
+
 // example based on @thi.ng/shader-ast-stdlib
 
 /**
@@ -514,6 +520,8 @@ vanilla TS/JS functions can be used to produce a partial AST, which is
 then inserted at the call site:
 
 ```ts
+import { div, mul, sin, type FloatTerm } from "@thi.ng/shader-ast";
+
 /**
  * Inline function. Computes sinc(kx).
  *
@@ -533,6 +541,10 @@ might be better to only accept `FloatSym` arguments, since this ensures
 the arg expressions are not causing duplicate evaluation. For example:
 
 ```ts
+import { float, length, mul, vec3 } from "@thi.ng/shader-ast";
+
+// (sinc() function defined above)
+
 sinc(length(mul(vec3(1,2,3), 100)), float(10));
 ```
 

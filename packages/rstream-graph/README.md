@@ -209,13 +209,14 @@ Specification for a single input, which can be given in different ways:
    node.
 
 ```ts
-{ stream: (resolve) =>
-    resolve("/abc/node").subscribe(map(x => x * 10)) }
+{ stream: (resolve) => resolve("/abc/node").map(x => x * 10) }
 ```
 
 4) Provide an external input stream:
 
 ```ts
+import { fromIterable } from "@thi.ng/rstream";
+
 { stream: () => fromIterable([1,2,3], 500) }
 ```
 

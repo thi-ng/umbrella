@@ -103,6 +103,8 @@ value the path points to in a nested object given later. For getters,
 this essentially compiles to:
 
 ```ts
+import { defGetter } from "@thi.ng/paths";
+
 defGetter(["a","b","c"]) => (obj) => obj.a.b.c;
 ```
 
@@ -118,6 +120,8 @@ given object, it creates a plain empty object for that missing key and
 descends further along the path.
 
 ```ts
+import { defGetter } from "@thi.ng/paths";
+
 // define state structure (see above example)
 interface State {
     a: {
@@ -140,6 +144,8 @@ Paths can also be defined as dot-separated strings, however cannot be
 type checked and MUST use the `Unsafe` version of each operation:
 
 ```ts
+import { defSetterUnsafe } from "@thi.ng/paths";
+
 s = defSetterUnsafe("a.b.c");
 
 s({ a: { b: { c: 23 } } }, 24)
@@ -157,23 +163,26 @@ supplied function to apply to the existing value (incl. any other
 arguments passed):
 
 ```ts
+import { defUpdater } from "@thi.ng/paths";
+
 type State = { a?: { b?: number; } };
 
-const inc = defUpdater<State, "a", "b">(
+const incAB = defUpdater<State, "a", "b">(
     ["a","b"],
     // x inferred as number | undefined
     (x) => x !== undefined ? x + 1 : 1
 );
 
-inc({ a: { b: 10 } });
+incAB({ a: { b: 10 } });
 // { a: { b: 11 } }
-inc({});
+
+incAB({});
 // { a: { b: 1 } }
 
 // with additional arguments
-add = defUpdater("a.b", (x, n) => x + n);
+const add = defUpdater("a.b", (x, n) => x + n);
 
-add({a: {b: 10}}, 13);
+add({ a: { b: 10 } }, 13);
 // { a: { b: 23 } }
 ```
 
@@ -184,6 +193,8 @@ immediate-use wrappers: `getIn()`, `setIn()`, `updateIn()` and
 `deleteIn()`. These functions are using `defGetter` / `defSetter` internally, so come with the same contracts/disclaimers...
 
 ```ts
+import { deleteIn, getIn, setIn, updateIn } from "@thi.ng/paths";
+
 const state = { a: { b: { c: 23 } } };
 
 const cPath = <const>["a", "b", "c"];
@@ -211,6 +222,8 @@ also returns a new type from which the key has been explicitly removed.
 Those return types come in the form of `Without{1-8}<...>` interfaces.
 
 ```ts
+import { deleteIn } from "@thi.ng/paths";
+
 // again using `state` from above example
 // remove nested key `a.c`
 const state2 = deleteIn(state, ["a","b","c"]);
@@ -230,6 +243,8 @@ helper which can be used in conjunction with the other setters in situations
 where it's advisable to do so.
 
 ```ts
+import { disallowProtoPath, muIn, setIn } from "@thi.ng/paths";
+
 // always checked for pollution
 mutIn({}, ["__proto__", "polluted"], true);
 // Uncaught Error: illegal argument(s): illegal path: ["__proto__","polluted"]
@@ -250,6 +265,8 @@ using the ES6 spread op (for objects, `slice()` for arrays) and dynamic
 functional composition to produce the setter/updater).
 
 ```ts
+import { defSetterUnsafe } from "@thi.ng/paths";
+
 const s = defSetterUnsafe("a.b.c");
 
 // original
@@ -278,6 +295,8 @@ As with `setIn`, `mutIn` is the immediate use mutator, i.e. the same as:
 `defMutator(path)(state, val)`.
 
 ```ts
+import { mutIn, mutInUnsafe } from "@thi.ng/paths";
+
 mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23);
 // or
 mutInUnsafe({ a: { b: [10, 20] } }, "a.b.1", 23);
@@ -296,10 +315,12 @@ the full path exists (even if final leaf value is `null` or
 `undefined`). Checks are performed using `hasOwnProperty()`.
 
 ```ts
+import { exists } from "@thi.ng/paths";
+
 exists({ a: { b: { c: [null] } } }, "a.b.c.0");
 // true
 
-exists({ a: { b: { c: [null] } } }, "a.b.c.1");
+exists({ a: { b: { c: [null] } } }, ["a", "b", "c", 1]);
 // false
 ```
 

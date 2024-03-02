@@ -87,6 +87,8 @@ causes issues to people, parents could be implemented as sorted list
 impact... please open an issue if you run into problems!
 
 ```ts
+import { defmulti } from "@thi.ng/defmulti";
+
 const foo = defmulti((x) => x);
 foo.isa(23, "odd");
 foo.isa(42, "even");
@@ -117,6 +119,8 @@ foo.callable(1) // false
 Same example, but with relationships provided as argument to `defmulti`:
 
 ```ts
+import { defmulti } from "@thi.ng/defmulti";
+
 const foo = defmulti((x) => x, {
     23: "odd",
     42: "even",
@@ -147,6 +151,8 @@ The remaining implementations are associated with their related
 multi-method and the given `type` dispatch value.
 
 ```ts
+import { defmulti, implementations } from "@thi.ng/defmulti";
+
 foo = defmulti((x) => x.id);
 bar = defmulti((x) => x.id);
 bax = defmulti((x) => x.id);
@@ -200,6 +206,8 @@ throws an `IllegalArityError` when invoked.
 however you can specify the return type for the generated function.
 
 ```ts
+import { defmultiN } from "@thi.ng/defmulti";
+
 const foo = defmultiN<string>({
   0: () => "zero",
   1: (x) => `one: ${x}`,
@@ -250,6 +258,8 @@ for a variation of this example.
 #### Dynamic dispatch: Simple S-expression interpreter
 
 ```ts
+import { defmulti, DEFAULT } from "@thi.ng/defmulti";
+
 const exec = defmulti((x) => Array.isArray(x) ? x[0] : typeof x);
 exec.add("+", ([_, ...args]) => args.reduce((acc, n) => acc + exec(n), 0));
 exec.add("*", ([_, ...args]) => args.reduce((acc, n) => acc * exec(n), 1));
@@ -264,6 +274,8 @@ exec(["+", ["*", 10, ["+", 1, 2, 3]], 6]);
 #### True multiple arg dispatch
 
 ```ts
+import { defmulti, DEFAULT } from "@thi.ng/defmulti";
+
 // interest rate calculator based on account type & balance thresholds
 const apr = defmulti(
     ({type, balance}) =>
@@ -298,6 +310,7 @@ graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph), which
 then can also be visualized.
 
 ```ts
+import { defmulti } from "@thi.ng/defmulti";
 import { defDGraph } from "@thi.ng/dgraph";
 import { toDot } from "@thi.ng/dgraph-dot";
 

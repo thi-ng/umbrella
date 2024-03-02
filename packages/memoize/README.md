@@ -105,27 +105,37 @@ import { LRUCache } from "@thi.ng/cache";
 ### Optimized version for single arg functions
 
 ```ts
-foo = m.memoize1((x) => (console.log("exec"), x * 10));
+import { memoize1 } from "@thi.ng/memoize";
+
+foo = memoize1((x) => (console.log("exec"), x * 10));
+
 foo(1);
 // exec
 // 10
 foo(1);
 // 10
 
+import { EquivMap } from "@thi.ng/associative";
+
 // with custom cache
-foo = m.memoize1(
+foo = memoize1(
     (x) => (console.log("exec"), x[0] * 10),
+    // custom ES6 Map impl which compares by value, not by reference
     new EquivMap()
 );
 
 foo([1]);
 // exec
 // 10
-foo([1]); // wouldn't work w/ native ES6 Map as cache
+
+// would be a cache miss w/ native ES6 Map
+foo([1]);
 // 10
 
+import { LRUCache } from "@thi.ng/cache";
+
 // use LRU cache to limit cache size
-foo = m.memoize1(
+foo = memoize1(
     (x) => (console.log("exec"), x[0] * 10),
     new LRUCache(null, { maxlen: 3 })
 );
@@ -134,7 +144,10 @@ foo = m.memoize1(
 ### Arbitrary args
 
 ```ts
-dotProduct = m.memoize(
+import { memoize } from "@thi.ng/memoize";
+import { EquivMap } from "@thi.ng/associative";
+
+const dotProduct = memoize(
     (x, y) => (console.log("exec"), x[0] * y[0] + x[1] * y[1]),
     new EquivMap()
 );
@@ -149,13 +162,15 @@ dotProduct([1,2], [3,4]);
 ### Via JSON.stringify()
 
 ```ts
-dotProduct = m.memoizeJ(
+import { memoizeJ } from "@thi.ng/memoize";
+
+const dotProduct = memoizeJ(
     (x, y) => (console.log("exec"), x[0] * y[0] + x[1] * y[1])
 );
-dotProduct([1,2], [3,4]);
+dotProduct([1, 2], [3, 4]);
 // exec
 // 11
-dotProduct([1,2], [3,4]);
+dotProduct([1, 2], [3, 4]);
 // 11
 ```
 

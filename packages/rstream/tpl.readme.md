@@ -84,6 +84,9 @@ src.transform({ xform: map(...), error: handleError });
    (transducer) must now be given as part of the options object:
 
 ```ts
+import { reactive, trace } from "@thi.ng/rstream";
+import { filter } from "@thi.ng/transducers";
+
 const src = reactive(1);
 
 // old
@@ -98,6 +101,9 @@ src.subscribe(trace("foo"), { xform: filter((x) => x < 10), id: "child-sub" });
    similarity to above.
 
 ```ts
+import { pubsub } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
+
 type Event = { id: string; value: any; };
 
 const src = pubsub<Event>({ topic: (e) => e.id });
@@ -198,6 +204,8 @@ triggered manually (from outside the stream), in which case the user
 should call `stream.next()` to cause value propagation.
 
 ```ts
+import { stream, trace } from "@thi.ng/rstream";
+
 a = stream<number>((s) => {
     s.next(1);
     s.next(2);
@@ -257,14 +265,19 @@ too). Subscriptions can be:
 - implement the @thi.ng/api `IDeref` interface
 
 ```ts
+import { subscription, trace } from "@thi.ng/rstream";
+import { filter } from "@thi.ng/transducers";
+
 // as reactive value mechanism (same as with stream() above)
 s = subscription<any, any>();
 s.subscribe(trace("s1"));
-s.subscribe(trace("s2"), tx.filter((x) => x > 25));
+s.subscribe(trace("s2"), filter((x) => x > 25));
 
 // external trigger
 s.next(23);
 // s1 23
+// (s2 doesn't receive value here due to its filter)
+
 s.next(42);
 // s2 42
 // s1 42
@@ -314,12 +327,15 @@ function returns `null` / `undefined`, no further action will be taken
 ignored).
 
 ```ts
+import { metastream, fromIterable, trace } from "@thi.ng/rstream";
+import { repeat } from "@thi.ng/transducers";
+
 // transform each received odd number into a stream
 // producing 3 copies of that number in the metastream
 // even numbers are ignored
 a = metastream<number, string>(
   (x) => (x & 1)
-    ? fromIterable(tx.repeat("odd: " + x, 3), { delay: 100 })
+    ? fromIterable(repeat("odd: " + x, 3), { delay: 100 })
     : null
 );
 
@@ -348,14 +364,17 @@ inputs. This keeps them alive and allows for dynamic switching between
 them.
 
 ```ts
+import { metastream, fromIterable, trace, CloseMode } from "@thi.ng/rstream";
+import { repeat } from "@thi.ng/transducers";
+
 // infinite inputs
 a = fromIterable(
-  tx.repeat("a"),
+  repeat("a"),
   { delay: 1000, closeOut: CloseMode.NEVER }
 );
 
 b = fromIterable(
-  tx.repeat("b"),
+  repeat("b"),
   { delay: 1000, closeOut: CloseMode.NEVER }
 );
 
@@ -389,6 +408,8 @@ done, but this behavior can be overridden via the `close` option, using
 `CloseMode` enums.
 
 ```ts
+import { merge, fromIterable, trace } from "@thi.ng/rstream";
+
 merge({
     // input streams w/ different frequencies
     src: [
@@ -413,10 +434,13 @@ transducer](https://docs.thi.ng/umbrella/transducers/functions/labeled.html) for
 each input to create a stream of labeled values and track their provenance:
 
 ```ts
+import { merge, fromIterable, trace } from "@thi.ng/rstream";
+import { labeled } from "@thi.ng/transducers";
+
 merge({
     src: [
-        fromIterable([1, 2, 3]).transform(tx.labeled("a")),
-        fromIterable([10, 20, 30]).transform(tx.labeled("b")),
+        fromIterable([1, 2, 3]).transform(labeled("a")),
+        fromIterable([10, 20, 30]).transform(labeled("b")),
     ]
 }).subscribe(trace());
 // ["a", 1]
@@ -439,12 +463,13 @@ as new input to the merge and then automatically remove once that stream
 is exhausted.
 
 ```ts
+import { merge, stream, fromIterable, trace } from "@thi.ng/rstream";
 import { repeat } from "@thi.ng/transducers";
 
 // stream source w/ transducer mapping values to new streams
 a = stream().map((x) => fromIterable(repeat(x, 3)));
 // simple 1Hz counter
-b = fromInterval(1000);
+b = fromInterval(1000).map((x) => "b" + x);
 
 merge({ src: [a, b] }).subscribe(trace());
 // 0
@@ -487,6 +512,8 @@ calls `done()` when the last active input is done, but this behavior can
 be overridden via the `close` constructor option, using `CloseMode` enums.
 
 ```ts
+import { sync, stream, trace } from "@thi.ng/rstream";
+
 const a = stream();
 const b = stream();
 s = sync<any,any>({ src: { a, b } }).subscribe(trace("result: "));
@@ -549,6 +576,8 @@ topic function and `a` & `b` as subscribers for truthy (`a`) and falsy
 `b` values.
 
 ```ts
+import { bisect, fromIterable, trace } from "@thi.ng/rstream";
+
 fromIterable([1, 2, 3, 4]).subscribe(
     bisect((x) => !!(x & 1), trace("odd"), trace("even"))
 );
@@ -565,6 +594,8 @@ first created as `Subscription` (if not already) and a reference kept
 prior to calling `bisect()`.
 
 ```ts
+import { bisect, fromIterable, subscription, trace } from "@thi.ng/rstream";
+
 const odd = subscription();
 const even = subscription();
 odd.subscribe(trace("odd"));
@@ -598,6 +629,11 @@ optional predicate can be used to only trigger for specific values /
 conditions.
 
 ```ts
+import {
+	merge, fromEvent, fromRAF,
+	sidechainPartition, trace
+} from "@thi.ng/rstream";
+
 // queue event processing to only execute during the
 // requestAnimationFrame cycle (RAF)
 sidechainPartition(
@@ -612,7 +648,21 @@ sidechainPartition(
 ).subscribe(trace());
 ```
 
-Since v8.0.0 there's [`syncRAF()`](https://docs.thi.ng/umbrella/rstream/functions/syncRAF-1.html)
+Since v8.0.0 there's
+[`syncRAF()`](https://docs.thi.ng/umbrella/rstream/functions/syncRAF-1.html),
+which allows the above to be simplified to:
+
+```ts
+import { merge, fromEvent, syncRAF, trace } from "@thi.ng/rstream";
+
+syncRAF(
+    merge([
+        fromEvent(document, "mousemove"),
+        fromEvent(document, "mousedown"),
+        fromEvent(document, "mouseup")
+    ])
+).subscribe(trace());
+```
 
 #### Input toggling, controlled by sidechain
 
@@ -628,6 +678,8 @@ will be toggled on/off. Whilst switched off, no input values will be
 forwarded.
 
 ```ts
+import { sidechainToggle, fromInterval, trace } from "@thi.ng/rstream";
+
 // use slower interval stream to toggle faster main stream on/off
 sidechainToggle(fromInterval(500), fromInterval(1000)).subscribe(trace());
 // 0
@@ -646,6 +698,8 @@ Buffers the most recent value received and only forwards it downstream whenever
 a new control value is received from the sidechain.
 
 ```ts
+import { sidechainTrigger, reactive, stream, trace } from "@thi.ng/rstream";
+
 const src = reactive("payload");
 
 const side = stream();
@@ -689,6 +743,8 @@ self.addEventListener("message", (e) => {
 ##### main.ts
 
 ```ts
+import { forkJoin, trace } from "@thi.ng/rstream";
+
 const src = stream<number[]>();
 
 // fork worker jobs & re-join results
@@ -755,6 +811,8 @@ handler will be called, which _might_ put this subscription into an error
 state and stop it from receiving new values.
 
 ```ts
+import { subscription, State } from "@thi.ng/rstream";
+
 src = subscription({ next(x) { throw x; } });
 
 // triggers error, caught by subscription wrapper

@@ -269,12 +269,16 @@ directory are using this package:
 ### Basic usage patterns
 
 ```ts
+import { comp, distinct, filter, map } from "@thi.ng/transducers";
+
 // compose transducer
 xform = comp(
     filter((x) => (x & 1) > 0), // odd numbers only
     distinct(),                 // distinct numbers only
     map((x) => x * 3)           // times 3
 );
+
+import { transduce, push } from "@thi.ng/transducers";
 
 // collect into array (push)
 transduce(xform, push(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
@@ -283,6 +287,8 @@ transduce(xform, push(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // re-use same xform, but collect into ES6 Set
 transduce(xform, conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // Set { 3, 9, 15 }
+
+import { iterator } from "@thi.ng/transducers";
 
 // or apply as transforming iterator
 // no reduction, only transformations
@@ -293,6 +299,8 @@ transduce(xform, conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // use xform as transforming iterator
 [...filter((x) => /[A-Z]/.test(x), "Hello World!")]
 // ["H", "W"]
+
+import { step } from "@thi.ng/transducers";
 
 // single step execution
 // returns undefined if transducer returned no result for this input
@@ -347,6 +355,8 @@ asSvg(
 ### Fuzzy search
 
 ```ts
+import { filterFuzzy } from "@thi.ng/transducers";
+
 [...filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
 // ["hello", "hallo", "heyoka"]
 [...filterFuzzy("hlo", ["hello", "hallo", "hey", "heyoka"])]
@@ -369,6 +379,8 @@ asSvg(
 ### Histogram generation & result grouping
 
 ```ts
+import { frequencies, map, reduce, transduce } from "@thi.ng/transducers";
+
 // use the `frequencies` reducer to create
 // a map counting occurrence of each value
 transduce(map((x) => x.toUpperCase()), frequencies(), "hello world");
@@ -388,6 +400,10 @@ frequencies(
     "my camel is collapsing and needs some water".split(" ")
 );
 // Map { 2 => 2, 5 => 3, 10 => 1, 3 => 1, 4 => 1 }
+```
+
+```ts
+import { groupByMap } from "@thi.ng/transducers";
 
 // actual grouping (here: by word length)
 groupByMap(
@@ -406,6 +422,8 @@ groupByMap(
 ### Pagination
 
 ```ts
+import { page, comp, iterator, map, padLast, range } from "@thi.ng/transducers";
+
 // extract only items for given page id & page length
 [...page(0, 5, range(12))]
 // [ 0, 1, 2, 3, 4 ]
@@ -432,6 +450,8 @@ parallel using the provided transducers (which can be composed as usual)
 and results in a tuple or keyed object.
 
 ```ts
+import { map, multiplex, multiplexObj, push, transduce } from "@thi.ng/transducers";
+
 transduce(
     multiplex(
         map((x) => x.charAt(0)),
@@ -460,6 +480,8 @@ transduce(
 ### Moving average using sliding window
 
 ```ts
+import { comp, map, mean, partition, push, reduce transduce } from "@thi.ng/transducers";
+
 // use nested reduce to compute window averages
 transduce(
     comp(
@@ -470,9 +492,13 @@ transduce(
     [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10]
 )
 // [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
+```
 
-// this combined transducer is also directly
-// available as: `movingAverage(n)`
+This combined transducer is also directly available as:
+
+```ts
+import { movingAverage } from "@thi.ng/transducers";
+
 [...movingAverage(5, [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10])]
 // [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
 ```
@@ -480,6 +506,8 @@ transduce(
 ### Benchmark function execution time
 
 ```ts
+import { benchmark, mean, repeatedly, transduce } from "@thi.ng/transducers";
+
 // function to test
 fn = () => {
     let x;
@@ -497,7 +525,9 @@ transduce(benchmark(), mean(), repeatedly(fn, 100));
 ### Apply inspectors to debug transducer pipeline
 
 ```ts
-// alternatively, use sideEffect() for any side fx
+import { comp, filter, map, push, trace, transduce } from "@thi.ng/transducers";
+
+// alternatively, use sideEffect() for arbitrary side fx
 transduce(
     comp(
         trace("orig"),
@@ -525,6 +555,8 @@ The `struct` transducer is simply a composition of: `partitionOf -> partition ->
 here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/struct.ts).
 
 ```ts
+import { struct } from "@thi.ng/transducers";
+
 // Higher-order transducer to convert linear input into structured objects
 // using given field specs and ordering. A single field spec is an array of
 // 2 or 3 items: `[name, size, transform?]`. If `transform` is given, it will
@@ -549,6 +581,8 @@ here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/s
 ### CSV parsing
 
 ```ts
+import { comp, map, mapcat, push, rename, transduce } from "@thi.ng/transducers";
+
 transduce(
     comp(
         // split into rows
@@ -569,6 +603,8 @@ transduce(
 ### Early termination
 
 ```ts
+import { comp, flatten, push, take, transduce } from "@thi.ng/transducers";
+
 // result is realized after max. 7 values, irrespective of nesting
 transduce(comp(flatten(), take(7)), push(), [
     1,
@@ -580,6 +616,10 @@ transduce(comp(flatten(), take(7)), push(), [
 ### Scan operator
 
 ```ts
+import {
+    comp, count, iterator, map, push, pushCopy, repeat, scan, transduce
+} from "@thi.ng/transducers";
+
 // this transducer uses 2 scans (a scan = inner reducer per item)
 // 1) counts incoming values
 // 2) forms an array of the current counter value `x` & repeated `x` times
@@ -607,6 +647,8 @@ transduce(comp(scan(count()), scan(pushCopy())), push(), [1,1,1,1])
 ### Weighted random choices
 
 ```ts
+import { choices, frequencies, take, transduce } from "@thi.ng/transducers";
+
 [...take(10, choices("abcd", [1, 0.5, 0.25, 0.125]))]
 // [ 'a', 'a', 'b', 'a', 'a', 'b', 'a', 'c', 'd', 'b' ]
 
@@ -625,6 +667,8 @@ See
 docs for details.
 
 ```ts
+import { tween } from "@thi.ng/transducers";
+
 [
     ...tween(
         10,
@@ -696,6 +740,8 @@ of) transducers making use of their 1-arity completing function.
 #### Reduced
 
 ```ts
+import type { IDeref } from "@thi.ng/api";
+
 class Reduced<T> implements IDeref<T> {
     protected value: T;
     constructor(val: T);
@@ -778,6 +824,8 @@ this interface can be directly passed to all functions in this package
 where a `Transducer` arg is expected.
 
 ```ts
+import { map, push, range, transduce, type IXform } from "@thi.ng/transducers";
+
 class Mul implements IXform<number, number> {
 
     constructor(public factor = 10) {}
@@ -789,6 +837,8 @@ class Mul implements IXform<number, number> {
 
 transduce(new Mul(11), push(), range(4))
 // [0, 11, 22, 33, 44]
+
+import { comp, drop, push, range, takeNth, transduce } from "@thi.ng/transducers";
 
 // also usable w/ comp(), iterator(), step(), run() etc.
 transduce(
@@ -870,6 +920,8 @@ Similar to `run()`, consumes given iterable, presumably for any implicit
 side-effects. Iterable MUST be finite!
 
 ```ts
+import { consume, repeatedly2d } from "@thi.ng/transducers";
+
 // here the function given to repeatedly2d() has only a side-effect, however
 // repeatedly2d() itself is lazy. Using consume() then forces this lazy iterator/generator
 // to be realized and so also the side-effects to be executed
@@ -889,6 +941,8 @@ With a few exceptions, most also accept an input iterable and then
 directly yield a transforming iterator, e.g.
 
 ```ts
+import { map, push, range, transduce } from "@thi.ng/transducers";
+
 // as transducer
 transduce(map((x) => x*10), push(), range(4))
 // [ 0, 10, 20, 30 ]

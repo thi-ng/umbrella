@@ -174,6 +174,8 @@ Absolute refs are always resolved from the root level (the original object
 passed to this function).
 
 ```ts
+import { resolve } from "@thi.ng/resolve-map";
+
 // `c` references sibling `d`
 // `d` references top-level `a`
 resolve({ a: 1, b: { c: "@d", d: "@/a"} })
@@ -204,6 +206,8 @@ The `resolve` function provided as arg to the user function accepts a path
 object.
 
 ```ts
+import { resolve } from "@thi.ng/resolve-map";
+
 // `c` uses ES6 destructuring form to look up `a` & `b` values
 // `d` uses provided resolve fn arg `$` to look up `c`
 resolve({ a: 1, b: 2, c: ({ a, b }) => a + b, d: ($) => $("c") })
@@ -224,12 +228,14 @@ Similarly, if an actual string value should happen to start with `@`, it
 needs to be wrapped in a function (see `f` key below).
 
 ```ts
+import { resolve } from "@thi.ng/resolve-map";
+
 // `a` is derived from 1st array element in `b.d`
 // `b.c` is looked up from `b.d[0]`
 // `b.d[1]` is derived from calling `e(2)`
 // `e` is a wrapped function
 // `f` is wrapped to ignore `@` prefix
-res = resolve({
+const res = resolve({
   a: ($) => $("b/c") * 100,
   b: { c: "@d/0", d: [2, ($) => $("../../e")(2) ] },
   e: () => (x) => x * 10,
@@ -252,6 +258,8 @@ Unwrapped values will also be supplied to any lookup functions, no
 there.
 
 ```ts
+import { resolve, resolved } from "@thi.ng/resolve-map";
+
 resolve({ a: 42, b: ({a}) => resolved(a) });
 // { a: 42, b: 42 }
 
@@ -268,6 +276,8 @@ resolution behavior to **not** consider string values for resolution at all
 anymore and instead requires the use of function values to trigger resolution.
 
 ```ts
+import { resolve } from "@thi.ng/resolve-map";
+
 // default behavior
 resolve({ a: "@c", b: ({a}) => a, c: 42 })
 // { a: 42, b: 42, c: 42 }

@@ -227,6 +227,8 @@ pointfree semver.f node_modules '^type'
 (Code for the above example)
 
 ```ts
+import * as pf from "@thi.ng/pointfree-lang";
+
 // DSL source code (syntax described further below)
 
 const src = `
@@ -463,6 +465,8 @@ side of the comment contains a `?`, the respective arity will be set to
 - `( a b -- a )` - 2 inputs, 1 output
 
 ```ts
+import { run } from "@thi.ng/pointfree-lang";
+
 const ctx = run(`: foo ( -- x ) 42;`);
 
 ctx[2].__words.foo.__meta
@@ -484,8 +488,10 @@ In these cases, use of variables and/or quotations is encouraged to
 implement dynamic programming techniques.
 
 ```ts
+import { run } from "@thi.ng/pointfree-lang";
+
 // hyperstaticness by example
-pf.run(`
+run(`
 : foo "foo1" ;
 : bar foo "bar" + ;
 
@@ -532,10 +538,12 @@ If used, the declaration MUST be given as first element of the word,
 even before the optional stack comment:
 
 ```ts
+import { run } from "@thi.ng/pointfree-lang";
+
 // word with 2 local vars binding: a & b
 // when the word is used, first pops 2 values from stack
 // and stores them in local vars (in right to left order)
-pf.run(`
+run(`
 : add ^{ a b } ( a b -- a+b )
   "a=" @a + .
   "b=" @b + . ;
@@ -584,7 +592,9 @@ environment and scope by prefixing their name with `@`. Attempting to
 resolve an unknown var will result in an error.
 
 ```ts
-pf.runU(`@a @b +`, {a: 10, b: 20});
+import { runU } from "@thi.ng/pointfree-lang";
+
+runU(`@a @b +`, {a: 10, b: 20});
 // 30
 ```
 
@@ -592,7 +602,9 @@ Assigning a value to a variable (in the the current scope) is done via
 the `!` suffix:
 
 ```ts
-pf.runE(`1 2 + a!`)
+import { runE } from "@thi.ng/pointfree-lang";
+
+runE(`1 2 + a!`)
 // {a: 3}
 ```
 
@@ -601,7 +613,9 @@ no prefix must be used and these kind of variables are
 [hyperstatic](#hyperstatic-words).
 
 ```ts
-pf.run(`: pi 3.1415 ; "π=" pi + .`);
+import { run } from "@thi.ng/pointfree-lang";
+
+run(`: pi 3.1415 ; "π=" pi + .`);
 // π=3.1415
 ```
 
@@ -617,26 +631,28 @@ more like lexical scoping.
 Var assignment always only impacts the current scope of a var.
 
 ```ts
+import { run, runE, runU } from "@thi.ng/pointfree-lang";
+
 // predefined global scope (via env binding)
-pf.runU(`@a`, {a: 1});
+runU(`@a`, {a: 1});
 // 1
 
 // dynamically created global var, then used in quotation
-pf.runU(`1 a! [@a @a]`);
+runU(`1 a! [@a @a]`);
 // [1, 1]
 
 // var lookup inside word
-pf.runU(`: foo @a ; foo`, {a: 1});
+runU(`: foo @a ; foo`, {a: 1});
 // 1
 
 // global & word local vars
 // local var (value obtained from stack) takes precendence inside word
-pf.runU(`: foo ^{ a } @a ; 2 foo, 3 foo, @a vec3`, {a: 1});
+runU(`: foo ^{ a } @a ; 2 foo, 3 foo, @a vec3`, { a: 1 });
 // [2, 3, 1]
 
 // nested local var scopes
 // both `foo` & `bar` define a local var `a`
-pf.run(`
+run(`
 : foo ^{ a }
   "foo a=" @a + .
   ( since 'a' is declared as local var  )
@@ -658,14 +674,14 @@ pf.run(`
 
 // since `b` is NOT declared as local var inside `foo`
 // assigning a value to `b` (even inside `foo`) will be treated as global
-pf.runE(`: foo @a b! ; foo`, {a: 1})
+runE(`: foo @a b! ; foo`, {a: 1})
 // { a: 1, b: 1, __words: { foo: [Function] } }
 
 // here `foo` doesn't declare any locals
 // so assignment to `a` will impact parent scope:
 // - when `foo` is called from `bar`, bar's `a` var is modified
 // - when `foo` is called from root level, global var `a` is created/modified
-pf.runE(`
+runE(`
 : foo 10 a! ;
 
 : bar ^{ a }
@@ -679,7 +695,7 @@ foo`
 );
 // before foo a=1
 // after foo a=10
-{ a: 10 ... }
+// { a: 10 ... }
 ```
 
 ### Objects
@@ -700,12 +716,15 @@ Furthermore, variables can be used both as keys and/or values:
 `{@a: {@b: @c}}`
 
 ```ts
+import { runU } from "@thi.ng/pointfree-lang";
+
 // dynamically resolved switch using `bingo` var
 src = `{@bingo: ["yay: " @bingo +] default: ["nope"]} switch`;
-pf.runU(src, {bingo: 42}, [42]);
+
+runU(src, { bingo: 42 }, [42]);
 // bingo: 42
 
-pf.runU(src, {bingo: 42}, [43]);
+runU(src, { bingo: 42 }, [43]);
 // nope
 ```
 
