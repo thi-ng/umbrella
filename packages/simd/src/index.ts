@@ -16,7 +16,9 @@ export * from "./api.js";
  * binary is inlined as base64 string in this package (The `binary.ts`
  * file is generated during build time).
  *
- * ```
+ * ```js
+ * import { init } from "@thi.ng/simd";
+ *
  * // create instance w/ 1MB memory (16 * 64KB)
  * simd = init(new WebAssembly.Memory({ initial: 16 }));
  * ```

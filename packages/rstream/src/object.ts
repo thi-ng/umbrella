@@ -73,7 +73,7 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
  * The structure of the returned object is
  * {@link StreamObj | as follows}:
  *
- * ```ts
+ * ```text
  * {
  *   streams: { ... },
  *   next(x): void;

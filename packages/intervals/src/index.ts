@@ -116,12 +116,14 @@ export function interval(
  * - LHS: open: `]` / `(`, closed: `[`
  * - RHS: open: `[` / `)`, closed: `]`
  *
- * ```
+ * ```js
+ * import { parse } from "@thi.ng/interval";
+ *
  * // semi-open interval between -∞ and +1
- * Interval.parse("[,1)")
+ * parse("[,1)")
  *
  * // closed interval between -1 and +1
- * Interval.parse("[-1 .. 1]")
+ * parse("[-1 .. 1]")
  * ```
  *
  * @param src -
@@ -239,7 +241,7 @@ export const values = (i: Readonly<Interval>, step: number) =>
  * sample will be omitted.
  *
  * @example
- * ```ts
+ * ```js
  * import { samples, closed } from "@thi.ng/intervals";
  *
  * [...samples(closed(10, 12), 5)]
@@ -380,7 +382,7 @@ export const transform = (i: Readonly<Interval>, fn: Fn<number, number>) =>
  * if the result is `Classifier.SUPERSET`, then interval `a` fully
  * contains `b`.
  *
- * ```
+ * ```text
  * EQUIV
  * [   a     ]
  * [   b     ]

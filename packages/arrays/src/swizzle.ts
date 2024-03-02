@@ -22,6 +22,8 @@ import type { Fn } from "@thi.ng/api";
  * result will always be in array form.
 
  * ```ts
+ * import { swizzle } from "@thi.ng/arrays";
+ *
  * swizzle(["a", "c", "b"])({a: 1, b: 2, c: 3}) // [ 1, 3, 2 ]
  * ```
  *

@@ -190,7 +190,7 @@ export interface HDOMImplementation<T> {
 	 * to `diffTree()`. Recursively expands given hiccup component tree into its
 	 * canonical form:
 	 *
-	 * ```
+	 * ```ts
 	 * ["tag", { attribs }, ...body]
 	 * ```
 	 *
@@ -377,7 +377,7 @@ export interface HDOMImplementation<T> {
 	/**
 	 * A (potentially) optimized version of these 2 operations in sequence:
 	 *
-	 * ```
+	 * ```ts
 	 * impl.removeChild(parent, child);
 	 * impl.createTree(parent, child, newTree);
 	 * ```

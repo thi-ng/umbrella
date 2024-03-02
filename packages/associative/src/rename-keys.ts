@@ -6,6 +6,9 @@ import { empty } from "./empty.js";
  * Renames keys in `src` using mapping provided by key map `km`. Does
  * support key swapping / swizzling. Does not modify original.
  *
+ * @remarks
+ * Also see {@link renameKeysObj} for related functionality & example.
+ *
  * @param src - source map
  * @param km - key mappings
  * @param out - result map
@@ -26,7 +29,9 @@ export const renameKeysMap = <K, V>(
  * Renames keys in `src` using mapping provided by key map `km`. Does
  * support key swapping / swizzling. Does not modify original.
  *
- * ```
+ * ```ts
+ * import { renameKeysObj } from "@thi.ng/associative";
+ *
  * // swap a & b, rename c
  * renameKeysObj({a: 1, b: 2, c: 3}, {a: "b", b: "a", c: "cc"})
  * // {b: 1, a: 2, cc: 3}

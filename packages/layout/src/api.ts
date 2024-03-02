@@ -97,6 +97,8 @@ export interface IGridLayout<T extends IGridLayout<T>>
 	 * siblings/ancestors of this current layout.
 	 *
 	 * ```
+	 * import { gridLayout } from "@thi.ng/layout";
+	 *
 	 * // single column layout (default config)
 	 * const outer = gridLayout(null, 0, 0, 200, 1, 16, 4);
 	 *

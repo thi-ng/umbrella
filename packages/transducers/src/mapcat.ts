@@ -13,7 +13,9 @@ import { map } from "./map.js";
  * be skipped / omitted.
  *
  * @example
- * ```
+ * ```ts
+ * import { mapcat } from "@thi.ng/transducers";
+ *
  * [...mapcat((x) => [x, x], [1, 2, 3])]
  * // [ 1, 1, 2, 2, 3, 3 ]
  *

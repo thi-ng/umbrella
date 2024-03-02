@@ -69,9 +69,11 @@ const keys = memoize1<number, StringOrSym[]>((size: number) => [
  * needed.
  *
  * @example
- * ```
- * // 3D vector w/ stride length of 4
- * a = gvec([1,0,0,0,2,0,0,0,3,0,0,0], 3, 0, 4);
+ * ```ts
+ * import { gvec, eqDelta } from "@thi.ng/vectors";
+ *
+ * // 3D vector w/ component stride length of 4
+ * a = gvec([1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 3, 0, 4);
  * a[0] // 1
  * a[1] // 2
  * a[2] // 3

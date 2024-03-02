@@ -11,8 +11,8 @@ import { $stackFn } from "./word.js";
  * ( -- ? )
  *
  * @example
- * ```ts
- * import { dec, dup, ispos, print, runU } from "@thi.ng/pointfree";
+ * ```js
+ * import { dec, dup, ispos, print, run } from "@thi.ng/pointfree";
  *
  * run([loop([dup, ispos], [dup, print, dec])], [[3]])
  * // 3
@@ -20,6 +20,7 @@ import { $stackFn } from "./word.js";
  * // 1
  * // [ true, [ 0 ], undefined ]
  * ```
+ *
  * @param test -
  * @param body -
  */
@@ -58,7 +59,7 @@ export const loopq = (ctx: StackContext) => {
  * pushes current counter on d-stack prior to executing body.
  *
  * @example
- * ```ts
+ * ```js
  * import { add, print, swap, runU } from "@thi.ng/pointfree";
  *
  * run([3, ["i=", swap, add, print], dotimes])
@@ -69,8 +70,8 @@ export const loopq = (ctx: StackContext) => {
  *
  * With empty body acts as finite range generator 0 .. n:
  *
- * ```ts
- * import { collect, cpdr, dotimes, movrd, runU } from "@thi.ng/pointfree";
+ * ```js
+ * import { collect, cpdr, dotimes, movrd, run, runU } from "@thi.ng/pointfree";
  *
  * // range gen
  * run([3, [], dotimes])

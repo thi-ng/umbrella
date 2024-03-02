@@ -27,7 +27,7 @@ export const patternVars = ([s, p, o]: Pattern) => {
  *
  * Example:
  *
- * ```
+ * ```text
  * ["?s", [p1, p2, p3], "?o"] =>
  * [
  *   [["?s", p1, "?__q0"], ["?__q0", p2, "?__q1"], ["?__q1", p3, "?o"] ],

@@ -167,7 +167,9 @@ export class StatelessEventBus implements IDispatch {
 	 * Async side effect. Only to be used in conjunction with
 	 * `FX_DISPATCH_ASYNC`. Triggers given event after `x` milliseconds.
 	 *
-	 * ```
+	 * ```js
+	 * import { FX_DELAY, FX_DISPATCH_ASYNC } from "@thi.ng/interceptors";
+	 *
 	 * // this triggers `[EV_SUCCESS, "ok"]` event after 1000 ms
 	 * { [FX_DISPATCH_ASYNC]: [FX_DELAY, [1000, "ok"], EV_SUCCESS, EV_ERROR] }
 	 * ```
@@ -183,7 +185,9 @@ export class StatelessEventBus implements IDispatch {
 	 * - https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
 	 * - https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText
 	 *
-	 * ```
+	 * ```js
+	 * import { FX_FETCH, FX_DISPATCH_ASYNC } from "@thi.ng/interceptors";
+	 *
 	 * // fetches "foo.json" and then dispatches EV_SUCCESS or EV_ERROR event
 	 * { [FX_DISPATCH_ASYNC]: [FX_FETCH, "foo.json", EV_SUCCESS, EV_ERROR] }
 	 * ```
@@ -534,7 +538,9 @@ export class StatelessEventBus implements IDispatch {
 	 *
 	 * For example:
 	 *
-	 * ```
+	 * ```js
+	 * import { FX_DISPATCH } from "@thi.ng/interceptors";
+	 *
 	 * // interceptor result map to dispatch a single event
 	 * { [FX_DISPATCH]: ["foo", "bar"]}
 	 *
@@ -650,7 +656,9 @@ export class EventBus
 	 * [`setIn()`](https://docs.thi.ng/umbrella/paths/functions/setIn.html).
 	 *
 	 * Example event definition:
-	 * ```
+	 * ```js
+	 * import { EV_SET_VALUE } from "@thi.ng/interceptors";
+	 *
 	 * [EV_SET_VALUE, ["path.to.value", val]]
 	 * ```
 	 *
@@ -661,7 +669,9 @@ export class EventBus
 	 * [`updateIn()`](https://docs.thi.ng/umbrella/paths/functions/updateIn.html).
 	 *
 	 * Example event definition:
-	 * ```
+	 * ```js
+	 * import { EV_UPDATE_VALUE } from "@thi.ng/interceptors";
+	 *
 	 * [EV_UPDATE_VALUE, ["path.to.value", (x, y) => x + y, 1]]
 	 * ```
 	 *
@@ -670,7 +680,9 @@ export class EventBus
 	 * Negates a boolean state value at given path.
 	 *
 	 * Example event definition:
-	 * ```
+	 * ```js
+	 * import { EV_TOGGLE_VALUE } from "@thi.ng/interceptors";
+	 *
 	 * [EV_TOGGLE_VALUE, "path.to.value"]
 	 * ```
 	 *
@@ -690,7 +702,9 @@ export class EventBus
 	 * (possibly) restored state. The event structure for these options is shown
 	 * below:
 	 *
-	 * ```
+	 * ```js
+	 * import { EV_UNDO } from "@thi.ng/interceptors";
+	 *
 	 * // using default ID
 	 * bus.dispatch([EV_UNDO]);
 	 *

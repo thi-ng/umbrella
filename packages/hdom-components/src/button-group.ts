@@ -43,7 +43,7 @@ export interface ButtonGroupArgs {
 /**
  * Argument type for a single button in the group, e.g.
  *
- * ```
+ * ```ts
  * [{onclick: () => alert("foo") }, ["i.fas.fa-check"], "foo"]
  * ```
  */

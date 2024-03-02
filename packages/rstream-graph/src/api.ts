@@ -64,7 +64,7 @@ export interface NodeSpec {
  * 1) Create a stream for given path in state atom (passed to
  *    {@link initGraph}):
  *
- * ```
+ * ```js
  * { path: "nested.src.path" }
  * { path: ["nested", "src", "path"] }
  * ```
@@ -72,7 +72,7 @@ export interface NodeSpec {
  * 2) Reference path to another node's output in the GraphSpec object. See
  *    [thi.ng/resolve-map](https://thi.ng/resolve-map) for details.
  *
- * ```
+ * ```js
  * { stream: "/node-id/node" } // main node output
  * { stream: "/node-id/outs/foo" } // specific output
  * ```
@@ -82,20 +82,21 @@ export interface NodeSpec {
  *    following spec looks up the main output of node "abc" and adds a
  *    transformed subscription, which is then used as input for current node.
  *
- * ```
- * { stream: (resolve) =>
- *     resolve("/abc/node").subscribe(map(x => x * 10)) }
+ * ```js
+ * { stream: (resolve) => resolve("/abc/node").map(x => x * 10) }
  * ```
  *
  * 4) Provide an external input stream:
  *
- * ```
+ * ```js
+ * import { fromIterable } from "@thi.ng/rstream";
+ *
  * { stream: () => fromIterable([1,2,3], 500) }
  * ```
  *
  * 5) Single value input stream:
  *
- * ```
+ * ```js
  * { const: 1 }
  * { const: () => 1 }
  * ```

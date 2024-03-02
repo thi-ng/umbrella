@@ -55,7 +55,7 @@ const EVENT_GESTURETYPES: IObjectOf<GestureType> = {
  * `document.body`, the following event listener options SHOULD be used:
  *
  * @example
- * ```ts
+ * ```text
  * eventOpts: { passive: false }
  * ```
  *

@@ -9,7 +9,7 @@ import { APC } from "./apc.js";
  * nD Cubic bezier patch defined by array of 4x4 control points in this
  * order:
  *
- * ```
+ * ```text
  *           7   11
  *     3 +---+---+---+ 15 (UV = 1,1)
  *       |   |   |   |

@@ -239,6 +239,8 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * The following creates a bridge with a fictional `custom` API module:
 	 *
 	 * ```ts
+	 * import { WasmBridge } from "@thi.ng/wasm-api";
+	 *
 	 * const bridge = new WasmBridge([new CustomAPI()]);
 	 *
 	 * // get combined imports object

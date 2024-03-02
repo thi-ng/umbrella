@@ -104,7 +104,9 @@ export const snapshot =
  * The error interceptor can return any number of other side effects and
  * so be used to dispatch alternative events instead, for example:
  *
- * ```
+ * ```js
+ * import { ensurePred, FX_DISPATCH_NOW } from "@thi.ng/interceptors";
+ *
  * // this interceptor will cause cancellation of current event
  * // and trigger an "error" event instead
  * ensurePred(
@@ -119,7 +121,9 @@ export const snapshot =
  * provided BEFORE the main handler in the interceptor list for a given
  * event, i.e.
  *
- * ```
+ * ```js
+ * import { ensurePred } from "@thi.ng/interceptors";
+ *
  * [
  *    ensurePred((state, e) => false),
  *    // actual event handler

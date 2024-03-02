@@ -54,7 +54,7 @@ export interface Route extends IID<string> {
 	 * This object specifies coercions and validators for variable /
 	 * parameterized path components, e.g.
 	 *
-	 * ```
+	 * ```js
 	 * {
 	 *  id: {
 	 *          coerce: (x) => parseInt(x,10),

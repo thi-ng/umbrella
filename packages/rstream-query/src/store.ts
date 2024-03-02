@@ -241,7 +241,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	 * 1 query variable. Query vars are strings with `?` prefix. The
 	 * rest of the string is considered the variable name.
 	 *
-	 * ```
+	 * ```js
 	 * g.addParamQuery(["?a", "friend", "?b"]);
 	 * ```
 	 *
@@ -250,8 +250,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	 * stated query variable solutions. Returns a rstream subscription
 	 * emitting arrays of solution objects like:
 	 *
-	 * ```
-	 * [{a: "asterix", b: "obelix"}, {a: "romeo", b: "julia"}]
+	 * ```js
+	 * [{ a: "asterix", b: "obelix" }, { a: "romeo", b: "julia" }]
 	 * ```
 	 *
 	 * @param id -

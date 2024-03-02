@@ -123,6 +123,8 @@ export interface SerializeOpts {
  * interface.
  *
  * ```js
+ * import { serialize } from "@thi.ng/hiccup";
+ *
  * const foo = (ctx, a, b) => ["div#" + a, ctx.foo, b];
  *
  * serialize([foo, "id", "body"], { ctx: { foo: { class: "black" } } })
@@ -145,7 +147,10 @@ export interface SerializeOpts {
  * (`"__COMMENT__"`) (always WITHOUT attributes!).
  *
  * ```js
+ * import { COMMENT } from "@thi.ng/hiccup";
+ *
  * [COMMENT, "Hello world"]
+ * // serializes to:
  * // <!-- Hello world -->
  *
  * [COMMENT, "Hello", "world"]

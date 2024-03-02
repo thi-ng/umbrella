@@ -13,21 +13,21 @@ const isPlainObject = iso;
 /**
  * Expands single hiccup element/component into its canonical form:
  *
- * ```
+ * ```ts
  * [tagname, {attribs}, ...children]
  * ```
  *
  * Emmet-style ID and class names in the original tagname are moved into
  * the attribs object, e.g.:
  *
- * ```
+ * ```ts
  * ["div#foo.bar.baz"] => ["div", {id: "foo", class: "bar baz"}]
  * ```
  *
  * If both Emmet-style classes AND a `class` attrib exists, the former
  * are appended to the latter:
  *
- * ```
+ * ```ts
  * ["div.bar.baz", {class: "foo"}] => ["div", {class: "foo bar baz"}]
  * ```
  *

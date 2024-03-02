@@ -22,7 +22,9 @@ import { $stackFn, defWord } from "./word.js";
  *
  * Compare:
  *
- * ```
+ * ```js
+ * import * as pf from "@thi.ng/pointfree";
+ *
  * // using array literal within word definition
  * foo = pf.word([ [], 1, pf.pushl ])
  * pf.runU(foo)
@@ -171,7 +173,9 @@ export const catr = (ctx: StackContext) => {
  * any number of results and therefore also be used as filter, mapcat,
  * reduce...
  *
- * ```
+ * ```js
+ * import { mapl, mul, run } from "@thi.ng/pointfree";
+ *
  * // each item times 10
  * run([[1, 2, 3, 4], [10, mul], mapl])
  * // [ [ 10, 20, 30, 40 ], [], {} ]
@@ -179,7 +183,9 @@ export const catr = (ctx: StackContext) => {
  *
  * Use for filtering:
  *
- * ```
+ * ```js
+ * import { cond, drop, dup, even, mapl, run } from "@thi.ng/pointfree";
+ *
  * // drop even numbers, duplicate odd ones
  * run([[1, 2, 3, 4], [dup, even, cond(drop, dup)], mapl])
  * // [ [ 1, 1, 3, 3 ], [], {} ]
@@ -187,7 +193,9 @@ export const catr = (ctx: StackContext) => {
  *
  * Reduction:
  *
- * ```
+ * ```js
+ * import { add, mapl, runU } from "@thi.ng/pointfree";
+ *
  * // the `0` is the initial reduction result
  * runU([0, [1, 2, 3, 4], [add], mapl])
  * // 10
@@ -199,7 +207,7 @@ export const catr = (ctx: StackContext) => {
  * Use {@link mapll} to transform:
  *
  * @example
- * ```ts
+ * ```js
  * import { runU, mapll, mul } from "@thi.ng/pointfree";
  *
  * runU([[1, 2, 3, 4], [10, mul], mapll])
@@ -211,7 +219,7 @@ export const catr = (ctx: StackContext) => {
  * interim value into the result:
  *
  * @example
- * ```ts
+ * ```js
  * import { list, mapl, mul, pushr, runU } from "@thi.ng/pointfree";
  *
  * runU([list, [1, 2, 3, 4], [10, mul, pushr], mapl])
@@ -221,7 +229,7 @@ export const catr = (ctx: StackContext) => {
  * If the array size is known & not changed by transformation:
  *
  * @example
- * ```ts
+ * ```js
  * import { collect, mapl, mul, runU } from "@thi.ng/pointfree";
  *
  * runU([[1, 2, 3, 4], [10, mul], mapl, 4, collect])
@@ -249,7 +257,7 @@ export const mapl = (ctx: StackContext) => {
  * ( arr q -- arr )
  *
  * @example
- * ```ts
+ * ```js
  * import { mapll, mul, runU } from "@thi.ng/pointfree";
  *
  * runU([[1, 2, 3, 4], [10, mul], mapll])
@@ -258,7 +266,9 @@ export const mapl = (ctx: StackContext) => {
  *
  * Filter / mapcat:
  *
- * ```
+ * ```js
+ * import { cond, drop, dup, even, mapll, run } from "@thi.ng/pointfree";
+ *
  * // drop even numbers, duplicate odd ones
  * run([[1, 2, 3, 4], [dup, even, cond(drop, dup)], mapll])
  * // [ [ [ 1, 1, 3, 3 ] ], [], {} ]
@@ -393,7 +403,7 @@ export const setat = (ctx: StackContext) => {
  * keys in given array.
  *
  * @example
- * ```ts
+ * ```js
  * import { bindkeys, runU } from "@thi.ng/pointfree";
  *
  * runU([1,2,3, ["a","b","c"], {}, bindkeys])

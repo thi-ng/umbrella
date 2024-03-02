@@ -376,7 +376,9 @@ const visitObject = visitWithResolver(resolveObject);
  * {@link finalizeEnv}). The name stacks are used to implement dynamic scoping
  * of all variables.
  *
- * ```
+ * ```ts
+ * import { run } from "@thi.ng/pointfree-lang";
+ *
  * // foo uses local var `a` with same name as global
  * // foo also writes to `b` (a new global)
  * // b=12 because foo's local `a` takes precedence over global `a`

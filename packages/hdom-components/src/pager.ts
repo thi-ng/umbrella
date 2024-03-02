@@ -96,7 +96,7 @@ export interface PagerOpts {
  * buttons then the pager will look like this (the `|` character here
  * indicates button group boundaries):
  *
- * ```
+ * ```text
  * << < | 4 5 6 | > >>
  * ```
  *
@@ -110,14 +110,16 @@ export interface PagerOpts {
  * last nav buttons are paired within inner `div` elements (one per
  * pair) and can be styled (or hidden) separately.
  *
- * ```
+ * ```ts
+ * import { pager } from "@thi.ng/hdom-components";
+ *
  * // initialization
  * const mypager = pager({
  *   button: (i, curr, max, label, disabled) =>
  *     ["a", {href: `/page/${i}`, disabled}, label]
  * });
  *
- * // usage
+ * // hdom usage
  * [mypager, currPage, currNumItems, 10, 5]
  * ```
  *

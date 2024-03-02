@@ -8,7 +8,9 @@ import { mapcat } from "./mapcat.js";
  * 1st level of nesting in input. See {@link mapcat}.
  *
  * @example
- * ```
+ * ```ts
+ * import { flatten1 } from "@thi.ng/transducers";
+ *
  * [...flatten1([[1], [2, 2], [3, 3, 3]])]
  * // [ 1, 2, 2, 3, 3, 3 ]
  *

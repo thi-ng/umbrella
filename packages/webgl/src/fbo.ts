@@ -15,9 +15,11 @@ const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
  * available. The max. number of attachments can be obtained via the
  * `maxAttachments` property of the FBO instance.
  *
- * ```
+ * ```ts
+ * import { defFBO } from "@thi.ng/webgl";
+ *
  * // create FBO w/ 2 render targets
- * fbo = new FBO(gl, { tex: [tex1, tex2] });
+ * fbo = defFBO(gl, { tex: [tex1, tex2] });
  * ```
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_draw_buffers

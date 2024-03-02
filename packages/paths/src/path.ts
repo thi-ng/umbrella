@@ -15,7 +15,9 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  *
  * Also see {@link disallowProtoPath}.
  *
- * ```
+ * ```ts
+ * import { toPath } from "@thi.ng/paths";
+ *
  * toPath("a.b.c");
  * // ["a", "b", "c"]
  *

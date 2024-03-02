@@ -31,6 +31,7 @@ import type { HexDumpOpts } from "./api.js";
  * //   '00000408 | 49 4a 21 30 31 32 33 7e | IJ!0123~',
  * //   '00000410 | 7a 79 78 00 00 00 00 00 | zyx.....' ]
  * ```
+ *
  * @param opts -
  * @param src -
  */

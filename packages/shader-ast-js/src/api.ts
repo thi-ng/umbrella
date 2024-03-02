@@ -15,7 +15,10 @@ export interface JSTarget extends Fn<Term<any>, string> {
 	 * Any functions defined in the given AST will be exported using their
 	 * defined name via the returned object.
 	 *
-	 * ```
+	 * ```js
+	 * import { targetJS } from "@thi.ng/shader-ast-js";
+	 * import { defn, float, mul, ret } from "@thi.ng/shader-ast";
+	 *
 	 * const js = targetJS();
 	 * const module = js.compile(
 	 *   defn("float", "foo", [["float"]], (x)=> [ret(mul(x, float(10)))])

@@ -100,7 +100,9 @@ export interface ResolveOpts {
  * path (**without `@` prefix**) to look up any other values in the root
  * object.
  *
- * ```
+ * ```ts
+ * import { resolve } from "@thi.ng/resolve-map";
+ *
  * // `c` uses ES6 destructuring form to look up `a` & `b` values
  * // `d` uses provided resolve fn arg `$` to look up `c`
  * resolve({ a: 1, b: 2, c: ({ a, b }) => a + b, d: ($) => $("c") })
@@ -121,7 +123,9 @@ export interface ResolveOpts {
  * start with `@`, it needs to be wrapped in a function (see `f` key
  * below).
  *
- * ```
+ * ```ts
+ * import { resolve } from "@thi.ng/resolve-map";
+ *
  * // `a` is derived from 1st array element in `b.d`
  * // `b.c` is looked up from `b.d[0]`
  * // `b.d[1]` is derived from calling `e(2)`
@@ -282,8 +286,8 @@ const _resolve = (
  *
  * E.g. given:
  *
- * ```
- * {a: () => ({b: {c: 1}}), d: "@/a/b/c" }
+ * ```text
+ * { a: () => ({ b: { c: 1 } }), d: "@/a/b/c" }
  * =>
  * { a: { b: { c: 1 } }, d: 1 }
  * ```
