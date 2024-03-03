@@ -1,11 +1,12 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import { S2D, V2, V4 } from "@thi.ng/shader-ast/api/types";
+import { S2D, S3D, V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { INT0, ivec2 } from "@thi.ng/shader-ast/ast/lit";
 import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
 import { texelFetch } from "@thi.ng/shader-ast/builtin/texture";
+import { mapIndexed } from "@thi.ng/transducers";
 import { assocObj } from "@thi.ng/transducers/assoc-obj";
 import { map } from "@thi.ng/transducers/map";
 import { range } from "@thi.ng/transducers/range";
@@ -19,7 +20,12 @@ import type {
 	ShaderUniformSpecs,
 	UniformDecl,
 } from "./api/shader.js";
-import type { ITexture } from "./api/texture.js";
+import {
+	TextureFilter,
+	TextureRepeat,
+	TextureTarget,
+	type ITexture,
+} from "./api/texture.js";
 import { compileModel } from "./buffer.js";
 import { isFloatTexture, isGL2Context } from "./checks.js";
 import { draw } from "./draw.js";
@@ -110,28 +116,38 @@ const initPasses = (opts: MultipassOpts, textures: IObjectOf<ITexture>) => {
 	});
 };
 
+const TEX_TYPE_MAP: Record<number, string> = {
+	[TextureTarget.TEXTURE_2D]: S2D,
+	[TextureTarget.TEXTURE_3D]: S3D,
+	[TextureTarget.TEXTURE_CUBE_MAP]: "samplerCube",
+};
+
 const initShader = (
 	gl: WebGLRenderingContext,
 	pass: PassOpts,
 	textures: IObjectOf<ITexture>
 ) => {
 	const isGL2 = isGL2Context(gl);
-	const numIns = pass.inputs.length;
+	// const numIns = pass.inputs.length;
 	const numOuts = pass.outputs.length;
-	const ext: ExtensionBehaviors = {};
+	const ext: ExtensionBehaviors = { ...pass.ext };
 	const spec: ShaderSpec = {
 		vs: pass.vs || PASSTHROUGH_VS,
 		fs: pass.fs,
-		attribs: pass.attribs || {
-			position: V2,
-		},
+		attribs: pass.attribs || { position: V2 },
 		varying: pass.varying,
 		uniforms: <ShaderUniformSpecs>{
 			...pass.uniforms,
 			...transduce(
-				map((i) => <[string, UniformDecl]>[`input${i}`, [S2D, i]]),
+				mapIndexed(
+					(i, id) =>
+						<[string, UniformDecl]>[
+							`input${i}`,
+							[TEX_TYPE_MAP[textures[id].target], i],
+						]
+				),
 				assocObj(),
-				range(numIns)
+				pass.inputs
 			),
 		},
 		outputs: numOuts
@@ -170,8 +186,9 @@ const initTextures = (opts: MultipassOpts) =>
 		acc[id] = defTexture(opts.gl, {
 			width: opts.width,
 			height: opts.height,
-			filter: opts.gl.NEAREST,
-			wrap: opts.gl.CLAMP_TO_EDGE,
+			depth: opts.depth,
+			filter: TextureFilter.NEAREST,
+			wrap: TextureRepeat.CLAMP,
 			image: null,
 			...opts.textures[id],
 		});

@@ -1,6 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IFbo, IndexBufferSpec } from "./buffers.js";
+import type { ExtensionBehaviors } from "./ext.js";
 import type {
 	InstancingSpec,
 	ModelAttributeSpecs,
@@ -40,6 +41,7 @@ export interface MultipassOpts {
 	passes: PassOpts[];
 	width: number;
 	height: number;
+	depth?: number;
 	uniforms?: Partial<PassUniforms>;
 	uniformVals?: UniformValues;
 }
@@ -59,6 +61,7 @@ export interface PassOpts {
 	replacePrelude?: boolean;
 	generateDecls?: boolean;
 	state?: Partial<ShaderState>;
+	ext?: ExtensionBehaviors;
 }
 
 export interface PassUniforms {
