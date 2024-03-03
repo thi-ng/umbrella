@@ -117,6 +117,7 @@ precision highp float;
 precision mediump int;
 precision mediump float;
 #endif
+${VERSION_CHECK(300, "precision lowp sampler3D;")}
 #ifndef PI
 #define PI 3.141592653589793
 #endif
