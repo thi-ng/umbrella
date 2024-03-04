@@ -1,4 +1,11 @@
-import type { Fn, Fn3, Keys, Range1_4, TypedArray } from "@thi.ng/api";
+import type {
+	Fn,
+	Fn3,
+	IObjectOf,
+	Keys,
+	Range1_4,
+	TypedArray,
+} from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type {
 	AvifOptions,
@@ -481,6 +488,17 @@ export interface ImgProcOpts {
 		string,
 		Fn3<ImgProcCtx, OutputSpec, BufferLike, string> | string
 	>;
+	/**
+	 * User provided environment, i.e. an object to provide arbitrary values to
+	 * {@link Processor}s and for them to store results in.
+	 *
+	 * @remarks
+	 * Note: This option is optional. Processors should only access the
+	 * environment via {@link ImgProcCtx.env} which ensures the object is
+	 * defined and it is only that version which will also be returned as part
+	 * of the results from {@link processImage}...
+	 */
+	env?: IObjectOf<any>;
 }
 
 export interface ImgProcCtx {
@@ -496,6 +514,10 @@ export interface ImgProcCtx {
 	 * {@link output}.
 	 */
 	outputs: Record<string, string>;
+	/**
+	 * See {@link ImgProcOpts.env} for details/comments.
+	 */
+	env: IObjectOf<any>;
 }
 
 export const GRAVITY_POSITION: Record<Gravity, string> = {

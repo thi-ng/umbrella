@@ -25,12 +25,14 @@ export const LOGGER = ROOT.childLogger("imgproc");
 /**
  * Main API function. Takes an image input (file path, buffer or existing Sharp
  * instance) and applies given processing pipeline specs in sequence. Returns a
- * promise of final processed image, input metadata (if any) and an object of
- * all written output paths (keyed by each output's {@link OutputSpec.id}). The
- * process can be configured via provided options.
+ * promise of final processed image, input metadata (if any), an environment
+ * object of arbitrary data (likely produced by custom ops/processors) and an
+ * object of all written output paths (keyed by each output's
+ * {@link OutputSpec.id}). The process pipeline can be additionally configured
+ * via provided options.
  *
  * @remarks
- * The `parentCtx` arg is internal use only!
+ * The `parentCtx` arg is internal use only (nested processors)!
  *
  * @param src
  * @param specs
@@ -53,6 +55,7 @@ export const processImage = async (
 	const ctx: ImgProcCtx = {
 		path: isString(src) ? src : parentCtx?.path,
 		outputs: parentCtx ? parentCtx.outputs : {},
+		env: parentCtx ? parentCtx.env : opts.env || {},
 		logger: opts.logger || LOGGER,
 		size: [meta.width!, meta.height!],
 		exif: parentCtx ? structuredClone(parentCtx.exif) : {},
@@ -91,7 +94,7 @@ export const processImage = async (
 				},
 			});
 		}
-		return { img, meta, outputs: ctx.outputs };
+		return { img, meta, env: ctx.env, outputs: ctx.outputs };
 	} finally {
 		if (ctx.iccFile) deleteFile(ctx.iccFile, ctx.logger);
 	}
