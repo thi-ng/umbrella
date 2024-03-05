@@ -18,6 +18,7 @@ import type {
 	Vec4Term,
 } from "../api/terms.js";
 import { F, type Mat, type Prim, type Vec } from "../api/types.js";
+import { assign } from "../ast/assign.js";
 import { builtinCall } from "../ast/function.js";
 import { matchingBoolType, matchingPrimFor } from "../ast/item.js";
 
@@ -47,6 +48,9 @@ const primOp3 =
  */
 export const normalize = <T extends Vec>(v: Term<T>) =>
 	builtinCall("normalize", v.type, v);
+
+export const normalizeSelf = <T extends Vec>(v: Sym<T>) =>
+	assign(v, normalize(v));
 
 /**
  * Returns length / magnitude of given vector.
@@ -95,6 +99,18 @@ export const faceForward = <I extends Vec, N extends I, R extends I>(
 export const min = primOp2("min");
 export const max = primOp2("max");
 export const clamp = primOp3("clamp");
+
+export const minSelf = <A extends Prim, B extends A>(a: Sym<A>, b: Term<B>) =>
+	assign(a, min(a, b));
+
+export const maxSelf = <A extends Prim, B extends A>(a: Sym<A>, b: Term<B>) =>
+	assign(a, max(a, b));
+
+export const clampSelf = <A extends Prim, B extends A, C extends B>(
+	a: Sym<A>,
+	b: Term<B>,
+	c: Term<C>
+) => assign(a, clamp(a, b, c));
 
 export const step = primOp2("step");
 export const smoothstep = primOp3("smoothstep");

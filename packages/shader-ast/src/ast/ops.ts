@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Op1, Op2, Sym, Term } from "../api/nodes.js";
+import type { Assign, Op1, Op2, Sym, Term } from "../api/nodes.js";
 import type { ComparisonOperator, Operator } from "../api/ops.js";
 import type {
 	BoolTerm,
@@ -27,6 +27,7 @@ import type {
 	UVec,
 	Vec,
 } from "../api/types.js";
+import { assign } from "./assign.js";
 import { isMat, isVec } from "./checks.js";
 import { numberWithMatchingType } from "./item.js";
 import { float } from "./lit.js";
@@ -138,6 +139,20 @@ export function add(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 }
 
 // prettier-ignore
+export function addSelf<A extends Prim | Int | IVec | Mat, B extends A>(l: Sym<A>, r: Term<B>): Assign<A>;
+// prettier-ignore
+export function addSelf<T extends Int | "float">(l: Sym<T>, r: number): Assign<T>;
+// prettier-ignore
+export function addSelf<T extends Vec | Mat>(l: Sym<T>, r: FloatTerm | number): Assign<T>;
+// prettier-ignore
+export function addSelf<T extends IVec>(l: Sym<T>, r: IntTerm | number): Assign<T>;
+// prettier-ignore
+export function addSelf<T extends UVec>(l: Sym<T>, r: UintTerm | number): Assign<T>;
+export function addSelf(l: Sym<any>, r: Term<any> | number) {
+	return assign(l, add(l, r));
+}
+
+// prettier-ignore
 export function sub<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, r: Term<B>): Op2<A>;
 export function sub<T extends Int | "float">(l: number, r: Term<T>): Op2<T>;
 export function sub<T extends Int | "float">(l: Term<T>, r: number): Op2<T>;
@@ -155,6 +170,20 @@ export function sub<T extends UVec>(l: UintTerm | number, r: Term<T>): Op2<T>;
 export function sub<T extends UVec>(l: Term<T>, r: UintTerm | number): Op2<T>;
 export function sub(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 	return op2("-", l, r);
+}
+
+// prettier-ignore
+export function subSelf<A extends Prim | Int | IVec | Mat, B extends A>(l: Sym<A>, r: Term<B>): Assign<A>;
+// prettier-ignore
+export function subSelf<T extends Int | "float">(l: Sym<T>, r: number): Assign<T>;
+// prettier-ignore
+export function subSelf<T extends Vec | Mat>(l: Sym<T>, r: FloatTerm | number): Assign<T>;
+// prettier-ignore
+export function subSelf<T extends IVec>(l: Sym<T>, r: IntTerm | number): Assign<T>;
+// prettier-ignore
+export function subSelf<T extends UVec>(l: Sym<T>, r: UintTerm | number): Assign<T>;
+export function subSelf(l: Sym<any>, r: Term<any> | number) {
+	return assign(l, sub(l, r));
 }
 
 // prettier-ignore
@@ -191,6 +220,20 @@ export function mul(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 }
 
 // prettier-ignore
+export function mulSelf<A extends Prim | Int | IVec | Mat, B extends A>(l: Sym<A>, r: Term<B>): Assign<A>;
+// prettier-ignore
+export function mulSelf<T extends Int | "float">(l: Sym<T>, r: number): Assign<T>;
+// prettier-ignore
+export function mulSelf<T extends Vec | Mat>(l: Sym<T>, r: FloatTerm | number): Assign<T>;
+// prettier-ignore
+export function mulSelf<T extends IVec>(l: Sym<T>, r: IntTerm | number): Assign<T>;
+// prettier-ignore
+export function mulSelf<T extends UVec>(l: Sym<T>, r: UintTerm | number): Assign<T>;
+export function mulSelf(l: Sym<any>, r: Term<any> | number) {
+	return assign(l, mul(l, r));
+}
+
+// prettier-ignore
 export function div<A extends Prim | Int | IVec | Mat, B extends A>(l: Term<A>, r: Term<B>): Op2<A>;
 export function div<T extends Int | "float">(l: number, r: Term<T>): Op2<T>;
 export function div<T extends Int | "float">(l: Term<T>, r: number): Op2<T>;
@@ -208,6 +251,20 @@ export function div<T extends UVec>(l: UintTerm | number, r: Term<T>): Op2<T>;
 export function div<T extends UVec>(l: Term<T>, r: UintTerm | number): Op2<T>;
 export function div(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 	return op2("/", l, r);
+}
+
+// prettier-ignore
+export function divSelf<A extends Prim | Int | IVec | Mat, B extends A>(l: Sym<A>, r: Term<B>): Assign<A>;
+// prettier-ignore
+export function divSelf<T extends Int | "float">(l: Sym<T>, r: number): Assign<T>;
+// prettier-ignore
+export function divSelf<T extends Vec | Mat>(l: Sym<T>, r: FloatTerm | number): Assign<T>;
+// prettier-ignore
+export function divSelf<T extends IVec>(l: Sym<T>, r: IntTerm | number): Assign<T>;
+// prettier-ignore
+export function divSelf<T extends UVec>(l: Sym<T>, r: UintTerm | number): Assign<T>;
+export function divSelf(l: Sym<any>, r: Term<any> | number) {
+	return assign(l, div(l, r));
 }
 
 /**
