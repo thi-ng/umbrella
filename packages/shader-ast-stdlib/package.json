@@ -107,6 +107,9 @@
 		"./color/aces-film": {
 			"default": "./color/aces-film.js"
 		},
+		"./color/cosine-gradient": {
+			"default": "./color/cosine-gradient.js"
+		},
 		"./color/levels": {
 			"default": "./color/levels.js"
 		},
@@ -214,6 +217,9 @@
 		},
 		"./noise/curl3": {
 			"default": "./noise/curl3.js"
+		},
+		"./noise/fbm": {
+			"default": "./noise/fbm.js"
 		},
 		"./noise/hash": {
 			"default": "./noise/hash.js"
@@ -337,6 +343,9 @@
 		},
 		"./tex/index-uv": {
 			"default": "./tex/index-uv.js"
+		},
+		"./tex/normal": {
+			"default": "./tex/normal.js"
 		},
 		"./tex/read-index": {
 			"default": "./tex/read-index.js"

@@ -1,6 +1,7 @@
 export * from "./api.js";
 
 export * from "./color/aces-film.js";
+export * from "./color/cosine-gradient.js";
 export * from "./color/levels.js";
 export * from "./color/linear-srgb.js";
 export * from "./color/luminance.js";
@@ -42,6 +43,7 @@ export * from "./matrix/normal.js";
 export * from "./matrix/rotation.js";
 
 export * from "./noise/curl3.js";
+export * from "./noise/fbm.js";
 export * from "./noise/hash.js";
 export * from "./noise/permute.js";
 export * from "./noise/simplex2.js";
@@ -87,6 +89,7 @@ export * from "./sdf/union.js";
 export * from "./tex/blur.js";
 export * from "./tex/index-coord.js";
 export * from "./tex/index-uv.js";
+export * from "./tex/normal.js";
 export * from "./tex/read-index.js";
 
 export * from "./viz/function.js";
