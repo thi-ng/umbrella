@@ -1,9 +1,8 @@
 import type { Sampler2DSym, Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { S2D, V2, V4 } from "@thi.ng/shader-ast/api/types";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { vec2 } from "@thi.ng/shader-ast/ast/lit";
-import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { add, addSelf, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { texture } from "@thi.ng/shader-ast/builtin/texture";
 
@@ -24,12 +23,9 @@ const singlePass = (
 	off: Vec2Sym,
 	k: number
 ) =>
-	assign(
+	addSelf(
 		col,
-		add(
-			col,
-			mul(add(texture(tex, add(uv, off)), texture(tex, sub(uv, off))), k)
-		)
+		mul(add(texture(tex, add(uv, off)), texture(tex, sub(uv, off))), k)
 	);
 
 /**

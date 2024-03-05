@@ -19,6 +19,7 @@ import {
 } from "@thi.ng/shader-ast/ast/lit";
 import {
 	add,
+	addSelf,
 	div,
 	gt,
 	inc,
@@ -107,12 +108,12 @@ export const functionSampler = (
 			forLoop(
 				sym(float(-radius)),
 				(x) => lte(x, float(radius)),
-				(x) => assign(x, add(x, invStep)),
+				(x) => addSelf(x, invStep),
 				(x) => [
 					forLoop(
 						sym(float(-radius)),
 						(y) => lte(y, float(radius)),
-						(y) => assign(y, add(y, invStep)),
+						(y) => addSelf(y, invStep),
 						(y) => [
 							inc(total),
 							assign(q, map(add(frag, vec2(x, y)), res)),

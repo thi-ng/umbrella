@@ -1,6 +1,5 @@
 import type { FloatSym, Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
 import { F, V2 } from "@thi.ng/shader-ast/api/types";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import {
@@ -11,7 +10,15 @@ import {
 	vec2,
 	vec3,
 } from "@thi.ng/shader-ast/ast/lit";
-import { add, div, inc, lte, madd, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import {
+	add,
+	addSelf,
+	div,
+	inc,
+	lte,
+	mul,
+	sub,
+} from "@thi.ng/shader-ast/ast/ops";
 import { $xy, $z } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import {
@@ -82,8 +89,8 @@ export const voronoise2 = defn(F, "voronoise2", [V2, F, F], (x, u, v) => {
 								k
 							)
 						)),
-						assign(va, madd(w, $z(o), va)),
-						assign(wt, add(wt, w)),
+						addSelf(va, mul(w, $z(o))),
+						addSelf(wt, w),
 					]
 				),
 			]

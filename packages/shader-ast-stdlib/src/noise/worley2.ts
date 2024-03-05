@@ -90,8 +90,8 @@ export const worley2 = (
 			(d3 = sym($dist(-1.5))),
 			(d1a = sym(min(d1, d2))),
 			assign(d2, min(max(d1, d2), d3)),
-			assign(d1, min(d1a, d2)),
-			assign(d2, max(d1a, d2)),
+			assign(d1, min(d2, d1a)),
+			assign(d2, max(d2, d1a)),
 			assign($xy(d1), ternary(lt($x(d1), $y(d1)), $xy(d1), $(d1, "yx"))),
 			assign(
 				$(d1, "xz"),

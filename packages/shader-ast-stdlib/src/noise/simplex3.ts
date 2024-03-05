@@ -12,7 +12,7 @@ import {
 	vec3,
 	vec4,
 } from "@thi.ng/shader-ast/ast/lit";
-import { add, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { add, mul, mulSelf, neg, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $, $w, $x, $xy, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import {
@@ -121,10 +121,10 @@ export const snoise3 = defn(F, "snoise3", [V3], (v) => {
 				)
 			)
 		)),
-		assign(p0, mul(p0, $x(norm))),
-		assign(p1, mul(p1, $y(norm))),
-		assign(p2, mul(p2, $z(norm))),
-		assign(p3, mul(p3, $w(norm))),
+		mulSelf(p0, $x(norm)),
+		mulSelf(p1, $y(norm)),
+		mulSelf(p2, $z(norm)),
+		mulSelf(p3, $w(norm)),
 		(m = sym(
 			max(
 				vec4(),
@@ -134,7 +134,7 @@ export const snoise3 = defn(F, "snoise3", [V3], (v) => {
 				)
 			)
 		)),
-		assign(m, mul(m, m)),
+		mulSelf(m, m),
 		ret(
 			mul(
 				42,

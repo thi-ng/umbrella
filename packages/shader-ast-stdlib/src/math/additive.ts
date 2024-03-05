@@ -1,12 +1,18 @@
 import type { Fn } from "@thi.ng/api";
 import type { FloatSym, FloatTerm, Prim, Term } from "@thi.ng/shader-ast";
 import { F } from "@thi.ng/shader-ast/api/types";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { gensym } from "@thi.ng/shader-ast/ast/idgen";
 import { FLOAT0, FLOAT05, float } from "@thi.ng/shader-ast/ast/lit";
-import { add, inc, lt, mul } from "@thi.ng/shader-ast/ast/ops";
+import {
+	add,
+	addSelf,
+	inc,
+	lt,
+	mul,
+	mulSelf,
+} from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 
 /**
@@ -45,15 +51,12 @@ export const additive = <T extends Prim>(
 				(i) => lt(i, float(oct)),
 				inc,
 				(i) => [
-					assign(
+					addSelf(
 						n,
-						add(
-							n,
-							mul(amp, fn(<any>add(<any>pos, mul(i, <any>shift))))
-						)
+						mul(amp, fn(<any>add(<any>pos, mul(i, <any>shift))))
 					),
-					assign(amp, mul(amp, decay)),
-					assign(pos, <any>mul(<any>pos, 2)),
+					mulSelf(amp, decay),
+					mulSelf(<any>pos, 2),
 				]
 			),
 			ret(n),

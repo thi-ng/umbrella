@@ -1,11 +1,18 @@
 import type { FloatSym } from "@thi.ng/shader-ast";
 import { F, V3 } from "@thi.ng/shader-ast/api/types";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { gensym } from "@thi.ng/shader-ast/ast/idgen";
 import { FLOAT0, FLOAT05, FLOAT1, float } from "@thi.ng/shader-ast/ast/lit";
-import { add, inc, lte, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import {
+	add,
+	addSelf,
+	inc,
+	lte,
+	mul,
+	mulSelf,
+	sub,
+} from "@thi.ng/shader-ast/ast/ops";
 import { $x } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import type { RaymarchScene } from "../api.js";
@@ -39,11 +46,8 @@ export const raymarchAO = (
 				inc,
 				(i) => [
 					(d0 = sym(mul(i, 1 / numSamples))),
-					assign(
-						r,
-						add(r, mul(w, sub(d0, $x(scene(add(p, mul(n, d0)))))))
-					),
-					assign(w, mul(w, FLOAT05)),
+					addSelf(r, mul(w, sub(d0, $x(scene(add(p, mul(n, d0))))))),
+					mulSelf(w, FLOAT05),
 				]
 			),
 			ret(sub(FLOAT1, clamp01(r))),

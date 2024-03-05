@@ -1,9 +1,8 @@
 import type { FloatSym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { F, V2, V3, V4 } from "@thi.ng/shader-ast/api/types";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { mat2, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { add, mul } from "@thi.ng/shader-ast/ast/ops";
+import { add, addSelf, mul, mulSelf } from "@thi.ng/shader-ast/ast/ops";
 import { $, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { dot, fract, sin } from "@thi.ng/shader-ast/builtin/math";
@@ -53,8 +52,8 @@ export const hash11 = defn(F, "hash11", [F], (p) => {
 	let x: FloatSym;
 	return [
 		(x = sym(fract(mul(p, 0.1031)))),
-		assign(x, mul(x, add(x, 19.19))),
-		assign(x, mul(x, add(x, x))),
+		mulSelf(x, add(x, 19.19)),
+		mulSelf(x, add(x, x)),
 		ret(fract(x)),
 	];
 });
@@ -70,7 +69,7 @@ export const hash12 = defn(F, "hash12", [V2], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul($(p, "xyx"), 0.1031)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($x(x), $y(x)), $z(x)))),
 	];
 });
@@ -86,7 +85,7 @@ export const hash13 = defn(F, "hash13", [V3], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul($(p, "xyx"), 0.1031)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($x(x), $y(x)), $z(x)))),
 	];
 });
@@ -102,7 +101,7 @@ export const hash21 = defn(V2, "hash21", [F], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul(vec3(p), H)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($(x, "xx"), $(x, "yz")), $(x, "zy")))),
 	];
 });
@@ -118,7 +117,7 @@ export const hash22 = defn(V2, "hash22", [V2], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul($(p, "xyx"), H)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($(x, "xx"), $(x, "yz")), $(x, "zy")))),
 	];
 });
@@ -134,7 +133,7 @@ export const hash23 = defn(V2, "hash23", [V3], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul(p, H)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($(x, "xx"), $(x, "yz")), $(x, "zy")))),
 	];
 });
@@ -150,7 +149,7 @@ export const hash31 = defn(V3, "hash31", [F], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul(p, H)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($(x, "xxy"), $(x, "yzz")), $(x, "zyx")))),
 	];
 });
@@ -166,7 +165,7 @@ export const hash32 = defn(V3, "hash32", [V2], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul($(p, "xyx"), H)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($(x, "xxy"), $(x, "yzz")), $(x, "zyx")))),
 	];
 });
@@ -182,7 +181,7 @@ export const hash33 = defn(V3, "hash33", [V3], (p) => {
 	let x: Vec3Sym;
 	return [
 		(x = sym(fract(mul(p, H)))),
-		assign(x, add(x, dot(x, add($(x, "yzx"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
 		ret(fract(mul(add($(x, "xxy"), $(x, "yzz")), $(x, "zyx")))),
 	];
 });
@@ -198,7 +197,7 @@ export const hash41 = defn(V4, "hash41", [F], (p) => {
 	let x: Vec4Sym;
 	return [
 		(x = sym(fract(mul(p, H4)))),
-		assign(x, add(x, dot(x, add($(x, "wzxy"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
 		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
 	];
 });
@@ -214,7 +213,7 @@ export const hash42 = defn(V4, "hash42", [V2], (p) => {
 	let x: Vec4Sym;
 	return [
 		(x = sym(fract(mul($(p, "xyxy"), H4)))),
-		assign(x, add(x, dot(x, add($(x, "wzxy"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
 		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
 	];
 });
@@ -230,7 +229,7 @@ export const hash43 = defn(V4, "hash43", [V3], (p) => {
 	let x: Vec4Sym;
 	return [
 		(x = sym(fract(mul($(p, "xyzx"), H4)))),
-		assign(x, add(x, dot(x, add($(x, "wzxy"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
 		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
 	];
 });
@@ -246,7 +245,7 @@ export const hash44 = defn(V4, "hash44", [V4], (p) => {
 	let x: Vec4Sym;
 	return [
 		(x = sym(fract(mul(p, H4)))),
-		assign(x, add(x, dot(x, add($(x, "wzxy"), 19.19)))),
+		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
 		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
 	];
 });

@@ -66,17 +66,8 @@ export const levelAdjustGamma = defn(
 	[F, F, V2, V2],
 	(x, gamma, input, output) => [
 		ret(
-			fit01<FloatTerm>(
-				pow(
-					fitClamped<FloatTerm>(
-						x,
-						$x(input),
-						$y(input),
-						FLOAT0,
-						FLOAT1
-					),
-					gamma
-				),
+			fit01(
+				pow(fitClamped(x, $x(input), $y(input), FLOAT0, FLOAT1), gamma),
 				$x(output),
 				$y(output)
 			)
@@ -101,9 +92,9 @@ export const levelAdjustGammaRGB = defn(
 	[V3, V3, M3, M3],
 	(x, gamma, input, output) => [
 		ret(
-			fit01<Vec3Term>(
+			fit01(
 				pow(
-					fitClamped<Vec3Term>(
+					fitClamped(
 						x,
 						indexMat(input, 0),
 						indexMat(input, 1),

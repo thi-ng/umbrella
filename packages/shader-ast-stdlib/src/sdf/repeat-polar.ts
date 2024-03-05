@@ -23,6 +23,6 @@ export const sdfRepeatPolar2 = defn(V2, "sdfRepeatPolar2", [V2, F], (p, n) => {
 		(angle = sym(div(TAU, n))),
 		(angle2 = sym(mul(angle, FLOAT05))),
 		(a = sym(sub(mod(add(angle2, atan($y(p), $x(p))), angle), angle2))),
-		ret(mul(cossin(a), length(p))),
+		ret(cossin(a, length(p))),
 	];
 });

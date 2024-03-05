@@ -13,7 +13,7 @@ import { cossin } from "./sincos.js";
  *
  * @param v -
  */
-export const cartesian2 = (v: Vec2Term) => mul(cossin($y(v)), $x(v));
+export const cartesian2 = (v: Vec2Term) => cossin($y(v), $x(v));
 
 /**
  * Converts 3D polar/spherical vector `v`, i.e. `[r,θ,ϕ]` (angles in

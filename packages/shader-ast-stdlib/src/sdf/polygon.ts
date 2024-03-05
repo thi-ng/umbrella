@@ -20,7 +20,7 @@ import {
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { _any, all } from "@thi.ng/shader-ast/builtin/bvec";
-import { dot, min, sqrt } from "@thi.ng/shader-ast/builtin/math";
+import { dot, minSelf, sqrt } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "../math/clamp.js";
 
 /**
@@ -61,7 +61,7 @@ export const sdfPolygon2 = (N: number) =>
 						(b = sym(
 							sub(w, mul(e, clamp01(div(dot(w, e), dot(e, e)))))
 						)),
-						assign(d, min(d, dot(b, b))),
+						minSelf(d, dot(b, b)),
 						(c = sym(
 							bvec3(
 								gte($y(p), $y(pi)),

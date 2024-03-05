@@ -1,9 +1,8 @@
 import type { Vec2Sym } from "@thi.ng/shader-ast";
 import { F, V2 } from "@thi.ng/shader-ast/api/types";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, vec2 } from "@thi.ng/shader-ast/ast/lit";
-import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { mul, subSelf } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import {
@@ -29,8 +28,8 @@ export const sdfHexagon2 = defn(F, "sdfHexagon2", [V2, F], (p, r) => {
 		// sin/cos @ 60deg
 		(k = sym(vec2(-0.8660254037844386, 0.5))),
 		(q = sym(abs(p))),
-		assign(q, sub(q, mul(k, mul(2, min(dot(k, q), FLOAT0))))),
-		assign(q, sub(q, vec2(clamp($x(q), mul(r, -TAN30), mul(r, TAN30)), r))),
+		subSelf(q, mul(k, mul(2, min(dot(k, q), FLOAT0)))),
+		subSelf(q, vec2(clamp($x(q), mul(r, -TAN30), mul(r, TAN30)), r)),
 		ret(mul(length(q), sign($y(q)))),
 	];
 });
