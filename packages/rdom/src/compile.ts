@@ -29,6 +29,15 @@ import { $wrapEl, $wrapText } from "./wrap.js";
  * target attribute. If used as element body, the reactive value will be wrapped
  * using a {@link $sub} `<span>` with the value as its reactive body.
  *
+ * **Important:** Use {@link $replace}, {@link $refresh} or {@link $switch} to
+ * wrap any reactive values/subscriptions which produce actual HTML
+ * elements/components/subtrees (in hiccup format). See docs for these functions
+ * for details & examples. Not using any of these wrappers will result in
+ * unexpected outcomes.
+ *
+ * Also see {@link $wrapText}, {@link $wrapHtml} or {@link $wrapEl} for DOM
+ * element related component wrappers.
+ *
  * @param tree -
  */
 export const $compile = (tree: any): IComponent =>
