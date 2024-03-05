@@ -1,4 +1,4 @@
-import type { PrimTerm, Term, TermType } from "@thi.ng/shader-ast";
+import type { Prim, PrimTerm, Term, TermType } from "@thi.ng/shader-ast";
 import { F } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -27,13 +27,9 @@ export const fitNorm1 = defn(F, "fitNorm1", [F, F, F], (x, a, b) => [
  * @param x
  * @param a
  * @param b
- * @returns
  */
-export const fitNorm = <T extends PrimTerm>(
-	x: T,
-	a: T,
-	b: T
-): Term<TermType<T>> => div(sub(x, a), sub(b, a));
+export const fitNorm = <T extends Prim>(x: Term<T>, a: Term<T>, b: Term<T>) =>
+	div(sub(x, a), sub(b, a));
 
 /**
  * Fits value `x` from closed interval [a,b] to closed interval [c,d]. No
@@ -45,13 +41,13 @@ export const fitNorm = <T extends PrimTerm>(
  * @param c -
  * @param d -
  */
-export const fit = <T extends PrimTerm>(
-	x: T,
-	a: T,
-	b: T,
-	c: T,
-	d: T
-): Term<TermType<T>> => mix(c, d, fitNorm(x, a, b));
+export const fit = <T extends Prim>(
+	x: Term<T>,
+	a: Term<T>,
+	b: Term<T>,
+	c: Term<T>,
+	d: Term<T>
+) => mix(c, d, fitNorm(x, a, b));
 
 /**
  * Same as {@link fit}, but first clamps `x` to closed [a,b] interval.
@@ -62,13 +58,13 @@ export const fit = <T extends PrimTerm>(
  * @param c -
  * @param d -
  */
-export const fitClamped = <T extends PrimTerm>(
-	x: T,
-	a: T,
-	b: T,
-	c: T,
-	d: T
-): Term<TermType<T>> => mix(c, d, clamp01(div(sub(x, a), sub(b, a))));
+export const fitClamped = <T extends Prim>(
+	x: Term<T>,
+	a: Term<T>,
+	b: Term<T>,
+	c: Term<T>,
+	d: Term<T>
+) => mix(c, d, clamp01(div(sub(x, a), sub(b, a))));
 
 /**
  * Inline function. Fits value `a` in [0..1] interval to new interval
@@ -78,11 +74,11 @@ export const fitClamped = <T extends PrimTerm>(
  * @param b -
  * @param c -
  */
-export const fit01 = <T extends PrimTerm>(
-	a: T,
-	b: T,
-	c: T
-): Term<TermType<T>> => mix(b, c, a);
+export const fit01 = <T extends Prim>(
+	a: Term<T>,
+	b: Term<T>,
+	c: Term<T>
+): Term<T> => mix(b, c, a);
 
 /**
  * Inline function. Fits value `x` in [-1..+1] interval to [0..1]
