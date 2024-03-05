@@ -23,6 +23,36 @@ import { texture } from "@thi.ng/shader-ast/builtin/texture";
  * @remarks
  * Not compatible with WebGL 1.0 (texture type not natively supported).
  *
+ * The texture should be configured to use linear filtering and texture repeat
+ * mode.
+ *
+ * Using thi.ng/webgl (for example), the 3D noise texture can be initialized as
+ * follows:
+ *
+ * @example
+ * ```ts
+ * import { repeatedly } from "@thi.ng/transducers";
+ * import {
+ *   defTexture,
+ *   TextureFilter, TextureFormat, TextureRepeat, TextureTarget
+ * } from "@thi.ng/webgl";
+ *
+ * // (GL context creation omitted here)
+ *
+ * const noiseTex = defTexture(gl, {
+ *   width: 32,
+ *   height: 32,
+ *   depth: 32,
+ *   target: TextureTarget.TEXTURE_3D,
+ *   format: TextureFormat.RGB,
+ *   filter: TextureFilter.LINEAR,
+ *   wrap: TextureRepeat.REPEAT,
+ *   image: new Uint8Array(
+ *     repeatedly(() => Math.random() * 255.5, 32 * 32 * 32 * 3)
+ *   )
+ * });
+ * ```
+ *
  * @param octaves
  * @param decay
  */
