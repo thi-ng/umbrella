@@ -39,7 +39,8 @@
 		"tool:imports": "bun tools/src/check-imports.ts",
 		"tool:prune": "bun tools/src/prune-changelogs.ts",
 		"tool:searchindex": "bun tools/src/build-search-index.ts",
-		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn doc:readme && yarn tool:searchindex && yarn tool:deps"
+		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn doc:readme && yarn tool:searchindex && yarn tool:deps",
+		"tool:tangle": "yarn @thi.ng run tool:tangle"
 	},
 	"packageManager": "yarn@4.1.0"
 }
