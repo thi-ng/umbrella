@@ -39,7 +39,7 @@ const extractBlocks = (src: string, { format, logger }: TangleCtx) => {
 		let { id, tangle, noweb, publish } = parseBlockHeader(matchPrefix[2]);
 		!id && (id = `__block-${nextID++}`);
 		const matchStart = matchPrefix.index;
-		const start = src.indexOf("\n", matchStart) + 1;
+		const start = src.indexOf("\n", matchStart + 1) + 1;
 		logger.debug(
 			"codeblock ID:",
 			id,
