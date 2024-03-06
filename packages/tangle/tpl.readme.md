@@ -15,12 +15,18 @@ introduction. For all LP projects, a so-called "tangling" step is required to
 produce workable, standard source code files from these documents. This package
 provides just that:
 
-Extract, expand, transclude, combine and assemble code blocks from Markdown or
-[Org-mode](https://orgmode.org) files into actual/traditional source files. A
-single LP source file can contain code for multiple languages. Each code block
-can define its target file and include [noweb-style
+Extract, expand, transclude, combine and assemble code blocks from arbitrary text files into actual/traditional source code files. The following input formats are supported:
+
+- Markdown
+- Markdown codeblocks embedded inside docstrings of JavaScript/TypeScript source files
+- [Org-mode](https://orgmode.org)
+
+A single input file can contain code for multiple languages. Each individual
+code block can define its own target file and include [noweb-style
 references](https://orgmode.org/manual/Noweb-Reference-Syntax.html) to other
-code blocks, either from the same or even from other files.
+code blocks, either from the same or even from other files. If multiple code
+blocks in the same input file reference the same output file, they will be
+concatenated.
 
 The package provides both a basic API and a CLI wrapper to perform the
 "tangling" tasks (an expression borrowed from
