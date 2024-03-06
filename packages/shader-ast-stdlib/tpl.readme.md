@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-A growing collection (currently ~225) of useful functions & higher order
+A growing collection (currently ~230) of useful functions & higher order
 constructs (incl. meta programming approaches) for GPU / shader programming,
 acting as optional standard library for
 [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
@@ -243,15 +243,20 @@ several other HOFs from this library to drastically simplify user code.
 
 ## API
 
-TODO. For now, please see doc strings in source for details...
+{{pkg.docs}}
 
 ### Color
 
 [/src/color](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/color/)
 
+- `ACESFilm` (tone mapping)
+- `cosineGradient`
+- `levelAdjustGamma` / `levelAdjustGammaRGB`
+- `levelAdjustMid` / `levelAdjustMidRGB`
+- `luminanceRGB`
+- `midLevelGamma` / `midLevelGammaRGB`
 - `toLinear`
 - `toSRGB`
-- `luminanceRGB`
 - `decodeRGBE`
 
 ### Porter-Duff alpha blending
@@ -273,6 +278,10 @@ for reference.
 - `blendDestAtop`
 - `blendXor`
 - `blendPlus`
+
+Related:
+
+- `premultiplyAlpha` / `postmultiplyAlpha`
 
 ### Fog
 
@@ -355,6 +364,7 @@ for reference.
 
 [/src/noise](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/noise/)
 
+- `fbmNoiseVec34`
 - `hash2` / `hash3`
 - `hash11` / `hash12` / `hash13`
 - `hash21` / `hash22` / `hash23`
@@ -362,6 +372,7 @@ for reference.
 - `hash41` / `hash42` / `hash43` / `hash44`
 - `permute` / `permute3` / `permute4`
 - `snoise2`
+- `snoise3` / `snoiseVec32` / `snoiseVec3`
 - `voronoise2`
 - `worley2` / `worleyDist` / `worleyDistManhattan`
 
@@ -432,6 +443,7 @@ for reference.
 
 - `indexToCoord` / `coordToIndex`
 - `indexToUV` / `uvToIndex`
+- `normal2`
 - `readIndex1` / `readIndex2` / `readIndex3` / `readIndex4`
 
 ### Visualization
