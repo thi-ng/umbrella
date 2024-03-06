@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-01T15:22:50Z
+- **Last updated**: 2024-03-06T08:50:42Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.17.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.17.0) (2024-03-06)
+
+#### 🚀 Features
+
+- add fbmNoiseVec34() ([40ea58d](https://github.com/thi-ng/umbrella/commit/40ea58d))
+- add cosineGradient() ([7a20ae9](https://github.com/thi-ng/umbrella/commit/7a20ae9))
+- update cossin(), sincos(), add opt. scale factor arg ([e3e8979](https://github.com/thi-ng/umbrella/commit/e3e8979))
+- add normal2() ([f6d6e33](https://github.com/thi-ng/umbrella/commit/f6d6e33))
+
+#### 🩹 Bug fixes
+
+- update generics for clamp01(), clamp11() and various fitXX() fns ([41d2882](https://github.com/thi-ng/umbrella/commit/41d2882))
+
+#### ♻️ Refactoring
+
+- simplify callsites of addSelf/mulSelf etc. ([efa1f8d](https://github.com/thi-ng/umbrella/commit/efa1f8d))
 
 ### [0.16.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.16.28) (2024-02-22)
 

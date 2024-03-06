@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-02T14:05:53Z
+- **Last updated**: 2024-03-06T08:50:42Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.14.0) (2024-03-06)
+
+#### 🚀 Features
+
+- add self-assign math ops syntax sugar ([4575082](https://github.com/thi-ng/umbrella/commit/4575082))
+  - add addSelf(), subSelf(), mulSelf(), divSelf() fns
+  - add minSelf(), maxSelf()
+    - alias for `assign(x, op(x, y))`
+  - add clampSelf()
+    - alias for `assign(x, clamp(x, y, z))`
+  - add normalizeSelf()
+    - alias for `assign(x, normalize(x))`
 
 ### [0.13.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.13.9) (2024-02-16)
 

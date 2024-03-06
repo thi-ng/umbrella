@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-02T14:05:53Z
+- **Last updated**: 2024-03-06T08:50:42Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/mime@2.6.0) (2024-03-06)
+
+#### 🚀 Features
+
+- add extensionsForType() ([4453ec6](https://github.com/thi-ng/umbrella/commit/4453ec6))
+
+#### 🩹 Bug fixes
+
+- revert jpeg extension overrides ([cc8ee6f](https://github.com/thi-ng/umbrella/commit/cc8ee6f))
 
 ## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/mime@2.5.0) (2024-02-17)
 
