@@ -15,6 +15,7 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [defOptimized()](#defoptimized)
   - [Tree optimizations](#tree-optimizations)
     - [Constant folding](#constant-folding)
 - [Status](#status)
@@ -29,9 +30,17 @@
 
 Shader AST code optimization passes/strategies. This is a support package for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
 
+### defOptimized()
+
+The function
+[`defOptimize()`](https://docs.thi.ng/umbrella/shader-ast-optimize/functions/defOptimized.html)
+can be used as direct replacement for [thi.ng/shader-ast]()'s
+[`defMain()`](https://docs.thi.ng/umbrella/shader-ast/functions/defMain.html) to
+define automatically optimized shader `main()` functions.
+
 ### Tree optimizations
 
-Currently, only the following operations are supported / considered:
+Currently, only the following operations are supported/considered:
 
 #### Constant folding
 
@@ -40,49 +49,55 @@ Currently, only the following operations are supported / considered:
 - single component vector swizzling
 - literal hoisting
 
-```ts
-import { $x, $y, add, defn, float, mul, neg, ret } from "@thi.ng/shader-ast";
+```ts tangle:export/readme1.ts
+import {
+  add, defn, float, mul, neg, ret, scope, vec2, $x, $y
+} from "@thi.ng/shader-ast";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { constantFolding } from "@thi.ng/shader-ast-optimize";
 
+// function def
 const foo = defn("float", "foo", ["float"], (x) => [
-  ret(mul(x, add(neg(float(10)), float(42))))
+  ret(mul(x, add(neg(float(10)), 42)))
 ]);
 
 const bar = vec2(100, 200);
 
+// program def
 const prog = scope([
   foo,
   foo(add(float(1), float(2))),
   foo(add($x(bar), $y(bar)))
 ], true);
 
+// GLSL codegen
 const glsl = targetGLSL();
 
 // unoptimized AST as GLSL (see section above)
-glsl(prog);
-
-// float foo(in float _sym0) {
-//   return (_sym0 * (-10.0 + 42.0));
-// };
+console.log(glsl(prog));
+// #version 300 es
+// float foo(in float _s0) {
+// return (_s0 * ((-10.0) + 42.0));
+// }
 // foo((1.0 + 2.0));
 // foo((vec2(100.0, 200.0).x + vec2(100.0, 200.0).y));
 
-// same tree after constant folding optimizations
-glsl(constantFolding(prog))
-
-// float foo(in float _sym0) {
-//   return (_sym0 * 32.0);
-// };
+// with constant folding
+console.log(glsl(constantFolding(prog)))
+// #version 300 es
+// float foo(in float _s0) {
+// return (_s0 * 32.0);
+// }
 // foo(3.0);
 // foo(300.0);
 
 const expr = mul(float(4), $x(vec2(2)))
 
-glsl(expr)
+console.log(glsl(expr))
 // (4.0 * vec2(2.0).x)
 
-glsl(constantFolding(expr))
+// optimize single expression
+console.log(glsl(constantFolding(expr)))
 // 8.0
 ```
 
@@ -112,7 +127,7 @@ For Node.js REPL:
 const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1014 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.02 KB
 
 ## Dependencies
 
