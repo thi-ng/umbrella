@@ -56,26 +56,27 @@ const DEFAULT_OPTS: Partial<CommonCSVOpts> = {
  * - {@link parseCSVFromString}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/parse-csv.ts
  * import { parseCSV, upper, float } from "@thi.ng/csv";
  *
- * [...parseCSV(
- *   {
- *     all: false,
- *     cols: {
- *       "country": { tx: upper },
- *       "latitude": { alias: "lat", tx: float() },
- *       "longitude": { alias: "lon", tx: float() },
- *     }
- *   },
- *   [
- *      `"country","country group","name (en)","latitude","longitude"`,
- *      `"at","eu","Austria","47.6965545","13.34598005"`,
- *      `"be","eu","Belgium","50.501045","4.47667405"`,
- *      `"bg","eu","Bulgaria","42.72567375","25.4823218"`,
- *   ]
- * )]
- *
+ * console.log(
+ *   [...parseCSV(
+ *     {
+ *       all: false,
+ *       cols: {
+ *         "country": { tx: upper },
+ *         "latitude": { alias: "lat", tx: float() },
+ *         "longitude": { alias: "lon", tx: float() },
+ *       }
+ *     },
+ *     [
+ *        `"country","country group","name (en)","latitude","longitude"`,
+ *        `"at","eu","Austria","47.6965545","13.34598005"`,
+ *        `"be","eu","Belgium","50.501045","4.47667405"`,
+ *        `"bg","eu","Bulgaria","42.72567375","25.4823218"`,
+ *     ]
+ *   )]
+ * );
  * // [
  * //   { country: 'AT', lat: 47.6965545, lon: 13.34598005 },
  * //   { country: 'BE', lat: 50.501045, lon: 4.47667405 },
@@ -193,10 +194,15 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
  * those used by {@link parseCSV}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/parse-csv-simple.ts
  * import { parseCSVSimple, float } from "@thi.ng/csv";
  *
- * [...parseCSVSimple({ cols: [float(), ,float()]}, ["a,b,c","1,2,3","4,5,6"])]
+ * console.log(
+ *   [...parseCSVSimple(
+ *     { cols: [float(), null,float()]},
+ *     ["a,b,c","1,2,3","4,5,6"])
+ *   ]
+ * );
  * // [ [ 1, 3 ], [ 4, 6 ] ]
  * ```
  *

@@ -12,18 +12,24 @@ import { decomposeDuration } from "./duration.js";
  * via 2nd arg (default: all `:`).
  *
  * @example
- * ```ts
- * import { defTimecode } from "@thi.ng/date";
+ * ```ts tangle:../export/timecode.ts
+ * import { defTimecode, DAY, HOUR, MINUTE, SECOND } from "@thi.ng/date";
  *
- * a = defTimecode(30);
- * a(HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
+ * const fmt = defTimecode(30);
+ *
+ * console.log(
+ *   fmt(HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
+ * );
  * // "01:02:03:04"
  *
- * a(DAY);
+ * console.log(fmt(DAY));
  * // "01:00:00:00:00"
  *
- * b = defTimecode(30, ["d ", "h ", "' ", '" ']);
- * b(Day + HOUR + 2*MINUTE + 3*SECOND + 999)
+ * const fmt2 = defTimecode(30, ["d ", "h ", "' ", '" ']);
+ *
+ * console.log(
+ *   fmt2(DAY + HOUR + 2 * MINUTE + 3 * SECOND + 999)
+ * );
  * // "01d 01h 02' 03" 29"
  * ```
  *

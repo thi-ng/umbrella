@@ -18,7 +18,7 @@ import { DEFAULT, defmulti } from "./defmulti.js";
  * however you can specify the return type for the generated function.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/defmulti-n.ts
  * import { defmultiN } from "@thi.ng/defmulti";
  *
  * const foo = defmultiN<string>({
@@ -27,17 +27,21 @@ import { DEFAULT, defmulti } from "./defmulti.js";
  *   3: (x, y, z) => `three: ${x}, ${y}, ${z}`
  * });
  *
- * foo();
+ * console.log(foo());
  * // zero
- * foo(23);
+ *
+ * console.log(foo(23));
  * // one: 23
- * foo(1, 2, 3);
+ *
+ * console.log(foo(1, 2, 3));
  * // three: 1, 2, 3
- * foo(1, 2);
+ *
+ * console.log(foo(1, 2));
  * // Error: illegal arity: 2
  *
  * foo.add(2, (x, y) => `two: ${x}, ${y}`);
- * foo(1, 2);
+ *
+ * console.log(foo(1, 2));
  * // two: 1, 2
  * ```
  *

@@ -18,13 +18,13 @@ import type { Implementation, MultiFn } from "./api.js";
  * multi-method and the given `type` dispatch value.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/implementations.ts
  * import { defmulti, implementations } from "@thi.ng/defmulti";
  *
- * foo = defmulti((x) => x.id);
- * bar = defmulti((x) => x.id);
- * bax = defmulti((x) => x.id);
- * baz = defmulti((x) => x.id);
+ * const foo = defmulti((x) => x.id);
+ * const bar = defmulti((x) => x.id);
+ * const bax = defmulti((x) => x.id);
+ * const baz = defmulti((x) => x.id);
  *
  * // define impls for dispatch value `a`
  * implementations(
@@ -46,15 +46,24 @@ import type { Implementation, MultiFn } from "./api.js";
  * // add parent impls
  * bax.add("b", (x) => `bax: ${x.id}`);
  * baz.add("c", (x) => `baz: ${x.id}`);
+ *
  * // use "c" impl for "b"
  * baz.isa("b", "c");
  *
- * foo({ id: "a", val: "alice" }); // "foo: alice"
- * bar({ id: "a", val: "alice" }); // "bar: ALICE"
- * bax({ id: "a", val: "alice" }); // "bax: a"
- * baz({ id: "a", val: "alice" }); // "baz: a"
+ * console.log(foo({ id: "a", val: "alice" }));
+ * // "foo: alice"
  *
- * baz.impls(); // Set { "c", "a", "b" }
+ * console.log(bar({ id: "a", val: "alice" }));
+ * // "bar: ALICE"
+ *
+ * console.log(bax({ id: "a", val: "alice" }));
+ * // "bax: a"
+ *
+ * console.log(baz({ id: "a", val: "alice" }));
+ * // "baz: a"
+ *
+ * console.log([...baz.impls().keys()]);
+ * // Set { "c", "a", "b" }
  * ```
  *
  * @param id - dispatch value / implementation ID

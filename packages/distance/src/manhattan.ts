@@ -21,32 +21,32 @@ import type { IDistance, Metric } from "./api.js";
  * package...
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/manhattan.ts
  * import { MANHATTAN2 } from "@thi.ng/distance";
  *
- * MANHATTAN2.metric([0,0], [10,20])
+ * console.log(MANHATTAN2.metric([0,0], [10,20]));
  * // 30
  *
- * MANHATTAN2.from(30);
+ * console.log(MANHATTAN2.from(30));
  * // 21.213203435596427
  *
- * Math.hypot(15, 15) // <-- diagonal of manhattan square
+ * console.log(Math.hypot(15, 15)); // <-- diagonal of manhattan square
  * // 21.213203435596427
  *
- * Math.hypot(10, 20) // <-- actual eucledian dist
+ * console.log(Math.hypot(10, 20)); // <-- actual eucledian dist
  * // 22.360679774997898
  *
- * MANHATTAN2.to(21.213203435596427)
+ * console.log(MANHATTAN2.to(21.213203435596427));
  * // 30
  *
  * // however, starting w/ eucledian dist first
- * e = Math.hypot(10, 20)
+ * const e = Math.hypot(10, 20)
  * // 22.360679774997898
  *
- * m = MANHATTAN2.to(e)
+ * const m = MANHATTAN2.to(e)
  * // 31.622776601683793
  *
- * MANHATTAN2.from(m) === e
+ * console.log(MANHATTAN2.from(m) === e);
  * // true
  * ```
  */

@@ -261,13 +261,15 @@ const themePartFromString = (part: string) =>
  * is 1.0.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/colors-from-theme.ts
  * import { colorsFromTheme } from "@thi.ng/color";
  *
- * [...colorsFromTheme(
- *   [["cool", "aliceblue"], ["bright", "orange", 0.25], ["hotpink", 0.1]],
- *   { num: 10 }
- * )]
+ * console.log(
+ *   [...colorsFromTheme(
+ *     [["cool", "aliceblue"], ["bright", "orange", 0.25], ["hotpink", 0.1]],
+ *     { num: 10 }
+ *   )]
+ * );
  * ```
  *
  * @param parts -

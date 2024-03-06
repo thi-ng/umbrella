@@ -9,7 +9,7 @@ import type { Fn, Fn2 } from "@thi.ng/api";
  * callback, which then either resolves or rejects the promise.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/promisify.ts
  * import { promisify } from "@thi.ng/compose";
  *
  * (async () => {

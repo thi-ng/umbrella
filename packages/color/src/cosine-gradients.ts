@@ -266,7 +266,7 @@ export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
  * [`tween()`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/cosine-gradient.ts
  * import { multiCosineGradient, srgb } from "@thi.ng/color";
  *
  * multiCosineGradient({

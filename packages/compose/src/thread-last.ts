@@ -13,7 +13,7 @@ import type { FnAny } from "@thi.ng/api";
  * execution (same as the `->>` operator/macro in Clojure).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/thread-last.ts
  * import { threadLast } from "@thi.ng/compose";
  *
  * const neg = (x) => -x;

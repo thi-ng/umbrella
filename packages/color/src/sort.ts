@@ -50,7 +50,7 @@ export const sort = <T extends ReadonlyColor>(
  * BUT sorts the **apparent** order by swapping the contents of the backing
  * memory.
  *
- * ```ts
+ * ```ts tangle:../export/sort-mapped.ts
  * import { css, luminanceSrgb, sortMapped, srgb } from "@thi.ng/color";
  *
  * // memory buffer of 4 sRGB colors

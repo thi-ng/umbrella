@@ -15,7 +15,7 @@ import type { Fn0 } from "@thi.ng/api";
  * consumes max. 2 extra stack frames, independent from recursion depth.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/trampoline.ts
  * import { trampoline } from "@thi.ng/compose";
  *
  * const countdown = (acc, x) =>

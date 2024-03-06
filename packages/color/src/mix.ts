@@ -88,14 +88,18 @@ export const mixNNNN: ColorMixFn = mixN4;
  * functions to create non-linear interpolations. For example:
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mix.ts
  * import { mix, rgb, RED, GREEN } from "@thi.ng/color";
  * import { circular } from "@thi.ng/math";
  *
- * mix([], rgb("#f00"), rgb("#0f0"), 0.5);
+ * console.log(
+ *   mix([], rgb("#f00"), rgb("#0f0"), 0.5)
+ * );
  * // [ 0.5, 0.5, 0, 1 ]
  *
- * mix([], RED, GREEN, circular(0.5));
+ * console.log(
+ *   mix([], rgb(RED), rgb(GREEN), circular(0.5))
+ * );
  * // [ 0.1339745962155614, 0.8660254037844386, 0, 1 ]
  * ```
  *

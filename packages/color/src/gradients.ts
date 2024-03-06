@@ -10,7 +10,7 @@ import { mix as $mix } from "./mix.js";
 /**
  * Similar to {@link multiCosineGradient}, but using any number of gradient
  * color stops and isn't limited to RGB, but for arbitrary color types. The
- * optional `isABGR` boolean arg can be used to autoconvert resulting colors
+ * optional `isABGR` boolean arg can be used to auto-convert resulting colors
  * into packed ARGB (false) or ABGR (true) integers. If that arg is given, an
  * array of numbers will be returned.
  *
@@ -19,12 +19,13 @@ import { mix as $mix } from "./mix.js";
  * [`tween()`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/multi-color-gradient.ts
  * import { lch, multiColorGradient, swatchesH } from "@thi.ng/color";
  * import { serialize } from "@thi.ng/hiccup";
  * import { svg } from "@thi.ng/hiccup-svg";
+ * import { writeFileSync } from "node:fs";
  *
- * gradient = multiColorGradient({
+ * const gradient = multiColorGradient({
  *   num: 100,
  *   // LCH color stops
  *   stops: [

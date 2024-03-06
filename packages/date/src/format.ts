@@ -170,15 +170,19 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * formatter and use as a string literal, prefix the term with `\\`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-format.ts
  * import { defFormat } from "@thi.ng/date";
  *
  * const fmt = defFormat(["yyyy", "-", "MM", "-", "dd"]);
  *
- * fmt(new Date(2015, 3, 23))
+ * console.log(
+ *   fmt(new Date(2015, 3, 23))
+ * );
  * // "2015-04-23"
  *
- * defFormat(["\\yyyy"])(new Date(2015, 3, 23))
+ * console.log(
+ *   defFormat(["\\yyyy"])(new Date(2015, 3, 23))
+ * );
  * // "yyyy"
  * ```
  *
@@ -317,19 +321,27 @@ export const FMT_ss = defFormat(["ss"]);
  *
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/format-relative.ts
  * import { formatRelative } from "@thi.ng/date";
  *
- * formatRelative("2020-06-01", "2021-07-01")
+ * console.log(
+ *   formatRelative("2020-06-01", "2021-07-01")
+ * );
  * // "1 year ago"
  *
- * formatRelative("2020-08-01", "2021-07-01")
+ * console.log(
+ *   formatRelative("2020-08-01", "2021-07-01")
+ * );
  * // "11 months ago"
  *
- * formatRelative("2021-07-01 13:45", "2021-07-01 12:05")
+ * console.log(
+ *   formatRelative("2021-07-01 13:45", "2021-07-01 12:05")
+ * );
  * // "in 2 hours"
  *
- * formatRelative("2021-07-01 12:23:24", "2021-07-01 12:05")
+ * console.log(
+ *   formatRelative("2021-07-01 12:23:24", "2021-07-01 12:05")
+ * );
  * // "in 18 minutes"
  * ```
  *
@@ -389,18 +401,26 @@ export const formatRelative = (
  * given dates to extract parts for formatting.
  *
  * @example
- * ```ts
- * import { formatRelativeParts } from "@thi.ng/date";
+ * ```ts tangle:../export/format-relative-parts.ts
+ * import { formatRelativeParts, setLocale, EN_LONG } from "@thi.ng/date";
+ *
+ * setLocale(EN_LONG);
  *
  * // with default precision (seconds)
- * formatRelativeParts("2022-09-01 12:23:24", "2021-07-01 12:05")
+ * console.log(
+ *   formatRelativeParts("2022-09-01 12:23:24", "2021-07-01 12:05")
+ * );
  * // "in 1 year, 2 months, 21 hours, 18 minutes, 24 seconds"
  *
  * // with day precision
- * formatRelativeParts("2012-12-25 17:59", "2021-07-01 12:05", "d")
+ * console.log(
+ *   formatRelativeParts("2012-12-25 17:59", "2021-07-01 12:05", "d")
+ * );
  * // "8 years, 6 months, 5 days ago"
  *
- * formatRelativeParts("2021-07-01 17:59", "2021-07-01 12:05", "d")
+ * console.log(
+ *   formatRelativeParts("2021-07-01 17:59", "2021-07-01 12:05", "d")
+ * );
  * // "in less than a day"
  * ```
  *
@@ -427,16 +447,22 @@ export const formatRelativeParts = (
  * {@link LOCALE}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/format-duration.ts
  * import { formatDuration } from "@thi.ng/date";
  *
- * formatDuration(45296000)
+ * console.log(
+ *   formatDuration(45296000)
+ * );
  * // "12 h, 34 min, 56 s"
  *
- * formatDuration(45296000, "h")
+ * console.log(
+ *   formatDuration(45296000, "h")
+ * );
  * // "13 h"
  *
- * formatDuration(45296000,"d")
+ * console.log(
+ *   formatDuration(45296000,"d")
+ * );
  * // "< 1 d"
  * ```
  *

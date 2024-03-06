@@ -39,7 +39,7 @@ export const defFilter =
  * which only succeeds if *all* given predicates pass.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/comp-filter.ts
  * import { compFilter, chroma, luma, cssThemes } from "@thi.ng/color-palettes";
  *
  * // pre-compose combined query filter
@@ -50,7 +50,7 @@ export const defFilter =
  *   luma(0.5, 1, 3)
  * );
  *
- * [...cssThemes(pastels)]
+ * console.log([...cssThemes(pastels)])
  * // [
  * //   [ '#453f38', '#746b5d', '#b39777', '#c1c2b2', '#e3dccf', '#f1ede7' ],
  * //   [ '#857b84', '#b1a7b0', '#d0c7d0', '#e7e0e8', '#faeceb', '#e4e9fa' ]

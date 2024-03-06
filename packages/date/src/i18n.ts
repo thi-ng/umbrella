@@ -72,25 +72,37 @@ export const monthNames = () => LOCALE.months.slice();
  * {@link formatRelativeParts}.
  *
  * @example
- * ```ts
- * import { withLocale } from "@thi.ng/date";
+ * ```ts tangle:../export/units.ts
+ * import { units, withLocale, FR_LONG, DE_LONG } from "@thi.ng/date";
  *
- * withLocale(FR_LONG, () => units(1, "y"));
+ * console.log(
+ *   withLocale(FR_LONG, () => units(1, "y"))
+ * );
  * // "1 année"
  *
- * withLocale(FR_LONG, () => units(1, "y", true));
+ * console.log(
+ *   withLocale(FR_LONG, () => units(1, "y", true))
+ * );
  * // "1 an"
  *
- * withLocale(FR_LONG, () => units(2, "y"));
+ * console.log(
+ *   withLocale(FR_LONG, () => units(2, "y"))
+ * );
  * // "2 ans"
  *
- * withLocale(FR_LONG, () => units(2, "y", true));
+ * console.log(
+ *   withLocale(FR_LONG, () => units(2, "y", true))
+ * );
  * // "2 ans"
  *
- * withLocale(DE_LONG, () => units(2, "y"));
+ * console.log(
+ *   withLocale(DE_LONG, () => units(2, "y"))
+ * );
  * // "2 Jahre"
  *
- * withLocale(DE_LONG, () => units(2, "y", true));
+ * console.log(
+ *   withLocale(DE_LONG, () => units(2, "y", true))
+ * );
  * // "2 Jahren"
  * ```
  *
@@ -122,10 +134,12 @@ export const units = (
  * than {x} {unit(s)}`.
  *
  * @example
- * ```ts
- * import { withLocale } from "@thi.ng/date";
+ * ```ts tangle:../export/units-less-than.ts
+ * import { unitsLessThan, withLocale, DE_LONG } from "@thi.ng/date";
  *
- * withLocale(DE_LONG, () => unitsLessThan(1, "y"));
+ * console.log(
+ *   withLocale(DE_LONG, () => unitsLessThan(1, "y"))
+ * );
  * // "weniger als 1 Jahr"
  * ```
  *

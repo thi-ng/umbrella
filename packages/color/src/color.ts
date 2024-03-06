@@ -50,19 +50,19 @@ const FACTORIES: Record<ColorMode, ColorFactory<any>> = {
  * for it (potentially by first parsing the color).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/color.ts
  * import { color } from "@thi.ng/color";
  *
- * color("springgreen");
+ * console.log(color("springgreen"));
  * // $Color [srgb] { offset: 0, stride: 1, buf: [ 0, 1, 0.498, 1 ] }
  *
- * color("#ff0")
+ * console.log(color("#ff0"));
  * // $Color [srgb] { offset: 0, stride: 1, buf: [ 1, 1, 0, 1 ] }
  *
- * color("oklch(60% 0.15 50)");
+ * console.log(color("oklch(60% 0.15 50)"));
  * // $Color [oklch] { offset: 0, stride: 1, buf: [ 0.6, 0.0015, 0.139, 1 ] }
  *
- * color("hsv", [0.5, 1, 1, 1])
+ * console.log(color("hsv", [0.5, 1, 1, 1]));
  * // $Color [hsv] { offset: 0, stride: 1, buf: [ 0.5, 1, 1, 1 ] }
  * ```
  *

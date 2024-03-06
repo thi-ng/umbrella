@@ -205,7 +205,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 	 * output channel is closed too (by default).
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/merge-tuples.ts
 	 * import { Channel } from "@thi.ng/csp";
 	 *
 	 * Channel.mergeTuples([

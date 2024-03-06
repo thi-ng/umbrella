@@ -19,11 +19,11 @@ import { EUCLEDIAN } from "./metric.js";
  * Reference: http://www.cs.rug.nl/~roe/publications/dt.pdf
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/distance-transform.ts
  * import { distanceTransform, EUCLEDIAN } from "@thi.ng/distance-transform";
  * import {
  *   intBuffer, GRAY8,
- *   floatBuffer, FLOAT_GRAY
+ *   floatBuffer, FLOAT_GRAY,
  *   canvasFromPixelBuffer
  * } from "@thi.ng/pixel";
  * import { SYSTEM } from "@thi.ng/random";

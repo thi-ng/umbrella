@@ -151,7 +151,7 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  * supported. The same limit applies to the number of CA configs given.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/wolfram.ts
  * import { MultiCA1D } from "@thi.ng/cellular";
  *
  * // classic Wolfram Rule 110 automata
@@ -163,7 +163,7 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  *     reset: false
  *   }],
  *   256
- * )
+ * );
  * ```
  */
 export class MultiCA1D implements IClear {
