@@ -156,7 +156,7 @@ export class AxiDraw implements IReset {
 	 * Also see {@link complete}.
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/draw.ts
 	 * import { AxiDraw, polyline, START, STOP } from "@thi.ng/axidraw";
 	 *
 	 * const axi = new AxiDraw();

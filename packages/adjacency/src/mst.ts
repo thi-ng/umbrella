@@ -25,7 +25,7 @@ import { DisjointSet } from "./disjoint-set.js";
  * - https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mst.ts
  * import { mst } from "@thi.ng/adjacency";
  * import { distSq } from "@thi.ng/vectors";
  *
@@ -35,16 +35,17 @@ import { DisjointSet } from "./disjoint-set.js";
  * // connections (vertex ID pairs)
  * edges = [[0,1], [0,4], [1,2], [1,3], [2,3], [2,4]]
  *
- * mst(
- *   edges,
- *   // max vertex ID
- *   4,
- *   // cost function (cartesian distance)
- *   ([a, b]) => distSq(verts[a], verts[b]),
- *   // edge vertex IDs
- *   (e) => e
- * )
- *
+ * console.log(
+ *   mst(
+ *     edges,
+ *     // max vertex ID
+ *     4,
+ *     // cost function (cartesian distance)
+ *     ([a, b]) => distSq(verts[a], verts[b]),
+ *     // edge vertex IDs
+ *     (e) => e
+ *   )
+ * );
  * // [ [ 0, 1 ], [ 1, 2 ], [ 2, 3 ], [ 2, 4 ] ]
  * ```
  *

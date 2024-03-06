@@ -21,10 +21,12 @@ export const commonKeysMap = <K>(
  * of the given objects' key / property sets.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/common-keys.ts
  * import { commonKeysObj } from "@thi.ng/associative";
  *
- * commonKeys({ a: 1, b: 2 }, { c: 10, b: 20, a: 30 })
+ * console.log(
+ *   commonKeys({ a: 1, b: 2 }, { c: 10, b: 20, a: 30 })
+ * );
  * // [ "a", "b" ]
  * ```
  *

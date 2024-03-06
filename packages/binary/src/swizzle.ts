@@ -100,12 +100,23 @@ export const setLane2 = (x: number, y: number, lane: Lane2) => {
  * Re-orders byte lanes in given order (MSB).
  *
  * @example
- * ```ts
- * import { swizzle } from "@thi.ng/binary";
+ * ```ts tangle:../export/swizzle.ts
+ * import { swizzle8 } from "@thi.ng/binary";
  *
- * swizzle(0x12345678, 3, 2, 1, 0) // 0x78563412
- * swizzle(0x12345678, 1, 0, 3, 2) // 0x34127856
- * swizzle(0x12345678, 2, 2, 0, 0) // 0x56561212
+ * console.log(
+ *   swizzle8(0x12345678, 3, 2, 1, 0).toString(16)
+ * );
+ * // 0x78563412
+ *
+ * console.log(
+ *   swizzle8(0x12345678, 1, 0, 3, 2).toString(16)
+ * );
+ * // 0x34127856
+ *
+ * console.log(
+ *   swizzle8(0x12345678, 2, 2, 0, 0).toString(16)
+ * );
+ * // 0x56561212
  * ```
  *
  * @param x - value
@@ -159,13 +170,17 @@ export const swizzle4 = (
  * are set.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mux.ts
  * import { mux } from "@thi.ng/binary";
  *
- * mux(0x12345678, 0xaaaa5555, 0xffff0000)
+ * console.log(
+ *   mux(0x12345678, 0xaaaa5555, 0xffff0000)
+ * );
  * // 0xaaaa5678
  *
- * mux(0x12345678, 0xaaaa5555, 0x0000ffff)
+ * console.log(
+ *   mux(0x12345678, 0xaaaa5555, 0x0000ffff)
+ * );
  * // 0x12345555
  * ```
  *
@@ -187,10 +202,12 @@ export const flip8: FnN = (x) =>
  * Swaps the highest & lowest 16 bits in `x`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/flip16.ts
  * import { flip16 } from "@thi.ng/binary";
  *
- * flip16(0x12345678)
+ * console.log(
+ *   flip16(0x12345678).toString(16)
+ * );
  * // 0x56781234
  * ```
  *

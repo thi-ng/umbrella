@@ -13,22 +13,27 @@ import { illegalState } from "@thi.ng/errors";
  * cycle will be part of the error message (see second example below).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/topo-sort.ts
  * import { topoSort } from "@thi.ng/arrays";
  *
- * const graph = {
+ * const graph: Record<string, { deps?: string[] }> = {
  *   a: { deps: ["c", "b"] },
  *   b: {},
  *   c: { deps: ["d"] },
  *   d: { deps: ["b"] }
  * };
- * topoSort(graph, (node) => node.deps);
+ *
+ * console.log(
+ *   topoSort(graph, (node) => node.deps)
+ * );
  * // [ "b", "d", "c", "a" ]
  *
  * // An error will be thrown if the graph contains cycles...
- * graph.d.deps.push("a");
+ * graph.d.deps!.push("a");
  *
- * topoSort(graph, (node) => node.deps);
+ * console.log(
+ *   topoSort(graph, (node) => node.deps)
+ * );
  * // Uncaught Error: illegal state: dependency cycle: a -> c -> d -> a
  * ```
  *

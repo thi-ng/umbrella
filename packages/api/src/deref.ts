@@ -22,7 +22,7 @@ export type Derefed<T> = T extends IDeref<any> ? ReturnType<T["deref"]> : T;
  * attempts to resolve each given key via {@link Derefed}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/deref.ts
  * import type { DerefedKeys, IDeref } from "@thi.ng/api";
  *
  * interface Foo {

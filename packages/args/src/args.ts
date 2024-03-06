@@ -259,10 +259,12 @@ export const kvPairsMulti = <S extends Partial<ArgSpec<KVMultiDict>>>(
  * specified tuple size or any value coercion fails.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/tuple.ts
  * import { coerceInt, parse, tuple } from "@thi.ng/args";
  *
- * parse({ a: tuple(coerceInt, 2, {})}, ["--a", "1,2"])
+ * console.log(
+ *   parse({ a: tuple(coerceInt, 2, {})}, ["--a", "1,2"])
+ * );
  * // {
  * //   result: { a: Tuple { value: [1, 2] } },
  * //   index: 2,

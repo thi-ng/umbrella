@@ -9,18 +9,22 @@
  * comparison.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/select-threshold.ts
  * import { selectThresholdMin } from "@thi.ng/arrays";
  *
  * const numColumns = selectThresholdMin({ 480: 1, 640: 2, 960: 3 }, 4);
  *
- * numColumns(320) // 1
+ * console.log(numColumns(320));
+ * // 1
  *
- * numColumns(481) // 2
+ * console.log(numColumns(481));
+ * // 2
  *
- * numColumns(768) // 3
+ * console.log(numColumns(768));
+ * // 3
  *
- * numColumns(1024) // 4
+ * console.log(numColumns(1024));
+ * // 4
  * ```
  *
  * @param thresholds

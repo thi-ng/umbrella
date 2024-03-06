@@ -39,11 +39,11 @@ export interface DipOpts {
  * paint reservoir to refill.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/dip.ts
  * import { dip, MOVE } from "@thi.ng/axidraw";
  *
  * // simple 2x up/down
- * [...dip(2)]
+ * console.log([...dip(2)]);
  * // [
  * //   [ "d", undefined ],
  * //   [ "u", undefined ],
@@ -52,11 +52,13 @@ export interface DipOpts {
  * // ]
  *
  * // 3x dipping with custom up/down delays, each time at a random position
- * [...dip(3, {
- *   down: 300,
- *   up: 400,
- *   commands: () => [ MOVE([Math.random()* 5, Math.random()* 5]) ]
- * })]
+ * console.log(
+ *   [...dip(3, {
+ *     down: 300,
+ *     up: 400,
+ *     commands: () => [ MOVE([Math.random()* 5, Math.random()* 5]) ]
+ *   })]
+ * );
  * // [
  * //   [ "d", 300 ],
  * //   [ "M", [ 3.996, 1.707 ], 1 ],

@@ -161,26 +161,26 @@ export class Profiler
 	 * no-op.
 	 *
 	 * * @example
-	 * ```ts
+	 * ```ts tangle:../export/profiler.ts
 	 * import { Profiler } from "@thi.ng/bench";
 	 *
 	 * const profiler = new Profiler();
 	 *
 	 * // recursive function
-	 * const countdown = (n, acc = []) => {
+	 * const countdown = (n: number, acc: number[] = []) => {
 	 *   profiler.start("countdown");
 	 *   if (n > 0) countdown(n - 1, (acc.push(n),acc));
 	 *   profiler.end("countdown");
 	 *   return acc;
 	 * }
 	 *
-	 * countdown(10);
+	 * console.log(countdown(10));
 	 * // [ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ]
 	 *
-	 * countdown(5);
+	 * console.log(countdown(5));
 	 * // [ 5, 4, 3, 2, 1 ]
 	 *
-	 * profiler.deref()
+	 * console.log(profiler.deref());
 	 * // {
 	 * //   countdown: {
 	 * //     id: 'countdown',
@@ -266,7 +266,7 @@ export class Profiler
 	 * `fn`.
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/profiler-wrap.ts
 	 * import { Profiler } from "@thi.ng/bench";
 	 *
 	 * const profiler = new Profiler();
@@ -276,10 +276,10 @@ export class Profiler
 	 *   (vec: number[]) => vec.reduce((acc, x) => acc + x, 0)
 	 * );
 	 *
-	 * sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+	 * console.log(sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
 	 * // 55
 	 *
-	 * profiler.deref()
+	 * console.log(profiler.deref());
 	 * // {
 	 * //   sum: {
 	 * //     id: 'sum',

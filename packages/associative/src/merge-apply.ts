@@ -37,12 +37,14 @@ export const mergeApplyMap = <K, V>(
  * Returns new merged object and does not modify any of the inputs.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/merge-apply.ts
  * import { mergeApplyObj } from "@thi.ng/associative";
  *
- * mergeApplyObj(
- *   { a: "hello", b: 23, c: 12 },
- *   { a: (x) => x + " world", b: 42 }
+ * console.log(
+ *   mergeApplyObj(
+ *     { a: "hello", b: 23, c: 12 },
+ *     { a: (x) => x + " world", b: 42 }
+ *   )
  * );
  * // { a: 'hello world', b: 42, c: 12 }
  * ```

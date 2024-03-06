@@ -10,19 +10,21 @@ import type { Fn3, TypedArray } from "@thi.ng/api";
  * the [0..dest.length) interval.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/blit1d.ts
  * import { blit1d } from "@thi.ng/arrays";
  *
- * blit1d(
- *    // dest array
- *    [1, 1, 1, 1, 1, 1, 1, 1, 1],
- *    // paste from index 2
- *    2,
- *    // source array
- *    [2, 3, 2, 3, 2],
- *    // mask value
- *    3
- * )
+ * console.log(
+ *   blit1d(
+ *      // dest array
+ *      [1, 1, 1, 1, 1, 1, 1, 1, 1],
+ *      // paste from index 2
+ *      2,
+ *      // source array
+ *      [2, 3, 2, 3, 2],
+ *      // mask value
+ *      3
+ *   )
+ * );
  * //[1, 1, 2, 1, 2, 1, 2, 1, 1]
  * ```
  *

@@ -19,10 +19,12 @@ import { compareNumAsc } from "@thi.ng/compare/numeric";
  * compatible with that of `cmp`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/binary-search1.ts
  * import { binarySearch } from "@thi.ng/arrays";
  *
- * binarySearch([2, 4, 6], 5);
+ * console.log(
+ *   binarySearch([2, 4, 6], 5)
+ * );
  * // -3
  * ```
  *
@@ -157,10 +159,12 @@ export const binarySearch32 = (buf: ArrayLike<number>, x: number) => {
  * values exist.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/binary-search2.ts
  * import { binarySearch, bsLT } from "@thi.ng/arrays";
  *
- * bsLT(binarySearch([10, 20, 30, 40], 25))
+ * console.log(
+ *   bsLT(binarySearch([10, 20, 30, 40], 25))
+ * )
  * // 1
  * ```
  *
@@ -181,15 +185,19 @@ export const bsLE: FnN = (i) => (i < 0 ? -i - 2 : i);
  * such values exist.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/binary-search3.ts
  * import { binarySearch, bsGT } from "@thi.ng/arrays";
  *
- * src = [10, 20, 30, 40];
+ * const src = [10, 20, 30, 40];
  *
- * bsGT(binarySearch(src, 25), src.length)
+ * console.log(
+ *   bsGT(binarySearch(src, 25), src.length)
+ * )
  * // 2
  *
- * bsGT(binarySearch(src, 40), src.length)
+ * console.log(
+ *   bsGT(binarySearch(src, 40), src.length)
+ * )
  * // -1
  * ```
  *

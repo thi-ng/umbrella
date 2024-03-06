@@ -47,14 +47,16 @@ const DEFAULT_LOAD = 0.75;
  * See {@link HashMapOpts} for further configuration & behavior details.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/hash-map.ts
  * import { HashMap } from "@thi.ng/associative";
  * import { hash } from "@thi.ng/vectors";
  *
- * m = new HashMap([], { hash })
+ * const m = new HashMap([], { hash })
  * m.set([1, 2], "a");
  * m.set([3, 4], "b");
  * m.set([1, 2], "c");
+ *
+ * console.log([...m]);
  * // HashMap { [ 1, 2 ] => 'c', [ 3, 4 ] => 'b' }
  * ```
  *

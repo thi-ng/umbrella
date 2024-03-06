@@ -9,14 +9,18 @@ import type { Predicate2 } from "@thi.ng/api";
  * See {@link argMax}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/argmin.ts
  * import { argMin } from "@thi.ng/arrays";
  *
- * argMin([42, 11, 66, 23])
+ * console.log(
+ *   argMin([42, 11, 66, 23])
+ * );
  * // 1
  *
  * // same as argmax() with defaults
- * argMin([42, 11, 66, 23], -Infinity, (a, b) => a > b)
+ * console.log(
+ *   argMin([42, 11, 66, 23], -Infinity, (a, b) => a > b)
+ * );
  * // 2
  * ```
  *

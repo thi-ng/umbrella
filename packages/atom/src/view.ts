@@ -138,22 +138,25 @@ export function defViewUnsafe<T = undefined>(
  * used.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/view.ts
  * import { defAtom, defView } from "@thi.ng/atom";
  *
- * a = defAtom({ a: { b: 1 } });
- * v = defView(a, ["a", "b"], (x) => x * 10);
+ * const a = defAtom({ a: { b: 1 } });
+ * const v = defView(a, ["a", "b"], (x) => x * 10);
  *
- * v.deref()
+ * console.log(v.deref());
  * // 10
  *
  * // update atom state
- * a.resetIn(["a", "b"], 2);
+ * console.log(
+ *   a.resetIn(["a", "b"], 2)
+ * );
  * // { a: { b: 2 } }
  *
- * v.changed()
+ * console.log(v.changed());
  * // true
- * v.deref()
+ *
+ * console.log(v.deref());
  * // 20
  *
  * // remove view from parent state

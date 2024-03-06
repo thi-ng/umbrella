@@ -10,7 +10,7 @@ import { DOWN, MOVE, UP } from "./commands.js";
  * (crosshair + circle) centered around `pos`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/registration.ts
  * import { AxiDraw, registrationMark } from "@thi.ng/axidraw";
  *
  * const axi = new AxiDraw();

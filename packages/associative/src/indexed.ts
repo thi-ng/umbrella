@@ -8,13 +8,15 @@ import { selectKeysObj } from "./select-keys.js";
  * to group original values. Returns a new {@link EquivMap} of sets.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/indexed.ts
  * import { indexed } from "@thi.ng/associative";
  *
- * indexed(
- *   new Set([{a: 1, b: 1}, {a: 1, b: 2}, {a: 1, b: 1, c: 2}]),
- *   ["a","b"]
- * )
+ * console.log(
+ *   indexed(
+ *     new Set([{a: 1, b: 1}, {a: 1, b: 2}, {a: 1, b: 1, c: 2}]),
+ *     ["a","b"]
+ *   )
+ * );
  * // EquivMap {
  * //   { a: 1, b: 1 } => Set { { a: 1, b: 1 }, { a: 1, b: 1, c: 2 } },
  * //   { a: 1, b: 2 } => Set { { a: 1, b: 2 } } }

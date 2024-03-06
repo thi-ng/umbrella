@@ -11,12 +11,14 @@ import { sortByCachedKey } from "./sort-cached.js";
  * Also see {@link swizzle} to read an array in custom order.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/arg-sort.ts
  * import { argSort, swizzle } from "@thi.ng/arrays";
  *
  * const src = ["a", "c", "d", "b"];
  *
- * argSort(src)
+ * console.log(
+ *   argSort(src)
+ * );
  * // [ 0, 3, 1, 2 ]
  *
  * // src[0] => "a"
@@ -24,7 +26,9 @@ import { sortByCachedKey } from "./sort-cached.js";
  * // src[1] => "c"
  * // src[2] => "d"
  *
- * swizzle(argSort(src))(src)
+ * console.log(
+ *   swizzle(argSort(src))(src)
+ * );
  * // [ 'a', 'b', 'c', 'd' ]
  * ```
  *

@@ -19,20 +19,23 @@ import { swap } from "./swap.js";
  * - https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
  *
  * @example
- * ```ts
- * import { quickSort } from "@thi.ng/arrays";
+ * ```ts tangle:../export/quicksort.ts
+ * import { quickSort, multiSwap } from "@thi.ng/arrays";
  *
- * a = [4, 3, 1, 8, 5]
- * b = [40, 30, 10, 80, 50]
- * c = [-4, -3, -1, -8, -5]
+ * const a = [4, 3, 1, 8, 5]
+ * const b = [40, 30, 10, 80, 50]
+ * const c = [-4, -3, -1, -8, -5]
  *
  * // use `multiSwap` to sort extra arrays based on sort order of `a`
- * quickSort(a, undefined, multiSwap(b, c))
+ * console.log(
+ *   quickSort(a, undefined, multiSwap(b, c))
+ * );
  * // [ 1, 3, 4, 5, 8 ] (a)
  *
- * b
+ * console.log(b);
  * // [ 10, 30, 40, 50, 80 ]
- * c
+ *
+ * console.log(c);
  * // [ -1, -3, -4, -5, -8 ]
  * ```
  *

@@ -27,19 +27,24 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
  * {@link quickSort}
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/multiswap.ts
  * import { multiSwap } from "@thi.ng/arrays";
  *
- * a = [2, 1];
- * b = [20, 10];
- * c = [40, 30];
+ * const a = [2, 1];
+ * const b = [20, 10];
+ * const c = [40, 30];
  *
- * ms = multiSwap(b, c);
+ * const ms = multiSwap(b, c);
  * ms(a, 0, 1);
  *
- * // a: [1, 2]
- * // b: [10, 20]
- * // c: [30, 40]
+ * console.log(a);
+ * // [1, 2]
+ *
+ * console.log(b);
+ * // [10, 20]
+ *
+ * console.log(c);
+ * // [30, 40]
  * ```
  *
  * @param xs - arrays to swap in later

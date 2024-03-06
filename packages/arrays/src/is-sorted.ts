@@ -12,14 +12,18 @@ import { compare } from "@thi.ng/compare/compare";
  * two elements. No bounds checking.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/is-sorted.ts
  * import { isSorted } from "@thi.ng/arrays";
  *
- * isSorted([3, 2, 1])
+ * console.log(
+ *   isSorted([3, 2, 1])
+ * );
  * // false
  *
  * // w/ custom comparator
- * isSorted([3, 2, 1], (a, b) => b - a)
+ * console.log(
+ *   isSorted([3, 2, 1], (a, b) => b - a)
+ * );
  * // true
  * ```
  *

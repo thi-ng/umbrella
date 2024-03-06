@@ -9,10 +9,12 @@ import type { IObjectOf } from "@thi.ng/api";
  * the default `dest` will only be a standard ES6 Map.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/invert.ts
  * import { invertMap } from "@thi.ng/associative";
  *
- * invertMap(new Map(), new Map([["a", 1], ["b", 2]]));
+ * console.log(
+ *   invertMap(new Map([["a", 1], ["b", 2]]))
+ * );
  * // Map { 1 => 'a', 2 => 'b' }
  * ```
  *
@@ -33,10 +35,12 @@ export const invertMap = <K, V>(src: Map<K, V>, dest?: Map<V, K>) => {
  * that object instead.
  *
  * @example
- * ```ts
- * import { invertMap } from "@thi.ng/associative";
+ * ```ts tangle:../export/invert.ts
+ * import { invertObj } from "@thi.ng/associative";
  *
- * invertObj({a: 1, b: 2})
+ * console.log(
+ *   invertObj({ a: 1, b: 2 })
+ * );
  * // { '1': 'a', '2': 'b' }
  * ```
  *

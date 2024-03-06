@@ -218,11 +218,18 @@ export interface BigTypedArrayTypeMap extends Record<BigType, BigTypedArray> {
  * attempting to resolve it as {@link GLType} enum.
  *
  * @example
- * ```ts
- * import { asNativeType } from "@thi.ng/api";
+ * ```ts tangle:../export/as-native-type.ts
+ * import { asNativeType, GLType } from "@thi.ng/api";
  *
- * asNativeType(GLType.F32) => "f32"
- * asNativeType("f32") => "f32"
+ * console.log(
+ *   asNativeType(GLType.F32)
+ * );
+ * // "f32"
+ *
+ * console.log(
+ *   asNativeType("f32")
+ * );
+ * // "f32"
  * ```
  *
  * @param type -
@@ -236,11 +243,18 @@ export const asNativeType = (type: GLType | Type): Type => {
  * Returns suitable {@link GLType} enum of `type`.
  *
  * @example
- * ```ts
- * import { asGLType } from "@thi.ng/api";
+ * ```ts tangle:../export/as-gl-type.ts
+ * import { asGLType, GLType } from "@thi.ng/api";
  *
- * asGLType("f32") => GLType.F32
- * asGLType(GLType.F32) => GLType.F32
+ * console.log(
+ *   asGLType("f32")
+ * );
+ * // 5126 (aka GLType.F32)
+ *
+ * console.log(
+ *   asGLType(GLType.F32)
+ * );
+ * // 5126 (aka GLType.F32)
  * ```
  *
  * @param type -
@@ -315,15 +329,19 @@ export function typedArray<T extends Type | GLType | BigType>(
  * item/vector given.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/typed-array.ts
  * import { typedArrayOfVec } from "@thi.ng/api";
  *
  * // inferred stride=2 (2d vectors)
- * typedArrayOfVec("f32", [[1,2], [3,4], [-10,20]]);
+ * console.log(
+ *   typedArrayOfVec("f32", [[1,2], [3,4], [-10,20]])
+ * );
  * // Float32Array(6) [ 1, 2, 3, 4, -10, 20 ]
  *
  * // with custom stride=4
- * typedArrayOfVec("f32", [[1,2], [3,4], [-10,20]], 4);
+ * console.log(
+ *   typedArrayOfVec("f32", [[1,2], [3,4], [-10,20]], 4)
+ * );
  * // Float32Array(12) [ 1, 2, 0, 0, 3,4, 0, 0, -10, 20, 0, 0 ]
  * ```
  *

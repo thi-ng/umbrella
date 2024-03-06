@@ -6,11 +6,14 @@ import { MASKS } from "./constants.js";
  * 0-32. `b` MUST be >= `a`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mask.ts
  * import { defMask } from "@thi.ng/binary";
  *
- * defMask(1,31).toString(16) // 7ffffffe
- * defMask(3,8).toString(16)  // f8
+ * console.log(defMask(1,31).toString(16));
+ * // 7ffffffe
+ *
+ * console.log(defMask(3,8).toString(16));
+ * // f8
  * ```
  *
  * @param a - first bit

@@ -29,11 +29,13 @@ export const renameKeysMap = <K, V>(
  * Renames keys in `src` using mapping provided by key map `km`. Does
  * support key swapping / swizzling. Does not modify original.
  *
- * ```ts
+ * ```ts tangle:../export/rename-keys.ts
  * import { renameKeysObj } from "@thi.ng/associative";
  *
  * // swap a & b, rename c
- * renameKeysObj({a: 1, b: 2, c: 3}, {a: "b", b: "a", c: "cc"})
+ * console.log(
+ *   renameKeysObj({a: 1, b: 2, c: 3}, {a: "b", b: "a", c: "cc"})
+ * );
  * // {b: 1, a: 2, cc: 3}
  * ```
  *
@@ -68,22 +70,24 @@ export const renameKeysObj = <T>(
  * the value of `newname`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/rename-transformed.ts
  * import { renameTransformedKeys } from "@thi.ng/associative";
  *
- * renameTransformedKeys(
- *   // source object
- *   { a: 1, b: 2, c: null },
- *   // mappings
- *   {
- *     // rename a => aa
- *     a: "aa",
- *     // rename & transform
- *     b: ["bb", (x, src) => x * 10 + src.a]
- *     // ignored, since original c is null
- *     c: "cc"
- *   }
- * )
+ * console.log(
+ *   renameTransformedKeys(
+ *     // source object
+ *     { a: 1, b: 2, c: null },
+ *     // mappings
+ *     {
+ *       // rename a => aa
+ *       a: "aa",
+ *       // rename & transform
+ *       b: ["bb", (x, src) => x * 10 + src.a]
+ *       // ignored, since original c is null
+ *       c: "cc"
+ *     }
+ *   )
+ * );
  * // { aa: 1, bb: 21 }
  * ```
  *

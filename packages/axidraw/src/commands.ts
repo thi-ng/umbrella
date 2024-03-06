@@ -113,10 +113,12 @@ export const COMMENT = (msg: string): CommentCommand => ["comment", msg];
  * prefix and {@link STOP} as suffix. I.e. it creates a "complete" drawing...
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/complete.ts
  * import { complete, MOVE } from "@thi.ng/axidraw";
  *
- * [...complete([ MOVE([0, 0]) ])]
+ * console.log(
+ *   [...complete([ MOVE([0, 0]) ])]
+ * );
  * // [ ["start"], ["M", [0, 0]], ["stop"] ]
  * ```
  *

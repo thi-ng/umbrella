@@ -15,18 +15,20 @@ import { selectKeysObj } from "./select-keys.js";
  * Returns new set of same type as `a`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/join.ts
  * import { join } from "@thi.ng/associative";
  *
- * join(
- *   new Set([
- *     {id: 1, name: "foo"},
- *     {id: 2, name: "bar"},
- *     {id: 3, name: "baz"}]),
- *   new Set([
- *     {id: 1, color: "red"},
- *     {id: 2, color: "blue"}])
- * )
+ * console.log(
+ *   join(
+ *     new Set([
+ *       {id: 1, name: "foo"},
+ *       {id: 2, name: "bar"},
+ *       {id: 3, name: "baz"}]),
+ *     new Set([
+ *       {id: 1, color: "red"},
+ *       {id: 2, color: "blue"}])
+ *   )
+ * );
  * // Set {
  * //   { id: 1, color: 'red', name: 'foo' },
  * //   { id: 2, color: 'blue', name: 'bar' }
@@ -74,19 +76,21 @@ export const join = <A, B>(
  * "id"}`. Returns new set of same type as `a`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/join.ts
  * import { joinWith } from "@thi.ng/associative";
  *
- * joinWith(
- *   new Set([
- *     {id: 1, name: "foo"},
- *     {id: 2, name: "bar"},
- *     {id: 3, name: "baz"}]),
- *   new Set([
- *     {type: 1, color: "red"},
- *     {type: 2, color: "blue"}]),
- *   {id: "type"}
- * )
+ * console.log(
+ *   joinWith(
+ *     new Set([
+ *       {id: 1, name: "foo"},
+ *       {id: 2, name: "bar"},
+ *       {id: 3, name: "baz"}]),
+ *     new Set([
+ *       {type: 1, color: "red"},
+ *       {type: 2, color: "blue"}]),
+ *     {id: "type"}
+ *   )
+ * );
  * // Set {
  * //   { type: 1, color: 'red', id: 1, name: 'foo' },
  * //   { type: 2, color: 'blue', id: 2, name: 'bar' } }

@@ -8,16 +8,22 @@ import { isFunction } from "@thi.ng/checks/is-function";
  * the `init` value is used homogeneously for all keys.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/from-keys.ts
  * import { objectFromKeys } from "@thi.ng/associative";
  *
- * objectFromKeys(["a", "b", "c"], 1)
+ * console.log(
+ *   objectFromKeys(["a", "b", "c"], 1)
+ * );
  * // { a: 1, b: 1, c: 1 }
  *
- * objectFromKeys(["a", "b", "c"], () => [])
+ * console.log(
+ *   objectFromKeys(["a", "b", "c"], () => [])
+ * );
  * // { a: [], b: [], c: [] }
  *
- * objectFromKeys(["a", "b", "c"], (k) => `${k}-${(Math.random()*100)|0}`)
+ * console.log(
+ *   objectFromKeys(["a", "b", "c"], (k) => `${k}-${(Math.random()*100)|0}`)
+ * );
  * // { a: 'a-54', b: 'b-8', c: 'c-61' }
  * ```
  *

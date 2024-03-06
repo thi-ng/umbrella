@@ -81,7 +81,7 @@ export interface RadialPaletteOpts extends BasePaletteOpts {
  * - {@link dip} (used internally for dipping sequence)
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/linear-palette.ts
  * import { AxiDraw, linearPalette } from "@thi.ng/axidraw";
  * import { points } from "@thi.ng/geom";
  * import { asAxiDraw } from "@thi.ng/geom-axidraw";
@@ -104,7 +104,7 @@ export interface RadialPaletteOpts extends BasePaletteOpts {
  * });
  *
  * // investigate command sequence for requesting slot #1
- * palette(1)
+ * console.log(palette(1));
  * // [
  * //   [ "M", [ 0.8949, 41.6697 ], 1 ],
  * //   [ "d", undefined, undefined ],
@@ -132,7 +132,6 @@ export interface RadialPaletteOpts extends BasePaletteOpts {
  *
  * // AxiDraw setup
  * const axi = new AxiDraw();
- * ...
  *
  * // convert geometry into axidraw commands and send to plotter
  * axi.draw(asAxiDraw(cloud));

@@ -16,20 +16,24 @@ const eqStrict = (a: any, b: any) => a === b;
  * - https://github.com/gustf/js-levenshtein/blob/develop/index.js
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/levenshtein.ts
  * import { levenshtein } from "@thi.ng/arrays";
  *
- * levenshtein([1, 2, 3, 4, 5], [1, 2, 4, 3, 5]);
+ * console.log(
+ *   levenshtein([1, 2, 3, 4, 5], [1, 2, 4, 3, 5])
+ * );
  * // 2
  *
- * levenshtein(
- *   [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
- *   [{ id: 4 }, { id: 5 }, { id: 3 }, { id: 1 }, { id: 2 }],
- *   // max dist
- *   2,
- *   // predicate
- *   (a, b) => a.id === b.id
- * )
+ * console.log(
+ *   levenshtein(
+ *     [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+ *     [{ id: 4 }, { id: 5 }, { id: 3 }, { id: 1 }, { id: 2 }],
+ *     // max dist
+ *     2,
+ *     // predicate
+ *     (a, b) => a.id === b.id
+ *   )
+ * );
  * // Infinity
  * ```
  *

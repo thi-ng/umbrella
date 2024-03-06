@@ -9,13 +9,17 @@ import type { TypedArray } from "@thi.ng/api";
  * or -1 (depending on range). Returns array.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/fill-range.ts
  * import { fillRange } from "@thi.ng/arrays";
  *
- * fillRange(new Array(5))
+ * console.log(
+ *   fillRange(new Array(5))
+ * );
  * // [ 0, 1, 2, 3, 4 ]
  *
- * fillRange(fillRange([], 0, 10, 20, 2), 5, 20, 8, -2)
+ * console.log(
+ *   fillRange(fillRange([], 0, 10, 20, 2), 5, 20, 8, -2)
+ * );
  * // [ 10, 12, 14, 16, 18, 20, 18, 16, 14, 12, 10 ]
  * ```
  *

@@ -19,14 +19,18 @@ import { multiSwap } from "./swap.js";
  * re-evaluated multiple times from within a comparator.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sort-cached.ts
  * import { sortByCachedKey } from "@thi.ng/arrays";
  *
  * // sort by length in descending order
- * sortByCachedKey(["a","bbbb","ccc","dd"], (x) => x.length, (a, b) => b - a);
+ * console.log(
+ *   sortByCachedKey(["a","bbbb","ccc","dd"], (x) => x.length, (a, b) => b - a)
+ * );
  * // [ 'bbbb', 'ccc', 'dd', 'a' ]
  *
- * sortByCachedKey(["a", "b", "c", "d"], [3, 2, 1, 0])
+ * console.log(
+ *   sortByCachedKey(["a", "b", "c", "d"], [3, 2, 1, 0])
+ * );
  * // [ 'd', 'c', 'b', 'a' ]
  * ```
  *
