@@ -27,7 +27,8 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"pub:wip": "yarn npm publish --access public --no-git-tag-version",
-		"test": "bun test"
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.27",

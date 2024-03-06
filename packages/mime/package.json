@@ -33,7 +33,8 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
-		"tool:convert": "bun tools/convert.ts"
+		"tool:convert": "bun tools/convert.ts",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

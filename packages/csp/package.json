@@ -36,7 +36,8 @@
 		"testasync": "tsc -p test && node build/test/async.js",
 		"testfile": "tsc -p test && node build/test/file.js",
 		"testgraph": "tsc -p test && node build/test/graph.js",
-		"testnode": "tsc -p test && node build/test/node.js"
+		"testnode": "tsc -p test && node build/test/node.js",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.27",

@@ -36,7 +36,8 @@
 		"tool:limits": "bun tools/limits.ts",
 		"tool:maxchroma": "bun tools/max-chroma.ts",
 		"tool:strategies": "bun tools/strategies.ts",
-		"tool:swatches": "bun tools/index.ts"
+		"tool:swatches": "bun tools/index.ts",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.27",

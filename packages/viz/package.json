@@ -38,7 +38,8 @@
 		"tool:covid": "bun tools/covid-bars.ts",
 		"tool:intervals": "bun tools/intervals.ts",
 		"tool:line": "bun tools/line.ts",
-		"tool:tags": "bun tools/tagcloud.ts"
+		"tool:tags": "bun tools/tagcloud.ts",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.27",
