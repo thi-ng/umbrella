@@ -2,8 +2,7 @@ import type { IObjectOf } from "@thi.ng/api";
 import { isPlainObject, isString } from "@thi.ng/checks";
 import { compareByKey } from "@thi.ng/compare";
 import { FMT_ISO_SHORT } from "@thi.ng/date";
-import { defError } from "@thi.ng/errors/deferror";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { defError, illegalArgs, illegalState } from "@thi.ng/errors";
 import { readText } from "@thi.ng/file-io";
 import { split } from "@thi.ng/strings";
 import { assocObj, map, transduce } from "@thi.ng/transducers";
@@ -26,37 +25,54 @@ const UnknownBlockError = defError<[string, string]>(
 const extractBlocks = (src: string, { format, logger }: TangleCtx) => {
 	let nextID = 0;
 	const blocks: Blocks = {};
-	const re = new RegExp(
-		`^${format.prefix.replace("+", "\\+")}(\\w+)\\s+(.+)$`,
+	const prefix = new RegExp(
+		(isString(format.prefix)
+			? `^${format.prefix.replace("+", "\\+")}`
+			: format.prefix.source) + `(\\w+)\\s+(.+)$`,
 		"gm"
 	);
-	let match: RegExpExecArray | null;
-	while ((match = re.exec(src))) {
-		let { id, tangle, noweb, publish } = parseBlockHeader(match[2]);
+	const suffix = isString(format.suffix)
+		? new RegExp(`${format.suffix.replace("+", "\\+")}`)
+		: format.suffix;
+	let matchPrefix: RegExpExecArray | null;
+	while ((matchPrefix = prefix.exec(src))) {
+		let { id, tangle, noweb, publish } = parseBlockHeader(matchPrefix[2]);
 		!id && (id = `__block-${nextID++}`);
-		const matchStart = match.index;
+		const matchStart = matchPrefix.index;
 		const start = src.indexOf("\n", matchStart) + 1;
-		const end = src.indexOf(`\n${format.suffix}`, matchStart + 1);
 		logger.debug(
-			"codeblock",
+			"codeblock ID:",
 			id,
-			start,
-			end,
+			"matchStart:",
 			matchStart,
-			src.substring(start, 8)
+			"start:",
+			start
 		);
-		const body = src.substring(start, end);
+		const matchSuffix = suffix.exec(src.substring(start));
+		if (!matchSuffix) illegalState("no codeblock end found");
+		const end = start + matchSuffix.index;
+		const matchEnd = end + matchSuffix[0].length + 1;
+		logger.debug(
+			"codeblock ID:",
+			id,
+			"end:",
+			end,
+			"matchEnd:",
+			matchEnd,
+			matchSuffix[0]
+		);
+		const body = src.substring(start, end - 1);
 		blocks[id] = {
 			id,
-			lang: match[1],
+			lang: matchPrefix[1],
 			tangle,
 			publish,
 			noweb,
 			start,
 			end,
 			matchStart,
-			matchEnd: end + format.suffix.length + 2,
-			body,
+			matchEnd,
+			body: format.xform ? format.xform(body) : body,
 		};
 	}
 	return blocks;
