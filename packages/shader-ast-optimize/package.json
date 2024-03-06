@@ -69,8 +69,11 @@
 		".": {
 			"default": "./index.js"
 		},
-		"./contant-folding": {
-			"default": "./contant-folding.js"
+		"./constant-folding": {
+			"default": "./constant-folding.js"
+		},
+		"./defoptimized": {
+			"default": "./defoptimized.js"
 		}
 	},
 	"thi.ng": {
