@@ -69,6 +69,31 @@ export const preferredExtension = (mime: string, fallback = "bin") => {
 		: fallback;
 };
 
+/**
+ * Returns all known file extensions for given MIME type or undefined if
+ * unknown.
+ *
+ * @param mime
+ */
+export const extensionsForType = (mime: string) => {
+	const group = __group(mime);
+	const ext = group ? __ext(group) : undefined;
+	return ext
+		? ext.map((x) => (x[0] === "*" ? x.substring(1) : x))
+		: undefined;
+};
+
+/**
+ * Returns true if the given MIME type can be compressed (or served using
+ * gzip/brotli encoding).
+ *
+ * @remarks
+ * Note: Information here is included as is. Some of these judgements in the
+ * original mime-db project (or their sources of information) are highly
+ * questionable...
+ *
+ * @param mime
+ */
 export const isCompressible = (mime: string) => !!(__group(mime)?.[0] === "1");
 
 export * from "./presets.js";
