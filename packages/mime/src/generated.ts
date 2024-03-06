@@ -1,6 +1,6 @@
 // thing:no-export
 /**
- * generated @ 2024-02-17T12:09:59.003Z - DO NOT EDIT!
+ * generated @ 2024-03-06T07:29:07.234Z - DO NOT EDIT!
  *
  * @internal
  */
@@ -421,7 +421,7 @@ export const DB: Record<string, Record<string, string>> = {
 		ief: "ief",
 		jls: "jls",
 		jp2: "jp2,jpg2",
-		jpeg: "jpg,jpeg,jpe",
+		jpeg: "jpeg,jpg,jpe",
 		jph: "jph",
 		jphc: "jhc",
 		jpm: "jpm,jpgm",

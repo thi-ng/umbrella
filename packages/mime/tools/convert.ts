@@ -65,7 +65,6 @@ const dest: IObjectOf<IObjectOf<string>> = {
 		aac: "aac,adts",
 	},
 	image: {
-		jpeg: "jpg,jpeg,jpe",
 		// https://github.com/phoboslab/qoi/issues/167
 		qoi: "qoi",
 		// http://fileformats.archiveteam.org/wiki/Radiance_HDR
