@@ -255,15 +255,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-03-06
+As of: 2024-03-07
 
-| Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/imago`](./packages/imago)                         | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)                         | [changelog](./packages/imago/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/mime`](./packages/mime)                           | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                           | [changelog](./packages/mime/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             |
+| Status                                        | Package                                                         | Version                                                                                                                               | Changelog                                                |
+|:----------------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast`](./packages/shader-ast)                   | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)                   | [changelog](./packages/shader-ast/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)     | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tangle`](./packages/tangle)                           | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                           | [changelog](./packages/tangle/CHANGELOG.md)              |
 
 ### Fundamentals
 
