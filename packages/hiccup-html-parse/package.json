@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-html-parse",
-	"version": "0.3.29",
+	"version": "0.3.30",
 	"description": "Well-formed HTML parsing and customizable transformation to nested JS arrays in @thi.ng/hiccup format",
 	"type": "module",
 	"module": "./index.js",
@@ -36,10 +36,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.27",
-		"@thi.ng/defmulti": "^3.0.28",
-		"@thi.ng/parse": "^2.4.29",
-		"@thi.ng/strings": "^3.7.20"
+		"@thi.ng/api": "^8.9.28",
+		"@thi.ng/defmulti": "^3.0.29",
+		"@thi.ng/parse": "^2.4.30",
+		"@thi.ng/strings": "^3.7.21"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

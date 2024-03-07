@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-01T15:22:50Z
+- **Last updated**: 2024-03-07T20:40:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tangle@0.2.0) (2024-03-07)
+
+#### 🚀 Features
+
+- add support for code blocks in JS/TS docstrings ([5b68f19](https://github.com/thi-ng/umbrella/commit/5b68f19))
+  - update CodeBlockFormat, allow regexps as prefix/suffix
+    - add optional body xform fn
+  - add ".js", ".ts" as supported file extensions
+  - update matching logic in extractBlocks()
+
+#### 🩹 Bug fixes
+
+- off-by-one error in extractBlocks() ([d7d7e03](https://github.com/thi-ng/umbrella/commit/d7d7e03))
 
 ### [0.1.86](https://github.com/thi-ng/umbrella/tree/@thi.ng/tangle@0.1.86) (2024-02-22)
 

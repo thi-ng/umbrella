@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-06T08:50:42Z
+- **Last updated**: 2024-03-07T20:40:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.15.0) (2024-03-07)
+
+#### 🚀 Features
+
+- add isLitNumOrVecConst() node check ([72399b0](https://github.com/thi-ng/umbrella/commit/72399b0))
+
+#### 🩹 Bug fixes
+
+- fix allChildren() handling of void returns ([4aff1ec](https://github.com/thi-ng/umbrella/commit/4aff1ec))
 
 ## [0.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.14.0) (2024-03-06)
 

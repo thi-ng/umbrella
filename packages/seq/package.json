@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/seq",
-	"version": "0.4.64",
+	"version": "0.4.65",
 	"description": "Various implementations of the @thi.ng/api `ISeq` interface / sequence abstraction",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.27",
-		"@thi.ng/checks": "^3.5.1"
+		"@thi.ng/api": "^8.9.28",
+		"@thi.ng/checks": "^3.5.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

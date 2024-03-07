@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/quad-edge",
-	"version": "3.1.56",
+	"version": "3.1.57",
 	"description": "Quadedge data structure after Guibas & Stolfi",
 	"type": "module",
 	"module": "./index.js",
@@ -36,7 +36,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.4.19"
+		"@thi.ng/errors": "^2.4.20"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

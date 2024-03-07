@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/router",
-	"version": "3.2.60",
+	"version": "3.2.61",
 	"description": "Generic router for browser & non-browser based applications",
 	"type": "module",
 	"module": "./index.js",
@@ -36,10 +36,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.27",
-		"@thi.ng/checks": "^3.5.1",
-		"@thi.ng/equiv": "^2.1.50",
-		"@thi.ng/errors": "^2.4.19",
+		"@thi.ng/api": "^8.9.28",
+		"@thi.ng/checks": "^3.5.2",
+		"@thi.ng/equiv": "^2.1.51",
+		"@thi.ng/errors": "^2.4.20",
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {

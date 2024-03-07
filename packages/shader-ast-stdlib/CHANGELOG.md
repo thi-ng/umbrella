@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-06T08:50:42Z
+- **Last updated**: 2024-03-07T20:40:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.18.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.18.0) (2024-03-07)
+
+#### 🚀 Features
+
+- add packFloat()/unpackFloat() ([23a6d7f](https://github.com/thi-ng/umbrella/commit/23a6d7f))
+- add packedNormal2(), refactor normal2() ([6f6dc1d](https://github.com/thi-ng/umbrella/commit/6f6dc1d))
+- add branches() n-ary helper fn & docs ([74f32ba](https://github.com/thi-ng/umbrella/commit/74f32ba))
 
 ## [0.17.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.17.0) (2024-03-06)
 

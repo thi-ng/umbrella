@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color-palettes",
-	"version": "1.2.41",
+	"version": "1.2.42",
 	"description": "Collection of 200+ image based color themes & composable theme query filters",
 	"type": "module",
 	"module": "./index.js",
@@ -38,12 +38,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.27",
-		"@thi.ng/base-n": "^2.7.4",
-		"@thi.ng/checks": "^3.5.1",
-		"@thi.ng/color": "^5.6.28",
-		"@thi.ng/errors": "^2.4.19",
-		"@thi.ng/hex": "^2.3.38"
+		"@thi.ng/api": "^8.9.28",
+		"@thi.ng/base-n": "^2.7.5",
+		"@thi.ng/checks": "^3.5.2",
+		"@thi.ng/color": "^5.6.29",
+		"@thi.ng/errors": "^2.4.20",
+		"@thi.ng/hex": "^2.3.39"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

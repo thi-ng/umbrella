@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-01T15:22:50Z
+- **Last updated**: 2024-03-07T20:40:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-optimize@0.4.0) (2024-03-07)
+
+#### 🚀 Features
+
+- add defOptimized(), rename source file ([b1dc3c0](https://github.com/thi-ng/umbrella/commit/b1dc3c0))
+  - add defOptimized() wrapper fn
+  - fix spelling in file name
+  - update example in docs
+- expand constantFolding() features, bug fixes ([1350bf7](https://github.com/thi-ng/umbrella/commit/1350bf7))
+  - add support scalar comparisons
+  - div-by-zero checks
+  - fix non-scalar mul & sub handling
+  - add support for exp2(), pow()
+  - add tests
 
 ### [0.3.27](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-optimize@0.3.27) (2023-11-09)
 
