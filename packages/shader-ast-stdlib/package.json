@@ -126,6 +126,9 @@
 		"./color/rgbe": {
 			"default": "./color/rgbe.js"
 		},
+		"./controlflow/branches": {
+			"default": "./controlflow/branches.js"
+		},
 		"./fog/exp": {
 			"default": "./fog/exp.js"
 		},

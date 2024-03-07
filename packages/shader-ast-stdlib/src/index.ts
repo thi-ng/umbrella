@@ -8,6 +8,8 @@ export * from "./color/luminance.js";
 export * from "./color/porter-duff.js";
 export * from "./color/rgbe.js";
 
+export * from "./controlflow/branches.js";
+
 export * from "./fog/exp.js";
 export * from "./fog/exp2.js";
 export * from "./fog/linear.js";
