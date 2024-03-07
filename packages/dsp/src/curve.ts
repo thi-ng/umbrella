@@ -17,10 +17,12 @@ import { MAdd } from "./madd.js";
  * Also see {@link madd}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/curve.ts
  * import { curve } from "@thi.ng/dsp";
  *
- * curve(-1, 1, 5, 0.1).take(7)
+ * console.log(
+ *   curve(-1, 1, 5, 0.1).take(7)
+ * );
  * // [
  * //   -1,
  * //   -0.04228753006664476,

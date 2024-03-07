@@ -8,18 +8,20 @@ import { curve } from "./curve.js";
  * clamped at the given `end` value.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sweep.ts
  * import { adsr, osc, sin, sweep } from "@thi.ng/dsp";
  *
+ * // sample rate
+ * const FS = 44100
+ *
  * // render 2 sec osc sweep from 100 - 10000Hz
- * // FS = 44100
  * osc(
  *   sin,
  *   // freq & phase gen
  *   sweep(100 / FS, 10000 / FS, 2 * FS, 0.1),
  *   // amplitude gen / envelope
- *   adsr(0.5 * FS, 1.5 * FS, 0)
- * ).take(2 * fs)
+ *   adsr({ a: 0.5 * FS, r: 1.5 * FS, slen: 0 })
+ * ).take(2 * FS)
  * // [...]
  * ```
  *

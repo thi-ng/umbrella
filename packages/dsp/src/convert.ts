@@ -39,11 +39,13 @@ export const radFreq: FnN2 = (rad, fs) => (rad / TAU) * fs;
  * rate.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/ms-frames.ts
  * import { msFrames } from "@thi.ng/dsp";
  *
  * // samples per 20 ms @ 44.1kHz
- * msFrames(20, 44100)
+ * console.log(
+ *   msFrames(20, 44100)
+ * );
  * // 882
  * ```
  *

@@ -11,10 +11,12 @@ import { MapG1 } from "./mapg.js";
  * gen.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/addg.ts
  * import { addG, constant } from "@thi.ng/dsp";
  *
- * addG(constant(1), 10).take(5)
+ * console.log(
+ *   addG(constant(1), 10).take(5)
+ * );
  * // [ 10, 11, 12, 13, 14 ]
  * ```
  *

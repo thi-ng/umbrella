@@ -41,28 +41,36 @@ export const copyComplex = (complex: ComplexArray): ComplexArray => [
  * reverse order.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/conjugate1.ts
  * import { conjugate } from "@thi.ng/dsp";
  *
- * conjugate([0, 3, 2, 1], true)
+ * console.log(
+ *   conjugate([0, 3, 2, 1], true)
+ * );
  * // Float64Array [ 0, 3, 2, 1, 0, -1, -2, -3 ]
  *
- * conjugate([0, 3, 2, 1], false)
+ * console.log(
+ *   conjugate([0, 3, 2, 1], false)
+ * );
  * // Float64Array [ 0, 3, 2, 1, 0, 1, 2, 3 ]
  *
- * conjugate([[0, 1, 0, 1], [0, -0.5, 0, -0.25]])
- * [
- *   Float64Array [ 0, 1, 0, 1, 0, 1, 0, 1 ],
- *   Float64Array [ 0, -0.5, 0, -0.25, 0, 0.25, 0, 0.5 ]
- * ]
+ * console.log(
+ *   conjugate([[0, 1, 0, 1], [0, -0.5, 0, -0.25]])
+ * );
+ * // [
+ * //   Float64Array [ 0, 1, 0, 1, 0, 1, 0, 1 ],
+ * //   Float64Array [ 0, -0.5, 0, -0.25, 0, 0.25, 0, 0.5 ]
+ * // ]
  * ```
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/conjugate2.ts
  * import { conjugate, ifft } from "@thi.ng/dsp";
  *
  * // generate single-period sine (window size = 16)
- * ifft(conjugate([0, -8, 0, 0, 0, 0, 0, 0]))[0]
+ * console.log(
+ *   ifft(conjugate([0, -8, 0, 0, 0, 0, 0, 0]))[0]
+ * );
  * // [
  * //   0, 0.383, 0.707, 0.924,
  * //   1, 0.924, 0.707, 0.383,

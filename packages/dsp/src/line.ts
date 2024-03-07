@@ -11,10 +11,12 @@ import { Add } from "./add.js";
  * if more than `n + 1` values are requested from the generator.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/line.ts
  * import { line } from "@thi.ng/dsp";
  *
- * line(0, 1, 5).take(7)
+ * console.log(
+ *   line(0, 1, 5).take(7)
+ * );
  * // [ 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ]
  * ```
  *

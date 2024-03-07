@@ -45,7 +45,7 @@ export const osc = (
  * range, added to the main oscillator `freq`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mod-osc.ts
  * import { modOsc, osc, saw, sin, rect } from "@thi.ng/dsp";
  *
  * // FM sin osc using rect osc as frequency modulator
@@ -56,7 +56,6 @@ export const osc = (
  *
  * // FM & AM sin osc using rect osc as fmod and saw as amod
  * modOsc(sin, 0.01, osc(rect, 0.1, 0.2), osc(saw, 0.05))
- *
  * ```
  *
  * @param osc - stateless main osc
