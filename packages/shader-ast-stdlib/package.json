@@ -86,6 +86,7 @@
 		"./*.js",
 		"./*.d.ts",
 		"color",
+		"controlflow",
 		"fog",
 		"isec",
 		"light",
