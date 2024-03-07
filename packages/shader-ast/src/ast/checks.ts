@@ -80,7 +80,7 @@ export const isLitNumericConst = (
 ): t is Lit<"float" | "int" | "uint"> => isLit(t) && isNumber(t.val);
 
 /**
- * Returns true if t is a vector literal with a JS array as value (not an
+ * Returns true if `t` is a vector literal with a JS array as value (not an
  * expression).
  *
  * @param t -
@@ -89,6 +89,18 @@ export const isLitVecConst = (
 	t: Term<any>
 ): t is Lit<Vec | IVec | UVec | BVec> =>
 	isLit(t) && isVec(t) && isArrayLike(t.val);
+
+/**
+ * Returns true, if `t` is a {@link isLitNumericConst} of value `n` or if
+ * {@link isLitVecConst} and all vector components are `n`.
+ *
+ * @param t
+ * @param n
+ */
+export const isLitNumOrVecConst = (t: Term<any>, n: number) =>
+	(isLitNumericConst(t) && t.val === n) ||
+	(isLitVecConst(t) &&
+		t.val.every((x: Term<any>) => isLitNumericConst(x) && x.val === n));
 
 /**
  * Returns true, if given term evaluates to a vector value (vec, ivec, bvec).
