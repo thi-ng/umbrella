@@ -132,12 +132,13 @@ For Node.js REPL:
 const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.30 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
