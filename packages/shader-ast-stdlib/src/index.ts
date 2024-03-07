@@ -32,6 +32,7 @@ export * from "./math/mix-cubic.js";
 export * from "./math/mix-quadratic.js";
 export * from "./math/orthogonal.js";
 export * from "./math/osc.js";
+export * from "./math/pack-float.js";
 export * from "./math/polar.js";
 export * from "./math/sincos.js";
 export * from "./math/smoother-step.js";

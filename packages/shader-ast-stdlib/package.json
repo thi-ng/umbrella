@@ -192,6 +192,9 @@
 		"./math/osc": {
 			"default": "./math/osc.js"
 		},
+		"./math/pack-float": {
+			"default": "./math/pack-float.js"
+		},
 		"./math/polar": {
 			"default": "./math/polar.js"
 		},
