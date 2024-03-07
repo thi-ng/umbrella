@@ -4,7 +4,7 @@ import { assert } from "@thi.ng/errors/assert";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { equals } from "@thi.ng/vectors/equals";
 import { hash2, hash3 } from "@thi.ng/vectors/hash";
-import type { ASpatialGrid } from "./aspatial-grid";
+import type { ASpatialGrid } from "./aspatial-grid.js";
 
 export interface QueryNeighborhoodOpts {
 	/**
