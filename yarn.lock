@@ -6088,6 +6088,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.40.1"
     "@thi.ng/api": "npm:^8.9.27"
     "@thi.ng/defmulti": "npm:^3.0.28"
+    "@thi.ng/errors": "npm:^2.4.19"
     "@thi.ng/logger": "npm:^3.0.4"
     "@thi.ng/math": "npm:^5.10.4"
     "@thi.ng/shader-ast": "npm:^0.14.0"
