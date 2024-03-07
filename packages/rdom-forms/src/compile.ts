@@ -110,9 +110,11 @@ export const custom = (body: ComponentLike): Custom => ({
 
 let __nextID = 0;
 
-type PartialSpec<T extends Value> = Omit<T, "type" | "id"> & { id?: string };
+export type PartialSpec<T extends Value> = Omit<T, "type" | "id"> & {
+	id?: string;
+};
 
-type ReadonlyPartialSpec<T extends Value, V = string> = Omit<
+export type ReadonlyPartialSpec<T extends Value, V = string> = Omit<
 	T,
 	"type" | "id" | "readonly" | "value"
 > & {
@@ -121,6 +123,7 @@ type ReadonlyPartialSpec<T extends Value, V = string> = Omit<
 	value?: ISubscribable<V>;
 };
 
+/** @internal */
 const $ =
 	<T extends Value, V = string>(type: string, defaults?: Partial<T>) =>
 	(spec: PartialSpec<T> | ReadonlyPartialSpec<T, V>): T =>

@@ -27,7 +27,6 @@ import { __iter } from "./iterator.js";
  *
  * @param size -
  * @param partial -
- * @param src -
  */
 export function slidingWindow<T>(
 	size: MaybeDeref<number>,

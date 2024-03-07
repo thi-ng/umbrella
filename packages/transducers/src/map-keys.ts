@@ -26,7 +26,6 @@ import { map } from "./map.js";
  *
  * @param keys - object of transformation functions
  * @param copy - if true (default), creates a shallow copy of each incoming value
- * @param src -
  */
 export function mapKeys(
 	keys: IObjectOf<Fn2<any, any, any>>,

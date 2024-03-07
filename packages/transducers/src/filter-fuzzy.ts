@@ -35,8 +35,8 @@ export interface FilterFuzzyOpts<A, B> {
  * // ["hello", "hallo", "heyoka"]
  * ```
  *
+ * @param query -
  * @param opts -
- * @param src -
  */
 export function filterFuzzy<A, B>(
 	query: ArrayLike<B>,

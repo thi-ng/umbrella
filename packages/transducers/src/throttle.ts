@@ -19,7 +19,6 @@ import { iterator1 } from "./iterator.js";
  * Also see: {@link throttleTime}.
  *
  * @param pred -
- * @param src -
  */
 export function throttle<T>(pred: StatefulPredicate<T>): Transducer<T, T>;
 export function throttle<T>(

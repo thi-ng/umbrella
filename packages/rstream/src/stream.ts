@@ -67,7 +67,6 @@ import { Subscription } from "./subscription.js";
  * // b2 42
  * ```
  *
- * @param src -
  * @param opts -
  */
 export function stream<T>(opts?: Partial<WithErrorHandlerOpts>): Stream<T>;

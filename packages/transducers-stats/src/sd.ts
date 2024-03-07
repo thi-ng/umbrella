@@ -19,7 +19,6 @@ import { sma } from "./sma.js";
  *
  * @param period -
  * @param scale -
- * @param src -
  */
 export function sd(period?: number, scale?: number): Transducer<number, number>;
 export function sd(src: Iterable<number>): IterableIterator<number>;

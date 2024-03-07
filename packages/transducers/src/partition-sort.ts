@@ -34,8 +34,7 @@ import { partition } from "./partition.js";
  * ```
  *
  * @param n - window size
- * @param key - sort key lookup
- * @param cmp - comparator
+ * @param opts -
  */
 export function partitionSort<A, B>(
 	n: number,

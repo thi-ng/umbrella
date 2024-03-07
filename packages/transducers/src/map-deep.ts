@@ -10,7 +10,6 @@ import { map } from "./map.js";
  * See {@link deepTransform} for details.
  *
  * @param spec -
- * @param src -
  */
 export function mapDeep(spec: TransformSpec): Transducer<any, any>;
 export function mapDeep(

@@ -292,7 +292,7 @@ export interface TagTransforms {
 	 * have `index=0`. The first data row `index=1`.
 	 *
 	 * @param ctx
-	 * @param body
+	 * @param cells
 	 */
 	tableRow(ctx: TransformCtx, cells: any[]): any;
 	/**

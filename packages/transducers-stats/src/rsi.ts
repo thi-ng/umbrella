@@ -14,7 +14,6 @@ import { sma } from "./sma.js";
  * processed inputs.
  *
  * @param period -
- * @param src -
  */
 export function rsi(period: number): Transducer<number, number>;
 export function rsi(

@@ -41,7 +41,7 @@ import { Match, type Matcher } from "./api.js";
  *
  * @param states - FSM state matchers
  * @param ctx - FSM context object
- * @param initialState - initial state ID
+ * @param initial - initial state ID
  * @param update - context update fn
  * @param src - input
  */

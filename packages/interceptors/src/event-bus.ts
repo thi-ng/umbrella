@@ -551,7 +551,7 @@ export class StatelessEventBus implements IDispatch {
 	 * Any `null` / `undefined` values directly assigned to a side
 	 * effect are ignored and will not trigger the effect.
 	 *
-	 * @param fx -
+	 * @param ctx -
 	 * @param ret -
 	 */
 	protected mergeEffects(ctx: InterceptorContext, ret: any) {

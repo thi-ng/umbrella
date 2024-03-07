@@ -13,7 +13,6 @@ const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
  * itself. Returns nothing.
  *
  * @param tx -
- * @param fx -
  * @param xs -
  */
 export function run<A>(tx: TxLike<A, any>, xs: Iterable<A>): void;

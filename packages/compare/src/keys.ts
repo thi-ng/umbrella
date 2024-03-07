@@ -11,20 +11,20 @@ const getKey = (k: string | Fn<any, any>) =>
  * @param key -
  * @param cmp -
  */
-export function compareByKey<T, A extends Keys<T>>(
-	a: A,
-	cmp?: Comparator<Val1<T, A>>
+export function compareByKey<T, K extends Keys<T>>(
+	key: K,
+	cmp?: Comparator<Val1<T, K>>
 ): Comparator<T>;
 export function compareByKey<T, A>(
 	a: Fn<T, A>,
 	cmp?: Comparator<A>
 ): Comparator<T>;
 export function compareByKey(
-	a: string | Fn<any, any>,
+	key: string | Fn<any, any>,
 	cmp: Comparator<any> = compare
 ): Comparator<any> {
-	const k = getKey(a);
-	return (x, y) => cmp(k(x), k(y));
+	const kfn = getKey(key);
+	return (x, y) => cmp(kfn(x), kfn(y));
 }
 
 /**
@@ -32,8 +32,8 @@ export function compareByKey(
  * `a` (major), `b` (minor) and with optional comparators (default for
  * each: {@link compare}).
  *
- * @param a -
- * @param b -
+ * @param major -
+ * @param minor -
  * @param cmpA -
  * @param cmpB -
  */
@@ -66,9 +66,9 @@ export function compareByKeys2(
 /**
  * Same as {@link compareByKeys2}, but for 3 sort keys / comparators.
  *
- * @param a -
- * @param b -
- * @param c -
+ * @param major -
+ * @param minor -
+ * @param patch -
  * @param cmpA -
  * @param cmpB -
  * @param cmpC -
@@ -81,7 +81,7 @@ export function compareByKeys3<
 >(
 	major: A,
 	minor: B,
-	patch: B,
+	patch: C,
 	cmpA?: Comparator<Val1<T, A>>,
 	cmpB?: Comparator<Val1<T, B>>,
 	cmpC?: Comparator<Val1<T, C>>

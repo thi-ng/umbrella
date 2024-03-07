@@ -14,7 +14,6 @@ import { bounds } from "./bounds.js";
  * processed inputs.
  *
  * @param period -
- * @param src -
  */
 export function donchian(period: number): Transducer<number, [number, number]>;
 export function donchian(

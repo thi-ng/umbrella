@@ -19,7 +19,6 @@ import { reduced } from "./reduced.js";
  * ```
  *
  * @param pred -
- * @param src -
  */
 export function takeWhile<T>(pred?: Predicate<T>): Transducer<T, T>;
 export function takeWhile<T>(src: Iterable<T>): IterableIterator<T>;

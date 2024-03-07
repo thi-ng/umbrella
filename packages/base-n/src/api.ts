@@ -19,7 +19,6 @@ export interface IBaseEncode {
 	 * to given size.
 	 *
 	 * @param x -
-	 * @param size -
 	 */
 	encode(x: number): string;
 	/**
@@ -67,6 +66,7 @@ export interface IBaseDecode {
 	 * shorter than the space required by the encoded source string, the most
 	 * significant bytes will be ignored.
 	 *
+	 * @param x -
 	 * @param buf -
 	 */
 	decodeBytes(x: string, buf: Uint8Array): Uint8Array;

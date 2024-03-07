@@ -24,7 +24,7 @@ import { range } from "./range.js";
  * // []
  * ```
  *
- * @param src -
+ * @param a -
  */
 export function permutations<A>(a: Iterable<A>): IterableIterator<[A]>;
 export function permutations<A, B>(

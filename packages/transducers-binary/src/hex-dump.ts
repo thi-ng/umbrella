@@ -33,7 +33,6 @@ import type { HexDumpOpts } from "./api.js";
  * ```
  *
  * @param opts -
- * @param src -
  */
 export function hexDump(
 	opts?: Partial<HexDumpOpts>

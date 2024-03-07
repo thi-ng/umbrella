@@ -59,7 +59,7 @@ export class Boid implements ITimeStep {
 	 * Interplation step of the thi.ng/timestep update cycle. See
 	 * [`ITimeStep`](https://docs.thi.ng/umbrella/timestep/interfaces/ITimeStep.html)
 	 *
-	 * @param dt
+	 * @param alpha
 	 * @param ctx
 	 */
 	interpolate(alpha: number, ctx: ReadonlyTimeStep): void {

@@ -1,7 +1,9 @@
 export interface IEquiv {
 	/**
 	 * Returns `true` if this *value* is equivalent to `o`. Also see
-	 * {@link ICompare.compare} and {@link IHash.hash}.
+	 * [ICompare.compare](https://docs.thi.ng/umbrella/api/interfaces/ICompare.html#compare)
+	 * and
+	 * [IHash.hash](https://docs.thi.ng/umbrella/api/interfaces/IHash.html#hash).
 	 *
 	 * @param o - value to check for equivalence
 	 */

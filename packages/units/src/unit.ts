@@ -217,7 +217,6 @@ export const quantity = <T extends number | number[]>(
  *
  * @param a
  * @param b
- * @param coherent
  */
 export function mul(a: Quantity<number>, b: Quantity<number>): Quantity<number>;
 export function mul(
@@ -264,7 +263,6 @@ export function mul(
  *
  * @param a
  * @param b
- * @param coherent
  */
 export function div(a: Quantity<number>, b: Quantity<number>): Quantity<number>;
 export function div(
@@ -320,7 +318,6 @@ export function div(
  * ```
  *
  * @param u
- * @param coherent
  */
 export function reciprocal(u: Quantity<number>): Quantity<number>;
 export function reciprocal(u: Quantity<number[]>): Quantity<number[]>;
@@ -378,7 +375,6 @@ export const pow = (u: MaybeUnit, k: number, coherent = false) => {
  * {@link isConvertible}.
  *
  * @param x
- * @param src
  * @param dest
  */
 export function convert<T extends number | number[]>(

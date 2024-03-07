@@ -248,7 +248,6 @@ export class Transacted<T> implements IAtom<T> {
 	 * If an error occurs during the update, the transaction will be canceled
 	 * and the error re-thrown.
 	 *
-	 * @param parent
 	 * @param fn
 	 */
 	updateAsTransaction(fn: Fn<Transacted<T>, boolean>) {

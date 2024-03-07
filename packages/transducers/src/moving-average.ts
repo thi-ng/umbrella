@@ -18,7 +18,6 @@ import { iterator1 } from "./iterator.js";
  * package for more optimized and alternative MA strategies.
  *
  * @param period -
- * @param src -
  */
 export function movingAverage(period: number): Transducer<number, number>;
 export function movingAverage(

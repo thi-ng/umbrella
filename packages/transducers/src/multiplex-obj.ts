@@ -28,7 +28,6 @@ import { rename } from "./rename.js";
  *
  * @param xforms - object of transducers
  * @param rfn -
- * @param src -
  */
 export function multiplexObj<A, B>(
 	xforms: IObjectOf<MultiplexTxLike<A, any>>,

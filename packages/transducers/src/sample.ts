@@ -19,7 +19,6 @@ import { __iter } from "./iterator.js";
  * ```
  *
  * @param prob -
- * @param src -
  */
 export function sample<T>(prob: number): Transducer<T, T>;
 export function sample<T>(prob: number, rnd: IRandom): Transducer<T, T>;

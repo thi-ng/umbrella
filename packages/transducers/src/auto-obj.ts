@@ -15,7 +15,6 @@ import { reduce, reducer } from "./reduce.js";
  * ```
  *
  * @param prefix - shared prefix
- * @param xs -
  */
 export function autoObj<T>(prefix: string): Reducer<IObjectOf<T>, T>;
 export function autoObj<T>(prefix: string, xs: Iterable<T>): IObjectOf<T>;

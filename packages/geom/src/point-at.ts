@@ -42,7 +42,6 @@ import { vertices } from "./vertices.js";
  * - {@link Quad}
  * - {@link Quadratic}
  * - {@link Ray}
- * - {@link Ray3}
  * - {@link Rect}
  * - {@link Triangle}
  *

@@ -22,8 +22,6 @@ import { mapcat } from "./mapcat.js";
  * [...flatten1([[1], null, [3, 3, 3]])]
  * // [1, 3, 3, 3]
  * ```
- *
- * @param src
  */
 export function flatten1<T>(): Transducer<Nullable<Iterable<T>>, T>;
 export function flatten1<T>(

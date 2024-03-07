@@ -25,7 +25,6 @@ export interface BollingerBand {
  *
  * @param period -
  * @param sd -
- * @param src -
  */
 export function bollinger(
 	period?: number,

@@ -271,7 +271,7 @@ export function divSelf(l: Sym<any>, r: Term<any> | number) {
  * Integer % (modulo) operator
  *
  * @param l -
- * @param b -
+ * @param r -
  */
 // prettier-ignore
 export function modi<A extends Int | IVec | UVec, B extends A>(l: Term<A>, r: Term<B>): Op2<A>;

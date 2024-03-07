@@ -16,7 +16,6 @@ import { iterator } from "./iterator.js";
  * ```
  *
  * @param n -
- * @param src -
  */
 export function takeLast<T>(n: number): Transducer<T, T>;
 export function takeLast<T>(n: number, src: Iterable<T>): IterableIterator<T>;

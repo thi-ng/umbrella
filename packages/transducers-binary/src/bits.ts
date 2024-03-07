@@ -21,7 +21,10 @@ import { isReduced } from "@thi.ng/transducers/reduced";
  * @param wordSize -
  * @param msbFirst -
  */
-export function bits(size?: number, msb?: boolean): Transducer<number, number>;
+export function bits(
+	wordSize?: number,
+	msbFirst?: boolean
+): Transducer<number, number>;
 export function bits(src: Iterable<number>): IterableIterator<number>;
 export function bits(
 	size: number,

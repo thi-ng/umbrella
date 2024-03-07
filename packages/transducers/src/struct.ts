@@ -47,7 +47,6 @@ export interface StructField extends Array<any> {
  * ```
  *
  * @param fields -
- * @param src -
  */
 export function struct<T>(fields: StructField[]): Transducer<any, T>;
 export function struct<T>(

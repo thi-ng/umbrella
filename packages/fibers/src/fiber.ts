@@ -201,7 +201,7 @@ export class Fiber<T = any>
 	 * // main end
 	 * ```
 	 *
-	 * @param f
+	 * @param body
 	 * @param opts
 	 */
 	fork<F>(body?: Nullable<MaybeFiber<F>>, opts?: Partial<FiberOpts>) {

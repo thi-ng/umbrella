@@ -1,5 +1,7 @@
 export * from "./api.js";
 export * from "./base.js";
+export * from "./decode.js";
+export * from "./encode.js";
 
 export * from "./8.js";
 export * from "./10.js";

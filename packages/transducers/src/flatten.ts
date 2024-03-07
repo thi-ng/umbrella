@@ -21,8 +21,6 @@ import { flattenWith } from "./flatten-with.js";
  * [...flatten("abc")]
  * // [ 'abc' ]
  * ```
- *
- * @param src -
  */
 export function flatten<A, B = DeepArrayValue<A>>(): Transducer<A, B>;
 export function flatten<A, B = DeepArrayValue<A>>(

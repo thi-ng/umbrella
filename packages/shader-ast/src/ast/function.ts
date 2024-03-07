@@ -62,7 +62,6 @@ const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
  * @param name - function name
  * @param args - arg types / names / opts
  * @param body - function body closure
- * @param deps - array of userland functions called from this function
  */
 // prettier-ignore
 export function defn<T extends Type>(type: T, name: Nullable<string>, args: [], body: FnBody0): TaggedFn0<T>;

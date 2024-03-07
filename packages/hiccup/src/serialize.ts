@@ -18,6 +18,7 @@ import {
 	VOID_TAGS,
 } from "./api.js";
 import { css } from "./css.js";
+import type { derefContext } from "./deref.js";
 import { normalize } from "./normalize.js";
 import { formatPrefixes } from "./prefix.js";
 

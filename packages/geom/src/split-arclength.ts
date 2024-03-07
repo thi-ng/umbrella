@@ -46,7 +46,7 @@ import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
  *
  * Result serialized to SVG:
  *
- * ```svg
+ * ```xml
  * <g>
  *   <g>
  *     <polyline fill="none" points="100,0 70.7,70.7 0.0,100 -43.4,82.0" stroke="red"/>

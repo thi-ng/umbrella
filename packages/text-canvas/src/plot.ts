@@ -18,7 +18,7 @@ export interface PlotBarsVOpts {
 	blend?: BlendFn;
 }
 
-interface PlotSpec {
+export interface PlotSpec {
 	data: NumericArray;
 	color: number;
 }

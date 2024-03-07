@@ -7,7 +7,7 @@ import type {
 import { MASKS } from "@thi.ng/binary/constants";
 import { assert } from "@thi.ng/errors/assert";
 
-type Range2_64 = Exclude<Range1_64, 1>;
+export type Range2_64 = Exclude<Range1_64, 1>;
 
 const ZERO = BigInt(0);
 const ONE = BigInt(1);

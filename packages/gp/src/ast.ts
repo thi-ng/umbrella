@@ -120,7 +120,6 @@ export class AST<OP, T> {
 	 * (default: entire tree range). Since the linear tree length isn't known
 	 * beforehand, `max` < 0 (default) is equivalent to the linearized tree end.
 	 *
-	 * @param opts -
 	 * @param tree -
 	 * @param min -
 	 * @param max -

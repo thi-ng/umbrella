@@ -45,7 +45,6 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  *
  * @param rfn - reducer used as scan operator
  * @param init -
- * @param src -
  */
 export function scan<A, B>(rfn: Reducer<B, A>, init?: B): Transducer<A, B>;
 export function scan<A, B>(

@@ -14,8 +14,6 @@ import { map } from "./map.js";
  * [...peek([ [1, 2, 3], [4, 5] ])]
  * // [ 3, 5 ]
  * ```
- *
- * @param src -
  */
 export function peek<T>(): Transducer<T[], T>;
 export function peek<T>(src: Iterable<T[]>): IterableIterator<T>;

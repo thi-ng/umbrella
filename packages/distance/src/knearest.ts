@@ -69,7 +69,7 @@ export class KNearest<D, T>
 	/**
 	 * Resets `k-nearest` limit and clears current results.
 	 *
-	 * @param r
+	 * @param k
 	 */
 	setK(k: number) {
 		assert(k > 0, `invalid k (must be > 0)`);

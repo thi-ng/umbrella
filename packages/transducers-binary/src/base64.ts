@@ -53,9 +53,6 @@ export interface Base64EncodeOpts {
  * internal buffer (size also configurable, default = 1024) to store
  * intermediate results. Then repeatedly calls reducer to drain buffer
  * whenever it's been filled.
- *
- * @param urlSafe -
- * @param bufSize -
  */
 export function base64Encode(): Transducer<number, string>;
 export function base64Encode(

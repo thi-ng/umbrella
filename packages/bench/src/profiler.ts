@@ -3,7 +3,7 @@ import type { Timestamp } from "./api.js";
 import { benchResult } from "./bench.js";
 import { asMillis, now } from "./now.js";
 
-interface Profile {
+export interface Profile {
 	t0: Timestamp[];
 	total: Timestamp;
 	calls: number;

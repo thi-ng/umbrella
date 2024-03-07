@@ -37,7 +37,6 @@ export type MaybeIterable<T> = Nullable<Iterable<T>>;
  * ```
  *
  * @param fn -
- * @param src -
  */
 export function flattenWith<A, B = DeepArrayValue<A>>(
 	fn: Fn<any, MaybeIterable<any>>

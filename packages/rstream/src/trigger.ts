@@ -10,9 +10,6 @@ import type { Stream } from "./stream.js";
  *
  * @remarks
  * Syntax sugar for {@link fromIterableSync}.
- *
- * @param x -
- * @param opts -
  */
 export function trigger(): Stream<boolean>;
 export function trigger<T>(x: T, opts?: Partial<CommonOpts>): Stream<T>;

@@ -28,7 +28,6 @@ import { map } from "./map.js";
  * ```
  *
  * @param keys -
- * @param src -
  */
 export function selectKeys<T>(keys: PropertyKey[]): Transducer<T, any>;
 export function selectKeys<T>(

@@ -12,7 +12,7 @@ import { wma } from "./wma.js";
  * Note: the number of results will be `period + floor(sqrt(period)) - 2` less
  * than the number of processed inputs.
  *
- * @param weights - period or array of weights
+ * @param period -
  */
 export function hma(period: number): Transducer<number, any>;
 export function hma(

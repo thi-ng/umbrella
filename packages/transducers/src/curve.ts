@@ -36,7 +36,7 @@
  * @param start -
  * @param end -
  * @param steps -
- * @param falloff -
+ * @param rate -
  */
 export function* curve(
 	start: number,

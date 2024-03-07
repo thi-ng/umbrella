@@ -121,9 +121,7 @@ export interface PartitionSyncOpts<T> {
  * optional `all` arg to false.
  *
  * @param keys - allowed label set
- * @param keyfn - label extraction function
- * @param reset - true if each tuple should contain only new values
- * @param all - true if last tuple is allowed to be incomplete
+ * @param opts -
  */
 export function partitionSync<T>(
 	keys: PropertyKey[] | Set<PropertyKey>,

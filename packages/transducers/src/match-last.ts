@@ -30,7 +30,6 @@ import { takeLast } from "./take-last.js";
  * ```
  *
  * @param pred - predicate function
- * @param src -
  */
 export function matchLast<T>(pred: Predicate<T>): Transducer<T, T>;
 export function matchLast<T>(

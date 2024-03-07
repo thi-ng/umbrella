@@ -15,7 +15,6 @@ import { partition } from "./partition.js";
  *
  * @param n - window size
  * @param opts -
- * @param src -
  */
 export function movingMedian<A, B>(
 	n: number,

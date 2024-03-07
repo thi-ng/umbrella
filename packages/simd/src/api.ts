@@ -63,7 +63,6 @@ export interface SIMD {
 	 * @param a -
 	 * @param b -
 	 * @param num -
-	 * @param so -
 	 */
 	dot2_f32_aos(out: number, a: number, b: number, num: number): number;
 
@@ -204,12 +203,11 @@ export interface SIMD {
 	 *
 	 * @param out -
 	 * @param a -
-	 * @param b -
+	 * @param b - scalar factor
 	 * @param c -
 	 * @param num - number of vec4
 	 * @param so - out element stride
 	 * @param sa - A element stride
-	 * @param sb - B element stride
 	 * @param sc - C element stride
 	 */
 	msubn4_f32(

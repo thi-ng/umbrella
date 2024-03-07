@@ -179,8 +179,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	 * matched triples. If only the raw triple IDs are wanted, set
 	 * `emitTriples` arg to `false`.
 	 *
+	 * @param pattern -
 	 * @param id -
-	 * @param param1 -
 	 */
 	addPatternQuery(pattern: Pattern, id?: string): ISubscription<any, Triples>;
 	addPatternQuery(
@@ -254,8 +254,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	 * [{ a: "asterix", b: "obelix" }, { a: "romeo", b: "julia" }]
 	 * ```
 	 *
+	 * @param pattern -
 	 * @param id -
-	 * @param param1 -
 	 */
 	addParamQuery([s, p, o]: Pattern, id?: string): QuerySolution {
 		const vs = isQVar(s);
@@ -297,11 +297,11 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	 */
 	addPathQuery(
 		path: PathPattern,
-		len = path[1].length,
+		maxDepth = path[1].length,
 		id?: string
 	): QuerySolution {
 		return this.addMultiJoin(
-			this.addParamQueries(resolvePathPattern(path, len)[0]),
+			this.addParamQueries(resolvePathPattern(path, maxDepth)[0]),
 			patternVars(path),
 			id
 		);

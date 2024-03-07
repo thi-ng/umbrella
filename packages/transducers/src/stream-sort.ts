@@ -18,8 +18,7 @@ import { __iter, iterator } from "./iterator.js";
  * ```
  *
  * @param n -
- * @param key -
- * @param cmp -
+ * @param opts -
  */
 export function streamSort<A, B>(
 	n: number,

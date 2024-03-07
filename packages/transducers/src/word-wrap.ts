@@ -20,7 +20,6 @@ export interface WordWrapOpts {
  *
  * @param lineLength -
  * @param opts -
- * @param src -
  */
 export function wordWrap(
 	lineLength: number,
