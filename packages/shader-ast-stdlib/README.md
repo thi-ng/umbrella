@@ -109,7 +109,7 @@ For Node.js REPL:
 const shaderAstStdlib = await import("@thi.ng/shader-ast-stdlib");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.67 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.83 KB
 
 ## Dependencies
 
@@ -408,6 +408,7 @@ Related:
 - `minComp2` / `minComp3` / `minComp4`
 - `perpendicularCCW` / `perpendicularCW`
 - `orthogonal3`
+- `packFloat` / `unpackFloat`
 - `polar2` / `polar3`
 - `sincos` / `cossin`
 - `smootherStep` / `smootherStep2` / `smootherStep3` / `smootherStep4`
@@ -528,7 +529,7 @@ Related:
 
 - `indexToCoord` / `coordToIndex`
 - `indexToUV` / `uvToIndex`
-- `normal2`
+- `normal2` / `packedNormal2`
 - `readIndex1` / `readIndex2` / `readIndex3` / `readIndex4`
 
 ### Visualization
