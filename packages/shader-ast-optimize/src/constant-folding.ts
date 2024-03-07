@@ -1,28 +1,44 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { LogLevel } from "@thi.ng/logger/api";
 import { deg, rad } from "@thi.ng/math/angle";
 import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
 import { fract, mod } from "@thi.ng/math/prec";
-import type {
-	FnCall,
-	Lit,
-	Op1,
-	Op2,
-	Operator,
-	Swizzle,
-	Swizzle4_1,
-	Term,
+import {
+	matchingPrimFor,
+	neg,
+	type FloatTerm,
+	type FnCall,
+	type Int,
+	type Lit,
+	type Op1,
+	type Op2,
+	type Operator,
+	type Prim,
+	type Swizzle,
+	type Swizzle4_1,
+	type Term,
 } from "@thi.ng/shader-ast";
 import {
 	isFloat,
 	isInt,
+	isLitNumOrVecConst,
 	isLitNumericConst,
 	isLitVecConst,
 	isUint,
 } from "@thi.ng/shader-ast/ast/checks";
-import { FLOAT0, float, int, lit, uint } from "@thi.ng/shader-ast/ast/lit";
+import {
+	FLOAT0,
+	FLOAT1,
+	FLOAT2,
+	bool,
+	float,
+	int,
+	lit,
+	uint,
+} from "@thi.ng/shader-ast/ast/lit";
 import { allChildren, walk } from "@thi.ng/shader-ast/ast/scope";
 import { LOGGER } from "@thi.ng/shader-ast/logger";
 
@@ -48,11 +64,20 @@ const replaceNode = (node: any, next: any) => {
 	return true;
 };
 
+/** @internal */
 const replaceNumericNode = (node: any, res: number) => {
 	node.type === "int" && (res |= 0);
 	node.type === "uint" && (res >>>= 0);
 	return replaceNode(node, lit(node.type, res));
 };
+
+/** @internal */
+const replaceBooleanNode = (node: any, res: boolean) =>
+	replaceNode(node, bool(res));
+
+/** @internal */
+const replaceWithConst = (node: Term<any>, ref: Lit<Prim>, n: FloatTerm) =>
+	replaceNode(node, matchingPrimFor(ref, n));
 
 /** @internal */
 const maybeFoldMath = (op: Operator, l: number, r: number) =>
@@ -63,7 +88,24 @@ const maybeFoldMath = (op: Operator, l: number, r: number) =>
 		: op === "*"
 		? l * r
 		: op === "/"
-		? l / r
+		? r != 0
+			? l / r
+			: illegalArgs(`division by zero: ${l}/${r}`)
+		: undefined;
+
+const maybeFoldCompare = (op: Operator, l: number, r: number) =>
+	op === "=="
+		? l === r
+		: op === "!="
+		? l !== r
+		: op === "<"
+		? l < r
+		: op === "<="
+		? l <= r
+		: op === ">="
+		? l >= r
+		: op === ">"
+		? l > r
 		: undefined;
 
 /** @internal */
@@ -114,22 +156,32 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
 		op2: (node) => {
 			const $node = <Op2<any>>node;
 			const op = $node.op;
-			const l = <Lit<"float" | "int" | "uint">>$node.l;
-			const r = <Lit<"float" | "int" | "uint">>$node.r;
+			const l = <Lit<Prim | Int>>$node.l;
+			const r = <Lit<Prim | Int>>$node.r;
 			const isNumL = isLitNumericConst(l);
 			const isNumR = isLitNumericConst(r);
 			if (isNumL && isNumR) {
-				let res = maybeFoldMath(op, l.val, r.val);
-				if (res !== undefined) return replaceNumericNode(node, res);
+				const num = maybeFoldMath(op, l.val, r.val);
+				if (num !== undefined) return replaceNumericNode(node, num);
+				const bool = maybeFoldCompare(op, l.val, r.val);
+				if (bool !== undefined) return replaceBooleanNode(node, bool);
 			} else if (op === "*") {
-				if ((isNumL && l.val === 0) || (isNumR && r.val === 0))
-					return replaceNode(node, FLOAT0);
+				if (isNumL && l.val === 0)
+					return replaceWithConst(node, <Lit<Prim>>r, FLOAT0);
+				if (isNumR && r.val === 0)
+					return replaceWithConst(node, <Lit<Prim>>l, FLOAT0);
 				if (isNumL && l.val === 1) return replaceNode(node, r);
 				if (isNumR && r.val === 1) return replaceNode(node, l);
 			} else if (op === "/") {
+				if (isNumL && l.val === 0)
+					return replaceWithConst(node, <Lit<Prim>>r, FLOAT0);
+				if (isNumR && r.val === 0) illegalArgs("division by zero");
 				if (isNumR && r.val === 1) return replaceNode(node, l);
-			} else if (op === "+" || op === "-") {
+			} else if (op === "+") {
 				if (isNumL && l.val === 0) return replaceNode(node, r);
+				if (isNumR && r.val === 0) return replaceNode(node, l);
+			} else if (op === "-") {
+				if (isNumL && l.val === 0) return replaceNode(node, neg(r));
 				if (isNumR && r.val === 0) return replaceNode(node, l);
 			}
 		},
@@ -144,6 +196,8 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
 						op($node.args.map((x) => (<Lit<any>>x).val))
 					);
 				}
+			} else {
+				return foldBuiltin($node);
 			}
 		},
 
@@ -178,6 +232,54 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
 );
 
 /**
+ * Similar to {@link foldNode}, but specialized for function calls of builtin's
+ * (aka `call_i` AST nodes).
+ *
+ * @remarks
+ * Currently, implementations are only dealing with these builtins:
+ *
+ * - exp2
+ * - pow
+ *
+ * This function delegates based on the function name of the builtin and is
+ * extensible, i.e. custom optimizations can be added by calling
+ * `foldBuiltin.add("functionname", (node) => ...)`.
+ *
+ * @internal
+ */
+export const foldBuiltin = defmulti<FnCall<any>, boolean | undefined>(
+	(x) => x.id,
+	{},
+	{
+		[DEFAULT]: () => false,
+
+		exp2: (node) => {
+			const a = node.args[0];
+			// exp2(0) => 1
+			if (isLitNumOrVecConst(a, 0)) {
+				return replaceWithConst(node, <Lit<Prim>>a, FLOAT1);
+			}
+			// exp2(1) => 2
+			if (isLitNumOrVecConst(a, 1)) {
+				return replaceWithConst(node, <Lit<Prim>>a, FLOAT2);
+			}
+		},
+
+		pow: (node) => {
+			const [a, b] = node.args;
+			// pow(a, 0) => 1
+			if (isLitNumOrVecConst(b, 0)) {
+				return replaceWithConst(node, <Lit<Prim>>a, FLOAT1);
+			}
+			// pow(a, 1) => a
+			if (isLitNumOrVecConst(b, 1)) {
+				return replaceNode(node, a);
+			}
+		},
+	}
+);
+
+/**
  * Traverses given AST (potentially several times) and applies constant folding
  * optimizations where possible. Returns possibly updated tree (mutates
  * original).
@@ -191,7 +293,7 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
  * - literal hoisting
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/constant-folding.ts
  * import {
  *   add, defn, float, mul, neg, ret, scope, vec2, $x, $y
  * } from "@thi.ng/shader-ast";
