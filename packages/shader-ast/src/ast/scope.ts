@@ -60,7 +60,9 @@ export const allChildren = (t: Term<any>) =>
 		: t.tag === "ternary"
 		? [(<Ternary<any>>t).test, (<Ternary<any>>t).t, (<Ternary<any>>t).f]
 		: t.tag === "ret"
-		? [(<FuncReturn<any>>t).val]
+		? (<FuncReturn<any>>t).val !== undefined
+			? [(<FuncReturn<any>>t).val]
+			: undefined
 		: t.tag === "call" || t.tag === "call_i"
 		? (<FnCall<any>>t).args
 		: t.tag === "sym" && (<Sym<any>>t).init
