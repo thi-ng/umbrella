@@ -20,10 +20,15 @@ Currently, only the following operations are supported/considered:
 
 #### Constant folding
 
-- scalar math operators
-- scalar math built-in functions
+- scalar math operators (incl. some vector versions)
+- scalar math built-in functions (incl. some vector versions)
+- scalar comparisons
 - single component vector swizzling
 - literal hoisting
+
+(See tests for some more examples, non-exhaustive...)
+
+**Note:** The static optimizer throws an error if it detects a division-by-zero...
 
 ```ts tangle:export/readme1.ts
 import {
