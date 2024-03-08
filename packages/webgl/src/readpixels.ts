@@ -1,3 +1,4 @@
+import type { UIntArray } from "@thi.ng/api";
 import type {
 	ITexture,
 	ReadableTextureFormat,
@@ -5,9 +6,7 @@ import type {
 } from "./api/texture.js";
 import { FBO } from "./fbo.js";
 
-export const readPixels = <
-	T extends Uint8Array | Uint16Array | Uint32Array | Float32Array
->(
+export const readPixels = <T extends UIntArray | Float32Array>(
 	gl: WebGLRenderingContext,
 	x: number,
 	y: number,
