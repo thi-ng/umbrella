@@ -22,6 +22,17 @@ const __coeff = (col: Vec4Sym, f: FloatTerm) =>
  * functions are used to extract blending coefficients for src/dest colors and
  * are called with the alpha components of both colors.
  *
+ * - `blendSrcOver(src, dest)`
+ * - `blendDestOver(src, dest)`
+ * - `blendSrcIn(src, dest)`
+ * - `blendDestIn(src, dest)`
+ * - `blendSrcOut(src, dest)`
+ * - `blendDestOut(src, dest)`
+ * - `blendSrcAtop(src, dest)`
+ * - `blendDestAtop(src, dest)`
+ * - `blendXor(src, dest)`
+ * - `blendPlus(src, dest)`
+ *
  * Optimization only happens for cases where either `fa` and/or `fb` are
  * {@link ZERO} or {@link ONE}.
  *
@@ -54,9 +65,21 @@ export const porterDuff = (
 		];
 	});
 
+/**
+ * Multiplies RGB channels by alpha. Returns `vec4(col.r*col.a, col.g*col.a,
+ * col.b*col.a, col.a)`. See {@link postmultiplyAlpha} for reverse op.
+ *
+ * @param col
+ */
 export const premultiplyAlpha = (col: Vec4Sym) =>
 	vec4(mul($xyz(col), $w(col)), $w(col));
 
+/**
+ * Divides RGB channels by alpha. Returns `vec4(col.r/col.a, col.g/col.a,
+ * col.b/col.a, col.a)`. See {@link premultiplyAlpha} for reverse op.
+ *
+ * @param col
+ */
 export const postmultiplyAlpha = (col: Vec4Sym) =>
 	vec4(div($xyz(col), $w(col)), $w(col));
 
