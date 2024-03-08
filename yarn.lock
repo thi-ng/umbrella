@@ -2760,6 +2760,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/webgl-texture-paint@workspace:examples/webgl-texture-paint":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-texture-paint@workspace:examples/webgl-texture-paint"
+  dependencies:
+    "@thi.ng/canvas": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: "npm:^5.3.3"
+    vite: "npm:^5.1.1"
+  languageName: unknown
+  linkType: soft
+
 "@example/wolfram@workspace:examples/wolfram":
   version: 0.0.0-use.local
   resolution: "@example/wolfram@workspace:examples/wolfram"
