@@ -1,5 +1,9 @@
 import { expect, test } from "bun:test";
-import { defSystem, type ILifecycle } from "../src/index.js";
+import { defSystem, LOGGER, type ILifecycle } from "../src/index.js";
+import { MemoryLogger } from "@thi.ng/logger";
+
+const SYSLOG = new MemoryLogger();
+LOGGER.set(SYSLOG);
 
 test("basic", async () => {
 	const log: string[] = [];
@@ -76,6 +80,8 @@ test("basic", async () => {
 		},
 	});
 
+	SYSLOG.clear();
+
 	await foo.start();
 	await foo.stop();
 
@@ -89,6 +95,17 @@ test("basic", async () => {
 		"stop cache",
 		"stop logger",
 	]);
+
+	expect(SYSLOG.messages()).toEqual([
+		"starting: logger",
+		"starting: state",
+		"starting: dummy",
+		"starting: db",
+		"stopping: db",
+		"stopping: dummy",
+		"stopping: state",
+		"stopping: logger",
+	]);
 });
 
 test("non-lifecycle objects", async () => {
@@ -101,8 +118,11 @@ test("non-lifecycle objects", async () => {
 		bar: { factory: async ({ foo }) => ({ foo }), deps: ["foo"] },
 	}).init();
 	expect(sys.components.foo).toBe(sys.components.bar.foo);
+
+	SYSLOG.clear();
 	await sys.start();
 	await sys.stop();
+	expect(SYSLOG.messages()).toEqual([]);
 });
 
 test("failed start, stop existing", async () => {
@@ -135,8 +155,18 @@ test("failed start, stop existing", async () => {
 		},
 	});
 
+	SYSLOG.clear();
 	expect(await sys.start()).toBe(false);
 	expect(order).toEqual(["a1", "b1", "c", "b2", "a2"]);
+
+	expect(SYSLOG.messages()).toEqual([
+		"starting: a",
+		"starting: b",
+		"starting: c",
+		"error starting component: c",
+		"stopping: b",
+		"stopping: a",
+	]);
 });
 
 test("pass system to lifecycle", async () => {
@@ -159,6 +189,8 @@ test("pass system to lifecycle", async () => {
 		},
 	});
 
+	SYSLOG.clear();
 	expect(await sys.start()).toBeTrue();
 	expect(await sys.stop()).toBeTrue();
+	expect(SYSLOG.messages()).toEqual(["starting: foo", "stopping: foo"]);
 });
