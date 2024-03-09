@@ -23,7 +23,6 @@
 		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/color": "workspace:^",
 		"@thi.ng/dsp": "workspace:^",
-		"@thi.ng/logger": "workspace:^",
 		"@thi.ng/shader-ast": "workspace:^",
 		"@thi.ng/shader-ast-stdlib": "workspace:^",
 		"@thi.ng/webgl": "workspace:^"
@@ -32,7 +31,14 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": false,
+		"readme": [
+			"canvas",
+			"color",
+			"dsp",
+			"shader-ast",
+			"shader-ast-stdlib",
+			"webgl"
+		],
 		"screenshot": "examples/webgl-texture-paint.jpg"
 	}
 }
