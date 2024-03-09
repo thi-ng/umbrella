@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/system",
-	"version": "3.0.12",
+	"version": "3.1.0",
 	"description": "Minimal and explicit dependency-injection & lifecycle container for stateful app components",
 	"type": "module",
 	"module": "./index.js",

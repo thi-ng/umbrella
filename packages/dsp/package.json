@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dsp",
-	"version": "4.7.19",
+	"version": "4.7.20",
 	"description": "Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils",
 	"type": "module",
 	"module": "./index.js",

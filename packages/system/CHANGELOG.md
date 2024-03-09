@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-07T20:40:47Z
+- **Last updated**: 2024-03-09T13:46:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.1.0) (2024-03-09)
+
+#### 🚀 Features
+
+- add start/stop logging ([97af706](https://github.com/thi-ng/umbrella/commit/97af706))
 
 ### [3.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.0.3) (2024-02-16)
 
