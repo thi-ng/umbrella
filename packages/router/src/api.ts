@@ -106,8 +106,8 @@ export interface RouteMatch extends IID<string> {
  */
 export interface RouterConfig {
 	/**
-	 * An array of route specs, which are being attempted to be matched in order
-	 * of appearance.
+	 * An array of route specs which route input strings will be matched
+	 * against. Routes will be sorted from longest to shortest.
 	 */
 	routes: Route[];
 	/**

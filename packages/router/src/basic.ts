@@ -33,6 +33,7 @@ export class BasicRouter implements INotify<RouterEventType> {
 			removeTrailingSlash: true,
 			...config,
 		};
+		this.updateRoutes();
 		this.routeIndex = this.config.routes.reduce(
 			(acc, r) => ((acc[r.id] = r), acc),
 			<Record<string, Route>>{}
@@ -71,6 +72,11 @@ export class BasicRouter implements INotify<RouterEventType> {
 			this.current = { id: route.id, title: route.title, params: {} };
 			this.notify({ id: EVENT_ROUTE_CHANGED, value: this.current });
 		}
+	}
+
+	addRoutes(route: Route[]) {
+		this.config.routes.push(...route);
+		this.updateRoutes();
 	}
 
 	/**
@@ -153,6 +159,20 @@ export class BasicRouter implements INotify<RouterEventType> {
 
 	routeForID(id: string): Route | undefined {
 		return this.routeIndex[id];
+	}
+
+	protected updateRoutes() {
+		this.config.routes.sort((a, b) => b.length - a.length);
+		this.config.routes.reduce((acc, x) => {
+			const fmt = x.match
+				.map((y) => (isRouteParam(y) ? "*" : y))
+				.join("/");
+			if (acc[fmt]) {
+				illegalArgs(`duplicate route: ${x.match} (id: ${x.id})`);
+			}
+			acc[fmt] = true;
+			return acc;
+		}, <IObjectOf<boolean>>{});
 	}
 
 	protected matchRoutes(src: string) {
