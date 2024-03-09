@@ -126,15 +126,16 @@ const app = defMultiPass({
 			},
 		},
 
-		// the 2nd render pass simply copies the current texture to the previous
+		// the 2nd render pass simply copies the current texture to the previous one.
 		// passCopy() is provided by thi.ng/webgl and returns a shader pass spec
-		// which copies one of more textures
+		// which copies one or more textures
 		passCopy(["curr"], ["prev"]),
 
-		// the 3rd pass is just copying the same texture to the main
-		// drawing buffer so it's visible in the WebGL canvas (earlier passes
-		// only write to offscreen buffers aka FBOs)
-		// depending on use case, this step might not be necessary...
+		// the 3rd pass is just copying the same texture to the main drawing
+		// buffer so it's visible in the WebGL canvas (earlier passes only write
+		// to offscreen textures/buffers aka FBOs). depending on use case, this
+		// step might not be necessary (e.g. if the canvas is not attached to
+		// the DOM)
 		passCopyMain("curr"),
 	],
 });
@@ -163,8 +164,9 @@ const copyCurrentFrame = () => {
 
 	// bind the WebGL frame buffer of the 1st shader pass
 	app.fbos[0].bind();
-	// read that shader pass' output texture
-	const tex = readPixels(
+	// read that shader pass' output texture (aka the "curr" texture)
+	// (readPixels always reads from the currently bound frame buffer)
+	readPixels(
 		gl,
 		0,
 		0,
@@ -172,6 +174,7 @@ const copyCurrentFrame = () => {
 		height,
 		TextureFormat.RGBA,
 		TextureType.UNSIGNED_BYTE,
+		// target pixel array is the image data of the 2d canvas
 		idata.data
 	);
 	// unbind the frame buffer
@@ -179,7 +182,7 @@ const copyCurrentFrame = () => {
 
 	// WebGL textures are stored "upside down"
 	// depending on intended use we might need to manually flip the texture
-	flipY(tex, width, height);
+	flipY(idata.data, width, height);
 
 	// copy to 2D canvas
 	ctx.putImageData(idata, 0, 0);
