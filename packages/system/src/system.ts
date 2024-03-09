@@ -61,10 +61,13 @@ export class System<T extends SystemMap<T>> implements ILifecycle<T> {
 		for (let i = 0; i < topo.length; i++) {
 			const id = topo[i];
 			const comp = this.components[id];
-			if (comp.start && !(await comp.start(this))) {
-				LOGGER.warn(`error starting component: ${String(id)}`);
-				await this.__stop(topo, i);
-				return false;
+			if (comp.start) {
+				LOGGER.debug("starting:", id);
+				if (!(await comp.start(this))) {
+					LOGGER.warn(`error starting component: ${String(id)}`);
+					await this.__stop(topo, i);
+					return false;
+				}
 			}
 		}
 		return true;
@@ -103,9 +106,12 @@ export class System<T extends SystemMap<T>> implements ILifecycle<T> {
 		for (let i = n; i-- > 0; ) {
 			const id = topo[i];
 			const comp = this.components[id];
-			if (comp.stop && !(await comp.stop(this))) {
-				LOGGER.warn(`error stopping component: ${String(id)}`);
-				result = false;
+			if (comp.stop) {
+				LOGGER.debug("stopping:", id);
+				if (!(await comp.stop(this))) {
+					LOGGER.warn(`error stopping component: ${String(id)}`);
+					result = false;
+				}
 			}
 		}
 		return result;
