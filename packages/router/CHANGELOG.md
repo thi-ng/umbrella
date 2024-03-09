@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-07T20:40:47Z
+- **Last updated**: 2024-03-09T16:05:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.3.0) (2024-03-09)
+
+#### 🚀 Features
+
+- sort & validate routes, add tests ([9243c01](https://github.com/thi-ng/umbrella/commit/9243c01))
 
 ### [3.2.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.2.39) (2023-11-09)
 
