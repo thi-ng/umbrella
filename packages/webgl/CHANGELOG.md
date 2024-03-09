@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-07T20:40:47Z
+- **Last updated**: 2024-03-09T09:18:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [6.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.8.0) (2024-03-09)
+
+#### 🚀 Features
+
+- add passCopyMain() multipass spec utility ([ba22536](https://github.com/thi-ng/umbrella/commit/ba22536))
+
+#### 🩹 Bug fixes
+
+- update readPixels() args ([458e7ff](https://github.com/thi-ng/umbrella/commit/458e7ff))
 
 ## [6.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.7.0) (2024-03-06)
 

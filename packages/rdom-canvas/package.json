@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom-canvas",
-	"version": "0.5.71",
+	"version": "0.5.72",
 	"description": "@thi.ng/rdom component wrapper for @thi.ng/hiccup-canvas and declarative canvas drawing",
 	"type": "module",
 	"module": "./index.js",
@@ -36,13 +36,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.28",
-		"@thi.ng/associative": "^6.3.46",
-		"@thi.ng/canvas": "^0.2.9",
+		"@thi.ng/api": "^8.9.29",
+		"@thi.ng/associative": "^6.3.47",
+		"@thi.ng/canvas": "^0.2.10",
 		"@thi.ng/checks": "^3.5.2",
-		"@thi.ng/hiccup-canvas": "^2.5.23",
-		"@thi.ng/rdom": "^1.1.12",
-		"@thi.ng/rstream": "^8.3.11"
+		"@thi.ng/hiccup-canvas": "^2.5.24",
+		"@thi.ng/rdom": "^1.1.13",
+		"@thi.ng/rstream": "^8.3.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",

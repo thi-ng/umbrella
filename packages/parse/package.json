@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/parse",
-	"version": "2.4.30",
+	"version": "2.4.31",
 	"description": "Purely functional parser combinators & AST generation for generic inputs",
 	"type": "module",
 	"module": "./index.js",
@@ -36,11 +36,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.28",
+		"@thi.ng/api": "^8.9.29",
 		"@thi.ng/checks": "^3.5.2",
-		"@thi.ng/defmulti": "^3.0.29",
+		"@thi.ng/defmulti": "^3.0.30",
 		"@thi.ng/errors": "^2.4.20",
-		"@thi.ng/strings": "^3.7.21"
+		"@thi.ng/strings": "^3.7.22"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.40.1",
