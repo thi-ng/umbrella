@@ -72,7 +72,7 @@ For Node.js REPL:
 const router = await import("@thi.ng/router");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.57 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.66 KB
 
 ## Dependencies
 
@@ -96,7 +96,7 @@ directory is using this package:
 
 [Generated API docs](https://docs.thi.ng/umbrella/router/)
 
-```ts
+```ts tangle:export/readme.ts
 import { HTMLRouter, EVENT_ROUTE_CHANGED } from "@thi.ng/router";
 
 // router configuration
@@ -120,9 +120,8 @@ const config = {
     prefix: "#/",
 
     // actual route defs
-    // these are checked in given order
-    // IMPORTANT: rules with common prefixes MUST be specified in
-    // order of highest precision / longest path
+    // An array of route specs which route input strings will be matched
+    // against. Routes will be sorted from longest to shortest.
     routes: [
         {
             // each route MUST have an ID
