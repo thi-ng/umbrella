@@ -2,7 +2,7 @@
 	"name": "@example/webgl-texture-paint",
 	"version": "0.0.1",
 	"private": true,
-	"description": "TODO",
+	"description": "Interactively drawing to & reading from a WebGL offscreen render texture",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
