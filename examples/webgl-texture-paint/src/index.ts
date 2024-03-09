@@ -1,7 +1,6 @@
 import { pixelCanvas2d } from "@thi.ng/canvas";
 import { colorFromRange, srgb } from "@thi.ng/color";
 import { sin } from "@thi.ng/dsp";
-import { ConsoleLogger } from "@thi.ng/logger";
 import {
 	add,
 	assign,
@@ -11,36 +10,24 @@ import {
 	mix,
 	mul,
 	smoothstep,
-	subSelf,
 	sym,
-	texture,
 	vec2,
-	vec4,
 	type FloatSym,
 	type Vec2Sym,
 	type Vec4Sym,
-	$xyz,
 } from "@thi.ng/shader-ast";
+import { blendSrcOver, blur9, fragUV } from "@thi.ng/shader-ast-stdlib";
 import {
-	blendSrcOver,
-	blur9,
-	fragUV,
-	postmultiplyAlpha,
-	premultiplyAlpha,
-} from "@thi.ng/shader-ast-stdlib";
-import {
+	TextureFilter,
 	TextureFormat,
 	TextureType,
 	defMultiPass,
 	glCanvas,
 	passCopy,
+	passCopyMain,
 	readPixels,
 	type PassOpts,
-	Blend,
-	LOGGER,
 } from "@thi.ng/webgl";
-
-LOGGER.set(new ConsoleLogger());
 
 const width = 600;
 const height = 600;
@@ -52,24 +39,17 @@ const { gl, canvas } = glCanvas({
 	autoScale: false,
 	parent: document.getElementById("app")!,
 	version: 2,
-	opts: {
-		// alpha: true,
-		premultipliedAlpha: false,
-		// depth: false,
-		// preserveDrawingBuffer: true,
-	},
+	opts: { premultipliedAlpha: false },
 });
 
 // gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
 
-const { ctx } = pixelCanvas2d(width, height, document.getElementById("app"), {
-	ctx: { alpha: true },
-});
+const { ctx } = pixelCanvas2d(width, height, document.getElementById("app"));
 
 // main shader function to draw with a brush to a render texture.
-// (this shader is written using thi.ng/shader-ast and uses several highlevel
-// helper functions from thi.ng/shader-ast-stdlib and will be transpiled to GLSL
-// by thi.ng/webgl)
+// this shader is written using thi.ng/shader-ast and uses several highlevel
+// helper functions from thi.ng/shader-ast-stdlib. it will be transpiled to GLSL
+// by thi.ng/webgl as part of the multipass pipeline defined further below...
 const doodle: PassOpts["fs"] = (gl, unis, ins, outs) => [
 	defMain(() => {
 		let uv: Vec2Sym;
@@ -110,7 +90,8 @@ const doodle: PassOpts["fs"] = (gl, unis, ins, outs) => [
 	}),
 ];
 
-// define WebGL multipass pipeline
+// define WebGL multipass pipeline, including texture definitions, shader
+// passes, uniform variables...
 const app = defMultiPass({
 	gl,
 	width,
@@ -126,8 +107,7 @@ const app = defMultiPass({
 		prev: {
 			format: TextureFormat.RGBA,
 			type: TextureType.UNSIGNED_BYTE,
-			// prefill texture with 100% white
-			image: new Uint8Array(width * height * 4).fill(1),
+			filter: TextureFilter.LINEAR,
 		},
 	},
 	// list of shader passes, executed in sequence
@@ -149,31 +129,15 @@ const app = defMultiPass({
 		},
 
 		// the 2nd render pass simply copies the current texture to the previous
+		// passCopy() is provided by thi.ng/webgl and returns a shader pass spec
+		// which copies one of more textures
 		passCopy(["curr"], ["prev"]),
 
 		// the 3rd pass is just copying the same texture to the main
 		// drawing buffer so it's visible in the WebGL canvas (earlier passes
 		// only write to offscreen buffers aka FBOs)
-		{
-			fs: (gl, unis, ins, outs) => [
-				defMain(() => [
-					assign(
-						outs.fragColor,
-						texture(
-							unis.input0,
-							fragUV(gl.gl_FragCoord, unis.resolution)
-						)
-					),
-				]),
-			],
-			inputs: ["curr"],
-			// not specifying outputs means we will draw to the canvas
-			outputs: [],
-			uniforms: {
-				// resolution uniform will be filled in by default (if given)
-				resolution: "vec2",
-			},
-		},
+		// depending on use case, this step might not be necessary...
+		passCopyMain("curr"),
 	],
 });
 
