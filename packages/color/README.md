@@ -714,6 +714,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>                     | Fitting, transforming & plotting 10k data points per frame using SIMD       | [Demo](https://demo.thi.ng/umbrella/simd-plot/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>                | Responsive & reactively computed stacked column layout                      | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                      | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>           | TODO                                                                        | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-texture-paint)  |
 
 ## API
 

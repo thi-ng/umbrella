@@ -2767,7 +2767,6 @@ __metadata:
     "@thi.ng/canvas": "workspace:^"
     "@thi.ng/color": "workspace:^"
     "@thi.ng/dsp": "workspace:^"
-    "@thi.ng/logger": "workspace:^"
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
