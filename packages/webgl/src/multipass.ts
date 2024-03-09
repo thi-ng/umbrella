@@ -247,3 +247,25 @@ export const passCopy = (src: string[], dest: string[]): PassOpts => {
 		outputs: dest,
 	};
 };
+
+/**
+ * Generates a shader pass spec which copies given named texture `src` to the
+ * main drawing buffer as final step in a {@link defMultiPass} pipeline.
+ *
+ * @remarks
+ * WebGL2 only (uses `texelFetch()`)
+ *
+ * @param src
+ */
+export const passCopyMain = (src: string): PassOpts => ({
+	fs: (gl, unis, _, outs) => [
+		defMain(() => [
+			assign(
+				outs.fragColor,
+				texelFetch(unis.input0, ivec2($xy(gl.gl_FragCoord)), INT0)
+			),
+		]),
+	],
+	inputs: [src],
+	outputs: [],
+});
