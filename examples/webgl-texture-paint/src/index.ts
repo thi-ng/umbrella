@@ -42,8 +42,6 @@ const { gl, canvas } = glCanvas({
 	opts: { premultipliedAlpha: false },
 });
 
-// gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
-
 const { ctx } = pixelCanvas2d(width, height, document.getElementById("app"));
 
 // main shader function to draw with a brush to a render texture.
