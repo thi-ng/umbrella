@@ -557,6 +557,7 @@ __metadata:
     "@thi.ng/cache": "workspace:^"
     "@thi.ng/file-io": "workspace:^"
     "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/logger": "workspace:^"
     "@thi.ng/resolve-map": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
@@ -6748,14 +6749,14 @@ __metadata:
   linkType: hard
 
 "@types/express-serve-static-core@npm:^4.17.33":
-  version: 4.17.41
-  resolution: "@types/express-serve-static-core@npm:4.17.41"
+  version: 4.17.43
+  resolution: "@types/express-serve-static-core@npm:4.17.43"
   dependencies:
     "@types/node": "npm:*"
     "@types/qs": "npm:*"
     "@types/range-parser": "npm:*"
     "@types/send": "npm:*"
-  checksum: 10/7647e19d9c3d57ddd18947d2b161b90ef0aedd15875140e5b824209be41c1084ae942d4fb43cd5f2051a6a5f8c044519ef6c9ac1b2ad86b9aa546b4f1f023303
+  checksum: 10/9079e137470e0456bb8e77ae66df9505ee12591e94860bde574cfe52c5c60bbc5bf7dd44f5689c3cbb1baf0aa84442d9a21f53dcd921d18745727293cd5a5fd6
   languageName: node
   linkType: hard
 
@@ -6809,9 +6810,9 @@ __metadata:
   linkType: hard
 
 "@types/qs@npm:*":
-  version: 6.9.11
-  resolution: "@types/qs@npm:6.9.11"
-  checksum: 10/620ca1628bf3da65662c54ed6ebb120b18a3da477d0bfcc872b696685a9bb1893c3c92b53a1190a8f54d52eaddb6af8b2157755699ac83164604329935e8a7f2
+  version: 6.9.12
+  resolution: "@types/qs@npm:6.9.12"
+  checksum: 10/76be8068091058987bb49aca59e9714ff856661cdc2340499f9d502c78950ac08e7ecbca256c8a72c4c83714bce30e6aaad13f9f739e8c0c436c0eedb2a2627c
   languageName: node
   linkType: hard
 
