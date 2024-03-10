@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { BasicRouter } from "../src/index.js";
+import { BasicRouter, defMatch } from "../src/index.js";
 
 test("router", () => {
 	const router = new BasicRouter({
@@ -44,4 +44,10 @@ test("router", () => {
 	expect(router.format("b")).toBe("/b");
 
 	expect(() => router.addRoutes([{ id: "b", match: ["b"] }])).toThrow();
+});
+
+test("defMatch", () => {
+	expect(defMatch("/")).toEqual([]);
+	expect(defMatch("/a/")).toEqual(["a"]);
+	expect(defMatch("/a/?id/b")).toEqual(["a", "?id", "b"]);
 });

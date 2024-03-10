@@ -237,3 +237,22 @@ export class BasicRouter implements INotify<RouterEventType> {
 const isParametricRoute = (route: Route) => route.match.some(isRouteParam);
 
 const isRouteParam = (x: string) => x[0] === "?";
+
+/**
+ * Helper function to define a {@link Route.match} array from a string pattern.
+ *
+ * @example
+ * ```ts tangle:../export/def-match.ts
+ * import { defMatch } from "@thi.ng/router";
+ *
+ * console.log(
+ *   defMatch("/contacts/?id/friends")
+ * );
+ * // ["contacts", "?id", "friends"]
+ * ```
+ *
+ * @param pattern
+ * @param sep
+ */
+export const defMatch = (pattern: string, sep = "/") =>
+	pattern.split(sep).filter((x) => !!x);
