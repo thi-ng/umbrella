@@ -40,5 +40,8 @@ test("router", () => {
 		title: undefined,
 	});
 
+	// ensure route reverse index has been updated too
+	expect(router.format("b")).toBe("/b");
+
 	expect(() => router.addRoutes([{ id: "b", match: ["b"] }])).toThrow();
 });

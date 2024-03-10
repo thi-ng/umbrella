@@ -19,7 +19,7 @@ import {
 export class BasicRouter implements INotify<RouterEventType> {
 	config: RouterConfig;
 	current: RouteMatch | undefined;
-	routeIndex: Record<string, Route>;
+	routeIndex!: Record<string, Route>;
 
 	constructor(config: RouterConfig) {
 		this.config = {
@@ -34,10 +34,6 @@ export class BasicRouter implements INotify<RouterEventType> {
 			...config,
 		};
 		this.updateRoutes();
-		this.routeIndex = this.config.routes.reduce(
-			(acc, r) => ((acc[r.id] = r), acc),
-			<Record<string, Route>>{}
-		);
 		assert(
 			this.routeForID(this.config.defaultRouteID) !== undefined,
 			`missing config for default route: '${this.config.defaultRouteID}'`
@@ -173,6 +169,10 @@ export class BasicRouter implements INotify<RouterEventType> {
 			acc[fmt] = true;
 			return acc;
 		}, <IObjectOf<boolean>>{});
+		this.routeIndex = this.config.routes.reduce(
+			(acc, r) => ((acc[r.id] = r), acc),
+			<Record<string, Route>>{}
+		);
 	}
 
 	protected matchRoutes(src: string) {
@@ -190,7 +190,7 @@ export class BasicRouter implements INotify<RouterEventType> {
 		const match = route.match;
 		const n = match.length;
 		if (curr.length === n) {
-			const params: any = {};
+			const params: IObjectOf<any> = {};
 			for (let i = 0; i < n; i++) {
 				const m = match[i];
 				if (isRouteParam(m)) {
