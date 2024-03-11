@@ -11,7 +11,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
 	protected _size: number;
 
 	constructor(
-		pairs: Nullable<Iterable<[K, V]>>,
+		pairs?: Nullable<Iterable<[K, V]>>,
 		opts?: Partial<CacheOpts<K, V>>
 	) {
 		const _opts = <CacheOpts<K, V>>{

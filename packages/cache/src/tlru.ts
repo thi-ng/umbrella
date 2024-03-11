@@ -37,7 +37,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 	protected declare items: DCons<TLRUCacheEntry<K, V>>;
 
 	constructor(
-		pairs: Nullable<Iterable<[K, V]>>,
+		pairs?: Nullable<Iterable<[K, V]>>,
 		opts?: Partial<TLRUCacheOpts<K, V>>
 	) {
 		super(pairs, { ttl: 60 * 60 * 1000, ...opts });
