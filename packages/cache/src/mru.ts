@@ -1,15 +1,8 @@
 import type { ConsCell } from "@thi.ng/dcons";
-import type { CacheEntry, CacheOpts } from "./api.js";
+import type { CacheEntry } from "./api.js";
 import { LRUCache } from "./lru.js";
 
 export class MRUCache<K, V> extends LRUCache<K, V> {
-	constructor(
-		pairs?: Iterable<[K, V]> | null,
-		opts?: Partial<CacheOpts<K, V>>
-	) {
-		super(pairs, opts);
-	}
-
 	empty(): MRUCache<K, V> {
 		return new MRUCache<K, V>(null, this.opts);
 	}
@@ -26,6 +19,7 @@ export class MRUCache<K, V> extends LRUCache<K, V> {
 		s: number
 	) {
 		if (e) {
+			this.opts.update?.(k, e.value.v, v);
 			e.value.v = v;
 			e.value.s = s;
 			this.items.asHead(e);

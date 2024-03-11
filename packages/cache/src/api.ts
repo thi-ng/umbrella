@@ -2,6 +2,7 @@ import type {
 	Fn,
 	Fn0,
 	Fn2,
+	Fn3,
 	ICopy,
 	IEmpty,
 	ILength,
@@ -73,20 +74,25 @@ export interface ICache<K, V>
 
 export interface CacheOpts<K, V> {
 	/**
-	 * Key size in arbitrary user defined units (must be same unit as given to
-	 * {@link CacheOpts.maxsize}).
+	 * Function to compute the size of a given key in arbitrary user defined
+	 * units (must be same unit as given to {@link CacheOpts.maxsize}).
 	 */
 	ksize: Fn<K, number>;
 	/**
-	 * Value size in arbitrary user defined units (must be same unit as given to
-	 * {@link CacheOpts.maxsize}).
+	 * Function to compute the size of a given value in arbitrary user defined
+	 * units (must be same unit as given to {@link CacheOpts.maxsize}).
 	 */
 	vsize: Fn<V, number>;
 	/**
-	 * Function to perform custom cleanup tasks when an item gets evicted from
+	 * Callback function to perform custom tasks when an item gets evicted from
 	 * the cache.
 	 */
 	release: Fn2<K, V, void>;
+	/**
+	 * Callback function to perform custom tasks when an item gets updated in the cache.
+	 * The function will be called with a key and its associated old and news values.
+	 */
+	update: Fn3<K, V, V, void>;
 	/**
 	 * Custom ES6 Map compatible implementation to use as the cache's backing
 	 * store.

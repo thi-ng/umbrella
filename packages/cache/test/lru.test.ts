@@ -3,8 +3,10 @@ import { LRUCache } from "../src/index.js";
 
 let c: LRUCache<string, number>;
 let evicts: any[];
+let updates: any[];
 
 beforeEach(() => {
+	updates = [];
 	evicts = [];
 	c = new LRUCache(
 		[
@@ -15,6 +17,7 @@ beforeEach(() => {
 		{
 			maxlen: 4,
 			release: (k, v) => evicts.push([k, v]),
+			update: (k, v, v2) => updates.push([k, v, v2]),
 		}
 	);
 });
@@ -38,4 +41,18 @@ test("get", () => {
 	expect([...c.keys()]).toEqual(["a", "b", "d", "e"]);
 	expect([...c.values()]).toEqual([1, 2, 4, 5]);
 	expect(evicts).toEqual([["c", 3]]);
+});
+
+test("set", () => {
+	expect(updates).toEqual([]);
+	c.set("a", 10);
+	c.set("b", 20);
+	c.set("c", 30);
+	c.set("a", 100);
+	expect(updates).toEqual([
+		["a", 1, 10],
+		["b", 2, 20],
+		["c", 3, 30],
+		["a", 10, 100],
+	]);
 });

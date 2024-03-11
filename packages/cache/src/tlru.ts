@@ -1,9 +1,15 @@
-import type { Fn0 } from "@thi.ng/api";
+import type { Fn0, Nullable } from "@thi.ng/api";
 import type { ConsCell, DCons } from "@thi.ng/dcons";
 import type { CacheEntry, CacheOpts } from "./api.js";
 import { LRUCache } from "./lru.js";
 
 export interface TLRUCacheOpts<K, V> extends CacheOpts<K, V> {
+	/**
+	 * Default time-to-live (cache period in milliseconds) before an entry is
+	 * considered expired.
+	 *
+	 * @defaultValue 3600000 (1 hour)
+	 */
 	ttl: number;
 }
 
@@ -31,11 +37,10 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 	protected declare items: DCons<TLRUCacheEntry<K, V>>;
 
 	constructor(
-		pairs?: Iterable<[K, V]> | null,
+		pairs: Nullable<Iterable<[K, V]>>,
 		opts?: Partial<TLRUCacheOpts<K, V>>
 	) {
-		opts = Object.assign({ ttl: 60 * 60 * 1000 }, opts);
-		super(pairs, opts);
+		super(pairs, { ttl: 60 * 60 * 1000, ...opts });
 	}
 
 	empty(): TLRUCache<K, V> {
@@ -63,39 +68,46 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 		const additionalSize = Math.max(0, size - (e ? e.value.s : 0));
 		this._size += additionalSize;
 		if (this.ensureSize()) {
-			const t = Date.now() + ttl;
-			this.doSetTlruEntry(e, key, value, size, t);
+			this.doSetEntry(e, key, value, size, ttl);
 		} else {
 			this._size -= additionalSize;
 		}
 		return value;
 	}
 
-	getSet(key: K, retrieve: Fn0<Promise<V>>, ttl = this.opts.ttl): Promise<V> {
+	async getSet(key: K, retrieve: Fn0<Promise<V>>, ttl = this.opts.ttl) {
 		const e = this.get(key);
-		if (e) {
-			return Promise.resolve(e);
-		}
-		return retrieve().then((v) => this.set(key, v, ttl));
+		return e !== undefined ? e : this.set(key, await retrieve(), ttl);
 	}
 
+	/**
+	 * Scans all cached entries and evicts any which are expired by now (based
+	 * on their TTL). Does **not** modify last-accessed time of remaining
+	 * entries. Returns number of entries evicted.
+	 *
+	 * @remarks
+	 * For very large caches, it's recommended to call this function in a
+	 * cron-like manner...
+	 */
 	prune() {
 		const now = Date.now();
 		let cell = this.items.head;
+		let count = 0;
 		while (cell) {
 			if (cell.value.t < now) {
 				this.removeEntry(cell);
+				count++;
 			}
 			cell = cell.next;
 		}
+		return count;
 	}
 
 	protected ensureSize() {
-		const maxs = this.opts.maxsize;
-		const maxl = this.opts.maxlen;
+		const { maxlen, maxsize } = this.opts;
 		const now = Date.now();
 		let cell = this.items.head;
-		while (cell && (this._size > maxs || this.length >= maxl)) {
+		while (cell && (this._size > maxsize || this.length >= maxlen)) {
 			if (cell.value.t < now) {
 				this.removeEntry(cell);
 			}
@@ -104,14 +116,16 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 		return super.ensureSize();
 	}
 
-	protected doSetTlruEntry(
+	protected doSetEntry(
 		e: ConsCell<TLRUCacheEntry<K, V>> | undefined,
 		k: K,
 		v: V,
 		s: number,
-		t: number
+		ttl = this.opts.ttl
 	) {
+		const t = Date.now() + ttl;
 		if (e) {
+			this.opts.update?.(k, e.value.v, v);
 			e.value.v = v;
 			e.value.s = s;
 			e.value.t = t;

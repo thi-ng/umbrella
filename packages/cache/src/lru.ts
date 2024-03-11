@@ -1,4 +1,4 @@
-import type { Fn0 } from "@thi.ng/api";
+import type { Fn0, Nullable } from "@thi.ng/api";
 import type { ConsCell } from "@thi.ng/dcons";
 import { DCons } from "@thi.ng/dcons/dcons";
 import { map } from "@thi.ng/transducers/map";
@@ -11,19 +11,17 @@ export class LRUCache<K, V> implements ICache<K, V> {
 	protected _size: number;
 
 	constructor(
-		pairs?: Iterable<[K, V]> | null,
+		pairs: Nullable<Iterable<[K, V]>>,
 		opts?: Partial<CacheOpts<K, V>>
 	) {
-		const _opts = <CacheOpts<K, V>>Object.assign(
-			{
-				maxlen: Infinity,
-				maxsize: Infinity,
-				map: () => new Map<K, any>(),
-				ksize: () => 0,
-				vsize: () => 0,
-			},
-			opts
-		);
+		const _opts = <CacheOpts<K, V>>{
+			maxlen: Infinity,
+			maxsize: Infinity,
+			map: () => new Map<K, any>(),
+			ksize: () => 0,
+			vsize: () => 0,
+			...opts,
+		};
 		this.map = _opts.map();
 		this.items = new DCons<CacheEntry<K, V>>();
 		this._size = 0;
@@ -92,10 +90,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
 
 	get(key: K, notFound?: V) {
 		const e = this.map.get(key);
-		if (e) {
-			return this.resetEntry(e);
-		}
-		return notFound;
+		return e ? this.resetEntry(e) : notFound;
 	}
 
 	set(key: K, value: V) {
@@ -138,16 +133,12 @@ export class LRUCache<K, V> implements ICache<K, V> {
 	}
 
 	protected ensureSize() {
-		const release = this.opts.release;
-		const maxs = this.opts.maxsize;
-		const maxl = this.opts.maxlen;
-		while (this._size > maxs || this.length >= maxl) {
+		const { release, maxsize, maxlen } = this.opts;
+		while (this._size > maxsize || this.length >= maxlen) {
 			const e = this.items.drop();
-			if (!e) {
-				return false;
-			}
+			if (!e) return false;
 			this.map.delete(e.k);
-			release && release(e.k, e.v);
+			release?.(e.k, e.v);
 			this._size -= e.s;
 		}
 		return true;
@@ -157,7 +148,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
 		const ee = e.value;
 		this.map.delete(ee.k);
 		this.items.remove(e);
-		this.opts.release && this.opts.release(ee.k, ee.v);
+		this.opts.release?.(ee.k, ee.v);
 		this._size -= ee.s;
 	}
 
@@ -168,6 +159,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
 		s: number
 	) {
 		if (e) {
+			this.opts.update?.(k, e.value.v, v);
 			e.value.v = v;
 			e.value.s = s;
 			this.items.asTail(e);
