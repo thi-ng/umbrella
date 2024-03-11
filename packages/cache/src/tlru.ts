@@ -46,7 +46,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 		return this.get(key) !== undefined;
 	}
 
-	get(key: K, notFound?: any) {
+	get(key: K, notFound?: V) {
 		const e = this.map.get(key);
 		if (e) {
 			if (e.value.t >= Date.now()) {

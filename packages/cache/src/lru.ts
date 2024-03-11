@@ -90,7 +90,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
 		return this.map.has(key);
 	}
 
-	get(key: K, notFound?: any) {
+	get(key: K, notFound?: V) {
 		const e = this.map.get(key);
 		if (e) {
 			return this.resetEntry(e);
@@ -118,12 +118,9 @@ export class LRUCache<K, V> implements ICache<K, V> {
 		return this;
 	}
 
-	getSet(key: K, retrieve: Fn0<Promise<V>>): Promise<V> {
+	async getSet(key: K, retrieve: Fn0<Promise<V>>): Promise<V> {
 		const e = this.map.get(key);
-		if (e) {
-			return Promise.resolve(this.resetEntry(e));
-		}
-		return retrieve().then((v) => this.set(key, v));
+		return e ? this.resetEntry(e) : this.set(key, await retrieve());
 	}
 
 	delete(key: K): boolean {
