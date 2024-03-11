@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-11T08:41:23Z
+- **Last updated**: 2024-03-11T10:09:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.2.0) (2024-03-11)
+
+#### 🚀 Features
+
+- add value update callback, update TLRUCache ([d2fed06](https://github.com/thi-ng/umbrella/commit/d2fed06))
+  - add CacheOpts.update
+  - update doSetEntry() in all impls
+  - refactor TLRUCache.getSet() as async fn
+  - update TLRUCache.prune() to return eviction count
+  - various other refactoring
+  - add tests
+  - add docs
 
 ### [2.1.106](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.1.106) (2024-03-11)
 
