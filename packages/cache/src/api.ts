@@ -74,12 +74,12 @@ export interface ICache<K, V>
 export interface CacheOpts<K, V> {
 	/**
 	 * Key size in arbitrary user defined units (must be same unit as given to
-	 * {@link CacheOpts.maxSize}).
+	 * {@link CacheOpts.maxsize}).
 	 */
 	ksize: Fn<K, number>;
 	/**
 	 * Value size in arbitrary user defined units (must be same unit as given to
-	 * {@link CacheOpts.maxSize}).
+	 * {@link CacheOpts.maxsize}).
 	 */
 	vsize: Fn<V, number>;
 	/**
