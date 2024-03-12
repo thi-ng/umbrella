@@ -1,18 +1,25 @@
 import type { EVENT_ALL, Fn, IID, IObjectOf } from "@thi.ng/api";
 
 /**
- * A validation function for to-be authenticated routes. If this function
- * determines that the user is not allowed to access this route, it should
- * return nothing or a {@link RouteMatch} object for redirecting (e.g. to a
- * login, home page or other non-protected route). If nothing is returned and no
- * other routes can be matched, the router will eventually return the configured
- * default fallback route (see {@link RouterConfig.defaultRouteID}).
+ * A validation function for to-be authenticated routes.
+ *
+ * @remarks
+ * If this function determines that the user is not allowed to access this
+ * route, it should return nothing or a {@link RouteMatch} object for
+ * redirecting (e.g. to a login, home page or other non-protected route). If
+ * nothing is returned and no other routes can be matched, the router will
+ * eventually return the configured default fallback route (see
+ * {@link RouterConfig.defaultRouteID}).
+ *
+ * The optional `ctx` is an arbitrary user provided context value given to
+ * {@link BasicRouter.route} (e.g. the original request object).
  */
-export type RouteAuthenticator = (
+export type RouteAuthenticator<T = any> = (
 	route: Route,
 	curr: string[],
-	params: any
-) => RouteMatch;
+	params: any,
+	ctx?: T
+) => RouteMatch | undefined;
 
 /**
  * Route validator subspecs are optional and used to coerce and/or validate
@@ -104,7 +111,7 @@ export interface RouteMatch extends IID<string> {
  * Configuration object for {@link BasicRouter} and {@link HTMLRouter}
  * instances.
  */
-export interface RouterConfig {
+export interface RouterConfig<T = any> {
 	/**
 	 * An array of route specs which route input strings will be matched
 	 * against. Routes will be sorted from longest to shortest.
@@ -126,7 +133,7 @@ export interface RouterConfig {
 	 * will always succeed, regardless if a rule's `auth` flag is enabled or
 	 * not.
 	 */
-	authenticator?: RouteAuthenticator;
+	authenticator?: RouteAuthenticator<T>;
 	/**
 	 * Optional route path component separator. Default: `/`
 	 */
@@ -145,7 +152,7 @@ export interface RouterConfig {
 	removeTrailingSlash?: boolean;
 }
 
-export interface HTMLRouterConfig extends RouterConfig {
+export interface HTMLRouterConfig<T = any> extends RouterConfig<T> {
 	/**
 	 * Same as {@link RouterConfig.prefix}. If
 	 * {@link HTMLRouterConfig.useFragment} is true, then the default changes to

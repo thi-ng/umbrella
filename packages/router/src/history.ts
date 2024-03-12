@@ -3,7 +3,7 @@ import { equiv } from "@thi.ng/equiv";
 import type { HTMLRouterConfig } from "./api.js";
 import { BasicRouter } from "./basic.js";
 
-export class HTMLRouter extends BasicRouter {
+export class HTMLRouter<T = any> extends BasicRouter<T> {
 	protected currentPath!: string;
 	protected popHandler!: Fn<PopStateEvent, void>;
 	protected hashHandler!: EventListener;
@@ -42,17 +42,20 @@ export class HTMLRouter extends BasicRouter {
 	}
 
 	/**
-	 * Like `BasicRouter.route()`, but takes additional arg to control
-	 * if this routing operation should manipulate the browser's `history`.
-	 * If called from userland, this normally is true. However, we want
-	 * to avoid this if called from this router's own event handlers.
+	 * Like {@link BasicRouter.route}, but takes additional arg to control if
+	 * this routing operation should manipulate the browser's `history`.
+	 *
+	 * @remarks
+	 * If called from userland, this normally is true (also default). However,
+	 * we want to avoid this if called from this router's own event handlers.
 	 *
 	 * @param src -
+	 * @param ctx -
 	 * @param pushState -
 	 */
-	route(src: string, pushState = true) {
+	route(src: string, ctx?: T, pushState = true) {
 		const old = this.current;
-		const route = super.route(src);
+		const route = super.route(src, ctx);
 		if (route && !equiv(route, old)) {
 			this.currentPath = this.format(route);
 			if (pushState) {
@@ -66,11 +69,11 @@ export class HTMLRouter extends BasicRouter {
 		return route;
 	}
 
-	routeTo(route: string) {
+	routeTo(route: string, ctx?: T) {
 		if (this.useFragment) {
 			location.hash = route;
 		}
-		this.route(route);
+		this.route(route, ctx);
 	}
 
 	protected handlePopChange() {
@@ -80,6 +83,7 @@ export class HTMLRouter extends BasicRouter {
 				this.route(
 					e.state ||
 						(this.useFragment ? location.hash : location.pathname),
+					undefined,
 					false
 				);
 			}).bind(this));
@@ -92,7 +96,7 @@ export class HTMLRouter extends BasicRouter {
 				if (!this.ignoreHashChange) {
 					const hash = e.newURL.substring(e.newURL.indexOf("#"));
 					if (hash !== this.currentPath) {
-						this.route(hash, false);
+						this.route(hash, undefined, false);
 					}
 				}
 			}).bind(this));

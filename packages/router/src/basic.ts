@@ -16,12 +16,12 @@ import {
 } from "./api.js";
 
 @INotifyMixin
-export class BasicRouter implements INotify<RouterEventType> {
-	config: RouterConfig;
+export class BasicRouter<T = any> implements INotify<RouterEventType> {
+	config: RouterConfig<T>;
 	current: RouteMatch | undefined;
 	routeIndex!: Record<string, Route>;
 
-	constructor(config: RouterConfig) {
+	constructor(config: RouterConfig<T>) {
 		this.config = {
 			authenticator: (route, _, params) => ({
 				id: route.id,
@@ -82,9 +82,13 @@ export class BasicRouter implements INotify<RouterEventType> {
 	 * {@link EVENT_ROUTE_FAILED} and then falls back to configured default
 	 * route.
 	 *
+	 * @remarks
+	 * See {@link RouteAuthenticator} for details about `ctx` handling.
+	 *
 	 * @param src - route path to match
+	 * @param ctx - arbitrary user context
 	 */
-	route(src: string): RouteMatch | undefined {
+	route(src: string, ctx?: T): RouteMatch | undefined {
 		if (
 			this.config.removeTrailingSlash &&
 			src.charAt(src.length - 1) === this.config.separator
@@ -92,7 +96,7 @@ export class BasicRouter implements INotify<RouterEventType> {
 			src = src.substring(0, src.length - 1);
 		}
 		src = src.substring(this.config.prefix!.length);
-		let match = this.matchRoutes(src);
+		let match = this.matchRoutes(src, ctx);
 		if (!match) {
 			this.notify({ id: EVENT_ROUTE_FAILED, value: src });
 			if (!this.handleRouteFailure()) {
@@ -175,18 +179,22 @@ export class BasicRouter implements INotify<RouterEventType> {
 		);
 	}
 
-	protected matchRoutes(src: string) {
+	protected matchRoutes(src: string, ctx?: T) {
 		const routes = this.config.routes;
 		const curr = src.split(this.config.separator!);
 		for (let i = 0, n = routes.length; i < n; i++) {
-			const match = this.matchRoute(curr, routes[i]);
+			const match = this.matchRoute(curr, routes[i], ctx);
 			if (match) {
 				return match;
 			}
 		}
 	}
 
-	protected matchRoute(curr: string[], route: Route): RouteMatch | undefined {
+	protected matchRoute(
+		curr: string[],
+		route: Route,
+		ctx?: T
+	): RouteMatch | undefined {
 		const match = route.match;
 		const n = match.length;
 		if (curr.length === n) {
@@ -206,7 +214,7 @@ export class BasicRouter implements INotify<RouterEventType> {
 				return;
 			}
 			return route.auth
-				? this.config.authenticator!(route, curr, params)
+				? this.config.authenticator!(route, curr, params, ctx)
 				: { id: route.id, title: route.title, params };
 		}
 	}
