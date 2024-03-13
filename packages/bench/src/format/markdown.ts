@@ -8,8 +8,8 @@ const pad = (w: number) => {
 	return (x: NumOrString) => {
 		const s = typeof x === "number" ? FLOAT(x) : x;
 		return s.length < w
-			? column.substr(0, w - s.length) + s
-			: s.substr(0, w);
+			? column.substring(0, w - s.length) + s
+			: s.substring(0, w);
 	};
 };
 
@@ -21,8 +21,8 @@ const d24 = $n(24);
 const d12 = $n(11) + ":";
 const d8 = $n(7) + ":";
 
-const COLUMNS = [c24, c8, c8, c12, c8, c8, c8, c8, c8, c8, c8];
-const DASHES = [d24, d8, d8, d12, d8, d8, d8, d8, d8, d8, d8];
+const COLUMNS = [c24, c8, c8, c12, c12, c8, c8, c8, c8, c8, c8, c8];
+const DASHES = [d24, d8, d8, d12, d12, d8, d8, d8, d8, d8, d8, d8];
 
 const row = (cols: NumOrString[]) =>
 	`|${cols.map((x, i) => COLUMNS[i](x)).join("|")}|`;
@@ -34,6 +34,7 @@ export const FORMAT_MD: BenchmarkFormatter = {
 			"Iter",
 			"Size",
 			"Total",
+			"Frequency",
 			"Mean",
 			"Median",
 			"Min",
@@ -50,6 +51,7 @@ export const FORMAT_MD: BenchmarkFormatter = {
 			"" + res.iter,
 			"" + res.size,
 			res.total,
+			res.freq,
 			res.mean,
 			res.median,
 			res.min,

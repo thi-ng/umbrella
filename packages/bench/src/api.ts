@@ -23,6 +23,18 @@ export interface BenchmarkOpts {
 	 */
 	size: number;
 	/**
+	 * Externally defined batch size, similar to {@link BenchmarkOpts.size},
+	 * i.e. calls per iteration. However, this option is ONLY used for computing
+	 * {@link BenchmarkResult.freq} and has no impact on actual benchmark
+	 * execution.
+	 *
+	 * @remarks
+	 * This option is only to be used if the benchmarked function uses internal
+	 * looping to execute multiple iterations. E.g. if internally executing N
+	 * iterations, `extSize` should be set to that number.
+	 */
+	extSize: number;
+	/**
 	 * Number of warmup iterations (not included in results).
 	 *
 	 * @defaultValue 10
@@ -61,28 +73,38 @@ export interface BenchmarkResult {
 	 */
 	total: number;
 	/**
-	 * Mean execution time (in ms)
+	 * Frequency aka number of ops per second
+	 */
+	freq: number;
+	/**
+	 * Mean execution time (in ms) per iteration (batch of
+	 * {@link BenchmarkResult.size} calls)
 	 */
 	mean: number;
 	/**
-	 * Median execution time (in ms)
+	 * Median execution time (in ms) per iteration (batch of
+	 * {@link BenchmarkResult.size} calls)
 	 */
 	median: number;
 	/**
-	 * Min execution time (in ms)
+	 * Min execution time (in ms) per iteration (batch of
+	 * {@link BenchmarkResult.size} calls)
 	 */
 	min: number;
 	/**
-	 * Max execution time (in ms)
+	 * Max execution time (in ms) per iteration (batch of
+	 * {@link BenchmarkResult.size} calls)
 	 */
 	max: number;
 	/**
-	 * First quartile execution time (in ms). I.e. 25% of all runs were
+	 * First quartile execution time (in ms) per iteration (batch of
+	 * {@link BenchmarkResult.size} calls). I.e. 25% of all runs were
 	 * faster/equal to this measurement.
 	 */
 	q1: number;
 	/**
-	 * Third quartile execution time (in ms). I.e. 25% of all runs were
+	 * Third quartile execution time (in ms) per iteration (batch of
+	 * {@link BenchmarkResult.size} calls). I.e. 25% of all runs were
 	 * equal/slower than this measurement.
 	 */
 	q3: number;
@@ -139,6 +161,10 @@ export interface Benchmark {
 	opts?: Partial<OptsWithoutTitle>;
 }
 
-export const FLOAT = (x: number) => x.toFixed(2);
+let PRECISION = 2;
+
+export const setPrecision = (prec: number) => (PRECISION = prec);
+
+export const FLOAT = (x: number) => x.toFixed(PRECISION);
 
 export const EMPTY = () => "";
