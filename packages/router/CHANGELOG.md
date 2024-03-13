@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-10T13:28:34Z
+- **Last updated**: 2024-03-13T14:04:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,44 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@4.0.0) (2024-03-13)
+
+#### 🛑 Breaking changes
+
+- trie-based route matching & wildcard support ([f1ab427](https://github.com/thi-ng/umbrella/commit/f1ab427))
+- BREAKING CHANGES: update types, args, rename option fields
+  - add `Trie` data structure for route storage & matching
+  - add support for `+` wildcards to match arbitrary length routes
+  - update `BasicRouter.route()` & replace `.matchRoutes()` with new impl
+  - add `AugmentedRoute` interface & pre-process routes to compute
+    wildcard indices for faster matching (along with using the trie)
+  - update `Route.match` to be initially specified as string
+  - update `RouteMatch` to include `.rest` args (if any)
+  - add optional `RouteMatch.redirect` flag
+  - REMOVE `Route.title` & `RouteMatch.title` (obsolete since only used
+    by `HTMLRouter`, but usage unsupported by browsers now
+    (`history.pushState()` doesn't support title anymore)
+  - RENAME `RouterConfig` => `RouterOpts` (align naming convention)
+  - RENAME `RouterOpts.defaultRouteID` => `RouterOpts.default`
+  - RENAME `RouterOpts.initialRouteID` => `RouterOpts.initial`
+  - RENAME `RouterOpts.removeTrailingSlash` => `RouterOpts.trim`
+  - REMOVE obsolete `defMatch()` helper
+  - add/update tests
+- rename BasicRouter => Router ([4d14aab](https://github.com/thi-ng/umbrella/commit/4d14aab))
+- BREAKING CHANGE: rename BasicRouter => Router
+  - update all refs
+
+#### 🚀 Features
+
+- update RouteAuthenticator and .route() args ([f009afb](https://github.com/thi-ng/umbrella/commit/f009afb))
+  - add support for optional arbitrary user context object passed
+    to .route() and global auth handler
+  - update optional args for HTMLRouter.route()/.routeTo()
+- update/improve wildcard priority handling ([59c2557](https://github.com/thi-ng/umbrella/commit/59c2557))
+  - implement wildcard fallback logic in `Trie.get()`
+  - add docs
+  - add tests
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.4.0) (2024-03-10)
 
