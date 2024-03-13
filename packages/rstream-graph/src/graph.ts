@@ -147,7 +147,7 @@ const prepareNodeOutputs = (
 	const res: NodeOutputs = {};
 	if (!outs) return res;
 	for (let id in outs) {
-		const out = outs[id];
+		const out: NodeOutputSpec = outs[id];
 		res[id] = isFunction(out)
 			? out(node, id)
 			: id == "*"
