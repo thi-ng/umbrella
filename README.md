@@ -255,17 +255,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-03-11
+As of: 2024-03-13
 
-| Status                                        | Package                                                         | Version                                                                                                                               | Changelog                                                |
-|:----------------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/cache`](./packages/cache)                             | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)                             | [changelog](./packages/cache/CHANGELOG.md)               |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/router`](./packages/router)                           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                           | [changelog](./packages/router/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast`](./packages/shader-ast)                   | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)                   | [changelog](./packages/shader-ast/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)     | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tangle`](./packages/tangle)                           | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                           | [changelog](./packages/tangle/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl`](./packages/webgl)                             | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                             | [changelog](./packages/webgl/CHANGELOG.md)               |
+| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
+|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bench`](./packages/bench)   | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)   | [changelog](./packages/bench/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/cache`](./packages/cache)   | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)   | [changelog](./packages/cache/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/errors`](./packages/errors) | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors) | [changelog](./packages/errors/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/router`](./packages/router) | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router) | [changelog](./packages/router/CHANGELOG.md) |
 
 ### Fundamentals
 
