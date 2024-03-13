@@ -26,20 +26,17 @@
 
 ## About
 
-Generic router for browser & non-browser based applications.
+Generic trie-based router with support for wildcards, route param validation/coercion, auth.
 
-- Declarative route definitions
-- Parametric routes, each param with optional value coercion &
-  validation
-- Route authentication handler to enable/disable routes based on other
-  state factors
-- Fallback route
+- Declarative route definitions, incl. wildcards for matching rest args
+- Parametric routes, each param with optional value coercion & validation
+- Route authentication handler to enable/disable routes based on other state
+  factors
+- Fallback route redirect
 - Enforced initial route (optional)
-- Route formatting (with params)
-- HTML5 history & hash fragment support
-
-Partially based on the Clojure implementation in
-[thi.ng/domus](https://github.com/thi-ng/domus/blob/develop/src/router.org).
+- Route formatting (with params & rest args)
+- Not bound to any environment, usable on both client & server side
+- Optional HTML5 history & hash fragment support
 
 ## Status
 
@@ -72,7 +69,7 @@ For Node.js REPL:
 const router = await import("@thi.ng/router");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.66 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.93 KB
 
 ## Dependencies
 
@@ -97,19 +94,21 @@ directory is using this package:
 [Generated API docs](https://docs.thi.ng/umbrella/router/)
 
 ```ts tangle:export/readme.ts
-import { HTMLRouter, EVENT_ROUTE_CHANGED } from "@thi.ng/router";
+import {
+    HTMLRouter, HTMLRouterOpts, EVENT_ROUTE_CHANGED,
+} from "@thi.ng/router";
+import { isUUID } from "@thi.ng/checks";
 
 // router configuration
-const config = {
-
+const config: HTMLRouterOpts = {
     // use hash fragment for routes
     useFragment: true,
 
     // fallback route (when no other matches)
-    defaultRouteID: "home",
+    default: "home",
 
     // optional enforced route when router starts
-    initialRouteID: "home",
+    initial: "home",
 
     // Optional route path component separator. Default: `/`
     separator: "/",
@@ -120,64 +119,59 @@ const config = {
     prefix: "#/",
 
     // actual route defs
-    // An array of route specs which route input strings will be matched
-    // against. Routes will be sorted from longest to shortest.
+    // An array of route specs which route input strings will be matched against.
+    // Given routes will be pre-processed and stored in a Trie for fast matching.
+    // Additional routes can be dynamically added at a later time via .addRoutes()
     routes: [
         {
             // each route MUST have an ID
             id: "home",
-            // optional title for UI purposes (no internal function)
-            title: "Home page",
             // this array defines the route path items
-            match: ["home"]
+            match: "/home",
         },
         {
             id: "user-profile",
             // this rule is parametric
             // variable items are prefixed with `?`
-            match: ["users", "?id"],
+            match: "/users/?id",
             // coercion & validation handlers for "?id" param
             // coercion fn is applied BEFORE validator
             validate: {
                 id: {
                     coerce: (x) => parseInt(x),
-                    check: (x)=> x > 0 && x < 100
-                }
-            }
+                    check: (x) => x > 0 && x < 100,
+                },
+            },
         },
         {
             id: "image",
             // this route has 2 params and matches (for example):
             // "/images/07a9d87b-c07a-42e3-82cf-baea2f94facc/xl"
-            match: ["images", "?id", "?size"],
+            match: "/images/?id/?size",
             validate: {
                 id: {
-                    check: (x)=> isUUID(x)
+                    check: (x) => isUUID(x),
                 },
                 size: {
-                    check: (x)=> /^(s|m|l|xl)$/.test(x)
-                }
+                    check: (x) => /^(s|m|l|xl)$/.test(x),
+                },
             },
-            // enable auth for this route
-            // (see info about authenticator functions below)
-            auth: true
         },
         {
             id: "group-list",
             // matches only: "/users" or "/images"
-            match: ["?type"],
+            match: "/?type",
             validate: {
                 type: {
-                    check: (x) => /^(users|images)$/.test(x)
-                }
+                    check: (x) => /^(users|images)$/.test(x),
+                },
             },
-            auth: true
         },
-    ]
+    ],
 };
 
 // `HTMLRouter` ONLY works in browser environments
-// for non-browser use cases use `BasicRouter`
+// for non-browser use cases use `Router`
 const router = new HTMLRouter(config);
 router.addListener(EVENT_ROUTE_CHANGED, console.log);
 
