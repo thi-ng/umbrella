@@ -24,7 +24,7 @@ export const CONFIG: AppConfig = {
 		// use URI hash for routes (KISS)
 		useFragment: true,
 		// route ID if no other matches (MUST be non-parametric!)
-		defaultRouteID: routes.HOME.id,
+		default: routes.HOME.id,
 		// IMPORTANT: rules with common prefixes MUST be specified in
 		// order of highest precision / longest path
 		routes: [
