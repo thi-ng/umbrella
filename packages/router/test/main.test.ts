@@ -1,8 +1,8 @@
 import { expect, test } from "bun:test";
-import { BasicRouter } from "../src/index.js";
+import { Router } from "../src/index.js";
 
 test("router", () => {
-	const router = new BasicRouter({
+	const router = new Router({
 		routes: [
 			{ id: "a", match: ["a"] },
 			{ id: "a-id", match: ["a", "?id"] },
@@ -34,7 +34,7 @@ test("router", () => {
 
 test("auth", () => {
 	type Ctx = { user: string };
-	const router = new BasicRouter<Ctx>({
+	const router = new Router<Ctx>({
 		authenticator: (match, _, ctx) =>
 			ctx?.user == "admin" ? match : { id: "login", redirect: true },
 		routes: [
@@ -61,7 +61,7 @@ test("auth", () => {
 
 test("string defs", () => {
 	const $ = (match: string) =>
-		new BasicRouter({
+		new Router({
 			routes: [
 				{ id: "a", match },
 				{ id: "b", match: [] },
@@ -76,7 +76,7 @@ test("string defs", () => {
 });
 
 test("rest args", () => {
-	const router = new BasicRouter({
+	const router = new Router({
 		routes: [
 			{ id: "a", match: ["a", "?x", "+"] },
 			{ id: "home", match: [] },

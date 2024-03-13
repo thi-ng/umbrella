@@ -26,7 +26,7 @@ import {
 import { Trie } from "./trie.js";
 
 @INotifyMixin
-export class BasicRouter<T = any> implements INotify<RouterEventType> {
+export class Router<T = any> implements INotify<RouterEventType> {
 	opts: RouterOpts<T>;
 	current: RouteMatch | undefined;
 	protected index: Record<string, AugmentedRoute> = {};

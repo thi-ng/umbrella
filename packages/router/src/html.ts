@@ -1,9 +1,9 @@
 import type { Fn } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import type { HTMLRouterOpts } from "./api.js";
-import { BasicRouter } from "./basic.js";
+import { Router } from "./router.js";
 
-export class HTMLRouter<T = any> extends BasicRouter<T> {
+export class HTMLRouter<T = any> extends Router<T> {
 	protected currentPath!: string;
 	protected popHandler!: Fn<PopStateEvent, void>;
 	protected hashHandler!: EventListener;
@@ -37,7 +37,7 @@ export class HTMLRouter<T = any> extends BasicRouter<T> {
 	}
 
 	/**
-	 * Like {@link BasicRouter.route}, but takes additional arg to control if
+	 * Like {@link Router.route}, but takes additional arg to control if
 	 * this routing operation should manipulate the browser's `history`.
 	 *
 	 * @remarks

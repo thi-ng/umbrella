@@ -74,7 +74,7 @@ export interface Route {
 	 * {
 	 *  id: {
 	 *          coerce: (x) => parseInt(x,10),
-	 *          validate: (x)=> x < 100
+	 *          check: (x)=> x < 100
 	 *      }
 	 * }
 	 * ```
