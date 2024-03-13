@@ -1,11 +1,11 @@
 import { assert } from "./assert.js";
 
 /**
- * Higher-order function to define ensurance assertions. Takes a `pred`icate
+ * Higher-order function to define assurance assertions. Takes a `pred`icate
  * function and an `expected` (type) name, returns a new function which accepts
- * 2 args (an arbitrary value `x` and optional error `msg`). When called, checks
- * `x` for non-null and if so applies given `pred`icate. If result is false (or
- * `x` is nullish) and iff {@link assert} is enabled, throws a
+ * 2 args: an arbitrary value `x` and optional error `msg`. When called, checks
+ * `x` for non-nullishness and if so applies given `pred`icate. If result is
+ * false (or `x` is nullish) and iff {@link assert} is enabled, throws a
  * {@link AssertionError} with given `msg` (or a constructed default msg).
  * Otherwise function is a no-op.
  *
