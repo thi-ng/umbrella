@@ -12,7 +12,7 @@ import type { EVENT_ALL, Fn, IObjectOf } from "@thi.ng/api";
  * {@link RouterOpts.default}).
  *
  * The optional `ctx` is an arbitrary user provided context value given to
- * {@link BasicRouter.route} (e.g. the original request object).
+ * {@link Router.route} (e.g. the original request object).
  */
 export type RouteAuthenticator<T = any> = (
 	match: RouteMatch,
@@ -45,9 +45,9 @@ export interface RouteParamValidator {
 export interface Route {
 	/**
 	 * Unique ID for this route. This value will be returned as part of a
-	 * {@link RouteMatch} resulting from {@link BasicRouter.route} and also used
-	 * to look up routes in {@link BasicRouter.routeForID} and
-	 * {@link BasicRouter.format}.
+	 * {@link RouteMatch} resulting from {@link Router.route} and also used
+	 * to look up routes in {@link Router.routeForID} and
+	 * {@link Router.format}.
 	 */
 	id: string;
 	/**
@@ -145,7 +145,7 @@ export interface RouteMatch {
 }
 
 /**
- * Configuration object for {@link BasicRouter} and {@link HTMLRouter}
+ * Configuration object for {@link Router} and {@link HTMLRouter}
  * instances.
  */
 export interface RouterOpts<T = any> {
@@ -182,8 +182,8 @@ export interface RouterOpts<T = any> {
 	separator?: string;
 	/**
 	 * Route prefix. Default: `/`. All routes to be parsed by
-	 * {@link BasicRouter.route} are assumed to have this prefix. All routes
-	 * returned by {@link BasicRouter.format} will include this prefix.
+	 * {@link Router.route} are assumed to have this prefix. All routes
+	 * returned by {@link Router.format} will include this prefix.
 	 *
 	 * @remarks
 	 * If given, the prefix MUST end with {@link RouterOpts.separator}.
