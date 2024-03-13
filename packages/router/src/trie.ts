@@ -9,16 +9,42 @@ import { illegalArgs } from "@thi.ng/errors";
  * - `?` - matches any single item
  * - `+` - matches 1 or more items following (only to be used in final position)
  *
- * `?` has priority over `+`
+ * Match priorities (highest to lowest):
  *
- * Wildcards ONLY match items which aren't defined by other branches. E.g. given
- * these patterns:
+ * 1. Non-parametric values
+ * 2. `?` wildcard (params)
+ * 3. `+` wildcard
  *
- * - trie.set(["a", "?", "c"], "A")
- * - trie.set(["a", "b"], "B")
+ * If any higher priority route fails and a compatible lower priority route
+ * exists, it will still be attempted to be matched.
  *
- * ...the `?` wildcard in first pattern will NOT match ["a","b","c"], because
- * ["a","b"] is defined (but without "c")
+ * @example
+ * ```ts tangle:../export/wildcards.ts
+ * import { Trie } from "@thi.ng/router";
+ *
+ * const trie = new Trie();
+ * trie.set(["a", "?", "c"], "A");
+ * trie.set(["a", "b"], "B");
+ * trie.set(["a", "+"], "C");
+ * trie.set(["+"], "D");
+ *
+ * // matches A because B doesn't match
+ * // and A has higher priority than C
+ * console.log(trie.get(["a", "b", "c"]));
+ * // A
+ *
+ * // perfect match B
+ * console.log(trie.get(["a", "b"]));
+ * // B
+ *
+ * // matches C because neither A or B matches
+ * console.log(trie.get(["a", "b", "d"]));
+ * // C
+ *
+ * // matches D because all others fail
+ * console.log(trie.get(["a"]));
+ * // D
+ * ```
  */
 export class Trie<T> {
 	n: Record<string, Trie<T>> = {};
@@ -47,7 +73,14 @@ export class Trie<T> {
 
 	get(key: string[], i = 0): T | undefined {
 		if (i >= key.length) return this.v;
-		const next = this.n[key[i]] || this.n["?"];
-		return next ? next.get(key, i + 1) : this.n["+"]?.v;
+		let value: T | undefined;
+		let next: Trie<T> | undefined;
+		// literal match
+		if ((next = this.n[key[i]])) value = next.get(key, i + 1);
+		if (value !== undefined) return value;
+		// param match
+		if ((next = this.n["?"])) value = next.get(key, i + 1);
+		// wildcard
+		return value !== undefined ? value : this.n["+"]?.v;
 	}
 }

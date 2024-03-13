@@ -19,12 +19,14 @@ test("wildcards", () => {
 	const trie = new Trie(["a", "?", "c"], "A");
 	trie.set(["a", "b"], "B");
 	trie.set(["a", "+"], "C");
+	trie.set(["+"], "D");
 	// console.log(JSON.stringify(trie, null, 2));
 	expect(trie.get(["a", "d", "c"])).toBe("A");
 	expect(trie.get(["a", "b"])).toBe("B");
-	expect(trie.get(["a", "b", "c"])).toBeUndefined();
-	expect(trie.get(["a", "d"])).toBeUndefined();
-	expect(trie.get(["a"])).toBeUndefined();
+	expect(trie.get(["a", "b", "c"])).toBe("A");
+	expect(trie.get(["a", "b", "d"])).toBe("C");
+	expect(trie.get(["a", "d"])).toBe("C");
+	expect(trie.get(["a"])).toBe("D");
 });
 
 test("wildcard not in tail position", () => {

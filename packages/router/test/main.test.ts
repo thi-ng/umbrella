@@ -1,3 +1,4 @@
+import { isUUID } from "@thi.ng/checks";
 import { expect, test } from "bun:test";
 import { Router } from "../src/index.js";
 
@@ -91,4 +92,70 @@ test("rest args", () => {
 	});
 
 	expect(router.format("a", { x: 10 }, ["x", "y"])).toBe("/prefix/a/10/x/y");
+});
+
+test("readme", () => {
+	const router = new Router({
+		default: "home",
+		routes: [
+			{ id: "home", match: "/home" },
+			{
+				id: "user-profile",
+				match: "/users/?id",
+				validate: {
+					id: {
+						coerce: (x) => parseInt(x),
+						check: (x) => x > 0 && x < 100,
+					},
+				},
+			},
+			{
+				id: "image",
+				match: "/images/?id/?size",
+				validate: {
+					id: {
+						check: (x) => isUUID(x),
+					},
+					size: {
+						check: (x) => /^(s|m|l|xl)$/.test(x),
+					},
+				},
+			},
+			{
+				id: "group-list",
+				// matches only: "/users" or "/images"
+				match: "/?type",
+				validate: {
+					type: {
+						check: (x) => /^(users|images)$/.test(x),
+					},
+				},
+			},
+		],
+	});
+	expect(router.route("/users/42")).toEqual({
+		id: "user-profile",
+		params: { id: 42 },
+	});
+	// fails because user ID > 100
+	expect(router.route("/users/101")).toEqual({ id: "home", redirect: true });
+	expect(
+		router.route("/images/2d98c864-9c7e-491c-9758-3fa345e49a56/xl")
+	).toEqual({
+		id: "image",
+		params: { id: "2d98c864-9c7e-491c-9758-3fa345e49a56", size: "xl" },
+	});
+	// fail because no UUID
+	expect(router.route("/images/101/xl")).toEqual({
+		id: "home",
+		redirect: true,
+	});
+	expect(router.route("/images")).toEqual({
+		id: "group-list",
+		params: {
+			type: "images",
+		},
+	});
+	expect(router.route("/home")).toEqual({ id: "home" });
+	expect(router.route("/missing")).toEqual({ id: "home", redirect: true });
 });

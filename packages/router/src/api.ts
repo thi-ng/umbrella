@@ -52,15 +52,14 @@ export interface Route {
 	id: string;
 	/**
 	 * Array or string of path components, incl. wildcards. If a value is
-	 * prefixed with `?` this path component will be captured under that name.
+	 * prefixed with `?` this path component will be captured under that name. A
+	 * `+` component matches one or more rest args.
 	 *
 	 * @remarks
-	 * See {@link Trie} for rules & comments on wildcard handling.
+	 * See {@link Trie} for rules & comments on wildcard priorities & handling.
 	 *
-	 * E.g. `["projects", "?pid"]` will match any of these routes:
-	 *
-	 * - `/projects/123`
-	 * - `/projects/abcde`
+	 * E.g. `/projects/?pid` will match routes: `/projects/123` or
+	 * `/projects/abcde`, but NOT: `/projects`...
 	 *
 	 * {@link Route.validate} options can then be used to further restrict the
 	 * possible value range of the `pid` param value and/or coerce it...
@@ -152,7 +151,12 @@ export interface RouteMatch {
 export interface RouterOpts<T = any> {
 	/**
 	 * An array of route specs which route input strings will be matched
-	 * against. Routes will be sorted from longest to shortest.
+	 * against. Given routes will be pre-processed and stored in a {@link Trie}
+	 * for fast matching.
+	 *
+	 * @remarks
+	 * Additional routes can be dynamically added at a later time via
+	 * {@link Router.addRoutes}.
 	 */
 	routes: Route[];
 	/**
