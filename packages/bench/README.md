@@ -78,7 +78,7 @@ For Node.js REPL:
 const bench = await import("@thi.ng/bench");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.13 KB
 
 ## Dependencies
 
@@ -107,35 +107,45 @@ directory are using this package:
 
 ### Basic usage
 
-```ts
-import { timed, bench, benchmark } from "@thi.ng/bench";
+```ts id:test-functions
+// functions to benchmark...
+const fib = (n: number) =>
+    n > 2
+        ? fib(n - 1) + fib(n - 2)
+        : n > 0
+            ? 1
+            : 0;
 
-// test functions
-const fib = (n) => n > 2 ? fib(n - 1) + fib(n - 2) : n > 0 ? 1 : 0;
-
-const fib2 = (n) => {
+const fib2 = (n: number) => {
     const res = [0, 1];
     for(let i = 2; i <= n; i++) {
         res[i] = res[i - 1] + res[i - 2];
     }
     return res[n];
 };
+```
+
+```ts tangle:export/readme1.ts
+import { timed, bench } from "@thi.ng/bench";
+
+<<test-functions>>
 
 // measure single execution time
-timed(() => fib(40));
-// 714ms
+console.log(timed(() => fib(40)));
+// 318.86ms
 // 102334155
-timed(() => fib2(40));
-// 0ms
+
+console.log(timed(() => fib2(40)));
+// 0.05ms
 // 102334155
 
 // measure 1mil iterations (default)
-bench(() => fib(10), 1e6);
-// 395ms
+console.log(bench(() => fib(10), 1e6));
+// 157.41ms
 // 55
 
-bench(() => fib2(10), 1e6);
-// 53ms
+console.log(bench(() => fib2(10), 1e6));
+// 95.97ms
 // 55
 ```
 
@@ -153,32 +163,34 @@ for configuration options.
 Also see the [formatting](#output-formatting) section below for other output
 options. This example uses the default format...
 
-```ts
+```ts tangle:export/readme2.ts
 import { benchmark } from "@thi.ng/bench";
 
-// fib() function is from previous example above...
+<<test-functions>>
 
 benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 // benchmarking: fib
-//         warmup... 3707.17ms (5 runs)
-//         executing...
-//         total: 7333.72ms, runs: 10
-//         mean: 733.37ms, median: 733.79ms, range: [728.58..743.43]
-//         q1: 730.98ms, q3: 735.03ms
-//         sd: 0.54%
+//         warmup... 1480.79ms (5 runs)
+//         total: 2917.41ms, runs: 10 (@ 1 calls/iter)
+//         freq: 3.43 ops/sec
+//         mean: 291.74ms, median: 291.67ms, range: [291.51..292.58]
+//         q1: 291.55ms, q3: 291.79ms
+//         sd: 0.10%
 
 // also returns results:
 // {
 //   title: "fib",
 //   iter: 10,
-//   total: 7333.72402,
-//   mean: 733.372402,
-//   median: 733.794194,
-//   min: 728.5808,
-//   max: 743.432538,
-//   q1: 730.980115,
-//   q3: 735.025314,
-//   sd: 0.542200865574415
+//   size: 1,
+//   total: 2917.4060010000003,
+//   freq: 3.4277025537660157,
+//   mean: 291.74060010000005,
+//   median: 291.668125,
+//   min: 291.50624999999997,
+//   max: 292.581834,
+//   q1: 291.55116699999996,
+//   q3: 291.788417,
+//   sd: 0.10295312107365955,
 // }
 ```
 
@@ -187,10 +199,10 @@ benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 Multiple benchmarks can be run sequentially as suite (also returns an array of
 all results):
 
-```ts
+```ts tangle:export/readme3.ts
 import { suite, FORMAT_MD } from "@thi.ng/bench";
 
-// fib2() function defined in earlier example above...
+<<test-functions>>
 
 suite(
     [
@@ -202,22 +214,22 @@ suite(
     { iter: 10, size: 100000, warmup: 5, format: FORMAT_MD }
 )
 
-// |                   Title|    Iter|    Size|       Total|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
-// |------------------------|-------:|-------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
-// |                fib2(10)|      10|  100000|       54.34|    5.43|    5.15|    4.40|    8.14|    4.84|    6.67|   20.32|
-// |                fib2(20)|      10|  100000|      121.24|   12.12|   12.13|   11.73|   12.91|   11.93|   12.35|    2.61|
-// |                fib2(30)|      10|  100000|      152.98|   15.30|   14.51|   13.93|   20.77|   14.35|   16.35|   12.65|
-// |                fib2(40)|      10|  100000|      164.79|   16.48|   15.60|   15.01|   19.27|   15.42|   18.80|    9.34|
+// |                   Title|    Iter|    Size|       Total|   Frequency|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
+// |------------------------|-------:|-------:|-----------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
+// |                fib2(10)|      10|  100000|       93.25| 10723774.45|    9.33|    9.25|    8.94|   10.27|    9.03|    9.46|    4.15|
+// |                fib2(20)|      10|  100000|      110.73|  9030823.33|   11.07|   11.02|   10.91|   11.56|   10.92|   11.10|    1.76|
+// |                fib2(30)|      10|  100000|      175.10|  5711056.26|   17.51|   17.58|   17.03|   17.65|   17.50|   17.60|    0.96|
+// |                fib2(40)|      10|  100000|      200.01|  4999765.64|   20.00|   19.71|   19.34|   21.78|   19.55|   19.91|    3.90|
 ```
 
 Same table as actual Markdown:
 
-|                   Title|    Iter|    Size|       Total|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
-|------------------------|-------:|-------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
-|                fib2(10)|      10|  100000|       54.34|    5.43|    5.15|    4.40|    8.14|    4.84|    6.67|   20.32|
-|                fib2(20)|      10|  100000|      121.24|   12.12|   12.13|   11.73|   12.91|   11.93|   12.35|    2.61|
-|                fib2(30)|      10|  100000|      152.98|   15.30|   14.51|   13.93|   20.77|   14.35|   16.35|   12.65|
-|                fib2(40)|      10|  100000|      164.79|   16.48|   15.60|   15.01|   19.27|   15.42|   18.80|    9.34|
+|                   Title|    Iter|    Size|       Total|   Frequency|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
+|------------------------|-------:|-------:|-----------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
+|                fib2(10)|      10|  100000|       93.25| 10723774.45|    9.33|    9.25|    8.94|   10.27|    9.03|    9.46|    4.15|
+|                fib2(20)|      10|  100000|      110.73|  9030823.33|   11.07|   11.02|   10.91|   11.56|   10.92|   11.10|    1.76|
+|                fib2(30)|      10|  100000|      175.10|  5711056.26|   17.51|   17.58|   17.03|   17.65|   17.50|   17.60|    0.96|
+|                fib2(40)|      10|  100000|      200.01|  4999765.64|   20.00|   19.71|   19.34|   21.78|   19.55|   19.91|    3.90|
 
 ### Output formatting
 
