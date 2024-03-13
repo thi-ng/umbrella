@@ -56,10 +56,13 @@
 		"history",
 		"html",
 		"parametric",
+		"pattern",
 		"router",
+		"trie",
 		"typescript",
 		"ui",
-		"validate"
+		"validate",
+		"wildcards"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -78,11 +81,11 @@
 		"./api": {
 			"default": "./api.js"
 		},
-		"./basic": {
-			"default": "./basic.js"
-		},
 		"./html": {
 			"default": "./html.js"
+		},
+		"./router": {
+			"default": "./router.js"
 		},
 		"./trie": {
 			"default": "./trie.js"
