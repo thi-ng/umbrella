@@ -197,7 +197,8 @@ export class Router<T = any> implements INotify<RouterEventType> {
 			return acc;
 		}, <Record<number, string>>{});
 		return {
-			...route,
+			spec: route,
+			id: route.id,
 			match,
 			params: hasParams ? params : undefined,
 			rest: match.indexOf("+"),
@@ -215,10 +216,8 @@ export class Router<T = any> implements INotify<RouterEventType> {
 				<RouteMatch["params"]>{}
 			);
 		}
-		if (
-			route.validate &&
-			!this.validateRouteParams(params, route.validate)
-		) {
+		const validator = route.spec.validate;
+		if (validator && !this.validateRouteParams(params, validator)) {
 			return;
 		}
 		const rest = route.rest >= 0 ? curr.slice(route.rest) : undefined;
@@ -227,7 +226,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 			params,
 			rest,
 		};
-		if (route.auth) {
+		if (route.spec.auth) {
 			match = this.opts.authenticator!(match, route, ctx);
 			if (match && !this.index[match.id]) {
 				illegalState(

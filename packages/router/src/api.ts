@@ -88,27 +88,11 @@ export interface Route {
 	 * processed.
 	 */
 	auth?: boolean;
-
-	/**
-	 * Reserved property.
-	 *
-	 * @internal used by {@link AugmentedRoute}
-	 */
-	rest?: never;
-	/**
-	 * Reserved property.
-	 *
-	 * @internal used by {@link AugmentedRoute}
-	 */
-	params?: never;
-	/**
-	 * Allow route objects to be extended w/ custom data
-	 */
-	// [id: string]: any;
 }
 
-export interface AugmentedRoute
-	extends Omit<Route, "match" | "rest" | "params"> {
+export interface AugmentedRoute {
+	spec: Readonly<Route>;
+	id: string;
 	match: string[];
 	params?: Record<number, string>;
 	rest: number;

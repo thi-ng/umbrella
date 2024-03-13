@@ -71,7 +71,7 @@ For Node.js REPL:
 const router = await import("@thi.ng/router");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.93 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.95 KB
 
 ## Dependencies
 
