@@ -21,6 +21,7 @@
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+- [Benchmarks](#benchmarks)
 - [Authors](#authors)
 - [License](#license)
 
@@ -28,14 +29,15 @@
 
 Generic trie-based router with support for wildcards, route param validation/coercion, auth.
 
-- Declarative route definitions, incl. wildcards for matching rest args
+- **Not bound to any environment**, usable on both client & server side
+- Declarative route definitions, incl. [wildcards for matching rest
+  args](https://docs.thi.ng/umbrella/router/classes/Trie.html)
 - Parametric routes, each param with optional value coercion & validation
 - Route authentication handler to enable/disable routes based on other state
   factors
 - Fallback route redirect
 - Enforced initial route (optional)
 - Route formatting (with params & rest args)
-- Not bound to any environment, usable on both client & server side
 - Optional HTML5 history & hash fragment support
 
 ## Status
@@ -176,6 +178,55 @@ const router = new HTMLRouter(config);
 router.addListener(EVENT_ROUTE_CHANGED, console.log);
 
 router.start();
+```
+
+## Benchmarks
+
+The below benchmarks are ported from
+[router-benchmark](https://github.com/delvedor/router-benchmark), showing
+**highly competitive** results for this package. The
+[benchmark](https://github.com/thi-ng/umbrella/blob/develop/packages/router/bench/index.ts)
+itself can be run from the repo root like so:
+
+```bash
+bun packages/router/bench/index.ts
+```
+
+```text
+benchmarking: short static
+        warmup... 133.48ms (0.1 runs)
+        total: 113.79ms, runs: 1 (@ 1 calls/iter)
+        freq: 8788202.11 ops/sec
+
+benchmarking: static with same radix
+        warmup... 166.98ms (0.1 runs)
+        total: 161.89ms, runs: 1 (@ 1 calls/iter)
+        freq: 6176873.20 ops/sec
+
+benchmarking: dynamic route
+        warmup... 378.30ms (0.1 runs)
+        total: 374.80ms, runs: 1 (@ 1 calls/iter)
+        freq: 2668082.83 ops/sec
+
+benchmarking: mixed static dynamic
+        warmup... 344.19ms (0.1 runs)
+        total: 340.33ms, runs: 1 (@ 1 calls/iter)
+        freq: 2938310.18 ops/sec
+
+benchmarking: long static
+        warmup... 326.61ms (0.1 runs)
+        total: 327.84ms, runs: 1 (@ 1 calls/iter)
+        freq: 3050259.51 ops/sec
+
+benchmarking: wildcard
+        warmup... 207.84ms (0.1 runs)
+        total: 207.49ms, runs: 1 (@ 1 calls/iter)
+        freq: 4819484.22 ops/sec
+
+benchmarking: all together
+        warmup... 1525.05ms (0.1 runs)
+        total: 1532.24ms, runs: 1 (@ 1 calls/iter)
+        freq: 652640.66 ops/sec
 ```
 
 ## Authors
