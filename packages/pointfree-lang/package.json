@@ -49,12 +49,12 @@
 		"@thi.ng/pointfree": "^3.1.73"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.40.1",
-		"esbuild": "^0.20.0",
+		"@microsoft/api-extractor": "^7.42.3",
+		"esbuild": "^0.20.1",
 		"pegjs": "0.11.0-master.b7b87ea",
 		"rimraf": "^5.0.5",
-		"typedoc": "^0.25.7",
-		"typescript": "^5.3.3"
+		"typedoc": "^0.25.12",
+		"typescript": "^5.4.2"
 	},
 	"keywords": [
 		"ast",

@@ -12,8 +12,8 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"typescript": "^5.3.3",
-		"vite": "^5.1.1"
+		"typescript": "^5.4.2",
+		"vite": "^5.1.6"
 	},
 	"dependencies": {
 		"@thi.ng/logger": "workspace:^",

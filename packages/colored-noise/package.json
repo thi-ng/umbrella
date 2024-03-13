@@ -40,17 +40,17 @@
 		"@thi.ng/random": "^3.6.36"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.40.1",
+		"@microsoft/api-extractor": "^7.42.3",
 		"@thi.ng/api": "^8.9.29",
 		"@thi.ng/dsp": "^4.7.19",
 		"@thi.ng/dsp-io-wav": "^2.1.106",
 		"@thi.ng/text-canvas": "^3.0.9",
 		"@thi.ng/transducers": "^8.9.11",
 		"@thi.ng/vectors": "^7.10.17",
-		"esbuild": "^0.20.0",
+		"esbuild": "^0.20.1",
 		"rimraf": "^5.0.5",
-		"typedoc": "^0.25.7",
-		"typescript": "^5.3.3"
+		"typedoc": "^0.25.12",
+		"typescript": "^5.4.2"
 	},
 	"keywords": [
 		"1d",

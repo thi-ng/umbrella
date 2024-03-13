@@ -40,11 +40,11 @@
 		"@thi.ng/vectors": "^7.10.17"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.40.1",
-		"esbuild": "^0.20.0",
+		"@microsoft/api-extractor": "^7.42.3",
+		"esbuild": "^0.20.1",
 		"rimraf": "^5.0.5",
-		"typedoc": "^0.25.7",
-		"typescript": "^5.3.3"
+		"typedoc": "^0.25.12",
+		"typescript": "^5.4.2"
 	},
 	"keywords": [
 		"geometry",

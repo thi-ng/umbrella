@@ -11,7 +11,7 @@
 		"build": "bun src/index.ts"
 	},
 	"devDependencies": {
-		"typescript": "^5.3.3"
+		"typescript": "^5.4.2"
 	},
 	"dependencies": {
 		"@thi.ng/checks": "workspace:^",

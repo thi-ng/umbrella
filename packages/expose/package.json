@@ -36,12 +36,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.40.1",
-		"@types/node": "^20.11.17",
-		"esbuild": "^0.20.0",
+		"@microsoft/api-extractor": "^7.42.3",
+		"@types/node": "^20.11.26",
+		"esbuild": "^0.20.1",
 		"rimraf": "^5.0.5",
-		"typedoc": "^0.25.7",
-		"typescript": "^5.3.3"
+		"typedoc": "^0.25.12",
+		"typescript": "^5.4.2"
 	},
 	"keywords": [
 		"global",
