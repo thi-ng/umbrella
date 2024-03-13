@@ -1,7 +1,7 @@
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
 import type { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
-import type { HTMLRouterConfig, RouteMatch } from "@thi.ng/router";
+import type { HTMLRouterOpts, RouteMatch } from "@thi.ng/router";
 
 // general types defined for the base app
 
@@ -26,7 +26,7 @@ export interface AppConfig {
 	effects: IObjectOf<EffectDef>;
 	events: IObjectOf<EventDef>;
 	initialState: any;
-	router: HTMLRouterConfig;
+	router: HTMLRouterOpts;
 	ui: UIAttribs;
 	views: Partial<Record<AppViewIDs, ViewSpec>>;
 }

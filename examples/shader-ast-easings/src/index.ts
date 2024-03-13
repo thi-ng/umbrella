@@ -25,7 +25,6 @@ import {
 	type FloatSym,
 	type TaggedFn1,
 	type Vec2Sym,
-	type Vec2Term,
 	type Vec4Sym,
 } from "@thi.ng/shader-ast";
 import * as std from "@thi.ng/shader-ast-stdlib";
@@ -198,7 +197,7 @@ const easingVisualization = (
 					mix(
 						unis.curveColor1,
 						unis.curveColor2,
-						$y(std.fitNorm<Vec2Term>(p, bmin, bmax))
+						$y(std.fitNorm(p, bmin, bmax))
 					)
 				)
 			)),
