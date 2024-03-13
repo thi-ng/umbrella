@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/router",
 	"version": "3.4.0",
-	"description": "Generic router for browser & non-browser based applications",
+	"description": "Generic trie-based router with support for wildcards, route param validation/coercion, auth",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -81,8 +81,11 @@
 		"./basic": {
 			"default": "./basic.js"
 		},
-		"./history": {
-			"default": "./history.js"
+		"./html": {
+			"default": "./html.js"
+		},
+		"./trie": {
+			"default": "./trie.js"
 		}
 	},
 	"thi.ng": {

@@ -1,3 +1,4 @@
 export * from "./api.js";
 export * from "./basic.js";
-export * from "./history.js";
+export * from "./html.js";
+export * from "./trie.js";

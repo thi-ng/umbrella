@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { BasicRouter, defMatch } from "../src/index.js";
+import { BasicRouter } from "../src/index.js";
 
 test("router", () => {
 	const router = new BasicRouter({
@@ -9,36 +9,22 @@ test("router", () => {
 			{ id: "a-id-c", match: ["a", "?id", "c"] },
 			{ id: "missing", match: [] },
 		],
-		defaultRouteID: "missing",
+		default: "missing",
 	});
 
-	expect(router.route("/b")).toEqual({
-		id: "missing",
-		params: {},
-		title: undefined,
-	});
-	expect(router.route("/a")).toEqual({
-		id: "a",
-		params: {},
-		title: undefined,
-	});
+	expect(router.route("/b")).toEqual({ id: "missing", redirect: true });
+	expect(router.route("/a")).toEqual({ id: "a" });
 	expect(router.route("/a/123")).toEqual({
 		id: "a-id",
 		params: { id: "123" },
-		title: undefined,
 	});
 	expect(router.route("/a/456/c")).toEqual({
 		id: "a-id-c",
 		params: { id: "456" },
-		title: undefined,
 	});
 
 	router.addRoutes([{ id: "b", match: ["b"] }]);
-	expect(router.route("/b")).toEqual({
-		id: "b",
-		params: {},
-		title: undefined,
-	});
+	expect(router.route("/b")).toEqual({ id: "b" });
 
 	// ensure route reverse index has been updated too
 	expect(router.format("b")).toBe("/b");
@@ -46,8 +32,63 @@ test("router", () => {
 	expect(() => router.addRoutes([{ id: "b", match: ["b"] }])).toThrow();
 });
 
-test("defMatch", () => {
-	expect(defMatch("/")).toEqual([]);
-	expect(defMatch("/a/")).toEqual(["a"]);
-	expect(defMatch("/a/?id/b")).toEqual(["a", "?id", "b"]);
+test("auth", () => {
+	type Ctx = { user: string };
+	const router = new BasicRouter<Ctx>({
+		authenticator: (match, _, ctx) =>
+			ctx?.user == "admin" ? match : { id: "login", redirect: true },
+		routes: [
+			{ id: "admin", match: ["admin", "?module"], auth: true },
+			{ id: "login", match: ["login"] },
+			{ id: "missing", match: [] },
+		],
+		default: "missing",
+	});
+
+	expect(router.route("/admin/dashboard")).toEqual({
+		id: "login",
+		redirect: true,
+	});
+	expect(router.route("/admin/dashboard", { user: "admin" })).toEqual({
+		id: "admin",
+		params: { module: "dashboard" },
+	});
+	expect(router.route("/foo", { user: "admin" })).toEqual({
+		id: "missing",
+		redirect: true,
+	});
+});
+
+test("string defs", () => {
+	const $ = (match: string) =>
+		new BasicRouter({
+			routes: [
+				{ id: "a", match },
+				{ id: "b", match: [] },
+			],
+			default: "b",
+		}).routeForID("a")?.match;
+
+	expect(() => $("/")).toThrow();
+	expect($("/a/")).toEqual(["a"]);
+	expect($("/a/?id/b")).toEqual(["a", "?id", "b"]);
+	expect($("/a/?id/+")).toEqual(["a", "?id", "+"]);
+});
+
+test("rest args", () => {
+	const router = new BasicRouter({
+		routes: [
+			{ id: "a", match: ["a", "?x", "+"] },
+			{ id: "home", match: [] },
+		],
+		prefix: "/prefix/",
+		default: "home",
+	});
+	expect(router.route("/prefix/a/1/2/3")).toEqual({
+		id: "a",
+		params: { x: "1" },
+		rest: ["2", "3"],
+	});
+
+	expect(router.format("a", { x: 10 }, ["x", "y"])).toBe("/prefix/a/10/x/y");
 });

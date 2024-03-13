@@ -1,53 +1,57 @@
-import type { Event, INotify, IObjectOf, Listener } from "@thi.ng/api";
+import type {
+	Event,
+	INotify,
+	IObjectOf,
+	Listener,
+	SomeRequired,
+} from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { isString } from "@thi.ng/checks/is-string";
 import { equiv } from "@thi.ng/equiv";
+import type { CustomError } from "@thi.ng/errors";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import {
 	EVENT_ROUTE_CHANGED,
 	EVENT_ROUTE_FAILED,
+	type AugmentedRoute,
 	type Route,
 	type RouteMatch,
 	type RouteParamValidator,
-	type RouterConfig,
 	type RouterEventType,
+	type RouterOpts,
 } from "./api.js";
+import { Trie } from "./trie.js";
 
 @INotifyMixin
 export class BasicRouter<T = any> implements INotify<RouterEventType> {
-	config: RouterConfig<T>;
+	opts: RouterOpts<T>;
 	current: RouteMatch | undefined;
-	routeIndex!: Record<string, Route>;
+	protected index: Record<string, AugmentedRoute> = {};
+	protected routes: Trie<AugmentedRoute> = new Trie();
 
-	constructor(config: RouterConfig<T>) {
-		this.config = {
-			authenticator: (route, _, params) => ({
-				id: route.id,
-				title: route.title,
-				params,
-			}),
+	constructor(config: RouterOpts<T>) {
+		this.opts = {
+			authenticator: (match) => match,
 			prefix: "/",
 			separator: "/",
-			removeTrailingSlash: true,
+			trim: true,
 			...config,
 		};
-		this.updateRoutes();
+		this.addRoutes(this.opts.routes);
 		assert(
-			this.routeForID(this.config.defaultRouteID) !== undefined,
-			`missing config for default route: '${this.config.defaultRouteID}'`
+			this.routeForID(this.opts.default) !== undefined,
+			`missing config for default route: '${this.opts.default}'`
 		);
-		if (config.initialRouteID) {
-			const route = this.routeForID(config.initialRouteID);
+		if (config.initial) {
+			const route = this.routeForID(config.initial);
 			assert(
 				route !== undefined,
-				`missing config for initial route: ${this.config.initialRouteID}`
+				`missing config for initial route: ${this.opts.initial}`
 			);
-			assert(
-				!isParametricRoute(route!),
-				"initial route MUST not be parametric"
-			);
+			assert(!route!.params, "initial route MUST not be parametric");
 		}
 	}
 
@@ -63,16 +67,25 @@ export class BasicRouter<T = any> implements INotify<RouterEventType> {
 	notify(event: Event<RouterEventType>): boolean {}
 
 	start() {
-		if (this.config.initialRouteID) {
-			const route = this.routeForID(this.config.initialRouteID)!;
-			this.current = { id: route.id, title: route.title, params: {} };
+		if (this.opts.initial) {
+			const route = this.routeForID(this.opts.initial)!;
+			this.current = { id: route.id, params: {} };
 			this.notify({ id: EVENT_ROUTE_CHANGED, value: this.current });
 		}
 	}
 
-	addRoutes(route: Route[]) {
-		this.config.routes.push(...route);
-		this.updateRoutes();
+	addRoutes(routes: Route[]) {
+		for (let r of routes) {
+			try {
+				const route = this.augmentRoute(r);
+				this.routes.set(route.match, route);
+				this.index[route.id] = route;
+			} catch (e) {
+				illegalArgs(
+					`error in route "${r.id}": ${(<CustomError>e).origMessage}`
+				);
+			}
+		}
 	}
 
 	/**
@@ -90,20 +103,20 @@ export class BasicRouter<T = any> implements INotify<RouterEventType> {
 	 */
 	route(src: string, ctx?: T): RouteMatch | undefined {
 		if (
-			this.config.removeTrailingSlash &&
-			src.charAt(src.length - 1) === this.config.separator
+			this.opts.trim &&
+			src.charAt(src.length - 1) === this.opts.separator
 		) {
 			src = src.substring(0, src.length - 1);
 		}
-		src = src.substring(this.config.prefix!.length);
+		src = src.substring(this.opts.prefix!.length);
 		let match = this.matchRoutes(src, ctx);
 		if (!match) {
 			this.notify({ id: EVENT_ROUTE_FAILED, value: src });
 			if (!this.handleRouteFailure()) {
 				return;
 			}
-			const route = this.routeForID(this.config.defaultRouteID)!;
-			match = { id: route.id, title: route.title, params: {} };
+			const route = this.routeForID(this.opts.default)!;
+			match = { id: route.id, redirect: true };
 		}
 		if (!equiv(match, this.current)) {
 			this.current = match;
@@ -119,13 +132,17 @@ export class BasicRouter<T = any> implements INotify<RouterEventType> {
 	 *
 	 * @param id -
 	 * @param params -
+	 * @param rest -
 	 */
-	format(id: string, params?: any): string;
-	format(match: Partial<RouteMatch>): string;
+	format(id: string, params?: any, rest?: string[]): string;
+	format(match: SomeRequired<RouteMatch, "id">): string;
 	format(...args: any[]) {
-		let [id, params] = args;
-		let match: Partial<RouteMatch>;
+		let [id, params, rest] = args;
+		let match: SomeRequired<RouteMatch, "id">;
 		switch (args.length) {
+			case 3:
+				match = { id, params, rest };
+				break;
 			case 2:
 				match = { id, params };
 				break;
@@ -135,88 +152,90 @@ export class BasicRouter<T = any> implements INotify<RouterEventType> {
 			default:
 				illegalArity(args.length);
 		}
-		const route = this.routeForID(match!.id!);
+		const route = this.routeForID(match!.id);
 		if (route) {
-			const params = match!.params || {};
-			return (
-				this.config.prefix +
-				route.match
-					.map((x) => {
-						if (isRouteParam(x)) {
-							const id = x.substring(1);
-							const p = params[id];
-							if (p != null) return p;
-							illegalArgs(`missing value for param '${id}'`);
-						}
-						return x;
-					})
-					.join(this.config.separator)
-			);
+			const params = match!.params;
+			let parts = route.match.map((x) => {
+				if (isRouteParam(x)) {
+					const id = x.substring(1);
+					const p = params?.[id];
+					if (p == null) {
+						illegalArgs(`missing value for param '${id}'`);
+					}
+					return p;
+				}
+				return x;
+			});
+			if (route.rest >= 0)
+				parts = parts.slice(0, route.rest).concat(match.rest || []);
+			return this.opts.prefix + parts.join(this.opts.separator);
 		} else {
 			illegalArgs(`invalid route ID: ${match!.id!}`);
 		}
 	}
 
-	routeForID(id: string): Route | undefined {
-		return this.routeIndex[id];
+	routeForID(id: string): AugmentedRoute | undefined {
+		return this.index[id];
 	}
 
-	protected updateRoutes() {
-		this.config.routes.sort((a, b) => b.length - a.length);
-		this.config.routes.reduce((acc, x) => {
-			const fmt = x.match
-				.map((y) => (isRouteParam(y) ? "*" : y))
-				.join("/");
-			if (acc[fmt]) {
-				illegalArgs(`duplicate route: ${x.match} (id: ${x.id})`);
+	protected augmentRoute(route: Route): AugmentedRoute {
+		const match = isString(route.match)
+			? route.match.split(this.opts.separator!).filter((x) => !!x)
+			: route.match;
+		const existing = this.routes.get(match);
+		if (existing) {
+			illegalArgs(
+				`duplicate route: ${match} (id: ${route.id}, conflicts with: ${existing.id})`
+			);
+		}
+		let hasParams = false;
+		const params = match.reduce((acc, x, i) => {
+			if (isRouteParam(x)) {
+				hasParams = true;
+				acc[i] = x.substring(1);
 			}
-			acc[fmt] = true;
 			return acc;
-		}, <IObjectOf<boolean>>{});
-		this.routeIndex = this.config.routes.reduce(
-			(acc, r) => ((acc[r.id] = r), acc),
-			<Record<string, Route>>{}
-		);
+		}, <Record<number, string>>{});
+		return {
+			...route,
+			match,
+			params: hasParams ? params : undefined,
+			rest: match.indexOf("+"),
+		};
 	}
 
 	protected matchRoutes(src: string, ctx?: T) {
-		const routes = this.config.routes;
-		const curr = src.split(this.config.separator!);
-		for (let i = 0, n = routes.length; i < n; i++) {
-			const match = this.matchRoute(curr, routes[i], ctx);
-			if (match) {
-				return match;
+		const curr = src.split(this.opts.separator!);
+		const route = this.routes.get(curr);
+		if (!route) return;
+		let params: RouteMatch["params"];
+		if (route.params) {
+			params = Object.entries(route.params).reduce(
+				(acc, [i, k]) => ((acc[k] = curr[+i]), acc),
+				<RouteMatch["params"]>{}
+			);
+		}
+		if (
+			route.validate &&
+			!this.validateRouteParams(params, route.validate)
+		) {
+			return;
+		}
+		const rest = route.rest >= 0 ? curr.slice(route.rest) : undefined;
+		let match: RouteMatch | undefined = {
+			id: route.id,
+			params,
+			rest,
+		};
+		if (route.auth) {
+			match = this.opts.authenticator!(match, route, ctx);
+			if (match && !this.index[match.id]) {
+				illegalState(
+					"auth handler returned invalid route ID: " + match.id
+				);
 			}
 		}
-	}
-
-	protected matchRoute(
-		curr: string[],
-		route: Route,
-		ctx?: T
-	): RouteMatch | undefined {
-		const match = route.match;
-		const n = match.length;
-		if (curr.length === n) {
-			const params: IObjectOf<any> = {};
-			for (let i = 0; i < n; i++) {
-				const m = match[i];
-				if (isRouteParam(m)) {
-					params[m.substring(1)] = curr[i];
-				} else if (curr[i] !== m) {
-					return;
-				}
-			}
-			if (
-				route.validate &&
-				!this.validateRouteParams(params, route.validate)
-			) {
-				return;
-			}
-			return route.auth
-				? this.config.authenticator!(route, curr, params, ctx)
-				: { id: route.id, title: route.title, params };
-		}
+		return match;
 	}
 
 	protected validateRouteParams(
@@ -242,25 +261,4 @@ export class BasicRouter<T = any> implements INotify<RouterEventType> {
 	}
 }
 
-const isParametricRoute = (route: Route) => route.match.some(isRouteParam);
-
 const isRouteParam = (x: string) => x[0] === "?";
-
-/**
- * Helper function to define a {@link Route.match} array from a string pattern.
- *
- * @example
- * ```ts tangle:../export/def-match.ts
- * import { defMatch } from "@thi.ng/router";
- *
- * console.log(
- *   defMatch("/contacts/?id/friends")
- * );
- * // ["contacts", "?id", "friends"]
- * ```
- *
- * @param pattern
- * @param sep
- */
-export const defMatch = (pattern: string, sep = "/") =>
-	pattern.split(sep).filter((x) => !!x);

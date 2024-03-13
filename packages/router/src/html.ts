@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
-import type { HTMLRouterConfig } from "./api.js";
+import type { HTMLRouterOpts } from "./api.js";
 import { BasicRouter } from "./basic.js";
 
 export class HTMLRouter<T = any> extends BasicRouter<T> {
@@ -10,7 +10,7 @@ export class HTMLRouter<T = any> extends BasicRouter<T> {
 	protected useFragment: boolean;
 	protected ignoreHashChange: boolean;
 
-	constructor(config: HTMLRouterConfig) {
+	constructor(config: HTMLRouterOpts) {
 		super({ prefix: config.useFragment ? "#/" : "/", ...config });
 		this.useFragment = config.useFragment !== false;
 		this.ignoreHashChange = false;
@@ -21,14 +21,9 @@ export class HTMLRouter<T = any> extends BasicRouter<T> {
 		if (this.useFragment) {
 			window.addEventListener("hashchange", this.handleHashChange());
 		}
-		if (this.config.initialRouteID) {
-			const route = this.routeForID(this.config.initialRouteID)!;
-			this.route(
-				this.format({
-					id: route.id,
-					title: route.title,
-				})
-			);
+		if (this.opts.initial) {
+			const route = this.routeForID(this.opts.initial)!;
+			this.route(this.format({ id: route.id }));
 		} else {
 			this.route(this.useFragment ? location.hash : location.pathname);
 		}
@@ -59,11 +54,7 @@ export class HTMLRouter<T = any> extends BasicRouter<T> {
 		if (route && !equiv(route, old)) {
 			this.currentPath = this.format(route);
 			if (pushState) {
-				history.pushState(
-					this.currentPath,
-					route.title || window.document.title || "",
-					this.currentPath
-				);
+				history.pushState(this.currentPath, "", this.currentPath);
 			}
 		}
 		return route;
@@ -105,7 +96,7 @@ export class HTMLRouter<T = any> extends BasicRouter<T> {
 	protected handleRouteFailure() {
 		this.ignoreHashChange = true;
 		location.hash = this.format({
-			id: this.routeForID(this.config.defaultRouteID)!.id,
+			id: this.routeForID(this.opts.default)!.id,
 		});
 		this.ignoreHashChange = false;
 		return true;
