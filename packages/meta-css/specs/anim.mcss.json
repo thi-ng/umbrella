@@ -2,11 +2,19 @@
 	"decls": [
 		["@keyframes", "fadein", { "opacity": 0 }, { "opacity": 1 }],
 		["@keyframes", "fadeout", { "opacity": 1 }, { "opacity": 0 }],
-		["@keyframes", "spin", { "rotate": 0 }, { "rotate": "1turn" }]
+		["@keyframes", "spin", { "rotate": 0 }, { "rotate": "1turn" }],
+		["@keyframes", "shrink2", { "height": "2rem" }, { "height": "0rem" }],
+		["@keyframes", "shrink4", { "height": "4rem" }, { "height": "0rem" }],
+		["@keyframes", "shrink8", { "height": "8rem" }, { "height": "0rem" }],
+		["@keyframes", "shrink16", { "height": "16rem" }, { "height": "0rem" }]
 	],
 	"vars": {
 		"in": [""],
-		"out": [""]
+		"out": [""],
+		"2": [""],
+		"4": [""],
+		"8": [""],
+		"16": [""]
 	},
 	"specs": [
 		{
@@ -36,9 +44,25 @@
 		},
 		{
 			"user": "animations / transitions",
+			"name": "shrink<vid>-<k>",
+			"key": "i+1",
+			"props": { "animation": "shrink <v> ease-out forwards" },
+			"values": [0.25, 0.5, 1],
+			"unit": "second",
+			"vars": ["2", "4", "8", "16"]
+		},
+		{
+			"user": "animations / transitions",
 			"name": "anim-<v>",
 			"props": "animation-direction",
 			"values": ["normal", "reverse", "alternate", "alternate-reverse"]
+		},
+		{
+			"user": "animations / transitions",
+			"name": "anim-delay-<v>",
+			"props": "animation-delay",
+			"values": [0, 1, 2, 3, 4, 5],
+			"unit": "second"
 		}
 	]
 }
