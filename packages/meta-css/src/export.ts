@@ -94,14 +94,12 @@ export const serializeSpecs = (
 const __suffixed = (suffix: string, specs: CompiledSpecs) =>
 	Object.entries(specs.classes).map(([id, props]) => [
 		`.${id}${suffix}`,
-		__withoutUser(props),
+		__withoutInternals(props),
 	]);
 
 /** @internal */
-const __withoutUser = (props: IObjectOf<any>) => {
-	if ("__user" in props) {
-		props = { ...props };
-		delete props.__user;
-	}
-	return props;
-};
+const __withoutInternals = (props: IObjectOf<any>) =>
+	Object.keys(props).reduce((acc, k) => {
+		if (!k.startsWith("__")) acc[k] = props[k];
+		return acc;
+	}, <IObjectOf<any>>{});

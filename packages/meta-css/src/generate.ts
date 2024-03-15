@@ -34,6 +34,7 @@ import {
 	type CompiledSpecs,
 	type GeneratorConfig,
 	type Spec,
+	type TemplateSpec,
 } from "./api.js";
 import { watchInputs as $watch, maybeWriteText } from "./utils.js";
 
@@ -44,7 +45,7 @@ export interface GenerateOpts extends CommonOpts {
 	watch: boolean;
 }
 
-export const UNITS: Record<string, Fn<any, any>> = {
+export const UNITS: Record<string, Fn<any, string>> = {
 	deg,
 	em,
 	ex,
@@ -63,6 +64,12 @@ export const UNITS: Record<string, Fn<any, any>> = {
 	"%": percent,
 };
 
+export const TEMPLATE_UNITS: Record<string, Fn<any, string>> = {
+	percent: (x) => `${x}%`,
+	second: (x) => `${x}s`,
+	url: (x) => `url(${x})`,
+};
+
 export const VARIATIONS: IObjectOf<string[]> = {
 	"": [""],
 	a: [""],
@@ -78,6 +85,8 @@ export const VARIATIONS: IObjectOf<string[]> = {
 	left: ["left"],
 	x: ["-x"],
 	y: ["-y"],
+	in: [""],
+	out: [""],
 };
 
 export const GENERATE: Command<
@@ -137,6 +146,7 @@ const generateFramework = async (
 		info: { name: "TODO", version: "0.0.0" },
 		media: {},
 		classes: {},
+		templates: {},
 		decls: [],
 	};
 	setPrecision(opts.prec);
@@ -145,8 +155,15 @@ const generateFramework = async (
 		Object.assign(result.info, config.info);
 		Object.assign(result.media, config.media);
 		if (config.decls) result.decls.push(...config.decls);
-		for (let spec of config.specs) {
-			expandSpec(config, spec, result.classes, logger);
+		if (config.specs) {
+			for (let spec of config.specs) {
+				expandSpec(config, spec, result.classes, logger);
+			}
+		}
+		if (config.templates) {
+			for (let spec of config.templates) {
+				expandTemplateSpec(config, spec, result.templates, logger);
+			}
 		}
 	}
 	maybeWriteText(
@@ -162,7 +179,8 @@ export const expandSpec = (
 	config: Pick<GeneratorConfig, "tables" | "vars">,
 	spec: Spec,
 	defs: IObjectOf<any>,
-	logger: ILogger
+	logger: ILogger,
+	isTemplate = false
 ) => {
 	const variationIDs = isArray(spec.vars) ? spec.vars : [""];
 	const props = isString(spec.props) ? { [spec.props]: "<v>" } : spec.props!;
@@ -189,7 +207,9 @@ export const expandSpec = (
 						values[currKey]
 				  )
 				: undefined;
-			const currValue = __value(values[currKey], unit);
+			const currValue = isTemplate
+				? __templateValue(unit)
+				: __value(values[currKey], unit);
 			if (!defs[name]) {
 				defs[name] =
 					spec.user != null
@@ -203,9 +223,11 @@ export const expandSpec = (
 								),
 						  }
 						: {};
-			} else if (!ownNames.has(name))
+			} else if (!ownNames.has(name)) {
 				illegalArgs(`duplicate class ID: ${name}`);
+			}
 			ownNames.add(name);
+			let maxArity = 0;
 			for (let [k, v] of Object.entries(props)) {
 				const prop = __withVariations(
 					k,
@@ -223,10 +245,38 @@ export const expandSpec = (
 				);
 				defs[name][prop] = val;
 				logger.debug(name, prop, val);
+				if (isTemplate)
+					maxArity = __maxArity(val, __maxArity(prop, maxArity));
 			}
+			if (isTemplate) defs[name].__arity = maxArity + 1;
 		}
 	}
 	return defs;
+};
+
+/**
+ * Same as {@link expandSpec}, but for {@link TemplateSpec}s.
+ *
+ * @param config
+ * @param spec
+ * @param defs
+ * @param logger
+ */
+export const expandTemplateSpec = (
+	config: Pick<GeneratorConfig, "tables" | "vars">,
+	spec: TemplateSpec,
+	defs: IObjectOf<any>,
+	logger: ILogger
+) => expandSpec(config, { ...spec, values: [""] }, defs, logger, true);
+
+/** @internal */
+const __maxArity = (x: string, max: number) => {
+	const re = /\{(\d+)\}/g;
+	let match: RegExpMatchArray | null;
+	while ((match = re.exec(x))) {
+		max = Math.max(max, +match[1]);
+	}
+	return max;
 };
 
 /** @internal */
@@ -260,6 +310,10 @@ const __value = (x: NumOrString, unitID?: string) => {
 	if (!unit) illegalArgs(`invalid unit: ${unitID}`);
 	return unit(x);
 };
+
+/** @internal */
+const __templateValue = (unitID?: string) =>
+	"{0}" + (unitID ? TEMPLATE_UNITS[unitID] || unitID : "");
 
 /** @internal */
 const __withVariations = (

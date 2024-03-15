@@ -1,6 +1,6 @@
 import { NULL_LOGGER } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
-import { expandSpec } from "../src/generate.js";
+import { expandSpec, expandTemplateSpec } from "../src/generate.js";
 
 test("variations", () => {
 	expect(
@@ -33,4 +33,54 @@ test("variations", () => {
 		bwt1: { "border-top-width": ".5rem" },
 		bwt2: { "border-top-width": "1rem" },
 	});
+});
+
+test("template w/o unit", () => {
+	expect(
+		expandTemplateSpec(
+			{},
+			{
+				name: "margin",
+				props: "margin",
+			},
+			{},
+			NULL_LOGGER
+		)
+	).toEqual({ margin: { margin: "{0}", __arity: 1 } });
+});
+
+test("template variations", () => {
+	expect(
+		expandTemplateSpec(
+			{},
+			{
+				name: "bw<vid>",
+				props: "border<var>-width",
+				unit: "rem",
+				vars: ["", "t", "r", "b", "l"],
+			},
+			{},
+			NULL_LOGGER
+		)
+	).toEqual({
+		bw: { "border-width": "{0}rem", __arity: 1 },
+		bwb: { "border-bottom-width": "{0}rem", __arity: 1 },
+		bwl: { "border-left-width": "{0}rem", __arity: 1 },
+		bwr: { "border-right-width": "{0}rem", __arity: 1 },
+		bwt: { "border-top-width": "{0}rem", __arity: 1 },
+	});
+});
+
+test("template multiple params", () => {
+	expect(
+		expandTemplateSpec(
+			{},
+			{
+				name: "test",
+				props: { "--a": "{0}rem", "--b": "{1}s" },
+			},
+			{},
+			NULL_LOGGER
+		)
+	).toEqual({ test: { "--a": "{0}rem", "--b": "{1}s", __arity: 2 } });
 });

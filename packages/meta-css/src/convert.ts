@@ -2,6 +2,7 @@
 import type { Fn0, IObjectOf } from "@thi.ng/api";
 import { flag, type Command } from "@thi.ng/args";
 import { peek } from "@thi.ng/arrays";
+import { isString } from "@thi.ng/checks";
 import { assert, illegalArgs, illegalState } from "@thi.ng/errors";
 import { readJSON, readText } from "@thi.ng/file-io";
 import {
@@ -14,7 +15,7 @@ import {
 } from "@thi.ng/hiccup-css";
 import { type ILogger } from "@thi.ng/logger";
 import { sync } from "@thi.ng/rstream";
-import { split } from "@thi.ng/strings";
+import { interpolate, split } from "@thi.ng/strings";
 import { filter, map } from "@thi.ng/transducers";
 import { watch } from "node:fs";
 import { resolve } from "node:path";
@@ -404,7 +405,10 @@ export const processSpec = (
 							token,
 							mediaQueryIDs
 						);
-						if (!specs.classes[id] && !id.includes("="))
+						if (
+							!specs.classes[id] &&
+							!(isAssignment(id) || isTemplateRef(id))
+						)
 							illegalArgs(`unknown class ID: ${id}`);
 						if (query) {
 							addMediaQueryDef(
@@ -470,7 +474,15 @@ const buildDeclsForPath = (
 		if (i == parts.length - 1) {
 			const obj = Object.assign(
 				{},
-				...map((x) => classOrVarDecl(specs, x), ids)
+				...map(
+					(x) =>
+						isTemplateRef(x)
+							? templateDecl(specs, x)
+							: isAssignment(x)
+							? varDecl(x)
+							: specs.classes[x],
+					ids
+				)
 			);
 			if ("__user" in obj) delete obj.__user;
 			curr.push(obj);
@@ -531,9 +543,31 @@ const addPlainDef = (
 	id: string
 ) => (plainRules[path] || (plainRules[path] = new Set())).add(id);
 
-const classOrVarDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
+const varDecl = (id: string): IObjectOf<any> => {
 	const idx = id.indexOf("=");
-	return idx > 0
-		? { [`--${id.substring(0, idx)}`]: id.substring(idx + 1) }
-		: specs.classes[id];
+	return { [`--${id.substring(0, idx)}`]: id.substring(idx + 1) };
 };
+
+const templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
+	const idx = id.indexOf("(");
+	const tplID = id.substring(0, idx);
+	const vals = id
+		.substring(idx + 1, id.length - 1)
+		.split(",")
+		.map((x) => x.trim());
+	const spec = specs.templates[tplID];
+	if (vals.length !== spec.__arity)
+		illegalArgs(`template "${tplID}" expected ${spec.__arity} arguments`);
+	return Object.entries(spec).reduce((acc, [k, v]) => {
+		if (!k.startsWith("__")) {
+			k = interpolate(k, ...vals);
+			if (isString(v)) v = interpolate(v, ...vals);
+			acc[k] = v;
+		}
+		return acc;
+	}, <IObjectOf<any>>{});
+};
+
+const isAssignment = (x: string) => x.includes("=");
+
+const isTemplateRef = (x: string) => x.includes("(");

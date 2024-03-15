@@ -14,6 +14,7 @@ export interface AppCtx<T extends CommonOpts>
 
 export interface CompiledSpecs {
 	classes: IObjectOf<any>;
+	templates: IObjectOf<any>;
 	decls: any[];
 	media: IObjectOf<any>;
 	info: SpecInfo;
@@ -25,7 +26,8 @@ export interface GeneratorConfig {
 	tables?: IObjectOf<IObjectOf<NumOrString> | string[] | number[]>;
 	vars?: IObjectOf<string[]>;
 	decls?: any[];
-	specs: Spec[];
+	specs?: Spec[];
+	templates?: TemplateSpec[];
 }
 
 export interface SpecInfo {
@@ -42,6 +44,8 @@ export interface Spec {
 	vars?: string[];
 	user?: any;
 }
+
+export type TemplateSpec = Omit<Spec, "values">;
 
 export const ARG_SPECS = {
 	specs: string({
