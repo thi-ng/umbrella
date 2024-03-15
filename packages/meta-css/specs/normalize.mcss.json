@@ -154,6 +154,5 @@
 			[":last-child", { "margin-bottom": 0 }]
 		],
 		["@comment", "----- end: CSS normalization -----"]
-	],
-	"specs": []
+	]
 }

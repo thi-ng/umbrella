@@ -3,19 +3,13 @@
 		["@keyframes", "fadein", { "opacity": 0 }, { "opacity": 1 }],
 		["@keyframes", "fadeout", { "opacity": 1 }, { "opacity": 0 }],
 		["@keyframes", "spin", { "rotate": 0 }, { "rotate": "1turn" }],
-		["@keyframes", "shrink2", { "height": "2rem" }, { "height": "0rem" }],
-		["@keyframes", "shrink4", { "height": "4rem" }, { "height": "0rem" }],
-		["@keyframes", "shrink8", { "height": "8rem" }, { "height": "0rem" }],
-		["@keyframes", "shrink16", { "height": "16rem" }, { "height": "0rem" }]
+		[
+			"@keyframes",
+			"shrink",
+			{ "height": "var(--shrink-size)" },
+			{ "height": 0 }
+		]
 	],
-	"vars": {
-		"in": [""],
-		"out": [""],
-		"2": [""],
-		"4": [""],
-		"8": [""],
-		"16": [""]
-	},
 	"specs": [
 		{
 			"user": "animations / transitions",
@@ -44,12 +38,11 @@
 		},
 		{
 			"user": "animations / transitions",
-			"name": "shrink<vid>-<k>",
+			"name": "shrink<k>",
 			"key": "i+1",
 			"props": { "animation": "shrink <v> ease-out forwards" },
 			"values": [0.25, 0.5, 1],
-			"unit": "second",
-			"vars": ["2", "4", "8", "16"]
+			"unit": "second"
 		},
 		{
 			"user": "animations / transitions",
@@ -63,6 +56,30 @@
 			"props": "animation-delay",
 			"values": [0, 1, 2, 3, 4, 5],
 			"unit": "second"
+		},
+		{
+			"user": "animations / transitions",
+			"name": "anim-<k>",
+			"props": "animation-play-state",
+			"values": { "pause": "paused", "play": "running" }
+		},
+		{
+			"user": "animations / transitions",
+			"name": "anim-<v>",
+			"props": "animation-timing-function",
+			"values": ["ease", "ease-in", "ease-out", "ease-in-out", "linear"]
+		},
+		{
+			"user": "animations / transitions",
+			"name": "anim-steps-<v>",
+			"props": { "animation-timing-function": "steps(<v>)" },
+			"values": [2, 3, 4, 5, 6, 8, 10]
+		},
+		{
+			"user": "animations / transitions",
+			"name": "anim-iter-<v>",
+			"props": "animation-iteration-count",
+			"values": [1, 2, 3, 4, 5, "infinite"]
 		}
 	]
 }

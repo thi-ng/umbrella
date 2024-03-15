@@ -21,6 +21,5 @@
 		"noanim": {
 			"prefers-reduced-motion": true
 		}
-	},
-	"specs": []
+	}
 }
