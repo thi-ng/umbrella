@@ -18,12 +18,13 @@
 - [Generating CSS frameworks](#generating-css-frameworks)
   - [Framework generation specs & syntax](#framework-generation-specs--syntax)
   - [Example generation spec](#example-generation-spec)
-  - [Spec structure](#spec-structure)
+  - [Generator spec structure](#generator-spec-structure)
     - [Variations](#variations)
     - [Parametric IDs](#parametric-ids)
     - [Values](#values)
     - [Properties](#properties)
     - [Key value generation](#key-value-generation)
+  - [Templated class definitions](#templated-class-definitions)
   - [Media query definitions](#media-query-definitions)
   - [Custom declarations](#custom-declarations)
 - [Converting meta stylesheets to CSS](#converting-meta-stylesheets-to-css)
@@ -60,13 +61,16 @@ remove the need for any complex & bloated CSS-related dependencies (parsers
 etc.) and to simplify building secondary tooling (e.g. part of this readme is an
 [auto-generated report of the included base framework
 specs](#bundled-css-base-framework)), we're using JSON — rather than CSS — as
-data format to: 1) express the _generative_ rules to define all the CSS classes,
-declarations, media query criteria which are forming a framework and
-2) as intermediate data format for a generated CSS framework itself. **The
-entire toolkit (incl. all bundled dependencies) is currently only 32KB!**
+data format to:
 
-This readme aims to provide a thorough overview of this toolchain and some
-concrete usage examples...
+1. express the _generative_ rules to define all the CSS classes, class templates,
+declarations, and media query criteria, all of which are forming a framework
+2. as intermediate data format for generated CSS frameworks themselves
+
+**The entire toolkit (incl. all bundled dependencies) is currently only 36KB (unzipped)!**
+
+This readme aims to provide a thorough overview of this toolchain, its
+possibilities and some concrete usage examples...
 
 Note: In all cases, final CSS generation itself is handled by
 [thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/).
@@ -149,8 +153,12 @@ the toolchain.
     "decls": [
         ["html", { "box-sizing": "border-box" }]
     ],
-    // array of actual generation specs
+    // array of class generation specs
     "specs": [
+        //...
+    ],
+    // array of templated class generation specs
+    "tpls": [
         //...
     ]
 }
@@ -231,7 +239,7 @@ When later used in stylesheets, we can then refer to each of these classes by
 their generated names, e.g. `ma0` to disable all margins or `mh2` to set both
 left & right margins to `1rem` (in this case)...
 
-### Spec structure
+### Generator spec structure
 
 An individual generator spec JSON object can contain the following keys:
 
@@ -440,6 +448,64 @@ The above spec will generate the following (some parts omitted):
 {
     "test-abc": { "test-prop": 23 },
     "test-xyz": { "test-prop": 42 },
+}
+```
+
+### Templated class definitions
+
+As a special case of "normal" generator specs described above, the toolchain
+also supports the generation of so-called templated classes, which will later
+accept one or more parameters when used in a MetaCSS stylesheet.
+
+These template specs are almost identical to the normal spec format, with the
+exception of **not** using a `values` field, since values will only be
+provided by the user at a later stage, via template parameters.
+
+A simple generator spec for a templated animation, including keyframe
+definitions:
+
+```json tangle:export/readme-templated-anim.mcss.json
+{
+    "decls": [
+        ["@keyframes" ,"shrink", { "height": "var(--shrink-size)" }, { "height": 0 }]
+    ],
+    "tpls": [
+        {
+            "name": "shrink-",
+            "props": {
+                "--shrink-size": "{0}",
+                "animation": "shrink {1} ease-out forward"
+            }
+        }
+    ]
+}
+```
+
+In a MetaCSS stylesheet, the template can then be used like a function call, like so:
+
+`shrink(4rem, 1s)`
+
+Here, two params are supplied as comma-separated list between the `(`..`)`
+parens. In the template definition the `{0}`/`{1}` patterns are indicating where
+these numbered params will be inserted. Templates support any number of
+params/arguments and each param can be used multiple times in multiple
+locations, incl. property names and/or values.
+
+When templates are compiled, the number of expected params is computed
+automatically and later checked when against the actually given args when the
+template is used. If the given number of args differs, an error will be thrown.
+
+If a template's `props` is a string, the optional `unit` field can be used to
+assign a CSS unit to provided params. If `props` is an object `unit` will be
+ignored.
+
+Using the above template and the MetaCSS stylesheet reference `#test {
+shrink(4rem, 0.5s) }` will then be expanded to:
+
+```css
+#test {
+    --shrink-size: 4rem;
+    animation: shrink 0.5s ease-out forward;
 }
 ```
 
@@ -819,7 +885,7 @@ and `w-50-l` (incl. their corresponding `@media` wrappers).
 
 The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...
 
-Currently, there are 940 CSS utility classes defined in MetaCSS base v0.7.0:
+Currently, there are 969 CSS utility classes (incl. 0 templates) defined in "MetaCSS base" (v0.8.0):
 
 ### Classes by category
 
@@ -829,7 +895,7 @@ Currently, there are 940 CSS utility classes defined in MetaCSS base v0.7.0:
 
 #### Animations / transitions <!-- notoc -->
 
-`anim-alternate` / `anim-alternate-reverse` / `anim-normal` / `anim-reverse` / `bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3` / `fadeout1` / `fadeout2` / `fadeout3` / `spin1` / `spin2` / `spin3`
+`anim-alternate` / `anim-alternate-reverse` / `anim-delay-0` / `anim-delay-1` / `anim-delay-2` / `anim-delay-3` / `anim-delay-4` / `anim-delay-5` / `anim-ease` / `anim-ease-in` / `anim-ease-in-out` / `anim-ease-out` / `anim-iter-1` / `anim-iter-2` / `anim-iter-3` / `anim-iter-4` / `anim-iter-5` / `anim-iter-infinite` / `anim-linear` / `anim-normal` / `anim-pause` / `anim-play` / `anim-reverse` / `anim-steps-2` / `anim-steps-3` / `anim-steps-4` / `anim-steps-5` / `anim-steps-6` / `anim-steps-8` / `anim-steps-10` / `bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3` / `fadeout1` / `fadeout2` / `fadeout3` / `shrink1` / `shrink2` / `shrink3` / `spin1` / `spin2` / `spin3`
 
 #### Aspect ratios <!-- notoc -->
 
@@ -1022,7 +1088,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.25 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.61 KB
 
 ## Dependencies
 
