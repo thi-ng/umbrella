@@ -201,11 +201,12 @@ An individual generator spec JSON object can contain the following keys:
 
 | **ID**   | **Type**                | **Description**                                              |
 |----------|-------------------------|--------------------------------------------------------------|
+| `doc`    | object, optional        | Documentation metadata, see [section](#documentation)        |
 | `key`    | string, optional        | Method for deriving keys from current value                  |
 | `name`   | string                  | Parametric name for the generated CSS class(es)              |
 | `props`  | string or object        | CSS property name(s), possibly parametric                    |
 | `unit`   | string, optional        | CSS unit to use for values                                   |
-| `user`   | any, optional           | Custom, arbitrary user data, comments, metadata etc.         |
+| `user`   | any, optional           | Custom, arbitrary user data etc.                             |
 | `values` | string, array or object | Values to be assigned to CSS properties, possibly parametric |
 | `vars`   | string[], optional      | Array of variation IDs (see section below)                   |
 
@@ -418,7 +419,7 @@ exception of **not** using a `values` field, since values will only be
 provided by the user at a later stage, via template parameters.
 
 A simple generator spec for a templated animation, including keyframe
-definitions:
+definitions and documentation metadata:
 
 ```json tangle:export/readme-templated-anim.mcss.json
 {
@@ -427,10 +428,18 @@ definitions:
 	],
 	"tpls": [
 		{
-			"name": "shrink-",
+			"name": "shrink",
 			"props": {
 				"--shrink-size": "{0}",
-				"animation": "shrink {1} ease-out forward"
+				"animation": "shrink {1}s ease-out forward"
+			},
+			"doc": {
+				"group": "animation",
+				"desc": "Animation which shrinks the height from given value down to zero",
+				"args": [
+					"height: initial height (incl. units)",
+					"duration: in seconds"
+				]
 			}
 		}
 	]
@@ -439,24 +448,24 @@ definitions:
 
 In a MetaCSS stylesheet, the template can then be used like a function call, like so:
 
-`shrink(4rem, 1s)`
+`shrink(4rem, 1)`
 
-Here, two params are supplied as comma-separated list between the `(`..`)`
+Here, two arguments are supplied as comma-separated list between the `(`..`)`
 parens. In the template definition the `{0}`/`{1}` patterns are indicating where
-these numbered params will be inserted. Templates support any number of
-params/arguments and each param can be used multiple times in multiple
-locations, incl. property names and/or values.
+these numbered args will be inserted. Templates support any number of
+params/arguments and each one can be used multiple times in multiple locations,
+incl. property names, values, and in documentation (`group` & `desc` fields).
 
-When templates are compiled, the number of expected params is computed
-automatically and later checked when against the actually given args when the
-template is used. If the given number of args differs, an error will be thrown.
+When templates are compiled, the number of expected args is computed
+automatically and later checked against the actually given args when the
+template is used. An error will be thrown if the given number of args differs.
 
 If a template's `props` is a string, the optional `unit` field can be used to
-assign a CSS unit to provided params. If `props` is an object `unit` will be
-ignored.
+auto-assign a CSS unit to provided args. If `props` is an object, the `unit`
+option will be ignored.
 
-Using the above template and the MetaCSS stylesheet reference `#test {
-shrink(4rem, 0.5s) }` will then be expanded to:
+Using the above template and the MetaCSS stylesheet `#test { shrink(4rem, 0.5) }`
+will then be expanded to:
 
 ```css
 #test {
@@ -837,7 +846,13 @@ to 50%) and media queries for different screen sizes (e.g. named `ns`, `l`),
 then the export with said media queries will also generate classes `w-50-ns`
 and `w-50-l` (incl. their corresponding `@media` wrappers).
 
+## Bundled CSS base framework
 
+The package includes a large number of useful generator specs in
+[/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/).
+These are readily usable (and used by a growing number of example projects in
+this repo), but also are provided as starting point to define your own custom
+framework(s)...
 
 <!-- include export/framework.md -->
 

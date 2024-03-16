@@ -37,6 +37,58 @@
   - [Media query variations](#media-query-variations)
 - [Bundled CSS base framework](#bundled-css-base-framework)
   - [Classes by category](#classes-by-category)
+    - [Accessibility](#accessibility)
+    - [Animation / transition](#animation--transition)
+    - [Aspect ratios](#aspect-ratios)
+    - [Background](#background)
+    - [Border color](#border-color)
+    - [Border radius](#border-radius)
+    - [Border width](#border-width)
+    - [Colors](#colors)
+    - [Content](#content)
+    - [Cursors](#cursors)
+    - [Display mode](#display-mode)
+    - [Flex layout](#flex-layout)
+    - [Font families](#font-families)
+    - [Font sizes](#font-sizes)
+    - [Font style](#font-style)
+    - [Font variants](#font-variants)
+    - [Font weights](#font-weights)
+    - [Grid layout](#grid-layout)
+    - [Height](#height)
+    - [Icons](#icons)
+    - [Letter spacing](#letter-spacing)
+    - [Line heights](#line-heights)
+    - [Lists](#lists)
+    - [Margin](#margin)
+    - [Max. height](#max-height)
+    - [Max. width](#max-width)
+    - [Min. height](#min-height)
+    - [Min. width](#min-width)
+    - [Opacity](#opacity)
+    - [Overflow](#overflow)
+    - [Padding](#padding)
+    - [Positions](#positions)
+    - [Print](#print)
+    - [Scrolling](#scrolling)
+    - [Selection](#selection)
+    - [Shadow](#shadow)
+    - [Svg](#svg)
+    - [Text align](#text-align)
+    - [Text decorations](#text-decorations)
+    - [Text transforms](#text-transforms)
+    - [Vertical align](#vertical-align)
+    - [Visibility](#visibility)
+    - [Whitespace](#whitespace)
+    - [Width](#width)
+    - [Z-indices](#z-indices)
+  - [Templates by category](#templates-by-category)
+    - [Animation / transition](#animation--transition)
+    - [Aspect ratios](#aspect-ratios)
+    - [Border color](#border-color)
+    - [Colors](#colors)
+    - [Positions](#positions)
+    - [Svg](#svg)
   - [Media queries](#media-queries)
 - [Status](#status)
 - [Related packages](#related-packages)
@@ -245,11 +297,12 @@ An individual generator spec JSON object can contain the following keys:
 
 | **ID**   | **Type**                | **Description**                                              |
 |----------|-------------------------|--------------------------------------------------------------|
+| `doc`    | object, optional        | Documentation metadata, see [section](#documentation)        |
 | `key`    | string, optional        | Method for deriving keys from current value                  |
 | `name`   | string                  | Parametric name for the generated CSS class(es)              |
 | `props`  | string or object        | CSS property name(s), possibly parametric                    |
 | `unit`   | string, optional        | CSS unit to use for values                                   |
-| `user`   | any, optional           | Custom, arbitrary user data, comments, metadata etc.         |
+| `user`   | any, optional           | Custom, arbitrary user data etc.                             |
 | `values` | string, array or object | Values to be assigned to CSS properties, possibly parametric |
 | `vars`   | string[], optional      | Array of variation IDs (see section below)                   |
 
@@ -462,7 +515,7 @@ exception of **not** using a `values` field, since values will only be
 provided by the user at a later stage, via template parameters.
 
 A simple generator spec for a templated animation, including keyframe
-definitions:
+definitions and documentation metadata:
 
 ```json tangle:export/readme-templated-anim.mcss.json
 {
@@ -471,10 +524,18 @@ definitions:
     ],
     "tpls": [
         {
-            "name": "shrink-",
+            "name": "shrink",
             "props": {
                 "--shrink-size": "{0}",
-                "animation": "shrink {1} ease-out forward"
+                "animation": "shrink {1}s ease-out forward"
+            },
+            "doc": {
+                "group": "animation",
+                "desc": "Animation which shrinks the height from given value down to zero",
+                "args": [
+                    "height: initial height (incl. units)",
+                    "duration: in seconds"
+                ]
             }
         }
     ]
@@ -483,24 +544,24 @@ definitions:
 
 In a MetaCSS stylesheet, the template can then be used like a function call, like so:
 
-`shrink(4rem, 1s)`
+`shrink(4rem, 1)`
 
-Here, two params are supplied as comma-separated list between the `(`..`)`
+Here, two arguments are supplied as comma-separated list between the `(`..`)`
 parens. In the template definition the `{0}`/`{1}` patterns are indicating where
-these numbered params will be inserted. Templates support any number of
-params/arguments and each param can be used multiple times in multiple
-locations, incl. property names and/or values.
+these numbered args will be inserted. Templates support any number of
+params/arguments and each one can be used multiple times in multiple locations,
+incl. property names, values, and in documentation (`group` & `desc` fields).
 
-When templates are compiled, the number of expected params is computed
-automatically and later checked when against the actually given args when the
-template is used. If the given number of args differs, an error will be thrown.
+When templates are compiled, the number of expected args is computed
+automatically and later checked against the actually given args when the
+template is used. An error will be thrown if the given number of args differs.
 
 If a template's `props` is a string, the optional `unit` field can be used to
-assign a CSS unit to provided params. If `props` is an object `unit` will be
-ignored.
+auto-assign a CSS unit to provided args. If `props` is an object, the `unit`
+option will be ignored.
 
-Using the above template and the MetaCSS stylesheet reference `#test {
-shrink(4rem, 0.5s) }` will then be expanded to:
+Using the above template and the MetaCSS stylesheet `#test { shrink(4rem, 0.5) }`
+will then be expanded to:
 
 ```css
 #test {
@@ -883,179 +944,1090 @@ and `w-50-l` (incl. their corresponding `@media` wrappers).
 
 ## Bundled CSS base framework
 
-The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...
+The package includes a large number of useful generator specs in
+[/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/).
+These are readily usable (and used by a growing number of example projects in
+this repo), but also are provided as starting point to define your own custom
+framework(s)...
 
-Currently, there are 969 CSS utility classes (incl. 0 templates) defined in "MetaCSS base" (v0.8.0):
+Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "MetaCSS base" (v0.8.0):
 
 ### Classes by category
 
-#### Accessibility <!-- notoc -->
-
-`screen-reader` / `screen-reader-focus`
-
-#### Animations / transitions <!-- notoc -->
-
-`anim-alternate` / `anim-alternate-reverse` / `anim-delay-0` / `anim-delay-1` / `anim-delay-2` / `anim-delay-3` / `anim-delay-4` / `anim-delay-5` / `anim-ease` / `anim-ease-in` / `anim-ease-in-out` / `anim-ease-out` / `anim-iter-1` / `anim-iter-2` / `anim-iter-3` / `anim-iter-4` / `anim-iter-5` / `anim-iter-infinite` / `anim-linear` / `anim-normal` / `anim-pause` / `anim-play` / `anim-reverse` / `anim-steps-2` / `anim-steps-3` / `anim-steps-4` / `anim-steps-5` / `anim-steps-6` / `anim-steps-8` / `anim-steps-10` / `bg-anim1` / `bg-anim2` / `bg-anim3` / `fadein1` / `fadein2` / `fadein3` / `fadeout1` / `fadeout2` / `fadeout3` / `shrink1` / `shrink2` / `shrink3` / `spin1` / `spin2` / `spin3`
-
-#### Aspect ratios <!-- notoc -->
-
-`aspect-ratio-1x1` / `aspect-ratio-1x2` / `aspect-ratio-2x1` / `aspect-ratio-2x3` / `aspect-ratio-3x2` / `aspect-ratio-3x4` / `aspect-ratio-4x3` / `aspect-ratio-5x7` / `aspect-ratio-7x5` / `aspect-ratio-9x16` / `aspect-ratio-16x9` / `bg-aspect-ratio-1x1` / `bg-aspect-ratio-1x2` / `bg-aspect-ratio-2x1` / `bg-aspect-ratio-2x3` / `bg-aspect-ratio-3x2` / `bg-aspect-ratio-3x4` / `bg-aspect-ratio-4x3` / `bg-aspect-ratio-5x7` / `bg-aspect-ratio-7x5` / `bg-aspect-ratio-9x16` / `bg-aspect-ratio-16x9` / `bg-aspect-ratio-object`
-
-#### Background <!-- notoc -->
-
-`bg-contain` / `bg-cover` / `bg-pos-center` / `bg-pos-e` / `bg-pos-n` / `bg-pos-ne` / `bg-pos-nw` / `bg-pos-s` / `bg-pos-se` / `bg-pos-sw` / `bg-pos-w`
-
-#### Border radius <!-- notoc -->
-
-`br0` / `br1` / `br2` / `br3` / `br4` / `br-100` / `br-pill` / `brb0` / `brb1` / `brb2` / `brb3` / `brb4` / `brl0` / `brl1` / `brl2` / `brl3` / `brl4` / `brr0` / `brr1` / `brr2` / `brr3` / `brr4` / `brt0` / `brt1` / `brt2` / `brt3` / `brt4`
-
-#### Border width <!-- notoc -->
-
-`bw0` / `bw1` / `bw2` / `bw3` / `bw4` / `bw5` / `bw-1px` / `bwb0` / `bwb1` / `bwb2` / `bwb3` / `bwb4` / `bwb5` / `bwb-1px` / `bwl0` / `bwl1` / `bwl2` / `bwl3` / `bwl4` / `bwl5` / `bwl-1px` / `bwr0` / `bwr1` / `bwr2` / `bwr3` / `bwr4` / `bwr5` / `bwr-1px` / `bwt0` / `bwt1` / `bwt2` / `bwt3` / `bwt4` / `bwt5` / `bwt-1px`
-
-#### Colors <!-- notoc -->
-
-`b--color-black` / `b--color-blue` / `b--color-current` / `b--color-dark-blue` / `b--color-dark-gray` / `b--color-dark-green` / `b--color-dark-pink` / `b--color-dark-red` / `b--color-gold` / `b--color-gray` / `b--color-green` / `b--color-hot-pink` / `b--color-light-blue` / `b--color-light-gray` / `b--color-light-green` / `b--color-light-pink` / `b--color-light-purple` / `b--color-light-red` / `b--color-light-silver` / `b--color-light-yellow` / `b--color-lightest-blue` / `b--color-mid-gray` / `b--color-moon-gray` / `b--color-navy` / `b--color-near-black` / `b--color-near-white` / `b--color-orange` / `b--color-pink` / `b--color-purple` / `b--color-red` / `b--color-silver` / `b--color-transparent` / `b--color-washed-blue` / `b--color-washed-green` / `b--color-washed-red` / `b--color-washed-yellow` / `b--color-white` / `b--color-yellow` / `b--color1` / `b--color2` / `b--color3` / `b--color4` / `b--color5` / `b--color6` / `b--color7` / `b--color8` / `b--color9` / `b--color10` / `b--color11` / `b--color12` / `b--color13` / `b--color14` / `b--color15` / `b--color16` / `bg-color-black` / `bg-color-blue` / `bg-color-current` / `bg-color-dark-blue` / `bg-color-dark-gray` / `bg-color-dark-green` / `bg-color-dark-pink` / `bg-color-dark-red` / `bg-color-gold` / `bg-color-gray` / `bg-color-green` / `bg-color-hot-pink` / `bg-color-light-blue` / `bg-color-light-gray` / `bg-color-light-green` / `bg-color-light-pink` / `bg-color-light-purple` / `bg-color-light-red` / `bg-color-light-silver` / `bg-color-light-yellow` / `bg-color-lightest-blue` / `bg-color-mid-gray` / `bg-color-moon-gray` / `bg-color-navy` / `bg-color-near-black` / `bg-color-near-white` / `bg-color-orange` / `bg-color-pink` / `bg-color-purple` / `bg-color-red` / `bg-color-silver` / `bg-color-transparent` / `bg-color-washed-blue` / `bg-color-washed-green` / `bg-color-washed-red` / `bg-color-washed-yellow` / `bg-color-white` / `bg-color-yellow` / `bg-color1` / `bg-color2` / `bg-color3` / `bg-color4` / `bg-color5` / `bg-color6` / `bg-color7` / `bg-color8` / `bg-color9` / `bg-color10` / `bg-color11` / `bg-color12` / `bg-color13` / `bg-color14` / `bg-color15` / `bg-color16` / `color-black` / `color-blue` / `color-current` / `color-dark-blue` / `color-dark-gray` / `color-dark-green` / `color-dark-pink` / `color-dark-red` / `color-gold` / `color-gray` / `color-green` / `color-hot-pink` / `color-light-blue` / `color-light-gray` / `color-light-green` / `color-light-pink` / `color-light-purple` / `color-light-red` / `color-light-silver` / `color-light-yellow` / `color-lightest-blue` / `color-mid-gray` / `color-moon-gray` / `color-navy` / `color-near-black` / `color-near-white` / `color-orange` / `color-pink` / `color-purple` / `color-red` / `color-silver` / `color-transparent` / `color-washed-blue` / `color-washed-green` / `color-washed-red` / `color-washed-yellow` / `color-white` / `color-yellow` / `color1` / `color2` / `color3` / `color4` / `color5` / `color6` / `color7` / `color8` / `color9` / `color10` / `color11` / `color12` / `color13` / `color14` / `color15` / `color16` / `fill-color-black` / `fill-color-blue` / `fill-color-current` / `fill-color-dark-blue` / `fill-color-dark-gray` / `fill-color-dark-green` / `fill-color-dark-pink` / `fill-color-dark-red` / `fill-color-gold` / `fill-color-gray` / `fill-color-green` / `fill-color-hot-pink` / `fill-color-light-blue` / `fill-color-light-gray` / `fill-color-light-green` / `fill-color-light-pink` / `fill-color-light-purple` / `fill-color-light-red` / `fill-color-light-silver` / `fill-color-light-yellow` / `fill-color-lightest-blue` / `fill-color-mid-gray` / `fill-color-moon-gray` / `fill-color-navy` / `fill-color-near-black` / `fill-color-near-white` / `fill-color-orange` / `fill-color-pink` / `fill-color-purple` / `fill-color-red` / `fill-color-silver` / `fill-color-transparent` / `fill-color-washed-blue` / `fill-color-washed-green` / `fill-color-washed-red` / `fill-color-washed-yellow` / `fill-color-white` / `fill-color-yellow` / `fill-color1` / `fill-color2` / `fill-color3` / `fill-color4` / `fill-color5` / `fill-color6` / `fill-color7` / `fill-color8` / `fill-color9` / `fill-color10` / `fill-color11` / `fill-color12` / `fill-color13` / `fill-color14` / `fill-color15` / `fill-color16` / `o-0` / `o-10` / `o-20` / `o-30` / `o-40` / `o-50` / `o-60` / `o-70` / `o-80` / `o-90` / `o-100` / `stroke-color-black` / `stroke-color-blue` / `stroke-color-current` / `stroke-color-dark-blue` / `stroke-color-dark-gray` / `stroke-color-dark-green` / `stroke-color-dark-pink` / `stroke-color-dark-red` / `stroke-color-gold` / `stroke-color-gray` / `stroke-color-green` / `stroke-color-hot-pink` / `stroke-color-light-blue` / `stroke-color-light-gray` / `stroke-color-light-green` / `stroke-color-light-pink` / `stroke-color-light-purple` / `stroke-color-light-red` / `stroke-color-light-silver` / `stroke-color-light-yellow` / `stroke-color-lightest-blue` / `stroke-color-mid-gray` / `stroke-color-moon-gray` / `stroke-color-navy` / `stroke-color-near-black` / `stroke-color-near-white` / `stroke-color-orange` / `stroke-color-pink` / `stroke-color-purple` / `stroke-color-red` / `stroke-color-silver` / `stroke-color-transparent` / `stroke-color-washed-blue` / `stroke-color-washed-green` / `stroke-color-washed-red` / `stroke-color-washed-yellow` / `stroke-color-white` / `stroke-color-yellow` / `stroke-color1` / `stroke-color2` / `stroke-color3` / `stroke-color4` / `stroke-color5` / `stroke-color6` / `stroke-color7` / `stroke-color8` / `stroke-color9` / `stroke-color10` / `stroke-color11` / `stroke-color12` / `stroke-color13` / `stroke-color14` / `stroke-color15` / `stroke-color16`
-
-#### Content <!-- notoc -->
-
-`content-data-lang` / `content-href` / `content-id` / `content-name` / `content-slot` / `content-title`
-
-#### Cursors <!-- notoc -->
-
-`cursor-alias` / `cursor-auto` / `cursor-cell` / `cursor-col` / `cursor-context` / `cursor-copy` / `cursor-cross` / `cursor-default` / `cursor-e` / `cursor-ew` / `cursor-forbidden` / `cursor-grab` / `cursor-grabbing` / `cursor-help` / `cursor-in` / `cursor-move` / `cursor-n` / `cursor-ne` / `cursor-news` / `cursor-no-drop` / `cursor-none` / `cursor-ns` / `cursor-nw` / `cursor-nwse` / `cursor-out` / `cursor-pointer` / `cursor-progress` / `cursor-row` / `cursor-s` / `cursor-scroll` / `cursor-se` / `cursor-sw` / `cursor-text` / `cursor-vtext` / `cursor-w` / `cursor-wait`
-
-#### Display mode <!-- notoc -->
-
-`db` / `di` / `dib` / `dif` / `dig` / `dn` / `dt` / `dtc` / `dtr` / `flex` / `grid`
-
-#### Flex layout <!-- notoc -->
-
-`align-content-center` / `align-content-end` / `align-content-start` / `flex-column` / `flex-column-reverse` / `flex-grow0` / `flex-grow1` / `flex-nowrap` / `flex-row` / `flex-row-reverse` / `flex-shrink0` / `flex-shrink1` / `flex-wrap` / `flex-wrap-reverse` / `justify-content-center` / `justify-content-end` / `justify-content-start`
-
-#### Font families <!-- notoc -->
-
-`monospace` / `sans-serif` / `serif` / `system` / `system-sans-serif` / `system-serif`
-
-#### Font sizes <!-- notoc -->
-
-`f-subtitle` / `f-title` / `f1` / `f2` / `f3` / `f4` / `f5` / `f6` / `f7`
-
-#### Font style <!-- notoc -->
-
-`italic`
-
-#### Font variants <!-- notoc -->
-
-`small-caps`
-
-#### Font weights <!-- notoc -->
-
-`b` / `fw100` / `fw200` / `fw300` / `fw400` / `fw500` / `fw600` / `fw700` / `fw800` / `fw900` / `normal`
-
-#### Grid layout <!-- notoc -->
-
-`align-items-center` / `align-items-end` / `align-items-start` / `align-items-stretch` / `align-self-center` / `align-self-end` / `align-self-start` / `align-self-stretch` / `gap0` / `gap1` / `gap2` / `gap3` / `gap4` / `gap5` / `gap-1px` / `gap-2px` / `gap-4px` / `gap-8px` / `grid-cols-1` / `grid-cols-2` / `grid-cols-3` / `grid-cols-4` / `grid-cols-5` / `grid-cols-6` / `grid-cols-7` / `grid-cols-8` / `grid-cols-9` / `grid-cols-10` / `grid-rows-1` / `grid-rows-2` / `grid-rows-3` / `grid-rows-4` / `grid-rows-5` / `grid-rows-6` / `grid-rows-7` / `grid-rows-8` / `grid-rows-9` / `grid-rows-10` / `justify-items-center` / `justify-items-end` / `justify-items-start` / `justify-items-stretch` / `justify-self-center` / `justify-self-end` / `justify-self-start` / `justify-self-stretch`
-
-#### Height <!-- notoc -->
-
-`h1` / `h2` / `h3` / `h4` / `h5` / `h-10` / `h-16` / `h-17` / `h-20` / `h-25` / `h-30` / `h-33` / `h-34` / `h-40` / `h-50` / `h-60` / `h-66` / `h-67` / `h-70` / `h-75` / `h-80` / `h-83` / `h-84` / `h-90` / `h-100` / `vh-25` / `vh-50` / `vh-75` / `vh-100`
-
-#### Icons <!-- notoc -->
-
-`icon-1` / `icon-2` / `icon-3` / `icon-4` / `icon-5` / `icon-6` / `icon-7` / `icon-subtitle` / `icon-title`
-
-#### Letter spacing <!-- notoc -->
-
-`ls-0` / `ls-1` / `ls-2` / `ls-3` / `ls--1` / `ls--2`
-
-#### Line heights <!-- notoc -->
-
-`lh-0` / `lh-copy` / `lh-double` / `lh-solid` / `lh-title`
-
-#### Lists <!-- notoc -->
-
-`list`
-
-#### Margin <!-- notoc -->
-
-`center` / `ma0` / `ma1` / `ma2` / `ma3` / `ma4` / `ma5` / `mb0` / `mb1` / `mb2` / `mb3` / `mb4` / `mb5` / `mbe-0` / `mbe-1` / `mbe-2` / `mbe-3` / `mbe-4` / `mbe-5` / `mbs-0` / `mbs-1` / `mbs-2` / `mbs-3` / `mbs-4` / `mbs-5` / `mh0` / `mh1` / `mh2` / `mh3` / `mh4` / `mh5` / `ml0` / `ml1` / `ml2` / `ml3` / `ml4` / `ml5` / `mr0` / `mr1` / `mr2` / `mr3` / `mr4` / `mr5` / `mt0` / `mt1` / `mt2` / `mt3` / `mt4` / `mt5` / `mv0` / `mv1` / `mv2` / `mv3` / `mv4` / `mv5`
-
-#### Max. height <!-- notoc -->
-
-`maxh1` / `maxh2` / `maxh3` / `maxh4` / `maxh5` / `maxh-10` / `maxh-16` / `maxh-17` / `maxh-20` / `maxh-25` / `maxh-30` / `maxh-33` / `maxh-34` / `maxh-40` / `maxh-50` / `maxh-60` / `maxh-66` / `maxh-67` / `maxh-70` / `maxh-75` / `maxh-80` / `maxh-83` / `maxh-84` / `maxh-90` / `maxh-100`
-
-#### Max. width <!-- notoc -->
-
-`maxw1` / `maxw2` / `maxw3` / `maxw4` / `maxw5` / `maxw-10` / `maxw-16` / `maxw-17` / `maxw-20` / `maxw-25` / `maxw-30` / `maxw-33` / `maxw-34` / `maxw-40` / `maxw-50` / `maxw-60` / `maxw-66` / `maxw-67` / `maxw-70` / `maxw-75` / `maxw-80` / `maxw-83` / `maxw-84` / `maxw-90` / `maxw-100`
-
-#### Min. height <!-- notoc -->
-
-`minh1` / `minh2` / `minh3` / `minh4` / `minh5` / `minh-10` / `minh-16` / `minh-17` / `minh-20` / `minh-25` / `minh-30` / `minh-33` / `minh-34` / `minh-40` / `minh-50` / `minh-60` / `minh-66` / `minh-67` / `minh-70` / `minh-75` / `minh-80` / `minh-83` / `minh-84` / `minh-90` / `minh-100`
-
-#### Min. width <!-- notoc -->
-
-`minw1` / `minw2` / `minw3` / `minw4` / `minw5` / `minw-10` / `minw-16` / `minw-17` / `minw-20` / `minw-25` / `minw-30` / `minw-33` / `minw-34` / `minw-40` / `minw-50` / `minw-60` / `minw-66` / `minw-67` / `minw-70` / `minw-75` / `minw-80` / `minw-83` / `minw-84` / `minw-90` / `minw-100`
-
-#### Overflow <!-- notoc -->
-
-`overflow-auto` / `overflow-hidden` / `overflow-scroll` / `overflow-visible` / `overflow-x-auto` / `overflow-x-hidden` / `overflow-x-scroll` / `overflow-x-visible` / `overflow-y-auto` / `overflow-y-hidden` / `overflow-y-scroll` / `overflow-y-visible`
-
-#### Padding <!-- notoc -->
-
-`pa0` / `pa1` / `pa2` / `pa3` / `pa4` / `pa5` / `pb0` / `pb1` / `pb2` / `pb3` / `pb4` / `pb5` / `pbe-0` / `pbe-1` / `pbe-2` / `pbe-3` / `pbe-4` / `pbe-5` / `pbs-0` / `pbs-1` / `pbs-2` / `pbs-3` / `pbs-4` / `pbs-5` / `ph0` / `ph1` / `ph2` / `ph3` / `ph4` / `ph5` / `pl0` / `pl1` / `pl2` / `pl3` / `pl4` / `pl5` / `pr0` / `pr1` / `pr2` / `pr3` / `pr4` / `pr5` / `pt0` / `pt1` / `pt2` / `pt3` / `pt4` / `pt5` / `pv0` / `pv1` / `pv2` / `pv3` / `pv4` / `pv5`
-
-#### Positions <!-- notoc -->
-
-`absolute` / `bottom-0` / `bottom-1` / `bottom-2` / `bottom--1` / `bottom--2` / `fixed` / `left-0` / `left-1` / `left-2` / `left--1` / `left--2` / `relative` / `right-0` / `right-1` / `right-2` / `right--1` / `right--2` / `static` / `sticky` / `top-0` / `top-1` / `top-2` / `top--1` / `top--2`
-
-#### Print <!-- notoc -->
-
-`break-after-avoid` / `break-after-avoid-column` / `break-after-avoid-page` / `break-after-column` / `break-after-left` / `break-after-page` / `break-after-recto` / `break-after-right` / `break-after-verso` / `break-before-avoid` / `break-before-avoid-column` / `break-before-avoid-page` / `break-before-column` / `break-before-left` / `break-before-page` / `break-before-recto` / `break-before-right` / `break-before-verso`
-
-#### Scrolling <!-- notoc -->
-
-`ss-always` / `ss-both` / `ss-center` / `ss-end` / `ss-normal` / `ss-start` / `ss-x` / `ss-y`
-
-#### Selection <!-- notoc -->
-
-`noselect`
-
-#### Shadow <!-- notoc -->
-
-`box-shadow-1` / `box-shadow-2` / `box-shadow-3` / `box-shadow-4` / `box-shadow-i-1` / `box-shadow-i-2` / `box-shadow-i-3` / `box-shadow-i-4` / `text-shadow-1` / `text-shadow-2` / `text-shadow-3` / `text-shadow-4` / `text-shadow-5` / `text-shadow-6` / `text-shadow-7` / `text-shadow-8` / `text-shadow-9`
-
-#### Text align <!-- notoc -->
-
-`tc` / `tj` / `tl` / `tr`
-
-#### Text decorations <!-- notoc -->
-
-`no-underline` / `strike` / `underline`
-
-#### Text transforms <!-- notoc -->
-
-`ttc` / `ttfsk` / `ttfw` / `tti` / `ttl` / `ttn` / `ttu`
-
-#### Vertical align <!-- notoc -->
-
-`v-base` / `v-btm` / `v-mid` / `v-top`
-
-#### Visibility <!-- notoc -->
-
-`collapse` / `hidden` / `visible`
-
-#### Whitespace <!-- notoc -->
-
-`ws-0` / `ws-1` / `ws-2`
-
-#### Width <!-- notoc -->
-
-`vw-25` / `vw-50` / `vw-75` / `vw-100` / `w1` / `w2` / `w3` / `w4` / `w5` / `w-10` / `w-16` / `w-17` / `w-20` / `w-25` / `w-30` / `w-33` / `w-34` / `w-40` / `w-50` / `w-60` / `w-66` / `w-67` / `w-70` / `w-75` / `w-80` / `w-83` / `w-84` / `w-90` / `w-100`
-
-#### Z-indices <!-- notoc -->
-
-`z-0` / `z-1` / `z-2` / `z-3` / `z-4` / `z-5` / `z-999` / `z-9999`
+#### Accessibility
+
+- `screen-reader`
+- `screen-reader-focus`
+
+#### Animation / transition
+
+- `anim-alternate` (direction)
+- `anim-alternate-reverse` (direction)
+- `anim-ease` (timing function)
+- `anim-ease-in` (timing function)
+- `anim-ease-in-out` (timing function)
+- `anim-ease-out` (timing function)
+- `anim-linear` (timing function)
+- `anim-normal` (direction)
+- `anim-pause`
+- `anim-play`
+- `anim-reverse` (direction)
+
+#### Aspect ratios
+
+- `bg-aspect-ratio-object`
+
+#### Background
+
+- `bg-contain`
+- `bg-cover`
+- `bg-pos-center` (center)
+- `bg-pos-e` (right)
+- `bg-pos-n` (top)
+- `bg-pos-ne` (top right)
+- `bg-pos-nw` (top left)
+- `bg-pos-s` (bottom)
+- `bg-pos-se` (bottom right)
+- `bg-pos-sw` (bottom left)
+- `bg-pos-w` (left)
+
+#### Border color
+
+- `border-color-black` ($\colorbox{#000}{\#000}$)
+- `border-color-blue` ($\colorbox{#357edd}{\#357edd}$)
+- `border-color-current` (currentColor)
+- `border-color-dark-blue` ($\colorbox{#00449e}{\#00449e}$)
+- `border-color-dark-gray` ($\colorbox{#333}{\#333}$)
+- `border-color-dark-green` ($\colorbox{#137752}{\#137752}$)
+- `border-color-dark-pink` ($\colorbox{#d5008f}{\#d5008f}$)
+- `border-color-dark-red` ($\colorbox{#e7040f}{\#e7040f}$)
+- `border-color-gold` ($\colorbox{#ffb700}{\#ffb700}$)
+- `border-color-gray` ($\colorbox{#777}{\#777}$)
+- `border-color-green` ($\colorbox{#19a974}{\#19a974}$)
+- `border-color-hot-pink` ($\colorbox{#ff41b4}{\#ff41b4}$)
+- `border-color-light-blue` ($\colorbox{#96ccff}{\#96ccff}$)
+- `border-color-light-gray` ($\colorbox{#eee}{\#eee}$)
+- `border-color-light-green` ($\colorbox{#9eebcf}{\#9eebcf}$)
+- `border-color-light-pink` ($\colorbox{#ffa3d7}{\#ffa3d7}$)
+- `border-color-light-purple` ($\colorbox{#a463f2}{\#a463f2}$)
+- `border-color-light-red` ($\colorbox{#ff725c}{\#ff725c}$)
+- `border-color-light-silver` ($\colorbox{#aaa}{\#aaa}$)
+- `border-color-light-yellow` ($\colorbox{#fbf1a9}{\#fbf1a9}$)
+- `border-color-lightest-blue` ($\colorbox{#cdecff}{\#cdecff}$)
+- `border-color-mid-gray` ($\colorbox{#555}{\#555}$)
+- `border-color-moon-gray` ($\colorbox{#ccc}{\#ccc}$)
+- `border-color-navy` ($\colorbox{#001b44}{\#001b44}$)
+- `border-color-near-black` ($\colorbox{#111}{\#111}$)
+- `border-color-near-white` ($\colorbox{#f4f4f4}{\#f4f4f4}$)
+- `border-color-orange` ($\colorbox{#ff6300}{\#ff6300}$)
+- `border-color-pink` ($\colorbox{#ff80cc}{\#ff80cc}$)
+- `border-color-purple` ($\colorbox{#5e2ca5}{\#5e2ca5}$)
+- `border-color-red` ($\colorbox{#ff4136}{\#ff4136}$)
+- `border-color-silver` ($\colorbox{#999}{\#999}$)
+- `border-color-transparent` (transparent)
+- `border-color-washed-blue` ($\colorbox{#f6fffe}{\#f6fffe}$)
+- `border-color-washed-green` ($\colorbox{#e8fdf5}{\#e8fdf5}$)
+- `border-color-washed-red` ($\colorbox{#ffdfdf}{\#ffdfdf}$)
+- `border-color-washed-yellow` ($\colorbox{#fffceb}{\#fffceb}$)
+- `border-color-white` ($\colorbox{#fff}{\#fff}$)
+- `border-color-yellow` ($\colorbox{#ffd700}{\#ffd700}$)
+
+#### Border radius
+
+- `br0` (0rem)
+- `br1` (.125rem)
+- `br2` (.25rem)
+- `br3` (.5rem)
+- `br4` (1rem)
+- `br-100` (100%)
+- `br-pill` (9999px)
+- `brb0` (0rem)
+- `brb1` (.125rem)
+- `brb2` (.25rem)
+- `brb3` (.5rem)
+- `brb4` (1rem)
+- `brl0` (0rem)
+- `brl1` (.125rem)
+- `brl2` (.25rem)
+- `brl3` (.5rem)
+- `brl4` (1rem)
+- `brr0` (0rem)
+- `brr1` (.125rem)
+- `brr2` (.25rem)
+- `brr3` (.5rem)
+- `brr4` (1rem)
+- `brt0` (0rem)
+- `brt1` (.125rem)
+- `brt2` (.25rem)
+- `brt3` (.5rem)
+- `brt4` (1rem)
+
+#### Border width
+
+- `bw0` (0rem)
+- `bw1` (.125rem)
+- `bw2` (.25rem)
+- `bw3` (.5rem)
+- `bw4` (1rem)
+- `bw5` (2rem)
+- `bw-1px` (1px)
+- `bwb0` (0rem)
+- `bwb1` (.125rem)
+- `bwb2` (.25rem)
+- `bwb3` (.5rem)
+- `bwb4` (1rem)
+- `bwb5` (2rem)
+- `bwb-1px` (1px)
+- `bwl0` (0rem)
+- `bwl1` (.125rem)
+- `bwl2` (.25rem)
+- `bwl3` (.5rem)
+- `bwl4` (1rem)
+- `bwl5` (2rem)
+- `bwl-1px` (1px)
+- `bwr0` (0rem)
+- `bwr1` (.125rem)
+- `bwr2` (.25rem)
+- `bwr3` (.5rem)
+- `bwr4` (1rem)
+- `bwr5` (2rem)
+- `bwr-1px` (1px)
+- `bwt0` (0rem)
+- `bwt1` (.125rem)
+- `bwt2` (.25rem)
+- `bwt3` (.5rem)
+- `bwt4` (1rem)
+- `bwt5` (2rem)
+- `bwt-1px` (1px)
+
+#### Colors
+
+- `bg-color-black` ($\colorbox{#000}{\#000}$)
+- `bg-color-blue` ($\colorbox{#357edd}{\#357edd}$)
+- `bg-color-current` (currentColor)
+- `bg-color-dark-blue` ($\colorbox{#00449e}{\#00449e}$)
+- `bg-color-dark-gray` ($\colorbox{#333}{\#333}$)
+- `bg-color-dark-green` ($\colorbox{#137752}{\#137752}$)
+- `bg-color-dark-pink` ($\colorbox{#d5008f}{\#d5008f}$)
+- `bg-color-dark-red` ($\colorbox{#e7040f}{\#e7040f}$)
+- `bg-color-gold` ($\colorbox{#ffb700}{\#ffb700}$)
+- `bg-color-gray` ($\colorbox{#777}{\#777}$)
+- `bg-color-green` ($\colorbox{#19a974}{\#19a974}$)
+- `bg-color-hot-pink` ($\colorbox{#ff41b4}{\#ff41b4}$)
+- `bg-color-light-blue` ($\colorbox{#96ccff}{\#96ccff}$)
+- `bg-color-light-gray` ($\colorbox{#eee}{\#eee}$)
+- `bg-color-light-green` ($\colorbox{#9eebcf}{\#9eebcf}$)
+- `bg-color-light-pink` ($\colorbox{#ffa3d7}{\#ffa3d7}$)
+- `bg-color-light-purple` ($\colorbox{#a463f2}{\#a463f2}$)
+- `bg-color-light-red` ($\colorbox{#ff725c}{\#ff725c}$)
+- `bg-color-light-silver` ($\colorbox{#aaa}{\#aaa}$)
+- `bg-color-light-yellow` ($\colorbox{#fbf1a9}{\#fbf1a9}$)
+- `bg-color-lightest-blue` ($\colorbox{#cdecff}{\#cdecff}$)
+- `bg-color-mid-gray` ($\colorbox{#555}{\#555}$)
+- `bg-color-moon-gray` ($\colorbox{#ccc}{\#ccc}$)
+- `bg-color-navy` ($\colorbox{#001b44}{\#001b44}$)
+- `bg-color-near-black` ($\colorbox{#111}{\#111}$)
+- `bg-color-near-white` ($\colorbox{#f4f4f4}{\#f4f4f4}$)
+- `bg-color-orange` ($\colorbox{#ff6300}{\#ff6300}$)
+- `bg-color-pink` ($\colorbox{#ff80cc}{\#ff80cc}$)
+- `bg-color-purple` ($\colorbox{#5e2ca5}{\#5e2ca5}$)
+- `bg-color-red` ($\colorbox{#ff4136}{\#ff4136}$)
+- `bg-color-silver` ($\colorbox{#999}{\#999}$)
+- `bg-color-transparent` (transparent)
+- `bg-color-washed-blue` ($\colorbox{#f6fffe}{\#f6fffe}$)
+- `bg-color-washed-green` ($\colorbox{#e8fdf5}{\#e8fdf5}$)
+- `bg-color-washed-red` ($\colorbox{#ffdfdf}{\#ffdfdf}$)
+- `bg-color-washed-yellow` ($\colorbox{#fffceb}{\#fffceb}$)
+- `bg-color-white` ($\colorbox{#fff}{\#fff}$)
+- `bg-color-yellow` ($\colorbox{#ffd700}{\#ffd700}$)
+- `color-black` ($\colorbox{#000}{\#000}$)
+- `color-blue` ($\colorbox{#357edd}{\#357edd}$)
+- `color-current` (currentColor)
+- `color-dark-blue` ($\colorbox{#00449e}{\#00449e}$)
+- `color-dark-gray` ($\colorbox{#333}{\#333}$)
+- `color-dark-green` ($\colorbox{#137752}{\#137752}$)
+- `color-dark-pink` ($\colorbox{#d5008f}{\#d5008f}$)
+- `color-dark-red` ($\colorbox{#e7040f}{\#e7040f}$)
+- `color-gold` ($\colorbox{#ffb700}{\#ffb700}$)
+- `color-gray` ($\colorbox{#777}{\#777}$)
+- `color-green` ($\colorbox{#19a974}{\#19a974}$)
+- `color-hot-pink` ($\colorbox{#ff41b4}{\#ff41b4}$)
+- `color-light-blue` ($\colorbox{#96ccff}{\#96ccff}$)
+- `color-light-gray` ($\colorbox{#eee}{\#eee}$)
+- `color-light-green` ($\colorbox{#9eebcf}{\#9eebcf}$)
+- `color-light-pink` ($\colorbox{#ffa3d7}{\#ffa3d7}$)
+- `color-light-purple` ($\colorbox{#a463f2}{\#a463f2}$)
+- `color-light-red` ($\colorbox{#ff725c}{\#ff725c}$)
+- `color-light-silver` ($\colorbox{#aaa}{\#aaa}$)
+- `color-light-yellow` ($\colorbox{#fbf1a9}{\#fbf1a9}$)
+- `color-lightest-blue` ($\colorbox{#cdecff}{\#cdecff}$)
+- `color-mid-gray` ($\colorbox{#555}{\#555}$)
+- `color-moon-gray` ($\colorbox{#ccc}{\#ccc}$)
+- `color-navy` ($\colorbox{#001b44}{\#001b44}$)
+- `color-near-black` ($\colorbox{#111}{\#111}$)
+- `color-near-white` ($\colorbox{#f4f4f4}{\#f4f4f4}$)
+- `color-orange` ($\colorbox{#ff6300}{\#ff6300}$)
+- `color-pink` ($\colorbox{#ff80cc}{\#ff80cc}$)
+- `color-purple` ($\colorbox{#5e2ca5}{\#5e2ca5}$)
+- `color-red` ($\colorbox{#ff4136}{\#ff4136}$)
+- `color-silver` ($\colorbox{#999}{\#999}$)
+- `color-transparent` (transparent)
+- `color-washed-blue` ($\colorbox{#f6fffe}{\#f6fffe}$)
+- `color-washed-green` ($\colorbox{#e8fdf5}{\#e8fdf5}$)
+- `color-washed-red` ($\colorbox{#ffdfdf}{\#ffdfdf}$)
+- `color-washed-yellow` ($\colorbox{#fffceb}{\#fffceb}$)
+- `color-white` ($\colorbox{#fff}{\#fff}$)
+- `color-yellow` ($\colorbox{#ffd700}{\#ffd700}$)
+
+#### Content
+
+- `content-data-lang` (data-lang attrib)
+- `content-href` (href attrib)
+- `content-id` (id attrib)
+- `content-name` (name attrib)
+- `content-slot` (slot attrib)
+- `content-title` (title attrib)
+
+#### Cursors
+
+- `cursor-alias`
+- `cursor-auto`
+- `cursor-cell`
+- `cursor-col`
+- `cursor-context`
+- `cursor-copy`
+- `cursor-cross`
+- `cursor-default`
+- `cursor-e`
+- `cursor-ew`
+- `cursor-forbidden`
+- `cursor-grab`
+- `cursor-grabbing`
+- `cursor-help`
+- `cursor-in`
+- `cursor-move`
+- `cursor-n`
+- `cursor-ne`
+- `cursor-news`
+- `cursor-no-drop`
+- `cursor-none`
+- `cursor-ns`
+- `cursor-nw`
+- `cursor-nwse`
+- `cursor-out`
+- `cursor-pointer`
+- `cursor-progress`
+- `cursor-row`
+- `cursor-s`
+- `cursor-scroll`
+- `cursor-se`
+- `cursor-sw`
+- `cursor-text`
+- `cursor-vtext`
+- `cursor-w`
+- `cursor-wait`
+
+#### Display mode
+
+- `db` (block)
+- `di` (inline)
+- `dib` (inline-block)
+- `dif` (inline-flex)
+- `dig` (inline-grid)
+- `dn` (none)
+- `dt` (table)
+- `dtc` (table-cell)
+- `dtr` (table-row)
+- `flex` (flex)
+- `grid` (grid)
+
+#### Flex layout
+
+- `align-content-center`
+- `align-content-end`
+- `align-content-start`
+- `flex-column`
+- `flex-column-reverse`
+- `flex-grow0`
+- `flex-grow1`
+- `flex-nowrap`
+- `flex-row`
+- `flex-row-reverse`
+- `flex-shrink0`
+- `flex-shrink1`
+- `flex-wrap`
+- `flex-wrap-reverse`
+- `justify-content-center`
+- `justify-content-end`
+- `justify-content-start`
+
+#### Font families
+
+- `monospace`
+- `sans-serif`
+- `serif`
+- `system`
+- `system-sans-serif`
+- `system-serif`
+
+#### Font sizes
+
+- `f-subtitle` (5rem)
+- `f-title` (6rem)
+- `f1` (3rem)
+- `f2` (2.25rem)
+- `f3` (1.5rem)
+- `f4` (1.25rem)
+- `f5` (1rem)
+- `f6` (.875rem)
+- `f7` (.75rem)
+
+#### Font style
+
+- `italic`
+
+#### Font variants
+
+- `small-caps`
+
+#### Font weights
+
+- `b` (700)
+- `fw100`
+- `fw200`
+- `fw300`
+- `fw400`
+- `fw500`
+- `fw600`
+- `fw700`
+- `fw800`
+- `fw900`
+- `normal` (400)
+
+#### Grid layout
+
+- `align-items-center`
+- `align-items-end`
+- `align-items-start`
+- `align-items-stretch`
+- `align-self-center`
+- `align-self-end`
+- `align-self-start`
+- `align-self-stretch`
+- `gap0` (0rem)
+- `gap1` (.125rem)
+- `gap2` (.25rem)
+- `gap3` (.5rem)
+- `gap4` (1rem)
+- `gap5` (2rem)
+- `gap-1px`
+- `gap-2px`
+- `gap-4px`
+- `gap-8px`
+- `grid-cols-1` (1fr)
+- `grid-cols-2` (1fr 1fr)
+- `grid-cols-3` (1fr 1fr 1fr)
+- `grid-cols-4` (repeat(4,1fr))
+- `grid-cols-5` (repeat(5,1fr))
+- `grid-cols-6` (repeat(6,1fr))
+- `grid-cols-7` (repeat(7,1fr))
+- `grid-cols-8` (repeat(8,1fr))
+- `grid-cols-9` (repeat(9,1fr))
+- `grid-cols-10` (repeat(10,1fr))
+- `grid-rows-1` (1fr)
+- `grid-rows-2` (1fr 1fr)
+- `grid-rows-3` (1fr 1fr 1fr)
+- `grid-rows-4` (repeat(4,1fr))
+- `grid-rows-5` (repeat(5,1fr))
+- `grid-rows-6` (repeat(6,1fr))
+- `grid-rows-7` (repeat(7,1fr))
+- `grid-rows-8` (repeat(8,1fr))
+- `grid-rows-9` (repeat(9,1fr))
+- `grid-rows-10` (repeat(10,1fr))
+- `justify-items-center`
+- `justify-items-end`
+- `justify-items-start`
+- `justify-items-stretch`
+- `justify-self-center`
+- `justify-self-end`
+- `justify-self-start`
+- `justify-self-stretch`
+
+#### Height
+
+- `h1` (1rem)
+- `h2` (2rem)
+- `h3` (4rem)
+- `h4` (8rem)
+- `h5` (16rem)
+- `h-10` (%)
+- `h-16` (%)
+- `h-17` (%)
+- `h-20` (%)
+- `h-25` (%)
+- `h-30` (%)
+- `h-33` (%)
+- `h-34` (%)
+- `h-40` (%)
+- `h-50` (%)
+- `h-60` (%)
+- `h-66` (%)
+- `h-67` (%)
+- `h-70` (%)
+- `h-75` (%)
+- `h-80` (%)
+- `h-83` (%)
+- `h-84` (%)
+- `h-90` (%)
+- `h-100` (%)
+- `vh-25`
+- `vh-50`
+- `vh-75`
+- `vh-100`
+
+#### Icons
+
+- `icon-1` (3rem)
+- `icon-2` (2.25rem)
+- `icon-3` (1.5rem)
+- `icon-4` (1.25rem)
+- `icon-5` (1rem)
+- `icon-6` (.875rem)
+- `icon-7` (.75rem)
+- `icon-subtitle` (5rem)
+- `icon-title` (6rem)
+
+#### Letter spacing
+
+- `ls-0` (0em)
+- `ls-1` (.05em)
+- `ls-2` (.1em)
+- `ls-3` (.2em)
+- `ls--1` (-.025em)
+- `ls--2` (-.05em)
+
+#### Line heights
+
+- `lh-0` (0)
+- `lh-copy` (1.5)
+- `lh-double` (2)
+- `lh-solid` (1)
+- `lh-title` (1.25)
+
+#### Lists
+
+- `list`
+
+#### Margin
+
+- `center`
+- `ma0` ( 0rem)
+- `ma1` ( .25rem)
+- `ma2` ( .5rem)
+- `ma3` ( 1rem)
+- `ma4` ( 2rem)
+- `ma5` ( 4rem)
+- `mb0` (bottom 0rem)
+- `mb1` (bottom .25rem)
+- `mb2` (bottom .5rem)
+- `mb3` (bottom 1rem)
+- `mb4` (bottom 2rem)
+- `mb5` (bottom 4rem)
+- `mbe-0` (block end 0rem)
+- `mbe-1` (block end .25rem)
+- `mbe-2` (block end .5rem)
+- `mbe-3` (block end 1rem)
+- `mbe-4` (block end 2rem)
+- `mbe-5` (block end 4rem)
+- `mbs-0` (block start 0rem)
+- `mbs-1` (block start .25rem)
+- `mbs-2` (block start .5rem)
+- `mbs-3` (block start 1rem)
+- `mbs-4` (block start 2rem)
+- `mbs-5` (block start 4rem)
+- `mh0` (left 0rem)
+- `mh1` (left .25rem)
+- `mh2` (left .5rem)
+- `mh3` (left 1rem)
+- `mh4` (left 2rem)
+- `mh5` (left 4rem)
+- `ml0` (left 0rem)
+- `ml1` (left .25rem)
+- `ml2` (left .5rem)
+- `ml3` (left 1rem)
+- `ml4` (left 2rem)
+- `ml5` (left 4rem)
+- `mr0` (right 0rem)
+- `mr1` (right .25rem)
+- `mr2` (right .5rem)
+- `mr3` (right 1rem)
+- `mr4` (right 2rem)
+- `mr5` (right 4rem)
+- `mt0` (top 0rem)
+- `mt1` (top .25rem)
+- `mt2` (top .5rem)
+- `mt3` (top 1rem)
+- `mt4` (top 2rem)
+- `mt5` (top 4rem)
+- `mv0` (top 0rem)
+- `mv1` (top .25rem)
+- `mv2` (top .5rem)
+- `mv3` (top 1rem)
+- `mv4` (top 2rem)
+- `mv5` (top 4rem)
+
+#### Max. height
+
+- `maxh1` (1rem)
+- `maxh2` (2rem)
+- `maxh3` (4rem)
+- `maxh4` (8rem)
+- `maxh5` (16rem)
+- `maxh-10` (%)
+- `maxh-16` (%)
+- `maxh-17` (%)
+- `maxh-20` (%)
+- `maxh-25` (%)
+- `maxh-30` (%)
+- `maxh-33` (%)
+- `maxh-34` (%)
+- `maxh-40` (%)
+- `maxh-50` (%)
+- `maxh-60` (%)
+- `maxh-66` (%)
+- `maxh-67` (%)
+- `maxh-70` (%)
+- `maxh-75` (%)
+- `maxh-80` (%)
+- `maxh-83` (%)
+- `maxh-84` (%)
+- `maxh-90` (%)
+- `maxh-100` (%)
+
+#### Max. width
+
+- `maxw1` (1rem)
+- `maxw2` (2rem)
+- `maxw3` (4rem)
+- `maxw4` (8rem)
+- `maxw5` (16rem)
+- `maxw-10` (%)
+- `maxw-16` (%)
+- `maxw-17` (%)
+- `maxw-20` (%)
+- `maxw-25` (%)
+- `maxw-30` (%)
+- `maxw-33` (%)
+- `maxw-34` (%)
+- `maxw-40` (%)
+- `maxw-50` (%)
+- `maxw-60` (%)
+- `maxw-66` (%)
+- `maxw-67` (%)
+- `maxw-70` (%)
+- `maxw-75` (%)
+- `maxw-80` (%)
+- `maxw-83` (%)
+- `maxw-84` (%)
+- `maxw-90` (%)
+- `maxw-100` (%)
+
+#### Min. height
+
+- `minh1` (1rem)
+- `minh2` (2rem)
+- `minh3` (4rem)
+- `minh4` (8rem)
+- `minh5` (16rem)
+- `minh-10` (%)
+- `minh-16` (%)
+- `minh-17` (%)
+- `minh-20` (%)
+- `minh-25` (%)
+- `minh-30` (%)
+- `minh-33` (%)
+- `minh-34` (%)
+- `minh-40` (%)
+- `minh-50` (%)
+- `minh-60` (%)
+- `minh-66` (%)
+- `minh-67` (%)
+- `minh-70` (%)
+- `minh-75` (%)
+- `minh-80` (%)
+- `minh-83` (%)
+- `minh-84` (%)
+- `minh-90` (%)
+- `minh-100` (%)
+
+#### Min. width
+
+- `minw1` (1rem)
+- `minw2` (2rem)
+- `minw3` (4rem)
+- `minw4` (8rem)
+- `minw5` (16rem)
+- `minw-10` (%)
+- `minw-16` (%)
+- `minw-17` (%)
+- `minw-20` (%)
+- `minw-25` (%)
+- `minw-30` (%)
+- `minw-33` (%)
+- `minw-34` (%)
+- `minw-40` (%)
+- `minw-50` (%)
+- `minw-60` (%)
+- `minw-66` (%)
+- `minw-67` (%)
+- `minw-70` (%)
+- `minw-75` (%)
+- `minw-80` (%)
+- `minw-83` (%)
+- `minw-84` (%)
+- `minw-90` (%)
+- `minw-100` (%)
+
+#### Opacity
+
+- `o-0` (0)
+- `o-10` (0.1)
+- `o-20` (0.2)
+- `o-30` (0.3)
+- `o-40` (0.4)
+- `o-50` (0.5)
+- `o-60` (0.6)
+- `o-70` (0.7)
+- `o-80` (0.8)
+- `o-90` (0.9)
+- `o-100` (1)
+
+#### Overflow
+
+- `overflow-auto`
+- `overflow-hidden`
+- `overflow-scroll`
+- `overflow-visible`
+- `overflow-x-auto`
+- `overflow-x-hidden`
+- `overflow-x-scroll`
+- `overflow-x-visible`
+- `overflow-y-auto`
+- `overflow-y-hidden`
+- `overflow-y-scroll`
+- `overflow-y-visible`
+
+#### Padding
+
+- `pa0` ( 0rem)
+- `pa1` ( .25rem)
+- `pa2` ( .5rem)
+- `pa3` ( 1rem)
+- `pa4` ( 2rem)
+- `pa5` ( 4rem)
+- `pb0` (bottom 0rem)
+- `pb1` (bottom .25rem)
+- `pb2` (bottom .5rem)
+- `pb3` (bottom 1rem)
+- `pb4` (bottom 2rem)
+- `pb5` (bottom 4rem)
+- `pbe-0` (block end 0rem)
+- `pbe-1` (block end .25rem)
+- `pbe-2` (block end .5rem)
+- `pbe-3` (block end 1rem)
+- `pbe-4` (block end 2rem)
+- `pbe-5` (block end 4rem)
+- `pbs-0` (block start 0rem)
+- `pbs-1` (block start .25rem)
+- `pbs-2` (block start .5rem)
+- `pbs-3` (block start 1rem)
+- `pbs-4` (block start 2rem)
+- `pbs-5` (block start 4rem)
+- `ph0` (left 0rem)
+- `ph1` (left .25rem)
+- `ph2` (left .5rem)
+- `ph3` (left 1rem)
+- `ph4` (left 2rem)
+- `ph5` (left 4rem)
+- `pl0` (left 0rem)
+- `pl1` (left .25rem)
+- `pl2` (left .5rem)
+- `pl3` (left 1rem)
+- `pl4` (left 2rem)
+- `pl5` (left 4rem)
+- `pr0` (right 0rem)
+- `pr1` (right .25rem)
+- `pr2` (right .5rem)
+- `pr3` (right 1rem)
+- `pr4` (right 2rem)
+- `pr5` (right 4rem)
+- `pt0` (top 0rem)
+- `pt1` (top .25rem)
+- `pt2` (top .5rem)
+- `pt3` (top 1rem)
+- `pt4` (top 2rem)
+- `pt5` (top 4rem)
+- `pv0` (top 0rem)
+- `pv1` (top .25rem)
+- `pv2` (top .5rem)
+- `pv3` (top 1rem)
+- `pv4` (top 2rem)
+- `pv5` (top 4rem)
+
+#### Positions
+
+- `absolute`
+- `bottom-0` (0rem)
+- `bottom-1` (1rem)
+- `bottom-2` (2rem)
+- `bottom--1` (-1rem)
+- `bottom--2` (-2rem)
+- `fixed`
+- `left-0` (0rem)
+- `left-1` (1rem)
+- `left-2` (2rem)
+- `left--1` (-1rem)
+- `left--2` (-2rem)
+- `relative`
+- `right-0` (0rem)
+- `right-1` (1rem)
+- `right-2` (2rem)
+- `right--1` (-1rem)
+- `right--2` (-2rem)
+- `static`
+- `sticky`
+- `top-0` (0rem)
+- `top-1` (1rem)
+- `top-2` (2rem)
+- `top--1` (-1rem)
+- `top--2` (-2rem)
+
+#### Print
+
+- `break-after-avoid`
+- `break-after-avoid-column`
+- `break-after-avoid-page`
+- `break-after-column`
+- `break-after-left`
+- `break-after-page`
+- `break-after-recto`
+- `break-after-right`
+- `break-after-verso`
+- `break-before-avoid`
+- `break-before-avoid-column`
+- `break-before-avoid-page`
+- `break-before-column`
+- `break-before-left`
+- `break-before-page`
+- `break-before-recto`
+- `break-before-right`
+- `break-before-verso`
+
+#### Scrolling
+
+- `ss-always` (snap stop)
+- `ss-both` (snap type)
+- `ss-center` (snap align)
+- `ss-end` (snap align)
+- `ss-normal` (snap stop)
+- `ss-start` (snap align)
+- `ss-x` (snap type)
+- `ss-y` (snap type)
+
+#### Selection
+
+- `noselect`
+
+#### Shadow
+
+- `box-shadow-1` (0 0 2px 0px #0003)
+- `box-shadow-2` (0 0 4px #0003)
+- `box-shadow-3` (0 0 4px 1px #0003)
+- `box-shadow-4` (0 0 8px 2px #0003)
+- `box-shadow-i-1` (0 0 2px 0px #0003)
+- `box-shadow-i-2` (0 0 4px #0003)
+- `box-shadow-i-3` (0 0 4px 1px #0003)
+- `box-shadow-i-4` (0 0 8px 2px #0003)
+- `text-shadow-1` (1px 1px 2px #0003)
+- `text-shadow-2` (1px 1px 4px #0003)
+- `text-shadow-3` (1px 1px 8px #0003)
+- `text-shadow-4` (2px 2px 2px #0003)
+- `text-shadow-5` (2px 2px 4px #0003)
+- `text-shadow-6` (2px 2px 8px #0003)
+- `text-shadow-7` (3px 3px 2px #0003)
+- `text-shadow-8` (3px 3px 4px #0003)
+- `text-shadow-9` (3px 3px 8px #0003)
+
+#### Svg
+
+- `fill-color-black` ($\colorbox{#000}{\#000}$)
+- `fill-color-blue` ($\colorbox{#357edd}{\#357edd}$)
+- `fill-color-current` (currentColor)
+- `fill-color-dark-blue` ($\colorbox{#00449e}{\#00449e}$)
+- `fill-color-dark-gray` ($\colorbox{#333}{\#333}$)
+- `fill-color-dark-green` ($\colorbox{#137752}{\#137752}$)
+- `fill-color-dark-pink` ($\colorbox{#d5008f}{\#d5008f}$)
+- `fill-color-dark-red` ($\colorbox{#e7040f}{\#e7040f}$)
+- `fill-color-gold` ($\colorbox{#ffb700}{\#ffb700}$)
+- `fill-color-gray` ($\colorbox{#777}{\#777}$)
+- `fill-color-green` ($\colorbox{#19a974}{\#19a974}$)
+- `fill-color-hot-pink` ($\colorbox{#ff41b4}{\#ff41b4}$)
+- `fill-color-light-blue` ($\colorbox{#96ccff}{\#96ccff}$)
+- `fill-color-light-gray` ($\colorbox{#eee}{\#eee}$)
+- `fill-color-light-green` ($\colorbox{#9eebcf}{\#9eebcf}$)
+- `fill-color-light-pink` ($\colorbox{#ffa3d7}{\#ffa3d7}$)
+- `fill-color-light-purple` ($\colorbox{#a463f2}{\#a463f2}$)
+- `fill-color-light-red` ($\colorbox{#ff725c}{\#ff725c}$)
+- `fill-color-light-silver` ($\colorbox{#aaa}{\#aaa}$)
+- `fill-color-light-yellow` ($\colorbox{#fbf1a9}{\#fbf1a9}$)
+- `fill-color-lightest-blue` ($\colorbox{#cdecff}{\#cdecff}$)
+- `fill-color-mid-gray` ($\colorbox{#555}{\#555}$)
+- `fill-color-moon-gray` ($\colorbox{#ccc}{\#ccc}$)
+- `fill-color-navy` ($\colorbox{#001b44}{\#001b44}$)
+- `fill-color-near-black` ($\colorbox{#111}{\#111}$)
+- `fill-color-near-white` ($\colorbox{#f4f4f4}{\#f4f4f4}$)
+- `fill-color-orange` ($\colorbox{#ff6300}{\#ff6300}$)
+- `fill-color-pink` ($\colorbox{#ff80cc}{\#ff80cc}$)
+- `fill-color-purple` ($\colorbox{#5e2ca5}{\#5e2ca5}$)
+- `fill-color-red` ($\colorbox{#ff4136}{\#ff4136}$)
+- `fill-color-silver` ($\colorbox{#999}{\#999}$)
+- `fill-color-transparent` (transparent)
+- `fill-color-washed-blue` ($\colorbox{#f6fffe}{\#f6fffe}$)
+- `fill-color-washed-green` ($\colorbox{#e8fdf5}{\#e8fdf5}$)
+- `fill-color-washed-red` ($\colorbox{#ffdfdf}{\#ffdfdf}$)
+- `fill-color-washed-yellow` ($\colorbox{#fffceb}{\#fffceb}$)
+- `fill-color-white` ($\colorbox{#fff}{\#fff}$)
+- `fill-color-yellow` ($\colorbox{#ffd700}{\#ffd700}$)
+- `stroke-color-black` ($\colorbox{#000}{\#000}$)
+- `stroke-color-blue` ($\colorbox{#357edd}{\#357edd}$)
+- `stroke-color-current` (currentColor)
+- `stroke-color-dark-blue` ($\colorbox{#00449e}{\#00449e}$)
+- `stroke-color-dark-gray` ($\colorbox{#333}{\#333}$)
+- `stroke-color-dark-green` ($\colorbox{#137752}{\#137752}$)
+- `stroke-color-dark-pink` ($\colorbox{#d5008f}{\#d5008f}$)
+- `stroke-color-dark-red` ($\colorbox{#e7040f}{\#e7040f}$)
+- `stroke-color-gold` ($\colorbox{#ffb700}{\#ffb700}$)
+- `stroke-color-gray` ($\colorbox{#777}{\#777}$)
+- `stroke-color-green` ($\colorbox{#19a974}{\#19a974}$)
+- `stroke-color-hot-pink` ($\colorbox{#ff41b4}{\#ff41b4}$)
+- `stroke-color-light-blue` ($\colorbox{#96ccff}{\#96ccff}$)
+- `stroke-color-light-gray` ($\colorbox{#eee}{\#eee}$)
+- `stroke-color-light-green` ($\colorbox{#9eebcf}{\#9eebcf}$)
+- `stroke-color-light-pink` ($\colorbox{#ffa3d7}{\#ffa3d7}$)
+- `stroke-color-light-purple` ($\colorbox{#a463f2}{\#a463f2}$)
+- `stroke-color-light-red` ($\colorbox{#ff725c}{\#ff725c}$)
+- `stroke-color-light-silver` ($\colorbox{#aaa}{\#aaa}$)
+- `stroke-color-light-yellow` ($\colorbox{#fbf1a9}{\#fbf1a9}$)
+- `stroke-color-lightest-blue` ($\colorbox{#cdecff}{\#cdecff}$)
+- `stroke-color-mid-gray` ($\colorbox{#555}{\#555}$)
+- `stroke-color-moon-gray` ($\colorbox{#ccc}{\#ccc}$)
+- `stroke-color-navy` ($\colorbox{#001b44}{\#001b44}$)
+- `stroke-color-near-black` ($\colorbox{#111}{\#111}$)
+- `stroke-color-near-white` ($\colorbox{#f4f4f4}{\#f4f4f4}$)
+- `stroke-color-orange` ($\colorbox{#ff6300}{\#ff6300}$)
+- `stroke-color-pink` ($\colorbox{#ff80cc}{\#ff80cc}$)
+- `stroke-color-purple` ($\colorbox{#5e2ca5}{\#5e2ca5}$)
+- `stroke-color-red` ($\colorbox{#ff4136}{\#ff4136}$)
+- `stroke-color-silver` ($\colorbox{#999}{\#999}$)
+- `stroke-color-transparent` (transparent)
+- `stroke-color-washed-blue` ($\colorbox{#f6fffe}{\#f6fffe}$)
+- `stroke-color-washed-green` ($\colorbox{#e8fdf5}{\#e8fdf5}$)
+- `stroke-color-washed-red` ($\colorbox{#ffdfdf}{\#ffdfdf}$)
+- `stroke-color-washed-yellow` ($\colorbox{#fffceb}{\#fffceb}$)
+- `stroke-color-white` ($\colorbox{#fff}{\#fff}$)
+- `stroke-color-yellow` ($\colorbox{#ffd700}{\#ffd700}$)
+
+#### Text align
+
+- `tc` (center)
+- `tj` (justify)
+- `tl` (left)
+- `tr` (right)
+
+#### Text decorations
+
+- `no-underline`
+- `strike`
+- `underline`
+
+#### Text transforms
+
+- `ttc` (capitalize)
+- `ttfsk` (full-size-kana)
+- `ttfw` (full-width)
+- `tti` (initial)
+- `ttl` (lowercase)
+- `ttn` (none)
+- `ttu` (uppercase)
+
+#### Vertical align
+
+- `v-base` (baseline)
+- `v-btm` (bottom)
+- `v-mid` (middle)
+- `v-top` (top)
+
+#### Visibility
+
+- `collapse`
+- `hidden`
+- `visible`
+
+#### Whitespace
+
+- `ws-normal`
+- `ws-nowrap`
+- `ws-pre`
+
+#### Width
+
+- `vw-25`
+- `vw-50`
+- `vw-75`
+- `vw-100`
+- `w1` (1rem)
+- `w2` (2rem)
+- `w3` (4rem)
+- `w4` (8rem)
+- `w5` (16rem)
+- `w-10` (%)
+- `w-16` (%)
+- `w-17` (%)
+- `w-20` (%)
+- `w-25` (%)
+- `w-30` (%)
+- `w-33` (%)
+- `w-34` (%)
+- `w-40` (%)
+- `w-50` (%)
+- `w-60` (%)
+- `w-66` (%)
+- `w-67` (%)
+- `w-70` (%)
+- `w-75` (%)
+- `w-80` (%)
+- `w-83` (%)
+- `w-84` (%)
+- `w-90` (%)
+- `w-100` (%)
+
+#### Z-indices
+
+- `z-0`
+- `z-1`
+- `z-2`
+- `z-3`
+- `z-4`
+- `z-5`
+- `z-999`
+- `z-9999`
+
+### Templates by category
+
+#### Animation / transition
+
+##### `anim-delay(delay)`
+
+- **delay**: time (in seconds)
+
+##### `anim-iter(iter)`
+
+- **iter**: number of iterations
+
+##### `anim-steps(steps)`
+
+- **steps**: number of steps
+
+##### `bg-anim(duration)`
+
+- **duration**: in seconds
+
+Transition to tween background color
+
+##### `fade-in(duration)`
+
+- **duration**: in seconds
+
+Animation to change opacity
+
+##### `fade-out(duration)`
+
+- **duration**: in seconds
+
+Animation to change opacity
+
+##### `shrink(duration, height)`
+
+- **duration**: in seconds
+- **height**: initial height (incl. units)
+
+Animation which shrinks the height from given initial value to zero. Target element must NOT have padding (use a wrapper if necessary).
+
+##### `spin(duration)`
+
+- **duration**: in seconds
+
+Animation which rotates element a full turn, loops indefinitely
+
+#### Aspect ratios
+
+##### `aspect-ratio(width, height)`
+
+- **width**: aspect width
+- **height**: aspect height
+
+Sets `aspect-ratio` CSS property
+
+##### `bg-aspect-ratio(width, height)`
+
+- **width**: aspect width
+- **height**: aspect height
+
+Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child element.
+
+#### Border color
+
+##### `border-color(index)`
+
+- **index**: color variable index
+
+#### Colors
+
+##### `bg-color(index)`
+
+- **index**: color variable index
+
+##### `color(index)`
+
+- **index**: color variable index
+
+#### Positions
+
+##### `bottom(coordinate)`
+
+- **coordinate** (incl. units)
+
+##### `left(coordinate)`
+
+- **coordinate** (incl. units)
+
+##### `right(coordinate)`
+
+- **coordinate** (incl. units)
+
+##### `top(coordinate)`
+
+- **coordinate** (incl. units)
+
+#### Svg
+
+##### `fill-color(index)`
+
+- **index**: color variable index
+
+##### `stroke-color(index)`
+
+- **index**: color variable index
 
 ### Media queries
 
@@ -1066,6 +2038,7 @@ Currently, there are 969 CSS utility classes (incl. 0 templates) defined in "Met
 - **light**: `{"prefers-color-scheme":"light"}`
 - **anim**: `{"prefers-reduced-motion":false}`
 - **noanim**: `{"prefers-reduced-motion":true}`
+- **contrast**: `{"forced-colors":true}`
 
 ## Status
 
@@ -1088,7 +2061,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.61 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.66 KB
 
 ## Dependencies
 
