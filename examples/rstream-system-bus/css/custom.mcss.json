@@ -14,13 +14,10 @@
 			{ "height": 0, "opacity": 0 }
 		]
 	],
-	"specs": [
+	"templates": [
 		{
-			"name": "item-<vid><k>",
-			"key": "i+1",
-			"props": { "animation": "item-<vid> <v> <var> forwards" },
-			"values": [0.25, 0.5, 1],
-			"unit": "second",
+			"name": "item-<vid>",
+			"props": { "animation": "item-<vid> {0}s <var> forwards" },
 			"vars": ["in", "out"]
 		}
 	]

@@ -1,22 +1,6 @@
-// media query prefixes can be used on any class
-// these prefixes are declared as part of the framework generation specs
-// the query IDs of the default specs are (see base-specs.json for details):
-// ns: aka "not small" screens
-// m: medium sized screens
-// l: large screens
-// noanim: if prefers-reduced-motion is enabled
-// anim: only if prefers-reduced-motion is disabled (i.e. anims are enabled)
-
-// syntax for nested selectors:
-//
-// selector {
-//   class-id1 class-id2 ...
-//   {
-//     nested-sel {
-//       class-id1 ...
-//     }
-//   }
-// }
+// @thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
 
 body {
 	system ma3 dark:bg-color-near-black dark:color-light-gray bg-color-light-gray color-dark-gray
@@ -67,7 +51,7 @@ a:hover { dark:color-hot-pink color-dark-pink }
 			pa3
 			{
 				// use --color1 var (defined in index.html) for hover
-				:hover { bg-color1 }
+				:hover { bg-color(1) }
 				:first-child { brt3 }
 				:last-child { brb3 }
 			}
@@ -83,7 +67,7 @@ a:hover { dark:color-hot-pink color-dark-pink }
 			ns:h4 pa3
 			{
 				// use --color2 var (defined in index.html) for hover
-				:hover { bg-color2 }
+				:hover { bg-color(2) }
 				:first-child { ns:brl3 }
 				:last-child { ns:brr3 }
 			}
@@ -104,7 +88,7 @@ a:hover { dark:color-hot-pink color-dark-pink }
 			db dark:bg-color-dark-gray bg-color-moon-gray no-underline
 			{
 				// use --color3 var (defined in index.html) for hover
-				:hover { color3 anim:bg-anim2 }
+				:hover { color(3) anim:bg-anim(0.25) }
 			}
 		}
 	}

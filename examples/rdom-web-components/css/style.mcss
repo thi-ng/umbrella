@@ -5,4 +5,4 @@
 
 body { system-sans-serif ma3 }
 
-button { db pa3 bw0 bg-color1 color-white }
+button { db pa3 bw0 bg-color(1) color-white }

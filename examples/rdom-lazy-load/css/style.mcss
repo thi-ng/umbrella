@@ -1,7 +1,6 @@
 // @thi.ng/meta-css stylesheet
 // see package readme for more details/usage
 // use `yarn css:build` or `yarn css:watch` to transpile to CSS
-// also see component-specific *.mcss files in /src
 
 body { sans-serif color-white }
 
@@ -16,7 +15,7 @@ a { db b ma3 color-black }
 .lazy-item {
 	h5 ss-start
 	{
-		>div { h-100 pa3 anim:fadein3 }
+		>div { h-100 pa3 anim:fade-in(1) }
 		:last-child { ss-end }
 	}
 }
