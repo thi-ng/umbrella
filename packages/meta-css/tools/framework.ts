@@ -1,9 +1,10 @@
-import { files, readJSON, writeText } from "@thi.ng/file-io";
+import { Fn2, IObjectOf } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
+import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { capitalize } from "@thi.ng/strings";
 import { Reducer, groupByObj, mapcat } from "@thi.ng/transducers";
-import { CompiledSpecs } from "../src/api.js";
+import { CompiledSpec, CompiledSpecs, SpecDoc } from "../src/api.js";
 import { GENERATE } from "../src/generate.js";
 
 const FRAMEWORK = "export/framework.json";
@@ -25,19 +26,8 @@ await GENERATE.fn({
 
 const specs = readJSON<CompiledSpecs>(FRAMEWORK);
 
-const grouped = groupByObj(
-	{
-		key: ([_, { __user }]) => __user,
-		group: <Reducer<string[], [string, any]>>[
-			() => [],
-			(acc) => acc.sort(),
-			(acc, x) => (acc.push(x[0]), acc),
-		],
-	},
-	Object.entries(specs.classes)
-);
-
 const num = Object.keys(specs.classes).length;
+const numTpl = Object.keys(specs.templates).length;
 
 const parseClass = (name: string) =>
 	name.split(/(\d+)/).map((x) => {
@@ -60,28 +50,70 @@ const $compare = (a: string, b: string) => {
 	}
 	return compare(a, b);
 };
-// console.log(grouped);
 
-const doc: string[] = [
-	"## Bundled CSS base framework",
-	"",
-	"The package includes a large number of useful specs in [/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/). These are readily usable, but also are provided as starting point to define your own custom framework(s)...",
-	"",
-	`Currently, there are ${num} CSS utility classes defined in ${specs.info.name} v${specs.info.version}:`,
-	"",
-	"### Classes by category",
-	"",
-	...mapcat(
+const groupedTypes = (
+	src: IObjectOf<CompiledSpec>,
+	fmt: Fn2<string, SpecDoc | undefined, string>
+) => {
+	const grouped = groupByObj(
+		{
+			key: ([_, { __doc }]) => __doc?.group || "TODO",
+			group: <Reducer<string[], [string, any]>>[
+				() => [],
+				(acc) => acc.sort(),
+				(acc, x) => (acc.push(x[0]), acc),
+			],
+		},
+		Object.entries(src)
+	);
+	return mapcat(
 		(groupID) => [
-			`#### ${capitalize(groupID)} <!-- notoc -->\n`,
+			`#### ${capitalize(groupID)}\n`,
 			grouped[groupID]
 				.sort($compare)
-				.map((x) => `\`${x}\``)
-				.join(" / "),
+				.map((x) => fmt(x, src[x].__doc))
+				.join("\n"),
 			"",
 		],
 		Object.keys(grouped).sort()
-	),
+	);
+};
+
+const fmtSpec = (id: string, doc?: SpecDoc) => {
+	if (!(doc && doc.desc)) return `- \`${id}\``;
+	let desc = doc.desc;
+	if (/^-[a-z]/.test(desc)) desc = desc.substring(1);
+	if (desc[0] === "#") desc = `$\\colorbox{${desc}}{\\${desc}}$`;
+	return `- \`${id}\` (${desc})`;
+};
+
+const formatTpl = (id: string, doc?: SpecDoc) => {
+	if (!(doc && doc.args)) return `##### ${id}(...)\n\nTODO`;
+	return [
+		`##### \`${id}(${doc.args
+			.map((x) => /^\w+/.exec(x)![0])
+			.join(", ")})\``,
+		"",
+		...doc.args.map(
+			(x) => `- ${x.replace(/^(\w+)/, (_, y) => `**${y}**`)}`
+		),
+		doc.desc ? `\n${doc.desc}\n` : "",
+	].join("\n");
+};
+
+const doc: string[] = [
+	`Currently, there are ${
+		num + numTpl
+	} CSS utility classes (incl. ${numTpl} templates) defined in "${
+		specs.info.name
+	}" (v${specs.info.version}):`,
+	"",
+	"### Classes by category",
+	"",
+	...groupedTypes(specs.classes, fmtSpec),
+	"### Templates by category",
+	"",
+	...groupedTypes(specs.templates, formatTpl),
 	"### Media queries",
 	"",
 	...Object.entries(specs.media).map(
