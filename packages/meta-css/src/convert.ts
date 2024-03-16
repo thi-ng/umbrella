@@ -38,6 +38,7 @@ import {
 	watchInputs as $watch,
 	generateHeader,
 	maybeWriteText,
+	withoutInternals,
 } from "./utils.js";
 
 type State = "sel" | "class" | "nest";
@@ -480,11 +481,10 @@ const buildDeclsForPath = (
 							? templateDecl(specs, x)
 							: isAssignment(x)
 							? varDecl(x)
-							: specs.classes[x],
+							: withoutInternals(specs.classes[x]),
 					ids
 				)
 			);
-			if ("__user" in obj) delete obj.__user;
 			curr.push(obj);
 		}
 		parent.push(curr);

@@ -12,9 +12,20 @@ export interface AppCtx<T extends CommonOpts>
 	format: FormatPresets;
 }
 
+export interface CompiledSpec extends Record<string, any> {
+	/**
+	 * Spec documentation details.
+	 */
+	__doc?: SpecDoc;
+	/**
+	 * Arbitrary user data.
+	 */
+	__user?: any;
+}
+
 export interface CompiledSpecs {
-	classes: IObjectOf<any>;
-	templates: IObjectOf<any>;
+	classes: IObjectOf<CompiledSpec>;
+	templates: IObjectOf<CompiledSpec>;
 	decls: any[];
 	media: IObjectOf<any>;
 	info: SpecInfo;
@@ -35,6 +46,24 @@ export interface SpecInfo {
 	version: string;
 }
 
+export interface SpecDoc {
+	/**
+	 * Group name to which this spec/rule belongs to. Any param names (`<k>`,
+	 * `<v>`, `<vid>`, `<var>`) will be interpolated.
+	 */
+	group: string;
+	/**
+	 * Rule description. Any param names (`<k>`, `<v>`, `<vid>`, `<var>`) will
+	 * be interpolated.
+	 */
+	desc?: string;
+	/**
+	 * Only used for documenting template specs. List of template arguments and
+	 * their descriptions. Each item should be in the form: `name: description`.
+	 */
+	args?: string[];
+}
+
 export interface Spec {
 	name: string;
 	key?: "v" | "i" | "i+1";
@@ -42,10 +71,11 @@ export interface Spec {
 	values: IObjectOf<NumOrString> | string[] | number[] | string;
 	unit?: string;
 	vars?: string[];
+	doc?: SpecDoc;
 	user?: any;
 }
 
-export type TemplateSpec = Omit<Spec, "values">;
+export type TemplateSpec = Omit<Spec, "key" | "values">;
 
 export const ARG_SPECS = {
 	specs: string({

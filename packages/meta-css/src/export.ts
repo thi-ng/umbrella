@@ -1,5 +1,4 @@
 // thing:no-export
-import type { IObjectOf } from "@thi.ng/api";
 import type { Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
 import { COMPACT, PRETTY, QUOTED_FNS, at_media, css } from "@thi.ng/hiccup-css";
@@ -17,7 +16,7 @@ import {
 	type CommonOpts,
 	type CompiledSpecs,
 } from "./api.js";
-import { generateHeader, maybeWriteText } from "./utils.js";
+import { generateHeader, maybeWriteText, withoutInternals } from "./utils.js";
 
 interface ExportOpts extends CommonOpts {
 	out?: string;
@@ -94,12 +93,5 @@ export const serializeSpecs = (
 const __suffixed = (suffix: string, specs: CompiledSpecs) =>
 	Object.entries(specs.classes).map(([id, props]) => [
 		`.${id}${suffix}`,
-		__withoutInternals(props),
+		withoutInternals(props),
 	]);
-
-/** @internal */
-const __withoutInternals = (props: IObjectOf<any>) =>
-	Object.keys(props).reduce((acc, k) => {
-		if (!k.startsWith("__")) acc[k] = props[k];
-		return acc;
-	}, <IObjectOf<any>>{});

@@ -31,6 +31,7 @@ import {
 	ARG_WATCH,
 	type AppCtx,
 	type CommonOpts,
+	type CompiledSpec,
 	type CompiledSpecs,
 	type GeneratorConfig,
 	type Spec,
@@ -157,7 +158,15 @@ const generateFramework = async (
 		if (config.decls) result.decls.push(...config.decls);
 		if (config.specs) {
 			for (let spec of config.specs) {
-				expandSpec(config, spec, result.classes, logger);
+				try {
+					expandSpec(config, spec, result.classes, logger);
+				} catch (e) {
+					logger.warn(
+						`error processing spec: ${spec.name}`,
+						e,
+						", skipping..."
+					);
+				}
 			}
 		}
 		if (config.templates) {
@@ -178,7 +187,7 @@ const generateFramework = async (
 export const expandSpec = (
 	config: Pick<GeneratorConfig, "tables" | "vars">,
 	spec: Spec,
-	defs: IObjectOf<any>,
+	defs: IObjectOf<CompiledSpec>,
 	logger: ILogger,
 	isTemplate = false
 ) => {
@@ -211,18 +220,31 @@ export const expandSpec = (
 				? __templateValue(unit)
 				: __value(values[currKey], unit);
 			if (!defs[name]) {
-				defs[name] =
-					spec.user != null
-						? {
-								__user: __withVariations(
-									spec.user,
+				defs[name] = {};
+				if (spec.user != null) {
+					defs[name].__user = spec.user;
+				}
+				if (spec.doc != null) {
+					defs[name].__doc = {
+						group: __withVariations(
+							spec.doc.group ?? "TODO",
+							currVarID,
+							varValue,
+							currKey,
+							currValue
+						),
+						desc: spec.doc.desc
+							? __withVariations(
+									spec.doc.desc,
 									currVarID,
 									varValue,
 									currKey,
-									values[currKey]
-								),
-						  }
-						: {};
+									currValue
+							  )
+							: undefined,
+						args: spec.doc.args,
+					};
+				}
 			} else if (!ownNames.has(name)) {
 				illegalArgs(`duplicate class ID: ${name}`);
 			}
@@ -324,7 +346,7 @@ const __withVariations = (
 	v: NumOrString
 ) =>
 	base
-		.replace("<vid>", vid)
-		.replace("<var>", $var)
-		.replace("<k>", k)
-		.replace("<v>", String(v));
+		.replace(/<vid>/g, vid)
+		.replace(/<var>/g, $var)
+		.replace(/<k>/g, k)
+		.replace(/<v>/g, String(v));

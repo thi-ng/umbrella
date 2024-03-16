@@ -7,7 +7,7 @@ import { Z4 } from "@thi.ng/strings";
 import { assocObj, map } from "@thi.ng/transducers";
 import { watch } from "node:fs";
 import { resolve } from "node:path";
-import type { CompiledSpecs } from "./api.js";
+import type { CompiledSpec, CompiledSpecs } from "./api.js";
 
 export const maybeWriteText = (
 	out: string | undefined,
@@ -61,3 +61,10 @@ export const watchInputs = (paths: string[], logger: ILogger) => {
 		),
 	});
 };
+
+/** @internal */
+export const withoutInternals = (props: CompiledSpec) =>
+	Object.keys(props).reduce((acc, k) => {
+		if (!k.startsWith("__")) acc[k] = props[k];
+		return acc;
+	}, <CompiledSpec>{});
