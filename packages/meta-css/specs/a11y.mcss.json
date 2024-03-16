@@ -1,7 +1,7 @@
 {
 	"specs": [
 		{
-			"user": "accessibility",
+			"doc": { "group": "accessibility" },
 			"name": "screen-reader",
 			"props": {
 				"position": "absolute",
@@ -16,7 +16,7 @@
 			"values": [""]
 		},
 		{
-			"user": "accessibility",
+			"doc": { "group": "accessibility" },
 			"name": "screen-reader-focus",
 			"props": {
 				"position": "static",

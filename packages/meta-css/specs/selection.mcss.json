@@ -1,7 +1,7 @@
 {
 	"specs": [
 		{
-			"user": "selection",
+			"doc": { "group": "selection" },
 			"name": "noselect",
 			"props": {
 				"-webkit-user-select": "<v>",

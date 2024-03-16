@@ -1,13 +1,13 @@
 {
 	"specs": [
 		{
-			"user": "background",
+			"doc": { "group": "background" },
 			"name": "bg-<v>",
 			"props": "background-size",
 			"values": ["cover", "contain"]
 		},
 		{
-			"user": "background",
+			"doc": { "group": "background", "desc": "<v>" },
 			"name": "bg-pos-<k>",
 			"props": "background-position",
 			"values": {

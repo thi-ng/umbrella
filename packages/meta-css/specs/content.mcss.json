@@ -1,7 +1,7 @@
 {
 	"specs": [
 		{
-			"user": "content",
+			"doc": { "group": "content", "desc": "<v> attrib" },
 			"name": "content-<v>",
 			"props": { "content": "attr(<v>)" },
 			"values": ["id", "href", "name", "slot", "title", "data-lang"]

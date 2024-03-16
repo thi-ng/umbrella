@@ -12,13 +12,13 @@
 	},
 	"specs": [
 		{
-			"user": "font families",
+			"doc": { "group": "font families" },
 			"name": "<k>",
 			"props": "font-family",
 			"values": "families"
 		},
 		{
-			"user": "font sizes",
+			"doc": { "group": "font sizes", "desc": "<v>" },
 			"name": "f<k>",
 			"key": "i+1",
 			"props": "font-size",
@@ -26,7 +26,7 @@
 			"unit": "rem"
 		},
 		{
-			"user": "font sizes",
+			"doc": { "group": "font sizes", "desc": "<v>" },
 			"name": "f-<k>",
 			"props": "font-size",
 			"values": {
@@ -36,13 +36,13 @@
 			"unit": "rem"
 		},
 		{
-			"user": "font weights",
+			"doc": { "group": "font weights" },
 			"name": "fw<v>",
 			"props": "font-weight",
 			"values": "100s"
 		},
 		{
-			"user": "font weights",
+			"doc": { "group": "font weights", "desc": "<v>" },
 			"name": "<k>",
 			"props": "font-weight",
 			"values": {
@@ -51,19 +51,19 @@
 			}
 		},
 		{
-			"user": "font variants",
+			"doc": { "group": "font variants" },
 			"name": "<v>",
 			"props": "font-variant",
 			"values": ["small-caps"]
 		},
 		{
-			"user": "font style",
+			"doc": { "group": "font style" },
 			"name": "<v>",
 			"props": "font-style",
 			"values": ["italic"]
 		},
 		{
-			"user": "text decorations",
+			"doc": { "group": "text decorations" },
 			"name": "<k>",
 			"props": "text-decoration",
 			"values": {
@@ -73,7 +73,7 @@
 			}
 		},
 		{
-			"user": "text transforms",
+			"doc": { "group": "text transforms", "desc": "<v>" },
 			"name": "tt<k>",
 			"props": "text-transform",
 			"values": {
@@ -87,7 +87,7 @@
 			}
 		},
 		{
-			"user": "text align",
+			"doc": { "group": "text align", "desc": "<v>" },
 			"name": "t<k>",
 			"props": "text-align",
 			"values": {
@@ -98,7 +98,7 @@
 			}
 		},
 		{
-			"user": "vertical align",
+			"doc": { "group": "vertical align", "desc": "<v>" },
 			"name": "v-<k>",
 			"props": "vertical-align",
 			"values": {
@@ -109,7 +109,7 @@
 			}
 		},
 		{
-			"user": "line heights",
+			"doc": { "group": "line heights", "desc": "<v>" },
 			"name": "lh-<k>",
 			"props": "line-height",
 			"values": {
@@ -121,13 +121,13 @@
 			}
 		},
 		{
-			"user": "whitespace",
-			"name": "ws-<k>",
+			"doc": { "group": "whitespace" },
+			"name": "ws-<v>",
 			"props": "white-space",
 			"values": ["normal", "nowrap", "pre"]
 		},
 		{
-			"user": "letter spacing",
+			"doc": { "group": "letter spacing", "desc": "<v>" },
 			"name": "ls-<k>",
 			"props": "letter-spacing",
 			"values": {

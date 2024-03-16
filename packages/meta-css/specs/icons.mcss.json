@@ -1,7 +1,7 @@
 {
 	"specs": [
 		{
-			"user": "icons",
+			"doc": { "group": "icons", "desc": "<v>" },
 			"name": "icon-<k>",
 			"key": "i+1",
 			"props": {
@@ -13,7 +13,7 @@
 			"unit": "rem"
 		},
 		{
-			"user": "icons",
+			"doc": { "group": "icons", "desc": "<v>" },
 			"name": "icon-<k>",
 			"props": {
 				"display": "inline-block",

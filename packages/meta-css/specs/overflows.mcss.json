@@ -4,7 +4,7 @@
 	},
 	"specs": [
 		{
-			"user": "overflow",
+			"doc": { "group": "overflow" },
 			"name": "overflow<var>-<v>",
 			"props": { "overflow<var>": "<v>" },
 			"values": "overflow",

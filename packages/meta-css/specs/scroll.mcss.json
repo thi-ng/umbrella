@@ -1,7 +1,7 @@
 {
 	"specs": [
 		{
-			"user": "scrolling",
+			"doc": { "group": "scrolling", "desc": "snap type" },
 			"name": "ss-<v>",
 			"props": {
 				"scroll-snap-type": "<v> mandatory"
@@ -9,13 +9,13 @@
 			"values": ["x", "y", "both"]
 		},
 		{
-			"user": "scrolling",
+			"doc": { "group": "scrolling", "desc": "snap align" },
 			"name": "ss-<v>",
 			"props": "scroll-snap-align",
 			"values": ["start", "end", "center"]
 		},
 		{
-			"user": "scrolling",
+			"doc": { "group": "scrolling", "desc": "snap stop" },
 			"name": "ss-<v>",
 			"props": "scroll-snap-stop",
 			"values": ["normal", "always"]

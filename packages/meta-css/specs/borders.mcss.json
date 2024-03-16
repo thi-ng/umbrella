@@ -5,14 +5,14 @@
 	},
 	"specs": [
 		{
-			"user": "border radius",
+			"doc": { "group": "border radius", "desc": "<v>" },
 			"name": "br<k>",
 			"props": "border-radius",
 			"values": "borders-r",
 			"unit": "rem"
 		},
 		{
-			"user": "border radius",
+			"doc": { "group": "border radius", "desc": "<v>" },
 			"name": "br<vid><k>",
 			"props": {
 				"border-top<var>-radius": "<v>",
@@ -23,7 +23,7 @@
 			"vars": ["l", "r"]
 		},
 		{
-			"user": "border radius",
+			"doc": { "group": "border radius", "desc": "<v>" },
 			"name": "br<vid><k>",
 			"props": {
 				"border<var>-left-radius": "<v>",
@@ -34,13 +34,13 @@
 			"vars": ["t", "b"]
 		},
 		{
-			"user": "border radius",
+			"doc": { "group": "border radius", "desc": "<v>" },
 			"name": "br-<k>",
 			"props": "border-radius",
 			"values": { "100": "100%", "pill": "9999px" }
 		},
 		{
-			"user": "border width",
+			"doc": { "group": "border width", "desc": "<v>" },
 			"name": "bw<vid><k>",
 			"props": {
 				"border<var>-style": "solid",
@@ -51,7 +51,7 @@
 			"vars": ["", "t", "r", "b", "l"]
 		},
 		{
-			"user": "border width",
+			"doc": { "group": "border width", "desc": "<v>" },
 			"name": "bw<vid>-<v>px",
 			"props": {
 				"border<var>-style": "solid",

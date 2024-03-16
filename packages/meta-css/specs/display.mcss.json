@@ -1,7 +1,7 @@
 {
 	"specs": [
 		{
-			"user": "display mode",
+			"doc": { "group": "display mode", "desc": "<v>" },
 			"name": "<k>",
 			"props": "display",
 			"values": {
@@ -19,7 +19,7 @@
 			}
 		},
 		{
-			"user": "visibility",
+			"doc": { "group": "visibility" },
 			"name": "<v>",
 			"props": { "visibility": "<v> !important" },
 			"values": ["hidden", "visible", "collapse"]

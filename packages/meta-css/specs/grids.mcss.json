@@ -10,7 +10,7 @@
 	},
 	"specs": [
 		{
-			"user": "grid layout",
+			"doc": { "group": "grid layout", "desc": "<v>" },
 			"name": "grid-<vid>-<k>",
 			"key": "i+1",
 			"props": "grid-template-<var>",
@@ -29,28 +29,28 @@
 			"vars": ["cols", "rows"]
 		},
 		{
-			"user": "grid layout",
+			"doc": { "group": "grid layout", "desc": "<v>" },
 			"name": "gap<k>",
 			"props": "gap",
 			"values": [0, 0.125, 0.25, 0.5, 1, 2],
 			"unit": "rem"
 		},
 		{
-			"user": "grid layout",
+			"doc": { "group": "grid layout" },
 			"name": "gap-<v>px",
 			"props": "gap",
 			"values": [1, 2, 4, 8],
 			"unit": "px"
 		},
 		{
-			"user": "grid layout",
+			"doc": { "group": "grid layout" },
 			"name": "<vid>-self-<v>",
 			"props": "<vid>-self",
 			"values": "align",
 			"vars": ["align", "justify"]
 		},
 		{
-			"user": "grid layout",
+			"doc": { "group": "grid layout" },
 			"name": "<vid>-items-<v>",
 			"props": "<vid>-items",
 			"values": "align",

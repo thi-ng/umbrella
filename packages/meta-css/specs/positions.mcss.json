@@ -4,13 +4,13 @@
 	},
 	"specs": [
 		{
-			"user": "positions",
+			"doc": { "group": "positions" },
 			"name": "<v>",
 			"props": "position",
 			"values": ["absolute", "relative", "fixed", "static", "sticky"]
 		},
 		{
-			"user": "positions",
+			"doc": { "group": "positions", "desc": "<v>" },
 			"name": "<var>-<v>",
 			"props": "<var>",
 			"values": "pos",
@@ -18,15 +18,18 @@
 			"vars": ["top", "right", "bottom", "left"]
 		},
 		{
-			"user": "z-indices",
+			"doc": { "group": "z-indices" },
 			"name": "z-<v>",
 			"props": "z-index",
 			"values": [0, 1, 2, 3, 4, 5, 999, 9999]
 		}
 	],
-	"tpls": [
+	"templates": [
 		{
-			"user": "positions",
+			"doc": {
+				"group": "positions",
+				"args": ["coordinate (incl. units)"]
+			},
 			"name": "<var>",
 			"props": "<var>",
 			"vars": ["top", "right", "bottom", "left"]

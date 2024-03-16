@@ -12,7 +12,7 @@
 	},
 	"specs": [
 		{
-			"user": "<var>",
+			"doc": { "group": "<var>", "desc": "<v>" },
 			"name": "<vid><k>",
 			"key": "i+1",
 			"props": "<var>",
@@ -21,7 +21,7 @@
 			"vars": ["w", "h"]
 		},
 		{
-			"user": "<var>",
+			"doc": { "group": "<var>", "desc": "%" },
 			"name": "<vid>-<v>",
 			"props": "<var>",
 			"values": "sizes-rel",
@@ -29,7 +29,7 @@
 			"vars": ["w", "h"]
 		},
 		{
-			"user": "min. <var>",
+			"doc": { "group": "min. <var>", "desc": "<v>" },
 			"name": "min<vid><k>",
 			"key": "i+1",
 			"props": "min-<var>",
@@ -38,7 +38,7 @@
 			"vars": ["w", "h"]
 		},
 		{
-			"user": "min. <var>",
+			"doc": { "group": "min. <var>", "desc": "%" },
 			"name": "min<vid>-<v>",
 			"props": "min-<var>",
 			"values": "sizes-rel",
@@ -46,7 +46,7 @@
 			"vars": ["w", "h"]
 		},
 		{
-			"user": "max. <var>",
+			"doc": { "group": "max. <var>", "desc": "<v>" },
 			"name": "max<vid><k>",
 			"key": "i+1",
 			"props": "max-<var>",
@@ -55,7 +55,7 @@
 			"vars": ["w", "h"]
 		},
 		{
-			"user": "max. <var>",
+			"doc": { "group": "max. <var>", "desc": "%" },
 			"name": "max<vid>-<v>",
 			"props": "max-<var>",
 			"values": "sizes-rel",
@@ -63,7 +63,7 @@
 			"vars": ["w", "h"]
 		},
 		{
-			"user": "<var>",
+			"doc": { "group": "<var>" },
 			"name": "v<vid>-<v>",
 			"props": "<var>",
 			"values": [25, 50, 75, 100],

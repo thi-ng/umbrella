@@ -1,24 +1,5 @@
 {
 	"tables": {
-		"__var_comment": "16 custom CSS color slots",
-		"var-palette": [
-			"var(--color1)",
-			"var(--color2)",
-			"var(--color3)",
-			"var(--color4)",
-			"var(--color5)",
-			"var(--color6)",
-			"var(--color7)",
-			"var(--color8)",
-			"var(--color9)",
-			"var(--color10)",
-			"var(--color11)",
-			"var(--color12)",
-			"var(--color13)",
-			"var(--color14)",
-			"var(--color15)",
-			"var(--color16)"
-		],
 		"__grays_comment": "Tachyons CSS colors",
 		"grays": {
 			"black": "#000",
@@ -69,86 +50,57 @@
 	},
 	"specs": [
 		{
-			"user": "colors",
-			"name": "b--color<k>",
-			"key": "i+1",
-			"props": { "border-color": "<v>" },
-			"values": "var-palette"
-		},
-		{
-			"user": "colors",
-			"name": "b--color-<k>",
+			"doc": { "group": "border color", "desc": "<v>" },
+			"name": "border-color-<k>",
 			"props": "border-color",
 			"values": "palette"
 		},
 		{
-			"user": "colors",
-			"name": "b--color-<k>",
+			"doc": { "group": "border color", "desc": "<v>" },
+			"name": "border-color-<k>",
 			"props": "border-color",
 			"values": "grays"
 		},
 		{
-			"user": "colors",
-			"name": "color<k>",
-			"key": "i+1",
-			"props": { "color": "<v>" },
-			"values": "var-palette"
-		},
-		{
-			"user": "colors",
+			"doc": { "group": "colors", "desc": "<v>" },
 			"name": "color-<k>",
 			"props": "color",
 			"values": "palette"
 		},
 		{
-			"user": "colors",
+			"doc": { "group": "colors", "desc": "<v>" },
 			"name": "color-<k>",
 			"props": "color",
 			"values": "grays"
 		},
 		{
-			"user": "colors",
-			"name": "bg-color<k>",
-			"key": "i+1",
-			"props": { "background-color": "<v>" },
-			"values": "var-palette"
-		},
-		{
-			"user": "colors",
+			"doc": { "group": "colors", "desc": "<v>" },
 			"name": "bg-color-<k>",
 			"props": "background-color",
 			"values": "palette"
 		},
 		{
-			"user": "colors",
+			"doc": { "group": "colors", "desc": "<v>" },
 			"name": "bg-color-<k>",
 			"props": "background-color",
 			"values": "grays"
 		},
 		{
-			"user": "colors",
-			"name": "<var>-color<k>",
-			"key": "i+1",
-			"props": { "<var>": "<v>" },
-			"values": "var-palette",
-			"vars": ["fill-stroke"]
-		},
-		{
-			"user": "colors",
+			"doc": { "group": "svg", "desc": "<v>" },
 			"name": "<var>-color-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "palette",
 			"vars": ["fill-stroke"]
 		},
 		{
-			"user": "colors",
+			"doc": { "group": "svg", "desc": "<v>" },
 			"name": "<var>-color-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "grays",
 			"vars": ["fill-stroke"]
 		},
 		{
-			"user": "colors",
+			"doc": { "group": "opacity", "desc": "<v>" },
 			"name": "o-<k>",
 			"props": "opacity",
 			"values": {
@@ -164,6 +116,41 @@
 				"90": 0.9,
 				"100": 1
 			}
+		}
+	],
+	"templates": [
+		{
+			"doc": {
+				"group": "border color",
+				"args": ["index: color variable index"]
+			},
+			"name": "border-color",
+			"props": { "border-color": "var(--color{0})" }
+		},
+		{
+			"doc": {
+				"group": "colors",
+				"args": ["index: color variable index"]
+			},
+			"name": "color",
+			"props": { "color": "var(--color{0})" }
+		},
+		{
+			"doc": {
+				"group": "colors",
+				"args": ["index: color variable index"]
+			},
+			"name": "bg-color",
+			"props": { "background-color": "var(--color{0})" }
+		},
+		{
+			"doc": {
+				"group": "svg",
+				"args": ["index: color variable index"]
+			},
+			"name": "<var>-color",
+			"props": { "<var>": "var(--color{0})" },
+			"vars": ["fill-stroke"]
 		}
 	]
 }

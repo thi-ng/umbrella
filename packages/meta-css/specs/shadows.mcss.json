@@ -9,21 +9,21 @@
 	},
 	"specs": [
 		{
-			"user": "shadow",
+			"doc": { "group": "shadow", "desc": "<v>" },
 			"name": "box-shadow-<k>",
 			"key": "i+1",
 			"props": "box-shadow",
 			"values": "shadows"
 		},
 		{
-			"user": "shadow",
+			"doc": { "group": "shadow", "desc": "<v>" },
 			"name": "box-shadow-i-<k>",
 			"key": "i+1",
 			"props": { "box-shadow": "<v> inset" },
 			"values": "shadows"
 		},
 		{
-			"user": "shadow",
+			"doc": { "group": "shadow", "desc": "<v>" },
 			"name": "text-shadow-<k>",
 			"key": "i+1",
 			"props": "text-shadow",

@@ -1,85 +1,109 @@
 {
 	"decls": [
-		["@keyframes", "fadein", { "opacity": 0 }, { "opacity": 1 }],
-		["@keyframes", "fadeout", { "opacity": 1 }, { "opacity": 0 }],
+		["@keyframes", "fade-in", { "opacity": 0 }, { "opacity": 1 }],
+		["@keyframes", "fade-out", { "opacity": 1 }, { "opacity": 0 }],
 		["@keyframes", "spin", { "rotate": 0 }, { "rotate": "1turn" }],
 		[
 			"@keyframes",
 			"shrink",
-			{ "height": "var(--shrink-size)" },
+			{ "height": "var(--mcss-shrink-size)" },
 			{ "height": 0 }
 		]
 	],
 	"specs": [
 		{
-			"user": "animations / transitions",
-			"name": "fade<vid><k>",
-			"key": "i+1",
-			"props": { "animation": "fade<vid> <v> ease-in-out forwards" },
-			"values": [0.25, 0.5, 1],
-			"unit": "second",
-			"vars": ["in", "out"]
-		},
-		{
-			"user": "animations / transitions",
-			"name": "bg-anim<k>",
-			"key": "i+1",
-			"props": { "transition": "<v> background-color ease-in-out" },
-			"values": [0.15, 0.25, 0.5],
-			"unit": "second"
-		},
-		{
-			"user": "animations / transitions",
-			"name": "spin<k>",
-			"key": "i+1",
-			"props": { "animation": "spin <v> linear infinite" },
-			"values": [0.75, 1.5, 2.5],
-			"unit": "second"
-		},
-		{
-			"user": "animations / transitions",
-			"name": "shrink<k>",
-			"key": "i+1",
-			"props": { "animation": "shrink <v> ease-out forwards" },
-			"values": [0.25, 0.5, 1],
-			"unit": "second"
-		},
-		{
-			"user": "animations / transitions",
+			"doc": {
+				"group": "animation / transition",
+				"desc": "direction"
+			},
 			"name": "anim-<v>",
 			"props": "animation-direction",
 			"values": ["normal", "reverse", "alternate", "alternate-reverse"]
 		},
 		{
-			"user": "animations / transitions",
-			"name": "anim-delay-<v>",
-			"props": "animation-delay",
-			"values": [0, 1, 2, 3, 4, 5],
-			"unit": "second"
-		},
-		{
-			"user": "animations / transitions",
+			"doc": { "group": "animation / transition" },
 			"name": "anim-<k>",
 			"props": "animation-play-state",
 			"values": { "pause": "paused", "play": "running" }
 		},
 		{
-			"user": "animations / transitions",
+			"doc": {
+				"group": "animation / transition",
+				"desc": "timing function"
+			},
 			"name": "anim-<v>",
 			"props": "animation-timing-function",
 			"values": ["ease", "ease-in", "ease-out", "ease-in-out", "linear"]
+		}
+	],
+	"templates": [
+		{
+			"doc": {
+				"group": "animation / transition",
+				"args": ["duration: in seconds"],
+				"desc": "Animation to change opacity"
+			},
+			"name": "fade-<vid>",
+			"props": { "animation": "fade-<vid> {0}s ease-in-out forwards" },
+			"vars": ["in", "out"]
 		},
 		{
-			"user": "animations / transitions",
-			"name": "anim-steps-<v>",
-			"props": { "animation-timing-function": "steps(<v>)" },
-			"values": [2, 3, 4, 5, 6, 8, 10]
+			"doc": {
+				"group": "animation / transition",
+				"args": ["duration: in seconds"],
+				"desc": "Transition to tween background color"
+			},
+			"name": "bg-anim",
+			"props": { "transition": "{0}s background-color ease-in-out" }
 		},
 		{
-			"user": "animations / transitions",
-			"name": "anim-iter-<v>",
-			"props": "animation-iteration-count",
-			"values": [1, 2, 3, 4, 5, "infinite"]
+			"doc": {
+				"group": "animation / transition",
+				"args": ["duration: in seconds"],
+				"desc": "Animation which rotates element a full turn, loops indefinitely"
+			},
+			"name": "spin",
+			"props": { "animation": "spin {0}s linear infinite" }
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"args": [
+					"duration: in seconds",
+					"height: initial height (incl. units)"
+				],
+				"desc": "Animation which shrinks the height from given initial value to zero. Target element must NOT have padding (use a wrapper if necessary)."
+			},
+			"name": "shrink",
+			"props": {
+				"--mcss-shrink-size": "{1}",
+				"animation": "shrink {0}s ease-out forwards"
+			}
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"args": ["delay: time (in seconds)"]
+			},
+			"name": "anim-delay",
+			"props": "animation-delay",
+			"unit": "second"
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"args": ["steps: number of steps"]
+			},
+			"name": "anim-steps",
+			"props": { "animation-timing-function": "steps({0})" }
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"args": ["iter: number of iterations"]
+			},
+			"name": "anim-iter",
+			"props": "animation-iteration-count"
 		}
 	]
 }
