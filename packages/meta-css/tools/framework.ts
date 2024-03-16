@@ -83,7 +83,8 @@ const fmtSpec = (id: string, doc?: SpecDoc) => {
 	if (!(doc && doc.desc)) return `- \`${id}\``;
 	let desc = doc.desc;
 	if (/^-[a-z]/.test(desc)) desc = desc.substring(1);
-	if (desc[0] === "#") desc = `$\\colorbox{${desc}}{\\${desc}}$`;
+	// if (desc[0] === "#") desc = `$\\colorbox{${desc}}{\\${desc}}$`;
+	if (desc[0] === "#") desc = `$\\textcolor{${desc}}{\\textsf{\\${desc}}}$`;
 	return `- \`${id}\` (${desc})`;
 };
 
