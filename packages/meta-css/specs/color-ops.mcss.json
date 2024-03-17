@@ -1,0 +1,160 @@
+{
+	"templates": [
+		{
+			"doc": {
+				"group": "color definitions",
+				"desc": "Defines a rgb() color variable quad with a common base name",
+				"args": [
+					"name: variable name (without `--` prefix)",
+					"red: [0,255] range",
+					"green: [0,255] range",
+					"blue: [0,255] range",
+					"alpha: in [0,1] range"
+				]
+			},
+			"name": "def-rgb",
+			"props": {
+				"--{0}-red": "{1}",
+				"--{0}-green": "{2}%",
+				"--{0}-blue": "{3}%",
+				"--{0}-alpha": "{4}",
+				"--{0}": "rgb(var(--{0}-red) var(--{0}-green) var(--{0}-blue)/var(--{0}-alpha))"
+			}
+		},
+		{
+			"name": "adjust-rgb",
+			"doc": {
+				"group": "color adjustment",
+				"desc": "Assigns an adjusted version of a `def-rgb()`-defined color to given CSS property.",
+				"args": [
+					"prop: CSS target property",
+					"name: color variable name (without `--` prefix)",
+					"red: factor",
+					"green: factor",
+					"blue: factor",
+					"alpha: factor"
+				]
+			},
+			"props": {
+				"{0}": "rgb(calc(var(--{1}-red)*{2}) calc(var(--{1}-green)*{3}) calc(var(--{1}-blue)*{4})/calc(var(--{1}-alpha)*{5}))"
+			}
+		},
+		{
+			"doc": {
+				"group": "color definitions",
+				"desc": "Defines an hsl() color variable quad with a common base name",
+				"args": [
+					"name: variable name (without `--` prefix)",
+					"hue: in degrees",
+					"sat: in percent",
+					"lum: in percent",
+					"alpha: in [0,1] range"
+				]
+			},
+			"name": "def-hsl",
+			"props": {
+				"--{0}-hue": "{1}",
+				"--{0}-sat": "{2}%",
+				"--{0}-lum": "{3}%",
+				"--{0}-alpha": "{4}",
+				"--{0}": "hsl(var(--{0}-hue) var(--{0}-sat) var(--{0}-lum)/var(--{0}-alpha))"
+			}
+		},
+		{
+			"name": "adjust-hsl",
+			"doc": {
+				"group": "color adjustment",
+				"desc": "Assigns an adjusted version of a `def-hsl()`-defined color to given CSS property.",
+				"args": [
+					"prop: CSS target property",
+					"name: color variable name (without `--` prefix)",
+					"hue: offset in degrees",
+					"sat: factor",
+					"lum: factor",
+					"alpha: factor"
+				]
+			},
+			"props": {
+				"{0}": "hsl(calc(var(--{1}-hue) + {2}) calc(var(--{1}-sat)*{3}) calc(var(--{1}-lum)*{4})/calc(var(--{1}-alpha)*{5}))"
+			}
+		},
+		{
+			"doc": {
+				"group": "color definitions",
+				"desc": "Defines a lch() color variable quad with a common base name",
+				"args": [
+					"name: variable name",
+					"luma: in percent",
+					"chroma: in percent",
+					"hue: in degrees",
+					"alpha: in [0,1] range"
+				]
+			},
+			"name": "def-lch",
+			"props": {
+				"--{0}-luma": "{1}%",
+				"--{0}-chroma": "{2}%",
+				"--{0}-hue": "{3}",
+				"--{0}-alpha": "{4}",
+				"--{0}": "lch(var(--{0}-luma) var(--{0}-chroma) var(--{0}-hue)/var(--{0}-alpha))"
+			}
+		},
+		{
+			"name": "adjust-lch",
+			"doc": {
+				"group": "color adjustment",
+				"desc": "Assigns an adjusted version of a `def-lch()` defined color to given CSS property.",
+				"args": [
+					"prop: CSS target property",
+					"name: color variable name (without `--` prefix)",
+					"luma: factor",
+					"chroma: factor",
+					"hue: offset in degrees",
+					"alpha: factor"
+				]
+			},
+			"props": {
+				"{0}": "lch(calc(var(--{1}-luma)*{2}) calc(var(--{1}-chroma)*{3}) calc(var(--{1}-hue) + {4})/calc(var(--{1}-alpha)*{5}))"
+			}
+		},
+		{
+			"doc": {
+				"group": "color definitions",
+				"desc": "Defines a oklch() color variable quad with a common base name",
+				"args": [
+					"name: variable name",
+					"luma: in percent",
+					"chroma: in percent",
+					"hue: in degrees",
+					"alpha: in [0,1] range"
+				]
+			},
+			"name": "def-oklch",
+			"props": {
+				"--{0}-luma": "{1}%",
+				"--{0}-chroma": "{2}%",
+				"--{0}-hue": "{3}",
+				"--{0}-alpha": "{4}",
+				"--{0}": "oklch(var(--{0}-luma) var(--{0}-chroma) var(--{0}-hue)/var(--{0}-alpha))"
+			}
+		},
+		{
+			"name": "adjust-oklch",
+			"doc": {
+				"group": "color adjustment",
+				"desc": "Assigns an adjusted version of a `def-oklch()` defined color to given CSS property.",
+				"args": [
+					"prop: CSS target property",
+					"name: color variable name (without `--` prefix)",
+					"luma: factor",
+					"chroma: factor",
+					"hue: offset in degrees",
+					"alpha: alpha factor"
+				]
+			},
+			"props": {
+				"{0}": "oklch(calc(var(--{1}-luma)*{2}) calc(var(--{1}-chroma)*{3}) calc(var(--{1}-hue) + {4})/calc(var(--{1}-alpha)*{5}))"
+			}
+		}
+	]
+}
