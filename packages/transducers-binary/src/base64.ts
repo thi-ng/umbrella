@@ -15,7 +15,7 @@ export function base64Decode(): Transducer<string, number>;
 export function base64Decode(src: string): Uint8Array;
 export function base64Decode(src?: string): any {
 	return src
-		? new Uint8Array([...iterator1(base64Decode(), src)])
+		? new Uint8Array(iterator1(base64Decode(), src))
 		: (rfn: Reducer<any, number>) => {
 				const r = rfn[2];
 				let bc = 0,
