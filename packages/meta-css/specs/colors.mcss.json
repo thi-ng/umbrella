@@ -12,12 +12,12 @@
 			"moon-gray": "#ccc",
 			"light-gray": "#eee",
 			"near-white": "#f4f4f4",
-			"white": "#fff",
-			"transparent": "transparent"
+			"white": "#fff"
 		},
 		"__palette_comment": "Tachyons CSS colors",
 		"palette": {
-			"current": "currentColor",
+			"current": "currentcolor",
+			"transparent": "transparent",
 			"dark-red": "#e7040f",
 			"red": "#ff4136",
 			"light-red": "#ff725c",
@@ -122,26 +122,26 @@
 		{
 			"doc": {
 				"group": "border color",
-				"args": ["index: color variable index"]
+				"args": ["name: variable name (without `--` prefix)"]
 			},
 			"name": "border-color",
-			"props": { "border-color": "var(--color{0})" }
+			"props": { "border-color": "var(--{0})" }
 		},
 		{
 			"doc": {
 				"group": "colors",
-				"args": ["index: color variable index"]
+				"args": ["name: variable name (without `--` prefix)"]
 			},
 			"name": "color",
-			"props": { "color": "var(--color{0})" }
+			"props": { "color": "var(--{0})" }
 		},
 		{
 			"doc": {
 				"group": "colors",
-				"args": ["index: color variable index"]
+				"args": ["name: variable name (without `--` prefix)"]
 			},
 			"name": "bg-color",
-			"props": { "background-color": "var(--color{0})" }
+			"props": { "background-color": "var(--{0})" }
 		},
 		{
 			"doc": {
