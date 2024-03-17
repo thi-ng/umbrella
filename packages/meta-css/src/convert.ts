@@ -553,8 +553,8 @@ const templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
 	const tplID = id.substring(0, idx);
 	const vals = id
 		.substring(idx + 1, id.length - 1)
-		.split(",")
-		.map((x) => x.trim());
+		.split(/(?<!\\),/g)
+		.map((x) => x.trim().replace("\\,", ","));
 	const spec = specs.templates[tplID];
 	if (vals.length !== spec.__arity)
 		illegalArgs(`template "${tplID}" expected ${spec.__arity} arguments`);
