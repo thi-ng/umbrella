@@ -25,10 +25,10 @@ export const slugify: Stringer<string> = (str: string) => {
 			.replace(/\s+/g, "-")
 			.replace(re, (c) => dest[src.indexOf(c)])
 			.replace(/&+/g, "-and-")
-			.replace(/[^\w\-]+/g, "")
+			.replace(/[^\w-]+/g, "")
 			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes
 			.replace(/\p{Emoji_Presentation}/gu, "")
-			.replace(/\-{2,}/g, "-")
+			.replace(/-{2,}/g, "-")
 			.replace(/(^-+)|(-+$)/g, "")
 	);
 };
@@ -57,7 +57,7 @@ export const slugifyGH = (str: string) => {
 			// - https://www.unicode.org/charts/PDF/U2700.pdf (dingbats)
 			// - https://www.unicode.org/charts/PDF/U2E00.pdf (supplemental)
 			.replace(
-				/[!"#$%&'()*+,./:;<=>?@\[\\\]^`{|}~\u0000-\u001f\u2000-\u206f\u2700-\u27bf\u2e00-\u2e7f]/g,
+				/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~\u0000-\u001f\u2000-\u206f\u2700-\u27bf\u2e00-\u2e7f]/g,
 				""
 			)
 			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes
