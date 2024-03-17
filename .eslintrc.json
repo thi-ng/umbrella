@@ -1,0 +1,8 @@
+{
+	"rules": {
+		"unicorn/no-new-array": "off",
+		"no-control-regex": "off",
+		"no-cond-assign": "off"
+	},
+	"reportUnusedDisableDirectives": true
+}
