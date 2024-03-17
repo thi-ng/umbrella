@@ -35,6 +35,7 @@ import {
 	type CompiledSpecs,
 	type GeneratorConfig,
 	type Spec,
+	type SpecDoc,
 	type TemplateSpec,
 } from "./api.js";
 import { watchInputs as $watch, maybeWriteText } from "./utils.js";
@@ -225,25 +226,13 @@ export const expandSpec = (
 					defs[name].__user = spec.user;
 				}
 				if (spec.doc != null) {
-					defs[name].__doc = {
-						group: __withVariations(
-							spec.doc.group ?? "TODO",
-							currVarID,
-							varValue,
-							currKey,
-							currValue
-						),
-						desc: spec.doc.desc
-							? __withVariations(
-									spec.doc.desc,
-									currVarID,
-									varValue,
-									currKey,
-									currValue
-							  )
-							: undefined,
-						args: spec.doc.args,
-					};
+					defs[name].__doc = __interpolateDoc(
+						spec.doc,
+						currVarID,
+						varValue,
+						currKey,
+						currValue
+					);
 				}
 			} else if (!ownNames.has(name)) {
 				illegalArgs(`duplicate class ID: ${name}`);
@@ -350,3 +339,18 @@ const __withVariations = (
 		.replace(/<var>/g, $var)
 		.replace(/<k>/g, k)
 		.replace(/<v>/g, String(v));
+
+/** @internal */
+const __interpolateDoc = (
+	{ group, desc, args }: SpecDoc,
+	vid: string,
+	$var: string,
+	k: string,
+	v: NumOrString
+) => ({
+	group: group ? __withVariations(group, vid, $var, k, v) : "TODO",
+	desc: desc ? __withVariations(desc, vid, $var, k, v) : undefined,
+	args: args
+		? args.map((a) => __withVariations(a, vid, $var, k, v))
+		: undefined,
+});
