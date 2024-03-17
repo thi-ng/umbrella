@@ -197,8 +197,10 @@ export const expandSpec = (
 	const values = __items(spec, config);
 	const ownNames = new Set<string>();
 	for (let currVarID of variationIDs) {
+		const variations = config.vars?.[currVarID] || VARIATIONS[currVarID];
+		if (!variations) illegalArgs(`unknown variation ID: ${currVarID}`);
 		for (let [varValue, currKey] of permutations(
-			config.vars?.[currVarID] || VARIATIONS[currVarID],
+			variations,
 			Object.keys(values)
 		)) {
 			const name = __withVariations(
@@ -238,14 +240,14 @@ export const expandSpec = (
 				illegalArgs(`duplicate class ID: ${name}`);
 			}
 			ownNames.add(name);
-			let maxArity = 0;
+			let maxArity = -1;
 			for (let [k, v] of Object.entries(props)) {
 				const prop = __withVariations(
 					k,
 					currVarID,
 					varValue,
 					currKey,
-					values[currKey]
+					values[currKey] // value without unit
 				);
 				const val = __withVariations(
 					!unit || isString(v) ? String(v) : UNITS[unit](v),
