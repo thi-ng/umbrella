@@ -18,7 +18,7 @@ const sanitizeFile = (f: string) => {
 	let updated = false;
 	const src = readText(f, LOGGER)
 		.replace(
-			/\{@link\s+@thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^\}]+)\}/g,
+			/\{@link\s+@thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^}]+)\}/g,
 			(_, id, label) => {
 				LOGGER.debug("match pkg", id, label);
 				updated = true;

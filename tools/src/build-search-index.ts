@@ -15,7 +15,7 @@ import { build, defEncoder } from "./search.js";
 
 const RE_DOC_START = /^\s*\/\*\*$/;
 const RE_DOC_END = /^\s+\*\/$/;
-const RE_DOC_CODE = /^\s+\* \`\`\`/;
+const RE_DOC_CODE = /^\s+\* ```/;
 const RE_SYM = /^export (type|interface|class|const|function|enum) (\w+)/;
 
 // pkg, file, line
