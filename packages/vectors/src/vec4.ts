@@ -68,7 +68,7 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
 		return intoStridedBuffer(setS4, buf, src, start, cstride, estride);
 	}
 
-	static *iterator(
+	static iterator(
 		buf: NumericArray,
 		num: number,
 		start = 0,
