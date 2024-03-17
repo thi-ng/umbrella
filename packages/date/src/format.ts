@@ -194,18 +194,15 @@ export const defFormat =
 		let d = ensureDate(x);
 		utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
 		return fmt
-			.map((x) => {
-				let fn: FormatFn;
-				return isString(x)
+			.map((x) =>
+				isString(x)
 					? x.startsWith("\\")
 						? x.substring(1)
-						: (fn = FORMATTERS[x])
-						? fn(d, utc)
-						: x
+						: FORMATTERS[x]?.(d, utc) ?? x
 					: isFunction(x)
 					? x(d, utc)
-					: x;
-			})
+					: x
+			)
 			.join("");
 	};
 
