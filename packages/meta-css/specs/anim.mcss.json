@@ -60,7 +60,7 @@
 			"doc": {
 				"group": "animation / transition",
 				"args": ["duration: in seconds"],
-				"desc": "Animation which rotates element a full turn, loops indefinitely"
+				"desc": "Animation which rotates element a full turn, looping indefinitely"
 			},
 			"name": "spin",
 			"props": { "animation": "spin {0}s linear infinite" }

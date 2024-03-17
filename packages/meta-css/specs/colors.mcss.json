@@ -146,9 +146,9 @@
 		{
 			"doc": {
 				"group": "svg",
-				"args": ["index: color variable index"]
+				"args": ["name: variable name (without `--` prefix)"]
 			},
-			"name": "<var>-color",
+			"name": "<var>",
 			"props": { "<var>": "var(--color{0})" },
 			"vars": ["fill-stroke"]
 		}

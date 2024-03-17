@@ -56,5 +56,16 @@
 			"values": "align",
 			"vars": ["align", "justify"]
 		}
+	],
+	"templates": [
+		{
+			"doc": {
+				"group": "grid layout",
+				"args": ["<vid>: CSS <vid> definitions"]
+			},
+			"name": "grid-<vid>",
+			"props": "grid-template-<var>",
+			"vars": ["cols", "rows"]
+		}
 	]
 }

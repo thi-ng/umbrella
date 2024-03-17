@@ -1,7 +1,10 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "aspect ratios" },
+			"doc": {
+				"group": "aspect ratios",
+				"desc": "To be used on the element forming the background of a `bg-aspect-ratio()` parent/wrapper"
+			},
 			"name": "bg-aspect-ratio-object",
 			"props": {
 				"position": "absolute",
@@ -36,7 +39,7 @@
 			"props": {
 				"height": 0,
 				"position": "relative",
-				"padding-bottom": "calc(100%/({0}/{1}))"
+				"padding-bottom": "calc(100% / ({0} / {1}))"
 			}
 		}
 	]
