@@ -340,6 +340,9 @@ export interface IRotate<T extends IPixelBuffer> {
 	rotate180(): T;
 }
 
+/** @internal */
+export const ROT_IDS: Rotation[] = ["rotateCW", "rotate180", "rotateCCW"];
+
 export type Rotation = Exclude<keyof IRotate<IPixelBuffer>, "rotateByID">;
 
 export interface IColorChannel<T extends TypedArray, C> {

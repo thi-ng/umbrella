@@ -33,12 +33,11 @@ import type {
 	IRotate,
 	IToImageData,
 	IntFormat,
-	Rotation,
 } from "./api.js";
 import { ensureChannel, ensureImageData, ensureSize } from "./checks.js";
 import { defFloatFormat } from "./format/float-format.js";
 import { FLOAT_GRAY } from "./format/float-gray.js";
-import { FLOAT_RGBA } from "./index.js";
+import { FLOAT_RGBA, ROT_IDS } from "./index.js";
 import { IntBuffer, intBufferFromCanvas, intBufferFromImage } from "./int.js";
 import { __clampRegion, __prepRegions } from "./internal/utils.js";
 import { defSampler } from "./sample.js";
@@ -512,9 +511,7 @@ export class FloatBuffer
 	}
 
 	rotateByID(id: Range0_3): this {
-		return id > 0
-			? this[<Rotation>[, "rotateCW", "rotate180", "rotateCCW"][id]]()
-			: this;
+		return id > 0 ? this[ROT_IDS[id - 1]]() : this;
 	}
 
 	rotateCW() {

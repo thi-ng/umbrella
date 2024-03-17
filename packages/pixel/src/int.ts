@@ -15,6 +15,7 @@ import {
 } from "@thi.ng/porter-duff/premultiply";
 import {
 	Lane,
+	ROT_IDS,
 	type BlendFnInt,
 	type BlitCanvasOpts,
 	type BlitOpts,
@@ -30,7 +31,6 @@ import {
 	type IntFormat,
 	type IntFormatSpec,
 	type IntSampler,
-	type Rotation,
 } from "./api.js";
 import { canvasPixels } from "./canvas.js";
 import {
@@ -451,9 +451,7 @@ export class IntBuffer
 	}
 
 	rotateByID(id: Range0_3): this {
-		return id > 0
-			? this[<Rotation>[, "rotateCW", "rotate180", "rotateCCW"][id]]()
-			: this;
+		return id > 0 ? this[ROT_IDS[id - 1]]() : this;
 	}
 
 	rotateCW() {
