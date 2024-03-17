@@ -85,12 +85,12 @@ export const text = (
 	return <ModelSpec>{
 		attribPool: attribs,
 		indices: {
-			data: new Uint16Array([
-				...mapcat(
+			data: new Uint16Array(
+				mapcat(
 					(i) => [i, i + 1, i + 2, i, i + 2, i + 3],
 					range(0, len * 4, 4)
-				),
-			]),
+				)
+			),
 		},
 		uniforms: {},
 		num: len * 6,
