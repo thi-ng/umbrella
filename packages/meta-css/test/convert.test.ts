@@ -5,6 +5,7 @@ import {
 	processMediaQueries,
 	processPlainRules,
 	processSpec,
+	splitLine,
 	type ProcessOpts,
 } from "../src/convert.js";
 
@@ -59,4 +60,23 @@ test("templates", () => {
 		"#test{top:5rem;--a:2rem;--b:3s;}",
 		"@media (foo){#test{top:10rem;--a:4rem;--b:5s;}}",
 	]);
+});
+
+test("split line", () => {
+	expect([...splitLine("")]).toEqual([]);
+	expect([...splitLine("  a b")]).toEqual(["a", "b"]);
+	expect([...splitLine("\ta\t\tb")]).toEqual(["a", "b"]);
+	expect([...splitLine("a b{}")]).toEqual(["a", "b", "{", "}"]);
+	expect([...splitLine("a b{{}}")]).toEqual(["a", "b", "{", "{", "}", "}"]);
+	expect([...splitLine("a b{{ }}")]).toEqual(["a", "b", "{", "{", "}", "}"]);
+	expect([...splitLine("a, b {}")]).toEqual(["a,", "b", "{", "}"]);
+	expect([...splitLine("a, b {f(a, b)}")]).toEqual([
+		"a,",
+		"b",
+		"{",
+		"f(a, b)",
+		"}",
+	]);
+	expect(() => [...splitLine("f(a,b))")]).toThrow();
+	expect(() => [...splitLine("a, b {f(a,b}")]).toThrow();
 });

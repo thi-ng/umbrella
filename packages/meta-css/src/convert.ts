@@ -370,7 +370,7 @@ export const processSpec = (
 	// process line by line, skip comment lines
 	for (let line of split(src)) {
 		if (!line || /^\s*\/\//.test(line)) continue;
-		for (let token of split(line, /\s+/g)) {
+		for (let token of splitLine(line)) {
 			if (!token) continue;
 			let $scope = ctx.curr;
 			switch ($scope.state) {
@@ -429,6 +429,34 @@ export const processSpec = (
 		}
 	}
 };
+
+/** @internal */
+export function* splitLine(line: string) {
+	let from = -1;
+	let end = line.length;
+	let depth = 0;
+	for (let i = 0; i < end; i++) {
+		const c = line[i];
+		if (c === " " || c === "\t") {
+			if (!depth && from >= 0) {
+				yield line.substring(from, i);
+				from = -1;
+			}
+		} else if (c === "{" || c === "}") {
+			if (from >= 0) yield line.substring(from, i);
+			yield c;
+			from = -1;
+		} else if (c === "(") {
+			depth++;
+		} else if (c === ")") {
+			if (--depth < 0) illegalArgs(`invalid nesting in line: '${line}'`);
+		} else if (from < 0) {
+			from = i;
+		}
+	}
+	if (depth) illegalArgs("template calls must be fully on a single line");
+	if (from >= 0) yield line.substring(from, end);
+}
 
 const QUERY_SEP = ":";
 const PATH_SEP = "///";
