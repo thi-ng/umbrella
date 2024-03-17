@@ -63,8 +63,8 @@ export const toc =
 		const {
 			min = 2,
 			max = 4,
-			match = /<\!-- toc -->/i,
-			disable = /<\!-- notoc -->/i,
+			match = /<!-- toc -->/i,
+			disable = /<!-- notoc -->/i,
 			title,
 		} = opts;
 		const isHeading = new RegExp(`^#{${min},${max}}\\s`);

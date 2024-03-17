@@ -133,7 +133,7 @@ export const shortName = (name: string) => {
  * @param author
  */
 export const author = (author: string | User) =>
-	isString(author) ? author.split(/\s*[<\(]/)[0] : author.name;
+	isString(author) ? author.split(/\s*[<(]/)[0] : author.name;
 
 /**
  * Similar to {@link author}, but if an URL is available, returns a Markdown
@@ -143,7 +143,7 @@ export const author = (author: string | User) =>
  */
 export const authorLink = (author: string | User) => {
 	if (isString(author)) {
-		const [name, a, b] = author.split(/\s*[<\(]/);
+		const [name, a, b] = author.split(/\s*[<(]/);
 		const href = b ? (b[b.length - 1] == ")" ? b : a) : a ? a : "";
 		return href.length && href[href.length - 1] === ")"
 			? link(name, href.substring(0, href.length - 1))
