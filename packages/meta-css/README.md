@@ -25,6 +25,7 @@
     - [Properties](#properties)
     - [Key value generation](#key-value-generation)
   - [Templated class definitions](#templated-class-definitions)
+    - [Template arguments](#template-arguments)
   - [Media query definitions](#media-query-definitions)
   - [Custom declarations](#custom-declarations)
 - [Converting meta stylesheets to CSS](#converting-meta-stylesheets-to-css)
@@ -86,7 +87,10 @@
     - [Animation / transition](#animation--transition)
     - [Aspect ratios](#aspect-ratios)
     - [Border color](#border-color)
+    - [Color adjustment](#color-adjustment)
+    - [Color definitions](#color-definitions)
     - [Colors](#colors)
+    - [Grid layout](#grid-layout)
     - [Positions](#positions)
     - [Svg](#svg)
   - [Media queries](#media-queries)
@@ -507,12 +511,13 @@ The above spec will generate the following (some parts omitted):
 ### Templated class definitions
 
 As a special case of "normal" generator specs described above, the toolchain
-also supports the generation of so-called templated classes, which will later
-accept one or more parameters when used in a MetaCSS stylesheet.
+also supports the generation of so-called templated classes, which are very much
+like callable functions and will later accept zero or more arguments when used
+in a MetaCSS stylesheet.
 
 These template specs are almost identical to the normal spec format, with the
-exception of **not** using a `values` field, since values will only be
-provided by the user at a later stage, via template parameters.
+exception of **not** using the `key` and `values` fields, since values will only
+be provided by the user at a later stage, via template arguments.
 
 A simple generator spec for a templated animation, including keyframe
 definitions and documentation metadata:
@@ -550,18 +555,30 @@ Here, two arguments are supplied as comma-separated list between the `(`..`)`
 parens. In the template definition the `{0}`/`{1}` patterns are indicating where
 these numbered args will be inserted. Templates support any number of
 params/arguments and each one can be used multiple times in multiple locations,
-incl. property names, values, and in documentation (`group` & `desc` fields).
+incl. property names, values, and in documentation (`group`, `desc` and `args` fields).
+
+#### Template arguments
 
 When templates are compiled, the number of expected args is computed
 automatically and later checked against the actually given args when the
 template is used. An error will be thrown if the given number of args differs.
 
+Any commas inside an argument **must** be escaped using `\,`, e.g.
+
+```text
+// wrong (the comma inside `repeat()` MUST be escaped...)
+#test { grid grid-cols(repeat(3, 1fr), 16rem) }
+
+// correct
+#test { grid grid-cols(repeat(3\, 1fr), 16rem) }
+```
+
 If a template's `props` is a string, the optional `unit` field can be used to
 auto-assign a CSS unit to provided args. If `props` is an object, the `unit`
 option will be ignored.
 
-Using the above template and the MetaCSS stylesheet `#test { shrink(4rem, 0.5) }`
-will then be expanded to:
+Using the example template defined above, the MetaCSS stylesheet
+`#test { shrink(4rem, 0.5) }` will then be expanded to:
 
 ```css
 #test {
@@ -587,7 +604,7 @@ ALWAYS combined using `and`:
 | `print: "only"`                  | `only print`                   |
 
 See [media queries in the bundled base
-specs](https://github.com/thi-ng/umbrella/blob/982fff7bfcc48f108b6ad88f854ef00be4078510/packages/meta-css/specs/_info.json#L6-L24)
+specs](https://github.com/thi-ng/umbrella/blob/f40ff9b9d7da496c2dd967c6185ca626cbbd9b4c/packages/meta-css/specs/_info.mcss.json#L6-L27)
 
 ### Custom declarations
 
@@ -950,7 +967,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "MetaCSS base" (v0.8.0):
+Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "MetaCSS base" (v0.8.0):
 
 ### Classes by category
 
@@ -975,7 +992,7 @@ Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "Me
 
 #### Aspect ratios
 
-- `bg-aspect-ratio-object`
+- `bg-aspect-ratio-object` (To be used on the element forming the background of a `bg-aspect-ratio()` parent/wrapper)
 
 #### Background
 
@@ -995,7 +1012,7 @@ Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "Me
 
 - `border-color-black` (#000)
 - `border-color-blue` (#357edd)
-- `border-color-current` (currentColor)
+- `border-color-current` (currentcolor)
 - `border-color-dark-blue` (#00449e)
 - `border-color-dark-gray` (#333)
 - `border-color-dark-green` (#137752)
@@ -1104,7 +1121,7 @@ Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "Me
 
 - `bg-color-black` (#000)
 - `bg-color-blue` (#357edd)
-- `bg-color-current` (currentColor)
+- `bg-color-current` (currentcolor)
 - `bg-color-dark-blue` (#00449e)
 - `bg-color-dark-gray` (#333)
 - `bg-color-dark-green` (#137752)
@@ -1142,7 +1159,7 @@ Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "Me
 - `bg-color-yellow` (#ffd700)
 - `color-black` (#000)
 - `color-blue` (#357edd)
-- `color-current` (currentColor)
+- `color-current` (currentcolor)
 - `color-dark-blue` (#00449e)
 - `color-dark-gray` (#333)
 - `color-dark-green` (#137752)
@@ -1762,7 +1779,7 @@ Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "Me
 
 - `fill-color-black` (#000)
 - `fill-color-blue` (#357edd)
-- `fill-color-current` (currentColor)
+- `fill-color-current` (currentcolor)
 - `fill-color-dark-blue` (#00449e)
 - `fill-color-dark-gray` (#333)
 - `fill-color-dark-green` (#137752)
@@ -1800,7 +1817,7 @@ Currently, there are 852 CSS utility classes (incl. 19 templates) defined in "Me
 - `fill-color-yellow` (#ffd700)
 - `stroke-color-black` (#000)
 - `stroke-color-blue` (#357edd)
-- `stroke-color-current` (currentColor)
+- `stroke-color-current` (currentcolor)
 - `stroke-color-dark-blue` (#00449e)
 - `stroke-color-dark-gray` (#333)
 - `stroke-color-dark-green` (#137752)
@@ -1967,7 +1984,7 @@ Animation which shrinks the height from given initial value to zero. Target elem
 
 - **duration**: in seconds
 
-Animation which rotates element a full turn, loops indefinitely
+Animation which rotates element a full turn, looping indefinitely
 
 #### Aspect ratios
 
@@ -1987,19 +2004,117 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 #### Border color
 
-##### `border-color(index)`
+##### `border-color(name)`
 
-- **index**: color variable index
+- **name**: variable name (without `--` prefix)
+
+#### Color adjustment
+
+##### `adjust-hsl(prop, name, hue, sat, lum, alpha)`
+
+- **prop**: CSS target property
+- **name**: color variable name (without `--` prefix)
+- **hue**: offset in degrees
+- **sat**: factor
+- **lum**: factor
+- **alpha**: factor
+
+Assigns an adjusted version of a `def-hsl()`-defined color to given CSS property.
+
+##### `adjust-lch(prop, name, luma, chroma, hue, alpha)`
+
+- **prop**: CSS target property
+- **name**: color variable name (without `--` prefix)
+- **luma**: factor
+- **chroma**: factor
+- **hue**: offset in degrees
+- **alpha**: factor
+
+Assigns an adjusted version of a `def-lch()` defined color to given CSS property.
+
+##### `adjust-oklch(prop, name, luma, chroma, hue, alpha)`
+
+- **prop**: CSS target property
+- **name**: color variable name (without `--` prefix)
+- **luma**: factor
+- **chroma**: factor
+- **hue**: offset in degrees
+- **alpha**: alpha factor
+
+Assigns an adjusted version of a `def-oklch()` defined color to given CSS property.
+
+##### `adjust-rgb(prop, name, red, green, blue, alpha)`
+
+- **prop**: CSS target property
+- **name**: color variable name (without `--` prefix)
+- **red**: factor
+- **green**: factor
+- **blue**: factor
+- **alpha**: factor
+
+Assigns an adjusted version of a `def-rgb()`-defined color to given CSS property.
+
+#### Color definitions
+
+##### `def-hsl(name, hue, sat, lum, alpha)`
+
+- **name**: variable name (without `--` prefix)
+- **hue**: in degrees
+- **sat**: in percent
+- **lum**: in percent
+- **alpha**: in [0,1] range
+
+Defines an hsl() color variable quad with a common base name
+
+##### `def-lch(name, luma, chroma, hue, alpha)`
+
+- **name**: variable name
+- **luma**: in percent
+- **chroma**: in percent
+- **hue**: in degrees
+- **alpha**: in [0,1] range
+
+Defines a lch() color variable quad with a common base name
+
+##### `def-oklch(name, luma, chroma, hue, alpha)`
+
+- **name**: variable name
+- **luma**: in percent
+- **chroma**: in percent
+- **hue**: in degrees
+- **alpha**: in [0,1] range
+
+Defines a oklch() color variable quad with a common base name
+
+##### `def-rgb(name, red, green, blue, alpha)`
+
+- **name**: variable name (without `--` prefix)
+- **red**: [0,255] range
+- **green**: [0,255] range
+- **blue**: [0,255] range
+- **alpha**: in [0,1] range
+
+Defines a rgb() color variable quad with a common base name
 
 #### Colors
 
-##### `bg-color(index)`
+##### `bg-color(name)`
 
-- **index**: color variable index
+- **name**: variable name (without `--` prefix)
 
-##### `color(index)`
+##### `color(name)`
 
-- **index**: color variable index
+- **name**: variable name (without `--` prefix)
+
+#### Grid layout
+
+##### `grid-cols(cols)`
+
+- **cols**: CSS cols definitions
+
+##### `grid-rows(rows)`
+
+- **rows**: CSS rows definitions
 
 #### Positions
 
@@ -2021,13 +2136,13 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 #### Svg
 
-##### `fill-color(index)`
+##### `fill(name)`
 
-- **index**: color variable index
+- **name**: variable name (without `--` prefix)
 
-##### `stroke-color(index)`
+##### `stroke(name)`
 
-- **index**: color variable index
+- **name**: variable name (without `--` prefix)
 
 ### Media queries
 
@@ -2061,7 +2176,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.66 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.84 KB
 
 ## Dependencies
 

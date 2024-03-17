@@ -411,12 +411,13 @@ The above spec will generate the following (some parts omitted):
 ### Templated class definitions
 
 As a special case of "normal" generator specs described above, the toolchain
-also supports the generation of so-called templated classes, which will later
-accept one or more parameters when used in a MetaCSS stylesheet.
+also supports the generation of so-called templated classes, which are very much
+like callable functions and will later accept zero or more arguments when used
+in a MetaCSS stylesheet.
 
 These template specs are almost identical to the normal spec format, with the
-exception of **not** using a `values` field, since values will only be
-provided by the user at a later stage, via template parameters.
+exception of **not** using the `key` and `values` fields, since values will only
+be provided by the user at a later stage, via template arguments.
 
 A simple generator spec for a templated animation, including keyframe
 definitions and documentation metadata:
@@ -454,18 +455,30 @@ Here, two arguments are supplied as comma-separated list between the `(`..`)`
 parens. In the template definition the `{0}`/`{1}` patterns are indicating where
 these numbered args will be inserted. Templates support any number of
 params/arguments and each one can be used multiple times in multiple locations,
-incl. property names, values, and in documentation (`group` & `desc` fields).
+incl. property names, values, and in documentation (`group`, `desc` and `args` fields).
+
+#### Template arguments
 
 When templates are compiled, the number of expected args is computed
 automatically and later checked against the actually given args when the
 template is used. An error will be thrown if the given number of args differs.
 
+Any commas inside an argument **must** be escaped using `\,`, e.g.
+
+```text
+// wrong (the comma inside `repeat()` MUST be escaped...)
+#test { grid grid-cols(repeat(3, 1fr), 16rem) }
+
+// correct
+#test { grid grid-cols(repeat(3\, 1fr), 16rem) }
+```
+
 If a template's `props` is a string, the optional `unit` field can be used to
 auto-assign a CSS unit to provided args. If `props` is an object, the `unit`
 option will be ignored.
 
-Using the above template and the MetaCSS stylesheet `#test { shrink(4rem, 0.5) }`
-will then be expanded to:
+Using the example template defined above, the MetaCSS stylesheet
+`#test { shrink(4rem, 0.5) }` will then be expanded to:
 
 ```css
 #test {
@@ -491,7 +504,7 @@ ALWAYS combined using `and`:
 | `print: "only"`                  | `only print`                   |
 
 See [media queries in the bundled base
-specs](https://github.com/thi-ng/umbrella/blob/982fff7bfcc48f108b6ad88f854ef00be4078510/packages/meta-css/specs/_info.json#L6-L24)
+specs](https://github.com/thi-ng/umbrella/blob/f40ff9b9d7da496c2dd967c6185ca626cbbd9b4c/packages/meta-css/specs/_info.mcss.json#L6-L27)
 
 ### Custom declarations
 
