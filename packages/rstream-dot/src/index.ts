@@ -91,7 +91,7 @@ export const toDot = (state: TraversalState, opts?: Partial<DotOpts>) => {
 		stream: "blue",
 		streammerge: "red",
 		streamsync: "red",
-		...(opts.color || {}),
+		...opts.color,
 	};
 	return [
 		"digraph g {",
