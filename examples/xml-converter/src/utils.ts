@@ -24,4 +24,4 @@ export const handleTab =
 		}
 	};
 
-export const varName = (name: string) => name.replace(/\-+/g, "_");
+export const varName = (name: string) => name.replace(/-+/g, "_");

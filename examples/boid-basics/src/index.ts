@@ -92,8 +92,9 @@ const scene = fromRAF({ timestamp: true }).map((t) => {
 	// return a shape representations of the boids as a group of circles, with
 	// each circle's color based on the above multi-color gradient and the
 	// distance to the nearest neighbor.
-	return group({ __background: "#112", stroke: "none", fill: "none" }, [
-		...flock.boids.map((boid) => {
+	return group(
+		{ __background: "#112", stroke: "none", fill: "none" },
+		flock.boids.map((boid) => {
 			const pos = boid.pos.value;
 			// let radius = 4;
 			let radius = MAX_RADIUS;
@@ -118,8 +119,8 @@ const scene = fromRAF({ timestamp: true }).map((t) => {
 			return circle(boid.pos.value, radius / 2, {
 				fill: gradient[Math.min(radius | 0, MAX_RADIUS)],
 			});
-		}),
-	]);
+		})
+	);
 });
 
 // create reactive canvas component, subscribed to above scene stream

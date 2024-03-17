@@ -24,9 +24,9 @@ const BG_COL = [0, 0, 0, 1];
 
 // buffer to store point coordinates
 // (all coordinates are in [-1,-1] .. [1,1] space)
-const POSITIONS = new Float32Array([
-	...mapcat((x) => [x * 2 - 1, -1], normRange(NUM_POINTS - 1)),
-]);
+const POSITIONS = new Float32Array(
+	mapcat((x) => [x * 2 - 1, -1], normRange(NUM_POINTS - 1))
+);
 // create memory mapped 2D vectors from buffer (i.e. modifying the coordinates
 // of these vectors, automatically updates the above array at the corresponding
 // indices)

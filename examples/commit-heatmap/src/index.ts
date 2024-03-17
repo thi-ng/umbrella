@@ -189,7 +189,7 @@ const releases = transduce(
 	comp(
 		partitionWhen((x) => !x),
 		map((x) => (x[0].length ? x : (x.shift(), x))),
-		filter((x) => /\~\~publish/i.test(x[0]))
+		filter((x) => /~~publish/i.test(x[0]))
 	),
 	count(),
 	rawLog

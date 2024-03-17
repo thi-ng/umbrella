@@ -36,24 +36,24 @@ const app = () => {
 				instances: {
 					attribs: {
 						offset: {
-							data: new Float32Array([
-								...mapcat(
+							data: new Float32Array(
+								mapcat(
 									([x, z]) => [
 										x * 2,
 										Math.sin(x * 0.4) + Math.sin(z * 0.4),
 										z * 2,
 									],
 									range2d(-GRID + 1, GRID, -GRID + 1, GRID)
-								),
-							]),
+								)
+							),
 						},
 						icol: {
-							data: new Float32Array([
-								...mapcat(
+							data: new Float32Array(
+								mapcat(
 									() => (Math.random() < 0.5 ? C1 : C2),
 									range2d(-GRID + 1, GRID, -GRID + 1, GRID)
-								),
-							]),
+								)
+							),
 						},
 					},
 					num: (GRID * 2 - 1) ** 2,
@@ -86,8 +86,8 @@ const app = () => {
 			adaptDPI(el, window.innerWidth, window.innerHeight);
 			const cam = [0, 2, 5];
 			const eye = rotateY(
-				null,
-				[cam[0] + Math.sin(time * 0.0007) * 0, cam[1], cam[2]],
+				[],
+				cam,
 				-PI / 4 + Math.sin(time * 0.0005) * 0.1
 			);
 			const aspect = gl.drawingBufferWidth / gl.drawingBufferHeight;

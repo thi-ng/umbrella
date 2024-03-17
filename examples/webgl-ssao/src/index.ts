@@ -41,9 +41,9 @@ const Z_FAR = 20;
 const BG_COL = [0.1, 0.1, 0.1];
 
 // noise texture data for SSAO shader
-const NOISE = new Float32Array([
-	...repeatedly(() => Math.random() * 2 - 1, W * H * 2),
-]);
+const NOISE = new Float32Array(
+	repeatedly(() => Math.random() * 2 - 1, W * H * 2)
+);
 
 // instance position data for animated cubes
 const instancePositions = (o: number) =>
