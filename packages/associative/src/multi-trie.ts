@@ -93,6 +93,7 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 	}
 
 	find(key: K) {
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: MultiTrie<K, V> | undefined = this;
 		for (let i = 0, n = key.length; i < n; i++) {
 			node = node!.next[key[i].toString()];
@@ -108,6 +109,7 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 	 * @param key -
 	 */
 	knownPrefix(key: K) {
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: MultiTrie<K, V> | undefined = this;
 		const prefix: K[] = [];
 		for (let i = 0, n = key.length; i < n; i++) {
@@ -125,6 +127,7 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 	}
 
 	add(key: K, val: V) {
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: MultiTrie<K, V> = this;
 		for (let i = 0, n = key.length; i < n; i++) {
 			const k = key[i].toString();
@@ -152,6 +155,7 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 		const path: MultiTrie<K, V>[] = [];
 		const key: string[] = [];
 		let i = 0;
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: MultiTrie<K, V> | undefined = this;
 		for (; i < n; i++) {
 			const k = prefix[i].toString();

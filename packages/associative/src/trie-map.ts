@@ -73,6 +73,7 @@ export class TrieMap<T> {
 	}
 
 	find(key: string) {
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: TrieMap<T> | undefined = this;
 		for (let i = 0, n = key.length; i < n; i++) {
 			node = node!.next[key[i]];
@@ -88,6 +89,7 @@ export class TrieMap<T> {
 	 * @param key -
 	 */
 	knownPrefix(key: string) {
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: TrieMap<T> | undefined = this;
 		let prefix: string = "";
 		for (let i = 0, n = key.length; i < n; i++) {
@@ -105,6 +107,7 @@ export class TrieMap<T> {
 	}
 
 	set(key: string, val: T) {
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: TrieMap<T> = this;
 		for (let i = 0, n = key.length; i < n; i++) {
 			const k = key[i];
@@ -126,6 +129,7 @@ export class TrieMap<T> {
 		const path: TrieMap<T>[] = [];
 		const key: string[] = [];
 		let i = 0;
+		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: TrieMap<T> | undefined = this;
 		for (; i < n; i++) {
 			const k = prefix[i];
