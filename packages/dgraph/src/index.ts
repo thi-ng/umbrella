@@ -147,6 +147,7 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 			}
 			const node = queue.first()!;
 			queue.delete(node);
+			/* eslint-disable-next-line no-useless-spread -- shallow copy required here */
 			for (let d of [...g.immediateDependencies(node)]) {
 				g.removeEdge(node, d);
 				if (g.isLeaf(d)) {

@@ -45,7 +45,7 @@ export const rule = <I extends LVarSet<string>, O extends LVarSet<string>>(
 	weight = 1
 ): Rule<I, O> => ({
 	if: $if,
-	then,
+	then, // eslint-disable-line no-thenable
 	op,
 	weight,
 });

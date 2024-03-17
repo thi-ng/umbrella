@@ -50,6 +50,7 @@ class CanvasHandlers implements IWasmAPI<WasmApp> {
 				const canvas = <HTMLCanvasElement>(
 					this.dom.elements.get(canvasID)
 				);
+				/* eslint-disable-next-line no-self-assign -- clears canvas */
 				canvas.width = canvas.width;
 			},
 

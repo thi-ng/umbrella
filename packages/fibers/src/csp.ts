@@ -41,15 +41,16 @@ export class Channel<T> {
 	 * ```
 	 */
 	read() {
-		const $this = this;
+		// eslint-disable-next-line no-this-alias -- channel ref for child fiber
+		const chan = this;
 		return fiber<T | undefined>(function* (ctx: Fiber) {
-			while ($this.readable()) {
+			while (chan.readable()) {
 				// wait until channel is readable
-				if ($this.buffer.readable()) {
-					const val = $this.buffer.read();
+				if (chan.buffer.readable()) {
+					const val = chan.buffer.read();
 					ctx.logger?.debug("read", val);
 					return val;
-				} else if ($this.state === STATE_CLOSING) {
+				} else if (chan.state === STATE_CLOSING) {
 					return;
 				}
 				yield;
@@ -72,13 +73,14 @@ export class Channel<T> {
 	 * ```
 	 */
 	write(val: T) {
-		const $this = this;
+		// eslint-disable-next-line no-this-alias -- channel ref for child fiber
+		const chan = this;
 		return fiber(function* (ctx: Fiber) {
-			while ($this.writable()) {
+			while (chan.writable()) {
 				// wait until channel is writable
-				if ($this.buffer.writable()) {
+				if (chan.buffer.writable()) {
 					ctx.logger?.debug("write", val);
-					$this.buffer.write(val);
+					chan.buffer.write(val);
 					return;
 				}
 				yield;
@@ -97,16 +99,17 @@ export class Channel<T> {
 	 * @param wait
 	 */
 	close(wait = true) {
-		const $this = this;
+		// eslint-disable-next-line no-this-alias -- channel ref for child fiber
+		const chan = this;
 		return fiber(function* (ctx: Fiber) {
-			if ($this.state >= STATE_CLOSING) return;
+			if (chan.state >= STATE_CLOSING) return;
 			if (wait) {
 				ctx.logger?.debug("waiting to close...");
-				$this.state = STATE_CLOSING;
-				while ($this.buffer.readable()) yield;
+				chan.state = STATE_CLOSING;
+				while (chan.buffer.readable()) yield;
 			}
-			$this.state = STATE_CLOSED;
-			$this.buffer.clear();
+			chan.state = STATE_CLOSED;
+			chan.buffer.clear();
 			ctx.logger?.debug("channel closed");
 		}, this.opts);
 	}

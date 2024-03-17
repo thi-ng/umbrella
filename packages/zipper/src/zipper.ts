@@ -207,6 +207,7 @@ export class Location<T> {
 		if (this.isBranch) return this.down;
 		let right = this.right;
 		if (right) return right;
+		// eslint-disable-next-line no-this-alias -- zipper traversal
 		let loc: Location<T> = this;
 		while (true) {
 			const up = loc.up;

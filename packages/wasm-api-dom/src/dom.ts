@@ -178,6 +178,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 						}
 					}
 					el.parentNode?.removeChild(el);
+					/* eslint-disable-next-line no-useless-spread -- shallow copy required here */
 					for (let child of [...el.children]) remove(child);
 				};
 				remove(el);

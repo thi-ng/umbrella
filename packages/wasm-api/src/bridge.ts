@@ -119,6 +119,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 				this.logger.debug(() => this.getString(addr, len)),
 
 			debug: () => {
+				/* eslint-disable-next-line no-debugger -- required here */
 				debugger;
 			},
 
