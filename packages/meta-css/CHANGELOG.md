@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-17T15:23:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,53 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.8.0) (2024-03-17)
+
+#### 🚀 Features
+
+- add/update animation genspecs ([d7cb506](https://github.com/thi-ng/umbrella/commit/d7cb506))
+  - add animation-delay
+  - add shrink anim & keyframes
+- add support for templated class specs ([eb09f16](https://github.com/thi-ng/umbrella/commit/eb09f16))
+  - add TemplateSpec, update CompiledSpecs
+  - add expandTemplateSpec()
+  - update expandSpec() to also handle templates, compute tpl arity
+  - update generateFramework(), make specs/templates optional
+  - update convert command impl to support templates
+  - refactor export command impl
+  - add/update tests
+- add/update framework specs/templates ([119f385](https://github.com/thi-ng/umbrella/commit/119f385))
+- update spec format, add spec doc object & handling ([dc63b3a](https://github.com/thi-ng/umbrella/commit/dc63b3a))
+  - update expandSpec() to handle docs & interpolate doc strings
+  - refactor convert & export commands
+- major update base framework specs ([a985039](https://github.com/thi-ng/umbrella/commit/a985039))
+  - add docs for all specs
+  - refactor various specs as parametric templates
+    - massively reduce number of specs (~90 less)
+  - rename various specs to be less cryptic
+- major update spec doc generator ([7117ae9](https://github.com/thi-ng/umbrella/commit/7117ae9))
+- improve doc interpolation ([9509cc3](https://github.com/thi-ng/umbrella/commit/9509cc3))
+  - also process doc strings for template args
+  - extract __interpolateDoc() helper
+- update stylesheet line parsing ([ee43572](https://github.com/thi-ng/umbrella/commit/ee43572))
+  - add splitLine() to correctly handle more complex tokenization rules
+    and perform more checks (e.g. parens matching, nesting)
+  - add tests
+- add color operation templates (rgb, hsl, lch, oklch) ([b49860e](https://github.com/thi-ng/umbrella/commit/b49860e))
+- add/update template specs ([e4ef222](https://github.com/thi-ng/umbrella/commit/e4ef222))
+
+#### 🩹 Bug fixes
+
+- comma-handling in template arg list parsing ([e8d45a5](https://github.com/thi-ng/umbrella/commit/e8d45a5))
+  - use negative lookbehind to support `\,` comma-escaping in single args
+- update template arity calculation ([ac50c39](https://github.com/thi-ng/umbrella/commit/ac50c39))
+
+#### ♻️ Refactoring
+
+- update color var templates ([5f08683](https://github.com/thi-ng/umbrella/commit/5f08683))
+  - update color(), bg-color(), border-color(), fill(), stroke()
+    - now accepting full var name as arg, rather than just an index
 
 ### [0.7.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.7.5) (2024-02-22)
 

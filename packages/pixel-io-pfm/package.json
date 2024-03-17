@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-io-pfm",
-	"version": "0.1.58",
+	"version": "0.1.59",
 	"description": "Portable FloatMap image format support for @thi.ng/pixel",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.5.0",
-		"@thi.ng/pixel": "^6.1.19"
+		"@thi.ng/errors": "^2.5.1",
+		"@thi.ng/pixel": "^6.1.20"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.42.3",
