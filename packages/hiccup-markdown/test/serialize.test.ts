@@ -98,7 +98,7 @@ This is a test: **I am strong and _italic_**...
 My magic number is: 42
 
 \`\`\`ts
-\import { serialize } from "@thi.ng/hiccup-markdown";
+import { serialize } from "@thi.ng/hiccup-markdown";
 \`\`\`
 
 - foo

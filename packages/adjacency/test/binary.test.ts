@@ -10,6 +10,7 @@ const edges: Edge[] = [
 
 test("adjacency bitmatrix directed", () => {
 	const m = defAdjBitMatrix(6, edges, false);
+	// eslint-disable-next-line no-useless-spread
 	expect([...m.mat.data.slice(0, 6)]).toEqual([
 		0b0100_0000, 0, 0b1001_0000, 0, 0, 0b0000_1000,
 	]);
@@ -35,6 +36,7 @@ test("adjacency bitmatrix directed", () => {
 
 test("adjacency bitmatrix undirected", () => {
 	const m = defAdjBitMatrix(6, edges, true);
+	// eslint-disable-next-line no-useless-spread
 	expect([...m.mat.data.slice(0, 6)]).toEqual([
 		0b0110_0000, 0b1000_0000, 0b1001_0000, 0b0010_0000, 0b0000_0100,
 		0b0000_1000,

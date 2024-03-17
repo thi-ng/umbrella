@@ -13,6 +13,7 @@ test("write", () => {
 	expect([...o.write(0xdecafbad, 16).buffer]).toEqual([
 		0xff, 0xfe, 0xfb, 0xad, 0, 0, 0, 0,
 	]);
+	// eslint-disable-next-line no-useless-spread
 	expect([...o.write(0xdecafbad, 32).buffer.slice(0, 8)]).toEqual([
 		0xff, 0xfe, 0xfb, 0xad, 0xde, 0xca, 0xfb, 0xad,
 	]);

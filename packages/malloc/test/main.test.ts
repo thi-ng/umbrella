@@ -272,6 +272,7 @@ test("realloc", () => {
 	// enlage a again, but need to move after b
 	const a2 = pool.realloc(a, 65);
 	expect(a2).toBe(b + 16);
+	// eslint-disable-next-line no-useless-spread
 	expect([...p.u8.slice(a2, a2 + 9)]).toEqual([
 		0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0,
 	]);

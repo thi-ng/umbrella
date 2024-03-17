@@ -2,6 +2,7 @@ import { expect, test } from "bun:test";
 import * as ti from "../src/index.js";
 
 test("butLast", () => {
+	/* eslint-disable no-useless-spread */
 	expect([...ti.butLast([])]).toEqual([]);
 	expect([...ti.butLast([1])]).toEqual([]);
 	expect([...ti.butLast([1, 2])]).toEqual([1]);

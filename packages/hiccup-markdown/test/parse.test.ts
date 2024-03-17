@@ -530,7 +530,7 @@ test("sub/sup", () => {
 
 test("table", () => {
 	check(
-		`| col1 | col2 |\n| :-- | --: |\n| row1a | row1b |\n| _row2a_ | **row2b** |\n| \`[[page id\|title]]\` | \`\\\`\`   |`,
+		"| col1 | col2 |\n| :-- | --: |\n| row1a | row1b |\n| _row2a_ | **row2b** |\n| `[[page id|title]]` | `\\``   |",
 		[
 			[
 				"table",

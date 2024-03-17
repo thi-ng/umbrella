@@ -3,13 +3,13 @@ import { keyPermutations } from "../src/index.js";
 
 test("basic", () => {
 	expect(
-		new Set([
-			...keyPermutations({
+		new Set(
+			keyPermutations({
 				a: [1, 2],
 				b: [true, false],
 				c: ["X", "Y"],
-			}),
-		])
+			})
+		)
 	).toEqual(
 		new Set([
 			{ a: 1, b: true, c: "X" },

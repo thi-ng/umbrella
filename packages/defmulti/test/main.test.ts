@@ -186,7 +186,7 @@ test("dependencies", () => {
 	a.isa("b", "a");
 	a.isa("c", "b");
 	a.isa("e", "b");
-	expect(new Set([...a.dependencies()])).toEqual(
+	expect(new Set(a.dependencies())).toEqual(
 		new Set([
 			["b", "a"],
 			["c", "b"],
