@@ -8,8 +8,7 @@ const nextSubgraphID = () => "cluster" + nextID++;
 
 const wrapQ = (x: any) => `"${x}"`;
 
-const escape = (x: any) =>
-	String(x).replace(/\"/g, `\\"`).replace(/\n/g, "\\n");
+const escape = (x: any) => String(x).replace(/"/g, `\\"`).replace(/\n/g, "\\n");
 
 const formatGraphAttribs = (attribs: Partial<GraphAttribs>, acc: string[]) => {
 	for (let a in attribs) {
