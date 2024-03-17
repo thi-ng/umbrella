@@ -155,7 +155,7 @@ const $gvec4 = <T extends Type>(
 			? isVec(xs[1])
 				? xs[0].type[0] + xs[1].type[0]
 				: "vn"
-			: $info(xs, ["n", "n", , "vnn"])
+			: $info(xs, ["n", "n", undefined, "vnn"])
 	);
 
 const $gmat = <T extends Type>(
@@ -322,7 +322,7 @@ export function mat3(x: Vec3Term, y: Vec3Term, z: Vec3Term): Lit<"mat3">;
 // prettier-ignore
 export function mat3(a: NumericF, b: NumericF, c: NumericF, d: NumericF, e: NumericF, f: NumericF, g: NumericF, h: NumericF, i: NumericF): Lit<"mat3">;
 export function mat3(...xs: any[]): Lit<"mat3"> {
-	return $gmat(M3, ["n", "n", , "vvv"], xs);
+	return $gmat(M3, ["n", "n", undefined, "vvv"], xs);
 }
 
 export function mat4(): Lit<"mat4">;
@@ -332,7 +332,7 @@ export function mat4(x: Vec4Term, y: Vec4Term, z: Vec4Term, w: Vec4Term): Lit<"m
 // prettier-ignore
 export function mat4(a: NumericF, b: NumericF, c: NumericF, d: NumericF, e: NumericF, f: NumericF, g: NumericF, h: NumericF, i: NumericF, j: NumericF, k: NumericF, l: NumericF, m: NumericF, n: NumericF, o: NumericF, p: NumericF): Lit<"mat4">;
 export function mat4(...xs: any[]): Lit<"mat4"> {
-	return $gmat(M4, ["n", "n", , , "vvvv"], xs);
+	return $gmat(M4, ["n", "n", undefined, undefined, "vvvv"], xs);
 }
 
 export const VEC2_0 = vec2(0);

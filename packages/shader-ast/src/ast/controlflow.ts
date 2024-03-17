@@ -46,9 +46,9 @@ export function forLoop<T extends Type>(init: Sym<T> | undefined, test: Fn<Sym<T
 export function forLoop(...xs: any[]): ForLoop {
 	const [init, test, iter, body] =
 		xs.length === 2
-			? [, xs[0], , xs[1]]
+			? [undefined, xs[0], undefined, xs[1]]
 			: xs.length === 3
-			? [xs[0], xs[1], , xs[2]]
+			? [xs[0], xs[1], undefined, xs[2]]
 			: xs;
 	return {
 		tag: "for",
