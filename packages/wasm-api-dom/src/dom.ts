@@ -45,7 +45,7 @@ const EVENT_MAP: [
 	EventType
 ][] = [
 	[/^drag(end|enter|leave|over|start)|drop$/, "drag", EventType.DRAG],
-	[/^blur|focus(in|out)?$/, , EventType.FOCUS],
+	[/^blur|focus(in|out)?$/, undefined, EventType.FOCUS],
 	[/^change|(before)?input$/, "input", EventType.INPUT],
 	[/^key(down|press|up)$/, "key", EventType.KEY],
 	[

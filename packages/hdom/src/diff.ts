@@ -282,6 +282,7 @@ const extractEquivElements = (edits: any[]) => {
 		val = edits[i + 2];
 		if (isArray(val) && (k = val[1].key) !== undefined) {
 			ek = equiv[k];
+			// eslint-disable-next-line no-sparse-arrays
 			!ek && (equiv[k] = ek = [, ,]);
 			ek[edits[i] + 1] = edits[i + 1];
 		}
