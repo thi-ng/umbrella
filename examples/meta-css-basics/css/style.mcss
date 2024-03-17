@@ -2,6 +2,12 @@
 // see package readme for more details/usage
 // use `yarn css:build` or `yarn css:watch` to transpile to CSS
 
+:root {
+	color1=#fb4
+	color2=#4cf
+	color3=#333
+}
+
 body {
 	system ma3 dark:bg-color-near-black dark:color-light-gray bg-color-light-gray color-dark-gray
 }
@@ -51,7 +57,7 @@ a:hover { dark:color-hot-pink color-dark-pink }
 			pa3
 			{
 				// use --color1 var (defined in index.html) for hover
-				:hover { bg-color(1) }
+				:hover { bg-color(color1) }
 				:first-child { brt3 }
 				:last-child { brb3 }
 			}
@@ -67,7 +73,7 @@ a:hover { dark:color-hot-pink color-dark-pink }
 			ns:h4 pa3
 			{
 				// use --color2 var (defined in index.html) for hover
-				:hover { bg-color(2) }
+				:hover { bg-color(color2) }
 				:first-child { ns:brl3 }
 				:last-child { ns:brr3 }
 			}
@@ -88,7 +94,7 @@ a:hover { dark:color-hot-pink color-dark-pink }
 			db dark:bg-color-dark-gray bg-color-moon-gray no-underline
 			{
 				// use --color3 var (defined in index.html) for hover
-				:hover { color(3) anim:bg-anim(0.25) }
+				:hover { color(color3) anim:bg-anim(0.25) }
 			}
 		}
 	}
