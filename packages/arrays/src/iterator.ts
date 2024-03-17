@@ -19,7 +19,6 @@ export function* arrayIterator<T>(
 	end?: number
 ) {
 	if (!buf) return;
-	start = start;
 	end === undefined && (end = buf.length);
 	const step = start <= end ? 1 : -1;
 	for (; start !== end; start += step) {
