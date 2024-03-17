@@ -8,7 +8,7 @@ export const PROC_TAGS: { [id: string]: string } = {
 };
 
 /** @internal */
-export const RE_TAG = /^([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?$/;
+export const RE_TAG = /^([^\s.#]+)(?:#([^\s.#]+))?(?:\.([^\s#]+))?$/;
 
 /** @internal */
 export const COMMENT = "__COMMENT__";
