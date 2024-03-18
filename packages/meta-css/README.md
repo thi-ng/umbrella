@@ -1777,82 +1777,82 @@ Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "Me
 
 #### Svg
 
-- `fill-color-black` (#000)
-- `fill-color-blue` (#357edd)
-- `fill-color-current` (currentcolor)
-- `fill-color-dark-blue` (#00449e)
-- `fill-color-dark-gray` (#333)
-- `fill-color-dark-green` (#137752)
-- `fill-color-dark-pink` (#d5008f)
-- `fill-color-dark-red` (#e7040f)
-- `fill-color-gold` (#ffb700)
-- `fill-color-gray` (#777)
-- `fill-color-green` (#19a974)
-- `fill-color-hot-pink` (#ff41b4)
-- `fill-color-light-blue` (#96ccff)
-- `fill-color-light-gray` (#eee)
-- `fill-color-light-green` (#9eebcf)
-- `fill-color-light-pink` (#ffa3d7)
-- `fill-color-light-purple` (#a463f2)
-- `fill-color-light-red` (#ff725c)
-- `fill-color-light-silver` (#aaa)
-- `fill-color-light-yellow` (#fbf1a9)
-- `fill-color-lightest-blue` (#cdecff)
-- `fill-color-mid-gray` (#555)
-- `fill-color-moon-gray` (#ccc)
-- `fill-color-navy` (#001b44)
-- `fill-color-near-black` (#111)
-- `fill-color-near-white` (#f4f4f4)
-- `fill-color-orange` (#ff6300)
-- `fill-color-pink` (#ff80cc)
-- `fill-color-purple` (#5e2ca5)
-- `fill-color-red` (#ff4136)
-- `fill-color-silver` (#999)
-- `fill-color-transparent` (transparent)
-- `fill-color-washed-blue` (#f6fffe)
-- `fill-color-washed-green` (#e8fdf5)
-- `fill-color-washed-red` (#ffdfdf)
-- `fill-color-washed-yellow` (#fffceb)
-- `fill-color-white` (#fff)
-- `fill-color-yellow` (#ffd700)
-- `stroke-color-black` (#000)
-- `stroke-color-blue` (#357edd)
-- `stroke-color-current` (currentcolor)
-- `stroke-color-dark-blue` (#00449e)
-- `stroke-color-dark-gray` (#333)
-- `stroke-color-dark-green` (#137752)
-- `stroke-color-dark-pink` (#d5008f)
-- `stroke-color-dark-red` (#e7040f)
-- `stroke-color-gold` (#ffb700)
-- `stroke-color-gray` (#777)
-- `stroke-color-green` (#19a974)
-- `stroke-color-hot-pink` (#ff41b4)
-- `stroke-color-light-blue` (#96ccff)
-- `stroke-color-light-gray` (#eee)
-- `stroke-color-light-green` (#9eebcf)
-- `stroke-color-light-pink` (#ffa3d7)
-- `stroke-color-light-purple` (#a463f2)
-- `stroke-color-light-red` (#ff725c)
-- `stroke-color-light-silver` (#aaa)
-- `stroke-color-light-yellow` (#fbf1a9)
-- `stroke-color-lightest-blue` (#cdecff)
-- `stroke-color-mid-gray` (#555)
-- `stroke-color-moon-gray` (#ccc)
-- `stroke-color-navy` (#001b44)
-- `stroke-color-near-black` (#111)
-- `stroke-color-near-white` (#f4f4f4)
-- `stroke-color-orange` (#ff6300)
-- `stroke-color-pink` (#ff80cc)
-- `stroke-color-purple` (#5e2ca5)
-- `stroke-color-red` (#ff4136)
-- `stroke-color-silver` (#999)
-- `stroke-color-transparent` (transparent)
-- `stroke-color-washed-blue` (#f6fffe)
-- `stroke-color-washed-green` (#e8fdf5)
-- `stroke-color-washed-red` (#ffdfdf)
-- `stroke-color-washed-yellow` (#fffceb)
-- `stroke-color-white` (#fff)
-- `stroke-color-yellow` (#ffd700)
+- `fill-black` (#000)
+- `fill-blue` (#357edd)
+- `fill-current` (currentcolor)
+- `fill-dark-blue` (#00449e)
+- `fill-dark-gray` (#333)
+- `fill-dark-green` (#137752)
+- `fill-dark-pink` (#d5008f)
+- `fill-dark-red` (#e7040f)
+- `fill-gold` (#ffb700)
+- `fill-gray` (#777)
+- `fill-green` (#19a974)
+- `fill-hot-pink` (#ff41b4)
+- `fill-light-blue` (#96ccff)
+- `fill-light-gray` (#eee)
+- `fill-light-green` (#9eebcf)
+- `fill-light-pink` (#ffa3d7)
+- `fill-light-purple` (#a463f2)
+- `fill-light-red` (#ff725c)
+- `fill-light-silver` (#aaa)
+- `fill-light-yellow` (#fbf1a9)
+- `fill-lightest-blue` (#cdecff)
+- `fill-mid-gray` (#555)
+- `fill-moon-gray` (#ccc)
+- `fill-navy` (#001b44)
+- `fill-near-black` (#111)
+- `fill-near-white` (#f4f4f4)
+- `fill-orange` (#ff6300)
+- `fill-pink` (#ff80cc)
+- `fill-purple` (#5e2ca5)
+- `fill-red` (#ff4136)
+- `fill-silver` (#999)
+- `fill-transparent` (transparent)
+- `fill-washed-blue` (#f6fffe)
+- `fill-washed-green` (#e8fdf5)
+- `fill-washed-red` (#ffdfdf)
+- `fill-washed-yellow` (#fffceb)
+- `fill-white` (#fff)
+- `fill-yellow` (#ffd700)
+- `stroke-black` (#000)
+- `stroke-blue` (#357edd)
+- `stroke-current` (currentcolor)
+- `stroke-dark-blue` (#00449e)
+- `stroke-dark-gray` (#333)
+- `stroke-dark-green` (#137752)
+- `stroke-dark-pink` (#d5008f)
+- `stroke-dark-red` (#e7040f)
+- `stroke-gold` (#ffb700)
+- `stroke-gray` (#777)
+- `stroke-green` (#19a974)
+- `stroke-hot-pink` (#ff41b4)
+- `stroke-light-blue` (#96ccff)
+- `stroke-light-gray` (#eee)
+- `stroke-light-green` (#9eebcf)
+- `stroke-light-pink` (#ffa3d7)
+- `stroke-light-purple` (#a463f2)
+- `stroke-light-red` (#ff725c)
+- `stroke-light-silver` (#aaa)
+- `stroke-light-yellow` (#fbf1a9)
+- `stroke-lightest-blue` (#cdecff)
+- `stroke-mid-gray` (#555)
+- `stroke-moon-gray` (#ccc)
+- `stroke-navy` (#001b44)
+- `stroke-near-black` (#111)
+- `stroke-near-white` (#f4f4f4)
+- `stroke-orange` (#ff6300)
+- `stroke-pink` (#ff80cc)
+- `stroke-purple` (#5e2ca5)
+- `stroke-red` (#ff4136)
+- `stroke-silver` (#999)
+- `stroke-transparent` (transparent)
+- `stroke-washed-blue` (#f6fffe)
+- `stroke-washed-green` (#e8fdf5)
+- `stroke-washed-red` (#ffdfdf)
+- `stroke-washed-yellow` (#fffceb)
+- `stroke-white` (#fff)
+- `stroke-yellow` (#ffd700)
 
 #### Text align
 
@@ -2064,7 +2064,7 @@ Assigns an adjusted version of a `def-rgb()`-defined color to given CSS property
 - **lum**: in percent
 - **alpha**: in [0,1] range
 
-Defines an hsl() color variable quad with a common base name
+Defines a hsl() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-hsl()` to create derived versions from this base color.
 
 ##### `def-lch(name, luma, chroma, hue, alpha)`
 
@@ -2074,7 +2074,7 @@ Defines an hsl() color variable quad with a common base name
 - **hue**: in degrees
 - **alpha**: in [0,1] range
 
-Defines a lch() color variable quad with a common base name
+Defines a lch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-lch()` to create derived versions from this base color.
 
 ##### `def-oklch(name, luma, chroma, hue, alpha)`
 
@@ -2084,7 +2084,7 @@ Defines a lch() color variable quad with a common base name
 - **hue**: in degrees
 - **alpha**: in [0,1] range
 
-Defines a oklch() color variable quad with a common base name
+Defines a oklch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-oklch()` to create derived versions from this base color.
 
 ##### `def-rgb(name, red, green, blue, alpha)`
 
@@ -2094,7 +2094,7 @@ Defines a oklch() color variable quad with a common base name
 - **blue**: [0,255] range
 - **alpha**: in [0,1] range
 
-Defines a rgb() color variable quad with a common base name
+Defines a rgb() color variable with given name and additional derived vars for each channel (e.g. `--name-red`). Use `adjust-rgb()` to create derived versions from this base color.
 
 #### Colors
 
@@ -2176,7 +2176,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.84 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.83 KB
 
 ## Dependencies
 
