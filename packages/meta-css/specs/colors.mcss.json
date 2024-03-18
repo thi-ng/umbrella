@@ -87,14 +87,14 @@
 		},
 		{
 			"doc": { "group": "svg", "desc": "<v>" },
-			"name": "<var>-color-<k>",
+			"name": "<var>-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "palette",
 			"vars": ["fill-stroke"]
 		},
 		{
 			"doc": { "group": "svg", "desc": "<v>" },
-			"name": "<var>-color-<k>",
+			"name": "<var>-<k>",
 			"props": { "<var>": "<v>" },
 			"values": "grays",
 			"vars": ["fill-stroke"]

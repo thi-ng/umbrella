@@ -3,7 +3,7 @@
 		{
 			"doc": {
 				"group": "color definitions",
-				"desc": "Defines a rgb() color variable quad with a common base name",
+				"desc": "Defines a rgb() color variable with given name and additional derived vars for each channel (e.g. `--name-red`). Use `adjust-rgb()` to create derived versions from this base color.",
 				"args": [
 					"name: variable name (without `--` prefix)",
 					"red: [0,255] range",
@@ -15,8 +15,8 @@
 			"name": "def-rgb",
 			"props": {
 				"--{0}-red": "{1}",
-				"--{0}-green": "{2}%",
-				"--{0}-blue": "{3}%",
+				"--{0}-green": "{2}",
+				"--{0}-blue": "{3}",
 				"--{0}-alpha": "{4}",
 				"--{0}": "rgb(var(--{0}-red) var(--{0}-green) var(--{0}-blue)/var(--{0}-alpha))"
 			}
@@ -42,7 +42,7 @@
 		{
 			"doc": {
 				"group": "color definitions",
-				"desc": "Defines an hsl() color variable quad with a common base name",
+				"desc": "Defines a hsl() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-hsl()` to create derived versions from this base color.",
 				"args": [
 					"name: variable name (without `--` prefix)",
 					"hue: in degrees",
@@ -81,7 +81,7 @@
 		{
 			"doc": {
 				"group": "color definitions",
-				"desc": "Defines a lch() color variable quad with a common base name",
+				"desc": "Defines a lch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-lch()` to create derived versions from this base color.",
 				"args": [
 					"name: variable name",
 					"luma: in percent",
@@ -120,7 +120,7 @@
 		{
 			"doc": {
 				"group": "color definitions",
-				"desc": "Defines a oklch() color variable quad with a common base name",
+				"desc": "Defines a oklch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-oklch()` to create derived versions from this base color.",
 				"args": [
 					"name: variable name",
 					"luma: in percent",
