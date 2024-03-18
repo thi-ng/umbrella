@@ -44,7 +44,16 @@ const BASE_DIR = "..";
 const SEP = "~~";
 
 // invalid / misspelled package names to exclude
-const IGNORE = new Set(["all", "main", "make-example", "snowpack"]);
+const IGNORE = new Set([
+	"all",
+	"main",
+	"make-example",
+	"snowpack",
+	"geom-mesh",
+	"geom-rmesh",
+	"hdom-tachyons",
+	"rdom-atom",
+]);
 
 const BUILD = new Set([
 	"yarn.lock",
@@ -209,8 +218,8 @@ total releases:       ${releases}`
 );
 
 const NUM_PKG = Object.keys(commitsByPackage).length;
-const PKG_WIDTH = 110;
-const WIDTH = ((MAX_DATE - MIN_DATE) / DAY) * 1.5 + PKG_WIDTH;
+const PKG_WIDTH = 90;
+const WIDTH = ((MAX_DATE - MIN_DATE) / DAY) * 1.2 + PKG_WIDTH;
 const HEIGHT = NUM_PKG * 10 + 20;
 
 /**
@@ -241,6 +250,7 @@ const timeLineLabels = () =>
 			{},
 			line([x, 0], [x, NUM_PKG * 10 + 20], {
 				stroke: "#999",
+				"stroke-width": 0.5,
 				"stroke-dasharray": 1,
 			}),
 			text([x + 5, 8], `${d.getFullYear()}-${Z2(d.getMonth() + 1)}`)
@@ -258,7 +268,7 @@ const packageCommits = (i: number, pkg: string) =>
 	group(
 		{
 			transform: `translate(0, ${(i + 2) * 10})`,
-			"stroke-width": 2,
+			"stroke-width": 1,
 		},
 		text([0, 8], pkg, { stroke: "none" }),
 		map((commit) => {
