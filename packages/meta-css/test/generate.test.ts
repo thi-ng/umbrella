@@ -84,3 +84,30 @@ test("template multiple params", () => {
 		)
 	).toEqual({ test: { "--a": "{0}rem", "--b": "{1}s", __arity: 2 } });
 });
+
+test("template unit alias", () => {
+	expect(
+		expandTemplateSpec(
+			{},
+			{
+				name: "anim-delay",
+				props: "animation-delay",
+				unit: "second",
+			},
+			{},
+			NULL_LOGGER
+		)
+	).toEqual({ "anim-delay": { __arity: 1, "animation-delay": "{0}s" } });
+	expect(
+		expandTemplateSpec(
+			{},
+			{
+				name: "bg",
+				props: "background-image",
+				unit: "url",
+			},
+			{},
+			NULL_LOGGER
+		)
+	).toEqual({ bg: { __arity: 1, "background-image": "url({0})" } });
+});

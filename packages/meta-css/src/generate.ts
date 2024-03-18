@@ -66,10 +66,10 @@ export const UNITS: Record<string, Fn<any, string>> = {
 	"%": percent,
 };
 
-export const TEMPLATE_UNITS: Record<string, Fn<any, string>> = {
-	percent: (x) => `${x}%`,
-	second: (x) => `${x}s`,
-	url: (x) => `url(${x})`,
+export const TEMPLATE_UNITS: IObjectOf<string> = {
+	percent: "{0}%",
+	second: "{0}s",
+	url: "url({0})",
 };
 
 export const VARIATIONS: IObjectOf<string[]> = {
@@ -326,7 +326,7 @@ const __value = (x: NumOrString, unitID?: string) => {
 
 /** @internal */
 const __templateValue = (unitID?: string) =>
-	"{0}" + (unitID ? TEMPLATE_UNITS[unitID] || unitID : "");
+	unitID ? TEMPLATE_UNITS[unitID] || "{0}" + unitID : "{0}";
 
 /** @internal */
 const __withVariations = (
