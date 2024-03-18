@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/random-fxhash",
-	"version": "0.3.45",
+	"version": "0.3.46",
 	"description": "@thi.ng/random compatible wrapper & utilities for fxhash's PRNG",
 	"type": "module",
 	"module": "./index.js",
@@ -38,7 +38,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.30",
 		"@thi.ng/base-n": "^2.7.8",
-		"@thi.ng/random": "^3.6.38"
+		"@thi.ng/random": "^3.6.39"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.42.3",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-18T08:40:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.1.23](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.1.23) (2024-03-18)
+
+#### ♻️ Refactoring
+
+- minor update regexp ([c2eb896](https://github.com/thi-ng/umbrella/commit/c2eb896))
 
 ## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.1.0) (2023-12-09)
 

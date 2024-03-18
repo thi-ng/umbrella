@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-18T08:40:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.0.65](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@3.0.65) (2024-03-18)
+
+#### ♻️ Refactoring
+
+- minor update ([ecbab8f](https://github.com/thi-ng/umbrella/commit/ecbab8f))
 
 ### [3.0.31](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@3.0.31) (2023-11-09)
 
