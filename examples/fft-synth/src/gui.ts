@@ -30,7 +30,7 @@ export const gui = new IMGUI({
 	theme: {
 		...DEFAULT_THEME,
 		globalBg: "#ccc",
-		font: "10px Inconsolata",
+		font: "10px 'IBM Plex Mono'",
 		charWidth: 5,
 	},
 });
