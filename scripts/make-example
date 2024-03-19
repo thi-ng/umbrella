@@ -52,7 +52,8 @@ cat << EOF > "$MODULE"/css/custom.mcss.json
 	"tables": {},
 	"vars": {},
 	"decls": [],
-	"specs": []
+	"specs": [],
+	"templates": [],
 }
 EOF
 
@@ -125,6 +126,7 @@ cat << EOF > "$MODULE"/index.html
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>$1 · @thi.ng/umbrella</title>
 	<link href="/css/style.css" rel="stylesheet">
+	<script data-goatcounter="https://thing.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 	<div id="app"></div>
