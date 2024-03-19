@@ -28,7 +28,6 @@ import {
 	ditherWith,
 	orderedDither,
 } from "@thi.ng/pixel-dither";
-import { resolve } from "@thi.ng/resolve-map";
 import { type ISubscription, type KeyStreams } from "@thi.ng/rstream";
 import {
 	DIN_A3,
@@ -327,67 +326,4 @@ export const PAPER_SIZES = {
 
 export type PaperSize = Keys<typeof PAPER_SIZES>;
 
-export interface Theme {
-	geom: {
-		psize: number;
-	};
-	button: {
-		base: string;
-		large: string;
-		small: string;
-		col2: string;
-		col4: string;
-	};
-	fileButton: IObjectOf<{ root: string; button: string }>;
-	sideBar: {
-		root: string;
-		title: string;
-		section: string;
-		layerParam: string;
-		imageParam: string;
-		control: string;
-		col2: string;
-		col4: string;
-	};
-	overlays: {
-		stats: string;
-	};
-	root: string;
-}
-
-export const THEME = resolve<Theme>({
-	root: "vh-100 flex f7",
-	button: {
-		base: "dib h2 b--black bg-dark-gray white",
-		large: ({ base }: Theme["button"]) => base + " w-100",
-		small: ({ base }: Theme["button"]) => base + " w-50",
-		col2: "@/sideBar/col2",
-		col4: "@/sideBar/col4",
-	},
-	fileButton: {
-		large: {
-			root: "relative overflow-hidden",
-			button: "@/button/large",
-		},
-		small: {
-			root: "w-50 relative overflow-hidden",
-			button: "@/button/large",
-		},
-	},
-	sideBar: {
-		root: "w5 bg-near-black vh-100 overflow-y-scroll",
-		title: "ma2 white",
-		section: "bg-gray white bb b--dark-gray pa2",
-		control: "db w-100 mb1",
-		layerParam: "dib w-25 mb1",
-		imageParam: "@layerParam",
-		col2: "w-50",
-		col4: "w-25",
-	},
-	overlays: {
-		stats: "fixed z1 bottom-0 right-0 ma3 pa2 bg-black-60 white",
-	},
-	geom: {
-		psize: 1.41,
-	},
-});
+export const PSIZE = 1.41;

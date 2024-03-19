@@ -7,9 +7,8 @@ import {
 } from "@thi.ng/hiccup-html";
 import { $list } from "@thi.ng/rdom";
 import {
-	THEME,
-	TRACE_MODE_ORDER,
 	TRACE_MODES,
+	TRACE_MODE_ORDER,
 	type LayerParam,
 	type TraceMode,
 } from "../api";
@@ -51,9 +50,8 @@ const layerControlsForID = (layerID: string) => {
 		max: number,
 		attribs?: Partial<InputNumericAttribs>
 	) =>
-		inputNumber({
+		inputNumber(".col4", {
 			onchange: onchange(pid, true),
-			class: THEME.sideBar.col4,
 			step: 1,
 			min,
 			max,
@@ -62,9 +60,11 @@ const layerControlsForID = (layerID: string) => {
 			value: ctrls[pid],
 		});
 	return div(
-		{ class: THEME.sideBar.section },
+		".section",
+		{},
 		div(
-			{ class: THEME.sideBar.control },
+			".control",
+			{},
 			button("col4", () => removeLayer(layerID), "-", "remove layer"),
 			button(
 				"col4",
@@ -85,8 +85,7 @@ const layerControlsForID = (layerID: string) => {
 			"trace mode",
 			{ label: (x) => TRACE_MODES[<TraceMode>x].label }
 		),
-		inputColor({
-			class: THEME.sideBar.control,
+		inputColor(".control", {
 			oninput: onchange("color"),
 			value: ctrls.color,
 		}),

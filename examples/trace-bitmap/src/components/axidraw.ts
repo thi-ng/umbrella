@@ -1,30 +1,28 @@
 import { div, inputNumber } from "@thi.ng/hiccup-html";
-
-import { PAPER_SIZES, THEME } from "../api";
-import { dropdown, title } from "./common";
-import { fromView, syncRAF } from "@thi.ng/rstream";
+import { fromView } from "@thi.ng/rstream";
+import { PAPER_SIZES } from "../api";
 import { DB } from "../state/atom";
+import { dropdown, title } from "./common";
 
 export const axidrawControls = div(
 	{},
 	title("Plotter"),
 	div(
-		{ class: THEME.sideBar.section },
+		".section",
+		{},
 		dropdown(
 			Object.keys(PAPER_SIZES),
 			["axi", "paperSize"],
 			() => {},
 			"paper size"
 		),
-		inputNumber({
-			class: THEME.sideBar.layerParam,
+		inputNumber(".layerparam", {
 			min: 0,
 			max: 1000,
 			title: "max points per brushstroke",
 			value: fromView(DB, { path: ["axi", "maxPoints"] }),
 		}),
-		inputNumber({
-			class: THEME.sideBar.layerParam,
+		inputNumber(".layerparam", {
 			min: 0,
 			max: 1000,
 			title: "max dist (in mm) per brushstroke",

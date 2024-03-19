@@ -1,5 +1,5 @@
 import { div } from "@thi.ng/hiccup-html";
-import { PRESETS, THEME, type PresetID } from "../api";
+import { PRESETS, type PresetID } from "../api";
 import { applyPresetForID, loadPreset, savePreset } from "../state/presets";
 import { button, dropdown, fileButton, title } from "./common";
 
@@ -14,13 +14,14 @@ export const presetControls = div(
 				onchange: (e) =>
 					loadPreset((<HTMLInputElement>e.target).files![0]),
 			},
-			THEME.fileButton.small,
+			"small",
 			"Load preset"
 		),
 		button("small", savePreset, "Save Preset")
 	),
 	div(
-		{ class: THEME.sideBar.section },
+		".section",
+		{},
 		dropdown(
 			Object.keys(PRESETS),
 			["preset"],

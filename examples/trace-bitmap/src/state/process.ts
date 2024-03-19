@@ -28,7 +28,7 @@ import { keep, map } from "@thi.ng/transducers";
 import { mulN2, type Vec, type VecPair } from "@thi.ng/vectors";
 import {
 	DITHER_MODES,
-	THEME,
+	PSIZE,
 	TRACE_MODES,
 	type AxiDrawConfig,
 	type LayerParams,
@@ -204,7 +204,7 @@ export const scene = sync({
 							? withAttribs(
 									child,
 									{
-										size: strokeWeight * THEME.geom.psize,
+										size: strokeWeight * PSIZE,
 									},
 									false
 							  )

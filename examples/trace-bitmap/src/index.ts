@@ -1,10 +1,9 @@
 import { exposeGlobal } from "@thi.ng/expose";
-import { div } from "@thi.ng/hiccup-html";
+import { div, main } from "@thi.ng/hiccup-html";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
 import { LOGGER } from "@thi.ng/rstream";
-import { THEME } from "./api";
 import { axidrawControls } from "./components/axidraw";
 import { exportControls } from "./components/export";
 import { imageControls } from "./components/image";
@@ -26,12 +25,11 @@ import { visualizeTopology } from "./state/viz";
 ////////////////////////////////////////////////////////////////////////////////
 
 $compile(
-	div(
-		{ class: THEME.root },
+	main(
+		{},
 		div(
-			{
-				class: THEME.sideBar.root,
-			},
+			".sidebar",
+			{},
 			imageControls,
 			presetControls,
 			layerControls,
@@ -64,4 +62,3 @@ window.addEventListener("keydown", (e) => {
 // Only for dev builds:
 // Expose global vars to be able to inspect via console
 exposeGlobal("DB", DB);
-exposeGlobal("THEME", THEME);

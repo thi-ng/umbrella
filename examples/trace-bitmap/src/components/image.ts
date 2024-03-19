@@ -1,7 +1,7 @@
 import { div, inputColor, inputNumber } from "@thi.ng/hiccup-html";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { fromView } from "@thi.ng/rstream";
-import { DITHER_MODES, THEME, type DitherMode, type ImageParam } from "../api";
+import { DITHER_MODES, type DitherMode, type ImageParam } from "../api";
 import { DB } from "../state/atom";
 import { setCanvasBackground } from "../state/canvas";
 import {
@@ -18,8 +18,7 @@ const param = (
 	max: number,
 	step = 0.05
 ) =>
-	inputNumber({
-		class: THEME.sideBar.imageParam,
+	inputNumber(".imgparam", {
 		min,
 		max,
 		step,
@@ -33,21 +32,18 @@ export const imageControls = div(
 	title("Image"),
 	fileButton(
 		{
-			accept: [
-				...MIME_IMAGE_COMMON,
-				"image/x-portable-bitmap",
-				"image/x-portable-pixmap",
-				"image/x-portable-graymap",
-			],
+			accept: [...MIME_IMAGE_COMMON, ".pbm", ".pgm", ".ppm"],
 			onchange: (e) => loadImage((<HTMLInputElement>e.target).files![0]),
 		},
-		THEME.fileButton.large,
+		"large",
 		"Load image"
 	),
 	div(
-		{ class: THEME.sideBar.section },
+		".section",
+		{},
 		div(
-			{ class: THEME.sideBar.control },
+			".control",
+			{},
 			button("col2", () => rotateImage(-1), "-90°", "rotate CCW"),
 			button("col2", () => rotateImage(1), "+90°", "rotate CW")
 		),
@@ -61,8 +57,7 @@ export const imageControls = div(
 			(x) => setImageDither(<DitherMode>x),
 			"dither"
 		),
-		inputColor({
-			class: THEME.sideBar.control,
+		inputColor(".control", {
 			title: "background",
 			value: fromView(DB, { path: ["canvas", "bg"] }),
 			oninput: (e) =>

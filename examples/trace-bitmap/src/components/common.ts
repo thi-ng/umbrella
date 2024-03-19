@@ -1,8 +1,7 @@
-import type { Fn, Keys1 } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import {
 	button as $button,
-	div,
 	h3,
 	inputFile,
 	type InputFileAttribs,
@@ -13,11 +12,9 @@ import {
 	type ISubscribable,
 	type ISubscription,
 } from "@thi.ng/rstream";
-import { THEME, type Theme } from "../api";
 import { DB } from "../state/atom";
 
-export const title = (title: string) =>
-	h3({ class: THEME.sideBar.title }, title);
+export const title = (title: string) => h3({}, title);
 
 /**
  * File import button UI component
@@ -28,20 +25,9 @@ export const title = (title: string) =>
  */
 export const fileButton = (
 	attribs: Partial<InputFileAttribs>,
-	theme: Theme["fileButton"]["_"],
+	size: "small" | "large",
 	title: string
-) =>
-	div(
-		{ class: theme.root },
-		$button(
-			{ class: theme.button },
-			inputFile({
-				class: "absolute o-0",
-				...attribs,
-			}),
-			title
-		)
-	);
+) => $button({ class: `filebutton ${size}` }, inputFile(attribs), title);
 
 export const smallButton = (
 	onclick: EventListener,
@@ -50,7 +36,7 @@ export const smallButton = (
 ) => button("small", onclick, label, title);
 
 export const button = (
-	type: Keys1<Theme, "button">,
+	type: "base" | "large" | "small" | "col2" | "col4",
 	onclick: EventListener,
 	label: string,
 	title = "",
@@ -58,7 +44,7 @@ export const button = (
 ) =>
 	$button(
 		{
-			class: THEME.button[type],
+			class: type,
 			onclick,
 			disabled,
 			title,
@@ -79,7 +65,7 @@ export const dropdown = <T = string, S extends string = string>(
 		{
 			...opts,
 			attribs: {
-				class: THEME.sideBar.control,
+				class: "control",
 				onchange: (e) => onchange((<HTMLSelectElement>e.target).value),
 				title,
 			},

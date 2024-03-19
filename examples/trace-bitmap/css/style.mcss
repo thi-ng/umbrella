@@ -1,0 +1,28 @@
+// @thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+
+body { overflow-hidden ma0 pa0 sans-serif }
+
+main { vh-100 flex f7 }
+
+.sidebar {
+	w5 bg-color-near-black vh-100 overflow-y-scroll
+	{
+		h3 { ma2 color-white }
+		.section { bg-color-gray color-white bwb1 border-color-dark-gray pa2 }
+		.control { db w-100 mb1 }
+		.layerparam, .imgparam { dib w-25 mb1 }
+		.col4 { w-25 }
+		.col2 { w-50 }
+	}
+}
+
+button { dib h2 border-color-black bg-color-dark-gray color-white }
+button.small { w-50 }
+button.large { w-100 }
+
+.filebutton { relative overflow-hidden }
+input[type=file] { absolute o-0 }
+
+#stats { fixed z-1 bottom-0 right-0 ma3 pa2 bg-color-black o-60 color-white }
