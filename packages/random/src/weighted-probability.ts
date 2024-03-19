@@ -1,6 +1,6 @@
 import type { FnN } from "@thi.ng/api";
-import type { IRandom } from "./api";
-import { SYSTEM } from "./system";
+import type { IRandom } from "./api.js";
+import { SYSTEM } from "./system.js";
 
 /**
  * Takes a `weight` function and optional {@link IRandom} instance (default:
