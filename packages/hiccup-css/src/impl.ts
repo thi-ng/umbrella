@@ -22,7 +22,9 @@ const NO_SPACES = ":[";
 
 const xfSel = comp<any, string, string>(
 	flatten(),
-	map((x) => (NO_SPACES.indexOf(x.charAt(0)) >= 0 ? x : " " + x))
+	map((x) =>
+		x[0] === "&" ? x.substring(1) : NO_SPACES.includes(x[0]) ? x : " " + x
+	)
 );
 
 const withScope = (xf: Transducer<any, any>, scope: string) =>

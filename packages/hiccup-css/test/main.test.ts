@@ -56,6 +56,21 @@ test("nested", () => {
 	);
 });
 
+test("nested w/ ancestor", () => {
+	expect(css(["a", { b: 1 }, ["&.sel", { b: 2 }]])).toBe(
+		"a.sel{b:2;}a{b:1;}"
+	);
+	expect(css(["a", ["b", { c: 1 }, ["&.sel", { c: 2 }]]])).toBe(
+		"a b.sel{c:2;}a b{c:1;}"
+	);
+	expect(css(["a", "b", { c: 1 }, ["&.sel", { c: 2 }]])).toBe(
+		"a.sel,b.sel{c:2;}a,b{c:1;}"
+	);
+	expect(css(["&.a", ["&.b", {}]])).toBe(".a.b{}");
+	expect(css(["&.a", ["&.b", ":c", {}]])).toBe(".a.b,.a:c{}");
+	expect(css(["&.a", ["&.b", ".c", [":d", {}]]])).toBe(".a.b:d,.a .c:d{}");
+});
+
 test("pretty", () => {
 	expect(
 		css(
