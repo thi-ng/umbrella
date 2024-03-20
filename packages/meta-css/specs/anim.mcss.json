@@ -10,6 +10,10 @@
 			{ "height": 0 }
 		]
 	],
+	"vars": {
+		"anim": ["animation"],
+		"transition": ["transition"]
+	},
 	"specs": [
 		{
 			"doc": {
@@ -31,9 +35,10 @@
 				"group": "animation / transition",
 				"desc": "timing function"
 			},
-			"name": "anim-<v>",
-			"props": "animation-timing-function",
-			"values": ["ease", "ease-in", "ease-out", "ease-in-out", "linear"]
+			"name": "<vid>-<v>",
+			"props": "<var>-timing-function",
+			"values": ["ease", "ease-in", "ease-out", "ease-in-out", "linear"],
+			"vars": ["anim", "transition"]
 		}
 	],
 	"templates": [
@@ -104,6 +109,13 @@
 			},
 			"name": "anim-iter",
 			"props": "animation-iteration-count"
+		},
+		{
+			"doc": {
+				"group": "animation / transition"
+			},
+			"name": "transition",
+			"props": "transition"
 		}
 	]
 }

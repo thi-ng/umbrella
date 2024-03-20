@@ -48,5 +48,27 @@
 			"unit": "rem",
 			"vars": ["s", "e"]
 		}
+	],
+	"templates": [
+		{
+			"doc": {
+				"group": "padding",
+				"desc": "Sets padding to custom size",
+				"args": ["size: incl. units"]
+			},
+			"name": "p<vid>",
+			"props": "padding<var>",
+			"vars": ["a", "h", "v", "t", "r", "b", "l"]
+		},
+		{
+			"doc": {
+				"group": "margin",
+				"desc": "Sets margin to custom size",
+				"args": ["size: incl. units"]
+			},
+			"name": "m<vid>",
+			"props": "margin<var>",
+			"vars": ["a", "h", "v", "t", "r", "b", "l"]
+		}
 	]
 }

@@ -70,5 +70,17 @@
 			"unit": "v<vid>",
 			"vars": ["w", "h"]
 		}
+	],
+	"templates": [
+		{
+			"doc": {
+				"group": "dimensions",
+				"desc": "Set <var> to given value",
+				"args": ["<var>: incl. units"]
+			},
+			"name": "<var>",
+			"props": "<var>",
+			"vars":["w","h"]
+		}
 	]
 }

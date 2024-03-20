@@ -1,6 +1,14 @@
 {
 	"tables": {
-		"align": ["start", "end", "center"]
+		"align": [
+			"start",
+			"end",
+			"center",
+			"space-around",
+			"space-between",
+			"space-evenly",
+			"stretch"
+		]
 	},
 	"vars": {
 		"align": [""],

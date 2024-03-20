@@ -21,6 +21,44 @@
 				"nw": "top left",
 				"center": "center"
 			}
+		},
+		{
+			"name": "bg-repeat",
+			"props": "background-repeat<k>",
+			"values": {
+				"-x": "repeat-x",
+				"-y": "repeat-y",
+				"": "repeat",
+				"space": "space",
+				"round": "round",
+				"none": "no-repeat"
+			}
+		}
+	],
+	"templates": [
+		{
+			"doc": { "group": "background", "args": ["url"] },
+			"name": "bg-image",
+			"props": "background-image",
+			"unit": "url"
+		},
+		{
+			"doc": { "group": "background", "args": ["body"] },
+			"name": "bg-pos",
+			"props": "background-position"
+		},
+		{
+			"doc": { "group": "background", "args": ["body"] },
+			"name": "bg-size",
+			"props": "background-size"
+		},
+		{
+			"doc": { "group": "background", "args": ["radius: incl. units"] },
+			"name": "bg-blur",
+			"props": {
+				"backdrop-filter": "blur({0})",
+				"-webkit-backdrop-filter": "blur({0})"
+			}
 		}
 	]
 }

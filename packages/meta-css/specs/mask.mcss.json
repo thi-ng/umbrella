@@ -1,0 +1,12 @@
+{
+	"templates": [
+		{
+			"doc": {
+				"group": "mask",
+				"args": ["body: definition (e.g. url or gradient)"]
+			},
+			"name": "mask-image",
+			"props": "mask-image"
+		}
+	]
+}
