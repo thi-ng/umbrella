@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { at_keyframes, type Keyframe } from "./keyframes.js";
 
 export interface AnimationOpts {
@@ -62,7 +63,7 @@ export const animation = (
 	opts: Partial<AnimationOpts>,
 	...keyframes: Keyframe[]
 ) => {
-	opts = <any>{
+	const $opts: IObjectOf<any> = {
 		duration: "250ms",
 		name: id,
 		...opts,
@@ -71,10 +72,8 @@ export const animation = (
 		at_keyframes.apply(null, <any>[id, ...keyframes]),
 		[
 			`.${id}`,
-			Object.keys(opts).reduce(
-				(acc: any, k) => (
-					(acc[`animation-${k}`] = (<any>opts)[k]), acc
-				),
+			Object.entries($opts).reduce(
+				(acc: any, [k, v]) => ((acc[`animation-${k}`] = v), acc),
 				{}
 			),
 		],

@@ -30,7 +30,7 @@ const xfSel = comp<any, string, string>(
 const withScope = (xf: Transducer<any, any>, scope: string) =>
 	comp(
 		xf,
-		map((x) => (isString(x) && x.indexOf(" .") == 0 ? x + scope : x))
+		map((x) => (isString(x) && x.startsWith(" .") ? x + scope : x))
 	);
 
 /** @internal */
