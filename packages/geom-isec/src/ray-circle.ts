@@ -2,7 +2,7 @@ import {
 	IntersectionType,
 	type IntersectionResult,
 } from "@thi.ng/geom-api/isec";
-import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dot } from "@thi.ng/vectors/dot";
 import { maddN } from "@thi.ng/vectors/maddn";
 import { magSq } from "@thi.ng/vectors/magsq";
@@ -22,15 +22,24 @@ export const intersectRayCircle = (
 	d = Math.sqrt(d);
 	const a = w + d;
 	const b = w - d;
-	const isec =
+	const isec: [number, number | undefined, Vec[]] | undefined =
 		a >= 0
 			? b >= 0
 				? a > b
-					? [maddN(delta, dir, b, rpos), maddN([], dir, a, rpos)]
-					: [maddN(delta, dir, a, rpos), maddN([], dir, b, rpos)]
-				: [maddN(delta, dir, a, rpos)]
+					? // prettier-ignore
+					  [b, a, [maddN(delta, dir, b, rpos), maddN([], dir, a, rpos)]]
+					: // prettier-ignore
+					  [a, b, [maddN(delta, dir, a, rpos), maddN([], dir, b, rpos)]]
+				: [a, undefined, [maddN(delta, dir, a, rpos)]]
 			: b >= 0
-			? [maddN(delta, dir, b, rpos)]
+			? [b, undefined, [maddN(delta, dir, b, rpos)]]
 			: undefined;
-	return isec ? { type: IntersectionType.INTERSECT, isec } : NONE;
+	return isec
+		? {
+				type: IntersectionType.INTERSECT,
+				alpha: isec[0],
+				beta: isec[1],
+				isec: isec[2],
+		  }
+		: NONE;
 };

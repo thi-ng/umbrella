@@ -76,10 +76,14 @@ export const intersectRayPolylineAll = (
 			res.push([d, maddN2([], dir, d, rpos)]);
 		}
 	}
-	return res.length
-		? {
-				type: IntersectionType.INTERSECT,
-				isec: res.sort((a, b) => a[0] - b[0]).map((x) => x[1]),
-		  }
-		: NONE;
+	if (res.length) {
+		res.sort((a, b) => a[0] - b[0]);
+		return {
+			type: IntersectionType.INTERSECT,
+			isec: res.map((x) => x[1]),
+			alpha: res[0][0],
+			beta: res[res.length - 1][0],
+		};
+	}
+	return NONE;
 };
