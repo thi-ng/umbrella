@@ -584,6 +584,7 @@ const templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
 		.split(/(?<!\\),/g)
 		.map((x) => x.trim().replace("\\,", ","));
 	const spec = specs.templates[tplID];
+	if (!spec) illegalArgs(`unknown template: ${tplID}`);
 	if (vals.length !== spec.__arity)
 		illegalArgs(`template "${tplID}" expected ${spec.__arity} arguments`);
 	return Object.entries(spec).reduce((acc, [k, v]) => {
