@@ -45,6 +45,8 @@ import { vertices } from "./vertices.js";
  * - {@link Rect}
  * - {@link Triangle}
  *
+ * Note: For {@link Ray}, the `t` is interpreted as distance from the ray origin.
+ *
  * @param shape
  * @param t
  */
