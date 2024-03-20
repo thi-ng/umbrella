@@ -53,7 +53,7 @@ cat << EOF > "$MODULE"/css/custom.mcss.json
 	"vars": {},
 	"decls": [],
 	"specs": [],
-	"templates": [],
+	"templates": []
 }
 EOF
 
