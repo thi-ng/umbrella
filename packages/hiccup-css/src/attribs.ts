@@ -1,7 +1,7 @@
 const $ =
 	(op: string) =>
-	(id: string, x: string | number, caseSensitve = false) =>
-		`[${id}${op}="${x}"${caseSensitve ? " i" : ""}]`;
+	(id: string, x: string | number, caseSensitve = true) =>
+		`[${id}${op}="${x}"${caseSensitve ? "" : " i"}]`;
 
 /**
  * Returns attrib selector: `[id]`

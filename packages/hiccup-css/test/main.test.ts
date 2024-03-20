@@ -5,6 +5,11 @@ import {
 	at_import,
 	at_keyframes,
 	at_media,
+	attribContains,
+	attribEq,
+	attribMatches,
+	attribPrefix,
+	attribSuffix,
 	css,
 	rem,
 	setPrecision,
@@ -176,4 +181,17 @@ test("float format", () => {
 			},
 		])
 	).toBe("a{a:.1rem;b:0rem;c:0rem;d:0rem;e:.0001rem;f:-.12rem;}");
+});
+
+test("attrib selectors", () => {
+	expect(css([attribContains("id", "x"), {}])).toBe('[id~="x"]{}');
+	expect(css([attribContains("id", "x", false), {}])).toBe('[id~="x" i]{}');
+	expect(css([attribEq("id", "x"), {}])).toBe('[id="x"]{}');
+	expect(css([attribEq("id", "x", false), {}])).toBe('[id="x" i]{}');
+	expect(css([attribMatches("id", "x"), {}])).toBe('[id*="x"]{}');
+	expect(css([attribMatches("id", "x", false), {}])).toBe('[id*="x" i]{}');
+	expect(css([attribPrefix("id", "x"), {}])).toBe('[id^="x"]{}');
+	expect(css([attribPrefix("id", "x", false), {}])).toBe('[id^="x" i]{}');
+	expect(css([attribSuffix("id", "x"), {}])).toBe('[id$="x"]{}');
+	expect(css([attribSuffix("id", "x", false), {}])).toBe('[id$="x" i]{}');
 });
