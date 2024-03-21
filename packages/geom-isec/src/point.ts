@@ -11,6 +11,15 @@ import { mixN } from "@thi.ng/vectors/mixn";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
 import { vop } from "@thi.ng/vectors/vop";
 
+/**
+ * Returns true if point `p` lies on the line segment `a`, `b`, using `eps` as
+ * tolerance.
+ *
+ * @param p
+ * @param a
+ * @param b
+ * @param eps
+ */
 export const pointInSegment = (
 	p: ReadonlyVec,
 	a: ReadonlyVec,
@@ -23,11 +32,31 @@ export const pointInSegment = (
 		: false;
 };
 
+/**
+ * Returns true if point `p` is inside the circle defined by `pos` and `r`.
+ *
+ * @param p
+ * @param pos
+ * @param r
+ */
 export const pointInCircle = (p: ReadonlyVec, pos: ReadonlyVec, r: number) =>
 	distSq(pos, p) <= r * r;
 
 export const pointInSphere = pointInCircle;
 
+/**
+ * Returns classifier for `p` regarding the circle defined by `pos` and `r`.
+ * Returns -1 if point is outside, 0 if on the boundary (using `eps` as
+ * tolerance) or +1 if inside the circle.
+ *
+ * @remarks
+ * Also see {@link pointInCircle}, {@link pointIn3Circle}.
+ *
+ * @param p
+ * @param pos
+ * @param r
+ * @param eps
+ */
 export const classifyPointInCircle = (
 	p: ReadonlyVec,
 	pos: ReadonlyVec,
@@ -77,9 +106,9 @@ export const pointIn3Circle: FnU4<ReadonlyVec, number> = (
 };
 
 /**
- * Returns positive value if `p` lies inside the sphere passing through a,b,c,d.
- * Returns negative value if `p` is outside and zero if all 5 points are
- * cospherical.
+ * Returns positive value if `p` lies inside the sphere passing through `a`,
+ * `b`, `c`, `d`. Returns a negative value if `p` is outside and zero if all 5
+ * points are cospherical.
  *
  * @remarks
  * Assumes a,b,c,d are in ccw order or else result will be have inverted sign.
@@ -141,6 +170,13 @@ export const pointInCircumCircle: FnU4<ReadonlyVec, boolean> = (a, b, c, d) =>
 		magSq(d) * signedArea2(a, b, c) >
 	0;
 
+/**
+ * Returns true if point `p` is in the triangle defined by `a`, `b`, `c`.
+ * @param p
+ * @param a
+ * @param b
+ * @param c
+ */
 export const pointInTriangle2: FnU4<ReadonlyVec, boolean> = (p, a, b, c) => {
 	const s = clockwise2(a, b, c) ? 1 : -1;
 	return (
@@ -150,6 +186,20 @@ export const pointInTriangle2: FnU4<ReadonlyVec, boolean> = (p, a, b, c) => {
 	);
 };
 
+/**
+ * Returns a classifier for given point `p` with respect to the triangle defined
+ * by `a`, `b`, `c`. Returns -1 if point is outside the triangle, 0 if on the
+ * boundary (using `eps` as tolerance) or +1 if the point is inside.
+ *
+ * @remarks
+ * Also see {@link pointInTriangle2}
+ *
+ * @param p
+ * @param a
+ * @param b
+ * @param c
+ * @param eps
+ */
 export const classifyPointInTriangle2 = (
 	p: ReadonlyVec,
 	a: ReadonlyVec,
@@ -168,6 +218,12 @@ export const classifyPointInTriangle2 = (
 	);
 };
 
+/**
+ * Returns true if point `p` is inside the polygon boundary defined by `pts`.
+ *
+ * @param p
+ * @param pts
+ */
 export const pointInPolygon2 = (p: ReadonlyVec, pts: ReadonlyVec[]) => {
 	const n = pts.length - 1;
 	const px = p[0];
@@ -181,6 +237,18 @@ export const pointInPolygon2 = (p: ReadonlyVec, pts: ReadonlyVec[]) => {
 	return inside;
 };
 
+/**
+ * Helper function for {@link pointInPolygon2} to check point against a single
+ * edge of the polygon boundary.
+ *
+ * @param px
+ * @param py
+ * @param ax
+ * @param ay
+ * @param bx
+ * @param by
+ * @param inside
+ */
 export const classifyPointPolyPair: FnN7 = (px, py, ax, ay, bx, by, inside) =>
 	((ay < py && by >= py) || (by < py && ay >= py)) && (ax <= px || bx <= px)
 		? inside ^ ~~(ax + ((py - ay) / (by - ay)) * (bx - ax) < px)
