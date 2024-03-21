@@ -1,4 +1,5 @@
 import { argMax } from "@thi.ng/arrays";
+import { canvas2d } from "@thi.ng/canvas";
 import { COSINE_GRADIENTS, cosineColor } from "@thi.ng/color";
 import { threadLast } from "@thi.ng/compose";
 import { fiber } from "@thi.ng/fibers";
@@ -20,7 +21,6 @@ import { Sampler } from "@thi.ng/geom-resample";
 import { draw } from "@thi.ng/hiccup-canvas";
 import { clamp, fitClamped, fract, mix } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
-import { $el } from "@thi.ng/rdom";
 import {
 	cycle,
 	iterate,
@@ -95,7 +95,7 @@ const splitPoly = (poly: Polygon, base = 0.5, eps = 0, minArea = 0) => {
 	// compute parametric position of intersection point:
 	// fract() returns fractional part (in case resultng parametric position
 	// falls outside the [0..1] interval)
-	let tb = fract(sampler.closestT(<Vec>isec.isec)! + RND.norm(eps));
+	let tb = fract(sampler.closestT(isec.isec[0])! + RND.norm(eps));
 	// let tb = fract(sampler.closestT(<Vec>isec.isec)! + RND.norm(teps));
 	// ensure `ta` is less than `tb` (swap if needed)...
 	if (tb < ta) [ta, tb] = [tb, ta];
@@ -139,10 +139,7 @@ const tonemap = (poly: Polygon, exp = 0.5) =>
 	);
 
 // create canvas element with attribs
-const canvas = <HTMLCanvasElement>(
-	$el("canvas", { width: 600, height: 600 }, null, document.body)
-);
-const ctx = canvas.getContext("2d")!;
+const { ctx } = canvas2d(600, 600, document.getElementById("app"));
 
 // infinite update loop (will be run as fiber/co-routine)
 function* update() {
@@ -193,7 +190,8 @@ function* update() {
 }
 
 // start execution... by default via requestAnimationFrame()
-fiber(update).run();
+// fiber(update).run();
+fiber(update).runWith((f) => setTimeout(f, 250));
 
 // alternative invocation w/ custom scheduler
 // fiber(update).runWith((f) => setTimeout(f, 300));
