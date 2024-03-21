@@ -255,15 +255,19 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-03-17
+As of: 2024-03-21
 
-| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
-|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bench`](./packages/bench)       | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)       | [changelog](./packages/bench/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/cache`](./packages/cache)       | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)       | [changelog](./packages/cache/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/errors`](./packages/errors)     | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)     | [changelog](./packages/errors/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/meta-css`](./packages/meta-css) | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css) | [changelog](./packages/meta-css/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/router`](./packages/router)     | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)     | [changelog](./packages/router/CHANGELOG.md)   |
+| Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
+|:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom`](./packages/geom)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                     | [changelog](./packages/geom/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-api`](./packages/geom-api)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)             | [changelog](./packages/geom-api/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-clip-poly`](./packages/geom-clip-poly) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly) | [changelog](./packages/geom-clip-poly/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-isec`](./packages/geom-isec)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)           | [changelog](./packages/geom-isec/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-resample`](./packages/geom-resample)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)   | [changelog](./packages/geom-resample/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-voronoi`](./packages/geom-voronoi)     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)     | [changelog](./packages/geom-voronoi/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-css`](./packages/hiccup-css)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)         | [changelog](./packages/hiccup-css/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/meta-css`](./packages/meta-css)             | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)             | [changelog](./packages/meta-css/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/random`](./packages/random)                 | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)                 | [changelog](./packages/random/CHANGELOG.md)         |
 
 ### Fundamentals
 
@@ -570,6 +574,47 @@ Autogenerated documentation (using
 
 ```bash
 yarn doc
+```
+
+### Extracting code examples from readme files & comments
+
+All packages in this repo have prepared infrastructure to extract various code
+examples & snippets from their README files and from comments in the source
+code. Altogether, there're approx. 800 of them in this repo, but currently only
+~15-20% are prepared for extraction so far (it's an ongoing timeconsuming manual
+process to prepare & check each of them, but work is under way!)
+
+The code extraction is handled via [thi.ng/tangle](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle), itself a part of thi.ng/umbrella. You can read more details about this process here:
+
+- [Mastodon post #1](https://mastodon.thi.ng/@toxi/111959275083112668)
+- [Mastodon post #2](https://mastodon.thi.ng/@toxi/112026554577015934)
+- [thi.ng/tangle readme](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle/README.md)
+
+To extract code blocks as source files from readmes:
+
+```bash
+# in the repo root (to process all packages)
+yarn doc:readme
+
+# for a single package only
+(cd packages/<name> && yarn doc:readme)
+```
+
+To extract example code blocks from doc strings (API docs) in source code:
+
+```bash
+# in the repo root (to process all packages)
+yarn tool:tangle
+
+# for a single package only
+(cd packages/<name> && yarn tool:tangle)
+```
+
+In all cases, the extracted files will be saved in each package's `/export`
+folder and can then be run directly via [bun](https://bun.sh):
+
+```bash
+bun packages/arrays/export/topo-sort.ts
 ```
 
 <!-- Furthermore, an experimental [tsdoc](https://github.com/microsoft/tsdoc)-based
