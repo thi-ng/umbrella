@@ -275,6 +275,67 @@ header, footer {
     font-size: 1.25rem;
 }
 ```
+#### Parent selector
+
+Child selectors can use the special `&` prefix to refer to their direct parent
+to form derived selectors, for example:
+
+```js
+import { css, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
+	["#test", { color: "white" },
+		["&.alt", { color: "black" }],
+		["&-alt-bg", { background: "black" }]],
+	{ format: css.PRETTY }
+);
+```
+
+```css
+#test.alt {
+    color: black;
+}
+
+#test-alt-bg {
+    background: black;
+}
+
+#test {
+    color: white;
+}
+```
+
+The `&`-prefixed selectors only refer to their immediate parent, but otherwise
+behave like all other nested selectors:
+
+```js
+import { css, PRETTY } from "@thi.ng/hiccup-css";
+
+css(
+	["outer1", "outer2",
+		[".inner1", ".inner2", { color: "red" },
+			["&--green", { color: "green" }],
+			["&--blue", { color: "blue" }]]],
+	{ format: css.PRETTY }
+);
+```
+
+```css
+outer1 .inner1--green, outer1 .inner2--green,
+outer2 .inner1--green, outer2 .inner2--green {
+    color: green;
+}
+
+outer1 .inner1--blue, outer1 .inner2--blue,
+outer2 .inner1--blue, outer2 .inner2--blue {
+    color: blue;
+}
+
+outer1 .inner1, outer1 .inner2,
+outer2 .inner1, outer2 .inner2 {
+    color: red;
+}
+```
 
 ### Pseudo-classes
 
