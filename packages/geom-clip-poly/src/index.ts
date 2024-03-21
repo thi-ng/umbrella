@@ -35,11 +35,11 @@ export const sutherlandHodgeman = (
 			if (corner2(ca, cb, p, eps) === sign) {
 				clipped.push(
 					cqsign !== sign
-						? <Vec>intersectLineLine(ca, cb, p, q).isec
+						? intersectLineLine(ca, cb, p, q).isec![0]
 						: q
 				);
 			} else if (cqsign === sign) {
-				clipped.push(<Vec>intersectLineLine(ca, cb, p, q).isec, q);
+				clipped.push(intersectLineLine(ca, cb, p, q).isec![0], q);
 			}
 		}
 		if (clipped.length < 2) {
