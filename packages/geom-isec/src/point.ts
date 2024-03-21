@@ -163,11 +163,20 @@ export const pointIn4Sphere: FnU5<ReadonlyVec, number> = (
 	return dlift * abc - clift * dab + (blift * cda - alift * bcd);
 };
 
-export const pointInCircumCircle: FnU4<ReadonlyVec, boolean> = (a, b, c, d) =>
-	magSq(a) * signedArea2(b, c, d) -
-		magSq(b) * signedArea2(a, c, d) +
-		magSq(c) * signedArea2(a, b, d) -
-		magSq(d) * signedArea2(a, b, c) >
+/**
+ * Returns true if point `p` is in the circumcircle of triangle defined by `a`,
+ * `b`, `c`.
+ *
+ * @param p
+ * @param a
+ * @param b
+ * @param c
+ */
+export const pointInCircumCircle: FnU4<ReadonlyVec, boolean> = (p, a, b, c) =>
+	magSq(a) * signedArea2(b, c, p) -
+		magSq(b) * signedArea2(a, c, p) +
+		magSq(c) * signedArea2(a, b, p) -
+		magSq(p) * signedArea2(a, b, c) >
 	0;
 
 /**
