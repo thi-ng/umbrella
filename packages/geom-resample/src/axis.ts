@@ -44,7 +44,7 @@ export const sampleUniformX = (
 	for (let x = x1; x <= x2; x += step) {
 		res.push(
 			<ReadonlyVec>(
-				intersectRayPolyline([x, startY], [0, 1], pts, false).isec!
+				intersectRayPolyline([x, startY], [0, 1], pts, false).isec![0]
 			)
 		);
 	}
@@ -73,7 +73,7 @@ export const sampleUniformY = (
 	for (let y = y1; y <= y2; y += step) {
 		res.push(
 			<ReadonlyVec>(
-				intersectRayPolyline([startX, y], [1, 0], pts, false).isec!
+				intersectRayPolyline([startX, y], [1, 0], pts, false).isec![0]
 			)
 		);
 	}
