@@ -39,6 +39,22 @@
 			"props": "<var>-timing-function",
 			"values": ["ease", "ease-in", "ease-out", "ease-in-out", "linear"],
 			"vars": ["anim", "transition"]
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"desc": "<v>"
+			},
+			"name": "transition-<k>",
+			"props": "transition-property",
+			"values": {
+				"all": "all",
+				"bg": "background-color",
+				"color": "color",
+				"none": "none",
+				"width": "width",
+				"height": "height"
+			}
 		}
 	],
 	"templates": [
@@ -88,19 +104,32 @@
 		{
 			"doc": {
 				"group": "animation / transition",
-				"args": ["delay: time (in seconds)"]
+				"args": ["duration: time (in seconds)"]
 			},
-			"name": "anim-delay",
-			"props": "animation-delay",
-			"unit": "second"
+			"name": "<vid>-duration",
+			"props": "<var>-duration",
+			"unit": "second",
+			"vars": ["anim", "transition"]
 		},
 		{
 			"doc": {
 				"group": "animation / transition",
-				"args": ["steps: number of steps"]
+				"args": ["delay: time (in seconds)"]
 			},
-			"name": "anim-steps",
-			"props": { "animation-timing-function": "steps({0})" }
+			"name": "<vid>-delay",
+			"props": "<var>-delay",
+			"unit": "second",
+			"vars": ["anim", "transition"]
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"desc": "Sets <var>-timing-function to `steps(num)`",
+				"args": ["num: number of steps"]
+			},
+			"name": "<vid>-steps",
+			"props": { "<var>-timing-function": "steps({0})" },
+			"vars": ["anim", "transition"]
 		},
 		{
 			"doc": {
@@ -112,10 +141,20 @@
 		},
 		{
 			"doc": {
-				"group": "animation / transition"
+				"group": "animation / transition",
+				"args": ["body: CSS value/definition"]
 			},
-			"name": "transition",
-			"props": "transition"
+			"name": "<vid>",
+			"props": "<var>",
+			"vars": ["anim", "transition"]
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"args": ["prop: CSS value/definition"]
+			},
+			"name": "transition-property",
+			"props": "transition-property"
 		}
 	]
 }

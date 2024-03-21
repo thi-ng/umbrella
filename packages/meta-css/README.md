@@ -62,6 +62,7 @@
     - [Line heights](#line-heights)
     - [Lists](#lists)
     - [Margin](#margin)
+    - [Mask](#mask)
     - [Max. height](#max-height)
     - [Max. width](#max-width)
     - [Min. height](#min-height)
@@ -86,11 +87,16 @@
   - [Templates by category](#templates-by-category)
     - [Animation / transition](#animation--transition)
     - [Aspect ratios](#aspect-ratios)
+    - [Background](#background)
     - [Border color](#border-color)
     - [Color adjustment](#color-adjustment)
     - [Color definitions](#color-definitions)
     - [Colors](#colors)
+    - [Dimensions](#dimensions)
     - [Grid layout](#grid-layout)
+    - [Margin](#margin)
+    - [Mask](#mask)
+    - [Padding](#padding)
     - [Positions](#positions)
     - [Svg](#svg)
   - [Media queries](#media-queries)
@@ -967,7 +973,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "MetaCSS base" (v0.8.0):
+Currently, there are 932 CSS utility classes (incl. 61 templates) defined in "MetaCSS base" (v0.8.0):
 
 ### Classes by category
 
@@ -989,6 +995,17 @@ Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "Me
 - `anim-pause`
 - `anim-play`
 - `anim-reverse` (direction)
+- `transition-all` (all)
+- `transition-bg` (background-color)
+- `transition-color` (color)
+- `transition-ease` (timing function)
+- `transition-ease-in` (timing function)
+- `transition-ease-in-out` (timing function)
+- `transition-ease-out` (timing function)
+- `transition-height` (height)
+- `transition-linear` (timing function)
+- `transition-none` (none)
+- `transition-width` (width)
 
 #### Aspect ratios
 
@@ -1007,6 +1024,12 @@ Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "Me
 - `bg-pos-se` (bottom right)
 - `bg-pos-sw` (bottom left)
 - `bg-pos-w` (left)
+- `bg-repeat` (repeat)
+- `bg-repeat-none` (no-repeat)
+- `bg-repeat-round` (round)
+- `bg-repeat-space` (space)
+- `bg-repeat-x` (repeat-x)
+- `bg-repeat-y` (repeat-y)
 
 #### Border color
 
@@ -1262,7 +1285,11 @@ Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "Me
 
 - `align-content-center`
 - `align-content-end`
+- `align-content-space-around`
+- `align-content-space-between`
+- `align-content-space-evenly`
 - `align-content-start`
+- `align-content-stretch`
 - `flex-column`
 - `flex-column-reverse`
 - `flex-grow0`
@@ -1276,7 +1303,11 @@ Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "Me
 - `flex-wrap-reverse`
 - `justify-content-center`
 - `justify-content-end`
+- `justify-content-space-around`
+- `justify-content-space-between`
+- `justify-content-space-evenly`
 - `justify-content-start`
+- `justify-content-stretch`
 
 #### Font families
 
@@ -1492,6 +1523,22 @@ Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "Me
 - `mv3` (top 1rem)
 - `mv4` (top 2rem)
 - `mv5` (top 4rem)
+
+#### Mask
+
+- `mask-clip-border` (border-box)
+- `mask-clip-content` (content-box)
+- `mask-clip-fill` (fill-box)
+- `mask-clip-none` (no-clip)
+- `mask-clip-padding` (padding-box)
+- `mask-clip-stroke` (stroke-box)
+- `mask-clip-view` (view-box)
+- `mask-mode-alpha` (alpha)
+- `mask-mode-luminance` (luminance)
+- `mask-mode-match-source` (match-source)
+- `mask-type-alpha` (alpha)
+- `mask-type-luminance` (luminance)
+- `mask-type-match-source` (match-source)
 
 #### Max. height
 
@@ -1943,17 +1990,27 @@ Currently, there are 862 CSS utility classes (incl. 29 templates) defined in "Me
 
 #### Animation / transition
 
+##### `anim(body)`
+
+- **body**: CSS value/definition
+
 ##### `anim-delay(delay)`
 
 - **delay**: time (in seconds)
+
+##### `anim-duration(duration)`
+
+- **duration**: time (in seconds)
 
 ##### `anim-iter(iter)`
 
 - **iter**: number of iterations
 
-##### `anim-steps(steps)`
+##### `anim-steps(num)`
 
-- **steps**: number of steps
+- **num**: number of steps
+
+Sets animation-timing-function to `steps(num)`
 
 ##### `bg-anim(duration)`
 
@@ -1986,6 +2043,28 @@ Animation which shrinks the height from given initial value to zero. Target elem
 
 Animation which rotates element a full turn, looping indefinitely
 
+##### `transition(body)`
+
+- **body**: CSS value/definition
+
+##### `transition-delay(delay)`
+
+- **delay**: time (in seconds)
+
+##### `transition-duration(duration)`
+
+- **duration**: time (in seconds)
+
+##### `transition-property(prop)`
+
+- **prop**: CSS value/definition
+
+##### `transition-steps(num)`
+
+- **num**: number of steps
+
+Sets transition-timing-function to `steps(num)`
+
 #### Aspect ratios
 
 ##### `aspect-ratio(width, height)`
@@ -2001,6 +2080,24 @@ Sets `aspect-ratio` CSS property
 - **height**: aspect height
 
 Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child element.
+
+#### Background
+
+##### `bg-blur(radius)`
+
+- **radius**: incl. units
+
+##### `bg-image(url)`
+
+- **url**: image URL
+
+##### `bg-pos(body)`
+
+- **body**: CSS value/definition
+
+##### `bg-size(body)`
+
+- **body**: CSS value/definition
 
 #### Border color
 
@@ -2106,6 +2203,44 @@ Defines a rgb() color variable with given name and additional derived vars for e
 
 - **name**: variable name (without `--` prefix)
 
+#### Dimensions
+
+##### `height(height)`
+
+- **height**: incl. units
+
+Sets height to given value
+
+##### `max-height(height)`
+
+- **height**: incl. units
+
+Sets max-height to given value
+
+##### `max-width(width)`
+
+- **width**: incl. units
+
+Sets max-width to given value
+
+##### `min-height(height)`
+
+- **height**: incl. units
+
+Sets min-height to given value
+
+##### `min-width(width)`
+
+- **width**: incl. units
+
+Sets min-width to given value
+
+##### `width(width)`
+
+- **width**: incl. units
+
+Sets width to given value
+
 #### Grid layout
 
 ##### `grid-cols(cols)`
@@ -2115,6 +2250,100 @@ Defines a rgb() color variable with given name and additional derived vars for e
 ##### `grid-rows(rows)`
 
 - **rows**: CSS rows definitions
+
+#### Margin
+
+##### `ma(size)`
+
+- **size**: incl. units
+
+Sets margin to custom size
+
+##### `mb(size)`
+
+- **size**: incl. units
+
+Sets margin to custom size
+
+##### `mh(size)`
+
+- **size**: incl. units
+
+Sets margin to custom size
+
+##### `ml(size)`
+
+- **size**: incl. units
+
+Sets margin to custom size
+
+##### `mr(size)`
+
+- **size**: incl. units
+
+Sets margin to custom size
+
+##### `mt(size)`
+
+- **size**: incl. units
+
+Sets margin to custom size
+
+##### `mv(size)`
+
+- **size**: incl. units
+
+Sets margin to custom size
+
+#### Mask
+
+##### `mask-image(body)`
+
+- **body**: definition (e.g. url or gradient)
+
+#### Padding
+
+##### `pa(size)`
+
+- **size**: incl. units
+
+Sets padding to custom size
+
+##### `pb(size)`
+
+- **size**: incl. units
+
+Sets padding to custom size
+
+##### `ph(size)`
+
+- **size**: incl. units
+
+Sets padding to custom size
+
+##### `pl(size)`
+
+- **size**: incl. units
+
+Sets padding to custom size
+
+##### `pr(size)`
+
+- **size**: incl. units
+
+Sets padding to custom size
+
+##### `pt(size)`
+
+- **size**: incl. units
+
+Sets padding to custom size
+
+##### `pv(size)`
+
+- **size**: incl. units
+
+Sets padding to custom size
 
 #### Positions
 
@@ -2176,7 +2405,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.83 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.85 KB
 
 ## Dependencies
 

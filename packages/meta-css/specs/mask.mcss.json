@@ -1,4 +1,31 @@
 {
+	"vars": {
+		"mode": [""],
+		"type": [""]
+	},
+	"specs": [
+		{
+			"doc": { "group": "mask", "desc": "<v>" },
+			"name": "mask-clip-<k>",
+			"props": "mask-clip",
+			"values": {
+				"content": "content-box",
+				"padding": "padding-box",
+				"border": "border-box",
+				"fill": "fill-box",
+				"stroke": "stroke-box",
+				"view": "view-box",
+				"none": "no-clip"
+			}
+		},
+		{
+			"doc": { "group": "mask", "desc": "<v>" },
+			"name": "mask-<vid>-<v>",
+			"props": "mask-<vid>",
+			"values": ["alpha", "luminance", "match-source"],
+			"vars": ["mode", "type"]
+		}
+	],
 	"templates": [
 		{
 			"doc": {

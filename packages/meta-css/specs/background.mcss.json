@@ -23,32 +23,39 @@
 			}
 		},
 		{
-			"name": "bg-repeat",
+			"doc": { "group": "background", "desc": "<v>" },
+			"name": "bg-repeat<k>",
 			"props": "background-repeat<k>",
 			"values": {
 				"-x": "repeat-x",
 				"-y": "repeat-y",
 				"": "repeat",
-				"space": "space",
-				"round": "round",
-				"none": "no-repeat"
+				"-space": "space",
+				"-round": "round",
+				"-none": "no-repeat"
 			}
 		}
 	],
 	"templates": [
 		{
-			"doc": { "group": "background", "args": ["url"] },
+			"doc": { "group": "background", "args": ["url: image URL"] },
 			"name": "bg-image",
 			"props": "background-image",
 			"unit": "url"
 		},
 		{
-			"doc": { "group": "background", "args": ["body"] },
+			"doc": {
+				"group": "background",
+				"args": ["body: CSS value/definition"]
+			},
 			"name": "bg-pos",
 			"props": "background-position"
 		},
 		{
-			"doc": { "group": "background", "args": ["body"] },
+			"doc": {
+				"group": "background",
+				"args": ["body: CSS value/definition"]
+			},
 			"name": "bg-size",
 			"props": "background-size"
 		},
