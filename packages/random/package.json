@@ -135,6 +135,9 @@
 		"./uuid": {
 			"default": "./uuid.js"
 		},
+		"./weighted-probability": {
+			"default": "./weighted-probability.js"
+		},
 		"./weighted-random": {
 			"default": "./weighted-random.js"
 		},
