@@ -34,7 +34,7 @@ export const intersectLineLine = (
 				type: isec
 					? IntersectionType.COINCIDENT
 					: IntersectionType.COINCIDENT_NO_INTERSECT,
-				isec,
+				isec: isec ? [isec] : isec,
 			};
 		}
 		return { type: IntersectionType.PARALLEL };
@@ -47,7 +47,7 @@ export const intersectLineLine = (
 			eps < alpha && alpha < ieps && eps < beta && beta < ieps
 				? IntersectionType.INTERSECT
 				: IntersectionType.INTERSECT_OUTSIDE,
-		isec: mixN2([], a, b, alpha),
+		isec: [mixN2([], a, b, alpha)],
 		alpha,
 		beta,
 		det,

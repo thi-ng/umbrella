@@ -5,6 +5,7 @@ import {
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { NONE } from "./api.js";
+import { classifyPointPolyPair } from "./point.js";
 import { intersectRayLine } from "./ray-line.js";
 
 const startPoints = (pts: ReadonlyVec[], closed: boolean) =>
@@ -29,11 +30,24 @@ export const intersectRayPolyline = (
 	maxD = Infinity
 ): IntersectionResult => {
 	const n = pts.length - 1;
+	const [x, y] = rpos;
 	let alpha = maxD;
 	let cross = 0;
-	let [i, j] = startPoints(pts, closed);
-	for (let k = 0; k <= n; i = j, j = pts[++k]) {
-		const d = intersectRayLine(rpos, dir, i, j, minD, maxD).alpha;
+	let inside = 0;
+	let [a, b] = startPoints(pts, closed);
+	for (let i = 0; i <= n; a = b, b = pts[++i]) {
+		if (closed) {
+			inside = classifyPointPolyPair(
+				x,
+				y,
+				a[0],
+				a[1],
+				b[0],
+				b[1],
+				inside
+			);
+		}
+		const d = intersectRayLine(rpos, dir, a, b, minD, maxD).alpha;
 		if (d !== undefined) {
 			cross++;
 			if (d < alpha) alpha = d;
@@ -42,8 +56,8 @@ export const intersectRayPolyline = (
 	return cross > 0
 		? {
 				type: IntersectionType.INTERSECT,
-				isec: maddN2([], dir, alpha, rpos),
-				inside: !(cross & 1),
+				isec: [maddN2([], dir, alpha, rpos)],
+				inside: !!inside,
 				alpha,
 		  }
 		: NONE;
@@ -68,10 +82,23 @@ export const intersectRayPolylineAll = (
 	maxD = Infinity
 ): IntersectionResult => {
 	const n = pts.length - 1;
-	let [i, j] = startPoints(pts, closed);
 	const res: [number, Vec][] = [];
-	for (let k = 0; k <= n; i = j, j = pts[++k]) {
-		const d = intersectRayLine(rpos, dir, i, j, minD, maxD).alpha;
+	const [x, y] = rpos;
+	let [a, b] = startPoints(pts, closed);
+	let inside = 0;
+	for (let i = 0; i <= n; a = b, b = pts[++i]) {
+		if (closed) {
+			inside = classifyPointPolyPair(
+				x,
+				y,
+				a[0],
+				a[1],
+				b[0],
+				b[1],
+				inside
+			);
+		}
+		const d = intersectRayLine(rpos, dir, a, b, minD, maxD).alpha;
 		if (d !== undefined) {
 			res.push([d, maddN2([], dir, d, rpos)]);
 		}
@@ -83,6 +110,7 @@ export const intersectRayPolylineAll = (
 			isec: res.map((x) => x[1]),
 			alpha: res[0][0],
 			beta: res[res.length - 1][0],
+			inside: !!inside,
 		};
 	}
 	return NONE;

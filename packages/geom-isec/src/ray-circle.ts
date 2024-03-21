@@ -22,24 +22,25 @@ export const intersectRayCircle = (
 	d = Math.sqrt(d);
 	const a = w + d;
 	const b = w - d;
-	const isec: [number, number | undefined, Vec[]] | undefined =
+	const isec: [boolean, number, number | undefined, Vec[]] | undefined =
 		a >= 0
 			? b >= 0
 				? a > b
 					? // prettier-ignore
-					  [b, a, [maddN(delta, dir, b, rpos), maddN([], dir, a, rpos)]]
+					  [false,b, a, [maddN(delta, dir, b, rpos), maddN([], dir, a, rpos)]]
 					: // prettier-ignore
-					  [a, b, [maddN(delta, dir, a, rpos), maddN([], dir, b, rpos)]]
-				: [a, undefined, [maddN(delta, dir, a, rpos)]]
+					  [false, a, b, [maddN(delta, dir, a, rpos), maddN([], dir, b, rpos)]]
+				: [true, a, undefined, [maddN(delta, dir, a, rpos)]]
 			: b >= 0
-			? [b, undefined, [maddN(delta, dir, b, rpos)]]
+			? [true, b, undefined, [maddN(delta, dir, b, rpos)]]
 			: undefined;
 	return isec
 		? {
 				type: IntersectionType.INTERSECT,
-				alpha: isec[0],
-				beta: isec[1],
-				isec: isec[2],
+				inside: isec[0],
+				alpha: isec[1],
+				beta: isec[2],
+				isec: isec[3],
 		  }
 		: NONE;
 };

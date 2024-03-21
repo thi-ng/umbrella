@@ -1,4 +1,7 @@
-import { IntersectionType } from "@thi.ng/geom-api/isec";
+import {
+	IntersectionType,
+	type IntersectionResult,
+} from "@thi.ng/geom-api/isec";
 import { sign } from "@thi.ng/math/abs";
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -15,7 +18,7 @@ export const intersectRayPlane = (
 	normal: ReadonlyVec,
 	w: number,
 	eps = EPS
-) => {
+): IntersectionResult => {
 	const d = dot(normal, dir);
 	const cp = sign(dot(normal, rpos) - w, eps);
 	if ((d > eps && cp < 0) || (d < -eps && cp > 0)) {
@@ -23,14 +26,14 @@ export const intersectRayPlane = (
 		const alpha = dot(normal, isec) / d;
 		return {
 			type: IntersectionType.INTERSECT,
-			isec: maddN(isec, dir, alpha, rpos),
+			isec: [maddN(isec, dir, alpha, rpos)],
 			alpha,
 		};
 	}
 	return cp === 0
 		? {
 				type: IntersectionType.COINCIDENT,
-				isec: copy(rpos),
+				isec: [copy(rpos)],
 		  }
 		: NONE;
 };
