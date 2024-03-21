@@ -1,4 +1,3 @@
-import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, IntersectionResult, PCLike } from "@thi.ng/geom-api";
@@ -17,13 +16,18 @@ import {
 import { intersectRayAABB, intersectRayRect } from "@thi.ng/geom-isec/ray-rect";
 import { testRectCircle } from "@thi.ng/geom-isec/rect-circle";
 import { testAabbAabb, testRectRect } from "@thi.ng/geom-isec/rect-rect";
-import { dist2, type Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
+import { dist2 } from "@thi.ng/vectors/dist";
+import { distSq2 } from "@thi.ng/vectors/distsq";
+import { magSq2 } from "@thi.ng/vectors/magsq";
+import { normalize2 } from "@thi.ng/vectors/normalize";
+import { sub2 } from "@thi.ng/vectors/sub";
 import type { AABB } from "./api/aabb.js";
 import type { Circle } from "./api/circle.js";
 import type { Group } from "./api/group.js";
 import type { Line } from "./api/line.js";
 import type { Plane } from "./api/plane.js";
-import type { Ray } from "./api/ray.js";
+import { Ray } from "./api/ray.js";
 import type { Rect } from "./api/rect.js";
 import type { Sphere } from "./api/sphere.js";
 import { __dispatch2 } from "./internal/dispatch.js";
@@ -43,6 +47,7 @@ export interface IntersectOpts {
  * Currently supported pairs:
  *
  * - {@link Circle} / {@link Circle}
+ * - {@link Line} / {@link Group}
  * - {@link Line} / {@link Line}
  * - {@link Line} / {@link Polygon}
  * - {@link Line} / {@link Polyline}
@@ -96,6 +101,27 @@ export const intersects: MultiFn2O<
 		"circle-circle": (a: Circle, b: Circle) =>
 			intersectCircleCircle(a.pos, b.pos, a.r, b.r),
 
+		"line-group": (
+			{ points: [a, b] }: Line,
+			group: Group,
+			opts?: Partial<IntersectOpts>
+		) => {
+			const dir = sub2([], b, a);
+			const max = magSq2(dir);
+			const res = intersects(
+				new Ray(a, normalize2(null, dir)),
+				group,
+				opts
+			);
+			if (res === NONE) return res;
+			res.isec = res.isec!.filter((p) => distSq2(a, p) <= max);
+			if (res.isec.length) {
+				res.alpha = dist2(a, res.isec![0]);
+				return res;
+			}
+			return NONE;
+		},
+
 		"line-line": ({ points: a }: Line, { points: b }: Line) =>
 			intersectLineLine(a[0], a[1], b[0], b[1]),
 
@@ -114,22 +140,26 @@ export const intersects: MultiFn2O<
 		"ray-circle": (ray: Ray, sphere: Sphere) =>
 			intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r),
 
-		"ray-group": (ray: Ray, { children }: Group, opts?: IntersectOpts) => {
+		"ray-group": (
+			ray: Ray,
+			{ children }: Group,
+			opts?: Partial<IntersectOpts>
+		) => {
 			let minD = Infinity;
 			const points: Vec[] = [];
 			const all = opts?.all;
+			let inside = false;
 			for (let child of children) {
 				let $res = intersects(ray, child, opts);
 				if ($res.type !== IntersectionType.INTERSECT) continue;
-				const single = isNumber($res.isec![0]);
-				const first = single ? <Vec>$res.isec : (<Vec[]>$res.isec)[0];
+				if ($res.inside) inside = true;
+				const first = $res.isec![0];
 				const alpha =
 					$res.alpha !== undefined
 						? $res.alpha
 						: dist2(ray.pos, first);
 				if (all) {
-					if (single) points.push(first);
-					else points.push(...(<Vec[]>$res.isec));
+					points.push(...$res.isec!);
 					minD = Math.min(minD, alpha);
 				} else if (alpha < minD) {
 					minD = alpha;
@@ -141,6 +171,7 @@ export const intersects: MultiFn2O<
 						type: IntersectionType.INTERSECT,
 						isec: points,
 						alpha: minD,
+						inside,
 				  }
 				: NONE;
 		},
