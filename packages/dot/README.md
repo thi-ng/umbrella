@@ -70,7 +70,7 @@ For Node.js REPL:
 const dot = await import("@thi.ng/dot");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 667 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 671 bytes
 
 ## Dependencies
 

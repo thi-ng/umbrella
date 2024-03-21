@@ -72,7 +72,7 @@ For Node.js REPL:
 const transducersBinary = await import("@thi.ng/transducers-binary");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.52 KB
 
 ## Dependencies
 

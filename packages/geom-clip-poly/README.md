@@ -60,7 +60,7 @@ For Node.js REPL:
 const geomClipPoly = await import("@thi.ng/geom-clip-poly");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 321 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 317 bytes
 
 ## Dependencies
 

@@ -59,7 +59,7 @@ For Node.js REPL:
 const transclude = await import("@thi.ng/transclude");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.84 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.86 KB
 
 ## Dependencies
 

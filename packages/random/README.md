@@ -98,7 +98,7 @@ For Node.js REPL:
 const random = await import("@thi.ng/random");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.99 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.02 KB
 
 ## Dependencies
 
