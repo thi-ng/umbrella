@@ -11,7 +11,10 @@ export enum IntersectionType {
 
 export interface IntersectionResult {
 	type: IntersectionType;
-	isec?: Vec | Vec[];
+	/**
+	 * If present, one or more intersection points.
+	 */
+	isec?: Vec[];
 	det?: number;
 	alpha?: number;
 	beta?: number;
