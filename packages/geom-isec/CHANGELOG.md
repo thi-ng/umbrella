@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-21T16:11:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,28 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@3.0.0) (2024-03-21)
+
+#### 🛑 Breaking changes
+
+- update pointInCircumCircle() arg order ([0a06976](https://github.com/thi-ng/umbrella/commit/0a06976))
+- BREAKING CHANGE: update pointInCircumCircle() arg order to align with rest of pkg
+  - swap query point `p` arg from last to first arg
+  - add docs
+
+#### 🚀 Features
+
+- update intersectRayPolylineAll() & intersectRayCircle() ([cb18d3b](https://github.com/thi-ng/umbrella/commit/cb18d3b))
+  - add alpha/beta to result
+- update line-line & ray intersection fns ([a45502b](https://github.com/thi-ng/umbrella/commit/a45502b))
+  - update `IntersectionResult.isec` to always return arrays (if there're intersections)
+    - `intersectLineLine()`
+    - `intersectRayCircle()`
+    - `intersectRayPlane()`
+  - update `intersectRayPolyline()` & `intersectRayPolylineAll()`
+    - add/fix `.inside` result flag
+    - update `.isec`
 
 ### [2.1.86](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@2.1.86) (2023-11-09)
 

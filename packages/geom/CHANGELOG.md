@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-21T16:11:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [6.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.1.0) (2024-03-21)
+
+#### 🚀 Features
+
+- update intersects(), support more shape types ([21ce0d4](https://github.com/thi-ng/umbrella/commit/21ce0d4))
+  - add IntersectOpts & as optional arg
+    - update impl for ray-poly/ray-polyline
+  - add support for new shape pairings:
+    - line-polygon
+    - line-polyline
+    - ray-line
+    - ray-group
+- update intersects(), add line-group support ([1e270fa](https://github.com/thi-ng/umbrella/commit/1e270fa))
+  - add line-group impl
+  - refactor/simplify ray-group impl
 
 ### [6.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.0.6) (2023-12-03)
 

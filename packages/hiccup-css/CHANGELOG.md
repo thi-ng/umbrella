@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-21T16:11:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,25 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@2.7.0) (2024-03-21)
+
+#### 🚀 Features
+
+- add support for `&` parent selector ([2332cdc](https://github.com/thi-ng/umbrella/commit/2332cdc))
+  - update xfSel transducer to support SASS-style `&`
+    parent selector
+  - add tests
+
+#### 🩹 Bug fixes
+
+- correct case-sensitivity in attrib selectors ([23d556f](https://github.com/thi-ng/umbrella/commit/23d556f))
+  - add tests
+
+#### ♻️ Refactoring
+
+- minor updates ([ac9032d](https://github.com/thi-ng/umbrella/commit/ac9032d))
+  - internal updates animation() & withScope()
 
 ## [2.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@2.6.0) (2024-02-12)
 

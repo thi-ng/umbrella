@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-21T16:11:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@4.0.0) (2024-03-21)
+
+#### 🛑 Breaking changes
+
+- update IntersectionResult.isec type ([36f69ba](https://github.com/thi-ng/umbrella/commit/36f69ba))
+- BREAKING CHANGE: `IntersectionResult.isec` now always an array of points (if there're intersections)
 
 ### [3.4.44](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.4.44) (2023-11-09)
 

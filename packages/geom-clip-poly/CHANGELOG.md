@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-21T16:11:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.121](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-clip-poly@2.1.121) (2024-03-21)
+
+#### ♻️ Refactoring
+
+- minor updates ([1a38846](https://github.com/thi-ng/umbrella/commit/1a38846))
 
 ### [2.1.86](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-clip-poly@2.1.86) (2023-11-09)
 
