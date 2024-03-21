@@ -100,7 +100,7 @@ export class DVMesh<T> {
 			const t = e.oprev;
 			if (
 				isRightOf(t.dest.pos, e) &&
-				pointInCircumCircle(e.origin.pos, t.dest.pos, e.dest.pos, p)
+				pointInCircumCircle(p, e.origin.pos, t.dest.pos, e.dest.pos)
 			) {
 				e.swap();
 				e = e.oprev;
