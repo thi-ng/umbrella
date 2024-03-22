@@ -30,7 +30,7 @@ export const ENTITIES: Record<string, string> = {
 	"™": "&trade;",
 	"℃": "&#8451;",
 	"℉": "&#8457;",
-	K: "&#8490;",
+	"\u212a": "&#8490;", // Kelvin
 	"◂": "&ltrif;",
 	"▸": "&rtrif;",
 	"▴": "&utrif;",
