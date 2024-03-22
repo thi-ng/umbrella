@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-21T16:11:49Z
+- **Last updated**: 2024-03-22T17:13:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.7.27](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.7.27) (2024-03-22)
+
+#### 🩹 Bug fixes
+
+- fix unintentional, IDE-induced Unicode encoding issue ([a54a69b](https://github.com/thi-ng/umbrella/commit/a54a69b))
+  - use unicode Kelvin sign as `\u212a` to avoid/fix bug in `encodeEntitiesNum()`
+    - potential culprits for this issue: VSCode or Prettier
+  - add tests
 
 ### [3.7.25](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.7.25) (2024-03-18)
 
