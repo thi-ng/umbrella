@@ -14,6 +14,8 @@ const SYNC_OPTS = `${S3_OPTS} --include "*" --exclude "*.sass" --exclude "*.ts"`
 const MINIFY_OPTS =
 	"--file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true";
 
+const COUNTER = `<script>window.goatcounter={path:p=>location.host+p};</script><script data-goatcounter="https://thing.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>`;
+
 const sanitizeFile = (f: string) => {
 	let updated = false;
 	const src = readText(f, LOGGER)
@@ -45,6 +47,10 @@ const sanitizeFile = (f: string) => {
 			LOGGER.debug("match pkg only", id);
 			updated = true;
 			return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
+		})
+		.replace("</head>", () => {
+			updated = true;
+			return COUNTER + "</head>";
 		});
 	if (updated) {
 		writeText(f, src, LOGGER);
@@ -104,7 +110,7 @@ const doAll = process.argv.length < 3;
 const packages = doAll ? [...dirs("packages", "", 1)] : process.argv.slice(2);
 
 const invalidations: string[] = [];
-if (doAll) invalidations.push(`/${S3_PREFIX}/*`);
+if (doAll) invalidations.push(`${S3_PREFIX}/*`);
 
 for (let id of packages) {
 	id = id.replace("packages/", "");
