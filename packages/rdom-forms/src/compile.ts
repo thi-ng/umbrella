@@ -16,6 +16,8 @@ import {
 	inputFile,
 	inputNumber,
 	inputRange,
+	inputReset,
+	inputSubmit,
 	inputText,
 	label,
 	legend,
@@ -51,6 +53,7 @@ import type {
 	FormItem,
 	FormOpts,
 	Group,
+	HiddenValue,
 	Month,
 	MultiFileVal,
 	MultiSelect,
@@ -62,11 +65,13 @@ import type {
 	RadioNum,
 	RadioStr,
 	Range,
+	Reset,
 	Select,
 	SelectItem,
 	SelectNum,
 	SelectStr,
 	Str,
+	Submit,
 	Text,
 	Time,
 	Toggle,
@@ -108,6 +113,11 @@ export const custom = (body: ComponentLike): Custom => ({
 	body,
 });
 
+export const hidden = (spec: Omit<HiddenValue, "type">): HiddenValue => ({
+	type: "hidden",
+	...spec,
+});
+
 let __nextID = 0;
 
 export type PartialSpec<T extends Value> = Omit<T, "type" | "id"> & {
@@ -147,8 +157,10 @@ export const phone = $<Email>("tel", { autocomplete: true });
 export const radioNum = $<RadioNum, number>("radioNum");
 export const radioStr = $<RadioStr>("radioStr");
 export const range = $<Range, number>("range");
+export const reset = $<Reset>("reset");
 export const search = $<Str>("search");
 export const str = $<Str, string>("str");
+export const submit = $<Submit>("submit");
 export const text = $<Text>("text");
 export const time = $<Time>("time");
 export const toggle = $<Toggle, boolean>("toggle");
@@ -187,7 +199,7 @@ const __genLabel = (
 ) =>
 	label(
 		{ ...opts.labelAttribs, ...x.labelAttribs, for: __genID(x.id, opts) },
-		x.label ?? x.id,
+		x.label != undefined ? x.label || null : x.id,
 		x.desc ? span({ ...opts.descAttribs, ...x.descAttribs }, x.desc) : null
 	);
 
@@ -350,6 +362,11 @@ export const compileForm: MultiFn2<
 
 		custom: (val) => (<Custom>val).body,
 
+		hidden: ($val) => {
+			const { id, name, value } = <HiddenValue>$val;
+			return inputText({ type: "hidden", id: id ?? name, name, value });
+		},
+
 		toggle: ($val, opts) => {
 			const val = <Toggle>$val;
 			const label = __genLabel(val, opts);
@@ -379,6 +396,26 @@ export const compileForm: MultiFn2<
 				{ onclick: $inputTrigger((<Trigger>$val).value!) },
 				false,
 				(<Trigger>$val).title
+			),
+
+		submit: ($val, opts) =>
+			__component(
+				<Submit>$val,
+				opts,
+				inputSubmit,
+				{ ...opts.typeAttribs?.submit, value: (<Submit>$val).title },
+				{ onclick: $inputTrigger((<Submit>$val).value!) },
+				false
+			),
+
+		reset: ($val, opts) =>
+			__component(
+				<Reset>$val,
+				opts,
+				inputReset,
+				{ ...opts.typeAttribs?.reset, value: (<Reset>$val).title },
+				{ onclick: $inputTrigger((<Reset>$val).value!) },
+				false
 			),
 
 		radio: ($val, opts) => {

@@ -7,8 +7,10 @@ import type {
 	InputFileAttribs,
 	InputNumericAttribs,
 	InputRadioAttribs,
+	InputSubmitAttribs,
 	InputTextAttribs,
 	SelectAttribs,
+	StringAttrib,
 	TextAreaAttribs,
 } from "@thi.ng/hiccup-html";
 import type { ComponentLike } from "@thi.ng/rdom";
@@ -61,6 +63,12 @@ export interface Value extends FormItem, Partial<CommonAttribs> {
 	required?: boolean;
 	readonly?: boolean;
 	attribs?: Partial<InputAttribs>;
+}
+
+export interface HiddenValue extends Omit<FormItem, "attribs"> {
+	id?: string;
+	name: string;
+	value: StringAttrib;
 }
 
 export interface WithPresets<T> {
@@ -198,13 +206,26 @@ export interface MultiSelectNum<T extends number = number>
 export interface Toggle extends Value {
 	type: "toggle";
 	value?: ISubscription<boolean, boolean>;
+	attribs?: Partial<InputCheckboxAttribs>;
 }
 
 export interface Trigger extends Value {
 	type: "trigger";
 	title: string;
 	value?: ISubscriber<boolean>;
-	attribs?: Partial<InputCheckboxAttribs>;
+}
+
+export interface Submit extends Omit<Value, "required" | "readonly"> {
+	type: "submit";
+	title: string;
+	value?: ISubscriber<boolean>;
+	attribs?: Partial<InputSubmitAttribs>;
+}
+
+export interface Reset extends Omit<Value, "required" | "readonly"> {
+	type: "submit";
+	title: string;
+	value?: ISubscriber<boolean>;
 }
 
 export interface Radio<T> extends Value {
