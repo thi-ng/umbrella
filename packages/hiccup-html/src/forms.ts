@@ -80,6 +80,14 @@ export interface InputNumericAttribs extends InputAttribs {
 	value: NumericAttrib;
 }
 
+export interface InputSubmitAttribs extends InputAttribs {
+	formaction: StringAttrib;
+	formenctype: StringAttrib;
+	formmethod: StringAttrib;
+	formnovalidate: BooleanAttrib;
+	formtarget: StringAttrib;
+}
+
 export const button = defElement<Partial<InputAttribs>>("button");
 
 export const checkbox = defElement<Partial<InputCheckboxAttribs>, never>(
@@ -115,10 +123,21 @@ export const inputRange = defElement<Partial<InputNumericAttribs>, never>(
 	{ type: "range" }
 );
 
+export const inputReset = defElement<Partial<InputAttribs>, never>("input", {
+	type: "reset",
+});
+
 export const inputSearch = defElement<Partial<InputTextAttribs>, never>(
 	"input",
 	{
 		type: "search",
+	}
+);
+
+export const inputSubmit = defElement<Partial<InputSubmitAttribs>, never>(
+	"input",
+	{
+		type: "submit",
 	}
 );
 
