@@ -15,6 +15,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
+		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.4.2",
 		"vite": "^5.1.6"
 	},
