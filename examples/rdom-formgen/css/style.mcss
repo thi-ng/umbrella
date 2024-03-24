@@ -1,0 +1,101 @@
+// @thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+
+:root {
+	highlight-valid=#9f9
+	highlight-invalid=#f99
+	highlight-required=#ff6
+}
+
+body { system-sans-serif }
+
+#form { l:grid grid-cols-2 gap3 }
+
+.container { pa3 bg-color-light-gray }
+
+.widget {
+	l:grid l:grid-cols(8rem 1fr) l:gap3 mb3
+	{
+		>label { b db l:dib l:mt2 l:mt0 mb2 }
+	}
+}
+
+.desc { db mt2 f7 fw400 }
+
+.thumbnails { grid grid-cols-3 ns:grid-cols-4 gap2 mb3 }
+.thumb { w-100 bg-aspect-ratio(1,1) bg-cover overflow-hidden }
+
+.group {
+	pa3 mb3 bw-1px border-color-gray
+	{ >legend { ph2 f7 b } }
+}
+
+.output { w-100 bg-color-near-white color-gray f7 monospace }
+
+.radio-group { l:dib mt2 l:mt0 }
+
+.radio-item {
+	l:dib l:w-50 l:h3
+	{
+		label { l:dib l:v-top ph2 b }
+	}
+}
+
+.range-label { f7 }
+
+button, input[type=submit], input[type=reset] {
+	w-100 height(3rem) bg-color-dark-blue color-white bw0 pa2
+	{
+		:hover { bg-color-blue }
+	}
+}
+
+input:required,
+select:required,
+textarea:required {
+	bwl3 border-color(highlight-required)
+}
+
+input:invalid {
+	bwl3 border-color(highlight-invalid)
+}
+
+input[type="text"]:valid,
+input[type="number"]:valid,
+input[type="password"]:valid,
+input[type="email"]:valid,
+input[type="tel"]:valid,
+input[type="url"]:valid,
+input[type="date"]:valid,
+input[type="datetime-local"]:valid,
+input[type="week"]:valid,
+input[type="month"]:valid,
+input[type="time"]:valid
+{
+	bwl3 border-color(highlight-valid)
+}
+
+input, textarea, select[multiple] { border-box bw0 pa2 }
+
+input {
+	w-100
+	{
+		[type=checkbox],
+		[type=radio]
+		{ w1 h1 }
+
+		[type="color"],
+		[type="range"],
+		[type="file"]
+		{ pa0 bw0 }
+	}
+}
+
+input[type=search] { br-pill ph3 }
+
+select { w-100 { &.single { h2 } } }
+
+textarea { w-100 monospace f6 }
+
+fieldset:disabled { o-30 }

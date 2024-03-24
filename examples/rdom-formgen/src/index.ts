@@ -67,10 +67,8 @@ const FORM = f.container(
 					Promise.all([...files].map((x) => imageFromFile(x)))
 				),
 				{
-					root: { class: "thumbnails mb3" },
-					img: {
-						class: "w-100 aspect-ratio aspect-ratio--1x1 cover overflow-hidden",
-					},
+					root: { class: "thumbnails" },
+					img: { class: "thumb" },
 				}
 			)
 		),
@@ -100,10 +98,7 @@ const FORM = f.container(
 			desc: span(
 				{},
 				"If checked, disables the ",
-				anchor(
-					{ class: "link blue b", href: "#section2" },
-					"2nd section"
-				),
+				anchor({ href: "#section2" }, "2nd section"),
 				" of this form"
 			),
 			value: flag,
@@ -206,7 +201,7 @@ const FORM = f.container(
 			items: [10, 20, { value: 30, label: "last" }],
 		}),
 		f.text({
-			attribs: { class: "w-100 bg-lightest-gray gray f7 code" },
+			attribs: { class: "output" },
 			label: "Form state values",
 			desc: "Readonly. For debugging purposes only...",
 			rows: 25,
@@ -236,35 +231,28 @@ const FORM = f.container(
 					bt,
 				},
 			}).map((x) => JSON.stringify(x, null, 2)),
-		})
+		}),
+		f.hidden({ name: "test", value: "123" }),
+		f.submit({
+			title: "Submit",
+			desc: "Doesn't do anything here...",
+			label: "",
+		}),
+		f.reset({ title: "Reset all", label: "" })
 	)
 );
 
 const OPTS: Partial<f.FormOpts> = {
 	// prefix: "main-",
-	wrapperAttribs: { class: "widget mb3" },
-	labelAttribs: { class: "db dib-l mb2 mb0-l b" },
-	descAttribs: { class: "db mt2 f7 fw4" },
+	wrapperAttribs: { class: "widget" },
+	descAttribs: { class: "desc" },
 	typeAttribs: {
-		color: { class: "w-100" },
-		container: { class: "ma3 pa3 bg-light-gray" },
-		date: { class: "w-100" },
-		group: { class: "pa3 mb3", style: { "border-width": "1px" } },
-		groupLabel: { class: "ph2 f7 b" },
-		multiSelect: { class: "w-100" },
-		num: { class: "w-100" },
-		radio: { class: "w1 h1" },
-		radioItem: { class: "dib-l w-50-l h3-l" },
-		radioItemLabel: { class: "dib-l ph2 v-top-l b" },
-		radioItems: { class: "dib-l mt2 mt0-l" },
-		range: { class: "w-100" },
-		rangeLabel: { class: "f7" },
-		search: { class: "w-100 br-pill ph3" },
-		select: { class: "w-100 h2" },
-		str: { class: "w-100" },
-		text: { class: "w-100 code" },
-		toggle: { class: "w1 h1" },
-		trigger: { class: "w-100 bg-dark-blue hover-bg-blue white bn pa2" },
+		container: { class: "container" },
+		group: { class: "group" },
+		radioItem: { class: "radio-item" },
+		radioItems: { class: "radio-group" },
+		rangeLabel: { class: "range-label" },
+		select: { class: "single" },
 	},
 	behaviors: {
 		// labels: false,
