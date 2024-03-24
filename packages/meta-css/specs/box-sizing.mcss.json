@@ -1,0 +1,10 @@
+{
+	"specs": [
+		{
+			"doc": { "group": "box sizing", "desc": "<v>" },
+			"name": "<v>",
+			"props": "box-sizing",
+			"values": ["border-box", "content-box"]
+		}
+	]
+}

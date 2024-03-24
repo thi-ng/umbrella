@@ -109,6 +109,7 @@
 		["[hidden]", "template", { "display": "none" }],
 		[
 			"html",
+			"fieldset",
 			"legend",
 			"input",
 			"textarea",
