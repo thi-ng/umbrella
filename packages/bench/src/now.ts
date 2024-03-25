@@ -1,4 +1,4 @@
-import type { Fn0, FnU2 } from "@thi.ng/api";
+import type { Fn0 } from "@thi.ng/api";
 import type { Timestamp } from "./api.js";
 
 /**
@@ -26,7 +26,7 @@ export const now: Fn0<Timestamp> =
  * @param a
  * @param b
  */
-export const timeDiff: FnU2<Timestamp, number> = (a, b = now()) =>
+export const timeDiff = (a: Timestamp, b = now()) =>
 	(typeof BigInt !== "undefined"
 		? Number(<bigint>b - <bigint>a)
 		: <number>b - <number>a) * 1e-6;
