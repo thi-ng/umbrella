@@ -66,18 +66,18 @@ const groupedTypes = (
 		},
 		Object.entries(src)
 	);
-	return mapcat(
-		(groupID) => [
+	return mapcat((groupID) => {
+		const group = grouped[groupID]
+			.sort($compare)
+			.map((x) => fmt(x, src[x].__doc));
+		const n = group.length;
+		return [
 			`#### ${capitalize(groupID)}\n`,
-			"<details>\n",
-			grouped[groupID]
-				.sort($compare)
-				.map((x) => fmt(x, src[x].__doc))
-				.join("\n"),
+			n > 3 ? `<details><summary>${n} items:</summary>\n` : "",
+			group.join("\n"),
 			"</details>\n",
-		],
-		Object.keys(grouped).sort()
-	);
+		];
+	}, Object.keys(grouped).sort());
 };
 
 const fmtSpec = (id: string, doc?: SpecDoc) => {

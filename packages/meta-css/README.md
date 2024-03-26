@@ -42,11 +42,11 @@
     - [Animation / transition](#animation--transition)
     - [Aspect ratios](#aspect-ratios)
     - [Background](#background)
+    - [Background color](#background-color)
     - [Border color](#border-color)
     - [Border radius](#border-radius)
     - [Border width](#border-width)
     - [Box sizing](#box-sizing)
-    - [Colors](#colors)
     - [Content](#content)
     - [Cursors](#cursors)
     - [Display mode](#display-mode)
@@ -78,6 +78,7 @@
     - [Shadow](#shadow)
     - [Svg](#svg)
     - [Text align](#text-align)
+    - [Text color](#text-color)
     - [Text decorations](#text-decorations)
     - [Text transforms](#text-transforms)
     - [Vertical align](#vertical-align)
@@ -89,10 +90,10 @@
     - [Animation / transition](#animation--transition)
     - [Aspect ratios](#aspect-ratios)
     - [Background](#background)
+    - [Background color](#background-color)
     - [Border color](#border-color)
     - [Color adjustment](#color-adjustment)
     - [Color definitions](#color-definitions)
-    - [Colors](#colors)
     - [Dimensions](#dimensions)
     - [Font families](#font-families)
     - [Grid layout](#grid-layout)
@@ -101,6 +102,7 @@
     - [Padding](#padding)
     - [Positions](#positions)
     - [Svg](#svg)
+    - [Text color](#text-color)
   - [Media queries](#media-queries)
 - [Status](#status)
 - [Related packages](#related-packages)
@@ -981,15 +983,13 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Accessibility
 
-<details>
-
 - `screen-reader`
 - `screen-reader-focus`
 </details>
 
 #### Animation / transition
 
-<details>
+<details><summary>22 items:</summary>
 
 - `anim-alternate` (direction)
 - `anim-alternate-reverse` (direction)
@@ -1017,14 +1017,12 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Aspect ratios
 
-<details>
-
 - `bg-aspect-ratio-object` (To be used on the element forming the background of a `bg-aspect-ratio()` parent/wrapper)
 </details>
 
 #### Background
 
-<details>
+<details><summary>17 items:</summary>
 
 - `bg-contain`
 - `bg-cover`
@@ -1045,9 +1043,53 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 - `bg-repeat-y` (repeat-y)
 </details>
 
+#### Background color
+
+<details><summary>38 items:</summary>
+
+- `bg-color-black` (#000)
+- `bg-color-blue` (#357edd)
+- `bg-color-current` (currentcolor)
+- `bg-color-dark-blue` (#00449e)
+- `bg-color-dark-gray` (#333)
+- `bg-color-dark-green` (#137752)
+- `bg-color-dark-pink` (#d5008f)
+- `bg-color-dark-red` (#e7040f)
+- `bg-color-gold` (#ffb700)
+- `bg-color-gray` (#777)
+- `bg-color-green` (#19a974)
+- `bg-color-hot-pink` (#ff41b4)
+- `bg-color-light-blue` (#96ccff)
+- `bg-color-light-gray` (#eee)
+- `bg-color-light-green` (#9eebcf)
+- `bg-color-light-pink` (#ffa3d7)
+- `bg-color-light-purple` (#a463f2)
+- `bg-color-light-red` (#ff725c)
+- `bg-color-light-silver` (#aaa)
+- `bg-color-light-yellow` (#fbf1a9)
+- `bg-color-lightest-blue` (#cdecff)
+- `bg-color-mid-gray` (#555)
+- `bg-color-moon-gray` (#ccc)
+- `bg-color-navy` (#001b44)
+- `bg-color-near-black` (#111)
+- `bg-color-near-white` (#f4f4f4)
+- `bg-color-orange` (#ff6300)
+- `bg-color-pink` (#ff80cc)
+- `bg-color-purple` (#5e2ca5)
+- `bg-color-red` (#ff4136)
+- `bg-color-silver` (#999)
+- `bg-color-transparent` (transparent)
+- `bg-color-washed-blue` (#f6fffe)
+- `bg-color-washed-green` (#e8fdf5)
+- `bg-color-washed-red` (#ffdfdf)
+- `bg-color-washed-yellow` (#fffceb)
+- `bg-color-white` (#fff)
+- `bg-color-yellow` (#ffd700)
+</details>
+
 #### Border color
 
-<details>
+<details><summary>38 items:</summary>
 
 - `border-color-black` (#000)
 - `border-color-blue` (#357edd)
@@ -1091,7 +1133,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Border radius
 
-<details>
+<details><summary>27 items:</summary>
 
 - `br0` (0rem)
 - `br1` (.125rem)
@@ -1100,162 +1142,78 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 - `br4` (1rem)
 - `br-100` (100%)
 - `br-pill` (9999px)
-- `brb0` (0rem)
-- `brb1` (.125rem)
-- `brb2` (.25rem)
-- `brb3` (.5rem)
-- `brb4` (1rem)
-- `brl0` (0rem)
-- `brl1` (.125rem)
-- `brl2` (.25rem)
-- `brl3` (.5rem)
-- `brl4` (1rem)
-- `brr0` (0rem)
-- `brr1` (.125rem)
-- `brr2` (.25rem)
-- `brr3` (.5rem)
-- `brr4` (1rem)
-- `brt0` (0rem)
-- `brt1` (.125rem)
-- `brt2` (.25rem)
-- `brt3` (.5rem)
-- `brt4` (1rem)
+- `brb0` (bottom 0rem)
+- `brb1` (bottom .125rem)
+- `brb2` (bottom .25rem)
+- `brb3` (bottom .5rem)
+- `brb4` (bottom 1rem)
+- `brl0` (left 0rem)
+- `brl1` (left .125rem)
+- `brl2` (left .25rem)
+- `brl3` (left .5rem)
+- `brl4` (left 1rem)
+- `brr0` (right 0rem)
+- `brr1` (right .125rem)
+- `brr2` (right .25rem)
+- `brr3` (right .5rem)
+- `brr4` (right 1rem)
+- `brt0` (top 0rem)
+- `brt1` (top .125rem)
+- `brt2` (top .25rem)
+- `brt3` (top .5rem)
+- `brt4` (top 1rem)
 </details>
 
 #### Border width
 
-<details>
+<details><summary>35 items:</summary>
 
-- `bw0` (0rem)
-- `bw1` (.125rem)
-- `bw2` (.25rem)
-- `bw3` (.5rem)
-- `bw4` (1rem)
-- `bw5` (2rem)
-- `bw-1px` (1px)
-- `bwb0` (0rem)
-- `bwb1` (.125rem)
-- `bwb2` (.25rem)
-- `bwb3` (.5rem)
-- `bwb4` (1rem)
-- `bwb5` (2rem)
-- `bwb-1px` (1px)
-- `bwl0` (0rem)
-- `bwl1` (.125rem)
-- `bwl2` (.25rem)
-- `bwl3` (.5rem)
-- `bwl4` (1rem)
-- `bwl5` (2rem)
-- `bwl-1px` (1px)
-- `bwr0` (0rem)
-- `bwr1` (.125rem)
-- `bwr2` (.25rem)
-- `bwr3` (.5rem)
-- `bwr4` (1rem)
-- `bwr5` (2rem)
-- `bwr-1px` (1px)
-- `bwt0` (0rem)
-- `bwt1` (.125rem)
-- `bwt2` (.25rem)
-- `bwt3` (.5rem)
-- `bwt4` (1rem)
-- `bwt5` (2rem)
-- `bwt-1px` (1px)
+- `bw0` ( 0rem)
+- `bw1` ( .125rem)
+- `bw2` ( .25rem)
+- `bw3` ( .5rem)
+- `bw4` ( 1rem)
+- `bw5` ( 2rem)
+- `bw-1px` ( 1px)
+- `bwb0` (bottom 0rem)
+- `bwb1` (bottom .125rem)
+- `bwb2` (bottom .25rem)
+- `bwb3` (bottom .5rem)
+- `bwb4` (bottom 1rem)
+- `bwb5` (bottom 2rem)
+- `bwb-1px` (bottom 1px)
+- `bwl0` (left 0rem)
+- `bwl1` (left .125rem)
+- `bwl2` (left .25rem)
+- `bwl3` (left .5rem)
+- `bwl4` (left 1rem)
+- `bwl5` (left 2rem)
+- `bwl-1px` (left 1px)
+- `bwr0` (right 0rem)
+- `bwr1` (right .125rem)
+- `bwr2` (right .25rem)
+- `bwr3` (right .5rem)
+- `bwr4` (right 1rem)
+- `bwr5` (right 2rem)
+- `bwr-1px` (right 1px)
+- `bwt0` (top 0rem)
+- `bwt1` (top .125rem)
+- `bwt2` (top .25rem)
+- `bwt3` (top .5rem)
+- `bwt4` (top 1rem)
+- `bwt5` (top 2rem)
+- `bwt-1px` (top 1px)
 </details>
 
 #### Box sizing
-
-<details>
 
 - `border-box` (border-box)
 - `content-box` (content-box)
 </details>
 
-#### Colors
-
-<details>
-
-- `bg-color-black` (#000)
-- `bg-color-blue` (#357edd)
-- `bg-color-current` (currentcolor)
-- `bg-color-dark-blue` (#00449e)
-- `bg-color-dark-gray` (#333)
-- `bg-color-dark-green` (#137752)
-- `bg-color-dark-pink` (#d5008f)
-- `bg-color-dark-red` (#e7040f)
-- `bg-color-gold` (#ffb700)
-- `bg-color-gray` (#777)
-- `bg-color-green` (#19a974)
-- `bg-color-hot-pink` (#ff41b4)
-- `bg-color-light-blue` (#96ccff)
-- `bg-color-light-gray` (#eee)
-- `bg-color-light-green` (#9eebcf)
-- `bg-color-light-pink` (#ffa3d7)
-- `bg-color-light-purple` (#a463f2)
-- `bg-color-light-red` (#ff725c)
-- `bg-color-light-silver` (#aaa)
-- `bg-color-light-yellow` (#fbf1a9)
-- `bg-color-lightest-blue` (#cdecff)
-- `bg-color-mid-gray` (#555)
-- `bg-color-moon-gray` (#ccc)
-- `bg-color-navy` (#001b44)
-- `bg-color-near-black` (#111)
-- `bg-color-near-white` (#f4f4f4)
-- `bg-color-orange` (#ff6300)
-- `bg-color-pink` (#ff80cc)
-- `bg-color-purple` (#5e2ca5)
-- `bg-color-red` (#ff4136)
-- `bg-color-silver` (#999)
-- `bg-color-transparent` (transparent)
-- `bg-color-washed-blue` (#f6fffe)
-- `bg-color-washed-green` (#e8fdf5)
-- `bg-color-washed-red` (#ffdfdf)
-- `bg-color-washed-yellow` (#fffceb)
-- `bg-color-white` (#fff)
-- `bg-color-yellow` (#ffd700)
-- `color-black` (#000)
-- `color-blue` (#357edd)
-- `color-current` (currentcolor)
-- `color-dark-blue` (#00449e)
-- `color-dark-gray` (#333)
-- `color-dark-green` (#137752)
-- `color-dark-pink` (#d5008f)
-- `color-dark-red` (#e7040f)
-- `color-gold` (#ffb700)
-- `color-gray` (#777)
-- `color-green` (#19a974)
-- `color-hot-pink` (#ff41b4)
-- `color-light-blue` (#96ccff)
-- `color-light-gray` (#eee)
-- `color-light-green` (#9eebcf)
-- `color-light-pink` (#ffa3d7)
-- `color-light-purple` (#a463f2)
-- `color-light-red` (#ff725c)
-- `color-light-silver` (#aaa)
-- `color-light-yellow` (#fbf1a9)
-- `color-lightest-blue` (#cdecff)
-- `color-mid-gray` (#555)
-- `color-moon-gray` (#ccc)
-- `color-navy` (#001b44)
-- `color-near-black` (#111)
-- `color-near-white` (#f4f4f4)
-- `color-orange` (#ff6300)
-- `color-pink` (#ff80cc)
-- `color-purple` (#5e2ca5)
-- `color-red` (#ff4136)
-- `color-silver` (#999)
-- `color-transparent` (transparent)
-- `color-washed-blue` (#f6fffe)
-- `color-washed-green` (#e8fdf5)
-- `color-washed-red` (#ffdfdf)
-- `color-washed-yellow` (#fffceb)
-- `color-white` (#fff)
-- `color-yellow` (#ffd700)
-</details>
-
 #### Content
 
-<details>
+<details><summary>6 items:</summary>
 
 - `content-data-lang` (data-lang attrib)
 - `content-href` (href attrib)
@@ -1267,7 +1225,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Cursors
 
-<details>
+<details><summary>36 items:</summary>
 
 - `cursor-alias`
 - `cursor-auto`
@@ -1309,7 +1267,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Display mode
 
-<details>
+<details><summary>11 items:</summary>
 
 - `db` (block)
 - `di` (inline)
@@ -1326,7 +1284,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Flex layout
 
-<details>
+<details><summary>25 items:</summary>
 
 - `align-content-center`
 - `align-content-end`
@@ -1357,7 +1315,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Font families
 
-<details>
+<details><summary>6 items:</summary>
 
 - `monospace`
 - `sans-serif`
@@ -1369,7 +1327,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Font sizes
 
-<details>
+<details><summary>9 items:</summary>
 
 - `f-subtitle` (5rem)
 - `f-title` (6rem)
@@ -1384,21 +1342,17 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Font style
 
-<details>
-
 - `italic`
 </details>
 
 #### Font variants
-
-<details>
 
 - `small-caps`
 </details>
 
 #### Font weights
 
-<details>
+<details><summary>11 items:</summary>
 
 - `b` (700)
 - `fw100`
@@ -1415,7 +1369,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Grid layout
 
-<details>
+<details><summary>46 items:</summary>
 
 - `align-items-center`
 - `align-items-end`
@@ -1467,7 +1421,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Height
 
-<details>
+<details><summary>29 items:</summary>
 
 - `h1` (1rem)
 - `h2` (2rem)
@@ -1502,7 +1456,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Icons
 
-<details>
+<details><summary>9 items:</summary>
 
 - `icon-1` (3rem)
 - `icon-2` (2.25rem)
@@ -1517,7 +1471,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Letter spacing
 
-<details>
+<details><summary>6 items:</summary>
 
 - `ls-0` (0em)
 - `ls-1` (.05em)
@@ -1529,7 +1483,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Line heights
 
-<details>
+<details><summary>5 items:</summary>
 
 - `lh-0` (0)
 - `lh-copy` (1.5)
@@ -1540,14 +1494,12 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Lists
 
-<details>
-
 - `list`
 </details>
 
 #### Margin
 
-<details>
+<details><summary>55 items:</summary>
 
 - `center`
 - `ma0` ( 0rem)
@@ -1608,7 +1560,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Mask
 
-<details>
+<details><summary>13 items:</summary>
 
 - `mask-clip-border` (border-box)
 - `mask-clip-content` (content-box)
@@ -1627,7 +1579,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Max. height
 
-<details>
+<details><summary>25 items:</summary>
 
 - `maxh1` (1rem)
 - `maxh2` (2rem)
@@ -1658,7 +1610,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Max. width
 
-<details>
+<details><summary>25 items:</summary>
 
 - `maxw1` (1rem)
 - `maxw2` (2rem)
@@ -1689,7 +1641,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Min. height
 
-<details>
+<details><summary>25 items:</summary>
 
 - `minh1` (1rem)
 - `minh2` (2rem)
@@ -1720,7 +1672,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Min. width
 
-<details>
+<details><summary>25 items:</summary>
 
 - `minw1` (1rem)
 - `minw2` (2rem)
@@ -1751,7 +1703,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Opacity
 
-<details>
+<details><summary>11 items:</summary>
 
 - `o-0` (0)
 - `o-10` (0.1)
@@ -1768,7 +1720,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Overflow
 
-<details>
+<details><summary>12 items:</summary>
 
 - `overflow-auto`
 - `overflow-hidden`
@@ -1786,7 +1738,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Padding
 
-<details>
+<details><summary>54 items:</summary>
 
 - `pa0` ( 0rem)
 - `pa1` ( .25rem)
@@ -1846,7 +1798,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Positions
 
-<details>
+<details><summary>25 items:</summary>
 
 - `absolute`
 - `bottom-0` (0rem)
@@ -1877,7 +1829,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Print
 
-<details>
+<details><summary>18 items:</summary>
 
 - `break-after-avoid`
 - `break-after-avoid-column`
@@ -1901,7 +1853,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Scrolling
 
-<details>
+<details><summary>8 items:</summary>
 
 - `ss-always` (snap stop)
 - `ss-both` (snap type)
@@ -1915,14 +1867,12 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Selection
 
-<details>
-
 - `noselect`
 </details>
 
 #### Shadow
 
-<details>
+<details><summary>17 items:</summary>
 
 - `box-shadow-1` (0 0 2px 0px #0003)
 - `box-shadow-2` (0 0 4px #0003)
@@ -1945,7 +1895,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Svg
 
-<details>
+<details><summary>76 items:</summary>
 
 - `fill-black` (#000)
 - `fill-blue` (#357edd)
@@ -2027,7 +1977,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Text align
 
-<details>
+<details><summary>4 items:</summary>
 
 - `tc` (center)
 - `tj` (justify)
@@ -2035,9 +1985,51 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 - `tr` (right)
 </details>
 
-#### Text decorations
+#### Text color
 
-<details>
+<details><summary>38 items:</summary>
+
+- `color-black` (#000)
+- `color-blue` (#357edd)
+- `color-current` (currentcolor)
+- `color-dark-blue` (#00449e)
+- `color-dark-gray` (#333)
+- `color-dark-green` (#137752)
+- `color-dark-pink` (#d5008f)
+- `color-dark-red` (#e7040f)
+- `color-gold` (#ffb700)
+- `color-gray` (#777)
+- `color-green` (#19a974)
+- `color-hot-pink` (#ff41b4)
+- `color-light-blue` (#96ccff)
+- `color-light-gray` (#eee)
+- `color-light-green` (#9eebcf)
+- `color-light-pink` (#ffa3d7)
+- `color-light-purple` (#a463f2)
+- `color-light-red` (#ff725c)
+- `color-light-silver` (#aaa)
+- `color-light-yellow` (#fbf1a9)
+- `color-lightest-blue` (#cdecff)
+- `color-mid-gray` (#555)
+- `color-moon-gray` (#ccc)
+- `color-navy` (#001b44)
+- `color-near-black` (#111)
+- `color-near-white` (#f4f4f4)
+- `color-orange` (#ff6300)
+- `color-pink` (#ff80cc)
+- `color-purple` (#5e2ca5)
+- `color-red` (#ff4136)
+- `color-silver` (#999)
+- `color-transparent` (transparent)
+- `color-washed-blue` (#f6fffe)
+- `color-washed-green` (#e8fdf5)
+- `color-washed-red` (#ffdfdf)
+- `color-washed-yellow` (#fffceb)
+- `color-white` (#fff)
+- `color-yellow` (#ffd700)
+</details>
+
+#### Text decorations
 
 - `no-underline`
 - `strike`
@@ -2046,7 +2038,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Text transforms
 
-<details>
+<details><summary>7 items:</summary>
 
 - `ttc` (capitalize)
 - `ttfsk` (full-size-kana)
@@ -2059,7 +2051,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Vertical align
 
-<details>
+<details><summary>4 items:</summary>
 
 - `v-base` (baseline)
 - `v-btm` (bottom)
@@ -2069,16 +2061,12 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Visibility
 
-<details>
-
 - `collapse`
 - `hidden`
 - `visible`
 </details>
 
 #### Whitespace
-
-<details>
 
 - `ws-normal`
 - `ws-nowrap`
@@ -2087,7 +2075,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Width
 
-<details>
+<details><summary>29 items:</summary>
 
 - `vw-25`
 - `vw-50`
@@ -2122,7 +2110,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Z-indices
 
-<details>
+<details><summary>8 items:</summary>
 
 - `z-0`
 - `z-1`
@@ -2138,7 +2126,7 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 #### Animation / transition
 
-<details>
+<details><summary>15 items:</summary>
 
 ##### `anim(body)`
 
@@ -2219,8 +2207,6 @@ Sets transition-timing-function to `steps(num)`
 
 #### Aspect ratios
 
-<details>
-
 ##### `aspect-ratio(width, height)`
 
 - **width**: aspect width
@@ -2239,7 +2225,7 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 #### Background
 
-<details>
+<details><summary>4 items:</summary>
 
 ##### `bg-blur(radius)`
 
@@ -2259,9 +2245,15 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 </details>
 
-#### Border color
+#### Background color
 
-<details>
+##### `bg-color(name)`
+
+- **name**: variable name (without `--` prefix)
+
+</details>
+
+#### Border color
 
 ##### `border-color(name)`
 
@@ -2271,7 +2263,7 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 #### Color adjustment
 
-<details>
+<details><summary>4 items:</summary>
 
 ##### `adjust-hsl(prop, name, hue, sat, lum, alpha)`
 
@@ -2321,7 +2313,7 @@ Assigns an adjusted version of a `def-rgb()`-defined color to given CSS property
 
 #### Color definitions
 
-<details>
+<details><summary>4 items:</summary>
 
 ##### `def-hsl(name, hue, sat, lum, alpha)`
 
@@ -2365,23 +2357,9 @@ Defines a rgb() color variable with given name and additional derived vars for e
 
 </details>
 
-#### Colors
-
-<details>
-
-##### `bg-color(name)`
-
-- **name**: variable name (without `--` prefix)
-
-##### `color(name)`
-
-- **name**: variable name (without `--` prefix)
-
-</details>
-
 #### Dimensions
 
-<details>
+<details><summary>6 items:</summary>
 
 ##### `height(height)`
 
@@ -2423,8 +2401,6 @@ Sets width to given value
 
 #### Font families
 
-<details>
-
 ##### `font-family(body)`
 
 - **body**: CSS value/definition
@@ -2432,8 +2408,6 @@ Sets width to given value
 </details>
 
 #### Grid layout
-
-<details>
 
 ##### `grid-cols(cols)`
 
@@ -2447,7 +2421,7 @@ Sets width to given value
 
 #### Margin
 
-<details>
+<details><summary>7 items:</summary>
 
 ##### `ma(size)`
 
@@ -2495,8 +2469,6 @@ Sets margin to custom size
 
 #### Mask
 
-<details>
-
 ##### `mask-image(body)`
 
 - **body**: definition (e.g. url or gradient)
@@ -2505,7 +2477,7 @@ Sets margin to custom size
 
 #### Padding
 
-<details>
+<details><summary>7 items:</summary>
 
 ##### `pa(size)`
 
@@ -2553,7 +2525,7 @@ Sets padding to custom size
 
 #### Positions
 
-<details>
+<details><summary>4 items:</summary>
 
 ##### `bottom(coordinate)`
 
@@ -2575,13 +2547,19 @@ Sets padding to custom size
 
 #### Svg
 
-<details>
-
 ##### `fill(name)`
 
 - **name**: variable name (without `--` prefix)
 
 ##### `stroke(name)`
+
+- **name**: variable name (without `--` prefix)
+
+</details>
+
+#### Text color
+
+##### `color(name)`
 
 - **name**: variable name (without `--` prefix)
 

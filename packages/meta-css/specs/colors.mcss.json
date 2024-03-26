@@ -62,25 +62,25 @@
 			"values": "grays"
 		},
 		{
-			"doc": { "group": "colors", "desc": "<v>" },
+			"doc": { "group": "text color", "desc": "<v>" },
 			"name": "color-<k>",
 			"props": "color",
 			"values": "palette"
 		},
 		{
-			"doc": { "group": "colors", "desc": "<v>" },
+			"doc": { "group": "text color", "desc": "<v>" },
 			"name": "color-<k>",
 			"props": "color",
 			"values": "grays"
 		},
 		{
-			"doc": { "group": "colors", "desc": "<v>" },
+			"doc": { "group": "background color", "desc": "<v>" },
 			"name": "bg-color-<k>",
 			"props": "background-color",
 			"values": "palette"
 		},
 		{
-			"doc": { "group": "colors", "desc": "<v>" },
+			"doc": { "group": "background color", "desc": "<v>" },
 			"name": "bg-color-<k>",
 			"props": "background-color",
 			"values": "grays"
@@ -129,7 +129,7 @@
 		},
 		{
 			"doc": {
-				"group": "colors",
+				"group": "text color",
 				"args": ["name: variable name (without `--` prefix)"]
 			},
 			"name": "color",
@@ -137,7 +137,7 @@
 		},
 		{
 			"doc": {
-				"group": "colors",
+				"group": "background color",
 				"args": ["name: variable name (without `--` prefix)"]
 			},
 			"name": "bg-color",

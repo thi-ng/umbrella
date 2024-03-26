@@ -12,7 +12,7 @@
 			"unit": "rem"
 		},
 		{
-			"doc": { "group": "border radius", "desc": "<v>" },
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"name": "br<vid><k>",
 			"props": {
 				"border-top<var>-radius": "<v>",
@@ -23,7 +23,7 @@
 			"vars": ["l", "r"]
 		},
 		{
-			"doc": { "group": "border radius", "desc": "<v>" },
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"name": "br<vid><k>",
 			"props": {
 				"border<var>-left-radius": "<v>",
@@ -40,7 +40,7 @@
 			"values": { "100": "100%", "pill": "9999px" }
 		},
 		{
-			"doc": { "group": "border width", "desc": "<v>" },
+			"doc": { "group": "border width", "desc": "<var> <v>" },
 			"name": "bw<vid><k>",
 			"props": {
 				"border<var>-style": "solid",
@@ -51,7 +51,7 @@
 			"vars": ["", "t", "r", "b", "l"]
 		},
 		{
-			"doc": { "group": "border width", "desc": "<v>" },
+			"doc": { "group": "border width", "desc": "<var> <v>" },
 			"name": "bw<vid>-<v>px",
 			"props": {
 				"border<var>-style": "solid",
