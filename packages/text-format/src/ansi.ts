@@ -1,4 +1,4 @@
-import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { StringFormat } from "./api.js";
 import { defFormat } from "./format.js";
 
@@ -26,7 +26,7 @@ const ANSI_FLAGS = ["", "1", "2", "1;2", "4", "1;4", "2;4", "1;2;4"];
  */
 export const FMT_ANSI16: StringFormat = {
 	format: (code, x) => FMT_ANSI16.start(code) + x + FMT_ANSI16.end,
-	start: memoize1((x: number) => {
+	start: memoizeO((x: number) => {
 		let res = [];
 		let y = x & 0xf;
 		y && res.push(29 + ((x >> 4) & 1) * 60 + y);

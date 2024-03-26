@@ -1,5 +1,5 @@
 import { U8 } from "@thi.ng/hex";
-import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { HtmlFormatOpts, StringFormat } from "./api.js";
 
 const F5 = 255 / 31;
@@ -21,7 +21,7 @@ export const formatHtml = ({
 	dim,
 	underline,
 }: HtmlFormatOpts): StringFormat => {
-	const start = memoize1((x: number) => {
+	const start = memoizeO((x: number) => {
 		let y = x & 0xf;
 		let res = `<span ${attrib}="${fg}${
 			colors[(y - 1) | ((x >> 1) & 0x8)]
@@ -75,33 +75,50 @@ export const FMT_HTML_INLINE_CSS = formatHtml({
 	underline: "text-decoration:underline",
 });
 
+const tachyonColors = [
+	"black",
+	"dark-red",
+	"dark-green",
+	"gold",
+	"dark-blue",
+	"dark-pink",
+	"light-blue",
+	"moon-gray",
+	"mid-gray",
+	"red",
+	"green",
+	"yellow",
+	"blue",
+	"hot-pink",
+	"lightest-blue",
+	"white",
+];
+
 /**
  * Preset HTML formatter for use w/ default format IDs, generating `<span>`
  * elements with Tachyons CSS classes.
  */
 export const FMT_HTML_TACHYONS = formatHtml({
-	colors: [
-		"black",
-		"dark-red",
-		"dark-green",
-		"gold",
-		"dark-blue",
-		"dark-pink",
-		"light-blue",
-		"moon-gray",
-		"mid-gray",
-		"red",
-		"green",
-		"yellow",
-		"blue",
-		"hot-pink",
-		"lightest-blue",
-		"white",
-	],
+	colors: tachyonColors,
 	attrib: "class",
 	delim: " ",
 	fg: "",
 	bg: "bg-",
+	bold: "b",
+	dim: "o-50",
+	underline: "underline",
+});
+
+/**
+ * Preset HTML formatter for use w/ default format IDs, generating `<span>`
+ * elements with thi.ng/meta-css base framework color classes.
+ */
+export const FMT_HTML_MCSS = formatHtml({
+	colors: tachyonColors,
+	attrib: "class",
+	delim: " ",
+	fg: "color-",
+	bg: "bg-color-",
 	bold: "b",
 	dim: "o-50",
 	underline: "underline",
@@ -115,7 +132,7 @@ export const FMT_HTML_TACHYONS = formatHtml({
  * @param prop -
  */
 export const FMT_HTML565 = (prop = "color"): StringFormat => {
-	const start = memoize1(
+	const start = memoizeO(
 		(x: number) =>
 			`<span style="${prop}:#${U8((x >> 11) * F5)}${U8(
 				((x >> 5) & 0x3f) * F6
