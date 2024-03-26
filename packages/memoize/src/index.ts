@@ -4,3 +4,4 @@ export * from "./do-once.js";
 export * from "./memoize.js";
 export * from "./memoize1.js";
 export * from "./memoizej.js";
+export * from "./memoizeo.js";

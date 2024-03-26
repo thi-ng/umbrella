@@ -82,6 +82,9 @@
 		},
 		"./memoizej": {
 			"default": "./memoizej.js"
+		},
+		"./memoizeo": {
+			"default": "./memoizeo.js"
 		}
 	},
 	"thi.ng": {
