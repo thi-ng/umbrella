@@ -36,6 +36,8 @@
   - [Force inclusion of unreferenced classes](#force-inclusion-of-unreferenced-classes)
 - [Exporting a generated framework as CSS](#exporting-a-generated-framework-as-css)
   - [Media query variations](#media-query-variations)
+- [Documenting a generated framework](#documenting-a-generated-framework)
+  - [Documentation metadata](#documentation-metadata)
 - [Bundled CSS base framework](#bundled-css-base-framework)
   - [Classes by category](#classes-by-category)
     - [Accessibility](#accessibility)
@@ -969,6 +971,80 @@ to 50%) and media queries for different screen sizes (e.g. named `ns`, `l`),
 then the export with said media queries will also generate classes `w-50-ns`
 and `w-50-l` (incl. their corresponding `@media` wrappers).
 
+## Documenting a generated framework
+
+Generator specs and templates can include documentation metadata, which can then
+be utilized to produce Markdown documentation via the `metacss doc` command:
+
+```text
+metacss doc --help
+
+Usage: metacss doc [opts] input [...]
+
+Flags:
+
+-v, --verbose           Display extra process information
+
+Main:
+
+-l INT, --level INT     Initial heading level (default: 1)
+-o STR, --out STR       Output file (or stdout)
+-t STR, --title STR     Main title, set to 'none' to disable (default: "meta")
+```
+
+The command allows for customization of the initial heading level and title.
+
+### Documentation metadata
+
+All [generator specs](#generator-spec-structure) and
+[templates](#templated-class-definitions) can include a `doc` object with this
+structure:
+
+```json
+"doc": {
+    "group": "Section name for the group this spec belongs to",
+    "desc": "Description of this spec/class/template",
+    "args": [
+        "argName1: description",
+        "argName2: description...",
+    ]
+}
+```
+
+**Note:** The `args` field is **only** used for documenting
+[templates](#templated-class-definitions).
+
+All values in this `doc` object can contain [parameters](#parametric-ids) which
+will be interpolated when the framework specs are expanded (via the [`generate`
+command](#generating-css-frameworks)). For example, the following spec:
+
+```json
+{
+    "doc": { "group": "box sizing", "desc": "<v>" },
+    "name": "<v>",
+    "props": "box-sizing",
+    "values": ["border-box", "content-box"]
+}
+```
+
+...will be expanded to produce these CSS classes:
+
+```json
+{
+    "border-box": {
+        "__doc": { "group": "box sizing", "desc": "border-box" },
+        "box-sizing": "border-box"
+    },
+    "content-box": {
+        "__doc": { "group": "box sizing", "desc": "content-box" },
+        "box-sizing": "content-box"
+    }
+}
+```
+
+The command is also used to produce the following documentation of the included
+base framework specs.
+
 ## Bundled CSS base framework
 
 The package includes a large number of useful generator specs in
@@ -985,7 +1061,6 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 - `screen-reader`
 - `screen-reader-focus`
-</details>
 
 #### Animation / transition
 
@@ -1018,7 +1093,6 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 #### Aspect ratios
 
 - `bg-aspect-ratio-object` (To be used on the element forming the background of a `bg-aspect-ratio()` parent/wrapper)
-</details>
 
 #### Background
 
@@ -1209,7 +1283,6 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 
 - `border-box` (border-box)
 - `content-box` (content-box)
-</details>
 
 #### Content
 
@@ -1343,12 +1416,10 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 #### Font style
 
 - `italic`
-</details>
 
 #### Font variants
 
 - `small-caps`
-</details>
 
 #### Font weights
 
@@ -1495,7 +1566,6 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 #### Lists
 
 - `list`
-</details>
 
 #### Margin
 
@@ -1868,7 +1938,6 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 #### Selection
 
 - `noselect`
-</details>
 
 #### Shadow
 
@@ -2034,7 +2103,6 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 - `no-underline`
 - `strike`
 - `underline`
-</details>
 
 #### Text transforms
 
@@ -2064,14 +2132,12 @@ Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "Me
 - `collapse`
 - `hidden`
 - `visible`
-</details>
 
 #### Whitespace
 
 - `ws-normal`
 - `ws-nowrap`
 - `ws-pre`
-</details>
 
 #### Width
 
@@ -2221,8 +2287,6 @@ Sets `aspect-ratio` CSS property
 
 Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child element.
 
-</details>
-
 #### Background
 
 <details><summary>4 items:</summary>
@@ -2251,15 +2315,11 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 - **name**: variable name (without `--` prefix)
 
-</details>
-
 #### Border color
 
 ##### `border-color(name)`
 
 - **name**: variable name (without `--` prefix)
-
-</details>
 
 #### Color adjustment
 
@@ -2405,8 +2465,6 @@ Sets width to given value
 
 - **body**: CSS value/definition
 
-</details>
-
 #### Grid layout
 
 ##### `grid-cols(cols)`
@@ -2416,8 +2474,6 @@ Sets width to given value
 ##### `grid-rows(rows)`
 
 - **rows**: CSS rows definitions
-
-</details>
 
 #### Margin
 
@@ -2472,8 +2528,6 @@ Sets margin to custom size
 ##### `mask-image(body)`
 
 - **body**: definition (e.g. url or gradient)
-
-</details>
 
 #### Padding
 
@@ -2555,15 +2609,11 @@ Sets padding to custom size
 
 - **name**: variable name (without `--` prefix)
 
-</details>
-
 #### Text color
 
 ##### `color(name)`
 
 - **name**: variable name (without `--` prefix)
-
-</details>
 
 ### Media queries
 
@@ -2599,7 +2649,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.85 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.72 KB
 
 ## Dependencies
 

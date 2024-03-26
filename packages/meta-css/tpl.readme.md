@@ -859,6 +859,80 @@ to 50%) and media queries for different screen sizes (e.g. named `ns`, `l`),
 then the export with said media queries will also generate classes `w-50-ns`
 and `w-50-l` (incl. their corresponding `@media` wrappers).
 
+## Documenting a generated framework
+
+Generator specs and templates can include documentation metadata, which can then
+be utilized to produce Markdown documentation via the `metacss doc` command:
+
+```text
+metacss doc --help
+
+Usage: metacss doc [opts] input [...]
+
+Flags:
+
+-v, --verbose           Display extra process information
+
+Main:
+
+-l INT, --level INT     Initial heading level (default: 1)
+-o STR, --out STR       Output file (or stdout)
+-t STR, --title STR     Main title, set to 'none' to disable (default: "meta")
+```
+
+The command allows for customization of the initial heading level and title.
+
+### Documentation metadata
+
+All [generator specs](#generator-spec-structure) and
+[templates](#templated-class-definitions) can include a `doc` object with this
+structure:
+
+```json
+"doc": {
+	"group": "Section name for the group this spec belongs to",
+	"desc": "Description of this spec/class/template",
+	"args": [
+		"argName1: description",
+		"argName2: description...",
+	]
+}
+```
+
+**Note:** The `args` field is **only** used for documenting
+[templates](#templated-class-definitions).
+
+All values in this `doc` object can contain [parameters](#parametric-ids) which
+will be interpolated when the framework specs are expanded (via the [`generate`
+command](#generating-css-frameworks)). For example, the following spec:
+
+```json
+{
+	"doc": { "group": "box sizing", "desc": "<v>" },
+	"name": "<v>",
+	"props": "box-sizing",
+	"values": ["border-box", "content-box"]
+}
+```
+
+...will be expanded to produce these CSS classes:
+
+```json
+{
+	"border-box": {
+		"__doc": { "group": "box sizing", "desc": "border-box" },
+		"box-sizing": "border-box"
+	},
+	"content-box": {
+		"__doc": { "group": "box sizing", "desc": "content-box" },
+		"box-sizing": "content-box"
+	}
+}
+```
+
+The command is also used to produce the following documentation of the included
+base framework specs.
+
 ## Bundled CSS base framework
 
 The package includes a large number of useful generator specs in
