@@ -48,15 +48,15 @@
 		"@thi.ng/pixel": "^6.1.23",
 		"@thi.ng/pixel-dither": "^1.1.121",
 		"@thi.ng/prefixes": "^2.3.13",
-		"sharp": "^0.33.2"
+		"sharp": "^0.33.3"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.42.3",
+		"@microsoft/api-extractor": "^7.43.0",
 		"@thi.ng/vectors": "^7.10.22",
-		"esbuild": "^0.20.1",
+		"esbuild": "^0.20.2",
 		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.12",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.3"
 	},
 	"keywords": [
 		"avif",

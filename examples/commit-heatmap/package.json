@@ -41,6 +41,6 @@
 		"util": false
 	},
 	"devDependencies": {
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.3"
 	}
 }
