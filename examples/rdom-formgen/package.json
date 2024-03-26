@@ -35,6 +35,7 @@
 		"readme": [
 			"hiccup",
 			"hiccup-html",
+			"meta-css",
 			"mime",
 			"pixel",
 			"rdom",

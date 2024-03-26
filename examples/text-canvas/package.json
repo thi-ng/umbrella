@@ -31,6 +31,7 @@
 		"readme": [
 			"geom",
 			"matrices",
+			"meta-css",
 			"text-canvas",
 			"text-format",
 			"vectors"

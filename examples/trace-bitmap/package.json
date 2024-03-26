@@ -62,6 +62,7 @@
 			"geom-trace-bitmap",
 			"grid-iterators",
 			"hiccup-html",
+			"meta-css",
 			"mime",
 			"pixel",
 			"pixel-dither",

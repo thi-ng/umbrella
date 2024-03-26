@@ -29,7 +29,13 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": false,
+		"readme": [
+			"hiccup-carbon-icons",
+			"hiccup-html",
+			"meta-css",
+			"rdom",
+			"transducers"
+		],
 		"screenshot": "examples/rdom-web-components.png"
 	}
 }

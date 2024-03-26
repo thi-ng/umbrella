@@ -35,6 +35,7 @@
 			"canvas",
 			"color",
 			"dsp",
+			"meta-css",
 			"shader-ast",
 			"shader-ast-stdlib",
 			"webgl"
