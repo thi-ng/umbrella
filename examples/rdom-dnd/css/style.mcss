@@ -4,7 +4,7 @@
 // also see component-specific *.mcss files in /src
 
 body { sans-serif ma3 }
-svg { fill-color-current }
+svg { fill-current }
 a { color-black }
 
 #app { mb3 }

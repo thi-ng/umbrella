@@ -23,7 +23,7 @@ body {
 		small { db f7 }
 		.close {
 			dib w3 h3 ph2 tc f7
-			bg-color-gray fill-color-current
+			bg-color-gray fill-current
 			dark:bg-color-dark-gray
 		}
 	}
