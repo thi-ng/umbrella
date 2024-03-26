@@ -1,14 +1,14 @@
 {
 	"info": {
 		"name": "MetaCSS base",
-		"version": "0.8.0"
+		"version": "0.9.0"
 	},
 	"media": {
-		"ns": { "min-width": "30rem" },
-		"m": { "min-width": "30rem", "max-width": "60rem" },
-		"l": {
-			"min-width": "60rem"
-		},
+		"ns": { "min-width": "640px" },
+		"m": { "min-width": "768px" },
+		"l": { "min-width": "1024px" },
+		"xl": { "min-width": "1280px" },
+		"2xl": { "min-width": "1536px" },
 		"dark": {
 			"prefers-color-scheme": "dark"
 		},
