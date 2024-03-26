@@ -7,10 +7,13 @@ import type { MapLike } from "./api.js";
  * memoized result of given args. Supports generics for up to 4 args (otherwise
  * untyped).
  *
+ * @remarks
  * **Important:** It only makes sense to use `Map` types which support value
  * (rather than object) equality, e.g. those provided by
  * [`thi.ng/associative`](https://thi.ng/associative). Using a native `Map` type
- * here will lead to memory leaks! Alternatively, use {@link memoizeJ}.
+ * here will lead to memory leaks!
+ *
+ * Also see {@link memoizeJ}, {@link memoize1}, {@link memoizeO}.
  *
  * @param fn -
  * @param cache -

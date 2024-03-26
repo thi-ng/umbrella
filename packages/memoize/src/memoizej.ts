@@ -6,8 +6,11 @@ import type { Fn, Fn2, Fn3, Fn4, FnAny, IObjectOf } from "@thi.ng/api";
  * memoized result for given args. Supports generics for up to 4 args
  * (otherwise untyped).
  *
+ * @remarks
  * **Important:** If the given args cannot be stringified, the user
  * function will ALWAYS be called (without caching result).
+ *
+ * Also see {@link memoize}, {@link memoize1}, {@link memoizeO}.
  *
  * @param fn -
  * @param cache -
@@ -25,14 +28,16 @@ export function memoizeJ<A, B, C, D, E>(
 	fn: Fn4<A, B, C, D, E>,
 	cache?: IObjectOf<E>
 ): Fn4<A, B, C, D, E>;
-export function memoizeJ(fn: FnAny<any>, cache?: IObjectOf<any>): FnAny<any> {
-	!cache && (cache = {});
+export function memoizeJ(
+	fn: FnAny<any>,
+	cache: Record<string, any> = Object.create(null)
+): FnAny<any> {
 	return (...args: any[]) => {
 		const key = JSON.stringify(args);
 		if (key !== undefined) {
-			return key in cache!
-				? cache![key]
-				: (cache![key] = fn.apply(null, args));
+			return key in cache
+				? cache[key]
+				: (cache[key] = fn.apply(null, args));
 		}
 		return fn.apply(null, args);
 	};

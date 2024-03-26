@@ -8,12 +8,11 @@ import type { MapLike } from "./api.js";
  * @param fn -
  * @param cache -
  */
-export const doOnce = <T>(fn: Fn<T, void>, cache?: MapLike<T, boolean>) => {
-	!cache && (cache = new Map());
-	return (x: T) => {
-		if (!cache!.has(x)) {
-			cache!.set(x, true);
+export const doOnce =
+	<T>(fn: Fn<T, void>, cache: MapLike<T, boolean> = new Map()) =>
+	(x: T) => {
+		if (!cache.has(x)) {
+			cache.set(x, true);
 			fn(x);
 		}
 	};
-};
