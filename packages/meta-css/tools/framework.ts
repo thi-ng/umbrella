@@ -69,10 +69,12 @@ const groupedTypes = (
 	return mapcat(
 		(groupID) => [
 			`#### ${capitalize(groupID)}\n`,
+			"<details>",
 			grouped[groupID]
 				.sort($compare)
 				.map((x) => fmt(x, src[x].__doc))
 				.join("\n"),
+			"</details>",
 			"",
 		],
 		Object.keys(grouped).sort()
