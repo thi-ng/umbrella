@@ -24,7 +24,7 @@ import {
 	FG_CYAN,
 	FG_WHITE,
 	FG_YELLOW,
-	FMT_HTML_TACHYONS,
+	FMT_HTML_MCSS,
 } from "@thi.ng/text-format";
 import { add3 } from "@thi.ng/vectors";
 
@@ -123,6 +123,6 @@ requestAnimationFrame(function update() {
 	endClip(canvas);
 
 	// draw canvas
-	root!.innerHTML = formatCanvas(canvas, FMT_HTML_TACHYONS);
+	root!.innerHTML = formatCanvas(canvas, FMT_HTML_MCSS);
 	requestAnimationFrame(update);
 });

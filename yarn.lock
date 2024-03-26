@@ -2485,6 +2485,7 @@ __metadata:
     "@thi.ng/dsp": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/text-canvas": "workspace:^"
     "@thi.ng/text-format": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
