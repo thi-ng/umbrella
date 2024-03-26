@@ -1,4 +1,4 @@
-import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { Stringer } from "./api.js";
 
 /**
@@ -25,6 +25,6 @@ import type { Stringer } from "./api.js";
  * // "f 1/2 3/4 5/6"
  * ```
  */
-export const join = memoize1<string, Stringer<any[]>>(
+export const join = memoizeO<string, Stringer<any[]>>(
 	(sep) => (x) => x.join(sep)
 );

@@ -1,4 +1,4 @@
-import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { Stringer } from "./api.js";
 
 /**
@@ -18,7 +18,7 @@ import type { Stringer } from "./api.js";
  *
  * @param chars -
  */
-export const trim = memoize1<string, Stringer<string>>((chars = " \t\n\r") => {
+export const trim = memoizeO<string, Stringer<string>>((chars = " \t\n\r") => {
 	chars = `(${chars
 		.split("")
 		.map((x) => `\\${x}`)
