@@ -1,6 +1,6 @@
 import type { NumericArray, StringOrSym } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
-import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import { map } from "@thi.ng/transducers/map";
 import { range } from "@thi.ng/transducers/range";
 import type { IVector } from "./api.js";
@@ -33,7 +33,7 @@ const PROPS = new Set<StringOrSym>([
 	Symbol.iterator,
 ]);
 
-const keys = memoize1<number, StringOrSym[]>((size: number) => [
+const keys = memoizeO<number, StringOrSym[]>((size: number) => [
 	...map(String, range(size)),
 	...PROPS,
 ]);
