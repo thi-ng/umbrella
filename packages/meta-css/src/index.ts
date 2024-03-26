@@ -6,6 +6,7 @@ import { join } from "node:path";
 import type { AppCtx, CommonOpts } from "./api.js";
 import { CONVERT } from "./convert.js";
 import { DEVELOP } from "./develop.js";
+import { DOC } from "./doc.js";
 import { EXPORT } from "./export.js";
 import { GENERATE } from "./generate.js";
 
@@ -22,6 +23,7 @@ cliApp<CommonOpts, AppCtx<any>>({
 	commands: {
 		convert: CONVERT,
 		develop: DEVELOP,
+		doc: DOC,
 		export: EXPORT,
 		generate: GENERATE,
 	},
