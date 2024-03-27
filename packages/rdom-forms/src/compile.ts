@@ -484,7 +484,7 @@ export const compileForm: MultiFn2<
 
 		file: ($val, opts) => {
 			const val = <FileVal>$val;
-			const isMulti = val.id.startsWith("multi");
+			const isMulti = val.type.startsWith("multi");
 			return __component(
 				val,
 				opts,
