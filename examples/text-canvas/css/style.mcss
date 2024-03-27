@@ -3,3 +3,25 @@
 // use `yarn css:build` or `yarn css:watch` to transpile to CSS
 
 body { font-family("Iosevka Fixed SS04 Web"\,monospace) lh-solid ma3 }
+
+// the color variables below are only used if the text canvas formatter
+// in /src/index.ts is switched to FMT_HTML_CSS_VARS
+
+:root {
+	black=#000
+	red=#900
+	green=#080
+	yellow=#ff0
+	blue=#00f
+	magenta=#f0f
+	cyan=#0ff
+	light-gray=#ccc
+	gray=#999
+	light-red=#f00
+	light-green=#0f0
+	light-yellow=#ff8
+	light-blue=#09f
+	light-magenta=#f8f
+	light-cyan=#8ff
+	white=#fff
+}

@@ -1,5 +1,5 @@
 import { add, osc, saw, sin } from "@thi.ng/dsp";
-import { aabb, center, Rect, rect, vertices } from "@thi.ng/geom";
+import { Rect, aabb, center, rect, vertices } from "@thi.ng/geom";
 import {
 	concat,
 	lookAt,
@@ -10,8 +10,8 @@ import {
 	viewport,
 } from "@thi.ng/matrices";
 import {
-	beginClip,
 	Canvas,
+	beginClip,
 	circle,
 	clear,
 	endClip,
@@ -74,6 +74,30 @@ const instances = [
 
 const root = document.getElementById("app");
 
+const FMT = FMT_HTML_MCSS;
+
+// alternative formatter:
+// use CSS variables (defined in /css/style.mcss)
+
+// const FMT = FMT_HTML_CSS_VARS([
+// 	"black",
+// 	"red",
+// 	"green",
+// 	"yellow",
+// 	"blue",
+// 	"magenta",
+// 	"cyan",
+// 	"light-gray",
+// 	"gray",
+// 	"light-red",
+// 	"light-green",
+// 	"light-yellow",
+// 	"light-blue",
+// 	"light-magenta",
+// 	"light-cyan",
+// 	"white",
+// ]);
+
 requestAnimationFrame(function update() {
 	clear(canvas);
 	// draw background rings
@@ -123,6 +147,6 @@ requestAnimationFrame(function update() {
 	endClip(canvas);
 
 	// draw canvas
-	root!.innerHTML = formatCanvas(canvas, FMT_HTML_MCSS);
+	root!.innerHTML = formatCanvas(canvas, FMT);
 	requestAnimationFrame(update);
 });
