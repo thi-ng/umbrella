@@ -9,7 +9,7 @@ import type { Fn, Fn2, Fn3, Fn4, NumOrString } from "@thi.ng/api";
  * Also see {@link memoize1}, {@link memoizeJ}, {@link memoize}.
  *
  * @example
- * ```ts tangle:../../export/memoizeo.ts
+ * ```ts tangle:../export/memoizeo.ts
  * import { memoizeO } from "@thi.ng/memoize";
  *
  * const test = memoizeO((x: number) => (console.log("exec", x), x * 10));
