@@ -36,6 +36,7 @@
   - [Force inclusion of unreferenced classes](#force-inclusion-of-unreferenced-classes)
 - [Exporting a generated framework as CSS](#exporting-a-generated-framework-as-css)
   - [Media query variations](#media-query-variations)
+- [Development mode](#development-mode)
 - [Documenting a generated framework](#documenting-a-generated-framework)
   - [Documentation metadata](#documentation-metadata)
 - [Bundled CSS base framework](#bundled-css-base-framework)
@@ -684,6 +685,7 @@ Main:
                         supported, @-prefix will read from file)
 -I STR, --include STR   [multiple] Include CSS files (prepend)
 -o STR, --out STR       Output file (or stdout)
+--scope STR             Suffix for CSS class names
 -s STR, --specs STR     [required] Path to generated JSON defs
 ```
 
@@ -691,6 +693,7 @@ Notes:
 
 - The `--no-write` flag is only used if `--bundle` is **disabled**
 - The `--out` file arg is only used if `--bundle` is **enabled**
+- The `--scope` option can be used to specify a suffix for all CSS classes.
 
 If bundling is disabled (default), each input `.mcss` file is converted
 individually and results are written to the same directory, but using `.css` as
@@ -937,6 +940,8 @@ If the `--only-decls` option is used, **only** the [framework
 declarations](#custom-declarations) but none of the generated utility classes
 will be exported.
 
+The `--scope` option can be used to specify a suffix for all CSS classes.
+
 ```text
 metacss export --help
 
@@ -955,6 +960,7 @@ Main:
 -I STR, --include STR   [multiple] Include CSS files (prepend)
 -m ID, --media ID       [multiple] Media query IDs (use 'ALL' for all)
 -o STR, --out STR       Output file (or stdout)
+--scope STR             Suffix for CSS class names
 ```
 
 ### Media query variations
@@ -970,6 +976,56 @@ For example, if the framework contains a CSS class `w-50` (e.g. to set the width
 to 50%) and media queries for different screen sizes (e.g. named `ns`, `l`),
 then the export with said media queries will also generate classes `w-50-ns`
 and `w-50-l` (incl. their corresponding `@media` wrappers).
+
+## Development mode
+
+The `develop` command is a combination of the `generate` and `convert` commands.
+It creates file watchers for all input files (both for generator specs **and**
+MCSS stylesheets) and then auto-generates/compiles/updates results. Together
+with [Vite](https://vitejs.dev/) this command enables a seamless hot-reloading
+workflow. Using a multi-process runner like
+[mprocs](https://github.com/pvolok/mprocs) further simplifies this.
+
+For example, using one of the bundled example projects in this repo ([more
+examples](#usage-examples)):
+
+```bash
+cd examples/meta-css-basics
+
+# launch both metacss in dev mode and vite's dev server
+mprocs 'yarn css:watch' 'yarn start:only'
+```
+
+See that example's
+[package.json](https://github.com/thi-ng/umbrella/blob/develop/examples/meta-css-basics/package.json)
+for concrete usage/reference.
+
+```text
+metacss develop --help
+
+Usage: metacss develop [opts] input [...]
+
+Flags:
+
+-b, --bundle            Bundle inputs (see `out` option)
+-d, --no-decls          Don't emit framework decls
+--no-header             Don't emit generated header comment
+-p, --pretty            Pretty print output
+-v, --verbose           Display extra process information
+-w, --watch             Watch input files for changes
+
+Main:
+
+-e STR, --eval STR      eval meta stylesheet in given string (ignores other
+                        inputs & includes)
+-f STR, --force STR     [multiple] CSS classes to force include (wildcards are
+                        supported, @-prefix will read from file)
+-I STR, --include STR   [multiple] Include CSS files (prepend)
+--out-css STR           [required] Output file for CSS bundle
+--out-specs STR         [required] Output file for framework
+--prec INT              Number of fractional digits (default: 3)
+--scope STR             Suffix for CSS class names
+```
 
 ## Documenting a generated framework
 
@@ -2649,7 +2705,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.72 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.75 KB
 
 ## Dependencies
 

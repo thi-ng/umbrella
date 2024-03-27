@@ -35,7 +35,7 @@
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "yarn doc:specs && bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"doc:specs": "yarn build:specs && bin/metacss doc --level 2 --title none -o export/framework.md export/framework.json",
+		"doc:specs": "yarn build:specs && bin/metacss doc --level 2 --title NONE -o export/framework.md export/framework.json",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
