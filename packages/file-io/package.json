@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/file-io",
-	"version": "1.3.11",
+	"version": "1.3.12",
 	"description": "Assorted file I/O utils (with logging support) for NodeJS",
 	"type": "module",
 	"module": "./index.js",
@@ -36,11 +36,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.30",
-		"@thi.ng/checks": "^3.5.4",
-		"@thi.ng/hex": "^2.3.40",
-		"@thi.ng/logger": "^3.0.6",
-		"@thi.ng/random": "^3.7.0"
+		"@thi.ng/api": "^8.9.31",
+		"@thi.ng/checks": "^3.5.5",
+		"@thi.ng/hex": "^2.3.41",
+		"@thi.ng/logger": "^3.0.7",
+		"@thi.ng/random": "^3.7.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

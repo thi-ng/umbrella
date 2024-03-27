@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ksuid",
-	"version": "3.2.46",
+	"version": "3.2.47",
 	"description": "Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions",
 	"type": "module",
 	"module": "./index.js",
@@ -38,10 +38,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/base-n": "^2.7.8",
-		"@thi.ng/errors": "^2.5.1",
-		"@thi.ng/random": "^3.7.0",
-		"@thi.ng/strings": "^3.7.27"
+		"@thi.ng/base-n": "^2.7.9",
+		"@thi.ng/errors": "^2.5.2",
+		"@thi.ng/random": "^3.7.1",
+		"@thi.ng/strings": "^3.7.28"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

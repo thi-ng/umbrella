@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fuzzy-viz",
-	"version": "2.1.136",
+	"version": "2.1.137",
 	"description": "Visualization, instrumentation & introspection utils for @thi.ng/fuzzy",
 	"type": "module",
 	"module": "./index.js",
@@ -36,13 +36,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.30",
-		"@thi.ng/fuzzy": "^2.1.75",
-		"@thi.ng/hiccup": "^5.1.25",
-		"@thi.ng/hiccup-svg": "^5.2.28",
-		"@thi.ng/math": "^5.10.7",
-		"@thi.ng/strings": "^3.7.27",
-		"@thi.ng/text-canvas": "^3.0.14"
+		"@thi.ng/api": "^8.9.31",
+		"@thi.ng/fuzzy": "^2.1.76",
+		"@thi.ng/hiccup": "^5.1.26",
+		"@thi.ng/hiccup-svg": "^5.2.29",
+		"@thi.ng/math": "^5.10.8",
+		"@thi.ng/strings": "^3.7.28",
+		"@thi.ng/text-canvas": "^3.0.15"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

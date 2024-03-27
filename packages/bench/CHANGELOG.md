@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-27T09:53:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/bench@3.5.1) (2024-03-27)
+
+#### 🩹 Bug fixes
+
+- fix optional arg type for timeDiff() ([29825ac](https://github.com/thi-ng/umbrella/commit/29825ac))
 
 ## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bench@3.5.0) (2024-03-13)
 

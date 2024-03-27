@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom-canvas",
-	"version": "4.1.131",
+	"version": "4.1.132",
 	"description": "@thi.ng/hdom component wrapper for declarative canvas scenegraphs",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.30",
-		"@thi.ng/checks": "^3.5.4",
-		"@thi.ng/diff": "^5.1.63",
-		"@thi.ng/errors": "^2.5.1",
-		"@thi.ng/hdom": "^9.4.27",
-		"@thi.ng/hiccup-canvas": "^2.5.30"
+		"@thi.ng/api": "^8.9.31",
+		"@thi.ng/checks": "^3.5.5",
+		"@thi.ng/diff": "^5.1.64",
+		"@thi.ng/errors": "^2.5.2",
+		"@thi.ng/hdom": "^9.4.28",
+		"@thi.ng/hiccup-canvas": "^2.5.31"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

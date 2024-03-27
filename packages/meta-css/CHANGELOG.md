@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-21T16:11:49Z
+- **Last updated**: 2024-03-27T09:53:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.10.0) (2024-03-27)
+
+#### 🚀 Features
+
+- add/update CSS specs ([e93d033](https://github.com/thi-ng/umbrella/commit/e93d033))
+- update responsive media query breakpoints ([f61a119](https://github.com/thi-ng/umbrella/commit/f61a119))
+- add `font-family()` template spec ([849c104](https://github.com/thi-ng/umbrella/commit/849c104))
+- add `doc` command, update script aliases ([943b7d7](https://github.com/thi-ng/umbrella/commit/943b7d7))
+- add CSS scoping option, internal refactor ([d7286c5](https://github.com/thi-ng/umbrella/commit/d7286c5))
 
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.9.0) (2024-03-21)
 

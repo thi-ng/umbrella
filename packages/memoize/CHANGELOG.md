@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-13T14:04:31Z
+- **Last updated**: 2024-03-27T09:53:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/memoize@3.2.0) (2024-03-27)
+
+#### 🚀 Features
+
+- add memoizeO() ([af2ead9](https://github.com/thi-ng/umbrella/commit/af2ead9))
+- add memoize2/3/4O() ([8309236](https://github.com/thi-ng/umbrella/commit/8309236))
+
+#### ♻️ Refactoring
+
+- minor updates, use plain objects where possible ([f44be23](https://github.com/thi-ng/umbrella/commit/f44be23))
+  - update defOnce() & memoizeJ() to use Object.create(null) as default store
+  - update default args in others
+  - update docs
 
 ### [3.1.41](https://github.com/thi-ng/umbrella/tree/@thi.ng/memoize@3.1.41) (2023-11-09)
 
