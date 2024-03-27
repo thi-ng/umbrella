@@ -11,7 +11,7 @@ import {
 	QUOTED_FNS,
 	at_media,
 	css,
-	type Format,
+	type CSSOpts,
 } from "@thi.ng/hiccup-css";
 import { type ILogger } from "@thi.ng/logger";
 import { sync } from "@thi.ng/rstream";
@@ -28,6 +28,7 @@ import {
 	ARG_NO_HEADER,
 	ARG_OUTPUT,
 	ARG_PRETTY,
+	ARG_SCOPE,
 	ARG_SPECS,
 	ARG_WATCH,
 	type AppCtx,
@@ -44,16 +45,17 @@ import {
 type State = "sel" | "class" | "nest";
 
 export interface ConvertOpts extends CommonOpts {
-	out?: string;
-	specs: string;
-	include?: string[];
+	bundle: boolean;
 	eval?: string;
 	force?: string[];
-	bundle: boolean;
-	pretty: boolean;
+	include?: string[];
 	noDecls: boolean;
 	noHeader: boolean;
 	noWrite: boolean;
+	out?: string;
+	pretty: boolean;
+	scope?: string;
+	specs: string;
 	watch: boolean;
 }
 
@@ -71,12 +73,12 @@ interface ProcessCtx {
 }
 
 export interface ProcessOpts {
+	css: Partial<CSSOpts>;
 	logger: ILogger;
-	format: Format;
-	specs: CompiledSpecs;
-	plainRules: IObjectOf<Set<string>>;
 	mediaQueryIDs: Set<string>;
 	mediaQueryRules: IObjectOf<IObjectOf<Set<string>>>;
+	plainRules: IObjectOf<Set<string>>;
+	specs: CompiledSpecs;
 }
 
 export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
@@ -84,12 +86,13 @@ export const CONVERT: Command<ConvertOpts, CommonOpts, AppCtx<ConvertOpts>> = {
 	opts: {
 		...ARG_BUNDLE,
 		...ARG_EVAL,
-		...ARG_NO_DECLS,
 		...ARG_FORCE_INCLUDE,
 		...ARG_INCLUDE,
+		...ARG_NO_DECLS,
 		...ARG_NO_HEADER,
 		...ARG_OUTPUT,
 		...ARG_PRETTY,
+		...ARG_SCOPE,
 		...ARG_SPECS,
 		...ARG_WATCH,
 		noWrite: flag({ desc: "Don't write files, use stdout only" }),
@@ -261,7 +264,7 @@ const watchBundleInputs = async (
 export const processInputs = (
 	{
 		logger,
-		opts: { include, noDecls, noHeader, pretty },
+		opts: { include, noDecls, noHeader, pretty, scope },
 	}: Pick<AppCtx<Omit<ConvertOpts, "noWrite">>, "logger" | "opts">,
 	specs: CompiledSpecs,
 	forceRules: ReturnType<typeof processForceIncludes>,
@@ -271,7 +274,7 @@ export const processInputs = (
 	const procOpts: ProcessOpts = {
 		logger,
 		specs,
-		format: pretty ? PRETTY : COMPACT,
+		css: { format: pretty ? PRETTY : COMPACT, fns: QUOTED_FNS, scope },
 		mediaQueryIDs: new Set(Object.keys(specs.media)),
 		mediaQueryRules: { ...forceRules.mediaQueryRules },
 		plainRules: { ...forceRules.plainRules },
@@ -281,9 +284,7 @@ export const processInputs = (
 		: [];
 	if (!noHeader) bundle.push(generateHeader(specs));
 	if (!noDecls && specs.decls.length) {
-		bundle.push(
-			css(specs.decls, { format: procOpts.format, fns: QUOTED_FNS })
-		);
+		bundle.push(css(specs.decls, procOpts.css));
 	}
 	inputs.forEach((input) => processSpec(input, procOpts));
 	processPlainRules(bundle, procOpts);
@@ -293,27 +294,24 @@ export const processInputs = (
 
 export const processMediaQueries = (
 	result: string[],
-	{ logger, specs, format, mediaQueryRules }: ProcessOpts
+	{ css: opts, logger, mediaQueryRules, specs }: ProcessOpts
 ) => {
 	for (let queryID in mediaQueryRules) {
 		const rules = buildDecls(mediaQueryRules[queryID], specs);
 		logger.debug("mediaquery rules", queryID, rules);
 		result.push(
-			css(at_media(mergeMediaQueries(specs.media, queryID), rules), {
-				format,
-				fns: QUOTED_FNS,
-			})
+			css(at_media(mergeMediaQueries(specs.media, queryID), rules), opts)
 		);
 	}
 };
 
 export const processPlainRules = (
 	bundle: string[],
-	{ logger, specs, format, plainRules }: ProcessOpts
+	{ css: opts, logger, plainRules, specs }: ProcessOpts
 ) => {
 	const rules = buildDecls(plainRules, specs);
 	logger.debug("plain rules", rules);
-	bundle.push(css(rules, { format, fns: QUOTED_FNS }));
+	bundle.push(css(rules, opts));
 };
 
 export const processForceIncludes = (

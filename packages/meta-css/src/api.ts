@@ -148,6 +148,10 @@ export const ARG_NO_HEADER = {
 	noHeader: flag({ desc: "Don't emit generated header comment" }),
 };
 
+export const ARG_SCOPE = {
+	scope: string({ desc: "Suffix for CSS class names" }),
+};
+
 export const ARG_WATCH = {
 	watch: flag({
 		alias: "w",

@@ -20,8 +20,8 @@ import { maybeWriteText } from "./utils.js";
 interface DocOpts extends CommonOpts {
 	out?: string;
 	level: number;
-	title?: string;
 	// noDecls: boolean;
+	title?: string;
 }
 
 export const DOC: Command<DocOpts, CommonOpts, AppCtx<DocOpts>> = {
@@ -32,8 +32,7 @@ export const DOC: Command<DocOpts, CommonOpts, AppCtx<DocOpts>> = {
 		level: int({ alias: "l", desc: "Initial heading level", default: 1 }),
 		title: string({
 			alias: "t",
-			desc: "Main title, set to 'none' to disable",
-			default: "meta",
+			desc: "Custom main title, set to NONE to disable",
 		}),
 	},
 	inputs: 1,
@@ -73,10 +72,8 @@ export const generateDocs = (
 		"",
 	];
 
-	if (title !== "none") {
-		doc.unshift(
-			`${__hd(level)} ${title === "meta" ? specs.info.name : title}\n`
-		);
+	if (title !== "NONE") {
+		doc.unshift(`${__hd(level)} ${title ?? specs.info.name}\n`);
 	}
 	return doc;
 };

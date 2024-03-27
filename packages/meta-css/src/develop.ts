@@ -9,6 +9,7 @@ import {
 	ARG_NO_HEADER,
 	ARG_PREC,
 	ARG_PRETTY,
+	ARG_SCOPE,
 	ARG_WATCH,
 	type AppCtx,
 	type CommonOpts,
@@ -36,6 +37,7 @@ export const DEVELOP: Command<DevelopOpts, CommonOpts, AppCtx<DevelopOpts>> = {
 		...ARG_NO_HEADER,
 		...ARG_PREC,
 		...ARG_PRETTY,
+		...ARG_SCOPE,
 		...ARG_WATCH,
 		outCss: string({
 			desc: "Output file for CSS bundle",
@@ -69,6 +71,7 @@ export const DEVELOP: Command<DevelopOpts, CommonOpts, AppCtx<DevelopOpts>> = {
 				...opts,
 				noWrite: false,
 				out: opts.outCss,
+				scope: opts.scope,
 				specs: opts.outSpecs,
 			},
 		};

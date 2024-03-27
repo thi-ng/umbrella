@@ -1,7 +1,14 @@
 // thing:no-export
 import type { Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
-import { COMPACT, PRETTY, QUOTED_FNS, at_media, css } from "@thi.ng/hiccup-css";
+import {
+	COMPACT,
+	PRETTY,
+	QUOTED_FNS,
+	at_media,
+	css,
+	type CSSOpts,
+} from "@thi.ng/hiccup-css";
 import type { ILogger } from "@thi.ng/logger";
 import { resolve } from "node:path";
 import {
@@ -12,6 +19,7 @@ import {
 	ARG_ONLY_DECLS,
 	ARG_OUTPUT,
 	ARG_PRETTY,
+	ARG_SCOPE,
 	type AppCtx,
 	type CommonOpts,
 	type CompiledSpecs,
@@ -19,13 +27,14 @@ import {
 import { generateHeader, maybeWriteText, withoutInternals } from "./utils.js";
 
 interface ExportOpts extends CommonOpts {
-	out?: string;
-	pretty: boolean;
-	noDecls: boolean;
-	onlyDecls: boolean;
-	noHeader: boolean;
 	include?: string[];
 	media?: string[];
+	noDecls: boolean;
+	noHeader: boolean;
+	onlyDecls: boolean;
+	out?: string;
+	pretty: boolean;
+	scope?: string;
 }
 
 export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
@@ -38,29 +47,39 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 		...ARG_PRETTY,
 		...ARG_NO_HEADER,
 		...ARG_MEDIA_QUERIES,
+		...ARG_SCOPE,
 	},
 	inputs: 1,
 	fn: async (ctx) => {
 		const {
 			logger,
-			opts: { include, media, noDecls, noHeader, onlyDecls, pretty, out },
+			opts: {
+				include,
+				media,
+				noDecls,
+				noHeader,
+				onlyDecls,
+				out,
+				pretty,
+				scope,
+			},
 			inputs,
 		} = ctx;
+		const cssOpts: Partial<CSSOpts> = {
+			format: pretty ? PRETTY : COMPACT,
+			fns: QUOTED_FNS,
+			scope,
+		};
 		const specs = readJSON<CompiledSpecs>(resolve(inputs[0]), logger);
 		const bundle: string[] = include
 			? include.map((x) => readText(resolve(x), logger).trim())
 			: [];
 		if (!noHeader) bundle.push(generateHeader(specs));
 		if (!noDecls && specs.decls.length) {
-			bundle.push(
-				css(specs.decls, {
-					format: pretty ? PRETTY : COMPACT,
-					fns: QUOTED_FNS,
-				})
-			);
+			bundle.push(css(specs.decls, cssOpts));
 		}
 		if (!onlyDecls) {
-			bundle.push(serializeSpecs(specs, media, pretty, logger));
+			bundle.push(serializeSpecs(specs, media, cssOpts, logger));
 		}
 		maybeWriteText(out, bundle, logger);
 	},
@@ -69,7 +88,7 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 export const serializeSpecs = (
 	specs: CompiledSpecs,
 	media: string[] | undefined,
-	pretty: boolean,
+	opts: Partial<CSSOpts>,
 	logger: ILogger
 ) => {
 	const rules: any[] = __suffixed("", specs);
@@ -86,7 +105,7 @@ export const serializeSpecs = (
 			}
 		}
 	}
-	return css(rules, { format: pretty ? PRETTY : COMPACT, fns: QUOTED_FNS });
+	return css(rules, opts);
 };
 
 /** @internal */
