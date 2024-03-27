@@ -110,7 +110,7 @@ export const FMT_HTML_TACHYONS = formatHtml({
 });
 
 /**
- * Preset HTML formatter for use w/ default format IDs, generating `<span>`
+ * Preset HTML formatter for use w/ default text format IDs, generating `<span>`
  * elements with thi.ng/meta-css base framework color classes.
  */
 export const FMT_HTML_MCSS = formatHtml({
@@ -123,6 +123,45 @@ export const FMT_HTML_MCSS = formatHtml({
 	dim: "o-50",
 	underline: "underline",
 });
+
+/**
+ * Preset HTML formatter for use w/ default text format IDs, generating `<span>`
+ * elements with `style` attributes and given CSS variable names for defining
+ * colors.
+ *
+ * @remarks
+ * The color variable names must be given in this order:
+ *
+ * - black
+ * - red
+ * - green
+ * - yellow
+ * - blue
+ * - magenta
+ * - cyan
+ * - light gray
+ * - gray
+ * - light red
+ * - light green
+ * - light yellow
+ * - light blue
+ * - light magenta
+ * - light cyan
+ * - white
+ *
+ * @param varNames
+ */
+export const FMT_HTML_CSS_VARS = (varNames: string[]) =>
+	formatHtml({
+		colors: varNames.map((x) => `var(--${x})`),
+		attrib: "style",
+		delim: ";",
+		fg: "color:",
+		bg: "background:",
+		bold: "font-weight:bold",
+		dim: "opacity:0.5",
+		underline: "text-decoration:underline",
+	});
 
 /**
  * Higher order custom HTML formatter for 16bit (RGB565) colors (without
