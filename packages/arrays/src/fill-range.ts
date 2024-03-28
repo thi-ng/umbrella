@@ -1,4 +1,4 @@
-import type { TypedArray } from "@thi.ng/api";
+import type { NumericArray } from "@thi.ng/api";
 
 /**
  * Fills given array with values in [start .. end) interval from `index`
@@ -29,7 +29,7 @@ import type { TypedArray } from "@thi.ng/api";
  * @param end -
  * @param step -
  */
-export const fillRange = <T extends number[] | TypedArray>(
+export const fillRange = <T extends NumericArray>(
 	buf: T,
 	index = 0,
 	start = 0,

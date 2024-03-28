@@ -1,15 +1,17 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Predicate, TypedArray } from "@thi.ng/api";
 
 /**
- * Splits array at given index (default: floor(src.length/2)) and returns tuple of [lhs, rhs].
+ * Splits array at given index (default: floor(src.length/2)) and returns tuple
+ * of [lhs, rhs].
  *
  * @param src -
- * @param i -
+ * @param index -
  */
-export const bisect = <T>(src: T[], i = src.length >>> 1) => [
-	src.slice(0, i),
-	src.slice(i),
-];
+export function bisect<T>(src: T[], index?: number): [T[], T[]];
+export function bisect<T extends TypedArray>(src: T, index?: number): [T, T];
+export function bisect(src: any[] | TypedArray, index = src.length >>> 1) {
+	return [src.slice(0, index), src.slice(index)];
+}
 
 /**
  * Similar to {@link bisect}, but first finds split index via provided
@@ -20,7 +22,12 @@ export const bisect = <T>(src: T[], i = src.length >>> 1) => [
  * @param src -
  * @param pred -
  */
-export const bisectWith = <T>(src: T[], pred: Predicate<T>) => {
+export function bisectWith<T>(src: T[], pred: Predicate<T>): [T[], T[]];
+export function bisectWith<T extends TypedArray>(
+	src: T,
+	pred: Predicate<number>
+): [T, T];
+export function bisectWith(src: any[] | TypedArray, pred: Predicate<any>) {
 	const i = src.findIndex(pred);
-	return i >= 0 ? bisect(src, i) : [src, []];
-};
+	return i >= 0 ? bisect(<any>src, i) : [src, src.slice(0, 0)];
+}

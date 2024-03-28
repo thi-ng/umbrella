@@ -1,4 +1,4 @@
-import type { Comparator } from "@thi.ng/api";
+import type { Comparator, TypedArray } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { swap } from "./swap.js";
 
@@ -33,13 +33,27 @@ import { swap } from "./swap.js";
  * @param left
  * @param right
  */
-export const floydRivest = <T>(
+export function floydRivest<T>(
 	buf: T[],
+	k?: number,
+	cmp?: Comparator<T>,
+	left?: number,
+	right?: number
+): T[];
+export function floydRivest<T extends TypedArray>(
+	buf: T,
+	k?: number,
+	cmp?: Comparator<number>,
+	left?: number,
+	right?: number
+): T;
+export function floydRivest(
+	buf: any[] | TypedArray,
 	k = 1,
-	cmp: Comparator<T> = compare,
+	cmp: Comparator<any> = compare,
 	left = 0,
 	right = buf.length - 1
-) => {
+) {
 	while (right > left) {
 		// constants 600 & 0.5 are from original paper
 		if (right - left > 600) {
@@ -50,7 +64,7 @@ export const floydRivest = <T>(
 			const sd =
 				0.5 * Math.sqrt(z * s * ((n - s) / n)) * Math.sign(i - n / 2);
 			floydRivest(
-				buf,
+				<any>buf,
 				k,
 				cmp,
 				Math.max(left, (k - (i * s) / n + sd) | 0),
@@ -84,4 +98,4 @@ export const floydRivest = <T>(
 		if (k <= j) right = j - 1;
 	}
 	return buf;
-};
+}

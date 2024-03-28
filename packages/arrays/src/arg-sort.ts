@@ -1,3 +1,4 @@
+import type { Comparator } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { fillRange } from "./fill-range.js";
 import { sortByCachedKey } from "./sort-cached.js";
@@ -35,5 +36,11 @@ import { sortByCachedKey } from "./sort-cached.js";
  * @param src -
  * @param cmp -
  */
-export const argSort = <T>(src: T[], cmp = compare) =>
-	sortByCachedKey(fillRange(new Array(src.length)), src.slice(), cmp);
+export const argSort = <T>(src: Iterable<T>, cmp: Comparator<T> = compare) => {
+	const $src = [...src];
+	return sortByCachedKey(
+		fillRange(new Array<number>($src.length)),
+		$src,
+		cmp
+	);
+};
