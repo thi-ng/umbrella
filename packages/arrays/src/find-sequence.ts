@@ -44,14 +44,14 @@ export function findSequence(
 	while (start < m) {
 		const idx = buf.indexOf(needle[0], start);
 		if (idx < 0 || idx > max) return -1;
-		let j;
-		for (j = 1; j < n; j++) {
+		let j = n;
+		while (j-- > 1) {
 			if (buf[idx + j] !== needle[j]) {
 				start = idx + 1;
 				break;
 			}
 		}
-		if (j >= n) return idx;
+		if (j === 0) return idx;
 	}
 	return -1;
 }
