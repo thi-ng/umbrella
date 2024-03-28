@@ -108,6 +108,9 @@
 		"./fill-range": {
 			"default": "./fill-range.js"
 		},
+		"./find-sequence": {
+			"default": "./find-sequence.js"
+		},
 		"./find": {
 			"default": "./find.js"
 		},
