@@ -54,7 +54,7 @@ For Node.js REPL:
 const arrays = await import("@thi.ng/arrays");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.90 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.00 KB
 
 ## Dependencies
 
@@ -84,7 +84,7 @@ directory are using this package:
 [Generated API docs](https://docs.thi.ng/umbrella/arrays/)
 
 - [`arrayIterator()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/iterator.ts)
-- [`argMin()` / argMax()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/argmin.ts)
+- [`argMin()` / `argMax()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/argmin.ts)
 - [`argSort()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/arg-sort.ts)
 - [`binarySearch()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/binary-search.ts)
 - [`bisect()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/bisect.ts)
@@ -94,6 +94,7 @@ directory are using this package:
 - [`ensureIterable()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ensure-iterable.ts)
 - [`fillRange()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/fill-range.ts)
 - [`find()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/find.ts)
+- [`findSequence()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/find-sequence.ts)
 - [`floydRivest()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/floyd-rivest.ts)
 - [`fuzzyMatch()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/fuzzy-match.ts)
 - [`insert()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/insert.ts)
