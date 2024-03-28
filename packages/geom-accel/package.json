@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-accel",
-	"version": "3.5.65",
+	"version": "3.5.66",
 	"description": "n-D spatial indexing data structures with a shared ES6 Map/Set-like API",
 	"type": "module",
 	"module": "./index.js",
@@ -38,17 +38,17 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.9.31",
-		"@thi.ng/arrays": "^2.8.12",
+		"@thi.ng/arrays": "^2.9.0",
 		"@thi.ng/checks": "^3.5.5",
-		"@thi.ng/distance": "^2.4.65",
+		"@thi.ng/distance": "^2.4.66",
 		"@thi.ng/equiv": "^2.1.53",
 		"@thi.ng/errors": "^2.5.2",
-		"@thi.ng/geom-api": "^4.0.2",
-		"@thi.ng/geom-isec": "^3.0.2",
+		"@thi.ng/geom-api": "^4.0.3",
+		"@thi.ng/geom-isec": "^3.0.3",
 		"@thi.ng/heaps": "^2.1.68",
 		"@thi.ng/math": "^5.10.8",
-		"@thi.ng/transducers": "^8.9.16",
-		"@thi.ng/vectors": "^7.10.23"
+		"@thi.ng/transducers": "^8.9.17",
+		"@thi.ng/vectors": "^7.10.24"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

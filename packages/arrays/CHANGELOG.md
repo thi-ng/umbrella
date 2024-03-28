@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-27T09:53:45Z
+- **Last updated**: 2024-03-28T10:57:28Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.9.0) (2024-03-28)
+
+#### 🚀 Features
+
+- add findSequence() & tests ([5f4db56](https://github.com/thi-ng/umbrella/commit/5f4db56))
+
+#### ♻️ Refactoring
+
+- add support for typed arrays ([1383916](https://github.com/thi-ng/umbrella/commit/1383916))
+  - add function overrides to support typed arrays for:
+    - argSort()
+    - bisect(), bisectWith()
+    - floydRivest()
+- update findSequence() ([f9e3c29](https://github.com/thi-ng/umbrella/commit/f9e3c29))
+  - reverse inner scan direction
 
 ## [2.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.8.0) (2024-02-19)
 
