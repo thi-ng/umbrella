@@ -255,10 +255,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-03-27
+As of: 2024-03-28
 
 | Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
 |:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/arrays`](./packages/arrays)           | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)           | [changelog](./packages/arrays/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/bench`](./packages/bench)             | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)             | [changelog](./packages/bench/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/memoize`](./packages/memoize)         | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)         | [changelog](./packages/memoize/CHANGELOG.md)     |
