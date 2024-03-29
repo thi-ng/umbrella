@@ -106,7 +106,7 @@ leb.decodeULEB128(enc);
 enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
 // Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
 
-leb.decodeSLEB128(enc)
+leb.decodeSLEB128(enc);
 // [ -9007199254740991n, 8 ]
 ```
 

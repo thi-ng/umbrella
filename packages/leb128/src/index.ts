@@ -1,11 +1,22 @@
 import { hasWASM } from "@thi.ng/checks/has-wasm";
 import { unsupported } from "@thi.ng/errors/unsupported";
+import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import { BINARY } from "./binary.js";
 
 interface LEB128 {
 	memory: WebAssembly.Memory;
 	buf: number;
+	leb128EncodeI64Into(
+		dst: Uint8Array,
+		x: bigint | number,
+		pos: number
+	): number;
+	leb128EncodeU64Into(
+		dst: Uint8Array,
+		x: bigint | number,
+		pos: number
+	): number;
 	leb128EncodeU64(x: bigint | number): number;
 	leb128DecodeU64(buf: bigint | number, num: number): bigint;
 	leb128EncodeI64(x: bigint | number): number;
@@ -34,6 +45,22 @@ const encode =
 			? BigInt.asIntN(64, BigInt(x))
 			: BigInt.asUintN(64, BigInt(x));
 		return U8.slice(0, wasm[op](value));
+	};
+
+const encodeInto =
+	(op: "leb128EncodeI64" | "leb128EncodeU64", signed: boolean) =>
+	(dst: Uint8Array, x: bigint | number, pos: number = 0) => {
+		ensureWASM();
+		const value = signed
+			? BigInt.asIntN(64, BigInt(x))
+			: BigInt.asUintN(64, BigInt(x));
+		const size = wasm[op](value);
+
+		// ensure bounds, the position must be between [0..length - size]
+		// ensureIndex's range end is exclusive, so we add 1
+		ensureIndex(pos, 0, dst.length - size + 1);
+		dst.set(U8.subarray(0, size), pos);
+		return size;
 	};
 
 const decode =
@@ -67,6 +94,17 @@ export const encodeSLEB128 = encode("leb128EncodeI64", true);
 export const decodeSLEB128 = decode("leb128DecodeI64", true);
 
 /**
+ * Takes a destination Uint8Array, a signed integer `x`, and an optional
+ * position to encode an LEB128 formatted byte sequence into the destination.
+ * Returns the number of bytes written.
+ *
+ * @param dst -
+ * @param x -
+ * @param pos -
+ */
+export const encodeSLEB128Into = encodeInto("leb128EncodeI64", true);
+
+/**
  * Encodes unsigned integer `x` into LEB128 varint format and returns
  * encoded bytes. Values < 0 will be encoded as zero.
  *
@@ -83,3 +121,14 @@ export const encodeULEB128 = encode("leb128EncodeU64", false);
  * @param idx -
  */
 export const decodeULEB128 = decode("leb128DecodeU64", false);
+
+/**
+ * Takes a destination Uint8Array, an unsigned integer `x`, and an optional
+ * position to encode an LEB128 formatted byte sequence into the destination.
+ * Returns the number of bytes written.
+ *
+ * @param dst -
+ * @param x -
+ * @param pos -
+ */
+export const encodeULEB128Into = encodeInto("leb128EncodeU64", true);
