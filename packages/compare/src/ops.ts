@@ -14,6 +14,7 @@ export const OPERATORS: Record<
 	">": gt,
 };
 
+/** @internal */
 const __ensure = <T extends NumOrString>(op: string | Predicate2<T>) => {
 	if (typeof op === "string") {
 		if (op in OPERATORS) return <Predicate2<T>>OPERATORS[<Operator>op];

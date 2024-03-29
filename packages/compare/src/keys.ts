@@ -1,7 +1,8 @@
 import type { Comparator, Fn, Keys, Val1 } from "@thi.ng/api";
 import { compare } from "./compare.js";
 
-const getKey = (k: string | Fn<any, any>) =>
+/** @internal */
+const __key = (k: string | Fn<any, any>) =>
 	typeof k === "function" ? k : (x: any) => x[k];
 
 /**
@@ -23,7 +24,7 @@ export function compareByKey(
 	key: string | Fn<any, any>,
 	cmp: Comparator<any> = compare
 ): Comparator<any> {
-	const kfn = getKey(key);
+	const kfn = __key(key);
 	return (x, y) => cmp(kfn(x), kfn(y));
 }
 
@@ -55,8 +56,8 @@ export function compareByKeys2(
 	cmpA: Comparator<any> = compare,
 	cmpB: Comparator<any> = compare
 ): Comparator<any> {
-	const ka = getKey(a);
-	const kb = getKey(b);
+	const ka = __key(a);
+	const kb = __key(b);
 	return (x, y) => {
 		let res = cmpA(ka(x), ka(y));
 		return res === 0 ? cmpB(kb(x), kb(y)) : res;
@@ -102,9 +103,9 @@ export function compareByKeys3(
 	cmpB: Comparator<any> = compare,
 	cmpC: Comparator<any> = compare
 ): Comparator<any> {
-	const ka = getKey(a);
-	const kb = getKey(b);
-	const kc = getKey(c);
+	const ka = __key(a);
+	const kb = __key(b);
+	const kc = __key(c);
 	return (x, y) => {
 		let res = cmpA(ka(x), ka(y));
 		return res === 0
@@ -163,10 +164,10 @@ export function compareByKeys4(
 	cmpC: Comparator<any> = compare,
 	cmpD: Comparator<any> = compare
 ): Comparator<any> {
-	const ka = getKey(a);
-	const kb = getKey(b);
-	const kc = getKey(c);
-	const kd = getKey(d);
+	const ka = __key(a);
+	const kb = __key(b);
+	const kc = __key(c);
+	const kd = __key(d);
 	return (x, y) => {
 		let res = cmpA(ka(x), ka(y));
 		return res === 0

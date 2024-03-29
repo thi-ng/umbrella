@@ -1,4 +1,4 @@
-import type { FnN2 } from "@thi.ng/api";
+import type { Comparator } from "@thi.ng/api";
 
 /**
  * Numeric comparator (ascending order)
@@ -6,7 +6,7 @@ import type { FnN2 } from "@thi.ng/api";
  * @param a -
  * @param b -
  */
-export const compareNumAsc: FnN2 = (a, b) => a - b;
+export const compareNumAsc: Comparator<number> = (a, b) => a - b;
 
 /**
  * Numeric comparator (descending order)
@@ -14,4 +14,4 @@ export const compareNumAsc: FnN2 = (a, b) => a - b;
  * @param a -
  * @param b -
  */
-export const compareNumDesc: FnN2 = (a, b) => b - a;
+export const compareNumDesc: Comparator<number> = (a, b) => b - a;
