@@ -24,7 +24,7 @@
 
 ## About
 
-Assorted file I/O utils (with logging support) for NodeJS.
+Assorted file I/O utils (with logging support) for NodeJS/Bun.
 
 Most functions in this package have optional support for the
 [`ILogger`](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
@@ -48,7 +48,7 @@ For Node.js REPL:
 const fileIo = await import("@thi.ng/file-io");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.99 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.04 KB
 
 ## Dependencies
 

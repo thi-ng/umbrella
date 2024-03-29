@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/file-io",
 	"version": "1.3.12",
-	"description": "Assorted file I/O utils (with logging support) for NodeJS",
+	"description": "Assorted file I/O utils (with logging support) for NodeJS/Bun",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -50,11 +50,13 @@
 		"typescript": "^5.4.3"
 	},
 	"keywords": [
+		"async",
 		"file",
 		"hash",
 		"json",
 		"logger",
 		"nodejs",
+		"stream",
 		"no-browser",
 		"typescript"
 	],
