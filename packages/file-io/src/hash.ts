@@ -1,6 +1,8 @@
+import type { TypedArray } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { createReadStream } from "node:fs";
+import type { Readable } from "node:stream";
 
 export type HashAlgo =
 	| "gost-mac"
@@ -17,26 +19,60 @@ export type HashAlgo =
 	| "streebog512"
 	| "whirlpool";
 
-export const fileHash = (
+/**
+ * Creates a readable stream for given file and computes its hash digest using
+ * {@link streamHash}.
+ *
+ * @param path
+ * @param logger
+ * @param algo
+ */
+export const fileHash = async (
 	path: string,
 	logger?: ILogger,
 	algo: HashAlgo = "sha256"
 ) => {
-	const sum = createHash(algo);
-	sum.update(readFileSync(path));
-	const hash = sum.digest("hex");
-	logger && logger.info(`${algo} hash for ${path}: ${hash}`);
-	return hash;
+	logger && logger.info("reading file:", path);
+	return await streamHash(createReadStream(path), logger, algo);
 };
 
-export const stringHash = (
-	src: string,
+/**
+ * Computes hash digest from given stream using chosen hash algorithm (default:
+ * "sha256"). If `logger` is given, the hash will be logged too.
+ *
+ * @remarks
+ * Also see {@link fileHash} and {@link stringHash}.
+ *
+ * @param src
+ * @param logger
+ * @param algo
+ */
+export const streamHash = async (
+	src: Readable,
 	logger?: ILogger,
 	algo: HashAlgo = "sha256"
 ) => {
 	const sum = createHash(algo);
-	sum.update(src);
+	for await (let chunk of src) sum.update(chunk);
 	const hash = sum.digest("hex");
-	logger && logger.info(`${algo} hash for string: ${hash}`);
+	logger && logger.info(`${algo} hash: ${hash}`);
+	return hash;
+};
+
+/**
+ * Computes hash digest from given string or buffer using chosen hash algorithm
+ * (default: "sha256"). If `logger` is given, the hash will be logged too.
+ *
+ * @param src
+ * @param logger
+ * @param algo
+ */
+export const bufferHash = (
+	src: TypedArray | Buffer | DataView | string,
+	logger?: ILogger,
+	algo: HashAlgo = "sha256"
+) => {
+	const hash = createHash(algo).update(src).digest("hex");
+	logger && logger.info(`${algo} hash: ${hash}`);
 	return hash;
 };
