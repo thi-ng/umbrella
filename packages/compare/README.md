@@ -15,6 +15,9 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [Generic comparison](#generic-comparison)
+  - [Additional comparators](#additional-comparators)
+  - [Operators](#operators)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -31,10 +34,32 @@ Comparators with optional support for types implementing the [@thi.ng/api
 `ICompare`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/compare.ts)
 interface.
 
-Since v1.2.0 additional higher-order comparators are included, e.g. to
-reverse the ordering of an existing comparator and allow hierarchical
-sorting by multiple keys/dimensions, each with their own optional
-comparator. See examples below.
+### Generic comparison
+
+- [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html)
+
+### Additional comparators
+
+- [`compareByKey()`](https://docs.thi.ng/umbrella/compare/functions/compareByKey.html)
+- [`compareByKeys2()`](https://docs.thi.ng/umbrella/compare/functions/compareByKeys2.html)
+- [`compareByKeys3()`](https://docs.thi.ng/umbrella/compare/functions/compareByKeys3.html)
+- [`compareByKeys4()`](https://docs.thi.ng/umbrella/compare/functions/compareByKeys4.html)
+- [`compareLengthAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareLengthAsc.html)
+- [`compareLengthDesc()`](https://docs.thi.ng/umbrella/compare/functions/compareLengthDesc.html)
+- [`compareNumAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumAsc.html)
+- [`compareNumDesc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumDesc.html)
+- [`reverse()`](https://docs.thi.ng/umbrella/compare/functions/reverse.html)
+
+### Operators
+
+- [`numericOp()`](https://docs.thi.ng/umbrella/compare/functions/numericOp.html)
+- [`stringOp()`](https://docs.thi.ng/umbrella/compare/functions/stringOp.html)
+- [`eq()`](https://docs.thi.ng/umbrella/compare/functions/eq.html)
+- [`gt()`](https://docs.thi.ng/umbrella/compare/functions/gt.html)
+- [`gte()`](https://docs.thi.ng/umbrella/compare/functions/gte.html)
+- [`lt()`](https://docs.thi.ng/umbrella/compare/functions/lt.html)
+- [`lte()`](https://docs.thi.ng/umbrella/compare/functions/lte.html)
+- [`neq()`](https://docs.thi.ng/umbrella/compare/functions/neq.html)
 
 ## Status
 
@@ -62,7 +87,7 @@ For Node.js REPL:
 const compare = await import("@thi.ng/compare");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 601 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 629 bytes
 
 ## Dependencies
 
@@ -111,7 +136,7 @@ compare(new Foo(1), new Foo(2));
 
 Key-based object comparison is supported for 1 - 4 keys / dimensions.
 
-```ts
+```ts tangle:export/readme1.ts
 import * as cmp from "@thi.ng/compare";
 
 const src = [
@@ -122,7 +147,9 @@ const src = [
 ];
 
 // cluster sort by id -> age (default comparators)
-[...src].sort(cmp.compareByKeys2("id", "age"));
+console.log(
+    [...src].sort(cmp.compareByKeys2("id", "age"))
+);
 // [
 //   { id: 'alice', age: 23 },
 //   { id: 'bart', age: 42 },
@@ -131,7 +158,9 @@ const src = [
 // ]
 
 // cluster sort by age -> id (default comparators)
-[...src].sort(cmp.compareByKeys2("age", "id"));
+console.log(
+    [...src].sort(cmp.compareByKeys2("age", "id"))
+);
 // [
 //   { id: 'dora', age: 11 },
 //   { id: 'alice', age: 23 },
@@ -141,7 +170,9 @@ const src = [
 
 // cluster sort by age -> id
 // (custom comparator for `age` key)
-[...src].sort(cmp.compareByKeys2("age", "id", cmp.compareNumDesc));
+console.log(
+    [...src].sort(cmp.compareByKeys2("age", "id", cmp.compareNumDesc))
+);
 // [
 //   { id: 'charlie', age: 66 },
 //   { id: 'bart', age: 42 },
@@ -150,7 +181,9 @@ const src = [
 // ]
 
 // using `reverse()` comparator for `id`
-[...src].sort(cmp.compareByKeys2("age", "id", cmp.compare, cmp.reverse(cmp.compare)));
+console.log(
+    [...src].sort(cmp.compareByKeys2("age", "id", cmp.compare, cmp.reverse(cmp.compare)))
+);
 // [
 //   { id: 'dora', age: 11 },
 //   { id: 'alice', age: 23 },
