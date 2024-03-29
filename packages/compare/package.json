@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/compare",
-	"version": "2.2.27",
+	"version": "2.3.0",
 	"description": "Comparators with support for types implementing the @thi.ng/api/ICompare interface",
 	"type": "module",
 	"module": "./index.js",
@@ -69,6 +69,9 @@
 		},
 		"./keys": {
 			"default": "./keys.js"
+		},
+		"./length": {
+			"default": "./length.js"
 		},
 		"./numeric": {
 			"default": "./numeric.js"

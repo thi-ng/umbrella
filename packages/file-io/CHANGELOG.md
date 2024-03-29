@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-27T09:53:45Z
+- **Last updated**: 2024-03-29T12:16:20Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@2.0.0) (2024-03-29)
+
+#### 🛑 Breaking changes
+
+- add `streamHash()`, update other hashing fns ([64a8cad](https://github.com/thi-ng/umbrella/commit/64a8cad))
+- BREAKING CHANGE: `fileHash()` now async, rename `stringHash()` => `bufferHash()`
+
+#### 🚀 Features
+
+- update args for `createTempFile()` & `tempFilePath()` ([d944789](https://github.com/thi-ng/umbrella/commit/d944789))
+  - add docstrings
 
 ### [1.3.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@1.3.3) (2024-02-22)
 

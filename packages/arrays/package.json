@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/arrays",
-	"version": "2.9.0",
+	"version": "2.9.1",
 	"description": "Array / Arraylike utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -38,7 +38,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.9.31",
 		"@thi.ng/checks": "^3.5.5",
-		"@thi.ng/compare": "^2.2.27",
+		"@thi.ng/compare": "^2.3.0",
 		"@thi.ng/equiv": "^2.1.53",
 		"@thi.ng/errors": "^2.5.2",
 		"@thi.ng/random": "^3.7.1"

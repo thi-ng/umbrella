@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/vectors",
-	"version": "7.10.24",
+	"version": "7.10.25",
 	"description": "Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts",
 	"type": "module",
 	"module": "./index.js",
@@ -45,7 +45,7 @@
 		"@thi.ng/memoize": "^3.2.0",
 		"@thi.ng/random": "^3.7.1",
 		"@thi.ng/strings": "^3.7.28",
-		"@thi.ng/transducers": "^8.9.17"
+		"@thi.ng/transducers": "^8.9.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",
