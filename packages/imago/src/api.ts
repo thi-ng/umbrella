@@ -38,6 +38,9 @@ import type {
  */
 export type Gravity = "c" | "e" | "n" | "ne" | "nw" | "s" | "se" | "sw" | "w";
 
+/**
+ * See [thi.ng/pixel-dither](https://thi.ng/pixel-dither) for reference
+ */
 export type DitherMode =
 	| "atkinson"
 	| "burkes"
@@ -60,6 +63,9 @@ export type SizeRef = "min" | "max" | "w" | "h" | "both";
 
 export type SizeUnit = "px" | "%";
 
+/**
+ * If given as array, the color is interpreted as `[r,g,b,a?]`
+ */
 export type Color =
 	| string
 	| number[]
