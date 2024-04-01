@@ -10,6 +10,7 @@ import type {
 	GammaSpec,
 	GrayscaleSpec,
 	HSBLSpec,
+	ICCSpec,
 	ImgLayer,
 	NestSpec,
 	OutputSpec,
@@ -107,6 +108,11 @@ export const grayscale = defSpec<GrayscaleSpec>("gray");
  * Creates a new {@link HSBLSpec} with given opts.
  */
 export const hsbl = defSpec<HSBLSpec>("hsbl");
+
+/**
+ * Creates a new {@link ICCSpec} with given opts.
+ */
+export const icc = defSpec<ICCSpec>("icc");
 
 /**
  * Creates a new {@link NestSpec} with given opts.

@@ -333,6 +333,18 @@ export interface HSBLSpec extends ProcSpec {
 	l?: number;
 }
 
+export interface ICCSpec extends ProcSpec {
+	op: "icc";
+	/**
+	 * ICC profile preset name
+	 */
+	profile?: "srgb" | "p3" | "cmyk";
+	/**
+	 * ICC profile file path (can be relative)
+	 */
+	path?: string;
+}
+
 export interface NestSpec extends ProcSpec {
 	op: "nest";
 	/**

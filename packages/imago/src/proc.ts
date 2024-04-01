@@ -13,6 +13,7 @@ import { extendProc } from "./ops/extend.js";
 import { gammaProc } from "./ops/gamma.js";
 import { grayscaleProc } from "./ops/grayscale.js";
 import { hsblProc } from "./ops/hsbl.js";
+import { iccProc } from "./ops/icc.js";
 import { nestProc } from "./ops/nest.js";
 import { outputProc } from "./ops/output.js";
 import { resizeProc } from "./ops/resize.js";
@@ -59,8 +60,8 @@ export const processImage = async (
 		logger: opts.logger || LOGGER,
 		size: [meta.width!, meta.height!],
 		exif: parentCtx ? structuredClone(parentCtx.exif) : {},
+		opts: { ...opts },
 		meta,
-		opts,
 	};
 
 	if (!parentCtx) {
@@ -141,6 +142,7 @@ export const processor = defmulti<
 		gamma: gammaProc,
 		gray: grayscaleProc,
 		hsbl: hsblProc,
+		icc: iccProc,
 		nest: nestProc,
 		output: outputProc,
 		resize: resizeProc,

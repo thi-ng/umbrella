@@ -19,6 +19,7 @@ export * from "./ops/extend.js";
 export * from "./ops/gamma.js";
 export * from "./ops/grayscale.js";
 export * from "./ops/hsbl.js";
+export * from "./ops/icc.js";
 export * from "./ops/nest.js";
 export * from "./ops/output.js";
 export * from "./ops/resize.js";
