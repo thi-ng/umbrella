@@ -64,6 +64,7 @@
 		"bitmap",
 		"blur",
 		"color",
+		"conversion",
 		"crop",
 		"composite",
 		"dither",
@@ -71,6 +72,7 @@
 		"fileformat",
 		"gif",
 		"grayscale",
+		"icc",
 		"image",
 		"jpeg",
 		"nested",
@@ -151,6 +153,9 @@
 		},
 		"./ops/hsbl": {
 			"default": "./ops/hsbl.js"
+		},
+		"./ops/icc": {
+			"default": "./ops/icc.js"
 		},
 		"./ops/nest": {
 			"default": "./ops/nest.js"
