@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-27T09:53:45Z
+- **Last updated**: 2024-04-01T13:12:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.7.0) (2024-04-01)
+
+#### 🚀 Features
+
+- add ICC profile assignment op ([5d022cb](https://github.com/thi-ng/umbrella/commit/5d022cb))
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.6.0) (2024-03-06)
 
