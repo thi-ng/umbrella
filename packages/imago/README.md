@@ -32,6 +32,7 @@
   - [gamma](#gamma)
   - [grayscale](#grayscale)
   - [hsbl](#hsbl)
+  - [icc](#icc)
   - [nest](#nest)
   - [output](#output)
     - [Templated output paths](#templated-output-paths)
@@ -227,6 +228,12 @@ Grayscale conversion
 
 Hue, saturation, brightness and lightness adjustments
 
+### icc
+
+Assign ICC profile (from preset: `p3`, `srgb`, `cmyk` or from file). Can only be
+given directly prior to [output](#output), overrides input ICC (if any) and only
+used if output format actually supports it.
+
 ### nest
 
 Performing nested branches/pipelines of operations with no effect on image state
@@ -344,7 +351,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.82 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.93 KB
 
 ## Dependencies
 
