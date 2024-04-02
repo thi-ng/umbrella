@@ -1,1 +1,1 @@
-export const isSet = (x: any): x is Set<any> => x instanceof Set;
+export const isSet = <T = any>(x: any): x is Set<T> => x instanceof Set;
