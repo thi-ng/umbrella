@@ -67,12 +67,12 @@ export function fsm<T, C, R>(
 ) {
 	return src
 		? iterator(fsm(states, ctx, initial, update), src)
-		: ([init, complete, reduce]: Reducer<any, R>) => {
+		: ([init, complete, reduce]: Reducer<R, any>) => {
 				let currID = initial;
 				let curr = states[initial]
 					? states[initial]()
 					: illegalArgs(`invalid initial state: ${initial}`);
-				return <Reducer<any, T>>[
+				return <Reducer<T, any>>[
 					init,
 					complete,
 					(acc, x) => {
@@ -114,7 +114,7 @@ export function fsm<T, C, R>(
 		  };
 }
 
-const reduceResult = <R>(rfn: ReductionFn<any, R>, acc: any, res: R[]) => {
+const reduceResult = <R>(rfn: ReductionFn<R, any>, acc: any, res: R[]) => {
 	for (let x of unreduced(res)) {
 		acc = rfn(acc, x);
 		if (isReduced(acc)) {
