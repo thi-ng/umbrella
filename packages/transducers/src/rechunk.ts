@@ -55,7 +55,7 @@ export function rechunk(
 export function rechunk(...args: any[]) {
 	const iter = __iter(rechunk, args, iterator);
 	if (iter) return iter;
-	return ([init, complete, reduce]: Reducer<any, string>) => {
+	return ([init, complete, reduce]: Reducer<string, any>) => {
 		let buf = "";
 		const re = args[0] || /\r?\n/;
 		return [

@@ -36,12 +36,12 @@ export function partitionBy<T>(
 export function partitionBy<T>(...args: any[]): any {
 	return (
 		__iter(partitionBy, args, iterator) ||
-		(([init, complete, reduce]: Reducer<any, T[]>) => {
+		(([init, complete, reduce]: Reducer<T[], any>) => {
 			const fn: Fn<T, any> | (() => Fn<T, any>) = args[0];
 			const f = args[1] === true ? (<() => Fn<T, any>>fn)() : fn;
 			let prev: any = SEMAPHORE;
 			let chunk: T[] | null;
-			return <Reducer<any, T>>[
+			return <Reducer<T, any>>[
 				init,
 				(acc) => {
 					if (chunk && chunk.length) {

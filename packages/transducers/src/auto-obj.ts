@@ -16,13 +16,13 @@ import { reduce, reducer } from "./reduce.js";
  *
  * @param prefix - shared prefix
  */
-export function autoObj<T>(prefix: string): Reducer<IObjectOf<T>, T>;
+export function autoObj<T>(prefix: string): Reducer<T, IObjectOf<T>>;
 export function autoObj<T>(prefix: string, xs: Iterable<T>): IObjectOf<T>;
 export function autoObj<T>(prefix: string, xs?: Iterable<T>): any {
 	let id = 0;
 	return xs
 		? reduce(autoObj(prefix), xs)
-		: reducer<IObjectOf<T>, T>(
+		: reducer<T, IObjectOf<T>>(
 				() => ({}),
 				(acc, v) => ((acc[prefix + id++] = v), acc)
 		  );

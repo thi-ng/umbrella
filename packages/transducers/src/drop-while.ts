@@ -12,7 +12,7 @@ export function dropWhile<T>(
 export function dropWhile<T>(...args: any[]): any {
 	return (
 		__iter(dropWhile, args) ||
-		((rfn: Reducer<any, T>) => {
+		((rfn: Reducer<T, any>) => {
 			const r = rfn[2];
 			const pred = args[0];
 			let ok = true;

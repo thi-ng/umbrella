@@ -1,4 +1,5 @@
 import type { Fn0, FnAny } from "@thi.ng/api";
+import { identity } from "@thi.ng/api/fn";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isIterable } from "@thi.ng/checks/is-iterable";
@@ -13,47 +14,44 @@ const parseArgs = (args: any[]) =>
 		? [args[1], args[2]]
 		: illegalArity(args.length);
 
-export function reduce<A, B>(rfn: Reducer<A, B>, xs: Iterable<B>): A;
-export function reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A;
-export function reduce<A, B>(rfn: Reducer<A, B>, xs: IReducible<A, B>): A;
+export function reduce<A, B>(rfn: Reducer<A, B>, xs: Iterable<A>): B;
+export function reduce<A, B>(rfn: Reducer<A, B>, acc: B, xs: Iterable<A>): B;
+export function reduce<A, B>(rfn: Reducer<A, B>, xs: IReducible<A, B>): B;
 export function reduce<A, B>(
 	rfn: Reducer<A, B>,
 	acc: A,
 	xs: IReducible<A, B>
-): A;
-export function reduce<A, B>(...args: any[]): A {
+): B;
+export function reduce<A, B>(...args: any[]): B {
 	const rfn = args[0];
 	const init = rfn[0];
 	const complete = rfn[1];
 	const reduce = rfn[2];
 	args = parseArgs(args);
-	const acc: A = args[0] == null ? init() : args[0];
-	const xs: Iterable<B> | IReducible<A, B> = args[1];
+	const acc: B = args[0] == null ? init() : args[0];
+	const xs: Iterable<A> | IReducible<A, B> = args[1];
 	return unreduced(
 		complete(
 			implementsFunction(xs, "$reduce")
 				? xs.$reduce(reduce, acc)
 				: isArrayLike(xs)
 				? reduceArray(reduce, acc, xs)
-				: reduceIterable(reduce, acc, <Iterable<B>>xs)
+				: reduceIterable(reduce, acc, <Iterable<A>>xs)
 		)
 	);
 }
 
-export function reduceRight<A, B>(rfn: Reducer<A, B>, xs: ArrayLike<B>): A;
+export function reduceRight<A, B>(rfn: Reducer<A, B>, xs: ArrayLike<A>): B;
 export function reduceRight<A, B>(
 	rfn: Reducer<A, B>,
-	acc: A,
-	xs: ArrayLike<B>
-): A;
-export function reduceRight<A, B>(...args: any[]): A {
-	const rfn: Reducer<A, B> = args[0];
-	const init = rfn[0];
-	const complete = rfn[1];
-	const reduce = rfn[2];
+	acc: B,
+	xs: ArrayLike<A>
+): B;
+export function reduceRight<A, B>(...args: any[]): B {
+	const [init, complete, reduce]: Reducer<A, B> = args[0];
 	args = parseArgs(args);
-	let acc: A = args[0] == null ? init() : args[0];
-	const xs: Array<B> = args[1];
+	let acc: B = args[0] == null ? init() : args[0];
+	const xs: Array<A> = args[1];
 	for (let i = xs.length; i-- > 0; ) {
 		acc = <any>reduce(acc, xs[i]);
 		if (isReduced(acc)) {
@@ -66,8 +64,8 @@ export function reduceRight<A, B>(...args: any[]): A {
 
 const reduceArray = <A, B>(
 	rfn: ReductionFn<A, B>,
-	acc: A,
-	xs: ArrayLike<B>
+	acc: B,
+	xs: ArrayLike<A>
 ) => {
 	for (let i = 0, n = xs.length; i < n; i++) {
 		acc = <any>rfn(acc, xs[i]);
@@ -81,8 +79,8 @@ const reduceArray = <A, B>(
 
 const reduceIterable = <A, B>(
 	rfn: ReductionFn<A, B>,
-	acc: A,
-	xs: Iterable<B>
+	acc: B,
+	xs: Iterable<A>
 ) => {
 	for (let x of xs) {
 		acc = <any>rfn(acc, x);
@@ -102,8 +100,8 @@ const reduceIterable = <A, B>(
  * @param init - init step of reducer
  * @param rfn - reduction step of reducer
  */
-export const reducer = <A, B>(init: Fn0<A>, rfn: ReductionFn<A, B>) =>
-	<Reducer<A, B>>[init, (acc) => acc, rfn];
+export const reducer = <A, B>(init: Fn0<B>, rfn: ReductionFn<A, B>) =>
+	<Reducer<A, B>>[init, identity, rfn];
 
 export const $$reduce = (rfn: FnAny<Reducer<any, any>>, args: any[]) => {
 	const n = args.length - 1;

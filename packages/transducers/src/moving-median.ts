@@ -31,14 +31,13 @@ export function movingMedian<A, B>(
 ): IterableIterator<A>;
 export function movingMedian<A, B>(...args: any[]): any {
 	const iter = __iter(movingMedian, args);
-	if (iter) {
-		return iter;
-	}
+	if (iter) return iter;
+
 	const { key, compare } = __sortOpts<A, B>(args[1]);
 	const n = args[0];
 	const m = n >> 1;
-	return comp<A, A[], A>(
-		partition(n, 1, true),
+	return comp(
+		partition<A>(n, 1, true),
 		map(
 			(window: A[]) =>
 				window.slice().sort((a, b) => compare(key(a), key(b)))[m]

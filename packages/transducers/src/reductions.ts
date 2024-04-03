@@ -2,13 +2,13 @@ import type { Reducer } from "./api.js";
 import { reduce } from "./reduce.js";
 import { isReduced, reduced } from "./reduced.js";
 
-export function reductions<A, B>(rfn: Reducer<A, B>): Reducer<A[], B>;
-export function reductions<A, B>(rfn: Reducer<A, B>, xs: Iterable<B>): A[];
-export function reductions<A, B>(rfn: Reducer<A, B>, xs?: Iterable<B>): any {
+export function reductions<A, B>(rfn: Reducer<A, B>): Reducer<A, B[]>;
+export function reductions<A, B>(rfn: Reducer<A, B>, xs: Iterable<A>): B[];
+export function reductions<A, B>(rfn: Reducer<A, B>, xs?: Iterable<A>): any {
 	const [init, complete, _reduce] = rfn;
 	return xs
 		? reduce(reductions(rfn), xs)
-		: <Reducer<A[], B>>[
+		: <Reducer<A, B[]>>[
 				() => [init()],
 				(acc) => (
 					(acc[acc.length - 1] = complete(acc[acc.length - 1])), acc

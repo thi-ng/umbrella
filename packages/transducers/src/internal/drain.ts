@@ -13,7 +13,7 @@ import { isReduced } from "../reduced.js";
  * @internal
  */
 export const __drain =
-	<T>(buf: T[], complete: Fn<any, any>, reduce: ReductionFn<any, T>) =>
+	<T>(buf: T[], complete: Fn<any, any>, reduce: ReductionFn<T, any>) =>
 	(acc: T[]) => {
 		while (buf.length && !isReduced(acc)) {
 			acc = reduce(acc, buf.shift()!);

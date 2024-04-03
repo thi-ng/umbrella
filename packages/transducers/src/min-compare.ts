@@ -16,6 +16,6 @@ export function minCompare(...args: any[]): any {
 		return res;
 	}
 	const init = args[0];
-	const cmp = args[1] || compare;
+	const cmp: Comparator<any> = args[1] || compare;
 	return reducer(init, (acc, x) => (cmp(acc, x) <= 0 ? acc : x));
 }

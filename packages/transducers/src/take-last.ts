@@ -22,9 +22,9 @@ export function takeLast<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function takeLast<T>(n: number, src?: Iterable<T>): any {
 	return isIterable(src)
 		? iterator(takeLast(n), src)
-		: ([init, complete, reduce]: Reducer<any, T>) => {
+		: ([init, complete, reduce]: Reducer<T, any>) => {
 				const buf: T[] = [];
-				return <Reducer<any, T>>[
+				return <Reducer<T, any>>[
 					init,
 					__drain(buf, complete, reduce),
 					(acc, x) => {

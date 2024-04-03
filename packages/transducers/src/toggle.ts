@@ -38,7 +38,7 @@ export function toggle<T>(
 ): any {
 	return isIterable(src)
 		? iterator1(toggle(on, off, initial), src)
-		: ([init, complete, reduce]: Reducer<any, T>) => {
+		: ([init, complete, reduce]: Reducer<T, any>) => {
 				let state = initial;
 				return [
 					init,

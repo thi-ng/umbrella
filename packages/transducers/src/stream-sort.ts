@@ -40,9 +40,9 @@ export function streamSort<A, B>(...args: any[]): any {
 	}
 	const { key, compare } = __sortOpts<A, B>(args[1]);
 	const n = args[0];
-	return ([init, complete, reduce]: Reducer<any, A>) => {
+	return ([init, complete, reduce]: Reducer<A, any>) => {
 		const buf: A[] = [];
-		return <Reducer<any, A>>[
+		return <Reducer<A, any>>[
 			init,
 			__drain(buf, complete, reduce),
 			(acc, x) => {

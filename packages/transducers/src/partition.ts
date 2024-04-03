@@ -74,10 +74,10 @@ export function partition<T>(...args: any[]): any {
 		step = size;
 		all = args[1];
 	}
-	return ([init, complete, reduce]: Reducer<any, T[]>) => {
+	return ([init, complete, reduce]: Reducer<T[], any>) => {
 		let buf: T[] = [];
 		let skip = 0;
-		return <Reducer<any, T>>[
+		return <Reducer<T, any>>[
 			init,
 			(acc) => {
 				if (all && buf.length > 0) {

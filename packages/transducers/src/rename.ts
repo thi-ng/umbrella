@@ -21,31 +21,34 @@ import { transduce } from "./transduce.js";
  */
 export function rename<A, B>(
 	kmap: IObjectOf<PropertyKey | boolean> | Array<PropertyKey>,
-	rfn?: Reducer<B, [PropertyKey, A]>
+	rfn?: Reducer<[PropertyKey, any], B>
 ): Transducer<A[], B>;
 export function rename<A, B>(
 	kmap: IObjectOf<PropertyKey | boolean> | Array<PropertyKey>,
-	rfn: Reducer<B, [PropertyKey, A]>,
+	rfn: Reducer<[PropertyKey, any], B>,
 	src: Iterable<A[]>
 ): IterableIterator<B>;
-export function rename(...args: any[]): any {
+export function rename<A, B>(...args: any[]): any {
 	const iter = args.length > 2 && __iter(rename, args);
 	if (iter) {
 		return iter;
 	}
-	let kmap = args[0];
+	let [kmap, reducer] = args;
 	if (isArray(kmap)) {
 		kmap = kmap.reduce((acc, k, i) => ((acc[k] = i), acc), {});
 	}
-	if (args[1]) {
+	if (reducer) {
 		const ks = Object.keys(kmap);
-		return map((y: any) =>
+		return map((y: A) =>
 			transduce(
 				comp(
-					map((k: PropertyKey) => [k, y[kmap[k]]]),
+					map(
+						(k: PropertyKey) =>
+							<[PropertyKey, any]>[k, (<any>y)[kmap[k]]]
+					),
 					filter((x) => x[1] !== undefined)
 				),
-				args[1],
+				<Reducer<[PropertyKey, any], B>>reducer,
 				ks
 			)
 		);

@@ -1,3 +1,4 @@
+/** @internal */
 interface Cell<T> {
 	x: T;
 	n?: Cell<T>;

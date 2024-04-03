@@ -5,7 +5,7 @@ import { $$reduce } from "./reduce.js";
 
 export function groupByObj<SRC, GROUP>(
 	opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>
-): Reducer<IObjectOf<GROUP>, SRC>;
+): Reducer<SRC, IObjectOf<GROUP>>;
 export function groupByObj<SRC>(xs: Iterable<SRC>): IObjectOf<SRC[]>;
 export function groupByObj<SRC, GROUP>(
 	opts: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>,
@@ -13,12 +13,11 @@ export function groupByObj<SRC, GROUP>(
 ): IObjectOf<GROUP>;
 export function groupByObj<SRC, GROUP>(...args: any[]): any {
 	const res = $$reduce(groupByObj, args);
-	if (res) {
-		return res;
-	}
+	if (res) return res;
+
 	const opts = __groupByOpts<SRC, PropertyKey, GROUP>(args[0]);
 	const [_init, complete, _reduce] = opts.group;
-	return <Reducer<IObjectOf<GROUP>, SRC>>[
+	return <Reducer<SRC, IObjectOf<GROUP>>>[
 		() => ({}),
 		(acc) => {
 			for (let k in acc) {

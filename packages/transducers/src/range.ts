@@ -14,7 +14,7 @@ export function range(from?: number, to?: number, step?: number) {
  * and {@link IReducible} interfaces, the latter is used to accelerate use with
  * {@link reduce}.
  */
-export class Range implements Iterable<number>, IReducible<any, number> {
+export class Range implements Iterable<number>, IReducible<number, any> {
 	protected from: number;
 	protected to: number;
 	protected step: number;
@@ -51,7 +51,10 @@ export class Range implements Iterable<number>, IReducible<any, number> {
 		}
 	}
 
-	$reduce<T>(rfn: ReductionFn<T, number>, acc: T): T | Reduced<T> {
+	$reduce<T>(
+		rfn: ReductionFn<number, T>,
+		acc: T | Reduced<T>
+	): T | Reduced<T> {
 		const step = this.step;
 		if (step > 0) {
 			for (
@@ -59,7 +62,7 @@ export class Range implements Iterable<number>, IReducible<any, number> {
 				i < n && !isReduced(acc);
 				i += step
 			) {
-				acc = <any>rfn(acc, i);
+				acc = rfn(acc, i);
 			}
 		} else {
 			for (
@@ -67,7 +70,7 @@ export class Range implements Iterable<number>, IReducible<any, number> {
 				i > n && !isReduced(acc);
 				i += step
 			) {
-				acc = <any>rfn(acc, i);
+				acc = rfn(acc, i);
 			}
 		}
 		return acc;

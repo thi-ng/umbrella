@@ -20,29 +20,29 @@ import { isReduced, reduced, unreduced } from "./reduced.js";
  * // [ 10, [ 0, 1, 3, 6, 10 ], '1-2-3-4' ]
  * ```
  */
-export function juxtR<A1, B>(r1: Reducer<A1, B>): Reducer<[A1], B>;
-export function juxtR<A1, A2, B>(
-	r1: Reducer<A1, B>,
-	r2: Reducer<A2, B>
-): Reducer<[A1, A2], B>;
-export function juxtR<A1, A2, A3, B>(
-	r1: Reducer<A1, B>,
-	r2: Reducer<A2, B>,
-	r3: Reducer<A3, B>
-): Reducer<[A1, A2, A3], B>;
-export function juxtR<A1, A2, A3, B>(
-	r1: Reducer<A1, B>,
-	r2: Reducer<A2, B>,
-	r3: Reducer<A3, B>,
-	...rs: Reducer<any, B>[]
-): Reducer<any[], B>;
-export function juxtR<B>(...rs: Reducer<any, B>[]): any {
+export function juxtR<A, B1>(r1: Reducer<A, B1>): Reducer<A, [B1]>;
+export function juxtR<A, B1, B2>(
+	r1: Reducer<A, B1>,
+	r2: Reducer<A, B2>
+): Reducer<A, [B1, B2]>;
+export function juxtR<A, B1, B2, B3>(
+	r1: Reducer<A, B1>,
+	r2: Reducer<A, B2>,
+	r3: Reducer<A, B3>
+): Reducer<A, [B1, B2, B3]>;
+export function juxtR<A, B1, B2, B3>(
+	r1: Reducer<A, B1>,
+	r2: Reducer<A, B2>,
+	r3: Reducer<A, B3>,
+	...rs: Reducer<A, any>[]
+): Reducer<A, any[]>;
+export function juxtR<A>(...rs: Reducer<A, any>[]): any {
 	let [a, b, c] = rs;
 	const n = rs.length;
 	switch (n) {
 		case 1: {
 			const r = a[2];
-			return <Reducer<any[], B>>[
+			return <Reducer<A, any[]>>[
 				() => [a[0]()],
 				(acc) => [a[1](acc[0])],
 				(acc, x) => {
@@ -57,7 +57,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]): any {
 		case 2: {
 			const ra = a[2];
 			const rb = b[2];
-			return <Reducer<any[], B>>[
+			return <Reducer<A, any[]>>[
 				() => [a[0](), b[0]()],
 				(acc) => [a[1](acc[0]), b[1](acc[1])],
 				(acc, x) => {
@@ -74,7 +74,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]): any {
 			const ra = a[2];
 			const rb = b[2];
 			const rc = c[2];
-			return <Reducer<any[], B>>[
+			return <Reducer<A, any[]>>[
 				() => [a[0](), b[0](), c[0]()],
 				(acc) => [a[1](acc[0]), b[1](acc[1]), c[1](acc[2])],
 				(acc, x) => {
@@ -93,7 +93,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]): any {
 			];
 		}
 		default:
-			return <Reducer<any[], B>>[
+			return <Reducer<A, any[]>>[
 				() => rs.map((r) => r[0]()),
 				(acc) => rs.map((r, i) => r[1](acc[i])),
 				(acc, x) => {

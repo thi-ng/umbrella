@@ -46,19 +46,19 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  * @param rfn - reducer used as scan operator
  * @param init -
  */
-export function scan<A, B>(rfn: Reducer<B, A>, init?: B): Transducer<A, B>;
+export function scan<A, B>(rfn: Reducer<A, B>, init?: B): Transducer<A, B>;
 export function scan<A, B>(
-	rfn: Reducer<B, A>,
+	rfn: Reducer<A, B>,
 	init: B,
 	src: Iterable<A>
 ): IterableIterator<B>;
 export function scan<A, B>(...args: any[]): any {
 	return (
 		(args.length > 2 && __iter(scan, args, iterator)) ||
-		(([inito, completeo, reduceo]: Reducer<any, B>) => {
-			const [initi, completei, reducei]: Reducer<B, A> = args[0];
+		(([inito, completeo, reduceo]: Reducer<B, any>) => {
+			const [initi, completei, reducei]: Reducer<A, B> = args[0];
 			let acc: B = args.length > 1 && args[1] != null ? args[1] : initi();
-			return <Reducer<B, A>>[
+			return <Reducer<A, B>>[
 				inito,
 				(_acc) => {
 					let a = completei(acc);

@@ -1,3 +1,4 @@
+import { identity } from "@thi.ng/api/fn";
 import type { Transducer } from "./api.js";
 
 /**
@@ -5,7 +6,4 @@ import type { Transducer } from "./api.js";
  * but faster. Useful for testing and / or to keep existing values in a
  * {@link multiplex} tuple lane.
  */
-export const noop =
-	<T>(): Transducer<T, T> =>
-	(rfn) =>
-		rfn;
+export const noop = <T>(): Transducer<T, T> => identity;

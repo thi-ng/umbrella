@@ -23,7 +23,7 @@ export function map<A, B>(fn: Fn<A, B>, src: Iterable<A>): IterableIterator<B>;
 export function map<A, B>(fn: Fn<A, B>, src?: Iterable<A>): any {
 	return isIterable(src)
 		? iterator1(map(fn), src)
-		: (rfn: Reducer<any, B>) => {
+		: (rfn: Reducer<B, any>) => {
 				const r = rfn[2];
 				return compR(rfn, (acc, x: A) => r(acc, fn(x)));
 		  };
@@ -31,7 +31,7 @@ export function map<A, B>(fn: Fn<A, B>, src?: Iterable<A>): any {
 
 /**
  * Convenience wrapper for {@link map} to transform an iterable with given `fn`
- * and immediatedly collect results into an array.
+ * and immediately collect results into an array.
  */
 export const mapA = <A, B>(fn: Fn<A, B>, src: Iterable<A>): B[] => [
 	...map(fn, src),

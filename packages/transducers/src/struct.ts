@@ -4,15 +4,14 @@ import type { Transducer } from "./api.js";
 import { comp } from "./comp.js";
 import { iterator } from "./iterator.js";
 import { mapKeys } from "./map-keys.js";
-import { partition } from "./partition.js";
 import { partitionOf } from "./partition-of.js";
+import { partition } from "./partition.js";
 import { rename } from "./rename.js";
 
-export interface StructField extends Array<any> {
-	[0]: string;
-	[1]: number;
-	[2]?: Fn<any[], any>;
-}
+/**
+ * Structfield definition: [name, number-of-inputs, transform?]
+ */
+export type StructField<T> = [string, number, Fn<T[], any>?];
 
 /**
  * Higher-order transducer to converts linear input into structured
@@ -48,12 +47,12 @@ export interface StructField extends Array<any> {
  *
  * @param fields -
  */
-export function struct<T>(fields: StructField[]): Transducer<any, T>;
-export function struct<T>(
-	fields: StructField[],
-	src: Iterable<any>
-): IterableIterator<T>;
-export function struct(fields: StructField[], src?: Iterable<any>): any {
+export function struct<A, B>(fields: StructField<A>[]): Transducer<A, B>;
+export function struct<A, B>(
+	fields: StructField<A>[],
+	src: Iterable<A>
+): IterableIterator<B>;
+export function struct(fields: StructField<any>[], src?: Iterable<any>): any {
 	return isIterable(src)
 		? iterator(struct(fields), src)
 		: comp(

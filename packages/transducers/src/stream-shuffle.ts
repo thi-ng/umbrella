@@ -64,7 +64,7 @@ export function streamShuffle<T>(
 export function streamShuffle<T>(...args: any[]): any {
 	return (
 		__iter(streamShuffle, args, iterator) ||
-		(([init, complete, reduce]: Reducer<any, T>) => {
+		(([init, complete, reduce]: Reducer<T, any>) => {
 			let n: number;
 			let maxSwaps: number;
 			let rnd: IRandom = SYSTEM;
@@ -78,7 +78,7 @@ export function streamShuffle<T>(...args: any[]): any {
 				maxSwaps = args[1] || n;
 			}
 			const buf: T[] = [];
-			return <Reducer<any, T>>[
+			return <Reducer<T, any>>[
 				init,
 				(acc) => {
 					if (buf.length) {

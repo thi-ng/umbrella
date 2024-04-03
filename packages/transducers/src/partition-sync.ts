@@ -154,10 +154,10 @@ export function partitionSync<T>(...args: any[]): any {
 	const cache: Map<PropertyKey, T[]> = new Map();
 	let curr: IObjectOf<T> = {};
 
-	const xform = ([init, complete, reduce]: Reducer<any, IObjectOf<T>>) => {
+	const xform = ([init, complete, reduce]: Reducer<IObjectOf<T>, any>) => {
 		let first = true;
 		if (mergeOnly || backPressure < 1) {
-			return <Reducer<any, T>>[
+			return <Reducer<T, any>>[
 				init,
 				(acc) => {
 					if (
@@ -195,7 +195,7 @@ export function partitionSync<T>(...args: any[]): any {
 			];
 		} else {
 			// with backpressure / caching...
-			return <Reducer<any, T>>[
+			return <Reducer<T, any>>[
 				init,
 				(acc) => {
 					if (all && currKeys.size > 0) {

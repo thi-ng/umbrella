@@ -3,7 +3,7 @@ import { NO_OP } from "@thi.ng/api/api";
 import type { IReducible, Reducer, TxLike } from "./api.js";
 import { transduce } from "./transduce.js";
 
-const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
+const NO_OP_REDUCER: Reducer<any, void> = [NO_OP, NO_OP, NO_OP];
 
 /**
  * Transforms `xs` with given transducer and optional side effect
@@ -16,7 +16,7 @@ const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
  * @param xs -
  */
 export function run<A>(tx: TxLike<A, any>, xs: Iterable<A>): void;
-export function run<A>(tx: TxLike<A, any>, xs: IReducible<any, A>): void;
+export function run<A>(tx: TxLike<A, any>, xs: IReducible<A, any>): void;
 export function run<A, B>(
 	tx: TxLike<A, B>,
 	fx: Fn<B, void>,
@@ -25,7 +25,7 @@ export function run<A, B>(
 export function run<A, B>(
 	tx: TxLike<A, B>,
 	fx: Fn<B, void>,
-	xs: IReducible<any, A>
+	xs: IReducible<A, any>
 ): void;
 export function run<A, B>(tx: TxLike<A, B>, ...args: any[]) {
 	if (args.length === 1) {
