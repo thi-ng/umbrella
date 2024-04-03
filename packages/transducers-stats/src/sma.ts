@@ -25,7 +25,7 @@ export function sma(period: number, src?: Iterable<number>): any {
 	}
 	period |= 0;
 	period < 2 && illegalArgs("period must be >= 2");
-	return (rfn: Reducer<any, number>) => {
+	return (rfn: Reducer<number, any>) => {
 		const reduce = rfn[2];
 		const window = new DCons<number>();
 		let sum = 0;

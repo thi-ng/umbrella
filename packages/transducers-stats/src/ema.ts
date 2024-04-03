@@ -23,7 +23,7 @@ export function ema(period: number, src?: Iterable<number>): any {
 	period |= 0;
 	period < 2 && illegalArgs("period must be >= 2");
 	const k = 2 / (period + 1);
-	return (rfn: Reducer<any, number>) => {
+	return (rfn: Reducer<number, any>) => {
 		const reduce = rfn[2];
 		let window: number[] | null = [];
 		let ema: number | null;
