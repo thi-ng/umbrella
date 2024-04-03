@@ -24,7 +24,7 @@ export function formatCSV(
 ): any {
 	return isIterable(src)
 		? iterator(formatCSV(opts), src)
-		: (rfn: Reducer<any, string>) => {
+		: (rfn: Reducer<string, any>) => {
 				let { cols = [], delim = ",", quote = '"', header } = opts;
 				let colTx: Nullable<Stringer<any>>[];
 				const reQuote = new RegExp(quote, "g");
