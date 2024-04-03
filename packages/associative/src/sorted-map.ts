@@ -3,7 +3,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { compare } from "@thi.ng/compare/compare";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import type { ReductionFn } from "@thi.ng/transducers";
+import type { Reduced, ReductionFn } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import { isReduced } from "@thi.ng/transducers/reduced";
 import type { SortedMapOpts } from "./api.js";
@@ -288,7 +288,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 		}
 	}
 
-	$reduce(rfn: ReductionFn<any, Pair<K, V>>, acc: any) {
+	$reduce<R>(rfn: ReductionFn<Pair<K, V>, R>, acc: R | Reduced<R>) {
 		let node: Node<K, V> | undefined = this.firstNode();
 		while (node && node.k !== undefined && !isReduced(acc)) {
 			acc = rfn(acc, [node.k, node.v!]);
