@@ -272,7 +272,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 	static SCHEDULE: Fn2<FnAny<void>, number, void> =
 		typeof setImmediate === "function" ? setImmediate : setTimeout;
 
-	private static RFN: Reducer<DCons<any>, any> = [
+	private static RFN: Reducer<any, DCons<any>> = [
 		<any>(() => null),
 		(acc) => acc,
 		(acc: DCons<any>, x) => acc.push(x),
@@ -283,7 +283,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 
 	protected state: State;
 	protected buf: IBuffer<T>;
-	protected tx: Reducer<DCons<T>, T>;
+	protected tx: Reducer<T, DCons<T>>;
 	protected writes: DCons<ChannelItem<T>>;
 	protected reads: DCons<Fn<T, void>>;
 	protected txbuf: DCons<T>;
@@ -467,7 +467,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 		})();
 	}
 
-	reduce<A>(rfn: Reducer<A, T>, acc?: A): Promise<A> {
+	reduce<R>(rfn: Reducer<T, R>, acc?: R): Promise<R> {
 		return (async () => {
 			const [init, complete, reduce] = rfn;
 			acc = acc != null ? acc : init();
@@ -484,10 +484,10 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 	}
 
 	transduce<A, B>(
-		tx: Transducer<T, B>,
+		tx: Transducer<T, A>,
 		rfn: Reducer<A, B>,
-		acc?: A
-	): Promise<A> {
+		acc?: B
+	): Promise<B> {
 		return (async () => {
 			const _rfn = tx(rfn);
 			return unreduced(_rfn[1](await this.reduce(_rfn, acc)));
