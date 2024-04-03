@@ -25,7 +25,7 @@ const modes: ColorMode[] = [
 for (let mode of modes) {
 	const bounds = transduce(
 		map((x) => convert(null, x, mode, "rgb")),
-		reducer<Vec[], Vec>(
+		reducer<Vec, Vec[]>(
 			() => [[...MAX4], [...MIN4]],
 			(acc, x) => {
 				min4(null, acc[0], x);

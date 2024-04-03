@@ -17,7 +17,7 @@ const computeSpectrum = (src: Fn0<Iterable<number>>, size = 128, num = 1000) =>
 		null,
 		transduce(
 			map(() => spectrumPow(fft([...take(size, src())]), true)),
-			reducer<Vec, NumericArray>(
+			reducer<NumericArray, Vec>(
 				() => zeroes(size / 2),
 				(acc, x) => add(null, acc, x)
 			),
