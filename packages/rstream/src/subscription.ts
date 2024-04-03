@@ -87,7 +87,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 	parent?: ISubscription<any, A>;
 	__owner?: ISubscription<any, any>;
 
-	protected xform?: Reducer<B[], A>;
+	protected xform?: Reducer<A, B[]>;
 	protected cacheLast: boolean;
 	protected last: any = SEMAPHORE;
 	protected state = State.IDLE;

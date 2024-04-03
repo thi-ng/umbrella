@@ -33,7 +33,7 @@ import type { Subscription } from "./subscription.js";
 export const transduce = <A, B, C>(
 	src: Subscription<any, A>,
 	xform: Transducer<A, B>,
-	rfn: Reducer<C, B>,
+	rfn: Reducer<B, C>,
 	init?: C
 ): Promise<C> => {
 	let acc = init !== undefined ? init : rfn[0]();

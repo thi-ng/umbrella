@@ -24,14 +24,11 @@ export const intersect3: Transducer<IObjectOf<TripleIds>, TripleIds> = comp(
 
 export const indexSel =
 	(key: any): Transducer<Edit, TripleIds> =>
-	(rfn: Reducer<any, TripleIds>) => {
+	(rfn: Reducer<TripleIds, any>) => {
 		const r = rfn[2];
 		return compR(rfn, (acc, e) => {
 			LOGGER.fine("index sel", e.key, key);
-			if (equiv(e.key, key)) {
-				return r(acc, e.index);
-			}
-			return acc;
+			return equiv(e.key, key) ? r(acc, e.index) : acc;
 		});
 	};
 
