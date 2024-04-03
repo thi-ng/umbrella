@@ -40,7 +40,7 @@ import type { PatchArrayOp } from "./api.js";
  */
 export function patchArray<T>(
 	immutable?: boolean
-): Reducer<T[], PatchArrayOp<T> | PatchArrayOp<T>[]>;
+): Reducer<PatchArrayOp<T> | PatchArrayOp<T>[], T[]>;
 export function patchArray<T>(
 	immutable: boolean,
 	init: T[],
@@ -88,7 +88,7 @@ export function patchArray<T>(...args: any[]) {
 
 	return patches
 		? reduce(patchArray<T>(immutable), init!, patches)
-		: reducer<T[], PatchArrayOp<T> | PatchArrayOp<T>[]>(
+		: reducer<PatchArrayOp<T> | PatchArrayOp<T>[], T[]>(
 				() => [],
 				(acc, x) => {
 					immutable && (acc = acc.slice());

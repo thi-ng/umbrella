@@ -25,7 +25,7 @@ export function momentum(period: number, src?: Iterable<number>): any {
 	}
 	period |= 0;
 	period < 1 && illegalArgs("period must be >= 1");
-	return (rfn: Reducer<any, number>) => {
+	return (rfn: Reducer<number, any>) => {
 		const reduce = rfn[2];
 		const window = new DCons<number>();
 		return compR(rfn, (acc, x: number) => {

@@ -71,6 +71,9 @@
 		"./defonce": {
 			"default": "./defonce.js"
 		},
+		"./delay": {
+			"default": "./delay.js"
+		},
 		"./do-once": {
 			"default": "./do-once.js"
 		},

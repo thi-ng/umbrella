@@ -13,7 +13,7 @@ export function interpose<A, B>(
 export function interpose<A, B>(sep: any, src?: Iterable<A>): any {
 	return isIterable(src)
 		? iterator(interpose(sep), src)
-		: (rfn: Reducer<any, A | B>) => {
+		: (rfn: Reducer<A | B, any>) => {
 				const r = rfn[2];
 				const _sep: Fn0<B> =
 					typeof sep === "function" ? sep : () => sep;

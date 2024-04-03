@@ -7,21 +7,21 @@ import { reduce, reduceRight } from "./reduce.js";
 
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
-	rfn: Reducer<C, B>
+	rfn: Reducer<B, C>
 ): Transducer<Iterable<A>, C>;
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
-	rfn: Reducer<C, B>,
+	rfn: Reducer<B, C>,
 	xs: Iterable<A>
 ): C;
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
-	rfn: Reducer<C, B>,
-	xs: IReducible<C, A>
+	rfn: Reducer<B, C>,
+	xs: IReducible<A, C>
 ): C;
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
-	rfn: Reducer<C, B>,
+	rfn: Reducer<B, C>,
 	acc: C,
 	xs: Iterable<A>
 ): C;
@@ -29,7 +29,7 @@ export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
 	rfn: Reducer<C, B>,
 	acc: C,
-	xs: IReducible<C, A>
+	xs: IReducible<A, C>
 ): C;
 export function transduce(...args: any[]): any {
 	return $transduce(transduce, reduce, args);
@@ -37,16 +37,16 @@ export function transduce(...args: any[]): any {
 
 export function transduceRight<A, B, C>(
 	tx: TxLike<A, B>,
-	rfn: Reducer<C, B>
+	rfn: Reducer<B, C>
 ): Transducer<ArrayLike<A>, C>;
 export function transduceRight<A, B, C>(
 	tx: TxLike<A, B>,
-	rfn: Reducer<C, B>,
+	rfn: Reducer<B, C>,
 	xs: ArrayLike<A>
 ): C;
 export function transduceRight<A, B, C>(
 	tx: TxLike<A, B>,
-	rfn: Reducer<C, B>,
+	rfn: Reducer<B, C>,
 	acc: C,
 	xs: ArrayLike<A>
 ): C;

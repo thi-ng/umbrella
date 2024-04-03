@@ -55,7 +55,7 @@ export function macd(
 export function macd(...args: any[]): any {
 	return (
 		__iter(macd, args) ||
-		((rfn: Reducer<any, MACD>) => {
+		((rfn: Reducer<MACD, any>) => {
 			const reduce = rfn[2];
 			const maFast = step(ema(args[0] || 12));
 			const maSlow = step(ema(args[1] || 26));

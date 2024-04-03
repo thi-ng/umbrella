@@ -44,7 +44,7 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  */
 export const cat =
 	<T>(): Transducer<Nullable<Iterable<T>>, T> =>
-	(rfn: Reducer<any, T>) => {
+	(rfn: Reducer<T, any>) => {
 		const r = rfn[2];
 		return compR(rfn, (acc, x: Iterable<T> | null | undefined) => {
 			if (x) {

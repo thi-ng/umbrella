@@ -34,7 +34,7 @@ export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
  *
  * @param src - input collections
  */
-export function differenceR<T>(): Reducer<Set<T>, Iterable<T>>;
+export function differenceR<T>(): Reducer<Iterable<T>, Set<T>>;
 export function differenceR<T>(src: Iterable<Iterable<T>>): Set<T>;
 export function differenceR<T>(src?: Iterable<Iterable<T>>) {
 	return __combineSet<T>(differenceR, difference, src);

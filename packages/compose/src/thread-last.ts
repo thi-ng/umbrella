@@ -1,4 +1,4 @@
-import type { FnAny } from "@thi.ng/api";
+import type { FnAny, FnAnyA, MaybePromise } from "@thi.ng/api";
 
 /**
  * Similar to {@link threadFirst}. A dataflow operator to improve the legibility
@@ -49,3 +49,25 @@ export const threadLast = (
 				: expr[0](...expr.slice(1), acc),
 		init
 	);
+
+/**
+ * Async version of {@link threadLast}.
+ *
+ * @remarks
+ * Also see {@link threadFirstAsync}.
+ *
+ * @param init
+ * @param fns
+ */
+export const threadLastAsync = async (
+	init: MaybePromise<any>,
+	...fns: (FnAnyA<any> | [FnAnyA<any>, ...any[]])[]
+) => {
+	let res = await init;
+	for (let expr of fns) {
+		res = await (typeof expr === "function"
+			? expr(res)
+			: expr[0](...expr.slice(1), res));
+	}
+	return res;
+};

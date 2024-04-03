@@ -13,7 +13,7 @@ const branchPred =
  * data structures. Any value can be indexed, as long as a numeric
  * representation (key) can be obtained. This numeric key is produced by the
  * supplied `key` function. IMPORTANT: the returned values MUST be unsigned and
- * less than the provided bit length (i.e. `0 .. (2^bits) - 1` range).
+ * less than the provided bit length (i.e. in the `[0,2**bits)` interval).
  *
  * By default the tree is constructed using plain objects for branches, with
  * left branches stored as "l" and right ones as "r". The original values are
@@ -48,8 +48,8 @@ const branchPred =
  * import { groupBinary, identity, push, reduce } from "@thi.ng/transducers";
  *
  * tree = reduce(
- *   groupBinary(4, identity, ()=>[], push(), 0, 1),
- *   [1,2,3,4,5,6,7]
+ *   groupBinary(4, identity, () => [], push(), 0, 1),
+ *   [1, 2, 3, 4, 5, 6, 7]
  * )
  *
  * tree[0][1][0][1] // 0101 == 5 in binary
@@ -90,12 +90,12 @@ export const groupBinary = <T>(
 	bits: number,
 	key: Fn<T, number>,
 	branch?: Fn0<IObjectOf<T[]>>,
-	leaf?: Reducer<any, T>,
+	leaf?: Reducer<T, any>,
 	left: PropertyKey = "l",
 	right: PropertyKey = "r"
-): Reducer<any, T> => {
+): Reducer<T, any> => {
 	const init = branch || (() => ({}));
-	let rfn: Reducer<any, T> = groupByObj({
+	let rfn: Reducer<T, any> = groupByObj({
 		key: branchPred(key, 1, left, right),
 		group: leaf || push(),
 	});

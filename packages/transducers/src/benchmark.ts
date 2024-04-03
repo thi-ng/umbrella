@@ -23,7 +23,7 @@ export function benchmark(src: Iterable<any>): IterableIterator<number>;
 export function benchmark(src?: Iterable<any>): any {
 	return isIterable(src)
 		? iterator1(benchmark(), src)
-		: (rfn: Reducer<any, number>) => {
+		: (rfn: Reducer<number, any>) => {
 				const r = rfn[2];
 				let prev = Date.now();
 				return compR(rfn, (acc, _) => {

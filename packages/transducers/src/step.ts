@@ -55,8 +55,11 @@ import { isReduced } from "./reduced.js";
  * @param tx -
  * @param unwrap -
  */
-export const step = <A, B>(tx: TxLike<A, B>, unwrap = true): Fn<A, B | B[]> => {
-	const { 1: complete, 2: reduce } = ensureTransducer(tx)(push());
+export const step = <A, B>(
+	tx: TxLike<A, B>,
+	unwrap = true
+): Fn<A, B | B[] | undefined> => {
+	const [_, complete, reduce] = ensureTransducer(tx)(push());
 	let done = false;
 	return (x: A) => {
 		if (!done) {

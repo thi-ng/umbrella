@@ -35,7 +35,7 @@ export function sample<T>(...args: any[]): any {
 	}
 	const prob = args[0];
 	const rnd: IRandom = args[1] || SYSTEM;
-	return (rfn: Reducer<any, T>) => {
+	return (rfn: Reducer<T, any>) => {
 		const r = rfn[2];
 		return compR(rfn, (acc, x: T) =>
 			rnd.probability(prob) ? r(acc, x) : acc

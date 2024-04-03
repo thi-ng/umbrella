@@ -1,4 +1,5 @@
 export * from "./assoc.js";
+export * from "./async.js";
 export * from "./bind.js";
 export * from "./buffered.js";
 export * from "./clear.js";

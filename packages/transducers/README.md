@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 190 standalone projects, maintained as part
+> This is one of 191 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -137,6 +137,7 @@ package.
 
 ## Support packages
 
+- [@thi.ng/transducers-async](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-async) - Async versions of various highly composable transducers, reducers and iterators
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary) - Binary data related transducers & reducers
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
 - [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-hdom) - Transducer based UI updater for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
@@ -700,45 +701,39 @@ implementations using OOP approaches, a `Reducer` in this lib is a
 simple 3-element array of functions, each addressing a separate
 processing step.
 
-Since v0.6.0 the bundled reducers are all wrapped in functions to
-provide a uniform API (and some of them can be preconfigured and/or are
-stateful closures). However, it's fine to define stateless reducers as
-constant arrays.
+The bundled reducers are all wrapped in functions to provide a uniform API (and
+some of them can be preconfigured and/or are stateful closures). However, it's
+completely fine to define stateless reducers as constant arrays.
+
+A `Reducer` is a 3-tuple of functions defining the different stages of a reduction process.
+
+The items in order:
+
+1. Initialization function used to produce an initial default result (only used
+   if no such initial result was given by the user)
+2. Completion function to post-process an already reduced result (for most
+   reducers this is merely the identity function)
+3. Accumulation function, merging a new input value with the currently existing
+   (partially) reduced result
 
 ```ts
-interface Reducer<A, B> extends Array<any> {
-    /**
-     * Initialization, e.g. to provide a suitable accumulator value,
-     * only called when no initial accumulator has been provided by user.
-     */
-    [0]: () => A;
-    /**
-     * Completion. When called usually just returns `acc`, but stateful
-     * transformers should flush/apply their outstanding results.
-     */
-    [1]: (acc: A) => A;
-    /**
-     * Reduction step. Combines new input with accumulator.
-     * If reduction should terminate early, wrap result via `reduced()`
-     */
-    [2]: (acc: A, x: B) => A | Reduced<A>;
-}
+type Reducer<A, B> = [() => B, (x: B) => B, (acc: B, x: A) => B];
 
 // A concrete example:
-const push: Reducer<any[], any> = [
+const push: Reducer<any, any[]> = [
     // init
     () => [],
     // completion (nothing to do in this case)
     (acc) => acc,
-    // step
+    // accumulation
     (acc, x) => (acc.push(x), acc)
 ];
 ```
 
-`partition`, `partitionBy`, `streamSort`, `streamShuffle` are (examples
-of) transducers making use of their 1-arity completing function.
-
 #### Reduced
+
+Simple type wrapper to mark & identify a reducer's early termination. Does not
+modify wrapped value by injecting magic properties.
 
 ```ts
 import type { IDeref } from "@thi.ng/api";
@@ -750,8 +745,7 @@ class Reduced<T> implements IDeref<T> {
 }
 ```
 
-Simple type wrapper to identify early termination of a reducer. Does not
-modify wrapped value by injecting magic properties. Instances can be
+Instances can be
 created via `reduced(x)` and handled via these helper functions:
 
 - `reduced(x: any): any`
@@ -761,12 +755,12 @@ created via `reduced(x)` and handled via these helper functions:
 
 #### IReducible
 
-By default `reduce()` consumes inputs via the standard ES6 `Iterable`
-interface, i.e. using a `for..of..` loop, but uses optimized routes
-for some types: Array-like inputs are consumed via a traditional
-`for`-loop and custom optimized iterations can be provided via
-implementations of the `IReducible` interface in the source collection
-type. Examples can be found here:
+By default `reduce()` consumes inputs via the standard ES6 `Iterable` interface,
+i.e. using a `for..of..` loop, but the function also supports optimized routes
+for some types: Array-like inputs are consumed via a traditional `for`-loop and
+custom optimized iterations can be provided via implementations of the
+`IReducible` interface in the source collection type. Examples can be found
+here:
 
 - [DCons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons/src/index.ts#L156)
 - [SortedMap](https://github.com/thi-ng/umbrella/tree/develop/packages/associative/src/sorted-map.ts#L276)
@@ -785,15 +779,15 @@ As shown in the examples above, transducers can be dynamically composed
 causing large overheads for intermediate collections.
 
 ```ts
-type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
+type Transducer<A, B> = (rfn: Reducer<B, any>) => Reducer<A, any>;
 
-// concrete example of stateless transducer (expanded for clarity)
+// concrete example of a stateless transducer (expanded for clarity)
 function map<A, B>(fn: (x: A) => B): Transducer<A, B> {
-    return (rfn: Reducer<any, B>) => {
-        return [
-            () => rfn[0](),
-            (acc) => rfn[1](acc),
-            (acc, x: A) => rfn[2](acc, fn(x))
+    return ([init, complete, reduce]: Reducer<B, any>) => {
+        return <Reducer<A, any>>[
+            init,
+            complete,
+            (acc, x: A) => reduce(acc, fn(x))
         ];
     };
 }
@@ -801,14 +795,14 @@ function map<A, B>(fn: (x: A) => B): Transducer<A, B> {
 // stateful transducer
 // removes successive value repetitions
 function dedupe<T>(): Transducer<T, T> {
-    return (rfn: Reducer<any, T>) => {
+    return ([init, complete, reduce]: Reducer<T, any>) => {
         // state initialization
         let prev = {};
-        return [
-            () => rfn[0](),
-            (acc) => rfn[1](acc),
+        return <Reducer<T, any>>[
+            init,
+            complete,
             (acc, x) => {
-                acc = prev === x ? acc : rfn[2](acc, x);
+                if (prev !== x) acc = reduce(acc, x);
                 prev = x;
                 return acc;
             }

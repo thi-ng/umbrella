@@ -39,7 +39,7 @@ export function distinct<T>(
 export function distinct<T>(...args: any[]): any {
 	return (
 		__iter(distinct, args) ||
-		((rfn: Reducer<any, T>) => {
+		((rfn: Reducer<T, any>) => {
 			const r = rfn[2];
 			const opts = <DistinctOpts<T>>(args[0] || {});
 			const key = opts.key;

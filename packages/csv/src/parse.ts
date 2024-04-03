@@ -96,7 +96,7 @@ export function parseCSV(
 export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 	return isIterable(src)
 		? iterator1(parseCSV(opts), src)
-		: (rfn: Reducer<any, CSVRecord>) => {
+		: (rfn: Reducer<CSVRecord, any>) => {
 				const {
 					all = true,
 					cols,
@@ -221,7 +221,7 @@ export function parseCSVSimple(
 ): any {
 	return isIterable(src)
 		? iterator1(parseCSVSimple(opts), src)
-		: (rfn: Reducer<any, CSVRecord>) => {
+		: (rfn: Reducer<CSVRecord, any>) => {
 				const {
 					header = true,
 					cols,

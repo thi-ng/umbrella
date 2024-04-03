@@ -7,5 +7,5 @@ import { isIterable } from "./is-iterable.js";
  *
  * @param x
  */
-export const isGenerator = (x: any): x is Generator =>
+export const isGenerator = <T = any>(x: any): x is Generator<T> =>
 	isIterable(x) && implementsFunction(x, "next");

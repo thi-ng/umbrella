@@ -40,7 +40,7 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
  *
  * @param src - input collections
  */
-export function intersectionR<T>(): Reducer<Set<T>, Iterable<T>>;
+export function intersectionR<T>(): Reducer<Iterable<T>, Set<T>>;
 export function intersectionR<T>(src: Iterable<Iterable<T>>): Set<T>;
 export function intersectionR<T>(src?: Iterable<Iterable<T>>) {
 	return __combineSet<T>(intersectionR, intersection, src);

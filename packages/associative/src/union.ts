@@ -31,7 +31,7 @@ export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
  *
  * @param src - input collections
  */
-export function unionR<T>(): Reducer<Set<T>, Iterable<T>>;
+export function unionR<T>(): Reducer<Iterable<T>, Set<T>>;
 export function unionR<T>(src: Iterable<Iterable<T>>): Set<T>;
 export function unionR<T>(src?: Iterable<Iterable<T>>) {
 	return __combineSet<T>(unionR, union, src);

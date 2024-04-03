@@ -111,7 +111,7 @@ const __groupedTypes = (
 	const grouped = groupByObj(
 		{
 			key: ([_, { __doc }]) => __doc?.group || "TODO",
-			group: <Reducer<string[], [string, any]>>[
+			group: <Reducer<[string, any], string[]>>[
 				() => [],
 				(acc) => acc.sort(),
 				(acc, x) => (acc.push(x[0]), acc),

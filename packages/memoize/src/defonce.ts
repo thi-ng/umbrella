@@ -20,5 +20,8 @@ const cache: Record<string, any> = Object.create(null);
  * @param id -
  * @param factory -
  */
-export const defonce = <T>(id: string, factory: Fn0<T>): T =>
+export const defOnce = <T>(id: string, factory: Fn0<T>): T =>
 	id in cache ? cache[id] : (cache[id] = factory());
+
+/** @deprecated renamed to {@link defOnce} */
+export const defonce = defOnce;

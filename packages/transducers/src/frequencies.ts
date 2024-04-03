@@ -5,9 +5,9 @@ import { count } from "./count.js";
 import { groupByMap } from "./group-by-map.js";
 import { $$reduce } from "./reduce.js";
 
-export function frequencies<A>(): Reducer<Map<A, number>, A>;
+export function frequencies<A>(): Reducer<A, Map<A, number>>;
 export function frequencies<A>(xs: Iterable<A>): Map<A, number>;
-export function frequencies<A, B>(key: Fn<A, B>): Reducer<Map<B, number>, A>;
+export function frequencies<A, B>(key: Fn<A, B>): Reducer<A, Map<B, number>>;
 export function frequencies<A, B>(
 	key: Fn<A, B>,
 	xs: Iterable<A>

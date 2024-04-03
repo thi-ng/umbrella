@@ -75,9 +75,6 @@
 		"./constantly": {
 			"default": "./constantly.js"
 		},
-		"./delay": {
-			"default": "./delay.js"
-		},
 		"./delayed": {
 			"default": "./delayed.js"
 		},

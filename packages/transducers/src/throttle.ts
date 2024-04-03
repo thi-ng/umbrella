@@ -31,7 +31,7 @@ export function throttle<T>(
 ): any {
 	return isIterable(src)
 		? iterator1(throttle(pred), src)
-		: (rfn: Reducer<any, T>) => {
+		: (rfn: Reducer<T, any>) => {
 				const r = rfn[2];
 				const _pred = pred();
 				return compR(rfn, (acc, x: T) => (_pred(x) ? r(acc, x) : acc));

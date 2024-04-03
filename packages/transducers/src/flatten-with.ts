@@ -51,7 +51,7 @@ export function flattenWith<A>(
 ): any {
 	return isIterable(src)
 		? iterator(flattenWith(fn), isString(src) ? <any>[src] : src)
-		: (rfn: Reducer<any, A>) => {
+		: (rfn: Reducer<A, any>) => {
 				const reduce = rfn[2];
 				const flatten = (acc: any, x: any) => {
 					const xx = fn(x);

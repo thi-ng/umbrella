@@ -46,7 +46,7 @@ export function slidingWindow<T>(...args: any[]): any {
 	if (iter) return iter;
 	const size: MaybeDeref<number> = args[0];
 	const partial: boolean = args[1] !== false;
-	return (rfn: Reducer<any, T[]>) => {
+	return (rfn: Reducer<T[], any>) => {
 		const reduce = rfn[2];
 		let buf: T[] = [];
 		return compR(rfn, (acc, x: T) => {

@@ -4,7 +4,7 @@ import { $$reduce } from "./reduce.js";
 
 export function groupByMap<SRC, KEY, GROUP>(
 	opts?: Partial<GroupByOpts<SRC, KEY, GROUP>>
-): Reducer<Map<KEY, GROUP>, SRC>;
+): Reducer<SRC, Map<KEY, GROUP>>;
 export function groupByMap<SRC, GROUP>(xs: Iterable<SRC>): Map<SRC, GROUP>;
 export function groupByMap<SRC, KEY, GROUP>(
 	opts: Partial<GroupByOpts<SRC, KEY, GROUP>>,
@@ -12,12 +12,11 @@ export function groupByMap<SRC, KEY, GROUP>(
 ): Map<KEY, GROUP>;
 export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
 	const res = $$reduce(groupByMap, args);
-	if (res !== undefined) {
-		return res;
-	}
+	if (res !== undefined) return res;
+
 	const opts = __groupByOpts<SRC, KEY, GROUP>(args[0]);
 	const [init, complete, reduce] = opts.group;
-	return <Reducer<Map<KEY, GROUP>, SRC>>[
+	return <Reducer<SRC, Map<KEY, GROUP>>>[
 		() => new Map(),
 		(acc) => {
 			for (let k of acc.keys()) {

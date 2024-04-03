@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Nullable } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "./api.js";
 import { cat } from "./cat.js";
@@ -26,14 +26,14 @@ import { map } from "./map.js";
  * @param fn - mapping function
  */
 export function mapcat<A, B>(
-	fn: Fn<A, Iterable<B> | null | undefined>
+	fn: Fn<A, Nullable<Iterable<B>>>
 ): Transducer<A, B>;
 export function mapcat<A, B>(
-	fn: Fn<A, Iterable<B> | null | undefined>,
+	fn: Fn<A, Nullable<Iterable<B>>>,
 	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapcat<A, B>(
-	fn: Fn<A, Iterable<B> | null | undefined>,
+	fn: Fn<A, Nullable<Iterable<B>>>,
 	src?: Iterable<A>
 ): any {
 	return isIterable(src) ? iterator(mapcat(fn), src) : comp(map(fn), cat());

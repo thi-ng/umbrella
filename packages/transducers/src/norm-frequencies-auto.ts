@@ -21,25 +21,24 @@ import { $$reduce } from "./reduce.js";
  * // Map(3) { 'a' => 0.5, 'b' => 0.25, 'c' => 0.25 }
  * ```
  */
-export function normFrequenciesAuto<A>(): Reducer<Map<A, number>, A>;
+export function normFrequenciesAuto<A>(): Reducer<A, Map<A, number>>;
 export function normFrequenciesAuto<A>(xs: Iterable<A>): Map<A, number>;
 export function normFrequenciesAuto<A, B>(
 	key: Fn<A, B>
-): Reducer<Map<B, number>, A>;
+): Reducer<A, Map<B, number>>;
 export function normFrequenciesAuto<A, B>(
 	key: Fn<A, B>,
 	xs: Iterable<A>
 ): Map<B, number>;
-export function normFrequenciesAuto(...args: any[]): any {
+export function normFrequenciesAuto<A, B>(...args: any[]): any {
 	const res = $$reduce(normFrequenciesAuto, args);
-	if (res !== undefined) {
-		return res;
-	}
-	const [init, complete, reduce] = frequencies(...(<[]>args));
+	if (res !== undefined) return res;
+
+	const [init, complete, reduce] = frequencies<B>(...(<[]>args));
 	let norm = 0;
-	return [
+	return <Reducer<A, Map<B, number>>>[
 		init,
-		(acc: Map<any, number>) => {
+		(acc) => {
 			acc = complete(acc);
 			for (let p of acc) {
 				acc.set(p[0], p[1] / norm);

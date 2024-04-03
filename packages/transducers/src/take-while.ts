@@ -29,7 +29,7 @@ export function takeWhile<T>(
 export function takeWhile<T>(...args: any[]): any {
 	return (
 		__iter(takeWhile, args) ||
-		((rfn: Reducer<any, T>) => {
+		((rfn: Reducer<T, any>) => {
 			const r = rfn[2];
 			const pred = args[0];
 			let ok = true;

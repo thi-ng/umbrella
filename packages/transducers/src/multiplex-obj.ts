@@ -31,7 +31,7 @@ import { rename } from "./rename.js";
  */
 export function multiplexObj<A, B>(
 	xforms: IObjectOf<MultiplexTxLike<A, any>>,
-	rfn?: Reducer<B, [PropertyKey, any]>
+	rfn?: Reducer<[PropertyKey, any], B>
 ): Transducer<A, B>;
 export function multiplexObj<A, B>(
 	xforms: IObjectOf<MultiplexTxLike<A, any>>,
@@ -39,7 +39,7 @@ export function multiplexObj<A, B>(
 ): IterableIterator<B>;
 export function multiplexObj<A, B>(
 	xforms: IObjectOf<MultiplexTxLike<A, any>>,
-	rfn: Reducer<B, [PropertyKey, any]>,
+	rfn: Reducer<[PropertyKey, any], B>,
 	src: Iterable<A>
 ): IterableIterator<B>;
 export function multiplexObj(...args: any[]): any {

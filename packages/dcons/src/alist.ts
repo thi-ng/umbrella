@@ -17,6 +17,7 @@ import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import {
 	isReduced,
 	type IReducible,
+	type Reduced,
 	type ReductionFn,
 } from "@thi.ng/transducers";
 import type { ConsCell } from "./api.js";
@@ -30,7 +31,7 @@ export abstract class AList<L extends AList<any, T>, T>
 		IInto<T, L>,
 		Iterable<T>,
 		ILength,
-		IReducible<any, T>,
+		IReducible<T, any>,
 		IRelease
 {
 	_head: ConsCell<T> | undefined;
@@ -193,7 +194,7 @@ export abstract class AList<L extends AList<any, T>, T>
 	 * Implementation of
 	 * [IReducible.$reduce](https://docs.thi.ng/umbrella/transducers/interfaces/IReducible.html#_reduce._reduce-1)
 	 */
-	$reduce(rfn: ReductionFn<any, T>, acc: any) {
+	$reduce<R>(rfn: ReductionFn<T, any>, acc: R | Reduced<R>) {
 		let cell = this._head;
 		for (let n = this._length; n-- > 0 && !isReduced(acc); ) {
 			acc = rfn(acc, cell!.value);
@@ -202,7 +203,7 @@ export abstract class AList<L extends AList<any, T>, T>
 		return acc;
 	}
 
-	reduce<R>(rfn: ReductionFn<R, T>, initial: R): R {
+	reduce<R>(rfn: ReductionFn<T, R>, initial: R | Reduced<R>) {
 		return this.$reduce(rfn, initial);
 	}
 

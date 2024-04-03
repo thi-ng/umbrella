@@ -126,7 +126,7 @@ const wolfram = sync<any, any>({
 		),
 		_: fromRAF(),
 	},
-	xform: scan(reducer<number[], any>(resetCA, evolveCA)),
+	xform: scan(reducer<any, number[]>(resetCA, evolveCA)),
 });
 
 sync({

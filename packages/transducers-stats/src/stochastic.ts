@@ -39,7 +39,7 @@ export function stochastic(
 export function stochastic(...args: any[]): any {
 	return (
 		__iter(stochastic, args) ||
-		((rfn: Reducer<any, Stochastic>) => {
+		((rfn: Reducer<Stochastic, any>) => {
 			const reduce = rfn[2];
 			const xfD = step(donchian(args[0] || 5));
 			const ma1 = step(sma(args[1] || 3));

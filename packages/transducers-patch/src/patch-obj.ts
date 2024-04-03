@@ -16,7 +16,7 @@ import type { PatchObjOp } from "./api.js";
  * - UPDATE
  * - DELETE
  */
-export function patchObj(): Reducer<any, PatchObjOp>;
+export function patchObj(): Reducer<PatchObjOp, any>;
 export function patchObj(init: any, patches: Iterable<PatchObjOp>): any;
 export function patchObj(init?: any, patches?: Iterable<PatchObjOp>) {
 	const edit = (acc: any, x: PatchObjOp) => {
@@ -33,7 +33,7 @@ export function patchObj(init?: any, patches?: Iterable<PatchObjOp>) {
 	};
 	return patches
 		? reduce(patchObj(), init, patches)
-		: reducer<any, PatchObjOp>(
+		: reducer<PatchObjOp, any>(
 				() => <any>{},
 				(acc, x) => {
 					if (isString(x[0])) {

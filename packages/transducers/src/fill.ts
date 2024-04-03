@@ -9,7 +9,7 @@ import { $$reduce, reducer } from "./reduce.js";
  *
  * @param start -
  */
-export function fill<T>(start?: number): Reducer<T[], T>;
+export function fill<T>(start?: number): Reducer<T, T[]>;
 export function fill<T>(xs: Iterable<T>): T[];
 export function fill<T>(start: number, xs: Iterable<T>): T[];
 export function fill<T>(...args: any[]): any {
@@ -18,7 +18,7 @@ export function fill<T>(...args: any[]): any {
 		return res;
 	}
 	let start = args[0] || 0;
-	return reducer<T[], T>(
+	return reducer<T, T[]>(
 		() => [],
 		(acc, x) => ((acc[start++] = x), acc)
 	);
@@ -29,7 +29,7 @@ export function fill<T>(...args: any[]): any {
  *
  * @param start -
  */
-export function fillN(start?: number): Reducer<NumericArray, number>;
+export function fillN(start?: number): Reducer<number, NumericArray>;
 export function fillN(xs: Iterable<number>): NumericArray;
 export function fillN(start: number, xs: Iterable<number>): NumericArray;
 export function fillN(...args: any[]): any {

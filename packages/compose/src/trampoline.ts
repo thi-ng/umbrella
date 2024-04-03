@@ -1,4 +1,4 @@
-import type { Fn0 } from "@thi.ng/api";
+import type { Fn0, Fn0A, MaybePromise } from "@thi.ng/api";
 
 /**
  * Takes a function returning either a no-arg function (thunk) or its
@@ -35,6 +35,21 @@ import type { Fn0 } from "@thi.ng/api";
 export const trampoline = <T>(f: T | Fn0<T | Fn0<T>>) => {
 	while (typeof f === "function") {
 		f = (<any>f)();
+	}
+	return <T>f;
+};
+
+/**
+ * Async version of {@link trampoline}.
+ *
+ * @param f - function
+ */
+export const trampolineAsync = async <T>(
+	f: MaybePromise<T | Fn0A<T | Fn0A<T>>>
+) => {
+	f = await f;
+	while (typeof f === "function") {
+		f = await (<any>f)();
 	}
 	return <T>f;
 };

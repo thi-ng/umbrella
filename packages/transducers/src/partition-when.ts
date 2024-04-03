@@ -35,11 +35,11 @@ export function partitionWhen<T>(
 export function partitionWhen<T>(...args: any[]): any {
 	return (
 		__iter(partitionWhen, args, iterator) ||
-		(([init, complete, reduce]: Reducer<any, T[]>) => {
+		(([init, complete, reduce]: Reducer<T[], any>) => {
 			const pred: Predicate<T> | (() => Predicate<T>) = args[0];
 			const f = args[1] === true ? (<() => Predicate<T>>pred)() : pred;
 			let chunk: T[] | null;
-			return <Reducer<any, T>>[
+			return <Reducer<T, any>>[
 				init,
 				(acc) => {
 					if (chunk && chunk.length) {

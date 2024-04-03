@@ -1,6 +1,6 @@
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
-import { iterator, iterator1, __iter } from "@thi.ng/transducers/iterator";
+import { __iter, iterator, iterator1 } from "@thi.ng/transducers/iterator";
 import { isReduced, reduced } from "@thi.ng/transducers/reduced";
 
 const B64_CHARS =
@@ -16,7 +16,7 @@ export function base64Decode(src: string): Uint8Array;
 export function base64Decode(src?: string): any {
 	return src
 		? new Uint8Array(iterator1(base64Decode(), src))
-		: (rfn: Reducer<any, number>) => {
+		: (rfn: Reducer<number, any>) => {
 				const r = rfn[2];
 				let bc = 0,
 					bs = 0;
@@ -68,13 +68,13 @@ export function base64Encode(...args: any[]): any {
 	if (iter) {
 		return [...iter].join("");
 	}
-	return ([init, complete, reduce]: Reducer<any, string>) => {
+	return ([init, complete, reduce]: Reducer<string, any>) => {
 		let state = 0;
 		let b: number;
 		const opts = { safe: false, buffer: 1024, ...args[0] };
 		const chars = opts.safe ? B64_SAFE : B64_CHARS;
 		const buf: string[] = [];
-		return <Reducer<any, number>>[
+		return <Reducer<number, any>>[
 			init,
 			(acc) => {
 				switch (state) {

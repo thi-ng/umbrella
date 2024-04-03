@@ -21,7 +21,7 @@ export function keep<T>(
 export function keep<T>(...args: any[]): any {
 	return (
 		__iter(keep, args) ||
-		((rfn: Reducer<any, T>) => {
+		((rfn: Reducer<T, any>) => {
 			const r = rfn[2];
 			const pred: Fn<T, any> = args[0] || identity;
 			return compR(rfn, (acc, x: T) =>

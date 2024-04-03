@@ -43,7 +43,7 @@ export function converge<T>(
 export function converge<T>(...args: any[]): any {
 	return (
 		__iter(converge, args) ||
-		((rfn: Reducer<any, T>) => {
+		((rfn: Reducer<T, any>) => {
 			const r = rfn[2];
 			const pred = args[0];
 			let prev: any = SEMAPHORE;

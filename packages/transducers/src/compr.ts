@@ -27,6 +27,6 @@ import type { Reducer, ReductionFn } from "./api.js";
  * @param fn -
  */
 export const compR = <A, B, C>(
-	rfn: Reducer<A, B>,
+	rfn: Reducer<B, C>,
 	fn: ReductionFn<A, C>
 ): Reducer<A, C> => [rfn[0], rfn[1], fn];

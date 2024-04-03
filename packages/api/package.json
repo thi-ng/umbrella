@@ -81,6 +81,9 @@
 		"./assoc": {
 			"default": "./assoc.js"
 		},
+		"./async": {
+			"default": "./async.js"
+		},
 		"./bind": {
 			"default": "./bind.js"
 		},

@@ -8,7 +8,7 @@ export function drop<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function drop<T>(n: number, src?: Iterable<T>): any {
 	return isIterable(src)
 		? iterator1(drop(n), src)
-		: (rfn: Reducer<any, T>) => {
+		: (rfn: Reducer<T, any>) => {
 				const r = rfn[2];
 				let m = n;
 				return compR(rfn, (acc, x: T) =>

@@ -1,7 +1,7 @@
 import type { Comparator, Fn, Fn0, IObjectOf } from "@thi.ng/api";
 import type { Reduced } from "./reduced.js";
 
-export type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
+export type Transducer<A, B> = (rfn: Reducer<B, any>) => Reducer<A, any>;
 
 /**
  * A transducer or a custom type with a {@link IXform} implementation.
@@ -12,30 +12,29 @@ export type TxLike<A, B> = Transducer<A, B> | IXform<A, B>;
  * Custom version of {@link TxLike} for use with {@link multiplex} and
  * {@link multiplexObj}.
  */
-export type MultiplexTxLike<T, A> = TxLike<T, A> | [TxLike<T, A>, boolean];
+export type MultiplexTxLike<A, B> = TxLike<A, B> | [TxLike<A, B>, boolean];
 
-export type ReductionFn<A, B> = (acc: A, x: B) => A | Reduced<A>;
+/**
+ * Function which combines a new value of type `A` with accumulator of type `B`.
+ * If the reduction should terminate early, the function should wrap the result
+ * via {@link reduced}.
+ */
+export type ReductionFn<A, B> = (acc: B, x: A) => B | Reduced<B>;
 
 /**
  * A 3-tuple of functions defining the different stages of a reduction process.
+ *
+ * @remarks
+ * The items in order:
+ *
+ * 1. Initialization function used to produce an initial default result (only
+ *    used if no such initial result was given by the user)
+ * 2. Completion function to post-process an already reduced result (for most
+ *    reducers this is merely the identity function). Also see {@link reducer}.
+ * 3. Accumulation function, merging a new input value with the currently
+ *    existing (partially) reduced result.
  */
-export interface Reducer<A, B> extends Array<any> {
-	/**
-	 * Initialization function to produce a default initial result (only used if
-	 * no such initial result was given by the user)
-	 */
-	[0]: Fn0<A>;
-	/**
-	 * Completion function to post-process an already reduced result (for most
-	 * reducers this is merely the identity function). Also see {@link reducer}.
-	 */
-	[1]: Fn<A, A>;
-	/**
-	 * Accumulation function, merging a new input value with the currently
-	 * existing (partially) reduced result.
-	 */
-	[2]: ReductionFn<A, B>;
-}
+export type Reducer<A, B> = [Fn0<B>, Fn<B, B>, ReductionFn<A, B>];
 
 /**
  * Interface for types able to provide some internal functionality (or
@@ -99,7 +98,7 @@ export interface IReducible<A, B> {
 	 * @param rfn
 	 * @param acc
 	 */
-	$reduce(rfn: ReductionFn<A, B>, acc: A): A | Reduced<A>;
+	$reduce(rfn: ReductionFn<A, B>, acc: B | Reduced<B>): B | Reduced<B>;
 }
 
 export type TransformFn = (x: any) => any;
@@ -124,5 +123,5 @@ export interface SortOpts<A, B> {
 
 export interface GroupByOpts<SRC, KEY, GROUP> {
 	key: Fn<SRC, KEY>;
-	group: Reducer<GROUP, SRC>;
+	group: Reducer<SRC, GROUP>;
 }

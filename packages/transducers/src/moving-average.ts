@@ -27,7 +27,7 @@ export function movingAverage(
 export function movingAverage(period: number, src?: Iterable<number>): any {
 	return isIterable(src)
 		? iterator1(movingAverage(period), src)
-		: (rfn: Reducer<any, number>) => {
+		: (rfn: Reducer<number, any>) => {
 				period |= 0;
 				period < 2 && illegalArgs("period must be >= 2");
 				const reduce = rfn[2];

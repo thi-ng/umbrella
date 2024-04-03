@@ -12,11 +12,12 @@ export class Reduced<T> implements IDeref<T> {
 	}
 }
 
-export const reduced = (x: any): any => new Reduced(x);
+export const reduced = <T>(x: T) => new Reduced<T>(x);
 
 export const isReduced = <T>(x: any): x is Reduced<T> => x instanceof Reduced;
 
-export const ensureReduced = (x: any) =>
-	x instanceof Reduced ? x : new Reduced(x);
+export const ensureReduced = <T>(x: T) =>
+	x instanceof Reduced ? x : new Reduced<T>(x);
 
-export const unreduced = (x: any) => (x instanceof Reduced ? x.deref() : x);
+export const unreduced = <T>(x: T | Reduced<T>) =>
+	x instanceof Reduced ? <T>x.deref() : x;

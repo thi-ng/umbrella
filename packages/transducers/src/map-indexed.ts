@@ -41,7 +41,7 @@ export function mapIndexed<A, B>(
 export function mapIndexed<A, B>(...args: any[]): any {
 	return (
 		__iter(mapIndexed, args) ||
-		((rfn: Reducer<any, B>) => {
+		((rfn: Reducer<B, any>) => {
 			const r = rfn[2];
 			const fn: Fn2<number, A, B> = args[0];
 			let i: number = args[1] || 0;

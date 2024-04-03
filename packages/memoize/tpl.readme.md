@@ -7,7 +7,7 @@
 {{pkg.description}}
 
 This package provides different function memoization implementations for
-functions with 1 or more arguments and custom result caching using ES6
+functions with arbitrary arguments and custom result caching using ES6
 Map API like implementations. Unlike native ES6 Maps, **the
 implementations MUST support value, not just referential, equality
 semantics** (e.g. those provided by
@@ -16,6 +16,16 @@ or
 [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)).
 The latter also support automatically pruning of memoization caches,
 based on different strategies. See doc strings for further details.
+
+### Available memoization functions
+
+- [defOnce()](https://docs.thi.ng/umbrella/memoize/functions/defOnce.html)
+- [delay()](https://docs.thi.ng/umbrella/memoize/functions/delay.html)
+- [doOnce()](https://docs.thi.ng/umbrella/memoize/functions/doOnce.html)
+- [memoize()](https://docs.thi.ng/umbrella/memoize/functions/memoize.html)
+- [memoize1()](https://docs.thi.ng/umbrella/memoize/functions/memoize1.html)
+- [memoizeJ()](https://docs.thi.ng/umbrella/memoize/functions/memoizeJ.html)
+- [memoizeO()](https://docs.thi.ng/umbrella/memoize/functions/memoizeO.html)
 
 {{meta.status}}
 

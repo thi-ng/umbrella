@@ -17,7 +17,7 @@ export function* iterator<A, B>(
 	xform: TxLike<A, B>,
 	xs: Iterable<A>
 ): IterableIterator<B> {
-	const rfn = <Reducer<B[], A>>ensureTransducer(xform)(push());
+	const rfn = <Reducer<A, B[]>>ensureTransducer(xform)(push());
 	const complete = rfn[1];
 	const reduce = rfn[2];
 	for (let x of xs) {
@@ -47,7 +47,7 @@ export function* iterator1<A, B>(
 	xform: TxLike<A, B>,
 	xs: Iterable<A>
 ): IterableIterator<B> {
-	const reduce = (<Reducer<B, A>>(
+	const reduce = (<Reducer<A, B>>(
 		ensureTransducer(xform)([NO_OP, NO_OP, (_, x) => x])
 	))[2];
 	for (let x of xs) {

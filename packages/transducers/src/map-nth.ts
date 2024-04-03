@@ -58,7 +58,7 @@ export function mapNth<A, B>(...args: any[]): any {
 		fn = args[1];
 		offset = 0;
 	}
-	return (rfn: Reducer<any, A | B>) => {
+	return (rfn: Reducer<A | B, any>) => {
 		const r = rfn[2];
 		let skip = 0,
 			off = offset;

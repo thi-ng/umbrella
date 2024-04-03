@@ -30,7 +30,7 @@ export function dedupe<T>(
 export function dedupe<T>(...args: any[]): any {
 	return (
 		__iter(dedupe, args) ||
-		((rfn: Reducer<any, T>) => {
+		((rfn: Reducer<T, any>) => {
 			const r = rfn[2];
 			const equiv = args[0];
 			let prev: any = SEMAPHORE;
