@@ -1,7 +1,6 @@
 export * from "./comp.js";
 export * from "./complement.js";
 export * from "./constantly.js";
-export * from "./delay.js";
 export * from "./delayed.js";
 export * from "./identity.js";
 export * from "./ifdef.js";
