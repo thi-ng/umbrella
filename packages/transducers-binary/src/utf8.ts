@@ -16,7 +16,7 @@ export function utf8Decode(src: Iterable<number>): string;
 export function utf8Decode(src?: Iterable<number>): any {
 	return src
 		? [...iterator1(utf8Decode(), src)].join("")
-		: (rfn: Reducer<any, string>) => {
+		: (rfn: Reducer<string, any>) => {
 				const r = rfn[2];
 				let state = 0;
 				let u0: number;
@@ -135,7 +135,7 @@ export function utf8Encode(src: string): Uint8Array;
 export function utf8Encode(src?: string): any {
 	return src != null
 		? new Uint8Array(iterator(utf8Encode(), src))
-		: (rfn: Reducer<any, number>) => {
+		: (rfn: Reducer<number, any>) => {
 				const r = rfn[2];
 				return compR(rfn, (acc, x: string) => {
 					let u = x.charCodeAt(0),

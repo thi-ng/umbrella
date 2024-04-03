@@ -38,7 +38,7 @@ export function bits(
 export function bits(...args: any[]): any {
 	return (
 		__iter(bits, args, iterator) ||
-		((rfn: Reducer<any, number>) => {
+		((rfn: Reducer<number, any>) => {
 			const reduce = rfn[2];
 			const size = args[0] || 8;
 			const msb = args[1] !== false;

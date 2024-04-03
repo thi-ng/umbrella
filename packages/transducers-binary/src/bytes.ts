@@ -147,7 +147,7 @@ export function asBytes(src?: Iterable<BinStructItem>): any {
 		  });
 }
 
-export function bytes(cap?: number): Reducer<Uint8Array, BinStructItem>;
+export function bytes(cap?: number): Reducer<BinStructItem, Uint8Array>;
 export function bytes(cap: number, src: Iterable<BinStructItem>): Uint8Array;
 export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
 	let view: DataView;
@@ -179,7 +179,7 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
 
 	return src
 		? reduce(bytes(cap), src)
-		: <Reducer<Uint8Array, BinStructItem>>[
+		: <Reducer<BinStructItem, Uint8Array>>[
 				() => new Uint8Array(cap),
 				(acc) => acc.subarray(0, pos),
 				(acc, [type, x, le = false]) => {

@@ -24,7 +24,7 @@ export function partitionBits(
 export function partitionBits(...args: any[]): any {
 	return (
 		__iter(partitionBits, args, iterator) ||
-		((rfn: Reducer<any, number>) => {
+		((rfn: Reducer<number, any>) => {
 			const destSize = args[0];
 			const srcSize = args[1] || 8;
 			return destSize < srcSize
@@ -37,10 +37,10 @@ export function partitionBits(...args: any[]): any {
 }
 
 const small = (
-	[init, complete, reduce]: Reducer<any, number>,
+	[init, complete, reduce]: Reducer<number, any>,
 	n: number,
 	wordSize: number
-): Reducer<any, number> => {
+): Reducer<number, any> => {
 	const maxb = wordSize - n;
 	const m1 = (1 << wordSize) - 1;
 	const m2 = (1 << n) - 1;
@@ -66,10 +66,10 @@ const small = (
 };
 
 const large = (
-	[init, complete, reduce]: Reducer<any, number>,
+	[init, complete, reduce]: Reducer<number, any>,
 	n: number,
 	wordSize: number
-): Reducer<any, number> => {
+): Reducer<number, any> => {
 	const m1 = (1 << wordSize) - 1;
 	let r = 0;
 	let y = 0;
