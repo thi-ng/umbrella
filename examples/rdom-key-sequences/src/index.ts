@@ -67,7 +67,7 @@ const keys = merge({
 		// see: https://docs.thi.ng/umbrella/transducers/functions/scan.html
 		// see: https://is.gd/sqJjQm (blog post section)
 		scan(
-			reducer<KeyStates, KeyboardEvent>(
+			reducer<KeyboardEvent, KeyStates>(
 				// initialize all key states to false
 				() => objectFromKeys(ALL_KEYS, false),
 				// state update function (triggered for each key event)
