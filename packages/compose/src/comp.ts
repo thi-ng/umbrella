@@ -1,5 +1,5 @@
+import type { Fn, FnA, FnAny, FnAnyA } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { Fn, FnAny } from "@thi.ng/api";
 
 /**
  * Returns the right-to-left composition of given functions. I.e. when
@@ -120,23 +120,27 @@ export function comp(...fns: any[]): any {
 /**
  * Similar to {@link comp}, but composes given functions in left-to-right order.
  */
-export function compL<A>(a: FnAny<A>): FnAny<A>;
-export function compL<A, B>(a: FnAny<A>, b: Fn<A, B>): FnAny<B>;
-export function compL<A, B, C>(a: FnAny<A>, b: Fn<A, B>, c: Fn<B, C>): FnAny<C>;
-export function compL<A, B, C, D>(
+export function compLeft<A>(a: FnAny<A>): FnAny<A>;
+export function compLeft<A, B>(a: FnAny<A>, b: Fn<A, B>): FnAny<B>;
+export function compLeft<A, B, C>(
+	a: FnAny<A>,
+	b: Fn<A, B>,
+	c: Fn<B, C>
+): FnAny<C>;
+export function compLeft<A, B, C, D>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
 	d: Fn<C, D>
 ): FnAny<D>;
-export function compL<A, B, C, D, E>(
+export function compLeft<A, B, C, D, E>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
 	d: Fn<C, D>,
 	e: Fn<D, E>
 ): FnAny<E>;
-export function compL<A, B, C, D, E, F>(
+export function compLeft<A, B, C, D, E, F>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
@@ -144,7 +148,7 @@ export function compL<A, B, C, D, E, F>(
 	e: Fn<D, E>,
 	f: Fn<E, F>
 ): FnAny<F>;
-export function compL<A, B, C, D, E, F, G>(
+export function compLeft<A, B, C, D, E, F, G>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
@@ -153,7 +157,7 @@ export function compL<A, B, C, D, E, F, G>(
 	f: Fn<E, F>,
 	g: Fn<F, G>
 ): FnAny<G>;
-export function compL<A, B, C, D, E, F, G, H>(
+export function compLeft<A, B, C, D, E, F, G, H>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
@@ -163,7 +167,7 @@ export function compL<A, B, C, D, E, F, G, H>(
 	g: Fn<F, G>,
 	h: Fn<G, H>
 ): FnAny<H>;
-export function compL<A, B, C, D, E, F, G, H, I>(
+export function compLeft<A, B, C, D, E, F, G, H, I>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
@@ -174,7 +178,7 @@ export function compL<A, B, C, D, E, F, G, H, I>(
 	h: Fn<G, H>,
 	i: Fn<H, I>
 ): FnAny<I>;
-export function compL<A, B, C, D, E, F, G, H, I, J>(
+export function compLeft<A, B, C, D, E, F, G, H, I, J>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
@@ -186,7 +190,7 @@ export function compL<A, B, C, D, E, F, G, H, I, J>(
 	i: Fn<H, I>,
 	j: Fn<I, J>
 ): FnAny<J>;
-export function compL<A, B, C, D, E, F, G, H, I, J>(
+export function compLeft<A, B, C, D, E, F, G, H, I, J>(
 	a: FnAny<A>,
 	b: Fn<A, B>,
 	c: Fn<B, C>,
@@ -199,11 +203,108 @@ export function compL<A, B, C, D, E, F, G, H, I, J>(
 	j: Fn<I, J>,
 	...xs: Fn<any, any>[]
 ): FnAny<any>;
-export function compL(...fns: any[]): any {
+export function compLeft(...fns: any[]): any {
 	return comp.apply(null, <any>fns.reverse());
 }
 
 /**
- * @deprecated renamed to {@link compL}
+ * @deprecated renamed to {@link compLeft}.
  */
-export const compI = compL;
+export const compL = compLeft;
+
+/**
+ * Async version of {@link comp}.
+ */
+export function compAsync<A, B>(a: FnAnyA<A>): FnAnyA<A>;
+export function compAsync<A, B>(a: FnA<B, A>, b: FnAnyA<B>): FnAnyA<A>;
+export function compAsync<A, B, C>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnAnyA<C>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnAnyA<D>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D, E>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnA<E, D>,
+	e: FnAnyA<D>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D, E, F>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnA<E, D>,
+	e: FnA<F, E>,
+	f: FnAnyA<F>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D, E, F, G>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnA<E, D>,
+	e: FnA<F, E>,
+	f: FnA<G, F>,
+	g: FnAnyA<G>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D, E, F, G, H>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnA<E, D>,
+	e: FnA<F, E>,
+	f: FnA<G, F>,
+	g: FnA<H, G>,
+	h: FnAnyA<H>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D, E, F, G, H, I>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnA<E, D>,
+	e: FnA<F, E>,
+	f: FnA<G, F>,
+	g: FnA<H, G>,
+	h: FnA<I, H>,
+	i: FnAnyA<I>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D, E, F, G, H, I, J>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnA<E, D>,
+	e: FnA<F, E>,
+	f: FnA<G, F>,
+	g: FnA<H, G>,
+	h: FnA<I, H>,
+	i: FnA<J, I>,
+	j: FnAnyA<J>
+): FnAnyA<A>;
+export function compAsync<A, B, C, D, E, F, G, H, I, J>(
+	a: FnA<B, A>,
+	b: FnA<C, B>,
+	c: FnA<D, C>,
+	d: FnA<E, D>,
+	e: FnA<F, E>,
+	f: FnA<G, F>,
+	g: FnA<H, G>,
+	h: FnA<I, H>,
+	i: FnA<J, I>,
+	j: FnA<any, J>,
+	...fns: FnAnyA<any>[]
+): FnAnyA<A>;
+export function compAsync(...fns: any[]): any {
+	return async (...xs: any[]) => {
+		let n = fns.length - 1;
+		let res = fns[n](...xs);
+		while (n-- > 0) {
+			res = await fns[n](res);
+		}
+		return res;
+	};
+}
