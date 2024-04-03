@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 190 standalone projects, maintained as part
+> This is one of 191 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -15,6 +15,8 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+- [Composition helpers](#composition-helpers)
+  - [Async functions](#async-functions)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -26,6 +28,28 @@
 ## About
 
 Optimized functional composition helpers.
+
+## Composition helpers
+
+- [comp()](https://docs.thi.ng/umbrella/compose/functions/comp.html)
+- [compLeft()](https://docs.thi.ng/umbrella/compose/functions/compLeft.html)
+- [complement()](https://docs.thi.ng/umbrella/compose/functions/complement.html)
+- [constantly()](https://docs.thi.ng/umbrella/compose/functions/constantly.html)
+- [juxt()](https://docs.thi.ng/umbrella/compose/functions/juxt.html)
+- [partial()](https://docs.thi.ng/umbrella/compose/functions/partial.html)
+- [threadFirst()](https://docs.thi.ng/umbrella/compose/functions/threadFirst.html)
+- [threadLast()](https://docs.thi.ng/umbrella/compose/functions/threadLast.html)
+- [trampoline()](https://docs.thi.ng/umbrella/compose/functions/trampoline.html)
+
+### Async functions
+
+- [compAsync()](https://docs.thi.ng/umbrella/compose/functions/compAsync.html)
+- [delayed()](https://docs.thi.ng/umbrella/compose/functions/delayed.html)
+- [juxtAsync()](https://docs.thi.ng/umbrella/compose/functions/juxtAsync.html)
+- [promisify()](https://docs.thi.ng/umbrella/compose/functions/promisify.html)
+- [threadFirstAsync()](https://docs.thi.ng/umbrella/compose/functions/threadFirstAsync.html)
+- [threadLastAsync()](https://docs.thi.ng/umbrella/compose/functions/threadLastAsync.html)
+- [trampolineAsync()](https://docs.thi.ng/umbrella/compose/functions/trampolineAsync.html)
 
 ## Status
 
@@ -53,7 +77,7 @@ For Node.js REPL:
 const compose = await import("@thi.ng/compose");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 858 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 815 bytes
 
 ## Dependencies
 
@@ -74,14 +98,6 @@ directory are using this package:
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/compose/)
-
-- [comp()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/comp.ts)
-- [compL()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/comp.ts#L52)
-- [juxt()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/juxt.ts)
-- [partial()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/partial.ts)
-- [threadFirst()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/thread-first.ts)
-- [threadLast()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/thread-last.ts)
-- [trampoline()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/trampoline.ts)
 
 ## Authors
 

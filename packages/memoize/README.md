@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 190 standalone projects, maintained as part
+> This is one of 191 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -15,6 +15,7 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [Available memoization functions](#available-memoization-functions)
 - [Status](#status)
 - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -32,7 +33,7 @@
 Function memoization with configurable caching.
 
 This package provides different function memoization implementations for
-functions with 1 or more arguments and custom result caching using ES6
+functions with arbitrary arguments and custom result caching using ES6
 Map API like implementations. Unlike native ES6 Maps, **the
 implementations MUST support value, not just referential, equality
 semantics** (e.g. those provided by
@@ -41,6 +42,16 @@ or
 [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)).
 The latter also support automatically pruning of memoization caches,
 based on different strategies. See doc strings for further details.
+
+### Available memoization functions
+
+- [defOnce()](https://docs.thi.ng/umbrella/memoize/functions/defOnce.html)
+- [delay()](https://docs.thi.ng/umbrella/memoize/functions/delay.html)
+- [doOnce()](https://docs.thi.ng/umbrella/memoize/functions/doOnce.html)
+- [memoize()](https://docs.thi.ng/umbrella/memoize/functions/memoize.html)
+- [memoize1()](https://docs.thi.ng/umbrella/memoize/functions/memoize1.html)
+- [memoizeJ()](https://docs.thi.ng/umbrella/memoize/functions/memoizeJ.html)
+- [memoizeO()](https://docs.thi.ng/umbrella/memoize/functions/memoizeO.html)
 
 ## Status
 
@@ -72,7 +83,7 @@ For Node.js REPL:
 const memoize = await import("@thi.ng/memoize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 334 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 518 bytes
 
 ## Dependencies
 
