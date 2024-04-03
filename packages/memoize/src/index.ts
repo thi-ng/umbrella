@@ -1,5 +1,6 @@
 export * from "./api.js";
 export * from "./defonce.js";
+export * from "./delay.js";
 export * from "./do-once.js";
 export * from "./memoize.js";
 export * from "./memoize1.js";
