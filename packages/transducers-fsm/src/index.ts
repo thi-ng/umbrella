@@ -95,7 +95,7 @@ export interface FSMOpts<T extends FSMState, A, B> {
  */
 export const fsm =
 	<T extends FSMState, A, B>(opts: FSMOpts<T, A, B[]>): Transducer<A, B> =>
-	(rfn: Reducer<any, B>) => {
+	(rfn: Reducer<B, any>) => {
 		const states = opts.states;
 		const state = opts.init();
 		const r = rfn[2];
