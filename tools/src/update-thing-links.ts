@@ -10,18 +10,24 @@ import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { head, html, meta, title } from "@thi.ng/hiccup-html";
 import { getIn } from "@thi.ng/paths";
 import { execFileSync } from "node:child_process";
+import { join, sep } from "node:path";
 import { LOGGER, type Package } from "./api.js";
 import { S3_OPTS } from "./aws-config.js";
 
 const CACHE_CTRL = `max-age=${durationAs("s", DAY * 30)}`;
 
-const baseDir = "./packages/";
+const baseDir = "./packages";
 const tmpFile = tempFilePath();
 
-for (let f of dirs(baseDir, "", 1)) {
+const pkgDirs =
+	process.argv.length > 2
+		? process.argv.slice(2).map((x) => join(baseDir, x))
+		: dirs(baseDir, "", 1);
+
+for (let f of pkgDirs) {
 	try {
-		const pkg = readJSON<Package>(f + "/package.json", LOGGER);
-		const id = pkg.name.split("/")[1];
+		const pkg = readJSON<Package>(join(f, "package.json"), LOGGER);
+		const id = pkg.name.split(sep)[1];
 		if (getIn(pkg, ["thi.ng", "shortlink"]) === false) {
 			LOGGER.info(`\tskipping pkg: ${id}`);
 			continue;
@@ -40,12 +46,15 @@ for (let f of dirs(baseDir, "", 1)) {
 					content: "summary_large_image",
 					name: "twitter:card",
 				}),
-				meta(<any>{ content: "@thing_umbrella", name: "twitter:site" }),
+				meta(<any>{
+					content: "@thing_umbrella",
+					name: "twitter:site:id",
+				}),
 				meta(<any>{
 					content: "@thing_umbrella",
 					name: "twitter:creator",
 				}),
-				meta({ content: "https://thi.ng/", property: "og:url" }),
+				meta({ content: `https://thi.ng/${id}`, property: "og:url" }),
 				meta({ content: "thi.ng", property: "og:site_name" }),
 				meta({
 					content: pkg.description,
