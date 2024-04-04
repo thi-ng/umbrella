@@ -9,7 +9,7 @@ export function take<T>(
 	n: number,
 	src: MaybeAsyncIterable<T>
 ): AsyncIterableIterator<T>;
-export function take<T>(n: number, src?: MaybeAsyncIterable<T>): any {
+export function take<T>(n: number, src?: MaybeAsyncIterable<T>) {
 	return src
 		? iterator(take(n), src)
 		: (rfn: AsyncReducer<T, any>) => {

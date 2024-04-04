@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, MaybePromise } from "@thi.ng/api";
 import { delayed } from "@thi.ng/compose/delayed";
 
 /**
@@ -15,7 +15,7 @@ import { delayed } from "@thi.ng/compose/delayed";
  * @param delay
  */
 export async function* repeatedly<T>(
-	fn: Fn<number, Promise<T>>,
+	fn: Fn<number, MaybePromise<T>>,
 	n = Infinity,
 	delay = 0
 ) {

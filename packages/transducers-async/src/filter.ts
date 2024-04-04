@@ -1,14 +1,23 @@
-import type { AsyncPredicate, MaybeAsyncIterable } from "@thi.ng/api";
+import type {
+	AsyncPredicate,
+	MaybeAsyncIterable,
+	Predicate,
+} from "@thi.ng/api";
 import type { AsyncReducer, AsyncTransducer } from "./api.js";
 import { compR } from "./compr.js";
 import { iterator1 } from "./iterator.js";
 
-export function filter<T>(fn: AsyncPredicate<T>): AsyncTransducer<T, T>;
 export function filter<T>(
-	fn: AsyncPredicate<T>,
+	fn: AsyncPredicate<T> | Predicate<T>
+): AsyncTransducer<T, T>;
+export function filter<T>(
+	fn: AsyncPredicate<T> | Predicate<T>,
 	src: MaybeAsyncIterable<T>
 ): AsyncIterableIterator<T>;
-export function filter<T>(fn: AsyncPredicate<T>, src?: MaybeAsyncIterable<T>) {
+export function filter<T>(
+	fn: AsyncPredicate<T> | Predicate<T>,
+	src?: MaybeAsyncIterable<T>
+) {
 	return src
 		? iterator1(filter(fn), src)
 		: (rfn: AsyncReducer<T, any>) =>

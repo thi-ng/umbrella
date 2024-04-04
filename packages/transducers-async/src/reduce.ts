@@ -4,12 +4,12 @@ import type { AsyncReducer, AsyncReducerInit, AsyncReduction } from "./api.js";
 
 export async function reduce<A, B>(
 	rfn: AsyncReducer<A, B>,
-	xs: MaybeAsyncIterable<A>
+	src: MaybeAsyncIterable<A>
 ): Promise<B>;
 export async function reduce<A, B>(
 	rfn: AsyncReducer<A, B>,
 	acc: B,
-	xs: MaybeAsyncIterable<B>
+	src: MaybeAsyncIterable<B>
 ): Promise<B>;
 export async function reduce<A, B>(
 	[init, complete, $reduce]: AsyncReducer<A, B>,

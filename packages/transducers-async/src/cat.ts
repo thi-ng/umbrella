@@ -10,7 +10,6 @@ export const cat =
 		return compR(rfn, async (acc, x: Nullable<MaybeAsyncIterable<T>>) => {
 			if (x != null) {
 				for await (let y of x) {
-					// console.log("y", y);
 					acc = await r(acc, y);
 					if (isReduced(acc)) return acc.deref();
 				}
