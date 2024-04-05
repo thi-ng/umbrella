@@ -45,6 +45,7 @@ export interface Package extends $Package {
 }
 
 export interface PackageMeta {
+	alias: string;
 	blog: BlogPost[];
 	branch: string;
 	demo: string;

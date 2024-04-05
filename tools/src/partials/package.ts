@@ -1,12 +1,13 @@
 import { isString } from "@thi.ng/checks";
 import { dirs, readJSON, readText } from "@thi.ng/file-io";
-import { bytes, camel } from "@thi.ng/strings";
+import { bytes, camel, initials } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import { execFileSync } from "node:child_process";
 import { basename } from "node:path";
 import { META_FIELD, RE_PKG, type Config, type Package } from "../api.js";
 import { link } from "./link.js";
 import { list } from "./list.js";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const shortName = (name: string) => name.split("/")[1];
 
@@ -14,6 +15,9 @@ export const packageURL = (name: string) => `https://${name.substring(1)}`;
 
 export const isNodeOnly = (pkg: Package) =>
 	pkg.keywords ? pkg.keywords.includes("no-browser") : false;
+
+export const isBrowserOnly = (pkg: Package) =>
+	pkg.keywords ? pkg.keywords.includes("browser") : false;
 
 export const isWebModule = (pkg: Package) =>
 	!isNodeOnly(pkg) && pkg[META_FIELD]?.skypack !== false;
@@ -127,26 +131,43 @@ export const packageBanner = (config: Config, name: string) => {
 	return `![${name}](${config.bannerURL}${$name}.svg?${sha1})`;
 };
 
-export const packageInstallation = (pkg: Package) =>
-	[
+export const packageInstallation = (pkg: Package) => {
+	let id = pkg[META_FIELD]?.alias;
+	if (!id) {
+		const parts = shortName(pkg.name).split("-");
+		id =
+			parts.length > 1
+				? initials(parts).toLowerCase()
+				: parts[0].length > 5
+				? parts[0].substring(0, 3)
+				: parts[0];
+	}
+	console.log(id);
+	return [
 		`\`\`\`bash
 yarn add ${pkg.name}
+\`\`\`\n
+ESM import:\n
+\`\`\`ts
+import * as ${id} from "${pkg.name}";
 \`\`\``,
-		isWebModule(pkg)
-			? `\nES module import:
+		isWebModule(pkg) ? webImport(pkg) : "",
+		!isBrowserOnly(pkg)
+			? `For Node.js REPL:\n
+\`\`\`js
+const ${id} = await import("${pkg.name}");
+\`\`\`\n`
+			: "",
+	].join("\n");
+};
+
+const webImport = (pkg: Package) => `\nBrowser ESM import:
 
 \`\`\`html
 <script type="module" src="https://cdn.skypack.dev/${pkg.name}"></script>
 \`\`\`
 
-[Skypack documentation](https://docs.skypack.dev/)\n`
-			: "",
-		`For Node.js REPL:
-
-\`\`\`js
-const ${camel(shortName(pkg.name))} = await import("${pkg.name}");
-\`\`\`\n`,
-	].join("\n");
+[Skypack documentation](https://docs.skypack.dev/)\n`;
 
 export const packageCitation = (config: Config, name: string) => {
 	let hasAuthors = false;
