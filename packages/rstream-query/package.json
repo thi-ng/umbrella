@@ -106,6 +106,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "rsq",
 		"parent": "@thi.ng/rstream",
 		"year": 2018
 	}

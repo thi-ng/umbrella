@@ -114,6 +114,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "gfuzz",
 		"parent": "@thi.ng/geom",
 		"related": [
 			"hiccup-canvas",

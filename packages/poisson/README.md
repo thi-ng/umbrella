@@ -63,7 +63,13 @@ indices are supported as well...
 yarn add @thi.ng/poisson
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as poi from "@thi.ng/poisson";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/poisson"></script>
@@ -74,7 +80,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const poisson = await import("@thi.ng/poisson");
+const poi = await import("@thi.ng/poisson");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 757 bytes

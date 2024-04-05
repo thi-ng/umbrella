@@ -103,6 +103,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "pfl",
 		"parent": "@thi.ng/pointfree",
 		"year": 2018
 	}

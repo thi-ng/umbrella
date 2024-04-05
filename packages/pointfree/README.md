@@ -205,7 +205,13 @@ non-linear control flow.
 yarn add @thi.ng/pointfree
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pf from "@thi.ng/pointfree";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/pointfree"></script>
@@ -216,7 +222,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const pointfree = await import("@thi.ng/pointfree");
+const pf = await import("@thi.ng/pointfree");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 3.23 KB

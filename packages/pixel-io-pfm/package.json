@@ -75,6 +75,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "pfm",
 		"parent": "@thi.ng/pixel",
 		"year": 2023
 	}

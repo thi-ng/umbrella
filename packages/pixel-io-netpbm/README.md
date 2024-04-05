@@ -58,7 +58,13 @@ size and other meta data (from comments), without parsing the full image.
 yarn add @thi.ng/pixel-io-netpbm
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pbm from "@thi.ng/pixel-io-netpbm";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/pixel-io-netpbm"></script>
@@ -69,7 +75,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const pixelIoNetpbm = await import("@thi.ng/pixel-io-netpbm");
+const pbm = await import("@thi.ng/pixel-io-netpbm");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB

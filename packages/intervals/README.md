@@ -55,7 +55,13 @@ standard interfaces: `ICompare`, `IContains`, `ICopy`, `IEquiv`.
 yarn add @thi.ng/intervals
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as i from "@thi.ng/intervals";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/intervals"></script>
@@ -66,7 +72,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const intervals = await import("@thi.ng/intervals");
+const i = await import("@thi.ng/intervals");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.61 KB

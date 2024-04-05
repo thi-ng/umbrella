@@ -52,7 +52,13 @@ Current implementations partially based on
 yarn add @thi.ng/geom-poly-utils
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gpu from "@thi.ng/geom-poly-utils";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-poly-utils"></script>
@@ -63,7 +69,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomPolyUtils = await import("@thi.ng/geom-poly-utils");
+const gpu = await import("@thi.ng/geom-poly-utils");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.94 KB

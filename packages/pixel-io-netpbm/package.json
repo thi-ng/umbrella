@@ -84,6 +84,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "pbm",
 		"parent": "@thi.ng/pixel",
 		"year": 2021
 	}

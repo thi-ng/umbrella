@@ -93,6 +93,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "md",
 		"parent": "@thi.ng/hiccup",
 		"related": [
 			"markdown-table"

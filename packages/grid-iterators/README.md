@@ -233,7 +233,13 @@ optional clipping:
 yarn add @thi.ng/grid-iterators
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gi from "@thi.ng/grid-iterators";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/grid-iterators"></script>
@@ -244,7 +250,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const gridIterators = await import("@thi.ng/grid-iterators");
+const gi = await import("@thi.ng/grid-iterators");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB

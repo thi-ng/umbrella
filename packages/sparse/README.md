@@ -44,7 +44,13 @@ Sparse vector & matrix implementations.
 yarn add @thi.ng/sparse
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as spa from "@thi.ng/sparse";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/sparse"></script>
@@ -55,7 +61,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const sparse = await import("@thi.ng/sparse");
+const spa = await import("@thi.ng/sparse");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 3.40 KB

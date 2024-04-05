@@ -59,7 +59,13 @@ object keys with `undefined` will be entirely omitted in the serialization.
 yarn add @thi.ng/msgpack
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as msg from "@thi.ng/msgpack";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/msgpack"></script>
@@ -70,7 +76,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const msgpack = await import("@thi.ng/msgpack");
+const msg = await import("@thi.ng/msgpack");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.56 KB

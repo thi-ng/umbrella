@@ -47,7 +47,13 @@ readme & source code for visualization options.
 yarn add @thi.ng/dgraph-dot
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dd from "@thi.ng/dgraph-dot";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dgraph-dot"></script>
@@ -58,7 +64,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const dgraphDot = await import("@thi.ng/dgraph-dot");
+const dd = await import("@thi.ng/dgraph-dot");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 228 bytes

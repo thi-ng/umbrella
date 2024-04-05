@@ -296,7 +296,13 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
 yarn add @thi.ng/geom-axidraw
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gaxi from "@thi.ng/geom-axidraw";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-axidraw"></script>
@@ -307,7 +313,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomAxidraw = await import("@thi.ng/geom-axidraw");
+const gaxi = await import("@thi.ng/geom-axidraw");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.49 KB

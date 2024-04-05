@@ -136,7 +136,13 @@ capacity:
 yarn add @thi.ng/malloc
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as m from "@thi.ng/malloc";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/malloc"></script>
@@ -147,7 +153,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const malloc = await import("@thi.ng/malloc");
+const m = await import("@thi.ng/malloc");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.81 KB

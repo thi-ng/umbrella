@@ -89,6 +89,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "fv",
 		"parent": "@thi.ng/fuzzy",
 		"year": 2020
 	}

@@ -177,7 +177,13 @@ reasons the same changes have been applied to this package...
 yarn add @thi.ng/vectors
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as vec from "@thi.ng/vectors";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/vectors"></script>
@@ -188,7 +194,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const vectors = await import("@thi.ng/vectors");
+const vec = await import("@thi.ng/vectors");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 13.89 KB

@@ -87,6 +87,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "ld",
 		"related": [
 			"poisson",
 			"random"

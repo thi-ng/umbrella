@@ -45,7 +45,13 @@ Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/
 yarn add @thi.ng/rstream-dot
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rsdot from "@thi.ng/rstream-dot";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-dot"></script>
@@ -56,7 +62,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstreamDot = await import("@thi.ng/rstream-dot");
+const rsdot = await import("@thi.ng/rstream-dot");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 802 bytes

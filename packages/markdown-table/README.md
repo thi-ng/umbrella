@@ -46,7 +46,13 @@ See related packages below for alternative solutions / approaches...
 yarn add @thi.ng/markdown-table
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as mt from "@thi.ng/markdown-table";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/markdown-table"></script>
@@ -57,7 +63,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const markdownTable = await import("@thi.ng/markdown-table");
+const mt = await import("@thi.ng/markdown-table");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 613 bytes

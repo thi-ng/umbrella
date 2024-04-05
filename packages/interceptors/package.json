@@ -87,6 +87,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "iceps",
 		"related": [
 			"atom",
 			"hdom",

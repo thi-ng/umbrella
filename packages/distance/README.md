@@ -120,7 +120,13 @@ package.
 yarn add @thi.ng/distance
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dist from "@thi.ng/distance";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/distance"></script>
@@ -131,7 +137,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const distance = await import("@thi.ng/distance");
+const dist = await import("@thi.ng/distance");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.38 KB

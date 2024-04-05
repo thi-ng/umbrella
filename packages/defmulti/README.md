@@ -51,7 +51,13 @@ any actual JS type relationships).
 yarn add @thi.ng/defmulti
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as def from "@thi.ng/defmulti";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/defmulti"></script>
@@ -62,7 +68,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const defmulti = await import("@thi.ng/defmulti");
+const def = await import("@thi.ng/defmulti");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 800 bytes

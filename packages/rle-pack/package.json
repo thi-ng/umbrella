@@ -72,6 +72,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "rle",
 		"related": [
 			"binary",
 			"bitstream",

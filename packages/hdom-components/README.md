@@ -54,19 +54,19 @@ components**. Feedback welcome!
 yarn add @thi.ng/hdom-components
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hc from "@thi.ng/hdom-components";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-components"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const hdomComponents = await import("@thi.ng/hdom-components");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.05 KB
 

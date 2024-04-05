@@ -130,7 +130,13 @@ are suffixed with `S` (for "scalar"): `quadraticS`, `cubicS` and `quarticS`...
 yarn add @thi.ng/dual-algebra
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as da from "@thi.ng/dual-algebra";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dual-algebra"></script>
@@ -141,7 +147,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const dualAlgebra = await import("@thi.ng/dual-algebra");
+const da = await import("@thi.ng/dual-algebra");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 991 bytes

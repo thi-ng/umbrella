@@ -64,7 +64,13 @@ return it as milliseconds.
 yarn add @thi.ng/bench
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as bench from "@thi.ng/bench";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/bench"></script>

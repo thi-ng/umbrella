@@ -363,6 +363,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "std",
 		"parent": "@thi.ng/shader-ast",
 		"related": [
 			"shader-ast-glsl",

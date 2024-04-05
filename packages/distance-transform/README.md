@@ -57,7 +57,13 @@ Image credits: (c) 2017 Karsten Schmidt
 yarn add @thi.ng/distance-transform
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dt from "@thi.ng/distance-transform";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/distance-transform"></script>
@@ -68,7 +74,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const distanceTransform = await import("@thi.ng/distance-transform");
+const dt = await import("@thi.ng/distance-transform");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 635 bytes

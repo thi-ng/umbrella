@@ -339,7 +339,13 @@ console.log(clusters);
 yarn add @thi.ng/pixel
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pix from "@thi.ng/pixel";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/pixel"></script>
@@ -350,7 +356,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const pixel = await import("@thi.ng/pixel");
+const pix = await import("@thi.ng/pixel");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 9.44 KB

@@ -49,7 +49,13 @@ Current implementations partially based on
 yarn add @thi.ng/geom-closest-point
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gcp from "@thi.ng/geom-closest-point";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-closest-point"></script>
@@ -60,7 +66,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomClosestPoint = await import("@thi.ng/geom-closest-point");
+const gcp = await import("@thi.ng/geom-closest-point");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB

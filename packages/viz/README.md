@@ -76,7 +76,13 @@ For reference & what to expect (links to the Clojure version):
 yarn add @thi.ng/viz
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as viz from "@thi.ng/viz";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/viz"></script>

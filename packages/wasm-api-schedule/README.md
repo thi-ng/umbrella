@@ -90,19 +90,19 @@ example projects for more advanced usage...
 yarn add @thi.ng/wasm-api-schedule
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as was from "@thi.ng/wasm-api-schedule";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api-schedule"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const wasmApiSchedule = await import("@thi.ng/wasm-api-schedule");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 491 bytes
 

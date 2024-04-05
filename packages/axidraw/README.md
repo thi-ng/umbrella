@@ -185,10 +185,16 @@ These metrics include:
 yarn add @thi.ng/axidraw
 ```
 
+ESM import:
+
+```ts
+import * as axi from "@thi.ng/axidraw";
+```
+
 For Node.js REPL:
 
 ```js
-const axidraw = await import("@thi.ng/axidraw");
+const axi = await import("@thi.ng/axidraw");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 3.27 KB

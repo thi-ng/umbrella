@@ -63,7 +63,13 @@ Optimized functional composition helpers.
 yarn add @thi.ng/compose
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as comp from "@thi.ng/compose";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/compose"></script>
@@ -74,7 +80,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const compose = await import("@thi.ng/compose");
+const comp = await import("@thi.ng/compose");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 815 bytes

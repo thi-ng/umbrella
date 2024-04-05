@@ -68,7 +68,13 @@ alternatives providing similar functionality:
 yarn add @thi.ng/csp
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as csp from "@thi.ng/csp";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/csp"></script>

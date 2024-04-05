@@ -99,6 +99,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "m",
 		"related": [
 			"grid-iterators",
 			"geom-accel"

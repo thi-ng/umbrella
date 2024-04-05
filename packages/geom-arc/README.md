@@ -38,7 +38,13 @@
 yarn add @thi.ng/geom-arc
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as arc from "@thi.ng/geom-arc";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-arc"></script>
@@ -49,7 +55,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomArc = await import("@thi.ng/geom-arc");
+const arc = await import("@thi.ng/geom-arc");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.27 KB

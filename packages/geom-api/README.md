@@ -38,7 +38,13 @@ Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-n
 yarn add @thi.ng/geom-api
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gapi from "@thi.ng/geom-api";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-api"></script>
@@ -49,7 +55,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomApi = await import("@thi.ng/geom-api");
+const gapi = await import("@thi.ng/geom-api");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 234 bytes

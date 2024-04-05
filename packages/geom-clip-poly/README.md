@@ -46,7 +46,13 @@ Current implementations are based on [toxiclibs](http://toxiclibs.org)
 yarn add @thi.ng/geom-clip-poly
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gcp from "@thi.ng/geom-clip-poly";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-clip-poly"></script>
@@ -57,7 +63,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomClipPoly = await import("@thi.ng/geom-clip-poly");
+const gcp = await import("@thi.ng/geom-clip-poly");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 317 bytes

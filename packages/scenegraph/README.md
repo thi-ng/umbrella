@@ -48,7 +48,13 @@ Extensible 2D/3D scene graph with [@thi.ng/hiccup-canvas](https://github.com/thi
 yarn add @thi.ng/scenegraph
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as sg from "@thi.ng/scenegraph";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/scenegraph"></script>
@@ -59,7 +65,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const scenegraph = await import("@thi.ng/scenegraph");
+const sg = await import("@thi.ng/scenegraph");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 980 bytes

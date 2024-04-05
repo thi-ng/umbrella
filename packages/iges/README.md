@@ -48,7 +48,13 @@ applications (e.g. Rhino, Houdini, Fusion 360)
 yarn add @thi.ng/iges
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as iges from "@thi.ng/iges";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/iges"></script>

@@ -57,7 +57,13 @@ in ~850ms (Chrome 72, MBP 2016)
 yarn add @thi.ng/geom-voronoi
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gv from "@thi.ng/geom-voronoi";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-voronoi"></script>
@@ -68,7 +74,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomVoronoi = await import("@thi.ng/geom-voronoi");
+const gv = await import("@thi.ng/geom-voronoi");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.45 KB

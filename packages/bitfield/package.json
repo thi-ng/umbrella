@@ -83,6 +83,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "bf",
 		"related": [
 			"adjacency"
 		]

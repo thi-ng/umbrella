@@ -133,6 +133,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "svg",
 		"parent": "@thi.ng/hiccup",
 		"year": 2016
 	}

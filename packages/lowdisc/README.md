@@ -79,7 +79,13 @@ Based on Kronecker with each dimension's base automatically derived from the
 yarn add @thi.ng/lowdisc
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ld from "@thi.ng/lowdisc";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/lowdisc"></script>
@@ -90,7 +96,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const lowdisc = await import("@thi.ng/lowdisc");
+const ld = await import("@thi.ng/lowdisc");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 450 bytes

@@ -109,19 +109,19 @@ README](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-canvas/R
 yarn add @thi.ng/rdom-canvas
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rc from "@thi.ng/rdom-canvas";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-canvas"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const rdomCanvas = await import("@thi.ng/rdom-canvas");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 694 bytes
 

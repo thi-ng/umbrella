@@ -46,7 +46,13 @@ defines:
 yarn add @thi.ng/api
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as api from "@thi.ng/api";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/api"></script>

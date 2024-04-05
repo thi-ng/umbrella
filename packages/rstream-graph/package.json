@@ -94,6 +94,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "rsg",
 		"parent": "@thi.ng/rstream",
 		"related": [
 			"dot",

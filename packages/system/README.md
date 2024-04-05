@@ -48,7 +48,13 @@ API](https://docs.thi.ng/umbrella/system/interfaces/ILifecycle.html).
 yarn add @thi.ng/system
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as sys from "@thi.ng/system";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/system"></script>
@@ -59,7 +65,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const system = await import("@thi.ng/system");
+const sys = await import("@thi.ng/system");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 581 bytes

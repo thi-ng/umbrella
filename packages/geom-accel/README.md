@@ -52,7 +52,13 @@ Currently available:
 yarn add @thi.ng/geom-accel
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as accel from "@thi.ng/geom-accel";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-accel"></script>
@@ -63,7 +69,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomAccel = await import("@thi.ng/geom-accel");
+const accel = await import("@thi.ng/geom-accel");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.67 KB

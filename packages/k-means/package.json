@@ -80,6 +80,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "kmeans",
 		"status": "beta",
 		"year": 2021
 	}

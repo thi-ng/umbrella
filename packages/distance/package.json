@@ -106,6 +106,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "dist",
 		"related": [
 			"geom-accel",
 			"k-means",

@@ -59,13 +59,11 @@ individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
 yarn add @thi.ng/args
 ```
 
-ES module import:
+ESM import:
 
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/args"></script>
+```ts
+import * as args from "@thi.ng/args";
 ```
-
-[Skypack documentation](https://docs.skypack.dev/)
 
 For Node.js REPL:
 

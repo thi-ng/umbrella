@@ -564,6 +564,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "tx",
 		"blog": [
 			{
 				"title": "HOFs, Transducers, Reducers",

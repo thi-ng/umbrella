@@ -45,7 +45,13 @@ tools](https://github.com/OpenImageDenoise/oidn)).
 yarn add @thi.ng/pixel-io-pfm
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pfm from "@thi.ng/pixel-io-pfm";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/pixel-io-pfm"></script>
@@ -56,7 +62,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const pixelIoPfm = await import("@thi.ng/pixel-io-pfm");
+const pfm = await import("@thi.ng/pixel-io-pfm");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 747 bytes

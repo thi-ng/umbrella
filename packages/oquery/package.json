@@ -88,6 +88,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "oq",
 		"related": [
 			"associative",
 			"csv",

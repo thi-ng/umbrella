@@ -82,7 +82,13 @@ for more LRU, MRU implementations based on managed `DCons` impls...
 yarn add @thi.ng/dcons
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dcons from "@thi.ng/dcons";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dcons"></script>

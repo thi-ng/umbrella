@@ -88,10 +88,16 @@ functionality, e.g.:
 yarn add @thi.ng/random-fxhash
 ```
 
+ESM import:
+
+```ts
+import * as rfx from "@thi.ng/random-fxhash";
+```
+
 For Node.js REPL:
 
 ```js
-const randomFxhash = await import("@thi.ng/random-fxhash");
+const rfx = await import("@thi.ng/random-fxhash");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 483 bytes

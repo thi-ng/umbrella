@@ -51,7 +51,13 @@ Current implementations partially based on
 yarn add @thi.ng/geom-splines
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gs from "@thi.ng/geom-splines";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-splines"></script>
@@ -62,7 +68,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomSplines = await import("@thi.ng/geom-splines");
+const gs = await import("@thi.ng/geom-splines");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.38 KB

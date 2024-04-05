@@ -210,7 +210,13 @@ const html = defFormatPresets(FMT_HTML_TACHYONS);
 yarn add @thi.ng/text-format
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as tf from "@thi.ng/text-format";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/text-format"></script>
@@ -221,7 +227,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const textFormat = await import("@thi.ng/text-format");
+const tf = await import("@thi.ng/text-format");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.87 KB

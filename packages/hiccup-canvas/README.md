@@ -86,7 +86,13 @@ implementations) and then translates these into canvas API draw calls.
 yarn add @thi.ng/hiccup-canvas
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hc from "@thi.ng/hiccup-canvas";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-canvas"></script>
@@ -97,7 +103,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
+const hc = await import("@thi.ng/hiccup-canvas");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.53 KB

@@ -38,7 +38,13 @@ File output handler for structured, multilevel & hierarchical loggers based on [
 yarn add @thi.ng/rstream-log-file
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rlf from "@thi.ng/rstream-log-file";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-log-file"></script>
@@ -49,7 +55,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstreamLogFile = await import("@thi.ng/rstream-log-file");
+const rlf = await import("@thi.ng/rstream-log-file");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 109 bytes

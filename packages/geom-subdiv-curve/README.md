@@ -60,7 +60,13 @@ Supplied / implemented subdivision schemes:
 yarn add @thi.ng/geom-subdiv-curve
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gsc from "@thi.ng/geom-subdiv-curve";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-subdiv-curve"></script>
@@ -71,7 +77,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomSubdivCurve = await import("@thi.ng/geom-subdiv-curve");
+const gsc = await import("@thi.ng/geom-subdiv-curve");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 661 bytes

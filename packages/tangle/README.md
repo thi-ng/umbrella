@@ -318,7 +318,13 @@ Accepting PRs with instructruction for other editors & IDEs.
 yarn add @thi.ng/tangle
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as tan from "@thi.ng/tangle";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/tangle"></script>
@@ -329,7 +335,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const tangle = await import("@thi.ng/tangle");
+const tan = await import("@thi.ng/tangle");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.99 KB

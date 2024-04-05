@@ -38,7 +38,13 @@ Async versions of various highly composable transducers, reducers and iterators.
 yarn add @thi.ng/transducers-async
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as txa from "@thi.ng/transducers-async";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-async"></script>
@@ -49,7 +55,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const transducersAsync = await import("@thi.ng/transducers-async");
+const txa = await import("@thi.ng/transducers-async");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.42 KB

@@ -113,7 +113,13 @@ have been removed.
 yarn add @thi.ng/atom
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as atom from "@thi.ng/atom";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/atom"></script>

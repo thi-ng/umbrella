@@ -55,7 +55,13 @@ package.
 yarn add @thi.ng/fsm
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as fsm from "@thi.ng/fsm";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/fsm"></script>

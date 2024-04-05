@@ -46,7 +46,13 @@ String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom]
 yarn add @thi.ng/hdiff
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hdiff from "@thi.ng/hdiff";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hdiff"></script>

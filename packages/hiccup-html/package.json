@@ -103,6 +103,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "html",
 		"parent": "@thi.ng/hiccup",
 		"related": [
 			"hdom",

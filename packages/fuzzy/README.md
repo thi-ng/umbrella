@@ -77,7 +77,13 @@ Fuzzy logic operators & configurable rule inferencing engine.
 yarn add @thi.ng/fuzzy
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as fuzzy from "@thi.ng/fuzzy";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/fuzzy"></script>

@@ -46,19 +46,19 @@ Canvas, video recording & file asset download helpers for web apps.
 yarn add @thi.ng/dl-asset
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dl from "@thi.ng/dl-asset";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dl-asset"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const dlAsset = await import("@thi.ng/dl-asset");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 576 bytes
 

@@ -79,5 +79,8 @@
 		"./encode": {
 			"default": "./encode.js"
 		}
+	},
+	"thi.ng": {
+		"alias": "bc"
 	}
 }

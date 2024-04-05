@@ -171,6 +171,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "ast",
 		"related": [
 			"webgl",
 			"webgl-shadertoy"

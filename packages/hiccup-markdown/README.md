@@ -528,7 +528,13 @@ More info [here](http://thi.ng/hiccup-markdown).
 yarn add @thi.ng/hiccup-markdown
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as md from "@thi.ng/hiccup-markdown";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-markdown"></script>
@@ -539,7 +545,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
+const md = await import("@thi.ng/hiccup-markdown");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.62 KB

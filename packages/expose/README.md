@@ -48,7 +48,13 @@ string) the function will **always** be enabled. Otherwise (by default),
 yarn add @thi.ng/expose
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as exp from "@thi.ng/expose";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/expose"></script>
@@ -59,7 +65,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const expose = await import("@thi.ng/expose");
+const exp = await import("@thi.ng/expose");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 205 bytes

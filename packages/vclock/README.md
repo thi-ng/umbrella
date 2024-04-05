@@ -77,7 +77,13 @@ References:
 yarn add @thi.ng/vclock
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as vc from "@thi.ng/vclock";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/vclock"></script>
@@ -88,7 +94,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const vclock = await import("@thi.ng/vclock");
+const vc = await import("@thi.ng/vclock");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 431 bytes

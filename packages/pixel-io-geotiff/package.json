@@ -83,6 +83,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "geo",
 		"parent": "@thi.ng/pixel",
 		"status": "alpha",
 		"year": 2023

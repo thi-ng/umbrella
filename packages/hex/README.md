@@ -43,7 +43,13 @@ Hex string formatters for 4/8/16/24/32/48/64bit words.
 yarn add @thi.ng/hex
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hex from "@thi.ng/hex";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hex"></script>

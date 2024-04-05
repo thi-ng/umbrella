@@ -68,7 +68,13 @@ well (see SVG parsing example further below). The choice is yours!
 yarn add @thi.ng/sax
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as sax from "@thi.ng/sax";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/sax"></script>

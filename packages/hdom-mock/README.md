@@ -43,7 +43,13 @@ custom target implementations.
 yarn add @thi.ng/hdom-mock
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hm from "@thi.ng/hdom-mock";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-mock"></script>
@@ -54,7 +60,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const hdomMock = await import("@thi.ng/hdom-mock");
+const hm = await import("@thi.ng/hdom-mock");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.08 KB

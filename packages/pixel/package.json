@@ -211,6 +211,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "pix",
 		"related": [
 			"color",
 			"porter-duff",

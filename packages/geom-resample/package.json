@@ -96,6 +96,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "sample",
 		"parent": "@thi.ng/geom",
 		"year": 2013
 	}

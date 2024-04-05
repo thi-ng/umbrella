@@ -47,7 +47,13 @@ and synchronous stream subscriptions/transformations of
 yarn add @thi.ng/rstream-csp
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rscsp from "@thi.ng/rstream-csp";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-csp"></script>
@@ -58,7 +64,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstreamCsp = await import("@thi.ng/rstream-csp");
+const rscsp = await import("@thi.ng/rstream-csp");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 247 bytes

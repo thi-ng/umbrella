@@ -80,7 +80,13 @@ There's a 2h 45m long video tutorial (live stream) introducing this package: [Bu
 yarn add @thi.ng/parse
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as parse from "@thi.ng/parse";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/parse"></script>

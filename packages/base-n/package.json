@@ -155,6 +155,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "base",
 		"year": 2017
 	}
 }

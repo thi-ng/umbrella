@@ -66,7 +66,13 @@ This package might be merged with and/or superseded by
 yarn add @thi.ng/vector-pools
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as vp from "@thi.ng/vector-pools";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/vector-pools"></script>
@@ -77,7 +83,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const vectorPools = await import("@thi.ng/vector-pools");
+const vp = await import("@thi.ng/vector-pools");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 3.02 KB

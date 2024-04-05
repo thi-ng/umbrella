@@ -51,7 +51,13 @@ the remaining values at their own pace.
 yarn add @thi.ng/seq
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as seq from "@thi.ng/seq";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/seq"></script>

@@ -57,19 +57,19 @@ Generic trie-based router with support for wildcards, route param validation/coe
 yarn add @thi.ng/router
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rou from "@thi.ng/router";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/router"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const router = await import("@thi.ng/router");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.94 KB
 

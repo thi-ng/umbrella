@@ -118,7 +118,13 @@ console.log(glsl(constantFolding(expr)))
 yarn add @thi.ng/shader-ast-optimize
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as opt from "@thi.ng/shader-ast-optimize";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-optimize"></script>
@@ -129,7 +135,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
+const opt = await import("@thi.ng/shader-ast-optimize");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB

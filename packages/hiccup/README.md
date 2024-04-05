@@ -163,7 +163,13 @@ iterable
 yarn add @thi.ng/hiccup
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as h from "@thi.ng/hiccup";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup"></script>
@@ -174,7 +180,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const hiccup = await import("@thi.ng/hiccup");
+const h = await import("@thi.ng/hiccup");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.17 KB

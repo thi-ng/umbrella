@@ -115,7 +115,13 @@ transformation functions:
 yarn add @thi.ng/hiccup-html-parse
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hp from "@thi.ng/hiccup-html-parse";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-html-parse"></script>
@@ -126,7 +132,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const hiccupHtmlParse = await import("@thi.ng/hiccup-html-parse");
+const hp = await import("@thi.ng/hiccup-html-parse");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB

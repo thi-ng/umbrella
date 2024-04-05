@@ -656,7 +656,13 @@ efficient application.
 yarn add @thi.ng/color
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as color from "@thi.ng/color";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/color"></script>

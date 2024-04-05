@@ -61,7 +61,13 @@ Planned features:
 yarn add @thi.ng/lsys
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as lsys from "@thi.ng/lsys";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/lsys"></script>

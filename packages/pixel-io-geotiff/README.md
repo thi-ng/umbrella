@@ -46,7 +46,13 @@ functionality. For the latter we recommend using the wrapped
 yarn add @thi.ng/pixel-io-geotiff
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as geo from "@thi.ng/pixel-io-geotiff";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/pixel-io-geotiff"></script>
@@ -57,7 +63,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const pixelIoGeotiff = await import("@thi.ng/pixel-io-geotiff");
+const geo = await import("@thi.ng/pixel-io-geotiff");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 399 bytes

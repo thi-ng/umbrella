@@ -66,7 +66,13 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 yarn add @thi.ng/cache
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as cache from "@thi.ng/cache";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/cache"></script>

@@ -54,7 +54,13 @@ References:
 yarn add @thi.ng/morton
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as m from "@thi.ng/morton";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/morton"></script>
@@ -65,7 +71,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const morton = await import("@thi.ng/morton");
+const m = await import("@thi.ng/morton");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.00 KB

@@ -61,7 +61,13 @@ Everything else is parsed as is, i.e. as symbol.
 yarn add @thi.ng/sexpr
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as sexpr from "@thi.ng/sexpr";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/sexpr"></script>

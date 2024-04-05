@@ -74,7 +74,13 @@ of ongoing experiments, some aspects might be ported to WASM.
 yarn add @thi.ng/dsp
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dsp from "@thi.ng/dsp";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dsp"></script>

@@ -105,6 +105,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "cnoise",
 		"related": [
 			"dsp",
 			"lowdisc",

@@ -64,7 +64,13 @@ supported.
 yarn add @thi.ng/resolve-map
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rm from "@thi.ng/resolve-map";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/resolve-map"></script>
@@ -75,7 +81,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const resolveMap = await import("@thi.ng/resolve-map");
+const rm = await import("@thi.ng/resolve-map");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.01 KB

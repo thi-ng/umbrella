@@ -51,7 +51,13 @@ Custom error types can be easily defined using
 yarn add @thi.ng/errors
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as err from "@thi.ng/errors";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/errors"></script>
@@ -62,7 +68,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const errors = await import("@thi.ng/errors");
+const err = await import("@thi.ng/errors");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 819 bytes

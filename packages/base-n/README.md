@@ -41,7 +41,13 @@ plain character strings for each base and variations.
 yarn add @thi.ng/base-n
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as base from "@thi.ng/base-n";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/base-n"></script>
@@ -52,7 +58,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const baseN = await import("@thi.ng/base-n");
+const base = await import("@thi.ng/base-n");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.26 KB

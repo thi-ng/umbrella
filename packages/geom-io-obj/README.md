@@ -59,7 +59,13 @@ Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/g
 yarn add @thi.ng/geom-io-obj
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gio from "@thi.ng/geom-io-obj";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-io-obj"></script>
@@ -70,7 +76,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomIoObj = await import("@thi.ng/geom-io-obj");
+const gio = await import("@thi.ng/geom-io-obj");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1004 bytes

@@ -71,7 +71,13 @@ by
 yarn add @thi.ng/soa
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as soa from "@thi.ng/soa";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/soa"></script>

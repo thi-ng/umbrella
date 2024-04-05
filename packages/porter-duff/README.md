@@ -65,7 +65,13 @@ ints or RGBA float vectors.
 yarn add @thi.ng/porter-duff
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pd from "@thi.ng/porter-duff";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/porter-duff"></script>
@@ -76,7 +82,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const porterDuff = await import("@thi.ng/porter-duff");
+const pd = await import("@thi.ng/porter-duff");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.04 KB

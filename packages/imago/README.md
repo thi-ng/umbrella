@@ -345,6 +345,12 @@ still WIP...
 yarn add @thi.ng/imago
 ```
 
+ESM import:
+
+```ts
+import * as imago from "@thi.ng/imago";
+```
+
 For Node.js REPL:
 
 ```js

@@ -45,7 +45,13 @@ some additional drawing utilities to minimize boilerplate & WASM/JS cross-callin
 yarn add @thi.ng/wasm-api-canvas
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as wac from "@thi.ng/wasm-api-canvas";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api-canvas"></script>
@@ -56,7 +62,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const wasmApiCanvas = await import("@thi.ng/wasm-api-canvas");
+const wac = await import("@thi.ng/wasm-api-canvas");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.65 KB

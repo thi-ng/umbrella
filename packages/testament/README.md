@@ -40,7 +40,13 @@ Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, 
 yarn add @thi.ng/testament
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as test from "@thi.ng/testament";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/testament"></script>
@@ -51,7 +57,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const testament = await import("@thi.ng/testament");
+const test = await import("@thi.ng/testament");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB

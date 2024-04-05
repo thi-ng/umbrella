@@ -131,7 +131,13 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 yarn add @thi.ng/strings
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as str from "@thi.ng/strings";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/strings"></script>
@@ -142,7 +148,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const strings = await import("@thi.ng/strings");
+const str = await import("@thi.ng/strings");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 5.42 KB

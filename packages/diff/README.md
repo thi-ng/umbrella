@@ -38,7 +38,13 @@ Customizable diff implementations for arrays (sequential) & objects (associative
 yarn add @thi.ng/diff
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as diff from "@thi.ng/diff";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/diff"></script>

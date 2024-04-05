@@ -120,6 +120,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "css",
 		"parent": "@thi.ng/hiccup",
 		"related": [
 			"hiccup-html",

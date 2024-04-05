@@ -66,7 +66,13 @@ for more details/ideas.
 yarn add @thi.ng/csv
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as csv from "@thi.ng/csv";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/csv"></script>

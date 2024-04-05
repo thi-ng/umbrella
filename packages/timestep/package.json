@@ -86,6 +86,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "ts",
 		"related": [
 			"boids"
 		],

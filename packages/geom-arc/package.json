@@ -95,6 +95,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "arc",
 		"parent": "@thi.ng/geom",
 		"year": 2018
 	}

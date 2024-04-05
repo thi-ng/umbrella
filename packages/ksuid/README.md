@@ -102,7 +102,13 @@ implementations already used milliseconds.
 yarn add @thi.ng/ksuid
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ksuid from "@thi.ng/ksuid";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/ksuid"></script>

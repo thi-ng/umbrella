@@ -90,6 +90,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "sg",
 		"related": [
 			"hdom-canvas",
 			"hiccup",

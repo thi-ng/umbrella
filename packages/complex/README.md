@@ -38,7 +38,13 @@ Array-based complex number algebra.
 yarn add @thi.ng/complex
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as com from "@thi.ng/complex";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/complex"></script>
@@ -49,7 +55,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const complex = await import("@thi.ng/complex");
+const com = await import("@thi.ng/complex");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB

@@ -224,7 +224,13 @@ status. The TL;DR list...
 yarn add @thi.ng/shader-ast
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ast from "@thi.ng/shader-ast";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast"></script>
@@ -235,7 +241,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const shaderAst = await import("@thi.ng/shader-ast");
+const ast = await import("@thi.ng/shader-ast");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.92 KB

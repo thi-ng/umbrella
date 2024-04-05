@@ -56,7 +56,13 @@ details.
 yarn add @thi.ng/dot
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dot from "@thi.ng/dot";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dot"></script>

@@ -74,7 +74,13 @@ Please also see the following hdom references for further details:
 yarn add @thi.ng/transducers-hdom
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as th from "@thi.ng/transducers-hdom";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-hdom"></script>
@@ -85,7 +91,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const transducersHdom = await import("@thi.ng/transducers-hdom");
+const th = await import("@thi.ng/transducers-hdom");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 272 bytes

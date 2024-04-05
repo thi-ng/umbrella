@@ -87,6 +87,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "wav",
 		"parent": "@thi.ng/dsp",
 		"year": 2020
 	}

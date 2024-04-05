@@ -69,7 +69,13 @@ transforming ES6 iterator (generator) instead of a transducer.
 yarn add @thi.ng/transducers-stats
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ts from "@thi.ng/transducers-stats";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-stats"></script>
@@ -80,7 +86,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const transducersStats = await import("@thi.ng/transducers-stats");
+const ts = await import("@thi.ng/transducers-stats");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.39 KB

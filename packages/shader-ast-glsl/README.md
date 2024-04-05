@@ -52,7 +52,13 @@ This package is also used for shader assembly by
 yarn add @thi.ng/shader-ast-glsl
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as glsl from "@thi.ng/shader-ast-glsl";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-glsl"></script>
@@ -63,7 +69,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const shaderAstGlsl = await import("@thi.ng/shader-ast-glsl");
+const glsl = await import("@thi.ng/shader-ast-glsl");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.30 KB

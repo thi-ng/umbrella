@@ -40,7 +40,13 @@ Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https:/
 yarn add @thi.ng/fuzzy-viz
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as fv from "@thi.ng/fuzzy-viz";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/fuzzy-viz"></script>
@@ -51,7 +57,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const fuzzyViz = await import("@thi.ng/fuzzy-viz");
+const fv = await import("@thi.ng/fuzzy-viz");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1023 bytes

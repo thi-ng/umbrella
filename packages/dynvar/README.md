@@ -43,7 +43,13 @@ References:
 yarn add @thi.ng/dynvar
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dyn from "@thi.ng/dynvar";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dynvar"></script>
@@ -54,7 +60,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const dynvar = await import("@thi.ng/dynvar");
+const dyn = await import("@thi.ng/dynvar");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 265 bytes

@@ -40,7 +40,13 @@ Array / Arraylike utilities.
 yarn add @thi.ng/arrays
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as arr from "@thi.ng/arrays";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/arrays"></script>
@@ -51,7 +57,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const arrays = await import("@thi.ng/arrays");
+const arr = await import("@thi.ng/arrays");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.99 KB

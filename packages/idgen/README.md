@@ -67,7 +67,13 @@ be checked for validity via `.has(id)` (in constant time).
 yarn add @thi.ng/idgen
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as idgen from "@thi.ng/idgen";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/idgen"></script>

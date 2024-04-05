@@ -39,7 +39,13 @@ Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors
 yarn add @thi.ng/k-means
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as kmeans from "@thi.ng/k-means";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/k-means"></script>
@@ -50,7 +56,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const kMeans = await import("@thi.ng/k-means");
+const kmeans = await import("@thi.ng/k-means");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 868 bytes

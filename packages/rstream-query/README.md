@@ -74,7 +74,13 @@ this time built on the streaming primitives provided by
 yarn add @thi.ng/rstream-query
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rsq from "@thi.ng/rstream-query";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-query"></script>
@@ -85,7 +91,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstreamQuery = await import("@thi.ng/rstream-query");
+const rsq = await import("@thi.ng/rstream-query");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.61 KB

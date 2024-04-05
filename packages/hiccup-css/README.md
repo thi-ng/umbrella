@@ -108,19 +108,19 @@ Clojure projects:
 yarn add @thi.ng/hiccup-css
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as css from "@thi.ng/hiccup-css";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-css"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const hiccupCss = await import("@thi.ng/hiccup-css");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.23 KB
 

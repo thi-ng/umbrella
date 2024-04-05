@@ -725,7 +725,13 @@ write access (from the JS side)...
 yarn add @thi.ng/wasm-api-bindgen
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as wab from "@thi.ng/wasm-api-bindgen";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api-bindgen"></script>
@@ -736,7 +742,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const wasmApiBindgen = await import("@thi.ng/wasm-api-bindgen");
+const wab = await import("@thi.ng/wasm-api-bindgen");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 5.96 KB

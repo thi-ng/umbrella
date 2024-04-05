@@ -115,6 +115,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "gaxi",
 		"parent": "@thi.ng/geom",
 		"related": [
 			"axidraw"

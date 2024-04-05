@@ -74,7 +74,13 @@ References:
 yarn add @thi.ng/gp
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gp from "@thi.ng/gp";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/gp"></script>

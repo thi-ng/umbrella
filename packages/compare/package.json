@@ -82,5 +82,8 @@
 		"./reverse": {
 			"default": "./reverse.js"
 		}
+	},
+	"thi.ng": {
+		"alias": "cmp"
 	}
 }

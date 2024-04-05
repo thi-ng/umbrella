@@ -525,19 +525,28 @@ The bundled reducers are all wrapped in functions to provide a uniform API (and
 some of them can be preconfigured and/or are stateful closures). However, it's
 completely fine to define stateless reducers as constant arrays.
 
-A `Reducer` is a 3-tuple of functions defining the different stages of a reduction process.
+A `Reducer` is a 3-tuple of functions defining the different stages of a
+reduction process: A `Reducer<A, B>` reduces values of type A to a single value
+of type B.
 
-The items in order:
+The tuple items/functions in order:
 
 1. Initialization function used to produce an initial default result (only used
    if no such initial result was given by the user)
 2. Completion function to post-process an already reduced result (for most
    reducers this is merely the identity function)
 3. Accumulation function, merging a new input value with the currently existing
-   (partially) reduced result
+   (partially) reduced result/accumulator
 
 ```ts
-type Reducer<A, B> = [() => B, (x: B) => B, (acc: B, x: A) => B];
+type Reducer<A, B> = [
+	// init
+	() => B,
+	// completion
+	(x: B) => B,
+	// accumulation
+	(acc: B, x: A) => B
+];
 
 // A concrete example:
 const push: Reducer<any, any[]> = [

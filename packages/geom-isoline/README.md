@@ -42,7 +42,13 @@ the Clojure version of
 yarn add @thi.ng/geom-isoline
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as iso from "@thi.ng/geom-isoline";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-isoline"></script>
@@ -53,7 +59,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomIsoline = await import("@thi.ng/geom-isoline");
+const iso = await import("@thi.ng/geom-isoline");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 716 bytes

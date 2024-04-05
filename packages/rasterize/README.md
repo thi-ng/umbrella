@@ -142,7 +142,13 @@ drawCircle(img, W/2, W/2, W/2 - 4, defUVGradient(W, W), true);
 yarn add @thi.ng/rasterize
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ras from "@thi.ng/rasterize";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rasterize"></script>
@@ -153,7 +159,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rasterize = await import("@thi.ng/rasterize");
+const ras = await import("@thi.ng/rasterize");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.47 KB

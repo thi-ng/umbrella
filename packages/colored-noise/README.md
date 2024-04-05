@@ -363,7 +363,13 @@ white
 yarn add @thi.ng/colored-noise
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as cnoise from "@thi.ng/colored-noise";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/colored-noise"></script>
@@ -374,7 +380,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const coloredNoise = await import("@thi.ng/colored-noise");
+const cnoise = await import("@thi.ng/colored-noise");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 494 bytes

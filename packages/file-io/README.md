@@ -42,10 +42,16 @@ logging interface.
 yarn add @thi.ng/file-io
 ```
 
+ESM import:
+
+```ts
+import * as fio from "@thi.ng/file-io";
+```
+
 For Node.js REPL:
 
 ```js
-const fileIo = await import("@thi.ng/file-io");
+const fio = await import("@thi.ng/file-io");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.04 KB

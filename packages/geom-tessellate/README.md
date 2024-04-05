@@ -50,7 +50,13 @@ highly dependent on the concavities present. YMMV!
 yarn add @thi.ng/geom-tessellate
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gt from "@thi.ng/geom-tessellate";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-tessellate"></script>
@@ -61,7 +67,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomTessellate = await import("@thi.ng/geom-tessellate");
+const gt = await import("@thi.ng/geom-tessellate");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1018 bytes

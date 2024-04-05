@@ -76,6 +76,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "hp",
 		"parent": "@thi.ng/hiccup",
 		"related": [
 			"hiccup-html",

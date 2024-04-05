@@ -56,7 +56,13 @@ underscores (`_`).
 yarn add @thi.ng/emoji
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as emoji from "@thi.ng/emoji";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/emoji"></script>

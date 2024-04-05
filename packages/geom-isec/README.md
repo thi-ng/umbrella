@@ -61,7 +61,13 @@ Current implementations partially based on
 yarn add @thi.ng/geom-isec
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as isec from "@thi.ng/geom-isec";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-isec"></script>
@@ -72,7 +78,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomIsec = await import("@thi.ng/geom-isec");
+const isec = await import("@thi.ng/geom-isec");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.92 KB

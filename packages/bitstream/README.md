@@ -47,7 +47,13 @@ ES6 iterator based read/write bit streams with support for variable word widths.
 yarn add @thi.ng/bitstream
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as bit from "@thi.ng/bitstream";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/bitstream"></script>
@@ -58,7 +64,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const bitstream = await import("@thi.ng/bitstream");
+const bit = await import("@thi.ng/bitstream");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.33 KB

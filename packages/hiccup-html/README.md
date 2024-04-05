@@ -182,19 +182,19 @@ welcome!
 yarn add @thi.ng/hiccup-html
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as html from "@thi.ng/hiccup-html";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-html"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const hiccupHtml = await import("@thi.ng/hiccup-html");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.51 KB
 

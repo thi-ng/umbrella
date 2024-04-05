@@ -118,19 +118,19 @@ Resulting output (reformatted):
 yarn add @thi.ng/rdom-forms
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rf from "@thi.ng/rdom-forms";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-forms"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const rdomForms = await import("@thi.ng/rdom-forms");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.28 KB
 

@@ -118,6 +118,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "sdf",
 		"parent": "@thi.ng/geom",
 		"related": [
 			"distance-transform",

@@ -56,7 +56,13 @@ Reference:
 yarn add @thi.ng/quad-edge
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as qe from "@thi.ng/quad-edge";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/quad-edge"></script>
@@ -67,7 +73,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const quadEdge = await import("@thi.ng/quad-edge");
+const qe = await import("@thi.ng/quad-edge");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 559 bytes

@@ -124,7 +124,13 @@ outside our control...
 yarn add @thi.ng/simd
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as simd from "@thi.ng/simd";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/simd"></script>

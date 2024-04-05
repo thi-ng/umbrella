@@ -46,7 +46,13 @@ Current implementations partially based on
 yarn add @thi.ng/geom-resample
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as sample from "@thi.ng/geom-resample";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-resample"></script>
@@ -57,7 +63,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomResample = await import("@thi.ng/geom-resample");
+const sample = await import("@thi.ng/geom-resample");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.48 KB

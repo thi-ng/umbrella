@@ -207,6 +207,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "rs",
 		"related": [
 			"atom",
 			"hdom",

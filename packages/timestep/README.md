@@ -148,7 +148,13 @@ after 1 second (25 frames)...
 yarn add @thi.ng/timestep
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ts from "@thi.ng/timestep";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/timestep"></script>
@@ -159,7 +165,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const timestep = await import("@thi.ng/timestep");
+const ts = await import("@thi.ng/timestep");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB

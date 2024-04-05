@@ -58,7 +58,13 @@ iterable for direct use.
 yarn add @thi.ng/transducers-binary
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as txb from "@thi.ng/transducers-binary";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-binary"></script>
@@ -69,7 +75,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const transducersBinary = await import("@thi.ng/transducers-binary");
+const txb = await import("@thi.ng/transducers-binary");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB

@@ -80,7 +80,13 @@ and their value type inferred as `any`.
 yarn add @thi.ng/paths
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as paths from "@thi.ng/paths";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/paths"></script>

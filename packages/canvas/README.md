@@ -54,19 +54,19 @@ packages, but have been migrated to this package for better/smaller re-use...
 yarn add @thi.ng/canvas
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as can from "@thi.ng/canvas";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/canvas"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const canvas = await import("@thi.ng/canvas");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 348 bytes
 

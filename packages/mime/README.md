@@ -58,7 +58,13 @@ original DB, as well as some preference overrides.
 yarn add @thi.ng/mime
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as mime from "@thi.ng/mime";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/mime"></script>

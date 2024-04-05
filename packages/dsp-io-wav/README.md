@@ -39,7 +39,13 @@ WAV file format generation. This is a support package for [@thi.ng/dsp](https://
 yarn add @thi.ng/dsp-io-wav
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as wav from "@thi.ng/dsp-io-wav";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dsp-io-wav"></script>
@@ -50,7 +56,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const dspIoWav = await import("@thi.ng/dsp-io-wav");
+const wav = await import("@thi.ng/dsp-io-wav");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 488 bytes

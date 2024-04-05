@@ -190,7 +190,13 @@ packages (which are more low-level, lightweight and usable by themselves too):
 yarn add @thi.ng/geom
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as geom from "@thi.ng/geom";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom"></script>

@@ -67,7 +67,13 @@ which altogether provide ~750 optimized vector/matrix functions.
 yarn add @thi.ng/shader-ast-js
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as js from "@thi.ng/shader-ast-js";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-js"></script>
@@ -78,7 +84,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const shaderAstJs = await import("@thi.ng/shader-ast-js");
+const js = await import("@thi.ng/shader-ast-js");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.59 KB

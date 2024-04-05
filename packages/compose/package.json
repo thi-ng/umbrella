@@ -102,5 +102,8 @@
 		"./trampoline": {
 			"default": "./trampoline.js"
 		}
+	},
+	"thi.ng": {
+		"alias": "comp"
 	}
 }

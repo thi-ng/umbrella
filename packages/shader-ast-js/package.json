@@ -155,6 +155,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "js",
 		"parent": "@thi.ng/shader-ast",
 		"related": [
 			"pixel",

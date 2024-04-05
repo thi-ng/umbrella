@@ -208,6 +208,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "gl",
 		"related": [
 			"ecs",
 			"geom",

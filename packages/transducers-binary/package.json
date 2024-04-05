@@ -106,6 +106,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "txb",
 		"parent": "@thi.ng/transducers",
 		"related": [
 			"binary",

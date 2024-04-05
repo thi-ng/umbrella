@@ -99,7 +99,13 @@ more composable & efficient transducers via
 yarn add @thi.ng/iterators
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as it from "@thi.ng/iterators";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/iterators"></script>
@@ -110,7 +116,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const iterators = await import("@thi.ng/iterators");
+const it = await import("@thi.ng/iterators");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB

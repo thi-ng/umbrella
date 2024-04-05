@@ -49,7 +49,13 @@ Entity Component System based around typed arrays & sparse sets.
 yarn add @thi.ng/ecs
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ecs from "@thi.ng/ecs";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/ecs"></script>

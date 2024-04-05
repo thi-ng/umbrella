@@ -44,7 +44,13 @@
 yarn add @thi.ng/binary
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as bin from "@thi.ng/binary";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/binary"></script>
@@ -55,7 +61,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const binary = await import("@thi.ng/binary");
+const bin = await import("@thi.ng/binary");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.18 KB

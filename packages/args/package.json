@@ -62,6 +62,7 @@
 		"hex",
 		"logger",
 		"nodejs",
+		"no-browser",
 		"parser",
 		"tuple",
 		"typescript",

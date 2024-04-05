@@ -60,7 +60,13 @@ these and keep any cycles async).
 yarn add @thi.ng/rstream-graph
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rsg from "@thi.ng/rstream-graph";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-graph"></script>
@@ -71,7 +77,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstreamGraph = await import("@thi.ng/rstream-graph");
+const rsg = await import("@thi.ng/rstream-graph");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.02 KB

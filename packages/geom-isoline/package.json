@@ -75,6 +75,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "iso",
 		"parent": "@thi.ng/geom",
 		"year": 2015
 	}

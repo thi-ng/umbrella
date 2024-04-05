@@ -58,7 +58,13 @@ On Firefox 122 (MBP M1 2021), these changes result in ~1.6x faster encoding and
 yarn add @thi.ng/blurhash
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as bhash from "@thi.ng/blurhash";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/blurhash"></script>
@@ -69,7 +75,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const blurhash = await import("@thi.ng/blurhash");
+const bhash = await import("@thi.ng/blurhash");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.21 KB

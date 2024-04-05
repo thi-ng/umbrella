@@ -70,6 +70,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "rscsp",
 		"parent": "@thi.ng/rstream",
 		"related": [
 			"csp",

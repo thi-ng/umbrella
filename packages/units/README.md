@@ -626,7 +626,13 @@ Densities of selected materials:
 yarn add @thi.ng/units
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as units from "@thi.ng/units";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/units"></script>

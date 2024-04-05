@@ -48,7 +48,13 @@
 yarn add @thi.ng/prefixes
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pre from "@thi.ng/prefixes";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/prefixes"></script>
@@ -59,7 +65,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const prefixes = await import("@thi.ng/prefixes");
+const pre = await import("@thi.ng/prefixes");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.10 KB

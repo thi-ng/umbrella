@@ -59,7 +59,13 @@ Reference: https://en.wikipedia.org/wiki/Zipper_(data_structure)
 yarn add @thi.ng/zipper
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as zip from "@thi.ng/zipper";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/zipper"></script>
@@ -70,7 +76,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const zipper = await import("@thi.ng/zipper");
+const zip = await import("@thi.ng/zipper");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.02 KB

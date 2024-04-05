@@ -51,7 +51,13 @@ Supports:
 yarn add @thi.ng/equiv
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as equiv from "@thi.ng/equiv";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/equiv"></script>

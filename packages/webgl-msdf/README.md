@@ -52,19 +52,19 @@ McCurdy's](https://msdf-bmfont.donmccurdy.com/).
 yarn add @thi.ng/webgl-msdf
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as wm from "@thi.ng/webgl-msdf";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/webgl-msdf"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const webglMsdf = await import("@thi.ng/webgl-msdf");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.57 KB
 

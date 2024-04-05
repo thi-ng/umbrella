@@ -68,19 +68,19 @@ package for better re-usability, also outside without hdom.
 yarn add @thi.ng/hdom-canvas
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hc from "@thi.ng/hdom-canvas";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-canvas"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const hdomCanvas = await import("@thi.ng/hdom-canvas");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 824 bytes
 

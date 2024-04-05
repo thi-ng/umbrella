@@ -42,7 +42,13 @@ Current implementation is partially based on Clojure version of
 yarn add @thi.ng/geom-hull
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hull from "@thi.ng/geom-hull";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-hull"></script>
@@ -53,7 +59,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomHull = await import("@thi.ng/geom-hull");
+const hull = await import("@thi.ng/geom-hull");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 414 bytes

@@ -48,7 +48,13 @@ ordering and fanout / tree arity (in case of `DHeap`) and largely unified API:
 yarn add @thi.ng/heaps
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as heaps from "@thi.ng/heaps";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/heaps"></script>

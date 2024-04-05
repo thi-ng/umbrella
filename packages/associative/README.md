@@ -183,7 +183,13 @@ map.get([3,4], "n/a");
 yarn add @thi.ng/associative
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as assoc from "@thi.ng/associative";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/associative"></script>
@@ -194,7 +200,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const associative = await import("@thi.ng/associative");
+const assoc = await import("@thi.ng/associative");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.97 KB

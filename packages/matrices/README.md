@@ -72,7 +72,13 @@ sensible).
 yarn add @thi.ng/matrices
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as mat from "@thi.ng/matrices";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/matrices"></script>
@@ -83,7 +89,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const matrices = await import("@thi.ng/matrices");
+const mat = await import("@thi.ng/matrices");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 5.08 KB

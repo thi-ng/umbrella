@@ -79,6 +79,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "rsdot",
 		"parent": "@thi.ng/rstream",
 		"related": [
 			"dgraph-dot",

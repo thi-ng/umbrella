@@ -64,7 +64,13 @@ support both directed & undirected graphs:
 yarn add @thi.ng/adjacency
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as adj from "@thi.ng/adjacency";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/adjacency"></script>
@@ -75,7 +81,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const adjacency = await import("@thi.ng/adjacency");
+const adj = await import("@thi.ng/adjacency");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.74 KB

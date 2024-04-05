@@ -38,7 +38,13 @@ Collection of 70+ type, feature & value checks.
 yarn add @thi.ng/checks
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ch from "@thi.ng/checks";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/checks"></script>
@@ -49,7 +55,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const checks = await import("@thi.ng/checks");
+const ch = await import("@thi.ng/checks");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.65 KB

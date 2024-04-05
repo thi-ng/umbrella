@@ -77,7 +77,13 @@ an ES6 embedded DSL for concatenative programming:
 yarn add @thi.ng/pointfree-lang
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pfl from "@thi.ng/pointfree-lang";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/pointfree-lang"></script>
@@ -88,7 +94,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const pointfreeLang = await import("@thi.ng/pointfree-lang");
+const pfl = await import("@thi.ng/pointfree-lang");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.73 KB

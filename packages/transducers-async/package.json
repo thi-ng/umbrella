@@ -153,6 +153,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "txa",
 		"parent": "@thi.ng/transducers",
 		"status": "alpha",
 		"year": 2018

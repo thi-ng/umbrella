@@ -61,7 +61,13 @@ package.
 yarn add @thi.ng/transducers-fsm
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as fsm from "@thi.ng/transducers-fsm";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-fsm"></script>
@@ -72,7 +78,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const transducersFsm = await import("@thi.ng/transducers-fsm");
+const fsm = await import("@thi.ng/transducers-fsm");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 213 bytes

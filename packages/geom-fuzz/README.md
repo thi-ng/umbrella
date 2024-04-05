@@ -47,7 +47,13 @@ Highly configurable, fuzzy line & polygon creation with presets and composable f
 yarn add @thi.ng/geom-fuzz
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gfuzz from "@thi.ng/geom-fuzz";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-fuzz"></script>
@@ -58,7 +64,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomFuzz = await import("@thi.ng/geom-fuzz");
+const gfuzz = await import("@thi.ng/geom-fuzz");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB

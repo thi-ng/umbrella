@@ -48,7 +48,13 @@ Datetime types, relative dates, math, iterators, composable formatters, locales.
 yarn add @thi.ng/date
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as date from "@thi.ng/date";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/date"></script>

@@ -127,7 +127,13 @@ support custom modfifiers. The table below illustrates a few examples effects:
 yarn add @thi.ng/geom-sdf
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as sdf from "@thi.ng/geom-sdf";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-sdf"></script>
@@ -138,7 +144,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomSdf = await import("@thi.ng/geom-sdf");
+const sdf = await import("@thi.ng/geom-sdf");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 3.65 KB

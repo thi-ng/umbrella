@@ -66,7 +66,13 @@ encoding.
 yarn add @thi.ng/bencode
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as bc from "@thi.ng/bencode";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/bencode"></script>
@@ -77,7 +83,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const bencode = await import("@thi.ng/bencode");
+const bc = await import("@thi.ng/bencode");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.17 KB

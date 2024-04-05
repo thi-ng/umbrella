@@ -47,19 +47,19 @@ size, and resizes canvas pixel buffer itself based on DPR (e.g. 2x size).
 yarn add @thi.ng/adapt-dpi
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ad from "@thi.ng/adapt-dpi";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/adapt-dpi"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const adaptDpi = await import("@thi.ng/adapt-dpi");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 135 bytes
 

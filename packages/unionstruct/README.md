@@ -57,7 +57,13 @@ Currently does not support array fields (incl. strings).
 yarn add @thi.ng/unionstruct
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as us from "@thi.ng/unionstruct";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/unionstruct"></script>
@@ -68,7 +74,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const unionstruct = await import("@thi.ng/unionstruct");
+const us = await import("@thi.ng/unionstruct");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1006 bytes

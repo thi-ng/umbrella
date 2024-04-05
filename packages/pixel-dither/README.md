@@ -55,7 +55,13 @@ very easily extended via definition of custom kernels):
 yarn add @thi.ng/pixel-dither
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as pd from "@thi.ng/pixel-dither";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/pixel-dither"></script>
@@ -66,7 +72,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const pixelDither = await import("@thi.ng/pixel-dither");
+const pd = await import("@thi.ng/pixel-dither");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.07 KB

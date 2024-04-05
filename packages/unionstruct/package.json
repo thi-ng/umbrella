@@ -75,6 +75,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "us",
 		"relate": [
 			"malloc",
 			"soa"

@@ -55,7 +55,13 @@ The following main functions are provided:
 yarn add @thi.ng/geom-clip-line
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gcl from "@thi.ng/geom-clip-line";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-clip-line"></script>
@@ -66,7 +72,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomClipLine = await import("@thi.ng/geom-clip-line");
+const gcl = await import("@thi.ng/geom-clip-line");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 761 bytes

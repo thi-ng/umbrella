@@ -247,19 +247,19 @@ Some of the most obvious missing features:
 yarn add @thi.ng/imgui
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as imgui from "@thi.ng/imgui";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/imgui"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const imgui = await import("@thi.ng/imgui");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.65 KB
 

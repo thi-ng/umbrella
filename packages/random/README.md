@@ -84,7 +84,13 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 yarn add @thi.ng/random
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rnd from "@thi.ng/random";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/random"></script>
@@ -95,7 +101,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const random = await import("@thi.ng/random");
+const rnd = await import("@thi.ng/random");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.02 KB

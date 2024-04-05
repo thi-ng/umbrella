@@ -285,5 +285,8 @@
 		"./is-zero": {
 			"default": "./is-zero.js"
 		}
+	},
+	"thi.ng": {
+		"alias": "ch"
 	}
 }

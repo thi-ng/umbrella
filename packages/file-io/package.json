@@ -120,6 +120,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "fio",
 		"status": "stable",
 		"year": 2022
 	}

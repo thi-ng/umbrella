@@ -45,7 +45,13 @@ by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
 yarn add @thi.ng/range-coder
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rc from "@thi.ng/range-coder";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/range-coder"></script>
@@ -56,7 +62,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rangeCoder = await import("@thi.ng/range-coder");
+const rc = await import("@thi.ng/range-coder");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 622 bytes

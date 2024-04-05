@@ -151,7 +151,13 @@ supported. The same limit applies to the number of CA configs given.
 yarn add @thi.ng/cellular
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as cell from "@thi.ng/cellular";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/cellular"></script>
@@ -162,7 +168,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const cellular = await import("@thi.ng/cellular");
+const cell = await import("@thi.ng/cellular");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.46 KB

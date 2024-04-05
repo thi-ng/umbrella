@@ -65,7 +65,13 @@ Furthermore, all values to be encoded/decoded are cast to i64/u64 range now.
 yarn add @thi.ng/leb128
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as leb from "@thi.ng/leb128";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/leb128"></script>
@@ -76,7 +82,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const leb128 = await import("@thi.ng/leb128");
+const leb = await import("@thi.ng/leb128");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 880 bytes

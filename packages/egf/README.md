@@ -110,7 +110,13 @@ deployed already.
 yarn add @thi.ng/egf
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as egf from "@thi.ng/egf";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/egf"></script>

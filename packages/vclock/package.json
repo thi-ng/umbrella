@@ -75,6 +75,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "vc",
 		"status": "beta",
 		"year": 2018
 	}

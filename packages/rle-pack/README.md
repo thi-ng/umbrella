@@ -72,7 +72,13 @@ Then per value:
 yarn add @thi.ng/rle-pack
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rle from "@thi.ng/rle-pack";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rle-pack"></script>
@@ -83,7 +89,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rlePack = await import("@thi.ng/rle-pack");
+const rle = await import("@thi.ng/rle-pack");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 637 bytes

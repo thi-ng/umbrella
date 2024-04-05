@@ -54,7 +54,13 @@ below.
 yarn add @thi.ng/layout
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as l from "@thi.ng/layout";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/layout"></script>
@@ -65,7 +71,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const layout = await import("@thi.ng/layout");
+const l = await import("@thi.ng/layout");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.19 KB

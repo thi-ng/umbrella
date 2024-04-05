@@ -380,19 +380,19 @@ please also consult the information in
 yarn add @thi.ng/wasm-api
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as wa from "@thi.ng/wasm-api";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const wasmApi = await import("@thi.ng/wasm-api");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.69 KB
 

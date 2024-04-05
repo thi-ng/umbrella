@@ -265,19 +265,19 @@ $compile([
 yarn add @thi.ng/rdom
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rdom from "@thi.ng/rdom";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const rdom = await import("@thi.ng/rdom");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.02 KB
 

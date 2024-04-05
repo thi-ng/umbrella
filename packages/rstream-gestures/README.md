@@ -69,7 +69,13 @@ rewrite of `gestureStream()` and new event data formats.
 yarn add @thi.ng/rstream-gestures
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gest from "@thi.ng/rstream-gestures";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-gestures"></script>
@@ -80,7 +86,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstreamGestures = await import("@thi.ng/rstream-gestures");
+const gest = await import("@thi.ng/rstream-gestures");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB

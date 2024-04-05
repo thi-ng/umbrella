@@ -98,6 +98,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "test",
 		"status": "alpha",
 		"year": 2021
 	}

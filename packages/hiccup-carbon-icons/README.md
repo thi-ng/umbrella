@@ -56,7 +56,13 @@ code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-ico
 yarn add @thi.ng/hiccup-carbon-icons
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as icons from "@thi.ng/hiccup-carbon-icons";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-carbon-icons"></script>
@@ -67,7 +73,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const hiccupCarbonIcons = await import("@thi.ng/hiccup-carbon-icons");
+const icons = await import("@thi.ng/hiccup-carbon-icons");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 77.19 KB

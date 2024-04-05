@@ -57,7 +57,13 @@ of the existing `fmod()` function...
 yarn add @thi.ng/math
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as math from "@thi.ng/math";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/math"></script>

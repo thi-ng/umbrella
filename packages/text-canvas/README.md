@@ -61,7 +61,13 @@ Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. AN
 yarn add @thi.ng/text-canvas
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as tc from "@thi.ng/text-canvas";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/text-canvas"></script>
@@ -72,7 +78,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const textCanvas = await import("@thi.ng/text-canvas");
+const tc = await import("@thi.ng/text-canvas");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.24 KB

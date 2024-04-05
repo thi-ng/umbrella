@@ -69,7 +69,13 @@ based on different strategies. See doc strings for further details.
 yarn add @thi.ng/memoize
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as mem from "@thi.ng/memoize";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/memoize"></script>
@@ -80,7 +86,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const memoize = await import("@thi.ng/memoize");
+const mem = await import("@thi.ng/memoize");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 518 bytes

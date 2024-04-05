@@ -95,7 +95,13 @@ Reference:
 yarn add @thi.ng/shader-ast-stdlib
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as std from "@thi.ng/shader-ast-stdlib";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-stdlib"></script>
@@ -106,7 +112,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const shaderAstStdlib = await import("@thi.ng/shader-ast-stdlib");
+const std = await import("@thi.ng/shader-ast-stdlib");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 13.93 KB

@@ -159,7 +159,13 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 yarn add @thi.ng/hiccup-svg
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as svg from "@thi.ng/hiccup-svg";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-svg"></script>
@@ -170,7 +176,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const hiccupSvg = await import("@thi.ng/hiccup-svg");
+const svg = await import("@thi.ng/hiccup-svg");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB

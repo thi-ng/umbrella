@@ -86,19 +86,19 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 yarn add @thi.ng/webgl
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gl from "@thi.ng/webgl";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/webgl"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const webgl = await import("@thi.ng/webgl");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 11.65 KB
 

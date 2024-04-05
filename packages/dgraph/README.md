@@ -63,7 +63,13 @@ Implementation based on [Stuart Sierra's Clojure version](https://github.com/stu
 yarn add @thi.ng/dgraph
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dgr from "@thi.ng/dgraph";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dgraph"></script>
@@ -74,7 +80,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const dgraph = await import("@thi.ng/dgraph");
+const dgr = await import("@thi.ng/dgraph");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 868 bytes

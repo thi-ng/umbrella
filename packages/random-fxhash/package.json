@@ -74,6 +74,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "rfx",
 		"parent": "@thi.ng/random",
 		"related": [
 			"base-n"

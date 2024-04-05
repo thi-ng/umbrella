@@ -126,7 +126,13 @@ logger.info("result is", () => 23 + 42);
 yarn add @thi.ng/logger
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as log from "@thi.ng/logger";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/logger"></script>
@@ -137,7 +143,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const logger = await import("@thi.ng/logger");
+const log = await import("@thi.ng/logger");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 870 bytes

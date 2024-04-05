@@ -57,7 +57,13 @@ and example below for details.
 yarn add @thi.ng/geom-trace-bitmap
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as gtb from "@thi.ng/geom-trace-bitmap";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-trace-bitmap"></script>
@@ -68,7 +74,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const geomTraceBitmap = await import("@thi.ng/geom-trace-bitmap");
+const gtb = await import("@thi.ng/geom-trace-bitmap");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 993 bytes

@@ -261,7 +261,13 @@ the more saturated colors much more muted than they actually are/should be.
 yarn add @thi.ng/color-palettes
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as cp from "@thi.ng/color-palettes";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/color-palettes"></script>
@@ -272,7 +278,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const colorPalettes = await import("@thi.ng/color-palettes");
+const cp = await import("@thi.ng/color-palettes");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.79 KB

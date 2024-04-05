@@ -141,19 +141,19 @@ commented source code and examples for now:
 yarn add @thi.ng/interceptors
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as iceps from "@thi.ng/interceptors";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/interceptors"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const interceptors = await import("@thi.ng/interceptors");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
 

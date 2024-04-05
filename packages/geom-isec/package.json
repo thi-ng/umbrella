@@ -117,6 +117,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "isec",
 		"parent": "@thi.ng/geom",
 		"year": 2013
 	}

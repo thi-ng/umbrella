@@ -69,7 +69,13 @@ thi.ng/umbrella packages, but would benefit from a more unified approach.
 yarn add @thi.ng/oquery
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as oq from "@thi.ng/oquery";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/oquery"></script>
@@ -80,7 +86,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const oquery = await import("@thi.ng/oquery");
+const oq = await import("@thi.ng/oquery");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.66 KB

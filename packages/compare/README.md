@@ -73,7 +73,13 @@ interface.
 yarn add @thi.ng/compare
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as cmp from "@thi.ng/compare";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/compare"></script>
@@ -84,7 +90,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const compare = await import("@thi.ng/compare");
+const cmp = await import("@thi.ng/compare");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 629 bytes

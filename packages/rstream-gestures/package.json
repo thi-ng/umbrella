@@ -89,6 +89,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "gest",
 		"parent": "@thi.ng/rstream",
 		"related": [
 			"hdom",

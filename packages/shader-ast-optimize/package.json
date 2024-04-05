@@ -79,6 +79,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "opt",
 		"parent": "@thi.ng/shader-ast",
 		"year": 2019
 	}

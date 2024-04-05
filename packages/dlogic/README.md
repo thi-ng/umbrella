@@ -45,7 +45,13 @@ for binary versions of most of the ops provided by this package.
 yarn add @thi.ng/dlogic
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as dl from "@thi.ng/dlogic";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/dlogic"></script>
@@ -56,7 +62,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const dlogic = await import("@thi.ng/dlogic");
+const dl = await import("@thi.ng/dlogic");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 376 bytes

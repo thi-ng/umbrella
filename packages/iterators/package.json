@@ -224,6 +224,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "it",
 		"related": [
 			"transducers"
 		],

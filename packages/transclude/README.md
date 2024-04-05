@@ -53,10 +53,16 @@ for a concrete usage example...
 yarn add @thi.ng/transclude
 ```
 
+ESM import:
+
+```ts
+import * as tra from "@thi.ng/transclude";
+```
+
 For Node.js REPL:
 
 ```js
-const transclude = await import("@thi.ng/transclude");
+const tra = await import("@thi.ng/transclude");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.86 KB

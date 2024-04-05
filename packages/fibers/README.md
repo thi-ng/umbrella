@@ -375,7 +375,13 @@ if (res !== undefined) {
 yarn add @thi.ng/fibers
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as fib from "@thi.ng/fibers";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/fibers"></script>
@@ -386,7 +392,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const fibers = await import("@thi.ng/fibers");
+const fib = await import("@thi.ng/fibers");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.64 KB

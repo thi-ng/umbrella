@@ -81,6 +81,7 @@
 		}
 	},
 	"thi.ng": {
+		"alias": "glsl",
 		"parent": "@thi.ng/shader-ast",
 		"related": [
 			"shader-ast-js",

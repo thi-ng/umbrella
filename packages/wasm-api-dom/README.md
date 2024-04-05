@@ -287,19 +287,19 @@ const Counter = struct {
 yarn add @thi.ng/wasm-api-dom
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as wad from "@thi.ng/wasm-api-dom";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api-dom"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const wasmApiDom = await import("@thi.ng/wasm-api-dom");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.25 KB
 

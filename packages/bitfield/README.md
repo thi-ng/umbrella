@@ -47,7 +47,13 @@ backing the width is always rounded to a multiple of 32.
 yarn add @thi.ng/bitfield
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as bf from "@thi.ng/bitfield";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/bitfield"></script>
@@ -58,7 +64,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const bitfield = await import("@thi.ng/bitfield");
+const bf = await import("@thi.ng/bitfield");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.46 KB

@@ -50,7 +50,13 @@ a simple interface to achieve other interpolation methods.
 yarn add @thi.ng/ramp
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as ramp from "@thi.ng/ramp";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/ramp"></script>

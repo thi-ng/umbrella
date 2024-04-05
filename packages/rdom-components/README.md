@@ -52,19 +52,19 @@ Currently, this package provides:
 yarn add @thi.ng/rdom-components
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rc from "@thi.ng/rdom-components";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-components"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const rdomComponents = await import("@thi.ng/rdom-components");
-```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.29 KB
 

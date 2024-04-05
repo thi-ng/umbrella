@@ -91,7 +91,13 @@ structure has to be provided to the boid ctor and factory functions
 yarn add @thi.ng/boids
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as boids from "@thi.ng/boids";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/boids"></script>

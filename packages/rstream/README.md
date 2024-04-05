@@ -194,7 +194,13 @@ src.transformTopic("foo", map((e) => e.value), { error: handleError })
 yarn add @thi.ng/rstream
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rs from "@thi.ng/rstream";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream"></script>
@@ -205,7 +211,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstream = await import("@thi.ng/rstream");
+const rs = await import("@thi.ng/rstream");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.16 KB

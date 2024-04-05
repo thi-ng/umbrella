@@ -45,7 +45,13 @@ state update. By default all edits are performed non-destructively, but
 yarn add @thi.ng/transducers-patch
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as tp from "@thi.ng/transducers-patch";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-patch"></script>
@@ -56,7 +62,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const transducersPatch = await import("@thi.ng/transducers-patch");
+const tp = await import("@thi.ng/transducers-patch");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 497 bytes

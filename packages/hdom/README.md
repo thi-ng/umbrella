@@ -132,19 +132,19 @@ Benefits:
 yarn add @thi.ng/hdom
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as hdom from "@thi.ng/hdom";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom"></script>
 ```
 
 [Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const hdom = await import("@thi.ng/hdom");
-```
 
 You can use the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project

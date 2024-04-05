@@ -58,7 +58,13 @@ filtering. See that package for more details.
 yarn add @thi.ng/rstream-log
 ```
 
-ES module import:
+ESM import:
+
+```ts
+import * as rslog from "@thi.ng/rstream-log";
+```
+
+Browser ESM import:
 
 ```html
 <script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-log"></script>
@@ -69,7 +75,7 @@ ES module import:
 For Node.js REPL:
 
 ```js
-const rstreamLog = await import("@thi.ng/rstream-log");
+const rslog = await import("@thi.ng/rstream-log");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 768 bytes
