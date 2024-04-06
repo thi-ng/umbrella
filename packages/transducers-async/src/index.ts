@@ -21,3 +21,4 @@ export * from "./take.js";
 export * from "./throttle.js";
 export * from "./throttle-time.js";
 export * from "./transduce.js";
+export * from "./zip.js";
