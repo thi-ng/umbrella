@@ -1,5 +1,5 @@
-import type { AsyncTransducer } from "./api.js";
 import { comp as _comp } from "@thi.ng/compose/comp";
+import type { AsyncTransducer } from "./api.js";
 import { ensureAsyncTransducer } from "./ensure.js";
 
 export function comp<A, B>(a: AsyncTransducer<A, B>): AsyncTransducer<A, B>;

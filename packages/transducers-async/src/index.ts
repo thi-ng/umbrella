@@ -2,6 +2,7 @@ export * from "./api.js";
 export * from "./cat.js";
 export * from "./comp.js";
 export * from "./compr.js";
+export * from "./concat.js";
 export * from "./cycle.js";
 export * from "./ensure.js";
 export * from "./filter.js";

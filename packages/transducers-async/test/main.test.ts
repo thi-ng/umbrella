@@ -2,6 +2,7 @@ import { delayed } from "@thi.ng/compose";
 import { expect, test } from "bun:test";
 import {
 	comp,
+	concat,
 	filter,
 	iterator,
 	map,
@@ -30,6 +31,20 @@ test("comp", async (done) => {
 			repeatedly((i) => i, 10)
 		)
 	).toEqual([[10, 30], [50, 70], [90]]);
+	done();
+});
+
+test("concat", async (done) => {
+	expect(
+		await push(
+			concat(
+				repeatedly(async (i) => i + 1, 3),
+				undefined,
+				null,
+				[4, 5]
+			)
+		)
+	).toEqual([1, 2, 3, 4, 5]);
 	done();
 });
 

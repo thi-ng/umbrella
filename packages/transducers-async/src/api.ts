@@ -1,4 +1,4 @@
-import type { Fn, Fn0 } from "@thi.ng/api";
+import type { Fn, Fn0, MaybePromise } from "@thi.ng/api";
 import type { Reduced } from "@thi.ng/transducers";
 
 /**
@@ -10,11 +10,14 @@ export type AsyncReducer<A, B> = [
 	AsyncReduction<A, B>
 ];
 
-export type AsyncReducerInit<T> = Fn0<Promise<T>>;
+export type AsyncReducerInit<T> = Fn0<MaybePromise<T>>;
 
-export type AsyncReducerComplete<T> = Fn<T, Promise<T>>;
+export type AsyncReducerComplete<T> = Fn<T, MaybePromise<T>>;
 
-export type AsyncReduction<A, B> = (acc: B, x: A) => Promise<B | Reduced<B>>;
+export type AsyncReduction<A, B> = (
+	acc: B,
+	x: A
+) => MaybePromise<B | Reduced<B>>;
 
 export type AsyncTransducer<A, B> = (
 	rfn: AsyncReducer<B, any>
