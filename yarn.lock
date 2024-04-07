@@ -6379,6 +6379,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.9.31"
     "@thi.ng/checks": "npm:^3.5.5"
     "@thi.ng/compose": "npm:^2.1.71"
+    "@thi.ng/errors": "npm:^2.5.2"
     "@thi.ng/transducers": "npm:^8.9.18"
     esbuild: "npm:^0.20.2"
     rimraf: "npm:^5.0.5"

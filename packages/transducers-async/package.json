@@ -39,6 +39,7 @@
 		"@thi.ng/api": "^8.9.31",
 		"@thi.ng/checks": "^3.5.5",
 		"@thi.ng/compose": "^2.1.71",
+		"@thi.ng/errors": "^2.5.2",
 		"@thi.ng/transducers": "^8.9.18"
 	},
 	"devDependencies": {
@@ -97,11 +98,17 @@
 		"./compr": {
 			"default": "./compr.js"
 		},
+		"./concat": {
+			"default": "./concat.js"
+		},
 		"./cycle": {
 			"default": "./cycle.js"
 		},
 		"./ensure": {
 			"default": "./ensure.js"
+		},
+		"./events": {
+			"default": "./events.js"
 		},
 		"./filter": {
 			"default": "./filter.js"
@@ -127,6 +134,9 @@
 		"./push": {
 			"default": "./push.js"
 		},
+		"./range": {
+			"default": "./range.js"
+		},
 		"./reduce": {
 			"default": "./reduce.js"
 		},
@@ -139,6 +149,9 @@
 		"./step": {
 			"default": "./step.js"
 		},
+		"./sync": {
+			"default": "./sync.js"
+		},
 		"./take": {
 			"default": "./take.js"
 		},
@@ -150,6 +163,9 @@
 		},
 		"./transduce": {
 			"default": "./transduce.js"
+		},
+		"./zip": {
+			"default": "./zip.js"
 		}
 	},
 	"thi.ng": {
