@@ -106,6 +106,11 @@ export type KeysN<T, L extends unknown[]> = L extends []
 	? Keys<T>
 	: KeysNReducer<T, Head<L>, Tail<L>>;
 
+/**
+ * Type union of values of all keys in T.
+ */
+export type Values<T> = Val1<T, Keys<T>>;
+
 /*
  * Utilities for extracting value types from nested objects.
  */
