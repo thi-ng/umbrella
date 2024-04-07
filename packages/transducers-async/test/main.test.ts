@@ -11,6 +11,7 @@ import {
 	multiplexObj,
 	partition,
 	push,
+	range,
 	repeatedly,
 	run,
 	step,
@@ -148,6 +149,16 @@ test("partition", async (done) => {
 	expect(
 		await transduce(partition(2, true), push<number[]>(), [1, 2, 3])
 	).toEqual([[1, 2], [3]]);
+	done();
+});
+
+test("range", async (done) => {
+	expect(await push(take(3, range(5)))).toEqual([0, 1, 2]);
+	expect(await push(range(3, 5))).toEqual([0, 1, 2]);
+	expect(await push(range(1, 3, 5))).toEqual([1, 2]);
+	expect(await push(range(1, 10, 2, 5))).toEqual([1, 3, 5, 7, 9]);
+	expect(await push(range(3, 0, 5))).toEqual([3, 2, 1]);
+	expect(await push(range(10, -1, -3, 5))).toEqual([10, 7, 4, 1]);
 	done();
 });
 
