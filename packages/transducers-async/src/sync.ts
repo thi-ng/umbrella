@@ -8,6 +8,9 @@ export type SyncSources<T extends Record<NumOrString, any>> = {
  * Async iterator version of [thi.ng/rstream's sync()
  * construct](https://docs.thi.ng/umbrella/rstream/functions/sync.html).
  *
+ * @remarks
+ * Also see {@link merge} for an alternative way of merging.
+ *
  * @param src
  */
 export async function* sync<T extends Record<NumOrString, any>>(

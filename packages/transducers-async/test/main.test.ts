@@ -1,3 +1,4 @@
+import type { NumOrString } from "@thi.ng/api";
 import { delayed } from "@thi.ng/compose";
 import { expect, test } from "bun:test";
 import {
@@ -7,6 +8,7 @@ import {
 	iterator,
 	map,
 	mapcat,
+	merge,
 	multiplex,
 	multiplexObj,
 	partition,
@@ -95,6 +97,21 @@ test("mapcat", async (done) => {
 			[1, 2, 3]
 		)
 	).toEqual([1, 10, 2, 20, 3, 30]);
+	done();
+});
+
+test("merge", async (done) => {
+	expect(
+		await push(
+			merge<NumOrString>([
+				repeatedly((i) => i, 5, 30),
+				repeatedly((i) => String(i * 10), 3, 50),
+			])
+		)
+	).toEqual([0, "0", 1, "10", 2, 3, "20", 4]);
+	expect(
+		await push(merge([repeatedly((i) => i, 0), repeatedly((i) => i, 0)]))
+	).toEqual([]);
 	done();
 });
 
@@ -210,6 +227,14 @@ test(
 			{ a: 3, b: "20" },
 			{ a: 4, b: "20" },
 		]);
+		expect(
+			await push(
+				sync({
+					a: repeatedly((i) => i, 0),
+					b: repeatedly((i) => i, 0),
+				})
+			)
+		).toEqual([]);
 		done();
 	},
 	{ retry: 5 }
