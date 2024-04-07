@@ -12,7 +12,7 @@ export function push<T>(xs?: MaybeAsyncIterable<T>) {
 				return res;
 		  })()
 		: reducer<T, T[]>(
-				async () => [],
-				async (acc, x) => (acc.push(x), acc)
+				() => [],
+				(acc, x) => (acc.push(x), acc)
 		  );
 }

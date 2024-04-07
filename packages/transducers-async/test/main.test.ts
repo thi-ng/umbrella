@@ -14,6 +14,7 @@ import {
 	repeatedly,
 	run,
 	step,
+	sync,
 	take,
 	throttle,
 	transduce,
@@ -179,6 +180,30 @@ test("step", async (done) => {
 	).toEqual([1]);
 	done();
 });
+
+test(
+	"sync",
+	async (done) => {
+		expect(
+			await push(
+				sync({
+					a: repeatedly((i) => i, 5, 33),
+					b: repeatedly((i) => String(i * 10), 3, 50),
+				})
+			)
+		).toEqual([
+			{ a: 0, b: "0" },
+			{ a: 1, b: "0" },
+			{ a: 1, b: "10" },
+			{ a: 2, b: "10" },
+			{ a: 2, b: "20" },
+			{ a: 3, b: "20" },
+			{ a: 4, b: "20" },
+		]);
+		done();
+	},
+	{ retry: 5 }
+);
 
 test("take", async (done) => {
 	expect(
