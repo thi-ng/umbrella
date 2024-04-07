@@ -122,6 +122,9 @@
 		"./mapcat": {
 			"default": "./mapcat.js"
 		},
+		"./merge": {
+			"default": "./merge.js"
+		},
 		"./multiplex-obj": {
 			"default": "./multiplex-obj.js"
 		},
