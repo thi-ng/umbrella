@@ -15,6 +15,10 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [Evaluators](#evaluators)
+  - [Iterators](#iterators)
+  - [Transducers](#transducers)
+  - [Reducers](#reducers)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -25,6 +29,42 @@
 ## About
 
 Async versions of various highly composable transducers, reducers and iterators. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+
+### Evaluators
+
+- [`iterator()`](https://docs.thi.ng/umbrella/transducers-async/functions/iterator.html)
+- [`reduce()`](https://docs.thi.ng/umbrella/transducers-async/functions/reduce.html)
+- [`run()`](https://docs.thi.ng/umbrella/transducers-async/functions/run.html)
+- [`step()`](https://docs.thi.ng/umbrella/transducers-async/functions/step.html)
+- [`transduce()`](https://docs.thi.ng/umbrella/transducers-async/functions/transduce.html)
+
+### Iterators
+
+- [`concat()`](https://docs.thi.ng/umbrella/transducers-async/functions/concat.html)
+- [`events()`](https://docs.thi.ng/umbrella/transducers-async/functions/events.html)
+- [`merge()`](https://docs.thi.ng/umbrella/transducers-async/functions/merge.html)
+- [`raf()`](https://docs.thi.ng/umbrella/transducers-async/functions/raf.html)
+- [`range()`](https://docs.thi.ng/umbrella/transducers-async/functions/range.html)
+- [`repeatedly()`](https://docs.thi.ng/umbrella/transducers-async/functions/repeatedly.html)
+- [`sidechain()`](https://docs.thi.ng/umbrella/transducers-async/functions/sidechain.html)
+- [`sync()`](https://docs.thi.ng/umbrella/transducers-async/functions/sync.html)
+- [`zip()`](https://docs.thi.ng/umbrella/transducers-async/functions/zip.html)
+
+### Transducers
+
+- [`comp()`](https://docs.thi.ng/umbrella/transducers-async/functions/comp.html)
+- [`filter()`](https://docs.thi.ng/umbrella/transducers-async/functions/filter.html)
+- [`map()`](https://docs.thi.ng/umbrella/transducers-async/functions/map.html)
+- [`mapcat()`](https://docs.thi.ng/umbrella/transducers-async/functions/mapcat.html)
+- [`multiplex()`](https://docs.thi.ng/umbrella/transducers-async/functions/multiplex.html)
+- [`multiplexObj()`](https://docs.thi.ng/umbrella/transducers-async/functions/multiplexObj.html)
+- [`take()`](https://docs.thi.ng/umbrella/transducers-async/functions/take.html)
+- [`throttle()`](https://docs.thi.ng/umbrella/transducers-async/functions/throttle.html)
+- [`throttleTime()`](https://docs.thi.ng/umbrella/transducers-async/functions/throttleTime.html)
+
+### Reducers
+
+- [`push()`](https://docs.thi.ng/umbrella/transducers-async/functions/push.html)
 
 ## Status
 
@@ -58,20 +98,19 @@ For Node.js REPL:
 const txa = await import("@thi.ng/transducers-async");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.42 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.24 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/transducers-async/)
-
-TODO
 
 ## Authors
 
