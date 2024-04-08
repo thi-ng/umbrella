@@ -137,6 +137,9 @@
 		"./push": {
 			"default": "./push.js"
 		},
+		"./raf": {
+			"default": "./raf.js"
+		},
 		"./range": {
 			"default": "./range.js"
 		},
@@ -148,6 +151,9 @@
 		},
 		"./run": {
 			"default": "./run.js"
+		},
+		"./sidechain": {
+			"default": "./sidechain.js"
 		},
 		"./step": {
 			"default": "./step.js"

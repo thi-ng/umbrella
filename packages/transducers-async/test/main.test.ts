@@ -16,6 +16,7 @@ import {
 	range,
 	repeatedly,
 	run,
+	sidechain,
 	step,
 	sync,
 	take,
@@ -196,6 +197,31 @@ test("run", async (done) => {
 	expect(res).toEqual([10, 20, 30]);
 	done();
 });
+
+test.only(
+	"sidechain",
+	async (done) => {
+		expect(
+			await push(
+				sidechain(
+					repeatedly((i) => i, 100, 10),
+					repeatedly(() => true, 3, 25)
+				)
+			)
+		).toEqual([0, 2, 4]);
+		expect(
+			await push(
+				sidechain(
+					repeatedly((i) => i, 100, 10),
+					repeatedly(() => true, 3, 25),
+					{ lastOnly: false }
+				)
+			)
+		).toEqual([[0], [1, 2], [3, 4]]);
+		done();
+	},
+	{ retry: 5 }
+);
 
 test("step", async (done) => {
 	expect(await step(mapcat(async (x) => [x, x]))(1)).toEqual([1, 1]);
