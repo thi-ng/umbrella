@@ -16,9 +16,7 @@
 
 - [About](#about)
 - [Status](#status)
-  - [7.0.0 release](#700-release)
-  - [6.0.0 release](#600-release)
-  - [5.0.0 release](#500-release)
+  - [9.0.0 release](#900-release)
 - [Support packages](#support-packages)
 - [Related packages](#related-packages)
   - [Blog posts](#blog-posts)
@@ -67,23 +65,23 @@
 
 Lightweight transducer implementations for ES6 / TypeScript.
 
-This library provides altogether ~130 transducers, reducers, sequence
-generators (ES6 generators/iterators) and additional supporting
-functions for composing data transformation pipelines.
+This library provides altogether ~170 transducers, reducers, sequence generators
+(ES6 generators/iterators) and additional supporting functions for composing
+data transformation pipelines.
 
-The overall concept and many of the core functions offered here are
-directly inspired by the original Clojure implementation by Rich Hickey,
-though the implementation does heavily differ (also in contrast to some
-other JS based implementations) and dozens of less common, but generally
-highly useful operators have been added. See full list below.
+The overall concept and many of the core functions offered here are directly
+inspired by the original Clojure implementation by Rich Hickey, though the
+implementation does heavily differ (also in contrast to some other JS based
+implementations) and dozens of less common, but generally highly useful
+operators have been added. See full list below.
 
-Furthermore, most transducers & reducers provided here accept an
-optional input iterable, which allows them to be used directly as
-transformers instead of having to wrap them in one of the execution
-functions (i.e. `transduce()`/`transduceRight()`, `reduce()`/`reduceRight()`,
-`iterator()`, `run()`, `step()`). If called this way, transducer functions
-will return a transforming ES6 iterator (generator) and reducing functions
-will return a reduced result of the given input iterable.
+Furthermore, most transducers & reducers provided here accept an optional input
+iterable, which allows them to be used directly as transformers instead of
+having to wrap them in one of the execution functions (i.e.
+`transduce()`/`transduceRight()`, `reduce()`/`reduceRight()`, `iterator()`,
+`run()`, `step()`). If called this way, transducer functions will return a
+transforming ES6 iterator (generator) and reducing functions will return a
+reduced result of the given input iterable.
 
 ## Status
 
@@ -91,49 +89,16 @@ will return a reduced result of the given input iterable.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers%5D+in%3Atitle)
 
-### 7.0.0 release
+### 9.0.0 release
 
-Thanks to a [PR](https://github.com/thi-ng/umbrella/pull/223) and [related
-issue](https://github.com/thi-ng/umbrella/issues/186) by
-[@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub), various transducers
-functions have been fixed for the case when they're invoked with an _empty_
-string as input iterable. Furthermore,
-[`flatten()`](https://docs.thi.ng/umbrella/transducers/functions/flatten.html) is
-_always_ treating strings as atomic values now, whereas before top-level strings
-would be split into individual characters.
-
-### 6.0.0 release
-
-BREAKING CHANGES:
-
-- The `interpolate` iterator for keyframe interpolation has been renamed
-  to `tween`. In its place there's a new higher order transducer called
-  `interpolate`, incl. syntax-sugar versions `interpolateHermite` and
-  `interpolateLinear`.
-- The previously deprecated `wrapLeft`, `wrapRight` and `wrapBoth`
-  iterators have been removed.
-- The `wrap` iterator has been renamed to `wrapSides` and has a new
-  signature/arguments, more aligned with the ones listed below.
-
-The following new iterators have been added:
-
-- `extendSides`
-- `padSides`
-- `symmetric`
-
-### 5.0.0 release
-
-Several previously included internal support functions have been
-migrated to the
-[@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-package. You'll need to update your imports if you've been using any of
-these directly. Note that some of these functions also have changes to
-their arg order. See changelog.
-
-Functions using randomness now all support an optional PRNG
-implementation of the `IRandom` interface from the
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-package.
+This release corrects a longstanding stylistic issue regarding the order of
+generic type args given to [`Reducer<A, B>`](#reducer), which now uses the
+swapped & more logical order (i.e. reduce from `A` to `B`) and is the same order
+of generic type args for `Transducer` and `AsyncTransducer` / `AsyncReducer` (in
+the [thi.ng/transducers-async
+package](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers-async)).
+Most userland code should be unimpacted by this change - this is only a breaking
+change for custom reducer impls.
 
 ## Support packages
 
@@ -703,9 +668,8 @@ Apart from type aliases, the only real types defined are:
 #### Reducer
 
 Reducers are the core building blocks of transducers. Unlike other
-implementations using OOP approaches, a `Reducer` in this lib is a
-simple 3-element array of functions, each addressing a separate
-processing step.
+implementations using OOP approaches, a `Reducer` in this lib is a simple
+3-element array of functions, each addressing a separate processing step.
 
 The bundled reducers are all wrapped in functions to provide a uniform API (and
 some of them can be preconfigured and/or are stateful closures). However, it's
@@ -760,8 +724,8 @@ class Reduced<T> implements IDeref<T> {
 }
 ```
 
-Instances can be
-created via `reduced(x)` and handled via these helper functions:
+Instances can be created via `reduced(x)` and handled via these helper
+functions:
 
 - `reduced(x: any): any`
 - `isReduced(x: any): boolean`
@@ -780,8 +744,8 @@ here:
 - [DCons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons/src/index.ts#L156)
 - [SortedMap](https://github.com/thi-ng/umbrella/tree/develop/packages/associative/src/sorted-map.ts#L276)
 
-**Note:** The `IReducible` interface is only used by `reduce()`,
-`transduce()` and `run()`.
+**Note:** The `IReducible` interface is only used by `reduce()`, `transduce()`
+and `run()`.
 
 #### Transducer
 
@@ -789,9 +753,9 @@ From Rich Hickey's original definition:
 
 > A transducer is a transformation from one reducing function to another
 
-As shown in the examples above, transducers can be dynamically composed
-(using `comp()`) to form arbitrary data transformation pipelines without
-causing large overheads for intermediate collections.
+As shown in the examples above, transducers can be dynamically composed (using
+`comp()`) to form arbitrary data transformation pipelines without causing large
+overheads for intermediate collections.
 
 ```ts
 type Transducer<A, B> = (rfn: Reducer<B, any>) => Reducer<A, any>;
@@ -828,10 +792,10 @@ function dedupe<T>(): Transducer<T, T> {
 
 #### IXform interface
 
-Interface for types able to provide some internal functionality (or
-derive some related transformation) as `Transducer`. Implementations of
-this interface can be directly passed to all functions in this package
-where a `Transducer` arg is expected.
+Interface for types able to provide some internal functionality (or derive some
+related transformation) as `Transducer`. Implementations of this interface can
+be directly passed to all functions in this package where a `Transducer` arg is
+expected.
 
 ```ts
 import { map, push, range, transduce, type IXform } from "@thi.ng/transducers";
@@ -865,9 +829,9 @@ transduce(
 
 `comp(f1, f2, ...)`
 
-Returns new transducer composed from given transducers. Data flow is
-from left to right. Offers fast paths for up to 10 args. If more are
-given, composition is done dynamically via for loop.
+Returns new transducer composed from given transducers. Data flow is from left
+to right. Offers fast paths for up to 10 args. If more are given, composition is
+done dynamically via for loop.
 
 #### compR
 
@@ -879,17 +843,16 @@ Helper function to compose reducers.
 
 `iterator<A, B>(tx: Transducer<A, B>, xs: Iterable<A>): IterableIterator<B>`
 
-Similar to `transduce()`, but emits results as ES6 iterator (and hence
-doesn't use a reduction function).
+Similar to `transduce()`, but emits results as ES6 iterator (and hence doesn't
+use a reduction function).
 
 #### reduce
 
 `reduce<A, B>(rfn: Reducer<A, B>, acc?: A, xs: Iterable<B>): A`
 
-Reduces `xs` using given reducer and optional initial
-accumulator/result. If `xs` implements the `IReducible` interface,
-delegates to that implementation. Likewise, uses a fast route if `xs` is
-an `ArrayLike` type.
+Reduces `xs` using given reducer and optional initial accumulator/result. If
+`xs` implements the `IReducible` interface, delegates to that implementation.
+Likewise, uses a fast route if `xs` is an `ArrayLike` type.
 
 #### reduceRight
 
@@ -902,8 +865,8 @@ into right-to-left order.
 
 `transduce<A, B, C>(tx: Transducer<A, B>, rfn: Reducer<C, B>, acc?: C, xs: Iterable<A>): C`
 
-Transforms iterable using given transducer and combines results with
-given reducer and optional initial accumulator/result.
+Transforms iterable using given transducer and combines results with given
+reducer and optional initial accumulator/result.
 
 #### transduceRight
 
@@ -916,11 +879,10 @@ them into right-to-left order.
 
 `run<A, B>(tx: Transducer<A, B>, fx: (x: B) => void, xs: Iterable<A>)`
 
-Transforms iterable with given transducer and optional side effect
-without any reduction step. If `fx` is given it will be called with
-every value produced by the transducer. If `fx` is _not_ given, the
-transducer is assumed to include at least one `sideEffect()` step
-itself. Returns nothing.
+Transforms iterable with given transducer and optional side effect without any
+reduction step. If `fx` is given it will be called with every value produced by
+the transducer. If `fx` is _not_ given, the transducer is assumed to include at
+least one `sideEffect()` step itself. Returns nothing.
 
 #### consume
 
@@ -946,9 +908,9 @@ consume(repeatedly2d((x, y) => console.log("output:", [x, y]), 2, 3));
 
 ### Transducers
 
-All of the following functions can be used and composed as transducers.
-With a few exceptions, most also accept an input iterable and then
-directly yield a transforming iterator, e.g.
+All of the following functions can be used and composed as transducers. With a
+few exceptions, most also accept an input iterable and then directly yield a
+transforming iterator, e.g.
 
 ```ts
 import { map, push, range, transduce } from "@thi.ng/transducers";
@@ -1071,9 +1033,9 @@ transduce(map((x) => x*10), push(), range(4))
 
 ### Reducers
 
-As with transducer functions, reducer functions can also given an
-optional input iterable. If done so, the function will consume the input
-and return a reduced result (as if it would be called via `reduce()`).
+As with transducer functions, reducer functions can also given an optional input
+iterable. If done so, the function will consume the input and return a reduced
+result (as if it would be called via `reduce()`).
 
 - [add](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/add.ts)
 - [assocMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/assoc-map.ts)
