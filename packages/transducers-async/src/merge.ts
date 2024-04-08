@@ -16,8 +16,7 @@ export async function* merge<T>(
 	let n = iters.length;
 	const $remove = (id: number) => {
 		iters.splice(id, 1);
-		n--;
-		if (!n) return true;
+		if (!--n) return true;
 		for (let i = id; i < n; i++) iters[i].id--;
 	};
 	// array of in-flight promises

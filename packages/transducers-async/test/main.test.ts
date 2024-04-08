@@ -240,6 +240,48 @@ test(
 	{ retry: 5 }
 );
 
+test("sync (reset)", async (done) => {
+	expect(
+		await push(
+			sync(
+				{
+					a: repeatedly((i) => i, 2),
+					b: repeatedly((i) => i, 4),
+				},
+				{ reset: true }
+			)
+		)
+	).toEqual([
+		{ a: 0, b: 0 },
+		{ a: 1, b: 1 },
+		{ a: 1, b: 2 },
+		{ a: 1, b: 3 },
+	]);
+	done();
+});
+
+test("sync (merge only)", async (done) => {
+	expect(
+		await push(
+			sync(
+				{
+					a: repeatedly((i) => i, 2),
+					b: repeatedly((i) => i, 4),
+				},
+				{ mergeOnly: true }
+			)
+		)
+	).toEqual([
+		{ a: 0 },
+		{ a: 0, b: 0 },
+		{ a: 1, b: 0 },
+		{ a: 1, b: 1 },
+		{ a: 1, b: 2 },
+		{ a: 1, b: 3 },
+	]);
+	done();
+});
+
 test("take", async (done) => {
 	expect(
 		await transduce(
