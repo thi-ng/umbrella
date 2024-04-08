@@ -37,9 +37,9 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to 190 individual TypeScript
-libraries/packages and 155 example projects illustrating their usage, currently
-totalling ~200k SLOC and ~3890 source files...
+This mono-repository is home to 191 individual TypeScript
+libraries/packages and 156 example projects illustrating their usage, currently
+totalling ~208k SLOC and ~4000 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet independent libraries, tools and
@@ -255,18 +255,27 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-03-28
+As of: 2024-04-08
 
-| Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
-|:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/arrays`](./packages/arrays)           | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)           | [changelog](./packages/arrays/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/bench`](./packages/bench)             | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)             | [changelog](./packages/bench/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/memoize`](./packages/memoize)         | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)         | [changelog](./packages/memoize/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/meta-css`](./packages/meta-css)       | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)       | [changelog](./packages/meta-css/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-forms`](./packages/rdom-forms)   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)   | [changelog](./packages/rdom-forms/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/strings`](./packages/strings)         | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)         | [changelog](./packages/strings/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/text-format`](./packages/text-format) | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format) | [changelog](./packages/text-format/CHANGELOG.md) |
+| Status                                           | Package                                                       | Version                                                                                                                             | Changelog                                               |
+|:-------------------------------------------------|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/api`](./packages/api)                               | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                               | [changelog](./packages/api/CHANGELOG.md)                |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/associative`](./packages/associative)               | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)               | [changelog](./packages/associative/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/checks`](./packages/checks)                         | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)                         | [changelog](./packages/checks/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/compose`](./packages/compose)                       | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)                       | [changelog](./packages/compose/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/csp`](./packages/csp)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                               | [changelog](./packages/csp/CHANGELOG.md)                |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/csv`](./packages/csv)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                               | [changelog](./packages/csv/CHANGELOG.md)                |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/dcons`](./packages/dcons)                           | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)                           | [changelog](./packages/dcons/CHANGELOG.md)              |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/fsm`](./packages/fsm)                               | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)                               | [changelog](./packages/fsm/CHANGELOG.md)                |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/memoize`](./packages/memoize)                       | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)                       | [changelog](./packages/memoize/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/meta-css`](./packages/meta-css)                     | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                     | [changelog](./packages/meta-css/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rstream`](./packages/rstream)                       | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                       | [changelog](./packages/rstream/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers-async`](./packages/transducers-async)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)   | [changelog](./packages/transducers-async/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)       | [changelog](./packages/transducers-fsm/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-patch`](./packages/transducers-patch)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)   | [changelog](./packages/transducers-patch/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-stats`](./packages/transducers-stats)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)   | [changelog](./packages/transducers-stats/CHANGELOG.md)  |
 
 ### Fundamentals
 
@@ -358,6 +367,7 @@ As of: 2024-03-28
 | [`@thi.ng/iterators`](./packages/iterators)                   | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)                   | [changelog](./packages/iterators/CHANGELOG.md)          | ES6 generators / iterators              |
 | [`@thi.ng/seq`](./packages/seq)                               | [![version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)                               | [changelog](./packages/seq/CHANGELOG.md)                | Lisp/Clojure-style sequence abstraction |
 | [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        | Composable data transformations         |
+| [`@thi.ng/transducers-async`](./packages/transducers-async)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)   | [changelog](./packages/transducers-async/CHANGELOG.md)  | Async transducers, reducers & iterators |
 | [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) | Binary data related transducers         |
 | [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)       | [changelog](./packages/transducers-fsm/CHANGELOG.md)    | Finite state transducer                 |
 | [`@thi.ng/transducers-hdom`](./packages/transducers-hdom)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)     | [changelog](./packages/transducers-hdom/CHANGELOG.md)   | Transducer based hdom UI updates        |
