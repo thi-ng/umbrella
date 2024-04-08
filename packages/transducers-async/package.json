@@ -101,9 +101,6 @@
 		"./concat": {
 			"default": "./concat.js"
 		},
-		"./cycle": {
-			"default": "./cycle.js"
-		},
 		"./ensure": {
 			"default": "./ensure.js"
 		},
