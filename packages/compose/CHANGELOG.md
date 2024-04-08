@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-27T09:53:45Z
+- **Last updated**: 2024-04-08T14:59:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@3.0.0) (2024-04-08)
+
+#### 🛑 Breaking changes
+
+- remove/migrate delay() to different pkg ([745abbb](https://github.com/thi-ng/umbrella/commit/745abbb))
+- BREAKING CHANGE: migrate delay() & Delay class to [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/main/packages/memoize)
+  - see [d8f4733c05e724c38195f209337d0a015e049ac4](https://github.com/thi-ng/umbrella/commit/d8f4733c05e724c38195f209337d0a015e049ac4) for details
+
+#### 🚀 Features
+
+- add async composition helpers ([168ea42](https://github.com/thi-ng/umbrella/commit/168ea42))
+  - add async functions:
+    - compAsync()
+    - juxtAsync()
+    - threadFirstAsync()/threadLastAsync()
+    - trampolineAsync()
 
 ### [2.1.35](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@2.1.35) (2023-08-04)
 

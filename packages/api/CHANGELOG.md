@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-27T09:53:45Z
+- **Last updated**: 2024-04-08T14:59:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.10.0) (2024-04-08)
+
+#### 🚀 Features
+
+- add async types ([35ad820](https://github.com/thi-ng/umbrella/commit/35ad820))
+- add async function types ([afb4200](https://github.com/thi-ng/umbrella/commit/afb4200))
+- add Values<T> ([8a799ea](https://github.com/thi-ng/umbrella/commit/8a799ea))
 
 ## [8.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.9.0) (2023-08-04)
 

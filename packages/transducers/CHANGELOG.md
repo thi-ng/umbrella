@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-27T09:53:46Z
+- **Last updated**: 2024-04-08T14:59:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [9.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@9.0.0) (2024-04-08)
+
+#### 🛑 Breaking changes
+
+- update Reducer, Transducer and other types ([95c43f3](https://github.com/thi-ng/umbrella/commit/95c43f3))
+- BREAKING CHANGE: update generics in Reducer, Transducer and other types
+  - swap generic type args in `Reducer` and `IReducible` to be same order as in `Transducer`, `IXform`,
+    i.e. `Reducer<A, B>` maps items from type A to type B, **not** the other way (as was)!
+  - this new order is more logical, less confusing and also in line with upcoming async transducers pkg
+  - changes in userland should be minimal (if any), only impacted are custom reducer definitions
+  - update all pkg internal occurrences
+  - various other small refactorings, type/arg updates, e.g.
+    - add generics for `reduced()`/`ensureReduced()`/`unreduced()`
+    - update `step()` return type (incl. undefined)
+    - add `StructField` generics
 
 ### [8.9.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.9.6) (2024-02-22)
 

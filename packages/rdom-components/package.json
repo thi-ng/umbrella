@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom-components",
-	"version": "0.6.74",
+	"version": "0.6.75",
 	"description": "Collection of unstyled, customizable components for @thi.ng/rdom",
 	"type": "module",
 	"module": "./index.js",
@@ -36,13 +36,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.31",
-		"@thi.ng/associative": "^6.3.54",
-		"@thi.ng/hiccup-html": "^2.5.0",
-		"@thi.ng/rdom": "^1.1.21",
-		"@thi.ng/rstream": "^8.3.19",
-		"@thi.ng/strings": "^3.7.28",
-		"@thi.ng/transducers": "^8.9.18"
+		"@thi.ng/api": "^8.10.0",
+		"@thi.ng/associative": "^6.3.55",
+		"@thi.ng/hiccup-html": "^2.5.1",
+		"@thi.ng/rdom": "^1.1.22",
+		"@thi.ng/rstream": "^8.3.20",
+		"@thi.ng/strings": "^3.7.29",
+		"@thi.ng/transducers": "^9.0.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

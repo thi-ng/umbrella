@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-03-27T09:53:46Z
+- **Last updated**: 2024-04-08T14:59:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.113](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-patch@0.4.113) (2024-04-08)
+
+#### ♻️ Refactoring
+
+- update reducer handling due to updates in [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/main/packages/transducers) pkg ([a5d296e](https://github.com/thi-ng/umbrella/commit/a5d296e))
 
 ### [0.4.76](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-patch@0.4.76) (2023-11-09)
 

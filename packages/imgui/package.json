@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/imgui",
-	"version": "2.2.52",
+	"version": "2.2.53",
 	"description": "Immediate mode GUI with flexible state handling & data only shape output",
 	"type": "module",
 	"module": "./index.js",
@@ -36,16 +36,16 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.31",
-		"@thi.ng/checks": "^3.5.5",
-		"@thi.ng/geom": "^6.1.4",
-		"@thi.ng/geom-api": "^4.0.4",
-		"@thi.ng/geom-isec": "^3.0.4",
-		"@thi.ng/geom-tessellate": "^2.1.126",
-		"@thi.ng/layout": "^3.0.34",
-		"@thi.ng/math": "^5.10.8",
-		"@thi.ng/transducers": "^8.9.18",
-		"@thi.ng/vectors": "^7.10.25"
+		"@thi.ng/api": "^8.10.0",
+		"@thi.ng/checks": "^3.6.0",
+		"@thi.ng/geom": "^6.1.5",
+		"@thi.ng/geom-api": "^4.0.5",
+		"@thi.ng/geom-isec": "^3.0.5",
+		"@thi.ng/geom-tessellate": "^2.1.127",
+		"@thi.ng/layout": "^3.0.35",
+		"@thi.ng/math": "^5.10.9",
+		"@thi.ng/transducers": "^9.0.0",
+		"@thi.ng/vectors": "^7.10.26"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",
