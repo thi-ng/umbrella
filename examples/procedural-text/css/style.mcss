@@ -1,0 +1,28 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+body { system-sans-serif }
+
+main {
+	pa2 vh-100 grid grid-cols-2 grid-rows(2rem 1fr) gap3
+}
+
+h1 { f3 ls--1 }
+
+#editor {
+	grid grid-rows(1fr 4rem) gap3
+	{
+		textarea { db pa2 bg-color-lightest-blue color-black monospace f6 }
+		button { db bg-color-blue color-white bw0 }
+	}	
+}
+
+#result {
+	f3
+	{
+		.error { bg-color-red color-white pa3 h-100 }
+		.output { pr3 }
+	}
+}

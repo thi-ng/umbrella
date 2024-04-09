@@ -2,7 +2,12 @@
 
 [Live demo](http://demo.thi.ng/umbrella/rdom-basics/)
 
-Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
+## Developing & building
+
+Please refer to the instructions on the wiki:
+
+- [Development](https://github.com/thi-ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
+- [Production build](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
 
 ## Authors
 

@@ -1,6 +1,7 @@
 import { isString } from "@thi.ng/checks";
 import { delayed } from "@thi.ng/compose";
-import { button, div, h1, li, span } from "@thi.ng/hiccup-html";
+import { px } from "@thi.ng/hiccup-css";
+import { button, div, h1, header, li, span } from "@thi.ng/hiccup-html";
 import { SYSTEM, pickRandomUnique } from "@thi.ng/random";
 import { $compile, $list, $replace } from "@thi.ng/rdom";
 import {
@@ -54,7 +55,7 @@ const randomizeList = () =>
 	items.next([...take(SYSTEM.minmaxInt(100, 500), choices(itemChoices))]);
 
 const demoButton = (onclick: EventListener, label: string) =>
-	button(".mr2", { onclick }, label);
+	button({ onclick }, label);
 
 const mpos = fromDOMEvent(window, "mousemove").map((e) => [e.pageX, e.pageY]);
 
@@ -63,51 +64,41 @@ randomizeList();
 
 $compile(
 	div(
-		".ma3.bg-dark-gray.white",
 		{},
 		h1(
-			".absolute.white.z1",
 			{
 				class: { blur },
-				style: mpos.map(([x, y]) => ({
-					left: x + "px",
-					top: y + "px",
-				})),
+				style: mpos.map(([x, y]) => ({ left: px(x), top: px(y) })),
 			},
 			$replace(
 				sync({
 					src: { body, mpos },
 					xform: map((x) =>
-						span({}, x.body, [
-							"span.ml2.light-green",
-							{},
-							`[${x.mpos}]`,
-						])
+						span({}, x.body, span(".subtitle", {}, `[${x.mpos}]`))
 					),
 				})
 			)
 		),
-		div(
-			".mv3",
+		header(
 			{},
 			demoButton(() => blur.next(), "toggle blur"),
 			demoButton(randomizeBody, "randomize title"),
 			demoButton(randomizeList, "randomize list")
 		),
-		div(".hot-pink", {}, date),
+		div(".date", {}, date),
 		div(
-			".pink",
+			".stats",
 			{},
 			items.map((x) => `${x.length} items`)
 		),
-		$list(items, "ul.f7", { style: { "column-count": 2 } }, (x) =>
+		$list(items, "ul", {}, (x) =>
 			li(
 				{
 					class: isString(x)
-						? "light-blue"
+						? "item-string"
 						: x === typing
-						? "red"
-						: "yellow",
+						? "item-typing"
+						: "item-default",
 				},
 				x
 			)

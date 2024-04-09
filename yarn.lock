@@ -1690,6 +1690,7 @@ __metadata:
   dependencies:
     "@thi.ng/defmulti": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/parse": "workspace:^"
     "@thi.ng/random": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
@@ -1772,6 +1773,7 @@ __metadata:
     "@thi.ng/checks": "workspace:^"
     "@thi.ng/compose": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/random": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
@@ -1803,6 +1805,7 @@ __metadata:
   dependencies:
     "@thi.ng/compose": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/random": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"

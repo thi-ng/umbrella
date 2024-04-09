@@ -34,7 +34,7 @@ const colors = cycle(["f00", "0ff", "f0f", "f90", "00f", "0f0"]);
  * @param srcUrl -
  */
 const userThumb = (srcUrl: Promise<string>) =>
-	img(".db.w-100", {
+	img({
 		// src image attribute
 		src: merge({
 			// stream sources
@@ -57,13 +57,13 @@ const userThumb = (srcUrl: Promise<string>) =>
  */
 const userThumbAlt = (srcUrl: Promise<string>) =>
 	div(
-		".aspect-ratio.aspect-ratio--16x9.tc",
+		".user-thumb-alt",
 		{},
 		$refresh(
 			fromPromise(srcUrl),
-			async (src) => ["img.w-100", { src }],
-			async (x) => ["img.w-100", { src: "broken.png" }],
-			async () => ["div", { style: { padding: "25% 0" } }, "loading..."]
+			async (src) => ["img", { src }],
+			async (x) => ["img", { src: "broken.png" }],
+			async () => ["div.preload", {}, "loading..."]
 		)
 	);
 
@@ -76,7 +76,7 @@ class UserComponent extends Component {
 		this.el = await this.$tree(
 			this.$compile(
 				div(
-					".bg-black.white",
+					".user",
 					{},
 					// DOM comment (inspect in browser dev tools)
 					comment(`ID: ${this.user.id}`, `Name: ${this.user.name}`),
@@ -90,11 +90,7 @@ class UserComponent extends Component {
 							SYSTEM.minmax(0.5, 1) * 2000
 						)
 					),
-					h3(
-						".pa2.ma0.f6",
-						{},
-						`User #${this.user.id}: ${this.user.name}`
-					)
+					h3({}, `User #${this.user.id}: ${this.user.name}`)
 				)
 			),
 			parent,
@@ -108,14 +104,8 @@ class UserComponent extends Component {
 $compile(
 	$klist(
 		users,
-		"div",
-		{
-			style: {
-				display: "grid",
-				"grid-template-columns": "1fr 1fr 1fr",
-				gap: "0.25rem",
-			},
-		},
+		"main",
+		{},
 		(user) => new UserComponent(user),
 		(user) => user.id
 	)

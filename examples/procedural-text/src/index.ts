@@ -1,4 +1,4 @@
-import { br, button, div, h3, para, textArea } from "@thi.ng/hiccup-html";
+import { br, button, div, h1, main, para, textArea } from "@thi.ng/hiccup-html";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $input, $inputTrigger, $replace } from "@thi.ng/rdom";
 import { staticDropdownAlt } from "@thi.ng/rdom-components";
@@ -59,10 +59,10 @@ const generated = regenerate.map(() => {
 	const result = generateStory(input, { vars: {}, rnd: SYSTEM });
 	// possibly return error message
 	if (result.err) {
-		return div(".bg-red.white.pr3.h-100", {}, result.err.message);
+		return div(".error", {}, result.err.message);
 	} else {
 		return div(
-			".pr3",
+			".output",
 			{},
 			// post-process generated text to handle paragraphs & linebreaks
 			...result.result
@@ -92,43 +92,24 @@ if (initial) {
 
 // build & mount reactive UI components
 $compile(
-	div(
-		{
-			class: "pa2 vh-100",
-			style: {
-				display: "grid",
-				"grid-template-columns": "1fr 1fr",
-				"grid-template-rows": "2rem 1fr",
-				gap: "1rem",
-			},
-		},
-		h3(".mv1", {}, "Procedural text gen"),
+	main(
+		{},
+		h1({}, "Procedural text gen"),
 		// dropdown component with fixed options
-		staticDropdownAlt(Object.keys(STORIES), storyID, {
-			attribs: { class: "db w-100" },
-		}),
+		staticDropdownAlt(Object.keys(STORIES), storyID, {}),
 		div(
-			{
-				style: {
-					display: "grid",
-					"grid-template-rows": "1fr 4rem",
-					gap: "0.5rem",
-				},
-			},
+			"#editor",
+			{},
 			// editor, subscribed & feeding back to storyInput
-			textArea("#editor.db.w-100.pa2.bg-lightest-blue.black.code.f6", {
+			textArea({
 				value: storyInput,
 				oninput: $input(storyInput),
 			}),
 			// regenerate button
-			button(
-				".db.w-100.bg-blue.white.bn",
-				{ onclick: $inputTrigger(regenerate) },
-				"(Re)generate"
-			)
+			button({ onclick: $inputTrigger(regenerate) }, "(Re)generate")
 		),
 		// generated result (or error message). contents of that wrapper
 		// component will be completely replaced with each value change
-		div(".f3", {}, $replace(generated))
+		div("#result", {}, $replace(generated))
 	)
 ).mount(document.getElementById("app")!);
