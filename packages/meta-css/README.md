@@ -99,7 +99,9 @@
     - [Color definitions](#color-definitions)
     - [Dimensions](#dimensions)
     - [Font families](#font-families)
+    - [Fx](#fx)
     - [Grid layout](#grid-layout)
+    - [Layout](#layout)
     - [Margin](#margin)
     - [Mask](#mask)
     - [Padding](#padding)
@@ -1109,7 +1111,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 935 CSS utility classes (incl. 62 templates) defined in "MetaCSS base" (v0.9.0):
+Currently, there are 937 CSS utility classes (incl. 64 templates) defined in "MetaCSS base" (v0.9.0):
 
 ### Classes by category
 
@@ -2345,12 +2347,6 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 #### Background
 
-<details><summary>4 items:</summary>
-
-##### `bg-blur(radius)`
-
-- **radius**: incl. units
-
 ##### `bg-image(url)`
 
 - **url**: image URL
@@ -2362,8 +2358,6 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 ##### `bg-size(body)`
 
 - **body**: CSS value/definition
-
-</details>
 
 #### Background color
 
@@ -2521,6 +2515,16 @@ Sets width to given value
 
 - **body**: CSS value/definition
 
+#### Fx
+
+##### `bg-blur(radius)`
+
+- **radius**: incl. units
+
+##### `blur(radius)`
+
+- **radius**: incl. units
+
 #### Grid layout
 
 ##### `grid-cols(cols)`
@@ -2530,6 +2534,12 @@ Sets width to given value
 ##### `grid-rows(rows)`
 
 - **rows**: CSS rows definitions
+
+#### Layout
+
+##### `columns(num)`
+
+- **num**: column count
 
 #### Margin
 
@@ -2735,7 +2745,10 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>            | Interactive & reactive image blurhash generator                                             | [Demo](https://demo.thi.ng/umbrella/blurhash/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/layout-gridgen.png" width="240"/>      | Randomized space-filling, nested grid layout generator                                      | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/layout-gridgen)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/>     | Basic thi.ng/meta-css usage & testbed                                                       | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg" width="240"/>     | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation    | [Demo](https://demo.thi.ng/umbrella/procedural-text/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/procedural-text)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-scroll-anim.png" width="240"/>    | Scroll-based, reactive, multi-param CSS animation basics                                    | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-scroll-anim)    |
+|                                                                                                                            | Demonstates various rdom usage patterns                                                     | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-basics)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-delayed-update.jpg" width="240"/> | Dynamically loaded images w/ preloader state                                                | [Demo](https://demo.thi.ng/umbrella/rdom-delayed-update/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-delayed-update) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-dnd.png" width="240"/>            | rdom drag & drop example                                                                    | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>        | Basic usage of the declarative rdom-forms generator                                         | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lazy-load.png" width="240"/>      | Lazy loading components via @thi.ng/rdom                                                    | [Demo](https://demo.thi.ng/umbrella/rdom-lazy-load/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lazy-load)      |

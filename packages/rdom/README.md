@@ -279,7 +279,7 @@ Browser ESM import:
 
 [Skypack documentation](https://docs.skypack.dev/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.02 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.04 KB
 
 ## Dependencies
 
