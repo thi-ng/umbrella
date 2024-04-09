@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import { deref, isDeref, type MaybeDeref } from "@thi.ng/api/deref";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
@@ -306,10 +306,47 @@ export const $attribs = (el: Element, attribs: any) => {
 	return el;
 };
 
+const __setterCache: Record<string, Fn<any, void> | false> = {};
+
+const getproto = Object.getPrototypeOf;
+const getdesc = Object.getOwnPropertyDescriptor;
+
+/**
+ * Recursively attempts to find property descriptor in prototype chain.
+ *
+ * @param proto
+ * @param prop
+ *
+ * @internal
+ */
+const __desc = (proto: any, prop: string): any =>
+	proto ? getdesc(proto, prop) ?? __desc(getproto(proto), prop) : undefined;
+
+/**
+ * Attempts to find a setter for given `el` and `prop` name in the setter cache
+ * or scans element's prototype chain using {@link __desc} and then caches it
+ * (if found).
+ *
+ * @remarks
+ * The cache only stores unbound setters (or null). Returned setters must be
+ * bound to the actual `el` or called via `setter.call(el, value)`.
+ *
+ * @param el
+ * @param prop
+ *
+ * @internal
+ */
+const __setter = (el: Element, prop: string) => {
+	const key = `${el.namespaceURI}/${el.tagName}#${prop}`;
+	return (
+		__setterCache[key] ??
+		(__setterCache[key] = __desc(getproto(el), prop)?.set ?? false)
+	);
+};
+
 const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 	implementsFunction(val, "deref") && (val = val.deref());
-	const isListener = id.startsWith("on");
-	if (isListener) {
+	if (id.startsWith("on")) {
 		if (isString(val)) {
 			el.setAttribute(id, val);
 		} else {
@@ -340,27 +377,11 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 		case "prefix":
 			el.setAttribute(id, isString(val) ? val : formatPrefixes(val));
 			break;
-		case "accessKey":
-		case "autocapitalize":
-		case "checked":
-		case "contentEditable":
-		case "dir":
-		case "draggable":
-		case "hidden":
-		case "id":
-		case "indeterminate":
-		case "lang":
-		case "scrollLeft":
-		case "scrollTop":
-		case "selectionEnd":
-		case "selectionStart":
-		case "slot":
-		case "spellcheck":
-		case "tabIndex":
-		case "title":
-			(<any>el)[id] = val;
-			break;
 		default: {
+			const setter = __setter(el, id);
+			if (setter && val != null) {
+				return setter.call(el, val);
+			}
 			const idx = id.indexOf(":");
 			if (idx < 0) {
 				val === false || val == null
