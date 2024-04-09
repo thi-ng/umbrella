@@ -204,16 +204,16 @@ test.only(
 		expect(
 			await push(
 				sidechain(
-					repeatedly((i) => i, 100, 10),
-					repeatedly(() => true, 3, 25)
+					repeatedly((i) => i, 100, 100),
+					repeatedly(() => true, 3, 250)
 				)
 			)
 		).toEqual([0, 2, 4]);
 		expect(
 			await push(
 				sidechain(
-					repeatedly((i) => i, 100, 10),
-					repeatedly(() => true, 3, 25),
+					repeatedly((i) => i, 100, 100),
+					repeatedly(() => true, 3, 250),
 					{ lastOnly: false }
 				)
 			)
@@ -240,8 +240,8 @@ test(
 	async (done) => {
 		const res = await push(
 			sync({
-				a: repeatedly((i) => i, 5, 30),
-				b: repeatedly((i) => String(i * 10), 3, 50),
+				a: repeatedly((i) => i, 5, 66),
+				b: repeatedly((i) => String(i * 10), 3, 100),
 			})
 		);
 		expect(res).toEqual([
