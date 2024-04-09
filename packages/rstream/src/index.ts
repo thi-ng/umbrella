@@ -1,5 +1,6 @@
 export * from "./api.js";
 export * from "./asidechain.js";
+export * from "./async.js";
 export * from "./atom.js";
 export * from "./bisect.js";
 export * from "./checks.js";

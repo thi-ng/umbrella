@@ -83,7 +83,7 @@ export type ErrorHandler = Fn<any, boolean>;
 
 export interface WithErrorHandler {
 	/**
-	 * Optional error handler to use for this
+	 * Optional error handler to use for this stream/subscription
 	 */
 	error: ErrorHandler;
 }
