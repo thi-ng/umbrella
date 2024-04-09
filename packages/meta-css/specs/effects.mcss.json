@@ -1,0 +1,19 @@
+{
+	"templates": [
+		{
+			"doc": { "group": "fx", "args": ["radius: incl. units"] },
+			"name": "blur",
+			"props": {
+				"filter": "blur({0})"
+			}
+		},
+		{
+			"doc": { "group": "fx", "args": ["radius: incl. units"] },
+			"name": "bg-blur",
+			"props": {
+				"backdrop-filter": "blur({0})",
+				"-webkit-backdrop-filter": "blur({0})"
+			}
+		}
+	]
+}

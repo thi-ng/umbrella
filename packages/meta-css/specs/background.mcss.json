@@ -58,14 +58,6 @@
 			},
 			"name": "bg-size",
 			"props": "background-size"
-		},
-		{
-			"doc": { "group": "background", "args": ["radius: incl. units"] },
-			"name": "bg-blur",
-			"props": {
-				"backdrop-filter": "blur({0})",
-				"-webkit-backdrop-filter": "blur({0})"
-			}
 		}
 	]
 }

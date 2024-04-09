@@ -24,5 +24,12 @@
 			"props": { "visibility": "<v> !important" },
 			"values": ["hidden", "visible", "collapse"]
 		}
+	],
+	"templates": [
+		{
+			"doc": { "group": "layout", "args": ["num: column count"] },
+			"name": "columns",
+			"props": "column-count"
+		}
 	]
 }
