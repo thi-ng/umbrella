@@ -33,7 +33,7 @@ export async function* sidechain<T>(
 	];
 	let buf: T[] = [];
 	while (true) {
-		const [res, side] = await Promise.any(promises);
+		const [res, side] = await Promise.race(promises);
 		if (res.done) return;
 		if (side) {
 			promises[1] = $side.next().then((res) => [res, true]);

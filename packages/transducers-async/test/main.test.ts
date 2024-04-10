@@ -198,7 +198,7 @@ test("run", async (done) => {
 	done();
 });
 
-test.only(
+test(
 	"sidechain",
 	async (done) => {
 		expect(
@@ -249,7 +249,7 @@ test(
 			{ a: 1, b: "0" },
 			{ a: 1, b: "10" },
 			{ a: 2, b: "10" },
-			{ a: 3, b: "10" },
+			{ a: 2, b: "20" },
 			{ a: 3, b: "20" },
 			{ a: 4, b: "20" },
 		]);

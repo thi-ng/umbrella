@@ -24,7 +24,7 @@ export async function* merge<T>(
 		iter.iter.next().then((res) => ({ iter, res }))
 	);
 	while (true) {
-		const { iter, res } = await Promise.any(promises);
+		const { iter, res } = await Promise.race(promises);
 		if (res.done) {
 			promises.splice(iter.id, 1);
 			if ($remove(iter.id)) return;
