@@ -96,7 +96,7 @@ cat << EOF > "$MODULE"/package.json
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.9.31"
+		"@thi.ng/api": "^8.10.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",
