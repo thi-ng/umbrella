@@ -94,6 +94,9 @@
 		"./asidechain": {
 			"default": "./asidechain.js"
 		},
+		"./async": {
+			"default": "./async.js"
+		},
 		"./atom": {
 			"default": "./atom.js"
 		},
