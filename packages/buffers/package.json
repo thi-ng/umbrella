@@ -1,0 +1,95 @@
+{
+	"name": "@thi.ng/buffers",
+	"version": "0.0.1",
+	"description": "General purpose and generic read/write buffer implementations with different behaviors/orderings",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/buffers#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.10.0",
+		"@thi.ng/errors": "^2.5.3"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.43.0",
+		"esbuild": "^0.20.2",
+		"rimraf": "^5.0.5",
+		"typedoc": "^0.25.12",
+		"typescript": "^5.4.3"
+	},
+	"keywords": [
+		"buffer",
+		"dropping",
+		"fifo",
+		"lifo",
+		"ring",
+		"sliding",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./dropping": {
+			"default": "./dropping.js"
+		},
+		"./fifo": {
+			"default": "./fifo.js"
+		},
+		"./lifo": {
+			"default": "./lifo.js"
+		},
+		"./sliding": {
+			"default": "./sliding.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2016
+	}
+}

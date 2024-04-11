@@ -3778,6 +3778,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/buffers@npm:^0.0.1, @thi.ng/buffers@workspace:packages/buffers":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/buffers@workspace:packages/buffers"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.43.0"
+    "@thi.ng/api": "npm:^8.10.0"
+    "@thi.ng/errors": "npm:^2.5.3"
+    esbuild: "npm:^0.20.2"
+    rimraf: "npm:^5.0.5"
+    typedoc: "npm:^0.25.12"
+    typescript: "npm:^5.4.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/cache@workspace:^, @thi.ng/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@thi.ng/cache@workspace:packages/cache"
