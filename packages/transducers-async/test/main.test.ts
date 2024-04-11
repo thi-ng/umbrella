@@ -240,7 +240,7 @@ test(
 	async (done) => {
 		const res = await push(
 			sync({
-				a: repeatedly((i) => i, 5, 66),
+				a: repeatedly((i) => i, 5, 70),
 				b: repeatedly((i) => String(i * 10), 3, 100),
 			})
 		);
