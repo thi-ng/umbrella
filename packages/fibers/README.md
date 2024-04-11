@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 191 standalone projects, maintained as part
+> This is one of 192 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -203,8 +203,9 @@ values are being read, essentially a memory management issue).
 
 #### Buffering behaviors
 
-The following channel buffer types/behaviors are included, all accepting a max.
-capacity and all implementing the
+The following channel buffer types/behaviors are included (from the
+[thi.ng/buffers](https://thi.ng/buffers) package), all accepting a max. capacity
+and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/fibers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:
 
@@ -214,17 +215,18 @@ interface required by the channel:
   channel reads are non-blocking whilst there're more buffered values available.
   Reads will only block if the buffer is empty.
 - [`lifo`](https://docs.thi.ng/umbrella/fibers/functions/lifo.html): Last in,
-  first out. Read/write behavior is mostly the same as with `fifo`, with the
-  important difference, that (as the name indicates), the last value written
-  will be the first value read (i.e. stack behavior).
+  first out. Write behavior is the same as with `fifo`, reads are in reverse
+  order (as the name indicates), i.e. the last value written will be the first
+  value read (i.e. stack behavior).
 - [`sliding`](https://docs.thi.ng/umbrella/fibers/functions/sliding.html):
-  Sliding window ring buffer. Writes to the channel are **never** blocking! Once
-  the buffer's capacity is reached, a new write will first expunge the oldest
-  buffered value (similar to LRU cache behavior). Read behavior is the same as
-  for `fifo`.
+  Sliding window ring buffer. Writes to the channel are **never** blocking!
+  Whilst the buffer is at full capacity, new writes will first expunge the
+  oldest buffered value (similar to [LRU
+  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/fibers/functions/dropping.html):
   Dropping value ring buffer. Writes to the channel are **never** blocking!
-  Whilst the buffer's capacity is reached, new writes will be silently ignored.
+  Whilst the buffer is at full capacity, new writes will be silently ignored.
   Read behavior is the same as for `fifo`.
 
 #### Channels
@@ -395,13 +397,14 @@ For Node.js REPL:
 const fib = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.64 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.45 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
+- [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)

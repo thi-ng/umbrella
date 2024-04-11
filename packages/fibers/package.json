@@ -39,6 +39,7 @@
 		"@thi.ng/api": "^8.10.0",
 		"@thi.ng/arrays": "^2.9.2",
 		"@thi.ng/bench": "^3.5.2",
+		"@thi.ng/buffers": "^0.0.1",
 		"@thi.ng/checks": "^3.6.0",
 		"@thi.ng/errors": "^2.5.3",
 		"@thi.ng/idgen": "^2.2.37",

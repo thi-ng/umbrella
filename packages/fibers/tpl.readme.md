@@ -175,8 +175,9 @@ values are being read, essentially a memory management issue).
 
 #### Buffering behaviors
 
-The following channel buffer types/behaviors are included, all accepting a max.
-capacity and all implementing the
+The following channel buffer types/behaviors are included (from the
+[thi.ng/buffers](https://thi.ng/buffers) package), all accepting a max. capacity
+and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/fibers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:
 
@@ -186,17 +187,18 @@ interface required by the channel:
   channel reads are non-blocking whilst there're more buffered values available.
   Reads will only block if the buffer is empty.
 - [`lifo`](https://docs.thi.ng/umbrella/fibers/functions/lifo.html): Last in,
-  first out. Read/write behavior is mostly the same as with `fifo`, with the
-  important difference, that (as the name indicates), the last value written
-  will be the first value read (i.e. stack behavior).
+  first out. Write behavior is the same as with `fifo`, reads are in reverse
+  order (as the name indicates), i.e. the last value written will be the first
+  value read (i.e. stack behavior).
 - [`sliding`](https://docs.thi.ng/umbrella/fibers/functions/sliding.html):
-  Sliding window ring buffer. Writes to the channel are **never** blocking! Once
-  the buffer's capacity is reached, a new write will first expunge the oldest
-  buffered value (similar to LRU cache behavior). Read behavior is the same as
-  for `fifo`.
+  Sliding window ring buffer. Writes to the channel are **never** blocking!
+  Whilst the buffer is at full capacity, new writes will first expunge the
+  oldest buffered value (similar to [LRU
+  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/fibers/functions/dropping.html):
   Dropping value ring buffer. Writes to the channel are **never** blocking!
-  Whilst the buffer's capacity is reached, new writes will be silently ignored.
+  Whilst the buffer is at full capacity, new writes will be silently ignored.
   Read behavior is the same as for `fifo`.
 
 #### Channels

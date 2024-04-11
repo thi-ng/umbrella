@@ -1,6 +1,10 @@
-import { isNumber } from "@thi.ng/checks";
-import { assert } from "@thi.ng/errors/assert";
-import type { FiberOpts, IReadWriteBuffer } from "./api.js";
+import type { IReadWriteBuffer } from "@thi.ng/buffers";
+import { DroppingBuffer } from "@thi.ng/buffers/dropping";
+import { FIFOBuffer } from "@thi.ng/buffers/fifo";
+import { LIFOBuffer } from "@thi.ng/buffers/lifo";
+import { SlidingBuffer } from "@thi.ng/buffers/sliding";
+import { isNumber } from "@thi.ng/checks/is-number";
+import type { FiberOpts } from "./api.js";
 import { Fiber, fiber } from "./fiber.js";
 
 const STATE_OPEN = 0;
@@ -11,8 +15,9 @@ type CSPState = typeof STATE_OPEN | typeof STATE_CLOSING | typeof STATE_CLOSED;
 
 /**
  * Fiber-based CSP channel implementation, supporting any
- * {@link IReadWriteBuffer} implementation to customize read/write behaviors
- * (and ordering). By default uses a single value {@link fifo} buffer impl.
+ * [IReadWriteBuffer](https://docs.thi.ng/umbrella/buffers/interfaces/IReadWriteBuffer.html)
+ * implementation to customize read/write behaviors (and ordering). By default
+ * uses a single value {@link fifo} buffer impl.
  */
 export class Channel<T> {
 	protected buffer: IReadWriteBuffer<T>;
@@ -177,46 +182,6 @@ export const channel = <T>(
 ) => new Channel<T>(buffer, opts);
 
 /**
- * First-in, first-out ring buffer implementation for use with {@link Channel}.
- */
-export class FIFOBuffer<T> implements IReadWriteBuffer<T> {
-	protected buf: (T | undefined)[];
-	protected rpos = 0;
-	protected wpos = 0;
-
-	constructor(cap = 1) {
-		assert(cap >= 1, `capacity must be >= 1`);
-		this.buf = new Array(cap + 1);
-	}
-
-	clear() {
-		this.buf.fill(undefined);
-	}
-
-	readable() {
-		return this.rpos !== this.wpos;
-	}
-
-	read() {
-		const { buf, rpos } = this;
-		const val = buf[rpos]!;
-		buf[rpos] = undefined;
-		this.rpos = (rpos + 1) % buf.length;
-		return val;
-	}
-
-	writable() {
-		return (this.wpos + 1) % this.buf.length !== this.rpos;
-	}
-
-	write(x: T) {
-		const { buf, wpos } = this;
-		buf[wpos] = x;
-		this.wpos = (wpos + 1) % buf.length;
-	}
-}
-
-/**
  * Returns a {@link FIFOBuffer} ring buffer with given capacity for use with
  * {@link channel}.
  *
@@ -232,70 +197,29 @@ export class FIFOBuffer<T> implements IReadWriteBuffer<T> {
  */
 export const fifo = <T>(cap: number) => new FIFOBuffer<T>(cap);
 
-export class LIFOBuffer<T> implements IReadWriteBuffer<T> {
-	protected buf: T[] = [];
-
-	constructor(protected cap = 1) {
-		assert(cap >= 1, `capacity must be >= 1`);
-	}
-
-	clear() {
-		this.buf.length = 0;
-	}
-
-	readable() {
-		return this.buf.length > 0;
-	}
-
-	read() {
-		return this.buf.pop()!;
-	}
-
-	writable() {
-		return this.buf.length < this.cap;
-	}
-
-	write(x: T) {
-		this.buf.push(x);
-	}
-}
-
 /**
  *  Returns a {@link LIFOBuffer} with given capacity for use with
  * {@link channel}.
  *
  * @remarks
- * Read/write behavior is mostly the same as with {@link fifo}, with the
- * important difference, that (as the name indicates), the last value written
- * will be the first value read (i.e. stack behavior).
+ *  Write behavior is the same as with {@link fifo}, reads are in reverse order
+ *  (as the name indicates), i.e. the last value written will be the first value
+ *  read (i.e. stack behavior).
  *
  * @param cap
  */
 export const lifo = <T>(cap: number) => new LIFOBuffer<T>(cap);
-
-export class SlidingBuffer<T> extends FIFOBuffer<T> {
-	writable() {
-		return true;
-	}
-
-	write(x: T) {
-		if (!super.writable()) {
-			const { buf, rpos } = this;
-			buf[rpos] = undefined;
-			this.rpos = (rpos + 1) % buf.length;
-		}
-		super.write(x);
-	}
-}
 
 /**
  * Returns a {@link SlidingBuffer} with given capacity for use with
  * {@link channel}.
  *
  * @remarks
- * With this implementation, writes to the channel are **never** blocking! Once
- * the buffer's capacity is reached, a new write will first expunge the oldest
- * buffered value. Read behavior is the same as for {@link fifo}.
+ * With this implementation, writes to the channel are **never** blocking!
+ * Whilst the buffer is at full capacity, new writes will first expunge the
+ * oldest buffered value (similar to [LRU
+ * cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+ * behavior). Read behavior is the same as for {@link fifo}.
  *
  * Also see {@link dropping} for alternative behavior.
  *
@@ -303,23 +227,13 @@ export class SlidingBuffer<T> extends FIFOBuffer<T> {
  */
 export const sliding = <T>(cap: number) => new SlidingBuffer<T>(cap);
 
-export class DroppingBuffer<T> extends FIFOBuffer<T> {
-	writable() {
-		return true;
-	}
-
-	write(x: T) {
-		if (super.writable()) super.write(x);
-	}
-}
-
 /**
  * Returns a {@link DroppingBuffer} with given capacity for use with
  * {@link channel}.
  *
  * @remarks
  * With this implementation, writes to the channel are **never** blocking!
- * Whilst the buffer's capacity is reached, new writes will be silently ignored.
+ * Whilst the buffer is at full capacity, new writes will be silently ignored.
  * Read behavior is the same as for {@link fifo}.
  *
  * Also see {@link sliding} for alternative behavior.

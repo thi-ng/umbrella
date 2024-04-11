@@ -1,4 +1,4 @@
-import type { Fn, Fn2, IClear, IIDGen } from "@thi.ng/api";
+import type { Fn, Fn2, IIDGen } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { Fiber } from "./fiber.js";
 
@@ -89,28 +89,3 @@ export type FiberEventType =
 	| typeof EVENT_FIBER_CANCELED
 	| typeof EVENT_FIBER_ERROR
 	| "*";
-
-export interface IReadBuffer<T> {
-	/**
-	 * Returns true iff the buffer has at least one value available for reading.
-	 */
-	readable(): boolean;
-	/**
-	 * Unguarded read operation. Assumes the caller checked
-	 * {@link IReadBuffer.readable} immediately before. Returns next value from
-	 * buffer.
-	 */
-	read(): T;
-}
-
-export interface IReadWriteBuffer<T> extends IReadBuffer<T>, IClear {
-	/**
-	 * Returns true iff the buffer has at least one slot available for writing.
-	 */
-	writable(): boolean;
-	/**
-	 * Unguarded write operation. Assumes the caller checked
-	 * {@link IReadWriteBuffer.writable} immediately before.
-	 */
-	write(x: T): void;
-}
