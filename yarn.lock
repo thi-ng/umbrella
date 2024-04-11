@@ -3965,6 +3965,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.10.0"
     "@thi.ng/arrays": "npm:^2.9.2"
+    "@thi.ng/buffers": "npm:^0.0.1"
     "@thi.ng/checks": "npm:^3.6.0"
     "@thi.ng/dcons": "npm:^3.2.108"
     "@thi.ng/errors": "npm:^2.5.3"
