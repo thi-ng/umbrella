@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/buffers",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "General purpose and generic read/write buffer implementations with different behaviors/orderings",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.10.0",
-		"@thi.ng/errors": "^2.5.3"
+		"@thi.ng/api": "^8.10.1",
+		"@thi.ng/errors": "^2.5.4"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

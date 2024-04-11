@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-accel",
-	"version": "3.5.68",
+	"version": "3.5.69",
 	"description": "n-D spatial indexing data structures with a shared ES6 Map/Set-like API",
 	"type": "module",
 	"module": "./index.js",
@@ -37,18 +37,18 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.10.0",
-		"@thi.ng/arrays": "^2.9.2",
-		"@thi.ng/checks": "^3.6.0",
-		"@thi.ng/distance": "^2.4.68",
-		"@thi.ng/equiv": "^2.1.54",
-		"@thi.ng/errors": "^2.5.3",
-		"@thi.ng/geom-api": "^4.0.5",
-		"@thi.ng/geom-isec": "^3.0.5",
-		"@thi.ng/heaps": "^2.1.70",
-		"@thi.ng/math": "^5.10.9",
-		"@thi.ng/transducers": "^9.0.0",
-		"@thi.ng/vectors": "^7.10.26"
+		"@thi.ng/api": "^8.10.1",
+		"@thi.ng/arrays": "^2.9.3",
+		"@thi.ng/checks": "^3.6.1",
+		"@thi.ng/distance": "^2.4.69",
+		"@thi.ng/equiv": "^2.1.55",
+		"@thi.ng/errors": "^2.5.4",
+		"@thi.ng/geom-api": "^4.0.6",
+		"@thi.ng/geom-isec": "^3.0.6",
+		"@thi.ng/heaps": "^2.1.71",
+		"@thi.ng/math": "^5.10.10",
+		"@thi.ng/transducers": "^9.0.1",
+		"@thi.ng/vectors": "^7.10.27"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/soa",
-	"version": "0.4.122",
+	"version": "0.4.123",
 	"description": "SOA & AOS memory mapped structured views with optional & extensible serialization",
 	"type": "module",
 	"module": "./index.js",
@@ -36,15 +36,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.10.0",
-		"@thi.ng/binary": "^3.4.21",
-		"@thi.ng/errors": "^2.5.3",
-		"@thi.ng/transducers-binary": "^2.1.115",
-		"@thi.ng/vectors": "^7.10.26"
+		"@thi.ng/api": "^8.10.1",
+		"@thi.ng/binary": "^3.4.22",
+		"@thi.ng/errors": "^2.5.4",
+		"@thi.ng/transducers-binary": "^2.1.116",
+		"@thi.ng/vectors": "^7.10.27"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",
-		"@thi.ng/equiv": "^2.1.54",
+		"@thi.ng/equiv": "^2.1.55",
 		"esbuild": "^0.20.2",
 		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.12",
