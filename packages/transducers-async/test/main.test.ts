@@ -22,6 +22,7 @@ import {
 	take,
 	throttle,
 	transduce,
+	zip,
 } from "../src/index.js";
 
 test("comp", async (done) => {
@@ -334,5 +335,22 @@ test("throttle", async (done) => {
 			[1, 1, 2, 3, 3, 2, 2, 1]
 		)
 	).toEqual([1, 2, 3, 2, 1]);
+	done();
+});
+
+test("zip", async (done) => {
+	expect(
+		await push(
+			zip(
+				[1, 2, 3, 4],
+				repeatedly((i) => (i + 1) * 10, Infinity, 10),
+				range(100, 400, 100, 5)
+			)
+		)
+	).toEqual([
+		[1, 10, 100],
+		[2, 20, 200],
+		[3, 30, 300],
+	]);
 	done();
 });
