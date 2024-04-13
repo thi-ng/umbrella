@@ -17,6 +17,9 @@ environments. The source code of the actual implementation (written in
 All public functions throw an error if the WASM module could not be
 initialized.
 
+All encodeInto functions will check the bounds of the target array to
+make sure all the bytes can be written.
+
 References:
 
 - https://en.wikipedia.org/wiki/LEB128
@@ -67,11 +70,19 @@ leb.decodeULEB128(enc);
 // [ 9007199254740991n, 8 ]
 
 // encode signed int
-enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
+enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER);
 // Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
 
-leb.decodeSLEB128(enc)
+leb.decodeSLEB128(enc);
 // [ -9007199254740991n, 8 ]
+
+// when writing into an existing buffer, there needs to be enough bytes to write the value
+const target = new Uint8Array(10);
+const count = leb.encodeULEB128Into(target, Number.MAX_SAFE_INTEGER);
+console.log(target);
+// Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15, 0, 0 ]
+console.log(count);
+// 8
 ```
 
 ## Building the binary
