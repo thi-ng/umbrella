@@ -22,6 +22,9 @@
 		}
 	],
 	"author": "Karsten Schmidt (https://thi.ng)",
+	"contributors": [
+		"jtenner (https://github.com/jtenner)"
+	],
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn build:esbuild && yarn build:decl",
