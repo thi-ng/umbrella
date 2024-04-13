@@ -76,17 +76,17 @@ const decode =
 	};
 
 /**
- * Encodes signed integer `x` into LEB128 varint format and returns
- * encoded bytes.
+ * Encodes signed integer `x` into LEB128 varint format and returns encoded
+ * bytes. Values will be coerced to i64 range prior to encoding.
  *
  * @param x -
  */
 export const encodeSLEB128 = encode("leb128EncodeI64", true);
 
 /**
- * Takes Uint8Array with LEB128 encoded signed varint and an optional
- * start index to decode from. Returns 2-tuple of decoded value and
- * number of bytes consumed. Consumes up to 10 bytes from `src`.
+ * Takes an `Uint8Array` with LEB128 encoded signed varint and an optional start
+ * index to decode from. Returns 2-tuple of decoded value and number of bytes
+ * consumed. Consumes up to 10 bytes from `src`.
  *
  * @param src -
  * @param idx -
@@ -94,9 +94,9 @@ export const encodeSLEB128 = encode("leb128EncodeI64", true);
 export const decodeSLEB128 = decode("leb128DecodeI64", true);
 
 /**
- * Takes a destination Uint8Array, a signed integer `x`, and an optional
- * position to encode an LEB128 formatted byte sequence into the destination.
- * Returns the number of bytes written.
+ * Takes a destination `Uint8Array`, a signed integer `x`, and an optional
+ * index/position to encode an LEB128 formatted byte sequence into the
+ * destination. Returns the number of bytes written.
  *
  * @remarks
  * Also see {@link encodeSLEB128}.
@@ -108,17 +108,17 @@ export const decodeSLEB128 = decode("leb128DecodeI64", true);
 export const encodeSLEB128Into = encodeInto("leb128EncodeI64", true);
 
 /**
- * Encodes unsigned integer `x` into LEB128 varint format and returns
- * encoded bytes. Values < 0 will be encoded as zero.
+ * Encodes unsigned integer `x` into LEB128 varint format and returns encoded
+ * bytes. Values will be coerced to u64 range prior to encoding.
  *
  * @param x -
  */
 export const encodeULEB128 = encode("leb128EncodeU64", false);
 
 /**
- * Takes Uint8Array with LEB128 encoded unsigned varint and an optional
- * start index to decode from. Returns 2-tuple of decoded value and
- * number of bytes consumed. Consumes up to 10 bytes from `src`.
+ * Takes an `Uint8Array` with LEB128 encoded unsigned varint and an optional
+ * start index to decode from. Returns 2-tuple of decoded value and number of
+ * bytes consumed. Consumes up to 10 bytes from `src`.
  *
  * @param src -
  * @param idx -
