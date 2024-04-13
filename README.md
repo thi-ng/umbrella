@@ -255,7 +255,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-04-11
+As of: 2024-04-13
 
 | Status                                           | Package                                                       | Version                                                                                                                             | Changelog                                               |
 |:-------------------------------------------------|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
@@ -269,6 +269,7 @@ As of: 2024-04-11
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/dcons`](./packages/dcons)                           | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)                           | [changelog](./packages/dcons/CHANGELOG.md)              |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/fibers`](./packages/fibers)                         | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)                         | [changelog](./packages/fibers/CHANGELOG.md)             |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/fsm`](./packages/fsm)                               | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)                               | [changelog](./packages/fsm/CHANGELOG.md)                |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/leb128`](./packages/leb128)                         | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)                         | [changelog](./packages/leb128/CHANGELOG.md)             |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/memoize`](./packages/memoize)                       | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)                       | [changelog](./packages/memoize/CHANGELOG.md)            |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/meta-css`](./packages/meta-css)                     | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                     | [changelog](./packages/meta-css/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                             | [changelog](./packages/rdom/CHANGELOG.md)               |
@@ -279,6 +280,15 @@ As of: 2024-04-11
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)       | [changelog](./packages/transducers-fsm/CHANGELOG.md)    |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-patch`](./packages/transducers-patch)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)   | [changelog](./packages/transducers-patch/CHANGELOG.md)  |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-stats`](./packages/transducers-stats)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)   | [changelog](./packages/transducers-stats/CHANGELOG.md)  |
+
+
+### Latest updates
+
+As of: 2024-04-13
+
+| Status                                        | Package                                                   | Version                                                                                                                         | Changelog                                             |
+|:----------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
+
 
 ### Fundamentals
 
