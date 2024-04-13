@@ -69,6 +69,7 @@ const ALIASES: IObjectOf<string> = {
 	cso: "csp",
 	download: "dl-asset",
 	"download-asset": "dl-asset",
+	encodeLEB128Into: "leb128",
 	example: "examples",
 	exmples: "examples",
 	geom2: "geom",
