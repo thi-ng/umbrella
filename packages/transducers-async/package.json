@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-async",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Async versions of various highly composable transducers, reducers and iterators",
 	"type": "module",
 	"module": "./index.js",
