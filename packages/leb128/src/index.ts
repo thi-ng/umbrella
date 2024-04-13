@@ -98,6 +98,9 @@ export const decodeSLEB128 = decode("leb128DecodeI64", true);
  * position to encode an LEB128 formatted byte sequence into the destination.
  * Returns the number of bytes written.
  *
+ * @remarks
+ * Also see {@link encodeSLEB128}.
+ *
  * @param dst -
  * @param x -
  * @param pos -
@@ -126,6 +129,9 @@ export const decodeULEB128 = decode("leb128DecodeU64", false);
  * Takes a destination Uint8Array, an unsigned integer `x`, and an optional
  * position to encode an LEB128 formatted byte sequence into the destination.
  * Returns the number of bytes written.
+ *
+ * @remarks
+ * Also see {@link encodeULEB128}.
  *
  * @param dst -
  * @param x -
