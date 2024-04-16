@@ -3,6 +3,7 @@ export * from "./cat.js";
 export * from "./comp.js";
 export * from "./compr.js";
 export * from "./concat.js";
+export * from "./delayed.js";
 export * from "./ensure.js";
 export * from "./events.js";
 export * from "./filter.js";

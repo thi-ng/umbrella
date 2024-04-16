@@ -1,5 +1,5 @@
-import { delayed } from "@thi.ng/compose/delayed";
 import { Range } from "@thi.ng/transducers/range";
+import { wait } from "./delayed.js";
 
 /**
  * Async version of [thi.ng/transducers
@@ -26,6 +26,6 @@ export async function* range(...args: number[]) {
 	const delay = args.pop()!;
 	for (let x of new Range(...(<[number]>args))) {
 		yield x;
-		await delayed(null, delay);
+		await wait(delay);
 	}
 }
