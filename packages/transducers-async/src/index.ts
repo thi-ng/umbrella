@@ -11,6 +11,7 @@ export * from "./iterator.js";
 export * from "./map.js";
 export * from "./mapcat.js";
 export * from "./merge.js";
+export * from "./mult.js";
 export * from "./multiplex-obj.js";
 export * from "./multiplex.js";
 export * from "./partition.js";
