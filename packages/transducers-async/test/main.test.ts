@@ -1,14 +1,16 @@
 import type { NumOrString } from "@thi.ng/api";
-import { delayed } from "@thi.ng/compose";
 import { expect, test } from "bun:test";
 import {
+	asAsyncIterable,
 	comp,
 	concat,
+	delayed,
 	filter,
 	iterator,
 	map,
 	mapcat,
 	merge,
+	mult,
 	multiplex,
 	multiplexObj,
 	partition,
@@ -22,8 +24,14 @@ import {
 	take,
 	throttle,
 	transduce,
+	wait,
 	zip,
 } from "../src/index.js";
+
+test("asAsyncIterable", async (done) => {
+	expect(await push(asAsyncIterable([1, 2, 3], 10))).toEqual([1, 2, 3]);
+	done();
+});
 
 test("comp", async (done) => {
 	expect(
@@ -114,6 +122,42 @@ test("merge", async (done) => {
 	expect(
 		await push(merge([repeatedly((i) => i, 0), repeatedly((i) => i, 0)]))
 	).toEqual([]);
+	done();
+});
+
+test("mult", async (done) => {
+	const root = mult(
+		(async function* () {
+			yield "hello";
+			await wait(100);
+			yield "world";
+			await wait(100);
+			yield "good bye";
+		})()
+	);
+
+	// 1st subscriber (vanilla JS)
+	const sub1 = (async () => {
+		const res = [];
+		for await (let x of root.subscribe()) res.push(x);
+		return res;
+	})();
+
+	// 2nd subscriber (transducer), attached only after delay
+	await wait(90);
+	const sub2 = transduce(
+		map(async (x) => {
+			await wait(70);
+			return x.toUpperCase();
+		}),
+		push<string>(),
+		root.subscribe()
+	);
+
+	expect(await Promise.all([sub1, sub2])).toEqual([
+		["hello", "world", "good bye"],
+		["WORLD", "GOOD BYE"],
+	]);
 	done();
 });
 
