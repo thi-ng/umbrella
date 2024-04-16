@@ -1,4 +1,5 @@
 export * from "./api.js";
+export * from "./as-async.js";
 export * from "./cat.js";
 export * from "./comp.js";
 export * from "./compr.js";
