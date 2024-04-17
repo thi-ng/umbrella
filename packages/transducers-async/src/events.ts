@@ -1,31 +1,47 @@
-import type { Fn } from "@thi.ng/api";
+import { source } from "./source.js";
 
 /**
  * Attaches an event listener to given `target` and yields an async iterator of
  * events.
  *
  * @remarks
- * The event listener can be removed (and the iterator stopped) by sending
- * `yield iter.next(true)`.
+ * The event listener can be removed (and the iterator stopped) by calling
+ * `.close()`.
+ *
+ * @example
+ * ```ts tangle:../export/events.ts
+ * import { events, map, run } from "@thi.ng/transducers-async";
+ *
+ * const resize = events(window, "resize");
+ *
+ * const sizes = map(
+ *   (e) => [window.innerWidth, window.innerHeight],
+ *   resize
+ * );
+ *
+ * for await (let [w, h] of sizes) {
+ *   console.log(w, h)
+ * }
+ *
+ * // to stop listening and stop iterator
+ * resize.close();
+ * ```
  *
  * @param target
  * @param id
  * @param opts
  */
-export async function* events<T extends Event = Event>(
+export const events = <T extends Event = Event>(
 	target: EventTarget,
 	id: string,
 	opts?: EventListenerOptions
-): AsyncGenerator<T> {
-	let resolve: Fn<Event, void>;
-	const listener = (e: Event) => resolve(e);
+) => {
+	const listener = (e: Event) => gen.send(<T>e);
 	target.addEventListener(id, listener, opts);
-	while (true) {
-		const promise = new Promise(($resolve) => {
-			resolve = $resolve;
-		});
-		const cancel = yield <T>await promise;
-		if (cancel === true) break;
-	}
-	target.removeEventListener(id, listener, opts);
-}
+	const gen = source<T>();
+	gen.close = () => {
+		target.removeEventListener(id, listener, opts);
+		gen.send(undefined);
+	};
+	return gen;
+};

@@ -89,6 +89,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./as-async": {
+			"default": "./as-async.js"
+		},
 		"./cat": {
 			"default": "./cat.js"
 		},
@@ -100,6 +103,9 @@
 		},
 		"./concat": {
 			"default": "./concat.js"
+		},
+		"./delayed": {
+			"default": "./delayed.js"
 		},
 		"./ensure": {
 			"default": "./ensure.js"
@@ -121,6 +127,9 @@
 		},
 		"./merge": {
 			"default": "./merge.js"
+		},
+		"./mult": {
+			"default": "./mult.js"
 		},
 		"./multiplex-obj": {
 			"default": "./multiplex-obj.js"
@@ -151,6 +160,9 @@
 		},
 		"./sidechain": {
 			"default": "./sidechain.js"
+		},
+		"./source": {
+			"default": "./source.js"
 		},
 		"./step": {
 			"default": "./step.js"

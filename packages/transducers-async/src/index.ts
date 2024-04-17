@@ -23,6 +23,7 @@ export * from "./reduce.js";
 export * from "./repeatedly.js";
 export * from "./run.js";
 export * from "./sidechain.js";
+export * from "./source.js";
 export * from "./step.js";
 export * from "./sync.js";
 export * from "./take.js";
