@@ -19,6 +19,7 @@ import {
 	repeatedly,
 	run,
 	sidechain,
+	source,
 	step,
 	sync,
 	take,
@@ -267,6 +268,23 @@ test(
 	},
 	{ retry: 5 }
 );
+
+test("source", async (done) => {
+	let src = source<number>();
+
+	setTimeout(() => src.send(1), 0);
+	setTimeout(() => src.send(2), 0);
+	setTimeout(() => src.close(), 0);
+
+	expect(await push(src)).toEqual([1, 2]);
+
+	src = source<number>();
+	src.send(10);
+	src.send(20);
+	expect(() => src.send(30)).toThrow();
+
+	done();
+});
 
 test("step", async (done) => {
 	expect(await step(mapcat(async (x) => [x, x]))(1)).toEqual([1, 1]);
