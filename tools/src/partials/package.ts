@@ -161,13 +161,12 @@ const ${id} = await import("${pkg.name}");
 	].join("\n");
 };
 
-const webImport = (pkg: Package) => `\nBrowser ESM import:
-
+const webImport = (pkg: Package) => `\nBrowser ESM import:\n
 \`\`\`html
-<script type="module" src="https://cdn.skypack.dev/${pkg.name}"></script>
+<script type="module" src="https://esm.run/${pkg.name}"></script>
 \`\`\`
 
-[Skypack documentation](https://docs.skypack.dev/)\n`;
+[JSDelivr documentation](https://www.jsdelivr.com/)\n`;
 
 export const packageCitation = (config: Config, name: string) => {
 	let hasAuthors = false;
