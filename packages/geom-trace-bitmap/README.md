@@ -66,10 +66,10 @@ import * as gtb from "@thi.ng/geom-trace-bitmap";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-trace-bitmap"></script>
+<script type="module" src="https://esm.run/@thi.ng/geom-trace-bitmap"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

@@ -55,10 +55,10 @@ import * as gcp from "@thi.ng/geom-clip-poly";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-clip-poly"></script>
+<script type="module" src="https://esm.run/@thi.ng/geom-clip-poly"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

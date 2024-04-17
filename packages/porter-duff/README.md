@@ -74,10 +74,10 @@ import * as pd from "@thi.ng/porter-duff";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/porter-duff"></script>
+<script type="module" src="https://esm.run/@thi.ng/porter-duff"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

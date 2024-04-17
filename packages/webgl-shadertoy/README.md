@@ -55,10 +55,10 @@ import * as ws from "@thi.ng/webgl-shadertoy";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/webgl-shadertoy"></script>
+<script type="module" src="https://esm.run/@thi.ng/webgl-shadertoy"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 693 bytes
 

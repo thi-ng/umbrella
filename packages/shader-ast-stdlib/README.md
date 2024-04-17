@@ -104,10 +104,10 @@ import * as std from "@thi.ng/shader-ast-stdlib";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-stdlib"></script>
+<script type="module" src="https://esm.run/@thi.ng/shader-ast-stdlib"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

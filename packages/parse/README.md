@@ -89,10 +89,10 @@ import * as parse from "@thi.ng/parse";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/parse"></script>
+<script type="module" src="https://esm.run/@thi.ng/parse"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

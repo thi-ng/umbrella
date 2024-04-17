@@ -192,10 +192,10 @@ import * as assoc from "@thi.ng/associative";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/associative"></script>
+<script type="module" src="https://esm.run/@thi.ng/associative"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

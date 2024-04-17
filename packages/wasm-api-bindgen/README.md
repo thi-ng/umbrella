@@ -734,10 +734,10 @@ import * as wab from "@thi.ng/wasm-api-bindgen";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api-bindgen"></script>
+<script type="module" src="https://esm.run/@thi.ng/wasm-api-bindgen"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

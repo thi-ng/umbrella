@@ -233,10 +233,10 @@ import * as ast from "@thi.ng/shader-ast";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast"></script>
+<script type="module" src="https://esm.run/@thi.ng/shader-ast"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

@@ -191,10 +191,10 @@ import * as html from "@thi.ng/hiccup-html";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-html"></script>
+<script type="module" src="https://esm.run/@thi.ng/hiccup-html"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.51 KB
 

@@ -68,10 +68,10 @@ import * as msg from "@thi.ng/msgpack";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/msgpack"></script>
+<script type="module" src="https://esm.run/@thi.ng/msgpack"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

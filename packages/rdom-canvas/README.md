@@ -118,10 +118,10 @@ import * as rc from "@thi.ng/rdom-canvas";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-canvas"></script>
+<script type="module" src="https://esm.run/@thi.ng/rdom-canvas"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 694 bytes
 

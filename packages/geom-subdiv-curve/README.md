@@ -69,10 +69,10 @@ import * as gsc from "@thi.ng/geom-subdiv-curve";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-subdiv-curve"></script>
+<script type="module" src="https://esm.run/@thi.ng/geom-subdiv-curve"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

@@ -61,10 +61,10 @@ import * as rc from "@thi.ng/rdom-components";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-components"></script>
+<script type="module" src="https://esm.run/@thi.ng/rdom-components"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.29 KB
 

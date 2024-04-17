@@ -140,10 +140,10 @@ import * as str from "@thi.ng/strings";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/strings"></script>
+<script type="module" src="https://esm.run/@thi.ng/strings"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

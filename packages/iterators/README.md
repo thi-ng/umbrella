@@ -108,10 +108,10 @@ import * as it from "@thi.ng/iterators";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/iterators"></script>
+<script type="module" src="https://esm.run/@thi.ng/iterators"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

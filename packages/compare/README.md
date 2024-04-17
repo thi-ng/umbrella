@@ -82,10 +82,10 @@ import * as cmp from "@thi.ng/compare";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/compare"></script>
+<script type="module" src="https://esm.run/@thi.ng/compare"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

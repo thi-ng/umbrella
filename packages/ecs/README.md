@@ -58,10 +58,10 @@ import * as ecs from "@thi.ng/ecs";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/ecs"></script>
+<script type="module" src="https://esm.run/@thi.ng/ecs"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

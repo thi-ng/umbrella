@@ -81,10 +81,10 @@ import * as rle from "@thi.ng/rle-pack";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/rle-pack"></script>
+<script type="module" src="https://esm.run/@thi.ng/rle-pack"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

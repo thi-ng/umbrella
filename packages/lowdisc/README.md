@@ -88,10 +88,10 @@ import * as ld from "@thi.ng/lowdisc";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/lowdisc"></script>
+<script type="module" src="https://esm.run/@thi.ng/lowdisc"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

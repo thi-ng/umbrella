@@ -56,10 +56,10 @@ import * as ad from "@thi.ng/adapt-dpi";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/adapt-dpi"></script>
+<script type="module" src="https://esm.run/@thi.ng/adapt-dpi"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 135 bytes
 

@@ -47,10 +47,10 @@ import * as rlf from "@thi.ng/rstream-log-file";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-log-file"></script>
+<script type="module" src="https://esm.run/@thi.ng/rstream-log-file"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

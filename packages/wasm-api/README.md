@@ -389,10 +389,10 @@ import * as wa from "@thi.ng/wasm-api";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api"></script>
+<script type="module" src="https://esm.run/@thi.ng/wasm-api"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.69 KB
 

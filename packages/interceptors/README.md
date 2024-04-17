@@ -150,10 +150,10 @@ import * as iceps from "@thi.ng/interceptors";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/interceptors"></script>
+<script type="module" src="https://esm.run/@thi.ng/interceptors"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
 

@@ -51,10 +51,10 @@ import * as iso from "@thi.ng/geom-isoline";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-isoline"></script>
+<script type="module" src="https://esm.run/@thi.ng/geom-isoline"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

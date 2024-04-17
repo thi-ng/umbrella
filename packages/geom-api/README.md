@@ -47,10 +47,10 @@ import * as gapi from "@thi.ng/geom-api";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-api"></script>
+<script type="module" src="https://esm.run/@thi.ng/geom-api"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

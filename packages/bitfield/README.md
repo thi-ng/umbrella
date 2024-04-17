@@ -56,10 +56,10 @@ import * as bf from "@thi.ng/bitfield";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/bitfield"></script>
+<script type="module" src="https://esm.run/@thi.ng/bitfield"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

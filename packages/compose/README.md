@@ -72,10 +72,10 @@ import * as comp from "@thi.ng/compose";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/compose"></script>
+<script type="module" src="https://esm.run/@thi.ng/compose"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

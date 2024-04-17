@@ -219,10 +219,10 @@ import * as tf from "@thi.ng/text-format";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/text-format"></script>
+<script type="module" src="https://esm.run/@thi.ng/text-format"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

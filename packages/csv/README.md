@@ -75,10 +75,10 @@ import * as csv from "@thi.ng/csv";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/csv"></script>
+<script type="module" src="https://esm.run/@thi.ng/csv"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

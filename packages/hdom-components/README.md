@@ -63,10 +63,10 @@ import * as hc from "@thi.ng/hdom-components";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-components"></script>
+<script type="module" src="https://esm.run/@thi.ng/hdom-components"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.05 KB
 

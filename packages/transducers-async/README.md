@@ -87,10 +87,10 @@ import * as txa from "@thi.ng/transducers-async";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-async"></script>
+<script type="module" src="https://esm.run/@thi.ng/transducers-async"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 
@@ -98,7 +98,7 @@ For Node.js REPL:
 const txa = await import("@thi.ng/transducers-async");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.23 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.82 KB
 
 ## Dependencies
 

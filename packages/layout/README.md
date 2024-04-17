@@ -63,10 +63,10 @@ import * as l from "@thi.ng/layout";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/layout"></script>
+<script type="module" src="https://esm.run/@thi.ng/layout"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

@@ -63,10 +63,10 @@ import * as can from "@thi.ng/canvas";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/canvas"></script>
+<script type="module" src="https://esm.run/@thi.ng/canvas"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 348 bytes
 

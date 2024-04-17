@@ -141,10 +141,10 @@ import * as hdom from "@thi.ng/hdom";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom"></script>
+<script type="module" src="https://esm.run/@thi.ng/hdom"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 You can use the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project

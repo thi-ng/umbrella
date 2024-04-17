@@ -66,10 +66,10 @@ import * as dt from "@thi.ng/distance-transform";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/distance-transform"></script>
+<script type="module" src="https://esm.run/@thi.ng/distance-transform"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

@@ -127,10 +127,10 @@ import * as opt from "@thi.ng/shader-ast-optimize";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-optimize"></script>
+<script type="module" src="https://esm.run/@thi.ng/shader-ast-optimize"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

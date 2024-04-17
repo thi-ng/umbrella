@@ -67,10 +67,10 @@ import * as txb from "@thi.ng/transducers-binary";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-binary"></script>
+<script type="module" src="https://esm.run/@thi.ng/transducers-binary"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

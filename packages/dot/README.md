@@ -65,10 +65,10 @@ import * as dot from "@thi.ng/dot";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/dot"></script>
+<script type="module" src="https://esm.run/@thi.ng/dot"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

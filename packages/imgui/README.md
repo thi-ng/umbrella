@@ -256,10 +256,10 @@ import * as imgui from "@thi.ng/imgui";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/imgui"></script>
+<script type="module" src="https://esm.run/@thi.ng/imgui"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.65 KB
 

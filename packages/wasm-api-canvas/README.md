@@ -54,10 +54,10 @@ import * as wac from "@thi.ng/wasm-api-canvas";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/wasm-api-canvas"></script>
+<script type="module" src="https://esm.run/@thi.ng/wasm-api-canvas"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

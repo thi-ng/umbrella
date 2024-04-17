@@ -160,10 +160,10 @@ import * as cell from "@thi.ng/cellular";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/cellular"></script>
+<script type="module" src="https://esm.run/@thi.ng/cellular"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

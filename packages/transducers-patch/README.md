@@ -54,10 +54,10 @@ import * as tp from "@thi.ng/transducers-patch";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-patch"></script>
+<script type="module" src="https://esm.run/@thi.ng/transducers-patch"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

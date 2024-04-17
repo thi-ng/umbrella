@@ -66,10 +66,10 @@ import * as rou from "@thi.ng/router";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/router"></script>
+<script type="module" src="https://esm.run/@thi.ng/router"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.94 KB
 

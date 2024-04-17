@@ -65,10 +65,10 @@ import * as qe from "@thi.ng/quad-edge";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/quad-edge"></script>
+<script type="module" src="https://esm.run/@thi.ng/quad-edge"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

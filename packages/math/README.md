@@ -66,10 +66,10 @@ import * as math from "@thi.ng/math";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/math"></script>
+<script type="module" src="https://esm.run/@thi.ng/math"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

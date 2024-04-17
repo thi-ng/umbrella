@@ -61,10 +61,10 @@ import * as accel from "@thi.ng/geom-accel";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-accel"></script>
+<script type="module" src="https://esm.run/@thi.ng/geom-accel"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

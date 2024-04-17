@@ -139,10 +139,10 @@ import * as da from "@thi.ng/dual-algebra";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/dual-algebra"></script>
+<script type="module" src="https://esm.run/@thi.ng/dual-algebra"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

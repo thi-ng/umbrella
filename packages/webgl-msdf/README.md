@@ -61,10 +61,10 @@ import * as wm from "@thi.ng/webgl-msdf";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/webgl-msdf"></script>
+<script type="module" src="https://esm.run/@thi.ng/webgl-msdf"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.57 KB
 

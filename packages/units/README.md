@@ -635,10 +635,10 @@ import * as units from "@thi.ng/units";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/units"></script>
+<script type="module" src="https://esm.run/@thi.ng/units"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

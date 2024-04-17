@@ -61,10 +61,10 @@ import * as glsl from "@thi.ng/shader-ast-glsl";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-glsl"></script>
+<script type="module" src="https://esm.run/@thi.ng/shader-ast-glsl"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

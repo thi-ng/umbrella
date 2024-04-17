@@ -57,10 +57,10 @@ import * as sg from "@thi.ng/scenegraph";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/scenegraph"></script>
+<script type="module" src="https://esm.run/@thi.ng/scenegraph"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

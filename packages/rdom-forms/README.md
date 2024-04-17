@@ -127,10 +127,10 @@ import * as rf from "@thi.ng/rdom-forms";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-forms"></script>
+<script type="module" src="https://esm.run/@thi.ng/rdom-forms"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.28 KB
 

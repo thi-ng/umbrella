@@ -270,10 +270,10 @@ import * as cp from "@thi.ng/color-palettes";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/color-palettes"></script>
+<script type="module" src="https://esm.run/@thi.ng/color-palettes"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

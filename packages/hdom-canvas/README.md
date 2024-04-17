@@ -77,10 +77,10 @@ import * as hc from "@thi.ng/hdom-canvas";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-canvas"></script>
+<script type="module" src="https://esm.run/@thi.ng/hdom-canvas"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 Package sizes (brotli'd, pre-treeshake): ESM: 824 bytes
 
