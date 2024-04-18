@@ -1,3 +1,4 @@
+import type { IDeref } from "@thi.ng/api";
 import type { ClosableAsyncGenerator } from "./api.js";
 import { source } from "./source.js";
 
@@ -22,14 +23,14 @@ export interface RAFOpts {
 
 export const raf = (
 	opts?: Partial<RAFOpts>
-): ClosableAsyncGenerator<number> => {
+): ClosableAsyncGenerator<number> & IDeref<number | undefined> => {
 	let frame = 0;
 	let t0 = opts?.t0 || 0;
 	let isClosed = false;
 	const gen = source<number>();
 	gen.close = () => {
 		isClosed = true;
-		gen.send(undefined);
+		gen.reset(undefined);
 	};
 	const update = (t: number) => {
 		if (isClosed) return;
@@ -39,7 +40,7 @@ export const raf = (
 		} else {
 			t = frame++;
 		}
-		gen.send(t);
+		gen.reset(t);
 		requestAnimationFrame(update);
 	};
 	requestAnimationFrame(update);
