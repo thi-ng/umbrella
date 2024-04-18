@@ -1,8 +1,8 @@
 export interface SidechainOpts {
 	/**
 	 * If true (default), only emits the last received value when the sidechain
-	 * triggers. Otherwise buffers and emits *all* received values since the
-	 * last time the sidechain triggered.
+	 * delivers a truthy value. Otherwise buffers and emits *all* received
+	 * values since the last time the sidechain triggered.
 	 *
 	 * @defaultValue true
 	 */
@@ -11,17 +11,17 @@ export interface SidechainOpts {
 
 export function sidechain<T>(
 	src: AsyncIterable<T>,
-	side: AsyncIterable<boolean>,
+	side: AsyncIterable<any>,
 	opts: Partial<SidechainOpts> & { lastOnly: false }
 ): AsyncIterableIterator<T[]>;
 export function sidechain<T>(
 	src: AsyncIterable<T>,
-	side: AsyncIterable<boolean>,
+	side: AsyncIterable<any>,
 	opts?: Partial<SidechainOpts>
 ): AsyncIterableIterator<T>;
 export async function* sidechain<T>(
 	src: AsyncIterable<T>,
-	side: AsyncIterable<boolean>,
+	side: AsyncIterable<any>,
 	opts?: Partial<SidechainOpts>
 ) {
 	const { lastOnly = true } = opts || {};

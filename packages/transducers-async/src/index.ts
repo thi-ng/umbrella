@@ -26,6 +26,7 @@ export * from "./sidechain.js";
 export * from "./source.js";
 export * from "./step.js";
 export * from "./sync.js";
+export * from "./sync-raf.js";
 export * from "./take.js";
 export * from "./throttle-time.js";
 export * from "./throttle.js";
