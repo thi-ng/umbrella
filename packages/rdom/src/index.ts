@@ -1,4 +1,5 @@
 export * from "./api.js";
+export * from "./async.js";
 export * from "./checks.js";
 export * from "./compile.js";
 export * from "./component.js";
