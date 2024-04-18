@@ -35,3 +35,7 @@ export type AsyncMultiplexTxLike<A, B> =
 export interface IXformAsync<A, B> {
 	xformAsync(): AsyncTransducer<A, B>;
 }
+
+export interface ClosableAsyncGenerator<T> extends AsyncGenerator<T> {
+	close(): void;
+}

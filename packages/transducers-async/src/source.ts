@@ -1,5 +1,10 @@
 import type { Fn } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
+import type { ClosableAsyncGenerator } from "./api.js";
+
+export interface Source<T> extends ClosableAsyncGenerator<T> {
+	send(x?: T): void;
+}
 
 /**
  * @example
@@ -33,18 +38,16 @@ export const source = <T>(initial?: T, capacity = 1) => {
 		});
 	};
 	reset();
-	const gen = <AsyncGenerator<T> & { send(x?: T): void; close(): void }>(
-		(async function* () {
-			while (true) {
-				const val = await promise!;
-				if (val === undefined) break;
-				yield val;
-				reset();
-				if (queue.length) resolve!(queue.shift());
-			}
-			isClosed = true;
-		})()
-	);
+	const gen = <Source<T>>(async function* () {
+		while (true) {
+			const val = await promise!;
+			if (val === undefined) break;
+			yield val;
+			reset();
+			if (queue.length) resolve!(queue.shift());
+		}
+		isClosed = true;
+	})();
 	gen.send = (x) => {
 		if (isClosed) return;
 		if (resolve) {
