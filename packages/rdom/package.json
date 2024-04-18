@@ -87,6 +87,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./async": {
+			"default": "./async.js"
+		},
 		"./checks": {
 			"default": "./checks.js"
 		},

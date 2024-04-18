@@ -140,6 +140,9 @@
 		"./partition": {
 			"default": "./partition.js"
 		},
+		"./pubsub": {
+			"default": "./pubsub.js"
+		},
 		"./push": {
 			"default": "./push.js"
 		},
@@ -166,6 +169,9 @@
 		},
 		"./step": {
 			"default": "./step.js"
+		},
+		"./sync-raf": {
+			"default": "./sync-raf.js"
 		},
 		"./sync": {
 			"default": "./sync.js"
