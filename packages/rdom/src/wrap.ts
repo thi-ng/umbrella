@@ -1,27 +1,32 @@
 import type { Fn2 } from "@thi.ng/api";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
-import { $addChild, $el, $html, $remove, $text } from "./dom.js";
+import { $compile } from "./compile.js";
+import { $addChild, $html, $remove, $text } from "./dom.js";
+
+export interface WrappedComponent<T> extends IMountWithState<T> {
+	inner: IComponent<any>;
+}
 
 const wrapper =
 	<T>(update: Fn2<HTMLElement | SVGElement, T, void>) =>
-	(tag: string, attribs?: any, body?: T): IMountWithState<T> => ({
-		el: undefined,
+	(tag: string, attribs?: any, body?: T) =>
+		<WrappedComponent<T>>{
+			async mount(parent: ParentNode, index: NumOrElement, state: T) {
+				this.inner = $compile([tag, attribs]);
+				this.el = await (<any>this).inner.mount(parent, index);
+				update(<any>this.el!, state != null ? state : body!);
+				return this.el!;
+			},
 
-		async mount(parent: ParentNode, index: NumOrElement, state: T) {
-			this.el = $el(tag, attribs, null, parent, index);
-			update(<any>this.el!, state != null ? state : body!);
-			return this.el;
-		},
+			async unmount() {
+				this.inner.unmount();
+				this.el = undefined;
+			},
 
-		async unmount() {
-			$remove(this.el!);
-			this.el = undefined;
-		},
-
-		update(body: T) {
-			if (this.el) update(<any>this.el, body);
-		},
-	});
+			update(body: T) {
+				if (this.el) update(<any>this.el, body);
+			},
+		};
 
 /**
  * Returns a component wrapper for a single DOM element whose TEXT body can be
