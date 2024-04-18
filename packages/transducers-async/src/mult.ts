@@ -101,7 +101,8 @@ export class Mult<T> {
 	}
 }
 
-class MSub<T> {
+/** @internal */
+export class MSub<T> {
 	valueP!: Promise<T | undefined>;
 	notifyP!: Promise<void>;
 	resolve!: Fn<T | undefined, void>;

@@ -16,6 +16,7 @@ export * from "./mult.js";
 export * from "./multiplex-obj.js";
 export * from "./multiplex.js";
 export * from "./partition.js";
+export * from "./pubsub.js";
 export * from "./push.js";
 export * from "./raf.js";
 export * from "./range.js";
