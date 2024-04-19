@@ -1,4 +1,4 @@
-import type { ISeq, ISeqable, Nullable } from "@thi.ng/api";
+import type { ISeq, ISeqable, Maybe, Nullable } from "@thi.ng/api";
 import { ensureSeq } from "./ensure.js";
 
 /**
@@ -11,7 +11,7 @@ import { ensureSeq } from "./ensure.js";
  */
 export const concat = <T>(
 	...args: Nullable<ISeq<T> | ISeqable<T>>[]
-): ISeq<T> | undefined => {
+): Maybe<ISeq<T>> => {
 	const seqs: ISeq<T>[] = [];
 	for (let i = 0, n = args.length; i < n; i++) {
 		const x = ensureSeq(args[i]);
@@ -46,7 +46,7 @@ export const concatA = <T>(...args: Nullable<ArrayLike<T>>[]) => {
 		const x = args[i];
 		x && x.length && seqs.push(x);
 	}
-	const $seq = (i: number, j: number): ISeq<T> | undefined => {
+	const $seq = (i: number, j: number): Maybe<ISeq<T>> => {
 		if (!seqs[i] || j >= seqs[i].length) {
 			i++;
 			j = 0;

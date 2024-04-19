@@ -1,4 +1,4 @@
-import type { Fn0, ISeq } from "@thi.ng/api";
+import type { Fn0, ISeq, Maybe } from "@thi.ng/api";
 
 /**
  * Returns a new lazily evaluated `ISeq` produced by given function
@@ -20,9 +20,9 @@ import type { Fn0, ISeq } from "@thi.ng/api";
  *
  * @param fn -
  */
-export const lazyseq = <T>(fn: Fn0<ISeq<T> | undefined>): ISeq<T> => {
+export const lazyseq = <T>(fn: Fn0<Maybe<ISeq<T>>>): ISeq<T> => {
 	let called = false;
-	let seq: ISeq<T> | undefined;
+	let seq: Maybe<ISeq<T>>;
 	const ensure = () => {
 		if (!called) {
 			seq = fn();

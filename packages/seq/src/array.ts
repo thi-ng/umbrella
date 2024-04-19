@@ -1,4 +1,4 @@
-import type { ISeq, Nullable } from "@thi.ng/api";
+import type { ISeq, Maybe, Nullable } from "@thi.ng/api";
 
 /**
  * Returns a zero-copy
@@ -19,7 +19,7 @@ export const aseq = <T>(
 	buf: Nullable<ArrayLike<T>>,
 	start = 0,
 	end?: number
-): ISeq<T> | undefined => {
+): Maybe<ISeq<T>> => {
 	if (!buf) return;
 	end === undefined && (end = buf.length);
 	return start < end!
@@ -53,7 +53,7 @@ export const rseq = <T>(
 	buf: Nullable<ArrayLike<T>>,
 	start?: number,
 	end = -1
-): ISeq<T> | undefined => {
+): Maybe<ISeq<T>> => {
 	if (!buf) return;
 	start === undefined && (start = buf.length - 1);
 	return start > end
