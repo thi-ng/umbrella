@@ -1,4 +1,4 @@
-import type { TypedArray } from "@thi.ng/api";
+import type { Maybe, TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary";
 import { beforeEach, expect, test } from "bun:test";
 import { MemPool } from "../src/index.js";
@@ -206,8 +206,8 @@ test("calloc", () => {
 test("callocAs", () => {
 	const u8: Uint8Array = (<any>pool).u8;
 	u8.fill(0xff, pool.stats().top);
-	let a: TypedArray | undefined = pool.callocAs("f32", 3);
-	let b: TypedArray | undefined = pool.callocAs("f64", 3);
+	let a: Maybe<TypedArray> = pool.callocAs("f32", 3);
+	let b: Maybe<TypedArray> = pool.callocAs("f64", 3);
 	let t = [0, 0, 0];
 	expect(a instanceof Float32Array).toBeTrue();
 	expect(b instanceof Float64Array).toBeTrue();

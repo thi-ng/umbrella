@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import {
 	typedArray,
 	type Type,
@@ -14,7 +15,7 @@ export class NativePool implements IMemPoolArray {
 	mallocAs<T extends Type>(
 		type: T,
 		num: number
-	): TypedArrayTypeMap[T] | undefined {
+	): Maybe<TypedArrayTypeMap[T]> {
 		return typedArray(type, num);
 	}
 
@@ -22,11 +23,11 @@ export class NativePool implements IMemPoolArray {
 		type: T,
 		num: number,
 		fill = 0
-	): TypedArrayTypeMap[T] | undefined {
+	): Maybe<TypedArrayTypeMap[T]> {
 		return <any>typedArray(type, num).fill(fill);
 	}
 
-	reallocArray<T extends TypedArray>(src: T, num: number): T | undefined {
+	reallocArray<T extends TypedArray>(src: T, num: number): Maybe<T> {
 		if (num === src.length) return src;
 		const dest = new (<any>src.constructor)(num);
 		dest.set(src.subarray(0, Math.min(src.length, num)));

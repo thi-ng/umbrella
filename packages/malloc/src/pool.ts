@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import {
 	SIZEOF,
 	typedArray,
@@ -228,7 +229,7 @@ export class MemPool implements IMemPool {
 		return [blockSelfAddress(this.malloc(bytes)), blockEnd];
 	}
 
-	reallocArray<T extends TypedArray>(array: T, num: number): T | undefined {
+	reallocArray<T extends TypedArray>(array: T, num: number): Maybe<T> {
 		if (array.buffer !== this.buf) {
 			return;
 		}
