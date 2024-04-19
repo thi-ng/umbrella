@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { StreamLogger } from "@thi.ng/logger/stream";
 import { padRight } from "@thi.ng/strings/pad-right";
@@ -42,7 +42,7 @@ export const cliApp = async <
 			if (!cmd) __usageAndExit(config, usageOpts);
 			start++;
 		}
-		let parsed: ParseResult<OPTS> | undefined;
+		let parsed: Maybe<ParseResult<OPTS>>;
 		try {
 			parsed = parse<OPTS>({ ...config.opts, ...cmd.opts }, argv, {
 				showUsage: true,

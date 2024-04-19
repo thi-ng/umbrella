@@ -1,9 +1,9 @@
-import type { IObjectOf, Nullable } from "@thi.ng/api";
+import type { IObjectOf, Maybe, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { defError } from "@thi.ng/errors/deferror";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { camel } from "@thi.ng/strings/case";
-import type { Args, ArgSpecExt, ParseOpts, ParseResult } from "./api.js";
+import type { ArgSpecExt, Args, ParseOpts, ParseResult } from "./api.js";
 import { usage } from "./usage.js";
 
 export const ParseError = defError(() => "parse error");
@@ -12,7 +12,7 @@ export const parse = <T extends IObjectOf<any>>(
 	specs: Args<T>,
 	argv: string[],
 	opts?: Partial<ParseOpts>
-): ParseResult<T> | undefined => {
+): Maybe<ParseResult<T>> => {
 	opts = { start: 2, showUsage: true, help: ["--help", "-h"], ...opts };
 	try {
 		return parseOpts(specs, argv, opts);
@@ -30,7 +30,7 @@ const parseOpts = <T extends IObjectOf<any>>(
 	specs: Args<T>,
 	argv: string[],
 	opts: Partial<ParseOpts>
-): ParseResult<T> | undefined => {
+): Maybe<ParseResult<T>> => {
 	const aliases = aliasIndex<T>(specs);
 	const acc: any = {};
 	let id: Nullable<string>;
@@ -82,7 +82,7 @@ const parseKey = <T extends IObjectOf<any>>(
 	a: string
 ): ParseKeyResult => {
 	if (a[0] === "-") {
-		let id: string | undefined;
+		let id: Maybe<string>;
 		if (a[1] === "-") {
 			// terminator arg, stop parsing
 			if (a === "--") return { state: 1 };
