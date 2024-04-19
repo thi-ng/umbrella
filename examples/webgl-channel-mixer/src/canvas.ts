@@ -33,7 +33,7 @@ export class WebGLImageCanvas extends Component {
 		super();
 	}
 
-	async mount(parent: Element, index?: NumOrElement | undefined) {
+	async mount(parent: Element, index?: NumOrElement) {
 		const canvas = <HTMLCanvasElement>(
 			this.$el(
 				"canvas",

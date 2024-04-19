@@ -1,4 +1,4 @@
-import type { Keys } from "@thi.ng/api";
+import type { Keys, Maybe } from "@thi.ng/api";
 import { div, pre } from "@thi.ng/hiccup-html";
 import { getIn, setIn } from "@thi.ng/paths";
 import { $compile } from "@thi.ng/rdom";
@@ -36,7 +36,7 @@ class Font {
 		const height = parseInt($height);
 		// parse header line to determine characters
 		// and their offsets & widths...
-		let prev: string | undefined;
+		let prev: Maybe<string>;
 		for (let x = 0; x < header.length; x++) {
 			// skipping non-markers
 			if (header[x] !== "|") continue;

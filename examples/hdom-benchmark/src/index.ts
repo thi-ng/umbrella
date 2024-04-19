@@ -1,7 +1,8 @@
+import type { Nullable } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import { dropdown } from "@thi.ng/hdom-components";
 import { U16, U24 } from "@thi.ng/hex";
-import { fromRAF, Stream } from "@thi.ng/rstream";
+import { Stream, fromRAF } from "@thi.ng/rstream";
 import {
 	benchmark,
 	comp,
@@ -43,7 +44,7 @@ const box = (index: number, id: number) => [
  * @param txtCol -
  */
 const fpsCounter = (
-	src: Stream<number> | null,
+	src: Nullable<Stream<number>>,
 	width = 100,
 	height = 30,
 	period = 50,

@@ -1,11 +1,11 @@
-import type { NumericArray } from "@thi.ng/api";
-import { conjugate, Delay, ifft } from "@thi.ng/dsp";
+import type { Maybe, NumericArray } from "@thi.ng/api";
+import { Delay, conjugate, ifft } from "@thi.ng/dsp";
 import { BIN_AMP, NUM_BINS, PITCH_SCALE } from "./config";
 import { DB } from "./state";
 
 export const makeBins = () => new Array(NUM_BINS).fill(0);
 
-let actx: AudioContext | undefined;
+let actx: Maybe<AudioContext>;
 let buf: AudioBuffer;
 let src: AudioBufferSourceNode;
 let delay = new Delay<NumericArray>(80, makeBins());

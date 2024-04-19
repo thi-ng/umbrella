@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { asPolygon, circle, pointInside, rect } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
 import { start } from "@thi.ng/hdom";
@@ -36,7 +37,7 @@ class GeomNode extends Node2D {
 // mouse pos
 let mouse: Vec = [0, 0];
 // info object for mouse over
-let info: NodeInfo<Node2D> | undefined;
+let info: Maybe<NodeInfo<Node2D>>;
 
 // color iterator (used for node highlighting)
 const colors = cycle([
