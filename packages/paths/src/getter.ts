@@ -1,6 +1,7 @@
 import type {
 	DeepPath,
 	Fn,
+	Maybe,
 	OptPathVal,
 	Path,
 	Path0,
@@ -38,7 +39,7 @@ import { toPath } from "./path.js";
  *
  * @param path -
  */
-export const defGetterUnsafe = <T = any>(path: Path): Fn<any, T | undefined> =>
+export const defGetterUnsafe = <T = any>(path: Path): Fn<any, Maybe<T>> =>
 	defGetter(<any>path);
 
 /**
