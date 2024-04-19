@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import type { DrawState } from "../api.js";
 import { resolveGradientOrColor } from "../color.js";
@@ -64,7 +64,7 @@ export const __mergeState = (
 	state: DrawState,
 	attribs: IObjectOf<any>
 ) => {
-	let res: DrawState | undefined;
+	let res: Maybe<DrawState>;
 	if (!attribs) return;
 	if (applyTransform(ctx, attribs)) {
 		res = __newState(state, true);

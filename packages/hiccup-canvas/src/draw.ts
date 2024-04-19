@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import type { DrawState } from "./api.js";
@@ -153,7 +154,7 @@ export const draw = (
 
 const defs = (
 	ctx: CanvasRenderingContext2D,
-	state: DrawState | undefined,
+	state: Maybe<DrawState>,
 	pstate: DrawState,
 	shape: any[]
 ) => {
