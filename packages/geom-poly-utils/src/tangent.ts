@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
@@ -64,8 +65,8 @@ export const smoothTangents = (
 	const res: Vec[] = [];
 	const n = pts.length - 1;
 	if (n < 1) return res;
-	let prev: Vec | undefined;
-	let plen: number | undefined;
+	let prev: Maybe<Vec>;
+	let plen: Maybe<number>;
 	if (close) {
 		prev = sub([], pts[0], pts[n]);
 		plen = mag(prev!);
