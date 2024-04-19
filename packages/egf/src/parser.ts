@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
@@ -105,7 +105,7 @@ const parseProp = (
 	let idx = line.indexOf(" ", idx0);
 	let key = unescape(line.substring(idx0, idx));
 	ctx.opts.prefixes && (key = qualifiedID(ctx.prefixes, key));
-	let tag: string | undefined;
+	let tag: Maybe<string>;
 	let body: string;
 	idx++;
 	if (line[idx] === "-" && line[idx + 1] === ">") {

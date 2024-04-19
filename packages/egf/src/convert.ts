@@ -1,4 +1,4 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
+import type { Fn, Fn2, Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isDate } from "@thi.ng/checks/is-date";
 import { isNumber } from "@thi.ng/checks/is-number";
@@ -29,7 +29,7 @@ export const toEGF = (
 
 export const toEGFNode = (
 	node: Node,
-	prefix: Fn<string, string | undefined>,
+	prefix: Fn<string, Maybe<string>>,
 	propFn: Fn2<string, any, string> = toEGFProp
 ) => {
 	if (isToEGF(node)) return node.toEGF();
