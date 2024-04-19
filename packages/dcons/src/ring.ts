@@ -1,4 +1,4 @@
-import type { Fn, ICompare, ICopy, IEmpty, ISeq } from "@thi.ng/api";
+import type { Fn, ICompare, ICopy, IEmpty, ISeq, Maybe } from "@thi.ng/api";
 import { AList } from "./alist.js";
 import type { ConsCell } from "./api.js";
 
@@ -144,8 +144,8 @@ export class DRing<T>
 
 	traverse(
 		fn: Fn<ConsCell<T>, boolean | number>,
-		start: ConsCell<T> | undefined = this._head,
-		end: ConsCell<T> | undefined = start
+		start: Maybe<ConsCell<T>> = this._head,
+		end: Maybe<ConsCell<T>> = start
 	) {
 		return super.traverse(fn, start, end);
 	}

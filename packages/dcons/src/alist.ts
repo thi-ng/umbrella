@@ -8,6 +8,7 @@ import type {
 	IInto,
 	ILength,
 	IRelease,
+	Maybe,
 	Predicate,
 } from "@thi.ng/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
@@ -34,7 +35,7 @@ export abstract class AList<L extends AList<any, T>, T>
 		IReducible<T, any>,
 		IRelease
 {
-	_head: ConsCell<T> | undefined;
+	_head: Maybe<ConsCell<T>>;
 
 	protected _length: number = 0;
 
@@ -50,7 +51,7 @@ export abstract class AList<L extends AList<any, T>, T>
 		return this._head;
 	}
 
-	abstract get tail(): ConsCell<T> | undefined;
+	abstract get tail(): Maybe<ConsCell<T>>;
 
 	[Symbol.iterator]() {
 		return _iterate("next", this._head);
@@ -97,7 +98,7 @@ export abstract class AList<L extends AList<any, T>, T>
 
 	abstract copy(): L;
 
-	abstract drop(): T | undefined;
+	abstract drop(): Maybe<T>;
 
 	abstract empty(): L;
 
@@ -165,10 +166,10 @@ export abstract class AList<L extends AList<any, T>, T>
 		return cell ? cell.value : notFound;
 	}
 
-	abstract nthCell(n: number): ConsCell<T> | undefined;
+	abstract nthCell(n: number): Maybe<ConsCell<T>>;
 
 	nthCellUnsafe(n: number) {
-		let cell: ConsCell<T> | undefined;
+		let cell: Maybe<ConsCell<T>>;
 		let dir: keyof ConsCell<T>;
 		if (n <= this._length >>> 1) {
 			cell = this._head;
@@ -289,8 +290,8 @@ export abstract class AList<L extends AList<any, T>, T>
 
 	traverse(
 		fn: Fn<ConsCell<T>, boolean | number>,
-		start: ConsCell<T> | undefined = this._head,
-		end?: ConsCell<T> | undefined
+		start: Maybe<ConsCell<T>> = this._head,
+		end?: Maybe<ConsCell<T>>
 	) {
 		if (!this._head) return;
 		let cell = start!;

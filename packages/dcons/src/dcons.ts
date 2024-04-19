@@ -6,6 +6,7 @@ import type {
 	ISeq,
 	ISeqable,
 	IStack,
+	Maybe,
 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
@@ -23,7 +24,7 @@ export class DCons<T>
 		IStack<T, T, DCons<T>>,
 		ISeqable<T>
 {
-	protected _tail: ConsCell<T> | undefined;
+	protected _tail: Maybe<ConsCell<T>>;
 
 	constructor(src?: Iterable<T>) {
 		super();
@@ -340,7 +341,7 @@ export class DCons<T>
 			let numMerges = 0;
 			while (p) {
 				numMerges++;
-				let q: ConsCell<T> | undefined = p;
+				let q: Maybe<ConsCell<T>> = p;
 				let psize = 0;
 				for (let i = 0; i < inSize; i++) {
 					psize++;
@@ -349,7 +350,7 @@ export class DCons<T>
 				}
 				let qsize = inSize;
 				while (psize > 0 || (qsize > 0 && q)) {
-					let e: ConsCell<T> | undefined;
+					let e: Maybe<ConsCell<T>>;
 					if (psize === 0) {
 						e = q;
 						q = q!.next;
@@ -386,7 +387,7 @@ export class DCons<T>
 	}
 
 	splice(at: ConsCell<T> | number, del = 0, insert?: Iterable<T>): DCons<T> {
-		let cell: ConsCell<T> | undefined;
+		let cell: Maybe<ConsCell<T>>;
 		if (typeof at === "number") {
 			if (at < 0) {
 				at += this._length;
