@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import {
 	closestPointPolyline,
 	closestPointSegment,
@@ -32,7 +33,7 @@ export class Sampler {
 		return idx ? idx[idx.length - 1] : 0;
 	}
 
-	pointAt(t: number): Vec | undefined {
+	pointAt(t: number): Maybe<Vec> {
 		const pts = this.points;
 		const n = pts.length - 1;
 		if (n < 0) {
@@ -87,7 +88,7 @@ export class Sampler {
 			: undefined;
 	}
 
-	segmentAt(t: number): VecPair | undefined {
+	segmentAt(t: number): Maybe<VecPair> {
 		let i = this.indexAt(t);
 		if (i === undefined) {
 			return;
@@ -101,7 +102,7 @@ export class Sampler {
 		return seg ? normalize(null, sub([], seg[1], seg[0]), n) : undefined;
 	}
 
-	splitAt(t: number): Vec[][] | undefined {
+	splitAt(t: number): Maybe<Vec[][]> {
 		if (t <= 0 || t >= 1) {
 			return [this.points];
 		}
@@ -142,7 +143,7 @@ export class Sampler {
 	 * @param start
 	 * @param end
 	 */
-	extractRange(start: number, end: number): Vec[] | undefined {
+	extractRange(start: number, end: number): Maybe<Vec[]> {
 		if (start > end) {
 			const t = start;
 			start = end;
