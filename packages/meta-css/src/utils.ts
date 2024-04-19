@@ -1,4 +1,5 @@
 // thing:no-export
+import type { Maybe } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { readText, writeText } from "@thi.ng/file-io";
 import type { ILogger } from "@thi.ng/logger";
@@ -10,7 +11,7 @@ import { resolve } from "node:path";
 import type { CompiledSpec, CompiledSpecs } from "./api.js";
 
 export const maybeWriteText = (
-	out: string | undefined,
+	out: Maybe<string>,
 	body: string | string[],
 	logger: ILogger
 ) => {
