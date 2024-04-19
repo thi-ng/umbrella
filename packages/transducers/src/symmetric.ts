@@ -1,3 +1,5 @@
+import type { Maybe } from "@thi.ng/api";
+
 /** @internal */
 interface Cell<T> {
 	x: T;
@@ -20,7 +22,7 @@ interface Cell<T> {
  * @param src -
  */
 export function* symmetric<T>(src: Iterable<T>): IterableIterator<T> {
-	let head: Cell<T> | undefined = undefined;
+	let head: Maybe<Cell<T>> = undefined;
 	for (let x of src) {
 		head = { x, n: head };
 		yield x;

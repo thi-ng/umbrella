@@ -1,4 +1,4 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Maybe, Predicate } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "./api.js";
 import { comp } from "./comp.js";
@@ -42,10 +42,7 @@ import { take } from "./take.js";
  * @param pred - predicate function
  */
 export function matchFirst<T>(pred: Predicate<T>): Transducer<T, T>;
-export function matchFirst<T>(
-	pred: Predicate<T>,
-	src: Iterable<T>
-): T | undefined;
+export function matchFirst<T>(pred: Predicate<T>, src: Iterable<T>): Maybe<T>;
 export function matchFirst<T>(pred: Predicate<T>, src?: Iterable<T>): any {
 	return isIterable(src)
 		? [...iterator1(matchFirst(pred), src)][0]

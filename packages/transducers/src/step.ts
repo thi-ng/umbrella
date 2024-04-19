@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import type { TxLike } from "./api.js";
 import { ensureTransducer } from "./ensure.js";
 import { push } from "./push.js";
@@ -58,7 +58,7 @@ import { isReduced } from "./reduced.js";
 export const step = <A, B>(
 	tx: TxLike<A, B>,
 	unwrap = true
-): Fn<A, B | B[] | undefined> => {
+): Fn<A, Maybe<B | B[]>> => {
 	const [_, complete, reduce] = ensureTransducer(tx)(push());
 	let done = false;
 	return (x: A) => {

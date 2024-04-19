@@ -1,4 +1,4 @@
-import type { Comparator } from "@thi.ng/api";
+import type { Comparator, Maybe } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import type { Reducer } from "./api.js";
 
@@ -10,10 +10,7 @@ import type { Reducer } from "./api.js";
  * @param cmp -
  */
 export function pushSort<T>(cmp?: Comparator<T>): Reducer<T, T[]>;
-export function pushSort<T>(
-	cmp: Comparator<T> | undefined,
-	xs: Iterable<T>
-): T[];
+export function pushSort<T>(cmp: Maybe<Comparator<T>>, xs: Iterable<T>): T[];
 export function pushSort<T>(
 	cmp: Comparator<T> = compare,
 	xs?: Iterable<T>
