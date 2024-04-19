@@ -1,4 +1,4 @@
-import type { Fn, Nullable } from "@thi.ng/api";
+import type { Fn, Maybe, Nullable } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { IBoidBehavior, ScalarOrField } from "../api.js";
 import type { Boid } from "../boid.js";
@@ -22,7 +22,7 @@ export const dynamicTarget = (
 	radius: ScalarOrField = Infinity,
 	weight: ScalarOrField = 1
 ): IBoidBehavior => {
-	let currTarget: ReadonlyVec | undefined;
+	let currTarget: Maybe<ReadonlyVec>;
 	const $radius = __ensureFn(radius);
 	const force: Vec = [];
 	return {
