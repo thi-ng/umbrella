@@ -78,14 +78,16 @@ reasons.
 
 Because _rdom_ itself relies for most reactive features, stream composition and
 reactive value transformations on other packages, i.e.
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
+[@thi.ng/transducers-async](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-async)
 and
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
 please consult the docs for these packages to learn more about the available
 constructs and patterns. Most of _rdom_ only deals with either subscribing to
-reactive values and/or wrapping/transforming existing subscriptions, either
-explicitly using the provided control components (e.g.
-[`$sub()`](https://docs.thi.ng/umbrella/rdom/functions/_sub.html)) or using
+reactive values, async iterables and/or wrapping/transforming existing
+subscriptions, either explicitly using the provided control components (e.g.
+[`$async()`](https://docs.thi.ng/umbrella/rdom/functions/_async.html)),
+[`$sub()`](https://docs.thi.ng/umbrella/rdom/functions/_sub.html), or using
 [`$compile()`](https://docs.thi.ng/umbrella/rdom/functions/_compile.html) to
 auto-wrap such values embedded in an hiccup tree.
 
@@ -112,8 +114,8 @@ as a facade for many of these other functions and creates an actual DOM from a
 given hiccup component tree. It also automatically wraps any reactive values
 contained therein.
 
-**All of these functions are also usable, even if you don't intend to use any
-other package features!**
+**All of the following functions are also usable, even if you don't intend to
+use any other package features!**
 
 - [$addChild](https://docs.thi.ng/umbrella/rdom/functions/_addChild.html)
 - [$attribs](https://docs.thi.ng/umbrella/rdom/functions/_attribs.html)
@@ -136,6 +138,7 @@ for the implementation of common UI structures (e.g. item lists of any kind).
 The following links lead to the documentation of these wrappers, incl. small
 code examples:
 
+- [$async](https://docs.thi.ng/umbrella/rdom/functions/_async.html)
 - [$klist](https://docs.thi.ng/umbrella/rdom/functions/_klist.html)
 - [$list](https://docs.thi.ng/umbrella/rdom/functions/_list.html)
 - [$lazy](https://docs.thi.ng/umbrella/rdom/functions/_lazy.html)
@@ -152,12 +155,12 @@ code examples:
 
 ### Event handlers for reactive streams
 
-Reactive rdom component are based on
+Currently, reactive rdom components are based on
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-subscriptions. In order to create a feedback loop between those reactive state
-values and their subscribed UI components, input event handlers need to feed any
-user changes back to those reactive state(s). To reduce boilerplate for these
-tasks, the following higher order input event handlers are provided:
+subscriptions. To create a feedback loop between those reactive state values and
+their subscribed UI components, input event handlers need to feed any user
+changes back to those reactive state(s). To reduce boilerplate for these tasks,
+the following higher order input event handlers are provided:
 
 - [$input](https://docs.thi.ng/umbrella/rdom/functions/_input.html)
 - [$inputCheckbox](https://docs.thi.ng/umbrella/rdom/functions/_inputCheckbox.html)
@@ -186,7 +189,8 @@ $compile(["input", {
 name.subscribe(trace("name:"));
 ```
 
-Click counter:
+Click counter using [thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) and
+[thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers):
 
 ```ts
 import { $compile, $inputTrigger } from "@thi.ng/rdom";
@@ -205,6 +209,34 @@ $compile([
 	// using transducers to transform click stream into a counter
 	clicks.transform(scan(count(-1))),
 ]).mount(document.body);
+```
+
+### Embedding async iterables
+
+Work is underway to better support [built-in
+AsyncIterables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols)
+(possibly entirely in-lieu of rstream constructs). Currently, they can only be directly used for simple text or attribute values (also see the [rdom-async example](https://github.com/thi-ng/umbrella/blob/develop/examples/rdom-async)):
+
+```ts
+import { $compile } from "@thi.ng/rdom";
+import { range, source } from "@thi.ng/transducers-async";
+
+// infinite 1Hz counter
+const counter = range(1000);
+
+// manually updated click counter (also an async iterable)
+const clicks = source(0);
+
+// event handler to update click count
+const updateClicks = () => clicks.update((x)=> x + 1);
+
+// compile DOM with embedded async iterables
+$compile(
+	["div", {},
+		["div", {}, "counter: ", counter],
+		["button", { onclick: updateClicks }, "clicks: ", clicks]
+	]
+).mount(document.body)
 ```
 
 {{meta.status}}
