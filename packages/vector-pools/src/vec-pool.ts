@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import {
 	asNativeType,
 	GLType,
@@ -24,7 +25,7 @@ export class VecPool implements IVecPool {
 		return this.pool.stats();
 	}
 
-	malloc(size: number, type: GLType | Type = "f32"): TypedArray | undefined {
+	malloc(size: number, type: GLType | Type = "f32"): Maybe<TypedArray> {
 		return this.pool.callocAs(asNativeType(type), size);
 	}
 
@@ -32,7 +33,7 @@ export class VecPool implements IVecPool {
 		size: number,
 		stride = 1,
 		type: GLType | Type = "f32"
-	): StridedVec | undefined {
+	): Maybe<StridedVec> {
 		const buf = this.pool.callocAs(asNativeType(type), size * stride);
 		return buf ? wrap(buf, size, 0, stride) : undefined;
 	}
@@ -67,7 +68,7 @@ export class VecPool implements IVecPool {
 		cstride = 1,
 		estride = size,
 		type: GLType | Type = "f32"
-	): StridedVec[] | undefined {
+	): Maybe<StridedVec[]> {
 		const buf = this.malloc(
 			Math.max(cstride, estride, size) * num,
 			asNativeType(type)

@@ -1,4 +1,4 @@
-import type { NumericArray } from "@thi.ng/api";
+import type { Maybe, NumericArray } from "@thi.ng/api";
 import type { StridedVec } from "@thi.ng/vectors";
 import { AVecList } from "./alist.js";
 import type { VecFactory } from "./api.js";
@@ -37,7 +37,7 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
 	}
 
 	add() {
-		const v: T | undefined = this.alloc();
+		const v: Maybe<T> = this.alloc();
 		if (v) {
 			this.items.push(v);
 		}
@@ -46,7 +46,7 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
 
 	insert(i: number) {
 		if (!this.length && i !== 0) return;
-		const v: T | undefined = this.alloc();
+		const v: Maybe<T> = this.alloc();
 		if (v) {
 			this.items.splice(i, 0, v);
 		}

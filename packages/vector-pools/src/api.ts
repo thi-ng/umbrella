@@ -2,6 +2,7 @@ import type {
 	GLType,
 	IObjectOf,
 	IRelease,
+	Maybe,
 	NumericArray,
 	Type,
 	TypedArray,
@@ -28,13 +29,13 @@ export interface AttribPoolOpts {
 }
 
 export interface IVecPool extends IRelease {
-	malloc(size: number, type?: GLType | Type): TypedArray | undefined;
+	malloc(size: number, type?: GLType | Type): Maybe<TypedArray>;
 
 	mallocWrapped(
 		size: number,
 		stride?: number,
 		type?: GLType | Type
-	): StridedVec | undefined;
+	): Maybe<StridedVec>;
 
 	mallocArray(
 		num: number,
@@ -42,7 +43,7 @@ export interface IVecPool extends IRelease {
 		cstride?: number,
 		estride?: number,
 		type?: GLType | Type
-	): StridedVec[] | undefined;
+	): Maybe<StridedVec[]>;
 
 	free(vec: StridedVec | TypedArray): boolean;
 
