@@ -1,10 +1,10 @@
-import type { IObjectOf, Predicate2 } from "@thi.ng/api";
+import type { IObjectOf, Nullable, Predicate2 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import type { ObjectDiff } from "./api.js";
 
 export const diffObject = <T>(
-	a: IObjectOf<T> | undefined | null,
-	b: IObjectOf<T> | undefined | null,
+	a: Nullable<IObjectOf<T>>,
+	b: Nullable<IObjectOf<T>>,
 	mode: "full" | "only-distance" = "full",
 	_equiv: Predicate2<any> = equiv
 ): ObjectDiff<T> =>
@@ -15,8 +15,8 @@ export const diffObject = <T>(
 		: diffObjectFull(a, b, _equiv);
 
 const diffObjectDist = (
-	a: IObjectOf<any> | undefined | null,
-	b: IObjectOf<any> | undefined | null,
+	a: Nullable<IObjectOf<any>>,
+	b: Nullable<IObjectOf<any>>,
 	_equiv: Predicate2<any>
 ) => {
 	if (!a) a = {};
@@ -33,8 +33,8 @@ const diffObjectDist = (
 };
 
 const diffObjectFull = (
-	a: IObjectOf<any> | undefined | null,
-	b: IObjectOf<any> | undefined | null,
+	a: Nullable<IObjectOf<any>>,
+	b: Nullable<IObjectOf<any>>,
 	_equiv: Predicate2<any>
 ) => {
 	if (!a) a = {};

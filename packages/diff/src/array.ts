@@ -68,8 +68,8 @@ const simpleDiff = <T>(
  * @param equiv - equality predicate function
  */
 export const diffArray = <T>(
-	a: ArrayLike<T> | undefined | null,
-	b: ArrayLike<T> | undefined | null,
+	a: Nullable<ArrayLike<T>>,
+	b: Nullable<ArrayLike<T>>,
 	mode: DiffMode = "full",
 	equiv = _equiv
 ) => {
