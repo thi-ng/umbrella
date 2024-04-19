@@ -1,4 +1,4 @@
-import type { Fn, IObjectOf } from "@thi.ng/api";
+import type { Fn, IObjectOf, Maybe } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { LogLevel } from "@thi.ng/logger/api";
@@ -139,7 +139,7 @@ const BUILTINS: IObjectOf<Fn<number[], number>> = {
 };
 
 /** @internal */
-export const foldNode = defmulti<Term<any>, boolean | undefined>(
+export const foldNode = defmulti<Term<any>, Maybe<boolean>>(
 	(t) => t.tag,
 	{},
 	{
@@ -247,7 +247,7 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
  *
  * @internal
  */
-export const foldBuiltin = defmulti<FnCall<any>, boolean | undefined>(
+export const foldBuiltin = defmulti<FnCall<any>, Maybe<boolean>>(
 	(x) => x.id,
 	{},
 	{
