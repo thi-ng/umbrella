@@ -1,4 +1,4 @@
-import type { Fn, Fn3, IObjectOf } from "@thi.ng/api";
+import type { Fn, Fn3, IObjectOf, Maybe, Nullable } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { IDENT22, IDENT33, IDENT44 } from "@thi.ng/matrices/constants";
 import { ZERO2, ZERO3, ZERO4, type ReadonlyVec } from "@thi.ng/vectors/api";
@@ -76,8 +76,8 @@ export const UNIFORM_SETTERS: IObjectOf<
 	Fn3<
 		WebGLRenderingContext,
 		WebGLUniformLocation,
-		number | ReadonlyVec | undefined,
-		Fn<UniformValue | undefined | null, void>
+		Maybe<number | ReadonlyVec>,
+		Fn<Nullable<UniformValue>, void>
 	>
 > = <any>{
 	bool: uniformS("i"),
