@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { adaptDPI } from "@thi.ng/canvas";
 
 export type CanvasContext =
@@ -9,7 +10,7 @@ export interface Canvas2DContextAttributes {
 	alpha?: boolean;
 	storage?: boolean;
 	willReadFrequently?: boolean;
-	[attribute: string]: boolean | string | undefined;
+	[attribute: string]: Maybe<boolean | string>;
 }
 
 /**
@@ -52,7 +53,7 @@ export interface CanvasHandlers<T extends CanvasContext> {
 const _canvas = (
 	type: string,
 	handlers: Partial<CanvasHandlers<any>>,
-	opts: Canvas2DContextAttributes | WebGLContextAttributes | undefined
+	opts: Maybe<Canvas2DContextAttributes | WebGLContextAttributes>
 ) => {
 	let el: HTMLCanvasElement;
 	let ctx: any;

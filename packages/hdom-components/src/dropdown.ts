@@ -1,3 +1,5 @@
+import type { Maybe } from "@thi.ng/api";
+
 export interface DropDownOption extends Array<any> {
 	[0]: string | number;
 	[1]: string | number;
@@ -11,7 +13,7 @@ export interface DropDownOptionGroup extends Array<any> {
 
 export const option = (
 	[value, label, disabled]: DropDownOption,
-	sel: string | number | undefined
+	sel: Maybe<string | number>
 ) => [
 	"option",
 	{ value, disabled: !!disabled, selected: value === sel },
