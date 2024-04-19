@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Field, TypeColl } from "../api.js";
 import {
@@ -114,14 +115,14 @@ const __classifyType = (
 
 /** @internal */
 const __selectForLength = (
-	len: number | undefined,
+	len: Maybe<number>,
 	single: FieldClass,
 	fixed: FieldClass,
 	multi: FieldClass
 ) => (len != null ? (len > 0 ? fixed : multi) : single);
 
 /** @internal */
-const __ensureLength = (len: number | undefined) => {
+const __ensureLength = (len: Maybe<number>) => {
 	if (len == null || len < 1)
 		illegalArgs("missing or invalid array/vec length");
 };
