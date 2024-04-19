@@ -3,6 +3,7 @@ import type {
 	INotify,
 	IObjectOf,
 	Listener,
+	Maybe,
 	SomeRequired,
 } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
@@ -28,7 +29,7 @@ import { Trie } from "./trie.js";
 @INotifyMixin
 export class Router<T = any> implements INotify<RouterEventType> {
 	opts: RouterOpts<T>;
-	current: RouteMatch | undefined;
+	current: Maybe<RouteMatch>;
 	protected index: Record<string, AugmentedRoute> = {};
 	protected routes: Trie<AugmentedRoute> = new Trie();
 
@@ -101,7 +102,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 	 * @param src - route path to match
 	 * @param ctx - arbitrary user context
 	 */
-	route(src: string, ctx?: T): RouteMatch | undefined {
+	route(src: string, ctx?: T): Maybe<RouteMatch> {
 		if (
 			this.opts.trim &&
 			src.charAt(src.length - 1) === this.opts.separator
@@ -174,7 +175,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 		}
 	}
 
-	routeForID(id: string): AugmentedRoute | undefined {
+	routeForID(id: string): Maybe<AugmentedRoute> {
 		return this.index[id];
 	}
 
@@ -221,7 +222,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 			return;
 		}
 		const rest = route.rest >= 0 ? curr.slice(route.rest) : undefined;
-		let match: RouteMatch | undefined = {
+		let match: Maybe<RouteMatch> = {
 			id: route.id,
 			params,
 			rest,

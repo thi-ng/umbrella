@@ -1,4 +1,4 @@
-import type { EVENT_ALL, Fn, IObjectOf } from "@thi.ng/api";
+import type { EVENT_ALL, Fn, IObjectOf, Maybe } from "@thi.ng/api";
 
 /**
  * A validation function for to-be authenticated routes.
@@ -18,7 +18,7 @@ export type RouteAuthenticator<T = any> = (
 	match: RouteMatch,
 	route: AugmentedRoute,
 	ctx?: T
-) => RouteMatch | undefined;
+) => Maybe<RouteMatch>;
 
 /**
  * Route validator subspecs are optional and used to coerce and/or validate

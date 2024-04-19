@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 
 /**
@@ -50,7 +51,7 @@ export class Trie<T> {
 	n: Record<string, Trie<T>> = {};
 	v?: T;
 
-	constructor(key?: string[], v?: T | undefined, i = 0) {
+	constructor(key?: string[], v?: Maybe<T>, i = 0) {
 		if (key && v !== undefined) {
 			if (i < key.length) this.set(key, v, i);
 			else this.v = v;
@@ -71,10 +72,10 @@ export class Trie<T> {
 		else this.n[k] = new Trie(key, v, i + 1);
 	}
 
-	get(key: string[], i = 0): T | undefined {
+	get(key: string[], i = 0): Maybe<T> {
 		if (i >= key.length) return this.v;
-		let value: T | undefined;
-		let next: Trie<T> | undefined;
+		let value: Maybe<T>;
+		let next: Maybe<Trie<T>>;
 		// literal match
 		if ((next = this.n[key[i]])) value = next.get(key, i + 1);
 		if (value !== undefined) return value;
