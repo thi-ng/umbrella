@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";
 import { diffTree } from "@thi.ng/hdom/diff";
@@ -20,12 +20,12 @@ export class HDOMNode {
 	listeners: IObjectOf<EventListener[]>;
 
 	value: any;
-	checked: boolean | undefined;
+	checked: Maybe<boolean>;
 
 	tag: string | symbol;
 	attribs: IObjectOf<any>;
-	style: IObjectOf<any> | undefined;
-	body: string | undefined;
+	style: Maybe<IObjectOf<any>>;
+	body: Maybe<string>;
 
 	constructor(tag: string | symbol, attribs = {}) {
 		this.tag = tag;
