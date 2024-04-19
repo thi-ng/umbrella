@@ -1,6 +1,7 @@
 import type {
 	DeepPath,
 	IEquiv,
+	Maybe,
 	OptPathVal,
 	Path,
 	Path0,
@@ -32,7 +33,7 @@ export const defAtom = <T>(value: T, valid?: Predicate<T>) =>
 @IWatchMixin
 export class Atom<T> implements IAtom<T>, IEquiv {
 	protected _value: T;
-	protected valid: Predicate<T> | undefined;
+	protected valid: Maybe<Predicate<T>>;
 	protected _watches: any;
 
 	constructor(val: T, valid?: Predicate<T>) {
