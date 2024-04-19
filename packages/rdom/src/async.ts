@@ -1,4 +1,4 @@
-import type { Path } from "@thi.ng/api";
+import type { Maybe, Path } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
@@ -53,7 +53,7 @@ export class $Async<T = any> {
 
 	constructor(
 		protected src: AsyncIterable<T>,
-		protected inner: IMountWithState<T | undefined>
+		protected inner: IMountWithState<Maybe<T>>
 	) {}
 
 	async mount(parent: ParentNode, index: NumOrElement = -1) {

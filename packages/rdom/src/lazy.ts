@@ -1,4 +1,4 @@
-import type { Fn0 } from "@thi.ng/api";
+import type { Fn0, Maybe } from "@thi.ng/api";
 import type { ComponentLike, IComponent, NumOrElement } from "./api.js";
 import { Component } from "./component.js";
 
@@ -25,8 +25,8 @@ export const $lazy = (
 ) => new $Lazy(tag, attribs, inner, opts);
 
 export class $Lazy extends Component {
-	protected observer: IntersectionObserver | undefined;
-	protected inner: IComponent | undefined;
+	protected observer: Maybe<IntersectionObserver>;
+	protected inner: Maybe<IComponent>;
 
 	constructor(
 		protected tag: string,
@@ -37,7 +37,7 @@ export class $Lazy extends Component {
 		super();
 	}
 
-	async mount(parent: ParentNode, index?: NumOrElement | undefined) {
+	async mount(parent: ParentNode, index?: NumOrElement) {
 		this.el = this.$el(this.tag, this.attribs, null, parent, index);
 		this.observer = new IntersectionObserver(([item]) => {
 			if (item.isIntersecting) {
