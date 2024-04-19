@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -111,7 +111,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 		opts.xform && (this.xform = opts.xform(push()));
 	}
 
-	deref(): B | undefined {
+	deref(): Maybe<B> {
 		return this.last !== SEMAPHORE ? this.last : undefined;
 	}
 
@@ -192,8 +192,8 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 		opts: WithTransform<B, C> & Partial<WithErrorHandlerOpts>
 	): ISubscription<B, C>;
 	transform(...args: any[]) {
-		let sub: Partial<ISubscriber<B>> | undefined;
-		let opts: Partial<SubscriptionOpts<any, any>> | undefined;
+		let sub: Maybe<Partial<ISubscriber<B>>>;
+		let opts: Maybe<Partial<SubscriptionOpts<any, any>>>;
 		if (isPlainObject(peek(args))) {
 			opts = args.pop();
 			sub = { error: (<WithErrorHandlerOpts>opts).error };
@@ -304,7 +304,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 	}
 
 	protected dispatchTo(type: "next" | "done" | "error", x?: B) {
-		let s: Partial<ISubscriber<B>> | undefined = this.wrapped;
+		let s: Maybe<Partial<ISubscriber<B>>> = this.wrapped;
 		if (s) {
 			try {
 				s[type] && s[type]!(x!);

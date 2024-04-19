@@ -1,4 +1,4 @@
-import type { Fn, Fn0, IDeref, IID } from "@thi.ng/api";
+import type { Fn, Fn0, IDeref, IID, Maybe } from "@thi.ng/api";
 import type { Transducer } from "@thi.ng/transducers";
 import type { Stream } from "./stream.js";
 
@@ -138,7 +138,7 @@ export interface ISubscriber<T> {
 	[id: string]: any;
 }
 
-export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
+export interface ISubscribable<A> extends IDeref<Maybe<A>>, IID<string> {
 	/**
 	 * Adds given `sub` as child subscription.
 	 *
@@ -217,7 +217,7 @@ export interface ITransformable<B> {
 }
 
 export interface ISubscription<A, B>
-	extends IDeref<B | undefined>,
+	extends IDeref<Maybe<B>>,
 		ISubscriber<A>,
 		ISubscribable<B>,
 		ITransformable<B> {

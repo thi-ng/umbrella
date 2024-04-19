@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import { timeout } from "../src/index.js";
 import { TIMEOUT } from "./config.js";
@@ -50,7 +51,7 @@ test("cancels timeout in cleanup()", (done) => {
 
 test("resets timeout when value received", (done) => {
 	const buf: any[] = [];
-	let res: any[] | undefined;
+	let res: Maybe<any[]>;
 	const t = timeout(TIMEOUT, { reset: true });
 	t.subscribe({
 		next(x) {
