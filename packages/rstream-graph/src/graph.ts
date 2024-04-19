@@ -1,4 +1,4 @@
-import type { IObjectOf, Path, Tuple } from "@thi.ng/api";
+import type { IObjectOf, Maybe, Path, Tuple } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -139,7 +139,7 @@ const getNodeInput = (
 		: illegalArgs(`invalid node input: ${id}`);
 
 const prepareNodeOutputs = (
-	outs: IObjectOf<NodeOutputSpec> | undefined,
+	outs: Maybe<IObjectOf<NodeOutputSpec>>,
 	node: ISubscription<any, any>,
 	state: IAtom<any>,
 	nodeID: string
@@ -320,7 +320,7 @@ export const node2 = (
  */
 export const ensureInputs = (
 	src: IObjectOf<ISubscription<any, any>>,
-	inputIDs: string[] | undefined,
+	inputIDs: Maybe<string[]>,
 	nodeID: string
 ) => {
 	if (inputIDs) {
