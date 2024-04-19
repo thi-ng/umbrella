@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { BitField } from "@thi.ng/bitfield/bitfield";
 import { DCons } from "@thi.ng/dcons/dcons";
 import type { CostFn, IGraph } from "./api.js";
@@ -54,7 +55,7 @@ export class BFS {
 		return this.marked.at(id) !== 0;
 	}
 
-	pathTo(id: number): Iterable<number> | undefined {
+	pathTo(id: number): Maybe<Iterable<number>> {
 		if (!this.marked.at(id)) return;
 		const { dist, edges } = this;
 		const path = new DCons<number>();
