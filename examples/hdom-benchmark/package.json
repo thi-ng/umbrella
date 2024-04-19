@@ -12,6 +12,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/api": "workspace:^",
 		"@thi.ng/hdom": "workspace:^",
 		"@thi.ng/hdom-components": "workspace:^",
 		"@thi.ng/hex": "workspace:^",
