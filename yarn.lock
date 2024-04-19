@@ -883,6 +883,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/hdom-benchmark@workspace:examples/hdom-benchmark"
   dependencies:
+    "@thi.ng/api": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
     "@thi.ng/hex": "workspace:^"
@@ -1206,6 +1207,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/imgui@workspace:examples/imgui"
   dependencies:
+    "@thi.ng/api": "workspace:^"
     "@thi.ng/atom": "workspace:^"
     "@thi.ng/bench": "workspace:^"
     "@thi.ng/geom": "workspace:^"
@@ -1739,6 +1741,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/ramp-synth@workspace:examples/ramp-synth"
   dependencies:
+    "@thi.ng/api": "workspace:^"
     "@thi.ng/arrays": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-canvas": "workspace:^"
@@ -1766,12 +1769,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-async@workspace:examples/rdom-async":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-async@workspace:examples/rdom-async"
+  dependencies:
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/transducers-async": "workspace:^"
+    typescript: "npm:^5.4.3"
+    vite: "npm:^5.2.6"
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-basics@workspace:examples/rdom-basics":
   version: 0.0.0-use.local
   resolution: "@example/rdom-basics@workspace:examples/rdom-basics"
   dependencies:
     "@thi.ng/checks": "workspace:^"
     "@thi.ng/compose": "workspace:^"
+    "@thi.ng/hiccup-css": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/random": "workspace:^"
@@ -2164,6 +2181,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/scenegraph@workspace:examples/scenegraph"
   dependencies:
+    "@thi.ng/api": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/geom-api": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
@@ -6393,7 +6411,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers-async@workspace:packages/transducers-async":
+"@thi.ng/transducers-async@workspace:^, @thi.ng/transducers-async@workspace:packages/transducers-async":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-async@workspace:packages/transducers-async"
   dependencies:
