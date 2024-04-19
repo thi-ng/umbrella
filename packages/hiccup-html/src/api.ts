@@ -1,10 +1,14 @@
-import type { Fn, IObjectOf, MaybeDeref, NumOrString } from "@thi.ng/api";
+import type {
+	Fn,
+	IObjectOf,
+	Maybe,
+	MaybeDeref,
+	NumOrString,
+} from "@thi.ng/api";
 
 export type CDataContent = ["!CDATA", ...string[]];
 
-export type AttribVal<T> =
-	| MaybeDeref<T | undefined>
-	| AsyncIterable<T | undefined>;
+export type AttribVal<T> = MaybeDeref<Maybe<T>> | AsyncIterable<Maybe<T>>;
 export type BooleanAttrib = AttribVal<boolean>;
 export type NumericAttrib = AttribVal<number>;
 export type StringAttrib = AttribVal<string>;
