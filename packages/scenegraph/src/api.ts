@@ -1,4 +1,4 @@
-import type { IID, Nullable } from "@thi.ng/api";
+import type { IID, Maybe, Nullable } from "@thi.ng/api";
 import type { Mat } from "@thi.ng/matrices";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -19,13 +19,13 @@ export interface ISceneNode<T extends ISceneNode<T>> extends IID<string> {
 
 	draw<D>(ctx: D): void;
 
-	mapGlobalPoint(p: ReadonlyVec): Vec | undefined;
+	mapGlobalPoint(p: ReadonlyVec): Maybe<Vec>;
 
-	mapLocalPointToNode(dest: ISceneNode<T>, p: ReadonlyVec): Vec | undefined;
+	mapLocalPointToNode(dest: ISceneNode<T>, p: ReadonlyVec): Maybe<Vec>;
 
 	containsLocalPoint(_: ReadonlyVec): boolean;
 
-	childForPoint(p: ReadonlyVec): NodeInfo<T> | undefined;
+	childForPoint(p: ReadonlyVec): Maybe<NodeInfo<T>>;
 }
 
 /**
