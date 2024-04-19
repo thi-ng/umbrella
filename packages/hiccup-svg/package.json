@@ -36,6 +36,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
+		"@thi.ng/api": "^8.10.1",
 		"@thi.ng/checks": "^3.6.1",
 		"@thi.ng/color": "^5.6.41",
 		"@thi.ng/prefixes": "^2.3.16"

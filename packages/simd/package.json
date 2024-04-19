@@ -37,6 +37,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
+		"@thi.ng/api": "^8.10.1",
 		"@thi.ng/transducers-binary": "^2.1.116"
 	},
 	"devDependencies": {

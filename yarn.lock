@@ -4637,6 +4637,7 @@ __metadata:
   resolution: "@thi.ng/geom-resample@workspace:packages/geom-resample"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
+    "@thi.ng/api": "npm:^8.10.1"
     "@thi.ng/checks": "npm:^3.6.1"
     "@thi.ng/geom-api": "npm:^4.0.6"
     "@thi.ng/geom-closest-point": "npm:^2.1.123"
@@ -5067,6 +5068,7 @@ __metadata:
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
+    "@thi.ng/api": "npm:^8.10.1"
     "@thi.ng/checks": "npm:^3.6.1"
     "@thi.ng/color": "npm:^5.6.41"
     "@thi.ng/prefixes": "npm:^2.3.16"
@@ -5264,6 +5266,7 @@ __metadata:
   resolution: "@thi.ng/layout@workspace:packages/layout"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
+    "@thi.ng/api": "npm:^8.10.1"
     "@thi.ng/arrays": "npm:^2.9.3"
     "@thi.ng/checks": "npm:^3.6.1"
     esbuild: "npm:^0.20.2"
@@ -6204,6 +6207,7 @@ __metadata:
   resolution: "@thi.ng/simd@workspace:packages/simd"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
+    "@thi.ng/api": "npm:^8.10.1"
     "@thi.ng/transducers-binary": "npm:^2.1.116"
     assemblyscript: "npm:0.27.25"
     esbuild: "npm:^0.20.2"
@@ -6395,6 +6399,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.10.1"
+    "@thi.ng/buffers": "npm:^0.1.0"
     "@thi.ng/checks": "npm:^3.6.1"
     "@thi.ng/compose": "npm:^3.0.1"
     "@thi.ng/errors": "npm:^2.5.4"

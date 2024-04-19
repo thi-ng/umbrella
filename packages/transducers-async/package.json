@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.10.1",
+		"@thi.ng/buffers": "^0.1.0",
 		"@thi.ng/checks": "^3.6.1",
 		"@thi.ng/compose": "^3.0.1",
 		"@thi.ng/errors": "^2.5.4",
