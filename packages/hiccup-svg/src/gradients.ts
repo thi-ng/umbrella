@@ -1,5 +1,6 @@
-import { fattribs, fcolor, ff } from "./format.js";
+import type { Maybe } from "@thi.ng/api";
 import type { GradientStop, Vec2Like } from "./api.js";
+import { fattribs, fcolor, ff } from "./format.js";
 
 const RE_ALPHA_COLOR =
 	/(rgb|hsl)a\(([a-z0-9.-]+),([0-9.%]+),([0-9.%]+),([0-9.]+)\)/;
@@ -14,7 +15,7 @@ const gradientStop = ([offset, col]: GradientStop) => {
 	col = fcolor(col);
 	// use stop-opacity attrib for safari compatibility
 	// https://stackoverflow.com/a/26220870/294515
-	let opacity: string | undefined;
+	let opacity: Maybe<string>;
 	const parts = RE_ALPHA_COLOR.exec(col);
 	if (parts) {
 		col = `${parts[1]}(${parts[2]},${parts[3]},${parts[4]})`;
