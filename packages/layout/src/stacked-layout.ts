@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { argMax, argMin } from "@thi.ng/arrays/argmin";
 import type { CellSpan, LayoutBox } from "./api.js";
 import { GridLayout, __DEFAULT_SPANS } from "./grid-layout.js";
@@ -92,7 +93,7 @@ export class StackedLayout extends GridLayout {
 		const { offsets, cols } = this;
 		const minID = argMin(offsets);
 		const y = offsets[minID];
-		let result: CellSpan | undefined;
+		let result: Maybe<CellSpan>;
 		for (let i = minID + 1; i < cols; i++) {
 			if (offsets[i] > y) {
 				result = [i - minID, offsets[i] - y];
