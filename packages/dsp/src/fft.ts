@@ -1,4 +1,4 @@
-import type { FnN3, NumericArray } from "@thi.ng/api";
+import type { FnN3, Maybe, NumericArray } from "@thi.ng/api";
 import type { ComplexArray } from "./api.js";
 import { isComplex } from "./complex.js";
 import { magDb } from "./convert.js";
@@ -214,7 +214,7 @@ export const fft = (
 	complex: NumericArray | ComplexArray,
 	window?: NumericArray
 ): ComplexArray => {
-	let real: NumericArray, img: NumericArray | undefined;
+	let real: NumericArray, img: Maybe<NumericArray>;
 	if (isComplex(complex)) {
 		real = complex[0];
 		img = <NumericArray>complex[1];
