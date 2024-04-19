@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { ConsCell } from "@thi.ng/dcons";
 import type { CacheEntry } from "./api.js";
 import { LRUCache } from "./lru.js";
@@ -13,7 +14,7 @@ export class MRUCache<K, V> extends LRUCache<K, V> {
 	}
 
 	protected doSetEntry(
-		e: ConsCell<CacheEntry<K, V>> | undefined,
+		e: Maybe<ConsCell<CacheEntry<K, V>>>,
 		k: K,
 		v: V,
 		s: number

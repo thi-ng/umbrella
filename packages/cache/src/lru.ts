@@ -1,4 +1,4 @@
-import type { Fn0, Nullable } from "@thi.ng/api";
+import type { Fn0, Maybe, Nullable } from "@thi.ng/api";
 import type { ConsCell } from "@thi.ng/dcons";
 import { DCons } from "@thi.ng/dcons/dcons";
 import { map } from "@thi.ng/transducers/map";
@@ -153,7 +153,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
 	}
 
 	protected doSetEntry(
-		e: ConsCell<CacheEntry<K, V>> | undefined,
+		e: Maybe<ConsCell<CacheEntry<K, V>>>,
 		k: K,
 		v: V,
 		s: number

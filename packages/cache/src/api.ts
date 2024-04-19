@@ -7,6 +7,7 @@ import type {
 	IEmpty,
 	ILength,
 	IRelease,
+	Maybe,
 } from "@thi.ng/api";
 
 export interface ICache<K, V>
@@ -30,7 +31,7 @@ export interface ICache<K, V>
 	 * @param key
 	 * @param notFound
 	 */
-	get(key: K, notFound?: V): V | undefined;
+	get(key: K, notFound?: V): Maybe<V>;
 	/**
 	 * Set or updates value for given `key` and updates cache internal
 	 * statistics (depending on cache policy).
