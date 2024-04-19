@@ -1,4 +1,4 @@
-import type { IDeref, IObjectOf } from "@thi.ng/api";
+import type { IDeref, IObjectOf, Maybe } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
 import { Atom } from "@thi.ng/atom/atom";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
@@ -91,8 +91,8 @@ export class StatelessEventBus implements IDispatch {
 	state: any;
 
 	protected eventQueue: Event[];
-	protected currQueue: Event[] | undefined;
-	protected currCtx: InterceptorContext | undefined;
+	protected currQueue: Maybe<Event[]>;
+	protected currCtx: Maybe<InterceptorContext>;
 
 	protected handlers: IObjectOf<Interceptor[]>;
 	protected effects: IObjectOf<SideEffect>;
