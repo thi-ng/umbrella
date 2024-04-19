@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";
@@ -22,7 +23,7 @@ export const radio = (
 		: horizontal
 		? gridLayout(layout.x, layout.y, layout.w, n, layout.ch, layout.gap)
 		: gridLayout(layout.x, layout.y, layout.w, 1, layout.ch, layout.gap);
-	let res: number | undefined;
+	let res: Maybe<number>;
 	for (let i = 0; i < n; i++) {
 		toggle(
 			gui,

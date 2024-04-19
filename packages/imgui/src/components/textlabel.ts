@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -53,8 +53,8 @@ export const dialValueLabel = (
 	v: number,
 	x: number,
 	y: number,
-	label: string | undefined,
-	fmt: Fn<number, string> | undefined
+	label: Maybe<string>,
+	fmt: Maybe<Fn<number, string>>
 ) =>
 	gui.resource(id, valHash(key, v, gui.disabled), () =>
 		textLabelRaw(

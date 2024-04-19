@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors/hash";
@@ -58,7 +59,7 @@ export const toggleRaw = (
 	const theme = gui.theme;
 	const key = hash([x, y, w, h]);
 	gui.registerID(id, key);
-	let res: boolean | undefined;
+	let res: Maybe<boolean>;
 	const box = gui.resource(id, key, () => rect([x, y], [w, h]));
 	const hover = hoverButton(gui, id, box, info);
 	const focused = gui.requestFocus(id);

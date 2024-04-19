@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom/polygon";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
@@ -31,7 +32,7 @@ export const dropdown = (
 	const nested = isLayout(layout)
 		? layout.nest(1, [1, open ? items.length : 1])
 		: gridLayout(layout.x, layout.y, layout.w, 1, layout.ch, layout.gap);
-	let res: number | undefined;
+	let res: Maybe<number>;
 	const box = nested.next();
 	const { x, y, w, h } = box;
 	const key = hash([x, y, w, h, ~~gui.disabled]);

@@ -1,4 +1,4 @@
-import type { Fn, FnN2 } from "@thi.ng/api";
+import type { Fn, FnN2, Maybe } from "@thi.ng/api";
 import { pointInRect } from "@thi.ng/geom-isec/point";
 import { polygon } from "@thi.ng/geom/polygon";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
@@ -103,7 +103,7 @@ export const ringGroup = (
 				(layout.rowsForHeight(ringHeight(layout.cellW, thetaGap)) + 1) *
 					n,
 		  ]);
-	let res: number | undefined;
+	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
 		const v = ring(
@@ -158,8 +158,8 @@ export const ringRaw = (
 	const hover =
 		!gui.disabled &&
 		(aid === id || (aid === "" && pointInRect(gui.mouse, [x, y], [w, h])));
-	let v: number | undefined = val;
-	let res: number | undefined;
+	let v: Maybe<number> = val;
+	let res: Maybe<number>;
 	if (hover) {
 		gui.setCursor("pointer");
 		gui.hotID = id;
