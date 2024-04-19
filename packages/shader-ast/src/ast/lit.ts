@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Lit, Term } from "../api/nodes.js";
@@ -55,7 +55,7 @@ export const uint = (x: NumericB) =>
 
 const wrap =
 	<T extends Type>(type: T, ctor: Fn<any, Term<T>>) =>
-	(x?: any): Term<T> | undefined =>
+	(x?: any): Maybe<Term<T>> =>
 		isNumber(x)
 			? ctor(x)
 			: x !== undefined && !isVec(x) && x.type !== type
@@ -115,7 +115,7 @@ export const SQRT2 = float(Math.SQRT2);
 export const PHI = float((1 + Math.sqrt(5)) / 2);
 
 const $gvec =
-	(wrap: Fn<any, Term<any> | undefined>, init: Term<any>) => (xs: any[]) =>
+	(wrap: Fn<any, Maybe<Term<any>>>, init: Term<any>) => (xs: any[]) =>
 		[xs[0] === undefined ? init : wrap(xs[0]), ...xs.slice(1).map(wrap)];
 
 const $vec = $gvec(wrapFloat, FLOAT0);
@@ -128,24 +128,24 @@ const $bvec = $gvec(wrapBool, FALSE);
 
 const $vinfo = (v: Type, info = "") => v[0] + info.substring(1);
 
-const $info = (xs: any[], info: (string | undefined)[]) =>
+const $info = (xs: any[], info: Maybe<string>[]) =>
 	isVec(xs[0]) ? $vinfo(xs[0].type, info[xs.length]) : info[xs.length];
 
 const $gvec2 = <T extends Type>(
 	type: T,
-	ctor: Fn<any[], (Term<any> | undefined)[]>,
+	ctor: Fn<any[], Maybe<Term<any>>[]>,
 	xs: any[]
 ) => lit(type, (xs = ctor(xs)), $info(xs, ["n", "n"]));
 
 const $gvec3 = <T extends Type>(
 	type: T,
-	ctor: Fn<any[], (Term<any> | undefined)[]>,
+	ctor: Fn<any[], Maybe<Term<any>>[]>,
 	xs: any[]
 ) => lit(type, (xs = ctor(xs)), $info(xs, ["n", "n", "vn"]));
 
 const $gvec4 = <T extends Type>(
 	type: T,
-	ctor: Fn<any[], (Term<any> | undefined)[]>,
+	ctor: Fn<any[], Maybe<Term<any>>[]>,
 	xs: any[]
 ) =>
 	lit(
@@ -158,11 +158,8 @@ const $gvec4 = <T extends Type>(
 			: $info(xs, ["n", "n", undefined, "vnn"])
 	);
 
-const $gmat = <T extends Type>(
-	type: T,
-	info: (string | undefined)[],
-	xs: any[]
-) => lit(type, (xs = $vec(xs)), info[xs.length]);
+const $gmat = <T extends Type>(type: T, info: Maybe<string>[], xs: any[]) =>
+	lit(type, (xs = $vec(xs)), info[xs.length]);
 
 export function vec2(): Lit<"vec2">;
 // prettier-ignore

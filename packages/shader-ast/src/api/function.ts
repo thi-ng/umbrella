@@ -1,9 +1,20 @@
-import type { Fn, Fn0, Fn2, Fn3, Fn4, Fn5, Fn6, Fn7, Fn8 } from "@thi.ng/api";
+import type {
+	Fn,
+	Fn0,
+	Fn2,
+	Fn3,
+	Fn4,
+	Fn5,
+	Fn6,
+	Fn7,
+	Fn8,
+	Nullable,
+} from "@thi.ng/api";
 import type { FnCall, Sym, Term } from "./nodes.js";
 import type { SymOpts } from "./syms.js";
 import type { Type } from "./types.js";
 
-export type ScopeBody = (Term<any> | null | undefined)[];
+export type ScopeBody = Nullable<Term<any>>[];
 
 export type Arg<A extends Type> = A | [A, string?, SymOpts?];
 
