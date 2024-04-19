@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Maybe } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { ParseState } from "@thi.ng/parse";
 
@@ -176,7 +176,7 @@ export interface TagTransforms {
 	link(
 		ctx: TransformCtx,
 		target: string,
-		title: string | undefined,
+		title: Maybe<string>,
 		body: any[]
 	): any;
 	/**
