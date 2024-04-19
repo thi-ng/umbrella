@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
 import type { Stringer } from "./api.js";
 import { repeat } from "./repeat.js";
@@ -11,7 +12,7 @@ export const padLeft: (
 	ch?: string | number
 ) => (x: any, length?: number) => string = memoizeJ<
 	number,
-	string | number | undefined,
+	Maybe<string | number>,
 	Stringer<any>
 >((n, ch = " ") => {
 	const buf = repeat(String(ch), n);
