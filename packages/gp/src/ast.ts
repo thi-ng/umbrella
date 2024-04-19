@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { SYSTEM } from "@thi.ng/random/system";
 import { iterate } from "@thi.ng/transducers/iterate";
@@ -70,7 +71,7 @@ export class AST<OP, T> {
 		let loc = this.asZipper(tree).next!;
 		if (!loc) return tree;
 		while (true) {
-			let nextLoc: Location<ASTNode<OP, T>> | undefined;
+			let nextLoc: Maybe<Location<ASTNode<OP, T>>>;
 			if (rnd!.probability(probMutate)) {
 				loc = loc.replace(
 					this.randomASTNode(0, Math.min(limit - loc.depth, maxDepth))
