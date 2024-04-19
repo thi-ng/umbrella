@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import {
 	IntersectionType,
 	type IntersectionResult,
@@ -22,7 +23,7 @@ export const intersectRayCircle = (
 	d = Math.sqrt(d);
 	const a = w + d;
 	const b = w - d;
-	const isec: [boolean, number, number | undefined, Vec[]] | undefined =
+	const isec: Maybe<[boolean, number, Maybe<number>, Vec[]]> =
 		a >= 0
 			? b >= 0
 				? a > b
