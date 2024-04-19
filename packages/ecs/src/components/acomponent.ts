@@ -1,4 +1,11 @@
-import type { Event, IID, INotify, Listener, UIntArray } from "@thi.ng/api";
+import type {
+	Event,
+	IID,
+	INotify,
+	Listener,
+	Maybe,
+	UIntArray,
+} from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { IMemPoolArray } from "@thi.ng/malloc";
@@ -52,9 +59,9 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
 		return i < this.n && this.dense[i] === id;
 	}
 
-	abstract get(id: number): GET | undefined;
+	abstract get(id: number): Maybe<GET>;
 
-	abstract getIndex(i: number): GET | undefined;
+	abstract getIndex(i: number): Maybe<GET>;
 
 	valueIndexForID(id: number) {
 		const i = this.sparse[id];
