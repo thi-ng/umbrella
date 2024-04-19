@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { DrawCommand } from "@thi.ng/axidraw/api";
 import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands";
 import { polyline } from "@thi.ng/axidraw/polyline";
@@ -67,7 +68,7 @@ export const asAxiDraw: MultiFn1O<
 	IShape,
 	Partial<AsAxiDrawOpts>,
 	Iterable<DrawCommand>
-> = defmulti<IShape, Partial<AsAxiDrawOpts> | undefined, Iterable<DrawCommand>>(
+> = defmulti<IShape, Maybe<Partial<AsAxiDrawOpts>>, Iterable<DrawCommand>>(
 	__dispatch,
 	{
 		arc: "circle",
