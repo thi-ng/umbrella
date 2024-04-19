@@ -23,6 +23,7 @@
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -108,15 +109,26 @@ For Node.js REPL:
 const txa = await import("@thi.ng/transducers-async");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.09 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Description                                               | Live demo                                        | Source                                                                        |
+|:----------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
+| Basic & barebones usage of async iterables in thi.ng/rdom | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-async) |
 
 ## API
 

@@ -148,6 +148,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
 
 ## Usage examples

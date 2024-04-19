@@ -183,6 +183,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
