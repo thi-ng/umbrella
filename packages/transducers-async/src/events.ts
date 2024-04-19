@@ -1,4 +1,4 @@
-import type { IDeref } from "@thi.ng/api";
+import type { IDeref, Maybe } from "@thi.ng/api";
 import type { ClosableAsyncGenerator } from "./api.js";
 import { source } from "./source.js";
 
@@ -37,7 +37,7 @@ export const events = <T extends Event = Event>(
 	target: EventTarget,
 	id: string,
 	opts?: EventListenerOptions
-): ClosableAsyncGenerator<T> & IDeref<T | undefined> => {
+): ClosableAsyncGenerator<T> & IDeref<Maybe<T>> => {
 	const listener = (e: Event) => gen.reset(<T>e);
 	target.addEventListener(id, listener, opts);
 	const gen = source<T>();

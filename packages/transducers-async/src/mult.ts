@@ -1,4 +1,4 @@
-import type { Fn, Fn0 } from "@thi.ng/api";
+import type { Fn, Fn0, Maybe } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 
 /**
@@ -103,9 +103,9 @@ export class Mult<T> {
 
 /** @internal */
 export class MSub<T> {
-	valueP!: Promise<T | undefined>;
+	valueP!: Promise<Maybe<T>>;
 	notifyP!: Promise<void>;
-	resolve!: Fn<T | undefined, void>;
+	resolve!: Fn<Maybe<T>, void>;
 	notify!: Fn0<void>;
 	active = false;
 

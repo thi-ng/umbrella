@@ -1,4 +1,4 @@
-import type { NumOrString } from "@thi.ng/api";
+import type { Maybe, NumOrString } from "@thi.ng/api";
 
 export type SyncSources<T extends Record<NumOrString, any>> = {
 	[id in keyof T]: AsyncIterable<T[id]>;
@@ -76,14 +76,14 @@ export async function* sync<T extends Record<NumOrString, any>>(
 		);
 	};
 	if (opts?.reset) {
-		let tuple: T | undefined;
-		let curr: T | undefined;
+		let tuple: Maybe<T>;
+		let curr: Maybe<T>;
 		while ((curr = await $initial())) {
 			tuple = { ...tuple, ...curr };
 			yield tuple;
 		}
 	} else {
-		let tuple: T | undefined;
+		let tuple: Maybe<T>;
 		if (opts?.mergeOnly) {
 			tuple = <T>{};
 		} else {

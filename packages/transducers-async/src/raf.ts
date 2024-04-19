@@ -1,4 +1,4 @@
-import type { IDeref } from "@thi.ng/api";
+import type { IDeref, Maybe } from "@thi.ng/api";
 import type { ClosableAsyncGenerator } from "./api.js";
 import { source } from "./source.js";
 
@@ -23,7 +23,7 @@ export interface RAFOpts {
 
 export const raf = (
 	opts?: Partial<RAFOpts>
-): ClosableAsyncGenerator<number> & IDeref<number | undefined> => {
+): ClosableAsyncGenerator<number> & IDeref<Maybe<number>> => {
 	let frame = 0;
 	let t0 = opts?.t0 || 0;
 	let isClosed = false;
