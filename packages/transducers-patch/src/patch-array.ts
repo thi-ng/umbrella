@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
@@ -49,7 +50,7 @@ export function patchArray<T>(
 export function patchArray<T>(...args: any[]) {
 	let immutable: boolean;
 	let init: T[];
-	let patches: Iterable<PatchArrayOp<T> | PatchArrayOp<T>[]> | undefined;
+	let patches: Maybe<Iterable<PatchArrayOp<T> | PatchArrayOp<T>[]>>;
 	switch (args.length) {
 		case 0:
 			immutable = true;
