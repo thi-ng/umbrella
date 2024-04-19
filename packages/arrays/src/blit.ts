@@ -1,4 +1,4 @@
-import type { Fn3, TypedArray } from "@thi.ng/api";
+import type { Fn3, Maybe, TypedArray } from "@thi.ng/api";
 
 /**
  * Selectively copies all non-`mask` values from `src` into `dest` starting from
@@ -70,13 +70,13 @@ export function blitPred1d<T extends TypedArray>(
 	dest: T,
 	dx: number,
 	src: ArrayLike<number>,
-	pred: Fn3<number, number, number, number | undefined>
+	pred: Fn3<number, number, number, Maybe<number>>
 ): T;
 export function blitPred1d<T>(
 	dest: T[],
 	dx: number,
 	src: ArrayLike<T>,
-	pred: Fn3<T, T, number, T | undefined>
+	pred: Fn3<T, T, number, Maybe<T>>
 ): T[];
 export function blitPred1d(
 	dest: any[],
