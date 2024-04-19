@@ -1,4 +1,4 @@
-import type { IClear, ICopy, IEmpty, Pair } from "@thi.ng/api";
+import type { IClear, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 
 export interface ISpatialMap<K, V>
 	extends Iterable<Pair<K, V>>,
@@ -14,7 +14,7 @@ export interface ISpatialMap<K, V>
 	into(pairs: Iterable<Pair<K, V>>, eps?: number): boolean;
 	remove(key: K): boolean;
 	has(key: K, eps?: number): boolean;
-	get(key: K, eps?: number): V | undefined;
+	get(key: K, eps?: number): Maybe<V>;
 }
 
 export interface ISpatialSet<K>
@@ -31,7 +31,7 @@ export interface ISpatialSet<K>
 	into(keys: Iterable<K>, eps?: number): boolean;
 	remove(key: K): boolean;
 	has(key: K, eps?: number): boolean;
-	get(key: K, eps?: number): K | undefined;
+	get(key: K, eps?: number): Maybe<K>;
 }
 
 export interface IRegionQuery<K, V, R> {
