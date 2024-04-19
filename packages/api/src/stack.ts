@@ -1,3 +1,5 @@
+import type { Maybe } from "./null.js";
+
 /**
  * Generic interface for collections implementing
  * stack functionality.
@@ -10,10 +12,15 @@ export interface IStack<V, P, S> {
 	/**
 	 * Returns top-of-stack item.
 	 */
-	peek(): V | undefined;
+	peek(): Maybe<V>;
 	/**
 	 * Removes top-of-stack item and returns type P.
 	 */
-	pop(): P | undefined;
+	pop(): Maybe<P>;
+	/**
+	 * Pushes item onto stack, returns type S.
+	 *
+	 * @param x
+	 */
 	push(x: V): S;
 }
