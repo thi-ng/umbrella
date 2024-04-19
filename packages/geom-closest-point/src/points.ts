@@ -1,4 +1,4 @@
-import type { FnU2 } from "@thi.ng/api";
+import type { FnU2, Maybe } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
 import { set } from "@thi.ng/vectors/set";
@@ -20,7 +20,7 @@ export const closestPointArray = (
 	dist: FnU2<ReadonlyVec, number> = distSq
 ) => {
 	let minD = Infinity;
-	let closest: Vec | undefined;
+	let closest: Maybe<Vec>;
 	for (let i = pts.length; i-- > 0; ) {
 		const d = dist(pts[i], p);
 		if (d < minD) {
