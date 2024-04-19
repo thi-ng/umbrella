@@ -1,4 +1,4 @@
-import type { Fn3, Fn4, FnN, FnU3 } from "@thi.ng/api";
+import type { Fn3, Fn4, FnN, FnU3, Maybe } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { clamp01 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
@@ -29,7 +29,7 @@ const analogA = (a: number, delta: number, rnd: IRandom) =>
 
 export const defAnalog: FnU3<
 	Fn3<number, number, IRandom, number>,
-	Fn4<Color | null, TypedColor<any>, number, IRandom | undefined, Color>
+	Fn4<Color | null, TypedColor<any>, number, Maybe<IRandom>, Color>
 > =
 	(x, y, z) =>
 	(out, src, delta, rnd = SYSTEM) =>
@@ -65,7 +65,7 @@ export const analog = defmulti<
 	Color | null,
 	TypedColor<any>,
 	number,
-	IRandom | undefined,
+	Maybe<IRandom>,
 	Color
 >(
 	__dispatch1,

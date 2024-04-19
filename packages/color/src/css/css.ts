@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import type {
@@ -75,7 +75,7 @@ export const css = (
 	src: Exclude<MaybeColor, IParsedColor>,
 	cssTarget: CSSConversions = CSS_LEVEL3
 ) => {
-	let asCss: Fn<any, string> | undefined;
+	let asCss: Maybe<Fn<any, string>>;
 	return isString(src)
 		? src
 		: isNumber(src)

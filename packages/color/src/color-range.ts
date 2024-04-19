@@ -1,4 +1,4 @@
-import type { Range, Without } from "@thi.ng/api";
+import type { Maybe, Range, Without } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
@@ -145,8 +145,8 @@ export const colorFromRange = (
 	};
 	const { base, variance, rnd, eps } = { ...DEFAULT_OPTS, ...opts };
 	let h: number;
-	let c: number | undefined;
-	let l: number | undefined;
+	let c: Maybe<number>;
+	let l: Maybe<number>;
 	let a: number;
 	if (base) {
 		const col = lch(base);

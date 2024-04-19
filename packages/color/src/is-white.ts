@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { ReadonlyColor, TypedColor } from "./api.js";
 import { EPS } from "./api/constants.js";
@@ -15,7 +16,7 @@ const isWhiteRgb = (x: ReadonlyColor, eps = EPS) => {
 const isWhiteLch = (x: ReadonlyColor, eps = EPS) =>
 	x[1] <= eps && x[0] >= 1 - eps;
 
-export const isWhite = defmulti<TypedColor<any>, number | undefined, boolean>(
+export const isWhite = defmulti<TypedColor<any>, Maybe<number>, boolean>(
 	__dispatch0,
 	{
 		hsl: "hsv",
