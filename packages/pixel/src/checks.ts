@@ -1,4 +1,4 @@
-import type { TypedArray } from "@thi.ng/api";
+import type { Maybe, TypedArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { FloatFormat, IntFormat } from "./api.js";
 
@@ -12,7 +12,7 @@ export const ensureSize = (
 
 /** @internal */
 export const ensureImageData = (
-	data: ImageData | undefined,
+	data: Maybe<ImageData>,
 	width: number,
 	height: number
 ) =>

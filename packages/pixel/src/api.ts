@@ -7,6 +7,7 @@ import type {
 	FnU2,
 	IGrid2D,
 	IObjectOf,
+	Maybe,
 	NumericArray,
 	Range0_3,
 	TypedArray,
@@ -229,7 +230,7 @@ export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
 		y: number,
 		width: number,
 		height: number
-	): IPixelBuffer<T, P> | undefined;
+	): Maybe<IPixelBuffer<T, P>>;
 }
 
 export interface IBlit<T extends IPixelBuffer> {
