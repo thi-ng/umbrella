@@ -1,4 +1,4 @@
-import type { Fn0, IObjectOf } from "@thi.ng/api";
+import type { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
 import { ensureReduced, isReduced } from "@thi.ng/transducers/reduced";
@@ -10,10 +10,11 @@ export interface FSMState {
 export type FSMStateMap<T extends FSMState, A, B> = IObjectOf<
 	FSMHandler<T, A, B>
 >;
+
 export type FSMHandler<T extends FSMState, A, B> = (
 	state: T,
 	input: A
-) => B | null | void;
+) => Nullable<B> | void;
 
 export interface FSMOpts<T extends FSMState, A, B> {
 	states: FSMStateMap<T, A, B>;
