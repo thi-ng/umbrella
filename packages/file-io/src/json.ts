@@ -1,4 +1,4 @@
-import type { Fn3, NumOrString } from "@thi.ng/api";
+import type { Fn3, Maybe, Nullable, NumOrString } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import { readText, writeText } from "./text.js";
 
@@ -23,8 +23,8 @@ export const readJSON = <T = any>(path: string, logger?: ILogger): T =>
 export const writeJSON = (
 	path: string,
 	obj: any,
-	replacer?: Fn3<any, string, any, any> | NumOrString[] | null | undefined,
-	space?: NumOrString | undefined,
+	replacer?: Fn3<any, string, any, any> | Nullable<NumOrString[]>,
+	space?: Maybe<NumOrString>,
 	logger?: ILogger,
 	dryRun = false
 ) =>
