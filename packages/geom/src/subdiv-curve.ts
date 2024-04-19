@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SubdivKernel } from "@thi.ng/geom-api";
@@ -42,7 +43,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param iter
  */
 export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> =
-	defmulti<any, SubdivKernel, number | undefined, IShape>(
+	defmulti<any, SubdivKernel, Maybe<number>, IShape>(
 		__dispatch,
 		{
 			ellipse: "circle",

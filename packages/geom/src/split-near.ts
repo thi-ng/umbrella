@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
@@ -34,8 +35,8 @@ import { __splitLine } from "./internal/split.js";
 export const splitNearPoint: MultiFn2<
 	IShape,
 	ReadonlyVec,
-	IShape[] | undefined
-> = defmulti<any, ReadonlyVec, IShape[] | undefined>(
+	Maybe<IShape[]>
+> = defmulti<any, ReadonlyVec, Maybe<IShape[]>>(
 	__dispatch,
 	{},
 	{

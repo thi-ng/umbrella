@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
@@ -57,8 +58,8 @@ export const closestPoint: MultiFn2O<
 	IShape,
 	ReadonlyVec,
 	Vec,
-	Vec | undefined
-> = defmulti<any, ReadonlyVec, Vec | undefined, Vec | undefined>(
+	Maybe<Vec>
+> = defmulti<any, ReadonlyVec, Maybe<Vec>, Maybe<Vec>>(
 	__dispatch,
 	{
 		quad: "poly",

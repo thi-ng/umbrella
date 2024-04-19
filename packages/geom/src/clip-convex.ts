@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
@@ -29,8 +30,8 @@ import { ensureVertices, vertices } from "./vertices.js";
 export const clipConvex: MultiFn2<
 	IShape,
 	IShape | ReadonlyVec[],
-	IShape | undefined
-> = defmulti<any, IShape | ReadonlyVec[], IShape | undefined>(
+	Maybe<IShape>
+> = defmulti<any, IShape | ReadonlyVec[], Maybe<IShape>>(
 	__dispatch,
 	{
 		circle: "rect",

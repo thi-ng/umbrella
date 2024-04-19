@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
@@ -34,7 +35,7 @@ export const asPolygon: MultiFn1O<
 	IShape,
 	number | Partial<SamplingOpts>,
 	Polygon
-> = defmulti<IShape, number | Partial<SamplingOpts> | undefined, Polygon>(
+> = defmulti<IShape, Maybe<number | Partial<SamplingOpts>>, Polygon>(
 	__dispatch,
 	{
 		circle: "points",

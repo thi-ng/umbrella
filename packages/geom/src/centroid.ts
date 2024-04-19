@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { AABBLike, IShape, PCLike } from "@thi.ng/geom-api";
@@ -46,10 +47,10 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param shape
  * @param out
  */
-export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
+export const centroid: MultiFn1O<IShape, Vec, Maybe<Vec>> = defmulti<
 	any,
-	Vec | undefined,
-	Vec | undefined
+	Maybe<Vec>,
+	Maybe<Vec>
 >(
 	__dispatch,
 	{
