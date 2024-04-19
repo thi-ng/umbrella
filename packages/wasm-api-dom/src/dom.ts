@@ -1,4 +1,4 @@
-import type { NumOrString } from "@thi.ng/api";
+import type { Maybe, NumOrString } from "@thi.ng/api";
 import { adaptDPI } from "@thi.ng/canvas";
 import { assert } from "@thi.ng/errors/assert";
 import {
@@ -41,7 +41,7 @@ interface WasmElement extends Element {
  */
 const EVENT_MAP: [
 	RegExp,
-	Exclude<keyof EventBody, keyof WasmTypeBase> | undefined,
+	Maybe<Exclude<keyof EventBody, keyof WasmTypeBase>>,
 	EventType
 ][] = [
 	[/^drag(end|enter|leave|over|start)|drop$/, "drag", EventType.DRAG],
