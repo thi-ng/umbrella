@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { isArray, isArrayLike, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import type { Metadata } from "sharp";
@@ -62,7 +63,7 @@ export const positionOrGravity = (
 		ref,
 		unit
 	);
-	let left: number | undefined, top: number | undefined;
+	let left: Maybe<number>, top: Maybe<number>;
 	const [isE, isW, isN, isS] = origin ? gravityFlags(origin) : [];
 	const w2 = w >> 1;
 	const h2 = h >> 1;
