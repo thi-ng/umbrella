@@ -1,4 +1,4 @@
-import type { Fn0, IObjectOf, Nullable, Pair } from "@thi.ng/api";
+import type { Fn0, IObjectOf, Maybe, Nullable, Pair } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { map } from "@thi.ng/transducers/map";
 import { vals } from "@thi.ng/transducers/vals";
@@ -87,14 +87,14 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 		return !!this.find(prefix);
 	}
 
-	get(key: K): Set<V> | undefined {
+	get(key: K): Maybe<Set<V>> {
 		const node = this.find(key);
 		return node ? node.vals : undefined;
 	}
 
 	find(key: K) {
 		// eslint-disable-next-line no-this-alias -- tree traversal
-		let node: MultiTrie<K, V> | undefined = this;
+		let node: Maybe<MultiTrie<K, V>> = this;
 		for (let i = 0, n = key.length; i < n; i++) {
 			node = node!.next[key[i].toString()];
 			if (!node) return;
@@ -110,11 +110,11 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 	 */
 	knownPrefix(key: K) {
 		// eslint-disable-next-line no-this-alias -- tree traversal
-		let node: MultiTrie<K, V> | undefined = this;
+		let node: Maybe<MultiTrie<K, V>> = this;
 		const prefix: K[] = [];
 		for (let i = 0, n = key.length; i < n; i++) {
 			const k = key[i].toString();
-			const next: MultiTrie<K, V> | undefined = node!.next[k];
+			const next: Maybe<MultiTrie<K, V>> = node!.next[k];
 			if (!next) break;
 			prefix.push(k);
 			node = next;
@@ -156,7 +156,7 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 		const key: string[] = [];
 		let i = 0;
 		// eslint-disable-next-line no-this-alias -- tree traversal
-		let node: MultiTrie<K, V> | undefined = this;
+		let node: Maybe<MultiTrie<K, V>> = this;
 		for (; i < n; i++) {
 			const k = prefix[i].toString();
 			key.push(k);

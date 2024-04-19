@@ -1,4 +1,4 @@
-import type { Fn3, Pair, Predicate2 } from "@thi.ng/api";
+import type { Fn3, Maybe, Pair, Predicate2 } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { DCons } from "@thi.ng/dcons/dcons";
 import { equiv } from "@thi.ng/equiv";
@@ -76,7 +76,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 		__vals(this).clear();
 	}
 
-	first(): T | undefined {
+	first(): Maybe<T> {
 		if (this.size) {
 			return __vals(this).head!.value;
 		}
@@ -102,7 +102,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 	 * @param key - search key
 	 * @param notFound - default value
 	 */
-	get(key: T, notFound?: T): T | undefined {
+	get(key: T, notFound?: T): Maybe<T> {
 		const { equiv, vals } = __private.get(this)!;
 		let i = vals.head;
 		while (i) {

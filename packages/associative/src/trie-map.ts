@@ -1,4 +1,4 @@
-import type { IObjectOf, Pair } from "@thi.ng/api";
+import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { vals } from "@thi.ng/transducers/vals";
 
 export class TrieMap<T> {
@@ -67,14 +67,14 @@ export class TrieMap<T> {
 		return !!this.find(prefix);
 	}
 
-	get(key: string, notFound?: T): T | undefined {
+	get(key: string, notFound?: T): Maybe<T> {
 		const node = this.find(key);
 		return node ? node.val : notFound;
 	}
 
 	find(key: string) {
 		// eslint-disable-next-line no-this-alias -- tree traversal
-		let node: TrieMap<T> | undefined = this;
+		let node: Maybe<TrieMap<T>> = this;
 		for (let i = 0, n = key.length; i < n; i++) {
 			node = node!.next[key[i]];
 			if (!node) return;
@@ -90,11 +90,11 @@ export class TrieMap<T> {
 	 */
 	knownPrefix(key: string) {
 		// eslint-disable-next-line no-this-alias -- tree traversal
-		let node: TrieMap<T> | undefined = this;
+		let node: Maybe<TrieMap<T>> = this;
 		let prefix: string = "";
 		for (let i = 0, n = key.length; i < n; i++) {
 			const k = key[i];
-			const next: TrieMap<T> | undefined = node!.next[k];
+			const next: Maybe<TrieMap<T>> = node!.next[k];
 			if (!next) break;
 			prefix += k;
 			node = next;
@@ -130,7 +130,7 @@ export class TrieMap<T> {
 		const key: string[] = [];
 		let i = 0;
 		// eslint-disable-next-line no-this-alias -- tree traversal
-		let node: TrieMap<T> | undefined = this;
+		let node: Maybe<TrieMap<T>> = this;
 		for (; i < n; i++) {
 			const k = prefix[i];
 			key.push(k);

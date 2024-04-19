@@ -1,4 +1,4 @@
-import type { Comparator, Fn3, IObjectOf, Pair } from "@thi.ng/api";
+import type { Comparator, Fn3, IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { compare } from "@thi.ng/compare/compare";
 import type { IRandom } from "@thi.ng/random";
@@ -22,10 +22,10 @@ interface SortedMapState<K, V> {
 
 /** @internal */
 class Node<K, V> {
-	next: Node<K, V> | undefined;
-	prev: Node<K, V> | undefined;
-	up: Node<K, V> | undefined;
-	down: Node<K, V> | undefined;
+	next: Maybe<Node<K, V>>;
+	prev: Maybe<Node<K, V>>;
+	up: Maybe<Node<K, V>>;
+	down: Maybe<Node<K, V>>;
 
 	constructor(public k?: K, public v?: V, public level = 0) {}
 }
@@ -74,7 +74,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	}
 
 	*[Symbol.iterator](): IterableIterator<Pair<K, V>> {
-		let node: Node<K, V> | undefined = this.firstNode();
+		let node: Maybe<Node<K, V>> = this.firstNode();
 		while (node && node.k !== undefined) {
 			yield [node.k, node.v!];
 			node = node.next;
@@ -104,13 +104,13 @@ export class SortedMap<K, V> extends Map<K, V> {
 		const { cmp, size } = __private.get(this)!;
 		if (!size) return;
 		if (max) {
-			let node: Node<K, V> | undefined = this.firstNode();
+			let node: Maybe<Node<K, V>> = this.firstNode();
 			while (node && node.k !== undefined && cmp(node.k, key) <= 0) {
 				yield [node.k!, node.v!];
 				node = node.next;
 			}
 		} else {
-			let node: Node<K, V> | undefined = this.firstNode();
+			let node: Maybe<Node<K, V>> = this.firstNode();
 			while (node.down) node = node!.down;
 			while (node) {
 				if (node.k !== undefined && cmp(node.k, key) >= 0) {
@@ -184,7 +184,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 		return node && node.k !== undefined ? [node.k, node.v] : undefined;
 	}
 
-	get(key: K, notFound?: V): V | undefined {
+	get(key: K, notFound?: V): Maybe<V> {
 		const $this = __private.get(this)!;
 		const node = this.findNode(key);
 		return node.k !== undefined && $this.cmp(node.k, key) === 0
@@ -201,7 +201,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	set(key: K, val: V) {
 		const $this = __private.get(this)!;
 		const { cmp, p, rnd } = $this;
-		let node: Node<K, V> | undefined = this.findNode(key);
+		let node: Maybe<Node<K, V>> = this.findNode(key);
 		if (node.k !== undefined && cmp(node.k, key) === 0) {
 			node.v = val;
 			while (node.down) {
@@ -243,12 +243,12 @@ export class SortedMap<K, V> extends Map<K, V> {
 
 	delete(key: K) {
 		const $this = __private.get(this)!;
-		let node: Node<K, V> | undefined = this.findNode(key);
+		let node: Maybe<Node<K, V>> = this.findNode(key);
 		if (node.k === undefined || $this.cmp(node.k, key) !== 0) return false;
 		// descent to lowest level
 		while (node.down) node = node.down;
-		let prev: Node<K, V> | undefined;
-		let next: Node<K, V> | undefined;
+		let prev: Maybe<Node<K, V>>;
+		let next: Maybe<Node<K, V>>;
 		// ascend & remove node from all levels
 		while (node) {
 			prev = node.prev;
@@ -289,7 +289,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	}
 
 	$reduce<R>(rfn: ReductionFn<Pair<K, V>, R>, acc: R | Reduced<R>) {
-		let node: Node<K, V> | undefined = this.firstNode();
+		let node: Maybe<Node<K, V>> = this.firstNode();
 		while (node && node.k !== undefined && !isReduced(acc)) {
 			acc = rfn(acc, [node.k, node.v!]);
 			node = node.next;
@@ -336,7 +336,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 */
 	protected firstNode() {
 		const { head } = __private.get(this)!;
-		let node: Node<K, V> | undefined = head;
+		let node: Maybe<Node<K, V>> = head;
 		while (node.down) node = node.down;
 		while (node.prev) node = node.prev;
 		if (node.next) node = node.next;
@@ -352,9 +352,9 @@ export class SortedMap<K, V> extends Map<K, V> {
 	protected findNode(key: K) {
 		let { cmp, head } = __private.get(this)!;
 		let node: Node<K, V> = head;
-		let next: Node<K, V> | undefined;
-		let down: Node<K, V> | undefined;
-		let nodeKey: K | undefined;
+		let next: Maybe<Node<K, V>>;
+		let down: Maybe<Node<K, V>>;
+		let nodeKey: Maybe<K>;
 		while (true) {
 			next = node.next;
 			while (next && cmp(next.k!, key) <= 0) {

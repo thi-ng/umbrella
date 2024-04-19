@@ -1,4 +1,4 @@
-import type { Fn3, Pair, Predicate2 } from "@thi.ng/api";
+import type { Fn3, Maybe, Pair, Predicate2 } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { findIndex } from "@thi.ng/arrays/find";
 import { equiv } from "@thi.ng/equiv";
@@ -73,7 +73,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 		__vals(this).length = 0;
 	}
 
-	first(): T | undefined {
+	first(): Maybe<T> {
 		if (this.size) {
 			return __vals(this)[0];
 		}
@@ -99,7 +99,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 	 * @param key - search key
 	 * @param notFound - default value
 	 */
-	get(key: T, notFound?: T): T | undefined {
+	get(key: T, notFound?: T): Maybe<T> {
 		const { equiv, vals } = __private.get(this)!;
 		const i = findIndex(vals, key, equiv);
 		return i >= 0 ? vals[i] : notFound;
