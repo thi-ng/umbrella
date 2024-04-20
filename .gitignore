@@ -9,6 +9,7 @@
 *.map
 *.o
 *.tgz
+*.tsbuildinfo
 *.wasm
 *.wast
 *.zip
