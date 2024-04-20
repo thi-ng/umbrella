@@ -253,43 +253,6 @@ cookbooks, useful snippets etc.
 feature or `develop` branches)
 -->
 
-### Latest updates
-
-As of: 2024-04-13
-
-| Status                                           | Package                                                       | Version                                                                                                                             | Changelog                                               |
-|:-------------------------------------------------|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/api`](./packages/api)                               | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                               | [changelog](./packages/api/CHANGELOG.md)                |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/associative`](./packages/associative)               | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)               | [changelog](./packages/associative/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-new-yellow)    | [`@thi.ng/buffers`](./packages/buffers)                       | [![version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)                       | [changelog](./packages/buffers/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/checks`](./packages/checks)                         | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)                         | [changelog](./packages/checks/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/compose`](./packages/compose)                       | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)                       | [changelog](./packages/compose/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/csp`](./packages/csp)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                               | [changelog](./packages/csp/CHANGELOG.md)                |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/csv`](./packages/csv)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                               | [changelog](./packages/csv/CHANGELOG.md)                |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/dcons`](./packages/dcons)                           | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)                           | [changelog](./packages/dcons/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/fibers`](./packages/fibers)                         | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)                         | [changelog](./packages/fibers/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/fsm`](./packages/fsm)                               | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)                               | [changelog](./packages/fsm/CHANGELOG.md)                |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/leb128`](./packages/leb128)                         | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)                         | [changelog](./packages/leb128/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/memoize`](./packages/memoize)                       | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)                       | [changelog](./packages/memoize/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/meta-css`](./packages/meta-css)                     | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                     | [changelog](./packages/meta-css/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                             | [changelog](./packages/rdom/CHANGELOG.md)               |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rstream`](./packages/rstream)                       | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                       | [changelog](./packages/rstream/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-new-yellow)    | [`@thi.ng/transducers-async`](./packages/transducers-async)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)   | [changelog](./packages/transducers-async/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)       | [changelog](./packages/transducers-fsm/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-patch`](./packages/transducers-patch)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)   | [changelog](./packages/transducers-patch/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-stats`](./packages/transducers-stats)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)   | [changelog](./packages/transducers-stats/CHANGELOG.md)  |
-
-
-### Latest updates
-
-As of: 2024-04-13
-
-| Status                                        | Package                                                   | Version                                                                                                                         | Changelog                                             |
-|:----------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
-
-
 ### Fundamentals
 
 | Project                                       | Version                                                                                                             | Changelog                                       | Description                                              |
