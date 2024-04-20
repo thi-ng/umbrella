@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { line } from "@thi.ng/geom/line";
 import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
@@ -106,8 +106,8 @@ export const xyPadRaw = (
 	const col = gui.textColor(false);
 	const hover = isHoverSlider(gui, id, box, "move");
 	const draw = gui.draw;
-	let v: Vec | undefined = val;
-	let res: Vec | undefined;
+	let v: Maybe<Vec> = val;
+	let res: Maybe<Vec>;
 	if (hover) {
 		if (gui.isMouseDown()) {
 			gui.activeID = id;

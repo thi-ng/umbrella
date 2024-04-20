@@ -1,6 +1,7 @@
 // thing:no-export
+// prettier-ignore
 /**
- * Generated @ 2022-12-02T12:00:53Z
+ * Generated @ 2024-04-13T13:45:31Z
  *
  * @internal
  */

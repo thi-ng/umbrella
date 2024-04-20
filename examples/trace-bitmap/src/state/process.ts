@@ -114,8 +114,8 @@ export const main = sync({
 				img,
 				// mat,
 			});
-			let lines: VecPair[] | undefined;
-			let pts: Vec[] | undefined;
+			let lines: Maybe<VecPair[]>;
+			let pts: Maybe<Vec[]>;
 			if (mode.points) {
 				// if max enabled, also attempt to extract lines from point cloud
 				if (layer.max > 0) {

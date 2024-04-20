@@ -1,4 +1,4 @@
-import type { NumericArray } from "@thi.ng/api";
+import type { Maybe, NumericArray } from "@thi.ng/api";
 import type { StridedVec, Vec } from "@thi.ng/vectors";
 import type { VecFactory } from "./api.js";
 import { wrap } from "./wrap.js";
@@ -49,15 +49,15 @@ export abstract class AVecList<T extends StridedVec> {
 
 	abstract get length(): number;
 
-	abstract add(): T | undefined;
+	abstract add(): Maybe<T>;
 
-	abstract insert(i: number): T | undefined;
+	abstract insert(i: number): Maybe<T>;
 
 	abstract remove(v: T): boolean;
 
 	abstract has(v: T): boolean;
 
-	abstract nth(n: number): T | undefined;
+	abstract nth(n: number): Maybe<T>;
 
 	indices(res: Vec = [], i = 0, local = true) {
 		const { start, estride } = this;

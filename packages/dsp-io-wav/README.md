@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 191 standalone projects, maintained as part
+> This is one of 192 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -48,10 +48,10 @@ import * as wav from "@thi.ng/dsp-io-wav";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/dsp-io-wav"></script>
+<script type="module" src="https://esm.run/@thi.ng/dsp-io-wav"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

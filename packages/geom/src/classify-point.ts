@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
@@ -38,7 +39,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param eps
  */
 export const classifyPoint: MultiFn2O<IShape, ReadonlyVec, number, number> =
-	defmulti<any, ReadonlyVec, number | undefined, number>(
+	defmulti<any, ReadonlyVec, Maybe<number>, number>(
 		__dispatch,
 		{ sphere: "circle" },
 		{

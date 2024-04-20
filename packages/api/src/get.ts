@@ -1,9 +1,11 @@
+import type { Maybe } from "./null.js";
+
 /**
  * @param K - key type
  * @param V - value type
  */
 export interface IGet<K, V> {
-	get(key: K, notfound?: V): V | undefined;
+	get(key: K, notfound?: V): Maybe<V>;
 }
 
 /**
@@ -11,5 +13,5 @@ export interface IGet<K, V> {
  * @param V - value type
  */
 export interface IGetIn<K, V> {
-	getIn(key: K[], notfound?: V): V | undefined;
+	getIn(key: K[], notfound?: V): Maybe<V>;
 }

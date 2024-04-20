@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { circle } from "@thi.ng/geom/circle";
 import { line } from "@thi.ng/geom/line";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
@@ -62,7 +62,7 @@ export const dialGroup = (
 	const nested = horizontal
 		? layout.nest(n, [n, 1])
 		: layout.nest(1, [1, (layout.rowsForHeight(layout.cellW) + 1) * n]);
-	let res: number | undefined;
+	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
 		const v = dial(
@@ -111,8 +111,8 @@ export const dialRaw = (
 	const bgShape = gui.resource(id, key, () => circle(pos, r, {}));
 	const hover = isHoverSlider(gui, id, bgShape, "pointer");
 	const draw = gui.draw;
-	let v: number | undefined = val;
-	let res: number | undefined;
+	let v: Maybe<number> = val;
+	let res: Maybe<number>;
 	if (hover) {
 		gui.hotID = id;
 		if (gui.isMouseDown()) {

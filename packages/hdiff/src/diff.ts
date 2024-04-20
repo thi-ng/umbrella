@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { escapeEntities } from "@thi.ng/strings/entities";
 import { padLeft } from "@thi.ng/strings/pad-left";
@@ -15,7 +16,7 @@ export const computeDiff = (a: string, b: string) => {
 		if (lineID) updateOffset(edits, i, lineID);
 	}
 	const result: any[] = ["div", {}];
-	let block: any[] | undefined;
+	let block: Maybe<any[]>;
 	let numSame = 0;
 	for (let i = 0; i < edits.length; i += 3) {
 		if (!block) block = ["pre", {}];

@@ -1,4 +1,4 @@
-import type { Fn, FnO, Path } from "@thi.ng/api";
+import type { Fn, FnO, Maybe, Path } from "@thi.ng/api";
 import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import { defUpdaterUnsafe } from "@thi.ng/paths/updater";
@@ -144,11 +144,8 @@ export const ensurePred =
 			  }
 			: undefined;
 
-const eventPathState = (
-	state: any,
-	path: Fn<Event, Path> | undefined,
-	e: Event
-) => getInUnsafe(state, path ? path(e) : e[1]);
+const eventPathState = (state: any, path: Maybe<Fn<Event, Path>>, e: Event) =>
+	getInUnsafe(state, path ? path(e) : e[1]);
 
 /**
  * Specialization of {@link ensurePred} to ensure a state value is less than

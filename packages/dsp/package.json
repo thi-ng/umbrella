@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dsp",
-	"version": "4.7.28",
+	"version": "4.7.30",
 	"description": "Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils",
 	"type": "module",
 	"module": "./index.js",
@@ -37,12 +37,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.10.0",
-		"@thi.ng/checks": "^3.6.0",
-		"@thi.ng/errors": "^2.5.3",
-		"@thi.ng/math": "^5.10.9",
-		"@thi.ng/random": "^3.7.2",
-		"@thi.ng/transducers": "^9.0.0"
+		"@thi.ng/api": "^8.11.0",
+		"@thi.ng/checks": "^3.6.2",
+		"@thi.ng/errors": "^2.5.5",
+		"@thi.ng/math": "^5.10.11",
+		"@thi.ng/random": "^3.7.4",
+		"@thi.ng/transducers": "^9.0.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

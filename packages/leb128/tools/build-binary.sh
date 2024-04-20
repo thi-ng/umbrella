@@ -12,6 +12,7 @@ wasm-dis $BUILD/opt.wasm -o $BUILD/opt.wast
 # encode as base64
 cat << EOF > src/binary.ts
 // thing:no-export
+// prettier-ignore
 /**
  * Generated @ $(date -u +"%Y-%m-%dT%H:%M:%SZ")
  *

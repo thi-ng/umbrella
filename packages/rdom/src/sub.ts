@@ -1,4 +1,4 @@
-import type { Fn2, Path } from "@thi.ng/api";
+import type { Fn2, Maybe, Path } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import type { ISubscribable } from "@thi.ng/rstream";
@@ -72,7 +72,7 @@ export const $subWithID = <T>(
 export class $Sub<T = any> extends Subscription<T, T> {
 	el?: Element;
 
-	constructor(protected inner: IMountWithState<T | undefined>, id?: string) {
+	constructor(protected inner: IMountWithState<Maybe<T>>, id?: string) {
 		super(undefined, { id: id || `rdom$sub-${__nextID()}` });
 	}
 

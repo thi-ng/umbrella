@@ -176,7 +176,7 @@ values are being read, essentially a memory management issue).
 #### Buffering behaviors
 
 The following channel buffer types/behaviors are included (from the
-[thi.ng/buffers](https://thi.ng/buffers) package), all accepting a max. capacity
+[thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers) package), all accepting a max. capacity
 and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/fibers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:

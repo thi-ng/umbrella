@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
@@ -31,10 +32,10 @@ import { __splitLine } from "./internal/split.js";
  * @param shape
  * @param t
  */
-export const splitAt: MultiFn2<IShape, number, IShape[] | undefined> = defmulti<
+export const splitAt: MultiFn2<IShape, number, Maybe<IShape[]>> = defmulti<
 	any,
 	number,
-	IShape[] | undefined
+	Maybe<IShape[]>
 >(
 	__dispatch,
 	{},

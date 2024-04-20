@@ -1,8 +1,10 @@
 import type { Fn2, NumOrString } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
+import { isAsyncIterable } from "@thi.ng/checks/is-async-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isSubscribable } from "@thi.ng/rstream/checks";
 import type { CompiledComponent, IComponent, NumOrElement } from "./api.js";
+import { $async, $asyncA } from "./async.js";
 import { isComponent, isElement } from "./checks.js";
 import { $el, $remove, $tree } from "./dom.js";
 import { $SubA, $sub } from "./sub.js";
@@ -49,6 +51,8 @@ export const $compile = (tree: any): IComponent =>
 		? tree
 		: isSubscribable(tree)
 		? $sub(tree, "span")
+		: isAsyncIterable(tree)
+		? $async(tree, "span")
 		: tree instanceof Element
 		? $wrapEl(tree)
 		: $wrapText("span", null, tree);
@@ -76,15 +80,23 @@ const isComplexComponent = (x: any) => {
 			if (isComplexComponent(x[i])) return true;
 		}
 	}
-	return isSubscribable(x) || isComponent(x) || isElement(x);
+	return (
+		isSubscribable(x) ||
+		isAsyncIterable(x) ||
+		isComponent(x) ||
+		isElement(x)
+	);
 };
 
 const complexComponent = (tree: any[]): CompiledComponent => ({
 	async mount(parent: ParentNode, index: NumOrElement = -1) {
 		this.subs = [];
 		walk((x, path) => {
-			isSubscribable(x) &&
+			if (isSubscribable(x)) {
 				this.subs!.push(x.subscribe(new $SubA(this, path)));
+			} else if (isAsyncIterable(x)) {
+				$asyncA(x, this, path);
+			}
 		}, tree[1]);
 		this.children = [];
 		this.el = $el(tree[0], tree[1], null, parent, index);

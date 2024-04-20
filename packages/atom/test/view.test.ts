@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { beforeEach, expect, test } from "bun:test";
 import {
 	View,
@@ -92,7 +93,7 @@ test("can be released", () => {
 });
 
 test("is lazy by default", () => {
-	let x: number | undefined;
+	let x: Maybe<number>;
 	v = defView(a, ["b", "c"], (y) => ((x = y), y * 10));
 	expect(x).toBeUndefined();
 	expect(v.deref()).toBe(20);
@@ -103,7 +104,7 @@ test("is lazy by default", () => {
 });
 
 test("can be eager", () => {
-	let x: number | undefined;
+	let x: Maybe<number>;
 	v = defView(a, ["b", "c"], (y) => ((x = y), y * 10), false);
 	expect(x).toBe(2);
 	expect(v.deref()).toBe(20);

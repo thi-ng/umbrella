@@ -204,7 +204,7 @@ values are being read, essentially a memory management issue).
 #### Buffering behaviors
 
 The following channel buffer types/behaviors are included (from the
-[thi.ng/buffers](https://thi.ng/buffers) package), all accepting a max. capacity
+[thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers) package), all accepting a max. capacity
 and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/fibers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:
@@ -386,10 +386,10 @@ import * as fib from "@thi.ng/fibers";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/fibers"></script>
+<script type="module" src="https://esm.run/@thi.ng/fibers"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

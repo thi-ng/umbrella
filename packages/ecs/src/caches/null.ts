@@ -1,4 +1,4 @@
-import type { Fn0 } from "@thi.ng/api";
+import type { Fn0, Maybe } from "@thi.ng/api";
 import type { ICache } from "../api.js";
 
 export class NullCache<T> implements ICache<T> {
@@ -14,7 +14,7 @@ export class NullCache<T> implements ICache<T> {
 		return val;
 	}
 
-	get(_: number): T | undefined {
+	get(_: number): Maybe<T> {
 		return;
 	}
 

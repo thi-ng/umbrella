@@ -1,4 +1,4 @@
-import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
+import type { Fn, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
@@ -18,7 +18,9 @@ import { madd } from "@thi.ng/vectors/madd";
 import { mulN } from "@thi.ng/vectors/muln";
 import { submN } from "@thi.ng/vectors/submn";
 import { vop } from "@thi.ng/vectors/vop";
-import { addResults, CMP, into } from "./utils.js";
+import { CMP, __addResults, __into } from "./utils.js";
+
+type MaybeNdQtNode<K extends ReadonlyVec, V> = Maybe<NdQtNode<K, V>>;
 
 export class NdQtNode<K extends ReadonlyVec, V> {
 	pos: ReadonlyVec;
@@ -30,7 +32,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 	v?: V;
 
 	constructor(
-		parent: NdQtNode<K, V> | undefined,
+		parent: MaybeNdQtNode<K, V>,
 		pos: ReadonlyVec,
 		ext: ReadonlyVec
 	) {
@@ -85,7 +87,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 		acc: T[],
 		distFn: DistanceFn
 	) {
-		return addResults(
+		return __addResults(
 			fn,
 			this.doQuery(
 				p,
@@ -118,7 +120,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 		return pointInCenteredBox(p, this.pos, this.ext);
 	}
 
-	nodeForPoint(p: K): NdQtNode<K, V> | undefined {
+	nodeForPoint(p: K): MaybeNdQtNode<K, V> {
 		if (this.k && equivArrayLike(this.k, p)) {
 			return this;
 		}
@@ -293,7 +295,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 	}
 
 	into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-		return into(this, pairs, eps);
+		return __into(this, pairs, eps);
 	}
 
 	remove(p: K) {
@@ -350,7 +352,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 		return this.root.containsPoint(p);
 	}
 
-	nodeForPoint(p: K): NdQtNode<K, V> | undefined {
+	nodeForPoint(p: K): MaybeNdQtNode<K, V> {
 		return this.root.nodeForPoint(p);
 	}
 }

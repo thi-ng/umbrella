@@ -1,4 +1,6 @@
-import type { Fn } from "@thi.ng/api";
+import type { IDeref, Maybe } from "@thi.ng/api";
+import type { ClosableAsyncGenerator } from "./api.js";
+import { source } from "./source.js";
 
 export interface RAFOpts {
 	/**
@@ -19,21 +21,28 @@ export interface RAFOpts {
 	t0: number | boolean;
 }
 
-export async function* raf(opts?: Partial<RAFOpts>): AsyncGenerator<number> {
+export const raf = (
+	opts?: Partial<RAFOpts>
+): ClosableAsyncGenerator<number> & IDeref<Maybe<number>> => {
 	let frame = 0;
 	let t0 = opts?.t0 || 0;
-	while (true) {
-		let resolve: Fn<number, void>;
-		const promise = new Promise<number>(($resolve) => (resolve = $resolve));
-		requestAnimationFrame(resolve!);
-		let t = await promise;
+	let isClosed = false;
+	const gen = source<number>();
+	gen.close = () => {
+		isClosed = true;
+		gen.write(undefined);
+	};
+	const update = (t: number) => {
+		if (isClosed) return;
 		if (opts?.timestamp) {
 			if (t0 === true) t0 = t;
 			if (t0) t -= t0;
 		} else {
 			t = frame++;
 		}
-		const cancel = yield t;
-		if (cancel === true) break;
-	}
-}
+		gen.write(t);
+		requestAnimationFrame(update);
+	};
+	requestAnimationFrame(update);
+	return gen;
+};

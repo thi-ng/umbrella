@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 191 standalone projects, maintained as part
+> This is one of 192 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -203,10 +203,10 @@ import * as rs from "@thi.ng/rstream";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream"></script>
+<script type="module" src="https://esm.run/@thi.ng/rstream"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 
@@ -214,7 +214,7 @@ For Node.js REPL:
 const rs = await import("@thi.ng/rstream");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.32 KB
 
 ## Dependencies
 

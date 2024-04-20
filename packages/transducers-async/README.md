@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 191 standalone projects, maintained as part
+> This is one of 192 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -16,12 +16,14 @@
 
 - [About](#about)
   - [Evaluators](#evaluators)
-  - [Iterators](#iterators)
+  - [Generators & iterators](#generators--iterators)
+  - [Combinators](#combinators)
   - [Transducers](#transducers)
   - [Reducers](#reducers)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -38,17 +40,25 @@ Async versions of various highly composable transducers, reducers and iterators.
 - [`step()`](https://docs.thi.ng/umbrella/transducers-async/functions/step.html)
 - [`transduce()`](https://docs.thi.ng/umbrella/transducers-async/functions/transduce.html)
 
-### Iterators
+### Generators & iterators
 
+- [`asAsyncIterable()`](https://docs.thi.ng/umbrella/transducers-async/functions/asAsyncIterable.html)
 - [`concat()`](https://docs.thi.ng/umbrella/transducers-async/functions/concat.html)
 - [`events()`](https://docs.thi.ng/umbrella/transducers-async/functions/events.html)
-- [`merge()`](https://docs.thi.ng/umbrella/transducers-async/functions/merge.html)
 - [`raf()`](https://docs.thi.ng/umbrella/transducers-async/functions/raf.html)
 - [`range()`](https://docs.thi.ng/umbrella/transducers-async/functions/range.html)
 - [`repeatedly()`](https://docs.thi.ng/umbrella/transducers-async/functions/repeatedly.html)
 - [`sidechain()`](https://docs.thi.ng/umbrella/transducers-async/functions/sidechain.html)
-- [`sync()`](https://docs.thi.ng/umbrella/transducers-async/functions/sync.html)
+- [`source()`](https://docs.thi.ng/umbrella/transducers-async/functions/source.html)
 - [`zip()`](https://docs.thi.ng/umbrella/transducers-async/functions/zip.html)
+
+### Combinators
+
+- [`merge()`](https://docs.thi.ng/umbrella/transducers-async/functions/merge.html)
+- [`mult()`](https://docs.thi.ng/umbrella/transducers-async/functions/mult.html)
+- [`pubsub()`](https://docs.thi.ng/umbrella/transducers-async/functions/pubsub.html)
+- [`sync()`](https://docs.thi.ng/umbrella/transducers-async/functions/sync.html)
+- [`syncRAF()`](https://docs.thi.ng/umbrella/transducers-async/functions/syncRAF.html)
 
 ### Transducers
 
@@ -58,6 +68,7 @@ Async versions of various highly composable transducers, reducers and iterators.
 - [`mapcat()`](https://docs.thi.ng/umbrella/transducers-async/functions/mapcat.html)
 - [`multiplex()`](https://docs.thi.ng/umbrella/transducers-async/functions/multiplex.html)
 - [`multiplexObj()`](https://docs.thi.ng/umbrella/transducers-async/functions/multiplexObj.html)
+- [`partition()`](https://docs.thi.ng/umbrella/transducers-async/functions/partition.html)
 - [`take()`](https://docs.thi.ng/umbrella/transducers-async/functions/take.html)
 - [`throttle()`](https://docs.thi.ng/umbrella/transducers-async/functions/throttle.html)
 - [`throttleTime()`](https://docs.thi.ng/umbrella/transducers-async/functions/throttleTime.html)
@@ -87,10 +98,10 @@ import * as txa from "@thi.ng/transducers-async";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-async"></script>
+<script type="module" src="https://esm.run/@thi.ng/transducers-async"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 
@@ -98,19 +109,32 @@ For Node.js REPL:
 const txa = await import("@thi.ng/transducers-async");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.24 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.09 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Description                                               | Live demo                                        | Source                                                                        |
+|:----------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
+| Basic & barebones usage of async iterables in thi.ng/rdom | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-async) |
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/transducers-async/)
+
+TODO
 
 ## Authors
 

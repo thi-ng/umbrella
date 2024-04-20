@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { BitField } from "@thi.ng/bitfield/bitfield";
 import { DCons } from "@thi.ng/dcons/dcons";
 import type { IGraph } from "./api.js";
@@ -32,7 +33,7 @@ export class DFS {
 		return this.marked.at(id) !== 0;
 	}
 
-	pathTo(id: number): Iterable<number> | undefined {
+	pathTo(id: number): Maybe<Iterable<number>> {
 		if (!this.marked.at(id)) return;
 		const { edges, src } = this;
 		const path = new DCons<number>();

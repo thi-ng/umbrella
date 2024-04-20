@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
@@ -93,7 +93,7 @@ export const gestureStream = (
 	let numTouches = 0;
 	let lastPos: number[] = [0, 0];
 
-	let tempStreams: Stream<UIEvent>[] | undefined;
+	let tempStreams: Maybe<Stream<UIEvent>[]>;
 
 	const isBody = el === document.body;
 	const tempEvents: UIEventID[] = [

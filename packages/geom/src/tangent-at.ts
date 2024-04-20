@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
@@ -33,10 +34,10 @@ import { vertices } from "./vertices.js";
  * @param shape
  * @param t
  */
-export const tangentAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
+export const tangentAt: MultiFn2<IShape, number, Maybe<Vec>> = defmulti<
 	any,
 	number,
-	Vec | undefined
+	Maybe<Vec>
 >(
 	__dispatch,
 	{

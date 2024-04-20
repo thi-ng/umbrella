@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 
 /**
@@ -11,7 +12,7 @@ import { implementsFunction } from "@thi.ng/checks/implements-function";
  *
  * @internal
  */
-export const derefContext = (ctx: any, keys: PropertyKey[] | undefined) => {
+export const derefContext = (ctx: any, keys?: Maybe<PropertyKey[]>) => {
 	if (ctx == null || !keys || !keys.length) return ctx;
 	const res = { ...ctx };
 	for (let k of keys) {

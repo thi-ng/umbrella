@@ -1,4 +1,4 @@
-import type { IObjectOf, IRelease } from "@thi.ng/api";
+import type { IObjectOf, IRelease, Maybe } from "@thi.ng/api";
 import { sizeOf, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
 import { align } from "@thi.ng/binary/align";
@@ -86,7 +86,7 @@ export class AttribPool implements IRelease {
 		this.setAttribs(specs);
 	}
 
-	attribValue(id: string, i: number): number | Vec | undefined {
+	attribValue(id: string, i: number): Maybe<number | Vec> {
 		const spec = this.specs[id];
 		ensureSpec(spec, id);
 		if (i >= this.capacity) return;

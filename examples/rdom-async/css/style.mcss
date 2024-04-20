@@ -1,0 +1,10 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+body { system-sans-serif ma3 }
+
+h1 { f3 }
+
+main div { mb3 }

@@ -1,4 +1,4 @@
-import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
+import type { Fn, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps/heap";
@@ -6,9 +6,9 @@ import { EPS } from "@thi.ng/math/api";
 import { map } from "@thi.ng/transducers/map";
 import type { DistanceFn, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
-import { addResults, CMP, into } from "./utils.js";
+import { CMP, __addResults, __into } from "./utils.js";
 
-type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
+type MaybeKdNode<K extends ReadonlyVec, V> = Maybe<KdNode<K, V>>;
 
 export class KdNode<K extends ReadonlyVec, V> {
 	d: number;
@@ -151,7 +151,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
 	}
 
 	into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-		return into(this, pairs, eps);
+		return __into(this, pairs, eps);
 	}
 
 	remove(key: K) {
@@ -233,7 +233,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
 				}
 			);
 			nearest(q, nodes, this.dim, maxNum, this.root!, this.distanceFn);
-			return addResults(f, nodes.values, acc);
+			return __addResults(f, nodes.values, acc);
 		}
 		return acc;
 	}
@@ -272,7 +272,7 @@ const find = <K extends ReadonlyVec, V>(
 	p: K,
 	node: MaybeKdNode<K, V>,
 	epsSq: number
-): KdNode<K, V> | undefined => {
+): MaybeKdNode<K, V> => {
 	if (!node) return;
 	return distSq(p, node.k) <= epsSq
 		? node

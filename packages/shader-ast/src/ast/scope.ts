@@ -1,4 +1,4 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
+import type { Fn, Fn2, Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { DGraph } from "@thi.ng/dgraph";
 import type {
@@ -101,7 +101,7 @@ export const allChildren = (t: Term<any>) =>
  */
 export const walk = <T>(
 	visit: Fn2<T, Term<any>, T>,
-	children: Fn<Term<any>, Term<any>[] | undefined>,
+	children: Fn<Term<any>, Maybe<Term<any>[]>>,
 	acc: T,
 	tree: Term<any> | Term<any>[],
 	pre = true

@@ -1,3 +1,5 @@
+import type { Maybe } from "./null.js";
+
 export type ArrayLikeIterable<T> = ArrayLike<T> & Iterable<T>;
 
 export type NumericArray = number[] | TypedArray;
@@ -112,7 +114,7 @@ export const GL2TYPE: Record<GLType, Type> = {
  * - `F64` maps to `undefined`, since unsupported by WebGL
  * - `U8C` maps to "u8"
  */
-export const TYPE2GL: Record<Type, GLType | undefined> = {
+export const TYPE2GL: Record<Type, Maybe<GLType>> = {
 	i8: GLType.I8,
 	u8: GLType.U8,
 	u8c: GLType.U8,

@@ -1,7 +1,9 @@
+import type { Maybe } from "@thi.ng/api";
+
 export interface ConsCell<T> {
 	value: T;
-	next: ConsCell<T> | undefined;
-	prev: ConsCell<T> | undefined;
+	next: Maybe<ConsCell<T>>;
+	prev: Maybe<ConsCell<T>>;
 }
 
 export interface IList<T> {

@@ -7,6 +7,7 @@ import type {
 	IEquiv,
 	IGet,
 	IInto,
+	Maybe,
 	Predicate2,
 } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
@@ -20,7 +21,7 @@ export interface IEquivSet<T>
 		IGet<T, T>,
 		IInto<T, IEquivSet<T>> {
 	disj(xs: Iterable<T>): this;
-	first(): T | undefined;
+	first(): Maybe<T>;
 }
 
 export interface EquivSetConstructor<T> {

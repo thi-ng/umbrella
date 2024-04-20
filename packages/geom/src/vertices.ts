@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn1O } from "@thi.ng/defmulti";
@@ -82,7 +83,7 @@ export const vertices: MultiFn1O<
 	IShape,
 	number | Partial<SamplingOpts>,
 	Vec[]
-> = defmulti<any, number | Partial<SamplingOpts> | undefined, Vec[]>(
+> = defmulti<any, Maybe<number | Partial<SamplingOpts>>, Vec[]>(
 	__dispatch,
 	{
 		line: "polyline",

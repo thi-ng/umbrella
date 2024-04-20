@@ -9,6 +9,7 @@ import type {
 	Fn8,
 	FnAny,
 	IObjectOf,
+	Maybe,
 	Pair,
 } from "@thi.ng/api";
 
@@ -218,7 +219,7 @@ export interface MultiFnBase<I> {
 	 * if no such implementation (and no default impl) exists. Takes all
 	 * dispatch relationships into account.
 	 */
-	implForID(id: PropertyKey): I | undefined;
+	implForID(id: PropertyKey): Maybe<I>;
 	/**
 	 * Updates dispatch hierarchy by declaring dispatch value `id` to
 	 * delegate to `parent`'s implementation. I.e. in terms of dispatch
@@ -253,9 +254,7 @@ export interface MultiFnBase<I> {
 	 * parent-value?]`. If `parent-value` is undefined, the dispatch value has
 	 * no parent.
 	 */
-	dependencies(): IterableIterator<
-		Pair<PropertyKey, PropertyKey | undefined>
-	>;
+	dependencies(): IterableIterator<Pair<PropertyKey, Maybe<PropertyKey>>>;
 }
 
 export interface MultiFn<T>

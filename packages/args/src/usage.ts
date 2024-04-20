@@ -1,4 +1,4 @@
-import type { IObjectOf, Pair } from "@thi.ng/api";
+import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { lengthAnsi } from "@thi.ng/strings/ansi";
 import { capitalize, kebab } from "@thi.ng/strings/case";
@@ -123,7 +123,7 @@ const argDefault = (
 const ansi = (x: string, col: number) =>
 	col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
 
-const wrap = (str: string | undefined, width: number) =>
+const wrap = (str: Maybe<string>, width: number) =>
 	str
 		? wordWrapLines(str, {
 				width,

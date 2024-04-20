@@ -1,6 +1,7 @@
 import type {
 	DeepPath,
 	Fn,
+	Maybe,
 	OptPathVal,
 	Path,
 	Path0,
@@ -65,7 +66,7 @@ export const updateAsTransaction = <T>(
 
 export class Transacted<T> implements IAtom<T> {
 	parent: IAtom<T>;
-	current: T | undefined;
+	current: Maybe<T>;
 	protected id: string;
 	protected isActive: boolean;
 	protected _watches: any;

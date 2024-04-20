@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fit, norm } from "@thi.ng/math/fit";
@@ -59,7 +59,7 @@ export const sliderHGroup = (
 ) => {
 	const n = vals.length;
 	const nested = horizontal ? layout.nest(n, [n, 1]) : layout.nest(1, [1, n]);
-	let res: number | undefined;
+	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
 		const v = sliderH(
@@ -103,8 +103,8 @@ export const sliderHRaw = (
 	const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));
 	const hover = isHoverSlider(gui, id, box);
 	const draw = gui.draw;
-	let v: number | undefined = val;
-	let res: number | undefined;
+	let v: Maybe<number> = val;
+	let res: Maybe<number>;
 	if (hover) {
 		if (gui.isMouseDown()) {
 			gui.activeID = id;

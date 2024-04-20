@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 191 standalone projects, maintained as part
+> This is one of 192 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -38,6 +38,10 @@ environments. The source code of the actual implementation (written in
 
 All public functions throw an error if the WASM module could not be
 initialized.
+
+The `encodeSLEB128Into()` and `encodeULEB128Into()` functions will check the
+bounds of the target array to ensure all bytes can be written and will
+throw an error if the result would go out of bounds.
 
 References:
 
@@ -74,10 +78,10 @@ import * as leb from "@thi.ng/leb128";
 Browser ESM import:
 
 ```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/leb128"></script>
+<script type="module" src="https://esm.run/@thi.ng/leb128"></script>
 ```
 
-[Skypack documentation](https://docs.skypack.dev/)
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 
@@ -85,7 +89,7 @@ For Node.js REPL:
 const leb = await import("@thi.ng/leb128");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 880 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 968 bytes
 
 ## Dependencies
 
@@ -97,23 +101,37 @@ Package sizes (brotli'd, pre-treeshake): ESM: 880 bytes
 
 [Generated API docs](https://docs.thi.ng/umbrella/leb128/)
 
-```ts
+```ts tangle:export/readme1.ts
 import * as leb from "@thi.ng/leb128";
 
 // if WASM is unavailable, the encode/decode functions will throw an error
-enc = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
+let encoded = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
+
+console.log(encoded);
 // Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15 ]
 
 // decoding returns tuple of [value (bigint), bytes consumed]
-leb.decodeULEB128(enc);
+console.log(leb.decodeULEB128(encoded));
 // [ 9007199254740991n, 8 ]
 
 // encode signed int
-enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
+encoded = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER);
+
+console.log(encoded)
 // Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
 
-leb.decodeSLEB128(enc)
+console.log(leb.decodeSLEB128(encoded));
 // [ -9007199254740991n, 8 ]
+
+// when writing into an existing buffer, there needs to be enough bytes to write the value
+const target = new Uint8Array(10);
+const count = leb.encodeULEB128Into(target, Number.MAX_SAFE_INTEGER);
+
+console.log(target);
+// Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15, 0, 0 ]
+
+console.log(count);
+// 8
 ```
 
 ## Building the binary
@@ -142,14 +160,15 @@ yarn test
 
 ## Authors
 
-- [Karsten Schmidt](https://thi.ng)
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [jtenner](https://github.com/jtenner)
 
 If this project contributes to an academic publication, please cite it as:
 
 ```bibtex
 @misc{thing-leb128,
   title = "@thi.ng/leb128",
-  author = "Karsten Schmidt",
+  author = "Karsten Schmidt and others",
   note = "https://thi.ng/leb128",
   year = 2019
 }

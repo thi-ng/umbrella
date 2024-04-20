@@ -1,5 +1,5 @@
 import type { Fn, MaybePromise } from "@thi.ng/api";
-import { delayed } from "@thi.ng/compose/delayed";
+import { wait } from "./delayed.js";
 
 /**
  * Async iterator. Yields return values of given single-arg async function `fn`
@@ -22,7 +22,7 @@ export async function* repeatedly<T>(
 	for (let i = 0; i < n; i++) {
 		yield await fn(i);
 		if (delay > 0) {
-			await delayed(null, delay);
+			await wait(delay);
 		}
 	}
 }

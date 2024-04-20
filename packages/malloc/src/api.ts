@@ -1,5 +1,6 @@
 import type {
 	IRelease,
+	Maybe,
 	Type,
 	TypedArray,
 	TypedArrayTypeMap,
@@ -116,10 +117,7 @@ export interface IMemPoolArray extends IRelease {
 	 * @param type -
 	 * @param num -
 	 */
-	mallocAs<T extends Type>(
-		type: T,
-		num: number
-	): TypedArrayTypeMap[T] | undefined;
+	mallocAs<T extends Type>(type: T, num: number): Maybe<TypedArrayTypeMap[T]>;
 
 	/**
 	 * Similar to {@link IMemPoolArray.mallocAs}, but if allocation was
@@ -133,7 +131,7 @@ export interface IMemPoolArray extends IRelease {
 		type: T,
 		num: number,
 		fill?: number
-	): TypedArrayTypeMap[T] | undefined;
+	): Maybe<TypedArrayTypeMap[T]>;
 
 	/**
 	 * Similar to {@link IMemPool.realloc}, but takes a typed array (one
@@ -145,7 +143,7 @@ export interface IMemPoolArray extends IRelease {
 	 * @param arr -
 	 * @param num -
 	 */
-	reallocArray<T extends TypedArray>(arr: T, num: number): T | undefined;
+	reallocArray<T extends TypedArray>(arr: T, num: number): Maybe<T>;
 
 	/**
 	 * Frees mem block associated with given typed array

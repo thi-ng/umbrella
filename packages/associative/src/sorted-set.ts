@@ -1,4 +1,4 @@
-import type { Fn3, ICompare, Pair } from "@thi.ng/api";
+import type { Fn3, ICompare, Maybe, Pair } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import type { IReducible, Reduced, ReductionFn } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
@@ -155,7 +155,7 @@ export class SortedSet<T>
 		return __private.get(this)!.has(key);
 	}
 
-	get(key: T, notFound?: T): T | undefined {
+	get(key: T, notFound?: T): Maybe<T> {
 		return __private.get(this)!.get(key, notFound);
 	}
 

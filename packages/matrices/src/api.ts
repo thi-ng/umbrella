@@ -1,4 +1,4 @@
-import type { Tuple, TypedArray } from "@thi.ng/api";
+import type { Maybe, Tuple, TypedArray } from "@thi.ng/api";
 import type { IVector, MultiVecOp, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type Mat = Vec;
@@ -15,7 +15,7 @@ export type MultiMatOp<T> = MultiVecOp<T>;
 export type MatOp1 = (out: Mat | null) => Mat;
 export type MatOpM = (out: Mat | null, a: ReadonlyMat) => Mat;
 export type MatOpV = (out: Mat | null, a: ReadonlyVec) => Mat;
-export type MatOpMU = (out: Mat | null, a: ReadonlyMat) => Mat | undefined;
+export type MatOpMU = (out: Mat | null, a: ReadonlyMat) => Maybe<Mat>;
 export type MatOpN = (out: Mat | null, n: number) => Mat;
 export type MatOpNV = (out: Mat | null, n: number | ReadonlyVec) => Mat;
 export type MatOpMM = (out: Mat | null, a: ReadonlyMat, b: ReadonlyMat) => Mat;

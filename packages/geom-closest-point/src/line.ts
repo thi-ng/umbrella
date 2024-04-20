@@ -1,4 +1,4 @@
-import type { FnU3 } from "@thi.ng/api";
+import type { FnU3, Maybe } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dist } from "@thi.ng/vectors/dist";
 import { distSq } from "@thi.ng/vectors/distsq";
@@ -33,7 +33,7 @@ import { sub } from "@thi.ng/vectors/sub";
  * @param a - line point A
  * @param b - line point B
  */
-export const closestT: FnU3<ReadonlyVec, number | undefined> = (p, a, b) => {
+export const closestT: FnU3<ReadonlyVec, Maybe<number>> = (p, a, b) => {
 	const d = sub([], b, a);
 	const l = magSq(d);
 	return l > 1e-6 ? dot(sub([], p, a), d) / l : undefined;

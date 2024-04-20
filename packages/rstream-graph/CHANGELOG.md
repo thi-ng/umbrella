@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-08T14:59:30Z
+- **Last updated**: 2024-04-20T14:42:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [4.1.125](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@4.1.125) (2024-04-20)
+
+#### ♻️ Refactoring
+
+- update type usage ([a6b09c6](https://github.com/thi-ng/umbrella/commit/a6b09c6))
 
 ### [4.1.85](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@4.1.85) (2023-11-09)
 

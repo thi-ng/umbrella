@@ -6,6 +6,7 @@ import type {
 	IEmpty,
 	ILength,
 	IStack,
+	Maybe,
 	Predicate,
 	Predicate2,
 } from "@thi.ng/api";
@@ -115,13 +116,13 @@ export class PairingHeap<T>
 	}
 
 	find(val: T) {
-		let found: T | undefined;
+		let found: Maybe<T>;
 		this.visit((x) => (this.equiv(x, val) ? ((found = x), false) : true));
 		return found;
 	}
 
 	findWith(fn: Predicate<T>) {
-		let found: T | undefined;
+		let found: Maybe<T>;
 		this.visit((x) => (fn(x) ? ((found = x), false) : true));
 		return found;
 	}

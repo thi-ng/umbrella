@@ -1,4 +1,4 @@
-import type { IObjectOf, Pair } from "@thi.ng/api";
+import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
 	AncestorDefs,
@@ -236,7 +236,7 @@ export function defmulti<T>(
 	fn.ancestors = (id: PropertyKey) =>
 		new Set<PropertyKey>(findAncestors([], rels, id));
 	fn.dependencies = function* (): IterableIterator<
-		Pair<PropertyKey, PropertyKey | undefined>
+		Pair<PropertyKey, Maybe<PropertyKey>>
 	> {
 		for (let a in rels) {
 			for (let b of rels[a]) yield [a, b];

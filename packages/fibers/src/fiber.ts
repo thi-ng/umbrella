@@ -7,6 +7,7 @@ import type {
 	IIDGen,
 	INotify,
 	Listener,
+	Maybe,
 	Nullable,
 } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
@@ -39,7 +40,7 @@ const NO_RESULT: IteratorResult<any> = { done: false, value: undefined };
 
 @INotifyMixin
 export class Fiber<T = any>
-	implements IDeref<T | undefined>, IID<string>, INotify<FiberEventType>
+	implements IDeref<Maybe<T>>, IID<string>, INotify<FiberEventType>
 {
 	/**
 	 * This fiber's user provided or generated ID.
@@ -59,7 +60,7 @@ export class Fiber<T = any>
 	error?: Error;
 	logger?: ILogger;
 	user?: Partial<Pick<FiberOpts, "init" | "deinit" | "catch">>;
-	_promise?: Promise<T | undefined>;
+	_promise?: Promise<Maybe<T>>;
 
 	constructor(
 		gen?: Nullable<FiberFactory<T> | Generator<unknown, T>>,

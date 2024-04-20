@@ -1,8 +1,9 @@
+import type { Nullable } from "@thi.ng/api";
 import { ensureIterable } from "./ensure.js";
 import { map } from "./map.js";
 
 export function* mapcat<T>(
-	fn: (...args: any[]) => Iterable<T> | undefined | null,
+	fn: (...args: any[]) => Nullable<Iterable<T>>,
 	...inputs: Iterable<any>[]
 ): IterableIterator<T> {
 	(<any>inputs).unshift(fn);

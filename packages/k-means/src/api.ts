@@ -1,4 +1,4 @@
-import type { Fn, Fn0 } from "@thi.ng/api";
+import type { Fn, Fn0, Maybe } from "@thi.ng/api";
 import type { IDistance } from "@thi.ng/distance";
 import type { IRandom } from "@thi.ng/random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -31,7 +31,7 @@ export type CentroidStrategy = Fn<
 	number,
 	{
 		update: Fn<ReadonlyVec, void>;
-		finish: Fn0<Vec | undefined>;
+		finish: Fn0<Maybe<Vec>>;
 	}
 >;
 

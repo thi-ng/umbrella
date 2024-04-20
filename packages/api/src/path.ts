@@ -1,4 +1,3 @@
-import type { NumOrString } from "./prim.js";
 import type {
 	Keys,
 	Keys1,
@@ -10,7 +9,9 @@ import type {
 	Keys7,
 	ValN,
 } from "./keyval.js";
-import type { Head, Tail, IsEmpty } from "./tuple.js";
+import type { Maybe } from "./null.js";
+import type { NumOrString } from "./prim.js";
+import type { Head, IsEmpty, Tail } from "./tuple.js";
 
 /**
  * Unchecked lookup path for nested data structures.
@@ -156,9 +157,9 @@ export type DeepPath<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
     : never;
 
 /**
- * Returns `RES` if `PRED` is `never`, else `RES | undefined`
+ * Returns `RES` if `PRED` is `never`, else `Maybe<RES>`
  */
-export type OptVal<PRED, RES> = [PRED] extends [never] ? RES : RES | undefined;
+export type OptVal<PRED, RES> = [PRED] extends [never] ? RES : Maybe<RES>;
 
 /**
  * Returns true if `T` includes undefined.

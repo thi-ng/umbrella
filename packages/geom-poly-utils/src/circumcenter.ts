@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { add3 } from "@thi.ng/vectors/add";
@@ -22,7 +23,7 @@ export const circumCenter2 = (
 	b: ReadonlyVec,
 	c: ReadonlyVec,
 	eps = EPS
-): Vec | undefined => {
+): Maybe<Vec> => {
 	const ax = a[0],
 		ay = a[1];
 	const bx = b[0],
@@ -87,7 +88,7 @@ export const circumCenter3 = (
 	b: ReadonlyVec,
 	c: ReadonlyVec,
 	eps = EPS
-): Vec | undefined => {
+): Maybe<Vec> => {
 	const ab = sub3([], b, a);
 	const ac = sub3([], c, a);
 	const d = cross3([], ab, ac);

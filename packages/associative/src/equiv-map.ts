@@ -1,4 +1,12 @@
-import type { Fn3, ICopy, IEmpty, IEquiv, IObjectOf, Pair } from "@thi.ng/api";
+import type {
+	Fn3,
+	ICopy,
+	IEmpty,
+	IEquiv,
+	IObjectOf,
+	Maybe,
+	Pair,
+} from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { equiv } from "@thi.ng/equiv";
@@ -125,7 +133,7 @@ export class EquivMap<K, V>
 		}
 	}
 
-	get(key: K, notFound?: V): V | undefined {
+	get(key: K, notFound?: V): Maybe<V> {
 		const { keys, map } = __private.get(this)!;
 		key = keys.get(key, SEMAPHORE);
 		if (key !== <any>SEMAPHORE) {

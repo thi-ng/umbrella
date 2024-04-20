@@ -1,3 +1,5 @@
+import type { Maybe } from "./null.js";
+
 /**
  * Lisp-like sequence abstraction for arbitrary types using `first` &
  * `next` operations only.
@@ -18,7 +20,7 @@ export interface ISeq<T> {
 	 * determine the end. If the sequence DOES contain `undefined`
 	 * values, the check should use `seq.next()`.
 	 */
-	first(): T | undefined;
+	first(): Maybe<T>;
 	/**
 	 * Returns a new sequence of the remaining elements or `undefined`
 	 * if there're no further values.
@@ -28,7 +30,7 @@ export interface ISeq<T> {
 	 * a new sequence instance and not mutate some internal cursor. I.e.
 	 * `seq.next() !== seq`
 	 */
-	next(): ISeq<T> | undefined;
+	next(): Maybe<ISeq<T>>;
 }
 
 /**
@@ -39,5 +41,5 @@ export interface ISeqable<T> {
 	 * Returns an {@link ISeq} of the type's data or `undefined` if
 	 * there're no values available. See {@link ISeq.next}
 	 */
-	seq(): ISeq<T> | undefined;
+	seq(): Maybe<ISeq<T>>;
 }

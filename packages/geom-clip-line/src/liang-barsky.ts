@@ -1,4 +1,4 @@
-import type { FnU2, FnU8, Tuple } from "@thi.ng/api";
+import type { FnU2, FnU8, Maybe, Tuple } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
@@ -27,7 +27,7 @@ export const liangBarsky2 = (
 	max: ReadonlyVec,
 	ca: Vec = [],
 	cb: Vec = []
-): [Vec, Vec, number, number] | undefined => {
+): Maybe<[Vec, Vec, number, number]> => {
 	const res = liangBarsky2Raw(
 		a[0],
 		a[1],
@@ -60,7 +60,7 @@ export const liangBarsky2 = (
  * @param maxx -
  * @param maxy -
  */
-export const liangBarsky2Raw: FnU8<number, Tuple<number, 6> | undefined> = (
+export const liangBarsky2Raw: FnU8<number, Maybe<Tuple<number, 6>>> = (
 	ax,
 	ay,
 	bx,

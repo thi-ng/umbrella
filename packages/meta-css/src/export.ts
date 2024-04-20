@@ -1,4 +1,5 @@
 // thing:no-export
+import type { Maybe } from "@thi.ng/api";
 import type { Command } from "@thi.ng/args";
 import { readJSON, readText } from "@thi.ng/file-io";
 import {
@@ -87,7 +88,7 @@ export const EXPORT: Command<ExportOpts, CommonOpts, AppCtx<ExportOpts>> = {
 
 export const serializeSpecs = (
 	specs: CompiledSpecs,
-	media: string[] | undefined,
+	media: Maybe<string[]>,
 	opts: Partial<CSSOpts>,
 	logger: ILogger
 ) => {

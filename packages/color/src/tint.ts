@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn3O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { mix } from "@thi.ng/math/mix";
@@ -35,7 +36,7 @@ export const tint: MultiFn3O<
 	number,
 	number,
 	Color
-> = defmulti<Color | null, TypedColor<any>, number, number | undefined, Color>(
+> = defmulti<Color | null, TypedColor<any>, number, Maybe<number>, Color>(
 	__dispatch1,
 	{ hcy: "hsv", hsi: "hsv", hsl: "hsv", oklch: "lch" },
 	{

@@ -1,4 +1,4 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn2, Nullable } from "@thi.ng/api";
 import type { Transducer } from "./api.js";
 import { cat } from "./cat.js";
 import { comp } from "./comp.js";
@@ -17,15 +17,15 @@ import { mapIndexed } from "./map-indexed.js";
  * @param offset - initial index
  */
 export function mapcatIndexed<A, B>(
-	fn: Fn2<number, A, Iterable<B> | null | undefined>,
+	fn: Fn2<number, A, Nullable<Iterable<B>>>,
 	offset?: number
 ): Transducer<A, B>;
 export function mapcatIndexed<A, B>(
-	fn: Fn2<number, A, Iterable<B> | null | undefined>,
+	fn: Fn2<number, A, Nullable<Iterable<B>>>,
 	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapcatIndexed<A, B>(
-	fn: Fn2<number, A, Iterable<B> | null | undefined>,
+	fn: Fn2<number, A, Nullable<Iterable<B>>>,
 	offset: number,
 	src: Iterable<A>
 ): IterableIterator<B>;

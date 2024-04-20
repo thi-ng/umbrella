@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import {
 	CloseMode,
@@ -101,7 +102,7 @@ export const reactive = <T>(val: T, opts?: Partial<CommonOpts>) => {
 export class Stream<T> extends Subscription<T, T> implements IStream<T> {
 	src?: StreamSource<T>;
 
-	protected _cancel: StreamCancel | undefined;
+	protected _cancel: Maybe<StreamCancel>;
 	protected _inited: boolean;
 
 	constructor(opts?: Partial<WithErrorHandlerOpts>);

@@ -1,4 +1,4 @@
-import type { Predicate, Range1_32 } from "@thi.ng/api";
+import type { Maybe, Predicate, Range1_32 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { IDGen } from "@thi.ng/idgen";
 import type { ILogger } from "@thi.ng/logger";
@@ -92,7 +92,7 @@ export class ObjectIndex<T> {
 	 */
 	get(id: number): T;
 	get(id: number, ensure: true): T;
-	get(id: number, ensure: false): T | undefined;
+	get(id: number, ensure: false): Maybe<T>;
 	get(id: number, ensure = true) {
 		ensure &&
 			assert(this.idgen.has(id), `missing ${this.name} for ID: ${id}`);

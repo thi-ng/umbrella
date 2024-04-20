@@ -1,3 +1,5 @@
+import type { Maybe } from "@thi.ng/api";
+
 export enum Match {
 	/**
 	 * Partial match
@@ -32,16 +34,13 @@ export type ResultBody<T> = [number | string, T[]?];
 
 export type AltCallback<T, C, R> = (
 	ctx: C,
-	next: ResultBody<R> | undefined,
+	next: Maybe<ResultBody<R>>,
 	x: T[]
-) => ResultBody<R> | undefined;
+) => Maybe<ResultBody<R>>;
 
-export type LitCallback<T, C, R> = (ctx: C, x: T) => ResultBody<R> | undefined;
+export type LitCallback<T, C, R> = (ctx: C, x: T) => Maybe<ResultBody<R>>;
 
-export type SeqCallback<T, C, R> = (
-	ctx: C,
-	buf: T[]
-) => ResultBody<R> | undefined;
+export type SeqCallback<T, C, R> = (ctx: C, buf: T[]) => Maybe<ResultBody<R>>;
 
 export type AltFallback<T, C, R> = SeqCallback<T, C, R>;
 

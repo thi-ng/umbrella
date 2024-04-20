@@ -6,6 +6,7 @@ import type {
 	IID,
 	IRelease,
 	IWatch,
+	Maybe,
 	OptPathVal,
 	Path,
 	Path0,
@@ -122,11 +123,11 @@ export interface ISwap<T> {
 	swapInUnsafe(path: Path, fn: SwapFn<any, any>, ...args: any[]): T;
 }
 
-export interface IView<T> extends IDeref<T | undefined>, IID<string>, IRelease {
+export interface IView<T> extends IDeref<Maybe<T>>, IID<string>, IRelease {
 	readonly path: Path;
-	readonly value: T | undefined;
+	readonly value: Maybe<T>;
 
-	view(): T | undefined;
+	view(): Maybe<T>;
 	changed(): boolean;
 }
 
@@ -139,8 +140,8 @@ export interface IHistory<T> extends IAtom<T>, IClear {
 	canUndo(): boolean;
 	canRedo(): boolean;
 
-	undo(): T | undefined;
-	redo(): T | undefined;
+	undo(): Maybe<T>;
+	redo(): Maybe<T>;
 
 	record(): void;
 }

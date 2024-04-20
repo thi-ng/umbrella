@@ -1,14 +1,16 @@
 import type { NumOrString } from "@thi.ng/api";
-import { delayed } from "@thi.ng/compose";
 import { expect, test } from "bun:test";
 import {
+	asAsyncIterable,
 	comp,
 	concat,
+	delayed,
 	filter,
 	iterator,
 	map,
 	mapcat,
 	merge,
+	mult,
 	multiplex,
 	multiplexObj,
 	partition,
@@ -17,12 +19,20 @@ import {
 	repeatedly,
 	run,
 	sidechain,
+	source,
 	step,
 	sync,
 	take,
 	throttle,
 	transduce,
+	wait,
+	zip,
 } from "../src/index.js";
+
+test("asAsyncIterable", async (done) => {
+	expect(await push(asAsyncIterable([1, 2, 3], 10))).toEqual([1, 2, 3]);
+	done();
+});
 
 test("comp", async (done) => {
 	expect(
@@ -113,6 +123,42 @@ test("merge", async (done) => {
 	expect(
 		await push(merge([repeatedly((i) => i, 0), repeatedly((i) => i, 0)]))
 	).toEqual([]);
+	done();
+});
+
+test("mult", async (done) => {
+	const root = mult(
+		(async function* () {
+			yield "hello";
+			await wait(100);
+			yield "world";
+			await wait(100);
+			yield "good bye";
+		})()
+	);
+
+	// 1st subscriber (vanilla JS)
+	const sub1 = (async () => {
+		const res = [];
+		for await (let x of root.subscribe()) res.push(x);
+		return res;
+	})();
+
+	// 2nd subscriber (transducer), attached only after delay
+	await wait(90);
+	const sub2 = transduce(
+		map(async (x) => {
+			await wait(70);
+			return x.toUpperCase();
+		}),
+		push<string>(),
+		root.subscribe()
+	);
+
+	expect(await Promise.all([sub1, sub2])).toEqual([
+		["hello", "world", "good bye"],
+		["WORLD", "GOOD BYE"],
+	]);
 	done();
 });
 
@@ -223,6 +269,23 @@ test(
 	{ retry: 5 }
 );
 
+test("source", async (done) => {
+	let src = source<number>();
+
+	setTimeout(() => src.write(1), 0);
+	setTimeout(() => src.write(2), 0);
+	setTimeout(() => src.close(), 0);
+
+	expect(await push(src)).toEqual([1, 2]);
+
+	src = source<number>();
+	src.write(10);
+	src.write(20);
+	expect(() => src.write(30)).toThrow();
+
+	done();
+});
+
 test("step", async (done) => {
 	expect(await step(mapcat(async (x) => [x, x]))(1)).toEqual([1, 1]);
 	expect(await step(mapcat(async (x) => [x]))(1)).toEqual(1);
@@ -240,7 +303,7 @@ test(
 	async (done) => {
 		const res = await push(
 			sync({
-				a: repeatedly((i) => i, 5, 66),
+				a: repeatedly((i) => i, 5, 70),
 				b: repeatedly((i) => String(i * 10), 3, 100),
 			})
 		);
@@ -334,5 +397,22 @@ test("throttle", async (done) => {
 			[1, 1, 2, 3, 3, 2, 2, 1]
 		)
 	).toEqual([1, 2, 3, 2, 1]);
+	done();
+});
+
+test("zip", async (done) => {
+	expect(
+		await push(
+			zip(
+				[1, 2, 3, 4],
+				repeatedly((i) => (i + 1) * 10, Infinity, 10),
+				range(100, 400, 100, 5)
+			)
+		)
+	).toEqual([
+		[1, 10, 100],
+		[2, 20, 200],
+		[3, 30, 300],
+	]);
 	done();
 });

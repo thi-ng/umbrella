@@ -1,5 +1,7 @@
-export interface MapLike<A, B> {
-	has(key: A): boolean;
-	get(key: A): B | undefined;
-	set(key: A, val: B): any;
+import type { Maybe } from "@thi.ng/api";
+
+export interface MapLike<K, V> {
+	has(key: K): boolean;
+	get(key: K): Maybe<V>;
+	set(key: K, val: V): any;
 }

@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { IReadWriteBuffer } from "@thi.ng/buffers";
 import { DroppingBuffer } from "@thi.ng/buffers/dropping";
 import { FIFOBuffer } from "@thi.ng/buffers/fifo";
@@ -48,7 +49,7 @@ export class Channel<T> {
 	read() {
 		// eslint-disable-next-line no-this-alias -- channel ref for child fiber
 		const chan = this;
-		return fiber<T | undefined>(function* (ctx: Fiber) {
+		return fiber<Maybe<T>>(function* (ctx: Fiber) {
 			while (chan.readable()) {
 				// wait until channel is readable
 				if (chan.buffer.readable()) {

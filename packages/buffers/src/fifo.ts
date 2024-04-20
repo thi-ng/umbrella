@@ -1,5 +1,6 @@
-import type { IReadWriteBuffer } from "./api.js";
+import type { Maybe } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
+import type { IReadWriteBuffer } from "./api.js";
 
 /**
  * Returns a {@link FIFOBuffer} ring buffer with given max. capacity.
@@ -18,7 +19,7 @@ export const fifo = <T>(cap: number) => new FIFOBuffer<T>(cap);
  * First-in, first-out ring buffer implementation. See {@link fifo}.
  */
 export class FIFOBuffer<T> implements IReadWriteBuffer<T> {
-	protected buf: (T | undefined)[];
+	protected buf: Maybe<T>[];
 	protected rpos = 0;
 	protected wpos = 0;
 	protected len = 0;

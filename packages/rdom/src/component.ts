@@ -1,4 +1,4 @@
-import type { MaybeDeref } from "@thi.ng/api";
+import type { Maybe, MaybeDeref } from "@thi.ng/api";
 import type { IComponent, NumOrElement } from "./api.js";
 import { $compile } from "./compile.js";
 import {
@@ -50,7 +50,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 		tag: string,
 		attribs?: any,
 		body?: any,
-		parent: ParentNode | undefined = this.el,
+		parent: Maybe<ParentNode> = this.el,
 		idx?: NumOrElement
 	) {
 		return $el(tag, attribs, body, parent, idx);
@@ -66,7 +66,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	 */
 	$comment(
 		body: string | string[],
-		parent: ParentNode | undefined = this.el,
+		parent: Maybe<ParentNode> = this.el,
 		idx?: NumOrElement
 	) {
 		return $comment(body, parent, idx);

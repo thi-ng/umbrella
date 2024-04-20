@@ -1,13 +1,13 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Maybe, Predicate } from "@thi.ng/api";
 import { beforeEach, expect, test } from "bun:test";
-import { sidechainToggle, Stream, stream } from "../src/index.js";
+import { Stream, sidechainToggle, stream } from "../src/index.js";
 import { assertUnsub } from "./utils.js";
 
 let src: Stream<any>, side: Stream<any>, buf: any[];
 
 const check = (
 	initial: any,
-	pred: Predicate<any> | undefined,
+	pred: Maybe<Predicate<any>>,
 	_expected: any,
 	done: Function
 ) => {

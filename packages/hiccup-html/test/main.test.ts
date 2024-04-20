@@ -1,4 +1,4 @@
-import type { IDeref } from "@thi.ng/api";
+import type { IDeref, Maybe } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import { defElement, type AttribVal } from "../src/index.js";
 
@@ -39,7 +39,7 @@ test("defElement", () => {
 });
 
 test("compile errors", () => {
-	class D<T> implements IDeref<T | undefined> {
+	class D<T> implements IDeref<Maybe<T>> {
 		constructor(private x?: T) {}
 		deref() {
 			return this.x;

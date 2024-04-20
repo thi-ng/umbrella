@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { Atom, History } from "@thi.ng/atom";
 import { timedResult } from "@thi.ng/bench";
 import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
@@ -426,7 +427,7 @@ const app = () => {
 					["circle", { fill: "$shadow" }, radialPos, 300],
 				])
 			);
-			let res: number | undefined;
+			let res: Maybe<number>;
 			if (
 				(res = radialMenu(
 					gui,

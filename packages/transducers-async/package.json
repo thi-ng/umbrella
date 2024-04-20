@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-async",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Async versions of various highly composable transducers, reducers and iterators",
 	"type": "module",
 	"module": "./index.js",
@@ -36,11 +36,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.10.0",
-		"@thi.ng/checks": "^3.6.0",
-		"@thi.ng/compose": "^3.0.0",
-		"@thi.ng/errors": "^2.5.3",
-		"@thi.ng/transducers": "^9.0.0"
+		"@thi.ng/api": "^8.11.0",
+		"@thi.ng/buffers": "^0.1.1",
+		"@thi.ng/checks": "^3.6.2",
+		"@thi.ng/compose": "^3.0.2",
+		"@thi.ng/errors": "^2.5.5",
+		"@thi.ng/transducers": "^9.0.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",
@@ -89,6 +90,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./as-async": {
+			"default": "./as-async.js"
+		},
 		"./cat": {
 			"default": "./cat.js"
 		},
@@ -100,6 +104,9 @@
 		},
 		"./concat": {
 			"default": "./concat.js"
+		},
+		"./delayed": {
+			"default": "./delayed.js"
 		},
 		"./ensure": {
 			"default": "./ensure.js"
@@ -122,6 +129,9 @@
 		"./merge": {
 			"default": "./merge.js"
 		},
+		"./mult": {
+			"default": "./mult.js"
+		},
 		"./multiplex-obj": {
 			"default": "./multiplex-obj.js"
 		},
@@ -130,6 +140,9 @@
 		},
 		"./partition": {
 			"default": "./partition.js"
+		},
+		"./pubsub": {
+			"default": "./pubsub.js"
 		},
 		"./push": {
 			"default": "./push.js"
@@ -152,8 +165,14 @@
 		"./sidechain": {
 			"default": "./sidechain.js"
 		},
+		"./source": {
+			"default": "./source.js"
+		},
 		"./step": {
 			"default": "./step.js"
+		},
+		"./sync-raf": {
+			"default": "./sync-raf.js"
 		},
 		"./sync": {
 			"default": "./sync.js"

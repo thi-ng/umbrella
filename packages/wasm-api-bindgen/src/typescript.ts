@@ -1,4 +1,4 @@
-import type { Nullable, NumOrString } from "@thi.ng/api";
+import type { Maybe, Nullable, NumOrString } from "@thi.ng/api";
 import {
 	BIGINT_ARRAY_CTORS,
 	BIT_SHIFTS,
@@ -319,7 +319,7 @@ const generateField = (
 	field: Field,
 	coll: TypeColl,
 	opts: CodeGenOpts
-): AugmentedField | undefined => {
+): Maybe<AugmentedField> => {
 	if (field.skip) return;
 	if (isFuncPointer(field.type, coll) || isOpaque(field.type)) {
 		field = { ...field, type: opts.target.usize };

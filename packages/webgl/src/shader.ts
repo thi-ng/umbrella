@@ -235,7 +235,7 @@ export const defShader = (
 	const logger = opts?.logger || LOGGER;
 	logger.debug(srcVS);
 	logger.debug(srcFS);
-	initShaderExtensions(gl, spec.ext);
+	spec.ext && initShaderExtensions(gl, spec.ext);
 	const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
 	const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);
 	const program =
@@ -288,14 +288,12 @@ const compileExtensionPragma = (
 
 const initShaderExtensions = (
 	gl: WebGLRenderingContext,
-	exts: ExtensionBehaviors | undefined
+	exts: ExtensionBehaviors
 ) => {
-	if (exts) {
-		for (let id in exts) {
-			const state = exts[<ExtensionName>id];
-			if (state === true || state === "require") {
-				getExtensions(gl, <any>[id], state === "require");
-			}
+	for (let id in exts) {
+		const state = exts[<ExtensionName>id];
+		if (state === true || state === "require") {
+			getExtensions(gl, <any>[id], state === "require");
 		}
 	}
 };

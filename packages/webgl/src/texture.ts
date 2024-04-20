@@ -1,3 +1,4 @@
+import type { Nullable } from "@thi.ng/api";
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import { isArray } from "@thi.ng/checks/is-array";
 import {
@@ -369,7 +370,7 @@ export const defTextureCubeMap = (
  */
 export const defTextureFloat = (
 	gl: WebGLRenderingContext,
-	data: Float32Array | undefined | null,
+	data: Nullable<Float32Array>,
 	width: number,
 	height: number,
 	format?: TextureFormat,

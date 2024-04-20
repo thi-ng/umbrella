@@ -46,7 +46,7 @@ export const cat =
 	<T>(): Transducer<Nullable<Iterable<T>>, T> =>
 	(rfn: Reducer<T, any>) => {
 		const r = rfn[2];
-		return compR(rfn, (acc, x: Iterable<T> | null | undefined) => {
+		return compR(rfn, (acc, x: Nullable<Iterable<T>>) => {
 			if (x) {
 				for (let y of unreduced(x)) {
 					acc = r(acc, y);

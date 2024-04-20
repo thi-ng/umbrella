@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import type { SIMD } from "./api.js";
 import { BINARY } from "./binary.js";
@@ -28,7 +29,7 @@ export * from "./api.js";
  *
  * @param memory -
  */
-export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
+export const init = (memory: WebAssembly.Memory): Maybe<SIMD> => {
 	const buf = memory.buffer;
 	return <SIMD>{
 		...new WebAssembly.Instance(

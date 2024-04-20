@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
@@ -30,7 +31,7 @@ import { __dispatch } from "./internal/dispatch.js";
 export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti<
 	any,
 	ReadonlyVec,
-	Vec | undefined,
+	Maybe<Vec>,
 	Vec
 >(
 	__dispatch,

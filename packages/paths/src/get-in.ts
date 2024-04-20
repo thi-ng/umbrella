@@ -1,5 +1,6 @@
 import type {
 	DeepPath,
+	Maybe,
 	OptPathVal,
 	Path,
 	Path0,
@@ -33,7 +34,7 @@ import { defGetter } from "./getter.js";
  * @param state -
  * @param path -
  */
-export const getInUnsafe = <T = any>(state: any, path: Path): T | undefined =>
+export const getInUnsafe = <T = any>(state: any, path: Path): Maybe<T> =>
 	defGetter<T>(<any>path)(state);
 
 /**

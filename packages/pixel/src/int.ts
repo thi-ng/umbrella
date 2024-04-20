@@ -1,4 +1,4 @@
-import type { Fn2, FnN2, ICopy, IEmpty, Range0_3 } from "@thi.ng/api";
+import type { Fn2, FnN2, ICopy, IEmpty, Maybe, Range0_3 } from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import {
 	typedArray,
@@ -111,7 +111,7 @@ export const intBufferFromCanvas = (
 	const ctx = canvasPixels(canvas);
 	const w = canvas.width;
 	const h = canvas.height;
-	let dest: UIntArray | undefined;
+	let dest: Maybe<UIntArray>;
 	if (fmt === ABGR8888) {
 		dest = ctx.data;
 	} else {

@@ -5,6 +5,7 @@ import type {
 	IEmpty,
 	IEquiv,
 	IObjectOf,
+	Maybe,
 	Pair,
 	Predicate2,
 } from "@thi.ng/api";
@@ -162,7 +163,7 @@ export class HashMap<K, V>
 		return i >= 0 && $this.bins[i] != undefined;
 	}
 
-	get(key: K, notFound?: V): V | undefined {
+	get(key: K, notFound?: V): Maybe<V> {
 		const $this = __private.get(this)!;
 		const i = this.find(key, $this);
 		return i >= 0 && $this.bins[i] ? $this.bins[i][1] : notFound;

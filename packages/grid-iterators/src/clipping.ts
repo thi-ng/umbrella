@@ -1,4 +1,4 @@
-import type { FnN3, FnU2, FnU7, FnU8, Tuple } from "@thi.ng/api";
+import type { FnN3, FnU2, FnU7, FnU8, Maybe, Tuple } from "@thi.ng/api";
 
 /**
  * Filters points from `src` iterable to remove any falling outside the rect
@@ -65,7 +65,7 @@ export const intersectRectCircle: FnU7<number, boolean> = (
  *
  * @internal
  */
-export const liangBarsky: FnU8<number, Tuple<number, 4> | undefined> = (
+export const liangBarsky: FnU8<number, Maybe<Tuple<number, 4>>> = (
 	ax,
 	ay,
 	bx,

@@ -1,13 +1,13 @@
-import type { FnO } from "@thi.ng/api";
+import type { FnO, Maybe } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { isArray } from "@thi.ng/checks/is-array";
 import { assert } from "@thi.ng/errors/assert";
 import type { Path, ZipperOps } from "./api.js";
 
 const newPath = <T>(
-	l: T[] | undefined,
-	r: T[] | undefined,
-	path: Path<T> | undefined,
+	l: Maybe<T[]>,
+	r: Maybe<T[]>,
+	path: Maybe<Path<T>>,
 	nodes: T[],
 	changed = false
 ): Path<T> => ({
@@ -24,7 +24,7 @@ const changedPath = <T>(path?: Path<T>) =>
 export class Location<T> {
 	protected readonly _node: T;
 	protected readonly _ops: ZipperOps<T>;
-	protected readonly _path: Path<T> | undefined;
+	protected readonly _path: Maybe<Path<T>>;
 
 	constructor(node: T, ops: ZipperOps<T>, path?: Path<T>) {
 		this._node = node;
@@ -74,7 +74,7 @@ export class Location<T> {
 		return this._path ? this._path.r : undefined;
 	}
 
-	get left(): Location<T> | undefined {
+	get left(): Maybe<Location<T>> {
 		const path = this._path;
 		const lefts = path && path.l;
 		return lefts && lefts.length
@@ -92,7 +92,7 @@ export class Location<T> {
 			: undefined;
 	}
 
-	get right(): Location<T> | undefined {
+	get right(): Maybe<Location<T>> {
 		const path = this._path;
 		const rights = path && path.r;
 		if (!rights) return;
@@ -149,7 +149,7 @@ export class Location<T> {
 			: this;
 	}
 
-	get down(): Location<T> | undefined {
+	get down(): Maybe<Location<T>> {
 		if (!this.isBranch) return;
 		const children = this.children;
 		if (!children) return;
@@ -167,7 +167,7 @@ export class Location<T> {
 		);
 	}
 
-	get up(): Location<T> | undefined {
+	get up(): Maybe<Location<T>> {
 		let path = this._path;
 		const pnodes = path && path.nodes;
 		if (!pnodes) return;
@@ -191,11 +191,11 @@ export class Location<T> {
 		return parent ? parent.root : this._node;
 	}
 
-	get prev(): Location<T> | undefined {
+	get prev(): Maybe<Location<T>> {
 		let node = this.left;
 		if (!node) return this.up;
 		while (true) {
-			const child: Location<T> | undefined = node!.isBranch
+			const child: Maybe<Location<T>> = node!.isBranch
 				? node.down
 				: undefined;
 			if (!child) return node;
@@ -203,7 +203,7 @@ export class Location<T> {
 		}
 	}
 
-	get next(): Location<T> | undefined {
+	get next(): Maybe<Location<T>> {
 		if (this.isBranch) return this.down;
 		let right = this.right;
 		if (right) return right;

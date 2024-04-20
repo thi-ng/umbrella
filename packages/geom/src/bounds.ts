@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { AABBLike, IShape, PathSegment, PCLike } from "@thi.ng/geom-api";
@@ -59,10 +60,10 @@ import { rectFromMinMaxWithMargin } from "./rect.js";
  * @param shape
  * @param margin
  */
-export const bounds: MultiFn1O<IShape, number, AABBLike | undefined> = defmulti<
+export const bounds: MultiFn1O<IShape, number, Maybe<AABBLike>> = defmulti<
 	any,
-	number | undefined,
-	AABBLike | undefined
+	Maybe<number>,
+	Maybe<AABBLike>
 >(
 	__dispatch,
 	{

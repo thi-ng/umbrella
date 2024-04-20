@@ -1,4 +1,4 @@
-import type { NumericArray } from "@thi.ng/api";
+import type { Maybe, NumericArray } from "@thi.ng/api";
 import type { StridedVec } from "@thi.ng/vectors";
 import { AVecList } from "./alist.js";
 import type { VecFactory } from "./api.js";
@@ -81,7 +81,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
 		return v;
 	}
 
-	insert(i: number): T | undefined {
+	insert(i: number): Maybe<T> {
 		if (!this._length) {
 			return i === 0 ? this.add() : undefined;
 		}
@@ -139,7 +139,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
 		return false;
 	}
 
-	nth(n: number): T | undefined {
+	nth(n: number): Maybe<T> {
 		if (n < 0) {
 			n += this._length;
 		}

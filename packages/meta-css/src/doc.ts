@@ -1,5 +1,5 @@
 // thing:no-export
-import type { Fn3, IObjectOf } from "@thi.ng/api";
+import type { Fn3, IObjectOf, Maybe } from "@thi.ng/api";
 import { int, string, type Command } from "@thi.ng/args";
 import { compare } from "@thi.ng/compare";
 import { readJSON } from "@thi.ng/file-io";
@@ -105,7 +105,7 @@ const __compare = (a: string, b: string) => {
 /** @internal */
 const __groupedTypes = (
 	src: IObjectOf<CompiledSpec>,
-	fmt: Fn3<string, SpecDoc | undefined, number, string>,
+	fmt: Fn3<string, Maybe<SpecDoc>, number, string>,
 	level: number
 ) => {
 	const grouped = groupByObj(
@@ -144,11 +144,7 @@ const __formatSpec = (id: string, doc?: SpecDoc) => {
 };
 
 /** @internal */
-const __formatTemplate = (
-	id: string,
-	doc: SpecDoc | undefined,
-	level: number
-) => {
+const __formatTemplate = (id: string, doc: Maybe<SpecDoc>, level: number) => {
 	if (!(doc && doc.args)) return `${__hd(level)} ${id}(...)\n\nTODO`;
 	const argList = doc.args.map((x) => /^\w+/.exec(x)![0]).join(", ");
 	return [

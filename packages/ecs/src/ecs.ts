@@ -1,4 +1,4 @@
-import type { Event, INotify, Listener } from "@thi.ng/api";
+import type { Event, INotify, Listener, Maybe } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { uintTypeForSize } from "@thi.ng/api/typedarray";
 import { bitSize } from "@thi.ng/binary/count";
@@ -70,10 +70,10 @@ export class ECS<SPEC> implements INotify<ECSEventType> {
 
 	defComponent<K extends ComponentID<SPEC>>(
 		opts: MemMappedComponentOpts<K>
-	): MemMappedComponent<K> | undefined;
+	): Maybe<MemMappedComponent<K>>;
 	defComponent<K extends ComponentID<SPEC>>(
 		opts: ObjectComponentOpts<K, SPEC[K]>
-	): ObjectComponent<K, SPEC[K]> | undefined;
+	): Maybe<ObjectComponent<K, SPEC[K]>>;
 	defComponent<K extends ComponentID<SPEC>>(opts: any) {
 		assert(
 			!this.components.has(opts.id),

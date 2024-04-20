@@ -8,7 +8,7 @@ import { div } from "@thi.ng/vectors/div";
 import { equals } from "@thi.ng/vectors/equals";
 import { floor } from "@thi.ng/vectors/floor";
 import { subN } from "@thi.ng/vectors/subn";
-import { into } from "./utils.js";
+import { __ensureRes, __into } from "./utils.js";
 
 /**
  * Common base class for {@link SpatialGrid2} and {@link SpatialGrid3}.
@@ -28,6 +28,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
 		protected _size: ReadonlyVec,
 		protected _res: ReadonlyVec
 	) {
+		__ensureRes(_res);
 		floor(null, this._res);
 		this._res1 = subN([], this._res, 1);
 		this._invSize = div([], this._res, _size);
@@ -94,7 +95,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
 	}
 
 	into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-		return into(this, pairs, eps);
+		return __into(this, pairs, eps);
 	}
 
 	remove(k: K) {

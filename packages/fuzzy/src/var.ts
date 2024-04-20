@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { LVar, LVarDomain } from "./api.js";
 
 /**
@@ -61,7 +62,7 @@ export const classify = <K extends string>(
 	threshold = 0.5
 ) => {
 	let max = threshold;
-	let maxID: K | undefined;
+	let maxID: Maybe<K>;
 	for (let id in terms) {
 		const t = terms[id](x);
 		if (t >= max) {

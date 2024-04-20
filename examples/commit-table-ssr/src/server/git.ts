@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import {
 	assocObj,
 	comp,
@@ -43,14 +44,14 @@ const parseLog = ([log]: string[]): Partial<Commit> => {
  *
  * @param log -
  */
-const parseStats = ([_, stats]: string[]): Partial<Commit> | null =>
+const parseStats = ([_, stats]: string[]): Maybe<Partial<Commit>> =>
 	stats
 		? transduce(
 				map(([k, v]) => <[string, number]>[k, parseInt(v)]),
 				assocObj(),
 				zip(["files", "add", "del"], stats.split(","))
 		  )
-		: null;
+		: undefined;
 
 /**
  * Retrieves git log for given `repoPath` and transforms it into an

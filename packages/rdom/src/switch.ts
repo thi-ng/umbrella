@@ -1,4 +1,4 @@
-import type { Fn, NumOrString } from "@thi.ng/api";
+import type { Fn, Maybe, NumOrString } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
@@ -153,7 +153,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
 		this.inner = undefined;
 		if (val != null) {
 			this.val = val;
-			let loader: IComponent | undefined;
+			let loader: Maybe<IComponent>;
 			if (this.loader) {
 				loader = $compile(await this.loader(val));
 				await loader.mount(this.parent!, this.index!);

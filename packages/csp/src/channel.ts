@@ -1,4 +1,12 @@
-import type { Fn, Fn0, Fn2, FnAny, Nullable, Predicate } from "@thi.ng/api";
+import type {
+	Fn,
+	Fn0,
+	Fn2,
+	FnAny,
+	Maybe,
+	Nullable,
+	Predicate,
+} from "@thi.ng/api";
 import { shuffle } from "@thi.ng/arrays/shuffle";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { DCons } from "@thi.ng/dcons/dcons";
@@ -392,7 +400,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 		});
 	}
 
-	read(): Promise<T | undefined> {
+	read(): Promise<Maybe<T>> {
 		return new Promise((resolve) => {
 			if (this.state === State.DONE) {
 				resolve(undefined);

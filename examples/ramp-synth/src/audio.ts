@@ -1,7 +1,8 @@
+import type { Maybe } from "@thi.ng/api";
 import { fract } from "@thi.ng/math";
 import type { Ramp } from "@thi.ng/ramp";
 
-let actx: AudioContext | undefined;
+let actx: Maybe<AudioContext>;
 let buf: AudioBuffer;
 let src: AudioBufferSourceNode;
 

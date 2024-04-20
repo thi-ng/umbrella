@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";
@@ -198,7 +198,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 		id?: string,
 		emitTriples = true
 	): ISubscription<any, any> {
-		let results: ISubscription<any, TripleIds> | undefined;
+		let results: Maybe<ISubscription<any, TripleIds>>;
 		const [s, p, o] = pattern;
 		if (s == null && p == null && o == null) {
 			results = this.streamAll;
@@ -360,8 +360,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	 * @param spec -
 	 */
 	addQueryFromSpec(spec: QuerySpec): QuerySolution {
-		let query: QuerySolution | undefined;
-		let curr: QuerySolution | undefined;
+		let query: Maybe<QuerySolution>;
+		let curr: Maybe<QuerySolution>;
 		for (let q of spec.q) {
 			if (isWhereQuery(q)) {
 				curr = this.addMultiJoin(this.addParamQueries(q.where));
@@ -407,9 +407,9 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	}
 
 	protected findTriple(
-		s: TripleIds | undefined,
-		p: TripleIds | undefined,
-		o: TripleIds | undefined,
+		s: Maybe<TripleIds>,
+		p: Maybe<TripleIds>,
+		o: Maybe<TripleIds>,
 		f: Triple
 	) {
 		if (s && p && o) {

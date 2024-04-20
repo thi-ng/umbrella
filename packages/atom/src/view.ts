@@ -1,6 +1,7 @@
 import type {
 	DeepPath,
 	Fn,
+	Maybe,
 	OptPathVal,
 	Path,
 	Path0,
@@ -169,7 +170,7 @@ export class View<T> implements IView<T> {
 	readonly parent: ReadonlyAtom<any>;
 	readonly path: Path;
 
-	protected state: T | undefined;
+	protected state: Maybe<T>;
 	protected tx: Fn<any, T>;
 	protected unprocessed: any;
 	protected isDirty: boolean;

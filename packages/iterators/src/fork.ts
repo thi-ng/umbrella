@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { DCons } from "@thi.ng/dcons/dcons";
 import { iterator } from "./iterator.js";
 
@@ -5,7 +6,7 @@ export const fork = <T>(src: Iterable<T>, cacheLimit = 16) => {
 	const iter = iterator(src);
 	const cache = new DCons<T>();
 	const forks: number[] = [];
-	let done: boolean | undefined = false;
+	let done: Maybe<boolean> = false;
 	let total = 0;
 
 	const consume = () => {

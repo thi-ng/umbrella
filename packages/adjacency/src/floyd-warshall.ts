@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import type { CostFn, IGraph } from "./api.js";
 
@@ -71,7 +72,7 @@ export class FloydWarshall {
 	 * @param a
 	 * @param b
 	 */
-	distance(a: number, b: number): number | undefined {
+	distance(a: number, b: number): Maybe<number> {
 		this.ensurePair(a, b);
 		return this.dist[a * this.numV + b];
 	}

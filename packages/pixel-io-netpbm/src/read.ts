@@ -1,4 +1,4 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Maybe, Predicate } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { GRAY16 } from "@thi.ng/pixel/format/gray16";
@@ -47,7 +47,7 @@ export const parseHeader = (src: Uint8Array) => {
 	let type: string;
 	let sw: string, sh: string;
 	let norm: string;
-	let max: number | undefined;
+	let max: Maybe<number>;
 	const comments: string[] = [];
 	let i = readComments(src, comments, 0);
 	[type, i] = readUntil(src, i);

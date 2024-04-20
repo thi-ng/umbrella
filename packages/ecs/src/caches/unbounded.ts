@@ -1,4 +1,4 @@
-import type { Fn0 } from "@thi.ng/api";
+import type { Fn0, Maybe } from "@thi.ng/api";
 import type { ICache } from "../api.js";
 
 export class UnboundedCache<T> implements ICache<T> {
@@ -26,7 +26,7 @@ export class UnboundedCache<T> implements ICache<T> {
 		return val;
 	}
 
-	get(key: number): T | undefined {
+	get(key: number): Maybe<T> {
 		return this.index.get(key);
 	}
 

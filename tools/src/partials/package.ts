@@ -1,13 +1,13 @@
+import type { Maybe } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { dirs, readJSON, readText } from "@thi.ng/file-io";
-import { bytes, camel, initials } from "@thi.ng/strings";
+import { bytes, initials } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import { execFileSync } from "node:child_process";
 import { basename } from "node:path";
 import { META_FIELD, RE_PKG, type Config, type Package } from "../api.js";
 import { link } from "./link.js";
 import { list } from "./list.js";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const shortName = (name: string) => name.split("/")[1];
 
@@ -23,7 +23,7 @@ export const isWebModule = (pkg: Package) =>
 	!isNodeOnly(pkg) && pkg[META_FIELD]?.skypack !== false;
 
 export const pkgLink = (config: Config, name: string) => {
-	let url: string | undefined = undefined;
+	let url: Maybe<string> = undefined;
 	if (name.startsWith(config.pkgScope)) {
 		url = `${config.branchURL}/packages/${shortName(name)}`;
 	} else {
@@ -161,13 +161,12 @@ const ${id} = await import("${pkg.name}");
 	].join("\n");
 };
 
-const webImport = (pkg: Package) => `\nBrowser ESM import:
-
+const webImport = (pkg: Package) => `\nBrowser ESM import:\n
 \`\`\`html
-<script type="module" src="https://cdn.skypack.dev/${pkg.name}"></script>
+<script type="module" src="https://esm.run/${pkg.name}"></script>
 \`\`\`
 
-[Skypack documentation](https://docs.skypack.dev/)\n`;
+[JSDelivr documentation](https://www.jsdelivr.com/)\n`;
 
 export const packageCitation = (config: Config, name: string) => {
 	let hasAuthors = false;

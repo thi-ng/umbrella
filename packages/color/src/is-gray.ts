@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyColor, TypedColor } from "./api.js";
@@ -13,7 +14,7 @@ const isGrayRgb = (x: ReadonlyColor, eps = EPS) =>
 const isGrayLab = (x: ReadonlyColor, eps = EPS) =>
 	eqDelta(x[1], 0, eps) && eqDelta(x[2], 0, eps);
 
-export const isGray = defmulti<TypedColor<any>, number | undefined, boolean>(
+export const isGray = defmulti<TypedColor<any>, Maybe<number>, boolean>(
 	__dispatch0,
 	{
 		hcy: "hsv",

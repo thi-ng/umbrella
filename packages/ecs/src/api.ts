@@ -6,6 +6,7 @@ import type {
 	IID,
 	INotify,
 	IRelease,
+	Maybe,
 	Type,
 	TypedArray,
 	UIntArray,
@@ -44,9 +45,9 @@ export interface IComponent<K extends string, VALUES, GET, SET>
 	has(id: number): boolean;
 	add(id: number, val?: SET): boolean;
 	delete(id: number): boolean;
-	get(id: number): GET | undefined;
+	get(id: number): Maybe<GET>;
 	set(i: number, val: SET): boolean;
-	getIndex(i: number): GET | undefined;
+	getIndex(i: number): Maybe<GET>;
 	setIndex(i: number, val: SET): boolean;
 	setIndexUnsafe(i: number, val: SET, notify?: boolean): void;
 
@@ -89,7 +90,7 @@ export interface GroupOpts {
 export interface ICache<T> extends IClear, IRelease {
 	keys(): Iterable<number>;
 	set(key: number, val: T): T;
-	get(key: number): T | undefined;
+	get(key: number): Maybe<T>;
 	getSet(key: number, notFound: Fn0<T>): T;
 	delete(key: number): boolean;
 }

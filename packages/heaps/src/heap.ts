@@ -6,6 +6,7 @@ import type {
 	IInto,
 	ILength,
 	IStack,
+	Maybe,
 	Predicate,
 	Predicate2,
 } from "@thi.ng/api";
@@ -97,7 +98,7 @@ export class Heap<T>
 		return new Heap<T>(null, { compare: this.compare });
 	}
 
-	peek(): T | undefined {
+	peek(): Maybe<T> {
 		return this.values[0];
 	}
 
@@ -107,7 +108,7 @@ export class Heap<T>
 		return this;
 	}
 
-	pop(): T | undefined {
+	pop(): Maybe<T> {
 		const vals = this.values;
 		const tail = vals.pop();
 		let res: T;
@@ -121,7 +122,7 @@ export class Heap<T>
 		return res;
 	}
 
-	pushPop(val: T, vals = this.values): T | undefined {
+	pushPop(val: T, vals = this.values): Maybe<T> {
 		const head = vals[0];
 		if (vals.length > 0 && this.compare(head, val) <= 0) {
 			vals[0] = val;
@@ -145,7 +146,7 @@ export class Heap<T>
 	 *
 	 * @param vals - values to insert
 	 */
-	pushPopAll(vals: Iterable<T>): T | undefined {
+	pushPopAll(vals: Iterable<T>): Maybe<T> {
 		let res: any;
 		for (let v of vals) {
 			res = this.pushPop(v);

@@ -146,7 +146,7 @@ const compileAttribs = (
 
 export const compileIndices = (
 	gl: WebGLRenderingContext,
-	index: IndexBufferSpec | undefined,
+	index?: IndexBufferSpec,
 	mode: GLenum = gl.STATIC_DRAW
 ) => {
 	if (index) {

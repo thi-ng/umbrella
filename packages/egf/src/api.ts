@@ -1,4 +1,4 @@
-import type { Fn3, IDeref, IEquiv, IObjectOf } from "@thi.ng/api";
+import type { Fn3, IDeref, IEquiv, IObjectOf, Maybe } from "@thi.ng/api";
 import { isNode } from "@thi.ng/checks/is-node";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type { ILogger } from "@thi.ng/logger";
@@ -8,7 +8,7 @@ export interface Node {
 	[id: string]: any;
 }
 
-export interface NodeRef extends IDeref<Node | undefined>, IEquiv {
+export interface NodeRef extends IDeref<Maybe<Node>>, IEquiv {
 	$ref: string;
 }
 

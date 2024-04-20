@@ -1,4 +1,5 @@
 // thing:export
+import type { Maybe } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Attribs } from "@thi.ng/geom-api";
 import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
@@ -30,7 +31,7 @@ export const __circleOpts = (
 export const __sampleAttribs = (
 	opts?: number | Partial<SamplingOpts>,
 	attribs?: Attribs
-): number | Partial<SamplingOpts> | undefined => {
+): Maybe<number | Partial<SamplingOpts>> => {
 	if (attribs) {
 		const val = attribs.__samples;
 		return isNumber(opts)

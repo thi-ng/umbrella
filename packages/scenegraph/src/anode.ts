@@ -1,4 +1,4 @@
-import type { Nullable } from "@thi.ng/api";
+import type { Maybe, Nullable } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { assert } from "@thi.ng/errors/assert";
 import type { Mat } from "@thi.ng/matrices";
@@ -77,7 +77,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
 	 *
 	 * @param p -
 	 */
-	childForPoint(p: ReadonlyVec): NodeInfo<T> | undefined {
+	childForPoint(p: ReadonlyVec): Maybe<NodeInfo<T>> {
 		if (this.enabled) {
 			const children = this.children;
 			for (let i = children.length; i-- > 0; ) {
@@ -99,7 +99,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
 	 *
 	 * @param p -
 	 */
-	abstract mapGlobalPoint(p: ReadonlyVec): Vec | undefined;
+	abstract mapGlobalPoint(p: ReadonlyVec): Maybe<Vec>;
 
 	/**
 	 * Returns copy of node local space point `p`, transformed into the global
@@ -107,7 +107,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
 	 *
 	 * @param p
 	 */
-	abstract mapLocalPointToGlobal(p: ReadonlyVec): Vec | undefined;
+	abstract mapLocalPointToGlobal(p: ReadonlyVec): Maybe<Vec>;
 
 	/**
 	 * Returns copy of node local space point `p`, transformed into the
@@ -116,7 +116,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
 	 * @param dest -
 	 * @param p -
 	 */
-	abstract mapLocalPointToNode(dest: T, p: ReadonlyVec): Vec | undefined;
+	abstract mapLocalPointToNode(dest: T, p: ReadonlyVec): Maybe<Vec>;
 
 	/**
 	 * Returns true, if given point is contained within the boundary of

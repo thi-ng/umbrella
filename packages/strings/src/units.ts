@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
 import type { Stringer } from "./api.js";
 
@@ -10,7 +11,7 @@ export const units: (
 ) => Stringer<number> = memoizeJ<
 	UnitDefs,
 	string,
-	number | undefined,
+	Maybe<number>,
 	Stringer<number>
 >((exp: UnitDefs, base: string, prec: number = 2) => {
 	const groups = exp

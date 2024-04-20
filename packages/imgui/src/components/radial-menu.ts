@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { Polygon } from "@thi.ng/geom";
 import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
 import { centroid } from "@thi.ng/geom/centroid";
@@ -41,7 +42,7 @@ export const radialMenu = (
 			];
 		}, triFan(vertices(circle([x, y], r), n))),
 	]);
-	let res: number | undefined;
+	let res: Maybe<number>;
 	let sel = -1;
 	for (let i = 0; i < n; i++) {
 		const cell = cells[i];

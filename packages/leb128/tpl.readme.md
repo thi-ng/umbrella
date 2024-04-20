@@ -17,6 +17,10 @@ environments. The source code of the actual implementation (written in
 All public functions throw an error if the WASM module could not be
 initialized.
 
+The `encodeSLEB128Into()` and `encodeULEB128Into()` functions will check the
+bounds of the target array to ensure all bytes can be written and will
+throw an error if the result would go out of bounds.
+
 References:
 
 - https://en.wikipedia.org/wiki/LEB128
@@ -55,23 +59,37 @@ Furthermore, all values to be encoded/decoded are cast to i64/u64 range now.
 
 {{pkg.docs}}
 
-```ts
+```ts tangle:export/readme1.ts
 import * as leb from "@thi.ng/leb128";
 
 // if WASM is unavailable, the encode/decode functions will throw an error
-enc = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
+let encoded = leb.encodeULEB128(Number.MAX_SAFE_INTEGER);
+
+console.log(encoded);
 // Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15 ]
 
 // decoding returns tuple of [value (bigint), bytes consumed]
-leb.decodeULEB128(enc);
+console.log(leb.decodeULEB128(encoded));
 // [ 9007199254740991n, 8 ]
 
 // encode signed int
-enc = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER)
+encoded = leb.encodeSLEB128(Number.MIN_SAFE_INTEGER);
+
+console.log(encoded)
 // Uint8Array [ 129, 128, 128, 128, 128, 128, 128, 112 ]
 
-leb.decodeSLEB128(enc)
+console.log(leb.decodeSLEB128(encoded));
 // [ -9007199254740991n, 8 ]
+
+// when writing into an existing buffer, there needs to be enough bytes to write the value
+const target = new Uint8Array(10);
+const count = leb.encodeULEB128Into(target, Number.MAX_SAFE_INTEGER);
+
+console.log(target);
+// Uint8Array [ 255, 255, 255, 255, 255, 255, 255, 15, 0, 0 ]
+
+console.log(count);
+// 8
 ```
 
 ## Building the binary

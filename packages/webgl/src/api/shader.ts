@@ -7,6 +7,7 @@ import type {
 	IDeref,
 	IObjectOf,
 	IRelease,
+	Nullable,
 	NumericArray,
 } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
@@ -157,7 +158,7 @@ export type ShaderOutputSpec = GLSL | [GLSL, number];
 export interface ShaderUniform {
 	type: GLSL;
 	loc: WebGLUniformLocation;
-	setter: Fn<UniformValue | undefined | null, void>;
+	setter: Fn<Nullable<UniformValue>, void>;
 	defaultFn?: (shaderUnis: any, specUnis: any) => UniformValue;
 	defaultVal?: UniformValue;
 }

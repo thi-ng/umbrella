@@ -1,5 +1,5 @@
 // thing:export
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import type { AABBLike, IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
@@ -18,7 +18,7 @@ import { sub } from "@thi.ng/vectors/sub";
  */
 export const __collBounds = (
 	shapes: IShape[],
-	bounds: Fn<IShape, AABBLike | undefined>
+	bounds: Fn<IShape, Maybe<AABBLike>>
 ) => {
 	let n = shapes.length - 1;
 	if (n < 0) return;
