@@ -38,12 +38,12 @@ export const events = <T extends Event = Event>(
 	id: string,
 	opts?: EventListenerOptions
 ): ClosableAsyncGenerator<T> & IDeref<Maybe<T>> => {
-	const listener = (e: Event) => gen.reset(<T>e);
+	const listener = (e: Event) => gen.write(<T>e);
 	target.addEventListener(id, listener, opts);
 	const gen = source<T>();
 	gen.close = () => {
 		target.removeEventListener(id, listener, opts);
-		gen.reset(undefined);
+		gen.write(undefined);
 	};
 	return gen;
 };

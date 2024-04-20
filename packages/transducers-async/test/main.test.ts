@@ -272,16 +272,16 @@ test(
 test("source", async (done) => {
 	let src = source<number>();
 
-	setTimeout(() => src.reset(1), 0);
-	setTimeout(() => src.reset(2), 0);
+	setTimeout(() => src.write(1), 0);
+	setTimeout(() => src.write(2), 0);
 	setTimeout(() => src.close(), 0);
 
 	expect(await push(src)).toEqual([1, 2]);
 
 	src = source<number>();
-	src.reset(10);
-	src.reset(20);
-	expect(() => src.reset(30)).toThrow();
+	src.write(10);
+	src.write(20);
+	expect(() => src.write(30)).toThrow();
 
 	done();
 });

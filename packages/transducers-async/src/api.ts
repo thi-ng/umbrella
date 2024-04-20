@@ -37,5 +37,8 @@ export interface IXformAsync<A, B> {
 }
 
 export interface ClosableAsyncGenerator<T> extends AsyncGenerator<T> {
+	/**
+	 * Terminates the iterable at the next opportunity.
+	 */
 	close(): void;
 }

@@ -30,7 +30,7 @@ export const raf = (
 	const gen = source<number>();
 	gen.close = () => {
 		isClosed = true;
-		gen.reset(undefined);
+		gen.write(undefined);
 	};
 	const update = (t: number) => {
 		if (isClosed) return;
@@ -40,7 +40,7 @@ export const raf = (
 		} else {
 			t = frame++;
 		}
-		gen.reset(t);
+		gen.write(t);
 		requestAnimationFrame(update);
 	};
 	requestAnimationFrame(update);

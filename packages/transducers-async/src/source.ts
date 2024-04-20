@@ -7,13 +7,27 @@ import type { ClosableAsyncGenerator } from "./api.js";
 
 export interface Source<T> extends ClosableAsyncGenerator<T>, IDeref<Maybe<T>> {
 	/**
-	 * Queues given value `x` to be asynchronously passed down by the source to
-	 * its consumer. If no other values are queued yet, the source processes it
-	 * immediately.
+	 * Writes or queues given value `x` to be asynchronously passed down to the
+	 * source's consumer. If no other values are queued yet, the source
+	 * processes it immediately, otherwise the value will be first added to the
+	 * source's configured buffer.
+	 *
+	 * @remarks
+	 * Once {@link Source.close} has been called, all future write attempts will
+	 * be silently ignored.
 	 *
 	 * @param x
 	 */
-	reset(x?: T): void;
+	write(x?: T): void;
+	/**
+	 * Returns the most recently produced/yielded value (if any). If there's
+	 * back pressure (i.e. queued values caused by more frequent writes and than
+	 * reads, the returned value is **not** necessarily the last value written
+	 * via {@link Source.write}). Returns `undefined`, if no value has yet been
+	 * written or the source has already been fully closed (via
+	 * {@link Source.close}).
+	 */
+	deref(): Maybe<T>;
 	/**
 	 * Takes a function which will be called with the most recent emitted value
 	 * of the source (plus any optionally given args) and queues the result of
@@ -45,8 +59,9 @@ export interface Source<T> extends ClosableAsyncGenerator<T>, IDeref<Maybe<T>> {
  * If `initial` is given, the source will immediately deliver this value once a
  * consumer is attached.
  *
- * The `source()` stores the last produced/yielded value, which can be read via
- * `.deref()` or updated via `.update()`.
+ * The `source()` stores the last produced/yielded value (not necessarily the
+ * last value written via {@link Source.write}), which can be read via
+ * {@link Source.deref} or updated via {@link Source.update}.
  *
  * @example
  * ```ts tangle:../export/source.ts
@@ -64,7 +79,7 @@ export interface Source<T> extends ClosableAsyncGenerator<T>, IDeref<Maybe<T>> {
  * )
  *
  * // set new value
- * src.reset(23);
+ * src.write(23);
  * // result: 230
  *
  * // update last value
@@ -85,7 +100,7 @@ export const source = <T>(
 ) => {
 	const queue = isNumber(buffer) ? fifo<Maybe<T>>(buffer) : buffer;
 	let last: Maybe<T> = initial;
-	let isClosed = false;
+	let state = 0;
 	let promise: Promise<Maybe<T>>;
 	let resolve: Maybe<Fn<Maybe<T>, void>>;
 	const newPromise = () => {
@@ -103,20 +118,22 @@ export const source = <T>(
 			newPromise();
 			if (queue.readable()) resolve!(queue.read());
 		}
-		isClosed = true;
+		state = 2;
 	})();
-	gen.reset = (x) => {
-		if (isClosed) return;
+	gen.write = (x) => {
+		// don't accept new values if already closing
+		if (state > 0) return;
 		if (resolve) {
 			resolve(x);
 			resolve = undefined;
 		} else if (queue.writable()) {
 			queue.write(x);
+			if (x === undefined) state = 1;
 		} else illegalState("buffer overflow");
 	};
-	gen.update = (fn, ...args: any[]) => gen.reset(fn(last, ...args));
-	gen.close = () => gen.reset(undefined);
+	gen.update = (fn, ...args: any[]) => gen.write(fn(last, ...args));
+	gen.close = () => gen.write(undefined);
 	gen.deref = () => last;
-	if (initial !== undefined) gen.reset(initial);
+	if (initial !== undefined) gen.write(initial);
 	return gen;
 };
