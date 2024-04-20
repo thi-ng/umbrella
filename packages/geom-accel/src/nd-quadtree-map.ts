@@ -18,7 +18,7 @@ import { madd } from "@thi.ng/vectors/madd";
 import { mulN } from "@thi.ng/vectors/muln";
 import { submN } from "@thi.ng/vectors/submn";
 import { vop } from "@thi.ng/vectors/vop";
-import { CMP, addResults, into } from "./utils.js";
+import { CMP, __addResults, __into } from "./utils.js";
 
 type MaybeNdQtNode<K extends ReadonlyVec, V> = Maybe<NdQtNode<K, V>>;
 
@@ -87,7 +87,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 		acc: T[],
 		distFn: DistanceFn
 	) {
-		return addResults(
+		return __addResults(
 			fn,
 			this.doQuery(
 				p,
@@ -295,7 +295,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 	}
 
 	into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-		return into(this, pairs, eps);
+		return __into(this, pairs, eps);
 	}
 
 	remove(p: K) {

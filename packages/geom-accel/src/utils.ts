@@ -1,11 +1,13 @@
 // thing:no-export
 import type { Fn, Fn3, Nullable, Pair } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /** @internal */
 export const CMP = (a: [number, any?], b: [number, any?]) => b[0] - a[0];
 
 /** @internal */
-export const addResults = <A, B>(
+export const __addResults = <A, B>(
 	fn: Fn<A, B>,
 	sel: [number, Nullable<A>?][],
 	acc: B[]
@@ -26,7 +28,7 @@ export const addResults = <A, B>(
  *
  * @internal
  */
-export const into = <K, V>(
+export const __into = <K, V>(
 	map: { set: Fn3<K, V, number, boolean> },
 	pairs: Iterable<Pair<K, V>>,
 	eps: number
@@ -36,4 +38,10 @@ export const into = <K, V>(
 		ok = map.set(p[0], p[1], eps) && ok;
 	}
 	return ok;
+};
+
+/** @internal */
+export const __ensureRes = (res: ReadonlyVec, min = 1) => {
+	for (let i = res.length; i-- > 0; )
+		assert(res[i] >= min, `invalid grid res: ${res}, require min=${min}`);
 };

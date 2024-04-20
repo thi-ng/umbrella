@@ -7,7 +7,7 @@ import { addN3 } from "@thi.ng/vectors/addn";
 import { distSq3 } from "@thi.ng/vectors/distsq";
 import { subN3 } from "@thi.ng/vectors/subn";
 import { ASpatialGrid } from "./aspatial-grid.js";
-import { addResults, CMP } from "./utils.js";
+import { __addResults, CMP } from "./utils.js";
 
 const TMP: Vec = [];
 
@@ -64,7 +64,7 @@ export class SpatialGrid3<K extends ReadonlyVec, V> extends ASpatialGrid<K, V> {
 				}
 			}
 		}
-		return addResults(fn, sel, acc);
+		return __addResults(fn, sel, acc);
 	}
 
 	protected findIndex(k: ReadonlyVec) {

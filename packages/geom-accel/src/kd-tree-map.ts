@@ -6,7 +6,7 @@ import { EPS } from "@thi.ng/math/api";
 import { map } from "@thi.ng/transducers/map";
 import type { DistanceFn, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
-import { CMP, addResults, into } from "./utils.js";
+import { CMP, __addResults, __into } from "./utils.js";
 
 type MaybeKdNode<K extends ReadonlyVec, V> = Maybe<KdNode<K, V>>;
 
@@ -151,7 +151,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
 	}
 
 	into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-		return into(this, pairs, eps);
+		return __into(this, pairs, eps);
 	}
 
 	remove(key: K) {
@@ -233,7 +233,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
 				}
 			);
 			nearest(q, nodes, this.dim, maxNum, this.root!, this.distanceFn);
-			return addResults(f, nodes.values, acc);
+			return __addResults(f, nodes.values, acc);
 		}
 		return acc;
 	}
