@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-13T16:05:36Z
+- **Last updated**: 2024-04-20T14:42:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@3.1.0) (2024-04-20)
+
+#### 🚀 Features
+
+- update docs, add encode[SU]LEB128Into() fns ([44f927b](https://github.com/thi-ng/umbrella/commit/44f927b))
+  - update/fix doc strings
+  - retroactively document new functions by @jtenner's PR ([#460](https://github.com/thi-ng/umbrella/issues/460))
+    - add encodeSLEB128Into()
+    - add encodeULEB128Into()
 
 ### [3.0.47](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@3.0.47) (2023-11-09)
 

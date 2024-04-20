@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/viz",
-	"version": "0.6.50",
+	"version": "0.6.51",
 	"description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
 	"type": "module",
 	"module": "./index.js",
@@ -42,17 +42,17 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.10.1",
-		"@thi.ng/arrays": "^2.9.3",
-		"@thi.ng/associative": "^6.3.56",
-		"@thi.ng/checks": "^3.6.1",
-		"@thi.ng/math": "^5.10.10",
-		"@thi.ng/strings": "^3.7.30",
-		"@thi.ng/transducers": "^9.0.1"
+		"@thi.ng/api": "^8.11.0",
+		"@thi.ng/arrays": "^2.9.4",
+		"@thi.ng/associative": "^6.3.57",
+		"@thi.ng/checks": "^3.6.2",
+		"@thi.ng/math": "^5.10.11",
+		"@thi.ng/strings": "^3.7.31",
+		"@thi.ng/transducers": "^9.0.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",
-		"@thi.ng/date": "^2.7.14",
+		"@thi.ng/date": "^2.7.15",
 		"esbuild": "^0.20.2",
 		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.12",

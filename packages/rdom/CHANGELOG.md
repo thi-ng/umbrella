@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-11T12:32:44Z
+- **Last updated**: 2024-04-20T14:42:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.3.0) (2024-04-20)
+
+#### 🚀 Features
+
+- add support for async iterables ([742e0db](https://github.com/thi-ng/umbrella/commit/742e0db))
+  - add $async() component wrapper
+  - add $asyncA() attribute wrapper
+  - update $compile() to support embedded `AsyncIterable` values
+- update wrapper() to support reactive/async attribs ([96ea779](https://github.com/thi-ng/umbrella/commit/96ea779))
+  - internally switch from `$el()` => `$compile()`
+
+#### ♻️ Refactoring
+
+- update type usage ([56d5747](https://github.com/thi-ng/umbrella/commit/56d5747))
 
 ## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.2.0) (2024-04-11)
 

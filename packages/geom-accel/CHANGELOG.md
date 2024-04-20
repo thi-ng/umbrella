@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-11T12:32:44Z
+- **Last updated**: 2024-04-20T14:42:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.6.0) (2024-04-20)
+
+#### 🚀 Features
+
+- fix [#463](https://github.com/thi-ng/umbrella/issues/463), add grid resolution check ([8688ad5](https://github.com/thi-ng/umbrella/commit/8688ad5))
+  - update ASpatialGrid ctor to check for min res
+  - add/rename internal helpers
+
+#### ♻️ Refactoring
+
+- update type usage ([aab2250](https://github.com/thi-ng/umbrella/commit/aab2250))
 
 ### [3.5.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.5.28) (2023-11-09)
 
