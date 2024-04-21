@@ -18,12 +18,12 @@ export interface IChannel<T> extends IID<string> {
 	close(flush?: boolean): Maybe<Promise<void>>;
 }
 
-export interface IReadableChannel<T> extends IChannel<T> {
+export interface IReadableChannel<T> {
 	read(): Promise<Maybe<T>>;
 }
 
-export interface IWriteableChannel<T> extends IChannel<T> {
-	write(val: any): Promise<boolean>;
+export interface IWriteableChannel<T> {
+	write(val: T): Promise<boolean>;
 }
 
 export interface IReadWriteableChannel<T>

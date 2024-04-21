@@ -1,19 +1,16 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { Transducer } from "@thi.ng/transducers";
 import type { IWriteableChannel, TopicFn } from "./api.js";
-import { Channel } from "./channel.js";
 import { Mult } from "./mult.js";
+import { ChannelV3 } from "./v3.js";
 
 export class PubSub<T> implements IWriteableChannel<T> {
-	protected static NEXT_ID = 0;
-
-	protected src!: Channel<T>;
+	protected src!: ChannelV3<T>;
 	protected fn!: TopicFn<T>;
 	protected topics: IObjectOf<Mult<T>>;
 
 	constructor(fn: TopicFn<T>);
-	constructor(src: Channel<T>, fn: TopicFn<T>);
+	constructor(src: ChannelV3<T>, fn: TopicFn<T>);
 	constructor(...args: any[]) {
 		switch (args.length) {
 			case 2:
@@ -21,7 +18,7 @@ export class PubSub<T> implements IWriteableChannel<T> {
 				this.fn = args[1];
 				break;
 			case 1:
-				this.src = new Channel<T>("pubsub" + PubSub.NEXT_ID++);
+				this.src = new ChannelV3<T>();
 				this.fn = args[0];
 				break;
 			default:
@@ -31,27 +28,12 @@ export class PubSub<T> implements IWriteableChannel<T> {
 		this.process();
 	}
 
-	get id() {
-		return this.src && this.src.id;
+	write(val: T) {
+		return this.src ? this.src.write(val) : Promise.resolve(false);
 	}
 
-	set id(id: string) {
-		this.src && (this.src.id = id);
-	}
-
-	channel() {
-		return this.src;
-	}
-
-	write(val: any) {
-		if (this.src) {
-			return this.src.write(val);
-		}
-		return Promise.resolve(false);
-	}
-
-	close(flush = false) {
-		return this.src ? this.src.close(flush) : undefined;
+	close() {
+		return this.src ? this.src.close() : undefined;
 	}
 
 	/**
@@ -66,38 +48,33 @@ export class PubSub<T> implements IWriteableChannel<T> {
 	 * @param id - topic id
 	 * @param tx - transducer for new subscription
 	 */
-	sub(id: string, tx?: Transducer<T, any>) {
+	sub(id: string) {
 		let topic = this.topics[id];
 		if (!topic) {
-			this.topics[id] = topic = new Mult(this.src.id + "-" + id);
+			this.topics[id] = topic = new Mult(`${this.src.id}-${id}`);
 		}
-		return topic.tap(tx);
+		return topic.tap();
 	}
 
-	unsub(id: string, ch: Channel<T>) {
-		let topic = this.topics[id];
-		if (topic) {
-			return topic.untap(ch);
-		}
-		return false;
+	unsub(id: string, ch: ChannelV3<T>) {
+		const topic = this.topics[id];
+		return topic?.untap(ch) ?? false;
 	}
 
 	unsubAll(id: string, close = true) {
-		let topic = this.topics[id];
-		if (topic) {
-			return topic.untapAll(close);
-		}
-		return false;
+		const topic = this.topics[id];
+		return topic?.untapAll(close) ?? false;
 	}
 
 	protected async process() {
 		let x;
-		while (((x = null), (x = await this.src.read())) !== undefined) {
-			const id = await this.fn(x);
+		while ((x = await this.src.read()) !== undefined) {
+			const id = this.fn(x);
 			let topic = this.topics[id];
 			topic && (await topic.write(x));
-			topic = this.topics["*"];
-			topic && (await topic.write(x));
+			// topic = this.topics["*"];
+			// topic && (await topic.write(x));
+			x = null;
 		}
 		for (let id of Object.keys(this.topics)) {
 			this.topics[id].close();

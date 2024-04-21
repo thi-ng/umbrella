@@ -3,6 +3,8 @@ import { fifo, type IReadWriteBuffer } from "@thi.ng/buffers";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
+import type { IReadWriteableChannel } from "./api.js";
+import { __nextID } from "./idgen.js";
 
 export const MAX_READS = 1024;
 
@@ -18,11 +20,7 @@ export interface ChannelOpts {
 
 export type CSPBuffer<T> = IReadWriteBuffer<[T, Fn<boolean, void>]>;
 
-let NEXT_ID = 0;
-
-export const __nextID = () => NEXT_ID++;
-
-export class ChannelV3<T> {
+export class ChannelV3<T> implements IReadWriteableChannel<T> {
 	state: ChannelState = ChannelState.OPEN;
 	writes: CSPBuffer<T>;
 	reads: Fn<Maybe<T>, void>[] = [];
