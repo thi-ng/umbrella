@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import { fifo, type IReadWriteBuffer } from "@thi.ng/buffers";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -25,7 +25,7 @@ export const __nextID = () => NEXT_ID++;
 export class ChannelV3<T> {
 	state: ChannelState = ChannelState.OPEN;
 	writes: CSPBuffer<T>;
-	reads: Fn<T | undefined, void>[] = [];
+	reads: Fn<Maybe<T>, void>[] = [];
 	races: Fn<ChannelV3<T>, void>[] = [];
 	id: string;
 
@@ -33,7 +33,7 @@ export class ChannelV3<T> {
 	constructor(buf: CSPBuffer<T> | number, opts?: Partial<ChannelOpts>);
 	constructor(...args: any[]) {
 		let buf: CSPBuffer<T> | number = 1;
-		let opts: Partial<ChannelOpts> | undefined;
+		let opts: Maybe<Partial<ChannelOpts>>;
 		switch (args.length) {
 			case 1:
 				if (isPlainObject(args[0])) opts = args[0];
@@ -55,7 +55,7 @@ export class ChannelV3<T> {
 	}
 
 	read() {
-		return new Promise<T | undefined>((resolve) => {
+		return new Promise<Maybe<T>>((resolve) => {
 			if (!this.readable()) {
 				resolve(undefined);
 				return;
@@ -177,7 +177,7 @@ export class ChannelV3<T> {
 
 export const select = async <T>(
 	...inputs: ChannelV3<T>[]
-): Promise<[T | undefined, ChannelV3<T>]> => {
+): Promise<[Maybe<T>, ChannelV3<T>]> => {
 	const sel = await Promise.race(inputs.map((x) => x.race()));
 	for (let chan of inputs) {
 		if (chan !== sel) chan.races.shift();
