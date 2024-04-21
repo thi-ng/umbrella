@@ -17,19 +17,32 @@ pub fn build(b: *std.Build) void {
         // build mode override
         .optimize = .ReleaseSmall,
     });
+    lib.root_module.export_symbol_names = &.{
+        "start",
+        "_wasm_allocate",
+        "_wasm_free",
+        "_dom_init",
+        "_dom_callListener",
+        "_dom_addListener",
+        "_dom_removeListener",
+        "_dom_callRAF",
+        "_dom_fullscreenChanged",
+        "_schedule_init",
+        "_schedule_callback",
+    };
 
     b.installArtifact(lib);
 
-    const installDocs = b.addInstallDirectory(.{
-        .source_dir = lib.getEmittedDocs(),
-        // .prefix here means the default build output dir (aka /zig-out)
-        // can be overridden using -p CLI arg (see `docs` script alias in package.json)
-        .install_dir = .prefix,
-        .install_subdir = "docs",
-    });
+    // const installDocs = b.addInstallDirectory(.{
+    //     .source_dir = lib.getEmittedDocs(),
+    //     // .prefix here means the default build output dir (aka /zig-out)
+    //     // can be overridden using -p CLI arg (see `docs` script alias in package.json)
+    //     .install_dir = .prefix,
+    //     .install_subdir = "docs",
+    // });
 
-    const docsStep = b.step("docs", "Generate documentation");
-    docsStep.dependOn(&installDocs.step);
+    // const docsStep = b.step("docs", "Generate documentation");
+    // docsStep.dependOn(&installDocs.step);
 
     // Alternatively, instead of calling WASM post-processing steps separately,
     // invoke them here instead (the above line needs to be removed then)...
