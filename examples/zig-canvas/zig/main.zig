@@ -28,7 +28,7 @@ var STATE: State = undefined;
 /// in this example we're using this arg to pass the global STATE var as user context
 /// (this is purely for demonstration purposes and quite obviously we could just work
 /// with that global var directly here...)
-fn startStroke(event: *const dom.Event, raw: ?*anyopaque) void {
+fn startStroke(event: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         state.startStroke(event.body.mouse.clientX, event.body.mouse.clientY);
     }
@@ -36,7 +36,7 @@ fn startStroke(event: *const dom.Event, raw: ?*anyopaque) void {
 
 /// mousemove/touchmove handler (only if active stroke)
 /// the optional opaque pointer argument must be first cast & checked for non-null values
-fn updateStroke(event: *const dom.Event, raw: ?*anyopaque) void {
+fn updateStroke(event: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         state.updateStroke(event.body.mouse.clientX, event.body.mouse.clientY);
         dom.preventDefault();
@@ -45,11 +45,11 @@ fn updateStroke(event: *const dom.Event, raw: ?*anyopaque) void {
 
 /// mouseup/touchend handler
 /// the optional opaque pointer argument must be first cast & checked for non-null values
-fn endStroke(_: *const dom.Event, raw: ?*anyopaque) void {
+fn endStroke(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
     if (wasm.ptrCast(*State, raw)) |state| state.endStroke();
 }
 
-fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) void {
+fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
     // bail if Control key isn't pressed...
     if (!event.body.key.hasModifier(.ctrl)) return;
     const key = event.body.key.getKey();
@@ -61,22 +61,22 @@ fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) void {
     }
 }
 
-fn onResize(_: *const dom.Event, raw: ?*anyopaque) void {
+fn onResize(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         resizeCanvas();
         state.requestRedraw();
     }
 }
 
-fn onBtUndo(_: *const dom.Event, raw: ?*anyopaque) void {
+fn onBtUndo(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
     if (wasm.ptrCast(*State, raw)) |state| state.undoStroke();
 }
 
-fn onBtDownload(_: *const dom.Event, _: ?*anyopaque) void {
+fn onBtDownload(_: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
     api.downloadCanvas(STATE.canvasID);
 }
 
-fn onToggleFullscreen(_: *const dom.Event, raw: ?*anyopaque) void {
+fn onToggleFullscreen(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         if (!state.window.isFullscreen()) {
             dom.requestFullscreen(dom.window, null);

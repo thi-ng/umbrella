@@ -30,7 +30,7 @@ pub fn init(allocator: std.mem.Allocator) Self {
 
 /// Starts a new stroke and appends it to the list
 pub fn startStroke(self: *Self, x: i16, y: i16) void {
-    var stroke: *api.Stroke = self.allocator.create(api.Stroke) catch return;
+    const stroke: *api.Stroke = self.allocator.create(api.Stroke) catch return;
     var strokeInst = api.Stroke.init(self.allocator);
     strokeInst.append(self.scaledPoint(x, y)) catch return;
     stroke.* = strokeInst;
@@ -68,7 +68,7 @@ pub fn undoStroke(self: *Self) void {
 /// but we NEVER want to do so from the event loop!
 pub fn requestRedraw(self: *Self) void {
     const wrapper = struct {
-        pub fn handler(_: f64, raw: ?*anyopaque) void {
+        pub fn handler(_: f64, raw: ?*anyopaque) callconv(.C) void {
             if (wasm.ptrCast(*const Self, raw)) |state| state.redraw();
         }
     };
