@@ -73,17 +73,16 @@ pub const WindowInfo = extern struct {
     /// - 1 (bit 0): fullscreen active
     /// - 2 (bit 1): fullscreen supported
     fullscreen: u8,
-    
+
     /// Returns true if fullscreen mode is currently active (see `.fullscreen`)
     pub inline fn isFullscreen(self: *const WindowInfo) bool {
         return self.fullscreen & 1 != 0;
     }
-    
+
     /// Returns true if fullscreen mode is supported (see `.fullscreen`)
     pub inline fn hasFullscreen(self: *const WindowInfo) bool {
         return self.fullscreen & 2 != 0;
     }
-    
 };
 
 pub const DragEvent = extern struct {
@@ -113,11 +112,10 @@ pub const InputEvent = extern struct {
     len: u32,
     /// Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum
     modifiers: u8 = 0,
-    
+
     pub inline fn getValue(self: *const InputEvent) [:0]const u8 {
         return self.value[0..self.len :0];
     }
-    
 };
 
 pub const KeyEvent = extern struct {
@@ -130,15 +128,14 @@ pub const KeyEvent = extern struct {
     /// Non-zero value indicates key is being held down such that it's automatically
     /// repeating
     repeat: u8 = 0,
-    
+
     pub inline fn getKey(self: *const KeyEvent) [:0]const u8 {
         return self.key[0..@as(usize, self.len) :0];
     }
-    
+
     pub inline fn hasModifier(self: *const KeyEvent, mod: KeyModifier) bool {
         return self.modifiers & @intFromEnum(mod) != 0;
     }
-    
 };
 
 pub const MouseEvent = extern struct {
@@ -233,7 +230,7 @@ pub const EventBody = extern union {
 pub const Event = extern struct {
     id: EventType,
     /// Target element ID, > 1 if a known (WASM created) element, otherwise:
-    /// 
+    ///
     /// - -2: = unknown
     /// - -1: window
     /// - 0: document.head
@@ -241,7 +238,7 @@ pub const Event = extern struct {
     target: i32,
     /// Event details / payload. Currently, only the following event types have a
     /// defined body:
-    /// 
+    ///
     /// - drag
     /// - input
     /// - key
@@ -253,10 +250,10 @@ pub const Event = extern struct {
     body: EventBody,
 };
 
-pub const EventCallback = *const fn (event: *const Event, ctx: ?bindgen.OpaquePtr) void;
+pub const EventCallback = *const fn (event: *const Event, ctx: ?bindgen.OpaquePtr) callconv(.C) void;
 
 /// Function signature for RAF (requestAnimationFrame) event handler
-pub const RAFCallback = *const fn (time: f64, ctx: ?bindgen.OpaquePtr) void;
+pub const RAFCallback = *const fn (time: f64, ctx: ?bindgen.OpaquePtr) callconv(.C) void;
 
 /// DOM event listener
 pub const EventListener = extern struct {
@@ -341,23 +338,22 @@ pub const Attrib = extern struct {
     name: bindgen.ConstStringPtr,
     value: AttribValue,
     kind: AttribType,
-    
+
     pub fn event(name: [*:0]const u8, callback: EventCallback, ctx: ?*anyopaque) Attrib {
         return Attrib{ .name = name, .kind = .event, .value = .{ .event = .{ .callback = callback, .ctx = ctx } } };
     }
-    
+
     pub fn flag(name: [*:0]const u8, val: bool) Attrib {
         return Attrib{ .name = name, .kind = .flag, .value = .{ .flag = if (val) 1 else 0 } };
     }
-    
+
     pub fn number(name: [*:0]const u8, val: f64) Attrib {
         return Attrib{ .name = name, .kind = .num, .value = .{ .num = val } };
     }
-    
+
     pub fn string(name: [*:0]const u8, val: [*:0]const u8) Attrib {
         return Attrib{ .name = name, .kind = .str, .value = .{ .str = val } };
     }
-    
 };
 
 pub const AttribValue = extern union {
