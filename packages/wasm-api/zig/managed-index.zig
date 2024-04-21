@@ -200,7 +200,7 @@ test "ManagedIndex" {
     list.remove(1);
     list.remove(2);
 
-    var ids = try list.freeIndicesAsSlice(allocator);
+    const ids = try list.freeIndicesAsSlice(allocator);
     defer allocator.free(ids);
     try expectEqualSlices(u8, &[_]u8{ 2, 1 }, ids);
 
@@ -224,7 +224,7 @@ test "ManagedIndex" {
     list.remove(2);
     list.remove(1);
 
-    var ids2 = try list.freeIndicesAsSlice(allocator);
+    const ids2 = try list.freeIndicesAsSlice(allocator);
     defer allocator.free(ids2);
     try expectEqualSlices(u8, &[_]u8{ 1, 2, 0 }, ids2);
 }
