@@ -37,9 +37,9 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to 192 individual TypeScript
-libraries/packages and 156 example projects illustrating their usage, currently
-totalling ~208k SLOC and ~4000 source files...
+This mono-repository is home to 192 individual TypeScript libraries/packages and
+156 example projects illustrating their usage, currently totalling ~208k SLOC
+and ~4000 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet independent libraries, tools and
@@ -186,7 +186,7 @@ visual outputs/results).
 
 ## Examples & Showcase
 
-There's a steadily growing number (~150) of standalone examples of different
+There's a steadily growing number (~155) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
@@ -252,6 +252,16 @@ cookbooks, useful snippets etc.
 (These packages might be still unreleased and only available on their
 feature or `develop` branches)
 -->
+
+### Latest updates
+
+As of: 2024-04-22
+
+| Status                                           | Package                                                   | Version                                                                                                                         | Changelog                                             |
+|:-------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api`](./packages/wasm-api)                 | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                 | [changelog](./packages/wasm-api/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen) | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)         | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)         | [changelog](./packages/wasm-api-dom/CHANGELOG.md)     |
 
 ### Fundamentals
 
