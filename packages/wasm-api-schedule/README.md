@@ -51,7 +51,7 @@ const schedule = @import("wasm-api-schedule");
 try schedule.init(customAllocator);
 
 // user callback function
-fn exampleCallback(raw: ?*anyopaque) void {
+fn exampleCallback(raw: ?*anyopaque) callconv(.C) void {
     if (wasm.ptrCast(*u32, raw)) |state| {
         // do something ...
     }
@@ -71,6 +71,10 @@ const listenerID = try schedule.schedule(
 // ...or maybe cancel it again
 schedule.cancel(listenerID);
 ```
+
+**IMPORTANT: In Zig v0.12+ all event handlers must explicitly specify
+`callconv(.C)`** [See docs for more
+reference](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/FuncPointer.html).
 
 Also see the
 [zig-counter](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-counter/)
