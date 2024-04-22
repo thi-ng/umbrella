@@ -68,6 +68,7 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
     // build flags
     // https://github.com/ziglang/zig/pull/17815
     lib.entry = .disabled;
+    lib.rdynamic = true;
     lib.import_symbols = true;
     lib.initial_memory = opts.initialMemory;
     lib.max_memory = opts.maxMemory;
