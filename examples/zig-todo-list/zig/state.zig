@@ -58,7 +58,7 @@ pub const TaskItem = struct {
         });
     }
 
-    fn onTaskComplete(_: *const dom.Event, raw: ?*anyopaque) void {
+    fn onTaskComplete(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
         if (wasm.ptrCast(*TaskItem, raw)) |self| {
             self.markDone();
             self.parent.storeTasks();

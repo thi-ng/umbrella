@@ -58,7 +58,7 @@ const Counter = struct {
         // however, here we're creating a string dynamically and so must ensure
         // the formatted string has explicit zero termination
         // (aka using bufPrintZ() vs. bufPrint())
-        var label = std.fmt.bufPrintZ(&buf, "clicks: {d:0>4}", .{self.clicks}) catch return;
+        const label = std.fmt.bufPrintZ(&buf, "clicks: {d:0>4}", .{self.clicks}) catch return;
         // update DOM element
         dom.setInnerText(self.elementID, label);
     }
@@ -66,7 +66,7 @@ const Counter = struct {
     /// Allocate & prepare snapshot of current state
     /// Caller owns memory
     fn snapshot(self: *const Self) *Snapshot {
-        var snap = WASM_ALLOCATOR.create(Snapshot) catch @panic("couldn't create snapshot");
+        const snap = WASM_ALLOCATOR.create(Snapshot) catch @panic("couldn't create snapshot");
         snap.* = .{
             .self = self,
             .curr = self.clicks,
@@ -76,7 +76,7 @@ const Counter = struct {
     }
 
     /// event listener & state update
-    fn onClick(_: *const dom.Event, raw: ?*anyopaque) void {
+    fn onClick(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
         // safely cast raw pointer
         if (wasm.ptrCast(*Self, raw)) |self| {
             self.clicks += self.step;
