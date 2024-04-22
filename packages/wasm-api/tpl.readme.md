@@ -402,7 +402,7 @@ folder):
 # compile WASM binary (zig v0.12)
 zig build-exe \
 	-fno-entry -fstrip -OReleaseSmall -target wasm32-freestanding \
-	--name main -rdynamic --import-symbols \
+	--name hello -rdynamic --import-symbols \
 	--dep wasm-api \
 	-Mroot=hello.zig \
 	-Mwasm-api=node_modules/@thi.ng/wasm-api/zig/lib.zig
