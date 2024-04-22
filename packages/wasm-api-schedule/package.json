@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-schedule",
-	"version": "0.3.84",
+	"version": "0.3.86",
 	"description": "Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps",
 	"type": "module",
 	"module": "./index.js",
@@ -28,7 +28,7 @@
 		"build:decl": "tsc --declaration --emitDeclarationOnly",
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
-		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc generated",
+		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
@@ -38,13 +38,12 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.0",
-		"@thi.ng/wasm-api": "^1.4.69"
+		"@thi.ng/wasm-api": "^1.5.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",
-		"@thi.ng/wasm-api-bindgen": "^0.4.69",
+		"@thi.ng/wasm-api-bindgen": "^0.5.1",
 		"esbuild": "^0.20.2",
-		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.12",
 		"typescript": "^5.4.3"
 	},

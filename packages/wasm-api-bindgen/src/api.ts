@@ -249,6 +249,12 @@ export interface EnumValue {
 	doc?: string;
 }
 
+/**
+ * @remarks
+ * For Zig v0.12.0 compatibility, the Zig codegen emits all function pointers
+ * with the `callconv(.C)` attribute. Any function assigned to such a pointer
+ * will also have to specify the same calling convention.
+ */
 export interface FuncPointer extends TopLevelType {
 	type: "funcptr";
 	/**

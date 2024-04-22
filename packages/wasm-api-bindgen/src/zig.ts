@@ -141,7 +141,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 							opts
 					  ).type;
 			acc.push(
-				`pub const ${ptr.name} = *const fn (${args}) ${rtype};`,
+				`pub const ${ptr.name} = *const fn (${args}) callconv(.C) ${rtype};`,
 				""
 			);
 		},

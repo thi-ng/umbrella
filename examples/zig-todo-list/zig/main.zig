@@ -27,12 +27,12 @@ pub const WASM_ALLOCATOR = gpa.allocator();
 var STATE: State = undefined;
 
 /// Dummy handler to log input event value to console
-fn onInput(e: *const dom.Event, _: ?*anyopaque) void {
+fn onInput(e: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
     wasm.printStr(e.body.input.getValue());
 }
 
 /// Key event handler to handle Enter & Esc keys
-fn onKeydown(e: *const dom.Event, _: ?*anyopaque) void {
+fn onKeydown(e: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
     if (std.mem.eql(u8, e.body.key.getKey(), "Enter")) {
         onAddTask(e, null);
     } else if (std.mem.eql(u8, e.body.key.getKey(), "Escape")) {
@@ -40,7 +40,7 @@ fn onKeydown(e: *const dom.Event, _: ?*anyopaque) void {
     }
 }
 
-fn onAddTask(_: *const dom.Event, _: ?*anyopaque) void {
+fn onAddTask(_: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
     const input = dom.getElementByID("newtask");
     const body = dom.getStringAttribAlloc(input, "value");
     defer WASM_ALLOCATOR.free(body);

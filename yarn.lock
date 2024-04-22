@@ -2850,7 +2850,6 @@ __metadata:
     "@thi.ng/random": "workspace:^"
     "@thi.ng/wasm-api": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
-    rimraf: "npm:^5.0.5"
     typescript: "npm:^5.4.3"
     vite: "npm:^5.2.6"
   languageName: unknown
@@ -2864,7 +2863,6 @@ __metadata:
     "@thi.ng/wasm-api": "workspace:^"
     "@thi.ng/wasm-api-canvas": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
-    rimraf: "npm:^5.0.5"
     typescript: "npm:^5.4.3"
     vite: "npm:^5.2.6"
   languageName: unknown
@@ -2878,7 +2876,6 @@ __metadata:
     "@thi.ng/wasm-api": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
     "@thi.ng/wasm-api-schedule": "workspace:^"
-    rimraf: "npm:^5.0.5"
     typescript: "npm:^5.4.3"
     vite: "npm:^5.2.6"
   languageName: unknown
@@ -2894,7 +2891,6 @@ __metadata:
     "@thi.ng/wasm-api-bindgen": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
     "@thi.ng/wasm-api-schedule": "workspace:^"
-    rimraf: "npm:^5.0.5"
     typescript: "npm:^5.4.3"
     vite: "npm:^5.2.6"
   languageName: unknown
@@ -3082,20 +3078,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@isaacs/cliui@npm:^8.0.2":
-  version: 8.0.2
-  resolution: "@isaacs/cliui@npm:8.0.2"
-  dependencies:
-    string-width: "npm:^5.1.2"
-    string-width-cjs: "npm:string-width@^4.2.0"
-    strip-ansi: "npm:^7.0.1"
-    strip-ansi-cjs: "npm:strip-ansi@^6.0.1"
-    wrap-ansi: "npm:^8.1.0"
-    wrap-ansi-cjs: "npm:wrap-ansi@^7.0.0"
-  checksum: 10/e9ed5fd27c3aec1095e3a16e0c0cf148d1fee55a38665c35f7b3f86a9b5d00d042ddaabc98e8a1cb7463b9378c15f22a94eb35e99469c201453eb8375191f243
-  languageName: node
-  linkType: hard
-
 "@jridgewell/gen-mapping@npm:^0.3.0":
   version: 0.3.2
   resolution: "@jridgewell/gen-mapping@npm:0.3.2"
@@ -3242,13 +3224,6 @@ __metadata:
   version: 3.7.1
   resolution: "@petamoriken/float16@npm:3.7.1"
   checksum: 10/378ef3b1d6ab5ed08182afe938c55d13b0f30ec4d9a27e6c0701bd19aed71fa09601237f75e1db88bbab453da036cfaa59e80e8583e7e6187bd3bc30a67d30c9
-  languageName: node
-  linkType: hard
-
-"@pkgjs/parseargs@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@pkgjs/parseargs@npm:0.11.0"
-  checksum: 10/115e8ceeec6bc69dff2048b35c0ab4f8bbee12d8bb6c1f4af758604586d802b6e669dcb02dda61d078de42c2b4ddce41b3d9e726d7daa6b4b850f4adbf7333ff
   languageName: node
   linkType: hard
 
@@ -3534,7 +3509,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3553,7 +3527,6 @@ __metadata:
     "@thi.ng/sparse": "npm:^0.3.115"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3565,7 +3538,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3583,7 +3555,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/text-format": "npm:^2.2.3"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3601,7 +3572,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/random": "npm:^3.7.4"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3623,7 +3593,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -3640,7 +3609,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/paths": "npm:^5.1.79"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -3663,7 +3631,6 @@ __metadata:
     "@thi.ng/units": "npm:^0.4.44"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     serialport: "npm:^12.0.0"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -3676,7 +3643,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3691,7 +3657,6 @@ __metadata:
     "@thi.ng/testament": "npm:^0.4.27"
     "@types/node": "npm:^20.11.30"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tools: "workspace:^"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -3710,7 +3675,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/transducers-binary": "npm:^2.1.117"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3723,7 +3687,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3739,7 +3702,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3752,7 +3714,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3769,7 +3730,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/math": "npm:^5.10.11"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tools: "workspace:^"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -3790,7 +3750,6 @@ __metadata:
     "@thi.ng/timestep": "npm:^0.5.46"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3804,7 +3763,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3819,7 +3777,6 @@ __metadata:
     "@thi.ng/dcons": "npm:^3.2.110"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3831,7 +3788,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tools: "workspace:^"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -3850,7 +3806,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3863,7 +3818,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@types/node": "npm:^20.11.30"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -3882,7 +3836,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/hex": "npm:^2.3.44"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3907,7 +3860,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3927,7 +3879,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3940,7 +3891,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3956,7 +3906,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3970,7 +3919,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -3988,7 +3936,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4004,7 +3951,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4019,7 +3965,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.2"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4038,7 +3983,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4053,7 +3997,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/logger": "npm:^3.0.10"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4068,7 +4011,6 @@ __metadata:
     "@thi.ng/dgraph": "npm:^2.1.115"
     "@thi.ng/dot": "npm:^2.1.74"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4085,7 +4027,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4098,7 +4039,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/equiv": "npm:^2.1.56"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4112,7 +4052,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/pixel": "npm:^6.1.29"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4130,7 +4069,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4145,7 +4083,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.2"
     "@thi.ng/mime": "npm:^2.6.6"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4158,7 +4095,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4172,7 +4108,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/checks": "npm:^3.6.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4189,7 +4124,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/transducers-binary": "npm:^2.1.117"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4207,7 +4141,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4220,7 +4153,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4234,7 +4166,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4257,7 +4188,6 @@ __metadata:
     "@thi.ng/malloc": "npm:^6.1.80"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -4280,7 +4210,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers-binary": "npm:^2.1.117"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4292,7 +4221,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4304,7 +4232,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4317,7 +4244,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@types/node": "npm:^20.11.30"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4330,7 +4256,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@types/node": "npm:^20.11.30"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4351,7 +4276,6 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     "@thi.ng/random": "npm:^3.7.4"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4368,7 +4292,6 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     "@thi.ng/random": "npm:^3.7.4"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4386,7 +4309,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4405,7 +4327,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/text-canvas": "npm:^3.0.20"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4419,13 +4340,12 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/math": "npm:^5.10.11"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-accel@npm:^3.6.0, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
+"@thi.ng/geom-accel@npm:^3.6.1, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-accel@workspace:packages/geom-accel"
   dependencies:
@@ -4443,7 +4363,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4457,7 +4376,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4474,7 +4392,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4491,14 +4408,13 @@ __metadata:
     "@thi.ng/compare": "npm:^2.3.3"
     "@thi.ng/defmulti": "npm:^3.0.37"
     "@thi.ng/geom": "npm:^6.1.7"
-    "@thi.ng/geom-accel": "npm:^3.6.0"
+    "@thi.ng/geom-accel": "npm:^3.6.1"
     "@thi.ng/geom-api": "npm:^4.0.7"
     "@thi.ng/geom-clip-line": "npm:^2.3.86"
     "@thi.ng/geom-isec": "npm:^3.0.7"
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4513,7 +4429,6 @@ __metadata:
     "@thi.ng/geom-isec": "npm:^3.0.7"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4529,7 +4444,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4544,7 +4458,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4566,7 +4479,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4580,7 +4492,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4595,7 +4506,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4612,7 +4522,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4627,7 +4536,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4644,7 +4552,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4663,7 +4570,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4687,7 +4593,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4706,7 +4611,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4722,7 +4626,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4740,7 +4643,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4758,7 +4660,6 @@ __metadata:
     "@thi.ng/pixel": "npm:^6.1.29"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4780,7 +4681,6 @@ __metadata:
     "@thi.ng/quad-edge": "npm:^3.1.63"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4819,7 +4719,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4837,7 +4736,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/zipper": "npm:^2.1.99"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4857,7 +4755,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4875,7 +4772,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@types/node": "npm:^20.11.30"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   bin:
@@ -4895,7 +4791,6 @@ __metadata:
     "@thi.ng/hdom": "npm:^9.4.31"
     "@thi.ng/hiccup-canvas": "npm:^2.5.36"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4913,7 +4808,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/transducers-stats": "npm:^2.1.115"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4928,7 +4822,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.2"
     "@thi.ng/hdom": "npm:^9.4.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4949,7 +4842,6 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     "@thi.ng/prefixes": "npm:^2.3.17"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4964,7 +4856,6 @@ __metadata:
     "@thi.ng/compare": "npm:^2.3.3"
     "@thi.ng/equiv": "npm:^2.1.56"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4976,7 +4867,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -4994,7 +4884,6 @@ __metadata:
     "@thi.ng/pixel": "npm:^6.1.29"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5007,7 +4896,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/hiccup": "npm:^5.1.29"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5023,7 +4911,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5039,7 +4926,6 @@ __metadata:
     "@thi.ng/parse": "npm:^2.4.40"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5052,7 +4938,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5075,7 +4960,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/text-canvas": "npm:^3.0.20"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5091,7 +4975,6 @@ __metadata:
     "@thi.ng/color": "npm:^5.6.42"
     "@thi.ng/prefixes": "npm:^2.3.17"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5108,7 +4991,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5122,7 +5004,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -5141,7 +5022,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5166,7 +5046,6 @@ __metadata:
     "@thi.ng/prefixes": "npm:^2.3.17"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     sharp: "npm:^0.33.3"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -5189,7 +5068,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5207,7 +5085,6 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     "@thi.ng/paths": "npm:^5.1.79"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5223,7 +5100,6 @@ __metadata:
     "@thi.ng/dlogic": "npm:^2.1.67"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5238,7 +5114,6 @@ __metadata:
     "@thi.ng/dcons": "npm:^3.2.110"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5255,7 +5130,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5271,7 +5145,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   bin:
@@ -5288,7 +5161,6 @@ __metadata:
     "@thi.ng/arrays": "npm:^2.9.4"
     "@thi.ng/checks": "npm:^3.6.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5303,7 +5175,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/transducers-binary": "npm:^2.1.117"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5315,7 +5186,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5328,7 +5198,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5347,7 +5216,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5363,7 +5231,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.2"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5381,7 +5248,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5394,7 +5260,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5410,7 +5275,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5423,7 +5287,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5449,7 +5312,6 @@ __metadata:
     "@thi.ng/text-format": "npm:^2.2.3"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   bin:
@@ -5464,7 +5326,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5480,7 +5341,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/math": "npm:^5.10.11"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5495,7 +5355,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5512,7 +5371,6 @@ __metadata:
     "@thi.ng/defmulti": "npm:^3.0.37"
     "@thi.ng/equiv": "npm:^2.1.56"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5529,7 +5387,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5544,7 +5401,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.2"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5559,7 +5415,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/pixel": "npm:^6.1.29"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5574,7 +5429,6 @@ __metadata:
     "@thi.ng/pixel": "npm:^6.1.29"
     esbuild: "npm:^0.20.2"
     geotiff: "npm:2.1.3"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5589,7 +5443,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/pixel": "npm:^6.1.29"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5603,7 +5456,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/pixel": "npm:^6.1.29"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5624,7 +5476,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/porter-duff": "npm:^2.1.77"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -5645,7 +5496,6 @@ __metadata:
     "@thi.ng/pointfree": "npm:^3.1.80"
     esbuild: "npm:^0.20.2"
     pegjs: "npm:0.11.0-master.b7b87ea"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   bin:
@@ -5664,7 +5514,6 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.56"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5681,7 +5530,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5695,7 +5543,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/math": "npm:^5.10.11"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5707,7 +5554,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5720,7 +5566,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5739,7 +5584,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5754,7 +5598,6 @@ __metadata:
     "@thi.ng/base-n": "npm:^2.7.12"
     "@thi.ng/random": "npm:^3.7.4"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5770,7 +5613,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/hex": "npm:^2.3.44"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5784,7 +5626,6 @@ __metadata:
     "@thi.ng/bitstream": "npm:^2.2.58"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5803,7 +5644,6 @@ __metadata:
     "@thi.ng/random": "npm:^3.7.4"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5822,7 +5662,6 @@ __metadata:
     "@thi.ng/rdom": "npm:^1.3.0"
     "@thi.ng/rstream": "npm:^8.4.1"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5841,7 +5680,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5859,7 +5697,6 @@ __metadata:
     "@thi.ng/rdom": "npm:^1.3.0"
     "@thi.ng/rstream": "npm:^8.4.1"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5879,7 +5716,6 @@ __metadata:
     "@thi.ng/rstream": "npm:^8.4.1"
     "@thi.ng/strings": "npm:^3.7.31"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5895,7 +5731,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/paths": "npm:^5.1.79"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5909,7 +5744,6 @@ __metadata:
     "@thi.ng/bitstream": "npm:^2.2.58"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5925,7 +5759,6 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.56"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -5940,7 +5773,6 @@ __metadata:
     "@thi.ng/csp": "npm:^2.1.115"
     "@thi.ng/rstream": "npm:^8.4.1"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5955,7 +5787,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5972,7 +5803,6 @@ __metadata:
     "@thi.ng/rstream": "npm:^8.4.1"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -5992,7 +5822,6 @@ __metadata:
     "@thi.ng/rstream": "npm:^8.4.1"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6006,7 +5835,6 @@ __metadata:
     "@thi.ng/rstream": "npm:^8.4.1"
     "@types/node": "npm:^20.11.30"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6024,7 +5852,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6046,7 +5873,6 @@ __metadata:
     "@thi.ng/rstream-dot": "npm:^3.0.73"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6066,7 +5892,6 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6082,7 +5907,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/transducers-fsm": "npm:^2.2.84"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6099,7 +5923,6 @@ __metadata:
     "@thi.ng/matrices": "npm:^2.3.34"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6113,7 +5936,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/checks": "npm:^3.6.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6128,7 +5950,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.2"
     "@thi.ng/defmulti": "npm:^3.0.37"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6144,7 +5965,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/shader-ast": "npm:^0.15.12"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6164,7 +5984,6 @@ __metadata:
     "@thi.ng/shader-ast": "npm:^0.15.12"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6182,7 +6001,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/shader-ast": "npm:^0.15.12"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6196,7 +6014,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/shader-ast": "npm:^0.15.12"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6214,7 +6031,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/logger": "npm:^3.0.10"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6229,7 +6045,6 @@ __metadata:
     "@thi.ng/transducers-binary": "npm:^2.1.117"
     assemblyscript: "npm:0.27.25"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6247,7 +6062,6 @@ __metadata:
     "@thi.ng/transducers-binary": "npm:^2.1.117"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6262,7 +6076,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6278,7 +6091,6 @@ __metadata:
     "@thi.ng/hex": "npm:^2.3.44"
     "@thi.ng/memoize": "npm:^3.3.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6293,7 +6105,6 @@ __metadata:
     "@thi.ng/dgraph": "npm:^2.1.115"
     "@thi.ng/logger": "npm:^3.0.10"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6316,7 +6127,6 @@ __metadata:
     "@thi.ng/testament": "npm:^0.4.27"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   bin:
@@ -6332,7 +6142,6 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     chokidar: "npm:^3.6.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   bin:
@@ -6355,7 +6164,6 @@ __metadata:
     "@thi.ng/text-format": "npm:^2.2.3"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -6371,7 +6179,6 @@ __metadata:
     "@thi.ng/hex": "npm:^2.3.44"
     "@thi.ng/memoize": "npm:^3.3.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6386,7 +6193,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6405,7 +6211,6 @@ __metadata:
     "@thi.ng/testament": "npm:^0.4.27"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6423,7 +6228,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6442,7 +6246,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6456,7 +6259,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.0"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6471,7 +6273,6 @@ __metadata:
     "@thi.ng/hiccup": "npm:^5.1.29"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6488,7 +6289,6 @@ __metadata:
     "@thi.ng/paths": "npm:^5.1.79"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6504,7 +6304,6 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6524,7 +6323,6 @@ __metadata:
     "@thi.ng/math": "npm:^5.10.11"
     "@thi.ng/random": "npm:^3.7.4"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6536,7 +6334,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6552,7 +6349,6 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.56"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6565,7 +6361,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6585,7 +6380,6 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.0.2"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6607,7 +6401,6 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6627,13 +6420,12 @@ __metadata:
     "@thi.ng/strings": "npm:^3.7.31"
     "@thi.ng/transducers": "npm:^9.0.2"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^0.4.69, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^0.5.1, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
@@ -6650,9 +6442,8 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     "@thi.ng/paths": "npm:^5.1.79"
     "@thi.ng/strings": "npm:^3.7.31"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
+    "@thi.ng/wasm-api": "npm:^1.5.1"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   bin:
@@ -6666,17 +6457,16 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/binary": "npm:^3.4.23"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.4.69"
-    "@thi.ng/wasm-api-dom": "npm:^0.11.88"
+    "@thi.ng/wasm-api": "npm:^1.5.1"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.5.1"
+    "@thi.ng/wasm-api-dom": "npm:^0.11.90"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@npm:^0.11.88, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@npm:^0.11.90, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -6685,10 +6475,9 @@ __metadata:
     "@thi.ng/canvas": "npm:^0.2.17"
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/prefixes": "npm:^2.3.17"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.4.69"
+    "@thi.ng/wasm-api": "npm:^1.5.1"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.5.1"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6700,16 +6489,15 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.4.69"
+    "@thi.ng/wasm-api": "npm:^1.5.1"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.5.1"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@npm:^1.4.69, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@npm:^1.5.1, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:
@@ -6722,7 +6510,6 @@ __metadata:
     "@thi.ng/idgen": "npm:^2.2.39"
     "@thi.ng/logger": "npm:^3.0.10"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6740,7 +6527,6 @@ __metadata:
     "@thi.ng/vectors": "npm:^7.10.28"
     "@thi.ng/webgl": "npm:^6.8.12"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6756,7 +6542,6 @@ __metadata:
     "@thi.ng/shader-ast-glsl": "npm:^0.4.120"
     "@thi.ng/webgl": "npm:^6.8.12"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6784,7 +6569,6 @@ __metadata:
     "@thi.ng/vector-pools": "npm:^3.1.126"
     "@thi.ng/vectors": "npm:^7.10.28"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -6800,7 +6584,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.2"
     "@thi.ng/errors": "npm:^2.5.5"
     esbuild: "npm:^0.20.2"
-    rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
   languageName: unknown
@@ -7068,13 +6851,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ansi-regex@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "ansi-regex@npm:6.0.1"
-  checksum: 10/1ff8b7667cded1de4fa2c9ae283e979fc87036864317da86a2e546725f96406746411d0d85e87a2d12fa5abd715d90006de7fa4fa0477c92321ad3b4c7d4e169
-  languageName: node
-  linkType: hard
-
 "ansi-sequence-parser@npm:^1.1.0":
   version: 1.1.0
   resolution: "ansi-sequence-parser@npm:1.1.0"
@@ -7088,13 +6864,6 @@ __metadata:
   dependencies:
     color-convert: "npm:^2.0.1"
   checksum: 10/b4494dfbfc7e4591b4711a396bd27e540f8153914123dccb4cdbbcb514015ada63a3809f362b9d8d4f6b17a706f1d7bea3c6f974b15fa5ae76b5b502070889ff
-  languageName: node
-  linkType: hard
-
-"ansi-styles@npm:^6.1.0":
-  version: 6.2.1
-  resolution: "ansi-styles@npm:6.2.1"
-  checksum: 10/70fdf883b704d17a5dfc9cde206e698c16bcd74e7f196ab821511651aee4f9f76c9514bdfa6ca3a27b5e49138b89cb222a28caf3afe4567570139577f991df32
   languageName: node
   linkType: hard
 
@@ -7500,17 +7269,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^7.0.0":
-  version: 7.0.3
-  resolution: "cross-spawn@npm:7.0.3"
-  dependencies:
-    path-key: "npm:^3.1.0"
-    shebang-command: "npm:^2.0.0"
-    which: "npm:^2.0.1"
-  checksum: 10/e1a13869d2f57d974de0d9ef7acbf69dc6937db20b918525a01dacb5032129bd552d290d886d981e99f1b624cb03657084cc87bd40f115c07ecf376821c729ce
-  languageName: node
-  linkType: hard
-
 "debug@npm:2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -7602,13 +7360,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eastasianwidth@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "eastasianwidth@npm:0.2.0"
-  checksum: 10/9b1d3e1baefeaf7d70799db8774149cef33b97183a6addceeba0cf6b85ba23ee2686f302f14482006df32df75d32b17c509c143a3689627929e4a8efaf483952
-  languageName: node
-  linkType: hard
-
 "ee-first@npm:1.1.1":
   version: 1.1.1
   resolution: "ee-first@npm:1.1.1"
@@ -7620,13 +7371,6 @@ __metadata:
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
   checksum: 10/c72d67a6821be15ec11997877c437491c313d924306b8da5d87d2a2bcc2cec9903cb5b04ee1a088460501d8e5b44f10df82fdc93c444101a7610b80c8b6938e1
-  languageName: node
-  linkType: hard
-
-"emoji-regex@npm:^9.2.2":
-  version: 9.2.2
-  resolution: "emoji-regex@npm:9.2.2"
-  checksum: 10/915acf859cea7131dac1b2b5c9c8e35c4849e325a1d114c30adb8cd615970f6dca0e27f64f3a4949d7d6ed86ecd79a1c5c63f02e697513cddd7b5835c90948b8
   languageName: node
   linkType: hard
 
@@ -7965,16 +7709,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"foreground-child@npm:^3.1.0":
-  version: 3.1.1
-  resolution: "foreground-child@npm:3.1.1"
-  dependencies:
-    cross-spawn: "npm:^7.0.0"
-    signal-exit: "npm:^4.0.1"
-  checksum: 10/087edd44857d258c4f73ad84cb8df980826569656f2550c341b27adf5335354393eec24ea2fabd43a253233fb27cee177ebe46bd0b7ea129c77e87cb1e9936fb
-  languageName: node
-  linkType: hard
-
 "forwarded@npm:0.2.0":
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
@@ -8125,21 +7859,6 @@ __metadata:
   dependencies:
     is-glob: "npm:^4.0.1"
   checksum: 10/32cd106ce8c0d83731966d31517adb766d02c3812de49c30cfe0675c7c0ae6630c11214c54a5ae67aca882cf738d27fd7768f21aa19118b9245950554be07247
-  languageName: node
-  linkType: hard
-
-"glob@npm:^10.3.7":
-  version: 10.3.10
-  resolution: "glob@npm:10.3.10"
-  dependencies:
-    foreground-child: "npm:^3.1.0"
-    jackspeak: "npm:^2.3.5"
-    minimatch: "npm:^9.0.1"
-    minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
-    path-scurry: "npm:^1.10.1"
-  bin:
-    glob: dist/esm/bin.mjs
-  checksum: 10/38bdb2c9ce75eb5ed168f309d4ed05b0798f640b637034800a6bf306f39d35409bf278b0eaaffaec07591085d3acb7184a201eae791468f0f617771c2486a6a8
   languageName: node
   linkType: hard
 
@@ -8475,19 +8194,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jackspeak@npm:^2.3.5":
-  version: 2.3.6
-  resolution: "jackspeak@npm:2.3.6"
-  dependencies:
-    "@isaacs/cliui": "npm:^8.0.2"
-    "@pkgjs/parseargs": "npm:^0.11.0"
-  dependenciesMeta:
-    "@pkgjs/parseargs":
-      optional: true
-  checksum: 10/6e6490d676af8c94a7b5b29b8fd5629f21346911ebe2e32931c2a54210134408171c24cee1a109df2ec19894ad04a429402a8438cbf5cc2794585d35428ace76
-  languageName: node
-  linkType: hard
-
 "jju@npm:~1.4.0":
   version: 1.4.0
   resolution: "jju@npm:1.4.0"
@@ -8613,13 +8319,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^9.1.1 || ^10.0.0":
-  version: 10.0.1
-  resolution: "lru-cache@npm:10.0.1"
-  checksum: 10/5bb91a97a342a41fd049c3494b44d9e21a7d4843f9284d0a0b26f00bb0e436f1f627d0641c78f88be16b86b4231546c5ee4f284733fb530c7960f0bcd7579026
-  languageName: node
-  linkType: hard
-
 "lunr@npm:^2.3.9":
   version: 2.3.9
   resolution: "lunr@npm:2.3.9"
@@ -8731,15 +8430,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "minimatch@npm:9.0.1"
-  dependencies:
-    brace-expansion: "npm:^2.0.1"
-  checksum: 10/b4e98f4dc740dcf33999a99af23ae6e5e1c47632f296dc95cb649a282150f92378d41434bf64af4ea2e5975255a757d031c3bf014bad9214544ac57d97f3ba63
-  languageName: node
-  linkType: hard
-
 "minimatch@npm:^9.0.3":
   version: 9.0.3
   resolution: "minimatch@npm:9.0.3"
@@ -8815,13 +8505,6 @@ __metadata:
   dependencies:
     yallist: "npm:^4.0.0"
   checksum: 10/9f1101740d681f62ff17f9497c50342ce6b754a7129c3f9b47b7bf06dc5a43742c508df626a2574d60a3efc50e8a45e3083b7963d51891ddb1d435d34cd15850
-  languageName: node
-  linkType: hard
-
-"minipass@npm:^5.0.0 || ^6.0.2 || ^7.0.0":
-  version: 7.0.4
-  resolution: "minipass@npm:7.0.4"
-  checksum: 10/e864bd02ceb5e0707696d58f7ce3a0b89233f0d686ef0d447a66db705c0846a8dc6f34865cd85256c1472ff623665f616b90b8ff58058b2ad996c5de747d2d18
   languageName: node
   linkType: hard
 
@@ -9112,27 +8795,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-key@npm:^3.1.0":
-  version: 3.1.1
-  resolution: "path-key@npm:3.1.1"
-  checksum: 10/55cd7a9dd4b343412a8386a743f9c746ef196e57c823d90ca3ab917f90ab9f13dd0ded27252ba49dbdfcab2b091d998bc446f6220cd3cea65db407502a740020
-  languageName: node
-  linkType: hard
-
 "path-parse@npm:^1.0.6, path-parse@npm:^1.0.7":
   version: 1.0.7
   resolution: "path-parse@npm:1.0.7"
   checksum: 10/49abf3d81115642938a8700ec580da6e830dde670be21893c62f4e10bd7dd4c3742ddc603fe24f898cba7eb0c6bc1777f8d9ac14185d34540c6d4d80cd9cae8a
-  languageName: node
-  linkType: hard
-
-"path-scurry@npm:^1.10.1":
-  version: 1.10.1
-  resolution: "path-scurry@npm:1.10.1"
-  dependencies:
-    lru-cache: "npm:^9.1.1 || ^10.0.0"
-    minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
-  checksum: 10/eebfb8304fef1d4f7e1486df987e4fd77413de4fce16508dea69fcf8eb318c09a6b15a7a2f4c22877cec1cb7ecbd3071d18ca9de79eeece0df874a00f1f0bdc8
   languageName: node
   linkType: hard
 
@@ -9393,17 +9059,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^5.0.5":
-  version: 5.0.5
-  resolution: "rimraf@npm:5.0.5"
-  dependencies:
-    glob: "npm:^10.3.7"
-  bin:
-    rimraf: dist/esm/bin.mjs
-  checksum: 10/a612c7184f96258b7d1328c486b12ca7b60aa30e04229a08bbfa7e964486deb1e9a1b52d917809311bdc39a808a4055c0f950c0280fba194ba0a09e6f0d404f6
-  languageName: node
-  linkType: hard
-
 "rollup@npm:^4.13.0":
   version: 4.13.0
   resolution: "rollup@npm:4.13.0"
@@ -9468,7 +9123,6 @@ __metadata:
     bun-types: "npm:^1.0.35"
     esbuild: "npm:^0.20.2"
     html-minifier-terser: "npm:^7.2.0"
-    rimraf: "npm:^5.0.5"
     tools: "workspace:^"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
@@ -9678,22 +9332,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shebang-command@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "shebang-command@npm:2.0.0"
-  dependencies:
-    shebang-regex: "npm:^3.0.0"
-  checksum: 10/6b52fe87271c12968f6a054e60f6bde5f0f3d2db483a1e5c3e12d657c488a15474121a1d55cd958f6df026a54374ec38a4a963988c213b7570e1d51575cea7fa
-  languageName: node
-  linkType: hard
-
-"shebang-regex@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "shebang-regex@npm:3.0.0"
-  checksum: 10/1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
-  languageName: node
-  linkType: hard
-
 "shiki@npm:^0.14.7":
   version: 0.14.7
   resolution: "shiki@npm:0.14.7"
@@ -9721,13 +9359,6 @@ __metadata:
   version: 3.0.7
   resolution: "signal-exit@npm:3.0.7"
   checksum: 10/a2f098f247adc367dffc27845853e9959b9e88b01cb301658cfe4194352d8d2bb32e18467c786a7fe15f1d44b233ea35633d076d5e737870b7139949d1ab6318
-  languageName: node
-  linkType: hard
-
-"signal-exit@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "signal-exit@npm:4.0.1"
-  checksum: 10/3d345d3a6c3ed533aa8107f8fab73257cf8ddacd0a297c00d0fd3c960a9802900e3cbc518076254ee4ab99ef253b059929d6bf907c5fbc805fdc8a186d900bc0
   languageName: node
   linkType: hard
 
@@ -9822,7 +9453,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string-width-cjs@npm:string-width@^4.2.0, string-width@npm:^1.0.2 || 2 || 3 || 4, string-width@npm:^4.1.0, string-width@npm:^4.2.0, string-width@npm:^4.2.3":
+"string-width@npm:^1.0.2 || 2 || 3 || 4, string-width@npm:^4.1.0, string-width@npm:^4.2.0, string-width@npm:^4.2.3":
   version: 4.2.3
   resolution: "string-width@npm:4.2.3"
   dependencies:
@@ -9830,17 +9461,6 @@ __metadata:
     is-fullwidth-code-point: "npm:^3.0.0"
     strip-ansi: "npm:^6.0.1"
   checksum: 10/e52c10dc3fbfcd6c3a15f159f54a90024241d0f149cf8aed2982a2d801d2e64df0bf1dc351cf8e95c3319323f9f220c16e740b06faecd53e2462df1d2b5443fb
-  languageName: node
-  linkType: hard
-
-"string-width@npm:^5.0.1, string-width@npm:^5.1.2":
-  version: 5.1.2
-  resolution: "string-width@npm:5.1.2"
-  dependencies:
-    eastasianwidth: "npm:^0.2.0"
-    emoji-regex: "npm:^9.2.2"
-    strip-ansi: "npm:^7.0.1"
-  checksum: 10/7369deaa29f21dda9a438686154b62c2c5f661f8dda60449088f9f980196f7908fc39fdd1803e3e01541970287cf5deae336798337e9319a7055af89dafa7193
   languageName: node
   linkType: hard
 
@@ -9853,21 +9473,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1, strip-ansi@npm:^6.0.0, strip-ansi@npm:^6.0.1":
+"strip-ansi@npm:^6.0.0, strip-ansi@npm:^6.0.1":
   version: 6.0.1
   resolution: "strip-ansi@npm:6.0.1"
   dependencies:
     ansi-regex: "npm:^5.0.1"
   checksum: 10/ae3b5436d34fadeb6096367626ce987057713c566e1e7768818797e00ac5d62023d0f198c4e681eae9e20701721980b26a64a8f5b91238869592a9c6800719a2
-  languageName: node
-  linkType: hard
-
-"strip-ansi@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "strip-ansi@npm:7.0.1"
-  dependencies:
-    ansi-regex: "npm:^6.0.1"
-  checksum: 10/07b3142f515d673e05d2da1ae07bba1eb2ba3b588135a38dea598ca11913b6e9487a9f2c9bed4c74cd31e554012b4503d9fb7e6034c7324973854feea2319110
   languageName: node
   linkType: hard
 
@@ -10231,7 +9842,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"which@npm:^2.0.1, which@npm:^2.0.2":
+"which@npm:^2.0.2":
   version: 2.0.2
   resolution: "which@npm:2.0.2"
   dependencies:
@@ -10251,17 +9862,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
-  version: 7.0.0
-  resolution: "wrap-ansi@npm:7.0.0"
-  dependencies:
-    ansi-styles: "npm:^4.0.0"
-    string-width: "npm:^4.1.0"
-    strip-ansi: "npm:^6.0.0"
-  checksum: 10/cebdaeca3a6880da410f75209e68cd05428580de5ad24535f22696d7d9cab134d1f8498599f344c3cf0fb37c1715807a183778d8c648d6cc0cb5ff2bb4236540
-  languageName: node
-  linkType: hard
-
 "wrap-ansi@npm:^6.2.0":
   version: 6.2.0
   resolution: "wrap-ansi@npm:6.2.0"
@@ -10270,17 +9870,6 @@ __metadata:
     string-width: "npm:^4.1.0"
     strip-ansi: "npm:^6.0.0"
   checksum: 10/0d64f2d438e0b555e693b95aee7b2689a12c3be5ac458192a1ce28f542a6e9e59ddfecc37520910c2c88eb1f82a5411260566dba5064e8f9895e76e169e76187
-  languageName: node
-  linkType: hard
-
-"wrap-ansi@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "wrap-ansi@npm:8.1.0"
-  dependencies:
-    ansi-styles: "npm:^6.1.0"
-    string-width: "npm:^5.0.1"
-    strip-ansi: "npm:^7.0.1"
-  checksum: 10/7b1e4b35e9bb2312d2ee9ee7dc95b8cb5f8b4b5a89f7dde5543fe66c1e3715663094defa50d75454ac900bd210f702d575f15f3f17fa9ec0291806d2578d1ddf
   languageName: node
   linkType: hard
 

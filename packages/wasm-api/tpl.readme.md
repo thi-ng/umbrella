@@ -281,11 +281,12 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
-### Zig v0.11.0 or newer
+### Zig v0.12 or newer
 
 **IMPORTANT:** Due to recent [syntax & build system changes in Zig
-v0.11.0](https://ziglang.org/download/0.11.0/release-notes.html), support for
-older Zig versions had to be removed...
+v0.12.0](https://ziglang.org/download/0.12.0/release-notes.html), older Zig
+versions are not actively unsupported (however build files for v0.10 and v0.11
+are still included)
 
 ```zig
 const std = @import("std");
@@ -398,12 +399,13 @@ scenarios add the supplied .zig file(s) to your `build.zig` and/or source
 folder):
 
 ```bash
-# compile WASM binary
-zig build-lib \
-    --pkg-begin wasm-api node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
-    -target wasm32-freestanding \
-    -O ReleaseSmall -dynamic -rdynamic \
-    hello.zig
+# compile WASM binary (zig v0.12)
+zig build-exe \
+	-fno-entry -fstrip -OReleaseSmall -target wasm32-freestanding \
+	--name hello -rdynamic --import-symbols \
+	--dep wasm-api \
+	-Mroot=hello.zig \
+	-Mwasm-api=node_modules/@thi.ng/wasm-api/zig/lib.zig
 
 # disassemble WASM
 wasm-dis -o hello.wast hello.wasm
@@ -413,29 +415,24 @@ The resulting WASM:
 
 ```wasm
 (module
- (type $i32_i32_=>_none (func (param i32 i32)))
- (type $none_=>_none (func))
- (type $i32_=>_i32 (func (param i32) (result i32)))
- (import "wasmapi" "_printStr" (func $fimport$0 (param i32 i32)))
- (global $global$0 (mut i32) (i32.const 1048576))
- (memory $0 17)
- (data (i32.const 1048576) "hello world!\00")
- (export "memory" (memory $0))
- (export "start" (func $0))
- (export "_wasm_allocate" (func $1))
- (export "_wasm_free" (func $2))
- (func $0
-  (call $fimport$0
-   (i32.const 1048576)
-   (i32.const 12)
-  )
- )
- (func $1 (param $0 i32) (result i32)
-  (i32.const 0)
- )
- (func $2 (param $0 i32) (param $1 i32)
- )
-)
+  (type $t0 (func (param i32 i32)))
+  (type $t1 (func))
+  (type $t2 (func (param i32) (result i32)))
+  (import "wasmapi" "_printStr" (func $wasmapi._printStr (type $t0)))
+  (func $start (type $t1)
+    (call $wasmapi._printStr
+      (i32.const 1048576)
+      (i32.const 12)))
+  (func $_wasm_allocate (type $t2) (param $p0 i32) (result i32)
+    (i32.const 0))
+  (func $_wasm_free (type $t0) (param $p0 i32) (param $p1 i32))
+  (memory $memory 17)
+  (global $g0 (mut i32) (i32.const 1048576))
+  (export "memory" (memory $memory))
+  (export "start" (func $start))
+  (export "_wasm_allocate" (func $_wasm_allocate))
+  (export "_wasm_free" (func $_wasm_free))
+  (data $d0 (i32.const 1048576) "hello world!\00"))
 ```
 
 ### C version

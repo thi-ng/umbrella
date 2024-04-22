@@ -125,6 +125,7 @@ Attribute definitions need to be wrapped using `dom.attribs()` and child
 elements via `dom.children()`, as shown here:
 
 ```zig
+const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
 
 const Attrib = dom.Attrib;
@@ -163,6 +164,10 @@ const handle = dom.createElement(&.{
         },
     }),
 });
+
+fn onInput(e: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
+    wasm.printStr(e.body.input.getValue());
+}
 ```
 
 The
@@ -226,6 +231,10 @@ seen in action in the
 example project. Also check other supplied Zig examples for more realworld
 [usage examples](#usage-examples).
 
+**IMPORTANT: In Zig v0.12+ all event handlers must explicitly specify
+`callconv(.C)`** [See docs for more
+reference](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/FuncPointer.html).
+
 ```zig
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
@@ -265,7 +274,7 @@ const Counter = struct {
     }
 
     /// event listener & state update
-    fn onClick(_: *const dom.Event, raw: ?*anyopaque) void {
+    fn onClick(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
         // safely cast raw pointer
         if (wasm.ptrCast(*Self, raw)) |self| {
             self.clicks += self.step;

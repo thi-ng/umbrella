@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-20T14:42:45Z
+- **Last updated**: 2024-04-22T09:56:21Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.5.0) (2024-04-22)
+
+#### 🚀 Features
+
+- update Zig funcptr codegen to include `callconv(.C)` ([ac3da9e](https://github.com/thi-ng/umbrella/commit/ac3da9e))
+  - `callconv` explicitly required for function pointers in `extern struct`s in Zig v0.12
+  - update docs
+  - update test snapshots
 
 ### [0.4.69](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.4.69) (2024-04-20)
 
