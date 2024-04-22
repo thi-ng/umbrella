@@ -630,7 +630,6 @@ tasks:
 - [bun](https://bun.sh)
 - [esbuild](https://github.com/evanw/esbuild)
 - [html-minifier-terser](https://terser.org/html-minifier-terser/)
-- [rimraf](https://github.com/isaacs/rimraf)
 - [typedoc](https://typedoc.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](http://vitejs.dev/)

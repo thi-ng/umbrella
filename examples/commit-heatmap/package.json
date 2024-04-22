@@ -8,7 +8,6 @@
 	"license": "Apache-2.0",
 	"type": "module",
 	"scripts": {
-		"clean": "rimraf .cache build out",
 		"build": "bun build --target node --outfile=index.js src/index.ts && node index.js",
 		"build:png": "yarn build && rsvg-convert -w 2560 -a -o heatmap.png heatmap.svg"
 	},

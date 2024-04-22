@@ -54,7 +54,6 @@
 		"@microsoft/api-extractor": "^7.43.0",
 		"@thi.ng/date": "^2.7.15",
 		"esbuild": "^0.20.2",
-		"rimraf": "^5.0.5",
 		"typedoc": "^0.25.12",
 		"typescript": "^5.4.3"
 	},
