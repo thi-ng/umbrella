@@ -4425,7 +4425,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-accel@npm:^3.6.0, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
+"@thi.ng/geom-accel@npm:^3.6.1, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-accel@workspace:packages/geom-accel"
   dependencies:
@@ -4491,7 +4491,7 @@ __metadata:
     "@thi.ng/compare": "npm:^2.3.3"
     "@thi.ng/defmulti": "npm:^3.0.37"
     "@thi.ng/geom": "npm:^6.1.7"
-    "@thi.ng/geom-accel": "npm:^3.6.0"
+    "@thi.ng/geom-accel": "npm:^3.6.1"
     "@thi.ng/geom-api": "npm:^4.0.7"
     "@thi.ng/geom-clip-line": "npm:^2.3.86"
     "@thi.ng/geom-isec": "npm:^3.0.7"
@@ -6633,7 +6633,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^0.4.69, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^0.5.0, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
@@ -6650,7 +6650,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.10"
     "@thi.ng/paths": "npm:^5.1.79"
     "@thi.ng/strings": "npm:^3.7.31"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
+    "@thi.ng/wasm-api": "npm:^1.5.0"
     esbuild: "npm:^0.20.2"
     rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
@@ -6666,9 +6666,9 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/binary": "npm:^3.4.23"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.4.69"
-    "@thi.ng/wasm-api-dom": "npm:^0.11.88"
+    "@thi.ng/wasm-api": "npm:^1.5.0"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.5.0"
+    "@thi.ng/wasm-api-dom": "npm:^0.11.89"
     esbuild: "npm:^0.20.2"
     rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
@@ -6676,7 +6676,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@npm:^0.11.88, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@npm:^0.11.89, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -6685,8 +6685,8 @@ __metadata:
     "@thi.ng/canvas": "npm:^0.2.17"
     "@thi.ng/errors": "npm:^2.5.5"
     "@thi.ng/prefixes": "npm:^2.3.17"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.4.69"
+    "@thi.ng/wasm-api": "npm:^1.5.0"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.5.0"
     esbuild: "npm:^0.20.2"
     rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
@@ -6700,8 +6700,8 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.0"
-    "@thi.ng/wasm-api": "npm:^1.4.69"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.4.69"
+    "@thi.ng/wasm-api": "npm:^1.5.0"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.5.0"
     esbuild: "npm:^0.20.2"
     rimraf: "npm:^5.0.5"
     typedoc: "npm:^0.25.12"
@@ -6709,7 +6709,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@npm:^1.4.69, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@npm:^1.5.0, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:
