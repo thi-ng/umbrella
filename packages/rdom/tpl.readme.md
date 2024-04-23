@@ -86,8 +86,8 @@ please consult the docs for these packages to learn more about the available
 constructs and patterns. Most of _rdom_ only deals with either subscribing to
 reactive values, async iterables and/or wrapping/transforming existing
 subscriptions, either explicitly using the provided control components (e.g.
-[`$async()`](https://docs.thi.ng/umbrella/rdom/functions/_async.html)),
-[`$sub()`](https://docs.thi.ng/umbrella/rdom/functions/_sub.html), or using
+[`$async()`](https://docs.thi.ng/umbrella/rdom/functions/_async-1.html)),
+[`$sub()`](https://docs.thi.ng/umbrella/rdom/functions/_sub-1.html), or using
 [`$compile()`](https://docs.thi.ng/umbrella/rdom/functions/_compile.html) to
 auto-wrap such values embedded in an hiccup tree.
 
@@ -138,10 +138,10 @@ for the implementation of common UI structures (e.g. item lists of any kind).
 The following links lead to the documentation of these wrappers, incl. small
 code examples:
 
-- [$async](https://docs.thi.ng/umbrella/rdom/functions/_async.html)
+- [$async](https://docs.thi.ng/umbrella/rdom/functions/_async-1.html)
 - [$klist](https://docs.thi.ng/umbrella/rdom/functions/_klist.html)
 - [$list](https://docs.thi.ng/umbrella/rdom/functions/_list.html)
-- [$lazy](https://docs.thi.ng/umbrella/rdom/functions/_lazy.html)
+- [$lazy](https://docs.thi.ng/umbrella/rdom/functions/_lazy-1.html)
 - [$object](https://docs.thi.ng/umbrella/rdom/functions/_object-1.html)
 - [$promise](https://docs.thi.ng/umbrella/rdom/functions/_promise-1.html)
 - [$refresh](https://docs.thi.ng/umbrella/rdom/functions/_refresh.html)
@@ -215,7 +215,9 @@ $compile([
 
 Work is underway to better support [built-in
 AsyncIterables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols)
-(possibly entirely in-lieu of rstream constructs). Currently, they can only be directly used for simple text or attribute values (also see the [rdom-async example](https://github.com/thi-ng/umbrella/blob/develop/examples/rdom-async)):
+(possibly entirely in-lieu of rstream constructs). Currently, they can only be
+directly used for simple text or attribute values (also see the [rdom-async
+example](https://github.com/thi-ng/umbrella/blob/develop/examples/rdom-async)):
 
 ```ts
 import { $compile } from "@thi.ng/rdom";
@@ -224,7 +226,8 @@ import { range, source } from "@thi.ng/transducers-async";
 // infinite 1Hz counter
 const counter = range(1000);
 
-// manually updated click counter (also an async iterable)
+// manually updated click counter (an async iterable with extended API)
+// see: https://docs.thi.ng/umbrella/transducers-async/functions/source-1.html
 const clicks = source(0);
 
 // event handler to update click count
