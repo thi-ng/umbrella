@@ -195,119 +195,125 @@ const select = (...els) => els.forEach((e) => e.classList.add("sel"));
 const deselect = (...els) => els.forEach((e) => e.classList.remove("sel"));
 
 const createLinks = (acc, src, colors, maxD, depth = 0) => {
-    const id = src.dataset.id;
-    acc.rows.add(id);
-    if (depth >= maxD) return;
-    const [sx, sy] = centroid(src);
-    for(let n of document.querySelectorAll(\`rect[data-col="\${id}"]\`)) {
-        if (id === n.dataset.id || n.classList[0].indexOf("d") < 0) continue;
-        acc.cols.add(n.dataset.col);
-        const [dx, dy] = centroid(n);
-        const line = document.createElementNS("${XML_SVG}", "line");
-        setAttribs(line, { x1: sx, y1: sy, x2: dx, y2: dy });
-        line.classList.add("fade");
-        line.style.stroke = colors[depth];
-        links.appendChild(line);
-        createLinks(acc, n, colors, maxD, depth + 1);
-    }
+	const id = src.dataset.id;
+	acc.rows.add(id);
+	if (depth >= maxD) return;
+	const [sx, sy] = centroid(src);
+	for(let n of document.querySelectorAll(\`rect[data-col="\${id}"]\`)) {
+		if (id === n.dataset.id || n.classList[0].indexOf("d") < 0) continue;
+		acc.cols.add(n.dataset.col);
+		const [dx, dy] = centroid(n);
+		const line = document.createElementNS("${XML_SVG}", "line");
+		setAttribs(line, { x1: sx, y1: sy, x2: dx, y2: dy });
+		line.classList.add("fade");
+		line.style.stroke = colors[depth];
+		links.appendChild(line);
+		createLinks(acc, n, colors, maxD, depth + 1);
+	}
 };
 
 const toggle = (root, sel, hide) => {
-    const children = root.childNodes;
-    for(let i = 0; i < children.length; i++) {
-        const c = children[i];
-        if (!sel.has(c.dataset.id)) {
-            hide ? c.classList.add("h") : c.classList.remove("h");
-        }
-    }
+	const children = root.childNodes;
+	for(let i = 0; i < children.length; i++) {
+		const c = children[i];
+		if (!sel.has(c.dataset.id)) {
+			hide ? c.classList.add("h") : c.classList.remove("h");
+		}
+	}
 };
 
 const clearSelection = () => {
-    if (!prevDeps) return;
-    toggle(cells, prevDeps.rows, false);
-    toggle(labels, prevDeps.cols, false);
-    while(links.firstChild) links.removeChild(links.firstChild);
-    cell && deselect(cell, hline, vline);
-    prevDeps.rects && prevDeps.rects.forEach((e) => e.classList.remove("h"));
-    prevDeps = label = cell = hline = vline = null;
+	if (!prevDeps) return;
+	toggle(cells, prevDeps.rows, false);
+	toggle(labels, prevDeps.cols, false);
+	while(links.firstChild) links.removeChild(links.firstChild);
+	cell && deselect(cell, hline, vline);
+	prevDeps.rects && prevDeps.rects.forEach((e) => e.classList.remove("h"));
+	prevDeps = label = cell = hline = vline = null;
 };
 
 const selectCell = (e) => {
-    cell = e.target;
-    const { id, col, row } = e.target.dataset;
-    vline = document.querySelector(\`#cols>line:nth-child(\${Number(col) + 1})\`);
-    hline = document.querySelector(\`#rows>line:nth-child(\${Number(row) + 1})\`);
-    select(cell, hline, vline);
-    const deps = { rows: new Set(), cols: new Set([col]) };
-    createLinks(deps, cell, colors, 3);
-    toggle(cells, deps.rows, true);
-    toggle(labels, deps.cols, true);
-    prevDeps = deps;
+	cell = e.target;
+	const { id, col, row } = e.target.dataset;
+	vline = document.querySelector(\`#cols>line:nth-child(\${Number(col) + 1})\`);
+	hline = document.querySelector(\`#rows>line:nth-child(\${Number(row) + 1})\`);
+	select(cell, hline, vline);
+	const deps = { rows: new Set(), cols: new Set([col]) };
+	createLinks(deps, cell, colors, 3);
+	toggle(cells, deps.rows, true);
+	toggle(labels, deps.cols, true);
+	prevDeps = deps;
 };
 
 const pkgDeps = (i) => [...document.querySelectorAll(\`#cells>g[data-id="\${i}"]>rect\`)];
 
 const crossCutX = (target) => {
-    const id = target.parentNode.dataset.id;
-    const deps = { rows: new Set(), cols: new Set([id]), rects: [] };
-    for(let i = 0; i < ${num}; i++) {
-        const rects = pkgDeps(i);
-        if (rects.some((r) => r.dataset.col === id)) {
-            for(let r of rects) {
-                if (r.dataset.col === id) {
-                    deps.rows.add(r.dataset.id);
-                } else {
-                    r.classList.add("h");
-                    deps.rects.push(r);
-                }
-            }
-        }
-    }
-    return deps;
+	const id = target.parentNode.dataset.id;
+	const deps = { rows: new Set(), cols: new Set([id]), rects: [] };
+	for(let i = 0; i < ${num}; i++) {
+		const rects = pkgDeps(i);
+		if (rects.some((r) => r.dataset.col === id)) {
+			for(let r of rects) {
+				if (r.dataset.col === id) {
+					deps.rows.add(r.dataset.id);
+				} else {
+					r.classList.add("h");
+					deps.rects.push(r);
+				}
+			}
+		}
+	}
+	return deps;
 };
 
 const crossCutY = (target) => {
-    const id = target.parentNode.parentNode.dataset.id;
-    return {
-        rows: new Set([id]),
-        cols: new Set(pkgDeps(id).map((r) => r.dataset.col))
-    };
+	const id = target.parentNode.parentNode.dataset.id;
+	return {
+		rows: new Set([id]),
+		cols: new Set(pkgDeps(id).map((r) => r.dataset.col))
+	};
 };
 
-const handleInteraction = (e) => {
-    e.preventDefault();
-    const target = e.target;
-    if (target.tagName === "text") {
-        if (target !== label) {
-            clearSelection();
-            const deps = target.parentNode.parentNode === labels
-                ? crossCutX(target)
-                : crossCutY(target);
-            toggle(cells, deps.rows, true);
-            toggle(labels, deps.cols, true);
-            prevDeps = deps;
-            label = target;
-        }
-        return;
-    }
-    if (target.dataset.id != null) {
-        if (target !== cell) {
-            clearSelection();
-            selectCell(e);
-        }
-    } else clearSelection();
+const handleInteraction = (e, isHover = false) => {
+	const target = e.target;
+	if (target.tagName === "text") {
+		if (target !== label) {
+			clearSelection();
+			const deps = target.parentNode.parentNode === labels
+				? crossCutX(target)
+				: crossCutY(target);
+			toggle(cells, deps.rows, true);
+			toggle(labels, deps.cols, true);
+			prevDeps = deps;
+			label = target;
+		}
+		return;
+	}
+	if (target.dataset.id != null) {
+		if (target !== cell) {
+			clearSelection();
+			selectCell(e);
+		}
+	} else if (!isHover) {
+		clearSelection();
+	}
 };
 
-svg.addEventListener("mousemove", handleInteraction);
+svg.addEventListener("mousemove", (e) => handleInteraction(e, true));
+svg.addEventListener("click", handleInteraction);
 svg.addEventListener("touchstart", handleInteraction);`,
 	]),
+	script({}, [
+		CDATA,
+		"window.goatcounter = { path: (p) => location.host + p };",
+	]),
 	script({
-		data: { domain: "dependencies.thi.ng" },
-		"xlink:href": "https://plausible.io/js/plausible.js",
+		href: "//gc.zgo.at/count.js",
+		data: { goatcounter: "https://thing.goatcounter.com/count" },
 	})
 );
 
-writeText("assets/deps.svg", serialize(doc), LOGGER);
+writeText("assets/deps.svg", serialize(doc, { xml: true }), LOGGER);
 execFileSync("gzip", "-9 -f assets/deps.svg".split(" "));
 
 console.log("uploading...");
