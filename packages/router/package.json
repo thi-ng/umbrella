@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/router",
-	"version": "4.0.8",
+	"version": "4.0.9",
 	"description": "Generic trie-based router with support for wildcards, route param validation/coercion, auth",
 	"type": "module",
 	"module": "./index.js",
@@ -36,10 +36,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.0",
-		"@thi.ng/checks": "^3.6.2",
-		"@thi.ng/equiv": "^2.1.56",
-		"@thi.ng/errors": "^2.5.5",
+		"@thi.ng/api": "^8.11.1",
+		"@thi.ng/checks": "^3.6.3",
+		"@thi.ng/equiv": "^2.1.57",
+		"@thi.ng/errors": "^2.5.6",
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
