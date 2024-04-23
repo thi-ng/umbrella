@@ -1,3 +1,4 @@
+import { deref } from "@thi.ng/api/deref";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isString } from "@thi.ng/checks/is-string";
 import { css } from "@thi.ng/color/css/css";
@@ -44,7 +45,7 @@ const DEFAULT_NUMERIC_IDS = [
 const numericAttribs = (attribs: any, ids: string[]) => {
 	let v: any;
 	for (let id of DEFAULT_NUMERIC_IDS.concat(ids)) {
-		typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
+		typeof (v = deref(attribs[id])) === "number" && (attribs[id] = ff(v));
 	}
 	return attribs;
 };
@@ -107,7 +108,7 @@ export const fattribs = (attribs: any, ...numericIDs: string[]) => {
 const ftransforms = (attribs: any) => {
 	let v: any;
 	if (
-		(v = attribs.transform) ||
+		(v = deref(attribs.transform)) ||
 		attribs.translate ||
 		attribs.scale != null ||
 		attribs.rotate
@@ -132,15 +133,15 @@ const ftransforms = (attribs: any) => {
 const buildTransform = (attribs: any) => {
 	const tx: string[] = [];
 	let v: any;
-	if ((v = attribs.translate)) {
+	if ((v = deref(attribs.translate))) {
 		tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
 		delete attribs.translate;
 	}
-	if ((v = attribs.rotate)) {
+	if ((v = deref(attribs.rotate))) {
 		tx.push(isString(v) ? v : `rotate(${ff((v * 180) / Math.PI)})`);
 		delete attribs.rotate;
 	}
-	if ((v = attribs.scale) != null) {
+	if ((v = deref(attribs.scale)) != null) {
 		tx.push(
 			isString(v)
 				? v
@@ -165,12 +166,14 @@ const buildTransform = (attribs: any) => {
  *
  * @internal
  */
-export const fcolor = (col: any) =>
-	isString(col)
-		? col[0] === "$"
-			? `url(#${col.substring(1)})`
-			: col
+export const fcolor = (col: any) => {
+	const $col = deref(col);
+	return isString($col)
+		? $col[0] === "$"
+			? `url(#${$col.substring(1)})`
+			: $col
 		: css(col);
+};
 
 /** @internal */
 export const withoutKeys = (src: any, keys: Set<PropertyKey>) => {

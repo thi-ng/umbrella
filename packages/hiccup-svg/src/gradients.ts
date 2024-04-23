@@ -1,5 +1,11 @@
 import type { Maybe } from "@thi.ng/api";
-import type { GradientStop, Vec2Like } from "./api.js";
+import { deref } from "@thi.ng/api/deref";
+import {
+	ZERO2,
+	type AttribVal,
+	type GradientStop,
+	type Vec2Like,
+} from "./api.js";
 import { fattribs, fcolor, ff } from "./format.js";
 
 const RE_ALPHA_COLOR =
@@ -26,12 +32,14 @@ const gradientStop = ([offset, col]: GradientStop) => {
 
 export const linearGradient = (
 	id: string,
-	from: Vec2Like,
-	to: Vec2Like,
-	stops: GradientStop[],
+	from: AttribVal<Vec2Like>,
+	to: AttribVal<Vec2Like>,
+	stops: AttribVal<GradientStop[]>,
 	attribs?: any
-) =>
-	gradient(
+) => {
+	from = deref(from) ?? ZERO2;
+	to = deref(to) ?? ZERO2;
+	return gradient(
 		"linearGradient",
 		{
 			...attribs,
@@ -41,19 +49,22 @@ export const linearGradient = (
 			x2: ff(to[0]),
 			y2: ff(to[1]),
 		},
-		stops
+		deref(stops) ?? []
 	);
+};
 
 export const radialGradient = (
 	id: string,
-	from: Vec2Like,
-	to: Vec2Like,
-	fr: number,
-	r: number,
-	stops: GradientStop[],
+	from: AttribVal<Vec2Like>,
+	to: AttribVal<Vec2Like>,
+	fr: AttribVal<number>,
+	r: AttribVal<number>,
+	stops: AttribVal<GradientStop[]>,
 	attribs?: any
-) =>
-	gradient(
+) => {
+	from = deref(from) ?? ZERO2;
+	to = deref(to) ?? ZERO2;
+	return gradient(
 		"radialGradient",
 		{
 			...attribs,
@@ -62,8 +73,9 @@ export const radialGradient = (
 			fy: ff(from[1]),
 			cx: ff(to[0]),
 			cy: ff(to[1]),
-			fr: ff(fr),
-			r: ff(r),
+			fr: ff(deref(fr) ?? 0),
+			r: ff(deref(r) ?? 0),
 		},
-		stops
+		deref(stops) ?? []
 	);
+};

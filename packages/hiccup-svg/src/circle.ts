@@ -1,18 +1,25 @@
+import { deref } from "@thi.ng/api/deref";
+import { ZERO2, type AttribVal, type Vec2Like } from "./api.js";
 import { fattribs, ff } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const circle = (
-	p: Vec2Like,
-	r: number,
+	p: AttribVal<Vec2Like>,
+	r: AttribVal<number>,
 	attribs?: any,
 	...body: any[]
-): any[] => [
-	"circle",
-	fattribs({
-		...attribs,
-		cx: ff(p[0]),
-		cy: ff(p[1]),
-		r: ff(r),
-	}),
-	...body,
-];
+): any[] => {
+	p = deref(p) ?? ZERO2;
+	return [
+		"circle",
+		fattribs(
+			{
+				...attribs,
+				cx: ff(p[0]),
+				cy: ff(p[1]),
+				r: ff(deref(r) ?? 0),
+			},
+			"r"
+		),
+		...body,
+	];
+};

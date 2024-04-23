@@ -1,15 +1,16 @@
+import { deref } from "@thi.ng/api/deref";
+import type { AttribVal, Vec2Like } from "./api.js";
 import { fattribs, fpoints } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const polygon = (
-	pts: Vec2Like[],
+	pts: AttribVal<Vec2Like[]>,
 	attribs?: any,
 	...body: any[]
 ): any[] => [
 	"polygon",
 	fattribs({
 		...attribs,
-		points: fpoints(pts),
+		points: fpoints(deref(pts) ?? []),
 	}),
 	...body,
 ];

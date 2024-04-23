@@ -1,3 +1,7 @@
+import type { Maybe, MaybeDeref } from "@thi.ng/api";
+
+export type AttribVal<T> = MaybeDeref<Maybe<T>>;
+
 export type Vec2Like = ArrayLike<number>;
 
 // Reference:
@@ -35,3 +39,6 @@ export type PathSegment =
 	| PathSegmentClose;
 
 export type GradientStop = [string | number, string];
+
+/** @internal */
+export const ZERO2 = [0, 0];

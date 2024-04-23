@@ -1,5 +1,7 @@
+import type { Maybe } from "@thi.ng/api";
+import { deref } from "@thi.ng/api/deref";
+import type { AttribVal, Vec2Like } from "./api.js";
 import { fattribs, ff, withoutKeys } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 /**
  * Shape instancing group.
@@ -17,9 +19,9 @@ import type { Vec2Like } from "./api.js";
  * @param attribs - attributes
  */
 export const points = (
-	pts: Iterable<Vec2Like>,
-	shape: string,
-	size = 1,
+	pts: AttribVal<Iterable<Vec2Like>>,
+	shape?: AttribVal<string>,
+	size?: AttribVal<number>,
 	attribs?: any,
 	...body: any[]
 ): any[] => {
@@ -28,8 +30,8 @@ export const points = (
 		fattribs(withoutKeys(attribs, new Set(["shape", "size"]))),
 		...body,
 	];
-	const href = buildSymbol(group, shape, size);
-	for (let p of pts) {
+	const href = buildSymbol(group, deref(shape), deref(size));
+	for (let p of deref(pts) ?? []) {
 		// TODO replace w/ SVG2 `href` once Safari supports it
 		group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
 	}
@@ -55,12 +57,13 @@ export const points = (
  * @param attribs - other attributes
  */
 export const packedPoints = (
-	pts: ArrayLike<number>,
-	shape: string,
-	size = 1,
+	pts: AttribVal<ArrayLike<number>>,
+	shape?: AttribVal<string>,
+	size?: AttribVal<number>,
 	attribs?: any,
 	...body: any[]
 ): any[] => {
+	pts = deref(pts) ?? [];
 	attribs = {
 		start: 0,
 		cstride: 1,
@@ -82,7 +85,7 @@ export const packedPoints = (
 		),
 		...body,
 	];
-	const href = buildSymbol(group, shape, size);
+	const href = buildSymbol(group, deref(shape), deref(size));
 	for (let i = start; num-- > 0; i += estride) {
 		// TODO replace w/ SVG2 `href` once Safari supports it
 		group.push([
@@ -93,7 +96,7 @@ export const packedPoints = (
 	return group;
 };
 
-const buildSymbol = (group: any[], shape: string, size: number) => {
+const buildSymbol = (group: any[], shape = "", size = 1) => {
 	let href: string;
 	if (!shape || shape[0] !== "#") {
 		href = "_" + ((Math.random() * 1e6) | 0).toString(36);
@@ -105,7 +108,7 @@ const buildSymbol = (group: any[], shape: string, size: number) => {
 	return href;
 };
 
-const buildShape = (shape: string, id: string, r: number) => {
+const buildShape = (shape: Maybe<string>, id: string, r: number) => {
 	const rf = ff(r);
 	if (shape === "circle") {
 		return ["circle", { id, cx: 0, cy: 0, r: rf }];

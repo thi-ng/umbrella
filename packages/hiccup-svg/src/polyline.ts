@@ -1,15 +1,16 @@
+import { deref } from "@thi.ng/api/deref";
+import type { AttribVal, Vec2Like } from "./api.js";
 import { fattribs, fpoints } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const polyline = (
-	pts: Vec2Like[],
+	pts: AttribVal<Vec2Like[]>,
 	attribs?: any,
 	...body: any[]
 ): any[] => [
 	"polyline",
 	fattribs({
 		fill: "none",
-		points: fpoints(pts),
+		points: fpoints(deref(pts) ?? []),
 		...attribs,
 	}),
 	...body,
