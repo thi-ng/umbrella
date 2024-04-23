@@ -112,6 +112,11 @@ test("<br> w/ body", () => {
 
 check("div w/ bool attr (true)", ["div", { bool: true }], `<div bool></div>`);
 
+test("div w/ bool attr (true, XML)", () =>
+	expect(serialize(["div", { bool: true }], { xml: true })).toBe(
+		`<div bool=""></div>`
+	));
+
 check("div w/ bool attr (false)", ["div", { bool: false }], `<div></div>`);
 
 check("empty attr", ["div", { foo: "" }], `<div></div>`);
