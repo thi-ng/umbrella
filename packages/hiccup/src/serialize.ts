@@ -59,6 +59,18 @@ export interface SerializeOpts {
 	 * @defaultValue false
 	 */
 	keys: boolean;
+	/**
+	 * If true, some serialization behaviors will be adjusted to target XML
+	 * output.
+	 *
+	 * @remarks
+	 * Currently, the following aspects are supported:
+	 *
+	 * - boolean attributes are serialized as `name=""` rather than just `name`
+	 *
+	 * @defaultValue false
+	 */
+	xml: boolean;
 }
 
 /**
@@ -191,8 +203,9 @@ export const serialize = (
 	const $opts = {
 		escape: false,
 		escapeFn: escapeEntitiesNum,
-		span: false,
 		keys: false,
+		span: false,
+		xml: false,
 		...opts,
 	};
 	if (opts?.keys == null && $opts.span) $opts.keys = true;
@@ -274,7 +287,7 @@ const serializeAttrib = (
 		: isFunction(v) && (/^on\w+/.test(a) || (v = v(attribs)) == null)
 		? null
 		: v === true
-		? " " + a
+		? " " + a + (opts.xml ? `=""` : "")
 		: v === false
 		? null
 		: a === "data"

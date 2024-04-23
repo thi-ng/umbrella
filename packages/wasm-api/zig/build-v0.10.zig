@@ -1,8 +1,10 @@
 //! DEPRECATED build helpers for using modules/packages distributed via NPM
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!
-//! This version of the script is only compatible with Zig v0.10.1 or older
-//! Use build-v0.11.zig (in this same directory) for newer Zig versions
+//! This version of the script is only compatible with:
+//! Zig v0.10.1 or older
+//!
+//! Use other build.zig files in this same directory for newer Zig versions
 
 const std = @import("std");
 

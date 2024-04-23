@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-20T14:42:45Z
+- **Last updated**: 2024-04-23T07:02:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@2.1.0) (2024-04-23)
+
+#### 🚀 Features
+
+- add deleteDir() ([06b4ffc](https://github.com/thi-ng/umbrella/commit/06b4ffc))
 
 ### [2.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@2.0.3) (2024-04-20)
 

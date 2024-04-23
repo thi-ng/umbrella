@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dgraph",
-	"version": "2.1.115",
+	"version": "2.1.116",
 	"description": "Type-agnostic directed acyclic graph (DAG) & graph operations",
 	"type": "module",
 	"module": "./index.js",
@@ -36,11 +36,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.0",
-		"@thi.ng/associative": "^6.3.57",
-		"@thi.ng/equiv": "^2.1.56",
-		"@thi.ng/errors": "^2.5.5",
-		"@thi.ng/transducers": "^9.0.2"
+		"@thi.ng/api": "^8.11.1",
+		"@thi.ng/associative": "^6.3.58",
+		"@thi.ng/equiv": "^2.1.57",
+		"@thi.ng/errors": "^2.5.6",
+		"@thi.ng/transducers": "^9.0.3"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

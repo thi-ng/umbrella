@@ -2,9 +2,9 @@
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!
 //! This version of the script is only compatible with:
-//! Zig 0.11.0-dev.3857+7322aa118 or newer
+//! Zig v0.12.0 or newer
 //!
-//! Use build.zig (in this same directory) for earlier Zig versions
+//! Use other build.zig files in this same directory for older Zig versions
 
 const std = @import("std");
 const Build = std.Build;
