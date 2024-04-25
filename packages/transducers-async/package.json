@@ -58,6 +58,7 @@
 		"infinite",
 		"iterator",
 		"lazy",
+		"multitasking",
 		"partition",
 		"pipeline",
 		"reducer",
@@ -195,6 +196,11 @@
 	"thi.ng": {
 		"alias": "txa",
 		"parent": "@thi.ng/transducers",
+		"related": [
+			"csp",
+			"fibers",
+			"rstream"
+		],
 		"status": "alpha",
 		"year": 2018
 	}

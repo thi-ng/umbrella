@@ -53,15 +53,18 @@
 	},
 	"keywords": [
 		"async",
+		"blocking",
 		"channel",
 		"communication",
 		"csp",
 		"datastructure",
+		"iterator",
+		"merge",
 		"multiplex",
+		"multitasking",
 		"pipeline",
 		"promise",
 		"pubsub",
-		"transducer",
 		"typescript"
 	],
 	"publishConfig": {
