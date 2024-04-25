@@ -28,6 +28,17 @@ test("fromAsyncIterable", async (done) => {
 	done();
 });
 
+test("consume", async (done) => {
+	const chan = new ChannelV3<number>(4);
+	chan.write(1);
+	chan.write(2);
+	chan.write(3);
+	chan.write(4);
+	expect(await chan.consume([], 3)).toEqual([1, 2, 3]);
+	expect(await chan.read()).toBe(4);
+	done();
+});
+
 test("drain", async (done) => {
 	const chan = new ChannelV3<number>(3);
 	chan.write(1);

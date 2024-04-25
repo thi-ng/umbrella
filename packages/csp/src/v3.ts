@@ -157,8 +157,20 @@ export class ChannelV3<T> implements IReadWriteableChannel<T> {
 			]))();
 	}
 
-	async consume(res: T[] = []) {
-		for await (let x of this) res.push(x);
+	/**
+	 * Consumes & collects all future values written to this channel until
+	 * closed or the max. number of values has been collected (whatever comes
+	 * first). Returns a promise of the result array.
+	 *
+	 * @param res
+	 * @param num
+	 */
+	async consume(res: T[] = [], num = Infinity) {
+		let n = 0;
+		for await (let x of this) {
+			res.push(x);
+			if (++n >= num) break;
+		}
 		return res;
 	}
 
