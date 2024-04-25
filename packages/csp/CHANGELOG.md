@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-23T07:02:17Z
+- **Last updated**: 2024-04-25T19:44:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -9,11 +9,45 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@3.0.0) (2024-04-25)
+
+#### 🛑 Breaking changes
+
+- complete rewrite of Channel, Mult, PubSub, remove deps, add new operators ([2cf7431](https://github.com/thi-ng/umbrella/commit/2cf7431))
+- BREAKING CHANGES: complete rewrite of Channel, Mult, PubSub, remove deps, add new operators
+  - remove/replace types
+  - remove buffer impls (now using [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/main/packages/buffers))
+  - remove transducer handling (now done externally, e.g. via [@thi.ng/transducers-async](https://github.com/thi-ng/umbrella/tree/main/packages/transducers-async))
+  - replace Channel, Mult, PubSub
+  - remove obsolete dependencies
+  - add/update channel operators:
+    - broadcast()
+    - concat()
+    - consume() / consumeWith()
+    - drain()
+    - fromAsyncIterable()
+    - merge()
+    - pipe()
+    - select()
+    - timeout()
+  - add/update tests, remove old/obsolete ones
+
+#### 🚀 Features
+
+- update consume() to accept opt. limit ([164d1dd](https://github.com/thi-ng/umbrella/commit/164d1dd))
+- add write queue, update tests ([f201401](https://github.com/thi-ng/umbrella/commit/f201401))
+
 ### [2.1.115](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@2.1.115) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([749b24c](https://github.com/thi-ng/umbrella/commit/749b24c))
+
+### [2.1.114](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@2.1.114) (2024-04-11)
+
+#### 🚀 Features
+
+- add initial new Channel impl & related ops/tests ([edddf61](https://github.com/thi-ng/umbrella/commit/edddf61))
 
 ### [2.1.113](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@2.1.113) (2024-04-08)
 
