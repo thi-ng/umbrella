@@ -2,11 +2,13 @@ import type { Fn, Maybe } from "@thi.ng/api";
 import { fifo, type IReadWriteBuffer } from "@thi.ng/buffers";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import type { IReadWriteableChannel } from "./api.js";
 import { __nextID } from "./idgen.js";
 
 export const MAX_READS = 1024;
+export const MAX_QUEUE = 1024;
 
 export enum ChannelState {
 	OPEN,
@@ -18,11 +20,14 @@ export interface ChannelOpts {
 	id: string;
 }
 
-export type CSPBuffer<T> = IReadWriteBuffer<[T, Fn<boolean, void>]>;
+export type CSPValue<T> = [T, Fn<boolean, void>];
+
+export type CSPBuffer<T> = IReadWriteBuffer<CSPValue<T>>;
 
 export class ChannelV3<T> implements IReadWriteableChannel<T> {
 	state: ChannelState = ChannelState.OPEN;
 	writes: CSPBuffer<T>;
+	queue: CSPValue<T>[] = [];
 	reads: Fn<Maybe<T>, void>[] = [];
 	races: Fn<ChannelV3<T>, void>[] = [];
 	id: string;
@@ -77,9 +82,14 @@ export class ChannelV3<T> implements IReadWriteableChannel<T> {
 				resolve(false);
 				return;
 			}
-			const { reads, writes, races } = this;
-			if (!(writes.writable() && writes.write([msg, resolve]))) {
-				resolve(false);
+			const { reads, writes, races, queue } = this;
+			const val: CSPValue<T> = [msg, resolve];
+			if (!(writes.writable() && writes.write(val))) {
+				queue.length < MAX_QUEUE
+					? queue.push(val)
+					: illegalState(
+							"max. queue capacity reached, reduce back pressure!"
+					  );
 			}
 			if (reads.length) {
 				this.deliver();
@@ -175,10 +185,14 @@ export class ChannelV3<T> implements IReadWriteableChannel<T> {
 	}
 
 	deliver() {
-		const { reads, writes } = this;
+		const { reads, writes, queue } = this;
 		const [msg, write] = writes.read();
 		write(true);
 		reads.shift()!(msg);
+		// move item from queue to write buffer
+		if (queue.length && writes.writable()) {
+			writes.write(queue.shift()!);
+		}
 		if (this.state === ChannelState.CLOSING && !writes.readable()) {
 			this.state = ChannelState.CLOSED;
 		}

@@ -29,13 +29,17 @@ test("fromAsyncIterable", async (done) => {
 });
 
 test("consume", async (done) => {
-	const chan = new ChannelV3<number>(4);
+	const chan = new ChannelV3<number>();
 	chan.write(1);
 	chan.write(2);
 	chan.write(3);
 	chan.write(4);
+	chan.write(5);
+	chan.write(6);
+	chan.close();
 	expect(await chan.consume([], 3)).toEqual([1, 2, 3]);
 	expect(await chan.read()).toBe(4);
+	expect(await chan.consume()).toEqual([5, 6]);
 	done();
 });
 
