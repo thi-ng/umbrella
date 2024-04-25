@@ -29,17 +29,16 @@ export const fromChannel = <T>(
 		let isActive = true;
 		(async () => {
 			let x;
-			while (((x = null), (x = await src.read())) !== undefined) {
-				if (x === undefined || !isActive) {
-					break;
-				}
+			while ((x = await src.read()) !== undefined) {
+				if (!isActive) break;
 				stream.next(x);
+				x = null;
 			}
 			stream.done();
 		})();
 		return () => {
 			if (opts!.closeChannel !== false) {
-				src.close(true);
+				src.close();
 				LOGGER.info("closed channel", src.id);
 			}
 			isActive = false;
