@@ -38,7 +38,7 @@ and synchronous stream subscriptions/transformations of
 
 ## Related packages
 
-- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - ES6 promise based CSP primitives & operations
+- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
@@ -67,7 +67,7 @@ For Node.js REPL:
 const rscsp = await import("@thi.ng/rstream-csp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 247 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 235 bytes
 
 ## Dependencies
 
