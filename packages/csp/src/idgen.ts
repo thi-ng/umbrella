@@ -1,3 +1,4 @@
+// thing:no-export
 let NEXT_ID = 0;
 
 /** @internal */
