@@ -3930,11 +3930,9 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.1"
-    "@thi.ng/arrays": "npm:^2.9.5"
+    "@thi.ng/buffers": "npm:^0.1.2"
     "@thi.ng/checks": "npm:^3.6.3"
-    "@thi.ng/dcons": "npm:^3.2.111"
     "@thi.ng/errors": "npm:^2.5.6"
-    "@thi.ng/transducers": "npm:^9.0.3"
     esbuild: "npm:^0.20.2"
     typedoc: "npm:^0.25.12"
     typescript: "npm:^5.4.3"
