@@ -3633,7 +3633,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/axidraw@npm:^1.1.78, @thi.ng/axidraw@workspace:packages/axidraw":
+"@thi.ng/axidraw@npm:^1.1.79, @thi.ng/axidraw@workspace:packages/axidraw":
   version: 0.0.0-use.local
   resolution: "@thi.ng/axidraw@workspace:packages/axidraw"
   dependencies:
@@ -3641,7 +3641,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.1"
     "@thi.ng/checks": "npm:^3.6.3"
     "@thi.ng/compose": "npm:^3.0.3"
-    "@thi.ng/date": "npm:^2.7.16"
+    "@thi.ng/date": "npm:^2.7.17"
     "@thi.ng/errors": "npm:^2.5.6"
     "@thi.ng/logger": "npm:^3.0.11"
     "@thi.ng/math": "npm:^5.10.12"
@@ -3942,7 +3942,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/csp@npm:^3.0.0, @thi.ng/csp@workspace:^, @thi.ng/csp@workspace:packages/csp":
+"@thi.ng/csp@npm:^3.1.0, @thi.ng/csp@workspace:^, @thi.ng/csp@workspace:packages/csp":
   version: 0.0.0-use.local
   resolution: "@thi.ng/csp@workspace:packages/csp"
   dependencies:
@@ -3972,7 +3972,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/date@npm:^2.7.16, @thi.ng/date@workspace:^, @thi.ng/date@workspace:packages/date":
+"@thi.ng/date@npm:^2.7.16, @thi.ng/date@npm:^2.7.17, @thi.ng/date@workspace:^, @thi.ng/date@workspace:packages/date":
   version: 0.0.0-use.local
   resolution: "@thi.ng/date@workspace:packages/date"
   dependencies:
@@ -4420,7 +4420,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.1"
     "@thi.ng/arrays": "npm:^2.9.5"
-    "@thi.ng/axidraw": "npm:^1.1.78"
+    "@thi.ng/axidraw": "npm:^1.1.79"
     "@thi.ng/compare": "npm:^2.3.4"
     "@thi.ng/defmulti": "npm:^3.0.38"
     "@thi.ng/geom": "npm:^6.1.9"
@@ -4947,7 +4947,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-html@npm:^2.6.1, @thi.ng/hiccup-html@workspace:^, @thi.ng/hiccup-html@workspace:packages/hiccup-html":
+"@thi.ng/hiccup-html@npm:^2.6.2, @thi.ng/hiccup-html@workspace:^, @thi.ng/hiccup-html@workspace:packages/hiccup-html":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-html@workspace:packages/hiccup-html"
   dependencies:
@@ -5052,7 +5052,7 @@ __metadata:
     "@thi.ng/associative": "npm:^6.3.59"
     "@thi.ng/blurhash": "npm:^0.1.23"
     "@thi.ng/checks": "npm:^3.6.3"
-    "@thi.ng/date": "npm:^2.7.16"
+    "@thi.ng/date": "npm:^2.7.17"
     "@thi.ng/defmulti": "npm:^3.0.38"
     "@thi.ng/errors": "npm:^2.5.6"
     "@thi.ng/file-io": "npm:^2.1.1"
@@ -5675,7 +5675,7 @@ __metadata:
     "@thi.ng/canvas": "npm:^0.2.18"
     "@thi.ng/checks": "npm:^3.6.3"
     "@thi.ng/hiccup-canvas": "npm:^2.5.38"
-    "@thi.ng/rdom": "npm:^1.3.2"
+    "@thi.ng/rdom": "npm:^1.3.3"
     "@thi.ng/rstream": "npm:^8.4.3"
     esbuild: "npm:^0.20.2"
     typedoc: "npm:^0.25.12"
@@ -5690,8 +5690,8 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.0"
     "@thi.ng/api": "npm:^8.11.1"
     "@thi.ng/associative": "npm:^6.3.59"
-    "@thi.ng/hiccup-html": "npm:^2.6.1"
-    "@thi.ng/rdom": "npm:^1.3.2"
+    "@thi.ng/hiccup-html": "npm:^2.6.2"
+    "@thi.ng/rdom": "npm:^1.3.3"
     "@thi.ng/rstream": "npm:^8.4.3"
     "@thi.ng/strings": "npm:^3.7.32"
     "@thi.ng/transducers": "npm:^9.0.4"
@@ -5709,8 +5709,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.1"
     "@thi.ng/checks": "npm:^3.6.3"
     "@thi.ng/defmulti": "npm:^3.0.38"
-    "@thi.ng/hiccup-html": "npm:^2.6.1"
-    "@thi.ng/rdom": "npm:^1.3.2"
+    "@thi.ng/hiccup-html": "npm:^2.6.2"
+    "@thi.ng/rdom": "npm:^1.3.3"
     "@thi.ng/rstream": "npm:^8.4.3"
     esbuild: "npm:^0.20.2"
     typedoc: "npm:^0.25.12"
@@ -5718,7 +5718,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rdom@npm:^1.3.2, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
+"@thi.ng/rdom@npm:^1.3.3, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rdom@workspace:packages/rdom"
   dependencies:
@@ -5786,7 +5786,7 @@ __metadata:
   resolution: "@thi.ng/rstream-csp@workspace:packages/rstream-csp"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
-    "@thi.ng/csp": "npm:^3.0.0"
+    "@thi.ng/csp": "npm:^3.1.0"
     "@thi.ng/rstream": "npm:^8.4.3"
     esbuild: "npm:^0.20.2"
     typedoc: "npm:^0.25.12"
@@ -6135,7 +6135,7 @@ __metadata:
     "@thi.ng/args": "npm:^2.3.32"
     "@thi.ng/checks": "npm:^3.6.3"
     "@thi.ng/compare": "npm:^2.3.4"
-    "@thi.ng/date": "npm:^2.7.16"
+    "@thi.ng/date": "npm:^2.7.17"
     "@thi.ng/errors": "npm:^2.5.6"
     "@thi.ng/file-io": "npm:^2.1.1"
     "@thi.ng/logger": "npm:^3.0.11"

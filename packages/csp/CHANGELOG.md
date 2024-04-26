@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-25T19:44:55Z
+- **Last updated**: 2024-04-26T13:32:20Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@3.1.0) (2024-04-26)
+
+#### 🚀 Features
+
+- add opt. generics for PubSub.subscribe()/unsubscribe() ([b4e9d20](https://github.com/thi-ng/umbrella/commit/b4e9d20))
+- add into() to feed (async) iterables into a channel ([c7c1f6d](https://github.com/thi-ng/umbrella/commit/c7c1f6d))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@3.0.0) (2024-04-25)
 
