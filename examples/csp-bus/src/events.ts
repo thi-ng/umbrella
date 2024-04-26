@@ -1,5 +1,6 @@
-import { consumeWith, pubsub } from "@thi.ng/csp";
-import { range, wait } from "@thi.ng/transducers-async";
+import { consumeWith, into, pubsub } from "@thi.ng/csp";
+import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
+import { concat, delayed, range } from "@thi.ng/transducers-async";
 import type {
 	App,
 	Event,
@@ -26,23 +27,32 @@ export const initEvents = async ({ logger }: App) => {
 		bus.subscribeTopic<StartCounterEvent>("start-counter"),
 		// this function is called for side effects of each counter event received,
 		// we make it async here to simplify animating the counter
-		async ([_, counter]) => {
-			// trigger a logging event (see handler further below)
-			bus.write(["log", `starting counter #${counter.id}`]);
+		async ([_, { value, disabled, id, delay }]) => {
+			// we *could* use the logger directly here, but instead utilize the
+			// bus for demo purposes and trigger a logging event (its handler is
+			// further below)
+			bus.write(["log", `starting counter #${id}`]);
 			// temporarily disable the counter button
-			counter.disabled.write(true);
-			// animate
-			for await (let i of range(101, counter.delay)) {
-				await counter.value.write(i);
-			}
-			await wait(250);
-			for await (let i of range(100, -1, -10, 10)) {
-				await counter.value.write(i);
-			}
+			disabled.write(true);
+			// animate by feeding an async iterable into the counter's value channel
+			await into(
+				value,
+				// concatenate multiple async iterables to animate value
+				concat(
+					// count [0..100]
+					range(101, delay),
+					// short wait
+					(async function* () {
+						yield await delayed(100, 500);
+					})(),
+					// (faster) countdown to 0
+					range(100, -1, -10, 10)
+				)
+			);
 			// re-enable counter button
-			counter.disabled.write(false);
+			disabled.write(false);
 			// another logging event
-			bus.write(["log", `counter #${counter.id} done`]);
+			bus.write(["log", `counter #${id} done`]);
 		}
 	);
 
@@ -57,7 +67,7 @@ export const initEvents = async ({ logger }: App) => {
 	// to avoid direct dependencies on the logger in other parts of the app
 	// enable logging via sending events to the bus
 	consumeWith(bus.subscribeTopic<LogEvent>("log"), ([_, msg]) =>
-		logger.write(msg)
+		logger.write(`${FMT_yyyyMMdd()} ${FMT_HHmmss()}: ${msg}`)
 	);
 
 	bus.write(["log", "eventbus ready..."]);

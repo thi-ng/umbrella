@@ -22,6 +22,7 @@
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/csp": "workspace:^",
+		"@thi.ng/date": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/system": "workspace:^",
@@ -34,6 +35,7 @@
 	"thi.ng": {
 		"readme": [
 			"csp",
+			"date",
 			"hiccup-html",
 			"rdom",
 			"system",
