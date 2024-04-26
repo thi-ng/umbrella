@@ -595,6 +595,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/csp-bus@workspace:examples/csp-bus":
+  version: 0.0.0-use.local
+  resolution: "@example/csp-bus@workspace:examples/csp-bus"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/csp": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/system": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-async": "workspace:^"
+    typescript: "npm:^5.4.3"
+    vite: "npm:^5.2.6"
+  languageName: unknown
+  linkType: soft
+
 "@example/devcards@workspace:examples/devcards":
   version: 0.0.0-use.local
   resolution: "@example/devcards@workspace:examples/devcards"
@@ -3924,7 +3941,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/csp@npm:^3.0.0, @thi.ng/csp@workspace:packages/csp":
+"@thi.ng/csp@npm:^3.0.0, @thi.ng/csp@workspace:^, @thi.ng/csp@workspace:packages/csp":
   version: 0.0.0-use.local
   resolution: "@thi.ng/csp@workspace:packages/csp"
   dependencies:
