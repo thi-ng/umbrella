@@ -1,7 +1,7 @@
 {
 	"info": {
 		"name": "MetaCSS base",
-		"version": "0.9.0"
+		"version": "0.12.0"
 	},
 	"media": {
 		"ns": { "min-width": "640px" },

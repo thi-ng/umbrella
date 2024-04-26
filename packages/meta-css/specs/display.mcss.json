@@ -30,6 +30,15 @@
 			"doc": { "group": "layout", "args": ["num: column count"] },
 			"name": "columns",
 			"props": "column-count"
+		},
+		{
+			"doc": {
+				"group": "appearance",
+				"desc": "Sets appearance (incl. `-webkit` prefixed version) to given value",
+				"args": ["mode: CSS value"]
+			},
+			"name": "appearance",
+			"props": { "appearance": "{0}", "-webkit-appearance": "{0}" }
 		}
 	]
 }
