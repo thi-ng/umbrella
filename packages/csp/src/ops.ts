@@ -112,6 +112,18 @@ export const merge = <T>(
 	return dest;
 };
 
+export const into = async <T, DEST extends IWriteable<T> & IClosable>(
+	chan: DEST,
+	src: Iterable<T> | AsyncIterable<T>,
+	close = false
+) => {
+	for await (let x of src) {
+		if (!chan.writable()) break;
+		await chan.write(x);
+	}
+	close && chan.close();
+};
+
 export const pipe = <T, DEST extends IWriteable<T> & IClosable>(
 	src: Channel<T>,
 	dest: DEST,
