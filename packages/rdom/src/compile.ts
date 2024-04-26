@@ -91,15 +91,17 @@ const isComplexComponent = (x: any) => {
 const complexComponent = (tree: any[]): CompiledComponent => ({
 	async mount(parent: ParentNode, index: NumOrElement = -1) {
 		this.subs = [];
+		const attribs = { ...tree[1] };
 		walk((x, path) => {
 			if (isSubscribable(x)) {
 				this.subs!.push(x.subscribe(new $SubA(this, path)));
 			} else if (isAsyncIterable(x)) {
 				$asyncA(x, this, path);
+				if (path.length === 1) delete attribs[path[0]];
 			}
-		}, tree[1]);
+		}, attribs);
 		this.children = [];
-		this.el = $el(tree[0], tree[1], null, parent, index);
+		this.el = $el(tree[0], attribs, null, parent, index);
 		for (let i = 2; i < tree.length; i++) {
 			const child = $compile(tree[i]);
 			child.mount(this.el, i - 2);
