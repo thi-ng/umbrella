@@ -13,7 +13,7 @@ export function pubsub(...args: any[]) {
 export class PubSub<T> implements IWriteable<T>, IClosable {
 	protected src!: Channel<T>;
 	protected fn!: TopicFn<T>;
-	protected topics: IObjectOf<Mult<T>>;
+	protected topics: IObjectOf<Mult<any>>;
 
 	constructor(fn: TopicFn<T>);
 	constructor(src: Channel<T>, fn: TopicFn<T>);
@@ -57,15 +57,15 @@ export class PubSub<T> implements IWriteable<T>, IClosable {
 	 *
 	 * @param id - topic id
 	 */
-	subscribeTopic(id: string) {
+	subscribeTopic<S extends T = T>(id: string) {
 		let topic = this.topics[id];
 		if (!topic) {
 			this.topics[id] = topic = new Mult(`${this.src.id}-${id}`);
 		}
-		return topic.subscribe();
+		return <Channel<S>>topic.subscribe();
 	}
 
-	unsubscribeTopic(id: string, ch: Channel<T>) {
+	unsubscribeTopic<S extends T = T>(id: string, ch: Channel<S>) {
 		const topic = this.topics[id];
 		return topic?.unsubscribe(ch) ?? false;
 	}
