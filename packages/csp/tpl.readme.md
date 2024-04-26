@@ -27,6 +27,23 @@ Provided are:
 - [`PubSub`](https://docs.thi.ng/umbrella/csp/classes/PubSub.html) for
   topic-based subscriptions, each topic implemented as `Mult`
 
+### Channel operators
+
+- [`broadcast()`](https://docs.thi.ng/umbrella/csp/functions/broadcast.html)
+- [`channel()`](https://docs.thi.ng/umbrella/csp/functions/channel.html)
+- [`concat()`](https://docs.thi.ng/umbrella/csp/functions/concat.html)
+- [`consume()`](https://docs.thi.ng/umbrella/csp/functions/consume.html)
+- [`consumeWith()`](https://docs.thi.ng/umbrella/csp/functions/consumeWith.html)
+- [`drain()`](https://docs.thi.ng/umbrella/csp/functions/drain.html)
+- [`fromAsyncIterable()`](https://docs.thi.ng/umbrella/csp/functions/fromAsyncIterable.html)
+- [`into()`](https://docs.thi.ng/umbrella/csp/functions/into.html)
+- [`merge()`](https://docs.thi.ng/umbrella/csp/functions/merge.html)
+- [`mult()`](https://docs.thi.ng/umbrella/csp/functions/mult.html)
+- [`pipe()`](https://docs.thi.ng/umbrella/csp/functions/pipe.html)
+- [`pubsub()`](https://docs.thi.ng/umbrella/csp/functions/pubsub.html)
+- [`select()`](https://docs.thi.ng/umbrella/csp/functions/select.html)
+- [`timeout()`](https://docs.thi.ng/umbrella/csp/functions/timeout.html)
+
 {{meta.status}}
 
 {{repo.supportPackages}}
@@ -54,7 +71,7 @@ Provided are:
 ### PubSub
 
 ```ts tangle:export/readme-pubsub.ts
-import { channel, consumeWith, pubsub } from "@thi.ng/csp";
+import { channel, consumeWith, into, pubsub } from "@thi.ng/csp";
 
 // input channel (optional)
 const src = channel<string>({ id: "users" });
@@ -71,10 +88,9 @@ for (let i of "abc") {
 	consumeWith(pub.subscribeTopic(i), (x, ch) => console.log(ch.id, x));
 }
 
-// start processing
-for (let x of ["alice", "bert", "bella", "charlie", "arthur"]) {
-	await src.write(x);
-}
+// start processing by feeding an iterable of names
+await into(src, ["alice", "bert", "bella", "charlie", "arthur"]);
+
 // users-a-tap0 alice
 // users-b-tap1 bert
 // users-b-tap1 bella

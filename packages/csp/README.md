@@ -15,10 +15,12 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [Channel operators](#channel-operators)
 - [Status](#status)
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [PubSub](#pubsub)
 - [Authors](#authors)
@@ -48,6 +50,23 @@ Provided are:
   multiplexing (one-to-many splitting) and dynamic add/removal of subscribers
 - [`PubSub`](https://docs.thi.ng/umbrella/csp/classes/PubSub.html) for
   topic-based subscriptions, each topic implemented as `Mult`
+
+### Channel operators
+
+- [`broadcast()`](https://docs.thi.ng/umbrella/csp/functions/broadcast.html)
+- [`channel()`](https://docs.thi.ng/umbrella/csp/functions/channel.html)
+- [`concat()`](https://docs.thi.ng/umbrella/csp/functions/concat.html)
+- [`consume()`](https://docs.thi.ng/umbrella/csp/functions/consume.html)
+- [`consumeWith()`](https://docs.thi.ng/umbrella/csp/functions/consumeWith.html)
+- [`drain()`](https://docs.thi.ng/umbrella/csp/functions/drain.html)
+- [`fromAsyncIterable()`](https://docs.thi.ng/umbrella/csp/functions/fromAsyncIterable.html)
+- [`into()`](https://docs.thi.ng/umbrella/csp/functions/into.html)
+- [`merge()`](https://docs.thi.ng/umbrella/csp/functions/merge.html)
+- [`mult()`](https://docs.thi.ng/umbrella/csp/functions/mult.html)
+- [`pipe()`](https://docs.thi.ng/umbrella/csp/functions/pipe.html)
+- [`pubsub()`](https://docs.thi.ng/umbrella/csp/functions/pubsub.html)
+- [`select()`](https://docs.thi.ng/umbrella/csp/functions/select.html)
+- [`timeout()`](https://docs.thi.ng/umbrella/csp/functions/timeout.html)
 
 ## Status
 
@@ -87,7 +106,7 @@ For Node.js REPL:
 const csp = await import("@thi.ng/csp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.77 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.79 KB
 
 ## Dependencies
 
@@ -96,6 +115,16 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.77 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Screenshot                                                                                                     | Description                                                                  | Live demo                                     | Source                                                                     |
+|:---------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------|:---------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/> | CSP channel-based event handling, async transducers & reactive UI components | [Demo](https://demo.thi.ng/umbrella/csp-bus/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus) |
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/csp/)
@@ -103,7 +132,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.77 KB
 ### PubSub
 
 ```ts tangle:export/readme-pubsub.ts
-import { channel, consumeWith, pubsub } from "@thi.ng/csp";
+import { channel, consumeWith, into, pubsub } from "@thi.ng/csp";
 
 // input channel (optional)
 const src = channel<string>({ id: "users" });
@@ -120,10 +149,9 @@ for (let i of "abc") {
     consumeWith(pub.subscribeTopic(i), (x, ch) => console.log(ch.id, x));
 }
 
-// start processing
-for (let x of ["alice", "bert", "bella", "charlie", "arthur"]) {
-    await src.write(x);
-}
+// start processing by feeding an iterable of names
+await into(src, ["alice", "bert", "bella", "charlie", "arthur"]);
+
 // users-a-tap0 alice
 // users-b-tap1 bert
 // users-b-tap1 bella
