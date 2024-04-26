@@ -315,7 +315,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.21 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.24 KB
 
 ## Dependencies
 
@@ -340,6 +340,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>            | Interactive & reactive image blurhash generator                                                         | [Demo](https://demo.thi.ng/umbrella/blurhash/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>     | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>        | Probabilistic color theme generator                                                                     | [Demo](https://demo.thi.ng/umbrella/color-themes/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/>             | CSP channel-based event handling, async transducers & reactive UI components                            | [Demo](https://demo.thi.ng/umbrella/csp-bus/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)             |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>     | Color palette generation via dominant color extraction from uploaded images                             | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/>   | Interactive visualization of closest points on ellipses                                                 | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>        | Fiber-based cooperative multitasking basics                                                             | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)        |

@@ -129,13 +129,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.10 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Description                                               | Live demo                                        | Source                                                                        |
-|:----------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| Basic & barebones usage of async iterables in thi.ng/rdom | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-async) |
+| Screenshot                                                                                                     | Description                                                                  | Live demo                                        | Source                                                                        |
+|:---------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/> | CSP channel-based event handling, async transducers & reactive UI components | [Demo](https://demo.thi.ng/umbrella/csp-bus/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)    |
+|                                                                                                                | Basic & barebones usage of async iterables in thi.ng/rdom                    | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-async) |
 
 ## API
 
