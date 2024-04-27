@@ -7,25 +7,71 @@
 {{pkg.description}}
 
 This package was temporarily deprecated (throughout most of 2023), but meanwhile
-has been reanimated in the form of a **complete rewrite**, using a new, more
+has been **reanimated in the form of a complete rewrite**, using a new, more
 simple and more modern approach afforded by contemporary ES language features
 (and widespread support for them).
 
 **This new/current implementation is in most cases NOT compatible with earlier
 versions**.
 
-Provided are:
+### What is CSP?
 
-- [CSP `Channel`
-  primitive](https://docs.thi.ng/umbrella/csp/classes/Channel.html) supporting a
-  choice of buffer behaviors (fifo, sliding, dropping, see
-  [thi.ng/buffers](https://github.com/thi-ng/umbrella/blob/develop/packages/buffers)
-  for options)
-- Composable channel operators (see list below)
+References:
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Communicating_sequential_processes)
+- [Communicating Sequential Processes, C.A.R.
+Hoare](https://dl.acm.org/doi/pdf/10.1145/359576.359585)
+
+The key construct of this package is a read/write channel primitive which can be
+customized with different buffer implementations to control blocking behaviors
+and backpressure handling (aka attempting to write faster to a channel than
+values are being read, essentially a memory management issue). Unbuffered CSP
+channels are blocking on both the reader and writer side.
+
+### Buffering behaviors
+
+The following channel buffer types/behaviors are included (from the
+[thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
+package), all accepting a max. capacity and all implementing the
+[IReadWriteBuffer](https://docs.thi.ng/umbrella/buffers/interfaces/IReadWriteBuffer.html)
+interface required by the channel:
+
+- [`fifo`](https://docs.thi.ng/umbrella/buffers/functions/fifo.html): First in,
+  first out ring buffer. Writes to the channel will start blocking once the
+  buffer's capacity is reached, otherwise complete immediately. Likewise,
+  channel reads are non-blocking whilst there're more buffered values available.
+  Reads will only block if the buffer is empty.
+- [`lifo`](https://docs.thi.ng/umbrella/buffers/functions/lifo.html): Last in,
+  first out. Write behavior is the same as with `fifo`, reads are in reverse
+  order (as the name indicates), i.e. the last value written will be the first
+  value read (i.e. stack behavior).
+- [`sliding`](https://docs.thi.ng/umbrella/buffers/functions/sliding.html):
+  Sliding window ring buffer. Writes to the channel are **never** blocking!
+  Whilst the buffer is at full capacity, new writes will first expunge the
+  oldest buffered value (similar to [LRU
+  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  behavior). Read behavior is the same as for `fifo`.
+- [`dropping`](https://docs.thi.ng/umbrella/buffers/functions/dropping.html):
+  Dropping value ring buffer. Writes to the channel are **never** blocking!
+  Whilst the buffer is at full capacity, new writes will be silently ignored.
+  Read behavior is the same as for `fifo`.
+
+### Channels
+
+As mentioned previously,
+[channels](https://docs.thi.ng/umbrella/csp/functions/channel.html) and their
+[read](https://docs.thi.ng/umbrella/csp/classes/Channel.html#read),
+[write](https://docs.thi.ng/umbrella/csp/classes/Channel.html#write) and
+[close](https://docs.thi.ng/umbrella/csp/classes/Channel.html#close) operations
+are the key building blocks for CSP.
+
+### Other channel types
+
 - [`Mult`](https://docs.thi.ng/umbrella/csp/classes/Mult.html) for channel
-  multiplexing (one-to-many splitting) and dynamic add/removal of subscribers
+  multiplexing (aka one-to-many splitting) and dynamic add/removal of
+  subscribers
 - [`PubSub`](https://docs.thi.ng/umbrella/csp/classes/PubSub.html) for
-  topic-based subscriptions, each topic implemented as `Mult`
+  topic-based subscriptions, each topic implemented as a `Mult`
 
 ### Channel operators
 
@@ -67,6 +113,52 @@ Provided are:
 ## API
 
 {{pkg.docs}}
+
+### Ping pong
+
+```ts tangle:export/readme-pingpong.ts
+import { channel } from "@thi.ng/csp";
+
+// create CSP channels for bi-directional comms
+const ping = channel<number>({ id: "ping" });
+const pong = channel<number>({ id: "pong" });
+
+(async () => {
+	while (true) {
+		const x = await ping.read();
+		if (x === undefined || x > 5) {
+			ping.close();
+			pong.close();
+			break;
+		}
+		console.log("ping", x);
+		await pong.write(x + 1);
+	}
+	console.log("ping done");
+})();
+
+(async () => {
+	while (true) {
+		const x = await pong.read();
+		if (x === undefined) break;
+		console.log("pong", x);
+		await ping.write(x + 1);
+	}
+	console.log("pong done");
+})();
+
+// kickoff
+ping.write(0);
+
+// ping 0
+// pong 1
+// ping 2
+// pong 3
+// ping 4
+// pong 5
+// ping done
+// pong done
+```
 
 ### PubSub
 
