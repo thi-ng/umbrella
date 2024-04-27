@@ -185,36 +185,47 @@ directory is using this package:
 ```ts tangle:export/readme-pingpong.ts
 import { channel } from "@thi.ng/csp";
 
-// create CSP channels for bi-directional comms
-const ping = channel<number>({ id: "ping" });
-const pong = channel<number>({ id: "pong" });
+// create CSP channel for bi-directional communication
+const chan = channel<number>({ id: "ping" });
 
+// create first async process (ping)
 (async () => {
     while (true) {
-        const x = await ping.read();
+        const x = await chan.read();
         if (x === undefined || x > 5) {
-            ping.close();
-            pong.close();
+            console.log("stopping...");
+            chan.close();
             break;
         }
         console.log("ping", x);
-        await pong.write(x + 1);
+        await chan.write(x + 1);
     }
     console.log("ping done");
 })();
 
+// create second async process (pong, almost identical to ping)
 (async () => {
     while (true) {
-        const x = await pong.read();
+        const x = await chan.read();
         if (x === undefined) break;
         console.log("pong", x);
-        await ping.write(x + 1);
+        await chan.write(x + 1);
     }
     console.log("pong done");
 })();
 
 // kickoff
-ping.write(0);
+chan.write(0);
+
+// ping 0
+// pong 1
+// ping 2
+// pong 3
+// ping 4
+// pong 5
+// stopping...
+// ping done
+// pong done
 ```
 
 ### PubSub
