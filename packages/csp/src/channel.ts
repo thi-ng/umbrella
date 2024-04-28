@@ -292,15 +292,8 @@ export class Channel<T> implements IChannel<T> {
 		return this.state === STATE_CLOSED;
 	}
 
-	protected deliver() {
-		const { reads, writes } = this;
-		const [msg, write] = writes.read();
-		write(true);
-		reads.shift()!(msg);
-		this.updateQueue();
-	}
-
-	protected updateQueue() {
+	/** @internal */
+	updateQueue() {
 		const { queue, writes } = this;
 		// move item from queue to write buffer
 		if (queue.length && writes.writable()) {
@@ -309,5 +302,13 @@ export class Channel<T> implements IChannel<T> {
 		if (this.state === STATE_CLOSING && !writes.readable()) {
 			this.state = STATE_CLOSED;
 		}
+	}
+
+	protected deliver() {
+		const { reads, writes } = this;
+		const [msg, write] = writes.read();
+		write(true);
+		reads.shift()!(msg);
+		this.updateQueue();
 	}
 }

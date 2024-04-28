@@ -151,6 +151,7 @@ export const select = async <T>(
 	if (sel.writes.readable()) {
 		const [msg, write] = sel.writes.read();
 		write(true);
+		sel.updateQueue();
 		return [msg, sel];
 	}
 	return [undefined, sel];
