@@ -1928,6 +1928,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-reactive-svg@workspace:examples/rdom-reactive-svg":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-reactive-svg@workspace:examples/rdom-reactive-svg"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.4.3"
+    vite: "npm:^5.2.6"
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-search-docs@workspace:examples/rdom-search-docs":
   version: 0.0.0-use.local
   resolution: "@example/rdom-search-docs@workspace:examples/rdom-search-docs"
