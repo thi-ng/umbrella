@@ -30,8 +30,8 @@ export const concat = async <T>(
 };
 
 /**
- * Consumes & collects all future values written to channel `chan` until
- * closed or the max. number of values has been collected (whatever comes
+ * Consumes & collects all queued and future values written to channel `chan`
+ * until closed or the max. number of values has been collected (whatever comes
  * first). Returns a promise of the result array.
  *
  * @param chan
@@ -51,6 +51,16 @@ export const consume = async <T>(
 	return res;
 };
 
+/**
+ * Consumes all queued and future values written to channel `chan` until closed
+ * or the max. number of values has been reached (whatever comes first). Calls
+ * `fn` with each value read (presumably for side effects). Returns a void
+ * promise which resolves when the consumer is done.
+ *
+ * @param chan
+ * @param fn
+ * @param num
+ */
 export const consumeWith = async <T>(
 	chan: Channel<T>,
 	fn: Fn2<T, Channel<T>, void>,
@@ -63,6 +73,12 @@ export const consumeWith = async <T>(
 	}
 };
 
+/**
+ * Similar to {@link consume}, but only processes any current in-flight writes
+ * and returns a promise with an array of their values.
+ *
+ * @param chan
+ */
 export const drain = async <T>(chan: Channel<T>) =>
 	await (async () => {
 		const ops: Promise<T>[] = [];
@@ -76,6 +92,14 @@ export const drain = async <T>(chan: Channel<T>) =>
 		return Promise.all(ops);
 	})();
 
+/**
+ * Takes an async iterable and returns a new CSP {@link Channel}, which receives
+ * all values from `src`. If `close` is true (default), the channel will be
+ * automatically closed once the iterable is exhausted.
+ *
+ * @param src
+ * @param close
+ */
 export const fromAsyncIterable = <T>(src: AsyncIterable<T>, close = true) => {
 	const chan = new Channel<T>();
 	(async () => {
@@ -139,6 +163,15 @@ export const pipe = <T, DEST extends IWriteable<T> & IClosable>(
 	return dest;
 };
 
+/**
+ * Takes one or more input channels and attempts to read from all of them at
+ * once (via {@link Channel.race}, a blocking op). Returns a promise which
+ * resolves once one of the inputs becomes available or was closed, selects that
+ * channel to read from it and returns tuple of `[value, channel]`.
+ *
+ * @param input
+ * @param xs
+ */
 export const select = async <T>(
 	input: Channel<T>,
 	...xs: Channel<T>[]
@@ -157,6 +190,16 @@ export const select = async <T>(
 	return [undefined, sel];
 };
 
+/**
+ * Returns a new {@link Channel} which will automatically close after `delay`
+ * milliseconds.
+ *
+ * @remarks
+ * Intended as utility for enforcing a timeout for {@link select}-style
+ * operations.
+ *
+ * @param delay
+ */
 export const timeout = (delay: number) => {
 	const ch = new Channel<any>();
 	setTimeout(() => ch.close(), delay);
