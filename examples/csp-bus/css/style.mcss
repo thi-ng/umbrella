@@ -1,0 +1,22 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+:root {
+	color-scheme-light-dark
+	bg=#fff
+	text=#000
+	log=#777
+	dark:bg=#000
+	dark:text=#fff
+	dark:log=#999
+}
+
+body { system-sans-serif ma3 bg-color(bg) color(text) }
+
+textarea[disabled] { w-100 pa2 bw0 bg-color(bg) color(log) }
+
+button.stop { db w-100 bg-color-orange color-white h2 bw0 mb3 cursor-pointer }
+
+a.link { color(text) }

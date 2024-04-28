@@ -1,0 +1,41 @@
+// put component specific thi.ng/meta-css style defs here...
+// these will be included in the generated CSS via the `css:build`
+// and `css:watch` script aliases in `package.json`
+
+.counter {
+	bg=#ccc
+	text=#333
+	bt-bg=#000
+	bt-text=#fff
+	bt-bg-disabled=#aaa
+	bt-text-disabled=#ccc
+	prog-bg=#99a
+	prog-val=#d5008f
+
+	dark:bg=#333
+	dark:text=#ccc
+	dark:bt-bg=#fff
+	dark:bt-text=#000
+	dark:bt-bg-disabled=#555
+	dark:bt-text-disabled=#333
+	dark:prog-bg=#556
+	dark:prog-val=#ff41b4
+
+	pa2 mb2 grid grid-cols(4rem 1fr 4rem)
+	bg-color(bg) color(text)
+	{
+		button {
+			bg-color(bt-bg) color(bt-text) bw0 h2 pa2 mr3 cursor-pointer
+			{ &[disabled] { bg-color(bt-bg-disabled) color(bt-text-disabled) cursor-auto } }
+		}
+		progress {
+			w-100 h2 ma0 pa0 mr3 bw0 appearance(none) bg-color(prog-bg)
+			{
+				[value]::-webkit-progress-value { bg-color(prog-val) }
+				[value]::-webkit-progress-bar { bg-color(prog-bg) }
+				[value]::-moz-progress-bar { bg-color(prog-val) }
+			}
+		}
+		>span { mt2 tr }
+	}
+}

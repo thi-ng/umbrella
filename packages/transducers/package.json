@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers",
-	"version": "9.0.3",
+	"version": "9.0.4",
 	"description": "Lightweight transducer implementations for ES6 / TypeScript",
 	"type": "module",
 	"module": "./index.js",
@@ -579,7 +579,7 @@
 			}
 		],
 		"related": [
-			"csp",
+			"csv",
 			"grid-iterators",
 			"fsm",
 			"rstream",

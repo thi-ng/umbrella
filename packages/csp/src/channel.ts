@@ -1,639 +1,312 @@
-import type {
-	Fn,
-	Fn0,
-	Fn2,
-	FnAny,
-	Maybe,
-	Nullable,
-	Predicate,
-} from "@thi.ng/api";
-import { shuffle } from "@thi.ng/arrays/shuffle";
-import { isFunction } from "@thi.ng/checks/is-function";
-import { DCons } from "@thi.ng/dcons/dcons";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { cycle } from "@thi.ng/transducers/cycle";
-import { delayed } from "@thi.ng/transducers/delayed";
-import { range } from "@thi.ng/transducers/range";
-import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
-import type {
-	ChannelItem,
-	ErrorHandler,
-	IBuffer,
-	IReadWriteableChannel,
-} from "./api.js";
-import { FixedBuffer } from "./buffer.js";
+import type { Fn, Maybe } from "@thi.ng/api";
+import { fifo } from "@thi.ng/buffers/fifo";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import type { ChannelBuffer, ChannelValue, IChannel } from "./api.js";
+import { __nextID } from "./idgen.js";
 
-const enum State {
-	OPEN,
-	CLOSED,
-	DONE,
+export const MAX_READS = 1024;
+export const MAX_WRITES = 1024;
+
+const STATE_OPEN = 0;
+const STATE_CLOSING = 1;
+const STATE_CLOSED = 2;
+
+export interface ChannelOpts {
+	id: string;
 }
 
-export class Channel<T> implements IReadWriteableChannel<T> {
-	static constantly<T>(x: T, delay?: number) {
-		const chan = new Channel<T>(delay ? <any>delayed(delay) : null);
-		chan.produce(() => x);
-		return chan;
-	}
+/**
+ * Syntax sugar for creating a new CSP {@link Channel}. By default, the channel
+ * has a buffer capacity of 1 value, but supports custom buffer sizes and/or
+ * implementations (described in readme).
+ *
+ * @param opts
+ */
+export function channel<T>(opts?: Partial<ChannelOpts>): Channel<T>;
+export function channel<T>(
+	buf: ChannelBuffer<T> | number,
+	opts?: Partial<ChannelOpts>
+): Channel<T>;
+export function channel(...args: any[]) {
+	return new Channel(...args);
+}
 
-	static repeatedly<T>(fn: Fn0<T>, delay?: number) {
-		const chan = new Channel<T>(delay ? <any>delayed(delay) : null);
-		chan.produce(fn);
-		return chan;
-	}
-
-	static cycle<T>(src: Iterable<T>, delay?: number) {
-		return Channel.from(cycle(src), delay ? <any>delayed(delay) : null);
-	}
-
-	static range(): Channel<number>;
-	static range(to: number): Channel<number>;
-	static range(from: number, to: number): Channel<number>;
-	static range(from: number, to: number, step: number): Channel<number>;
-	static range(
-		from: number,
-		to: number,
-		step: number,
-		delay: number
-	): Channel<number>;
-	static range(...args: any[]): Channel<number> {
-		const [from, to, step, delay] = args;
-		return Channel.from(
-			range(from, to, step),
-			delay !== undefined ? <any>delayed(delay) : null
-		);
-	}
+export class Channel<T> implements IChannel<T> {
+	id: string;
+	writes: ChannelBuffer<T>;
+	queue: ChannelValue<T>[] = [];
+	reads: Fn<Maybe<T>, void>[] = [];
+	races: Fn<Channel<T>, void>[] = [];
+	protected state = STATE_OPEN;
 
 	/**
-	 * Constructs new channel which closes automatically after given period.
+	 * See {@link channel} for reference.
 	 *
-	 * @param delay - time in ms
+	 * @param opts
 	 */
-	static timeout(delay: number): Channel<any> {
-		const chan = new Channel(`timeout-${Channel.NEXT_ID++}`);
-		setTimeout(() => chan.close(), delay);
-		return chan;
-	}
-
-	/**
-	 * Shorthand for: `Channel.timeout(delay).take()`
-	 *
-	 * @param delay - time in ms
-	 */
-	static sleep(delay: number) {
-		return Channel.timeout(delay).read();
-	}
-
-	/**
-	 * Creates new channel with single value from given promise, then closes
-	 * automatically iff promise has been resolved.
-	 *
-	 * @param p - promise
-	 */
-	static fromPromise<T>(p: Promise<T>) {
-		const chan = new Channel<T>();
-		p.then((x) =>
-			(async () => {
-				await chan.write(x);
-				await chan.close();
-				return x;
-			})()
-		);
-		return chan;
-	}
-
-	static from<T>(src: Iterable<any>): Channel<T>;
-	static from<T>(src: Iterable<any>, close: boolean): Channel<T>;
-	static from<T>(src: Iterable<any>, tx: Transducer<any, T>): Channel<T>;
-	static from<T>(
-		src: Iterable<any>,
-		tx: Transducer<any, T>,
-		close: boolean
-	): Channel<T>;
-	static from<T>(...args: any[]) {
-		let close, tx;
+	constructor(opts?: Partial<ChannelOpts>);
+	constructor(buf: ChannelBuffer<T> | number, opts?: Partial<ChannelOpts>);
+	constructor(...args: any[]) {
+		let buf: ChannelBuffer<T> | number = 1;
+		let opts: Maybe<Partial<ChannelOpts>>;
 		switch (args.length) {
 			case 1:
+				if (isPlainObject(args[0])) opts = args[0];
+				else buf = args[0];
 				break;
 			case 2:
-				if (typeof args[1] === "boolean") {
-					close = args[1];
-				} else {
-					tx = args[1];
-				}
+				[buf, opts] = args;
 				break;
-			case 3:
-				tx = args[1];
-				close = args[2];
-				break;
-			default:
-				illegalArity(args.length);
 		}
-		const chan = new Channel<T>(tx);
-		chan.into(args[0], close);
-		return chan;
+		this.writes = isNumber(buf) ? fifo(buf) : buf;
+		this.id = opts?.id ?? `chan-${__nextID()}`;
 	}
 
 	/**
-	 * Takes an array of channels and blocks until any of them becomes
-	 * readable (or has been closed). The returned promised resolves into
-	 * an array of `[value, channel]`. Channel order is repeatedly
-	 * shuffled for each read attempt.
-	 *
-	 * @param chans - source channels
-	 */
-	static select(chans: Channel<any>[]) {
-		return new Promise<any>((resolve) => {
-			const _select = () => {
-				for (let c of shuffle(chans)) {
-					if (c.isReadable() || c.isClosed()) {
-						c.read().then((x: any) => resolve([x, c]));
-						return;
-					}
-				}
-				Channel.SCHEDULE.call(null, _select, 0);
-			};
-			Channel.SCHEDULE.call(null, _select, 0);
-		});
-	}
-
-	/**
-	 * Takes an array of channels to merge into new channel. Any closed
-	 * channels will be automatically removed from the input selection.
-	 * Once all inputs are closed, the target channel will close too (by
-	 * default).
+	 * Returns an async iterator of this channel, acting as adapter between the
+	 * CSP world and the more generic ES async iterables. The iterator stops
+	 * once the channel has been closed and no further values can be read.
 	 *
 	 * @remarks
-	 * If `named` is true, the merged channel will have tuples of:
-	 * `[src-id, val]` If false (default), only received values will be
-	 * forwarded.
-	 *
-	 * @param chans - source channels
-	 * @param out - result channel
-	 * @param close - true, if result closes
-	 * @param named - true, to emit labeled tuples
-	 */
-	static merge(
-		chans: Channel<any>[],
-		out?: Channel<any>,
-		close = true,
-		named = false
-	) {
-		out = out || new Channel<any>();
-		(async () => {
-			while (true) {
-				let [x, ch] = await Channel.select(chans);
-				if (x === undefined) {
-					chans.splice(chans.indexOf(ch), 1);
-					if (!chans.length) {
-						close && (await out.close());
-						break;
-					}
-				} else {
-					await out.write(named ? [ch.id, x] : x);
-				}
-			}
-		})();
-		return out;
-	}
-
-	/**
-	 * Takes an array of channels to merge into new channel of tuples.
-	 * Whereas `Channel.merge()` realizes a sequential merging with no
-	 * guarantees about ordering of the output.
-	 *
-	 * @remarks
-	 * The output channel of this function will collect values from all
-	 * channels and a new tuple is emitted only once a new value has
-	 * been read from ALL channels. Therefore the overall throughput is
-	 * dictated by the slowest of the inputs.
-	 *
-	 * Once any of the inputs closes, the process is terminated and the
-	 * output channel is closed too (by default).
+	 * Multiple iterators will compete for new values. To ensure an iterator
+	 * receives all of the channel's values, you must either ensure there's only
+	 * a single iterator per channel or feed the channel into a {@link mult}
+	 * first and create an iterator of a channel obtained via
+	 * {@link Mult.subscribe}.
 	 *
 	 * @example
-	 * ```ts tangle:../export/merge-tuples.ts
-	 * import { Channel } from "@thi.ng/csp";
+	 * ```ts tangle:../export/channel-iterator.ts
+	 * import { channel } from "@thi.ng/csp";
 	 *
-	 * Channel.mergeTuples([
-	 *   Channel.from([1, 2, 3]),
-	 *   Channel.from([10, 20, 30]),
-	 *   Channel.from([100, 200, 300])
-	 * ]).consume();
+	 * const chan = channel<number>();
 	 *
-	 * // chan-0 : [ 1, 10, 100 ]
-	 * // chan-0 : [ 2, 20, 200 ]
-	 * // chan-0 : [ 3, 30, 300 ]
-	 * // chan-0 done
+	 * (async () => {
+	 *   // implicit iterator conversion of the channel
+	 *   for await(let x of chan) console.log("received", x);
+	 *   console.log("channel closed");
+	 * })()
 	 *
-	 * Channel.mergeTuples([
-	 *   Channel.from([1, 2, 3]),
-	 *   Channel.from([10, 20, 30]),
-	 *   Channel.from([100, 200, 300])
-	 * ], null, false).consume();
+	 * chan.write(1);
+	 * chan.write(2);
+	 * chan.write(3);
+	 * chan.close();
 	 * ```
-	 *
-	 * @param chans - source channels
-	 * @param out - result channel
-	 * @param closeOnFirst - true, if result closes when first input is done
-	 * @param closeOutput - true, if result closes when all inputs are done
 	 */
-	static mergeTuples(
-		chans: Channel<any>[],
-		out?: Channel<any>,
-		closeOnFirst = true,
-		closeOutput = true
-	) {
-		out = out || new Channel<any>();
-		(async () => {
-			let buf = [];
-			let orig = [...chans];
-			let sel = new Set(chans);
-			let n = chans.length;
-			while (true) {
-				let [x, ch] = await Channel.select([...sel]);
-				let idx = orig.indexOf(ch);
-				if (x === undefined) {
-					if (closeOnFirst || chans.length === 1) {
-						break;
-					}
-					chans.splice(idx, 1);
-				}
-				buf[idx] = x;
-				sel.delete(ch);
-				if (--n === 0) {
-					await out.write(buf);
-					buf = [];
-					n = chans.length;
-					sel = new Set(chans);
-				}
-			}
-			closeOutput && (await out.close());
-		})();
-		return out;
-	}
-
-	static MAX_WRITES = 1024;
-	static NEXT_ID = 0;
-
-	static SCHEDULE: Fn2<FnAny<void>, number, void> =
-		typeof setImmediate === "function" ? setImmediate : setTimeout;
-
-	private static RFN: Reducer<any, DCons<any>> = [
-		<any>(() => null),
-		(acc) => acc,
-		(acc: DCons<any>, x) => acc.push(x),
-	];
-
-	id: string;
-	onerror: ErrorHandler;
-
-	protected state: State;
-	protected buf: IBuffer<T>;
-	protected tx: Reducer<T, DCons<T>>;
-	protected writes: DCons<ChannelItem<T>>;
-	protected reads: DCons<Fn<T, void>>;
-	protected txbuf: DCons<T>;
-
-	protected isBusy: boolean;
-
-	constructor();
-	constructor(id: string);
-	constructor(buf: number | IBuffer<T>);
-	constructor(tx: Transducer<any, T>);
-	constructor(tx: Transducer<any, T>, err: ErrorHandler);
-	constructor(id: string, buf: number | IBuffer<T>);
-	constructor(id: string, tx: Transducer<any, T>);
-	constructor(id: string, tx: Transducer<any, T>, err: ErrorHandler);
-	constructor(id: string, buf: number | IBuffer<T>, tx: Transducer<any, T>);
-	constructor(
-		id: string,
-		buf: number | IBuffer<T>,
-		tx: Transducer<any, T>,
-		err: ErrorHandler
-	);
-	constructor(...args: any[]) {
-		let id, buf, tx, err;
-		let [a, b] = args;
-		switch (args.length) {
-			case 0:
-				break;
-			case 1:
-				if (typeof a === "string") {
-					id = a;
-				} else if (maybeBuffer(a)) {
-					buf = a;
-				} else {
-					tx = a;
-				}
-				break;
-			case 2:
-				if (typeof a === "string") {
-					id = a;
-					if (maybeBuffer(b)) {
-						buf = b;
-					} else {
-						tx = b;
-					}
-				} else {
-					[tx, err] = args;
-				}
-				break;
-			case 3:
-				if (isFunction(args[1]) && isFunction(args[2])) {
-					[id, tx, err] = args;
-				} else {
-					[id, buf, tx] = args;
-				}
-				break;
-			case 4:
-				[id, buf, tx, err] = args;
-				break;
-			default:
-				illegalArity(args.length);
+	async *[Symbol.asyncIterator](): AsyncIterableIterator<T> {
+		while (this.state < STATE_CLOSED) {
+			const x = await this.read();
+			if (x !== undefined) yield x;
 		}
-		this.id = id || `chan-${Channel.NEXT_ID++}`;
-		buf = buf || 1;
-		this.buf = typeof buf === "number" ? new FixedBuffer<T>(buf) : buf;
-		this.writes = new DCons();
-		this.reads = new DCons();
-		this.txbuf = new DCons();
-		this.tx = tx ? tx(Channel.RFN) : null;
-		this.onerror = tx && (err || defaultErrorHandler);
-		this.state = State.OPEN;
-		this.isBusy = false;
 	}
 
-	channel() {
-		return this;
-	}
-
-	write(value: any): Promise<boolean> {
-		return new Promise((resolve) => {
-			if (this.state !== State.OPEN) {
-				resolve(false);
-			}
-			if (this.writes.length < Channel.MAX_WRITES) {
-				this.writes.push({
-					value: this.tx
-						? async () => {
-								try {
-									if (
-										isReduced(this.tx[2](this.txbuf, value))
-									) {
-										this.state = State.CLOSED;
-									}
-								} catch (e) {
-									this.onerror(<Error>e, this, value);
-								}
-						  }
-						: () => value,
-					resolve,
-				});
-				this.process();
-			} else {
-				throw new Error(
-					`channel stalled (${Channel.MAX_WRITES} unprocessed writes)`
-				);
-			}
-		});
-	}
-
-	read(): Promise<Maybe<T>> {
-		return new Promise((resolve) => {
-			if (this.state === State.DONE) {
+	/**
+	 * Attempts to read a value from the channel. The returned promise will
+	 * block until such value becomes available or if the channel has been
+	 * closed in the meantime. In that latter case, the promise will resolve to
+	 * `undefined`.
+	 *
+	 * @remarks
+	 * If a value is already available at the time of the function call, the
+	 * promise resolves immediately.
+	 *
+	 * Note: There's a limit of in-flight {@link MAX_READS} allowed per channel.
+	 * The promise will reject if that number is exceeded.
+	 *
+	 * Also see {@link Channel.poll}.
+	 */
+	read() {
+		return new Promise<Maybe<T>>((resolve) => {
+			if (!this.readable()) {
 				resolve(undefined);
+				return;
 			}
-			this.reads.push(resolve);
-			this.process();
+			// if closing only allow more reads if there're still in-flight writes
+			if (this.state < STATE_CLOSING || this.writes.readable()) {
+				// limit number of read requests
+				if (this.reads.length < MAX_READS) {
+					this.reads.push(resolve);
+				} else {
+					resolve(undefined);
+				}
+			}
+			if (this.writes.readable()) this.deliver();
 		});
 	}
 
-	tryRead(timeout = 1000) {
-		return new Promise((resolve) => {
-			(async () =>
-				resolve(
-					(await Channel.select([this, Channel.timeout(timeout)]))[0]
-				))();
+	/**
+	 * Similar to {@link Channel.read}, but not async and non-blocking. Will
+	 * only succeed if the channel is readable (i.e. not yet closed) and if a
+	 * value can be read immediately (without waiting). Returns the value or
+	 * `undefined` if unsuccessful.
+	 *
+	 * @remarks
+	 * Use {@link Channel.closed} to check if the channel is already closed.
+	 */
+	poll(): Maybe<T> {
+		const { reads, writes } = this;
+		if (this.readable() && !reads.length && writes.readable()) {
+			const [msg, write] = writes.read();
+			write(true);
+			this.updateQueue();
+			return msg;
+		}
+	}
+
+	/**
+	 * Attempts to write a new value to the channel and returns a promise
+	 * indicating success or failure. Depending on buffer capacity & behavior,
+	 * the returned promise will block until the channel accept new values (i.e.
+	 * until the next {@link Channel.read}) or if it has been closed in the
+	 * meantime. In that latter case, the promise will resolve to false.
+	 *
+	 * @remarks
+	 * If the channel's buffer accepts new writes or if a read op is already
+	 * waiting at the time of the function call, the promise resolves
+	 * immediately.
+	 *
+	 * If the buffer is already full, the write will be queued and only resolve
+	 * when delivered. Note: As a fail-safe, there's a limit of queued
+	 * {@link MAX_WRITES} allowed per channel. The promise will reject if that
+	 * number is exceeded.
+	 *
+	 * Also see {@link Channel.offer}.
+	 */
+	write(msg: T) {
+		return new Promise<boolean>((resolve) => {
+			if (!this.writable()) {
+				resolve(false);
+				return;
+			}
+			const { reads, writes, races, queue } = this;
+			const val: ChannelValue<T> = [msg, resolve];
+			if (!(writes.writable() && writes.write(val))) {
+				queue.length < MAX_WRITES
+					? queue.push(val)
+					: illegalState(
+							"max. queue capacity reached, reduce back pressure!"
+					  );
+			}
+			if (reads.length) {
+				this.deliver();
+			} else if (races.length) {
+				races.shift()!(this);
+			}
 		});
 	}
 
-	close(flush = false) {
-		if (this.state === State.OPEN) {
-			this.state = State.CLOSED;
-			flush && this.flush();
-			return this.process();
+	/**
+	 * Similar to {@link Channel.write}, but not async and non-blocking. Will
+	 * only succeed if the channel is writable (i.e. not yet closed/closing) and
+	 * if a write is immediately possible (without queuing). Returns true, if
+	 * successful.
+	 *
+	 * @param msg
+	 */
+	offer(msg: T) {
+		if (this.writable() && this.writes.writable()) {
+			this.write(msg);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Queues a "race" operation & returns a promise which resolves with the
+	 * channel itself when the channel becomes readable, but no other queued
+	 * read operations are waiting (which always have priority). If the channel
+	 * is already closed, the promise resolves immediately.
+	 *
+	 * @remarks
+	 * This op is used internally by {@link select} to choose a channel to read
+	 * from next.
+	 */
+	race() {
+		return new Promise<Channel<T>>((resolve) => {
+			if (!this.readable()) {
+				resolve(this);
+				return;
+			}
+			this.races.push(resolve);
+			if (this.writes.readable()) {
+				this.races.shift()!(this);
+			}
+		});
+	}
+
+	/**
+	 * Triggers closing of the channel (idempotent). Any queued writes remain
+	 * readable, but new writes will be ignored.
+	 *
+	 * @remarks
+	 * Whilst there're still values available for reading,
+	 * {@link Channel.closed} will still return false since the channel state is
+	 * still "closing", not yet fully "closed".
+	 */
+	close() {
+		if (this.state >= STATE_CLOSING) return;
+		const { reads, writes, races } = this;
+		this.state =
+			reads.length || writes.readable() ? STATE_CLOSING : STATE_CLOSED;
+		// deliver outstanding
+		while (reads.length && writes.readable()) this.deliver();
+		// cancel remaining reads
+		if (!writes.readable()) {
+			while (reads.length) reads.shift()!(undefined);
+		}
+		this.state = writes.readable() ? STATE_CLOSING : STATE_CLOSED;
+		while (races.length) races.shift()!(this);
+	}
+
+	/**
+	 * Returns true if the channel is principally readable (i.e. not yet
+	 * closed), however there might not be any values available yet and reads
+	 * might block.
+	 */
+	readable() {
+		return this.state < STATE_CLOSED;
+	}
+
+	/**
+	 * Returns true if the channel is principally writable (i.e. not closing or
+	 * closed), however depending on buffer behavior the channel might not yet
+	 * accept new values and writes might block.
+	 */
+	writable() {
+		return this.state === STATE_OPEN;
+	}
+
+	/**
+	 * Returns true if the channel is fully closed and no further reads or
+	 * writes are possible.
+	 *
+	 * @remarks
+	 * Whilst there're still values available for reading, this will still
+	 * return false since the channel state is still "closing", not yet fully
+	 * "closed".
+	 */
+	closed() {
+		return this.state === STATE_CLOSED;
+	}
+
+	/** @internal */
+	updateQueue() {
+		const { queue, writes } = this;
+		// move item from queue to write buffer
+		if (queue.length && writes.writable()) {
+			writes.write(queue.shift()!);
+		}
+		if (this.state === STATE_CLOSING && !writes.readable()) {
+			this.state = STATE_CLOSED;
 		}
 	}
 
-	isClosed() {
-		return this.state !== State.OPEN;
-	}
-
-	isReadable() {
-		return (
-			(this.state !== State.DONE && this.buf && this.buf.length > 0) ||
-			(this.writes && this.writes.length > 0) ||
-			(this.txbuf && this.txbuf.length > 0)
-		);
-	}
-
-	consume(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
-		return (async () => {
-			let x: Nullable<T>;
-			while (((x = null), (x = await this.read())) !== undefined) {
-				await fn(x);
-			}
-		})();
-	}
-
-	produce(fn: Fn0<T>, close = true) {
-		return (async () => {
-			while (!this.isClosed()) {
-				const val = await fn();
-				if (val === undefined) {
-					close && (await this.close());
-					break;
-				}
-				await this.write(val);
-			}
-		})();
-	}
-
-	consumeWhileReadable(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
-		return (async () => {
-			let x;
-			while (this.isReadable()) {
-				x = await this.read();
-				if (x === undefined) {
-					break;
-				}
-				await fn(x);
-				x = null;
-			}
-		})();
-	}
-
-	reduce<R>(rfn: Reducer<T, R>, acc?: R): Promise<R> {
-		return (async () => {
-			const [init, complete, reduce] = rfn;
-			acc = acc != null ? acc : init();
-			let x: Nullable<T>;
-			while (((x = null), (x = await this.read())) !== undefined) {
-				acc = <any>reduce(acc!, x);
-				if (isReduced(acc)) {
-					acc = (<any>acc).deref();
-					break;
-				}
-			}
-			return unreduced(complete(acc!));
-		})();
-	}
-
-	transduce<A, B>(
-		tx: Transducer<T, A>,
-		rfn: Reducer<A, B>,
-		acc?: B
-	): Promise<B> {
-		return (async () => {
-			const _rfn = tx(rfn);
-			return unreduced(_rfn[1](await this.reduce(_rfn, acc)));
-		})();
-	}
-
-	into(src: Iterable<T>, close = true) {
-		return (async () => {
-			for (let x of src) {
-				if (this.isClosed()) {
-					break;
-				}
-				await this.write(x);
-			}
-			close && (await this.close());
-		})();
-	}
-
-	pipe<R>(dest: Channel<R> | Transducer<T, R>, close = true) {
-		if (!(dest instanceof Channel)) {
-			dest = new Channel<R>(dest);
-		}
-		this.consume((x: T) => (<Channel<R>>dest).write(x)) // return undefined here?
-			.then(() => {
-				close && (<Channel<R>>dest).close();
-			});
-		return dest;
-	}
-
-	split<A, B>(
-		pred: Predicate<T>,
-		truthy?: Channel<A>,
-		falsey?: Channel<B>,
-		close = true
-	) {
-		if (!(truthy instanceof Channel)) {
-			truthy = new Channel<A>();
-		}
-		if (!(falsey instanceof Channel)) {
-			falsey = new Channel<B>();
-		}
-		this.consume((x: T) => (pred(x) ? truthy! : falsey!).write(x)).then(
-			() => {
-				close && (truthy!.close(), falsey!.close());
-			}
-		);
-		return [truthy, falsey];
-	}
-
-	concat(chans: Iterable<Channel<T>>, close = true) {
-		return (async () => {
-			for (let c of chans) {
-				await c.consume((x: T) => this.write(x));
-			}
-			close && (await this.close());
-		})();
-	}
-
-	release() {
-		if (this.state === State.CLOSED) {
-			this.state = State.DONE;
-			this.flush();
-			this.buf.release();
-			delete (<any>this).reads;
-			delete (<any>this).writes;
-			delete (<any>this).buf;
-			delete (<any>this).txbuf;
-			delete (<any>this).tx;
-			delete (<any>this).isBusy;
-			delete (<any>this).onerror;
-		}
-	}
-
-	protected async process() {
-		if (!this.isBusy) {
-			this.isBusy = true;
-			const { buf, txbuf, reads, writes } = this;
-			let doProcess: any = true;
-			while (doProcess) {
-				while (reads.length && (txbuf.length || buf.length)) {
-					if (txbuf.length) {
-						const val = txbuf.drop();
-						if (val !== undefined) {
-							reads.drop()!(val);
-						}
-					} else {
-						const val = await buf.drop()!.value();
-						if (val !== undefined) {
-							reads.drop()!(val);
-						}
-					}
-				}
-				while (writes.length && !buf.isFull()) {
-					const put = writes.drop()!;
-					buf.push(put);
-					put.resolve(true);
-				}
-				if (this.state === State.CLOSED) {
-					if (this.tx && !writes.length) {
-						try {
-							// finalize/complete transducer
-							this.tx[1](this.txbuf);
-						} catch (e) {
-							this.onerror(<Error>e, this);
-						}
-					}
-					if (!this.isReadable()) {
-						this.release();
-						return;
-					}
-				}
-				doProcess =
-					(reads.length && (txbuf.length || buf.length)) ||
-					(writes.length && !buf.isFull());
-			}
-			this.isBusy = false;
-		}
-	}
-
-	protected flush() {
-		let op: any;
-		while ((op = this.reads.drop())) {
-			op();
-		}
-		while ((op = this.writes.drop())) {
-			op.resolve(false);
-		}
-		this.buf.release();
+	protected deliver() {
+		const { reads, writes } = this;
+		const [msg, write] = writes.read();
+		write(true);
+		reads.shift()!(msg);
+		this.updateQueue();
 	}
 }
-
-const defaultErrorHandler = (e: Error, chan: Channel<any>, val?: any) =>
-	console.log(
-		chan.id,
-		"error occurred",
-		e.message,
-		val !== undefined ? val : ""
-	);
-
-const maybeBuffer = (x: any) =>
-	x instanceof FixedBuffer || typeof x === "number";

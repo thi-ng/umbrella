@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/leb128",
-	"version": "3.1.1",
+	"version": "3.1.2",
 	"description": "WASM based LEB128 encoder / decoder (signed & unsigned)",
 	"type": "module",
 	"module": "./index.js",
@@ -42,7 +42,7 @@
 	"dependencies": {
 		"@thi.ng/checks": "^3.6.3",
 		"@thi.ng/errors": "^2.5.6",
-		"@thi.ng/transducers-binary": "^2.1.118"
+		"@thi.ng/transducers-binary": "^2.1.119"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.0",

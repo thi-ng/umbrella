@@ -1,125 +1,129 @@
-import { DCons } from "@thi.ng/dcons/dcons";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { Transducer } from "@thi.ng/transducers";
-import type { IWriteableChannel } from "./api.js";
+import type { IClosable, IWriteable } from "./api.js";
 import { Channel } from "./channel.js";
+import { __nextID } from "./idgen.js";
 
-export class Mult<T> implements IWriteableChannel<T> {
-	protected static nextID = 0;
+/**
+ * Syntax sugar for {@link Mult} ctor. Creates a new `Mult` which allows
+ * multiple child subscriptions, each receiving the same values written to (or
+ * received by) the Mult itself, i.e. it acts as a channel splitter, supporting
+ * dynamic subscriptions and unsubscriptions.
+ *
+ * @remarks
+ * If `src` is a channel, it will be used as input. If given a string, a new
+ * channel with the given ID will be created (for receiving values).
+ *
+ * @param arg
+ */
+export const mult = <T>(arg?: string | Channel<T>) => new Mult<T>(arg);
 
+export class Mult<T> implements IWriteable<T>, IClosable {
 	protected src: Channel<any>;
-	protected taps: DCons<Channel<any>>;
-	protected tapID = 0;
+	protected taps: Channel<any>[] = [];
 
-	constructor();
-	constructor(id: string);
-	constructor(src: Channel<T>);
-	constructor(tx: Transducer<any, T>);
-	constructor(id: string, tx: Transducer<any, T>);
-	constructor(...args: any[]) {
+	/**
+	 * See {@link mult} for reference.
+	 *
+	 * @param arg
+	 */
+	constructor(arg?: string | Channel<T>) {
 		let id, src;
-		switch (args.length) {
-			case 2:
-				id = args[0];
-				src = args[1];
-				break;
-			case 1:
-				if (typeof args[0] === "string") {
-					id = args[0];
-				} else {
-					src = args[0];
-				}
-				break;
-			case 0:
-				id = "mult" + Mult.nextID++;
-				break;
-			default:
-				illegalArity(args.length);
-		}
-		if (src instanceof Channel) {
-			this.src = src;
+		if (typeof arg === "string") {
+			id = arg;
 		} else {
-			this.src = new Channel<T>(id, src);
+			src = arg;
 		}
-		this.taps = new DCons();
+		this.src =
+			src instanceof Channel
+				? src
+				: new Channel<T>({ id: id ?? `mult${__nextID()}` });
 		this.process();
 	}
 
-	get id() {
-		return this.src && this.src.id;
+	writable() {
+		return this.src.writable();
 	}
 
-	set id(id: string) {
-		this.src && (this.src.id = id);
+	write(val: T) {
+		return this.src.write(val);
 	}
 
-	channel() {
-		return this.src;
+	close() {
+		return this.src.close();
 	}
 
-	write(val: any) {
-		if (this.src) {
-			return this.src.write(val);
-		}
-		return Promise.resolve(false);
+	closed() {
+		return this.src.closed();
 	}
 
-	close(flush = false) {
-		return this.src ? this.src.close(flush) : undefined;
-	}
-
-	tap<R>(ch?: Channel<R> | Transducer<T, R>) {
-		if (this.taps) {
-			if (!(ch instanceof Channel)) {
-				ch = new Channel<R>(this.src.id + "-tap" + this.tapID++, ch!);
-			} else if (this.taps.find(ch)) {
-				return ch;
-			}
-			this.taps.push(ch);
+	/**
+	 * Attaches (and possibly creates) a new subscription channel to receive any
+	 * values received by the `Mult` itself. Returns it.
+	 *
+	 * @remarks
+	 * The channel can later be detached again via {@link Mult.unsubscribe}.
+	 *
+	 * @param ch
+	 */
+	subscribe(ch?: Channel<T>) {
+		if (!ch) {
+			ch = new Channel({
+				id: `${this.src.id}-tap${__nextID()}`,
+			});
+		} else if (this.taps.includes(ch)) {
 			return ch;
 		}
+		this.taps.push(ch);
+		return ch;
 	}
 
-	untap(ch: Channel<any>) {
-		if (this.taps) {
-			const t = this.taps.find(ch);
-			if (t) {
-				this.taps.remove(t);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	untapAll(close = true) {
-		if (this.taps) {
-			let tap = this.taps.head;
-			while (tap) {
-				close && tap.value.close();
-				this.taps.remove(tap);
-				tap = tap.next;
-			}
+	/**
+	 * Attempts to remove given subscription channel. Returns true if
+	 * successful. If `close` is true (default), the given channel will also be
+	 * closed (only if unsubscription was successful).
+	 *
+	 * @remarks
+	 * See {@link Mult.subscribe} for reverse op.
+	 *
+	 * @param ch
+	 * @param close
+	 */
+	unsubscribe(ch: Channel<T>, close = true) {
+		const idx = this.taps.indexOf(ch);
+		if (idx >= 0) {
+			this.taps.splice(idx, 1);
+			close && ch.close();
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Removes all child subscription channels and if `close` is true (default)
+	 * also closes them.
+	 *
+	 * @remarks
+	 * The `Mult` itself will remain active and will continue to accept new
+	 * subscriptions.
+	 *
+	 * @param close
+	 */
+	unsubscribeAll(close = true) {
+		if (close) {
+			for (let t of this.taps) t.close();
+		}
+		this.taps.length = 0;
+	}
+
 	protected async process() {
 		let x;
-		while (((x = null), (x = await this.src.read())) !== undefined) {
-			let t = this.taps.head;
-			while (t) {
-				if (!(await t.value.write(x))) {
-					this.taps.remove(t);
+		while ((x = await this.src.read()) !== undefined) {
+			for (let t of this.taps) {
+				if (!(await t.write(x))) {
+					this.unsubscribe(t);
 				}
-				t = t.next;
 			}
+			x = null;
 		}
-		for (let t of this.taps) {
-			await t.close();
-		}
-		delete (<any>this).src;
-		delete (<any>this).taps;
-		delete (<any>this).tapID;
+		this.unsubscribeAll();
 	}
 }

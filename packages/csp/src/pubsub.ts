@@ -1,17 +1,39 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { Transducer } from "@thi.ng/transducers";
-import type { IWriteableChannel, TopicFn } from "./api.js";
+import type { IClosable, IWriteable, TopicFn } from "./api.js";
 import { Channel } from "./channel.js";
 import { Mult } from "./mult.js";
 
-export class PubSub<T> implements IWriteableChannel<T> {
-	protected static NEXT_ID = 0;
+/**
+ * Syntax sugar for {@link PubSub} ctor. Creates a new `PubSub` which allows
+ * multiple child subscriptions, based on given topic function.
+ *
+ * @remarks
+ * The topic function will be called for each received value and its result is
+ * used to determine which child subscription should receive the value. New
+ * topic (un)subscriptions can be created dynamically via
+ * {@link PubSub.subscribeTopic} and {@link PubSub.unsubscribeTopic} or
+ * {@link PubSub.unsubscribeAll}. Each topic subscription is a {@link Mult},
+ * which itself allows for multiple child subscriptions.
+ *
+ * @param fn
+ */
+export function pubsub<T>(fn: TopicFn<T>): PubSub<T>;
+export function pubsub<T>(src: Channel<T>, fn: TopicFn<T>): PubSub<T>;
+export function pubsub(...args: any[]) {
+	return new PubSub(...(<[any]>args));
+}
 
+export class PubSub<T> implements IWriteable<T>, IClosable {
 	protected src!: Channel<T>;
 	protected fn!: TopicFn<T>;
-	protected topics: IObjectOf<Mult<T>>;
+	protected topics: IObjectOf<Mult<any>>;
 
+	/**
+	 * See {@link pubsub} for reference.
+	 *
+	 * @param fn
+	 */
 	constructor(fn: TopicFn<T>);
 	constructor(src: Channel<T>, fn: TopicFn<T>);
 	constructor(...args: any[]) {
@@ -21,7 +43,7 @@ export class PubSub<T> implements IWriteableChannel<T> {
 				this.fn = args[1];
 				break;
 			case 1:
-				this.src = new Channel<T>("pubsub" + PubSub.NEXT_ID++);
+				this.src = new Channel<T>();
 				this.fn = args[0];
 				break;
 			default:
@@ -31,79 +53,80 @@ export class PubSub<T> implements IWriteableChannel<T> {
 		this.process();
 	}
 
-	get id() {
-		return this.src && this.src.id;
+	writable() {
+		return this.src.writable();
 	}
 
-	set id(id: string) {
-		this.src && (this.src.id = id);
+	write(val: T) {
+		return this.src.write(val);
 	}
 
-	channel() {
-		return this.src;
+	close() {
+		return this.src.close();
 	}
 
-	write(val: any) {
-		if (this.src) {
-			return this.src.write(val);
-		}
-		return Promise.resolve(false);
-	}
-
-	close(flush = false) {
-		return this.src ? this.src.close(flush) : undefined;
+	closed() {
+		return this.src.closed();
 	}
 
 	/**
-	 * Creates a new topic subscription channel and returns it.
-	 * Each topic is managed by its own {@link Mult} and can have arbitrary
-	 * number of subscribers. If the optional transducer is given, it will
-	 * only be applied to the new subscription channel.
-	 *
-	 * The special "*" topic can be used to subscribe to all messages and
-	 * acts as multiplexed pass-through of the source channel.
+	 * Creates a new topic subscription channel and returns it. Each topic is
+	 * managed by its own {@link Mult} and can have arbitrary number of
+	 * subscribers.
 	 *
 	 * @param id - topic id
-	 * @param tx - transducer for new subscription
 	 */
-	sub(id: string, tx?: Transducer<T, any>) {
+	subscribeTopic<S extends T = T>(id: string) {
 		let topic = this.topics[id];
 		if (!topic) {
-			this.topics[id] = topic = new Mult(this.src.id + "-" + id);
+			this.topics[id] = topic = new Mult(`${this.src.id}-${id}`);
 		}
-		return topic.tap(tx);
+		return <Channel<S>>topic.subscribe();
 	}
 
-	unsub(id: string, ch: Channel<T>) {
-		let topic = this.topics[id];
-		if (topic) {
-			return topic.untap(ch);
-		}
-		return false;
+	/**
+	 * Attempts to remove a subscription channel for given topic `id`. Returns
+	 * true if successful. If `close` is true (default), the given channel will
+	 * also be closed (only if unsubscription was successful).
+	 *
+	 * @remarks
+	 * See {@link Mult.subscribe} for reverse op.
+	 *
+	 * @param id
+	 * @param ch
+	 * @param close
+	 */
+	unsubscribeTopic<S extends T = T>(
+		id: string,
+		ch: Channel<S>,
+		close = true
+	) {
+		const topic = this.topics[id];
+		return topic?.unsubscribe(ch, close) ?? false;
 	}
 
-	unsubAll(id: string, close = true) {
-		let topic = this.topics[id];
-		if (topic) {
-			return topic.untapAll(close);
-		}
-		return false;
+	/**
+	 * Removes all child subscription channels for given topic `id` and if
+	 * `close` is true (default) also closes them.
+	 *
+	 * @param close
+	 */
+	unsubscribeAll(id: string, close = true) {
+		const topic = this.topics[id];
+		topic?.unsubscribeAll(close);
 	}
 
 	protected async process() {
 		let x;
-		while (((x = null), (x = await this.src.read())) !== undefined) {
-			const id = await this.fn(x);
+		while ((x = await this.src.read()) !== undefined) {
+			const id = this.fn(x);
 			let topic = this.topics[id];
 			topic && (await topic.write(x));
-			topic = this.topics["*"];
-			topic && (await topic.write(x));
+			x = null;
 		}
-		for (let id of Object.keys(this.topics)) {
-			this.topics[id].close();
+		for (let t of Object.values(this.topics)) {
+			t.close();
 		}
-		delete (<any>this).src;
-		delete (<any>this).topics;
-		delete (<any>this).fn;
+		this.topics = {};
 	}
 }

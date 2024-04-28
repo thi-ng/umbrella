@@ -21,6 +21,7 @@
   - [Transducers](#transducers)
   - [Reducers](#reducers)
 - [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -83,6 +84,12 @@ Async versions of various highly composable transducers, reducers and iterators.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-async%5D+in%3Atitle)
 
+## Related packages
+
+- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
+- [@thi.ng/fibers](https://github.com/thi-ng/umbrella/tree/develop/packages/fibers) - Process hierarchies & operators for cooperative multitasking
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+
 ## Installation
 
 ```bash
@@ -122,13 +129,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.10 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Description                                               | Live demo                                        | Source                                                                        |
-|:----------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| Basic & barebones usage of async iterables in thi.ng/rdom | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-async) |
+| Screenshot                                                                                                     | Description                                                                  | Live demo                                        | Source                                                                        |
+|:---------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/> | CSP channel-based event handling, async transducers & reactive UI components | [Demo](https://demo.thi.ng/umbrella/csp-bus/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)    |
+|                                                                                                                | Basic & barebones usage of async iterables in thi.ng/rdom                    | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-async) |
 
 ## API
 

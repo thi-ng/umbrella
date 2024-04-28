@@ -24,6 +24,8 @@ jobs:
                   node-version: ">=20.0.0"
                   cache: "yarn"
             - uses: goto-bus-stop/setup-zig@v2
+              with:
+                  version: 0.12.0
             - uses: oven-sh/setup-bun@v1
               with:
                   bun-version: latest

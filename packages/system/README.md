@@ -78,12 +78,13 @@ Package sizes (brotli'd, pre-treeshake): ESM: 581 bytes
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
 | Screenshot                                                                                                                | Description                                                                    | Live demo                                                | Source                                                                                |
 |:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/>            | CSP channel-based event handling, async transducers & reactive UI components   | [Demo](https://demo.thi.ng/umbrella/csp-bus/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus) |
 
 ## API

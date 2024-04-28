@@ -50,6 +50,7 @@
     - [Border radius](#border-radius)
     - [Border width](#border-width)
     - [Box sizing](#box-sizing)
+    - [Color scheme](#color-scheme)
     - [Content](#content)
     - [Cursors](#cursors)
     - [Display mode](#display-mode)
@@ -91,12 +92,14 @@
     - [Z-indices](#z-indices)
   - [Templates by category](#templates-by-category)
     - [Animation / transition](#animation--transition)
+    - [Appearance](#appearance)
     - [Aspect ratios](#aspect-ratios)
     - [Background](#background)
     - [Background color](#background-color)
     - [Border color](#border-color)
     - [Color adjustment](#color-adjustment)
     - [Color definitions](#color-definitions)
+    - [Color scheme](#color-scheme)
     - [Dimensions](#dimensions)
     - [Font families](#font-families)
     - [Fx](#fx)
@@ -1111,7 +1114,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 937 CSS utility classes (incl. 64 templates) defined in "MetaCSS base" (v0.9.0):
+Currently, there are 946 CSS utility classes (incl. 70 templates) defined in "MetaCSS base" (v0.12.0):
 
 ### Classes by category
 
@@ -1341,6 +1344,12 @@ Currently, there are 937 CSS utility classes (incl. 64 templates) defined in "Me
 
 - `border-box` (border-box)
 - `content-box` (content-box)
+
+#### Color scheme
+
+- `color-scheme-dark` (dark)
+- `color-scheme-light` (light)
+- `color-scheme-light-dark` (light dark)
 
 #### Content
 
@@ -2329,6 +2338,14 @@ Sets transition-timing-function to `steps(num)`
 
 </details>
 
+#### Appearance
+
+##### `appearance(mode)`
+
+- **mode**: CSS value
+
+Sets appearance (incl. `-webkit` prefixed version) to given value
+
 #### Aspect ratios
 
 ##### `aspect-ratio(width, height)`
@@ -2464,6 +2481,47 @@ Defines a oklch() color variable with given name and additional derived vars for
 - **alpha**: in [0,1] range
 
 Defines a rgb() color variable with given name and additional derived vars for each channel (e.g. `--name-red`). Use `adjust-rgb()` to create derived versions from this base color.
+
+</details>
+
+#### Color scheme
+
+<details><summary>5 items:</summary>
+
+##### `bg-light-dark(light, dark)`
+
+- **light**: variable name (without `--` prefix)
+- **dark**: variable name (without `--` prefix)
+
+Sets `background-color` using CSS light-dark() function
+
+##### `border-light-dark(light, dark)`
+
+- **light**: variable name (without `--` prefix)
+- **dark**: variable name (without `--` prefix)
+
+Sets `border-color` using CSS light-dark() function
+
+##### `fill-light-dark(light, dark)`
+
+- **light**: variable name (without `--` prefix)
+- **dark**: variable name (without `--` prefix)
+
+Sets `fill` color using CSS light-dark() function
+
+##### `light-dark(light, dark)`
+
+- **light**: variable name (without `--` prefix)
+- **dark**: variable name (without `--` prefix)
+
+Sets `color` using CSS light-dark() function
+
+##### `stroke-light-dark(light, dark)`
+
+- **light**: variable name (without `--` prefix)
+- **dark**: variable name (without `--` prefix)
+
+Sets `stroke` color using CSS light-dark() function
 
 </details>
 

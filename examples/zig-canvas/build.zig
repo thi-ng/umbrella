@@ -17,6 +17,19 @@ pub fn build(b: *std.Build) void {
         // build mode override
         .optimize = .ReleaseSmall,
     });
+    lib.root_module.export_symbol_names = &.{
+        "start",
+        "_wasm_allocate",
+        "_wasm_free",
+        "_dom_init",
+        "_dom_callListener",
+        "_dom_addListener",
+        "_dom_removeListener",
+        "_dom_callRAF",
+        "_dom_fullscreenChanged",
+        "_schedule_init",
+        "_schedule_callback",
+    };
 
     b.installArtifact(lib);
 

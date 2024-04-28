@@ -46,9 +46,20 @@
 		}
 	},
 	"vars": {
+		"schemes": ["border-", "background-", ""],
 		"fill-stroke": ["fill", "stroke"]
 	},
 	"specs": [
+		{
+			"doc": { "group": "color scheme", "desc": "<v>" },
+			"name": "color-scheme-<k>",
+			"props": "color-scheme",
+			"values": {
+				"light": "light",
+				"dark": "dark",
+				"light-dark": "light dark"
+			}
+		},
 		{
 			"doc": { "group": "border color", "desc": "<v>" },
 			"name": "border-color-<k>",
@@ -119,6 +130,59 @@
 		}
 	],
 	"templates": [
+		{
+			"doc": {
+				"group": "color scheme",
+				"desc": "Sets `border-color` using CSS light-dark() function",
+				"args": [
+					"light: variable name (without `--` prefix)",
+					"dark: variable name (without `--` prefix)"
+				]
+			},
+			"name": "border-light-dark",
+			"props": { "border-color": "light-dark(var(--{0}), var(--{1}))" }
+		},
+		{
+			"doc": {
+				"group": "color scheme",
+				"desc": "Sets `background-color` using CSS light-dark() function",
+				"args": [
+					"light: variable name (without `--` prefix)",
+					"dark: variable name (without `--` prefix)"
+				]
+			},
+			"name": "bg-light-dark",
+			"props": {
+				"background-color": "light-dark(var(--{0}), var(--{1}))"
+			}
+		},
+		{
+			"doc": {
+				"group": "color scheme",
+				"desc": "Sets `color` using CSS light-dark() function",
+				"args": [
+					"light: variable name (without `--` prefix)",
+					"dark: variable name (without `--` prefix)"
+				]
+			},
+			"name": "light-dark",
+			"props": {
+				"background-color": "light-dark(var(--{0}), var(--{1}))"
+			}
+		},
+		{
+			"doc": {
+				"group": "color scheme",
+				"desc": "Sets `<var>` color using CSS light-dark() function",
+				"args": [
+					"light: variable name (without `--` prefix)",
+					"dark: variable name (without `--` prefix)"
+				]
+			},
+			"name": "<var>-light-dark",
+			"props": { "<var>": "light-dark(var(--{0}), var(--{1}))" },
+			"vars": ["fill-stroke"]
+		},
 		{
 			"doc": {
 				"group": "border color",

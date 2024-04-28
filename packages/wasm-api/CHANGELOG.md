@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-23T07:02:17Z
+- **Last updated**: 2024-04-25T19:44:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -15,6 +15,8 @@ and/or version bumps of transitive dependencies.
 
 - update build script for zig v0.12.0 (incomplete) ([99a1916](https://github.com/thi-ng/umbrella/commit/99a1916))
   - store existing script as build-v0.11.zig
+- update build script for zig v0.12.0 (incomplete) ([d4fcc54](https://github.com/thi-ng/umbrella/commit/d4fcc54))
+  - store existing script as build-v0.11.zig
 
 #### 🩹 Bug fixes
 
@@ -23,6 +25,7 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - minor zig v0.12.0 updates ([4a0751c](https://github.com/thi-ng/umbrella/commit/4a0751c))
+- minor zig v0.12.0 updates ([e3e074d](https://github.com/thi-ng/umbrella/commit/e3e074d))
 
 ### [1.4.69](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@1.4.69) (2024-04-20)
 
