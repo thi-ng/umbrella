@@ -31,7 +31,11 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": false,
+		"readme": [
+			"color",
+			"hiccup-svg",
+			"rdom"
+		],
 		"screenshot": "examples/rdom-reactive-svg.jpg"
 	}
 }
