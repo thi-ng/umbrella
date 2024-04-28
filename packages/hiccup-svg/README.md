@@ -179,7 +179,7 @@ For Node.js REPL:
 const svg = await import("@thi.ng/hiccup-svg");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.65 KB
 
 ## Dependencies
 
@@ -205,6 +205,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                    |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/>                 | Generate SVG using pointfree DSL                                            |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>                   | Polygon to cubic curve conversion & visualization                           | [Demo](https://demo.thi.ng/umbrella/poly-spline/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-reactive-svg.jpg" width="240"/>             | Animated SVG elements with reactive attributes                              | [Demo](https://demo.thi.ng/umbrella/rdom-reactive-svg/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-reactive-svg)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-svg-nodes.png" width="240"/>                | rdom powered SVG graph with draggable nodes                                 | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-svg-nodes)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support      | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                       | [Demo](https://demo.thi.ng/umbrella/svg-resample/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)       |
