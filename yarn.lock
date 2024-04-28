@@ -3942,7 +3942,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/csp@npm:^3.1.0, @thi.ng/csp@workspace:^, @thi.ng/csp@workspace:packages/csp":
+"@thi.ng/csp@npm:^3.2.0, @thi.ng/csp@workspace:^, @thi.ng/csp@workspace:packages/csp":
   version: 0.0.0-use.local
   resolution: "@thi.ng/csp@workspace:packages/csp"
   dependencies:
@@ -5786,7 +5786,7 @@ __metadata:
   resolution: "@thi.ng/rstream-csp@workspace:packages/rstream-csp"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.43.0"
-    "@thi.ng/csp": "npm:^3.1.0"
+    "@thi.ng/csp": "npm:^3.2.0"
     "@thi.ng/rstream": "npm:^8.4.3"
     esbuild: "npm:^0.20.2"
     typedoc: "npm:^0.25.12"

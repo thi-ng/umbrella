@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-26T13:32:20Z
+- **Last updated**: 2024-04-28T14:28:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@3.2.0) (2024-04-28)
+
+#### 🚀 Features
+
+- update Mult/PubSub unsub handling, add docs ([32ad70e](https://github.com/thi-ng/umbrella/commit/32ad70e))
+  - add optional auto-closing for Mult.unsubscribe(), PubSub.unsubscribeTopic()
+  - add docs
+
+#### 🩹 Bug fixes
+
+- update select() ([5e87c8d](https://github.com/thi-ng/umbrella/commit/5e87c8d))
+  - update select(), ensure write queue of selected channel is being updated
+  - mark Channel.updateQueue() as internal
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@3.1.0) (2024-04-26)
 
