@@ -4,6 +4,20 @@ import type { IClosable, IWriteable, TopicFn } from "./api.js";
 import { Channel } from "./channel.js";
 import { Mult } from "./mult.js";
 
+/**
+ * Syntax sugar for {@link PubSub} ctor. Creates a new `PubSub` which allows
+ * multiple child subscriptions, based on given topic function.
+ *
+ * @remarks
+ * The topic function will be called for each received value and its result is
+ * used to determine which child subscription should receive the value. New
+ * topic (un)subscriptions can be created dynamically via
+ * {@link PubSub.subscribeTopic} and {@link PubSub.unsubscribeTopic} or
+ * {@link PubSub.unsubscribeAll}. Each topic subscription is a {@link Mult},
+ * which itself allows for multiple child subscriptions.
+ *
+ * @param fn
+ */
 export function pubsub<T>(fn: TopicFn<T>): PubSub<T>;
 export function pubsub<T>(src: Channel<T>, fn: TopicFn<T>): PubSub<T>;
 export function pubsub(...args: any[]) {
@@ -15,6 +29,11 @@ export class PubSub<T> implements IWriteable<T>, IClosable {
 	protected fn!: TopicFn<T>;
 	protected topics: IObjectOf<Mult<any>>;
 
+	/**
+	 * See {@link pubsub} for reference.
+	 *
+	 * @param fn
+	 */
 	constructor(fn: TopicFn<T>);
 	constructor(src: Channel<T>, fn: TopicFn<T>);
 	constructor(...args: any[]) {
@@ -65,11 +84,33 @@ export class PubSub<T> implements IWriteable<T>, IClosable {
 		return <Channel<S>>topic.subscribe();
 	}
 
-	unsubscribeTopic<S extends T = T>(id: string, ch: Channel<S>) {
+	/**
+	 * Attempts to remove a subscription channel for given topic `id`. Returns
+	 * true if successful. If `close` is true (default), the given channel will
+	 * also be closed (only if unsubscription was successful).
+	 *
+	 * @remarks
+	 * See {@link Mult.subscribe} for reverse op.
+	 *
+	 * @param id
+	 * @param ch
+	 * @param close
+	 */
+	unsubscribeTopic<S extends T = T>(
+		id: string,
+		ch: Channel<S>,
+		close = true
+	) {
 		const topic = this.topics[id];
-		return topic?.unsubscribe(ch) ?? false;
+		return topic?.unsubscribe(ch, close) ?? false;
 	}
 
+	/**
+	 * Removes all child subscription channels for given topic `id` and if
+	 * `close` is true (default) also closes them.
+	 *
+	 * @param close
+	 */
 	unsubscribeAll(id: string, close = true) {
 		const topic = this.topics[id];
 		topic?.unsubscribeAll(close);
