@@ -7,7 +7,7 @@ import type { ChannelBuffer, ChannelValue, IChannel } from "./api.js";
 import { __nextID } from "./idgen.js";
 
 export const MAX_READS = 1024;
-export const MAX_QUEUE = 1024;
+export const MAX_WRITES = 1024;
 
 const STATE_OPEN = 0;
 const STATE_CLOSING = 1;
@@ -143,8 +143,6 @@ export class Channel<T> implements IChannel<T> {
 	 *
 	 * @remarks
 	 * Use {@link Channel.closed} to check if the channel is already closed.
-	 *
-	 * @param msg
 	 */
 	poll(): Maybe<T> {
 		const { reads, writes } = this;
@@ -184,7 +182,7 @@ export class Channel<T> implements IChannel<T> {
 			const { reads, writes, races, queue } = this;
 			const val: ChannelValue<T> = [msg, resolve];
 			if (!(writes.writable() && writes.write(val))) {
-				queue.length < MAX_QUEUE
+				queue.length < MAX_WRITES
 					? queue.push(val)
 					: illegalState(
 							"max. queue capacity reached, reduce back pressure!"
