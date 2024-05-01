@@ -10,10 +10,10 @@ Minimal shader graph setup based on
 and
 [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/develop/packages/scenegraph).
 
-This project was developed from scratch during the [2nd thi.ng livestream on
-Youtube](https://www.youtube.com/watch?v=hEC_qbUXDo8). Please see video for
-further detailed discussion. The only changes made after the recording were some
-updates to the actual 4 shaders.
+This project was developed from scratch during the [2nd thi.ng
+livestream](https://makertube.net/w/aTZXyecXhcexvt9G3hNX15). Please see video
+for further detailed discussion. The only changes made after the recording were
+some updates to the actual 4 shaders.
 
 ## Usage
 

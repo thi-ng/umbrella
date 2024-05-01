@@ -6,7 +6,9 @@
 
 {{pkg.description}}
 
-There's a 2h 45m long video tutorial (live stream) introducing this package: [Building a web editor for creating/testing parse grammars](https://www.youtube.com/watch?v=mXp92s_VP40)
+There's a 2h 45m long video tutorial (live stream) introducing this package:
+[Building a web editor for creating/testing parse
+grammars](https://makertube.net/w/ursFuQNJQQskmejx1ydL7q)
 
 ### Features
 

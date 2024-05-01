@@ -5,8 +5,8 @@
 [Visit playground](http://demo.thi.ng/umbrella/parse-playground/)
 
 This project was largely created during the very first [thi.ng/umbrella
-livestream](https://www.youtube.com/watch?v=mXp92s_VP40&t=44) on
-2020-07-10. Feel free to visit and rewatch the video for more details.
+livestream](https://makertube.net/w/ursFuQNJQQskmejx1ydL7q) on 2020-07-10. Feel
+free to visit and rewatch the video for more details.
 
 The only additional features added afterwards are:
 

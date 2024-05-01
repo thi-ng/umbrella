@@ -64,7 +64,9 @@
 
 DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets.
 
-(**A 2h 40m long video tutorial (live stream) introducing this package: [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)**)
+(**A 2h 40m long video tutorial (live stream) introducing this package:
+[Building a shader graph editor (WebGL, shader AST transpiler,
+UI)](https://makertube.net/w/aTZXyecXhcexvt9G3hNX15)**)
 
 ---
 
@@ -144,7 +146,7 @@ package](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-std
 ### Shadergraph playground
 
 During one of the thi.ng live streams in 2020 I started [building a shader graph
-editor](https://www.youtube.com/watch?v=hEC_qbUXDo8) which I subsequently
+editor](https://makertube.net/w/aTZXyecXhcexvt9G3hNX15) which I subsequently
 developed further and which is online at:
 [shadergraph.thi.ng](https://shadergraph.thi.ng). All shader ops are entirely
 based on functionality provided by shader-ast and its support packages.

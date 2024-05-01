@@ -177,12 +177,13 @@ visual outputs/results).
 
 ### Videos
 
-(FIXME: Recently I closed my Google account and still have to migrate the below videos, currently defunkt)
+The following videos have been migrated from YouTube to their new home at
+[makertube.net](https://makertube.net/c/thingumbrella/videos) (more to come):
 
-- [Building a web editor for creating/testing parse grammars](https://www.youtube.com/watch?v=mXp92s_VP40)
-- [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)
-- [Crash course: TypeScript mapped types in action](https://www.youtube.com/watch?v=jeQ_1oOFlJs)
-- [thi.ng/umbrella livestream #3](https://www.youtube.com/watch?v=_chKFhArGK0)
+- [Building a web editor for creating/testing parse grammars](https://makertube.net/w/ursFuQNJQQskmejx1ydL7q)
+- [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://makertube.net/w/aTZXyecXhcexvt9G3hNX15)
+- [Crash course: TypeScript mapped types in action](https://makertube.net/w/vai9TDyGjkduwapg7C9aJo)
+<!-- - [thi.ng/umbrella livestream #3](https://www.youtube.com/watch?v=_chKFhArGK0) -->
 
 ## Examples & Showcase
 
