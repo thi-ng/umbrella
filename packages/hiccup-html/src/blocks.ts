@@ -38,7 +38,11 @@ export interface IFrameAttribs
 	allowpaymentrequest: BooleanAttrib;
 	csp: StringAttrib;
 	name: StringAttrib;
+	/**
+	 * If given empty string, applies all possible restrictions.
+	 */
 	sandbox: AttribVal<
+		| ""
 		| "allow-downloads-without-user-activation"
 		| "allow-forms"
 		| "allow-modals"
