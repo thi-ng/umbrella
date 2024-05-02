@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import { rotate as $rotate } from "@thi.ng/vectors/rotate";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
@@ -77,8 +77,8 @@ export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
 		line: tx(Line),
 
 		path: ($: Path, theta) => {
-			return new Path(
-				$.segments.map((s) =>
+			const $rotateSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
 					s.geo
 						? {
 								type: s.type,
@@ -88,7 +88,10 @@ export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
 								type: s.type,
 								point: $rotate([], s.point!, theta),
 						  }
-				),
+				);
+			return new Path(
+				$rotateSegments($.segments),
+				$.subPaths.map($rotateSegments),
 				__copyAttribs($)
 			);
 		},

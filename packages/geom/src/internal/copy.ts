@@ -5,8 +5,9 @@ import type {
 	IShape,
 	PCLike,
 	PCLikeConstructor,
+	PathSegment,
 } from "@thi.ng/geom-api";
-import { copyVectors } from "@thi.ng/vectors/copy";
+import { copy, copyVectors } from "@thi.ng/vectors/copy";
 
 /**
  * Creates a shallow copy of shape's attribs. Any `exclude` keys will be removed
@@ -36,3 +37,11 @@ export const __copyShape = <T extends PCLike>(
 	ctor: PCLikeConstructor,
 	inst: T
 ) => <T>new ctor(copyVectors(inst.points), __copyAttribs(inst));
+
+/** @internal */
+export const __copySegment = (s: PathSegment) => {
+	const d: PathSegment = { type: s.type };
+	s.point && (d.point = copy(s.point));
+	s.geo && (d.geo = <any>s.geo.copy());
+	return d;
+};

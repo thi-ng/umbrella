@@ -2,7 +2,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
@@ -118,8 +118,8 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 
 		path: ($: Path, delta) => {
 			delta = __asVec(delta);
-			return new Path(
-				$.segments.map((s) =>
+			const $scaleSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
 					s.geo
 						? {
 								type: s.type,
@@ -129,7 +129,10 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 								type: s.type,
 								point: mul2([], s.point!, <ReadonlyVec>delta),
 						  }
-				),
+				);
+			return new Path(
+				$scaleSegments($.segments),
+				$.subPaths.map($scaleSegments),
 				__copyAttribs($)
 			);
 		},

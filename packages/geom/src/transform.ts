@@ -3,7 +3,6 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
-import { map } from "@thi.ng/transducers/map";
 import { Cubic } from "./api/cubic.js";
 import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
@@ -82,25 +81,25 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
 
 		line: tx(Line),
 
-		path: ($: Path, mat) =>
-			new Path(
-				[
-					...map(
-						(s) =>
-							s.type === "m"
-								? <PathSegment>{
-										type: s.type,
-										point: mulV([], mat, s.point!),
-								  }
-								: <PathSegment>{
-										type: s.type,
-										geo: transform(s.geo!, mat),
-								  },
-						$.segments
-					),
-				],
+		path: ($: Path, mat) => {
+			const $transformSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
+					s.type === "m"
+						? <PathSegment>{
+								type: s.type,
+								point: mulV([], mat, s.point!),
+						  }
+						: <PathSegment>{
+								type: s.type,
+								geo: transform(s.geo!, mat),
+						  }
+				);
+			return new Path(
+				$transformSegments($.segments),
+				$.subPaths.map($transformSegments),
 				__copyAttribs($)
-			),
+			);
+		},
 
 		points: tx(Points),
 

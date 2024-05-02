@@ -4,7 +4,6 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
-import { map } from "@thi.ng/transducers/map";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Cubic } from "./api/cubic.js";
 import type { Group } from "./api/group.js";
@@ -84,25 +83,25 @@ export const transformVertices: MultiFn2<
 
 		line: tx(Line),
 
-		path: ($: Path, fn) =>
-			new Path(
-				[
-					...map(
-						(s) =>
-							s.type === "m"
-								? <PathSegment>{
-										type: s.type,
-										point: mulV([], fn(s.point!), s.point!),
-								  }
-								: <PathSegment>{
-										type: s.type,
-										geo: transformVertices(s.geo!, fn),
-								  },
-						$.segments
-					),
-				],
+		path: ($: Path, fn) => {
+			const $transformSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
+					s.type === "m"
+						? <PathSegment>{
+								type: s.type,
+								point: mulV([], fn(s.point!), s.point!),
+						  }
+						: <PathSegment>{
+								type: s.type,
+								geo: transformVertices(s.geo!, fn),
+						  }
+				);
+			return new Path(
+				$transformSegments($.segments),
+				$.subPaths.map($transformSegments),
 				__copyAttribs($)
-			),
+			);
+		},
 
 		points: tx(Points),
 

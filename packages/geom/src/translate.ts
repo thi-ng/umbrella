@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
 import { set2, set3 } from "@thi.ng/vectors/set";
@@ -93,9 +93,9 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
 
 		line: tx(Line),
 
-		path: ($: Path, delta: ReadonlyVec) =>
-			new Path(
-				$.segments.map((s) =>
+		path: ($: Path, delta: ReadonlyVec) => {
+			const $translateSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
 					s.geo
 						? {
 								type: s.type,
@@ -105,9 +105,13 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
 								type: s.type,
 								point: add2([], s.point!, delta),
 						  }
-				),
+				);
+			return new Path(
+				$translateSegments($.segments),
+				$.subPaths.map($translateSegments),
 				__copyAttribs($)
-			),
+			);
+		},
 
 		points: tx(Points),
 

@@ -10,6 +10,7 @@ import { comp } from "@thi.ng/transducers/comp";
 import { filter } from "@thi.ng/transducers/filter";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import { addN2 } from "@thi.ng/vectors/addn";
 import { max } from "@thi.ng/vectors/max";
 import { min } from "@thi.ng/vectors/min";
@@ -113,15 +114,18 @@ export const bounds: MultiFn1O<IShape, number, Maybe<AABBLike>> = defmulti<
 			rectFromMinMaxWithMargin(min([], a, b), max([], a, b), margin),
 
 		path: (path: Path, margin = 0) => {
+			const $segmentGeo = (segments: PathSegment[]) =>
+				iterator1(
+					comp(
+						map((s: PathSegment) => s.geo!),
+						filter((s) => !!s)
+					),
+					segments
+				);
 			const b = __collBounds(
 				[
-					...iterator1(
-						comp(
-							map((s: PathSegment) => s.geo!),
-							filter((s) => !!s)
-						),
-						path.segments
-					),
+					...$segmentGeo(path.segments),
+					...mapcat($segmentGeo, path.subPaths),
 				],
 				bounds
 			);
