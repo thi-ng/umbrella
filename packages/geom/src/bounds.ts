@@ -20,6 +20,7 @@ import { subN2 } from "@thi.ng/vectors/subn";
 import { aabbFromMinMaxWithMargin } from "./aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -86,6 +87,11 @@ export const bounds: MultiFn1O<IShape, number, Maybe<AABBLike>> = defmulti<
 				subN2([], $.pos, $.r + margin),
 				mulN2(null, [2, 2], $.r + margin)
 			),
+
+		complexpoly: ($: ComplexPolygon, margin = 0) => {
+			const res = __collBounds([$.boundary, ...$.children], bounds);
+			return res ? new Rect(...res).offset(margin) : undefined;
+		},
 
 		cubic: ({ points }: Cubic, margin = 0) =>
 			rectFromMinMaxWithMargin(
