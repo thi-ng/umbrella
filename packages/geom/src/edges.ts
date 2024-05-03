@@ -2,8 +2,6 @@ import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
-import { concat } from "@thi.ng/transducers/concat";
-import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { VecPair } from "@thi.ng/vectors";
 import type { AABB } from "./api/aabb.js";
@@ -53,6 +51,7 @@ import { vertices } from "./vertices.js";
  * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
  * (all others do):
  *
+ * - {@link AABB}
  * - {@link Line}
  * - {@link Polygon}
  * - {@link Polyline}
@@ -96,14 +95,17 @@ export const edges: MultiFn1O<
 			];
 		},
 
-		arc: ($: Arc, opts) => __edges(asPolyline($, opts).points, false),
+		arc: ($: Arc, opts) => __edges(asPolyline($, opts)[0].points, false),
 
 		bpatch: ($: BPatch) => $.edges(),
 
 		circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
 
 		complexpoly: ($: ComplexPolygon) =>
-			concat(edges($.boundary), ...map(edges, $.children)),
+			mapcat(
+				(poly) => __edges(poly.points, true),
+				[$.boundary, ...$.children]
+			),
 
 		group: ($: Group, opts) => mapcat((c) => edges(c, opts), $.children),
 

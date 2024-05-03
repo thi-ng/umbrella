@@ -4,6 +4,7 @@ import {
 	arcLength,
 	area,
 	asPolygon,
+	asPolyline,
 	asSvg,
 	bounds,
 	closestPoint,
@@ -25,6 +26,13 @@ const A = complexPolygon(asPolygon(rectWithCentroid([0, 0], 100)), [
 ]);
 
 describe("complex poly", () => {
+	test("asPolyline", () => {
+		expect(asPolyline(A)).toEqual([
+			asPolyline(A.boundary)[0],
+			...A.children.map((child) => asPolyline(child)[0]),
+		]);
+	});
+
 	test("asSvg", () => {
 		expect(asSvg(A)).toBe(
 			'<path d="M-50,-50L50,-50L50,50L-50,50ZM-25,25L25,25L25,-25L-25,-25Z"/>'

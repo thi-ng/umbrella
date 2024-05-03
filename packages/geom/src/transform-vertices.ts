@@ -76,7 +76,7 @@ export const transformVertices: MultiFn2<
 		ellipse: "circle",
 	},
 	{
-		arc: ($: IShape, fn) => transformVertices(asPolyline($), fn),
+		arc: ($: IShape, fn) => transformVertices(asPolyline($)[0], fn),
 
 		complexpoly: ($: ComplexPolygon, fn) =>
 			new ComplexPolygon(

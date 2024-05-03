@@ -56,7 +56,7 @@ export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> =
 		},
 		{
 			arc: ($, kernel, iter = 1) =>
-				subdivCurve(asPolyline($), kernel, iter),
+				subdivCurve(asPolyline($)[0], kernel, iter),
 
 			circle: ($, kernel, iter = 1) =>
 				subdivCurve(asPolygon($), kernel, iter),
