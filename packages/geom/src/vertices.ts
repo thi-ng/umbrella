@@ -198,13 +198,13 @@ export const vertices: MultiFn1O<
 			return verts;
 		},
 
-		points: ($: Points) => $.points,
+		points: ($: Points) => $.points.slice(),
 
 		poly: ($: Polygon, opts?) =>
-			resample($.points, __sampleAttribs(opts, $.attribs), true),
+			resample($.points, __sampleAttribs(opts, $.attribs), true, true),
 
 		polyline: ($: Polyline, opts?) =>
-			resample($.points, __sampleAttribs(opts, $.attribs)),
+			resample($.points, __sampleAttribs(opts, $.attribs), false, true),
 
 		quadratic: ($: Quadratic, opts?) =>
 			sampleQuadratic($.points, __sampleAttribs(opts, $.attribs)),
