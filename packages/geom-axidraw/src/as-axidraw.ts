@@ -15,6 +15,7 @@ import { __sampleAttribs } from "@thi.ng/geom/internal/vertices";
 import { withAttribs } from "@thi.ng/geom/with-attribs";
 import { concat } from "@thi.ng/transducers/concat";
 import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import { takeNth } from "@thi.ng/transducers/take-nth";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
@@ -92,10 +93,9 @@ export const asAxiDraw: MultiFn1O<
 
 		// used for all shapes which need to be sampled
 		circle: ($, opts) =>
-			__polyline(
-				asPolyline(applyTransforms($), opts?.samples).points,
-				$.attribs,
-				opts
+			mapcat(
+				(line) => __polyline(line.points, $.attribs, opts),
+				asPolyline(applyTransforms($), opts?.samples)
 			),
 
 		complexpoly: ($, opts) =>
@@ -114,7 +114,11 @@ export const asAxiDraw: MultiFn1O<
 		// ignore sample opts for polyline & other polygonal shapes
 		// i.e. use points verbatim
 		polyline: ($, opts) =>
-			__polyline(asPolyline(applyTransforms($)).points, $.attribs, opts),
+			__polyline(
+				asPolyline(applyTransforms($))[0].points,
+				$.attribs,
+				opts
+			),
 
 		group: ($, opts) => __group(<Group>$, opts),
 	}
