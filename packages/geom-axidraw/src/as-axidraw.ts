@@ -4,7 +4,7 @@ import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands";
 import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Group } from "@thi.ng/geom";
+import type { ComplexPolygon, Group } from "@thi.ng/geom";
 import type { Attribs, IHiccupShape, IShape, PCLike } from "@thi.ng/geom-api";
 import { clipPolylinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
@@ -12,6 +12,9 @@ import { applyTransforms } from "@thi.ng/geom/apply-transforms";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
 import { __sampleAttribs } from "@thi.ng/geom/internal/vertices";
+import { withAttribs } from "@thi.ng/geom/with-attribs";
+import { concat } from "@thi.ng/transducers/concat";
+import { map } from "@thi.ng/transducers/map";
 import { takeNth } from "@thi.ng/transducers/take-nth";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
@@ -37,6 +40,7 @@ import { pointsByNearestNeighbor } from "./sort.js";
  *
  * - arc
  * - circle
+ * - complexpoly
  * - cubic
  * - ellipse
  * - group
@@ -92,6 +96,19 @@ export const asAxiDraw: MultiFn1O<
 				asPolyline(applyTransforms($), opts?.samples).points,
 				$.attribs,
 				opts
+			),
+
+		complexpoly: ($, opts) =>
+			concat(
+				asAxiDraw(
+					withAttribs((<ComplexPolygon>$).boundary, $.attribs, false),
+					opts
+				),
+				...map(
+					(child) =>
+						asAxiDraw(withAttribs(child, $.attribs, false), opts),
+					(<ComplexPolygon>$).children
+				)
 			),
 
 		// ignore sample opts for polyline & other polygonal shapes
