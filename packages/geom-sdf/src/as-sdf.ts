@@ -104,7 +104,7 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 		cubic: ($: IShape) =>
 			asSDF(
 				simplify(
-					asPolyline($, (__sdfAttribs($.attribs) || {}).samples),
+					asPolyline($, (__sdfAttribs($.attribs) || {}).samples)[0],
 					0
 				)
 			),
@@ -159,7 +159,7 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 		path: ($: Path) => {
 			const n = (__sdfAttribs($.attribs) || {}).samples;
 			return asSDF(
-				simplify($.closed ? asPolygon($, n) : asPolyline($, n), 0)
+				simplify($.closed ? asPolygon($, n) : asPolyline($, n)[0], 0)
 			);
 		},
 
