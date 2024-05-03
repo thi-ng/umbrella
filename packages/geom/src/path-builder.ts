@@ -152,7 +152,7 @@ export class PathBuilder {
 			geo: new Line([copy(this.currP), copy(this.startP)]),
 			type: "l",
 		});
-		this.curr.closed = true;
+		this.curr.close();
 		return this;
 	}
 
