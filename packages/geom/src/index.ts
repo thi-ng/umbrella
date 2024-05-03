@@ -38,6 +38,7 @@ export * from "./plane.js";
 export * from "./points.js";
 export * from "./polygon.js";
 export * from "./polyline.js";
+export * from "./proximity.js";
 export * from "./quad.js";
 export * from "./quadratic.js";
 export * from "./ray.js";
