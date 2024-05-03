@@ -5,6 +5,7 @@ import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
@@ -44,6 +45,7 @@ import {
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -75,6 +77,12 @@ export const transformVertices: MultiFn2<
 	},
 	{
 		arc: ($: IShape, fn) => transformVertices(asPolyline($), fn),
+
+		complexpoly: ($: ComplexPolygon, fn) =>
+			new ComplexPolygon(
+				<Polygon>transformVertices($.boundary, fn),
+				$.children.map((child) => <Polygon>transformVertices(child, fn))
+			),
 
 		cubic: tx(Cubic),
 

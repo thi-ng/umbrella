@@ -2,6 +2,7 @@ import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike, SamplingOpts } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample/resample";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Polygon } from "./api/polygon.js";
 import { Polyline } from "./api/polyline.js";
 import { asPolygon } from "./as-polygon.js";
@@ -19,6 +20,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * Currently implemented for:
  *
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Ellipse}
  * - {@link Line}
  * - {@link Polygon}
@@ -45,6 +47,13 @@ export const resample: MultiFn2<
 	},
 	{
 		circle: ($: IShape, opts) => asPolygon($, opts),
+
+		complexpoly: ($: ComplexPolygon, opts) =>
+			new ComplexPolygon(
+				<Polygon>resample($.boundary, opts),
+				$.children.map((child) => <Polygon>resample(child, opts)),
+				__attribs($)
+			),
 
 		poly: ($: PCLike, opts) =>
 			new Polygon(_resample($.points, opts, true, true), __attribs($)),

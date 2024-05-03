@@ -19,6 +19,7 @@ import { set2 } from "@thi.ng/vectors/set";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -41,6 +42,25 @@ import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
  * the special `__samples` attribute. If specified, these will be merged with
  * the options.
  *
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link BPatch}
+ * - {@link Circle}
+ * - {@link ComplexPolygon}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
  * @example
  * ```ts
  * import { circle, vertices } from "@thi.ng/geom";
@@ -57,24 +77,6 @@ import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
  * // using shape attribs
  * vertices(circle(100, { __samples: { dist: 10 } }))
  * ```
- *
- * Currently implemented for:
- *
- * - {@link AABB}
- * - {@link Arc}
- * - {@link BPatch}
- * - {@link Circle}
- * - {@link Cubic}
- * - {@link Ellipse}
- * - {@link Group}
- * - {@link Line}
- * - {@link Path}
- * - {@link Points}
- * - {@link Points3}
- * - {@link Quad}
- * - {@link Quadratic}
- * - {@link Rect}
- * - {@link Triangle}
  *
  * @param shape
  * @param opts
@@ -138,6 +140,12 @@ export const vertices: MultiFn1O<
 				buf[i] = cartesian2(null, [r, start + i * delta], pos);
 			}
 			return buf;
+		},
+
+		complexpoly: ($: ComplexPolygon, opts) => {
+			const pts = vertices($.boundary, opts);
+			for (let child of $.children) pts.push(...vertices(child, opts));
+			return pts;
 		},
 
 		cubic: ($: Cubic, opts?) =>

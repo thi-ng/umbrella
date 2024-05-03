@@ -4,6 +4,7 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SubdivKernel } from "@thi.ng/geom-api";
 import * as sdc from "@thi.ng/geom-subdiv-curve/api";
 import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Polygon } from "./api/polygon.js";
 import { Polyline } from "./api/polyline.js";
 import { asPolygon } from "./as-polygon.js";
@@ -25,6 +26,7 @@ import { __dispatch } from "./internal/dispatch.js";
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Ellipse}
  * - {@link Line}
  * - {@link Polygon}
@@ -58,6 +60,15 @@ export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> =
 
 			circle: ($, kernel, iter = 1) =>
 				subdivCurve(asPolygon($), kernel, iter),
+
+			complexpoly: ($: ComplexPolygon, kernel, iter) =>
+				new ComplexPolygon(
+					<Polygon>subdivCurve($.boundary, kernel, iter),
+					$.children.map(
+						(child) => <Polygon>subdivCurve(child, kernel, iter)
+					),
+					__copyAttribs($)
+				),
 
 			poly: ($: Polygon, kernel, iter = 1) =>
 				new Polygon(

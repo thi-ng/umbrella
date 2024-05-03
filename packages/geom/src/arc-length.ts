@@ -5,6 +5,7 @@ import { perimeter } from "@thi.ng/geom-poly-utils/perimeter";
 import { PI, TAU } from "@thi.ng/math/api";
 import { dist } from "@thi.ng/vectors/dist";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
 import type { Line } from "./api/line.js";
@@ -21,6 +22,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * Implemented for:
  *
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Ellipse}
  * - {@link Group} (total sum of child circumferences)
  * - {@link Line}
@@ -40,6 +42,10 @@ export const arcLength: MultiFn1<IShape, number> = defmulti(
 	},
 	{
 		circle: ($: Circle) => TAU * $.r,
+
+		complexpoly: ($: ComplexPolygon) =>
+			arcLength($.boundary) +
+			$.children.reduce((acc, c) => acc + arcLength(c), 0),
 
 		ellipse: ({ r: [a, b] }: Ellipse) =>
 			// Ramanujan approximation

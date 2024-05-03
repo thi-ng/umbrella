@@ -4,6 +4,7 @@ import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import { rotate as $rotate } from "@thi.ng/vectors/rotate";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -32,6 +33,7 @@ import { __rotatedShape as tx } from "./internal/rotate.js";
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -66,6 +68,12 @@ export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
 
 		circle: ($: Circle, theta) =>
 			new Circle($rotate([], $.pos, theta), $.r, __copyAttribs($)),
+
+		complexpoly: ($: ComplexPolygon, theta) =>
+			new ComplexPolygon(
+				<Polygon>rotate($.boundary, theta),
+				$.children.map((child) => <Polygon>rotate(child, theta))
+			),
 
 		cubic: tx(Cubic),
 

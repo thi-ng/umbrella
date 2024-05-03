@@ -10,6 +10,7 @@ import { normalize2 } from "@thi.ng/vectors/normalize";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -42,6 +43,7 @@ import { __scaledShape as tx } from "./internal/scale.js";
  * - {@link AABB}
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -99,6 +101,12 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 						mulN2([], delta, $.r),
 						__copyAttribs($)
 				  ),
+
+		complexpoly: ($: ComplexPolygon, delta) =>
+			new ComplexPolygon(
+				<Polygon>scale($.boundary, delta),
+				$.children.map((child) => <Polygon>scale(child, delta))
+			),
 
 		cubic: tx(Cubic),
 

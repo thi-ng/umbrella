@@ -7,6 +7,7 @@ import { set2, set3 } from "@thi.ng/vectors/set";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -35,6 +36,7 @@ import { __translatedShape as tx } from "./internal/translate.js";
  * - {@link AABB}
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -78,6 +80,12 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
 
 		circle: ($: Circle, delta) =>
 			new Circle(add2([], $.pos, delta), $.r, __copyAttribs($)),
+
+		complexpoly: ($: ComplexPolygon, delta) =>
+			new ComplexPolygon(
+				<Polygon>translate($.boundary, delta),
+				$.children.map((child) => <Polygon>translate(child, delta))
+			),
 
 		cubic: tx(Cubic),
 

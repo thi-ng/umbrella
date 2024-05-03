@@ -3,6 +3,7 @@ import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
 import { neg } from "@thi.ng/vectors/neg";
 import type { Arc } from "./api/arc.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
 import type { Path } from "./api/path.js";
 import type { Ray } from "./api/ray.js";
@@ -16,6 +17,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * Currently implemented for:
  *
  * - {@link Arc}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Group} (only eligible shapes)
  * - {@link Line}
@@ -51,6 +53,12 @@ export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
 			$.start = $.end;
 			$.end = t;
 			$.cw = !$.cw;
+			return $;
+		},
+
+		complexpoly: ($: ComplexPolygon) => {
+			flip($.boundary);
+			for (let c of $.children) flip(c);
 			return $;
 		},
 

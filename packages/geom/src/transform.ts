@@ -3,6 +3,7 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
@@ -42,6 +43,7 @@ import { vertices } from "./vertices.js";
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -73,6 +75,12 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
 	},
 	{
 		arc: ($: IShape, mat) => transform(asPath($), mat),
+
+		complexpoly: ($: ComplexPolygon, mat) =>
+			new ComplexPolygon(
+				<Polygon>transform($.boundary, mat),
+				$.children.map((child) => <Polygon>transform(child, mat))
+			),
 
 		cubic: tx(Cubic),
 

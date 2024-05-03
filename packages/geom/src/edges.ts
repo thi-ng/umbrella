@@ -2,12 +2,15 @@ import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
+import { concat } from "@thi.ng/transducers/concat";
+import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { VecPair } from "@thi.ng/vectors";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { BPatch } from "./api/bpatch.js";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
 import type { Path } from "./api/path.js";
 import type { Polygon } from "./api/polygon.js";
@@ -33,6 +36,7 @@ import { vertices } from "./vertices.js";
  * - {@link Arc}
  * - {@link BPatch}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -97,6 +101,9 @@ export const edges: MultiFn1O<
 		bpatch: ($: BPatch) => $.edges(),
 
 		circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
+
+		complexpoly: ($: ComplexPolygon) =>
+			concat(edges($.boundary), ...map(edges, $.children)),
 
 		group: ($: Group, opts) => mapcat((c) => edges(c, opts), $.children),
 

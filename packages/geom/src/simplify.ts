@@ -1,9 +1,10 @@
 import { peek } from "@thi.ng/arrays/peek";
-import type { MultiFn2 } from "@thi.ng/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PathSegment } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample/simplify";
 import type { Vec } from "@thi.ng/vectors";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Path } from "./api/path.js";
 import { Polygon } from "./api/polygon.js";
 import { Polyline } from "./api/polyline.js";
@@ -21,6 +22,7 @@ import { vertices } from "./vertices.js";
  * @remarks
  * Currently only implemented for:
  *
+ * - {@link ComplexPolygon}
  * - {@link Path}
  * - {@link Polygon}
  * - {@link Polyline}
@@ -31,14 +33,21 @@ import { vertices } from "./vertices.js";
  * @param shape
  * @param threshold
  */
-export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
+export const simplify: MultiFn1O<IShape, number, IShape> = defmulti<
 	any,
-	number,
+	number | undefined,
 	IShape
 >(
 	__dispatch,
 	{},
 	{
+		complexpoly: ($: ComplexPolygon, eps?) =>
+			new ComplexPolygon(
+				<Polygon>simplify($.boundary, eps),
+				$.children.map((child) => <Polygon>simplify(child, eps)),
+				__copyAttribs($)
+			),
+
 		path: ($: Path, eps = 0) => {
 			const $simplifySegments = (segments: PathSegment[]) => {
 				const res: PathSegment[] = [];

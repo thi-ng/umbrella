@@ -18,9 +18,12 @@ import { closestPointCubic } from "@thi.ng/geom-splines/cubic-closest-point";
 import { closestPointQuadratic } from "@thi.ng/geom-splines/quadratic-closest-point";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
+import { distSq2 } from "@thi.ng/vectors/distsq";
+import { set2 } from "@thi.ng/vectors/set";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
 import type { Line } from "./api/line.js";
 import type { Plane } from "./api/plane.js";
@@ -38,6 +41,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link AABB}
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Line}
  * - {@link Plane}
@@ -75,6 +79,21 @@ export const closestPoint: MultiFn2O<
 			closestPointArc(p, $.pos, $.r, $.axis, $.start, $.end, out),
 
 		circle: ($: Circle, p, out) => closestPointCircle(p, $.pos, $.r, out),
+
+		complexpoly: ($: ComplexPolygon, p, out) => {
+			out = closestPointPolyline(p, $.boundary.points, true, out);
+			let minD = distSq2(p, out!);
+			let tmp: Vec = [];
+			for (let child of $.children) {
+				closestPointPolyline(p, child.points, true, tmp);
+				const d = distSq2(p, tmp);
+				if (d < minD) {
+					minD = d;
+					set2(out!, tmp);
+				}
+			}
+			return out;
+		},
 
 		cubic: ({ points }: Cubic, p, out) =>
 			closestPointCubic(
