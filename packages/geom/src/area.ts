@@ -75,7 +75,10 @@ export const area: MultiFn1O<IShape, boolean, number> = defmulti(
 		group: ({ children }: Group) =>
 			children.reduce((sum, $) => sum + area($, false), 0),
 
-		path: ($: Path) => ($.closed ? area(asPolygon($)) : 0),
+		path: ($: Path) => {
+			if (!$.closed) return 0;
+			return asPolygon($).reduce((acc, p) => acc + area(p, true), 0);
+		},
 
 		plane: () => Infinity,
 

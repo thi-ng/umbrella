@@ -46,7 +46,7 @@ export const resample: MultiFn2<
 		rect: "circle",
 	},
 	{
-		circle: ($: IShape, opts) => asPolygon($, opts),
+		circle: ($: IShape, opts) => asPolygon($, opts)[0],
 
 		complexpoly: ($: ComplexPolygon, opts) =>
 			new ComplexPolygon(

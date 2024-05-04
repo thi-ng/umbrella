@@ -122,7 +122,7 @@ export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
 			);
 		},
 
-		rect: ($: Rect, theta) => rotate(asPolygon($), theta),
+		rect: ($: Rect, theta) => rotate(asPolygon($)[0], theta),
 
 		text: ($: Text, theta) =>
 			new Text($rotate([], $.pos, theta), $.body, __copyAttribs($)),

@@ -3,7 +3,6 @@ import { peek } from "@thi.ng/arrays/peek";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
-import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { set } from "@thi.ng/vectors/set";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
@@ -15,7 +14,7 @@ import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
 /**
- * Converts given shape into an array of {@link Polyline}, optionally using
+ * Converts given shape into an array of {@link Polyline}s, optionally using
  * provided
  * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
  * or number of target vertices.
@@ -75,18 +74,12 @@ export const asPolyline: MultiFn1O<
 
 		path: ($: Path, opts) => {
 			const tmp = new Path();
-			return [
-				...map(
-					(segments) => {
-						tmp.segments = segments;
-						const pts = vertices(tmp, opts);
-						peek(segments).type === "z" &&
-							pts.push(set([], pts[0]));
-						return new Polyline(pts, __attribs($));
-					},
-					[$.segments, ...$.subPaths]
-				),
-			];
+			return [$.segments, ...$.subPaths].map((segments) => {
+				tmp.segments = segments;
+				const pts = vertices(tmp, opts);
+				peek(segments).type === "z" && pts.push(set([], pts[0]));
+				return new Polyline(pts, __attribs($));
+			});
 		},
 
 		poly: ($, opts) => {

@@ -63,7 +63,11 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param shape
  * @param opts
  */
-export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
+export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti<
+	any,
+	Partial<CubicOpts> | undefined,
+	Cubic[]
+>(
 	__dispatch,
 	{
 		ellipse: "circle",
@@ -75,9 +79,13 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 
 		circle: ($: Circle) => asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
 
+		// complexpoly: ($: ComplexPolygon, opts = {}) => [
+		// 	...mapcat((x) => asCubic(x, opts), [$.boundary, ...$.children]),
+		// ],
+
 		cubic: ($: Cubic) => [$],
 
-		group: ($: Group, opts?: Partial<CubicOpts>) => [
+		group: ($: Group, opts) => [
 			...mapcat((x) => asCubic(x, opts), $.children),
 		],
 
@@ -89,7 +97,7 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 			...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments),
 		],
 
-		poly: ($: Polygon, opts: Partial<CubicOpts> = {}) =>
+		poly: ($: Polygon, opts = {}) =>
 			__polyCubic(
 				$,
 				opts,
@@ -97,7 +105,7 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 				closedCubicFromControlPoints
 			),
 
-		polyline: ($: Polyline, opts: Partial<CubicOpts> = {}) =>
+		polyline: ($: Polyline, opts = {}) =>
 			__polyCubic(
 				$,
 				opts,
@@ -109,8 +117,7 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 			cubicFromQuadratic(points[0], points[1], points[2], { ...attribs }),
 		],
 
-		rect: ($: Rect, opts?: Partial<CubicOpts>) =>
-			asCubic(asPolygon($), opts),
+		rect: ($: Rect, opts) => asCubic(asPolygon($)[0], opts),
 	}
 );
 

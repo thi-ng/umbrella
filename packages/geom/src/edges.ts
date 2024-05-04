@@ -95,11 +95,12 @@ export const edges: MultiFn1O<
 			];
 		},
 
-		arc: ($: Arc, opts) => __edges(asPolyline($, opts)[0].points, false),
+		arc: ($: Arc, opts) => __edges(asPolyline($, opts)[0].points),
 
 		bpatch: ($: BPatch) => $.edges(),
 
-		circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
+		circle: ($: Circle, opts) =>
+			__edges(asPolygon($, opts)[0].points, true),
 
 		complexpoly: ($: ComplexPolygon) =>
 			mapcat(
@@ -109,7 +110,8 @@ export const edges: MultiFn1O<
 
 		group: ($: Group, opts) => mapcat((c) => edges(c, opts), $.children),
 
-		path: ($: Path, opts) => __edges(asPolygon($, opts).points, $.closed),
+		path: ($: Path, opts) =>
+			mapcat((poly) => __edges(poly.points), asPolyline($, opts)),
 
 		poly: ($: Polygon) => __edges($.points, true),
 

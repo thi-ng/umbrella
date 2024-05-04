@@ -123,7 +123,7 @@ export const transformVertices: MultiFn2<
 
 		quadratic: tx(Quadratic),
 
-		rect: ($: Rect, fn) => transformVertices(asPolygon($), fn),
+		rect: ($: Rect, fn) => transformVertices(asPolygon($)[0], fn),
 
 		tri: tx(Triangle),
 	}
