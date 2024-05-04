@@ -16,7 +16,7 @@ import { vertices } from "./vertices.js";
  * Simplifies given 2D shape boundary using Douglas-Peucker algorithm
  * (implemented by
  * [`simplify()`](https://docs.thi.ng/umbrella/geom-resample/functions/simplify.html))
- * and given `threshold` distance (default: 0, which removes only co-linear
+ * and given `threshold` distance (default: 1e-6, which removes only co-linear
  * vertices).
  *
  * @remarks
@@ -48,7 +48,7 @@ export const simplify: MultiFn1O<IShape, number, IShape> = defmulti<
 				__copyAttribs($)
 			),
 
-		path: ($: Path, eps = 0) => {
+		path: ($: Path, eps = 1e-6) => {
 			const $simplifySegments = (segments: PathSegment[]) => {
 				const res: PathSegment[] = [];
 				const n = segments.length;
@@ -88,10 +88,10 @@ export const simplify: MultiFn1O<IShape, number, IShape> = defmulti<
 			);
 		},
 
-		poly: ($: Polygon, eps = 0) =>
+		poly: ($: Polygon, eps = 1e-6) =>
 			new Polygon(_simplify($.points, eps, true), __copyAttribs($)),
 
-		polyline: ($: Polyline, eps = 0) =>
+		polyline: ($: Polyline, eps = 1e-6) =>
 			new Polyline(_simplify($.points, eps), __copyAttribs($)),
 	}
 );
