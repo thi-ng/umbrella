@@ -157,7 +157,7 @@ function* update() {
 		// https://mastodon.thi.ng/@toxi/110972322869333970
 		const shapes = threadLast(
 			// original shape: circle w/ radius=300, converted to polygon with N vertices
-			[asPolygon(circle(300), 40)],
+			[asPolygon(circle(300), 40)[0]],
 			// lazy, iterative & infinite(!) subdivision: `iterate()` produces the
 			// inductive sequence: f(x+1) = f(f(x)), i.e. the result of the current
 			// iteration becomes the input for the next iteration...

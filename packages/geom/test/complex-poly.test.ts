@@ -3,6 +3,7 @@ import {
 	Polygon,
 	arcLength,
 	area,
+	asPath,
 	asPolygon,
 	asPolyline,
 	asSvg,
@@ -21,11 +22,24 @@ import {
 	vertices,
 } from "../src/index.js";
 
-const A = complexPolygon(asPolygon(rectWithCentroid([0, 0], 100)), [
-	<Polygon>flip(asPolygon(rectWithCentroid([0, 0], 50))),
+const A = complexPolygon(asPolygon(rectWithCentroid([0, 0], 100))[0], [
+	<Polygon>flip(asPolygon(rectWithCentroid([0, 0], 50))[0]),
 ]);
 
 describe("complex poly", () => {
+	test("asPath", () => {
+		expect(asSvg(asPath(A, { linear: true }))).toBe(
+			'<path d="M-50,-50H50V50H-50zM-25,25H25V-25H-25z"/>'
+		);
+		expect(asSvg(asPath(A, {}))).toBe(
+			'<path d="M0,-50C16.667,-50,50,-16.667,50,0C50,16.667,16.667,50,0,50C-16.667,50,-50,16.667,-50,0C-50,-16.667,-16.667,-50,0,-50M0,25C8.333,25,25,8.333,25,0C25,-8.333,8.333,-25,0,-25C-8.333,-25,-25,-8.333,-25,0C-25,8.333,-8.333,25,0,25"/>'
+		);
+	});
+
+	test("asPolygon", () => {
+		expect(asPolygon(A)).toEqual([A.boundary, ...A.children]);
+	});
+
 	test("asPolyline", () => {
 		expect(asPolyline(A)).toEqual([
 			asPolyline(A.boundary)[0],

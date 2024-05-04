@@ -1,8 +1,10 @@
 import { eqDeltaArray } from "@thi.ng/vectors";
 import { describe, expect, test } from "bun:test";
 import {
+	Path,
 	asPolyline,
 	asSvg,
+	line,
 	pathFromSvg,
 	polyline,
 	simplify,
@@ -11,7 +13,32 @@ import {
 
 const A = pathFromSvg("M0,0h100v100h-100zM10,10v80h80v-80z");
 
-describe.only("path", () => {
+describe("path", () => {
+	test("fromSvg", () => {
+		expect(A).toEqual(
+			new Path(
+				[
+					{ type: "m", point: [0, 0] },
+					{ type: "l", geo: line([0, 0], [100, 0]) },
+					{ type: "l", geo: line([100, 0], [100, 100]) },
+					{ type: "l", geo: line([100, 100], [0, 100]) },
+					{ type: "l", geo: line([0, 100], [0, 0]) },
+					{ type: "z" },
+				],
+				[
+					[
+						{ type: "m", point: [10, 10] },
+						{ type: "l", geo: line([10, 10], [10, 90]) },
+						{ type: "l", geo: line([10, 90], [90, 90]) },
+						{ type: "l", geo: line([90, 90], [90, 10]) },
+						{ type: "l", geo: line([90, 10], [10, 10]) },
+						{ type: "z" },
+					],
+				]
+			)
+		);
+	});
+
 	test("asSvg", () => {
 		expect(asSvg(A)).toBe(
 			'<path d="M0,0H100V100H0V0zM10,10V90H90V10H10z"/>'
