@@ -1270,13 +1270,13 @@ Currently, there are 946 CSS utility classes (incl. 70 templates) defined in "Me
 
 <details><summary>27 items:</summary>
 
+- `br-100` (100%)
+- `br-pill` (9999px)
 - `br0` (0rem)
 - `br1` (.125rem)
 - `br2` (.25rem)
 - `br3` (.5rem)
 - `br4` (1rem)
-- `br-100` (100%)
-- `br-pill` (9999px)
 - `brb0` (bottom 0rem)
 - `brb1` (bottom .125rem)
 - `brb2` (bottom .25rem)
