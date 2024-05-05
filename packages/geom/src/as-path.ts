@@ -1,8 +1,10 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { Attribs, CubicOpts, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { copy } from "@thi.ng/vectors/copy";
+import type { APC } from "./api/apc.js";
 import type { Arc } from "./api/arc.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Line } from "./api/line.js";
@@ -42,81 +44,70 @@ export const asPath: ((
 	opts?: Partial<AsPathOpts>,
 	attribs?: Attribs
 ) => Path) &
-	MultiFn2O<IShape, Partial<AsPathOpts> | undefined, Attribs, Path> =
-	defmulti<any, Partial<AsPathOpts> | undefined, Attribs | undefined, Path>(
-		__dispatch,
-		{
-			line: "polyline",
-			quad: "poly",
-			tri: "poly",
+	MultiFn2O<IShape, Maybe<Partial<AsPathOpts>>, Attribs, Path> = defmulti<
+	any,
+	Maybe<Partial<AsPathOpts>>,
+	Maybe<Attribs>,
+	Path
+>(
+	__dispatch,
+	{
+		line: "polyline",
+		quad: "poly",
+		tri: "poly",
+	},
+	{
+		[DEFAULT]: (
+			src: IShape,
+			opts?: Partial<AsPathOpts>,
+			attribs?: Attribs
+		) =>
+			opts?.linear
+				? asPath(asPolygon(src)[0], opts, attribs || __copyAttribs(src))
+				: __defaultImpl(src, opts, attribs),
+
+		arc: ($: Arc, opts, attribs) =>
+			opts?.linear
+				? asPath(asPolyline($)[0], opts, attribs || __copyAttribs($))
+				: __defaultImpl($, opts, attribs),
+
+		complexpoly: ($: ComplexPolygon, opts, attribs) => {
+			attribs = attribs || __copyAttribs($);
+			if (opts?.linear) {
+				return __linearPath(
+					$.boundary,
+					$.children.map((c) => __lineSegments(c.points, true)),
+					attribs,
+					true
+				);
+			}
+			const res = pathFromCubics(asCubic($.boundary, opts), attribs);
+			for (let child of $.children) {
+				res.addSubPaths(pathFromCubics(asCubic(child, opts)).segments);
+			}
+			return res;
 		},
-		{
-			[DEFAULT]: (
-				src: IShape,
-				opts?: Partial<AsPathOpts>,
-				attribs?: Attribs
-			) =>
-				opts?.linear
-					? asPath(
-							asPolygon(src)[0],
-							opts,
-							attribs || __copyAttribs(src)
-					  )
-					: __defaultImpl(src, opts, attribs),
 
-			arc: ($: Arc, opts, attribs) =>
-				opts?.linear
-					? asPath(
-							asPolyline($)[0],
-							opts,
-							attribs || __copyAttribs($)
-					  )
-					: __defaultImpl($, opts, attribs),
+		poly: ($: Polygon, opts, attribs) =>
+			opts?.linear
+				? __linearPath($, [], attribs, true)
+				: __defaultImpl($, opts, attribs),
 
-			complexpoly: ($: ComplexPolygon, opts, attribs) => {
-				attribs = attribs || __copyAttribs($);
-				if (opts?.linear) {
-					return new Path(
-						__lineSegments($.boundary.points, true),
-						$.children.map((c) => __lineSegments(c.points, true)),
-						attribs
-					);
-				}
-				const res = pathFromCubics(asCubic($.boundary, opts), attribs);
-				for (let child of $.children) {
-					res.addSubPaths(
-						pathFromCubics(asCubic(child, opts)).segments
-					);
-				}
-				return res;
-			},
+		polyline: ($: Polyline, opts, attribs) =>
+			opts?.linear
+				? __linearPath($, [], attribs, false)
+				: __defaultImpl($, opts, attribs),
+	}
+);
 
-			poly: ($: Polygon, opts, attribs) =>
-				opts?.linear
-					? new Path(
-							__lineSegments($.points, true),
-							[],
-							attribs || __copyAttribs($)
-					  )
-					: __defaultImpl($, opts, attribs),
-
-			polyline: ($: Polyline, opts, attribs) =>
-				opts?.linear
-					? new Path(
-							__lineSegments($.points, false),
-							[],
-							attribs || __copyAttribs($)
-					  )
-					: __defaultImpl($, opts, attribs),
-		}
-	);
-
+/** @internal */
 const __defaultImpl = (
 	src: IShape,
 	opts?: Partial<CubicOpts>,
 	attribs?: Attribs
 ) => pathFromCubics(asCubic(src, opts), attribs || __copyAttribs(src));
 
+/** @internal */
 const __lineSegments = (points: ReadonlyVec[], closed: boolean) => {
 	if (!points.length) return [];
 	const segments: PathSegment[] = [{ type: "m", point: copy(points[0]) }];
@@ -128,3 +119,16 @@ const __lineSegments = (points: ReadonlyVec[], closed: boolean) => {
 	if (closed) segments.push({ type: "z" });
 	return segments;
 };
+
+/** @internal */
+const __linearPath = (
+	shape: APC,
+	subPaths: PathSegment[][],
+	attribs?: Attribs,
+	closed = false
+) =>
+	new Path(
+		__lineSegments(shape.points, closed),
+		subPaths,
+		attribs || __copyAttribs(shape)
+	);
