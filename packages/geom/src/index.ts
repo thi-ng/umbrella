@@ -27,6 +27,7 @@ export * from "./arc.js";
 export * from "./bpatch.js";
 export * from "./circle.js";
 export * from "./complex-polygon.js";
+export * from "./complex-polygon-from-path.js";
 export * from "./cubic.js";
 export * from "./ellipse.js";
 export * from "./group.js";

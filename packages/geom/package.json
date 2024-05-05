@@ -232,6 +232,9 @@
 		"./closest-point": {
 			"default": "./closest-point.js"
 		},
+		"./complex-polygon-from-path": {
+			"default": "./complex-polygon-from-path.js"
+		},
 		"./complex-polygon": {
 			"default": "./complex-polygon.js"
 		},
