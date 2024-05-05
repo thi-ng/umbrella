@@ -2,9 +2,11 @@ import { eqDeltaArray } from "@thi.ng/vectors";
 import { describe, expect, test } from "bun:test";
 import {
 	Path,
+	asCubic,
 	asPolyline,
 	asSvg,
 	line,
+	pathFromCubics,
 	pathFromSvg,
 	polyline,
 	simplify,
@@ -64,6 +66,18 @@ describe("path", () => {
 				[10, 10],
 			]),
 		]);
+	});
+
+	test("pathFromCubics", () => {
+		expect(
+			asSvg(
+				pathFromCubics(
+					asCubic(pathFromSvg("M0,0H100V100M50,0V-100M75,0V100"))
+				)
+			)
+		).toBe(
+			'<path d="M0,0C33.333,0,66.667,0,100,0C100,33.333,100,66.667,100,100M50,0C50,-33.333,50,-66.667,50,-100M75,0C75,33.333,75,66.667,75,100"/>'
+		);
 	});
 
 	test("vertices", () => {
