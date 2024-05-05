@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PCLike } from "@thi.ng/geom-api";
+import type { IShape, PCLike, PathSegment } from "@thi.ng/geom-api";
 import { closestPoint as closestPointArc } from "@thi.ng/geom-arc/closest-point";
 import {
 	closestPointAABB,
@@ -26,6 +26,7 @@ import type { Circle } from "./api/circle.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
 import type { Line } from "./api/line.js";
+import type { Path } from "./api/path.js";
 import type { Plane } from "./api/plane.js";
 import type { Quadratic } from "./api/quadratic.js";
 import type { Rect } from "./api/rect.js";
@@ -44,6 +45,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Line}
+ * - {@link Path}
  * - {@link Plane}
  * - {@link Points}
  * - {@link Points3}
@@ -107,6 +109,25 @@ export const closestPoint: MultiFn2O<
 
 		line: ({ points }: Line, p, out) =>
 			closestPointSegment(p, points[0], points[1], out),
+
+		path: ($: Path, p, out) => {
+			let minD = Infinity;
+			const $closestPSegment = (segments: PathSegment[]) => {
+				for (let s of segments) {
+					if (!s.geo) continue;
+					const q = closestPoint(s.geo, p)!;
+					if (!q) continue;
+					const d = distSq2(p, q);
+					if (d < minD) {
+						minD = d;
+						out = set2(out || [], q);
+					}
+				}
+			};
+			$closestPSegment($.segments);
+			for (let sub of $.subPaths) $closestPSegment(sub);
+			return out;
+		},
 
 		plane: ($: Plane, p, out) => closestPointPlane(p, $.normal, $.w, out),
 
