@@ -33,6 +33,28 @@ export const pointInSegment = (
 };
 
 /**
+ * Same as {@link pointInSegment}, but for polylines/polygons.
+ *
+ * @param p
+ * @param points
+ * @param closed
+ * @param eps
+ */
+export const pointInSegments = (
+	p: ReadonlyVec,
+	points: ReadonlyVec[],
+	closed: boolean,
+	eps = EPS
+) => {
+	const n = points.length;
+	let [i, j] = closed ? [n - 1, 0] : [0, 1];
+	for (; j < n; i = j, j++) {
+		if (pointInSegment(p, points[i], points[j], eps)) return true;
+	}
+	return false;
+};
+
+/**
  * Returns true if point `p` is inside the circle defined by `pos` and `r`.
  *
  * @param p
