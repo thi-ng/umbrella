@@ -127,6 +127,9 @@
 		"./api/circle": {
 			"default": "./api/circle.js"
 		},
+		"./api/complex-polygon": {
+			"default": "./api/complex-polygon.js"
+		},
 		"./api/cubic": {
 			"default": "./api/cubic.js"
 		},
@@ -229,6 +232,9 @@
 		"./closest-point": {
 			"default": "./closest-point.js"
 		},
+		"./complex-polygon": {
+			"default": "./complex-polygon.js"
+		},
 		"./convex-hull": {
 			"default": "./convex-hull.js"
 		},
@@ -303,6 +309,9 @@
 		},
 		"./polyline": {
 			"default": "./polyline.js"
+		},
+		"./proximity": {
+			"default": "./proximity.js"
 		},
 		"./quad": {
 			"default": "./quad.js"
