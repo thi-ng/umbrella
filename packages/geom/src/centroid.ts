@@ -64,6 +64,7 @@ export const centroid: MultiFn1O<IShape, Vec, Maybe<Vec>> = defmulti<
 		bpatch: "points",
 		ellipse: "circle",
 		line3: "line",
+		path: "group",
 		points3: "points",
 		polyline: "points",
 		quad: "poly",

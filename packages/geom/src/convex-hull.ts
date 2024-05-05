@@ -39,6 +39,7 @@ export const convexHull: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
 		cubic: "group",
 		ellipse: "tri",
 		line: "tri",
+		path: "group",
 		poly: "points",
 		polyline: "points",
 		quad: "points",
