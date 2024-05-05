@@ -25,8 +25,8 @@ import { bounds } from "./bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Computes centroid of given shape, writes result in optionally provided output
- * vector (or creates new one if omitted).
+ * Computes (possibly weighted) centroid of given shape, writes result in
+ * optionally provided output vector (or creates new one if omitted).
  *
  * @remarks
  * Currently implemented for:
@@ -35,6 +35,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Arc}
  * - {@link BPatch}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}

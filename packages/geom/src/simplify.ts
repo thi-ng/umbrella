@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -35,7 +36,7 @@ import { vertices } from "./vertices.js";
  */
 export const simplify: MultiFn1O<IShape, number, IShape> = defmulti<
 	any,
-	number | undefined,
+	Maybe<number>,
 	IShape
 >(
 	__dispatch,
