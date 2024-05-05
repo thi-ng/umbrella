@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { CubicOpts, IShape, PCLike } from "@thi.ng/geom-api";
@@ -10,9 +11,12 @@ import {
 	openCubicFromControlPoints,
 } from "@thi.ng/geom-splines/cubic-from-controlpoints";
 import { TAU } from "@thi.ng/math/api";
+import { concat } from "@thi.ng/transducers/concat";
+import { flatten1 } from "@thi.ng/transducers/flatten1";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import type { Group } from "./api/group.js";
 import type { Line } from "./api/line.js";
@@ -36,6 +40,7 @@ import { __dispatch } from "./internal/dispatch.js";
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -53,6 +58,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * for more details):
  *
  * - {@link Group} (only used for eligible children)
+ * - {@link ComplexPolygon}
  * - {@link Polygon}
  * - {@link Polyline}
  * - {@link Quad}
@@ -65,7 +71,7 @@ import { __dispatch } from "./internal/dispatch.js";
  */
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti<
 	any,
-	Partial<CubicOpts> | undefined,
+	Maybe<Partial<CubicOpts>>,
 	Cubic[]
 >(
 	__dispatch,
@@ -79,9 +85,9 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti<
 
 		circle: ($: Circle) => asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
 
-		// complexpoly: ($: ComplexPolygon, opts = {}) => [
-		// 	...mapcat((x) => asCubic(x, opts), [$.boundary, ...$.children]),
-		// ],
+		complexpoly: ($: ComplexPolygon, opts = {}) => [
+			...mapcat((x) => asCubic(x, opts), [$.boundary, ...$.children]),
+		],
 
 		cubic: ($: Cubic) => [$],
 
@@ -94,7 +100,10 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti<
 		],
 
 		path: ($: Path) => [
-			...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments),
+			...mapcat(
+				(segment) => (segment.geo ? asCubic(segment.geo) : null),
+				concat($.segments, flatten1($.subPaths))
+			),
 		],
 
 		poly: ($: Polygon, opts = {}) =>
