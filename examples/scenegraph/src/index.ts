@@ -64,7 +64,7 @@ const hex = new GeomNode(
 	[300, 300],
 	0,
 	200,
-	asPolygon(circle(0.5, { fill: "#0ff" }), 6)
+	asPolygon(circle(0.5, { fill: "#0ff" }), 6)[0]
 );
 
 // rotated child node
@@ -74,7 +74,7 @@ const triangle = new GeomNode(
 	[0, 0],
 	PI / 4,
 	1,
-	asPolygon(circle(0.5, { fill: "#f0f" }), 3)
+	asPolygon(circle(0.5, { fill: "#f0f" }), 3)[0]
 );
 
 // secondary children

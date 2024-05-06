@@ -2,7 +2,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
@@ -10,6 +10,7 @@ import { normalize2 } from "@thi.ng/vectors/normalize";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -42,6 +43,7 @@ import { __scaledShape as tx } from "./internal/scale.js";
  * - {@link AABB}
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -100,6 +102,12 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 						__copyAttribs($)
 				  ),
 
+		complexpoly: ($: ComplexPolygon, delta) =>
+			new ComplexPolygon(
+				<Polygon>scale($.boundary, delta),
+				$.children.map((child) => <Polygon>scale(child, delta))
+			),
+
 		cubic: tx(Cubic),
 
 		ellipse: ($: Ellipse, delta) => {
@@ -118,8 +126,8 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 
 		path: ($: Path, delta) => {
 			delta = __asVec(delta);
-			return new Path(
-				$.segments.map((s) =>
+			const $scaleSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
 					s.geo
 						? {
 								type: s.type,
@@ -129,7 +137,10 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 								type: s.type,
 								point: mul2([], s.point!, <ReadonlyVec>delta),
 						  }
-				),
+				);
+			return new Path(
+				$scaleSegments($.segments),
+				$.subPaths.map($scaleSegments),
 				__copyAttribs($)
 			);
 		},

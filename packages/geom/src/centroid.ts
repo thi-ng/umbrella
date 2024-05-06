@@ -2,7 +2,10 @@ import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { AABBLike, IShape, PCLike } from "@thi.ng/geom-api";
-import { centerOfWeight2 } from "@thi.ng/geom-poly-utils/center-of-weight";
+import {
+	centerOfWeight2,
+	complexCenterOfWeight2,
+} from "@thi.ng/geom-poly-utils/center-of-weight";
 import { centroid as _centroid } from "@thi.ng/geom-poly-utils/centroid";
 import type { Vec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
@@ -12,6 +15,7 @@ import { mixN } from "@thi.ng/vectors/mixn";
 import { mulN } from "@thi.ng/vectors/muln";
 import { set } from "@thi.ng/vectors/set";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
 import type { Line } from "./api/line.js";
 import type { Plane } from "./api/plane.js";
@@ -21,8 +25,8 @@ import { bounds } from "./bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Computes centroid of given shape, writes result in optionally provided output
- * vector (or creates new one if omitted).
+ * Computes (possibly weighted) centroid of given shape, writes result in
+ * optionally provided output vector (or creates new one if omitted).
  *
  * @remarks
  * Currently implemented for:
@@ -31,6 +35,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Arc}
  * - {@link BPatch}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -59,6 +64,7 @@ export const centroid: MultiFn1O<IShape, Vec, Maybe<Vec>> = defmulti<
 		bpatch: "points",
 		ellipse: "circle",
 		line3: "line",
+		path: "group",
 		points3: "points",
 		polyline: "points",
 		quad: "poly",
@@ -68,6 +74,13 @@ export const centroid: MultiFn1O<IShape, Vec, Maybe<Vec>> = defmulti<
 	},
 	{
 		circle: ($: Circle, out?) => set(out || [], $.pos),
+
+		complexpoly: ($: ComplexPolygon, out?) =>
+			complexCenterOfWeight2(
+				$.boundary.points,
+				$.children.map((c) => c.points),
+				out
+			),
 
 		group: ($: Group, out?) => {
 			const b = bounds($);

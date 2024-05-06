@@ -24,7 +24,7 @@ import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
  * - {@link Polyline}
  *
  * Other shape types will be attempted to be auto-converted via
- * {@link asPolyline} first.
+ * {@link asPolyline} first. Only shapes with a single boundary are supported.
  *
  * Nested groups are NOT supported. Groups are processing their child shapes and
  * forming new child groups of given max. arc lengths and potentially splitting
@@ -83,7 +83,8 @@ export const splitArcLength: MultiFn2<IShape, number, Group> = defmulti<
 	__dispatch,
 	{},
 	{
-		[DEFAULT]: ($: IShape, d: number) => splitArcLength(asPolyline($), d),
+		[DEFAULT]: ($: IShape, d: number) =>
+			splitArcLength(asPolyline($)[0], d),
 
 		group: ($: Group, d) => {
 			const groups: Group[] = [];
@@ -93,7 +94,7 @@ export const splitArcLength: MultiFn2<IShape, number, Group> = defmulti<
 			const queue = $.children.slice().reverse();
 			while (queue.length) {
 				const child = queue.pop()!;
-				const polyline = asPolyline(child);
+				const polyline = asPolyline(child)[0];
 				const sampler = new Sampler(polyline.points);
 				const len = sampler.totalLength();
 				if (currLen + len <= d) {

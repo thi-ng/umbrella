@@ -51,7 +51,7 @@ export class PathBuilder {
 	}
 
 	newPath() {
-		this.curr = new Path([], this.attribs);
+		this.curr = new Path([], [], this.attribs);
 		this.paths.push(this.curr);
 		this.currP = zeroes(2);
 		this.bezierP = zeroes(2);
@@ -60,13 +60,13 @@ export class PathBuilder {
 
 	moveTo(p: Vec, relative = false): PathBuilder {
 		if (this.opts.autoSplit !== false && this.curr.segments.length > 0) {
-			this.curr = new Path([], this.attribs);
+			this.curr = new Path([], [], this.attribs);
 			this.paths.push(this.curr);
 		}
 		p = this.updateCurrent(p, relative);
 		set2(this.startP, p);
 		set2(this.bezierP, p);
-		this.curr.add({
+		this.curr.addSegments({
 			point: p,
 			type: "m",
 		});
@@ -74,7 +74,7 @@ export class PathBuilder {
 	}
 
 	lineTo(p: Vec, relative = false): PathBuilder {
-		this.curr.add({
+		this.curr.addSegments({
 			geo: new Line([copy(this.currP), this.updateCurrent(p, relative)]),
 			type: "l",
 		});
@@ -132,7 +132,7 @@ export class PathBuilder {
 			return this.lineTo(p, relative);
 		}
 		const prev = copy(this.currP);
-		this.curr.add({
+		this.curr.addSegments({
 			geo: arcFrom2Points(
 				prev,
 				this.updateCurrent(p, relative),
@@ -148,11 +148,11 @@ export class PathBuilder {
 	}
 
 	closePath() {
-		this.curr.add({
+		this.curr.addSegments({
 			geo: new Line([copy(this.currP), copy(this.startP)]),
 			type: "l",
 		});
-		this.curr.closed = true;
+		this.curr.close();
 		return this;
 	}
 
@@ -169,7 +169,7 @@ export class PathBuilder {
 		const prev = copy(this.currP);
 		this.currP[i] = relative ? this.currP[i] + p : p;
 		set2(this.bezierP, this.currP);
-		this.curr.add({
+		this.curr.addSegments({
 			geo: new Line([prev, copy(this.currP)]),
 			type: "l",
 		});
@@ -178,7 +178,7 @@ export class PathBuilder {
 	protected addCubic(cp1: Vec, cp2: Vec, p: Vec, relative: boolean) {
 		cp2 = this.absPoint(cp2, relative);
 		set2(this.bezierP, cp2);
-		this.curr.add({
+		this.curr.addSegments({
 			geo: new Cubic([
 				copy(this.currP),
 				cp1,
@@ -191,7 +191,7 @@ export class PathBuilder {
 
 	protected addQuadratic(cp: Vec, p: Vec, relative: boolean) {
 		set2(this.bezierP, cp);
-		this.curr.add({
+		this.curr.addSegments({
 			geo: new Quadratic([
 				copy(this.currP),
 				cp,

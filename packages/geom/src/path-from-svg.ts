@@ -75,7 +75,9 @@ export const pathFromSvg = (svg: string) => {
 					);
 			}
 		}
-		return b.paths;
+		return b.paths[0].addSubPaths(
+			...b.paths.slice(1).map((p) => p.segments)
+		);
 	} catch (e) {
 		throw e instanceof Error
 			? e

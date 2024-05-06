@@ -4,7 +4,7 @@ import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands";
 import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Group } from "@thi.ng/geom";
+import type { Circle, ComplexPolygon, Group, Polyline } from "@thi.ng/geom";
 import type { Attribs, IHiccupShape, IShape, PCLike } from "@thi.ng/geom-api";
 import { clipPolylinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
@@ -12,6 +12,8 @@ import { applyTransforms } from "@thi.ng/geom/apply-transforms";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
 import { __sampleAttribs } from "@thi.ng/geom/internal/vertices";
+import { withAttribs } from "@thi.ng/geom/with-attribs";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import { takeNth } from "@thi.ng/transducers/take-nth";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
@@ -37,6 +39,7 @@ import { pointsByNearestNeighbor } from "./sort.js";
  *
  * - arc
  * - circle
+ * - complexpoly
  * - cubic
  * - ellipse
  * - group
@@ -68,7 +71,7 @@ export const asAxiDraw: MultiFn1O<
 	IShape,
 	Partial<AsAxiDrawOpts>,
 	Iterable<DrawCommand>
-> = defmulti<IShape, Maybe<Partial<AsAxiDrawOpts>>, Iterable<DrawCommand>>(
+> = defmulti<any, Maybe<Partial<AsAxiDrawOpts>>, Iterable<DrawCommand>>(
 	__dispatch,
 	{
 		arc: "circle",
@@ -83,26 +86,36 @@ export const asAxiDraw: MultiFn1O<
 		tri: "polyline",
 	},
 	{
-		points: ($, opts) =>
+		points: ($: PCLike, opts) =>
 			__points((<PCLike>applyTransforms($)).points, $.attribs, opts),
 
 		// used for all shapes which need to be sampled
-		circle: ($, opts) =>
-			__polyline(
-				asPolyline(applyTransforms($), opts?.samples).points,
-				$.attribs,
-				opts
+		circle: ($: Circle, opts) =>
+			mapcat(
+				(line) => __polyline(line.points, $.attribs, opts),
+				asPolyline(applyTransforms($), opts?.samples)
+			),
+
+		complexpoly: ($: ComplexPolygon, opts) =>
+			mapcat(
+				(poly) => asAxiDraw(withAttribs(poly, $.attribs, false), opts),
+				[$.boundary, ...$.children]
 			),
 
 		// ignore sample opts for polyline & other polygonal shapes
 		// i.e. use points verbatim
-		polyline: ($, opts) =>
-			__polyline(asPolyline(applyTransforms($)).points, $.attribs, opts),
+		polyline: ($: Polyline, opts) =>
+			__polyline(
+				asPolyline(applyTransforms($))[0].points,
+				$.attribs,
+				opts
+			),
 
-		group: ($, opts) => __group(<Group>$, opts),
+		group: __group,
 	}
 );
 
+/** @internal */
 function* __group(
 	$: Group,
 	opts?: Partial<AsAxiDrawOpts>
@@ -136,6 +149,7 @@ function* __group(
 	}
 }
 
+/** @internal */
 function* __points(
 	pts: ReadonlyVec[],
 	attribs?: Attribs,
@@ -184,6 +198,7 @@ function* __points(
 	}
 }
 
+/** @internal */
 function* __polyline(
 	pts: ReadonlyVec[],
 	attribs?: Attribs,

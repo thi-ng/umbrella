@@ -3,7 +3,7 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
-import { map } from "@thi.ng/transducers/map";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
@@ -43,6 +43,7 @@ import { vertices } from "./vertices.js";
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -75,6 +76,12 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
 	{
 		arc: ($: IShape, mat) => transform(asPath($), mat),
 
+		complexpoly: ($: ComplexPolygon, mat) =>
+			new ComplexPolygon(
+				<Polygon>transform($.boundary, mat),
+				$.children.map((child) => <Polygon>transform(child, mat))
+			),
+
 		cubic: tx(Cubic),
 
 		group: ($: Group, mat) =>
@@ -82,25 +89,25 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
 
 		line: tx(Line),
 
-		path: ($: Path, mat) =>
-			new Path(
-				[
-					...map(
-						(s) =>
-							s.type === "m"
-								? <PathSegment>{
-										type: s.type,
-										point: mulV([], mat, s.point!),
-								  }
-								: <PathSegment>{
-										type: s.type,
-										geo: transform(s.geo!, mat),
-								  },
-						$.segments
-					),
-				],
+		path: ($: Path, mat) => {
+			const $transformSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
+					s.type === "m"
+						? <PathSegment>{
+								type: s.type,
+								point: mulV([], mat, s.point!),
+						  }
+						: <PathSegment>{
+								type: s.type,
+								geo: transform(s.geo!, mat),
+						  }
+				);
+			return new Path(
+				$transformSegments($.segments),
+				$.subPaths.map($transformSegments),
 				__copyAttribs($)
-			),
+			);
+		},
 
 		points: tx(Points),
 

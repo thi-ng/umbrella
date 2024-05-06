@@ -44,28 +44,29 @@ name](http://thi.ng/geom-clj). All polymorphic operations built on
 The following shape primitives are provided. For many there're multiple ways to
 create them, please check linked sources and/or docs.
 
-| Shape/Form                                                                                            | Description                  | Hiccup support  |
-|-------------------------------------------------------------------------------------------------------|------------------------------|-----------------|
-| [AABB](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/aabb.ts)                     | 3D Axis-aligned bounding box | ✅<sup>(2)</sup> |
-| [Arc](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/arc.ts)                       | 2D elliptic arc              | ✅               |
-| [Circle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/circle.ts)                 | 2D circle                    | ✅               |
-| [Cubic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/cubic.ts)                   | nD cubic bezier              | ✅<sup>(1)</sup> |
-| [Ellipse](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ellipse.ts)               | 2D ellipse                   | ✅               |
-| [Group](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/group.ts)                   | group of 2D shapes           | ✅               |
-| [Line](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/line.ts)                     | 2D line segment              | ✅               |
-| [Path](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/path-builder.ts)             | 2D path                      | ✅               |
-| [Path (from SVG)](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/path-from-svg.ts) | 2D path from SVG `<path>`    | ✅               |
-| [Plane](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/plane.ts)                   | 3D plane                     | ✅<sup>(2)</sup> |
-| [Point cloud](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/points.ts)            | nD point cloud               | ✅<sup>(1)</sup> |
-| [Polygon](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polygon.ts)               | 2D simple polygon (no holes) | ✅               |
-| [Polyline](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polyline.ts)             | 2D polyline                  | ✅               |
-| [Quad](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quad.ts)                     | 2D/3D quad (4-gon)           | ✅<sup>(1)</sup> |
-| [Quadratic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quadratic.ts)           | nD quadratic bezier          | ✅<sup>(1)</sup> |
-| [Ray](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray.ts)                       | nD ray                       | ✅<sup>(1)</sup> |
-| [Rectangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/rect.ts)                | 2D rectangle                 | ✅               |
-| [Sphere](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/sphere.ts)                 | 3D sphere                    | ✅<sup>(2)</sup> |
-| [Text](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/text.ts)                     | Basic stub for text labels   | ✅<sup>(3)</sup> |
-| [Triangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/triangle.ts)             | 2D triangle                  | ✅               |
+| Shape/Form                                                                                             | Description                           | Hiccup support  |
+|--------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
+| [AABB](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/aabb.ts)                      | 3D Axis-aligned bounding box          | ✅<sup>(2)</sup> |
+| [Arc](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/arc.ts)                        | 2D elliptic arc                       | ✅               |
+| [Circle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/circle.ts)                  | 2D circle                             | ✅               |
+| [ComplexPolygon](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/complex-polygon.ts) | 2D polygon w/ holes                   | ✅               |
+| [Cubic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/cubic.ts)                    | nD cubic bezier                       | ✅<sup>(1)</sup> |
+| [Ellipse](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ellipse.ts)                | 2D ellipse                            | ✅               |
+| [Group](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/group.ts)                    | group of 2D shapes                    | ✅               |
+| [Line](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/line.ts)                      | 2D line segment                       | ✅               |
+| [Path](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/path-builder.ts)              | 2D path (w/ optional holes/sub-paths) | ✅               |
+| [Path (from SVG)](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/path-from-svg.ts)  | 2D path from SVG                      | ✅               |
+| [Plane](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/plane.ts)                    | 3D plane                              | ✅<sup>(2)</sup> |
+| [Point cloud](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/points.ts)             | nD point cloud                        | ✅<sup>(1)</sup> |
+| [Polygon](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polygon.ts)                | 2D simple polygon (no holes)          | ✅               |
+| [Polyline](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polyline.ts)              | 2D polyline                           | ✅               |
+| [Quad](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quad.ts)                      | 2D/3D quad (4-gon)                    | ✅<sup>(1)</sup> |
+| [Quadratic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quadratic.ts)            | nD quadratic bezier                   | ✅<sup>(1)</sup> |
+| [Ray](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray.ts)                        | nD ray                                | ✅<sup>(1)</sup> |
+| [Rectangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/rect.ts)                 | 2D rectangle                          | ✅               |
+| [Sphere](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/sphere.ts)                  | 3D sphere                             | ✅<sup>(2)</sup> |
+| [Text](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/text.ts)                      | Basic stub for text labels            | ✅<sup>(3)</sup> |
+| [Triangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/triangle.ts)              | 2D triangle                           | ✅               |
 
 - <sup>(1)</sup> valid hiccup format, currently only useable/supported if 2D geometry
 - <sup>(2)</sup> valid hiccup format, currently unused/unsupported elsewhere
@@ -77,9 +78,10 @@ With very few exceptions these all are implementing the [`IToHiccup`
 interface](https://docs.thi.ng/umbrella/api/interfaces/IToHiccup.html) and so
 can be easily converted (via
 [hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)) to a
-variety of other formats. By design, for better flexibility and performance
-reasons, the hiccup flavor used by this package is **not** compatible with that
-used by
+variety of other formats, incl. [conversion to SVG](#svg-support).
+
+By design, for better flexibility and performance reasons, the hiccup flavor
+used by this package is **not** compatible with that used by
 [thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg),
 though the latter provides a
 [`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
@@ -104,8 +106,8 @@ directly and/or perform automatic resampling/conversion if needed).
 | [`area()`](https://docs.thi.ng/umbrella/geom/functions/area.html)                           | signed/unsigned surface area                                 |
 | [`asCubic()`](https://docs.thi.ng/umbrella/geom/functions/asCubic.html)                     | convert shape boundary to cubic bezier segments              |
 | [`asPath()`](https://docs.thi.ng/umbrella/geom/functions/asPath.html)                       | convert shape to path                                        |
-| [`asPolygon()`](https://docs.thi.ng/umbrella/geom/functions/asPolygon.html)                 | convert shape to polygon                                     |
-| [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)               | convert shape to polyline                                    |
+| [`asPolygon()`](https://docs.thi.ng/umbrella/geom/functions/asPolygon.html)                 | convert shape to polygon(s)                                  |
+| [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)               | convert shape to polyline(s)                                 |
 | [`asSvg()`](https://docs.thi.ng/umbrella/geom/functions/asSvg.html)                         | serialize shape/group/hierarchy to SVG                       |
 | [`bounds()`](https://docs.thi.ng/umbrella/geom/functions/bounds.html)                       | compute bounding box                                         |
 | [`center()`](https://docs.thi.ng/umbrella/geom/functions/center.html)                       | center shape around origin or point                          |
@@ -122,6 +124,7 @@ directly and/or perform automatic resampling/conversion if needed).
 | [`offset()`](https://docs.thi.ng/umbrella/geom/functions/offset.html)                       | shape/path offsetting                                        |
 | [`pointAt()`](https://docs.thi.ng/umbrella/geom/functions/pointAt.html)                     | compute point on shape boundary at parametric position       |
 | [`pointInside()`](https://docs.thi.ng/umbrella/geom/functions/pointInside.html)             | check if point is inside shape                               |
+| [`proximity()`](https://docs.thi.ng/umbrella/geom/functions/proximity.html)                 | distance from point to shape boundary                        |
 | [`resample()`](https://docs.thi.ng/umbrella/geom/functions/resample.html)                   | resample/convert shape                                       |
 | [`rotate()`](https://docs.thi.ng/umbrella/geom/functions/rotate.html)                       | rotate shape                                                 |
 | [`scale()`](https://docs.thi.ng/umbrella/geom/functions/scale.html)                         | scale shape (uniformly/non-uniformly)                        |
@@ -210,7 +213,7 @@ For Node.js REPL:
 const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.25 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 14.40 KB
 
 ## Dependencies
 
@@ -253,6 +256,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/boid-basics.png" width="240"/>           | Basic 2D boid simulation and spatial indexing neighbor lookups                   | [Demo](https://demo.thi.ng/umbrella/boid-basics/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/boid-basics)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>       | Self-modifying, animated typographic grid with emergent complex patterns         | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>          | Fiber-based cooperative multitasking basics                                      | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-complex-poly.png" width="240"/>     | Shape conversions & operations using polygons with holes                         | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-complex-poly)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-convex-hull.png" width="240"/>      | Convex hull & shape clipping of 2D polygons                                      | [Demo](https://demo.thi.ng/umbrella/geom-convex-hull/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-convex-hull)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-fuzz.png" width="240"/>                 | geom-fuzz basic shape & fill examples                                            | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-fuzz-basics)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/>         | (Re)Constructing the thi.ng logo using a 2D signed-distance field                | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo)         |

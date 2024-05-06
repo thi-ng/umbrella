@@ -12,6 +12,6 @@ import type { Attribs, IShape } from "@thi.ng/geom-api";
  */
 export const withAttribs = <T extends IShape>(
 	shape: T,
-	attribs: Attribs,
+	attribs: Attribs = {},
 	replace = true
 ) => <T>shape.withAttribs(replace ? attribs : { ...shape.attribs, ...attribs });

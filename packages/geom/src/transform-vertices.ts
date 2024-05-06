@@ -4,8 +4,8 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
-import { map } from "@thi.ng/transducers/map";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
 import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
@@ -45,6 +45,7 @@ import {
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -75,7 +76,13 @@ export const transformVertices: MultiFn2<
 		ellipse: "circle",
 	},
 	{
-		arc: ($: IShape, fn) => transformVertices(asPolyline($), fn),
+		arc: ($: IShape, fn) => transformVertices(asPolyline($)[0], fn),
+
+		complexpoly: ($: ComplexPolygon, fn) =>
+			new ComplexPolygon(
+				<Polygon>transformVertices($.boundary, fn),
+				$.children.map((child) => <Polygon>transformVertices(child, fn))
+			),
 
 		cubic: tx(Cubic),
 
@@ -84,25 +91,25 @@ export const transformVertices: MultiFn2<
 
 		line: tx(Line),
 
-		path: ($: Path, fn) =>
-			new Path(
-				[
-					...map(
-						(s) =>
-							s.type === "m"
-								? <PathSegment>{
-										type: s.type,
-										point: mulV([], fn(s.point!), s.point!),
-								  }
-								: <PathSegment>{
-										type: s.type,
-										geo: transformVertices(s.geo!, fn),
-								  },
-						$.segments
-					),
-				],
+		path: ($: Path, fn) => {
+			const $transformSegments = (segments: PathSegment[]) =>
+				segments.map((s) =>
+					s.type === "m"
+						? <PathSegment>{
+								type: s.type,
+								point: mulV([], fn(s.point!), s.point!),
+						  }
+						: <PathSegment>{
+								type: s.type,
+								geo: transformVertices(s.geo!, fn),
+						  }
+				);
+			return new Path(
+				$transformSegments($.segments),
+				$.subPaths.map($transformSegments),
 				__copyAttribs($)
-			),
+			);
+		},
 
 		points: tx(Points),
 
@@ -116,7 +123,7 @@ export const transformVertices: MultiFn2<
 
 		quadratic: tx(Quadratic),
 
-		rect: ($: Rect, fn) => transformVertices(asPolygon($), fn),
+		rect: ($: Rect, fn) => transformVertices(asPolygon($)[0], fn),
 
 		tri: tx(Triangle),
 	}

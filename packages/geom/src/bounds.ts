@@ -10,6 +10,7 @@ import { comp } from "@thi.ng/transducers/comp";
 import { filter } from "@thi.ng/transducers/filter";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import { addN2 } from "@thi.ng/vectors/addn";
 import { max } from "@thi.ng/vectors/max";
 import { min } from "@thi.ng/vectors/min";
@@ -20,6 +21,7 @@ import { subN2 } from "@thi.ng/vectors/subn";
 import { aabbFromMinMaxWithMargin } from "./aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -87,6 +89,11 @@ export const bounds: MultiFn1O<IShape, number, Maybe<AABBLike>> = defmulti<
 				mulN2(null, [2, 2], $.r + margin)
 			),
 
+		complexpoly: ($: ComplexPolygon, margin = 0) => {
+			const res = __collBounds([$.boundary, ...$.children], bounds);
+			return res ? new Rect(...res).offset(margin) : undefined;
+		},
+
 		cubic: ({ points }: Cubic, margin = 0) =>
 			rectFromMinMaxWithMargin(
 				...cubicBounds(points[0], points[1], points[2], points[3]),
@@ -107,15 +114,18 @@ export const bounds: MultiFn1O<IShape, number, Maybe<AABBLike>> = defmulti<
 			rectFromMinMaxWithMargin(min([], a, b), max([], a, b), margin),
 
 		path: (path: Path, margin = 0) => {
+			const $segmentGeo = (segments: PathSegment[]) =>
+				iterator1(
+					comp(
+						map((s: PathSegment) => s.geo!),
+						filter((s) => !!s)
+					),
+					segments
+				);
 			const b = __collBounds(
 				[
-					...iterator1(
-						comp(
-							map((s: PathSegment) => s.geo!),
-							filter((s) => !!s)
-						),
-						path.segments
-					),
+					...$segmentGeo(path.segments),
+					...mapcat($segmentGeo, path.subPaths),
 				],
 				bounds
 			);

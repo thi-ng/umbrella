@@ -5,21 +5,22 @@ import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
 	Circle,
+	ComplexPolygon,
 	Ellipse,
 	Group,
 	Line,
-	Path,
 	Points,
-	Polygon,
 	Polyline,
 	Quadratic,
 	Rect,
 } from "@thi.ng/geom";
 import type { Attribs, IShape } from "@thi.ng/geom-api";
+import { Path } from "@thi.ng/geom/api/path";
+import { Polygon } from "@thi.ng/geom/api/polygon";
 import { asPolygon } from "@thi.ng/geom/as-polygon";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
-import { simplify } from "@thi.ng/geom/simplify";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
+import { simplify } from "@thi.ng/geom/simplify";
 import { add2 } from "@thi.ng/vectors/add";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import type { FieldCoeff, SDFAttribs, SDFn } from "./api.js";
@@ -41,9 +42,9 @@ import {
 	union,
 } from "./ops.js";
 import {
+	DEFAULT_ATTRIBS,
 	box2,
 	circle2,
-	DEFAULT_ATTRIBS,
 	ellipse2,
 	line2,
 	points2,
@@ -73,10 +74,11 @@ interface ParametricOps {
  *
  * - circle
  * - cubic (auto-converted to polyline)
+ * - complexpoly (boundary only, holes ignored)
  * - ellipse
  * - group
  * - line
- * - path (auto-converted to polygon/polyline)
+ * - path (no sub-paths, only main path, auto-converted to polygon/polyline)
  * - points
  * - polygon
  * - polyline
@@ -101,10 +103,13 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 
 		circle: ($: Circle) => circle2($.pos, $.r, __sdfAttribs($.attribs)),
 
+		complexpoly: ($: ComplexPolygon) =>
+			asSDF(new Polygon($.boundary, $.attribs)),
+
 		cubic: ($: IShape) =>
 			asSDF(
 				simplify(
-					asPolyline($, (__sdfAttribs($.attribs) || {}).samples),
+					asPolyline($, (__sdfAttribs($.attribs) || {}).samples)[0],
 					0
 				)
 			),
@@ -158,8 +163,12 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 
 		path: ($: Path) => {
 			const n = (__sdfAttribs($.attribs) || {}).samples;
+			const path = new Path($.segments, [], $.attribs);
 			return asSDF(
-				simplify($.closed ? asPolygon($, n) : asPolyline($, n), 0)
+				simplify(
+					$.closed ? asPolygon(path, n)[0] : asPolyline(path, n)[0],
+					0
+				)
 			);
 		},
 

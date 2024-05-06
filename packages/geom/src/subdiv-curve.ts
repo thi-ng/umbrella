@@ -4,6 +4,7 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SubdivKernel } from "@thi.ng/geom-api";
 import * as sdc from "@thi.ng/geom-subdiv-curve/api";
 import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Polygon } from "./api/polygon.js";
 import { Polyline } from "./api/polyline.js";
 import { asPolygon } from "./as-polygon.js";
@@ -25,6 +26,7 @@ import { __dispatch } from "./internal/dispatch.js";
  *
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Ellipse}
  * - {@link Line}
  * - {@link Polygon}
@@ -42,36 +44,48 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param kernel
  * @param iter
  */
-export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> =
-	defmulti<any, SubdivKernel, Maybe<number>, IShape>(
-		__dispatch,
-		{
-			ellipse: "circle",
-			line: "polyline",
-			quad: "poly",
-			rect: "circle",
-			tri: "poly",
-		},
-		{
-			arc: ($, kernel, iter = 1) =>
-				subdivCurve(asPolyline($), kernel, iter),
+export const subdivCurve: MultiFn2O<
+	IShape,
+	SubdivKernel,
+	number,
+	ComplexPolygon | Polygon | Polyline
+> = defmulti<
+	any,
+	SubdivKernel,
+	Maybe<number>,
+	ComplexPolygon | Polygon | Polyline
+>(
+	__dispatch,
+	{
+		ellipse: "circle",
+		line: "polyline",
+		quad: "poly",
+		rect: "circle",
+		tri: "poly",
+	},
+	{
+		arc: ($, kernel, iter = 1) =>
+			subdivCurve(asPolyline($)[0], kernel, iter),
 
-			circle: ($, kernel, iter = 1) =>
-				subdivCurve(asPolygon($), kernel, iter),
+		circle: ($, kernel, iter = 1) =>
+			subdivCurve(asPolygon($)[0], kernel, iter),
 
-			poly: ($: Polygon, kernel, iter = 1) =>
-				new Polygon(
-					subdivide($.points, kernel, iter),
-					__copyAttribs($)
+		complexpoly: ($: ComplexPolygon, kernel, iter) =>
+			new ComplexPolygon(
+				<Polygon>subdivCurve($.boundary, kernel, iter),
+				$.children.map(
+					(child) => <Polygon>subdivCurve(child, kernel, iter)
 				),
+				__copyAttribs($)
+			),
 
-			polyline: ($: Polyline, kernel, iter = 1) =>
-				new Polyline(
-					subdivide($.points, kernel, iter),
-					__copyAttribs($)
-				),
-		}
-	);
+		poly: ($: Polygon, kernel, iter = 1) =>
+			new Polygon(subdivide($.points, kernel, iter), __copyAttribs($)),
+
+		polyline: ($: Polyline, kernel, iter = 1) =>
+			new Polyline(subdivide($.points, kernel, iter), __copyAttribs($)),
+	}
+);
 
 /**
  * Re-export of thi.ng/geom-subdiv-curve

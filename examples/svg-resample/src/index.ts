@@ -12,14 +12,7 @@ import { fit11 } from "@thi.ng/math";
 import { $compile, $replace } from "@thi.ng/rdom";
 import { fromRAF } from "@thi.ng/rstream";
 import { parse, Type } from "@thi.ng/sax";
-import {
-	comp,
-	filter,
-	map,
-	mapcat,
-	push,
-	transduce,
-} from "@thi.ng/transducers";
+import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
 import SVG from "./example.svg";
 
 (async () => {
@@ -32,7 +25,7 @@ import SVG from "./example.svg";
 			filter((ev) => ev.type === Type.ELEM_END && ev.tag === "path"),
 			// pathFromSvg() returns an array of subpaths
 			// using mapcat() flattens that array
-			mapcat((ev) => pathFromSvg(ev.attribs!.d))
+			map((ev) => pathFromSvg(ev.attribs!.d))
 		),
 		push<Path>(),
 		await raw.text()
@@ -46,7 +39,9 @@ import SVG from "./example.svg";
 		// - first into a polygon
 		// - then resample poly using uniform distance and extract vertices
 		// - wrap in `points` container (aka point cloud)
-		return paths.map((path) => points(vertices(asPolygon(path), { dist })));
+		return paths.map((path) =>
+			points(vertices(asPolygon(path)[0], { dist }))
+		);
 	};
 
 	// now create reactive requestAnimationFrame() stream which:

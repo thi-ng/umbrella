@@ -24,7 +24,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * Currently only implemented for:
  *
  * - {@link Circle}
- * - {@link Plane}
+ * - {@link Plane} (-1 = below, +1 = above)
  * - {@link Sphere}
  * - {@link Triangle}
  *
@@ -32,7 +32,10 @@ import { __dispatch } from "./internal/dispatch.js";
  * more comprehensive feature set (incl. support for more shapes) to perform
  * similar checks as this function.
  *
- * Also see {@link pointInside}.
+ * Also see:
+ * - {@link closestPoint}
+ * - {@link pointInside}
+ * - {@link proximity}
  *
  * @param shape
  * @param p

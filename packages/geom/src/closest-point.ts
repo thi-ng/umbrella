@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PCLike } from "@thi.ng/geom-api";
+import type { IShape, PCLike, PathSegment } from "@thi.ng/geom-api";
 import { closestPoint as closestPointArc } from "@thi.ng/geom-arc/closest-point";
 import {
 	closestPointAABB,
@@ -18,11 +18,15 @@ import { closestPointCubic } from "@thi.ng/geom-splines/cubic-closest-point";
 import { closestPointQuadratic } from "@thi.ng/geom-splines/quadratic-closest-point";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
+import { distSq2 } from "@thi.ng/vectors/distsq";
+import { set2 } from "@thi.ng/vectors/set";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
 import type { Line } from "./api/line.js";
+import type { Path } from "./api/path.js";
 import type { Plane } from "./api/plane.js";
 import type { Quadratic } from "./api/quadratic.js";
 import type { Rect } from "./api/rect.js";
@@ -38,8 +42,10 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link AABB}
  * - {@link Arc}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Line}
+ * - {@link Path}
  * - {@link Plane}
  * - {@link Points}
  * - {@link Points3}
@@ -76,6 +82,21 @@ export const closestPoint: MultiFn2O<
 
 		circle: ($: Circle, p, out) => closestPointCircle(p, $.pos, $.r, out),
 
+		complexpoly: ($: ComplexPolygon, p, out) => {
+			out = closestPointPolyline(p, $.boundary.points, true, out);
+			let minD = distSq2(p, out!);
+			let tmp: Vec = [];
+			for (let child of $.children) {
+				closestPointPolyline(p, child.points, true, tmp);
+				const d = distSq2(p, tmp);
+				if (d < minD) {
+					minD = d;
+					set2(out!, tmp);
+				}
+			}
+			return out;
+		},
+
 		cubic: ({ points }: Cubic, p, out) =>
 			closestPointCubic(
 				p,
@@ -88,6 +109,25 @@ export const closestPoint: MultiFn2O<
 
 		line: ({ points }: Line, p, out) =>
 			closestPointSegment(p, points[0], points[1], out),
+
+		path: ($: Path, p, out) => {
+			let minD = Infinity;
+			const $closestPSegment = (segments: PathSegment[]) => {
+				for (let s of segments) {
+					if (!s.geo) continue;
+					const q = closestPoint(s.geo, p)!;
+					if (!q) continue;
+					const d = distSq2(p, q);
+					if (d < minD) {
+						minD = d;
+						out = set2(out || [], q);
+					}
+				}
+			};
+			$closestPSegment($.segments);
+			for (let sub of $.subPaths) $closestPSegment(sub);
+			return out;
+		},
 
 		plane: ($: Plane, p, out) => closestPointPlane(p, $.normal, $.w, out),
 

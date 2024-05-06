@@ -5,12 +5,16 @@ import { perimeter } from "@thi.ng/geom-poly-utils/perimeter";
 import { PI, TAU } from "@thi.ng/math/api";
 import { dist } from "@thi.ng/vectors/dist";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
 import type { Line } from "./api/line.js";
+import type { Path } from "./api/path.js";
 import type { Polygon } from "./api/polygon.js";
 import type { Rect } from "./api/rect.js";
 import type { Triangle } from "./api/triangle.js";
+import { asPolygon } from "./as-polygon.js";
+import { asPolyline } from "./as-polyline.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
@@ -21,6 +25,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * Implemented for:
  *
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Ellipse}
  * - {@link Group} (total sum of child circumferences)
  * - {@link Line}
@@ -41,6 +46,12 @@ export const arcLength: MultiFn1<IShape, number> = defmulti(
 	{
 		circle: ($: Circle) => TAU * $.r,
 
+		complexpoly: ($: ComplexPolygon) =>
+			[$.boundary, ...$.children].reduce(
+				(acc, c) => acc + arcLength(c),
+				0
+			),
+
 		ellipse: ({ r: [a, b] }: Ellipse) =>
 			// Ramanujan approximation
 			// https://www.mathsisfun.com/geometry/ellipse-perimeter.html
@@ -50,6 +61,13 @@ export const arcLength: MultiFn1<IShape, number> = defmulti(
 			children.reduce((sum, $) => sum + arcLength($), 0),
 
 		line: ({ points }: Line) => dist(points[0], points[1]),
+
+		path: ($: Path) => {
+			return ($.closed ? asPolygon($) : asPolyline($)).reduce(
+				(acc, p) => acc + arcLength(p),
+				0
+			);
+		},
 
 		poly: ({ points }: Polygon) => perimeter(points, points.length, true),
 

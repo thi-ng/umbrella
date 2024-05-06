@@ -8,6 +8,7 @@ import { signedArea2 } from "@thi.ng/vectors/signed-area";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
 import type { Path } from "./api/path.js";
@@ -33,6 +34,7 @@ import { __dispatch } from "./internal/dispatch.js";
  *
  * - {@link AABB}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -64,12 +66,20 @@ export const area: MultiFn1O<IShape, boolean, number> = defmulti(
 
 		circle: ($: Circle) => PI * $.r ** 2,
 
+		complexpoly: ($: ComplexPolygon, signed?) =>
+			area($.boundary, signed) -
+			$.children.reduce((acc, c) => acc + area(c, signed), 0),
+
 		ellipse: ($: Ellipse) => PI * $.r[0] * $.r[1],
 
 		group: ({ children }: Group) =>
 			children.reduce((sum, $) => sum + area($, false), 0),
 
-		path: ($: Path) => ($.closed ? area(asPolygon($)) : 0),
+		path: ($: Path, signed?) => {
+			return $.closed
+				? asPolygon($).reduce((acc, p) => acc + area(p, signed), 0)
+				: 0;
+		},
 
 		plane: () => Infinity,
 

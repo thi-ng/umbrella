@@ -8,6 +8,7 @@ import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { BPatch } from "./api/bpatch.js";
 import type { Circle } from "./api/circle.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
 import type { Path } from "./api/path.js";
 import type { Polygon } from "./api/polygon.js";
@@ -33,6 +34,7 @@ import { vertices } from "./vertices.js";
  * - {@link Arc}
  * - {@link BPatch}
  * - {@link Circle}
+ * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
@@ -49,6 +51,7 @@ import { vertices } from "./vertices.js";
  * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
  * (all others do):
  *
+ * - {@link AABB}
  * - {@link Line}
  * - {@link Polygon}
  * - {@link Polyline}
@@ -92,15 +95,23 @@ export const edges: MultiFn1O<
 			];
 		},
 
-		arc: ($: Arc, opts) => __edges(asPolyline($, opts).points, false),
+		arc: ($: Arc, opts) => __edges(asPolyline($, opts)[0].points),
 
 		bpatch: ($: BPatch) => $.edges(),
 
-		circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
+		circle: ($: Circle, opts) =>
+			__edges(asPolygon($, opts)[0].points, true),
+
+		complexpoly: ($: ComplexPolygon) =>
+			mapcat(
+				(poly) => __edges(poly.points, true),
+				[$.boundary, ...$.children]
+			),
 
 		group: ($: Group, opts) => mapcat((c) => edges(c, opts), $.children),
 
-		path: ($: Path, opts) => __edges(asPolygon($, opts).points, $.closed),
+		path: ($: Path, opts) =>
+			mapcat((poly) => __edges(poly.points), asPolyline($, opts)),
 
 		poly: ($: Polygon) => __edges($.points, true),
 

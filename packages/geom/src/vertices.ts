@@ -3,7 +3,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape, PathSegment } from "@thi.ng/geom-api";
 import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
 import { sample as _arcVertices } from "@thi.ng/geom-arc/sample";
 import { resample } from "@thi.ng/geom-resample/resample";
@@ -19,6 +19,7 @@ import { set2 } from "@thi.ng/vectors/set";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
@@ -30,6 +31,7 @@ import type { Quadratic } from "./api/quadratic.js";
 import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
+import { peek } from "@thi.ng/arrays/peek";
 
 /**
  * Extracts/samples vertices from given shape's boundary and returns them as
@@ -40,6 +42,25 @@ import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
  * The given sampling options (if any) can also be overridden per shape using
  * the special `__samples` attribute. If specified, these will be merged with
  * the options.
+ *
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link BPatch}
+ * - {@link Circle}
+ * - {@link ComplexPolygon}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
  *
  * @example
  * ```ts
@@ -57,24 +78,6 @@ import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
  * // using shape attribs
  * vertices(circle(100, { __samples: { dist: 10 } }))
  * ```
- *
- * Currently implemented for:
- *
- * - {@link AABB}
- * - {@link Arc}
- * - {@link BPatch}
- * - {@link Circle}
- * - {@link Cubic}
- * - {@link Ellipse}
- * - {@link Group}
- * - {@link Line}
- * - {@link Path}
- * - {@link Points}
- * - {@link Points3}
- * - {@link Quad}
- * - {@link Quadratic}
- * - {@link Rect}
- * - {@link Triangle}
  *
  * @param shape
  * @param opts
@@ -140,6 +143,12 @@ export const vertices: MultiFn1O<
 			return buf;
 		},
 
+		complexpoly: ($: ComplexPolygon, opts) => {
+			const pts = vertices($.boundary, opts);
+			for (let child of $.children) pts.push(...vertices(child, opts));
+			return pts;
+		},
+
 		cubic: ($: Cubic, opts?) =>
 			sampleCubic($.points, __sampleAttribs(opts, $.attribs)),
 
@@ -171,32 +180,32 @@ export const vertices: MultiFn1O<
 		path: ($: Path, opts?) => {
 			opts = __sampleAttribs(opts, $.attribs);
 			const _opts = isNumber(opts) ? { num: opts } : opts;
-			let verts: Vec[] = [];
-			for (
-				let segs = $.segments, n = segs.length - 1, i = 0;
-				i <= n;
-				i++
-			) {
-				const s = segs[i];
-				if (s.geo) {
-					verts = verts.concat(
-						vertices(s.geo, {
+			const verts: Vec[] = [];
+			const $segmentVerts = (segments: PathSegment[]) => {
+				const closed = peek(segments)?.type === "z";
+				for (let n = segments.length - 1, i = 0; i <= n; i++) {
+					const s = segments[i];
+					if (!s.geo) continue;
+					verts.push(
+						...vertices(s.geo, {
 							..._opts,
-							last: i === n && !$.closed,
+							last: !closed && i === n,
 						})
 					);
 				}
-			}
+			};
+			$segmentVerts($.segments);
+			for (let sub of $.subPaths) $segmentVerts(sub);
 			return verts;
 		},
 
-		points: ($: Points) => $.points,
+		points: ($: Points) => $.points.slice(),
 
 		poly: ($: Polygon, opts?) =>
-			resample($.points, __sampleAttribs(opts, $.attribs), true),
+			resample($.points, __sampleAttribs(opts, $.attribs), true, true),
 
 		polyline: ($: Polyline, opts?) =>
-			resample($.points, __sampleAttribs(opts, $.attribs)),
+			resample($.points, __sampleAttribs(opts, $.attribs), false, true),
 
 		quadratic: ($: Quadratic, opts?) =>
 			sampleQuadratic($.points, __sampleAttribs(opts, $.attribs)),
