@@ -1900,6 +1900,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-klist@workspace:examples/rdom-klist":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-klist@workspace:examples/rdom-klist"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: "npm:^5.4.3"
+    vite: "npm:^5.2.6"
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-lazy-load@workspace:examples/rdom-lazy-load":
   version: 0.0.0-use.local
   resolution: "@example/rdom-lazy-load@workspace:examples/rdom-lazy-load"

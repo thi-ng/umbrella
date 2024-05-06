@@ -81,7 +81,7 @@ For Node.js REPL:
 const isec = await import("@thi.ng/geom-isec");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.92 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.96 KB
 
 ## Dependencies
 
