@@ -320,8 +320,8 @@ create paths which ensure SVG compatibility:
 - [`normalizedPath()`](https://docs.thi.ng/umbrella/geom/functions/normalizedPath.html)
 - [`roundedRect()`](https://docs.thi.ng/umbrella/geom/functions/roundedRect.html)
 
-```ts
-import { normalizedPath, pathFromSVG, asPolyline } from "@thi.ng/geom";
+```ts tangle:export/readme-path.ts
+import { asPolyline, asSvg, normalizedPath, pathFromSVG, roundedRect } from "@thi.ng/geom";
 
 // path w/ elliptic arc segments (for 2 of the corners)
 const a = roundedRect([0, 0], [100, 100], [0, 40]);
