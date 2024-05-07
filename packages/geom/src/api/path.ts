@@ -39,6 +39,7 @@ export class Path implements IClear, IHiccupShape {
 
 	close() {
 		if (!this.closed) this.segments.push(CLOSE);
+		return this;
 	}
 
 	copy(): Path {

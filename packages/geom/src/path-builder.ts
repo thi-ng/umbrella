@@ -147,7 +147,7 @@ export class PathBuilder {
 		return this;
 	}
 
-	closePath() {
+	close() {
 		this.curr.addSegments({
 			geo: new Line([copy(this.currP), copy(this.startP)]),
 			type: "l",

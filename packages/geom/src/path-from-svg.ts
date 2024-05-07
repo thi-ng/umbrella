@@ -67,7 +67,7 @@ export const pathFromSvg = (svg: string) => {
 					break;
 				}
 				case "z":
-					b.closePath();
+					b.close();
 					break;
 				default:
 					throw new Error(
