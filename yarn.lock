@@ -4946,6 +4946,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.1"
     "@thi.ng/checks": "npm:^3.6.3"
     "@thi.ng/color": "npm:^5.6.44"
+    "@thi.ng/geom-arc": "npm:^2.1.131"
     "@thi.ng/math": "npm:^5.10.12"
     "@thi.ng/pixel": "npm:^6.1.31"
     "@thi.ng/vectors": "npm:^7.10.30"

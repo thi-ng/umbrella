@@ -1,4 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
+import { fromEndPoints } from "@thi.ng/geom-arc/from-endpoints";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { __endShape } from "./internal/end-shape.js";
 
@@ -88,12 +89,24 @@ export const path = (
 				ctx.quadraticCurveTo(b[0], b[1], c[0], c[1]);
 				a = c;
 				break;
+			// elliptic arc (SVG compatible)
+			case "A":
+			case "a": {
+				c = s[2];
+				d = s[6];
+				s[0] === "a" && (d = [a[0] + d[0], a[1] + d[1]]);
+				const {
+					center: [x, y],
+					start,
+					end,
+				} = fromEndPoints(a, d, [b, c], s[3], s[4], s[5])!;
+				ctx.ellipse(x, y, b, c, s[3], start, end, !s[5]);
+				a = d;
+				break;
+			}
 			// circular arc rel
 			// Note: NOT compatible w/ SVG arc segments
-			// FIXME need new type ID for circular arcs
-			// see issues #69 & #418
-			// can use ellipse() for elliptic arcs
-			case "a":
+			case "r":
 				c = s[2];
 				c = [a[0] + c[0], a[1] + c[1]];
 				ctx.arcTo(a[0] + b[0], a[1] + b[1], c[0], c[1], s[3]);
@@ -101,7 +114,7 @@ export const path = (
 				break;
 			// circular arc abs
 			// Note: NOT compatible w/ SVG arc segments
-			case "A":
+			case "R":
 				c = s[2];
 				ctx.arcTo(b[0], b[1], c[0], c[1], s[3]);
 				a = c;

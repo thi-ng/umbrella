@@ -39,6 +39,7 @@
 		"@thi.ng/api": "^8.11.1",
 		"@thi.ng/checks": "^3.6.3",
 		"@thi.ng/color": "^5.6.44",
+		"@thi.ng/geom-arc": "^2.1.131",
 		"@thi.ng/math": "^5.10.12",
 		"@thi.ng/pixel": "^6.1.31",
 		"@thi.ng/vectors": "^7.10.30"
