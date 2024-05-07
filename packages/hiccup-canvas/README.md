@@ -106,7 +106,7 @@ For Node.js REPL:
 const hc = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.57 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.55 KB
 
 ## Dependencies
 
@@ -292,6 +292,12 @@ relative to the end point of the previous segment. The first segment
 | `["A", rx, ry, theta, large-arc-flag, clockwise, [x,y]]` | Elliptic arc (SVG compatible, see below)     |
 | `["R", [x1,y1], [x2, y2], r]`                            | Circular arc (not SVG compatible, see below) |
 | `["Z"]`                                                  | Close (sub)path                              |
+
+> [!IMPORTANT] Prior to v3.0.0, only circular arc segments were supported and
+> used the `A`/`a` identifier, which actually should have been reserved for
+> SVG-style elliptic arcs (as is the case now). In the unlikely event you've
+> been using paths with circular arc segments, you'll need to update these to
+> use `R`/`r` segment types instead.
 
 #### SVG paths with arc segments
 

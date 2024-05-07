@@ -188,6 +188,12 @@ relative to the end point of the previous segment. The first segment
 | `["R", [x1,y1], [x2, y2], r]`                            | Circular arc (not SVG compatible, see below) |
 | `["Z"]`                                                  | Close (sub)path                              |
 
+> [!IMPORTANT] Prior to v3.0.0, only circular arc segments were supported and
+> used the `A`/`a` identifier, which actually should have been reserved for
+> SVG-style elliptic arcs (as is the case now). In the unlikely event you've
+> been using paths with circular arc segments, you'll need to update these to
+> use `R`/`r` segment types instead.
+
 #### SVG paths with arc segments
 
 Reference about the params for arc segments:
