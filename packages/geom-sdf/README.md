@@ -166,13 +166,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.71 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
 | Screenshot                                                                                                           | Description                                                       | Live demo                                           | Source                                                                           |
 |:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/> | (Re)Constructing the thi.ng logo using a 2D signed-distance field | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-path.png" width="240"/> | SVG path to SDF, applying deformation and converting back to SVG  | [Demo](https://demo.thi.ng/umbrella/geom-sdf-path/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-path) |
 
 ## API
 
