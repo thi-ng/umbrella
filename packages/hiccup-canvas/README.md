@@ -106,13 +106,14 @@ For Node.js REPL:
 const hc = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.53 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.57 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
+- [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-arc)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
@@ -141,9 +142,10 @@ directory are using this package:
 
 [Generated API docs](https://docs.thi.ng/umbrella/hiccup-canvas/)
 
-The shape tree given to `draw()` MUST consist of standard, normalized
-hiccup syntax (incl. objects implementing the `IToHiccup()` interface,
-like the shape types provided by
+The shape tree given to
+[`draw()`](https://docs.thi.ng/umbrella/hiccup-canvas/functions/draw.html) MUST
+consist of well-formed, normalized hiccup syntax (incl. objects implementing the
+`IToHiccup()` interface, like the shape types provided by
 [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)).
 
 ## SVG conversion
@@ -157,10 +159,15 @@ package provides a `convertTree()` function which takes the arguably
 more "raw" shape format used by this package and converts an entire
 shape tree into SVG compatible & serializable format.
 
-It's very likely (and recommended) you're using the shape type provided [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom), in which case these can be provided as is to this package's `draw()` function and SVG conversion can be done like so:
+It's very likely (and recommended) you're using the shape type provided
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom),
+in which case these can be provided as-is to this package's
+[`draw()`](https://docs.thi.ng/umbrella/hiccup-canvas/functions/draw.html)
+function and SVG conversion (from the same geometry) can be done like so:
 
 ```ts
 import { asSvg, svgDoc, group, circle } from "@thi.ng/geom";
+import { canvas2d } from "@thi.ng/canvas";
 import { draw } from "@thi.ng/hiccup-canvas";
 
 const dots = group({}, [
@@ -169,8 +176,10 @@ const dots = group({}, [
     circle([160, 100], 20, { fill: "blue" }),
 ]);
 
-// draw to canvas
-draw(canvas.getContext("2d"), dots);
+const { ctx } = canvas2d(200, 200, document.body);
+
+// draw geometry group to canvas
+draw(ctx, dots);
 
 // convert to SVG
 // (unless given, width, height and viewBox will be auto-computed)
@@ -178,9 +187,6 @@ asSvg(svgDoc({}, dots))
 ```
 
 ## Supported shape types
-
-In the near future, factory functions for these shape types will be
-provided...
 
 ### Group
 
@@ -211,8 +217,7 @@ used, should always come first in a scene tree.
 ["arc", attribs, [x, y], radius, startAngle, endAngle, anticlockwise?]
 ```
 
-Only circular arcs are supported in this format. Please see [note about
-differences to SVG](#svg-paths-with-arc-segments).
+Please see [note about SVG support](#svg-paths-with-arc-segments).
 
 ### Ellipse / elliptic arc
 
@@ -220,14 +225,17 @@ differences to SVG](#svg-paths-with-arc-segments).
 ["ellipse", attribs, [x, y], [rx, ry], axisTheta?, start?, end?, ccw?]
 ```
 
+Please see [note about SVG support](#svg-paths-with-arc-segments).
+
 ### Rect
 
 ```ts
-["rect", attribs, [x, y], w, h, radius?]
+["rect", attribs, [x, y], w, h, radii?]
 ```
 
-If `radius` is given, creates a rounded rectangle. `radius` will be
-clamped to `Math.min(w, h)/2`.
+If `radii` is given, creates a rounded rectangle. See [Canvas API
+roundRect()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/roundRect)
+for possible radius values.
 
 ### Line
 
@@ -273,44 +281,59 @@ can be used. Relative versions use lowercase letters and are always
 relative to the end point of the previous segment. The first segment
 (usually of type `"M"`) must be absolute.
 
-| Format                               | Description              |
-|--------------------------------------|--------------------------|
-| `["M", [x, y]]`                      | Move                     |
-| `["L", [x, y]]`                      | Line                     |
-| `["H", x]`                           | Horizontal line          |
-| `["V", y]`                           | Vertical line            |
-| `["C", [x1,y1], [x2, y2], [x3, y3]]` | Cubic / bezier curve     |
-| `["Q", [x1,y1], [x2, y2]]`           | Quadratic curve          |
-| `["A", [x1,y1], [x2, y2], r]`        | Circular arc (see below) |
-| `["Z"]`                              | Close (sub)path          |
+| Format                                                   | Description                                  |
+|----------------------------------------------------------|----------------------------------------------|
+| `["M", [x, y]]`                                          | Move                                         |
+| `["L", [x, y]]`                                          | Line                                         |
+| `["H", x]`                                               | Horizontal line                              |
+| `["V", y]`                                               | Vertical line                                |
+| `["C", [x1,y1], [x2, y2], [x3, y3]]`                     | Cubic / bezier curve                         |
+| `["Q", [x1,y1], [x2, y2]]`                               | Quadratic curve                              |
+| `["A", rx, ry, theta, large-arc-flag, clockwise, [x,y]]` | Elliptic arc (SVG compatible, see below)     |
+| `["R", [x1,y1], [x2, y2], r]`                            | Circular arc (not SVG compatible, see below) |
+| `["Z"]`                                                  | Close (sub)path                              |
 
 #### SVG paths with arc segments
 
-**IMPORTANT:** Currently, due to differences between SVG and canvas API
-arc handling, SVG paths containing arc segments are **NOT** compatible
-with the above format. [This
-issue](https://github.com/thi-ng/umbrella/issues/69) is being worked on,
-but in the meantime, to use such paths, these should first be converted
-to use cubics or polygon / polyline. E.g. here using
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom):
+Reference about the params for arc segments:
+
+- [circular arc](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc)
+- [elliptic arc](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve)
+
+Since v3.0.0 this package supports both circular and elliptic arc path segments,
+however only the latter segment type is compatible with SVG (circular arcs are
+only supported by the HTML Canvas API). We recommended to use one of the
+available path constructor functions in
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) to
+create paths which ensure SVG compatibility:
+
+- [`pathFromSvg()`](https://docs.thi.ng/umbrella/geom/functions/pathFromSvg.html)
+- [`pathBuilder()`](https://docs.thi.ng/umbrella/geom/functions/pathBuilder-1.html)
+- [`pathFromCubics()`](https://docs.thi.ng/umbrella/geom/functions/pathFromCubics.html)
+- [`normalizedPath()`](https://docs.thi.ng/umbrella/geom/functions/normalizedPath.html)
+- [`roundedRect()`](https://docs.thi.ng/umbrella/geom/functions/roundedRect.html)
 
 ```ts
 import { normalizedPath, pathFromSVG, asPolyline } from "@thi.ng/geom";
 
-// path w/ arc segments (*not* usable by hiccup-canvas)
-const a = pathFromSvg("M0,0H80A20,20,0,0,1,100,20V30A20,20,0,0,1,80,50")[0];
+// path w/ elliptic arc segments (for 2 of the corners)
+const a = roundedRect([0, 0], [100, 100], [0, 40]);
 
-// normalized to only use cubic curves (usable by hiccup-canvas)
+console.log(asSvg(a));
+// <path d="M0,0H60A40,40,0,0,1,100,40V100H40A40,40,0,0,1,0,60.000V0z"/>
+
+// normalize path to only use cubic curves
 const b = normalizedPath(a);
 
-// converted to polyline (usable by hiccup-canvas)
-const c = asPolyline(a);
+console.log(asSvg(b));
+// <path d="M0,0C20,0,40,0,60,0C82.091,0,100,17.909,100,40C100,60,100,80,100,100C80,100,60,100,40,100C17.909,100,0.000,82.091,0,60.000C0,40,0,20,0,0z"/>
 
-asSvg(b);
-// <path d="M0.00,0.00C26.67,0.00,53.33,0.00,80.00,0.00C..."/>
+// convert/sample path as polyline
+// (some paths have multiple boundaries, here we only want the first)
+const c = asPolyline(a, { dist: 20 })[0];
 
-asSvg(c);
-// <polyline fill="none" points="0.00,0.00 80.00,0.00 81.57,0.06..."/>
+console.log(asSvg(c));
+// <polyline fill="none" points="0,0 20,0 40,0 60,0 79.168,4.924 93.644,18.410 99.889,37.186 100,40 100,60 100,80 100,100 80,100 60,100 40,100 20.832,95.076 6.356,81.590 0.111,62.814 0,60 0,40 0,20 0,0"/>
 ```
 
 ### Points
