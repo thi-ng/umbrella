@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { path } from "./path.js";
+import { __endShape } from "./internal/end-shape.js";
 
 export const rect = (
 	ctx: CanvasRenderingContext2D,
@@ -8,26 +8,18 @@ export const rect = (
 	pos: ReadonlyVec,
 	w: number,
 	h: number,
-	r = 0
+	radii?:
+		| number
+		| [number, number]
+		| [number, number, number]
+		| [number, number, number, number]
 ) => {
 	let v: any;
-	if (r > 0) {
-		r = Math.min(Math.min(w, h) / 2, r);
-		w -= 2 * r;
-		h -= 2 * r;
-		return path(ctx, attribs, [
-			["M", [pos[0] + r, pos[1]]],
-			["h", w],
-			// FIXME need new type ID for circular arcs
-			// see issues #69 & #418
-			["a", [r, 0], [r, r], r],
-			["v", h],
-			["a", [0, r], [-r, r], r],
-			["h", -w],
-			["a", [-r, 0], [-r, -r], r],
-			["v", -h],
-			["a", [0, -r], [r, -r], r],
-		]);
+	if (radii !== undefined) {
+		ctx.beginPath();
+		ctx.roundRect(pos[0], pos[1], w, h, radii);
+		__endShape(ctx, attribs);
+		return;
 	}
 	if ((v = attribs.fill) && v !== "none") {
 		ctx.fillRect(pos[0], pos[1], w, h);
