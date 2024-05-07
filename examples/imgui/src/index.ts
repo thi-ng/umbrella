@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import { Atom, History } from "@thi.ng/atom";
 import { timedResult } from "@thi.ng/bench";
-import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
+import { line, pathFromSvg } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
 import {
@@ -34,7 +34,7 @@ import { setInManyUnsafe } from "@thi.ng/paths";
 import { fromAtom, fromDOMEvent, merge, sync, syncRAF } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
-import { comp, iterator, map, mapcat, step } from "@thi.ng/transducers";
+import { map, step } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats";
 import {
@@ -86,13 +86,7 @@ const THEME_IDS = ["Default", "Raspberry"];
 const mkIcon = (icon: any[]) => [
 	"g",
 	{ stroke: "none", scale: 16 / 32 },
-	...iterator(
-		comp(
-			mapcat((p) => pathFromSvg(p[1].d)),
-			map(normalizedPath)
-		),
-		icon.slice(2)
-	),
+	...icon.slice(2).map((p) => pathFromSvg(p[1].d)),
 ];
 
 // icon definitions (from @thi.ng/hiccup-carbon-icons)
