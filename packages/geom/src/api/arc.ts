@@ -88,7 +88,7 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
 		return [
 			"path",
 			this.attribs,
-			[["M", this.pointAt(0)], ...this.toHiccupPathSegments()],
+			[["M", this.pointAt(0)], this.toHiccupPathSegments()[0]],
 		];
 	}
 

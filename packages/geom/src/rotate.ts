@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
 import { rotate as $rotate } from "@thi.ng/vectors/rotate";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
@@ -24,6 +24,7 @@ import { asPolygon } from "./as-polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __rotatedShape as tx } from "./internal/rotate.js";
+import { __segmentTransformer } from "./internal/transform.js";
 
 /**
  * Rotates given 2D shape by `theta` (in radians).
@@ -85,18 +86,10 @@ export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
 		line: tx(Line),
 
 		path: ($: Path, theta) => {
-			const $rotateSegments = (segments: PathSegment[]) =>
-				segments.map((s) =>
-					s.geo
-						? {
-								type: s.type,
-								geo: <any>rotate(s.geo, theta),
-						  }
-						: {
-								type: s.type,
-								point: $rotate([], s.point!, theta),
-						  }
-				);
+			const $rotateSegments = __segmentTransformer(
+				(geo) => rotate(geo, theta),
+				(p) => $rotate([], p, theta)
+			);
 			return new Path(
 				$rotateSegments($.segments),
 				$.subPaths.map($rotateSegments),

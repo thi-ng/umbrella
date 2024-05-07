@@ -2,7 +2,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
@@ -30,6 +30,7 @@ import { __asVec } from "./internal/args.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __scaledShape as tx } from "./internal/scale.js";
+import { __segmentTransformer } from "./internal/transform.js";
 
 /**
  * Scales given shape uniformly or non-uniformly by given `factor`.
@@ -126,18 +127,10 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 
 		path: ($: Path, delta) => {
 			delta = __asVec(delta);
-			const $scaleSegments = (segments: PathSegment[]) =>
-				segments.map((s) =>
-					s.geo
-						? {
-								type: s.type,
-								geo: <any>scale(s.geo, delta),
-						  }
-						: {
-								type: s.type,
-								point: mul2([], s.point!, <ReadonlyVec>delta),
-						  }
-				);
+			const $scaleSegments = __segmentTransformer(
+				(geo) => scale(geo, delta),
+				(p) => mul2([], p, <ReadonlyVec>delta)
+			);
 			return new Path(
 				$scaleSegments($.segments),
 				$.subPaths.map($scaleSegments),

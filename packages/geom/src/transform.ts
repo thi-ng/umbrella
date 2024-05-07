@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
 import { ComplexPolygon } from "./api/complex-polygon.js";
@@ -20,6 +20,7 @@ import { asPath } from "./as-path.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import {
+	__segmentTransformer,
 	__transformedShape as tx,
 	__transformedShape3 as tx3,
 } from "./internal/transform.js";
@@ -90,18 +91,10 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
 		line: tx(Line),
 
 		path: ($: Path, mat) => {
-			const $transformSegments = (segments: PathSegment[]) =>
-				segments.map((s) =>
-					s.type === "m"
-						? <PathSegment>{
-								type: s.type,
-								point: mulV([], mat, s.point!),
-						  }
-						: <PathSegment>{
-								type: s.type,
-								geo: transform(s.geo!, mat),
-						  }
-				);
+			const $transformSegments = __segmentTransformer(
+				(geo) => transform(geo, mat),
+				(p) => mulV([], mat, p)
+			);
 			return new Path(
 				$transformSegments($.segments),
 				$.subPaths.map($transformSegments),

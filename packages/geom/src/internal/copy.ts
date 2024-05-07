@@ -41,7 +41,7 @@ export const __copyShape = <T extends PCLike>(
 /** @internal */
 export const __copySegment = (s: PathSegment) => {
 	const d: PathSegment = { type: s.type };
-	s.point && (d.point = copy(s.point));
-	s.geo && (d.geo = <any>s.geo.copy());
+	if (s.geo) d.geo = <PathSegment["geo"]>s.geo.copy();
+	else if (s.point) d.point = copy(s.point);
 	return d;
 };
