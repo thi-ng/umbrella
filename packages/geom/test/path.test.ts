@@ -9,6 +9,7 @@ import {
 	pathFromCubics,
 	pathFromSvg,
 	polyline,
+	roundedRect,
 	simplify,
 	vertices,
 } from "../src/index.js";
@@ -121,5 +122,26 @@ describe("path", () => {
 				[30, 10],
 			])
 		).toBe(true);
+	});
+
+	test("roundedRect", () => {
+		expect(asSvg(roundedRect([0, 0], [100, 100], 20))).toBe(
+			'<path d="M20,0H80A20,20,0,0,1,100,20V80A20,20,0,0,1,80,100H20A20,20,0,0,1,0,80V20A20,20,0,0,1,20.000,0z"/>'
+		);
+		expect(asSvg(roundedRect([0, 0], [100, 100], [10, 20]))).toBe(
+			'<path d="M10,0H80A20,20,0,0,1,100,20V90A10,10,0,0,1,90,100H20A20,20,0,0,1,0,80V10A10,10,0,0,1,10.000,0z"/>'
+		);
+		expect(asSvg(roundedRect([0, 0], [100, 100], [10, 20, 40]))).toBe(
+			'<path d="M10,0H80A20,20,0,0,1,100,20V60A40,40,0,0,1,60,100H20A20,20,0,0,1,0,80V10A10,10,0,0,1,10.000,0z"/>'
+		);
+		expect(asSvg(roundedRect([0, 0], [100, 100], [10, 20, 30, 40]))).toBe(
+			'<path d="M10,0H80A20,20,0,0,1,100,20V70A30,30,0,0,1,70,100H40A40,40,0,0,1,0,60.000V10A10,10,0,0,1,10.000,0z"/>'
+		);
+		expect(asSvg(roundedRect([0, 0], [100, 100], [0, 40]))).toBe(
+			'<path d="M0,0H60A40,40,0,0,1,100,40V100H40A40,40,0,0,1,0,60.000V0z"/>'
+		);
+		expect(asSvg(roundedRect([0, 0], [100, 100], 0))).toBe(
+			'<path d="M0,0H100V100H0V0z"/>'
+		);
 	});
 });

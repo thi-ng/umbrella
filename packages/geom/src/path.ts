@@ -5,15 +5,26 @@ import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { equals2 } from "@thi.ng/vectors/equals";
-import { maddN2 } from "@thi.ng/vectors/maddn";
 import type { Cubic } from "./api/cubic.js";
 import { Path } from "./api/path.js";
 import { asCubic } from "./as-cubic.js";
 import { PathBuilder } from "./path-builder.js";
 
+/**
+ * Creates a new {@link Path} instance, optional with given `segments`,
+ * `subPaths` and `attribs`.
+ *
+ * @remarks
+ * Segments and sub-paths can also be later added via {@link Path.addSegments}
+ * or {@link Path.addSubPaths}.
+ *
+ * @param segments
+ * @param subPaths
+ * @param attribs
+ */
 export const path = (
-	segments: Iterable<PathSegment>,
-	subPaths: Iterable<PathSegment[]> = [],
+	segments?: Iterable<PathSegment>,
+	subPaths?: Iterable<PathSegment[]>,
 	attribs?: Attribs
 ) => new Path(segments, subPaths, attribs);
 
@@ -27,6 +38,8 @@ export const path = (
  * For each successive curve segment, if the start point of the current curve is
  * not the same as the last point of the previous curve, a new sub path will be
  * started.
+ *
+ * Also see {@link normalizedPath}.
  *
  * @param cubics
  * @param attribs
@@ -52,6 +65,15 @@ export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
 	return path;
 };
 
+/**
+ * Converts given path into a new one with all segments converted to
+ * {@link Cubic} bezier segments.
+ *
+ * @remarks
+ * Also see {@link pathFromCubics}.
+ *
+ * @param path
+ */
 export const normalizedPath = (path: Path) => {
 	const $normalize = (segments: PathSegment[]) => [
 		...mapcat(
@@ -72,23 +94,52 @@ export const normalizedPath = (path: Path) => {
 	);
 };
 
+/**
+ * Creates a new rounded rect {@link Path}, using the given corner radius or
+ * radii.
+ *
+ * @remarks
+ * If multiple `radii` are given, the interpretation logic is the same as:
+ * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/roundRect
+ *
+ * - number: all corners
+ * - `[top-left-and-bottom-right, top-right-and-bottom-left]`
+ * - `[top-left, top-right-and-bottom-left, bottom-right]`
+ * - `[top-left, top-right, bottom-right, bottom-left]`
+ *
+ * No arc segments will be generated for those corners where the radius <= 0
+ *
+ * @param pos
+ * @param size
+ * @param radii
+ * @param attribs
+ */
 export const roundedRect = (
 	pos: Vec,
-	size: Vec,
-	r: number | Vec,
+	[w, h]: Vec,
+	radii:
+		| number
+		| [number, number]
+		| [number, number, number]
+		| [number, number, number, number],
 	attribs?: Attribs
 ) => {
-	r = isNumber(r) ? [r, r] : r;
-	const [w, h] = maddN2([], r, -2, size);
-	return new PathBuilder(attribs)
-		.moveTo([pos[0] + r[0], pos[1]])
-		.hlineTo(w, true)
-		.arcTo(r, r, 0, false, true, true)
-		.vlineTo(h, true)
-		.arcTo([-r[0], r[1]], r, 0, false, true, true)
-		.hlineTo(-w, true)
-		.arcTo([-r[0], -r[1]], r, 0, false, true, true)
-		.vlineTo(-h, true)
-		.arcTo([r[0], -r[1]], r, 0, false, true, true)
-		.current();
+	const [tl, tr, br, bl] = isNumber(radii)
+		? [radii, radii, radii, radii]
+		: radii.length === 2
+		? [radii[0], radii[1], radii[0], radii[1]]
+		: radii.length === 3
+		? [radii[0], radii[1], radii[2], radii[1]]
+		: radii;
+	const b = new PathBuilder(attribs)
+		.moveTo([pos[0] + tl, pos[1]])
+		.hlineTo(w - tl - tr, true);
+	if (tr > 0) b.arcTo([tr, tr], [tr, tr], 0, false, true, true);
+	b.vlineTo(h - tr - br, true);
+	if (br > 0) b.arcTo([-br, br], [br, br], 0, false, true, true);
+	b.hlineTo(-(w - br - bl), true);
+	if (bl > 0) b.arcTo([-bl, -bl], [bl, bl], 0, false, true, true);
+	b.vlineTo(-(h - bl - tl), true);
+	if (tl > 0) b.arcTo([tl, -tl], [tl, tl], 0, false, true, true);
+	return b.current().close();
 };
