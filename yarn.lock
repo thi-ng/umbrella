@@ -806,6 +806,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-sdf-path@workspace:examples/geom-sdf-path":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-sdf-path@workspace:examples/geom-sdf-path"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-sdf": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: "npm:^5.4.3"
+    vite: "npm:^5.2.6"
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-terrain-viz@workspace:examples/geom-terrain-viz":
   version: 0.0.0-use.local
   resolution: "@example/geom-terrain-viz@workspace:examples/geom-terrain-viz"
