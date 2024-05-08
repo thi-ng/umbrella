@@ -89,7 +89,7 @@ For Node.js REPL:
 const mem = await import("@thi.ng/memoize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 518 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 515 bytes
 
 ## Dependencies
 

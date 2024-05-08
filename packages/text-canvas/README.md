@@ -81,7 +81,7 @@ For Node.js REPL:
 const tc = await import("@thi.ng/text-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.24 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.23 KB
 
 ## Dependencies
 

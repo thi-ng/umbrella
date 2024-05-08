@@ -68,7 +68,7 @@ For Node.js REPL:
 const sg = await import("@thi.ng/scenegraph");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 980 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 975 bytes
 
 ## Dependencies
 

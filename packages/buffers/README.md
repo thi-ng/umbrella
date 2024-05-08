@@ -86,7 +86,7 @@ For Node.js REPL:
 const buf = await import("@thi.ng/buffers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 609 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 606 bytes
 
 ## Dependencies
 

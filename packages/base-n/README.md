@@ -61,7 +61,7 @@ For Node.js REPL:
 const base = await import("@thi.ng/base-n");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.26 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.25 KB
 
 ## Dependencies
 
