@@ -73,6 +73,7 @@ export * from "./point-inside.js";
 export * from "./resample.js";
 export * from "./rotate.js";
 export * from "./scale.js";
+export * from "./scale-with-center.js";
 export * from "./scatter.js";
 export * from "./simplify.js";
 export * from "./split-arclength.js";
