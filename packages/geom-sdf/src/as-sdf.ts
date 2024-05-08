@@ -21,6 +21,7 @@ import { asPolygon } from "@thi.ng/geom/as-polygon";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
 import { simplify } from "@thi.ng/geom/simplify";
+import { withAttribs } from "@thi.ng/geom/with-attribs";
 import { add2 } from "@thi.ng/vectors/add";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import type { FieldCoeff, SDFAttribs, SDFn } from "./api.js";
@@ -78,7 +79,7 @@ interface ParametricOps {
  * - ellipse
  * - group
  * - line
- * - path (no sub-paths, only main path, auto-converted to polygon/polyline)
+ * - path (auto-converted to polyline or complex polygon)
  * - points
  * - polygon
  * - polyline
@@ -104,7 +105,11 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 		circle: ($: Circle) => circle2($.pos, $.r, __sdfAttribs($.attribs)),
 
 		complexpoly: ($: ComplexPolygon) =>
-			asSDF(new Polygon($.boundary, $.attribs)),
+			diff(
+				[$.boundary, ...$.children].map((poly) =>
+					asSDF(withAttribs(poly, $.attribs))
+				)
+			),
 
 		cubic: ($: IShape) =>
 			asSDF(
@@ -164,12 +169,20 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 		path: ($: Path) => {
 			const n = (__sdfAttribs($.attribs) || {}).samples;
 			const path = new Path($.segments, [], $.attribs);
-			return asSDF(
+			const boundary = asSDF(
 				simplify(
 					$.closed ? asPolygon(path, n)[0] : asPolyline(path, n)[0],
 					0
 				)
 			);
+			if (!$.subPaths.length) return boundary;
+			const fields = [
+				boundary,
+				...$.subPaths.map((segments) =>
+					asSDF(new Path(segments, [], $.attribs))
+				),
+			];
+			return $.closed ? diff(fields) : union(fields);
 		},
 
 		points: ($: Points) => points2($.points, __sdfAttribs($.attribs)),
