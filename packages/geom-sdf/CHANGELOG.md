@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-23T07:02:18Z
+- **Last updated**: 2024-05-08T18:24:32Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-sdf@0.4.0) (2024-05-08)
+
+#### 🚀 Features
+
+- add rdom-klist example project, update readmes ([cd458ac](https://github.com/thi-ng/umbrella/commit/cd458ac))
+- add rdom-klist example project, update readmes ([531437f](https://github.com/thi-ng/umbrella/commit/531437f))
+- support path & complexpoly sub-shapes in asSDF() ([e924dc2](https://github.com/thi-ng/umbrella/commit/e924dc2))
+
+#### ♻️ Refactoring
+
+- update internal polyline handling ([f758425](https://github.com/thi-ng/umbrella/commit/f758425))
+- add/update asSDF() impls for ComplexPoly & Path ([3337a0e](https://github.com/thi-ng/umbrella/commit/3337a0e))
+  - update docs
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-sdf@0.3.0) (2024-01-23)
 

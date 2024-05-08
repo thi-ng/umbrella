@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-23T07:02:18Z
+- **Last updated**: 2024-05-08T18:24:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,113 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [7.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@7.0.0) (2024-05-08)
+
+#### 🛑 Breaking changes
+
+- update Path to support sub-paths (holes), update impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([9329d27](https://github.com/thi-ng/umbrella/commit/9329d27))
+- BREAKING CHANGE: update path related ctors & functions
+  - add `subPaths` argument for Path ctor/factory fn
+  - rename `Path.add()` => `Path.addSegments()`
+  - add `Path.addSubPaths()`
+  - update `Path.toHiccup()` to include sub-paths
+  - update `pathFromSvg()` to always return a single path only
+    - sub-paths are included in main path now
+  - update impls for following ops to also process sub-paths:
+    - bounds()
+    - rotate()
+    - scale()
+    - simplify()
+    - translate()
+    - transform()
+    - transformVertices()
+- update asPolyline(), add support for multiple boundaries ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([0616b96](https://github.com/thi-ng/umbrella/commit/0616b96))
+- BREAKING CHANGE: update asPolygon() to return array of polylines
+  - add/update impls for complexpoly & path to produce multiple results
+  - update other internal callsites
+  - update tests
+- update `Path` closing logic ([ce3a922](https://github.com/thi-ng/umbrella/commit/ce3a922))
+- BREAKING CHANGE: update `Path` closing logic, `Path.closed` now a readonly property
+  - add `Path.closed()` getter
+  - add `Path.close()` to add a `Z`-type segment, check if not closed already
+  - update `Path.addSegments()` to check each segment, throw error if path already closed
+  - refactor `PathBuilder.closePath()`
+- add asPolygon() support for complexpoly & path ([e3c9f20](https://github.com/thi-ng/umbrella/commit/e3c9f20))
+- BREAKING CHANGE: update asPolygon() to return array of polygons (rather than single only)
+  - add support for complexpoly & path (incl. sub-shapes, holes)
+  - refactor internal call sites
+- update asPath(), add AsPathOpts ([ef0ebdf](https://github.com/thi-ng/umbrella/commit/ef0ebdf))
+- BREAKING CHANGE: update asPath() args, add AsPathOpts as 2nd arg
+  - add option for using only linear path segments (no cubics)
+  - update impls for complexpoly & other polygon types
+- update Path & PathBuilder.close() ([b2134c2](https://github.com/thi-ng/umbrella/commit/b2134c2))
+- BREAKING CHANGE: rename `PathBuilder.closePath()` => `PathBuilder.close()`
+  - update `Path.close()` to return path itself
+- rewrite roundedRect() to allow individual corner radii ([a4817aa](https://github.com/thi-ng/umbrella/commit/a4817aa))
+- BREAKING CHANGE: update roundedRect() radius handling to allow individual corner radii
+  - update docs
+  - add tests
+
+#### 🚀 Features
+
+- initial import ComplexPolygon & impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([ded007c](https://github.com/thi-ng/umbrella/commit/ded007c))
+  - add complexPolygon() factory fn
+  - add bounds() & centroid() impls
+- add ops for complex polygons ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([35ce854](https://github.com/thi-ng/umbrella/commit/35ce854))
+  - add implementations for:
+    - arcLength()
+    - area()
+    - asPath()
+    - closestPoint()
+    - convexHull()
+    - edges()
+    - flip()
+    - pointInside()
+    - resample()
+    - rotate()
+    - scale()
+    - simplify()
+    - subdivCurve()
+    - transform()
+    - transformVertices()
+    - translate()
+    - vertices()
+  - add tests
+- add proximity() ([5d5951c](https://github.com/thi-ng/umbrella/commit/5d5951c))
+- update `vertices()` impl for `Path`, incl. sub-path vertices ([824067f](https://github.com/thi-ng/umbrella/commit/824067f))
+- update simplify() default threshold ([bdba298](https://github.com/thi-ng/umbrella/commit/bdba298))
+- add arcLength() for Path, refactor complexpoly impl ([d133bbe](https://github.com/thi-ng/umbrella/commit/d133bbe))
+- add/update asCubic() impls for complex poly & path ([7f9e927](https://github.com/thi-ng/umbrella/commit/7f9e927))
+- update pathFromCubics() to auto-create sub-paths if needed ([1170e45](https://github.com/thi-ng/umbrella/commit/1170e45))
+- add closestPoint() impl for Path ([f0cf2f1](https://github.com/thi-ng/umbrella/commit/f0cf2f1))
+- add pointInside() impl for Polyline ([d10bf43](https://github.com/thi-ng/umbrella/commit/d10bf43))
+- add centroid() & convexHull() impl for Path ([76aa229](https://github.com/thi-ng/umbrella/commit/76aa229))
+- add complexPolygonFromPath() ([cd526f1](https://github.com/thi-ng/umbrella/commit/cd526f1))
+- update PathBuilder.close(), fix attrib handling ([e68d0bc](https://github.com/thi-ng/umbrella/commit/e68d0bc))
+  - only insert closing line segment if needed
+  - copy attribs for each new path
+  - add docs
+- add opt attribs for `pathFromSvg()` ([2da31f6](https://github.com/thi-ng/umbrella/commit/2da31f6))
+  - update docs
+  - add/update tests
+- add scaleWithCenter() ([e328494](https://github.com/thi-ng/umbrella/commit/e328494))
+- add complexpoly & path support for `clipConvex()` ([7665dc1](https://github.com/thi-ng/umbrella/commit/7665dc1))
+
+#### 🩹 Bug fixes
+
+- update vertices() ([2afc05e](https://github.com/thi-ng/umbrella/commit/2afc05e))
+  - update impl for points, poly, polyline to return shallow copy of point array if no opts given
+
+#### ♻️ Refactoring
+
+- update withAttribs(), make new attribs optional ([688e1bf](https://github.com/thi-ng/umbrella/commit/688e1bf))
+- update geom examples (recent API changes) ([f0f5ea7](https://github.com/thi-ng/umbrella/commit/f0f5ea7))
+- update area() impl for Path ([0960817](https://github.com/thi-ng/umbrella/commit/0960817))
+- update/simplify asPath() impls ([cbc71bb](https://github.com/thi-ng/umbrella/commit/cbc71bb))
+- update centroid() for complexpoly ([58ac296](https://github.com/thi-ng/umbrella/commit/58ac296))
+  - re-use migrated fn from [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/main/packages/geom-poly-utils)
+- update path segment transformations ([88b2c40](https://github.com/thi-ng/umbrella/commit/88b2c40))
 
 ### [6.1.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.1.7) (2024-04-20)
 

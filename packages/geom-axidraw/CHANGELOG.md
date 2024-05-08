@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-23T07:02:18Z
+- **Last updated**: 2024-05-08T18:24:32Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-axidraw@0.6.0) (2024-05-08)
+
+#### 🚀 Features
+
+- add complex polygon support for asAxiDraw() ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([756c781](https://github.com/thi-ng/umbrella/commit/756c781))
+- add rdom-klist example project, update readmes ([cd458ac](https://github.com/thi-ng/umbrella/commit/cd458ac))
+- add rdom-klist example project, update readmes ([531437f](https://github.com/thi-ng/umbrella/commit/531437f))
+
+#### ♻️ Refactoring
+
+- internal update (polyline conversion) ([64a18b7](https://github.com/thi-ng/umbrella/commit/64a18b7))
+- update asAxiDraw() impls ([fca73d6](https://github.com/thi-ng/umbrella/commit/fca73d6))
 
 ### [0.5.87](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-axidraw@0.5.87) (2024-04-20)
 

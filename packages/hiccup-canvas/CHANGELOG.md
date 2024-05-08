@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-23T07:02:18Z
+- **Last updated**: 2024-05-08T18:24:32Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@3.0.0) (2024-05-08)
+
+#### 🛑 Breaking changes
+
+- fix [#69](https://github.com/thi-ng/umbrella/issues/69) add elliptic arc path segment support, rename circular arc segments ([7f82cb2](https://github.com/thi-ng/umbrella/commit/7f82cb2))
+- BREAKING CHANGE: add elliptic arc path segment support, rename circular arc segments
+  - update `path()` arc segment handling
+    - use standard `A` and `a` path segment types for SVG-compatible elliptic arc segments
+    - use `R` and `r` for canvas-only circular arc segments
+  - update deps
+
+#### ⏱ Performance improvements
+
+- update rect(), use native rounded rect drawing ([5540510](https://github.com/thi-ng/umbrella/commit/5540510))
 
 ### [2.5.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.5.36) (2024-04-20)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/units",
-	"version": "0.4.45",
+	"version": "0.4.46",
 	"description": "Extensible SI unit creation, conversions, quantities & calculations (incl. ~170 predefined units & constants)",
 	"type": "module",
 	"module": "./index.js",
@@ -36,10 +36,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.1",
-		"@thi.ng/checks": "^3.6.3",
-		"@thi.ng/equiv": "^2.1.57",
-		"@thi.ng/errors": "^2.5.6"
+		"@thi.ng/api": "^8.11.2",
+		"@thi.ng/checks": "^3.6.4",
+		"@thi.ng/equiv": "^2.1.58",
+		"@thi.ng/errors": "^2.5.7"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.43.2",

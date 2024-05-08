@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-04-23T07:02:19Z
+- **Last updated**: 2024-05-08T18:24:32Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -14,6 +14,7 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - minor zig v0.12.0 updates ([ee4f117](https://github.com/thi-ng/umbrella/commit/ee4f117))
+- minor zig v0.12.0 updates ([aaaa4e8](https://github.com/thi-ng/umbrella/commit/aaaa4e8))
 
 ### [0.11.88](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.11.88) (2024-04-20)
 
