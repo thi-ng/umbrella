@@ -13,22 +13,23 @@ package is responsible for the actual plotter output...
 
 ### Supported shape types
 
-| Shape type | Remarks                                         |
-|------------|-------------------------------------------------|
-| arc        | elliptic arc<sup>(1)</sup>                      |
-| circle     | circle<sup>(1)</sup>                            |
-| cubic      | cubic bezier segment<sup>(1)</sup>              |
-| ellipse    | ellipse<sup>(1)</sup>                           |
-| group      | shape group (possibly nested)<sup>(3)</sup>     |
-| line       | line segment<sup>(2)</sup>                      |
-| path       | single outline only, no holes                   |
-| points     | point cloud (stippling)<sup>(3)</sup>           |
-| polyline   | polyline (any number of vertices)<sup>(2)</sup> |
-| polygon    | simple polygon, no holes<sup>(2)</sup>          |
-| quad       | arbitrary 4-gon<sup>(2)</sup>                   |
-| quadratic  | quadratic bezier segment<sup>(1)</sup>          |
-| rect       | axis aligned rectangle<sup>(2)</sup>            |
-| triangle   | triangle<sup>(2)</sup>                          |
+| Shape type  | Remarks                                         |
+|-------------|-------------------------------------------------|
+| arc         | elliptic arc<sup>(1)</sup>                      |
+| circle      | circle<sup>(1)</sup>                            |
+| complexpoly | polygon with optional holes                     |
+| cubic       | cubic bezier segment<sup>(1)</sup>              |
+| ellipse     | ellipse<sup>(1)</sup>                           |
+| group       | shape group (possibly nested)<sup>(3)</sup>     |
+| line        | line segment<sup>(2)</sup>                      |
+| path        | optionally with holes or multiple curves        |
+| points      | point cloud (stippling)<sup>(3)</sup>           |
+| polyline    | polyline (any number of vertices)<sup>(2)</sup> |
+| polygon     | simple polygon, no holes<sup>(2)</sup>          |
+| quad        | arbitrary 4-gon<sup>(2)</sup>                   |
+| quadratic   | quadratic bezier segment<sup>(1)</sup>          |
+| rect        | axis aligned rectangle<sup>(2)</sup>            |
+| triangle    | triangle<sup>(2)</sup>                          |
 
 - <sup>(1)</sup> always interpolated/sampled
 - <sup>(2)</sup> only interpolated if forced via attrib
@@ -42,8 +43,9 @@ shape types have support for arbitrary attributes. Different support packages
 can then utilize these attribs to customize usage or behaviors. In this case,
 any package-specific attribs must be stored under the `__axi` key:
 
-- `clip`: Optional clip polygon vertices (if given only the parts of strokes
-  inside that polygon will be plotted)
+- `clip`: Optional clip polygon vertices. If given only the parts of strokes
+  inside that polygon will be plotted. The clip polygon itself can only have a
+  single boundary, no holes supported (yet?).
 - `delayDown`: Shape specific delay (in ms), i.e. initial hold time for the
   stroke or when stippling...
 - `delayUp`: Delay for pen up command at the end this particular
