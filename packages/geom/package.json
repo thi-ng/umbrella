@@ -334,6 +334,9 @@
 		"./rotate": {
 			"default": "./rotate.js"
 		},
+		"./scale-with-center": {
+			"default": "./scale-with-center.js"
+		},
 		"./scale": {
 			"default": "./scale.js"
 		},
