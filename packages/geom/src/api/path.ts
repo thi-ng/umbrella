@@ -25,6 +25,10 @@ export class Path implements IClear, IHiccupShape {
 		return "path";
 	}
 
+	/**
+	 * Returns true, if the last main segment is a closing segment, e.g. if the
+	 * path represents a closed shape.
+	 */
 	get closed() {
 		return peek(this.segments)?.type === "z";
 	}

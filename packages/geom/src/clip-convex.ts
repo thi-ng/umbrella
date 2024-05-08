@@ -6,23 +6,51 @@ import { clipLineSegmentPoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
+import { Path } from "./api/path.js";
 import { Polygon } from "./api/polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { ensureVertices, vertices } from "./vertices.js";
 
+/** @internal */
+const __clipVertices = ($: IShape, boundary: IShape | ReadonlyVec[]) => {
+	boundary = ensureVertices(boundary);
+	const pts = sutherlandHodgeman(vertices($), boundary, centroid(boundary));
+	return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
+};
+
 /**
- * Takes a shape and a boundary (both convex). Uses the Sutherland-Hodgman
- * algorithm to compute a clipped version of the first shape (against the
- * boundary). Returns `undefined` if there're no remaining result vertices.
+ * Takes a shape and a boundary (both convex), then uses the Sutherland-Hodgeman
+ * algorithm to compute a clipped version of the shape (against the boundary)
+ * and returns resulting clipped shape or `undefined` if there're no remaining
+ * result vertices (i.e. if the original shape was clipped entirely).
  *
  * @remarks
  * Internally uses
  * [`sutherlandHodgeman()`](https://docs.thi.ng/umbrella/geom-clip-poly/functions/sutherlandHodgeman.html).
  * For groups, calls itself for each child shape individually and returns a new
  * group of results (if any).
+ *
+ * For {@link ComplexPolygon}s, children are only processed if the main boundary
+ * hasn't been completely clipped. Similarly for paths, where sub-paths are only
+ * processed if the main path has remaining vertices. Paths are
+ * sampled/converted to polygons and are only processed if the main path is
+ * {@link Path.closed}.
+ *
+ * Currently implemented for:
+ *
+ * - {@link Circle}
+ * - {@link ComplexPolygon}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Polygon}
+ * - {@link Quad}
+ * - {@link Triangle}
  *
  * @param shape
  * @param boundary
@@ -36,11 +64,23 @@ export const clipConvex: MultiFn2<
 	{
 		circle: "rect",
 		ellipse: "rect",
-		path: "rect",
 		quad: "poly",
 		tri: "poly",
 	},
 	{
+		complexpoly: ($: ComplexPolygon, boundary) => {
+			boundary = ensureVertices(boundary);
+			const c = centroid(boundary)!;
+			let clipped = sutherlandHodgeman($.boundary.points, boundary, c);
+			if (!clipped.length) return undefined;
+			const res: Polygon[] = [new Polygon(clipped)];
+			for (let child of $.children) {
+				clipped = sutherlandHodgeman(child.points, boundary, c);
+				if (clipped.length) res.push(new Polygon(clipped));
+			}
+			return new ComplexPolygon(res[0], res.slice(1), __copyAttribs($));
+		},
+
 		group: ({ children, attribs }: Group, boundary) => {
 			boundary = ensureVertices(boundary);
 			const clipped: IHiccupShape[] = [];
@@ -64,6 +104,25 @@ export const clipConvex: MultiFn2<
 				: undefined;
 		},
 
+		path: ($: Path, boundary) => {
+			if ($.closed) return undefined;
+			boundary = ensureVertices(boundary);
+			let clipped = __clipVertices($, boundary);
+			if (!clipped) return undefined;
+			const res = new ComplexPolygon(clipped, [], __copyAttribs($));
+			for (let sub of $.subPaths) {
+				clipped = __clipVertices(
+					new Path(sub, [], __copyAttribs($)),
+					boundary
+				);
+				if (clipped) {
+					clipped.attribs = undefined;
+					res.addChild(clipped);
+				}
+			}
+			return res;
+		},
+
 		poly: ($: Polygon, boundary) => {
 			boundary = ensureVertices(boundary);
 			const pts = sutherlandHodgeman(
@@ -74,14 +133,6 @@ export const clipConvex: MultiFn2<
 			return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
 		},
 
-		rect: ($: IShape, boundary) => {
-			boundary = ensureVertices(boundary);
-			const pts = sutherlandHodgeman(
-				vertices($),
-				boundary,
-				centroid(boundary)
-			);
-			return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
-		},
+		rect: __clipVertices,
 	}
 );
