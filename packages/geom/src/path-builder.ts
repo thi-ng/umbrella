@@ -4,6 +4,7 @@ import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { Vec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";
 import { copy } from "@thi.ng/vectors/copy";
+import { eqDelta2 } from "@thi.ng/vectors/eqdelta";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import { set2 } from "@thi.ng/vectors/set";
 import { zeroes } from "@thi.ng/vectors/setn";
@@ -27,7 +28,11 @@ export interface PathBuilderOpts {
 }
 
 export class PathBuilder {
+	/**
+	 * Array of all paths which have been built already (incl. the current)
+	 */
 	paths: Path[];
+
 	protected curr!: Path;
 	protected currP!: Vec;
 	protected bezierP!: Vec;
@@ -46,12 +51,23 @@ export class PathBuilder {
 		yield* this.paths;
 	}
 
+	/**
+	 * Returns the current path being constructed.
+	 */
 	current() {
 		return this.curr;
 	}
 
+	/**
+	 * Starts a new path and makes it the current one. Any future build commands
+	 * will only act on this new path.
+	 */
 	newPath() {
-		this.curr = new Path([], [], this.attribs);
+		this.curr = new Path(
+			[],
+			[],
+			this.attribs ? { ...this.attribs } : undefined
+		);
 		this.paths.push(this.curr);
 		this.currP = zeroes(2);
 		this.bezierP = zeroes(2);
@@ -148,10 +164,12 @@ export class PathBuilder {
 	}
 
 	close() {
-		this.curr.addSegments({
-			geo: new Line([copy(this.currP), copy(this.startP)]),
-			type: "l",
-		});
+		if (!eqDelta2(this.startP, this.currP)) {
+			this.curr.addSegments({
+				geo: new Line([copy(this.currP), copy(this.startP)]),
+				type: "l",
+			});
+		}
 		this.curr.close();
 		return this;
 	}
@@ -202,6 +220,16 @@ export class PathBuilder {
 	}
 }
 
+/**
+ * Creates a new {@link PathBuilder} instance to construct a path step-by-step
+ * via a fluent builder API to append various segments and/or sub-paths.
+ *
+ * @remarks
+ * Also see {@link pathFromSvg} and {@link roundedRect}.
+ *
+ * @param attribs
+ * @param opts
+ */
 export const pathBuilder = (
 	attribs?: Attribs,
 	opts?: Partial<PathBuilderOpts>
