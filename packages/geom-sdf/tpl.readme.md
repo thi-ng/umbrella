@@ -35,6 +35,25 @@ import { asSDF } from "@thi.ng/geom-sdf";
 const f = asSDF(group({}, [circle([-50, 0], 100), circle([50, 0], 100)]));
 ```
 
+### Supported thi.ng/geom shape types
+
+([shape type descriptions](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/README.md#shape-types))
+
+- circle
+- complexPoly (polygon w/ holes)
+- cubic
+- ellipse
+- group (of supported shapes)
+- line
+- path (w/ holes and/or sub-paths, multiple curves)
+- points
+- polygon
+- polyline
+- quad
+- quadratic
+- rect
+- triangle
+
 ### SDF combinators
 
 The following table illustrates various options how SDFs can be combined. When

@@ -16,6 +16,7 @@
 
 - [About](#about)
   - [SDF creation](#sdf-creation)
+  - [Supported thi.ng/geom shape types](#supported-thinggeom-shape-types)
   - [SDF combinators](#sdf-combinators)
   - [SDF discretization, sampling & domain modifiers](#sdf-discretization-sampling--domain-modifiers)
 - [Status](#status)
@@ -59,6 +60,25 @@ import { asSDF } from "@thi.ng/geom-sdf";
 
 const f = asSDF(group({}, [circle([-50, 0], 100), circle([50, 0], 100)]));
 ```
+
+### Supported thi.ng/geom shape types
+
+([shape type descriptions](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/README.md#shape-types))
+
+- circle
+- complexPoly (polygon w/ holes)
+- cubic
+- ellipse
+- group (of supported shapes)
+- line
+- path (w/ holes and/or sub-paths, multiple curves)
+- points
+- polygon
+- polyline
+- quad
+- quadratic
+- rect
+- triangle
 
 ### SDF combinators
 
@@ -147,7 +167,7 @@ For Node.js REPL:
 const sdf = await import("@thi.ng/geom-sdf");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.71 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.76 KB
 
 ## Dependencies
 
