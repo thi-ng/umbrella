@@ -6,6 +6,7 @@ import {
 	asPolyline,
 	asSvg,
 	line,
+	pathBuilder,
 	pathFromCubics,
 	pathFromSvg,
 	polyline,
@@ -14,9 +15,13 @@ import {
 	vertices,
 } from "../src/index.js";
 
-const A = pathFromSvg("M0,0h100v100h-100zM10,10v80h80v-80z");
+const A = pathFromSvg("M0,0h100v100h-100zM10,10v80h80v-80z", { fill: "red" });
 
 describe("path", () => {
+	test("pathbuilder", () => {
+		expect(pathBuilder().current()).toEqual(new Path());
+	});
+
 	test("fromSvg", () => {
 		expect(A).toEqual(
 			new Path(
@@ -37,14 +42,15 @@ describe("path", () => {
 						{ type: "l", geo: line([90, 10], [10, 10]) },
 						{ type: "z" },
 					],
-				]
+				],
+				{ fill: "red" }
 			)
 		);
 	});
 
 	test("asSvg", () => {
 		expect(asSvg(A)).toBe(
-			'<path d="M0,0H100V100H0V0zM10,10V90H90V10H10z"/>'
+			'<path d="M0,0H100V100H0V0zM10,10V90H90V10H10z" fill="red"/>'
 		);
 	});
 
@@ -52,20 +58,26 @@ describe("path", () => {
 		expect(
 			asPolyline(A, { dist: 20 }).map((x) => simplify(x, 1e-3))
 		).toEqual([
-			polyline([
-				[0, 0],
-				[100, 0],
-				[100, 100],
-				[0, 100],
-				[0, 0],
-			]),
-			polyline([
-				[10, 10],
-				[10, 90],
-				[90, 90],
-				[90, 10],
-				[10, 10],
-			]),
+			polyline(
+				[
+					[0, 0],
+					[100, 0],
+					[100, 100],
+					[0, 100],
+					[0, 0],
+				],
+				{ fill: "red" }
+			),
+			polyline(
+				[
+					[10, 10],
+					[10, 90],
+					[90, 90],
+					[90, 10],
+					[10, 10],
+				],
+				{ fill: "red" }
+			),
 		]);
 	});
 

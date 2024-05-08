@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
+import type { Attribs } from "@thi.ng/geom-api";
 import { rad } from "@thi.ng/math/angle";
 import { WS } from "@thi.ng/strings/groups";
 import type { Vec } from "@thi.ng/vectors";
@@ -8,8 +9,19 @@ import { PathBuilder } from "./path-builder.js";
 const CMD_RE = /[achlmqstvz]/i;
 const WSC: IObjectOf<boolean> = { ...WS, ",": true };
 
-export const pathFromSvg = (svg: string) => {
-	const b = new PathBuilder();
+/**
+ * Takes a SVG path string and parses it into a {@link Path} shape, optionally
+ * with given attributes.
+ *
+ * @remarks
+ * If the path contains multiple sub-paths (e.g. holes or multiple curves), they
+ * will be added as sub-paths to the returned main path.
+ *
+ * @param svg
+ * @param attribs
+ */
+export const pathFromSvg = (svg: string, attribs?: Attribs) => {
+	const b = new PathBuilder(attribs);
 	try {
 		let cmd = "";
 		for (let n = svg.length, i = 0; i < n; ) {
@@ -75,9 +87,8 @@ export const pathFromSvg = (svg: string) => {
 					);
 			}
 		}
-		return b.paths[0].addSubPaths(
-			...b.paths.slice(1).map((p) => p.segments)
-		);
+		const [main, ...subPaths] = b.paths;
+		return main.addSubPaths(...subPaths.map((p) => p.segments));
 	} catch (e) {
 		throw e instanceof Error
 			? e
