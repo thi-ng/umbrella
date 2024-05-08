@@ -730,10 +730,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/geom-convex-hull@workspace:examples/geom-convex-hull"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/geom-api": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
     typescript: "npm:^5.4.3"
     vite: "npm:^5.2.6"
   languageName: unknown
