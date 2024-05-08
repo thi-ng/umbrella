@@ -4,14 +4,15 @@ import {
 	bounds,
 	complexPolygon,
 	fitIntoBounds2,
-	path,
 	pathFromSvg,
 	rectWithCentroid,
 	svgDoc,
 } from "@thi.ng/geom";
-import { asPolygons, asSDF, diff, sample2d } from "@thi.ng/geom-sdf";
-import { add2, mag, rotate } from "@thi.ng/vectors";
+import { asPolygons, asSDF, sample2d } from "@thi.ng/geom-sdf";
+import { dist2, rotate } from "@thi.ng/vectors";
 
+// parse SVG into a path with holes and rescale & translate it to fit within
+// given bounding rect
 const src = <Path>fitIntoBounds2(
 	pathFromSvg(
 		// https://www.svgrepo.com/svg/451605/face-smile-big
@@ -20,23 +21,45 @@ const src = <Path>fitIntoBounds2(
 	rectWithCentroid([0, 0], 400)
 );
 
+// compute bounding rect with some extra margin
 const contourBounds = bounds(src, 20)!;
 
-const sdf = diff([asSDF(src), ...src.subPaths.map((s) => asSDF(path(s)))]);
+// convert the path/shape into an SDF (Signed Distance Field). this function is
+// polymorphic and accepts a variety of shape types (incl. nested groups of
+// shapes). the resulting SDF is a function which takes a point and returns the
+// (signed) distance to the boundary of the path/shape... See thi.ng/geom-sdf
+// readme for more details
+const sdf = asSDF(src);
 
-const res = [100, 100];
+// grid resolution to sample the SDF (in order to re-convert it back to SVG)
+const resolution = [100, 100];
 
 const update = (t: number) => {
 	t *= 0.001;
-	const image = sample2d(sdf, contourBounds, res, (p) =>
-		rotate([], p, mag(p) * Math.sin(t) * 0.04)
+	// animated center point for the twirl effect (in next step)
+	const origin = [Math.sin(t / 3) * 200, 0];
+
+	// evaluate & cache the SDF as an "image"/grid. the SDF is only sampled in
+	// the given bounding box region, at specified resolution and here uses a
+	// custom domain function to distort the space (via a timebased twirl
+	// effect). this spatial transformation is done by transforming each
+	// original grid point (sample positions) prior to evaluating the SDF. The
+	// geom-sdf pkg also includes a number of preset domain functions...
+	const image = sample2d(sdf, contourBounds, resolution, (p) =>
+		rotate([], p, dist2(origin, p) * Math.sin(t) * 0.04)
 	);
 
+	// helper function to extract contour lines (at distance `d`) from the
+	// pre-sampled SDF image and arrange those contours into a complex polygon
+	// (aka a polygon with holes)
 	const contours = (d: number, fill: string) => {
-		const polys = asPolygons(image, contourBounds, res, [d], 0.1);
+		const polys = asPolygons(image, contourBounds, resolution, [d], 0.1);
 		return complexPolygon(polys[0], polys.slice(1), { fill });
 	};
 
+	// combine everything: sample the SDF at 3 different threshold distances,
+	// put the results into a SVG doc (all thi.ng/geom shapes and hiccup format)
+	// and finally serialize to an SVG string
 	document.getElementById("app")!.innerHTML = asSvg(
 		svgDoc(
 			{ stroke: "none" },
@@ -45,6 +68,7 @@ const update = (t: number) => {
 			contours(-10, "#fc0")
 		)
 	);
+
 	requestAnimationFrame(update);
 };
 
