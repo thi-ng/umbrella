@@ -41,7 +41,7 @@ export const fileHash = async (
  * "sha256"). If `logger` is given, the hash will be logged too.
  *
  * @remarks
- * Also see {@link fileHash} and {@link stringHash}.
+ * Also see {@link fileHash} and {@link bufferHash}.
  *
  * @param src
  * @param logger

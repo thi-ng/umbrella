@@ -12,7 +12,10 @@ const STATE_OPEN = 0;
 const STATE_CLOSING = 1;
 const STATE_CLOSED = 2;
 
-type CSPState = typeof STATE_OPEN | typeof STATE_CLOSING | typeof STATE_CLOSED;
+export type CSPState =
+	| typeof STATE_OPEN
+	| typeof STATE_CLOSING
+	| typeof STATE_CLOSED;
 
 /**
  * Fiber-based CSP channel implementation, supporting any

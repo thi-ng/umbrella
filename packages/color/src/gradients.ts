@@ -53,7 +53,6 @@ import { mix as $mix } from "./mix.js";
  * ```
  *
  * @param opts -
- * @param isABGR -
  */
 export function multiColorGradient<T extends TypedColor<any>>(
 	opts: GradientOpts<T>
