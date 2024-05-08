@@ -42,11 +42,11 @@
 		"@thi.ng/wasm-api-dom": "^0.11.92"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.43.0",
+		"@microsoft/api-extractor": "^7.43.2",
 		"@thi.ng/wasm-api-bindgen": "^0.5.3",
-		"esbuild": "^0.20.2",
-		"typedoc": "^0.25.12",
-		"typescript": "^5.4.3"
+		"esbuild": "^0.21.1",
+		"typedoc": "^0.25.13",
+		"typescript": "^5.4.5"
 	},
 	"keywords": [
 		"canvas",

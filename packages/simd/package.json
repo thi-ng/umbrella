@@ -41,11 +41,11 @@
 		"@thi.ng/transducers-binary": "^2.1.119"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.43.0",
-		"assemblyscript": "0.27.25",
-		"esbuild": "^0.20.2",
-		"typedoc": "^0.25.12",
-		"typescript": "^5.4.3"
+		"@microsoft/api-extractor": "^7.43.2",
+		"assemblyscript": "0.27.27",
+		"esbuild": "^0.21.1",
+		"typedoc": "^0.25.13",
+		"typescript": "^5.4.5"
 	},
 	"keywords": [
 		"acceleration",
