@@ -38,7 +38,7 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 **This project is NOT a framework and all packages can be used in isolation.**
 
 This mono-repository is home to 192 individual TypeScript libraries/packages and
-156 example projects illustrating their usage, currently totalling ~208k SLOC
+160+ example projects illustrating their usage, currently totalling ~208k SLOC
 and ~4000 source files...
 
 Unlike most other large mono-repos this one is not for a single project, but a
@@ -187,7 +187,7 @@ The following videos have been migrated from YouTube to their new home at
 
 ## Examples & Showcase
 
-There's a steadily growing number (~155) of standalone examples of different
+There's a steadily growing number (160+) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
@@ -256,19 +256,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-04-26
+As of: 2024-05-08
 
-| Status                                           | Package                                                   | Version                                                                                                                         | Changelog                                             |
-|:-------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/csp`](./packages/csp)                           | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                           | [changelog](./packages/csp/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/file-io`](./packages/file-io)                   | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                   | [changelog](./packages/file-io/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup`](./packages/hiccup)                     | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)                     | [changelog](./packages/hiccup/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/meta-css`](./packages/meta-css)                 | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                 | [changelog](./packages/meta-css/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rdom`](./packages/rdom)                         | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                         | [changelog](./packages/rdom/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rstream-csp`](./packages/rstream-csp)           | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)           | [changelog](./packages/rstream-csp/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api`](./packages/wasm-api)                 | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                 | [changelog](./packages/wasm-api/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen) | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)         | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)         | [changelog](./packages/wasm-api-dom/CHANGELOG.md)     |
+| Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
+|:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                       | [changelog](./packages/geom/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-axidraw`](./packages/geom-axidraw)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)       | [changelog](./packages/geom-axidraw/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-isec`](./packages/geom-isec)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)             | [changelog](./packages/geom-isec/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils) | [changelog](./packages/geom-poly-utils/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-sdf`](./packages/geom-sdf)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)               | [changelog](./packages/geom-sdf/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas)     | [changelog](./packages/hiccup-canvas/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-html`](./packages/hiccup-html)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)         | [changelog](./packages/hiccup-html/CHANGELOG.md)     |
 
 ### Fundamentals
 
