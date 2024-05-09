@@ -25,8 +25,7 @@
 - [Supported shape types](#supported-shape-types)
   - [Group](#group)
   - [Definition group](#definition-group)
-  - [Circle](#circle)
-  - [Circular arc](#circular-arc)
+  - [Circle / circular arc](#circle--circular-arc)
   - [Ellipse / elliptic arc](#ellipse--elliptic-arc)
   - [Rect](#rect)
   - [Line](#line)
@@ -106,7 +105,7 @@ For Node.js REPL:
 const hc = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.55 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.54 KB
 
 ## Dependencies
 
@@ -205,27 +204,21 @@ Attributes defined at group level are inherited by child elements.
 Special group / container for [gradient definitions](#gradients). If
 used, should always come first in a scene tree.
 
-### Circle
+### Circle / circular arc
 
 ```ts
-["circle", attribs, [x, y], radius]
+["circle", attribs, [x, y], radius, startTheta?, endTheta?, ccw?]
 ```
 
-### Circular arc
-
-```ts
-["arc", attribs, [x, y], radius, startAngle, endAngle, anticlockwise?]
-```
-
-Please see [note about SVG support](#svg-paths-with-arc-segments).
+Angles in radians. Please see [note about SVG support](#svg-paths-with-arc-segments).
 
 ### Ellipse / elliptic arc
 
 ```ts
-["ellipse", attribs, [x, y], [rx, ry], axisTheta?, start?, end?, ccw?]
+["ellipse", attribs, [x, y], [rx, ry], axisTheta?, startTheta?, endTheta?, ccw?]
 ```
 
-Please see [note about SVG support](#svg-paths-with-arc-segments).
+Angles in radians. Please see [note about SVG support](#svg-paths-with-arc-segments).
 
 ### Rect
 
@@ -312,7 +305,14 @@ however only the latter segment type is compatible with SVG (circular arcs are
 only supported by the HTML Canvas API). We recommended to use one of the
 available path constructor functions in
 [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) to
-create paths which ensure SVG compatibility:
+create individual arcs or paths which ensure SVG compatibility:
+
+Arcs:
+
+- [`arc()`](https://docs.thi.ng/umbrella/geom/functions/arc-1.html)
+- [`arcFrom2Points()`](https://docs.thi.ng/umbrella/geom/functions/arcFrom2Points.html)
+
+Paths:
 
 - [`pathFromSvg()`](https://docs.thi.ng/umbrella/geom/functions/pathFromSvg.html)
 - [`pathBuilder()`](https://docs.thi.ng/umbrella/geom/functions/pathBuilder-1.html)
