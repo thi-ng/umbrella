@@ -4488,7 +4488,7 @@ __metadata:
     "@thi.ng/axidraw": "npm:^1.1.80"
     "@thi.ng/compare": "npm:^2.3.5"
     "@thi.ng/defmulti": "npm:^3.0.39"
-    "@thi.ng/geom": "npm:^7.0.0"
+    "@thi.ng/geom": "npm:^7.0.1"
     "@thi.ng/geom-accel": "npm:^3.6.4"
     "@thi.ng/geom-api": "npm:^4.0.10"
     "@thi.ng/geom-clip-line": "npm:^2.3.89"
@@ -4552,7 +4552,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.2"
     "@thi.ng/associative": "npm:^6.3.60"
     "@thi.ng/color": "npm:^5.6.45"
-    "@thi.ng/geom": "npm:^7.0.0"
+    "@thi.ng/geom": "npm:^7.0.1"
     "@thi.ng/geom-api": "npm:^4.0.10"
     "@thi.ng/geom-clip-line": "npm:^2.3.89"
     "@thi.ng/geom-resample": "npm:^2.3.53"
@@ -4665,7 +4665,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.4"
     "@thi.ng/defmulti": "npm:^3.0.39"
     "@thi.ng/errors": "npm:^2.5.7"
-    "@thi.ng/geom": "npm:^7.0.0"
+    "@thi.ng/geom": "npm:^7.0.1"
     "@thi.ng/geom-api": "npm:^4.0.10"
     "@thi.ng/geom-isoline": "npm:^2.1.127"
     "@thi.ng/geom-poly-utils": "npm:^2.4.0"
@@ -4767,7 +4767,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@npm:^7.0.0, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@npm:^7.0.1, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -4870,7 +4870,7 @@ __metadata:
     "@thi.ng/diff": "npm:^5.1.69"
     "@thi.ng/errors": "npm:^2.5.7"
     "@thi.ng/hdom": "npm:^9.4.34"
-    "@thi.ng/hiccup-canvas": "npm:^3.0.0"
+    "@thi.ng/hiccup-canvas": "npm:^3.0.1"
     esbuild: "npm:^0.21.1"
     typedoc: "npm:^0.25.13"
     typescript: "npm:^5.4.5"
@@ -4953,7 +4953,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-canvas@npm:^3.0.0, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
+"@thi.ng/hiccup-canvas@npm:^3.0.1, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
@@ -5141,7 +5141,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.43.2"
     "@thi.ng/api": "npm:^8.11.2"
     "@thi.ng/checks": "npm:^3.6.4"
-    "@thi.ng/geom": "npm:^7.0.0"
+    "@thi.ng/geom": "npm:^7.0.1"
     "@thi.ng/geom-api": "npm:^4.0.10"
     "@thi.ng/geom-isec": "npm:^3.1.0"
     "@thi.ng/geom-tessellate": "npm:^2.1.132"
@@ -5740,7 +5740,7 @@ __metadata:
     "@thi.ng/associative": "npm:^6.3.60"
     "@thi.ng/canvas": "npm:^0.2.19"
     "@thi.ng/checks": "npm:^3.6.4"
-    "@thi.ng/hiccup-canvas": "npm:^3.0.0"
+    "@thi.ng/hiccup-canvas": "npm:^3.0.1"
     "@thi.ng/rdom": "npm:^1.4.0"
     "@thi.ng/rstream": "npm:^8.5.0"
     esbuild: "npm:^0.21.1"
