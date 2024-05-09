@@ -1,54 +1,56 @@
-import { hsl } from "@thi.ng/color";
-import {
-	arc,
-	asCubic,
-	closestPoint,
-	group,
-	pathFromCubics,
-} from "@thi.ng/geom";
+import { canvas2d } from "@thi.ng/canvas";
+import { colorFromRange, lch } from "@thi.ng/color";
+import { arc, closestPoint, group, withAttribs } from "@thi.ng/geom";
 import { draw } from "@thi.ng/hiccup-canvas";
-import { fit01, TAU } from "@thi.ng/math";
-import { SYSTEM } from "@thi.ng/random";
+import { TAU, fit01 } from "@thi.ng/math";
+import { SYSTEM, weightedRandom } from "@thi.ng/random";
 import { fromDOMEvent, fromRAF } from "@thi.ng/rstream";
 import { map, normRange } from "@thi.ng/transducers";
-import { dist } from "@thi.ng/vectors";
+import { dist, type Vec } from "@thi.ng/vectors";
 
-const W = 600;
+const W = Math.min(window.innerWidth, window.innerHeight);
 const ORIGIN = [W / 2, W / 2];
 
-const PICK_DIST = 10;
+const PICK_DIST = 6;
 const PICK_COL = "cyan";
 
-const canvas: HTMLCanvasElement = document.createElement("canvas");
-canvas.width = canvas.height = W;
-document.body.appendChild(canvas);
+const { canvas, ctx } = canvas2d(W, W, document.getElementById("app"));
 
-const ctx = canvas.getContext("2d")!;
+// custom stroke weight distribution
+const strokeWeight = weightedRandom(
+	// thickness
+	[1, 2, 4, 8, 16, 32],
+	// weight
+	[4, 8, 4, 2, 1, 0.25]
+);
 
 // generate random arc configurations
 const arcs = [
 	...map(
 		(i) => ({
 			// radius
-			r: fit01(i, 50, W * 0.4),
+			r: fit01(i, 50, W * 0.45),
 			// stroke width
-			w: SYSTEM.minmax(1, 5),
-			// randomized HSLA color
-			col: hsl([SYSTEM.norm(0.1), SYSTEM.minmax(0.5, 1), 0.5]),
+			w: strokeWeight(),
+			// randomized color
+			col: colorFromRange("warm", {
+				base: lch(0.8, 0.8, 0),
+				variance: 0.125,
+			}),
 			// start angle
 			theta: SYSTEM.float(TAU),
 			// angle spread
 			spread: SYSTEM.float(TAU),
 			// rotation speed
-			speed: SYSTEM.norm(0.02),
+			speed: SYSTEM.norm(0.03),
 		}),
-		normRange(20)
+		normRange(50)
 	),
 ];
 
 // mouse position stream
 const mouse = fromDOMEvent(canvas, "mousemove").transform(
-	map((e) => {
+	map((e): Vec => {
 		const b = canvas.getBoundingClientRect();
 		return [e.clientX - b.left, e.clientY - b.top];
 	})
@@ -59,8 +61,6 @@ fromRAF().subscribe({
 	next() {
 		// update rotations
 		arcs.forEach((a) => (a.theta += a.speed));
-		// clear viewport
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		// get mouse pos
 		const m = mouse.deref();
 		draw(
@@ -68,18 +68,18 @@ fromRAF().subscribe({
 			// group arcs and convert to hiccup tree required by `draw()`
 			// (see hiccup-canvas readme for details)
 			group(
-				{},
+				{ __background: "#222" },
 				arcs.map(({ r, w, col, theta, spread }) => {
 					// build (elliptic) arc from config
 					const a = arc(ORIGIN, r, 0, theta, theta + spread);
-					// convert to cubic path due to HTML Canvas API limitations
-					// (doesn't support elliptic arcs, so we need to convert them...)
-					// also perform shape picking by computing distance to
-					// closest point on arc to mouse pos. adjust color based on result
-					return pathFromCubics(asCubic(a), {
+					// select color via shape picking by computing distance from
+					// mouse pos to closest point on arc
+					return withAttribs(a, {
 						weight: w,
 						stroke:
-							m && dist(m, closestPoint(a, m)!) < PICK_DIST
+							m &&
+							dist(m, closestPoint(a, m)!) <
+								Math.max(PICK_DIST, w)
 								? PICK_COL
 								: col,
 					});

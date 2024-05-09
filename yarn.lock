@@ -1165,10 +1165,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/hiccup-canvas-arcs@workspace:examples/hiccup-canvas-arcs"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/color": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/hiccup-canvas": "workspace:^"
     "@thi.ng/math": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/random": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"

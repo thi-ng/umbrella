@@ -1,6 +1,6 @@
 # hiccup-canvas-arcs
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-arcs.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-arcs.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/hiccup-canvas-arcs/)
 
