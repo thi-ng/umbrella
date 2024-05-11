@@ -34,14 +34,14 @@ export const __copyAttribsNoSamples = (x: IShape) =>
 
 /** @internal */
 export const __copyShape = <T extends PCLike>(
-	ctor: PCLikeConstructor,
+	ctor: PCLikeConstructor<T>,
 	inst: T
-) => <T>new ctor(copyVectors(inst.points), __copyAttribs(inst));
+) => new ctor(copyVectors(inst.points), __copyAttribs(inst));
 
 /** @internal */
-export const __copySegment = (s: PathSegment) => {
-	const d: PathSegment = { type: s.type };
-	if (s.geo) d.geo = <PathSegment["geo"]>s.geo.copy();
+export const __copySegment = <T extends PathSegment>(s: T) => {
+	const d = <T>{ type: s.type };
+	if (s.geo) d.geo = <T["geo"]>s.geo.copy();
 	else if (s.point) d.point = copy(s.point);
 	return d;
 };

@@ -1,4 +1,4 @@
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { set } from "@thi.ng/vectors/set";
 import { __copyAttribs } from "../internal/copy.js";
@@ -10,22 +10,21 @@ import { __copyAttribs } from "../internal/copy.js";
  * so is useful as wrapper for inclusion of text elements in {@link Group}s with
  * other shape types.
  */
-export class Text implements IHiccupShape {
-	constructor(public pos: Vec, public body: any, public attribs?: Attribs) {}
+export class Text implements IHiccupShape2<Text> {
+	readonly type = "text";
+	readonly dim = 2;
 
-	get type() {
-		return "text";
-	}
+	constructor(public pos: Vec, public body: any, public attribs?: Attribs) {}
 
 	copy(): Text {
 		return new Text(set([], this.pos), this.body, __copyAttribs(this));
 	}
 
-	withAttribs(attribs: Attribs): Text {
+	withAttribs(attribs: Attribs) {
 		return new Text(this.pos, this.body, attribs);
 	}
 
 	toHiccup() {
-		return ["text", this.attribs, this.pos, this.body];
+		return [this.type, this.attribs, this.pos, this.body];
 	}
 }

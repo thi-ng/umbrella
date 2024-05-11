@@ -1,30 +1,29 @@
 import type {
 	Attribs,
 	IHiccupPathSegment,
-	IHiccupShape2,
+	IHiccupShape3,
 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { __copyShape } from "../internal/copy.js";
-import { __hiccupLineSegment } from "../internal/vertices.js";
 import { APC } from "./apc.js";
 
-export class Polyline
+export class Polyline3
 	extends APC
-	implements IHiccupShape2<Polyline>, IHiccupPathSegment
+	implements IHiccupShape3<Polyline3>, IHiccupPathSegment
 {
-	readonly type = "polyline";
-	readonly dim = 2;
+	readonly type = "polyline3";
+	readonly dim = 3;
 
 	add(...points: Vec[]) {
 		this.points.push(...points);
 	}
 
-	copy(): Polyline {
-		return __copyShape(Polyline, this);
+	copy(): Polyline3 {
+		return __copyShape(Polyline3, this);
 	}
 
 	withAttribs(attribs: Attribs) {
-		return new Polyline(this.points, attribs);
+		return new Polyline3(this.points, attribs);
 	}
 
 	toHiccup() {
@@ -34,7 +33,7 @@ export class Polyline
 	toHiccupPathSegments() {
 		const res: any[] = [];
 		for (let pts = this.points, n = pts.length, i = 1; i < n; i++) {
-			res.push(__hiccupLineSegment(pts[i - 1], pts[i]));
+			res.push(["L", pts[i]]);
 		}
 		return res;
 	}

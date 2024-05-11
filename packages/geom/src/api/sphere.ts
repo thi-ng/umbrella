@@ -1,28 +1,27 @@
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape3 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { set3 } from "@thi.ng/vectors/set";
 import { __copyAttribs } from "../internal/copy.js";
 
-export class Sphere implements IHiccupShape {
+export class Sphere implements IHiccupShape3<Sphere> {
+	readonly type = "sphere";
+	readonly dim = 3;
+
 	constructor(
 		public pos: Vec = [0, 0, 0],
 		public r = 1,
 		public attribs?: Attribs
 	) {}
 
-	get type() {
-		return "sphere";
-	}
-
 	copy(): Sphere {
 		return new Sphere(set3([], this.pos), this.r, __copyAttribs(this));
 	}
 
-	withAttribs(attribs: Attribs): Sphere {
+	withAttribs(attribs: Attribs) {
 		return new Sphere(this.pos, this.r, attribs);
 	}
 
 	toHiccup() {
-		return ["sphere", this.attribs, this.pos, this.r];
+		return [this.type, this.attribs, this.pos, this.r];
 	}
 }

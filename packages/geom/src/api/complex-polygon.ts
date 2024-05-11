@@ -1,9 +1,12 @@
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import { __copyAttribs } from "../internal/copy.js";
 import { Polygon } from "./polygon.js";
 
-export class ComplexPolygon implements IHiccupShape {
+export class ComplexPolygon implements IHiccupShape2<ComplexPolygon> {
+	readonly type = "complexpoly";
+	readonly dim = 2;
+
 	children: Polygon[];
 
 	constructor(
@@ -12,10 +15,6 @@ export class ComplexPolygon implements IHiccupShape {
 		public attribs?: Attribs
 	) {
 		this.children = children ? ensureArray(children) : [];
-	}
-
-	get type() {
-		return "complexpoly";
 	}
 
 	addChild(poly: Polygon) {

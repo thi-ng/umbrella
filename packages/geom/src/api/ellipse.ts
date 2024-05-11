@@ -1,10 +1,13 @@
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
-import { set } from "@thi.ng/vectors/set";
+import { set2 } from "@thi.ng/vectors/set";
 import { __asVec } from "../internal/args.js";
 import { __copyAttribs } from "../internal/copy.js";
 
-export class Ellipse implements IHiccupShape {
+export class Ellipse implements IHiccupShape2<Ellipse> {
+	readonly type = "ellipse";
+	readonly dim = 2;
+
 	r: Vec;
 
 	constructor(
@@ -15,23 +18,19 @@ export class Ellipse implements IHiccupShape {
 		this.r = __asVec(r);
 	}
 
-	get type() {
-		return "ellipse";
-	}
-
 	copy(): Ellipse {
 		return new Ellipse(
-			set([], this.pos),
-			set([], this.r),
+			set2([], this.pos),
+			set2([], this.r),
 			__copyAttribs(this)
 		);
 	}
 
-	withAttribs(attribs: Attribs): Ellipse {
+	withAttribs(attribs: Attribs) {
 		return new Ellipse(this.pos, this.r, attribs);
 	}
 
 	toHiccup() {
-		return ["ellipse", this.attribs, this.pos, this.r];
+		return [this.type, this.attribs, this.pos, this.r];
 	}
 }

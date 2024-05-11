@@ -83,16 +83,16 @@ export class PathBuilder {
 		set2(this.startP, p);
 		set2(this.bezierP, p);
 		this.curr.addSegments({
-			point: p,
 			type: "m",
+			point: p,
 		});
 		return this;
 	}
 
 	lineTo(p: Vec, relative = false): PathBuilder {
 		this.curr.addSegments({
-			geo: new Line([copy(this.currP), this.updateCurrent(p, relative)]),
 			type: "l",
+			geo: new Line([copy(this.currP), this.updateCurrent(p, relative)]),
 		});
 		set2(this.bezierP, this.currP);
 		return this;
@@ -149,6 +149,7 @@ export class PathBuilder {
 		}
 		const prev = copy(this.currP);
 		this.curr.addSegments({
+			type: "a",
 			geo: arcFrom2Points(
 				prev,
 				this.updateCurrent(p, relative),
@@ -157,7 +158,6 @@ export class PathBuilder {
 				xl,
 				clockwise
 			),
-			type: "a",
 		});
 		set2(this.bezierP, this.currP);
 		return this;
@@ -166,8 +166,8 @@ export class PathBuilder {
 	close() {
 		if (!eqDelta2(this.startP, this.currP)) {
 			this.curr.addSegments({
-				geo: new Line([copy(this.currP), copy(this.startP)]),
 				type: "l",
+				geo: new Line([copy(this.currP), copy(this.startP)]),
 			});
 		}
 		this.curr.close();
@@ -188,8 +188,8 @@ export class PathBuilder {
 		this.currP[i] = relative ? this.currP[i] + p : p;
 		set2(this.bezierP, this.currP);
 		this.curr.addSegments({
-			geo: new Line([prev, copy(this.currP)]),
 			type: "l",
+			geo: new Line([prev, copy(this.currP)]),
 		});
 	}
 
@@ -197,25 +197,25 @@ export class PathBuilder {
 		cp2 = this.absPoint(cp2, relative);
 		set2(this.bezierP, cp2);
 		this.curr.addSegments({
+			type: "c",
 			geo: new Cubic([
 				copy(this.currP),
 				cp1,
 				cp2,
 				this.updateCurrent(p, relative),
 			]),
-			type: "c",
 		});
 	}
 
 	protected addQuadratic(cp: Vec, p: Vec, relative: boolean) {
 		set2(this.bezierP, cp);
 		this.curr.addSegments({
+			type: "q",
 			geo: new Quadratic([
 				copy(this.currP),
 				cp,
 				this.updateCurrent(p, relative),
 			]),
-			type: "q",
 		});
 	}
 }

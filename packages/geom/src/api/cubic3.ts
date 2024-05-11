@@ -2,37 +2,37 @@ import type {
 	Attribs,
 	HiccupPathSegment,
 	IHiccupPathSegment,
-	IHiccupShape2,
+	IHiccupShape3,
 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { __copyShape } from "../internal/copy.js";
 import { __ensureNumVerts } from "../internal/pclike.js";
 import { APC } from "./apc.js";
 
-export class Cubic
+export class Cubic3
 	extends APC
-	implements IHiccupShape2<Cubic>, IHiccupPathSegment
+	implements IHiccupShape3<Cubic3>, IHiccupPathSegment
 {
-	readonly type = "cubic";
-	readonly dim = 2;
+	readonly type = "cubic3";
+	readonly dim = 3;
 
 	constructor(points: Iterable<Vec>, attribs?: Attribs) {
 		super(points, attribs);
 		__ensureNumVerts(this.points.length, 4);
 	}
 
-	copy(): Cubic {
-		return <Cubic>__copyShape(Cubic, this);
+	copy(): Cubic3 {
+		return <Cubic3>__copyShape(Cubic3, this);
 	}
 
-	withAttribs(attribs: Attribs): Cubic {
-		return new Cubic(this.points, attribs);
+	withAttribs(attribs: Attribs): Cubic3 {
+		return new Cubic3(this.points, attribs);
 	}
 
 	toHiccup() {
 		const [a, b, c, d] = this.points;
 		return [
-			"path",
+			"path3",
 			this.attribs,
 			[
 				["M", a],

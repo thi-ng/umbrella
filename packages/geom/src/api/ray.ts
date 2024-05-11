@@ -1,25 +1,24 @@
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import { set } from "@thi.ng/vectors/set";
+import { set2 } from "@thi.ng/vectors/set";
 import { __copyAttribs } from "../internal/copy.js";
 
-export class Ray implements IHiccupShape {
-	constructor(public pos: Vec, public dir: Vec, public attribs?: Attribs) {}
+export class Ray implements IHiccupShape2<Ray> {
+	readonly type = "ray";
+	readonly dim = 2;
 
-	get type() {
-		return "ray";
-	}
+	constructor(public pos: Vec, public dir: Vec, public attribs?: Attribs) {}
 
 	copy(): Ray {
 		return new Ray(
-			set([], this.pos),
-			set([], this.dir),
+			set2([], this.pos),
+			set2([], this.dir),
 			__copyAttribs(this)
 		);
 	}
 
-	withAttribs(attribs: Attribs): Ray {
+	withAttribs(attribs: Attribs) {
 		return new Ray(this.pos, this.dir, attribs);
 	}
 

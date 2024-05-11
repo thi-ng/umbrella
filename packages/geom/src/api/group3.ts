@@ -1,20 +1,20 @@
 import type { FnU, IClear } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { equiv } from "@thi.ng/equiv";
-import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape3 } from "@thi.ng/geom-api";
 import { __copyAttribs } from "../internal/copy.js";
 
 /**
- * Geometry/shape group container for other {@link IHiccupShape2}s, incl. nested
+ * Geometry/shape group container for other {@link IHiccupShape3}s, incl. nested
  * groups.
  */
-export class Group implements IClear, IHiccupShape2<Group> {
-	readonly type = "group";
-	readonly dim = 2;
+export class Group3 implements IClear, IHiccupShape3<Group3> {
+	readonly type = "group3";
+	readonly dim = 3;
 
-	children: IHiccupShape2[];
+	children: IHiccupShape3[];
 
-	constructor(public attribs?: Attribs, children?: Iterable<IHiccupShape2>) {
+	constructor(public attribs?: Attribs, children?: Iterable<IHiccupShape3>) {
 		this.children = children ? ensureArray(children) : [];
 	}
 
@@ -27,7 +27,7 @@ export class Group implements IClear, IHiccupShape2<Group> {
 	 *
 	 * @param shapes
 	 */
-	add(...shapes: IHiccupShape2[]) {
+	add(...shapes: IHiccupShape3[]) {
 		this.children.push(...shapes);
 		return this;
 	}
@@ -39,21 +39,21 @@ export class Group implements IClear, IHiccupShape2<Group> {
 		this.children.length = 0;
 	}
 
-	copy(): Group {
-		return this.copyTransformed((c) => <IHiccupShape2>c.copy());
+	copy(): Group3 {
+		return this.copyTransformed((c) => <IHiccupShape3>c.copy());
 	}
 
-	copyTransformed(fn: FnU<IHiccupShape2>) {
-		return new Group(__copyAttribs(this), this.children.map(fn));
+	copyTransformed(fn: FnU<IHiccupShape3>) {
+		return new Group3(__copyAttribs(this), this.children.map(fn));
 	}
 
 	withAttribs(attribs: Attribs) {
-		return new Group(attribs, this.children);
+		return new Group3(attribs, this.children);
 	}
 
 	equiv(o: any) {
 		return (
-			o instanceof Group &&
+			o instanceof Group3 &&
 			equiv(this.attribs, o.attribs) &&
 			equiv(this.children, o.children)
 		);

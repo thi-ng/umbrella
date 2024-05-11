@@ -10,7 +10,10 @@ export type SegmentType2 =
 	| "q" // quadratic
 	| "z"; // close
 
-export type SegmentType3 = Omit<SegmentType2, "a">;
+/**
+ * Currently no 3D arc segments supported
+ */
+export type SegmentType3 = Exclude<SegmentType2, "a">;
 
 export type PathSegment = PathSegment2 | PathSegment3;
 

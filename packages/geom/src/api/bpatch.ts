@@ -1,4 +1,4 @@
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 import { __copyShape } from "../internal/copy.js";
@@ -31,21 +31,20 @@ import { APC } from "./apc.js";
  * Ported from toxiclibs.
  *
  */
-export class BPatch extends APC implements IHiccupShape {
+export class BPatch extends APC implements IHiccupShape2<BPatch> {
+	readonly type = "bpatch";
+	readonly dim = 2;
+
 	constructor(points: Iterable<Vec>, attribs?: Attribs) {
 		super(points, attribs);
 		__ensureNumVerts(this.points.length, 16);
 	}
 
-	get type() {
-		return "bpatch";
-	}
-
 	copy(): BPatch {
-		return <BPatch>__copyShape(BPatch, this);
+		return __copyShape(BPatch, this);
 	}
 
-	withAttribs(attribs: Attribs): BPatch {
+	withAttribs(attribs: Attribs) {
 		return new BPatch(this.points, attribs);
 	}
 
