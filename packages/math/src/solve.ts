@@ -1,4 +1,4 @@
-import type { FnN2 } from "@thi.ng/api";
+import type { FnN2, NumericArray } from "@thi.ng/api";
 import { EPS } from "./api.js";
 import { safeDiv } from "./safe-div.js";
 
@@ -107,4 +107,44 @@ export const solveCubic = (
 			];
 		}
 	}
+};
+
+/**
+ * Solves a system of linear equations for N unknowns: `a[i]*x[i−1] + b[i]*x[i]
+ * + c[i]*x[i+1] = d[i]`, where a[0]=0 and c[N-1]=0. Writes solutions `x[i]` back into
+ * array of input coefficients `d` and returns it. The other arrays are not modified.
+ *
+ * @remarks
+ * Reference:
+ * https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm
+ *
+ * @param a - subdiagonal [1,N-1], a[0] is lower left corner
+ * @param b - main diagonal [0,N-1]
+ * @param c - superdiagonal [0,N-2], c[N-1] is upper right corner
+ * @param d - input coefficients & output solutions [0,N-1]
+ */
+export const solveTridiagonal = (
+	a: NumericArray,
+	b: NumericArray,
+	c: NumericArray,
+	d: NumericArray
+) => {
+	const n = d.length - 1;
+	const tmp = new Array(n + 1);
+	tmp[0] = c[0] / b[0];
+	d[0] = d[0] / b[0];
+
+	for (let i = 1; i <= n; i++) {
+		const ai = a[i];
+		const bi = b[i];
+		const denom = 1 / (bi - ai * tmp[i - 1]);
+		tmp[i] = c[i] * denom;
+		d[i] = (d[i] - ai * d[i - 1]) * denom;
+	}
+
+	for (let i = n; i-- > 0; ) {
+		d[i] -= tmp[i] * d[i + 1];
+	}
+
+	return d;
 };
