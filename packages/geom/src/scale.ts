@@ -2,13 +2,20 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type {
+	IHiccupShape2,
+	IShape,
+	IShape2,
+	IShape3,
+	PathSegment2,
+} from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
 import { normalize2 } from "@thi.ng/vectors/normalize";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
+import { BPatch } from "./api/bpatch.js";
 import { Circle } from "./api/circle.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
@@ -16,7 +23,8 @@ import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
 import { Path } from "./api/path.js";
-import { Points, Points3 } from "./api/points.js";
+import { Points } from "./api/points.js";
+import { Points3 } from "./api/points3.js";
 import { Polygon } from "./api/polygon.js";
 import { Polyline } from "./api/polyline.js";
 import { Quad } from "./api/quad.js";
@@ -31,6 +39,13 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __scaledShape as tx } from "./internal/scale.js";
 import { __segmentTransformer } from "./internal/transform.js";
+
+export type ScaleFn = {
+	(shape: Circle, factor: number): Circle;
+	(shape: Circle, factor: ReadonlyVec): Ellipse;
+	<T extends IShape2>(shape: T, factor: number | ReadonlyVec): T;
+	<T extends IShape3>(shape: T, factor: number | ReadonlyVec): T;
+} & MultiFn2<IShape, number | ReadonlyVec, IShape>;
 
 /**
  * Scales given shape uniformly or non-uniformly by given `factor`.
@@ -65,11 +80,7 @@ import { __segmentTransformer } from "./internal/transform.js";
  * @param shape
  * @param factor
  */
-export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
-	any,
-	number | ReadonlyVec,
-	IShape
->(
+export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 	__dispatch,
 	{},
 	{
@@ -89,6 +100,8 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 			mul2(null, a.r, delta);
 			return a;
 		},
+
+		bpatch: tx(BPatch),
 
 		circle: ($: Circle, delta) =>
 			isNumber(delta)
@@ -121,14 +134,14 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 		},
 
 		group: ($: Group, delta) =>
-			$.copyTransformed((x) => <IHiccupShape>scale(x, delta)),
+			$.copyTransformed((x) => <IHiccupShape2>scale(x, delta)),
 
 		line: tx(Line),
 
 		path: ($: Path, delta) => {
 			delta = __asVec(delta);
-			const $scaleSegments = __segmentTransformer(
-				(geo) => scale(geo, delta),
+			const $scaleSegments = __segmentTransformer<PathSegment2>(
+				(geo) => <IShape2>scale(geo, delta),
 				(p) => mul2([], p, <ReadonlyVec>delta)
 			);
 			return new Path(
