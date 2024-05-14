@@ -1,4 +1,5 @@
-import type { IShape } from "@thi.ng/geom-api";
+import type { Maybe } from "@thi.ng/api";
+import type { IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
 import { minNonZero2, minNonZero3 } from "@thi.ng/math/interval";
 import { safeDiv } from "@thi.ng/math/safe-div";
 import type { MatOpNV, MatOpV } from "@thi.ng/matrices";
@@ -8,6 +9,11 @@ import { translation23, translation44 } from "@thi.ng/matrices/translation";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { neg } from "@thi.ng/vectors/neg";
 import type { AABB } from "./api/aabb.js";
+import type { Arc } from "./api/arc.js";
+import type { Circle } from "./api/circle.js";
+import type { Ellipse } from "./api/ellipse.js";
+import type { Path } from "./api/path.js";
+import type { Quad } from "./api/quad.js";
 import { Rect } from "./api/rect.js";
 import { bounds } from "./bounds.js";
 import { center } from "./center.js";
@@ -38,8 +44,16 @@ const __translateScale = (
  * @param shape
  * @param dest
  */
-export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
-	const src = <Rect>bounds(shape);
+export function fitIntoBounds2(shape: Arc, dest: Rect): Path;
+export function fitIntoBounds2(shape: Circle, dest: Rect): Path;
+export function fitIntoBounds2(shape: Ellipse, dest: Rect): Path;
+export function fitIntoBounds2(shape: Rect, dest: Rect): Quad;
+export function fitIntoBounds2<T extends IShape2>(
+	shape: T,
+	dest: Rect
+): Maybe<T>;
+export function fitIntoBounds2(shape: IShape2, dest: Rect) {
+	const src = bounds(shape);
 	if (!src) return;
 	const c = centroid(src);
 	if (!c) return;
@@ -54,7 +68,7 @@ export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
 			safeDiv(dest.size[1], src.size[1])
 		)
 	);
-};
+}
 
 /**
  * 3D version of {@link fitIntoBounds2}.
@@ -62,21 +76,26 @@ export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
  * @param shape
  * @param dest
  */
-export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
+export const fitIntoBounds3 = <T extends IShape3>(
+	shape: T,
+	dest: AABB
+): Maybe<T> => {
 	const src = <AABB>bounds(shape);
 	if (!src) return;
 	const c = centroid(src);
 	if (!c) return;
-	return __translateScale(
-		translation44,
-		scale44,
-		shape,
-		neg(null, c),
-		centroid(dest)!,
-		minNonZero3(
-			safeDiv(dest.size[0], src.size[0]),
-			safeDiv(dest.size[1], src.size[1]),
-			safeDiv(dest.size[2], src.size[2])
+	return <T>(
+		__translateScale(
+			translation44,
+			scale44,
+			shape,
+			neg(null, c),
+			centroid(dest)!,
+			minNonZero3(
+				safeDiv(dest.size[0], src.size[0]),
+				safeDiv(dest.size[1], src.size[1]),
+				safeDiv(dest.size[2], src.size[2])
+			)
 		)
 	);
 };
@@ -87,7 +106,7 @@ export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
  * @param shapes
  * @param dest
  */
-export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
+export const fitAllIntoBounds2 = (shapes: IShape2[], dest: Rect) => {
 	const sbraw = __collBounds(shapes, bounds);
 	if (!sbraw) return;
 	const src = new Rect(...sbraw);
