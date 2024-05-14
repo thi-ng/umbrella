@@ -13,6 +13,7 @@ export interface IShape<T extends IShape = IShape<any>>
 	extends IAttributed<T>,
 		ICopy<T> {
 	readonly type: number | string;
+	readonly dim: number;
 }
 
 export type IShape2<T extends IShape2 = IShape2<any>> = IShape<T> & {
