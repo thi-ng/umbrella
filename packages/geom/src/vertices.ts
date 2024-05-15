@@ -89,11 +89,19 @@ export const vertices: MultiFn1O<
 > = defmulti<any, Maybe<number | Partial<SamplingOpts>>, Vec[]>(
 	__dispatch,
 	{
-		line: "polyline",
 		bpatch: "points",
+		cubic3: "cubic",
+		line: "polyline",
+		line3: "polyline",
+		path3: "path",
 		points3: "points",
+		polygon3: "poly",
+		polyline3: "polyline",
 		quad: "poly",
+		quad3: "poly",
+		quadratic3: "quadratic",
 		tri: "poly",
+		tri3: "poly",
 	},
 	{
 		// e +----+ h
