@@ -12,6 +12,16 @@ import { asPolyline } from "./as-polyline.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+export type SubdivCurveFn = {
+	(
+		shape: ComplexPolygon,
+		kernel: SubdivKernel,
+		iter?: number
+	): ComplexPolygon;
+	(shape: Polygon, kernel: SubdivKernel, iter?: number): Polygon;
+	(shape: Polyline, kernel: SubdivKernel, iter?: number): Polyline;
+} & MultiFn2O<IShape, SubdivKernel, number, IShape>;
+
 /**
  * Recursively applies
  * [`SubdivKernel`](https://docs.thi.ng/umbrella/geom-api/interfaces/SubdivKernel.html)
@@ -44,47 +54,45 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param kernel
  * @param iter
  */
-export const subdivCurve: MultiFn2O<
-	IShape,
-	SubdivKernel,
-	number,
-	ComplexPolygon | Polygon | Polyline
-> = defmulti<
-	any,
-	SubdivKernel,
-	Maybe<number>,
-	ComplexPolygon | Polygon | Polyline
->(
-	__dispatch,
-	{
-		ellipse: "circle",
-		line: "polyline",
-		quad: "poly",
-		rect: "circle",
-		tri: "poly",
-	},
-	{
-		arc: ($, kernel, iter = 1) =>
-			subdivCurve(asPolyline($)[0], kernel, iter),
+export const subdivCurve = <SubdivCurveFn>(
+	defmulti<any, SubdivKernel, Maybe<number>, IShape>(
+		__dispatch,
+		{
+			arc: "$aspolyline",
+			circle: "$aspoly",
+			ellipse: "$aspoly",
+			line: "polyline",
+			quad: "poly",
+			rect: "$aspoly",
+			tri: "poly",
+		},
+		{
+			$aspolyline: ($, kernel, iter = 1) =>
+				subdivCurve(asPolyline($)[0], kernel, iter),
 
-		circle: ($, kernel, iter = 1) =>
-			subdivCurve(asPolygon($)[0], kernel, iter),
+			$aspoly: ($, kernel, iter = 1) =>
+				subdivCurve(asPolygon($)[0], kernel, iter),
 
-		complexpoly: ($: ComplexPolygon, kernel, iter) =>
-			new ComplexPolygon(
-				<Polygon>subdivCurve($.boundary, kernel, iter),
-				$.children.map(
-					(child) => <Polygon>subdivCurve(child, kernel, iter)
+			complexpoly: ($: ComplexPolygon, kernel, iter) =>
+				new ComplexPolygon(
+					subdivCurve($.boundary, kernel, iter),
+					$.children.map((child) => subdivCurve(child, kernel, iter)),
+					__copyAttribs($)
 				),
-				__copyAttribs($)
-			),
 
-		poly: ($: Polygon, kernel, iter = 1) =>
-			new Polygon(subdivide($.points, kernel, iter), __copyAttribs($)),
+			poly: ($: Polygon, kernel, iter = 1) =>
+				new Polygon(
+					subdivide($.points, kernel, iter),
+					__copyAttribs($)
+				),
 
-		polyline: ($: Polyline, kernel, iter = 1) =>
-			new Polyline(subdivide($.points, kernel, iter), __copyAttribs($)),
-	}
+			polyline: ($: Polyline, kernel, iter = 1) =>
+				new Polyline(
+					subdivide($.points, kernel, iter),
+					__copyAttribs($)
+				),
+		}
+	)
 );
 
 /**
