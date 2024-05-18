@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type { IHiccupShape2, IShape, IShape2 } from "@thi.ng/geom-api";
 import { clipLineSegmentPoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
@@ -14,6 +14,17 @@ import { Polygon } from "./api/polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { ensureVertices, vertices } from "./vertices.js";
+
+export type ClipConvexFn = {
+	(
+		shape: ComplexPolygon,
+		boundary: IShape2 | ReadonlyVec[]
+	): Maybe<ComplexPolygon>;
+	(shape: Group, boundary: IShape2 | ReadonlyVec[]): Maybe<Group>;
+	(shape: Line, boundary: IShape2 | ReadonlyVec[]): Maybe<Line>;
+	(shape: Path, boundary: IShape2 | ReadonlyVec[]): Maybe<Path>;
+	(shape: IShape2, boundary: IShape2 | ReadonlyVec[]): Maybe<Polygon>;
+} & MultiFn2<IShape, IShape | ReadonlyVec[], Maybe<IShape>>;
 
 /** @internal */
 const __clipVertices = ($: IShape, boundary: IShape | ReadonlyVec[]) => {
@@ -55,84 +66,92 @@ const __clipVertices = ($: IShape, boundary: IShape | ReadonlyVec[]) => {
  * @param shape
  * @param boundary
  */
-export const clipConvex: MultiFn2<
-	IShape,
-	IShape | ReadonlyVec[],
-	Maybe<IShape>
-> = defmulti<any, IShape | ReadonlyVec[], Maybe<IShape>>(
-	__dispatch,
-	{
-		circle: "rect",
-		ellipse: "rect",
-		quad: "poly",
-		tri: "poly",
-	},
-	{
-		complexpoly: ($: ComplexPolygon, boundary) => {
-			boundary = ensureVertices(boundary);
-			const c = centroid(boundary)!;
-			let clipped = sutherlandHodgeman($.boundary.points, boundary, c);
-			if (!clipped.length) return undefined;
-			const res: Polygon[] = [new Polygon(clipped)];
-			for (let child of $.children) {
-				clipped = sutherlandHodgeman(child.points, boundary, c);
-				if (clipped.length) res.push(new Polygon(clipped));
-			}
-			return new ComplexPolygon(res[0], res.slice(1), __copyAttribs($));
+export const clipConvex = <ClipConvexFn>(
+	defmulti<any, IShape | ReadonlyVec[], Maybe<IShape>>(
+		__dispatch,
+		{
+			circle: "rect",
+			ellipse: "rect",
+			quad: "poly",
+			tri: "poly",
 		},
-
-		group: ({ children, attribs }: Group, boundary) => {
-			boundary = ensureVertices(boundary);
-			const clipped: IHiccupShape[] = [];
-			for (let c of children) {
-				const res = clipConvex(c, boundary);
-				if (res) clipped.push(<IHiccupShape>res);
-			}
-			return clipped.length
-				? new Group({ ...attribs }, clipped)
-				: undefined;
-		},
-
-		line: ($: Line, boundary) => {
-			const segments = clipLineSegmentPoly(
-				$.points[0],
-				$.points[1],
-				ensureVertices(boundary)
-			);
-			return segments && segments.length
-				? new Line(segments[0], __copyAttribs($))
-				: undefined;
-		},
-
-		path: ($: Path, boundary) => {
-			if ($.closed) return undefined;
-			boundary = ensureVertices(boundary);
-			let clipped = __clipVertices($, boundary);
-			if (!clipped) return undefined;
-			const res = new ComplexPolygon(clipped, [], __copyAttribs($));
-			for (let sub of $.subPaths) {
-				clipped = __clipVertices(
-					new Path(sub, [], __copyAttribs($)),
-					boundary
+		{
+			complexpoly: ($: ComplexPolygon, boundary) => {
+				boundary = ensureVertices(boundary);
+				const c = centroid(boundary)!;
+				let clipped = sutherlandHodgeman(
+					$.boundary.points,
+					boundary,
+					c
 				);
-				if (clipped) {
-					clipped.attribs = undefined;
-					res.addChild(clipped);
+				if (!clipped.length) return undefined;
+				const res: Polygon[] = [new Polygon(clipped)];
+				for (let child of $.children) {
+					clipped = sutherlandHodgeman(child.points, boundary, c);
+					if (clipped.length) res.push(new Polygon(clipped));
 				}
-			}
-			return res;
-		},
+				return new ComplexPolygon(
+					res[0],
+					res.slice(1),
+					__copyAttribs($)
+				);
+			},
 
-		poly: ($: Polygon, boundary) => {
-			boundary = ensureVertices(boundary);
-			const pts = sutherlandHodgeman(
-				$.points,
-				boundary,
-				centroid(boundary)
-			);
-			return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
-		},
+			group: ({ children, attribs }: Group, boundary) => {
+				boundary = ensureVertices(boundary);
+				const clipped: IHiccupShape2[] = [];
+				for (let c of children) {
+					const res = clipConvex(c, boundary);
+					if (res) clipped.push(<IHiccupShape2>res);
+				}
+				return clipped.length
+					? new Group({ ...attribs }, clipped)
+					: undefined;
+			},
 
-		rect: __clipVertices,
-	}
+			line: ($: Line, boundary) => {
+				const segments = clipLineSegmentPoly(
+					$.points[0],
+					$.points[1],
+					ensureVertices(boundary)
+				);
+				return segments && segments.length
+					? new Line(segments[0], __copyAttribs($))
+					: undefined;
+			},
+
+			path: ($: Path, boundary) => {
+				if ($.closed) return undefined;
+				boundary = ensureVertices(boundary);
+				let clipped = __clipVertices($, boundary);
+				if (!clipped) return undefined;
+				const res = new ComplexPolygon(clipped, [], __copyAttribs($));
+				for (let sub of $.subPaths) {
+					clipped = __clipVertices(
+						new Path(sub, [], __copyAttribs($)),
+						boundary
+					);
+					if (clipped) {
+						clipped.attribs = undefined;
+						res.addChild(clipped);
+					}
+				}
+				return res;
+			},
+
+			poly: ($: Polygon, boundary) => {
+				boundary = ensureVertices(boundary);
+				const pts = sutherlandHodgeman(
+					$.points,
+					boundary,
+					centroid(boundary)
+				);
+				return pts.length
+					? new Polygon(pts, __copyAttribs($))
+					: undefined;
+			},
+
+			rect: __clipVertices,
+		}
+	)
 );
