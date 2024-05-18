@@ -10,6 +10,8 @@ import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
 
+export type SplitArcLengthFn = {} & MultiFn2<IShape, number, Group>;
+
 /**
  * Splits given shape into {@link Polyline} segments of given (max) arc length.
  * Returns a {@link Group} of shapes/polylines.
@@ -75,11 +77,7 @@ import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
  * @param shape
  * @param dist
  */
-export const splitArcLength: MultiFn2<IShape, number, Group> = defmulti<
-	any,
-	number,
-	Group
->(
+export const splitArcLength = <SplitArcLengthFn>defmulti<any, number, Group>(
 	__dispatch,
 	{},
 	{
