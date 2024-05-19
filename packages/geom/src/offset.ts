@@ -16,6 +16,13 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { rectWithCentroidAndMargin } from "./rect.js";
 
+export type OffsetFn = {
+	(shape: AABB, dist: number): AABB;
+	(shape: Circle, dist: number): Circle;
+	(shape: Line, dist: number): Quad;
+	(shape: Rect, dist: number): Rect;
+} & MultiFn2<IShape, number, IShape>;
+
 /**
  * Computes an offset shape (as in "path offsetting") of given shape and offset
  * distance `dist`.
@@ -34,11 +41,7 @@ import { rectWithCentroidAndMargin } from "./rect.js";
  * @param shape
  * @param dist
  */
-export const offset: MultiFn2<IShape, number, IShape> = defmulti<
-	any,
-	number,
-	IShape
->(
+export const offset = <OffsetFn>defmulti<any, number, IShape>(
 	__dispatch,
 	{},
 	{
