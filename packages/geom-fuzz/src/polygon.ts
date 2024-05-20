@@ -14,21 +14,13 @@ export const fuzzyPoly = (
 	opts = {
 		num: 2,
 		jitter: 2,
-		curveBreakPoints: true,
-		curveScale: 0.1,
 		...opts,
+		curve: { mode: "breakpoints", ...opts.curve },
 	};
 	const acc = group(attribs, []);
 	for (; --opts.num! >= 0; ) {
 		const poly = polygon(jitterPoints(pts, opts.jitter));
-		acc.children.push(
-			pathFromCubics(
-				asCubic(poly, {
-					breakPoints: opts.curveBreakPoints,
-					scale: opts.curveScale,
-				})
-			)
-		);
+		acc.children.push(pathFromCubics(asCubic(poly, opts.curve)));
 		if (!opts.num && opts.fill) {
 			acc.children.push(opts.fill(poly));
 		}

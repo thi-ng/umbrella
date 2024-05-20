@@ -1,5 +1,4 @@
 import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
-import type { Rect } from "@thi.ng/geom";
 import { clipLinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { bounds } from "@thi.ng/geom/bounds";
 import { group } from "@thi.ng/geom/group";
@@ -31,7 +30,7 @@ export const defHatch = (opts: Partial<HatchOpts> = {}): FillFn => {
 	);
 	const line = defLine(opts.line);
 	return (shape) => {
-		const box = <Rect>offset(bounds(shape)!, 1);
+		const box = offset(bounds(shape)!, 1);
 		const [w, h] = box.size;
 		const cols = ~~(w / opts.space!);
 		const rows = ~~(h / opts.space!);

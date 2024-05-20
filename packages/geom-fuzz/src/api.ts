@@ -1,12 +1,12 @@
 import type { Fn } from "@thi.ng/api";
 import type { IColor } from "@thi.ng/color";
 import type { Polygon } from "@thi.ng/geom";
-import type { IHiccupShape } from "@thi.ng/geom-api";
+import type { CubicOpts, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { PointTransform2D } from "@thi.ng/grid-iterators/api";
 
 export type Color = string | number[] | IColor;
 
-export type FillFn = Fn<Polygon, IHiccupShape>;
+export type FillFn = Fn<Polygon, IHiccupShape2>;
 
 export type HatchDir = "d" | "h" | "v";
 
@@ -15,8 +15,7 @@ export type FlipDir = "x" | "y" | "xy";
 export interface FuzzyPolygonOpts {
 	num: number;
 	jitter: number;
-	curveBreakPoints: boolean;
-	curveScale: number;
+	curve: Partial<CubicOpts>;
 	fill: FillFn;
 }
 
