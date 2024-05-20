@@ -1,6 +1,5 @@
 import { describe, expect, test } from "bun:test";
 import {
-	Polygon,
 	arcLength,
 	area,
 	asPath,
@@ -23,13 +22,13 @@ import {
 } from "../src/index.js";
 
 const A = complexPolygon(asPolygon(rectWithCentroid([0, 0], 100))[0], [
-	<Polygon>flip(asPolygon(rectWithCentroid([0, 0], 50))[0]),
+	flip(asPolygon(rectWithCentroid([0, 0], 50))[0]),
 ]);
 
 describe("complex poly", () => {
 	test("asPath", () => {
 		expect(asSvg(asPath(A, { linear: true }))).toBe(
-			'<path d="M-50,-50H50V50H-50zM-25,25H25V-25H-25z"/>'
+			'<path d="M-50,-50H50V50H-50V-50zM-25,25H25V-25H-25V25z"/>'
 		);
 		expect(asSvg(asPath(A, {}))).toBe(
 			'<path d="M0,-50C16.667,-50,50,-16.667,50,0C50,16.667,16.667,50,0,50C-16.667,50,-50,16.667,-50,0C-50,-16.667,-16.667,-50,0,-50M0,25C8.333,25,25,8.333,25,0C25,-8.333,8.333,-25,0,-25C-8.333,-25,-25,-8.333,-25,0C-25,8.333,-8.333,25,0,25"/>'
@@ -90,8 +89,8 @@ describe("complex poly", () => {
 	test("flip", () => {
 		expect(flip(A)).toEqual(
 			complexPolygon(
-				<Polygon>flip(A.boundary),
-				<Polygon[]>A.children.map(flip)
+				flip(A.boundary),
+				A.children.map((x) => flip(x))
 			)
 		);
 	});
@@ -107,8 +106,8 @@ describe("complex poly", () => {
 		const opts = { dist: 25 };
 		expect(resample(A, opts)).toEqual(
 			complexPolygon(
-				<Polygon>resample(A.boundary, opts),
-				A.children.map((c) => <Polygon>resample(c, opts))
+				resample(A.boundary, opts),
+				A.children.map((c) => resample(c, opts))
 			)
 		);
 	});
@@ -122,8 +121,8 @@ describe("complex poly", () => {
 		const theta = Math.PI / 4;
 		expect(rotate(A, theta)).toEqual(
 			complexPolygon(
-				<Polygon>rotate(A.boundary, theta),
-				A.children.map((c) => <Polygon>rotate(c, theta))
+				rotate(A.boundary, theta),
+				A.children.map((c) => rotate(c, theta))
 			)
 		);
 	});
@@ -132,8 +131,8 @@ describe("complex poly", () => {
 		const factor = [2, 3];
 		expect(scale(A, factor)).toEqual(
 			complexPolygon(
-				<Polygon>scale(A.boundary, factor),
-				A.children.map((c) => <Polygon>scale(c, factor))
+				scale(A.boundary, factor),
+				A.children.map((c) => scale(c, factor))
 			)
 		);
 	});
@@ -142,8 +141,8 @@ describe("complex poly", () => {
 		const offset = [100, 200];
 		expect(translate(A, offset)).toEqual(
 			complexPolygon(
-				<Polygon>translate(A.boundary, offset),
-				A.children.map((c) => <Polygon>translate(c, offset))
+				translate(A.boundary, offset),
+				A.children.map((c) => translate(c, offset))
 			)
 		);
 	});
