@@ -101,6 +101,9 @@
 		"./cubic-from-controlpoints": {
 			"default": "./cubic-from-controlpoints.js"
 		},
+		"./cubic-hobby": {
+			"default": "./cubic-hobby.js"
+		},
 		"./cubic-line": {
 			"default": "./cubic-line.js"
 		},

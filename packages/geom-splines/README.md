@@ -71,7 +71,7 @@ For Node.js REPL:
 const gs = await import("@thi.ng/geom-splines");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.38 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.78 KB
 
 ## Dependencies
 
