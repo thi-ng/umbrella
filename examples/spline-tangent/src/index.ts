@@ -44,8 +44,8 @@ let t = 0;
 
 const root = document.getElementById("app")!;
 
-setInterval(() => {
-	t = fract(t + 0.001);
+const update = () => {
+	t = fract(t + 0.002);
 
 	const [x, dx] = splinePosAndTangent(a[0], b[0], c[0], d[0], t);
 	const [y, dy] = splinePosAndTangent(a[1], b[1], c[1], d[1], t);
@@ -72,4 +72,7 @@ setInterval(() => {
 			})
 		)
 	);
-}, 16);
+	requestAnimationFrame(update);
+};
+
+update();

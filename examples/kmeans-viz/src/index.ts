@@ -5,7 +5,6 @@ import {
 	convexHull,
 	group,
 	points,
-	Polygon,
 	svgDoc,
 	withAttribs,
 } from "@thi.ng/geom";
@@ -61,7 +60,7 @@ document.getElementById("app")!.innerHTML = asSvg(
 				{ fill: THEME[id], size: 3 }
 			);
 			// also compute the convex hull polygon
-			const hull = <Polygon>withAttribs(convexHull(pts), {
+			const hull = withAttribs(convexHull(pts), {
 				stroke: "black",
 				fill: "none",
 			});

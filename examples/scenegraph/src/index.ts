@@ -1,6 +1,6 @@
 import type { Maybe } from "@thi.ng/api";
 import { asPolygon, circle, pointInside, rect } from "@thi.ng/geom";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape2 } from "@thi.ng/geom-api";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
@@ -18,7 +18,7 @@ class GeomNode extends Node2D {
 		t: Vec,
 		r: number,
 		s: Vec | number,
-		body: IShape
+		body: IShape2
 	) {
 		super(id, parent, t, r, s, body);
 	}

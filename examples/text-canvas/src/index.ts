@@ -1,5 +1,5 @@
 import { add, osc, saw, sin } from "@thi.ng/dsp";
-import { Rect, aabb, center, rect, vertices } from "@thi.ng/geom";
+import { aabb, center, rect, vertices } from "@thi.ng/geom";
 import {
 	concat,
 	lookAt,
@@ -112,7 +112,7 @@ requestAnimationFrame(function update() {
 		circle(canvas, W / 2, H / 2, (i + phase) * 8, id, true);
 	}
 	// animated center clip rectangle for 3D cube layer
-	const { pos, size } = <Rect>center(rect(clipSize.next()), [W / 2, H / 2])!;
+	const { pos, size } = center(rect(clipSize.next()), [W / 2, H / 2])!;
 	beginClip(canvas, pos[0], pos[1], size[0], size[1]);
 	// model rotation matrix
 	const model = concat(
