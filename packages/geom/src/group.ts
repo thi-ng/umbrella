@@ -1,4 +1,4 @@
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import { Group } from "./api/group.js";
 
 /**
@@ -15,5 +15,5 @@ import { Group } from "./api/group.js";
  */
 export const group = (
 	attribs: Attribs = {},
-	children?: Iterable<IHiccupShape>
+	children?: Iterable<IHiccupShape2>
 ) => new Group(attribs, children);

@@ -213,7 +213,7 @@ For Node.js REPL:
 const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 14.61 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 16.16 KB
 
 ## Dependencies
 

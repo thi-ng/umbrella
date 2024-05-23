@@ -3,6 +3,7 @@ export * from "./cubic-bounds.js";
 export * from "./cubic-closest-point.js";
 export * from "./cubic-from-breakpoints.js";
 export * from "./cubic-from-controlpoints.js";
+export * from "./cubic-hobby.js";
 export * from "./cubic-line.js";
 export * from "./cubic-quadratic.js";
 export * from "./cubic-sample.js";

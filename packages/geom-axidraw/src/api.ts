@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import type { DrawCommand } from "@thi.ng/axidraw";
-import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
+import type { IShape2, SamplingOpts } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**
@@ -121,4 +121,4 @@ export interface InterleaveOpts {
 
 export type PointOrdering = Fn<ReadonlyVec[], Iterable<ReadonlyVec>>;
 
-export type ShapeOrdering = Fn<IShape[], Iterable<IShape>>;
+export type ShapeOrdering = Fn<IShape2[], Iterable<IShape2>>;

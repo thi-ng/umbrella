@@ -1,22 +1,21 @@
-import type { Fn, IClear } from "@thi.ng/api";
+import type { FnU, IClear } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { equiv } from "@thi.ng/equiv";
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import { __copyAttribs } from "../internal/copy.js";
 
 /**
- * Geometry/shape group container for other {@link IHiccupShape}s, incl. nested
+ * Geometry/shape group container for other {@link IHiccupShape2}s, incl. nested
  * groups.
  */
-export class Group implements IClear, IHiccupShape {
-	children: IHiccupShape[];
+export class Group implements IClear, IHiccupShape2<Group> {
+	readonly type = "group";
+	readonly dim = 2;
 
-	constructor(public attribs?: Attribs, children?: Iterable<IHiccupShape>) {
+	children: IHiccupShape2[];
+
+	constructor(public attribs?: Attribs, children?: Iterable<IHiccupShape2>) {
 		this.children = children ? ensureArray(children) : [];
-	}
-
-	get type() {
-		return "group";
 	}
 
 	*[Symbol.iterator]() {
@@ -28,7 +27,7 @@ export class Group implements IClear, IHiccupShape {
 	 *
 	 * @param shapes
 	 */
-	add(...shapes: IHiccupShape[]) {
+	add(...shapes: IHiccupShape2[]) {
 		this.children.push(...shapes);
 		return this;
 	}
@@ -41,19 +40,23 @@ export class Group implements IClear, IHiccupShape {
 	}
 
 	copy(): Group {
-		return this.copyTransformed((c) => <IHiccupShape>c.copy());
+		return this.copyTransformed((c) => <IHiccupShape2>c.copy());
 	}
 
-	copyTransformed(fn: Fn<IHiccupShape, IHiccupShape>) {
+	copyTransformed(fn: FnU<IHiccupShape2>) {
 		return new Group(__copyAttribs(this), this.children.map(fn));
 	}
 
-	withAttribs(attribs: Attribs): Group {
+	withAttribs(attribs: Attribs) {
 		return new Group(attribs, this.children);
 	}
 
 	equiv(o: any) {
-		return o instanceof Group && equiv(this.children, o.children);
+		return (
+			o instanceof Group &&
+			equiv(this.attribs, o.attribs) &&
+			equiv(this.children, o.children)
+		);
 	}
 
 	toHiccup() {

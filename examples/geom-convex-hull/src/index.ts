@@ -14,7 +14,7 @@ import {
 	vertices,
 	withAttribs,
 } from "@thi.ng/geom";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type { IShape2 } from "@thi.ng/geom-api";
 import { draw } from "@thi.ng/hiccup-canvas";
 
 // refactored version of an example by Pete Cory
@@ -27,7 +27,7 @@ const bounds = rectFromMinMaxWithMargin([0, 0], [width, height], -50);
 
 // generate random points, compute convex hull and convert to path
 const hull1 = asPath(convexHull(polygon(scatter(bounds, 5)!)), {
-	breakPoints: true,
+	mode: "breakpoints",
 });
 // this hull will be used as clipping polygon and MUST be convex
 // (blue shape in the visualization)
@@ -48,7 +48,7 @@ const COL3 = (a = 1) => `rgba(102,102,102,${a})`;
 const { ctx } = canvas2d(width, height, document.getElementById("app")!);
 draw(
 	ctx,
-	group({ __background: "#f0f0f0" }, <IHiccupShape[]>[
+	group({ __background: "#f0f0f0" }, [
 		points(pts1, { shape: "circle", fill: COL1(), size: 4 }),
 		points(pts2, { shape: "circle", fill: COL2(), size: 4 }),
 		withAttribs(hull1, { fill: COL1(0.5) }),
@@ -59,7 +59,7 @@ draw(
 			weight: 3,
 		}),
 		// text labels (shape areas)
-		...(<[IShape, string][]>[
+		...(<[IShape2, string][]>[
 			[hull2, COL2()],
 			[clip, COL3()],
 		]).map(([shape, col]) =>

@@ -12,6 +12,8 @@ export abstract class APC implements IClear, PCLike {
 
 	abstract get type(): number | string;
 
+	abstract get dim(): number;
+
 	abstract copy(): APC;
 
 	abstract withAttribs(attribs: Attribs): APC;

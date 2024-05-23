@@ -540,6 +540,8 @@ import { convert, mul, quantity, NONE } from "@thi.ng/units";
 
 // DIN A4 paper size (also available as preset)
 const A4 = quantity([210, 297], "mm");
+// (also available as preset)
+const DPI_300 = quantity(300, "dpi");
 
 // convert paper size to inches
 convert(A4, "in");
@@ -548,15 +550,16 @@ convert(A4, "in");
 // or calculate pixel dimensions @ 300 dpi
 // the result of this product is dimensionless,
 // so we use the NONE preset as target unit...
-convert(mul(A4, quantity(300, "dpi")), NONE)
+convert(mul(A4, DPI_300), NONE)
 // [ 2480.314960629921, 3507.8740157480315 ]
 
 // alternatively, dimensionless units can be deref'd directly
-mul(A4, quantity(300, "dpi")).deref()
+mul(A4, DPI_300).deref()
 // [ 2480.314960629921, 3507.8740157480315 ]
 ```
 
-When combining different quantities, their units do not need to be the same:
+When combining different quantities, their units do not need to be the same (but
+compatible):
 
 ```ts
 import { convert, mul, quantity } from "@thi.ng/units";
@@ -570,21 +573,22 @@ convert(mul(quantity(10, "mm"), quantity(2, "in")), "cm2")
 
 The following constants are provided (more to come):
 
-| Var name                       | Unit                | Comment                   |
-|--------------------------------|---------------------|---------------------------|
-| `DIN_A0` ... `DIN_A8`          | 2d vector of `mm`   | Paper sizes<sup>(1)</sup> |
-| `EARTH_GRAVITY`                | `m/s`               |                           |
-| `EARTH_CIRCUMFERENCE`          | `m`                 |                           |
-| `EARTH_MASS`                   | `kg`                |                           |
-| `EARTH_RADIUS`                 | `m`                 |                           |
-| `GRAVITATION`                  | `kg-1·m3·s-2`       | Gravitational constant    |
-| `SPEED_OF_LIGHT`               | `m/s`               |                           |
-| `SPEED_OF_SOUND_IN_AIR`        | `m/s`               | at 20 ℃                   |
-| `SPEED_OF_SOUND_IN_WATER`      | `m/s`               | at 20 ℃                   |
-| `US_ANSI_A` ... `US_ANSI_E`    | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
-| `US_ARCH_A` ... `US_ARCH_E`    | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
-| `US_LETTER` / `US_HALF_LETTER` | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
-| `US_LEGAL` / `US_JUNIOR_LEGAL` | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
+| Var name                                     | Unit                | Comment                   |
+|----------------------------------------------|---------------------|---------------------------|
+| `DIN_A0` ... `DIN_A8`                        | 2d vector of `mm`   | Paper sizes<sup>(1)</sup> |
+| `DPI_72` / `DPI_150` / `DPI_300` / `DPI_600` | dots per inch       | Screen/print resolutions  |
+| `EARTH_GRAVITY`                              | `m/s`               |                           |
+| `EARTH_CIRCUMFERENCE`                        | `m`                 |                           |
+| `EARTH_MASS`                                 | `kg`                |                           |
+| `EARTH_RADIUS`                               | `m`                 |                           |
+| `GRAVITATION`                                | `kg-1·m3·s-2`       | Gravitational constant    |
+| `SPEED_OF_LIGHT`                             | `m/s`               |                           |
+| `SPEED_OF_SOUND_IN_AIR`                      | `m/s`               | at 20 ℃                   |
+| `SPEED_OF_SOUND_IN_WATER`                    | `m/s`               | at 20 ℃                   |
+| `US_ANSI_A` ... `US_ANSI_E`                  | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
+| `US_ARCH_A` ... `US_ARCH_E`                  | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
+| `US_LETTER` / `US_HALF_LETTER`               | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
+| `US_LEGAL` / `US_JUNIOR_LEGAL`               | 2d vector of `inch` | Paper sizes<sup>(1)</sup> |
 
 - <sup>(1)</sup> - all paper sizes are also available as landscape presets
   (using `_LANDSCAPE` as suffix).
@@ -646,7 +650,7 @@ For Node.js REPL:
 const units = await import("@thi.ng/units");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.77 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.81 KB
 
 ## Dependencies
 

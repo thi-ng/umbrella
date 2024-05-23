@@ -1,24 +1,23 @@
-import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { __copyShape } from "../internal/copy.js";
 import { __ensureNumVerts } from "../internal/pclike.js";
 import { APC } from "./apc.js";
 
-export class Quad extends APC implements IHiccupShape {
+export class Quad extends APC implements IHiccupShape2<Quad> {
+	readonly type = "quad";
+	readonly dim = 2;
+
 	constructor(points: Iterable<Vec>, attribs?: Attribs) {
 		super(points, attribs);
 		__ensureNumVerts(this.points.length, 4);
 	}
 
-	get type() {
-		return "quad";
-	}
-
 	copy(): Quad {
-		return <Quad>__copyShape(Quad, this);
+		return __copyShape(Quad, this);
 	}
 
-	withAttribs(attribs: Attribs): Quad {
+	withAttribs(attribs: Attribs) {
 		return new Quad(this.points, attribs);
 	}
 

@@ -14,14 +14,15 @@ import { translate } from "./translate.js";
  * thi.ng/matrices](https://docs.thi.ng/umbrella/matrices/functions/scaleWithCenter23.html)),
  * but will not change the shape type (as might be the case with `transform()`).
  *
- * Also see: {@link scale}, {@link translate}, {@link applyTransforms}.
+ * Also see: {@link scaleImpl}, {@link translateImpl}, {@link applyTransforms}.
  *
  * @param shape
  * @param center
  * @param factor
  */
-export const scaleWithCenter = (
-	shape: IShape,
+export const scaleWithCenter = <T extends IShape>(
+	shape: T,
 	center: ReadonlyVec,
 	factor: number
-) => translate(scale(translate(shape, mulN([], center, -1)), factor), center);
+) =>
+	<T>translate(scale(translate(shape, mulN([], center, -1)), factor), center);

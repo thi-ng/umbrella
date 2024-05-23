@@ -1,11 +1,17 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type {
+	IHiccupShape2,
+	IShape,
+	IShape2,
+	PathSegment2,
+} from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
 import { set2, set3 } from "@thi.ng/vectors/set";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
+import { BPatch } from "./api/bpatch.js";
 import { Circle } from "./api/circle.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
@@ -13,7 +19,8 @@ import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
 import { Path } from "./api/path.js";
-import { Points, Points3 } from "./api/points.js";
+import { Points } from "./api/points.js";
+import { Points3 } from "./api/points3.js";
 import { Polygon } from "./api/polygon.js";
 import { Polyline } from "./api/polyline.js";
 import { Quad } from "./api/quad.js";
@@ -28,6 +35,10 @@ import { __dispatch } from "./internal/dispatch.js";
 import { __segmentTransformer } from "./internal/transform.js";
 import { __translatedShape as tx } from "./internal/translate.js";
 
+export type TranslateFn = {
+	<T extends IShape>(shape: T, offset: ReadonlyVec): T;
+} & MultiFn2<IShape, ReadonlyVec, IShape>;
+
 /**
  * Translates given shape by given `offset` vector.
  *
@@ -36,6 +47,7 @@ import { __translatedShape as tx } from "./internal/translate.js";
  *
  * - {@link AABB}
  * - {@link Arc}
+ * - {@link BPatch}
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
@@ -58,11 +70,7 @@ import { __translatedShape as tx } from "./internal/translate.js";
  * @param shape
  * @param offset
  */
-export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
-	any,
-	ReadonlyVec,
-	IShape
->(
+export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 	__dispatch,
 	{},
 	{
@@ -78,6 +86,8 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
 			add2(null, a.pos, delta);
 			return a;
 		},
+
+		bpatch: tx(BPatch),
 
 		circle: ($: Circle, delta) =>
 			new Circle(add2([], $.pos, delta), $.r, __copyAttribs($)),
@@ -98,13 +108,13 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
 			),
 
 		group: ($: Group, delta) =>
-			$.copyTransformed((x) => <IHiccupShape>translate(x, delta)),
+			$.copyTransformed((x) => <IHiccupShape2>translate(x, delta)),
 
 		line: tx(Line),
 
 		path: ($: Path, delta: ReadonlyVec) => {
-			const $translateSegments = __segmentTransformer(
-				(geo) => translate(geo, delta),
+			const $translateSegments = __segmentTransformer<PathSegment2>(
+				(geo) => <IShape2>translate(geo, delta),
 				(p) => add2([], p, delta)
 			);
 			return new Path(

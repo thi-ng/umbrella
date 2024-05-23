@@ -9,9 +9,13 @@ import type { Path } from "./api/path.js";
 import type { Ray } from "./api/ray.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+export type FlipFn = {
+	<T extends IShape>(shape: T): T;
+} & MultiFn1<IShape, IShape>;
+
 /**
  * Reverses vertex ordering or general direction (e.g. for {@link Ray}) of given
- * shape.
+ * shape. In-place operation, modifies original shape.
  *
  * @remarks
  * Currently implemented for:
@@ -33,20 +37,32 @@ import { __dispatch } from "./internal/dispatch.js";
  *
  * @param shape
  */
-export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
+export const flip = <FlipFn>defmulti<any, IShape>(
 	__dispatch,
 	{
-		cubic: "points",
-		line: "points",
-		points3: "points",
-		poly: "points",
-		polyline: "points",
-		quad: "points",
-		quadratic: "points",
-		tri: "points",
+		cubic: "$pclike",
+		cubic3: "$pclike",
+		line: "$pclike",
+		line3: "$pclike",
+		points: "$pclike",
+		points3: "$pclike",
+		poly: "$pclike",
+		polyline: "$pclike",
+		quad: "$pclike",
+		quad3: "$pclike",
+		quadratic: "$pclike",
+		quadratic3: "$pclike",
+		ray3: "ray",
+		tri: "$pclike",
+		tri3: "$pclike",
 	},
 	{
 		[DEFAULT]: (x: IShape) => x,
+
+		$pclike: ($: PCLike) => {
+			$.points.reverse();
+			return $;
+		},
 
 		arc: ($: Arc) => {
 			const t = $.start;
@@ -68,12 +84,9 @@ export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
 		},
 
 		path: ($: Path) => {
-			// TODO
-			return $;
-		},
-
-		points: ($: PCLike) => {
-			$.points.reverse();
+			// TODO reverse segment order and each segment itself
+			// How to determine initial `M` segment/start pos?
+			// Disallow arcs (require normalizedPath())
 			return $;
 		},
 

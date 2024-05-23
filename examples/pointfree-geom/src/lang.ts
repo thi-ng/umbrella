@@ -4,15 +4,15 @@ import {
 	Group,
 	circle as _circle,
 	transform as _transform,
+	vertices as _vertices,
 	centroid,
 	group,
 	polygon,
 	tessellate,
 	text,
 	transformVertices,
-	vertices as _vertices,
 } from "@thi.ng/geom";
-import type { IHiccupShape, Tessellator } from "@thi.ng/geom-api";
+import type { IHiccupShape2, Tessellator } from "@thi.ng/geom-api";
 import { quadFan, tesselInset, triFan } from "@thi.ng/geom-tessellate";
 import {
 	rotation23,
@@ -133,19 +133,15 @@ const scaleCenter: StackFn = (ctx) => {
 	const scale = ds.pop();
 	const shape = ds.pop();
 	const $ = isNumber(scale)
-		? (shape: IHiccupShape) => {
+		? (shape: IHiccupShape2) => {
 				const c = centroid(shape)!;
-				return <IHiccupShape>(
-					_transform(shape, scaleWithCenter23([], c, scale))
-				);
+				return _transform(shape, scaleWithCenter23([], c, scale));
 		  }
-		: (shape: IHiccupShape) => {
+		: (shape: IHiccupShape2) => {
 				const c = centroid(shape)!;
 				ds.push(c, scale);
 				exec(ctx);
-				return <IHiccupShape>(
-					_transform(shape, scaleWithCenter23([], c, ds.pop()))
-				);
+				return _transform(shape, scaleWithCenter23([], c, ds.pop()));
 		  };
 	if (shape instanceof Group) {
 		ds.push(group({}, shape.children.map($)));
@@ -228,14 +224,14 @@ const grid: StackFn = (ctx) => {
 	const rows: number = ds.pop();
 	const cols: number = ds.pop();
 	const xform = ds.pop();
-	const shape: IHiccupShape = ds.pop();
+	const shape: IHiccupShape2 = ds.pop();
 	ds.push(
 		group(
 			{},
 			map((p) => {
 				ds.push(p, xform);
 				exec(ctx);
-				return <IHiccupShape>_transform(shape, ds.pop());
+				return _transform(shape, ds.pop());
 			}, range2d(cols, rows))
 		)
 	);

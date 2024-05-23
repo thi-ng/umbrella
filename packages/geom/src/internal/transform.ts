@@ -1,10 +1,12 @@
 // thing:export
 import type { Fn, FnU } from "@thi.ng/api";
 import type {
-	IShape,
+	IShape2,
+	IShape3,
 	PCLike,
 	PCLikeConstructor,
 	PathSegment,
+	PathSegment2,
 } from "@thi.ng/geom-api";
 import type { MatOpMV, ReadonlyMat } from "@thi.ng/matrices";
 import { mulV, mulV344 } from "@thi.ng/matrices/mulv";
@@ -41,13 +43,14 @@ export const __transformedPointsWith = (
 
 /** @internal */
 export const __transformedShape =
-	(ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
+	<T extends PCLike>(ctor: PCLikeConstructor<T>) =>
+	($: T, mat: ReadonlyMat) =>
 		new ctor(__transformedPoints($.points, mat), __copyAttribs($));
 
 /** @internal */
 export const __transformedShapePoints =
-	(ctor: PCLikeConstructor) =>
-	($: PCLike, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
+	<T extends PCLike>(ctor: PCLikeConstructor<T>) =>
+	($: T, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
 		new ctor(__transformedPointsWith($.points, fn), __copyAttribs($));
 
 // 3d versions
@@ -79,19 +82,28 @@ export const __transformedShapePoints3 =
 
 // path segments
 
+type SegmentShapeMap<T extends PathSegment> = T extends PathSegment2
+	? IShape2
+	: IShape3;
+
 /** @internal */
 export const __segmentTransformer =
-	(txGeo: FnU<IShape>, txPoint: FnU<Vec>) => (segments: PathSegment[]) =>
-		segments.map((s: PathSegment) =>
-			s.geo
-				? <PathSegment>{
-						type: s.type,
-						geo: txGeo(s.geo),
-				  }
-				: s.point
-				? {
-						type: s.type,
-						point: txPoint(s.point),
-				  }
-				: { ...s }
+	<S extends PathSegment>(
+		txGeo: FnU<SegmentShapeMap<S>>,
+		txPoint: FnU<Vec>
+	) =>
+	(segments: S[]) =>
+		segments.map(
+			(s): S =>
+				s.geo
+					? <any>{
+							type: s.type,
+							geo: txGeo(<any>s.geo),
+					  }
+					: s.point
+					? <S>{
+							type: s.type,
+							point: txPoint(s.point),
+					  }
+					: <S>{ ...s }
 		);

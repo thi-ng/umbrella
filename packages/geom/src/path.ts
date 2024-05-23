@@ -1,6 +1,6 @@
 import type { Maybe } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Attribs, PathSegment } from "@thi.ng/geom-api";
+import type { Attribs, PathSegment2, SegmentType2 } from "@thi.ng/geom-api";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -8,6 +8,7 @@ import { equals2 } from "@thi.ng/vectors/equals";
 import type { Cubic } from "./api/cubic.js";
 import { Path } from "./api/path.js";
 import { asCubic } from "./as-cubic.js";
+import { __copySegment } from "./internal/copy.js";
 import { PathBuilder } from "./path-builder.js";
 
 /**
@@ -23,8 +24,8 @@ import { PathBuilder } from "./path-builder.js";
  * @param attribs
  */
 export const path = (
-	segments?: Iterable<PathSegment>,
-	subPaths?: Iterable<PathSegment[]>,
+	segments?: Iterable<PathSegment2>,
+	subPaths?: Iterable<PathSegment2[]>,
 	attribs?: Attribs
 ) => new Path(segments, subPaths, attribs);
 
@@ -45,8 +46,8 @@ export const path = (
  * @param attribs
  */
 export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
-	let subPaths: PathSegment[][] = [];
-	let curr: PathSegment[];
+	let subPaths: PathSegment2[][] = [];
+	let curr: PathSegment2[];
 	let lastP: Maybe<ReadonlyVec>;
 	const $beginPath = (c: Cubic) => {
 		curr = [{ type: "m", point: c.points[0] }];
@@ -66,26 +67,31 @@ export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
 };
 
 /**
- * Converts given path into a new one with all segments converted to
- * {@link Cubic} bezier segments.
+ * Converts given path into a new one with segments converted to {@link Cubic}
+ * bezier segments. Unless specific segment types are specified via `only`, by
+ * default all segments will be converted.
  *
  * @remarks
  * Also see {@link pathFromCubics}.
  *
  * @param path
+ * @param onlyArcs
  */
-export const normalizedPath = (path: Path) => {
-	const $normalize = (segments: PathSegment[]) => [
-		...mapcat(
-			(s) =>
-				s.geo
-					? map<Cubic, PathSegment>(
-							(c) => ({ type: "c", geo: c }),
-							asCubic(s.geo)
-					  )
-					: [{ ...s }],
-			segments
-		),
+export const normalizedPath = (
+	path: Path,
+	only?: Extract<SegmentType2, "a" | "l" | "p" | "q">[]
+) => {
+	const $normalize = (segments: PathSegment2[]) => [
+		...mapcat((s) => {
+			s.type;
+			if (s.geo && (!only || only.includes(<any>s.type))) {
+				return map<Cubic, PathSegment2>(
+					(c) => ({ type: "c", geo: c }),
+					asCubic(s.geo)
+				);
+			}
+			return [__copySegment(s)];
+		}, segments),
 	];
 	return new Path(
 		$normalize(path.segments),

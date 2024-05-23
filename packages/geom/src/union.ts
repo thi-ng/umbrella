@@ -6,6 +6,11 @@ import { Rect } from "./api/rect.js";
 import { __unionBounds } from "./internal/bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+export type UnionFn = {
+	(a: AABB, b: AABB): AABB;
+	(a: Rect, b: Rect): Rect;
+} & MultiFn2<IShape, IShape, IShape>;
+
 /**
  * Computes shape "union" of given 2 shapes.
  *
@@ -16,20 +21,14 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param a
  * @param b
  */
-export const union: MultiFn2<IShape, IShape, IShape[]> = defmulti<
-	any,
-	any,
-	IShape[]
->(
+export const union = <UnionFn>defmulti<any, any, IShape>(
 	__dispatch,
 	{},
 	{
-		aabb: (a: AABB, b: AABB) => [
+		aabb: (a: AABB, b: AABB) =>
 			new AABB(...__unionBounds(a.pos, a.size, b.pos, b.size)),
-		],
 
-		rect: (a: Rect, b: Rect) => [
+		rect: (a: Rect, b: Rect) =>
 			new Rect(...__unionBounds(a.pos, a.size, b.pos, b.size)),
-		],
 	}
 );

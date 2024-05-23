@@ -12,7 +12,7 @@ import {
 	svgDoc,
 	withAttribs,
 } from "@thi.ng/geom";
-import { type AxiDrawAttribs } from "@thi.ng/geom-axidraw";
+import type { AxiDrawAttribs } from "@thi.ng/geom-axidraw";
 import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { smoothStep } from "@thi.ng/math";
 import { IntBuffer } from "@thi.ng/pixel";

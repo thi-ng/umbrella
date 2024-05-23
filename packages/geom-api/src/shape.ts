@@ -13,7 +13,16 @@ export interface IShape<T extends IShape = IShape<any>>
 	extends IAttributed<T>,
 		ICopy<T> {
 	readonly type: number | string;
+	readonly dim: number;
 }
+
+export type IShape2<T extends IShape2 = IShape2<any>> = IShape<T> & {
+	readonly dim: 2;
+};
+
+export type IShape3<T extends IShape3 = IShape3<any>> = IShape<T> & {
+	readonly dim: 3;
+};
 
 export interface AABBLike extends IShape<AABBLike> {
 	pos: Vec;
@@ -32,8 +41,14 @@ export interface PCLike extends IShape<PCLike> {
 	points: Vec[];
 }
 
-export interface PCLikeConstructor {
-	new (pts: Vec[], attribs?: Attribs): PCLike;
+export interface PCLikeConstructor<T extends PCLike = PCLike> {
+	new (pts: Vec[], attribs?: Attribs): T;
 }
 
 export interface IHiccupShape extends IShape, IToHiccup {}
+
+export type IHiccupShape2<T extends IHiccupShape2 = IHiccupShape2<any>> =
+	IHiccupShape & IShape2<T>;
+
+export type IHiccupShape3<T extends IHiccupShape3 = IHiccupShape3<any>> =
+	IHiccupShape & IShape3<T>;

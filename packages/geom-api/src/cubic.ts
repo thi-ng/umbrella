@@ -3,7 +3,7 @@ export interface CubicOpts {
 	 * Set to true (default false) to interpret original vertices as
 	 * breakpoints
 	 */
-	breakPoints: boolean;
+	mode: "default" | "breakpoints" | "hobby";
 	/**
 	 * True, to enable uniform tangent scaling. If false (default), each
 	 * tangent will be also scaled by the length of its related parent

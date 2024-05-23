@@ -1,11 +1,11 @@
 import { eqDeltaArray } from "@thi.ng/vectors";
 import { describe, expect, test } from "bun:test";
 import {
-	Path,
 	asCubic,
 	asPolyline,
 	asSvg,
 	line,
+	path,
 	pathBuilder,
 	pathFromCubics,
 	pathFromSvg,
@@ -19,12 +19,12 @@ const A = pathFromSvg("M0,0h100v100h-100zM10,10v80h80v-80z", { fill: "red" });
 
 describe("path", () => {
 	test("pathbuilder", () => {
-		expect(pathBuilder().current()).toEqual(new Path());
+		expect(pathBuilder().current()).toEqual(path());
 	});
 
 	test("fromSvg", () => {
 		expect(A).toEqual(
-			new Path(
+			path(
 				[
 					{ type: "m", point: [0, 0] },
 					{ type: "l", geo: line([0, 0], [100, 0]) },

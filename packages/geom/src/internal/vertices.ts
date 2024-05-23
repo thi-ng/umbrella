@@ -1,9 +1,10 @@
 // thing:export
 import type { Maybe } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs, HiccupPathSegment } from "@thi.ng/geom-api";
 import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
 import { TAU } from "@thi.ng/math/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /** @internal */
 export const __circleOpts = (
@@ -44,3 +45,9 @@ export const __sampleAttribs = (
 	}
 	return opts;
 };
+
+export const __hiccupLineSegment = (
+	a: ReadonlyVec,
+	b: ReadonlyVec
+): HiccupPathSegment =>
+	a[0] === b[0] ? ["V", b[1]] : a[1] === b[1] ? ["H", b[0]] : ["L", b];

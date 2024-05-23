@@ -1,8 +1,9 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
+import type { IHiccupShape2, IShape2, PathSegment2 } from "@thi.ng/geom-api";
 import { rotate as $rotate } from "@thi.ng/vectors/rotate";
 import type { Arc } from "./api/arc.js";
+import { BPatch } from "./api/bpatch.js";
 import { Circle } from "./api/circle.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Cubic } from "./api/cubic.js";
@@ -23,8 +24,16 @@ import { asPath } from "./as-path.js";
 import { asPolygon } from "./as-polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
+import { __ensureNoArc } from "./internal/error.js";
 import { __rotatedShape as tx } from "./internal/rotate.js";
 import { __segmentTransformer } from "./internal/transform.js";
+
+export type RotateFn = {
+	(shape: Arc, theta: number): Path;
+	(shape: Ellipse, theta: number): Path;
+	(shape: Rect, theta: number): Polygon;
+	<T extends IShape2>(shape: T, theta: number): T;
+} & MultiFn2<IShape2, number, IShape2>;
 
 /**
  * Rotates given 2D shape by `theta` (in radians).
@@ -33,6 +42,7 @@ import { __segmentTransformer } from "./internal/transform.js";
  * Currently implemented for:
  *
  * - {@link Arc}
+ * - {@link BPatch}
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
@@ -53,19 +63,19 @@ import { __segmentTransformer } from "./internal/transform.js";
  * @param shape
  * @param theta
  */
-export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
-	any,
-	number,
-	IShape
->(
+export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 	__dispatch,
-	{},
 	{
-		arc: ($: Arc, theta) => {
-			const a = $.copy();
-			$rotate(null, a.pos, theta);
-			return a;
-		},
+		arc: "$aspath",
+		ellipse: "$aspath",
+		rect: "$aspoly",
+	},
+	{
+		$aspath: ($, theta) => rotate(asPath($), theta),
+
+		$aspoly: ($, theta) => rotate(asPolygon($)[0], theta),
+
+		bpatch: tx(BPatch),
 
 		circle: ($: Circle, theta) =>
 			new Circle($rotate([], $.pos, theta), $.r, __copyAttribs($)),
@@ -78,16 +88,17 @@ export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
 
 		cubic: tx(Cubic),
 
-		ellipse: ($: Ellipse, theta) => rotate(asPath($), theta),
-
 		group: ($: Group, theta) =>
-			$.copyTransformed((x) => <IHiccupShape>rotate(x, theta)),
+			$.copyTransformed((x) => <IHiccupShape2>rotate(x, theta)),
 
 		line: tx(Line),
 
 		path: ($: Path, theta) => {
-			const $rotateSegments = __segmentTransformer(
-				(geo) => rotate(geo, theta),
+			const $rotateSegments = __segmentTransformer<PathSegment2>(
+				(geo) => {
+					__ensureNoArc(geo);
+					return rotate(geo, theta);
+				},
 				(p) => $rotate([], p, theta)
 			);
 			return new Path(
@@ -114,8 +125,6 @@ export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
 				__copyAttribs($)
 			);
 		},
-
-		rect: ($: Rect, theta) => rotate(asPolygon($)[0], theta),
 
 		text: ($: Text, theta) =>
 			new Text($rotate([], $.pos, theta), $.body, __copyAttribs($)),

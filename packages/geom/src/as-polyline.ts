@@ -2,20 +2,32 @@ import type { Maybe } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
+import type { IShape, IShape2, IShape3, SamplingOpts } from "@thi.ng/geom-api";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { set } from "@thi.ng/vectors/set";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
 import { Path } from "./api/path.js";
 import { Polyline } from "./api/polyline.js";
+import { Polyline3 } from "./api/polyline3.js";
 import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+export type AsPolylineFn = {
+	<T extends IShape2>(
+		shape: T,
+		opts?: number | Partial<SamplingOpts>
+	): Polyline[];
+	<T extends IShape3>(
+		shape: T,
+		opts?: number | Partial<SamplingOpts>
+	): Polyline3[];
+} & MultiFn1O<IShape, number | Partial<SamplingOpts>, (Polyline | Polyline3)[]>;
+
 /**
- * Converts given shape into an array of {@link Polyline}s, optionally using
- * provided
+ * Converts given shape into an array of {@link Polyline}s or {@link Polyline3},
+ * optionally using provided
  * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
  * or number of target vertices.
  *
@@ -33,59 +45,84 @@ import { vertices } from "./vertices.js";
  * - {@link Line}
  * - {@link Path}
  * - {@link Polygon}
+ * - {@link Polygon3}
  * - {@link Polyline}
+ * - {@link Polyline3}
  * - {@link Quad}
+ * - {@link Quad3}
  * - {@link Quadratic}
+ * - {@link Quadratic3}
  * - {@link Rect}
  * - {@link Triangle}
+ * - {@link Triangle3}
  *
  * @param shape
  * @param opts
  */
-export const asPolyline: MultiFn1O<
-	IShape,
-	number | Partial<SamplingOpts>,
-	Polyline[]
-> = defmulti<any, Maybe<number | Partial<SamplingOpts>>, Polyline[]>(
-	__dispatch,
-	{
-		arc: "points",
-		circle: "poly",
-		cubic: "points",
-		ellipse: "poly",
-		line: "points",
-		polyline: "points",
-		quad: "poly",
-		quadratic: "points",
-		rect: "poly",
-		tri: "poly",
-	},
-	{
-		complexpoly: ($: ComplexPolygon, opts) => [
-			...asPolyline($.boundary, opts),
-			...mapcat((child) => asPolyline(child, opts), $.children),
-		],
-
-		group: ($: Group, opts) => [
-			...mapcat((child) => asPolyline(child, opts), $.children),
-		],
-
-		points: ($, opts) => [new Polyline(vertices($, opts), __attribs($))],
-
-		path: ($: Path, opts) => {
-			const tmp = new Path();
-			return [$.segments, ...$.subPaths].map((segments) => {
-				tmp.segments = segments;
-				const pts = vertices(tmp, opts);
-				peek(segments).type === "z" && pts.push(set([], pts[0]));
-				return new Polyline(pts, __attribs($));
-			});
+export const asPolyline = <AsPolylineFn>(
+	defmulti<
+		any,
+		Maybe<number | Partial<SamplingOpts>>,
+		(Polyline | Polyline3)[]
+	>(
+		__dispatch,
+		{
+			arc: "points",
+			circle: "poly",
+			cubic: "points",
+			cubic3: "points3",
+			ellipse: "poly",
+			line: "points",
+			line3: "points3",
+			polyline: "points",
+			polyline3: "points3",
+			quad: "poly",
+			quad3: "poly3",
+			quadratic: "points",
+			quadratic3: "points3",
+			rect: "poly",
+			tri: "poly",
+			tri3: "poly3",
 		},
+		{
+			complexpoly: ($: ComplexPolygon, opts) => [
+				...asPolyline($.boundary, opts),
+				...mapcat((child) => asPolyline(child, opts), $.children),
+			],
 
-		poly: ($, opts) => {
-			const pts = vertices($, opts);
-			pts.push(set([], pts[0]));
-			return [new Polyline(pts, __attribs($))];
-		},
-	}
+			group: ($: Group, opts) => [
+				...mapcat((child) => asPolyline(child, opts), $.children),
+			],
+
+			points: ($, opts) => [
+				new Polyline(vertices($, opts), __attribs($)),
+			],
+
+			points3: ($, opts) => [
+				new Polyline3(vertices($, opts), __attribs($)),
+			],
+
+			path: ($: Path, opts) => {
+				const tmp = new Path();
+				return [$.segments, ...$.subPaths].map((segments) => {
+					tmp.segments = segments;
+					const pts = vertices(tmp, opts);
+					peek(segments).type === "z" && pts.push(set([], pts[0]));
+					return new Polyline(pts, __attribs($));
+				});
+			},
+
+			poly: ($, opts) => {
+				const pts = vertices($, opts);
+				pts.push(set([], pts[0]));
+				return [new Polyline(pts, __attribs($))];
+			},
+
+			poly3: ($, opts) => {
+				const pts = vertices($, opts);
+				pts.push(set([], pts[0]));
+				return [new Polyline3(pts, __attribs($))];
+			},
+		}
+	)
 );

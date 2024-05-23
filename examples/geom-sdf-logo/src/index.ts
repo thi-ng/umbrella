@@ -7,7 +7,6 @@ import {
 	rect,
 	svgDoc,
 	transform,
-	type Polygon,
 } from "@thi.ng/geom";
 import { asPolygons, asSDF, sample2d } from "@thi.ng/geom-sdf";
 import { rad } from "@thi.ng/math";
@@ -41,12 +40,7 @@ const DOTS = [[-1, -4.125], [3, -4.125], [4, 0], [7, 2]];
 // function to create a single skewed rect shape for the logo
 // (transforming a rect with a matrix turns it into a polygon)
 const logoBar = ([x, y, h]: number[]) =>
-	<Polygon>(
-		transform(
-			rect([x * GRIDW, -h * GRIDW + y * GRIDW], [W, h * GRIDW]),
-			SKEW
-		)
-	);
+	transform(rect([x * GRIDW, -h * GRIDW + y * GRIDW], [W, h * GRIDW]), SKEW);
 
 // function to create a single circle shape (here we're using the skew matrix
 // only to compute the transformed center point, but we're not interested in
@@ -87,9 +81,9 @@ const contours = THEME.map((fill, i) =>
 // convert everything to SVG:
 // 1. unless given by the user, the`svgDoc()` function auto-computes the
 //    `viewBox` of the given geometry.
-// 2. the`__bleed` control attrib adds some additional page bleed/margin.
+// 2. the`__margin` control attrib adds some additional page bleed/margin.
 // 3. we reverse the contours array to ensure the largest shapes (i.e. those
 //    with the greatest SDF sample distance) are drawn first
 document.getElementById("app")!.innerHTML = asSvg(
-	svgDoc({ __bleed: 10, stroke: "#000" }, ...contours.reverse())
+	svgDoc({ __margin: 10, stroke: "#000" }, ...contours.reverse())
 );

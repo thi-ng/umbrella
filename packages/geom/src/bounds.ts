@@ -1,7 +1,14 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { AABBLike, IShape, PathSegment, PCLike } from "@thi.ng/geom-api";
+import type {
+	AABBLike,
+	IShape,
+	IShape2,
+	IShape3,
+	PathSegment,
+	PCLike,
+} from "@thi.ng/geom-api";
 import { bounds as arcBounds } from "@thi.ng/geom-arc/bounds";
 import { bounds2, bounds3 } from "@thi.ng/geom-poly-utils/bounds";
 import { cubicBounds } from "@thi.ng/geom-splines/cubic-bounds";
@@ -11,6 +18,7 @@ import { filter } from "@thi.ng/transducers/filter";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
+import type { Vec } from "@thi.ng/vectors";
 import { addN2 } from "@thi.ng/vectors/addn";
 import { max } from "@thi.ng/vectors/max";
 import { min } from "@thi.ng/vectors/min";
@@ -19,7 +27,9 @@ import { mulN2 } from "@thi.ng/vectors/muln";
 import { sub2 } from "@thi.ng/vectors/sub";
 import { subN2 } from "@thi.ng/vectors/subn";
 import { aabbFromMinMaxWithMargin } from "./aabb.js";
+import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
+import type { BPatch } from "./api/bpatch.js";
 import type { Circle } from "./api/circle.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Cubic } from "./api/cubic.js";
@@ -33,6 +43,11 @@ import type { Text } from "./api/text.js";
 import { __collBounds } from "./internal/bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { rectFromMinMaxWithMargin } from "./rect.js";
+
+export type BoundsFn = {
+	(shape: IShape2, margin?: number): Maybe<Rect>;
+	(shape: IShape3, margin?: number): Maybe<AABB>;
+} & MultiFn1O<IShape, number, Maybe<AABBLike>>;
 
 /**
  * Computes and returns bounding rect/box for the given shape, optionally with
@@ -62,11 +77,11 @@ import { rectFromMinMaxWithMargin } from "./rect.js";
  * @param shape
  * @param margin
  */
-export const bounds: MultiFn1O<IShape, number, Maybe<AABBLike>> = defmulti<
-	any,
-	Maybe<number>,
-	Maybe<AABBLike>
->(
+/**
+ * Polymorphic implementation backend of {@link bounds}. Only use for adding
+ * support for custom shape types.
+ */
+export const bounds = <BoundsFn>defmulti<any, Maybe<number>, Maybe<AABBLike>>(
 	__dispatch,
 	{
 		aabb: "rect",
@@ -80,6 +95,22 @@ export const bounds: MultiFn1O<IShape, number, Maybe<AABBLike>> = defmulti<
 		arc: ($: Arc, margin = 0) =>
 			rectFromMinMaxWithMargin(
 				...arcBounds($.pos, $.r, $.axis, $.start, $.end),
+				margin
+			),
+
+		bpatch: ({ points }: BPatch, margin = 0) =>
+			rectFromMinMaxWithMargin(
+				...bounds2([
+					...mapcat(
+						(pts: [Vec, Vec, Vec, Vec]) => cubicBounds(...pts),
+						[
+							[points[0], points[1], points[2], points[3]],
+							[points[3], points[7], points[11], points[15]],
+							[points[12], points[13], points[14], points[15]],
+							[points[0], points[4], points[8], points[12]],
+						]
+					),
+				]),
 				margin
 			),
 

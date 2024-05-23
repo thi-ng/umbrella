@@ -51,38 +51,24 @@ fromInterval(1000 / 30).subscribe({
 					{ translate: [150, 150], rotate: t * 0.04 },
 					{
 						fill: PEN1,
-						curveScale: 0.05,
+						curve: { scale: 0.05 },
 						jitter: 3,
 					}
 				),
 				fuzzyPoly(
 					SHAPES.star,
-					{
-						translate: curvePos(t, 0.02, 0.03, 100, 50),
-					},
-					{
-						fill: PEN2,
-						curveScale: 0.3,
-					}
+					{ translate: curvePos(t, 0.02, 0.03, 100, 50) },
+					{ fill: PEN2, curve: { scale: 0.3 } }
 				),
 				fuzzyPoly(
 					SHAPES.hex,
-					{
-						translate: curvePos(t + 100, 0.03, 0.02, 100, 50),
-					},
-					{
-						fill: PEN3,
-						curveScale: 0.1,
-					}
+					{ translate: curvePos(t + 100, 0.03, 0.02, 100, 50) },
+					{ fill: PEN3, curve: { scale: 0.1 } }
 				),
 				fuzzyPoly(
 					SHAPES.spike,
-					{
-						translate: curvePos(t, 0.04, 0.03, 50, 100),
-					},
-					{
-						fill: PEN4,
-					}
+					{ translate: curvePos(t, 0.04, 0.03, 50, 100) },
+					{ fill: PEN4 }
 				),
 			])
 		);

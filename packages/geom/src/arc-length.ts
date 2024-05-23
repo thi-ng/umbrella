@@ -40,10 +40,25 @@ import { __dispatch } from "./internal/dispatch.js";
 export const arcLength: MultiFn1<IShape, number> = defmulti(
 	__dispatch,
 	{
+		arc: "$aspolyline",
+		cubic: "$aspolyline",
+		cubic3: "$aspolyline",
+		line3: "line",
+		poly3: "poly",
+		polyline3: "polyline",
 		quad: "poly",
+		quad3: "poly",
+		quadratic: "$aspolyline",
+		quadratic3: "$aspolyline",
 		tri: "poly",
+		tri3: "tri",
 	},
 	{
+		$aspoly: ($) => asPolygon($).reduce((acc, p) => acc + arcLength(p), 0),
+
+		$aspolyline: ($) =>
+			asPolyline($).reduce((acc, p) => acc + arcLength(p), 0),
+
 		circle: ($: Circle) => TAU * $.r,
 
 		complexpoly: ($: ComplexPolygon) =>
@@ -71,7 +86,7 @@ export const arcLength: MultiFn1<IShape, number> = defmulti(
 
 		poly: ({ points }: Polygon) => perimeter(points, points.length, true),
 
-		polyline: ({ points }: Polygon) => perimeter(points, points.length),
+		polyline: ({ points }: Polygon) => perimeter(points),
 
 		rect: ({ size: [w, h] }: Rect) => 2 * (w + h),
 

@@ -1,12 +1,16 @@
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PCLike } from "@thi.ng/geom-api";
+import type { IShape, IShape2, PCLike } from "@thi.ng/geom-api";
 import { grahamScan2 } from "@thi.ng/geom-hull/graham-scan";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Polygon } from "./api/polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
+
+export type ConvexHullFn = {
+	(shape: IShape2): Polygon;
+} & MultiFn1<IShape, IShape>;
 
 /**
  * Computes the convex hull for given shape and returns it as {@link Polygon}.
@@ -31,7 +35,7 @@ import { vertices } from "./vertices.js";
  *
  * @param shape
  */
-export const convexHull: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
+export const convexHull = <ConvexHullFn>defmulti<any, IShape>(
 	__dispatch,
 	{
 		arc: "group",

@@ -1,6 +1,6 @@
 import type { Fn3 } from "@thi.ng/api";
 import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
-import type { IHiccupShape } from "@thi.ng/geom-api";
+import type { IHiccupShape2 } from "@thi.ng/geom-api";
 import { resample } from "@thi.ng/geom-resample/resample";
 import { line } from "@thi.ng/geom/line";
 import { polyline } from "@thi.ng/geom/polyline";
@@ -11,7 +11,7 @@ import { jitterPoints } from "./points.js";
 
 export const defLine = (
 	opts: Partial<FuzzyLineOpts> = {}
-): Fn3<ReadonlyVec, ReadonlyVec, boolean, IHiccupShape> => {
+): Fn3<ReadonlyVec, ReadonlyVec, boolean, IHiccupShape2> => {
 	opts = mergeDeepObj(DEFAULT_LINE, opts);
 	return opts.resample! > 1
 		? (a, b, useAttr = true) =>

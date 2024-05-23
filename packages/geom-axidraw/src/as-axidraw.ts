@@ -5,7 +5,7 @@ import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { Circle, ComplexPolygon, Group, Polyline } from "@thi.ng/geom";
-import type { Attribs, IHiccupShape, IShape, PCLike } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2, IShape2, PCLike } from "@thi.ng/geom-api";
 import { clipPolylinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { applyTransforms } from "@thi.ng/geom/apply-transforms";
@@ -68,7 +68,7 @@ import { pointsByNearestNeighbor } from "./sort.js";
  * ```
  */
 export const asAxiDraw: MultiFn1O<
-	IShape,
+	IShape2,
 	Partial<AsAxiDrawOpts>,
 	Iterable<DrawCommand>
 > = defmulti<any, Maybe<Partial<AsAxiDrawOpts>>, Iterable<DrawCommand>>(
@@ -123,7 +123,7 @@ function* __group(
 	const $sampleOpts = __sampleAttribs(opts?.samples, $.attribs);
 	const { skip, sort, interleave } = __axiAttribs($.attribs);
 	const children = skip ? [...takeNth(skip + 1, $.children)] : $.children;
-	function* emitChunk(chunk: IHiccupShape[]) {
+	function* emitChunk(chunk: IHiccupShape2[]) {
 		const iter = sort ? (<ShapeOrdering>sort)(chunk) : chunk;
 		for (let child of iter) {
 			const shape = applyTransforms(child);

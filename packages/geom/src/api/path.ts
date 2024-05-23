@@ -3,26 +3,23 @@ import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { peek } from "@thi.ng/arrays/peek";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import type { Attribs, IHiccupShape, PathSegment } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2, PathSegment2 } from "@thi.ng/geom-api";
 import { __copyAttribs, __copySegment } from "../internal/copy.js";
 
-const CLOSE: PathSegment = Object.freeze({ type: "z" });
+export class Path implements IClear, IHiccupShape2<Path> {
+	readonly type = "path";
+	readonly dim = 2;
 
-export class Path implements IClear, IHiccupShape {
-	segments: PathSegment[];
-	subPaths: PathSegment[][];
+	segments: PathSegment2[];
+	subPaths: PathSegment2[][];
 
 	constructor(
-		segments?: Iterable<PathSegment>,
-		subPaths?: Iterable<PathSegment[]>,
+		segments?: Iterable<PathSegment2>,
+		subPaths?: Iterable<PathSegment2[]>,
 		public attribs?: Attribs
 	) {
 		this.segments = segments ? ensureArray(segments) : [];
 		this.subPaths = subPaths ? ensureArray(subPaths) : [];
-	}
-
-	get type() {
-		return "path";
 	}
 
 	/**
@@ -42,7 +39,7 @@ export class Path implements IClear, IHiccupShape {
 	}
 
 	close() {
-		if (!this.closed) this.segments.push(CLOSE);
+		if (!this.closed) this.segments.push({ type: "z" });
 		return this;
 	}
 
@@ -55,19 +52,23 @@ export class Path implements IClear, IHiccupShape {
 		return p;
 	}
 
-	withAttribs(attribs: Attribs): Path {
+	withAttribs(attribs: Attribs) {
 		return new Path(this.segments, this.subPaths, attribs);
 	}
 
 	equiv(o: any) {
-		return o instanceof Path && equiv(this.segments, o.segments);
+		return (
+			o instanceof Path &&
+			equiv(this.segments, o.segments) &&
+			equiv(this.subPaths, o.subPaths)
+		);
 	}
 
 	isComplex() {
 		return this.subPaths.length;
 	}
 
-	addSegments(...segments: PathSegment[]) {
+	addSegments(...segments: PathSegment2[]) {
 		for (let s of segments) {
 			this.closed && illegalState("path already closed");
 			this.segments.push(s);
@@ -75,14 +76,14 @@ export class Path implements IClear, IHiccupShape {
 		return this;
 	}
 
-	addSubPaths(...paths: PathSegment[][]) {
+	addSubPaths(...paths: PathSegment2[][]) {
 		this.subPaths.push(...paths);
 		return this;
 	}
 
 	toHiccup() {
 		const acc: any[] = [];
-		const $hiccupSegments = (segments: PathSegment[]) => {
+		const $hiccupSegments = (segments: PathSegment2[]) => {
 			for (let i = 0, n = segments.length; i < n; i++) {
 				const s = segments[i];
 				if (s.geo) {

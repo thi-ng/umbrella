@@ -2,7 +2,7 @@ import type { Maybe } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PathSegment } from "@thi.ng/geom-api";
+import type { IShape, IShape2, PathSegment2 } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample/simplify";
 import type { Vec } from "@thi.ng/vectors";
 import { ComplexPolygon } from "./api/complex-polygon.js";
@@ -12,6 +12,10 @@ import { Polyline } from "./api/polyline.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
+
+export type SimplifyFn = {
+	<T extends IShape2>(shape: IShape2, eps?: number): T;
+} & MultiFn1O<IShape, number, IShape>;
 
 /**
  * Simplifies given 2D shape boundary using Douglas-Peucker algorithm
@@ -34,11 +38,7 @@ import { vertices } from "./vertices.js";
  * @param shape
  * @param threshold
  */
-export const simplify: MultiFn1O<IShape, number, IShape> = defmulti<
-	any,
-	Maybe<number>,
-	IShape
->(
+export const simplify = <SimplifyFn>defmulti<any, Maybe<number>, IShape>(
 	__dispatch,
 	{},
 	{
@@ -50,8 +50,8 @@ export const simplify: MultiFn1O<IShape, number, IShape> = defmulti<
 			),
 
 		path: ($: Path, eps = 1e-6) => {
-			const $simplifySegments = (segments: PathSegment[]) => {
-				const res: PathSegment[] = [];
+			const $simplifySegments = (segments: PathSegment2[]) => {
+				const res: PathSegment2[] = [];
 				const n = segments.length;
 				let points!: Vec[] | null;
 				let lastP!: Vec;

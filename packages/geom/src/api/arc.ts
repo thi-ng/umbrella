@@ -1,8 +1,9 @@
 import { equiv } from "@thi.ng/equiv";
 import type {
 	Attribs,
+	HiccupPathSegment,
 	IHiccupPathSegment,
-	IHiccupShape,
+	IHiccupShape2,
 } from "@thi.ng/geom-api";
 import {
 	pointAt as arcPointAt,
@@ -12,7 +13,10 @@ import type { Vec } from "@thi.ng/vectors";
 import { set } from "@thi.ng/vectors/set";
 import { __copyAttribs } from "../internal/copy.js";
 
-export class Arc implements IHiccupShape, IHiccupPathSegment {
+export class Arc implements IHiccupShape2<Arc>, IHiccupPathSegment {
+	readonly type = "arc";
+	readonly dim = 2;
+
 	constructor(
 		public pos: Vec,
 		public r: Vec,
@@ -23,10 +27,6 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
 		public cw = false,
 		public attribs?: Attribs
 	) {}
-
-	get type() {
-		return "arc";
-	}
 
 	copy(): Arc {
 		return new Arc(
@@ -41,7 +41,7 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
 		);
 	}
 
-	withAttribs(attribs: Attribs): Arc {
+	withAttribs(attribs: Attribs) {
 		return new Arc(
 			this.pos,
 			this.r,
@@ -92,7 +92,7 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
 		];
 	}
 
-	toHiccupPathSegments() {
+	toHiccupPathSegments(): HiccupPathSegment[] {
 		return [
 			[
 				"A",

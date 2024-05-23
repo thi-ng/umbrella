@@ -133,17 +133,29 @@
 		"./api/cubic": {
 			"default": "./api/cubic.js"
 		},
+		"./api/cubic3": {
+			"default": "./api/cubic3.js"
+		},
 		"./api/ellipse": {
 			"default": "./api/ellipse.js"
 		},
 		"./api/group": {
 			"default": "./api/group.js"
 		},
+		"./api/group3": {
+			"default": "./api/group3.js"
+		},
 		"./api/line": {
 			"default": "./api/line.js"
 		},
+		"./api/line3": {
+			"default": "./api/line3.js"
+		},
 		"./api/path": {
 			"default": "./api/path.js"
+		},
+		"./api/path3": {
+			"default": "./api/path3.js"
 		},
 		"./api/plane": {
 			"default": "./api/plane.js"
@@ -151,11 +163,20 @@
 		"./api/points": {
 			"default": "./api/points.js"
 		},
+		"./api/points3": {
+			"default": "./api/points3.js"
+		},
 		"./api/polygon": {
 			"default": "./api/polygon.js"
 		},
+		"./api/polygon3": {
+			"default": "./api/polygon3.js"
+		},
 		"./api/polyline": {
 			"default": "./api/polyline.js"
+		},
+		"./api/polyline3": {
+			"default": "./api/polyline3.js"
 		},
 		"./api/quad": {
 			"default": "./api/quad.js"
@@ -166,8 +187,14 @@
 		"./api/quadratic": {
 			"default": "./api/quadratic.js"
 		},
+		"./api/quadratic3": {
+			"default": "./api/quadratic3.js"
+		},
 		"./api/ray": {
 			"default": "./api/ray.js"
+		},
+		"./api/ray3": {
+			"default": "./api/ray3.js"
 		},
 		"./api/rect": {
 			"default": "./api/rect.js"
@@ -180,6 +207,9 @@
 		},
 		"./api/triangle": {
 			"default": "./api/triangle.js"
+		},
+		"./api/triangle3": {
+			"default": "./api/triangle3.js"
 		},
 		"./apply-transforms": {
 			"default": "./apply-transforms.js"
@@ -244,6 +274,9 @@
 		"./cubic": {
 			"default": "./cubic.js"
 		},
+		"./cubic3": {
+			"default": "./cubic3.js"
+		},
 		"./edges": {
 			"default": "./edges.js"
 		},
@@ -258,6 +291,9 @@
 		},
 		"./group": {
 			"default": "./group.js"
+		},
+		"./group3": {
+			"default": "./group3.js"
 		},
 		"./internal/bounds": {
 			"default": "./internal/bounds.js"
@@ -280,6 +316,9 @@
 		"./line": {
 			"default": "./line.js"
 		},
+		"./line3": {
+			"default": "./line3.js"
+		},
 		"./map-point": {
 			"default": "./map-point.js"
 		},
@@ -295,6 +334,9 @@
 		"./path": {
 			"default": "./path.js"
 		},
+		"./path3": {
+			"default": "./path3.js"
+		},
 		"./plane": {
 			"default": "./plane.js"
 		},
@@ -307,11 +349,20 @@
 		"./points": {
 			"default": "./points.js"
 		},
+		"./points3": {
+			"default": "./points3.js"
+		},
 		"./polygon": {
 			"default": "./polygon.js"
 		},
+		"./polygon3": {
+			"default": "./polygon3.js"
+		},
 		"./polyline": {
 			"default": "./polyline.js"
+		},
+		"./polyline3": {
+			"default": "./polyline3.js"
 		},
 		"./proximity": {
 			"default": "./proximity.js"
@@ -319,17 +370,29 @@
 		"./quad": {
 			"default": "./quad.js"
 		},
+		"./quad3": {
+			"default": "./quad3.js"
+		},
 		"./quadratic": {
 			"default": "./quadratic.js"
 		},
+		"./quadratic3": {
+			"default": "./quadratic3.js"
+		},
 		"./ray": {
 			"default": "./ray.js"
+		},
+		"./ray3": {
+			"default": "./ray3.js"
 		},
 		"./rect": {
 			"default": "./rect.js"
 		},
 		"./resample": {
 			"default": "./resample.js"
+		},
+		"./rotate-around-axis": {
+			"default": "./rotate-around-axis.js"
 		},
 		"./rotate": {
 			"default": "./rotate.js"
@@ -381,6 +444,9 @@
 		},
 		"./triangle": {
 			"default": "./triangle.js"
+		},
+		"./triangle3": {
+			"default": "./triangle3.js"
 		},
 		"./union": {
 			"default": "./union.js"
