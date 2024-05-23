@@ -129,21 +129,42 @@ export const lchThemes = (...preds: ThemePredicate[] | number[]) =>
 export const rgbThemes = (...preds: ThemePredicate[] | number[]) =>
 	__themes(asRGB, preds);
 
+/**
+ * Yields iterator of theme IDs (indices). Yields all themes unless specific
+ * theme IDs or filter predicates are provided.
+ *
+ * @param preds
+ */
+export const themeIDs = (...preds: ThemePredicate[] | number[]) =>
+	__themes(asRGB, preds, true);
+
+/** @internal */
+function __themes<T extends Theme>(
+	fn: (id: number) => T,
+	preds: ThemePredicate[] | number[]
+): IterableIterator<T>;
+/** @internal */
+function __themes<T extends Theme>(
+	fn: (id: number) => T,
+	preds: ThemePredicate[] | number[],
+	idOnly: true
+): IterableIterator<number>;
 /** @internal */
 function* __themes<T extends Theme>(
 	fn: (id: number) => T,
-	preds: ThemePredicate[] | number[]
+	preds: ThemePredicate[] | number[],
+	idOnly = false
 ) {
 	if (preds.length && typeof preds[0] === "function") {
 		const pred = compFilter(...(<ThemePredicate[]>preds));
 		for (let i = 0; i < NUM_THEMES; i++) {
 			const theme = fn(i);
-			if (pred(theme)) yield theme;
+			if (pred(theme)) yield idOnly ? i : theme;
 		}
 	} else if (preds.length) {
-		for (let id of <number[]>preds) yield fn(id);
+		for (let id of <number[]>preds) yield idOnly ? id : fn(id);
 	} else {
-		for (let i = 0; i < NUM_THEMES; i++) yield fn(i);
+		for (let i = 0; i < NUM_THEMES; i++) yield idOnly ? i : fn(i);
 	}
 }
 
