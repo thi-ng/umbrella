@@ -72,3 +72,10 @@ export const US_ARCH_E_LANDSCAPE = $(US_ARCH_E);
 export const US_ARCH_E1_LANDSCAPE = $(US_ARCH_E1);
 export const US_ARCH_E2_LANDSCAPE = $(US_ARCH_E2);
 export const US_ARCH_E3_LANDSCAPE = $(US_ARCH_E3);
+
+// screen/print densities
+
+export const DPI_72 = quantity(72, "dpi");
+export const DPI_150 = quantity(150, "dpi");
+export const DPI_300 = quantity(300, "dpi");
+export const DPI_600 = quantity(600, "dpi");
