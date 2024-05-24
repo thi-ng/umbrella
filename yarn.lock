@@ -753,6 +753,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-hexgrid@workspace:examples/geom-hexgrid":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-hexgrid@workspace:examples/geom-hexgrid"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.4.5"
+    vite: "npm:^5.2.11"
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-knn-hash@workspace:examples/geom-knn-hash":
   version: 0.0.0-use.local
   resolution: "@example/geom-knn-hash@workspace:examples/geom-knn-hash"
