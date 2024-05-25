@@ -406,6 +406,9 @@
 		"./scatter": {
 			"default": "./scatter.js"
 		},
+		"./sector": {
+			"default": "./sector.js"
+		},
 		"./simplify": {
 			"default": "./simplify.js"
 		},

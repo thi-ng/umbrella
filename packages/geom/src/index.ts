@@ -97,6 +97,7 @@ export * from "./rotate-around-axis.js";
 export * from "./scale.js";
 export * from "./scale-with-center.js";
 export * from "./scatter.js";
+export * from "./sector.js";
 export * from "./simplify.js";
 export * from "./split-arclength.js";
 export * from "./split-at.js";
