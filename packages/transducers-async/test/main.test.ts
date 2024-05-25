@@ -250,7 +250,7 @@ test(
 		expect(
 			await push(
 				sidechain(
-					repeatedly((i) => i, 100, 100),
+					repeatedly((i) => i, 100, 110),
 					repeatedly(() => true, 3, 250)
 				)
 			)
@@ -258,7 +258,7 @@ test(
 		expect(
 			await push(
 				sidechain(
-					repeatedly((i) => i, 100, 100),
+					repeatedly((i) => i, 100, 110),
 					repeatedly(() => true, 3, 250),
 					{ lastOnly: false }
 				)
