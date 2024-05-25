@@ -30,6 +30,7 @@ export type AsPolygonFn = {
  *
  * Currently implemented for:
  *
+ * - {@link Arc}
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Ellipse}
@@ -99,11 +100,11 @@ export const asPolygon = <AsPolygonFn>(
 				});
 			},
 
-			points: ($: IShape, opts) => [
+			points: ($: IShape2, opts) => [
 				new Polygon(vertices($, opts), __attribs($)),
 			],
 
-			points3: ($: IShape, opts) => [
+			points3: ($: IShape3, opts) => [
 				new Polygon3(vertices($, opts), __attribs($)),
 			],
 		}
