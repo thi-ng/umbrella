@@ -1,4 +1,5 @@
 import { Quantity, quantity } from "../unit.js";
+import { dpi } from "../units/density.js";
 import { inch, mm } from "../units/length.js";
 
 // https://en.wikipedia.org/wiki/ISO_216x
@@ -75,7 +76,7 @@ export const US_ARCH_E3_LANDSCAPE = $(US_ARCH_E3);
 
 // screen/print densities
 
-export const DPI_72 = quantity(72, "dpi");
-export const DPI_150 = quantity(150, "dpi");
-export const DPI_300 = quantity(300, "dpi");
-export const DPI_600 = quantity(600, "dpi");
+export const DPI_72 = quantity(72, dpi);
+export const DPI_150 = quantity(150, dpi);
+export const DPI_300 = quantity(300, dpi);
+export const DPI_600 = quantity(600, dpi);
