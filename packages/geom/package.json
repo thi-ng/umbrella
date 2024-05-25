@@ -235,6 +235,9 @@
 		"./as-polyline": {
 			"default": "./as-polyline.js"
 		},
+		"./as-sector": {
+			"default": "./as-sector.js"
+		},
 		"./as-svg": {
 			"default": "./as-svg.js"
 		},
@@ -405,9 +408,6 @@
 		},
 		"./scatter": {
 			"default": "./scatter.js"
-		},
-		"./sector": {
-			"default": "./sector.js"
 		},
 		"./simplify": {
 			"default": "./simplify.js"

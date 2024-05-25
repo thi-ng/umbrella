@@ -13,15 +13,15 @@ import { __copyAttribsRaw } from "./internal/copy.js";
  * @param arc
  * @param attribs
  */
-export const sector = (arc: Arc, attribs?: Attribs) => {
-	const path = new Path();
-	path.addSegments(
-		{ type: "m", point: copy(arc.pos) },
-		{ type: "l", geo: new Line([copy(arc.pos), arc.pointAt(0)]) },
-		{ type: "a", geo: arc },
-		{ type: "l", geo: new Line([arc.pointAt(1), copy(arc.pos)]) },
-		{ type: "z" }
+export const asSector = (arc: Arc, attribs?: Attribs) =>
+	new Path(
+		[
+			{ type: "m", point: copy(arc.pos) },
+			{ type: "l", geo: new Line([copy(arc.pos), arc.pointAt(0)]) },
+			{ type: "a", geo: arc },
+			{ type: "l", geo: new Line([arc.pointAt(1), copy(arc.pos)]) },
+			{ type: "z" },
+		],
+		[],
+		attribs || __copyAttribsRaw(arc.attribs)
 	);
-	path.attribs = attribs || __copyAttribsRaw(arc.attribs);
-	return path;
-};
