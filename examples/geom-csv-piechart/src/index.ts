@@ -7,11 +7,11 @@ import { compareByKey, compareNumDesc } from "@thi.ng/compare";
 import { float, parseCSVFromString } from "@thi.ng/csv";
 import {
 	arc,
+	asSector,
 	asSvg,
 	circle,
 	group,
 	polyline,
-	sector,
 	svgDoc,
 	text,
 } from "@thi.ng/geom";
@@ -52,7 +52,7 @@ const pieChart = (
 		const end = theta + (item.value / total) * TAU;
 		const mid = (theta + end) / 2;
 		// construct pie piece/sector & assign color from gradient
-		const piece = sector(
+		const piece = asSector(
 			// use polar coords to offset center (only if offset>0)
 			arc(cartesian2([], [offset, mid]), radius, 0, theta, end),
 			{ fill: cosineColor(gradient, i / items.length) }
