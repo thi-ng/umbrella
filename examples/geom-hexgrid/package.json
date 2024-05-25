@@ -2,7 +2,7 @@
 	"name": "@example/geom-hexgrid",
 	"version": "0.0.1",
 	"private": true,
-	"description": "TODO",
+	"description": "Hex grid generation & tessellations",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
