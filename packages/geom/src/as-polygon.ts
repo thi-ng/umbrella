@@ -13,14 +13,17 @@ import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Function overrides for {@link asPolygon}.
+ */
 export type AsPolygonFn = {
 	(shape: IShape2, opts?: number | Partial<SamplingOpts>): Polygon[];
 	(shape: IShape3, opts?: number | Partial<SamplingOpts>): Polygon3[];
 } & MultiFn1O<IShape, number | Partial<SamplingOpts>, (Polygon | Polygon3)[]>;
 
 /**
- * Converts given shape into an array of {@link Polygon}s or {@link Polygon3},
- * optionally using provided
+ * Converts given shape boundary into an array of {@link Polygon}s or
+ * {@link Polygon3}, optionally using provided
  * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
  * or number of target vertices.
  *

@@ -10,6 +10,9 @@ import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
 
+/**
+ * Function overrides for {@link splitArcLength}.
+ */
 export type SplitArcLengthFn = {} & MultiFn2<IShape, number, Group>;
 
 /**

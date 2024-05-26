@@ -40,6 +40,9 @@ import {
 
 export type TransformVertexFn = Fn<ReadonlyVec, ReadonlyMat>;
 
+/**
+ * Function overrides for {@link transformVertices}.
+ */
 export type TransformVerticesFn = {
 	(shape: Arc, fn: TransformVertexFn): Polyline;
 	(shape: Circle, fn: TransformVertexFn): Polygon;

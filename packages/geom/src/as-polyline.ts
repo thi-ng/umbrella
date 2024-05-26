@@ -14,6 +14,9 @@ import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Function overrides for {@link asPolyline}.
+ */
 export type AsPolylineFn = {
 	<T extends IShape2>(
 		shape: T,
@@ -26,8 +29,8 @@ export type AsPolylineFn = {
 } & MultiFn1O<IShape, number | Partial<SamplingOpts>, (Polyline | Polyline3)[]>;
 
 /**
- * Converts given shape into an array of {@link Polyline}s or {@link Polyline3},
- * optionally using provided
+ * Converts given shape boundary into an array of {@link Polyline}s or
+ * {@link Polyline3}, optionally using provided
  * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
  * or number of target vertices.
  *

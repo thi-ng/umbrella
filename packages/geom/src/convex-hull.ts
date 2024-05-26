@@ -8,6 +8,9 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Function overrides for {@link convexHull}.
+ */
 export type ConvexHullFn = {
 	(shape: IShape2): Polygon;
 } & MultiFn1<IShape, IShape>;

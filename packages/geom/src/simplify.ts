@@ -13,6 +13,9 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Function overrides for {@link simplify}.
+ */
 export type SimplifyFn = {
 	<T extends IShape2>(shape: IShape2, eps?: number): T;
 } & MultiFn1O<IShape, number, IShape>;

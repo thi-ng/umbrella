@@ -45,6 +45,9 @@ import {
 } from "./internal/transform.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Function overrides for {@link transform}.
+ */
 export type TransformFn = {
 	(shape: Arc, mat: ReadonlyMat): Path;
 	(shape: Circle, mat: ReadonlyMat): Path;
@@ -126,7 +129,7 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 			const $transformSegments = __segmentTransformer<PathSegment2>(
 				(geo) => {
 					__ensureNoArc(geo);
-					return <IShape2>transform(geo, mat);
+					return transform(geo, mat);
 				},
 				(p) => mulV([], mat, p)
 			);

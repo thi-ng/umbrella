@@ -50,15 +50,18 @@ export interface AsCubicOpts extends CubicOpts {
 	attribs: boolean;
 }
 
+/**
+ * Function overrides for {@link asCubic}.
+ */
 export type AsCubicFn = {
 	<T extends IShape2>(shape: T, opts?: Partial<AsCubicOpts>): Cubic[];
 	<T extends IShape3>(shape: T, opts?: Partial<AsCubicOpts>): Cubic3[];
 } & MultiFn1O<IShape, Partial<AsCubicOpts>, (Cubic | Cubic3)[]>;
 
 /**
- * Converts given shape into an array of {@link Cubic} or {@link Cubic3} curves.
- * For some shapes (see below) the conversion supports optionally provided
- * {@link CubicOpts}.
+ * Converts given shape boundary into an array of {@link Cubic} or
+ * {@link Cubic3} curves. For some shapes (see below) the conversion supports
+ * optionally provided {@link CubicOpts}.
  *
  * @remarks
  * Currently implemented for:

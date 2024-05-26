@@ -6,6 +6,9 @@ import { Rect } from "./api/rect.js";
 import { __unionBounds } from "./internal/bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Function overrides for {@link union}.
+ */
 export type UnionFn = {
 	(a: AABB, b: AABB): AABB;
 	(a: Rect, b: Rect): Rect;

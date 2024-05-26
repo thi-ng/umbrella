@@ -5,7 +5,7 @@ import { closestPoint } from "./closest-point.js";
 
 /**
  * Computes {@link closestPoint} on `shape` to `p`, and if successful, returns
- * eucledian distance between that point and `p`.
+ * Eucledian distance between that point and `p`.
  *
  * @param shape
  * @param p

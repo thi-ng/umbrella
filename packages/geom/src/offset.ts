@@ -16,6 +16,9 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { rectWithCentroidAndMargin } from "./rect.js";
 
+/**
+ * Function overrides for {@link offset}.
+ */
 export type OffsetFn = {
 	(shape: AABB, dist: number): AABB;
 	(shape: Circle, dist: number): Circle;

@@ -35,6 +35,9 @@ import { __dispatch } from "./internal/dispatch.js";
 import { __segmentTransformer } from "./internal/transform.js";
 import { __translatedShape as tx } from "./internal/translate.js";
 
+/**
+ * Function overrides for {@link translate}.
+ */
 export type TranslateFn = {
 	<T extends IShape>(shape: T, offset: ReadonlyVec): T;
 } & MultiFn2<IShape, ReadonlyVec, IShape>;

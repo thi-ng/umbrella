@@ -44,6 +44,9 @@ import { __collBounds } from "./internal/bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { rectFromMinMaxWithMargin } from "./rect.js";
 
+/**
+ * Function overrides for {@link bounds}.
+ */
 export type BoundsFn = {
 	(shape: IShape2, margin?: number): Maybe<Rect>;
 	(shape: IShape3, margin?: number): Maybe<AABB>;

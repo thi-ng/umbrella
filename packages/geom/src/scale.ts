@@ -40,6 +40,9 @@ import { __dispatch } from "./internal/dispatch.js";
 import { __scaledShape as tx } from "./internal/scale.js";
 import { __segmentTransformer } from "./internal/transform.js";
 
+/**
+ * Function overrides for {@link scale}.
+ */
 export type ScaleFn = {
 	(shape: Circle, factor: number): Circle;
 	(shape: Circle, factor: ReadonlyVec): Ellipse;

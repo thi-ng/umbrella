@@ -13,6 +13,9 @@ import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { Polygon3 } from "./api/polygon3.js";
 
+/**
+ * Function overrides for {@link resample}.
+ */
 export type ResampleFn = {
 	(
 		shape: ComplexPolygon,

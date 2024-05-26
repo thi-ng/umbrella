@@ -14,7 +14,7 @@ import { translate } from "./translate.js";
  * thi.ng/matrices](https://docs.thi.ng/umbrella/matrices/functions/scaleWithCenter23.html)),
  * but will not change the shape type (as might be the case with `transform()`).
  *
- * Also see: {@link scaleImpl}, {@link translateImpl}, {@link applyTransforms}.
+ * Also see: {@link scale}, {@link translate}, {@link applyTransforms}.
  *
  * @param shape
  * @param center

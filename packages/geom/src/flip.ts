@@ -9,13 +9,17 @@ import type { Path } from "./api/path.js";
 import type { Ray } from "./api/ray.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Function overrides for {@link flip}.
+ */
 export type FlipFn = {
 	<T extends IShape>(shape: T): T;
 } & MultiFn1<IShape, IShape>;
 
 /**
- * Reverses vertex ordering or general direction (e.g. for {@link Ray}) of given
- * shape. In-place operation, modifies original shape.
+ * Only for vertex-based shapes with implicit or explicit ordering. Reverses
+ * vertex ordering or general direction (e.g. for {@link Ray}) of given shape.
+ * In-place operation, modifies original shape.
  *
  * @remarks
  * Currently implemented for:

@@ -14,6 +14,9 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { translate } from "./translate.js";
 
+/**
+ * Function overrides for {@link center}.
+ */
 export type CenterFn = {
 	<T extends IShape>(shape: T, origin?: ReadonlyVec): Maybe<T>;
 } & MultiFn2<IShape, Maybe<ReadonlyVec>, Maybe<IShape>>;

@@ -30,11 +30,6 @@ import { __dispatch } from "./internal/dispatch.js";
 import { pathFromCubics } from "./path.js";
 import { pathFromCubics3 } from "./path3.js";
 
-export type AsPathFn = {
-	(shape: IShape2, opts?: Partial<AsPathOpts>): Path;
-	(shape: IShape3, opts?: Partial<AsPathOpts>): Path3;
-} & MultiFn1O<IShape, Partial<AsPathOpts>, Path | Path3>;
-
 export interface AsPathOpts extends CubicOpts {
 	/**
 	 * If true (default: false), creates path consisting of linear segments
@@ -44,8 +39,16 @@ export interface AsPathOpts extends CubicOpts {
 }
 
 /**
- * Converts given shape into a {@link Path} (by default via {@link asCubic} and
- * {@link pathFromCubics}).
+ * Function overrides for {@link asPath}.
+ */
+export type AsPathFn = {
+	(shape: IShape2, opts?: Partial<AsPathOpts>): Path;
+	(shape: IShape3, opts?: Partial<AsPathOpts>): Path3;
+} & MultiFn1O<IShape, Partial<AsPathOpts>, Path | Path3>;
+
+/**
+ * Converts given shape boundary into a {@link Path} (by default via
+ * {@link asCubic} and {@link pathFromCubics}).
  *
  * @remarks
  * If {@link AsPathOpts.linear} is enabled the shape will be converted into a

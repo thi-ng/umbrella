@@ -12,6 +12,9 @@ import { asPolyline } from "./as-polyline.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Function overrides for {@link subdivCurve}.
+ */
 export type SubdivCurveFn = {
 	(
 		shape: ComplexPolygon,
