@@ -34,21 +34,30 @@ export interface SVGDocAttribs extends Attribs {
 }
 
 /**
- * Can be overridden via {@link setSvgDefaultAttribs}.
+ * Default document attribs for {@link svgDoc} (minus XMLNS declarations). Can
+ * be overridden via {@link setSvgDefaultAttribs}.
  */
-export let DEFAULT_ATTRIBS: Partial<SVGDocAttribs> = {
+export let SVG_DEFAULT_ATTRIBS: Partial<SVGDocAttribs> = {
 	__prec: 3,
 	fill: "none",
 	stroke: "#000",
 };
 
 /**
- * Sets the SVG root element attribs used by default by {@link svgDoc}.
+ * Sets the SVG root element attribs used by default by {@link svgDoc}. If
+ * `merge` is true, the given attribs will be merged with the existing ones
+ * (rather than replacing completely).
  *
  * @param attribs
+ * @param merge
  */
-export const setSvgDefaultAttribs = (attribs: Partial<SVGDocAttribs>) => {
-	DEFAULT_ATTRIBS = attribs;
+export const setSvgDefaultAttribs = (
+	attribs: Partial<SVGDocAttribs>,
+	merge = false
+) => {
+	SVG_DEFAULT_ATTRIBS = merge
+		? { ...SVG_DEFAULT_ATTRIBS, ...attribs }
+		: attribs;
 };
 
 /**
@@ -61,7 +70,7 @@ export const asSvg = (...args: any[]) =>
 
 /**
  * Creates a hiccup SVG doc element container for given {@link IShape}s and
- * attribs (merged with {@link DEFAULT_ATTRIBS}). If the attribs do not include
+ * attribs (merged with {@link SVG_DEFAULT_ATTRIBS}). If the attribs do not include
  * a `viewBox`, it will be computed automatically. Furthermore (and only for the
  * case a viewbox needs to be computed), a `__margin` attrib can be provided to
  * include a bleed/margin for the viewbox (in world space units).
@@ -83,19 +92,21 @@ export const asSvg = (...args: any[]) =>
  * [`setPrecision()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/setPrecision.html).
  *
  * @param attribs
- * @param xs
+ * @param shapes
  */
-export const svgDoc = (attribs: Partial<SVGDocAttribs>, ...xs: IShape[]) => {
-	let $attribs = { ...DEFAULT_ATTRIBS, ...attribs };
-	if (xs.length > 0) {
+export const svgDoc = (
+	attribs: Partial<SVGDocAttribs>,
+	...shapes: IShape[]
+) => {
+	let $attribs = { ...SVG_DEFAULT_ATTRIBS, ...attribs };
+	if (shapes.length > 0) {
 		if (!$attribs.viewBox) {
-			const cbounds = __collBounds(xs, bounds);
+			const cbounds = __collBounds(shapes, bounds);
 			if (cbounds) {
 				const [[x, y], [w, h]] = cbounds;
 				const margin = $attribs.__margin || 0;
-				const m2 = 2 * margin;
-				const width = ff(w + m2);
-				const height = ff(h + m2);
+				const width = ff(w + 2 * margin);
+				const height = ff(h + 2 * margin);
 				$attribs = {
 					width,
 					height,
@@ -107,5 +118,5 @@ export const svgDoc = (attribs: Partial<SVGDocAttribs>, ...xs: IShape[]) => {
 			}
 		}
 	}
-	return svg($attribs, ...xs);
+	return svg($attribs, ...shapes);
 };
