@@ -1,17 +1,23 @@
 import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
+import { mulV22, mulV33 } from "@thi.ng/matrices/mulv";
+import { rotation22 } from "@thi.ng/matrices/rotation";
+import { rotationAroundAxis33 } from "@thi.ng/matrices/rotation-around-axis";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { rotate } from "@thi.ng/vectors/rotate";
-import { rotateAroundAxis3 } from "@thi.ng/vectors/rotate-around-axis";
 import { __copyAttribs } from "./copy.js";
 
-export const __rotatedPoints = (pts: ReadonlyVec[], theta: number) =>
-	pts.map((x) => rotate([], x, theta));
+export const __rotatedPoints = (pts: ReadonlyVec[], theta: number) => {
+	const mat = rotation22([], theta);
+	return pts.map((x) => mulV22([], x, mat));
+};
 
 export const __rotatedPoints3 = (
 	pts: ReadonlyVec[],
 	axis: ReadonlyVec,
 	theta: number
-) => pts.map((x) => rotateAroundAxis3([], x, axis, theta));
+) => {
+	const mat = rotationAroundAxis33([], axis, theta);
+	return pts.map((x) => mulV33([], x, mat));
+};
 
 export const __rotatedShape =
 	<T extends PCLike>(ctor: PCLikeConstructor<T>) =>

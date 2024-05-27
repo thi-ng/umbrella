@@ -1,6 +1,8 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape2, IShape2, PathSegment2 } from "@thi.ng/geom-api";
+import type { IShape2, PathSegment2 } from "@thi.ng/geom-api";
+import { mulV22 } from "@thi.ng/matrices/mulv";
+import { rotation22 } from "@thi.ng/matrices/rotation";
 import { rotate as $rotate } from "@thi.ng/vectors/rotate";
 import type { Arc } from "./api/arc.js";
 import { BPatch } from "./api/bpatch.js";
@@ -82,24 +84,24 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 
 		complexpoly: ($: ComplexPolygon, theta) =>
 			new ComplexPolygon(
-				<Polygon>rotate($.boundary, theta),
-				$.children.map((child) => <Polygon>rotate(child, theta))
+				rotate($.boundary, theta),
+				$.children.map((child) => rotate(child, theta))
 			),
 
 		cubic: tx(Cubic),
 
-		group: ($: Group, theta) =>
-			$.copyTransformed((x) => <IHiccupShape2>rotate(x, theta)),
+		group: ($: Group, theta) => $.copyTransformed((x) => rotate(x, theta)),
 
 		line: tx(Line),
 
 		path: ($: Path, theta) => {
+			const mat = rotation22([], theta);
 			const $rotateSegments = __segmentTransformer<PathSegment2>(
 				(geo) => {
 					__ensureNoArc(geo);
 					return rotate(geo, theta);
 				},
-				(p) => $rotate([], p, theta)
+				(p) => mulV22([], p, mat)
 			);
 			return new Path(
 				$rotateSegments($.segments),
