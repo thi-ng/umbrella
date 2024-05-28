@@ -1,21 +1,34 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
 import { closestT } from "@thi.ng/geom-closest-point/line";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
-import { splitCubicNearPoint } from "@thi.ng/geom-splines/cubic-split";
-import { quadraticSplitNearPoint } from "@thi.ng/geom-splines/quadratic-split";
 import { clamp01 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Cubic } from "./api/cubic.js";
+import { Cubic3 } from "./api/cubic3.js";
 import { Line } from "./api/line.js";
+import { Line3 } from "./api/line3.js";
 import { Polyline } from "./api/polyline.js";
+import { Polyline3 } from "./api/polyline3.js";
 import { Quadratic } from "./api/quadratic.js";
-import { __copyAttribs } from "./internal/copy.js";
+import { Quadratic3 } from "./api/quadratic3.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
-import { __splitLine } from "./internal/split.js";
+import {
+	__splitCubicNear,
+	__splitLineAt,
+	__splitQuadraticNear,
+} from "./internal/split.js";
+
+/**
+ * Function overrides for {@link splitNearPoint}.
+ */
+export type SplitNearPointFn = {
+	<T extends IShape2>(shape: T, p: ReadonlyVec): T[];
+	<T extends IShape3>(shape: T, p: ReadonlyVec): T[];
+} & MultiFn2<IShape, ReadonlyVec, Maybe<IShape[]>>;
 
 /**
  * Similar to {@link splitAt}, but instead of taking a normalized parametric
@@ -25,47 +38,57 @@ import { __splitLine } from "./internal/split.js";
  * Currently only implemented for:
  *
  * - {@link Cubic}
+ * - {@link Cubic3}
  * - {@link Line}
+ * - {@link Line3}
  * - {@link Polyline}
+ * - {@link Polyline3}
  * - {@link Quadratic}
+ * - {@link Quadratic3}
  *
  * @param shape - shape to operate on
  * @param p - split point
  */
-export const splitNearPoint: MultiFn2<
-	IShape,
-	ReadonlyVec,
-	Maybe<IShape[]>
-> = defmulti<any, ReadonlyVec, Maybe<IShape[]>>(
-	__dispatch,
-	{},
-	{
-		cubic: ({ points, attribs }: Cubic, p) =>
-			splitCubicNearPoint(
-				p,
-				points[0],
-				points[1],
-				points[2],
-				points[3]
-			).map((pts) => new Cubic(pts, { ...attribs })),
+export const splitNearPoint = <SplitNearPointFn>(
+	defmulti<any, ReadonlyVec, Maybe<IShape[]>>(
+		__dispatch,
+		{},
+		{
+			cubic: ({ points, attribs }: Cubic, p) =>
+				__splitCubicNear(Cubic, p, points, attribs),
 
-		line: ($: Line, p) => {
-			const t = closestT(p, $.points[0], $.points[1]) || 0;
-			return __splitLine($.points[0], $.points[1], clamp01(t)).map(
-				(pts) => new Line(pts, __copyAttribs($))
-			);
-		},
+			cubic3: ({ points, attribs }: Cubic3, p) =>
+				__splitCubicNear(Cubic3, p, points, attribs),
 
-		polyline: ($: Polyline, p) =>
-			__pointArraysAsShapes(
-				Polyline,
-				new Sampler($.points).splitNear(p),
-				$.attribs
-			),
+			line: ({ points, attribs }: Line, p) => {
+				const t = closestT(p, points[0], points[1]) || 0;
+				return __splitLineAt(Line, points, clamp01(t), attribs);
+			},
 
-		quadratic: ({ points, attribs }: Quadratic, p) =>
-			quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(
-				(pts) => new Quadratic(pts, { ...attribs })
-			),
-	}
+			line3: ({ points, attribs }: Line3, p) => {
+				const t = closestT(p, points[0], points[1]) || 0;
+				return __splitLineAt(Line3, points, clamp01(t), attribs);
+			},
+
+			polyline: ($: Polyline, p) =>
+				__pointArraysAsShapes(
+					Polyline,
+					new Sampler($.points).splitNear(p),
+					$.attribs
+				),
+
+			polyline3: ($: Polyline, p) =>
+				__pointArraysAsShapes(
+					Polyline3,
+					new Sampler($.points).splitNear(p),
+					$.attribs
+				),
+
+			quadratic: ({ points, attribs }: Quadratic, p) =>
+				__splitQuadraticNear(Quadratic, p, points, attribs),
+
+			quadratic3: ({ points, attribs }: Quadratic, p) =>
+				__splitQuadraticNear(Quadratic3, p, points, attribs),
+		}
+	)
 );
