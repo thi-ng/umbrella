@@ -40,7 +40,7 @@
 		"@thi.ng/equiv": "^2.1.58"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.43.2",
+		"@microsoft/api-extractor": "^7.45.0",
 		"typedoc": "^0.25.13",
 		"typescript": "^5.4.5"
 	},

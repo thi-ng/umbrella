@@ -42,9 +42,9 @@
 		"@thi.ng/wasm-api-dom": "^0.11.93"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.43.2",
+		"@microsoft/api-extractor": "^7.45.0",
 		"@thi.ng/wasm-api-bindgen": "^0.5.4",
-		"esbuild": "^0.21.1",
+		"esbuild": "^0.21.4",
 		"typedoc": "^0.25.13",
 		"typescript": "^5.4.5"
 	},

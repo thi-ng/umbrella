@@ -43,8 +43,8 @@
 		"@thi.ng/shader-ast": "^0.15.15"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.43.2",
-		"esbuild": "^0.21.1",
+		"@microsoft/api-extractor": "^7.45.0",
+		"esbuild": "^0.21.4",
 		"typedoc": "^0.25.13",
 		"typescript": "^5.4.5"
 	},

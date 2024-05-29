@@ -48,12 +48,12 @@
 		"@thi.ng/pixel": "^6.1.32",
 		"@thi.ng/pixel-dither": "^1.1.130",
 		"@thi.ng/prefixes": "^2.3.19",
-		"sharp": "^0.33.3"
+		"sharp": "^0.33.4"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.43.2",
+		"@microsoft/api-extractor": "^7.45.0",
 		"@thi.ng/vectors": "^7.10.31",
-		"esbuild": "^0.21.1",
+		"esbuild": "^0.21.4",
 		"typedoc": "^0.25.13",
 		"typescript": "^5.4.5"
 	},
