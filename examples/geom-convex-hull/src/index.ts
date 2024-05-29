@@ -25,20 +25,28 @@ const height = 600;
 
 const bounds = rectFromMinMaxWithMargin([0, 0], [width, height], -50);
 
-// generate random points, compute convex hull and convert to path
-const hull1 = asPath(convexHull(polygon(scatter(bounds, 5)!)), {
-	mode: "breakpoints",
-});
-// this hull will be used as clipping polygon and MUST be convex
-// (blue shape in the visualization)
-const hull2 = convexHull(polygon(scatter(bounds, 5)!));
+const generateShapes = () => {
+	// repeat until we get an actual result/overlap shape
+	while (true) {
+		// generate random points, compute convex hull and convert to path
+		const hull1 = asPath(convexHull(polygon(scatter(bounds, 5)!)), {
+			mode: "hobby",
+		});
+		// this hull will be used as clipping polygon and MUST be convex
+		// (blue shape in the visualization)
+		const hull2 = convexHull(points(scatter(bounds, 5)!));
+
+		// apply Sutherland-Hodgman clipping
+		const clip = clipConvex(hull1, hull2);
+		if (clip?.[0]) return { hull1, hull2, clip: clip[0] };
+	}
+};
+
+const { hull1, hull2, clip } = generateShapes();
 
 // sample boundaries at uniform distance
 const pts1 = vertices(hull1, { dist: 50 });
 const pts2 = vertices(hull2, { dist: 50 });
-
-// apply Sutherland-Hodgman clipping
-const clip = clipConvex(hull1, hull2)!;
 
 const COL1 = (a = 1) => `rgba(245,93,62,${a})`;
 const COL2 = (a = 1) => `rgba(118,190,208,${a})`;
