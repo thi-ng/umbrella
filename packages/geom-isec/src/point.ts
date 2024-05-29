@@ -7,7 +7,7 @@ import type { MultiVecOpImpl, ReadonlyVec } from "@thi.ng/vectors";
 import { clockwise2 } from "@thi.ng/vectors/clockwise";
 import { direction2 } from "@thi.ng/vectors/direction";
 import { distSq } from "@thi.ng/vectors/distsq";
-import { dot2 } from "@thi.ng/vectors/dot";
+import { dot2, dot3 } from "@thi.ng/vectors/dot";
 import { magSq } from "@thi.ng/vectors/magsq";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
@@ -305,9 +305,36 @@ export const pointInPolygon2 = (p: ReadonlyVec, pts: ReadonlyVec[]) => {
 	let b = pts[0];
 	let inside = 0;
 	for (let i = 0; i <= n; a = b, b = pts[++i]) {
-		inside = classifyPointPolyPair(px, py, a[0], a[1], b[0], b[1], inside);
+		inside = checkPolyPair(px, py, a[0], a[1], b[0], b[1], inside);
 	}
 	return inside;
+};
+
+/**
+ * Returns a classifier for given point `p` with respect to the polygon defined
+ * by `points`. Returns -1 if point is outside the polygon, 0 if on the boundary
+ * (using `eps` as tolerance) or +1 if the point is inside.
+ *
+ * @param p
+ * @param pts
+ * @param eps
+ */
+export const classifyPointPolygon = (
+	p: ReadonlyVec,
+	pts: ReadonlyVec[],
+	eps = EPS
+) => {
+	const n = pts.length - 1;
+	const px = p[0];
+	const py = p[1];
+	let a = pts[n];
+	let b = pts[0];
+	let inside = -1;
+	for (let i = 0; i <= n; a = b, b = pts[++i]) {
+		inside = classifyPolyPair(px, py, a[0], a[1], b[0], b[1], inside, eps);
+		if (inside === 0) return 0;
+	}
+	return inside === -1 ? -1 : 1;
 };
 
 /**
@@ -321,11 +348,80 @@ export const pointInPolygon2 = (p: ReadonlyVec, pts: ReadonlyVec[]) => {
  * @param bx
  * @param by
  * @param inside
+ *
+ * @internal
  */
-export const classifyPointPolyPair: FnN7 = (px, py, ax, ay, bx, by, inside) =>
+export const checkPolyPair: FnN7 = (px, py, ax, ay, bx, by, inside) =>
 	((ay < py && by >= py) || (by < py && ay >= py)) && (ax <= px || bx <= px)
 		? inside ^ ~~(ax + ((py - ay) / (by - ay)) * (bx - ax) < px)
 		: inside;
+
+/**
+ * Similar to {@link checkPolyPair}, but also considering the case that `p` lies
+ * on the line segment `a` -> `b` (with tolerance `eps`). Returns 0 if that is
+ * the case, otherwise -2 if inside, or -1 if outside.
+ *
+ * @param px
+ * @param py
+ * @param ax
+ * @param ay
+ * @param bx
+ * @param by
+ * @param inside
+ * @param eps
+ *
+ * @internal
+ */
+export const classifyPolyPair = (
+	px: number,
+	py: number,
+	ax: number,
+	ay: number,
+	bx: number,
+	by: number,
+	inside: number,
+	eps = EPS
+) => {
+	const dax = ax - px;
+	const day = ay - py;
+	const dbx = bx - px;
+	const dby = by - py;
+	const dx = bx - ax;
+	const dy = by - ay;
+	const ieps = -eps;
+	if (
+		((dax <= eps && dbx >= ieps) || (dax >= ieps && dbx <= eps)) &&
+		((day <= eps && dby >= ieps) || (day >= ieps && dby <= eps))
+	) {
+		const l = dx * dx + dy * dy;
+		if (l > 1e-6) {
+			const t = (-dax * dx - day * dy) / l;
+			if (Math.hypot(px - (ax + t * dx), py - (ay + t * dy)) <= eps)
+				return 0;
+		}
+	}
+	return ((day < 0 && dby >= 0) || (dby < 0 && day >= 0)) &&
+		(dax <= 0 || dbx <= 0)
+		? inside ^ ~~(ax + (-day / dy) * dx < px)
+		: inside;
+};
+
+/**
+ * Returns a classifier for given point `p` with respect to the plane defined by
+ * `normal` and `w` (plane normal form). Returns -1 if point is below the plane,
+ * 0 if on the plane (using `eps` as tolerance) or +1 if the point is above.
+ *
+ * @param p
+ * @param normal
+ * @param w
+ * @param eps
+ */
+export const classifyPointPlane = (
+	p: ReadonlyVec,
+	normal: ReadonlyVec,
+	w: number,
+	eps = EPS
+) => sign(dot3(normal, p) - w, eps);
 
 export const pointInBox: MultiVecOpImpl<
 	Fn3<ReadonlyVec, ReadonlyVec, ReadonlyVec, boolean>
