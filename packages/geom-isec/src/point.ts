@@ -5,11 +5,53 @@ import { EPS } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import type { MultiVecOpImpl, ReadonlyVec } from "@thi.ng/vectors";
 import { clockwise2 } from "@thi.ng/vectors/clockwise";
+import { direction2 } from "@thi.ng/vectors/direction";
 import { distSq } from "@thi.ng/vectors/distsq";
+import { dot2 } from "@thi.ng/vectors/dot";
 import { magSq } from "@thi.ng/vectors/magsq";
 import { mixN } from "@thi.ng/vectors/mixn";
+import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
 import { vop } from "@thi.ng/vectors/vop";
+
+/**
+ * Returns classifier for point `p`, relative to infinite 2D line defined by
+ * point `a` and line direction `dir`. one of the following:
+ *
+ * - 0 if `p` lies on the line (using `eps` as tolerance)
+ * - -1 if `p` is right (clockwise) of the line segment
+ * - +1 if `p` is left (counterclockwise) of the line segment
+ *
+ * @param p
+ * @param a
+ * @param dir
+ * @param eps
+ */
+export const classifyPointLine2 = (
+	p: ReadonlyVec,
+	a: ReadonlyVec,
+	dir: ReadonlyVec,
+	eps = EPS
+) => {
+	const n = perpendicularCCW([], dir);
+	return sign(dot2(n, p) - dot2(n, a), eps);
+};
+
+/**
+ * Syntax sugar for {@link classifyPointLine2}, using points `a` and `b`
+ * defining the line segment.
+ *
+ * @param p
+ * @param a
+ * @param b
+ * @param eps
+ */
+export const classifyPointSegment2 = (
+	p: ReadonlyVec,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	eps = EPS
+) => classifyPointLine2(p, a, direction2([], a, b), eps);
 
 /**
  * Returns true if point `p` lies on the line segment `a`, `b`, using `eps` as
