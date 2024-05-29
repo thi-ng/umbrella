@@ -42,10 +42,10 @@ export const transform = __mulV45;
  * default, unless disabled).
  *
  * @param mat - first matrix
- * @param xs - other matrices
+ * @param rest - other matrices
  */
-export const concat = (mat: ColorMatrix, ...xs: ColorMatrix[]) =>
-	xs.reduce(__mulM45, mat);
+export const concat = (mat: ColorMatrix, ...rest: ColorMatrix[]) =>
+	rest.reduce(__mulM45, mat);
 
 // prettier-ignore
 export const IDENTITY: ColorMatrix = [

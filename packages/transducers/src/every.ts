@@ -22,13 +22,11 @@ import { reduced } from "./reduced.js";
  * @param pred -
  */
 export function every<T>(pred?: Predicate<T>): Reducer<boolean, T>;
-export function every<T>(xs: Iterable<T>): boolean;
-export function every<T>(pred: Predicate<T>, xs: Iterable<T>): boolean;
+export function every<T>(src: Iterable<T>): boolean;
+export function every<T>(pred: Predicate<T>, src: Iterable<T>): boolean;
 export function every(...args: any[]): any {
 	const res = $$reduce(every, args);
-	if (res !== undefined) {
-		return res;
-	}
+	if (res !== undefined) return res;
 	const pred = args[0];
 	return reducer(
 		() => true,

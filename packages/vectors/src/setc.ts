@@ -42,10 +42,10 @@ export const setC6 = (
 	out
 );
 
-export const setC = (out: Vec | null, ...xs: number[]) => {
-	!out && (out = []);
-	for (let i = 0, n = xs.length; i < n; i++) {
-		out[i] = xs[i];
+export const setC = (out: Vec | null, ...values: number[]) => {
+	if (!out) return values;
+	for (let i = 0, n = values.length; i < n; i++) {
+		out[i] = values[i];
 	}
 	return out;
 };

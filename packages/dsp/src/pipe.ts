@@ -34,7 +34,7 @@ export function pipe<A, B, C, D, E>(
 	b: IProc<B, C>,
 	c: IProc<C, D>,
 	d: IProc<D, E>,
-	...xs: IProc<any, any>[]
+	...procs: IProc<any, any>[]
 ): IGen<any>;
 export function pipe(src: IGen<any>, ...procs: IProc<any, any>[]): IGen<any> {
 	// @ts-ignore

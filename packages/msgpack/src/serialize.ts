@@ -37,11 +37,11 @@ export const serialize = (src: any, opts: Partial<EncodeOpts> = {}) => {
 		}
 	};
 
-	const addA = (xs: ArrayLike<number>) => {
+	const addA = (values: ArrayLike<number>) => {
 		const $pos = pos;
-		pos += xs.length;
+		pos += values.length;
 		ensure();
-		buf.set(xs, $pos);
+		buf.set(values, $pos);
 	};
 
 	const add8 = (x: number) => {

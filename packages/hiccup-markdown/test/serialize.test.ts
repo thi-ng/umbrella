@@ -7,9 +7,9 @@ test("serialize", () => {
 	// passed to {@link serialize} (ignored here)
 	// the 2nd arg is the list tag (ul/ol)
 	// rest args are converted to list items
-	const list = (_: any, type: string, ...xs: any[]) => [
+	const list = (_: any, type: string, ...items: any[]) => [
 		type,
-		...xs.map((x) => (Array.isArray(x) ? x : ["li", x])),
+		...items.map((x) => (Array.isArray(x) ? x : ["li", x])),
 	];
 
 	// code block component w/ lang hint

@@ -6,10 +6,10 @@ import { reduce, reducer } from "./reduce.js";
  * sign.
  */
 export function minMag(): Reducer<number, number>;
-export function minMag(xs: Iterable<number>): number;
-export function minMag(xs?: Iterable<number>): any {
-	return xs
-		? reduce(minMag(), xs)
+export function minMag(src: Iterable<number>): number;
+export function minMag(src?: Iterable<number>): any {
+	return src
+		? reduce(minMag(), src)
 		: reducer(
 				() => Infinity,
 				(acc, x: number) => (Math.abs(x) < Math.abs(acc) ? x : acc)

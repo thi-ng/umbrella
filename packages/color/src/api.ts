@@ -121,7 +121,7 @@ export type Conversions = Partial<Record<ColorMode, ColorOp>> & {
 export interface ColorFactory<T extends TypedColor<any>> {
 	(col: MaybeColor, buf?: NumericArray, idx?: number, stride?: number): T;
 	(col?: Vec, idx?: number, stride?: number): T;
-	(a: number, b: number, c: number, ...xs: number[]): T;
+	(a: number, b: number, c: number, ...args: number[]): T;
 
 	readonly class: TypedColorConstructor<T>;
 

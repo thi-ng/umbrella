@@ -11,8 +11,8 @@ import { reduced } from "./reduced.js";
  * @param pred -
  */
 export function some<T>(pred?: Predicate<T>): Reducer<T, boolean>;
-export function some<T>(xs: Iterable<T>): boolean;
-export function some<T>(pred: Predicate<T>, xs: Iterable<T>): boolean;
+export function some<T>(src: Iterable<T>): boolean;
+export function some<T>(pred: Predicate<T>, src: Iterable<T>): boolean;
 export function some<T>(...args: any[]): any {
 	const res = $$reduce(some, args);
 	if (res !== undefined) return res;

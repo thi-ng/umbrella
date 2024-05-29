@@ -6,10 +6,17 @@ export const copy = (x: any, ctor: Function) =>
 		? x.copy()
 		: new (x[Symbol.species] || ctor)(x);
 
-export const copyObj = (x: any) => {
+/**
+ * Creates shallow copy of `src` object without any properties for which
+ * [`isIllegalKey()`](https://docs.thi.ng/umbrella/checks/functions/isIllegalKey.html)
+ * returns true.
+ *
+ * @param src
+ */
+export const copyObj = (src: any) => {
 	const res: any = {};
-	for (let k in x) {
-		!isIllegalKey(k) && (res[k] = x[k]);
+	for (let k in src) {
+		!isIllegalKey(k) && (res[k] = src[k]);
 	}
 	return res;
 };

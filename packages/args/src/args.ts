@@ -185,7 +185,7 @@ export const oneOfMulti = <
 	multi: true;
 	group: string;
 } & { desc: string } => ({
-	coerce: (xs) => xs.map(coerceOneOf(opts)),
+	coerce: (values) => values.map(coerceOneOf(opts)),
 	hint: $hint("ID", spec.delim),
 	multi: true,
 	group: "main",

@@ -143,8 +143,8 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 		node.vals.add(val);
 	}
 
-	into(xs: Iterable<[K, V]>) {
-		for (let [k, v] of xs) {
+	into(pairs: Iterable<[K, V]>) {
+		for (let [k, v] of pairs) {
 			this.add(k, v);
 		}
 	}

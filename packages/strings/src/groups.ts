@@ -1,9 +1,9 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { charRange } from "./range.js";
 
-const defGroup = (...xs: Iterable<string>[]) => {
+const defGroup = (...ranges: Iterable<string>[]) => {
 	const acc: IObjectOf<boolean> = {};
-	for (let range of xs) {
+	for (let range of ranges) {
 		for (let c of range) {
 			acc[c] = true;
 		}

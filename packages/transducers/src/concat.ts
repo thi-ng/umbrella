@@ -17,12 +17,12 @@ import { ensureIterable } from "@thi.ng/arrays/ensure-iterable";
  * // [ 1, 2, 3, undefined, 4, 5 ]
  * ```
  *
- * @param xs -
+ * @param sources -
  */
 export function* concat<T>(
-	...xs: Nullable<Iterable<T>>[]
+	...sources: Nullable<Iterable<T>>[]
 ): IterableIterator<T> {
-	for (let x of xs) {
-		x != null && (yield* ensureIterable(x));
+	for (let src of sources) {
+		src != null && (yield* ensureIterable(src));
 	}
 }

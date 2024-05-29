@@ -20,7 +20,7 @@ export interface IEquivSet<T>
 		IEquiv,
 		IGet<T, T>,
 		IInto<T, IEquivSet<T>> {
-	disj(xs: Iterable<T>): this;
+	disj(values: Iterable<T>): this;
 	first(): Maybe<T>;
 }
 

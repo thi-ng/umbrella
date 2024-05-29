@@ -68,21 +68,21 @@ export function partial(fn: any, ...args: any[]) {
 	let [a, b, c, d, e, f, g, h] = args;
 	switch (args.length) {
 		case 1:
-			return (...xs: any[]) => fn(a, ...xs);
+			return (...args: any[]) => fn(a, ...args);
 		case 2:
-			return (...xs: any[]) => fn(a, b, ...xs);
+			return (...args: any[]) => fn(a, b, ...args);
 		case 3:
-			return (...xs: any[]) => fn(a, b, c, ...xs);
+			return (...args: any[]) => fn(a, b, c, ...args);
 		case 4:
-			return (...xs: any[]) => fn(a, b, c, d, ...xs);
+			return (...args: any[]) => fn(a, b, c, d, ...args);
 		case 5:
-			return (...xs: any[]) => fn(a, b, c, d, e, ...xs);
+			return (...args: any[]) => fn(a, b, c, d, e, ...args);
 		case 6:
-			return (...xs: any[]) => fn(a, b, c, d, e, f, ...xs);
+			return (...args: any[]) => fn(a, b, c, d, e, f, ...args);
 		case 7:
-			return (...xs: any[]) => fn(a, b, c, d, e, f, g, ...xs);
+			return (...args: any[]) => fn(a, b, c, d, e, f, g, ...args);
 		case 8:
-			return (...xs: any[]) => fn(a, b, c, d, e, f, g, h, ...xs);
+			return (...args: any[]) => fn(a, b, c, d, e, f, g, h, ...args);
 		default:
 			illegalArgs();
 	}

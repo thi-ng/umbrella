@@ -6,10 +6,10 @@ import { reduce, reducer } from "./reduce.js";
  * sign.
  */
 export function maxMag(): Reducer<number, number>;
-export function maxMag(xs: Iterable<number>): number;
-export function maxMag(xs?: Iterable<number>): any {
-	return xs
-		? reduce(maxMag(), xs)
+export function maxMag(src: Iterable<number>): number;
+export function maxMag(src?: Iterable<number>): any {
+	return src
+		? reduce(maxMag(), src)
 		: reducer(
 				() => 0,
 				(acc, x: number) => (Math.abs(x) > Math.abs(acc) ? x : acc)

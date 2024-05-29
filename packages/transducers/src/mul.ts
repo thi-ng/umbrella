@@ -6,8 +6,8 @@ import { __mathop } from "./internal/mathop.js";
  * (default: 1).
  */
 export function mul(init?: number): Reducer<number, number>;
-export function mul(xs: Iterable<number>): number;
-export function mul(init: number, xs: Iterable<number>): number;
+export function mul(src: Iterable<number>): number;
+export function mul(init: number, src: Iterable<number>): number;
 export function mul(...args: any[]): any {
 	return __mathop(mul, (acc, x: number) => acc * x, 1, args);
 }

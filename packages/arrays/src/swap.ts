@@ -47,11 +47,11 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
  * // [30, 40]
  * ```
  *
- * @param xs - arrays to swap in later
+ * @param arrays - arrays to swap in later
  */
-export const multiSwap = (...xs: AnyArray[]): SwapFn => {
-	const [b, c, d] = xs;
-	const n = xs.length;
+export const multiSwap = (...arrays: AnyArray[]): SwapFn => {
+	const [b, c, d] = arrays;
+	const n = arrays.length;
 	switch (n) {
 		case 0:
 			return swap;
@@ -76,7 +76,7 @@ export const multiSwap = (...xs: AnyArray[]): SwapFn => {
 		default:
 			return (a, x, y) => {
 				swap(a, x, y);
-				for (let i = n; i-- > 0; ) swap(xs[i], x, y);
+				for (let i = n; i-- > 0; ) swap(arrays[i], x, y);
 			};
 	}
 };

@@ -19,9 +19,9 @@ export const defIterator = (
 	prec: Precision | Fn<number, DateTime>,
 	tick: Fn<DateTime, void>
 ): EpochIteratorConstructor => {
-	return function* (...xs: any[]): EpochIterator {
-		let [from, to] = (<number[]>(xs.length > 1 ? xs : xs[0])).map((x) =>
-			new DateTime(x).getTime()
+	return function* (...args: any[]): EpochIterator {
+		let [from, to] = (<number[]>(args.length > 1 ? args : args[0])).map(
+			(x) => new DateTime(x).getTime()
 		);
 		let state = isString(prec) ? new DateTime(from, prec) : prec(from);
 		let epoch = from;

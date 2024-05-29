@@ -29,12 +29,12 @@ import { ensureIterable } from "./ensure.js";
  * // [ 1, 2, 3, undefined, 4, 5 ]
  * ```
  *
- * @param xs -
+ * @param sources -
  */
 export async function* concat<T>(
-	...xs: Nullable<MaybeAsyncIterable<T>>[]
+	...sources: Nullable<MaybeAsyncIterable<T>>[]
 ): AsyncIterableIterator<T> {
-	for (let x of xs) {
-		x != null && (yield* ensureIterable(x));
+	for (let src of sources) {
+		src != null && (yield* ensureIterable(src));
 	}
 }

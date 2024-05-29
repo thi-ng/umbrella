@@ -5,7 +5,7 @@ export const text = (
 	p: Vec2Like,
 	body: string,
 	attribs?: any,
-	...xs: any[]
+	...children: any[]
 ): any[] => [
 	"text",
 	fattribs({
@@ -14,5 +14,5 @@ export const text = (
 		y: ff(p[1]),
 	}),
 	body,
-	...xs,
+	...children,
 ];

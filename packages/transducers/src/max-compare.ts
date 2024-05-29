@@ -4,11 +4,11 @@ import type { Reducer } from "./api.js";
 import { $$reduce, reducer } from "./reduce.js";
 
 export function maxCompare<T>(init: Fn0<T>, cmp?: Comparator<T>): Reducer<T, T>;
-export function maxCompare<T>(init: Fn0<T>, xs: Iterable<T>): T;
+export function maxCompare<T>(init: Fn0<T>, src: Iterable<T>): T;
 export function maxCompare<T>(
 	init: Fn0<T>,
 	cmp: Comparator<T>,
-	xs: Iterable<T>
+	src: Iterable<T>
 ): T;
 export function maxCompare(...args: any[]): any {
 	const res = $$reduce(maxCompare, args);

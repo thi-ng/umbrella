@@ -98,13 +98,13 @@ export type Fn10<A, B, C, D, E, F, G, H, I, J, K> = (
 	j: J
 ) => K;
 
-export type FnO<A, B> = (a: A, ...xs: any[]) => B;
+export type FnO<A, B> = (a: A, ...args: any[]) => B;
 
-export type FnO2<A, B, C> = (a: A, b: B, ...xs: any[]) => C;
+export type FnO2<A, B, C> = (a: A, b: B, ...args: any[]) => C;
 
-export type FnO3<A, B, C, D> = (a: A, b: B, c: C, ...xs: any[]) => D;
+export type FnO3<A, B, C, D> = (a: A, b: B, c: C, ...args: any[]) => D;
 
-export type FnO4<A, B, C, D, E> = (a: A, b: B, c: C, d: D, ...xs: any[]) => E;
+export type FnO4<A, B, C, D, E> = (a: A, b: B, c: C, d: D, ...args: any[]) => E;
 
 export type FnO5<A, B, C, D, E, F> = (
 	a: A,
@@ -112,7 +112,7 @@ export type FnO5<A, B, C, D, E, F> = (
 	c: C,
 	d: D,
 	e: E,
-	...xs: any[]
+	...args: any[]
 ) => F;
 
 export type FnO6<A, B, C, D, E, F, G> = (
@@ -122,7 +122,7 @@ export type FnO6<A, B, C, D, E, F, G> = (
 	d: D,
 	e: E,
 	f: F,
-	...xs: any[]
+	...args: any[]
 ) => G;
 
 export type FnO7<A, B, C, D, E, F, G, H> = (
@@ -133,7 +133,7 @@ export type FnO7<A, B, C, D, E, F, G, H> = (
 	e: E,
 	f: F,
 	g: G,
-	...xs: any[]
+	...args: any[]
 ) => H;
 
 export type FnO8<A, B, C, D, E, F, G, H, I> = (
@@ -145,7 +145,7 @@ export type FnO8<A, B, C, D, E, F, G, H, I> = (
 	f: F,
 	g: G,
 	h: H,
-	...xs: any[]
+	...args: any[]
 ) => I;
 
 export type FnO9<A, B, C, D, E, F, G, H, I, J> = (
@@ -158,7 +158,7 @@ export type FnO9<A, B, C, D, E, F, G, H, I, J> = (
 	g: G,
 	h: H,
 	i: I,
-	...xs: any[]
+	...args: any[]
 ) => J;
 
 export type FnO10<A, B, C, D, E, F, G, H, I, J, K> = (
@@ -172,18 +172,18 @@ export type FnO10<A, B, C, D, E, F, G, H, I, J, K> = (
 	h: H,
 	i: I,
 	j: J,
-	...xs: any[]
+	...args: any[]
 ) => K;
 
 /**
  * An untyped vararg arg function to type T.
  */
-export type FnAny<T> = (...xs: any[]) => T;
+export type FnAny<T> = (...args: any[]) => T;
 
 /**
  * A typed vararg arg function from A to B.
  */
-export type FnAnyT<A, B> = (...xs: A[]) => B;
+export type FnAnyT<A, B> = (...args: A[]) => B;
 
 /**
  * 1-arg function with arg of type A and return type B (defaults

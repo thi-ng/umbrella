@@ -17,11 +17,11 @@ export function sym<T extends Type>(type: T, id: string, opts: SymOpts): Sym<T>;
 export function sym<T extends Type>(type: T, opts: SymOpts, init: Term<T>): Sym<T>;
 // prettier-ignore
 export function sym<T extends Type>(type: T, id: string, opts: SymOpts, init: Term<T>): Sym<T>;
-export function sym<T extends Type>(type: any, ...xs: any[]): Sym<any> {
+export function sym<T extends Type>(type: any, ...args: any[]): Sym<any> {
 	let id: string;
 	let opts: SymOpts;
 	let init: Term<T>;
-	switch (xs.length) {
+	switch (args.length) {
 		case 0:
 			if (!isString(type)) {
 				init = type;
@@ -29,23 +29,23 @@ export function sym<T extends Type>(type: any, ...xs: any[]): Sym<any> {
 			}
 			break;
 		case 1:
-			if (isString(xs[0])) {
-				id = xs[0];
-			} else if (xs[0].tag) {
-				init = xs[0];
+			if (isString(args[0])) {
+				id = args[0];
+			} else if (args[0].tag) {
+				init = args[0];
 			} else {
-				opts = xs[0];
+				opts = args[0];
 			}
 			break;
 		case 2:
-			if (isString(xs[0])) {
-				[id, opts] = xs;
+			if (isString(args[0])) {
+				[id, opts] = args;
 			} else {
-				[opts, init] = xs;
+				[opts, init] = args;
 			}
 			break;
 		case 3:
-			[id, opts, init] = xs;
+			[id, opts, init] = args;
 			break;
 		default:
 			illegalArgs();

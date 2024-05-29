@@ -169,14 +169,14 @@ export const pipe = <T, DEST extends IWriteable<T> & IClosable>(
  * resolves once one of the inputs becomes available or was closed, selects that
  * channel to read from it and returns tuple of `[value, channel]`.
  *
- * @param input
- * @param xs
+ * @param input - first input
+ * @param rest - other inputs
  */
 export const select = async <T>(
 	input: Channel<T>,
-	...xs: Channel<T>[]
+	...rest: Channel<T>[]
 ): Promise<[Maybe<T>, Channel<T>]> => {
-	const inputs = [input, ...xs];
+	const inputs = [input, ...rest];
 	const sel = await Promise.race(inputs.map((x) => x.race()));
 	for (let chan of inputs) {
 		if (chan !== sel) chan.races.shift();

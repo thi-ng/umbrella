@@ -5,10 +5,10 @@ import { copy, copyObj } from "./copy.js";
 export const mergeMapWith = <K, V>(
 	f: Fn2<V, V, V>,
 	dest: Map<K, V>,
-	...xs: Nullable<Map<K, V>>[]
+	...maps: Nullable<Map<K, V>>[]
 ) => {
 	const res: Map<K, V> = copy(dest, Map);
-	for (let x of xs) {
+	for (let x of maps) {
 		if (x != null) {
 			for (let [k, v] of x) {
 				res.set(k, res.has(k) ? f(res.get(k)!, v) : v);
@@ -29,13 +29,13 @@ export const mergeMapWith = <K, V>(
  *
  * @param f -
  * @param dest -
- * @param xs -
+ * @param objects -
  */
 export const mergeObjWith = <T>(
 	f: Fn2<T, T, T>,
 	dest: IObjectOf<T>,
-	...xs: Nullable<IObjectOf<T>>[]
-) => meldObjWith(f, copyObj(dest), ...xs);
+	...objects: Nullable<IObjectOf<T>>[]
+) => meldObjWith(f, copyObj(dest), ...objects);
 
 /**
  * Mutable version of {@link mergeObjWith}. Returns modified `dest`
@@ -47,14 +47,14 @@ export const mergeObjWith = <T>(
  *
  * @param f -
  * @param dest -
- * @param xs -
+ * @param objects -
  */
 export const meldObjWith = <T>(
 	f: Fn2<T, T, T>,
 	dest: IObjectOf<T>,
-	...xs: Nullable<IObjectOf<T>>[]
+	...objects: Nullable<IObjectOf<T>>[]
 ) => {
-	for (let x of xs) {
+	for (let x of objects) {
 		if (x != null) {
 			for (let k in x) {
 				if (isIllegalKey(k)) continue;

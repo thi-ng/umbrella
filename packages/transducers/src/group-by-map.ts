@@ -5,10 +5,10 @@ import { $$reduce } from "./reduce.js";
 export function groupByMap<SRC, KEY, GROUP>(
 	opts?: Partial<GroupByOpts<SRC, KEY, GROUP>>
 ): Reducer<SRC, Map<KEY, GROUP>>;
-export function groupByMap<SRC, GROUP>(xs: Iterable<SRC>): Map<SRC, GROUP>;
+export function groupByMap<SRC, GROUP>(src: Iterable<SRC>): Map<SRC, GROUP>;
 export function groupByMap<SRC, KEY, GROUP>(
 	opts: Partial<GroupByOpts<SRC, KEY, GROUP>>,
-	xs: Iterable<SRC>
+	src: Iterable<SRC>
 ): Map<KEY, GROUP>;
 export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
 	const res = $$reduce(groupByMap, args);

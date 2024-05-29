@@ -19,9 +19,7 @@ export const __mathop = (
 	args: any[]
 ) => {
 	const res = $$reduce(rfn, args);
-	if (res !== undefined) {
-		return res;
-	}
+	if (res !== undefined) return res;
 	const init = args[0] || initDefault;
 	return reducer(() => init, fn);
 };

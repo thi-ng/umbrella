@@ -10,13 +10,11 @@ import { $$reduce, reducer } from "./reduce.js";
  * @param start -
  */
 export function fill<T>(start?: number): Reducer<T, T[]>;
-export function fill<T>(xs: Iterable<T>): T[];
-export function fill<T>(start: number, xs: Iterable<T>): T[];
+export function fill<T>(src: Iterable<T>): T[];
+export function fill<T>(start: number, src: Iterable<T>): T[];
 export function fill<T>(...args: any[]): any {
 	const res = $$reduce(fill, args);
-	if (res !== undefined) {
-		return res;
-	}
+	if (res !== undefined) return res;
 	let start = args[0] || 0;
 	return reducer<T, T[]>(
 		() => [],
@@ -30,8 +28,8 @@ export function fill<T>(...args: any[]): any {
  * @param start -
  */
 export function fillN(start?: number): Reducer<number, NumericArray>;
-export function fillN(xs: Iterable<number>): NumericArray;
-export function fillN(start: number, xs: Iterable<number>): NumericArray;
+export function fillN(src: Iterable<number>): NumericArray;
+export function fillN(start: number, src: Iterable<number>): NumericArray;
 export function fillN(...args: any[]): any {
 	return fill(...args);
 }

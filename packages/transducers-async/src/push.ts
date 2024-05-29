@@ -3,12 +3,12 @@ import type { AsyncReducer } from "./api.js";
 import { reducer } from "./reduce.js";
 
 export function push<T>(): AsyncReducer<T, T[]>;
-export function push<T>(xs: MaybeAsyncIterable<T>): Promise<T[]>;
-export function push<T>(xs?: MaybeAsyncIterable<T>) {
-	return xs
+export function push<T>(src: MaybeAsyncIterable<T>): Promise<T[]>;
+export function push<T>(src?: MaybeAsyncIterable<T>) {
+	return src
 		? (async () => {
 				let res: T[] = [];
-				for await (let x of xs) res.push(x);
+				for await (let x of src) res.push(x);
 				return res;
 		  })()
 		: reducer<T, T[]>(

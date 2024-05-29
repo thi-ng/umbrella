@@ -7,7 +7,7 @@ export interface IToHiccup {
 	 *
 	 * @param ctx - user context object
 	 * @param attribs - user attribs
-	 * @param xs - additional args
+	 * @param args - additional args
 	 */
-	toHiccup(ctx?: any, attribs?: any, ...xs: any[]): any;
+	toHiccup(ctx?: any, attribs?: any, ...args: any[]): any;
 }

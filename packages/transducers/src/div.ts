@@ -6,10 +6,10 @@ import { reduce, reducer } from "./reduce.js";
  * value.
  */
 export function div(init: number): Reducer<number, number>;
-export function div(init: number, xs: Iterable<number>): number;
-export function div(init: number, xs?: Iterable<number>): any {
-	return xs
-		? reduce(div(init), xs)
+export function div(init: number, src: Iterable<number>): number;
+export function div(init: number, src?: Iterable<number>): any {
+	return src
+		? reduce(div(init), src)
 		: reducer(
 				() => init,
 				(acc, x: number) => acc / x

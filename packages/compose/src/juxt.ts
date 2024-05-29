@@ -56,7 +56,7 @@ export function juxt<T, A, B, C, D, E, F, G, H>(
 	f: Fn<T, F>,
 	g: Fn<T, G>,
 	h: Fn<T, H>,
-	...xs: Fn<T, any>[]
+	...args: Fn<T, any>[]
 ): Fn<T, any[]>;
 export function juxt<T>(...fns: Fn<any, any>[]) {
 	const [a, b, c, d, e, f, g, h] = fns;
@@ -151,7 +151,7 @@ export function juxtAsync<T, A, B, C, D, E, F, G, H>(
 	f: FnA<T, F>,
 	g: FnA<T, G>,
 	h: FnA<T, H>,
-	...xs: FnA<T, any>[]
+	...args: FnA<T, any>[]
 ): FnA<T, any[]>;
 export function juxtAsync<T>(...fns: Fn<any, Promise<any>>[]) {
 	return async (x: T) => await Promise.all(fns.map((f) => f(x)));

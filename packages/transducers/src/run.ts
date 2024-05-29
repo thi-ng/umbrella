@@ -6,26 +6,26 @@ import { transduce } from "./transduce.js";
 const NO_OP_REDUCER: Reducer<any, void> = [NO_OP, NO_OP, NO_OP];
 
 /**
- * Transforms `xs` with given transducer and optional side effect
- * without any reduction step. If `fx` is given it will be called with
- * every value produced by the transducer. If `fx` is *not* given, the
- * transducer is assumed to include at least one {@link sideEffect} step
- * itself. Returns nothing.
+ * Transforms `src` with given transducer `tx` and optional side-effect `fx`
+ * without any reduction step. If `fx` is given it will be called with every
+ * value produced by the transducer. If `fx` is *not* given, the transducer is
+ * assumed to include at least one {@link sideEffect} step itself. Returns
+ * nothing.
  *
  * @param tx -
- * @param xs -
+ * @param src -
  */
-export function run<A>(tx: TxLike<A, any>, xs: Iterable<A>): void;
-export function run<A>(tx: TxLike<A, any>, xs: IReducible<A, any>): void;
+export function run<A>(tx: TxLike<A, any>, src: Iterable<A>): void;
+export function run<A>(tx: TxLike<A, any>, src: IReducible<A, any>): void;
 export function run<A, B>(
 	tx: TxLike<A, B>,
 	fx: Fn<B, void>,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): void;
 export function run<A, B>(
 	tx: TxLike<A, B>,
 	fx: Fn<B, void>,
-	xs: IReducible<A, any>
+	src: IReducible<A, any>
 ): void;
 export function run<A, B>(tx: TxLike<A, B>, ...args: any[]) {
 	if (args.length === 1) {

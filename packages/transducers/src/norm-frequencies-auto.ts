@@ -22,13 +22,13 @@ import { $$reduce } from "./reduce.js";
  * ```
  */
 export function normFrequenciesAuto<A>(): Reducer<A, Map<A, number>>;
-export function normFrequenciesAuto<A>(xs: Iterable<A>): Map<A, number>;
+export function normFrequenciesAuto<A>(src: Iterable<A>): Map<A, number>;
 export function normFrequenciesAuto<A, B>(
 	key: Fn<A, B>
 ): Reducer<A, Map<B, number>>;
 export function normFrequenciesAuto<A, B>(
 	key: Fn<A, B>,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): Map<B, number>;
 export function normFrequenciesAuto<A, B>(...args: any[]): any {
 	const res = $$reduce(normFrequenciesAuto, args);

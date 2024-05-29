@@ -14,13 +14,13 @@ const parseArgs = (args: any[]) =>
 		? [args[1], args[2]]
 		: illegalArity(args.length);
 
-export function reduce<A, B>(rfn: Reducer<A, B>, xs: Iterable<A>): B;
-export function reduce<A, B>(rfn: Reducer<A, B>, acc: B, xs: Iterable<A>): B;
-export function reduce<A, B>(rfn: Reducer<A, B>, xs: IReducible<A, B>): B;
+export function reduce<A, B>(rfn: Reducer<A, B>, src: Iterable<A>): B;
+export function reduce<A, B>(rfn: Reducer<A, B>, acc: B, src: Iterable<A>): B;
+export function reduce<A, B>(rfn: Reducer<A, B>, src: IReducible<A, B>): B;
 export function reduce<A, B>(
 	rfn: Reducer<A, B>,
 	acc: A,
-	xs: IReducible<A, B>
+	src: IReducible<A, B>
 ): B;
 export function reduce<A, B>(...args: any[]): B {
 	const rfn = args[0];
@@ -29,31 +29,31 @@ export function reduce<A, B>(...args: any[]): B {
 	const reduce = rfn[2];
 	args = parseArgs(args);
 	const acc: B = args[0] == null ? init() : args[0];
-	const xs: Iterable<A> | IReducible<A, B> = args[1];
+	const src: Iterable<A> | IReducible<A, B> = args[1];
 	return unreduced(
 		complete(
-			implementsFunction(xs, "$reduce")
-				? xs.$reduce(reduce, acc)
-				: isArrayLike(xs)
-				? reduceArray(reduce, acc, xs)
-				: reduceIterable(reduce, acc, <Iterable<A>>xs)
+			implementsFunction(src, "$reduce")
+				? src.$reduce(reduce, acc)
+				: isArrayLike(src)
+				? reduceArray(reduce, acc, src)
+				: reduceIterable(reduce, acc, <Iterable<A>>src)
 		)
 	);
 }
 
-export function reduceRight<A, B>(rfn: Reducer<A, B>, xs: ArrayLike<A>): B;
+export function reduceRight<A, B>(rfn: Reducer<A, B>, src: ArrayLike<A>): B;
 export function reduceRight<A, B>(
 	rfn: Reducer<A, B>,
 	acc: B,
-	xs: ArrayLike<A>
+	src: ArrayLike<A>
 ): B;
 export function reduceRight<A, B>(...args: any[]): B {
 	const [init, complete, reduce]: Reducer<A, B> = args[0];
 	args = parseArgs(args);
 	let acc: B = args[0] == null ? init() : args[0];
-	const xs: Array<A> = args[1];
-	for (let i = xs.length; i-- > 0; ) {
-		acc = <any>reduce(acc, xs[i]);
+	const src: Array<A> = args[1];
+	for (let i = src.length; i-- > 0; ) {
+		acc = <any>reduce(acc, src[i]);
 		if (isReduced(acc)) {
 			acc = (<any>acc).deref();
 			break;
@@ -65,10 +65,10 @@ export function reduceRight<A, B>(...args: any[]): B {
 const reduceArray = <A, B>(
 	rfn: ReductionFn<A, B>,
 	acc: B,
-	xs: ArrayLike<A>
+	src: ArrayLike<A>
 ) => {
-	for (let i = 0, n = xs.length; i < n; i++) {
-		acc = <any>rfn(acc, xs[i]);
+	for (let i = 0, n = src.length; i < n; i++) {
+		acc = <any>rfn(acc, src[i]);
 		if (isReduced(acc)) {
 			acc = (<any>acc).deref();
 			break;
@@ -80,9 +80,9 @@ const reduceArray = <A, B>(
 const reduceIterable = <A, B>(
 	rfn: ReductionFn<A, B>,
 	acc: B,
-	xs: Iterable<A>
+	src: Iterable<A>
 ) => {
-	for (let x of xs) {
+	for (let x of src) {
 		acc = <any>rfn(acc, x);
 		if (isReduced(acc)) {
 			acc = (<any>acc).deref();

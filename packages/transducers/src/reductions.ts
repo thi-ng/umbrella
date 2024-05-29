@@ -3,11 +3,11 @@ import { reduce } from "./reduce.js";
 import { isReduced, reduced } from "./reduced.js";
 
 export function reductions<A, B>(rfn: Reducer<A, B>): Reducer<A, B[]>;
-export function reductions<A, B>(rfn: Reducer<A, B>, xs: Iterable<A>): B[];
-export function reductions<A, B>(rfn: Reducer<A, B>, xs?: Iterable<A>): any {
+export function reductions<A, B>(rfn: Reducer<A, B>, src: Iterable<A>): B[];
+export function reductions<A, B>(rfn: Reducer<A, B>, src?: Iterable<A>): any {
 	const [init, complete, _reduce] = rfn;
-	return xs
-		? reduce(reductions(rfn), xs)
+	return src
+		? reduce(reductions(rfn), src)
 		: <Reducer<A, B[]>>[
 				() => [init()],
 				(acc) => (

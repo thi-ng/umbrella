@@ -4,14 +4,18 @@
  * present). Returns merged result object.
  *
  * @param base - base attribs
- * @param xs - overrides
+ * @param attribs - overrides
  *
  * @internal
  */
-export const mergeAttribs = (base: any, xs: any) => {
-	if (!xs) return base;
-	const res = { ...base, ...xs };
-	base.class && xs.class && (res.class = base.class + " " + xs.class);
-	base.style && xs.style && (res.style = { ...base.style, ...xs.style });
+export const mergeAttribs = (base: any, attribs: any) => {
+	if (!attribs) return base;
+	const res = { ...base, ...attribs };
+	base.class &&
+		attribs.class &&
+		(res.class = base.class + " " + attribs.class);
+	base.style &&
+		attribs.style &&
+		(res.style = { ...base.style, ...attribs.style });
 	return res;
 };

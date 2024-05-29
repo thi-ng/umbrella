@@ -147,28 +147,32 @@ export const defColor = <M extends ColorMode, K extends string>(
 	defConversions(spec.mode, spec.from);
 	defConversions("rgb", <any>{ [spec.mode]: spec.toRgb });
 
-	const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]): any => {
-		const res = new $Color(...xs);
+	const fromColor = (
+		src: ReadonlyColor,
+		mode: ColorMode,
+		args: any[]
+	): any => {
+		const res = new $Color(...args);
 		return mode !== spec.mode
 			? convert(res, src, spec.mode, mode)
 			: res.set(src);
 	};
 
-	const factory = (src?: MaybeColor, ...xs: any[]): $DefColor<any, any> =>
+	const factory = (src?: MaybeColor, ...args: any[]): $DefColor<any, any> =>
 		src == null
 			? <any>new $Color()
 			: isString(src)
-			? factory(parseCss(src), ...xs)
+			? factory(parseCss(src), ...args)
 			: isArrayLike(src)
 			? isString((<IColor>src).mode)
-				? fromColor(src, (<IColor>src).mode, xs)
-				: <any>new $Color(<NumericArray>src, ...xs)
+				? fromColor(src, (<IColor>src).mode, args)
+				: <any>new $Color(<NumericArray>src, ...args)
 			: implementsFunction(src, "deref")
-			? fromColor(src.deref(), (<IColor>src).mode, xs)
+			? fromColor(src.deref(), (<IColor>src).mode, args)
 			: isNumber(src)
-			? xs.length && xs.every(isNumber)
-				? <any>new $Color(...__ensureArgs([src, ...xs]))
-				: fromColor(intArgb32Rgb([], src), "rgb", xs)
+			? args.length && args.every(isNumber)
+				? <any>new $Color(...__ensureArgs([src, ...args]))
+				: fromColor(intArgb32Rgb([], src), "rgb", args)
 			: illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
 
 	factory.class = <any>$Color;

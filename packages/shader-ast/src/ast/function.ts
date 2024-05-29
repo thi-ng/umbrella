@@ -82,7 +82,7 @@ export function defn<T extends Type, A extends Type, B extends Type, C extends T
 // prettier-ignore
 export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type, H extends Type>(type: T, name: Nullable<string>, args: Arg8<A,B,C,D,E,F,G,H>, body: FnBody8<A,B,C,D,E,F,G,H>): TaggedFn8<A,B,C,D,E,F,G,H,T>;
 // prettier-ignore
-export function defn(type: Type, id: Nullable<string>, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => ScopeBody): Func<any> {
+export function defn(type: Type, id: Nullable<string>, _args: Arg<any>[], _body: (...args: Sym<any>[]) => ScopeBody): Func<any> {
     id = id || gensym();
     const args = _args.map(defArg);
     const body = <Term<any>[]>(

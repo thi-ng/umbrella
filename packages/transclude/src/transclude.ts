@@ -21,11 +21,11 @@ export const transclude = <T>(
 		...ctx,
 	};
 	$ctx.pre.reduce((acc, fn) => ($ctx.src = fn($ctx, [acc], path)), $ctx.src);
-	$ctx.src = $ctx.src.replace($ctx.match, (...xs) => {
-		const [orig, id] = xs;
+	$ctx.src = $ctx.src.replace($ctx.match, (...args) => {
+		const [orig, id] = args;
 		const tpl = $ctx.templates[id];
 		if (tpl !== undefined) {
-			return typeof tpl === "function" ? tpl($ctx, xs, path) : tpl;
+			return typeof tpl === "function" ? tpl($ctx, args, path) : tpl;
 		} else {
 			$ctx.logger.warn(`skipping unknown tpl ID: "${id}"`);
 			return orig;

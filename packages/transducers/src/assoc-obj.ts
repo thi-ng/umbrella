@@ -4,13 +4,13 @@ import { reduce, reducer } from "./reduce.js";
 
 /**
  * Reducer accepting key-value pairs / tuples and updating / adding them
- * to an object.
+ * to an object. Also see {@link assocMap}.
  */
 export function assocObj<T>(): Reducer<Pair<PropertyKey, T>, IObjectOf<T>>;
-export function assocObj<T>(xs: Iterable<Pair<PropertyKey, T>>): IObjectOf<T>;
-export function assocObj<T>(xs?: Iterable<Pair<PropertyKey, T>>): any {
-	return xs
-		? reduce(assocObj(), xs)
+export function assocObj<T>(src: Iterable<Pair<PropertyKey, T>>): IObjectOf<T>;
+export function assocObj<T>(src?: Iterable<Pair<PropertyKey, T>>): any {
+	return src
+		? reduce(assocObj(), src)
 		: reducer<Pair<PropertyKey, T>, IObjectOf<T>>(
 				() => ({}),
 				(acc, [k, v]) => ((acc[<any>k] = v), acc)

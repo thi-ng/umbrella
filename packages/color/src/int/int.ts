@@ -202,21 +202,21 @@ const defInt = <T extends Int32<T>>(
 	ctor: Int32Constructor<T>,
 	fromSrgb: Fn<ReadonlyColor, number>
 ): ColorFactory<T> => {
-	const factory = (src?: MaybeColor, ...xs: any[]): any =>
+	const factory = (src?: MaybeColor, ...args: any[]): any =>
 		src == null
 			? new ctor()
 			: isNumber(src)
-			? xs.length && xs.every(isNumber)
-				? new ctor([srgbIntArgb32([src, ...xs])])
-				: new ctor([src], ...xs)
+			? args.length && args.every(isNumber)
+				? new ctor([srgbIntArgb32([src, ...args])])
+				: new ctor([src], ...args)
 			: isString(src)
 			? factory(parseCss(src))
 			: isArrayLike(src)
 			? isString((<IColor>src).mode)
-				? new ctor([fromSrgb(srgb(src))], ...xs)
-				: new ctor(<NumericArray>src, ...xs)
+				? new ctor([fromSrgb(srgb(src))], ...args)
+				: new ctor(<NumericArray>src, ...args)
 			: implementsFunction(src, "deref")
-			? new ctor([fromSrgb(srgb(src))], ...xs)
+			? new ctor([fromSrgb(srgb(src))], ...args)
 			: illegalArgs(`can't create a ARGB32 color from: ${src}`);
 
 	factory.class = <any>ctor;

@@ -11,16 +11,16 @@ import { isReduced, unreduced } from "./reduced.js";
  * transformed results.
  *
  * @param xform -
- * @param xs -
+ * @param src -
  */
 export function* iterator<A, B>(
 	xform: TxLike<A, B>,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): IterableIterator<B> {
 	const rfn = <Reducer<A, B[]>>ensureTransducer(xform)(push());
 	const complete = rfn[1];
 	const reduce = rfn[2];
-	for (let x of xs) {
+	for (let x of src) {
 		const y = reduce([], x);
 		if (isReduced(y)) {
 			yield* unreduced(complete(y.deref()));
@@ -41,16 +41,16 @@ export function* iterator<A, B>(
  * 2) Do not require a `completion` reduction step
  *
  * @param xform -
- * @param xs -
+ * @param src -
  */
 export function* iterator1<A, B>(
 	xform: TxLike<A, B>,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): IterableIterator<B> {
 	const reduce = (<Reducer<A, B>>(
 		ensureTransducer(xform)([NO_OP, NO_OP, (_, x) => x])
 	))[2];
-	for (let x of xs) {
+	for (let x of src) {
 		let y = reduce(<any>SEMAPHORE, x);
 		if (isReduced(y)) {
 			y = unreduced(y.deref());

@@ -217,17 +217,17 @@ const compileThemePart = (
 /** @internal */
 const themePartFromTuple = (part: ColorThemePartTuple) => {
 	let weight: number;
-	const [range, ...xs] = part;
-	if (isNumber(peek(xs))) {
-		weight = <number>peek(xs);
-		xs.pop();
+	const [range, ...args] = part;
+	if (isNumber(peek(args))) {
+		weight = <number>peek(args);
+		args.pop();
 	} else {
 		weight = 1;
 	}
 	return <ColorThemePart>(
-		(xs.length === 1
-			? { range, base: xs[0], weight }
-			: xs.length === 0
+		(args.length === 1
+			? { range, base: args[0], weight }
+			: args.length === 0
 			? COLOR_RANGES[<ColorRangePreset>range]
 				? { range, weight }
 				: { base: range, weight }

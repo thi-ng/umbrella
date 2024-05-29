@@ -17,7 +17,7 @@ export function transduce<A, B, C>(
 export function transduce<A, B, C>(
 	xform: AsyncTxLike<A, B>,
 	reducer: AsyncReducer<B, C>,
-	...xs: [any, any?]
+	...args: [any, any?]
 ) {
-	return reduce<A, C>(ensureAsyncTransducer(xform)(reducer), ...xs);
+	return reduce<A, C>(ensureAsyncTransducer(xform)(reducer), ...args);
 }

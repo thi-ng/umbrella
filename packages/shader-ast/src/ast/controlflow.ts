@@ -43,13 +43,13 @@ export function forLoop<T extends Type>(test: Fn<Sym<T>, BoolTerm>, body: FnBody
 export function forLoop<T extends Type>(init: Maybe<Sym<T>>, test: Fn<Sym<T>, BoolTerm>, body: FnBody1<T>): ForLoop;
 // prettier-ignore
 export function forLoop<T extends Type>(init: Maybe<Sym<T>>, test: Fn<Sym<T>, BoolTerm>, iter: Fn<Sym<T>, Term<any>>, body: FnBody1<T>): ForLoop;
-export function forLoop(...xs: any[]): ForLoop {
+export function forLoop(...args: any[]): ForLoop {
 	const [init, test, iter, body] =
-		xs.length === 2
-			? [undefined, xs[0], undefined, xs[1]]
-			: xs.length === 3
-			? [xs[0], xs[1], undefined, xs[2]]
-			: xs;
+		args.length === 2
+			? [undefined, args[0], undefined, args[1]]
+			: args.length === 3
+			? [args[0], args[1], undefined, args[2]]
+			: args;
 	return {
 		tag: "for",
 		type: "void",

@@ -12,24 +12,24 @@ export function transduce<A, B, C>(
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
 	rfn: Reducer<B, C>,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): C;
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
 	rfn: Reducer<B, C>,
-	xs: IReducible<A, C>
+	src: IReducible<A, C>
 ): C;
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
 	rfn: Reducer<B, C>,
 	acc: C,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): C;
 export function transduce<A, B, C>(
 	tx: TxLike<A, B>,
 	rfn: Reducer<C, B>,
 	acc: C,
-	xs: IReducible<A, C>
+	src: IReducible<A, C>
 ): C;
 export function transduce(...args: any[]): any {
 	return $transduce(transduce, reduce, args);
@@ -42,32 +42,32 @@ export function transduceRight<A, B, C>(
 export function transduceRight<A, B, C>(
 	tx: TxLike<A, B>,
 	rfn: Reducer<B, C>,
-	xs: ArrayLike<A>
+	src: ArrayLike<A>
 ): C;
 export function transduceRight<A, B, C>(
 	tx: TxLike<A, B>,
 	rfn: Reducer<B, C>,
 	acc: C,
-	xs: ArrayLike<A>
+	src: ArrayLike<A>
 ): C;
 export function transduceRight(...args: any[]): any {
 	return $transduce(transduceRight, reduceRight, args);
 }
 
 const $transduce = (tfn: FnAny<any>, rfn: FnAny<any>, args: any[]) => {
-	let acc, xs;
+	let acc, src;
 	switch (args.length) {
 		case 4:
-			xs = args[3];
+			src = args[3];
 			acc = args[2];
 			break;
 		case 3:
-			xs = args[2];
+			src = args[2];
 			break;
 		case 2:
 			return map((x: ArrayLike<any>) => tfn(args[0], args[1], x));
 		default:
 			illegalArity(args.length);
 	}
-	return rfn(ensureTransducer(args[0])(args[1]), acc, xs);
+	return rfn(ensureTransducer(args[0])(args[1]), acc, src);
 };

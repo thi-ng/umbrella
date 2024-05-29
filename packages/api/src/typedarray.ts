@@ -315,10 +315,10 @@ export function typedArray<T extends BigType>(
 ): BigTypedArrayTypeMap[T];
 export function typedArray<T extends Type | GLType | BigType>(
 	type: T,
-	...xs: any[]
+	...args: any[]
 ) {
 	const ctor = BIGINT_ARRAY_CTORS[<BigType>type];
-	return new (ctor || TYPEDARRAY_CTORS[asNativeType(<any>type)])(...xs);
+	return new (ctor || TYPEDARRAY_CTORS[asNativeType(<any>type)])(...args);
 }
 
 /**

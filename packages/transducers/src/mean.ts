@@ -6,11 +6,11 @@ import { reduce } from "./reduce.js";
  * were processed.
  */
 export function mean(): Reducer<number, number>;
-export function mean(xs: Iterable<number>): number;
-export function mean(xs?: Iterable<number>): any {
+export function mean(src: Iterable<number>): number;
+export function mean(src?: Iterable<number>): any {
 	let n = 1;
-	return xs
-		? reduce(mean(), xs)
+	return src
+		? reduce(mean(), src)
 		: <Reducer<number, number>>[
 				() => (n = 0),
 				(acc) => (n > 1 ? acc / n : acc),

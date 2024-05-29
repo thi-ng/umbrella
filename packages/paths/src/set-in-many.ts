@@ -70,7 +70,7 @@ export function setInManyUnsafe<T>(
 	v3: any,
 	p4: Path,
 	v4: any,
-	...xs: any[]
+	...pairs: any[]
 ): T;
 export function setInManyUnsafe<T>(state: T, ...pairs: any[]) {
 	const n = pairs.length;

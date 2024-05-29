@@ -52,8 +52,8 @@ export const defOp = <T extends Function>(
 	dispatch = 0
 ): T =>
 	<any>(
-		((...xs: any[]) =>
-			xs[dispatch].length < 3 ? single(...xs) : multi(...xs))
+		((...args: any[]) =>
+			args[dispatch].length < 3 ? single(...args) : multi(...args))
 	);
 
 export const add = defOp<Op2>(

@@ -11,24 +11,24 @@ export const coerceFloat = (x: string) =>
 		? parseFloat(x)
 		: illegalArgs(`not a numeric value: ${x}`);
 
-export const coerceFloats = (xs: string[]) => xs.map(coerceFloat);
+export const coerceFloats = (values: string[]) => values.map(coerceFloat);
 
 export const coerceHexInt = (x: string) =>
 	isHex(x) ? parseInt(x, 16) : illegalArgs(`not a hex value: ${x}`);
 
-export const coerceHexInts = (xs: string[]) => xs.map(coerceHexInt);
+export const coerceHexInts = (values: string[]) => values.map(coerceHexInt);
 
 export const coerceInt = (x: string) =>
 	isNumericInt(x) ? parseInt(x) : illegalArgs(`not an integer: ${x}`);
 
-export const coerceInts = (xs: string[]) => xs.map(coerceInt);
+export const coerceInts = (values: string[]) => values.map(coerceInt);
 
 export const coerceJson = <T>(x: string): T => JSON.parse(x);
 
 export const coerceOneOf =
-	<K extends string>(xs: readonly K[]) =>
+	<K extends string>(values: readonly K[]) =>
 	(x: string) =>
-		xs.includes(<K>x) ? <K>x : illegalArgs(`invalid option: ${x}`);
+		values.includes(<K>x) ? <K>x : illegalArgs(`invalid option: ${x}`);
 
 export function coerceKV(
 	delim?: string,

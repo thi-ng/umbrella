@@ -47,10 +47,10 @@ import { isReduced } from "./reduced.js";
  * @param re -
  */
 export function rechunk(re?: RegExp): Transducer<string, string>;
-export function rechunk(xs: Iterable<string>): IterableIterator<string>;
+export function rechunk(src: Iterable<string>): IterableIterator<string>;
 export function rechunk(
 	re: RegExp,
-	xs: Iterable<string>
+	src: Iterable<string>
 ): IterableIterator<string>;
 export function rechunk(...args: any[]) {
 	const iter = __iter(rechunk, args, iterator);

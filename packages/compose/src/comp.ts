@@ -95,24 +95,25 @@ export function comp(...fns: any[]): any {
 		case 1:
 			return a;
 		case 2:
-			return (...xs: any[]) => a(b(...xs));
+			return (...args: any[]) => a(b(...args));
 		case 3:
-			return (...xs: any[]) => a(b(c(...xs)));
+			return (...args: any[]) => a(b(c(...args)));
 		case 4:
-			return (...xs: any[]) => a(b(c(d(...xs))));
+			return (...args: any[]) => a(b(c(d(...args))));
 		case 5:
-			return (...xs: any[]) => a(b(c(d(e(...xs)))));
+			return (...args: any[]) => a(b(c(d(e(...args)))));
 		case 6:
-			return (...xs: any[]) => a(b(c(d(e(f(...xs))))));
+			return (...args: any[]) => a(b(c(d(e(f(...args))))));
 		case 7:
-			return (...xs: any[]) => a(b(c(d(e(f(g(...xs)))))));
+			return (...args: any[]) => a(b(c(d(e(f(g(...args)))))));
 		case 8:
-			return (...xs: any[]) => a(b(c(d(e(f(g(h(...xs))))))));
+			return (...args: any[]) => a(b(c(d(e(f(g(h(...args))))))));
 		case 9:
-			return (...xs: any[]) => a(b(c(d(e(f(g(h(i(...xs)))))))));
+			return (...args: any[]) => a(b(c(d(e(f(g(h(i(...args)))))))));
 		case 10:
 		default:
-			const fn = (...xs: any[]) => a(b(c(d(e(f(g(h(i(j(...xs))))))))));
+			const fn = (...args: any[]) =>
+				a(b(c(d(e(f(g(h(i(j(...args))))))))));
 			return fns.length === 10 ? fn : (<any>comp)(fn, ...fns.slice(10));
 	}
 }
@@ -201,7 +202,7 @@ export function compLeft<A, B, C, D, E, F, G, H, I, J>(
 	h: Fn<G, H>,
 	i: Fn<H, I>,
 	j: Fn<I, J>,
-	...xs: Fn<any, any>[]
+	...args: Fn<any, any>[]
 ): FnAny<any>;
 export function compLeft(...fns: any[]): any {
 	return comp.apply(null, <any>fns.reverse());
@@ -299,9 +300,9 @@ export function compAsync<A, B, C, D, E, F, G, H, I, J>(
 	...fns: FnAnyA<any>[]
 ): FnAnyA<A>;
 export function compAsync(...fns: any[]): any {
-	return async (...xs: any[]) => {
+	return async (...args: any[]) => {
 		let n = fns.length - 1;
-		let res = fns[n](...xs);
+		let res = fns[n](...args);
 		while (n-- > 0) {
 			res = await fns[n](res);
 		}

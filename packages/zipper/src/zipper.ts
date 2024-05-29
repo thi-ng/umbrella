@@ -222,8 +222,8 @@ export class Location<T> {
 		return new Location(x, this._ops, changedPath(this._path));
 	}
 
-	update(fn: FnO<T, T>, ...xs: any[]) {
-		return this.replace(fn(this._node, ...xs));
+	update(fn: FnO<T, T>, ...args: any[]) {
+		return this.replace(fn(this._node, ...args));
 	}
 
 	insertLeft(x: T) {

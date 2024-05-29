@@ -29,7 +29,7 @@ export function serial<A, B, C, D, E>(
 	b: IProc<B, C>,
 	c: IProc<C, D>,
 	d: IProc<D, E>,
-	...xs: IProc<any, any>[]
+	...procs: IProc<any, any>[]
 ): IProc<A, any>;
 export function serial(...procs: IProc<any, any>[]): IProc<any, any> {
 	const [a, b, c, d] = procs;

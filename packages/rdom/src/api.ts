@@ -33,12 +33,12 @@ export interface IComponent<T = any> {
 	 *
 	 * @param parent -
 	 * @param idx -
-	 * @param xs -
+	 * @param args -
 	 */
 	mount(
 		parent: ParentNode,
 		idx?: NumOrElement,
-		...xs: any[]
+		...args: any[]
 	): Promise<Element>;
 	/**
 	 * Async component lifecycle method to remove the component from the

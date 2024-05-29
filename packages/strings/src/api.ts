@@ -6,7 +6,7 @@ import type { Fn, Fn2, FnU } from "@thi.ng/api";
  */
 export const BOM = "\ufeff";
 
-export type Stringer<T> = (x: T, ...xs: any[]) => string;
+export type Stringer<T> = (x: T, ...args: any[]) => string;
 
 export type FnS = FnU<string>;
 

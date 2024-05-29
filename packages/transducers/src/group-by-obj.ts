@@ -6,10 +6,10 @@ import { $$reduce } from "./reduce.js";
 export function groupByObj<SRC, GROUP>(
 	opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>
 ): Reducer<SRC, IObjectOf<GROUP>>;
-export function groupByObj<SRC>(xs: Iterable<SRC>): IObjectOf<SRC[]>;
+export function groupByObj<SRC>(src: Iterable<SRC>): IObjectOf<SRC[]>;
 export function groupByObj<SRC, GROUP>(
 	opts: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>,
-	xs: Iterable<SRC>
+	src: Iterable<SRC>
 ): IObjectOf<GROUP>;
 export function groupByObj<SRC, GROUP>(...args: any[]): any {
 	const res = $$reduce(groupByObj, args);

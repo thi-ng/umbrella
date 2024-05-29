@@ -104,27 +104,27 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 		});
 	}
 
-	run(fn: FnO2<GroupInfo<SPEC, K>, number, void>, ...xs: any[]) {
+	run(fn: FnO2<GroupInfo<SPEC, K>, number, void>, ...args: any[]) {
 		this.ensureFullyOwning();
-		fn(this.info, this.n, ...xs);
+		fn(this.info, this.n, ...args);
 	}
 
 	forEachRaw(
 		fn: FnO3<GroupInfo<SPEC, K>, number, number, void>,
-		...xs: any[]
+		...args: any[]
 	) {
 		this.ensureFullyOwning();
 		const info = this.info;
 		const ref = this.components[0].dense;
 		for (let i = 0, n = this.n; i < n; i++) {
-			fn(info, ref[i], i, ...xs);
+			fn(info, ref[i], i, ...args);
 		}
 	}
 
-	forEach(fn: FnO2<GroupTuple<SPEC, K>, number, void>, ...xs: any[]) {
+	forEach(fn: FnO2<GroupTuple<SPEC, K>, number, void>, ...args: any[]) {
 		let i = 0;
 		for (let id of this.ids) {
-			fn(this.getEntityUnsafe(id), i++, ...xs);
+			fn(this.getEntityUnsafe(id), i++, ...args);
 		}
 	}
 

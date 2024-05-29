@@ -9,12 +9,12 @@ import { push } from "./push.js";
 
 export async function* iterator1<A, B>(
 	xform: AsyncTxLike<A, B>,
-	xs: MaybeAsyncIterable<A>
+	src: MaybeAsyncIterable<A>
 ): AsyncIterableIterator<B> {
 	const [_, complete, reduce] = <AsyncReducer<A, B>>(
 		ensureAsyncTransducer(xform)(<any>[NO_OP, NO_OP, (_: any, x: A) => x])
 	);
-	for await (let x of xs) {
+	for await (let x of src) {
 		let y = await reduce(<any>SEMAPHORE, x);
 		if (isReduced<B>(y)) {
 			const res = await complete(y.deref());
@@ -31,12 +31,12 @@ export async function* iterator1<A, B>(
 
 export async function* iterator<A, B>(
 	xform: AsyncTxLike<A, B>,
-	xs: MaybeAsyncIterable<A>
+	src: MaybeAsyncIterable<A>
 ): AsyncIterableIterator<B> {
 	const [_, complete, reduce]: AsyncReducer<A, B[]> = ensureAsyncTransducer(
 		xform
 	)(push());
-	for await (let x of xs) {
+	for await (let x of src) {
 		const y = await reduce([], x);
 		if (isReduced(y)) {
 			yield* await complete(y.deref());

@@ -27,7 +27,7 @@ import { $$reduce } from "./reduce.js";
 export function normFrequencies<A>(norm: number): Reducer<A, Map<A, number>>;
 export function normFrequencies<A>(
 	norm: number,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): Map<A, number>;
 export function normFrequencies<A, B>(
 	norm: number,
@@ -36,7 +36,7 @@ export function normFrequencies<A, B>(
 export function normFrequencies<A, B>(
 	norm: number,
 	key: Fn<A, B>,
-	xs: Iterable<A>
+	src: Iterable<A>
 ): Map<B, number>;
 export function normFrequencies(...args: any[]): any {
 	return (

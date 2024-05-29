@@ -9,9 +9,9 @@ import { $$reduce, reducer } from "./reduce.js";
  * @param step -
  */
 export function count(offset?: number, step?: number): Reducer<any, number>;
-export function count(xs: Iterable<any>): number;
-export function count(offset: number, xs: Iterable<any>): number;
-export function count(offset: number, step: number, xs: Iterable<any>): number;
+export function count(src: Iterable<any>): number;
+export function count(offset: number, src: Iterable<any>): number;
+export function count(offset: number, step: number, src: Iterable<any>): number;
 export function count(...args: any[]): any {
 	const res = $$reduce(count, args);
 	if (res !== undefined) {

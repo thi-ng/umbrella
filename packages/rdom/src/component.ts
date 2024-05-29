@@ -25,7 +25,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	abstract mount(
 		parent: ParentNode,
 		index?: NumOrElement,
-		...xs: any[]
+		...args: any[]
 	): Promise<Element>;
 
 	async unmount() {

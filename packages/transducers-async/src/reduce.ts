@@ -13,10 +13,10 @@ export async function reduce<A, B>(
 ): Promise<B>;
 export async function reduce<A, B>(
 	[init, complete, $reduce]: AsyncReducer<A, B>,
-	...xs: any[]
+	...args: any[]
 ) {
-	let acc: B = xs.length < 2 ? await init() : xs.shift();
-	for await (let x of <MaybeAsyncIterable<A>>xs[0]) {
+	let acc: B = args.length < 2 ? await init() : args.shift();
+	for await (let x of <MaybeAsyncIterable<A>>args[0]) {
 		const y = await $reduce(acc, x);
 		if (isReduced(y)) {
 			acc = y.deref();

@@ -10,13 +10,13 @@ import type { Reducer } from "./api.js";
  * @param cmp -
  */
 export function pushSort<T>(cmp?: Comparator<T>): Reducer<T, T[]>;
-export function pushSort<T>(cmp: Maybe<Comparator<T>>, xs: Iterable<T>): T[];
+export function pushSort<T>(cmp: Maybe<Comparator<T>>, src: Iterable<T>): T[];
 export function pushSort<T>(
 	cmp: Comparator<T> = compare,
-	xs?: Iterable<T>
+	src?: Iterable<T>
 ): any {
-	return xs
-		? [...xs].sort(cmp)
+	return src
+		? [...src].sort(cmp)
 		: <Reducer<T, T[]>>[
 				() => [],
 				(acc) => acc.sort(cmp),

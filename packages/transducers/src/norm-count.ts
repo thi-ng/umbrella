@@ -24,7 +24,7 @@ import { $$reduce } from "./reduce.js";
  * @param norm -
  */
 export function normCount(norm: number): Reducer<any, number>;
-export function normCount(norm: number, xs: Iterable<any>): number;
+export function normCount(norm: number, src: Iterable<any>): number;
 export function normCount(...args: any[]): any {
 	const res = $$reduce(normCount, args);
 	if (res !== undefined) return res;
