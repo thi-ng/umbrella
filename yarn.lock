@@ -707,6 +707,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-classify-point@workspace:examples/geom-classify-point":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-classify-point@workspace:examples/geom-classify-point"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: "npm:^5.4.5"
+    vite: "npm:^5.2.11"
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-complex-poly@workspace:examples/geom-complex-poly":
   version: 0.0.0-use.local
   resolution: "@example/geom-complex-poly@workspace:examples/geom-complex-poly"
@@ -2425,7 +2438,6 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-stats": "workspace:^"
-    esbuild: "npm:^0.21.4"
     typescript: "npm:^5.4.5"
     vite: "npm:^5.2.11"
   languageName: unknown
