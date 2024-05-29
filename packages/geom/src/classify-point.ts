@@ -5,12 +5,14 @@ import type { IShape } from "@thi.ng/geom-api";
 import {
 	classifyPointInCircle,
 	classifyPointInTriangle2,
+	classifyPointSegment2,
 } from "@thi.ng/geom-isec/point";
 import { sign } from "@thi.ng/math/abs";
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { dot } from "@thi.ng/vectors/dot";
 import type { Circle } from "./api/circle.js";
+import type { Line } from "./api/line.js";
 import type { Plane } from "./api/plane.js";
 import type { Triangle } from "./api/triangle.js";
 import { __dispatch } from "./internal/dispatch.js";
@@ -24,6 +26,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * Currently only implemented for:
  *
  * - {@link Circle}
+ * - {@link Line} (-1 = right/clockwise, +1 = left/counterclockwise)
  * - {@link Plane} (-1 = below, +1 = above)
  * - {@link Sphere}
  * - {@link Triangle}
@@ -49,7 +52,11 @@ export const classifyPoint: MultiFn2O<IShape, ReadonlyVec, number, number> =
 			circle: ($: Circle, p, eps = EPS) =>
 				classifyPointInCircle(p, $.pos, $.r, eps),
 
-			plane: ($: Plane, p, eps) => sign(dot($.normal, p) - $.w, eps),
+			line: ({ points: [a, b] }: Line, p, eps = EPS) =>
+				classifyPointSegment2(p, a, b, eps),
+
+			plane: ($: Plane, p, eps = EPS) =>
+				sign(dot($.normal, p) - $.w, eps),
 
 			tri: ({ points }: Triangle, p: ReadonlyVec, eps = EPS) =>
 				classifyPointInTriangle2(
