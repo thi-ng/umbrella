@@ -1,13 +1,17 @@
 import { isArray } from "./is-array.js";
 import { isString } from "./is-string.js";
 
+/**
+ * Set of "illegal" keys: `__proto__`, `prototype`, `constructor`
+ */
 const ILLEGAL_KEYS = new Set(["__proto__", "prototype", "constructor"]);
 
 /**
  * Returns true, if given `x` is an illegal object key as per
  * {@link ILLEGAL_KEYS}.
  *
- * @see {@link isProtoPath} for more details
+ * @remarks
+ * Also see {@link isProtoPath} for more details
  *
  * @param x -
  */
@@ -24,6 +28,8 @@ export const isIllegalKey = (x: any) => ILLEGAL_KEYS.has(x);
  *
  * Original discussion here, implementation updated to be more encompassing:
  * https://github.com/thi-ng/umbrella/pull/273
+ *
+ * Also see {@link isIllegalKey}.
  *
  * @param path -
  */
