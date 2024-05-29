@@ -5,7 +5,7 @@ import {
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { NONE } from "./api.js";
-import { classifyPointPolyPair } from "./point.js";
+import { checkPolyPair } from "./point.js";
 import { intersectRayLine } from "./ray-line.js";
 
 const startPoints = (pts: ReadonlyVec[], closed: boolean) =>
@@ -37,15 +37,7 @@ export const intersectRayPolyline = (
 	let [a, b] = startPoints(pts, closed);
 	for (let i = 0; i <= n; a = b, b = pts[++i]) {
 		if (closed) {
-			inside = classifyPointPolyPair(
-				x,
-				y,
-				a[0],
-				a[1],
-				b[0],
-				b[1],
-				inside
-			);
+			inside = checkPolyPair(x, y, a[0], a[1], b[0], b[1], inside);
 		}
 		const d = intersectRayLine(rpos, dir, a, b, minD, maxD).alpha;
 		if (d !== undefined) {
@@ -88,15 +80,7 @@ export const intersectRayPolylineAll = (
 	let inside = 0;
 	for (let i = 0; i <= n; a = b, b = pts[++i]) {
 		if (closed) {
-			inside = classifyPointPolyPair(
-				x,
-				y,
-				a[0],
-				a[1],
-				b[0],
-				b[1],
-				inside
-			);
+			inside = checkPolyPair(x, y, a[0], a[1], b[0], b[1], inside);
 		}
 		const d = intersectRayLine(rpos, dir, a, b, minD, maxD).alpha;
 		if (d !== undefined) {
