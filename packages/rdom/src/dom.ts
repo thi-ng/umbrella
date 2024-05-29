@@ -361,9 +361,10 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 	isArray(val) && (val = val.join(ATTRIB_JOIN_DELIMS[id] || " "));
 	switch (id) {
 		case "class":
-			el.className = isString(val)
-				? val
-				: mergeClasses(el.className, val);
+			el.setAttribute(
+				"class",
+				isString(val) ? val : mergeClasses(el.className, val)
+			);
 			break;
 		case "style":
 			$style(el, val);
