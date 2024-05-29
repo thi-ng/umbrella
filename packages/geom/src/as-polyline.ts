@@ -106,7 +106,7 @@ export const asPolyline = <AsPolylineFn>(
 			],
 
 			path: ($: Path, opts) => {
-				const tmp = new Path();
+				const tmp = new Path([], [], $.attribs);
 				return [$.segments, ...$.subPaths].map((segments) => {
 					tmp.segments = segments;
 					const pts = vertices(tmp, opts);

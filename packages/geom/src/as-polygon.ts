@@ -88,7 +88,7 @@ export const asPolygon = <AsPolygonFn>(
 				),
 
 			path: ($: Path, opts) => {
-				const tmp = new Path();
+				const tmp = new Path([], [], $.attribs);
 				return [$.segments, ...$.subPaths].map((segments) => {
 					tmp.segments = segments;
 					return new Polygon(vertices(tmp, opts), __attribs($));
