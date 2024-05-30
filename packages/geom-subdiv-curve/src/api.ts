@@ -3,7 +3,12 @@ import type { SubdivKernel } from "@thi.ng/geom-api";
 import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
+import { addW3 } from "@thi.ng/vectors/addw";
+import { mag2 } from "@thi.ng/vectors/mag";
 import { mixN } from "@thi.ng/vectors/mixn";
+import { normalize2 } from "@thi.ng/vectors/normalize";
+import { perpendicularCW } from "@thi.ng/vectors/perpendicular";
+import { sub2 } from "@thi.ng/vectors/sub";
 import { kernel3 } from "./kernels.js";
 
 const MIDP = ([a, b]: ReadonlyVec[]) => [a, addmN([], a, b, 0.5)];
@@ -95,3 +100,35 @@ export const SUBDIV_CUBIC_CLOSED: SubdivKernel = {
 	pre: wrap3,
 	size: 3,
 };
+
+/**
+ * Higher-order subdiv kernel. Takes an array of displacement offsets and
+ * `closed` flag to indicate if to be used for open/closed curves. Returnsa
+ * [SubdivKernel](https://docs.thi.ng/umbrella/geom-api/interfaces/SubdivKernel.html)
+ * which results in `displace.length` points for each original edge and
+ * displaces each point by `displace[i] * edgeLength` units along the normal of
+ * the edge (positive values for outward displacement).
+ *
+ * @remarks
+ * The first displace value is used for the start point of the edge (aka end
+ * point of prev. edge), to keep it in place, use zero for the first value.
+ *
+ * @param displace
+ * @param closed
+ */
+export const SUBDIV_DISPLACE = (
+	displace: number[],
+	closed = false
+): SubdivKernel => ({
+	size: 2,
+	pre: closed ? wrap2 : undefined,
+	fn: ([a, b]) => {
+		const num = displace.length;
+		const delta = sub2([], b, a);
+		const len = mag2(delta);
+		const normal = perpendicularCW(null, normalize2([], delta));
+		return displace.map((x, i) =>
+			addW3([], a, delta, normal, 1, i / num, x * len)
+		);
+	},
+});
