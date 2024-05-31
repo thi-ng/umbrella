@@ -78,17 +78,24 @@ export const cubicHobby2 = (
 		const a = alpha[i];
 		const b = i < n - 1 ? -gamma[i + 1] - alpha[i + 1] : -alpha[n];
 		const c = chords[i];
+		const cosA = Math.cos(a);
+		const cosB = Math.cos(b);
+		const scale = TWO_THIRD * d[i];
 		res.push([
 			set2([], points[i]),
 			add2(
 				null,
-				normalize2(null, rotate([], c, a), __rho(a, b, d[i])),
+				normalize2(null, rotate([], c, a), __rho(cosA, cosB, scale)),
 				points[i]
 			),
 			add2(
 				null,
 				// reuse chord vector for result to avoid extraneous allocation
-				normalize2(null, rotate(null, c, -b), -__rho(b, a, d[i])),
+				normalize2(
+					null,
+					rotate(null, c, -b),
+					-__rho(cosB, cosA, scale)
+				),
 				points[i + 1]
 			),
 			set2([], points[i + 1]),
@@ -98,5 +105,5 @@ export const cubicHobby2 = (
 };
 
 /** @internal */
-const __rho: FnN3 = (a, b, scale) =>
-	(scale * TWO_THIRD) / (1 + TWO_THIRD * Math.cos(b) + THIRD * Math.cos(a));
+const __rho: FnN3 = (cosA, cosB, scale) =>
+	scale / (1 + THIRD * cosA + TWO_THIRD * cosB);
