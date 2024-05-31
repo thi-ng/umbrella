@@ -19,7 +19,7 @@ export class AABB implements AABBLike, IHiccupShape3<AABB> {
 		size: number | Vec = 1,
 		public attribs?: Attribs
 	) {
-		this.size = __asVec(size, 3);
+		this.size = max3(null, __asVec(size, 3), ZERO3);
 	}
 
 	copy(): AABB {

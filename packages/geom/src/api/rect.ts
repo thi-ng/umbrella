@@ -19,7 +19,7 @@ export class Rect implements AABBLike, IHiccupShape2<Rect> {
 		size: number | Vec = 1,
 		public attribs?: Attribs
 	) {
-		this.size = __asVec(size);
+		this.size = max2(null, __asVec(size), ZERO2);
 	}
 
 	copy(): Rect {
