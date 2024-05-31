@@ -11,17 +11,22 @@ import { perpendicularCW } from "@thi.ng/vectors/perpendicular";
 import { sub2 } from "@thi.ng/vectors/sub";
 import { kernel3 } from "./kernels.js";
 
+/** @internal */
 const MIDP = ([a, b]: ReadonlyVec[]) => [a, addmN([], a, b, 0.5)];
+/** @internal */
 const THIRDS = ([a, b]: ReadonlyVec[]) => [
 	a,
 	mixN([], a, b, 1 / 3),
 	mixN([], a, b, 2 / 3),
 ];
 
-const wrap2 = (pts: ReadonlyVec[]) => wrapSides(pts, 0, 1);
-const wrap3 = (pts: ReadonlyVec[]) => wrapSides(pts, 1, 1);
+/** @internal */
+const __wrap2 = (pts: ReadonlyVec[]) => wrapSides(pts, 0, 1);
+/** @internal */
+const __wrap3 = (pts: ReadonlyVec[]) => wrapSides(pts, 1, 1);
 
-const subdivWith =
+/** @internal */
+const __subdivOpen =
 	(fn: FnU<ReadonlyVec[]>): SubdivKernel["fn"] =>
 	(pts, i, n) =>
 		i < n - 2 ? fn(pts) : [...fn(pts), pts[1]];
@@ -31,7 +36,7 @@ const subdivWith =
  * open curves.
  */
 export const SUBDIV_MID_OPEN: SubdivKernel = {
-	fn: subdivWith(MIDP),
+	fn: __subdivOpen(MIDP),
 	size: 2,
 };
 
@@ -41,7 +46,7 @@ export const SUBDIV_MID_OPEN: SubdivKernel = {
  */
 export const SUBDIV_MID_CLOSED: SubdivKernel = {
 	fn: MIDP,
-	pre: wrap2,
+	pre: __wrap2,
 	size: 2,
 };
 
@@ -50,7 +55,7 @@ export const SUBDIV_MID_CLOSED: SubdivKernel = {
  * open curves.
  */
 export const SUBDIV_THIRDS_OPEN: SubdivKernel = {
-	fn: subdivWith(THIRDS),
+	fn: __subdivOpen(THIRDS),
 	size: 2,
 };
 
@@ -60,7 +65,7 @@ export const SUBDIV_THIRDS_OPEN: SubdivKernel = {
  */
 export const SUBDIV_THIRDS_CLOSED: SubdivKernel = {
 	fn: THIRDS,
-	pre: wrap2,
+	pre: __wrap2,
 	size: 2,
 };
 
@@ -86,18 +91,16 @@ export const SUBDIV_CHAIKIN_OPEN: SubdivKernel = {
  */
 export const SUBDIV_CHAIKIN_CLOSED: SubdivKernel = {
 	fn: CHAIKIN_MAIN,
-	pre: wrap3,
+	pre: __wrap3,
 	size: 3,
 };
-
-const CUBIC_MAIN = kernel3([1 / 8, 3 / 4, 1 / 8], [0, 1 / 2, 1 / 2]);
 
 /**
  * Cubic bezier subdivision scheme for closed curves.
  */
 export const SUBDIV_CUBIC_CLOSED: SubdivKernel = {
-	fn: CUBIC_MAIN,
-	pre: wrap3,
+	fn: kernel3([1 / 8, 3 / 4, 1 / 8], [0, 1 / 2, 1 / 2]),
+	pre: __wrap3,
 	size: 3,
 };
 
@@ -121,14 +124,16 @@ export const SUBDIV_DISPLACE = (
 	closed = false
 ): SubdivKernel => ({
 	size: 2,
-	pre: closed ? wrap2 : undefined,
-	fn: ([a, b]) => {
+	pre: closed ? __wrap2 : undefined,
+	fn: ([a, b], i, nump) => {
 		const num = displace.length;
 		const delta = sub2([], b, a);
 		const len = mag2(delta);
 		const normal = perpendicularCW(null, normalize2([], delta));
-		return displace.map((x, i) =>
+		const res = displace.map((x, i) =>
 			addW3([], a, delta, normal, 1, i / num, x * len)
 		);
+		if (!closed && i === nump - 2) res.push(b);
+		return res;
 	},
 });
