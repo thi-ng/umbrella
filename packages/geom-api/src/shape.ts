@@ -1,7 +1,21 @@
-import type { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
-import type { Vec } from "@thi.ng/vectors";
+import type { ICopy, IToHiccup } from "@thi.ng/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { SamplingOpts } from "./sample";
 
-export type Attribs = IObjectOf<any>;
+export interface Attribs {
+	__samples?: SamplingOpts | number;
+	rotate?: number;
+	rotateX?: number;
+	rotateY?: number;
+	rotateZ?: number;
+	scale?: number | ReadonlyVec;
+	translate?: ReadonlyVec;
+	transform?: ReadonlyVec;
+	fill?: any;
+	stroke?: any;
+	weight?: number;
+	[id: string]: any;
+}
 
 export interface IAttributed<T> {
 	attribs?: Attribs;
