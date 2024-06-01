@@ -5,6 +5,7 @@ export * from "./center-of-weight.js";
 export * from "./centroid.js";
 export * from "./circumcenter.js";
 export * from "./convexity.js";
+export * from "./convolve.js";
 export * from "./equilateral.js";
 export * from "./perimeter.js";
 export * from "./tangent.js";
