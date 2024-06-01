@@ -274,6 +274,9 @@
 		"./convex-hull": {
 			"default": "./convex-hull.js"
 		},
+		"./convolve": {
+			"default": "./convolve.js"
+		},
 		"./cubic": {
 			"default": "./cubic.js"
 		},

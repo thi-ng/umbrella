@@ -83,6 +83,7 @@ export * from "./classify-point.js";
 export * from "./clip-convex.js";
 export * from "./closest-point.js";
 export * from "./convex-hull.js";
+export * from "./convolve.js";
 export * from "./edges.js";
 export * from "./fit-into-bounds.js";
 export * from "./flip.js";
