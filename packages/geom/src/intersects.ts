@@ -28,6 +28,7 @@ import type { Group } from "./api/group.js";
 import type { Line } from "./api/line.js";
 import type { Plane } from "./api/plane.js";
 import { Ray } from "./api/ray.js";
+import type { Ray3 } from "./api/ray3.js";
 import type { Rect } from "./api/rect.js";
 import type { Sphere } from "./api/sphere.js";
 import { __dispatch2 } from "./internal/dispatch.js";
@@ -46,6 +47,7 @@ export interface IntersectOpts {
  * @remarks
  * Currently supported pairs:
  *
+ * - {@link AABB} / {@link AABB}
  * - {@link Circle} / {@link Circle}
  * - {@link Line} / {@link Group}
  * - {@link Line} / {@link Line}
@@ -55,12 +57,12 @@ export interface IntersectOpts {
  * - {@link Ray} / {@link AABB}
  * - {@link Ray} / {@link Circle}
  * - {@link Ray} / {@link Line}
- * - {@link Ray} / {@link Plane}
+ * - {@link Ray3} / {@link Plane}
  * - {@link Ray} / {@link Polygon}
  * - {@link Ray} / {@link Polyline}
  * - {@link Ray} / {@link Quad}
  * - {@link Ray} / {@link Rect}
- * - {@link Ray} / {@link Sphere}
+ * - {@link Ray3} / {@link Sphere}
  * - {@link Ray} / {@link Triangle}
  * - {@link Rect} / {@link Rect}
  * - {@link Sphere} / {@link Sphere}
@@ -86,7 +88,7 @@ export const intersects: MultiFn2O<
 	__dispatch2,
 	{
 		"ray-line": "ray-polyline",
-		"ray-sphere": "ray-circle",
+		"ray3-sphere": "ray3-circle",
 		"ray-quad": "ray-poly",
 		"ray-tri": "ray-poly",
 		"sphere-sphere": "circle-circle",
@@ -176,7 +178,7 @@ export const intersects: MultiFn2O<
 				: NONE;
 		},
 
-		"ray-plane": (ray: Ray, plane: Plane) =>
+		"ray3-plane": (ray: Ray3, plane: Plane) =>
 			intersectRayPlane(ray.pos, ray.dir, plane.normal, plane.w),
 
 		"ray-poly": (ray: Ray, poly: PCLike, opts?: IntersectOpts) =>

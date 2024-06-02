@@ -106,7 +106,7 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 					__ensureNoArc(geo);
 					return rotate(geo, theta);
 				},
-				(p) => mulV22([], p, mat)
+				(p) => mulV22([], mat, p)
 			);
 			return new Path(
 				$rotateSegments($.segments),
@@ -125,13 +125,12 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 
 		quadratic: tx(Quadratic),
 
-		ray: ($: Ray, theta) => {
-			return new Ray(
+		ray: ($: Ray, theta) =>
+			new Ray(
 				$rotate([], $.pos, theta),
 				$rotate([], $.dir, theta),
 				__copyAttribs($.attribs)
-			);
-		},
+			),
 
 		text: ($: Text, theta) =>
 			new Text(

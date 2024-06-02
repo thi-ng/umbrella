@@ -1,8 +1,10 @@
+import type { FnU } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, IShape3, PathSegment2 } from "@thi.ng/geom-api";
+import type { Attribs, IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
-import { mulV } from "@thi.ng/matrices/mulv";
+import { mulV, mulV23, mulV44 } from "@thi.ng/matrices/mulv";
+import type { Vec } from "@thi.ng/vectors";
 import type { Arc } from "./api/arc.js";
 import { BPatch } from "./api/bpatch.js";
 import type { Circle } from "./api/circle.js";
@@ -14,6 +16,7 @@ import type { Group } from "./api/group.js";
 import { Line } from "./api/line.js";
 import { Line3 } from "./api/line3.js";
 import { Path } from "./api/path.js";
+import { Path3 } from "./api/path3.js";
 import { Points } from "./api/points.js";
 import { Points3 } from "./api/points3.js";
 import { Polygon } from "./api/polygon.js";
@@ -68,23 +71,33 @@ export type TransformFn = {
  * Currently implemented for:
  *
  * - {@link Arc}
+ * - {@link BPatch}
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
+ * - {@link Cubic3}
  * - {@link Ellipse}
  * - {@link Group}
+ * - {@link Group3}
  * - {@link Line}
+ * - {@link Line3}
  * - {@link Path}
+ * - {@link Path3}
  * - {@link Points}
  * - {@link Points3}
  * - {@link Polygon}
+ * - {@link Polygon3}
  * - {@link Polyline}
+ * - {@link Polyline3}
  * - {@link Quad}
+ * - {@link Quad3}
  * - {@link Quadratic}
+ * - {@link Quadratic3}
  * - {@link Ray}
  * - {@link Rect}
  * - {@link Text}
  * - {@link Triangle}
+ * - {@link Triangle3}
  *
  * @param shape
  * @param mat
@@ -119,20 +132,11 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 
 		line3: tx(Line3),
 
-		path: ($: Path, mat) => {
-			const $transformSegments = __segmentTransformer<PathSegment2>(
-				(geo) => {
-					__ensureNoArc(geo);
-					return transform(geo, mat);
-				},
-				(p) => mulV([], mat, p)
-			);
-			return new Path(
-				$transformSegments($.segments),
-				$.subPaths.map($transformSegments),
-				__copyAttribs($.attribs)
-			);
-		},
+		path: ($: Path, mat) =>
+			__transformPath($, Path, mat, (p) => mulV23([], mat, p)),
+
+		path3: ($: Path3, mat) =>
+			__transformPath($, Path3, mat, (p) => mulV44([], mat, p)),
 
 		points: tx(Points),
 
@@ -165,3 +169,20 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 		tri3: tx(Triangle3),
 	}
 );
+
+const __transformPath = <T extends Path | Path3>(
+	$: T,
+	ctor: { new (s: T["segments"], sub: T["subPaths"], attribs?: Attribs): T },
+	mat: ReadonlyMat,
+	fn: FnU<Vec>
+) => {
+	const $transformSegments = __segmentTransformer<any>((geo) => {
+		__ensureNoArc(geo);
+		return <any>transform(geo, mat);
+	}, fn);
+	return new ctor(
+		$transformSegments($.segments),
+		$.subPaths.map($transformSegments),
+		__copyAttribs($.attribs)
+	);
+};

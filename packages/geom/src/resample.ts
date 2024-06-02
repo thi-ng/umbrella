@@ -5,13 +5,13 @@ import { resample as _resample } from "@thi.ng/geom-resample/resample";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Line } from "./api/line.js";
 import { Polygon } from "./api/polygon.js";
+import { Polygon3 } from "./api/polygon3.js";
 import { Polyline } from "./api/polyline.js";
 import { Polyline3 } from "./api/polyline3.js";
 import { asPolygon } from "./as-polygon.js";
 import { asPolyline } from "./as-polyline.js";
 import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
-import { Polygon3 } from "./api/polygon3.js";
 
 /**
  * Function overrides for {@link resample}.
@@ -27,24 +27,34 @@ export type ResampleFn = {
 } & MultiFn2<IShape, number | Partial<SamplingOpts>, IShape>;
 
 /**
- * Resamples given 2D shape with given options and returns result as polygon (if
+ * Resamples given shape with given options and returns result as polygon (if
  * closed) or polyline (if open).
  *
  * @remarks
  * If the shape has a `__samples` attribute, it will be removed in the result to
- * avoid recursive application.
+ * ensure idempotent behavior.
  *
  * Currently implemented for:
  *
+ * - {@link Arc}
  * - {@link Circle}
  * - {@link ComplexPolygon}
+ * - {@link Cubic}
+ * - {@link Cubic3}
  * - {@link Ellipse}
  * - {@link Line}
+ * - {@link Line3}
  * - {@link Polygon}
+ * - {@link Polygon3}
  * - {@link Polyline}
+ * - {@link Polyline3}
  * - {@link Quad}
+ * - {@link Quad3}
+ * - {@link Quadratic}
+ * - {@link Quadratic3}
  * - {@link Rect}
  * - {@link Triangle}
+ * - {@link Triangle3}
  *
  * @param shape
  * @param opts

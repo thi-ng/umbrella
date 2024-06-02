@@ -27,17 +27,26 @@ export type FlipFn = {
  * - {@link Arc}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
+ * - {@link Cubic3}
  * - {@link Group} (only eligible shapes)
+ * - {@link Group3} (only eligible shapes)
  * - {@link Line}
- * - {@link Path}
+ * - {@link Line3}
+ * - {@link Path} (currently a no-op)
  * - {@link Points}
  * - {@link Points3}
  * - {@link Polygon}
+ * - {@link Polygon3}
  * - {@link Polyline}
+ * - {@link Polyline3}
  * - {@link Quad}
+ * - {@link Quad3}
  * - {@link Quadratic}
+ * - {@link Quadratic3}
  * - {@link Ray}
+ * - {@link Ray3}
  * - {@link Triangle}
+ * - {@link Triangle3}
  *
  * @param shape
  */

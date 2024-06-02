@@ -1,10 +1,11 @@
 import type { MultiFn3 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape3, IShape3, PathSegment3 } from "@thi.ng/geom-api";
+import { mulV33 } from "@thi.ng/matrices/mulv";
+import { rotationAroundAxis33 } from "@thi.ng/matrices/rotation-around-axis";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { X3, Y3, Z3 } from "@thi.ng/vectors/api";
 import { rotateAroundAxis3 } from "@thi.ng/vectors/rotate-around-axis";
-import { Cubic } from "./api/cubic.js";
 import { Cubic3 } from "./api/cubic3.js";
 import type { Group3 } from "./api/group3.js";
 import { Line3 } from "./api/line3.js";
@@ -29,12 +30,12 @@ export type RotateAroundAxisFn = {
 } & MultiFn3<IShape3, ReadonlyVec, number, IShape3>;
 
 /**
- * Rotates given 2D shape by `theta` (in radians).
+ * Rotates given 3D shape by `theta` (in radians) around `axis`.
  *
  * @remarks
  * Currently implemented for:
  *
- * - {@link Cubic}
+ * - {@link Cubic3}
  * - {@link Group3}
  * - {@link Polygon3}
  * - {@link Polyline3}
@@ -53,11 +54,7 @@ export type RotateAroundAxisFn = {
 export const rotateAroundAxis = <RotateAroundAxisFn>(
 	defmulti<any, ReadonlyVec, number, IShape3>(
 		__dispatch,
-		{
-			arc: "$aspath",
-			ellipse: "$aspath",
-			rect: "$aspoly",
-		},
+		{},
 		{
 			$aspath: ($: IShape3, axis, theta) =>
 				rotateAroundAxis(asPath($), axis, theta),
@@ -65,7 +62,7 @@ export const rotateAroundAxis = <RotateAroundAxisFn>(
 			$aspoly: ($: IShape3, axis, theta) =>
 				rotateAroundAxis(asPolygon($)[0], axis, theta),
 
-			cubic: tx(Cubic3),
+			cubic3: tx(Cubic3),
 
 			group3: ($: Group3, axis, theta) =>
 				$.copyTransformed(
@@ -75,12 +72,13 @@ export const rotateAroundAxis = <RotateAroundAxisFn>(
 			line3: tx(Line3),
 
 			path3: ($: Path3, axis, theta) => {
+				const mat = rotationAroundAxis33([], axis, theta);
 				const $rotateSegments = __segmentTransformer<PathSegment3>(
 					(geo) => {
 						__ensureNoArc(geo);
 						return rotateAroundAxis(geo, axis, theta);
 					},
-					(p) => rotateAroundAxis3([], p, axis, theta)
+					(p) => mulV33([], mat, p)
 				);
 				return new Path3(
 					$rotateSegments($.segments),

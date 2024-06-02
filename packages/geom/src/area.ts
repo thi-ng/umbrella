@@ -28,35 +28,31 @@ import { __dispatch } from "./internal/dispatch.js";
  * In general, for polygons and triangles, the sign of the result can be used as
  * indication of the shapes orientation (clockwise / counterclockwise).
  *
- * For curves, lines, point clouds and rays the function returns 0.
- *
  * Currently implemented for:
  *
  * - {@link AABB}
+ * - {@link Arc} (sector area)
  * - {@link Circle}
  * - {@link ComplexPolygon}
- * - {@link Cubic}
  * - {@link Ellipse}
  * - {@link Group}
- * - {@link Line}
+ * - {@link Group3}
  * - {@link Path} (closed only & via poly conversion)
- * - {@link Plane}
- * - {@link Points}
+ * - {@link Plane} (infinity)
  * - {@link Polygon}
- * - {@link Polyline}
  * - {@link Quad}
- * - {@link Quadratic}
- * - {@link Ray}
  * - {@link Rect}
  * - {@link Sphere}
  * - {@link Triangle}
+ *
+ * For all other shape types the function returns 0.
  *
  * @param shape - shape to operate on
  * @param signed - true, if signed area
  */
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(
 	__dispatch,
-	{ quad: "poly" },
+	{ group3: "group", quad: "poly" },
 	{
 		aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
 

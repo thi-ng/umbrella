@@ -18,22 +18,34 @@ import { asPolyline } from "./as-polyline.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Returns the arc length / perimeter / circumference of the given
- * shape. For groups calls {@link arcLength} for each child and returns the
- * sum of results.
+ * Returns the arc length / perimeter / circumference of the given shape. For
+ * groups calls {@link arcLength} for each child and returns the sum of results.
  *
  * Implemented for:
  *
+ * - {@link Arc}
  * - {@link Circle}
  * - {@link ComplexPolygon}
+ * - {@link Cubic}
+ * - {@link Cubic3}
  * - {@link Ellipse}
  * - {@link Group} (total sum of child circumferences)
+ * - {@link Group3} (total sum of child circumferences)
  * - {@link Line}
+ * - {@link Line3}
+ * - {@link Path}
+ * - {@link Path3}
  * - {@link Polygon}
+ * - {@link Polygon3}
  * - {@link Polyline}
+ * - {@link Polyline3}
  * - {@link Quad}
+ * - {@link Quad3}
+ * - {@link Quadratic}
+ * - {@link Quadratic3}
  * - {@link Rect}
  * - {@link Triangle}
+ * - {@link Triangle3}
  *
  * @param shape
  */
@@ -43,7 +55,9 @@ export const arcLength: MultiFn1<IShape, number> = defmulti(
 		arc: "$aspolyline",
 		cubic: "$aspolyline",
 		cubic3: "$aspolyline",
+		group3: "group",
 		line3: "line",
+		path3: "path",
 		poly3: "poly",
 		polyline3: "polyline",
 		quad: "poly",

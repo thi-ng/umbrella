@@ -83,12 +83,15 @@ export const clipConvex = <ClipConvexFn>(
 	defmulti<any, IShape | ReadonlyVec[], Maybe<IShape[]>>(
 		__dispatch,
 		{
-			circle: "rect",
-			ellipse: "rect",
+			circle: "$verts",
+			ellipse: "$verts",
 			quad: "poly",
+			rect: "$verts",
 			tri: "poly",
 		},
 		{
+			$verts: __clipVertices,
+
 			complexpoly: ($: ComplexPolygon, boundary) => {
 				boundary = ensureVertices(boundary);
 				const c = centroid(boundary)!;
@@ -183,8 +186,6 @@ export const clipConvex = <ClipConvexFn>(
 					clipPolylinePoly(points, ensureVertices(boundary)),
 					attribs
 				),
-
-			rect: __clipVertices,
 		}
 	)
 );

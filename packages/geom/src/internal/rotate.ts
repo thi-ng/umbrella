@@ -7,7 +7,7 @@ import { __copyAttribs } from "./copy.js";
 
 export const __rotatedPoints = (pts: ReadonlyVec[], theta: number) => {
 	const mat = rotation22([], theta);
-	return pts.map((x) => mulV22([], x, mat));
+	return pts.map((x) => mulV22([], mat, x));
 };
 
 export const __rotatedPoints3 = (
@@ -16,7 +16,7 @@ export const __rotatedPoints3 = (
 	theta: number
 ) => {
 	const mat = rotationAroundAxis33([], axis, theta);
-	return pts.map((x) => mulV33([], x, mat));
+	return pts.map((x) => mulV33([], mat, x));
 };
 
 export const __rotatedShape =
