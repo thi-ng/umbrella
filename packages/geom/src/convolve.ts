@@ -15,6 +15,7 @@ import {
 	convolveClosed,
 	convolveOpen,
 } from "@thi.ng/geom-poly-utils/convolve";
+import { ComplexPolygon } from "./api/complex-polygon.js";
 import { Polygon } from "./api/polygon.js";
 import { Polygon3 } from "./api/polygon3.js";
 import { Polyline } from "./api/polyline.js";
@@ -26,6 +27,12 @@ import { __dispatch } from "./internal/dispatch.js";
  * Function overrides for {@link convolve}.
  */
 export type ConvoleFn = {
+	(
+		shape: ComplexPolygon,
+		kernel: number[],
+		t?: number,
+		iter?: number
+	): ComplexPolygon;
 	(shape: Polygon, kernel: number[], t?: number, iter?: number): Polygon;
 	(shape: Polygon3, kernel: number[], t?: number, iter?: number): Polygon3;
 	(shape: Polyline, kernel: number[], t?: number, iter?: number): Polyline;
@@ -57,6 +64,7 @@ export type ConvoleFn = {
  *
  * Currently only implemented for:
  *
+ * - {@link ComplexPolygon}
  * - {@link Polygon}
  * - {@link Polyline}
  *
@@ -78,6 +86,15 @@ export const convolve = <ConvoleFn>(
 		__dispatch,
 		{},
 		{
+			complexpoly: ($: ComplexPolygon, k, t, iter) =>
+				new ComplexPolygon(
+					__convolve(Polygon, convolveClosed, $.boundary, k, t, iter),
+					$.children.map((c) =>
+						__convolve(Polygon, convolveClosed, c, k, t, iter)
+					),
+					__copyAttribs($)
+				),
+
 			poly: ($: Polygon, k, t, iter) =>
 				__convolve(Polygon, convolveClosed, $, k, t, iter),
 
