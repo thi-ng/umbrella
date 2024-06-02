@@ -2,13 +2,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type {
-	IHiccupShape2,
-	IShape,
-	IShape2,
-	IShape3,
-	PathSegment2,
-} from "@thi.ng/geom-api";
+import type { IShape, IShape2, IShape3, PathSegment2 } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
@@ -121,8 +115,9 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 
 		complexpoly: ($: ComplexPolygon, delta) =>
 			new ComplexPolygon(
-				<Polygon>scale($.boundary, delta),
-				$.children.map((child) => <Polygon>scale(child, delta))
+				scale($.boundary, delta),
+				$.children.map((child) => scale(child, delta)),
+				__copyAttribs($)
 			),
 
 		cubic: tx(Cubic),
@@ -136,15 +131,14 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 			);
 		},
 
-		group: ($: Group, delta) =>
-			$.copyTransformed((x) => <IHiccupShape2>scale(x, delta)),
+		group: ($: Group, delta) => $.copyTransformed((x) => scale(x, delta)),
 
 		line: tx(Line),
 
 		path: ($: Path, delta) => {
 			delta = __asVec(delta);
 			const $scaleSegments = __segmentTransformer<PathSegment2>(
-				(geo) => <IShape2>scale(geo, delta),
+				(geo) => scale(geo, delta),
 				(p) => mul2([], p, <ReadonlyVec>delta)
 			);
 			return new Path(

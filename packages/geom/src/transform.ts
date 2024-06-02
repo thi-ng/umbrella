@@ -1,12 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type {
-	IHiccupShape2,
-	IShape,
-	IShape2,
-	IShape3,
-	PathSegment2,
-} from "@thi.ng/geom-api";
+import type { IShape, IShape2, IShape3, PathSegment2 } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
 import type { Arc } from "./api/arc.js";
@@ -110,16 +104,16 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 
 		complexpoly: ($: ComplexPolygon, mat) =>
 			new ComplexPolygon(
-				<Polygon>transform($.boundary, mat),
-				$.children.map((child) => <Polygon>transform(child, mat))
+				transform($.boundary, mat),
+				$.children.map((child) => transform(child, mat)),
+				__copyAttribs($)
 			),
 
 		cubic: tx(Cubic),
 
 		cubic3: tx(Cubic3),
 
-		group: ($: Group, mat) =>
-			$.copyTransformed((x) => <IHiccupShape2>transform(x, mat)),
+		group: ($: Group, mat) => $.copyTransformed((x) => transform(x, mat)),
 
 		line: tx(Line),
 

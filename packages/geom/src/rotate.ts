@@ -85,7 +85,8 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 		complexpoly: ($: ComplexPolygon, theta) =>
 			new ComplexPolygon(
 				rotate($.boundary, theta),
-				$.children.map((child) => rotate(child, theta))
+				$.children.map((child) => rotate(child, theta)),
+				__copyAttribs($)
 			),
 
 		cubic: tx(Cubic),

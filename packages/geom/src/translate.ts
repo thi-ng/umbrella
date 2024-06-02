@@ -1,11 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type {
-	IHiccupShape2,
-	IShape,
-	IShape2,
-	PathSegment2,
-} from "@thi.ng/geom-api";
+import type { IShape, PathSegment2 } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
 import { set2, set3 } from "@thi.ng/vectors/set";
@@ -97,8 +92,9 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 
 		complexpoly: ($: ComplexPolygon, delta) =>
 			new ComplexPolygon(
-				<Polygon>translate($.boundary, delta),
-				$.children.map((child) => <Polygon>translate(child, delta))
+				translate($.boundary, delta),
+				$.children.map((child) => translate(child, delta)),
+				__copyAttribs($)
 			),
 
 		cubic: tx(Cubic),
@@ -111,13 +107,13 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 			),
 
 		group: ($: Group, delta) =>
-			$.copyTransformed((x) => <IHiccupShape2>translate(x, delta)),
+			$.copyTransformed((x) => translate(x, delta)),
 
 		line: tx(Line),
 
 		path: ($: Path, delta: ReadonlyVec) => {
 			const $translateSegments = __segmentTransformer<PathSegment2>(
-				(geo) => <IShape2>translate(geo, delta),
+				(geo) => translate(geo, delta),
 				(p) => add2([], p, delta)
 			);
 			return new Path(

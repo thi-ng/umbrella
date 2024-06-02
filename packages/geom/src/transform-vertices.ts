@@ -1,13 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type {
-	IHiccupShape2,
-	IShape,
-	IShape2,
-	IShape3,
-	PathSegment2,
-} from "@thi.ng/geom-api";
+import type { IShape, IShape2, IShape3, PathSegment2 } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { Arc } from "./api/arc.js";
@@ -110,18 +104,15 @@ export const transformVertices = <TransformVerticesFn>(
 
 			complexpoly: ($: ComplexPolygon, fn) =>
 				new ComplexPolygon(
-					<Polygon>transformVertices($.boundary, fn),
-					$.children.map(
-						(child) => <Polygon>transformVertices(child, fn)
-					)
+					transformVertices($.boundary, fn),
+					$.children.map((child) => transformVertices(child, fn)),
+					__copyAttribs($)
 				),
 
 			cubic: tx(Cubic),
 
 			group: ($: Group, fn) =>
-				$.copyTransformed(
-					(x) => <IHiccupShape2>transformVertices(x, fn)
-				),
+				$.copyTransformed((x) => transformVertices(x, fn)),
 
 			line: tx(Line),
 
@@ -129,7 +120,7 @@ export const transformVertices = <TransformVerticesFn>(
 				const $transformSegments = __segmentTransformer<PathSegment2>(
 					(geo) => {
 						__ensureNoArc(geo);
-						return <IShape2>transformVertices(geo, fn);
+						return transformVertices(geo, fn);
 					},
 					fn
 				);
