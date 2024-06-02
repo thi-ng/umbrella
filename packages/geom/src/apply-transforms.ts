@@ -21,6 +21,9 @@ import { scale } from "./scale.js";
 import { transform } from "./transform.js";
 import { translate } from "./translate.js";
 
+/**
+ * Function overrides for {@link applyTransforms}.
+ */
 export type ApplyTransformsFn = {
 	(shape: Arc): IShape2;
 	(shape: Circle): IShape2;
@@ -31,13 +34,13 @@ export type ApplyTransformsFn = {
 } & MultiFn1<IShape, IShape>;
 
 const TX_ATTRIBS = [
-	"transform",
-	"translate",
 	"rotate",
 	"rotateX",
 	"rotateY",
 	"rotateZ",
 	"scale",
+	"transform",
+	"translate",
 ];
 
 /** @internal */
@@ -60,10 +63,10 @@ const __apply = ($: IShape) => {
 		);
 	if (!(t || r || s)) return $;
 	$ = $.withAttribs(withoutKeysObj(attribs, TX_ATTRIBS));
-	if (r !== null && $.dim === 2) $ = rotate(<IShape2>$, r);
-	if (rx !== null && $.dim === 3) $ = rotateX(<IShape3>$, rx);
-	if (ry !== null && $.dim === 3) $ = rotateY(<IShape3>$, ry);
-	if (rz !== null && $.dim === 3) $ = rotateZ(<IShape3>$, rz);
+	if (r != null && $.dim === 2) $ = rotate(<IShape2>$, r);
+	if (rx != null && $.dim === 3) $ = rotateX(<IShape3>$, rx);
+	if (ry != null && $.dim === 3) $ = rotateY(<IShape3>$, ry);
+	if (rz != null && $.dim === 3) $ = rotateZ(<IShape3>$, rz);
 	if (s) $ = scale($, s);
 	if (t) $ = translate($, t);
 	return $;
@@ -88,7 +91,7 @@ const __apply = ($: IShape) => {
  * transformed shapes to ensure idempotent behavior.
  *
  * For (@link group} shapes, the children are processed in depth-first order
- * with any transformations to the group itself applied last.
+ * with any transformations to the group itself applied post-order.
  *
  * Note: Where possible, this function delegates to {@link rotate} (for 2D),
  * {@link rotateX}, {@link rotateY}, {@link rotateZ} (all for 3D), {@link scale}
@@ -99,7 +102,9 @@ const __apply = ($: IShape) => {
  * will convert it to a quad etc.
  *
  * For those shape types for which a shape conversion _might_ be involved, the
- * function only returns a generic `IShape2` or `IShape3` type.
+ * function only returns a generic `IShape2` or `IShape3` type. To find out if a
+ * shape conversion will apply, please consult the docs for the above linked
+ * transformation functions.
  *
  * @param shape
  */
