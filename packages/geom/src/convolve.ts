@@ -16,6 +16,8 @@ import {
 	convolveOpen,
 } from "@thi.ng/geom-poly-utils/convolve";
 import { ComplexPolygon } from "./api/complex-polygon.js";
+import type { Group } from "./api/group.js";
+import type { Group3 } from "./api/group3.js";
 import { Polygon } from "./api/polygon.js";
 import { Polygon3 } from "./api/polygon3.js";
 import { Polyline } from "./api/polyline.js";
@@ -33,6 +35,8 @@ export type ConvoleFn = {
 		t?: number,
 		iter?: number
 	): ComplexPolygon;
+	(shape: Group, kernel: number[], t?: number, iter?: number): Group;
+	(shape: Group3, kernel: number[], t?: number, iter?: number): Group3;
 	(shape: Polygon, kernel: number[], t?: number, iter?: number): Polygon;
 	(shape: Polygon3, kernel: number[], t?: number, iter?: number): Polygon3;
 	(shape: Polyline, kernel: number[], t?: number, iter?: number): Polyline;
@@ -65,6 +69,8 @@ export type ConvoleFn = {
  * Currently only implemented for:
  *
  * - {@link ComplexPolygon}
+ * - {@link Group} (if only containing supported shapes)
+ * - {@link Group3} (if only containing supported shapes)
  * - {@link Polygon}
  * - {@link Polyline}
  *
@@ -84,7 +90,9 @@ export type ConvoleFn = {
 export const convolve = <ConvoleFn>(
 	defmulti<any, number[], Maybe<number>, Maybe<number>, IShape>(
 		__dispatch,
-		{},
+		{
+			group3: "group",
+		},
 		{
 			complexpoly: ($: ComplexPolygon, k, t, iter) =>
 				new ComplexPolygon(
@@ -94,6 +102,9 @@ export const convolve = <ConvoleFn>(
 					),
 					__copyAttribs($.attribs)
 				),
+
+			group: ($: Group, k, t, iter) =>
+				$.copyTransformed((x) => convolve(x, k, t, iter)),
 
 			poly: ($: Polygon, k, t, iter) =>
 				__convolve(Polygon, convolveClosed, $, k, t, iter),
