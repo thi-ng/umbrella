@@ -1,6 +1,6 @@
 import type { ICopy, IToHiccup } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { SamplingOpts } from "./sample";
+import type { SamplingOpts } from "./sample.js";
 
 export interface Attribs {
 	__samples?: SamplingOpts | number;
