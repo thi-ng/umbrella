@@ -45,13 +45,16 @@ export const __transformedPointsWith = (
 export const __transformedShape =
 	<T extends PCLike>(ctor: PCLikeConstructor<T>) =>
 	($: T, mat: ReadonlyMat) =>
-		new ctor(__transformedPoints($.points, mat), __copyAttribs($));
+		new ctor(__transformedPoints($.points, mat), __copyAttribs($.attribs));
 
 /** @internal */
 export const __transformedShapePoints =
 	<T extends PCLike>(ctor: PCLikeConstructor<T>) =>
 	($: T, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
-		new ctor(__transformedPointsWith($.points, fn), __copyAttribs($));
+		new ctor(
+			__transformedPointsWith($.points, fn),
+			__copyAttribs($.attribs)
+		);
 
 // 3d versions
 
@@ -72,13 +75,16 @@ export const __transformedPointsWith3 = (
 /** @internal */
 export const __transformedShape3 =
 	(ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
-		new ctor(__transformedPoints3($.points, mat), __copyAttribs($));
+		new ctor(__transformedPoints3($.points, mat), __copyAttribs($.attribs));
 
 /** @internal */
 export const __transformedShapePoints3 =
 	(ctor: PCLikeConstructor) =>
 	($: PCLike, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
-		new ctor(__transformedPointsWith3($.points, fn), __copyAttribs($));
+		new ctor(
+			__transformedPointsWith3($.points, fn),
+			__copyAttribs($.attribs)
+		);
 
 // path segments
 

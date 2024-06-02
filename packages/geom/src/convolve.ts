@@ -92,7 +92,7 @@ export const convolve = <ConvoleFn>(
 					$.children.map((c) =>
 						__convolve(Polygon, convolveClosed, c, k, t, iter)
 					),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				),
 
 			poly: ($: Polygon, k, t, iter) =>
@@ -118,7 +118,7 @@ const __convolve = <T extends PCLike>(
 	kernel: number[],
 	t?: number,
 	iter?: number
-) => new ctor(fn($.points, kernel, t, iter), __copyAttribs($));
+) => new ctor(fn($.points, kernel, t, iter), __copyAttribs($.attribs));
 
 export const KERNEL_BOX = $BOX;
 

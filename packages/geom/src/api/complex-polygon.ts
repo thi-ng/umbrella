@@ -25,7 +25,7 @@ export class ComplexPolygon implements IHiccupShape2<ComplexPolygon> {
 		return new ComplexPolygon(
 			this.boundary.copy(),
 			this.children.map((h) => h.copy()),
-			__copyAttribs(this)
+			__copyAttribs(this.attribs)
 		);
 	}
 

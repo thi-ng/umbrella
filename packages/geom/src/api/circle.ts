@@ -14,7 +14,11 @@ export class Circle implements IHiccupShape2<Circle> {
 	) {}
 
 	copy(): Circle {
-		return new Circle(set2([], this.pos), this.r, __copyAttribs(this));
+		return new Circle(
+			set2([], this.pos),
+			this.r,
+			__copyAttribs(this.attribs)
+		);
 	}
 
 	withAttribs(attribs: Attribs) {

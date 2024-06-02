@@ -80,13 +80,17 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 		bpatch: tx(BPatch),
 
 		circle: ($: Circle, theta) =>
-			new Circle($rotate([], $.pos, theta), $.r, __copyAttribs($)),
+			new Circle(
+				$rotate([], $.pos, theta),
+				$.r,
+				__copyAttribs($.attribs)
+			),
 
 		complexpoly: ($: ComplexPolygon, theta) =>
 			new ComplexPolygon(
 				rotate($.boundary, theta),
 				$.children.map((child) => rotate(child, theta)),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		cubic: tx(Cubic),
@@ -107,7 +111,7 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 			return new Path(
 				$rotateSegments($.segments),
 				$.subPaths.map($rotateSegments),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -125,12 +129,16 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 			return new Ray(
 				$rotate([], $.pos, theta),
 				$rotate([], $.dir, theta),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
 		text: ($: Text, theta) =>
-			new Text($rotate([], $.pos, theta), $.body, __copyAttribs($)),
+			new Text(
+				$rotate([], $.pos, theta),
+				$.body,
+				__copyAttribs($.attribs)
+			),
 
 		tri: tx(Triangle),
 	}

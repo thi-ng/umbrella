@@ -15,4 +15,4 @@ export const __scaledPoints = (
 
 export const __scaledShape =
 	(ctor: PCLikeConstructor) => ($: PCLike, delta: number | ReadonlyVec) =>
-		new ctor(__scaledPoints($.points, delta), __copyAttribs($));
+		new ctor(__scaledPoints($.points, delta), __copyAttribs($.attribs));

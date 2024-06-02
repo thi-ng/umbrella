@@ -57,11 +57,11 @@ export const convexHull = <ConvexHullFn>defmulti<any, IShape>(
 		complexpoly: ($: ComplexPolygon) => convexHull($.boundary),
 
 		group: ($: IShape) =>
-			new Polygon(grahamScan2(vertices($)), __copyAttribs($)),
+			new Polygon(grahamScan2(vertices($)), __copyAttribs($.attribs)),
 
 		points: ($: PCLike) =>
-			new Polygon(grahamScan2($.points), __copyAttribs($)),
+			new Polygon(grahamScan2($.points), __copyAttribs($.attribs)),
 
-		tri: ($: IShape) => new Polygon(vertices($), __copyAttribs($)),
+		tri: ($: IShape) => new Polygon(vertices($), __copyAttribs($.attribs)),
 	}
 );

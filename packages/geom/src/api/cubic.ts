@@ -22,7 +22,7 @@ export class Cubic
 	}
 
 	copy(): Cubic {
-		return <Cubic>__copyShape(Cubic, this);
+		return __copyShape(Cubic, this);
 	}
 
 	withAttribs(attribs: Attribs): Cubic {

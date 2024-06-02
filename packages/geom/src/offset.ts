@@ -53,7 +53,7 @@ export const offset = <OffsetFn>defmulti<any, number, IShape>(
 				centroid($)!,
 				$.size,
 				n,
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		circle: ($: Circle, n) =>
@@ -77,7 +77,7 @@ export const offset = <OffsetFn>defmulti<any, number, IShape>(
 				centroid($)!,
 				$.size,
 				n,
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 	}
 );

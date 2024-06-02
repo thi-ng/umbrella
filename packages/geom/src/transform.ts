@@ -106,7 +106,7 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 			new ComplexPolygon(
 				transform($.boundary, mat),
 				$.children.map((child) => transform(child, mat)),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		cubic: tx(Cubic),
@@ -130,7 +130,7 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 			return new Path(
 				$transformSegments($.segments),
 				$.subPaths.map($transformSegments),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -155,10 +155,10 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 		quadratic3: tx(Quadratic3),
 
 		rect: ($: Rect, mat) =>
-			transform(new Quad(vertices($), __copyAttribs($)), mat),
+			transform(new Quad(vertices($), __copyAttribs($.attribs)), mat),
 
 		text: ($: Text, mat) =>
-			new Text(mulV([], mat, $.pos!), $.body, __copyAttribs($)),
+			new Text(mulV([], mat, $.pos!), $.body, __copyAttribs($.attribs)),
 
 		tri: tx(Triangle),
 

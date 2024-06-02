@@ -14,7 +14,7 @@ export class Ray3 implements IHiccupShape3<Ray3> {
 		return new Ray3(
 			set3([], this.pos),
 			set3([], this.dir),
-			__copyAttribs(this)
+			__copyAttribs(this.attribs)
 		);
 	}
 

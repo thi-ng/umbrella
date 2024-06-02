@@ -43,7 +43,7 @@ import { arc } from "./arc.js";
 import { asPolygon } from "./as-polygon.js";
 import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "./cubic.js";
 import { cubicFromLine3, cubicFromQuadratic3 } from "./cubic3.js";
-import { __copyAttribsRaw } from "./internal/copy.js";
+import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 export interface AsCubicOpts extends CubicOpts {
@@ -273,4 +273,4 @@ const __polyCubic = <T extends Cubic | Cubic3>(
 };
 
 const __attribs = (opts?: Partial<AsCubicOpts>, attribs?: Attribs) =>
-	attribs && opts?.attribs !== false ? __copyAttribsRaw(attribs) : undefined;
+	attribs && opts?.attribs !== false ? __copyAttribs(attribs) : undefined;

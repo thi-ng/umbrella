@@ -7,7 +7,7 @@ export class Points3 extends APC implements IHiccupShape3<Points3> {
 	readonly dim = 3;
 
 	copy(): Points3 {
-		return <Points3>__copyShape(Points3, this);
+		return __copyShape(Points3, this);
 	}
 
 	withAttribs(attribs: Attribs) {

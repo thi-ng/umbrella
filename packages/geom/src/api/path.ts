@@ -47,7 +47,7 @@ export class Path implements IClear, IHiccupShape2<Path> {
 		const p = new Path(
 			this.segments.map(__copySegment),
 			this.subPaths.map((sub) => sub.map(__copySegment)),
-			__copyAttribs(this)
+			__copyAttribs(this.attribs)
 		);
 		return p;
 	}

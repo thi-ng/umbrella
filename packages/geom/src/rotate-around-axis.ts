@@ -85,7 +85,7 @@ export const rotateAroundAxis = <RotateAroundAxisFn>(
 				return new Path3(
 					$rotateSegments($.segments),
 					$.subPaths.map($rotateSegments),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				);
 			},
 
@@ -103,7 +103,7 @@ export const rotateAroundAxis = <RotateAroundAxisFn>(
 				return new Ray3(
 					rotateAroundAxis3([], $.pos, axis, theta),
 					rotateAroundAxis3([], $.dir, axis, theta),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				);
 			},
 

@@ -26,7 +26,7 @@ export class Rect implements AABBLike, IHiccupShape2<Rect> {
 		return new Rect(
 			set2([], this.pos),
 			set2([], this.size),
-			__copyAttribs(this)
+			__copyAttribs(this.attribs)
 		);
 	}
 

@@ -49,7 +49,7 @@ export const simplify = <SimplifyFn>defmulti<any, Maybe<number>, IShape>(
 			new ComplexPolygon(
 				<Polygon>simplify($.boundary, eps),
 				$.children.map((child) => <Polygon>simplify(child, eps)),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		path: ($: Path, eps = 1e-6) => {
@@ -88,14 +88,17 @@ export const simplify = <SimplifyFn>defmulti<any, Maybe<number>, IShape>(
 			return new Path(
 				$simplifySegments($.segments),
 				$.subPaths.map($simplifySegments),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
 		poly: ($: Polygon, eps = 1e-6) =>
-			new Polygon(_simplify($.points, eps, true), __copyAttribs($)),
+			new Polygon(
+				_simplify($.points, eps, true),
+				__copyAttribs($.attribs)
+			),
 
 		polyline: ($: Polyline, eps = 1e-6) =>
-			new Polyline(_simplify($.points, eps), __copyAttribs($)),
+			new Polyline(_simplify($.points, eps), __copyAttribs($.attribs)),
 	}
 );

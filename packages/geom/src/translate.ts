@@ -76,7 +76,7 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 			new AABB(
 				add3([], $.pos, delta),
 				set3([], $.size),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		arc: ($: Arc, delta) => {
@@ -88,13 +88,13 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 		bpatch: tx(BPatch),
 
 		circle: ($: Circle, delta) =>
-			new Circle(add2([], $.pos, delta), $.r, __copyAttribs($)),
+			new Circle(add2([], $.pos, delta), $.r, __copyAttribs($.attribs)),
 
 		complexpoly: ($: ComplexPolygon, delta) =>
 			new ComplexPolygon(
 				translate($.boundary, delta),
 				$.children.map((child) => translate(child, delta)),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		cubic: tx(Cubic),
@@ -103,7 +103,7 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 			new Ellipse(
 				add2([], $.pos, delta),
 				set2([], $.r),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		group: ($: Group, delta) =>
@@ -119,7 +119,7 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 			return new Path(
 				$translateSegments($.segments),
 				$.subPaths.map($translateSegments),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -136,20 +136,20 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 		quadratic: tx(Quadratic),
 
 		ray: ($: Ray, delta) =>
-			new Ray(add2([], $.pos, delta), $.dir, __copyAttribs($)),
+			new Ray(add2([], $.pos, delta), $.dir, __copyAttribs($.attribs)),
 
 		rect: ($: Rect, delta) =>
 			new Rect(
 				add2([], $.pos, delta),
 				set2([], $.size),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		sphere: ($: Sphere, delta) =>
-			new Sphere(add3([], $.pos, delta), $.r, __copyAttribs($)),
+			new Sphere(add3([], $.pos, delta), $.r, __copyAttribs($.attribs)),
 
 		text: ($: Text, delta) =>
-			new Text(add2([], $.pos, delta), $.body, __copyAttribs($)),
+			new Text(add2([], $.pos, delta), $.body, __copyAttribs($.attribs)),
 
 		tri: tx(Triangle),
 	}

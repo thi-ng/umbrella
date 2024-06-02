@@ -3,7 +3,7 @@ import { copy } from "@thi.ng/vectors/copy";
 import type { Arc } from "./api/arc.js";
 import { Line } from "./api/line.js";
 import { Path } from "./api/path.js";
-import { __copyAttribsRaw } from "./internal/copy.js";
+import { __copyAttribs } from "./internal/copy.js";
 
 /**
  * Converts given arc into a closed path describing a sector (using the arc's
@@ -23,5 +23,5 @@ export const asSector = (arc: Arc, attribs?: Attribs) =>
 			{ type: "z" },
 		],
 		[],
-		attribs || __copyAttribsRaw(arc.attribs)
+		attribs || __copyAttribs(arc.attribs)
 	);

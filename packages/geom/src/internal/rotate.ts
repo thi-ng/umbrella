@@ -22,9 +22,14 @@ export const __rotatedPoints3 = (
 export const __rotatedShape =
 	<T extends PCLike>(ctor: PCLikeConstructor<T>) =>
 	($: T, theta: number) =>
-		<T>new ctor(__rotatedPoints($.points, theta), __copyAttribs($));
+		<T>new ctor(__rotatedPoints($.points, theta), __copyAttribs($.attribs));
 
 export const __rotatedShape3 =
 	<T extends PCLike>(ctor: PCLikeConstructor<T>) =>
 	($: T, axis: ReadonlyVec, theta: number) =>
-		<T>new ctor(__rotatedPoints3($.points, axis, theta), __copyAttribs($));
+		<T>(
+			new ctor(
+				__rotatedPoints3($.points, axis, theta),
+				__copyAttribs($.attribs)
+			)
+		);

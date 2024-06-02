@@ -16,7 +16,7 @@ export function cubic(...args: any[]) {
 
 export const cubicFromArc = (arc: Arc) =>
 	_arc(arc.pos, arc.r, arc.axis, arc.start, arc.end).map(
-		(c) => new Cubic(c, __copyAttribs(arc))
+		(c) => new Cubic(c, __copyAttribs(arc.attribs))
 	);
 
 export const cubicFromLine = (a: Vec, b: Vec, attribs?: Attribs) =>

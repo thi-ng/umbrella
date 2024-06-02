@@ -44,7 +44,7 @@ export class Group implements IClear, IHiccupShape2<Group> {
 	}
 
 	copyTransformed(fn: FnU<IHiccupShape2>) {
-		return new Group(__copyAttribs(this), this.children.map(fn));
+		return new Group(__copyAttribs(this.attribs), this.children.map(fn));
 	}
 
 	withAttribs(attribs: Attribs) {

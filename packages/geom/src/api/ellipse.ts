@@ -22,7 +22,7 @@ export class Ellipse implements IHiccupShape2<Ellipse> {
 		return new Ellipse(
 			set2([], this.pos),
 			set2([], this.r),
-			__copyAttribs(this)
+			__copyAttribs(this.attribs)
 		);
 	}
 

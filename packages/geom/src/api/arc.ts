@@ -37,7 +37,7 @@ export class Arc implements IHiccupShape2<Arc>, IHiccupPathSegment {
 			this.end,
 			this.xl,
 			this.cw,
-			__copyAttribs(this)
+			__copyAttribs(this.attribs)
 		);
 	}
 

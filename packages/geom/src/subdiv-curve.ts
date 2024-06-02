@@ -130,19 +130,19 @@ export const subdivCurve = <SubdivCurveFn>(
 				new ComplexPolygon(
 					subdivCurve($.boundary, kernel, iter),
 					$.children.map((child) => subdivCurve(child, kernel, iter)),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				),
 
 			poly: ($: Polygon, kernel, iter = 1) =>
 				new Polygon(
 					subdivide($.points, <SubdivKernel>kernel, iter),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				),
 
 			polyline: ($: Polyline, kernel, iter = 1) =>
 				new Polyline(
 					subdivide($.points, <SubdivKernel>kernel, iter),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				),
 		}
 	)

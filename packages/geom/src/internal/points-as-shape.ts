@@ -2,7 +2,7 @@ import type { Attribs, PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import { map } from "@thi.ng/transducers/map";
 import type { Vec } from "@thi.ng/vectors";
 import { copyVectors } from "@thi.ng/vectors/copy";
-import { __copyAttribsRaw } from "./copy.js";
+import { __copyAttribs } from "./copy.js";
 
 export const __pointArraysAsShapes = <T extends PCLike>(
 	ctor: PCLikeConstructor<T>,
@@ -16,7 +16,7 @@ export const __pointArraysAsShapes = <T extends PCLike>(
 					(pts) =>
 						new ctor(
 							copyPoints ? copyVectors(pts) : pts,
-							__copyAttribsRaw(attribs)
+							__copyAttribs(attribs)
 						),
 					src
 				),

@@ -106,7 +106,7 @@ export const transformVertices = <TransformVerticesFn>(
 				new ComplexPolygon(
 					transformVertices($.boundary, fn),
 					$.children.map((child) => transformVertices(child, fn)),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				),
 
 			cubic: tx(Cubic),
@@ -127,7 +127,7 @@ export const transformVertices = <TransformVerticesFn>(
 				return new Path(
 					$transformSegments($.segments),
 					$.subPaths.map($transformSegments),
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				);
 			},
 

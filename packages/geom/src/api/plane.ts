@@ -14,7 +14,11 @@ export class Plane implements IHiccupShape3<Plane> {
 	) {}
 
 	copy(): Plane {
-		return new Plane(set3([], this.normal), this.w, __copyAttribs(this));
+		return new Plane(
+			set3([], this.normal),
+			this.w,
+			__copyAttribs(this.attribs)
+		);
 	}
 
 	withAttribs(attribs: Attribs): Plane {

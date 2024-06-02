@@ -40,7 +40,9 @@ export type ClipConvexFn = {
 const __clipVertices = ($: IShape, boundary: IShape | ReadonlyVec[]) => {
 	boundary = ensureVertices(boundary);
 	const pts = sutherlandHodgeman(vertices($), boundary, centroid(boundary));
-	return pts.length ? [new Polygon(pts, __copyAttribs($))] : undefined;
+	return pts.length
+		? [new Polygon(pts, __copyAttribs($.attribs))]
+		: undefined;
 };
 
 /**
@@ -102,7 +104,11 @@ export const clipConvex = <ClipConvexFn>(
 					if (clipped.length) res.push(new Polygon(clipped));
 				}
 				return [
-					new ComplexPolygon(res[0], res.slice(1), __copyAttribs($)),
+					new ComplexPolygon(
+						res[0],
+						res.slice(1),
+						__copyAttribs($.attribs)
+					),
 				];
 			},
 
@@ -125,7 +131,7 @@ export const clipConvex = <ClipConvexFn>(
 					ensureVertices(boundary)
 				);
 				return segments && segments.length
-					? [new Line(segments[0], __copyAttribs($))]
+					? [new Line(segments[0], __copyAttribs($.attribs))]
 					: undefined;
 			},
 
@@ -144,11 +150,11 @@ export const clipConvex = <ClipConvexFn>(
 				const res = new ComplexPolygon(
 					clipped[0],
 					[],
-					__copyAttribs($)
+					__copyAttribs($.attribs)
 				);
 				for (let sub of $.subPaths) {
 					clipped = __clipVertices(
-						new Path(sub, [], __copyAttribs($)),
+						new Path(sub, [], __copyAttribs($.attribs)),
 						boundary
 					);
 					if (clipped) {
@@ -167,7 +173,7 @@ export const clipConvex = <ClipConvexFn>(
 					centroid(boundary)
 				);
 				return pts.length
-					? [new Polygon(pts, __copyAttribs($))]
+					? [new Polygon(pts, __copyAttribs($.attribs))]
 					: undefined;
 			},
 

@@ -17,7 +17,7 @@ import { Line3 } from "./api/line3.js";
 import { Polyline } from "./api/polyline.js";
 import { Polyline3 } from "./api/polyline3.js";
 import { Quadratic } from "./api/quadratic.js";
-import { __copyAttribsRaw } from "./internal/copy.js";
+import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
 import { __splitLineAt } from "./internal/split.js";
@@ -71,7 +71,7 @@ export const splitAt = <SplitAtFn>defmulti<any, number, Maybe<IShape[]>>(
 					theta,
 					absDiff(start, theta) >= PI,
 					cw,
-					__copyAttribsRaw(attribs)
+					__copyAttribs(attribs)
 				),
 				new Arc(
 					set2([], pos),
@@ -81,7 +81,7 @@ export const splitAt = <SplitAtFn>defmulti<any, number, Maybe<IShape[]>>(
 					end,
 					absDiff(theta, end) >= PI,
 					cw,
-					__copyAttribsRaw(attribs)
+					__copyAttribs(attribs)
 				),
 			];
 		},
@@ -97,7 +97,7 @@ export const splitAt = <SplitAtFn>defmulti<any, number, Maybe<IShape[]>>(
 					theta,
 					t >= 0.5,
 					true,
-					__copyAttribsRaw(attribs)
+					__copyAttribs(attribs)
 				),
 				new Arc(
 					set2([], pos),
@@ -107,7 +107,7 @@ export const splitAt = <SplitAtFn>defmulti<any, number, Maybe<IShape[]>>(
 					TAU,
 					t < 0.5,
 					true,
-					__copyAttribsRaw(attribs)
+					__copyAttribs(attribs)
 				),
 			];
 		},

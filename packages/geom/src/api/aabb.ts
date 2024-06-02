@@ -26,7 +26,7 @@ export class AABB implements AABBLike, IHiccupShape3<AABB> {
 		return new AABB(
 			set3([], this.pos),
 			set3([], this.size),
-			__copyAttribs(this)
+			__copyAttribs(this.attribs)
 		);
 	}
 

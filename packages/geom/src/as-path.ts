@@ -25,7 +25,7 @@ import { Polyline } from "./api/polyline.js";
 import { asCubic } from "./as-cubic.js";
 import { asPolygon } from "./as-polygon.js";
 import { asPolyline } from "./as-polyline.js";
-import { __copyAttribs, __copyAttribsRaw } from "./internal/copy.js";
+import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { pathFromCubics } from "./path.js";
 import { pathFromCubics3 } from "./path3.js";
@@ -82,7 +82,7 @@ export const asPath = <AsPathFn>(
 				{ boundary, children, attribs }: ComplexPolygon,
 				opts
 			) => {
-				attribs = __copyAttribsRaw(attribs);
+				attribs = __copyAttribs(attribs);
 				if (opts?.linear) {
 					return __linearPath(
 						boundary,
@@ -122,7 +122,7 @@ export const asPath = <AsPathFn>(
 const __defaultImpl = (src: IShape, opts?: Partial<CubicOpts>) =>
 	(src.dim === 2 ? pathFromCubics : pathFromCubics3)(
 		<any>asCubic(src, { attribs: false, ...opts }),
-		__copyAttribs(src)
+		__copyAttribs(src.attribs)
 	);
 
 /**
@@ -165,20 +165,22 @@ function __lineSegments(
 	return segments;
 }
 
-/**
- * TODO update to support Path3
- *
- * @internal
- */
-const __linearPath = (shape: APC, subPaths: PathSegment[][], closed = false) =>
-	shape.dim === 2
+/** @internal */
+const __linearPath = (
+	shape: APC,
+	subPaths: PathSegment[][],
+	closed = false
+) => {
+	const attribs = __copyAttribs(shape.attribs);
+	return shape.dim === 2
 		? new Path(
 				__lineSegments(Line, shape.points, closed),
 				<PathSegment2[][]>subPaths,
-				__copyAttribs(shape)
+				attribs
 		  )
 		: new Path3(
 				__lineSegments(Line3, shape.points, closed),
 				<PathSegment3[][]>subPaths,
-				__copyAttribs(shape)
+				attribs
 		  );
+};

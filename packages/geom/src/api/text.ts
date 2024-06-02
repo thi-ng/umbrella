@@ -17,7 +17,11 @@ export class Text implements IHiccupShape2<Text> {
 	constructor(public pos: Vec, public body: any, public attribs?: Attribs) {}
 
 	copy(): Text {
-		return new Text(set([], this.pos), this.body, __copyAttribs(this));
+		return new Text(
+			set([], this.pos),
+			this.body,
+			__copyAttribs(this.attribs)
+		);
 	}
 
 	withAttribs(attribs: Attribs) {

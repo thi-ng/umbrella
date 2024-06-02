@@ -14,7 +14,11 @@ export class Sphere implements IHiccupShape3<Sphere> {
 	) {}
 
 	copy(): Sphere {
-		return new Sphere(set3([], this.pos), this.r, __copyAttribs(this));
+		return new Sphere(
+			set3([], this.pos),
+			this.r,
+			__copyAttribs(this.attribs)
+		);
 	}
 
 	withAttribs(attribs: Attribs) {

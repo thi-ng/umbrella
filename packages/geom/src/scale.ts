@@ -86,7 +86,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 			return new AABB(
 				mul3([], $.pos, delta),
 				mul3([], $.size, delta),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -105,19 +105,19 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 				? new Circle(
 						mulN2([], $.pos, delta),
 						$.r * delta,
-						__copyAttribs($)
+						__copyAttribs($.attribs)
 				  )
 				: new Ellipse(
 						mul2([], $.pos, delta),
 						mulN2([], delta, $.r),
-						__copyAttribs($)
+						__copyAttribs($.attribs)
 				  ),
 
 		complexpoly: ($: ComplexPolygon, delta) =>
 			new ComplexPolygon(
 				scale($.boundary, delta),
 				$.children.map((child) => scale(child, delta)),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			),
 
 		cubic: tx(Cubic),
@@ -127,7 +127,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 			return new Ellipse(
 				mul2([], $.pos, delta),
 				mul2([], $.r, delta),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -144,7 +144,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 			return new Path(
 				$scaleSegments($.segments),
 				$.subPaths.map($scaleSegments),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -165,7 +165,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 			return new Ray(
 				mul2([], $.pos, delta),
 				normalize2(null, mul2([], $.dir, delta)),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -174,7 +174,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 			return new Rect(
 				mul2([], $.pos, delta),
 				mul2([], $.size, delta),
-				__copyAttribs($)
+				__copyAttribs($.attribs)
 			);
 		},
 
@@ -183,12 +183,16 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 				? new Sphere(
 						mulN3([], $.pos, delta),
 						$.r * delta,
-						__copyAttribs($)
+						__copyAttribs($.attribs)
 				  )
 				: unsupported("can't non-uniformly scale sphere"),
 
 		text: ($: Text, delta) =>
-			new Text(mul2([], $.pos, __asVec(delta)), $.body, __copyAttribs($)),
+			new Text(
+				mul2([], $.pos, __asVec(delta)),
+				$.body,
+				__copyAttribs($.attribs)
+			),
 
 		tri: tx(Triangle),
 	}

@@ -10,21 +10,12 @@ import type {
 import { copy, copyVectors } from "@thi.ng/vectors/copy";
 
 /**
- * Creates a shallow copy of shape's attribs. Any `exclude` keys will be removed
- * from result attribs. Syntax sugar for {@link __copyAttribsRaw}.
- *
- * @internal
- */
-export const __copyAttribs = ($: IShape, ...exclude: string[]) =>
-	__copyAttribsRaw($.attribs, ...exclude);
-
-/**
  * Creates a shallow copy of given `attribs`. Any `exclude` keys will be removed
  * from result.
  *
  * @internal
  */
-export const __copyAttribsRaw = (attribs?: Attribs, ...exclude: string[]) =>
+export const __copyAttribs = (attribs?: Attribs, ...exclude: string[]) =>
 	!attribs
 		? undefined
 		: exclude.length
@@ -32,7 +23,7 @@ export const __copyAttribsRaw = (attribs?: Attribs, ...exclude: string[]) =>
 		: { ...attribs };
 
 /**
- * Syntax sugar for {@link __copyAttribs}, also removing `__samples` key from
+ * Syntax sugar for {@link __copyShapeAttribs}, also removing `__samples` key from
  * result.
  *
  * @param x
@@ -40,13 +31,13 @@ export const __copyAttribsRaw = (attribs?: Attribs, ...exclude: string[]) =>
  * @internal
  */
 export const __copyAttribsNoSamples = (x: IShape) =>
-	__copyAttribsRaw(x.attribs, "__samples");
+	__copyAttribs(x.attribs, "__samples");
 
 /** @internal */
 export const __copyShape = <T extends PCLike>(
 	ctor: PCLikeConstructor<T>,
 	inst: T
-) => new ctor(copyVectors(inst.points), __copyAttribsRaw(inst.attribs));
+) => new ctor(copyVectors(inst.points), __copyAttribs(inst.attribs));
 
 /** @internal */
 export const __copySegment = <T extends PathSegment>(s: T) => {
