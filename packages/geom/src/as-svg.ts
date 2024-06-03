@@ -24,13 +24,6 @@ export interface SVGDocAttribs extends Attribs {
 	 * @defaultValue 0
 	 */
 	__margin: number;
-	/**
-	 * Control attribute to define the number of fractional digits for numeric
-	 * values in the serialized SVG string.
-	 *
-	 * @defaultValue 3
-	 */
-	__prec: number;
 }
 
 /**
