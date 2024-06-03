@@ -11,6 +11,14 @@ import { AABB } from "./api/aabb.js";
 import type { Sphere } from "./api/sphere.js";
 import { __argsVV } from "./internal/args.js";
 
+/**
+ * 3D shape factory. Creates a new axis-aligned bounding box, where `pos` is the
+ * min. position and `size` the extent in each dimension..
+ *
+ * @param pos
+ * @param size
+ * @param attribs
+ */
 export function aabb(pos: Vec, size: number | Vec, attribs?: Attribs): AABB;
 export function aabb(size: number | Vec, attribs?: Attribs): AABB;
 export function aabb(attribs?: Attribs): AABB;
@@ -18,9 +26,26 @@ export function aabb(...args: any[]) {
 	return new AABB(...__argsVV(args));
 }
 
+/**
+ * 3D shape factory. Creates a new axis-aligned bounding box between given
+ * `min`/`max` points.
+ *
+ * @param min
+ * @param max
+ * @param attribs
+ */
 export const aabbFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
 	new AABB(min, sub3([], max, min), attribs);
 
+/**
+ * Same as {@link aabbFromMinMax}, but enlarges box in all directions by
+ * `margin`.
+ *
+ * @param min
+ * @param max
+ * @param margin
+ * @param attribs
+ */
 export const aabbFromMinMaxWithMargin = (
 	min: Vec,
 	max: Vec,
