@@ -1,5 +1,5 @@
 import type { MultiFn1 } from "@thi.ng/defmulti";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { perimeter } from "@thi.ng/geom-poly-utils/perimeter";
 import { PI, TAU } from "@thi.ng/math/api";
@@ -47,6 +47,8 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Triangle}
  * - {@link Triangle3}
  *
+ * For all other types the function returns 0.
+ *
  * @param shape
  */
 export const arcLength: MultiFn1<IShape, number> = defmulti(
@@ -68,6 +70,8 @@ export const arcLength: MultiFn1<IShape, number> = defmulti(
 		tri3: "tri",
 	},
 	{
+		[DEFAULT]: () => 0,
+
 		$aspoly: ($) => asPolygon($).reduce((acc, p) => acc + arcLength(p), 0),
 
 		$aspolyline: ($) =>

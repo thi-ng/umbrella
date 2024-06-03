@@ -54,6 +54,8 @@ export const area: MultiFn1O<IShape, boolean, number> = defmulti(
 	__dispatch,
 	{ group3: "group", quad: "poly" },
 	{
+		[DEFAULT]: () => 0,
+
 		aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
 
 		arc:
@@ -92,7 +94,5 @@ export const area: MultiFn1O<IShape, boolean, number> = defmulti(
 			const area = 0.5 * signedArea2(...(<[Vec, Vec, Vec]>$.points));
 			return signed ? area : Math.abs(area);
 		},
-
-		[DEFAULT]: () => 0,
 	}
 );
