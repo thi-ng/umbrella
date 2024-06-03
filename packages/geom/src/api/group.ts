@@ -1,7 +1,7 @@
 import type { FnU, IClear } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { equiv } from "@thi.ng/equiv";
-import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
+import type { Attribs, GroupAttribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import { __copyAttribs } from "../internal/copy.js";
 
 /**
@@ -14,7 +14,10 @@ export class Group implements IClear, IHiccupShape2<Group> {
 
 	children: IHiccupShape2[];
 
-	constructor(public attribs?: Attribs, children?: Iterable<IHiccupShape2>) {
+	constructor(
+		public attribs?: GroupAttribs,
+		children?: Iterable<IHiccupShape2>
+	) {
 		this.children = children ? ensureArray(children) : [];
 	}
 
