@@ -75,6 +75,7 @@ export type ScaleFn = {
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Cubic3}
+ * - {@link Dummy} (returns `undefined`)
  * - {@link Ellipse}
  * - {@link Group}
  * - {@link Group3}
@@ -148,6 +149,8 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 		cubic: tx(Cubic),
 
 		cubic3: tx(Cubic3),
+
+		dummy: ($) => $,
 
 		ellipse: ($: Ellipse, delta) => {
 			delta = __asVec(delta);

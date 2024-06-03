@@ -37,6 +37,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
+ * - {@link Dummy} (returns `undefined`)
  * - {@link Ellipse}
  * - {@link Group}
  * - {@link Line}
@@ -81,6 +82,8 @@ export const centroid: MultiFn1O<IShape, Vec, Maybe<Vec>> = defmulti<
 				$.children.map((c) => c.points),
 				out
 			),
+
+		dummy: () => undefined,
 
 		group: ($: Group, out?) => {
 			const b = bounds($);

@@ -68,6 +68,7 @@ const __clipVertices = ($: IShape, boundary: IShape | ReadonlyVec[]) => {
  *
  * - {@link Circle}
  * - {@link ComplexPolygon}
+ * - {@link Dummy}
  * - {@link Ellipse}
  * - {@link Group}
  * - {@link Line}
@@ -114,6 +115,8 @@ export const clipConvex = <ClipConvexFn>(
 					),
 				];
 			},
+
+			dummy: ($) => [$],
 
 			group: ({ children, attribs }: Group, boundary) => {
 				boundary = ensureVertices(boundary);

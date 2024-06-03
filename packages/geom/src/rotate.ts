@@ -48,6 +48,7 @@ export type RotateFn = {
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
+ * - {@link Dummy}
  * - {@link Ellipse}
  * - {@link Group}
  * - {@link Line}
@@ -92,6 +93,8 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 				$.children.map((child) => rotate(child, theta)),
 				__copyAttribs($.attribs)
 			),
+
+		dummy: ($) => $,
 
 		cubic: tx(Cubic),
 

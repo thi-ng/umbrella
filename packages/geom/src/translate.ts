@@ -58,8 +58,10 @@ export type TranslateFn = {
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Cubic3}
+ * - {@link Dummy}
  * - {@link Ellipse}
  * - {@link Group}
+ * - {@link Group3}
  * - {@link Line}
  * - {@link Path}
  * - {@link Points}
@@ -109,6 +111,8 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 		cubic: tx(Cubic),
 
 		cubic3: tx(Cubic3),
+
+		dummy: ($) => $,
 
 		ellipse: ($: Ellipse, delta) =>
 			new Ellipse(

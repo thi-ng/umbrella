@@ -51,6 +51,7 @@ import { peek } from "@thi.ng/arrays/peek";
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
+ * - {@link Dummy}
  * - {@link Ellipse}
  * - {@link Group}
  * - {@link Line}
@@ -91,6 +92,7 @@ export const vertices: MultiFn1O<
 	{
 		bpatch: "points",
 		cubic3: "cubic",
+		group3: "group",
 		line: "polyline",
 		line3: "polyline",
 		path3: "path",
@@ -159,6 +161,8 @@ export const vertices: MultiFn1O<
 
 		cubic: ($: Cubic, opts?) =>
 			sampleCubic($.points, __sampleAttribs(opts, $.attribs)),
+
+		dummy: () => [],
 
 		ellipse: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
 			opts = __sampleAttribs(opts, $.attribs)!;

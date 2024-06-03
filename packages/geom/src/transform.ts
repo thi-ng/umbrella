@@ -3,7 +3,7 @@ import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { Attribs, IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
-import { mulV, mulV23, mulV44 } from "@thi.ng/matrices/mulv";
+import { mulV23, mulV44 } from "@thi.ng/matrices/mulv";
 import type { Vec } from "@thi.ng/vectors";
 import type { Arc } from "./api/arc.js";
 import { BPatch } from "./api/bpatch.js";
@@ -76,6 +76,7 @@ export type TransformFn = {
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Cubic3}
+ * - {@link Dummy}
  * - {@link Ellipse}
  * - {@link Group}
  * - {@link Group3}
@@ -126,6 +127,8 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 
 		cubic3: tx(Cubic3),
 
+		dummy: ($) => $,
+
 		group: ($: Group, mat) => $.copyTransformed((x) => transform(x, mat)),
 
 		line: tx(Line),
@@ -162,7 +165,7 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 			transform(new Quad(vertices($), __copyAttribs($.attribs)), mat),
 
 		text: ($: Text, mat) =>
-			new Text(mulV([], mat, $.pos!), $.body, __copyAttribs($.attribs)),
+			new Text(mulV23([], mat, $.pos!), $.body, __copyAttribs($.attribs)),
 
 		tri: tx(Triangle),
 

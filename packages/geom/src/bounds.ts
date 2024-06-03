@@ -65,6 +65,7 @@ export type BoundsFn = {
  * - {@link BPatch}
  * - {@link Circle}
  * - {@link Cubic}
+ * - {@link Dummy} (returns `undefined`)
  * - {@link Ellipse}
  * - {@link Group}
  * - {@link Line}
@@ -133,6 +134,8 @@ export const bounds = <BoundsFn>defmulti<any, Maybe<number>, Maybe<AABBLike>>(
 				...cubicBounds(points[0], points[1], points[2], points[3]),
 				margin
 			),
+
+		dummy: () => undefined,
 
 		ellipse: ($: Ellipse, margin = 0) => {
 			const r = addN2([], $.r, margin);
