@@ -37,8 +37,8 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
- * - {@link Dummy} (returns `undefined`)
  * - {@link Ellipse}
+ * - {@link Extra} (returns `undefined`)
  * - {@link Group}
  * - {@link Line}
  * - {@link Path}
@@ -83,7 +83,7 @@ export const centroid: MultiFn1O<IShape, Vec, Maybe<Vec>> = defmulti<
 				out
 			),
 
-		dummy: () => undefined,
+		extra: () => undefined,
 
 		group: ($: Group, out?) => {
 			const b = bounds($);

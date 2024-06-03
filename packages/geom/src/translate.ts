@@ -58,8 +58,8 @@ export type TranslateFn = {
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Cubic3}
- * - {@link Dummy}
  * - {@link Ellipse}
+ * - {@link Extra}
  * - {@link Group}
  * - {@link Group3}
  * - {@link Line}
@@ -112,14 +112,14 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 
 		cubic3: tx(Cubic3),
 
-		dummy: ($) => $,
-
 		ellipse: ($: Ellipse, delta) =>
 			new Ellipse(
 				add2([], $.pos, delta),
 				set2([], $.r),
 				__copyAttribs($.attribs)
 			),
+
+		extra: ($) => $,
 
 		group: ($: Group, delta) =>
 			$.copyTransformed((x) => translate(x, delta)),

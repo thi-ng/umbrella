@@ -180,6 +180,8 @@ export const asCubic = <AsCubicFn>(
 				return [res];
 			},
 
+			extra: () => [],
+
 			group: ($: Group, opts) => [
 				...mapcat((x) => asCubic(x, opts), $.children),
 			],

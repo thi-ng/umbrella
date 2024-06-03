@@ -76,8 +76,8 @@ export type TransformFn = {
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Cubic3}
- * - {@link Dummy}
  * - {@link Ellipse}
+ * - {@link Extra}
  * - {@link Group}
  * - {@link Group3}
  * - {@link Line}
@@ -127,7 +127,7 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 
 		cubic3: tx(Cubic3),
 
-		dummy: ($) => $,
+		extra: ($) => $,
 
 		group: ($: Group, mat) => $.copyTransformed((x) => transform(x, mat)),
 

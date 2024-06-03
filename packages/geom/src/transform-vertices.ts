@@ -77,8 +77,8 @@ export type TransformVerticesFn = {
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Cubic3}
- * - {@link Dummy}
  * - {@link Ellipse}
+ * - {@link Extra}
  * - {@link Group}
  * - {@link Group3}
  * - {@link Line}
@@ -132,7 +132,7 @@ export const transformVertices = <TransformVerticesFn>(
 
 			cubic3: tx(Cubic3),
 
-			dummy: ($) => $,
+			extra: ($) => $,
 
 			group: ($: Group, fn) =>
 				$.copyTransformed((x) => transformVertices(x, fn)),

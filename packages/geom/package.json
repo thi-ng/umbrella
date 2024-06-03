@@ -139,6 +139,9 @@
 		"./api/ellipse": {
 			"default": "./api/ellipse.js"
 		},
+		"./api/extra": {
+			"default": "./api/extra.js"
+		},
 		"./api/group": {
 			"default": "./api/group.js"
 		},
@@ -288,6 +291,9 @@
 		},
 		"./ellipse": {
 			"default": "./ellipse.js"
+		},
+		"./extra": {
+			"default": "./extra.js"
 		},
 		"./fit-into-bounds": {
 			"default": "./fit-into-bounds.js"

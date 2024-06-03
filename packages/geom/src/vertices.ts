@@ -1,4 +1,5 @@
 import type { Maybe } from "@thi.ng/api";
+import { peek } from "@thi.ng/arrays/peek";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn1O } from "@thi.ng/defmulti";
@@ -31,7 +32,6 @@ import type { Quadratic } from "./api/quadratic.js";
 import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
-import { peek } from "@thi.ng/arrays/peek";
 
 /**
  * Extracts/samples vertices from given shape's boundary and returns them as
@@ -51,8 +51,8 @@ import { peek } from "@thi.ng/arrays/peek";
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
- * - {@link Dummy}
  * - {@link Ellipse}
+ * - {@link Extra}
  * - {@link Group}
  * - {@link Line}
  * - {@link Path}
@@ -162,8 +162,6 @@ export const vertices: MultiFn1O<
 		cubic: ($: Cubic, opts?) =>
 			sampleCubic($.points, __sampleAttribs(opts, $.attribs)),
 
-		dummy: () => [],
-
 		ellipse: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
 			opts = __sampleAttribs(opts, $.attribs)!;
 			const buf: Vec[] = [];
@@ -180,6 +178,8 @@ export const vertices: MultiFn1O<
 			}
 			return buf;
 		},
+
+		extra: () => [],
 
 		group: ($: Group, opts?) => {
 			opts = __sampleAttribs(opts, $.attribs);

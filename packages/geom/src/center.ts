@@ -57,14 +57,14 @@ export const center = <CenterFn>(
 			circle: ($: Circle, origin = ZERO2) =>
 				new Circle(set2([], origin), $.r, __copyAttribs($.attribs)),
 
-			dummy: ($) => $,
-
 			ellipse: ($: Ellipse, origin = ZERO2) =>
 				new Ellipse(
 					set2([], origin),
 					set2([], $.r),
 					__copyAttribs($.attribs)
 				),
+
+			extra: ($) => $,
 
 			sphere: ($: Sphere, origin = ZERO3) =>
 				new Sphere(set3([], origin), $.r, __copyAttribs($.attribs)),

@@ -48,8 +48,8 @@ export type RotateFn = {
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Cubic}
- * - {@link Dummy}
  * - {@link Ellipse}
+ * - {@link Extra}
  * - {@link Group}
  * - {@link Line}
  * - {@link Path}
@@ -94,9 +94,9 @@ export const rotate = <RotateFn>defmulti<any, number, IShape2>(
 				__copyAttribs($.attribs)
 			),
 
-		dummy: ($) => $,
-
 		cubic: tx(Cubic),
+
+		extra: ($) => $,
 
 		group: ($: Group, theta) => $.copyTransformed((x) => rotate(x, theta)),
 

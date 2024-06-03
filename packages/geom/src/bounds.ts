@@ -65,8 +65,8 @@ export type BoundsFn = {
  * - {@link BPatch}
  * - {@link Circle}
  * - {@link Cubic}
- * - {@link Dummy} (returns `undefined`)
  * - {@link Ellipse}
+ * - {@link Extra} (returns `undefined`)
  * - {@link Group}
  * - {@link Line}
  * - {@link Path}
@@ -135,12 +135,12 @@ export const bounds = <BoundsFn>defmulti<any, Maybe<number>, Maybe<AABBLike>>(
 				margin
 			),
 
-		dummy: () => undefined,
-
 		ellipse: ($: Ellipse, margin = 0) => {
 			const r = addN2([], $.r, margin);
 			return new Rect(sub2([], $.pos, r), mul2(null, [2, 2], r));
 		},
+
+		extra: () => undefined,
 
 		group: ($: Group, margin = 0) => {
 			const res = __collBounds($.children, bounds);

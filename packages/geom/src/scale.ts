@@ -75,8 +75,8 @@ export type ScaleFn = {
  * - {@link ComplexPolygon}
  * - {@link Cubic}
  * - {@link Cubic3}
- * - {@link Dummy} (returns `undefined`)
  * - {@link Ellipse}
+ * - {@link Extra} (returns `undefined`)
  * - {@link Group}
  * - {@link Group3}
  * - {@link Line}
@@ -150,8 +150,6 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 
 		cubic3: tx(Cubic3),
 
-		dummy: ($) => $,
-
 		ellipse: ($: Ellipse, delta) => {
 			delta = __asVec(delta);
 			return new Ellipse(
@@ -160,6 +158,8 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 				__copyAttribs($.attribs)
 			);
 		},
+
+		extra: ($) => $,
 
 		group: ($: Group, delta) => $.copyTransformed((x) => scale(x, delta)),
 
