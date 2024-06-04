@@ -70,7 +70,7 @@ For Node.js REPL:
 const gt = await import("@thi.ng/geom-tessellate");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1018 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 
