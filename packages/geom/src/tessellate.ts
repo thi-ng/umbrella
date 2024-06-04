@@ -1,7 +1,10 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, Tessellator } from "@thi.ng/geom-api";
 import { earCut2 } from "@thi.ng/geom-tessellate/earcut";
-import { edgeSplit } from "@thi.ng/geom-tessellate/edge-split";
+import {
+	edgeSplit,
+	edgeSplitWithThreshold,
+} from "@thi.ng/geom-tessellate/edge-split";
 import { tesselInset } from "@thi.ng/geom-tessellate/inset";
 import { quadFan } from "@thi.ng/geom-tessellate/quad-fan";
 import { rimTris } from "@thi.ng/geom-tessellate/rim-tris";
@@ -49,6 +52,11 @@ export const TESSELLATE_EARCUT = earCut2;
  * [`edgeSplit`](https://docs.thi.ng/umbrella/geom-tessellate/functions/edgeSplit.html)
  */
 export const TESSELLATE_EDGE_SPLIT = edgeSplit;
+/**
+ * Higher-order tessellator. Alias for thi.ng/geom-tessellate
+ * [`edgeSplitWithThreshold`](https://docs.thi.ng/umbrella/geom-tessellate/functions/edgeSplit.html)
+ */
+export const TESSELLATE_EDGE_SPLIT_THRESHOLD = edgeSplitWithThreshold;
 /**
  * Alias for thi.ng/geom-tessellate
  * [`tesselInset`](https://docs.thi.ng/umbrella/geom-tessellate/functions/tesselInset.html)
