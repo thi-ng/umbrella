@@ -6,3 +6,4 @@ export * from "./inset.js";
 export * from "./quad-fan.js";
 export * from "./rim-tris.js";
 export * from "./tri-fan.js";
+export * from "./tri-fan-split.js";
