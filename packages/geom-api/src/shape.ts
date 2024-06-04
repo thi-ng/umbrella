@@ -6,7 +6,7 @@ export interface Attribs {
 	/**
 	 * Shape resampling options/resolution.
 	 */
-	__samples?: SamplingOpts | number;
+	__samples?: Partial<SamplingOpts> | number;
 	/**
 	 * Control attribute to define the number of fractional digits for numeric
 	 * values in the serialized SVG string.
