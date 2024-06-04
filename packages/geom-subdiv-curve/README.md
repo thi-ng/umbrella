@@ -80,11 +80,12 @@ For Node.js REPL:
 const gsc = await import("@thi.ng/geom-subdiv-curve");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 661 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 848 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)

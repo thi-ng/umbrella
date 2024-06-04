@@ -229,7 +229,7 @@ For Node.js REPL:
 const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 16.46 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 16.95 KB
 
 ## Dependencies
 
@@ -276,6 +276,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-complex-poly.png" width="240"/>     | Shape conversions & operations using polygons with holes                         | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-complex-poly)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-convex-hull.png" width="240"/>      | Convex hull & shape clipping of 2D polygons                                      | [Demo](https://demo.thi.ng/umbrella/geom-convex-hull/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-convex-hull)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-csv-piechart.png" width="240"/>     | Piechart visualization of CSV data                                               | [Demo](https://demo.thi.ng/umbrella/geom-csv-piechart/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-csv-piechart)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-extra-hiccup.jpg" width="240"/>     | Embedding thi.ng/hiccup data/elements in thi.ng/geom shape hierarchies           | [Demo](https://demo.thi.ng/umbrella/geom-extra-hiccup/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-extra-hiccup)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-fuzz.png" width="240"/>                 | geom-fuzz basic shape & fill examples                                            | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-fuzz-basics)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-hexgrid.png" width="240"/>          | Hex grid generation & tessellations                                              | [Demo](https://demo.thi.ng/umbrella/geom-hexgrid/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-hexgrid)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/>         | (Re)Constructing the thi.ng logo using a 2D signed-distance field                | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo)         |

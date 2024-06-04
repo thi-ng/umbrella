@@ -72,7 +72,7 @@ For Node.js REPL:
 const gpu = await import("@thi.ng/geom-poly-utils");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.03 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.51 KB
 
 ## Dependencies
 
