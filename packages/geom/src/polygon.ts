@@ -20,7 +20,6 @@ export const polygon = (pts?: Iterable<Vec>, attribs?: Attribs) =>
  * @param n
  * @param profile
  * @param attribs
- * @returns
  */
 export const star = (
 	r: number,
@@ -64,7 +63,6 @@ export const star = (
  * @param n
  * @param profile
  * @param attribs
- * @returns
  */
 export const starWithCentroid = (
 	pos: Vec,

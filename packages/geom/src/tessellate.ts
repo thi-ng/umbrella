@@ -10,6 +10,10 @@ import { quadFan } from "@thi.ng/geom-tessellate/quad-fan";
 import { rimTris } from "@thi.ng/geom-tessellate/rim-tris";
 import { tessellate as _tessellate } from "@thi.ng/geom-tessellate/tessellate";
 import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
+import {
+	triFanSplit,
+	triFanSplitWithThreshold,
+} from "@thi.ng/geom-tessellate/tri-fan-split";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { Vec } from "@thi.ng/vectors";
 import { Group } from "./api/group.js";
@@ -17,7 +21,7 @@ import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
 /**
- * Recursively tessellates shape using provided
+ * Iteratively tessellates shape using provided
  * [`Tessellator`](https://docs.thi.ng/umbrella/geom-api/types/Tessellator.html)
  * functions. See
  * [thi.ng/geom-tessellate](https://thi.ng/thi.ng/geom-tessellate) package for
@@ -26,6 +30,18 @@ import { vertices } from "./vertices.js";
  * @remarks
  * Implemented for all shapes supported by {@link vertices}. For groups, every
  * child shape will be tessellated individually.
+ *
+ * The following tessellator presets are available:
+ *
+ * - {@link TESSELLATE_EARCUT}
+ * - {@link TESSELLATE_EDGE_SPLIT}
+ * - {@link TESSELLATE_EDGE_SPLIT_THRESHOLD}
+ * - {@link TESSELLATE_INSET}
+ * - {@link TESSELLATE_QUAD_FAN}
+ * - {@link TESSELLATE_RIM_TRIS}
+ * - {@link TESSELLATE_TRI_FAN}
+ * - {@link TESSELLATE_TRI_FAN_SPLIT}
+ * - {@link TESSELLATE_TRI_FAN_SPLIT_THRESHOLD}
  *
  * @param shape
  * @param tessellators
@@ -77,3 +93,13 @@ export const TESSELLATE_RIM_TRIS = rimTris;
  * [`triFan`](https://docs.thi.ng/umbrella/geom-tessellate/functions/triFan.html)
  */
 export const TESSELLATE_TRI_FAN = triFan;
+/**
+ * Alias for thi.ng/geom-tessellate
+ * [`triFanSplit`](https://docs.thi.ng/umbrella/geom-tessellate/functions/triFanSplit.html)
+ */
+export const TESSELLATE_TRI_FAN_SPLIT = triFanSplit;
+/**
+ * Alias for thi.ng/geom-tessellate
+ * [`triFanSplitWithThreshold`](https://docs.thi.ng/umbrella/geom-tessellate/functions/triFanSplitWithThreshold.html)
+ */
+export const TESSELLATE_TRI_FAN_SPLIT_THRESHOLD = triFanSplitWithThreshold;
