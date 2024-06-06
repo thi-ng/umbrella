@@ -4,6 +4,7 @@ import {
 	typedArrayType,
 	type TypedArray,
 } from "@thi.ng/api/typedarray";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IWebGLBuffer, IndexBufferSpec } from "./api/buffers.js";
 import {
@@ -11,9 +12,12 @@ import {
 	type ModelAttributeSpec,
 	type ModelAttributeSpecs,
 	type ModelSpec,
+	type UncompiledModelSpec,
 } from "./api/model.js";
+import type { ShaderSpec } from "./api/shader.js";
 import { isGL2Context } from "./checks.js";
 import { error } from "./error.js";
+import { defShader } from "./shader.js";
 
 export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
 	gl: WebGLRenderingContext;
@@ -95,9 +99,18 @@ export const defBuffer = (
 	retain = false
 ) => new WebGLArrayBuffer(gl, data, target, mode, retain);
 
+/**
+ * Takes a model spec and compiles all buffers (attributes, indices) and shader
+ * (if not already compiled), then returns compiled spec, ready for use with
+ * {@link draw}.
+ *
+ * @param gl
+ * @param spec
+ * @param mode
+ */
 export const compileModel = (
 	gl: WebGLRenderingContext,
-	spec: ModelSpec,
+	spec: ModelSpec | UncompiledModelSpec,
 	mode = gl.STATIC_DRAW
 ) => {
 	if (spec.attribPool) {
@@ -115,7 +128,10 @@ export const compileModel = (
 	compileIndices(gl, spec.indices, mode);
 	spec.mode == null && (spec.mode = DrawMode.TRIANGLES);
 	// TODO auto-create VAO & inject into model spec?
-	return spec;
+	if (isPlainObject(spec.shader)) {
+		spec.shader = defShader(gl, <ShaderSpec>spec.shader);
+	}
+	return <ModelSpec>spec;
 };
 
 const initBuffer = (

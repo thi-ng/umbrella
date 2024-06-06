@@ -1,7 +1,12 @@
 import type { GLType, IObjectOf, Type } from "@thi.ng/api";
 import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IndexBufferSpec, IWebGLBuffer } from "./buffers.js";
-import type { AttribBufferData, IShader, UniformValues } from "./shader.js";
+import type {
+	AttribBufferData,
+	IShader,
+	ShaderSpec,
+	UniformValues,
+} from "./shader.js";
 import type { ITexture } from "./texture.js";
 
 export enum DrawMode {
@@ -57,6 +62,14 @@ export interface ModelSpec {
 	 * Number of vertices/indices to draw
 	 */
 	num: number;
+}
+
+/**
+ * Version of {@link ModelSpec} in which neither any buffers nor the shader have
+ * been compiled yet and the latter is only specified as {@link ShaderSpec}.
+ */
+export interface UncompiledModelSpec extends Omit<ModelSpec, "shader"> {
+	shader: ShaderSpec;
 }
 
 /**
