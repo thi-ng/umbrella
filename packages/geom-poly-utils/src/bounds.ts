@@ -31,32 +31,72 @@ import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
  *
  * Returns 2-tuple of modified `[vmin, vmax]`.
  *
- * @param pts - point
+ * @param points - points
  * @param vmin - min result (pre-initialized to `+∞`)
  * @param vmax - max result (pre-initialized to `-∞`)
  */
 export const bounds = (
-	pts: ReadonlyArray<Vec>,
+	points: ReadonlyArray<Vec>,
 	vmin: Vec,
-	vmax: Vec
+	vmax: Vec,
+	start = 0,
+	end = points.length
 ): VecPair => {
-	for (let i = pts.length; i-- > 0; ) {
-		const p = pts[i];
+	for (let i = start; i < end; i++) {
+		const p = points[i];
 		min(null, vmin, p);
 		max(null, vmax, p);
 	}
 	return [vmin, vmax];
 };
 
-export const bounds2 = (pts: ReadonlyArray<Vec>) =>
-	bounds(pts, [Infinity, Infinity], [-Infinity, -Infinity]);
+export const bounds2 = (
+	points: ReadonlyArray<Vec>,
+	start = 0,
+	end = points.length
+): VecPair => {
+	let minX = Infinity,
+		minY = Infinity,
+		maxX = -Infinity,
+		maxY = -Infinity;
+	for (let i = start; i < end; i++) {
+		const [x, y] = points[i];
+		if (x < minX) minX = x;
+		if (x > maxX) maxX = x;
+		if (y < minY) minY = y;
+		if (y > maxY) maxY = y;
+	}
+	return [
+		[minX, minY],
+		[maxX, maxY],
+	];
+};
 
-export const bounds3 = (pts: ReadonlyArray<Vec>) =>
-	bounds(
-		pts,
-		[Infinity, Infinity, Infinity],
-		[-Infinity, -Infinity, -Infinity]
-	);
+export const bounds3 = (
+	points: ReadonlyArray<Vec>,
+	start = 0,
+	end = points.length
+): VecPair => {
+	let minX = Infinity,
+		minY = Infinity,
+		minZ = Infinity,
+		maxX = -Infinity,
+		maxY = -Infinity,
+		maxZ = -Infinity;
+	for (let i = start; i < end; i++) {
+		const [x, y, z] = points[i];
+		if (x < minX) minX = x;
+		if (x > maxX) maxX = x;
+		if (y < minY) minY = y;
+		if (y > maxY) maxY = y;
+		if (z < minZ) minZ = z;
+		if (z > maxZ) maxZ = z;
+	}
+	return [
+		[minX, minY, minZ],
+		[maxX, maxY, maxZ],
+	];
+};
 
 /**
  * Calculates a near-optimal bounding circle for a set of points in 2D. Returns
