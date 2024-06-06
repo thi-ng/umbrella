@@ -1,22 +1,23 @@
 import type { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
-import { comp } from "@thi.ng/transducers/comp";
-import { map } from "@thi.ng/transducers/map";
-import { partition } from "@thi.ng/transducers/partition";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { wrapSides } from "@thi.ng/transducers/wrap-sides";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { mixN } from "@thi.ng/vectors/mixn";
+import { addmN } from "@thi.ng/vectors";
 
-export const quadFan: Tessellator = (points: ReadonlyVec[]) => {
-	const p = centroid(points);
-	return transduce(
-		comp(
-			partition<Vec>(3, 1),
-			map(([a, b, c]) => [mixN([], a, b, 0.5), b, mixN([], b, c, 0.5), p])
-		),
-		push(),
-		wrapSides(points)
-	);
+export const quadFan: Tessellator = (tess, pids) => {
+	const n = pids.length;
+	const n1 = n - 1;
+	const c = tess.points.length;
+	const p2 = c + 1;
+	const p3 = c + n;
+	const points = pids.map((i) => tess.points[i]);
+	tess.points.push(centroid(points));
+	for (let i = 0; i < n; i++) {
+		tess.points.push(addmN([], points[i], points[i < n1 ? i + 1 : 0], 0.5));
+		tess.indices.push([
+			c,
+			i > 0 ? c + i : p3,
+			pids[i],
+			i < n1 ? p2 + i : p3,
+		]);
+	}
+	return tess;
 };

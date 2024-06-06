@@ -1,30 +1,16 @@
 import type { Tessellator } from "@thi.ng/geom-api";
-import { comp } from "@thi.ng/transducers/comp";
-import { map } from "@thi.ng/transducers/map";
-import { partition } from "@thi.ng/transducers/partition";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { wrapSides } from "@thi.ng/transducers/wrap-sides";
-import { zip } from "@thi.ng/transducers/zip";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { mixN } from "@thi.ng/vectors/mixn";
+import { range } from "@thi.ng/transducers/range";
+import { addmN } from "@thi.ng/vectors/addmn";
 
-export const rimTris: Tessellator = (points: ReadonlyVec[]) => {
-	const edgeCentroids = transduce(
-		comp(
-			partition<Vec>(2, 1),
-			map((e) => mixN([], e[0], e[1], 0.5))
-		),
-		push<Vec>(),
-		wrapSides(points, 0, 1)
-	);
-	return transduce(
-		comp(
-			partition<Vec[]>(2, 1),
-			map((t) => [t[0][0], t[1][1], t[1][0]])
-		),
-		push(),
-		[edgeCentroids],
-		wrapSides([...zip(edgeCentroids, points)], 1, 0)
-	);
+export const rimTris: Tessellator = (tess, pids) => {
+	const n = pids.length - 1;
+	const m = tess.points.length - 1;
+	const points = pids.map((i) => tess.points[i]);
+	for (let i = 0; i <= n; i++) {
+		const j = i < n ? i + 1 : 0;
+		const k = tess.points.push(addmN([], points[i], points[j], 0.5)) - 1;
+		tess.indices.push([pids[i], k, i > 0 ? m + i : m + n + 1]);
+	}
+	tess.indices.push([...range(m + 1, m + n + 2)]);
+	return tess;
 };

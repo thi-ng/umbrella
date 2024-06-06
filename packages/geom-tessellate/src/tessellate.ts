@@ -1,33 +1,58 @@
 import { isFunction } from "@thi.ng/checks/is-function";
-import type { Tessellator } from "@thi.ng/geom-api";
-import { last } from "@thi.ng/transducers/last";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { push } from "@thi.ng/transducers/push";
-import { reducer } from "@thi.ng/transducers/reduce";
+import type { Tessellation, Tessellator } from "@thi.ng/geom-api";
+import { range } from "@thi.ng/transducers/range";
 import { repeat } from "@thi.ng/transducers/repeat";
-import { scan } from "@thi.ng/transducers/scan";
-import { transduce } from "@thi.ng/transducers/transduce";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+
+/**
+ * Creates a new
+ * [`Tessellation`](https://docs.thi.ng/umbrella/geom-api/types/Tessellation.html)
+ * result from given `points` and optional pre-tessellated face `indices`.
+ *
+ * @param points
+ * @param indices
+ */
+export const defTessellation = (
+	points: ReadonlyVec[],
+	indices: number[][] = []
+): Tessellation => ({ points, indices });
 
 export function tessellate(
 	points: ReadonlyVec[],
-	tessFn: Tessellator,
+	tessellators: Tessellator,
 	iter?: number
-): Vec[][];
+): Tessellation;
 export function tessellate(
 	points: ReadonlyVec[],
-	tessFns: Iterable<Tessellator>
-): Vec[][];
-export function tessellate(...args: any[]) {
-	return transduce(
-		scan(
-			reducer(
-				() => [args[0]],
-				(acc: Vec[][], fn: Tessellator) =>
-					transduce(mapcat(fn), push(), acc)
-			)
-		),
-		last(),
-		isFunction(args[1]) ? repeat(args[1], args[2] || 1) : args[1]
-	);
+	tessellators: Iterable<Tessellator>
+): Tessellation;
+export function tessellate(
+	points: ReadonlyVec[],
+	...args: any[]
+): Tessellation {
+	const fns: Iterable<Tessellator> = isFunction(args[0])
+		? repeat(args[0], args[1] ?? 1)
+		: args[0];
+	return tessellateQueue(points.slice(), [[...range(points.length)]], fns);
 }
+
+export const tessellateQueue = (
+	points: ReadonlyVec[],
+	queue: number[][],
+	tessellators: Iterable<Tessellator>
+) => {
+	for (let fn of tessellators) {
+		const newQueue: number[][] = [];
+		for (let ids of queue) {
+			newQueue.push(...fn({ points, indices: [] }, ids).indices);
+		}
+		queue = newQueue;
+	}
+	return { points, indices: queue };
+};
+
+export const indexedPoints = (points: ReadonlyVec[], indices: number[]) =>
+	indices.map((i) => points[i]);
+
+export const tessellatedPoints = ({ points, indices }: Tessellation) =>
+	indices.map((ids) => indexedPoints(points, ids));

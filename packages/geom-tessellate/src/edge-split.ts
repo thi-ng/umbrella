@@ -1,14 +1,6 @@
 import type { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
-import { comp } from "@thi.ng/transducers/comp";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { partition } from "@thi.ng/transducers/partition";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { wrapSides } from "@thi.ng/transducers/wrap-sides";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
-import { distSq } from "@thi.ng/vectors/distsq";
 
 /**
  * Tessellates a polygon into sequence of triangles by splitting each boundary
@@ -17,56 +9,15 @@ import { distSq } from "@thi.ng/vectors/distsq";
  *
  * @param points
  */
-export const edgeSplit: Tessellator = (points: ReadonlyVec[]) => {
-	const c = centroid(points);
-	return transduce(
-		comp(
-			partition<Vec>(2, 1),
-			mapcat(([a, b]) => {
-				const m = addmN([], a, b, 0.5);
-				return [
-					[a, m, c],
-					[m, b, c],
-				];
-			})
-		),
-		push(),
-		wrapSides(points, 0, 1)
-	);
+export const edgeSplit: Tessellator = (tess, pids) => {
+	const n = pids.length;
+	const c = tess.points.length;
+	const points = pids.map((i) => tess.points[i]);
+	tess.points.push(centroid(points));
+	for (let i = 0, n1 = n - 1; i < n; i++) {
+		const j = i < n1 ? i + 1 : 0;
+		const k = tess.points.push(addmN([], points[i], points[j], 0.5)) - 1;
+		tess.indices.push([c, pids[i], k], [c, k, pids[j]]);
+	}
+	return tess;
 };
-
-/**
- * Higher-order version of {@link edgeSplit}, with min distance `threshold`.
- * Only splits edges (`a` -> `b`) if the edge length and the distance of the end
- * points to the face centroid `c` is >= `threshold`.
- *
- * @param threshold
- */
-export const edgeSplitWithThreshold =
-	(threshold: number): Tessellator =>
-	(points: ReadonlyVec[]) => {
-		const c = centroid(points);
-		const minD = threshold * threshold;
-		return transduce(
-			comp(
-				partition<Vec>(2, 1),
-				mapcat(([a, b]) => {
-					if (
-						distSq(a, b) >= minD &&
-						distSq(a, c) >= minD &&
-						distSq(b, c) >= minD
-					) {
-						const m = addmN([], a, b, 0.5);
-						return [
-							[a, m, c],
-							[m, b, c],
-						];
-					} else {
-						return [[a, b, c]];
-					}
-				})
-			),
-			push(),
-			wrapSides(points, 0, 1)
-		);
-	};
