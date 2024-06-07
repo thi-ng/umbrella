@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 192 standalone projects, maintained as part
+> This is one of 193 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -70,14 +70,17 @@ For Node.js REPL:
 const gt = await import("@thi.ng/geom-tessellate");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.14 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
