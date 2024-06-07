@@ -96,7 +96,9 @@ export class AttribPool implements IRelease {
 			: this.attribs[id][i];
 	}
 
-	*attribValues(id: string) {
+	*attribValues<T extends number | TypedArray>(
+		id: string
+	): IterableIterator<T> {
 		const spec = this.specs[id];
 		ensureSpec(spec, id);
 		const buf = this.attribs[id];
@@ -104,11 +106,11 @@ export class AttribPool implements IRelease {
 		const size = spec.size;
 		if (size > 1) {
 			for (let i = 0, j = 0, n = this.capacity; i < n; i++, j += stride) {
-				yield buf.subarray(j, j + size);
+				yield <T>buf.subarray(j, j + size);
 			}
 		} else {
 			for (let i = 0, n = this.capacity; i < n; i++) {
-				yield buf[i * stride];
+				yield <any>buf[i * stride];
 			}
 		}
 	}
