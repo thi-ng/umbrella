@@ -4775,10 +4775,13 @@ __metadata:
   resolution: "@thi.ng/geom-tessellate@workspace:packages/geom-tessellate"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.45.0"
+    "@thi.ng/api": "npm:^8.11.2"
     "@thi.ng/checks": "npm:^3.6.4"
     "@thi.ng/geom-api": "npm:^4.0.10"
     "@thi.ng/geom-isec": "npm:^3.1.0"
     "@thi.ng/geom-poly-utils": "npm:^2.4.0"
+    "@thi.ng/math": "npm:^5.10.13"
+    "@thi.ng/morton": "npm:^3.1.86"
     "@thi.ng/transducers": "npm:^9.0.5"
     "@thi.ng/vectors": "npm:^7.10.31"
     esbuild: "npm:^0.21.4"
