@@ -931,6 +931,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-webgl-basics@workspace:examples/geom-webgl-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-webgl-basics@workspace:examples/geom-webgl-basics"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-webgl": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: "npm:^5.4.5"
+    vite: "npm:^5.2.11"
+  languageName: unknown
+  linkType: soft
+
 "@example/gesture-analysis@workspace:examples/gesture-analysis":
   version: 0.0.0-use.local
   resolution: "@example/gesture-analysis@workspace:examples/gesture-analysis"
@@ -4828,15 +4843,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-webgl@workspace:packages/geom-webgl":
+"@thi.ng/geom-webgl@workspace:^, @thi.ng/geom-webgl@workspace:packages/geom-webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-webgl@workspace:packages/geom-webgl"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.45.0"
     "@thi.ng/api": "npm:^8.11.2"
+    "@thi.ng/checks": "npm:^3.6.4"
     "@thi.ng/defmulti": "npm:^3.0.39"
+    "@thi.ng/errors": "npm:^2.5.7"
     "@thi.ng/geom": "npm:^7.0.1"
     "@thi.ng/geom-api": "npm:^4.0.10"
+    "@thi.ng/transducers": "npm:^9.0.5"
     "@thi.ng/vector-pools": "npm:^3.1.129"
     "@thi.ng/vectors": "npm:^7.10.31"
     "@thi.ng/webgl": "npm:^6.8.15"
