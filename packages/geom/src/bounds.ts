@@ -81,10 +81,6 @@ export type BoundsFn = {
  * @param shape
  * @param margin
  */
-/**
- * Polymorphic implementation backend of {@link bounds}. Only use for adding
- * support for custom shape types.
- */
 export const bounds = <BoundsFn>defmulti<any, Maybe<number>, Maybe<AABBLike>>(
 	__dispatch,
 	{
