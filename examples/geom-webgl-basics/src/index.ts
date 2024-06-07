@@ -45,7 +45,7 @@ const model = asWebGlModel(geo, {
 	// `asWebGLModel()` will augment attrib / uniform definitions
 	shader: {
 		vs: `void main() { gl_Position = view * vec4(pos * vec2(1.,-1.), 0., 1.); vColor = color; }`,
-		fs: `void main() { fragColor = vec4(vColor.xyz, 1.); }`,
+		fs: `void main() { fragColor = vColor; }`,
 		varying: {
 			vColor: "vec4",
 		},
