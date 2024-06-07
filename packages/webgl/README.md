@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 192 standalone projects, maintained as part
+> This is one of 193 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -100,7 +100,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.64 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.63 KB
 
 ## Dependencies
 
@@ -129,6 +129,7 @@ directory are using this package:
 
 | Screenshot                                                                                                                   | Description                                                              | Live demo                                                 | Source                                                                                 |
 |:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>     | Converting thi.ng/geom shape types for WebGL                             | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-basics)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-easings.png" width="240"/>    | Shader-AST meta-programming techniques for animated function plots       | [Demo](https://demo.thi.ng/umbrella/shader-ast-easings/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-easings)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-noise.jpg" width="240"/>      | HOF shader procedural noise function composition                         | [Demo](https://demo.thi.ng/umbrella/shader-ast-noise/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-noise)    |

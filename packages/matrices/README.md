@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 192 standalone projects, maintained as part
+> This is one of 193 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -110,6 +110,7 @@ directory are using this package:
 | Screenshot                                                                                                                           | Description                                                                                  | Live demo                                                | Source                                                                                |
 |:-------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/>                 | (Re)Constructing the thi.ng logo using a 2D signed-distance field                            | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>             | Converting thi.ng/geom shape types for WebGL                                                 | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-basics)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export                         | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>                   | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/>                | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang               | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom)     |
