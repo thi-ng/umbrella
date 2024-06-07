@@ -1,4 +1,4 @@
-import type { Nullable } from "@thi.ng/api";
+import type { Nullable, Predicate } from "@thi.ng/api";
 import type { Tessellator } from "@thi.ng/geom-api";
 import { bounds2 } from "@thi.ng/geom-poly-utils/bounds";
 import { sign } from "@thi.ng/math/abs";
@@ -11,49 +11,109 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  * polygons with holes, twists, degeneracies and self-intersections.
  *
  * @remarks
- * This is an adapted version of https://github.com/mapbox/earcut
+ * This is an adapted version of https://github.com/mapbox/earcut with the
+ * following changes to the original implementation:
  *
- * @param holeIndices
+ * - Input points given as array of points (not flattened, only 2D supported)
+ * - Appends results to given tessellation instance as per contract of all
+ *   tessellators in this package
+ * - Configurable Z-curve hashing threshold (default: 80)
+ * - If Z-curve hashing is used, points are pre-scaled once internally for
+ *   various simplifications and to avoid passing extraneous args around
+ * - Use unsigned 16 bits (per coord) hashing (instead of 15 bits)
+ * - Re-use existing thi.ng/umbrella fns for some processing steps
+ * - Add small tolerance for colinear check
+ * - Rename `Node` => `Vertex`
+ * - Minor other refactoring (use of destructuring, add types, renames etc.)
+ *
+ * Original implementation Copyright (c) 2016, Mapbox, ISC License. Original
+ * author: Volodymyr Agafonkin
+ *
+ * References:
+ *
+ * - https://www.cosy.sbg.ac.at/~held/projects/triang/triang.html
+ * - https://www.geometrictools.com/Documentation/TriangulationByEarClipping.pdf
+ * - https://docs.thi.ng/umbrella/morton/
+ *
+ * @param holeIDs
  * @param threshold
  */
 export const earCutComplex =
-	(holeIndices: number[] = [], threshold = 80): Tessellator =>
+	(holeIDs: number[] = [], threshold = 80): Tessellator =>
 	(tess, pids) => {
-		const points = pids.map((i) => tess.points[i]);
+		let points = pids.map((i) => tess.points[i]);
 		const indices = tess.indices;
-		const hasHoles = holeIndices.length;
-		const outerLen = hasHoles ? holeIndices[0] : points.length;
-		let outerNode = buildVertexList(points, pids, 0, outerLen, true);
-		if (!outerNode || outerNode.n === outerNode.p) return tess;
-		if (hasHoles)
-			outerNode = eliminateHoles(points, pids, holeIndices, outerNode);
-		let minX = 0;
-		let minY = 0;
-		let maxX = 0;
-		let maxY = 0;
+		const hasHoles = !!holeIDs.length;
+		const outerLen = hasHoles ? holeIDs[0] : points.length;
 		let scale = 0;
 		if (points.length >= threshold) {
-			[[minX, minY], [maxX, maxY]] = bounds2(points, 0, outerLen);
+			const [[minX, minY], [maxX, maxY]] = bounds2(points, 0, outerLen);
 			scale = Math.max(maxX - minX, maxY - minY);
 			if (scale > 0) {
 				scale = 0xffff / scale;
+				points = points.map((p) => [
+					(p[0] - minX) * scale,
+					(p[1] - minY) * scale,
+				]);
 			}
 		}
-		earcutLinked(outerNode, indices, minX, minY, scale);
+		let outerNode = buildVertexList(points, pids, 0, outerLen, true);
+		if (!outerNode || outerNode.n === outerNode.p) return tess;
+		if (hasHoles) {
+			outerNode = eliminateHoles(points, pids, holeIDs, outerNode);
+		} else {
+			outerNode = removeColinear(outerNode);
+		}
+		earcutLinked(outerNode, indices, scale > 0 ? isEarHashed : isEar);
 		return tess;
 	};
 
+/**
+ * Takes an array of `boundary` points and another array of `holes` containing
+ * point arrays of individual holes. Concatenates all points (both boundary &
+ * holes) and returns a tuple of `[points, holeIDs]`, suitable for
+ * {@link earCutComplex}.
+ *
+ * @example
+ * ```ts tangle:../export/earcut-complex.ts
+ * import {
+ *   earCutComplex, earCutComplexPrepare, tessellate
+ * } from "@thi.ng/geom-tessellate";
+ *
+ * const boundary = [[0,0], [100,0], [100,100], [0,100]];
+ * const hole = [[20,20],[50,80],[80,20]];
+ *
+ * const [points, holeIDs] = earCutComplexPrepare(boundary, [hole]);
+ *
+ * const tess = tessellate(points, earCutComplex(holeIDs));
+ *
+ * console.log(tess);
+ * // {
+ * //   points: [
+ * //     [ 0, 0 ], [ 100, 0 ], [ 100, 100 ], [ 0, 100 ],
+ * //     [ 20, 20 ], [ 50, 80 ], [ 80, 20 ]
+ * //   ],
+ * //   indices: [
+ * //     [ 0, 4, 5 ], [ 6, 4, 0 ], [ 3, 0, 5 ], [ 6, 0, 1 ],
+ * //     [ 2, 3, 5 ], [ 5, 6, 1 ], [ 1, 2, 5 ]
+ * //   ],
+ * // }
+ * ```
+ *
+ * @param boundary
+ * @param holes
+ */
 export const earCutComplexPrepare = (
 	boundary: ReadonlyVec[],
 	holes: ReadonlyVec[][]
 ) => {
-	const points = [...boundary];
-	const holeIndices: number[] = [];
+	let points = boundary;
+	const holeIDs: number[] = [];
 	for (let hole of holes) {
-		holeIndices.push(points.length);
-		points.push(...hole);
+		holeIDs.push(points.length);
+		points = points.concat(hole);
 	}
-	return <[ReadonlyVec[], number[]]>[points, holeIndices];
+	return <[ReadonlyVec[], number[]]>[points, holeIDs];
 };
 
 class Vertex {
@@ -101,22 +161,22 @@ const insertVertex = (
 	[x, y]: ReadonlyVec,
 	last: Nullable<Vertex>
 ) => {
-	const node = new Vertex(i, x, y);
+	const v = new Vertex(i, x, y);
 	if (!last) {
-		node.p = node.n = node;
+		v.p = v.n = v;
 	} else {
-		node.n = last.n;
-		node.p = last;
-		last.n = last.n!.p = node;
+		v.n = last.n;
+		v.p = last;
+		last.n = last.n!.p = v;
 	}
-	return node;
+	return v;
 };
 
-const removeVertex = (p: Vertex) => {
-	p.n!.p = p.p;
-	p.p!.n = p.n;
-	if (p.pz) p.pz.nz = p.nz;
-	if (p.nz) p.nz.pz = p.pz;
+const removeVertex = (v: Vertex) => {
+	v.n!.p = v.p;
+	v.p!.n = v.n;
+	if (v.pz) v.pz.nz = v.nz;
+	if (v.nz) v.nz.pz = v.pz;
 };
 
 /**
@@ -124,27 +184,23 @@ const removeVertex = (p: Vertex) => {
  *
  * @param ear
  * @param triangles
- * @param minX
- * @param minY
- * @param scale
+ * @param pred
  * @param pass
  */
 const earcutLinked = (
 	ear: Nullable<Vertex>,
 	triangles: number[][],
-	minX: number,
-	minY: number,
-	scale: number,
+	pred: Predicate<Vertex>,
 	pass = 0
 ) => {
 	if (!ear) return;
-	if (!pass && scale) zIndexCurve(ear, minX, minY, scale);
+	if (!pass && pred === isEarHashed) zIndexCurve(ear);
 
 	let stop = ear;
 	// iterate through ears, slicing them one by one
 	while (ear!.p !== ear!.n) {
 		const { p: prev, n: next } = <Vertex>ear;
-		if (scale ? isEarHashed(ear!, minX, minY, scale) : isEar(ear!)) {
+		if (pred(ear!)) {
 			triangles.push([prev!.i, ear!.i, next!.i]);
 			removeVertex(ear!);
 			// skipping the next vertex leads to less sliver triangles
@@ -157,21 +213,14 @@ const earcutLinked = (
 		if (ear === stop) {
 			// try filtering points and slicing again
 			if (pass === 0) {
-				earcutLinked(
-					removeColinear(ear),
-					triangles,
-					minX,
-					minY,
-					scale,
-					1
-				);
+				earcutLinked(removeColinear(ear), triangles, pred, 1);
 			} else if (pass === 1) {
 				// if this didn't work, try curing all small self-intersections locally
 				ear = cureLocalIntersections(removeColinear(ear)!, triangles);
-				earcutLinked(ear, triangles, minX, minY, scale, 2);
+				earcutLinked(ear, triangles, pred, 2);
 			} else if (pass === 2) {
 				// as a last resort, try splitting the remaining polygon into two
-				splitEarcut(ear, triangles, minX, minY, scale);
+				splitEarcut(ear, triangles, pred);
 			}
 			break;
 		}
@@ -183,16 +232,12 @@ const earcutLinked = (
  *
  * @param start
  * @param triangles
- * @param minX
- * @param minY
- * @param scale
+ * @param pred
  */
 const splitEarcut = (
 	start: Vertex,
 	triangles: number[][],
-	minX: number,
-	minY: number,
-	scale: number
+	pred: Predicate<Vertex>
 ) => {
 	// find valid diagonal dividing the polygon into two
 	let a = start;
@@ -204,8 +249,8 @@ const splitEarcut = (
 				let c = splitPolygon(a, b);
 				a = removeColinear(a, a.n!)!;
 				c = removeColinear(c, c.n!)!;
-				earcutLinked(a, triangles, minX, minY, scale, 0);
-				earcutLinked(c, triangles, minX, minY, scale, 0);
+				earcutLinked(a, triangles, pred, 0);
+				earcutLinked(c, triangles, pred, 0);
 				return;
 			}
 			b = b!.n!;
@@ -247,18 +292,18 @@ const splitPolygon = (a: Vertex, b: Vertex) => {
 const isEdgeCentroidInside = (a: Vertex, b: Vertex) => {
 	const mx = (a.x + b.x) * 0.5;
 	const my = (a.y + b.y) * 0.5;
-	let p = a;
+	let v = a;
 	let inside = false;
 	do {
-		const { x: px, y: py } = p;
+		const { x: px, y: py, n: vn } = v;
 		if (
-			p.n!.y !== py &&
-			py > my !== p.n!.y > my &&
-			mx < ((p.n!.x - px) * (my - py)) / (p.n!.y - py) + px
+			vn!.y !== py &&
+			py > my !== vn!.y > my &&
+			mx < ((vn!.x - px) * (my - py)) / (vn!.y - py) + px
 		)
 			inside = !inside;
-		p = p.n!;
-	} while (p !== a);
+		v = vn!;
+	} while (v !== a);
 	return inside;
 };
 
@@ -370,30 +415,13 @@ const isPointInRect = (
 
 const findLeftmost = (start: Vertex) => {
 	let left = start;
-	let p = start;
+	let v = start;
 	do {
-		if (p.x < left.x || (p.x === left.x && p.y < left.y)) left = p;
-		p = p.n!;
-	} while (p !== start);
+		if (v.x < left.x || (v.x === left.x && v.y < left.y)) left = v;
+		v = v.n!;
+	} while (v !== start);
 	return left;
 };
-
-/**
- * Z-order of a point within the bounds defined by minX/minY & scale.
- *
- * @param x
- * @param y
- * @param minX
- * @param minY
- * @param scale
- */
-const zOrder = (
-	x: number,
-	y: number,
-	minX: number,
-	minY: number,
-	scale: number
-) => mux2((x - minX) * scale, (y - minY) * scale);
 
 /**
  * Simon Tatham's linked list merge sort algorithm:
@@ -420,8 +448,8 @@ const sortLinked = (list: Nullable<Vertex>) => {
 				q = q.nz;
 				if (!q) break;
 			}
-			let qSize = inSize;
 
+			let qSize = inSize;
 			while (pSize > 0 || (qSize > 0 && q)) {
 				if (pSize !== 0 && (qSize === 0 || !q || p!.z <= q.z)) {
 					e = p;
@@ -453,19 +481,11 @@ const sortLinked = (list: Nullable<Vertex>) => {
  * Interlink polygon nodes in z-order.
  *
  * @param start
- * @param minX
- * @param minY
- * @param scale
  */
-const zIndexCurve = (
-	start: Vertex,
-	minX: number,
-	minY: number,
-	scale: number
-) => {
+const zIndexCurve = (start: Vertex) => {
 	let v = start;
 	do {
-		if (v.z < 0) v.z = zOrder(v.x, v.y, minX, minY, scale);
+		if (v.z < 0) v.z = mux2(v.x, v.y);
 		v.pz = v.p;
 		v = v.nz = v.n!;
 	} while (v !== start);
@@ -663,12 +683,12 @@ const isEar = (ear: Vertex) => {
 	return true;
 };
 
-const isEarHashed = (
-	ear: Vertex,
-	minX: number,
-	minY: number,
-	scale: number
-) => {
+/**
+ * Z-order hashed version of {@link isEar}.
+ *
+ * @param ear
+ */
+const isEarHashed = (ear: Vertex) => {
 	const { p: a, n: c } = ear;
 	const b = ear;
 	// reflex, can't be an ear
@@ -678,6 +698,9 @@ const isEarHashed = (
 	const { x: bx, y: by } = b;
 	const { x: cx, y: cy } = c!;
 	const [x0, y0, x1, y1] = triBounds(ax, ay, bx, by, cx, cy);
+	// z-order range for the current triangle bbox;
+	const minZ = mux2(x0, y0);
+	const maxZ = mux2(x1, y1);
 
 	const check = (v: Vertex) =>
 		v !== a &&
@@ -685,10 +708,6 @@ const isEarHashed = (
 		isPointInRect(v, x0, y0, x1, y1) &&
 		isPointInTriangle(v, ax, ay, bx, by, cx, cy) &&
 		area(v.p!, v, v.n!) >= 0;
-
-	// z-order range for the current triangle bbox;
-	const minZ = zOrder(x0, y0, minX, minY, scale);
-	const maxZ = zOrder(x1, y1, minX, minY, scale);
 
 	let { pz: p, nz: n } = ear;
 	// look for points inside the triangle in both directions
@@ -719,7 +738,6 @@ const isEarHashed = (
  */
 const removeColinear = (start: Nullable<Vertex>, end = start) => {
 	if (!start) return start;
-
 	let v = start;
 	let repeat: boolean;
 	do {
