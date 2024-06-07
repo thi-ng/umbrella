@@ -1,0 +1,88 @@
+{
+	"name": "@thi.ng/geom-webgl",
+	"version": "0.0.1",
+	"description": "WebGL geometry/shape conversion & interop",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/geom-webgl#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.11.2",
+		"@thi.ng/checks": "^3.6.4",
+		"@thi.ng/defmulti": "^3.0.39",
+		"@thi.ng/errors": "^2.5.7",
+		"@thi.ng/geom": "^7.0.1",
+		"@thi.ng/geom-api": "^4.0.10",
+		"@thi.ng/transducers": "^9.0.5",
+		"@thi.ng/vector-pools": "^3.1.129",
+		"@thi.ng/vectors": "^7.10.31",
+		"@thi.ng/webgl": "^6.8.15"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.45.0",
+		"esbuild": "^0.21.4",
+		"typedoc": "^0.25.13",
+		"typescript": "^5.4.5"
+	},
+	"keywords": [
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./as-webgl": {
+			"default": "./as-webgl.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2024
+	}
+}

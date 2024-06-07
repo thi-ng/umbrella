@@ -4828,6 +4828,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/geom-webgl@workspace:packages/geom-webgl":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/geom-webgl@workspace:packages/geom-webgl"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.45.0"
+    "@thi.ng/api": "npm:^8.11.2"
+    "@thi.ng/defmulti": "npm:^3.0.39"
+    "@thi.ng/geom": "npm:^7.0.1"
+    "@thi.ng/geom-api": "npm:^4.0.10"
+    "@thi.ng/vector-pools": "npm:^3.1.129"
+    "@thi.ng/vectors": "npm:^7.10.31"
+    "@thi.ng/webgl": "npm:^6.8.15"
+    esbuild: "npm:^0.21.4"
+    typedoc: "npm:^0.25.13"
+    typescript: "npm:^5.4.5"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/geom@npm:^7.0.1, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
