@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 192 standalone projects, maintained as part
+> This is one of 193 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -21,7 +21,7 @@
   - [API module auto-initialization](#api-module-auto-initialization)
 - [Object indices & handles](#object-indices--handles)
 - [Using the Zig build system](#using-the-zig-build-system)
-  - [Zig v0.12 or newer](#zig-v012-or-newer)
+  - [Zig v0.13 or newer](#zig-v013-or-newer)
   - [Example projects](#example-projects)
 - [Naming & structural conventions](#naming--structural-conventions)
 - [Status](#status)
@@ -315,12 +315,13 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
-### Zig v0.12 or newer
+### Zig v0.13 or newer
 
 **IMPORTANT:** Due to recent [syntax & build system changes in Zig
-v0.12.0](https://ziglang.org/download/0.12.0/release-notes.html), older Zig
-versions are not actively unsupported (however build files for v0.10 and v0.11
-are still included)
+v0.13.0](https://ziglang.org/download/0.13.0/release-notes.html), older Zig
+versions are not actively unsupported (however, [build files for older versions
+are still
+included](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig))
 
 ```zig
 const std = @import("std");

@@ -53,7 +53,7 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
     const optimize = if (opts.optimize) |m| m else b.standardOptimizeOption(.{});
     const lib = b.addExecutable(.{
         .name = "main",
-        .root_source_file = b.path(opts.root),
+        .root_source_file = .{ .path = opts.root },
         .target = b.resolveTargetQuery(
             .{
                 .cpu_arch = .wasm32,
@@ -78,13 +78,13 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
     _ = lib.root_module.addImport(
         wasmapi,
         b.createModule(.{
-            .root_source_file = b.path(modulePath(b.allocator, opts.base, "@thi.ng/wasm-api/zig/lib.zig")),
+            .root_source_file = modulePath(b.allocator, opts.base, "@thi.ng/wasm-api/zig/lib.zig"),
         }),
     );
     _ = lib.root_module.addImport(
         wasmbind,
         b.createModule(.{
-            .root_source_file = b.path(modulePath(b.allocator, opts.base, "@thi.ng/wasm-api-bindgen/zig/lib.zig")),
+            .root_source_file = modulePath(b.allocator, opts.base, "@thi.ng/wasm-api-bindgen/zig/lib.zig"),
         }),
     );
     if (opts.modules) |modules| {
@@ -113,7 +113,7 @@ pub fn register(lib: *Build.Step.Compile, mod: ModuleSpec, opts: WasmLibOpts) vo
         }
     }
     _ = lib.root_module.addImport(mod.name, lib.step.owner.createModule(.{
-        .root_source_file = lib.step.owner.path(modulePath(lib.step.owner.allocator, opts.base, mod.path)),
+        .root_source_file = modulePath(lib.step.owner.allocator, opts.base, mod.path),
         .imports = dpkgs[0..i],
     }));
 }
@@ -125,6 +125,6 @@ fn isDuplicateId(deps: []Build.Module.Import, name: []const u8) bool {
     return false;
 }
 
-fn modulePath(allocator: std.mem.Allocator, base: []const u8, path: []const u8) []u8 {
-    return std.fs.path.join(allocator, &.{ base, path }) catch unreachable;
+fn modulePath(allocator: std.mem.Allocator, base: []const u8, path: []const u8) Build.LazyPath {
+    return .{ .path = std.fs.path.join(allocator, &.{ base, path }) catch unreachable };
 }
