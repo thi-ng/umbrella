@@ -7,13 +7,14 @@ import {
 	vertices as _vertices,
 	centroid,
 	group,
+	groupFromTessellation,
 	polygon,
 	tessellate,
 	text,
 	transformVertices,
 } from "@thi.ng/geom";
 import type { IHiccupShape2, Tessellator } from "@thi.ng/geom-api";
-import { quadFan, tesselInset, triFan } from "@thi.ng/geom-tessellate";
+import { inset, quadFan, triFan } from "@thi.ng/geom-tessellate";
 import {
 	rotation23,
 	scale23,
@@ -249,13 +250,10 @@ const defTessellator =
 		const ds = stack(ctx, isHOF ? 2 : 1);
 		const arg = isHOF ? ds.pop() : undefined;
 		const shape = ds.pop();
-		const tessel = <Tessellator>(isHOF ? fn(arg) : fn);
-		ds.push(
-			group(
-				{},
-				map((pts) => polygon(pts), tessellate(shape, [tessel]))
-			)
+		const tessel = <Tessellator>(
+			(isHOF ? (<Fn<number, Tessellator>>fn)(arg) : fn)
 		);
+		ds.push(groupFromTessellation(tessellate(shape, [tessel])));
 		return ctx;
 	};
 
@@ -295,6 +293,6 @@ const POINTFREE_GEOM = ffi(
 		// tessellators
 		trifan: defTessellator(triFan),
 		quadfan: defTessellator(quadFan),
-		inset: defTessellator(tesselInset, true),
+		inset: defTessellator(inset, true),
 	}
 );

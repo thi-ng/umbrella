@@ -4,14 +4,15 @@ import {
 	TESSELLATE_QUAD_FAN,
 	TESSELLATE_RIM_TRIS,
 	TESSELLATE_TRI_FAN,
+	TESSELLATE_TRI_FAN_SPLIT,
 	asPolygon,
 	asSvg,
-	centroid,
 	circle,
 	group,
-	polygon,
+	groupFromTessellation,
 	svgDoc,
 	tessellate,
+	withAttribs,
 } from "@thi.ng/geom";
 import {
 	comp,
@@ -21,7 +22,7 @@ import {
 	range2d,
 	transduce,
 } from "@thi.ng/transducers";
-import { dist, mag } from "@thi.ng/vectors";
+import { dist2 } from "@thi.ng/vectors";
 
 const SIN60 = Math.sin(Math.PI / 3);
 
@@ -59,33 +60,39 @@ const polys = transduce(
 				// actual tessellation: choose one or more tessellation methods
 				// (applied iteratively), also experiment with duplication and/or
 				// different orders...
-				// `tessellate()` will return an iterator of `Vec[]`, where each
-				// array is a set of new vertices which can then be used to form new
-				// shapes/polygons (see next step)
-				tessellate(cell, [
-					TESSELLATE_EDGE_SPLIT,
-					TESSELLATE_QUAD_FAN,
-					// TESSELLATE_TRI_FAN,
-					// TESSELLATE_RIM_TRIS,
-				])
+				// `tessellate()` returns a `Tessellation`, which we convert into
+				// a group of polygons. Since groups are iterable and we're using
+				// `mapcat()` here, the output of this step will be just a sequence
+				// of these result polygons...
+				groupFromTessellation(
+					tessellate(cell, [
+						TESSELLATE_EDGE_SPLIT,
+						TESSELLATE_QUAD_FAN,
+						// TESSELLATE_TRI_FAN,
+						// TESSELLATE_TRI_FAN_SPLIT,
+						// TESSELLATE_RIM_TRIS,
+					])
+				)
 
 			// (using the cell position or attribs each cell can also use a
 			// different configuration, resulting in a more complex/varied
 			// tessellation... comment out the above tessellate() call and
 			// uncomment/enable the one below instead...)
 
-			// tessellate(
-			// 	cell,
-			// 	// make tessellation config dependent on distance from center
-			// 	dist(CENTER, cell.attribs!.gridPos) < 4
-			// 		? [TESSELLATE_EDGE_SPLIT, TESSELLATE_QUAD_FAN]
-			// 		: [TESSELLATE_TRI_FAN, TESSELLATE_TRI_FAN]
+			// groupFromTessellation(
+			// 	tessellate(
+			// 		cell,
+			// 		// make tessellation config dependent on distance from center
+			// 		dist2(CENTER, cell.attribs!.gridPos) < 4
+			// 			? [TESSELLATE_EDGE_SPLIT, TESSELLATE_QUAD_FAN]
+			// 			: [TESSELLATE_TRI_FAN, TESSELLATE_TRI_FAN]
+			// 	)
 			// )
 		),
-		// create new polygon for each set of tessellated vertices
-		mapIndexed((i, points) =>
-			polygon(
-				points,
+		// assign color attribs to each polygon
+		mapIndexed((i, poly) =>
+			withAttribs(
+				<Polygon>poly,
 				// optional attribs
 				{ fill: i & 1 ? "black" : "yellow" }
 			)

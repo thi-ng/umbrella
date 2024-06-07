@@ -5,6 +5,7 @@ import {
 	centroid,
 	circle,
 	group,
+	groupFromTessellation,
 	Polygon,
 	polygon,
 	tessellate,
@@ -76,12 +77,14 @@ const tintedPoly = (tint: Tint, points: Vec[]) => {
 const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
 	return map(
 		partial(tintedPoly, tint),
-		tessellate(
-			asPolygon(
-				circle([0, 0], W2),
-				Math.floor(fit11(Math.sin(t), MIN_RES, MAX_RES))
-			)[0],
-			tessel
+		groupFromTessellation(
+			tessellate(
+				asPolygon(
+					circle([0, 0], W2),
+					Math.floor(fit11(Math.sin(t), MIN_RES, MAX_RES))
+				)[0],
+				tessel
+			)
 		)
 	);
 };
