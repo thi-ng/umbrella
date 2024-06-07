@@ -23,6 +23,7 @@ dev
 doc
 export
 lib
+.zig-cache
 zig-cache
 zig-out
 
