@@ -3669,7 +3669,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/adjacency@workspace:^, @thi.ng/adjacency@workspace:packages/adjacency":
+"@thi.ng/adjacency@npm:^2.5.51, @thi.ng/adjacency@workspace:^, @thi.ng/adjacency@workspace:packages/adjacency":
   version: 0.0.0-use.local
   resolution: "@thi.ng/adjacency@workspace:packages/adjacency"
   dependencies:
@@ -4869,6 +4869,7 @@ __metadata:
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.45.0"
+    "@thi.ng/adjacency": "npm:^2.5.51"
     "@thi.ng/api": "npm:^8.11.2"
     "@thi.ng/arrays": "npm:^2.9.6"
     "@thi.ng/associative": "npm:^6.3.60"

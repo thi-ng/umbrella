@@ -1,12 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type {
-	GroupAttribs,
-	IShape,
-	Tessellation,
-	Tessellator,
-} from "@thi.ng/geom-api";
+import type { IShape, Tessellation, Tessellator } from "@thi.ng/geom-api";
 import { earCut } from "@thi.ng/geom-tessellate/earcut";
 import {
 	earCutComplex,
@@ -18,7 +13,6 @@ import { quadFan } from "@thi.ng/geom-tessellate/quad-fan";
 import { rimTris } from "@thi.ng/geom-tessellate/rim-tris";
 import {
 	tessellate as _tessellate,
-	indexedPoints,
 	tessellateQueue,
 } from "@thi.ng/geom-tessellate/tessellate";
 import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
@@ -26,7 +20,6 @@ import { triFanSplit } from "@thi.ng/geom-tessellate/tri-fan-split";
 import { range } from "@thi.ng/transducers/range";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Group } from "./api/group.js";
-import { Polygon } from "./api/polygon.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
@@ -103,15 +96,6 @@ export const tessellate = defmulti<IShape, Iterable<Tessellator>, Tessellation>(
 		},
 	}
 );
-
-export const groupFromTessellation = (
-	tess: Tessellation,
-	attribs?: GroupAttribs
-) =>
-	new Group(
-		attribs,
-		tess.indices.map((ids) => new Polygon(indexedPoints(tess.points, ids)))
-	);
 
 /**
  * Alias for thi.ng/geom-tessellate

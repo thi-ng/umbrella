@@ -37,6 +37,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
+		"@thi.ng/adjacency": "^2.5.51",
 		"@thi.ng/api": "^8.11.2",
 		"@thi.ng/arrays": "^2.9.6",
 		"@thi.ng/associative": "^6.3.60",
@@ -73,6 +74,7 @@
 	},
 	"keywords": [
 		"2d",
+		"3d",
 		"analysis",
 		"arc",
 		"area",
@@ -83,14 +85,25 @@
 		"clipping",
 		"conversion",
 		"datastructure",
+		"edges",
+		"ellipse",
 		"geometry",
+		"graph",
 		"graphics",
+		"group",
 		"intersection",
+		"parser",
+		"path",
+		"polygon",
+		"polyline",
 		"polymorphic",
 		"sample",
 		"scatter",
 		"shape",
+		"spline",
 		"svg",
+		"triangulation",
+		"tessellation",
 		"typescript"
 	],
 	"publishConfig": {
@@ -300,6 +313,9 @@
 		},
 		"./flip": {
 			"default": "./flip.js"
+		},
+		"./from-tessellation": {
+			"default": "./from-tessellation.js"
 		},
 		"./group": {
 			"default": "./group.js"
