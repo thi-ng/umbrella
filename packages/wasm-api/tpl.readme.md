@@ -6,6 +6,12 @@
 
 {{pkg.description}}
 
+| Quasiflock                                                                                                                                        | Danza                                                                                                                                            | S-TRACE                                                                                                                                             | Voxelscape                                                                                                                                                           |
+|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <a href="https://www.fxhash.xyz/generative/6671"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/quasiflock-240.jpg"/></a> | <a href="https://mastodon.thi.ng/@toxi/tagged/DANZA"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/danza-240.jpg"/></a> | <a href="https://mastodon.thi.ng/@toxi/tagged/STRACE"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/s-trace-240.jpg"/></a> | <a href="https://twitter.com/search?q=from%3A%40toxi+voxel+ziglang"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/voxelscape-240.jpg"/></a> |
+
+(Screenshots of selected projects made with Zig & TypeScript using the interop features provided by this package. Images link to respective project info)
+
 This package provides the following:
 
 1. A small
