@@ -2,7 +2,7 @@
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!
 //! This version of the script is only compatible with:
-//! Zig v0.12.0 or newer
+//! Zig v0.13.0
 //!
 //! Use other build.zig files in this same directory for older Zig versions
 
