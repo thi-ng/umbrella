@@ -341,10 +341,11 @@ For Node.js REPL:
 const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 17.17 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 17.33 KB
 
 ## Dependencies
 
+- [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
@@ -395,6 +396,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-path.png" width="240"/>         | SVG path to SDF, applying deformation and converting back to SVG                 | [Demo](https://demo.thi.ng/umbrella/geom-sdf-path/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-path)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-terrain-viz.jpg" width="240"/>      | 2.5D hidden line visualization of digital elevation files (DEM)                  | [Demo](https://demo.thi.ng/umbrella/geom-terrain-viz/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-terrain-viz)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png" width="240"/>                    | Animated, recursive polygon tessellations                                        | [Demo](https://demo.thi.ng/umbrella/geom-tessel/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-unique-edges.png" width="240"/>     | Iterating the unique edges of a tessellation                                     | [Demo](https://demo.thi.ng/umbrella/geom-unique-edges/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-unique-edges)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/>      | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-voronoi-mst)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>     | Converting thi.ng/geom shape types for WebGL                                     | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-basics)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png" width="240"/>      | Mouse gesture / stroke analysis, simplification, corner detection                | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gesture-analysis)      |
