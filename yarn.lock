@@ -911,6 +911,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-unique-edges@workspace:examples/geom-unique-edges":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-unique-edges@workspace:examples/geom-unique-edges"
+  dependencies:
+    "@thi.ng/canvas": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/fibers": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.4.5"
+    vite: "npm:^5.2.11"
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-voronoi-mst@workspace:examples/geom-voronoi-mst":
   version: 0.0.0-use.local
   resolution: "@example/geom-voronoi-mst@workspace:examples/geom-voronoi-mst"
