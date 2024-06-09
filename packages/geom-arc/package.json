@@ -37,7 +37,6 @@
 	},
 	"dependencies": {
 		"@thi.ng/checks": "^3.6.4",
-		"@thi.ng/geom-api": "^4.0.10",
 		"@thi.ng/geom-resample": "^2.3.53",
 		"@thi.ng/math": "^5.10.13",
 		"@thi.ng/vectors": "^7.10.31"
