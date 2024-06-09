@@ -37,7 +37,6 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.2",
-		"@thi.ng/geom-api": "^4.0.10",
 		"@thi.ng/geom-closest-point": "^2.1.127",
 		"@thi.ng/math": "^5.10.13",
 		"@thi.ng/vectors": "^7.10.31"

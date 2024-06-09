@@ -1,10 +1,6 @@
-import {
-	IntersectionType,
-	type IntersectionResult,
-} from "@thi.ng/geom-api/isec";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import { NONE } from "./api.js";
+import { IntersectionType, NONE, type IntersectionResult } from "./api.js";
 import { checkPolyPair } from "./point.js";
 import { intersectRayLine } from "./ray-line.js";
 

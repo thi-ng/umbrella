@@ -1,14 +1,10 @@
 import type { Maybe } from "@thi.ng/api";
-import {
-	IntersectionType,
-	type IntersectionResult,
-} from "@thi.ng/geom-api/isec";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dot } from "@thi.ng/vectors/dot";
 import { maddN } from "@thi.ng/vectors/maddn";
 import { magSq } from "@thi.ng/vectors/magsq";
 import { sub } from "@thi.ng/vectors/sub";
-import { NONE } from "./api.js";
+import { IntersectionType, NONE, type IntersectionResult } from "./api.js";
 
 export const intersectRayCircle = (
 	rpos: ReadonlyVec,

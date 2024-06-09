@@ -1,11 +1,7 @@
 import type { FnU4, Range } from "@thi.ng/api";
-import {
-	IntersectionType,
-	type IntersectionResult,
-} from "@thi.ng/geom-api/isec";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN } from "@thi.ng/vectors/maddn";
-import { NONE } from "./api.js";
+import { IntersectionType, NONE, type IntersectionResult } from "./api.js";
 
 const min = Math.min;
 const max = Math.max;

@@ -81,12 +81,11 @@ For Node.js REPL:
 const isec = await import("@thi.ng/geom-isec");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.27 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.26 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-closest-point)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)

@@ -1,11 +1,7 @@
-import {
-	IntersectionType,
-	type IntersectionResult,
-} from "@thi.ng/geom-api/isec";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import { NONE } from "./api.js";
+import { IntersectionType, NONE, type IntersectionResult } from "./api.js";
 
 /**
  * 2D only.

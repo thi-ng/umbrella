@@ -1,8 +1,8 @@
-import type { IntersectionResult } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mag } from "@thi.ng/vectors/mag";
 import { normalize2 } from "@thi.ng/vectors/normalize";
 import { sub2 } from "@thi.ng/vectors/sub";
+import { type IntersectionResult } from "./api.js";
 import { intersectRayPolylineAll } from "./ray-poly.js";
 
 /**

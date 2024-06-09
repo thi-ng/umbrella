@@ -1,4 +1,4 @@
-import { IntersectionType } from "@thi.ng/geom-api";
+import { IntersectionType } from "@thi.ng/geom-isec";
 import { expect, test } from "bun:test";
 import {
 	intersectLinePolylineAll,
