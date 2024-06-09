@@ -74,6 +74,7 @@ export * from "./dotc.js";
 export * from "./dots.js";
 export * from "./empty.js";
 export * from "./eqdelta.js";
+export * from "./eqdist.js";
 export * from "./equals.js";
 export * from "./every.js";
 export * from "./exp.js";

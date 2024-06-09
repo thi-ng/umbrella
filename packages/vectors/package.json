@@ -317,6 +317,9 @@
 		"./eqdelta": {
 			"default": "./eqdelta.js"
 		},
+		"./eqdist": {
+			"default": "./eqdist.js"
+		},
 		"./equals": {
 			"default": "./equals.js"
 		},
