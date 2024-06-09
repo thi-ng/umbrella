@@ -3,7 +3,7 @@ import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { peek } from "@thi.ng/arrays/peek";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import type { Attribs, IHiccupShape3, PathSegment3 } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape3, PathSegment3 } from "../api.js";
 import { __copyAttribs, __copySegment } from "../internal/copy.js";
 
 export class Path3 implements IClear, IHiccupShape3<Path3> {

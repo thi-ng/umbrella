@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { AABB } from "./api/aabb.js";
 import { Rect } from "./api/rect.js";
 import { __unionBounds } from "./internal/bounds.js";

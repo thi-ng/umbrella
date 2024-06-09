@@ -1,6 +1,6 @@
-import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
+import type { PCLike, PCLikeConstructor } from "../api.js";
 import { __copyAttribs } from "./copy.js";
 
 export const __translatedPoints = (pts: ReadonlyVec[], delta: ReadonlyVec) =>

@@ -1,5 +1,5 @@
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
-import type { Attribs, IShape } from "@thi.ng/geom-api";
+import type { Attribs, IShape } from "./api.js";
 import { convertTree } from "@thi.ng/hiccup-svg/convert";
 import { ff } from "@thi.ng/hiccup-svg/format";
 import { svg } from "@thi.ng/hiccup-svg/svg";

@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { copy } from "@thi.ng/vectors/copy";
 import type { Arc } from "./api/arc.js";
 import { Line } from "./api/line.js";

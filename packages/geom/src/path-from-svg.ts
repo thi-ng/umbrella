@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { rad } from "@thi.ng/math/angle";
 import { WS } from "@thi.ng/strings/groups";
 import type { Vec } from "@thi.ng/vectors";

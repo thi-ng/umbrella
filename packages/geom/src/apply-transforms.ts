@@ -7,7 +7,7 @@ import type {
 	IShape,
 	IShape2,
 	IShape3,
-} from "@thi.ng/geom-api";
+} from "./api.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
 import type { Ellipse } from "./api/ellipse.js";

@@ -1,5 +1,5 @@
 import { assert } from "@thi.ng/errors/assert";
-import type { PCLikeConstructor } from "@thi.ng/geom-api";
+import type { PCLikeConstructor } from "../api.js";
 import { __argAttribs } from "./args.js";
 
 export const __pclike = (ctor: PCLikeConstructor, args: any[]) => {

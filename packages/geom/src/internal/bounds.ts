@@ -1,11 +1,11 @@
 // thing:export
 import type { Fn, Maybe } from "@thi.ng/api";
-import type { AABBLike, IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
 import { max } from "@thi.ng/vectors/max";
 import { min } from "@thi.ng/vectors/min";
 import { sub } from "@thi.ng/vectors/sub";
+import type { AABBLike, IShape } from "../api.js";
 
 /**
  * Computes the total bounds for the given shape collection, which should either
@@ -34,9 +34,8 @@ export const __collBounds = (
 };
 
 /**
- * Takes the position and size vectors of 2
- * [`AABBLike`](https://docs.thi.ng/umbrella/geom-api/interfaces/AABBLike.html)s
- * and returns 2-tuple of `[pos,size]` of their union bounds.
+ * Takes the position and size vectors of 2 {@link AABBLike}s and returns
+ * 2-tuple of `[pos,size]` of their union bounds.
  *
  * @param apos - bbox 1 min pos
  * @param asize - bbox1 size

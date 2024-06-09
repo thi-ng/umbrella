@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { mix } from "@thi.ng/math/mix";
 import { map } from "@thi.ng/transducers/map";
 import { normRange } from "@thi.ng/transducers/norm-range";

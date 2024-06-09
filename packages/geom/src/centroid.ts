@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { AABBLike, IShape, PCLike } from "@thi.ng/geom-api";
+import type { AABBLike, IShape, PCLike } from "./api.js";
 import {
 	centerOfWeight2,
 	complexCenterOfWeight2,

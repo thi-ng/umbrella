@@ -1,4 +1,4 @@
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mulN } from "@thi.ng/vectors/muln";
 import { scale } from "./scale.js";

@@ -10,7 +10,7 @@ import type {
 	PathSegment,
 	PathSegment2,
 	PathSegment3,
-} from "@thi.ng/geom-api";
+} from "./api.js";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { copy } from "@thi.ng/vectors/copy";
 import type { APC } from "./api/apc.js";

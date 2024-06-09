@@ -1,9 +1,9 @@
 import type { Fn } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Attribs, IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { Attribs, IShape, IShape2, IShape3 } from "./api.js";
 import type { Arc } from "./api/arc.js";
 import { BPatch } from "./api/bpatch.js";
 import type { Circle } from "./api/circle.js";

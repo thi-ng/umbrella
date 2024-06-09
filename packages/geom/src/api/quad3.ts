@@ -1,5 +1,5 @@
-import type { Attribs, IHiccupShape3 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
+import type { Attribs, IHiccupShape3 } from "../api.js";
 import { __copyShape } from "../internal/copy.js";
 import { __ensureNumVerts } from "../internal/pclike.js";
 import { APC } from "./apc.js";

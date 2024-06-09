@@ -1,10 +1,9 @@
-import type { Attribs, IShape } from "@thi.ng/geom-api";
+import type { Attribs, IShape } from "./api.js";
 
 /**
  * Returns a shallow copy of given shape with new `attribs` assigned (using
- * [`IAttributed`](https://docs.thi.ng/umbrella/geom-api/interfaces/IAttributed.html).withAttribs}).
- * If `replace` is false, the new attribs will be merged with the existing ones
- * (if any).
+ * {@link IAttributed.withAttribs}). If `replace` is false, the new attribs will
+ * be merged with the existing ones (if any).
  *
  * @param shape
  * @param attribs

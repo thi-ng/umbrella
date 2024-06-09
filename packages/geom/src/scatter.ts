@@ -1,4 +1,4 @@
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Vec } from "@thi.ng/vectors";
 import { randMinMax } from "@thi.ng/vectors/rand-minmax";

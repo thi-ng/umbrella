@@ -1,7 +1,7 @@
-import type { Attribs, IHiccupShape3 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { maddN3 } from "@thi.ng/vectors/maddn";
 import { set3 } from "@thi.ng/vectors/set";
+import type { Attribs, IHiccupShape3 } from "../api.js";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Ray3 implements IHiccupShape3<Ray3> {

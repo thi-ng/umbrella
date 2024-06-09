@@ -1,10 +1,10 @@
-import type { AABBLike, Attribs, IHiccupShape3 } from "@thi.ng/geom-api";
 import { add3 } from "@thi.ng/vectors/add";
 import { addN3 } from "@thi.ng/vectors/addn";
 import { ZERO3, type Vec } from "@thi.ng/vectors/api";
 import { max3 } from "@thi.ng/vectors/max";
 import { set3 } from "@thi.ng/vectors/set";
 import { subN3 } from "@thi.ng/vectors/subn";
+import type { AABBLike, Attribs, IHiccupShape3 } from "../api.js";
 import { __asVec } from "../internal/args.js";
 import { __copyAttribs } from "../internal/copy.js";
 

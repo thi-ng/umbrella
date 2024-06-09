@@ -1,9 +1,5 @@
-import type {
-	Attribs,
-	IHiccupPathSegment,
-	IHiccupShape2,
-} from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
+import type { Attribs, IHiccupPathSegment, IHiccupShape2 } from "../api.js";
 import { __copyShape } from "../internal/copy.js";
 import { __ensureNumVerts } from "../internal/pclike.js";
 import { __hiccupLineSegment } from "../internal/vertices.js";

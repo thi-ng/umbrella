@@ -1,4 +1,4 @@
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { dist } from "@thi.ng/vectors/dist";
 import { closestPoint } from "./closest-point.js";

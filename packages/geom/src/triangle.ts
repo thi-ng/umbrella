@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { equilateralTriangle2 } from "@thi.ng/geom-poly-utils/equilateral";
 import type { Vec } from "@thi.ng/vectors";
 import { Triangle } from "./api/triangle.js";

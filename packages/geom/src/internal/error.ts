@@ -1,5 +1,5 @@
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "../api.js";
 import { Arc } from "../api/arc.js";
 
 export const __ensureNoArc = (x: IShape) =>

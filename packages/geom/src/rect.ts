@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { SQRT2_2, SQRT3 } from "@thi.ng/math/api";
 import { add2 } from "@thi.ng/vectors/add";

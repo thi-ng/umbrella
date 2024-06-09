@@ -45,7 +45,6 @@
 		"@thi.ng/defmulti": "^3.0.39",
 		"@thi.ng/equiv": "^2.1.58",
 		"@thi.ng/errors": "^2.5.7",
-		"@thi.ng/geom-api": "^4.0.10",
 		"@thi.ng/geom-arc": "^2.1.132",
 		"@thi.ng/geom-clip-line": "^2.3.89",
 		"@thi.ng/geom-clip-poly": "^2.1.131",
@@ -226,6 +225,9 @@
 		},
 		"./api/triangle3": {
 			"default": "./api/triangle3.js"
+		},
+		"./api": {
+			"default": "./api.js"
 		},
 		"./apply-transforms": {
 			"default": "./apply-transforms.js"

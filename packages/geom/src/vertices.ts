@@ -4,9 +4,8 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PathSegment } from "@thi.ng/geom-api";
-import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
 import { sample as _arcVertices } from "@thi.ng/geom-arc/sample";
+import { DEFAULT_SAMPLES } from "@thi.ng/geom-resample/api";
 import { resample } from "@thi.ng/geom-resample/resample";
 import { sampleCubic } from "@thi.ng/geom-splines/cubic-sample";
 import { sampleQuadratic } from "@thi.ng/geom-splines/quadratic-sample";
@@ -17,6 +16,7 @@ import { add2, add3 } from "@thi.ng/vectors/add";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { madd2 } from "@thi.ng/vectors/madd";
 import { set2 } from "@thi.ng/vectors/set";
+import type { IShape, PathSegment, SamplingOpts } from "./api.js";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
@@ -36,7 +36,7 @@ import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
 /**
  * Extracts/samples vertices from given shape's boundary and returns them as
  * array. Some shapes also support
- * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html).
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-resample/interfaces/SamplingOpts.html).
  *
  * @remarks
  * The given sampling options (if any) can also be overridden per shape using

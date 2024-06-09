@@ -9,7 +9,7 @@ import type {
 	IShape2,
 	IShape3,
 	PCLike,
-} from "@thi.ng/geom-api";
+} from "./api.js";
 import {
 	closedCubicFromBreakPoints,
 	openCubicFromBreakPoints,
@@ -204,27 +204,27 @@ export const asCubic = <AsCubicFn>(
 			poly: ($: Polygon, opts) =>
 				__polyCubic(Cubic, $, opts, {
 					default: closedCubicFromControlPoints,
-					breakpoints: closedCubicFromBreakPoints,
+					break: closedCubicFromBreakPoints,
 					hobby: (pts, scale) => cubicHobby2(pts, true, scale),
 				}),
 
 			poly3: ($: Polygon3, opts) =>
 				__polyCubic(Cubic3, $, opts, {
 					default: closedCubicFromControlPoints,
-					breakpoints: closedCubicFromBreakPoints,
+					break: closedCubicFromBreakPoints,
 				}),
 
 			polyline: ($: Polyline, opts) =>
 				__polyCubic(Cubic, $, opts, {
 					default: openCubicFromControlPoints,
-					breakpoints: openCubicFromBreakPoints,
+					break: openCubicFromBreakPoints,
 					hobby: (pts, scale) => cubicHobby2(pts, false, scale),
 				}),
 
 			polyline3: ($: Polyline3, opts) =>
 				__polyCubic(Cubic3, $, opts, {
 					default: openCubicFromControlPoints,
-					breakpoints: openCubicFromBreakPoints,
+					break: openCubicFromBreakPoints,
 				}),
 
 			quadratic: ({ points, attribs }: Quadratic, opts) => [

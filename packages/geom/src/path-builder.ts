@@ -1,5 +1,5 @@
 import { peek } from "@thi.ng/arrays/peek";
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { Vec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";

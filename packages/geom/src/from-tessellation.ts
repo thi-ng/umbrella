@@ -1,11 +1,11 @@
 import type { Edge } from "@thi.ng/adjacency";
 import { defAdjBitMatrix } from "@thi.ng/adjacency/binary";
-import type { GroupAttribs, Tessellation } from "@thi.ng/geom-api";
 import { indexedPoints } from "@thi.ng/geom-tessellate/tessellate";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { partition } from "@thi.ng/transducers/partition";
 import { wrapSides } from "@thi.ng/transducers/wrap-sides";
+import type { GroupAttribs, Tessellation } from "./api.js";
 import { Group } from "./api/group.js";
 import { Polygon } from "./api/polygon.js";
 

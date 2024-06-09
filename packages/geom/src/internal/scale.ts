@@ -1,8 +1,8 @@
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul } from "@thi.ng/vectors/mul";
 import { mulN } from "@thi.ng/vectors/muln";
+import type { PCLike, PCLikeConstructor } from "../api.js";
 import { __copyAttribs } from "./copy.js";
 
 export const __scaledPoints = (

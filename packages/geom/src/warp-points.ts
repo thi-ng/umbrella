@@ -1,4 +1,4 @@
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { bounds2 } from "@thi.ng/geom-poly-utils/bounds";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import type { BPatch } from "./api/bpatch.js";

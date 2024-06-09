@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape2, PathSegment2 } from "@thi.ng/geom-api";
+import type { IShape2, PathSegment2 } from "./api.js";
 import { mulV22 } from "@thi.ng/matrices/mulv";
 import { rotation22 } from "@thi.ng/matrices/rotation";
 import { rotate as $rotate } from "@thi.ng/vectors/rotate";

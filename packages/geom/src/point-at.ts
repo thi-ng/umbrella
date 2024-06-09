@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { cossin } from "@thi.ng/math/angle";
 import { TAU } from "@thi.ng/math/api";

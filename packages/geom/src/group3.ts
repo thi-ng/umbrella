@@ -1,4 +1,4 @@
-import type { Attribs, IHiccupShape3 } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape3 } from "./api.js";
 import { Group3 } from "./api/group3.js";
 
 /**

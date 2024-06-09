@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { madd } from "@thi.ng/vectors/madd";
 import { mixBilinear } from "@thi.ng/vectors/mix-bilinear";

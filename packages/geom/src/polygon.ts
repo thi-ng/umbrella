@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { TAU } from "@thi.ng/math/api";
 import { cycle } from "@thi.ng/transducers/cycle";
 import { map } from "@thi.ng/transducers/map";

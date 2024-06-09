@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { add2 } from "@thi.ng/vectors/add";
 import { normalCW } from "@thi.ng/vectors/normal";
 import { set2 } from "@thi.ng/vectors/set";

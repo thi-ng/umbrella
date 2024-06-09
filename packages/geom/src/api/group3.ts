@@ -1,7 +1,7 @@
 import type { FnU, IClear } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { equiv } from "@thi.ng/equiv";
-import type { Attribs, IHiccupShape3 } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape3 } from "../api.js";
 import { __copyAttribs } from "../internal/copy.js";
 
 /**

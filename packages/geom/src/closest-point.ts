@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PCLike, PathSegment } from "@thi.ng/geom-api";
+import type { IShape, PCLike, PathSegment } from "./api.js";
 import { closestPoint as closestPointArc } from "@thi.ng/geom-arc/closest-point";
 import {
 	closestPointAABB,

@@ -1,7 +1,7 @@
 import type { FnU } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Attribs, IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
+import type { Attribs, IShape, IShape2, IShape3 } from "./api.js";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV23, mulV44 } from "@thi.ng/matrices/mulv";
 import type { Vec } from "@thi.ng/vectors";

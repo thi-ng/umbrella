@@ -1,8 +1,5 @@
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IntersectionResult, PCLike } from "@thi.ng/geom-api";
-import { IntersectionType } from "@thi.ng/geom-api/isec";
-import { NONE } from "@thi.ng/geom-isec/api";
 import { intersectCircleCircle } from "@thi.ng/geom-isec/circle-circle";
 import { intersectLineLine } from "@thi.ng/geom-isec/line-line";
 import { intersectLinePolylineAll } from "@thi.ng/geom-isec/line-poly";
@@ -22,6 +19,13 @@ import { distSq2 } from "@thi.ng/vectors/distsq";
 import { magSq2 } from "@thi.ng/vectors/magsq";
 import { normalize2 } from "@thi.ng/vectors/normalize";
 import { sub2 } from "@thi.ng/vectors/sub";
+import {
+	IntersectionType,
+	NONE,
+	type IShape,
+	type IntersectionResult,
+	type PCLike,
+} from "./api.js";
 import type { AABB } from "./api/aabb.js";
 import type { Circle } from "./api/circle.js";
 import type { Group } from "./api/group.js";
@@ -42,7 +46,7 @@ export interface IntersectOpts {
 
 /**
  * Performs intersection tests on given 2 shapes and returns
- * [`IntersectionResult`](https://docs.thi.ng/umbrella/geom-api/interfaces/IntersectionResult.html).
+ * [`IntersectionResult`](https://docs.thi.ng/umbrella/geom-isec/interfaces/IntersectionResult.html).
  *
  * @remarks
  * Currently supported pairs:

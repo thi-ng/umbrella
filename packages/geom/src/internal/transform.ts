@@ -1,5 +1,8 @@
 // thing:export
 import type { Fn, FnU } from "@thi.ng/api";
+import type { MatOpMV, ReadonlyMat } from "@thi.ng/matrices";
+import { mulV, mulV344 } from "@thi.ng/matrices/mulv";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type {
 	IShape2,
 	IShape3,
@@ -7,10 +10,7 @@ import type {
 	PCLikeConstructor,
 	PathSegment,
 	PathSegment2,
-} from "@thi.ng/geom-api";
-import type { MatOpMV, ReadonlyMat } from "@thi.ng/matrices";
-import { mulV, mulV344 } from "@thi.ng/matrices/mulv";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+} from "../api.js";
 import { __copyAttribs } from "./copy.js";
 
 /** @internal */

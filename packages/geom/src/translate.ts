@@ -1,6 +1,6 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PathSegment2 } from "@thi.ng/geom-api";
+import type { IShape, PathSegment2 } from "./api.js";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
 import { set2, set3 } from "@thi.ng/vectors/set";

@@ -1,4 +1,4 @@
-import type { Attribs, PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
+import type { Attribs, PCLike, PCLikeConstructor } from "../api.js";
 import { map } from "@thi.ng/transducers/map";
 import type { Vec } from "@thi.ng/vectors";
 import { copyVectors } from "@thi.ng/vectors/copy";

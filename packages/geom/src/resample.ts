@@ -1,7 +1,7 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, PCLike, SamplingOpts } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample/resample";
+import type { IShape, IShape2, PCLike, SamplingOpts } from "./api.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Line } from "./api/line.js";
 import { Polygon } from "./api/polygon.js";

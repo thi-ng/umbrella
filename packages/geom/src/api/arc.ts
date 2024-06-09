@@ -1,16 +1,16 @@
 import { equiv } from "@thi.ng/equiv";
-import type {
-	Attribs,
-	HiccupPathSegment,
-	IHiccupPathSegment,
-	IHiccupShape2,
-} from "@thi.ng/geom-api";
 import {
 	pointAt as arcPointAt,
 	pointAtTheta as arcPointAtTheta,
 } from "@thi.ng/geom-arc/point-at";
 import type { Vec } from "@thi.ng/vectors";
 import { set } from "@thi.ng/vectors/set";
+import type {
+	Attribs,
+	HiccupPathSegment,
+	IHiccupPathSegment,
+	IHiccupShape2,
+} from "../api.js";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Arc implements IHiccupShape2<Arc>, IHiccupPathSegment {

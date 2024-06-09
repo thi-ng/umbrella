@@ -1,5 +1,5 @@
 import type { Maybe } from "@thi.ng/api";
-import type { Attribs, PathSegment3, SegmentType3 } from "@thi.ng/geom-api";
+import type { Attribs, PathSegment3, SegmentType3 } from "./api.js";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec } from "@thi.ng/vectors";

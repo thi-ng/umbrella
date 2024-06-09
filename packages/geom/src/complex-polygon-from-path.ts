@@ -1,4 +1,4 @@
-import type { Attribs, SamplingOpts } from "@thi.ng/geom-api";
+import type { Attribs, SamplingOpts } from "./api.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Path } from "./api/path.js";
 import { asPolygon } from "./as-polygon.js";

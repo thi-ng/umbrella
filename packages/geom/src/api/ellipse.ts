@@ -1,6 +1,6 @@
-import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { set2 } from "@thi.ng/vectors/set";
+import type { Attribs, IHiccupShape2 } from "../api.js";
 import { __asVec } from "../internal/args.js";
 import { __copyAttribs } from "../internal/copy.js";
 

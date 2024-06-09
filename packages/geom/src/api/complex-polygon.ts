@@ -1,5 +1,5 @@
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
-import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "../api.js";
 import { __copyAttribs } from "../internal/copy.js";
 import { Polygon } from "./polygon.js";
 

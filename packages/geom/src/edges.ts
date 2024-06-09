@@ -1,9 +1,9 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { VecPair } from "@thi.ng/vectors";
+import type { IShape, SamplingOpts } from "./api.js";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { BPatch } from "./api/bpatch.js";
@@ -48,7 +48,7 @@ import { vertices } from "./vertices.js";
  * - {@link Triangle}
  *
  * The implementations for the following shapes **do not** support
- * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom/interfaces/SamplingOpts.html)
  * (all others do):
  *
  * - {@link AABB}

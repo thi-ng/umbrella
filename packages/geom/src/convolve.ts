@@ -7,7 +7,7 @@ import type {
 	IShape3,
 	PCLike,
 	PCLikeConstructor,
-} from "@thi.ng/geom-api";
+} from "./api.js";
 import {
 	KERNEL_BOX as $BOX,
 	KERNEL_TRIANGLE as $GAUSSIAN,

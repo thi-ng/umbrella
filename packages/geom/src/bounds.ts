@@ -8,7 +8,7 @@ import type {
 	IShape3,
 	PathSegment,
 	PCLike,
-} from "@thi.ng/geom-api";
+} from "./api.js";
 import { bounds as arcBounds } from "@thi.ng/geom-arc/bounds";
 import { bounds2, bounds3 } from "@thi.ng/geom-poly-utils/bounds";
 import { cubicBounds } from "@thi.ng/geom-splines/cubic-bounds";

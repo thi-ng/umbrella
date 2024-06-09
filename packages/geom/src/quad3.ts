@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { closestPointPlane } from "@thi.ng/geom-closest-point/plane";
 import { alignmentQuat } from "@thi.ng/matrices/alignment-quat";
 import { mulVQ } from "@thi.ng/matrices/mulv";

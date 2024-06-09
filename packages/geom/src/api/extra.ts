@@ -1,4 +1,4 @@
-import type { IHiccupShape2 } from "@thi.ng/geom-api";
+import type { IHiccupShape2 } from "../api.js";
 
 /**
  * Dummy shape container for arbitrary hiccup elements. See {@link extra} for

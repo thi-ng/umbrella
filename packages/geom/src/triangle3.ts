@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import type { Vec } from "@thi.ng/vectors";
 import { Triangle3 } from "./api/triangle3.js";
 import { __pclike } from "./internal/pclike.js";

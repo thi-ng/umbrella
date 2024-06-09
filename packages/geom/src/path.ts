@@ -1,6 +1,6 @@
 import type { Maybe } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Attribs, PathSegment2, SegmentType2 } from "@thi.ng/geom-api";
+import type { Attribs, PathSegment2, SegmentType2 } from "./api.js";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

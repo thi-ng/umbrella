@@ -2,9 +2,9 @@ import type { Maybe } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, IShape3, SamplingOpts } from "@thi.ng/geom-api";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { set } from "@thi.ng/vectors/set";
+import type { IShape, IShape2, IShape3, SamplingOpts } from "./api.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
 import { Path } from "./api/path.js";
@@ -31,7 +31,7 @@ export type AsPolylineFn = {
 /**
  * Converts given shape boundary into an array of {@link Polyline}s or
  * {@link Polyline3}, optionally using provided
- * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom/interfaces/SamplingOpts.html)
  * or number of target vertices.
  *
  * @remarks

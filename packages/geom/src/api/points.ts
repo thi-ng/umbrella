@@ -1,4 +1,4 @@
-import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape2 } from "../api.js";
 import { __copyShape } from "../internal/copy.js";
 import { APC } from "./apc.js";
 

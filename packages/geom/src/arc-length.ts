@@ -1,6 +1,6 @@
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { perimeter } from "@thi.ng/geom-poly-utils/perimeter";
 import { PI, TAU } from "@thi.ng/math/api";
 import { dist } from "@thi.ng/vectors/dist";

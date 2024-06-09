@@ -1,5 +1,5 @@
 import { assert } from "@thi.ng/errors/assert";
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import type { Vec } from "@thi.ng/vectors";
 import { mixBilinear } from "@thi.ng/vectors/mix-bilinear";
 import { BPatch } from "./api/bpatch.js";

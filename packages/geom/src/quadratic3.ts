@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { quadraticFromLine as _line } from "@thi.ng/geom-splines/quadratic-line";
 import type { Vec } from "@thi.ng/vectors";
 import { Quadratic3 } from "./api/quadratic3.js";

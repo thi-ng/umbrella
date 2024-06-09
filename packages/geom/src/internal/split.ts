@@ -1,8 +1,8 @@
-import type { Attribs, PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import { splitCubicNearPoint } from "@thi.ng/geom-splines/cubic-split";
 import { quadraticSplitNearPoint } from "@thi.ng/geom-splines/quadratic-split";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { mixN } from "@thi.ng/vectors/mixn";
+import type { Attribs, PCLike, PCLikeConstructor } from "../api.js";
 import { __pointArraysAsShapes } from "./points-as-shape.js";
 
 export const __splitCubicNear = <T extends PCLike>(

@@ -2,7 +2,7 @@ import type { Maybe } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, PathSegment2 } from "@thi.ng/geom-api";
+import type { IShape, IShape2, PathSegment2 } from "./api.js";
 import { simplify as _simplify } from "@thi.ng/geom-resample/simplify";
 import type { Vec } from "@thi.ng/vectors";
 import { ComplexPolygon } from "./api/complex-polygon.js";

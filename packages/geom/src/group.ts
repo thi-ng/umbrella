@@ -1,4 +1,4 @@
-import type { GroupAttribs, IHiccupShape2 } from "@thi.ng/geom-api";
+import type { GroupAttribs, IHiccupShape2 } from "./api.js";
 import { Group } from "./api/group.js";
 
 /**

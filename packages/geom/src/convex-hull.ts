@@ -1,6 +1,6 @@
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, PCLike } from "@thi.ng/geom-api";
+import type { IShape, IShape2, PCLike } from "./api.js";
 import { grahamScan2 } from "@thi.ng/geom-hull/graham-scan";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Polygon } from "./api/polygon.js";

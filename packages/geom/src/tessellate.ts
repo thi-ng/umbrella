@@ -1,7 +1,6 @@
 import type { Maybe } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, Tessellation, Tessellator } from "@thi.ng/geom-api";
 import { earCut } from "@thi.ng/geom-tessellate/earcut";
 import {
 	earCutComplex,
@@ -18,6 +17,7 @@ import {
 import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
 import { triFanSplit } from "@thi.ng/geom-tessellate/tri-fan-split";
 import { range } from "@thi.ng/transducers/range";
+import type { IShape, Tessellation, Tessellator } from "./api.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Group } from "./api/group.js";
 import { __dispatch } from "./internal/dispatch.js";
@@ -25,7 +25,7 @@ import { vertices } from "./vertices.js";
 
 /**
  * Iteratively tessellates shape using provided
- * [`Tessellator`](https://docs.thi.ng/umbrella/geom-api/types/Tessellator.html)
+ * [`Tessellator`](https://docs.thi.ng/umbrella/geom-tessellate/types/Tessellator.html)
  * functions. See
  * [thi.ng/geom-tessellate](https://thi.ng/thi.ng/geom-tessellate) package for
  * more details.
@@ -34,7 +34,7 @@ import { vertices } from "./vertices.js";
  * Implemented for all shapes supported by {@link vertices}. For groups, every
  * child shape will be tessellated individually, but results combined into a
  * single
- * [`Tessellation`](https://docs.thi.ng/umbrella/geom-api/types/Tessellation.html).
+ * [`Tessellation`](https://docs.thi.ng/umbrella/geom-tessellate/types/Tessellation.html).
  *
  * {@link ComplexPolygon}s will **always** be first tessellated via
  * {@link TESSELLATE_EARCUT_COMPLEX} as a first pass (so you don't need to

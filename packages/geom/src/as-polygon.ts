@@ -1,8 +1,8 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, IShape3, SamplingOpts } from "@thi.ng/geom-api";
 import { copy } from "@thi.ng/vectors/copy";
+import type { IShape, IShape2, IShape3, SamplingOpts } from "./api.js";
 import type { Arc } from "./api/arc.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Path } from "./api/path.js";
@@ -24,7 +24,7 @@ export type AsPolygonFn = {
 /**
  * Converts given shape boundary into an array of {@link Polygon}s or
  * {@link Polygon3}, optionally using provided
- * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom/interfaces/SamplingOpts.html)
  * or number of target vertices.
  *
  * @remarks

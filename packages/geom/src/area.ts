@@ -1,6 +1,6 @@
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { polyArea2 } from "@thi.ng/geom-poly-utils/area";
 import { PI } from "@thi.ng/math/api";
 import type { Vec } from "@thi.ng/vectors";

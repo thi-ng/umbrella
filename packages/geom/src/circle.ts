@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import { circumCenter2 } from "@thi.ng/geom-poly-utils/circumcenter";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dist } from "@thi.ng/vectors/dist";

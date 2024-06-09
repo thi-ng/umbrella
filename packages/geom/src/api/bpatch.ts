@@ -1,6 +1,6 @@
-import type { Attribs, IHiccupShape2 } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
+import type { Attribs, IHiccupShape2 } from "../api.js";
 import { __copyShape } from "../internal/copy.js";
 import { __ensureNumVerts } from "../internal/pclike.js";
 import { APC } from "./apc.js";

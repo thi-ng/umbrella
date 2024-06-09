@@ -8,7 +8,7 @@ import type {
 	IShape3,
 	PathSegment2,
 	PathSegment3,
-} from "@thi.ng/geom-api";
+} from "./api.js";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";

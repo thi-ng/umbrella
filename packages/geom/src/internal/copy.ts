@@ -1,13 +1,13 @@
 // thing:export
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
+import { copy, copyVectors } from "@thi.ng/vectors/copy";
 import type {
 	Attribs,
 	IShape,
 	PCLike,
 	PCLikeConstructor,
 	PathSegment,
-} from "@thi.ng/geom-api";
-import { copy, copyVectors } from "@thi.ng/vectors/copy";
+} from "../api.js";
 
 /**
  * Creates a shallow copy of given `attribs`. Any `exclude` keys will be removed

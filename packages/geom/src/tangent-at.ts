@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PCLike } from "@thi.ng/geom-api";
+import type { IShape, PCLike } from "./api.js";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { cubicTangentAt } from "@thi.ng/geom-splines/cubic-tangent";
 import { quadraticTangentAt } from "@thi.ng/geom-splines/quadratic-tangent";

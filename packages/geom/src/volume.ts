@@ -1,6 +1,6 @@
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "./api.js";
 import { PI } from "@thi.ng/math/api";
 import type { AABB } from "./api/aabb.js";
 import type { Sphere } from "./api/sphere.js";

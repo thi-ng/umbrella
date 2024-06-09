@@ -1,9 +1,9 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, SubdivKernel } from "@thi.ng/geom-api";
-import * as sdc from "@thi.ng/geom-subdiv-curve/api";
+import * as sdc from "@thi.ng/geom-subdiv-curve/kernels";
 import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
+import type { IShape, IShape2, SubdivKernel } from "./api.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
@@ -77,7 +77,7 @@ export type SubdivCurveFn = {
 
 /**
  * Recursively applies
- * [`SubdivKernel`](https://docs.thi.ng/umbrella/geom-api/interfaces/SubdivKernel.html)
+ * [`SubdivKernel`](https://docs.thi.ng/umbrella/geom-subdiv-curve/interfaces/SubdivKernel.html)
  * to given shape/boundary. See
  * [thi.ng/geom-subdiv-curve](https://thi.ng/thi.ng/geom-subdiv-curve) package
  * for further details.

@@ -1,5 +1,5 @@
 import type { Maybe } from "@thi.ng/api";
-import type { IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
+import type { IShape, IShape2, IShape3 } from "./api.js";
 import { minNonZero2, minNonZero3 } from "@thi.ng/math/interval";
 import { safeDiv } from "@thi.ng/math/safe-div";
 import type { MatOpNV, MatOpV } from "@thi.ng/matrices";

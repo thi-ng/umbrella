@@ -1,7 +1,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, IShape3 } from "@thi.ng/geom-api";
+import type { IShape, IShape2, IShape3 } from "./api.js";
 import { closestT } from "@thi.ng/geom-closest-point/line";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { clamp01 } from "@thi.ng/math/interval";

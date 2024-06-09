@@ -1,4 +1,4 @@
-import type { Attribs } from "@thi.ng/geom-api";
+import type { Attribs } from "./api.js";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dot3 } from "@thi.ng/vectors/dot";
 import { normalize3 } from "@thi.ng/vectors/normalize";

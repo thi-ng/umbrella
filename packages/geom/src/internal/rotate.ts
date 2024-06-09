@@ -1,8 +1,8 @@
-import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import { mulV22, mulV33 } from "@thi.ng/matrices/mulv";
 import { rotation22 } from "@thi.ng/matrices/rotation";
 import { rotationAroundAxis33 } from "@thi.ng/matrices/rotation-around-axis";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { PCLike, PCLikeConstructor } from "../api.js";
 import { __copyAttribs } from "./copy.js";
 
 export const __rotatedPoints = (pts: ReadonlyVec[], theta: number) => {

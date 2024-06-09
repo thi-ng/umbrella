@@ -1,11 +1,11 @@
 import type { MultiFn3 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IHiccupShape3, IShape3, PathSegment3 } from "@thi.ng/geom-api";
 import { mulV33 } from "@thi.ng/matrices/mulv";
 import { rotationAroundAxis33 } from "@thi.ng/matrices/rotation-around-axis";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { X3, Y3, Z3 } from "@thi.ng/vectors/api";
 import { rotateAroundAxis3 } from "@thi.ng/vectors/rotate-around-axis";
+import type { IHiccupShape3, IShape3, PathSegment3 } from "./api.js";
 import { Cubic3 } from "./api/cubic3.js";
 import type { Group3 } from "./api/group3.js";
 import { Line3 } from "./api/line3.js";
@@ -21,7 +21,6 @@ import { asPath } from "./as-path.js";
 import { asPolygon } from "./as-polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
-import { __ensureNoArc } from "./internal/error.js";
 import { __rotatedShape3 as tx } from "./internal/rotate.js";
 import { __segmentTransformer } from "./internal/transform.js";
 
@@ -74,10 +73,7 @@ export const rotateAroundAxis = <RotateAroundAxisFn>(
 			path3: ($: Path3, axis, theta) => {
 				const mat = rotationAroundAxis33([], axis, theta);
 				const $rotateSegments = __segmentTransformer<PathSegment3>(
-					(geo) => {
-						__ensureNoArc(geo);
-						return rotateAroundAxis(geo, axis, theta);
-					},
+					(geo) => rotateAroundAxis(geo, axis, theta),
 					(p) => mulV33([], mat, p)
 				);
 				return new Path3(

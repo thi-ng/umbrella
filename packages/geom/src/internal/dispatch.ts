@@ -1,5 +1,5 @@
 // thing:export
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "../api.js";
 
 /** @internal */
 export const __dispatch = (x: IShape) => x.type;
