@@ -38,7 +38,6 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.2",
 		"@thi.ng/checks": "^3.6.4",
-		"@thi.ng/geom-api": "^4.0.10",
 		"@thi.ng/geom-closest-point": "^2.1.127",
 		"@thi.ng/geom-isec": "^3.1.0",
 		"@thi.ng/math": "^5.10.13",
@@ -81,6 +80,9 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
 		},
 		"./axis": {
 			"default": "./axis.js"

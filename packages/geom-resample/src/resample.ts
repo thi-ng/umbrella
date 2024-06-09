@@ -1,8 +1,8 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { copyVectors } from "@thi.ng/vectors/copy";
+import { DEFAULT_SAMPLES, type SamplingOpts } from "./api.js";
 import { Sampler } from "./sampler.js";
 
 export const resample = (
