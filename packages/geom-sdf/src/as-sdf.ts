@@ -4,17 +4,18 @@ import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
+	Attribs,
 	Circle,
 	ComplexPolygon,
 	Ellipse,
 	Group,
+	IShape,
 	Line,
 	Points,
 	Polyline,
 	Quadratic,
 	Rect,
 } from "@thi.ng/geom";
-import type { Attribs, IShape } from "@thi.ng/geom-api";
 import { Path } from "@thi.ng/geom/api/path";
 import { Polygon } from "@thi.ng/geom/api/polygon";
 import { asPolygon } from "@thi.ng/geom/as-polygon";
@@ -65,7 +66,7 @@ interface ParametricOps {
 
 /**
  * Takes an
- * [`IShape`](https://docs.thi.ng/umbrella/geom-api/interfaces/IShape.html)
+ * [`IShape`](https://docs.thi.ng/umbrella/geom/interfaces/IShape.html)
  * instance (possibly a tree, e.g. via
  * [`group()`](https://docs.thi.ng/umbrella/geom/functions/group.html)) and
  * converts it into a {@link SDFn}.
@@ -89,9 +90,9 @@ interface ParametricOps {
  * For shapes which need to be converted to polygons/polylines, the
  * {@link SDFAttribs.samples} attribute can be used to control the resulting
  * number of vertices. If not specified
- * [`DEFAULT_SAMPLES`](https://docs.thi.ng/umbrella/geom-api/variables/DEFAULT_SAMPLES.html)
+ * [`DEFAULT_SAMPLES`](https://docs.thi.ng/umbrella/geom-resample/variables/DEFAULT_SAMPLES.html)
  * will be used (which can be globally set via
- * [`setDefaultSamples()`](https://docs.thi.ng/umbrella/geom-api/functions/setDefaultSamples.html)).
+ * [`setDefaultSamples()`](https://docs.thi.ng/umbrella/geom-resample/functions/setDefaultSamples.html)).
  */
 export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 	__dispatch,

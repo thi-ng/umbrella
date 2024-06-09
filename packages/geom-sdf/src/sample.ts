@@ -1,6 +1,6 @@
 import type { Fn, NumericArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import type { AABBLike } from "@thi.ng/geom-api";
+import type { AABBLike } from "@thi.ng/geom";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { SDFn } from "./api.js";
 

@@ -1,7 +1,6 @@
 import type { NumericArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
-import type { Polygon } from "@thi.ng/geom";
-import type { AABBLike } from "@thi.ng/geom-api";
+import type { AABBLike, Polygon } from "@thi.ng/geom";
 import { isolines, setBorder } from "@thi.ng/geom-isoline";
 import { simplify } from "@thi.ng/geom-resample/simplify";
 import { polygon } from "@thi.ng/geom/polygon";
