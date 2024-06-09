@@ -15,7 +15,7 @@ export const fuzzyPoly = (
 		num: 2,
 		jitter: 2,
 		...opts,
-		curve: { mode: "breakpoints", ...opts.curve },
+		curve: { mode: "break", ...opts.curve },
 	};
 	const acc = group(attribs, []);
 	for (; --opts.num! >= 0; ) {

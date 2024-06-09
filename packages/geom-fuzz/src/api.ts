@@ -1,7 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import type { IColor } from "@thi.ng/color";
-import type { Polygon } from "@thi.ng/geom";
-import type { CubicOpts, IHiccupShape2 } from "@thi.ng/geom-api";
+import type { CubicOpts, IHiccupShape2, Polygon } from "@thi.ng/geom";
 import type { PointTransform2D } from "@thi.ng/grid-iterators/api";
 
 export type Color = string | number[] | IColor;
