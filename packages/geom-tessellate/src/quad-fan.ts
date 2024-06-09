@@ -1,6 +1,6 @@
-import type { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { addmN } from "@thi.ng/vectors";
+import type { Tessellator } from "./api.js";
 
 export const quadFan: Tessellator = (tess, pids) => {
 	const n = pids.length;

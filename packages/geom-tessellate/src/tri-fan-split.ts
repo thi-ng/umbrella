@@ -1,6 +1,6 @@
-import type { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { addmN } from "@thi.ng/vectors/addmn";
+import type { Tessellator } from "./api.js";
 
 /**
  * Combined tessellator of {@link triFan}, followed by {@link rimTris}, but in a

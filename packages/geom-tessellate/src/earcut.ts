@@ -1,9 +1,9 @@
-import type { Tessellator } from "@thi.ng/geom-api";
 import { pointInTriangle2 } from "@thi.ng/geom-isec/point";
 import { polyArea2 } from "@thi.ng/geom-poly-utils/area";
 import { range } from "@thi.ng/transducers/range";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
+import type { Tessellator } from "./api.js";
 
 export const earCut: Tessellator = (tess, pids) => {
 	let n = pids.length;

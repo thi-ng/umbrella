@@ -1,6 +1,6 @@
-import type { Tessellator } from "@thi.ng/geom-api";
 import { range } from "@thi.ng/transducers/range";
 import { addmN } from "@thi.ng/vectors/addmn";
+import type { Tessellator } from "./api.js";
 
 export const rimTris: Tessellator = (tess, pids) => {
 	const n = pids.length - 1;

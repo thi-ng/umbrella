@@ -1,13 +1,12 @@
 import { isFunction } from "@thi.ng/checks/is-function";
-import type { Tessellation, Tessellator } from "@thi.ng/geom-api";
 import { range } from "@thi.ng/transducers/range";
 import { repeat } from "@thi.ng/transducers/repeat";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { Tessellation, Tessellator } from "./api.js";
 
 /**
- * Creates a new
- * [`Tessellation`](https://docs.thi.ng/umbrella/geom-api/types/Tessellation.html)
- * result from given `points` and optional pre-tessellated face `indices`.
+ * Creates a new {@link Tessellation} result from given `points` and optional
+ * pre-tessellated face `indices`.
  *
  * @param points
  * @param indices

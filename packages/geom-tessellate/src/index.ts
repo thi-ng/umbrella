@@ -1,3 +1,4 @@
+export * from "./api.js";
 export * from "./tessellate.js";
 
 export * from "./earcut.js";

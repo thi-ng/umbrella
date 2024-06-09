@@ -1,9 +1,9 @@
 import type { Nullable, Predicate } from "@thi.ng/api";
-import type { Tessellator } from "@thi.ng/geom-api";
 import { bounds2 } from "@thi.ng/geom-poly-utils/bounds";
 import { sign } from "@thi.ng/math/abs";
 import { mux2 } from "@thi.ng/morton/mux";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { Tessellator } from "./api.js";
 
 /**
  * Higher-order tessellator, implementing an ear slicing triangulation

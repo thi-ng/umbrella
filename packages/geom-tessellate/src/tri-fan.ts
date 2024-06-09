@@ -1,5 +1,5 @@
-import type { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
+import type { Tessellator } from "./api.js";
 
 export const triFan: Tessellator = (tess, pids) => {
 	const n = pids.length - 1;
