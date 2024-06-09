@@ -41,7 +41,6 @@
 		"@thi.ng/defmulti": "^3.0.39",
 		"@thi.ng/errors": "^2.5.7",
 		"@thi.ng/geom": "^7.0.1",
-		"@thi.ng/geom-api": "^4.0.10",
 		"@thi.ng/transducers": "^9.0.5",
 		"@thi.ng/vector-pools": "^3.1.129",
 		"@thi.ng/vectors": "^7.10.31",

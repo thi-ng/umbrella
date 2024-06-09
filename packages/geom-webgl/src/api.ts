@@ -1,5 +1,5 @@
 import type { Fn3 } from "@thi.ng/api";
-import type { Attribs, Tessellator } from "@thi.ng/geom-api";
+import type { Attribs, Tessellator } from "@thi.ng/geom";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { DrawMode, ShaderSpec } from "@thi.ng/webgl";
 

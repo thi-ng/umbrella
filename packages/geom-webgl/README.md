@@ -59,7 +59,7 @@ For Node.js REPL:
 const gw = await import("@thi.ng/geom-webgl");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 930 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 923 bytes
 
 ## Dependencies
 
@@ -68,7 +68,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 930 bytes
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
-- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
+- [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
