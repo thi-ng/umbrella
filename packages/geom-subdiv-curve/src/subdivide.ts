@@ -1,12 +1,12 @@
-import type { SubdivKernel } from "@thi.ng/geom-api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { comp } from "@thi.ng/transducers/comp";
 import { mapcatIndexed } from "@thi.ng/transducers/mapcat-indexed";
 import { partition } from "@thi.ng/transducers/partition";
 import { push } from "@thi.ng/transducers/push";
+import { repeat } from "@thi.ng/transducers/repeat";
 import { transduce } from "@thi.ng/transducers/transduce";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { repeat } from "@thi.ng/transducers/repeat";
+import type { SubdivKernel } from "./api.js";
 
 /**
  * http://algorithmicbotany.org/papers/subgpu.sig2003.pdf
