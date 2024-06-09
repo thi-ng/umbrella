@@ -72,13 +72,12 @@ For Node.js REPL:
 const gpu = await import("@thi.ng/geom-poly-utils");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.61 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 

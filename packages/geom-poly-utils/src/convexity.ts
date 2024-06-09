@@ -1,7 +1,16 @@
-import { Convexity } from "@thi.ng/geom-api/convex";
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { corner2 } from "@thi.ng/vectors/clockwise";
+
+/**
+ * Polygon convexity classifier.
+ */
+export enum Convexity {
+	ILLEGAL = -1,
+	COLINEAR = 0,
+	CONVEX,
+	CONCAVE,
+}
 
 export const convexity = (pts: ReadonlyVec[], eps = EPS) => {
 	let n = pts.length;
