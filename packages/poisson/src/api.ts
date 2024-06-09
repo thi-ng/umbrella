@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import type { ISpatialSet } from "@thi.ng/geom-api";
+import type { ISpatialSet } from "@thi.ng/geom-accel";
 import type { IRandom } from "@thi.ng/random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 

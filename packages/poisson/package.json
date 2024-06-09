@@ -38,7 +38,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.2",
 		"@thi.ng/checks": "^3.6.4",
-		"@thi.ng/geom-api": "^4.0.10",
+		"@thi.ng/geom-accel": "^3.6.4",
 		"@thi.ng/random": "^3.8.0",
 		"@thi.ng/vectors": "^7.10.31"
 	},
