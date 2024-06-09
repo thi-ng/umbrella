@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import type { DrawCommand } from "@thi.ng/axidraw";
-import type { IShape2, SamplingOpts } from "@thi.ng/geom-api";
+import type { IShape2, SamplingOpts } from "@thi.ng/geom";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**
@@ -76,7 +76,7 @@ export interface AsAxiDrawOpts {
 	 *
 	 * @remarks
 	 * References:
-	 * - https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html
+	 * - https://docs.thi.ng/umbrella/geom-resample/interfaces/SamplingOpts.html
 	 * - https://docs.thi.ng/umbrella/geom/functions/vertices.html
 	 */
 	samples: number | Partial<SamplingOpts>;

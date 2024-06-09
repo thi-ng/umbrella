@@ -4,8 +4,16 @@ import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands";
 import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Circle, ComplexPolygon, Group, Polyline } from "@thi.ng/geom";
-import type { Attribs, IHiccupShape2, IShape2, PCLike } from "@thi.ng/geom-api";
+import type {
+	Attribs,
+	Circle,
+	ComplexPolygon,
+	Group,
+	IHiccupShape2,
+	IShape2,
+	PCLike,
+	Polyline,
+} from "@thi.ng/geom";
 import { clipPolylinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { applyTransforms } from "@thi.ng/geom/apply-transforms";

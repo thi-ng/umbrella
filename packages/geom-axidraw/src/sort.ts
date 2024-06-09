@@ -1,12 +1,12 @@
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { compareNumAsc } from "@thi.ng/compare/numeric";
-import { KdTreeSet } from "@thi.ng/geom-accel/kd-tree-set";
+import type { IShape2 } from "@thi.ng/geom";
 import type {
 	IRegionQuery,
-	IShape2,
 	ISpatialMap,
 	ISpatialSet,
-} from "@thi.ng/geom-api";
+} from "@thi.ng/geom-accel";
+import { KdTreeSet } from "@thi.ng/geom-accel/kd-tree-set";
 import { centroid } from "@thi.ng/geom/centroid";
 import { ZERO2, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { distSq2 } from "@thi.ng/vectors/distsq";
@@ -77,7 +77,7 @@ export const shapesByProximity =
 /**
  * Similar to {@link pointsByNearestNeighbor}, however for shapes and requiring
  * an
- * [`ISpatialMap`](https://docs.thi.ng/umbrella/geom-api/interfaces/ISpatialMap.html)
+ * [`ISpatialMap`](https://docs.thi.ng/umbrella/geom-accel/interfaces/ISpatialMap.html)
  * implementation and is using shape centroid (auto-computed) to perform
  * indexing and nearest neighbor queries.
  *
