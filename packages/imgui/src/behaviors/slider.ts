@@ -1,6 +1,6 @@
 import type { FnN4 } from "@thi.ng/api";
+import type { IShape } from "@thi.ng/geom";
 import { pointInside } from "@thi.ng/geom/point-inside";
-import type { IShape } from "@thi.ng/geom-api";
 import { clamp } from "@thi.ng/math/interval";
 import { roundTo } from "@thi.ng/math/prec";
 import type { Vec } from "@thi.ng/vectors";

@@ -1,5 +1,5 @@
 import type { Fn5 } from "@thi.ng/api";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "@thi.ng/geom";
 import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { ZERO2 } from "@thi.ng/vectors/api";

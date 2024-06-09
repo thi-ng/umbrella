@@ -261,14 +261,13 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.65 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.64 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
-- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate)
 - [@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)

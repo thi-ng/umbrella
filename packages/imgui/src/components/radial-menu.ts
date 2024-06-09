@@ -1,10 +1,12 @@
 import type { Maybe } from "@thi.ng/api";
-import type { Polygon } from "@thi.ng/geom";
-import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
+import {
+	TESSELLATE_TRI_FAN,
+	groupFromTessellation,
+	tessellate,
+	type Polygon,
+} from "@thi.ng/geom";
 import { centroid } from "@thi.ng/geom/centroid";
 import { circle } from "@thi.ng/geom/circle";
-import { polygon } from "@thi.ng/geom/polygon";
-import { vertices } from "@thi.ng/geom/vertices";
 import { mod } from "@thi.ng/math/prec";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { add2 } from "@thi.ng/vectors/add";
@@ -27,8 +29,7 @@ export const radialMenu = (
 	const key = hash([x, y, r, n, ~~gui.disabled]);
 	gui.registerID(id, key);
 	const cells: [Polygon, Hash, any, any][] = gui.resource(id, key, () => [
-		...mapIndexed((i, pts) => {
-			const cell = polygon(pts);
+		...mapIndexed((i, cell) => {
 			const p = add2(
 				null,
 				[-gui.textWidth(items[i]) >> 1, gui.theme.baseLine],
@@ -40,7 +41,7 @@ export const radialMenu = (
 				textLabelRaw(p, gui.textColor(false), items[i]),
 				textLabelRaw(p, gui.textColor(true), items[i]),
 			];
-		}, triFan(vertices(circle([x, y], r), n))),
+		}, groupFromTessellation(tessellate(circle([x, y], r, { __samples: n }), [TESSELLATE_TRI_FAN]))),
 	]);
 	let res: Maybe<number>;
 	let sel = -1;
