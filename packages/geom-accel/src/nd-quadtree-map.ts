@@ -1,7 +1,6 @@
 import type { Fn, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";
-import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { pointInCenteredBox } from "@thi.ng/geom-isec/point";
 import { testCenteredBoxSphere } from "@thi.ng/geom-isec/rect-circle";
 import { Heap } from "@thi.ng/heaps/heap";
@@ -18,6 +17,7 @@ import { madd } from "@thi.ng/vectors/madd";
 import { mulN } from "@thi.ng/vectors/muln";
 import { submN } from "@thi.ng/vectors/submn";
 import { vop } from "@thi.ng/vectors/vop";
+import type { IRegionQuery, ISpatialMap } from "./api.js";
 import { CMP, __addResults, __into } from "./utils.js";
 
 type MaybeNdQtNode<K extends ReadonlyVec, V> = Maybe<NdQtNode<K, V>>;

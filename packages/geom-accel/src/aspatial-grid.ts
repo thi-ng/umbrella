@@ -1,5 +1,4 @@
 import type { Fn, Nullable, Pair } from "@thi.ng/api";
-import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import type { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math/api";
 import { map } from "@thi.ng/transducers/map";
@@ -8,6 +7,7 @@ import { div } from "@thi.ng/vectors/div";
 import { equals } from "@thi.ng/vectors/equals";
 import { floor } from "@thi.ng/vectors/floor";
 import { subN } from "@thi.ng/vectors/subn";
+import type { IRegionQuery, ISpatialMap } from "./api.js";
 import { __ensureRes, __into } from "./utils.js";
 
 /**

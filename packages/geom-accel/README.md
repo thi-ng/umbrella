@@ -82,7 +82,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.71 KB
 - [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/develop/packages/distance)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)

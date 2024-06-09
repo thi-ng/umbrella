@@ -1,3 +1,4 @@
+export * from "./api.js";
 export * from "./aspatial-grid.js";
 export * from "./hash-grid.js";
 export * from "./kd-tree-map.js";

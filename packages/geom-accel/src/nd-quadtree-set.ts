@@ -1,9 +1,9 @@
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
-import type { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
 import { EPS } from "@thi.ng/math/api";
 import type { DistanceFn, ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
 import { submN } from "@thi.ng/vectors/submn";
+import type { IRegionQuery, ISpatialSet } from "./api.js";
 import { NdQuadtreeMap } from "./nd-quadtree-map.js";
 
 export class NdQuadtreeSet<K extends ReadonlyVec>

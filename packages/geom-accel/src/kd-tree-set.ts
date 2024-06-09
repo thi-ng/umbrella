@@ -1,6 +1,6 @@
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
-import type { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
 import type { DistanceFn, ReadonlyVec } from "@thi.ng/vectors";
+import type { IRegionQuery, ISpatialSet } from "./api.js";
 import { KdTreeMap } from "./kd-tree-map.js";
 
 export class KdTreeSet<K extends ReadonlyVec>
