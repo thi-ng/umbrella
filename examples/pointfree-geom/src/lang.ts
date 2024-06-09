@@ -2,6 +2,9 @@ import type { Fn, FnAny, IObjectOf } from "@thi.ng/api";
 import { isArray, isNumber } from "@thi.ng/checks";
 import {
 	Group,
+	TESSELLATE_INSET,
+	TESSELLATE_QUAD_FAN,
+	TESSELLATE_TRI_FAN,
 	circle as _circle,
 	transform as _transform,
 	vertices as _vertices,
@@ -12,9 +15,9 @@ import {
 	tessellate,
 	text,
 	transformVertices,
+	type IHiccupShape2,
+	type Tessellator,
 } from "@thi.ng/geom";
-import type { IHiccupShape2, Tessellator } from "@thi.ng/geom-api";
-import { inset, quadFan, triFan } from "@thi.ng/geom-tessellate";
 import {
 	rotation23,
 	scale23,
@@ -291,8 +294,8 @@ const POINTFREE_GEOM = ffi(
 		"transform-points": transformPoints,
 		"scale-center": scaleCenter,
 		// tessellators
-		trifan: defTessellator(triFan),
-		quadfan: defTessellator(quadFan),
-		inset: defTessellator(inset, true),
+		trifan: defTessellator(TESSELLATE_TRI_FAN),
+		quadfan: defTessellator(TESSELLATE_QUAD_FAN),
+		inset: defTessellator(TESSELLATE_INSET, true),
 	}
 );

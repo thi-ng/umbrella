@@ -1,6 +1,11 @@
 import type { Maybe } from "@thi.ng/api";
-import { asPolygon, circle, pointInside, rect } from "@thi.ng/geom";
-import type { IShape2 } from "@thi.ng/geom-api";
+import {
+	asPolygon,
+	circle,
+	pointInside,
+	rect,
+	type IShape2,
+} from "@thi.ng/geom";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";

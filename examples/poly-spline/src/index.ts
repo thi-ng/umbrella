@@ -80,7 +80,7 @@ const app =
 		// reconstruct poly as cubic curve segments
 		// reference: https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines#polygon-to-cubic-curve-conversion
 		const cubics = asCubic(poly, {
-			mode: mode ? "breakpoints" : "default",
+			mode: mode ? "break" : "default",
 			scale: scale * (uniform ? uniScale : 1),
 			uniform,
 		});

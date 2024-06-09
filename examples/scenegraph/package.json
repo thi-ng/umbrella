@@ -14,7 +14,6 @@
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/geom-api": "workspace:^",
 		"@thi.ng/hdom": "workspace:^",
 		"@thi.ng/hdom-canvas": "workspace:^",
 		"@thi.ng/math": "workspace:^",

@@ -17,9 +17,9 @@ import {
 	text,
 	vertices,
 	withAttribs,
+	type IHiccupShape2,
 } from "@thi.ng/geom";
 import { KdTreeSet } from "@thi.ng/geom-accel";
-import type { IHiccupShape2 } from "@thi.ng/geom-api";
 import { draw } from "@thi.ng/hiccup-canvas";
 import { fitClamped } from "@thi.ng/math";
 import { samplePoisson } from "@thi.ng/poisson";
@@ -54,7 +54,7 @@ const SHAPES: [IHiccupShape2, string][] = [
 	[D, "subdiv x3"],
 	[subdivCurve(C, SUBDIV_CHAIKIN_CLOSED, 4), "subdiv x4"],
 	[asPath(C, { scale: 1 }), "asPath()"],
-	[asPath(C, { mode: "breakpoints" }), "asPath()"],
+	[asPath(C, { mode: "break" }), "asPath()"],
 	[
 		points(vertices(C, { dist: 5 }), { size: 2, shape: "circle" }),
 		"vertices (dist: 5)",

@@ -12,8 +12,9 @@ import {
 	TESSELLATE_EDGE_SPLIT,
 	TESSELLATE_QUAD_FAN,
 	TESSELLATE_TRI_FAN,
+	type IShape,
+	type Tessellator,
 } from "@thi.ng/geom";
-import type { IShape, Tessellator } from "@thi.ng/geom-api";
 import { deg, fit01, fit11 } from "@thi.ng/math";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";

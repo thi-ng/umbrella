@@ -13,8 +13,8 @@ import {
 	text,
 	vertices,
 	withAttribs,
+	type IShape2,
 } from "@thi.ng/geom";
-import type { IShape2 } from "@thi.ng/geom-api";
 import { draw } from "@thi.ng/hiccup-canvas";
 
 // refactored version of an example by Pete Cory

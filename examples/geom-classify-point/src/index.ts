@@ -18,7 +18,7 @@ const poly = asPolygon(
 			weight: 3,
 			"fill-rule": "evenodd",
 		}),
-		{ mode: "breakpoints" }
+		{ mode: "break" }
 	)
 )[0];
 

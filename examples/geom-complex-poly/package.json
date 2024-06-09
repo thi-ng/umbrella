@@ -24,7 +24,6 @@
 		"@thi.ng/color": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
 		"@thi.ng/geom-accel": "workspace:^",
-		"@thi.ng/geom-api": "workspace:^",
 		"@thi.ng/hiccup-canvas": "workspace:^",
 		"@thi.ng/math": "workspace:^",
 		"@thi.ng/poisson": "workspace:^",

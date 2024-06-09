@@ -21,7 +21,6 @@
 		"@thi.ng/date": "workspace:^",
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/geom-api": "workspace:^",
 		"@thi.ng/geom-tessellate": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/matrices": "workspace:^",
