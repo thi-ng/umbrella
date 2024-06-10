@@ -88,7 +88,7 @@ export const asWebGlModel = <
 				...$.attribs?.__webgl,
 			};
 			const tess = tessellate($, opts.tessel!);
-			const indices = typedArrayOfVec("u32", tess.indices);
+			const indices = typedArrayOfVec("u32", tess.faces);
 			const num = indices.length;
 			assert(num % 3 === 0, `tessellation must result in triangles`);
 			return defModel(
