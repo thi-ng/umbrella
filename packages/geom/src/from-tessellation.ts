@@ -1,11 +1,10 @@
 import type { Edge } from "@thi.ng/adjacency";
 import { defAdjBitMatrix } from "@thi.ng/adjacency/binary";
-import { indexedPoints } from "@thi.ng/geom-tessellate/tessellate";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { partition } from "@thi.ng/transducers/partition";
 import { wrapSides } from "@thi.ng/transducers/wrap-sides";
-import type { GroupAttribs, Tessellation } from "./api.js";
+import type { GroupAttribs, ITessellation } from "./api.js";
 import { Group } from "./api/group.js";
 import { Polygon } from "./api/polygon.js";
 
@@ -17,12 +16,12 @@ import { Polygon } from "./api/polygon.js";
  * @param attribs
  */
 export const groupFromTessellation = (
-	tess: Tessellation,
+	tess: ITessellation,
 	attribs?: GroupAttribs
 ) =>
 	new Group(
 		attribs,
-		tess.indices.map((ids) => new Polygon(indexedPoints(tess.points, ids)))
+		tess.faces.map((ids) => new Polygon(tess.pointsForIDs(ids)))
 	);
 
 /**
@@ -37,13 +36,13 @@ export const groupFromTessellation = (
  * @param tessel
  */
 export const graphFromTessellation = (
-	{ points, indices }: Tessellation,
+	{ points, faces }: ITessellation,
 	directed = false
 ) =>
 	defAdjBitMatrix(
 		points.length,
 		<Iterable<Edge>>(
-			mapcat((ids) => partition(2, 1, wrapSides(ids, 0, 1)), indices)
+			mapcat((ids) => partition(2, 1, wrapSides(ids, 0, 1)), faces)
 		),
 		!directed
 	);
@@ -70,7 +69,7 @@ export const graphFromTessellation = (
  *
  * @param tess
  */
-export const edgesFromTessellation = (tess: Tessellation) =>
+export const edgesFromTessellation = (tess: ITessellation) =>
 	graphFromTessellation(tess, false).edges();
 
 /**
@@ -79,8 +78,8 @@ export const edgesFromTessellation = (tess: Tessellation) =>
  *
  * @param tess
  */
-export const edgePointsFromTessellation = (tess: Tessellation) =>
+export const edgePointsFromTessellation = (tess: ITessellation) =>
 	map(
-		(e) => indexedPoints(tess.points, e),
+		(e) => tess.pointsForIDs(e),
 		graphFromTessellation(tess, false).edges()
 	);

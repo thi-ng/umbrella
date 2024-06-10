@@ -21,7 +21,7 @@ export const setDefaultSamples = sample.setDefaultSamples;
 export type SamplingOpts = sample.SamplingOpts;
 export type SubdivKernel = sdc.SubdivKernel;
 export type Tessellator = tess.Tessellator;
-export type Tessellation = tess.Tessellation;
+export type ITessellation = tess.ITessellation;
 
 export interface Attribs {
 	/**
