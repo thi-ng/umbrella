@@ -1,16 +1,25 @@
-import { range } from "@thi.ng/transducers/range";
 import { addmN } from "@thi.ng/vectors/addmn";
 import type { Tessellator } from "./api.js";
 
 export const rimTris: Tessellator = (tess, pids) => {
+	const faces: number[][] = [];
+	const points = tess.pointsForIDs(pids);
 	const n = pids.length - 1;
-	const m = tess.points.length - 1;
-	const points = pids.map((i) => tess.points[i]);
+	const mids: number[] = [
+		tess.addPoint(addmN([], points[n], points[0], 0.5)),
+	];
+	let mprev = mids[0];
 	for (let i = 0; i <= n; i++) {
-		const j = i < n ? i + 1 : 0;
-		const k = tess.points.push(addmN([], points[i], points[j], 0.5)) - 1;
-		tess.indices.push([pids[i], k, i > 0 ? m + i : m + n + 1]);
+		let m: number;
+		if (i < n) {
+			m = tess.addPoint(addmN([], points[i], points[i + 1], 0.5));
+			mids.push(m);
+		} else {
+			m = mids[0];
+		}
+		faces.push([mprev, pids[i], m]);
+		mprev = m;
 	}
-	tess.indices.push([...range(m + 1, m + n + 2)]);
-	return tess;
+	faces.push(mids);
+	return faces;
 };

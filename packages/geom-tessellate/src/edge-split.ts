@@ -10,14 +10,14 @@ import type { Tessellator } from "./api.js";
  * @param points
  */
 export const edgeSplit: Tessellator = (tess, pids) => {
-	const n = pids.length;
-	const c = tess.points.length;
-	const points = pids.map((i) => tess.points[i]);
-	tess.points.push(centroid(points));
-	for (let i = 0, n1 = n - 1; i < n; i++) {
-		const j = i < n1 ? i + 1 : 0;
-		const k = tess.points.push(addmN([], points[i], points[j], 0.5)) - 1;
-		tess.indices.push([c, pids[i], k], [c, k, pids[j]]);
+	const faces: number[][] = [];
+	const points = tess.pointsForIDs(pids);
+	const c = tess.addPoint(centroid(points));
+	const n = pids.length - 1;
+	for (let i = 0; i <= n; i++) {
+		const j = i < n ? i + 1 : 0;
+		const m = tess.addPoint(addmN([], points[i], points[j], 0.5));
+		faces.push([c, pids[i], m], [c, m, pids[j]]);
 	}
-	return tess;
+	return faces;
 };

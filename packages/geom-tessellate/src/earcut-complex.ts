@@ -41,8 +41,8 @@ import type { Tessellator } from "./api.js";
 export const earCutComplex =
 	(holeIDs: number[] = [], threshold = 80): Tessellator =>
 	(tess, pids) => {
-		let points = pids.map((i) => tess.points[i]);
-		const indices = tess.indices;
+		let points = tess.pointsForIDs(pids);
+		const triangles: number[][] = [];
 		const hasHoles = !!holeIDs.length;
 		const outerLen = hasHoles ? holeIDs[0] : points.length;
 		let scale = 0;
@@ -58,14 +58,14 @@ export const earCutComplex =
 			}
 		}
 		let outerNode = buildVertexList(points, pids, 0, outerLen, true);
-		if (!outerNode || outerNode.n === outerNode.p) return tess;
+		if (!outerNode || outerNode.n === outerNode.p) return triangles;
 		if (hasHoles) {
 			outerNode = eliminateHoles(points, pids, holeIDs, outerNode);
 		} else {
 			outerNode = removeColinear(outerNode);
 		}
-		earcutLinked(outerNode, indices, scale > 0 ? isEarHashed : isEar);
-		return tess;
+		earcutLinked(outerNode, triangles, scale > 0 ? isEarHashed : isEar);
+		return triangles;
 	};
 
 /**

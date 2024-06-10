@@ -100,6 +100,9 @@
 		"./tessellate": {
 			"default": "./tessellate.js"
 		},
+		"./tessellation": {
+			"default": "./tessellation.js"
+		},
 		"./tri-fan-split": {
 			"default": "./tri-fan-split.js"
 		},

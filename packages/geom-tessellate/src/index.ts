@@ -1,5 +1,6 @@
 export * from "./api.js";
 export * from "./tessellate.js";
+export * from "./tessellation.js";
 
 export * from "./earcut.js";
 export * from "./earcut-complex.js";

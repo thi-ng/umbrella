@@ -7,7 +7,8 @@ import type { Tessellator } from "./api.js";
 
 export const earCut: Tessellator = (tess, pids) => {
 	let n = pids.length;
-	const points = pids.map((i) => tess.points[i]);
+	const faces: number[][] = [];
+	const points = tess.pointsForIDs(pids);
 	const order = [
 		...(polyArea2(points) > 0 ? range(n) : range(n - 1, -1, -1)),
 	];
@@ -22,7 +23,7 @@ export const earCut: Tessellator = (tess, pids) => {
 		w = v + 1;
 		w = n <= w ? 0 : w;
 		if (__snip(points, u, v, w, n, order)) {
-			tess.indices.push([pids[order[u]], pids[order[v]], pids[order[w]]]);
+			faces.push([pids[order[u]], pids[order[v]], pids[order[w]]]);
 			order.splice(v, 1);
 			n--;
 			count = 2 * n;
@@ -30,7 +31,7 @@ export const earCut: Tessellator = (tess, pids) => {
 			count--;
 		}
 	}
-	return tess;
+	return faces;
 };
 
 const __snip = (

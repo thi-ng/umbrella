@@ -9,24 +9,24 @@ import type { Tessellator } from "./api.js";
  * @param points
  */
 export const triFanSplit: Tessellator = (tess, pids) => {
-	const n = pids.length;
-	const points = pids.map((i) => tess.points[i]);
-	const cid = tess.points.length;
+	const faces: number[][] = [];
+	const points = tess.pointsForIDs(pids);
 	const c = centroid(points);
-	tess.points.push(c);
-	for (let i = 0, n1 = n - 1; i < n; i++) {
-		const j = i < n1 ? i + 1 : 0;
+	const cid = tess.addPoint(c);
+	const n = pids.length - 1;
+	for (let i = 0; i <= n; i++) {
+		const j = i < n ? i + 1 : 0;
 		const a = points[i];
 		const b = points[j];
-		const mab = tess.points.push(addmN([], a, b, 0.5)) - 1;
-		const mac = tess.points.push(addmN([], a, c, 0.5)) - 1;
-		const mbc = tess.points.push(addmN([], b, c, 0.5)) - 1;
-		tess.indices.push(
+		const mab = tess.addPoint(addmN([], a, b, 0.5));
+		const mac = tess.addPoint(addmN([], a, c, 0.5));
+		const mbc = tess.addPoint(addmN([], b, c, 0.5));
+		faces.push(
 			[pids[i], mab, mac],
 			[mab, pids[j], mbc],
 			[mac, mab, mbc],
 			[mac, mbc, cid]
 		);
 	}
-	return tess;
+	return faces;
 };
