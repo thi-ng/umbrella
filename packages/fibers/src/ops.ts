@@ -172,7 +172,7 @@ export const timeSlice = (
  * @example
  * ```ts
  * import { timeSliceIterable } from "@thi.ng/fibers";
- * import { range } from "@this.ng/transducers";
+ * import { range } from "@thi.ng/transducers";
  *
  * // consume & batch process iterable in 16ms time slices
  * timeSliceIterable(
