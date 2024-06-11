@@ -4850,6 +4850,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.45.0"
     "@thi.ng/api": "npm:^8.11.2"
+    "@thi.ng/associative": "npm:^6.3.60"
     "@thi.ng/checks": "npm:^3.6.4"
     "@thi.ng/defmulti": "npm:^3.0.39"
     "@thi.ng/errors": "npm:^2.5.7"

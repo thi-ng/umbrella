@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.2",
+		"@thi.ng/associative": "^6.3.60",
 		"@thi.ng/checks": "^3.6.4",
 		"@thi.ng/defmulti": "^3.0.39",
 		"@thi.ng/errors": "^2.5.7",
@@ -78,6 +79,9 @@
 		},
 		"./as-webgl": {
 			"default": "./as-webgl.js"
+		},
+		"./uv": {
+			"default": "./uv.js"
 		}
 	},
 	"thi.ng": {

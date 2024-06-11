@@ -1,10 +1,12 @@
-import { typedArrayOfVec, type IObjectOf } from "@thi.ng/api";
+import { typedArrayOfVec, type IObjectOf, type Maybe } from "@thi.ng/api";
+import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { assert } from "@thi.ng/errors/assert";
-import type { IShape } from "@thi.ng/geom";
+import { complexPolygonFromPath, type IShape } from "@thi.ng/geom";
 import { ComplexPolygon } from "@thi.ng/geom/api/complex-polygon";
+import type { Group } from "@thi.ng/geom/api/group";
 import type { Path } from "@thi.ng/geom/api/path";
 import type { Polygon } from "@thi.ng/geom/api/polygon";
 import type { Polyline } from "@thi.ng/geom/api/polyline";
@@ -54,9 +56,11 @@ const DEFAULT_COLOR = [1, 1, 1, 1];
  * @param shape
  * @param opts
  */
-export const asWebGlModel = <
-	MultiFn1O<IShape, Partial<AsWebGLOpts>, Partial<UncompiledModelSpec>>
->defmulti<any, Partial<AsWebGLOpts>, Partial<UncompiledModelSpec>>(
+export const asWebGlModel: MultiFn1O<
+	IShape,
+	Partial<AsWebGLOpts>,
+	Partial<UncompiledModelSpec>[]
+> = defmulti<any, Maybe<Partial<AsWebGLOpts>>, Partial<UncompiledModelSpec>[]>(
 	__dispatch,
 	{
 		arc: "$aspolyline",
@@ -75,47 +79,71 @@ export const asWebGlModel = <
 
 		$aspolyline: ($, opts) => asWebGlModel(asPolyline($)[0], opts),
 
+		group: ($: Group, opts) =>
+			$.children.flatMap((child) => asWebGlModel(child, opts)),
+
 		path: ($: Path, opts) =>
-			asWebGlModel(($.closed ? asPolygon($) : asPolyline($))[0], opts),
+			asWebGlModel(
+				$.closed
+					? $.subPaths.length
+						? complexPolygonFromPath($)
+						: asPolygon($)[0]
+					: asPolyline($)[0],
+				opts
+			),
 
 		poly: ($: Polygon, opts) => {
-			opts = {
-				tessel:
-					$ instanceof ComplexPolygon
-						? []
-						: [TESSELLATE_EARCUT_COMPLEX()],
-				...opts,
-				...$.attribs?.__webgl,
-			};
-			const tess = tessellate($, opts.tessel!);
-			const indices = typedArrayOfVec("u32", tess.faces);
-			const num = indices.length;
-			assert(num % 3 === 0, `tessellation must result in triangles`);
-			return defModel(
+			opts = mergeDeepObj(
+				{
+					tessel: {
+						passes:
+							$ instanceof ComplexPolygon
+								? []
+								: [TESSELLATE_EARCUT_COMPLEX()],
+					},
+				},
 				opts,
-				tess.points,
-				num,
-				indices,
-				$.attribs?.fill,
-				DrawMode.TRIANGLES
+				$.attribs?.__webgl
 			);
+			const tess = tessellate(
+				$,
+				opts!.tessel!.passes,
+				opts!.tessel!.impl
+			);
+			const indices = typedArrayOfVec("u32", tess.faces);
+			return [
+				defModel(
+					$,
+					opts!,
+					tess.points,
+					indices.length,
+					indices,
+					$.attribs?.fill,
+					DrawMode.TRIANGLES
+				),
+			];
 		},
 
-		polyline: ({ points, attribs }: Polyline, opts) => {
-			opts = { ...opts, ...attribs?.__webgl };
-			return defModel(
-				opts,
-				points,
-				points.length,
-				undefined,
-				attribs?.stroke,
-				DrawMode.LINE_STRIP
-			);
+		polyline: ($: Polyline, opts) => {
+			const { points, attribs } = $;
+			opts = mergeDeepObj(opts || {}, attribs?.__webgl);
+			return [
+				defModel(
+					$,
+					opts!,
+					points,
+					points.length,
+					undefined,
+					attribs?.stroke,
+					DrawMode.LINE_STRIP
+				),
+			];
 		},
 	}
 );
 
 const defModel = (
+	shape: IShape,
 	opts: Partial<AsWebGLOpts>,
 	points: ReadonlyVec[],
 	num: number,
@@ -134,14 +162,15 @@ const defModel = (
 		},
 	};
 	if (opts.uv) {
+		const uvs = points.map(opts.uv(shape));
 		specs.uv = {
 			type: "f32",
-			size: 2,
+			size: uvs[0].length,
 			stride: opts.stride,
 			byteOffset: 8,
-			data: points.map(opts.uv),
+			data: uvs,
 		};
-		size += 8;
+		size += uvs[0].length * 4;
 	}
 	if (opts.color === "vertex") {
 		assert(
@@ -174,13 +203,16 @@ const defModel = (
 		model.indices = { data: indices };
 	}
 	if (opts.shader) {
-		const shader: ShaderSpec = {
-			vs: "",
-			fs: "",
-			attribs: {},
-			uniforms: {},
-			...opts.shader,
-		};
+		const shader: ShaderSpec = mergeDeepObj(
+			{
+				vs: "",
+				fs: "",
+				attribs: {},
+				varying: {},
+				uniforms: {},
+			},
+			opts.shader
+		);
 		shader.attribs.pos = "vec2";
 		if (opts.uv) {
 			shader.attribs.uv = "vec2";
