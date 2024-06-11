@@ -66,6 +66,7 @@ export * from "./quadratic3.js";
 export * from "./ray.js";
 export * from "./ray3.js";
 export * from "./rect.js";
+export * from "./smooth-poly.js";
 export * from "./text.js";
 export * from "./triangle.js";
 export * from "./triangle3.js";
