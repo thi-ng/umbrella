@@ -334,6 +334,9 @@
 		"./internal/dispatch": {
 			"default": "./internal/dispatch.js"
 		},
+		"./internal/pclike": {
+			"default": "./internal/pclike.js"
+		},
 		"./internal/transform": {
 			"default": "./internal/transform.js"
 		},
@@ -438,6 +441,9 @@
 		},
 		"./simplify": {
 			"default": "./simplify.js"
+		},
+		"./smooth-poly": {
+			"default": "./smooth-poly.js"
 		},
 		"./sphere": {
 			"default": "./sphere.js"
