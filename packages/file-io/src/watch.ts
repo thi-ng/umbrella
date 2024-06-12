@@ -30,7 +30,15 @@ export interface WatcherOpts {
 }
 
 export interface PathWatchOpts {
+	/**
+	 * If enabled (default) and if the path refers to a directory, any file
+	 * changes within that dir (or any subdir) will trigger an event.
+	 */
 	recursive: boolean;
+	/**
+	 * File extension filter. If given, events are only triggered for paths
+	 * matching this filter.
+	 */
 	ext: string | RegExp | Predicate<string>;
 }
 
