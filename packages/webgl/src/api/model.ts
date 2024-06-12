@@ -27,13 +27,13 @@ export interface ModelSpec {
 	 */
 	shader: IShader;
 	/**
-	 * GLSL attribute declarations
+	 * GLSL attribute declarations. Also see {@link ModelSpec.attribPool} as
+	 * alternative input format.
 	 */
 	attribs: ModelAttributeSpecs;
 	/**
 	 * Geometry attributes given as
-	 * [`AttribPool`](https://docs.thi.ng/umbrella/vector-pools/classes/AttribPool.html)
-	 * instance.
+	 * [`AttribPool`](https://docs.thi.ng/umbrella/vector-pools/classes/AttribPool.html).
 	 */
 	attribPool?: AttribPool;
 	/**
@@ -51,9 +51,15 @@ export interface ModelSpec {
 	 */
 	textures?: ITexture[];
 	/**
-	 * Extra configuration for instanced geometry
+	 * Extra configuration for instanced geometry. Also see
+	 * {@link ModelSpec.instancePool} as alternative input format.
 	 */
 	instances?: InstancingSpec;
+	/**
+	 * Instance attributes given as
+	 * [`AttribPool`](https://docs.thi.ng/umbrella/vector-pools/classes/AttribPool.html).
+	 */
+	instancePool?: AttribPool;
 	/**
 	 * WebGL draw mode. Defaults to `TRIANGLES`
 	 */

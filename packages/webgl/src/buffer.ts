@@ -124,7 +124,20 @@ export const compileModel = (
 	} else {
 		compileAttribs(gl, spec.attribs, mode);
 	}
-	spec.instances && compileAttribs(gl, spec.instances.attribs, mode);
+	if (spec.instancePool) {
+		spec.instances = {
+			attribs: compileAttribPool(
+				gl,
+				spec.instancePool,
+				undefined,
+				gl.ARRAY_BUFFER,
+				mode
+			),
+			num: spec.instancePool.capacity,
+		};
+	} else if (spec.instances) {
+		compileAttribs(gl, spec.instances.attribs, mode);
+	}
 	compileIndices(gl, spec.indices, mode);
 	spec.mode == null && (spec.mode = DrawMode.TRIANGLES);
 	// TODO auto-create VAO & inject into model spec?
@@ -207,7 +220,7 @@ export const compileAttribPool = (
 	target: GLenum = gl.ARRAY_BUFFER,
 	mode: GLenum = gl.STATIC_DRAW
 ) => {
-	const buf = defBuffer(gl, pool.bytes(), target, mode);
+	const buf = defBuffer(gl, pool.bytes(), target, mode, true);
 	const spec = <ModelAttributeSpecs>{};
 	for (let id of ids || Object.keys(pool.specs)) {
 		const attr = pool.specs[id];
