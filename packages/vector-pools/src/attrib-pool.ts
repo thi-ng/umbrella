@@ -86,14 +86,17 @@ export class AttribPool implements IRelease {
 		this.setAttribs(specs);
 	}
 
-	attribValue(id: string, i: number): Maybe<number | Vec> {
+	attribValue<T extends number | TypedArray>(
+		id: string,
+		i: number
+	): Maybe<T> {
 		const spec = this.specs[id];
 		ensureSpec(spec, id);
 		if (i >= this.capacity) return;
 		i *= spec.stride!;
 		return spec.size > 1
-			? this.attribs[id].subarray(i, i + spec.size)
-			: this.attribs[id][i];
+			? <T>this.attribs[id].subarray(i, i + spec.size)
+			: <any>this.attribs[id][i];
 	}
 
 	*attribValues<T extends number | TypedArray>(
