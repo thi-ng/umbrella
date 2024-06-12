@@ -1,7 +1,13 @@
 // thing:no-export
-import { watch } from "chokidar";
+import {
+	EVENT_ADDED,
+	EVENT_CHANGED,
+	EVENT_REMOVED,
+	fileWatcher,
+	isDirectory,
+} from "@thi.ng/file-io";
 import { readdirSync, statSync, writeFileSync } from "node:fs";
-import { normalize, resolve } from "node:path";
+import { normalize, resolve, sep } from "node:path";
 import { GLOBAL_OPTS, type TestResult } from "./api.js";
 import { execute } from "./exec.js";
 import { isString } from "./utils.js";
@@ -14,6 +20,8 @@ interface TestamentArgs {
 	out?: string;
 	rest: string[];
 }
+
+const SRC_EXT = /\.m?[jt]s$/;
 
 const parseOpts = (args: string[], i = 2): TestamentArgs | number => {
 	const res = <TestamentArgs>{
@@ -114,7 +122,7 @@ export function* files(
 		? new RegExp(`${match.replace(/\./g, "\\.")}$`)
 		: match;
 	for (let f of readdirSync(dir)) {
-		const curr = dir + "/" + f;
+		const curr = dir + sep + f;
 		if (re.test(f)) {
 			yield curr;
 		} else if (statSync(curr).isDirectory()) {
@@ -188,7 +196,7 @@ const runTests = async (opts: TestamentArgs) => {
 			process.exit(1);
 		}
 		if (statSync(resolvedPath).isDirectory()) {
-			for (let f of files(resolvedPath, /\.[jt]s$/)) {
+			for (let f of files(resolvedPath, SRC_EXT)) {
 				if (excludes.some((prefix) => f.startsWith(prefix))) continue;
 				enque(f);
 			}
@@ -209,7 +217,10 @@ const runTests = async (opts: TestamentArgs) => {
 };
 
 const watchTests = async (opts: TestamentArgs) => {
-	const watcher = watch(opts.rest, { persistent: true });
+	const watcher = fileWatcher();
+	for (let path of opts.rest) {
+		watcher.add(path, { recursive: isDirectory(path) });
+	}
 	const files = new Set<string>();
 	let tid: NodeJS.Timeout;
 
@@ -220,17 +231,18 @@ const watchTests = async (opts: TestamentArgs) => {
 
 	GLOBAL_OPTS.logger.info("watching files... Press <Ctrl+C> to abort");
 
-	watcher.on("all", (id, path) => {
-		switch (id) {
-			case "add":
-				files.add(path);
+	watcher.addListener("*", (e) => {
+		const path = e.value;
+		switch (e.id) {
+			case EVENT_ADDED:
+				if (SRC_EXT.test(path)) files.add(path);
 				rerunWith([...files]);
 				break;
-			case "change":
+			case EVENT_CHANGED:
 				files.add(path);
 				rerunWith([path]);
 				break;
-			case "unlink":
+			case EVENT_REMOVED:
 				files.delete(path);
 				break;
 			default:
