@@ -89,8 +89,10 @@ export const asWebGlModel: MultiFn1O<
 
 		$aspolyline: ($, opts) => asWebGlModel(asPolyline($)[0], opts),
 
-		group: ($: Group, opts) =>
-			$.children.flatMap((child) => asWebGlModel(child, opts)),
+		group: ($: Group, opts) => {
+			opts = mergeDeepObj(opts || {}, $.attribs?.__webgl);
+			return $.children.flatMap((child) => asWebGlModel(child, opts));
+		},
 
 		path: ($: Path, opts) =>
 			asWebGlModel(
