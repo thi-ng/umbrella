@@ -104,6 +104,9 @@
 		"./tessellation": {
 			"default": "./tessellation.js"
 		},
+		"./tri-fan-boundary": {
+			"default": "./tri-fan-boundary.js"
+		},
 		"./tri-fan-split": {
 			"default": "./tri-fan-split.js"
 		},
