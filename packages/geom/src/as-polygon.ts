@@ -1,8 +1,9 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import { copy } from "@thi.ng/vectors/copy";
+import { copy, copyVectors } from "@thi.ng/vectors/copy";
 import type { IShape, IShape2, IShape3, SamplingOpts } from "./api.js";
+import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import { Path } from "./api/path.js";
@@ -77,6 +78,18 @@ export const asPolygon = <AsPolygonFn>(
 			tri3: "points3",
 		},
 		{
+			aabb: ($: AABB) => {
+				const [a, b, c, d, e, f, g, h] = vertices($);
+				return [
+					[f, g, h, e], // n
+					[d, a, b, c], // s
+					[c, d, h, g], // e
+					[a, b, f, e], // w
+					[b, c, g, f], // f
+					[d, a, e, h], // b
+				].map((face) => new Polygon3(copyVectors(face), __attribs($)));
+			},
+
 			arc: ($: Arc, opts) => {
 				const pts = [copy($.pos), ...vertices($, opts)];
 				return [new Polygon(pts, __attribs($))];
