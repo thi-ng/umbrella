@@ -1,7 +1,22 @@
-import type { Fn2, IEmpty } from "@thi.ng/api";
+import type { IEmpty } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
-export type Tessellator = Fn2<ITessellation, number[], number[][]>;
+/**
+ * Tessellation algorithm implementation. Takes a {@link ITessellation}, an
+ * array of `faces` and an array of point/vertex IDs of the face/polygon to
+ * tessellate. Any new points created by the impl are to be added to the `tess`
+ * via {@link ITessellation.addPoint}. Any generated faces are to be appended to
+ * the given `faces` array (which also must be returned).
+ *
+ * @param tess
+ * @param faces
+ * @param face
+ */
+export type Tessellator = (
+	tess: ITessellation,
+	faces: number[][],
+	face: number[]
+) => number[][];
 
 export interface ITessellation extends IEmpty<ITessellation> {
 	/**

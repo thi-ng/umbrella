@@ -8,8 +8,7 @@ import type { Tessellator } from "./api.js";
  *
  * @param points
  */
-export const triFanSplit: Tessellator = (tess, pids) => {
-	const faces: number[][] = [];
+export const triFanSplit: Tessellator = (tess, faces, pids) => {
 	const points = tess.pointsForIDs(pids);
 	const c = centroid(points);
 	const cid = tess.addPoint(c);

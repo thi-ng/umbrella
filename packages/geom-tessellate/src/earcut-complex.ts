@@ -7,8 +7,9 @@ import type { Tessellator } from "./api.js";
 
 /**
  * Higher-order tessellator, implementing an ear slicing triangulation
- * algorithm, optimized by Morton/Z-curve hashing and able to handle complex
- * polygons with holes, twists, degeneracies and self-intersections.
+ * algorithm, optionally optimized by Morton/Z-curve hashing/sorting and able to
+ * handle complex polygons with holes, twists, degeneracies and
+ * self-intersections.
  *
  * @remarks
  * This is an adapted version of https://github.com/mapbox/earcut with the
@@ -36,17 +37,16 @@ import type { Tessellator } from "./api.js";
  * - https://docs.thi.ng/umbrella/morton/
  *
  * @param holeIDs
- * @param threshold
+ * @param hashThreshold
  */
 export const earCutComplex =
-	(holeIDs: number[] = [], threshold = 80): Tessellator =>
-	(tess, pids) => {
+	(holeIDs: number[] = [], hashThreshold = 80): Tessellator =>
+	(tess, faces, pids) => {
 		let points = tess.pointsForIDs(pids);
-		const triangles: number[][] = [];
 		const hasHoles = !!holeIDs.length;
 		const outerLen = hasHoles ? holeIDs[0] : points.length;
 		let scale = 0;
-		if (points.length >= threshold) {
+		if (points.length >= hashThreshold) {
 			const [[minX, minY], [maxX, maxY]] = bounds2(points, 0, outerLen);
 			scale = Math.max(maxX - minX, maxY - minY);
 			if (scale > 0) {
@@ -58,14 +58,14 @@ export const earCutComplex =
 			}
 		}
 		let outerNode = buildVertexList(points, pids, 0, outerLen, true);
-		if (!outerNode || outerNode.n === outerNode.p) return triangles;
+		if (!outerNode || outerNode.n === outerNode.p) return faces;
 		if (hasHoles) {
 			outerNode = eliminateHoles(points, pids, holeIDs, outerNode);
 		} else {
 			outerNode = removeColinear(outerNode);
 		}
-		earcutLinked(outerNode, triangles, scale > 0 ? isEarHashed : isEar);
-		return triangles;
+		earcutLinked(outerNode, faces, scale > 0 ? isEarHashed : isEar);
+		return faces;
 	};
 
 /**

@@ -9,8 +9,7 @@ import type { Tessellator } from "./api.js";
  *
  * @param points
  */
-export const edgeSplit: Tessellator = (tess, pids) => {
-	const faces: number[][] = [];
+export const edgeSplit: Tessellator = (tess, faces, pids) => {
 	const points = tess.pointsForIDs(pids);
 	const c = tess.addPoint(centroid(points));
 	const n = pids.length - 1;

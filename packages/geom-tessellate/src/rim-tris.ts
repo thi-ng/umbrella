@@ -1,8 +1,7 @@
 import { addmN } from "@thi.ng/vectors/addmn";
 import type { Tessellator } from "./api.js";
 
-export const rimTris: Tessellator = (tess, pids) => {
-	const faces: number[][] = [];
+export const rimTris: Tessellator = (tess, faces, pids) => {
 	const points = tess.pointsForIDs(pids);
 	const n = pids.length - 1;
 	const mids: number[] = [

@@ -5,9 +5,8 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
 import type { Tessellator } from "./api.js";
 
-export const earCut: Tessellator = (tess, pids) => {
+export const earCut: Tessellator = (tess, faces, pids) => {
 	let n = pids.length;
-	const faces: number[][] = [];
 	const points = tess.pointsForIDs(pids);
 	const order = [
 		...(polyArea2(points) > 0 ? range(n) : range(n - 1, -1, -1)),

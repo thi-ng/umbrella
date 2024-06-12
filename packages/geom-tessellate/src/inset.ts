@@ -4,8 +4,7 @@ import type { Tessellator } from "./api.js";
 
 export const inset =
 	(inset = 0.5, keepInterior = false): Tessellator =>
-	(tess, pids) => {
-		const faces: number[][] = [];
+	(tess, faces, pids) => {
 		const points = tess.pointsForIDs(pids);
 		const c = centroid(points);
 		const insets = tess.addPoints(points.map((p) => mixN([], p, c, inset)));

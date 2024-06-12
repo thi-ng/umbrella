@@ -51,7 +51,7 @@ export const tessellateFaces = (
 	for (let fn of tessellators) {
 		let newFaces: number[][] = [];
 		for (let face of faces) {
-			newFaces = newFaces.concat(fn(tessel, face));
+			fn(tessel, newFaces, face);
 		}
 		faces = newFaces;
 	}

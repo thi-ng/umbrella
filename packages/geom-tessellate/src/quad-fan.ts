@@ -2,8 +2,7 @@ import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { addmN } from "@thi.ng/vectors";
 import type { Tessellator } from "./api.js";
 
-export const quadFan: Tessellator = (tess, pids) => {
-	const faces: number[][] = [];
+export const quadFan: Tessellator = (tess, faces, pids) => {
 	const points = tess.pointsForIDs(pids);
 	const c = tess.addPoint(centroid(points));
 	const n = pids.length - 1;
