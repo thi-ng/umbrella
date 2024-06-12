@@ -97,7 +97,7 @@ export const vertices: MultiFn1O<
 		line3: "polyline",
 		path3: "path",
 		points3: "points",
-		polygon3: "poly",
+		poly3: "poly",
 		polyline3: "polyline",
 		quad: "poly",
 		quad3: "poly",
