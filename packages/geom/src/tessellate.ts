@@ -20,6 +20,7 @@ import {
 	MeshTessellation,
 } from "@thi.ng/geom-tessellate/tessellation";
 import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
+import { triFanBoundary } from "@thi.ng/geom-tessellate/tri-fan-boundary";
 import { triFanSplit } from "@thi.ng/geom-tessellate/tri-fan-split";
 import type { IShape, ITessellation, Tessellator } from "./api.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
@@ -58,6 +59,7 @@ import { vertices } from "./vertices.js";
  * - {@link TESSELLATE_QUAD_FAN}
  * - {@link TESSELLATE_RIM_TRIS}
  * - {@link TESSELLATE_TRI_FAN}
+ * - {@link TESSELLATE_TRI_FAN_BOUNDARY}
  * - {@link TESSELLATE_TRI_FAN_SPLIT}
  *
  * @param shape
@@ -91,7 +93,11 @@ export const tessellate: MultiFn2O<
 				children.map((c) => c.points)
 			);
 			tess = tess || new BasicTessellation();
-			const faces = earCutComplex(holes)(tess, tess.addPoints(points));
+			const faces = earCutComplex(holes)(
+				tess,
+				[],
+				tess.addPoints(points)
+			);
 			fns = ensureArray(fns);
 			return (<Tessellator[]>fns).length
 				? tessellateFaces(tess, faces, fns)
@@ -144,6 +150,11 @@ export const TESSELLATE_RIM_TRIS = rimTris;
  * [`triFan`](https://docs.thi.ng/umbrella/geom-tessellate/functions/triFan.html)
  */
 export const TESSELLATE_TRI_FAN = triFan;
+/**
+ * Alias for thi.ng/geom-tessellate
+ * [`triFanBoundary`](https://docs.thi.ng/umbrella/geom-tessellate/functions/triFanBoundary.html)
+ */
+export const TESSELLATE_TRI_FAN_BOUNDARY = triFanBoundary;
 /**
  * Alias for thi.ng/geom-tessellate
  * [`triFanSplit`](https://docs.thi.ng/umbrella/geom-tessellate/functions/triFanSplit.html)
