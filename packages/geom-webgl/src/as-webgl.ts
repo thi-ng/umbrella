@@ -13,12 +13,19 @@ import type { Polyline } from "@thi.ng/geom/api/polyline";
 import { asPolygon } from "@thi.ng/geom/as-polygon";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
-import { TESSELLATE_EARCUT_COMPLEX, tessellate } from "@thi.ng/geom/tessellate";
+import {
+	TESSELLATE_TRI_FAN_BOUNDARY,
+	tessellate,
+} from "@thi.ng/geom/tessellate";
 import { repeat } from "@thi.ng/transducers/repeat";
 import type { AttribSpec } from "@thi.ng/vector-pools";
 import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { ShaderSpec, UncompiledModelSpec } from "@thi.ng/webgl";
+import type {
+	AttribType,
+	ShaderSpec,
+	UncompiledModelSpec,
+} from "@thi.ng/webgl";
 import { DrawMode } from "@thi.ng/webgl/api/model";
 import type { AsWebGLOpts } from "./api.js";
 
@@ -69,10 +76,13 @@ export const asWebGlModel: MultiFn1O<
 		complexpoly: "poly",
 		ellipse: "$aspoly",
 		line: "polyline",
+		poly3: "poly",
 		quad: "poly",
+		quad3: "poly",
 		quadratic: "$aspolyline",
 		rect: "$aspoly",
 		tri: "poly",
+		tri3: "poly",
 	},
 	{
 		$aspoly: ($, opts) => asWebGlModel(asPolygon($)[0], opts),
@@ -99,7 +109,7 @@ export const asWebGlModel: MultiFn1O<
 						passes:
 							$ instanceof ComplexPolygon
 								? []
-								: [TESSELLATE_EARCUT_COMPLEX()],
+								: [TESSELLATE_TRI_FAN_BOUNDARY],
 					},
 				},
 				opts,
@@ -142,7 +152,7 @@ export const asWebGlModel: MultiFn1O<
 	}
 );
 
-const defModel = (
+export const defModel = (
 	shape: IShape,
 	opts: Partial<AsWebGLOpts>,
 	points: ReadonlyVec[],
@@ -151,11 +161,12 @@ const defModel = (
 	color: any = DEFAULT_COLOR,
 	mode: DrawMode = DrawMode.TRIANGLES
 ) => {
-	let size = 8;
+	const dim = points[0].length;
+	let size = dim * 4;
 	const specs: IObjectOf<AttribSpec> = {
 		pos: {
 			type: "f32",
-			size: 2,
+			size: dim,
 			stride: opts.stride,
 			byteOffset: 0,
 			data: points,
@@ -167,7 +178,7 @@ const defModel = (
 			type: "f32",
 			size: uvs[0].length,
 			stride: opts.stride,
-			byteOffset: 8,
+			byteOffset: size,
 			data: uvs,
 		};
 		size += uvs[0].length * 4;
@@ -181,7 +192,7 @@ const defModel = (
 			type: "f32",
 			size: 4,
 			stride: opts.stride,
-			byteOffset: opts.uv ? 16 : 8,
+			byteOffset: size,
 			data: [...repeat(color, points.length)],
 		};
 		size += 16;
@@ -213,9 +224,11 @@ const defModel = (
 			},
 			opts.shader
 		);
-		shader.attribs.pos = "vec2";
+		shader.attribs.pos = dim === 2 ? "vec2" : "vec3";
 		if (opts.uv) {
-			shader.attribs.uv = "vec2";
+			shader.attribs.uv = <AttribType>(
+				[null, "float", "vec2", "vec3"][specs.uv.size]
+			);
 		}
 		if (opts.color === "vertex") {
 			shader.attribs.color = "vec4";
