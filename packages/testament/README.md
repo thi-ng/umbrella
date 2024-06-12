@@ -64,8 +64,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB
 
 ## Dependencies
 
+- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [chokidar](https://github.com/paulmillr/chokidar)
 
 ## CLI
 

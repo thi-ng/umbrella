@@ -269,7 +269,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 6.64 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
-- [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate)
 - [@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
