@@ -1,6 +1,6 @@
 # geom-webgl-attrib-pool
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-attrib-pool.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-attrib-pool.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/geom-webgl-attrib-pool/)
 

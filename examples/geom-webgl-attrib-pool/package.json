@@ -44,6 +44,6 @@
 			"vector-pools",
 			"webgl"
 		],
-		"screenshot": "examples/geom-webgl-attrib-pool.png"
+		"screenshot": "examples/geom-webgl-attrib-pool.jpg"
 	}
 }
