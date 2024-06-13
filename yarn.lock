@@ -802,6 +802,7 @@ __metadata:
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.4.5"
     vite: "npm:^5.2.11"
   languageName: unknown
@@ -939,6 +940,26 @@ __metadata:
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
+    typescript: "npm:^5.4.5"
+    vite: "npm:^5.2.11"
+  languageName: unknown
+  linkType: soft
+
+"@example/geom-webgl-attrib-pool@workspace:examples/geom-webgl-attrib-pool":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-webgl-attrib-pool@workspace:examples/geom-webgl-attrib-pool"
+  dependencies:
+    "@thi.ng/associative": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-webgl": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/vector-pools": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.4.5"
     vite: "npm:^5.2.11"
   languageName: unknown
@@ -1733,7 +1754,6 @@ __metadata:
     "@thi.ng/date": "workspace:^"
     "@thi.ng/dl-asset": "workspace:^"
     "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-tessellate": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/matrices": "workspace:^"
     "@thi.ng/pointfree": "workspace:^"
@@ -4786,7 +4806,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-tessellate@npm:^2.1.132, @thi.ng/geom-tessellate@workspace:^, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
+"@thi.ng/geom-tessellate@npm:^2.1.132, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-tessellate@workspace:packages/geom-tessellate"
   dependencies:

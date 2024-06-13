@@ -21,7 +21,8 @@
 	},
 	"dependencies": {
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/transducers": "workspace:^"
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
 	},
 	"browser": {
 		"process": false
