@@ -39,46 +39,45 @@ for (let f of pkgDirs) {
 				{},
 				meta({ charset: "UTF-8" }),
 				meta({
-					content: pkg.keywords?.join(",") || "",
 					name: "keywords",
+					content: pkg.keywords?.join(",") || "",
 				}),
-				meta(<any>{
-					content: "summary_large_image",
-					name: "twitter:card",
-				}),
-				meta(<any>{
-					content: "@thing_umbrella",
-					name: "twitter:site:id",
-				}),
-				meta(<any>{
-					content: "@thing_umbrella",
-					name: "twitter:creator",
-				}),
-				meta({ content: `https://thi.ng/${id}`, property: "og:url" }),
-				meta({ content: "thi.ng", property: "og:site_name" }),
+				meta({ property: "og:url", content: `https://thi.ng/${id}` }),
+				meta({ property: "og:site_name", content: `thi.ng/${id}` }),
+				meta({ property: "og:title", content: pkg.description }),
 				meta({
-					content: pkg.description,
-					property: "og:title",
-				}),
-				meta({
+					property: "og:image",
 					content:
 						"https://thi.ng/assets/img/twitter-card-800x418.jpg",
-					property: "og:image",
+				}),
+				meta({ property: "og:image:width", content: "800" }),
+				meta({ property: "og:image:height", content: "418" }),
+				meta(<any>{
+					name: "twitter:card",
+					content: "summary_large_image",
 				}),
 				meta(<any>{
+					name: "twitter:site:id",
+					content: "@thing_umbrella",
+				}),
+				meta(<any>{
+					name: "twitter:creator",
+					content: "@thing_umbrella",
+				}),
+				meta(<any>{
+					name: "twitter:image:alt",
 					content:
 						"thi.ng logo with a colorful generative art background",
-					name: "twitter:image:alt",
 				}),
 				meta({
 					"http-equiv": "refresh",
-					content: `0; url=https://github.com/thi-ng/umbrella/tree/${branch}/packages/${id}`,
+					content: `0; url=https://github.com/thi-ng/umbrella/tree/${branch}/packages/${id}#readme`,
 				}),
 				title({}, pkg.name)
 			)
 		);
 		const $html = serialize([DOCTYPE_HTML, doc]);
-		// console.log($html, "\n-------");
+		LOGGER.debug($html, "\n-------");
 		writeText(tmpFile, $html, LOGGER);
 		execFileSync(
 			"aws",
