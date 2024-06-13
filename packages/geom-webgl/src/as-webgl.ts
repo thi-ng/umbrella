@@ -17,6 +17,7 @@ import {
 	TESSELLATE_TRI_FAN_BOUNDARY,
 	tessellate,
 } from "@thi.ng/geom/tessellate";
+import { withAttribs } from "@thi.ng/geom/with-attribs";
 import { repeat } from "@thi.ng/transducers/repeat";
 import type { AttribSpec } from "@thi.ng/vector-pools";
 import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
@@ -91,7 +92,19 @@ export const asWebGlModel: MultiFn1O<
 
 		group: ($: Group, opts) => {
 			opts = mergeDeepObj(opts || {}, $.attribs?.__webgl);
-			return $.children.flatMap((child) => asWebGlModel(child, opts));
+			return $.children.flatMap((child) =>
+				asWebGlModel(
+					$.attribs
+						? child.attribs
+							? withAttribs(
+									child,
+									mergeDeepObj($.attribs, child.attribs)
+							  )
+							: withAttribs(child, $.attribs)
+						: child,
+					opts
+				)
+			);
 		},
 
 		path: ($: Path, opts) =>
