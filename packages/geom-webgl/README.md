@@ -59,7 +59,7 @@ For Node.js REPL:
 const gw = await import("@thi.ng/geom-webgl");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.19 KB
 
 ## Dependencies
 
@@ -76,13 +76,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.15 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Screenshot                                                                                                               | Description                                  | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-basics.jpg" width="240"/> | Converting thi.ng/geom shape types for WebGL | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-basics) |
+| Screenshot                                                                                                                    | Description                                                                   | Live demo                                                    | Source                                                                                    |
+|:------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|:-------------------------------------------------------------|:------------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-attrib-pool.png" width="240"/> | Augmenting thi.ng/geom shapes for WebGL, using instancing & attribute buffers | [Demo](https://demo.thi.ng/umbrella/geom-webgl-attrib-pool/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-attrib-pool) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>      | Converting thi.ng/geom shape types for WebGL                                  | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-basics)      |
 
 ## API
 
