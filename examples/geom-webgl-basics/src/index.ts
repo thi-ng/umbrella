@@ -6,17 +6,18 @@ import {
 	rectWithCentroid,
 } from "@thi.ng/geom";
 import { asWebGlModel } from "@thi.ng/geom-webgl";
-import { scale44 } from "@thi.ng/matrices";
+import { scale22 } from "@thi.ng/matrices";
 import {
 	clearCanvas,
 	compileModel,
 	draw,
 	glCanvas,
-	type GLMat4,
+	type GLMat2,
 	type UncompiledModelSpec,
 } from "@thi.ng/webgl";
 
 const W = 600;
+const SCALE = window.devicePixelRatio / W;
 
 const { gl } = glCanvas({
 	width: W,
@@ -37,25 +38,22 @@ const geo = fitIntoBounds2(
 	rectWithCentroid([0, 0], 500)
 )!;
 
-// convert geometry to a WebGL model spec (incl. attrib buffers & shader)
+// now convert everything to full WebGL model specs (this includes tessellation
+// of polygons, declaration of more attribs & shader specs etc.) the function
+// always returns an array of model specs. here we're only interested in the
+// first/only result...
 const model = asWebGlModel(geo, {
 	// create color vertex attribute (other option is as uniform or no color at all)
 	color: "vertex",
 	// define a partial shader spec.
-	// `asWebGLModel()` will augment attrib / uniform definitions
+	// `asWebGLModel()` will augment attrib and/or uniform definitions
 	shader: {
-		vs: `void main() { gl_Position = view * vec4(pos * vec2(1.,-1.), 0., 1.); vColor = color; }`,
-		fs: `void main() { fragColor = vColor; }`,
-		varying: {
-			vColor: "vec4",
-		},
-		uniforms: {
-			view: ["mat4", <GLMat4>scale44([], window.devicePixelRatio / W)],
-		},
+		vs: `void main() { gl_Position = vec4(view * pos, 0., 1.); vcol = color; }`,
+		fs: `void main() { fragColor = vcol; }`,
+		varying: { vcol: "vec4" },
+		uniforms: { view: ["mat2", <GLMat2>scale22([], [SCALE, -SCALE])] },
 	},
-});
-
-console.log(model);
+})[0];
 
 // get vector view of color attribute buffer and randomize each item
 //
