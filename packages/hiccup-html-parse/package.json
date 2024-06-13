@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "https://github.com/thi-ng/umbrella.git"
 	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse#readme",
+	"homepage": "https://thi.ng/hiccup-html-parse",
 	"funding": [
 		{
 			"type": "github",

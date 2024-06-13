@@ -70,7 +70,7 @@ cat << EOF > "$MODULE"/package.json
 		"type": "git",
 		"url": "https://github.com/thi-ng/umbrella.git"
 	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/$1#readme",
+	"homepage": "https://thi.ng/$1",
 	"funding": [
 		{
 			"type": "github",
