@@ -33,7 +33,8 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "bun test",
-		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts",
+		"tool:viz": "bun tools/visualize.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.2",
