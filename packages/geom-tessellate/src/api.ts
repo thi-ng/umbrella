@@ -60,7 +60,7 @@ export interface ITessellation extends IEmpty<ITessellation> {
 	 * Note: Because {@link Tessellator}s might be applied recursively, they
 	 * **do not** directly add faces to a given {@link ITessellation}, but onl
 	 * return generated faces as separate array. Currently, this function is
-	 * only called by {@link tessellateQueue} (and implicitly by
+	 * only called by {@link tessellateFaces} (and implicitly by
 	 * {@link tessellate}, {@link tessellateWith}).
 	 *
 	 * @param faces
