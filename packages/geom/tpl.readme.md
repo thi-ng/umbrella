@@ -14,8 +14,12 @@ name](http://thi.ng/geom-clj). All polymorphic operations built on
 
 ### Shape types
 
-The following shape primitives are provided. For many there're multiple ways to
-create them, please check linked sources and/or docs.
+The following shape primitives are provided. All these types are implemented as
+basic data container classes with additional eponymous factory functions (e.g.
+`Circle` (class) => `circle()` (function)), which are encouraged to be used
+instead of calling class constructors directly. For many shapes there're
+[multiple ways to create them](#shape-factory-functions), please also check
+linked sources and/or docs.
 
 | Shape/Form                                                                                             | Description                           | Hiccup support      |
 |--------------------------------------------------------------------------------------------------------|---------------------------------------|---------------------|
@@ -59,19 +63,49 @@ create them, please check linked sources and/or docs.
 
 ### Hiccup support
 
+> [!NOTE]
+> Sidebar with background information for advanced usage only. Most users can safely ignore this.
+
 With very few exceptions these all are implementing the [`IToHiccup`
 interface](https://docs.thi.ng/umbrella/api/interfaces/IToHiccup.html) and so
 can be easily converted (via
 [hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)) to a
 variety of other formats, incl. [conversion to SVG](#svg-support).
 
-By design, for better flexibility and performance reasons, the hiccup flavor
+By design, for more flexibility and for performance reasons, the hiccup flavor
 used by this package is **not** compatible with that used by
 [thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg),
 though the latter provides a
 [`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
 function for that purpose. This is only needed for some cases of dynamic
 in-browser SVG DOM creation...
+
+Instead, the hiccup format used here for interim interop is compatible with that
+used by the
+[thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+package (see its readme for details) and avoids extraneous stringification of
+geometry data and attrib values. A brief example to illustrate some differences:
+
+```ts tangle:export/readme-hiccup.ts
+import { circle, asSvg } from "@thi.ng/geom";
+import { convertTree } from "@thi.ng/hiccup-svg";
+
+// a circle with RGBA color attrib
+const a = circle([100, 200], 300, { fill: [1, 0.5, 0, 1] });
+
+// invocation of the IToHiccup interface (all shapes support it)
+console.log(a.toHiccup());
+// [ "circle", { fill: [ 1, 0, 0, 1 ] }, [ 100, 200 ], 300 ]
+
+// convert shape into to a SVG compatible hiccup format
+// (i.e. stringify attributes, convert colors etc.)
+console.log(convertTree(a));
+// [ "circle", { fill: "#ff8000", cx: "100", cy: "200", r: "300" } ]
+
+// asSvg() automatically uses convertTree() when serializing shape(s) to SVG
+console.log(asSvg(a));
+// <circle fill="#ff8000" cx="100" cy="200" r="300"/>
+```
 
 ### SVG support
 
@@ -178,6 +212,10 @@ the following additional shape creation helpers are provided:
 - [cubicFromQuadratic()](https://docs.thi.ng/umbrella/geom/functions/cubicFromQuadratic.html)
 - [cubicFromQuadratic3()](https://docs.thi.ng/umbrella/geom/functions/cubicFromQuadratic3.html)
 
+#### Group
+
+- [groupFromTessellation()](https://docs.thi.ng/umbrella/geom/functions/groupFromTessellation.html)
+
 #### Line
 
 - [clippedLine()](https://docs.thi.ng/umbrella/geom/functions/clippedLine.html)
@@ -231,6 +269,64 @@ the following additional shape creation helpers are provided:
 
 - [equilateralTriangle()](https://docs.thi.ng/umbrella/geom/functions/equilateralTriangle.html)
 
+### Constants & presets
+
+Some of the shape operations require configuration with specific algorithms
+and/or constants. In all cases this relies on a completely extensible mechanism,
+but the package provides presets for common options/implementations:
+
+#### Curve subdivision kernels
+
+To be used with [`subdivideCurve()`](https://docs.thi.ng/umbrella/geom/functions/subdivCurve.html):
+
+- [`SUBDIV_CHAIKIN_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_CLOSED.html)
+- [`SUBDIV_CHAIKIN_OPEN`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_OPEN.html)
+- [`SUBDIV_CUBIC_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CUBIC_CLOSED.html)
+- [`SUBDIV_DISPLACE`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_DISPLACE.html)
+- [`SUBDIV_MID_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_CLOSED.html)
+- [`SUBDIV_MID_OPEN`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_OPEN.html)
+- [`SUBDIV_THIRDS_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_CLOSED.html)
+- [`SUBDIV_THIRDS_OPEN`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_OPEN.html)
+
+#### Polygon tessellation algorithms
+
+To be used with [`tessellate()`](https://docs.thi.ng/umbrella/geom/functions/tessellate.html):
+
+See [thi.ng/geom-tessellate
+readme](https://github.com/thi-ng/umbrella/blob/develop/packages/geom-tessellate/README.md#tessellators)
+for diagrams/illustrations of each algorithm!
+
+- [`TESSELLATE_EARCUT`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT.html)
+- [`TESSELLATE_EARCUT_COMPLEX`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT_COMPLEX.html)
+- [`TESSELLATE_EDGE_SPLIT`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EDGE_SPLIT.html)
+- [`TESSELLATE_INSET`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_INSET.html)
+- [`TESSELLATE_QUAD_FAN`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_QUAD_FAN.html)
+- [`TESSELLATE_RIM_TRIS`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_RIM_TRIS.html)
+- [`TESSELLATE_TRI_FAN`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN.html)
+- [`TESSELLATE_TRI_FAN_BOUNDARY`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_BOUNDARY.html)
+- [`TESSELLATE_TRI_FAN_SPLIT`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_SPLIT.html)
+
+Tessellation behaviors:
+
+- [`basicTessellation()`](https://docs.thi.ng/umbrella/geom/functions/basicTessellation.html):
+  default impl
+- [`meshTessellation()`](https://docs.thi.ng/umbrella/geom/functions/meshTessellation.html):
+  uses kD-tree to deduplicate result points
+
+Tessellation post-processing:
+
+- [edgesFromTessellation()](https://docs.thi.ng/umbrella/geom/functions/edgesFromTessellation.html)
+- [edgePointsFromTessellation()](https://docs.thi.ng/umbrella/geom/functions/edgePointsFromTessellation.html)
+- [graphFromTessellation()](https://docs.thi.ng/umbrella/geom/functions/graphFromTessellation.html)
+- [groupFromTessellation()](https://docs.thi.ng/umbrella/geom/functions/groupFromTessellation.html)
+
+#### Vertex convolution kernels
+
+To be used with [`convolve()`](https://docs.thi.ng/umbrella/geom/functions/convolve.html):
+
+- [`KERNEL_BOX`](https://docs.thi.ng/umbrella/geom/variables/KERNEL_BOX.html)
+- [`KERNEL_GAUSSIAN`](https://docs.thi.ng/umbrella/geom/variables/KERNEL_GAUSSIAN.html)
+- [`KERNEL_TRI`](https://docs.thi.ng/umbrella/geom/variables/KERNEL_TRI.html)
 ---
 
 This package acts as a higher-level frontend for most of the following related
@@ -259,7 +355,5 @@ packages (which are more low-level, lightweight and usable by themselves too):
 ## API
 
 {{pkg.docs}}
-
-TODO
 
 <!-- include ../../assets/tpl/footer.md -->
