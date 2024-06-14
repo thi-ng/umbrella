@@ -1,26 +1,23 @@
 import {
-	asPath,
-	asPolygon,
 	asSvg,
 	circle,
 	classifyPoint,
-	polygon,
+	smoothPolygon,
 	svgDoc,
 } from "@thi.ng/geom";
 import { repeatedly } from "@thi.ng/transducers";
 import { randMinMax2 } from "@thi.ng/vectors";
 
-const poly = asPolygon(
-	asPath(
-		polygon([...repeatedly(() => randMinMax2([], [0, 0], [500, 500]), 8)], {
-			fill: "#ccc",
-			stroke: "#000",
-			weight: 3,
-			"fill-rule": "evenodd",
-		}),
-		{ mode: "break" }
-	)
-)[0];
+const poly = smoothPolygon(
+	[...repeatedly(() => randMinMax2([], [0, 0], [500, 500]), 8)],
+	{
+		fill: "#ccc",
+		stroke: "#000",
+		weight: 3,
+		"fill-rule": "evenodd",
+	},
+	{ mode: "break" }
+);
 
 document.body.innerHTML = asSvg(
 	svgDoc(
