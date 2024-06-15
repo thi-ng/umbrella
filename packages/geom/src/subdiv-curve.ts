@@ -3,17 +3,29 @@ import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import * as sdc from "@thi.ng/geom-subdiv-curve/kernels";
 import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
-import type { IShape, IShape2, SubdivKernel } from "./api.js";
+import type {
+	IHiccupShape2,
+	IHiccupShape3,
+	IShape,
+	SubdivKernel,
+} from "./api.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Ellipse } from "./api/ellipse.js";
+import { Group } from "./api/group.js";
+import { Group3 } from "./api/group3.js";
 import type { Line } from "./api/line.js";
+import type { Line3 } from "./api/line3.js";
 import { Polygon } from "./api/polygon.js";
+import { Polygon3 } from "./api/polygon3.js";
 import { Polyline } from "./api/polyline.js";
+import { Polyline3 } from "./api/polyline3.js";
 import type { Quad } from "./api/quad.js";
+import type { Quad3 } from "./api/quad3.js";
 import type { Rect } from "./api/rect.js";
 import type { Triangle } from "./api/triangle.js";
+import type { Triangle3 } from "./api/triangle3.js";
 import { asPolygon } from "./as-polygon.js";
 import { asPolyline } from "./as-polyline.js";
 import { __copyAttribs } from "./internal/copy.js";
@@ -43,11 +55,22 @@ export type SubdivCurveFn = {
 		kernel: SubdivKernel | SubdivKernel[],
 		iter?: number
 	): ComplexPolygon;
+	(shape: Group, kernel: SubdivKernel | SubdivKernel[], iter?: number): Group;
+	(
+		shape: Group3,
+		kernel: SubdivKernel | SubdivKernel[],
+		iter?: number
+	): Group3;
 	(
 		shape: Line,
 		kernel: SubdivKernel | SubdivKernel[],
 		iter?: number
 	): Polyline;
+	(
+		shape: Line3,
+		kernel: SubdivKernel | SubdivKernel[],
+		iter?: number
+	): Polyline3;
 	(
 		shape: Polygon,
 		kernel: SubdivKernel | SubdivKernel[],
@@ -59,10 +82,20 @@ export type SubdivCurveFn = {
 		iter?: number
 	): Polyline;
 	(
+		shape: Polyline3,
+		kernel: SubdivKernel | SubdivKernel[],
+		iter?: number
+	): Polyline3;
+	(
 		shape: Quad,
 		kernel: SubdivKernel | SubdivKernel[],
 		iter?: number
 	): Polygon;
+	(
+		shape: Quad3,
+		kernel: SubdivKernel | SubdivKernel[],
+		iter?: number
+	): Polygon3;
 	(
 		shape: Rect,
 		kernel: SubdivKernel | SubdivKernel[],
@@ -73,7 +106,12 @@ export type SubdivCurveFn = {
 		kernel: SubdivKernel | SubdivKernel[],
 		iter?: number
 	): Polygon;
-} & MultiFn2O<IShape2, SubdivKernel | SubdivKernel[], number, IShape2>;
+	(
+		shape: Triangle3,
+		kernel: SubdivKernel | SubdivKernel[],
+		iter?: number
+	): Polygon3;
+} & MultiFn2O<IShape, SubdivKernel | SubdivKernel[], number, IShape>;
 
 /**
  * Recursively applies
@@ -85,22 +123,46 @@ export type SubdivCurveFn = {
  * @remarks
  * By default only applies a single iteration.
  *
- * Currently only implemented for:
+ * The following subdivision algorithms are provided:
+ *
+ * - {@link SUBDIV_CHAIKIN_CLOSED}
+ * - {@link SUBDIV_CHAIKIN_OPEN}
+ * - {@link SUBDIV_CUBIC_CLOSED}
+ * - {@link SUBDIV_CUBIC_OPEN}
+ * - {@link SUBDIV_DISPLACE} (higher order kernel)
+ * - {@link SUBDIV_MID_CLOSED}
+ * - {@link SUBDIV_MID_OPEN}
+ * - {@link SUBDIV_THIRDS_CLOSED}
+ * - {@link SUBDIV_THIRDS_OPEN}
+ *
+ * Currently implemented for:
  *
  * - {@link Arc}
  * - {@link Circle}
  * - {@link ComplexPolygon}
  * - {@link Ellipse}
+ * - {@link Group} (if it only contains supported shapes)
+ * - {@link Group3} (if it only contains supported shapes)
  * - {@link Line}
+ * - {@link Line3}
  * - {@link Polygon}
+ * - {@link Polygon3}
  * - {@link Polyline}
+ * - {@link Polyline3}
  * - {@link Quad}
+ * - {@link Quad3}
  * - {@link Rect}
  * - {@link Triangle}
+ * - {@link Triangle3}
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/subdiv-curve.ts
+ * import { asSvg, rect, subdivCurve, SUBDIV_CHAIKIN_CLOSED } from "@thi.ng/geom";
  *
+ * console.log(
+ *   asSvg(subdivCurve(rect(100), SUBDIV_CHAIKIN_CLOSED))
+ * );
+ * // <polygon points="0,25 25,0 75,0 100,25 100,75 75,100 25,100 0,75"/>
  * ```
  *
  * @param shape
@@ -115,9 +177,12 @@ export const subdivCurve = <SubdivCurveFn>(
 			circle: "$aspoly",
 			ellipse: "$aspoly",
 			line: "polyline",
+			line3: "polyline3",
 			quad: "poly",
+			quad3: "poly3",
 			rect: "$aspoly",
 			tri: "poly",
+			tri3: "poly3",
 		},
 		{
 			$aspolyline: ($, kernel, iter = 1) =>
@@ -133,14 +198,44 @@ export const subdivCurve = <SubdivCurveFn>(
 					__copyAttribs($.attribs)
 				),
 
+			group: ($: Group, kernel, iter) =>
+				new Group(
+					__copyAttribs($.attribs),
+					$.children.map(
+						(child) =>
+							<IHiccupShape2>subdivCurve(child, kernel, iter)
+					)
+				),
+
+			group3: ($: Group3, kernel, iter) =>
+				new Group3(
+					__copyAttribs($.attribs),
+					$.children.map(
+						(child) =>
+							<IHiccupShape3>subdivCurve(child, kernel, iter)
+					)
+				),
+
 			poly: ($: Polygon, kernel, iter = 1) =>
 				new Polygon(
 					subdivide($.points, <SubdivKernel>kernel, iter),
 					__copyAttribs($.attribs)
 				),
 
+			poly3: ($: Polygon3, kernel, iter = 1) =>
+				new Polygon3(
+					subdivide($.points, <SubdivKernel>kernel, iter),
+					__copyAttribs($.attribs)
+				),
+
 			polyline: ($: Polyline, kernel, iter = 1) =>
 				new Polyline(
+					subdivide($.points, <SubdivKernel>kernel, iter),
+					__copyAttribs($.attribs)
+				),
+
+			polyline3: ($: Polyline3, kernel, iter = 1) =>
+				new Polyline3(
 					subdivide($.points, <SubdivKernel>kernel, iter),
 					__copyAttribs($.attribs)
 				),
