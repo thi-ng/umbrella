@@ -143,33 +143,53 @@ export const SUBDIV_CUBIC_CLOSED: SubdivKernel = {
 };
 
 /**
- * Higher-order subdiv kernel. Takes an array of displacement offsets and
- * `closed` flag to indicate if to be used for open/closed curves. Returns a
- * {@link SubdivKernel} which results in `displace.length` points for each
- * original edge and displaces each point by `displace[i] * edgeLength` units
- * along the normal of the edge (positive values for outward displacement).
+ * Higher-order subdiv kernel. Takes an array of 2-tuples of `[t,x]` where `t`
+ * is the normalized split position (along each edge) and `x` is the normalized
+ * displacement amount (relative to edge length). The `closed` flag indicates if
+ * to be used for open/closed curves. Returns a {@link SubdivKernel} which
+ * results in `displace.length` points for each original edge and displaces each
+ * point by `displace[i][1] * edgeLength` units along the normal of the edge.
  *
  * @remarks
- * The first displace value is used for the start point of the edge (aka end
- * point of prev. edge), to keep it in place, use zero for the first value.
+ * The original edge end points are always remaining in place. The normalized
+ * split positions `t` must be in the open (0,1) interval.
+ *
+ * @example
+ * ```ts tangle:../export/subdiv-displace.ts
+ * import { subdivide, SUBDIV_DISPLACE } from "@thi.ng/geom-subdiv-curve";
+ *
+ * // define subdiv kernel w/ custom displacements
+ * const kernel = SUBDIV_DISPLACE([[0.25, 0.25], [0.75, -0.25]]);
+ *
+ * // subdivide polyline with the kernel
+ * console.log(
+ *   subdivide([[0,0], [100, 100], [200, 0]], kernel)
+ * );
+ * // [
+ * //   [ 0, 0 ], [ 50, 0 ], [ 50, 100 ], [ 100, 100 ],
+ * //   [100, 50 ], [ 200, 50 ], [ 200, 0 ]
+ * // ]
+ * ```
  *
  * @param displace
  * @param closed
  */
 export const SUBDIV_DISPLACE = (
-	displace: number[],
+	displace: number[][],
 	closed = false
 ): SubdivKernel => ({
 	size: 2,
 	pre: closed ? __wrap2 : undefined,
 	fn: ([a, b], i, nump) => {
-		const num = displace.length;
 		const delta = sub2([], b, a);
 		const len = mag2(delta);
 		const normal = perpendicularCW(null, normalize2([], delta));
-		const res = displace.map((x, i) =>
-			addW3([], a, delta, normal, 1, i / num, x * len)
-		);
+		const res = [
+			a,
+			...displace.map(([t, x]) =>
+				addW3([], a, delta, normal, 1, t, x * len)
+			),
+		];
 		if (!closed && i === nump - 2) res.push(b);
 		return res;
 	},
