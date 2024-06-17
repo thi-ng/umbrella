@@ -1,4 +1,3 @@
-import type { FnU } from "@thi.ng/api";
 import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
@@ -50,59 +49,35 @@ export const kernel5 =
 		];
 
 /** @internal */
-const MIDP = ([a, b]: ReadonlyVec[]) => [a, addmN([], a, b, 0.5)];
-/** @internal */
-const THIRDS = ([a, b]: ReadonlyVec[]) => [
-	a,
-	mixN([], a, b, 1 / 3),
-	mixN([], a, b, 2 / 3),
-];
+const __wrap2 = (pts: ReadonlyVec[], closed: boolean) =>
+	closed ? wrapSides(pts, 0, 1) : pts;
 
 /** @internal */
-const __wrap2 = (pts: ReadonlyVec[]) => wrapSides(pts, 0, 1);
-/** @internal */
-const __wrap3 = (pts: ReadonlyVec[]) => wrapSides(pts, 1, 1);
-
-/** @internal */
-const __subdivOpen =
-	(fn: FnU<ReadonlyVec[]>): SubdivKernel["fn"] =>
-	(pts, i, n) =>
-		i < n - 2 ? fn(pts) : [...fn(pts), pts[1]];
+const __wrap3 = (pts: ReadonlyVec[], closed: boolean) =>
+	closed ? wrapSides(pts, 1, 1) : pts;
 
 /**
- * Splits each curve / line segment into halves at midpoint. Version for
- * open curves.
+ * Splits each curve / line segment into halves at midpoint.
  */
-export const SUBDIV_MID_OPEN: SubdivKernel = {
-	fn: __subdivOpen(MIDP),
-	size: 2,
-};
-
-/**
- * Splits each curve / line segment into halves at midpoint. Version for
- * closed curves.
- */
-export const SUBDIV_MID_CLOSED: SubdivKernel = {
-	fn: MIDP,
+export const SUBDIV_MID: SubdivKernel = {
+	fn: ([a, b], i, nump, closed) => {
+		const res = [a, addmN([], a, b, 0.5)];
+		if (!closed && i === nump - 2) res.push(b);
+		return res;
+	},
 	pre: __wrap2,
 	size: 2,
 };
 
 /**
- * Splits each curve / line segment into 3 parts at 1/3 and 2/3. Version for
- * open curves.
+ * Splits each curve / line segment into 3 parts at 1/3 and 2/3.
  */
-export const SUBDIV_THIRDS_OPEN: SubdivKernel = {
-	fn: __subdivOpen(THIRDS),
-	size: 2,
-};
-
-/**
- * Splits each curve / line segment into 3 parts at 1/3 and 2/3. Version for
- * open curves.
- */
-export const SUBDIV_THIRDS_CLOSED: SubdivKernel = {
-	fn: THIRDS,
+export const SUBDIV_THIRDS: SubdivKernel = {
+	fn: ([a, b], i, nump, closed) => {
+		const res = [a, mixN([], a, b, 1 / 3), mixN([], a, b, 2 / 3)];
+		if (!closed && i === nump - 2) res.push(b);
+		return res;
+	},
 	pre: __wrap2,
 	size: 2,
 };
@@ -114,32 +89,47 @@ const CHAIKIN_LAST = kernel3([1 / 4, 3 / 4, 0], [0, 1 / 2, 1 / 2]);
 /**
  * Chaikin subdivision scheme for open curves.
  */
-export const SUBDIV_CHAIKIN_OPEN: SubdivKernel = {
-	fn: (pts, i, n) =>
-		i == 0
+export const SUBDIV_CHAIKIN: SubdivKernel = {
+	fn: (pts, i, n, closed) =>
+		closed
+			? CHAIKIN_MAIN(pts)
+			: i == 0
 			? [pts[0], ...CHAIKIN_FIRST(pts)]
 			: i === n - 3
 			? [...CHAIKIN_LAST(pts), pts[2]]
 			: CHAIKIN_MAIN(pts),
-	size: 3,
-};
-
-/**
- * Chaikin subdivision scheme for closed curves.
- */
-export const SUBDIV_CHAIKIN_CLOSED: SubdivKernel = {
-	fn: CHAIKIN_MAIN,
 	pre: __wrap3,
 	size: 3,
 };
 
+const CUBIC_MAIN = kernel3([1 / 8, 3 / 4, 1 / 8], [0, 1 / 2, 1 / 2]);
+
 /**
- * Cubic bezier subdivision scheme for closed curves.
+ * Cubic bezier subdivision scheme. Currently ONLY supported for closed curves.
  */
-export const SUBDIV_CUBIC_CLOSED: SubdivKernel = {
-	fn: kernel3([1 / 8, 3 / 4, 1 / 8], [0, 1 / 2, 1 / 2]),
-	pre: __wrap3,
+export const SUBDIV_CUBIC: SubdivKernel = {
+	fn: (pts) => CUBIC_MAIN(pts),
+	pre: (pts) => wrapSides(pts, 1, 1),
 	size: 3,
+};
+
+const DLG_MAIN = kernel5(
+	[0, 0, 1, 0, 0],
+	[0, -1 / 16, 9 / 16, 9 / 16, -1 / 16]
+);
+
+/**
+ * Subdivision kernel for Dyn-Levin-Gregory subdivision. Currently ONLY
+ * supported for closed curves.
+ *
+ * @remarks
+ * Reference:
+ * - https://web.archive.org/web/20060816003547/https://algorithmicbotany.org/papers/subgpu.sig2003.pdf
+ */
+export const SUBDIV_DLG: SubdivKernel = {
+	fn: (pts) => DLG_MAIN(pts),
+	pre: (pts) => wrapSides(pts, 2, 2),
+	size: 5,
 };
 
 /**
@@ -172,15 +162,9 @@ export const SUBDIV_CUBIC_CLOSED: SubdivKernel = {
  * ```
  *
  * @param displace
- * @param closed
  */
-export const SUBDIV_DISPLACE = (
-	displace: number[][],
-	closed = false
-): SubdivKernel => ({
-	size: 2,
-	pre: closed ? __wrap2 : undefined,
-	fn: ([a, b], i, nump) => {
+export const SUBDIV_DISPLACE = (displace: number[][]): SubdivKernel => ({
+	fn: ([a, b], i, nump, closed) => {
 		const delta = sub2([], b, a);
 		const len = mag2(delta);
 		const normal = perpendicularCW(null, normalize2([], delta));
@@ -193,4 +177,6 @@ export const SUBDIV_DISPLACE = (
 		if (!closed && i === nump - 2) res.push(b);
 		return res;
 	},
+	size: 2,
+	pre: __wrap2,
 });

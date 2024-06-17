@@ -4796,8 +4796,6 @@ __metadata:
   resolution: "@thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.45.0"
-    "@thi.ng/api": "npm:^8.11.2"
-    "@thi.ng/checks": "npm:^3.6.4"
     "@thi.ng/transducers": "npm:^9.0.5"
     "@thi.ng/vectors": "npm:^7.10.31"
     esbuild: "npm:^0.21.4"

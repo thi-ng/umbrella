@@ -12,8 +12,9 @@ export interface SubdivKernel {
 	 * @param pts
 	 * @param i
 	 * @param nump
+	 * @param closed
 	 */
-	fn: (pts: ReadonlyVec[], i: number, nump: number) => Vec[];
+	fn: (pts: ReadonlyVec[], i: number, nump: number, closed: boolean) => Vec[];
 	/**
 	 * Optional function to pre-process the original curve points prior
 	 * to each subdivision iteration and MUST yield an iterable of
@@ -22,8 +23,9 @@ export interface SubdivKernel {
 	 * processed as is.
 	 *
 	 * @param pts
+	 * @param closed
 	 */
-	pre?: (pts: ReadonlyVec[]) => Iterable<ReadonlyVec>;
+	pre?: (pts: ReadonlyVec[], closed: boolean) => Iterable<ReadonlyVec>;
 	/**
 	 * Kernal size. The subdivision function `fn` always receives `size`
 	 * number consecutive points.
