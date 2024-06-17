@@ -76,7 +76,7 @@ for (let [id, kernel] of pairs({
 	cubic: SUBDIV_CUBIC,
 	mid: SUBDIV_MID,
 	thirds: SUBDIV_THIRDS,
-	dlc: SUBDIV_DLG,
+	dlg: SUBDIV_DLG,
 	displace: SUBDIV_DISPLACE([
 		[0.25, 0.05],
 		[0.75, -0.05],
