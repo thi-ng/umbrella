@@ -1,4 +1,4 @@
-import type { Fn, IObjectOf } from "@thi.ng/api";
+import type { Fn, Fn2, IObjectOf } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { TemplateFn } from "../api.js";
 import { link, list } from "./markdown.js";
@@ -237,48 +237,42 @@ export const packageTemplates = <T = any>(
 		"pkg.link": ({ user }) => link(pkg(user).name, pkg(user).homepage),
 		"pkg.author": ({ user }) => author(pkg(user).author),
 		"pkg.authorLink": ({ user }) => authorLink(pkg(user).author),
-		"pkg.contributors": ({ user, eol }) => {
-			const people = pkg(user).contributors;
-			return people
-				? $opts.hdContributors + contributors(people, eol)
-				: "";
-		},
-		"pkg.contributorLinks": ({ user, eol }) => {
-			const people = pkg(user).contributors;
-			return people
-				? $opts.hdContributors + contributorLinks(people, eol)
-				: "";
-		},
-		"pkg.allAuthors": ({ user, eol }) => {
-			const $pkg = pkg(user);
-			const $author = author($pkg.author);
-			const res = [];
-			if ($pkg.contributors) {
-				res.push(
-					$author + " (Main author)",
-					...$pkg.contributors.map(author)
-				);
-			} else {
-				res.push($author);
-			}
-			return list(res, eol);
-		},
-		"pkg.allAuthorLinks": ({ user, eol }) => {
-			const $pkg = pkg(user);
-			const $author = authorLink($pkg.author);
-			const res = [];
-			if ($pkg.contributors) {
-				res.push(
-					$author + " (Main author)",
-					...$pkg.contributors.map(authorLink)
-				);
-			} else {
-				res.push($author);
-			}
-			return list(res, eol);
-		},
+		"pkg.allAuthors": __allAuthors(pkg, author),
+		"pkg.allAuthorLinks": __allAuthors(pkg, authorLink),
+		"pkg.contributors": __allContribs(pkg, $opts, contributors),
+		"pkg.contributorLinks": __allContribs(pkg, $opts, contributorLinks),
 		"pkg.license": ({ user }) => license(pkg(user).license),
 		"pkg.licenseLink": ({ user }) => licenseLink(pkg(user).license),
 	};
 	return tpls;
 };
+
+/** @internal */
+const __allAuthors =
+	(pkg: Fn<any, Package>, itemFn: Fn<string | User, string>): TemplateFn =>
+	({ user, eol }) => {
+		const $pkg = pkg(user);
+		const $author = itemFn($pkg.author);
+		const res = [];
+		if ($pkg.contributors) {
+			res.push(
+				$author + " (Main author)",
+				...$pkg.contributors.map(itemFn)
+			);
+		} else {
+			res.push($author);
+		}
+		return list(res, eol);
+	};
+
+/** @internal */
+const __allContribs =
+	(
+		pkg: Fn<any, Package>,
+		opts: PackageTemplateOpts,
+		itemFn: Fn2<(string | User)[], string, string>
+	): TemplateFn =>
+	({ user, eol }) => {
+		const people = pkg(user).contributors;
+		return people ? opts.hdContributors + itemFn(people, eol) : "";
+	};
