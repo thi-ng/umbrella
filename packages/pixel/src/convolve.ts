@@ -200,10 +200,7 @@ export const defKernel = (
 	const kvars: string[] = [];
 	const h2 = h >> 1;
 	const w2 = w >> 1;
-	if (normalize) {
-		const scale = 1 / (<number[]>tpl).reduce((acc, x) => acc + x, 0);
-		tpl = (<number[]>tpl).map((x) => x * scale);
-	}
+	if (normalize) tpl = __normalize(<NumericArray>tpl);
 	for (let y = 0, i = 0; y < h; y++) {
 		const yy = y - h2;
 		const row: string[] = [];
@@ -262,10 +259,7 @@ export const defLargeKernel = (
 	h: number,
 	normalize = false
 ): Fn<FloatBuffer, FnN3> => {
-	if (normalize) {
-		const scale = 1 / (<number[]>kernel).reduce((acc, x) => acc + x, 0);
-		kernel = (<number[]>kernel).map((x) => x * scale);
-	}
+	if (normalize) kernel = __normalize(kernel);
 	return (src) => {
 		const {
 			data,
@@ -297,6 +291,12 @@ export const defLargeKernel = (
 			return sum;
 		};
 	};
+};
+
+/** @internal */
+const __normalize = (kernel: NumericArray) => {
+	const scale = 1 / (<number[]>kernel).reduce((acc, x) => acc + x, 0);
+	return (<number[]>kernel).map((x) => x * scale);
 };
 
 export const POOL_NEAREST: PoolTemplate = (body, w, h) =>
