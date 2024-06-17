@@ -36,14 +36,13 @@ export function* stratifiedGrid2(opts: StratifiedGridOpts) {
 			while (true) {
 				q = add2(null, [x, y], random2(tmp, 0, 1, rnd));
 				if (x > 0 && distSq2(currY[x - 1], q) < sep) continue;
-				if (y > 0) {
-					if (
-						distSq2(prevY[x], q) < sep ||
+				if (
+					y > 0 &&
+					(distSq2(prevY[x], q) < sep ||
 						(x > 0 && distSq2(prevY[x - 1], q) < sep) ||
-						(x < sx1 && distSq2(prevY[x + 1], q) < sep)
-					)
-						continue;
-				}
+						(x < sx1 && distSq2(prevY[x + 1], q) < sep))
+				)
+					continue;
 				break;
 			}
 			currY.push(q);
@@ -86,14 +85,13 @@ export function* stratifiedGrid3(opts: StratifiedGridOpts) {
 				while (true) {
 					q = add3(null, [x, y, z], random3(tmp, 0, 1, rnd));
 					if (x > 0 && distSq3(currY[x - 1], q) < sep) continue;
-					if (y > 0) {
-						if (
-							distSq3(prevY[x], q) < sep ||
+					if (
+						y > 0 &&
+						(distSq3(prevY[x], q) < sep ||
 							(x > 0 && distSq3(prevY[x - 1], q) < sep) ||
-							(x < sx1 && distSq3(prevY[x + 1], q) < sep)
-						)
-							continue;
-					}
+							(x < sx1 && distSq3(prevY[x + 1], q) < sep))
+					)
+						continue;
 					if (z > 0) {
 						let py = prevZ[y];
 						if (
