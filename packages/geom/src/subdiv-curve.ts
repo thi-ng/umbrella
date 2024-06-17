@@ -1,8 +1,10 @@
 import type { Maybe } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks/is-array";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import * as sdc from "@thi.ng/geom-subdiv-curve/kernels";
 import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
+import { repeat } from "@thi.ng/transducers/repeat";
 import type {
 	IHiccupShape2,
 	IHiccupShape3,
@@ -114,26 +116,24 @@ export type SubdivCurveFn = {
 } & MultiFn2O<IShape, SubdivKernel | SubdivKernel[], number, IShape>;
 
 /**
- * Recursively applies
+ * Iteratively applies
  * [`SubdivKernel`](https://docs.thi.ng/umbrella/geom-subdiv-curve/interfaces/SubdivKernel.html)
- * to given shape/boundary. See
+ * (or array of kernels) to given shape. See
  * [thi.ng/geom-subdiv-curve](https://thi.ng/thi.ng/geom-subdiv-curve) package
- * for further details.
+ * for further details and description of available subdivision presets.
  *
  * @remarks
- * By default only applies a single iteration.
+ * If only given a single subdivision kernel, a number of iterations can be
+ * specified (by default only a single iteration is applied).
  *
  * The following subdivision algorithms are provided:
  *
- * - {@link SUBDIV_CHAIKIN_CLOSED}
- * - {@link SUBDIV_CHAIKIN_OPEN}
- * - {@link SUBDIV_CUBIC_CLOSED}
- * - {@link SUBDIV_CUBIC_OPEN}
+ * - {@link SUBDIV_CHAIKIN}
+ * - {@link SUBDIV_CUBIC}
  * - {@link SUBDIV_DISPLACE} (higher order kernel)
- * - {@link SUBDIV_MID_CLOSED}
- * - {@link SUBDIV_MID_OPEN}
- * - {@link SUBDIV_THIRDS_CLOSED}
- * - {@link SUBDIV_THIRDS_OPEN}
+ * - {@link SUBDIV_DLG}
+ * - {@link SUBDIV_MID}
+ * - {@link SUBDIV_THIRDS}
  *
  * Currently implemented for:
  *
@@ -216,70 +216,63 @@ export const subdivCurve = <SubdivCurveFn>(
 					)
 				),
 
-			poly: ($: Polygon, kernel, iter = 1) =>
+			poly: ($: Polygon, kernel, iter) =>
 				new Polygon(
-					subdivide($.points, <SubdivKernel>kernel, iter),
+					subdivide($.points, __kernelArray(kernel, iter), true),
 					__copyAttribs($.attribs)
 				),
 
-			poly3: ($: Polygon3, kernel, iter = 1) =>
+			poly3: ($: Polygon3, kernel, iter) =>
 				new Polygon3(
-					subdivide($.points, <SubdivKernel>kernel, iter),
+					subdivide($.points, __kernelArray(kernel, iter), true),
 					__copyAttribs($.attribs)
 				),
 
-			polyline: ($: Polyline, kernel, iter = 1) =>
+			polyline: ($: Polyline, kernel, iter) =>
 				new Polyline(
-					subdivide($.points, <SubdivKernel>kernel, iter),
+					subdivide($.points, __kernelArray(kernel, iter), false),
 					__copyAttribs($.attribs)
 				),
 
-			polyline3: ($: Polyline3, kernel, iter = 1) =>
+			polyline3: ($: Polyline3, kernel, iter) =>
 				new Polyline3(
-					subdivide($.points, <SubdivKernel>kernel, iter),
+					subdivide($.points, __kernelArray(kernel, iter), false),
 					__copyAttribs($.attribs)
 				),
 		}
 	)
 );
 
+const __kernelArray = (kernel: SubdivKernel | SubdivKernel[], iter = 1) =>
+	isArray(kernel) ? kernel : [...repeat(kernel, iter)];
+
 /**
  * Re-export of thi.ng/geom-subdiv-curve
- * [`SUBDIV_MID_OPEN`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_MID_OPEN.html)
+ * [`SUBDIV_MID`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_MID.html)
  */
-export const SUBDIV_MID_OPEN = sdc.SUBDIV_MID_OPEN;
+export const SUBDIV_MID = sdc.SUBDIV_MID;
 /**
  * Re-export of thi.ng/geom-subdiv-curve
- * [`SUBDIV_MID_CLOSED`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_MID_CLOSED.html)
+ * [`SUBDIV_THIRDS`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_THIRDS.html)
  */
-export const SUBDIV_MID_CLOSED = sdc.SUBDIV_MID_CLOSED;
+export const SUBDIV_THIRDS = sdc.SUBDIV_THIRDS;
 /**
  * Re-export of thi.ng/geom-subdiv-curve
- * [`SUBDIV_THIRDS_OPEN`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_THIRDS_OPEN.html)
+ * [`SUBDIV_CHAIKIN`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_CHAIKIN.html)
  */
-export const SUBDIV_THIRDS_OPEN = sdc.SUBDIV_THIRDS_OPEN;
+export const SUBDIV_CHAIKIN = sdc.SUBDIV_CHAIKIN;
 /**
  * Re-export of thi.ng/geom-subdiv-curve
- * [`SUBDIV_THIRDS_CLOSED`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_THIRDS_CLOSED.html)
+ * [`SUBDIV_CUBIC`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_CUBIC.html)
  */
-export const SUBDIV_THIRDS_CLOSED = sdc.SUBDIV_THIRDS_CLOSED;
-/**
- * Re-export of thi.ng/geom-subdiv-curve
- * [`SUBDIV_CHAIKIN_OPEN`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_CHAIKIN_OPEN.html)
- */
-export const SUBDIV_CHAIKIN_OPEN = sdc.SUBDIV_CHAIKIN_OPEN;
-/**
- * Re-export of thi.ng/geom-subdiv-curve
- * [`SUBDIV_CHAIKIN_CLOSED`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_CHAIKIN_CLOSED.html)
- */
-export const SUBDIV_CHAIKIN_CLOSED = sdc.SUBDIV_CHAIKIN_CLOSED;
-/**
- * Re-export of thi.ng/geom-subdiv-curve
- * [`SUBDIV_CUBIC_CLOSED`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_CUBIC_CLOSED.html)
- */
-export const SUBDIV_CUBIC_CLOSED = sdc.SUBDIV_CUBIC_CLOSED;
+export const SUBDIV_CUBIC = sdc.SUBDIV_CUBIC;
 /**
  * Higher-order subdiv kernel. Re-export of thi.ng/geom-subdiv-curve
  * [`SUBDIV_DISPLACE`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_DISPLACE.html)
  */
 export const SUBDIV_DISPLACE = sdc.SUBDIV_DISPLACE;
+/**
+ * Re-export of thi.ng/geom-subdiv-curve
+ * [`SUBDIV_DLG`](https://docs.thi.ng/umbrella/geom-subdiv-curve/variables/SUBDIV_DLG.html)
+ */
+export const SUBDIV_DLG = sdc.SUBDIV_DLG;
