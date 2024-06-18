@@ -1,6 +1,6 @@
 import type { Predicate } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
-import { readdirSync, statSync } from "node:fs";
+import { readdirSync } from "node:fs";
 import { sep } from "node:path";
 import { isDirectory } from "./dir.js";
 import { __ensurePred } from "./internal/ensure.js";
@@ -88,7 +88,7 @@ function* __dirs(
 	for (let f of readdirSync(dir).sort()) {
 		const curr = dir + sep + f;
 		try {
-			if (statSync(curr).isDirectory()) {
+			if (isDirectory(curr)) {
 				if (pred(curr)) yield curr;
 				yield* __dirs(curr, match, logger, maxDepth, depth + 1);
 			}
