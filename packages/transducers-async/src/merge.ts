@@ -1,4 +1,4 @@
-import { __inflightIters, __iterNext } from "./internal/iter";
+import { __inflightIters, __iterNext } from "./internal/iter.js";
 
 /**
  * Async iterator version of [thi.ng/rstream's merge()

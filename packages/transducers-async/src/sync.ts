@@ -1,5 +1,5 @@
 import type { Maybe, NumOrString } from "@thi.ng/api";
-import { __inflightIters, __iterNext } from "./internal/iter";
+import { __inflightIters, __iterNext } from "./internal/iter.js";
 
 export type SyncSources<T extends Record<NumOrString, any>> = {
 	[id in keyof T]: AsyncIterable<T[id]>;
