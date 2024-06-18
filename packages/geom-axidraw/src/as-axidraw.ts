@@ -1,4 +1,4 @@
-import type { Maybe } from "@thi.ng/api";
+import type { Fn, Maybe } from "@thi.ng/api";
 import type { DrawCommand } from "@thi.ng/axidraw/api";
 import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands";
 import { polyline } from "@thi.ng/axidraw/polyline";
@@ -27,6 +27,7 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
 	AsAxiDrawOpts,
 	AxiDrawAttribs,
+	InterleaveOpts,
 	PointOrdering,
 	ShapeOrdering,
 } from "./api.js";
@@ -124,6 +125,22 @@ export const asAxiDraw: MultiFn1O<
 );
 
 /** @internal */
+function* __interleaved<T>(
+	emitChunk: Fn<T[], Iterable<DrawCommand>>,
+	items: T[],
+	opts: InterleaveOpts
+) {
+	const { num, commands } = opts;
+	if (opts.start !== false) yield* commands(0);
+	for (let i = 0, n = items.length; i < n; ) {
+		yield* emitChunk(items.slice(i, i + num));
+		i += num;
+		if (i < n) yield* commands(i);
+	}
+	if (opts.end) yield* opts.commands(items.length);
+}
+
+/** @internal */
 function* __group(
 	$: Group,
 	opts?: Partial<AsAxiDrawOpts>
@@ -143,18 +160,9 @@ function* __group(
 			yield* asAxiDraw(shape, opts);
 		}
 	}
-	if (interleave) {
-		const { num, commands } = interleave;
-		if (interleave.start !== false) yield* commands(0);
-		for (let i = 0, n = children.length; i < n; ) {
-			yield* emitChunk(children.slice(i, i + num));
-			i += num;
-			if (i < n) yield* commands(i);
-		}
-		if (interleave.end) yield* interleave.commands(children.length);
-	} else {
-		yield* emitChunk(children);
-	}
+	yield* interleave
+		? __interleaved(emitChunk, children, interleave)
+		: emitChunk(children);
 }
 
 /** @internal */
@@ -192,18 +200,9 @@ function* __points(
 		if (down != undefined) yield ["pen"];
 	}
 	yield UP();
-	if (interleave) {
-		const { num, commands } = interleave;
-		if (interleave.start !== false) yield* commands(0);
-		for (let i = 0, n = pts.length; i < n; ) {
-			yield* emitChunk(pts.slice(i, i + num));
-			i += num;
-			if (i < n) yield* commands(i);
-		}
-		if (interleave.end) yield* interleave.commands(pts.length);
-	} else {
-		yield* emitChunk(pts);
-	}
+	yield* interleave
+		? __interleaved(emitChunk, pts, interleave)
+		: emitChunk(pts);
 }
 
 /** @internal */
