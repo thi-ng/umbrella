@@ -1,4 +1,5 @@
 import type { Maybe, NumOrString } from "@thi.ng/api";
+import { __inflightIters, __iterNext } from "./internal/iter";
 
 export type SyncSources<T extends Record<NumOrString, any>> = {
 	[id in keyof T]: AsyncIterable<T[id]>;
@@ -92,9 +93,7 @@ export async function* sync<T extends Record<NumOrString, any>>(
 			yield { ...tuple };
 		}
 		// array of in-flight promises
-		const promises = iters.map((iter) =>
-			iter.iter.next().then((res) => ({ iter, res }))
-		);
+		const promises = __inflightIters(iters);
 		while (true) {
 			const { iter, res } = await Promise.race(promises);
 			if (res.done) {
@@ -103,9 +102,7 @@ export async function* sync<T extends Record<NumOrString, any>>(
 			} else {
 				tuple[iter.key] = res.value;
 				yield { ...tuple };
-				promises[iter.id] = iter.iter
-					.next()
-					.then((res) => ({ res, iter }));
+				__iterNext(promises, iter);
 			}
 		}
 	}

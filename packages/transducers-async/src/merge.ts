@@ -1,3 +1,5 @@
+import { __inflightIters, __iterNext } from "./internal/iter";
+
 /**
  * Async iterator version of [thi.ng/rstream's merge()
  * construct](https://docs.thi.ng/umbrella/rstream/functions/merge.html).
@@ -20,9 +22,7 @@ export async function* merge<T>(
 		for (let i = id; i < n; i++) iters[i].id--;
 	};
 	// array of in-flight promises
-	const promises = iters.map((iter) =>
-		iter.iter.next().then((res) => ({ iter, res }))
-	);
+	const promises = __inflightIters(iters);
 	while (true) {
 		const { iter, res } = await Promise.race(promises);
 		if (res.done) {
@@ -30,7 +30,7 @@ export async function* merge<T>(
 			if ($remove(iter.id)) return;
 		} else {
 			yield res.value;
-			promises[iter.id] = iter.iter.next().then((res) => ({ res, iter }));
+			__iterNext(promises, iter);
 		}
 	}
 }
