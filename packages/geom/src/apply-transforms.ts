@@ -1,18 +1,11 @@
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type {
-	IHiccupShape2,
-	IHiccupShape3,
-	IShape,
-	IShape2,
-	IShape3,
-} from "./api.js";
+import type { IShape, IShape2, IShape3 } from "./api.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
-import type { Group3 } from "./api/group3.js";
 import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { rotateX, rotateY, rotateZ } from "./rotate-around-axis.js";
@@ -110,18 +103,11 @@ const __apply = ($: IShape) => {
  */
 export const applyTransforms = <ApplyTransformsFn>defmulti<any, IShape>(
 	__dispatch,
-	{},
+	{ group3: "group" },
 	{
 		[DEFAULT]: __apply,
 
 		group: ($: Group) =>
-			__apply(
-				$.copyTransformed((x) => <IHiccupShape2>applyTransforms(x))
-			),
-
-		group3: ($: Group3) =>
-			__apply(
-				$.copyTransformed((x) => <IHiccupShape3>applyTransforms(x))
-			),
+			__apply($.copyTransformed((x) => applyTransforms(x))),
 	}
 );
