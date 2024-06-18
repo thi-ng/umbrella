@@ -137,24 +137,23 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 		acc: Heap<[number, NdQtNode<K, V>?]>,
 		distFn: DistanceFn
 	): Heap<[number, NdQtNode<K, V>?]> {
-		if (testCenteredBoxSphere(this.pos, this.ext, p, r)) {
-			if (this.k) {
-				const d = distFn(this.k, p);
-				if (d <= acc.values[0][0]) {
-					acc.length >= max
-						? acc.pushPop([d, this])
-						: acc.push([d, this]);
-				}
-			} else if (this.children) {
-				for (
-					let i = MAX_CHILDREN[this.pos.length], j = this.numC;
-					i-- > 0 && j > 0;
+		if (!testCenteredBoxSphere(this.pos, this.ext, p, r)) return acc;
+		if (this.k) {
+			const d = distFn(this.k, p);
+			if (d <= acc.values[0][0]) {
+				acc.length >= max
+					? acc.pushPop([d, this])
+					: acc.push([d, this]);
+			}
+		} else if (this.children) {
+			for (
+				let i = MAX_CHILDREN[this.pos.length], j = this.numC;
+				i-- > 0 && j > 0;
 
-				) {
-					if (this.children[i]) {
-						this.children[i].doQuery(p, r, max, acc, distFn);
-						j--;
-					}
+			) {
+				if (this.children[i]) {
+					this.children[i].doQuery(p, r, max, acc, distFn);
+					j--;
 				}
 			}
 		}
