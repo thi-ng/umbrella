@@ -1,4 +1,4 @@
-import type { FloatSym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import type { FloatSym, Vec, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { F, V2, V3, V4 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { mat2, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
@@ -58,6 +58,16 @@ export const hash11 = defn(F, "hash11", [F], (p) => {
 	];
 });
 
+const __hash1 = <T extends "vec2" | "vec3">(V: T) =>
+	defn(F, null, [V], (p) => {
+		let x: Vec3Sym;
+		return [
+			(x = sym(fract(mul($(<any>p, "xyx"), 0.1031)))),
+			addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
+			ret(fract(mul(add($x(x), $y(x)), $z(x)))),
+		];
+	});
+
 /**
  * 2D -> 1D hash.
  *
@@ -65,14 +75,7 @@ export const hash11 = defn(F, "hash11", [F], (p) => {
  *
  * @param p -
  */
-export const hash12 = defn(F, "hash12", [V2], (p) => {
-	let x: Vec3Sym;
-	return [
-		(x = sym(fract(mul($(p, "xyx"), 0.1031)))),
-		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
-		ret(fract(mul(add($x(x), $y(x)), $z(x)))),
-	];
-});
+export const hash12 = __hash1(V2);
 
 /**
  * 3D -> 1D hash.
@@ -81,14 +84,7 @@ export const hash12 = defn(F, "hash12", [V2], (p) => {
  *
  * @param p -
  */
-export const hash13 = defn(F, "hash13", [V3], (p) => {
-	let x: Vec3Sym;
-	return [
-		(x = sym(fract(mul($(p, "xyx"), 0.1031)))),
-		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
-		ret(fract(mul(add($x(x), $y(x)), $z(x)))),
-	];
-});
+export const hash13 = __hash1(V3);
 
 /**
  * 1D -> 2D hash.
@@ -138,6 +134,16 @@ export const hash23 = defn(V2, "hash23", [V3], (p) => {
 	];
 });
 
+const __hash3 = <T extends "float" | "vec3">(I: T) =>
+	defn(V3, null, [I], (p) => {
+		let x: Vec3Sym;
+		return [
+			(x = sym(fract(mul(<any>p, H)))),
+			addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
+			ret(fract(mul(add($(x, "xxy"), $(x, "yzz")), $(x, "zyx")))),
+		];
+	});
+
 /**
  * 1D -> 3D hash.
  *
@@ -145,14 +151,7 @@ export const hash23 = defn(V2, "hash23", [V3], (p) => {
  *
  * @param p -
  */
-export const hash31 = defn(V3, "hash31", [F], (p) => {
-	let x: Vec3Sym;
-	return [
-		(x = sym(fract(mul(p, H)))),
-		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
-		ret(fract(mul(add($(x, "xxy"), $(x, "yzz")), $(x, "zyx")))),
-	];
-});
+export const hash31 = __hash3(F);
 
 /**
  * 2D -> 3D hash.
@@ -177,14 +176,27 @@ export const hash32 = defn(V3, "hash32", [V2], (p) => {
  *
  * @param p -
  */
-export const hash33 = defn(V3, "hash33", [V3], (p) => {
-	let x: Vec3Sym;
-	return [
-		(x = sym(fract(mul(p, H)))),
-		addSelf(x, dot(x, add($(x, "yzx"), 19.19))),
-		ret(fract(mul(add($(x, "xxy"), $(x, "yzz")), $(x, "zyx")))),
-	];
-});
+export const hash33 = __hash3(V3);
+
+const __hash4 = <T extends "float" | "vec4">(I: T) =>
+	defn(V4, null, [I], (p) => {
+		let x: Vec4Sym;
+		return [
+			(x = sym(fract(mul(<any>p, H4)))),
+			addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
+			ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
+		];
+	});
+
+const __hash4a = <T extends "vec2" | "vec3">(I: T) =>
+	defn(V4, null, [I], (p) => {
+		let x: Vec4Sym;
+		return [
+			(x = sym(fract(mul($(<any>p, "xyxy"), H4)))),
+			addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
+			ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
+		];
+	});
 
 /**
  * 1D -> 4D hash.
@@ -193,14 +205,7 @@ export const hash33 = defn(V3, "hash33", [V3], (p) => {
  *
  * @param p -
  */
-export const hash41 = defn(V4, "hash41", [F], (p) => {
-	let x: Vec4Sym;
-	return [
-		(x = sym(fract(mul(p, H4)))),
-		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
-		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
-	];
-});
+export const hash41 = __hash4(F);
 
 /**
  * 2D -> 4D hash.
@@ -209,14 +214,7 @@ export const hash41 = defn(V4, "hash41", [F], (p) => {
  *
  * @param p -
  */
-export const hash42 = defn(V4, "hash42", [V2], (p) => {
-	let x: Vec4Sym;
-	return [
-		(x = sym(fract(mul($(p, "xyxy"), H4)))),
-		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
-		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
-	];
-});
+export const hash42 = __hash4a(V2);
 
 /**
  * 3D -> 4D hash.
@@ -225,14 +223,7 @@ export const hash42 = defn(V4, "hash42", [V2], (p) => {
  *
  * @param p -
  */
-export const hash43 = defn(V4, "hash43", [V3], (p) => {
-	let x: Vec4Sym;
-	return [
-		(x = sym(fract(mul($(p, "xyzx"), H4)))),
-		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
-		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
-	];
-});
+export const hash43 = __hash4a(V3);
 
 /**
  * 4D -> 4D hash.
@@ -241,11 +232,4 @@ export const hash43 = defn(V4, "hash43", [V3], (p) => {
  *
  * @param p -
  */
-export const hash44 = defn(V4, "hash44", [V4], (p) => {
-	let x: Vec4Sym;
-	return [
-		(x = sym(fract(mul(p, H4)))),
-		addSelf(x, dot(x, add($(x, "wzxy"), 19.19))),
-		ret(fract(mul(add($(x, "xxyz"), $(x, "yzzw")), $(x, "zywx")))),
-	];
-});
+export const hash44 = __hash4(V4);
