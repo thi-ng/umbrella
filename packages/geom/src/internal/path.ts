@@ -15,6 +15,7 @@ import type { Path } from "../api/path.js";
 import type { Path3 } from "../api/path3.js";
 import { asCubic } from "../as-cubic.js";
 import { __copySegment } from "./copy.js";
+import { peek } from "@thi.ng/arrays/peek";
 
 interface PathType {
 	2: { path: Path; ctor: typeof Path; cubic: Cubic; seg: PathSegment2 };
@@ -43,6 +44,16 @@ export const __pathFromCubics = <T extends 2 | 3>(
 		<any>subPaths.slice(1),
 		attribs || cubics[0].attribs
 	);
+	const segments: PathType[T]["seg"][] = path.segments;
+	if (
+		segments.length > 1 &&
+		equals(
+			segments[0].point!,
+			peek((<PathType[T]["cubic"]>peek(segments).geo).points)
+		)
+	) {
+		path.close();
+	}
 	return path;
 };
 
