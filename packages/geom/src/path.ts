@@ -1,14 +1,9 @@
-import type { Maybe } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
+import type { Vec } from "@thi.ng/vectors";
 import type { Attribs, PathSegment2, SegmentType2 } from "./api.js";
-import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { equals2 } from "@thi.ng/vectors/equals";
 import type { Cubic } from "./api/cubic.js";
 import { Path } from "./api/path.js";
-import { asCubic } from "./as-cubic.js";
-import { __copySegment } from "./internal/copy.js";
+import { __normalizedPath, __pathFromCubics } from "./internal/path.js";
 import { PathBuilder } from "./path-builder.js";
 
 /**
@@ -34,7 +29,7 @@ export const path = (
  * `attribs`.
  *
  * @remarks
- * If no `attribs` are given, those from the first curve will be used.
+ * If no `attribs` are given, those from the first curve will be used (if any).
  *
  * For each successive curve segment, if the start point of the current curve is
  * not the same as the last point of the previous curve, a new sub path will be
@@ -45,26 +40,8 @@ export const path = (
  * @param cubics
  * @param attribs
  */
-export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
-	let subPaths: PathSegment2[][] = [];
-	let curr: PathSegment2[];
-	let lastP: Maybe<ReadonlyVec>;
-	const $beginPath = (c: Cubic) => {
-		curr = [{ type: "m", point: c.points[0] }];
-		subPaths.push(curr);
-	};
-	for (let c of cubics) {
-		if (!(lastP && equals2(lastP, c.points[0]))) $beginPath(c);
-		curr!.push({ type: "c", geo: c });
-		lastP = c.points[3];
-	}
-	const path = new Path(
-		subPaths[0],
-		subPaths.slice(1),
-		attribs || cubics[0].attribs
-	);
-	return path;
-};
+export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) =>
+	__pathFromCubics<2>(Path, cubics, attribs);
 
 /**
  * Converts given path into a new one with segments converted to {@link Cubic}
@@ -80,25 +57,7 @@ export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
 export const normalizedPath = (
 	path: Path,
 	only?: Extract<SegmentType2, "a" | "l" | "p" | "q">[]
-) => {
-	const $normalize = (segments: PathSegment2[]) => [
-		...mapcat((s) => {
-			s.type;
-			if (s.geo && (!only || only.includes(<any>s.type))) {
-				return map<Cubic, PathSegment2>(
-					(c) => ({ type: "c", geo: c }),
-					asCubic(s.geo)
-				);
-			}
-			return [__copySegment(s)];
-		}, segments),
-	];
-	return new Path(
-		$normalize(path.segments),
-		path.subPaths.map($normalize),
-		path.attribs
-	);
-};
+) => __normalizedPath<2>(Path, path, only);
 
 /**
  * Creates a new rounded rect {@link Path}, using the given corner radius or
