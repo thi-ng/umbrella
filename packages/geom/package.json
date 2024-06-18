@@ -337,9 +337,6 @@
 		"./internal/pclike": {
 			"default": "./internal/pclike.js"
 		},
-		"./internal/transform": {
-			"default": "./internal/transform.js"
-		},
 		"./internal/vertices": {
 			"default": "./internal/vertices.js"
 		},
