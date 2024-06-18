@@ -1,4 +1,4 @@
-import type { FnBody1 } from "@thi.ng/shader-ast";
+import type { FloatTerm, FnBody1 } from "@thi.ng/shader-ast";
 import { F } from "@thi.ng/shader-ast/api/types";
 import { ifThen, ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -45,78 +45,55 @@ export const easeInOutSine = defEasing((x) => [
 	ret(div(neg(sub(cos(mul(PI, x)), FLOAT1)), FLOAT2)),
 ]);
 
-export const easeInQuad = defEasing((x) => [ret(pow(x, FLOAT2))]);
+const __easeIn =
+	(k: FloatTerm): FnBody1<"float"> =>
+	(x) =>
+		[ret(pow(x, k))];
 
-export const easeOutQuad = defEasing((x) => [
-	ret(sub(FLOAT1, pow(sub(FLOAT1, x), FLOAT2))),
-]);
+const __easeOut =
+	(k: FloatTerm): FnBody1<"float"> =>
+	(x) =>
+		[ret(sub(FLOAT1, pow(sub(FLOAT1, x), k)))];
 
-export const easeInOutQuad = defEasing((x) => [
-	ret(
-		ternary(
-			lt(x, FLOAT05),
-			mul(FLOAT2, pow(x, FLOAT2)),
-			sub(FLOAT1, div(pow(madd(neg(FLOAT2), x, FLOAT2), FLOAT2), FLOAT2))
-		)
-	),
-]);
+const __easeInOut =
+	(a: FloatTerm, b: FloatTerm): FnBody1<"float"> =>
+	(x) =>
+		[
+			ret(
+				ternary(
+					lt(x, FLOAT05),
+					mul(a, pow(x, b)),
+					sub(
+						FLOAT1,
+						div(pow(madd(neg(FLOAT2), x, FLOAT2), b), FLOAT2)
+					)
+				)
+			),
+		];
 
-export const easeInCubic = defEasing((x) => [ret(pow(x, float(3)))]);
+export const easeInQuad = defEasing(__easeIn(FLOAT2));
 
-export const easeOutCubic = defEasing((x) => [
-	ret(sub(FLOAT1, pow(sub(FLOAT1, x), float(3)))),
-]);
+export const easeOutQuad = defEasing(__easeOut(FLOAT2));
 
-export const easeInOutCubic = defEasing((x) => [
-	ret(
-		ternary(
-			lt(x, FLOAT05),
-			mul(float(4), pow(x, float(3))),
-			sub(
-				FLOAT1,
-				div(pow(madd(neg(FLOAT2), x, FLOAT2), float(3)), FLOAT2)
-			)
-		)
-	),
-]);
+export const easeInOutQuad = defEasing(__easeInOut(FLOAT2, FLOAT2));
 
-export const easeInQuart = defEasing((x) => [ret(pow(x, float(4)))]);
+export const easeInCubic = defEasing(__easeIn(float(3)));
 
-export const easeOutQuart = defEasing((x) => [
-	ret(sub(FLOAT1, pow(sub(FLOAT1, x), float(4)))),
-]);
+export const easeOutCubic = defEasing(__easeOut(float(3)));
 
-export const easeInOutQuart = defEasing((x) => [
-	ret(
-		ternary(
-			lt(x, FLOAT05),
-			mul(float(8), pow(x, float(4))),
-			sub(
-				FLOAT1,
-				div(pow(madd(neg(FLOAT2), x, FLOAT2), float(4)), FLOAT2)
-			)
-		)
-	),
-]);
+export const easeInOutCubic = defEasing(__easeInOut(float(4), float(3)));
 
-export const easeInQuint = defEasing((x) => [ret(pow(x, float(5)))]);
+export const easeInQuart = defEasing(__easeIn(float(4)));
 
-export const easeOutQuint = defEasing((x) => [
-	ret(sub(FLOAT1, pow(sub(FLOAT1, x), float(5)))),
-]);
+export const easeOutQuart = defEasing(__easeOut(float(4)));
 
-export const easeInOutQuint = defEasing((x) => [
-	ret(
-		ternary(
-			lt(x, FLOAT05),
-			mul(float(16), pow(x, float(5))),
-			sub(
-				FLOAT1,
-				div(pow(madd(neg(FLOAT2), x, FLOAT2), float(5)), FLOAT2)
-			)
-		)
-	),
-]);
+export const easeInOutQuart = defEasing(__easeInOut(float(8), float(4)));
+
+export const easeInQuint = defEasing(__easeIn(float(5)));
+
+export const easeOutQuint = defEasing(__easeOut(float(5)));
+
+export const easeInOutQuint = defEasing(__easeInOut(float(16), float(5)));
 
 export const easeInExpo = defEasing((x) => [
 	ret(
