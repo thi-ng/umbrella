@@ -1,42 +1,26 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, PathSegment2 } from "./api.js";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
 import { set2, set3 } from "@thi.ng/vectors/set";
+import type { IShape, PathSegment2, PathSegment3 } from "./api.js";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
-import { BPatch } from "./api/bpatch.js";
 import { Circle } from "./api/circle.js";
-import { ComplexPolygon } from "./api/complex-polygon.js";
-import { Cubic } from "./api/cubic.js";
-import { Cubic3 } from "./api/cubic3.js";
 import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
-import { Line } from "./api/line.js";
-import { Line3 } from "./api/line3.js";
 import { Path } from "./api/path.js";
+import type { Path3 } from "./api/path3.js";
 import { Points } from "./api/points.js";
 import { Points3 } from "./api/points3.js";
-import { Polygon } from "./api/polygon.js";
-import { Polygon3 } from "./api/polygon3.js";
-import { Polyline } from "./api/polyline.js";
-import { Polyline3 } from "./api/polyline3.js";
-import { Quad } from "./api/quad.js";
-import { Quad3 } from "./api/quad3.js";
-import { Quadratic } from "./api/quadratic.js";
-import { Quadratic3 } from "./api/quadratic3.js";
 import { Ray } from "./api/ray.js";
 import { Ray3 } from "./api/ray3.js";
 import { Rect } from "./api/rect.js";
 import { Sphere } from "./api/sphere.js";
 import { Text } from "./api/text.js";
-import { Triangle } from "./api/triangle.js";
-import { Triangle3 } from "./api/triangle3.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __segmentTransformer } from "./internal/transform.js";
-import { __translatedShape as tx } from "./internal/translate.js";
 
 /**
  * Function overrides for {@link translate}.
@@ -81,7 +65,25 @@ export type TranslateFn = {
  */
 export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 	__dispatch,
-	{ group3: "group" },
+	{
+		bpatch: "points",
+		cubic: "points",
+		cubic3: "points3",
+		complexpoly: "group",
+		group3: "group",
+		line: "points",
+		line3: "points3",
+		poly: "points",
+		poly3: "points3",
+		polyline: "points",
+		polyline3: "points3",
+		quad: "points",
+		quad3: "points3",
+		quadratic: "points",
+		quadratic3: "points3",
+		tri: "points",
+		tri3: "points3",
+	},
 	{
 		aabb: ($: AABB, delta) =>
 			new AABB(
@@ -96,21 +98,8 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 			return a;
 		},
 
-		bpatch: tx(BPatch),
-
 		circle: ($: Circle, delta) =>
 			new Circle(add2([], $.pos, delta), $.r, __copyAttribs($.attribs)),
-
-		complexpoly: ($: ComplexPolygon, delta) =>
-			new ComplexPolygon(
-				translate($.boundary, delta),
-				$.children.map((child) => translate(child, delta)),
-				__copyAttribs($.attribs)
-			),
-
-		cubic: tx(Cubic),
-
-		cubic3: tx(Cubic3),
 
 		ellipse: ($: Ellipse, delta) =>
 			new Ellipse(
@@ -124,41 +113,31 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 		group: ($: Group, delta) =>
 			$.copyTransformed((x) => translate(x, delta)),
 
-		line: tx(Line),
+		path: ($: Path, delta) =>
+			$.copyTransformed(
+				__segmentTransformer<PathSegment2>(
+					(geo) => translate(geo, delta),
+					(p) => add2([], p, delta)
+				)
+			),
 
-		line3: tx(Line3),
+		path3: ($: Path3, delta) =>
+			$.copyTransformed(
+				__segmentTransformer<PathSegment3>(
+					(geo) => translate(geo, delta),
+					(p) => add3([], p, delta)
+				)
+			),
 
-		path: ($: Path, delta: ReadonlyVec) => {
-			const $translateSegments = __segmentTransformer<PathSegment2>(
-				(geo) => translate(geo, delta),
-				(p) => add2([], p, delta)
-			);
-			return new Path(
-				$translateSegments($.segments),
-				$.subPaths.map($translateSegments),
-				__copyAttribs($.attribs)
-			);
-		},
+		points: ($: Points, delta) =>
+			$.copyTransformed((points) =>
+				points.map((x) => add2([], x, delta))
+			),
 
-		points: tx(Points),
-
-		points3: tx(Points3),
-
-		poly: tx(Polygon),
-
-		poly3: tx(Polygon3),
-
-		polyline: tx(Polyline),
-
-		polyline3: tx(Polyline3),
-
-		quad: tx(Quad),
-
-		quad3: tx(Quad3),
-
-		quadratic: tx(Quadratic),
-
-		quadratic3: tx(Quadratic3),
+		points3: ($: Points3, delta) =>
+			$.copyTransformed((points) =>
+				points.map((x) => add3([], x, delta))
+			),
 
 		ray: ($: Ray, delta) =>
 			new Ray(add2([], $.pos, delta), $.dir, __copyAttribs($.attribs)),
@@ -178,9 +157,5 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 
 		text: ($: Text, delta) =>
 			new Text(add2([], $.pos, delta), $.body, __copyAttribs($.attribs)),
-
-		tri: tx(Triangle),
-
-		tri3: tx(Triangle3),
 	}
 );

@@ -6,22 +6,12 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { X3, Y3, Z3 } from "@thi.ng/vectors/api";
 import { rotateAroundAxis3 } from "@thi.ng/vectors/rotate-around-axis";
 import type { IHiccupShape3, IShape3, PathSegment3 } from "./api.js";
-import { Cubic3 } from "./api/cubic3.js";
 import type { Group3 } from "./api/group3.js";
-import { Line3 } from "./api/line3.js";
-import { Path3 } from "./api/path3.js";
-import { Points3 } from "./api/points3.js";
-import { Polygon3 } from "./api/polygon3.js";
-import { Polyline3 } from "./api/polyline3.js";
-import { Quad3 } from "./api/quad3.js";
-import { Quadratic3 } from "./api/quadratic3.js";
+import type { Path3 } from "./api/path3.js";
+import type { Points3 } from "./api/points3.js";
 import { Ray3 } from "./api/ray3.js";
-import { Triangle3 } from "./api/triangle3.js";
-import { asPath } from "./as-path.js";
-import { asPolygon } from "./as-polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
-import { __rotatedShape3 as tx } from "./internal/rotate.js";
 import { __segmentTransformer } from "./internal/transform.js";
 
 export type RotateAroundAxisFn = {
@@ -53,45 +43,37 @@ export type RotateAroundAxisFn = {
 export const rotateAroundAxis = <RotateAroundAxisFn>(
 	defmulti<any, ReadonlyVec, number, IShape3>(
 		__dispatch,
-		{},
 		{
-			$aspath: ($: IShape3, axis, theta) =>
-				rotateAroundAxis(asPath($), axis, theta),
-
-			$aspoly: ($: IShape3, axis, theta) =>
-				rotateAroundAxis(asPolygon($)[0], axis, theta),
-
-			cubic3: tx(Cubic3),
-
+			cubic3: "points3",
+			line3: "points3",
+			poly3: "points3",
+			polyline3: "points3",
+			quad3: "points3",
+			quadratic3: "points3",
+			tri3: "points3",
+		},
+		{
 			group3: ($: Group3, axis, theta) =>
 				$.copyTransformed(
 					(x) => <IHiccupShape3>rotateAroundAxis(x, axis, theta)
 				),
 
-			line3: tx(Line3),
-
 			path3: ($: Path3, axis, theta) => {
 				const mat = rotationAroundAxis33([], axis, theta);
-				const $rotateSegments = __segmentTransformer<PathSegment3>(
-					(geo) => rotateAroundAxis(geo, axis, theta),
-					(p) => mulV33([], mat, p)
-				);
-				return new Path3(
-					$rotateSegments($.segments),
-					$.subPaths.map($rotateSegments),
-					__copyAttribs($.attribs)
+				return $.copyTransformed(
+					__segmentTransformer<PathSegment3>(
+						(geo) => rotateAroundAxis(geo, axis, theta),
+						(p) => mulV33([], mat, p)
+					)
 				);
 			},
 
-			points3: tx(Points3),
-
-			poly3: tx(Polygon3),
-
-			polyline3: tx(Polyline3),
-
-			quad3: tx(Quad3),
-
-			quadratic3: tx(Quadratic3),
+			points3: ($: Points3, axis, theta) => {
+				const mat = rotationAroundAxis33([], axis, theta);
+				return $.copyTransformed((points) =>
+					points.map((p) => mulV33([], mat, p))
+				);
+			},
 
 			ray3: ($: Ray3, axis, theta) => {
 				return new Ray3(
@@ -100,8 +82,6 @@ export const rotateAroundAxis = <RotateAroundAxisFn>(
 					__copyAttribs($.attribs)
 				);
 			},
-
-			tri: tx(Triangle3),
 		}
 	)
 );

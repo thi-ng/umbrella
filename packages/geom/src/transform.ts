@@ -1,44 +1,26 @@
-import type { FnU } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Attribs, IShape, IShape2, IShape3 } from "./api.js";
 import type { ReadonlyMat } from "@thi.ng/matrices";
-import { mulV23, mulV44 } from "@thi.ng/matrices/mulv";
-import type { Vec } from "@thi.ng/vectors";
+import { mulV23, mulV344 } from "@thi.ng/matrices/mulv";
+import type { IShape, IShape2, IShape3 } from "./api.js";
 import type { Arc } from "./api/arc.js";
-import { BPatch } from "./api/bpatch.js";
 import type { Circle } from "./api/circle.js";
-import { ComplexPolygon } from "./api/complex-polygon.js";
-import { Cubic } from "./api/cubic.js";
-import { Cubic3 } from "./api/cubic3.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
-import { Line } from "./api/line.js";
-import { Line3 } from "./api/line3.js";
 import { Path } from "./api/path.js";
 import { Path3 } from "./api/path3.js";
 import { Points } from "./api/points.js";
 import { Points3 } from "./api/points3.js";
-import { Polygon } from "./api/polygon.js";
-import { Polygon3 } from "./api/polygon3.js";
-import { Polyline } from "./api/polyline.js";
-import { Polyline3 } from "./api/polyline3.js";
 import { Quad } from "./api/quad.js";
-import { Quad3 } from "./api/quad3.js";
-import { Quadratic } from "./api/quadratic.js";
-import { Quadratic3 } from "./api/quadratic3.js";
 import type { Rect } from "./api/rect.js";
 import { Text } from "./api/text.js";
-import { Triangle } from "./api/triangle.js";
-import { Triangle3 } from "./api/triangle3.js";
 import { asPath } from "./as-path.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __ensureNoArc } from "./internal/error.js";
 import {
 	__segmentTransformer,
-	__transformedShape as tx,
-	__transformedShape3 as tx3,
+	__transformedPoints,
 } from "./internal/transform.js";
 import { vertices } from "./vertices.js";
 
@@ -108,84 +90,68 @@ export const transform = <TransformFn>defmulti<any, ReadonlyMat, IShape>(
 	{
 		arc: "$aspath",
 		circle: "$aspath",
+		complexpoly: "group",
+		bpatch: "points",
+		cubic: "points",
+		cubic3: "points3",
 		ellipse: "$aspath",
 		group3: "group",
+		line: "points",
+		line3: "points3",
+		poly: "points",
+		poly3: "points3",
+		polyline: "points",
+		polyline3: "points3",
+		quad: "points",
+		quad3: "points3",
+		quadratic: "points",
+		quadratic3: "points3",
+		tri: "points",
+		tri3: "points3",
 	},
 	{
 		$aspath: ($: IShape2, mat) => transform(asPath($), mat),
-
-		bpatch: tx(BPatch),
-
-		complexpoly: ($: ComplexPolygon, mat) =>
-			new ComplexPolygon(
-				transform($.boundary, mat),
-				$.children.map((child) => transform(child, mat)),
-				__copyAttribs($.attribs)
-			),
-
-		cubic: tx(Cubic),
-
-		cubic3: tx(Cubic3),
 
 		extra: ($) => $,
 
 		group: ($: Group, mat) => $.copyTransformed((x) => transform(x, mat)),
 
-		line: tx(Line),
-
-		line3: tx(Line3),
-
 		path: ($: Path, mat) =>
-			__transformPath($, Path, mat, (p) => mulV23([], mat, p)),
+			$.copyTransformed(
+				__segmentTransformer<any>(
+					(geo) => {
+						__ensureNoArc(geo);
+						return <any>transform(geo, mat);
+					},
+					(p) => mulV23([], mat, p)
+				)
+			),
 
 		path3: ($: Path3, mat) =>
-			__transformPath($, Path3, mat, (p) => mulV44([], mat, p)),
+			$.copyTransformed(
+				__segmentTransformer<any>(
+					(geo) => {
+						__ensureNoArc(geo);
+						return <any>transform(geo, mat);
+					},
+					(p) => mulV344([], mat, p)!
+				)
+			),
 
-		points: tx(Points),
+		points: ($: Points, mat) =>
+			$.copyTransformed((points) =>
+				__transformedPoints(points, mat, mulV23)
+			),
 
-		points3: tx3(Points3),
-
-		poly: tx(Polygon),
-
-		poly3: tx(Polygon3),
-
-		polyline: tx(Polyline),
-
-		polyline3: tx(Polyline3),
-
-		quad: tx(Quad),
-
-		quad3: tx(Quad3),
-
-		quadratic: tx(Quadratic),
-
-		quadratic3: tx(Quadratic3),
+		points3: ($: Points3, mat) =>
+			$.copyTransformed((points) =>
+				__transformedPoints(points, mat, <any>mulV344)
+			),
 
 		rect: ($: Rect, mat) =>
 			transform(new Quad(vertices($), __copyAttribs($.attribs)), mat),
 
 		text: ($: Text, mat) =>
 			new Text(mulV23([], mat, $.pos!), $.body, __copyAttribs($.attribs)),
-
-		tri: tx(Triangle),
-
-		tri3: tx(Triangle3),
 	}
 );
-
-const __transformPath = <T extends Path | Path3>(
-	$: T,
-	ctor: { new (s: T["segments"], sub: T["subPaths"], attribs?: Attribs): T },
-	mat: ReadonlyMat,
-	fn: FnU<Vec>
-) => {
-	const $transformSegments = __segmentTransformer<any>((geo) => {
-		__ensureNoArc(geo);
-		return <any>transform(geo, mat);
-	}, fn);
-	return new ctor(
-		$transformSegments($.segments),
-		$.subPaths.map($transformSegments),
-		__copyAttribs($.attribs)
-	);
-};
