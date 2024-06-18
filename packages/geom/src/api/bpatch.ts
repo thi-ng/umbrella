@@ -1,3 +1,4 @@
+import type { Fn } from "@thi.ng/api";
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 import type { Attribs, IHiccupShape2 } from "../api.js";
@@ -42,6 +43,10 @@ export class BPatch extends APC implements IHiccupShape2<BPatch> {
 
 	copy(): BPatch {
 		return __copyShape(BPatch, this);
+	}
+
+	copyTransformed(fn: Fn<ReadonlyVec[], Vec[]>) {
+		return __copyShape(BPatch, this, fn(this.points));
 	}
 
 	withAttribs(attribs: Attribs) {

@@ -1,4 +1,5 @@
-import type { Vec } from "@thi.ng/vectors";
+import type { Fn } from "@thi.ng/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Attribs, IHiccupShape3 } from "../api.js";
 import { __copyShape } from "../internal/copy.js";
 import { __ensureNumVerts } from "../internal/pclike.js";
@@ -15,6 +16,10 @@ export class Quad3 extends APC implements IHiccupShape3<Quad3> {
 
 	copy(): Quad3 {
 		return __copyShape(Quad3, this);
+	}
+
+	copyTransformed(fn: Fn<ReadonlyVec[], Vec[]>) {
+		return __copyShape(Quad3, this, fn(this.points));
 	}
 
 	withAttribs(attribs: Attribs) {

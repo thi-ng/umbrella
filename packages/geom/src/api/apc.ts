@@ -1,6 +1,6 @@
-import type { IClear } from "@thi.ng/api";
+import type { Fn, IClear } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
-import type { Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Attribs, PCLike } from "../api.js";
 
 export abstract class APC implements IClear, PCLike {
@@ -15,6 +15,8 @@ export abstract class APC implements IClear, PCLike {
 	abstract get dim(): number;
 
 	abstract copy(): APC;
+
+	abstract copyTransformed(fn: Fn<ReadonlyVec[], Vec[]>): APC;
 
 	abstract withAttribs(attribs: Attribs): APC;
 

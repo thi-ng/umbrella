@@ -1,8 +1,9 @@
-import type { ICopy, IToHiccup } from "@thi.ng/api";
+import type { Fn, ICopy, IToHiccup } from "@thi.ng/api";
 import * as isec from "@thi.ng/geom-isec/api";
 import * as sample from "@thi.ng/geom-resample/api";
 import type * as sdc from "@thi.ng/geom-subdiv-curve";
 import type * as tess from "@thi.ng/geom-tessellate";
+import type { ReadonlyMat } from "@thi.ng/matrices";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type IntersectionResult = isec.IntersectionResult;
@@ -102,6 +103,10 @@ export interface IAttributed<T> {
 	attribs?: Attribs;
 
 	withAttribs(attribs: Attribs): T;
+}
+
+export interface ICopyTransformed<A, B = A> {
+	copyTransformed(fn: Fn<A, B>): this;
 }
 
 export interface IShape<T extends IShape = IShape<any>>
@@ -209,3 +214,5 @@ export interface CubicOpts {
 	 */
 	scale: number;
 }
+
+export type TransformVertexFn = Fn<ReadonlyVec, ReadonlyMat>;

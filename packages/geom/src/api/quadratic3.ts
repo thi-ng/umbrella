@@ -1,4 +1,5 @@
-import type { Vec } from "@thi.ng/vectors";
+import type { Fn } from "@thi.ng/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type {
 	Attribs,
 	HiccupPathSegment,
@@ -23,6 +24,10 @@ export class Quadratic3
 
 	copy(): Quadratic3 {
 		return __copyShape(Quadratic3, this);
+	}
+
+	copyTransformed(fn: Fn<ReadonlyVec[], Vec[]>) {
+		return __copyShape(Quadratic3, this, fn(this.points));
 	}
 
 	withAttribs(attribs: Attribs) {

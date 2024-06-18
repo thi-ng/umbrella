@@ -1,4 +1,4 @@
-import type { IClear } from "@thi.ng/api";
+import type { Fn, IClear } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { peek } from "@thi.ng/arrays/peek";
 import { equiv } from "@thi.ng/equiv";
@@ -44,12 +44,15 @@ export class Path implements IClear, IHiccupShape2<Path> {
 	}
 
 	copy(): Path {
-		const p = new Path(
-			this.segments.map(__copySegment),
-			this.subPaths.map((sub) => sub.map(__copySegment)),
+		return this.copyTransformed((segments) => segments.map(__copySegment));
+	}
+
+	copyTransformed(fn: Fn<PathSegment2[], PathSegment2[]>) {
+		return new Path(
+			fn(this.segments),
+			this.subPaths.map(fn),
 			__copyAttribs(this.attribs)
 		);
-		return p;
 	}
 
 	withAttribs(attribs: Attribs) {

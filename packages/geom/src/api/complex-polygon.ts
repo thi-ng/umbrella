@@ -1,3 +1,4 @@
+import type { Fn } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { Attribs, IHiccupShape2 } from "../api.js";
 import { __copyAttribs } from "../internal/copy.js";
@@ -25,6 +26,14 @@ export class ComplexPolygon implements IHiccupShape2<ComplexPolygon> {
 		return new ComplexPolygon(
 			this.boundary.copy(),
 			this.children.map((h) => h.copy()),
+			__copyAttribs(this.attribs)
+		);
+	}
+
+	copyTransformed(fn: Fn<Polygon, Polygon>) {
+		return new ComplexPolygon(
+			fn(this.boundary),
+			this.children.map((child) => fn(child)),
 			__copyAttribs(this.attribs)
 		);
 	}

@@ -1,5 +1,6 @@
 // thing:export
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
+import type { Vec } from "@thi.ng/vectors";
 import { copy, copyVectors } from "@thi.ng/vectors/copy";
 import type {
 	Attribs,
@@ -36,8 +37,9 @@ export const __copyAttribsNoSamples = (x: IShape) =>
 /** @internal */
 export const __copyShape = <T extends PCLike>(
 	ctor: PCLikeConstructor<T>,
-	inst: T
-) => new ctor(copyVectors(inst.points), __copyAttribs(inst.attribs));
+	inst: T,
+	points?: Vec[]
+) => new ctor(points || copyVectors(inst.points), __copyAttribs(inst.attribs));
 
 /** @internal */
 export const __copySegment = <T extends PathSegment>(s: T) => {

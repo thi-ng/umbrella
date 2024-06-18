@@ -1,4 +1,5 @@
-import type { Vec } from "@thi.ng/vectors";
+import type { Fn } from "@thi.ng/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Attribs, IHiccupPathSegment, IHiccupShape2 } from "../api.js";
 import { __copyShape } from "../internal/copy.js";
 import { __hiccupLineSegment } from "../internal/vertices.js";
@@ -17,6 +18,10 @@ export class Polyline
 
 	copy(): Polyline {
 		return __copyShape(Polyline, this);
+	}
+
+	copyTransformed(fn: Fn<ReadonlyVec[], Vec[]>) {
+		return __copyShape(Polyline, this, fn(this.points));
 	}
 
 	withAttribs(attribs: Attribs) {
