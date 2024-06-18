@@ -33,18 +33,15 @@ export function* stratifiedGrid2(opts: StratifiedGridOpts) {
 	let q;
 	for (let y = 0; y < sy; y++) {
 		for (let x = 0; x < sx; x++) {
-			while (true) {
+			do {
 				q = add2(null, [x, y], random2(tmp, 0, 1, rnd));
-				if (x > 0 && distSq2(currY[x - 1], q) < sep) continue;
-				if (
-					y > 0 &&
+			} while (
+				(x > 0 && distSq2(currY[x - 1], q) < sep) ||
+				(y > 0 &&
 					(distSq2(prevY[x], q) < sep ||
 						(x > 0 && distSq2(prevY[x - 1], q) < sep) ||
-						(x < sx1 && distSq2(prevY[x + 1], q) < sep))
-				)
-					continue;
-				break;
-			}
+						(x < sx1 && distSq2(prevY[x + 1], q) < sep)))
+			);
 			currY.push(q);
 			yield scale ? mul2([], q, scale) : q;
 		}
@@ -82,36 +79,16 @@ export function* stratifiedGrid3(opts: StratifiedGridOpts) {
 	for (let z = 0; z < sz; z++) {
 		for (let y = 0; y < sy; y++) {
 			for (let x = 0; x < sx; x++) {
-				while (true) {
+				do {
 					q = add3(null, [x, y, z], random3(tmp, 0, 1, rnd));
-					if (x > 0 && distSq3(currY[x - 1], q) < sep) continue;
-					if (
-						y > 0 &&
-						(distSq3(prevY[x], q) < sep ||
-							(x > 0 && distSq3(prevY[x - 1], q) < sep) ||
-							(x < sx1 && distSq3(prevY[x + 1], q) < sep))
-					)
-						continue;
-					if (z > 0) {
-						let py = prevZ[y];
-						if (
-							distSq3(py[x], q) < sep ||
-							(x > 0 && distSq3(py[x - 1], q) < sep) ||
-							(x < sx1 && distSq3(py[x + 1], q) < sep)
-						)
-							continue;
-						if (y > 0) {
-							py = prevZ[y - 1];
-							if (
-								distSq3(py[x], q) < sep ||
-								(x > 0 && distSq3(py[x - 1], q) < sep) ||
-								(x < sx1 && distSq3(py[x + 1], q) < sep)
-							)
-								continue;
-						}
-					}
-					break;
-				}
+				} while (
+					(x > 0 && distSq3(currY[x - 1], q) < sep) ||
+					(y > 0 && __inRange3(q, prevY, x, sx1, sep)) ||
+					(z > 0 &&
+						(__inRange3(q, prevZ[y], x, sx1, sep) ||
+							(y > 0 &&
+								__inRange3(q, prevZ[y - 1], x, sx1, sep))))
+				);
 				currY.push(q);
 				yield scale ? mul3([], q, scale) : q;
 			}
@@ -123,3 +100,14 @@ export function* stratifiedGrid3(opts: StratifiedGridOpts) {
 		currZ = [];
 	}
 }
+
+const __inRange3 = (
+	q: ReadonlyVec,
+	prev: ReadonlyVec[],
+	x: number,
+	maxX: number,
+	sep: number
+) =>
+	distSq3(prev[x], q) < sep ||
+	(x > 0 && distSq3(prev[x - 1], q) < sep) ||
+	(x < maxX && distSq3(prev[x + 1], q) < sep);
