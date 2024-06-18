@@ -7,8 +7,9 @@ import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
 import { repeat } from "@thi.ng/transducers/repeat";
 import type {
 	IHiccupShape2,
-	IHiccupShape3,
 	IShape,
+	IShape2,
+	IShape3,
 	SubdivKernel,
 } from "./api.js";
 import type { Arc } from "./api/arc.js";
@@ -30,7 +31,6 @@ import type { Triangle } from "./api/triangle.js";
 import type { Triangle3 } from "./api/triangle3.js";
 import { asPolygon } from "./as-polygon.js";
 import { asPolyline } from "./as-polyline.js";
-import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
@@ -113,6 +113,16 @@ export type SubdivCurveFn = {
 		kernel: SubdivKernel | SubdivKernel[],
 		iter?: number
 	): Polygon3;
+	(
+		shape: IShape2,
+		kernel: SubdivKernel | SubdivKernel[],
+		iter?: number
+	): IShape2;
+	(
+		shape: IShape3,
+		kernel: SubdivKernel | SubdivKernel[],
+		iter?: number
+	): IShape3;
 } & MultiFn2O<IShape, SubdivKernel | SubdivKernel[], number, IShape>;
 
 /**
@@ -175,9 +185,13 @@ export const subdivCurve = <SubdivCurveFn>(
 		{
 			arc: "$aspolyline",
 			circle: "$aspoly",
+			complexpoly: "group",
 			ellipse: "$aspoly",
+			group3: "group",
 			line: "polyline",
-			line3: "polyline3",
+			line3: "polyline",
+			poly3: "poly",
+			polyline3: "polyline",
 			quad: "poly",
 			quad3: "poly3",
 			rect: "$aspoly",
@@ -191,53 +205,21 @@ export const subdivCurve = <SubdivCurveFn>(
 			$aspoly: ($, kernel, iter = 1) =>
 				subdivCurve(asPolygon($)[0], kernel, iter),
 
-			complexpoly: ($: ComplexPolygon, kernel, iter) =>
-				new ComplexPolygon(
-					subdivCurve($.boundary, kernel, iter),
-					$.children.map((child) => subdivCurve(child, kernel, iter)),
-					__copyAttribs($.attribs)
-				),
-
-			group: ($: Group, kernel, iter) =>
-				new Group(
-					__copyAttribs($.attribs),
-					$.children.map(
-						(child) =>
-							<IHiccupShape2>subdivCurve(child, kernel, iter)
-					)
-				),
-
-			group3: ($: Group3, kernel, iter) =>
-				new Group3(
-					__copyAttribs($.attribs),
-					$.children.map(
-						(child) =>
-							<IHiccupShape3>subdivCurve(child, kernel, iter)
-					)
-				),
+			group: ($: Group, kernel, iter) => {
+				kernel = __kernelArray(kernel, iter);
+				return $.copyTransformed(
+					(child) => <IHiccupShape2>subdivCurve(child, kernel, iter)
+				);
+			},
 
 			poly: ($: Polygon, kernel, iter) =>
-				new Polygon(
-					subdivide($.points, __kernelArray(kernel, iter), true),
-					__copyAttribs($.attribs)
-				),
-
-			poly3: ($: Polygon3, kernel, iter) =>
-				new Polygon3(
-					subdivide($.points, __kernelArray(kernel, iter), true),
-					__copyAttribs($.attribs)
+				$.copyTransformed((points) =>
+					subdivide(points, __kernelArray(kernel, iter), true)
 				),
 
 			polyline: ($: Polyline, kernel, iter) =>
-				new Polyline(
-					subdivide($.points, __kernelArray(kernel, iter), false),
-					__copyAttribs($.attribs)
-				),
-
-			polyline3: ($: Polyline3, kernel, iter) =>
-				new Polyline3(
-					subdivide($.points, __kernelArray(kernel, iter), false),
-					__copyAttribs($.attribs)
+				$.copyTransformed((points) =>
+					subdivide(points, __kernelArray(kernel, iter))
 				),
 		}
 	)
