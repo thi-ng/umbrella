@@ -227,22 +227,12 @@ export const asCubic = <AsCubicFn>(
 					break: openCubicFromBreakPoints,
 				}),
 
-			quadratic: ({ points, attribs }: Quadratic, opts) => [
-				cubicFromQuadratic(
-					points[0],
-					points[1],
-					points[2],
-					__attribs(opts, attribs)
-				),
+			quadratic: ({ points: [a, b, c], attribs }: Quadratic, opts) => [
+				cubicFromQuadratic(a, b, c, __attribs(opts, attribs)),
 			],
 
-			quadratic3: ({ points, attribs }: Quadratic3, opts) => [
-				cubicFromQuadratic3(
-					points[0],
-					points[1],
-					points[2],
-					__attribs(opts, attribs)
-				),
+			quadratic3: ({ points: [a, b, c], attribs }: Quadratic3, opts) => [
+				cubicFromQuadratic3(a, b, c, __attribs(opts, attribs)),
 			],
 		}
 	)
