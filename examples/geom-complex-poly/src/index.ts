@@ -1,7 +1,7 @@
 import { adaptiveCanvas2d } from "@thi.ng/canvas";
 import { COSINE_GRADIENTS, cosineColor } from "@thi.ng/color";
 import {
-	SUBDIV_CHAIKIN_CLOSED,
+	SUBDIV_CHAIKIN,
 	asPath,
 	asPolygon,
 	complexPolygon,
@@ -43,16 +43,16 @@ const B = asPolygon(
 const C = complexPolygon(A, [B]);
 
 // subdivided version for future ref
-const D = subdivCurve(C, SUBDIV_CHAIKIN_CLOSED, 3);
+const D = subdivCurve(C, SUBDIV_CHAIKIN, 3);
 
 // create different shape variations
 const SHAPES: [IHiccupShape2, string][] = [
 	[A, "original"],
 	[C, "with hole"],
-	[subdivCurve(C, SUBDIV_CHAIKIN_CLOSED, 1), "subdiv x1"],
-	[subdivCurve(C, SUBDIV_CHAIKIN_CLOSED, 2), "subdiv x2"],
+	[subdivCurve(C, SUBDIV_CHAIKIN, 1), "subdiv x1"],
+	[subdivCurve(C, SUBDIV_CHAIKIN, 2), "subdiv x2"],
 	[D, "subdiv x3"],
-	[subdivCurve(C, SUBDIV_CHAIKIN_CLOSED, 4), "subdiv x4"],
+	[subdivCurve(C, SUBDIV_CHAIKIN, 4), "subdiv x4"],
 	[asPath(C, { scale: 1 }), "asPath()"],
 	[asPath(C, { mode: "break" }), "asPath()"],
 	[
