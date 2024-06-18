@@ -1,9 +1,9 @@
 import {
-	Path,
 	asSvg,
 	bounds,
 	complexPolygon,
 	fitIntoBounds2,
+	normalizedPath,
 	pathFromSvg,
 	rectWithCentroid,
 	svgDoc,
@@ -11,15 +11,17 @@ import {
 import { asPolygons, asSDF, sample2d } from "@thi.ng/geom-sdf";
 import { dist2, rotate } from "@thi.ng/vectors";
 
-// parse SVG into a path with holes and rescale & translate it to fit within
-// given bounding rect
-const src = <Path>fitIntoBounds2(
-	pathFromSvg(
-		// https://www.svgrepo.com/svg/451605/face-smile-big
-		"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM6 5c.558 0 1.031.473 1.031 1.031V7c0 .558-.473 1-1.031 1-.558 0-1-.442-1-1v-.969C5 5.473 5.442 5 6 5zm4 0c.558 0 1 .473 1 1.031V7c0 .558-.442 1-1 1s-1-.442-1-1v-.969C9 5.473 9.442 5 10 5zM3 9.031c2 1.304 7.987 1.304 10.031 0l-.03.531c-.037.43-1 3.376-5 3.407-4 .031-5-2.78-5-3.313z"
+// parse SVG into a path with holes, normalize it (i.e. convert all segments to
+// cubics), then rescale & translate it to fit within given bounding rect
+const src = fitIntoBounds2(
+	normalizedPath(
+		pathFromSvg(
+			// https://www.svgrepo.com/svg/451605/face-smile-big
+			"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM6 5c.558 0 1.031.473 1.031 1.031V7c0 .558-.473 1-1.031 1-.558 0-1-.442-1-1v-.969C5 5.473 5.442 5 6 5zm4 0c.558 0 1 .473 1 1.031V7c0 .558-.442 1-1 1s-1-.442-1-1v-.969C9 5.473 9.442 5 10 5zM3 9.031c2 1.304 7.987 1.304 10.031 0l-.03.531c-.037.43-1 3.376-5 3.407-4 .031-5-2.78-5-3.313z"
+		)
 	),
 	rectWithCentroid([0, 0], 400)
-);
+)!;
 
 // compute bounding rect with some extra margin
 const contourBounds = bounds(src, 20)!;
