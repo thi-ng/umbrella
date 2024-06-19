@@ -146,45 +146,56 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
 		},
 
-		struct: (struct, coll, acc, opts) => {
-			const name = typePrefix + struct.name;
-			acc.push(
-				...withIndentation(
-					[
-						`struct ${name} {`,
-						...__generateFields(
-							gen,
-							struct,
-							coll,
-							opts,
-							typePrefix
-						),
-					],
-					INDENT,
-					...SCOPES
-				)
-			);
-		},
+		struct: (struct, coll, acc, opts) =>
+			__structOrUnion(
+				gen,
+				struct,
+				coll,
+				acc,
+				opts,
+				typePrefix,
+				INDENT,
+				SCOPES
+			),
 
-		union: (union, coll, acc, opts) => {
-			const name = typePrefix + union.name;
-			acc.push(
-				...withIndentation(
-					[
-						`union ${name} {`,
-						...__generateFields(gen, union, coll, opts, typePrefix),
-					],
-					INDENT,
-					...SCOPES
-				)
-			);
-		},
+		union: (union, coll, acc, opts) =>
+			__structOrUnion(
+				gen,
+				union,
+				coll,
+				acc,
+				opts,
+				typePrefix,
+				INDENT,
+				SCOPES
+			),
 
 		// funcpointers are emitted in `pre` phase above
 		funcptr: () => {},
 	};
 	return gen;
 };
+
+const __structOrUnion = (
+	gen: ICodeGen,
+	spec: Struct | Union,
+	coll: TypeColl,
+	acc: string[],
+	opts: CodeGenOpts,
+	prefix: string,
+	indent: string,
+	scopes: [RegExp, RegExp]
+) =>
+	acc.push(
+		...withIndentation(
+			[
+				`${spec.type} ${prefix + spec.name} {`,
+				...__generateFields(gen, spec, coll, opts, prefix),
+			],
+			indent,
+			...scopes
+		)
+	);
 
 /**
  * Generates source code for given {@link Struct} or {@link Union}.

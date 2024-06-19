@@ -101,31 +101,11 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
 		},
 
-		struct: (struct, coll, acc, opts) => {
-			acc.push(
-				...withIndentation(
-					[
-						`pub const ${struct.name} = extern struct {`,
-						...__generateFields(gen, struct, coll, opts),
-					],
-					INDENT,
-					...SCOPES
-				)
-			);
-		},
+		struct: (struct, coll, acc, opts) =>
+			__structOrUnion(gen, struct, coll, acc, opts, INDENT, SCOPES),
 
-		union: (union, coll, acc, opts) => {
-			acc.push(
-				...withIndentation(
-					[
-						`pub const ${union.name} = extern union {`,
-						...__generateFields(gen, union, coll, opts),
-					],
-					INDENT,
-					...SCOPES
-				)
-			);
-		},
+		union: (union, coll, acc, opts) =>
+			__structOrUnion(gen, union, coll, acc, opts, INDENT, SCOPES),
 
 		funcptr: (ptr, coll, acc, opts) => {
 			const args = ptr.args
@@ -148,6 +128,26 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 	};
 	return gen;
 };
+
+const __structOrUnion = (
+	gen: ICodeGen,
+	spec: Struct | Union,
+	coll: TypeColl,
+	acc: string[],
+	opts: CodeGenOpts,
+	indent: string,
+	scopes: [RegExp, RegExp]
+) =>
+	acc.push(
+		...withIndentation(
+			[
+				`pub const ${spec.name} = extern ${spec.type} {`,
+				...__generateFields(gen, spec, coll, opts),
+			],
+			indent,
+			...scopes
+		)
+	);
 
 const __generateFields = (
 	gen: ICodeGen,
