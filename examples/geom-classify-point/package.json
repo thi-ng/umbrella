@@ -20,7 +20,9 @@
 		"vite": "^5.2.11"
 	},
 	"dependencies": {
+		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/hiccup-canvas": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/vectors": "workspace:^"
 	},
@@ -29,7 +31,9 @@
 	},
 	"thi.ng": {
 		"readme": [
-			"geom"
+			"canvas",
+			"geom",
+			"hiccup-canvas"
 		],
 		"screenshot": "examples/geom-classify-point.png"
 	}

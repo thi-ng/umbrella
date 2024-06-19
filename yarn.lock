@@ -711,7 +711,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/geom-classify-point@workspace:examples/geom-classify-point"
   dependencies:
+    "@thi.ng/canvas": "workspace:^"
     "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
