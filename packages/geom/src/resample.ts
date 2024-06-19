@@ -1,16 +1,22 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { resample as _resample } from "@thi.ng/geom-resample/resample";
-import type { IShape, IShape2, PCLike, SamplingOpts } from "./api.js";
-import { ComplexPolygon } from "./api/complex-polygon.js";
+import type { IShape, IShape2, IShape3, SamplingOpts } from "./api.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
+import type { Cubic } from "./api/cubic.js";
+import type { Cubic3 } from "./api/cubic3.js";
+import type { Group } from "./api/group.js";
 import type { Line } from "./api/line.js";
-import { Polygon } from "./api/polygon.js";
-import { Polygon3 } from "./api/polygon3.js";
-import { Polyline } from "./api/polyline.js";
-import { Polyline3 } from "./api/polyline3.js";
+import type { Line3 } from "./api/line3.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Polygon3 } from "./api/polygon3.js";
+import type { Polyline } from "./api/polyline.js";
+import type { Polyline3 } from "./api/polyline3.js";
+import type { Quad3 } from "./api/quad3.js";
+import type { Quadratic } from "./api/quadratic.js";
+import type { Quadratic3 } from "./api/quadratic3.js";
 import { asPolygon } from "./as-polygon.js";
 import { asPolyline } from "./as-polyline.js";
-import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
@@ -21,9 +27,18 @@ export type ResampleFn = {
 		shape: ComplexPolygon,
 		opts: number | Partial<SamplingOpts>
 	): ComplexPolygon;
+	(shape: Cubic, opts: number | Partial<SamplingOpts>): Polyline;
+	(shape: Cubic3, opts: number | Partial<SamplingOpts>): Polyline3;
+	(shape: Group, opts: number | Partial<SamplingOpts>): Group;
 	(shape: Line, opts: number | Partial<SamplingOpts>): Polyline;
+	(shape: Line3, opts: number | Partial<SamplingOpts>): Polyline3;
 	(shape: Polyline, opts: number | Partial<SamplingOpts>): Polyline;
+	(shape: Polyline3, opts: number | Partial<SamplingOpts>): Polyline3;
+	(shape: Quadratic, opts: number | Partial<SamplingOpts>): Polyline;
+	(shape: Quadratic3, opts: number | Partial<SamplingOpts>): Polyline3;
+	(shape: Quad3, opts: number | Partial<SamplingOpts>): Polygon3;
 	(shape: IShape2, opts: number | Partial<SamplingOpts>): Polygon;
+	(shape: IShape3, opts: number | Partial<SamplingOpts>): IShape3;
 } & MultiFn2<IShape, number | Partial<SamplingOpts>, IShape>;
 
 /**
@@ -65,53 +80,38 @@ export const resample = <ResampleFn>(
 		{
 			arc: "$aspolyline",
 			circle: "$aspoly",
+			complexpoly: "group",
 			cubic: "$aspolyline",
 			cubic3: "$aspolyline",
 			ellipse: "$aspoly",
-			line: "polyline",
-			line3: "polyline3",
-			quad: "poly",
-			quad3: "poly3",
+			line: "$aspolyline",
+			line3: "$aspolyline",
+			poly3: "poly",
+			polyline3: "polyline",
+			quad: "$aspoly",
+			quad3: "$aspoly",
 			quadratic: "$aspolyline",
 			quadratic3: "$aspolyline",
-			rect: "circle",
-			tri: "poly",
-			tri3: "poly3",
+			rect: "$aspoly",
+			tri: "$aspoly",
+			tri3: "$aspoly",
 		},
 		{
 			$aspoly: ($: IShape, opts) => asPolygon($, opts)[0],
 
 			$aspolyline: ($: IShape, opts) => asPolyline($, opts)[0],
 
-			complexpoly: ($: ComplexPolygon, opts) =>
-				new ComplexPolygon(
-					resample($.boundary, opts),
-					$.children.map((child) => resample(child, opts)),
-					__attribs($)
+			group: ($: Group, opts) =>
+				$.copyTransformed((child) => resample(child, opts)),
+
+			poly: ($: Polygon, opts) =>
+				$.copyTransformed((points) =>
+					_resample(points, opts, true, true)
 				),
 
-			poly: ($: PCLike, opts) =>
-				new Polygon(
-					_resample($.points, opts, true, true),
-					__attribs($)
-				),
-
-			poly3: ($: PCLike, opts) =>
-				new Polygon3(
-					_resample($.points, opts, true, true),
-					__attribs($)
-				),
-
-			polyline: ($: PCLike, opts) =>
-				new Polyline(
-					_resample($.points, opts, false, true),
-					__attribs($)
-				),
-
-			polyline3: ($: PCLike, opts) =>
-				new Polyline3(
-					_resample($.points, opts, false, true),
-					__attribs($)
+			polyline: ($: Polyline, opts) =>
+				$.copyTransformed((points) =>
+					_resample(points, opts, false, true)
 				),
 		}
 	)
