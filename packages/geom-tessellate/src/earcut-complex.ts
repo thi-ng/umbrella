@@ -652,11 +652,11 @@ const __eliminateHoles = (
 	outerNode: Vertex
 ) => {
 	const queue: Vertex[] = [];
-	for (let i = 0, num = holeIndices.length; i < num; i++) {
+	for (let i = 0, num = holeIndices.length - 1; i <= num; i++) {
 		const start = holeIndices[i];
-		const end = i < num - 1 ? holeIndices[i + 1] : points.length;
+		const end = i < num ? holeIndices[i + 1] : points.length;
 		const list = __buildVertexList(points, pids, start, end, false)!;
-		if (list === list!.n) list.s = true;
+		if (list === list.n) list.s = true;
 		queue.push(__findLeftmost(list));
 	}
 	// process holes from left to right
@@ -758,9 +758,8 @@ const __isEarHashed = (ear: Vertex) => {
 	let { pz: p, nz: n } = ear;
 	// look for points inside the triangle in both directions
 	while (p && p.z >= minZ && n && n.z <= maxZ) {
-		if (check(p)) return false;
+		if (check(p) || check(n)) return false;
 		p = p.pz;
-		if (check(n)) return false;
 		n = n.nz;
 	}
 	// look for remaining points in decreasing z-order
