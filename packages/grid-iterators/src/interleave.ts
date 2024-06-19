@@ -27,13 +27,8 @@ export interface InterleaveOpts2D extends GridIterOpts2D {
  *
  * @param opts -
  */
-export function* interleaveColumns2d(opts: InterleaveOpts2D) {
-	const { cols, rows, tx } = __opts(opts);
-	const step = (opts.step != null ? opts.step : 2) | 0;
-	for (let j = 0; j < step; j++) {
-		yield* map((p) => tx(p[1], p[0]), range2d(0, rows, j, cols, 1, step));
-	}
-}
+export const interleaveColumns2d = (opts: InterleaveOpts2D) =>
+	__interleave(opts, [0, 1], [1, 0]);
 
 /**
  * Similar to {@link interleaveColumns2d}, but yields 2D grid coordinates in
@@ -49,10 +44,18 @@ export function* interleaveColumns2d(opts: InterleaveOpts2D) {
  *
  * @param opts -
  */
-export function* interleaveRows2d(opts: InterleaveOpts2D) {
+export const interleaveRows2d = (opts: InterleaveOpts2D) =>
+	__interleave(opts, [1, 0], [0, 1]);
+
+export function* __interleave(
+	opts: InterleaveOpts2D,
+	order: [number, number],
+	[x, y]: [number, number]
+) {
 	const { cols, rows, tx } = __opts(opts);
-	const step = (opts.step != null ? opts.step : 2) | 0;
+	const step = (opts.step ?? 2) | 0;
+	const [outer, inner] = order.map((x) => [cols, rows][x]);
 	for (let j = 0; j < step; j++) {
-		yield* map((p) => tx(p[0], p[1]), range2d(0, cols, j, rows, 1, step));
+		yield* map((p) => tx(p[x], p[y]), range2d(0, inner, j, outer, 1, step));
 	}
 }
