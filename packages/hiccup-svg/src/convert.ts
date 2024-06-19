@@ -19,6 +19,7 @@ const ATTRIB_ALIASES: Record<string, string> = {
 	alpha: "opacity",
 	dash: "stroke-dasharray",
 	dashOffset: "stroke-dashoffset",
+	fillRule: "fill-rule",
 	lineCap: "stroke-linecap",
 	lineJoin: "stroke-linejoin",
 	miterLimit: "stroke-miterlimit",
