@@ -1,28 +1,22 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn3O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type {
-	IShape,
-	IShape2,
-	IShape3,
-	PCLike,
-	PCLikeConstructor,
-} from "./api.js";
 import {
 	KERNEL_BOX as $BOX,
-	KERNEL_TRIANGLE as $GAUSSIAN,
-	KERNEL_GAUSSIAN as $TRIANGLE,
+	KERNEL_GAUSSIAN as $GAUSSIAN,
+	KERNEL_TRIANGLE as $TRIANGLE,
 	convolveClosed,
 	convolveOpen,
 } from "@thi.ng/geom-poly-utils/convolve";
-import { ComplexPolygon } from "./api/complex-polygon.js";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { ICopyTransformed, IShape, IShape2, IShape3 } from "./api.js";
+import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
 import type { Group3 } from "./api/group3.js";
-import { Polygon } from "./api/polygon.js";
-import { Polygon3 } from "./api/polygon3.js";
-import { Polyline } from "./api/polyline.js";
-import { Polyline3 } from "./api/polyline3.js";
-import { __copyAttribs } from "./internal/copy.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Polygon3 } from "./api/polygon3.js";
+import type { Polyline } from "./api/polyline.js";
+import type { Polyline3 } from "./api/polyline3.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
@@ -91,48 +85,45 @@ export const convolve = <ConvoleFn>(
 	defmulti<any, number[], Maybe<number>, Maybe<number>, IShape>(
 		__dispatch,
 		{
+			complexpoly: "group",
 			group3: "group",
+			poly3: "poly",
+			polyline3: "polyline",
 		},
 		{
-			complexpoly: ($: ComplexPolygon, k, t, iter) =>
-				new ComplexPolygon(
-					__convolve(Polygon, convolveClosed, $.boundary, k, t, iter),
-					$.children.map((c) =>
-						__convolve(Polygon, convolveClosed, c, k, t, iter)
-					),
-					__copyAttribs($.attribs)
-				),
-
 			group: ($: Group, k, t, iter) =>
 				$.copyTransformed((x) => convolve(x, k, t, iter)),
 
 			poly: ($: Polygon, k, t, iter) =>
-				__convolve(Polygon, convolveClosed, $, k, t, iter),
-
-			poly3: ($: Polygon3, k, t, iter) =>
-				__convolve(Polygon3, convolveClosed, $, k, t, iter),
+				__convolve(convolveClosed, $, k, t, iter),
 
 			polyline: ($: Polyline, k, t, iter) =>
-				__convolve(Polyline, convolveOpen, $, k, t, iter),
-
-			polyline3: ($: Polyline3, k, t, iter) =>
-				__convolve(Polyline3, convolveOpen, $, k, t, iter),
+				__convolve(convolveOpen, $, k, t, iter),
 		}
 	)
 );
 
 /** @internal */
-const __convolve = <T extends PCLike>(
-	ctor: PCLikeConstructor<T>,
+const __convolve = <T extends ICopyTransformed<ReadonlyVec[]>>(
 	fn: typeof convolveClosed,
 	$: T,
 	kernel: number[],
 	t?: number,
 	iter?: number
-) => new ctor(fn($.points, kernel, t, iter), __copyAttribs($.attribs));
+) => $.copyTransformed((points) => fn(points, kernel, t, iter));
 
+/**
+ * Re-export of
+ * [`KERNEL_BOX`](https://docs.thi.ng/umbrella/geom-poly-utils/variables/KERNEL_BOX.html).
+ */
 export const KERNEL_BOX = $BOX;
-
+/**
+ * Re-export of
+ * [`KERNEL_TRI`](https://docs.thi.ng/umbrella/geom-poly-utils/variables/KERNEL_TRI.html).
+ */
 export const KERNEL_TRI = $TRIANGLE;
-
+/**
+ * Re-export of
+ * [`KERNEL_GAUSSIAN`](https://docs.thi.ng/umbrella/geom-poly-utils/variables/KERNEL_GAUSSIAN.html).
+ */
 export const KERNEL_GAUSSIAN = $GAUSSIAN;
