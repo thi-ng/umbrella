@@ -86,7 +86,7 @@ export const centroid: MultiFn1O<IShape, Vec, Maybe<Vec>> = defmulti<
 		tri3: "tri",
 	},
 	{
-		abbb: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
+		aabb: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
 
 		circle: ($: Circle, out?) => set(out || [], $.pos),
 
