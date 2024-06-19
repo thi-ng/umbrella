@@ -128,6 +128,7 @@ export interface AABBLike extends IShape<AABBLike> {
 	pos: Vec;
 	size: Vec;
 
+	min(): Vec;
 	max(): Vec;
 	offset(x: number): this;
 }

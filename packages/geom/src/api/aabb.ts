@@ -1,9 +1,9 @@
 import { add3 } from "@thi.ng/vectors/add";
 import { addN3 } from "@thi.ng/vectors/addn";
 import { ZERO3, type Vec } from "@thi.ng/vectors/api";
+import { maddN3 } from "@thi.ng/vectors/maddn";
 import { max3 } from "@thi.ng/vectors/max";
 import { set3 } from "@thi.ng/vectors/set";
-import { subN3 } from "@thi.ng/vectors/subn";
 import type { AABBLike, Attribs, IHiccupShape3 } from "../api.js";
 import { __asVec } from "../internal/args.js";
 import { __copyAttribs } from "../internal/copy.js";
@@ -34,13 +34,18 @@ export class AABB implements AABBLike, IHiccupShape3<AABB> {
 		return new AABB(this.pos, this.size, attribs);
 	}
 
+	min() {
+		return set3([], this.pos);
+	}
+
 	max() {
 		return add3([], this.pos, this.size);
 	}
 
 	offset(offset: number) {
-		subN3(null, this.pos, offset);
+		const c = maddN3([], this.size, 0.5, this.pos);
 		max3(null, addN3(null, this.size, offset * 2), ZERO3);
+		maddN3(this.pos, this.size, -0.5, c);
 		return this;
 	}
 

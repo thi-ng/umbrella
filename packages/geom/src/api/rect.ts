@@ -1,9 +1,9 @@
 import { add2 } from "@thi.ng/vectors/add";
 import { addN2 } from "@thi.ng/vectors/addn";
 import { ZERO2, type Vec } from "@thi.ng/vectors/api";
+import { maddN2 } from "@thi.ng/vectors/maddn";
 import { max2 } from "@thi.ng/vectors/max";
 import { set2 } from "@thi.ng/vectors/set";
-import { subN2 } from "@thi.ng/vectors/subn";
 import type { AABBLike, Attribs, IHiccupShape2 } from "../api.js";
 import { __asVec } from "../internal/args.js";
 import { __copyAttribs } from "../internal/copy.js";
@@ -34,13 +34,18 @@ export class Rect implements AABBLike, IHiccupShape2<Rect> {
 		return new Rect(this.pos, this.size, attribs);
 	}
 
+	min() {
+		return set2([], this.pos);
+	}
+
 	max() {
 		return add2([], this.pos, this.size);
 	}
 
 	offset(offset: number) {
-		subN2(null, this.pos, offset);
+		const c = maddN2([], this.size, 0.5, this.pos);
 		max2(null, addN2(null, this.size, offset * 2), ZERO2);
+		maddN2(this.pos, this.size, -0.5, c);
 		return this;
 	}
 
