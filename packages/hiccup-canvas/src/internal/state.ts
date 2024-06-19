@@ -36,6 +36,7 @@ const CTX_ATTRIBS: IObjectOf<string> = {
 	dashOffset: "lineDashOffset",
 	direction: "direction",
 	fill: "fillStyle",
+	fillRule: "fillRule",
 	filter: "filter",
 	font: "font",
 	lineCap: "lineCap",
@@ -148,6 +149,7 @@ const __setAttrib = (
 			(<any>ctx)[k].call(ctx, val);
 			break;
 		case "clip":
+		case "fillRule":
 			break;
 		default:
 			(<any>ctx)[k] = val;

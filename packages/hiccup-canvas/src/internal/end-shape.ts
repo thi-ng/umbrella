@@ -8,7 +8,7 @@ export const __endShape = (
 ) => {
 	let v: any;
 	if (doFill && (v = attribs.fill) && v !== "none") {
-		ctx.fill();
+		(v = attribs.fillRule) ? ctx.fill(v) : ctx.fill();
 	}
 	if ((v = attribs.stroke) && v !== "none") {
 		ctx.stroke();
