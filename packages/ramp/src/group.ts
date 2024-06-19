@@ -1,6 +1,3 @@
-import { mix } from "@thi.ng/math/mix";
-import { map } from "@thi.ng/transducers/map";
-import { normRange } from "@thi.ng/transducers/norm-range";
 import type {
 	Frame,
 	IRamp,
@@ -10,6 +7,7 @@ import type {
 	RampOpts,
 } from "./api.js";
 import { unconstrained } from "./domain.js";
+import { __samples } from "./utils.js";
 
 export type GroupImpl<T extends Record<string, any>> = {
 	[P in keyof T]: IRamp<T[P]>;
@@ -77,15 +75,7 @@ export class Group<T extends Record<string, any>> implements IReadonlyRamp<T> {
 	}
 
 	samples(n = 100, start?: number, end?: number): Iterable<Frame<T>> {
-		if (start == undefined || end == undefined) {
-			const bounds = this.timeBounds();
-			start = start ?? bounds[0];
-			end = end ?? bounds[1];
-		}
-		return map((t) => {
-			t = mix(start!, end!, t);
-			return <Frame<T>>[t, this.at(t)];
-		}, normRange(n));
+		return __samples(this, n, start, end);
 	}
 
 	bounds(): RampBounds<T> {

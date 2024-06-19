@@ -5,9 +5,6 @@ import { compareNumAsc } from "@thi.ng/compare/numeric";
 import { assert } from "@thi.ng/errors/assert";
 import { absDiff } from "@thi.ng/math/abs";
 import { clamp } from "@thi.ng/math/interval";
-import { mix } from "@thi.ng/math/mix";
-import { map } from "@thi.ng/transducers/map";
-import { normRange } from "@thi.ng/transducers/norm-range";
 import type {
 	Frame,
 	IRamp,
@@ -17,6 +14,7 @@ import type {
 	RampOpts,
 } from "./api.js";
 import { unconstrained } from "./domain.js";
+import { __samples } from "./utils.js";
 
 /**
  * Syntax sugar for {@link Ramp} constructor using the given ramp interpolation
@@ -76,16 +74,8 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 		return i < 0 ? first[1] : i >= n ? last[1] : impl.at(stops, i, t);
 	}
 
-	samples(n = 100, start?: number, end?: number) {
-		if (start == undefined || end == undefined) {
-			const bounds = this.timeBounds();
-			start = start ?? bounds[0];
-			end = end ?? bounds[1];
-		}
-		return map((t) => {
-			t = mix(start!, end!, t);
-			return <Frame<T>>[t, this.at(t)];
-		}, normRange(n));
+	samples(n = 100, start?: number, end?: number): Iterable<Frame<T>> {
+		return __samples(this, n, start, end);
 	}
 
 	bounds(): RampBounds<T> {
