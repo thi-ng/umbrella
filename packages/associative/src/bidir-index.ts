@@ -144,14 +144,7 @@ export class BidirIndex<T> {
 	 * @param key
 	 */
 	delete(key: T) {
-		const fwd = this.fwd;
-		const id = fwd.get(key);
-		if (id !== undefined) {
-			fwd.delete(key);
-			this.rev.delete(id);
-			return true;
-		}
-		return false;
+		return __delete(this.fwd, this.rev, key);
 	}
 
 	/**
@@ -161,14 +154,7 @@ export class BidirIndex<T> {
 	 * @param id
 	 */
 	deleteID(id: number) {
-		const rev = this.rev;
-		const k = rev.get(id);
-		if (k !== undefined) {
-			rev.delete(id);
-			this.fwd.delete(k);
-			return true;
-		}
-		return false;
+		return __delete(this.rev, this.fwd, id);
 	}
 
 	/**
@@ -198,17 +184,7 @@ export class BidirIndex<T> {
 	 * @param fail
 	 */
 	getAll(keys: Iterable<T>, fail = false) {
-		const index = this.fwd;
-		const res: number[] = [];
-		for (let k of keys) {
-			const id = index.get(k);
-			if (id === undefined) {
-				if (fail) throw new Error(`unknown key: ${k}`);
-			} else {
-				res.push(id);
-			}
-		}
-		return res;
+		return __iterate(this.fwd, keys, fail);
 	}
 
 	/**
@@ -221,17 +197,7 @@ export class BidirIndex<T> {
 	 * @param fail
 	 */
 	getAllIDs(ids: Iterable<number>, fail = false) {
-		const index = this.rev;
-		const res: T[] = [];
-		for (let id of ids) {
-			const k = index.get(id);
-			if (k === undefined) {
-				if (fail) throw new Error(`unknwon ID: ${id}`);
-			} else {
-				res.push(k);
-			}
-		}
-		return res;
+		return __iterate(this.rev, ids, fail);
 	}
 
 	/**
@@ -246,6 +212,33 @@ export class BidirIndex<T> {
 		};
 	}
 }
+
+const __delete = <A, B>(fwd: Map<A, B>, rev: Map<B, A>, key: A) => {
+	const val = fwd.get(key);
+	if (val !== undefined) {
+		fwd.delete(key);
+		rev.delete(val);
+		return true;
+	}
+	return false;
+};
+
+const __iterate = <A, B>(
+	index: Map<A, B>,
+	keys: Iterable<A>,
+	fail: boolean
+) => {
+	const res: B[] = [];
+	for (let k of keys) {
+		const val = index.get(k);
+		if (val === undefined) {
+			if (fail) throw new Error(`unknwon key/ID: ${k}`);
+		} else {
+			res.push(val);
+		}
+	}
+	return res;
+};
 
 /**
  * Factory function wrapper for {@link BidirIndex}.
