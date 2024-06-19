@@ -1,14 +1,9 @@
 import type { Maybe } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { ReadonlyColor, TypedColor } from "./api.js";
+import type { IsGrayFn, ReadonlyColor, TypedColor } from "./api.js";
 import { EPS } from "./api/constants.js";
 import { __dispatch0 } from "./internal/dispatch.js";
 import { rgb } from "./rgb/rgb.js";
-import type { MultiFn1O } from "@thi.ng/defmulti";
-
-export type IsBlackFn = {
-	(col: TypedColor<any>, eps?: number): boolean;
-} & MultiFn1O<TypedColor<any>, number, boolean>;
 
 /** @internal */
 const __isBlackHsv = (x: ReadonlyColor, eps = EPS) => x[2] <= eps;
@@ -20,7 +15,7 @@ const __isBlackRgb = (x: ReadonlyColor, eps = EPS) =>
 /** @internal */
 const __isBlackLch = (x: ReadonlyColor, eps = EPS) => x[0] <= eps;
 
-export const isBlack: IsBlackFn = defmulti<
+export const isBlack: IsGrayFn = defmulti<
 	TypedColor<any>,
 	Maybe<number>,
 	boolean

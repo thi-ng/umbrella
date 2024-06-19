@@ -6,6 +6,7 @@ import type {
 	Range,
 	Tuple,
 } from "@thi.ng/api";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 import type { IRandom } from "@thi.ng/random";
 import type { IVector, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -272,3 +273,7 @@ export type ColorMixFn<T = ReadonlyColor> = (
 	b: T,
 	t: number
 ) => Color;
+
+export type IsGrayFn = {
+	(col: TypedColor<any>, eps?: number): boolean;
+} & MultiFn1O<TypedColor<any>, number, boolean>;

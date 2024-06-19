@@ -1,15 +1,10 @@
 import type { Maybe } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { eqDelta } from "@thi.ng/math/eqdelta";
-import type { ReadonlyColor, TypedColor } from "./api.js";
+import type { IsGrayFn, ReadonlyColor, TypedColor } from "./api.js";
 import { EPS } from "./api/constants.js";
 import { __dispatch0 } from "./internal/dispatch.js";
 import { rgb } from "./rgb/rgb.js";
-import type { MultiFn1O } from "@thi.ng/defmulti";
-
-export type IsGrayFn = {
-	(col: TypedColor<any>, eps?: number): boolean;
-} & MultiFn1O<TypedColor<any>, number, boolean>;
 
 /** @internal */
 const __isGrayHsv = (x: ReadonlyColor, eps = EPS) => x[1] <= eps;
