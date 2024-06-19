@@ -25,6 +25,7 @@ import {
 	ensureLines,
 	ensureStringArray,
 	enumName,
+	injectBody,
 	isEnum,
 	isFuncPointer,
 	isNumeric,
@@ -133,9 +134,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 				doc && gen.doc(doc, lines, opts);
 				lines.push(`${f.field.name}: ${f.type};`);
 			}
-			if (struct.body?.ts) {
-				lines.push("", ...ensureLines(struct.body!.ts, "decl"));
-			}
+			injectBody(lines, struct.body?.ts, "decl");
 			lines.push("}", "");
 
 			const pointerDecls = fields
@@ -192,11 +191,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 					);
 				}
 			}
-
-			if (struct.body?.ts) {
-				lines.push("", ...ensureLines(struct.body!.ts, "impl"), "");
-			}
-
+			injectBody(lines, struct.body?.ts);
 			lines.push("};", "}", "});", "");
 			acc.push(...withIndentation(lines, indent, ...SCOPES));
 		},

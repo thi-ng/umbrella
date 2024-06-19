@@ -15,8 +15,8 @@ import type {
 import { classifyField } from "./internal/classify.js";
 import {
 	defaultValue,
-	ensureLines,
 	ensureStringArray,
+	injectBody,
 	isOpaque,
 	isPadding,
 	isStringSlice,
@@ -94,9 +94,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 				}
 				lines.push(line + ",");
 			}
-			if (e.body?.zig) {
-				lines.push("", ...ensureLines(e.body!.zig, "impl"), "");
-			}
+			injectBody(lines, e.body?.zig);
 			lines.push("};", "");
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
 		},
@@ -171,9 +169,7 @@ const __generateFields = (
 		ftypes[f.name] = type;
 		res.push(`${f.name}: ${type}${defaultVal},`);
 	}
-	if (parent.body?.zig) {
-		res.push("", ...ensureLines(parent.body!.zig, "impl"), "");
-	}
+	injectBody(res, parent.body?.zig);
 	res.push("};");
 
 	if (opts.debug) {

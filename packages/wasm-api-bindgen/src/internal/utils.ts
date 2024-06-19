@@ -1,4 +1,4 @@
-import type { BigType } from "@thi.ng/api";
+import type { BigType, Keys, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
@@ -202,3 +202,9 @@ export function* withIndentation(
 		scopeStart.test(l) && stack.push(curr + indent);
 	}
 }
+
+export const injectBody = (
+	acc: string[],
+	body: Nullable<string | string[] | InjectedBody>,
+	key: Keys<InjectedBody> = "impl"
+) => body && acc.push("", ...ensureLines(body, key), "");
