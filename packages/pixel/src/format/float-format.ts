@@ -26,22 +26,25 @@ export const defFloatFormat = (fmt: FloatFormatSpec) => {
 	const from: FnN2 = (col, i) => ((col >>> chanShift[chan[i]]) & 0xff) / 0xff;
 	switch (chan.length) {
 		case 1:
-			fmt.gray ? defConvert1Gray(res) : defConvert1(res, from, to);
+			fmt.gray ? __defConvert1Gray(res) : __defConvert1(res, from, to);
 			break;
 		case 2:
-			fmt.gray ? defConvert2Gray(res, from) : defConvert2(res, from, to);
+			fmt.gray
+				? __defConvert2Gray(res, from)
+				: __defConvert2(res, from, to);
 			break;
 		case 3:
-			defConvert3(res, from, to);
+			__defConvert3(res, from, to);
 			break;
 		case 4:
-			defConvert4(res, from, to);
+			__defConvert4(res, from, to);
 			break;
 	}
 	return res;
 };
 
-const defConvert1 = (
+/** @internal */
+const __defConvert1 = (
 	res: FloatFormat,
 	from: FnN2,
 	to: Fn2<NumericArray, number, number>
@@ -57,7 +60,8 @@ const defConvert1 = (
 	};
 };
 
-const defConvert1Gray = (res: FloatFormat) => {
+/** @internal */
+const __defConvert1Gray = (res: FloatFormat) => {
 	res.toABGR = (col) =>
 		((((clamp01(col[0]) * 0xff + 0.5) | 0) * 0x010101) | 0xff000000) >>> 0;
 	res.fromABGR = (col, out = []) => (
@@ -65,7 +69,8 @@ const defConvert1Gray = (res: FloatFormat) => {
 	);
 };
 
-const defConvert2 = (
+/** @internal */
+const __defConvert2 = (
 	res: FloatFormat,
 	from: FnN2,
 	to: Fn2<NumericArray, number, number>
@@ -83,7 +88,8 @@ const defConvert2 = (
 	};
 };
 
-const defConvert2Gray = (res: FloatFormat, from: FnN2) => {
+/** @internal */
+const __defConvert2Gray = (res: FloatFormat, from: FnN2) => {
 	const gray = ~~(res.channels[0] === Lane.ALPHA);
 	const alpha = gray ^ 1;
 	res.toABGR = (col) => {
@@ -98,7 +104,8 @@ const defConvert2Gray = (res: FloatFormat, from: FnN2) => {
 	};
 };
 
-const defConvert3 = (
+/** @internal */
+const __defConvert3 = (
 	res: FloatFormat,
 	from: FnN2,
 	to: Fn2<NumericArray, number, number>
@@ -118,7 +125,8 @@ const defConvert3 = (
 	};
 };
 
-const defConvert4 = (
+/** @internal */
+const __defConvert4 = (
 	res: FloatFormat,
 	from: FnN2,
 	to: Fn2<NumericArray, number, number>

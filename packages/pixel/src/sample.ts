@@ -34,69 +34,73 @@ export function defSampler(
 	const impl = (
 		isFloat
 			? <IObjectOf<Fn<FloatBuffer, FloatSampler>>>{
-					nc1: sampleFNC,
-					nw1: sampleFNW,
-					nr1: sampleFNR,
-					nc: sampleFNC,
-					nw: sampleFNW,
-					nr: sampleFNR,
-					lc1: (src) => bilinearGrayF(sampleINC(src)),
-					lw1: (src) => bilinearGrayF(sampleINW(src)),
-					lr1: (src) => bilinearGrayF(sampleINR(src)),
-					lc: (src) => bilinearFloat(src, sampleFNC(src)),
-					lw: (src) => bilinearFloat(src, sampleFNW(src)),
-					lr: (src) => bilinearFloat(src, sampleFNR(src)),
-					cc1: (src) => bicubicGrayF(sampleINC(src)),
-					cw1: (src) => bicubicGrayF(sampleINW(src)),
-					cr1: (src) => bicubicGrayF(sampleINR(src)),
-					cc: (src) => bicubicFloat(src, sampleFNC(src)),
-					cw: (src) => bicubicFloat(src, sampleFNW(src)),
-					cr: (src) => bicubicFloat(src, sampleFNR(src)),
+					nc1: __sampleFNC,
+					nw1: __sampleFNW,
+					nr1: __sampleFNR,
+					nc: __sampleFNC,
+					nw: __sampleFNW,
+					nr: __sampleFNR,
+					lc1: (src) => __bilinearGrayF(__sampleINC(src)),
+					lw1: (src) => __bilinearGrayF(__sampleINW(src)),
+					lr1: (src) => __bilinearGrayF(__sampleINR(src)),
+					lc: (src) => __bilinearFloat(src, __sampleFNC(src)),
+					lw: (src) => __bilinearFloat(src, __sampleFNW(src)),
+					lr: (src) => __bilinearFloat(src, __sampleFNR(src)),
+					cc1: (src) => __bicubicGrayF(__sampleINC(src)),
+					cw1: (src) => __bicubicGrayF(__sampleINW(src)),
+					cr1: (src) => __bicubicGrayF(__sampleINR(src)),
+					cc: (src) => __bicubicFloat(src, __sampleFNC(src)),
+					cw: (src) => __bicubicFloat(src, __sampleFNW(src)),
+					cr: (src) => __bicubicFloat(src, __sampleFNR(src)),
 			  }
 			: <IObjectOf<Fn<IntBuffer, IntSampler>>>{
-					nc1: sampleINC,
-					nw1: sampleINW,
-					nr1: sampleINR,
-					nc: sampleINC,
-					nw: sampleINW,
-					nr: sampleINR,
-					lc1: (src) => bilinearGray(sampleINC(src)),
-					lw1: (src) => bilinearGray(sampleINW(src)),
-					lr1: (src) => bilinearGray(sampleINR(src)),
-					lc: (src) => bilinearABGR(src, sampleINC(src)),
-					lw: (src) => bilinearABGR(src, sampleINW(src)),
-					lr: (src) => bilinearABGR(src, sampleINR(src)),
-					cc1: (src) => bicubicGrayI(src, sampleINC(src)),
-					cw1: (src) => bicubicGrayI(src, sampleINW(src)),
-					cr1: (src) => bicubicGrayI(src, sampleINR(src)),
-					cc: (src) => bicubicABGR(src, sampleINC(src)),
-					cw: (src) => bicubicABGR(src, sampleINW(src)),
-					cr: (src) => bicubicABGR(src, sampleINR(src)),
+					nc1: __sampleINC,
+					nw1: __sampleINW,
+					nr1: __sampleINR,
+					nc: __sampleINC,
+					nw: __sampleINW,
+					nr: __sampleINR,
+					lc1: (src) => __bilinearGray(__sampleINC(src)),
+					lw1: (src) => __bilinearGray(__sampleINW(src)),
+					lr1: (src) => __bilinearGray(__sampleINR(src)),
+					lc: (src) => __bilinearABGR(src, __sampleINC(src)),
+					lw: (src) => __bilinearABGR(src, __sampleINW(src)),
+					lr: (src) => __bilinearABGR(src, __sampleINR(src)),
+					cc1: (src) => __bicubicGrayI(src, __sampleINC(src)),
+					cw1: (src) => __bicubicGrayI(src, __sampleINW(src)),
+					cr1: (src) => __bicubicGrayI(src, __sampleINR(src)),
+					cc: (src) => __bicubicABGR(src, __sampleINC(src)),
+					cw: (src) => __bicubicABGR(src, __sampleINW(src)),
+					cr: (src) => __bicubicABGR(src, __sampleINR(src)),
 			  }
 	)[id];
 	assert(!!impl, `missing impl for ${id}`);
 	return impl(<any>src);
 }
 
-const sampleINC =
+/** @internal */
+const __sampleINC =
 	({ data, width, height }: IPixelBuffer): IntSampler =>
 	(x, y) =>
 		x >= 0 && x < width && y >= 0 && y < height
 			? data[(y | 0) * width + (x | 0)]
 			: 0;
 
-const sampleINW =
+/** @internal */
+const __sampleINW =
 	({ data, width, height }: IPixelBuffer): IntSampler =>
 	(x, y) =>
 		data[mod(y | 0, height) * width + mod(x | 0, width)];
 
-const sampleINR = ({ data, width, height }: IPixelBuffer): IntSampler => {
+/** @internal */
+const __sampleINR = ({ data, width, height }: IPixelBuffer): IntSampler => {
 	const w1 = width - 1;
 	const h1 = height - 1;
 	return (x, y) => data[clamp(y | 0, 0, h1) * width + clamp(x | 0, 0, w1)];
 };
 
-const sampleFNC =
+/** @internal */
+const __sampleFNC =
 	({
 		data,
 		width,
@@ -111,7 +115,8 @@ const sampleFNC =
 			: [0];
 	};
 
-const sampleFNW =
+/** @internal */
+const __sampleFNW =
 	({
 		data,
 		width,
@@ -123,7 +128,8 @@ const sampleFNW =
 		return data.slice(i, i + stride);
 	};
 
-const sampleFNR = ({
+/** @internal */
+const __sampleFNR = ({
 	data,
 	width,
 	height,
@@ -137,7 +143,8 @@ const sampleFNR = ({
 	};
 };
 
-const mixBilinearChan = (
+/** @internal */
+const __mixBilinearChan = (
 	buf: NumericArray,
 	u: number,
 	v: number,
@@ -145,7 +152,8 @@ const mixBilinearChan = (
 	s = 4
 ) => mixBilinear(buf[i], buf[i + s], buf[i + 2 * s], buf[i + 3 * s], u, v);
 
-const bilinearGray =
+/** @internal */
+const __bilinearGray =
 	(sample: IntSampler): IntSampler =>
 	(x, y) => {
 		x -= 0.5;
@@ -160,12 +168,14 @@ const bilinearGray =
 		);
 	};
 
-const bilinearGrayF = (sample: IntSampler): FloatSampler => {
-	sample = bilinearGray(sample);
+/** @internal */
+const __bilinearGrayF = (sample: IntSampler): FloatSampler => {
+	sample = __bilinearGray(sample);
 	return (x, y) => [sample(x, y)];
 };
 
-const bilinearABGR = (src: IntBuffer, sample1: IntSampler): IntSampler => {
+/** @internal */
+const __bilinearABGR = (src: IntBuffer, sample1: IntSampler): IntSampler => {
 	const { fromABGR, toABGR } = src.format;
 	const u32 = new Uint32Array(4);
 	const u8 = new Uint8Array(u32.buffer);
@@ -180,16 +190,17 @@ const bilinearABGR = (src: IntBuffer, sample1: IntSampler): IntSampler => {
 		const v = fract(y);
 		return (
 			fromABGR(
-				mixBilinearChan(u8, u, v, 0) |
-					(mixBilinearChan(u8, u, v, 1) << 8) |
-					(mixBilinearChan(u8, u, v, 2) << 16) |
-					(mixBilinearChan(u8, u, v, 3) << 24)
+				__mixBilinearChan(u8, u, v, 0) |
+					(__mixBilinearChan(u8, u, v, 1) << 8) |
+					(__mixBilinearChan(u8, u, v, 2) << 16) |
+					(__mixBilinearChan(u8, u, v, 3) << 24)
 			) >>> 0
 		);
 	};
 };
 
-const bilinearFloat = (
+/** @internal */
+const __bilinearFloat = (
 	{ stride: [stride] }: FloatBuffer,
 	sample1: FloatSampler
 ): FloatSampler => {
@@ -205,13 +216,14 @@ const bilinearFloat = (
 		const v = fract(y);
 		let res = [];
 		for (let i = 0; i < stride; i++) {
-			res.push(mixBilinearChan(f32, u, v, i, stride));
+			res.push(__mixBilinearChan(f32, u, v, i, stride));
 		}
 		return res;
 	};
 };
 
-const bicubicGray =
+/** @internal */
+const __bicubicGray =
 	(sample: IntSampler): IntSampler =>
 	(x, y) => {
 		x -= 0.5;
@@ -244,18 +256,21 @@ const bicubicGray =
 		);
 	};
 
-const bicubicGrayI = (src: IntBuffer, sample: IntSampler): IntSampler => {
+/** @internal */
+const __bicubicGrayI = (src: IntBuffer, sample: IntSampler): IntSampler => {
 	const max = src.format.channels[0].mask0;
-	sample = bicubicGray(sample);
+	sample = __bicubicGray(sample);
 	return (x, y) => clamp(sample(x, y), 0, max);
 };
 
-const bicubicGrayF = (sample: IntSampler): FloatSampler => {
-	sample = bicubicGray(sample);
+/** @internal */
+const __bicubicGrayF = (sample: IntSampler): FloatSampler => {
+	sample = __bicubicGray(sample);
 	return (x, y) => [sample(x, y)];
 };
 
-const mixBicubicChan = (
+/** @internal */
+const __mixBicubicChan = (
 	buf: NumericArray,
 	u: number,
 	v: number,
@@ -283,15 +298,17 @@ const mixBicubicChan = (
 		v
 	);
 
-const mixBicubicChanClamped = (
+/** @internal */
+const __mixBicubicChanClamped = (
 	buf: NumericArray,
 	u: number,
 	v: number,
 	i: number,
 	s = 4
-) => clamp(mixBicubicChan(buf, u, v, i, s), 0, 255);
+) => clamp(__mixBicubicChan(buf, u, v, i, s), 0, 255);
 
-const bicubicABGR = (src: IntBuffer, sample: IntSampler): IntSampler => {
+/** @internal */
+const __bicubicABGR = (src: IntBuffer, sample: IntSampler): IntSampler => {
 	const { fromABGR, toABGR } = src.format;
 	const u32 = new Uint32Array(16);
 	const u8 = new Uint8Array(u32.buffer);
@@ -324,16 +341,17 @@ const bicubicABGR = (src: IntBuffer, sample: IntSampler): IntSampler => {
 		u32[15] = toABGR(sample(x3, y3));
 		return (
 			fromABGR(
-				mixBicubicChanClamped(u8, u, v, 0) |
-					(mixBicubicChanClamped(u8, u, v, 1) << 8) |
-					(mixBicubicChanClamped(u8, u, v, 2) << 16) |
-					(mixBicubicChanClamped(u8, u, v, 3) << 24)
+				__mixBicubicChanClamped(u8, u, v, 0) |
+					(__mixBicubicChanClamped(u8, u, v, 1) << 8) |
+					(__mixBicubicChanClamped(u8, u, v, 2) << 16) |
+					(__mixBicubicChanClamped(u8, u, v, 3) << 24)
 			) >>> 0
 		);
 	};
 };
 
-const bicubicFloat = (
+/** @internal */
+const __bicubicFloat = (
 	{ stride: [stride] }: FloatBuffer,
 	sample: FloatSampler
 ): FloatSampler => {
@@ -367,7 +385,7 @@ const bicubicFloat = (
 		f32.set(sample(x3, y3), 15 * stride);
 		let res = [];
 		for (let i = 0; i < stride; i++) {
-			res.push(mixBicubicChan(f32, u, v, i, stride));
+			res.push(__mixBicubicChan(f32, u, v, i, stride));
 		}
 		return res;
 	};

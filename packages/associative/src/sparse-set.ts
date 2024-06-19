@@ -12,9 +12,11 @@ interface SparseSetProps {
 	n: number;
 }
 
+/** @internal */
 const __private = new WeakMap<ASparseSet<any>, SparseSetProps>();
 
-const fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
+/** @internal */
+const __fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
 
 /**
  * After "An Efficient Representation for Sparse Sets" Preston Briggs and Linda
@@ -165,7 +167,7 @@ export class SparseSet8
 			? super(new Uint8Array(n), new Uint8Array(n))
 			: n.length === sparse!.length
 			? super(n, sparse!)
-			: fail();
+			: __fail();
 	}
 
 	get [Symbol.species]() {
@@ -196,7 +198,7 @@ export class SparseSet16
 			? super(new Uint16Array(n), new Uint16Array(n))
 			: n.length === sparse!.length
 			? super(n, sparse!)
-			: fail();
+			: __fail();
 	}
 
 	get [Symbol.species]() {
@@ -227,7 +229,7 @@ export class SparseSet32
 			? super(new Uint32Array(n), new Uint32Array(n))
 			: n.length === sparse!.length
 			? super(n, sparse!)
-			: fail();
+			: __fail();
 	}
 
 	get [Symbol.species]() {

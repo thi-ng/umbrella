@@ -2,16 +2,20 @@ import type { Fn } from "@thi.ng/api";
 import type { IntChannel } from "../api.js";
 import { __luminanceABGR } from "./utils.js";
 
-const compileLShift = (x: string, shift: number) =>
+/** @internal */
+const __compileLShift = (x: string, shift: number) =>
 	shift > 0
 		? `(${x} << ${shift})`
 		: shift < 0
 		? `(${x} >>> ${-shift})`
 		: `${x}`;
 
-const compileRShift = (x: string, shift: number) => compileLShift(x, -shift);
+/** @internal */
+const __compileRShift = (x: string, shift: number) =>
+	__compileLShift(x, -shift);
 
-const hex = (x: number) => `0x${x.toString(16)}`;
+/** @internal */
+const __hex = (x: number) => `0x${x.toString(16)}`;
 
 /** @internal */
 export const __compileGrayFromABGR = (size: number) => {
@@ -20,7 +24,7 @@ export const __compileGrayFromABGR = (size: number) => {
 	return <Fn<number, number>>(
 		new Function(
 			"luma",
-			`return (x) => ${compileRShift("luma(x)", shift)} & ${mask};`
+			`return (x) => ${__compileRShift("luma(x)", shift)} & ${mask};`
 		)(__luminanceABGR)
 	);
 };
@@ -49,7 +53,9 @@ export const __compileFromABGR = (chans: IntChannel[]) =>
 			chans
 				.map((ch) => {
 					const shift = ch.abgrShift + (8 - ch.size);
-					return `(${compileRShift("x", shift)} & ${hex(ch.maskA)})`;
+					return `(${__compileRShift("x", shift)} & ${__hex(
+						ch.maskA
+					)})`;
 				})
 				.join(" | ") +
 			") >>> 0;"
@@ -63,13 +69,16 @@ export const __compileToABGR = (chans: IntChannel[], hasAlpha: boolean) => {
 				const mask = ch.mask0;
 				// rescale factor
 				const scale = 0xff / mask;
-				const inner = compileRShift("x", ch.shift);
-				return compileLShift(
+				const inner = __compileRShift("x", ch.shift);
+				return __compileLShift(
 					`((${inner} & ${mask}) * ${scale})`,
 					24 - ch.lane * 8
 				);
 			} else {
-				return compileLShift(`(x & ${hex(ch.maskA)})`, ch.abgrShift);
+				return __compileLShift(
+					`(x & ${__hex(ch.maskA)})`,
+					ch.abgrShift
+				);
 			}
 		})
 		.join(" | ");

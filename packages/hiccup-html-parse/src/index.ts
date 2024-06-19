@@ -165,7 +165,7 @@ export const parseHtml = (
 		};
 		if (result) {
 			const acc: Element[] = [];
-			transformScope(ctx.root, opts, acc);
+			__transformScope(ctx.root, opts, acc);
 			return {
 				type: ctx.done ? "success" : "partial",
 				result: acc,
@@ -189,7 +189,7 @@ export const parseHtml = (
  *
  * @internal
  */
-const transformScope = defmulti<
+const __transformScope = defmulti<
 	ParseScope<string>,
 	Partial<ParseOpts>,
 	any[],
@@ -209,11 +209,12 @@ const transformScope = defmulti<
 			if (opts.doctype && children?.[0]) {
 				acc.push(["!DOCTYPE", children[0].result]);
 			}
-			for (let x of children![1].children!) transformScope(x, opts, acc);
+			for (let x of children![1].children!)
+				__transformScope(x, opts, acc);
 		},
 
 		node: ({ children }, opts, acc) => {
-			transformScope(children![0], opts, acc);
+			__transformScope(children![0], opts, acc);
 		},
 
 		comment: ({ result }, opts, acc) => {
@@ -245,7 +246,7 @@ const transformScope = defmulti<
 				if (body.result) {
 					el.push(body.result.trim());
 				} else if (body.children) {
-					for (let x of body.children!) transformScope(x, opts, el);
+					for (let x of body.children!) __transformScope(x, opts, el);
 				}
 			}
 			const result = opts.tx ? opts.tx(el) : el;

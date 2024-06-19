@@ -1,12 +1,12 @@
+import { isNumber } from "@thi.ng/checks/is-number";
 import type {
 	ReadonlyVec,
-	VecOpVV,
 	Vec,
 	VecOpVN,
-	VecOpVVV,
+	VecOpVV,
 	VecOpVVN,
+	VecOpVVV,
 } from "./api.js";
-import { isNumber } from "@thi.ng/checks/is-number";
 
 /**
  * Takes a vec op `fn`, output array (or null) and a combination of the
@@ -77,27 +77,35 @@ export function mapVectors(
 	!out && (out = new Array(num));
 	c !== undefined
 		? isNumber(c)
-			? mapVVN(<VecOpVVN>fn, out, a, <ReadonlyVec[]>b, c)
-			: mapVVV(<VecOpVVV>fn, out, a, <ReadonlyVec[]>b, c)
+			? __mapVVN(<VecOpVVN>fn, out, a, <ReadonlyVec[]>b, c)
+			: __mapVVV(<VecOpVVV>fn, out, a, <ReadonlyVec[]>b, c)
 		: isNumber(b)
-		? mapVN(<VecOpVN>fn, out, a, b)
-		: mapVV(<VecOpVV>fn, out, a, b);
+		? __mapVN(<VecOpVN>fn, out, a, b)
+		: __mapVV(<VecOpVV>fn, out, a, b);
 	return out;
 }
 
-const mapVN = (fn: VecOpVN, out: Vec[], a: ReadonlyVec[], b: number) => {
+/** @internal */
+const __mapVN = (fn: VecOpVN, out: Vec[], a: ReadonlyVec[], b: number) => {
 	for (let i = 0, num = a.length; i < num; i++) {
 		out[i] = fn(out[i] || [], a[i], b);
 	}
 };
 
-const mapVV = (fn: VecOpVV, out: Vec[], a: ReadonlyVec[], b: ReadonlyVec[]) => {
+/** @internal */
+const __mapVV = (
+	fn: VecOpVV,
+	out: Vec[],
+	a: ReadonlyVec[],
+	b: ReadonlyVec[]
+) => {
 	for (let i = 0, num = a.length; i < num; i++) {
 		out[i] = fn(out[i] || [], a[i], b[i]);
 	}
 };
 
-const mapVVN = (
+/** @internal */
+const __mapVVN = (
 	fn: VecOpVVN,
 	out: Vec[],
 	a: ReadonlyVec[],
@@ -109,7 +117,8 @@ const mapVVN = (
 	}
 };
 
-const mapVVV = (
+/** @internal */
+const __mapVVV = (
 	fn: VecOpVVV,
 	out: Vec[],
 	a: ReadonlyVec[],

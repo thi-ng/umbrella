@@ -43,8 +43,10 @@ import {
  * ```
  *
  * @param sym -
+ *
+ * @internal
  */
-const lookup = (sym: string) => (i: number) =>
+const __lookup = (sym: string) => (i: number) =>
 	i > 1
 		? `${sym}[i${sym}+${i}*s${sym}]`
 		: i == 1
@@ -55,15 +57,19 @@ const lookup = (sym: string) => (i: number) =>
  * Infinite iterator of strided index lookups for `sym`.
  *
  * @param sym -
+ *
+ * @internal
  */
-const indicesStrided = (sym: string) => map(lookup(sym), range());
+const __indicesStrided = (sym: string) => map(__lookup(sym), range());
 
 /**
  * Infinite iterator of simple (non-strided) index lookups for `sym`.
  *
  * @param sym -
+ *
+ * @internal
  */
-const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
+const __indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
 
 /**
  * Code generator for loop-unrolled vector operations. Takes a vector
@@ -90,8 +96,10 @@ const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
  * @param pre -
  * @param post -
  * @param strided -
+ *
+ * @internal
  */
-const assemble = (
+const __assemble = (
 	dim: number,
 	tpl: Template,
 	syms: string,
@@ -111,7 +119,7 @@ const assemble = (
 		<Iterable<any>>(
 			zip.apply(
 				null,
-				<any>syms.split(",").map(strided ? indicesStrided : indices)
+				<any>syms.split(",").map(strided ? __indicesStrided : __indices)
 			)
 		)
 	),
@@ -119,7 +127,8 @@ const assemble = (
 	ret !== "" ? `return ${ret};` : "",
 ];
 
-const assembleG = (
+/** @internal */
+const __assembleG = (
 	tpl: Template,
 	syms: string,
 	ret = "a",
@@ -139,7 +148,8 @@ const assembleG = (
 	ret !== null ? `return ${ret};` : "",
 ];
 
-const assembleS = (
+/** @internal */
+const __assembleS = (
 	tpl: Template,
 	syms = ARGS_VV,
 	ret = "o",
@@ -155,7 +165,7 @@ const assembleS = (
 ];
 
 /** @internal */
-export const defaultOut: FnU2<string> = (o, args) =>
+export const __defaultOut: FnU2<string> = (o, args) =>
 	`!${o} && (${o}=${args.split(",")[1]});`;
 
 /** @internal */
@@ -173,7 +183,7 @@ export const compile = (
 	<any>(
 		new Function(
 			args,
-			assemble(dim, tpl, syms, ret, opJoin, pre, post, strided).join("")
+			__assemble(dim, tpl, syms, ret, opJoin, pre, post, strided).join("")
 		)
 	);
 
@@ -193,7 +203,7 @@ export const compileHOF = (
 ) => {
 	return new Function(
 		hofArgs,
-		`return (${args})=>{${assemble(
+		`return (${args})=>{${__assemble(
 			dim,
 			tpl,
 			syms,
@@ -219,7 +229,7 @@ export const compileG = (
 	<any>(
 		new Function(
 			args,
-			assembleG(tpl, syms, ret, pre, post, strided).join("")
+			__assembleG(tpl, syms, ret, pre, post, strided).join("")
 		)
 	);
 
@@ -231,7 +241,7 @@ export const compileS = (
 	ret?: string,
 	pre?: string,
 	post?: string
-) => <any>new Function(args, assembleS(tpl, syms, ret, pre, post).join(""));
+) => <any>new Function(args, __assembleS(tpl, syms, ret, pre, post).join(""));
 
 /** @internal */
 export const compileGHOF = (
@@ -248,7 +258,7 @@ export const compileGHOF = (
 	<any>(
 		new Function(
 			hofArgs,
-			`return (${args})=>{${assembleG(
+			`return (${args})=>{${__assembleG(
 				tpl,
 				syms,
 				ret,
@@ -268,7 +278,7 @@ export const defOp = <MULTI, FIXED>(
 	pre?: string
 ): [MULTI, ...FIXED[]] => {
 	syms = syms || args;
-	pre = pre != null ? pre : defaultOut(ret, args);
+	pre = pre != null ? pre : __defaultOut(ret, args);
 	const fn: any = vop(dispatch);
 	const $ = (dim: number) =>
 		fn.add(dim, compile(dim, tpl, args, syms, ret, "", pre));
@@ -290,7 +300,7 @@ export const defHofOp = <MULTI, FIXED>(
 ): [MULTI, ...FIXED[]] => {
 	const _tpl = tpl || FN("op");
 	syms = syms || args;
-	pre = pre != null ? pre : defaultOut(ret, args);
+	pre = pre != null ? pre : __defaultOut(ret, args);
 	const fn: any = vop(dispatch);
 	const $ = (dim: number) =>
 		fn.add(
@@ -319,7 +329,7 @@ export const defOpS = <GENERIC, FIXED>(
 			syms,
 			ret,
 			"",
-			pre != null ? pre : defaultOut(ret, args),
+			pre != null ? pre : __defaultOut(ret, args),
 			"",
 			true
 		)
@@ -338,9 +348,12 @@ export const defHofOpS = <GENERIC, FIXED>(
 ): [GENERIC, ...FIXED[]] => [
 	new Function(
 		"op",
-		`return (${args},k,${idxArgs})=>{${assembleS(tpl, syms, ret, pre).join(
-			""
-		)}}`
+		`return (${args},k,${idxArgs})=>{${__assembleS(
+			tpl,
+			syms,
+			ret,
+			pre
+		).join("")}}`
 	)(op),
 	...sizes.map((dim) =>
 		compileHOF(
@@ -352,7 +365,7 @@ export const defHofOpS = <GENERIC, FIXED>(
 			syms,
 			ret,
 			"",
-			pre != null ? pre : defaultOut(ret, args),
+			pre != null ? pre : __defaultOut(ret, args),
 			"",
 			true
 		)

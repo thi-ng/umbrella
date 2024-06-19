@@ -1,10 +1,12 @@
 import type { NumOrString } from "@thi.ng/api";
 import { EMPTY, FLOAT, type BenchmarkFormatter } from "../api.js";
 
-const $n = (n: number, char = "-") => new Array(n).fill(char).join("");
+/** @internal */
+const __n = (n: number, char = "-") => new Array(n).fill(char).join("");
 
-const pad = (w: number) => {
-	const column = $n(w, " ");
+/** @internal */
+const __pad = (w: number) => {
+	const column = __n(w, " ");
 	return (x: NumOrString) => {
 		const s = typeof x === "number" ? FLOAT(x) : x;
 		return s.length < w
@@ -13,23 +15,24 @@ const pad = (w: number) => {
 	};
 };
 
-const c24 = pad(24);
-const c12 = pad(12);
-const c8 = pad(8);
-
-const d24 = $n(24);
-const d12 = $n(11) + ":";
-const d8 = $n(7) + ":";
-
-const COLUMNS = [c24, c8, c8, c12, c12, c8, c8, c8, c8, c8, c8, c8];
-const DASHES = [d24, d8, d8, d12, d12, d8, d8, d8, d8, d8, d8, d8];
-
-const row = (cols: NumOrString[]) =>
+/** @internal */
+const __row = (cols: NumOrString[]) =>
 	`|${cols.map((x, i) => COLUMNS[i](x)).join("|")}|`;
+
+const C24 = __pad(24);
+const C12 = __pad(12);
+const C8 = __pad(8);
+
+const D24 = __n(24);
+const D12 = __n(11) + ":";
+const D8 = __n(7) + ":";
+
+const COLUMNS = [C24, C8, C8, C12, C12, C8, C8, C8, C8, C8, C8, C8];
+const DASHES = [D24, D8, D8, D12, D12, D8, D8, D8, D8, D8, D8, D8];
 
 export const FORMAT_MD: BenchmarkFormatter = {
 	prefix: () =>
-		row([
+		__row([
 			"Title",
 			"Iter",
 			"Size",
@@ -46,7 +49,7 @@ export const FORMAT_MD: BenchmarkFormatter = {
 	start: EMPTY,
 	warmup: EMPTY,
 	result: (res) =>
-		row([
+		__row([
 			res.title,
 			"" + res.iter,
 			"" + res.size,

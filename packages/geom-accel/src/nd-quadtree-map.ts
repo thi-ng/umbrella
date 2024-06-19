@@ -63,7 +63,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 				this.v = val;
 				return false;
 			}
-			this.ensureChild(childID(this.k, this.pos)).setUnsafe(
+			this.ensureChild(__childID(this.k, this.pos)).setUnsafe(
 				this.k,
 				this.v!
 			);
@@ -71,7 +71,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 			delete this.v;
 		}
 		if (this.children) {
-			return this.ensureChild(childID(p, this.pos)).setUnsafe(p, val);
+			return this.ensureChild(__childID(p, this.pos)).setUnsafe(p, val);
 		} else {
 			this.k = p;
 			this.v = val;
@@ -125,7 +125,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 			return this;
 		}
 		if (this.children) {
-			const child = this.children[childID(p, this.pos)];
+			const child = this.children[__childID(p, this.pos)];
 			return child ? child.nodeForPoint(p) : undefined;
 		}
 	}
@@ -228,7 +228,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 			`illegal dimension: ${dim}`
 		);
 		assert(ext.length === dim, `pos/ext dimensions must be equal`);
-		initChildOffsets(dim);
+		__initChildOffsets(dim);
 		this.root = new NdQtNode(undefined, pos, ext);
 		this._size = 0;
 		pairs && this.into(pairs, -1);
@@ -306,7 +306,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 		let doPrune = true;
 		while (node.parent) {
 			node = node!.parent;
-			delete node.children![childID(p, node.pos)];
+			delete node.children![__childID(p, node.pos)];
 			doPrune = --node.numC === 0;
 			if (doPrune) delete node.children;
 			else break;
@@ -356,6 +356,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 	}
 }
 
+/** @internal */
 const MAX_CHILDREN = [
 	...take(
 		NdQuadtreeMap.MAX_DIM + 1,
@@ -363,21 +364,24 @@ const MAX_CHILDREN = [
 	),
 ];
 
+/** @internal */
 const CHILD_OFFSETS: ReadonlyVec[][] = [];
 
-const initChildOffsets = (dim: number) =>
+/** @internal */
+const __initChildOffsets = (dim: number) =>
 	CHILD_OFFSETS[dim] ||
 	(CHILD_OFFSETS[dim] = [...permutations(...repeat([-1, 1], dim))]);
 
-const childID: MultiVecOpRoVV<number> = vop(0);
-childID.add(1, (p, q) => (p[0] >= q[0] ? 1 : 0));
-childID.add(2, (p, q) => (p[0] >= q[0] ? 2 : 0) | (p[1] >= q[1] ? 1 : 0));
-childID.add(
+/** @internal */
+const __childID: MultiVecOpRoVV<number> = vop(0);
+__childID.add(1, (p, q) => (p[0] >= q[0] ? 1 : 0));
+__childID.add(2, (p, q) => (p[0] >= q[0] ? 2 : 0) | (p[1] >= q[1] ? 1 : 0));
+__childID.add(
 	3,
 	(p, q) =>
 		(p[0] >= q[0] ? 4 : 0) | (p[1] >= q[1] ? 2 : 0) | (p[2] >= q[2] ? 1 : 0)
 );
-childID.add(
+__childID.add(
 	4,
 	(p, q) =>
 		(p[0] >= q[0] ? 8 : 0) |
@@ -385,7 +389,7 @@ childID.add(
 		(p[2] >= q[2] ? 2 : 0) |
 		(p[3] >= q[3] ? 1 : 0)
 );
-childID.default((p, q) => {
+__childID.default((p, q) => {
 	let id = 0;
 	for (let i = 0, n = p.length - 1, bit = 1 << n; i <= n; i++, bit >>>= 1) {
 		p[i] >= q[i] && (id += bit);

@@ -1,4 +1,4 @@
-import type { FloatSym, Vec, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import type { FloatSym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { F, V2, V3, V4 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { mat2, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";

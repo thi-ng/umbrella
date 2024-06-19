@@ -94,7 +94,7 @@ export const decode = (src: Uint8Array) => {
 	const num = input.read(32);
 	const wordSize = input.read(5) + 1;
 	const rleSizes = [0, 0, 0, 0].map(() => input.read(4) + 1);
-	const out = arrayForWordSize(wordSize, num);
+	const out = __arrayForWordSize(wordSize, num);
 	let x, j;
 	for (let i = 0; i < num; ) {
 		x = input.readBit();
@@ -111,6 +111,7 @@ export const decode = (src: Uint8Array) => {
 	return out;
 };
 
-const arrayForWordSize = (ws: number, n: number) => {
+/** @internal */
+const __arrayForWordSize = (ws: number, n: number) => {
 	return new (ws < 9 ? Uint8Array : ws < 17 ? Uint16Array : Uint32Array)(n);
 };

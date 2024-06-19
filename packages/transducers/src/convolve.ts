@@ -77,7 +77,8 @@ export const buildKernel2d = (
 	return [...zip(weights, range2d(-w2, w2 + 1, -h2, h2 + 1))];
 };
 
-const kernelLookup1d = (
+/** @internal */
+const __kernelLookup1d = (
 	src: ArrayLike<number>,
 	x: number,
 	width: number,
@@ -94,7 +95,8 @@ const kernelLookup1d = (
 				return x < -ox || x >= width - ox ? border : w * src[x + ox];
 		  };
 
-const kernelLookup2d = (
+/** @internal */
+const __kernelLookup2d = (
 	src: ArrayLike<number>,
 	x: number,
 	y: number,
@@ -117,7 +119,8 @@ const kernelLookup2d = (
 					: w * src[(y + oy) * width + x + ox];
 		  };
 
-const kernelError = () => illegalArgs(`no kernel or kernel config`);
+/** @internal */
+const __kernelError = () => illegalArgs(`no kernel or kernel config`);
 
 export function convolve1d(opts: Convolution1DOpts): Transducer<number, number>;
 export function convolve1d(
@@ -137,12 +140,12 @@ export function convolve1d(
 	const rfn = opts.reduce || add;
 	let kernel = opts.kernel;
 	if (!kernel) {
-		!(opts.weights && opts.kwidth) && kernelError();
+		!(opts.weights && opts.kwidth) && __kernelError();
 		kernel = buildKernel1d(opts.weights!, opts.kwidth!);
 	}
 	return map((p: number) =>
 		transduce(
-			map(kernelLookup1d(src, p, width, wrap, border)),
+			map(__kernelLookup1d(src, p, width, wrap, border)),
 			rfn(),
 			kernel!
 		)
@@ -169,12 +172,12 @@ export function convolve2d(
 	const rfn = opts.reduce || add;
 	let kernel = opts.kernel;
 	if (!kernel) {
-		!(opts.weights && opts.kwidth && opts.kheight) && kernelError();
+		!(opts.weights && opts.kwidth && opts.kheight) && __kernelError();
 		kernel = buildKernel2d(opts.weights!, opts.kwidth!, opts.kheight!);
 	}
 	return map((p: number[]) =>
 		transduce(
-			map(kernelLookup2d(src, p[0], p[1], width, height, wrap, border)),
+			map(__kernelLookup2d(src, p[0], p[1], width, height, wrap, border)),
 			rfn(),
 			kernel!
 		)

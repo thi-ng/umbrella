@@ -34,7 +34,7 @@ export const usage = <T extends IObjectOf<any>>(
 		: <ColorTheme>{};
 	const indent = repeat(" ", opts.paramWidth!);
 	const format = (ids: string[]) =>
-		ids.map((id) => argUsage(id, specs[id], opts, theme, indent));
+		ids.map((id) => __argUsage(id, specs[id], opts, theme, indent));
 	const sortedIDs = Object.keys(specs).sort();
 	const groups: Pair<string, string[]>[] = opts.groups
 		? opts.groups
@@ -47,7 +47,7 @@ export const usage = <T extends IObjectOf<any>>(
 				.filter((g) => !!g[1].length)
 		: [["options", sortedIDs]];
 	return [
-		...wrap(opts.prefix, opts.lineWidth!),
+		...__wrap(opts.prefix, opts.lineWidth!),
 		...groups.map(([gid, ids]) =>
 			[
 				...(opts.showGroupNames ? [`${capitalize(gid)}:\n`] : []),
@@ -55,62 +55,67 @@ export const usage = <T extends IObjectOf<any>>(
 				"",
 			].join("\n")
 		),
-		...wrap(opts.suffix, opts.lineWidth!),
+		...__wrap(opts.suffix, opts.lineWidth!),
 	].join("\n");
 };
 
-const argUsage = (
+/** @internal */
+const __argUsage = (
 	id: string,
 	spec: ArgSpecExt,
 	opts: Partial<UsageOpts>,
 	theme: ColorTheme,
 	indent: string
 ) => {
-	const hint = argHint(spec, theme);
-	const alias = argAlias(spec, theme, hint);
-	const name = ansi(`--${kebab(id)}`, theme.param!);
+	const hint = __argHint(spec, theme);
+	const alias = __argAlias(spec, theme, hint);
+	const name = __ansi(`--${kebab(id)}`, theme.param!);
 	const params = `${alias}${name}${hint}`;
 	const isRequired = spec.optional === false && spec.default === undefined;
 	const prefixes: string[] = [];
 	isRequired && prefixes.push("required");
 	spec.multi && prefixes.push("multiple");
 	const body =
-		argPrefix(prefixes, theme, isRequired) +
+		__argPrefix(prefixes, theme, isRequired) +
 		(spec.desc || "") +
-		argDefault(spec, opts, theme);
+		__argDefault(spec, opts, theme);
 	return (
 		padRight(opts.paramWidth!)(params, lengthAnsi(params)) +
-		wrap(body, opts.lineWidth! - opts.paramWidth!)
+		__wrap(body, opts.lineWidth! - opts.paramWidth!)
 			.map((l, i) => (i > 0 ? indent + l : l))
 			.join("\n")
 	);
 };
 
-const argHint = (spec: ArgSpecExt, theme: ColorTheme) =>
-	spec.hint ? ansi(" " + spec.hint, theme.hint!) : "";
+/** @internal */
+const __argHint = (spec: ArgSpecExt, theme: ColorTheme) =>
+	spec.hint ? __ansi(" " + spec.hint, theme.hint!) : "";
 
-const argAlias = (spec: ArgSpecExt, theme: ColorTheme, hint: string) =>
-	spec.alias ? `${ansi("-" + spec.alias, theme.param!)}${hint}, ` : "";
+/** @internal */
+const __argAlias = (spec: ArgSpecExt, theme: ColorTheme, hint: string) =>
+	spec.alias ? `${__ansi("-" + spec.alias, theme.param!)}${hint}, ` : "";
 
-const argPrefix = (
+/** @internal */
+const __argPrefix = (
 	prefixes: string[],
 	theme: ColorTheme,
 	isRequired: boolean
 ) =>
 	prefixes.length
-		? ansi(
+		? __ansi(
 				`[${prefixes.join(", ")}] `,
 				isRequired ? theme.required! : theme.multi!
 		  )
 		: "";
 
-const argDefault = (
+/** @internal */
+const __argDefault = (
 	spec: ArgSpecExt,
 	opts: Partial<UsageOpts>,
 	theme: ColorTheme
 ) =>
 	opts.showDefaults && spec.default != null && spec.default !== false
-		? ansi(
+		? __ansi(
 				` (default: ${stringify(true)(
 					spec.defaultHint != undefined
 						? spec.defaultHint
@@ -120,10 +125,12 @@ const argDefault = (
 		  )
 		: "";
 
-const ansi = (x: string, col: number) =>
+/** @internal */
+const __ansi = (x: string, col: number) =>
 	col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
 
-const wrap = (str: Maybe<string>, width: number) =>
+/** @internal */
+const __wrap = (str: Maybe<string>, width: number) =>
 	str
 		? wordWrapLines(str, {
 				width,

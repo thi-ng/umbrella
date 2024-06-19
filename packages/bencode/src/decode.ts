@@ -4,6 +4,7 @@ import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { utf8Decode } from "@thi.ng/transducers-binary/utf8";
 
+/** @internal */
 const enum Type {
 	INT,
 	FLOAT,
@@ -13,6 +14,7 @@ const enum Type {
 	LIST,
 }
 
+/** @internal */
 const enum Lit {
 	MINUS = 0x2d,
 	DOT = 0x2e,
@@ -35,21 +37,21 @@ export const decode = (buf: Iterable<number>, utf8 = true) => {
 		x = i.value;
 		switch (x) {
 			case Lit.DICT:
-				ensureNotKey(stack, "dict");
+				__ensureNotKey(stack, "dict");
 				stack.push({ type: Type.DICT, val: {} });
 				break;
 			case Lit.LIST:
-				ensureNotKey(stack, "list");
+				__ensureNotKey(stack, "list");
 				stack.push({ type: Type.LIST, val: [] });
 				break;
 			case Lit.INT:
-				x = collect(stack, readInt(iter, 0));
+				x = __collect(stack, __readInt(iter, 0));
 				if (x !== undefined) {
 					return x;
 				}
 				break;
 			case Lit.FLOAT:
-				x = collect(stack, readFloat(iter));
+				x = __collect(stack, __readFloat(iter));
 				if (x !== undefined) {
 					return x;
 				}
@@ -74,11 +76,11 @@ export const decode = (buf: Iterable<number>, utf8 = true) => {
 				break;
 			default:
 				if (x >= Lit.ZERO && x <= Lit.NINE) {
-					x = readBytes(
+					x = __readBytes(
 						iter,
-						readInt(iter, x - Lit.ZERO, Lit.COLON)!
+						__readInt(iter, x - Lit.ZERO, Lit.COLON)!
 					);
-					x = collect(stack, x, utf8);
+					x = __collect(stack, x, utf8);
 					if (x !== undefined) {
 						return x;
 					}
@@ -92,7 +94,8 @@ export const decode = (buf: Iterable<number>, utf8 = true) => {
 	return peek(stack).val;
 };
 
-const ensureNotKey = (stack: any[], type: string) => {
+/** @internal */
+const __ensureNotKey = (stack: any[], type: string) => {
 	const x = peek(stack);
 	assert(
 		!x || x.type !== Type.DICT || x.key,
@@ -100,7 +103,8 @@ const ensureNotKey = (stack: any[], type: string) => {
 	);
 };
 
-const collect = (stack: any[], x: any, utf8 = false) => {
+/** @internal */
+const __collect = (stack: any[], x: any, utf8 = false) => {
 	const parent = peek(stack);
 	if (!parent) return x;
 	if (parent.type === Type.LIST) {
@@ -115,7 +119,8 @@ const collect = (stack: any[], x: any, utf8 = false) => {
 	}
 };
 
-const readInt = (iter: Iterator<number>, acc: number, end = Lit.END) => {
+/** @internal */
+const __readInt = (iter: Iterator<number>, acc: number, end = Lit.END) => {
 	let i: IteratorResult<number>;
 	let x: number;
 	let isSigned = false;
@@ -135,7 +140,8 @@ const readInt = (iter: Iterator<number>, acc: number, end = Lit.END) => {
 	illegalState(`incomplete int`);
 };
 
-const readFloat = (iter: Iterator<number>) => {
+/** @internal */
+const __readFloat = (iter: Iterator<number>) => {
 	let i: IteratorResult<number>;
 	let x: number;
 	let acc = "";
@@ -156,7 +162,8 @@ const readFloat = (iter: Iterator<number>) => {
 	illegalState(`incomplete float`);
 };
 
-const readBytes = (iter: Iterator<number>, len: number) => {
+/** @internal */
+const __readBytes = (iter: Iterator<number>, len: number) => {
 	let i: IteratorResult<number>;
 	let buf: number[] = [];
 	while (len-- > 0 && !(i = iter.next()).done) {

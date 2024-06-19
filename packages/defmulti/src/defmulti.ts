@@ -173,10 +173,11 @@ export function defmulti<T>(
 	_impls?: IObjectOf<Implementation<T>>
 ) {
 	const impls: IObjectOf<Implementation<T>> = {};
-	const rels: IObjectOf<Set<PropertyKey>> = _rels ? makeRels(_rels) : {};
+	const rels: IObjectOf<Set<PropertyKey>> = _rels ? __makeRels(_rels) : {};
 	const fn: any = (...args: any[]) => {
 		const id = f(...args);
-		const g = impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
+		const g =
+			impls[id] || __findImpl(impls, rels, id) || impls[<any>DEFAULT];
 		return g
 			? g(...args)
 			: unsupported(`missing implementation for: "${id.toString()}"`);
@@ -206,7 +207,7 @@ export function defmulti<T>(
 		const id = f(...args);
 		return !!(
 			impls[id] ||
-			findImpl(impls, rels, id) ||
+			__findImpl(impls, rels, id) ||
 			impls[<any>DEFAULT]
 		);
 	};
@@ -221,7 +222,7 @@ export function defmulti<T>(
 			res.set(id, impls[id]);
 		}
 		for (let id in rels) {
-			const impl = findImpl(impls, rels, id);
+			const impl = __findImpl(impls, rels, id);
 			if (impl) res.set(id, impl);
 		}
 		if (impls[<any>DEFAULT]) {
@@ -230,11 +231,11 @@ export function defmulti<T>(
 		return res;
 	};
 	fn.implForID = (id: PropertyKey) =>
-		impls[String(id)] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
+		impls[String(id)] || __findImpl(impls, rels, id) || impls[<any>DEFAULT];
 	fn.rels = () => rels;
 	fn.parents = (id: PropertyKey) => rels[<any>id];
 	fn.ancestors = (id: PropertyKey) =>
-		new Set<PropertyKey>(findAncestors([], rels, id));
+		new Set<PropertyKey>(__findAncestors([], rels, id));
 	fn.dependencies = function* (): IterableIterator<
 		Pair<PropertyKey, Maybe<PropertyKey>>
 	> {
@@ -250,7 +251,8 @@ export function defmulti<T>(
 	return fn;
 }
 
-const findImpl = (
+/** @internal */
+const __findImpl = (
 	impls: IObjectOf<Implementation<any>>,
 	rels: IObjectOf<Set<PropertyKey>>,
 	id: PropertyKey
@@ -259,12 +261,13 @@ const findImpl = (
 	if (!parents) return;
 	for (let p of parents) {
 		let impl: Implementation<any> =
-			impls[<any>p] || findImpl(impls, rels, p);
+			impls[<any>p] || __findImpl(impls, rels, p);
 		if (impl) return impl;
 	}
 };
 
-const findAncestors = (
+/** @internal */
+const __findAncestors = (
 	acc: PropertyKey[],
 	rels: IObjectOf<Set<PropertyKey>>,
 	id: PropertyKey
@@ -273,13 +276,14 @@ const findAncestors = (
 	if (parents) {
 		for (let p of parents) {
 			acc.push(p);
-			findAncestors(acc, rels, p);
+			__findAncestors(acc, rels, p);
 		}
 	}
 	return acc;
 };
 
-const makeRels = (spec: AncestorDefs) => {
+/** @internal */
+const __makeRels = (spec: AncestorDefs) => {
 	const rels: IObjectOf<Set<PropertyKey>> = {};
 	for (let k in spec) {
 		const val = spec[k];

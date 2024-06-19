@@ -5,6 +5,7 @@ import { AGen } from "./agen.js";
 import type { IGen } from "./api.js";
 import { curve } from "./curve.js";
 
+/** @internal */
 const enum EnvPhase {
 	ATTACK,
 	DECAY,

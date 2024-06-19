@@ -6,14 +6,17 @@ import { GRAY8 } from "@thi.ng/pixel/format/gray8";
 import { RGB888 } from "@thi.ng/pixel/format/rgb888";
 import { intBuffer } from "@thi.ng/pixel/int";
 
-const isLinebreak = (c: number) => c === 0xa;
+/** @internal */
+const __isLinebreak = (c: number) => c === 0xa;
 
-const isWS = (c: number) => c === 0x20 || (c >= 9 && c <= 13);
+/** @internal */
+const __isWS = (c: number) => c === 0x20 || (c >= 9 && c <= 13);
 
-const readUntil = (
+/** @internal */
+const __readUntil = (
 	src: Uint8Array,
 	i: number,
-	end: Predicate<number> = isLinebreak
+	end: Predicate<number> = __isLinebreak
 ): [string, number] => {
 	let res = "";
 	for (; i < src.length; i++) {
@@ -27,10 +30,11 @@ const readUntil = (
 	return [res, i];
 };
 
-const readComments = (src: Uint8Array, acc: string[], i: number) => {
+/** @internal */
+const __readComments = (src: Uint8Array, acc: string[], i: number) => {
 	while (src[i] === 0x23) {
 		// @ts-ignore
-		const [comment, j] = readUntil(src, i);
+		const [comment, j] = __readUntil(src, i);
 		assert(j !== i, `EOF reached`);
 		acc.push(comment.substring(1).trim());
 		i = j;
@@ -49,16 +53,16 @@ export const parseHeader = (src: Uint8Array) => {
 	let norm: string;
 	let max: Maybe<number>;
 	const comments: string[] = [];
-	let i = readComments(src, comments, 0);
-	[type, i] = readUntil(src, i);
-	i = readComments(src, comments, i);
-	[sw, i] = readUntil(src, i, isWS);
-	[sh, i] = readUntil(src, i, isWS);
+	let i = __readComments(src, comments, 0);
+	[type, i] = __readUntil(src, i);
+	i = __readComments(src, comments, i);
+	[sw, i] = __readUntil(src, i, __isWS);
+	[sh, i] = __readUntil(src, i, __isWS);
 	const width = parseInt(sw);
 	const height = parseInt(sh);
 	assert(width > 0 && height > 0, `invalid NetPBM header`);
 	if (type === "P5" || type === "P6") {
-		[norm, i] = readUntil(src, i);
+		[norm, i] = __readUntil(src, i);
 		max = parseInt(norm);
 	}
 	return {

@@ -7,11 +7,12 @@ import type { MultiFn1 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
+import { utf8Length } from "@thi.ng/strings/utf8";
 import type { BinStructItem } from "@thi.ng/transducers-binary";
 import { bytes, str, u8, u8array } from "@thi.ng/transducers-binary/bytes";
-import { utf8Length } from "@thi.ng/transducers-binary/utf8";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 
+/** @internal */
 const enum Type {
 	INT,
 	FLOAT,
@@ -21,17 +22,20 @@ const enum Type {
 	LIST,
 }
 
+/** @internal */
 const enum Lit {
 	DICT = 0x64,
 	END = 0x65,
 	LIST = 0x6c,
 }
 
+/** @internal */
 const FLOAT_RE = /^[0-9.-]+$/;
 
-export const encode = (x: any, cap = 1024) => bytes(cap, encodeBin(x));
+export const encode = (x: any, cap = 1024) => bytes(cap, __encodeBin(x));
 
-const encodeBin: MultiFn1<any, BinStructItem[]> = defmulti<
+/** @internal */
+const __encodeBin: MultiFn1<any, BinStructItem[]> = defmulti<
 	any,
 	BinStructItem[]
 >(
@@ -76,14 +80,14 @@ const encodeBin: MultiFn1<any, BinStructItem[]> = defmulti<
 
 		[Type.LIST]: (x: Iterable<any>) => [
 			u8(Lit.LIST),
-			...mapcat(encodeBin, x),
+			...mapcat(__encodeBin, x),
 			u8(Lit.END),
 		],
 
 		[Type.DICT]: (x: any) => [
 			u8(Lit.DICT),
 			...mapcat(
-				(k: string) => encodeBin(k).concat(encodeBin(x[k])),
+				(k: string) => __encodeBin(k).concat(__encodeBin(x[k])),
 				Object.keys(x).sort()
 			),
 			u8(Lit.END),

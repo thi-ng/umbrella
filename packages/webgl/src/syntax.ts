@@ -29,10 +29,10 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
 		attrib: (id, type, pre) =>
 			`attribute ${isArray(type) ? type[0] : type} ${pre.a}${id};`,
 		varying: {
-			vs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
-			fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
+			vs: (id, type, pre) => __arrayDecl("varying", type, pre.v + id),
+			fs: (id, type, pre) => __arrayDecl("varying", type, pre.v + id),
 		},
-		uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
+		uniform: (id, u, pre) => __arrayDecl("uniform", <any>u, pre.u + id),
 		output: (id, type, pre) =>
 			isArray(type)
 				? `#define ${pre.o}${id} gl_FragData[${type[1]}]`
@@ -48,10 +48,10 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
 				? `layout(location=${type[1]}) in ${type[0]} ${pre.a}${id};`
 				: `in ${type} ${pre.a}${id};`,
 		varying: {
-			vs: (id, type, pre) => arrayDecl("out", type, pre.v + id),
-			fs: (id, type, pre) => arrayDecl("in", type, pre.v + id),
+			vs: (id, type, pre) => __arrayDecl("out", type, pre.v + id),
+			fs: (id, type, pre) => __arrayDecl("in", type, pre.v + id),
 		},
-		uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
+		uniform: (id, u, pre) => __arrayDecl("uniform", <any>u, pre.u + id),
 		output: (id, type, pre) =>
 			isArray(type)
 				? `layout(location=${type[1]}) out ${type[0]} ${pre.o}${id};`
@@ -59,7 +59,8 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
 	},
 };
 
-const arrayDecl = (
+/** @internal */
+const __arrayDecl = (
 	qualifier: string,
 	decl: GLSL | [GLSL, number],
 	id: string

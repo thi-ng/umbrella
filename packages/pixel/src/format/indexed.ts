@@ -5,6 +5,7 @@ import { assert } from "@thi.ng/errors/assert";
 import { Lane } from "../api.js";
 import { defIntFormat } from "./int-format.js";
 
+/** @internal */
 const __defIndexed =
 	(type: UintType, size: number) =>
 	(palette: NumericArray, isABGR = false) => {
@@ -15,10 +16,18 @@ const __defIndexed =
 			type,
 			size,
 			channels: [{ size, lane: Lane.RED }],
-			fromABGR: (x) => argminN(x, palette, distBGR),
+			fromABGR: (x) => argminN(x, palette, __distBGR),
 			toABGR: (x) => palette[x],
 		});
 	};
+
+/** @internal */
+const __distBGR = (a: number, b: number) =>
+	Math.hypot(
+		((a >> 16) & 0xff) - ((b >> 16) & 0xff),
+		((a >> 8) & 0xff) - ((b >> 8) & 0xff),
+		(a & 0xff) - (b & 0xff)
+	);
 
 /**
  * Creates an indexed color {@link IntFormat} using the provided palette (in
@@ -57,10 +66,3 @@ export const defIndexed = (palette: NumericArray, isABGR = false) =>
 		: palette.length < 0x10000
 		? defIndexed16(palette, isABGR)
 		: defIndexed32(palette, isABGR);
-
-const distBGR = (a: number, b: number) =>
-	Math.hypot(
-		((a >> 16) & 0xff) - ((b >> 16) & 0xff),
-		((a >> 8) & 0xff) - ((b >> 8) & 0xff),
-		(a & 0xff) - (b & 0xff)
-	);

@@ -144,7 +144,7 @@ export class MemPool implements IMemPool {
 			this.initBlock(block, paddedSize, this._used);
 			this._used = block;
 			this.top = top;
-			return blockDataAddress(block);
+			return __blockDataAddress(block);
 		}
 		return 0;
 	}
@@ -171,14 +171,14 @@ export class MemPool implements IMemPool {
 			excess >= this.minSplit &&
 				this.splitBlock(block, paddedSize, excess);
 		}
-		return blockDataAddress(block);
+		return __blockDataAddress(block);
 	}
 
 	realloc(ptr: number, bytes: number) {
 		if (bytes <= 0) {
 			return 0;
 		}
-		const oldAddr = blockSelfAddress(ptr);
+		const oldAddr = __blockSelfAddress(ptr);
 		let newAddr = 0;
 		let block = this._used;
 		let blockEnd = 0;
@@ -192,12 +192,12 @@ export class MemPool implements IMemPool {
 		// copy old block contents to new addr
 		if (newAddr && newAddr !== oldAddr) {
 			this.u8.copyWithin(
-				blockDataAddress(newAddr),
-				blockDataAddress(oldAddr),
+				__blockDataAddress(newAddr),
+				__blockDataAddress(oldAddr),
 				blockEnd
 			);
 		}
-		return blockDataAddress(newAddr);
+		return __blockDataAddress(newAddr);
 	}
 
 	private reallocBlock(block: number, bytes: number) {
@@ -226,7 +226,7 @@ export class MemPool implements IMemPool {
 		}
 		// fallback to free & malloc
 		this.free(block);
-		return [blockSelfAddress(this.malloc(bytes)), blockEnd];
+		return [__blockSelfAddress(this.malloc(bytes)), blockEnd];
 	}
 
 	reallocArray<T extends TypedArray>(array: T, num: number): Maybe<T> {
@@ -252,7 +252,7 @@ export class MemPool implements IMemPool {
 		} else {
 			addr = ptrOrArray;
 		}
-		addr = blockSelfAddress(addr);
+		addr = __blockSelfAddress(addr);
 		let block = this._used;
 		let prev = 0;
 		while (block) {
@@ -497,14 +497,18 @@ export class MemPool implements IMemPool {
  * Returns a block's data address, based on given alignment.
  *
  * @param blockAddress -
+ *
+ * @internal
  */
-const blockDataAddress = (blockAddress: number) =>
+const __blockDataAddress = (blockAddress: number) =>
 	blockAddress > 0 ? blockAddress + SIZEOF_MEM_BLOCK : 0;
 
 /**
  * Returns block start address for given data address and alignment.
  *
  * @param dataAddress -
+ *
+ * @internal
  */
-const blockSelfAddress = (dataAddress: number) =>
+const __blockSelfAddress = (dataAddress: number) =>
 	dataAddress > 0 ? dataAddress - SIZEOF_MEM_BLOCK : 0;

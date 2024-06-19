@@ -150,7 +150,7 @@ export const pager = (_opts: PagerOpts) => {
 				opts.groupPages,
 				map(
 					(i: number) => bt(i, id, maxID, i + 1, i === id),
-					pageRange(id, maxID, maxBts)
+					__pageRange(id, maxID, maxBts)
 				),
 			],
 			[
@@ -168,7 +168,8 @@ export const pager = (_opts: PagerOpts) => {
 	};
 };
 
-const pageRange = (id: number, maxID: number, maxBt: number) => {
+/** @internal */
+const __pageRange = (id: number, maxID: number, maxBt: number) => {
 	if (maxID > maxBt - 1) {
 		const from = Math.max(
 			Math.min(id - (maxBt >> 1), maxID - maxBt + 1),

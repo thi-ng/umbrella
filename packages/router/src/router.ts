@@ -157,7 +157,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 		if (route) {
 			const params = match!.params;
 			let parts = route.match.map((x) => {
-				if (isRouteParam(x)) {
+				if (__isRouteParam(x)) {
 					const id = x.substring(1);
 					const p = params?.[id];
 					if (p == null) {
@@ -191,7 +191,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 		}
 		let hasParams = false;
 		const params = match.reduce((acc, x, i) => {
-			if (isRouteParam(x)) {
+			if (__isRouteParam(x)) {
 				hasParams = true;
 				acc[i] = x.substring(1);
 			}
@@ -261,4 +261,5 @@ export class Router<T = any> implements INotify<RouterEventType> {
 	}
 }
 
-const isRouteParam = (x: string) => x[0] === "?";
+/** @internal */
+const __isRouteParam = (x: string) => x[0] === "?";

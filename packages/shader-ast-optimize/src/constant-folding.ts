@@ -51,7 +51,7 @@ import { LOGGER } from "@thi.ng/shader-ast/logger";
  *
  * @internal
  */
-const replaceNode = (node: any, next: any) => {
+const __replaceNode = (node: any, next: any) => {
 	if (LOGGER.level <= LogLevel.DEBUG) {
 		LOGGER.debug(`replacing AST node:`);
 		LOGGER.debug("\told: " + JSON.stringify(node));
@@ -65,22 +65,22 @@ const replaceNode = (node: any, next: any) => {
 };
 
 /** @internal */
-const replaceNumericNode = (node: any, res: number) => {
+const __replaceNumericNode = (node: any, res: number) => {
 	node.type === "int" && (res |= 0);
 	node.type === "uint" && (res >>>= 0);
-	return replaceNode(node, lit(node.type, res));
+	return __replaceNode(node, lit(node.type, res));
 };
 
 /** @internal */
-const replaceBooleanNode = (node: any, res: boolean) =>
-	replaceNode(node, bool(res));
+const __replaceBooleanNode = (node: any, res: boolean) =>
+	__replaceNode(node, bool(res));
 
 /** @internal */
-const replaceWithConst = (node: Term<any>, ref: Lit<Prim>, n: FloatTerm) =>
-	replaceNode(node, matchingPrimFor(ref, n));
+const __replaceWithConst = (node: Term<any>, ref: Lit<Prim>, n: FloatTerm) =>
+	__replaceNode(node, matchingPrimFor(ref, n));
 
 /** @internal */
-const maybeFoldMath = (op: Operator, l: number, r: number) =>
+const __maybeFoldMath = (op: Operator, l: number, r: number) =>
 	op === "+"
 		? l + r
 		: op === "-"
@@ -93,7 +93,7 @@ const maybeFoldMath = (op: Operator, l: number, r: number) =>
 			: illegalArgs(`division by zero: ${l}/${r}`)
 		: undefined;
 
-const maybeFoldCompare = (op: Operator, l: number, r: number) =>
+const __maybeFoldCompare = (op: Operator, l: number, r: number) =>
 	op === "=="
 		? l === r
 		: op === "!="
@@ -111,6 +111,7 @@ const maybeFoldCompare = (op: Operator, l: number, r: number) =>
 /** @internal */
 const COMPS: Record<Swizzle4_1, number> = { x: 0, y: 1, z: 2, w: 3 };
 
+/** @internal */
 const BUILTINS: IObjectOf<Fn<number[], number>> = {
 	abs: ([a]) => Math.abs(a),
 	acos: ([a]) => Math.acos(a),
@@ -149,7 +150,7 @@ export const foldNode = defmulti<Term<any>, Maybe<boolean>>(
 			const $node = <Op1<any>>node;
 			if ($node.op == "-" && isLitNumericConst($node.val)) {
 				(<Lit<"float">>$node.val).val *= -1;
-				return replaceNode(node, <Lit<"float">>$node.val);
+				return __replaceNode(node, <Lit<"float">>$node.val);
 			}
 		},
 
@@ -161,28 +162,28 @@ export const foldNode = defmulti<Term<any>, Maybe<boolean>>(
 			const isNumL = isLitNumericConst(l);
 			const isNumR = isLitNumericConst(r);
 			if (isNumL && isNumR) {
-				const num = maybeFoldMath(op, l.val, r.val);
-				if (num !== undefined) return replaceNumericNode(node, num);
-				const bool = maybeFoldCompare(op, l.val, r.val);
-				if (bool !== undefined) return replaceBooleanNode(node, bool);
+				const num = __maybeFoldMath(op, l.val, r.val);
+				if (num !== undefined) return __replaceNumericNode(node, num);
+				const bool = __maybeFoldCompare(op, l.val, r.val);
+				if (bool !== undefined) return __replaceBooleanNode(node, bool);
 			} else if (op === "*") {
 				if (isNumL && l.val === 0)
-					return replaceWithConst(node, <Lit<Prim>>r, FLOAT0);
+					return __replaceWithConst(node, <Lit<Prim>>r, FLOAT0);
 				if (isNumR && r.val === 0)
-					return replaceWithConst(node, <Lit<Prim>>l, FLOAT0);
-				if (isNumL && l.val === 1) return replaceNode(node, r);
-				if (isNumR && r.val === 1) return replaceNode(node, l);
+					return __replaceWithConst(node, <Lit<Prim>>l, FLOAT0);
+				if (isNumL && l.val === 1) return __replaceNode(node, r);
+				if (isNumR && r.val === 1) return __replaceNode(node, l);
 			} else if (op === "/") {
 				if (isNumL && l.val === 0)
-					return replaceWithConst(node, <Lit<Prim>>r, FLOAT0);
+					return __replaceWithConst(node, <Lit<Prim>>r, FLOAT0);
 				if (isNumR && r.val === 0) illegalArgs("division by zero");
-				if (isNumR && r.val === 1) return replaceNode(node, l);
+				if (isNumR && r.val === 1) return __replaceNode(node, l);
 			} else if (op === "+") {
-				if (isNumL && l.val === 0) return replaceNode(node, r);
-				if (isNumR && r.val === 0) return replaceNode(node, l);
+				if (isNumL && l.val === 0) return __replaceNode(node, r);
+				if (isNumR && r.val === 0) return __replaceNode(node, l);
 			} else if (op === "-") {
-				if (isNumL && l.val === 0) return replaceNode(node, neg(r));
-				if (isNumR && r.val === 0) return replaceNode(node, l);
+				if (isNumL && l.val === 0) return __replaceNode(node, neg(r));
+				if (isNumR && r.val === 0) return __replaceNode(node, l);
 			}
 		},
 
@@ -191,7 +192,7 @@ export const foldNode = defmulti<Term<any>, Maybe<boolean>>(
 			if ($node.args.every((x) => isLitNumericConst(x))) {
 				const op = BUILTINS[$node.id];
 				if (op !== undefined) {
-					return replaceNumericNode(
+					return __replaceNumericNode(
 						node,
 						op($node.args.map((x) => (<Lit<any>>x).val))
 					);
@@ -205,13 +206,13 @@ export const foldNode = defmulti<Term<any>, Maybe<boolean>>(
 			const $node = <Lit<any>>node;
 			if (isLitNumericConst($node.val)) {
 				if (isFloat($node.val)) {
-					return replaceNode(node, float($node.val.val));
+					return __replaceNode(node, float($node.val.val));
 				}
 				if (isInt($node.val)) {
-					return replaceNode(node, int($node.val.val));
+					return __replaceNode(node, int($node.val.val));
 				}
 				if (isUint($node.val)) {
-					return replaceNode(node, uint($node.val.val));
+					return __replaceNode(node, uint($node.val.val));
 				}
 			}
 		},
@@ -221,7 +222,7 @@ export const foldNode = defmulti<Term<any>, Maybe<boolean>>(
 			const val = $node.val;
 			if (isLitVecConst(val)) {
 				if (isFloat(node)) {
-					return replaceNode(
+					return __replaceNode(
 						node,
 						float(val.val[COMPS[<Swizzle4_1>$node.id]])
 					);
@@ -257,11 +258,11 @@ export const foldBuiltin = defmulti<FnCall<any>, Maybe<boolean>>(
 			const a = node.args[0];
 			// exp2(0) => 1
 			if (isLitNumOrVecConst(a, 0)) {
-				return replaceWithConst(node, <Lit<Prim>>a, FLOAT1);
+				return __replaceWithConst(node, <Lit<Prim>>a, FLOAT1);
 			}
 			// exp2(1) => 2
 			if (isLitNumOrVecConst(a, 1)) {
-				return replaceWithConst(node, <Lit<Prim>>a, FLOAT2);
+				return __replaceWithConst(node, <Lit<Prim>>a, FLOAT2);
 			}
 		},
 
@@ -269,11 +270,11 @@ export const foldBuiltin = defmulti<FnCall<any>, Maybe<boolean>>(
 			const [a, b] = node.args;
 			// pow(a, 0) => 1
 			if (isLitNumOrVecConst(b, 0)) {
-				return replaceWithConst(node, <Lit<Prim>>a, FLOAT1);
+				return __replaceWithConst(node, <Lit<Prim>>a, FLOAT1);
 			}
 			// pow(a, 1) => a
 			if (isLitNumOrVecConst(b, 1)) {
-				return replaceNode(node, a);
+				return __replaceNode(node, a);
 			}
 		},
 	}

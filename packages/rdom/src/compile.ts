@@ -44,9 +44,9 @@ import { $wrapEl, $wrapText } from "./wrap.js";
  */
 export const $compile = (tree: any): IComponent =>
 	isArray(tree)
-		? isComplexComponent(tree)
-			? complexComponent(tree)
-			: basicComponent(tree)
+		? __isComplexComponent(tree)
+			? __complexComponent(tree)
+			: __basicComponent(tree)
 		: isComponent(tree)
 		? tree
 		: isSubscribable(tree)
@@ -57,27 +57,29 @@ export const $compile = (tree: any): IComponent =>
 		? $wrapEl(tree)
 		: $wrapText("span", null, tree);
 
-const walk = (
+/** @internal */
+const __walk = (
 	f: Fn2<any, NumOrString[], void>,
 	x: any,
 	path: NumOrString[] = []
 ) => {
 	if (isPlainObject(x)) {
 		for (const k in x) {
-			walk(f, (<any>x)[k], [...path, k]);
+			__walk(f, (<any>x)[k], [...path, k]);
 		}
 	}
 	f(x, path);
 };
 
-const isComplexComponent = (x: any) => {
+/** @internal */
+const __isComplexComponent = (x: any) => {
 	if (isPlainObject(x)) {
 		for (const k in x) {
-			if (isComplexComponent((<any>x)[k])) return true;
+			if (__isComplexComponent((<any>x)[k])) return true;
 		}
 	} else if (isArray(x)) {
 		for (let i = 0, n = x.length; i < n; i++) {
-			if (isComplexComponent(x[i])) return true;
+			if (__isComplexComponent(x[i])) return true;
 		}
 	}
 	return (
@@ -88,11 +90,12 @@ const isComplexComponent = (x: any) => {
 	);
 };
 
-const complexComponent = (tree: any[]): CompiledComponent => ({
+/** @internal */
+const __complexComponent = (tree: any[]): CompiledComponent => ({
 	async mount(parent: ParentNode, index: NumOrElement = -1) {
 		this.subs = [];
 		const attribs = { ...tree[1] };
-		walk((x, path) => {
+		__walk((x, path) => {
 			if (isSubscribable(x)) {
 				this.subs!.push(x.subscribe(new $SubA(this, path)));
 			} else if (isAsyncIterable(x)) {
@@ -122,7 +125,8 @@ const complexComponent = (tree: any[]): CompiledComponent => ({
 	update() {},
 });
 
-const basicComponent = (tree: any): CompiledComponent => ({
+/** @internal */
+const __basicComponent = (tree: any): CompiledComponent => ({
 	async mount(parent: ParentNode, index: NumOrElement = -1) {
 		return (this.el = await $tree(tree, parent, index));
 	},

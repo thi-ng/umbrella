@@ -41,7 +41,8 @@ export const DEFAULT_CODEGEN_OPTS: CodeGenOpts = {
 	uppercaseEnums: true,
 };
 
-const sizeOf = defmulti<
+/** @internal */
+const __sizeOf = defmulti<
 	TopLevelType | Field,
 	TypeColl,
 	AlignStrategy,
@@ -76,7 +77,7 @@ const sizeOf = defmulti<
 						  (isStringSlice(opts.stringType) ? 2 : 1)
 						: isOpaque(field.type)
 						? opts.target.sizeBytes
-						: sizeOf(coll[field.type], coll, align, opts);
+						: __sizeOf(coll[field.type], coll, align, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;
 					if (field.sentinel !== undefined && field.tag === "array") {
@@ -98,7 +99,7 @@ const sizeOf = defmulti<
 			for (let f of (<Struct>type).fields) {
 				offset = align.offset(offset, f.__align!);
 				f.__offset = offset;
-				offset += sizeOf(f, coll, align, opts);
+				offset += __sizeOf(f, coll, align, opts);
 			}
 			return (type.__size = align.size(offset, type.__align!));
 		},
@@ -108,7 +109,7 @@ const sizeOf = defmulti<
 			let maxSize = 0;
 			for (let f of (<Union>type).fields) {
 				f.__offset = 0;
-				maxSize = Math.max(maxSize, sizeOf(f, coll, align, opts));
+				maxSize = Math.max(maxSize, __sizeOf(f, coll, align, opts));
 			}
 			return (type.__size = align.size(maxSize, type.__align!));
 		},
@@ -119,7 +120,8 @@ const sizeOf = defmulti<
 	}
 );
 
-const alignOf = defmulti<
+/** @internal */
+const __alignOf = defmulti<
 	TopLevelType | Field,
 	TypeColl,
 	AlignStrategy,
@@ -144,7 +146,7 @@ const alignOf = defmulti<
 				? align.align(<Field>{ type: opts.target.usize })
 				: isNumeric(field.type) || isBigNumeric(field.type)
 				? align.align(field)
-				: alignOf(
+				: __alignOf(
 						coll[field.type],
 						coll,
 						selectAlignment(coll[field.type]),
@@ -163,7 +165,7 @@ const alignOf = defmulti<
 		struct: (type, coll, align, opts) => {
 			let maxAlign = 1;
 			for (let f of (<Struct>type).fields) {
-				maxAlign = Math.max(maxAlign, alignOf(f, coll, align, opts));
+				maxAlign = Math.max(maxAlign, __alignOf(f, coll, align, opts));
 			}
 			return (type.__align = <Pow2>maxAlign);
 		},
@@ -171,7 +173,7 @@ const alignOf = defmulti<
 		union: (type, coll, align, opts) => {
 			let maxAlign = 1;
 			for (let f of (<Union>type).fields) {
-				maxAlign = Math.max(maxAlign, alignOf(f, coll, align, opts));
+				maxAlign = Math.max(maxAlign, __alignOf(f, coll, align, opts));
 			}
 			return (type.__align = <Pow2>maxAlign);
 		},
@@ -180,10 +182,10 @@ const alignOf = defmulti<
 			if (type.__align) return type.__align;
 			const ptr = <FuncPointer>type;
 			if (ptr.rtype !== "void") {
-				sizeOf(<Field>ptr.rtype, coll, align, opts);
+				__sizeOf(<Field>ptr.rtype, coll, align, opts);
 			}
 			for (let a of ptr.args) {
-				alignOf(a, coll, align, opts);
+				__alignOf(a, coll, align, opts);
 			}
 			return (type.__align = align.align(<Field>{
 				type: opts.target.usize,
@@ -192,7 +194,8 @@ const alignOf = defmulti<
 	}
 );
 
-const prepareType = defmulti<
+/** @internal */
+const __prepareType = defmulti<
 	TopLevelType,
 	TypeColl,
 	AlignStrategy,
@@ -209,13 +212,13 @@ const prepareType = defmulti<
 			opts: CodeGenOpts
 		) => {
 			if (x.__align) return;
-			alignOf(x, coll, alignImpl, opts);
-			sizeOf(x, coll, alignImpl, opts);
+			__alignOf(x, coll, alignImpl, opts);
+			__sizeOf(x, coll, alignImpl, opts);
 		},
 		struct: (x, coll, align, opts) => {
 			if (x.__align) return;
 			const struct = <Struct>x;
-			alignOf(struct, coll, align, opts);
+			__alignOf(struct, coll, align, opts);
 			if (struct.auto) {
 				struct.fields.sort(
 					compareByKey("__align", <any>compareNumDesc)
@@ -224,10 +227,10 @@ const prepareType = defmulti<
 			for (let f of struct.fields) {
 				const type = coll[f.type];
 				if (type) {
-					prepareType(type, coll, selectAlignment(type), opts);
+					__prepareType(type, coll, selectAlignment(type), opts);
 				}
 			}
-			sizeOf(struct, coll, align, opts);
+			__sizeOf(struct, coll, align, opts);
 		},
 	}
 );
@@ -246,7 +249,7 @@ const prepareType = defmulti<
  */
 export const prepareTypes = (coll: TypeColl, opts: CodeGenOpts) => {
 	for (let id in coll) {
-		prepareType(coll[id], coll, selectAlignment(coll[id]), opts);
+		__prepareType(coll[id], coll, selectAlignment(coll[id]), opts);
 	}
 	return coll;
 };

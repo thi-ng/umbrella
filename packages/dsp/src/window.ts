@@ -63,42 +63,45 @@ export const windowLanczos: WindowFn = (i, n) => {
 	return sin(i) / i;
 };
 
-const windowCosSum: Fn<number, WindowFn> = (k) => {
+/** @internal */
+const __windowCosSum: Fn<number, WindowFn> = (k) => {
 	let ik = 1 - k;
 	return (i, n) => k - ik * cos((TAU * i) / n);
 };
 
-const windowCosSum3: FnU3<number, WindowFn> = (k1, k2, k3) => (i, n) => {
+/** @internal */
+const __windowCosSum3: FnU3<number, WindowFn> = (k1, k2, k3) => (i, n) => {
 	i /= n;
 	return k1 + k2 * cos(TAU * i) + k3 * cos(PI4 * i);
 };
 
-const windowCosSum4: FnU4<number, WindowFn> = (k1, k2, k3, k4) => (i, n) => {
+/** @internal */
+const __windowCosSum4: FnU4<number, WindowFn> = (k1, k2, k3, k4) => (i, n) => {
 	i /= n;
 	return k1 + k2 * cos(TAU * i) + k3 * cos(PI4 * i) + k4 * cos(PI6 * i);
 };
 
-export const windowHann = windowCosSum(0.5);
+export const windowHann = __windowCosSum(0.5);
 
-export const windowHamming = windowCosSum(0.53836);
+export const windowHamming = __windowCosSum(0.53836);
 
-export const windowBlackman = windowCosSum3(0.42, -0.5, 0.08);
+export const windowBlackman = __windowCosSum3(0.42, -0.5, 0.08);
 
-export const windowBlackmanHarris = windowCosSum4(
+export const windowBlackmanHarris = __windowCosSum4(
 	0.35875,
 	-0.48829,
 	0.14128,
 	0.01168
 );
 
-export const windowNuttall = windowCosSum4(
+export const windowNuttall = __windowCosSum4(
 	0.355768,
 	-0.487396,
 	0.144232,
 	-0.012604
 );
 
-export const windowBlackmanNuttall = windowCosSum4(
+export const windowBlackmanNuttall = __windowCosSum4(
 	0.3635819,
 	-0.4891775,
 	0.1365995,

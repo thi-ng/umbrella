@@ -28,10 +28,10 @@ export const parse = (src: string, ctx: ParseContext) => {
 		if (!subj.length || subj[0] === ";") continue;
 		if (subj[0] === "@") {
 			if (subj.startsWith(INCLUDE)) {
-				parseInclude(subj, ctx);
+				__parseInclude(subj, ctx);
 				continue;
 			} else if (subj.startsWith(PREFIX)) {
-				usePrefixes && parsePrefix(subj, ctx);
+				usePrefixes && __parsePrefix(subj, ctx);
 				continue;
 			}
 		}
@@ -41,7 +41,7 @@ export const parse = (src: string, ctx: ParseContext) => {
 		while (i < n) {
 			let line = lines[i];
 			if (line[0] === "\t" || line.startsWith("    ")) {
-				i = parseProp(curr, ctx, line, lines, i);
+				i = __parseProp(curr, ctx, line, lines, i);
 			} else if (!line.length) {
 				i++;
 				break;
@@ -50,11 +50,12 @@ export const parse = (src: string, ctx: ParseContext) => {
 			} else illegalState(`expected property or comment @ line: ${i}`);
 		}
 	}
-	ctx.opts.resolve && ctx.opts.prune && pruneNodes(ctx);
+	ctx.opts.resolve && ctx.opts.prune && __pruneNodes(ctx);
 	return ctx;
 };
 
-const parseInclude = (line: string, ctx: ParseContext) => {
+/** @internal */
+const __parseInclude = (line: string, ctx: ParseContext) => {
 	const path = unescape(line.substring(INCLUDE.length));
 	if (IS_NODE && ctx.opts.includes) {
 		$parseFile(path, {
@@ -70,7 +71,8 @@ const parseInclude = (line: string, ctx: ParseContext) => {
 
 const RE_PREFIX = /^([a-z0-9-_$]*)$/i;
 
-const parsePrefix = (line: string, ctx: ParseContext) => {
+/** @internal */
+const __parsePrefix = (line: string, ctx: ParseContext) => {
 	const idx = line.indexOf(": ", PREFIX.length);
 	if (idx > 0) {
 		const id = unescape(line.substring(PREFIX.length, idx));
@@ -86,14 +88,16 @@ const parsePrefix = (line: string, ctx: ParseContext) => {
 	illegalState(`invalid prefix decl: ${line}`);
 };
 
-const parseTag: TagParser = (tag, body, ctx) => {
+/** @internal */
+const __parseTag: TagParser = (tag, body, ctx) => {
 	const parser = ctx.tags[tag] || ctx.defaultTag;
 	return parser
 		? parser(tag, body, ctx)
 		: unsupported(`missing parser for tag: ${tag}`);
 };
 
-const parseProp = (
+/** @internal */
+const __parseProp = (
 	node: Node,
 	ctx: ParseContext,
 	line: string,
@@ -109,11 +113,11 @@ const parseProp = (
 	let body: string;
 	idx++;
 	if (line[idx] === "-" && line[idx + 1] === ">") {
-		addProp(
+		__addProp(
 			ctx.index,
 			node,
 			key,
-			parseRef(unescape(line.substring(idx + 2).trim()), ctx)
+			__parseRef(unescape(line.substring(idx + 2).trim()), ctx)
 		);
 		return ++i;
 	} else if (line[idx] === "#") {
@@ -150,16 +154,17 @@ const parseProp = (
 		i++;
 	}
 	body = body.trim();
-	addProp(
+	__addProp(
 		ctx.index,
 		node,
 		key,
-		tag ? parseTag(tag, body, ctx) : unescape(body)
+		tag ? __parseTag(tag, body, ctx) : unescape(body)
 	);
 	return i;
 };
 
-const addProp = (
+/** @internal */
+const __addProp = (
 	index: IObjectOf<number>,
 	acc: Node,
 	key: string,
@@ -175,7 +180,8 @@ const addProp = (
 	}
 };
 
-const parseRef = (id: string, ctx: ParseContext) => {
+/** @internal */
+const __parseRef = (id: string, ctx: ParseContext) => {
 	ctx.opts.prefixes && (id = qualifiedID(ctx.prefixes, id));
 	return ctx.opts.resolve
 		? ctx.nodes[id] || (ctx.nodes[id] = { $id: id })
@@ -190,7 +196,8 @@ const parseRef = (id: string, ctx: ParseContext) => {
 		  };
 };
 
-const pruneNodes = ({ nodes, logger }: ParseContext) => {
+/** @internal */
+const __pruneNodes = ({ nodes, logger }: ParseContext) => {
 	for (let id in nodes) {
 		const keys = Object.keys(nodes[id]);
 		if (keys.length === 1 && keys[0] === "$id") {
@@ -200,7 +207,8 @@ const pruneNodes = ({ nodes, logger }: ParseContext) => {
 	}
 };
 
-const initContext = (ctx: Partial<ParseContext> = {}) => {
+/** @internal */
+const __initContext = (ctx: Partial<ParseContext> = {}) => {
 	const opts = <ParseOpts>{
 		decrypt: false,
 		includes: true,
@@ -227,7 +235,7 @@ const initContext = (ctx: Partial<ParseContext> = {}) => {
 
 /** @interal */
 export const $parseFile = (path: string, ctx?: Partial<ParseContext>) => {
-	const $ctx = initContext(ctx);
+	const $ctx = __initContext(ctx);
 	$ctx.file = path = resolvePath($ctx.cwd, path);
 	if ($ctx.files.includes(path)) {
 		$ctx.logger.warn("file already processed, skipping:", path);
@@ -258,6 +266,6 @@ export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
  * @param ctx -
  */
 export const parseString = (src: string, ctx?: Partial<ParseContext>) => {
-	const res = parse(src, initContext(ctx));
+	const res = parse(src, __initContext(ctx));
 	return { nodes: res.nodes, prefixes: res.prefixes };
 };

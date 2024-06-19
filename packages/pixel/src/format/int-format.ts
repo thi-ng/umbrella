@@ -9,7 +9,8 @@ import type {
 } from "../api.js";
 import { __compileFromABGR, __compileToABGR } from "../internal/codegen.js";
 
-const defChannel = (
+/** @internal */
+const __defChannel = (
 	ch: IntChannelSpec,
 	idx: number,
 	shift: number
@@ -41,7 +42,7 @@ export const defIntFormat = (fmt: IntFormatSpec): IntFormat => {
 	const channels = fmt.channels.reduce(
 		([defs, shift], ch, i) => {
 			shift -= ch.size;
-			defs.push(defChannel(ch, i, shift));
+			defs.push(__defChannel(ch, i, shift));
 			return <[IntChannel[], number]>[defs, shift];
 		},
 		<[IntChannel[], number]>[[], fmt.size]

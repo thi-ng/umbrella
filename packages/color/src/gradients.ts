@@ -65,7 +65,7 @@ export function multiColorGradient<T extends TypedColor<any>>(
 	opts: GradientOpts<T>,
 	isABGR?: boolean
 ) {
-	const cols = [...gradient(opts)];
+	const cols = [...__gradient(opts)];
 	if (isABGR === undefined) return cols;
 	const rgba = cols.map((x) => argb32(x)[0]);
 	return isABGR ? rgba.map(intArgb32Abgr32) : rgba;
@@ -92,7 +92,7 @@ export const multiColorGradientBuffer = <T extends TypedColor<any>>(
 	cstride = 1,
 	estride = 4
 ) => {
-	for (let col of gradient(opts)) {
+	for (let col of __gradient(opts)) {
 		setS4(buffer, col, offset, 0, cstride);
 		offset += estride;
 	}
@@ -100,7 +100,7 @@ export const multiColorGradientBuffer = <T extends TypedColor<any>>(
 };
 
 /** @internal */
-const gradient = <T extends TypedColor<any>>({
+const __gradient = <T extends TypedColor<any>>({
 	num,
 	stops,
 	easing,

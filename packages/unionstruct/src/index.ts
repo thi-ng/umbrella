@@ -30,10 +30,12 @@ const TYPES: { [id: string]: [number, string, boolean] } = {
 const UNION = "union";
 const STRUCT = "struct";
 
-const isBitField = (f: Field) =>
+/** @internal */
+const __isBitField = (f: Field) =>
 	typeof f[2] === "number" && /^(u|i)\d+$/.test(f[1]);
 
-const align = (
+/** @internal */
+const __align = (
 	bitOffset: number,
 	type: keyof typeof TYPES | "union" | "struct",
 	spec: any
@@ -44,28 +46,30 @@ const align = (
 			f;
 		for (let i = 0; i < spec.length; i++) {
 			f = spec[i];
-			a = Math.max(align(bitOffset, f[1], f[2]), a);
+			a = Math.max(__align(bitOffset, f[1], f[2]), a);
 		}
 		return a;
 	} else if (type === STRUCT) {
 		spec = (spec.__spec || spec)[0];
-		return align(bitOffset, spec[1], spec[2]);
+		return __align(bitOffset, spec[1], spec[2]);
 	}
 	let block = TYPES[type][0];
 	return block > 8 ? (bitOffset + block - 1) & -block : bitOffset;
 };
 
-const maybePad = (offset: number, spec: any[], i: number) => {
+/** @internal */
+const __maybePad = (offset: number, spec: any[], i: number) => {
 	let f = spec[i],
 		width;
-	if (i === spec.length - 1 || !isBitField(spec[i + 1])) {
+	if (i === spec.length - 1 || !__isBitField(spec[i + 1])) {
 		width = TYPES[f[1]][0];
 		offset += ((offset + width - 1) & ~(width - 1)) - offset;
 	}
 	return offset;
 };
 
-const _sizeOf = (
+/** @internal */
+const __sizeOf = (
 	spec: Field[],
 	union: boolean,
 	doAlign: boolean,
@@ -76,10 +80,11 @@ const _sizeOf = (
 		let f = spec[i],
 			type = f[1],
 			size = f[2],
-			isBF = isBitField(f);
-		bitOffset = doAlign && !isBF ? align(bitOffset, type, size) : bitOffset;
+			isBF = __isBitField(f);
+		bitOffset =
+			doAlign && !isBF ? __align(bitOffset, type, size) : bitOffset;
 		if (type === UNION || type === STRUCT) {
-			[total, bitOffset] = _sizeOf(
+			[total, bitOffset] = __sizeOf(
 				size.__spec || size,
 				type === UNION,
 				doAlign,
@@ -89,7 +94,7 @@ const _sizeOf = (
 		} else if (!union) {
 			bitOffset += isBF ? size : TYPES[type][0];
 			if (doAlign && isBF) {
-				bitOffset = maybePad(bitOffset, spec, i);
+				bitOffset = __maybePad(bitOffset, spec, i);
 			}
 			total = bitOffset;
 		} else {
@@ -100,9 +105,10 @@ const _sizeOf = (
 };
 
 export const sizeOf = (spec: Field[], union = false, doAlign = true) =>
-	_sizeOf(spec, union, doAlign, 0, 0)[0];
+	__sizeOf(spec, union, doAlign, 0, 0)[0];
 
-const bitReader = (
+/** @internal */
+const __bitReader = (
 	dv: DataView,
 	byteOffset: number,
 	bit: number,
@@ -118,7 +124,8 @@ const bitReader = (
 		(dv.getUint32(byteOffset + 4, false) >>> (32 + b));
 };
 
-const bitWriter = (
+/** @internal */
+const __bitWriter = (
 	dv: DataView,
 	byteOffset: number,
 	bit: number,
@@ -153,7 +160,8 @@ const bitWriter = (
 	}
 };
 
-const makeField = (
+/** @internal */
+const __makeField = (
 	field: Field,
 	obj: any,
 	dv: DataView,
@@ -162,8 +170,8 @@ const makeField = (
 	le: boolean
 ) => {
 	let [id, type, size] = <any>field;
-	const isBF = isBitField(field);
-	bitOffset = doAlign && !isBF ? align(bitOffset, type, size) : bitOffset;
+	const isBF = __isBitField(field);
+	bitOffset = doAlign && !isBF ? __align(bitOffset, type, size) : bitOffset;
 	let byteOffset = bitOffset >>> 3;
 	obj.__offsets[id] = bitOffset;
 	if (type === UNION || type === STRUCT) {
@@ -188,9 +196,9 @@ const makeField = (
 		if (isBF) {
 			byteOffset &= -4;
 			let bitPos = 32 - (bitOffset & 0x1f);
-			read = bitReader(dv, byteOffset, bitPos, size);
+			read = __bitReader(dv, byteOffset, bitPos, size);
 			get = signed ? () => (read() << shift) >> shift : read;
-			set = bitWriter(dv, byteOffset, bitPos, size);
+			set = __bitWriter(dv, byteOffset, bitPos, size);
 			bitOffset += size;
 		} else {
 			read = (<any>dv)[`get${typeid}${dsize}`];
@@ -233,9 +241,9 @@ export const typedef = (
 	};
 	for (let i = 0; i < spec.length; i++) {
 		let f = spec[i];
-		offset = makeField(f, obj, dv, off, doAlign, le);
-		if (doAlign && isBitField(f)) {
-			offset = maybePad(offset, spec, i);
+		offset = __makeField(f, obj, dv, off, doAlign, le);
+		if (doAlign && __isBitField(f)) {
+			offset = __maybePad(offset, spec, i);
 		}
 		if (struct) {
 			off = offset;

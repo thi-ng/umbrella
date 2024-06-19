@@ -8,11 +8,11 @@ import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import type {
-	ColumnSpec,
-	CommonCSVOpts,
 	CSVOpts,
 	CSVRecord,
 	CSVRow,
+	ColumnSpec,
+	CommonCSVOpts,
 	SimpleCSVOpts,
 } from "./api.js";
 
@@ -117,8 +117,8 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 				let record: string[] = [];
 
 				const init = (header: string[]) => {
-					cols && (index = initIndex(header, cols));
-					all && (revIndex = initRevIndex(header));
+					cols && (index = __initIndex(header, cols));
+					all && (revIndex = __initRevIndex(header));
 					first = false;
 				};
 
@@ -152,7 +152,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 					)
 						return acc;
 					if (!first) {
-						isQuoted = parseLine(
+						isQuoted = __parseLine(
 							line,
 							record,
 							isQuoted,
@@ -167,7 +167,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 						record = [];
 						return reduce(acc, row);
 					} else {
-						isQuoted = parseLine(
+						isQuoted = __parseLine(
 							line,
 							record,
 							isQuoted,
@@ -257,7 +257,7 @@ export function parseCSVSimple(
 					)
 						return acc;
 					if (!first) {
-						isQuoted = parseLine(
+						isQuoted = __parseLine(
 							line,
 							record,
 							isQuoted,
@@ -269,7 +269,7 @@ export function parseCSVSimple(
 						record = [];
 						return reduce(acc, row);
 					} else {
-						isQuoted = parseLine(
+						isQuoted = __parseLine(
 							line,
 							record,
 							isQuoted,
@@ -326,8 +326,10 @@ export const parseCSVSimpleFromString = (
  * @param isQuoted -
  * @param delim -
  * @param quote -
+ *
+ * @internal
  */
-const parseLine = (
+const __parseLine = (
 	line: string,
 	acc: string[],
 	isQuoted: boolean,
@@ -357,7 +359,7 @@ const parseLine = (
 		}
 		// field delimiter
 		else if (!isQuoted && c === delim) {
-			collectCell(acc, curr, openQuote);
+			__collectCell(acc, curr, openQuote);
 			openQuote = false;
 			curr = "";
 		}
@@ -367,14 +369,16 @@ const parseLine = (
 		}
 		p = c;
 	}
-	curr !== "" && collectCell(acc, curr, openQuote);
+	curr !== "" && __collectCell(acc, curr, openQuote);
 	return isQuoted;
 };
 
-const collectCell = (acc: string[], curr: string, openQuote: boolean) =>
+/** @internal */
+const __collectCell = (acc: string[], curr: string, openQuote: boolean) =>
 	openQuote ? (acc[acc.length - 1] += "\n" + curr) : acc.push(curr);
 
-const initIndex = (
+/** @internal */
+const __initIndex = (
 	line: string[],
 	cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>
 ) =>
@@ -392,5 +396,6 @@ const initIndex = (
 				<Record<string, IndexEntry>>{}
 		  );
 
-const initRevIndex = (line: string[]) =>
+/** @internal */
+const __initRevIndex = (line: string[]) =>
 	line.reduce((acc, x, i) => ((acc[i] = x), acc), <Record<number, string>>{});

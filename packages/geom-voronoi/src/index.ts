@@ -99,7 +99,7 @@ export class DVMesh<T> {
 		do {
 			const t = e.oprev;
 			if (
-				isRightOf(t.dest.pos, e) &&
+				__isRightOf(t.dest.pos, e) &&
 				pointInCircumCircle(p, e.origin.pos, t.dest.pos, e.dest.pos)
 			) {
 				e.swap();
@@ -142,11 +142,11 @@ export class DVMesh<T> {
 				eqDelta2(p, e.dest.pos, eps)
 			) {
 				return [e, true];
-			} else if (isRightOf(p, e)) {
+			} else if (__isRightOf(p, e)) {
 				e = e.sym;
-			} else if (!isRightOf(p, e.onext)) {
+			} else if (!__isRightOf(p, e.onext)) {
 				e = e.onext;
-			} else if (!isRightOf(p, e.dprev)) {
+			} else if (!__isRightOf(p, e.dprev)) {
 				e = e.dprev;
 			} else {
 				return [e, false];
@@ -355,5 +355,5 @@ export class DVMesh<T> {
 }
 
 /** @internal */
-const isRightOf = (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
+const __isRightOf = (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
 	signedArea2(p, e.dest.pos, e.origin.pos) > 0;

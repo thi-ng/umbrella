@@ -13,7 +13,8 @@ export const intersectRect: FnU2<ClipRect> = (a, b) => {
 	return { x1, y1, x2, y2, w: Math.max(x2 - x1, 0), h: Math.max(y2 - y1, 0) };
 };
 
-const axis: FnN3 = (a, b, c) =>
+/** @internal */
+const __axis: FnN3 = (a, b, c) =>
 	(a < b ? a - b : a > b + c ? a - b - c : 0) ** 2;
 
 export const intersectRectCircle: FnU7<number, boolean> = (
@@ -24,4 +25,4 @@ export const intersectRectCircle: FnU7<number, boolean> = (
 	cx,
 	cy,
 	r
-) => axis(cx, x, w) + axis(cy, y, h) <= r * r;
+) => __axis(cx, x, w) + __axis(cy, y, h) <= r * r;

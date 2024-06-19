@@ -209,74 +209,79 @@ export const serialize = (
 		...opts,
 	};
 	if (opts?.keys == null && $opts.span) $opts.keys = true;
-	return _serialize(tree, $opts, path);
+	return __serialize(tree, $opts, path);
 };
 
-const _serialize = (tree: any, opts: SerializeOpts, path: any[]): string =>
+/** @internal */
+const __serialize = (tree: any, opts: SerializeOpts, path: any[]): string =>
 	tree == null
 		? ""
 		: Array.isArray(tree)
-		? serializeElement(tree, opts, path)
+		? __serializeElement(tree, opts, path)
 		: isFunction(tree)
-		? _serialize(tree(opts.ctx), opts, path)
+		? __serialize(tree(opts.ctx), opts, path)
 		: implementsFunction(tree, "toHiccup")
-		? _serialize(tree.toHiccup(opts.ctx), opts, path)
+		? __serialize(tree.toHiccup(opts.ctx), opts, path)
 		: isDeref(tree)
-		? _serialize(tree.deref(), opts, path)
+		? __serialize(tree.deref(), opts, path)
 		: isNotStringAndIterable(tree)
-		? serializeIter(tree, opts, path)
+		? __serializeIter(tree, opts, path)
 		: ((tree = __escape(String(tree), opts)), opts.span)
 		? `<span${opts.keys ? ` key="${path.join("-")}"` : ""}>${tree}</span>`
 		: tree;
 
-const serializeElement = (tree: any[], opts: SerializeOpts, path: any[]) => {
+/** @internal */
+const __serializeElement = (tree: any[], opts: SerializeOpts, path: any[]) => {
 	let tag = tree[0];
 	return !tree.length
 		? ""
 		: isFunction(tag)
-		? _serialize(tag.apply(null, [opts.ctx, ...tree.slice(1)]), opts, path)
+		? __serialize(tag.apply(null, [opts.ctx, ...tree.slice(1)]), opts, path)
 		: implementsFunction(tag, "render")
-		? _serialize(
+		? __serialize(
 				tag.render.apply(null, [opts.ctx, ...tree.slice(1)]),
 				opts,
 				path
 		  )
 		: tag === COMMENT
-		? serializeComment(tree)
+		? __serializeComment(tree)
 		: tag == CDATA
-		? serializeCData(tree)
+		? __serializeCData(tree)
 		: isString(tag)
-		? serializeTag(tree, opts, path)
+		? __serializeTag(tree, opts, path)
 		: isNotStringAndIterable(tree)
-		? serializeIter(tree, opts, path)
+		? __serializeIter(tree, opts, path)
 		: illegalArgs(`invalid tree node: ${tree}`);
 };
 
-const serializeTag = (tree: any[], opts: SerializeOpts, path: any[]) => {
+/** @internal */
+const __serializeTag = (tree: any[], opts: SerializeOpts, path: any[]) => {
 	tree = normalize(tree);
 	const attribs = tree[1];
 	if (attribs.__skip || attribs.__serialize === false) return "";
 	opts.keys && attribs.key === undefined && (attribs.key = path.join("-"));
 	const tag = tree[0];
 	const body = tree[2]
-		? serializeBody(tag, tree[2], opts, path)
+		? __serializeBody(tag, tree[2], opts, path)
 		: !VOID_TAGS[tag] && !NO_CLOSE_EMPTY[tag]
 		? `></${tag}>`
 		: PROC_TAGS[tag] || "/>";
-	return `<${tag}${serializeAttribs(attribs, opts)}${body}`;
+	return `<${tag}${__serializeAttribs(attribs, opts)}${body}`;
 };
 
-const serializeAttribs = (attribs: any, opts: SerializeOpts) => {
+/** @internal */
+const __serializeAttribs = (attribs: any, opts: SerializeOpts) => {
 	let res = "";
 	for (let a in attribs) {
 		if (a.startsWith("__")) continue;
-		const v = serializeAttrib(attribs, a, deref(attribs[a]), opts);
+		const v = __serializeAttrib(attribs, a, deref(attribs[a]), opts);
 		v != null && (res += v);
 	}
 	return res;
 };
 
-const serializeAttrib = (
+/** @internal */
+const __serializeAttrib = (
 	attribs: any,
 	a: string,
 	v: any,
@@ -291,11 +296,12 @@ const serializeAttrib = (
 		: v === false
 		? null
 		: a === "data"
-		? serializeDataAttribs(v, opts)
-		: attribPair(a, v, opts);
+		? __serializeDataAttribs(v, opts)
+		: __attribPair(a, v, opts);
 };
 
-const attribPair = (a: string, v: any, opts: SerializeOpts) => {
+/** @internal */
+const __attribPair = (a: string, v: any, opts: SerializeOpts) => {
 	v =
 		a === "style" && isPlainObject(v)
 			? css(v)
@@ -307,7 +313,8 @@ const attribPair = (a: string, v: any, opts: SerializeOpts) => {
 	return v.length ? ` ${a}="${__escape(v, opts)}"` : null;
 };
 
-const serializeDataAttribs = (data: any, opts: SerializeOpts) => {
+/** @internal */
+const __serializeDataAttribs = (data: any, opts: SerializeOpts) => {
 	let res = "";
 	for (let id in data) {
 		let v = deref(data[id]);
@@ -317,7 +324,8 @@ const serializeDataAttribs = (data: any, opts: SerializeOpts) => {
 	return res;
 };
 
-const serializeBody = (
+/** @internal */
+const __serializeBody = (
 	tag: string,
 	body: any[],
 	opts: SerializeOpts,
@@ -330,12 +338,13 @@ const serializeBody = (
 	let res = proc ? " " : ">";
 	if (opts.span && !proc && !NO_SPANS[tag]) opts = { ...opts, span: true };
 	for (let i = 0, n = body.length; i < n; i++) {
-		res += _serialize(body[i], opts, [...path, i]);
+		res += __serialize(body[i], opts, [...path, i]);
 	}
 	return res + (proc || `</${tag}>`);
 };
 
-const serializeComment = (tree: any[]) =>
+/** @internal */
+const __serializeComment = (tree: any[]) =>
 	tree.length > 2
 		? `\n<!--\n${tree
 				.slice(1)
@@ -343,10 +352,12 @@ const serializeComment = (tree: any[]) =>
 				.join("\n")}\n-->\n`
 		: `\n<!-- ${tree[1]} -->\n`;
 
-const serializeCData = (tree: any[]) =>
+/** @internal */
+const __serializeCData = (tree: any[]) =>
 	`<![CDATA[\n${tree.slice(1).join("\n")}\n]]>`;
 
-const serializeIter = (
+/** @internal */
+const __serializeIter = (
 	iter: Iterable<any>,
 	opts: SerializeOpts,
 	path: any[]
@@ -355,10 +366,11 @@ const serializeIter = (
 	const p = path.slice(0, path.length - 1);
 	let k = 0;
 	for (let i of iter) {
-		res.push(_serialize(i, opts, [...p, k++]));
+		res.push(__serialize(i, opts, [...p, k++]));
 	}
 	return res.join("");
 };
 
+/** @internal */
 const __escape = (x: string, opts: SerializeOpts) =>
 	opts.escape ? opts.escapeFn(x) : x;

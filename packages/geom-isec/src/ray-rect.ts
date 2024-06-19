@@ -3,8 +3,7 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN } from "@thi.ng/vectors/maddn";
 import { IntersectionType, NONE, type IntersectionResult } from "./api.js";
 
-const min = Math.min;
-const max = Math.max;
+const { min, max } = Math;
 
 /**
  * Based on:
@@ -14,8 +13,10 @@ const max = Math.max;
  * @param dir - ray dir
  * @param bmin - rect min
  * @param bmax - rect max
+ *
+ * @internal
  */
-const rayRect: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
+const __rayRect: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
 	let p = rpos[0];
 	let d = 1 / dir[0];
 	let t1 = (bmin[0] - p) * d;
@@ -30,14 +31,16 @@ const rayRect: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
 };
 
 /**
- * Like to {@link rayRect}, but for 3D (AABB).
+ * Like to {@link __rayRect}, but for 3D (AABB).
  *
  * @param rpos - ray origin
  * @param dir - ray dir
  * @param bmin - box min
  * @param bmax - box max
+ *
+ * @internal
  */
-const rayBox: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
+const __rayBox: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
 	let p = rpos[0];
 	let d = 1 / dir[0];
 	let t1 = (bmin[0] - p) * d;
@@ -57,7 +60,8 @@ const rayBox: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
 	return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
 };
 
-const intersectWith =
+/** @internal */
+const __intersectWith =
 	(fn: FnU4<ReadonlyVec, Range>): FnU4<ReadonlyVec, IntersectionResult> =>
 	(rpos, dir, bmin, bmax) => {
 		const t = fn(rpos, dir, bmin, bmax);
@@ -84,9 +88,9 @@ const intersectWith =
 			: NONE;
 	};
 
-export const intersectRayRect = intersectWith(rayRect);
+export const intersectRayRect = __intersectWith(__rayRect);
 
-export const intersectRayAABB = intersectWith(rayBox);
+export const intersectRayAABB = __intersectWith(__rayBox);
 
 export const testRayRect: FnU4<ReadonlyVec, boolean> = (
 	rpos,
@@ -94,7 +98,7 @@ export const testRayRect: FnU4<ReadonlyVec, boolean> = (
 	bmin,
 	bmax
 ) => {
-	const t = rayRect(rpos, dir, bmin, bmax);
+	const t = __rayRect(rpos, dir, bmin, bmax);
 	return t[1] > max(t[0], 0);
 };
 
@@ -104,6 +108,6 @@ export const testRayAABB: FnU4<ReadonlyVec, boolean> = (
 	bmin,
 	bmax
 ) => {
-	const t = rayBox(rpos, dir, bmin, bmax);
+	const t = __rayBox(rpos, dir, bmin, bmax);
 	return t[1] > max(t[0], 0);
 };

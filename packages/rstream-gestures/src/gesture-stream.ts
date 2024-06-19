@@ -116,7 +116,7 @@ export const gestureStream = (
 		const isStart = etype === "mousedown" || etype === "touchstart";
 		for (let t of events) {
 			const id = (<Touch>t).identifier || 0;
-			const pos = getPos(t, bounds, opts.local, opts.scale);
+			const pos = __getPos(t, bounds, opts.local, opts.scale);
 			let touch = active.find((t) => t.id === id);
 			if (!touch && isStart) {
 				touch = <GestureInfo>{ id, start: pos };
@@ -136,7 +136,7 @@ export const gestureStream = (
 		}
 		if (isStart && !tempStreams) {
 			tempStreams = tempEvents.map((id) =>
-				eventSource(document.body, id, opts, "-temp")
+				__eventSource(document.body, id, opts, "-temp")
 			);
 			stream.addAll(tempStreams);
 			!isBody && stream.removeID("mousemove");
@@ -154,7 +154,7 @@ export const gestureStream = (
 		}
 		if (numTouches === 0) {
 			stream.removeAll(tempStreams!);
-			!isBody && stream.add(eventSource(el, "mousemove", opts));
+			!isBody && stream.add(__eventSource(el, "mousemove", opts));
 			tempStreams = undefined;
 		}
 	};
@@ -173,7 +173,7 @@ export const gestureStream = (
 
 	const stream = merge<UIEvent, GestureEvent>({
 		id: opts.id,
-		src: BASE_EVENTS.map((id) => eventSource(el, id, opts)),
+		src: BASE_EVENTS.map((id) => __eventSource(el, id, opts)),
 
 		xform: map((e) => {
 			const etype = e.type;
@@ -196,7 +196,7 @@ export const gestureStream = (
 				};
 			}
 
-			const type = classifyEventType(etype, !!tempStreams);
+			const type = __classifyEventType(etype, !!tempStreams);
 			let isTouch = !!(<TouchEvent>e).touches;
 			let events: Array<Touch | MouseEvent | WheelEvent> = isTouch
 				? Array.from((<TouchEvent>e).changedTouches)
@@ -211,7 +211,7 @@ export const gestureStream = (
 				updateZoom(e);
 			}
 
-			lastPos = getPos(events[0], bounds, opts.local, opts.scale);
+			lastPos = __getPos(events[0], bounds, opts.local, opts.scale);
 
 			opts.preventDefault && e.preventDefault();
 			return {
@@ -235,7 +235,8 @@ export const gestureStream = (
 	return stream;
 };
 
-const eventSource = (
+/** @internal */
+const __eventSource = (
 	el: Element,
 	type: UIEventID,
 	opts: GestureStreamOpts,
@@ -250,14 +251,16 @@ const eventSource = (
 	return fromDOMEvent(el, type, eventOpts, { id: type + suffix });
 };
 
-const classifyEventType = (etype: string, isActive: boolean) =>
+/** @internal */
+const __classifyEventType = (etype: string, isActive: boolean) =>
 	etype === "mousemove"
 		? isActive
 			? "drag"
 			: "move"
 		: EVENT_GESTURETYPES[etype];
 
-const getPos = (
+/** @internal */
+const __getPos = (
 	e: Touch | MouseEvent | WheelEvent,
 	bounds: DOMRect,
 	isLocal: boolean,

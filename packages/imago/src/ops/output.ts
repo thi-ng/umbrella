@@ -12,12 +12,12 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 	const outDir = resolve(ctx.opts.outDir || ".");
 	let output = input.clone();
 	if (opts.blurhash) {
-		await outputBlurHash(opts, output, ctx);
+		await __outputBlurHash(opts, output, ctx);
 		return [input, false];
 	}
 	if (!opts.path) illegalArgs("output path missing");
 	if (opts.raw) {
-		await outputRaw(opts, output, ctx, outDir);
+		await __outputRaw(opts, output, ctx, outDir);
 		return [input, false];
 	}
 	if (ctx.meta.exif && ctx.opts.keepEXIF) {
@@ -73,7 +73,8 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 	return [input, false];
 };
 
-const outputRaw = async (
+/** @internal */
+const __outputRaw = async (
 	opts: OutputSpec,
 	output: Sharp,
 	ctx: ImgProcCtx,
@@ -100,7 +101,8 @@ const outputRaw = async (
 	}
 };
 
-const outputBlurHash = async (
+/** @internal */
+const __outputBlurHash = async (
 	opts: OutputSpec,
 	output: Sharp,
 	ctx: ImgProcCtx

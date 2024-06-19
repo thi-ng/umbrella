@@ -45,7 +45,8 @@ export const NO_SPANS: {
 	title: 1,
 };
 
-const tagMap = (
+/** @internal */
+const __tagMap = (
 	tags: string
 ): {
 	[id: string]: boolean;
@@ -53,19 +54,19 @@ const tagMap = (
 
 /** @internal */
 // tslint:disable-next-line
-export const SVG_TAGS = tagMap(
+export const SVG_TAGS = __tagMap(
 	"animate animateColor animateMotion animateTransform circle clipPath color-profile defs desc discard ellipse feBlend feColorMatrix feComponentTransfer feComposite feConvolveMatrix feDiffuseLighting feDisplacementMap feDistantLight feDropShadow feFlood feFuncA feFuncB feFuncG feFuncR feGaussianBlur feImage feMerge feMergeNode feMorphology feOffset fePointLight feSpecularLighting feSpotLight feTile feTurbulence filter font foreignObject g image line linearGradient marker mask metadata mpath path pattern polygon polyline radialGradient rect set stop style svg switch symbol text textPath title tref tspan use view"
 );
 
 /** @internal */
 // tslint:disable-next-line
-export const VOID_TAGS = tagMap(
+export const VOID_TAGS = __tagMap(
 	"area base br col command embed hr img input keygen link meta param source stop track use wbr ?xml"
 );
 
 /** @internal */
 // tslint:disable-next-line
-export const NO_CLOSE_EMPTY = tagMap(
+export const NO_CLOSE_EMPTY = __tagMap(
 	"animate circle ellipse line path polygon polyline rect"
 );
 

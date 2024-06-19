@@ -1,6 +1,7 @@
 import { repeat } from "./repeat.js";
 
-const nextTab = (x: number, tabSize: number) =>
+/** @internal */
+const __nextTab = (x: number, tabSize: number) =>
 	Math.floor((x + tabSize) / tabSize) * tabSize;
 
 /**
@@ -45,7 +46,7 @@ export const tabsToSpacesLine = (line: string, tabSize = 4) => {
 	for (let i = 0; i < n; i++) {
 		const w = words[i];
 		res += w;
-		res += repeat(" ", nextTab(res.length, tabSize) - res.length);
+		res += repeat(" ", __nextTab(res.length, tabSize) - res.length);
 	}
 	res += words[n];
 	return res;
@@ -81,7 +82,7 @@ export const spacesToTabsLine = (line: string, tabSize = 4) => {
 		i = m.index;
 		const end = m.index + numSpaces;
 		while (i < end) {
-			const j = nextTab(i, tabSize);
+			const j = __nextTab(i, tabSize);
 			if (j <= end) {
 				res += "\t";
 				i = j;

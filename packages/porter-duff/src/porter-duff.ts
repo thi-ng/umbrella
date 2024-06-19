@@ -11,7 +11,8 @@ import { setC4, setN4 } from "./utils.js";
 
 const min = Math.min;
 
-const clamp = (x: number) => (x < 0 ? 0 : x > 255 ? 255 : x);
+/** @internal */
+const __clamp = (x: number) => (x < 0 ? 0 : x > 255 ? 255 : x);
 
 export const ZERO: FnN2 = () => 0;
 export const ONE: FnN2 = () => 1;
@@ -92,20 +93,20 @@ export const porterDuffInt = (fa: FnN2, fb: FnN2): BlendFnI => {
 			: (a, b) => {
 					const bb = fb((a >>> 24) / 255, (b >>> 24) / 255);
 					return (
-						(clamp((b >>> 24) * bb) << 24) |
-						(clamp(((b >>> 16) & 0xff) * bb) << 16) |
-						(clamp(((b >>> 8) & 0xff) * bb) << 8) |
-						clamp((b & 0xff) * bb)
+						(__clamp((b >>> 24) * bb) << 24) |
+						(__clamp(((b >>> 16) & 0xff) * bb) << 16) |
+						(__clamp(((b >>> 8) & 0xff) * bb) << 8) |
+						__clamp((b & 0xff) * bb)
 					);
 			  };
 	} else if (destZero) {
 		return (a, b) => {
 			const aa = fa((a >>> 24) / 255, (b >>> 24) / 255);
 			return (
-				(clamp((a >>> 24) * aa) << 24) |
-				(clamp(((a >>> 16) & 0xff) * aa) << 16) |
-				(clamp(((a >>> 8) & 0xff) * aa) << 8) |
-				clamp((a & 0xff) * aa)
+				(__clamp((a >>> 24) * aa) << 24) |
+				(__clamp(((a >>> 16) & 0xff) * aa) << 16) |
+				(__clamp(((a >>> 8) & 0xff) * aa) << 8) |
+				__clamp((a & 0xff) * aa)
 			);
 		};
 	}
@@ -115,10 +116,11 @@ export const porterDuffInt = (fa: FnN2, fb: FnN2): BlendFnI => {
 		const aa = fa(sa, sb);
 		const bb = fb(sa, sb);
 		return (
-			(clamp((a >>> 24) * aa + (b >>> 24) * bb) << 24) |
-			(clamp(((a >>> 16) & 0xff) * aa + ((b >>> 16) & 0xff) * bb) << 16) |
-			(clamp(((a >>> 8) & 0xff) * aa + ((b >>> 8) & 0xff) * bb) << 8) |
-			clamp((a & 0xff) * aa + (b & 0xff) * bb)
+			(__clamp((a >>> 24) * aa + (b >>> 24) * bb) << 24) |
+			(__clamp(((a >>> 16) & 0xff) * aa + ((b >>> 16) & 0xff) * bb) <<
+				16) |
+			(__clamp(((a >>> 8) & 0xff) * aa + ((b >>> 8) & 0xff) * bb) << 8) |
+			__clamp((a & 0xff) * aa + (b & 0xff) * bb)
 		);
 	};
 };

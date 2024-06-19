@@ -16,10 +16,12 @@ isNode() &&
 		inspect = m.inspect;
 	});
 
-const inspectSet = (coll: Set<any>, opts: any) =>
+/** @internal */
+const __inspectSet = (coll: Set<any>, opts: any) =>
 	[...map((x) => inspect!(x, opts), coll)].join(", ");
 
-const inspectMap = (coll: Map<any, any>, opts: any) =>
+/** @internal */
+const __inspectMap = (coll: Map<any, any>, opts: any) =>
 	[
 		...map(
 			([k, v]) => `${inspect!(k, opts)} => ${inspect!(v, opts)}`,
@@ -48,9 +50,9 @@ export const __inspectable = mixin({
 					`${name}(${this.size || 0}) {`,
 					inspect
 						? this instanceof Set
-							? inspectSet(this, childOpts)
+							? __inspectSet(this, childOpts)
 							: this instanceof Map
-							? inspectMap(this, childOpts)
+							? __inspectMap(this, childOpts)
 							: ""
 						: "",
 					"}",

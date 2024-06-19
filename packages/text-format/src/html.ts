@@ -75,7 +75,8 @@ export const FMT_HTML_INLINE_CSS = formatHtml({
 	underline: "text-decoration:underline",
 });
 
-const tachyonColors = [
+/** @internal */
+const TACHYON_COLORS = [
 	"black",
 	"dark-red",
 	"dark-green",
@@ -99,7 +100,7 @@ const tachyonColors = [
  * elements with Tachyons CSS classes.
  */
 export const FMT_HTML_TACHYONS = formatHtml({
-	colors: tachyonColors,
+	colors: TACHYON_COLORS,
 	attrib: "class",
 	delim: " ",
 	fg: "",
@@ -114,7 +115,7 @@ export const FMT_HTML_TACHYONS = formatHtml({
  * elements with thi.ng/meta-css base framework color classes.
  */
 export const FMT_HTML_MCSS = formatHtml({
-	colors: tachyonColors,
+	colors: TACHYON_COLORS,
 	attrib: "class",
 	delim: " ",
 	fg: "color-",

@@ -15,8 +15,10 @@ import { texture } from "@thi.ng/shader-ast/builtin/texture";
  * @param uv -
  * @param off -
  * @param k -
+ *
+ * @internal
  */
-const singlePass = (
+const __singlePass = (
 	col: Vec4Sym,
 	tex: Sampler2DSym,
 	uv: Vec2Sym,
@@ -51,7 +53,7 @@ export const blur5 = defn(
 		return [
 			(off = sym(div(mul(vec2(1 + 1 / 3), dir), res))),
 			(col = sym(mul(texture(tex, uv), k1))),
-			singlePass(col, tex, uv, off, k2),
+			__singlePass(col, tex, uv, off, k2),
 			ret(col),
 		];
 	}
@@ -84,8 +86,8 @@ export const blur9 = defn(
 			(off = sym(mul(delta, 1.3846153846))),
 			(off2 = sym(mul(delta, 3.2307692308))),
 			(col = sym(mul(texture(tex, uv), 0.227027027))),
-			singlePass(col, tex, uv, off, k1),
-			singlePass(col, tex, uv, off2, k2),
+			__singlePass(col, tex, uv, off, k1),
+			__singlePass(col, tex, uv, off2, k2),
 			ret(col),
 		];
 	}
@@ -121,9 +123,9 @@ export const blur13 = defn(
 			(off2 = sym(mul(delta, 3.2941176470588234))),
 			(off3 = sym(mul(delta, 5.176470588235294))),
 			(col = sym(mul(texture(tex, uv), 0.1964825501511404))),
-			singlePass(col, tex, uv, off, k1),
-			singlePass(col, tex, uv, off2, k2),
-			singlePass(col, tex, uv, off3, k3),
+			__singlePass(col, tex, uv, off, k1),
+			__singlePass(col, tex, uv, off2, k2),
+			__singlePass(col, tex, uv, off3, k3),
 			ret(col),
 		];
 	}

@@ -1,8 +1,11 @@
 import type { Stringer } from "./api.js";
 
-const src = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;";
-const dest = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------";
-const re = new RegExp(src.split("").join("|"), "g");
+/** @internal */
+const SRC = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;";
+/** @internal */
+const DEST = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------";
+/** @internal */
+const RE = new RegExp(SRC.split("").join("|"), "g");
 
 /**
  * Based on:
@@ -23,7 +26,7 @@ export const slugify: Stringer<string> = (str: string) => {
 		str
 			.toLowerCase()
 			.replace(/\s+/g, "-")
-			.replace(re, (c) => dest[src.indexOf(c)])
+			.replace(RE, (c) => DEST[SRC.indexOf(c)])
 			.replace(/&+/g, "-and-")
 			.replace(/[^\w-]+/g, "")
 			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes

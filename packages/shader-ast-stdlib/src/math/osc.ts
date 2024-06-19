@@ -11,7 +11,8 @@ import {
 import { madd, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { abs, fract, sin, step } from "@thi.ng/shader-ast/builtin/math";
 
-const defOsc =
+/** @internal */
+const __defOsc =
 	(fn: FnU<FloatTerm>) =>
 	(
 		phase: NumericF,
@@ -29,7 +30,7 @@ const defOsc =
  * @param amp -
  * @param dc -
  */
-export const sinOsc = defOsc((phase) => sin(mul(phase, TAU)));
+export const sinOsc = __defOsc((phase) => sin(mul(phase, TAU)));
 
 /**
  * Sawtooth oscillator (ported from thi.ng/dsp)
@@ -39,7 +40,9 @@ export const sinOsc = defOsc((phase) => sin(mul(phase, TAU)));
  * @param amp -
  * @param dc -
  */
-export const sawOsc = defOsc((phase) => sub(FLOAT1, mul(fract(phase), FLOAT2)));
+export const sawOsc = __defOsc((phase) =>
+	sub(FLOAT1, mul(fract(phase), FLOAT2))
+);
 
 /**
  * Triangle oscillator (ported from thi.ng/dsp)
@@ -49,7 +52,7 @@ export const sawOsc = defOsc((phase) => sub(FLOAT1, mul(fract(phase), FLOAT2)));
  * @param amp -
  * @param dc -
  */
-export const triOsc = defOsc((phase) =>
+export const triOsc = __defOsc((phase) =>
 	sub(abs(madd(fract(phase), 4, float(-2))), FLOAT1)
 );
 

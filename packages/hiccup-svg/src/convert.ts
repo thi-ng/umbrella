@@ -14,6 +14,7 @@ import { polyline } from "./polyline.js";
 import { roundedRect } from "./rect.js";
 import { text } from "./text.js";
 
+/** @internal */
 const ATTRIB_ALIASES: Record<string, string> = {
 	alpha: "opacity",
 	dash: "stroke-dasharray",
@@ -24,6 +25,7 @@ const ATTRIB_ALIASES: Record<string, string> = {
 	weight: "stroke-width",
 };
 
+/** @internal */
 const TEXT_ALIGN: Record<string, string> = {
 	left: "start",
 	right: "end",
@@ -32,11 +34,13 @@ const TEXT_ALIGN: Record<string, string> = {
 	end: "end",
 };
 
+/** @internal */
 const BASE_LINE: Record<string, string> = {
 	top: "text-top",
 	bottom: "text-bottom",
 };
 
+/** @internal */
 const precisionStack: number[] = [];
 
 /**
@@ -71,7 +75,7 @@ export const convertTree = (tree: any): any[] | null => {
 	if (isArray(type)) {
 		return tree.map(convertTree);
 	}
-	let attribs = convertAttribs(tree[1]);
+	let attribs = __convertAttribs(tree[1]);
 	if (attribs.__prec) {
 		precisionStack.push(PRECISION);
 		setPrecision(attribs.__prec);
@@ -195,7 +199,8 @@ export const convertTree = (tree: any): any[] | null => {
 	return result;
 };
 
-const convertAttribs = (attribs: any) => {
+/** @internal */
+const __convertAttribs = (attribs: any) => {
 	const res: any = {};
 	if (!attribs) return res;
 	// convertTransforms(res, attribs);
@@ -205,13 +210,14 @@ const convertAttribs = (attribs: any) => {
 		if (aid) {
 			res[aid] = v;
 		} else {
-			convertAttrib(res, id, v);
+			__convertAttrib(res, id, v);
 		}
 	}
 	return res;
 };
 
-const convertAttrib = (res: any, id: string, v: any) => {
+/** @internal */
+const __convertAttrib = (res: any, id: string, v: any) => {
 	switch (id) {
 		case "font": {
 			const i = v.indexOf(" ");

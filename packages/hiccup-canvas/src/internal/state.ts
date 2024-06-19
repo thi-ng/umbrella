@@ -66,7 +66,7 @@ export const __mergeState = (
 ) => {
 	let res: Maybe<DrawState>;
 	if (!attribs) return;
-	if (applyTransform(ctx, attribs)) {
+	if (__applyTransform(ctx, attribs)) {
 		res = __newState(state, true);
 	}
 	for (let id in attribs) {
@@ -77,7 +77,7 @@ export const __mergeState = (
 				!res && (res = __newState(state));
 				res.attribs[id] = v;
 				res.edits!.push(id);
-				setAttrib(ctx, state, id, k, v);
+				__setAttrib(ctx, state, id, k, v);
 			}
 		} else if (id === "__background" || id === "__clear") {
 			ctx.save();
@@ -110,7 +110,13 @@ export const __restoreState = (
 	for (let i = edits.length; i-- > 0; ) {
 		const id = edits[i];
 		const v = attribs[id];
-		setAttrib(ctx, prev, id, CTX_ATTRIBS[id], v != null ? v : DEFAULTS[id]);
+		__setAttrib(
+			ctx,
+			prev,
+			id,
+			CTX_ATTRIBS[id],
+			v != null ? v : DEFAULTS[id]
+		);
 	}
 };
 
@@ -124,7 +130,8 @@ export const __registerGradient = (
 	state.grads[id] = g;
 };
 
-const setAttrib = (
+/** @internal */
+const __setAttrib = (
 	ctx: CanvasRenderingContext2D,
 	state: DrawState,
 	id: string,
@@ -147,7 +154,8 @@ const setAttrib = (
 	}
 };
 
-const applyTransform = (
+/** @internal */
+const __applyTransform = (
 	ctx: CanvasRenderingContext2D,
 	attribs: IObjectOf<any>
 ) => {

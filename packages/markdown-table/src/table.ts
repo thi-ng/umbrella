@@ -99,7 +99,8 @@ export const table = (
 	const pads = widths.map((w, i) => PADS[align![i]](w));
 	const colIDs = [...range(numColumns)];
 	const result = body.map(
-		(row) => colIDs.map((i) => `| ${pads[i](str(row[i]))} `).join("") + "|"
+		(row) =>
+			colIDs.map((i) => `| ${pads[i](__str(row[i]))} `).join("") + "|"
 	);
 	result.splice(
 		1,
@@ -153,7 +154,7 @@ export const tableKeys = <T>(
 		map<T, Row>(
 			juxt(
 				// @ts-ignore
-				...keys.map((k) => (isString(k) ? (x) => str(x[k]) : k))
+				...keys.map((k) => (isString(k) ? (x) => __str(x[k]) : k))
 			),
 			items
 		),
@@ -161,4 +162,4 @@ export const tableKeys = <T>(
 	);
 
 /** @internal */
-const str = (x: any) => (x != null ? String(x) : "");
+const __str = (x: any) => (x != null ? String(x) : "");

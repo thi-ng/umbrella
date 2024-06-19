@@ -2,28 +2,31 @@ import type { FnU3, Nullable } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
 import type { ArrayDiff, DiffKeyMap, DiffMode, EditLog } from "./api.js";
 
-let _cachedFP: Nullable<Int32Array>;
-let _cachedPath: Nullable<Int32Array>;
+let $cachedFP: Nullable<Int32Array>;
+let $cachedPath: Nullable<Int32Array>;
 
-let _cachedEPC: number[] = [];
-let _cachedPathPos: number[] = [];
+let $cachedEPC: number[] = [];
+let $cachedPathPos: number[] = [];
 
-const cachedFP = (size: number) =>
-	_cachedFP && _cachedFP.length >= size
-		? _cachedFP
-		: (_cachedFP = new Int32Array(size));
+/** @internal */
+const __cachedFP = (size: number) =>
+	$cachedFP && $cachedFP.length >= size
+		? $cachedFP
+		: ($cachedFP = new Int32Array(size));
 
-const cachedPath = (size: number) =>
-	_cachedPath && _cachedPath.length >= size
-		? _cachedPath
-		: (_cachedPath = new Int32Array(size));
+/** @internal */
+const __cachedPath = (size: number) =>
+	$cachedPath && $cachedPath.length >= size
+		? $cachedPath
+		: ($cachedPath = new Int32Array(size));
 
 export const clearCache = () => {
-	_cachedFP = _cachedPath = undefined;
-	_cachedEPC.length = _cachedPathPos.length = 0;
+	$cachedFP = $cachedPath = undefined;
+	$cachedEPC.length = $cachedPathPos.length = 0;
 };
 
-const simpleDiff = <T>(
+/** @internal */
+const __simpleDiff = <T>(
 	state: ArrayDiff<T>,
 	src: ArrayLike<T>,
 	key: "adds" | "dels",
@@ -84,9 +87,9 @@ export const diffArray = <T>(
 	if (a === b || (a == null && b == null)) {
 		return state;
 	} else if (a == null || a.length === 0) {
-		return simpleDiff(state, b!, "adds", 1, mode);
+		return __simpleDiff(state, b!, "adds", 1, mode);
 	} else if (b == null || b.length === 0) {
-		return simpleDiff(state, a, "dels", -1, mode);
+		return __simpleDiff(state, a, "dels", -1, mode);
 	}
 
 	const reverse = a.length >= b.length;
@@ -106,10 +109,10 @@ export const diffArray = <T>(
 	const delta = nb - na;
 	const doff = delta + offset;
 	const size = na + nb + 3;
-	const path = cachedPath(size).fill(-1, 0, size);
-	const fp = cachedFP(size).fill(-1, 0, size);
-	const epc = _cachedEPC;
-	const pathPos = _cachedPathPos;
+	const path = __cachedPath(size).fill(-1, 0, size);
+	const fp = __cachedFP(size).fill(-1, 0, size);
+	const epc = $cachedEPC;
+	const pathPos = $cachedPathPos;
 
 	const snake: FnU3<number, void> = (k, p, pp) => {
 		let r: number, y: number;
@@ -153,9 +156,9 @@ export const diffArray = <T>(
 		}
 
 		if (mode === "full") {
-			buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
+			__buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
 		} else {
-			buildLinearLog<T>(
+			__buildLinearLog<T>(
 				epc,
 				pathPos,
 				state,
@@ -171,7 +174,8 @@ export const diffArray = <T>(
 	return state;
 };
 
-const buildFullLog = <T>(
+/** @internal */
+const __buildFullLog = <T>(
 	epc: any[],
 	pathPos: any[],
 	state: ArrayDiff<T>,
@@ -221,7 +225,8 @@ const buildFullLog = <T>(
 	}
 };
 
-const buildLinearLog = <T>(
+/** @internal */
+const __buildLinearLog = <T>(
 	epc: any[],
 	pathPos: any[],
 	state: ArrayDiff<T>,

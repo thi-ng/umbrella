@@ -108,9 +108,9 @@ export const GENERATE: Command<
 
 export async function generateCommand(ctx: AppCtx<GenerateOpts>) {
 	if (ctx.opts.watch) {
-		await watchInputs(ctx);
+		await __watchInputs(ctx);
 	} else {
-		await generateFramework(
+		await __generateFramework(
 			ctx.inputs.map((path) => readText(path, ctx.logger)),
 			ctx.opts,
 			ctx.logger
@@ -119,11 +119,11 @@ export async function generateCommand(ctx: AppCtx<GenerateOpts>) {
 }
 
 /** @internal */
-const watchInputs = async (ctx: AppCtx<GenerateOpts>) => {
+const __watchInputs = async (ctx: AppCtx<GenerateOpts>) => {
 	$watch(ctx.inputs, ctx.logger).subscribe({
 		next(inputs) {
 			try {
-				generateFramework(
+				__generateFramework(
 					// process in deterministic order (same as given in CLI)
 					Object.keys(inputs)
 						.sort()
@@ -139,7 +139,7 @@ const watchInputs = async (ctx: AppCtx<GenerateOpts>) => {
 };
 
 /** @internal */
-const generateFramework = async (
+const __generateFramework = async (
 	inputs: string[],
 	opts: GenerateOpts,
 	logger: ILogger

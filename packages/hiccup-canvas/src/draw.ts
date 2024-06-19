@@ -42,7 +42,7 @@ export const draw = (
 	switch (shape[0]) {
 		case "g":
 		case "defs":
-			defs(ctx, state, pstate, shape);
+			__defs(ctx, state, pstate, shape);
 			break;
 		case "linearGradient":
 			__registerGradient(
@@ -144,7 +144,8 @@ export const draw = (
 	state && __restoreState(ctx, pstate, state);
 };
 
-const defs = (
+/** @internal */
+const __defs = (
 	ctx: CanvasRenderingContext2D,
 	state: Maybe<DrawState>,
 	pstate: DrawState,

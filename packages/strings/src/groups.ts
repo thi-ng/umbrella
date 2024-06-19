@@ -1,7 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { charRange } from "./range.js";
 
-const defGroup = (...ranges: Iterable<string>[]) => {
+/** @internal */
+const __defGroup = (...ranges: Iterable<string>[]) => {
 	const acc: IObjectOf<boolean> = {};
 	for (let range of ranges) {
 		for (let c of range) {
@@ -28,13 +29,13 @@ export const WS: IObjectOf<boolean> = Object.freeze({
  * Object with 0-9 characters as keys and their values set to true. All
  * others undefined.
  */
-export const DIGITS = defGroup(charRange("0", "9"));
+export const DIGITS = __defGroup(charRange("0", "9"));
 
 /**
  * Object with hex digit characters (upper & lower case versions) as
  * keys and their values set to true. All others undefined.
  */
-export const HEX = defGroup(
+export const HEX = __defGroup(
 	charRange("0", "9"),
 	charRange("A", "F"),
 	charRange("a", "f")
@@ -44,13 +45,13 @@ export const HEX = defGroup(
  * Object with ASCII lowercase characters as keys and their values set
  * to true. All others undefined.
  */
-export const LOWER = defGroup(charRange("a", "z"));
+export const LOWER = __defGroup(charRange("a", "z"));
 
 /**
  * Object with ASCII uppercase characters as keys and their values set
  * to true. All others undefined.
  */
-export const UPPER = defGroup(charRange("A", "Z"));
+export const UPPER = __defGroup(charRange("A", "Z"));
 
 /**
  * Combination of {@link UPPER} and {@link LOWER}.
@@ -70,7 +71,7 @@ export const ALPHA_NUM: IObjectOf<boolean> = Object.freeze({
  * Object with ASCII punctuation characters as keys and their values set
  * to true. All others undefined.
  */
-export const PUNCTUATION = defGroup(
+export const PUNCTUATION = __defGroup(
 	charRange("!", "/"),
 	charRange(":", "@"),
 	charRange("[", "`"),

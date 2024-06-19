@@ -4,7 +4,8 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { assert } from "@thi.ng/errors/assert";
 import type { Path, ZipperOps } from "./api.js";
 
-const newPath = <T>(
+/** @internal */
+const __newPath = <T>(
 	l: Maybe<T[]>,
 	r: Maybe<T[]>,
 	path: Maybe<Path<T>>,
@@ -18,7 +19,8 @@ const newPath = <T>(
 	changed,
 });
 
-const changedPath = <T>(path?: Path<T>) =>
+/** @internal */
+const __changedPath = <T>(path?: Path<T>) =>
 	path ? { ...path, changed: true } : undefined;
 
 export class Location<T> {
@@ -81,7 +83,7 @@ export class Location<T> {
 			? new Location(
 					peek(lefts),
 					this._ops,
-					newPath(
+					__newPath(
 						lefts.slice(0, lefts.length - 1),
 						[this._node].concat(path!.r || []),
 						path!.path,
@@ -100,7 +102,7 @@ export class Location<T> {
 		return new Location(
 			rights[0],
 			this._ops,
-			newPath(
+			__newPath(
 				(path!.l || []).concat([this._node]),
 				r.length ? r : undefined,
 				path!.path,
@@ -117,7 +119,7 @@ export class Location<T> {
 			? new Location(
 					lefts[0],
 					this._ops,
-					newPath(
+					__newPath(
 						undefined,
 						lefts.slice(1).concat([this._node], path!.r || []),
 						path!.path,
@@ -135,7 +137,7 @@ export class Location<T> {
 			? new Location(
 					peek(rights),
 					this._ops,
-					newPath(
+					__newPath(
 						(path!.l || []).concat(
 							[this._node],
 							rights.slice(0, rights.length - 1)
@@ -158,7 +160,7 @@ export class Location<T> {
 		return new Location(
 			children[0],
 			this._ops,
-			newPath(
+			__newPath(
 				undefined,
 				r.length ? r : undefined,
 				path,
@@ -179,7 +181,7 @@ export class Location<T> {
 					(path!.l || []).concat([this._node], path!.r || [])
 				),
 				this._ops,
-				changedPath(path!.path)
+				__changedPath(path!.path)
 			);
 		} else {
 			return new Location(pnode, this._ops, path!.path);
@@ -219,7 +221,7 @@ export class Location<T> {
 	}
 
 	replace(x: T) {
-		return new Location(x, this._ops, changedPath(this._path));
+		return new Location(x, this._ops, __changedPath(this._path));
 	}
 
 	update(fn: FnO<T, T>, ...args: any[]) {
@@ -232,7 +234,7 @@ export class Location<T> {
 		return new Location(
 			this._node,
 			this._ops,
-			newPath(
+			__newPath(
 				path!.l ? path!.l.concat([x]) : [x],
 				path!.r,
 				path!.path,
@@ -248,7 +250,7 @@ export class Location<T> {
 		return new Location(
 			this._node,
 			this._ops,
-			newPath(
+			__newPath(
 				path!.l,
 				[x].concat(path!.r || []),
 				path!.path,
@@ -278,7 +280,7 @@ export class Location<T> {
 			let loc = new Location(
 				peek(lefts!),
 				this._ops,
-				newPath(
+				__newPath(
 					lefts!.slice(0, lefts!.length - 1),
 					path.r,
 					path.path,
@@ -295,7 +297,7 @@ export class Location<T> {
 		return new Location(
 			this.newNode(peek(path.nodes), path.r || []),
 			this._ops,
-			changedPath(path.path)
+			__changedPath(path.path)
 		);
 	}
 

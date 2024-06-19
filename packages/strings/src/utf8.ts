@@ -62,7 +62,7 @@ export const utf8Decode = (buf: Uint8Array, start: number, num: number) => {
 					((buf[i++] & 0x3f) << 12) |
 					((buf[i++] & 0x3f) << 6) |
 					(buf[i++] & 0x3f);
-			} else utf8Error();
+			} else __utf8Error();
 			result += fromUtf8CodePoint(c);
 		}
 	}
@@ -126,11 +126,12 @@ export const fromUtf8CodePoint = (x: number) => {
 		x -= 0x10000;
 		return String.fromCharCode(0xd800 | (x >>> 10), 0xdc00 | (x & 0x3ff));
 	}
-	return utf8Error(`invalid codepoint 0x${x.toString(16)}`);
+	return __utf8Error(`invalid codepoint 0x${x.toString(16)}`);
 };
 
 export const UTF8Error = defError(() => "UTF-8 error");
 
-const utf8Error = (msg?: string) => {
+/** @internal */
+const __utf8Error = (msg?: string) => {
 	throw new UTF8Error(msg);
 };

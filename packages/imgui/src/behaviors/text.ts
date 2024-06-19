@@ -5,23 +5,26 @@ import type { IMGUI } from "../gui.js";
 
 const WS = /\s/;
 
-const nextNonAlpha = (src: string, i: number) => {
+/** @internal */
+const __nextNonAlpha = (src: string, i: number) => {
 	const n = src.length;
 	while (i < n && WS.test(src[i])) i++;
 	for (; i < n && !WS.test(src[i]); i++) {}
 	return i;
 };
 
-const prevNonAlpha = (src: string, i: number) => {
+/** @internal */
+const __prevNonAlpha = (src: string, i: number) => {
 	while (i > 0 && WS.test(src[i])) i--;
 	for (; i > 0 && !WS.test(src[i]); i--) {}
 	return i;
 };
 
-const getNext = (gui: IMGUI, txt: string, cursor: number, dir: -1 | 1) => {
+/** @internal */
+const __getNext = (gui: IMGUI, txt: string, cursor: number, dir: -1 | 1) => {
 	cursor += dir;
 	return gui.isAltDown()
-		? (dir < 0 ? prevNonAlpha : nextNonAlpha)(txt, cursor)
+		? (dir < 0 ? __prevNonAlpha : __nextNonAlpha)(txt, cursor)
 		: cursor;
 };
 
@@ -58,26 +61,26 @@ export const handleTextfieldKeys = (
 			return txt;
 		case Key.BACKSPACE:
 			if (cursor > 0) {
-				const next = getNext(gui, txt, cursor, -1);
+				const next = __getNext(gui, txt, cursor, -1);
 				move(next, next - cursor);
 				return txt.substring(0, next) + txt.substring(cursor);
 			}
 			break;
 		case Key.DELETE:
 			if (cursor < txtLen) {
-				const next = getNext(gui, txt, cursor, 1);
+				const next = __getNext(gui, txt, cursor, 1);
 				return txt.substring(0, cursor) + txt.substring(next + 1);
 			}
 			break;
 		case Key.LEFT:
 			if (cursor > 0) {
-				const next = getNext(gui, txt, cursor, -1);
+				const next = __getNext(gui, txt, cursor, -1);
 				move(next, next - cursor);
 			}
 			break;
 		case Key.RIGHT:
 			if (cursor < txtLen) {
-				const next = getNext(gui, txt, cursor, 1);
+				const next = __getNext(gui, txt, cursor, 1);
 				move(next, next - cursor);
 			}
 			break;

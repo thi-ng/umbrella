@@ -4,7 +4,7 @@ import type { ContextOpts, IReader, ParseScope, ParseState } from "./api.js";
 import { parseError } from "./error.js";
 import { defArrayReader } from "./readers/array-reader.js";
 import { defStringReader } from "./readers/string-reader.js";
-import { indent } from "./utils.js";
+import { __indent } from "./utils.js";
 
 export class ParseContext<T> {
 	public opts: ContextOpts;
@@ -52,7 +52,7 @@ export class ParseContext<T> {
 		this._peakDepth = Math.max(this._peakDepth, scopes.length);
 		this._debug &&
 			console.log(
-				`${indent(scopes.length)}start: ${id} (${scope.state!.p})`
+				`${__indent(scopes.length)}start: ${id} (${scope.state!.p})`
 			);
 		return (this._curr = scope);
 	}
@@ -62,7 +62,7 @@ export class ParseContext<T> {
 		const child = scopes.pop()!;
 		this._curr = scopes[scopes.length - 1];
 		this._debug &&
-			console.log(`${indent(scopes.length + 1)}discard: ${child.id}`);
+			console.log(`${__indent(scopes.length + 1)}discard: ${child.id}`);
 		return false;
 	}
 
@@ -74,7 +74,7 @@ export class ParseContext<T> {
 		let pstate: ParseState<T>;
 		this._debug &&
 			console.log(
-				`${indent(scopes.length + 1)}end: ${child.id} (${cstate!.p})`
+				`${__indent(scopes.length + 1)}end: ${child.id} (${cstate!.p})`
 			);
 		child.state = this._retain
 			? ((pstate = parent.state!),
@@ -104,7 +104,7 @@ export class ParseContext<T> {
 		};
 		this._debug &&
 			console.log(
-				`${indent(this._scopes.length + 1)}addChild: ${id} (${
+				`${__indent(this._scopes.length + 1)}addChild: ${id} (${
 					cstate!.p
 				})`
 			);

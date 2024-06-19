@@ -24,7 +24,7 @@ export function* clipped(
 }
 
 /** @internal */
-const axis: FnN3 = (a, b, c) =>
+const __axis: FnN3 = (a, b, c) =>
 	(a < b ? a - b : a > b + c ? a - b - c : 0) ** 2;
 
 /**
@@ -49,7 +49,7 @@ export const intersectRectCircle: FnU7<number, boolean> = (
 	cx,
 	cy,
 	r
-) => axis(cx, x, w) + axis(cy, y, h) <= r * r;
+) => __axis(cx, x, w) + __axis(cy, y, h) <= r * r;
 
 /**
  * Based on [`liangBarsky2Raw()`](https://docs.thi.ng/umbrella/geom-clip-line/functions/liangBarsky2Raw.html), but with diff return type.

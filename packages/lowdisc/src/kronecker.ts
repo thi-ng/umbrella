@@ -1,7 +1,7 @@
 import { lowDiscrepancy } from "./lowdisc.js";
 
 /** @internal */
-const fract = (x: number) => x - Math.floor(x);
+const __fract = (x: number) => x - Math.floor(x);
 
 /**
  * Iterator yielding 1D Kronecker Recurrence sequence for given `alpha` and
@@ -18,7 +18,7 @@ const fract = (x: number) => x - Math.floor(x);
  * @param start -
  */
 export function* kronecker(alpha: number, start = 0) {
-	while (true) yield (start = fract(start + alpha));
+	while (true) yield (start = __fract(start + alpha));
 }
 
 /**

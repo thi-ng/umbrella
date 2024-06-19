@@ -8,7 +8,8 @@ import type { DotOpts, Node, NodeType, TraversalState } from "./api.js";
 
 export * from "./api.js";
 
-const getNodeType = (sub: ISubscribable<any>) =>
+/** @internal */
+const __getNodeType = (sub: ISubscribable<any>) =>
 	sub instanceof Stream
 		? "Stream"
 		: sub instanceof StreamSync
@@ -17,15 +18,17 @@ const getNodeType = (sub: ISubscribable<any>) =>
 		? "StreamMerge"
 		: undefined;
 
-const getChildren = (sub: any): ISubscribable<any>[] => {
+/** @internal */
+const __getChildren = (sub: any): ISubscribable<any>[] => {
 	let children: ISubscribable<any>[] = [];
 	if (sub.subs) children.push(...sub.subs);
 	if (sub.__owner) children.push(sub.__owner);
-	if (sub.wrapped) children.push(...getChildren(sub.wrapped));
+	if (sub.wrapped) children.push(...__getChildren(sub.wrapped));
 	return children;
 };
 
-const dotNode = (s: Node, opts: DotOpts) => {
+/** @internal */
+const __dotNode = (s: Node, opts: DotOpts) => {
 	let res = `s${s.id}[label="`;
 	res += s.type ? `${s.label}\\n(${s.type})` : `${s.label}`;
 	if (s.body !== undefined) {
@@ -38,10 +41,12 @@ const dotNode = (s: Node, opts: DotOpts) => {
 	return res + `"];`;
 };
 
-const dotEdge = (a: Node, b: Node, _: DotOpts) =>
+/** @internal */
+const __dotEdge = (a: Node, b: Node, _: DotOpts) =>
 	`s${a.id} -> s${b.id}${b.xform ? `[label="xform"]` : ""};`;
 
-const subValue = (sub: ISubscribable<any>) => {
+/** @internal */
+const __subValue = (sub: ISubscribable<any>) => {
 	const res = JSON.stringify(sub.deref ? sub.deref() : undefined);
 	return res ? truncate(64, "...")(res) : res;
 };
@@ -59,13 +64,13 @@ export const traverse = (
 		const desc: Node = {
 			id,
 			label: sub.id || "<noid>",
-			type: getNodeType(sub),
+			type: __getNodeType(sub),
 			xform: !!(<any>sub).xform,
-			body: opts.values ? subValue(sub) : undefined,
+			body: opts.values ? __subValue(sub) : undefined,
 		};
 		state.subs.set(sub, desc);
 		state.id++;
-		const children = getChildren(sub);
+		const children = __getChildren(sub);
 		if (children.length) {
 			traverse(children, opts, state);
 			for (let c of children) {
@@ -98,8 +103,8 @@ export const toDot = (state: TraversalState, opts?: Partial<DotOpts>) => {
 		`rankdir=${opts.dir};`,
 		`node[fontname="${opts.font}",fontsize=${opts.fontsize},style=filled,fontcolor=${opts.text}];`,
 		`edge[fontname="${opts.font}",fontsize=${opts.fontsize}];`,
-		...map((n) => dotNode(n, <DotOpts>opts), state.subs.values()),
-		...map((r) => dotEdge(r[0], r[1], <DotOpts>opts), state.rels),
+		...map((n) => __dotNode(n, <DotOpts>opts), state.subs.values()),
+		...map((r) => __dotEdge(r[0], r[1], <DotOpts>opts), state.rels),
 		"}",
 	].join("\n");
 };

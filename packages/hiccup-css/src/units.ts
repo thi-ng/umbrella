@@ -10,7 +10,7 @@ export let PRECISION = 4;
 export const setPrecision = (n: number) => (PRECISION = n);
 
 /** @internal */
-const ff = (x: number) =>
+export const ff = (x: number) =>
 	x === (x | 0)
 		? String(x)
 		: x

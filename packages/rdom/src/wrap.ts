@@ -7,7 +7,8 @@ export interface WrappedComponent<T> extends IMountWithState<T> {
 	inner: IComponent<any>;
 }
 
-const wrapper =
+/** @internal */
+const __wrapper =
 	<T>(update: Fn2<HTMLElement | SVGElement, T, void>) =>
 	(tag: string, attribs?: any, body?: T) =>
 		<WrappedComponent<T>>{
@@ -36,7 +37,7 @@ const wrapper =
  * @param attribs - element attribs
  * @param body - optional initial body
  */
-export const $wrapText = wrapper($text);
+export const $wrapText = __wrapper($text);
 
 /**
  * Returns a component wrapper for a single DOM element whose HTML body can be
@@ -65,7 +66,7 @@ export const $wrapText = wrapper($text);
  * @param attribs - element attribs
  * @param body - optional initial body
  */
-export const $wrapHtml = wrapper($html);
+export const $wrapHtml = __wrapper($html);
 
 /**
  * {@link IComponent} wrapper for an existing DOM element. When mounted, the

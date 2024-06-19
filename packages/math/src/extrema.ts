@@ -18,7 +18,8 @@ export const isMinima: FnU3<number, boolean> = (a, b, c) => a > b && b < c;
  */
 export const isMaxima: FnU3<number, boolean> = (a, b, c) => a < b && b > c;
 
-const index = (
+/** @internal */
+const __index = (
 	pred: (a: number, b: number, c: number) => boolean,
 	values: number[],
 	from = 0,
@@ -43,7 +44,7 @@ const index = (
  * @param to -
  */
 export const minimaIndex = (values: number[], from = 0, to = values.length) =>
-	index(isMinima, values, from, to);
+	__index(isMinima, values, from, to);
 
 /**
  * Returns index of the first local & internal maxima found in given
@@ -55,7 +56,7 @@ export const minimaIndex = (values: number[], from = 0, to = values.length) =>
  * @param to -
  */
 export const maximaIndex = (values: number[], from = 0, to = values.length) =>
-	index(isMaxima, values, from, to);
+	__index(isMaxima, values, from, to);
 
 function* indices(
 	fn: (a: number[], from: number, to: number) => number,

@@ -193,15 +193,15 @@ export function* colorsFromRange(
 }
 
 /** @internal */
-const compileThemePart = (
+const __compileThemePart = (
 	part: ColorThemePart | ColorThemePartTuple,
 	opts: Partial<ColorRangeOpts>
 ) => {
 	let spec: ColorThemePart;
 	if (isArray(part)) {
-		spec = themePartFromTuple(part);
+		spec = __themePartFromTuple(part);
 	} else if (isString(part)) {
-		spec = themePartFromString(part);
+		spec = __themePartFromString(part);
 	} else {
 		spec = { ...part };
 		spec.weight == null && (spec.weight = 1);
@@ -215,7 +215,7 @@ const compileThemePart = (
 };
 
 /** @internal */
-const themePartFromTuple = (part: ColorThemePartTuple) => {
+const __themePartFromTuple = (part: ColorThemePartTuple) => {
 	let weight: number;
 	const [range, ...args] = part;
 	if (isNumber(peek(args))) {
@@ -236,7 +236,7 @@ const themePartFromTuple = (part: ColorThemePartTuple) => {
 };
 
 /** @internal */
-const themePartFromString = (part: string) =>
+const __themePartFromString = (part: string) =>
 	<ColorThemePart>(
 		(COLOR_RANGES[<ColorRangePreset>part]
 			? { range: part, weight: 1 }
@@ -280,7 +280,7 @@ export function* colorsFromTheme(
 	opts: Partial<Without<ColorRangeOpts, "base">> = {}
 ) {
 	let { num, variance, rnd } = { ...DEFAULT_OPTS, ...opts };
-	const theme = parts.map((p) => compileThemePart(p, opts));
+	const theme = parts.map((p) => __compileThemePart(p, opts));
 	const choice = weightedRandom(
 		theme,
 		theme.map((x) => x.spec.weight!),

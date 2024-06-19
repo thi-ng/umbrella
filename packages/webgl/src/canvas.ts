@@ -5,7 +5,8 @@ import type { WeblGLCanvasOpts } from "./api/canvas.js";
 import type { WebGLExtensionMap } from "./api/ext.js";
 import { error } from "./error.js";
 
-const defaultOpts: WebGLContextAttributes = {
+/** @internal */
+const DEFAULT_OPTS: WebGLContextAttributes = {
 	alpha: true,
 	antialias: true,
 	depth: true,
@@ -27,7 +28,7 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
 	const gl = <WebGLRenderingContext>canvas.getContext(
 		opts.version !== 1 ? "webgl2" : "webgl",
 		{
-			...defaultOpts,
+			...DEFAULT_OPTS,
 			...opts.opts,
 		}
 	);

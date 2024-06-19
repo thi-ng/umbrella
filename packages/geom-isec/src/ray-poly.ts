@@ -4,7 +4,8 @@ import { IntersectionType, NONE, type IntersectionResult } from "./api.js";
 import { checkPolyPair } from "./point.js";
 import { intersectRayLine } from "./ray-line.js";
 
-const startPoints = (pts: ReadonlyVec[], closed: boolean) =>
+/** @internal */
+const __startPoints = (pts: ReadonlyVec[], closed: boolean) =>
 	closed ? [pts[pts.length - 1], pts[0]] : [pts[0], pts[1]];
 
 /**
@@ -30,7 +31,7 @@ export const intersectRayPolyline = (
 	let alpha = maxD;
 	let cross = 0;
 	let inside = 0;
-	let [a, b] = startPoints(pts, closed);
+	let [a, b] = __startPoints(pts, closed);
 	for (let i = 0; i <= n; a = b, b = pts[++i]) {
 		if (closed) {
 			inside = checkPolyPair(x, y, a[0], a[1], b[0], b[1], inside);
@@ -72,7 +73,7 @@ export const intersectRayPolylineAll = (
 	const n = pts.length - 1;
 	const res: [number, Vec][] = [];
 	const [x, y] = rpos;
-	let [a, b] = startPoints(pts, closed);
+	let [a, b] = __startPoints(pts, closed);
 	let inside = 0;
 	for (let i = 0; i <= n; a = b, b = pts[++i]) {
 		if (closed) {

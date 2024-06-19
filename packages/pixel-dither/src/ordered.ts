@@ -3,7 +3,8 @@ import { clamp } from "@thi.ng/math/interval";
 import type { IntBuffer } from "@thi.ng/pixel";
 import type { BayerMatrix, BayerSize } from "./api.js";
 
-const init = (
+/** @internal */
+const __init = (
 	x: number,
 	y: number,
 	size: number,
@@ -18,10 +19,10 @@ const init = (
 	}
 	size >>= 1;
 	const step4 = step << 2;
-	init(x, y, size, val, step4, mat);
-	init(x + size, y + size, size, val + step, step4, mat);
-	init(x + size, y, size, val + step * 2, step4, mat);
-	init(x, y + size, size, val + step * 3, step4, mat);
+	__init(x, y, size, val, step4, mat);
+	__init(x + size, y + size, size, val + step, step4, mat);
+	__init(x + size, y, size, val + step * 2, step4, mat);
+	__init(x, y + size, size, val + step * 3, step4, mat);
 	return mat;
 };
 
@@ -36,7 +37,7 @@ const init = (
  * @param size -
  */
 export const defBayer = (size: BayerSize): BayerMatrix => ({
-	mat: init(0, 0, size, 0, 1, []),
+	mat: __init(0, 0, size, 0, 1, []),
 	invSize: 1 / (size * size),
 	mask: size - 1,
 });
@@ -54,7 +55,7 @@ export const defBayer = (size: BayerSize): BayerMatrix => ({
  *
  * @internal
  */
-const orderedDither1 = (
+const __orderedDither1 = (
 	{ mat, mask, invSize }: BayerMatrix,
 	dsteps: number,
 	drange: number,
@@ -110,7 +111,7 @@ export const orderedDither = (
 			cs > 0 &&
 				(col = ch.setInt(
 					col,
-					orderedDither1(mat, cs, num, num, x, y, ch.int(col))
+					__orderedDither1(mat, cs, num, num, x, y, ch.int(col))
 				));
 		}
 		data[i] = col;

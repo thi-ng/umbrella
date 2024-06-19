@@ -290,7 +290,7 @@ export class StatelessEventBus implements IDispatch {
 	 * @param ids -
 	 */
 	instrumentWith(inject: (Interceptor | InterceptorFn)[], ids?: string[]) {
-		const iceps = inject.map(asInterceptor);
+		const iceps = inject.map(__asInterceptor);
 		const handlers = this.handlers;
 		for (let id of ids || Object.keys(handlers)) {
 			const h = handlers[id];
@@ -588,7 +588,7 @@ export class StatelessEventBus implements IDispatch {
 
 	protected interceptorsFromSpec(spec: EventDef) {
 		return isArray(spec)
-			? (<any>spec).map(asInterceptor)
+			? (<any>spec).map(__asInterceptor)
 			: isFunction(spec)
 			? [{ pre: spec }]
 			: [spec];
@@ -739,8 +739,8 @@ export class EventBus
 			[EV_TOGGLE_VALUE]: (state, [_, path]) => ({
 				[FX_STATE]: updateInUnsafe(state, path, (x) => !x),
 			}),
-			[EV_UNDO]: undoHandler("undo"),
-			[EV_REDO]: undoHandler("redo"),
+			[EV_UNDO]: __undoHandler("undo"),
+			[EV_REDO]: __undoHandler("redo"),
 		});
 
 		// effects
@@ -788,10 +788,12 @@ export class EventBus
 	}
 }
 
-const asInterceptor = (i: Interceptor | InterceptorFn) =>
+/** @internal */
+const __asInterceptor = (i: Interceptor | InterceptorFn) =>
 	isFunction(i) ? { pre: i } : i;
 
-const undoHandler =
+/** @internal */
+const __undoHandler =
 	(action: string): InterceptorFn =>
 	(_, [__, ev], bus, ctx) => {
 		const id = ev ? ev[0] : "history";

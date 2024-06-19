@@ -94,27 +94,30 @@ export const newDocument = (
 
 export const serialize = (doc: IGESDocument) =>
 	[
-		...formatStart(doc),
-		...formatGlobals(doc),
+		...__formatStart(doc),
+		...__formatGlobals(doc),
 		...doc.dict,
 		...doc.param,
-		formatTerminate(doc),
+		__formatTerminate(doc),
 	].join("\n");
 
-const formatLine = (body: string, type: SectionType, i: number) =>
+/** @internal */
+const __formatLine = (body: string, type: SectionType, i: number) =>
 	`${$BODY(body)}${type}${$SEQ(i + 1)}`;
 
-const formatStart = (doc: IGESDocument) => {
+/** @internal */
+const __formatStart = (doc: IGESDocument) => {
 	const res = [
-		...mapIndexed((i, x: string) => formatLine(x, "S", i), doc.start),
+		...mapIndexed((i, x: string) => __formatLine(x, "S", i), doc.start),
 	];
 	doc.offsets.S += res.length;
 	return res;
 };
 
-const formatGlobals = (doc: IGESDocument) => {
+/** @internal */
+const __formatGlobals = (doc: IGESDocument) => {
 	const g = doc.globals;
-	const res = formatParams(
+	const res = __formatParams(
 		doc,
 		[
 			[g.delimParam, Type.HSTR],
@@ -150,8 +153,9 @@ const formatGlobals = (doc: IGESDocument) => {
 	return res;
 };
 
-const formatTerminate = (doc: IGESDocument) =>
-	formatLine(
+/** @internal */
+const __formatTerminate = (doc: IGESDocument) =>
+	__formatLine(
 		`S${$Z7(doc.offsets.S)}G${$Z7(doc.offsets.G)}D${$Z7(
 			doc.offsets.D
 		)}P${$Z7(doc.offsets.P - 1)}`,
@@ -159,18 +163,20 @@ const formatTerminate = (doc: IGESDocument) =>
 		0
 	);
 
-const formatStatus = (s: Partial<EntityStatus>) =>
+/** @internal */
+const __formatStatus = (s: Partial<EntityStatus>) =>
 	[s.blank || 0, s.subord || 0, s.usage || 0, s.hierarchy || 0]
 		.map((x) => $Z2(x))
 		.join("");
 
-const formatDictEntry = (e: DictEntry) =>
+/** @internal */
+const __formatDictEntry = (e: DictEntry) =>
 	transduce(
 		comp(
 			map((x) => $F8(x)),
 			partition(9),
 			mapIndexed(
-				(i, x: string[]) => formatLine(x.join(""), "D", i),
+				(i, x: string[]) => __formatLine(x.join(""), "D", i),
 				e.index
 			)
 		),
@@ -184,7 +190,7 @@ const formatDictEntry = (e: DictEntry) =>
 			e.view || 0,
 			e.matrix || 0,
 			e.labelAssoc || 0,
-			formatStatus(e.status || <any>{}),
+			__formatStatus(e.status || <any>{}),
 			//
 			e.type,
 			e.lineWeight || 0,
@@ -198,10 +204,12 @@ const formatDictEntry = (e: DictEntry) =>
 		]
 	);
 
-const formatParam = (did: number, pid: number) => (body: string, i: number) =>
+/** @internal */
+const __formatParam = (did: number, pid: number) => (body: string, i: number) =>
 	`${$PBODY(body)} ${$Z7(did + 1)}P${$SEQ(i + pid)}`;
 
-const formatParams = (
+/** @internal */
+const __formatParams = (
 	doc: IGESDocument,
 	params: Param[],
 	fmtBody: (body: string, i: number) => string,
@@ -223,7 +231,8 @@ const formatParams = (
 	});
 };
 
-const addEntity = (
+/** @internal */
+const __addEntity = (
 	doc: IGESDocument,
 	type: EntityType,
 	entry: Partial<DictEntry> | null,
@@ -232,15 +241,15 @@ const addEntity = (
 ) => {
 	const did = doc.offsets.D;
 	const pid = doc.offsets.P;
-	const fparams = formatParams(
+	const fparams = __formatParams(
 		doc,
 		[<Param>[type, Type.INT]].concat(params),
-		formatParam(did, pid)
+		__formatParam(did, pid)
 	);
 	doc.offsets.P += fparams.length;
 	doc.offsets.D += 2;
 	doc.dict.push(
-		...formatDictEntry(<DictEntry>{
+		...__formatDictEntry(<DictEntry>{
 			type,
 			pattern: opts.pattern || 0,
 			color: opts.color || 0,
@@ -266,7 +275,7 @@ export const addPolyline = (
 		[pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT],
 	];
 	is2D && params.push([0, Type.FLOAT]);
-	return addEntity(
+	return __addEntity(
 		doc,
 		EntityType.POLYLINE,
 		{
@@ -294,7 +303,7 @@ export const addPoint = (
 	p: ReadonlyVec,
 	opts?: Partial<EntityOpts>
 ) =>
-	addEntity(
+	__addEntity(
 		doc,
 		EntityType.POINT,
 		null,
@@ -313,7 +322,7 @@ export const addLine = (
 	b: ReadonlyVec,
 	opts?: Partial<EntityOpts>
 ) =>
-	addEntity(
+	__addEntity(
 		doc,
 		EntityType.LINE,
 		null,
@@ -333,8 +342,8 @@ export const addBooleanTree = (
 	tree: BooleanTree,
 	opts?: Partial<EntityOpts>
 ) => {
-	const params = postOrder([], tree);
-	return addEntity(
+	const params = __postOrder([], tree);
+	return __addEntity(
 		doc,
 		EntityType.BOOLEAN_TREE,
 		null,
@@ -343,10 +352,11 @@ export const addBooleanTree = (
 	);
 };
 
-const postOrder = (acc: Param[], tree: BooleanNode) => {
+/** @internal */
+const __postOrder = (acc: Param[], tree: BooleanNode) => {
 	if (isArray(tree)) {
-		postOrder(acc, tree[1]);
-		postOrder(acc, tree[2]);
+		__postOrder(acc, tree[1]);
+		__postOrder(acc, tree[2]);
 		acc.push([tree[0], Type.INT]);
 	} else {
 		acc.push([tree, Type.POINTER]);
@@ -362,7 +372,7 @@ export const addCSGBox = (
 	zaxis: ReadonlyVec = [0, 0, 1],
 	opts?: Partial<EntityOpts>
 ) =>
-	addEntity(
+	__addEntity(
 		doc,
 		EntityType.CSG_BOX,
 		null,
@@ -391,7 +401,7 @@ export const addCSGCylinder = (
 	height: ReadonlyVec,
 	opts?: Partial<EntityOpts>
 ) =>
-	addEntity(
+	__addEntity(
 		doc,
 		EntityType.CSG_CYLINDER,
 		null,

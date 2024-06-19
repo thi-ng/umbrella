@@ -4,26 +4,29 @@ import { concat } from "@thi.ng/transducers/concat";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { pairs } from "@thi.ng/transducers/pairs";
 
-let NEXT_ID = 0;
+/** @internal */
+let __nextID = 0;
 
-const mapBNode = (s: any, p: any, o: any): IterableIterator<any[]> => {
-	const id = `__b${NEXT_ID++}__`;
+/** @internal */
+const __mapBNode = (s: any, p: any, o: any): IterableIterator<any[]> => {
+	const id = `__b${__nextID++}__`;
 	return concat([[s, p, id]], asTriples(o, id));
 };
 
-const mapSubject =
+/** @internal */
+const __mapSubject =
 	(subject: any) =>
 	([p, o]: [any, any]) => {
 		if (isArray(o)) {
 			return mapcat(
 				(o) =>
 					isPlainObject(o)
-						? mapBNode(subject, p, o)
+						? __mapBNode(subject, p, o)
 						: [[subject, p, o]],
 				o
 			);
 		} else if (isPlainObject(o)) {
-			return mapBNode(subject, p, o);
+			return __mapBNode(subject, p, o);
 		}
 		return [[subject, p, o]];
 	};
@@ -83,7 +86,7 @@ const mapSubject =
 export const asTriples = (obj: any, subject?: any) =>
 	mapcat(
 		subject === undefined
-			? ([s, v]: any) => mapcat(mapSubject(s), <any>pairs(v))
-			: mapSubject(subject),
+			? ([s, v]: any) => mapcat(__mapSubject(s), <any>pairs(v))
+			: __mapSubject(subject),
 		pairs(obj)
 	);

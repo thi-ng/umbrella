@@ -5,16 +5,28 @@ import type { ReadonlyColor, TypedColor } from "./api.js";
 import { EPS } from "./api/constants.js";
 import { __dispatch0 } from "./internal/dispatch.js";
 import { rgb } from "./rgb/rgb.js";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 
-const isGrayHsv = (x: ReadonlyColor, eps = EPS) => x[1] <= eps;
+export type IsGrayFn = {
+	(col: TypedColor<any>, eps?: number): boolean;
+} & MultiFn1O<TypedColor<any>, number, boolean>;
 
-const isGrayRgb = (x: ReadonlyColor, eps = EPS) =>
+/** @internal */
+const __isGrayHsv = (x: ReadonlyColor, eps = EPS) => x[1] <= eps;
+
+/** @internal */
+const __isGrayRgb = (x: ReadonlyColor, eps = EPS) =>
 	eqDelta(x[0], x[1], eps) && eqDelta(x[0], x[2], eps);
 
-const isGrayLab = (x: ReadonlyColor, eps = EPS) =>
+/** @internal */
+const __isGrayLab = (x: ReadonlyColor, eps = EPS) =>
 	eqDelta(x[1], 0, eps) && eqDelta(x[2], 0, eps);
 
-export const isGray = defmulti<TypedColor<any>, Maybe<number>, boolean>(
+export const isGray: IsGrayFn = defmulti<
+	TypedColor<any>,
+	Maybe<number>,
+	boolean
+>(
 	__dispatch0,
 	{
 		hcy: "hsv",
@@ -26,9 +38,9 @@ export const isGray = defmulti<TypedColor<any>, Maybe<number>, boolean>(
 		ycc: "labD50",
 	},
 	{
-		hsv: isGrayHsv,
-		labD50: isGrayLab,
-		rgb: isGrayRgb,
-		[DEFAULT]: (x: any) => isGrayRgb(rgb(x)),
+		[DEFAULT]: (x: any) => __isGrayRgb(rgb(x)),
+		hsv: __isGrayHsv,
+		labD50: __isGrayLab,
+		rgb: __isGrayRgb,
 	}
 );

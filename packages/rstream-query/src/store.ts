@@ -228,9 +228,9 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 					reset: true,
 				});
 				this.queries.set(key, results);
-				submit(this.indexS, qs, s);
-				submit(this.indexP, qp, p);
-				submit(this.indexO, qo, o);
+				__submit(this.indexS, qs, s);
+				__submit(this.indexP, qp, p);
+				__submit(this.indexO, qo, o);
 			}
 		}
 		return emitTriples ? results.transform(resultTriples(this)) : results;
@@ -363,9 +363,9 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 		let query: Maybe<QuerySolution>;
 		let curr: Maybe<QuerySolution>;
 		for (let q of spec.q) {
-			if (isWhereQuery(q)) {
+			if (__isWhereQuery(q)) {
 				curr = this.addMultiJoin(this.addParamQueries(q.where));
-			} else if (isPathQuery(q)) {
+			} else if (__isPathQuery(q)) {
 				curr = this.addPathQuery(q.path);
 			}
 			query && curr && (curr = this.addJoin(query, curr));
@@ -450,7 +450,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	}
 }
 
-const submit = (
+/** @internal */
+const __submit = (
 	index: Map<any, TripleIds>,
 	stream: ISubscription<Edit, TripleIds>,
 	key: any
@@ -461,6 +462,9 @@ const submit = (
 	}
 };
 
-const isWhereQuery = (q: SubQuerySpec): q is WhereQuerySpec => !!(<any>q).where;
+/** @internal */
+const __isWhereQuery = (q: SubQuerySpec): q is WhereQuerySpec =>
+	!!(<any>q).where;
 
-const isPathQuery = (q: SubQuerySpec): q is PathQuerySpec => !!(<any>q).path;
+/** @internal */
+const __isPathQuery = (q: SubQuerySpec): q is PathQuerySpec => !!(<any>q).path;

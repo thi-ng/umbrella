@@ -33,7 +33,7 @@ import { range } from "./range.js";
  * @param opts -
  */
 export const convolveChannel = (src: FloatBuffer, opts: ConvolveOpts) =>
-	convolve(initConvolve(src, opts));
+	__convolve(__initConvolve(src, opts));
 
 /**
  * Similar to {@link convolveChannel}, but processes multiple or all channels
@@ -50,16 +50,16 @@ export const convolveImage = (
 	src: FloatBuffer,
 	opts: Exclude<ConvolveOpts, "channel"> & { channels?: number[] }
 ) => {
-	const state = initConvolve(src, opts);
+	const state = __initConvolve(src, opts);
 	const dest = new FloatBuffer(state.dwidth, state.dheight, src.format);
 	for (let channel of opts.channels || range(src.format.channels.length)) {
-		dest.setChannel(channel, convolve({ ...state, channel }));
+		dest.setChannel(channel, __convolve({ ...state, channel }));
 	}
 	return dest;
 };
 
 /** @internal */
-const convolve = ({
+const __convolve = ({
 	channel,
 	dest,
 	dwidth,
@@ -73,7 +73,7 @@ const convolve = ({
 	srcStride,
 	strideX,
 	strideY,
-}: ReturnType<typeof initConvolve>) => {
+}: ReturnType<typeof __initConvolve>) => {
 	ensureChannel(src.format, channel);
 	const dpix = dest.data;
 	const stepX = strideX * srcStride;
@@ -95,7 +95,7 @@ const convolve = ({
 };
 
 /** @internal */
-const initKernel = (
+const __initKernel = (
 	src: FloatBuffer,
 	kernel: KernelSpec,
 	kw: number,
@@ -111,7 +111,7 @@ const initKernel = (
 		  ))(src);
 
 /** @internal */
-const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
+const __initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
 	const {
 		channel = 0,
 		offset = 0,
@@ -137,7 +137,7 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
 		dest,
 		dheight,
 		dwidth,
-		kernel: initKernel(src, kernel, kw, kh),
+		kernel: __initKernel(src, kernel, kw, kh),
 		offsetX,
 		offsetY,
 		rowStride,
@@ -149,7 +149,8 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
 	};
 };
 
-const declOffset = (
+/** @internal */
+const __declOffset = (
 	idx: number,
 	i: number,
 	pre: string,
@@ -169,7 +170,7 @@ const declOffset = (
  * HOF convolution or pooling kernel code generator. Takes either a
  * {@link PoolTemplate} function or array of kernel coefficients and kernel
  * width/height. Returns optimized kernel function for use with
- * {@link convolve}. If `normalize` is true (default: false), the given
+ * {@link __convolve}. If `normalize` is true (default: false), the given
  * coefficients are divided by their sum (only used if provided as array).
  *
  * @remarks
@@ -215,13 +216,20 @@ export const defKernel = (
 				: (<NumericArray>tpl)[i] !== 0 && row.push(`${kv}*pix[${idx}]`);
 			if (y === 0 && xx !== 0) {
 				prefix.push(
-					declOffset(xx, x, "x", "stride", "channel", "maxX+channel")
+					__declOffset(
+						xx,
+						x,
+						"x",
+						"stride",
+						"channel",
+						"maxX+channel"
+					)
 				);
 			}
 		}
 		row.length && body.push(...row);
 		if (yy !== 0) {
-			prefix.push(declOffset(yy, y, "y", "rowStride", "0", "maxY"));
+			prefix.push(__declOffset(yy, y, "y", "rowStride", "0", "maxY"));
 		}
 	}
 	const decls = isPool

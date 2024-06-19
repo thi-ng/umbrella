@@ -62,16 +62,17 @@ export const defOp2v =
 		const isb = isArray(b);
 		stack[n] =
 			isa && isb
-				? op2vAB(f, a, b)
+				? __op2vAB(f, a, b)
 				: isb && !isa
-				? op2vB(f, a, b)
+				? __op2vB(f, a, b)
 				: isa && !isb
-				? op2vA(f, a, b)
+				? __op2vA(f, a, b)
 				: illegalArgs("at least one arg must be an array");
 		return ctx;
 	};
 
-const op2vAB = (f: Fn2<any, any, any>, a: any, b: any) => {
+/** @internal */
+const __op2vAB = (f: Fn2<any, any, any>, a: any, b: any) => {
 	const res = new Array(Math.min(a.length, b.length));
 	for (let i = res.length - 1; i >= 0; i--) {
 		res[i] = f(b[i], a[i]);
@@ -79,7 +80,8 @@ const op2vAB = (f: Fn2<any, any, any>, a: any, b: any) => {
 	return res;
 };
 
-const op2vA = (f: Fn2<any, any, any>, a: any, b: any) => {
+/** @internal */
+const __op2vA = (f: Fn2<any, any, any>, a: any, b: any) => {
 	const res = new Array(a.length);
 	for (let i = res.length - 1; i >= 0; i--) {
 		res[i] = f(b, a[i]);
@@ -87,7 +89,8 @@ const op2vA = (f: Fn2<any, any, any>, a: any, b: any) => {
 	return res;
 };
 
-const op2vB = (f: Fn2<any, any, any>, a: any, b: any) => {
+/** @internal */
+const __op2vB = (f: Fn2<any, any, any>, a: any, b: any) => {
 	const res = new Array(b.length);
 	for (let i = res.length - 1; i >= 0; i--) {
 		res[i] = f(b[i], a);

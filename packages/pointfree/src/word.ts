@@ -13,7 +13,8 @@ import { tos } from "./stack.js";
 
 export const $stackFn = (f: StackProc) => (isArray(f) ? defWord(f) : f);
 
-const compile = (prog: StackProgram) =>
+/** @internal */
+const __compile = (prog: StackProgram) =>
 	prog.length > 0
 		? compL.apply(
 				null,
@@ -65,7 +66,7 @@ export const defWord = (
 	env?: StackEnv,
 	mergeEnv = true
 ) => {
-	const w: StackFn = compile(prog);
+	const w: StackFn = __compile(prog);
 	return env
 		? mergeEnv
 			? (ctx: StackContext) => (
@@ -94,7 +95,7 @@ export const defWordU = (
 	env?: StackEnv,
 	mergeEnv = true
 ) => {
-	const w: StackFn = compile(prog);
+	const w: StackFn = __compile(prog);
 	return env
 		? mergeEnv
 			? (ctx: StackContext) =>

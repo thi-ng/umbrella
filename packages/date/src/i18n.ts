@@ -3,7 +3,8 @@ import { isString } from "@thi.ng/checks/is-string";
 import type { Locale, LocaleSpec, LocaleUnit, Precision } from "./api.js";
 import { EN_SHORT } from "./i18n/en.js";
 
-const prepLocale = (spec: LocaleSpec): Locale => {
+/** @internal */
+const __prepLocale = (spec: LocaleSpec): Locale => {
 	const locale = <Locale>{
 		sepED: " ",
 		sepDM: "/",
@@ -25,7 +26,7 @@ const prepLocale = (spec: LocaleSpec): Locale => {
  * @param locale -
  */
 export const setLocale = (locale: LocaleSpec): Locale =>
-	(LOCALE = prepLocale(locale));
+	(LOCALE = __prepLocale(locale));
 
 /**
  * Executes given `fn` with temporarily active `locale`. Returns result of `fn`.
@@ -50,7 +51,7 @@ export const withLocale = <T>(locale: LocaleSpec, fn: Fn0<T>) => {
 	}
 };
 
-export let LOCALE = prepLocale(EN_SHORT);
+export let LOCALE = __prepLocale(EN_SHORT);
 
 /**
  * Returns a copy of current {@link LOCALE}'s weekday names array.

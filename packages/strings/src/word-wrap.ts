@@ -58,7 +58,12 @@ export const SPLIT_ANSI: IWordSplit = {
  *
  * @internal
  */
-const append = (acc: Line[], word: string, wordLen: number, width: number) => {
+const __append = (
+	acc: Line[],
+	word: string,
+	wordLen: number,
+	width: number
+) => {
 	const curr = acc[acc.length - 1];
 	curr && width - curr.n > wordLen
 		? curr.add(word, wordLen)
@@ -82,7 +87,7 @@ const append = (acc: Line[], word: string, wordLen: number, width: number) => {
  *
  * @internal
  */
-const wrapWord = (
+const __wrapWord = (
 	word: string,
 	{ width, min, hard, splitter }: WordWrapOpts,
 	offset = 0,
@@ -99,12 +104,12 @@ const wrapWord = (
 	while (hard && len > free) {
 		const split = splitter.split(word, free);
 		const chunk = word.substring(0, split);
-		append(acc, chunk, free, width);
+		__append(acc, chunk, free, width);
 		word = word.substring(split);
 		free = width;
 		len = splitter.length(word);
 	}
-	append(acc, word, len, width);
+	__append(acc, word, len, width);
 	return acc;
 };
 
@@ -139,7 +144,7 @@ export const wordWrapLine = (
 	};
 	for (let word of split(line, opts.delimWord || /\s/g)) {
 		const curr = acc[acc.length - 1];
-		wrapWord(word, $opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
+		__wrapWord(word, $opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
 	}
 	return acc;
 };

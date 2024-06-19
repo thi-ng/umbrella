@@ -235,7 +235,7 @@ export class Heap<T>
 		for (let i = n, m = values.length; i < m; i++) {
 			y = values[i];
 			if (compare(y, x) < 0) {
-				res.splice(binarySearch(y, res, 0, n, compare), 0, y);
+				res.splice(__binarySearch(y, res, 0, n, compare), 0, y);
 				res.pop();
 				x = res[n - 1];
 			}
@@ -302,7 +302,8 @@ export class Heap<T>
 	}
 }
 
-const binarySearch = <T>(
+/** @internal */
+const __binarySearch = <T>(
 	x: T,
 	vals: T[],
 	lo: number,

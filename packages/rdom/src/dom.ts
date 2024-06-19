@@ -301,15 +301,18 @@ export const $html = (
  */
 export const $attribs = (el: Element, attribs: any) => {
 	for (let id in attribs) {
-		setAttrib(el, id, attribs[id], attribs);
+		__setAttrib(el, id, attribs[id], attribs);
 	}
 	return el;
 };
 
+/** @internal */
 const __setterCache: Record<string, Fn<any, void> | false> = {};
 
-const getproto = Object.getPrototypeOf;
-const getdesc = Object.getOwnPropertyDescriptor;
+/** @internal */
+const __getProto = Object.getPrototypeOf;
+/** @internal */
+const __getDesc = Object.getOwnPropertyDescriptor;
 
 /**
  * Recursively attempts to find property descriptor in prototype chain.
@@ -320,7 +323,9 @@ const getdesc = Object.getOwnPropertyDescriptor;
  * @internal
  */
 const __desc = (proto: any, prop: string): any =>
-	proto ? getdesc(proto, prop) ?? __desc(getproto(proto), prop) : undefined;
+	proto
+		? __getDesc(proto, prop) ?? __desc(__getProto(proto), prop)
+		: undefined;
 
 /**
  * Attempts to find a setter for given `el` and `prop` name in the setter cache
@@ -340,11 +345,12 @@ const __setter = (el: Element, prop: string) => {
 	const key = `${el.namespaceURI}/${el.tagName}#${prop}`;
 	return (
 		__setterCache[key] ??
-		(__setterCache[key] = __desc(getproto(el), prop)?.set ?? false)
+		(__setterCache[key] = __desc(__getProto(el), prop)?.set ?? false)
 	);
 };
 
-const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
+/** @internal */
+const __setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 	implementsFunction(val, "deref") && (val = val.deref());
 	if (id.startsWith("on")) {
 		if (isString(val)) {
@@ -370,10 +376,10 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 			$style(el, val);
 			break;
 		case "value":
-			updateValueAttrib(<HTMLInputElement>el, val);
+			__updateValueAttrib(<HTMLInputElement>el, val);
 			break;
 		case "data":
-			updateDataAttribs(<HTMLElement>el, val);
+			__updateDataAttribs(<HTMLElement>el, val);
 			break;
 		case "prefix":
 			el.setAttribute(id, isString(val) ? val : formatPrefixes(val));
@@ -398,7 +404,8 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 	}
 };
 
-const updateValueAttrib = (el: HTMLInputElement, value: any) => {
+/** @internal */
+const __updateValueAttrib = (el: HTMLInputElement, value: any) => {
 	let ev;
 	switch (el.type) {
 		case "text":
@@ -420,7 +427,8 @@ const updateValueAttrib = (el: HTMLInputElement, value: any) => {
 	}
 };
 
-const updateDataAttribs = (el: HTMLOrSVGElement, attribs: any) => {
+/** @internal */
+const __updateDataAttribs = (el: HTMLOrSVGElement, attribs: any) => {
 	const data = el.dataset;
 	for (let id in attribs) {
 		const v = deref(attribs[id]);

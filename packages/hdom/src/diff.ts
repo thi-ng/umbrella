@@ -19,7 +19,11 @@ const OBJP = Object.getPrototypeOf({});
 const FN = "function";
 const STR = "string";
 
-// child index tracking template buffer
+/**
+ * child index tracking template buffer
+ *
+ * @internal
+ */
 const INDEX = (() => {
 	const res = new Array(2048);
 	for (let i = 2, n = res.length; i < n; i++) {
@@ -28,7 +32,8 @@ const INDEX = (() => {
 	return res;
 })();
 
-const buildIndex = (n: number) => {
+/** @internal */
+const __buildIndex = (n: number) => {
 	if (n <= INDEX.length) {
 		return INDEX.slice(0, n);
 	}
@@ -105,13 +110,13 @@ export const diffTree = <T>(
 	}
 	const numEdits = edits.length;
 	const prevLength = prev.length - 1;
-	const equivKeys = extractEquivElements(edits);
-	const offsets = buildIndex(prevLength + 1);
+	const equivKeys = __extractEquivElements(edits);
+	const offsets = __buildIndex(prevLength + 1);
 	for (i = 2, ii = 6; ii < numEdits; i++, ii += 3) {
 		status = edits[ii];
 		if (!status) continue;
 		if (status === -1) {
-			diffDeleted<T>(
+			__diffDeleted<T>(
 				opts,
 				impl,
 				el,
@@ -124,7 +129,7 @@ export const diffTree = <T>(
 				prevLength
 			);
 		} else {
-			diffAdded<T>(
+			__diffAdded<T>(
 				opts,
 				impl,
 				el,
@@ -142,7 +147,8 @@ export const diffTree = <T>(
 	}
 };
 
-const diffDeleted = <T>(
+/** @internal */
+const __diffDeleted = <T>(
 	opts: Partial<HDOMOpts>,
 	impl: HDOMImplementation<T>,
 	el: T,
@@ -167,14 +173,15 @@ const diffDeleted = <T>(
 			// LOGGER.fine("remove @", offsets[idx], val);
 			releaseTree(val);
 			impl.removeChild(el, offsets[idx]);
-			incOffsets(offsets, prevLength, idx);
+			__incOffsets(offsets, prevLength, idx);
 		}
 	} else if (typeof val === STR) {
 		impl.setContent(el, "");
 	}
 };
 
-const diffAdded = <T>(
+/** @internal */
+const __diffAdded = <T>(
 	opts: Partial<HDOMOpts>,
 	impl: HDOMImplementation<T>,
 	el: T,
@@ -193,18 +200,20 @@ const diffAdded = <T>(
 			const idx = edits[ii + 1];
 			// LOGGER.fine("insert @", offsets[idx], val);
 			impl.createTree(opts, el, val, offsets[idx]);
-			decOffsets(offsets, prevLength, idx);
+			__decOffsets(offsets, prevLength, idx);
 		}
 	}
 };
 
-const incOffsets = (offsets: any[], j: number, idx: number) => {
+/** @internal */
+const __incOffsets = (offsets: any[], j: number, idx: number) => {
 	for (; j > idx; j--) {
 		offsets[j] = max(offsets[j] - 1, 0);
 	}
 };
 
-const decOffsets = (offsets: any[], j: number, idx: number) => {
+/** @internal */
+const __decOffsets = (offsets: any[], j: number, idx: number) => {
 	for (; j >= idx; j--) {
 		offsets[j]++;
 	}
@@ -273,7 +282,8 @@ export const releaseTree = (tree: any) => {
 	}
 };
 
-const extractEquivElements = (edits: any[]) => {
+/** @internal */
+const __extractEquivElements = (edits: any[]) => {
 	let k: string;
 	let val: any;
 	let ek: any[];

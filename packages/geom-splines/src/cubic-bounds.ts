@@ -14,8 +14,10 @@ import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
  * @param pb - control point 2
  * @param pc - control point 3
  * @param pd - control point 4
+ *
+ * @internal
  */
-const axisBounds = (
+const __axisBounds = (
 	min: Vec,
 	max: Vec,
 	i: number,
@@ -52,7 +54,7 @@ export const cubicBounds: FnU4<ReadonlyVec, VecPair> = (a, b, c, d) => {
 	const min: Vec = [];
 	const max: Vec = [];
 	for (let i = a.length; i-- > 0; ) {
-		axisBounds(min, max, i, a[i], b[i], c[i], d[i]);
+		__axisBounds(min, max, i, a[i], b[i], c[i], d[i]);
 	}
 	return [min, max];
 };

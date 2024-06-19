@@ -22,17 +22,20 @@ import { assign } from "../ast/assign.js";
 import { builtinCall } from "../ast/function.js";
 import { matchingBoolType, matchingPrimFor } from "../ast/item.js";
 
-const primOp1 =
+/** @internal */
+const __primOp1 =
 	(name: string) =>
 	<T extends Prim>(a: Term<T>) =>
 		builtinCall(name, a.type, a);
 
-const primOp2 =
+/** @internal */
+const __primOp2 =
 	(name: string) =>
 	<A extends Prim, B extends A>(a: Term<A>, b: Term<B>) =>
 		builtinCall(name, a.type, a, b);
 
-const primOp3 =
+/** @internal */
+const __primOp3 =
 	(name: string) =>
 	<A extends Prim, B extends A, C extends B>(
 		a: Term<A>,
@@ -96,9 +99,9 @@ export const faceForward = <I extends Vec, N extends I, R extends I>(
 	nref: Term<R>
 ) => builtinCall("faceForward", i.type, i, n, nref);
 
-export const min = primOp2("min");
-export const max = primOp2("max");
-export const clamp = primOp3("clamp");
+export const min = __primOp2("min");
+export const max = __primOp2("max");
+export const clamp = __primOp3("clamp");
 
 export const minSelf = <A extends Prim, B extends A>(a: Sym<A>, b: Term<B>) =>
 	assign(a, min(a, b));
@@ -112,17 +115,17 @@ export const clampSelf = <A extends Prim, B extends A, C extends B>(
 	c: Term<C>
 ) => assign(a, clamp(a, b, c));
 
-export const step = primOp2("step");
-export const smoothstep = primOp3("smoothstep");
+export const step = __primOp2("step");
+export const smoothstep = __primOp3("smoothstep");
 
-export const radians = primOp1("radians");
-export const degrees = primOp1("degrees");
+export const radians = __primOp1("radians");
+export const degrees = __primOp1("degrees");
 
-export const cos = primOp1("cos");
-export const sin = primOp1("sin");
-export const tan = primOp1("tan");
-export const acos = primOp1("acos");
-export const asin = primOp1("asin");
+export const cos = __primOp1("cos");
+export const sin = __primOp1("sin");
+export const tan = __primOp1("tan");
+export const acos = __primOp1("acos");
+export const asin = __primOp1("asin");
 
 export function atan<T extends Prim>(a: Term<T>): FnCall<T>;
 // prettier-ignore
@@ -135,19 +138,19 @@ export function atan(a: Term<any>, b?: Term<any>) {
 	return f;
 }
 
-export const pow = primOp2("pow");
-export const exp = primOp1("exp");
-export const log = primOp1("log");
-export const exp2 = primOp1("exp2");
-export const log2 = primOp1("log2");
-export const sqrt = primOp1("sqrt");
-export const inversesqrt = primOp1("inversesqrt");
+export const pow = __primOp2("pow");
+export const exp = __primOp1("exp");
+export const log = __primOp1("log");
+export const exp2 = __primOp1("exp2");
+export const log2 = __primOp1("log2");
+export const sqrt = __primOp1("sqrt");
+export const inversesqrt = __primOp1("inversesqrt");
 
-export const abs = primOp1("abs");
-export const sign = primOp1("sign");
-export const floor = primOp1("floor");
-export const ceil = primOp1("ceil");
-export const fract = primOp1("fract");
+export const abs = __primOp1("abs");
+export const sign = __primOp1("sign");
+export const floor = __primOp1("floor");
+export const ceil = __primOp1("ceil");
+export const fract = __primOp1("fract");
 
 export const powf = <T extends Prim>(x: Term<T>, y: FloatTerm) =>
 	pow(x, matchingPrimFor(x, y));

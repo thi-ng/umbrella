@@ -13,7 +13,7 @@ export const computeDiff = (a: string, b: string) => {
 	).linear!;
 	for (let i = 0; i < edits.length; i += 3) {
 		const lineID = <number>edits[i];
-		if (lineID) updateOffset(edits, i, lineID);
+		if (lineID) __updateOffset(edits, i, lineID);
 	}
 	const result: any[] = ["div", {}];
 	let block: Maybe<any[]>;
@@ -31,7 +31,7 @@ export const computeDiff = (a: string, b: string) => {
 					j += 3;
 				} while (j < edits.length && edits[j] === 0);
 				if (j - i > 12) {
-					result.push(block, foldedBlock(edits, i, j - 6));
+					result.push(block, __foldedBlock(edits, i, j - 6));
 					block = undefined;
 					i = j - 9;
 					continue;
@@ -40,19 +40,21 @@ export const computeDiff = (a: string, b: string) => {
 		} else {
 			numSame = 0;
 		}
-		block!.push(codeLine(edits, i, true));
+		block!.push(__codeLine(edits, i, true));
 	}
 	if (block) result.push(block);
 	return result;
 };
 
-const updateOffset = (edits: any[], i: number, delta: number) => {
+/** @internal */
+const __updateOffset = (edits: any[], i: number, delta: number) => {
 	for (; i < edits.length; i += 3) {
 		if (edits[i] === 0) edits[i + 1] += delta;
 	}
 };
 
-const codeLine = (edits: any[], i: number, body = false): any[] => [
+/** @internal */
+const __codeLine = (edits: any[], i: number, body = false): any[] => [
 	"code",
 	{
 		"data-diff": ["-", " ", "+"][edits[i] + 1],
@@ -61,7 +63,8 @@ const codeLine = (edits: any[], i: number, body = false): any[] => [
 	body ? escapeEntities(edits[i + 2]) : null,
 ];
 
-const foldedBlock = (edits: any[], i: number, j: number): any[] => {
+/** @internal */
+const __foldedBlock = (edits: any[], i: number, j: number): any[] => {
 	const block = [
 		"pre",
 		{ "data-fold": true },
@@ -73,7 +76,7 @@ const foldedBlock = (edits: any[], i: number, j: number): any[] => {
 		],
 	];
 	for (; i < j; i += 3) {
-		block.push(codeLine(edits, i, true));
+		block.push(__codeLine(edits, i, true));
 	}
 	return block;
 };

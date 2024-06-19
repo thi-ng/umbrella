@@ -42,13 +42,13 @@ export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
 	const res: IObjectOf<Node | NodeResolver> = {};
 	for (let id in spec) {
 		const n = spec[id];
-		res[id] = isNodeSpec(n) ? nodeFromSpec(state, n, id) : n;
+		res[id] = __isNodeSpec(n) ? nodeFromSpec(state, n, id) : n;
 	}
 	return resolve(res);
 };
 
 /** @internal */
-const isNodeSpec = (x: any): x is NodeSpec =>
+const __isNodeSpec = (x: any): x is NodeSpec =>
 	isPlainObject(x) && isFunction(x.fn);
 
 /**
@@ -99,13 +99,14 @@ const isNodeSpec = (x: any): x is NodeSpec =>
 export const nodeFromSpec =
 	(state: IAtom<any>, spec: NodeSpec, id: string) =>
 	(resolve: ResolveFn): Node => {
-		const ins = prepareNodeInputs(spec.ins, state, resolve);
+		const ins = __prepareNodeInputs(spec.ins, state, resolve);
 		const node = spec.fn(ins, id);
-		const outs = prepareNodeOutputs(spec.outs, node, state, id);
+		const outs = __prepareNodeOutputs(spec.outs, node, state, id);
 		return { ins, node, outs };
 	};
 
-const prepareNodeInputs = (
+/** @internal */
+const __prepareNodeInputs = (
 	ins: IObjectOf<NodeInputSpec>,
 	state: IAtom<any>,
 	resolve: ResolveFn
@@ -114,13 +115,14 @@ const prepareNodeInputs = (
 	if (!ins) return res;
 	for (let id in ins) {
 		const i = ins[id];
-		const src = getNodeInput(i, id, state, resolve);
+		const src = __getNodeInput(i, id, state, resolve);
 		res[id] = i.xform ? src.transform(i.xform, { id }) : src;
 	}
 	return res;
 };
 
-const getNodeInput = (
+/** @internal */
+const __getNodeInput = (
 	i: NodeInputSpec,
 	id: string,
 	state: IAtom<any>,
@@ -138,7 +140,8 @@ const getNodeInput = (
 		  })
 		: illegalArgs(`invalid node input: ${id}`);
 
-const prepareNodeOutputs = (
+/** @internal */
+const __prepareNodeOutputs = (
 	outs: Maybe<IObjectOf<NodeOutputSpec>>,
 	node: ISubscription<any, any>,
 	state: IAtom<any>,
@@ -151,13 +154,14 @@ const prepareNodeOutputs = (
 		res[id] = isFunction(out)
 			? out(node, id)
 			: id == "*"
-			? nodeOutAll(node, state, nodeID, out)
-			: nodeOutID(node, state, nodeID, out, id);
+			? __nodeOutAll(node, state, nodeID, out)
+			: __nodeOutID(node, state, nodeID, out, id);
 	}
 	return res;
 };
 
-const nodeOutAll = (
+/** @internal */
+const __nodeOutAll = (
 	node: ISubscription<any, any>,
 	state: IAtom<any>,
 	nodeID: string,
@@ -170,7 +174,8 @@ const nodeOutAll = (
 		{ id: `out-${nodeID}` }
 	);
 
-const nodeOutID = (
+/** @internal */
+const __nodeOutID = (
 	node: ISubscription<any, any>,
 	state: IAtom<any>,
 	nodeID: string,

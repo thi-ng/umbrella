@@ -11,7 +11,8 @@ import { labelHash } from "../hash.js";
 import { layoutBox } from "../layout.js";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel.js";
 
-const mkLabel = (
+/** @internal */
+const __mkLabel = (
 	gui: IMGUI,
 	tx: Fn5<GUITheme, number, number, number, number, number[]>,
 	id: string,
@@ -50,11 +51,11 @@ export const buttonH = (
 		gui.resource(id, key, () => rect([x, y], [w, h])),
 		key,
 		label
-			? mkLabel(gui, textTransformH, id, key, x, y, w, h, false, label)
+			? __mkLabel(gui, textTransformH, id, key, x, y, w, h, false, label)
 			: undefined,
 		labelHover
 			? // prettier-ignore
-			  mkLabel(gui, textTransformH, id, key, x, y, w, h, true, labelHover)
+			  __mkLabel(gui, textTransformH, id, key, x, y, w, h, true, labelHover)
 			: undefined,
 		info
 	);
@@ -77,11 +78,11 @@ export const buttonV = (
 		gui.resource(id, key, () => rect([x, y], [w, h])),
 		key,
 		label
-			? mkLabel(gui, textTransformV, id, key, x, y, w, h, false, label)
+			? __mkLabel(gui, textTransformV, id, key, x, y, w, h, false, label)
 			: undefined,
 		labelHover
 			? // prettier-ignore
-			  mkLabel(gui, textTransformV, id, key, x, y, w, h, true, labelHover)
+			  __mkLabel(gui, textTransformV, id, key, x, y, w, h, true, labelHover)
 			: undefined,
 		info
 	);

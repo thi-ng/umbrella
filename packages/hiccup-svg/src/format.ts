@@ -41,7 +41,7 @@ const DEFAULT_NUMERIC_IDS = [
  *
  * @internal
  */
-const numericAttribs = (attribs: any, ids: string[]) => {
+const __numericAttribs = (attribs: any, ids: string[]) => {
 	let v: any;
 	for (let id of DEFAULT_NUMERIC_IDS.concat(ids)) {
 		typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
@@ -77,7 +77,7 @@ const numericAttribs = (attribs: any, ids: string[]) => {
  *
  * Additional attribute names given (via rest args) will be formatted as numeric
  * values (using configured precision, see {@link setPrecision}). Formatting is
- * done via {@link numericAttribs}.
+ * done via {@link __numericAttribs}.
  *
  * Returns updated attribs or `undefined` if `attribs` itself is null-ish.
  *
@@ -88,11 +88,11 @@ const numericAttribs = (attribs: any, ids: string[]) => {
  */
 export const fattribs = (attribs: any, ...numericIDs: string[]) => {
 	if (!attribs) return;
-	const res: any = ftransforms(attribs);
+	const res: any = __ftransforms(attribs);
 	let v: any;
 	(v = attribs.fill) && (res.fill = fcolor(v));
 	(v = attribs.stroke) && (res.stroke = fcolor(v));
-	return numericAttribs(attribs, numericIDs);
+	return __numericAttribs(attribs, numericIDs);
 };
 
 /**
@@ -104,7 +104,7 @@ export const fattribs = (attribs: any, ...numericIDs: string[]) => {
  *
  * @internal
  */
-const ftransforms = (attribs: any) => {
+const __ftransforms = (attribs: any) => {
 	let v: any;
 	if (
 		(v = attribs.transform) ||
@@ -120,7 +120,7 @@ const ftransforms = (attribs: any) => {
 			delete attribs.rotate;
 			delete attribs.scale;
 		} else {
-			attribs.transform = buildTransform(attribs);
+			attribs.transform = __buildTransform(attribs);
 		}
 	}
 	return attribs;
@@ -129,7 +129,7 @@ const ftransforms = (attribs: any) => {
 /**
  * @internal
  */
-const buildTransform = (attribs: any) => {
+const __buildTransform = (attribs: any) => {
 	const tx: string[] = [];
 	let v: any;
 	if ((v = attribs.translate)) {

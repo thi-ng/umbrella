@@ -41,9 +41,9 @@ export const defMultiPass = (opts: MultipassOpts) => {
 	assert(numPasses > 0, "require at least one shader pass");
 
 	const useMainBuffer = !opts.passes[numPasses - 1].outputs.length;
-	const textures = initTextures(opts);
-	const passes = initPasses(opts, textures);
-	const fbos = initBuffers(opts, textures, useMainBuffer);
+	const textures = __initTextures(opts);
+	const passes = __initPasses(opts, textures);
+	const fbos = __initBuffers(opts, textures, useMainBuffer);
 
 	const drawPass = (i: number, time: number, isFBO = true) => {
 		isFBO && fbos[i].bind();
@@ -103,12 +103,13 @@ export const defMultiPass = (opts: MultipassOpts) => {
 	return instance;
 };
 
-const initPasses = (opts: MultipassOpts, textures: IObjectOf<ITexture>) => {
+/** @internal */
+const __initPasses = (opts: MultipassOpts, textures: IObjectOf<ITexture>) => {
 	const gl = opts.gl;
 	const model = compileModel(gl, defQuadModel({ uv: false }));
 	return opts.passes.map((pass) => {
 		const m = pass.model ? compileModel(gl, <any>pass.model) : { ...model };
-		m.shader = initShader(gl, pass, textures);
+		m.shader = __initShader(gl, pass, textures);
 		m.uniforms = { ...pass.uniformVals };
 		pass.inputs.length > 0 &&
 			(m.textures = pass.inputs.map((id) => textures[id]));
@@ -116,13 +117,15 @@ const initPasses = (opts: MultipassOpts, textures: IObjectOf<ITexture>) => {
 	});
 };
 
+/** @internal */
 const TEX_TYPE_MAP: Record<number, string> = {
 	[TextureTarget.TEXTURE_2D]: S2D,
 	[TextureTarget.TEXTURE_3D]: S3D,
 	[TextureTarget.TEXTURE_CUBE_MAP]: "samplerCube",
 };
 
-const initShader = (
+/** @internal */
+const __initShader = (
 	gl: WebGLRenderingContext,
 	pass: PassOpts,
 	textures: IObjectOf<ITexture>
@@ -181,7 +184,8 @@ const initShader = (
 	return defShader(gl, spec);
 };
 
-const initTextures = (opts: MultipassOpts) =>
+/** @internal */
+const __initTextures = (opts: MultipassOpts) =>
 	Object.keys(opts.textures).reduce((acc, id) => {
 		acc[id] = defTexture(opts.gl, {
 			width: opts.width,
@@ -195,7 +199,8 @@ const initTextures = (opts: MultipassOpts) =>
 		return acc;
 	}, <IObjectOf<ITexture>>{});
 
-const initBuffers = (
+/** @internal */
+const __initBuffers = (
 	opts: MultipassOpts,
 	textures: IObjectOf<ITexture>,
 	useMainBuffer: boolean

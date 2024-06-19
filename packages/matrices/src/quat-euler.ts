@@ -2,7 +2,8 @@ import { X3, Y3, Z3 } from "@thi.ng/vectors/api";
 import { mulQ } from "./mulq.js";
 import { quatFromAxisAngle } from "./quat-axis-angle.js";
 
-const axisOrder = {
+/** @internal */
+const AXIS_ORDER = {
 	xyz: [X3, Y3, Z3],
 	yxz: [Y3, X3, Z3],
 	xzy: [X3, Z3, Y3],
@@ -10,6 +11,8 @@ const axisOrder = {
 	yzx: [Y3, Z3, X3],
 	zyx: [Z3, Y3, X3],
 };
+
+export type AxisOrder = keyof typeof AXIS_ORDER;
 
 /**
  * Constructs a quaternion from given rotation angles in specified
@@ -21,12 +24,12 @@ const axisOrder = {
  * @param c -
  */
 export const quatFromEuler = (
-	order: keyof typeof axisOrder,
+	order: AxisOrder,
 	a: number,
 	b: number,
 	c: number
 ) => {
-	const [aa, ab, ac] = axisOrder[order];
+	const [aa, ab, ac] = AXIS_ORDER[order];
 	return mulQ(
 		null,
 		mulQ([], quatFromAxisAngle(aa, a), quatFromAxisAngle(ab, b)),

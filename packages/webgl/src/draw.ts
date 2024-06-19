@@ -42,7 +42,7 @@ export const draw = (
 		if (indices && indices.buffer) {
 			indices.buffer.bind();
 			if (spec.instances) {
-				drawInstanced(gl, spec);
+				__drawInstanced(gl, spec);
 			} else {
 				gl.drawElements(
 					spec.mode!,
@@ -55,7 +55,7 @@ export const draw = (
 			}
 		} else {
 			if (spec.instances) {
-				drawInstanced(gl, spec);
+				__drawInstanced(gl, spec);
 			} else {
 				gl.drawArrays(spec.mode!, 0, spec.num);
 			}
@@ -65,7 +65,8 @@ export const draw = (
 	}
 };
 
-const drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
+/** @internal */
+const __drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
 	const isGL2 = isGL2Context(gl);
 	const ext = !isGL2 ? gl.getExtension("ANGLE_instanced_arrays") : undefined;
 	if (!(isGL2 || ext)) {

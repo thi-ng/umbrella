@@ -92,7 +92,7 @@ export const IGrid2DMixin = mixin(<IGrid2D<any, any>>{
  */
 export const IGrid3DMixin = mixin(<IGrid3D<any, any>>{
 	order() {
-		return strideOrder(this.stride);
+		return __strideOrder(this.stride);
 	},
 
 	includes(x: number, y: number, z: number) {
@@ -148,7 +148,7 @@ export const IGrid3DMixin = mixin(<IGrid3D<any, any>>{
  */
 export const IGrid4DMixin = mixin(<IGrid4D<any, any>>{
 	order() {
-		return strideOrder(this.stride);
+		return __strideOrder(this.stride);
 	},
 
 	includes(x: number, y: number, z: number, w: number) {
@@ -202,7 +202,8 @@ export const IGrid4DMixin = mixin(<IGrid4D<any, any>>{
 	},
 });
 
-const strideOrder = (strides: NumericArray) =>
+/** @internal */
+const __strideOrder = (strides: NumericArray) =>
 	[...strides]
 		.map((x, i) => [x, i])
 		.sort((a, b) => Math.abs(b[0]) - Math.abs(a[0]))

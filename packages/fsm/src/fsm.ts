@@ -93,7 +93,7 @@ export function fsm<T, C, R>(
 									);
 								}
 								if (res) {
-									acc = reduceResult(reduce, acc, res);
+									acc = __reduceResult(reduce, acc, res);
 									isReduced(res) &&
 										(acc = ensureReduced(acc));
 								}
@@ -102,7 +102,7 @@ export function fsm<T, C, R>(
 								}
 							} else if (type === Match.FAIL) {
 								if (res) {
-									acc = reduceResult(reduce, acc, res);
+									acc = __reduceResult(reduce, acc, res);
 								}
 								return ensureReduced(acc);
 							}
@@ -114,7 +114,8 @@ export function fsm<T, C, R>(
 		  };
 }
 
-const reduceResult = <R>(rfn: ReductionFn<R, any>, acc: any, res: R[]) => {
+/** @internal */
+const __reduceResult = <R>(rfn: ReductionFn<R, any>, acc: any, res: R[]) => {
 	for (let x of unreduced(res)) {
 		acc = rfn(acc, x);
 		if (isReduced(acc)) {

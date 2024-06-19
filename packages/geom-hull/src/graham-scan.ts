@@ -24,7 +24,7 @@ export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
 	let rx;
 	let ry;
 	// find min YX index
-	const min = findMin(pts);
+	const min = __findMin(pts);
 	[rx, ry] = pts[min];
 	const sorted: { p: ReadonlyVec; t: number }[] = [];
 	// compute & sort by polar ordering relative to min
@@ -41,7 +41,7 @@ export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
 		rx = r[0];
 		ry = r[1];
 		while (
-			(h > 1 && notCCW(p[0], p[1], q[0], q[1], rx, ry, eps)) ||
+			(h > 1 && __notCCW(p[0], p[1], q[0], q[1], rx, ry, eps)) ||
 			(h === 1 && q[0] === rx && q[1] === ry)
 		) {
 			h--;
@@ -66,8 +66,10 @@ export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
  * @param by -
  * @param cx -
  * @param cy -
+ *
+ * @internal
  */
-const notCCW = (
+const __notCCW = (
 	ax: number,
 	ay: number,
 	bx: number,
@@ -81,8 +83,10 @@ const notCCW = (
  * Returns index of point with lowest YX coords.
  *
  * @param pts -
+ *
+ * @internal
  */
-const findMin = (pts: ReadonlyVec[]) => {
+const __findMin = (pts: ReadonlyVec[]) => {
 	let n = pts.length - 1;
 	let minID = n;
 	let [minX, minY] = pts[n];

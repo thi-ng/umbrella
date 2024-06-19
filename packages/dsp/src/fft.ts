@@ -108,7 +108,8 @@ export function conjugate(src: NumericArray | ComplexArray, isImg = true): any {
 	}
 }
 
-const swapR = (real: NumericArray, n: number) => {
+/** @internal */
+const __swapR = (real: NumericArray, n: number) => {
 	const n2 = n >> 1;
 	let ii: number;
 	let jj: number;
@@ -131,7 +132,8 @@ const swapR = (real: NumericArray, n: number) => {
 	}
 };
 
-const swapRI = (real: NumericArray, img: NumericArray, n: number) => {
+/** @internal */
+const __swapRI = (real: NumericArray, img: NumericArray, n: number) => {
 	const n2 = n >> 1;
 	let ii: number;
 	let jj: number;
@@ -157,7 +159,8 @@ const swapRI = (real: NumericArray, img: NumericArray, n: number) => {
 	}
 };
 
-const transform = (real: NumericArray, img: NumericArray, n: number) => {
+/** @internal */
+const __transform = (real: NumericArray, img: NumericArray, n: number) => {
 	let step = 1;
 	let prevStep: number;
 	let i: number, j: number, ii: number, ip: number;
@@ -226,13 +229,13 @@ export const fft = (
 	}
 	const n = real.length;
 	if (img) {
-		swapRI(real, img, n);
+		__swapRI(real, img, n);
 	} else {
-		swapR(real, n);
+		__swapR(real, n);
 		img = new Float64Array(n);
 	}
 
-	transform(real, img, n);
+	__transform(real, img, n);
 
 	return [real, img];
 };

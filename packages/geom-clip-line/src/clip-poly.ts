@@ -29,7 +29,7 @@ export const clipLinePoly = (
 		poly,
 		true
 	).isec;
-	return isecs ? collectSegments(<Vec[]>isecs) : undefined;
+	return isecs ? __collectSegments(<Vec[]>isecs) : undefined;
 };
 
 /**
@@ -53,7 +53,7 @@ export const clipLineSegmentPoly = (
 	}
 	isAInside && (<Vec[]>isecs).unshift(a);
 	isBInside && (<Vec[]>isecs).push(b);
-	return collectSegments(<Vec[]>isecs);
+	return __collectSegments(<Vec[]>isecs);
 };
 
 /**
@@ -80,7 +80,7 @@ export const clipPolylinePoly = (pts: ReadonlyVec[], poly: ReadonlyVec[]) => {
 		} else {
 			isAInside && (<Vec[]>isecs).unshift(a);
 			isBInside && (<Vec[]>isecs).push(b);
-			const [first, ...segments] = collectSegments(<Vec[]>isecs);
+			const [first, ...segments] = __collectSegments(<Vec[]>isecs);
 			if (isAInside) {
 				if (res.length) res[res.length - 1].push(first[1]);
 				else res.push(first);
@@ -94,7 +94,8 @@ export const clipPolylinePoly = (pts: ReadonlyVec[], poly: ReadonlyVec[]) => {
 	return res;
 };
 
-const collectSegments = (isecs: Vec[]) => {
+/** @internal */
+const __collectSegments = (isecs: Vec[]) => {
 	const segments: Vec[][] = [];
 	for (let i = 0, n = isecs.length - 1; i < n; i += 2) {
 		segments.push([isecs[i], isecs[i + 1]]);

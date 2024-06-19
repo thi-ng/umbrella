@@ -30,7 +30,8 @@ export const rgbaRgb565 = (rgba: ReadonlyVec) =>
 	(((clamp01(rgba[1]) * 255.5) & 0xfc) << 3) |
 	(((clamp01(rgba[2]) * 255.5) & 0xf8) >> 3);
 
-const clampCoord = (x: number, maxW: number, w?: number) =>
+/** @internal */
+const __clampCoord = (x: number, maxW: number, w?: number) =>
 	w !== undefined ? Math.min(x + w, maxW) : maxW;
 
 /**
@@ -58,8 +59,8 @@ export const renderPixels = (
 	imgH = (imgH || bufH) - 1 - offsetY;
 	x = clamp(x || 0, 0, bufW);
 	y = clamp(y || 0, 0, bufH);
-	const x2 = clampCoord(x, bufW, w);
-	const y2 = clampCoord(y, bufH, h);
+	const x2 = __clampCoord(x, bufW, w);
+	const y2 = __clampCoord(y, bufH, h);
 	const fragCoord = [];
 	for (let yy = y; yy < y2; yy++) {
 		fragCoord[1] = imgH - yy;

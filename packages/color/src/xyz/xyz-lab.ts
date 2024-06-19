@@ -4,7 +4,7 @@ import { D50, D65 } from "../api/constants.js";
 import { __ensureAlpha } from "../internal/ensure.js";
 
 /** @internal */
-const transform = (x: number) =>
+const __transform = (x: number) =>
 	x > 0.00885645 ? Math.cbrt(x) : 7.787037 * x + 16 / 116;
 
 /**
@@ -20,9 +20,9 @@ const transform = (x: number) =>
  * @param white -
  */
 export const xyzLab = (out: Color | null, src: ReadonlyColor, white = D50) => {
-	const x = transform(src[0] / white[0]);
-	const y = transform(src[1] / white[1]);
-	const z = transform(src[2] / white[2]);
+	const x = __transform(src[0] / white[0]);
+	const y = __transform(src[1] / white[1]);
+	const z = __transform(src[2] / white[2]);
 	return setC4(
 		out || src,
 		1.16 * y - 0.16,

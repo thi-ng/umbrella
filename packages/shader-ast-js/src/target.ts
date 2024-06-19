@@ -93,16 +93,21 @@ const RE_SEMI = /[};]$/;
 
 const RESET = `for(let t in env.pools) env.pools[t].reset();`;
 
-const isIntOrBool = (l: Term<any>) => isInt(l) || isUint(l) || isBool(l);
+/** @internal */
+const __isIntOrBool = (l: Term<any>) => isInt(l) || isUint(l) || isBool(l);
 
-const isVecOrMat = (l: Term<any>) => isVec(l) || isMat(l);
+/** @internal */
+const __isVecOrMat = (l: Term<any>) => isVec(l) || isMat(l);
 
-const swizzle = (id: string) => [...id].map((x) => COMPS[x]).join(", ");
+/** @internal */
+const __swizzle = (id: string) => [...id].map((x) => COMPS[x]).join(", ");
 
-const buildComments = (t: Func<any>) =>
+/** @internal */
+const __buildComments = (t: Func<any>) =>
 	`/**\n${t.args.map((p) => ` * @param ${p.id} ${p.type}`).join("\n")}\n */`;
 
-const buildExports = (tree: Term<any>) =>
+/** @internal */
+const __buildExports = (tree: Term<any>) =>
 	tree.tag === "scope"
 		? (<Scope>tree).body
 				.filter((x) => x.tag === "fn")
@@ -144,7 +149,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			const rhs = emit(t.r);
 			if (t.l.tag === "swizzle") {
 				const s = <Swizzle<any>>t.l;
-				const id = swizzle(s.id);
+				const id = __swizzle(s.id);
 				const val = emit(s.val);
 				return s.id.length > 1
 					? `env.set_swizzle${s.id.length}(${val}, ${rhs}, ${id})`
@@ -180,7 +185,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			} else {
 				body = emit(t.scope);
 			}
-			return `${buildComments(t)}\nfunction ${t.id}(${$list(
+			return `${__buildComments(t)}\nfunction ${t.id}(${$list(
 				t.args
 			)}) ${body}`;
 		},
@@ -235,7 +240,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 		},
 
 		op1: (t) => {
-			const complex = isVecOrMat(t) || isInt(t);
+			const complex = __isVecOrMat(t) || isInt(t);
 			const op = t.op;
 			const val = emit(t.val);
 			return complex && t.post
@@ -249,15 +254,15 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 
 		op2: (t) => {
 			const { l, r } = t;
-			const vec = isVecOrMat(l)
+			const vec = __isVecOrMat(l)
 				? l.type
-				: isVecOrMat(r)
+				: __isVecOrMat(r)
 				? r.type
 				: undefined;
 			const int = !vec
-				? isIntOrBool(l)
+				? __isIntOrBool(l)
 					? l.type
-					: isIntOrBool(r)
+					: __isIntOrBool(r)
 					? r.type
 					: undefined
 				: undefined;
@@ -278,8 +283,10 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 
 		swizzle: (t) =>
 			t.id.length > 1
-				? `env.swizzle${t.id.length}(${emit(t.val)}, ${swizzle(t.id)})`
-				: `${emit(t.val)}[${swizzle(t.id)}]`,
+				? `env.swizzle${t.id.length}(${emit(t.val)}, ${__swizzle(
+						t.id
+				  )})`
+				: `${emit(t.val)}[${__swizzle(t.id)}]`,
 
 		sym: (t) => t.id,
 
@@ -290,7 +297,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 
 	Object.assign(emit, <JSTarget>{
 		compile: (tree, env = JS_DEFAULT_ENV) => {
-			const exports = buildExports(tree);
+			const exports = __buildExports(tree);
 			return new Function(
 				"env",
 				[

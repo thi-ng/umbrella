@@ -178,7 +178,7 @@ export function partitionSync<T>(...args: any[]): any {
 						currKeys.add(k);
 						if (
 							mergeOnly ||
-							requiredInputs(requiredKeys, currKeys)
+							__requiredInputs(requiredKeys, currKeys)
 						) {
 							acc = reduce(acc, curr);
 							first = false;
@@ -199,7 +199,7 @@ export function partitionSync<T>(...args: any[]): any {
 				init,
 				(acc) => {
 					if (all && currKeys.size > 0) {
-						acc = reduce(acc, collect(cache, currKeys));
+						acc = reduce(acc, __collect(cache, currKeys));
 						cache.clear();
 						currKeys.clear();
 					}
@@ -218,8 +218,8 @@ export function partitionSync<T>(...args: any[]): any {
 							);
 						slot.push(x);
 						currKeys.add(k);
-						while (requiredInputs(requiredKeys, currKeys)) {
-							acc = reduce(acc, collect(cache, currKeys));
+						while (__requiredInputs(requiredKeys, currKeys)) {
+							acc = reduce(acc, __collect(cache, currKeys));
 							first = false;
 							if (isReduced(acc)) break;
 						}
@@ -250,7 +250,11 @@ export function partitionSync<T>(...args: any[]): any {
 	return xform;
 }
 
-const requiredInputs = (required: Set<PropertyKey>, curr: Set<PropertyKey>) => {
+/** @internal */
+const __requiredInputs = (
+	required: Set<PropertyKey>,
+	curr: Set<PropertyKey>
+) => {
 	if (curr.size < required.size) return false;
 	for (let id of required) {
 		if (!curr.has(id)) return false;
@@ -258,7 +262,8 @@ const requiredInputs = (required: Set<PropertyKey>, curr: Set<PropertyKey>) => {
 	return true;
 };
 
-const collect = <T>(
+/** @internal */
+const __collect = <T>(
 	cache: Map<PropertyKey, T[]>,
 	currKeys: Set<PropertyKey>
 ) => {

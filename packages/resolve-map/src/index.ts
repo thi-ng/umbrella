@@ -153,14 +153,14 @@ export function resolve<T>(
 export function resolve(root: any, opts?: Partial<ResolveOpts>) {
 	const $opts = <ResolveOpts>{ prefix: "@", unwrap: true, ...opts };
 	return isPlainObject(root)
-		? resolveMap(root, $opts)
+		? __resolveMap(root, $opts)
 		: isArray(root)
-		? resolveArray(root, $opts)
+		? __resolveArray(root, $opts)
 		: root;
 }
 
 /** @internal */
-const resolveMap = <T>(
+const __resolveMap = <T>(
 	obj: Unresolved<T>,
 	opts: ResolveOpts,
 	root?: any,
@@ -170,15 +170,15 @@ const resolveMap = <T>(
 ) => {
 	root = root || obj;
 	for (let k in obj) {
-		_resolve(root, [...path, k], resolved, stack, opts);
+		__resolve(root, [...path, k], resolved, stack, opts);
 	}
 	return !opts.unwrap || path.length
 		? <T>obj
-		: unwrapResolved(<T>obj, resolved);
+		: __unwrapResolved(<T>obj, resolved);
 };
 
 /** @internal */
-const resolveArray = <T>(
+const __resolveArray = <T>(
 	arr: Unresolved<T[]>,
 	opts: ResolveOpts,
 	root?: any,
@@ -188,11 +188,11 @@ const resolveArray = <T>(
 ) => {
 	root = root || arr;
 	for (let k = 0, n = arr.length; k < n; k++) {
-		_resolve(root, [...path, k], resolved, stack, opts);
+		__resolve(root, [...path, k], resolved, stack, opts);
 	}
 	return !opts.unwrap || path.length
 		? <T[]>arr
-		: unwrapResolved(<T[]>arr, resolved);
+		: __unwrapResolved(<T[]>arr, resolved);
 };
 
 /**
@@ -208,7 +208,7 @@ const resolveArray = <T>(
  *
  * @internal
  */
-const _resolve = (
+const __resolve = (
 	root: any,
 	path: LookupPath,
 	resolved: IObjectOf<boolean>,
@@ -220,7 +220,7 @@ const _resolve = (
 		illegalArgs(`cyclic references not allowed: ${pathID}`);
 	}
 	// console.log(pp, resolved[pp], stack);
-	let [v, isResolved] = getInUnsafe(root, path);
+	let [v, isResolved] = __getInUnsafe(root, path);
 	if (!resolved[pathID]) {
 		if (isResolved) {
 			resolved[pathID] = true;
@@ -229,7 +229,7 @@ const _resolve = (
 		let res = SEMAPHORE;
 		stack.push(pathID);
 		if (isPlainObject(v)) {
-			resolveMap(
+			__resolveMap(
 				v,
 				{ ...opts, unwrap: false },
 				root,
@@ -238,7 +238,7 @@ const _resolve = (
 				stack
 			);
 		} else if (isArray(v)) {
-			resolveArray(
+			__resolveArray(
 				v,
 				{ ...opts, unwrap: false },
 				root,
@@ -251,7 +251,7 @@ const _resolve = (
 			isString(v) &&
 			v.startsWith(opts.prefix)
 		) {
-			res = _resolve(
+			res = __resolve(
 				root,
 				absPath(path, v, opts.prefix.length),
 				resolved,
@@ -259,15 +259,15 @@ const _resolve = (
 				opts
 			);
 		} else if (isFunction(v)) {
-			res = resolveFunction(
+			res = __resolveFunction(
 				v,
 				(p: string) =>
-					_resolve(root, absPath(path, p, 0), resolved, stack, opts),
+					__resolve(root, absPath(path, p, 0), resolved, stack, opts),
 				pathID,
 				resolved
 			);
 		} else if (!exists(root, path)) {
-			v = resolvePath(root, path, resolved, stack, opts);
+			v = __resolvePath(root, path, resolved, stack, opts);
 		}
 		if (res !== SEMAPHORE) {
 			mutInUnsafe(root, path, res);
@@ -298,7 +298,7 @@ const _resolve = (
  *
  * @internal
  */
-const resolvePath = (
+const __resolvePath = (
 	root: any,
 	path: LookupPath,
 	resolved: IObjectOf<boolean>,
@@ -309,7 +309,7 @@ const resolvePath = (
 	let pathID = stack.pop();
 	let v;
 	for (let i = 1, n = path.length; i <= n; i++) {
-		v = _resolve(root, path.slice(0, i), resolved, stack, opts);
+		v = __resolve(root, path.slice(0, i), resolved, stack, opts);
 	}
 	// restore
 	stack.push(pathID!);
@@ -335,7 +335,7 @@ const resolvePath = (
  *
  * @internal
  */
-const resolveFunction = (
+const __resolveFunction = (
 	fn: (x: any, r?: ResolveFn) => any,
 	resolve: ResolveFn,
 	pathID: string,
@@ -354,22 +354,22 @@ const resolveFunction = (
 	} else {
 		res = fn(resolve);
 	}
-	markResolved(res, pathID, resolved);
+	__markResolved(res, pathID, resolved);
 	return res;
 };
 
 /** @internal */
-const markResolved = (v: any, path: string, resolved: IObjectOf<boolean>) => {
+const __markResolved = (v: any, path: string, resolved: IObjectOf<boolean>) => {
 	resolved[path] = true;
 	if (isPlainObject(v)) {
-		markObjResolved(v, path, resolved);
+		__markObjResolved(v, path, resolved);
 	} else if (isArray(v)) {
-		markArrayResolved(v, path, resolved);
+		__markArrayResolved(v, path, resolved);
 	}
 };
 
 /** @internal */
-const markObjResolved = (
+const __markObjResolved = (
 	obj: any,
 	path: string,
 	resolved: IObjectOf<boolean>
@@ -378,12 +378,12 @@ const markObjResolved = (
 	for (let k in obj) {
 		v = obj[k];
 		p = path + "/" + k;
-		markResolved(v, p, resolved);
+		__markResolved(v, p, resolved);
 	}
 };
 
 /** @internal */
-const markArrayResolved = (
+const __markArrayResolved = (
 	arr: any[],
 	path: string,
 	resolved: IObjectOf<boolean>
@@ -392,7 +392,7 @@ const markArrayResolved = (
 	for (let i = 0, n = arr.length; i < n; i++) {
 		v = arr[i];
 		p = path + "/" + i;
-		markResolved(v, p, resolved);
+		__markResolved(v, p, resolved);
 	}
 };
 
@@ -460,7 +460,7 @@ export const resolved = <T>(val: T) => new Resolved<T>(val);
  *
  * @internal
  */
-const getInUnsafe = (obj: any, path: LookupPath) => {
+const __getInUnsafe = (obj: any, path: LookupPath) => {
 	const n = path.length - 1;
 	let res = obj;
 	let isResolved = obj instanceof Resolved;
@@ -482,10 +482,10 @@ const getInUnsafe = (obj: any, path: LookupPath) => {
  *
  * @internal
  */
-const unwrapResolved = <T>(root: T, resolved: IObjectOf<boolean>) => {
+const __unwrapResolved = <T>(root: T, resolved: IObjectOf<boolean>) => {
 	for (let path in resolved) {
 		const $path = path.split("/");
-		const val = getInUnsafe(root, $path);
+		const val = __getInUnsafe(root, $path);
 		val[1] && mutInUnsafe(root, $path, val[0]);
 	}
 	return root;

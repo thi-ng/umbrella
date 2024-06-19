@@ -28,8 +28,8 @@ export const filterResponseRaw = (
 	db = true
 ): FilterResponse => {
 	const w0 = TAU * freq;
-	const [cp, sp] = convolve(poles, w0);
-	const [cz, sz] = convolve(zeroes, w0);
+	const [cp, sp] = __convolve(poles, w0);
+	const [cz, sz] = __convolve(zeroes, w0);
 	const mag = Math.sqrt((cz * cz + sz * sz) / (cp * cp + sp * sp));
 	const phase = Math.atan2(sp, cp) - Math.atan2(sz, cz);
 	return { freq, phase, mag: db ? magDb(mag) : mag };
@@ -44,7 +44,8 @@ export const filterResponse = (
 export const freqRange: FnU3<number, number[]> = (fstart, fend, num) =>
 	line(fstart, fend, num - 1).take(num);
 
-const convolve = (coeffs: NumericArray, w0: number) => {
+/** @internal */
+const __convolve = (coeffs: NumericArray, w0: number) => {
 	let c = 0;
 	let s = 0;
 	for (let i = coeffs.length; i-- > 0; ) {

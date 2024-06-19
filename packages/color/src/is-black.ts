@@ -4,15 +4,27 @@ import type { ReadonlyColor, TypedColor } from "./api.js";
 import { EPS } from "./api/constants.js";
 import { __dispatch0 } from "./internal/dispatch.js";
 import { rgb } from "./rgb/rgb.js";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 
-const isBlackHsv = (x: ReadonlyColor, eps = EPS) => x[2] <= eps;
+export type IsBlackFn = {
+	(col: TypedColor<any>, eps?: number): boolean;
+} & MultiFn1O<TypedColor<any>, number, boolean>;
 
-const isBlackRgb = (x: ReadonlyColor, eps = EPS) =>
+/** @internal */
+const __isBlackHsv = (x: ReadonlyColor, eps = EPS) => x[2] <= eps;
+
+/** @internal */
+const __isBlackRgb = (x: ReadonlyColor, eps = EPS) =>
 	x[0] <= eps && x[1] <= eps && x[2] <= eps;
 
-const isBlackLch = (x: ReadonlyColor, eps = EPS) => x[0] <= eps;
+/** @internal */
+const __isBlackLch = (x: ReadonlyColor, eps = EPS) => x[0] <= eps;
 
-export const isBlack = defmulti<TypedColor<any>, Maybe<number>, boolean>(
+export const isBlack: IsBlackFn = defmulti<
+	TypedColor<any>,
+	Maybe<number>,
+	boolean
+>(
 	__dispatch0,
 	{
 		hcy: "hsv",
@@ -24,9 +36,9 @@ export const isBlack = defmulti<TypedColor<any>, Maybe<number>, boolean>(
 		ycc: "rgb",
 	},
 	{
-		hsv: isBlackHsv,
-		lch: isBlackLch,
-		rgb: isBlackRgb,
-		[DEFAULT]: (x: any) => isBlackRgb(rgb(x)),
+		[DEFAULT]: (x: any) => __isBlackRgb(rgb(x)),
+		hsv: __isBlackHsv,
+		lch: __isBlackLch,
+		rgb: __isBlackRgb,
 	}
 );

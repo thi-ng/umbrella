@@ -53,7 +53,8 @@ export const int = (x: NumericB) =>
 export const uint = (x: NumericB) =>
 	lit(U, isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x >>> 0 : x);
 
-const wrap =
+/** @internal */
+const __wrap =
 	<T extends Type>(type: T, ctor: Fn<any, Term<T>>) =>
 	(x?: any): Maybe<Term<T>> =>
 		isNumber(x)
@@ -68,7 +69,7 @@ const wrap =
  *
  * @param x -
  */
-export const wrapFloat = wrap(F, float);
+export const wrapFloat = __wrap(F, float);
 
 /**
  * Takes a plain number or numeric term and wraps it as signed integer
@@ -76,7 +77,7 @@ export const wrapFloat = wrap(F, float);
  *
  * @param x -
  */
-export const wrapInt = wrap(I, int);
+export const wrapInt = __wrap(I, int);
 
 /**
  * Takes a plain number or numeric term and wraps it as unsigned integer
@@ -84,7 +85,7 @@ export const wrapInt = wrap(I, int);
  *
  * @param x -
  */
-export const wrapUint = wrap(U, uint);
+export const wrapUint = __wrap(U, uint);
 
 /**
  * Takes a plain number or numeric term and wraps it as boolean literal
@@ -92,7 +93,7 @@ export const wrapUint = wrap(U, uint);
  *
  * @param x -
  */
-export const wrapBool = wrap(B, bool);
+export const wrapBool = __wrap(B, bool);
 
 export const TRUE = bool(true);
 export const FALSE = bool(false);

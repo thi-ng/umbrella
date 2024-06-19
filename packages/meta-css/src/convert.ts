@@ -59,6 +59,7 @@ export interface ConvertOpts extends CommonOpts {
 	watch: boolean;
 }
 
+/** @internal */
 interface Scope {
 	state: State;
 	sel: string[];
@@ -66,6 +67,7 @@ interface Scope {
 	parent?: Scope;
 }
 
+/** @internal */
 interface ProcessCtx {
 	root: Scope;
 	curr: Scope;
@@ -109,7 +111,7 @@ export async function convertCommand(ctx: AppCtx<ConvertOpts>) {
 	);
 	if (ctx.opts.bundle) {
 		if (ctx.opts.watch) {
-			await watchBundleInputs(ctx, forceRules);
+			await __watchBundleInputs(ctx, forceRules);
 		} else {
 			processInputs(
 				ctx,
@@ -125,7 +127,7 @@ export async function convertCommand(ctx: AppCtx<ConvertOpts>) {
 		}
 	} else {
 		if (ctx.opts.watch) {
-			await watchInputs(ctx, specs, forceRules);
+			await __watchInputs(ctx, specs, forceRules);
 		} else if (ctx.opts.eval) {
 			try {
 				processInputs(ctx, specs, forceRules, [ctx.opts.eval]);
@@ -154,7 +156,8 @@ export async function convertCommand(ctx: AppCtx<ConvertOpts>) {
 	}
 }
 
-const watchInputs = async (
+/** @internal */
+const __watchInputs = async (
 	ctx: AppCtx<ConvertOpts>,
 	specs: CompiledSpecs,
 	forceRules: ReturnType<typeof processForceIncludes>
@@ -230,7 +233,8 @@ const watchInputs = async (
 	process.on("SIGINT", close);
 };
 
-const watchBundleInputs = async (
+/** @internal */
+const __watchBundleInputs = async (
 	ctx: AppCtx<ConvertOpts>,
 	forceRules: ReturnType<typeof processForceIncludes>
 ) => {
@@ -297,10 +301,13 @@ export const processMediaQueries = (
 	{ css: opts, logger, mediaQueryRules, specs }: ProcessOpts
 ) => {
 	for (let queryID in mediaQueryRules) {
-		const rules = buildDecls(mediaQueryRules[queryID], specs);
+		const rules = __buildDecls(mediaQueryRules[queryID], specs);
 		logger.debug("mediaquery rules", queryID, rules);
 		result.push(
-			css(at_media(mergeMediaQueries(specs.media, queryID), rules), opts)
+			css(
+				at_media(__mergeMediaQueries(specs.media, queryID), rules),
+				opts
+			)
 		);
 	}
 };
@@ -309,7 +316,7 @@ export const processPlainRules = (
 	bundle: string[],
 	{ css: opts, logger, plainRules, specs }: ProcessOpts
 ) => {
-	const rules = buildDecls(plainRules, specs);
+	const rules = __buildDecls(plainRules, specs);
 	logger.debug("plain rules", rules);
 	bundle.push(css(rules, opts));
 };
@@ -330,7 +337,7 @@ export const processForceIncludes = (
 	}
 	for (let id of classes) {
 		if (!id || id.startsWith("//")) continue;
-		const { token, query } = parseMediaQueryToken(id, mediaQueryIDs);
+		const { token, query } = __parseMediaQueryToken(id, mediaQueryIDs);
 		let matches: string[];
 		if (token.includes("*")) {
 			const re = new RegExp(`^${token.replace("*", ".*")}$`);
@@ -346,8 +353,8 @@ export const processForceIncludes = (
 		for (let match of matches) {
 			logger.debug("including class:", match);
 			query
-				? addMediaQueryDef(mediaQueryRules, query, `.${match}`, match)
-				: addPlainDef(plainRules, `.${match}`, match);
+				? __addMediaQueryDef(mediaQueryRules, query, `.${match}`, match)
+				: __addPlainDef(plainRules, `.${match}`, match);
 		}
 	}
 	return { mediaQueryRules, plainRules };
@@ -357,8 +364,8 @@ export const processSpec = (
 	src: string,
 	{ specs, mediaQueryIDs, mediaQueryRules, plainRules }: ProcessOpts
 ) => {
-	const root = defScope();
-	const initial = defScope(root);
+	const root = __defScope();
+	const initial = __defScope(root);
 	const ctx: ProcessCtx = {
 		root,
 		curr: initial,
@@ -379,11 +386,11 @@ export const processSpec = (
 							$scope.sel = $scope.sel.map((x) =>
 								x.replace(",", "")
 							);
-							$scope.path = buildScopePath(ctx.scopes);
+							$scope.path = __buildScopePath(ctx.scopes);
 						}
 						$scope.state = "class";
 					} else if (token === "}") {
-						endScope(ctx);
+						__endScope(ctx);
 					} else {
 						const last = peek($scope.sel);
 						if (!last || last.endsWith(",")) {
@@ -396,28 +403,28 @@ export const processSpec = (
 				case "class":
 					if (token === "{") {
 						$scope.state = "nest";
-						ctx.scopes.push((ctx.curr = defScope($scope)));
+						ctx.scopes.push((ctx.curr = __defScope($scope)));
 					} else if (token === "}") {
-						endScope(ctx);
+						__endScope(ctx);
 					} else {
-						let { token: id, query } = parseMediaQueryToken(
+						let { token: id, query } = __parseMediaQueryToken(
 							token,
 							mediaQueryIDs
 						);
 						if (
 							!specs.classes[id] &&
-							!(isAssignment(id) || isTemplateRef(id))
+							!(__isAssignment(id) || __isTemplateRef(id))
 						)
 							illegalArgs(`unknown class ID: ${id}`);
 						if (query) {
-							addMediaQueryDef(
+							__addMediaQueryDef(
 								mediaQueryRules,
 								query,
 								$scope.path,
 								id
 							);
 						} else {
-							addPlainDef(plainRules, $scope.path, id);
+							__addPlainDef(plainRules, $scope.path, id);
 						}
 					}
 					break;
@@ -459,36 +466,41 @@ export function* splitLine(line: string) {
 const QUERY_SEP = ":";
 const PATH_SEP = "///";
 
-const defScope = (parent?: Scope): Scope => ({
+/** @internal */
+const __defScope = (parent?: Scope): Scope => ({
 	state: "sel",
 	sel: parent ? [] : ["<root>"],
 	path: "",
 	parent,
 });
 
-const endScope = (ctx: ProcessCtx) => {
+/** @internal */
+const __endScope = (ctx: ProcessCtx) => {
 	const isEmpty = !ctx.curr.sel.length;
 	assert(!!ctx.curr.parent, "stack underflow");
 	ctx.scopes.pop();
 	if (ctx.scopes.length > 0) {
 		ctx.curr = peek(ctx.scopes);
 		if (!isEmpty && ctx.curr.state === "nest") {
-			ctx.scopes.push((ctx.curr = defScope(ctx.curr)));
+			ctx.scopes.push((ctx.curr = __defScope(ctx.curr)));
 		}
 	} else {
-		ctx.scopes.push((ctx.curr = defScope(ctx.root)));
+		ctx.scopes.push((ctx.curr = __defScope(ctx.root)));
 	}
 };
 
-const buildScopePath = (scopes: Scope[]) =>
+/** @internal */
+const __buildScopePath = (scopes: Scope[]) =>
 	scopes.map((x) => x.sel.join(",")).join(PATH_SEP);
 
-const buildDecls = (rules: IObjectOf<Set<string>>, specs: CompiledSpecs) =>
+/** @internal */
+const __buildDecls = (rules: IObjectOf<Set<string>>, specs: CompiledSpecs) =>
 	Object.entries(rules).map(([path, ids]) =>
-		buildDeclsForPath(path, ids, specs)
+		__buildDeclsForPath(path, ids, specs)
 	);
 
-const buildDeclsForPath = (
+/** @internal */
+const __buildDeclsForPath = (
 	selectorPath: string,
 	ids: Iterable<string>,
 	specs: CompiledSpecs
@@ -503,10 +515,10 @@ const buildDeclsForPath = (
 				{},
 				...map(
 					(x) =>
-						isTemplateRef(x)
-							? templateDecl(specs, x)
-							: isAssignment(x)
-							? varDecl(x)
+						__isTemplateRef(x)
+							? __templateDecl(specs, x)
+							: __isAssignment(x)
+							? __varDecl(x)
 							: withoutInternals(specs.classes[x]),
 					ids
 				)
@@ -519,7 +531,8 @@ const buildDeclsForPath = (
 	return root[0];
 };
 
-const parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
+/** @internal */
+const __parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
 	if (/^::?/.test(token)) return { token };
 	const idx = token.lastIndexOf(QUERY_SEP);
 	if (idx < 0) return { token };
@@ -543,14 +556,16 @@ const parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
  *
  * @param mediaQueryDefs
  * @param query
- * @returns
+ *
+ * @internal
  */
-const mergeMediaQueries = (mediaQueryDefs: IObjectOf<any>, query: string) =>
+const __mergeMediaQueries = (mediaQueryDefs: IObjectOf<any>, query: string) =>
 	query
 		.split(QUERY_SEP)
 		.reduce((acc, id) => Object.assign(acc, mediaQueryDefs[id]), <any>{});
 
-const addMediaQueryDef = (
+/** @internal */
+const __addMediaQueryDef = (
 	mediaQueryRules: IObjectOf<IObjectOf<Set<string>>>,
 	query: string,
 	path: string,
@@ -563,18 +578,21 @@ const addMediaQueryDef = (
 	).add(id);
 };
 
-const addPlainDef = (
+/** @internal */
+const __addPlainDef = (
 	plainRules: IObjectOf<Set<string>>,
 	path: string,
 	id: string
 ) => (plainRules[path] || (plainRules[path] = new Set())).add(id);
 
-const varDecl = (id: string): IObjectOf<any> => {
+/** @internal */
+const __varDecl = (id: string): IObjectOf<any> => {
 	const idx = id.indexOf("=");
 	return { [`--${id.substring(0, idx)}`]: id.substring(idx + 1) };
 };
 
-const templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
+/** @internal */
+const __templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
 	const idx = id.indexOf("(");
 	const tplID = id.substring(0, idx);
 	const vals = id
@@ -595,6 +613,8 @@ const templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
 	}, <IObjectOf<any>>{});
 };
 
-const isAssignment = (x: string) => x.includes("=");
+/** @internal */
+const __isAssignment = (x: string) => x.includes("=");
 
-const isTemplateRef = (x: string) => x.includes("(");
+/** @internal */
+const __isTemplateRef = (x: string) => x.includes("(");

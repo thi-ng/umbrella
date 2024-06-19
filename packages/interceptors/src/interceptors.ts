@@ -144,7 +144,8 @@ export const ensurePred =
 			  }
 			: undefined;
 
-const eventPathState = (state: any, path: Maybe<Fn<Event, Path>>, e: Event) =>
+/** @internal */
+const __eventPathState = (state: any, path: Maybe<Fn<Event, Path>>, e: Event) =>
 	getInUnsafe(state, path ? path(e) : e[1]);
 
 /**
@@ -170,7 +171,7 @@ export const ensureStateLessThan = (
 	max: number,
 	path?: Fn<Event, Path>,
 	err?: InterceptorFn
-) => ensurePred((state, e) => eventPathState(state, path, e) < max, err);
+) => ensurePred((state, e) => __eventPathState(state, path, e) < max, err);
 
 /**
  * Specialization of {@link ensurePred} to ensure a state value is greater
@@ -184,7 +185,7 @@ export const ensureStateGreaterThan = (
 	min: number,
 	path?: Fn<Event, Path>,
 	err?: InterceptorFn
-) => ensurePred((state, e) => eventPathState(state, path, e) > min, err);
+) => ensurePred((state, e) => __eventPathState(state, path, e) > min, err);
 
 /**
  * Specialization of {@link ensurePred} to ensure a state value is within
@@ -203,7 +204,7 @@ export const ensureStateRange = (
 	err?: InterceptorFn
 ) =>
 	ensurePred((state, e) => {
-		const x = eventPathState(state, path, e);
+		const x = __eventPathState(state, path, e);
 		return x >= min && x <= max;
 	}, err);
 

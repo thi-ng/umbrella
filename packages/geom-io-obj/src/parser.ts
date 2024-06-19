@@ -58,15 +58,15 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
 		switch (items.length) {
 			case 1:
 				for (let i = 1; i < n; i++) {
-					addID(face.v, line[i], nv);
+					__addID(face.v, line[i], nv);
 				}
 				break;
 			case 2:
 				opts!.uvs && (face.uv = []);
 				for (let i = 1; i < n; i++) {
 					const f = line[i].split("/");
-					addID(face.v, f[0], nv);
-					face.uv && addID(face.uv!, f[1], nuv);
+					__addID(face.v, f[0], nv);
+					face.uv && __addID(face.uv!, f[1], nuv);
 				}
 				break;
 			case 3:
@@ -74,9 +74,9 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
 				opts!.normals && items[2].length && (face.n = []);
 				for (let i = 1; i < n; i++) {
 					const f = line[i].split("/");
-					addID(face.v, f[0], nv);
-					face.uv && addID(face.uv!, f[1], nuv);
-					face.n && addID(face.n!, f[2], nn);
+					__addID(face.v, f[0], nv);
+					face.uv && __addID(face.uv!, f[1], nuv);
+					face.n && __addID(face.n!, f[2], nn);
 				}
 				break;
 			default:
@@ -88,7 +88,7 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
 		const nv = vertices.length;
 		const verts: number[] = [];
 		for (let i = 1, n = items.length; i < n; i++) {
-			addID(verts, items[i], nv);
+			__addID(verts, items[i], nv);
 		}
 		return verts;
 	};
@@ -110,19 +110,19 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
 		switch (items[0]) {
 			case "v": {
 				assert(len > 3, `invalid vertex @ line ${i}`);
-				const v = readVec3(items);
+				const v = __readVec3(items);
 				vertices.push(xform ? xform(v) : v);
 				break;
 			}
 			case "vn": {
 				assert(len > 3, `invalid normal @ line ${i}`);
-				const v = readVec3(items);
+				const v = __readVec3(items);
 				normals.push(xform ? xform(v) : v);
 				break;
 			}
 			case "vt": {
 				assert(len > 2, `invalid uv @ line ${i}`);
-				const v = readVec2(items);
+				const v = __readVec2(items);
 				uvs.push(xformUV ? xformUV(v) : v);
 				break;
 			}
@@ -130,7 +130,7 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
 				assert(len > 3, `invalid face @ line ${i}`);
 				const f = readFace(items);
 				tessellate && f.v.length > 3
-					? faces!.push(...tessellateFace(f))
+					? faces!.push(...__tessellateFace(f))
 					: faces!.push(f);
 				break;
 			}
@@ -160,23 +160,27 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
 	return result;
 };
 
-const addID = (acc: number[], x: string, num: number) => {
+/** @internal */
+const __addID = (acc: number[], x: string, num: number) => {
 	const v = parseInt(x);
 	acc.push(v < 0 ? v + num : v - 1);
 };
 
-const readVec2 = (items: string[]) => [
+/** @internal */
+const __readVec2 = (items: string[]) => [
 	parseFloat(items[1]),
 	parseFloat(items[2]),
 ];
 
-const readVec3 = (items: string[]) => [
+/** @internal */
+const __readVec3 = (items: string[]) => [
 	parseFloat(items[1]),
 	parseFloat(items[2]),
 	parseFloat(items[3]),
 ];
 
-const tessellateFace = (face: OBJFace) => {
+/** @internal */
+const __tessellateFace = (face: OBJFace) => {
 	const { v, uv, n } = face;
 	const v0 = v[0];
 	const uv0 = uv && uv[0];

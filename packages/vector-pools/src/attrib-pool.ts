@@ -91,7 +91,7 @@ export class AttribPool implements IRelease {
 		i: number
 	): Maybe<T> {
 		const spec = this.specs[id];
-		ensureSpec(spec, id);
+		__ensureSpec(spec, id);
 		if (i >= this.capacity) return;
 		i *= spec.stride!;
 		return spec.size > 1
@@ -103,7 +103,7 @@ export class AttribPool implements IRelease {
 		id: string
 	): IterableIterator<T> {
 		const spec = this.specs[id];
-		ensureSpec(spec, id);
+		__ensureSpec(spec, id);
 		const buf = this.attribs[id];
 		const stride = spec.stride!;
 		const size = spec.size;
@@ -120,7 +120,7 @@ export class AttribPool implements IRelease {
 
 	attribArray(id: string) {
 		const spec = this.specs[id];
-		ensureSpec(spec, id);
+		__ensureSpec(spec, id);
 		const n = this.capacity;
 		const size = spec.size;
 		const stride = spec.stride!;
@@ -142,11 +142,11 @@ export class AttribPool implements IRelease {
 		const spec = this.specs[id];
 		this.ensure(index + 1);
 		const isNum = isNumber(v);
-		ensureAttrib(spec, id, isNum);
+		__ensureAttrib(spec, id, isNum);
 		const buf = this.attribs[id];
 		index *= spec.stride!;
 		if (!isNum) {
-			ensureValueSize(<ReadonlyVec>v, spec.size);
+			__ensureValueSize(<ReadonlyVec>v, spec.size);
 			buf.set(<ReadonlyVec>v, index);
 		} else {
 			buf[index] = <number>v;
@@ -158,13 +158,13 @@ export class AttribPool implements IRelease {
 		const v = vals[0];
 		const spec = this.specs[id];
 		const isNum = isNumber(v);
-		ensureAttrib(spec, id, isNum);
+		__ensureAttrib(spec, id, isNum);
 		const n = vals.length;
 		this.ensure(index + n);
 		const stride = spec.stride!;
 		const buf = this.attribs[id];
 		if (!isNum) {
-			ensureValueSize(<ReadonlyVec>v, spec.size);
+			__ensureValueSize(<ReadonlyVec>v, spec.size);
 			for (let i = 0, j = index * stride; i < n; i++, j += stride) {
 				buf.set(<ReadonlyVec>vals[i], j);
 			}
@@ -328,7 +328,7 @@ export class AttribPool implements IRelease {
 		const { attribs, specs } = this;
 		const order = grow ? [...this.order].reverse() : this.order;
 		// create resized attrib views (in old or new address space)
-		const newAttribs = resizeAttribs(
+		const newAttribs = __resizeAttribs(
 			specs,
 			this.pool.buf,
 			newAddr,
@@ -341,7 +341,15 @@ export class AttribPool implements IRelease {
 		for (let i of newByteStride < this.byteStride
 			? range(num + 1)
 			: range(num, -1, -1)) {
-			moveAttribs(order, specs, attribs, newAttribs, i, sameBlock, grow);
+			__moveAttribs(
+				order,
+				specs,
+				attribs,
+				newAttribs,
+				i,
+				sameBlock,
+				grow
+			);
 		}
 		this.addr = newAddr;
 		this.byteStride = newByteStride;
@@ -353,7 +361,8 @@ export class AttribPool implements IRelease {
 	}
 }
 
-const resizeAttribs = (
+/** @internal */
+const __resizeAttribs = (
 	specs: IObjectOf<AttribSpec>,
 	buf: ArrayBuffer,
 	dest: number,
@@ -377,7 +386,8 @@ const resizeAttribs = (
 	return newAttribs;
 };
 
-const moveAttribs = (
+/** @internal */
+const __moveAttribs = (
 	order: string[],
 	specs: IObjectOf<AttribSpec>,
 	attribs: IObjectOf<TypedArray>,
@@ -403,18 +413,21 @@ const moveAttribs = (
 	}
 };
 
-const ensureSpec = (spec: AttribSpec, id: string) =>
+/** @internal */
+const __ensureSpec = (spec: AttribSpec, id: string) =>
 	assert(!!spec, `invalid attrib: ${id}`);
 
-const ensureAttrib = (spec: AttribSpec, id: string, isNum: boolean) => {
-	ensureSpec(spec, id);
+/** @internal */
+const __ensureAttrib = (spec: AttribSpec, id: string, isNum: boolean) => {
+	__ensureSpec(spec, id);
 	assert(
 		() => (!isNum && spec.size > 1) || (isNum && spec.size === 1),
 		`incompatible value for attrib: ${id}`
 	);
 };
 
-const ensureValueSize = (v: ReadonlyVec, size: number) =>
+/** @internal */
+const __ensureValueSize = (v: ReadonlyVec, size: number) =>
 	assert(
 		v.length <= size,
 		`wrong attrib val size, expected ${size}, got ${v.length}`

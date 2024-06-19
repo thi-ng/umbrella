@@ -18,8 +18,8 @@ export const testBoxSphere: MultiVecOpImpl<
 export const testRectCircle = testBoxSphere.add(
 	2,
 	(boxMinPos, boxSize, circlePos, r) =>
-		axis(circlePos[0], boxMinPos[0], boxSize[0]) +
-			axis(circlePos[1], boxMinPos[1], boxSize[1]) <=
+		__axis(circlePos[0], boxMinPos[0], boxSize[0]) +
+			__axis(circlePos[1], boxMinPos[1], boxSize[1]) <=
 		r * r
 );
 
@@ -34,16 +34,16 @@ export const testRectCircle = testBoxSphere.add(
 export const testAABBSphere = testBoxSphere.add(
 	3,
 	(boxMinPos, boxSize, spherePos, r) =>
-		axis(spherePos[0], boxMinPos[0], boxSize[0]) +
-			axis(spherePos[1], boxMinPos[1], boxSize[1]) +
-			axis(spherePos[2], boxMinPos[2], boxSize[2]) <=
+		__axis(spherePos[0], boxMinPos[0], boxSize[0]) +
+			__axis(spherePos[1], boxMinPos[1], boxSize[1]) +
+			__axis(spherePos[2], boxMinPos[2], boxSize[2]) <=
 		r * r
 );
 
 testBoxSphere.default((boxPos, boxSize, spherePos, r) => {
 	let sum = 0;
 	for (let i = boxPos.length; i-- > 0; ) {
-		sum += axis(spherePos[i], boxPos[i], boxSize[i]);
+		sum += __axis(spherePos[i], boxPos[i], boxSize[i]);
 	}
 	return sum <= r * r;
 });
@@ -73,8 +73,8 @@ export const testCenteredBoxSphere: MultiVecOpImpl<
 export const testCenteredRectCircle = testCenteredBoxSphere.add(
 	2,
 	(boxPos, { 0: w, 1: h }, circlePos, r) =>
-		axis(circlePos[0], boxPos[0] - w, w * 2) +
-			axis(circlePos[1], boxPos[1] - h, h * 2) <=
+		__axis(circlePos[0], boxPos[0] - w, w * 2) +
+			__axis(circlePos[1], boxPos[1] - h, h * 2) <=
 		r * r
 );
 
@@ -90,19 +90,20 @@ export const testCenteredRectCircle = testCenteredBoxSphere.add(
 export const testCenteredAABBSphere = testCenteredBoxSphere.add(
 	3,
 	(boxPos, { 0: w, 1: h, 2: d }, spherePos, r) =>
-		axis(spherePos[0], boxPos[0] - w, w * 2) +
-			axis(spherePos[1], boxPos[1] - h, h * 2) +
-			axis(spherePos[2], boxPos[2] - d, d * 2) <=
+		__axis(spherePos[0], boxPos[0] - w, w * 2) +
+			__axis(spherePos[1], boxPos[1] - h, h * 2) +
+			__axis(spherePos[2], boxPos[2] - d, d * 2) <=
 		r * r
 );
 
 testCenteredBoxSphere.default((boxPos, boxExtent, spherePos, r) => {
 	let sum = 0;
 	for (let i = boxPos.length; i-- > 0; ) {
-		sum += axis(spherePos[i], boxPos[i] - boxExtent[i], boxExtent[i] * 2);
+		sum += __axis(spherePos[i], boxPos[i] - boxExtent[i], boxExtent[i] * 2);
 	}
 	return sum <= r * r;
 });
 
-const axis: FnN3 = (a, b, c) =>
+/** @internal */
+const __axis: FnN3 = (a, b, c) =>
 	(a < b ? a - b : a > b + c ? a - b - c : 0) ** 2;

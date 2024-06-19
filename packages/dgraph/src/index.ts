@@ -130,11 +130,11 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 	}
 
 	transitiveDependencies(x: T) {
-		return transitive(this.dependencies, x);
+		return __transitive(this.dependencies, x);
 	}
 
 	transitiveDependents(x: T) {
-		return transitive(this.dependents, x);
+		return __transitive(this.dependents, x);
 	}
 
 	sort() {
@@ -160,13 +160,14 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 	}
 }
 
-const transitive = <T>(nodes: EquivMap<T, ArraySet<T>>, x: T): Set<T> => {
+/** @internal */
+const __transitive = <T>(nodes: EquivMap<T, ArraySet<T>>, x: T): Set<T> => {
 	const deps: ArraySet<T> = nodes.get(x)!;
 	if (deps) {
 		return reduce(
 			reducer(
 				<any>null,
-				(acc, k: T) => <ArraySet<T>>union(acc, transitive(nodes, k))
+				(acc, k: T) => <ArraySet<T>>union(acc, __transitive(nodes, k))
 			),
 			deps,
 			deps

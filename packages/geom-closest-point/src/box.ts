@@ -8,7 +8,7 @@ export const closestPointRect = (
 	bmax: ReadonlyVec,
 	out: Vec = []
 ) => {
-	const [minID, minW] = closestBoxEdge(p, bmin, bmax, 4);
+	const [minID, minW] = __closestBoxEdge(p, bmin, bmax, 4);
 	return minID! === 0
 		? setC2(out, minW!, clamp(p[1], bmin[1], bmax[1]))
 		: setC2(out, clamp(p[0], bmin[0], bmax[0]), minW!);
@@ -20,7 +20,7 @@ export const closestPointAABB = (
 	bmax: ReadonlyVec,
 	out: Vec = []
 ) => {
-	const [minID, minW] = closestBoxEdge(p, bmin, bmax, 6);
+	const [minID, minW] = __closestBoxEdge(p, bmin, bmax, 6);
 	return minID! === 0
 		? setC3(
 				out,
@@ -43,7 +43,8 @@ export const closestPointAABB = (
 		  );
 };
 
-const closestBoxEdge = (
+/** @internal */
+const __closestBoxEdge = (
 	p: ReadonlyVec,
 	bmin: ReadonlyVec,
 	bmax: ReadonlyVec,

@@ -20,6 +20,7 @@ const SYM_EMPTY = "empty";
 const SYM_EQD = "eqDelta";
 const SYM_STR = "toString";
 
+/** @internal */
 const PROPS = new Set<StringOrSym>([
 	SYM_B,
 	SYM_C,
@@ -33,7 +34,8 @@ const PROPS = new Set<StringOrSym>([
 	Symbol.iterator,
 ]);
 
-const keys = memoizeO<number, StringOrSym[]>((size: number) => [
+/** @internal */
+const __keys = memoizeO<number, StringOrSym[]>((size: number) => [
 	...map(String, range(size)),
 	...PROPS,
 ]);
@@ -167,6 +169,6 @@ export const gvec = (
 			return (<any>id >= 0 && <any>id < size) || PROPS.has(id);
 		},
 		ownKeys() {
-			return keys(size);
+			return __keys(size);
 		},
 	});

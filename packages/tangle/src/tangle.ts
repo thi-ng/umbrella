@@ -22,7 +22,8 @@ const UnknownBlockError = defError<[string, string]>(
 	() => ""
 );
 
-const extractBlocks = (src: string, { format, logger }: TangleCtx) => {
+/** @internal */
+const __extractBlocks = (src: string, { format, logger }: TangleCtx) => {
 	let nextID = 0;
 	const blocks: Blocks = {};
 	const prefix = new RegExp(
@@ -36,7 +37,7 @@ const extractBlocks = (src: string, { format, logger }: TangleCtx) => {
 		: format.suffix;
 	let matchPrefix: RegExpExecArray | null;
 	while ((matchPrefix = prefix.exec(src))) {
-		let { id, tangle, noweb, publish } = parseBlockHeader(matchPrefix[2]);
+		let { id, tangle, noweb, publish } = __parseBlockHeader(matchPrefix[2]);
 		!id && (id = `__block-${nextID++}`);
 		const matchStart = matchPrefix.index;
 		const start = src.indexOf("\n", matchStart + 1) + 1;
@@ -78,7 +79,8 @@ const extractBlocks = (src: string, { format, logger }: TangleCtx) => {
 	return blocks;
 };
 
-const resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
+/** @internal */
+const __resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
 	if (block.resolved) return;
 	if (block.noweb === "no") {
 		block.resolved = true;
@@ -100,7 +102,7 @@ const resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
 		let childBlock: Block;
 		if (childID.indexOf("#") > 0) {
 			const [file, blockID] = childID.split("#");
-			childBlock = loadAndResolveBlocks(
+			childBlock = __loadAndResolveBlocks(
 				ctx.fs.resolve(ctx.fs.resolve(ref.path, ".."), file),
 				ctx
 			).blocks[blockID];
@@ -110,9 +112,9 @@ const resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
 			childBlock = ref.blocks[childID];
 		}
 		if (!childBlock) throw new UnknownBlockError([childID, block.id]);
-		resolveBlock(childBlock, ref, ctx);
+		__resolveBlock(childBlock, ref, ctx);
 		const newBody = isPlainObject(params)
-			? parametricBody(childBlock.body, params)
+			? __parametricBody(childBlock.body, params)
 			: childBlock.body;
 		block.body = block.body.replace(`<<${match[1]}>>`, newBody);
 		block.edited = true;
@@ -121,14 +123,16 @@ const resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
 	block.body = block.body.replace(/\\</g, "<");
 };
 
-const resolveBlocks = (ref: TangleRef, ctx: TangleCtx) => {
+/** @internal */
+const __resolveBlocks = (ref: TangleRef, ctx: TangleCtx) => {
 	for (let id in ref.blocks) {
-		resolveBlock(ref.blocks[id], ref, ctx);
+		__resolveBlock(ref.blocks[id], ref, ctx);
 	}
 	return ref;
 };
 
-const parseFileMeta = (src: string): Record<string, string> => {
+/** @internal */
+const __parseFileMeta = (src: string): Record<string, string> => {
 	if (!src.startsWith("---\n")) return {};
 	const res: Record<string, string> = {};
 	for (let line of split(src.substring(4))) {
@@ -139,32 +143,36 @@ const parseFileMeta = (src: string): Record<string, string> => {
 	return res;
 };
 
-const parseBlockHeader = (header: string) =>
+/** @internal */
+const __parseBlockHeader = (header: string) =>
 	transduce(
 		map((x) => <[string, string]>x.split(":")),
 		assocObj<string>(),
 		header.split(/\s+/)
 	);
 
-const parametricBody = (body: string, params: any) =>
+/** @internal */
+const __parametricBody = (body: string, params: any) =>
 	body.replace(/\{\{(\w+)\}\}/g, (_, id) =>
 		params[id] != null ? params[id] : id
 	);
 
-const commentForLang = (lang: string, body: string) => {
+/** @internal */
+const __commentForLang = (lang: string, body: string) => {
 	const syntax = COMMENT_FORMATS[lang];
 	return isString(syntax)
 		? `${syntax} ${body}`
 		: `${syntax[0]} ${body} ${syntax[1]}`;
 };
 
-const loadAndResolveBlocks = (path: string, ctx: TangleCtx) => {
+/** @internal */
+const __loadAndResolveBlocks = (path: string, ctx: TangleCtx) => {
 	path = ctx.fs.resolve(path);
 	if (!ctx.files[path]) {
 		const src = ctx.fs.read(path, ctx.logger);
-		const blocks = extractBlocks(src, ctx);
+		const blocks = __extractBlocks(src, ctx);
 		const ref = (ctx.files[path] = { path, src, blocks });
-		resolveBlocks(ref, ctx);
+		__resolveBlocks(ref, ctx);
 	}
 	return ctx.files[path];
 };
@@ -199,9 +207,9 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 			...ctx.opts,
 		},
 	};
-	const { path: $path, src, blocks } = loadAndResolveBlocks(path, $ctx);
+	const { path: $path, src, blocks } = __loadAndResolveBlocks(path, $ctx);
 	const parentDir = $ctx.fs.resolve($path, "..");
-	const meta = parseFileMeta(src);
+	const meta = __parseFileMeta(src);
 	const sorted = Object.values(blocks).sort(compareByKey("start"));
 	let prev = 0;
 	let res: string[] = [];
@@ -225,11 +233,11 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 			if (!$ctx.outputs[dest]) {
 				if ($ctx.opts.comments && COMMENT_FORMATS[block.lang]) {
 					body = [
-						commentForLang(
+						__commentForLang(
 							block.lang,
 							`Tangled @ ${FMT_ISO_SHORT()} - DO NOT EDIT!`
 						),
-						commentForLang(block.lang, `Source: ${$path}`),
+						__commentForLang(block.lang, `Source: ${$path}`),
 						"",
 						body,
 					].join("\n");

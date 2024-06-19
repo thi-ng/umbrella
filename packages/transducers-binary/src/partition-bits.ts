@@ -28,15 +28,16 @@ export function partitionBits(...args: any[]): any {
 			const destSize = args[0];
 			const srcSize = args[1] || 8;
 			return destSize < srcSize
-				? small(rfn, destSize, srcSize)
+				? __small(rfn, destSize, srcSize)
 				: destSize > srcSize
-				? large(rfn, destSize, srcSize)
+				? __large(rfn, destSize, srcSize)
 				: rfn;
 		})
 	);
 }
 
-const small = (
+/** @internal */
+const __small = (
 	[init, complete, reduce]: Reducer<number, any>,
 	n: number,
 	wordSize: number
@@ -65,7 +66,8 @@ const small = (
 	];
 };
 
-const large = (
+/** @internal */
+const __large = (
 	[init, complete, reduce]: Reducer<number, any>,
 	n: number,
 	wordSize: number

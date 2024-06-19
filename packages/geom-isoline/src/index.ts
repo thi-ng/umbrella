@@ -31,7 +31,8 @@ export const setBorder = (src: Vec, w: number, h: number, val: number) => {
 	return src;
 };
 
-const encodeCrossings = (
+/** @internal */
+const __encodeCrossings = (
 	src: ReadonlyVec,
 	w: number,
 	h: number,
@@ -53,11 +54,13 @@ const encodeCrossings = (
 	return out;
 };
 
-const cellValue = (src: ReadonlyVec, w: number, idx: number) => {
+/** @internal */
+const __cellValue = (src: ReadonlyVec, w: number, idx: number) => {
 	return (src[idx] + src[idx + 1] + src[idx + w] + src[idx + w + 1]) * 0.25;
 };
 
-const mix = (
+/** @internal */
+const __mix = (
 	src: ReadonlyVec,
 	w: number,
 	x1: number,
@@ -72,11 +75,12 @@ const mix = (
 };
 
 // prettier-ignore
-const contourVertex: Fn5<ReadonlyVec, number, number, number, number, Vec>[] = [
-    (src, w, x, y, iso) => [x + mix(src, w, x, y, x + 1, y, iso), y],
-    (src, w, x, y, iso) => [x + 1, y + mix(src, w, x + 1, y, x + 1, y + 1, iso)],
-    (src, w, x, y, iso) => [x + mix(src, w, x, y + 1, x + 1, y + 1, iso), y + 1],
-    (src, w, x, y, iso) => [x, y + mix(src, w, x, y, x, y + 1, iso)]
+/** @internal */
+const __contourVertex: Fn5<ReadonlyVec, number, number, number, number, Vec>[] = [
+    (src, w, x, y, iso) => [x + __mix(src, w, x, y, x + 1, y, iso), y],
+    (src, w, x, y, iso) => [x + 1, y + __mix(src, w, x + 1, y, x + 1, y + 1, iso)],
+    (src, w, x, y, iso) => [x + __mix(src, w, x, y + 1, x + 1, y + 1, iso), y + 1],
+    (src, w, x, y, iso) => [x, y + __mix(src, w, x, y, x, y + 1, iso)]
 ];
 
 /**
@@ -100,7 +104,7 @@ export function* isolines(
 	iso: number,
 	scale: ReadonlyVec | number = 1
 ) {
-	const coded = encodeCrossings(src, w, h, iso);
+	const coded = __encodeCrossings(src, w, h, iso);
 	let curr: Vec[] = [];
 	let from: number;
 	let to = -1;
@@ -128,12 +132,12 @@ export function* isolines(
 		const i = y * w + x;
 		const id = coded[i]; // * 2
 		if (id === 10) {
-			idx = (cellValue(src, w, i) > iso ? 0 : 4) + (from === 6 ? 0 : 2);
+			idx = (__cellValue(src, w, i) > iso ? 0 : 4) + (from === 6 ? 0 : 2);
 			to = S5[idx];
 			clear = S5[idx + 1];
 		} else if (id === 20) {
 			idx =
-				cellValue(src, w, i) > iso
+				__cellValue(src, w, i) > iso
 					? from === 0
 						? 0
 						: 2
@@ -154,7 +158,7 @@ export function* isolines(
 			coded[i] = clear;
 		}
 		if (to >= 0) {
-			const p = contourVertex[to >> 1](src, w, x, y, iso);
+			const p = __contourVertex[to >> 1](src, w, x, y, iso);
 			p[0] = (p[0] + 0.5) * sx;
 			p[1] = (p[1] + 0.5) * sy;
 			curr.push(p);

@@ -39,22 +39,25 @@ export interface StackedIntervalOpts<T> {
 
 type Lane<T> = [number[], T][];
 
-const overlap = ([a, b]: number[], [c, d]: number[], pad = 0) =>
+/** @internal */
+const __overlap = ([a, b]: number[], [c, d]: number[], pad = 0) =>
 	a <= d + pad && b + pad >= c;
 
-const laneStacking = <T>(data: [number[], T][], pad = 0) =>
+/** @internal */
+const __laneStacking = <T>(data: [number[], T][], pad = 0) =>
 	data.reduce((acc, item) => {
 		const rx = item[0];
 		for (let i = 0; true; i++) {
 			const row = acc[i];
-			if (!row || !some((y) => overlap(rx, y[0], pad), row)) {
+			if (!row || !some((y) => __overlap(rx, y[0], pad), row)) {
 				row ? row.push(item) : (acc[i] = [item]);
 				return acc;
 			}
 		}
 	}, <Lane<T>[]>[]);
 
-const processLane =
+/** @internal */
+const __processLane =
 	<T>(mapper: Fn<number[], number[]>, [d1, d2]: Domain) =>
 	(i: number, row: Lane<T>) =>
 		map(
@@ -73,11 +76,11 @@ export const stackedIntervals =
 	(spec) => {
 		const mapper = valueMapper(spec.xaxis, spec.yaxis, spec.project);
 		const domain = spec.xaxis.domain;
-		const lanes = laneStacking(
+		const lanes = __laneStacking(
 			transduce(
 				comp(
 					map((x) => <[number[], T]>[opts.interval(x), x]),
-					filter(([x]) => overlap(domain, x, opts.overlap))
+					filter(([x]) => __overlap(domain, x, opts.overlap))
 				),
 				push<[number[], T]>(),
 				data
@@ -89,7 +92,7 @@ export const stackedIntervals =
 			{ ...opts.attribs, "data-num-lanes": lanes.length },
 			...iterator(
 				comp(
-					mapcatIndexed(processLane<T>(mapper, domain)),
+					mapcatIndexed(__processLane<T>(mapper, domain)),
 					map((x) => opts.shape(x, mapper))
 				),
 				lanes

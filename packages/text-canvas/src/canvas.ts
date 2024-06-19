@@ -189,9 +189,10 @@ export const beginClip = (
 	);
 };
 
-const pop = (stack: any[]) => stack.length > 1 && stack.pop();
+/** @internal */
+const __pop = (stack: any[]) => stack.length > 1 && stack.pop();
 
-export const endClip = (canvas: Canvas) => pop(canvas.clipRects);
+export const endClip = (canvas: Canvas) => __pop(canvas.clipRects);
 
 export const withClip = (
 	canvas: Canvas,
@@ -210,7 +211,7 @@ export const beginStyle = (canvas: Canvas, style: StrokeStyle) => {
 	canvas.styles.push(style);
 };
 
-export const endStyle = (canvas: Canvas) => pop(canvas.styles);
+export const endStyle = (canvas: Canvas) => __pop(canvas.styles);
 
 export const withStyle = (canvas: Canvas, style: StrokeStyle, fn: Fn0<any>) => {
 	canvas.styles.push(style);

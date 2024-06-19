@@ -25,7 +25,8 @@ export const scalar = <SerializerPair<number>>{
 	encode: (x) => [x],
 };
 
-const toUTF8 = utf8Decode();
+/** @internal */
+const __toUTF8 = utf8Decode();
 
 /**
  * Zero-terminated UTF-8 string serializer pair for given max length
@@ -40,7 +41,11 @@ export const utf8z = (maxLen: number) =>
 	<SerializerPair<string>>{
 		decode: (v) => {
 			let acc = "";
-			const xf = toUTF8([<any>null, <any>null, (_, x) => (acc += x)])[2];
+			const xf = __toUTF8([
+				<any>null,
+				<any>null,
+				(_, x) => (acc += x),
+			])[2];
 			for (let i = 0, n = v.length; i < n; i++) {
 				const c = v[i];
 				if (c === 0) break;

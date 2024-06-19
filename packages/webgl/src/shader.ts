@@ -235,7 +235,7 @@ export const defShader = (
 	const logger = opts?.logger || LOGGER;
 	logger.debug(srcVS);
 	logger.debug(srcFS);
-	spec.ext && initShaderExtensions(gl, spec.ext);
+	spec.ext && __initShaderExtensions(gl, spec.ext);
 	const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
 	const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);
 	const program =
@@ -244,8 +244,8 @@ export const defShader = (
 	gl.attachShader(program, fs);
 	gl.linkProgram(program);
 	if (gl.getProgramParameter(program, gl.LINK_STATUS)) {
-		const attribs = initAttributes(gl, program, spec.attribs);
-		const uniforms = initUniforms(gl, program, spec.uniforms);
+		const attribs = __initAttributes(gl, program, spec.attribs);
+		const uniforms = __initUniforms(gl, program, spec.uniforms);
 		gl.deleteShader(vs);
 		gl.deleteShader(fs);
 		return new Shader(gl, program, attribs, uniforms, spec.state);
@@ -253,7 +253,8 @@ export const defShader = (
 	throw new Error(`Error linking shader: ${gl.getProgramInfoLog(program)}`);
 };
 
-const compileVars = (
+/** @internal */
+const __compileVars = (
 	attribs: any,
 	syntax: Fn3<string, any, GLSLDeclPrefixes, string>,
 	prefixes: GLSLDeclPrefixes
@@ -268,7 +269,8 @@ const compileVars = (
 	return decls.join("\n");
 };
 
-const compileExtensionPragma = (
+/** @internal */
+const __compileExtensionPragma = (
 	id: string,
 	behavior: ExtensionBehavior,
 	version: GLSLVersion
@@ -286,7 +288,8 @@ const compileExtensionPragma = (
 		: "";
 };
 
-const initShaderExtensions = (
+/** @internal */
+const __initShaderExtensions = (
 	gl: WebGLRenderingContext,
 	exts: ExtensionBehaviors
 ) => {
@@ -298,7 +301,8 @@ const initShaderExtensions = (
 	}
 };
 
-const compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
+/** @internal */
+const __compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
 	let prelude = spec.pre
 		? spec.replacePrelude
 			? spec.pre
@@ -306,7 +310,7 @@ const compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
 		: GLSL_HEADER;
 	if (spec.ext) {
 		for (let id in spec.ext) {
-			prelude += compileExtensionPragma(
+			prelude += __compileExtensionPragma(
 				id,
 				spec.ext[<ExtensionName>id]!,
 				version
@@ -316,7 +320,8 @@ const compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
 	return prelude;
 };
 
-const compileIODecls = <T extends ShaderAttribSpec | ShaderOutputSpec>(
+/** @internal */
+const __compileIODecls = <T extends ShaderAttribSpec | ShaderOutputSpec>(
 	decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
 	src: IObjectOf<T>,
 	dest: IObjectOf<Sym<any>>
@@ -329,7 +334,8 @@ const compileIODecls = <T extends ShaderAttribSpec | ShaderOutputSpec>(
 	}
 };
 
-const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
+/** @internal */
+const __varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
 	const [vtype, opts]: [GLSL, SymOpts] = isArray(v)
 		? [v[0], { num: v[1] }]
 		: [v, {}];
@@ -337,18 +343,20 @@ const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
 	return [vtype, opts];
 };
 
-const compileVaryingDecls = (
+/** @internal */
+const __compileVaryingDecls = (
 	spec: ShaderSpec,
 	decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
 	acc: IObjectOf<Sym<any>>
 ) => {
 	for (let id in spec.varying) {
-		const [vtype, opts] = varyingOpts(spec.varying[id]);
+		const [vtype, opts] = __varyingOpts(spec.varying[id]);
 		acc[id] = decl(vtype, id, opts);
 	}
 };
 
-const compileUniformDecls = (spec: ShaderSpec, acc: IObjectOf<Sym<any>>) => {
+/** @internal */
+const __compileUniformDecls = (spec: ShaderSpec, acc: IObjectOf<Sym<any>>) => {
 	for (let id in spec.uniforms) {
 		const u = spec.uniforms[id];
 		acc[id] = isArray(u)
@@ -367,20 +375,20 @@ export const shaderSourceFromAST = (
 	version: GLSLVersion,
 	opts: Partial<DefShaderOpts> = {}
 ) => {
-	let prelude = compilePrelude(spec, version);
+	let prelude = __compilePrelude(spec, version);
 	const inputs: IObjectOf<Sym<any>> = {};
 	const outputs: IObjectOf<Sym<any>> = {};
 	const outputAliases: IObjectOf<Sym<any>> = {};
 	const unis: IObjectOf<Sym<any>> = {};
-	spec.uniforms && compileUniformDecls(spec, unis);
+	spec.uniforms && __compileUniformDecls(spec, unis);
 	if (type === "vs") {
-		compileIODecls(input, spec.attribs, inputs);
-		spec.varying && compileVaryingDecls(spec, output, outputs);
+		__compileIODecls(input, spec.attribs, inputs);
+		spec.varying && __compileVaryingDecls(spec, output, outputs);
 	} else {
-		spec.varying && compileVaryingDecls(spec, input, inputs);
+		spec.varying && __compileVaryingDecls(spec, input, inputs);
 		const outs = spec.outputs || DEFAULT_OUTPUT;
 		if (version >= GLSLVersion.GLES_300) {
-			compileIODecls(output, outs, outputs);
+			__compileIODecls(output, outs, outputs);
 		} else {
 			for (let id in outs) {
 				const o = outs[id];
@@ -424,17 +432,17 @@ export const prepareShaderSource = (
 	const isVS = type === "vs";
 	let src = "";
 	src += `#version ${version}\n`;
-	src += compilePrelude(spec, version);
+	src += __compilePrelude(spec, version);
 	if (spec.generateDecls !== false) {
 		src += isVS
-			? compileVars(spec.attribs, syntax.attrib, prefixes)
-			: compileVars(
+			? __compileVars(spec.attribs, syntax.attrib, prefixes)
+			: __compileVars(
 					spec.outputs || DEFAULT_OUTPUT,
 					syntax.output,
 					prefixes
 			  );
-		src += compileVars(spec.varying, syntax.varying[type], prefixes);
-		src += compileVars(spec.uniforms, syntax.uniform, prefixes);
+		src += __compileVars(spec.varying, syntax.varying[type], prefixes);
+		src += __compileVars(spec.uniforms, syntax.uniform, prefixes);
 	}
 	src += spec[type];
 	spec.post && (src += "\n" + spec.post);
@@ -452,10 +460,11 @@ export const compileShader = (
 	if (gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
 		return shader;
 	}
-	return parseAndThrowShaderError(gl, shader, src);
+	return __parseAndThrowShaderError(gl, shader, src);
 };
 
-const parseAndThrowShaderError = (
+/** @internal */
+const __parseAndThrowShaderError = (
 	gl: WebGLRenderingContext,
 	shader: WebGLShader,
 	src: string
@@ -475,7 +484,8 @@ const parseAndThrowShaderError = (
 	return error(`Error compiling shader:\n${errors}`);
 };
 
-const initAttributes = (
+/** @internal */
+const __initAttributes = (
 	gl: WebGLRenderingContext,
 	prog: WebGLProgram,
 	attribs: ShaderAttribSpecs
@@ -498,7 +508,8 @@ const initAttributes = (
 	return res;
 };
 
-const initUniforms = (
+/** @internal */
+const __initUniforms = (
 	gl: WebGLRenderingContext,
 	prog: WebGLProgram,
 	uniforms: ShaderUniformSpecs = {}

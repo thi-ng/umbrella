@@ -24,7 +24,7 @@ export const distHaversineLatLon = (
 ) => {
 	a = radians2([], a);
 	b = radians2([], b);
-	return dist(a[0], a[1], b[0], b[1], r);
+	return __dist(a[0], a[1], b[0], b[1], r);
 };
 
 /**
@@ -42,7 +42,7 @@ export const distHaversineLonLat = (
 ) => {
 	a = radians2([], a);
 	b = radians2([], b);
-	return dist(a[1], a[0], b[1], b[0], r);
+	return __dist(a[1], a[0], b[1], b[0], r);
 };
 
 /**
@@ -50,7 +50,8 @@ export const distHaversineLonLat = (
  */
 export const distHaversine = distHaversineLonLat;
 
-const dist: FnN5 = (lat1, lon1, lat2, lon2, r) => {
+/** @internal */
+const __dist: FnN5 = (lat1, lon1, lat2, lon2, r) => {
 	const dlat = 0.5 - Math.cos(lat2 - lat1) * 0.5;
 	const dlon = (1 - Math.cos(lon2 - lon1)) * 0.5;
 	const combined = dlat + Math.cos(lat1) * Math.cos(lat2) * dlon;

@@ -8,7 +8,8 @@ import { mulN, mulN2 } from "@thi.ng/vectors/muln";
 import { perpendicularCW } from "@thi.ng/vectors/perpendicular";
 import { set2 } from "@thi.ng/vectors/set";
 
-const buildSegments = (tangents: Vec[][], t: number, uniform: boolean) => {
+/** @internal */
+const __buildSegments = (tangents: Vec[][], t: number, uniform: boolean) => {
 	const res: Vec[][] = [];
 	for (let i = 0, num = tangents.length - 1; i < num; i++) {
 		const [a, na] = tangents[i];
@@ -37,7 +38,7 @@ export const closedCubicFromBreakPoints = (
 		tangents.push([set2([], b), n]);
 	}
 	tangents.push(tangents[0]);
-	return buildSegments(tangents, t, uniform);
+	return __buildSegments(tangents, t, uniform);
 };
 
 export const openCubicFromBreakPoints = (
@@ -61,5 +62,5 @@ export const openCubicFromBreakPoints = (
 		tangents.push([set2([], b), n]);
 	}
 	tangents.push([points[num], direction2([], points[num - 1], points[num])]);
-	return buildSegments(tangents, t, uniform);
+	return __buildSegments(tangents, t, uniform);
 };

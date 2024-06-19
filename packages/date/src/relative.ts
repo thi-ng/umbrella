@@ -60,9 +60,9 @@ export const parseRelative = (offset: string, base?: MaybeDate) => {
 			epoch.decDay();
 			return epoch;
 		default: {
-			let idx = findIndex(EN_SHORT.days, offset);
+			let idx = __findIndex(EN_SHORT.days, offset);
 			if (idx < 0) {
-				idx = findIndex(EN_LONG.days, offset);
+				idx = __findIndex(EN_LONG.days, offset);
 			}
 			if (idx >= 0) {
 				do {
@@ -76,8 +76,8 @@ export const parseRelative = (offset: string, base?: MaybeDate) => {
 				);
 			return match
 				? relative(
-						parseNum(match![1], !!match[7]),
-						parsePeriod(match![2]),
+						__parseNum(match![1], !!match[7]),
+						__parsePeriod(match![2]),
 						base
 				  )
 				: undefined;
@@ -85,14 +85,17 @@ export const parseRelative = (offset: string, base?: MaybeDate) => {
 	}
 };
 
-const findIndex = (items: string[], x: string) =>
+/** @internal */
+const __findIndex = (items: string[], x: string) =>
 	items.findIndex((y) => y.toLowerCase() === x);
 
-const parseNum = (x: string, past: boolean) =>
+/** @internal */
+const __parseNum = (x: string, past: boolean) =>
 	(x === "next " || x === "a " || x === "an " ? 1 : Number(x)) *
 	(past ? -1 : 1);
 
-const parsePeriod = (x: string) => {
+/** @internal */
+const __parsePeriod = (x: string) => {
 	x =
 		x !== "s" && x !== "ms" && x.endsWith("s")
 			? x.substring(0, x.length - 1)

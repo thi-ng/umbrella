@@ -181,7 +181,7 @@ export function defSetter(path: Path): Fn2<any, any, any> {
 		default:
 			let f: any;
 			for (let i = ks.length; i-- > 0; ) {
-				f = compS(ks[i], f);
+				f = __compSetter(ks[i], f);
 			}
 			return f;
 	}
@@ -203,7 +203,7 @@ export const copy = (x: any) =>
  *
  * @internal
  */
-const compS =
+const __compSetter =
 	(k: NumOrString, f: (o: any, v: any) => any) => (s: any, v: any) => {
 		s = copy(s);
 		s[k] = f ? f(s[k], v) : v;

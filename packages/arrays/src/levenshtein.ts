@@ -1,6 +1,7 @@
 import type { Predicate2 } from "@thi.ng/api";
 
-const eqStrict = (a: any, b: any) => a === b;
+/** @internal */
+const __eqStrict = (a: any, b: any) => a === b;
 
 /**
  * Computes Levenshtein distance w/ optionally given `maxDist` (for
@@ -46,7 +47,7 @@ export const levenshtein = <T>(
 	a: ArrayLike<T>,
 	b: ArrayLike<T>,
 	maxDist = Infinity,
-	equiv: Predicate2<T> = eqStrict
+	equiv: Predicate2<T> = __eqStrict
 ): number => {
 	if (a === b) {
 		return 0;
@@ -161,7 +162,7 @@ export const normalizedLevenshtein = <T>(
 	a: ArrayLike<T>,
 	b: ArrayLike<T>,
 	maxDist = Infinity,
-	equiv = eqStrict
+	equiv = __eqStrict
 ): number => {
 	const n = Math.max(a.length, b.length);
 	return n > 0 ? levenshtein(a, b, maxDist, equiv) / n : 0;

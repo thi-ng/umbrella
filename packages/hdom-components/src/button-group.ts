@@ -1,6 +1,6 @@
-import { mergeAttribs } from "./utils/merge-attribs.js";
 import type { IObjectOf } from "@thi.ng/api";
 import type { Button, ButtonArgs } from "./button.js";
+import { mergeAttribs } from "./utils/merge-attribs.js";
 
 /**
  * Button group component config options.
@@ -81,10 +81,11 @@ export const buttonGroup =
 		[
 			"div",
 			mergeAttribs(opts.attribs, args.attribs),
-			...groupBody(opts, args.disabled, buttons),
+			...__groupBody(opts, args.disabled, buttons),
 		];
 
-const groupBody = (
+/** @internal */
+const __groupBody = (
 	opts: ButtonGroupOpts,
 	disabled: boolean,
 	buttons: ButtonGroupItem[]
@@ -93,24 +94,25 @@ const groupBody = (
 		case 0:
 			return [];
 		case 1:
-			return [bt(opts.inner || opts.first, disabled, buttons[0])];
+			return [__bt(opts.inner || opts.first, disabled, buttons[0])];
 		case 2:
 			return [
-				bt(opts.first, disabled, buttons[0]),
-				bt(opts.last || opts.first, disabled, buttons[1]),
+				__bt(opts.first, disabled, buttons[0]),
+				__bt(opts.last || opts.first, disabled, buttons[1]),
 			];
 		default: {
-			const res = [bt(opts.first, disabled, buttons[0])];
+			const res = [__bt(opts.first, disabled, buttons[0])];
 			const el = opts.inner || opts.first;
 			const n = buttons.length - 1;
 			for (let i = 1; i < n; i++) {
-				res[i] = bt(el, disabled, buttons[i]);
+				res[i] = __bt(el, disabled, buttons[i]);
 			}
-			res[n] = bt(opts.last || opts.first, disabled, buttons[n]);
+			res[n] = __bt(opts.last || opts.first, disabled, buttons[n]);
 			return res;
 		}
 	}
 };
 
-const bt = (el: Button, disabled: boolean, bt: ButtonGroupItem) =>
+/** @internal */
+const __bt = (el: Button, disabled: boolean, bt: ButtonGroupItem) =>
 	disabled ? [el, { ...bt[0], disabled: true }, ...bt.slice(1)] : [el, ...bt];

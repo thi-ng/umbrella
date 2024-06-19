@@ -1,6 +1,7 @@
 // thing:no-export
 
-const cache: string[] = [];
+/** @internal */
+const CACHE: string[] = [];
 
 /**
  * Memoized indentation.
@@ -9,4 +10,4 @@ const cache: string[] = [];
  *
  * @internal
  */
-export const indent = (x: number) => (cache[x] = "  ".repeat(x));
+export const __indent = (x: number) => (CACHE[x] = "  ".repeat(x));

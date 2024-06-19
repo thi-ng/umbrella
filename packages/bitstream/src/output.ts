@@ -2,7 +2,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { BitInputStream } from "./input.js";
 
 const DEFAULT_BUF_SIZE = 0x10;
-const U32 = Math.pow(2, 32);
+const U32 = 0x1_0000_0000;
 
 export class BitOutputStream {
 	buffer: Uint8Array;

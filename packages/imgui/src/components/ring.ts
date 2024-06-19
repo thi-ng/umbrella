@@ -17,10 +17,12 @@ import type { IMGUI } from "../gui.js";
 import { dialValueLabel } from "./textlabel.js";
 import { tooltipRaw } from "./tooltip.js";
 
-const ringHeight: FnN2 = (w, thetaGap) =>
+/** @internal */
+const __ringHeight: FnN2 = (w, thetaGap) =>
 	(w / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
 
-const arcVerts = (
+/** @internal */
+const __arcVerts = (
 	o: Vec,
 	r: number,
 	start: number,
@@ -53,10 +55,10 @@ export const ring = (
 	let h: number;
 	let box: LayoutBox;
 	if (isLayout(layout)) {
-		h = ringHeight(layout.cellW, thetaGap);
+		h = __ringHeight(layout.cellW, thetaGap);
 		box = layout.next([1, layout.rowsForHeight(h) + 1]);
 	} else {
-		h = ringHeight(layout.cw, thetaGap);
+		h = __ringHeight(layout.cw, thetaGap);
 		box = layout;
 	}
 	return ringRaw(
@@ -100,7 +102,8 @@ export const ringGroup = (
 		? layout.nest(n, [n, 1])
 		: layout.nest(1, [
 				1,
-				(layout.rowsForHeight(ringHeight(layout.cellW, thetaGap)) + 1) *
+				(layout.rowsForHeight(__ringHeight(layout.cellW, thetaGap)) +
+					1) *
 					n,
 		  ]);
 	let res: Maybe<number>;
@@ -178,8 +181,8 @@ export const ringRaw = (
 		const shape = (max: number) => () =>
 			polygon(
 				[
-					...arcVerts(pos, r, startTheta, max, numV),
-					...arcVerts(pos, r2, max, startTheta, numV),
+					...__arcVerts(pos, r, startTheta, max, numV),
+					...__arcVerts(pos, r2, max, startTheta, numV),
 				],
 				{}
 			);

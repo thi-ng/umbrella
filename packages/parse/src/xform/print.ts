@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import type { Parser, ScopeTransform } from "../api.js";
 import { xform } from "../combinators/xform.js";
-import { indent } from "../utils.js";
+import { __indent } from "../utils.js";
 
 /**
  * Side effect only. Higher order scope transform. Traverses current AST
@@ -19,7 +19,7 @@ import { indent } from "../utils.js";
 export const xfPrint = (fn: Fn<string, void> = console.log) => {
 	const $print: ScopeTransform<any> = (scope, _, level = 0) => {
 		if (!scope) return;
-		const prefix = indent(level);
+		const prefix = __indent(level);
 		const state = scope.state;
 		const info = state ? ` (${state.l}:${state.c})` : "";
 		fn(`${prefix}${scope.id}${info}: ${JSON.stringify(scope.result)}`);

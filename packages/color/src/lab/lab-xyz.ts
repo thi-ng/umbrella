@@ -3,7 +3,8 @@ import type { Color, ColorOp, ReadonlyColor } from "../api.js";
 import { D50, D65 } from "../api/constants.js";
 import { __ensureAlpha } from "../internal/ensure.js";
 
-const transform = (x: number) => {
+/** @internal */
+const __transform = (x: number) => {
 	const y = x ** 3;
 	return y > 0.008856 ? y : (x - 16 / 116) / 7.787;
 };
@@ -20,9 +21,9 @@ export const labXyz = (out: Color | null, src: ReadonlyColor, white = D50) => {
 	const y = (src[0] + 0.16) / 1.16;
 	return setC4(
 		out || src,
-		transform(src[1] / 5.0 + y) * white[0],
-		transform(y) * white[1],
-		transform(y - src[2] / 2.0) * white[2],
+		__transform(src[1] / 5.0 + y) * white[0],
+		__transform(y) * white[1],
+		__transform(y - src[2] / 2.0) * white[2],
 		__ensureAlpha(src[3])
 	);
 };

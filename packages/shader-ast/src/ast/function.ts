@@ -45,7 +45,8 @@ import { gensym } from "./idgen.js";
 import { allChildren, scope, scopedChildren, walk } from "./scope.js";
 import { sym } from "./sym.js";
 
-const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
+/** @internal */
+const __defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
 	const [type, id, opts] = isString(a) ? <[T, string?, SymOpts?]>[a] : a;
 	return {
 		tag: "arg",
@@ -84,7 +85,7 @@ export function defn<T extends Type, A extends Type, B extends Type, C extends T
 // prettier-ignore
 export function defn(type: Type, id: Nullable<string>, _args: Arg<any>[], _body: (...args: Sym<any>[]) => ScopeBody): Func<any> {
     id = id || gensym();
-    const args = _args.map(defArg);
+    const args = _args.map(__defArg);
     const body = <Term<any>[]>(
         _body(...args.map((x) => sym(x.type, x.id, x.opts))).filter(
             (x) => x != null

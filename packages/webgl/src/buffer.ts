@@ -122,7 +122,7 @@ export const compileModel = (
 			mode
 		);
 	} else {
-		compileAttribs(gl, spec.attribs, mode);
+		__compileAttribs(gl, spec.attribs, mode);
 	}
 	if (spec.instancePool) {
 		spec.instances = {
@@ -136,7 +136,7 @@ export const compileModel = (
 			num: spec.instancePool.capacity,
 		};
 	} else if (spec.instances) {
-		compileAttribs(gl, spec.instances.attribs, mode);
+		__compileAttribs(gl, spec.instances.attribs, mode);
 	}
 	compileIndices(gl, spec.indices, mode);
 	spec.mode == null && (spec.mode = DrawMode.TRIANGLES);
@@ -147,7 +147,8 @@ export const compileModel = (
 	return <ModelSpec>spec;
 };
 
-const initBuffer = (
+/** @internal */
+const __initBuffer = (
 	gl: WebGLRenderingContext,
 	src: ModelAttributeSpec | IndexBufferSpec,
 	type: GLenum,
@@ -160,14 +161,15 @@ const initBuffer = (
 	}
 };
 
-const compileAttribs = (
+/** @internal */
+const __compileAttribs = (
 	gl: WebGLRenderingContext,
 	attribs: ModelAttributeSpecs,
 	mode: GLenum
 ) => {
 	if (attribs) {
 		for (let id in attribs) {
-			initBuffer(gl, attribs[id], gl.ARRAY_BUFFER, mode);
+			__initBuffer(gl, attribs[id], gl.ARRAY_BUFFER, mode);
 		}
 	}
 	return attribs;
@@ -179,7 +181,7 @@ export const compileIndices = (
 	mode: GLenum = gl.STATIC_DRAW
 ) => {
 	if (index) {
-		initBuffer(gl, index, gl.ELEMENT_ARRAY_BUFFER, mode);
+		__initBuffer(gl, index, gl.ELEMENT_ARRAY_BUFFER, mode);
 	}
 	return index;
 };

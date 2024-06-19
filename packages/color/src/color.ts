@@ -24,6 +24,7 @@ import { xyzD50 } from "./xyz/xyz50.js";
 import { xyzD65 } from "./xyz/xyz65.js";
 import { ycc } from "./ycc/ycc.js";
 
+/** @internal */
 const FACTORIES: Record<ColorMode, ColorFactory<any>> = {
 	argb32,
 	abgr32,

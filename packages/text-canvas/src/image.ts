@@ -437,7 +437,7 @@ export const image = (
 		sy,
 		w: iw,
 		h: ih,
-	} = imgRect(canvas, x, y, w, h);
+	} = __imgRect(canvas, x, y, w, h);
 	if (!iw || !ih) return;
 	const {
 		chars = SHADES_BLOCK,
@@ -496,7 +496,7 @@ export const imageRaw = (
 		sy,
 		w: iw,
 		h: ih,
-	} = imgRect(canvas, x, y, w, h);
+	} = __imgRect(canvas, x, y, w, h);
 	if (!iw || !ih) return;
 	const code = char.charCodeAt(0);
 	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
@@ -541,7 +541,7 @@ export const imageRawFmtOnly = (
 		sy,
 		w: iw,
 		h: ih,
-	} = imgRect(canvas, x, y, w, h);
+	} = __imgRect(canvas, x, y, w, h);
 	if (!iw || !ih) return;
 	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
 		let sidx = sx + yy * w;
@@ -601,7 +601,7 @@ export const imageBraille = (
 		sy,
 		w: iw,
 		h: ih,
-	} = imgRect(canvas, x, y, w >> 1, h >> 2);
+	} = __imgRect(canvas, x, y, w >> 1, h >> 2);
 	if (!iw || !ih) return;
 	const w2 = w * 2;
 	const w3 = w * 3;
@@ -690,7 +690,8 @@ export const imageString565 = (
 	fmt = FMT_ANSI565
 ) => formatCanvas(imageCanvas565(src, char), fmt);
 
-const imgRect = (
+/** @internal */
+const __imgRect = (
 	canvas: Canvas,
 	x: number,
 	y: number,

@@ -16,18 +16,22 @@ import { str } from "@thi.ng/transducers/str";
 import { transduce } from "@thi.ng/transducers/transduce";
 import type { CSSOpts, RuleFn } from "./api.js";
 
+/** @internal */
 const EMPTY = new Set<string>();
 
+/** @internal */
 const NO_SPACES = ":[";
 
-const xfSel = comp<any, string, string>(
+/** @internal */
+const __xfSel = comp<any, string, string>(
 	flatten(),
 	map((x) =>
 		x[0] === "&" ? x.substring(1) : NO_SPACES.includes(x[0]) ? x : " " + x
 	)
 );
 
-const withScope = (xf: Transducer<any, any>, scope: string) =>
+/** @internal */
+const __withScope = (xf: Transducer<any, any>, scope: string) =>
 	comp(
 		xf,
 		map((x) => (isString(x) && x.startsWith(" .") ? x + scope : x))
@@ -47,9 +51,9 @@ export const expand = (
 	const process = (i: number, r: any) => {
 		let rfn: FnAny<RuleFn> | null = null;
 		if (isArray(r)) {
-			expand(acc, makeSelector(parent, sel), r, opts);
+			expand(acc, __makeSelector(parent, sel), r, opts);
 		} else if (isIterable(r) && !isString(r)) {
-			expand(acc, makeSelector(parent, sel), [...r], opts);
+			expand(acc, __makeSelector(parent, sel), [...r], opts);
 		} else if ((isFn = isFunction(r)) || (rfn = opts.fns[r])) {
 			if (!parent.length) {
 				if (rfn) {
@@ -74,17 +78,19 @@ export const expand = (
 			return acc;
 		}
 	}
-	curr && acc.push(formatRule(parent, sel, curr, opts));
+	curr && acc.push(__formatRule(parent, sel, curr, opts));
 	return acc;
 };
 
-const makeSelector = (parent: any[], curr: any[]) =>
+/** @internal */
+const __makeSelector = (parent: any[], curr: any[]) =>
 	parent.length ? [...permutations(parent, curr)] : curr;
 
-const formatRule = (parent: any[], sel: any[], curr: any, opts: CSSOpts) => {
+/** @internal */
+const __formatRule = (parent: any[], sel: any[], curr: any, opts: CSSOpts) => {
 	const f = opts.format;
 	const space = indent(opts);
-	const xf = opts.scope ? withScope(xfSel, opts.scope) : xfSel;
+	const xf = opts.scope ? __withScope(__xfSel, opts.scope) : __xfSel;
 	return [
 		space,
 		transduce(
@@ -92,7 +98,7 @@ const formatRule = (parent: any[], sel: any[], curr: any, opts: CSSOpts) => {
 				transduce(xf, str(), isArray(sel) ? sel : [sel]).trim()
 			),
 			str(f.ruleSep),
-			makeSelector(parent, sel)
+			__makeSelector(parent, sel)
 		),
 		f.declStart,
 		formatDecls(curr, opts),

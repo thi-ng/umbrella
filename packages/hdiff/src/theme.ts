@@ -21,7 +21,7 @@ export const compileTheme = (theme: Theme): string =>
 			["body", { "font-family": "sans-serif" }],
 			[
 				"header",
-				bgfg(theme.header),
+				__bgfg(theme.header),
 				{
 					position: "fixed",
 					top: 0,
@@ -52,7 +52,7 @@ export const compileTheme = (theme: Theme): string =>
 					block,
 					[
 						":before",
-						bgfgBorder(theme.diff.nochange.side),
+						__bgfgBorder(theme.diff.nochange.side),
 						{
 							padding: "0.23rem 0.5rem 0.23rem 1rem",
 							"margin-right": "1rem",
@@ -61,8 +61,8 @@ export const compileTheme = (theme: Theme): string =>
 					],
 					[
 						":hover",
-						bgfg(theme.diff.hover.main),
-						[":before", bgfgBorder(theme.diff.hover.side)],
+						__bgfg(theme.diff.hover.main),
+						[":before", __bgfgBorder(theme.diff.hover.side)],
 					],
 				],
 				[
@@ -70,28 +70,28 @@ export const compileTheme = (theme: Theme): string =>
 					[
 						"> code[data-fold-range]:before",
 						block,
-						bgfg(theme.diff.fold),
+						__bgfg(theme.diff.fold),
 						{
 							content: `"⥣ ⋯⋯ Folded lines: " attr(data-fold-range) " ⋯⋯ ⥥"`,
 							width: "100%",
 							border: "1px dotted",
 						},
 					],
-					[`> code${diffAttr(" ")}`, none],
+					[`> code${__diffAttr(" ")}`, none],
 					[
 						":hover",
 						[
-							`> code${diffAttr(" ")}`,
+							`> code${__diffAttr(" ")}`,
 							block,
-							bgfg(theme.diff.hover.main),
+							__bgfg(theme.diff.hover.main),
 						],
 						[`> code[data-fold-range]:before`, none],
 					],
 				],
 			],
-			diffMode(theme.diff.add, "+", `"    " ${lnum} " +"`),
-			diffMode(theme.diff.del, "-", `${lnum} "     -"`),
-			diffMode(theme.diff.nochange, " ", `"    " ${lnum} "  "`),
+			__diffMode(theme.diff.add, "+", `"    " ${lnum} " +"`),
+			__diffMode(theme.diff.del, "-", `${lnum} "     -"`),
+			__diffMode(theme.diff.nochange, " ", `"    " ${lnum} "  "`),
 			[
 				"code",
 				{
@@ -99,36 +99,40 @@ export const compileTheme = (theme: Theme): string =>
 					"font-family": "Consolas, monaco, monospace",
 				},
 			],
-			["*::selection", bgfg(theme.selection)],
+			["*::selection", __bgfg(theme.selection)],
 		]
 		// { format: PRETTY }
 	);
 
-const bgfg = ([background, color]: BgFg) => ({
+/** @internal */
+const __bgfg = ([background, color]: BgFg) => ({
 	background,
 	color,
 });
 
-const bgfgBorder = ([background, color, br]: BgFgBorder) => ({
+/** @internal */
+const __bgfgBorder = ([background, color, br]: BgFgBorder) => ({
 	background,
 	color,
 	"border-right": `1px solid ${br}`,
 });
 
-const diffAttr = (id: string) => `[data-diff="${id}"]`;
+/** @internal */
+const __diffAttr = (id: string) => `[data-diff="${id}"]`;
 
-const diffMode = (
+/** @internal */
+const __diffMode = (
 	{ main, side, word }: { main: BgFg; word?: BgFg; side: BgFgBorder },
 	mode: string,
 	content: string
 ) => [
-	`code${diffAttr(mode)}`,
-	bgfg(main),
-	word ? [`> span${diffAttr(mode)}`, bgfg(word)] : null,
+	`code${__diffAttr(mode)}`,
+	__bgfg(main),
+	word ? [`> span${__diffAttr(mode)}`, __bgfg(word)] : null,
 	[
 		":before",
 		{
-			...bgfgBorder(side),
+			...__bgfgBorder(side),
 			content,
 		},
 	],

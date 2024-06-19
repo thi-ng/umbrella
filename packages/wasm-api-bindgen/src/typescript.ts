@@ -121,7 +121,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			const strType = __stringImpl(opts);
 			const fields = <AugmentedField[]>(
 				struct.fields
-					.map((f) => generateField(f, coll, opts))
+					.map((f) => __generateField(f, coll, opts))
 					.filter((f) => !!f)
 			);
 
@@ -238,6 +238,7 @@ const __ptrBody = (
 	`));`,
 ];
 
+/** @internal */
 const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
 
@@ -279,6 +280,7 @@ const __primArray = (type: string, len: NumOrString, offset: number) => [
 	`return mem.${type}.subarray(addr, addr + ${len});`,
 ];
 
+/** @internal */
 const __arrayType = (type: string) =>
 	isNumeric(type)
 		? TYPEDARRAY_CTORS[<Type>type].name
@@ -310,7 +312,7 @@ const __docType = (
 };
 
 /** @internal */
-const generateField = (
+const __generateField = (
 	field: Field,
 	coll: TypeColl,
 	opts: CodeGenOpts

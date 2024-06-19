@@ -92,7 +92,7 @@ export const barChartHStr = (
 ) => barChartHLines(width, vals, min, max).join("\n");
 
 export const barHorizontal = (width: number, x: number, min = 0, max = 1) =>
-	bar(BARS_H, width, false, x, min, max, "");
+	__bar(BARS_H, width, false, x, min, max, "");
 
 export const barVertical = (
 	height: number,
@@ -100,9 +100,10 @@ export const barVertical = (
 	min = 0,
 	max = 1,
 	delim = "\n"
-) => bar(BARS_V, height, true, x, min, max, delim);
+) => __bar(BARS_V, height, true, x, min, max, delim);
 
-const bar = (
+/** @internal */
+const __bar = (
 	chars: string,
 	size: number,
 	left: boolean,

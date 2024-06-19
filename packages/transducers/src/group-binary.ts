@@ -3,7 +3,8 @@ import type { Reducer } from "./api.js";
 import { groupByObj } from "./group-by-obj.js";
 import { push } from "./push.js";
 
-const branchPred =
+/** @internal */
+const __branchPred =
 	<T>(key: Fn<T, number>, b: number, l: PropertyKey, r: PropertyKey) =>
 	(x: T) =>
 		key(x) & b ? r : l;
@@ -96,12 +97,12 @@ export const groupBinary = <T>(
 ): Reducer<T, any> => {
 	const init = branch || (() => ({}));
 	let rfn: Reducer<T, any> = groupByObj({
-		key: branchPred(key, 1, left, right),
+		key: __branchPred(key, 1, left, right),
 		group: leaf || push(),
 	});
 	for (let i = 2, maxIndex = 1 << bits; i < maxIndex; i <<= 1) {
 		rfn = groupByObj({
-			key: branchPred(key, i, left, right),
+			key: __branchPred(key, i, left, right),
 			group: [init, rfn[1], rfn[2]],
 		});
 	}

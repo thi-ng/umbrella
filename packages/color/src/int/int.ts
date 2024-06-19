@@ -19,8 +19,8 @@ import type {
 } from "../api.js";
 import { parseCss } from "../css/parse-css.js";
 import { __scale8bit } from "../internal/scale.js";
-import { srgb } from "../srgb/srgb.js";
 import { srgbIntAbgr32, srgbIntArgb32 } from "../srgb/srgb-int.js";
+import { srgb } from "../srgb/srgb.js";
 import { intArgb32Srgb } from "./int-srgb.js";
 
 export abstract class Int32<T extends TypedColor<T>> implements TypedColor<T> {
@@ -198,7 +198,8 @@ interface Int32Constructor<T> {
 	new (buf?: NumericArray, offset?: number, stride?: number): T;
 }
 
-const defInt = <T extends Int32<T>>(
+/** @internal */
+const __defInt = <T extends Int32<T>>(
 	ctor: Int32Constructor<T>,
 	fromSrgb: Fn<ReadonlyColor, number>
 ): ColorFactory<T> => {
@@ -246,6 +247,6 @@ const defInt = <T extends Int32<T>>(
 	return factory;
 };
 
-export const argb32 = defInt(ARGB, srgbIntArgb32);
+export const argb32 = __defInt(ARGB, srgbIntArgb32);
 
-export const abgr32 = defInt(ABGR, srgbIntAbgr32);
+export const abgr32 = __defInt(ABGR, srgbIntAbgr32);

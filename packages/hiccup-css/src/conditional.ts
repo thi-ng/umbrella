@@ -6,7 +6,9 @@ export const conditional =
 	(type: string, cond: Conditional, rules: any[]): RuleFn =>
 	(acc: string[], opts: CSSOpts) => {
 		const space = indent(opts);
-		acc.push(`${space}${type} ${formatCond(cond)}${opts.format.declStart}`);
+		acc.push(
+			`${space}${type} ${__formatCond(cond)}${opts.format.declStart}`
+		);
 		opts.depth++;
 		expand(acc, [], rules, opts);
 		opts.depth--;
@@ -14,7 +16,8 @@ export const conditional =
 		return acc;
 	};
 
-const formatCond = (cond: any) => {
+/** @internal */
+const __formatCond = (cond: any) => {
 	if (isString(cond)) {
 		return cond;
 	}

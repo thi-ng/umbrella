@@ -8,7 +8,8 @@ import { formatPrefixes } from "@thi.ng/hiccup/prefix";
 import { XML_SVG } from "@thi.ng/prefixes/xml";
 import type { HDOMImplementation, HDOMOpts } from "./api.js";
 
-const maybeInitElement = <T>(el: T, tree: any) =>
+/** @internal */
+const __maybeInitElement = <T>(el: T, tree: any) =>
 	tree.__init && tree.__init.apply(tree.__this, [el, ...tree.__args]);
 
 /**
@@ -55,7 +56,7 @@ export const createTree = <T>(
 				createTree(opts, impl, el, tree[i], undefined, init);
 			}
 		}
-		init && maybeInitElement<T>(el, tree);
+		init && __maybeInitElement<T>(el, tree);
 		return el;
 	}
 	if (isNotStringAndIterable(tree)) {
@@ -106,7 +107,7 @@ export const hydrateTree = <T>(
 				index
 			);
 		}
-		maybeInitElement(el, tree);
+		__maybeInitElement(el, tree);
 		for (let a in attribs) {
 			a[0] === "o" && a[1] === "n" && impl.setAttrib(el, a, attribs[a]);
 		}

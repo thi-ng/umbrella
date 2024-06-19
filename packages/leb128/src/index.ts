@@ -1,6 +1,6 @@
 import { hasWASM } from "@thi.ng/checks/has-wasm";
-import { unsupported } from "@thi.ng/errors/unsupported";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import { BINARY } from "./binary.js";
 
@@ -35,22 +35,25 @@ if (hasWASM()) {
 	U8 = new Uint8Array(wasm.memory.buffer, wasm.buf, 16);
 }
 
-const ensureWASM = () => !wasm && unsupported("WASM module unavailable");
+/** @internal */
+const __ensureWASM = () => !wasm && unsupported("WASM module unavailable");
 
-const encode =
+/** @internal */
+const __encode =
 	(op: "leb128EncodeI64" | "leb128EncodeU64", signed: boolean) =>
 	(x: bigint | number) => {
-		ensureWASM();
+		__ensureWASM();
 		const value = signed
 			? BigInt.asIntN(64, BigInt(x))
 			: BigInt.asUintN(64, BigInt(x));
 		return U8.slice(0, wasm[op](value));
 	};
 
-const encodeInto =
+/** @internal */
+const __encodeInto =
 	(op: "leb128EncodeI64" | "leb128EncodeU64", signed: boolean) =>
 	(dst: Uint8Array, x: bigint | number, pos: number = 0) => {
-		ensureWASM();
+		__ensureWASM();
 		const value = signed
 			? BigInt.asIntN(64, BigInt(x))
 			: BigInt.asUintN(64, BigInt(x));
@@ -63,10 +66,11 @@ const encodeInto =
 		return size;
 	};
 
-const decode =
+/** @internal */
+const __decode =
 	(op: "leb128DecodeI64" | "leb128DecodeU64", signed: boolean) =>
 	(src: Uint8Array, idx = 0): [bigint, number] => {
-		ensureWASM();
+		__ensureWASM();
 		U8.set(src.subarray(idx, Math.min(idx + 10, src.length)), 0);
 		const value = wasm[op](0, 0);
 		return [
@@ -81,7 +85,7 @@ const decode =
  *
  * @param x -
  */
-export const encodeSLEB128 = encode("leb128EncodeI64", true);
+export const encodeSLEB128 = __encode("leb128EncodeI64", true);
 
 /**
  * Takes an `Uint8Array` with LEB128 encoded signed varint and an optional start
@@ -91,7 +95,7 @@ export const encodeSLEB128 = encode("leb128EncodeI64", true);
  * @param src -
  * @param idx -
  */
-export const decodeSLEB128 = decode("leb128DecodeI64", true);
+export const decodeSLEB128 = __decode("leb128DecodeI64", true);
 
 /**
  * Takes a destination `Uint8Array`, a signed integer `x`, and an optional
@@ -105,7 +109,7 @@ export const decodeSLEB128 = decode("leb128DecodeI64", true);
  * @param x -
  * @param pos -
  */
-export const encodeSLEB128Into = encodeInto("leb128EncodeI64", true);
+export const encodeSLEB128Into = __encodeInto("leb128EncodeI64", true);
 
 /**
  * Encodes unsigned integer `x` into LEB128 varint format and returns encoded
@@ -113,7 +117,7 @@ export const encodeSLEB128Into = encodeInto("leb128EncodeI64", true);
  *
  * @param x -
  */
-export const encodeULEB128 = encode("leb128EncodeU64", false);
+export const encodeULEB128 = __encode("leb128EncodeU64", false);
 
 /**
  * Takes an `Uint8Array` with LEB128 encoded unsigned varint and an optional
@@ -123,7 +127,7 @@ export const encodeULEB128 = encode("leb128EncodeU64", false);
  * @param src -
  * @param idx -
  */
-export const decodeULEB128 = decode("leb128DecodeU64", false);
+export const decodeULEB128 = __decode("leb128DecodeU64", false);
 
 /**
  * Takes a destination Uint8Array, an unsigned integer `x`, and an optional
@@ -137,4 +141,4 @@ export const decodeULEB128 = decode("leb128DecodeU64", false);
  * @param x -
  * @param pos -
  */
-export const encodeULEB128Into = encodeInto("leb128EncodeU64", true);
+export const encodeULEB128Into = __encodeInto("leb128EncodeU64", true);

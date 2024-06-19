@@ -8,6 +8,7 @@ import { distSq2 } from "@thi.ng/vectors/distsq";
 import { dot2 } from "@thi.ng/vectors/dot";
 import { every3 } from "@thi.ng/vectors/every";
 import { maddN2 } from "@thi.ng/vectors/maddn";
+import { mag2 } from "@thi.ng/vectors/mag";
 import { magSq2 } from "@thi.ng/vectors/magsq";
 import { max2 } from "@thi.ng/vectors/max";
 import { mul2 } from "@thi.ng/vectors/mul";
@@ -17,6 +18,7 @@ import { sign2 } from "@thi.ng/vectors/sign";
 import { some3 } from "@thi.ng/vectors/some";
 import { sub2 } from "@thi.ng/vectors/sub";
 
+/** @internal */
 const t1: Vec = [];
 const t2: Vec = [];
 const t3: Vec = [];
@@ -24,8 +26,6 @@ const t4: Vec = [];
 const t5: Vec = [];
 
 const { abs, cos, min, max, sign, sin, sqrt } = Math;
-
-const mag2 = (v: ReadonlyVec) => sqrt(magSq2(v));
 
 /**
  * Computes signed distance to centered 2D circle of given `radius`.

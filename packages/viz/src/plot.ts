@@ -6,7 +6,8 @@ import { filter } from "@thi.ng/transducers/filter";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { AxisSpec, VizSpec } from "./api.js";
 
-const gridAxis = (
+/** @internal */
+const __gridAxis = (
 	{ domain, major, minor }: AxisSpec,
 	majorTickFn: Fn<number, any>,
 	minorTickFn: Fn<number, any>
@@ -34,9 +35,11 @@ const gridAxis = (
 	];
 };
 
+/** @internal */
 const NONE = () => null;
 
-const gridCartesian = ({ xaxis, yaxis, grid }: VizSpec) => {
+/** @internal */
+const __gridCartesian = ({ xaxis, yaxis, grid }: VizSpec) => {
 	grid = {
 		attribs: { stroke: [0, 0, 0, 0.2], "stroke-dasharray": "1 1" },
 		xmajor: true,
@@ -58,12 +61,12 @@ const gridCartesian = ({ xaxis, yaxis, grid }: VizSpec) => {
 	return [
 		"g",
 		grid.attribs,
-		...gridAxis(
+		...__gridAxis(
 			xaxis,
 			grid.xmajor ? lineX : NONE,
 			grid.xminor ? lineX : NONE
 		),
-		...gridAxis(
+		...__gridAxis(
 			yaxis,
 			grid.ymajor ? lineY : NONE,
 			grid.yminor ? lineY : NONE
@@ -71,7 +74,8 @@ const gridCartesian = ({ xaxis, yaxis, grid }: VizSpec) => {
 	];
 };
 
-const axisCommon = (
+/** @internal */
+const __axisCommon = (
 	spec: AxisSpec,
 	axis: any,
 	majorTickFn: Fn<number, any>,
@@ -83,7 +87,7 @@ const axisCommon = (
 		"g",
 		spec.attribs,
 		axis,
-		...gridAxis(spec, majorTickFn, minorTickFn),
+		...__gridAxis(spec, majorTickFn, minorTickFn),
 		[
 			"g",
 			{ stroke: "none", ...spec.labelAttribs },
@@ -106,7 +110,7 @@ export const cartesianAxisX = (spec: AxisSpec) => {
 			["M", [scale(x), pos]],
 			["v", dy],
 		];
-	return axisCommon(
+	return __axisCommon(
 		spec,
 		[
 			"path",
@@ -136,7 +140,7 @@ export const cartesianAxisY = (spec: AxisSpec) => {
 			["M", [pos, scale(y)]],
 			["h", dx],
 		];
-	return axisCommon(
+	return __axisCommon(
 		spec,
 		[
 			"path",
@@ -152,6 +156,7 @@ export const cartesianAxisY = (spec: AxisSpec) => {
 	);
 };
 
+/** @internal */
 const DEFAULT_ATTRIBS: any = {
 	"font-family": "Arial, Helvetica, sans-serif",
 	"font-size": "10px",
@@ -162,7 +167,7 @@ export const plotCartesian = (spec: VizSpec) => {
 	return [
 		"g",
 		{ ...DEFAULT_ATTRIBS, ...spec.attribs },
-		spec.grid ? gridCartesian(spec) : null,
+		spec.grid ? __gridCartesian(spec) : null,
 		...plots.map((fn) => fn(spec)),
 		xaxis.visible ? cartesianAxisX(xaxis) : null,
 		yaxis.visible ? cartesianAxisY(yaxis) : null,

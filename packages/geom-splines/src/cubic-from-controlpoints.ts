@@ -5,7 +5,8 @@ import { direction } from "@thi.ng/vectors/direction";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { set } from "@thi.ng/vectors/set";
 
-const buildUniform = (segments: Vec[], t: number) => {
+/** @internal */
+const __buildUniform = (segments: Vec[], t: number) => {
 	const res: Vec[][] = [];
 	for (let i = 0, n = segments.length - 2; i < n; i += 2) {
 		const a = segments[i];
@@ -21,7 +22,8 @@ const buildUniform = (segments: Vec[], t: number) => {
 	return res;
 };
 
-const buildNonUniform = (segments: Vec[], t: number) => {
+/** @internal */
+const __buildNonUniform = (segments: Vec[], t: number) => {
 	const res: Vec[][] = [];
 	for (let i = 0, n = segments.length - 2; i < n; i += 2) {
 		const a = segments[i];
@@ -43,7 +45,9 @@ export const closedCubicFromControlPoints = (
 		segments.push(addmN([], points[i], q, 0.5), set([], q));
 	}
 	segments.push(segments[0]);
-	return uniform ? buildUniform(segments, t) : buildNonUniform(segments, t);
+	return uniform
+		? __buildUniform(segments, t)
+		: __buildNonUniform(segments, t);
 };
 
 export const openCubicFromControlPoints = (
@@ -58,5 +62,7 @@ export const openCubicFromControlPoints = (
 		segments.push(addmN([], points[i], q, 0.5), set([], q));
 	}
 	segments.push(set([], points[num]));
-	return uniform ? buildUniform(segments, t) : buildNonUniform(segments, t);
+	return uniform
+		? __buildUniform(segments, t)
+		: __buildNonUniform(segments, t);
 };

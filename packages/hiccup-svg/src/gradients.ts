@@ -5,13 +5,15 @@ import { fattribs, fcolor, ff } from "./format.js";
 const RE_ALPHA_COLOR =
 	/(rgb|hsl)a\(([a-z0-9.-]+),([0-9.%]+),([0-9.%]+),([0-9.]+)\)/;
 
-const gradient = (type: string, attribs: any, stops: GradientStop[]): any[] => [
-	type,
-	fattribs(attribs),
-	...stops.map(gradientStop),
-];
+/** @internal */
+const __gradient = (
+	type: string,
+	attribs: any,
+	stops: GradientStop[]
+): any[] => [type, fattribs(attribs), ...stops.map(__gradientStop)];
 
-const gradientStop = ([offset, col]: GradientStop) => {
+/** @internal */
+const __gradientStop = ([offset, col]: GradientStop) => {
 	col = fcolor(col);
 	// use stop-opacity attrib for safari compatibility
 	// https://stackoverflow.com/a/26220870/294515
@@ -31,7 +33,7 @@ export const linearGradient = (
 	stops: GradientStop[],
 	attribs?: any
 ) =>
-	gradient(
+	__gradient(
 		"linearGradient",
 		{
 			...attribs,
@@ -53,7 +55,7 @@ export const radialGradient = (
 	stops: GradientStop[],
 	attribs?: any
 ) =>
-	gradient(
+	__gradient(
 		"radialGradient",
 		{
 			...attribs,

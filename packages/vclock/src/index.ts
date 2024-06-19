@@ -42,7 +42,7 @@ export const remove = (clock: VClock, id: NumOrString): VClock => {
  * @param b -
  */
 export const merge: FnU2<VClock> = (a, b) =>
-	[...uniqueIDs(a, b)].reduce((acc, id) => {
+	[...__uniqueIDs(a, b)].reduce((acc, id) => {
 		const va = a[id];
 		const vb = b[id];
 		acc[id] =
@@ -75,7 +75,7 @@ export const merge: FnU2<VClock> = (a, b) =>
  * @param b -
  */
 export const signedSkew: FnU2<VClock, number> = (a, b) =>
-	[...uniqueIDs(a, b)].reduce((acc, id) => {
+	[...__uniqueIDs(a, b)].reduce((acc, id) => {
 		const d = (a[id] || 0) - (b[id] || 0);
 		return Math.abs(d) > Math.abs(acc) ? d : acc;
 	}, 0);
@@ -118,7 +118,7 @@ export const absSkew: FnU2<VClock, number> = (a, b) =>
 export const compare: Comparator<VClock> = (a, b) => {
 	let ah = false;
 	let al = false;
-	for (let id of uniqueIDs(a, b)) {
+	for (let id of __uniqueIDs(a, b)) {
 		const delta = (a[id] || 0) - (b[id] || 0);
 		ah ||= delta > 0;
 		al ||= delta < 0;
@@ -159,7 +159,7 @@ export const isAfter: Predicate2<VClock> = (a, b) => compare(a, b) > 0;
  * @param b -
  */
 export const equiv: Predicate2<VClock> = (a, b) => {
-	for (let id of uniqueIDs(a, b)) {
+	for (let id of __uniqueIDs(a, b)) {
 		const va = a[id];
 		const vb = b[id];
 		if (va === undefined || vb === undefined || va !== vb) return false;
@@ -188,5 +188,5 @@ export const orderDesc: Comparator<VClock> = (a, b) => -compare(a, b);
  *
  * @internal
  */
-const uniqueIDs = (a: any, b: any) =>
+const __uniqueIDs = (a: any, b: any) =>
 	new Set(Object.keys(a).concat(Object.keys(b)));

@@ -11,13 +11,16 @@ import { add, reciprocal, sub } from "@thi.ng/shader-ast/ast/ops";
 import { abs, dot, max, pow } from "@thi.ng/shader-ast/builtin/math";
 
 // could use @thi.ng/vectors, but avoiding dependency
-const normalize = ([x, y, z]: number[]) => {
+/** @internal */
+const __normalize = ([x, y, z]: number[]) => {
 	const m = 1 / Math.hypot(x, y, z);
 	return [x * m, y * m, z * m];
 };
 
+/** @internal */
 const phi = PHI.val;
 
+/** @internal */
 const GDF = [
 	[1, 0, 0],
 	[0, 1, 0],
@@ -38,7 +41,7 @@ const GDF = [
 	[-1, 0, phi],
 	[phi, 1, 0],
 	[-phi, 1, 0],
-].map((v) => vec3(...(<[]>normalize(v))));
+].map((v) => vec3(...(<[]>__normalize(v))));
 
 /**
  * @remarks
@@ -49,8 +52,10 @@ const GDF = [
  *
  * @param id -
  * @param vecs -
+ *
+ * @internal
  */
-const defGDF = (
+const __defGDF = (
 	id: string,
 	vecs: Vec3Term[]
 ): [
@@ -84,27 +89,25 @@ const defGDF = (
 	]),
 ];
 
-export const [sdfOctahedron, sdfOctahedronSmooth] = defGDF(
+export const [sdfOctahedron, sdfOctahedronSmooth] = __defGDF(
 	"sdfOctahedron",
 	GDF.slice(3, 7)
 );
 
-export const [sdfDodecahedron, sdfDodecahedronSmooth] = defGDF(
+export const [sdfDodecahedron, sdfDodecahedronSmooth] = __defGDF(
 	"sdfDodecahedron",
 	GDF.slice(13)
 );
 
-export const [sdfIcosahedron, sdfIcosahedronSmooth] = defGDF(
+export const [sdfIcosahedron, sdfIcosahedronSmooth] = __defGDF(
 	"sdfIcosahedron",
 	GDF.slice(3, 13)
 );
 
-export const [sdfTruncatedOctahedron, sdfTruncatedOctahedronSmooth] = defGDF(
+export const [sdfTruncatedOctahedron, sdfTruncatedOctahedronSmooth] = __defGDF(
 	"sdfTruncatedOctahedron",
 	GDF.slice(0, 7)
 );
 
-export const [sdfTruncatedIcosahedron, sdfTruncatedIcosahedronSmooth] = defGDF(
-	"sdfTruncatedIcosahedron",
-	GDF.slice(3)
-);
+export const [sdfTruncatedIcosahedron, sdfTruncatedIcosahedronSmooth] =
+	__defGDF("sdfTruncatedIcosahedron", GDF.slice(3));

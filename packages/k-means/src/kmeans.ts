@@ -43,7 +43,7 @@ export const kmeans = <T extends ReadonlyVec>(
 	const clusters = new Uint32Array(num).fill(k);
 	let update = true;
 	while (update && maxIter-- > 0) {
-		update = assign(samples, centroids, clusters, dist);
+		update = __assign(samples, centroids, clusters, dist);
 		if (!update) break;
 		for (let i = 0; i < k; i++) {
 			const impl = strategy(dim);
@@ -54,7 +54,7 @@ export const kmeans = <T extends ReadonlyVec>(
 			if (centroid) centroids[i] = centroid;
 		}
 	}
-	return buildClusters(centroids, clusters);
+	return __buildClusters(centroids, clusters);
 };
 
 /**
@@ -109,7 +109,8 @@ export const initKmeanspp = <T extends ReadonlyVec>(
 	return centroidIDs;
 };
 
-const assign = <T extends ReadonlyVec>(
+/** @internal */
+const __assign = <T extends ReadonlyVec>(
 	samples: T[],
 	centroids: ReadonlyVec[],
 	assignments: Uint32Array,
@@ -126,7 +127,11 @@ const assign = <T extends ReadonlyVec>(
 	return update;
 };
 
-const buildClusters = (centroids: ReadonlyVec[], assignments: Uint32Array) => {
+/** @internal */
+const __buildClusters = (
+	centroids: ReadonlyVec[],
+	assignments: Uint32Array
+) => {
 	const clusters: Cluster[] = [];
 	for (let i = 0, n = assignments.length; i < n; i++) {
 		const id = assignments[i];

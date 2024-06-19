@@ -32,13 +32,14 @@ import type {
  *
  * @internal
  */
-const classify = (x: any) => (x != null ? (isFunction(x) ? "f" : "l") : "n");
+const __classify = (x: any) => (x != null ? (isFunction(x) ? "f" : "l") : "n");
 
 /** @internal */
-const ensureArray = (src: any[] | Set<any>) => (isArray(src) ? src : [...src]);
+const __ensureArray = (src: any[] | Set<any>) =>
+	isArray(src) ? src : [...src];
 
 /** @internal */
-const ensureSet = (src: any[] | Set<any>) =>
+const __ensureSet = (src: any[] | Set<any>) =>
 	isArray(src) ? new Set(src) : src;
 
 /**
@@ -51,11 +52,11 @@ const ensureSet = (src: any[] | Set<any>) =>
  *
  * @internal
  */
-const intersect = (src: any[] | Set<any>) => {
-	const a = ensureArray(src);
+const __intersect = (src: any[] | Set<any>) => {
+	const a = __ensureArray(src);
 	const num = a.length;
 	return (b: any) => {
-		const $b = ensureSet(b);
+		const $b = __ensureSet(b);
 		for (let i = num; i-- > 0; ) {
 			if (!$b.has(a[i])) return false;
 		}
@@ -67,47 +68,49 @@ const intersect = (src: any[] | Set<any>) => {
  * Checks the type of a single S,P,O term and if an array or Set, returns a
  * predicate function to check if an element is included. Otherwise, returns
  * input. If `isec` is true, the returned predicate will be the result of
- * {@link intersect}.
+ * {@link __intersect}.
  *
  * @param x -
  * @param isec -
  *
  * @internal
  */
-const coerce = (x: any, isec = false) =>
+const __coerce = (x: any, isec = false) =>
 	isArray(x)
 		? isec
-			? intersect(x)
+			? __intersect(x)
 			: (y: any) => x.includes(y)
 		: isSet(x)
 		? isec
-			? intersect(x)
+			? __intersect(x)
 			: (y: any) => x.has(y)
 		: x;
 
 /**
- * Similar to {@link coerce}, but intended for S,P terms. Unless `x` is a
+ * Similar to {@link __coerce}, but intended for S,P terms. Unless `x` is a
  * function or null, coerces `x` (or its elements) to strings first.
  *
  * @param x -
  *
  * @internal
  */
-const coerceStr = (x: any) =>
+const __coerceStr = (x: any) =>
 	isArray(x)
-		? coerce(x.map((y) => String(y)))
+		? __coerce(x.map((y) => String(y)))
 		: isSet(x)
-		? coerce(new Set([...x].map((y) => String(y))))
+		? __coerce(new Set([...x].map((y) => String(y))))
 		: x == null || isFunction(x)
 		? x
 		: String(x);
 
-const addTriple = (acc: any, s: any, p: any, o: any) => {
+/** @internal */
+const __addTriple = (acc: any, s: any, p: any, o: any) => {
 	const sval = acc[s];
 	sval ? (sval[p] = o) : (acc[s] = { [p]: o });
 };
 
-const match = (o: any, val: any, opts: QueryOpts) => {
+/** @internal */
+const __match = (o: any, val: any, opts: QueryOpts) => {
 	if (val != null) {
 		const pred = <Predicate<any>>(
 			(isFunction(o) ? o : ($: any) => opts.equiv(o, $))
@@ -117,7 +120,8 @@ const match = (o: any, val: any, opts: QueryOpts) => {
 	return false;
 };
 
-const collect = (
+/** @internal */
+const __collect = (
 	acc: any,
 	s: any,
 	p: any,
@@ -129,16 +133,18 @@ const collect = (
 		const pred = isFunction(o) ? o : ($: any) => opts.equiv(o, $);
 		if (opts.cwise && isArray(val)) {
 			val = val.filter(pred);
-			val.length && addTriple(acc, s, p, val);
+			val.length && __addTriple(acc, s, p, val);
 		} else if (pred(val)) {
-			addTriple(acc, s, p, val);
+			__addTriple(acc, s, p, val);
 		}
 	}
 };
 
-const collectFull = (res: QueryObj, s: any, val: any) => (res[s] = val);
+/** @internal */
+const __collectFull = (res: QueryObj, s: any, val: any) => (res[s] = val);
 
-const collectSP = (
+/** @internal */
+const __collectSP = (
 	res: QueryObj,
 	sval: any,
 	s: SPTerm,
@@ -148,19 +154,20 @@ const collectSP = (
 ) => {
 	if (opts.partial) {
 		for (let $p in sval) {
-			(<FTerm>p)($p) && collect(res, s, $p, o, sval[$p], opts);
+			(<FTerm>p)($p) && __collect(res, s, $p, o, sval[$p], opts);
 		}
 	} else {
 		for (let $p in sval) {
-			if ((<FTerm>p)($p) && match(o, sval[$p], opts)) {
-				collectFull(res, s, sval);
+			if ((<FTerm>p)($p) && __match(o, sval[$p], opts)) {
+				__collectFull(res, s, sval);
 				return;
 			}
 		}
 	}
 };
 
-const collectSO = (
+/** @internal */
+const __collectSO = (
 	res: QueryObj,
 	sval: any,
 	s: SPTerm,
@@ -169,147 +176,162 @@ const collectSO = (
 ) => {
 	if (opts.partial) {
 		for (let p in sval) {
-			collect(res, s, p, o, sval[p], opts);
+			__collect(res, s, p, o, sval[p], opts);
 		}
 	} else {
 		for (let p in sval) {
-			if (match(o, sval[p], opts)) {
-				collectFull(res, s, sval);
+			if (__match(o, sval[p], opts)) {
+				__collectFull(res, s, sval);
 				return;
 			}
 		}
 	}
 };
 
-const queryLL: QueryImpl = (res, db: any, s, p, o, opts) => {
+/** @internal */
+const __queryLL: QueryImpl = (res, db: any, s, p, o, opts) => {
 	const sval = db[<any>s];
 	const val = sval?.[<string>p];
 	if (opts.partial) {
-		collect(res, s, p, o, val, opts);
+		__collect(res, s, p, o, val, opts);
 	} else {
-		match(o, val, opts) && collectFull(res, s, sval);
+		__match(o, val, opts) && __collectFull(res, s, sval);
 	}
 };
 
-const queryLF: QueryImpl = (res, db: any, s, p, o, opts) => {
+/** @internal */
+const __queryLF: QueryImpl = (res, db: any, s, p, o, opts) => {
 	const sval = db[<string>s];
-	sval != null && collectSP(res, sval, s, p, o, opts);
+	sval != null && __collectSP(res, sval, s, p, o, opts);
 };
 
-const queryLN: QueryImpl = (res, db: any, s, _, o, opts) => {
+/** @internal */
+const __queryLN: QueryImpl = (res, db: any, s, _, o, opts) => {
 	const sval = db[<string>s];
-	sval != null && collectSO(res, sval, s, o, opts);
+	sval != null && __collectSO(res, sval, s, o, opts);
 };
 
-const queryFL: QueryImpl = (res, db: any, s, p, o, opts) => {
+/** @internal */
+const __queryFL: QueryImpl = (res, db: any, s, p, o, opts) => {
 	if (opts.partial) {
 		for (let $s in db) {
-			(<FTerm>s)($s) && collect(res, $s, p, o, db[$s]?.[<string>p], opts);
+			(<FTerm>s)($s) &&
+				__collect(res, $s, p, o, db[$s]?.[<string>p], opts);
 		}
 	} else {
 		for (let $s in db) {
 			const sval = db[$s];
 			(<FTerm>s)($s) &&
-				match(o, sval?.[<string>p], opts) &&
-				collectFull(res, $s, sval);
+				__match(o, sval?.[<string>p], opts) &&
+				__collectFull(res, $s, sval);
 		}
 	}
 };
 
-const queryFF: QueryImpl = (res, db: any, s, p, o, opts) => {
+/** @internal */
+const __queryFF: QueryImpl = (res, db: any, s, p, o, opts) => {
 	for (let $s in db) {
-		(<FTerm>s)($s) && collectSP(res, db[$s], $s, p, o, opts);
+		(<FTerm>s)($s) && __collectSP(res, db[$s], $s, p, o, opts);
 	}
 };
 
-const queryFN: QueryImpl = (res, db: any, s, _, o, opts) => {
+/** @internal */
+const __queryFN: QueryImpl = (res, db: any, s, _, o, opts) => {
 	for (let $s in db) {
-		(<FTerm>s)($s) && collectSO(res, db[$s], $s, o, opts);
+		(<FTerm>s)($s) && __collectSO(res, db[$s], $s, o, opts);
 	}
 };
 
-const queryNL: QueryImpl = (res, db: any, _, p, o, opts) => {
+/** @internal */
+const __queryNL: QueryImpl = (res, db: any, _, p, o, opts) => {
 	if (opts.partial) {
 		for (let s in db) {
-			collect(res, s, p, o, db[s][<string>p], opts);
+			__collect(res, s, p, o, db[s][<string>p], opts);
 		}
 	} else {
 		for (let s in db) {
 			const sval = db[s];
-			match(o, sval[<string>p], opts) && collectFull(res, s, sval);
+			__match(o, sval[<string>p], opts) && __collectFull(res, s, sval);
 		}
 	}
 };
 
-const queryNF: QueryImpl = (res, db: any, _, p, o, opts) => {
+/** @internal */
+const __queryNF: QueryImpl = (res, db: any, _, p, o, opts) => {
 	for (let s in db) {
-		collectSP(res, db[s], s, p, o, opts);
+		__collectSP(res, db[s], s, p, o, opts);
 	}
 };
 
-const queryNN: QueryImpl = (res, db: any, _, __, o, opts) => {
+/** @internal */
+const __queryNN: QueryImpl = (res, db: any, _, __, o, opts) => {
 	for (let s in db) {
-		collectSO(res, db[s], s, o, opts);
+		__collectSO(res, db[s], s, o, opts);
 	}
 };
 
-const querySP: QueryImpl = (res, sval: any, s, p, _, opts) => {
+/** @internal */
+const __querySP: QueryImpl = (res, sval: any, s, p, _, opts) => {
 	if (opts.partial) {
 		for (let q in sval) {
 			if ((<FTerm>p)(q)) {
 				const val = sval[q];
-				val != null && addTriple(res, s, q, val);
+				val != null && __addTriple(res, s, q, val);
 			}
 		}
 	} else {
 		for (let q in sval) {
 			if ((<FTerm>p)(q)) {
-				collectFull(res, s, sval);
+				__collectFull(res, s, sval);
 				return;
 			}
 		}
 	}
 };
 
-const queryO: QueryImpl = (res, db: any, s, p, _, opts) => {
+/** @internal */
+const __queryO: QueryImpl = (res, db: any, s, p, _, opts) => {
 	const sval = db[<string>s];
 	const val = sval?.[<string>p];
 	val != null &&
-		(opts.partial ? addTriple(res, s, p, val) : collectFull(res, s, sval));
+		(opts.partial
+			? __addTriple(res, s, p, val)
+			: __collectFull(res, s, sval));
 };
 
+/** @internal */
 const IMPLS = <QueryImpls>{
-	lll: queryLL,
-	llf: queryLL,
-	lln: queryO,
-	lfl: queryLF,
-	lff: queryLF,
+	lll: __queryLL,
+	llf: __queryLL,
+	lln: __queryO,
+	lfl: __queryLF,
+	lff: __queryLF,
 	lfn: (res, db: any, s, p, _, opts) => {
 		const sval = db[<string>s];
-		sval != null && querySP(res, sval, s, p, null, opts);
+		sval != null && __querySP(res, sval, s, p, null, opts);
 	},
-	lnl: queryLN,
-	lnf: queryLN,
+	lnl: __queryLN,
+	lnf: __queryLN,
 	lnn: (res, db: any, s) => {
 		const sval = db[<string>s];
-		sval != null && collectFull(res, s, sval);
+		sval != null && __collectFull(res, s, sval);
 	},
-	fll: queryFL,
-	flf: queryFL,
+	fll: __queryFL,
+	flf: __queryFL,
 	fln: (res, db, s, p, _, opts) => {
 		for (let $s in db) {
-			(<FTerm>s)($s) && queryO(res, db, $s, p, null, opts);
+			(<FTerm>s)($s) && __queryO(res, db, $s, p, null, opts);
 		}
 	},
-	ffl: queryFF,
-	fff: queryFF,
+	ffl: __queryFF,
+	fff: __queryFF,
 	ffn: (res, db: any, s, p, _, opts) => {
 		if (opts.partial) {
 			for (let $s in db) {
 				if ((<FTerm>s)($s)) {
 					const sval = db[$s];
 					for (let $p in sval) {
-						(<FTerm>p)($p) && addTriple(res, $s, $p, sval[$p]);
+						(<FTerm>p)($p) && __addTriple(res, $s, $p, sval[$p]);
 					}
 				}
 			}
@@ -319,7 +341,7 @@ const IMPLS = <QueryImpls>{
 					const sval = db[$s];
 					for (let $p in sval) {
 						if ((<FTerm>p)($p)) {
-							collectFull(res, $s, sval);
+							__collectFull(res, $s, sval);
 							break;
 						}
 					}
@@ -327,41 +349,41 @@ const IMPLS = <QueryImpls>{
 			}
 		}
 	},
-	fnl: queryFN,
-	fnf: queryFN,
+	fnl: __queryFN,
+	fnf: __queryFN,
 	fnn: (res, db: any, s) => {
 		for (let $s in db) {
 			if ((<FTerm>s)($s)) {
 				const sval = db[$s];
-				sval != null && collectFull(res, $s, sval);
+				sval != null && __collectFull(res, $s, sval);
 			}
 		}
 	},
-	nll: queryNL,
-	nlf: queryNL,
+	nll: __queryNL,
+	nlf: __queryNL,
 	nln: (res, db: any, _, p, __, opts) => {
 		if (opts.partial) {
 			for (let s in db) {
 				const val = db[s][<string>p];
-				val != null && addTriple(res, s, p, val);
+				val != null && __addTriple(res, s, p, val);
 			}
 		} else {
 			for (let s in db) {
 				const sval = db[s];
 				const val = sval[<string>p];
-				val != null && collectFull(res, s, sval);
+				val != null && __collectFull(res, s, sval);
 			}
 		}
 	},
-	nfl: queryNF,
-	nff: queryNF,
+	nfl: __queryNF,
+	nff: __queryNF,
 	nfn: (res, db: any, _, p, __, opts) => {
 		for (let s in db) {
-			querySP(res, db[s], s, p, null, opts);
+			__querySP(res, db[s], s, p, null, opts);
 		}
 	},
-	nnl: queryNN,
-	nnf: queryNN,
+	nnl: __queryNN,
+	nnf: __queryNN,
 	nnn: (res, db) => Object.assign(res, db),
 };
 
@@ -371,7 +393,7 @@ const IMPLS = <QueryImpls>{
  *
  * @internal
  */
-const impl = defmulti<
+const __impl = defmulti<
 	QueryObj,
 	QueryObj,
 	SPTerm,
@@ -379,25 +401,27 @@ const impl = defmulti<
 	OTerm,
 	QueryOpts,
 	void
->((_, __, s, p, o) => classify(s) + classify(p) + classify(o), {}, IMPLS);
+>((_, __, s, p, o) => __classify(s) + __classify(p) + __classify(o), {}, IMPLS);
 
-const objQuery = (src: QueryObj[], opts: QueryOpts, args: any[]) => {
+/** @internal */
+const __objQuery = (src: QueryObj[], opts: QueryOpts, args: any[]) => {
 	const isIsec = opts.cwise && opts.intersect;
 	isIsec && (opts.cwise = false);
 	let [s, p, o, out] = <[SPInputTerm, SPInputTerm, OTerm, QueryObj?]>args;
 	out = out || {};
-	impl(
+	__impl(
 		out,
 		src,
-		coerceStr(s),
-		coerceStr(p),
-		coerce(o, isIsec),
+		__coerceStr(s),
+		__coerceStr(p),
+		__coerce(o, isIsec),
 		<QueryOpts>opts
 	);
 	return out;
 };
 
-const arrayQuery = (
+/** @internal */
+const __arrayQuery = (
 	src: QueryObj[],
 	opts: QueryOpts,
 	p: SPInputTerm,
@@ -406,10 +430,10 @@ const arrayQuery = (
 ) => {
 	const isIsec = opts.cwise && opts.intersect;
 	isIsec && (opts.cwise = false);
-	const $p = coerceStr(p);
-	const $o = coerce(o, isIsec);
+	const $p = __coerceStr(p);
+	const $o = __coerce(o, isIsec);
 	// pre-select implementation to avoid dynamic dispatch
-	const impl = IMPLS[<QueryType>("n" + classify($p) + classify($o))];
+	const impl = IMPLS[<QueryType>("n" + __classify($p) + __classify($o))];
 	for (let i = 0, n = src.length; i < n; i++) {
 		const res: QueryObj = {};
 		impl(res, { _: src[i] }, "_", $p, $o, opts);
@@ -417,6 +441,7 @@ const arrayQuery = (
 	}
 };
 
+/** @internal */
 const DEFAULT_OPTS: QueryOpts = {
 	partial: false,
 	cwise: true,
@@ -443,10 +468,10 @@ export const defQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
 	return <QueryFn<T>>((src: any, ...args: any[]): any => {
 		if (isArray(src)) {
 			const out: QueryObj[] = args[2] || [];
-			arrayQuery(src, $opts, args[0], args[1], (x) => out.push(x));
+			__arrayQuery(src, $opts, args[0], args[1], (x) => out.push(x));
 			return out;
 		} else {
-			return objQuery(src, $opts, args);
+			return __objQuery(src, $opts, args);
 		}
 	});
 };
@@ -470,10 +495,10 @@ export const defKeyQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
 	return <KeyQueryFn<T>>((src: any, ...args: any[]): any => {
 		if (isArray(src)) {
 			const out = args[2] || new Set<number>();
-			arrayQuery(src, $opts, args[0], args[1], (_, i) => out.add(i));
+			__arrayQuery(src, $opts, args[0], args[1], (_, i) => out.add(i));
 			return out;
 		} else {
-			const res = objQuery(src, $opts, args.slice(0, 3));
+			const res = __objQuery(src, $opts, args.slice(0, 3));
 			const out = args[3];
 			if (!out) return new Set<string>(Object.keys(res));
 			for (let k in res) out.add(k);

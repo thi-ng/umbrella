@@ -347,17 +347,18 @@ export const not = (val: BoolTerm) => op1("!", val);
 export const or = (a: BoolTerm, b: BoolTerm) => op2("||", a, b);
 export const and = (a: BoolTerm, b: BoolTerm) => op2("&&", a, b);
 
-const cmp =
+/** @internal */
+const __cmp =
 	(op: ComparisonOperator) =>
 	<A extends Comparable, B extends A>(a: Term<A>, b: Term<B>): BoolTerm =>
 		op2(op, a, b, "bool");
 
-export const eq = cmp("==");
-export const neq = cmp("!=");
-export const lt = cmp("<");
-export const lte = cmp("<=");
-export const gt = cmp(">");
-export const gte = cmp(">=");
+export const eq = __cmp("==");
+export const neq = __cmp("!=");
+export const lt = __cmp("<");
+export const lte = __cmp("<=");
+export const gt = __cmp(">");
+export const gte = __cmp(">=");
 
 export const bitnot = <T extends IntTerm | UintTerm | Term<IVec> | Term<UVec>>(
 	val: T

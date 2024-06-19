@@ -15,7 +15,7 @@ import { padLeft } from "./pad-left.js";
 export const float: (prec: number, special?: boolean) => Stringer<number> =
 	memoizeJ((prec, special = false) =>
 		special
-			? (x: number) => nanOrInf(x) || x.toFixed(prec)
+			? (x: number) => __nanOrInf(x) || x.toFixed(prec)
 			: (x: number) => x.toFixed(prec)
 	);
 
@@ -37,17 +37,18 @@ export const floatFixedWidth: (
 	return (x: number) => {
 		const ax = Math.abs(x);
 		return pad(
-			nanOrInf(x) ||
+			__nanOrInf(x) ||
 				(x === 0
 					? "0"
 					: ax < pr || ax >= pl
-					? exp(x, width)
+					? __exp(x, width)
 					: x.toFixed(prec - (x < pln ? 1 : 0)))
 		);
 	};
 });
 
-const exp = (x: number, w: number) =>
+/** @internal */
+const __exp = (x: number, w: number) =>
 	x.toExponential(
 		Math.max(
 			w -
@@ -58,7 +59,8 @@ const exp = (x: number, w: number) =>
 		)
 	);
 
-const nanOrInf = (x: number) =>
+/** @internal */
+const __nanOrInf = (x: number) =>
 	isNaN(x)
 		? "NaN"
 		: x === Infinity

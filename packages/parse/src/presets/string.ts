@@ -6,8 +6,9 @@ import { noneOf } from "../prims/none-of.js";
 import { join } from "../xform/join.js";
 import { ESC, UNICODE } from "./escape.js";
 
-const quote = litD('"');
+/** @internal */
+const QUOTE = litD('"');
 
 export const STRING = join(
-	seq([quote, zeroOrMore(alt([UNICODE, ESC, noneOf('"')])), quote], "string")
+	seq([QUOTE, zeroOrMore(alt([UNICODE, ESC, noneOf('"')])), QUOTE], "string")
 );

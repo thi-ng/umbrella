@@ -28,8 +28,10 @@ interface HashMapState<K, V> {
 	size: number;
 }
 
+/** @internal */
 const __private = new WeakMap<HashMap<any, any>, HashMapState<any, any>>();
 
+/** @internal */
 const __iterator = <K, V>(map: HashMap<K, V>, id: 0 | 1) =>
 	function* () {
 		for (let p of __private.get(map)!.bins) {

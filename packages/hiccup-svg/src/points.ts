@@ -28,7 +28,7 @@ export const points = (
 		fattribs(withoutKeys(attribs, new Set(["shape", "size"]))),
 		...body,
 	];
-	const href = buildSymbol(group, shape, size);
+	const href = __buildSymbol(group, shape, size);
 	for (let p of pts) {
 		// TODO replace w/ SVG2 `href` once Safari supports it
 		group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
@@ -82,7 +82,7 @@ export const packedPoints = (
 		),
 		...body,
 	];
-	const href = buildSymbol(group, shape, size);
+	const href = __buildSymbol(group, shape, size);
 	for (let i = start; num-- > 0; i += estride) {
 		// TODO replace w/ SVG2 `href` once Safari supports it
 		group.push([
@@ -93,11 +93,12 @@ export const packedPoints = (
 	return group;
 };
 
-const buildSymbol = (group: any[], shape: string, size: number) => {
+/** @internal */
+const __buildSymbol = (group: any[], shape: string, size: number) => {
 	let href: string;
 	if (!shape || shape[0] !== "#") {
 		href = "_" + ((Math.random() * 1e6) | 0).toString(36);
-		group.push(["g", { opacity: 0 }, buildShape(shape, href, size)]);
+		group.push(["g", { opacity: 0 }, __buildShape(shape, href, size)]);
 		href = "#" + href;
 	} else {
 		href = shape;
@@ -105,7 +106,8 @@ const buildSymbol = (group: any[], shape: string, size: number) => {
 	return href;
 };
 
-const buildShape = (shape: string, id: string, r: number) => {
+/** @internal */
+const __buildShape = (shape: string, id: string, r: number) => {
 	const rf = ff(r);
 	if (shape === "circle") {
 		return ["circle", { id, cx: 0, cy: 0, r: rf }];

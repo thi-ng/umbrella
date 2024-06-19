@@ -3858,6 +3858,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.4"
     "@thi.ng/defmulti": "npm:^3.0.39"
     "@thi.ng/errors": "npm:^2.5.7"
+    "@thi.ng/strings": "npm:^3.7.33"
     "@thi.ng/transducers": "npm:^9.0.5"
     "@thi.ng/transducers-binary": "npm:^2.1.120"
     esbuild: "npm:^0.21.4"

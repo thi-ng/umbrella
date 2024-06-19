@@ -111,6 +111,7 @@ interface ParseState extends FSMState {
 	isProc?: boolean;
 }
 
+/** @internal */
 const enum State {
 	WAIT,
 	ERROR,
@@ -171,7 +172,8 @@ export function parse(...args: any[]): any {
 	});
 }
 
-const isWS = (x: string) => {
+/** @internal */
+const __isWS = (x: string) => {
 	const c = x.charCodeAt(0);
 	return (
 		c === 0x20 || // space
@@ -181,7 +183,8 @@ const isWS = (x: string) => {
 	);
 };
 
-const isTagChar = (x: string) => {
+/** @internal */
+const __isTagChar = (x: string) => {
 	const c = x.charCodeAt(0);
 	return (
 		(c >= 0x41 && c <= 0x5a) || // A-Z
@@ -193,27 +196,31 @@ const isTagChar = (x: string) => {
 	);
 };
 
-const error = (s: ParseState, body: string) => {
+/** @internal */
+const __error = (s: ParseState, body: string) => {
 	s.state = State.ERROR;
 	return [{ type: Type.ERROR, body }];
 };
 
-const illegalEscape = (s: ParseState, ch: string) =>
-	error(s, `illegal escape sequence: \\${ch} @ pos ${s.pos - 1}`);
+/** @internal */
+const __illegalEscape = (s: ParseState, ch: string) =>
+	__error(s, `illegal escape sequence: \\${ch} @ pos ${s.pos - 1}`);
 
-const unexpected = (s: ParseState, x: string) =>
-	error(s, `unexpected char: '${x}' @ pos ${s.pos}`);
+/** @internal */
+const __unexpected = (s: ParseState, x: string) =>
+	__error(s, `unexpected char: '${x}' @ pos ${s.pos}`);
 
+/** @internal */
 const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 	[State.ERROR]: NO_OP,
 
 	[State.WAIT]: (state, ch) => {
 		state.pos++;
-		if (!isWS(ch)) {
+		if (!__isWS(ch)) {
 			if (ch === "<") {
 				state.state = State.MAYBE_ELEM;
 			} else {
-				return unexpected(state, ch);
+				return __unexpected(state, ch);
 			}
 		}
 	},
@@ -222,11 +229,11 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 		state.pos++;
 		if (ch === "/") {
 			if (state.scope.length == 0) {
-				return unexpected(state, ch);
+				return __unexpected(state, ch);
 			}
 			state.state = State.ELEM_END;
 			state.tag = "";
-		} else if (isTagChar(ch)) {
+		} else if (__isTagChar(ch)) {
 			state.state = State.ELEM_START;
 			state.tag = ch;
 			state.attribs = {};
@@ -238,28 +245,28 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 			state.tag = "";
 			state.body = "";
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
 	[State.ELEM_START]: (state, ch) => {
 		state.pos++;
-		if (isTagChar(ch)) {
+		if (__isTagChar(ch)) {
 			state.tag += ch;
-		} else if (isWS(ch)) {
+		} else if (__isWS(ch)) {
 			state.state = State.MAYBE_ATTRIB;
 		} else if (ch === ">") {
-			return beginElementBody(state);
+			return __beginElementBody(state);
 		} else if (ch === "/") {
 			state.state = State.ELEM_SINGLE;
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
 	[State.ELEM_END]: (state, ch) => {
 		state.pos++;
-		if (isTagChar(ch)) {
+		if (__isTagChar(ch)) {
 			state.tag += ch;
 		} else if (ch === ">") {
 			const scope = state.scope;
@@ -272,7 +279,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 				state.state = State.WAIT;
 				return [{ type: Type.ELEM_END, ...res }];
 			} else {
-				return error(
+				return __error(
 					state,
 					`unmatched tag: '${state.tag}' @ pos ${
 						state.pos - state.tag!.length - 2
@@ -296,7 +303,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 				{ type: Type.ELEM_END, ...res },
 			];
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
@@ -329,7 +336,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 					state.body = b.substring(0, b.length - 1) + e;
 					return;
 				} else {
-					return illegalEscape(state, ch);
+					return __illegalEscape(state, ch);
 				}
 			}
 			state.body += ch;
@@ -338,7 +345,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 
 	[State.MAYBE_ATTRIB]: (state, ch) => {
 		state.pos++;
-		if (isTagChar(ch)) {
+		if (__isTagChar(ch)) {
 			state.state = State.ATTRIB_NAME;
 			state.name = ch;
 			state.val = "";
@@ -346,16 +353,16 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 			if (state.isProc) {
 				if (ch === "?") {
 					state.state = State.PROC_END;
-				} else if (!isWS(ch)) {
-					return unexpected(state, ch);
+				} else if (!__isWS(ch)) {
+					return __unexpected(state, ch);
 				}
 			} else {
 				if (ch === ">") {
-					return beginElementBody(state);
+					return __beginElementBody(state);
 				} else if (ch === "/") {
 					state.state = State.ELEM_SINGLE;
-				} else if (!isWS(ch)) {
-					return unexpected(state, ch);
+				} else if (!__isWS(ch)) {
+					return __unexpected(state, ch);
 				}
 			}
 		}
@@ -363,13 +370,13 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 
 	[State.ATTRIB_NAME]: (state, ch) => {
 		state.pos++;
-		if (isTagChar(ch)) {
+		if (__isTagChar(ch)) {
 			state.name += ch;
 		} else if (ch === "=") {
 			state.state = State.ATTRIB_VAL_START;
 		} else if (state.opts.boolean) {
 			if (!state.name || !state.name.length) {
-				return error(state, "missing attribute name");
+				return __error(state, "missing attribute name");
 			}
 			if (ch === " ") {
 				state.attribs[state.name!] = true;
@@ -380,12 +387,12 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 				return;
 			} else if (ch === ">") {
 				state.attribs[state.name!] = true;
-				return beginElementBody(state);
+				return __beginElementBody(state);
 			} else {
-				return unexpected(state, ch);
+				return __unexpected(state, ch);
 			}
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
@@ -395,7 +402,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 			state.state = State.ATTRIB_VALUE;
 			state.quote = ch;
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
@@ -408,7 +415,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 				state.val = v.substring(0, v.length - 1) + e;
 				return;
 			} else {
-				return illegalEscape(state, ch);
+				return __illegalEscape(state, ch);
 			}
 		}
 		if (ch !== state.quote) {
@@ -435,7 +442,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 			state.phase = 1;
 			state.body = "";
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
@@ -445,7 +452,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 			state.state = State.COMMENT_BODY;
 			state.body = "";
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
@@ -454,7 +461,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 		if (ch === ">") {
 			const n = state.body!.length;
 			if (state.body!.substring(n - 2) !== "--") {
-				return unexpected(state, ch);
+				return __unexpected(state, ch);
 			}
 			state.state = State.WAIT;
 			let b = state.body!.substring(0, n - 2);
@@ -476,7 +483,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 			if (ch === "DOCTYPE "[state.phase!]) {
 				state.phase!++;
 			} else {
-				return unexpected(state, ch);
+				return __unexpected(state, ch);
 			}
 		} else if (ch === ">") {
 			state.state = State.WAIT;
@@ -492,7 +499,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 			if (ch === "[CDATA["[state.phase!]) {
 				state.phase!++;
 			} else {
-				return unexpected(state, ch);
+				return __unexpected(state, ch);
 			}
 		} else if (ch === ">") {
 			const n = state.body!.length;
@@ -516,14 +523,14 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 
 	[State.PROC_DECL]: (state, ch) => {
 		state.pos++;
-		if (isTagChar(ch)) {
+		if (__isTagChar(ch)) {
 			state.tag += ch;
-		} else if (isWS(ch)) {
+		} else if (__isWS(ch)) {
 			state.state = State.MAYBE_ATTRIB;
 			state.isProc = true;
 			state.attribs = {};
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 
@@ -536,12 +543,13 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 				{ type: Type.PROC, tag: state.tag, attribs: state.attribs },
 			];
 		} else {
-			return unexpected(state, ch);
+			return __unexpected(state, ch);
 		}
 	},
 };
 
-const beginElementBody = (state: ParseState) => {
+/** @internal */
+const __beginElementBody = (state: ParseState) => {
 	state.state = State.ELEM_BODY;
 	state.scope.push({ tag: state.tag, attribs: state.attribs, children: [] });
 	state.body = "";

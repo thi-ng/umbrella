@@ -67,14 +67,15 @@ export const whileLoop = (test: BoolTerm, body: Term<any>[]): WhileLoop => ({
 	scope: scope(body),
 });
 
-const ctrl = (id: string): ControlFlow => ({
+/** @internal */
+const __ctrl = (id: string): ControlFlow => ({
 	tag: "ctrl",
 	type: "void",
 	id,
 });
 
-export const brk = ctrl("break");
+export const brk = __ctrl("break");
 
-export const cont = ctrl("continue");
+export const cont = __ctrl("continue");
 
-export const discard = ctrl("discard");
+export const discard = __ctrl("discard");

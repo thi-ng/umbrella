@@ -7,7 +7,8 @@ import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { IReducible, Reducer, ReductionFn } from "./api.js";
 import { isReduced, unreduced } from "./reduced.js";
 
-const parseArgs = (args: any[]) =>
+/** @internal */
+const __parseArgs = (args: any[]) =>
 	args.length === 2
 		? [undefined, args[1]]
 		: args.length === 3
@@ -27,7 +28,7 @@ export function reduce<A, B>(...args: any[]): B {
 	const init = rfn[0];
 	const complete = rfn[1];
 	const reduce = rfn[2];
-	args = parseArgs(args);
+	args = __parseArgs(args);
 	const acc: B = args[0] == null ? init() : args[0];
 	const src: Iterable<A> | IReducible<A, B> = args[1];
 	return unreduced(
@@ -35,8 +36,8 @@ export function reduce<A, B>(...args: any[]): B {
 			implementsFunction(src, "$reduce")
 				? src.$reduce(reduce, acc)
 				: isArrayLike(src)
-				? reduceArray(reduce, acc, src)
-				: reduceIterable(reduce, acc, <Iterable<A>>src)
+				? __reduceArray(reduce, acc, src)
+				: __reduceIterable(reduce, acc, <Iterable<A>>src)
 		)
 	);
 }
@@ -49,7 +50,7 @@ export function reduceRight<A, B>(
 ): B;
 export function reduceRight<A, B>(...args: any[]): B {
 	const [init, complete, reduce]: Reducer<A, B> = args[0];
-	args = parseArgs(args);
+	args = __parseArgs(args);
 	let acc: B = args[0] == null ? init() : args[0];
 	const src: Array<A> = args[1];
 	for (let i = src.length; i-- > 0; ) {
@@ -62,7 +63,8 @@ export function reduceRight<A, B>(...args: any[]): B {
 	return unreduced(complete(acc));
 }
 
-const reduceArray = <A, B>(
+/** @internal */
+const __reduceArray = <A, B>(
 	rfn: ReductionFn<A, B>,
 	acc: B,
 	src: ArrayLike<A>
@@ -77,7 +79,8 @@ const reduceArray = <A, B>(
 	return acc;
 };
 
-const reduceIterable = <A, B>(
+/** @internal */
+const __reduceIterable = <A, B>(
 	rfn: ReductionFn<A, B>,
 	acc: B,
 	src: Iterable<A>

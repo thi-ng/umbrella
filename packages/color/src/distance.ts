@@ -154,13 +154,13 @@ export const distCIEDE2000 =
 		const c1ab = hypot(a1, b1);
 		const c2ab = hypot(a2, b2);
 		const cab = (c1ab + c2ab) * 0.5;
-		const g = 1 + 0.5 * (1 - c7Coeff(cab));
+		const g = 1 + 0.5 * (1 - __c7Coeff(cab));
 		a1 *= g;
 		a2 *= g;
 		const c1 = hypot(a1, b1);
 		const c2 = hypot(a2, b2);
 		const cmean = (c1 + c2) * 0.5;
-		const { deltaH, H } = computeDeltaH(a1, b1, a2, b2, c1, c2);
+		const { deltaH, H } = __computeDeltaH(a1, b1, a2, b2, c1, c2);
 		const T =
 			1 -
 			0.17 * cos(H - SIXTH_PI) +
@@ -169,7 +169,7 @@ export const distCIEDE2000 =
 			0.2 * cos(4 * H - H63);
 		const Rt =
 			-2 *
-			c7Coeff(cmean) *
+			__c7Coeff(cmean) *
 			sin(THIRD_PI * Math.exp(-(((H - H275) / H25) ** 2)));
 		const L50 = ((l1 + l2) * 0.5 - 50) ** 2;
 		const Sl = 1 + (0.015 * L50) / sqrt(20 + L50);
@@ -181,12 +181,14 @@ export const distCIEDE2000 =
 		return sqrt(termL ** 2 + termC ** 2 + termH ** 2 + Rt * termC * termH);
 	};
 
-const c7Coeff = (c: number) => {
+/** @internal */
+const __c7Coeff = (c: number) => {
 	c = c ** 7;
 	return sqrt(c / (c + 25 ** 7));
 };
 
-const computeDeltaH = (
+/** @internal */
+const __computeDeltaH = (
 	a1: number,
 	b1: number,
 	a2: number,

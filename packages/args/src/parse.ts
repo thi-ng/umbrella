@@ -15,7 +15,7 @@ export const parse = <T extends IObjectOf<any>>(
 ): Maybe<ParseResult<T>> => {
 	opts = { start: 2, showUsage: true, help: ["--help", "-h"], ...opts };
 	try {
-		return parseOpts(specs, argv, opts);
+		return __parseOpts(specs, argv, opts);
 	} catch (e) {
 		if (opts.showUsage) {
 			console.log(
@@ -26,12 +26,13 @@ export const parse = <T extends IObjectOf<any>>(
 	}
 };
 
-const parseOpts = <T extends IObjectOf<any>>(
+/** @internal */
+const __parseOpts = <T extends IObjectOf<any>>(
 	specs: Args<T>,
 	argv: string[],
 	opts: Partial<ParseOpts>
 ): Maybe<ParseResult<T>> => {
-	const aliases = aliasIndex<T>(specs);
+	const aliases = __aliasIndex<T>(specs);
 	const acc: any = {};
 	let id: Nullable<string>;
 	let spec: Nullable<ArgSpecExt>;
@@ -43,27 +44,28 @@ const parseOpts = <T extends IObjectOf<any>>(
 				console.log(usage(specs, opts.usageOpts));
 				return;
 			}
-			const state = parseKey(specs, aliases, acc, a);
+			const state = __parseKey(specs, aliases, acc, a);
 			id = state.id;
 			spec = state.spec;
 			i = i + ~~(state.state < 2);
 			if (state.state) break;
 		} else {
-			if (parseValue(spec!, acc, id, a)) break;
+			if (__parseValue(spec!, acc, id, a)) break;
 			id = null;
 			i++;
 		}
 	}
 	id && illegalArgs(`missing value for: --${id}`);
 	return {
-		result: processResults(specs, acc),
+		result: __processResults(specs, acc),
 		index: i,
 		rest: argv.slice(i),
 		done: i >= argv.length,
 	};
 };
 
-const aliasIndex = <T extends IObjectOf<any>>(specs: Args<T>) =>
+/** @internal */
+const __aliasIndex = <T extends IObjectOf<any>>(specs: Args<T>) =>
 	Object.entries(specs).reduce(
 		(acc, [k, v]) => (v.alias ? ((acc[v.alias] = k), acc) : acc),
 		<IObjectOf<string>>{}
@@ -75,7 +77,8 @@ interface ParseKeyResult {
 	spec?: ArgSpecExt;
 }
 
-const parseKey = <T extends IObjectOf<any>>(
+/** @internal */
+const __parseKey = <T extends IObjectOf<any>>(
 	specs: Args<T>,
 	aliases: IObjectOf<string>,
 	acc: any,
@@ -105,7 +108,8 @@ const parseKey = <T extends IObjectOf<any>>(
 	return { state: 2 };
 };
 
-const parseValue = (spec: ArgSpecExt, acc: any, id: string, a: string) => {
+/** @internal */
+const __parseValue = (spec: ArgSpecExt, acc: any, id: string, a: string) => {
 	/^-[a-z]/i.test(a) && illegalArgs(`missing value for: --${id}`);
 	if (spec!.multi) {
 		isArray(acc[id!]) ? acc[id!].push(a) : (acc[id!] = [a]);
@@ -115,7 +119,11 @@ const parseValue = (spec: ArgSpecExt, acc: any, id: string, a: string) => {
 	return spec!.fn && !spec!.fn(a);
 };
 
-const processResults = <T extends IObjectOf<any>>(specs: Args<T>, acc: any) => {
+/** @internal */
+const __processResults = <T extends IObjectOf<any>>(
+	specs: Args<T>,
+	acc: any
+) => {
 	let spec: Nullable<ArgSpecExt>;
 	for (let id in specs) {
 		spec = specs[id];
@@ -126,13 +134,14 @@ const processResults = <T extends IObjectOf<any>>(specs: Args<T>, acc: any) => {
 				illegalArgs(`missing arg: --${id}`);
 			}
 		} else if (spec.coerce) {
-			coerceValue(spec, acc, id);
+			__coerceValue(spec, acc, id);
 		}
 	}
 	return acc;
 };
 
-const coerceValue = (spec: ArgSpecExt, acc: any, id: string) => {
+/** @internal */
+const __coerceValue = (spec: ArgSpecExt, acc: any, id: string) => {
 	try {
 		if (spec.multi && spec.delim) {
 			acc[id] = (<string[]>acc[id]).reduce(

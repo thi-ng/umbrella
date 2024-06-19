@@ -7,8 +7,8 @@ import type {
 	DynamicParser,
 	GrammarOpts,
 	Language,
-	Parser,
 	ParseScope,
+	Parser,
 	RuleTransforms,
 } from "./api.js";
 import { alt, altD } from "./combinators/alt.js";
@@ -54,8 +54,8 @@ import { xfReplace } from "./xform/replace.js";
 import { xfTrim } from "./xform/trim.js";
 import { withID } from "./xform/with-id.js";
 
-const apos = litD("'");
-const dash = litD("-");
+const APOS = litD("'");
+const DASH = litD("-");
 
 const REPEAT = maybe(
 	alt([
@@ -73,7 +73,7 @@ const DISCARD = maybe(lit("!"), undefined, "discard");
 
 const CHAR_OR_ESC = alt([UNICODE, ESC, always()]);
 
-const CHAR_RANGE = seq([CHAR_OR_ESC, dash, CHAR_OR_ESC], "charRange");
+const CHAR_RANGE = seq([CHAR_OR_ESC, DASH, CHAR_OR_ESC], "charRange");
 
 const CHAR_SEL = seq(
 	[
@@ -87,7 +87,7 @@ const CHAR_SEL = seq(
 
 const ANY = lit(".", "any");
 
-const LIT = hoistResult(seq([apos, CHAR_OR_ESC, apos], "char"));
+const LIT = hoistResult(seq([APOS, CHAR_OR_ESC, APOS], "char"));
 
 const SYM = join(oneOrMore(alt([ALPHA_NUM, oneOf(".-_$")]), "sym"));
 
@@ -148,15 +148,18 @@ const COMMENT = seqD([WS0, litD("#"), lookahead(always(), DNL)]);
 
 export const GRAMMAR = zeroOrMore(alt([RULE, COMMENT]), "rules");
 
-const first = ($: ParseScope<any>) => $.children![0];
+/** @internal */
+const __first = ($: ParseScope<any>) => $.children![0];
 
-const nth = ($: ParseScope<any>, n: number) => $.children![n];
+/** @internal */
+const __nth = ($: ParseScope<any>, n: number) => $.children![n];
 
 interface CompileFlags {
 	discard?: boolean;
 }
 
-const compile: MultiFn4<
+/** @internal */
+const __compile: MultiFn4<
 	ParseScope<string>,
 	Language,
 	GrammarOpts,
@@ -171,15 +174,15 @@ const compile: MultiFn4<
 		[DEFAULT]: ($: ParseScope<string>) =>
 			unsupported(`unknown op: ${$.id}`),
 		root: ($, lang, opts, flags) => {
-			const rules = first($).children!;
+			const rules = __first($).children!;
 			rules.reduce(
-				(acc, r) => ((acc[first(r).result] = dynamic()), acc),
+				(acc, r) => ((acc[__first(r).result] = dynamic()), acc),
 				lang.rules
 			);
 			for (let r of rules) {
-				const id = first(r).result;
+				const id = __first(r).result;
 				(<DynamicParser<string>>lang.rules[id]).set(
-					compile(r, lang, opts, flags)
+					__compile(r, lang, opts, flags)
 				);
 			}
 			return lang;
@@ -189,7 +192,7 @@ const compile: MultiFn4<
 			opts.debug && console.log(`rule: ${id.result}`, xf);
 			const acc: Parser<string>[] = [];
 			for (let b of body.children!) {
-				const c = compile(b, lang, opts, flags);
+				const c = __compile(b, lang, opts, flags);
 				c && acc.push(c);
 			}
 			let parser =
@@ -201,7 +204,7 @@ const compile: MultiFn4<
 				if (!$xf) illegalArgs(`missing xform: ${xf.result}`);
 				parser = xform(parser, $xf);
 			} else if (xf.id === "ref") {
-				const $id = first(xf).result;
+				const $id = __first(xf).result;
 				if ($id === id) illegalArgs(`self-referential: ${$id}`);
 				const $xf = lang.rules[$id];
 				if (!$xf) illegalArgs(`missing xform rule: ${$id}`);
@@ -212,7 +215,7 @@ const compile: MultiFn4<
 			return parser;
 		},
 		ref: ($, lang, opts, flags) => {
-			const id = first($).result;
+			const id = __first($).result;
 			opts.debug && console.log(`ref: ${id}`, flags);
 			const ref = lang.rules[id];
 			return ref
@@ -224,8 +227,8 @@ const compile: MultiFn4<
 		term: ($, lang, opts, flags) => {
 			const [term, repeat, discard, lookahead] = $!.children!;
 			opts.debug && console.log(`term: ${term.id}`, flags);
-			return compileRDL(
-				(discard) => compile(term, lang, opts, { ...flags, discard }),
+			return __compileRDL(
+				(discard) => __compile(term, lang, opts, { ...flags, discard }),
 				repeat,
 				discard,
 				lookahead,
@@ -236,8 +239,8 @@ const compile: MultiFn4<
 		lhterm: ($, lang, opts, flags) => {
 			const [term, repeat, discard] = $.children!;
 			opts.debug && console.log(`lhterm: ${term.id}`);
-			return compileRD(
-				(discard) => compile(term, lang, opts, { ...flags, discard }),
+			return __compileRD(
+				(discard) => __compile(term, lang, opts, { ...flags, discard }),
 				repeat,
 				discard,
 				opts
@@ -247,13 +250,13 @@ const compile: MultiFn4<
 			opts.debug && console.log(`alt: ${$.id}`, flags);
 			const [term0, { children: terms }, repeat, disc, lookahead] =
 				$.children!;
-			const acc: Parser<string>[] = [compile(term0, lang, opts, flags)];
+			const acc: Parser<string>[] = [__compile(term0, lang, opts, flags)];
 			if (terms) {
 				for (let c of terms) {
-					acc.push(compile(first(c), lang, opts, flags));
+					acc.push(__compile(__first(c), lang, opts, flags));
 				}
 			}
-			return compileRDL(
+			return __compileRDL(
 				(optimize) =>
 					optimize || flags.discard
 						? acc.length > 1
@@ -291,10 +294,10 @@ const compile: MultiFn4<
 		},
 		charSel: ($, lang, opts, flags) => {
 			opts.debug && console.log("charSel", flags);
-			const choices = nth($, 1).children!.map((c) =>
-				compile(c, lang, opts, flags)
+			const choices = __nth($, 1).children!.map((c) =>
+				__compile(c, lang, opts, flags)
 			);
-			const invert = first($).result;
+			const invert = __first($).result;
 			const parser = choices.length > 1 ? alt(choices) : choices[0];
 			opts.debug && console.log(`invert: ${invert}`);
 			return invert
@@ -304,7 +307,8 @@ const compile: MultiFn4<
 	}
 );
 
-const compileRepeat = (
+/** @internal */
+const __compileRepeat = (
 	parser: Parser<string>,
 	rspec: ParseScope<string>,
 	opts: GrammarOpts
@@ -328,7 +332,8 @@ const compileRepeat = (
 	return parser;
 };
 
-const compileDiscard = (
+/** @internal */
+const __compileDiscard = (
 	parser: Parser<string>,
 	dspec: ParseScope<string>,
 	opts: GrammarOpts
@@ -337,7 +342,8 @@ const compileDiscard = (
 	return dspec.result === "!" ? discard(parser) : parser;
 };
 
-const compileLookahead = (
+/** @internal */
+const __compileLookahead = (
 	parser: Parser<string>,
 	spec: ParseScope<string>,
 	lang: Language,
@@ -347,13 +353,14 @@ const compileLookahead = (
 	return spec.id === "lhspec"
 		? lookahead(
 				parser,
-				compile(nth(spec, 1), lang, opts, {}),
-				first(spec).result === "+"
+				__compile(__nth(spec, 1), lang, opts, {}),
+				__first(spec).result === "+"
 		  )
 		: parser;
 };
 
-const compileRD = (
+/** @internal */
+const __compileRD = (
 	parser: Fn<boolean, Parser<string>>,
 	rspec: ParseScope<string>,
 	dspec: ParseScope<string>,
@@ -361,13 +368,14 @@ const compileRD = (
 ) =>
 	dspec.result != null && rspec.result == null
 		? parser(true)
-		: compileDiscard(
-				compileRepeat(parser(false), rspec, opts),
+		: __compileDiscard(
+				__compileRepeat(parser(false), rspec, opts),
 				dspec,
 				opts
 		  );
 
-const compileRDL = (
+/** @internal */
+const __compileRDL = (
 	parser: Fn<boolean, Parser<string>>,
 	rspec: ParseScope<string>,
 	dspec: ParseScope<string>,
@@ -375,7 +383,12 @@ const compileRDL = (
 	lang: Language,
 	opts: GrammarOpts
 ) =>
-	compileLookahead(compileRD(parser, rspec, dspec, opts), lhspec, lang, opts);
+	__compileLookahead(
+		__compileRD(parser, rspec, dspec, opts),
+		lhspec,
+		lang,
+		opts
+	);
 
 export const defGrammar = (
 	rules: string,
@@ -402,7 +415,7 @@ export const defGrammar = (
 	const ctx = defContext(rules);
 	const result = (opts.debug ? print(GRAMMAR) : GRAMMAR)(ctx);
 	if (result) {
-		return <Language>compile(
+		return <Language>__compile(
 			ctx.root,
 			{
 				env,

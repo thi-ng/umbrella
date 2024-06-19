@@ -25,7 +25,7 @@ export const pathFromSvg = (svg: string, attribs?: Attribs) => {
 	try {
 		let cmd = "";
 		for (let n = svg.length, i = 0; i < n; ) {
-			i = skipWS(svg, i);
+			i = __skipWS(svg, i);
 			const c = svg.charAt(i);
 			if (CMD_RE.test(c)) {
 				cmd = c;
@@ -34,47 +34,47 @@ export const pathFromSvg = (svg: string, attribs?: Attribs) => {
 			let p, pa, pb, t1, t2, t3;
 			switch (cmd.toLowerCase()) {
 				case "m":
-					[p, i] = readPoint(svg, i);
+					[p, i] = __readPoint(svg, i);
 					b.moveTo(p, cmd === "m");
 					break;
 				case "l":
-					[p, i] = readPoint(svg, i);
+					[p, i] = __readPoint(svg, i);
 					b.lineTo(p, cmd === "l");
 					break;
 				case "h":
-					[p, i] = readFloat(svg, i);
+					[p, i] = __readFloat(svg, i);
 					b.hlineTo(p, cmd === "h");
 					break;
 				case "v":
-					[p, i] = readFloat(svg, i);
+					[p, i] = __readFloat(svg, i);
 					b.vlineTo(p, cmd === "v");
 					break;
 				case "q":
-					[pa, i] = readPoint(svg, i);
-					[p, i] = readPoint(svg, i);
+					[pa, i] = __readPoint(svg, i);
+					[p, i] = __readPoint(svg, i);
 					b.quadraticTo(pa, p, cmd === "q");
 					break;
 				case "c":
-					[pa, i] = readPoint(svg, i);
-					[pb, i] = readPoint(svg, i);
-					[p, i] = readPoint(svg, i);
+					[pa, i] = __readPoint(svg, i);
+					[pb, i] = __readPoint(svg, i);
+					[p, i] = __readPoint(svg, i);
 					b.cubicTo(pa, pb, p, cmd === "c");
 					break;
 				case "s":
-					[pa, i] = readPoint(svg, i);
-					[p, i] = readPoint(svg, i);
+					[pa, i] = __readPoint(svg, i);
+					[p, i] = __readPoint(svg, i);
 					b.cubicChainTo(pa, p, cmd === "s");
 					break;
 				case "t":
-					[p, i] = readPoint(svg, i);
+					[p, i] = __readPoint(svg, i);
 					b.quadraticChainTo(p, cmd === "t");
 					break;
 				case "a": {
-					[pa, i] = readPoint(svg, i);
-					[t1, i] = readFloat(svg, i);
-					[t2, i] = readFlag(svg, i);
-					[t3, i] = readFlag(svg, i);
-					[pb, i] = readPoint(svg, i);
+					[pa, i] = __readPoint(svg, i);
+					[t1, i] = __readFloat(svg, i);
+					[t2, i] = __readFlag(svg, i);
+					[t3, i] = __readFlag(svg, i);
+					[pb, i] = __readPoint(svg, i);
 					b.arcTo(pb, pa, rad(t1), t2, t3, cmd === "a");
 					break;
 				}
@@ -96,22 +96,25 @@ export const pathFromSvg = (svg: string, attribs?: Attribs) => {
 	}
 };
 
-const skipWS = (src: string, i: number) => {
+/** @internal */
+const __skipWS = (src: string, i: number) => {
 	const n = src.length;
 	while (i < n && WSC[src.charAt(i)]) i++;
 	return i;
 };
 
-const readPoint = (src: string, index: number): [Vec, number] => {
+/** @internal */
+const __readPoint = (src: string, index: number): [Vec, number] => {
 	let x, y;
-	[x, index] = readFloat(src, index);
-	index = skipWS(src, index);
-	[y, index] = readFloat(src, index);
+	[x, index] = __readFloat(src, index);
+	index = __skipWS(src, index);
+	[y, index] = __readFloat(src, index);
 	return [[x, y], index];
 };
 
-const readFlag = (src: string, i: number): [boolean, number] => {
-	i = skipWS(src, i);
+/** @internal */
+const __readFlag = (src: string, i: number): [boolean, number] => {
+	i = __skipWS(src, i);
 	const c = src.charAt(i);
 	return [
 		c === "0"
@@ -123,8 +126,9 @@ const readFlag = (src: string, i: number): [boolean, number] => {
 	];
 };
 
-const readFloat = (src: string, index: number) => {
-	index = skipWS(src, index);
+/** @internal */
+const __readFloat = (src: string, index: number) => {
+	index = __skipWS(src, index);
 	let signOk = true;
 	let dotOk = true;
 	let expOk = false;

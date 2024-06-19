@@ -57,14 +57,14 @@ export const earCutComplex =
 				]);
 			}
 		}
-		let outerNode = buildVertexList(points, pids, 0, outerLen, true);
+		let outerNode = __buildVertexList(points, pids, 0, outerLen, true);
 		if (!outerNode || outerNode.n === outerNode.p) return faces;
 		if (hasHoles) {
-			outerNode = eliminateHoles(points, pids, holeIDs, outerNode);
+			outerNode = __eliminateHoles(points, pids, holeIDs, outerNode);
 		} else {
-			outerNode = removeColinear(outerNode);
+			outerNode = __removeColinear(outerNode);
 		}
-		earcutLinked(outerNode, faces, scale > 0 ? isEarHashed : isEar);
+		__earcutLinked(outerNode, faces, scale > 0 ? __isEarHashed : __isEar);
 		return faces;
 	};
 
@@ -134,7 +134,8 @@ class Vertex {
 	}
 }
 
-const buildVertexList = (
+/** @internal */
+const __buildVertexList = (
 	points: ReadonlyVec[],
 	pids: number[],
 	start: number,
@@ -142,21 +143,22 @@ const buildVertexList = (
 	clockwise: boolean
 ) => {
 	let last: Nullable<Vertex>;
-	if (clockwise === signedArea(points, start, end) > 0) {
+	if (clockwise === __signedArea(points, start, end) > 0) {
 		for (let i = start; i < end; i++)
-			last = insertVertex(pids[i], points[i], last);
+			last = __insertVertex(pids[i], points[i], last);
 	} else {
 		for (let i = end - 1; i >= start; i--)
-			last = insertVertex(pids[i], points[i], last);
+			last = __insertVertex(pids[i], points[i], last);
 	}
-	if (last && equals(last, last.n!)) {
-		removeVertex(last);
+	if (last && __equals(last, last.n!)) {
+		__removeVertex(last);
 		last = last.n!;
 	}
 	return last;
 };
 
-const insertVertex = (
+/** @internal */
+const __insertVertex = (
 	i: number,
 	[x, y]: ReadonlyVec,
 	last: Nullable<Vertex>
@@ -172,7 +174,8 @@ const insertVertex = (
 	return v;
 };
 
-const removeVertex = (v: Vertex) => {
+/** @internal */
+const __removeVertex = (v: Vertex) => {
 	v.n!.p = v.p;
 	v.p!.n = v.n;
 	if (v.pz) v.pz.nz = v.nz;
@@ -186,15 +189,17 @@ const removeVertex = (v: Vertex) => {
  * @param triangles
  * @param pred
  * @param pass
+ *
+ * @internal
  */
-const earcutLinked = (
+const __earcutLinked = (
 	ear: Nullable<Vertex>,
 	triangles: number[][],
 	pred: Predicate<Vertex>,
 	pass = 0
 ) => {
 	if (!ear) return;
-	if (!pass && pred === isEarHashed) zIndexCurve(ear);
+	if (!pass && pred === __isEarHashed) __indexZCurve(ear);
 
 	let stop = ear;
 	// iterate through ears, slicing them one by one
@@ -202,7 +207,7 @@ const earcutLinked = (
 		const { p: prev, n: next } = <Vertex>ear;
 		if (pred(ear!)) {
 			triangles.push([prev!.i, ear!.i, next!.i]);
-			removeVertex(ear!);
+			__removeVertex(ear!);
 			// skipping the next vertex leads to less sliver triangles
 			ear = stop = next!.n!;
 			continue;
@@ -213,14 +218,17 @@ const earcutLinked = (
 		if (ear === stop) {
 			// try filtering points and slicing again
 			if (pass === 0) {
-				earcutLinked(removeColinear(ear), triangles, pred, 1);
+				__earcutLinked(__removeColinear(ear), triangles, pred, 1);
 			} else if (pass === 1) {
 				// if this didn't work, try curing all small self-intersections locally
-				ear = cureLocalIntersections(removeColinear(ear)!, triangles);
-				earcutLinked(ear, triangles, pred, 2);
+				ear = __cureLocalIntersections(
+					__removeColinear(ear)!,
+					triangles
+				);
+				__earcutLinked(ear, triangles, pred, 2);
 			} else if (pass === 2) {
 				// as a last resort, try splitting the remaining polygon into two
-				splitEarcut(ear, triangles, pred);
+				__splitEarcut(ear, triangles, pred);
 			}
 			break;
 		}
@@ -233,8 +241,10 @@ const earcutLinked = (
  * @param start
  * @param triangles
  * @param pred
+ *
+ * @internal
  */
-const splitEarcut = (
+const __splitEarcut = (
 	start: Vertex,
 	triangles: number[][],
 	pred: Predicate<Vertex>
@@ -244,13 +254,13 @@ const splitEarcut = (
 	do {
 		let b = a.n!.n!;
 		while (b !== a.p) {
-			if (a.i !== b.i && isValidDiagonal(a, b)) {
+			if (a.i !== b.i && __isValidDiagonal(a, b)) {
 				// split the polygon in two by the diagonal
-				let c = splitPolygon(a, b);
-				a = removeColinear(a, a.n!)!;
-				c = removeColinear(c, c.n!)!;
-				earcutLinked(a, triangles, pred, 0);
-				earcutLinked(c, triangles, pred, 0);
+				let c = __splitPolygon(a, b);
+				a = __removeColinear(a, a.n!)!;
+				c = __removeColinear(c, c.n!)!;
+				__earcutLinked(a, triangles, pred, 0);
+				__earcutLinked(c, triangles, pred, 0);
 				return;
 			}
 			b = b!.n!;
@@ -266,8 +276,10 @@ const splitEarcut = (
  *
  * @param a
  * @param b
+ *
+ * @internal
  */
-const splitPolygon = (a: Vertex, b: Vertex) => {
+const __splitPolygon = (a: Vertex, b: Vertex) => {
 	const a2 = new Vertex(a.i, a.x, a.y);
 	const b2 = new Vertex(b.i, b.x, b.y);
 	const an = a.n!;
@@ -288,8 +300,10 @@ const splitPolygon = (a: Vertex, b: Vertex) => {
  *
  * @param a
  * @param b
+ *
+ * @internal
  */
-const isEdgeCentroidInside = (a: Vertex, b: Vertex) => {
+const __isEdgeCentroidInside = (a: Vertex, b: Vertex) => {
 	const mx = (a.x + b.x) * 0.5;
 	const my = (a.y + b.y) * 0.5;
 	let v = a;
@@ -312,19 +326,23 @@ const isEdgeCentroidInside = (a: Vertex, b: Vertex) => {
  *
  * @param a
  * @param b
+ *
+ * @internal
  */
-const isLocallyInside = (a: Vertex, b: Vertex) =>
-	area(a.p!, a, a.n!) < 0
-		? area(a, b, a.n!) >= 0 && area(a, a.p!, b) >= 0
-		: area(a, b, a.p!) < 0 || area(a, a.n!, b) < 0;
+const __isLocallyInside = (a: Vertex, b: Vertex) =>
+	__area(a.p!, a, a.n!) < 0
+		? __area(a, b, a.n!) >= 0 && __area(a, a.p!, b) >= 0
+		: __area(a, b, a.p!) < 0 || __area(a, a.n!, b) < 0;
 
 /**
  * Check if a polygon diagonal intersects any polygon segments.
  *
  * @param a
  * @param b
+ *
+ * @internal
  */
-const intersectsPolygon = (a: Vertex, b: Vertex) => {
+const __intersectsPolygon = (a: Vertex, b: Vertex) => {
 	let v = a;
 	const ai = a.i;
 	const bi = b.i;
@@ -334,7 +352,7 @@ const intersectsPolygon = (a: Vertex, b: Vertex) => {
 			v.i !== bi &&
 			v.n!.i !== ai &&
 			v.n!.i !== bi &&
-			intersects(v, v.n!, a, b)
+			__intersects(v, v.n!, a, b)
 		)
 			return true;
 		v = v.n!;
@@ -342,16 +360,17 @@ const intersectsPolygon = (a: Vertex, b: Vertex) => {
 	return false;
 };
 
-const intersects = (p1: Vertex, q1: Vertex, p2: Vertex, q2: Vertex) => {
-	const o1 = sign(area(p1, q1, p2));
-	const o2 = sign(area(p1, q1, q2));
-	const o3 = sign(area(p2, q2, p1));
-	const o4 = sign(area(p2, q2, q1));
+/** @internal */
+const __intersects = (p1: Vertex, q1: Vertex, p2: Vertex, q2: Vertex) => {
+	const o1 = sign(__area(p1, q1, p2));
+	const o2 = sign(__area(p1, q1, q2));
+	const o3 = sign(__area(p2, q2, p1));
+	const o4 = sign(__area(p2, q2, q1));
 	if (o1 !== o2 && o3 !== o4) return true; // general case
-	if (o1 === 0 && onSegment(p1, p2, q1)) return true; // p1, q1 and p2 are collinear and p2 lies on p1q1
-	if (o2 === 0 && onSegment(p1, q2, q1)) return true; // p1, q1 and q2 are collinear and q2 lies on p1q1
-	if (o3 === 0 && onSegment(p2, p1, q2)) return true; // p2, q2 and p1 are collinear and p1 lies on p2q2
-	if (o4 === 0 && onSegment(p2, q1, q2)) return true; // p2, q2 and q1 are collinear and q1 lies on p2q2
+	if (o1 === 0 && __onSegment(p1, p2, q1)) return true; // p1, q1 and p2 are collinear and p2 lies on p1q1
+	if (o2 === 0 && __onSegment(p1, q2, q1)) return true; // p1, q1 and q2 are collinear and q2 lies on p1q1
+	if (o3 === 0 && __onSegment(p2, p1, q2)) return true; // p2, q2 and p1 are collinear and p1 lies on p2q2
+	if (o4 === 0 && __onSegment(p2, q1, q2)) return true; // p2, q2 and q1 are collinear and q1 lies on p2q2
 	return false;
 };
 
@@ -361,8 +380,10 @@ const intersects = (p1: Vertex, q1: Vertex, p2: Vertex, q2: Vertex) => {
  * @param p
  * @param q
  * @param r
+ *
+ * @internal
  */
-const onSegment = (
+const __onSegment = (
 	{ x: px, y: py }: Vertex,
 	{ x: qx, y: qy }: Vertex,
 	{ x: rx, y: ry }: Vertex
@@ -378,21 +399,26 @@ const onSegment = (
  *
  * @param a
  * @param b
+ *
+ * @internal
  */
-const isValidDiagonal = (a: Vertex, b: Vertex) =>
+const __isValidDiagonal = (a: Vertex, b: Vertex) =>
 	a.n!.i !== b.i &&
 	a.p!.i !== b.i &&
-	!intersectsPolygon(a, b) &&
-	((isLocallyInside(a, b) &&
-		isLocallyInside(b, a) &&
+	!__intersectsPolygon(a, b) &&
+	((__isLocallyInside(a, b) &&
+		__isLocallyInside(b, a) &&
 		// locally visible
-		isEdgeCentroidInside(a, b) &&
+		__isEdgeCentroidInside(a, b) &&
 		// does not create opposite-facing sectors
-		(area(a.p!, a, b.p!) || area(a, b.p!, b))) ||
+		(__area(a.p!, a, b.p!) || __area(a, b.p!, b))) ||
 		// special zero-length case
-		(equals(a, b) && area(a.p!, a, a.n!) > 0 && area(b.p!, b, b.n!) > 0));
+		(__equals(a, b) &&
+			__area(a.p!, a, a.n!) > 0 &&
+			__area(b.p!, b, b.n!) > 0));
 
-const isPointInTriangle = (
+/** @internal */
+const __isPointInTriangle = (
 	{ x, y }: Vertex,
 	ax: number,
 	ay: number,
@@ -405,7 +431,8 @@ const isPointInTriangle = (
 	(ax - x) * (by - y) >= (bx - x) * (ay - y) &&
 	(bx - x) * (cy - y) >= (cx - x) * (by - y);
 
-const isPointInRect = (
+/** @internal */
+const __isPointInRect = (
 	{ x, y }: Vertex,
 	x0: number,
 	y0: number,
@@ -413,7 +440,8 @@ const isPointInRect = (
 	y1: number
 ) => x >= x0 && x <= x1 && y >= y0 && y <= y1;
 
-const findLeftmost = (start: Vertex) => {
+/** @internal */
+const __findLeftmost = (start: Vertex) => {
 	let left = start;
 	let v = start;
 	do {
@@ -428,8 +456,10 @@ const findLeftmost = (start: Vertex) => {
  * http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
  *
  * @param $list
+ *
+ * @internal
  */
-const sortLinked = (list: Nullable<Vertex>) => {
+const __sortLinked = (list: Nullable<Vertex>) => {
 	let numMerges;
 	let inSize = 1;
 
@@ -481,8 +511,10 @@ const sortLinked = (list: Nullable<Vertex>) => {
  * Interlink polygon nodes in z-order.
  *
  * @param start
+ *
+ * @internal
  */
-const zIndexCurve = (start: Vertex) => {
+const __indexZCurve = (start: Vertex) => {
 	let v = start;
 	do {
 		if (v.z < 0) v.z = mux2(v.x, v.y);
@@ -490,7 +522,7 @@ const zIndexCurve = (start: Vertex) => {
 		v = v.nz = v.n!;
 	} while (v !== start);
 	v.pz!.nz = v.pz = null;
-	sortLinked(v);
+	__sortLinked(v);
 };
 
 /**
@@ -499,17 +531,21 @@ const zIndexCurve = (start: Vertex) => {
  *
  * @param m
  * @param p
+ *
+ * @internal
  */
-const sectorContainsSector = (m: Vertex, p: Vertex) =>
-	area(m.p!, m, p.p!) < 0 && area(p.n!, m, m.n!) < 0;
+const __sectorContainsSector = (m: Vertex, p: Vertex) =>
+	__area(m.p!, m, p.p!) < 0 && __area(p.n!, m, m.n!) < 0;
 
 /**
  * David Eberly's algorithm for finding a bridge between hole and outer polygon.
  *
  * @param hole
  * @param outer
+ *
+ * @internal
  */
-const findHoleBridge = (hole: Vertex, outer: Vertex): Nullable<Vertex> => {
+const __findHoleBridge = (hole: Vertex, outer: Vertex): Nullable<Vertex> => {
 	const { x: hx, y: hy } = hole;
 	let v = outer;
 	let qx = -Infinity;
@@ -552,7 +588,7 @@ const findHoleBridge = (hole: Vertex, outer: Vertex): Nullable<Vertex> => {
 			hx >= px &&
 			px >= mx &&
 			hx !== px &&
-			isPointInTriangle(
+			__isPointInTriangle(
 				v,
 				hy < my ? hx : qx,
 				hy,
@@ -564,11 +600,11 @@ const findHoleBridge = (hole: Vertex, outer: Vertex): Nullable<Vertex> => {
 		) {
 			tan = Math.abs(hy - py) / (hx - px); // tangential
 			if (
-				isLocallyInside(v, hole) &&
+				__isLocallyInside(v, hole) &&
 				(tan < tanMin ||
 					(tan === tanMin &&
 						(px > m.x ||
-							(px === m.x && sectorContainsSector(m, v)))))
+							(px === m.x && __sectorContainsSector(m, v)))))
 			) {
 				m = v;
 				tanMin = tan;
@@ -586,15 +622,17 @@ const findHoleBridge = (hole: Vertex, outer: Vertex): Nullable<Vertex> => {
  *
  * @param hole
  * @param outerNode
+ *
+ * @internal
  */
-const eliminateHole = (hole: Vertex, outerNode: Vertex) => {
-	const bridge = findHoleBridge(hole, outerNode);
+const __eliminateHole = (hole: Vertex, outerNode: Vertex) => {
+	const bridge = __findHoleBridge(hole, outerNode);
 	if (!bridge) return outerNode;
 
-	const bridgeReverse = splitPolygon(bridge, hole);
+	const bridgeReverse = __splitPolygon(bridge, hole);
 	// filter collinear points around the cuts
-	removeColinear(bridgeReverse, bridgeReverse.n!);
-	return removeColinear(bridge, bridge.n!)!;
+	__removeColinear(bridgeReverse, bridgeReverse.n!);
+	return __removeColinear(bridge, bridge.n!)!;
 };
 
 /**
@@ -604,8 +642,10 @@ const eliminateHole = (hole: Vertex, outerNode: Vertex) => {
  * @param points
  * @param holeIndices
  * @param outerNode
+ *
+ * @internal
  */
-const eliminateHoles = (
+const __eliminateHoles = (
 	points: ReadonlyVec[],
 	pids: number[],
 	holeIndices: number[],
@@ -615,14 +655,14 @@ const eliminateHoles = (
 	for (let i = 0, num = holeIndices.length; i < num; i++) {
 		const start = holeIndices[i];
 		const end = i < num - 1 ? holeIndices[i + 1] : points.length;
-		const list = buildVertexList(points, pids, start, end, false)!;
+		const list = __buildVertexList(points, pids, start, end, false)!;
 		if (list === list!.n) list.s = true;
-		queue.push(findLeftmost(list));
+		queue.push(__findLeftmost(list));
 	}
 	// process holes from left to right
 	queue.sort((a, b) => a.x - b.x);
 	for (let i = 0, n = queue.length; i < n; i++) {
-		outerNode = eliminateHole(queue[i], outerNode);
+		outerNode = __eliminateHole(queue[i], outerNode);
 	}
 	return outerNode;
 };
@@ -632,50 +672,54 @@ const eliminateHoles = (
  *
  * @param start
  * @param triangles
+ *
+ * @internal
  */
-const cureLocalIntersections = (start: Vertex, triangles: number[][]) => {
+const __cureLocalIntersections = (start: Vertex, triangles: number[][]) => {
 	let v = start;
 	do {
 		const a = v.p!;
 		const b = v.n!.n!;
 		if (
-			!equals(a, b) &&
-			isLocallyInside(a, b) &&
-			isLocallyInside(b, a) &&
-			intersects(a, v, v.n!, b)
+			!__equals(a, b) &&
+			__isLocallyInside(a, b) &&
+			__isLocallyInside(b, a) &&
+			__intersects(a, v, v.n!, b)
 		) {
 			triangles.push([a.i, v.i, b.i]);
-			removeVertex(v);
-			removeVertex(v.n!);
+			__removeVertex(v);
+			__removeVertex(v.n!);
 			v = start = b;
 		}
 		v = v.n!;
 	} while (v !== start);
-	return removeColinear(v);
+	return __removeColinear(v);
 };
 
 /**
  * Checks whether a polygon node forms a valid ear with adjacent nodes
  *
  * @param ear
+ *
+ * @internal
  */
-const isEar = (ear: Vertex) => {
+const __isEar = (ear: Vertex) => {
 	const { p: a, n: c } = ear;
 	const b = ear;
 	// reflex, can't be an ear
-	if (area(a!, b, c!) >= 0) return false;
+	if (__area(a!, b, c!) >= 0) return false;
 
 	const { x: ax, y: ay } = a!,
 		{ x: bx, y: by } = b,
 		{ x: cx, y: cy } = c!;
-	const [x0, y0, x1, y1] = triBounds(ax, ay, bx, by, cx, cy);
+	const [x0, y0, x1, y1] = __triBounds(ax, ay, bx, by, cx, cy);
 
 	let v = c!.n!;
 	while (v !== a) {
 		if (
-			isPointInRect(v, x0, y0, x1, y1) &&
-			isPointInTriangle(v, ax, ay, bx, by, cx, cy) &&
-			area(v.p!, v, v.n!) >= 0
+			__isPointInRect(v, x0, y0, x1, y1) &&
+			__isPointInTriangle(v, ax, ay, bx, by, cx, cy) &&
+			__area(v.p!, v, v.n!) >= 0
 		)
 			return false;
 		v = v.n!;
@@ -684,20 +728,22 @@ const isEar = (ear: Vertex) => {
 };
 
 /**
- * Z-order hashed version of {@link isEar}.
+ * Z-order hashed version of {@link __isEar}.
  *
  * @param ear
+ *
+ * @internal
  */
-const isEarHashed = (ear: Vertex) => {
+const __isEarHashed = (ear: Vertex) => {
 	const { p: a, n: c } = ear;
 	const b = ear;
 	// reflex, can't be an ear
-	if (area(a!, b, c!) >= 0) return false;
+	if (__area(a!, b, c!) >= 0) return false;
 
 	const { x: ax, y: ay } = a!;
 	const { x: bx, y: by } = b;
 	const { x: cx, y: cy } = c!;
-	const [x0, y0, x1, y1] = triBounds(ax, ay, bx, by, cx, cy);
+	const [x0, y0, x1, y1] = __triBounds(ax, ay, bx, by, cx, cy);
 	// z-order range for the current triangle bbox;
 	const minZ = mux2(x0, y0);
 	const maxZ = mux2(x1, y1);
@@ -705,9 +751,9 @@ const isEarHashed = (ear: Vertex) => {
 	const check = (v: Vertex) =>
 		v !== a &&
 		v !== c &&
-		isPointInRect(v, x0, y0, x1, y1) &&
-		isPointInTriangle(v, ax, ay, bx, by, cx, cy) &&
-		area(v.p!, v, v.n!) >= 0;
+		__isPointInRect(v, x0, y0, x1, y1) &&
+		__isPointInTriangle(v, ax, ay, bx, by, cx, cy) &&
+		__area(v.p!, v, v.n!) >= 0;
 
 	let { pz: p, nz: n } = ear;
 	// look for points inside the triangle in both directions
@@ -735,15 +781,17 @@ const isEarHashed = (ear: Vertex) => {
  *
  * @param start
  * @param end
+ *
+ * @internal
  */
-const removeColinear = (start: Nullable<Vertex>, end = start) => {
+const __removeColinear = (start: Nullable<Vertex>, end = start) => {
 	if (!start) return start;
 	let v = start;
 	let repeat: boolean;
 	do {
 		repeat = false;
-		if (!v.s && (equals(v, v.n!) || sign(area(v.p!, v, v.n!)) === 0)) {
-			removeVertex(v);
+		if (!v.s && (__equals(v, v.n!) || sign(__area(v.p!, v, v.n!)) === 0)) {
+			__removeVertex(v);
 			v = end = v.p!;
 			if (v === v.n) break;
 			repeat = true;
@@ -760,8 +808,10 @@ const removeColinear = (start: Nullable<Vertex>, end = start) => {
  * @param a
  * @param b
  * @param c
+ *
+ * @internal
  */
-const area = (a: Vertex, { x: bx, y: by }: Vertex, c: Vertex) =>
+const __area = (a: Vertex, { x: bx, y: by }: Vertex, c: Vertex) =>
 	(by - a.y) * (c.x - bx) - (bx - a.x) * (c.y - by);
 
 /**
@@ -770,8 +820,10 @@ const area = (a: Vertex, { x: bx, y: by }: Vertex, c: Vertex) =>
  * @param points
  * @param start
  * @param end
+ *
+ * @internal
  */
-const signedArea = (points: ReadonlyVec[], start: number, end: number) => {
+const __signedArea = (points: ReadonlyVec[], start: number, end: number) => {
 	let sum = 0;
 	for (let i = start, j = end - 1; i < end; j = i, i++) {
 		const a = points[j];
@@ -781,7 +833,8 @@ const signedArea = (points: ReadonlyVec[], start: number, end: number) => {
 	return sum;
 };
 
-const triBounds = (
+/** @internal */
+const __triBounds = (
 	ax: number,
 	ay: number,
 	bx: number,
@@ -795,4 +848,5 @@ const triBounds = (
 	ay > by ? (ay > cy ? ay : cy) : by > cy ? by : cy,
 ];
 
-const equals = (pa: Vertex, b: Vertex) => pa.x === b.x && pa.y === b.y;
+/** @internal */
+const __equals = (pa: Vertex, b: Vertex) => pa.x === b.x && pa.y === b.y;

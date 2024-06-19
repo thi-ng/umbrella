@@ -1,6 +1,7 @@
 import type { Fn0 } from "@thi.ng/api";
 
-const cache: Record<string, any> = Object.create(null);
+/** @internal */
+const CACHE: Record<string, any> = Object.create(null);
 
 /**
  * Lightweight named singleton factory, intended for hot-module replacement
@@ -21,7 +22,4 @@ const cache: Record<string, any> = Object.create(null);
  * @param factory -
  */
 export const defOnce = <T>(id: string, factory: Fn0<T>): T =>
-	id in cache ? cache[id] : (cache[id] = factory());
-
-/** @deprecated renamed to {@link defOnce} */
-export const defonce = defOnce;
+	id in CACHE ? CACHE[id] : (CACHE[id] = factory());

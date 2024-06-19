@@ -2,9 +2,13 @@ import type { MultiVecOpRoVV, Template } from "./api.js";
 import { compile, compileG } from "./compile/emit.js";
 import { vop } from "./vop.js";
 
+/** @internal */
 const tpl: Template = ([a, b]) => `t=${a}-${b};s+=t*t;`;
+
+/** @internal */
 const pre = "let t,s=0;";
 
+/** @internal */
 const $ = (dim: number) =>
 	distSq.add(dim, compile(dim, tpl, "a,b", undefined, "s", "", pre));
 
