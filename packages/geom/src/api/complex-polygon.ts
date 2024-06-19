@@ -50,7 +50,7 @@ export class ComplexPolygon implements IHiccupShape2<ComplexPolygon> {
 			for (let i = 1, n = points.length; i < n; i++) {
 				segments.push(["L", points[i]]);
 			}
-			segments.push(["Z"]);
+			segments.push(["z"]);
 		};
 		$hiccupSegments(this.boundary);
 		for (let c of this.children) $hiccupSegments(c);
