@@ -70,7 +70,7 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
  * @param tree - component tree
  */
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) =>
-	_normalizeTree(
+	__normalizeTree(
 		tree,
 		opts,
 		opts.ctx,
@@ -79,89 +79,94 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) =>
 		opts.span !== false
 	);
 
-const _normalizeTree = (
+/** @internal */
+const __normalizeTree = (
 	tree: any,
 	opts: Partial<HDOMOpts>,
 	ctx: any,
 	path: number[],
 	keys: boolean,
 	span: boolean
-): any => {
-	if (tree == null) {
-		return;
-	}
-	if (isArray(tree)) {
-		if (tree.length === 0) {
-			return;
-		}
-		let norm,
-			nattribs = tree[1],
-			impl;
-		// if available, use branch-local normalize implementation
-		if (
-			nattribs &&
-			(impl = nattribs.__impl) &&
-			(impl = impl.normalizeTree)
-		) {
-			return impl(opts, tree);
-		}
-		const tag = tree[0];
-		// use result of function call
-		// pass ctx as first arg and remaining array elements as rest args
-		if (typeof tag === "function") {
-			return _normalizeTree(
-				tag.apply(null, [ctx, ...tree.slice(1)]),
-				opts,
-				ctx,
-				path,
-				keys,
-				span
-			);
-		}
-		// component object w/ life cycle methods
-		// (render() is the only required hook)
-		if (typeof tag.render === "function") {
-			const args = [ctx, ...tree.slice(1)];
-			norm = _normalizeTree(
-				tag.render.apply(tag, args),
-				opts,
-				ctx,
-				path,
-				keys,
-				span
-			);
-			if (isArray(norm)) {
-				(<any>norm).__this = tag;
-				(<any>norm).__init = tag.init;
-				(<any>norm).__release = tag.release;
-				(<any>norm).__args = args;
-			}
-			return norm;
-		}
-		norm = normalizeElement(tree, keys);
-		nattribs = norm[1];
-		if (nattribs.__normalize === false) {
-			return norm;
-		}
-		if (keys && nattribs.key === undefined) {
-			nattribs.key = path.join("-");
-		}
-		return norm.length > 2
-			? normalizeChildren(norm, nattribs, opts, ctx, path, keys, span)
-			: norm;
-	}
-	return typeof tree === "function"
-		? _normalizeTree(tree(ctx), opts, ctx, path, keys, span)
+): any =>
+	tree == null
+		? undefined
+		: isArray(tree)
+		? __normalizeArray(tree, opts, ctx, path, keys, span)
+		: typeof tree === "function"
+		? __normalizeTree(tree(ctx), opts, ctx, path, keys, span)
 		: typeof tree.toHiccup === "function"
-		? _normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span)
+		? __normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span)
 		: typeof tree.deref === "function"
-		? _normalizeTree(tree.deref(), opts, ctx, path, keys, span)
+		? __normalizeTree(tree.deref(), opts, ctx, path, keys, span)
 		: span
 		? ["span", keys ? { key: path.join("-") } : {}, tree.toString()]
 		: tree.toString();
+
+/** @internal */
+const __normalizeArray = (
+	tree: any[],
+	opts: Partial<HDOMOpts>,
+	ctx: any,
+	path: number[],
+	keys: boolean,
+	span: boolean
+) => {
+	if (tree.length === 0) return;
+	let norm,
+		nattribs = tree[1],
+		impl;
+	// if available, use branch-local normalize implementation
+	if (nattribs && (impl = nattribs.__impl) && (impl = impl.normalizeTree)) {
+		return impl(opts, tree);
+	}
+	const tag = tree[0];
+	// use result of function call
+	// pass ctx as first arg and remaining array elements as rest args
+	if (typeof tag === "function") {
+		return __normalizeTree(
+			tag.apply(null, [ctx, ...tree.slice(1)]),
+			opts,
+			ctx,
+			path,
+			keys,
+			span
+		);
+	}
+	// component object w/ life cycle methods
+	// (render() is the only required hook)
+	if (typeof tag.render === "function") {
+		const args = [ctx, ...tree.slice(1)];
+		norm = __normalizeTree(
+			tag.render.apply(tag, args),
+			opts,
+			ctx,
+			path,
+			keys,
+			span
+		);
+		if (isArray(norm)) {
+			(<any>norm).__this = tag;
+			(<any>norm).__init = tag.init;
+			(<any>norm).__release = tag.release;
+			(<any>norm).__args = args;
+		}
+		return norm;
+	}
+	norm = normalizeElement(tree, keys);
+	nattribs = norm[1];
+	if (nattribs.__normalize === false) {
+		return norm;
+	}
+	if (keys && nattribs.key === undefined) {
+		nattribs.key = path.join("-");
+	}
+	return norm.length > 2
+		? __normalizeChildren(norm, nattribs, opts, ctx, path, keys, span)
+		: norm;
 };
 
-const normalizeChildren = (
+/** @internal */
+const __normalizeChildren = (
 	norm: any[],
 	nattribs: any,
 	opts: Partial<HDOMOpts>,
@@ -182,7 +187,7 @@ const normalizeChildren = (
 				(!isarray && isNotStringAndIterable(el))
 			) {
 				for (let c of el) {
-					c = _normalizeTree(
+					c = __normalizeTree(
 						c,
 						opts,
 						ctx,
@@ -196,7 +201,7 @@ const normalizeChildren = (
 					k++;
 				}
 			} else {
-				el = _normalizeTree(el, opts, ctx, path.concat(k), keys, span);
+				el = __normalizeTree(el, opts, ctx, path.concat(k), keys, span);
 				if (el !== undefined) {
 					res[j++] = el;
 				}
