@@ -1,5 +1,4 @@
 import type { Maybe } from "@thi.ng/api";
-import type { IShape, IShape2, IShape3 } from "./api.js";
 import { minNonZero2, minNonZero3 } from "@thi.ng/math/interval";
 import { safeDiv } from "@thi.ng/math/safe-div";
 import type { MatOpNV, MatOpV } from "@thi.ng/matrices";
@@ -7,7 +6,8 @@ import { concat } from "@thi.ng/matrices/concat";
 import { scale23, scale44 } from "@thi.ng/matrices/scale";
 import { translation23, translation44 } from "@thi.ng/matrices/translation";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { neg } from "@thi.ng/vectors/neg";
+import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
+import type { IShape, IShape2, IShape3 } from "./api.js";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
@@ -61,7 +61,7 @@ export function fitIntoBounds2(shape: IShape2, dest: Rect) {
 		translation23,
 		scale23,
 		shape,
-		neg(null, c),
+		mulN2(null, c, -1),
 		centroid(dest)!,
 		minNonZero2(
 			safeDiv(dest.size[0], src.size[0]),
@@ -80,7 +80,7 @@ export const fitIntoBounds3 = <T extends IShape3>(
 	shape: T,
 	dest: AABB
 ): Maybe<T> => {
-	const src = <AABB>bounds(shape);
+	const src = bounds(shape);
 	if (!src) return;
 	const c = centroid(src);
 	if (!c) return;
@@ -89,7 +89,7 @@ export const fitIntoBounds3 = <T extends IShape3>(
 			translation44,
 			scale44,
 			shape,
-			neg(null, c),
+			mulN3(null, c, -1),
 			centroid(dest)!,
 			minNonZero3(
 				safeDiv(dest.size[0], src.size[0]),
@@ -128,7 +128,7 @@ export const fitAllIntoBounds2 = (shapes: IShape2[], dest: Rect) => {
 					translation23,
 					scale23,
 					s,
-					neg(null, c1),
+					mulN2(null, c1, -1),
 					c2,
 					smat
 				)

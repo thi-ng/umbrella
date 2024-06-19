@@ -265,8 +265,14 @@
 		"./bpatch": {
 			"default": "./bpatch.js"
 		},
+		"./center-of-weight": {
+			"default": "./center-of-weight.js"
+		},
 		"./center": {
 			"default": "./center.js"
+		},
+		"./centroid-of-bounds": {
+			"default": "./centroid-of-bounds.js"
 		},
 		"./centroid": {
 			"default": "./centroid.js"

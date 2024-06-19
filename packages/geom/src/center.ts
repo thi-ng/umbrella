@@ -1,10 +1,10 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "./api.js";
 import { ZERO2, ZERO3, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { set2, set3 } from "@thi.ng/vectors/set";
 import { submN } from "@thi.ng/vectors/submn";
+import type { IShape } from "./api.js";
 import { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
 import { Ellipse } from "./api/ellipse.js";
@@ -23,7 +23,7 @@ export type CenterFn = {
 
 /**
  * Returns copy of given shape centered around optionally provided point `p`
- * (default: worldspace origin).
+ * (default: world space origin).
  *
  * @remarks
  * Implemented for all shape types supported by {@link centroid} and
