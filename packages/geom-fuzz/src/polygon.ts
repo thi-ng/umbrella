@@ -1,6 +1,6 @@
 import { asCubic } from "@thi.ng/geom/as-cubic";
 import { group } from "@thi.ng/geom/group";
-import { pathFromCubics } from "@thi.ng/geom/path";
+import { pathFromCubics } from "@thi.ng/geom/path-from-cubics";
 import { polygon } from "@thi.ng/geom/polygon";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { FuzzyPolygonOpts } from "./api.js";
