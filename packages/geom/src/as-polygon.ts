@@ -1,13 +1,21 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import { copy, copyVectors } from "@thi.ng/vectors/copy";
-import type { IShape, IShape2, IShape3, SamplingOpts } from "./api.js";
+import type {
+	IShape,
+	IShape2,
+	IShape3,
+	PCLikeConstructor,
+	SamplingOpts,
+} from "./api.js";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
-import { Path } from "./api/path.js";
-import { Path3 } from "./api/path3.js";
+import type { Group } from "./api/group.js";
+import type { Path } from "./api/path.js";
+import type { Path3 } from "./api/path3.js";
 import { Polygon } from "./api/polygon.js";
 import { Polygon3 } from "./api/polygon3.js";
 import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
@@ -64,6 +72,7 @@ export const asPolygon = <AsPolygonFn>(
 		__dispatch,
 		{
 			circle: "points",
+			complexpoly: "group",
 			ellipse: "points",
 			line: "points",
 			line3: "points3",
@@ -95,26 +104,13 @@ export const asPolygon = <AsPolygonFn>(
 				return [new Polygon(pts, __attribs($))];
 			},
 
-			complexpoly: ($: ComplexPolygon, opts) =>
-				[$.boundary, ...$.children].map(
-					(x) => new Polygon(vertices(x, opts), __attribs($))
-				),
+			group: ($: Group, opts) => [
+				...mapcat((child) => asPolygon(child, opts), $),
+			],
 
-			path: ($: Path, opts) => {
-				const tmp = new Path([], [], $.attribs);
-				return [$.segments, ...$.subPaths].map((segments) => {
-					tmp.segments = segments;
-					return new Polygon(vertices(tmp, opts), __attribs($));
-				});
-			},
+			path: ($: Path, opts) => __path(Polygon, $, opts),
 
-			path3: ($: Path3, opts) => {
-				const tmp = new Path3();
-				return [$.segments, ...$.subPaths].map((segments) => {
-					tmp.segments = segments;
-					return new Polygon3(vertices(tmp, opts), __attribs($));
-				});
-			},
+			path3: ($: Path3, opts) => __path(Polygon3, $, opts),
 
 			points: ($: IShape2, opts) => [
 				new Polygon(vertices($, opts), __attribs($)),
@@ -126,3 +122,17 @@ export const asPolygon = <AsPolygonFn>(
 		}
 	)
 );
+
+/** @internal */
+const __path = <T extends PCLikeConstructor<any>>(
+	ctor: T,
+	$: Path | Path3,
+	opts?: number | Partial<SamplingOpts>
+) => {
+	const tmp = $.empty();
+	tmp.attribs = $.attribs;
+	return [$.segments, ...$.subPaths].map((segments) => {
+		tmp.segments = segments;
+		return new ctor(vertices(tmp, opts), __attribs($));
+	});
+};

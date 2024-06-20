@@ -1,13 +1,19 @@
 import type { Maybe } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays/peek";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { set } from "@thi.ng/vectors/set";
-import type { IShape, IShape2, IShape3, SamplingOpts } from "./api.js";
+import type {
+	IShape,
+	IShape2,
+	IShape3,
+	PCLikeConstructor,
+	SamplingOpts,
+} from "./api.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Group } from "./api/group.js";
-import { Path } from "./api/path.js";
+import type { Path } from "./api/path.js";
+import type { Path3 } from "./api/path3.js";
 import { Polyline } from "./api/polyline.js";
 import { Polyline3 } from "./api/polyline3.js";
 import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
@@ -72,6 +78,7 @@ export const asPolyline = <AsPolylineFn>(
 		{
 			arc: "points",
 			circle: "poly",
+			complexpoly: "group",
 			cubic: "points",
 			cubic3: "points3",
 			ellipse: "poly",
@@ -88,44 +95,47 @@ export const asPolyline = <AsPolylineFn>(
 			tri3: "poly3",
 		},
 		{
-			complexpoly: ($: ComplexPolygon, opts) => [
-				...asPolyline($.boundary, opts),
-				...mapcat((child) => asPolyline(child, opts), $.children),
-			],
-
 			group: ($: Group, opts) => [
-				...mapcat((child) => asPolyline(child, opts), $.children),
+				...mapcat((child) => asPolyline(child, opts), $),
 			],
 
-			points: ($, opts) => [
-				new Polyline(vertices($, opts), __attribs($)),
-			],
+			path: ($: Path, opts) => __path(Polyline, $, opts),
 
-			points3: ($, opts) => [
-				new Polyline3(vertices($, opts), __attribs($)),
-			],
+			path3: ($: Path3, opts) => __path(Polyline3, $, opts),
 
-			path: ($: Path, opts) => {
-				const tmp = new Path([], [], $.attribs);
-				return [$.segments, ...$.subPaths].map((segments) => {
-					tmp.segments = segments;
-					const pts = vertices(tmp, opts);
-					peek(segments).type === "z" && pts.push(set([], pts[0]));
-					return new Polyline(pts, __attribs($));
-				});
-			},
+			points: ($, opts) => __points(Polyline, $, opts),
 
-			poly: ($, opts) => {
-				const pts = vertices($, opts);
-				pts.push(set([], pts[0]));
-				return [new Polyline(pts, __attribs($))];
-			},
+			points3: ($, opts) => __points(Polyline3, $, opts),
 
-			poly3: ($, opts) => {
-				const pts = vertices($, opts);
-				pts.push(set([], pts[0]));
-				return [new Polyline3(pts, __attribs($))];
-			},
+			poly: ($, opts) => __points(Polyline, $, opts, true),
+
+			poly3: ($, opts) => __points(Polyline3, $, opts, true),
 		}
 	)
 );
+
+/** @internal */
+const __points = <T extends PCLikeConstructor<any>>(
+	ctor: T,
+	$: IShape,
+	opts?: number | Partial<SamplingOpts>,
+	close = false
+) => {
+	const pts = vertices($, opts);
+	close && pts.push(set([], pts[0]));
+	return [new ctor(pts, __attribs($))];
+};
+
+/** @internal */
+const __path = <T extends PCLikeConstructor<any>>(
+	ctor: T,
+	$: Path | Path3,
+	opts?: number | Partial<SamplingOpts>
+) => {
+	const tmp = $.empty();
+	tmp.attribs = $.attribs;
+	return [$.segments, ...$.subPaths].map((segments) => {
+		tmp.segments = segments;
+		return __points(ctor, tmp, opts, tmp.closed)[0];
+	});
+};
