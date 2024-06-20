@@ -1,10 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import type { Attribs } from "./api.js";
 import { rad } from "@thi.ng/math/angle";
 import { WS } from "@thi.ng/strings/groups";
 import type { Vec } from "@thi.ng/vectors";
-import { PathBuilder } from "./path-builder.js";
+import type { Attribs } from "./api.js";
+import { pathBuilder } from "./path-builder.js";
 
 const CMD_RE = /[achlmqstvz]/i;
 const WSC: IObjectOf<boolean> = { ...WS, ",": true };
@@ -21,7 +21,7 @@ const WSC: IObjectOf<boolean> = { ...WS, ",": true };
  * @param attribs
  */
 export const pathFromSvg = (svg: string, attribs?: Attribs) => {
-	const b = new PathBuilder(attribs);
+	const b = pathBuilder(attribs);
 	try {
 		let cmd = "";
 		for (let n = svg.length, i = 0; i < n; ) {

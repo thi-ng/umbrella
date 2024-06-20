@@ -433,6 +433,9 @@
 		"./rotate": {
 			"default": "./rotate.js"
 		},
+		"./rounded-rect": {
+			"default": "./rounded-rect.js"
+		},
 		"./scale-with-center": {
 			"default": "./scale-with-center.js"
 		},

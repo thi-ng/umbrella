@@ -1,19 +1,62 @@
+import type { Always } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
-import type { Attribs } from "./api.js";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { Vec } from "@thi.ng/vectors";
-import { add2 } from "@thi.ng/vectors/add";
+import { add } from "@thi.ng/vectors/add";
 import { copy } from "@thi.ng/vectors/copy";
-import { eqDelta2 } from "@thi.ng/vectors/eqdelta";
-import { mulN2 } from "@thi.ng/vectors/muln";
-import { set2 } from "@thi.ng/vectors/set";
+import { eqDelta as eqDeltaV } from "@thi.ng/vectors/eqdelta";
+import { mulN } from "@thi.ng/vectors/muln";
+import { set } from "@thi.ng/vectors/set";
 import { zeroes } from "@thi.ng/vectors/setn";
-import { sub2 } from "@thi.ng/vectors/sub";
+import { sub } from "@thi.ng/vectors/sub";
+import type {
+	Attribs,
+	IPath,
+	PCLike,
+	PCLikeConstructor,
+	PathSegment,
+	PathSegment2,
+	PathSegment3,
+} from "./api.js";
 import { Cubic } from "./api/cubic.js";
+import { Cubic3 } from "./api/cubic3.js";
 import { Line } from "./api/line.js";
+import { Line3 } from "./api/line3.js";
 import { Path } from "./api/path.js";
+import { Path3 } from "./api/path3.js";
 import { Quadratic } from "./api/quadratic.js";
+import { Quadratic3 } from "./api/quadratic3.js";
 import { arcFrom2Points } from "./arc.js";
+
+type PathGeoConstructor<S extends PathSegment> = PCLikeConstructor<
+	Always<S["geo"]> & PCLike
+>;
+
+type PathBuilderTypes<P extends IPath<any>, S extends P["segments"][0]> = {
+	path: {
+		new (segments: S[], subPaths: S[][], attribs?: Attribs): P;
+	};
+	a?: typeof arcFrom2Points;
+	c: PathGeoConstructor<S>;
+	l: PathGeoConstructor<S>;
+	q: PathGeoConstructor<S>;
+};
+
+const P2D: PathBuilderTypes<Path, PathSegment2> = {
+	path: Path,
+	a: arcFrom2Points,
+	c: Cubic,
+	l: Line,
+	q: Quadratic,
+};
+
+const P3D: PathBuilderTypes<Path3, PathSegment3> = {
+	path: Path3,
+	c: Cubic3,
+	l: Line3,
+	q: Quadratic3,
+};
 
 export interface PathBuilderOpts {
 	/**
@@ -27,18 +70,19 @@ export interface PathBuilderOpts {
 	autoSplit: boolean;
 }
 
-export class PathBuilder {
+export class PathBuilder<P extends IPath<any>, S extends P["segments"][0]> {
 	/**
 	 * Array of all paths which have been built already (incl. the current)
 	 */
-	paths: Path[];
+	paths: P[];
 
-	protected curr!: Path;
+	protected curr!: P;
 	protected currP!: Vec;
 	protected bezierP!: Vec;
 	protected startP!: Vec;
 
 	constructor(
+		protected ctors: PathBuilderTypes<P, S>,
 		public attribs?: Attribs,
 		public opts: Partial<PathBuilderOpts> = {}
 	) {
@@ -63,47 +107,51 @@ export class PathBuilder {
 	 * will only act on this new path.
 	 */
 	newPath() {
-		this.curr = new Path(
+		this.curr = new this.ctors.path(
 			[],
 			[],
 			this.attribs ? { ...this.attribs } : undefined
 		);
 		this.paths.push(this.curr);
-		this.currP = zeroes(2);
-		this.bezierP = zeroes(2);
-		this.startP = zeroes(2);
+		const dim = this.curr.dim;
+		this.currP = zeroes(dim);
+		this.bezierP = zeroes(dim);
+		this.startP = zeroes(dim);
 	}
 
-	moveTo(p: Vec, relative = false): PathBuilder {
+	moveTo(p: Vec, relative = false) {
 		if (this.opts.autoSplit !== false && this.curr.segments.length > 0) {
-			this.curr = new Path([], [], this.attribs);
+			this.curr = new this.ctors.path([], [], this.attribs);
 			this.paths.push(this.curr);
 		}
 		p = this.updateCurrent(p, relative);
-		set2(this.startP, p);
-		set2(this.bezierP, p);
-		this.curr.addSegments({
+		set(this.startP, p);
+		set(this.bezierP, p);
+		this.curr.addSegments(<S>{
 			type: "m",
 			point: p,
 		});
 		return this;
 	}
 
-	lineTo(p: Vec, relative = false): PathBuilder {
+	lineTo(p: Vec, relative = false) {
 		this.curr.addSegments({
 			type: "l",
-			geo: new Line([copy(this.currP), this.updateCurrent(p, relative)]),
+			geo: new this.ctors.l([
+				copy(this.currP),
+				this.updateCurrent(p, relative),
+			]),
 		});
-		set2(this.bezierP, this.currP);
+		set(this.bezierP, this.currP);
 		return this;
 	}
 
-	hlineTo(x: number, relative = false): PathBuilder {
+	hlineTo(x: number, relative = false) {
 		this.addHVLine(x, 0, relative);
 		return this;
 	}
 
-	vlineTo(y: number, relative = false): PathBuilder {
+	vlineTo(y: number, relative = false) {
 		this.addHVLine(y, 1, relative);
 		return this;
 	}
@@ -123,7 +171,7 @@ export class PathBuilder {
 	cubicChainTo(cp2: Vec, p: Vec, relative = false) {
 		const prevMode = peek(this.curr.segments).type;
 		const c1 = copy(this.currP);
-		prevMode === "c" && add2(null, sub2([], c1, this.bezierP), c1);
+		prevMode === "c" && add(null, sub([], c1, this.bezierP), c1);
 		this.addCubic(c1, cp2, p, relative);
 		return this;
 	}
@@ -131,7 +179,7 @@ export class PathBuilder {
 	quadraticChainTo(p: Vec, relative = false) {
 		const prevMode = peek(this.curr.segments).type;
 		const c1 = copy(this.currP);
-		prevMode === "q" && sub2(null, mulN2(null, c1, 2), this.bezierP);
+		prevMode === "q" && sub(null, mulN(null, c1, 2), this.bezierP);
 		this.addQuadratic(c1, p, relative);
 		return this;
 	}
@@ -144,13 +192,14 @@ export class PathBuilder {
 		clockwise: boolean,
 		relative = false
 	) {
+		if (!this.ctors.a) unsupported("arcs");
 		if (eqDelta(r[0], 0) || eqDelta(r[1], 0)) {
 			return this.lineTo(p, relative);
 		}
 		const prev = copy(this.currP);
 		this.curr.addSegments({
 			type: "a",
-			geo: arcFrom2Points(
+			geo: this.ctors.a(
 				prev,
 				this.updateCurrent(p, relative),
 				r,
@@ -159,15 +208,15 @@ export class PathBuilder {
 				clockwise
 			),
 		});
-		set2(this.bezierP, this.currP);
+		set(this.bezierP, this.currP);
 		return this;
 	}
 
 	close() {
-		if (!eqDelta2(this.startP, this.currP)) {
+		if (!eqDeltaV(this.startP, this.currP)) {
 			this.curr.addSegments({
 				type: "l",
-				geo: new Line([copy(this.currP), copy(this.startP)]),
+				geo: new this.ctors.l([copy(this.currP), copy(this.startP)]),
 			});
 		}
 		this.curr.close();
@@ -175,30 +224,30 @@ export class PathBuilder {
 	}
 
 	protected updateCurrent(p: Vec, relative: boolean) {
-		p = copy(relative ? add2(null, this.currP, p) : set2(this.currP, p));
+		p = copy(relative ? add(null, this.currP, p) : set(this.currP, p));
 		return p;
 	}
 
 	protected absPoint(p: Vec, relative: boolean) {
-		return relative ? add2(null, p, this.currP) : p;
+		return relative ? add(null, p, this.currP) : p;
 	}
 
 	protected addHVLine(p: number, i: number, relative: boolean) {
 		const prev = copy(this.currP);
 		this.currP[i] = relative ? this.currP[i] + p : p;
-		set2(this.bezierP, this.currP);
+		set(this.bezierP, this.currP);
 		this.curr.addSegments({
 			type: "l",
-			geo: new Line([prev, copy(this.currP)]),
+			geo: new this.ctors.l([prev, copy(this.currP)]),
 		});
 	}
 
 	protected addCubic(cp1: Vec, cp2: Vec, p: Vec, relative: boolean) {
 		cp2 = this.absPoint(cp2, relative);
-		set2(this.bezierP, cp2);
+		set(this.bezierP, cp2);
 		this.curr.addSegments({
 			type: "c",
-			geo: new Cubic([
+			geo: new this.ctors.c([
 				copy(this.currP),
 				cp1,
 				cp2,
@@ -208,10 +257,10 @@ export class PathBuilder {
 	}
 
 	protected addQuadratic(cp: Vec, p: Vec, relative: boolean) {
-		set2(this.bezierP, cp);
+		set(this.bezierP, cp);
 		this.curr.addSegments({
 			type: "q",
-			geo: new Quadratic([
+			geo: new this.ctors.q([
 				copy(this.currP),
 				cp,
 				this.updateCurrent(p, relative),
@@ -233,4 +282,18 @@ export class PathBuilder {
 export const pathBuilder = (
 	attribs?: Attribs,
 	opts?: Partial<PathBuilderOpts>
-) => new PathBuilder(attribs, opts);
+) => new PathBuilder(P2D, attribs, opts);
+
+/**
+ * Like {@link pathBuilder}, but for constructing 3D paths ({@link Path3}).
+ *
+ * @remarks
+ * Does **not** support arc segments, but all other segment types.
+ *
+ * @param attribs
+ * @param opts
+ */
+export const pathBuilder3 = (
+	attribs?: Attribs,
+	opts?: Partial<PathBuilderOpts>
+) => new PathBuilder(P3D, attribs, opts);

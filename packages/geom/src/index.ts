@@ -101,6 +101,7 @@ export * from "./proximity.js";
 export * from "./resample.js";
 export * from "./rotate.js";
 export * from "./rotate-around-axis.js";
+export * from "./rounded-rect.js";
 export * from "./scale.js";
 export * from "./scale-with-center.js";
 export * from "./scatter.js";
