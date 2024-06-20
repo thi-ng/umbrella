@@ -3,24 +3,18 @@ import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { mul2, mul3 } from "@thi.ng/vectors/mul";
+import { mul, mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
 import { normalize2, normalize3 } from "@thi.ng/vectors/normalize";
-import type {
-	IShape,
-	IShape2,
-	IShape3,
-	PathSegment2,
-	PathSegment3,
-} from "./api.js";
+import type { IShape, IShape2, IShape3 } from "./api.js";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
 import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
-import { Path } from "./api/path.js";
-import { Path3 } from "./api/path3.js";
-import { Points } from "./api/points.js";
+import type { Path } from "./api/path.js";
+import type { Path3 } from "./api/path3.js";
+import type { Points } from "./api/points.js";
 import type { Points3 } from "./api/points3.js";
 import { Ray } from "./api/ray.js";
 import { Ray3 } from "./api/ray3.js";
@@ -96,6 +90,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 		group3: "group",
 		line: "points",
 		line3: "points3",
+		path3: "path",
 		poly: "points",
 		poly3: "points3",
 		polyline: "points",
@@ -154,19 +149,9 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 		path: ($: Path, delta) => {
 			delta = __asVec(delta);
 			return $.copyTransformed(
-				__segmentTransformer<PathSegment2>(
+				__segmentTransformer(
 					(geo) => scale(geo, delta),
-					(p) => mul2([], p, <ReadonlyVec>delta)
-				)
-			);
-		},
-
-		path3: ($: Path3, delta) => {
-			delta = __asVec(delta);
-			return $.copyTransformed(
-				__segmentTransformer<PathSegment3>(
-					(geo) => scale(geo, delta),
-					(p) => mul3([], p, <ReadonlyVec>delta)
+					(p) => mul([], p, <ReadonlyVec>delta)
 				)
 			);
 		},

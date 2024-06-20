@@ -1,18 +1,17 @@
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { add2, add3 } from "@thi.ng/vectors/add";
+import { add, add2, add3 } from "@thi.ng/vectors/add";
 import { set2, set3 } from "@thi.ng/vectors/set";
-import type { IShape, PathSegment2, PathSegment3 } from "./api.js";
+import type { IShape } from "./api.js";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
 import { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
-import { Path } from "./api/path.js";
-import type { Path3 } from "./api/path3.js";
-import { Points } from "./api/points.js";
-import { Points3 } from "./api/points3.js";
+import type { Path } from "./api/path.js";
+import type { Points } from "./api/points.js";
+import type { Points3 } from "./api/points3.js";
 import { Ray } from "./api/ray.js";
 import { Ray3 } from "./api/ray3.js";
 import { Rect } from "./api/rect.js";
@@ -73,6 +72,7 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 		group3: "group",
 		line: "points",
 		line3: "points3",
+		path3: "path",
 		poly: "points",
 		poly3: "points3",
 		polyline: "points",
@@ -115,17 +115,9 @@ export const translate = <TranslateFn>defmulti<any, ReadonlyVec, IShape>(
 
 		path: ($: Path, delta) =>
 			$.copyTransformed(
-				__segmentTransformer<PathSegment2>(
+				__segmentTransformer(
 					(geo) => translate(geo, delta),
-					(p) => add2([], p, delta)
-				)
-			),
-
-		path3: ($: Path3, delta) =>
-			$.copyTransformed(
-				__segmentTransformer<PathSegment3>(
-					(geo) => translate(geo, delta),
-					(p) => add3([], p, delta)
+					(p) => add([], p, delta)
 				)
 			),
 
