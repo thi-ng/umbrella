@@ -60,7 +60,7 @@ const model = asWebGlModel(geo, {
 // references:
 // - https://docs.thi.ng/umbrella/vector-pools/ (readme examples)
 // - https://docs.thi.ng/umbrella/vector-pools/classes/AttribPool.html
-for (let col of model.attribPool?.attribValues<Float32Array>("color")!) {
+for (let col of model.attribPool!.attribValues<Float32Array>("color")) {
 	// pick random color for each vertex
 	// see: https://docs.thi.ng/umbrella/color/#md:color-theme-generation
 	col.set(srgb(colorFromRange("bright")));
