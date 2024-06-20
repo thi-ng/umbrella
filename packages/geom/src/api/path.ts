@@ -1,12 +1,13 @@
-import type { Fn, IClear } from "@thi.ng/api";
+import type { Fn, IClear, IEmpty } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { peek } from "@thi.ng/arrays/peek";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors/illegal-state";
+import { flatten1 } from "@thi.ng/transducers/flatten1";
 import type { Attribs, IHiccupShape2, PathSegment2 } from "../api.js";
 import { __copyAttribs, __copySegment } from "../internal/copy.js";
 
-export class Path implements IClear, IHiccupShape2<Path> {
+export class Path implements IClear, IEmpty<Path>, IHiccupShape2<Path> {
 	readonly type = "path";
 	readonly dim = 2;
 
@@ -32,10 +33,15 @@ export class Path implements IClear, IHiccupShape2<Path> {
 
 	*[Symbol.iterator]() {
 		yield* this.segments;
+		yield* flatten1(this.subPaths);
 	}
 
 	clear() {
 		this.segments.length = 0;
+	}
+
+	empty() {
+		return new Path();
 	}
 
 	close() {

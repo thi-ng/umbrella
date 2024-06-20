@@ -18,6 +18,11 @@ export class ComplexPolygon implements IHiccupShape2<ComplexPolygon> {
 		this.children = children ? ensureArray(children) : [];
 	}
 
+	*[Symbol.iterator]() {
+		yield this.boundary;
+		yield* this.children;
+	}
+
 	addChild(poly: Polygon) {
 		this.children.push(poly);
 	}
