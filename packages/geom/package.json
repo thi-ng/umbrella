@@ -358,11 +358,17 @@
 		"./map-point": {
 			"default": "./map-point.js"
 		},
+		"./normalized-path": {
+			"default": "./normalized-path.js"
+		},
 		"./offset": {
 			"default": "./offset.js"
 		},
 		"./path-builder": {
 			"default": "./path-builder.js"
+		},
+		"./path-from-cubics": {
+			"default": "./path-from-cubics.js"
 		},
 		"./path-from-svg": {
 			"default": "./path-from-svg.js"
