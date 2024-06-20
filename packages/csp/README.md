@@ -35,13 +35,14 @@
 
 Primitives & operators for Communicating Sequential Processes based on async/await and async iterables.
 
-This package was temporarily deprecated (throughout most of 2023), but meanwhile
-has been **reanimated in the form of a complete rewrite**, using a new, more
-simple and more modern approach afforded by contemporary ES language features
-(and widespread support for them).
-
-**This new/current implementation is in most cases NOT compatible with earlier
-versions**.
+> [!IMPORTANT]
+> This package was temporarily deprecated (throughout most of 2023), but
+> meanwhile has been **reanimated in the form of a complete rewrite**, using a
+> new, more simple and more modern approach afforded by contemporary ES language
+> features (and widespread support for them).
+>
+> **This new/current implementation is in most cases NOT compatible with earlier
+> versions**.
 
 ### What is CSP?
 
@@ -157,7 +158,7 @@ For Node.js REPL:
 const csp = await import("@thi.ng/csp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.81 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.80 KB
 
 ## Dependencies
 

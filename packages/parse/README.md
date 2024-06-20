@@ -102,7 +102,7 @@ For Node.js REPL:
 const parse = await import("@thi.ng/parse");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.22 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.21 KB
 
 ## Dependencies
 

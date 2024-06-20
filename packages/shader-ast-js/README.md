@@ -87,7 +87,7 @@ For Node.js REPL:
 const js = await import("@thi.ng/shader-ast-js");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.58 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.56 KB
 
 ## Dependencies
 

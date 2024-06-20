@@ -86,7 +86,7 @@ For Node.js REPL:
 const bc = await import("@thi.ng/bencode");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.17 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
 
 ## Dependencies
 
@@ -94,6 +94,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.17 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
 

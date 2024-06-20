@@ -75,7 +75,7 @@ For Node.js REPL:
 const pd = await import("@thi.ng/pixel-dither");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.05 KB
 
 ## Dependencies
 

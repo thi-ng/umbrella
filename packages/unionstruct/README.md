@@ -77,7 +77,7 @@ For Node.js REPL:
 const us = await import("@thi.ng/unionstruct");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1006 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1008 bytes
 
 ## Dependencies
 

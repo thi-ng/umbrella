@@ -75,7 +75,7 @@ For Node.js REPL:
 const gcl = await import("@thi.ng/geom-clip-line");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 761 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 762 bytes
 
 ## Dependencies
 

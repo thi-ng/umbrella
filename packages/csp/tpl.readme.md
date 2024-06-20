@@ -6,13 +6,14 @@
 
 {{pkg.description}}
 
-This package was temporarily deprecated (throughout most of 2023), but meanwhile
-has been **reanimated in the form of a complete rewrite**, using a new, more
-simple and more modern approach afforded by contemporary ES language features
-(and widespread support for them).
-
-**This new/current implementation is in most cases NOT compatible with earlier
-versions**.
+> [!IMPORTANT]
+> This package was temporarily deprecated (throughout most of 2023), but
+> meanwhile has been **reanimated in the form of a complete rewrite**, using a
+> new, more simple and more modern approach afforded by contemporary ES language
+> features (and widespread support for them).
+>
+> **This new/current implementation is in most cases NOT compatible with earlier
+> versions**.
 
 ### What is CSP?
 

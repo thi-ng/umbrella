@@ -62,7 +62,7 @@ For Node.js REPL:
 const hull = await import("@thi.ng/geom-hull");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 414 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 417 bytes
 
 ## Dependencies
 

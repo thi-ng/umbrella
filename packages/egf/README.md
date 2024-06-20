@@ -130,7 +130,7 @@ For Node.js REPL:
 const egf = await import("@thi.ng/egf");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.62 KB
 
 ## Dependencies
 

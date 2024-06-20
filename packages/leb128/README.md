@@ -89,7 +89,7 @@ For Node.js REPL:
 const leb = await import("@thi.ng/leb128");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 968 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 967 bytes
 
 ## Dependencies
 

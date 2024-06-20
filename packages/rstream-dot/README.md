@@ -65,7 +65,7 @@ For Node.js REPL:
 const rsdot = await import("@thi.ng/rstream-dot");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 802 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 803 bytes
 
 ## Dependencies
 

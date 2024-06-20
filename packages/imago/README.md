@@ -357,7 +357,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.93 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.92 KB
 
 ## Dependencies
 
