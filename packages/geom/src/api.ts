@@ -188,6 +188,19 @@ export interface IHiccupPathSegment {
 
 export type HiccupPathSegment = [string, ...any[]];
 
+export interface IPath<S extends PathSegment> extends IShape {
+	segments: S[];
+	subPaths: S[][];
+
+	readonly closed: boolean;
+	close(): this;
+
+	addSegments(...segments: S[]): this;
+	addSubPaths(...paths: S[][]): this;
+
+	isComplex(): boolean;
+}
+
 export interface CubicOpts {
 	/**
 	 * Controls behavior of curve conversion/interpolation:

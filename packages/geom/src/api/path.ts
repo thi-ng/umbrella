@@ -4,10 +4,12 @@ import { peek } from "@thi.ng/arrays/peek";
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { flatten1 } from "@thi.ng/transducers/flatten1";
-import type { Attribs, IHiccupShape2, PathSegment2 } from "../api.js";
+import type { Attribs, IHiccupShape2, IPath, PathSegment2 } from "../api.js";
 import { __copyAttribs, __copySegment } from "../internal/copy.js";
 
-export class Path implements IClear, IEmpty<Path>, IHiccupShape2<Path> {
+export class Path
+	implements IClear, IEmpty<Path>, IHiccupShape2<Path>, IPath<PathSegment2>
+{
 	readonly type = "path";
 	readonly dim = 2;
 
@@ -74,7 +76,7 @@ export class Path implements IClear, IEmpty<Path>, IHiccupShape2<Path> {
 	}
 
 	isComplex() {
-		return this.subPaths.length;
+		return !!this.subPaths.length;
 	}
 
 	addSegments(...segments: PathSegment2[]) {
