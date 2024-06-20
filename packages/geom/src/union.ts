@@ -26,12 +26,13 @@ export type UnionFn = {
  */
 export const union = <UnionFn>defmulti<any, any, IShape>(
 	__dispatch,
-	{},
+	{
+		rect: "aabb",
+	},
 	{
 		aabb: (a: AABB, b: AABB) =>
-			new AABB(...__unionBounds(a.pos, a.size, b.pos, b.size)),
-
-		rect: (a: Rect, b: Rect) =>
-			new Rect(...__unionBounds(a.pos, a.size, b.pos, b.size)),
+			new (<any>a.constructor)(
+				...__unionBounds(a.pos, a.size, b.pos, b.size)
+			),
 	}
 );
