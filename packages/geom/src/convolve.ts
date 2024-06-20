@@ -119,9 +119,9 @@ const __convolve = <T extends ICopyTransformed<ReadonlyVec[]>>(
 export const KERNEL_BOX = $BOX;
 /**
  * Re-export of
- * [`KERNEL_TRI`](https://docs.thi.ng/umbrella/geom-poly-utils/variables/KERNEL_TRI.html).
+ * [`KERNEL_TRIANGLE`](https://docs.thi.ng/umbrella/geom-poly-utils/variables/KERNEL_TRIANGLE.html).
  */
-export const KERNEL_TRI = $TRIANGLE;
+export const KERNEL_TRIANGLE = $TRIANGLE;
 /**
  * Re-export of
  * [`KERNEL_GAUSSIAN`](https://docs.thi.ng/umbrella/geom-poly-utils/variables/KERNEL_GAUSSIAN.html).
