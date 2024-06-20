@@ -1,49 +1,19 @@
-import { splitCubicNearPoint } from "@thi.ng/geom-splines/cubic-split";
-import { quadraticSplitNearPoint } from "@thi.ng/geom-splines/quadratic-split";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { mixN } from "@thi.ng/vectors/mixn";
-import type { Attribs, PCLike, PCLikeConstructor } from "../api.js";
+import type { PCLike, PCLikeConstructor } from "../api.js";
 import { __pointArraysAsShapes } from "./points-as-shape.js";
+import { clamp01 } from "@thi.ng/math/interval";
 
-export const __splitCubicNear = <T extends PCLike>(
-	ctor: PCLikeConstructor<T>,
-	p: ReadonlyVec,
-	points: ReadonlyVec[],
-	attribs?: Attribs
-) =>
-	__pointArraysAsShapes(
-		ctor,
-		splitCubicNearPoint(p, points[0], points[1], points[2], points[3]),
-		attribs,
-		false
-	);
-
-export const __splitLineAt = <T extends PCLike>(
-	ctor: PCLikeConstructor<T>,
-	[a, b]: Vec[],
-	t: number,
-	attribs?: Attribs
+export const __splitLineAt = (
+	{ points: [a, b], attribs, constructor: ctor }: PCLike,
+	t = 0
 ) => {
-	const p = mixN([], a, b, t);
+	const p = mixN([], a, b, clamp01(t));
 	return __pointArraysAsShapes(
-		ctor,
+		<PCLikeConstructor>ctor,
 		[
 			[a, p],
 			[p, b],
 		],
 		attribs
-	);
+	)!;
 };
-
-export const __splitQuadraticNear = <T extends PCLike>(
-	ctor: PCLikeConstructor<T>,
-	p: ReadonlyVec,
-	points: ReadonlyVec[],
-	attribs?: Attribs
-) =>
-	__pointArraysAsShapes(
-		ctor,
-		quadraticSplitNearPoint(p, points[0], points[1], points[2]),
-		attribs,
-		false
-	);

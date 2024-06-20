@@ -3,24 +3,21 @@ import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { closestT } from "@thi.ng/geom-closest-point/line";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
-import { clamp01 } from "@thi.ng/math/interval";
+import { splitCubicNearPoint } from "@thi.ng/geom-splines/cubic-split";
+import { quadraticSplitNearPoint } from "@thi.ng/geom-splines/quadratic-split";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { IShape, IShape2, IShape3 } from "./api.js";
-import { Cubic } from "./api/cubic.js";
-import { Cubic3 } from "./api/cubic3.js";
-import { Line } from "./api/line.js";
-import { Line3 } from "./api/line3.js";
-import { Polyline } from "./api/polyline.js";
-import { Polyline3 } from "./api/polyline3.js";
-import { Quadratic } from "./api/quadratic.js";
-import { Quadratic3 } from "./api/quadratic3.js";
+import type { IShape, IShape2, IShape3, PCLikeConstructor } from "./api.js";
+import type { Cubic } from "./api/cubic.js";
+import type { Cubic3 } from "./api/cubic3.js";
+import type { Line } from "./api/line.js";
+import type { Line3 } from "./api/line3.js";
+import type { Polyline } from "./api/polyline.js";
+import type { Polyline3 } from "./api/polyline3.js";
+import type { Quadratic } from "./api/quadratic.js";
+import type { Quadratic3 } from "./api/quadratic3.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
-import {
-	__splitCubicNear,
-	__splitLineAt,
-	__splitQuadraticNear,
-} from "./internal/split.js";
+import { __splitLineAt } from "./internal/split.js";
 
 /**
  * Function overrides for {@link splitNearPoint}.
@@ -52,49 +49,44 @@ export type SplitNearPointFn = {
 export const splitNearPoint = <SplitNearPointFn>(
 	defmulti<any, ReadonlyVec, Maybe<IShape[]>>(
 		__dispatch,
-		{},
 		{
-			cubic: ({ points, attribs }: Cubic, p) =>
-				__splitCubicNear(Cubic, p, points, attribs),
+			cubic3: "cubic",
+			line3: "line",
+			polyline3: "polyline",
+			quadratic3: "quadratic",
+		},
+		{
+			cubic: (
+				{ attribs, points: [a, b, c, d], constructor: ctor }: Cubic,
+				p
+			) =>
+				__pointArraysAsShapes(
+					<PCLikeConstructor>ctor,
+					splitCubicNearPoint(p, a, b, c, d),
+					attribs,
+					false
+				),
 
-			cubic3: ({ points, attribs }: Cubic3, p) =>
-				__splitCubicNear(Cubic3, p, points, attribs),
+			line: ($: Line, p) =>
+				__splitLineAt($, closestT(p, $.points[0], $.points[1])),
 
-			line: ({ points, attribs }: Line, p) =>
-				__splitLineAt(
-					Line,
-					points,
-					clamp01(closestT(p, points[0], points[1]) || 0),
+			polyline: ({ attribs, points, constructor: ctor }: Polyline, p) =>
+				__pointArraysAsShapes(
+					<PCLikeConstructor>ctor,
+					new Sampler(points).splitNear(p),
 					attribs
 				),
 
-			line3: ({ points, attribs }: Line3, p) =>
-				__splitLineAt(
-					Line3,
-					points,
-					clamp01(closestT(p, points[0], points[1]) || 0),
-					attribs
-				),
-
-			polyline: ($: Polyline, p) =>
+			quadratic: (
+				{ attribs, points: [a, b, c], constructor: ctor }: Quadratic,
+				p
+			) =>
 				__pointArraysAsShapes(
-					Polyline,
-					new Sampler($.points).splitNear(p),
-					$.attribs
+					<PCLikeConstructor>ctor,
+					quadraticSplitNearPoint(p, a, b, c),
+					attribs,
+					false
 				),
-
-			polyline3: ($: Polyline, p) =>
-				__pointArraysAsShapes(
-					Polyline3,
-					new Sampler($.points).splitNear(p),
-					$.attribs
-				),
-
-			quadratic: ({ points, attribs }: Quadratic, p) =>
-				__splitQuadraticNear(Quadratic, p, points, attribs),
-
-			quadratic3: ({ points, attribs }: Quadratic, p) =>
-				__splitQuadraticNear(Quadratic3, p, points, attribs),
 		}
 	)
 );
