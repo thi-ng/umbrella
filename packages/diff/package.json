@@ -42,7 +42,7 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
 		"typedoc": "^0.25.13",
-		"typescript": "^5.4.5"
+		"typescript": "^5.5.2"
 	},
 	"keywords": [
 		"array",

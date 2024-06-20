@@ -253,7 +253,7 @@ For Node.js REPL:
 const gi = await import("@thi.ng/grid-iterators");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.67 KB
 
 ## Dependencies
 

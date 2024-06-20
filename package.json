@@ -15,7 +15,7 @@
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.13",
-		"typescript": "^5.4.5"
+		"typescript": "^5.5.2"
 	},
 	"scripts": {
 		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",

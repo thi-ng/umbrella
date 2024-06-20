@@ -55,7 +55,7 @@
 		"@thi.ng/vectors": "^7.10.31",
 		"esbuild": "^0.21.5",
 		"typedoc": "^0.25.13",
-		"typescript": "^5.4.5"
+		"typescript": "^5.5.2"
 	},
 	"keywords": [
 		"avif",
