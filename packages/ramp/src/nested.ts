@@ -39,17 +39,14 @@ export const nested = <T extends Record<string, any>>(
 	children: NestedImpl<T>
 ): RampImpl<T> => {
 	const pairs = <[keyof T, RampImpl<any>][]>Object.entries(children);
+	const $minmax = (op: "min" | "max") => (acc: T | null, x: T) =>
+		pairs.reduce((acc, [id, impl]) => {
+			acc[id] = impl[op](acc[id], x[id]);
+			return acc;
+		}, acc || <T>{});
 	return {
-		min: (acc, x) =>
-			pairs.reduce((acc, [id, impl]) => {
-				acc[id] = impl.min(acc[id], x[id]);
-				return acc;
-			}, acc || <T>{}),
-		max: (acc, x) =>
-			pairs.reduce((acc, [id, impl]) => {
-				acc[id] = impl.max(acc[id], x[id]);
-				return acc;
-			}, acc || <T>{}),
+		min: $minmax("min"),
+		max: $minmax("max"),
 		at: (stops, index, t) =>
 			pairs.reduce((acc, [id, impl]) => {
 				acc[id] = impl.at(
