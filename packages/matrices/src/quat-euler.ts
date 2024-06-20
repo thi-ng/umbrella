@@ -1,9 +1,11 @@
-import { X3, Y3, Z3 } from "@thi.ng/vectors/api";
+import { X3, Y3, Z3, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { mulQ } from "./mulq.js";
 import { quatFromAxisAngle } from "./quat-axis-angle.js";
 
+export type AxisOrder = "xyz" | "yxz" | "xzy" | "zxy" | "yzx" | "zyx";
+
 /** @internal */
-const AXIS_ORDER = {
+const AXIS_ORDER: Record<AxisOrder, ReadonlyVec[]> = {
 	xyz: [X3, Y3, Z3],
 	yxz: [Y3, X3, Z3],
 	xzy: [X3, Z3, Y3],
@@ -11,8 +13,6 @@ const AXIS_ORDER = {
 	yzx: [Y3, Z3, X3],
 	zyx: [Z3, Y3, X3],
 };
-
-export type AxisOrder = keyof typeof AXIS_ORDER;
 
 /**
  * Constructs a quaternion from given rotation angles in specified
