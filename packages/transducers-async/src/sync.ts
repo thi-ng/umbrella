@@ -1,5 +1,5 @@
 import type { Maybe, NumOrString } from "@thi.ng/api";
-import { __inflightIters, __iterNext } from "./internal/iter.js";
+import { __inflightIters, __iterNext, __iterRemove } from "./internal/iter.js";
 
 export type SyncSources<T extends Record<NumOrString, any>> = {
 	[id in keyof T]: AsyncIterable<T[id]>;
@@ -54,20 +54,15 @@ export async function* sync<T extends Record<NumOrString, any>>(
 			iter: v[Symbol.asyncIterator](),
 		}))
 	);
-	let n = iters.length;
-	const $remove = (id: number) => {
-		iters.splice(id, 1);
-		if (!--n) return true;
-		for (let i = id; i < n; i++) iters[i].id--;
-	};
 	const $initial = async () => {
 		// wait for all sources
 		const res = await Promise.all(iters.map(({ iter }) => iter.next()));
 		// keep active iterators only, update successive IDs
-		for (let i = 0; i < n; ) {
+		for (let i = 0, n = iters.length; i < n; ) {
 			if (res[i].done) {
 				res.splice(i, 1);
-				if ($remove(i)) return;
+				if (__iterRemove(iters, i)) return;
+				n--;
 			} else i++;
 		}
 		// build tuple
@@ -98,7 +93,7 @@ export async function* sync<T extends Record<NumOrString, any>>(
 			const { iter, res } = await Promise.race(promises);
 			if (res.done) {
 				promises.splice(iter.id, 1);
-				if ($remove(iter.id)) return;
+				if (__iterRemove(iters, iter.id)) return;
 			} else {
 				tuple[iter.key] = res.value;
 				yield { ...tuple };
