@@ -1,7 +1,6 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "./api.js";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { cubicSplitAt } from "@thi.ng/geom-splines/cubic-split";
 import { quadraticSplitAt } from "@thi.ng/geom-splines/quadratic-split";
@@ -9,20 +8,21 @@ import { absDiff } from "@thi.ng/math/abs";
 import { PI, TAU } from "@thi.ng/math/api";
 import { fit01 } from "@thi.ng/math/fit";
 import { set2 } from "@thi.ng/vectors/set";
+import type { IShape } from "./api.js";
 import { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
 import { Cubic } from "./api/cubic.js";
+import { Cubic3 } from "./api/cubic3.js";
 import { Line } from "./api/line.js";
 import { Line3 } from "./api/line3.js";
 import { Polyline } from "./api/polyline.js";
 import { Polyline3 } from "./api/polyline3.js";
 import { Quadratic } from "./api/quadratic.js";
+import { Quadratic3 } from "./api/quadratic3.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
 import { __splitLineAt } from "./internal/split.js";
-import { Quadratic3 } from "./api/quadratic3.js";
-import { Cubic3 } from "./api/cubic3.js";
 
 /**
  * Function overrides for {@link splitAt}.
@@ -112,18 +112,18 @@ export const splitAt = <SplitAtFn>defmulti<any, number, Maybe<IShape[]>>(
 			];
 		},
 
-		cubic: ({ attribs, points }: Cubic, t: number) =>
+		cubic: ({ attribs, points: [a, b, c, d] }: Cubic, t: number) =>
 			__pointArraysAsShapes(
 				Cubic,
-				cubicSplitAt(points[0], points[1], points[2], points[3], t),
+				cubicSplitAt(a, b, c, d, t),
 				attribs,
 				false
 			),
 
-		cubic3: ({ attribs, points }: Cubic3, t: number) =>
+		cubic3: ({ attribs, points: [a, b, c, d] }: Cubic3, t: number) =>
 			__pointArraysAsShapes(
 				Cubic3,
-				cubicSplitAt(points[0], points[1], points[2], points[3], t),
+				cubicSplitAt(a, b, c, d, t),
 				attribs,
 				false
 			),
@@ -148,18 +148,18 @@ export const splitAt = <SplitAtFn>defmulti<any, number, Maybe<IShape[]>>(
 				attribs
 			),
 
-		quadratic: ({ attribs, points }: Quadratic, t: number) =>
+		quadratic: ({ attribs, points: [a, b, c] }: Quadratic, t: number) =>
 			__pointArraysAsShapes(
 				Quadratic,
-				quadraticSplitAt(points[0], points[1], points[2], t),
+				quadraticSplitAt(a, b, c, t),
 				attribs,
 				false
 			),
 
-		quadratic3: ({ attribs, points }: Quadratic, t: number) =>
+		quadratic3: ({ attribs, points: [a, b, c] }: Quadratic, t: number) =>
 			__pointArraysAsShapes(
 				Quadratic3,
-				quadraticSplitAt(points[0], points[1], points[2], t),
+				quadraticSplitAt(a, b, c, t),
 				attribs,
 				false
 			),

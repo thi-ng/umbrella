@@ -1,11 +1,11 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape, IShape2, IShape3 } from "./api.js";
 import { closestT } from "@thi.ng/geom-closest-point/line";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { clamp01 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { IShape, IShape2, IShape3 } from "./api.js";
 import { Cubic } from "./api/cubic.js";
 import { Cubic3 } from "./api/cubic3.js";
 import { Line } from "./api/line.js";
@@ -60,15 +60,21 @@ export const splitNearPoint = <SplitNearPointFn>(
 			cubic3: ({ points, attribs }: Cubic3, p) =>
 				__splitCubicNear(Cubic3, p, points, attribs),
 
-			line: ({ points, attribs }: Line, p) => {
-				const t = closestT(p, points[0], points[1]) || 0;
-				return __splitLineAt(Line, points, clamp01(t), attribs);
-			},
+			line: ({ points, attribs }: Line, p) =>
+				__splitLineAt(
+					Line,
+					points,
+					clamp01(closestT(p, points[0], points[1]) || 0),
+					attribs
+				),
 
-			line3: ({ points, attribs }: Line3, p) => {
-				const t = closestT(p, points[0], points[1]) || 0;
-				return __splitLineAt(Line3, points, clamp01(t), attribs);
-			},
+			line3: ({ points, attribs }: Line3, p) =>
+				__splitLineAt(
+					Line3,
+					points,
+					clamp01(closestT(p, points[0], points[1]) || 0),
+					attribs
+				),
 
 			polyline: ($: Polyline, p) =>
 				__pointArraysAsShapes(
