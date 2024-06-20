@@ -25,54 +25,47 @@ export const serialize = (tree: any, ctx: any) =>
 		.trim();
 
 /** @internal */
-const __serialize = (tree: any, ctx: any, state: SerializeState): string => {
-	if (tree == null) return "";
-	if (Array.isArray(tree)) {
-		if (!tree.length) {
-			return "";
-		}
-		let tag = tree[0];
-		if (isFunction(tag)) {
-			return __serialize(
-				tag.apply(null, [ctx, ...tree.slice(1)]),
-				ctx,
-				state
-			);
-		}
-		if (implementsFunction(tag, "render")) {
-			return __serialize(
+const __serialize = (tree: any, ctx: any, state: SerializeState): string =>
+	tree == null
+		? ""
+		: Array.isArray(tree)
+		? __serializeArray(tree, ctx, state)
+		: isFunction(tree)
+		? __serialize(tree(ctx), ctx, state)
+		: implementsFunction(tree, "toHiccup")
+		? __serialize(tree.toHiccup(ctx), ctx, state)
+		: implementsFunction(tree, "deref")
+		? __serialize(tree.deref(), ctx, state)
+		: isNotStringAndIterable(tree)
+		? __serializeIter(tree, ctx, state)
+		: tree.toString();
+
+/** @internal */
+const __serializeArray = (tree: any[], ctx: any, state: SerializeState) => {
+	if (!tree.length) return "";
+	let tag = tree[0];
+	return isFunction(tag)
+		? __serialize(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, state)
+		: implementsFunction(tag, "render")
+		? __serialize(
 				tag.render.apply(null, [ctx, ...tree.slice(1)]),
 				ctx,
 				state
-			);
-		}
-		if (isString(tag)) {
-			tree = normalize(tree);
-			const attribs = tree[1];
-			if (attribs.__skip || attribs.__serialize === false) {
-				return "";
-			}
-			tag = tree[0];
-			return serializeElement(tree, ctx, state);
-		}
-		if (isNotStringAndIterable(tree)) {
-			return __serializeIter(tree, ctx, state);
-		}
-		illegalArgs(`invalid tree node: ${tree}`);
-	}
-	if (isFunction(tree)) {
-		return __serialize(tree(ctx), ctx, state);
-	}
-	if (implementsFunction(tree, "toHiccup")) {
-		return __serialize(tree.toHiccup(ctx), ctx, state);
-	}
-	if (implementsFunction(tree, "deref")) {
-		return __serialize(tree.deref(), ctx, state);
-	}
-	if (isNotStringAndIterable(tree)) {
-		return __serializeIter(tree, ctx, state);
-	}
-	return tree.toString();
+		  )
+		: isString(tag)
+		? __serializeTreeElement(tree, ctx, state)
+		: isNotStringAndIterable(tree)
+		? __serializeIter(tree, ctx, state)
+		: illegalArgs(`invalid tree node: ${tree}`);
+};
+
+/** @internal */
+const __serializeTreeElement = (tree: any, ctx: any, state: SerializeState) => {
+	tree = normalize(tree);
+	const attribs = tree[1];
+	return attribs.__skip || attribs.__serialize === false
+		? ""
+		: serializeElement(tree, ctx, state);
 };
 
 /** @internal */
