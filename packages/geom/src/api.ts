@@ -201,6 +201,10 @@ export interface IPath<S extends PathSegment> extends IShape {
 	isComplex(): boolean;
 }
 
+export interface PathConstructor<P extends IPath<S>, S extends PathSegment> {
+	new (segments: S[], subPaths: S[][], attribs?: Attribs): P;
+}
+
 export interface CubicOpts {
 	/**
 	 * Controls behavior of curve conversion/interpolation:

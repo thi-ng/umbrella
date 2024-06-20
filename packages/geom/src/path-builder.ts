@@ -15,6 +15,7 @@ import type {
 	IPath,
 	PCLike,
 	PCLikeConstructor,
+	PathConstructor,
 	PathSegment,
 	PathSegment2,
 	PathSegment3,
@@ -29,20 +30,21 @@ import { Quadratic } from "./api/quadratic.js";
 import { Quadratic3 } from "./api/quadratic3.js";
 import { arcFrom2Points } from "./arc.js";
 
+/** @internal */
 type PathGeoConstructor<S extends PathSegment> = PCLikeConstructor<
 	Always<S["geo"]> & PCLike
 >;
 
+/** @internal */
 type PathBuilderTypes<P extends IPath<any>, S extends P["segments"][0]> = {
-	path: {
-		new (segments: S[], subPaths: S[][], attribs?: Attribs): P;
-	};
+	path: PathConstructor<P, S>;
 	a?: typeof arcFrom2Points;
 	c: PathGeoConstructor<S>;
 	l: PathGeoConstructor<S>;
 	q: PathGeoConstructor<S>;
 };
 
+/** @internal */
 const P2D: PathBuilderTypes<Path, PathSegment2> = {
 	path: Path,
 	a: arcFrom2Points,
@@ -51,6 +53,7 @@ const P2D: PathBuilderTypes<Path, PathSegment2> = {
 	q: Quadratic,
 };
 
+/** @internal */
 const P3D: PathBuilderTypes<Path3, PathSegment3> = {
 	path: Path3,
 	c: Cubic3,
@@ -70,6 +73,10 @@ export interface PathBuilderOpts {
 	autoSplit: boolean;
 }
 
+/**
+ * Generic 2D/3D path builder. Use {@link pathBuilder} or {@link pathBuilder3}
+ * to instantiate.
+ */
 export class PathBuilder<P extends IPath<any>, S extends P["segments"][0]> {
 	/**
 	 * Array of all paths which have been built already (incl. the current)

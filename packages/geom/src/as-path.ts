@@ -1,6 +1,8 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { copy } from "@thi.ng/vectors/copy";
 import type {
 	CubicOpts,
 	IShape,
@@ -11,8 +13,6 @@ import type {
 	PathSegment2,
 	PathSegment3,
 } from "./api.js";
-import type { ReadonlyVec } from "@thi.ng/vectors";
-import { copy } from "@thi.ng/vectors/copy";
 import type { APC } from "./api/apc.js";
 import type { Arc } from "./api/arc.js";
 import type { ComplexPolygon } from "./api/complex-polygon.js";
@@ -27,8 +27,7 @@ import { asPolygon } from "./as-polygon.js";
 import { asPolyline } from "./as-polyline.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
-import { pathFromCubics } from "./path.js";
-import { pathFromCubics3 } from "./path3.js";
+import { pathFromCubics } from "./path-from-cubics.js";
 
 export interface AsPathOpts extends CubicOpts {
 	/**
@@ -120,7 +119,7 @@ export const asPath = <AsPathFn>(
  * @internal
  */
 const __defaultImpl = (src: IShape, opts?: Partial<CubicOpts>) =>
-	(src.dim === 2 ? pathFromCubics : pathFromCubics3)(
+	pathFromCubics(
 		<any>asCubic(src, { attribs: false, ...opts }),
 		__copyAttribs(src.attribs)
 	);
