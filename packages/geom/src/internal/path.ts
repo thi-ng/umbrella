@@ -1,7 +1,9 @@
 import type { Maybe } from "@thi.ng/api";
+import { peek } from "@thi.ng/arrays/peek";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { eqDelta } from "@thi.ng/vectors/eqdelta";
 import { equals } from "@thi.ng/vectors/equals";
 import type {
 	Attribs,
@@ -15,7 +17,6 @@ import type { Path } from "../api/path.js";
 import type { Path3 } from "../api/path3.js";
 import { asCubic } from "../as-cubic.js";
 import { __copySegment } from "./copy.js";
-import { peek } from "@thi.ng/arrays/peek";
 
 interface PathType {
 	2: { path: Path; ctor: typeof Path; cubic: Cubic; seg: PathSegment2 };
@@ -47,7 +48,7 @@ export const __pathFromCubics = <T extends 2 | 3>(
 	const segments: PathType[T]["seg"][] = path.segments;
 	if (
 		segments.length > 1 &&
-		equals(
+		eqDelta(
 			segments[0].point!,
 			peek((<PathType[T]["cubic"]>peek(segments).geo).points)
 		)

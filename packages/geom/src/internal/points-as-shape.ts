@@ -4,13 +4,22 @@ import type { Vec } from "@thi.ng/vectors";
 import { copyVectors } from "@thi.ng/vectors/copy";
 import { __copyAttribs } from "./copy.js";
 
+/**
+ * Creates a new shape instance with given points and attribs. Copies points by
+ * default.
+ *
+ * @param ctor
+ * @param points
+ * @param attribs
+ * @param copyPoints
+ */
 export const __pointArraysAsShapes = <T extends PCLike>(
 	ctor: PCLikeConstructor<T>,
-	src?: Iterable<Vec[]>,
+	points?: Iterable<Vec[]>,
 	attribs?: Attribs,
 	copyPoints = true
 ) =>
-	src
+	points
 		? [
 				...map(
 					(pts) =>
@@ -18,7 +27,7 @@ export const __pointArraysAsShapes = <T extends PCLike>(
 							copyPoints ? copyVectors(pts) : pts,
 							__copyAttribs(attribs)
 						),
-					src
+					points
 				),
 		  ]
 		: undefined;
