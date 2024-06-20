@@ -13,7 +13,7 @@ import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
  * Grid cells are visited max. once. A bit field is used to mark visited cells.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/flood-fill.ts
  * import { floodFill } from "@thi.ng/grid-iterators";
  *
  * const img = [
@@ -24,7 +24,9 @@ import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
  * ];
  *
  * // flood fill connected region from point (2,1)
- * [...floodFill((x, y) => img[y * 4 + x] === 0, 2, 1, 4, 4)]
+ * console.log(
+ *   [...floodFill((x, y) => img[y * 4 + x] === 0, 2, 1, 4, 4)]
+ * );
  * // [
  * //   [2, 1], [1, 1], [0, 1], [3, 1], [3, 2],
  * //   [3, 0], [0, 2], [0, 3], [1, 0]
@@ -50,22 +52,31 @@ export function* floodFill(
 	const queue: number[][] = [[x, y]];
 	const visited = defBitField(width * height);
 	height--;
+	const state = { pred, queue, visited, width, height };
 	while (queue.length) {
 		[x, y] = queue.pop()!;
-		yield* partialRow(pred, queue, visited, x, y, width, height, -1);
-		yield* partialRow(pred, queue, visited, x + 1, y, width, height, 1);
+		yield* __partialRow(state, x, y, -1);
+		yield* __partialRow(state, x + 1, y, 1);
 	}
 }
 
 /** @internal */
-function* partialRow(
-	pred: Predicate2<number>,
-	queue: number[][],
-	visited: BitField,
+function* __partialRow(
+	{
+		pred,
+		queue,
+		visited,
+		width,
+		height,
+	}: {
+		pred: Predicate2<number>;
+		queue: number[][];
+		visited: BitField;
+		width: number;
+		height: number;
+	},
 	x: number,
 	y: number,
-	width: number,
-	height1: number,
 	step: number
 ) {
 	let idx = y * width + x;
@@ -83,7 +94,7 @@ function* partialRow(
 				scanUp = false;
 			}
 		}
-		if (y < height1) {
+		if (y < height) {
 			if (pred(x, y + 1) && !scanDown) {
 				queue.push([x, y + 1]);
 				scanDown = true;
