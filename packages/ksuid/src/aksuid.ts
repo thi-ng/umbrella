@@ -37,10 +37,7 @@ export abstract class AKSUID implements IKSUID {
 	}
 
 	nextBinary(buf?: Uint8Array) {
-		buf = this.timeOnlyBinary(undefined, buf);
-		return this.rnd
-			? randomBytesFrom(this.rnd, buf, this.epochSize)
-			: randomBytes(buf, this.epochSize);
+		return this.fromEpochBinary(undefined, buf);
 	}
 
 	timeOnly(epoch?: number) {
