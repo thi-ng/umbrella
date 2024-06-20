@@ -42,8 +42,8 @@
 		"@thi.ng/paths": "^5.1.81"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.45.0",
-		"esbuild": "^0.21.4",
+		"@microsoft/api-extractor": "^7.47.0",
+		"esbuild": "^0.21.5",
 		"typedoc": "^0.25.13",
 		"typescript": "^5.4.5"
 	},

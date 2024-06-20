@@ -7,11 +7,11 @@
 		"tools"
 	],
 	"devDependencies": {
-		"@microsoft/api-documenter": "^7.24.12",
-		"@microsoft/api-extractor": "^7.45.0",
+		"@microsoft/api-documenter": "^7.25.3",
+		"@microsoft/api-extractor": "^7.47.0",
 		"all-contributors-cli": "^6.26.1",
-		"bun-types": "^1.1.10",
-		"esbuild": "^0.21.4",
+		"bun-types": "^1.1.15",
+		"esbuild": "^0.21.5",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
 		"typedoc": "^0.25.13",
