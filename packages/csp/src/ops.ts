@@ -94,23 +94,15 @@ export const drain = async <T>(chan: Channel<T>) =>
 
 /**
  * Takes an async iterable and returns a new CSP {@link Channel}, which receives
- * all values from `src`. If `close` is true (default), the channel will be
- * automatically closed once the iterable is exhausted.
+ * all values from `src` (via {@link pipe}). If `close` is true (default), the
+ * channel will be automatically closed once the iterable is exhausted. Returns
+ * the new channel.
  *
  * @param src
  * @param close
  */
-export const fromAsyncIterable = <T>(src: AsyncIterable<T>, close = true) => {
-	const chan = new Channel<T>();
-	(async () => {
-		for await (let x of src) {
-			await chan.write(x);
-			if (!chan.writable()) break;
-		}
-		close && chan.close();
-	})();
-	return chan;
-};
+export const fromAsyncIterable = <T>(src: AsyncIterable<T>, close = true) =>
+	pipe(src, new Channel<T>(), close);
 
 export const merge = <T>(
 	src: Channel<T>[],
@@ -136,6 +128,9 @@ export const merge = <T>(
 	return dest;
 };
 
+/**
+ * @deprecated use {@link pipe} instead.
+ */
 export const into = async <T, DEST extends IWriteable<T> & IClosable>(
 	chan: DEST,
 	src: Iterable<T> | AsyncIterable<T>,
@@ -148,8 +143,18 @@ export const into = async <T, DEST extends IWriteable<T> & IClosable>(
 	close && chan.close();
 };
 
+/**
+ * Receives values from `src` and writes them to `dest` for as long as it's
+ * accepting new writes (i.e. isn't closed from elsewhere). If `close` is true
+ * (default), the `dest` channel will be automatically closed once the `src` is
+ * exhausted. Returns `dest` channel.
+ *
+ * @param src
+ * @param dest
+ * @param close
+ */
 export const pipe = <T, DEST extends IWriteable<T> & IClosable>(
-	src: Channel<T>,
+	src: AsyncIterable<T>,
 	dest: DEST,
 	close = true
 ) => {
