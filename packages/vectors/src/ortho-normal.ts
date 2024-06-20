@@ -9,10 +9,12 @@ import { sub3 } from "./sub.js";
  * result vector will be normalized.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/ortho-normal3.ts
  * import { orthoNormal3 } from "@thi.ng/vectors";
  *
- * orthoNormal3([], [0, 0, 0], [1, 0, 0], [0, 1, 0])
+ * console.log(
+ *   orthoNormal3([], [0, 0, 0], [1, 0, 0], [0, 1, 0])
+ * );
  * // [0, 0, 1]
  * ```
  *

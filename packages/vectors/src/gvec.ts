@@ -71,34 +71,34 @@ const __keys = memoizeO<number, StringOrSym[]>((size: number) => [
  * needed.
  *
  * @example
- * ```ts
- * import { gvec, eqDelta } from "@thi.ng/vectors";
+ * ```ts tangle:../export/gvec.ts
+ * import { gvec, add, copy, eqDelta } from "@thi.ng/vectors";
  *
  * // 3D vector w/ component stride length of 4
- * a = gvec([1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 3, 0, 4);
- * a[0] // 1
- * a[1] // 2
- * a[2] // 3
+ * let a = gvec([1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0], 3, 0, 4);
  *
- * a.stride
+ * console.log(a[0], a[1], a[2]);
+ * // 1 2 3
+ *
+ * console.log(a.stride);
  * // 4
  *
- * [...a]
+ * console.log([...a]);
  * // [1, 2, 3]
  *
- * a.toString()
- * // "[1,2,3]"
+ * console.log(a.toString());
+ * // "[1.000, 2.000, 3.000]"
  *
- * add([], a, a)
+ * console.log(add([], a, a));
  * // [2, 4, 6]
  *
- * copy(a)
+ * console.log(copy(a));
  * // [1, 2, 3]
  *
- * a.copyView()
+ * console.log(a.copyView());
  * // Proxy [ [ 1, 0, 2, 0, 3, 0 ], ... }
  *
- * eqDelta(a, [1, 2, 3])
+ * console.log(eqDelta(a, [1, 2, 3]));
  * // true
  * ```
  *

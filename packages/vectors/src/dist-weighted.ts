@@ -8,18 +8,22 @@ import { mul } from "./mul.js";
  * and then uses `fn` to compute distance between the weighted results.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/weighted-distance.ts
  * import { dist3, weightedDistance, ONE3, ZERO3 } from "@thi.ng/vectors";
  *
  * // custom distance function, ignoring Y-component
  * const distXZ = weightedDistance(dist3, [1, 0, 1]);
  *
  * // distance in XZ plane only
- * distXZ(ONE3, ZERO3);
+ * console.log(
+ *   distXZ(ONE3, ZERO3)
+ * );
  * // 1.4142135623730951
  *
  * // compare with full Eucledian distance
- * dist3(ONE3, ZERO3);
+ * console.log(
+ *   dist3(ONE3, ZERO3)
+ * );
  * // 1.7320508075688772
  * ```
  *

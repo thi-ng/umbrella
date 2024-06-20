@@ -7,10 +7,12 @@ import { __ensureInputs } from "./internal/ensure.js";
  * the k-medians problem). Writes result to `out` (or a new vector).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/median.ts
  * import { median } from "@thi.ng/vectors";
  *
- * median([], [[3, 10, 400], [4, 30, 100], [1, 40, 200], [2, 20, 300]])
+ * console.log(
+ *   median([], [[3, 10, 400], [4, 30, 100], [1, 40, 200], [2, 20, 300]])
+ * );
  * // [ 3, 30, 300 ]
  * ```
  *
@@ -31,10 +33,12 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
  * Computes the median component of given vector. Returns 0 if vector is empty.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/vmedian.ts
  * import { vmedian } from "@thi.ng/vectors";
  *
- * vmedian([10, 20, 5, 15])
+ * console.log(
+ *   vmedian([10, 20, 5, 15])
+ * );
  * // 10
  * ```
  *

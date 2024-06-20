@@ -12,10 +12,12 @@ import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api.js";
  * (i.e. for `"f32"`, these MUST be multiples of 4).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/map-buffer.ts
  * import { mapBuffer } from "@thi.ng/vectors";
  *
- * mapBuffer("f32", new ArrayBuffer(32), 4, 2)
+ * console.log(
+ *   mapBuffer("f32", new ArrayBuffer(32), 4, 2)
+ * );
  * // [
  * //   Float32Array [ 0, 0 ],
  * //   Float32Array [ 0, 0 ],

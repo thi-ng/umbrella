@@ -13,10 +13,12 @@ import { sum } from "./sum.js";
  * Also see {@link median}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mean.ts
  * import { mean } from "@thi.ng/vectors";
  *
- * mean([], [[3, 10, 400], [4, 30, 100], [1, 40, 200], [2, 20, 300]])
+ * console.log(
+ *   mean([], [[3, 10, 400], [4, 30, 100], [1, 40, 200], [2, 20, 300]])
+ * );
  * // [ 2.5, 25, 250 ]
  * ```
  *
@@ -36,10 +38,12 @@ export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
  * Computes the mean of components of given vector. Returns 0 if vector is empty.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/vmean.ts
  * import { vmean } from "@thi.ng/vectors";
  *
- * vmean([5, 10, 15, 20])
+ * console.log(
+ *   vmean([5, 10, 15, 20])
+ * );
  * // 12.5
  * ```
  *

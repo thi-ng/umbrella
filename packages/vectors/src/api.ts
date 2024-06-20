@@ -462,7 +462,9 @@ export type DistanceFn = VecOpRoVV<number>;
  * overhead of their nD vector versions which would likely be used otherwise).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/vec-api.ts
+ * import { VEC2, VEC3, type Vec, type VecAPI } from "@thi.ng/vectors";
+ *
  * interface Particle {
  *   pos: Vec;
  *   dir: Vec;
@@ -486,7 +488,9 @@ export type DistanceFn = VecOpRoVV<number>;
  *   pos: [10,20], dir: [0,1], targetDir: [1,0], speed: 5, turnSpeed: 0.1
  * };
  *
- * updateParticle(p2d, VEC2);
+ * console.log(
+ *   updateParticle(p2d, VEC2)
+ * );
  * // [ 10.552, 24.969 ]
  *
  * // 3d version
@@ -495,7 +499,9 @@ export type DistanceFn = VecOpRoVV<number>;
  *   pos: [10,20,30], dir: [0,1,0], targetDir: [0,0,1], speed: 5, turnSpeed: 0.1
  * };
  *
- * updateParticle(p3d, VEC3);
+ * console.log(
+ *   updateParticle(p3d, VEC3)
+ * );
  * // [ 10, 24.969, 30.552 ]
  * ```
  */

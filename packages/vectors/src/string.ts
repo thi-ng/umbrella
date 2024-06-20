@@ -13,18 +13,24 @@ import type { ToStringOpts } from "./api.js";
  * {@link setFormat} to set default formatter.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-format.ts
  * import { defFormat } from "@thi.ng/vectors";
  *
- * defFormat()([1, -2, 3])
+ * console.log(
+ *   defFormat()([1, -2, 3])
+ * );
  * // [1.000, -2.000, 3.000]
  *
- * defFormat({ width: 10, wrap: "||", delim: "|\n|" })([1, -2, 3])
+ * console.log(
+ *   defFormat({ width: 10, wrap: "||", delim: "|\n|" })([1, -2, 3])
+ * );
  * // |     1.000|
  * // |    -2.000|
  * // |     3.000|
  *
- * defFormat({ prec: 5, delim: " " })([1, -2, 3])
+ * console.log(
+ *   defFormat({ prec: 5, delim: " " })([1, -2, 3])
+ * );
  * // [1.00000 -2.00000 3.00000]
  * ```
  *

@@ -7,10 +7,12 @@ import type { DistanceFn } from "./api.js";
  * Reference: https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/dist-braycurtis.ts
  * import { distBrayCurtis } from "@thi.ng/vectors";
  *
- * distBrayCurtis([6, 7, 4], [10, 0, 6])
+ * console.log(
+ *   distBrayCurtis([6, 7, 4], [10, 0, 6])
+ * );
  * // 0.393939...
  * ```
  *

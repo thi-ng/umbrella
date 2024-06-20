@@ -19,13 +19,17 @@ import type { ReadonlyVec, Vec } from "./api.js";
  * - https://en.wikipedia.org/wiki/Outer_product#Connection_with_the_Kronecker_product
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/tensor.ts
  * import { tensor } from "@thi.ng/vectors";
  *
- * tensor([], [1, 2, 3], [4, 5])
+ * console.log(
+ *   tensor([], [1, 2, 3], [4, 5])
+ * );
  * // [ 4, 8, 12, 5, 10, 15 ]
  *
- * tensor([], [4, 5], [1, 2, 3])
+ * console.log(
+ *   tensor([], [4, 5], [1, 2, 3])
+ * );
  * // [ 4, 5, 8, 10, 12, 15 ]
  * ```
  *

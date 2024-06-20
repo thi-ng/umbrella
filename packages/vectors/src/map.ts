@@ -26,12 +26,12 @@ import type {
  * This function returns `out`'s backing buffer.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mapvv.ts
  * import { add2, mapVV, Vec2 } from "@thi.ng/vectors";
  *
  * // each input buffer contains 2 2D vectors, but using
  * // different strided data layouts
- * mapVV(
+ * const res = mapVV(
  *   // transformation function
  *   add2,
  *   // init output buffer view
@@ -45,6 +45,8 @@ import type {
  *   8, // input #1 element stride
  *   6  // input #2 element stride
  * );
+ *
+ * console.log(res);
  * // [ 11, 22, 33, 44 ]
  * ```
  *
@@ -54,7 +56,7 @@ import type {
  * only use (and mutate) the provided vector instances and do not
  * allocate any further objects.
  *
- * ```ts
+ * ```ts tangle:../export/map-vec2.ts
  * import { add2, Vec2 } from "@thi.ng/vectors";
  * import { map, run, zip } from "@thi.ng/transducers";
  *
@@ -70,7 +72,7 @@ import type {
  *   )
  * );
  *
- * out
+ * console.log(out);
  * // [ 11, 22, 33, 44 ]
  * ```
  *
@@ -107,19 +109,23 @@ export const mapVV = (
  * single input.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mapv.ts
  * import { mapV, swapXY, Vec2 } from "@thi.ng/vectors";
  *
  * // 4x 2D vectors in SOA layout
  * // i.e. [x1, x2, x3, x4, y1, y2, y3, y4]
- * buf = [1, 3, 5, 7, 2, 4, 6, 8];
+ * const buf = [1, 3, 5, 7, 2, 4, 6, 8];
  *
  * // use `swapXY` to swizzle each vector and use AOS for output
- * res = mapV(swapXY, new Vec2(), new Vec2(buf, 0, 4), 4, 2, 1);
+ * const res = mapV(swapXY, new Vec2(), new Vec2(buf, 0, 4), 4, 2, 1);
+ *
+ * console.log(res);
  * // [ 2, 1, 4, 3, 6, 5, 8, 7 ]
  *
  * // unpack result for demonstration purposes
- * [...Vec2.iterator(res, 4)].map(v => [...v]);
+ * console.log(
+ *   [...Vec2.iterator(res, 4)].map(v => [...v])
+ * );
  * // [ [ 2, 1 ], [ 4, 3 ], [ 6, 5 ], [ 8, 7 ] ]
  * ```
  *
