@@ -25,17 +25,23 @@ export interface SidechainToggleOpts<T> extends CommonOpts {
  * forwarded downstream.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sidechain-toggle.ts
  * import { fromInterval, sidechainToggle, trace } from "@thi.ng/rstream";
  *
+ * const src = fromInterval(500);
+ *
+ * // close stream after 5 secs
+ * setTimeout(() => src.done(), 5000);
+ *
  * // use slower interval stream to toggle faster main stream on/off
- * sidechainToggle(fromInterval(500), fromInterval(1000)).subscribe(trace());
+ * sidechainToggle(src, fromInterval(1000)).subscribe(trace());
  * // 0
- * // 3
+ * // 1
  * // 4
- * // 7
+ * // 5
  * // 8
- * ...
+ * // 9
+ * // done
  * ```
  *
  * @param src -

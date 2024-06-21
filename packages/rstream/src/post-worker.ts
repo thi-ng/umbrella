@@ -21,15 +21,15 @@ import { defWorker } from "./defworker.js";
  * since the parent subscription is {@link ISubscriber.done}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/post-worker.ts
  * import { postWorker, stream } from "@thi.ng/rstream";
  *
  * // worker source code
- * src = `self.onmessage = (e) => console.log("worker", e.data);`;
+ * const src = `self.onmessage = (e) => console.log("worker", e.data);`;
  *
- * a = stream();
+ * const a = stream<any>();
  * a.subscribe(
- *   postWorker(src, { type: "application/javascript" }))
+ *   postWorker(new Blob([src], { type: "application/javascript" }))
  * );
  *
  * a.next(42)

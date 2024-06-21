@@ -45,12 +45,14 @@ export const formatString = (
  *
  *
  * @example
- * ```ts
- * import { Logger, formatString, maskSecrets, writeConsole } from "@thi.ng/rstream-log";
+ * ```ts tangle:../export/mask-secrets.ts
+ * import {
+ *   Logger, formatString, maskSecrets, writeConsole
+ * } from "@thi.ng/rstream-log";
  *
  * const logger = new Logger();
  *
- * logger.transform(
+ * logger.stream.transform(
  *   formatString(),
  *   maskSecrets([/(?<=[A-Z0-9_]\=)\w+/g])
  * ).subscribe(
@@ -58,7 +60,7 @@ export const formatString = (
  * );
  *
  * logger.info("logged in USER=toxi, using TOKEN=123456");
- * // [INFO] logger-0: logged in USER=****, using TOKEN=****
+ * // [INFO] logger-0: 2024-06-21T12:22:58.004Z  logged in USER=****, using TOKEN=****
  * ```
  *
  * @param patterns -

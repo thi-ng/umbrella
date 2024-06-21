@@ -27,7 +27,7 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * {@link StreamMergeOpts | options}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/merge.ts
  * import { fromIterable, merge, trace } from "@thi.ng/rstream";
  *
  * merge({
@@ -47,6 +47,7 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * // 3
  * // 20
  * // 30
+ * // done
  * ```
  *
  * @example
@@ -56,13 +57,14 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * track their provenance:
  *
  * @example
- * ```ts
- * import { fromIterable, merge } from "@thi.ng/rstream";
+ * ```ts tangle:../export/merge-2.ts
+ * import { fromIterable, merge, trace } from "@thi.ng/rstream";
+ * import { labeled } from "@thi.ng/transducers";
  *
  * merge({
  *     src: [
- *         fromIterable([1, 2, 3]).transform(tx.labeled("a")),
- *         fromIterable([10, 20, 30]).transform(tx.labeled("b")),
+ *         fromIterable([1, 2, 3]).transform(labeled("a")),
+ *         fromIterable([10, 20, 30]).transform(labeled("b")),
  *     ]
  * }).subscribe(trace());
  * // ["a", 1]
@@ -71,6 +73,7 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * // ["b", 20]
  * // ["a", 3]
  * // ["b", 30]
+ * // done
  * ```
  *
  * @param opts -

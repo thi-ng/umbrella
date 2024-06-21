@@ -41,10 +41,10 @@ import { Subscription } from "./subscription.js";
  * disabled or if the stream is done, it will deref to `undefined`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/stream.ts
  * import { stream, subscription, trace } from "@thi.ng/rstream";
  *
- * a = stream((s) => {
+ * const a = stream((s) => {
  *     s.next(1);
  *     s.next(2);
  *     s.done()
@@ -55,7 +55,7 @@ import { Subscription } from "./subscription.js";
  * // a done
  *
  * // as reactive value mechanism
- * b = stream();
+ * const b = stream();
  * // or alternatively
  * // b = subscription();
  *

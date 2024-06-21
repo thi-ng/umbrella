@@ -108,15 +108,25 @@ export interface StreamSyncOpts<
  * package. See this function's docs for further details.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sync.ts
  * import { stream, sync, trace } from "@thi.ng/rstream";
  *
- * const a = stream();
- * const b = stream();
- * s = sync({ src: { a, b } }).subscribe(trace("result: "));
+ * const a = stream<number>();
+ * const b = stream<number>();
+ *
+ * const main = sync({ src: { a, b } }).subscribe(trace("result: "));
+ *
  * a.next(1);
+ * // main received value, but does not yet emit...
+ *
  * b.next(2);
+ * // now that `b` has delivered a value, `main` will produce its 1st result tuple
  * // result: { a: 1, b: 2 }
+ *
+ * // any further input changes will trigger new results
+ * // (with cached values from other inputs)
+ * b.next(3);
+ * // result: { a: 1, b: 3 }
  * ```
  *
  * Also see: {@link StreamSyncOpts}

@@ -33,7 +33,7 @@ export type FromViewUnsafeOpts<T> = FromViewOpts<Path, any, T>;
  * or tuple.
 
  * @example
- * ```ts
+ * ```ts tangle:../export/from-view-unsafe.ts
  * import { defAtom } from "@thi.ng/atom";
  * import { fromViewUnsafe, trace } from "@thi.ng/rstream";
  *
@@ -93,22 +93,27 @@ export const fromViewUnsafe = <T>(
  * [`defViewUnsafe()`](https://docs.thi.ng/umbrella/atom/functions/defViewUnsafe.html)
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/from-view.ts
  * import { defAtom } from "@thi.ng/atom";
  * import { fromView, trace } from "@thi.ng/rstream";
  *
- * const db = defAtom<any>({ a: 1, b: { c: 2 }});
+ * interface DB {
+ *   a: number;
+ *   b?: { c: number; }
+ * }
+ *
+ * const db = defAtom<DB>({ a: 1, b: { c: 2 }});
  *
  * fromView(
  *   db,
  *   {
- *     path: ["b,"c"],
+ *     path: ["b", "c"],
  *     tx: (x) => x != null ? String(x) : "n/a"
  *   }
  * ).subscribe(trace("view:"))
  * // view: 2
  *
- * db.swapIn(["b","c"], (x) => x + 1);
+ * db.swapIn(["b","c"], (x) => x! + 1);
  * // view: 3
  *
  * db.reset({ a: 10 });

@@ -12,7 +12,7 @@ import type { Subscription } from "./subscription.js";
  * the final reduced result (or fail with error).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/transduce.ts
  * import { fromIterable, transduce } from "@thi.ng/rstream";
  * import { add, map, range } from "@thi.ng/transducers";
  *

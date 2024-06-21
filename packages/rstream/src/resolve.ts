@@ -22,14 +22,14 @@ export interface ResolverOpts extends IID<string> {
  * from receiving further values.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/resolve.ts
  * import { fromIterable, resolve, trace } from "@thi.ng/rstream";
  * import { delayed } from "@thi.ng/transducers";
  *
- * fromIterable([1, 2, 3], 100)
+ * fromIterable([1, 2, 3], 500)
  *   .transform(delayed(1000))
  *   .subscribe(resolve())
- *   .subscribe(trace("result"))
+ *   .subscribe(trace("result"));
  * // result 1
  * // result 2
  * // result 3

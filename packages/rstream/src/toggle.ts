@@ -8,7 +8,7 @@ import { Subscription } from "./subscription.js";
  * `initial` value.
  *
  * @examples
- * ```ts
+ * ```ts tangle:../export/toggle.ts
  * import { toggle, trace } from "@thi.ng/rstream";
  *
  * const mute = toggle(false);

@@ -29,10 +29,10 @@ import { sync } from "./sync.js";
  * `clock` are exhausted.
  *
  * @example
- * ```ts
- * import { stream, tween } from "@thi.ng/rstream";
+ * ```ts tangle:../export/tween.ts
+ * import { stream, tween, trace } from "@thi.ng/rstream";
  *
- * val = stream();
+ * const val = stream<number>();
  *
  * tween(
  *   // consume from `val` stream
@@ -45,17 +45,20 @@ import { sync } from "./sync.js";
  *   (a, b) => Math.abs(a - b) < 0.01
  * ).subscribe(trace("tweened"))
  *
- * a.next(10)
+ * val.next(10)
  * // 5
  * // 7.5
  * // ...
  * // 9.98046875
  *
- * a.next(100)
+ * val.next(100)
  * // 55
  * // 77.5
  * // ...
  * // 99.989013671875
+ *
+ * // terminate after 1sec
+ * setTimeout(() => val.done(), 1000);
  * ```
  *
  * @param src -

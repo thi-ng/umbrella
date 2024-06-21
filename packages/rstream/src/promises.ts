@@ -14,8 +14,8 @@ import { fromPromise } from "./promise.js";
  * Also see {@link fromPromise}, {@link resolve}.
  *
  * @example
- * ```ts
- * import { fromPromises } from "@thi.ng/rstream";
+ * ```ts tangle:../export/from-promises.ts
+ * import { fromPromises, trace } from "@thi.ng/rstream";
  *
  * fromPromises([
  *     Promise.resolve(1),
@@ -26,20 +26,6 @@ import { fromPromise } from "./promise.js";
  * // 2
  * // 3
  * // done
- * ```
- *
- * @example
- * If individual error handling is required, an alternative is below
- * (however this approach provides no ordering guarantees):
- *
- * ```ts
- * import { fromIterable, resolve, trace } from "@thi.ng/rstream";
- *
- * fromIterable([
- *     Promise.resolve(1),
- *     new Promise(() => setTimeout(() => { throw new Error("eeek"); }, 10)),
- *     Promise.resolve(3)
- * ]).subscribe(resolve()).subscribe(trace())
  * ```
  *
  * @param promises -

@@ -6,15 +6,20 @@ import type { Fn0, ISeq, Maybe } from "@thi.ng/api";
  * is only called once (if at all) and its result cached.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/lazyseg.ts
  * import { cons, lazyseq } from "@thi.ng/seq";
  *
  * const rnd = () => lazyseq(() => cons(Math.random(), rnd()));
  * const a = rnd();
  *
- * a.first();
+ * console.log(a.first());
  * // 0.4421468479982633
- * a.next().first();
+ *
+ * // already evaluated items will be cached (memoization)
+ * console.log(a.first());
+ * // 0.4421468479982633
+ *
+ * console.log(a.next().first());
  * // 0.29578903713266524
  * ```
  *

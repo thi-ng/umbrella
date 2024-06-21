@@ -29,11 +29,6 @@ export interface FromWorkerOpts extends WithErrorHandlerOpts {
  * instance, a JS source code `Blob` or an URL string. In the latter two
  * cases, a worker is created automatically.
  *
- * @example
- * ```ts
- *
- * ```
- *
  * @param worker -
  * @param opts -
  */

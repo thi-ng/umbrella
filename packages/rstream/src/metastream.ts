@@ -45,14 +45,14 @@ export interface MetaStreamOpts extends CommonOpts {
  * dynamic switching between them.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/metastream.ts
  * import { fromIterable, metaStream, trace } from "@thi.ng/rstream";
  * import { repeat } from "@thi.ng/transducers";
  *
  * // transform each received odd number into a stream
  * // producing 3 copies of that number in the metastream
  * // even numbers are ignored
- * a = metaStream(
+ * const a = metaStream<number, number>(
  *   (x) => (x & 1)
  *     ? fromIterable(repeat(x, 3), { delay: 100 })
  *     : null
@@ -65,41 +65,51 @@ export interface MetaStreamOpts extends CommonOpts {
  * // 23
  * // 23
  *
- * a.next(42) // ignored by factory fn
+ * setTimeout(() => a.next(42), 500); // value 42 ignored by metastream
  *
- * a.next(43)
+ * setTimeout(() => a.next(43), 1000);
  * // 43
  * // 43
  * // 43
  * ```
  *
  * @example
- * ```ts
- * import { fromIterable, metaStream, trace, CloseMode } from "@thi.ng/rstream";
- * import { repeat } from "@thi.ng/transducers";
+ * ```ts tangle:../export/metastream-2.ts
+ * import { CloseMode, fromIterable, metaStream, trace } from "@thi.ng/rstream";
+ * import { cycle, repeat } from "@thi.ng/transducers";
  *
- * // infinite inputs
- * a = fromIterable(
+ * // infinite inputs (important: closeOut mode = never!)
+ * const a = fromIterable(
  *   repeat("a"),
- *   { delay: 1000, closeOut: CloseMode.NEVER }
+ *   { delay: 100, closeOut: CloseMode.NEVER }
  * );
- * b = fromIterable(
+ * const b = fromIterable(
  *   repeat("b"),
- *   { delay: 1000, closeOut: CloseMode.NEVER }
+ *   { delay: 100, closeOut: CloseMode.NEVER }
  * );
  *
  * // stream selector / switch
- * m = metaStream((x) => x ? a : b);
+ * const m = metaStream<boolean, string>((x) => (x ? a : b));
  * m.subscribe(trace("meta from: "));
  *
- * m.next(true);
- * // meta from: a
+ * // create infinite stream of true/false and pipe into
+ * // the metastream and switch which source to use
+ * fromIterable(cycle([true, false]), { delay: 500 })
+ *   .subscribe({ next(x) { m.next(x); } });
  *
- * m.next(false);
- * // meta from: b
- *
- * m.next(true);
- * // meta from: a
+ * // a
+ * // a
+ * // a
+ * // a
+ * // a
+ * // b
+ * // b
+ * // b
+ * // b
+ * // b
+ * // a
+ * // a
+ * // ...
  * ```
  *
  * @param factory -

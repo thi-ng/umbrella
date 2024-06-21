@@ -8,12 +8,13 @@ import { metaStream, type MetaStreamOpts } from "./metastream.js";
  * milliseconds.
  *
  * @example
- * ```ts
- * import { debounce, fromIterable } from "@thi.ng/rstream";
+ * ```ts tangle:../export/debounce.ts
+ * import { debounce, fromIterable, trace } from "@thi.ng/rstream";
  *
  * const src = fromIterable([1, 2, 3], { delay: 10 })
- * src.subscribe(debounce(20)).subscribe({ next: console.log });
+ * src.subscribe(debounce(20)).subscribe(trace());
  * // 3
+ * // done
  * ```
  *
  * @param delay -

@@ -47,10 +47,10 @@ const __mapSubject =
  *   described in the previous rule
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/as-triples.ts
  * import { asTriples } from "@thi.ng/rstream-query";
  *
- * src = {
+ * const src = {
  *   "@thi.ng/rstream-query": {
  *     type: "project",
  *     author: "toxi",
@@ -65,7 +65,7 @@ const __mapSubject =
  *   }
  * };
  *
- * [...asTriples(src)]
+ * console.log([...asTriples(src)]);
  * // [ [ '@thi.ng/rstream-query', 'type', 'project' ],
  * //   [ '@thi.ng/rstream-query', 'author', 'toxi' ],
  * //   [ '@thi.ng/rstream-query', 'tag', 'ES6' ],

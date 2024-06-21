@@ -97,28 +97,31 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
  * `fromObject` and specify shared options for *all* created streams.
  *
  * @example
- * ```ts
- * import { fromObject } from "@thi.ng/rstream";
+ * ```ts tangle:../export/from-object.ts
+ * import { fromObject, trace } from "@thi.ng/rstream";
  *
  * type Foo = { a?: number; b: string; };
  *
- * const obj = fromObject(<Foo>{ a: 1, b: "foo" })
+ * const obj = fromObject(<Foo>{ a: 1, b: "foo" });
  *
- * obj.streams.a.subscribe(trace("a"))
+ * obj.streams.a.subscribe(trace("a"));
  * // a 1
- * obj.streams.b.subscribe(trace("b"))
+ *
+ * obj.streams.b.subscribe(trace("b"));
  * // b foo
  *
- * obj.next({ b: "bar" })
+ * obj.next({ b: "bar" });
  * // a undefined
  * // b bar
  * ```
  *
  * @example
- * ```ts
- * import { fromObject, trace } from "@thi.ng/rstream";
+ * ```ts tangle:../export/from-object-2.ts
+ * import { fromObject, subscription, trace } from "@thi.ng/rstream";
  *
- * const obj = fromObject(<Foo>{}, ["a", "b"], { initial: false });
+ * type Foo = { a?: number; b: string; };
+ *
+ * const obj = fromObject(<Foo>{}, { keys: ["a", "b"], initial: false });
  * obj.streams.a.subscribe(trace("a"));
  * obj.streams.b.subscribe(trace("b"));
  *

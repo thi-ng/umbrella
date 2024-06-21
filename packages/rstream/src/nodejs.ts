@@ -35,9 +35,9 @@ export const fromNodeJS = <T>(
  * to rechunk input.
  *
  * @example
- * ```ts
- * import { spawn } from "node:child_process"
+ * ```ts tangle:../export/lines-from-nodejs.ts
  * import { linesFromNodeJS, trace } from "@thi.ng/rstream";
+ * import { spawn } from "node:child_process"
  *
  * const cmd = spawn("ls", ["-la"]);
  *

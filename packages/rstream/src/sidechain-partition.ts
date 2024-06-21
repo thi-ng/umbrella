@@ -28,15 +28,17 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  * Also see: {@link sidechainToggle}, {@link sidechainTrigger}, {@link syncRAF}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sidechain-partition.ts
  * import { fromEvent, fromRAF, merge, sidechainPartition, trace } from "@thi.ng/rstream";
  *
  * // merge various event streams
- * events = merge([
+ * const events = merge({
+ *   src: [
  *     fromEvent(document,"mousemove"),
  *     fromEvent(document,"mousedown"),
  *     fromEvent(document,"mouseup")
- * ]);
+ *   ]
+ * });
  *
  * // queue event processing to only execute during the
  * // requestAnimationFrame cycle (RAF)
@@ -68,15 +70,15 @@ export const sidechainPartition = <T, S>(
  * and {@link syncRAF}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sidechain-partition-raf.ts
  * import { defAtom } from "@thi.ng/atom";
- * import { sideChainPartitionRAF } from "@thi.ng/rstream";
+ * import { fromAtom, sidechainPartitionRAF } from "@thi.ng/rstream";
  *
  * const atom = defAtom("alice");
  *
  * // any change to the atom will only be applied during next RAF update
- * sideChainPartitionRAF(fromAtom(atom)).subscribe({
- *   next({ name }) { document.body.innerText = name; }
+ * sidechainPartitionRAF(fromAtom(atom)).subscribe({
+ *   next(name) { document.body.innerText = name; }
  * });
  *
  * // trigger update

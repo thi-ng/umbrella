@@ -26,7 +26,7 @@ export interface SidechainTriggerOpts<T> extends CommonOpts {
  * downstream.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sidechain-trigger.ts
  * import { reactive, stream, sidechainTrigger, trace } from "@thi.ng/rstream";
  *
  * const src = reactive("payload");
@@ -48,7 +48,6 @@ export interface SidechainTriggerOpts<T> extends CommonOpts {
  * // ...until side chain triggers again
  * side.next(1);
  * // data: update #2
- * ...
  * ```
  *
  * @param src

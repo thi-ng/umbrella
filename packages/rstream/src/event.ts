@@ -49,8 +49,6 @@ export const fromEvent = (
  * fromEvent(document.body, "mousemove"); // Stream<Event>
  * ```
  *
- * Also see: {@link fromEvent}
- *
  * @param src -
  * @param name -
  * @param listenerOpts -

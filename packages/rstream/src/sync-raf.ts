@@ -15,7 +15,7 @@ import { Subscription } from "./subscription.js";
  * See {@link sidechainTrigger} from a similar & more general construct.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sync-raf.ts
  * import { defAtom } from "@thi.ng/atom";
  * import { fromAtom, syncRAF } from "@thi.ng/rstream";
  *

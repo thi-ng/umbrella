@@ -36,14 +36,16 @@ export interface FromAtomOpts<T> extends CommonOpts {
  * Also see {@link fromView}, {@link fromViewUnsafe}
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/from-atom.ts
  * import { defAtom, defCursor } from "@thi.ng/atom";
- * import { fromCursor } from "@thi.ng/rstream";
+ * import { fromAtom, trace } from "@thi.ng/rstream";
  *
- * db = defAtom({ a: 23, b: 88 });
- * cursor = defCursor(db, "a")
+ * type DB = { a: number; b?: number };
  *
- * rs.fromAtom(cursor).subscribe(rs.trace("cursor val:"))
+ * const db = defAtom<DB>({ a: 23, b: 88 });
+ * const cursor = defCursor(db, ["a"])
+ *
+ * fromAtom(cursor).subscribe(trace("cursor val:"))
  * // cursor val: 23
  *
  * cursor.reset(42);
