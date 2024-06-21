@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,48 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@5.0.0) (2024-06-21)
+
+#### 🛑 Breaking changes
+
+- add Tessellation type, update Tessellator ([5b0b2ec](https://github.com/thi-ng/umbrella/commit/5b0b2ec))
+- BREAKING CHANGE: update Tessellator behavior & signature
+  - Tessellators now collect/append results to a Tessellation object, consisting of
+    a single point array and an array of face vertex IDs
+
+#### 🚀 Features
+
+- add/update/rename types, more specific 2d/3d versions ([2325ee8](https://github.com/thi-ng/umbrella/commit/2325ee8))
+  - add IShape2/3
+  - add IHiccupShape2/3
+  - add PathSegment2/3, HiccupPathSegment
+  - add SegmentType2/3
+  - update PCLikeConstructor, add generics
+- add/update various 2d/3d shape types ([262188c](https://github.com/thi-ng/umbrella/commit/262188c))
+  - add 3d shape types & factory functions:
+    - Cubic3
+    - Line3
+    - Path3
+    - Points3
+    - Polygon3
+    - Polyline3
+    - Quad3
+    - Quadratic3
+    - Ray3
+    - Triangle3
+  - update existing shape type impls & ctors/factories
+- update IShape & CubicOpts ([4caff0d](https://github.com/thi-ng/umbrella/commit/4caff0d))
+- update Attribs, add known opt. attrib hints ([ab0fdba](https://github.com/thi-ng/umbrella/commit/ab0fdba))
+- add GroupAttribs, add docs ([f76c5bd](https://github.com/thi-ng/umbrella/commit/f76c5bd))
+
+#### 🩹 Bug fixes
+
+- __samples attribute should be Partial<SamplingOpts> ([409fbdd](https://github.com/thi-ng/umbrella/commit/409fbdd))
+
+#### ♻️ Refactoring
+
+- update SUBDIV_DISPLACE, internal refactoring ([3e84ba8](https://github.com/thi-ng/umbrella/commit/3e84ba8))
 
 ### [4.0.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@4.0.7) (2024-04-20)
 

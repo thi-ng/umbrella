@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.133](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-arc@2.1.133) (2024-06-21)
+
+#### ♻️ Refactoring
+
+- remove geom-api dep, update imports ([3ce21af](https://github.com/thi-ng/umbrella/commit/3ce21af))
 
 ### [2.1.87](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-arc@2.1.87) (2023-11-09)
 

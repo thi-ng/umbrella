@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/vclock",
-	"version": "0.3.69",
+	"version": "0.3.70",
 	"description": "Vector clock functions for synchronizing distributed states & processes",
 	"type": "module",
 	"module": "./index.js",
@@ -36,7 +36,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.2"
+		"@thi.ng/api": "^8.11.3"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",

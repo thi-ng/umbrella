@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.5.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.5.5) (2024-06-21)
+
+#### ♻️ Refactoring
+
+- dedupe struct/union gens for C/Zig ([be628f7](https://github.com/thi-ng/umbrella/commit/be628f7))
+- update/dedupe user body injection ([40cbf13](https://github.com/thi-ng/umbrella/commit/40cbf13))
+  - update TS & Zig code gens
+- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.5.0) (2024-04-22)
 

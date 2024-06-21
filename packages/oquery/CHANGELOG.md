@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.2.42](https://github.com/thi-ng/umbrella/tree/@thi.ng/oquery@2.2.42) (2024-06-21)
+
+#### ♻️ Refactoring
+
+- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- minor internal restructuring ([3aa9e8b](https://github.com/thi-ng/umbrella/commit/3aa9e8b))
 
 ### [2.2.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/oquery@2.2.26) (2024-02-22)
 

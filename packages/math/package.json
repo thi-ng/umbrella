@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/math",
-	"version": "5.10.13",
+	"version": "5.11.0",
 	"description": "Assorted common math functions & utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.2"
+		"@thi.ng/api": "^8.11.3"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",

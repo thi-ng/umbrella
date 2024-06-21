@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/units@0.5.0) (2024-06-21)
+
+#### 🚀 Features
+
+- add DPI constants/presets ([5fe2f78](https://github.com/thi-ng/umbrella/commit/5fe2f78))
+
+#### 🩹 Bug fixes
+
+- update DPI constants ([0b36809](https://github.com/thi-ng/umbrella/commit/0b36809))
 
 ### [0.4.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/units@0.4.14) (2023-11-09)
 

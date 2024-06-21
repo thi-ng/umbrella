@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:31Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@4.0.0) (2024-06-21)
+
+#### 🛑 Breaking changes
+
+- migrate types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api) ([6882260](https://github.com/thi-ng/umbrella/commit/6882260))
+- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api)
+  - add/migrate ISpatialMap, ISpatialSet, IRegionQuery
+  - update imports
+  - update deps
+
+#### ♻️ Refactoring
+
+- minor internal update NdQtNode.doQuery() ([b95ca8e](https://github.com/thi-ng/umbrella/commit/b95ca8e))
+- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
 
 ## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.6.0) (2024-04-20)
 

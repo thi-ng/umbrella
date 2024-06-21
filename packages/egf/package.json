@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/egf",
-	"version": "0.6.127",
+	"version": "0.6.128",
 	"description": "Extensible Graph Format",
 	"type": "module",
 	"module": "./index.js",
@@ -31,19 +31,19 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.2",
-		"@thi.ng/associative": "^6.3.60",
-		"@thi.ng/checks": "^3.6.4",
-		"@thi.ng/dot": "^2.1.76",
-		"@thi.ng/errors": "^2.5.7",
-		"@thi.ng/logger": "^3.0.12",
-		"@thi.ng/prefixes": "^2.3.19",
-		"@thi.ng/strings": "^3.7.33",
-		"@thi.ng/transducers-binary": "^2.1.120"
+		"@thi.ng/api": "^8.11.3",
+		"@thi.ng/associative": "^6.3.61",
+		"@thi.ng/checks": "^3.6.5",
+		"@thi.ng/dot": "^2.1.77",
+		"@thi.ng/errors": "^2.5.8",
+		"@thi.ng/logger": "^3.0.13",
+		"@thi.ng/prefixes": "^2.3.20",
+		"@thi.ng/strings": "^3.7.34",
+		"@thi.ng/transducers-binary": "^2.1.121"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
-		"@thi.ng/equiv": "^2.1.58",
+		"@thi.ng/equiv": "^2.1.59",
 		"esbuild": "^0.21.5",
 		"typedoc": "^0.25.13",
 		"typescript": "^5.5.2"

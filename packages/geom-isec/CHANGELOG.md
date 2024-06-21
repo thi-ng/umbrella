@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,30 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@4.0.0) (2024-06-21)
+
+#### 🛑 Breaking changes
+
+- migrate types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api) ([235e191](https://github.com/thi-ng/umbrella/commit/235e191))
+- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api)
+  - add/migrate IntersectionType, IntersectionResult
+  - update imports
+  - update deps
+
+#### 🚀 Features
+
+- add classifyPointLine2(), classifyPointSegment2() ([3bde7ba](https://github.com/thi-ng/umbrella/commit/3bde7ba))
+- fix [#429](https://github.com/thi-ng/umbrella/issues/429), add classifyPointPolygon(), classifyPointPlane() ([a771c67](https://github.com/thi-ng/umbrella/commit/a771c67))
+
+#### 🩹 Bug fixes
+
+- update intersectRayLine() to return proper IntersectionResult ([2616f7f](https://github.com/thi-ng/umbrella/commit/2616f7f))
+  - wrap result `isec` as array
+
+#### ♻️ Refactoring
+
+- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@3.1.0) (2024-05-08)
 

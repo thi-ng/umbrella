@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:31Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.2.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-async@0.2.6) (2024-06-21)
+
+#### ♻️ Refactoring
+
+- rename various rest args to be more semantically meaningful ([8088a56](https://github.com/thi-ng/umbrella/commit/8088a56))
+- update merge()/sync() ([ef82528](https://github.com/thi-ng/umbrella/commit/ef82528))
+  - dedupe internal shared functionality
+- dedupe iter removal in merge()/sync() ([abc6a46](https://github.com/thi-ng/umbrella/commit/abc6a46))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-async@0.2.0) (2024-04-20)
 

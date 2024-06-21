@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.1.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/ramp@3.1.24) (2024-06-21)
+
+#### ♻️ Refactoring
+
+- dedupe samples() impls ([85515e1](https://github.com/thi-ng/umbrella/commit/85515e1))
+  - extract common impl as internal helper
+  - update Group.samples() & Ramp.samples()
+- dedupe nested() min/max impls ([02e1479](https://github.com/thi-ng/umbrella/commit/02e1479))
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ramp@3.1.0) (2024-02-19)
 

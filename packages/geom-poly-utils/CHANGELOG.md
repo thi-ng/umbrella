@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,31 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-poly-utils@3.0.0) (2024-06-21)
+
+#### 🛑 Breaking changes
+
+- migrate types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api) ([0776820](https://github.com/thi-ng/umbrella/commit/0776820))
+- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api)
+  - add/migrate Convexity
+  - update imports
+  - update deps
+
+#### 🚀 Features
+
+- add convolveClosed/Open() functions, incl. kernels ([4e1d53f](https://github.com/thi-ng/umbrella/commit/4e1d53f))
+  - add convolveClosed() & convolveOpen()
+  - add convolution kernel factories:
+    - KERNEL_BOX()
+    - KERNEL_TRIANGLE()
+    - KERNEL_GAUSSIAN()
+
+#### ⏱ Performance improvements
+
+- rewrite bounds2() / bounds3() ([00953e3](https://github.com/thi-ng/umbrella/commit/00953e3))
+  - use scalars vs. vector ops
+  - add optional args to only process a subset of given points
 
 ## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-poly-utils@2.4.0) (2024-05-08)
 

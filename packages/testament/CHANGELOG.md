@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-05-08T18:24:32Z
+- **Last updated**: 2024-06-21T19:34:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.30](https://github.com/thi-ng/umbrella/tree/@thi.ng/testament@0.4.30) (2024-06-21)
+
+#### ♻️ Refactoring
+
+- remove chokidar dep, use [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/main/packages/file-io) watcher ([cbd8e36](https://github.com/thi-ng/umbrella/commit/cbd8e36))
 
 ### [0.4.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/testament@0.4.19) (2024-02-22)
 
