@@ -37,7 +37,7 @@ export const variable = <K extends string>(
  * considered. The function returns undefined if classification failed.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/classify.ts
  * import { classify, variable, invSigmoid, sigmoid, trapezoid } from "@thi.ng/fuzzy";
  *
  * // temperature sets (in celsius)
@@ -48,7 +48,7 @@ export const variable = <K extends string>(
  *   hot: sigmoid(30, 2)
  * });
  *
- * classify(temp, 28)
+ * console.log(classify(temp, 28));
  * // "warm"
  * ```
  *
@@ -59,7 +59,7 @@ export const variable = <K extends string>(
 export const classify = <K extends string>(
 	{ terms }: LVar<K>,
 	x: number,
-	threshold = 0.5
+	threshold = 0
 ) => {
 	let max = threshold;
 	let maxID: Maybe<K>;
@@ -78,7 +78,7 @@ export const classify = <K extends string>(
  * `x` and returns object of results.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/evaluate.ts
  * import { evaluate, variable, invSigmoid, sigmoid, trapezoid } from "@thi.ng/fuzzy";
  *
  * // temperature sets (in celsius)
@@ -89,7 +89,7 @@ export const classify = <K extends string>(
  *   hot: sigmoid(30, 2)
  * });
  *
- * evaluate(temp, 28)
+ * console.log(evaluate(temp, 28));
  * // { freezing: 0, cold: 0, warm: 0.4, hot: 0.01798620996209156 }
  * ```
  *

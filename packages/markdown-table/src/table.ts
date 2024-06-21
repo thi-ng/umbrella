@@ -42,10 +42,10 @@ const SEPS: Record<Align, Stringer<number>> = {
  * can also be empty. By default all columns are left-aligned.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/table.ts
  * import { table } from "@thi.ng/markdown-table";
  *
- * table(
+ * const res = table(
  *   ["ID", "Actor", "Comment"],
  *   [
  *     [1, "Alice"],
@@ -56,6 +56,7 @@ const SEPS: Record<Align, Stringer<number>> = {
  *   { bold: true, align: ["r", "c", "l"] }
  * );
  *
+ * console.log(res);
  * // | **ID** | **Actor** | **Comment** |
  * // |-------:|:---------:|:------------|
  * // |      1 |   Alice   |             |
@@ -115,10 +116,10 @@ export const table = (
  * values using given `keys` array.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/table-keys.ts
  * import { tableKeys } from "@thi.ng/markdown-table";
  *
- * tableKeys(
+ * const res = tableKeys(
  *   ["ID", "Actor", "Comment"],
  *   ["id", "name", (x) => x.hint],
  *   [
@@ -128,8 +129,9 @@ export const table = (
  *       { id: 44, name: "Dora", hint: "(recipient)" },
  *   ],
  *   { bold: true, align: ["r", "c", "l"] }
- * )
+ * );
  *
+ * console.log(res);
  * // | **ID** | **Actor** | **Comment** |
  * // |-------:|:---------:|:------------|
  * // |      1 |   Alice   |             |

@@ -3,11 +3,13 @@
  * the RDFa `prefix` attribute.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/format-prefixes.ts
  * import { formatPrefixes } from "@thi.ng/hiccup";
  * import { foaf, xsd } from "@thi.ng/prefixes";
  *
- * formatPrefixes({ foaf, xsd })
+ * console.log(
+ *   formatPrefixes({ foaf, xsd })
+ * );
  * // "foaf: http://xmlns.com/foaf/0.1/ rdf: http://www.w3.org/2001/XMLSchema#"
  * ```
  *

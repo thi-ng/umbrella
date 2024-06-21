@@ -1,6 +1,8 @@
+// thing:no-export
 import type { DefuzzStrategyOpts } from "../api.js";
 
-export const defaultOpts = (
+/** @internal */
+export const __defaultOpts = (
 	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategyOpts => ({
 	samples: 100,

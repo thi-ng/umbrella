@@ -35,8 +35,8 @@ export class ProxyLogger extends ALogger {
  * `.set()` and provide a {@link ILogger} implementation.
  *
  * @example
- * ```ts
- * import { ROOT } from "@thi.ng/logger";
+ * ```ts tangle:../export/root.ts
+ * import { ROOT, ConsoleLogger } from "@thi.ng/logger";
  *
  * const myLogger = ROOT.childLogger("custom");
  *

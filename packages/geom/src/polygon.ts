@@ -37,10 +37,12 @@ export const star = (
  * vertex will be inset to 50% of the base radius.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/star-with-centroid.ts
  * import { starWithCentroid } from "@thi.ng/geom";
  *
- * starWithCentroid([100,200], 50, 5, [1, 0.5])
+ * console.log(
+ *   starWithCentroid([100,200], 50, 5, [1, 0.5])
+ * );
  * // Polygon {
  * //   points: [
  * //     [150.000, 200.000],

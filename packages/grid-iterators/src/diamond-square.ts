@@ -11,11 +11,13 @@ import { defBitField } from "@thi.ng/bitfield/bitfield";
  * Reference: https://en.wikipedia.org/wiki/Diamond-square_algorithm
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/diamond-square.ts
  * import { diamondSquare } from "@thi.ng/grid-iterators";
  *
  * // generate coords for a 17x17 grid
- * [...diamondSquare(4)]
+ * console.log(
+ *   [...diamondSquare(4)]
+ * );
  * // [
  * //   [0, 0],  [16, 0], [16, 16], [0, 16], [8, 0],  [8, 16],
  * //   [16, 8], [0, 8],  [8, 8],   [4, 0],  [12, 0], [12, 16],

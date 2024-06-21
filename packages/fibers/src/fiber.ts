@@ -172,8 +172,8 @@ export class Fiber<T = any>
 	 * {@link Fiber.childForID}.
 	 *
 	 * @example
-	 * ```ts
-	 * import { fiber } from "@thi.ng/fibers";
+	 * ```ts tangle:../export/fork.ts
+	 * import { fiber, wait } from "@thi.ng/fibers";
 	 *
 	 * fiber(function* (ctx) {
 	 *   console.log("main start")
@@ -416,7 +416,7 @@ export class Fiber<T = any>
 	 * `handler` must only manage a single execution step, not multiple.
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/run-with.ts
 	 * import { fiber } from "@thi.ng/fibers";
 	 *
 	 * // start with custom higher frequency handler

@@ -37,16 +37,16 @@ export const xfPrint = (fn: Fn<string, void> = console.log) => {
  * Syntax sugar for `xform(parser, xfPrint)`.
  *
  * @example
- * ```ts
- * import { defContext, lit, oneOrMore, seq, ALPHA } from "@thi.ng/parse";
+ * ```ts tangle:../../export/print.ts
+ * import { ALPHA, defContext, lit, oneOrMore, print, seq } from "@thi.ng/parse";
  *
- * print(seq([lit("["), oneOrMore(ALPHA), lit("]")]))(defContext("[abc]"))
+ * print(seq([lit("["), oneOrMore(ALPHA), lit("]")]))(defContext("[abc]"));
  * // seq: null
  * //   lit: "["
  * //   repeat1: null
- * //     lit: "a"
- * //     lit: "b"
- * //     lit: "c"
+ * //     oneOf: "a"
+ * //     oneOf: "b"
+ * //     oneOf: "c"
  * //   lit: "]"
  * ```
  *

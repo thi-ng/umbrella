@@ -24,18 +24,22 @@ export interface AnimationOpts {
  * option is given a default value (250ms), all others are optional.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/animation.ts
  * import { animation, css } from "@thi.ng/hiccup-css";
  *
- * css(
- *   animation(
- *     "fadein",
- *     { delay: "0.5s" },
- *     { opacity: 0 },
- *     { opacity: 1 }
+ * console.log(
+ *   css(
+ *     animation(
+ *       "fadein",
+ *       { delay: "0.5s" },
+ *       { opacity: 0 },
+ *       { opacity: 1 }
+ *     )
  *   )
  * );
  * ```
+ *
+ * Result:
  *
  * ```css
  * @keyframes fadein {

@@ -9,20 +9,19 @@ export type Keyframe = Record<string, any>;
  * objects. This way any number of stops can be specified.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/at-keyframes.ts
  * import { at_keyframes, css } from "@thi.ng/hiccup-css";
  *
- * css(at_keyframes("fadein", {0: {opacity: 0}, 100: {opacity: 1}}))
+ * console.log(
+ *   css(at_keyframes("fadein", {0: {opacity: 0}, 100: {opacity: 1}}))
+ * );
  * // @keyframes fadein {
- * //
  * //     0% {
  * //         opacity: 0;
  * //     }
- * //
  * //     100% {
  * //         opacity: 1;
  * //     }
- * //
  * // }
  * ```
  *
@@ -31,20 +30,22 @@ export type Keyframe = Record<string, any>;
  * will be at 0%, 50%, 100%.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/at-keyframes-2.ts
  * import { at_keyframes, css } from "@thi.ng/hiccup-css";
  *
- * css(at_keyframes("fadein", {opacity: 0}, {opacity: 1}));
+ * console.log(
+ *   css(at_keyframes("fadein", { opacity: 0 }, { opacity: 0.33 }, { opacity: 1 }))
+ * );
  * // @keyframes fadein {
- * //
  * //     0% {
  * //         opacity: 0;
  * //     }
- * //
+ * //     50% {
+ * //         opacity: 0.33;
+ * //     }
  * //     100% {
  * //         opacity: 1;
  * //     }
- * //
  * // }
  * ```
  *

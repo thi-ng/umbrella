@@ -8,16 +8,17 @@ import type { Parser } from "../api.js";
  * of the input is reached, this parser will return true.
  *
  * @example
- * ```ts
- * import { defContext, litD, noneOfP, seqD, skipWhile } from "@thi.ng/parse";
+ * ```ts tangle:../../export/skip-while.ts
+ * import { defContext, litD, NL, noneOfP, seqD, skipWhile } from "@thi.ng/parse";
  *
  * const comment = seqD([litD("#"), skipWhile(noneOfP("\n")), NL]);
  *
  * const ctx = defContext("# ignore more!\n");
- * comment(ctx);
+ *
+ * console.log(comment(ctx));
  * // true
  *
- * ctx.state
+ * console.log(ctx.state);
  * // { p: 15, l: 2, c: 1, done: true, last: '\n' }
  * ```
  *

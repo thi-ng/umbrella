@@ -18,14 +18,19 @@ import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
  * to `+∞` and `vmax` to `-∞` (e.g. use copies of `MIN*` / `MAX*`
  * constants defined in thi.ng/vectors).
  *
+ * @remarks
+ * Also see {@link bounds2}, {@link bounds3}.
+ *
  * @example
- * ```ts
+ * ```ts tangle:../export/bounds.ts
  * import { bounds } from "@thi.ng/geom-poly-utils";
  * import { MAX2, MIN2 } from "@thi.ng/vectors";
  *
- * points = [[-1,-2], [5,-3], [0,4]];
+ * const points = [[-1,-2], [5,-3], [0,4]];
  *
- * bounds(points, [...MAX2], [...MIN2])
+ * console.log(
+ *   bounds(points, [...MAX2], [...MIN2])
+ * );
  * // [[-1, -3], [5, 4]]
  * ```
  *

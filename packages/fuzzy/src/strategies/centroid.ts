@@ -1,5 +1,5 @@
 import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
-import { defaultOpts } from "./opts.js";
+import { __defaultOpts } from "./opts.js";
 
 /**
  * Higher-order function: Centre-of-gravity defuzzification strategy, yielding
@@ -14,10 +14,12 @@ import { defaultOpts } from "./opts.js";
  * Also see {@link DefuzzStrategyOpts}
  *
  * @example
- * ```ts
+ * ```ts tangle:../../export/centroid-strategy.ts
  * import { centroidStrategy, trapezoid } from "@thi.ng/fuzzy";
  *
- * centroidStrategy()(trapezoid(0,1,5,6), [0,6])
+ * console.log(
+ *   centroidStrategy()(trapezoid(0,1,5,6), [0,6])
+ * );
  * // 3.0000000000000004
  *
  * // ......▁█████████████|█████████████▁.....
@@ -36,7 +38,7 @@ import { defaultOpts } from "./opts.js";
 export const centroidStrategy = (
 	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-	let { samples } = defaultOpts(opts);
+	let { samples } = __defaultOpts(opts);
 	return (fn, [min, max]) => {
 		const delta = (max - min) / samples;
 		let num = 0;

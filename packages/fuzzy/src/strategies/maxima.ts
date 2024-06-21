@@ -1,6 +1,6 @@
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
-import { defaultOpts } from "./opts.js";
+import { __defaultOpts } from "./opts.js";
 
 /**
  * Higher-order function. Returns Mean-of-Maxima defuzzification strategy,
@@ -12,10 +12,12 @@ import { defaultOpts } from "./opts.js";
  * Also see {@link DefuzzStrategyOpts}
  *
  * @example
- * ```ts
+ * ```ts tangle:../../export/mean-of-maxima-strategy.ts
  * import { meanOfMaximaStrategy, trapezoid } from "@thi.ng/fuzzy";
  *
- * meanOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
+ * console.log(
+ *   meanOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
+ * );
  * // 3
  *
  * // ......▁█████████████|█████████████▁.....
@@ -34,7 +36,7 @@ import { defaultOpts } from "./opts.js";
 export const meanOfMaximaStrategy = (
 	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-	const { samples, eps } = defaultOpts(opts);
+	const { samples, eps } = __defaultOpts(opts);
 	return (fn, [min, max]) => {
 		const delta = (max - min) / samples;
 		let peak = -Infinity;
@@ -67,10 +69,12 @@ export const meanOfMaximaStrategy = (
  * Also see {@link DefuzzStrategyOpts}
  *
  * @example
- * ```ts
+ * ```ts tangle:../../export/first-of-maxima-strategy.ts
  * import { firstOfMaximaStrategy, trapezoid } from "@thi.ng/fuzzy";
  *
- * firstOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
+ * console.log(
+ *   firstOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
+ * );
  * // 1.02
  *
  * // ......▁|██████████████████████████▁.....
@@ -89,7 +93,7 @@ export const meanOfMaximaStrategy = (
 export const firstOfMaximaStrategy = (
 	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-	const { samples } = defaultOpts(opts);
+	const { samples } = __defaultOpts(opts);
 	return (fn, [min, max]) => {
 		const delta = (max - min) / samples;
 		let peak = -Infinity;
@@ -117,10 +121,12 @@ export const firstOfMaximaStrategy = (
  * Also see {@link DefuzzStrategyOpts}
  *
  * @example
- * ```ts
+ * ```ts tangle:../../export/last-of-maxima-strategy.ts
  * import { lastOfMaximaStrategy, trapezoid } from "@thi.ng/fuzzy";
  *
- * lastOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
+ * console.log(
+ *   lastOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
+ * );
  * // 4.98
  *
  * // ......▁██████████████████████████|▁.....

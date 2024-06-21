@@ -154,7 +154,7 @@ export abstract class AHashGrid<T> {
 	 * implementation. Returns neighborhood.
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/query-neighborhood.ts
 	 * import { knearest2 } from "@thi.ng/distance";
 	 * import { HashGrid2 } from "@thi.ng/geom-accel";
 	 * import { repeatedly } from "@thi.ng/transducers";
@@ -168,12 +168,16 @@ export abstract class AHashGrid<T> {
 	 * const grid = new HashGrid2<ReadonlyVec>((p) => p, 16, pts.length, pts);
 	 *
 	 * // perform k-nearest neighbor search around origin (k=5, radius=200)
-	 * grid.queryNeighborhood(knearest2([0, 0], 5, 200)).values();
-	 * // [-12.65, 26.19]
-	 * // [1.94, 28.09]
-	 * // [-17.49, -8.76]
-	 * // [-14.55, 8.17]
-	 * // [8.09, 17.47]
+	 * console.log(
+	 *   grid.queryNeighborhood(knearest2([0, 0], 5, 200)).values()
+	 * );
+	 * // [
+	 * //   [-12.65, 26.19]
+	 * //   [1.94, 28.09]
+	 * //   [-17.49, -8.76]
+	 * //   [-14.55, 8.17]
+	 * //   [8.09, 17.47]
+	 * // ]
 	 * ```
 	 *
 	 * @param neighborhood

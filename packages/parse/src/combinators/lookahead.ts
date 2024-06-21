@@ -26,8 +26,8 @@ import type { Parser } from "../api.js";
  * behavior and not a bug.
  *
  * @example
- * ```ts
- * import { defContext, lookahead, oneOf, stringD } from "@thi.ng/parse";
+ * ```ts tangle:../../export/lookahead.ts
+ * import { defContext, join, lookahead, oneOf, stringD } from "@thi.ng/parse";
  *
  * const ctx = defContext("ababaaabbabba");
  *
@@ -35,30 +35,34 @@ import type { Parser } from "../api.js";
  * // note the use of `stringD()` to discard lookahead result
  *
  * // non-capturing lookahead
- * join(lookahead(oneOf("ab"), stringD("abba")))(ctx)
+ * console.log(
+ *   join(lookahead(oneOf("ab"), stringD("abba")))(ctx)
+ * );
  * // true
  *
- * ctx.result
+ * console.log(ctx.result);
  * // "ababaa"
  *
- * ctx.state
+ * console.log(ctx.state);
  * // { p: 6, l: 1, c: 7, done: false, last: 'a' }
  * ```
  *
  * @example
- * ```ts
- * import { defContext, lookahead, oneOf, string } from "@thi.ng/parse";
+ * ```ts tangle:../../export/lookahead-2.ts
+ * import { defContext, join, lookahead, oneOf, string } from "@thi.ng/parse";
  *
  * const ctx = defContext("ababaaabbabba");
  *
  * // capturing lookahead
- * join(lookahead(oneOf("ab"), string("abba"), true))(ctx)
+ * console.log(
+ *   join(lookahead(oneOf("ab"), string("abba"), true))(ctx)
+ * );
  * // true
  *
- * ctx.result
+ * console.log(ctx.result);
  * // "ababaaabba"
  *
- * ctx.state
+ * console.log(ctx.state);
  * // { p: 10, l: 1, c: 11, done: false, last: 'a' }
  * ```
  *

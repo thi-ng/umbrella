@@ -256,13 +256,13 @@ export const tangentDiff3 = (
  * and returns interpolated value.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/tween.ts
  * import { easeInOut2, tween } from "@thi.ng/math";
  *
  * // create tweening function
  * const anim = tween(easeInOut2, 100, 200);
  *
- * for(let i=0; i<=10; i++) console.log(anim(i/10));
+ * for(let i=0; i<=10; i++) console.log(anim(i / 10));
  * // 100
  * // 102
  * // 108
@@ -321,17 +321,28 @@ export const invCircular: FnN = (t) => 1 - circular(1 - t);
  * reference to below example.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/lens.ts
  * import { mix, lens, tween } from "@thi.ng/math";
  * import { partial } from "@thi.ng/compose";
  *
  * // interpolated position in [100..400] interval for given `t`
- * y = mix(100, 400, lens(0.5, 1, t));
+ * // const y = mix(100, 400, lens(0.5, 1, t));
  *
  * // or compose tween function via `tween()` & `partial()`
- * f = tween(partial(lens, 0.5, 1), 100, 400);
+ * const f = tween(partial(lens, 0.75, 1), 100, 400);
  *
- * f(t)
+ * for(let i=0; i<=10; i++) console.log(f(i / 10));
+ * // 100.0
+ * // 102.0
+ * // 108.1
+ * // 118.7
+ * // 134.6
+ * // 157.2
+ * // 190.0
+ * // 244.2
+ * // 370.0
+ * // 393.7
+ * // 400.0
  * ```
  *
  * @param pos - lens pos

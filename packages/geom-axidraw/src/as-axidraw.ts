@@ -63,17 +63,24 @@ import { pointsByNearestNeighbor } from "./sort.js";
  * - triangle
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/as-axidraw.ts
  * import { circle } from "@thi.ng/geom";
  * import { asAxiDraw } from "@thi.ng/geom-axidraw";
  *
- * [...asAxiDraw(circle(100), { samples: 100 })]
- * [
- *   [ 'm', [ 10, 0 ] ],
- *   [ 'd' ],
- *   [ 'm', [ 9.980267284282716, 0.6279051952931337 ], undefined ],
- *   ...
- * ]
+ * console.log(
+ *   [...asAxiDraw(circle(100), { samples: 6 })]
+ * );
+ * // [
+ * //   [ "M", [ 100, 0 ], 1 ],
+ * //   [ "d", undefined, undefined ],
+ * //   [ "M", [ 50.00, 86.60 ], 1 ],
+ * //   [ "M", [ -49.99, 86.60 ], 1 ],
+ * //   [ "M", [ -100, 0 ], 1 ],
+ * //   [ "M", [ -50.00, -86.60 ], 1 ],
+ * //   [ "M", [ 49.99, -86.60 ], 1 ],
+ * //   [ "M", [ 100, 0 ], 1 ],
+ * //   [ "u", undefined, undefined ]
+ * // ]
  * ```
  */
 export const asAxiDraw: MultiFn1O<

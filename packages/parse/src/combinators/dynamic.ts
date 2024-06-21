@@ -3,17 +3,18 @@ import type { DynamicParser, Parser } from "../api.js";
 import type { ParseContext } from "../context.js";
 
 /**
- * Returns a parser function placeholder, whose implementation can be
- * set at a later stage via calling `.set()`.
+ * Returns a parser function placeholder, whose implementation can be set at a
+ * later stage via calling `.set()`. The parser always fails until set, after
+ * which it then delegates to the chosen impl.
  *
  * @examples
- * ```ts
- * import { defContext, dynamic } from "@thi.ng/parse";
+ * ```ts tangle:../../export/dynamic.ts
+ * import { defContext, dynamic,lit  } from "@thi.ng/parse";
  *
  * const parser = dynamic<string>();
  * parser.set(lit("a"));
  *
- * parser(defContext("a"));
+ * console.log(parser(defContext("a")));
  * // true
  * ```
  */

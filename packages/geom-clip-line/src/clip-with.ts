@@ -14,13 +14,15 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  * other vertex, that entire chunk will be discarded.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/clip-polyline-with.ts
  * import { clipPolylineWith } from "@thi.ng/geom-clip-line";
  *
  * const pts = [[0, 0], [1, 0], [1, 1], [2, 1], [3, 1], [4, 0], [5, 0]];
  *
  * // isolate horizontal chunks
- * clipPolylineWith((a, b) => a[1] == b[1], pts)
+ * console.log(
+ *   clipPolylineWith((a, b) => a[1] == b[1], pts)
+ * );
  * // [
  * //   [[0, 0], [1, 0]],
  * //   [[1, 1], [2, 1], [3, 1]],
@@ -28,7 +30,9 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  * // ]
  *
  * // isolate sloped chunks
- * clipPolylineWith((a, b) => a[1] != b[1], pts)
+ * console.log(
+ *   clipPolylineWith((a, b) => a[1] != b[1], pts)
+ * );
  * // [
  * //   [[1, 0], [1, 1]],
  * //   [[3, 1], [4, 0]]

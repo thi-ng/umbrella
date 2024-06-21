@@ -130,13 +130,15 @@ export class Sampler {
 	 * MUST be in [0..1] range).
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/extract-range.ts
 	 * import { Sampler } from "@thi.ng/geom-resample";
 	 *
 	 * // vertices of a square
 	 * const square = [[0, 0], [100, 0], [100, 100], [0, 100]];
 	 *
-	 * new Sampler(square).extractRange(0.2, 0.7);
+	 * console.log(
+	 *   new Sampler(square, true).extractRange(0.2, 0.7)
+	 * );
 	 * // [[80, 0], [100, 0], [100, 100], [20, 100]]
 	 * ```
 	 *

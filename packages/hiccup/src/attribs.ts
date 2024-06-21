@@ -18,16 +18,22 @@ import { isString } from "@thi.ng/checks/is-string";
  * indicate if the class should be added or removed from the existing set.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/merge-classes.ts
  * import { mergeClasses } from "@thi.ng/hiccup";
  *
- * mergeClasses("foo bar", { foo: false, baz: true })
+ * console.log(
+ *   mergeClasses("foo bar", { foo: false, baz: true })
+ * );
  * // "bar baz"
  *
- * mergeClasses("foo", ["bar", "baz"]);
+ * console.log(
+ *   mergeClasses("foo", ["bar", "baz"])
+ * );
  * // "foo bar baz"
  *
- * mergeClasses("foo bar", "baz");
+ * console.log(
+ *   mergeClasses("foo bar", "baz")
+ * );
  * // "foo bar baz"
  * ```
  *

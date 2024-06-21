@@ -170,14 +170,14 @@ export const timeSlice = (
  * given `consume` function in order to process these values further.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/timeslice-iterable.ts
  * import { timeSliceIterable } from "@thi.ng/fibers";
  * import { range } from "@thi.ng/transducers";
  *
  * // consume & batch process iterable in 16ms time slices
  * timeSliceIterable(
  *   range(1_000_000),
- *   (chunk) => console.log(chunk),
+ *   (chunk) => console.log("items:", chunk.length),
  *   16
  * ).run();
  * ```
@@ -329,15 +329,15 @@ export class Shuffle extends Fiber {
  * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/shuffle.ts
  * import { shuffle } from "@thi.ng/fibers";
  * import { repeatedly } from "@thi.ng/transducers";
  *
- * // create & run fiber with 4 children, executing in random order
+ * // create & run fiber with 16 children, executing in random order
  * shuffle(
  *   repeatedly(
- *     (id) => function*() { while(true) { console.log(`worker #{id}`); yield; } },
- *     4
+ *     (id) => function*() { while(true) { console.log(`worker #${id}`); yield; } },
+ *     16
  *   )
  * ).run()
  *
@@ -374,8 +374,8 @@ export const shuffle = (
  * `catch` handler indicating the error has been dealt with.
  *
  * @example
- * ```ts
- * import { asPromise } from "@thi.ng/fibers";
+ * ```ts tangle:../export/as-promise.ts
+ * import { asPromise, wait } from "@thi.ng/fibers";
  *
  * (async () => {
  *   // create & spawn task/fiber

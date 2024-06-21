@@ -31,17 +31,17 @@ export const defHeap = <T>(
  * and uses @thi.ng/compare.
  *
  * @example
- * ```ts
- * import { Heap } from "@thi.ng/heap";
+ * ```ts tangle:../export/heap.ts
+ * import { Heap } from "@thi.ng/heaps";
  *
- * h = new Heap([20, 5, 10]);
+ * const h = new Heap([20, 5, 10]);
  * h.push(15);
  *
- * h.pop(); // 5
- * h.pop(); // 10
- * h.pop(); // 15
- * h.pop(); // 20
- * h.pop(); // undefined
+ * console.log(h.pop()); // 5
+ * console.log(h.pop()); // 10
+ * console.log(h.pop()); // 15
+ * console.log(h.pop()); // 20
+ * console.log(h.pop()); // undefined
  * ```
  */
 export class Heap<T>

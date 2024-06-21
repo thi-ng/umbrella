@@ -1,6 +1,6 @@
 import { fit } from "@thi.ng/math/fit";
 import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
-import { defaultOpts } from "./opts.js";
+import { __defaultOpts } from "./opts.js";
 
 /**
  * Higher-order function: Bisector-of-Area defuzzification strategy. Returns
@@ -15,10 +15,12 @@ import { defaultOpts } from "./opts.js";
  * Also see {@link DefuzzStrategyOpts}
  *
  * @example
- * ```ts
+ * ```ts tangle:../../export/bisector-strategy.ts
  * import { bisectorStrategy, trapezoid } from "@thi.ng/fuzzy";
  *
- * bisectorStrategy()(trapezoid(0,1,5,6), [0,6])
+ * console.log(
+ *   bisectorStrategy()(trapezoid(0,1,5,6), [0,6])
+ * );
  * // 2.97
  *
  * // ......▁█████████████|█████████████▁.....
@@ -37,7 +39,7 @@ import { defaultOpts } from "./opts.js";
 export const bisectorStrategy = (
 	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-	let { samples } = defaultOpts(opts);
+	let { samples } = __defaultOpts(opts);
 	return (fn, [min, max]) => {
 		const delta = (max - min) / samples;
 		let sum: number[] = [];

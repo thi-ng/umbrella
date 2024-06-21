@@ -13,10 +13,12 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  * Also see {@link sampleUniformY}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sample-uniform.ts
  * import { sampleUniformX } from "@thi.ng/geom-resample";
  *
- * sampleUniformX([[0, 0], [3, 5], [5, 2]], 0, 5)
+ * console.log(
+ *   sampleUniformX([[0, 0], [3, 5], [5, 2]], 0, 5)
+ * );
  * // [
  * //   [ 0, 0 ],
  * //   [ 1, 1.666... ],

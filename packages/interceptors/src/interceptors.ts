@@ -63,25 +63,35 @@ export const dispatchNow =
  * Example usage:
  *
  * @example
- * ```ts
- * import { Atom } from "@thi.ng/atom";
- * import { EvenBus, snapshot, valueSetter } from "@thi.ng/interceptors";
+ * ```ts tangle:../export/snapshot.ts
+ * import { defAtom, defHistory } from "@thi.ng/atom";
+ * import { EventBus, snapshot, valueSetter, EV_UNDO } from "@thi.ng/interceptors";
  *
- * state = new Atom({});
- * history = new History(state);
- * bus = new EventBus(state);
+ * const state = defAtom({ foo: 42 });
+ * const history = defHistory(state);
+ * const bus = new EventBus(state);
  * // register event handler
  * // each time the `foo` event is triggered, a snapshot of
  * // current app state is recorded first
  * bus.addHandlers({
- *  foo: [snapshot(), valueSetter("foo")]
+ *   foo: [snapshot(), valueSetter("foo")]
  * });
- * ...
+ *
  * // trigger event
  * bus.dispatch(["foo", 23]);
  *
  * // pass history instance via interceptor context to handlers
  * bus.processQueue({ history });
+ *
+ * // show updated state
+ * console.log(state.deref());
+ *
+ * // trigger & process built-in undo event
+ * bus.dispatch([EV_UNDO]);
+ * bus.processQueue({ history });
+ *
+ * // show restored state
+ * console.log(state.deref());
  * ```
  *
  * @param id -
