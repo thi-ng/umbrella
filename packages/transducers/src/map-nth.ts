@@ -12,15 +12,19 @@ import { __iter } from "./iterator.js";
  * the first transformation occurs (default 0).
  *
  * @example
- * ```ts
- * import { mapNth } from "@thi.ng/transducers";
+ * ```ts tangle:../export/map-nth.ts
+ * import { mapNth, range } from "@thi.ng/transducers";
  *
- * [...mapNth(3, (x) => x * 10, range(1,10))]
- * // [ 10, 2, 3, 40, 5, 6, 70, 8, 9 ]
+ * console.log(
+ *   [...mapNth(3, (x) => `*${x}*`, range(1, 10))]
+ * );
+ * // [ "*1*", 2, 3, "*4*", 5, 6, "*7*", 8, 9 ]
  *
  * // with offset
- * [...mapNth(3, 5, (x) => x * 10, range(1,10))]
- * // [ 1, 2, 3, 4, 5, 60, 7, 8, 90 ]
+ * console.log(
+ *   [...mapNth(3, 5, (x) => x * 100, range(1, 10))]
+ * );
+ * // [ 1, 2, 3, 4, 5, 600, 7, 8, 900 ]
  * ```
  *
  * @param n - step size

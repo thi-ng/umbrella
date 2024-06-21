@@ -14,14 +14,20 @@ import { __iter } from "./iterator.js";
  * window size will be re-evaluated for each new input and therefore can be used
  * as mechanism to dynamically adjust the window size.
  *
+ * Also see {@link partition}.
+ *
  * @example
- * ```ts
+ * ```ts tangle:../export/sliding-window.ts
  * import { range, slidingWindow } from "@thi.ng/transducers";
  *
- * [...slidingWindow(3, range(5))]
+ * console.log(
+ *   [...slidingWindow(3, range(5))]
+ * );
  * // [ [ 0 ], [ 0, 1 ], [ 0, 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ] ]
  *
- * [...slidingWindow(3, false, range(5))]
+ * console.log(
+ *   [...slidingWindow(3, false, range(5))]
+ * );
  * // [ [ 0, 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ] ]
  * ```
  *

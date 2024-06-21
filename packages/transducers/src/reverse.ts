@@ -5,10 +5,12 @@ import { ensureArray } from "@thi.ng/arrays/ensure-array";
  * order. Important: Input MUST be finite.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/reverse.ts
  * import { reverse } from "@thi.ng/transducers";
  *
- * [...reverse("hello world")]
+ * console.log(
+ *   [...reverse("hello world")]
+ * );
  * // [ "d", "l", "r", "o", "w", " ", "o", "l", "l", "e", "h" ]
  * ```
  *

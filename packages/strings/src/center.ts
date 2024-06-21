@@ -15,22 +15,24 @@ import { truncate } from "./truncate.js";
  * Note: The padding string can contain multiple characters.
  *
  * @example
- * ```ts
- * import { center, wrap } from "@thi.ng/strings";
+ * ```ts tangle:../export/center.ts
+ * import { center } from "@thi.ng/strings";
  *
- * center(20, "<>")(wrap(" ")("thi.ng"))
+ * console.log(
+ *   center(20, "<>")(" thi.ng ")
+ * );
  * // "<><><> thi.ng <><><>"
  * ```
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/center-2.ts
  * import { comp } from "@thi.ng/compose";
  * import { center, wrap } from "@thi.ng/strings";
  *
  * // compose formatting function
  * const fmt = comp(center(20,"<>"), wrap(" "));
  *
- * fmt("thi.ng")
+ * console.log(fmt("thi.ng"));
  * // "<><><> thi.ng <><><>"
  * ```
  *

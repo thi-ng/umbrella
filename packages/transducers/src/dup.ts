@@ -12,12 +12,17 @@ import { concat } from "./concat.js";
  * {@link repeatedly} for achieving a different kinds of value duplication.
  *
  * @example
- * ```ts
- * import { dup } from "@thi.ng/transducers";
+ * ```ts tangle:../export/dup.ts
+ * import { dup, range } from "@thi.ng/transducers";
  *
- * dup("hello"); // "hellohello"
- * dup([1, 2, 3]); // [1, 2, 3, 1, 2, 3]
- * dup(range(3)); // IterableIterator<number>
+ * console.log(dup("hello"));
+ * // "hellohello"
+ *
+ * console.log(dup([1, 2, 3]));
+ * // [ 1, 2, 3, 1, 2, 3 ]
+ *
+ * console.log([...dup(range(3))]);
+ * // [ 0, 1, 2, 0, 1, 2 ]
  * ```
  *
  * @param x -

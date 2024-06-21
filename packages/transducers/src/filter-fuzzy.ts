@@ -28,10 +28,12 @@ export interface FilterFuzzyOpts<A, B> {
  * default.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/filter-fuzzy.ts
  * import { filterFuzzy } from "@thi.ng/transducers";
  *
- * [...filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
+ * console.log(
+ *   [...filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
+ * );
  * // ["hello", "hallo", "heyoka"]
  * ```
  *

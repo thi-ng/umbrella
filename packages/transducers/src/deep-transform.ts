@@ -20,11 +20,11 @@ import type { TransformSpec } from "./api.js";
  * given directly without having to wrap it into the usual array structure.
  *
  * @example
- * ```ts
- * import { deepTransform } from "@thi.ng/transducers";
+ * ```ts tangle:../export/deep-transform.ts
+ * import { deepTransform, type TransformSpec } from "@thi.ng/transducers";
  *
  * // source object to be transformed
- * src = {
+ * const src = {
  *    meta: {
  *      author: { name: "Alice", email: "a@b.com" },
  *      date: 1041510896000
@@ -35,7 +35,7 @@ import type { TransformSpec } from "./api.js";
  * };
  *
  * // deep transformation spec
- * spec = [
+ * const spec: TransformSpec = [
  *    // root transform (called last)
  *    ({ type, meta, title, body }) => ["div", { class: type }, title, meta, body],
  *    // object of transform sub-specs
@@ -52,14 +52,15 @@ import type { TransformSpec } from "./api.js";
  * ];
  *
  * // build transformer & apply to src
- * deepTransform(spec)(src);
- *
+ * console.log(
+ *   deepTransform(spec)(src)
+ * );
  * // [ "div",
- * //   { class: "article" },
+ * //   { class: "post" },
  * //   [ "h1", "Hello world" ],
  * //   [ "div.meta",
  * //     [ "a", { href: "mailto:a@.b.com" }, "Alice" ],
- * //     "./2/2003, 12:34:56 PM)" ],
+ * //     "(1/2/2003, 12:34:56 PM)" ],
  * //   "Ratione necessitatibus doloremque itaque." ]
  * ```
  *

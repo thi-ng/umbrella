@@ -8,10 +8,12 @@ import { iterator } from "./iterator.js";
  * input source is finite (of course).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/take-last.ts
  * import { range, takeLast } from "@thi.ng/transducers";
  *
- * [...takeLast(3, range(10))]
+ * console.log(
+ *   [...takeLast(3, range(10))]
+ * );
  * // [ 7, 8, 9 ]
  * ```
  *

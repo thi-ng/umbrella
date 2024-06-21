@@ -10,17 +10,25 @@ import { repeat } from "./repeat.js";
  * either of them to zero. `numRight` defaults to same value as
  * `numLeft`.
  *
+ * Also see {@link padSides}, {@link wrapSides}.
+ *
  * @example
- * ```ts
+ * ```ts tangle:../export/extend-sides.ts
  * import { extendSides } from "@thi.ng/transducers";
  *
- * [...extendSides([1, 2, 3])]
+ * console.log(
+ *   [...extendSides([1, 2, 3])]
+ * );
  * // [ 1,  1, 2, 3,  3]
  *
- * [...extendSides([1, 2, 3], 3)]
+ * console.log(
+ *   [...extendSides([1, 2, 3], 3)]
+ * );
  * // [ 1, 1, 1,  1, 2, 3,  3, 3, 3 ]
  *
- * [...extendSides([1, 2, 3], 0, 3)]
+ * console.log(
+ *   [...extendSides([1, 2, 3], 0, 3)]
+ * );
  * // [ 1, 2, 3,  3, 3, 3 ]
  * ```
  *

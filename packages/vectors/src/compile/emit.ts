@@ -35,11 +35,11 @@ import {
  *
  * @example
  * ```ts
- * import { lookup } from "@thi.ng/vectors";
+ * import { __lookup } from "@thi.ng/vectors";
  *
- * lookup("a")(0) // a[ia]
- * lookup("a")(1) // a[ia * sa]
- * lookup("a")(2) // a[ia + 2 * sa]
+ * __lookup("a")(0) // a[ia]
+ * __lookup("a")(1) // a[ia * sa]
+ * __lookup("a")(2) // a[ia + 2 * sa]
  * ```
  *
  * @param sym -

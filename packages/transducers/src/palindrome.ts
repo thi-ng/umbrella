@@ -1,9 +1,9 @@
-import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
 import { concat } from "./concat.js";
 import { reverse } from "./reverse.js";
 import { str } from "./str.js";
+import { symmetric } from "./symmetric.js";
 
 /**
  * Returns the concatentation of `x` with its own duplicate in reverse
@@ -11,15 +11,28 @@ import { str } from "./str.js";
  *
  * @remarks
  * In the general case, this is similar to `concat(x, reverse(x))`,
- * though keeps input type intact.
+ * though this function keeps input type intact.
+ *
+ * Uses {@link symmetric}.for all inputs other than arrays or strings.
  *
  * @example
- * ```ts
- * import { palindrome } from "@thi.ng/transducers";
+ * ```ts tangle:../export/palindrome.ts
+ * import { palindrome, range } from "@thi.ng/transducers";
  *
- * palindrome("hello"); // "helloolleh"
- * palindrome([1, 2, 3]); // [1, 2, 3, 3, 2, 1]
- * palindrome(range(3)); // IterableIterator<number>
+ * console.log(
+ *   palindrome("hello")
+ * );
+ * // "helloolleh"
+ *
+ * console.log(
+ *   palindrome([1, 2, 3])
+ * );
+ * // [1, 2, 3, 3, 2, 1]
+ *
+ * console.log(
+ *   [...palindrome(range(3))]
+ * );
+ * // [ 0, 1, 2, 2, 1, 0 ]
  * ```
  *
  * @param x -
@@ -32,5 +45,5 @@ export function palindrome(x: any): any {
 		? str("", concat([x], reverse(x)))
 		: isArray(x)
 		? x.concat(x.slice().reverse())
-		: ((x = ensureArray(x)), concat(x, reverse(x)));
+		: symmetric(x);
 }

@@ -9,13 +9,17 @@ import { iterator1 } from "./iterator.js";
  * an iterator.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/toggle.ts
  * import { toggle } from "@thi.ng/transducers";
  *
- * [...toggle(1, 0, false, [1, 2, 3, 4])]
+ * console.log(
+ *   [...toggle(1, 0, false, [1, 2, 3, 4])]
+ * );
  * // [ 1, 0, 1, 0 ]
  *
- * [...toggle("on", "off", true, [1, 2, 3, 4])]
+ * console.log(
+ *   [...toggle("on", "off", true, [1, 2, 3, 4])]
+ * );
  * // [ 'off', 'on', 'off', 'on' ]
  * ```
  *

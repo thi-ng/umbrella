@@ -29,16 +29,17 @@ import { partition } from "./partition.js";
  * - {@link extendSides}
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/interpolate.ts
  * import { interpolate } from "@thi.ng/transducers";
  *
- * [...interpolate(
+ * const res = [...interpolate(
  *   ([a, b], t) => a + (b - a) * t,
  *   2,
  *   8,
  *   [0, 1, 0, 2]
- * )]
+ * )];
  *
+ * console.log(res);
  * // [ 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875,
  * //  1, 0.875, 0.75, 0.625, 0.5, 0.375, 0.25, 0.125,
  * //  0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75 ]

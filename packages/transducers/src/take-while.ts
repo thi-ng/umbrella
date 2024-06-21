@@ -11,10 +11,12 @@ import { reduced } from "./reduced.js";
  * {@link reduced} value).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/take-while.ts
  * import { range, takeWhile } from "@thi.ng/transducers";
  *
- * [...takeWhile((x) => x < 5, range(10))]
+ * console.log(
+ *   [...takeWhile((x) => x < 5, range())]
+ * );
  * // [ 0, 1, 2, 3, 4 ]
  * ```
  *

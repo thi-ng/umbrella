@@ -13,17 +13,19 @@ import { map } from "./map.js";
  * For single key extraction {@link pluck} is a faster alternative.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/select-keys.ts
  * import { selectKeys } from "@thi.ng/transducers";
  *
- * [...selectKeys(
+ * const res = [...selectKeys(
  *   ["id", "age"],
  *   [
  *     {id: 1, age: 23, name: "alice"},
  *     {id: 2, age: 42, name: "bob"},
  *     {id: 3, name: "charlie"},
  *   ]
- * )]
+ * )];
+ *
+ * console.log(res);
  * // [ { age: 23, id: 1 }, { age: 42, id: 2 }, { id: 3 } ]
  * ```
  *

@@ -26,58 +26,68 @@ const __branchPred =
  * Index by lowest 4-bits of ID value:
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/group-binary.ts
  * import { groupBinary, reduce } from "@thi.ng/transducers";
  *
- * tree = reduce(
- *   groupBinary(4, x => x.id & 0xf),
- *   [{id: 3}, {id: 8}, {id: 15}, {id: 0}]
- * )
+ * const tree = reduce(
+ *   groupBinary<{ id: number }>(4, x => x.id & 0xf),
+ *   [{ id: 3 }, { id: 8 }, { id: 15 }, { id: 0 }]
+ * );
  *
- * tree.l.l.l.l
+ * console.log(tree.l.l.l.l);
  * // [ { id: 0 } ]
- * tree.r.r.r.r
+ *
+ * console.log(tree.r.r.r.r);
  * // [ { id: 15 } ]
- * tree.l.l.r.r
+ *
+ * console.log(tree.l.l.r.r);
  * // [ { id: 3 } ]
  * ```
  *
  * Collecting as array:
  *
  * @example
- * ```ts
- * import { groupBinary, identity, push, reduce } from "@thi.ng/transducers";
+ * ```ts tangle:../export/group-binary-2.ts
+ * import { groupBinary, reduce } from "@thi.ng/transducers";
  *
- * tree = reduce(
- *   groupBinary(4, identity, () => [], push(), 0, 1),
+ * const tree = reduce(
+ *   groupBinary<number>(4, (x) => x, undefined, undefined, 0, 1),
  *   [1, 2, 3, 4, 5, 6, 7]
- * )
+ * );
  *
- * tree[0][1][0][1] // 0101 == 5 in binary
+ * console.log(tree[0][1][0][1]); // 0101 == 5 in binary
  * // [ 5 ]
  *
- * tree[0][1][1]    // 011* == branch
+ * console.log(tree[0][1][1]);    // 011* == branch
  * // [ [ 6 ], [ 7 ] ]
  * ```
  *
  * Using {@link frequencies} as leaf reducer:
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/group-binary-3.ts
  * import { frequencies, groupBinary, reduce } from "@thi.ng/transducers";
  *
- * tree = reduce(
- *   groupBinary(3, (x: string) => x.length, null, frequencies()),
+ * const tree = reduce(
+ *   groupBinary<string>(3, (x) => x.length, undefined, frequencies()),
  *   "aa bbb dddd ccccc bbb eeee fff".split(" ")
- * )
- * // [ [ undefined,
- * //     [ Map { 'aa' => 1 },
- * //       Map { 'bbb' => 2, 'fff' => 1 } ] ],
- * //   [ [ Map { 'dddd' => 1, 'eeee' => 1 },
- * //       Map { 'ccccc' => 1 } ] ] ]
+ * );
  *
- * tree[0][1][1]
- * // Map { 'bbb' => 2, 'fff' => 1 }
+ * console.log(tree);
+ * // {
+ * //   l: {
+ * //     r: {
+ * //       l: Map(1) { "aa": 1 },
+ * //       r: Map(2) { "bbb": 2, "fff": 1 },
+ * //     },
+ * //   },
+ * //   r: {
+ * //     l: {
+ * //       l: Map(2) { "dddd": 1, "eeee": 1 },
+ * //       r: Map(1) { "ccccc": 1 },
+ * //     },
+ * //   },
+ * // }
  * ```
  *
  * @param bits - index range (always from 0)

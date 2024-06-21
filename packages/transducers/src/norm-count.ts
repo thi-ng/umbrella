@@ -11,13 +11,15 @@ import { $$reduce } from "./reduce.js";
  * normalized histogram.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/norm-count.ts
  * import { filter, normCount, transduce } from "@thi.ng/transducers";
  *
  * const items = [1,2,3,1,1,4,2,5,1,2];
  *
  * // compute percentage of values < 3
- * transduce(filter(x => x<3), normCount(items.length), items);
+ * console.log(
+ *   transduce(filter(x => x<3), normCount(items.length), items)
+ * );
  * // 0.7
  * ```
  *

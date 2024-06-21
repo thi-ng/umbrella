@@ -7,15 +7,19 @@
  * Also see {@link repeat}, {@link repeatedly} for related functions.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/cycle.ts
  * import { cycle, range, take } from "@thi.ng/transducers";
  *
  * // take 5 from infinite sequence
- * [...take(5, cycle([1, 2, 3]))]
+ * console.log(
+ *   [...take(5, cycle([1, 2, 3]))]
+ * );
  * // [1, 2, 3, 1, 2]
  *
  * // only produce 2 cycles
- * [...cycle(range(3), 2)]
+ * console.log(
+ *   [...cycle(range(3), 2)]
+ * );
  * // [ 0, 1, 2, 0, 1, 2 ]
  * ```
  *

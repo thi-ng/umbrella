@@ -8,16 +8,20 @@ import { $$reduce } from "./reduce.js";
  * basis instead of requiring it ahead of time as argument.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/norm-frequencies-auto.ts
  * import { normFrequenciesAuto } from "@thi.ng/transducers";
  *
  * const items = [1, 2, 3, 1, 1, 4, 2, 5, 1, 2];
  *
- * normFrequenciesAuto(items)
+ * console.log(
+ *   normFrequenciesAuto(items)
+ * );
  * // Map(5) { 1 => 0.4, 2 => 0.3, 3 => 0.1, 4 => 0.1, 5 => 0.1 }
  *
  * // frequencies by 1st letter
- * normFrequenciesAuto(x => x[0], ["alice", "abba", "bob", "charlie"])
+ * console.log(
+ *   normFrequenciesAuto(x => x[0], ["alice", "abba", "bob", "charlie"])
+ * );
  * // Map(3) { 'a' => 0.5, 'b' => 0.25, 'c' => 0.25 }
  * ```
  */

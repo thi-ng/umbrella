@@ -15,41 +15,56 @@ import { isReduced } from "./reduced.js";
  * invocations of the stepper function will return undefined.
  *
  * @example
- * ```ts
- * import { filter, map, macat, step, take } from "@thi.ng/transducers";
+ * ```ts tangle:../export/step.ts
+ * import { filter, map, mapcat, step, take } from "@thi.ng/transducers";
  *
  * // single result (unwrapped, default)
- * step(map(x => x * 10))(1);
+ * console.log(
+ *   step(map((x: number) => x * 10))(1)
+ * );
  * // 10
  *
  * // single result (no unwrapping)
- * step(map(x => x * 10), false)(1);
+ * console.log(
+ *   step(map((x: number) => x * 10), false)(1)
+ * );
  * // [10]
  *
  * // multiple results
- * step(mapcat(x => [x, x + 1, x + 2]))(1)
+ * console.log(
+ *   step(mapcat((x: number) => [x, x + 1, x + 2]))(1)
+ * );
  * // [ 1, 2, 3 ]
  *
  * // multiple results (default behavior)
- * step(mapcat(x => x))([1, 2])
+ * console.log(
+ *   step(mapcat((x: number[]) => take(2, x)))([1, 2, 3, 4])
+ * );
  * // [1, 2]
- * step(mapcat(x => x))([3])
+ *
+ * console.log(
+ *   step(mapcat((x: number[]) => x))([3])
+ * );
  * // 3
+ *
  * // ...once more without unwrapping
- * step(mapcat(x => x), false)([3])
+ * console.log(
+ *   step(mapcat((x: number[]) => x), false)([3])
+ * );
  * // [3]
  *
- * // no result
- * f = step(filter((x) => !(x & 1)))
- * f(1); // undefined
- * f(2); // 2
+ * // filter even values
+ * const f = step(filter((x: number) => !(x & 1)))
+ *
+ * console.log(f(1)); // undefined
+ * console.log(f(2)); // 2
  *
  * // reduced value termination
- * f = step(take(2));
- * f(1); // 1
- * f(1); // 1
- * f(1); // undefined
- * f(1); // undefined
+ * const g = step(take(2));
+ * console.log(g(1)); // 1
+ * console.log(g(1)); // 1
+ * console.log(g(1)); // undefined
+ * console.log(g(1)); // undefined
  * ```
  *
  * @param tx -

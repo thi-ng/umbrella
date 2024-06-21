@@ -10,10 +10,12 @@ import type { ILength } from "@thi.ng/api";
  * sequence of these values.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/length.ts
  * import { length } from "@thi.ng/transducers";
  *
- * [...length(0, ["a", "bc", "def"])]
+ * console.log(
+ *   [...length(0, ["a", "bc", "def"])]
+ * );
  * // [1, 2, 3]
  * ```
  *

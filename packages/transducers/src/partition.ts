@@ -9,16 +9,22 @@ import { __iter, iterator } from "./iterator.js";
  * be incomplete / partially filled only.
  *
  * @example
- * ```ts
- * import { partition } from "@thi.ng/transducers";
+ * ```ts tangle:../export/partition.ts
+ * import { partition, range } from "@thi.ng/transducers";
  *
- * [...partition(3, range(10))]
+ * console.log(
+ *   [...partition(3, range(10))]
+ * );
  * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ] ]
  *
- * [...partition(3, true, range(10))]
+ * console.log(
+ *   [...partition(3, true, range(10))]
+ * );
  * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ], [ 9 ] ]
  *
- * [...partition(3, 1, range(10))]
+ * console.log(
+ *   [...partition(3, 1, range(10))]
+ * );
  * // [ [ 0, 1, 2 ],
  * //   [ 1, 2, 3 ],
  * //   [ 2, 3, 4 ],

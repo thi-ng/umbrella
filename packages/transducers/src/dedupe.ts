@@ -12,10 +12,12 @@ import { __iter } from "./iterator.js";
  * See {@link distinct} to remove **any** duplicates.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/dedupe.ts
  * import { dedupe } from "@thi.ng/transducers";
  *
- * [...dedupe([1, 1, 2, 3, 3, 3, 1])]
+ * console.log(
+ *   [...dedupe([1, 1, 2, 3, 3, 3, 1])]
+ * );
  * // [ 1, 2, 3, 1 ]
  * ```
  *

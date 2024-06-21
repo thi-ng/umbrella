@@ -5,15 +5,17 @@ import { __sortOpts } from "./internal/sort-opts.js";
 import { __iter, iterator } from "./iterator.js";
 
 /**
- * Transducer. Similar to {@link partitionSort}, however uses proper sliding
- * window and insertion sort instead of fully sorting window as done by
+ * Transducer. Similar to {@link partitionSort}, however uses a sliding window
+ * of size `n` and insertion sort instead of fully sorting window as done by
  * `partitionSort`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/stream-sort.ts
  * import { streamSort } from "@thi.ng/transducers";
  *
- * [...streamSort(4, [5,9,2,6,4,1,3,8,7,0])]
+ * console.log(
+ *   [...streamSort(4, [5,9,2,6,4,1,3,8,7,0])]
+ * );
  * // [ 2, 4, 1, 3, 5, 6, 0, 7, 8, 9 ]
  * ```
  *

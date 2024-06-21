@@ -14,10 +14,12 @@ import { normRange } from "./norm-range.js";
  * [`line()`](https://docs.thi.ng/umbrella/dsp/functions/line.html).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/line.ts
  * import { line } from "@thi.ng/transducers";
  *
- * [...line(50, 100, 10)]
+ * console.log(
+ *   [...line(50, 100, 10)]
+ * );
  * // [
  * //    50, 55, 60, 65, 70,
  * //    75, 80, 85, 90, 95,

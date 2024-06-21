@@ -13,13 +13,21 @@ import { $$reduce } from "./reduce.js";
  * Also see {@link normFrequenciesAuto}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/norm-frequencies.ts
  * import { normFrequencies } from "@thi.ng/transducers";
  *
  * const items = [1, 2, 3, 1, 1, 4, 2, 5, 1, 2];
  *
- * normFrequencies(10, items)
- * // Map(5) { 1 => 0.4, 2 => 0.3, 3 => 0.1, 4 => 0.1, 5 => 0.1 }
+ * console.log(
+ *   normFrequencies(10, items)
+ * );
+ * // Map(5) {
+ * //   1 => 0.4,
+ * //   2 => 0.3,
+ * //   3 => 0.1,
+ * //   4 => 0.1,
+ * //   5 => 0.1,
+ * // }
  * ```
  *
  * @param norm -

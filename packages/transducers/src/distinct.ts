@@ -21,10 +21,12 @@ export interface DistinctOpts<T> {
  * {@link DistinctOpts}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/distinct.ts
  * import { distinct } from "@thi.ng/transducers";
  *
- * [...distinct({ key: (x) => x.id }, [{id: 1, x: 2}, {id: 1, x: 3}])]
+ * console.log(
+ *   [...distinct({ key: (x) => x.id }, [{id: 1, x: 2}, {id: 1, x: 3}])]
+ * );
  * // [ { id: 1, x: 2 } ]
  * ```
  *

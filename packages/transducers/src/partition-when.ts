@@ -9,10 +9,12 @@ import { isReduced } from "./reduced.js";
  * happens yields chunk of buffered values.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/partition-when.ts
  * import { partitionWhen } from "@thi.ng/transducers";
  *
- * [...partitionWhen((x) => !!x, [0, 1, 0, 0, 1, 1, 0, 1])]
+ * console.log(
+ *   [...partitionWhen((x) => !!x, [0, 1, 0, 0, 1, 1, 0, 1])]
+ * );
  * // [ [ 0 ], [ 1, 0, 0 ], [ 1 ], [ 1, 0 ], [ 1 ] ]
  * ```
  *

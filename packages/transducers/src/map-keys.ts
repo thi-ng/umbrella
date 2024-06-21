@@ -11,16 +11,18 @@ import { map } from "./map.js";
  * copy of each `x`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/map-keys.ts
  * import { mapKeys } from "@thi.ng/transducers";
  *
- * [...mapKeys(
+ * const res = [...mapKeys(
  *   {
  *     a: (x) => x != null ? x * 10 : x,
  *     b: (x) => x != null ? x * 100: "n/a"
  *   },
  *   [{a: 1, b: 2}, {c: 3, d: 4}]
- * )]
+ * )];
+ *
+ * console.log(res);
  * // [ { a: 10, b: 200 }, { c: 3, d: 4, b: 'n/a', a: undefined } ]
  * ```
  *

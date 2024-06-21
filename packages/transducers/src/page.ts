@@ -13,19 +13,27 @@ import { take } from "./take.js";
  * is used as early as possible / prior to any heavy processing steps.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/page.ts
  * import { page, range } from "@thi.ng/transducers";
  *
- * [...page(0, 5, range(12))]
+ * console.log(
+ *   [...page(0, 5, range(12))]
+ * );
  * // [ 0, 1, 2, 3, 4 ]
  *
- * [...page(1, 5, range(12))]
+ * console.log(
+ *   [...page(1, 5, range(12))]
+ * );
  * // [ 5, 6, 7, 8, 9 ]
  *
- * [...page(2, 5, range(12))]
+ * console.log(
+ *   [...page(2, 5, range(12))]
+ * );
  * // [ 10, 11 ]
  *
- * [...page(3, 5, range(12))]
+ * console.log(
+ *   [...page(3, 5, range(12))]
+ * );
  * // []
  * ```
  *

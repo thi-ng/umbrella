@@ -77,7 +77,7 @@ export const blit = (dest: Canvas, src: Canvas, x = 0, y = 0) => {
  * pixels/chars will be copied. Supports region clipping.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/blit-mask.ts
  * import {
  *   blitMask, canvas, canvasFromText, clear, formatCanvas
  * } from "@thi.ng/text-canvas";
@@ -91,17 +91,19 @@ export const blit = (dest: Canvas, src: Canvas, x = 0, y = 0) => {
  *   "###==###",
  * ]);
  *
+ * console.log(formatCanvas(a));
+ *
  * // destination canvas (filled w/ "-")
  * const b = canvas(12,7);
  * clear(b, true, "-");
  *
  * // paste `a` several times into `b` using "#" as mask
- * blitMask(b, -4, -2, a, "#"); // top-left (partially outside)
- * blitMask(b, 2, 1, a, "#");   // center
- * blitMask(b, 8, 4, a, "#");   // bottom-right (part outside)
+ * blitMask(b, a, -4, -2, "#"); // top-left (partially outside)
+ * blitMask(b, a, 2, 1, "#"); // center
+ * blitMask(b, a, 8, 4, "#"); // bottom-right (part outside)
  *
  * // show result
- * console.log(formatCanvas(b))
+ * console.log(formatCanvas(b));
  * // ===---------
  * // ==---==-----
  * // =---====----

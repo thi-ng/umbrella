@@ -10,20 +10,24 @@ import { rename } from "./rename.js";
  * object of transducers and produces a result object for each input.
  *
  * @example
- * ```ts
- * import { multiplexObj } from "@thi.ng/transducers";
+ * ```ts tangle:../export/multiplex-obj.ts
+ * import { multiplexObj, map } from "@thi.ng/transducers";
  *
- * [...multiplexObj(
+ * const res = [...multiplexObj(
  *   {
  *     initial: map(x => x.charAt(0)),
  *     upper:   map(x => x.toUpperCase()),
  *     length:  map(x => x.length)
  *   },
  *   ["Alice", "Bob", "Charlie"]
- * )]
- * // [ { length: 5, upper: 'ALICE', initial: 'A' },
+ * )];
+ *
+ * console.log(res);
+ * // [
+ * //   { length: 5, upper: 'ALICE', initial: 'A' },
  * //   { length: 3, upper: 'BOB', initial: 'B' },
- * //   { length: 7, upper: 'CHARLIE', initial: 'C' } ]
+ * //   { length: 7, upper: 'CHARLIE', initial: 'C' }
+ * // ]
  * ```
  *
  * @param xforms - object of transducers

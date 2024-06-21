@@ -9,10 +9,12 @@ import { throttle } from "./throttle.js";
  * source.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/take-nth.ts
  * import { range, takeNth } from "@thi.ng/transducers";
  *
- * [...takeNth(3, range(10))]
+ * console.log(
+ *   [...takeNth(3, range(10))]
+ * );
  * // [ 0, 3, 6, 9 ]
  * ```
  *

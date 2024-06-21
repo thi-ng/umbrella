@@ -20,8 +20,9 @@ export type MaybeIterable<T> = Nullable<Iterable<T>>;
  * of results.
  *
  * @example
- * ```ts
- * import { flattenWith } from "@thi.ng/transducers";
+ * ```ts tangle:../export/flatten-with.ts
+ * import { isPlainObject, isNotStringAndIterable } from "@thi.ng/checks";
+ * import { flattenWith, pairs } from "@thi.ng/transducers";
  *
  * // custom predicate which converts objects into key/val tuples,
  * // returns iterables as is and null for everything else
@@ -32,7 +33,9 @@ export type MaybeIterable<T> = Nullable<Iterable<T>>;
  *       ? x
  *       : null;
  *
- * [...flattenWith(pred, [{ a: 1, b: 2 }, [[{ c: 3 }]]])]
+ * console.log(
+ *   [...flattenWith(pred, [{ a: 1, b: 2 }, [[{ c: 3 }]]])]
+ * );
  * // [ 'a', 1, 'b', 2, 'c', 3 ]
  * ```
  *

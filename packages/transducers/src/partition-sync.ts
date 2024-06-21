@@ -76,17 +76,19 @@ export interface PartitionSyncOpts<T> {
  * via `.add(id)` or `.delete(id)` on the returned transducer.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/partition-sync.ts
  * import { partitionSync } from "@thi.ng/transducers";
  *
- * src = [
+ * const src = [
  *   ["a", 1], ["a", 2], ["d", 100], ["b", 10],
  *   ["b", 11], ["c", 0], ["a", 3]
  * ];
  *
  * // form tuples for values only from sources "a" & "b"
  * // here the label is the first element of each input item
- * [...partitionSync(["a", "b"], { key: (x) => x[0] }, src)]
+ * console.log(
+ *   [...partitionSync(["a", "b"], { key: (x) => x[0] }, src)]
+ * );
  * // [ { a: ["a", 2], b: ["b", 10] },
  * //   { b: ["b", 11], a: ["a", 3] } ]
  * ```
@@ -99,18 +101,25 @@ export interface PartitionSyncOpts<T> {
  * above example:
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/partition-sync-2.ts
  * import { partitionSync } from "@thi.ng/transducers";
  *
+ * const src = [
+ *   ["a", 1], ["a", 2], ["d", 100], ["b", 10],
+ *   ["b", 11], ["c", 0], ["a", 3]
+ * ];
+ *
  * // passing `false` to disable tuple reset
- * [...partitionSync(
+ * const res = [...partitionSync(
  *   ["a", "b"],
  *   {
  *     key: (x) => x[0],
  *     reset: false
  *   },
  *   src
- * )]
+ * )];
+ *
+ * console.log(res);
  * // [ { a: ["a", 2], b: ["b", 10] },
  * //   { a: ["a", 2], b: ["b", 11] },
  * //   { a: ["a", 3], b: ["b", 11] } ]

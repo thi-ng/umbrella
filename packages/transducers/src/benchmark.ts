@@ -9,13 +9,19 @@ import { iterator1 } from "./iterator.js";
  * e.g. for use in async usage contexts.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/benchmark.ts
  * import { fromInterval, trace } from "@thi.ng/rstream";
+ * import { benchmark, comp, movingAverage } from "@thi.ng/transducers";
  *
- * fromInterval(1000).subscribe(
+ * fromInterval(16).subscribe(
  *   trace(),
  *   { xform: comp(benchmark(), movingAverage(60)) }
- * )
+ * );
+ * // 16.766666666666666
+ * // 17.05
+ * // 17.033333333333335
+ * // 17.033333333333335
+ * // ...
  * ```
  */
 export function benchmark(): Transducer<any, number>;

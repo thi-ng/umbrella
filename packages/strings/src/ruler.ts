@@ -5,7 +5,7 @@ import { repeat } from "./repeat.js";
  * ticks and `b` for minor ticks.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/ruler.ts
  * import { ruler } from "@thi.ng/strings";
  *
  * console.log(ruler(40))
@@ -31,7 +31,7 @@ export const ruler = (width: number, major = 5, a = "|", b = "'") =>
  * `h`. The optional `chars` can be used to customize the grid.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/grid.ts
  * import { grid } from "@thi.ng/strings";
  *
  * console.log(grid(3, 3, 4, 2));

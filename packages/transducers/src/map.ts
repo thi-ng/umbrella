@@ -9,10 +9,12 @@ import { iterator1 } from "./iterator.js";
  * passes result downstream to next reducer.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/map.ts
  * import { map } from "@thi.ng/transducers";
  *
- * [...map((x) => x * 10, [1, 2, 3])]
+ * console.log(
+ *   [...map((x) => x * 10, [1, 2, 3])]
+ * );
  * // [ 10, 20, 30 ]
  * ```
  *

@@ -6,13 +6,17 @@ import type { Stringer } from "./api.js";
  * trimmable characters (default: whitespace only).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/trim.ts
  * import { trim } from "@thi.ng/strings";
  *
- * trim()("  Hello   ")
+ * console.log(
+ *   trim()("  Hello   ")
+ * );
  * // "Hello"
  *
- * trim(" -+")("-+-+- Hello -+-+-")
+ * console.log(
+ *   trim(" -+")("-+-+- Hello -+-+-")
+ * );
  * // "Hello"
  * ```
  *

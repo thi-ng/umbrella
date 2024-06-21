@@ -46,7 +46,7 @@ export interface FSMOpts<T extends FSMState, A, B> {
  * and no further inputs will be consumed.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/fsm.ts
  * import { fsm } from "@thi.ng/transducers-fsm";
  * import { comp, iterator, map, range, takeNth } from "@thi.ng/transducers";
  *
@@ -79,16 +79,22 @@ export interface FSMOpts<T extends FSMState, A, B> {
  *     },
  *     terminate: "done",
  *     init: () => ({ state: "skip", count: 0 })
- * }
+ * };
  *
- * [...iterator(fsm(testFSM), range(100))]
+ * console.log(
+ *   [...iterator(fsm(testFSM), range(100))]
+ * );
  * // [ 5, 6, 7, 8, 9, 15, 16, 17, 18, 19 ]
  *
  * // as part of composed transducers...
- * [...iterator(comp(takeNth(2), fsm(testFSM)), range(100))]
+ * console.log(
+ *   [...iterator(comp(takeNth(2), fsm(testFSM)), range(100))]
+ * );
  * // [ 10, 12, 14, 16, 18 ]
  *
- * [...iterator(comp(fsm(testFSM), map((x) => x * 10)), range(100))]
+ * console.log(
+ *   [...iterator(comp(fsm(testFSM), map((x) => x * 10)), range(100))]
+ * );
  * // [ 50, 60, 70, 80, 90, 150, 160, 170, 180, 190 ]
  * ```
  *

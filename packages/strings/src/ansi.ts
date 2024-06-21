@@ -4,10 +4,12 @@ const RE = /\x1b\[[0-9;]+m/g;
  * Removes all ANSI control sequences from given string.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/strip-ansi.ts
  * import { stripAnsi } from "@thi.ng/strings";
  *
- * stripAnsi("\x1B[32mhello\x1B[0m \x1B[91mworld\x1B[0m!"");
+ * console.log(
+ *   stripAnsi("\x1B[32mhello\x1B[0m \x1B[91mworld\x1B[0m!")
+ * );
  * // 'hello world!'
  * ```
  *

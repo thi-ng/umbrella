@@ -10,11 +10,13 @@ import { __iter } from "./iterator.js";
  * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html) interface.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/sample.ts
  * import { range, sample } from "@thi.ng/transducers";
  *
  * // 10% probability
- * [...sample(0.1, range(100))]
+ * console.log(
+ *   [...sample(0.1, range(100))]
+ * );
  * // [ 3, 24, 25, 36, 43, 49, 59, 64, 82, 86, 89 ]
  * ```
  *

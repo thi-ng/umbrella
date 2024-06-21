@@ -36,6 +36,8 @@ export type ReductionFn<A, B> = (acc: B, x: A) => B | Reduced<B>;
  */
 export type Reducer<A, B> = [Fn0<B>, Fn<B, B>, ReductionFn<A, B>];
 
+export type MaybeReduced<T> = Reduced<T> | T;
+
 /**
  * Interface for types able to provide some internal functionality (or
  * derive some related transformation) as {@link Transducer}.
@@ -43,23 +45,25 @@ export type Reducer<A, B> = [Fn0<B>, Fn<B, B>, ReductionFn<A, B>];
  * functions in this package where a `Transducer` arg is expected.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/ixform.ts
  * import {
- *   comp, drop, map, push, range, transduce
+ *   comp, drop, map, push, range, takeNth, transduce,
  *   type IXform
  * } from "@thi.ng/transducers";
  *
  * class Mul implements IXform<number, number> {
  *   constructor(public factor = 10) {}
  *
- *   xform() { return map((x) => this.factor * x); }
+ *   xform() { return map((x: number) => this.factor * x); }
  * }
  *
- * transduce(new Mul(11), push(), range(4))
+ * console.log(
+ *   transduce(new Mul(11), push(), range(4))
+ * );
  * // [0, 11, 22, 33, 44]
  *
  * // also usable w/ comp()
- * transduce(
+ * const res = transduce(
  *   comp(
  *     drop(1),
  *     new Mul(11),
@@ -67,7 +71,9 @@ export type Reducer<A, B> = [Fn0<B>, Fn<B, B>, ReductionFn<A, B>];
  *   ),
  *   push(),
  *   range(4)
- * )
+ * );
+ *
+ * console.log(res);
  * // [11, 33]
  * ```
  */

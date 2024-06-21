@@ -12,13 +12,17 @@ import { flattenWith } from "./flatten-with.js";
  * iterator of results.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/flatten.ts
  * import { flatten } from "@thi.ng/transducers";
  *
- * [...flatten([[1, [2, 3]], ["abc", "cde"]])]
+ * console.log(
+ *   [...flatten([[1, [2, 3]], ["abc", "cde"]])]
+ * );
  * // [1, 2, 3, "abc", "def"]
  *
- * [...flatten("abc")]
+ * console.log(
+ *   [...flatten("abc")]
+ * );
  * // [ 'abc' ]
  * ```
  */

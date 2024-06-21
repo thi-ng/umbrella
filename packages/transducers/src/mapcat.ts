@@ -1,6 +1,6 @@
 import type { Fn, Nullable } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Transducer } from "./api.js";
+import type { MaybeReduced, Transducer } from "./api.js";
 import { cat } from "./cat.js";
 import { comp } from "./comp.js";
 import { iterator } from "./iterator.js";
@@ -13,27 +13,31 @@ import { map } from "./map.js";
  * be skipped / omitted.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mapcat.ts
  * import { mapcat } from "@thi.ng/transducers";
  *
- * [...mapcat((x) => [x, x], [1, 2, 3])]
+ * console.log(
+ *   [...mapcat((x) => [x, x], [1, 2, 3])]
+ * );
  * // [ 1, 1, 2, 2, 3, 3 ]
  *
- * [...mapcat((x) => x > 2 ? [x, x, x] : null, [1, 2, 3])]
+ * console.log(
+ *   [...mapcat((x) => x > 2 ? [x, x, x] : null, [1, 2, 3])]
+ * );
  * // [ 3, 3, 3 ]
  * ```
  *
  * @param fn - mapping function
  */
 export function mapcat<A, B>(
-	fn: Fn<A, Nullable<Iterable<B>>>
+	fn: Fn<A, MaybeReduced<Nullable<Iterable<B>>>>
 ): Transducer<A, B>;
 export function mapcat<A, B>(
-	fn: Fn<A, Nullable<Iterable<B>>>,
+	fn: Fn<A, MaybeReduced<Nullable<Iterable<B>>>>,
 	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapcat<A, B>(
-	fn: Fn<A, Nullable<Iterable<B>>>,
+	fn: Fn<A, MaybeReduced<Nullable<Iterable<B>>>>,
 	src?: Iterable<A>
 ): any {
 	return isIterable(src) ? iterator(mapcat(fn), src) : comp(map(fn), cat());

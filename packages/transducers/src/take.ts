@@ -9,10 +9,15 @@ import { ensureReduced, reduced } from "./reduced.js";
  * transformation (by emitting a {@link reduced} value).
  *
  * @example
- * ```ts
- * import { comp, map, range, take } from "@thi.ng/transducers";
+ * ```ts tangle:../export/take.ts
+ * import { comp, iterator, map, range, take } from "@thi.ng/transducers";
  *
- * [...iterator(comp(take(5), map((x) => x * 10)), range(10))]
+ * // pre-compose transducer which only takes first N items and then
+ * // transforms only those via map()...
+ * // apply to infinite range() counter
+ * console.log(
+ *   [...iterator(comp(take(5), map((x) => x * 10)), range())]
+ * );
  * // [ 0, 10, 20, 30, 40 ]
  * ```
  *

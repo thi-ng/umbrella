@@ -16,20 +16,26 @@ import { partition } from "./partition.js";
  * compute a sortable value and change sorting behavior.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/partition-sort.ts
  * import { partitionSort } from "@thi.ng/transducers";
  *
- * [...partitionSort(4, [5,9,2,6,4,1,3,8,7,0])]
+ * console.log(
+ *   [...partitionSort(4, [5, 9, 2, 6, 4, 1, 3, 8, 7, 0])]
+ * );
  * // [ 2, 5, 6, 9, 1, 3, 4, 8, 0, 7 ]
  *
  * // with key fn and custom comparator
- * [...partitionSort(3, (x) => x.val, (a, b) => b - a,
+ * const res = [...partitionSort(
+ *   3,
+ *   { key: (x) => x.val, compare: (a, b) => b - a },
  *   [
  *     { id: "a", val: 5 },
  *     { id: "b", val: 7 },
  *     { id: "c", val: 8 }
  *   ]
- * )]
+ * )];
+ *
+ * console.log(res);
  * // [ { id: 'c', val: 8 }, { id: 'b', val: 7 }, { id: 'a', val: 5 } ]
  * ```
  *

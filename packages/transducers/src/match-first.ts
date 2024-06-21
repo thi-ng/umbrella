@@ -7,35 +7,34 @@ import { iterator1 } from "./iterator.js";
 import { take } from "./take.js";
 
 /**
- * Transducer composition / syntax sugar for:
- *
- * @example
- * ```ts
- * import { comp, filter, take } from "@thi.ng/transducers";
- *
- * comp(filter(pred), take(1))
- * // [Function]
- * ```
- *
- * Yields none or only the first value which passed the predicate check
- * and then causes early termination. If `src` input is given, returns
+ * Transducer. Yields none or only the first value which passed the predicate
+ * check and then causes early termination. If `src` input is given, returns
  * first match found (or `undefined`). Also see {@link matchLast}.
  *
- * @example
- * ```ts
- * import { comp, map, matchFirst, push, transduce } from "@thi.ng/transducers";
+ * @remarks
+ * `matchFirst()` is syntax sugar for: `comp(filter(pred), take(1))`
  *
- * matchFirst((x) => x >= 5, [3, 1, 4, 2, 6, 5])
+ * @example
+ * ```ts tangle:../export/match-first.ts
+ * import {
+ *   comp, map, matchFirst, push, transduce
+ * } from "@thi.ng/transducers";
+ *
+ * console.log(
+ *   matchFirst((x) => x >= 5, [3, 1, 4, 2, 6, 5])
+ * );
  * // 6
  *
- * transduce(
+ * const res = transduce(
  *   comp(
  *     matchFirst((x) => x >= 5),
  *     map((x) => x * 10)
  *   ),
  *   push(),
  *   [3, 1, 4, 2, 6, 5]
- * )
+ * );
+ *
+ * console.log(res);
  * // [60]
  * ```
  *

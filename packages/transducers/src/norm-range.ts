@@ -6,19 +6,27 @@ import { map } from "./map.js";
  * is true, the values are emitted in reverse order, i.e. from 1.0 → 0.0.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/norm-range.ts
  * import { normRange } from "@thi.ng/transducers";
  *
- * [...normRange(4)]
+ * console.log(
+ *   [...normRange(4)]
+ * );
  * // [0, 0.25, 0.5, 0.75, 1.0]
  *
- * [...normRange(4, false)]
+ * console.log(
+ *   [...normRange(4, false)]
+ * );
  * // [0, 0.25, 0.5, 0.75]
  *
- * [...normRange(4, true, true)]
+ * console.log(
+ *   [...normRange(4, true, true)]
+ * );
  * // [1, 0.75, 0.5, 0.25, 0]
  *
- * [...normRange(4, false, true)]
+ * console.log(
+ *   [...normRange(4, false, true)]
+ * );
  * // [1, 0.75, 0.5, 0.25]
  * ```
  *

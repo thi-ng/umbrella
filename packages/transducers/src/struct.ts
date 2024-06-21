@@ -27,22 +27,29 @@ export type StructField<T> = [string, number, Fn<T[], any>?];
  * field values, e.g. from `[123] => 123`
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/struct.ts
  * import { push, struct, transduce } from "@thi.ng/transducers";
  *
- * transduce(
+ * const res = transduce(
  *     struct([["id", 1, (id) => id[0]], ["pos", 2], ["vel", 2], ["color", 4]]),
  *     push(),
  *     [0, 100, 200, -1, 0, 1, 0.5, 0, 1, 1, 0, 0, 5, 4, 0, 0, 1, 1]
- * )
- * // [ { color: [ 1, 0.5, 0, 1 ],
+ * );
+ *
+ * console.log(res);
+ * // [
+ * //   {
+ * //     color: [ 1, 0.5, 0, 1 ],
  * //     vel: [ -1, 0 ],
  * //     pos: [ 100, 200 ],
- * //     id: 0 },
- * //   { color: [ 0, 0, 1, 1 ],
+ * //     id: 0,
+ * //   }, {
+ * //     color: [ 0, 0, 1, 1 ],
  * //     vel: [ 5, 4 ],
  * //     pos: [ 0, 0 ],
- * //     id: 1 } ]
+ * //     id: 1,
+ * //   }
+ * // ]
  * ```
  *
  * @param fields -

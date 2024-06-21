@@ -9,13 +9,23 @@ interface Cell<T> {
 /**
  * Yields an iterator of all `src` values, followed by the same values in
  * reverse order. Efficiently builds the reversed order via an internal linked
- * list.
+ * list. The input MUST be finite!
+ *
+ * @remarks
+ * Also see {@link palindrome}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/symmetric.ts
  * import { symmetric } from "@thi.ng/transducers";
  *
- * [...symmetric([1, 2, 3])]
+ * console.log(
+ *   [...symmetric("abc")]
+ * );
+ * // [ "a", "b", "c", "c", "b", "a" ]
+ *
+ * console.log(
+ *   [...symmetric([1, 2, 3])]
+ * );
  * // [ 1, 2, 3, 3, 2, 1 ]
  * ```
  *

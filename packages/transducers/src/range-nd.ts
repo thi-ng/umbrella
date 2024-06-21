@@ -12,19 +12,27 @@ import { zip } from "./zip.js";
  * negative values.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/range-nd.ts
  * import { rangeNd } from "@thi.ng/transducers";
  *
- * [...rangeNd([2])]
+ * console.log(
+ *   [...rangeNd([2])]
+ * );
  * // [ [ 0 ], [ 1 ] ]
  *
- * [...rangeNd([2, -2])]
+ * console.log(
+ *   [...rangeNd([2, -2])]
+ * );
  * // [ [ 0, 0 ], [ 0, -1 ], [ 1, 0 ], [ 1, -1 ] ]
  *
- * [...rangeNd([-1,2], [1,3])]
+ * console.log(
+ *   [...rangeNd([-1,2], [1,3])]
+ * );
  * // [ [ -1, 2 ], [ -1, 3 ], [ 0, 2 ], [ 0, 3 ] ]
  *
- * [...rangeNd([2, 2, 2])]
+ * console.log(
+ *   [...rangeNd([2, 2, 2])]
+ * );
  * // [
  * //   [ 0, 0, 0 ],
  * //   [ 0, 0, 1 ],

@@ -7,10 +7,12 @@ import { reduce, reducer } from "./reduce.js";
  * in an object. Keys consist of given `prefix` and monotonically increasing ID.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/auto-obj.ts
  * import { autoObj } from "@thi.ng/transducers";
  *
- * autoObj("id", ["foo", "bar", "baz"])
+ * console.log(
+ *   autoObj("id", ["foo", "bar", "baz"])
+ * );
  * // { id0: "foo", id1: "bar", id2: "baz" }
  * ```
  *

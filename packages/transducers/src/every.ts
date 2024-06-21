@@ -12,10 +12,12 @@ import { reduced } from "./reduced.js";
  * Returns true if *all* values passed test.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/every.ts
  * import { every } from "@thi.ng/transducers";
  *
- * every((x)=> x > 0, [1,2,-1,3]);
+ * console.log(
+ *   every((x)=> x > 0, [1,2,-1,3])
+ * );
  * // false
  * ```
  *

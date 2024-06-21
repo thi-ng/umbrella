@@ -19,10 +19,12 @@ import { permutations } from "./permutations.js";
  * on the VM's iteration behavior of `Object.keys()`.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/key-permutations.ts
  * import { keyPermutations } from "@thi.ng/transducers";
  *
- * [...keyPermutations({ a: [1, 2], b: [true, false], c: ["X", "Y"] })]
+ * console.log(
+ *   [...keyPermutations({ a: [1, 2], b: [true, false], c: ["X", "Y"] })]
+ * );
  * // [
  * //   { a: 1, b: true, c: 'X' },
  * //   { a: 1, b: true, c: 'Y' },

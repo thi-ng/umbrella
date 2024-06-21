@@ -12,10 +12,12 @@ const RE = new RegExp(SRC.split("").join("|"), "g");
  * https://medium.com/@matthagemann/the-ultimate-way-to-slugify-a-url-string-in-javascript-b8e4a0d849e1
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/slugify.ts
  * import { slugify } from "@thi.ng/strings";
  *
- * slugify("Me, myself (& ëye) 😀!")
+ * console.log(
+ *   slugify("Me, myself (& ëye) 😀!")
+ * );
  * // "me-myself-and-eye"
  * ```
  *
@@ -41,10 +43,12 @@ export const slugify: Stringer<string> = (str: string) => {
  * for headings in markdown files (AFAICT).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/slugify-gh.ts
  * import { slugifyGH } from "@thi.ng/strings";
  *
- * slugifyGH("Me, myself (& ëye) 😀!")
+ * console.log(
+ *   slugifyGH("Me, myself (& ëye) 😀!")
+ * );
  * // "me-myself--ëye-"
  * ```
  *

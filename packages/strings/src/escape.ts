@@ -36,6 +36,8 @@ export const ESCAPES_REV: Record<number, string> = {
  * - Non-BMP chars will be escaped using `\Uxxxxxxxx`
  * - Chars outside 0x20 - 0x7e range will be escaped using `\uxxxxx`
  *
+ * Also see {@link unescape}.
+ *
  * @param src -
  */
 export const escape = (src: string) =>
@@ -60,11 +62,13 @@ export const escape = (src: string) =>
  * - https://www.branah.com/unicode-converter
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/unescape.ts
  * import { unescape } from "@thi.ng/strings";
  *
- * unescape("\\ud83d\\ude0e \\U0001f60e")
- * // '😎'
+ * console.log(
+ *   unescape("\\ud83d\\ude0e \\U0001f60e")
+ * );
+ * // '😎 😎'
  * ```
  *
  * @param src -

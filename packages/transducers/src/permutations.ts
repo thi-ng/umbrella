@@ -10,17 +10,23 @@ import { range } from "./range.js";
  * empty the iterator yields no values.
  *
  * @example
- * ```ts
- * import { permutations } from "@thi.ng/transducers";
+ * ```ts tangle:../export/permutations.ts
+ * import { map, permutations, range } from "@thi.ng/transducers";
  *
- * [...permutations("ab", range(3))]
+ * console.log(
+ *   [...permutations("ab", range(3))]
+ * );
  * // [ ['a', 0], ['a', 1], ['a', 2],
  * //   ['b', 0], ['b', 1], ['b', 2] ]
  *
- * [...map((x: any[]) => x.join(""), permutations("ab", "-", range(3)))]
+ * console.log(
+ *   [...map((x: any[]) => x.join(""), permutations("ab", "-", range(3)))]
+ * );
  * // ['a-0', 'a-1', 'a-2', 'b-0', 'b-1', 'b-2']
  *
- * [...permutations([], "", range(0))]
+ * console.log(
+ *   [...permutations([], "", range(0))]
+ * );
  * // []
  * ```
  *
@@ -77,18 +83,24 @@ export function* permutations(...src: any[]): IterableIterator<any[]> {
  * values for each dimension.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/permutations-n.ts
  * import { permutationsN } from "@thi.ng/transducers";
  *
- * [...permutationsN(2)]
+ * console.log(
+ *   [...permutationsN(2)]
+ * );
  * // [ [0, 0], [0, 1], [1, 0], [1, 1] ]
  *
- * [...permutationsN(2, 3)]
+ * console.log(
+ *   [...permutationsN(2, 3)]
+ * );
  * // [ [0, 0], [0, 1], [0, 2],
  * //   [1, 0], [1, 1], [1, 2],
  * //   [2, 0], [2, 1], [2, 2] ]
  *
- * [...permutationsN(2, 2, [10, 20])]
+ * console.log(
+ *   [...permutationsN(2, 2, [10, 20])]
+ * );
  * // [ [ 10, 20 ], [ 10, 21 ], [ 11, 20 ], [ 11, 21 ] ]
  * ```
  *

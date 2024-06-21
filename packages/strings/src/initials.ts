@@ -4,14 +4,22 @@
  * (default: uppercase). If `mode` is null, the original casing will be kept.
  *
  * @example
- * ```ts
- * initials(["alicia", "bella", "carerra"]);
+ * ```ts tangle:../export/initials.ts
+ * import { initials } from "@thi.ng/strings";
+ *
+ * console.log(
+ *   initials(["alicia", "bella", "carerra"])
+ * );
  * // "ABC"
  *
- * initials("shader-ast-GLSL".split("-"))
+ * console.log(
+ *   initials("shader-ast-GLSL".split("-"))
+ * );
  * // "SAG"
  *
- * initials("Ludwig van Beethoven".split(" "), null)
+ * console.log(
+ *   initials("Ludwig van Beethoven".split(" "), null)
+ * );
  * // "LvB"
  * ```
  *

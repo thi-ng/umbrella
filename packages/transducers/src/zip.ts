@@ -13,14 +13,18 @@
  * sequence of 1-tuples.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/zip.ts
  * import { zip } from "@thi.ng/transducers";
  *
- * zip([1, 2, 3], [3, 4, 5, 0, 9])
- * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
+ * console.log(
+ *   [...zip([1, 2, 3], [3, 4, 5, 0, 9])]
+ * );
+ * // [ [ 1, 3 ] [ 2, 4 ] [ 3, 5 ] ]
  *
- * zip([1, 2, 3])
- * // [ 1 ] [ 2 ] [ 3 ]
+ * console.log(
+ *   [...zip([1, 2, 3])]
+ * );
+ * // [ [ 1 ] [ 2 ] [ 3 ] ]
  * ```
  */
 export function zip<A>(a: Iterable<A>): IterableIterator<[A]>;

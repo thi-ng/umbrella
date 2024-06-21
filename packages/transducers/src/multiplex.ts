@@ -25,26 +25,27 @@ import { step } from "./step.js";
  * should be used.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/multiplex.ts
  * import { iterator, map, multiplex } from "@thi.ng/transducers";
  *
- * [...iterator(
+ * const res = [...iterator(
  *   multiplex(
  *     map(x => x.charAt(0)),
  *     map(x => x.toUpperCase()),
  *     map(x => x.length)
  *   ),
  *   ["Alice", "Bob", "Charlie"]
- * )]
+ * )];
  *
+ * console.log(res);
  * // [ [ "A", "ALICE", 5 ], [ "B", "BOB", 3 ], [ "C", "CHARLIE", 7 ] ]
  * ```
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/multiplex-2.ts
  * import { iterator, map, mapcat, multiplex } from "@thi.ng/transducers";
  *
- * [...iterator(
+ * const res = [...iterator(
  *   multiplex(
  *     // override default unwrap behavior for this transducer
  *     // (i.e. here to ensure results are always arrays)
@@ -53,8 +54,9 @@ import { step } from "./step.js";
  *     map((x) => x),
  *   ),
  *   [[1, 2], [3]]
- * )]
+ * )];
  *
+ * console.log(res);
  * // [ [ [ 1, 2 ], [ 1, 2 ] ], [ [ 3 ], [ 3 ] ] ]
  *
  * // to compare: using the default behavior would produce this instead

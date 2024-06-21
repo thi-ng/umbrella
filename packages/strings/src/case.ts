@@ -27,10 +27,12 @@ export const capitalize: FnS = (x) =>
  * delimiter (`-` by default).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/kebab.ts
  * import { kebab } from "@thi.ng/strings";
  *
- * kebab("FooBar23Baz");
+ * console.log(
+ *   kebab("FooBar23Baz")
+ * );
  * // "foo-bar23-baz"
  * ```
  *

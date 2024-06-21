@@ -4,34 +4,43 @@ import { iterator } from "./iterator.js";
 import { isReduced } from "./reduced.js";
 
 /**
- * Ensures the total number of transformed values will be multiples of
- * `n`.
+ * Ensures the total number of transformed values will be multiples of `n`.
  *
  * @remarks
- * Only makes sense for finite streams / reductions. Does nothing if the
- * to be transformed data source has exactly multiple of `n` values, but
- * if not pads / supplies additional `fill` values at the end until the
- * next multiple is reached. No padding takes place if input is empty,
- * since length 0 is always a multiple.
+ * Only makes sense for finite streams / reductions. Does nothing if the to be
+ * transformed data source has exactly multiple of `n` values, but if not pads /
+ * supplies additional `fill` values at the end until the next multiple is
+ * reached. No padding takes place if input is empty, since length 0 is always a
+ * multiple.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/pad-last.ts
  * import { padLast } from "@thi.ng/transducers";
  *
- * [...padLast(8, 0, [1, 2, 3, 4, 5])]
+ * console.log(
+ *   [...padLast(8, 0, [1, 2, 3, 4, 5])]
+ * );
  * // [ 1, 2, 3, 4, 5, 0, 0, 0 ]
  *
- * [...padLast(8, 0, [1])]
+ * console.log(
+ *   [...padLast(8, 0, [1])]
+ * );
  * // [ 1, 0, 0, 0, 0, 0, 0, 0 ]
  *
- * [...padLast(8, 0, [])]
+ * console.log(
+ *   [...padLast(8, 0, [])]
+ * );
  * // []
  *
- * [...padLast(2, 0, [1, 2, 3])]
- * // [ 1, 2, 3, 0 ]
+ * console.log(
+ *   [...padLast(4, 0, [1, 2])]
+ * );
+ * // [ 1, 2, 0, 0 ]
  *
- * [...padLast(2, 0, [1, 2, 3, 4])]
- * // [ 1, 2, 3, 4 ]
+ * console.log(
+ *   [...padLast(4, 0, [1, 2, 3, 4, 5])]
+ * );
+ * // [ 1, 2, 3, 4, 5, 0, 0, 0 ]
  * ```
  *
  * @param n -

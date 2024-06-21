@@ -8,16 +8,22 @@ import type { Stringer } from "./api.js";
  * null, indent)`
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/stringify.ts
  * import { stringify } from "@thi.ng/strings";
  *
- * stringify()("hello");
+ * console.log(
+ *   stringify()("hello")
+ * );
  * // hello
  *
- * stringify(true)("hello");
+ * console.log(
+ *   stringify(true)("hello")
+ * );
  * // "hello"
  *
- * stringify()({ a: "hello" })
+ * console.log(
+ *   stringify()({ a: "hello" })
+ * );
  * // { "a": "hello" }
  * ```
  *

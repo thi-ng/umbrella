@@ -14,33 +14,37 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  * https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function
  *
  * @example
- * ```ts
- * import {
- *   add, comp, last, length, multiplex, range, scan, transduce
- * } from "@thi.ng/transducers";
+ * ```ts tangle:../export/scan.ts
+ * import * as tx from "@thi.ng/transducers";
  *
- * [...iterator(scan(add()), range(10))]
+ * console.log(
+ *   [...tx.iterator(tx.scan(tx.add()), tx.range(10))]
+ * );
  * // [ 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 ]
  *
  * // directly as iterator and with initial result
- * [...scan(add(), 100, range(10))]
+ * console.log(
+ *   [...tx.scan(tx.add(), 100, tx.range(10))]
+ * );
  * // [ 100, 101, 103, 106, 110, 115, 121, 128, 136, 145 ]
  *
  * // as transducer
- * transduce(
+ * const res = tx.transduce(
  *   // parallel processing lanes for each input
- *   multiplex(
- *     // join strings
- *     scan(str(" ")),
- *     // compute total length (+1)
- *     comp(length(1), scan(add()))
+ *   tx.multiplex(
+ *     // first lane: join strings
+ *     tx.scan(tx.str(" ")),
+ *     // second lane: compute total length (+1)
+ *     tx.comp(tx.length(1), tx.scan(tx.add()))
  *   ),
- *   // only keep final value
- *   last(),
+ *   // use last() reducer to only keep final value
+ *   tx.last(),
  *   // inputs
  *   ["alpha", "beta", "gamma", "delta"]
- * )
- * // [ 'alpha beta gamma delta', 23 ]
+ * );
+ *
+ * console.log(res);
+ * // [ 'alpha beta gamma delta', 123 ]
  * ```
  *
  * @param rfn - reducer used as scan operator

@@ -5,10 +5,12 @@
  * See also: {@link repeatedly}
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/repeat.ts
  * import { repeat } from "@thi.ng/transducers";
  *
- * [...repeat(42, 5)]
+ * console.log(
+ *   [...repeat(42, 5)]
+ * );
  * // [42, 42, 42, 42, 42]
  * ```
  *

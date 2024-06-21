@@ -33,14 +33,18 @@ export interface StreamShuffleOpts {
  * are possible.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/stream-shuffle.ts
  * import { range, streamShuffle } from "@thi.ng/transducers";
  * import { XsAdd } from "@thi.ng/random";
  *
- * [...streamShuffle(5, range(10))]
+ * console.log(
+ *   [...streamShuffle(5, range(10))]
+ * );
  * // [ 3, 2, 5, 0, 8, 7, 1, 6, 4, 9 ]
  *
- * [...streamShuffle({ n: 5, rnd: new XsAdd(12345) }, range(10))]
+ * console.log(
+ *   [...streamShuffle({ n: 5, rnd: new XsAdd(12345) }, range(10))]
+ * );
  * [ 0, 4, 3, 7, 8, 1, 5, 2, 6, 9 ]
  * ```
  *

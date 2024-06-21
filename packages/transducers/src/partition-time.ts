@@ -12,14 +12,16 @@ import { partitionBy } from "./partition-by.js";
  * Only to be used in async contexts, NOT with {@link transduce} directly.
  *
  * Also see:
+ * - [`thi.ng/transducers-async`](https://thi.ng/transducers-async).
  * - [`thi.ng/rstream`](https://thi.ng/rstream)
- * - [`thi.ng/csp`](https://thi.ng/csp).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/partition-time.ts
  * import { fromInterval, trace } from "@thi.ng/rstream";
+ * import { partitionTime } from "@thi.ng/transducers";
  *
- * // stream emits
+ * // stream emits counter value every 250ms
+ * // callect & partition into tuples every 1000ms
  * fromInterval(250)
  *   .transform(partitionTime(1000))
  *   .subscribe(trace())

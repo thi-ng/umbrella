@@ -21,15 +21,19 @@ import type { HexDumpOpts } from "./api.js";
  * [thi.ng/hex](https://docs.thi.ng/umbrella/hex/functions/hexdump.html)
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/hex-dump.ts
  * import { hexDump } from "@thi.ng/transducers-binary";
  *
- * src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
+ * const src = [
+ *   65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120
+ * ];
  *
- * [...hexDump({ cols: 8, address: 0x400 }, src)]
- * // [ '00000400 | 41 42 43 44 45 46 47 48 | ABCDEFGH',
- * //   '00000408 | 49 4a 21 30 31 32 33 7e | IJ!0123~',
- * //   '00000410 | 7a 79 78 00 00 00 00 00 | zyx.....' ]
+ * console.log(
+ *   [...hexDump({ cols: 8, address: 0x400 }, src)].join("\n")
+ * );
+ * // 00000400 | 41 42 43 44 45 46 47 48 | ABCDEFGH
+ * // 00000408 | 49 4a 21 30 31 32 33 7e | IJ!0123~
+ * // 00000410 | 7a 79 78 00 00 00 00 00 | zyx.....
  * ```
  *
  * @param opts -
@@ -47,7 +51,7 @@ export function hexDump(...args: any[]): any {
 	if (iter) {
 		return iter;
 	}
-	const { cols = 16, address = 0 } = <HexDumpOpts>args[0];
+	const { cols = 16, address = 0 } = <HexDumpOpts>args[0] || {};
 	return comp(
 		padLast(cols, 0),
 		map(

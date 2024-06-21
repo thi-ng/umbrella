@@ -11,15 +11,13 @@ import { __iter } from "./iterator.js";
  * An optional start index `offset` can be provided (default 0).
  *
  * @example
- * ```ts
- * import { assocObj, mapIndexed, transduce } from "@thi.ng/transducers";
+ * ```ts tangle:../export/map-indexed.ts
+ * import { mapIndexed } from "@thi.ng/transducers";
  *
- * transduce(
- *   mapIndexed((i, x) => ["id" + i, x * 10], 42),
- *   assocObj(),
- *   [1, 2, 3]
- * )
- * // { id42: 10, id43: 20, id44: 30 }
+ * console.log(
+ *   [...mapIndexed((i, x) => ["id" + i, x * 10], 42, [1, 2, 3])]
+ * );
+ * // [ [ "id42", 10 ], [ "id43", 20 ], [ "id44", 30 ] ]
  * ```
  *
  * @param fn - transformation function

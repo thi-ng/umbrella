@@ -8,7 +8,7 @@ const __nextTab = (x: number, tabSize: number) =>
  * Multi-line version of {@link tabsToSpacesLine}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/tabs-to-spaces.ts
  * import { tabsToSpaces } from "@thi.ng/strings";
  *
  * console.log(
@@ -34,7 +34,7 @@ export const tabsToSpaces = (src: string, tabSize = 4) =>
 
 /**
  * Takes a single line string and converts all tab characters to spaces, using
- * given `tabSize`.
+ * given `tabSize` (default: 4).
  *
  * @param line -
  * @param tabSize -

@@ -22,20 +22,22 @@ import type { PatchArrayOp } from "./api.js";
  * - DELETE
  *
  * @example
- * ```ts
- * import { patchArray, Patch } from "@thi.ng/transducers-patch";
+ * ```ts tangle:../export/patch-array.ts
+ * import { patchArray } from "@thi.ng/transducers-patch";
  *
  * // direct invocation
- * patchArray(
+ * const res = patchArray(
  *     true,
  *     [1, 2, 3],
  *     [
- *         [Patch.SET, 0, 42],
- *         [Patch.UPDATE, 1, (x, n) => x * n, 10],
- *         [Patch.INSERT, 2, [10, 11]],
- *         [Patch.DELETE, 3]
+ *         ["set", 0, 42],
+ *         ["update", 1, (x, n) => x * n, 10],
+ *         ["insert", 2, [10, 11]],
+ *         ["delete", 3]
  *     ]
  * );
+ *
+ * console.log(res);
  * // [ 42, 20, 10, 3 ]
  * ```
  */

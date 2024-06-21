@@ -3,17 +3,20 @@ import type { Stringer } from "./api.js";
 /**
  * Formats given value `x` as Fortran style Hollerith string.
  *
+ * @remarks
+ * References:
+ * - https://en.wikipedia.org/wiki/Hollerith_constant
+ * - https://en.wikipedia.org/wiki/IGES#File_format
+ *
  * @example
- * ```ts
+ * ```ts tangle:../export/hstr.ts
  * import { hstr } from "@thi.ng/strings";
  *
- * hstr("abc")  // "3Habc"
- * hstr(123.45) // "6H123.45"
- * hstr("")     // "0H"
- * hstr(null)   // ""
+ * console.log(hstr("abc"));  // "3Habc"
+ * console.log(hstr(123.45)); // "6H123.45"
+ * console.log(hstr(""));     // "0H"
+ * console.log(hstr(null));   // ""
  * ```
- *
- * https://en.wikipedia.org/wiki/Hollerith_constant
  *
  * @param x -
  */

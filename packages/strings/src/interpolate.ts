@@ -9,9 +9,16 @@ const TPL_K = /\{([a-z0-9_.-]+)\}/gi;
  * number of args. Replaces numbered terms with their respective args
  * given.
  *
+ * @remarks
+ * Also see {@link interpolateKeys}.
+ *
  * @example
- * ```ts
- * interpolate("let {0}: {2} = {1};", "a", 42, "number")
+ * ```ts tangle:../export/interpolate.ts
+ * import { interpolate } from "@thi.ng/strings";
+ *
+ * console.log(
+ *   interpolate("let {0}: {2} = {1};", "a", 42, "number")
+ * );
  * // "let a: number = 42;"
  * ```
  *
@@ -28,11 +35,15 @@ export const interpolate = (src: string, ...args: any[]) =>
  * template string and an object of values for the stated keys.
  *
  * @example
- * ```ts
- * interpolateKeys(
- *   "let {id}: {type} = {val};",
- *   { id: "a", type: "number", val: 42 }
- * )
+ * ```ts tangle:../export/interpolate-keys.ts
+ * import { interpolateKeys } from "@thi.ng/strings";
+ *
+ * console.log(
+ *   interpolateKeys(
+ *     "let {id}: {type} = {val};",
+ *     { id: "a", type: "number", val: 42 }
+ *   )
+ * );
  * // "let a: number = 42;"
  * ```
  *

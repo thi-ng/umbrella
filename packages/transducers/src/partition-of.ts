@@ -8,10 +8,12 @@ import { partitionBy } from "./partition-by.js";
  * chunks. The last partition emitted is allowed to be incomplete.
  *
  * @example
- * ```ts
- * import { partitionOf } from "@thi.ng/transducers";
+ * ```ts tangle:../export/partition-of.ts
+ * import { partitionOf, range } from "@thi.ng/transducers";
  *
- * [...partitionOf([3,2,4], range(20))]
+ * console.log(
+ *   [...partitionOf([3, 2, 4], range(20))]
+ * );
  * // [ [ 0, 1, 2 ],
  * //   [ 3, 4 ],
  * //   [ 5, 6, 7, 8 ],

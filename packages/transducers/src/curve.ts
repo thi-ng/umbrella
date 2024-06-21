@@ -14,12 +14,14 @@
  * [`curve()`](https://docs.thi.ng/umbrella/dsp/functions/curve.html).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/curve.ts
  * import { curve } from "@thi.ng/transducers";
  *
- * [...curve(50, 100, 10, 2)]
+ * console.log(
+ *   [...curve(50, 100, 10)]
+ * );
  * // [
- * //   50,
+ * //   50.000,
  * //   73.193,
  * //   85.649,
  * //   92.339,
@@ -29,7 +31,7 @@
  * //   99.454,
  * //   99.753,
  * //   99.913,
- * //   100
+ * //   100.000
  * // ]
  * ```
  *

@@ -166,29 +166,37 @@ export class Quantity<T extends number | number[]> implements IDeref<T> {
  * dimensionless quantities). Use {@link convert} otherwise!
  *
  * @example
- * ```ts
- * import { convert, div, quantity, NONE } from "@thi.ng/units";
+ * ```ts tangle:../export/quantity.ts
+ * import { convert, div, mul, quantity, NONE } from "@thi.ng/units";
  *
  * const speedOfLight = quantity(299792458, "m/s");
  *
  * // compute wavelength of a WiFi signal in millimeters
- * convert(div(speedOfLight, quantity(2.4,"GHz")), "mm");
+ * console.log(
+ *   convert(div(speedOfLight, quantity(2.4,"GHz")), "mm")
+ * );
  * // 124.9135
  *
  * // DIN A4 paper size
  * const A4 = quantity([210, 297], "mm");
  *
  * // convert paper size to inches
- * convert(A4, "in");
+ * console.log(
+ *   convert(A4, "in")
+ * );
  * // [ 8.2677, 11.6929 ]
  *
  * // or calculate pixel dimensions @ 300 dpi
  * // the result of the product is dimensionless so we use NONE as target unit
- * convert(mul(A4, quantity(300, "dpi")), NONE)
+ * console.log(
+ *   convert(mul(A4, quantity(300, "dpi")), NONE)
+ * );
  * // [ 2480.314960629921, 3507.8740157480315 ]
  *
  * // alternatively dimensionless units can be deref'd directly
- * mul(A4, quantity(300, "dpi")).deref()
+ * console.log(
+ *   mul(A4, quantity(300, "dpi")).deref()
+ * );
  * // [ 2480.314960629921, 3507.8740157480315 ]
  * ```
  *

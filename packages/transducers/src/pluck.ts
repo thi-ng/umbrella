@@ -8,10 +8,12 @@ import { map } from "./map.js";
  * sequence of these values.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/pluck.ts
  * import { pluck } from "@thi.ng/transducers";
  *
- * [...pluck("id", [{id: 1}, {id: 2}, {}])]
+ * console.log(
+ *   [...pluck("id", [{id: 1}, {id: 2}, {}])]
+ * );
  * // [ 1, 2, undefined ]
  * ```
  *

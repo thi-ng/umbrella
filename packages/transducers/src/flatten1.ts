@@ -8,18 +8,24 @@ import { mapcat } from "./mapcat.js";
  * 1st level of nesting in input. See {@link mapcat}.
  *
  * @example
- * ```ts
- * import { flatten1 } from "@thi.ng/transducers";
+ * ```ts tangle:../export/flatten1.ts
+ * import { flatten1, mapcat } from "@thi.ng/transducers";
  *
- * [...flatten1([[1], [2, 2], [3, 3, 3]])]
+ * console.log(
+ *   [...flatten1([[1], [2, 2], [3, 3, 3]])]
+ * );
  * // [ 1, 2, 2, 3, 3, 3 ]
  *
  * // same as:
- * [...mapcat((x) => x, [[1], [2, 2], [3, 3, 3]])]
+ * console.log(
+ *   [...mapcat((x) => x, [[1], [2, 2], [3, 3, 3]])]
+ * );
  * // [ 1, 2, 2, 3, 3, 3 ]
  *
  * // nullish inputs will be removed
- * [...flatten1([[1], null, [3, 3, 3]])]
+ * console.log(
+ *   [...flatten1([[1], null, [3, 3, 3]])]
+ * );
  * // [1, 3, 3, 3]
  * ```
  */

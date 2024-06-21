@@ -6,10 +6,12 @@ import type { FnU2 } from "@thi.ng/api";
  * `y` grid coordinates. The iteration order is always row-major.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/repeatedly2d.ts
  * import { repeatedly2d } from "@thi.ng/transducers";
  *
- * [...repeatedly2d((x, y) => [(x + 1) * 10, (y + 1) * 100], 2, 3)]
+ * console.log(
+ *   [...repeatedly2d((x, y) => [(x + 1) * 10, (y + 1) * 100], 2, 3)]
+ * );
  * // [
  * //   [ 10, 100 ], [ 20, 100 ],
  * //   [ 10, 200 ], [ 20, 200 ],

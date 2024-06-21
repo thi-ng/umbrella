@@ -10,10 +10,12 @@ import { isReduced } from "./reduced.js";
  * happens yields chunk of buffered values.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/partition-by.ts
  * import { partitionBy } from "@thi.ng/transducers";
  *
- * [...partitionBy((x) => x & 1, [1, 2, 4, 6, 3, 5, 8, 4])]
+ * console.log(
+ *   [...partitionBy((x) => x & 1, [1, 2, 4, 6, 3, 5, 8, 4])]
+ * );
  * // [ [ 1 ], [ 2, 4, 6 ], [ 3, 5 ], [ 8, 4 ] ]
  * ```
  *

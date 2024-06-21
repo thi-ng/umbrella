@@ -64,10 +64,12 @@ export const merge: FnU2<VClock> = (a, b) =>
  * {@link absSkew} for unsigned version.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/signed-skew.ts
  * import { signedSkew } from "@thi.ng/vclock";
  *
- * signedSkew({a: 1, b: 4, c: 2}, {a: 2, c: 20})
+ * console.log(
+ *   signedSkew({a: 1, b: 4, c: 2}, {a: 2, c: 20})
+ * );
  * // -18
  * ```
  *
@@ -103,13 +105,21 @@ export const absSkew: FnU2<VClock, number> = (a, b) =>
  * - 0 (concurrent): iff a != b otherwise
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/compare.ts
  * import { compare } from "@thi.ng/vclock";
  *
- * compare({ a: 1, b: 2 }, { a: 3, b: 2 }); // -1
- * compare({ a: 3, b: 2 }, { a: 3, b: 2 }); // 0 (equal)
- * compare({ a: 3, b: 2 }, { a: 2, b: 3 }); // 0 (conflict)
- * compare({ a: 3, b: 3 }, { a: 3, b: 2 }); // +1
+ * console.log(
+ *   compare({ a: 1, b: 2 }, { a: 3, b: 2 }) // -1
+ * );
+ * console.log(
+ *   compare({ a: 3, b: 2 }, { a: 3, b: 2 }) // 0 (equal)
+ * );
+ * console.log(
+ *   compare({ a: 3, b: 2 }, { a: 2, b: 3 }) // 0 (conflict)
+ * );
+ * console.log(
+ *   compare({ a: 3, b: 3 }, { a: 3, b: 2 }) // +1
+ * );
  * ```
  *
  * @param a -

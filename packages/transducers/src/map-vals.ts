@@ -13,10 +13,12 @@ import { map } from "./map.js";
  * object is then used as the result of this transducer.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/map-vals.ts
  * import { mapVals } from "@thi.ng/transducers";
  *
- * [...mapVals((x)=> x * 10, [{a: 1, b: 2}, {c: 3, d: 4}])]
+ * console.log(
+ *   [...mapVals((x)=> x * 10, [{a: 1, b: 2}, {c: 3, d: 4}])]
+ * );
  * // [ { a: 10, b: 20 }, { c: 30, d: 40 } ]
  * ```
  *

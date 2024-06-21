@@ -7,13 +7,17 @@ import { ensureIterable } from "@thi.ng/arrays/ensure-iterable";
  * such values produced or contained in an input will remain.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/concat.ts
  * import { concat } from "@thi.ng/transducers";
  *
- * [...concat([1, 2, 3], null, [4, 5])]
+ * console.log(
+ *   [...concat([1, 2, 3], null, [4, 5])]
+ * );
  * // [ 1, 2, 3, 4, 5 ]
  *
- * [...concat([1, 2, 3, undefined], null, [4, 5])]
+ * console.log(
+ *   [...concat([1, 2, 3, undefined], null, [4, 5])]
+ * );
  * // [ 1, 2, 3, undefined, 4, 5 ]
  * ```
  *

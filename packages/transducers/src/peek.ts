@@ -4,14 +4,16 @@ import { map } from "./map.js";
 
 /**
  * Transducer version of
- * [`peek()`](https://docs.thi.ng/umbrella/api/functions/peek.html), i.e.
+ * [`peek()`](https://docs.thi.ng/umbrella/arrays/functions/peek.html), i.e.
  * extracts the last item of an array.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/peek.ts
  * import { peek } from "@thi.ng/transducers";
  *
- * [...peek([ [1, 2, 3], [4, 5] ])]
+ * console.log(
+ *   [...peek([ [1, 2, 3], [4, 5] ])]
+ * );
  * // [ 3, 5 ]
  * ```
  */

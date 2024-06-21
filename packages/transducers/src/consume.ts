@@ -7,10 +7,14 @@
  * should be applied.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/consume.ts
  * import { consume, repeatedly2d } from "@thi.ng/transducers";
  *
- * consume(repeatedly2d((x, y) => console.log("output:", [x, y]), 2, 3));
+ * // iterators are lazy, no logging will actually be performed yet
+ * const iter = repeatedly2d((x, y) => console.log("output:", [x, y]), 2, 3);
+ *
+ * // force evaluation, discard any results
+ * consume(iter);
  * // output: [ 0, 0 ]
  * // output: [ 1, 0 ]
  * // output: [ 0, 1 ]

@@ -8,14 +8,18 @@
  * optional `offset` arg (also in `[line,column]` order).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/compute-cursor-pos.ts
  * import { computeCursorPos } from "@thi.ng/strings";
  *
- * computeCursorPos("thi.ng\numbrella", 10);
+ * console.log(
+ *   computeCursorPos("thi.ng\numbrella", 10)
+ * );
  * // [ 2, 4 ]
  *
  * // w/ custom offset
- * computeCursorPos("thi.ng\numbrella", 10, "\n", [11, 1]);
+ * console.log(
+ *   computeCursorPos("thi.ng\numbrella", 10, "\n", [11, 1])
+ * );
  * // [ 12, 4 ]
  * ```
  *

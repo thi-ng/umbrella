@@ -7,13 +7,15 @@ import type { Stringer } from "./api.js";
  * separator into a result string.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/join.ts
  * import { format, join } from "@thi.ng/strings";
  * import { partial } from "@thi.ng/compose";
  *
  * const slashes = join("/");
  *
- * slashes([1, 2, 3]);
+ * console.log(
+ *   slashes([1, 2, 3])
+ * );
  * // "1/2/3"
  *
  * // pre-compose formatter function w/ partial arguments
@@ -21,7 +23,9 @@ import type { Stringer } from "./api.js";
  *   format, ["f ", slashes, " ", slashes, " ", slashes]
  * );
  *
- * formatOBJFace([1, 2], [3, 4], [5, 6]);
+ * console.log(
+ *   formatOBJFace([1, 2], [3, 4], [5, 6])
+ * );
  * // "f 1/2 3/4 5/6"
  * ```
  */

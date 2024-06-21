@@ -14,17 +14,20 @@ import { isReduced } from "./reduced.js";
  * NodeJS' stream processing.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/rechunk.ts
  * import { rechunk } from "@thi.ng/transducers";
  *
- * [...rechunk(/-/, ["abc-d", "ef-g-", "hij", "-k-lm"])]
+ * console.log(
+ *   [...rechunk(/-/, ["abc-d", "ef-g-", "hij", "-k-lm"])]
+ * );
  * // [ "abc", "def", "g", "hij", "k", "lm" ]
  * ```
  *
  * @example
- * ```ts
- * import { spawn } from "node:child_process"
+ * ```ts tangle:../export/rechunk-2.ts
  * import { fromNodeJS, trace } from "@thi.ng/rstream";
+ * import { rechunk } from "@thi.ng/transducers";
+ * import { spawn } from "node:child_process"
  *
  * const cmd = spawn("ls", ["-la"]);
  *
