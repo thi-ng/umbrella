@@ -74,12 +74,14 @@ export interface ResolveOpts {
  * See {@link ResolveOpts} and package readme for further details.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/resolve.ts
  * import { resolve } from "@thi.ng/resolve-map";
  *
  * // `c` references sibling `d`
  * // `d` references parent `a`
- * resolve({ a: 1, b: { c: "@d", d: "@/a" } })
+ * console.log(
+ *   resolve({ a: 1, b: { c: "@d", d: "@/a" } })
+ * );
  * // { a: 1, b: { c: 1, d: 1 } }
  * ```
  *
@@ -100,16 +102,20 @@ export interface ResolveOpts {
  * path (**without `@` prefix**) to look up any other values in the root
  * object.
  *
- * ```ts
+ * ```ts tangle:../export/resolve-2.ts
  * import { resolve } from "@thi.ng/resolve-map";
  *
  * // `c` uses ES6 destructuring form to look up `a` & `b` values
  * // `d` uses provided resolve fn arg `$` to look up `c`
- * resolve({ a: 1, b: 2, c: ({ a, b }) => a + b, d: ($) => $("c") })
+ * console.log(
+ *   resolve({ a: 1, b: 2, c: ({ a, b }) => a + b, d: ($) => $("c") })
+ * );
  * // { a: 1, b: 2, c: 3, d: 3 }
  *
  * // last item references item @ index = 2
- * resolve([1, 2, ($) => $("0") + $("1"), "@2"])
+ * console.log(
+ *   resolve([1, 2, ($) => $("0") + $("1"), "@2"])
+ * );
  * // [1, 2, 3, 3]
  * ```
  *
@@ -123,22 +129,24 @@ export interface ResolveOpts {
  * start with `@`, it needs to be wrapped in a function (see `f` key
  * below).
  *
- * ```ts
+ * ```ts tangle:../export/resolve-3.ts
  * import { resolve } from "@thi.ng/resolve-map";
  *
  * // `a` is derived from 1st array element in `b.d`
  * // `b.c` is looked up from `b.d[0]`
  * // `b.d[1]` is derived from calling `e(2)`
  * // `e` is a wrapped function
- * res = resolve({
+ * const res = resolve({
  *   a: ($) => $("b/c") * 100,
  *   b: { c: "@d/0", d: [2, ($) => $("../../e")(2) ] },
  *   e: () => (x) => x * 10,
  *   f: () => "@foo",
- * })
+ * });
+ *
+ * console.log(res);
  * // { a: 200, b: { c: 2, d: [ 2, 20 ] }, e: [Function], f: "@foo" }
  *
- * res.e(2);
+ * console.log(res.e(2));
  * // 20
  * ```
  *

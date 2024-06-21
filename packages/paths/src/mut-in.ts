@@ -24,14 +24,18 @@ import { defMutator } from "./mutator.js";
  * Also see {@link defMutatorUnsafe}.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mut-in-unsafe.ts
  * import { mutInUnsafe } from "@thi.ng/paths";
  *
- * mutInUnsafe({ a: { b: [10, 20] } }, "a.b.1", 23);
+ * console.log(
+ *   mutInUnsafe({ a: { b: [10, 20] } }, "a.b.1", 23)
+ * );
  * // { a: { b: [ 10, 23 ] } }
  *
  * // fails (see `defMutator()` docs)
- * mutInUnsafe({}, "a.b.c", 23);
+ * console.log(
+ *   mutInUnsafe({}, "a.b.c", 23)
+ * );
  * // undefined
  * ```
  *
@@ -52,10 +56,12 @@ export const mutInUnsafe = <T = any>(state: any, path: Path, val: T): any =>
  * Also see {@link defMutator}, {@link mutInUnsafe}
  *
  * @example
- * ```ts
- * import { muIn } from "@thi.ng/paths";
+ * ```ts tangle:../export/mut-in.ts
+ * import { mutIn } from "@thi.ng/paths";
  *
- * mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23)
+ * console.log(
+ *   mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23)
+ * );
  * // { a: { b: [ 10, 23 ] } }
  * ```
  *

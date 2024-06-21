@@ -18,30 +18,33 @@ import { defGetter } from "./getter.js";
 import { defSetter } from "./setter.js";
 
 /**
- * Similar to {@link setInUnsafe}, but applies given function to current
- * path value (incl. any additional/optional arguments passed to
- * `updateIn`) and uses result as new value. Does not modify original
- * state.
+ * Similar to {@link setInUnsafe}, but applies given function to current path
+ * value (incl. any additional/optional arguments passed to `updateIn`) and uses
+ * result as new value. Does **not** modify original state.
  *
  * @remarks
- * Unchecked version of {@link updateIn}. The type parameter `T` can be
- * used to indicate the type of the nested value to be updated (default:
- * `any`).
+ * Unchecked version of {@link updateIn}. The type parameter `T` can be used to
+ * indicate the type of the nested value to be updated (default: `any`).
  *
  * @example
- * ```ts
- * import { updateInUnsafe } from "@thi.ng/paths";
+ * ```ts tangle:../export/update-in-unsafe.ts
+ * import { updateIn, updateInUnsafe } from "@thi.ng/paths";
  *
- * add = (x: number, y: number) => x + y;
- * updateInUnsafe({ a: { b: { c: 23 } } }, "a.b.c", add, 10);
+ * const add = (x: number, y: number) => x + y;
+ *
+ * console.log(
+ *   updateInUnsafe({ a: { b: { c: 23 } } }, "a.b.c", add, 10)
+ * );
  * // { a: { b: { c: 33 } } }
  *
  * // type checked
- * updateIn({ a: { b: { c: 23 } } }, ["a","b","c"], add, 10);
+ * console.log(
+ *   updateIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], add, 10)
+ * );
  * // { a: { b: { c: 33 } } }
  *
  * // type error (value at "a.b" is not a number)
- * updateIn({ a: { b: { c: 23 } } }, ["a","b"], add, 10);
+ * // updateIn({ a: { b: { c: 23 } } }, ["a", "b"], add, 10)
  * ```
  *
  * @param state - state to update

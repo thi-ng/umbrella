@@ -156,15 +156,19 @@ export interface QueryOpts {
 	 * successfully matched property values will be included for each result.
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/def-query.ts
 	 * import { defQuery } from "@thi.ng/oquery";
 	 *
 	 * const DB = { a: { id: 1, name: "alice" }, b: { name: "bob" } };
 	 *
-	 * defQuery({ partial: false })(DB, null, "id", 1)
+	 * console.log(
+	 *   defQuery({ partial: false })(DB, null, "id", 1)
+	 * );
 	 * // { a: { id: 1, name: "alice" } }
 	 *
-	 * defQuery({ partial: true })(DB, null, "id", 1)
+	 * console.log(
+	 *   defQuery({ partial: true })(DB, null, "id", 1)
+	 * );
 	 * // { a: { id: 1 } }
 	 * ```
 	 *
@@ -181,15 +185,20 @@ export interface QueryOpts {
 	 * ALWAYS matched in a componentwise manner.
 	 *
 	 * @example
-	 * ```ts
+	 * ```ts tangle:../export/def-query-2.ts
 	 * import { defQuery } from "@thi.ng/oquery";
 	 *
 	 * const DB = { a: { knows: ["b","c"] }, b: { knows: ["a","c"] }};
-	 * defQuery({ cwise: true })(DB, null, "knows", "b")
-	 * // { a: { knows: ["b","c"] } }
 	 *
-	 * defQuery({ cwise: false })(DB, null, "knows", (x) => x.includes("b"))
-	 * // { a: { knows: ["b","c"] } }
+	 * console.log(
+	 *   defQuery({ cwise: true })(DB, null, "knows", "b")
+	 * );
+	 * // { a: { knows: ["b", "c"] } }
+	 *
+	 * console.log(
+	 *   defQuery({ cwise: false })(DB, null, "knows", (x) => x.includes("b"))
+	 * );
+	 * // { a: { knows: ["b", "c"] } }
 	 * ```
 	 *
 	 * @defaultValue true

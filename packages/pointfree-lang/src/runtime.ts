@@ -414,7 +414,7 @@ const __visitObject = __visitWithResolver(__resolveObject);
  * {@link __finalizeEnv}). The name stacks are used to implement dynamic scoping
  * of all variables.
  *
- * ```ts
+ * ```ts tangle:../export/ensure-env.ts
  * import { run } from "@thi.ng/pointfree-lang";
  *
  * // foo uses local var `a` with same name as global
@@ -423,8 +423,18 @@ const __visitObject = __visitWithResolver(__resolveObject);
  * // during `foo` execution the stack for var `a` is:
  * // {... __vars: {a: [2, 1]}}
  *
- * run(`: foo ^{ a } @a 10 + b!; 2 foo`, {a: 1});
- * // [ [], [], { a: 1, b: 12, __words: { foo: [Function] } } ]
+ * console.log(
+ *   run(`: foo ^{ a } @a 10 + b!; 2 foo`, { a: 1 })
+ * );
+ * // [
+ * //   [],
+ * //   [],
+ * //   {
+ * //     a: 1,
+ * //     b: 12,
+ * //     __words: { foo: [Function] },
+ * //   }
+ * // ]
  * ```
  *
  * Also see: {@link __loadVar}, {@link __storeVar}, {@link __beginvar}, {@link __endvar}

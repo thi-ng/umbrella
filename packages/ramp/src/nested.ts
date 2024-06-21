@@ -16,7 +16,7 @@ export type NestedImpl<T extends Record<string, any>> = {
  * are somewhat similar but satisfy different use cases.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/nested.ts
  * import { ramp, nested, LINEAR_N, HERMITE_N } from "@thi.ng/ramp";
  *
  * const example = ramp(
@@ -29,7 +29,7 @@ export type NestedImpl<T extends Record<string, any>> = {
  *   ]
  * )
  *
- * example.at(25)
+ * console.log(example.at(25));
  * // { a: -2.5, b: 1156.25 }
  * ```
  *

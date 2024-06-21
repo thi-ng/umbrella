@@ -47,35 +47,43 @@ import { toPath } from "./path.js";
  * structural sharing / re-use.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-setter-unsafe.ts
  * import { defSetterUnsafe } from "@thi.ng/paths";
  *
- * s = defSetterUnsafe("a.b.c");
+ * const s = defSetterUnsafe("a.b.c");
  * // or
- * s = defSetterUnsafe(["a", "b", "c"]);
+ * // const s = defSetterUnsafe(["a", "b", "c"]);
  *
- * s({ a: { b: { c: 23} } }, 24)
+ * console.log(
+ *   s({ a: { b: { c: 23} } }, 24)
+ * );
  * // { a: { b: { c: 24} } }
  *
- * s({ x: 23 }, 24)
+ * console.log(
+ *   s({ x: 23 }, 24)
+ * );
  * // { x: 23, a: { b: { c: 24 } } }
  *
- * s(null, 24)
+ * console.log(
+ *   s(null, 24)
+ * );
  * // { a: { b: { c: 24 } } }
  * ```
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-setter-unsafe-2.ts
  * import { defSetterUnsafe } from "@thi.ng/paths";
  *
- * s = defSetterUnsafe("a.b.c");
+ * const s = defSetterUnsafe("a.b.c");
  *
- * a = { x: { y: { z: 1 } } };
- * b = s(a, 2);
+ * const a = { x: { y: { z: 1 } } };
+ * const b = s(a, 2);
+ *
+ * console.log(b);
  * // { x: { y: { z: 1 } }, a: { b: { c: 2 } } }
  *
- * a.x === b.x // true
- * a.x.y === b.x.y // true
+ * console.log(a.x === b.x); // true
+ * console.log(a.x.y === b.x.y); // true
  * ```
  *
  * @param path -
@@ -93,7 +101,7 @@ export const defSetterUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
  * {@link setIn} (where the generics can usually be fully inferred).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-setter.ts
  * import { defSetter } from "@thi.ng/paths";
  *
  * type State = { a: { b: number } };
@@ -105,7 +113,7 @@ export const defSetterUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
  * ```
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-setter-2.ts
  * import { defSetter } from "@thi.ng/paths";
  *
  * type State = { a: { b: number } };

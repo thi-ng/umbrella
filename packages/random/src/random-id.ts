@@ -11,13 +11,13 @@ import { SYSTEM } from "./system.js";
  * collision-free approach.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/random-id.ts
  * import { randomID } from "@thi.ng/random";
  *
- * randomID()
+ * console.log(randomID());
  * "qgdt"
  *
- * randomID(8, "id-", "0123456789ABCDEF")
+ * console.log(randomID(8, "id-", "0123456789ABCDEF"));
  * "id-94EF6E1A"
  * ```
  *

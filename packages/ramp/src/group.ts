@@ -26,7 +26,7 @@ export type GroupImpl<T extends Record<string, any>> = {
  * {@link unconstrained}), which will be applied _prior_ to evaluating any child ramps.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/group.ts
  * import { group, hermite, linear } from "@thi.ng/ramp";
  *
  * const example = group({
@@ -35,14 +35,14 @@ export type GroupImpl<T extends Record<string, any>> = {
  *   b: hermite([[0, 100], [1, 200]]),
  * });
  *
- * example.at(0.2)
+ * console.log(example.at(0.2));
  * // { a: -2.5, b: 110.4 }
  *
  * // set new keyframe for `b` ramp
  * // (in TS need to cast to proper type first)
  * (<Ramp<number>>example.children.b).setStopAt(0.5, 200);
  *
- * example.at(0.2)
+ * console.log(example.at(0.2));
  * // { a: -2.5, b: 135.2 }
  * ```
  *

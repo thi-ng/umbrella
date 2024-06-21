@@ -32,14 +32,16 @@ import { defSetter } from "./setter.js";
  * value to be updated (default: `any`).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-update-unsafe.ts
  * import { defUpdaterUnsafe } from "@thi.ng/paths";
  *
  * const incB = defUpdaterUnsafe("a.b", (x, n) => x + n);
  * // or
- * const incB = defUpdaterUnsafe(["a", "b"], (x, n) => x + n);
+ * // const incB = defUpdaterUnsafe(["a", "b"], (x, n) => x + n);
  *
- * incB({ a: { b: 10 } }, 13);
+ * console.log(
+ *   incB({ a: { b: 10 } }, 13)
+ * );
  * // { a: { b: 23 } }
  * ```
  *

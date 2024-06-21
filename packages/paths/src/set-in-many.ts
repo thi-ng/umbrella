@@ -16,16 +16,18 @@ import { setIn } from "./set-in.js";
  * overall state value and will also be used as return type.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/set-in-many-unsafe.ts
  * import { setInManyUnsafe } from "@thi.ng/paths";
  *
- * setInManyUnsafe(
+ * const res = setInManyUnsafe(
  *   {},
  *   // pair #1
  *   "a.b", 10,
  *   // pair #2
  *   "x.y.z", 20
  * );
+ *
+ * console.log(res);
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
  * ```
  *

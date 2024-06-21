@@ -27,7 +27,37 @@ export interface MatchMultipleOpts<T> {
  * which contains any of these exclusions is automatically rejected, even if
  * other strings could be matched.
  *
- * See {@link matchMultiple} for more details & code example.
+ * See {@link matchMultiple} for more details.
+ *
+ * @example
+ * ```ts tangle:../export/match-strings.ts
+ * import { query, matchStrings } from "@thi.ng/oquery";
+ *
+ * const DB = [
+ *   { id: 1, tags: ["a", "b"] },
+ *   { id: 2, tags: ["c", "b"] },
+ *   { id: 3, tags: ["c", "a"] },
+ * ];
+ *
+ * // tag intersection
+ * console.log(
+ *   query(DB, [matchStrings("tags", ["a", "b"])])
+ * );
+ * // [ { id: 1, tags: ["a", "b"] } ]
+ *
+ * // tag union
+ * console.log(
+ *   query(DB, [matchStrings("tags", ["a", "b"])])
+ * );
+ * // here returns full DB...
+ * // since each item either has `a` and/or `b` tags
+ *
+ * // tag exclusion (require `a`, disallow `b`)
+ * console.log(
+ *   query(DB, [matchStrings("tags", ["a", "!b"])])
+ * );
+ * // [ { id: 3, tags: ["c", "a"] } ]
+ * ```
  *
  * @param key
  * @param matches
@@ -60,32 +90,8 @@ export const matchStrings = <T extends QueryObj = QueryObj>(
  * If the `union` option is true, only one of the provided values needs to
  * match. Exclusions _always_ take precedence.
  *
- * Note: See {@link matchStrings} for a syntax sugar of this function, aimed at
- * matching `string[]` options.
- *
- * @example
- * ```ts
- * import { query, matchStrings } from "@thi.ng/oquery";
- *
- * const DB = [
- *   { id: 1, tags: ["a", "b"] },
- *   { id: 2, tags: ["c", "b"] },
- *   { id: 3, tags: ["c", "a"] },
- * ];
- *
- * // tag intersection
- * query(DB, [matchStrings("tags", ["a", "b"])])
- * // [ { id: 1, tags: ["a", "b"] } ]
- *
- * // tag union
- * query(DB, [matchStrings("tags", ["a", "b"])])
- * // here returns full DB...
- * // since each item either has `a` and/or `b` tags
- *
- * // tag exclusion (require `a`, disallow `b`)
- * query(DB, [matchStrings("tags", ["a", "!b"])])
- * // [ { id: 3, tags: ["c", "a"] } ]
- * ```
+ * Note: See {@link matchStrings} for a syntax sugar & examples of this
+ * function, aimed at matching `string[]` options.
  *
  * @param key
  * @param matches
@@ -140,7 +146,7 @@ export const matchMultiple = <T extends QueryObj = QueryObj, V = any>(
  *   between operator and value are ignored.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/match-pattern.ts
  * import { query, matchPattern } from "@thi.ng/oquery";
  *
  * const DB = [
@@ -149,12 +155,19 @@ export const matchMultiple = <T extends QueryObj = QueryObj, V = any>(
  *   { id: "c", score: 15 },
  * ];
  *
- * query(DB, [matchPattern("id", /[a-z]{4,}/)]);
+ * console.log(
+ *   query(DB, [matchPattern("id", /[a-z]{4,}/)])
+ * );
  * // [{ id: "bbbb", score: 60 }]
- * query(DB, [matchPattern("id", ">= c")]);
+ *
+ * console.log(
+ *   query(DB, [matchPattern("id", ">= c")])
+ * );
  * // [{ id: "c", score: 15 }]
  *
- * query(DB, [matchPattern("score", "<50")]);
+ * console.log(
+ *   query(DB, [matchPattern("score", "<50")])
+ * );
  * // [{ id: "a", score: 32 }, { id: "c", score: 15 }]
  * ```
  *

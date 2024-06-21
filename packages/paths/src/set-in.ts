@@ -22,10 +22,12 @@ import { defSetter } from "./setter.js";
  * value to be set (default: `any`).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/set-in-unsafe.ts
  * import { setInUnsafe } from "@thi.ng/paths";
  *
- * setInUnsafe({}, "a.b.c", 23);
+ * console.log(
+ *   setInUnsafe({}, "a.b.c", 23)
+ * );
  * // { a: { b: { c: 23} } }
  * ```
  *
@@ -43,15 +45,19 @@ export const setInUnsafe = <T>(state: any, path: Path, val: T): any =>
  * Only the first 8 path levels are type checked.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/set-in.ts
  * import { setIn } from "@thi.ng/paths";
  *
  * // type checked path & value
- * setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], 24);
+ * console.log(
+ *   setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], 24)
+ * );
  * // { a: { b: { c: 24 } } }
  *
  * // error (wrong value type)
- * setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], "24");
+ * console.log(
+ *   setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], "24")
+ * );
  * ```
  *
  * @param state -

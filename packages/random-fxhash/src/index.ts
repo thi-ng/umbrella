@@ -26,7 +26,7 @@ declare var $fx: { hash: string };
  * [`BASE58_LC`](https://docs.thi.ng/umbrella/base-n/variables/BASE58_LC.html).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/seed-from-hash.ts
  * import { seedFromHash, RND } from "@thi.ng/random-fxhash";
  *
  * RND.seed(seedFromHash("ookorwLedQrCTPesBcUPrR2oRbPHgsAxe9xgCSNq4XAuZSaCvaB"));
@@ -48,7 +48,7 @@ export const seedFromHash = (hash: string) =>
 let seed: number[];
 if (typeof fxhash === "string") {
 	seed = seedFromHash(fxhash);
-} else if (typeof $fx?.hash === "string") {
+} else if (typeof $fx !== "undefined" && typeof $fx.hash === "string") {
 	seed = seedFromHash($fx.hash);
 } else {
 	seed = DEFAULT_SEED_128;

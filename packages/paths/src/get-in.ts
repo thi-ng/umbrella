@@ -24,10 +24,12 @@ import { defGetter } from "./getter.js";
  * value to be retrieved (default: `any`).
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/get-in-unsafe.ts
  * import { getInUnsafe } from "@thi.ng/paths";
  *
- * getInUnsafe({ a: { b: { c: 23 } } }, "a.b.c");
+ * console.log(
+ *   getInUnsafe({ a: { b: { c: 23 } } }, "a.b.c")
+ * );
  * // 23
  * ```
  *
@@ -45,11 +47,13 @@ export const getInUnsafe = <T = any>(state: any, path: Path): Maybe<T> =>
  * Only the first 8 path levels are type checked.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/get-in.ts
  * import { getIn } from "@thi.ng/paths";
  *
  * // type checked path and inferred return type
- * getIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
+ * console.log(
+ *   getIn({ a: { b: { c: 23 } } }, ["a","b","c"])
+ * );
  * // 23
  * ```
  *

@@ -25,11 +25,13 @@ import { updateIn } from "./update-in.js";
  * tuple.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/delete-in-unsafe.ts
  * import { deleteInUnsafe } from "@thi.ng/paths";
  *
  * // unchecked
- * deleteInUnsafe({ a: { b: { c: 23 } } }, "a.b.c");
+ * console.log(
+ *   deleteInUnsafe({ a: { b: { c: 23 } } }, "a.b.c")
+ * );
  * // { a: { b: { } } }
  * ```
  *
@@ -51,14 +53,18 @@ export const deleteInUnsafe = (state: any, path: Path): any =>
  * See {@link deleteInUnsafe} for unchecked version.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/delete-in.ts
  * import { deleteIn } from "@thi.ng/paths";
  *
  * // type checked
- * deleteIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
+ * console.log(
+ *   deleteIn({ a: { b: { c: 23 } } }, ["a","b","c"])
+ * );
  *
  * // error (invalid path)
- * deleteIn({ a: { b: { c: 23 } } }, ["a","b","d"]);
+ * console.log(
+ *   deleteIn({ a: { b: { c: 23 } } }, ["a","b","d"])
+ * );
  * ```
  *
  * @param state -

@@ -27,14 +27,16 @@ import { toPath } from "./path.js";
  * Also see: {@link getIn}, {@link getInUnsafe}
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-getter-unsafe.ts
  * import { defGetterUnsafe } from "@thi.ng/paths";
  *
  * const g = defGetterUnsafe("a.b.c");
  *
- * g({ a: { b: { c: 23} } }) // 23
- * g({ x: 23 }) // undefined
- * g() // undefined
+ * console.log(g({ a: { b: { c: 23} } }));
+ * // 23
+ *
+ * console.log(g({ x: 23 }));
+ * // undefined
  * ```
  *
  * @param path -
@@ -62,7 +64,7 @@ export const defGetterUnsafe = <T = any>(path: Path): Fn<any, Maybe<T>> =>
  * Also see: {@link defGetterUnsafe}, {@link getIn}, {@link getInUnsafe}
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/def-getter.ts
  * import { defGetter } from "@thi.ng/paths";
  *
  * interface Foo {
@@ -70,14 +72,19 @@ export const defGetterUnsafe = <T = any>(path: Path): Fn<any, Maybe<T>> =>
  * }
  *
  * // fully type checked getter
- * g = defGetter<Foo, "a", "b", "c">(["a","b","c"]);
+ * const g = defGetter<Foo, "a", "b", "c">(["a","b","c"]);
  *
  * // error (wrong `d` key)
- * g = defGetter<Foo, "a", "b", "d">(["a","b","d"]);
+ * // g = defGetter<Foo, "a", "b", "d">(["a","b","d"]);
  *
- * g({ a: { b: { c: 23} } }); // 23
- * g({ x: 23 }); // error
- * g(); // error
+ * console.log(g({ a: { b: { c: 23} } }));
+ * // 23
+ *
+ * // error
+ * console.log(g({ x: 23 }));
+ *
+ * // error
+ * console.log(g());
  * ```
  *
  * @param path -

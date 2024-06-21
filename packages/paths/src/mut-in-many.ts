@@ -15,16 +15,18 @@ import { mutIn } from "./mut-in.js";
  * value and will also be used as return type.
  *
  * @example
- * ```ts
+ * ```ts tangle:../export/mut-in-many-unsafe.ts
  * import { mutInManyUnsafe } from "@thi.ng/paths";
  *
- * mutInManyUnsafe(
+ * const res = mutInManyUnsafe(
  *   { a: { b: 1 }, x: { y: { z: 2 } } },
  *   // pair #1
  *   "a.b", 10,
  *   // pair #2
  *   "x.y.z", 20
- * )
+ * );
+ *
+ * console.log(res);
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
  * ```
  *

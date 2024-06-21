@@ -15,16 +15,16 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  *
  * Also see {@link disallowProtoPath}.
  *
- * ```ts
+ * ```ts tangle:../export/to-path.ts
  * import { toPath } from "@thi.ng/paths";
  *
- * toPath("a.b.c");
+ * console.log(toPath("a.b.c"));
  * // ["a", "b", "c"]
  *
- * toPath(0)
+ * console.log(toPath(0));
  * // [0]
  *
- * toPath(["a", "b", "c"])
+ * console.log(toPath(["a", "b", "c"]));
  * // ["a", "b", "c"]
  * ```
  *
