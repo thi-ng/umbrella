@@ -8,6 +8,13 @@
 
 {{meta.status}}
 
+The types and constants defined in this package have been distributed & migrated
+to other packages, most notably
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom).
+
+No further updates to this package are planned and no other packages in the
+thi.ng/umbrella monorepo depend on it anymore.
+
 {{repo.supportPackages}}
 
 {{repo.relatedPackages}}

@@ -28,9 +28,16 @@ Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-n
 
 ## Status
 
-**STABLE** - used in production
+**DEPRECATED** - superseded by other package(s)
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-api%5D+in%3Atitle)
+
+The types and constants defined in this package have been distributed & migrated
+to other packages, most notably
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom).
+
+No further updates to this package are planned and no other packages in the
+thi.ng/umbrella monorepo depend on it anymore.
 
 ## Installation
 

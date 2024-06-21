@@ -95,6 +95,7 @@
 	},
 	"thi.ng": {
 		"alias": "gapi",
+		"status": "deprecated",
 		"year": 2013
 	}
 }
