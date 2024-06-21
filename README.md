@@ -19,6 +19,10 @@
 - [Projects](#projects)
   - [Latest updates](#latest-updates)
 - [Building](#building)
+  - [Building example projects](#building-example-projects)
+  - [Testing](#testing)
+  - [Documentation](#documentation)
+  - [Extracting code examples from readme files & comments](#extracting-code-examples-from-readme-files--comments)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 - [Contributors](#contributors-✨)
@@ -37,39 +41,57 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to 192 individual TypeScript libraries/packages and
-160+ example projects illustrating their usage, currently totalling ~208k SLOC
-and ~4000 source files...
+This mono-repository is home to 193 individual TypeScript
+libraries/packages/tools and ~170 example projects illustrating their usage,
+currently totalling ~208k SLOC and ~4100 source files... Some of the projects
+have been in regular development since 2015. The monorepo exists in its current
+form since January 2018.
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet independent libraries, tools and
-general purpose building blocks for the following _non-exhaustive_ list of
+general purpose building blocks for the following **non-exhaustive** list of
 topics (see [package overview](#projects) below):
 
-- Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
-- Reactive programming, stream / transducer based dataflow graphs / pipelines / DOM
-- Fiber process tree abstraction for ES6 generators (co-routines / cooperative multitasking)
-- Data structures & data transformations for wide range of use cases (maps, sets, heaps, queues, graphs etc.)
-- WebAssembly bridge APIs & data structure bindings code generators for multiple target languages
-- PEG-style functional parser combinators w/ (optional) custom grammar definition language
+- Functional programming (ES6 iterators/generators, composition, memoization,
+  transducers, multi-methods)
+- Reactive programming, stream / transducer based dataflow graphs / pipelines /
+  DOM
+- Fiber process tree abstraction for ES6 generators (co-routines / cooperative
+  multitasking)
+- Data structures & data transformations for wide range of use cases (maps,
+  sets, heaps, queues, graphs etc.)
+- WebAssembly bridge APIs & data structure bindings code generators for multiple
+  target languages (primarily aimed at Zig & C11)
+- PEG-style functional parser combinators w/ (optional) custom grammar
+  definition language
 - Customizable HTML & Markdown parsers
-- 2D geometry generation, shape primitives, math, manipulation, intersections, conversions & visualizations
+- 2D/3D geometry generation, shape primitives, math, manipulation,
+  intersections, conversions & visualizations
 - Canvas abstractions, pixel buffers & SVG serialization/conversion
-- Comprehensive function collection (900+) for nD-vectors and matrices (dense & sparse)
+- Comprehensive function collection (900+) for nD-vectors and matrices (dense &
+  sparse)
 - ECS implementations with optional support for strided memory layouts
 - Semi-declarative WebGL 1/2 abstraction layer
-- DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
-- Value-based equivalence (vs. native object identity) and associative data structures (sets, maps)
-- DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT, muxers, rate converters
-- Immutable data handling, state containers, transacted state updates, Undo-Redo history
-- Reactive UI component toolkits (DOM-based, canvas-based, immediate-mode, multiple approaches...)
-- Multi-format, multi-channel pixel buffers (int & float based), conversions, dithering, Porter-Duff alpha-blending operators
+- DSL for shader functions defined in TypeScript and cross-compilation to GLSL,
+  JS, VEX etc.
+- Value-based equivalence (vs. native object identity) and associative data
+  structures (sets, maps)
+- DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT,
+  muxers, rate converters
+- Immutable data handling, state containers, transacted state updates, Undo-Redo
+  history
+- Reactive UI component toolkits (DOM-based, canvas-based, immediate-mode,
+  multiple approaches...)
+- Multi-format, multi-channel pixel buffers (int & float based), conversions,
+  dithering, Porter-Duff alpha-blending operators
 - Color space/format conversions, matrix based color manipulation, gradient
   generators, color palettes, dominant color extraction
 - Date-time abstraction, relative dates, iterators, formatters, math
 - WebWorker workflow abstractions
-- Forth-style pointfree DSL for functional composition and DSL development/extension
-- S-expression parser & runtime (interpreter) infrastructure for custom DSL creation
+- Forth-style pointfree DSL for functional composition and DSL
+  development/extension
+- S-expression parser & runtime (interpreter) infrastructure for custom DSL
+  creation
 - WASM-based SIMD batch-processing of vector data
 - Pen-plotter (AxiDraw) toolchain & geometry conversions
 - Interpolations, math helpers, automatic differentiation (Dual numbers)
@@ -78,9 +100,9 @@ topics (see [package overview](#projects) below):
 Once more, **this project is NOT a framework**. There's no turn-key,
 one-size-fits-all approach and instead the overall design philosophy encourages
 a mix & match philosophy for key aspects of application design (inside & outside
-the browser). Customization points are provided wherever useful and usually only
-expect certain interfaces/type signatures rather than hard-coded concrete
-implementations.
+the browser). Customization points are provided wherever useful and only expect
+certain interfaces/type signatures rather than hard-coded concrete
+implementations. In many cases presets are provided too.
 
 All packages:
 
@@ -187,7 +209,7 @@ The following videos have been migrated from YouTube to their new home at
 
 ## Examples & Showcase
 
-There's a steadily growing number (160+) of standalone examples of different
+There's a steadily growing number (~170) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
@@ -219,6 +241,13 @@ from this collection.
 | <a href="https://www.fxhash.xyz/generative/26702"><img src="./assets/fxhash/bubblemania-240.jpg"/></a> | <img src="./assets/fxhash/danza-240.jpg"/>                                                         | <img src="./assets/fxhash/s-trace-240.jpg"/>                                                           |
 
 ## Community, contributing, getting help
+
+> [!NOTE]
+> My [Mastodon](https://mastodon.thi.ng/@toxi) account is the best place to
+> learn about ongoing developments. This is a multi-purpose account, but you can
+> view [#ThingUmbrella tagged
+> posts](http://mastodon.thi.ng/@toxi/tagged/ThingUmbrella) only and/or
+> [subscribe to those via RSS](http://mastodon.thi.ng/@toxi/tagged/ThingUmbrella.rss).
 
 Join the [discussions here on
 Github](https://github.com/thi-ng/umbrella/discussions), get in touch via
@@ -462,6 +491,7 @@ As of: 2024-05-08
 | [`@thi.ng/geom-tessellate`](./packages/geom-tessellate)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)       | [changelog](./packages/geom-tessellate/CHANGELOG.md)    | nD convex polygon tessellators                      |
 | [`@thi.ng/geom-trace-bitmap`](./packages/geom-trace-bitmap)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-trace-bitmap.svg)](https://www.npmjs.com/package/@thi.ng/geom-trace-bitmap)   | [changelog](./packages/geom-trace-bitmap/CHANGELOG.md)  | bitmap image to vector conversion                   |
 | [`@thi.ng/geom-voronoi`](./packages/geom-voronoi)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)             | [changelog](./packages/geom-voronoi/CHANGELOG.md)       | 2D iterative delaunay/voronoi                       |
+| [`@thi.ng/geom-webgl`](./packages/geom-webgl)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-webgl.svg)](https://www.npmjs.com/package/@thi.ng/geom-webgl)                 | [changelog](./packages/geom-webgl/CHANGELOG.md)         | thi.ng/geom / WebGL shape conversion & interop      |
 | [`@thi.ng/imago`](./packages/imago)                           | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)                           | [changelog](./packages/imago/CHANGELOG.md)              | Declarative & extensible image processing pipelines |
 | [`@thi.ng/lsys`](./packages/lsys)                             | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                             | [changelog](./packages/lsys/CHANGELOG.md)               | Extensible L-System architecture                    |
 | [`@thi.ng/pixel`](./packages/pixel)                           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                           | [changelog](./packages/pixel/CHANGELOG.md)              | Multi-format pixel buffers                          |
@@ -542,10 +572,10 @@ yarn workspace @thi.ng/transducers run build
 ```
 
 Note: The `yarn build` script alias will also generate TS type declaration
-files. This step is only needed if updating the public API of a
-package. If you're confident it's not needed, using the `build:esbuild` alias is
-sufficient and much faster. Also, TS declaration files can be manually rebuilt
-via `build:decl`...
+files. This step is only needed once in the beginning or if updating the public
+API of a package. If you're confident it's not needed, using the `build:esbuild`
+alias is sufficient and much faster. Also, TS declaration files can be manually
+rebuilt via `build:decl`...
 
 ### Building example projects
 
@@ -582,11 +612,15 @@ yarn doc
 
 All packages in this repo have prepared infrastructure to extract various code
 examples & snippets from their README files and from comments in the source
-code. Altogether, there're approx. 800 of them in this repo, but currently only
-~15-20% are prepared for extraction so far (it's an ongoing timeconsuming manual
-process to prepare & check each of them, but work is under way!)
+code. Altogether, there're 800-1000 of them in this repo, but only ~420 have
+been processed thus far (it's an ongoing time consuming manual process to
+prepare & check each of them, but work is under way! Please get in touch if you
+want to help!).
 
-The code extraction is handled via [thi.ng/tangle](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle), itself a part of thi.ng/umbrella. You can read more details about this process here:
+The code extraction is handled via
+[thi.ng/tangle](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle),
+itself a part of thi.ng/umbrella. You can read more details about this process
+here:
 
 - [Mastodon post #1](https://mastodon.thi.ng/@toxi/111959275083112668)
 - [Mastodon post #2](https://mastodon.thi.ng/@toxi/112026554577015934)
