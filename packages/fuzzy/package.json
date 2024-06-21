@@ -92,9 +92,6 @@
 		"./strategies/maxima": {
 			"default": "./strategies/maxima.js"
 		},
-		"./strategies/opts": {
-			"default": "./strategies/opts.js"
-		},
 		"./tnorms": {
 			"default": "./tnorms.js"
 		},
