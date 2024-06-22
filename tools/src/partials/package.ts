@@ -47,6 +47,8 @@ export const packageList = (
 	for (let p of pkgShortNames) {
 		try {
 			const pkg = readJSON(`../${p}/package.json`);
+			// skip deprecated packages
+			if (pkg[META_FIELD]?.status === "deprecated") continue;
 			items.push(
 				pkgLink(config, pkg.name) +
 					" - " +
