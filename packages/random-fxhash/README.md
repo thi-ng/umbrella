@@ -100,7 +100,7 @@ For Node.js REPL:
 const rfx = await import("@thi.ng/random-fxhash");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 483 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 493 bytes
 
 **IMPORTANT**: When using this package (or any other packages from this
 monorepo) for [fxhash](https://fxhash.xyz), you MUST use a bundler (e.g. Vite,
