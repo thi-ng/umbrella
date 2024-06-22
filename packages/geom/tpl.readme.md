@@ -14,12 +14,18 @@ name](http://thi.ng/geom-clj). All polymorphic operations built on
 
 ### Shape types
 
-The following shape primitives are provided. All these types are implemented as
+The following 2D/3D shape primitives are provided. All these types are implemented as
 basic data container classes with additional eponymous factory functions (e.g.
 `Circle` (class) => `circle()` (function)), which are encouraged to be used
 instead of calling class constructors directly. For many shapes there're
 [multiple ways to create them](#shape-factory-functions), please also check
 linked sources and/or docs.
+
+> [!IMPORTANT]
+> Support for 3D shapes is WIP and currently limited to the various operations
+> provided by this package, but does not _yet_ find any usage outside (e.g. for
+> visualization). Sill, even the ops supported so far can be useful for many
+> use cases...
 
 | Shape/Form                                                                                             | Description                           | Hiccup support      |
 |--------------------------------------------------------------------------------------------------------|---------------------------------------|---------------------|
@@ -109,7 +115,7 @@ console.log(asSvg(a));
 
 ### SVG support
 
-SVG conversion is included via the
+For 2D shape types only, SVG conversion is included via the
 [`asSvg()`](https://docs.thi.ng/umbrella/geom/functions/asSvg.html) and
 [`svgDoc()`](https://docs.thi.ng/umbrella/geom/functions/svgDoc.html) functions.
 
@@ -118,63 +124,65 @@ SVG conversion is included via the
 The following operations are provided (many also applicable to shape groups
 directly and/or perform automatic resampling/conversion if needed).
 
-| Operation                                                                                   | Description                                                        |
-|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| [`applyTransforms()`](https://docs.thi.ng/umbrella/geom/functions/applyTransforms.html)     | applies any spatial transformation attributes                      |
-| [`arcLength()`](https://docs.thi.ng/umbrella/geom/functions/arcLength.html)                 | compute arc length / perimeter of shape boundary                   |
-| [`area()`](https://docs.thi.ng/umbrella/geom/functions/area.html)                           | signed/unsigned surface area                                       |
-| [`asCubic()`](https://docs.thi.ng/umbrella/geom/functions/asCubic.html)                     | convert shape boundary to cubic bezier segments                    |
-| [`asPath()`](https://docs.thi.ng/umbrella/geom/functions/asPath.html)                       | convert shape to path                                              |
-| [`asPolygon()`](https://docs.thi.ng/umbrella/geom/functions/asPolygon.html)                 | convert shape to polygon(s)                                        |
-| [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)               | convert shape to polyline(s)                                       |
-| [`asSector()`](https://docs.thi.ng/umbrella/geom/functions/asSector.html)                   | convert arc to sector (path)                                       |
-| [`asSvg()`](https://docs.thi.ng/umbrella/geom/functions/asSvg.html)                         | serialize shape/group/hierarchy to SVG                             |
-| [`bounds()`](https://docs.thi.ng/umbrella/geom/functions/bounds.html)                       | compute bounding box                                               |
-| [`center()`](https://docs.thi.ng/umbrella/geom/functions/center.html)                       | center shape around origin or point                                |
-| [`centroid()`](https://docs.thi.ng/umbrella/geom/functions/centroid.html)                   | compute shape centroid                                             |
-| [`classifyPoint()`](https://docs.thi.ng/umbrella/geom/functions/classifyPoint.html)         | classify point in relation to shape boundary (in/out)              |
-| [`clipConvex()`](https://docs.thi.ng/umbrella/geom/functions/clipConvex.html)               | clip shape against convex boundary                                 |
-| [`closestPoint()`](https://docs.thi.ng/umbrella/geom/functions/closestPoint.html)           | compute closest point on shape boundary                            |
-| [`convexHull()`](https://docs.thi.ng/umbrella/geom/functions/convexHull.html)               | compute convex hull (2d only)                                      |
-| [`convolve()`](https://docs.thi.ng/umbrella/geom/functions/convolve.html)                   | kernel based vertex convolution/filtering                          |
-| [`edges()`](https://docs.thi.ng/umbrella/geom/functions/edges.html)                         | extract edges                                                      |
-| [`fitIntoBounds2()`](https://docs.thi.ng/umbrella/geom/functions/fitIntoBounds2.html)       | rescale/reposition a 2D shape into a destination boundary          |
-| [`fitIntoBounds3()`](https://docs.thi.ng/umbrella/geom/functions/fitIntoBounds3.html)       | rescale/reposition a 3D shape into a destination boundary          |
-| [`fitAllIntoBounds2()`](https://docs.thi.ng/umbrella/geom/functions/fitAllIntoBounds2.html) | rescale/reposition multiple 2D shapes into a boundary              |
-| [`flip()`](https://docs.thi.ng/umbrella/geom/functions/flip.html)                           | reverse order (vertices or direction)                              |
-| [`intersects()`](https://docs.thi.ng/umbrella/geom/functions/intersects.html)               | pairwise shape intersection (various types)                        |
-| [`mapPoint()`](https://docs.thi.ng/umbrella/geom/functions/mapPoint.html)                   | transform world space point into local shape UV space              |
-| [`offset()`](https://docs.thi.ng/umbrella/geom/functions/offset.html)                       | shape/path offsetting                                              |
-| [`pointAt()`](https://docs.thi.ng/umbrella/geom/functions/pointAt.html)                     | compute point on shape boundary at parametric position             |
-| [`pointInside()`](https://docs.thi.ng/umbrella/geom/functions/pointInside.html)             | check if point is inside shape                                     |
-| [`proximity()`](https://docs.thi.ng/umbrella/geom/functions/proximity.html)                 | distance from point to shape boundary                              |
-| [`resample()`](https://docs.thi.ng/umbrella/geom/functions/resample.html)                   | resample/convert shape                                             |
-| [`rotate()`](https://docs.thi.ng/umbrella/geom/functions/rotate.html)                       | rotate shape (2D only)                                             |
-| [`rotateAroundAxis()`](https://docs.thi.ng/umbrella/geom/functions/rotateAroundAxis.html)   | rotate shape (3D only)                                             |
-| [`rotateX()`](https://docs.thi.ng/umbrella/geom/functions/rotateX.html)                     | rotate shape (3D only)                                             |
-| [`rotateY()`](https://docs.thi.ng/umbrella/geom/functions/rotateY.html)                     | rotate shape (3D only)                                             |
-| [`rotateZ()`](https://docs.thi.ng/umbrella/geom/functions/rotateZ.html)                     | rotate shape (3D only)                                             |
-| [`scale()`](https://docs.thi.ng/umbrella/geom/functions/scale.html)                         | scale shape (uniformly/non-uniformly)                              |
-| [`scaleWithCenter()`](https://docs.thi.ng/umbrella/geom/functions/scaleWithCenter.html)     | scale shape with pivot point                                       |
-| [`scatter()`](https://docs.thi.ng/umbrella/geom/functions/scatter.html)                     | create random points inside a shape boundary                       |
-| [`simplify()`](https://docs.thi.ng/umbrella/geom/functions/simplify.html)                   | simplify shape/boundary (Douglas-Peucker)                          |
-| [`splitArcLength()`](https://docs.thi.ng/umbrella/geom/functions/splitArcLength.html)       | split shapes & groups based on max. arc length                     |
-| [`splitAt()`](https://docs.thi.ng/umbrella/geom/functions/splitAt.html)                     | split shape/boundary at parametric position                        |
-| [`splitNearPoint()`](https://docs.thi.ng/umbrella/geom/functions/splitNearPoint.html)       | split shape/boundary near world position                           |
-| [`subdivCurve()`](https://docs.thi.ng/umbrella/geom/functions/subdivCurve.html)             | recursively apply curve subdivision kernel                         |
-| [`tangentAt()`](https://docs.thi.ng/umbrella/geom/functions/tangentAt.html)                 | compute tangent at parametric position                             |
-| [`tessellate()`](https://docs.thi.ng/umbrella/geom/functions/tessellate.html)               | (recursively) tessellate shape                                     |
-| [`transformVertices()`](https://docs.thi.ng/umbrella/geom/functions/transformVertices.html) | apply custom function to each vertex                               |
-| [`transform()`](https://docs.thi.ng/umbrella/geom/functions/transform.html)                 | apply transformation matrix                                        |
-| [`translate()`](https://docs.thi.ng/umbrella/geom/functions/translate.html)                 | translate shape                                                    |
-| [`union()`](https://docs.thi.ng/umbrella/geom/functions/union.html)                         | compute shape union                                                |
-| [`unmapPoint()`](https://docs.thi.ng/umbrella/geom/functions/unmapPoint.html)               | transform local shape UV point into world space                    |
-| [`vertices()`](https://docs.thi.ng/umbrella/geom/functions/vertices.html)                   | extract/sample vertices from shape boundary                        |
-| [`volume()`](https://docs.thi.ng/umbrella/geom/functions/volume.html)                       | compute shape volume (3D only)                                     |
-| [`warpPoint()`](https://docs.thi.ng/umbrella/geom/functions/warpPoint.html)                 | transfer single point between the local spaces defined by 2 shapes |
-| [`warpPoints()`](https://docs.thi.ng/umbrella/geom/functions/warpPoints.html)               | transfer points between the local spaces defined by 2 shapes       |
-| [`warpPointsBPatch()`](https://docs.thi.ng/umbrella/geom/functions/warpPointsBPatch.html)   | transfer points to the local spaces of a bezier patch              |
-| [`withAttribs()`](https://docs.thi.ng/umbrella/geom/functions/withAttribs.html)             | shallow copy of given shape with new `attribs` assigned            |
+| Operation                                                                                           | Description                                                        |
+|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| [`applyTransforms()`](https://docs.thi.ng/umbrella/geom/functions/applyTransforms.html)             | applies any spatial transformation attributes                      |
+| [`arcLength()`](https://docs.thi.ng/umbrella/geom/functions/arcLength.html)                         | compute arc length / perimeter of shape boundary                   |
+| [`area()`](https://docs.thi.ng/umbrella/geom/functions/area.html)                                   | signed/unsigned surface area                                       |
+| [`asCubic()`](https://docs.thi.ng/umbrella/geom/functions/asCubic.html)                             | convert shape boundary to cubic bezier segments                    |
+| [`asPath()`](https://docs.thi.ng/umbrella/geom/functions/asPath.html)                               | convert shape to path                                              |
+| [`asPolygon()`](https://docs.thi.ng/umbrella/geom/functions/asPolygon.html)                         | convert shape to polygon(s)                                        |
+| [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)                       | convert shape to polyline(s)                                       |
+| [`asSector()`](https://docs.thi.ng/umbrella/geom/functions/asSector.html)                           | convert arc to sector (path)                                       |
+| [`asSvg()`](https://docs.thi.ng/umbrella/geom/functions/asSvg.html)                                 | serialize shape/group/hierarchy to SVG                             |
+| [`bounds()`](https://docs.thi.ng/umbrella/geom/functions/bounds.html)                               | compute bounding box                                               |
+| [`center()`](https://docs.thi.ng/umbrella/geom/functions/center.html)                               | center shape around origin or point                                |
+| [`centroid()`](https://docs.thi.ng/umbrella/geom/functions/centroid.html)                           | compute shape centroid                                             |
+| [`classifyPoint()`](https://docs.thi.ng/umbrella/geom/functions/classifyPoint.html)                 | classify point in relation to shape boundary (in/out)              |
+| [`clipConvex()`](https://docs.thi.ng/umbrella/geom/functions/clipConvex.html)                       | clip shape against convex boundary                                 |
+| [`closestPoint()`](https://docs.thi.ng/umbrella/geom/functions/closestPoint.html)                   | compute closest point on shape boundary                            |
+| [`convexHull()`](https://docs.thi.ng/umbrella/geom/functions/convexHull.html)                       | compute convex hull (2d only)                                      |
+| [`convolve()`](https://docs.thi.ng/umbrella/geom/functions/convolve.html)                           | kernel based vertex convolution/filtering                          |
+| [`edges()`](https://docs.thi.ng/umbrella/geom/functions/edges.html)                                 | extract edges                                                      |
+| [`edgesFromTessellation()`](https://docs.thi.ng/umbrella/geom/functions/edgesFromTessellation.html) | extract unique edges from tessellation results                     |
+| [`fitIntoBounds2()`](https://docs.thi.ng/umbrella/geom/functions/fitIntoBounds2.html)               | rescale/reposition a 2D shape into a destination boundary          |
+| [`fitIntoBounds3()`](https://docs.thi.ng/umbrella/geom/functions/fitIntoBounds3.html)               | rescale/reposition a 3D shape into a destination boundary          |
+| [`fitAllIntoBounds2()`](https://docs.thi.ng/umbrella/geom/functions/fitAllIntoBounds2.html)         | rescale/reposition multiple 2D shapes into a boundary              |
+| [`flip()`](https://docs.thi.ng/umbrella/geom/functions/flip.html)                                   | reverse order (vertices or direction)                              |
+| [`graphFromTessellation()`](https://docs.thi.ng/umbrella/geom/functions/graphFromTessellation.html) | create graph from tessellation results                             |
+| [`intersects()`](https://docs.thi.ng/umbrella/geom/functions/intersects.html)                       | pairwise shape intersection (various types)                        |
+| [`mapPoint()`](https://docs.thi.ng/umbrella/geom/functions/mapPoint.html)                           | transform world space point into local shape UV space              |
+| [`offset()`](https://docs.thi.ng/umbrella/geom/functions/offset.html)                               | shape/path offsetting                                              |
+| [`pointAt()`](https://docs.thi.ng/umbrella/geom/functions/pointAt.html)                             | compute point on shape boundary at parametric position             |
+| [`pointInside()`](https://docs.thi.ng/umbrella/geom/functions/pointInside.html)                     | check if point is inside shape                                     |
+| [`proximity()`](https://docs.thi.ng/umbrella/geom/functions/proximity.html)                         | distance from point to shape boundary                              |
+| [`resample()`](https://docs.thi.ng/umbrella/geom/functions/resample.html)                           | resample/convert shape                                             |
+| [`rotate()`](https://docs.thi.ng/umbrella/geom/functions/rotate.html)                               | rotate shape (2D only)                                             |
+| [`rotateAroundAxis()`](https://docs.thi.ng/umbrella/geom/functions/rotateAroundAxis.html)           | rotate shape (3D only)                                             |
+| [`rotateX()`](https://docs.thi.ng/umbrella/geom/functions/rotateX.html)                             | rotate shape (3D only)                                             |
+| [`rotateY()`](https://docs.thi.ng/umbrella/geom/functions/rotateY.html)                             | rotate shape (3D only)                                             |
+| [`rotateZ()`](https://docs.thi.ng/umbrella/geom/functions/rotateZ.html)                             | rotate shape (3D only)                                             |
+| [`scale()`](https://docs.thi.ng/umbrella/geom/functions/scale.html)                                 | scale shape (uniformly/non-uniformly)                              |
+| [`scaleWithCenter()`](https://docs.thi.ng/umbrella/geom/functions/scaleWithCenter.html)             | scale shape with pivot point                                       |
+| [`scatter()`](https://docs.thi.ng/umbrella/geom/functions/scatter.html)                             | create random points inside a shape boundary                       |
+| [`simplify()`](https://docs.thi.ng/umbrella/geom/functions/simplify.html)                           | simplify shape/boundary (Douglas-Peucker)                          |
+| [`splitArcLength()`](https://docs.thi.ng/umbrella/geom/functions/splitArcLength.html)               | split shapes & groups based on max. arc length                     |
+| [`splitAt()`](https://docs.thi.ng/umbrella/geom/functions/splitAt.html)                             | split shape/boundary at parametric position                        |
+| [`splitNearPoint()`](https://docs.thi.ng/umbrella/geom/functions/splitNearPoint.html)               | split shape/boundary near world position                           |
+| [`subdivCurve()`](https://docs.thi.ng/umbrella/geom/functions/subdivCurve.html)                     | recursively apply curve subdivision kernel                         |
+| [`tangentAt()`](https://docs.thi.ng/umbrella/geom/functions/tangentAt.html)                         | compute tangent at parametric position                             |
+| [`tessellate()`](https://docs.thi.ng/umbrella/geom/functions/tessellate.html)                       | (recursively) tessellate shape                                     |
+| [`transformVertices()`](https://docs.thi.ng/umbrella/geom/functions/transformVertices.html)         | apply custom function to each vertex                               |
+| [`transform()`](https://docs.thi.ng/umbrella/geom/functions/transform.html)                         | apply transformation matrix                                        |
+| [`translate()`](https://docs.thi.ng/umbrella/geom/functions/translate.html)                         | translate shape                                                    |
+| [`union()`](https://docs.thi.ng/umbrella/geom/functions/union.html)                                 | compute shape union                                                |
+| [`unmapPoint()`](https://docs.thi.ng/umbrella/geom/functions/unmapPoint.html)                       | transform local shape UV point into world space                    |
+| [`vertices()`](https://docs.thi.ng/umbrella/geom/functions/vertices.html)                           | extract/sample vertices from shape boundary                        |
+| [`volume()`](https://docs.thi.ng/umbrella/geom/functions/volume.html)                               | compute shape volume (3D only)                                     |
+| [`warpPoint()`](https://docs.thi.ng/umbrella/geom/functions/warpPoint.html)                         | transfer single point between the local spaces defined by 2 shapes |
+| [`warpPoints()`](https://docs.thi.ng/umbrella/geom/functions/warpPoints.html)                       | transfer points between the local spaces defined by 2 shapes       |
+| [`warpPointsBPatch()`](https://docs.thi.ng/umbrella/geom/functions/warpPointsBPatch.html)           | transfer points to the local spaces of a bezier patch              |
+| [`withAttribs()`](https://docs.thi.ng/umbrella/geom/functions/withAttribs.html)                     | shallow copy of given shape with new `attribs` assigned            |
 
 ### Shape factory functions
 
@@ -223,7 +231,7 @@ the following additional shape creation helpers are provided:
 #### Path
 
 - [pathBuilder()](https://docs.thi.ng/umbrella/geom/functions/pathBuilder-1.html)
-- [pathBuilder()](https://docs.thi.ng/umbrella/geom/functions/pathBuilder3.html)
+- [pathBuilder3()](https://docs.thi.ng/umbrella/geom/functions/pathBuilder3.html)
 - [pathFromSvg()](https://docs.thi.ng/umbrella/geom/functions/pathFromSvg.html)
 - [pathFromCubics()](https://docs.thi.ng/umbrella/geom/functions/pathFromCubics.html)
 - [normalizedPath()](https://docs.thi.ng/umbrella/geom/functions/normalizedPath.html)
@@ -278,14 +286,14 @@ but the package provides presets for common options/implementations:
 
 To be used with [`subdivideCurve()`](https://docs.thi.ng/umbrella/geom/functions/subdivCurve.html):
 
-- [`SUBDIV_CHAIKIN_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_CLOSED.html)
-- [`SUBDIV_CHAIKIN_OPEN`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_OPEN.html)
-- [`SUBDIV_CUBIC_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CUBIC_CLOSED.html)
-- [`SUBDIV_DISPLACE`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_DISPLACE.html)
-- [`SUBDIV_MID_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_CLOSED.html)
-- [`SUBDIV_MID_OPEN`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_OPEN.html)
-- [`SUBDIV_THIRDS_CLOSED`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_CLOSED.html)
-- [`SUBDIV_THIRDS_OPEN`](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_OPEN.html)
+- [SUBDIV_CHAIKIN_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_CLOSED.html)
+- [SUBDIV_CHAIKIN_OPEN](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_OPEN.html)
+- [SUBDIV_CUBIC_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CUBIC_CLOSED.html)
+- [SUBDIV_DISPLACE](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_DISPLACE.html)
+- [SUBDIV_MID_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_CLOSED.html)
+- [SUBDIV_MID_OPEN](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_OPEN.html)
+- [SUBDIV_THIRDS_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_CLOSED.html)
+- [SUBDIV_THIRDS_OPEN](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_OPEN.html)
 
 #### Polygon tessellation algorithms
 
@@ -295,15 +303,15 @@ See [thi.ng/geom-tessellate
 readme](https://github.com/thi-ng/umbrella/blob/develop/packages/geom-tessellate/README.md#tessellators)
 for diagrams/illustrations of each algorithm!
 
-- [`TESSELLATE_EARCUT`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT.html)
-- [`TESSELLATE_EARCUT_COMPLEX`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT_COMPLEX.html)
-- [`TESSELLATE_EDGE_SPLIT`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EDGE_SPLIT.html)
-- [`TESSELLATE_INSET`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_INSET.html)
-- [`TESSELLATE_QUAD_FAN`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_QUAD_FAN.html)
-- [`TESSELLATE_RIM_TRIS`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_RIM_TRIS.html)
-- [`TESSELLATE_TRI_FAN`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN.html)
-- [`TESSELLATE_TRI_FAN_BOUNDARY`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_BOUNDARY.html)
-- [`TESSELLATE_TRI_FAN_SPLIT`](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_SPLIT.html)
+- [TESSELLATE_EARCUT](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT.html)
+- [TESSELLATE_EARCUT_COMPLEX](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT_COMPLEX.html)
+- [TESSELLATE_EDGE_SPLIT](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EDGE_SPLIT.html)
+- [TESSELLATE_INSET](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_INSET.html)
+- [TESSELLATE_QUAD_FAN](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_QUAD_FAN.html)
+- [TESSELLATE_RIM_TRIS](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_RIM_TRIS.html)
+- [TESSELLATE_TRI_FAN](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN.html)
+- [TESSELLATE_TRI_FAN_BOUNDARY](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_BOUNDARY.html)
+- [TESSELLATE_TRI_FAN_SPLIT](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_SPLIT.html)
 
 Tessellation behaviors:
 
@@ -323,9 +331,9 @@ Tessellation post-processing:
 
 To be used with [`convolve()`](https://docs.thi.ng/umbrella/geom/functions/convolve.html):
 
-- [`KERNEL_BOX`](https://docs.thi.ng/umbrella/geom/variables/KERNEL_BOX.html)
-- [`KERNEL_GAUSSIAN`](https://docs.thi.ng/umbrella/geom/variables/KERNEL_GAUSSIAN.html)
-- [`KERNEL_TRI`](https://docs.thi.ng/umbrella/geom/variables/KERNEL_TRI.html)
+- [KERNEL_BOX](https://docs.thi.ng/umbrella/geom/functions/KERNEL_BOX.html)
+- [KERNEL_GAUSSIAN](https://docs.thi.ng/umbrella/geom/functions/KERNEL_GAUSSIAN.html)
+- [KERNEL_TRIANGLE](https://docs.thi.ng/umbrella/geom/functions/KERNEL_TRIANGLE.html)
 ---
 
 This package acts as a higher-level frontend for most of the following related
