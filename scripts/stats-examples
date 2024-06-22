@@ -19,13 +19,8 @@ echo "example,files,comments,sloc" > $out
 
 for m in $modules; do
     if [ -d "$m" ]; then
-        skip=$(grep -e '"skip": true' "$m/package.json")
-        if [ -e "$m/.skip" ] || [ -n "$skip" ]; then
-            echo "\tskipping $m"
-        else
-            echo "$m $skip"
-            echo "$m,$(cloc "$m"/src --csv | grep "TypeScript" | cut -d ',' -f1 -f4-5)" >> $out
-        fi
+        echo "$m"
+        echo "$m,$(cloc "$m"/src --csv | grep "TypeScript" | cut -d ',' -f1 -f4-5)" >> $out
     fi
 done
 
