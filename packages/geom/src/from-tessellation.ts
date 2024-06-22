@@ -12,6 +12,14 @@ import { Polygon } from "./api/polygon.js";
  * Creates a group of polygons from the given tessellation. If `attribs` are
  * given, they will be used as the group's attribs.
  *
+ * @remarks
+ * Also see:
+ *
+ * - [ITessellation](https://docs.thi.ng/umbrella/geom-tessellate/interfaces/ITessellation.html)
+ * - {@link edgesFromTessellation}
+ * - {@link edgePointsFromTessellation}
+ * - {@link graphFromTessellation}
+ *
  * @param tess
  * @param attribs
  */
@@ -31,7 +39,12 @@ export const groupFromTessellation = (
  * and can be edited, queried, and analyzed further.
  *
  * @remarks
- * Also see {@link edgesFromTessellation}, {@link edgePointsFromTessellation}.
+ * Also see:
+ *
+ * - [ITessellation](https://docs.thi.ng/umbrella/geom-tessellate/interfaces/ITessellation.html)
+ * - {@link edgesFromTessellation}
+ * - {@link edgePointsFromTessellation}
+ * - {@link groupFromTessellation}
  *
  * @param tessel
  */
@@ -53,16 +66,22 @@ export const graphFromTessellation = (
  * tessellation's `points` array.
  *
  * @remarks
+ * Also see:
+ *
+ * - [ITessellation](https://docs.thi.ng/umbrella/geom-tessellate/interfaces/ITessellation.html)
+ * - {@link edgePointsFromTessellation}
+ * - {@link graphFromTessellation}
+ * - {@link groupFromTessellation}
  *
  * @example
- * ``ts
+ * ```ts
  * import * as g from "@thi.ng/geom";
  *
  * // tessellate rect into a triangle fan
  * const tess = g.tessellate(g.rect(100), [g.TESSELLATE_TRI_FAN]);
  *
  * // extract unique edges (ignoring direction)
- * console.log([...g.uniqueEdgesFromTessellation(tess)]);
+ * console.log([...g.edgesFromTessellation(tess)]);
  * // [[ 3, 4 ], [ 2, 3 ], [ 2, 4 ], [ 1, 2 ],
  * //  [ 1, 4 ], [ 0, 1 ], [ 0, 3 ], [ 0, 4 ]]
  * ```
@@ -75,6 +94,14 @@ export const edgesFromTessellation = (tess: ITessellation) =>
 /**
  * Similar to {@link edgesFromTessellation}, but returns edges as pairs of
  * points (instead of point IDs).
+ *
+ * @remarks
+ * Also see:
+ *
+ * - [ITessellation](https://docs.thi.ng/umbrella/geom-tessellate/interfaces/ITessellation.html)
+ * - {@link edgesFromTessellation}
+ * - {@link graphFromTessellation}
+ * - {@link groupFromTessellation}
  *
  * @param tess
  */
