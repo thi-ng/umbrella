@@ -230,7 +230,7 @@ the following additional shape creation helpers are provided:
 
 #### AABB
 
-- [aabbFromMinMax()](https://docs.thi.ng/umbrella/geom/functions/.html)
+- [aabbFromMinMax()](https://docs.thi.ng/umbrella/geom/functions/aabbFromMinMax.html)
 - [aabbFromMinMaxWithMargin()](https://docs.thi.ng/umbrella/geom/functions/aabbFromMinMaxWithMargin.html)
 - [aabbFromCentroid()](https://docs.thi.ng/umbrella/geom/functions/aabbFromCentroid.html)
 - [aabbWithCentroidAndMargin()](https://docs.thi.ng/umbrella/geom/functions/aabbWithCentroidAndMargin.html)
@@ -269,12 +269,11 @@ the following additional shape creation helpers are provided:
 
 #### Path
 
-- [pathBuilder()](https://docs.thi.ng/umbrella/geom/functions/pathBuilder.html)
+- [pathBuilder()](https://docs.thi.ng/umbrella/geom/functions/pathBuilder-1.html)
+- [pathBuilder()](https://docs.thi.ng/umbrella/geom/functions/pathBuilder3.html)
 - [pathFromSvg()](https://docs.thi.ng/umbrella/geom/functions/pathFromSvg.html)
 - [pathFromCubics()](https://docs.thi.ng/umbrella/geom/functions/pathFromCubics.html)
-- [pathFromCubics3()](https://docs.thi.ng/umbrella/geom/functions/pathFromCubics3.html)
 - [normalizedPath()](https://docs.thi.ng/umbrella/geom/functions/normalizedPath.html)
-- [normalizedPath3()](https://docs.thi.ng/umbrella/geom/functions/normalizedPath3.html)
 - [roundedRect()](https://docs.thi.ng/umbrella/geom/functions/roundedRect.html)
 
 #### Plane
