@@ -110,6 +110,7 @@ export * from "./scale.js";
 export * from "./scale-with-center.js";
 export * from "./scatter.js";
 export * from "./simplify.js";
+export * from "./sphere.js";
 export * from "./split-arclength.js";
 export * from "./split-at.js";
 export * from "./split-near.js";
