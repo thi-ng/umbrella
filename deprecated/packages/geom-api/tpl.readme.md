@@ -1,5 +1,10 @@
 <!-- include ../../assets/tpl/header.md -->
 
+> [!IMPORTANT]
+> This package has been deprecated, re-distributed & migrated to other packages,
+> most notably
+> [@thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom).
+
 <!-- toc -->
 
 ## About
@@ -7,13 +12,6 @@
 {{pkg.description}}
 
 {{meta.status}}
-
-The types and constants defined in this package have been distributed & migrated
-to other packages, most notably
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom).
-
-No further updates to this package are planned and no other packages in the
-thi.ng/umbrella monorepo depend on it anymore.
 
 {{repo.supportPackages}}
 
@@ -36,7 +34,5 @@ thi.ng/umbrella monorepo depend on it anymore.
 ## API
 
 {{pkg.docs}}
-
-TODO
 
 <!-- include ../../assets/tpl/footer.md -->

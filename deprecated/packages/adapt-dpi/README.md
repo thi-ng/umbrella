@@ -6,13 +6,9 @@
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adapt-dpi.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
-> [!NOTE]
-> This is one of 193 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
-> and anti-framework.
->
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> [!IMPORTANT]
+> This package has been deprecated and merged into
+> [@thi.ng/canvas](https://github.com/thi-ng/umbrella/blob/develop/packages/canvas/).
 
 - [About](#about)
 - [Status](#status)
@@ -21,10 +17,6 @@
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-> [!IMPORTANT]
-> This package has been deprecated and merged into
-> [@thi.ng/canvas](https://github.com/thi-ng/umbrella/blob/develop/packages/canvas/).
 
 ## About
 

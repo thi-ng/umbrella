@@ -7,12 +7,17 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 193 standalone projects, maintained as part
+> This is one of 190 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
 > 🚀 Please help me to work full-time on these projects by [sponsoring me on
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+
+> [!IMPORTANT]
+> This package has been deprecated and most of the provided functionality has
+> been superseded by
+> [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 - [About](#about)
 - [Status](#status)
@@ -78,10 +83,6 @@
 ## About
 
 Clojure inspired, composable ES6 iterators & generators.
-
-Most of the provided functionality here is also available in the form of
-more composable & efficient transducers via
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 ## Status
 

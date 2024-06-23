@@ -1,21 +1,16 @@
 <!-- include ../../assets/tpl/header.md -->
 
+> [!IMPORTANT]
+> This package has been deprecated and superseded by
+> [@thi.ng/parse](https://github.com/thi-ng/umbrella/blob/develop/packages/parse/).
+
 <!-- toc -->
 
 ## About
 
 {{pkg.description}}
 
-See the [hiccup-markdown
-parser](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown/src/parser.ts)
-& [example](https://demo.thi.ng/umbrella/markdown/) for a concrete use
-case.
-
 {{meta.status}}
-
-This package will be merged with and update the existing
-[@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
-package.
 
 {{repo.supportPackages}}
 

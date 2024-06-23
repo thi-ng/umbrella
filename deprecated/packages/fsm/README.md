@@ -6,13 +6,9 @@
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fsm.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
-> [!NOTE]
-> This is one of 193 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
-> and anti-framework.
->
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> [!IMPORTANT]
+> This package has been deprecated and superseded by
+> [@thi.ng/parse](https://github.com/thi-ng/umbrella/blob/develop/packages/parse/).
 
 - [About](#about)
 - [Status](#status)
@@ -29,20 +25,11 @@
 
 Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams.
 
-See the [hiccup-markdown
-parser](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown/src/parser.ts)
-& [example](https://demo.thi.ng/umbrella/markdown/) for a concrete use
-case.
-
 ## Status
 
 **DEPRECATED** - superseded by other package(s)
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bfsm%5D+in%3Atitle)
-
-This package will be merged with and update the existing
-[@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
-package.
 
 ## Related packages
 

@@ -1,14 +1,15 @@
 <!-- include ../../assets/tpl/header.md -->
 
+> [!IMPORTANT]
+> This package has been deprecated and most of the provided functionality has
+> been superseded by
+> [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+
 <!-- toc -->
 
 ## About
 
 {{pkg.description}}
-
-Most of the provided functionality here is also available in the form of
-more composable & efficient transducers via
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 {{meta.status}}
 
