@@ -1,6 +1,6 @@
 import { defAtom, defView } from "@thi.ng/atom";
 import { derefContext } from "@thi.ng/hiccup";
-import { map, range } from "@thi.ng/iterators";
+import { map, range } from "@thi.ng/transducers";
 import { expect, test } from "bun:test";
 import { normalizeTree } from "../src/index.js";
 
