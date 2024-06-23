@@ -3530,17 +3530,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/adapt-dpi@workspace:packages/adapt-dpi":
-  version: 0.0.0-use.local
-  resolution: "@thi.ng/adapt-dpi@workspace:packages/adapt-dpi"
-  dependencies:
-    "@microsoft/api-extractor": "npm:^7.47.0"
-    esbuild: "npm:^0.21.5"
-    typedoc: "npm:^0.25.13"
-    typescript: "npm:^5.5.2"
-  languageName: unknown
-  linkType: soft
-
 "@thi.ng/adjacency@npm:^2.5.52, @thi.ng/adjacency@workspace:^, @thi.ng/adjacency@workspace:packages/adjacency":
   version: 0.0.0-use.local
   resolution: "@thi.ng/adjacency@workspace:packages/adjacency"
@@ -4323,23 +4312,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/fsm@workspace:packages/fsm":
-  version: 0.0.0-use.local
-  resolution: "@thi.ng/fsm@workspace:packages/fsm"
-  dependencies:
-    "@microsoft/api-extractor": "npm:^7.47.0"
-    "@thi.ng/api": "npm:^8.11.3"
-    "@thi.ng/arrays": "npm:^2.9.7"
-    "@thi.ng/equiv": "npm:^2.1.59"
-    "@thi.ng/errors": "npm:^2.5.8"
-    "@thi.ng/strings": "npm:^3.7.34"
-    "@thi.ng/transducers": "npm:^9.0.6"
-    esbuild: "npm:^0.21.5"
-    typedoc: "npm:^0.25.13"
-    typescript: "npm:^5.5.2"
-  languageName: unknown
-  linkType: soft
-
 "@thi.ng/fuzzy-viz@workspace:packages/fuzzy-viz":
   version: 0.0.0-use.local
   resolution: "@thi.ng/fuzzy-viz@workspace:packages/fuzzy-viz"
@@ -4386,19 +4358,6 @@ __metadata:
     "@thi.ng/heaps": "npm:^2.1.75"
     "@thi.ng/math": "npm:^5.11.0"
     "@thi.ng/transducers": "npm:^9.0.6"
-    "@thi.ng/vectors": "npm:^7.11.0"
-    esbuild: "npm:^0.21.5"
-    typedoc: "npm:^0.25.13"
-    typescript: "npm:^5.5.2"
-  languageName: unknown
-  linkType: soft
-
-"@thi.ng/geom-api@workspace:packages/geom-api":
-  version: 0.0.0-use.local
-  resolution: "@thi.ng/geom-api@workspace:packages/geom-api"
-  dependencies:
-    "@microsoft/api-extractor": "npm:^7.47.0"
-    "@thi.ng/api": "npm:^8.11.3"
     "@thi.ng/vectors": "npm:^7.11.0"
     esbuild: "npm:^0.21.5"
     typedoc: "npm:^0.25.13"
@@ -5136,20 +5095,6 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.3"
     "@thi.ng/checks": "npm:^3.6.5"
     "@thi.ng/dlogic": "npm:^2.1.70"
-    "@thi.ng/errors": "npm:^2.5.8"
-    esbuild: "npm:^0.21.5"
-    typedoc: "npm:^0.25.13"
-    typescript: "npm:^5.5.2"
-  languageName: unknown
-  linkType: soft
-
-"@thi.ng/iterators@workspace:packages/iterators":
-  version: 0.0.0-use.local
-  resolution: "@thi.ng/iterators@workspace:packages/iterators"
-  dependencies:
-    "@microsoft/api-extractor": "npm:^7.47.0"
-    "@thi.ng/api": "npm:^8.11.3"
-    "@thi.ng/dcons": "npm:^3.2.114"
     "@thi.ng/errors": "npm:^2.5.8"
     esbuild: "npm:^0.21.5"
     typedoc: "npm:^0.25.13"
