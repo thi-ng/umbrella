@@ -33,6 +33,10 @@ for (let f of pkgDirs) {
 			continue;
 		}
 		const branch = getIn(pkg, ["thi.ng", "branch"]) || "develop";
+		const root =
+			getIn(pkg, ["thi.ng", "status"]) === "deprecated"
+				? "deprecated/"
+				: "";
 		const doc = html(
 			{ lang: "en" },
 			head(
@@ -71,7 +75,7 @@ for (let f of pkgDirs) {
 				}),
 				meta({
 					"http-equiv": "refresh",
-					content: `0; url=https://github.com/thi-ng/umbrella/tree/${branch}/packages/${id}#readme`,
+					content: `0; url=https://github.com/thi-ng/umbrella/tree/${branch}/${root}packages/${id}#readme`,
 				}),
 				title({}, pkg.name)
 			)
