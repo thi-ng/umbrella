@@ -5,6 +5,7 @@
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"importHelpers": true,
+		"isolatedModules": true,
 		"incremental": true,
 		"module": "esnext",
 		"moduleResolution": "bundler",
