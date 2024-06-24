@@ -18,6 +18,19 @@
   - [Wiki](#wiki)
 - [Projects](#projects)
   - [Latest updates](#latest-updates)
+  - [Fundamentals](#fundamentals)
+  - [Maths](#maths)
+  - [Randomness](#randomness)
+  - [File / file format / hardware support](#file--file-format--hardware-support)
+  - [Iterator, stream & sequence processing](#iterator-stream--sequence-processing)
+  - [Reactive programming](#reactive-programming)
+  - [Algorithms & data structures](#algorithms--data-structures)
+  - [Frontend / UI](#frontend--ui)
+  - [Geometry, image & visualization](#geometry-image--visualization)
+  - [WebGL / GPGPU](#webgl--gpgpu)
+  - [Low-level, binary, memory management, interop](#low-level-binary-memory-management-interop)
+  - [DSLs](#dsls)
+  - [Deprecated pacakges](#deprecated-packages)
 - [Building](#building)
   - [Building example projects](#building-example-projects)
   - [Testing](#testing)
@@ -296,7 +309,6 @@ As of: 2024-06-21
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/csp`](./packages/csp)                             | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                             | [changelog](./packages/csp/CHANGELOG.md)               |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom`](./packages/geom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                           | [changelog](./packages/geom/CHANGELOG.md)              |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-accel`](./packages/geom-accel)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)               | [changelog](./packages/geom-accel/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-api`](./packages/geom-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)                   | [changelog](./packages/geom-api/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-arc`](./packages/geom-arc)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)                   | [changelog](./packages/geom-arc/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-axidraw`](./packages/geom-axidraw)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)           | [changelog](./packages/geom-axidraw/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom-fuzz`](./packages/geom-fuzz)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-fuzz.svg)](https://www.npmjs.com/package/@thi.ng/geom-fuzz)                 | [changelog](./packages/geom-fuzz/CHANGELOG.md)         |
@@ -420,9 +432,7 @@ As of: 2024-06-21
 | Project                                                       | Version                                                                                                                             | Changelog                                               | Description                             |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------|
 | [`@thi.ng/csp`](./packages/csp)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                               | [changelog](./packages/csp/CHANGELOG.md)                | Channel based async ops                 |
-| [`@thi.ng/fsm`](./packages/fsm)                               | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)                               | [changelog](./packages/fsm/CHANGELOG.md)                | FSM / parser primitives                 |
 | [`@thi.ng/grid-iterators`](./packages/grid-iterators)         | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)         | [changelog](./packages/grid-iterators/CHANGELOG.md)     | 2D grid iterator strategies             |
-| [`@thi.ng/iterators`](./packages/iterators)                   | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)                   | [changelog](./packages/iterators/CHANGELOG.md)          | ES6 generators / iterators              |
 | [`@thi.ng/seq`](./packages/seq)                               | [![version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)                               | [changelog](./packages/seq/CHANGELOG.md)                | Lisp/Clojure-style sequence abstraction |
 | [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        | Composable data transformations         |
 | [`@thi.ng/transducers-async`](./packages/transducers-async)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)   | [changelog](./packages/transducers-async/CHANGELOG.md)  | Async transducers, reducers & iterators |
@@ -583,6 +593,16 @@ As of: 2024-06-21
 | [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
 | [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          | S-Expression parser & runtime infrastructure  |
+
+### Deprecated packages
+
+The following packages have been deprecated. Their readmes describe reasons and alternatives:
+
+| Project                                                | Version                                                                                                           | Changelog                                                                                                       | Description                                   |
+|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| [`@thi.ng/fsm`](./deprecated/packages/fsm)             | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)             | [changelog](./packages/fsm/CHANGELOG.md)                                                                        | FSM / parser primitives                       |
+| ![](https://img.shields.io/badge/-feat-green)          | [`@thi.ng/geom-api`](./deprecated/packages/geom-api)                                                              | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api) | [changelog](./packages/geom-api/CHANGELOG.md) |
+| [`@thi.ng/iterators`](./deprecated/packages/iterators) | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators) | [changelog](./packages/iterators/CHANGELOG.md)                                                                  | ES6 generators / iterators                    |
 
 ## Building
 
