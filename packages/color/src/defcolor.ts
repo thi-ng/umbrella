@@ -27,7 +27,7 @@ import type {
 } from "./api.js";
 import { convert, defConversions } from "./convert.js";
 import { parseCss } from "./css/parse-css.js";
-import { intArgb32Rgb } from "./int/int-rgb.js";
+import { intArgb32Srgb } from "./int/int-srgb.js";
 import { __ensureArgs } from "./internal/ensure.js";
 
 type $DefColor<M extends ColorMode, K extends string> = {
@@ -172,7 +172,7 @@ export const defColor = <M extends ColorMode, K extends string>(
 			: isNumber(src)
 			? args.length && args.every(isNumber)
 				? <any>new $Color(...__ensureArgs([src, ...args]))
-				: fromColor(intArgb32Rgb([], src), "rgb", args)
+				: fromColor(intArgb32Srgb([], src), "srgb", args)
 			: illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
 
 	factory.class = <any>$Color;

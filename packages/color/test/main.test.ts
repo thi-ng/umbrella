@@ -5,13 +5,39 @@ import {
 	argb32,
 	css,
 	hsl,
+	hsv,
 	labD50,
+	lch,
 	parseCss,
 	rgb,
 	srgb,
+	srgbLinear,
 	type Color,
 	type ColorMode,
 } from "../src/index.js";
+
+test("srgb(int)", () => {
+	expect(srgb(0xffcc8844)).toEqual(srgb(0.8, 0x88 / 0xff, 0x44 / 0xff, 1));
+});
+
+test("rgb(int)", () => {
+	expect(rgb(0xffcc8844)).toEqual(
+		rgb(
+			srgbLinear(0xcc / 0xff),
+			srgbLinear(0x88 / 0xff),
+			srgbLinear(0x44 / 0xff),
+			1
+		)
+	);
+});
+
+test("hsv(int)", () => {
+	expect(hsv(0x40808080)).toEqual(hsv(0, 0, 0x80 / 0xff, 0x40 / 0xff));
+});
+
+test("lch(int)", () => {
+	expect(lch(0x40808080)).toEqual(lch(0.5358501345216902, 0, 0, 0x40 / 0xff));
+});
 
 test("srgb", () => {
 	const res = srgb(0xaa / 0xff, 0xbb / 0xff, 0xcc / 0xff);
