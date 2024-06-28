@@ -179,3 +179,42 @@ const __isLCH = (x: ThemeColor): x is LCH =>
 /** @internal */
 const __isRGB = (x: ThemeColor): x is SRGB =>
 	!isPrimitive(x) && x.mode === "srgb";
+
+/**
+ * Similar to {@link rgbThemes}, {@link themeIDs} etc., but for filtering custom
+ * themes (i.e. arrays of colors), using provided filter predicate(s) or theme
+ * indices. This way the composable filter predicates of this package can also
+ * be used for user-defined themes (i.e. not limited to those presets included
+ * in this package)
+ *
+ * @remarks
+ * If `idOnly` is enabled/true, only the IDs/indices of matching themes are
+ * returned (rather than the corresponding themes themselves).
+ *
+ * @param preds
+ * @param themes
+ */
+export function filteredThemes<T extends Theme>(
+	preds: ThemePredicate[] | number[],
+	themes: T[]
+): IterableIterator<T>;
+export function filteredThemes<T extends Theme>(
+	preds: ThemePredicate[] | number[],
+	themes: T[],
+	idOnly: true
+): IterableIterator<number>;
+export function* filteredThemes<T extends Theme>(
+	preds: ThemePredicate[] | number[],
+	themes: T[],
+	idOnly = false
+) {
+	if (preds.length && typeof preds[0] === "function") {
+		const pred = compFilter(...(<ThemePredicate[]>preds));
+		for (let i = 0; i < themes.length; i++) {
+			const theme = themes[i];
+			if (pred(theme)) yield idOnly ? i : theme;
+		}
+	} else {
+		for (let id of <number[]>preds) yield idOnly ? id : themes[id];
+	}
+}
