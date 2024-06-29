@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-06-21T19:34:38Z
+- **Last updated**: 2024-06-29T09:28:36Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [8.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.0.1) (2024-06-29)
+
+#### 🩹 Bug fixes
+
+- add missing pkg exports ([7ec144f](https://github.com/thi-ng/umbrella/commit/7ec144f))
 
 # [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.0.0) (2024-06-21)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-06-21T19:34:38Z
+- **Last updated**: 2024-06-29T09:28:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@1.4.0) (2024-06-29)
+
+#### 🚀 Features
+
+- add filteredThemes() ([58a9712](https://github.com/thi-ng/umbrella/commit/58a9712))
+- update asCSS/Int/LCH/RGB() args ([9aa2f43](https://github.com/thi-ng/umbrella/commit/9aa2f43))
+  - accept existing themes (array of colors) as arg (in addition to theme IDs)
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@1.3.0) (2024-06-21)
 

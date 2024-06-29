@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rle-pack",
-	"version": "3.1.69",
+	"version": "3.1.70",
 	"description": "Binary run-length encoding packer w/ flexible repeat bit widths",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/bitstream": "^2.2.61",
-		"@thi.ng/errors": "^2.5.8"
+		"@thi.ng/bitstream": "^2.2.62",
+		"@thi.ng/errors": "^2.5.9"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",

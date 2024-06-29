@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fibers",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Process hierarchies & operators for cooperative multitasking",
 	"type": "module",
 	"module": "./index.js",
@@ -36,15 +36,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.3",
-		"@thi.ng/arrays": "^2.9.7",
-		"@thi.ng/bench": "^3.5.7",
-		"@thi.ng/buffers": "^0.1.4",
-		"@thi.ng/checks": "^3.6.5",
-		"@thi.ng/errors": "^2.5.8",
-		"@thi.ng/idgen": "^2.2.42",
-		"@thi.ng/logger": "^3.0.13",
-		"@thi.ng/random": "^3.8.1"
+		"@thi.ng/api": "^8.11.4",
+		"@thi.ng/arrays": "^2.9.8",
+		"@thi.ng/bench": "^3.5.8",
+		"@thi.ng/buffers": "^0.1.5",
+		"@thi.ng/checks": "^3.6.6",
+		"@thi.ng/errors": "^2.5.9",
+		"@thi.ng/idgen": "^2.2.43",
+		"@thi.ng/logger": "^3.0.14",
+		"@thi.ng/random": "^3.8.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
