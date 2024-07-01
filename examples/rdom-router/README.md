@@ -1,6 +1,6 @@
 # rdom-router
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-router.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-router.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/rdom-router/)
 

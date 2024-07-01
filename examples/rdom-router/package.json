@@ -37,8 +37,8 @@
 			"atom",
 			"hiccup-html",
 			"rdom",
-			"router",
-			"rstream"
-		]
+			"router"
+		],
+		"screenshot": "examples/rdom-router.jpg"
 	}
 }

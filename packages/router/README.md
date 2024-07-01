@@ -83,12 +83,13 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.94 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
 | Screenshot                                                                                                           | Description                                             | Live demo                                           | Source                                                                           |
 |:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-router.jpg" width="240"/>   | Basic thi.ng/router usage with thi.ng/rdom components   | [Demo](https://demo.thi.ng/umbrella/rdom-router/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-router)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading | [Demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics) |
 
 ## API
