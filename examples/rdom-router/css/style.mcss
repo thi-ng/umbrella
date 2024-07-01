@@ -10,11 +10,10 @@ nav a { dib mr2 }
 main { mv4 }
 
 #gallery {
-	grid grid-cols-3 m:grid-cols-4 l:grid-cols-5 gap4
+	grid grid-cols-3 m:grid-cols-4 l:grid-cols-5 gap4 mv3
 }
 
 #controls {
-	mt3
 	{
 		button { dib mr2 }
 	}

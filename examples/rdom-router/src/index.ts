@@ -70,6 +70,7 @@ const home = async (route: RouteMatch) =>
 const gallery = async (route: RouteMatch) =>
 	container(
 		"Gallery",
+		div({}, "Click on images to enlarge..."),
 		// create a list of thumbnails of the app state's image array
 		$list(fromView(db, { path: ["images"] }), "div#gallery", {}, thumbnail),
 		// add some dummy controls to allow user to add new items or clear the
