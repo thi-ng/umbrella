@@ -1937,6 +1937,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-router@workspace:examples/rdom-router":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-router@workspace:examples/rdom-router"
+  dependencies:
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/router": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: "npm:^5.5.2"
+    vite: "npm:^5.3.1"
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-search-docs@workspace:examples/rdom-search-docs":
   version: 0.0.0-use.local
   resolution: "@example/rdom-search-docs@workspace:examples/rdom-search-docs"

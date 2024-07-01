@@ -1,0 +1,21 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+body { system-sans-serif ma3 }
+
+nav a { dib mr2 }
+
+main { mv4 }
+
+#gallery {
+	grid grid-cols-3 m:grid-cols-4 l:grid-cols-5 gap4
+}
+
+#controls {
+	mt3
+	{
+		button { dib mr2 }
+	}
+}
