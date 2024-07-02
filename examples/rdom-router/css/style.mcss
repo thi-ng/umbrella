@@ -13,8 +13,4 @@ main { mv4 }
 	grid grid-cols-3 m:grid-cols-4 l:grid-cols-5 gap4 mv3
 }
 
-#controls {
-	{
-		button { dib mr2 }
-	}
-}
+#controls button { dib mr2 }

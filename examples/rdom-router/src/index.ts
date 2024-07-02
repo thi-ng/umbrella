@@ -6,6 +6,7 @@ import { pickRandom } from "@thi.ng/random";
 import { $compile, $list, $switch } from "@thi.ng/rdom";
 import {
 	EVENT_ROUTE_CHANGED,
+	EVENT_ROUTE_FAILED,
 	HTMLRouter,
 	type Route,
 	type RouteMatch,
@@ -24,9 +25,21 @@ interface AppState {
 
 // route definitions for router
 const ROUTES: Route[] = [
-	{ id: "home", match: ["home"] },
-	{ id: "gallery", match: ["gallery"] },
-	{ id: "image", match: ["gallery", "?id"] },
+	{ id: "home", match: "/home" },
+	{ id: "gallery", match: "/gallery" },
+	// parametric route with param coercion & validation
+	{
+		id: "image",
+		match: "gallery/?id",
+		validate: {
+			id: {
+				coerce: (x) => parseInt(x),
+				check: (x) => x >= 0 && x < IMAGES.length,
+			},
+		},
+	},
+	// fallback route
+	{ id: "missing", match: "/404" },
 ];
 
 // list of image URLs
@@ -44,13 +57,18 @@ const db = defAtom<AppState>({
 // define & initialize router w/ basic config (see thi.ng/router)
 const router = new HTMLRouter({
 	routes: ROUTES,
-	default: "home",
+	initial: "home",
+	default: "missing",
 	useFragment: true,
 });
 
 // the router will emit an event each time the route has changed
 // we'll store the new route in the atom, which then will trigger an UI update
 router.addListener(EVENT_ROUTE_CHANGED, (e) => db.resetIn(["route"], e.value));
+
+// optional event listener for failed/unknown routes
+// (these routes will be redirected to configured default route)
+router.addListener(EVENT_ROUTE_FAILED, console.log);
 
 // start the router
 router.start();
@@ -104,23 +122,42 @@ const thumbnail = (src: string) =>
 const image = async ({ params: { id } }: RouteMatch) =>
 	container("Single image", img(".fullsize", { src: IMAGES[id] }));
 
+const missing = async () => container("404", "Route doesn't exist...");
+
 // compile & mount main UI/DOM
 $compile(
 	div(
 		{},
 		nav(
 			{},
+			// build SPA navigation links using the router's format() feature to form URLs
 			...["home", "gallery"].map((id) =>
 				anchor({ href: router.format(id) }, id)
-			)
+			),
+			// unknown route (will trigger configured fallback/default route)
+			anchor({ href: "#/foo" }, "todo")
 		),
-		$switch(fromView(db, { path: ["route"] }), (route) => route.id, {
-			home,
-			gallery,
-			image,
-		})
+		// helper component to dynamically switch out its body based on given
+		// reactive subscription value (here the app state's `route` info)
+		$switch(
+			// reactive value
+			fromView(db, { path: ["route"] }),
+			// key function to extract the actual dispatch/switch value
+			(route) => route.id,
+			// an object mapping keys to component functions. e.g. if the new
+			// route ID is `gallery`, then the `gallery()` function defined
+			// above will be called and its result used as new body of the
+			// $switch() component. before that, the current component body will
+			// be unmounted first....
+			{
+				home,
+				gallery,
+				image,
+				missing,
+			}
+		)
 	)
 ).mount(document.getElementById("app")!);
 
-// expose app state atom in browser console
+// debug only: expose app state atom in browser console
 exposeGlobal("db", db);
