@@ -298,13 +298,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-06-29
+As of: 2024-07-02
 
 | Status                                        | Package                                               | Version                                                                                                                     | Changelog                                           |
 |:----------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/color`](./packages/color)                   | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                   | [changelog](./packages/color/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/geom`](./packages/geom)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                     | [changelog](./packages/geom/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/router`](./packages/router)                 | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                 | [changelog](./packages/router/CHANGELOG.md)         |
 
 ### Fundamentals
 
