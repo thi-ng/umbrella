@@ -8,12 +8,10 @@ export class HTMLRouter<T = any> extends Router<T> {
 	protected popHandler!: Fn<PopStateEvent, void>;
 	protected hashHandler!: EventListener;
 	protected useFragment: boolean;
-	protected ignoreHashChange: boolean;
 
 	constructor(config: HTMLRouterOpts) {
 		super({ prefix: config.useFragment ? "#/" : "/", ...config });
 		this.useFragment = config.useFragment !== false;
-		this.ignoreHashChange = false;
 	}
 
 	start() {
@@ -23,7 +21,7 @@ export class HTMLRouter<T = any> extends Router<T> {
 		}
 		if (this.opts.initial) {
 			const route = this.routeForID(this.opts.initial)!;
-			this.route(this.format({ id: route.id }));
+			this.route(this.format({ id: route.id }), undefined, "replace");
 		} else {
 			this.route(this.useFragment ? location.hash : location.pathname);
 		}
@@ -37,24 +35,26 @@ export class HTMLRouter<T = any> extends Router<T> {
 	}
 
 	/**
-	 * Like {@link Router.route}, but takes additional arg to control if
-	 * this routing operation should manipulate the browser's `history`.
+	 * Like {@link Router.route}, but takes additional arg to control if this
+	 * routing operation should manipulate the browser's `history`.
 	 *
 	 * @remarks
-	 * If called from userland, this normally is true (also default). However,
-	 * we want to avoid this if called from this router's own event handlers.
+	 * If called from userland, this normally is set to "push" (also the
+	 * default). However, we want to adjust this behavior if called internally.
 	 *
 	 * @param src -
 	 * @param ctx -
-	 * @param pushState -
+	 * @param mode -
 	 */
-	route(src: string, ctx?: T, pushState = true) {
+	route(src: string, ctx?: T, mode: "push" | "replace" | "none" = "push") {
 		const old = this.current;
 		const route = super.route(src, ctx);
 		if (route && !equiv(route, old)) {
 			this.currentPath = this.format(route);
-			if (pushState) {
+			if (mode === "push") {
 				history.pushState(this.currentPath, "", this.currentPath);
+			} else if (mode === "replace") {
+				history.replaceState(this.currentPath, "", this.currentPath);
 			}
 		}
 		return route;
@@ -75,7 +75,7 @@ export class HTMLRouter<T = any> extends Router<T> {
 					e.state ||
 						(this.useFragment ? location.hash : location.pathname),
 					undefined,
-					false
+					"none"
 				);
 			}).bind(this));
 	}
@@ -84,21 +84,12 @@ export class HTMLRouter<T = any> extends Router<T> {
 		return (this.hashHandler =
 			this.hashHandler ||
 			((e: HashChangeEvent) => {
-				if (!this.ignoreHashChange) {
+				if (!this.current?.redirect) {
 					const hash = e.newURL.substring(e.newURL.indexOf("#"));
 					if (hash !== this.currentPath) {
-						this.route(hash, undefined, false);
+						this.route(hash, undefined, "none");
 					}
 				}
 			}).bind(this));
-	}
-
-	protected handleRouteFailure() {
-		this.ignoreHashChange = true;
-		location.hash = this.format({
-			id: this.routeForID(this.opts.default)!.id,
-		});
-		this.ignoreHashChange = false;
-		return true;
 	}
 }

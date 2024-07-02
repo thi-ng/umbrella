@@ -146,11 +146,19 @@ export interface RouterOpts<T = any> {
 	/**
 	 * Fallback route ID (MUST exist in `routes`), used if none of the defined
 	 * routes could be matched against user input, e.g. a home or error page.
+	 *
+	 * @remarks
+	 * If using {@link HTMLRouter}, any redirects to this route will **not** be
+	 * recorded to the browser history.
 	 */
 	default: string;
 	/**
 	 * Optional initial route to trigger when router starts. If given, this MUST
 	 * be a route without params.
+	 *
+	 * @remarks
+	 * If using {@link HTMLRouter}, this route will be applied to the browser
+	 * history using `replaceState()`.
 	 */
 	initial?: string;
 	/**
