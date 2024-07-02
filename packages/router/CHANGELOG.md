@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-06-29T09:28:36Z
+- **Last updated**: 2024-07-02T12:48:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@4.1.0) (2024-07-02)
+
+#### 🚀 Features
+
+- update HTMLRouter initial & default route handling ([8ea075e](https://github.com/thi-ng/umbrella/commit/8ea075e))
+  - avoid duplicate dispatch (and breaking back button) for missing routes
+  - new behavior: HTMLRouter dispatches default route redirect, but does **not** push it to history
+  - update initial route handling to use `replaceState()` instead of `pushState()`
 
 ### [4.0.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@4.0.11) (2024-06-21)
 
