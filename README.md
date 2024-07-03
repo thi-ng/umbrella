@@ -333,7 +333,6 @@ As of: 2024-07-03
 | [`@thi.ng/paths`](./packages/paths)           | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)           | [changelog](./packages/paths/CHANGELOG.md)      | Immutable nested object accessors                        |
 | [`@thi.ng/strings`](./packages/strings)       | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)       | [changelog](./packages/strings/CHANGELOG.md)    | Higher-order string formatting utils                     |
 | [`@thi.ng/system`](./packages/system)         | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)         | [changelog](./packages/system/CHANGELOG.md)     | Minimal life cycle container for stateful app components |
-| [`@thi.ng/testament`](./packages/testament)   | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)   | [changelog](./packages/testament/CHANGELOG.md)  | Minimal test runner                                      |
 | [`@thi.ng/transclude`](./packages/transclude) | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude) | [changelog](./packages/transclude/CHANGELOG.md) | Template engine for text document generation             |
 | [`@thi.ng/units`](./packages/units)           | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)           | [changelog](./packages/units/CHANGELOG.md)      | Extensible SI unit conversions                           |
 
@@ -482,7 +481,6 @@ As of: 2024-07-03
 | [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz)                   | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz)                   | [changelog](./packages/fuzzy-viz/CHANGELOG.md)          | Visualization, instrumentation for @thi.ng/fuzzy    |
 | [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops                        |
 | [`@thi.ng/geom-accel`](./packages/geom-accel)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)                 | [changelog](./packages/geom-accel/CHANGELOG.md)         | Spatial indexing data structures                    |
-| [`@thi.ng/geom-api`](./packages/geom-api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)                     | [changelog](./packages/geom-api/CHANGELOG.md)           | Shared types & interfaces                           |
 | [`@thi.ng/geom-axidraw`](./packages/geom-axidraw)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)             | [changelog](./packages/geom-axidraw/CHANGELOG.md)       | Shape conversions for AxiDraw pen plotter           |
 | [`@thi.ng/geom-arc`](./packages/geom-arc)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)                     | [changelog](./packages/geom-arc/CHANGELOG.md)           | 2D elliptic arc utils                               |
 | [`@thi.ng/geom-clip-line`](./packages/geom-clip-line)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line)         | [changelog](./packages/geom-clip-line/CHANGELOG.md)     | 2D line clipping                                    |
@@ -564,6 +562,7 @@ The following packages have been deprecated. Their readmes describe reasons and 
 | [`@thi.ng/fsm`](./deprecated/packages/fsm)             | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)             | [changelog](./packages/fsm/CHANGELOG.md)                                                                        | FSM / parser primitives                       |
 | ![](https://img.shields.io/badge/-feat-green)          | [`@thi.ng/geom-api`](./deprecated/packages/geom-api)                                                              | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api) | [changelog](./packages/geom-api/CHANGELOG.md) |
 | [`@thi.ng/iterators`](./deprecated/packages/iterators) | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators) | [changelog](./packages/iterators/CHANGELOG.md)                                                                  | ES6 generators / iterators                    |
+| [`@thi.ng/testament`](./deprecated/packages/testament) | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament) | [changelog](./packages/testament/CHANGELOG.md)                                                                  | Minimal test runner                           |
 
 ## Building
 
@@ -606,12 +605,14 @@ in the wiki for further details.
 
 (Most, but not all packages have tests)
 
-Tests for almost all packages are run via [bun.sh](https://bun.sh). For a couple
-of packages we're still using our own minimal test runner
-[@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/develop/packages/testament)
+Test for all packages are run via [bun.sh](https://bun.sh).
 
 ```bash
+# build all packages, then run all tests (in one go)
 yarn test
+
+# only run all tests
+yarn test:only
 
 # or individually
 yarn workspace @thi.ng/rstream run test
