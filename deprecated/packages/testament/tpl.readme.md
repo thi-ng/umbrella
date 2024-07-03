@@ -1,5 +1,9 @@
 <!-- include ../../assets/tpl/header.md -->
 
+> [!IMPORTANT]
+> This package has been deprecated. Please see the [section about
+> testing](../../README.md#testing) in the repo's main readme.
+
 <!-- toc -->
 
 ## About

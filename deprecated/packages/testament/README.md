@@ -6,13 +6,9 @@
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/testament.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
-> [!NOTE]
-> This is one of 189 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
-> and anti-framework.
->
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> [!IMPORTANT]
+> This package has been deprecated. Please see the [section about
+> testing](../../README.md#testing) in the repo's main readme.
 
 - [About](#about)
 - [Status](#status)
@@ -30,7 +26,7 @@ Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, 
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**DEPRECATED** - superseded by other approaches
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btestament%5D+in%3Atitle)
 

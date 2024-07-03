@@ -98,7 +98,7 @@
 	},
 	"thi.ng": {
 		"alias": "test",
-		"status": "alpha",
+		"status": "deprecated",
 		"year": 2021
 	}
 }
