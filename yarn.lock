@@ -5660,7 +5660,7 @@ __metadata:
     "@thi.ng/canvas": "npm:^0.2.21"
     "@thi.ng/checks": "npm:^3.6.6"
     "@thi.ng/hiccup-canvas": "npm:^3.1.1"
-    "@thi.ng/rdom": "npm:^1.4.3"
+    "@thi.ng/rdom": "npm:^1.5.0"
     "@thi.ng/rstream": "npm:^8.5.3"
     esbuild: "npm:^0.21.5"
     typedoc: "npm:^0.25.13"
@@ -5676,7 +5676,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.4"
     "@thi.ng/associative": "npm:^6.3.62"
     "@thi.ng/hiccup-html": "npm:^2.6.6"
-    "@thi.ng/rdom": "npm:^1.4.3"
+    "@thi.ng/rdom": "npm:^1.5.0"
     "@thi.ng/rstream": "npm:^8.5.3"
     "@thi.ng/strings": "npm:^3.7.35"
     "@thi.ng/transducers": "npm:^9.0.7"
@@ -5695,7 +5695,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.6"
     "@thi.ng/defmulti": "npm:^3.0.41"
     "@thi.ng/hiccup-html": "npm:^2.6.6"
-    "@thi.ng/rdom": "npm:^1.4.3"
+    "@thi.ng/rdom": "npm:^1.5.0"
     "@thi.ng/rstream": "npm:^8.5.3"
     esbuild: "npm:^0.21.5"
     typedoc: "npm:^0.25.13"
@@ -5703,7 +5703,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rdom@npm:^1.4.3, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
+"@thi.ng/rdom@npm:^1.5.0, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rdom@workspace:packages/rdom"
   dependencies:

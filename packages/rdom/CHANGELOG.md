@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-02T12:48:17Z
+- **Last updated**: 2024-07-03T08:50:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.5.0) (2024-07-03)
+
+#### 🚀 Features
+
+- add support for no-arg fns in child positions ([6327fd3](https://github.com/thi-ng/umbrella/commit/6327fd3))
+  - update `$tree()` to support no-arg functions in child positions
 
 ### [1.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.4.1) (2024-06-21)
 
