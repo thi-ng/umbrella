@@ -54,11 +54,11 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-This mono-repository is home to 193 individual TypeScript
-libraries/packages/tools and ~170 example projects illustrating their usage,
-currently totalling ~208k SLOC and ~4100 source files... Some of the projects
-have been in regular development since 2015. The monorepo exists in its current
-form since January 2018.
+Not including deprecated pacakges, this mono-repository is home to 188
+individual TypeScript libraries/packages/tools and ~170 example projects
+illustrating their usage, currently totalling ~208k SLOC and ~4100 source
+files... Some of the projects have been in regular development since
+2015. The monorepo exists in its current form since January 2018.
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet independent libraries, tools and
