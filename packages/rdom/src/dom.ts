@@ -34,6 +34,7 @@ import { isComment, isComponent } from "./checks.js";
  * - `[COMMENT, "foo", "bar"...]` (DOM comment node)
  * - `[IComponent, ...mountargs]`
  * - `[function, ...args]`
+ * - `["tag", {...attribs}, noArgFunction, "other"]`
  * - ES6 iterable of the above (for child values only!)
  *
  * Any other values will be cast to strings and added as spans to current
@@ -59,6 +60,8 @@ export const $tree = async (
 		? tree.mount(parent, idx)
 		: isDeref(tree)
 		? $tree(tree.deref(), parent)
+		: isFunction(tree)
+		? $tree(tree(), parent, idx)
 		: isNotStringAndIterable(tree)
 		? $treeIter(tree, parent)
 		: tree != null
