@@ -3688,7 +3688,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.47.0"
     "@thi.ng/api": "npm:^8.11.4"
-    "@thi.ng/testament": "npm:^0.4.31"
     "@types/node": "npm:^20.14.6"
     esbuild: "npm:^0.21.5"
     tools: "workspace:^"
@@ -6125,28 +6124,12 @@ __metadata:
     "@thi.ng/file-io": "npm:^2.1.4"
     "@thi.ng/logger": "npm:^3.0.14"
     "@thi.ng/strings": "npm:^3.7.35"
-    "@thi.ng/testament": "npm:^0.4.31"
     "@thi.ng/transducers": "npm:^9.0.7"
     esbuild: "npm:^0.21.5"
     typedoc: "npm:^0.25.13"
     typescript: "npm:^5.5.2"
   bin:
     tangle: bin/tangle
-  languageName: unknown
-  linkType: soft
-
-"@thi.ng/testament@npm:^0.4.31, @thi.ng/testament@workspace:packages/testament":
-  version: 0.0.0-use.local
-  resolution: "@thi.ng/testament@workspace:packages/testament"
-  dependencies:
-    "@microsoft/api-extractor": "npm:^7.47.0"
-    "@thi.ng/file-io": "npm:^2.1.4"
-    "@thi.ng/logger": "npm:^3.0.14"
-    esbuild: "npm:^0.21.5"
-    typedoc: "npm:^0.25.13"
-    typescript: "npm:^5.5.2"
-  bin:
-    testament: bin/testament.mjs
   languageName: unknown
   linkType: soft
 
@@ -6209,7 +6192,6 @@ __metadata:
     "@thi.ng/file-io": "npm:^2.1.4"
     "@thi.ng/logger": "npm:^3.0.14"
     "@thi.ng/strings": "npm:^3.7.35"
-    "@thi.ng/testament": "npm:^0.4.31"
     "@thi.ng/transducers": "npm:^9.0.7"
     esbuild: "npm:^0.21.5"
     typedoc: "npm:^0.25.13"

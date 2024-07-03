@@ -31,7 +31,7 @@
 		"examples": "yarn @example run build",
 		"pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && bun tools/src/deploy-docs.ts",
 		"test": "yarn build:esbuild && yarn test:only",
-		"test:only": "bun test packages",
+		"test:only": "(cd packages && bun test)",
 		"tool:cleanup": "bun tools/src/cleanup.ts",
 		"tool:deps": "bun tools/src/adjacency.ts",
 		"tool:exports": "bun tools/src/generate-export-maps.ts && bun tools/src/check-exports.ts",
