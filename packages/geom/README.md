@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 188 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -333,14 +333,12 @@ but the package provides presets for common options/implementations:
 
 To be used with [`subdivideCurve()`](https://docs.thi.ng/umbrella/geom/functions/subdivCurve.html):
 
-- [SUBDIV_CHAIKIN_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_CLOSED.html)
-- [SUBDIV_CHAIKIN_OPEN](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN_OPEN.html)
-- [SUBDIV_CUBIC_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CUBIC_CLOSED.html)
-- [SUBDIV_DISPLACE](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_DISPLACE.html)
-- [SUBDIV_MID_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_CLOSED.html)
-- [SUBDIV_MID_OPEN](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID_OPEN.html)
-- [SUBDIV_THIRDS_CLOSED](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_CLOSED.html)
-- [SUBDIV_THIRDS_OPEN](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS_OPEN.html)
+- [SUBDIV_CHAIKIN](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CHAIKIN.html)
+- [SUBDIV_CUBIC](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_CUBIC.html)
+- [SUBDIV_DISPLACE](https://docs.thi.ng/umbrella/geom/functions/SUBDIV_DISPLACE.html)
+- [SUBDIV_DLG](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_DLG.html)
+- [SUBDIV_MID](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_MID.html)
+- [SUBDIV_THIRDS](https://docs.thi.ng/umbrella/geom/variables/SUBDIV_THIRDS.html)
 
 #### Polygon tessellation algorithms
 
@@ -350,21 +348,21 @@ See [thi.ng/geom-tessellate
 readme](https://github.com/thi-ng/umbrella/blob/develop/packages/geom-tessellate/README.md#tessellators)
 for diagrams/illustrations of each algorithm!
 
-- [TESSELLATE_EARCUT](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT.html)
-- [TESSELLATE_EARCUT_COMPLEX](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EARCUT_COMPLEX.html)
-- [TESSELLATE_EDGE_SPLIT](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_EDGE_SPLIT.html)
-- [TESSELLATE_INSET](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_INSET.html)
-- [TESSELLATE_QUAD_FAN](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_QUAD_FAN.html)
-- [TESSELLATE_RIM_TRIS](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_RIM_TRIS.html)
-- [TESSELLATE_TRI_FAN](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN.html)
-- [TESSELLATE_TRI_FAN_BOUNDARY](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_BOUNDARY.html)
-- [TESSELLATE_TRI_FAN_SPLIT](https://docs.thi.ng/umbrella/geom/variables/TESSELLATE_TRI_FAN_SPLIT.html)
+- [TESSELLATE_EARCUT](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_EARCUT.html)
+- [TESSELLATE_EARCUT_COMPLEX](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_EARCUT_COMPLEX.html)
+- [TESSELLATE_EDGE_SPLIT](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_EDGE_SPLIT.html)
+- [TESSELLATE_INSET](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_INSET.html)
+- [TESSELLATE_QUAD_FAN](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_QUAD_FAN.html)
+- [TESSELLATE_RIM_TRIS](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_RIM_TRIS.html)
+- [TESSELLATE_TRI_FAN](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_TRI_FAN.html)
+- [TESSELLATE_TRI_FAN_BOUNDARY](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_TRI_FAN_BOUNDARY.html)
+- [TESSELLATE_TRI_FAN_SPLIT](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_TRI_FAN_SPLIT.html)
 
 Tessellation behaviors:
 
-- [`basicTessellation()`](https://docs.thi.ng/umbrella/geom/functions/basicTessellation.html):
+- [basicTessellation()](https://docs.thi.ng/umbrella/geom/functions/basicTessellation.html):
   default impl
-- [`meshTessellation()`](https://docs.thi.ng/umbrella/geom/functions/meshTessellation.html):
+- [meshTessellation()](https://docs.thi.ng/umbrella/geom/functions/meshTessellation.html):
   uses kD-tree to deduplicate result points
 
 Tessellation post-processing:
