@@ -557,12 +557,12 @@ As of: 2024-07-03
 
 The following packages have been deprecated. Their readmes describe reasons and alternatives:
 
-| Project                                                | Version                                                                                                           | Changelog                                                                                                       | Description                                   |
-|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| [`@thi.ng/fsm`](./deprecated/packages/fsm)             | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)             | [changelog](./packages/fsm/CHANGELOG.md)                                                                        | FSM / parser primitives                       |
-| ![](https://img.shields.io/badge/-feat-green)          | [`@thi.ng/geom-api`](./deprecated/packages/geom-api)                                                              | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api) | [changelog](./packages/geom-api/CHANGELOG.md) |
-| [`@thi.ng/iterators`](./deprecated/packages/iterators) | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators) | [changelog](./packages/iterators/CHANGELOG.md)                                                                  | ES6 generators / iterators                    |
-| [`@thi.ng/testament`](./deprecated/packages/testament) | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament) | [changelog](./packages/testament/CHANGELOG.md)                                                                  | Minimal test runner                           |
+| Project                                                | Version                                                                                                           | Changelog                                      | Description                           |
+|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|---------------------------------------|
+| [`@thi.ng/fsm`](./deprecated/packages/fsm)             | [![version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)             | [changelog](./packages/fsm/CHANGELOG.md)       | FSM / parser primitives               |
+| [`@thi.ng/geom-api`](./deprecated/packages/geom-api)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)   | [changelog](./packages/geom-api/CHANGELOG.md)  | Shared types for thi.ng/geom packages |
+| [`@thi.ng/iterators`](./deprecated/packages/iterators) | [![version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators) | [changelog](./packages/iterators/CHANGELOG.md) | ES6 generators / iterators            |
+| [`@thi.ng/testament`](./deprecated/packages/testament) | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament) | [changelog](./packages/testament/CHANGELOG.md) | Minimal test runner                   |
 
 ## Building
 
