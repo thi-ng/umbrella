@@ -1,6 +1,7 @@
 import type { Fn2, NumOrString } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isAsyncIterable } from "@thi.ng/checks/is-async-iterable";
+import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isSubscribable } from "@thi.ng/rstream/checks";
 import type { CompiledComponent, IComponent, NumOrElement } from "./api.js";
@@ -24,12 +25,19 @@ import { $wrapEl, $wrapText } from "./wrap.js";
  *   instances
  * - [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
  *   instances
+ * - functions embedded in hiccup, i.e. either:
+ *   - `[fn, ...args]`
+ *   - `["tag", {}, ... noArgFn ...]`
  *
  * Any other value type will be wrapped in a `<span>` element. Reactive
  * `ISubscribable` values can be used as element attributes or element
  * body/children. For the former, a subscription will be added to update the
  * target attribute. If used as element body, the reactive value will be wrapped
  * using a {@link $sub} `<span>` with the value as its reactive body.
+ *
+ * If given any of the supported embedded function forms, the function will be
+ * called with given args (or without) and the result passed back to
+ * `$compile()`.
  *
  * **Important:** Use {@link $replace}, {@link $refresh} or {@link $switch} to
  * wrap any reactive values/subscriptions which produce actual HTML
@@ -44,7 +52,9 @@ import { $wrapEl, $wrapText } from "./wrap.js";
  */
 export const $compile = (tree: any): IComponent =>
 	isArray(tree)
-		? __isComplexComponent(tree)
+		? isFunction(tree[0])
+			? $compile(tree[0].apply(null, tree.slice(1)))
+			: __isComplexComponent(tree)
 			? __complexComponent(tree)
 			: __basicComponent(tree)
 		: isComponent(tree)
@@ -53,6 +63,8 @@ export const $compile = (tree: any): IComponent =>
 		? $sub(tree, "span")
 		: isAsyncIterable(tree)
 		? $async(tree, "span")
+		: isFunction(tree)
+		? $compile(tree())
 		: tree instanceof Element
 		? $wrapEl(tree)
 		: $wrapText("span", null, tree);
@@ -86,6 +98,7 @@ const __isComplexComponent = (x: any) => {
 		isSubscribable(x) ||
 		isAsyncIterable(x) ||
 		isComponent(x) ||
+		isFunction(x) ||
 		isElement(x)
 	);
 };
