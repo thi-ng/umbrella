@@ -364,7 +364,12 @@ export interface OutputSpec extends ProcSpec {
 	id: string;
 	/**
 	 * Possibly templated output path. See {@link formatPath} for details.
-	 * Ignored if {@link OutputSpec.blurhash} is being used, otherwise **required**.
+	 * Ignored if {@link OutputSpec.blurhash} is being used.
+	 *
+	 * Otherwise, if given, the image will be written to the result path and the
+	 * path stored in the `outputs` object returned by {@link processImage}. If
+	 * no path is given, no file will be written and the encoded image buffer
+	 * itself will be recorded in `outputs`.
 	 */
 	path?: string;
 	/**
@@ -531,7 +536,7 @@ export interface ImgProcCtx {
 	 * Paths of all exported images, keyed by IDs given via {@link OutputSpec} /
 	 * {@link output}.
 	 */
-	outputs: Record<string, string>;
+	outputs: Record<string, string | Buffer>;
 	/**
 	 * See {@link ImgProcOpts.env} for details/comments.
 	 */

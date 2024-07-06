@@ -64,12 +64,16 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 	if (opts.tile) output = output.tile(opts.tile);
 	if (format) output = output.toFormat(<any>format);
 	const result = await output.toBuffer();
-	const path = join(
-		outDir,
-		formatPath(opts.path, ctx, <OutputSpec>spec, result)
-	);
-	writeFile(path, result, null, ctx.logger);
-	ctx.outputs[opts.id] = path;
+	if (opts.path !== undefined) {
+		const path = join(
+			outDir,
+			formatPath(opts.path, ctx, <OutputSpec>spec, result)
+		);
+		writeFile(path, result, null, ctx.logger);
+		ctx.outputs[opts.id] = path;
+	} else {
+		ctx.outputs[opts.id] = result;
+	}
 	return [input, false];
 };
 
@@ -87,17 +91,21 @@ const __outputRaw = async (
 	const { data, info } = await output
 		.raw()
 		.toBuffer({ resolveWithObject: true });
-	const path = join(outDir, formatPath(opts.path!, ctx, opts, data));
-	writeFile(path, data, null, ctx.logger);
-	ctx.outputs[opts.id] = path;
-	if (meta) {
-		writeJSON(
-			path + ".meta.json",
-			{ ...info, exif: ctx.exif },
-			undefined,
-			undefined,
-			ctx.logger
-		);
+	if (opts.path !== undefined) {
+		const path = join(outDir, formatPath(opts.path!, ctx, opts, data));
+		writeFile(path, data, null, ctx.logger);
+		ctx.outputs[opts.id] = path;
+		if (meta) {
+			writeJSON(
+				path + ".meta.json",
+				{ ...info, exif: ctx.exif },
+				undefined,
+				undefined,
+				ctx.logger
+			);
+		}
+	} else {
+		ctx.outputs[opts.id] = data;
 	}
 };
 
