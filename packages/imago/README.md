@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 188 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -258,6 +258,9 @@ Alternatively, a
 the image can be computed and stored in the outputs. In this case, no file will
 be written.
 
+For all other formats, if no output path is provided in the spec, no file will
+be written, but the encoded image buffer itself will be recorded in the outputs.
+
 #### Templated output paths
 
 Output paths can contain `{id}`-templated parts which will be replaced/expanded.
@@ -357,7 +360,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.92 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.95 KB
 
 ## Dependencies
 

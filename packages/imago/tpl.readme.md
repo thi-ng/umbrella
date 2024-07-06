@@ -211,6 +211,9 @@ Alternatively, a
 the image can be computed and stored in the outputs. In this case, no file will
 be written.
 
+For all other formats, if no output path is provided in the spec, no file will
+be written, but the encoded image buffer itself will be recorded in the outputs.
+
 #### Templated output paths
 
 Output paths can contain `{id}`-templated parts which will be replaced/expanded.
