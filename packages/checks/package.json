@@ -44,10 +44,10 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
-		"@types/node": "^20.14.6",
-		"esbuild": "^0.21.5",
-		"typedoc": "^0.25.13",
-		"typescript": "^5.5.2"
+		"@types/node": "^20.14.10",
+		"esbuild": "^0.23.0",
+		"typedoc": "^0.26.3",
+		"typescript": "^5.5.3"
 	},
 	"keywords": [
 		"detect",

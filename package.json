@@ -7,15 +7,15 @@
 		"tools"
 	],
 	"devDependencies": {
-		"@microsoft/api-documenter": "^7.25.3",
+		"@microsoft/api-documenter": "^7.25.4",
 		"@microsoft/api-extractor": "^7.47.0",
 		"all-contributors-cli": "^6.26.1",
-		"bun-types": "^1.1.15",
-		"esbuild": "^0.21.5",
+		"bun-types": "^1.1.18",
+		"esbuild": "^0.23.0",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.25.13",
-		"typescript": "^5.5.2"
+		"typedoc": "^0.26.3",
+		"typescript": "^5.5.3"
 	},
 	"scripts": {
 		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",
