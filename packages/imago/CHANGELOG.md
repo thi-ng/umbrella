@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-06-29T09:28:36Z
+- **Last updated**: 2024-07-06T12:02:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.8.0) (2024-07-06)
+
+#### 🚀 Features
+
+- make output path optional, record img buffer ([90258b2](https://github.com/thi-ng/umbrella/commit/90258b2))
+  - update OutputSpec.path handling
+  - if no path given, record encoded img buffer itself in outputs
+  - update outputProc() & __outputRaw()
+  - update docs
 
 ### [0.7.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.7.8) (2024-06-21)
 
