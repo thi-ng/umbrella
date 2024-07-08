@@ -16,14 +16,14 @@
 
 - [About](#about)
   - [Supported elements](#supported-elements)
-    - [Head / metadata](#head--metadata)
-    - [Sections](#sections)
-    - [Text content](#text-content)
-    - [Lists](#lists)
-    - [Tables](#tables)
-    - [Inline](#inline)
+    - [Block content](#block-content)
     - [Forms / inputs](#forms--inputs)
+    - [Head / metadata](#head--metadata)
+    - [Inline](#inline)
+    - [Lists](#lists)
     - [Media](#media)
+    - [Sections](#sections)
+    - [Tables](#tables)
   - [Compatibility](#compatibility)
 - [Status](#status)
 - [Support packages](#support-packages)
@@ -41,72 +41,173 @@
 
 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure.
 
-The following type-checked factory functions are provided **so far** and
-in most cases include specialized type definitions for element-specific
-attributes, incl. enumerated attrib values (where applicable/useful) and
-all 420+ CSS property names (for use with the `style` attrib). See type
-definitions in
+The following type-checked factory functions are provided **so far** and in most
+cases include specialized type definitions for element-specific attributes,
+incl. enumerated attrib values (where applicable/useful) and 420+ CSS property
+names (for use with the `style` attrib). See type definitions in
 [api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts)
 and [`defElement()`](#defelement) below for more details.
 
 ### Supported elements
 
-#### Head / metadata
-
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/head.ts)
-
-`base`, `head`, `link`, `linkCSS`, `meta`, `metaReferrer`,
-`metaRefresh`, `metaRobots`, `metaUTF8`, `metaViewport`, `metaXUA`,
-`script`, `style`, `title`
-
-#### Sections
-
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/sections.ts)
-
-`address`, `article`, `aside`, `body`, `footer`, `h1`..`h6`, `header`,
-`hgroup`, `html`, `main`, `nav`, `noscript`, `section`
-
-#### Text content
+#### Block content
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/blocks.ts)
 
-`blockquote`, `div`, `figure`, `figcaption`, `hr`, `iframe`, `para`,
-`pre`
-
-#### Lists
-
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
-
-`datalist`, `dd`, `dl`, `dt`, `li`, `ol`, `ul`
-
-#### Tables
-
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/table.ts)
-
-`caption`, `col`, `colgroup`, `table`, `tbody`, `td`, `tfoot`, `th`,
-`thead`, `tr`
-
-#### Inline
-
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/inline.ts)
-
-`abbr`, `anchor`, `br`, `cite`, `code`, `data`, `del`, `em`, `i`, `ins`,
-`kbd`, `mark`, `quote`, `small`, `span`, `strong`, `sub`, `sup`, `time`
+- `blockquote`
+- `details`
+- `dialog`
+- `div`
+- `figcaption`
+- `figure`
+- `hr`
+- `iframe`
+- `para`
+- `pre`
+- `slot`
+- `summary`
+- `template`
 
 #### Forms / inputs
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/forms.ts)
 
-`button`, `checkbox`, `fieldset`, `form`, `inputColor`, `inputFile`,
-`inputNumber`, `inputPass`, `inputRange`, `inputSearch`, `inputText`,
-`label`, `legend`, `meter`, `option`, `optGroup`, `progress`, `radio`,
-`select`, `textArea`
+- `button`
+- `checkbox`
+- `fieldset`
+- `form`
+- `inputColor`
+- `inputFile`
+- `inputNumber`
+- `inputPass`
+- `inputRange`
+- `inputReset`
+- `inputSearch`
+- `inputSubmit`
+- `inputText`
+- `label`
+- `legend`
+- `meter`
+- `optGroup`
+- `option`
+- `output`
+- `progress`
+- `radio`
+- `select`
+- `textArea`
+
+#### Head / metadata
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/head.ts)
+
+- `base`
+- `head`
+- `link`
+- `linkCSS`
+- `meta`
+- `metaReferrer`
+- `metaRefresh`
+- `metaRobots`
+- `metaUTF8`
+- `metaViewport`
+- `metaXUA`
+- `script`
+- `style`
+- `title`
+
+#### Inline
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/inline.ts)
+
+- `abbr`
+- `anchor`
+- `br`
+- `cite`
+- `code`
+- `data`
+- `del`
+- `dfn`
+- `em`
+- `i`
+- `ins`
+- `kbd`
+- `mark`
+- `quote`
+- `small`
+- `span`
+- `strikethrough`
+- `strong`
+- `sub`
+- `sup`
+- `time`
+- `variable`
+- `wbr`
+
+#### Lists
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
+
+- `datalist`
+- `dd`
+- `dl`
+- `dt`
+- `li`
+- `menu`
+- `ol`
+- `ul`
 
 #### Media
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/media.ts)
 
-`audio`, `canvas`, `img`, `picture`, `source`, `video`
+- `audio`
+- `canvas`
+- `img`
+- `object`
+- `picture`
+- `source`
+- `track`
+- `video`
+
+#### Sections
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/sections.ts)
+
+- `address`
+- `article`
+- `aside`
+- `body`
+- `comment`
+- `footer`
+- `h1`
+- `h2`
+- `h3`
+- `h4`
+- `h5`
+- `h6`
+- `header`
+- `hgroup`
+- `html`
+- `main`
+- `nav`
+- `noscript`
+- `search`
+- `section`
+
+#### Tables
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/table.ts)
+
+- `caption`
+- `col`
+- `colgroup`
+- `table`
+- `tbody`
+- `td`
+- `tfoot`
+- `th`
+- `thead`
+- `tr`
 
 ### Compatibility
 
@@ -196,7 +297,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.51 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.63 KB
 
 ## Dependencies
 
