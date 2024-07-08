@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-06T12:02:18Z
+- **Last updated**: 2024-07-08T20:34:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.7.0) (2024-07-08)
+
+#### 🚀 Features
+
+- add/update block elements ([08f1728](https://github.com/thi-ng/umbrella/commit/08f1728))
+  - add: details(), dialog(), summary()
+  - update template(), add TemplateAttribs
+- add inline elements ([9127bd6](https://github.com/thi-ng/umbrella/commit/9127bd6))
+  - add: dfn(), strikethrough(), variable(), wbr()
+- add/update elements ([0df160f](https://github.com/thi-ng/umbrella/commit/0df160f))
+  - add: menu(), object(), output(), search()
+  - add new element specific attrib types
 
 ### [2.6.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.6.3) (2024-05-08)
 
