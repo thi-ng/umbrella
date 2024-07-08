@@ -94,6 +94,9 @@
 		"./radio": {
 			"default": "./radio.js"
 		},
+		"./ruler": {
+			"default": "./ruler.js"
+		},
 		"./tabs": {
 			"default": "./tabs.js"
 		}
