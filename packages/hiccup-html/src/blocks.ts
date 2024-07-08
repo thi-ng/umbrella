@@ -16,13 +16,26 @@ export interface BlockquoteAttribs extends Attribs {
 
 export const blockquote = defElement<Partial<BlockquoteAttribs>>("blockquote");
 
-export const [div, figure, figcaption, para, pre, template] = defElements([
+export interface DetailAttribs extends Attribs {
+	open: boolean;
+	name: StringAttrib;
+}
+
+export const details = defElement<Partial<DetailAttribs>>("details");
+
+export interface DialogAttribs extends Attribs {
+	open: boolean;
+}
+
+export const dialog = defElement<Partial<DialogAttribs>>("dialog");
+
+export const [div, figure, figcaption, para, pre, summary] = defElements([
 	"div",
 	"figure",
 	"figcaption",
 	"p",
 	"pre",
-	"template",
+	"summary",
 ]);
 
 export const hr = defElement<Partial<Attribs>, never>("hr");
@@ -68,3 +81,11 @@ export interface SlotAttribs extends Attribs {
 }
 
 export const slot = defElement<Partial<SlotAttribs>>("slot");
+
+export interface TemplateAttribs extends Attribs {
+	shadowrootmode: AttribVal<"open" | "closed">;
+	shadowrootclonable: BooleanAttrib;
+	shadowrootdelegatesfocus: BooleanAttrib;
+}
+
+export const template = defElement<Partial<TemplateAttribs>>("template");
