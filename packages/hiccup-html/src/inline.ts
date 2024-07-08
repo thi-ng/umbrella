@@ -36,20 +36,39 @@ export const time = defElement<{ datetime: StringAttrib } & Partial<Attribs>>(
 	"time"
 );
 
-export const [cite, code, em, i, kbd, mark, small, span, strong, sub, sup] =
-	defElements([
-		"cite",
-		"code",
-		"em",
-		"i",
-		"kbd",
-		"mark",
-		"small",
-		"span",
-		"strong",
-		"sub",
-		"sup",
-	]);
+export const [
+	cite,
+	code,
+	dfn,
+	em,
+	i,
+	kbd,
+	mark,
+	small,
+	span,
+	strikethrough,
+	strong,
+	sub,
+	sup,
+	variable,
+	wbr,
+] = defElements([
+	"cite",
+	"code",
+	"dfn",
+	"em",
+	"i",
+	"kbd",
+	"mark",
+	"small",
+	"span",
+	"s",
+	"strong",
+	"sub",
+	"sup",
+	"var",
+	"wbr",
+]);
 
 export interface EditAttribs extends Attribs {
 	cite: StringAttrib;
