@@ -10,7 +10,7 @@ import {
 } from "@thi.ng/hiccup-html";
 import { parse } from "@thi.ng/hiccup-markdown";
 import { $inputNum, $list } from "@thi.ng/rdom";
-import { fromDOMEvent, reactive, sync } from "@thi.ng/rstream";
+import { fromDOMEvent, fromEvent, reactive, sync } from "@thi.ng/rstream";
 import { maybeParseInt } from "@thi.ng/strings";
 import { comp, interpose, iterator, map } from "@thi.ng/transducers";
 import type { LayoutItem, RankedItem } from "./api.js";
@@ -32,10 +32,11 @@ export const gallery = async () => {
 	const threshold = reactive(0.33);
 
 	// reactive state of currently selected image (or -1 to select all)
-	// attempt to initialize from hash fragment...
-	const selected = reactive<number>(
+	// subscribes to URL hash fragment changes...
+	const selected = fromEvent(window, "hashchange").map(() =>
 		maybeParseInt(location.hash.substring(1), -1)
 	);
+	selected.next(<any>null);
 
 	// combine reactive values required for computing related items
 	const related = sync({
@@ -103,7 +104,8 @@ export const gallery = async () => {
 				anchor(
 					{
 						href: "#" + id,
-						onclick: () => selected.next(id),
+						// update URL hash, which then triggers selection update
+						onclick: () => (location.hash = String(id)),
 					},
 					img(".w-100", { src: url, alt: "Sorry, no alt text" })
 				),
@@ -152,7 +154,14 @@ export const gallery = async () => {
 		div(
 			".mv3",
 			{},
-			button(".mr2", { onclick: () => selected.next(-1) }, "show all"),
+			button(
+				".mr2",
+				{
+					// update URL hash, which then triggers selection update
+					onclick: () => (location.hash = "-1"),
+				},
+				"show all"
+			),
 			"or click an image to only show related"
 		),
 		div(
