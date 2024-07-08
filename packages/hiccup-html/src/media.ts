@@ -7,6 +7,7 @@ import type {
 	ImportanceAttribs,
 	LoadingAttribs,
 	MultiStringAttrib,
+	NumericAttrib,
 	ReferrerAttribs,
 	StringAttrib,
 } from "./api.js";
@@ -79,3 +80,14 @@ export interface TrackAttribs extends Attribs {
 }
 
 export const track = defElement<Partial<TrackAttribs>>("track");
+
+export interface ObjectAttribs extends Omit<Attribs, "data"> {
+	data: StringAttrib;
+	type: StringAttrib;
+	form: StringAttrib;
+	name: StringAttrib;
+	height: NumericAttrib;
+	width: NumericAttrib;
+}
+
+export const object = defElement<Partial<ObjectAttribs>>("object");

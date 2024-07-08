@@ -6,13 +6,13 @@ import type {
 } from "./api.js";
 import { defElement, defElements } from "./def.js";
 
-export const [table, tbody, tfoot, thead, tr, caption] = defElements([
+export const [caption, table, tbody, tfoot, thead, tr] = defElements([
+	"caption",
 	"table",
 	"tbody",
 	"tfoot",
 	"thead",
 	"tr",
-	"caption",
 ]);
 
 export interface TableCellAttribs extends Attribs {

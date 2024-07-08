@@ -195,3 +195,11 @@ export interface ProgressAttribs extends Attribs {
 }
 
 export const progress = defElement<Partial<ProgressAttribs>>("progress");
+
+export interface OutputAttribs extends Attribs {
+	for: MultiStringAttrib;
+	form: StringAttrib;
+	name: StringAttrib;
+}
+
+export const output = defElement<Partial<OutputAttribs>>("output");

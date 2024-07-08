@@ -40,6 +40,7 @@ export const [
 	main,
 	nav,
 	noscript,
+	search,
 	section,
 ] = defElements([
 	"address",
@@ -51,6 +52,7 @@ export const [
 	"main",
 	"nav",
 	"noscript",
+	"search",
 	"section",
 ]);
 
