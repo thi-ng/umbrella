@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-06T12:02:19Z
+- **Last updated**: 2024-07-10T20:28:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/sax@2.2.0) (2024-07-10)
+
+#### 🚀 Features
+
+- support nested CDATA, add tests ([#479](https://github.com/thi-ng/umbrella/issues/479)) ([ed53729](https://github.com/thi-ng/umbrella/commit/ed53729))
 
 ### [2.1.123](https://github.com/thi-ng/umbrella/tree/@thi.ng/sax@2.1.123) (2024-06-21)
 
