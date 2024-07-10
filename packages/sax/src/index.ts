@@ -515,6 +515,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 					return;
 				}
 			}
+			state.scope[state.scope.length - 1].body = b;
 			return [{ type: Type.CDATA, body: b }];
 		} else {
 			state.body += ch;
