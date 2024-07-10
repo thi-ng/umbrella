@@ -298,12 +298,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-07-08
+As of: 2024-07-10
 
 | Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
 |:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-html`](./packages/hiccup-html)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)         | [changelog](./packages/hiccup-html/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom-components`](./packages/rdom-components) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components) | [changelog](./packages/rdom-components/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sax`](./packages/sax) | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax) | [changelog](./packages/sax/CHANGELOG.md) |
 
 ### Fundamentals
 
