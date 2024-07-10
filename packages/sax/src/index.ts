@@ -502,21 +502,23 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
 				return __unexpected(state, ch);
 			}
 		} else if (ch === ">") {
-			const n = state.body!.length;
-			if (state.body!.substring(n - 2) !== "]]") {
+			const len = state.body!.length;
+			if (state.body!.substring(len - 2) !== "]]") {
 				state.body += ch;
 				return;
 			}
 			state.state = State.WAIT;
-			let b = state.body!.substring(0, n - 2);
+			let body = state.body!.substring(0, len - 2);
 			if (state.opts.trim) {
-				b = b.trim();
-				if (!b.length) {
+				body = body.trim();
+				if (!body.length) {
 					return;
 				}
 			}
-			state.scope[state.scope.length - 1].body = b;
-			return [{ type: Type.CDATA, body: b }];
+			const scope = state.scope[state.scope.length - 1];
+			// support nested CDATA (append)
+			scope.body = scope.body ? scope.body + body : body;
+			return [{ type: Type.CDATA, body: scope.body }];
 		} else {
 			state.body += ch;
 		}

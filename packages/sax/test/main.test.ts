@@ -9,7 +9,7 @@ import {
 	matchFirst,
 	transduce,
 } from "@thi.ng/transducers";
-import { expect, test } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import { parse, Type, type ParseElement } from "../src/index.js";
 
 const svg = `
@@ -25,6 +25,9 @@ const svg = `
         <circle cx="150.00" cy="150.00" r="50.00" />
         <circle cx="150.00" cy="150.00" r="25.00" />
     </g>
+	<script><![CDATA[
+		var x = (1 << 3) >>> 2;
+	]]></script>
 </svg>`;
 
 test("svg parse", () => {
@@ -101,54 +104,59 @@ test("svg parse (defmulti)", () => {
 				...parsedChildren(e),
 			],
 
+			script: (e) => [e.tag, e.attribs, e.body],
+
 			[DEFAULT]: () => undefined,
 		}
 	);
 
-	expect(parseElement(<ParseElement>transduce(parse(), last(), svg))).toEqual(
+	expect(
+		parseElement(
+			<ParseElement>transduce(parse({ trim: true }), last(), svg)
+		)
+	).toEqual([
+		"svg",
+		{
+			version: "1.1",
+			height: 300,
+			width: 300,
+			xmlns: "http://www.w3.org/2000/svg",
+		},
 		[
-			"svg",
-			{
-				version: "1.1",
-				height: 300,
-				width: 300,
-				xmlns: "http://www.w3.org/2000/svg",
-			},
+			"g",
+			{ fill: "yellow" },
+			["circle", { cx: 50, cy: 150, r: 50 }],
+			["circle", { cx: 250, cy: 150, r: 50 }],
 			[
-				"g",
-				{ fill: "yellow" },
-				["circle", { cx: 50, cy: 150, r: 50 }],
-				["circle", { cx: 250, cy: 150, r: 50 }],
-				[
-					"circle",
-					{
-						cx: 150,
-						cy: 150,
-						fill: "rgba(0,255,255,0.25)",
-						r: 100,
-						stroke: "#ff0000",
-					},
-				],
-				[
-					"rect",
-					{
-						x: 80,
-						y: 80,
-						width: 140,
-						height: 140,
-						fill: "none",
-						stroke: "black",
-					},
-				],
+				"circle",
+				{
+					cx: 150,
+					cy: 150,
+					fill: "rgba(0,255,255,0.25)",
+					r: 100,
+					stroke: "#ff0000",
+				},
 			],
 			[
-				"g",
-				{ fill: "none", stroke: "black" },
-				["circle", { cx: 150, cy: 150, r: 50 }],
-				["circle", { cx: 150, cy: 150, r: 25 }],
+				"rect",
+				{
+					x: 80,
+					y: 80,
+					width: 140,
+					height: 140,
+					fill: "none",
+					stroke: "black",
+				},
 			],
-		]
-	);
+		],
+		[
+			"g",
+			{ fill: "none", stroke: "black" },
+			["circle", { cx: 150, cy: 150, r: 50 }],
+			["circle", { cx: 150, cy: 150, r: 25 }],
+		],
+		["script", {}, "var x = (1 << 3) >>> 2;"],
+	]);
 });
 
 test("errors", () => {
@@ -178,4 +186,39 @@ test("boolean attribs", () => {
 		{ type: 4, tag: "foo", attribs: { a: true, b: "2", c: true } },
 		{ type: 5, tag: "foo", attribs: { a: true, b: "2", c: true } },
 	]);
+});
+
+describe("cdata", () => {
+	test("empty", () => {
+		expect(last(parse({}, "<a><![CDATA[]]></a>"))).toEqual({
+			type: Type.ELEM_END,
+			tag: "a",
+			attribs: {},
+			children: [],
+			body: "",
+		});
+	});
+
+	test("<>", () => {
+		expect(last(parse({}, "<a><![CDATA[<b></b>]]></a>"))).toEqual({
+			type: Type.ELEM_END,
+			tag: "a",
+			attribs: {},
+			children: [],
+			body: "<b></b>",
+		});
+	});
+
+	test("nested", () => {
+		expect(
+			// https://en.wikipedia.org/wiki/CDATA#Nesting
+			last(parse({}, "<a><![CDATA[<![CDATA[]]]]><![CDATA[>]]></a>"))
+		).toEqual({
+			type: Type.ELEM_END,
+			tag: "a",
+			attribs: {},
+			children: [],
+			body: "<![CDATA[]]>",
+		});
+	});
 });
