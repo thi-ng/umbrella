@@ -1,5 +1,5 @@
 import type { FnU2 } from "@thi.ng/api";
-import { benchmark } from "@thi.ng/bench";
+import { benchmark, benchResult } from "@thi.ng/bench";
 import { isPow2 } from "@thi.ng/binary";
 import { assert } from "@thi.ng/errors";
 import {
@@ -63,7 +63,7 @@ const reduceStep =
 
 // build declarative multi-pass shader pipeline for performing GPU-side reductions
 const defReduction = (op: FnU2<Vec4Term>, size: number, data: Float32Array) => {
-	assert(isPow2(size), "size must be a power of 2");
+	assert(size > 0 && isPow2(size), "size must be a power of 2");
 	assert(
 		data.length == size * size * 4,
 		`expected data size=${size * size * 4}`
@@ -131,28 +131,38 @@ const reduceCPU = (data: Float32Array) => {
 
 benchmark(() => reduceCPU(DATA), { title: "CPU", warmup: 100, iter: 1000 });
 
-// obtain & display results of the various GPU compute passes
+// obtain & display results of the various GPU compute passes.
+// THIS IS FOR DEBUGGING ONLY! for actual usage only the last pass needs to be
+// processed (here always a 1x1 texture = 4 result values)
 let gpuResult = 0;
 for (let i = 0; i < reduce.fbos.length; i++) {
-	// bind the FBO/texture of the current pass
-	reduce.fbos[i].bind();
 	const [w, h] = reduce.textures[i + 1].size;
-	// read values
-	const res = readPixels(
-		gl,
-		0,
-		0,
-		w,
-		h,
-		TextureFormat.RGBA,
-		TextureType.FLOAT,
-		new Float32Array(w * h * 4)
-	);
-	reduce.fbos[i].unbind();
-	// since the GPU result is always multiple values (vec4s), we still need to
-	// one final reduction...
+	// result array for current pass
+	const res = new Float32Array(w * h * 4);
+	// benchmark texture reads (1000 iterations)
+	const [_, t] = benchResult(() => {
+		// bind the FBO/texture of the current pass
+		reduce.fbos[i].bind();
+		// read values
+		readPixels(gl, 0, 0, w, h, TextureFormat.RGBA, TextureType.FLOAT, res);
+		reduce.fbos[i].unbind();
+	}, 1000);
+	// since the GPU result always consists multiple values (since vec4 based),
+	// we still need to perform one final reduction...
 	gpuResult = reduceCPU(res);
-	console.log("pass ", i, res, gpuResult);
+	// show stats
+	console.log(
+		"pass",
+		i,
+		"size",
+		w,
+		"result",
+		res,
+		gpuResult,
+		"read pixels:",
+		t / 1000,
+		"ms"
+	);
 }
 
 assert(gpuResult === reduceCPU(DATA), "results don't match 😭");
