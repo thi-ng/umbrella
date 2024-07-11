@@ -46,6 +46,7 @@ const app = () => {
 									range2d(-GRID + 1, GRID, -GRID + 1, GRID)
 								)
 							),
+							size: 3,
 						},
 						icol: {
 							data: new Float32Array(
@@ -54,6 +55,7 @@ const app = () => {
 									range2d(-GRID + 1, GRID, -GRID + 1, GRID)
 								)
 							),
+							size: 3,
 						},
 					},
 					num: (GRID * 2 - 1) ** 2,
