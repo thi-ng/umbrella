@@ -18,6 +18,7 @@
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [Environment variables](#environment-variables)
 - [Authors](#authors)
@@ -76,6 +77,16 @@ Package sizes (brotli'd, pre-treeshake): ESM: 817 bytes
 ## Dependencies
 
 None
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Description                                                                  | Live demo                                          | Source                                                                          |
+|:-----------------------------------------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
+| GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gpgpu-reduce) |
 
 ## API
 
