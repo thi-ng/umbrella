@@ -1005,6 +1005,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/gpgpu-reduce@workspace:examples/gpgpu-reduce":
+  version: 0.0.0-use.local
+  resolution: "@example/gpgpu-reduce@workspace:examples/gpgpu-reduce"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/binary": "workspace:^"
+    "@thi.ng/errors": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: "npm:^5.5.3"
+    vite: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@example/grid-iterators@workspace:examples/grid-iterators":
   version: 0.0.0-use.local
   resolution: "@example/grid-iterators@workspace:examples/grid-iterators"
