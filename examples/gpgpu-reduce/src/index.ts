@@ -1,4 +1,4 @@
-import type { FnU2 } from "@thi.ng/api";
+import type { FnU2, IObjectOf } from "@thi.ng/api";
 import { benchmark, benchResult } from "@thi.ng/bench";
 import { isPow2 } from "@thi.ng/binary";
 import { assert } from "@thi.ng/errors";
@@ -15,16 +15,7 @@ import {
 	type IVec2Sym,
 	type Vec4Term,
 } from "@thi.ng/shader-ast";
-import {
-	assocObj,
-	comp,
-	iterate,
-	mapIndexed,
-	push,
-	range,
-	takeWhile,
-	transduce,
-} from "@thi.ng/transducers";
+import { range } from "@thi.ng/transducers";
 import {
 	defMultiPass,
 	glCanvas,
@@ -71,38 +62,22 @@ const defReduction = (op: FnU2<Vec4Term>, size: number, data: Float32Array) => {
 	// build texture specs for all compute passes
 	// the 1st texture will be of configured start size, then each successive
 	// texture will be half the size of its predecessor
-	const textures = transduce(
-		comp(
-			takeWhile((x) => x > 0),
-			mapIndexed<number, [number, Partial<TextureOpts>]>((i, x) => [
-				i,
-				{ format: TextureFormat.RGBA32F, width: x, height: x },
-			])
-		),
-		assocObj<Partial<TextureOpts>>(),
-		iterate((x) => x >> 1, size)
-	);
+	const textures: IObjectOf<Partial<TextureOpts>> = {};
+	for (let s = size, i = 0; s > 0; s >>= 1, i++) {
+		textures[i] = { format: TextureFormat.RGBA32F, width: s, height: s };
+	}
 	// assign input data to first texture
 	textures[0].image = data;
-
 	// pre-compile single reduction shader pass using given `op`, we will re-use
 	// this same shader for all passes...
 	const shader = reduceStep(op);
 	// build list of shader passes, each one reading from one of the defined
 	// textures and then writing to its successor texture
 	// the last pass will write to the 1x1 texture
-	const passes = transduce(
-		comp(
-			takeWhile((x) => x > 1),
-			mapIndexed<number, PassOpts>((i) => ({
-				fs: shader,
-				inputs: [String(i)],
-				outputs: [String(i + 1)],
-			}))
-		),
-		push<PassOpts>(),
-		iterate((x) => x >> 1, size)
-	);
+	const passes: PassOpts[] = [];
+	for (let s = size, i = 0; s > 1; s >>= 1, i++) {
+		passes.push({ fs: shader, inputs: [`${i}`], outputs: [`${i + 1}`] });
+	}
 	// build & return multipass shader pipeline
 	return defMultiPass({
 		gl: gl,
@@ -116,6 +91,7 @@ const defReduction = (op: FnU2<Vec4Term>, size: number, data: Float32Array) => {
 const W = 512;
 const DATA = new Float32Array(range(W * W * 4));
 
+// initialize GPU reduction pipeline
 const reduce = defReduction(add, W, DATA);
 
 // actually perfom & benchmark the reduction
