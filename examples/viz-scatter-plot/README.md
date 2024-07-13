@@ -1,6 +1,6 @@
 # viz-scatter-plot
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.avif)
 
 [Live demo](http://demo.thi.ng/umbrella/viz-scatter-plot/)
 
