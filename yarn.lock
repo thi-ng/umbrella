@@ -2849,6 +2849,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/viz-scatter-plot@workspace:examples/viz-scatter-plot":
+  version: 0.0.0-use.local
+  resolution: "@example/viz-scatter-plot@workspace:examples/viz-scatter-plot"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/lowdisc": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-forms": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/viz": "workspace:^"
+    typescript: "npm:^5.5.3"
+    vite: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer":
   version: 0.0.0-use.local
   resolution: "@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer"
@@ -6581,7 +6602,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/viz@workspace:packages/viz":
+"@thi.ng/viz@workspace:^, @thi.ng/viz@workspace:packages/viz":
   version: 0.0.0-use.local
   resolution: "@thi.ng/viz@workspace:packages/viz"
   dependencies:

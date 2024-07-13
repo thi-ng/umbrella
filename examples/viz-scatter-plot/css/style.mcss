@@ -1,0 +1,26 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+// variable declarations
+:root {
+	color1=#f06
+	color2=#0af
+}
+
+body { system-sans-serif ma3 }
+
+#scatter circle { fill(1) { :hover { fill(2) } } }
+
+#controls {
+	mb3
+	{
+		>div { grid grid-cols(4rem 1fr) }
+		.range-label { ml3 }
+		input[type=range] { width(22rem) }
+		input[type=checkbox] { width(1rem) }
+	}
+}
+
+#selection { mb3 }
