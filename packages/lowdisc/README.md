@@ -107,13 +107,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 456 bytes
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
-| Screenshot                                                                                                           | Description                    | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/quasi-lattice.png" width="240"/> | Quasi-random lattice generator | [Demo](https://demo.thi.ng/umbrella/quasi-lattice/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/quasi-lattice) |
+| Screenshot                                                                                                               | Description                                                | Live demo                                              | Source                                                                              |
+|:-------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/quasi-lattice.png" width="240"/>     | Quasi-random lattice generator                             | [Demo](https://demo.thi.ng/umbrella/quasi-lattice/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/quasi-lattice)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-scatter-plot) |
 
 ## API
 
