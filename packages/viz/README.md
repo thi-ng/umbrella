@@ -97,7 +97,7 @@ For Node.js REPL:
 const viz = await import("@thi.ng/viz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.62 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
 
 ## Dependencies
 
@@ -111,12 +111,13 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.62 KB
 
 ## Usage examples
 
-One project in this repo's
+Several projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory is using this package:
+directory are using this package:
 
 | Screenshot                                                                                                               | Description                                                | Live demo                                              | Source                                                                              |
 |:-------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>  | Interactive ridge-line plot                                | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-scatter-plot) |
 
 ## API

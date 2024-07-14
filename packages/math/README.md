@@ -102,6 +102,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>      | 2D scenegraph & image map based geometry manipulation                  | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png" width="240"/>          | Simplistic SVG bar chart component                                     | [Demo](https://demo.thi.ng/umbrella/svg-barchart/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>          | SVG path parsing & dynamic resampling                                  | [Demo](https://demo.thi.ng/umbrella/svg-resample/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>      | Interactive ridge-line plot                                            | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)       |
 
 ## API
 
