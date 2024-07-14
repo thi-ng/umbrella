@@ -20,7 +20,7 @@ import {
 	type PlotFn,
 } from "@thi.ng/viz";
 
-// format fn for vectors
+// string format function for vectors
 const FMT = defFormat({ prec: 2 });
 
 // function to produce N low-discrepancy samples
@@ -39,14 +39,14 @@ const generateSamples = (n: number) => ({
 
 // thi.ng/viz currently only provides a scatter plot for static visualizations
 // (using a point cloud). here we create an alternative implementation which
-// uses individual shape elements (create by a user supplied shape function)...
+// uses individual shape elements (created by a user supplied shape function)...
 //
 // - the shape fn receives a tuple of [screenPos, origDatum]
 // - the `processedPoints()` iterator is one of the core functions of the
 //   thi.ng/viz pkg and used by other plot types too...
 // - the output of this function is a shape tree in thi.ng/hiccup format (as are
-//   all other elements of the plot. this format will then be serialized to SVG
-//   when the visualization will be applied to the browser DOM)
+//   all other elements of the plot. this format will then be converted into SVG
+//   DOM elements when the visualization will be updated in the UI)
 const shapeScatterPlot =
 	(
 		shape: Fn<[number[], number[]], any>,
@@ -76,8 +76,8 @@ interface VizOpts {
 	showLines: boolean;
 }
 
-// the main function of this example: creates a full SVG visualization using the
-// provided config options
+// the main function of this example: creates a full SVG visualization (as
+// thi.ng/hiccup tree) using the provided config options
 const createViz = ({
 	data: { n, data },
 	lensX,
@@ -99,7 +99,7 @@ const createViz = ({
 			// document size
 			width: 500,
 			height: 500,
-			// instead of creating onclick event handler for each individual
+			// instead of creating `onclick` event handlers for each individual
 			// plot point (of which there could be thousands), we only use a
 			// single onclick handler here and use data attribs on the
 			// individual shapes...
@@ -116,9 +116,10 @@ const createViz = ({
 				[1, "#00f"],
 			],
 		]),
-		// generate the scatter plot via giving spec
+		// generate the plot via given spec
 		plotCartesian({
-			// use non-linear lens axis type allowing for multitude of behaviors/scales
+			// use non-linear lens axis type, allowing for a multitude of
+			// behaviors/scales
 			xaxis: lensAxis({
 				// lens config
 				focus: lensX * n,
@@ -151,8 +152,8 @@ const createViz = ({
 				format: int,
 				...ticks,
 			}),
-			// define one or more plots to produce
-			// here we make the line plot conditional on config option
+			// define one or more plots to produce. here we make the line plot
+			// conditional on config option (controlled via UI toggle)
 			plots: [
 				showLines
 					? linePlot(data, {
@@ -234,7 +235,7 @@ $compile(
 		),
 		// control component which subscribes to combined state & (re)creates SVG viz
 		$replace(main.map(createViz)),
-		// container for selected item
+		// container for showing details of selected item
 		div(
 			{ id: "selection" },
 			selected.map((x) => (x ? `Last selected: ${x}` : ""))
