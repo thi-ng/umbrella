@@ -8,7 +8,7 @@ import { push } from "@thi.ng/transducers/push";
 import { some } from "@thi.ng/transducers/some";
 import { transduce } from "@thi.ng/transducers/transduce";
 import type { Domain, PlotFn } from "../api.js";
-import { valueMapper } from "./utils.js";
+import { __valueMapper } from "./utils.js";
 
 export interface StackedIntervalOpts<T> {
 	/**
@@ -74,7 +74,7 @@ const __processLane =
 export const stackedIntervals =
 	<T>(data: T[], opts: StackedIntervalOpts<T>): PlotFn =>
 	(spec) => {
-		const mapper = valueMapper(spec.xaxis, spec.yaxis, spec.project);
+		const mapper = __valueMapper(spec.xaxis, spec.yaxis, spec.project);
 		const domain = spec.xaxis.domain;
 		const lanes = __laneStacking(
 			transduce(

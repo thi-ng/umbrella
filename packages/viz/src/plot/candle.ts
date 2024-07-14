@@ -1,8 +1,7 @@
 import type { Fn2, Fn4, NumOrString } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks/is-function";
 import { map } from "@thi.ng/transducers/map";
 import type { DomainValues, PlotFn } from "../api.js";
-import { valueMapper } from "./utils.js";
+import { __resolveData, __valueMapper } from "./utils.js";
 
 export type Candle = { o: number; h: number; l: number; c: number };
 
@@ -27,27 +26,24 @@ export const candlePlot =
 		opts: CandlePlotOpts = { shape: candle() }
 	): PlotFn =>
 	(spec) => {
-		const mapper = valueMapper(spec.xaxis, spec.yaxis, spec.project);
+		const mapper = __valueMapper(spec.xaxis, spec.yaxis, spec.project);
 		return [
 			"g",
 			{},
-			...map(
-				([x, candle]) => {
-					const { o, h, l, c } = candle;
-					return opts.shape(
-						candle,
-						{
-							o: mapper([x, o]),
-							h: mapper([x, h]),
-							l: mapper([x, l]),
-							c: mapper([x, c]),
-						},
-						x,
-						c >= o
-					);
-				},
-				isFunction(data) ? data(spec.xaxis.domain) : data
-			),
+			...map(([x, candle]) => {
+				const { o, h, l, c } = candle;
+				return opts.shape(
+					candle,
+					{
+						o: mapper([x, o]),
+						h: mapper([x, h]),
+						l: mapper([x, l]),
+						c: mapper([x, c]),
+					},
+					x,
+					c >= o
+				);
+			}, __resolveData(data, spec.xaxis.domain)),
 		];
 	};
 
