@@ -2849,6 +2849,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/viz-ridge-lines@workspace:examples/viz-ridge-lines":
+  version: 0.0.0-use.local
+  resolution: "@example/viz-ridge-lines@workspace:examples/viz-ridge-lines"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/viz": "workspace:^"
+    typescript: "npm:^5.5.3"
+    vite: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@example/viz-scatter-plot@workspace:examples/viz-scatter-plot":
   version: 0.0.0-use.local
   resolution: "@example/viz-scatter-plot@workspace:examples/viz-scatter-plot"
