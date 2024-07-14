@@ -136,7 +136,7 @@ $compile(
 				major: { size: 10, ticks: () => [...range(NUM)] },
 				labelOffset: [-20, 0],
 				labelAttribs: { align: "right", baseline: "middle" },
-				format: (x) => (x >= 0 ? `${x | 0}` : ""),
+				format: int,
 			}),
 			grid: { xmajor: true, xminor: false, ymajor: false },
 			plots: [],
