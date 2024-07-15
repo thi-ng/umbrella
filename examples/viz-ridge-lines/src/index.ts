@@ -1,6 +1,6 @@
 import { COSINE_GRADIENTS, cosineColor } from "@thi.ng/color";
 import { svg } from "@thi.ng/hiccup-svg";
-import { clamp, fitClamped } from "@thi.ng/math";
+import { clamp, fitClamped, fract, mix } from "@thi.ng/math";
 import { $attribs, $compile, $text } from "@thi.ng/rdom";
 import {
 	abs,
@@ -27,10 +27,14 @@ import {
 const NUM = 10;
 // ridge resolution
 const RES = 100;
+// plot width
+const WIDTH = 500;
+// plot height (single ridge)
+const HEIGHT = 100;
 // gradient preset
 const GRADIENT = COSINE_GRADIENTS["purple-orange-cyan"];
 // scale factor for noise dummy data
-const NOISE_SCALE = vec2(0.02, 0.15);
+const NOISE_SCALE = vec2(2 / RES, 1.5 / NUM);
 
 // a very roundabout way to compute 2d simplex noise (via transpiling a
 // shader-ast function to JS and done like this to avoid having to pull in a 3rd
@@ -46,7 +50,7 @@ const NOISE = targetJS({}).compile(
 // pre-compute dummy data for visualization: NUM arrays of RES noise items
 const DATA = [
 	...repeatedly(
-		(y) => [...repeatedly((x) => NOISE([x + 200, y]) * 100, RES)],
+		(y) => [...repeatedly((x) => NOISE([x + 200, y]) * HEIGHT, RES)],
 		NUM
 	),
 ];
@@ -58,13 +62,13 @@ const plotSingle = (data: number[], i: number) =>
 	plotCartesian({
 		xaxis: linearAxis({
 			domain: [0, RES],
-			range: [50, 500],
+			range: [50, WIDTH],
 			pos: 0,
 			visible: false,
 		}),
 		yaxis: linearAxis({
-			domain: [0, 100],
-			range: [i * 50 + 100, i * 50],
+			domain: [0, HEIGHT],
+			range: [i * 50 + HEIGHT, i * 50],
 			pos: 0,
 			visible: false,
 		}),
@@ -81,28 +85,30 @@ const plotSingle = (data: number[], i: number) =>
 const updateCursor = (e: PointerEvent) => {
 	const viz = document.getElementById("viz")!;
 	const cursor = document.getElementById("cursor")!;
-	const bounds = viz.getBoundingClientRect();
+	const { left } = viz.getBoundingClientRect();
 	// clamp X to mapped domain range (in screen coords)
-	const screenX =
-		clamp(e.clientX, bounds.left + 50, bounds.left + 500) - bounds.left;
+	const screenX = clamp(e.clientX, left + 50, left + WIDTH) - left;
 	// compute sample position (in [0, RES) interval)
-	const sampleX = fitClamped(
-		e.clientX,
-		bounds.left + 50,
-		bounds.left + 500,
-		0,
-		RES - 1
-	);
+	const sampleX = fitClamped(e.clientX, left + 50, left + WIDTH, 0, RES - 1);
 	// set X position of the entire cursor group
 	$attribs(cursor, { transform: `translate(${screenX} 0)` });
 	// update value labels and their Y positions
-	const [_, ...dots] = cursor.children;
+	const [_, ...labels] = cursor.children;
 	for (let i = 0; i < NUM; i++) {
-		const dot = dots[i];
-		const value = DATA[i][sampleX | 0];
-		const y = i * 50 + 100 - value;
-		$attribs(dot, { transform: `translate(0 ${y})` });
-		$text(<SVGElement>dot.children[1], value.toFixed(2));
+		const label = labels[i];
+		// compute interpolated value unless sampleX is 0 or RES-1
+		const value =
+			sampleX > 0 && sampleX < RES - 1
+				? mix(
+						DATA[i][sampleX | 0],
+						DATA[i][(sampleX + 1) | 0],
+						fract(sampleX)
+				  )
+				: DATA[i][sampleX | 0];
+		const y = i * 50 + HEIGHT - value;
+		// update label pos & text
+		$attribs(label, { transform: `translate(0 ${y})` });
+		$text(<SVGElement>label.children[1], value.toFixed(2));
 	}
 };
 
@@ -113,7 +119,7 @@ $compile(
 			__convert: true,
 			id: "viz",
 			width: 600,
-			height: DATA.length * 50 + 150,
+			height: DATA.length * 50 + HEIGHT + 50,
 			stroke: "none",
 			onpointermove: updateCursor,
 		},
@@ -121,8 +127,8 @@ $compile(
 		plotCartesian({
 			xaxis: linearAxis({
 				domain: [0, RES],
-				range: [50, 500],
-				pos: NUM * 50 + 60,
+				range: [50, WIDTH],
+				pos: NUM * 50 + HEIGHT - 40,
 				major: { size: 10, ticks: linearTicks(10) },
 				minor: { size: 5, ticks: linearTicks(1) },
 				labelOffset: [0, 20],
@@ -131,7 +137,7 @@ $compile(
 			}),
 			yaxis: linearAxis({
 				domain: [-2, NUM - 1],
-				range: [0, NUM * 50 + 50],
+				range: [0, NUM * 50 + HEIGHT - 50],
 				pos: 40,
 				major: { size: 10, ticks: () => [...range(NUM)] },
 				labelOffset: [-20, 0],
@@ -149,7 +155,7 @@ $compile(
 		[
 			"g",
 			{ id: "cursor", font: "0.75rem sans-serif", translate: [-100, 0] },
-			["line", { stroke: "#000" }, [0, 0], [0, NUM * 50 + 50]],
+			["line", { stroke: "#000" }, [0, 0], [0, NUM * 50 + HEIGHT - 50]],
 			// pre-create value labels
 			...repeatedly(
 				() => [
