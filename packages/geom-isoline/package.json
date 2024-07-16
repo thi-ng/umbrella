@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-isoline",
-	"version": "2.1.130",
+	"version": "2.1.131",
 	"description": "Fast 2D contour line extraction / generation",
 	"type": "module",
 	"module": "./index.js",
@@ -37,8 +37,8 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.5",
-		"@thi.ng/transducers": "^9.0.8",
-		"@thi.ng/vectors": "^7.11.2"
+		"@thi.ng/transducers": "^9.0.9",
+		"@thi.ng/vectors": "^7.11.3"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",

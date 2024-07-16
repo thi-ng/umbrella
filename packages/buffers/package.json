@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/buffers",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "General purpose and generic read/write buffer implementations with different behaviors/orderings",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.5",
-		"@thi.ng/errors": "^2.5.10"
+		"@thi.ng/errors": "^2.5.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",

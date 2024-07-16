@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-06T12:02:19Z
+- **Last updated**: 2024-07-16T13:09:33Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.6.58](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.6.58) (2024-07-16)
+
+#### ♻️ Refactoring
+
+- update/fix/dedupe internal domain data resolution ([17957a5](https://github.com/thi-ng/umbrella/commit/17957a5))
 
 ### [0.6.55](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.6.55) (2024-06-21)
 
