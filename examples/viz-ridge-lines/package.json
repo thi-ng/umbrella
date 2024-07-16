@@ -44,6 +44,8 @@
 			"hiccup-svg",
 			"math",
 			"rdom",
+			"rdom-forms",
+			"rstream",
 			"shader-ast-js",
 			"shader-ast-stdlib",
 			"transducers",
