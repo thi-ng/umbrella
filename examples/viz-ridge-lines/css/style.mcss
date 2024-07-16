@@ -9,3 +9,13 @@
 }
 
 body { system-sans-serif ma3 }
+
+#controls {
+	mb3
+	{
+		>div { grid grid-cols(6rem 1fr) }
+		.range-label { ml3 }
+		input[type=range] { width(22rem) }
+		input[type=checkbox] { width(1rem) }
+	}
+}
