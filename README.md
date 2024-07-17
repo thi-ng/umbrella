@@ -54,11 +54,11 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecated pacakges, this mono-repository is home to 188
-individual TypeScript libraries/packages/tools and ~170 example projects
-illustrating their usage, currently totalling ~208k SLOC and ~4100 source
-files... Some of the projects have been in regular development since
-2015. The monorepo exists in its current form since January 2018.
+Not including deprecations, this mono-repository is home to 188 individual
+TypeScript libraries/packages/tools and ~175 example projects illustrating their
+usage, currently totalling ~208k SLOC and ~4100 source files... Some of the
+projects have been in regular development since 2015. The monorepo exists in its
+current form since January 2018.
 
 Unlike most other large mono-repos this one is not for a single project, but a
 broad collection of jointly developed, yet independent libraries, tools and
@@ -137,21 +137,23 @@ All packages:
 
 A common misconception is to think of this repo as single project. It is not!
 The sheer number and varied nature & purpose of these [packages](#packages)
-makes it impossible to provide traditional "Getting started" tutorials. There
-would have to be dozens of them... To compensate, this repo provides 150+
+makes it impossible to provide traditional "Getting started" tutorials — there
+would have to be dozens of them... To compensate, this repo provides ~175
 [example projects](#examples--showcase), detailed package readmes (at the very
-least for all the larger and/or more important ones), as well as hundreds of
-small usage examples/snippets in doc strings.
+least for all the larger and/or more important ones), as well as [hundreds of
+small usage examples/snippets in doc strings & readme
+files](#extracting-code-examples-from-readme-files--comments).
 
 **Documentation and changelogs for all packages: [docs.thi.ng](https://docs.thi.ng/)**
 
 If you're unsure about something, please [reach
-out](#community-contributing-getting-help)! Any constructive feedback is highly
-appreciated!
+out](#community-contributing-getting-help)! Any constructive feedback is always
+highly appreciated!
 
 ### Project templates
 
-You might find one of the following template repos an useful starting point:
+You might find one of the following template repos an useful starting point
+(only updated sporadically, make sure to update dependencies manually):
 
 - [tpl-umbrella-basic](https://github.com/thi-ng/tpl-umbrella-basic): Bare-bones
   template repo for browser-based projects
@@ -222,7 +224,7 @@ The following videos have been migrated from YouTube to their new home at
 
 ## Examples & Showcase
 
-There's a steadily growing number (~170) of standalone examples of different
+There's a steadily growing number (~175) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
