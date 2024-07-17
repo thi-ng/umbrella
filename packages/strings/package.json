@@ -133,6 +133,9 @@
 		"./join": {
 			"default": "./join.js"
 		},
+		"./named-number": {
+			"default": "./named-number.js"
+		},
 		"./pad-left": {
 			"default": "./pad-left.js"
 		},

@@ -15,6 +15,7 @@ export * from "./initials.js";
 export * from "./int.js";
 export * from "./interpolate.js";
 export * from "./join.js";
+export * from "./named-number.js";
 export * from "./pad-left.js";
 export * from "./pad-right.js";
 export * from "./parse.js";
