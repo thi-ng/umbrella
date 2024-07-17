@@ -2750,6 +2750,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/thing-packages-quiz@workspace:examples/thing-packages-quiz":
+  version: 0.0.0-use.local
+  resolution: "@example/thing-packages-quiz@workspace:examples/thing-packages-quiz"
+  dependencies:
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: "npm:^5.5.3"
+    vite: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@example/todo-list@workspace:examples/todo-list":
   version: 0.0.0-use.local
   resolution: "@example/todo-list@workspace:examples/todo-list"

@@ -1,0 +1,30 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+// (optional) variable declarations
+:root {
+	// color1=#fff
+}
+
+body { system-sans-serif ma3 max-width(30rem) center }
+
+h1 { ls--1 }
+
+input { w-100 pa2 f4 }
+
+#controls { grid grid-cols-2 gap3 mv3 }
+
+#status{
+	pa3 br3
+	{
+		&.ok { bg-color-light-green color-dark-green }
+		&.wrong { bg-color-washed-red color-dark-red }
+		&.dupe { bg-color-light-blue color-dark-blue }
+	}
+}
+
+#answers { mb4 }
+
+#remaining { mb3 }
