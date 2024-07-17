@@ -1,5 +1,6 @@
 import { dirs, readJSON } from "@thi.ng/file-io";
 import { tableKeys } from "@thi.ng/markdown-table";
+import { capitalize, namedNumber } from "@thi.ng/strings";
 import { LOGGER, META_FIELD } from "../api.js";
 import { CONFIG } from "../config.js";
 import { thumb } from "./asset.js";
@@ -54,7 +55,7 @@ export const examplesTable = (pkgName: string) => {
 	}
 	const [numProjects, verb] =
 		examples.length > 1
-			? ["Several projects", "are"]
+			? [`${capitalize(namedNumber()(examples.length))} projects`, "are"]
 			: ["One project", "is"];
 	return examples.length
 		? [
