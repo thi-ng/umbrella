@@ -151,7 +151,7 @@ For Node.js REPL:
 const str = await import("@thi.ng/strings");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.43 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.52 KB
 
 ## Dependencies
 
@@ -162,7 +162,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.43 KB
 
 ## Usage examples
 
-Several projects in this repo's
+Nine projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 

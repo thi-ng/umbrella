@@ -483,7 +483,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 17.37 KB
 
 ## Usage examples
 
-Several projects in this repo's
+37 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
