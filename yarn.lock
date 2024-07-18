@@ -5810,6 +5810,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/proctext@workspace:packages/proctext":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/proctext@workspace:packages/proctext"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.47.0"
+    "@thi.ng/api": "npm:^8.11.5"
+    "@thi.ng/arrays": "npm:^2.9.10"
+    "@thi.ng/associative": "npm:^6.3.64"
+    "@thi.ng/defmulti": "npm:^3.0.43"
+    "@thi.ng/parse": "npm:^2.4.46"
+    "@thi.ng/random": "npm:^3.8.4"
+    "@thi.ng/strings": "npm:^3.7.37"
+    esbuild: "npm:^0.23.0"
+    typedoc: "npm:^0.26.3"
+    typescript: "npm:^5.5.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/quad-edge@npm:^3.1.69, @thi.ng/quad-edge@workspace:packages/quad-edge":
   version: 0.0.0-use.local
   resolution: "@thi.ng/quad-edge@workspace:packages/quad-edge"
