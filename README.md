@@ -54,7 +54,7 @@ search](https://thi.ng/#tags) of packages relevant to your use cases...**
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 188 individual
+Not including deprecations, this mono-repository is home to 189 individual
 TypeScript libraries/packages/tools and ~175 example projects illustrating their
 usage, currently totalling ~208k SLOC and ~4100 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
@@ -164,12 +164,12 @@ You might find one of the following template repos an useful starting point
 
 ### #HowToThing
 
-Ongoing since August 2023:
-[#HowToThing](https://mastodon.thi.ng/tags/HowToThing) is a series of short
-posts on Mastodon, demonstrating a range of different techniques, patterns and
-use cases from across the _thi.ng/umbrella_ ecosystem. These are not necessarily
-intro examples, but each one comes with heavily commented code (and often with
-visual outputs/results).
+Between August-November 2023,
+[#HowToThing](https://mastodon.thi.ng/tags/HowToThing) was a series of short
+posts & mini-tutorials on Mastodon, demonstrating a range of different
+techniques, patterns and use cases from across the _thi.ng/umbrella_ ecosystem.
+These are not necessarily intro examples, but each one comes with heavily
+commented code (and often with visual outputs/results).
 
 - [001: FPS counter with moving average](https://mastodon.thi.ng/@toxi/110898928550740865)
 - [002: Sorting an array by potentially CPU-costly sort criteria](https://mastodon.thi.ng/@toxi/110904190618425908)
@@ -300,11 +300,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-07-16
+As of: 2024-07-19
 
-| Status                                           | Package                         | Version                                                                                               | Changelog                                |
-|:-------------------------------------------------|:--------------------------------|:------------------------------------------------------------------------------------------------------|:-----------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/viz`](./packages/viz) | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz) | [changelog](./packages/viz/CHANGELOG.md) |
+| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
+|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/msgpack`](./packages/msgpack)   | [![version](https://img.shields.io/npm/v/@thi.ng/msgpack.svg)](https://www.npmjs.com/package/@thi.ng/msgpack)   | [changelog](./packages/msgpack/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-new-yellow) | [`@thi.ng/proctext`](./packages/proctext) | [![version](https://img.shields.io/npm/v/@thi.ng/proctext.svg)](https://www.npmjs.com/package/@thi.ng/proctext) | [changelog](./packages/proctext/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)   | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)   | [changelog](./packages/strings/CHANGELOG.md)  |
 
 ### Fundamentals
 
@@ -549,6 +551,7 @@ As of: 2024-07-16
 |-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
 | [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
+| [`@thi.ng/proctext`](./packages/proctext)             | [![version](https://img.shields.io/npm/v/@thi.ng/proctext.svg)](https://www.npmjs.com/package/@thi.ng/proctext)             | [changelog](./packages/proctext/CHANGELOG.md)       | Procedural text generation engine             |
 | [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          | S-Expression parser & runtime infrastructure  |
 
 ### Deprecated packages
