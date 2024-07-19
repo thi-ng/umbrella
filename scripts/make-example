@@ -108,7 +108,10 @@ EOF
 echo "writing vite.config.js..."
 cat << EOF > "$MODULE"/vite.config.js
 export default {
-	build: { target: "esnext" },
+	build: {
+		target: "esnext",
+		sourcemap: true,
+	},
 };
 EOF
 
