@@ -137,9 +137,8 @@ console.log(result);
 ### Hidden assignments
 
 Normally, variable assignments are also causing the chosen value to be emitted
-as part of the generated text. Sometimes it is useful to _not_ do so and
-emission can be surpressed/hidden by using the prefix `!` as part of the
-assignment, like so:
+as part of the generated text. Sometimes it's useful to _not_ do so and
+suppress/hide output by using the prefix `!` as part of the assignment, like so:
 
 ```ts tangle:export/readme-hidden-var.ts
 import { generate } from "@thi.ng/proctext";
@@ -202,7 +201,9 @@ console.log(result);
 
 Variable references can be optionally processed via one or more modifiers via
 `<varname;mod>` or `<varname;mod1;mod2...>`. Each modifier is a simple async
-function receiving a string and transforming it into another string.
+function receiving a string and transforming it into another string. These
+functions are async to allow modifiers consulting external data
+sources/processes...
 
 The following modifiers are provided by default:
 
@@ -210,11 +211,10 @@ The following modifiers are provided by default:
 - `lc`: lowercase
 - `cap`: capitalize
 
-Custom modifiers can provided via options given to `generate()`:
+Custom modifiers can be provided via options given to `generate()`:
 
 ```ts tangle:export/readme-modifiers.ts
 import { generate } from "@thi.ng/proctext";
-import { css,  } from "@thi.ng/color";
 
 const DIRECTIONS = {
 	e: "east",
@@ -248,8 +248,11 @@ ${Object.keys(ROOMS).join("\n")}
 You're in the <here=room> (exits: <here;exits;uc>)...
 It feels <here;desc> here.
 `, {
+	// custom modifiers (will be added to existing defaults)
 	mods: {
+		// produce a list of exits for given room ID
 		exits: async (id) => Object.keys(ROOMS[id].exits).map((dir) => DIRECTIONS[dir]).join(", "),
+		// return a room's description
 		desc: async (id) => ROOMS[id].desc
 	}
 });
