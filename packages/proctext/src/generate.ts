@@ -138,8 +138,8 @@ const __transformScope = defmulti<
 		},
 
 		// handler for a new variable definition and its possible values
-		def: async ({ children }, story) => {
-			story.vars[children![0].result] = {
+		def: async ({ children }, ctx) => {
+			ctx.vars[children![0].result] = {
 				opts: children![1].children!.map((x) => x.result),
 				history: [],
 			};
