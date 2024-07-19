@@ -22,6 +22,7 @@
   - [Variable assignments](#variable-assignments)
   - [Hidden assignments](#hidden-assignments)
   - [Dynamic, indirect variable references](#dynamic-indirect-variable-references)
+  - [Modifiers](#modifiers)
   - [Controlled randomness](#controlled-randomness)
 - [Status](#status)
 - [Installation](#installation)
@@ -224,6 +225,69 @@ baking bread
 
 console.log(result);
 
+// B is a baker, baking bread.
+```
+
+### Modifiers
+
+Variable references can be optionally processed via one or more modifiers via
+`<varname;mod>` or `<varname;mod1;mod2...>`. Each modifier is a simple async
+function receiving a string and transforming it into another string.
+
+The following modifiers are provided by default:
+
+- `uc`: uppercase
+- `lc`: lowercase
+- `cap`: capitalize
+
+Custom modifiers can provided via options given to `generate()`:
+
+```ts tangle:export/readme-modifiers.ts
+import { generate } from "@thi.ng/proctext";
+import { css,  } from "@thi.ng/color";
+
+const DIRECTIONS = {
+    e: "east",
+    w: "west",
+    n: "north",
+    s: "south",
+    d: "down",
+    u: "up",
+};
+
+const ROOMS = {
+    house: {
+        desc: "very homely",
+        exits: { e: "garden", u: "rafters" },
+    },
+    rafters: {
+        desc: "pretty dark",
+        exits: { d: "house" },
+    },
+    garden: {
+        desc: "super lush",
+        exits: { w: "house" },
+    },
+};
+
+// partially data-driven template
+const { result } = await generate(`
+[room]
+${Object.keys(ROOMS).join("\n")}
+
+You're in the <here=room> (exits: <here;exits>)...
+It feels <here;desc> here.
+`, {
+    mods: {
+        exits: async (id) => Object.keys(ROOMS[id].exits).map((dir) => DIRECTIONS[dir]).join(", "),
+        desc: async (id) => ROOMS[id].desc
+    }
+});
+
+console.log(result);
+
+// You're in the house (exits: east, up)...
+// It feels very homely here.
 ```
 
 ### Controlled randomness
