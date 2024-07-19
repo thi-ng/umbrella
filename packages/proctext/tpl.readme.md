@@ -245,7 +245,7 @@ const { result } = await generate(`
 [room]
 ${Object.keys(ROOMS).join("\n")}
 
-You're in the <here=room> (exits: <here;exits>)...
+You're in the <here=room> (exits: <here;exits;uc>)...
 It feels <here;desc> here.
 `, {
 	mods: {
@@ -256,7 +256,7 @@ It feels <here;desc> here.
 
 console.log(result);
 
-// You're in the house (exits: east, up)...
+// You're in the house (exits: EAST, UP)...
 // It feels very homely here.
 ```
 
