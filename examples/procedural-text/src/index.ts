@@ -1,8 +1,9 @@
 import { br, button, div, h1, main, para, textArea } from "@thi.ng/hiccup-html";
+import { generate } from "@thi.ng/proctext";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $input, $inputTrigger, $replace } from "@thi.ng/rdom";
 import { staticDropdownAlt } from "@thi.ng/rdom-components";
-import { reactive, stream } from "@thi.ng/rstream";
+import { reactive, resolve, stream } from "@thi.ng/rstream";
 import { filter, interpose } from "@thi.ng/transducers";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
 import STORY1 from "./stories/alice-bob.txt";
@@ -10,7 +11,6 @@ import STORY2 from "./stories/modifiers.txt";
 import STORY3 from "./stories/hidden-assignment.txt";
 import STORY4 from "./stories/dynamic-lookups.txt";
 import STORY5 from "./stories/ngrams-5.txt";
-import { generateStory } from "./story.js";
 
 const STORIES = {
 	"Alice & Bob": STORY1,
@@ -51,27 +51,33 @@ storyID.transform(filter((x) => x !== "Custom")).subscribe({
 });
 
 // story generation subscription
-const generated = regenerate.map(() => {
-	// check if we have any input, bail if not...
-	const input = storyInput.deref();
-	if (!input) return div();
-	// parse input & generate story
-	const result = generateStory(input, { vars: {}, rnd: SYSTEM });
-	// possibly return error message
-	if (result.err) {
-		return div(".error", {}, result.err.message);
-	} else {
-		return div(
-			".output",
-			{},
-			// post-process generated text to handle paragraphs & linebreaks
-			...result.result
-				.trim()
-				.split(/\n{2,}/g)
-				.map((x) => para(".mt0", {}, interpose(br(), x.split("\n"))))
-		);
-	}
-});
+const generated = regenerate
+	.map(async () => {
+		// check if we have any input, bail if not...
+		const input = storyInput.deref();
+		if (!input) return div();
+		// parse input & generate story
+		const result = await generate(input, { vars: {}, rnd: SYSTEM });
+		// possibly return error message
+		if (result.err) {
+			return div(".error", {}, result.err.message);
+		} else {
+			return div(
+				".output",
+				{},
+				// post-process generated text to handle paragraphs & linebreaks
+				...result.result
+					.trim()
+					.split(/\n{2,}/g)
+					.map((x) =>
+						para(".mt0", {}, interpose(br(), x.split("\n")))
+					)
+			);
+		}
+	})
+	// since the above function is async, we attach another subscription which
+	// will wait for each promise to resolve before passing the result(s) downstream
+	.subscribe(resolve());
 
 // add another subscription to update the URL hash with an base64 encoded
 // version of the input...

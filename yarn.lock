@@ -1871,15 +1871,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/procedural-text@workspace:examples/procedural-text"
   dependencies:
-    "@thi.ng/defmulti": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/meta-css": "workspace:^"
-    "@thi.ng/parse": "workspace:^"
+    "@thi.ng/proctext": "workspace:^"
     "@thi.ng/random": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rdom-components": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     typescript: "npm:^5.5.3"
@@ -5810,7 +5808,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/proctext@workspace:packages/proctext":
+"@thi.ng/proctext@workspace:^, @thi.ng/proctext@workspace:packages/proctext":
   version: 0.0.0-use.local
   resolution: "@thi.ng/proctext@workspace:packages/proctext"
   dependencies:

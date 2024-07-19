@@ -59,3 +59,5 @@ back home to watch a movie
 <intro>, <hero1=name> and <hero2=name> went to <place> (<remark>). <hero1> did some <activity>, but <hero2> chose to go <activity> instead. Pretty soon, <drama>.
 
 The end.
+
+(See https://thi.ng/proctext for details)
