@@ -1,3 +1,6 @@
 export default {
-	build: { target: "esnext" },
+	build: {
+		target: "esnext",
+		sourcemap: true,
+	},
 };
