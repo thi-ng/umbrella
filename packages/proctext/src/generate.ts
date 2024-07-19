@@ -23,14 +23,14 @@ export const DEFAULT_MODIFIERS: GeneratorContext["mods"] = {
  * generator. These rules were created with & exported from this playground URL:
  *
  * Source:
- * https://demo.thi.ng/umbrella/parse-playground/#l9oCTSMgbWFpbiBwYXJzZXIgcnVsZQptYWluOiA8U1RBUlQ-ICggPGRlZj4gfCA8Y29tbWVudD4gfCA8YmluZGluZz4gfCA8d29yZD4gKSogPEVORD4gPT4gaG9pc3QgOwoKIyB2YXJpYWJsZSBkZWZpbml0aW9uCmRlZjogPFdTMD4gPExTVEFSVD4gJ1snISA8aWQ-ICddJyEgPEROTD4gPHZhbHVlPisgPEROTD4gOwppZDogKCA8QUxQSEFfTlVNPiB8IFsuXHUwMDJkXSApKyA9PiBqb2luIDsKdmFsdWU6IC4oPys8RE5MPikgPT4gam9pbiA7CgojIHZhcmlhYmxlIGJpbmRpbmdzCmJpbmRpbmc6ICc8JyEgKDxzZXR2YXI-IHwgPHZhcj4pICc-JyEgPT4gaG9pc3QgOwp2YXI6IDxpZD4gPG1vZGlmaWVyPj8gOwptb2RpZmllcjogPG1vZGlkPisgOwptb2RpZDogJzsnISA8QUxQSEFfTlVNPisgPT4gam9pbiA7CnNldHZhcjogJyEnPyA8aWQ-ICc9JyEgPHZhcj4gOwoKIyBsaW5lIGNvbW1lbnQKY29tbWVudDogPExTVEFSVD4gJyMnIC4oPys8RE5MPikgPT4gZGlzY2FyZCA7CgojIHZlcmJhdGltIHRleHQKd29yZDogKCA8QUxQSEFfTlVNPiB8IFsgPyEuLCciQCMkJSYoKXt9OzovKj0rXHUwMDJkXHUwMDViXHUwMDVkXHUwMDBhXSApKyA9PiBqb2luIDukbWFpbtn9W25hbWVdCkFsaWNlCkJvYgoKW3BsYWNlXQp0b3duCnRoZSB3b29kcwoKIyBDb21tZW50IGxpbmUKW2FjdGl2aXR5XQpjeWNsaW5nIGFuZCA8YWN0LmFsdD4KaGlraW5nCgpPbmNlIHVwb24gYSB0aW1lLCA8aGVybzE9bmFtZT4gYW5kIDxoZXJvMj1uYW1lPiB3ZW50IHRvIDxwbGFjZT4uIDxoZXJvMT4gdGhlbiBkaWQgc29tZSA8YWN0aXZpdHk-LCBidXQgPGhlcm8yPiBjaG9zZSB0byBkbyA8YWN0aXZpdHk7dWM-IGluc3RlYWQuCgpUaGUgZW5kLq0oaGVsbG8gd29ybGQpuGludGVudGlvbmFsbHkgbGVmdCBibGFua6Cg
+ * https://demo.thi.ng/umbrella/parse-playground/#l9oCWyMgbWFpbiBwYXJzZXIgcnVsZQptYWluOiA8U1RBUlQ-ICggPGRlZj4gfCA8Y29tbWVudD4gfCA8YmluZGluZz4gfCA8d29yZD4gKSogPEVORD4gPT4gaG9pc3QgOwoKIyB2YXJpYWJsZSBkZWZpbml0aW9uCmRlZjogPFdTMD4gPExTVEFSVD4gJ1snISA8aWQ-ICddJyEgPEROTD4gKDxjb21tZW50PiB8IDx2YWx1ZT4pKyA8RE5MPiA7CmlkOiAoIDxBTFBIQV9OVU0-IHwgWy5cdTAwMmRdICkrID0-IGpvaW4gOwp2YWx1ZTogLig_KzxETkw-KSA9PiBqb2luIDsKCiMgdmFyaWFibGUgYmluZGluZ3MKYmluZGluZzogJzwnISAoPHNldHZhcj4gfCA8dmFyPikgJz4nISA9PiBob2lzdCA7CnZhcjogPGlkPiA8bW9kaWZpZXI-PyA7Cm1vZGlmaWVyOiA8bW9kaWQ-KyA7Cm1vZGlkOiAnOychIDxBTFBIQV9OVU0-KyA9PiBqb2luIDsKc2V0dmFyOiAnISc_IDxpZD4gJz0nISA8dmFyPiA7CgojIGxpbmUgY29tbWVudApjb21tZW50OiA8TFNUQVJUPiAnIycgLig_KzxETkw-KSA9PiBkaXNjYXJkIDsKCiMgdmVyYmF0aW0gdGV4dAp3b3JkOiAoIDxBTFBIQV9OVU0-IHwgWyA_IS4sJyJAIyQlJigpe307Oi8qPStcdTAwMmRcdTAwNWJcdTAwNWRcdTAwMGFdICkrID0-IGpvaW4gO6RtYWlu2gETW25hbWVdCkFsaWNlCiMgY29tbWVudCBpbnNpZGUgbGlzdApCb2IKCltwbGFjZV0KdG93bgp0aGUgd29vZHMKCiMgQ29tbWVudCBsaW5lClthY3Rpdml0eV0KY3ljbGluZyBhbmQgPGFjdC5hbHQ-Cmhpa2luZwoKT25jZSB1cG9uIGEgdGltZSwgPGhlcm8xPW5hbWU-IGFuZCA8aGVybzI9bmFtZT4gd2VudCB0byA8cGxhY2U-LiA8aGVybzE-IHRoZW4gZGlkIHNvbWUgPGFjdGl2aXR5PiwgYnV0IDxoZXJvMj4gY2hvc2UgdG8gZG8gPGFjdGl2aXR5O3VjPiBpbnN0ZWFkLgoKVGhlIGVuZC6goKCg
  */
-const GRAMMAR = defGrammar(`
+export const GRAMMAR = defGrammar(`
 # main parser rule
 main: <START> ( <def> | <comment> | <binding> | <word> )* <END> => hoist ;
 
 # variable definition
-def: <WS0> <LSTART> '['! <id> ']'! <DNL> <value>+ <DNL> ;
+def: <WS0> <LSTART> '['! <id> ']'! <DNL> (<comment> | <value>)+ <DNL> ;
 id: ( <ALPHA_NUM> | [.\\u002d] )+ => join ;
 value: .(?+<DNL>) => join ;
 
@@ -182,13 +182,11 @@ const __transformScope = defmulti<
 const __resolveVarName = (name: string, ctx: GeneratorContext) => {
 	if (name.indexOf(".") == -1) return name;
 	let resolved = "";
-	for (let x of name.toLowerCase().split(".")) {
+	for (let x of name.split(".")) {
 		const $name = resolved + "." + x;
 		const $var = resolved ? ctx.vars[$name] : ctx.vars[x];
 		if ($var)
-			resolved =
-				($var.history.length ? peek($var.history).toLowerCase() : "") ||
-				$name;
+			resolved = ($var.history.length ? peek($var.history) : "") || $name;
 	}
 	return resolved;
 };
