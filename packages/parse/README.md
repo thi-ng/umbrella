@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/parse](https://media.thi.ng/umbrella/banners-20230807/thing-parse.svg?6f08b6c5)
+# ![@thi.ng/parse](https://media.thi.ng/umbrella/banners-20230807/thing-parse.svg?68aa7075)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/parse.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 188 standalone projects, maintained as part
+> This is one of 189 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -113,7 +113,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.21 KB
 
 ## Usage examples
 
-Four projects in this repo's
+Three projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -122,7 +122,6 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/>  | Markdown to Hiccup to HTML parser / transformer                                                         | [Demo](https://demo.thi.ng/umbrella/markdown/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>    | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg" width="240"/>  | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/procedural-text)  |
 
 **Note:** Please also see the [dedicated wiki
 page](https://github.com/thi-ng/umbrella/wiki/Parser-grammars) collecting

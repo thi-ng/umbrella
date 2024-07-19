@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners-20230807/thing-transducers-binary.svg?56c93de8)
+# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners-20230807/thing-transducers-binary.svg?259d5d4d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 188 standalone projects, maintained as part
+> This is one of 189 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -92,16 +92,17 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB
 
 ## Usage examples
 
-Four projects in this repo's
+Five projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                           | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>       | Figlet-style bitmap font creation with transducers    | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/> | 2D transducer based cellular automata                 | [Demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>  | Parser grammar livecoding editor/playground & codegen | [Demo](https://demo.thi.ng/umbrella/parse-playground/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png" width="240"/>           | 1D Wolfram automata with OBJ point cloud export       | [Demo](https://demo.thi.ng/umbrella/wolfram/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)           |
+| Screenshot                                                                                                               | Description                                                                              | Live demo                                               | Source                                                                               |
+|:-------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>       | Figlet-style bitmap font creation with transducers                                       | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/> | 2D transducer based cellular automata                                                    | [Demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>  | Parser grammar livecoding editor/playground & codegen                                    | [Demo](https://demo.thi.ng/umbrella/parse-playground/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg" width="240"/>   | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation | [Demo](https://demo.thi.ng/umbrella/procedural-text/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/procedural-text)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png" width="240"/>           | 1D Wolfram automata with OBJ point cloud export                                          | [Demo](https://demo.thi.ng/umbrella/wolfram/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)           |
 
 ## API
 

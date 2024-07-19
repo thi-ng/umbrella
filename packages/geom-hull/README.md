@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-hull](https://media.thi.ng/umbrella/banners-20230807/thing-geom-hull.svg?430a47e9)
+# ![@thi.ng/geom-hull](https://media.thi.ng/umbrella/banners-20230807/thing-geom-hull.svg?286fc2c5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-hull.svg)](https://www.npmjs.com/package/@thi.ng/geom-hull)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-hull.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 188 standalone projects, maintained as part
+> This is one of 189 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
