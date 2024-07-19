@@ -7,13 +7,13 @@
 # (4) the lookup `hero.job.desc` will then look for `astronaut.desc`
 
 [name]
-a
-b
+A
+B
 
-[a.job]
+[A.job]
 astronaut
 
-[b.job]
+[B.job]
 baker
 
 [astronaut.desc]
@@ -29,4 +29,4 @@ cake
 pastry
 tarts
 
-<hero=name;cap> is a <hero.job;uc>, <hero.job.desc>.
+<hero=name> is a <hero.job;uc>, <hero.job.desc>.
