@@ -29,9 +29,11 @@ export const serialize = (src: any, opts: Partial<EncodeOpts> = {}) => {
 	let pos = 0;
 
 	const ensure = () => {
-		if (pos > buf.length) {
+		let newLength = buf.length;
+		if (pos > newLength) {
+			while (pos > newLength) newLength <<= 1;
 			const curr = buf;
-			buf = new Uint8Array(curr.length * 2);
+			buf = new Uint8Array(newLength);
 			view = new DataView(buf.buffer);
 			buf.set(curr);
 		}
