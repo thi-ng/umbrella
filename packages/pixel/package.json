@@ -40,7 +40,6 @@
 		"@thi.ng/binary": "^3.4.29",
 		"@thi.ng/canvas": "^0.2.23",
 		"@thi.ng/checks": "^3.6.8",
-		"@thi.ng/distance": "^2.4.78",
 		"@thi.ng/errors": "^2.5.12",
 		"@thi.ng/math": "^5.11.4",
 		"@thi.ng/porter-duff": "^2.1.84"
