@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 196 standalone projects, maintained as part
+> This is one of 197 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -41,6 +41,8 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, draw
 
 - Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)
+- 12 packed integer and 6 floating point preset formats (see table below)
+- Palette-based indexed pixel formats
 - Buffer-to-buffer blitting w/ automatic format conversion
 - Buffer-to-canvas blitting
 - Buffer-to-buffer blending w/ [Porter-Duff
@@ -48,7 +50,6 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, draw
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
-- k-means based dominant color extraction (float buffers only)
 - Accessors for normalized channel value
 - Image sampling, resizing, pooling
   - Filters: nearest neighbor, bilinear, bicubic
@@ -61,7 +62,6 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, draw
 - Image pyramid generation (w/ customizable kernels)
 - Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - XY full pixel & channel-only accessors
-- 12 packed integer and 6 floating point preset formats (see table below)
 - Declarative custom format & optimized code generation
 - HTML canvas creation & `ImageData` utilities
 
@@ -371,6 +371,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 9.30 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 

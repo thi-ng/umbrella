@@ -47,6 +47,7 @@
 	},
 	"keywords": [
 		"binary",
+		"random",
 		"string",
 		"typescript",
 		"uuid"

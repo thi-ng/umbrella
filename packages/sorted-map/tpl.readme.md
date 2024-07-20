@@ -6,6 +6,9 @@
 
 {{pkg.description}}
 
+This package contains functionality which was previously part of and has been
+extracted from the [@thi.ng/associative](https://thi.ng/associative) package.
+
 [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap` &
 `SortedSet` implementing the full ES6 Map/Set APIs and additional features:
 

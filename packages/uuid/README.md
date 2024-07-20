@@ -26,6 +26,9 @@
 
 Fast binary & string-based UUID v4 generation.
 
+This package contains functionality which was previously part of and has been
+extracted from the [@thi.ng/random](https://thi.ng/random) package.
+
 - [`uuidv4Bytes()`](https://docs.thi.ng/umbrella/uuid/functions/uuidv4Bytes.html)
 - [`uuid()`](https://docs.thi.ng/umbrella/uuid/functions/uuid.html)
 

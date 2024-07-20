@@ -6,6 +6,9 @@
 
 {{pkg.description}}
 
+This package contains functionality which was previously part of and has been
+extracted from the [@thi.ng/associative](https://thi.ng/associative) package.
+
 ### SparseSet8/16/32
 
 [Sparse sets](https://research.swtch.com/sparse) provide super fast
