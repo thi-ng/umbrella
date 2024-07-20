@@ -581,7 +581,6 @@
 		"related": [
 			"csv",
 			"grid-iterators",
-			"fsm",
 			"rstream",
 			"rstream-graph",
 			"rstream-log",
