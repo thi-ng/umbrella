@@ -7,7 +7,7 @@ import { uuid as $uuid } from "@thi.ng/hex";
  * 16.
  *
  * @remarks
- * Use [`uuid()`](https://docs.thi.ng/umbrella/random/functions/uuid.html) to
+ * Use [`uuid()`](https://docs.thi.ng/umbrella/uuid/functions/uuid.html) to
  * also generate an UUID from scratch (rather than just format one).
  *
  * @param id -
