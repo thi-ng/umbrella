@@ -11,5 +11,4 @@ export * from "./intersection.js";
 export * from "./into.js";
 export * from "./join.js";
 export * from "./ll-set.js";
-export * from "./sparse-set.js";
 export * from "./union.js";

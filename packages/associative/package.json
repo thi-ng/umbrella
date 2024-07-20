@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/associative",
 	"version": "6.3.65",
-	"description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities",
+	"description": "ES Map/Set-compatible implementations with customizable equality semantics & supporting operations",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -42,7 +42,6 @@
 		"@thi.ng/checks": "^3.6.8",
 		"@thi.ng/dcons": "^3.2.118",
 		"@thi.ng/equiv": "^2.1.62",
-		"@thi.ng/errors": "^2.5.12",
 		"@thi.ng/object-utils": "^1.0.0",
 		"@thi.ng/transducers": "^9.0.10",
 		"tslib": "^2.6.3"
@@ -63,13 +62,10 @@
 		"map",
 		"object",
 		"set",
-		"skiplist",
-		"sort",
 		"sparse",
 		"trie",
 		"typescript",
-		"union",
-		"value-semantics"
+		"union"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -133,9 +129,6 @@
 		},
 		"./ll-set": {
 			"default": "./ll-set.js"
-		},
-		"./sparse-set": {
-			"default": "./sparse-set.js"
 		},
 		"./union": {
 			"default": "./union.js"
