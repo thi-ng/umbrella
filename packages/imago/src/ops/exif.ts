@@ -1,4 +1,4 @@
-import { meldDeepObj } from "@thi.ng/associative";
+import { meldDeepObj } from "@thi.ng/object-utils";
 import type { EXIFSpec, Processor } from "../api.js";
 
 export const exifProc: Processor = async (spec, input, ctx) => {
