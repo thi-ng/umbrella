@@ -1618,8 +1618,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/package-stats@workspace:examples/package-stats"
   dependencies:
-    "@thi.ng/checks": "workspace:^"
     "@thi.ng/dgraph": "workspace:^"
+    "@thi.ng/file-io": "workspace:^"
     "@thi.ng/hiccup": "workspace:^"
     "@thi.ng/hiccup-svg": "workspace:^"
     "@thi.ng/math": "workspace:^"
@@ -1720,6 +1720,7 @@ __metadata:
     "@thi.ng/color-palettes": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-dither": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.5.3"
     vite: "npm:^5.3.3"
   languageName: unknown

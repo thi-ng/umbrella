@@ -1,3 +1,4 @@
+import { dirs, readJSON, writeJSON, writeText } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";
 import { group, text } from "@thi.ng/hiccup-svg";
 import { defGetterUnsafe } from "@thi.ng/paths";
@@ -11,27 +12,29 @@ import {
 	push,
 	transduce,
 } from "@thi.ng/transducers";
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { barChart, labeledTickX, labeledTickY } from "./viz.js";
 
-const BASE_DIR = "../../packages/";
+const BASE_DIR = "../../packages";
 
 const IGNORE_PACKAGES = new Set(["hiccup-carbon-icons"]);
 
+const shortName = (x: string) => x.substring(x.lastIndexOf("/") + 1);
+
 const meta = transduce(
 	comp(
-		filter((x) => !IGNORE_PACKAGES.has(x)),
-		map((m: string) => [m, BASE_DIR + m + "/.meta/size.json"]),
+		filter((x) => !IGNORE_PACKAGES.has(shortName(x))),
+		map((m: string) => [shortName(m), m + "/.meta/size.json"]),
 		filter(([_, path]) => existsSync(path)),
-		map(([m, path]) => [m, JSON.parse(readFileSync(path).toString())])
+		map(([m, path]) => [m, readJSON(path)])
 	),
 	push(),
-	readdirSync(BASE_DIR)
+	dirs(BASE_DIR, "", 1)
 );
 
-writeFileSync(
-	`package-sizes-${new Date().toISOString().substring(0, 10)}.json`,
-	JSON.stringify(meta, null, 4)
+writeJSON(
+	`../../dev/package-sizes-${new Date().toISOString().substring(0, 10)}.json`,
+	meta
 );
 console.log(meta.length);
 
@@ -47,7 +50,7 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
 		stats
 	);
 
-	writeFileSync(
+	writeText(
 		`package-sizes-${modType}.svg`,
 		serialize([
 			barChart,
