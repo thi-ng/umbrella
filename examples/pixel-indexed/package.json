@@ -19,7 +19,8 @@
 		"@thi.ng/canvas": "workspace:^",
 		"@thi.ng/color-palettes": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
-		"@thi.ng/pixel-dither": "workspace:^"
+		"@thi.ng/pixel-dither": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
 	},
 	"browser": {
 		"process": false,
@@ -31,7 +32,6 @@
 			"canvas",
 			"color",
 			"color-palettes",
-			"k-means",
 			"pixel",
 			"pixel-dither"
 		],
