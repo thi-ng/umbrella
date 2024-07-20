@@ -1,7 +1,7 @@
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { fit } from "@thi.ng/math/fit";
 import { inRange } from "@thi.ng/math/interval";
 import { roundTo } from "@thi.ng/math/prec";
+import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import { filter } from "@thi.ng/transducers/filter";
 import { range } from "@thi.ng/transducers/range";
 import type {

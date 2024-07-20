@@ -44,9 +44,9 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.6",
 		"@thi.ng/arrays": "^2.9.11",
-		"@thi.ng/associative": "^6.3.65",
 		"@thi.ng/checks": "^3.6.8",
 		"@thi.ng/math": "^5.11.4",
+		"@thi.ng/object-utils": "^1.0.0",
 		"@thi.ng/strings": "^3.8.0",
 		"@thi.ng/transducers": "^9.0.10"
 	},

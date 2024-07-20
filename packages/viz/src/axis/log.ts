@@ -1,7 +1,7 @@
 import type { FnN, FnU3 } from "@thi.ng/api";
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { inRange } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
+import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import { comp } from "@thi.ng/transducers/comp";
 import { filter } from "@thi.ng/transducers/filter";
 import { iterator } from "@thi.ng/transducers/iterator";
