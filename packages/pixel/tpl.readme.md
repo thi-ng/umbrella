@@ -10,6 +10,8 @@
 
 - Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)
+- 12 packed integer and 6 floating point preset formats (see table below)
+- Palette-based indexed pixel formats
 - Buffer-to-buffer blitting w/ automatic format conversion
 - Buffer-to-canvas blitting
 - Buffer-to-buffer blending w/ [Porter-Duff
@@ -17,7 +19,6 @@
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
-- k-means based dominant color extraction (float buffers only)
 - Accessors for normalized channel value
 - Image sampling, resizing, pooling
   - Filters: nearest neighbor, bilinear, bicubic
@@ -30,7 +31,6 @@
 - Image pyramid generation (w/ customizable kernels)
 - Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - XY full pixel & channel-only accessors
-- 12 packed integer and 6 floating point preset formats (see table below)
 - Declarative custom format & optimized code generation
 - HTML canvas creation & `ImageData` utilities
 
