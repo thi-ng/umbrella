@@ -11,8 +11,5 @@ export * from "./intersection.js";
 export * from "./into.js";
 export * from "./join.js";
 export * from "./ll-set.js";
-export * from "./sorted-map.js";
-export * from "./sorted-obj.js";
-export * from "./sorted-set.js";
 export * from "./sparse-set.js";
 export * from "./union.js";

@@ -40,12 +40,10 @@
 		"@thi.ng/arrays": "^2.9.11",
 		"@thi.ng/binary": "^3.4.29",
 		"@thi.ng/checks": "^3.6.8",
-		"@thi.ng/compare": "^2.3.9",
 		"@thi.ng/dcons": "^3.2.118",
 		"@thi.ng/equiv": "^2.1.62",
 		"@thi.ng/errors": "^2.5.12",
 		"@thi.ng/object-utils": "^1.0.0",
-		"@thi.ng/random": "^3.8.5",
 		"@thi.ng/transducers": "^9.0.10",
 		"tslib": "^2.6.3"
 	},
@@ -118,6 +116,12 @@
 		"./indexed": {
 			"default": "./indexed.js"
 		},
+		"./internal/equiv": {
+			"default": "./internal/equiv.js"
+		},
+		"./internal/inspect": {
+			"default": "./internal/inspect.js"
+		},
 		"./intersection": {
 			"default": "./intersection.js"
 		},
@@ -129,15 +133,6 @@
 		},
 		"./ll-set": {
 			"default": "./ll-set.js"
-		},
-		"./sorted-map": {
-			"default": "./sorted-map.js"
-		},
-		"./sorted-obj": {
-			"default": "./sorted-obj.js"
-		},
-		"./sorted-set": {
-			"default": "./sorted-set.js"
 		},
 		"./sparse-set": {
 			"default": "./sparse-set.js"

@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 192 standalone projects, maintained as part
+> This is one of 193 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -15,6 +15,7 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [Why?](#why)
   - [Comparison with ES6 native types](#comparison-with-es6-native-types)
 - [Status](#status)
 - [Installation](#installation)
@@ -43,14 +44,11 @@ Alternative Map and Set implementations with customizable equality semantics & s
 >
 > - [@thi.ng/bidir-index](https://thi.ng/bidir-index)
 > - [@thi.ng/object-utils](https://thi.ng/object-utils)
+> - [@thi.ng/sorted-map](https://thi.ng/sorted-map)
 > - [@thi.ng/trie](https://thi.ng/trie)
 
-- Array based `ArraySet`, Linked List based `LLSet`,
-  [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap` &
-  `SortedSet` and customizable `EquivMap` implement the full ES6 Map/Set APIs
-  and additional features:
-    - range query iterators (via `entries()`, `keys()`, `values()`) (sorted
-      types only)
+- Array based `ArraySet`, Linked List based `LLSet` and customizable `EquivMap`
+  & `HashMap` implementing the full ES6 Map/Set APIs and additional features:
     - `ICopy`, `IEmpty` & `IEquiv` implementations
     - `ICompare` implementation for sorted types
     - multiple value additions / updates / deletions via `into()`, `dissoc()`
@@ -71,31 +69,33 @@ Please see these packages for some example use cases:
 - [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs)
 - [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query)
 
-The native ES6 implementations use object reference identity to
-determine key containment, but often it's more practical and useful to
-use equivalent value semantics for this purpose, especially when keys
-are structured data (arrays / objects).
+### Why?
 
-**Note**: It's the user's responsibility to ensure the inserted keys are
-kept immutable (even if technically they're not).
+The native ES6 implementations use **object reference** identity to determine
+key containment, but often it's **more practical and useful to use equivalent
+value semantics** for this purpose, especially when keys are structured data
+(arrays / objects).
+
+**Note**: It's the user's responsibility to ensure the inserted keys are kept
+immutable (even if technically they're not).
 
 ### Comparison with ES6 native types
 
 ```ts
 // first two objects w/ equal values
-a = [1, 2];
-b = [1, 2];
+const a = [1, 2];
+const b = [1, 2];
 ```
 
 Using native implementations
 
 ```ts
-set = new Set();
+const set = new Set();
 set.add(a);
 set.has(b);
 // false
 
-map = new Map();
+const map = new Map();
 map.set(a, "foo");
 map.get(b);
 // undefined
@@ -106,7 +106,7 @@ Using custom implementations:
 ```ts
 import { defArraySet } from "@thi.ng/associative";
 
-set = defArraySet();
+const set = defArraySet();
 set.add(a);
 set.add({a: 1});
 // ArraySet { [ 1, 2 ], { a: 1 } }
@@ -114,56 +114,49 @@ set.has(b);
 // true
 set.has({a: 1});
 // true
+```
 
+```ts
 import { defLLSet } from "@thi.ng/associative";
 
-set = defLLSet();
+const set = defLLSet();
 set.add(a);
 set.add({a: 1});
 // LLSet { [ 1, 2 ], { a: 1 } }
+
 set.has(b);
 // true
+
 set.has({a: 1});
 // true
+```
 
-import { defEquivMap } from "@thi.ng/associative";
+```ts
+import { defEquivMap, ArraySet } from "@thi.ng/associative";
 
 // by default EquivMap uses ArraySet for its canonical keys
-map = defEquivMap();
+// const map = defEquivMap();
 
 // with custom implementation
-map = defEquivMap(null, { keys: assoc.ArraySet });
+const map = defEquivMap(null, { keys: ArraySet });
 map.set(a, "foo");
 // EquivMap { [ 1, 2 ] => 'foo' }
+
 map.get(b);
 // "foo"
+```
 
-// Hash map w/ user supplied hash code function
-// (here using `hash` function for arrays)
+```ts
 import { defHashMap } from "@thi.ng/associative";
 import { hash } from "@thi.ng/vectors"
 
-m = defHashMap([], { hash })
-m.set([1, 2], "a");
-m.set([3, 4, 5], "b");
-m.set([1, 2], "c");
+// Hash map w/ user supplied hash code function
+// (here using `hash` function for arrays)
+const map = defHashMap([], { hash })
+map.set([1, 2], "a");
+map.set([3, 4, 5], "b");
+map.set([1, 2], "c");
 // HashMap { [ 1, 2 ] => 'c', [ 3, 4, 5 ] => 'b' }
-
-import { defSortedSet, defSortedMap } from "@thi.ng/associative";
-
-set = defSortedSet([a, [-1, 2], [-1, -2]]);
-// SortedSet { [ -1, -2 ], [ -1, 2 ], [ 1, 2 ] }
-set.has(b);
-// true
-
-map = defSortedMap([[a, "foo"], [[-1,-2], "bar"]]);
-// SortedMap { [ -1, -2 ] => 'bar', [ 1, 2 ] => 'foo' }
-map.get(b);
-// "foo"
-
-// key lookup w/ default value
-map.get([3,4], "n/a");
-// "n/a"
 ```
 
 ## Status
@@ -198,7 +191,7 @@ For Node.js REPL:
 const assoc = await import("@thi.ng/associative");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.78 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.52 KB
 
 ## Dependencies
 
@@ -206,12 +199,10 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.78 KB
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [tslib](https://www.typescriptlang.org/)
 
