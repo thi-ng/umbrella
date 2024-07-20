@@ -1,8 +1,8 @@
 import type { Fn, Fn2, Fn3, IToHiccup } from "@thi.ng/api";
-import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import { adaptDPI } from "@thi.ng/canvas";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { draw } from "@thi.ng/hiccup-canvas/draw";
+import { withoutKeysObj } from "@thi.ng/object-utils/without-keys";
 import type { IComponent, IMountWithState, NumOrElement } from "@thi.ng/rdom";
 import { Component } from "@thi.ng/rdom/component";
 import { __nextID } from "@thi.ng/rdom/idgen";

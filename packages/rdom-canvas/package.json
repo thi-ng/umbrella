@@ -37,10 +37,10 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.6",
-		"@thi.ng/associative": "^6.3.65",
 		"@thi.ng/canvas": "^0.2.23",
 		"@thi.ng/checks": "^3.6.8",
 		"@thi.ng/hiccup-canvas": "^3.1.4",
+		"@thi.ng/object-utils": "^1.0.0",
 		"@thi.ng/rdom": "^1.5.3",
 		"@thi.ng/rstream": "^8.5.6"
 	},
