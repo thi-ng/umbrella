@@ -1,11 +1,11 @@
-import { commonKeysObj } from "./common-keys.js";
-import { empty } from "./empty.js";
+import { commonKeysObj } from "@thi.ng/object-utils/common-keys";
+import { empty } from "@thi.ng/object-utils/empty";
+import { invertObj } from "@thi.ng/object-utils/invert";
+import { mergeObj } from "@thi.ng/object-utils/merge";
+import { renameKeysObj } from "@thi.ng/object-utils/rename-keys";
+import { selectKeysObj } from "@thi.ng/object-utils/select-keys";
 import { first } from "./first.js";
 import { indexed } from "./indexed.js";
-import { invertObj } from "./invert.js";
-import { mergeObj } from "./merge.js";
-import { renameKeysObj } from "./rename-keys.js";
-import { selectKeysObj } from "./select-keys.js";
 
 /**
  * Computes the natural join between the two sets of relations. Each set

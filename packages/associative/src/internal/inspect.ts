@@ -12,7 +12,7 @@ let inspect:
 	| null = null;
 
 isNode() &&
-	import("util").then((m) => {
+	import("node:util").then((m) => {
 		inspect = m.inspect;
 	});
 

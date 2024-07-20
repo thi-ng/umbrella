@@ -1,5 +1,5 @@
+import { copy } from "@thi.ng/object-utils/copy";
 import type { Reducer } from "@thi.ng/transducers";
-import { copy } from "./copy.js";
 import { __combineSet } from "./internal/combine.js";
 import { into } from "./into.js";
 

@@ -6,6 +6,14 @@
 
 {{pkg.description}}
 
+> [!IMPORTANT]
+> In July 2024 this package was restructured & split-up to extract some
+> features into smaller more focused packages:
+>
+> - [@thi.ng/bidir-index](https://thi.ng/bidir-index)
+> - [@thi.ng/object-utils](https://thi.ng/object-utils)
+> - [@thi.ng/trie](https://thi.ng/trie)
+
 - Array based `ArraySet`, Linked List based `LLSet`,
   [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap` &
   `SortedSet` and customizable `EquivMap` implement the full ES6 Map/Set APIs
@@ -18,22 +26,12 @@
       (maps) and `disj()` (sets)
     - configurable key equality & comparison (incl. default implementations)
     - getters w/ optional "not-found" default value
-    - `fromObject()` converters (for maps only)
-- `TrieMap` for string-based keys and `MultiTrie` for array-like keys and
-  multiple values per key
 - `SparseSet` implementations for numeric values
 - Polymorphic set operations (union, intersection, difference) - works with both
   native and custom Sets and retains their types
 - Natural & selective
   [joins](https://en.wikipedia.org/wiki/Relational_algebra#Joins_and_join-like_operators)
   (incl. key renaming, ported from Clojure)
-- Key-value pair inversion for maps and vanilla objects
-    - i.e. swaps `K => V` to `V => K`
-- Single or multi-property index generation for maps and objects
-- Key selection, renaming, segmenting, splitting, transformations for maps and
-  objects
-
-### Why?
 
 Please see these packages for some example use cases:
 
@@ -288,67 +286,6 @@ a.add(100)
 // create sparse set for 16 bit value range 0 - 0xffff (uint16 backed)
 const b = defSparseSet(0x10000);
 // SparseSet16 {}
-```
-
-### TrieMap
-
-[Tries](https://en.wikipedia.org/wiki/Trie) (also called Prefix maps) are useful
-data structures for search based use cases, auto-complete, text indexing etc.
-and provide partial key matching (prefixes), suffix iteration for a common
-prefix, longest matching prefix queries etc.
-
-The implementations here too feature ES6 Map-like API, similar to other types in
-this package, with some further trie-specific additions.
-
-```ts
-import { defTrieMap } from "@thi.ng/associative";
-
-const trie = defTrieMap([
-  ["hey", "en"],
-  ["hello", "en"],
-  ["hallo", "de"],
-  ["hallo", "de-at"],
-  ["hola", "es"],
-  ["hold", "en"],
-  ["hej", "se"],
-]);
-
-trie.knownPrefix("hole")
-// "hol"
-
-[...trie.suffixes("he")]
-// [ "j", "llo", "y" ]
-
-// w/ prefix included
-[...trie.suffixes("he", true)]
-// [ "hej", "hello", "hey" ]
-```
-
-### MultiTrie
-
-The `MultiTrie` is similar to `TrieMap`, but supports array-like keys and
-multiple values per key. Values are stored in sets whose implementation can be
-configured via ctor options.
-
-```ts
-import { defMultiTrie } from "@thi.ng/associative";
-
-// init w/ custom value set type (here only for illustration)
-const t = defMultiTrie<string[], string>(null, { vals: () => new ArraySet() });
-
-t.add("to be or not to be".split(" "), 1);
-t.add("to be or not to be".split(" "), 2);
-t.add("to be and to live".split(" "), 3);
-
-t.get("to be or not to be".split(" "))
-// Set(2) { 1, 2 }
-
-t.knownPrefix(["to", "be", "not"]);
-// [ "to", "be" ]
-
-// auto-complete w/ custom separator between words
-[...t.suffixes(["to", "be"], false, "/")]
-// [ "and/to/live", "or/not/to/be" ]
 ```
 
 <!-- include ../../assets/tpl/footer.md -->

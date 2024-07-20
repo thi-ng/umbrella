@@ -44,6 +44,7 @@
 		"@thi.ng/dcons": "^3.2.118",
 		"@thi.ng/equiv": "^2.1.62",
 		"@thi.ng/errors": "^2.5.12",
+		"@thi.ng/object-utils": "^1.0.0",
 		"@thi.ng/random": "^3.8.5",
 		"@thi.ng/transducers": "^9.0.10",
 		"tslib": "^2.6.3"
@@ -96,17 +97,8 @@
 		"./array-set": {
 			"default": "./array-set.js"
 		},
-		"./bidir-index": {
-			"default": "./bidir-index.js"
-		},
 		"./checks": {
 			"default": "./checks.js"
-		},
-		"./common-keys": {
-			"default": "./common-keys.js"
-		},
-		"./copy": {
-			"default": "./copy.js"
 		},
 		"./difference": {
 			"default": "./difference.js"
@@ -114,17 +106,11 @@
 		"./dissoc": {
 			"default": "./dissoc.js"
 		},
-		"./empty": {
-			"default": "./empty.js"
-		},
 		"./equiv-map": {
 			"default": "./equiv-map.js"
 		},
 		"./first": {
 			"default": "./first.js"
-		},
-		"./from-keys": {
-			"default": "./from-keys.js"
 		},
 		"./hash-map": {
 			"default": "./hash-map.js"
@@ -138,38 +124,11 @@
 		"./into": {
 			"default": "./into.js"
 		},
-		"./invert": {
-			"default": "./invert.js"
-		},
 		"./join": {
 			"default": "./join.js"
 		},
 		"./ll-set": {
 			"default": "./ll-set.js"
-		},
-		"./merge-apply": {
-			"default": "./merge-apply.js"
-		},
-		"./merge-deep": {
-			"default": "./merge-deep.js"
-		},
-		"./merge-with": {
-			"default": "./merge-with.js"
-		},
-		"./merge": {
-			"default": "./merge.js"
-		},
-		"./multi-trie": {
-			"default": "./multi-trie.js"
-		},
-		"./partition-keys": {
-			"default": "./partition-keys.js"
-		},
-		"./rename-keys": {
-			"default": "./rename-keys.js"
-		},
-		"./select-keys": {
-			"default": "./select-keys.js"
 		},
 		"./sorted-map": {
 			"default": "./sorted-map.js"
@@ -183,14 +142,8 @@
 		"./sparse-set": {
 			"default": "./sparse-set.js"
 		},
-		"./trie-map": {
-			"default": "./trie-map.js"
-		},
 		"./union": {
 			"default": "./union.js"
-		},
-		"./without-keys": {
-			"default": "./without-keys.js"
 		}
 	},
 	"thi.ng": {
