@@ -38,8 +38,8 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.6",
 		"@thi.ng/arrays": "^2.9.11",
-		"@thi.ng/associative": "^6.3.65",
 		"@thi.ng/defmulti": "^3.0.44",
+		"@thi.ng/object-utils": "^1.0.0",
 		"@thi.ng/parse": "^2.4.47",
 		"@thi.ng/random": "^3.8.5",
 		"@thi.ng/strings": "^3.8.0"
