@@ -43,6 +43,7 @@
 		"@thi.ng/arrays": "^2.9.11",
 		"@thi.ng/bitfield": "^2.3.46",
 		"@thi.ng/dcons": "^3.2.118",
+		"@thi.ng/disjoint-set": "^1.0.0",
 		"@thi.ng/errors": "^2.5.12",
 		"@thi.ng/sparse": "^0.3.123"
 	},
@@ -102,9 +103,6 @@
 		},
 		"./dfs": {
 			"default": "./dfs.js"
-		},
-		"./disjoint-set": {
-			"default": "./disjoint-set.js"
 		},
 		"./floyd-warshall": {
 			"default": "./floyd-warshall.js"
