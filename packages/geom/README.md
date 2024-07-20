@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 192 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -449,14 +449,13 @@ For Node.js REPL:
 const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 17.37 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 17.32 KB
 
 ## Dependencies
 
 - [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
@@ -476,6 +475,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 17.37 KB
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
+- [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)

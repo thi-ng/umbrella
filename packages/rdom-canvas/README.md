@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 192 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -123,15 +123,15 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 690 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 715 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 - [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+- [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
