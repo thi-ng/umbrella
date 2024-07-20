@@ -3870,12 +3870,9 @@ __metadata:
     "@thi.ng/arrays": "npm:^2.9.11"
     "@thi.ng/binary": "npm:^3.4.29"
     "@thi.ng/checks": "npm:^3.6.8"
-    "@thi.ng/compare": "npm:^2.3.9"
     "@thi.ng/dcons": "npm:^3.2.118"
     "@thi.ng/equiv": "npm:^2.1.62"
-    "@thi.ng/errors": "npm:^2.5.12"
     "@thi.ng/object-utils": "npm:^1.0.0"
-    "@thi.ng/random": "npm:^3.8.5"
     "@thi.ng/transducers": "npm:^9.0.10"
     esbuild: "npm:^0.23.0"
     tslib: "npm:^2.6.3"
@@ -6354,6 +6351,38 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.12"
     "@thi.ng/transducers-binary": "npm:^2.1.125"
     "@thi.ng/vectors": "npm:^7.11.4"
+    esbuild: "npm:^0.23.0"
+    typedoc: "npm:^0.26.3"
+    typescript: "npm:^5.5.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/sorted-map@workspace:packages/sorted-map":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/sorted-map@workspace:packages/sorted-map"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.47.0"
+    "@thi.ng/api": "npm:^8.11.6"
+    "@thi.ng/associative": "npm:^6.3.65"
+    "@thi.ng/checks": "npm:^3.6.8"
+    "@thi.ng/compare": "npm:^2.3.9"
+    "@thi.ng/random": "npm:^3.8.5"
+    "@thi.ng/transducers": "npm:^9.0.10"
+    esbuild: "npm:^0.23.0"
+    typedoc: "npm:^0.26.3"
+    typescript: "npm:^5.5.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/sparse-set@workspace:packages/sparse-set":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/sparse-set@workspace:packages/sparse-set"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.47.0"
+    "@thi.ng/api": "npm:^8.11.6"
+    "@thi.ng/associative": "npm:^6.3.65"
+    "@thi.ng/checks": "npm:^3.6.8"
+    "@thi.ng/errors": "npm:^2.5.12"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.3"
     typescript: "npm:^5.5.3"
