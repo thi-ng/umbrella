@@ -1,7 +1,7 @@
 import { peek } from "@thi.ng/arrays";
-import { objectFromKeys } from "@thi.ng/associative";
 import { isString } from "@thi.ng/checks";
 import { div, li, span, ul } from "@thi.ng/hiccup-html";
+import { objectFromKeys } from "@thi.ng/object-utils";
 import { $compile, $replace } from "@thi.ng/rdom";
 import { fromDOMEvent, merge, reactive, trigger } from "@thi.ng/rstream";
 import { capitalize } from "@thi.ng/strings";
