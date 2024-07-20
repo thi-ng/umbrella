@@ -190,14 +190,14 @@
 		"./int": {
 			"default": "./int.js"
 		},
+		"./internal/range": {
+			"default": "./internal/range.js"
+		},
 		"./normal-map": {
 			"default": "./normal-map.js"
 		},
 		"./pyramid": {
 			"default": "./pyramid.js"
-		},
-		"./range": {
-			"default": "./range.js"
 		},
 		"./sample": {
 			"default": "./sample.js"

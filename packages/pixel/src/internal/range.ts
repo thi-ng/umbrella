@@ -1,3 +1,4 @@
+// thing:export
 /**
  * Yields monotonically increasing iterator of [0..n)
  *
@@ -5,6 +6,6 @@
  *
  * @internal
  */
-export function* range(n: number) {
+export function* __range(n: number) {
 	for (let i = 0; i < n; i++) yield i;
 }

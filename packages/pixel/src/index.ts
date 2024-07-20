@@ -6,7 +6,6 @@ export * from "./image.js";
 export * from "./int.js";
 export * from "./normal-map.js";
 export * from "./pyramid.js";
-export * from "./range.js";
 export * from "./sample.js";
 
 export * from "./format/int-format.js";

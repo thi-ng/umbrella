@@ -14,8 +14,8 @@ import type {
 import { ensureChannel } from "./checks.js";
 import { FloatBuffer } from "./float.js";
 import { FLOAT_GRAY } from "./format/float-gray.js";
+import { __range } from "./internal/range.js";
 import { __asIntVec } from "./internal/utils.js";
-import { range } from "./range.js";
 
 /**
  * Convolves a single channel from given `src` float buffer with provided
@@ -52,7 +52,7 @@ export const convolveImage = (
 ) => {
 	const state = __initConvolve(src, opts);
 	const dest = new FloatBuffer(state.dwidth, state.dheight, src.format);
-	for (let channel of opts.channels || range(src.format.channels.length)) {
+	for (let channel of opts.channels || __range(src.format.channels.length)) {
 		dest.setChannel(channel, __convolve({ ...state, channel }));
 	}
 	return dest;
