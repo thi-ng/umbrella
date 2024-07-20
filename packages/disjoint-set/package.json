@@ -35,7 +35,6 @@
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
 		"esbuild": "^0.23.0",
