@@ -5925,9 +5925,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.47.0"
     "@thi.ng/api": "npm:^8.11.6"
-    "@thi.ng/checks": "npm:^3.6.8"
     "@thi.ng/errors": "npm:^2.5.12"
-    "@thi.ng/hex": "npm:^2.3.50"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.3"
     typescript: "npm:^5.5.3"
@@ -6691,6 +6689,19 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.8"
     "@thi.ng/equiv": "npm:^2.1.62"
     "@thi.ng/errors": "npm:^2.5.12"
+    esbuild: "npm:^0.23.0"
+    typedoc: "npm:^0.26.3"
+    typescript: "npm:^5.5.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/uuid@workspace:packages/uuid":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/uuid@workspace:packages/uuid"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.47.0"
+    "@thi.ng/hex": "npm:^2.3.50"
+    "@thi.ng/random": "npm:^3.8.5"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.3"
     typescript: "npm:^5.5.3"
