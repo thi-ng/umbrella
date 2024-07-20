@@ -1,3 +1,4 @@
+export * from "./as-object.js";
 export * from "./common-keys.js";
 export * from "./copy.js";
 export * from "./dissoc.js";
@@ -11,4 +12,5 @@ export * from "./merge-with.js";
 export * from "./partition-keys.js";
 export * from "./rename-keys.js";
 export * from "./select-keys.js";
+export * from "./sorted-obj.js";
 export * from "./without-keys.js";
