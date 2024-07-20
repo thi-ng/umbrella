@@ -1,0 +1,87 @@
+{
+	"name": "@thi.ng/sorted-map",
+	"version": "0.0.1",
+	"description": "Skiplist-based sorted map & set implementation",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://thi.ng/sorted-map",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "bun ../../tools/src/clean-package.ts",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.11.6",
+		"@thi.ng/associative": "^6.3.65",
+		"@thi.ng/checks": "^3.6.8",
+		"@thi.ng/compare": "^2.3.9",
+		"@thi.ng/random": "^3.8.5",
+		"@thi.ng/transducers": "^9.0.10"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.47.0",
+		"esbuild": "^0.23.0",
+		"typedoc": "^0.26.3",
+		"typescript": "^5.5.3"
+	},
+	"keywords": [
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./sorted-map": {
+			"default": "./sorted-map.js"
+		},
+		"./sorted-set": {
+			"default": "./sorted-set.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2024
+	}
+}
