@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 194 standalone projects, maintained as part
+> This is one of 197 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -62,7 +62,6 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 - [`randomID()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
 - [`weightedRandom()` / `weightedRandomKey()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
 - [`uniqueIndices()` / `uniqueValuesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/unique-indices.ts)
-- [`uuidv4Bytes()` / `uuid()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/uuid.ts)
 
 ## Status
 
@@ -104,14 +103,12 @@ For Node.js REPL:
 const rnd = await import("@thi.ng/random");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.02 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.92 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 
 ## Usage examples
 

@@ -37,7 +37,6 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 - [`randomID()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
 - [`weightedRandom()` / `weightedRandomKey()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
 - [`uniqueIndices()` / `uniqueValuesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/unique-indices.ts)
-- [`uuidv4Bytes()` / `uuid()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/uuid.ts)
 
 {{meta.status}}
 

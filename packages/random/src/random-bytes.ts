@@ -1,4 +1,3 @@
-import { hasCrypto } from "@thi.ng/checks/has-crypto";
 import type { IRandom } from "./api.js";
 import { SYSTEM } from "./system.js";
 
@@ -32,9 +31,10 @@ export const randomBytesFrom = (
  * @param start -
  * @param end -
  */
-export const randomBytes = hasCrypto()
-	? (buf: Uint8Array, start = 0, end = buf.length) => (
-			window.crypto.getRandomValues(buf.subarray(start, end)), buf
-	  )
-	: (buf: Uint8Array, start?: number, end?: number) =>
-			randomBytesFrom(SYSTEM, buf, start, end);
+export const randomBytes =
+	typeof window !== "undefined" && window["crypto"] !== undefined
+		? (buf: Uint8Array, start = 0, end = buf.length) => (
+				window.crypto.getRandomValues(buf.subarray(start, end)), buf
+		  )
+		: (buf: Uint8Array, start?: number, end?: number) =>
+				randomBytesFrom(SYSTEM, buf, start, end);
