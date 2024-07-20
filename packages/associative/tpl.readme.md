@@ -7,12 +7,13 @@
 {{pkg.description}}
 
 > [!IMPORTANT]
-> In July 2024 this package was restructured & split-up to extract some
+> In July 2024 this package was restructured and split-up to extract some
 > features into smaller more focused packages:
 >
 > - [@thi.ng/bidir-index](https://thi.ng/bidir-index)
 > - [@thi.ng/object-utils](https://thi.ng/object-utils)
 > - [@thi.ng/sorted-map](https://thi.ng/sorted-map)
+> - [@thi.ng/sparse-set](https://thi.ng/sparse-set)
 > - [@thi.ng/trie](https://thi.ng/trie)
 
 - Array based `ArraySet`, Linked List based `LLSet` and customizable `EquivMap`
@@ -23,7 +24,6 @@
       (maps) and `disj()` (sets)
     - configurable key equality & comparison (incl. default implementations)
     - getters w/ optional "not-found" default value
-- `SparseSet` implementations for numeric values
 - Polymorphic set operations (union, intersection, difference) - works with both
   native and custom Sets and retains their types
 - Natural & selective
@@ -182,102 +182,5 @@ hash codes computed via user supplied hash function. Uses [Open
 Addressing](https://en.wikipedia.org/wiki/Open_addressing) / Linear
 Probing to resolve key collisions. Customizable via `HashMapOpts`
 constructor argument. Hash function MUST be given.
-
-### SortedMap
-
-Alternative implementation of the ES6 Map API using a Skip list as
-backing store and support for configurable key equality and sorting
-semantics. Like with sets, uses @thi.ng/equiv & @thi.ng/compare by
-default.
-
-William Pugh's (creator of this data structure) description:
-
-> "Skip lists are probabilistic data structures that have the same
-asymptotic expected time bounds as balanced trees, are simpler, faster
-and use less space."
-
-Data structure description:
-
-- ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf
-- https://en.wikipedia.org/wiki/Skip_list
-
-#### Ranged queries
-
-```ts
-import { defSortedMap } from "@thi.ng/associative";
-
-map = defSortedMap([
-    ["c", 3], ["a", 1], ["d", 4], ["b", 2]
-]);
-// SortedMap { 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 }
-
-// all entries
-[...map.entries()]
-// [ [ 'd', 4 ], [ 'c', 3 ], [ 'b', 2 ], [ 'a', 1 ] ]
-
-// range query w/ given start key
-// also works with `keys()` and `values()`
-[...map.entries("c")]
-// [ [ 'c', 3 ], [ 'd', 4 ] ]
-
-// unknown start keys are ok
-[...map.entries("cc")]
-// [ [ 'd', 4 ] ]
-
-// range query w/ given MAX key
-[...map.entries("c", true)]
-// [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
-```
-
-### SortedSet
-
-Sorted set implementation with standard ES6 Set API, customizable value
-equality and comparison semantics and additional functionality:
-
-- range queries (via `entries`, `keys`, `values`)
-- multiple value addition/deletion via `into()` and `disj()`
-
-Furthermore, this class implements the `ICopy`, `IEmpty`, `ICompare` and
-`IEquiv` interfaces defined by `@thi.ng/api`. The latter two allow
-instances to be used as keys themselves in other data types defined in
-this (and other) package(s).
-
-This set uses a `SortedMap` as backing store.
-
-### SparseSet8/16/32
-
-[Sparse sets](https://research.swtch.com/sparse) provide super fast
-(approx. 4x faster than the native `Set` impl) insertion & lookups for
-numeric values in the interval `[0..n)` . The implementation in this
-package provides most of the ES6 Set API and internally relies on 2 uint
-typed arrays, with the actual backing type dependent on `n`.
-
-Furthermore, unless (or until) values are being removed from the set,
-they retain their original insertion order. For some use cases (e.g.
-deduplication of values), this property can be very useful.
-
-```ts
-import { defSparseSet } from "@thi.ng/associative";
-
-// create sparse set for value range 0 - 99 (uint8 backed)
-const a = defSparseSet(100);
-a.into([99, 42, 66, 23, 66, 42]);
-// SparseSet8 { 99, 42, 66, 23 }
-
-a.has(66)
-// true
-
-// sparse sets are iterable
-[...a]
-// [ 99, 42, 66, 23 ]
-
-// attempting to add out-of-range values will fail
-a.add(100)
-// SparseSet8 { 99, 42, 66, 23 }
-
-// create sparse set for 16 bit value range 0 - 0xffff (uint16 backed)
-const b = defSparseSet(0x10000);
-// SparseSet16 {}
-```
 
 <!-- include ../../assets/tpl/footer.md -->

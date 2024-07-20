@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 192 standalone projects, maintained as part
+> This is one of 194 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -18,6 +18,7 @@
   - [TrieMap](#triemap)
   - [MultiTrie](#multitrie)
 - [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -94,9 +95,13 @@ t.knownPrefix(["to", "be", "not"]);
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btrie%5D+in%3Atitle)
+
+## Related packages
+
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
 
 ## Installation
 
@@ -145,10 +150,10 @@ If this project contributes to an academic publication, please cite it as:
   title = "@thi.ng/trie",
   author = "Karsten Schmidt",
   note = "https://thi.ng/trie",
-  year = 2024
+  year = 2020
 }
 ```
 
 ## License
 
-&copy; 2024 Karsten Schmidt // Apache License 2.0
+&copy; 2020 - 2024 Karsten Schmidt // Apache License 2.0

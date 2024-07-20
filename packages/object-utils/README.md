@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 192 standalone projects, maintained as part
+> This is one of 194 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -47,7 +47,7 @@ extracted from the [@thi.ng/associative](https://thi.ng/associative) package.
 
 ## Related packages
 
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
 
 ## Installation
 
@@ -75,7 +75,7 @@ For Node.js REPL:
 const ou = await import("@thi.ng/object-utils");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.35 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.16 KB
 
 ## Dependencies
 
