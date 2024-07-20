@@ -4071,7 +4071,6 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.47.0"
     "@thi.ng/api": "npm:^8.11.6"
     "@thi.ng/dcons": "npm:^3.2.118"
-    "@thi.ng/transducers": "npm:^9.0.10"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.3"
     typescript: "npm:^5.5.3"
