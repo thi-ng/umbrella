@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sorted-map",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Skiplist-based sorted map & set implementation",
 	"type": "module",
 	"module": "./index.js",
@@ -50,6 +50,15 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"datastructure",
+		"equality",
+		"iterator",
+		"keys",
+		"map",
+		"query",
+		"set",
+		"skiplist",
+		"sort",
 		"typescript"
 	],
 	"publishConfig": {
@@ -81,7 +90,9 @@
 		}
 	},
 	"thi.ng": {
-		"status": "alpha",
-		"year": 2024
+		"related": [
+			"associative"
+		],
+		"year": 2018
 	}
 }

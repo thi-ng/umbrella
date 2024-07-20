@@ -46,9 +46,13 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"associative",
+		"conversion",
+		"invert",
+		"keys",
 		"object",
 		"map",
+		"merge",
+		"sort",
 		"typescript"
 	],
 	"publishConfig": {

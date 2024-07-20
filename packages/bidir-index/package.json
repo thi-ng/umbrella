@@ -42,6 +42,13 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"datastructure",
+		"bidirectional",
+		"identifier",
+		"invert",
+		"iterator",
+		"keys",
+		"map",
 		"typescript"
 	],
 	"publishConfig": {
@@ -64,7 +71,9 @@
 		}
 	},
 	"thi.ng": {
-		"status": "alpha",
-		"year": 2024
+		"related": [
+			"associative"
+		],
+		"year": 2022
 	}
 }
