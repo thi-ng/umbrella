@@ -646,6 +646,7 @@ __metadata:
     "@thi.ng/hiccup-svg": "workspace:^"
     "@thi.ng/mime": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/pixel-dominant-colors": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rdom-forms": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
@@ -5704,6 +5705,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/pixel-dominant-colors@workspace:^, @thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.47.0"
+    "@thi.ng/api": "npm:^8.11.6"
+    "@thi.ng/k-means": "npm:^0.6.93"
+    "@thi.ng/pixel": "npm:^6.1.37"
+    esbuild: "npm:^0.23.0"
+    typedoc: "npm:^0.26.3"
+    typescript: "npm:^5.5.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/pixel-io-geotiff@workspace:packages/pixel-io-geotiff":
   version: 0.0.0-use.local
   resolution: "@thi.ng/pixel-io-geotiff@workspace:packages/pixel-io-geotiff"
@@ -5756,7 +5771,6 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.8"
     "@thi.ng/distance": "npm:^2.4.78"
     "@thi.ng/errors": "npm:^2.5.12"
-    "@thi.ng/k-means": "npm:^0.6.93"
     "@thi.ng/math": "npm:^5.11.4"
     "@thi.ng/porter-duff": "npm:^2.1.84"
     esbuild: "npm:^0.23.0"
