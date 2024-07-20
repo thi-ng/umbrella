@@ -5769,7 +5769,6 @@ __metadata:
     "@thi.ng/binary": "npm:^3.4.29"
     "@thi.ng/canvas": "npm:^0.2.23"
     "@thi.ng/checks": "npm:^3.6.8"
-    "@thi.ng/distance": "npm:^2.4.78"
     "@thi.ng/errors": "npm:^2.5.12"
     "@thi.ng/math": "npm:^5.11.4"
     "@thi.ng/porter-duff": "npm:^2.1.84"
