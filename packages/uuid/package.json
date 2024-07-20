@@ -1,0 +1,76 @@
+{
+	"name": "@thi.ng/uuid",
+	"version": "1.0.0",
+	"description": "Fast binary & string-based UUID v4 generation",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://thi.ng/uuid",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "bun ../../tools/src/clean-package.ts",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/hex": "^2.3.50",
+		"@thi.ng/random": "^3.8.5"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.47.0",
+		"esbuild": "^0.23.0",
+		"typedoc": "^0.26.3",
+		"typescript": "^5.5.3"
+	},
+	"keywords": [
+		"binary",
+		"string",
+		"typescript",
+		"uuid"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2020
+	}
+}
