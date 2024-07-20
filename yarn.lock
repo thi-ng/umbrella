@@ -3807,6 +3807,7 @@ __metadata:
     "@thi.ng/arrays": "npm:^2.9.11"
     "@thi.ng/bitfield": "npm:^2.3.46"
     "@thi.ng/dcons": "npm:^3.2.118"
+    "@thi.ng/disjoint-set": "npm:^1.0.0"
     "@thi.ng/errors": "npm:^2.5.12"
     "@thi.ng/sparse": "npm:^0.3.123"
     "@thi.ng/vectors": "npm:^7.11.4"
@@ -4330,6 +4331,17 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.47.0"
     "@thi.ng/api": "npm:^8.11.6"
     "@thi.ng/equiv": "npm:^2.1.62"
+    typedoc: "npm:^0.26.3"
+    typescript: "npm:^5.5.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/disjoint-set@npm:^1.0.0, @thi.ng/disjoint-set@workspace:packages/disjoint-set":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/disjoint-set@workspace:packages/disjoint-set"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.47.0"
+    esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.3"
     typescript: "npm:^5.5.3"
   languageName: unknown
