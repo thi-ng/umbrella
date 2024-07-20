@@ -51,7 +51,12 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 	const pairs: [string, string][] = [];
 	for (let d of mergedDeps) {
 		if (!d.startsWith("@thi.ng")) {
-			if (d.startsWith("node:") || d.startsWith("bun:") || d === "tslib")
+			if (
+				d.startsWith("@types") ||
+				d.startsWith("node:") ||
+				d.startsWith("bun:") ||
+				d === "tslib"
+			)
 				continue;
 			if (deps.has(d) && !pkg.dependencies[d]) {
 				LOGGER.warn("missing 3rd party dependency:", d);

@@ -88,7 +88,12 @@ export const packageDeps = (config: Config, pkg: Package) => {
 	const deps = Object.keys(pkg.dependencies || {})
 		.sort()
 		.map((x) => pkgLink(config, x));
-	return deps.length ? list(deps) : "None";
+	let res = deps.length ? list(deps) : "None";
+	if (pkg.dependencies?.["@thi.ng/api"]) {
+		res +=
+			"\n\nNote: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)";
+	}
+	return res;
 };
 
 export const packageStatus = (
