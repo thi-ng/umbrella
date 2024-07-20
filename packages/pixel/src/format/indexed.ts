@@ -20,6 +20,7 @@ const __defIndexed =
 		});
 	};
 
+/** @internal */
 const __argmin = (p: number, palette: NumericArray) => {
 	let minD = Infinity;
 	let minArg = -1;
