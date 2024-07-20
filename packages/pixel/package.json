@@ -42,7 +42,6 @@
 		"@thi.ng/checks": "^3.6.8",
 		"@thi.ng/distance": "^2.4.78",
 		"@thi.ng/errors": "^2.5.12",
-		"@thi.ng/k-means": "^0.6.93",
 		"@thi.ng/math": "^5.11.4",
 		"@thi.ng/porter-duff": "^2.1.84"
 	},
@@ -78,8 +77,6 @@
 		"grayscale",
 		"image",
 		"interpolation",
-		"k-means",
-		"multiformat",
 		"normal",
 		"pixel",
 		"pyramid",
@@ -117,9 +114,6 @@
 		},
 		"./convolve": {
 			"default": "./convolve.js"
-		},
-		"./dominant-colors": {
-			"default": "./dominant-colors.js"
 		},
 		"./float": {
 			"default": "./float.js"

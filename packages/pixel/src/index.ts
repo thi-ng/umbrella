@@ -1,7 +1,6 @@
 export * from "./api.js";
 export * from "./canvas.js";
 export * from "./convolve.js";
-export * from "./dominant-colors.js";
 export * from "./float.js";
 export * from "./image.js";
 export * from "./int.js";
