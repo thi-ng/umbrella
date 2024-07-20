@@ -11,6 +11,7 @@ const deps = [
 	"node:os",
 	"node:path",
 	"node:process",
+	"node:util",
 	...Object.keys(pkg.dependencies || {}),
 ];
 const opts = [

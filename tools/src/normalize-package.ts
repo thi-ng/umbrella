@@ -1,4 +1,4 @@
-import { selectDefinedKeysObj } from "@thi.ng/associative";
+import { selectDefinedKeysObj } from "@thi.ng/object-utils";
 
 export const normalizePackage = (pkg: any) => {
 	pkg.type = "module";
