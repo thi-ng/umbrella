@@ -37,11 +37,11 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.6",
-		"@thi.ng/associative": "^6.3.65",
 		"@thi.ng/checks": "^3.6.8",
 		"@thi.ng/defmulti": "^3.0.44",
 		"@thi.ng/errors": "^2.5.12",
 		"@thi.ng/geom": "^8.0.4",
+		"@thi.ng/object-utils": "^1.0.0",
 		"@thi.ng/transducers": "^9.0.10",
 		"@thi.ng/vector-pools": "^3.2.4",
 		"@thi.ng/vectors": "^7.11.4",

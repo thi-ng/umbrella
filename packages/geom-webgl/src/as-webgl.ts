@@ -1,5 +1,4 @@
 import { typedArrayOfVec, type IObjectOf, type Maybe } from "@thi.ng/api";
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -18,6 +17,7 @@ import {
 	tessellate,
 } from "@thi.ng/geom/tessellate";
 import { withAttribs } from "@thi.ng/geom/with-attribs";
+import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import { repeat } from "@thi.ng/transducers/repeat";
 import type { AttribSpec } from "@thi.ng/vector-pools";
 import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
