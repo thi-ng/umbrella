@@ -31,8 +31,13 @@ test("roundtrip (raw)", () => {
 });
 
 test("signed int", () => {
-	expect(equiv(decode(encode(42), false), 42)).toBeTrue();
-	expect(equiv(decode(encode(-42), false), -42)).toBeTrue();
+	expect(decode(encode(42), false)).toBe(42);
+	expect(decode(encode(-42), false)).toBe(-42);
 	expect(() => decode([0x69, 0x2d, 0x2d, 0x31, 0x65])).toThrow(); // i--1e
 	expect(() => decode([0x69, 0x2d, 0x31, 0x2e, 0x32, 0x65])).toThrow(); // i-1.2e
+});
+
+test("arraylike object", () => {
+	expect(decode(encode({ length: 123 }))).toEqual({ length: 123 });
+	expect(decode(encode([1, 2, 3]))).toEqual([1, 2, 3]);
 });

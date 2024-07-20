@@ -50,10 +50,10 @@ const __encodeBin: MultiFn1<any, BinStructItem[]> = defmulti<
 			? Type.STR
 			: x instanceof Uint8Array
 			? Type.BINARY
-			: isArrayLike(x)
-			? Type.LIST
 			: isPlainObject(x)
 			? Type.DICT
+			: isArrayLike(x)
+			? Type.LIST
 			: unsupported(`unsupported data type: ${x}`),
 	{},
 	{
