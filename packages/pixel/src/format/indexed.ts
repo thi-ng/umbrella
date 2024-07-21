@@ -1,8 +1,8 @@
 import type { NumericArray, UintType } from "@thi.ng/api";
-import { swapLane13 } from "@thi.ng/binary/swizzle";
 import { assert } from "@thi.ng/errors/assert";
 import { Lane } from "../api.js";
 import { defIntFormat } from "./int-format.js";
+import { __swapLane13 } from "../internal/utils.js";
 
 /** @internal */
 const __defIndexed =
@@ -10,7 +10,7 @@ const __defIndexed =
 	(palette: NumericArray, isABGR = false) => {
 		const n = palette.length;
 		assert(n > 0 && n <= 2 ** size, `invalid palette size: ${n}`);
-		palette = isABGR ? palette : palette.map(swapLane13);
+		palette = isABGR ? palette : palette.map(__swapLane13);
 		return defIntFormat({
 			type,
 			size,
