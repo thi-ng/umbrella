@@ -360,6 +360,7 @@ __metadata:
     "@thi.ng/mime": "workspace:^"
     "@thi.ng/paths": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/pixel-convolve": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
@@ -893,6 +894,7 @@ __metadata:
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/math": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/pixel-convolve": "workspace:^"
     "@thi.ng/rdom-canvas": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
@@ -1732,6 +1734,7 @@ __metadata:
   dependencies:
     "@thi.ng/canvas": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/pixel-convolve": "workspace:^"
     typescript: "npm:^5.5.3"
     vite: "npm:^5.3.3"
   languageName: unknown
@@ -5691,12 +5694,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/pixel-convolve@workspace:packages/pixel-convolve":
+"@thi.ng/pixel-convolve@workspace:^, @thi.ng/pixel-convolve@workspace:packages/pixel-convolve":
   version: 0.0.0-use.local
   resolution: "@thi.ng/pixel-convolve@workspace:packages/pixel-convolve"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.47.0"
     "@thi.ng/api": "npm:^8.11.6"
+    "@thi.ng/checks": "npm:^3.6.8"
+    "@thi.ng/errors": "npm:^2.5.12"
+    "@thi.ng/math": "npm:^5.11.4"
+    "@thi.ng/pixel": "npm:^6.1.37"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.3"
     typescript: "npm:^5.5.3"

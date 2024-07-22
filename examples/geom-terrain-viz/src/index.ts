@@ -4,13 +4,12 @@ import { asSvg, group, polyline, svgDoc } from "@thi.ng/geom";
 import { fit } from "@thi.ng/math";
 import {
 	FLOAT_GRAY,
-	GAUSSIAN,
-	convolveImage,
 	defSampler,
 	floatBufferFromImage,
 	imageFromURL,
 	type FloatSampler,
 } from "@thi.ng/pixel";
+import { GAUSSIAN, convolveImage } from "@thi.ng/pixel-convolve";
 import { $canvas } from "@thi.ng/rdom-canvas";
 import { fromIterable, reactive } from "@thi.ng/rstream";
 import { map, range } from "@thi.ng/transducers";

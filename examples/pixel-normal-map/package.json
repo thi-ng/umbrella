@@ -17,7 +17,8 @@
 	},
 	"dependencies": {
 		"@thi.ng/canvas": "workspace:^",
-		"@thi.ng/pixel": "workspace:^"
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/pixel-convolve": "workspace:^"
 	},
 	"browser": {
 		"process": false
