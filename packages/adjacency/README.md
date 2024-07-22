@@ -31,6 +31,12 @@
 
 Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs.
 
+> [!IMPORTANT]
+> In July 2024 this package was restructured and split-up to extract some
+> features into smaller more focused packages:
+>
+> - [@thi.ng/disjoint-set](https://thi.ng/disjoint-set)
+
 ### Graph implementations
 
 The following types all implement the [`IGraph`
