@@ -171,7 +171,7 @@ import {
 } from "@thi.ng/geom";
 import { asAxiDraw, asGeometry } from "@thi.ng/geom-axidraw";
 import { map, range } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 (async () => {
     const origin = [100, 100];

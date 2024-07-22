@@ -148,7 +148,7 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 ```ts
 import * as svg from "@thi.ng/hiccup-svg";
 import { serialize } from "@thi.ng/hiccup";
-import * as fs from "fs";
+import * as fs "node:fs";
 
 fs.writeFileSync(
     "hello.svg",

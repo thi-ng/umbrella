@@ -314,7 +314,7 @@ Full example:
 import { colorsFromTheme, swatchesH, type ColorThemePartTuple } from "@thi.ng/color";
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // color theme definition using:
 // color range preset names, CSS colors and weights
@@ -441,7 +441,7 @@ delegates to type specific strategies. See `GradientOpts` for details.
 import { lch, multiColorGradient, swatchesH } from "@thi.ng/color";
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 const L = 0.8;
 const C = 0.8;

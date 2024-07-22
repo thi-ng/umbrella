@@ -57,7 +57,7 @@ pixel format...
 import { asSvg, group, line, points, svgDoc } from "@thi.ng/geom";
 import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { read } from "@thi.ng/pixel-io-netpbm";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } "node:fs";
 
 // vectorize bitmap, the returned arrays contain:
 // - pairs of vectors (line segments)

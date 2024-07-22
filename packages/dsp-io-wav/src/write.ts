@@ -65,7 +65,7 @@ export const wavHeader = (spec: WavSpec): BinStructItem[] => {
  * ```ts tangle:../export/wav-byte-array.ts
  * import { osc, sin } from "@thi.ng/dsp";
  * import { wavByteArray } from "@thi.ng/dsp-io-wav";
- * import { writeFileSync } from "fs";
+ * import { writeFileSync } from "node:fs";
  *
  * // sample rate
  * const FS = 48000;

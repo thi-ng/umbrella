@@ -136,7 +136,7 @@ supported. The same limit applies to the number of CA configs given.
 import { MultiCA1D } from "@thi.ng/cellular";
 import { defIndexed, intBuffer } from "@thi.ng/pixel";
 import { asPPM } from "@thi.ng/pixel-io-netpbm";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 const WIDTH = 512;
 const HEIGHT = 512;
