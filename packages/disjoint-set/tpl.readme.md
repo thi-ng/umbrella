@@ -6,6 +6,9 @@
 
 {{pkg.description}}
 
+This package contains functionality which was previously part of and has been
+extracted from the [@thi.ng/adjacency](https://thi.ng/adjacency) package.
+
 {{meta.status}}
 
 {{repo.supportPackages}}

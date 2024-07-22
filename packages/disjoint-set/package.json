@@ -70,6 +70,12 @@
 		}
 	},
 	"thi.ng": {
+		"blog": [
+			{
+				"title": "Of umbrellas, transducers, reactive streams & mushrooms (Pt. 4)",
+				"url": "https://github.com/thi-ng/blog/blob/main/2019/20190314-of-umbrellas-transducers-reactive-streams-pt4.md"
+			}
+		],
 		"related": [
 			"adjacency"
 		],

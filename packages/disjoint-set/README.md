@@ -17,6 +17,7 @@
 - [About](#about)
 - [Status](#status)
 - [Related packages](#related-packages)
+  - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -27,6 +28,9 @@
 
 TypedArray-based disjoint set implementation with quick union & path compression.
 
+This package contains functionality which was previously part of and has been
+extracted from the [@thi.ng/adjacency](https://thi.ng/adjacency) package.
+
 ## Status
 
 **STABLE** - used in production
@@ -36,6 +40,10 @@ TypedArray-based disjoint set implementation with quick union & path compression
 ## Related packages
 
 - [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency) - Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs
+
+### Blog posts
+
+- [Of umbrellas, transducers, reactive streams & mushrooms (Pt. 4)](https://github.com/thi-ng/blog/blob/main/2019/20190314-of-umbrellas-transducers-reactive-streams-pt4.md)
 
 ## Installation
 
