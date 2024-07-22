@@ -6,6 +6,12 @@
 
 {{pkg.description}}
 
+> [!IMPORTANT]
+> In July 2024 this package was restructured and split-up to extract some
+> features into smaller more focused packages:
+>
+> - [@thi.ng/uuid](https://thi.ng/uuid)
+
 This package provides the `IRandom` interface and various (mostly seedable)
 pseudo-random number generator implementations, incl. `IRandom` wrappers for
 `Math.random()` and `window.crypto`:
