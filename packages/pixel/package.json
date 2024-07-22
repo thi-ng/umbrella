@@ -62,26 +62,21 @@
 		"binary",
 		"blend",
 		"blit",
-		"blur",
 		"canvas",
 		"channel",
 		"color",
 		"conversion",
-		"convolution",
 		"datastructure",
+		"filter",
 		"float",
 		"format",
-		"gaussian",
 		"grayscale",
 		"image",
 		"interpolation",
-		"normal",
 		"pixel",
-		"pyramid",
 		"resize",
 		"rgb565",
 		"sample",
-		"sharpen",
 		"typedarray",
 		"typescript"
 	],
@@ -109,9 +104,6 @@
 		},
 		"./checks": {
 			"default": "./checks.js"
-		},
-		"./convolve": {
-			"default": "./convolve.js"
 		},
 		"./float": {
 			"default": "./float.js"
@@ -191,11 +183,8 @@
 		"./internal/range": {
 			"default": "./internal/range.js"
 		},
-		"./normal-map": {
-			"default": "./normal-map.js"
-		},
-		"./pyramid": {
-			"default": "./pyramid.js"
+		"./internal/utils": {
+			"default": "./internal/utils.js"
 		},
 		"./sample": {
 			"default": "./sample.js"

@@ -1,11 +1,8 @@
 export * from "./api.js";
 export * from "./canvas.js";
-export * from "./convolve.js";
 export * from "./float.js";
 export * from "./image.js";
 export * from "./int.js";
-export * from "./normal-map.js";
-export * from "./pyramid.js";
 export * from "./sample.js";
 
 export * from "./format/int-format.js";

@@ -1,3 +1,4 @@
+// thing:export
 import type { Fn, Fn2, FnN, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
