@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/uuid",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Fast binary & string-based UUID v4 generation",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/hex": "^2.3.51",
-		"@thi.ng/random": "^4.0.0"
+		"@thi.ng/random": "^4.0.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",

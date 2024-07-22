@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-patch",
-	"version": "0.4.124",
+	"version": "0.4.125",
 	"description": "Reducers for patch-based, immutable-by-default array & object editing",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 		"@thi.ng/checks": "^3.6.9",
 		"@thi.ng/errors": "^2.5.13",
 		"@thi.ng/paths": "^5.1.87",
-		"@thi.ng/transducers": "^9.0.11"
+		"@thi.ng/transducers": "^9.0.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",

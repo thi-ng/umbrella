@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/csv",
-	"version": "2.3.92",
+	"version": "2.3.93",
 	"description": "Customizable, transducer-based CSV parser/object mapper and transformer",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"@thi.ng/api": "^8.11.7",
 		"@thi.ng/checks": "^3.6.9",
 		"@thi.ng/strings": "^3.8.1",
-		"@thi.ng/transducers": "^9.0.11"
+		"@thi.ng/transducers": "^9.0.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
