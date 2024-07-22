@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 197 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -395,7 +395,7 @@ for related functionality.
 ```ts tangle:export/readme-circles.js
 import { serialize } from "@thi.ng/hiccup";
 import { repeatedly } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // creates an unstyled SVG circle element
 // we ignore the first arg (an auto-injected context arg)

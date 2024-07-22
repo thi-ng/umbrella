@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 197 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -91,7 +91,7 @@ import * as g from "@thi.ng/geom";
 import * as iso from "@thi.ng/geom-isoline";
 import * as tx from "@thi.ng/transducers";
 
-import * as fs from "fs";
+import * as fs "node:fs";
 
 // evaluate fn for each [x,y], create array
 const makeField = (fn, width, height) =>

@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 197 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -84,7 +84,7 @@ for usage...
 
 ```ts
 import { dynvar } from "@thi.ng/dynvar";
-import { appendFileSync } from "fs";
+import { appendFileSync } "node:fs";
 
 interface Logger {
     log(...args: any[]): void;

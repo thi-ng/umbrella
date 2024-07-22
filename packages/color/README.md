@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 197 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -347,7 +347,7 @@ Full example:
 import { colorsFromTheme, swatchesH, type ColorThemePartTuple } from "@thi.ng/color";
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // color theme definition using:
 // color range preset names, CSS colors and weights
@@ -474,7 +474,7 @@ delegates to type specific strategies. See `GradientOpts` for details.
 import { lch, multiColorGradient, swatchesH } from "@thi.ng/color";
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 const L = 0.8;
 const C = 0.8;

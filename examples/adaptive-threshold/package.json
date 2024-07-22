@@ -30,6 +30,7 @@
 		"readme": [
 			"mime",
 			"pixel",
+			"pixel-convolve",
 			"rstream",
 			"transducers",
 			"transducers-hdom"
