@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-19T14:56:21Z
+- **Last updated**: 2024-07-22T13:15:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [7.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@7.0.0) (2024-07-22)
+
+#### 🛑 Breaking changes
+
+- migrate/remove dominantColors() ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([8851726](https://github.com/thi-ng/umbrella/commit/8851726))
+- BREAKING CHANGE: migrate dominantColors() to [@thi.ng/pixel-dominant-colors](https://github.com/thi-ng/umbrella/tree/main/packages/pixel-dominant-colors) pkg
+  - remove obsolete files
+  - update pkg
+- migrate/remove convolve functions ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([bf61076](https://github.com/thi-ng/umbrella/commit/bf61076))
+- BREAKING CHANGE: migrate convolve, normalMap & imagePyramid functionality to [@thi.ng/pixel-convolve](https://github.com/thi-ng/umbrella/tree/main/packages/pixel-convolve) pkg
+  - remove obsolete files
+  - update deps/pkg
+  - update readme
+
+#### ♻️ Refactoring
+
+- internal re-org ([522db36](https://github.com/thi-ng/umbrella/commit/522db36))
+- internal update defIndexed(), remove obsolete deps ([76e5638](https://github.com/thi-ng/umbrella/commit/76e5638))
+- intern swapLane13 helper, remove dependency ([ee202f8](https://github.com/thi-ng/umbrella/commit/ee202f8))
 
 ### [6.1.33](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@6.1.33) (2024-06-21)
 

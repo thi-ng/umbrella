@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-19T14:56:21Z
+- **Last updated**: 2024-07-22T13:15:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [7.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@7.0.0) (2024-07-22)
+
+#### 🛑 Breaking changes
+
+- restructure & split-up package ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([8e59a63](https://github.com/thi-ng/umbrella/commit/8e59a63))
+- BREAKING CHANGE: restructure & split-up package, update readme
+  - remove obsolete source files
+  - update pkg exports
+- migrate/remove SortedMap/Set, sortedObject() ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([9f4143a](https://github.com/thi-ng/umbrella/commit/9f4143a))
+- BREAKING CHANGE: migrate/remove SortedMap/Set, sortedObject()
+  - migrate `SortedMap`/`SortedSet` to [@thi.ng/sorted-map](https://github.com/thi-ng/umbrella/tree/main/packages/sorted-map) pkg
+  - migrate `sortedObject()` to [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/main/packages/object-utils)
+  - remove obsolete source files
+  - remove obsolete deps
+  - update readme
+- migrate/remove sparse set features ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([db2957c](https://github.com/thi-ng/umbrella/commit/db2957c))
+- BREAKING CHANGE: migrate sparse set features to [@thi.ng/sparse-set](https://github.com/thi-ng/umbrella/tree/main/packages/sparse-set) pkg
+  - remove obsolete files
+  - update pkg
 
 ### [6.3.61](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.3.61) (2024-06-21)
 

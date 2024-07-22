@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-19T14:56:21Z
+- **Last updated**: 2024-07-22T13:15:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.128](https://github.com/thi-ng/umbrella/tree/@thi.ng/bencode@2.1.128) (2024-07-22)
+
+#### 🩹 Bug fixes
+
+- fix [#485](https://github.com/thi-ng/umbrella/issues/485), update encode() for arraylike objects ([8bd8912](https://github.com/thi-ng/umbrella/commit/8bd8912))
+  - switch order of type analysis in encode() dispatch
+  - add tests
 
 ### [2.1.123](https://github.com/thi-ng/umbrella/tree/@thi.ng/bencode@2.1.123) (2024-06-21)
 

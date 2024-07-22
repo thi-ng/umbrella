@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-19T14:56:21Z
+- **Last updated**: 2024-07-22T13:15:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@4.0.0) (2024-07-22)
+
+#### 🛑 Breaking changes
+
+- migrate/remove UUID functions ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([2ec753e](https://github.com/thi-ng/umbrella/commit/2ec753e))
+- BREAKING CHANGE: migrate UUID functions to [@thi.ng/uuid](https://github.com/thi-ng/umbrella/tree/main/packages/uuid) pkg
+  - remove obsolete files
+  - update deps/pkg
+  - update readme
 
 ## [3.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.8.0) (2024-05-08)
 

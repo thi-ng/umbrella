@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/adjacency",
-	"version": "2.5.56",
+	"version": "3.0.0",
 	"description": "Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs",
 	"type": "module",
 	"module": "./index.js",
@@ -39,17 +39,17 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.6",
-		"@thi.ng/arrays": "^2.9.11",
-		"@thi.ng/bitfield": "^2.3.46",
-		"@thi.ng/dcons": "^3.2.118",
-		"@thi.ng/disjoint-set": "^1.0.0",
-		"@thi.ng/errors": "^2.5.12",
-		"@thi.ng/sparse": "^0.3.123"
+		"@thi.ng/api": "^8.11.7",
+		"@thi.ng/arrays": "^2.9.12",
+		"@thi.ng/bitfield": "^2.3.47",
+		"@thi.ng/dcons": "^3.2.119",
+		"@thi.ng/disjoint-set": "^1.1.0",
+		"@thi.ng/errors": "^2.5.13",
+		"@thi.ng/sparse": "^0.3.124"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
-		"@thi.ng/vectors": "^7.11.4",
+		"@thi.ng/vectors": "^7.11.5",
 		"esbuild": "^0.23.0",
 		"typedoc": "^0.26.3",
 		"typescript": "^5.5.3"
