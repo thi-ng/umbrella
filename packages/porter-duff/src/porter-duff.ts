@@ -1,5 +1,4 @@
-import type { FnN2 } from "@thi.ng/api";
-import { clamp01 } from "@thi.ng/math/interval";
+import type { FnN, FnN2 } from "@thi.ng/api";
 import type { BlendFnF, BlendFnI, Color, ReadonlyColor } from "./api.js";
 import {
 	postmultiply,
@@ -12,7 +11,10 @@ import { setC4, setN4 } from "./utils.js";
 const min = Math.min;
 
 /** @internal */
-const __clamp = (x: number) => (x < 0 ? 0 : x > 255 ? 255 : x);
+const __clamp: FnN = (x) => (x < 0 ? 0 : x > 255 ? 255 : x);
+
+/** @internal */
+const __clamp01: FnN = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
 export const ZERO: FnN2 = () => 0;
 export const ONE: FnN2 = () => 1;
@@ -53,7 +55,7 @@ export const porterDuff = (fa: FnN2, fb: FnN2): BlendFnF => {
 						dest[0] * bb,
 						dest[1] * bb,
 						dest[2] * bb,
-						clamp01(sb * bb)
+						__clamp01(sb * bb)
 					);
 			  };
 	} else if (destZero) {
@@ -65,7 +67,7 @@ export const porterDuff = (fa: FnN2, fb: FnN2): BlendFnF => {
 				src[0] * aa,
 				src[1] * aa,
 				src[2] * aa,
-				clamp01(sa * aa)
+				__clamp01(sa * aa)
 			);
 		};
 	}
@@ -79,7 +81,7 @@ export const porterDuff = (fa: FnN2, fb: FnN2): BlendFnF => {
 			src[0] * aa + dest[0] * bb,
 			src[1] * aa + dest[1] * bb,
 			src[2] * aa + dest[2] * bb,
-			clamp01(src[3] * aa + dest[3] * bb)
+			__clamp01(src[3] * aa + dest[3] * bb)
 		);
 	};
 };

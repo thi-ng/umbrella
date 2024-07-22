@@ -5856,7 +5856,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.47.0"
     "@thi.ng/api": "npm:^8.11.6"
-    "@thi.ng/math": "npm:^5.11.4"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.3"
     typescript: "npm:^5.5.3"
