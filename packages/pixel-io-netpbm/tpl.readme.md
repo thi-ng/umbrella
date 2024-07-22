@@ -51,7 +51,7 @@ size and other meta data (from comments), without parsing the full image.
 
 ```ts
 import * as pbm from "@thi.ng/pixel-io-netpbm";
-import * as fs from "fs";
+import * as fs "node:fs";
 
 const src = fs.readFileSync("a.pbm");
 // <Buffer 50 34 0a 23 20 67 65 6e 65 72 61 74 65 64 20 62 79...>

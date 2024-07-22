@@ -42,7 +42,7 @@ functionality. For the latter we recommend using the wrapped
 import { GRAY16 } from "@thi.ng/pixel";
 import { readGeoTiff } from "@thi.ng/pixel-io-geotiff";
 import { asPGM16 } from "@thi.ng/pixel-io-netpbm";
-import { readFileSync } from "fs";
+import { readFileSync } "node:fs";
 
 // load GeoTIFF image and convert to thi.ng/pixel floatBuffer
 // the result image uses a custom pixel format (FLOAT_GRAY_RANGE, with [min..max]

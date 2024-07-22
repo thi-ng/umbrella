@@ -46,10 +46,11 @@ very easily extended via definition of custom kernels):
 {{pkg.docs}}
 
 ```ts
-import { intBufferFromImage, GRAY8 } from "@thi.ng/pixel";
+import { imageFromURL, intBufferFromImage, GRAY8 } from "@thi.ng/pixel";
 import { ditherWith, ATKINSON } from "@thi.ng/pixel-dither";
 
-const img = intBufferFromImage("foo.jpg");
+// create pixel buffer from HTML image element
+const img = intBufferFromImage(await imageFromURL("test.jpg"));
 
 // apply dithering to all channels in given pixel buffer
 ditherWith(ATKINSON, img);
