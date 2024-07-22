@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -130,12 +130,11 @@ For Node.js REPL:
 const egf = await import("@thi.ng/egf");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.62 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.61 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
@@ -143,6 +142,9 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.62 KB
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
+- [@thi.ng/trie](https://github.com/thi-ng/umbrella/tree/develop/packages/trie)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## API
 

@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -432,7 +432,7 @@ import { XsAdd } from "@thi.ng/random";
 import { green } from "@thi.ng/colored-noise";
 import { adsr, iterable, product } from "@thi.ng/dsp";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 const FS = 44100;
 

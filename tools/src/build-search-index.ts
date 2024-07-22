@@ -1,4 +1,4 @@
-import { ArraySet, MultiTrie } from "@thi.ng/associative";
+import { ArraySet } from "@thi.ng/associative";
 import { timed } from "@thi.ng/bench";
 import {
 	files,
@@ -8,6 +8,7 @@ import {
 	writeJSON,
 } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/msgpack";
+import { MultiTrie } from "@thi.ng/trie";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
 import { AWS_PROFILE, CF_DISTRO_DOCS, S3_PREFIX } from "./aws-config.js";

@@ -367,7 +367,7 @@ import { XsAdd } from "@thi.ng/random";
 import { green } from "@thi.ng/colored-noise";
 import { adsr, iterable, product } from "@thi.ng/dsp";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 const FS = 44100;
 

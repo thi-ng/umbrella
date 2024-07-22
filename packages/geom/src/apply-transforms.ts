@@ -1,6 +1,6 @@
-import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
+import { withoutKeysObj } from "@thi.ng/object-utils/without-keys";
 import type { IShape, IShape2, IShape3 } from "./api.js";
 import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";

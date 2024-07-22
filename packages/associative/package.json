@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/associative",
 	"version": "6.3.65",
-	"description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations, plain object utilities",
+	"description": "ES Map/Set-compatible implementations with customizable equality semantics & supporting operations",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -40,11 +40,9 @@
 		"@thi.ng/arrays": "^2.9.11",
 		"@thi.ng/binary": "^3.4.29",
 		"@thi.ng/checks": "^3.6.8",
-		"@thi.ng/compare": "^2.3.9",
 		"@thi.ng/dcons": "^3.2.118",
 		"@thi.ng/equiv": "^2.1.62",
-		"@thi.ng/errors": "^2.5.12",
-		"@thi.ng/random": "^3.8.5",
+		"@thi.ng/object-utils": "^1.0.0",
 		"@thi.ng/transducers": "^9.0.10",
 		"tslib": "^2.6.3"
 	},
@@ -64,13 +62,10 @@
 		"map",
 		"object",
 		"set",
-		"skiplist",
-		"sort",
 		"sparse",
 		"trie",
 		"typescript",
-		"union",
-		"value-semantics"
+		"union"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -96,17 +91,8 @@
 		"./array-set": {
 			"default": "./array-set.js"
 		},
-		"./bidir-index": {
-			"default": "./bidir-index.js"
-		},
 		"./checks": {
 			"default": "./checks.js"
-		},
-		"./common-keys": {
-			"default": "./common-keys.js"
-		},
-		"./copy": {
-			"default": "./copy.js"
 		},
 		"./difference": {
 			"default": "./difference.js"
@@ -114,17 +100,11 @@
 		"./dissoc": {
 			"default": "./dissoc.js"
 		},
-		"./empty": {
-			"default": "./empty.js"
-		},
 		"./equiv-map": {
 			"default": "./equiv-map.js"
 		},
 		"./first": {
 			"default": "./first.js"
-		},
-		"./from-keys": {
-			"default": "./from-keys.js"
 		},
 		"./hash-map": {
 			"default": "./hash-map.js"
@@ -132,14 +112,17 @@
 		"./indexed": {
 			"default": "./indexed.js"
 		},
+		"./internal/equiv": {
+			"default": "./internal/equiv.js"
+		},
+		"./internal/inspect": {
+			"default": "./internal/inspect.js"
+		},
 		"./intersection": {
 			"default": "./intersection.js"
 		},
 		"./into": {
 			"default": "./into.js"
-		},
-		"./invert": {
-			"default": "./invert.js"
 		},
 		"./join": {
 			"default": "./join.js"
@@ -147,50 +130,8 @@
 		"./ll-set": {
 			"default": "./ll-set.js"
 		},
-		"./merge-apply": {
-			"default": "./merge-apply.js"
-		},
-		"./merge-deep": {
-			"default": "./merge-deep.js"
-		},
-		"./merge-with": {
-			"default": "./merge-with.js"
-		},
-		"./merge": {
-			"default": "./merge.js"
-		},
-		"./multi-trie": {
-			"default": "./multi-trie.js"
-		},
-		"./partition-keys": {
-			"default": "./partition-keys.js"
-		},
-		"./rename-keys": {
-			"default": "./rename-keys.js"
-		},
-		"./select-keys": {
-			"default": "./select-keys.js"
-		},
-		"./sorted-map": {
-			"default": "./sorted-map.js"
-		},
-		"./sorted-obj": {
-			"default": "./sorted-obj.js"
-		},
-		"./sorted-set": {
-			"default": "./sorted-set.js"
-		},
-		"./sparse-set": {
-			"default": "./sparse-set.js"
-		},
-		"./trie-map": {
-			"default": "./trie-map.js"
-		},
 		"./union": {
 			"default": "./union.js"
-		},
-		"./without-keys": {
-			"default": "./without-keys.js"
 		}
 	},
 	"thi.ng": {

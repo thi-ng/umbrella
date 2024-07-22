@@ -1,8 +1,8 @@
 import type { Fn } from "@thi.ng/api";
-import { meldDeepObj } from "@thi.ng/associative/merge-deep";
 import type { Attribs } from "@thi.ng/hiccup-html";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import { textArea, type TextAreaAttribs } from "@thi.ng/hiccup-html/forms";
+import { meldDeepObj } from "@thi.ng/object-utils/merge-deep";
 import type { IComponent } from "@thi.ng/rdom";
 import { $compile } from "@thi.ng/rdom/compile";
 import type { ISubscription } from "@thi.ng/rstream";

@@ -1,10 +1,6 @@
 import { pixelCanvas2d } from "@thi.ng/canvas";
-import {
-	FLOAT_GRAY,
-	floatBufferFromImage,
-	imageFromURL,
-	normalMap,
-} from "@thi.ng/pixel";
+import { FLOAT_GRAY, floatBufferFromImage, imageFromURL } from "@thi.ng/pixel";
+import { normalMap } from "@thi.ng/pixel-convolve";
 import TEX from "./tex.png";
 
 // load texture image

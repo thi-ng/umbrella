@@ -37,9 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.6",
-		"@thi.ng/checks": "^3.6.8",
-		"@thi.ng/errors": "^2.5.12",
-		"@thi.ng/hex": "^2.3.50"
+		"@thi.ng/errors": "^2.5.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.0",
@@ -62,7 +60,6 @@
 		"typedarray",
 		"typescript",
 		"weighted",
-		"uuid",
 		"uniform"
 	],
 	"publishConfig": {
@@ -130,9 +127,6 @@
 		},
 		"./unique-indices": {
 			"default": "./unique-indices.js"
-		},
-		"./uuid": {
-			"default": "./uuid.js"
 		},
 		"./weighted-probability": {
 			"default": "./weighted-probability.js"

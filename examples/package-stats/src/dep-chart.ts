@@ -1,10 +1,9 @@
-import { exists } from "@thi.ng/checks";
 import { DGraph } from "@thi.ng/dgraph";
+import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";
 import { group, text } from "@thi.ng/hiccup-svg";
 import {
 	comp,
-	filter,
 	map,
 	mapcat,
 	mapIndexed,
@@ -16,22 +15,13 @@ import {
 	transduce,
 	zip,
 } from "@thi.ng/transducers";
-import * as fs from "node:fs";
 import { barChart, labeledTickX, labeledTickY } from "./viz.js";
 
-const BASE_DIR = "../../packages/";
+const BASE_DIR = "../../packages";
 
 const packages: { id: string; v: string; deps: string[] }[] = transduce(
 	comp(
-		map((f) => BASE_DIR + f),
-		filter((f) => fs.statSync(f).isDirectory()),
-		map((f) => {
-			try {
-				return fs.readFileSync(f + "/package.json");
-			} catch (_) {}
-		}),
-		filter(exists),
-		map((p) => JSON.parse(p!.toString())),
+		map(readJSON),
 		map((p) => ({
 			id: p.name,
 			v: p.version,
@@ -39,7 +29,7 @@ const packages: { id: string; v: string; deps: string[] }[] = transduce(
 		}))
 	),
 	push(),
-	fs.readdirSync(BASE_DIR)
+	files(BASE_DIR, "package.json", 2)
 );
 
 const graph = transduce(
@@ -59,7 +49,7 @@ const maxDeps = transduce<any, number, number>(pluck(1), max(), packageDeps);
 
 const width = packages.length * 16;
 
-fs.writeFileSync(
+writeText(
 	`package-deps.svg`,
 	serialize([
 		barChart,

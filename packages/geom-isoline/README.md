@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -70,6 +70,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 716 bytes
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## Usage examples
 
 One project in this repo's
@@ -89,7 +91,7 @@ import * as g from "@thi.ng/geom";
 import * as iso from "@thi.ng/geom-isoline";
 import * as tx from "@thi.ng/transducers";
 
-import * as fs from "fs";
+import * as fs "node:fs";
 
 // evaluate fn for each [x,y], create array
 const makeField = (fn, width, height) =>

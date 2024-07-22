@@ -1,5 +1,5 @@
 import type { IntBuffer } from "@thi.ng/pixel";
-import { range } from "@thi.ng/pixel/range";
+import { __range } from "@thi.ng/pixel/internal/range";
 import type { DitherKernel, DitherOpts } from "./api.js";
 
 /**
@@ -20,7 +20,7 @@ export const ditherWith = (
 	const { format, width, height } = img;
 	const { ox, oy, weights, shift } = kernel;
 	let p: number, err: number;
-	for (let cid of channels || range(format.channels.length)) {
+	for (let cid of channels || __range(format.channels.length)) {
 		const cimg = img.getChannel(cid);
 		const chan = format.channels[cid];
 		const $thresh = chan.num * threshold;

@@ -16,6 +16,7 @@
 		"@thi.ng/mime": "workspace:^",
 		"@thi.ng/paths": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/pixel-convolve": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/transducers-hdom": "workspace:^"
@@ -29,6 +30,7 @@
 		"readme": [
 			"mime",
 			"pixel",
+			"pixel-convolve",
 			"rstream",
 			"transducers",
 			"transducers-hdom"

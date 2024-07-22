@@ -132,7 +132,7 @@ import { asSvg, bounds, circle, group, svgDoc } from "@thi.ng/geom";
 import { asPolygons, asSDF, sample2d } from "@thi.ng/geom-sdf";
 import { range, repeatedly } from "@thi.ng/transducers";
 import { randMinMax2 } from "@thi.ng/vectors";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 const RES = [256, 256];
 

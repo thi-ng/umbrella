@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -188,6 +188,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.47 KB
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## Usage examples
 
 16 projects in this repo's
@@ -220,7 +222,7 @@ directory are using this package:
 ```ts
 import * as svg from "@thi.ng/hiccup-svg";
 import { serialize } from "@thi.ng/hiccup";
-import * as fs from "fs";
+import * as fs "node:fs";
 
 fs.writeFileSync(
     "hello.svg",

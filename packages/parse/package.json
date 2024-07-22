@@ -236,7 +236,6 @@
 	},
 	"thi.ng": {
 		"related": [
-			"fsm",
 			"transducers-fsm"
 		],
 		"year": 2020

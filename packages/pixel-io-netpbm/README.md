@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -86,6 +86,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## Usage examples
 
 One project in this repo's
@@ -102,7 +104,7 @@ directory is using this package:
 
 ```ts
 import * as pbm from "@thi.ng/pixel-io-netpbm";
-import * as fs from "fs";
+import * as fs "node:fs";
 
 const src = fs.readFileSync("a.pbm");
 // <Buffer 50 34 0a 23 20 67 65 6e 65 72 61 74 65 64 20 62 79...>

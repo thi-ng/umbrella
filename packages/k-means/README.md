@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -69,9 +69,11 @@ Package sizes (brotli'd, pre-treeshake): ESM: 870 bytes
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## Usage examples
 
-Three projects in this repo's
+Two projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -79,7 +81,6 @@ directory are using this package:
 |:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/> | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>      | k-means clustering visualization                                            | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/>   | Image dithering and remapping using indexed palettes                        | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed)   |
 
 ## API
 

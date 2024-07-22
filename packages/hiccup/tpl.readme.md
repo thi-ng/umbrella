@@ -283,7 +283,7 @@ for related functionality.
 ```ts tangle:export/readme-circles.js
 import { serialize } from "@thi.ng/hiccup";
 import { repeatedly } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // creates an unstyled SVG circle element
 // we ignore the first arg (an auto-injected context arg)

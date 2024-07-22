@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
-import { DisjointSet } from "./disjoint-set.js";
+import { DisjointSet } from "@thi.ng/disjoint-set";
 
 /**
  * Computes the Minimum Spanning Tree from given weighted `edges`, using

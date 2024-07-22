@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -75,7 +75,7 @@ For Node.js REPL:
 const pd = await import("@thi.ng/pixel-dither");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 
@@ -100,10 +100,11 @@ directory are using this package:
 [Generated API docs](https://docs.thi.ng/umbrella/pixel-dither/)
 
 ```ts
-import { intBufferFromImage, GRAY8 } from "@thi.ng/pixel";
+import { imageFromURL, intBufferFromImage, GRAY8 } from "@thi.ng/pixel";
 import { ditherWith, ATKINSON } from "@thi.ng/pixel-dither";
 
-const img = intBufferFromImage("foo.jpg");
+// create pixel buffer from HTML image element
+const img = intBufferFromImage(await imageFromURL("test.jpg"));
 
 // apply dithering to all channels in given pixel buffer
 ditherWith(ATKINSON, img);

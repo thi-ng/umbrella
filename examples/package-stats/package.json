@@ -14,8 +14,8 @@
 		"typescript": "^5.5.3"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "workspace:^",
 		"@thi.ng/dgraph": "workspace:^",
+		"@thi.ng/file-io": "workspace:^",
 		"@thi.ng/hiccup": "workspace:^",
 		"@thi.ng/hiccup-svg": "workspace:^",
 		"@thi.ng/math": "workspace:^",
@@ -32,10 +32,10 @@
 		"online": false,
 		"readme": [
 			"dgraph",
+			"file-io",
 			"hiccup",
 			"hiccup-svg",
-			"transducers",
-			"vectors"
+			"transducers"
 		],
 		"screenshot": "examples/package-stats.png"
 	}

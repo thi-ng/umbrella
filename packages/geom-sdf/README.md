@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -183,6 +183,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.76 KB
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## Usage examples
 
 Two projects in this repo's
@@ -203,7 +205,7 @@ import { asSvg, bounds, circle, group, svgDoc } from "@thi.ng/geom";
 import { asPolygons, asSDF, sample2d } from "@thi.ng/geom-sdf";
 import { range, repeatedly } from "@thi.ng/transducers";
 import { randMinMax2 } from "@thi.ng/vectors";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 const RES = [256, 256];
 

@@ -1,4 +1,4 @@
-import { meldDeepObj } from "@thi.ng/associative";
+import { meldDeepObj } from "@thi.ng/object-utils";
 import { colorFromRange, srgb } from "@thi.ng/color";
 import {
 	TESSELLATE_TRI_FAN,

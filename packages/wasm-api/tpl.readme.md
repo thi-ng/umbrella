@@ -364,7 +364,7 @@ please also consult the information in
 
 ```ts
 import { WasmBridge, WasmExports } from "@thi.ng/wasm-api";
-import { readFileSync } from "fs";
+import { readFileSync } "node:fs";
 
 // WASM exports from our dummy module (below)
 interface App extends WasmExports {

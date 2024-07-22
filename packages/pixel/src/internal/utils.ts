@@ -1,3 +1,4 @@
+// thing:export
 import type { Fn, Fn2, FnN, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
@@ -117,3 +118,16 @@ export const __asIntVec = (x: number | [number, number]) => {
 	const v = __asVec(x);
 	return [v[0] | 0, v[1] | 0];
 };
+
+/**
+ * Swaps bytes lanes 1 & 3 (i.e. bits 16-23 with bits 0-7)
+ *
+ * @remarks
+ * Extracted from thi.ng/binary to avoid dependency
+ *
+ * @param x -
+ *
+ * @internal
+ */
+export const __swapLane13: FnN = (x) =>
+	((x & 0xff) << 16) | ((x >> 16) & 0xff) | (x & 0xff00ff00);

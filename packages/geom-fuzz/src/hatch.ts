@@ -1,4 +1,3 @@
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { clipLinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { bounds } from "@thi.ng/geom/bounds";
 import { group } from "@thi.ng/geom/group";
@@ -8,6 +7,7 @@ import { columnEnds2d } from "@thi.ng/grid-iterators/column-ends";
 import { diagonalEnds2d } from "@thi.ng/grid-iterators/diagonal-ends";
 import { rowEnds2d } from "@thi.ng/grid-iterators/row-ends";
 import { flipX, flipXY, flipY, ident } from "@thi.ng/grid-iterators/transforms";
+import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import { partition } from "@thi.ng/transducers/partition";
 import { div2 } from "@thi.ng/vectors/div";
 import { DEFAULT_LINE, type FillFn, type HatchOpts } from "./api.js";

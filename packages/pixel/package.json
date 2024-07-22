@@ -37,12 +37,9 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.6",
-		"@thi.ng/binary": "^3.4.29",
 		"@thi.ng/canvas": "^0.2.23",
 		"@thi.ng/checks": "^3.6.8",
-		"@thi.ng/distance": "^2.4.78",
 		"@thi.ng/errors": "^2.5.12",
-		"@thi.ng/k-means": "^0.6.93",
 		"@thi.ng/math": "^5.11.4",
 		"@thi.ng/porter-duff": "^2.1.84"
 	},
@@ -65,28 +62,21 @@
 		"binary",
 		"blend",
 		"blit",
-		"blur",
 		"canvas",
 		"channel",
 		"color",
 		"conversion",
-		"convolution",
 		"datastructure",
+		"filter",
 		"float",
 		"format",
-		"gaussian",
 		"grayscale",
 		"image",
 		"interpolation",
-		"k-means",
-		"multiformat",
-		"normal",
 		"pixel",
-		"pyramid",
 		"resize",
 		"rgb565",
 		"sample",
-		"sharpen",
 		"typedarray",
 		"typescript"
 	],
@@ -114,12 +104,6 @@
 		},
 		"./checks": {
 			"default": "./checks.js"
-		},
-		"./convolve": {
-			"default": "./convolve.js"
-		},
-		"./dominant-colors": {
-			"default": "./dominant-colors.js"
 		},
 		"./float": {
 			"default": "./float.js"
@@ -196,14 +180,11 @@
 		"./int": {
 			"default": "./int.js"
 		},
-		"./normal-map": {
-			"default": "./normal-map.js"
+		"./internal/range": {
+			"default": "./internal/range.js"
 		},
-		"./pyramid": {
-			"default": "./pyramid.js"
-		},
-		"./range": {
-			"default": "./range.js"
+		"./internal/utils": {
+			"default": "./internal/utils.js"
 		},
 		"./sample": {
 			"default": "./sample.js"

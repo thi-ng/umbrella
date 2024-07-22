@@ -1,6 +1,6 @@
-import { empty } from "./empty.js";
+import { empty } from "@thi.ng/object-utils/empty";
+import { selectKeysObj } from "@thi.ng/object-utils/select-keys";
 import { EquivMap } from "./equiv-map.js";
-import { selectKeysObj } from "./select-keys.js";
 
 /**
  * Takes an iterable of plain objects and array of indexing keys. Calls

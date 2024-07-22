@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -84,7 +84,7 @@ For Node.js REPL:
 const adj = await import("@thi.ng/adjacency");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.74 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.53 KB
 
 ## Dependencies
 
@@ -92,8 +92,11 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.74 KB
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+- [@thi.ng/disjoint-set](https://github.com/thi-ng/umbrella/tree/develop/packages/disjoint-set)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/sparse](https://github.com/thi-ng/umbrella/tree/develop/packages/sparse)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 

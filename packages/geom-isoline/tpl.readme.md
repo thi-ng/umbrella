@@ -38,7 +38,7 @@ import * as g from "@thi.ng/geom";
 import * as iso from "@thi.ng/geom-isoline";
 import * as tx from "@thi.ng/transducers";
 
-import * as fs from "fs";
+import * as fs "node:fs";
 
 // evaluate fn for each [x,y], create array
 const makeField = (fn, width, height) =>

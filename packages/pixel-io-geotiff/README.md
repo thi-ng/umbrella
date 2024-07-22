@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -74,6 +74,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 399 bytes
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [geotiff](https://github.com/geotiffjs/geotiff.js)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/pixel-io-geotiff/)
@@ -82,7 +84,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 399 bytes
 import { GRAY16 } from "@thi.ng/pixel";
 import { readGeoTiff } from "@thi.ng/pixel-io-geotiff";
 import { asPGM16 } from "@thi.ng/pixel-io-netpbm";
-import { readFileSync } from "fs";
+import { readFileSync } "node:fs";
 
 // load GeoTIFF image and convert to thi.ng/pixel floatBuffer
 // the result image uses a custom pixel format (FLOAT_GRAY_RANGE, with [min..max]

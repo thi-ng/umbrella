@@ -1,7 +1,6 @@
 import type { Fn0, Maybe, Nullable } from "@thi.ng/api";
 import type { ConsCell } from "@thi.ng/dcons";
 import { DCons } from "@thi.ng/dcons/dcons";
-import { map } from "@thi.ng/transducers/map";
 import type { CacheEntry, CacheOpts, ICache } from "./api.js";
 
 export class LRUCache<K, V> implements ICache<K, V> {
@@ -43,16 +42,16 @@ export class LRUCache<K, V> implements ICache<K, V> {
 		return this.entries();
 	}
 
-	entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
-		return map((e) => <[K, CacheEntry<K, V>]>[e.k, e], this.items);
+	*entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
+		for (let e of this.items) yield <[K, CacheEntry<K, V>]>[e.k, e];
 	}
 
-	keys(): IterableIterator<Readonly<K>> {
-		return map((e) => e.k, this.items);
+	*keys(): IterableIterator<Readonly<K>> {
+		for (let e of this.items) yield e.k;
 	}
 
-	values(): IterableIterator<Readonly<V>> {
-		return map((e) => e.v, this.items);
+	*values(): IterableIterator<Readonly<V>> {
+		for (let e of this.items) yield e.v;
 	}
 
 	copy(): ICache<K, V> {

@@ -1,12 +1,12 @@
-import { withoutKeysObj } from "@thi.ng/associative/without-keys";
-import type { Attribs, IShape } from "./api.js";
+import type { NumOrString } from "@thi.ng/api";
 import { convertTree } from "@thi.ng/hiccup-svg/convert";
 import { ff } from "@thi.ng/hiccup-svg/format";
 import { svg } from "@thi.ng/hiccup-svg/svg";
 import { serialize } from "@thi.ng/hiccup/serialize";
+import { withoutKeysObj } from "@thi.ng/object-utils/without-keys";
+import type { Attribs, IShape } from "./api.js";
 import { bounds } from "./bounds.js";
 import { __collBounds } from "./internal/bounds.js";
-import type { NumOrString } from "@thi.ng/api";
 
 export interface SVGDocAttribs extends Attribs {
 	/**

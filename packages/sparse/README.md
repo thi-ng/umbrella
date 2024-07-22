@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -16,6 +16,7 @@
 
 - [About](#about)
 - [Status](#status)
+- [Support packages](#support-packages)
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -32,6 +33,10 @@ Sparse vector & matrix implementations.
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsparse%5D+in%3Atitle)
+
+## Support packages
+
+- [@thi.ng/sparse-set](https://github.com/thi-ng/umbrella/tree/develop/packages/sparse-set) - TypedArray-based sparse set implementations with extended ES Set API
 
 ## Related packages
 
@@ -71,6 +76,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.40 KB
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## API
 

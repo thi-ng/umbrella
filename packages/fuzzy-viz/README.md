@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -72,6 +72,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1023 bytes
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/fuzzy-viz/)
@@ -86,7 +88,7 @@ variable](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy#linguis
 ```ts tangle:export/readme-svg.ts
 import { invSigmoid, sigmoid, trapezoid, variable } from "@thi.ng/fuzzy";
 import { varToSvg } from "@thi.ng/fuzzy-viz";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // temperature sets (in celsius)
 const temp = variable([-20, 40], {

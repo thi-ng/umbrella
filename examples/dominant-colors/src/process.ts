@@ -1,11 +1,7 @@
 import { timed } from "@thi.ng/bench";
 import { lch, srgb } from "@thi.ng/color";
-import {
-	dominantColors,
-	floatBuffer,
-	FLOAT_RGB,
-	intBufferFromImage,
-} from "@thi.ng/pixel";
+import { FLOAT_RGB, floatBuffer, intBufferFromImage } from "@thi.ng/pixel";
+import { dominantColors } from "@thi.ng/pixel-dominant-colors";
 import { map, minMax, transduce } from "@thi.ng/transducers";
 import { SORT_MODES, type DominantColor, type SortMode } from "./api";
 

@@ -1,6 +1,6 @@
 import { peek } from "@thi.ng/arrays/peek";
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
+import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import type { ContextOpts, ParseScope } from "@thi.ng/parse";
 import { defContext } from "@thi.ng/parse/context";
 import { defGrammar } from "@thi.ng/parse/grammar";

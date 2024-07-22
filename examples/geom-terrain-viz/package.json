@@ -21,6 +21,7 @@
 		"@thi.ng/geom": "workspace:^",
 		"@thi.ng/math": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/pixel-convolve": "workspace:^",
 		"@thi.ng/rdom-canvas": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
@@ -34,6 +35,7 @@
 			"dl-asset",
 			"geom",
 			"pixel",
+			"pixel-convolve",
 			"rdom-canvas"
 		],
 		"screenshot": "examples/geom-terrain-viz.jpg"

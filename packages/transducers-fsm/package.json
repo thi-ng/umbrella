@@ -69,7 +69,6 @@
 		"alias": "fsm",
 		"parent": "@thi.ng/transducers",
 		"related": [
-			"fsm",
 			"sax"
 		],
 		"status": "completed",

@@ -1,3 +1,4 @@
+// thing:export
 import { equiv } from "@thi.ng/equiv";
 
 export const __equivMap = (a: Map<any, any>, b: any) => {

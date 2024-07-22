@@ -1,8 +1,8 @@
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { bounds } from "@thi.ng/geom/bounds";
 import { pointInside } from "@thi.ng/geom/point-inside";
 import { points } from "@thi.ng/geom/points";
 import { unmapPoint } from "@thi.ng/geom/unmap-point";
+import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import { range2d } from "@thi.ng/transducers/range2d";
 import type { Vec } from "@thi.ng/vectors";
 import { div2 } from "@thi.ng/vectors/div";

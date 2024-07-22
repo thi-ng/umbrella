@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -360,12 +360,11 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.95 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.94 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 - [@thi.ng/blurhash](https://github.com/thi-ng/umbrella/tree/develop/packages/blurhash)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/develop/packages/date)
@@ -373,10 +372,13 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.95 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [sharp](https://sharp.pixelplumbing.com)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## API
 

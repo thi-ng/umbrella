@@ -1,6 +1,6 @@
 import type { Nullable } from "@thi.ng/api";
-import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import { isArray } from "@thi.ng/checks/is-array";
+import { withoutKeysObj } from "@thi.ng/object-utils/without-keys";
 import {
 	TEX_FORMATS,
 	TextureFilter,

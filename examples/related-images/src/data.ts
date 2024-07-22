@@ -1,5 +1,6 @@
 import { selectThresholdMin } from "@thi.ng/arrays";
-import { defBidirIndex, unionR } from "@thi.ng/associative";
+import { unionR } from "@thi.ng/associative";
+import { defBidirIndex } from "@thi.ng/bidir-index";
 import { defBitField } from "@thi.ng/bitfield";
 import { pluck, transduce } from "@thi.ng/transducers";
 import type { Item } from "./api.js";
@@ -191,7 +192,7 @@ export const initDB = () => {
 	// build an index of all unique tags. this index is actually bidirectional
 	// (i.e. here mapping tags to numeric IDs and vice versa), but we're only
 	// using the forward direction here...
-	// https://docs.thi.ng/umbrella/associative/classes/BidirIndex.html
+	// https://docs.thi.ng/umbrella/bidir-index/classes/BidirIndex.html
 	const tagIndex = defBidirIndex(
 		// build the set union of all tags of all images
 		transduce(pluck("tags"), unionR<string>(), DB)

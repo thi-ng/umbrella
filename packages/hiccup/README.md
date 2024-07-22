@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -191,6 +191,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.19 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
@@ -393,7 +395,7 @@ for related functionality.
 ```ts tangle:export/readme-circles.js
 import { serialize } from "@thi.ng/hiccup";
 import { repeatedly } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // creates an unstyled SVG circle element
 // we ignore the first arg (an auto-injected context arg)

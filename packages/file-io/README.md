@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -18,6 +18,7 @@
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -63,6 +64,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.05 KB
 - [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Screenshot                                                                                                           | Description                              | Live demo | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|:----------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/> | CLI util to visualize umbrella pkg stats |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats) |
 
 ## API
 

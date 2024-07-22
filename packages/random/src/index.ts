@@ -14,7 +14,6 @@ export * from "./sfc32.js";
 export * from "./smush32.js";
 export * from "./system.js";
 export * from "./unique-indices.js";
-export * from "./uuid.js";
 export * from "./weighted-probability.js";
 export * from "./weighted-random.js";
 export * from "./xorshift128.js";

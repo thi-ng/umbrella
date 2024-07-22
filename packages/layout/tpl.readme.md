@@ -51,7 +51,7 @@ The code producing this layout (incl. the visualization itself):
 ```ts tangle:export/readme-grid.ts
 import * as g from "@thi.ng/geom";
 import { gridLayout, type LayoutBox } from "@thi.ng/layout";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // collection of generated layout cells
 const cells: g.Group[] = [];
@@ -147,7 +147,7 @@ The code producing this layout (incl. the visualization itself):
 ```ts tangle:export/readme-stacked.ts
 import * as g from "@thi.ng/geom";
 import { stackedLayout, type LayoutBox } from "@thi.ng/layout";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // collection of generated layout cells
 const cells: g.Group[] = [];

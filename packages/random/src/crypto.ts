@@ -4,8 +4,8 @@ import { randomBytes } from "./random-bytes.js";
 
 /**
  * Currently browser only, a `window.crypto` backed {@link IRandom}
- * implementation. Random values are buffered to minimize overhead. Buffer size
- * is configurable via ctor.
+ * implementation. Random values are repeatedly buffered to minimize overhead.
+ * Buffer size is configurable via ctor.
  *
  * @remarks
  * Internally uses {@link randomBytes} to source values, which falls back to

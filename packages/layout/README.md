@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 189 standalone projects, maintained as part
+> This is one of 198 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -82,6 +82,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.19 KB
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
 ## Usage examples
 
 Four projects in this repo's
@@ -112,7 +114,7 @@ The code producing this layout (incl. the visualization itself):
 ```ts tangle:export/readme-grid.ts
 import * as g from "@thi.ng/geom";
 import { gridLayout, type LayoutBox } from "@thi.ng/layout";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // collection of generated layout cells
 const cells: g.Group[] = [];
@@ -208,7 +210,7 @@ The code producing this layout (incl. the visualization itself):
 ```ts tangle:export/readme-stacked.ts
 import * as g from "@thi.ng/geom";
 import { stackedLayout, type LayoutBox } from "@thi.ng/layout";
-import { writeFileSync } from "fs";
+import { writeFileSync } "node:fs";
 
 // collection of generated layout cells
 const cells: g.Group[] = [];

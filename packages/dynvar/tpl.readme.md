@@ -42,7 +42,7 @@ for usage...
 
 ```ts
 import { dynvar } from "@thi.ng/dynvar";
-import { appendFileSync } from "fs";
+import { appendFileSync } "node:fs";
 
 interface Logger {
     log(...args: any[]): void;

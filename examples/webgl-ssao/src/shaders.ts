@@ -1,4 +1,4 @@
-import { mergeDeepObj } from "@thi.ng/associative";
+import { mergeDeepObj } from "@thi.ng/object-utils";
 import {
 	$x,
 	$xyz,

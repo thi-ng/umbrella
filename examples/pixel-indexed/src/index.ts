@@ -6,9 +6,9 @@ import {
 	defIndexed,
 	imageFromURL,
 	intBufferFromImage,
-	range,
 } from "@thi.ng/pixel";
 import { ATKINSON, ditherWith, orderedDither } from "@thi.ng/pixel-dither";
+import { range } from "@thi.ng/transducers";
 import IMG from "./test.jpg";
 
 const ORDERED = false;
@@ -34,7 +34,7 @@ const buf = intBufferFromImage(img, ARGB8888).scale(0.5, "cubic");
 
 // another version using a preset palette
 // see https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes#all-themes
-const themes = range(NUM_THEMES);
+const themes = range(NUM_THEMES)[Symbol.iterator]();
 const addImage = () => {
 	const next = themes.next();
 	if (next.value !== undefined) {

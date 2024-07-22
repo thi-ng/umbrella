@@ -1,5 +1,5 @@
 // thing:export
-import { withoutKeysObj } from "@thi.ng/associative/without-keys";
+import { withoutKeysObj } from "@thi.ng/object-utils/without-keys";
 import type { Vec } from "@thi.ng/vectors";
 import { copy, copyVectors } from "@thi.ng/vectors/copy";
 import type {

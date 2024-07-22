@@ -1,9 +1,9 @@
 import type { Fn3 } from "@thi.ng/api";
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import type { IHiccupShape2 } from "@thi.ng/geom";
 import { resample } from "@thi.ng/geom-resample/resample";
 import { line } from "@thi.ng/geom/line";
 import { polyline } from "@thi.ng/geom/polyline";
+import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { jitter } from "@thi.ng/vectors/jitter";
 import { DEFAULT_LINE, type FuzzyLineOpts } from "./api.js";
