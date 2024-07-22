@@ -27,7 +27,7 @@
 
 ## About
 
-TODO.
+Trie-based map data structure with prefix search/query support.
 
 This package contains functionality which was previously part of and has been
 extracted from the [@thi.ng/associative](https://thi.ng/associative) package.

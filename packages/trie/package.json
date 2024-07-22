@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/trie",
 	"version": "1.0.0",
-	"description": "TODO",
+	"description": "Trie-based map data structure with prefix search/query support",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
