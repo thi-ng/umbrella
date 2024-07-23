@@ -167,6 +167,16 @@ export class FloatBuffer
 		return 2;
 	}
 
+	*[Symbol.iterator]() {
+		const {
+			data,
+			stride: [stride],
+		} = this;
+		for (let i = 0, n = data.length; i < n; i += stride) {
+			yield data.subarray(i, i + stride);
+		}
+	}
+
 	as(fmt: IntFormat) {
 		const {
 			width,

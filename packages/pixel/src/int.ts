@@ -178,6 +178,10 @@ export class IntBuffer
 		return 2;
 	}
 
+	*[Symbol.iterator]() {
+		yield* this.data;
+	}
+
 	as(fmt: IntFormat): IntBuffer {
 		return this.getRegion(0, 0, this.width, this.height, fmt)!;
 	}
