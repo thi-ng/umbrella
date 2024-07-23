@@ -6,9 +6,10 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 export interface KMeansOpts {
 	/**
 	 * Array of initial centroids (i.e. indices of selected points in `samples`
-	 * array given to {@link kmeans}).
+	 * array given to {@link kmeans}) or a function producing such. If omitted,
+	 * {@link initKmeanspp} is used as default.
 	 */
-	initial: number[];
+	initial: number[] | KMeansInit<ReadonlyVec>;
 	/**
 	 * Distance function/metric to use for finding nearest centroid.
 	 */
@@ -26,6 +27,16 @@ export interface KMeansOpts {
 	 */
 	strategy: CentroidStrategy;
 }
+
+/**
+ * k-means initialization function, e.g. {@link initKmeanspp}.
+ */
+export type KMeansInit<T extends ReadonlyVec> = (
+	k: number,
+	samples: T[],
+	dist?: IDistance<ReadonlyVec>,
+	rnd?: IRandom
+) => number[];
 
 export type CentroidStrategy = Fn<
 	number,

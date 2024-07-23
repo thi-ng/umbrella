@@ -36,7 +36,11 @@ export const kmeans = <T extends ReadonlyVec>(
 	};
 	const num = samples.length;
 	const dim = samples[0].length;
-	const centroidIDs = initial || initKmeanspp(k, samples, dist, rnd);
+	const centroidIDs = Array.isArray(initial)
+		? initial
+		: initial
+		? initial(k, samples, dist, rnd)
+		: initKmeanspp(k, samples, dist, rnd);
 	assert(centroidIDs.length > 0, `missing initial centroids`);
 	k = centroidIDs.length;
 	const centroids: Vec[] = centroidIDs.map((i) => samples[i]);
