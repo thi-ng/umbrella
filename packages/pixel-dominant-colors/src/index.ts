@@ -1,4 +1,4 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn2, NumericArray } from "@thi.ng/api";
 import type { KMeansOpts } from "@thi.ng/k-means";
 import { kmeans } from "@thi.ng/k-means/kmeans";
 import type { FloatBuffer } from "@thi.ng/pixel/float";
@@ -27,6 +27,8 @@ export interface DominantColorOpts extends KMeansOpts {
  * `area` the normalized cluster size.
  *
  * @remarks
+ * This function is syntax sugar for {@link dominantColorsArray}.
+ *
  * See thi.ng/k-means for details about clustering implementation & options.
  *
  * @param img -
@@ -36,17 +38,35 @@ export interface DominantColorOpts extends KMeansOpts {
 export const dominantColors = (
 	img: FloatBuffer,
 	num: number,
-	opts: Partial<DominantColorOpts> = {}
+	opts?: Partial<DominantColorOpts>
 ) => {
-	const n = img.width * img.height;
-	const mapped: Float32Array[] = [];
-	const filter = opts.filter || (() => true);
-	for (let i = 0, j = 0, s = img.stride[0]; i < n; i++, j += s) {
-		const p = img.data.subarray(j, j + s);
-		if (filter(p, i)) mapped.push(p);
+	const samples: Float32Array[] = [];
+	const filter = opts?.filter || (() => true);
+	let i = 0;
+	for (let p of img) {
+		if (filter(p, i)) samples.push(p);
+		i++;
 	}
-	if (!mapped.length) return [];
-	return kmeans(Math.min(num, mapped.length), mapped, opts)
-		.sort((a, b) => b.items.length - a.items.length)
-		.map((c) => ({ color: [...c.centroid], area: c.items.length / n }));
+	return samples.length ? dominantColorsArray(num, samples, opts) : [];
 };
+
+/**
+ * Similar to {@link dominantColors}, but accepting an array of color samples
+ * instead of a `FloatBuffer` image.
+ *
+ * @param num
+ * @param samples
+ * @param opts
+ */
+export const dominantColorsArray = (
+	num: number,
+	samples: NumericArray[],
+	opts?: Partial<KMeansOpts>
+) =>
+	kmeans(Math.min(num, samples.length), samples, opts)
+		.sort((a, b) => b.items.length - a.items.length)
+		.map((c) => ({
+			color: [...c.centroid],
+			area: c.items.length / samples.length,
+			ids: c.items,
+		}));
