@@ -57,7 +57,7 @@ const g = defDGraph<string>(
 		(p) =>
 			zip(
 				repeat(p.name),
-				p.dependies ? Object.keys(p.dependencies) : [null]
+				p.dependencies ? Object.keys(p.dependencies) : [null]
 			),
 		packages
 	)
