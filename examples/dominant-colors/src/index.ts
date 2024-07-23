@@ -16,6 +16,7 @@ import { map } from "@thi.ng/transducers";
 import type { SortMode } from "./api";
 import { cssPalette } from "./components/css";
 import { PixelCanvas } from "./components/pixelcanvas";
+import { swatchMarkers } from "./components/swatches";
 import { downloadACT } from "./palette";
 import { postProcess, processImage } from "./process";
 
@@ -133,7 +134,12 @@ $compile(
 					{},
 					cssPalette(res.colors),
 					// resized image as canvas
-					new PixelCanvas(res.buf),
+					div(
+						".v-top.dib.relative",
+						{},
+						new PixelCanvas(res.buf),
+						...swatchMarkers(res.colors)
+					),
 					// swatches of dominant colors
 					div(
 						{},

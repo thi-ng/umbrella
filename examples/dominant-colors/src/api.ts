@@ -7,6 +7,7 @@ export type SortMode = "hue" | "luma" | "area";
 export interface DominantColor {
 	col: LCH;
 	area: number;
+	pos: number[];
 }
 
 export const SORT_MODES: Record<SortMode, Comparator<DominantColor>> = {

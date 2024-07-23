@@ -1,5 +1,5 @@
 import { timed } from "@thi.ng/bench";
-import { lch, srgb } from "@thi.ng/color";
+import { lch, srgb, distEucledian3 } from "@thi.ng/color";
 import { FLOAT_RGB, floatBuffer, intBufferFromImage } from "@thi.ng/pixel";
 import { dominantColors } from "@thi.ng/pixel-dominant-colors";
 import { map, minMax, transduce } from "@thi.ng/transducers";
@@ -22,12 +22,38 @@ export const processImage = (
 	timed(() => {
 		let buf = intBufferFromImage(img);
 		buf = buf.scale(256 / Math.max(buf.width, buf.height), "nearest");
-		const colors = dominantColors(floatBuffer(buf, FLOAT_RGB), num, {
+		const fbuf = floatBuffer(buf, FLOAT_RGB);
+		const pixels = [...fbuf];
+		const colors = dominantColors(fbuf, num, {
 			// use min chroma as pre-filter criteria
 			filter: (p) => lch(srgb(p)).c >= minChroma,
-		}).map((c) => <DominantColor>{ col: lch(srgb(c.color)), area: c.area });
+		}).map(
+			(c) =>
+				<DominantColor>{
+					col: lch(srgb(c.color)),
+					area: c.area,
+					pos: findColorPos(c.color, pixels, buf.width),
+				}
+		);
 		return { buf, colors };
 	});
+
+const findColorPos = (
+	col: number[],
+	samples: Float32Array[],
+	width: number
+) => {
+	let minD = Infinity;
+	let minPos = 0;
+	for (let i = 0, n = samples.length; i < n; i++) {
+		const d = distEucledian3(col, samples[i]);
+		if (d < minD) {
+			minD = d;
+			minPos = i;
+		}
+	}
+	return [minPos % width, minPos / width];
+};
 
 export const postProcess = (
 	colors: DominantColor[],
