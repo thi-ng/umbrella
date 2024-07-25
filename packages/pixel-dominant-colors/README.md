@@ -123,7 +123,7 @@ For Node.js REPL:
 const pdc = await import("@thi.ng/pixel-dominant-colors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 246 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 223 bytes
 
 ## Dependencies
 
