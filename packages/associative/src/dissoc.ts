@@ -1,5 +1,10 @@
-export function dissoc<K, V>(map: Map<K, V>, keys: Iterable<K>): Map<K, V>;
-export function dissoc<T>(set: Set<T>, keys: Iterable<T>): Set<T>;
+/**
+ * Removes given `keys` from `coll` (a Map or Set), then returns `coll`.
+ *
+ * @param keys
+ */
+export function dissoc<K, V>(coll: Map<K, V>, keys: Iterable<K>): Map<K, V>;
+export function dissoc<T>(coll: Set<T>, keys: Iterable<T>): Set<T>;
 export function dissoc(coll: Map<any, any> | Set<any>, keys: Iterable<any>) {
 	for (let k of keys) {
 		coll.delete(k);
