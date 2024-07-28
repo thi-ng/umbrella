@@ -86,7 +86,7 @@ For Node.js REPL:
 const cache = await import("@thi.ng/cache");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB
 
 ## Dependencies
 
@@ -221,18 +221,24 @@ lru.size
 ### TLRU
 
 Time-aware [LRU cache](#lru). Extends LRU strategy with TTL (time-to-live)
-values associated with each entry. `has()` will only return `true` and `get()`
-only returns a cached value if its TTL hasn't yet expired. When adding a new
-value to the cache, first removes expired entries and if there's still not
-sufficient space removes entries in LRU order. `set()` takes an optional entry
-specific `ttl` arg. If not given, uses the cache instance's default (provided
-via ctor option arg). If no instance TTL is given, TTL defaults to 1 hour.
+values associated with each entry, which has an impact on:
+
+- `has()` only returns `true` if a cached value's TTL hasn't yet expired
+- `get()` only returns a cached value if its TTL hasn't yet expired. Using the
+  `autoExtend` option given via the cache constructor options, the cache can be
+  configured such that a successful cache hit will update/extend the expiry time
+  of that respective entry.
+- `set()` takes an optional entry specific `ttl` arg. If not given, uses the
+  cache's default (provided via ctor option arg). Default TTL is 1 hour.
+
+When adding a new value to the cache, first removes expired entries and if
+there's still not sufficient space removes entries in LRU order.
 
 ```ts
 import { TLRUCache } from "@thi.ng/cache";
 
-// same opts as LRUCache, but here with custom default TTL period (in ms)
-tlru = new TLRUCache(null, { ttl: 10000 });
+// same opts as LRUCache, but here with additional custom TTL period (in ms)
+tlru = new TLRUCache(null, { ttl: 10000, autoExtend: true });
 
 // with item specific TTL (500ms)
 tlru.set("foo", 42, 500)

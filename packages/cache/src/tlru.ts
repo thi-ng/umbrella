@@ -11,10 +11,27 @@ export interface TLRUCacheOpts<K, V> extends CacheOpts<K, V> {
 	 * @defaultValue 3600000 (1 hour)
 	 */
 	ttl: number;
+	/**
+	 * If true, a cache hit (i.e. reading a cached value via
+	 * {@link TLRUCache.get}) will auto-extend the expiry time for that cache
+	 * entry.
+	 *
+	 * @defaultValue false
+	 */
+	autoExtend: boolean;
 }
 
 export interface TLRUCacheEntry<K, V> extends CacheEntry<K, V> {
+	/**
+	 * Expiry timestamp
+	 */
 	t: number;
+	/**
+	 * TTL for this entry (defaults to {@link TLRUCacheOpts.ttl}, but can be
+	 * customized per key via {@link TLRUCache.set} or
+	 * {@link TLRUCache.getSet}).
+	 */
+	ttl: number;
 }
 
 /**
@@ -40,7 +57,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 		pairs?: Nullable<Iterable<[K, V]>>,
 		opts?: Partial<TLRUCacheOpts<K, V>>
 	) {
-		super(pairs, { ttl: 60 * 60 * 1000, ...opts });
+		super(pairs, { ttl: 60 * 60 * 1000, autoExtend: false, ...opts });
 	}
 
 	empty(): TLRUCache<K, V> {
@@ -51,6 +68,14 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 		return this.get(key) !== undefined;
 	}
 
+	/**
+	 * Attempts to retrieve & return cached value for `key`. If found, also
+	 * resets the cache entry's configured TTL. If cache miss, returns
+	 * `notFound`.
+	 *
+	 * @param key
+	 * @param notFound
+	 */
 	get(key: K, notFound?: V) {
 		const e = this.map.get(key);
 		if (e) {
@@ -62,6 +87,19 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 		return notFound;
 	}
 
+	/**
+	 * Stores given `value` under `key` in the cache, optionally with custom
+	 * `ttl` (in milliseconds). Returns `value`.
+	 *
+	 * @remarks
+	 * Also see {@link TLRUCache.getSet} for alternative, and
+	 * {@link CacheOpts.update} for user callback when updating an existing
+	 * `key` in the cache.
+	 *
+	 * @param key
+	 * @param value
+	 * @param ttl
+	 */
 	set(key: K, value: V, ttl = this.opts.ttl) {
 		const size = this.opts.ksize(key) + this.opts.vsize(value);
 		const e = this.map.get(key);
@@ -131,8 +169,15 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
 			e.value.t = t;
 			this.items.asTail(e);
 		} else {
-			this.items.push({ k, v, s, t });
+			this.items.push({ k, v, s, t, ttl });
 			this.map.set(k, this.items.tail!);
 		}
+	}
+
+	protected resetEntry(e: ConsCell<TLRUCacheEntry<K, V>>): V {
+		if (this.opts.autoExtend) {
+			e.value.t = Date.now() + e.value.ttl;
+		}
+		return super.resetEntry(e);
 	}
 }
