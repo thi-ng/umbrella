@@ -300,14 +300,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-07-25
+As of: 2024-07-28
 
-| Status                                           | Package                                                             | Version                                                                                                                                   | Changelog                                                  |
-|:-------------------------------------------------|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/associative`](./packages/associative)                     | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)                     | [changelog](./packages/associative/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/k-means`](./packages/k-means)                             | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)                             | [changelog](./packages/k-means/CHANGELOG.md)               |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel`](./packages/pixel)                                 | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                                 | [changelog](./packages/pixel/CHANGELOG.md)                 |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/pixel-dominant-colors`](./packages/pixel-dominant-colors) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors) | [changelog](./packages/pixel-dominant-colors/CHANGELOG.md) |
+| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
+|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/cache`](./packages/cache) | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache) | [changelog](./packages/cache/CHANGELOG.md) |
 
 ### Fundamentals
 
