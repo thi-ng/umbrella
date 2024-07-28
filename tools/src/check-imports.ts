@@ -43,7 +43,11 @@ const usedDependencies = (rootDir: string) =>
 const updateImports = (root: string, latest = false, exitOnFail = true) => {
 	LOGGER.info("checking", root);
 	const pkgPath = root + "/package.json";
-	const deps = usedDependencies(root + "/src");
+	const deps = transduce(
+		map((src) => usedDependencies(src)),
+		unionR<string>(),
+		dirs(root, /src(\.\w+)?$/)
+	);
 	const pkg = readJSON(pkgPath);
 	!pkg.dependencies && (pkg.dependencies = {});
 	const mergedDeps = unionR<string>([deps, keys(pkg.dependencies)]);
