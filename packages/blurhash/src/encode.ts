@@ -89,7 +89,7 @@ export const encode = (
  * @param detailY
  */
 export const encodeFromCanvas = (
-	canvas: HTMLCanvasElement,
+	canvas: HTMLCanvasElement | OffscreenCanvas,
 	detailX?: number,
 	detailY?: number
 ) => {
