@@ -105,7 +105,7 @@ export const intBufferFromImage = (
  * @param fmt -
  */
 export const intBufferFromCanvas = (
-	canvas: HTMLCanvasElement,
+	canvas: HTMLCanvasElement | OffscreenCanvas,
 	fmt: IntFormat = ABGR8888
 ) => {
 	const ctx = canvasPixels(canvas);
@@ -294,11 +294,16 @@ export class IntBuffer
 	}
 
 	blitCanvas(
-		canvas: HTMLCanvasElement | CanvasRenderingContext2D,
+		canvas:
+			| HTMLCanvasElement
+			| CanvasRenderingContext2D
+			| OffscreenCanvas
+			| OffscreenCanvasRenderingContext2D,
 		opts: Partial<BlitCanvasOpts> = {}
 	) {
 		const ctx =
-			canvas instanceof HTMLCanvasElement
+			canvas instanceof HTMLCanvasElement ||
+			canvas instanceof OffscreenCanvas
 				? canvas.getContext("2d")!
 				: canvas;
 		ctx.putImageData(this.toImageData(opts.data), opts.x || 0, opts.y || 0);

@@ -9,7 +9,9 @@ import type { IntBuffer } from "./int.js";
  * Returns object of canvas, 2d context, img data and wrapped img data
  * as u32 ABGR pixel array.
  */
-export function canvasPixels(canvas: HTMLCanvasElement): RawPixelBuffer;
+export function canvasPixels(
+	canvas: HTMLCanvasElement | OffscreenCanvas
+): RawPixelBuffer;
 export function canvasPixels(
 	width: number,
 	height?: number,
@@ -17,22 +19,23 @@ export function canvasPixels(
 	opts?: Partial<Canvas2DOpts>
 ): RawPixelBuffer;
 export function canvasPixels(
-	width: HTMLCanvasElement | number,
+	width: HTMLCanvasElement | OffscreenCanvas | number,
 	height?: number,
 	parent?: HTMLElement | null,
 	opts?: Partial<Canvas2DOpts>
 ): RawPixelBuffer {
-	let canvas: HTMLCanvasElement;
-	let ctx: CanvasRenderingContext2D;
+	let canvas: HTMLCanvasElement | OffscreenCanvas;
+	let ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 	if (isNumber(width)) {
 		const c = canvas2d(width, height, parent, opts);
 		canvas = c.canvas;
 		ctx = c.ctx;
 	} else {
 		canvas = width;
-		ctx = canvas.getContext("2d")!;
+		ctx = canvas.getContext("2d")! as typeof ctx;
 	}
-	if (parent) parent.appendChild(canvas);
+	if (parent && canvas instanceof HTMLCanvasElement)
+		parent.appendChild(canvas);
 	const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
 	const data = new Uint32Array(img.data.buffer);
 	return {

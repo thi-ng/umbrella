@@ -24,8 +24,8 @@ export interface AdaptiveCanvas2DOpts extends Canvas2DOpts {
 }
 
 export interface CanvasContext {
-	canvas: HTMLCanvasElement;
-	ctx: CanvasRenderingContext2D;
+	canvas: HTMLCanvasElement | OffscreenCanvas;
+	ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 }
 
 /**
