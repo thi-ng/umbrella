@@ -103,7 +103,7 @@ export const floatBufferFromImage = (
 ) => floatBufferFromInt(intBufferFromImage(img, undefined, width, height), fmt);
 
 export const floatBufferFromCanvas = (
-	canvas: HTMLCanvasElement,
+	canvas: HTMLCanvasElement | OffscreenCanvas,
 	fmt?: FloatFormat
 ) => floatBufferFromInt(intBufferFromCanvas(canvas), fmt);
 
@@ -351,12 +351,19 @@ export class FloatBuffer
 	}
 
 	blitCanvas(
-		canvas: HTMLCanvasElement | CanvasRenderingContext2D,
+		canvas:
+			| HTMLCanvasElement
+			| CanvasRenderingContext2D
+			| OffscreenCanvas
+			| OffscreenCanvasRenderingContext2D,
 		opts: Partial<BlitCanvasOpts> = {}
 	) {
 		const ctx =
-			canvas instanceof HTMLCanvasElement
-				? canvas.getContext("2d")!
+			canvas instanceof HTMLCanvasElement ||
+			canvas instanceof OffscreenCanvas
+				? (canvas.getContext("2d")! as
+						| CanvasRenderingContext2D
+						| OffscreenCanvasRenderingContext2D)
 				: canvas;
 		ctx.putImageData(this.toImageData(opts.data), opts.x || 0, opts.y || 0);
 	}
