@@ -300,11 +300,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-07-28
+As of: 2024-08-01
 
-| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
-|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/cache`](./packages/cache) | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache) | [changelog](./packages/cache/CHANGELOG.md) |
+| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
+|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/blurhash`](./packages/blurhash) | [![version](https://img.shields.io/npm/v/@thi.ng/blurhash.svg)](https://www.npmjs.com/package/@thi.ng/blurhash) | [changelog](./packages/blurhash/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/cache`](./packages/cache)       | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)       | [changelog](./packages/cache/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/canvas`](./packages/canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/canvas.svg)](https://www.npmjs.com/package/@thi.ng/canvas)     | [changelog](./packages/canvas/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel`](./packages/pixel)       | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)       | [changelog](./packages/pixel/CHANGELOG.md)    |
 
 ### Fundamentals
 
