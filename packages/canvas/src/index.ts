@@ -24,8 +24,19 @@ export interface AdaptiveCanvas2DOpts extends Canvas2DOpts {
 }
 
 export interface CanvasContext {
-	canvas: HTMLCanvasElement | OffscreenCanvas;
-	ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
+	canvas: HTMLCanvasElement;
+	ctx: CanvasRenderingContext2D;
+}
+
+export interface OffscreenCanvasContext {
+	canvas: OffscreenCanvas;
+	ctx: OffscreenCanvasRenderingContext2D;
+}
+
+export interface OffscreenCtxOpts {
+	alpha: boolean;
+	willReadFrequently: boolean;
+	storage: string;
 }
 
 /**
@@ -96,6 +107,15 @@ export const pixelCanvas2d = (
 		pixelated: true,
 		...opts,
 	});
+
+export const offscreenCanvas2d = (
+	width: number,
+	height = width,
+	opts?: Partial<OffscreenCtxOpts>
+): OffscreenCanvasContext => {
+	const canvas = new OffscreenCanvas(width, height);
+	return { canvas, ctx: canvas.getContext("2d", opts)! };
+};
 
 /**
  * Creates a canvas and draws given image into it. The `width` and `height`
