@@ -10,7 +10,7 @@ import type {
 	TypedArray,
 	UintType,
 } from "@thi.ng/api";
-import type { CanvasContext } from "@thi.ng/canvas";
+import type { CanvasContext, OffscreenCanvasContext } from "@thi.ng/canvas";
 
 /**
  * ABGR 8bit lane/channel IDs
@@ -204,6 +204,11 @@ export interface FloatFormat extends IABGRConvert<NumericArray> {
 }
 
 export interface RawPixelBuffer extends CanvasContext {
+	img: ImageData;
+	data: Uint32Array;
+}
+
+export interface OffscreenRawPixelBuffer extends OffscreenCanvasContext {
 	img: ImageData;
 	data: Uint32Array;
 }

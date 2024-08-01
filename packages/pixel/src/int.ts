@@ -109,15 +109,15 @@ export const intBufferFromCanvas = (
 	canvas: HTMLCanvasElement | OffscreenCanvas,
 	fmt: IntFormat = ABGR8888
 ) => {
-	const ctx = canvasPixels(canvas);
+	const { data } = canvasPixels(<HTMLCanvasElement>canvas);
 	const w = canvas.width;
 	const h = canvas.height;
 	let dest: Maybe<UIntArray>;
 	if (fmt === ABGR8888) {
-		dest = ctx.data;
+		dest = data;
 	} else {
 		dest = typedArray(fmt.type, w * h);
-		const src = ctx.data;
+		const src = data;
 		const from = fmt.fromABGR;
 		for (let i = dest.length; i-- > 0; ) {
 			dest[i] = from(src[i]);

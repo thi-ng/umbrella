@@ -1,6 +1,6 @@
 import { canvas2d, type Canvas2DOpts } from "@thi.ng/canvas";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { RawPixelBuffer } from "./api.js";
+import type { OffscreenRawPixelBuffer, RawPixelBuffer } from "./api.js";
 import type { FloatBuffer } from "./float.js";
 import type { IntBuffer } from "./int.js";
 
@@ -9,9 +9,8 @@ import type { IntBuffer } from "./int.js";
  * Returns object of canvas, 2d context, img data and wrapped img data
  * as u32 ABGR pixel array.
  */
-export function canvasPixels(
-	canvas: HTMLCanvasElement | OffscreenCanvas
-): RawPixelBuffer;
+export function canvasPixels(canvas: HTMLCanvasElement): RawPixelBuffer;
+export function canvasPixels(canvas: OffscreenCanvas): OffscreenRawPixelBuffer;
 export function canvasPixels(
 	width: number,
 	height?: number,
@@ -23,7 +22,7 @@ export function canvasPixels(
 	height?: number,
 	parent?: HTMLElement | null,
 	opts?: Partial<Canvas2DOpts>
-): RawPixelBuffer {
+) {
 	let canvas: HTMLCanvasElement | OffscreenCanvas;
 	let ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 	if (isNumber(width)) {
