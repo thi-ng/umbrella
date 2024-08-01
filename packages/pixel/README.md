@@ -42,12 +42,12 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, draw
 > - [@thi.ng/pixel-convolve](https://thi.ng/pixel-convolve)
 > - [@thi.ng/pixel-dominant-colors](https://thi.ng/pixel-dominant-colors)
 
-- Buffer creation from HTML image elements w/ opt resize & format conversion
-  (browser only)
+- Buffer creation from HTML image elements or canvas w/ opt resize & format
+  conversion (browser only)
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Palette-based indexed pixel formats
 - Buffer-to-buffer blitting w/ automatic format conversion
-- Buffer-to-canvas blitting
+- Buffer-to-canvas blitting (incl. offscreen canvas support)
 - Buffer-to-buffer blending w/ [Porter-Duff
   operators](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
 - Pre/post-multiply alpha
@@ -58,8 +58,8 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, draw
   - Filters: nearest neighbor, bilinear, bicubic
   - Wrap behaviors: clamp, wrap, repeat
 - Invert image
-- XY full pixel & channel-only accessors
-- Declarative custom format & optimized code generation
+- XY coordinate-based pixel & channel-only accessors (w/ optional bounds checking)
+- Declarative custom pixel formats with optimized code generation
 - HTML canvas creation & `ImageData` utilities
 
 ### Integer pixel formats
@@ -219,7 +219,7 @@ For Node.js REPL:
 const pix = await import("@thi.ng/pixel");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 7.32 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 7.35 KB
 
 ## Dependencies
 
@@ -325,14 +325,15 @@ buf.as(GRAY8).blitCanvas(canvas, { y: buf.height * 2 });
 
 ## Authors
 
-- [Karsten Schmidt](https://thi.ng)
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Askar Yusupov](https://github.com/pyoner)
 
 If this project contributes to an academic publication, please cite it as:
 
 ```bibtex
 @misc{thing-pixel,
   title = "@thi.ng/pixel",
-  author = "Karsten Schmidt",
+  author = "Karsten Schmidt and others",
   note = "https://thi.ng/pixel",
   year = 2019
 }

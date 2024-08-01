@@ -13,12 +13,12 @@
 > - [@thi.ng/pixel-convolve](https://thi.ng/pixel-convolve)
 > - [@thi.ng/pixel-dominant-colors](https://thi.ng/pixel-dominant-colors)
 
-- Buffer creation from HTML image elements w/ opt resize & format conversion
-  (browser only)
+- Buffer creation from HTML image elements or canvas w/ opt resize & format
+  conversion (browser only)
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Palette-based indexed pixel formats
 - Buffer-to-buffer blitting w/ automatic format conversion
-- Buffer-to-canvas blitting
+- Buffer-to-canvas blitting (incl. offscreen canvas support)
 - Buffer-to-buffer blending w/ [Porter-Duff
   operators](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
 - Pre/post-multiply alpha
@@ -29,8 +29,8 @@
   - Filters: nearest neighbor, bilinear, bicubic
   - Wrap behaviors: clamp, wrap, repeat
 - Invert image
-- XY full pixel & channel-only accessors
-- Declarative custom format & optimized code generation
+- XY coordinate-based pixel & channel-only accessors (w/ optional bounds checking)
+- Declarative custom pixel formats with optimized code generation
 - HTML canvas creation & `ImageData` utilities
 
 ### Integer pixel formats
