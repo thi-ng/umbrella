@@ -46,7 +46,8 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 	const deps = transduce(
 		map((src) => usedDependencies(src)),
 		unionR<string>(),
-		dirs(root, /src(\.\w+)?$/)
+		// check /src or /src.xyz folders, but not under /dev or /export
+		dirs(root, /(?<!\/(dev|export).*)\/src(\.\w+)?$/)
 	);
 	const pkg = readJSON(pkgPath);
 	!pkg.dependencies && (pkg.dependencies = {});
