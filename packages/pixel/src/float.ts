@@ -39,7 +39,11 @@ import { defFloatFormat } from "./format/float-format.js";
 import { FLOAT_GRAY } from "./format/float-gray.js";
 import { FLOAT_RGBA, ROT_IDS } from "./index.js";
 import { IntBuffer, intBufferFromCanvas, intBufferFromImage } from "./int.js";
-import { __clampRegion, __prepRegions } from "./internal/utils.js";
+import {
+	__blitCanvas,
+	__clampRegion,
+	__prepRegions,
+} from "./internal/utils.js";
 import { defSampler } from "./sample.js";
 
 /**
@@ -358,14 +362,7 @@ export class FloatBuffer
 			| OffscreenCanvasRenderingContext2D,
 		opts: Partial<BlitCanvasOpts> = {}
 	) {
-		const ctx =
-			canvas instanceof HTMLCanvasElement ||
-			canvas instanceof OffscreenCanvas
-				? (canvas.getContext("2d")! as
-						| CanvasRenderingContext2D
-						| OffscreenCanvasRenderingContext2D)
-				: canvas;
-		ctx.putImageData(this.toImageData(opts.data), opts.x || 0, opts.y || 0);
+		__blitCanvas(this, canvas, opts);
 	}
 
 	toImageData(idata?: ImageData) {

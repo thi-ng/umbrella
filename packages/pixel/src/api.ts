@@ -250,7 +250,11 @@ export interface IBlit<T extends IPixelBuffer> {
 	 * buffer, only the top-left region will be written.
 	 */
 	blitCanvas(
-		canvas: HTMLCanvasElement | CanvasRenderingContext2D,
+		canvas:
+			| HTMLCanvasElement
+			| CanvasRenderingContext2D
+			| OffscreenCanvas
+			| OffscreenCanvasRenderingContext2D,
 		opts?: Partial<BlitCanvasOpts>
 	): void;
 }

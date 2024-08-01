@@ -47,6 +47,7 @@ import {
 	__compileGrayToABGR,
 } from "./internal/codegen.js";
 import {
+	__blitCanvas,
 	__clampRegion,
 	__prepRegions,
 	__setChannelConvert,
@@ -301,12 +302,7 @@ export class IntBuffer
 			| OffscreenCanvasRenderingContext2D,
 		opts: Partial<BlitCanvasOpts> = {}
 	) {
-		const ctx =
-			canvas instanceof HTMLCanvasElement ||
-			canvas instanceof OffscreenCanvas
-				? canvas.getContext("2d")!
-				: canvas;
-		ctx.putImageData(this.toImageData(opts.data), opts.x || 0, opts.y || 0);
+		__blitCanvas(this, canvas, opts);
 	}
 
 	toImageData(idata?: ImageData) {

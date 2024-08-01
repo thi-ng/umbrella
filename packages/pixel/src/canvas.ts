@@ -32,7 +32,7 @@ export function canvasPixels(
 		ctx = c.ctx;
 	} else {
 		canvas = width;
-		ctx = canvas.getContext("2d")! as typeof ctx;
+		ctx = canvas.getContext("2d")!;
 	}
 	if (parent && canvas instanceof HTMLCanvasElement)
 		parent.appendChild(canvas);

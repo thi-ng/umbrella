@@ -2,7 +2,13 @@
 import type { Fn, Fn2, FnN, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
-import type { BlitOpts, IntFormat } from "../api.js";
+import type {
+	BlitCanvasOpts,
+	BlitOpts,
+	IntFormat,
+	IPixelBuffer,
+	IToImageData,
+} from "../api.js";
 
 export const __luminanceABGR: FnN = (c) =>
 	(((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
@@ -131,3 +137,22 @@ export const __asIntVec = (x: number | [number, number]) => {
  */
 export const __swapLane13: FnN = (x) =>
 	((x & 0xff) << 16) | ((x >> 16) & 0xff) | (x & 0xff00ff00);
+
+/**
+ * Shared implementation for {@link IBlit.blitCanvas}.
+ *
+ * @internal
+ */
+export const __blitCanvas = (
+	buf: IPixelBuffer & IToImageData,
+	canvas:
+		| HTMLCanvasElement
+		| CanvasRenderingContext2D
+		| OffscreenCanvas
+		| OffscreenCanvasRenderingContext2D,
+	opts: Partial<BlitCanvasOpts> = {}
+) =>
+	(canvas instanceof HTMLCanvasElement || canvas instanceof OffscreenCanvas
+		? canvas.getContext("2d")!
+		: canvas
+	).putImageData(buf.toImageData(opts.data), opts.x || 0, opts.y || 0);
