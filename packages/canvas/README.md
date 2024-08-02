@@ -68,7 +68,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 348 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 380 bytes
 
 ## Dependencies
 

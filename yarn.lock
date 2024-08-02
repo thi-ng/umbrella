@@ -1825,6 +1825,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/poisson-image@workspace:examples/poisson-image":
+  version: 0.0.0-use.local
+  resolution: "@example/poisson-image@workspace:examples/poisson-image"
+  dependencies:
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/geom-accel": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/poisson": "workspace:^"
+    typescript: "npm:^5.5.3"
+    vite: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@example/poly-spline@workspace:examples/poly-spline":
   version: 0.0.0-use.local
   resolution: "@example/poly-spline@workspace:examples/poly-spline"
