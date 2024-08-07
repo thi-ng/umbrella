@@ -98,6 +98,7 @@ export * from "./fit-into-bounds.js";
 export * from "./flip.js";
 export * from "./from-tessellation.js";
 export * from "./intersects.js";
+export * from "./invert-circle.js";
 export * from "./map-point.js";
 export * from "./offset.js";
 export * from "./point-at.js";
