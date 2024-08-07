@@ -258,6 +258,8 @@ the following additional shape creation helpers are provided:
 
 - [circleFrom2Points()](https://docs.thi.ng/umbrella/geom/functions/circleFrom2Points.html)
 - [circleFrom3Points()](https://docs.thi.ng/umbrella/geom/functions/circleFrom3Points.html)
+- [invertCircle()](https://docs.thi.ng/umbrella/geom/functions/invertCircle.html)
+- [invertCirclePoint()](https://docs.thi.ng/umbrella/geom/functions/invertCirclePoint.html)
 
 #### Cubic
 
@@ -449,7 +451,7 @@ For Node.js REPL:
 const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 17.32 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 17.47 KB
 
 ## Dependencies
 
