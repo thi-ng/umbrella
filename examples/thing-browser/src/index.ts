@@ -7,7 +7,6 @@ import {
 	button,
 	details,
 	div,
-	h1,
 	img,
 	inputSearch,
 	span,
@@ -23,6 +22,7 @@ import {
 	type ComponentLike,
 } from "@thi.ng/rdom";
 import { debounce, reactive } from "@thi.ng/rstream";
+import { groupByObj } from "@thi.ng/transducers";
 import { ASSET_BASE_URL, EXAMPLE_BASE_URL, type Item } from "./api.js";
 import PKGS from "./packages.json";
 import {
@@ -32,13 +32,24 @@ import {
 	taggedItems,
 	uniqueItemIDs,
 } from "./tags.js";
-import { groupByObj } from "@thi.ng/transducers";
+
+const PRE_SELECTED = location.hash.substring(1);
 
 const branch = (items: Item[], existing: string[]): ComponentLike => {
-	const state = reactive(false);
+	const isRoot = existing.length === 1;
+	const tag = peek(existing);
+	const state = reactive(isRoot && PRE_SELECTED === tag);
 	return details(
-		{},
-		summary({ href: "#", onclick: $inputToggle(state) }, peek(existing)),
+		{ id: isRoot ? tag : undefined, open: state.deref() },
+		summary(
+			{
+				onclick: () => {
+					state.next(!state.deref());
+					if (isRoot && state.deref()) location.hash = `#${tag}`;
+				},
+			},
+			tag
+		),
 		$replace(state.map((x) => (x ? branchBody(items, existing) : null)))
 	);
 };
@@ -133,7 +144,7 @@ const searchResults = search
 	.subscribe(debounce(50))
 	.map(partial(filteredTags, TAGS));
 
-$compile(
+await $compile(
 	div(
 		{},
 		inputSearch({
@@ -152,3 +163,10 @@ $compile(
 		anchor("#up", { href: "#" }, withSize(BACK_TO_TOP, "24px"))
 	)
 ).mount(document.getElementById("app")!);
+
+if (PRE_SELECTED) {
+	setTimeout(
+		() => document.getElementById(PRE_SELECTED)?.scrollIntoView(),
+		100
+	);
+}

@@ -6,7 +6,7 @@ export interface Item {
 }
 
 export const EXAMPLE_BASE_URL =
-	"https://github.com/thi-ng/umbrella/tree/develop/examples/";
+	"https://github.com/thi-ng/umbrella/tree/develop/examples";
 
 export const ASSET_BASE_URL =
 	"https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets";
