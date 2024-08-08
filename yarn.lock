@@ -1038,6 +1038,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/hdiff@workspace:examples/hdiff":
+  version: 0.0.0-use.local
+  resolution: "@example/hdiff@workspace:examples/hdiff"
+  dependencies:
+    "@thi.ng/hdiff": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@example/hdom-basics@workspace:examples/hdom-basics":
   version: 0.0.0-use.local
   resolution: "@example/hdom-basics@workspace:examples/hdom-basics"
@@ -5064,7 +5072,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hdiff@workspace:packages/hdiff":
+"@thi.ng/hdiff@workspace:^, @thi.ng/hdiff@workspace:packages/hdiff":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hdiff@workspace:packages/hdiff"
   dependencies:

@@ -1,0 +1,23 @@
+{
+	"name": "@example/hdiff",
+	"private": true,
+	"description": "Applying thi.ng/hdiff to generate static HTML diff output",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"type": "module",
+	"scripts": {
+		"build": "npx @thi.ng/hdiff ../../README.md develop~500 HEAD > dist/index.html"
+	},
+	"dependencies": {
+		"@thi.ng/hdiff": "workspace:^"
+	},
+	"thi.ng": {
+		"readme": [
+			"hdiff",
+			"hiccup"
+		],
+		"screenshot": "examples/hdiff.avif"
+	}
+}
