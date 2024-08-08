@@ -1,4 +1,4 @@
-import type { ISubscriber } from "@thi.ng/rstream";
+import type { ISubscriber, ISubscription } from "@thi.ng/rstream";
 import { maybeParseFloat } from "@thi.ng/strings/parse";
 
 /**
@@ -52,6 +52,15 @@ export const $inputCheckbox = (stream: ISubscriber<boolean>) => (e: Event) =>
  */
 export const $inputTrigger = (stream: ISubscriber<boolean>) => () =>
 	stream.next(true);
+
+/**
+ * HOF DOM event listener to emit the complement value of the given stream's
+ * current value when event is triggered (i.e. a switch/toggle behavior).
+ *
+ * @param stream -
+ */
+export const $inputToggle = (stream: ISubscription<boolean, boolean>) => () =>
+	stream.next(!stream.deref());
 
 /**
  * HOF DOM event listener to emit a file input's first selected file on given
