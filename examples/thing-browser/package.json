@@ -2,7 +2,7 @@
 	"name": "@example/thing-browser",
 	"version": "0.0.1",
 	"private": true,
-	"description": "Tree-based UI to find & explore thi.ng packages via their associated keywords",
+	"description": "Tree-based UI to find & explore thi.ng projects via their associated keywords",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
@@ -55,6 +55,6 @@
 			"rstrean",
 			"transducers"
 		],
-		"screenshot": "examples/thing-browser.png"
+		"screenshot": "examples/thing-browser.avif"
 	}
 }

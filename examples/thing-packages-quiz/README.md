@@ -13,7 +13,9 @@ Please refer to the instructions on the wiki:
 
 ### Regenerating the package list
 
-The list of packages used by the quiz is generated from the contents of the repo `/packages` directory. Run this command to re-generate the source file `/src/packages.ts`:
+The list of packages used by the quiz is generated from the contents of the repo
+`/packages` directory. Run this command to re-generate the source file
+`/src/packages.ts`:
 
 ```text
 yarn tool:packages
