@@ -17,7 +17,7 @@ import IMG2 from "./img2.jpg";
 
 // image transition config
 const SIZE = 100; // units: vmin (aka shortest edge of viewport)
-const RES = 9;
+const RES = 5;
 const BLOCK_SIZE = SIZE / RES;
 const DURATION = 10000; // milliseconds
 const DELAY = DURATION / (RES * RES) / 4;
