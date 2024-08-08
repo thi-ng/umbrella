@@ -9,6 +9,7 @@
 	"scripts": {
 		"start": "yarn css:build && yarn start:only",
 		"start:only": "vite --host --open",
+		"dev": "mprocs 'yarn css:watch' 'yarn start:only'",
 		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss src/*.mcss",
 		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss src/*.mcss",
 		"build": "yarn css:build && tsc && vite build --base='./'",

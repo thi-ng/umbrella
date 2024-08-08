@@ -9,6 +9,7 @@
 	"scripts": {
 		"start": "yarn css:build && yarn start:only",
 		"start:only": "vite --host --open",
+		"dev": "mprocs 'yarn css:watch' 'yarn start:only'",
 		"css:watch": "bun build-mcss.ts --watch --pretty",
 		"css:build": "bun build-mcss.ts",
 		"build": "bun build-mcss.ts && tsc && vite build --base='./'",
