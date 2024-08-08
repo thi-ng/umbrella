@@ -40,5 +40,8 @@
 			"webgl"
 		],
 		"screenshot": "examples/webgl-grid.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

@@ -29,6 +29,22 @@
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/vectors": "workspace:^"
 	},
+	"keywords": [
+		"2d",
+		"acceleration",
+		"agent",
+		"behavior",
+		"boids",
+		"browser",
+		"color",
+		"distance",
+		"example",
+		"geom",
+		"hash",
+		"simulation",
+		"timestep",
+		"vector"
+	],
 	"browser": {
 		"process": false
 	},

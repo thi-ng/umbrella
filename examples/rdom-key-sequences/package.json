@@ -39,5 +39,8 @@
 			"transducers-fsm"
 		],
 		"screenshot": "examples/rdom-key-sequences.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

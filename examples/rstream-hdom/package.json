@@ -27,5 +27,8 @@
 	},
 	"thi.ng": {
 		"readme": true
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

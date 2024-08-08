@@ -39,5 +39,8 @@
 			"rstream"
 		],
 		"screenshot": "examples/ramp-scroll-anim.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

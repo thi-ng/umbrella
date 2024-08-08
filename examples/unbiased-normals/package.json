@@ -34,5 +34,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/unbiased-normals.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

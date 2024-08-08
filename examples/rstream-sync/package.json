@@ -26,5 +26,8 @@
 	"thi.ng": {
 		"readme": true,
 		"screenshot": "examples/rstream-sync.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

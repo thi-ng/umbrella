@@ -34,5 +34,8 @@
 			"transducers",
 			"transducers-hdom"
 		]
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

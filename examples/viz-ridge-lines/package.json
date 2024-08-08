@@ -53,5 +53,8 @@
 			"viz"
 		],
 		"screenshot": "examples/viz-ridge-lines.avif"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

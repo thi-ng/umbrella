@@ -20,6 +20,22 @@
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/transducers-binary": "workspace:^"
 	},
+	"keywords": [
+		"ascii",
+		"binary",
+		"browser",
+		"component",
+		"example",
+		"font",
+		"generator",
+		"hiccup",
+		"pixel",
+		"rdom",
+		"reactive",
+		"text",
+		"transducer",
+		"typography"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,
@@ -27,11 +43,12 @@
 	},
 	"thi.ng": {
 		"readme": [
-			"hdom-components",
+			"hiccup-html",
+			"rdom",
+			"rdom-components",
 			"rstream",
 			"transducers",
-			"transducers-binary",
-			"transducers-hdom"
+			"transducers-binary"
 		],
 		"screenshot": "examples/bitmap-font.gif"
 	},

@@ -42,5 +42,8 @@
 			"webgl"
 		],
 		"screenshot": "examples/webgl-texture-paint.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

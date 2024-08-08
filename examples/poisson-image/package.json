@@ -32,5 +32,8 @@
 	"thi.ng": {
 		"readme": true,
 		"screenshot": "examples/poisson-image.avif"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

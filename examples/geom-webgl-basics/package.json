@@ -40,5 +40,8 @@
 			"webgl"
 		],
 		"screenshot": "examples/geom-webgl-basics.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

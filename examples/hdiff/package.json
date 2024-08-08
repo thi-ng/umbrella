@@ -19,5 +19,8 @@
 			"hiccup"
 		],
 		"screenshot": "examples/hdiff.avif"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

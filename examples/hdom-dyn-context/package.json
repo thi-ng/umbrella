@@ -29,5 +29,8 @@
 			"atom",
 			"hdom"
 		]
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

@@ -44,5 +44,8 @@
 			"rstream"
 		],
 		"screenshot": "examples/rdom-formgen.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

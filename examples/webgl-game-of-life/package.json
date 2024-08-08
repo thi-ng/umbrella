@@ -31,5 +31,8 @@
 			"webgl"
 		],
 		"screenshot": "examples/webgl-game-of-life.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

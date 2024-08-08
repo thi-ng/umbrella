@@ -38,5 +38,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/package-stats.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

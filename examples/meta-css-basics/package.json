@@ -35,5 +35,8 @@
 			"rdom"
 		],
 		"screenshot": "examples/meta-css-basics.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

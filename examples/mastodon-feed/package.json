@@ -45,5 +45,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/mastodon-feed.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

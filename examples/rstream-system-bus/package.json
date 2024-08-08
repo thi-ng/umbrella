@@ -50,5 +50,8 @@
 			"system"
 		],
 		"screenshot": "examples/rstream-system-bus.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

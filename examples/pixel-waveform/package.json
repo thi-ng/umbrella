@@ -24,6 +24,11 @@
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
+	"keywords": [
+		"histogram",
+		"pixel",
+		"waveform"
+	],
 	"browser": {
 		"process": false
 	},

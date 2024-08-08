@@ -16,6 +16,9 @@
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/porter-duff": "workspace:^"
 	},
+	"keywords": [
+		"pixel"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,

@@ -55,5 +55,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/dominant-colors.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

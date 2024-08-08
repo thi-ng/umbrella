@@ -41,5 +41,8 @@
 	},
 	"devDependencies": {
 		"typescript": "^5.5.3"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

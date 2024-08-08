@@ -78,5 +78,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/trace-bitmap.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

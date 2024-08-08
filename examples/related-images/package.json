@@ -47,5 +47,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/related-images.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

@@ -28,5 +28,8 @@
 	"thi.ng": {
 		"readme": true,
 		"screenshot": "examples/text-canvas-image.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

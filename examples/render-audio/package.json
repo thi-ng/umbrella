@@ -45,5 +45,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/render-audio.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

@@ -34,5 +34,8 @@
 			"webgl"
 		],
 		"screenshot": "examples/webgl-float-fbo.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

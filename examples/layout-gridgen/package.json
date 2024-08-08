@@ -40,5 +40,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/layout-gridgen.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

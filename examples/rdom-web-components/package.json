@@ -38,5 +38,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/rdom-web-components.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

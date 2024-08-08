@@ -32,5 +32,8 @@
 			"hiccup"
 		],
 		"screenshot": "examples/hiccup-css-image-transition.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

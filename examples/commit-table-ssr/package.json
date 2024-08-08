@@ -43,5 +43,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/commit-table-ssr.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

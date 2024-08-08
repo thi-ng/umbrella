@@ -37,5 +37,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/kmeans-viz.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

@@ -40,5 +40,8 @@
 			"rdom"
 		],
 		"screenshot": "examples/rdom-dnd.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

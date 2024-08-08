@@ -35,5 +35,8 @@
 			"hdom-components",
 			"interceptors"
 		]
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

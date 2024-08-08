@@ -44,5 +44,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/simd-plot.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

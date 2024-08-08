@@ -35,5 +35,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/rasterize-blend.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

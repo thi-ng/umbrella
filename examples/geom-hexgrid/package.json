@@ -35,5 +35,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/geom-hexgrid.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

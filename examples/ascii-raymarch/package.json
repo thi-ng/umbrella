@@ -24,6 +24,21 @@
 		"@thi.ng/transducers-stats": "workspace:^",
 		"@thi.ng/vectors": "workspace:^"
 	},
+	"keywords": [
+		"3d",
+		"ansi",
+		"ascii",
+		"canvas",
+		"example",
+		"fiber",
+		"pixel",
+		"raymarch",
+		"shader",
+		"shader-ast",
+		"text",
+		"transducer",
+		"vector"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,

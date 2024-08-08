@@ -21,6 +21,16 @@
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/transducers-hdom": "workspace:^"
 	},
+	"keywords": [
+		"1bit",
+		"convolution",
+		"example",
+		"image",
+		"pixel",
+		"reactive",
+		"threshold",
+		"transducer"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,

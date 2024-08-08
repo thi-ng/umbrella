@@ -39,5 +39,8 @@
 			"wasm-api-schedule"
 		],
 		"screenshot": "examples/zig-todo-list.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

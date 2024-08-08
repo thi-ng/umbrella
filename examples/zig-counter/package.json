@@ -35,5 +35,8 @@
 			"wasm-api-schedule"
 		],
 		"screenshot": "examples/zig-counter.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

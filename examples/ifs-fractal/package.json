@@ -37,5 +37,8 @@
 			"random"
 		],
 		"screenshot": "examples/ifs-fractal.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

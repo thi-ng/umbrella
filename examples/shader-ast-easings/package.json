@@ -35,5 +35,8 @@
 			"webgl-shadertoy"
 		],
 		"screenshot": "examples/shader-ast-easings.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

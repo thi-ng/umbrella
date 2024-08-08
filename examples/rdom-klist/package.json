@@ -38,5 +38,8 @@
 			"rstream"
 		],
 		"screenshot": "examples/rdom-klist.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

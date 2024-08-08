@@ -41,5 +41,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/lispy-repl.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

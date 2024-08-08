@@ -28,6 +28,10 @@
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
+	"keywords": [
+		"pixel",
+		"sort"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,

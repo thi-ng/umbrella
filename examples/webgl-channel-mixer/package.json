@@ -44,5 +44,8 @@
 			"webgl"
 		],
 		"screenshot": "examples/webgl-channel-mixer.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

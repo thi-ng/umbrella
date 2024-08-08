@@ -40,5 +40,8 @@
 			"hiccup-canvas"
 		],
 		"screenshot": "examples/geom-unique-edges.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

@@ -40,5 +40,8 @@
 			"transducers",
 			"webgl"
 		]
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

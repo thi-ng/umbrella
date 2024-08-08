@@ -20,6 +20,15 @@
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/pixel-convolve": "workspace:^"
 	},
+	"keywords": [
+		"color",
+		"convolution",
+		"encode",
+		"image",
+		"normal",
+		"pixel",
+		"texture"
+	],
 	"browser": {
 		"process": false
 	},

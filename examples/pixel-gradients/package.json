@@ -27,6 +27,10 @@
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rstream": "workspace:^"
 	},
+	"keywords": [
+		"gradient",
+		"pixel"
+	],
 	"browser": {
 		"process": false
 	},

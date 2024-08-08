@@ -38,5 +38,8 @@
 			"rdom"
 		],
 		"screenshot": "examples/rdom-reactive-svg.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

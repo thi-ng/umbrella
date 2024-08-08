@@ -20,6 +20,10 @@
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/pixel-dither": "workspace:^"
 	},
+	"keywords": [
+		"dither",
+		"pixel"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,

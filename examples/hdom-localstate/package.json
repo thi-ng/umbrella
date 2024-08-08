@@ -29,5 +29,8 @@
 			"hdom",
 			"paths"
 		]
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

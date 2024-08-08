@@ -25,6 +25,15 @@
 		"@thi.ng/strings": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
+	"keywords": [
+		"ascii",
+		"example",
+		"font",
+		"generator",
+		"reactive",
+		"text",
+		"typography"
+	],
 	"browser": {
 		"process": false
 	},

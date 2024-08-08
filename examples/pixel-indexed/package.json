@@ -22,6 +22,11 @@
 		"@thi.ng/pixel-dither": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
+	"keywords": [
+		"4bit",
+		"dither",
+		"pixel"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,

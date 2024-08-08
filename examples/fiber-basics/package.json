@@ -44,5 +44,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/fiber-basics.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

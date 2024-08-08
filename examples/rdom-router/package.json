@@ -41,5 +41,8 @@
 			"router"
 		],
 		"screenshot": "examples/rdom-router.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

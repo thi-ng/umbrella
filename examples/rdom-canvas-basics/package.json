@@ -30,5 +30,8 @@
 	"thi.ng": {
 		"readme": true,
 		"screenshot": "examples/rdom-canvas-basics.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

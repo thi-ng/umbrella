@@ -25,6 +25,9 @@
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/strings": "workspace:^"
 	},
+	"keywords": [
+		"pixel"
+	],
 	"browser": {
 		"process": false
 	},

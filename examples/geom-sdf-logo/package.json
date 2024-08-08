@@ -34,5 +34,8 @@
 			"matrices"
 		],
 		"screenshot": "examples/geom-sdf-logo.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

@@ -37,5 +37,8 @@
 			"rstream"
 		],
 		"screenshot": "examples/stacked-layout.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

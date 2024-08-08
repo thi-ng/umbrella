@@ -16,6 +16,15 @@
 		"@thi.ng/hdom": "workspace:^",
 		"@thi.ng/interceptors": "workspace:^"
 	},
+	"keywords": [
+		"async",
+		"event",
+		"example",
+		"hdom",
+		"interceptor",
+		"io",
+		"json"
+	],
 	"browser": {
 		"process": false,
 		"setTimeout": false,

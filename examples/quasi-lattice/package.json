@@ -36,5 +36,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/quasi-lattice.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

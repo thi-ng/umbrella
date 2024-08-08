@@ -35,5 +35,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/geom-sdf-path.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

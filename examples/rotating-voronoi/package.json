@@ -8,11 +8,11 @@
 	"license": "Apache-2.0",
 	"keywords": [
 		"canvas",
-		"svg",
-		"voronoi",
 		"delanuy",
+		"rstream",
 		"spline",
-		"rstream"
+		"svg",
+		"voronoi"
 	],
 	"scripts": {
 		"start": "vite --host --open",

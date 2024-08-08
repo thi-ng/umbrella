@@ -31,5 +31,8 @@
 	"thi.ng": {
 		"readme": true,
 		"screenshot": "examples/svg-resample.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

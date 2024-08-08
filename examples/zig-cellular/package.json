@@ -35,5 +35,8 @@
 			"wasm-api-dom"
 		],
 		"screenshot": "examples/zig-cellular.jpg"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

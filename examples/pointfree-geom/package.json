@@ -31,6 +31,15 @@
 		"@thi.ng/strings": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
+	"keywords": [
+		"animation",
+		"dsl",
+		"forth",
+		"geometry",
+		"pointfree",
+		"repl",
+		"svg"
+	],
 	"browser": {
 		"process": false
 	},

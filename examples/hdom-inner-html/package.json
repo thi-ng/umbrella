@@ -27,5 +27,8 @@
 		"readme": [
 			"hdom"
 		]
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

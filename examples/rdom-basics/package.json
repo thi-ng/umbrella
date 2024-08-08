@@ -42,5 +42,8 @@
 			"rstream",
 			"transducers"
 		]
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

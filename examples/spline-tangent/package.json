@@ -35,5 +35,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/spline-tangent.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

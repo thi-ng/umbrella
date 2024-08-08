@@ -37,5 +37,8 @@
 			"wasm-api-dom"
 		],
 		"screenshot": "examples/zig-canvas.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

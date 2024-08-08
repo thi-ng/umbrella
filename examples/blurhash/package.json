@@ -30,6 +30,19 @@
 		"@thi.ng/rdom-forms": "workspace:^",
 		"@thi.ng/rstream": "workspace:^"
 	},
+	"keywords": [
+		"blur",
+		"blurhash",
+		"browser",
+		"canvas",
+		"encode",
+		"example",
+		"image",
+		"pixel",
+		"rdom",
+		"reactive",
+		"upload"
+	],
 	"browser": {
 		"process": false
 	},

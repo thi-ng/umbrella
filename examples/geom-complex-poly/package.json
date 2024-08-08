@@ -43,5 +43,8 @@
 			"transducers"
 		],
 		"screenshot": "examples/geom-complex-poly.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }

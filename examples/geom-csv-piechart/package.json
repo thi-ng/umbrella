@@ -43,5 +43,8 @@
 			"vectors"
 		],
 		"screenshot": "examples/geom-csv-piechart.png"
-	}
+	},
+	"keywords": [
+		"example"
+	]
 }
