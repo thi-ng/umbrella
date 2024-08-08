@@ -43,7 +43,6 @@
 	},
 	"keywords": [
 		"array",
-		"base8",
 		"base10",
 		"base16",
 		"base26",
@@ -52,13 +51,14 @@
 		"base58",
 		"base62",
 		"base64",
+		"base8",
 		"base83",
 		"base85",
 		"bigint",
 		"binary",
 		"conversion",
-		"encode",
 		"decode",
+		"encode",
 		"string",
 		"typescript"
 	],

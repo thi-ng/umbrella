@@ -101,8 +101,8 @@
 		"shape",
 		"spline",
 		"svg",
-		"triangulation",
 		"tessellation",
+		"triangulation",
 		"typescript"
 	],
 	"publishConfig": {

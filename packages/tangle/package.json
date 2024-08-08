@@ -56,11 +56,17 @@
 	},
 	"keywords": [
 		"codegen",
+		"generator",
 		"literate-programming",
 		"markdown",
 		"org-mode",
+		"parser",
+		"rewrite",
 		"tangle",
-		"typescript"
+		"template",
+		"text",
+		"typescript",
+		"variable"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -89,7 +95,6 @@
 		}
 	},
 	"thi.ng": {
-		"status": "alpha",
 		"year": 2022
 	}
 }

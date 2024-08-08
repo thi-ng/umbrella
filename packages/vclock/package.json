@@ -45,8 +45,8 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"compare",
 		"clock",
+		"compare",
 		"datastructure",
 		"diff",
 		"distributed",

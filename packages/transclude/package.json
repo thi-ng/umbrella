@@ -55,9 +55,10 @@
 		"generator",
 		"json",
 		"markdown",
-		"nodejs",
 		"no-browser",
+		"nodejs",
 		"npm",
+		"parser",
 		"template",
 		"text",
 		"typescript"
@@ -104,9 +105,9 @@
 		"related": [
 			"hiccup-markdown",
 			"markdown-table",
+			"proctext",
 			"tangle"
 		],
-		"status": "alpha",
 		"year": 2022
 	}
 }

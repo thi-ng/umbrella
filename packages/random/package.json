@@ -59,8 +59,8 @@
 		"random",
 		"typedarray",
 		"typescript",
-		"weighted",
-		"uniform"
+		"uniform",
+		"weighted"
 	],
 	"publishConfig": {
 		"access": "public"

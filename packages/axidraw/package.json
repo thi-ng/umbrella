@@ -62,8 +62,8 @@
 		"geometry",
 		"io",
 		"logger",
-		"nodejs",
 		"no-browser",
+		"nodejs",
 		"penplotter",
 		"polyline",
 		"serialport",
@@ -113,6 +113,7 @@
 	},
 	"thi.ng": {
 		"status": "alpha",
-		"year": 2022
+		"year": 2022,
+		"screenshot": "axidraw/axiscape-1280.jpg"
 	}
 }

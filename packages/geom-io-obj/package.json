@@ -52,6 +52,7 @@
 		"fileformat",
 		"geometry",
 		"mesh",
+		"obj",
 		"parser",
 		"points",
 		"polygon",

@@ -58,8 +58,8 @@
 		"hiccup",
 		"html",
 		"rdom",
-		"rstream",
 		"reactive",
+		"rstream",
 		"typescript",
 		"ui"
 	],

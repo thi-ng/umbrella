@@ -90,6 +90,7 @@
 	"thi.ng": {
 		"alias": "bhash",
 		"status": "alpha",
-		"year": 2023
+		"year": 2023,
+		"screenshot": "blurhash/thumb.png"
 	}
 }

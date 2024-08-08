@@ -47,16 +47,16 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"16bit",
 		"4bit",
 		"8bit",
-		"16bit",
 		"ansi",
 		"color",
 		"css",
 		"format",
 		"html",
-		"rgb565",
 		"presets",
+		"rgb565",
 		"text",
 		"typescript"
 	],

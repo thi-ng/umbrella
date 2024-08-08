@@ -57,7 +57,8 @@
 		"encode",
 		"fileformat",
 		"transducer",
-		"typescript"
+		"typescript",
+		"utf8"
 	],
 	"publishConfig": {
 		"access": "public"

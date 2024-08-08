@@ -54,6 +54,7 @@
 		"automata",
 		"bigint",
 		"cellular",
+		"evolutionary",
 		"generative",
 		"neighborhood",
 		"pixel",
@@ -92,6 +93,7 @@
 			"lsys",
 			"pixel"
 		],
-		"year": 2022
+		"year": 2022,
+		"screenshot": "cellular/hero.png"
 	}
 }

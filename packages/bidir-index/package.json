@@ -42,8 +42,8 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"datastructure",
 		"bidirectional",
+		"datastructure",
 		"identifier",
 		"invert",
 		"iterator",

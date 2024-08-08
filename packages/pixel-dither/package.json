@@ -47,6 +47,12 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"1bit",
+		"2bit",
+		"4bit",
+		"8bit",
+		"dither",
+		"pixel",
 		"typescript"
 	],
 	"publishConfig": {

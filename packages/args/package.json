@@ -50,8 +50,8 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"argument",
 		"ansi",
+		"argument",
 		"cli",
 		"coerce",
 		"color",
@@ -60,8 +60,8 @@
 		"functional",
 		"hex",
 		"logger",
-		"nodejs",
 		"no-browser",
+		"nodejs",
 		"parser",
 		"tuple",
 		"typescript",

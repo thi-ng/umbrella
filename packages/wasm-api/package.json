@@ -54,8 +54,8 @@
 	"keywords": [
 		"allocator",
 		"api",
-		"bindings",
 		"bigint",
+		"bindings",
 		"browser",
 		"c",
 		"event",
@@ -63,6 +63,7 @@
 		"interop",
 		"logger",
 		"memory",
+		"memory-mapped",
 		"modular",
 		"polyglot",
 		"shared-memory",

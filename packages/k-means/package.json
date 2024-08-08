@@ -51,9 +51,9 @@
 	"keywords": [
 		"cluster",
 		"distance",
-		"k-medians",
 		"k-means",
 		"k-means++",
+		"k-medians",
 		"nd",
 		"typescript"
 	],

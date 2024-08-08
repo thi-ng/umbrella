@@ -48,10 +48,10 @@
 	"keywords": [
 		"agent",
 		"functional",
-		"math",
 		"fuzzy",
 		"inference",
 		"logic",
+		"math",
 		"rule",
 		"t-norm",
 		"typescript"

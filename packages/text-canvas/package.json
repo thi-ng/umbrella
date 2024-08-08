@@ -54,14 +54,15 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"4bit",
-		"8bit",
 		"16bit",
 		"24bit",
+		"4bit",
+		"8bit",
 		"ansi",
+		"area",
 		"array",
 		"ascii",
-		"bars",
+		"bar",
 		"binary",
 		"bitmap",
 		"blit",

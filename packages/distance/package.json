@@ -51,8 +51,8 @@
 	},
 	"keywords": [
 		"distance",
-		"metric",
 		"k-nearest",
+		"metric",
 		"nd",
 		"neighborhood",
 		"points",

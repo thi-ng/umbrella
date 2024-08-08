@@ -56,8 +56,8 @@
 	},
 	"keywords": [
 		"adjacency",
+		"bidirectional",
 		"binary",
-		"bitwise",
 		"datastructure",
 		"degree",
 		"directed",
@@ -74,7 +74,6 @@
 		"tree",
 		"typescript",
 		"undirected",
-		"unionfind",
 		"valence",
 		"vertex"
 	],

@@ -46,8 +46,8 @@
 	},
 	"keywords": [
 		"discrepancy",
-		"halton",
 		"golden-ratio",
+		"halton",
 		"iterator",
 		"kronecker",
 		"monte-carlo",

@@ -61,12 +61,12 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"D50",
+		"D65",
 		"color",
 		"conversion",
 		"cosine",
 		"css",
-		"D50",
-		"D65",
 		"distance",
 		"filter",
 		"gamma",

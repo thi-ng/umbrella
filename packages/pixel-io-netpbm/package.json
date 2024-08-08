@@ -47,10 +47,10 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"1bit",
-		"8bit",
 		"16bit",
+		"1bit",
 		"24bit",
+		"8bit",
 		"binary",
 		"bitmap",
 		"color",

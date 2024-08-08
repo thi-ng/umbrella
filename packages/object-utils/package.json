@@ -49,9 +49,9 @@
 		"conversion",
 		"invert",
 		"keys",
-		"object",
 		"map",
 		"merge",
+		"object",
 		"sort",
 		"typescript"
 	],

@@ -45,10 +45,11 @@
 		"datastructure",
 		"disjoint-set",
 		"graph",
-		"set",
 		"query",
+		"set",
 		"typedarray",
-		"typescript"
+		"typescript",
+		"unionfind"
 	],
 	"publishConfig": {
 		"access": "public"

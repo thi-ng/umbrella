@@ -55,10 +55,8 @@
 		"bytes",
 		"calculation",
 		"capacitance",
-		"current",
-		"voltage",
-		"resistance",
 		"conversion",
+		"current",
 		"energy",
 		"force",
 		"frequency",
@@ -66,6 +64,7 @@
 		"mass",
 		"math",
 		"power",
+		"resistance",
 		"si",
 		"speed",
 		"symbolic",
@@ -74,6 +73,7 @@
 		"typescript",
 		"units",
 		"velocity",
+		"voltage",
 		"volume"
 	],
 	"publishConfig": {

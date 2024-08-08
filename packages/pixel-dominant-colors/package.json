@@ -48,8 +48,8 @@
 	},
 	"keywords": [
 		"analysis",
-		"color",
 		"cluster",
+		"color",
 		"image",
 		"k-means",
 		"typescript"

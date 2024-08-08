@@ -49,10 +49,10 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"8bit",
 		"16bit",
 		"24bit",
 		"32bit",
+		"8bit",
 		"audio",
 		"binary",
 		"channel",

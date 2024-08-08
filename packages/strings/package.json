@@ -69,6 +69,7 @@
 		"trim",
 		"typescript",
 		"unicode",
+		"utf8",
 		"wordwrap"
 	],
 	"publishConfig": {

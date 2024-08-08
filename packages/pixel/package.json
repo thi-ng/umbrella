@@ -54,14 +54,14 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"8bit",
 		"16bit",
 		"24bit",
 		"32bit",
-		"alpha",
-		"array",
+		"8bit",
 		"abgr",
+		"alpha",
 		"argb",
+		"array",
 		"binary",
 		"blend",
 		"blit",

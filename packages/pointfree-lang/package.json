@@ -68,6 +68,7 @@
 		"language",
 		"parser",
 		"peg",
+		"pipeline",
 		"pointfree",
 		"rpn",
 		"syntax",

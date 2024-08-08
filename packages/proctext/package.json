@@ -51,7 +51,17 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"typescript"
+		"generative",
+		"generator",
+		"grammar",
+		"parser",
+		"recursive",
+		"rewrite",
+		"syntax",
+		"template",
+		"text",
+		"typescript",
+		"variable"
 	],
 	"publishConfig": {
 		"access": "public"
