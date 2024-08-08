@@ -1,6 +1,6 @@
 # thing-browser
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif)
 
 [Live demo](http://demo.thi.ng/umbrella/thing-browser/)
 
