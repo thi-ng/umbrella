@@ -51,7 +51,7 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
 	);
 
 	writeText(
-		`package-sizes-${modType}.svg`,
+		`export/package-sizes-${modType}.svg`,
 		serialize([
 			barChart,
 			{

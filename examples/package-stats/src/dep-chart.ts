@@ -50,7 +50,7 @@ const maxDeps = transduce<any, number, number>(pluck(1), max(), packageDeps);
 const width = packages.length * 16;
 
 writeText(
-	`package-deps.svg`,
+	`export/package-deps.svg`,
 	serialize([
 		barChart,
 		{
