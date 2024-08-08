@@ -1,0 +1,74 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+// (optional) variable declarations
+:root {
+	bg-color=#fff
+	text-color=#000
+	tree-bg-color=#00000018
+	link-color=#f0a
+	visited-color=#f6a
+	border-color=#999
+
+	dark:bg-color=#111
+	dark:text-color=#fff
+	dark:tree-bg-color=#ffffff18
+	dark:visited-color=#f6a
+	dark:border-color=#666
+}
+
+body {
+	system-sans-serif ma3 m:ma4
+	bg-color(bg-color) color(text-color)
+	lh-copy
+}
+
+h1 { lh-title ls--1 }
+
+p { l:maxw-50 o-60 }
+
+a:link { color(link-color) }
+a:visited { color(visited-color) }
+
+details:first-child { mt3 }
+
+details[open] {
+	pv2 ph3 mv2
+	bg-color(tree-bg-color) br3 fade-in(0.25)
+	{
+		>summary { b mb2 f4 }
+		+details[open] { mt2 }
+	}
+}
+
+summary { cursor-pointer }
+
+input[type=search] {
+	db mv3 pv2 ph3 br-pill bw1 border-color(text-color)
+	w-100 ns:width(30rem)
+}
+
+.grid {
+	m:grid m:grid-cols-2 m:gap4
+	{
+		>div:first-child { m:pr3 m:bwb0 m:bwr-1px border-color(border-color) }
+	}
+}
+
+.project { mb2 lh-title { a.link { db b } } }
+.with-img {
+	grid grid-cols(4rem 1fr) gap4
+	{
+		img { w-100 aspect-ratio(1,1) }
+	}
+}
+.desc { f6 }
+.tags { pl3 }
+.show { bw0 br-pill pv2 ph3 bg-color(text-color) color(bg-color) }
+
+#up {
+	db fixed bottom-1 right-1 pa3 br-100 lh-0
+	bg-color-gold color-black
+}
