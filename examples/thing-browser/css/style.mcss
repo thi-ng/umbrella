@@ -57,21 +57,62 @@ input[type=search] {
 	}
 }
 
-.project { mb2 lh-title { a.link { db b } } }
+.project {
+	mb3 lh-title
+	{
+		a.link { db b }
+	}
+}
+
 .with-img {
 	grid grid-cols(4rem 1fr) gap4
 	{
 		img { w-100 aspect-ratio(1,1) }
 	}
 }
+
 .desc { f6 }
+
 .tags { pl3 }
-.show { bw0 br-pill pv2 ph3 bg-color(text-color) color(bg-color) }
+
+.glossary {
+	f6 mb3
+	{
+		a:link, a:visited { color(text-color) }
+	}
+}
+
+.glossary-desc {
+	f6 ml2 fw400 o-60
+}
+
+.show {
+	pv2 ph3
+	bw0 br-pill
+	bg-color(text-color) color(bg-color)
+}
+.asroot {
+	ml3 pv0 ph2
+	bw0 br-pill
+	bg-color(text-color) color(bg-color) f7 v-mid
+}
+
 .jump { db }
 
+#initials {
+	mt3
+	{
+		a:link, a:visited { dib color(text-color) no-underline }
+		a+a { ml2 }
+	}
+}
+
 #up {
-	db fixed bottom-1 right-1 pa3 br-100 lh-0
+	db fixed bottom-1 right-1 pa4 br-100 lh-0
 	bg-color-gold color-black
+	{
+		svg { w2 h2 }
+	}
 }
 
 .note-info {

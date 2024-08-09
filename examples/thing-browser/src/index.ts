@@ -1,4 +1,4 @@
-import type { Nullable } from "@thi.ng/api";
+import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { partial } from "@thi.ng/compose";
 import { BACK_TO_TOP, withSize } from "@thi.ng/hiccup-carbon-icons";
@@ -15,30 +15,40 @@ import {
 import {
 	$compile,
 	$input,
-	$inputToggle,
 	$inputTrigger,
 	$list,
 	$replace,
 	type ComponentLike,
 } from "@thi.ng/rdom";
-import { debounce, reactive } from "@thi.ng/rstream";
+import { debounce, reactive, type Stream } from "@thi.ng/rstream";
 import { groupByObj } from "@thi.ng/transducers";
-import { ASSET_BASE_URL, EXAMPLE_BASE_URL, type Item } from "./api.js";
+import {
+	ASSET_BASE_URL,
+	EXAMPLE_BASE_URL,
+	GLOSSARY_URL,
+	WIKI_URL,
+	type Item,
+} from "./api.js";
+import { GLOSSARY } from "./glossary.js";
 import PKGS from "./packages.json";
 import {
 	commonTags,
 	filteredTags,
 	sortedDifference,
 	taggedItems,
+	tagsByInitial,
 	uniqueItemIDs,
 } from "./tags.js";
 
-const PRE_SELECTED = location.hash.substring(1);
+// object of reactive root tag branch states (open/closed)
+// will be populated when branches are initializing
+const ROOTS: IObjectOf<Stream<boolean>> = {};
 
 const branch = (items: Item[], existing: string[]): ComponentLike => {
 	const isRoot = existing.length === 1;
 	const tag = peek(existing);
-	const state = reactive(isRoot && PRE_SELECTED === tag);
+	const state = reactive(isRoot && location.hash.substring(1) === tag);
+	if (isRoot) ROOTS[tag] = state;
 	return details(
 		{ id: isRoot ? tag : undefined, open: state.deref() },
 		summary(
@@ -48,7 +58,9 @@ const branch = (items: Item[], existing: string[]): ComponentLike => {
 					if (isRoot && state.deref()) location.hash = `#${tag}`;
 				},
 			},
-			tag
+			tag,
+			glossaryDesc(tag),
+			$replace(state.map((x) => (!isRoot && x ? openAsRoot(tag) : null)))
 		),
 		$replace(state.map((x) => (x ? branchBody(items, existing) : null)))
 	);
@@ -62,6 +74,7 @@ const branchBody = (items: Item[], existing: string[]) => {
 	);
 	return div(
 		{},
+		glossary(peek(existing)),
 		selItems.length > 5 ? itemListReveal(selItems) : itemList(selItems),
 		selItems.length > 1
 			? div(
@@ -137,12 +150,71 @@ const withLinks = (body: string) => {
 	return res;
 };
 
-const TAGS = commonTags(PKGS);
+const openAsRoot = (tag: string) =>
+	button(
+		".asroot",
+		{
+			onclick: (e) => {
+				const el = document.getElementById(tag);
+				location.hash = `#${tag}`;
+				search.next("");
+				if (el) {
+					el.setAttribute("open", "");
+					ROOTS[tag].next(true);
+				}
+				jumpToTag(tag);
+				e.stopImmediatePropagation();
+				e.preventDefault();
+			},
+		},
+		"open as root"
+	);
+
+const jumpToTag = (tag: string) => {
+	const fn = () => {
+		const el = document.getElementById(tag);
+		if (el) {
+			setTimeout(() => el.scrollIntoView(true), 100);
+		} else {
+			requestAnimationFrame(fn);
+		}
+	};
+	requestAnimationFrame(fn);
+};
+
+const glossaryDesc = (tag: string) => {
+	const entry = GLOSSARY[tag];
+	return entry ? span(".glossary-desc", {}, `(${entry[0]})`) : "";
+};
+
+const glossary = (tag: string) => {
+	const entry = GLOSSARY[tag];
+	if (!entry) return;
+	const [desc, gloss, wiki] = entry;
+	if (!(gloss || wiki)) return;
+	return div(
+		".glossary",
+		{},
+		gloss
+			? anchor(
+					{ href: GLOSSARY_URL + gloss, target: "_blank" },
+					"Glossary"
+			  )
+			: wiki
+			? anchor({ href: WIKI_URL + wiki, target: "_blank" }, "Wikipedia")
+			: desc
+	);
+};
+
+const inflect = (word: string, n: number) => word + (n > 1 ? "s" : "");
+
+const ALL_TAGS = commonTags(PKGS);
 
 const search = reactive("");
 const searchResults = search
 	.subscribe(debounce(50))
-	.map(partial(filteredTags, TAGS));
+	.map(partial(filteredTags, ALL_TAGS));
+const tagInitials = searchResults.map(tagsByInitial);
 
 await $compile(
 	div(
@@ -154,19 +226,22 @@ await $compile(
 		}),
 		div(
 			{},
-			searchResults.map((tags) => tags.length),
-			" tag(s), ",
-			searchResults.map((tags) => uniqueItemIDs(PKGS, tags).size),
-			" project(s)"
+			searchResults.map(
+				(tags) => `${tags.length} ${inflect("tag", tags.length)}`
+			),
+			", ",
+			searchResults.map((tags) => {
+				const n = uniqueItemIDs(PKGS, tags).size;
+				return `${n} ${inflect("project", n)}`;
+			})
+		),
+		$list(tagInitials, "div#initials", {}, ([id, tag]) =>
+			anchor({ href: `#${tag}` }, id)
 		),
 		$list(searchResults, "div", {}, (tag) => branch(PKGS, [tag])),
-		anchor("#up", { href: "#" }, withSize(BACK_TO_TOP, "24px"))
+		anchor("#up", { href: "#", title: "back to top" }, BACK_TO_TOP)
 	)
 ).mount(document.getElementById("app")!);
 
-if (PRE_SELECTED) {
-	setTimeout(
-		() => document.getElementById(PRE_SELECTED)?.scrollIntoView(),
-		100
-	);
-}
+const preSelected = location.hash.substring(1);
+if (preSelected) jumpToTag(preSelected);

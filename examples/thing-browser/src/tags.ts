@@ -3,6 +3,7 @@ import {
 	comp,
 	filter,
 	filterFuzzy,
+	groupByObj,
 	iterator,
 	mapcat,
 	pluck,
@@ -27,7 +28,7 @@ export const uniqueItemIDs = (items: Item[], tags: string[]) =>
 	new Set(mapcat((tag) => taggedItemIDs(items, tag), tags));
 
 export const filteredTags = (tags: Set<string>, search: string) =>
-	[...filterFuzzy(search, {}, tags)].sort();
+	[...filterFuzzy(search.toLowerCase(), {}, tags)].sort();
 
 export const commonTags = (items: Item[]) =>
 	new Set(mapcat((x) => x.tags, items));
@@ -37,3 +38,10 @@ export const difference = (base: Set<string>, exclusions: Set<string>) =>
 
 export const sortedDifference = (base: Set<string>, exclusions: Set<string>) =>
 	[...difference(base, exclusions)].sort();
+
+export const tagsByInitial = (tags: string[]) => {
+	const groups = groupByObj<string, string[]>({ key: (x) => x[0] }, tags);
+	return Object.keys(groups)
+		.sort()
+		.map((id) => [id.toUpperCase(), groups[id][0]]);
+};
