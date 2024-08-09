@@ -1,12 +1,13 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { partial } from "@thi.ng/compose";
-import { BACK_TO_TOP, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { BACK_TO_TOP, LAUNCH, withSize } from "@thi.ng/hiccup-carbon-icons";
 import {
 	anchor,
 	button,
 	details,
 	div,
+	i,
 	img,
 	inputSearch,
 	span,
@@ -198,10 +199,15 @@ const glossary = (tag: string) => {
 		gloss
 			? anchor(
 					{ href: GLOSSARY_URL + gloss, target: "_blank" },
+					i({}, LAUNCH),
 					"Glossary"
 			  )
 			: wiki
-			? anchor({ href: WIKI_URL + wiki, target: "_blank" }, "Wikipedia")
+			? anchor(
+					{ href: WIKI_URL + wiki, target: "_blank" },
+					i({}, LAUNCH),
+					"Wikipedia"
+			  )
 			: desc
 	);
 };

@@ -8,6 +8,7 @@
 	bg-color=#fff
 	text-color=#000
 	tree-bg-color=#00000018
+	tree-hover-color=#ff00aa33
 	link-color=#f0a
 	visited-color=#f6a
 	border-color=#999
@@ -40,6 +41,13 @@ details[open] {
 	{
 		>summary { b mb2 f4 }
 		+details[open] { mt2 }
+	}
+}
+
+details:not([open]) {
+	transition(background-color 0.25s\, padding-left 0.25s ease-out)
+	{
+		:hover { pl3 br2 bg-color(tree-hover-color) }
 	}
 }
 
@@ -85,6 +93,8 @@ input[type=search] {
 .glossary-desc {
 	f6 ml2 fw400 o-60
 }
+
+i svg { fill-current v-mid mr1 w1 h1 }
 
 .show {
 	pv2 ph3
