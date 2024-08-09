@@ -47,6 +47,17 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"candle",
+		"example",
+		"interactive",
+		"moving-average",
+		"reactive",
+		"svg",
+		"tool",
+		"transducers",
+		"ui",
+		"visualization"
 	]
 }

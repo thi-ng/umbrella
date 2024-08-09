@@ -42,6 +42,13 @@
 		"screenshot": "examples/geom-webgl-basics.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"conversion",
+		"example",
+		"geometry",
+		"pool",
+		"random",
+		"webgl"
 	]
 }

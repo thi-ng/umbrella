@@ -43,6 +43,7 @@
 		"screenshot": "examples/rdom-router.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

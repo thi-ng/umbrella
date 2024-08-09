@@ -37,6 +37,16 @@
 		"screenshot": "examples/zig-cellular.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"automata",
+		"browser",
+		"canvas",
+		"cellular",
+		"evolutionary",
+		"example",
+		"generative",
+		"webassembly",
+		"zig"
 	]
 }

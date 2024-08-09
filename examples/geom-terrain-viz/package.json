@@ -41,6 +41,17 @@
 		"screenshot": "examples/geom-terrain-viz.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"3d",
+		"browser",
+		"example",
+		"geometry",
+		"gis",
+		"image",
+		"line",
+		"render",
+		"svg",
+		"tool",
+		"visualization"
 	]
 }

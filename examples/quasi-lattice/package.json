@@ -38,6 +38,16 @@
 		"screenshot": "examples/quasi-lattice.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"canvas",
+		"example",
+		"generative",
+		"generator",
+		"geometry",
+		"low-discrepancy",
+		"vector",
+		"voronoi"
 	]
 }

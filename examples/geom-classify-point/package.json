@@ -39,6 +39,9 @@
 		"screenshot": "examples/geom-classify-point.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"geometry"
 	]
 }

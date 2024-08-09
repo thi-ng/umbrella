@@ -30,6 +30,13 @@
 		"screenshot": "examples/text-canvas-image.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"ascii",
+		"browser",
+		"canvas",
+		"example",
+		"image",
+		"text"
 	]
 }

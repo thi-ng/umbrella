@@ -21,7 +21,10 @@
 		"@thi.ng/pixel-dither": "workspace:^"
 	},
 	"keywords": [
+		"1bit",
+		"browser",
 		"dither",
+		"image",
 		"pixel"
 	],
 	"browser": {

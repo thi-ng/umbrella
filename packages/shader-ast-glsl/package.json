@@ -55,6 +55,7 @@
 		"glsl",
 		"gpgpu",
 		"shader",
+		"shader-ast",
 		"typescript",
 		"webgl"
 	],

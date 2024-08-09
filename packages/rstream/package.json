@@ -59,6 +59,7 @@
 		"async",
 		"datastructure",
 		"event",
+		"fork-join",
 		"graph",
 		"pipeline",
 		"pubsub",

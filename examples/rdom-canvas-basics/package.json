@@ -32,6 +32,7 @@
 		"screenshot": "examples/rdom-canvas-basics.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

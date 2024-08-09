@@ -44,6 +44,15 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"3d",
+		"animation",
+		"blend",
+		"browser",
+		"cubemap",
+		"example",
+		"geometry",
+		"image",
+		"texture",
+		"webgl"
 	]
 }

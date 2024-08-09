@@ -28,6 +28,21 @@
 		"@thi.ng/sexpr": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
+	"keywords": [
+		"browser",
+		"compiler",
+		"defmulti",
+		"dsl",
+		"functional",
+		"interactive",
+		"interpreter",
+		"lisp",
+		"parser",
+		"rdom",
+		"repl",
+		"s-expression",
+		"tool"
+	],
 	"browser": {
 		"process": false
 	},
@@ -41,8 +56,5 @@
 			"transducers"
 		],
 		"screenshot": "examples/lispy-repl.png"
-	},
-	"keywords": [
-		"example"
-	]
+	}
 }

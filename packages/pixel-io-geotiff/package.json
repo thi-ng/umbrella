@@ -56,6 +56,7 @@
 		"grayscale",
 		"image",
 		"pixel",
+		"terrain",
 		"tiff",
 		"typescript"
 	],
@@ -84,7 +85,7 @@
 	"thi.ng": {
 		"alias": "geo",
 		"parent": "@thi.ng/pixel",
-		"status": "alpha",
-		"year": 2023
+		"year": 2023,
+		"screenshot": "pixel-io-geotiff/20230109-n45w121-crop-1280.jpg"
 	}
 }

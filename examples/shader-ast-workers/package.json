@@ -49,6 +49,19 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"3d",
+		"animation",
+		"browser",
+		"example",
+		"fork-join",
+		"raymarch",
+		"render",
+		"sdf",
+		"shader",
+		"shader-ast",
+		"transpiler",
+		"visualization",
+		"webgl",
+		"worker"
 	]
 }

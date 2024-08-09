@@ -39,6 +39,16 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"bezier",
+		"browser",
+		"conversion",
+		"example",
+		"geometry",
+		"interactive",
+		"polygon",
+		"reactive",
+		"ui"
 	]
 }

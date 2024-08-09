@@ -25,6 +25,7 @@
 		"@thi.ng/transducers": "workspace:^"
 	},
 	"keywords": [
+		"browser",
 		"histogram",
 		"pixel",
 		"waveform"

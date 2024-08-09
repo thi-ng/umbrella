@@ -49,6 +49,7 @@
 		"screenshot": "examples/webgl-msdf.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

@@ -45,6 +45,7 @@
 		"screenshot": "examples/commit-table-ssr.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

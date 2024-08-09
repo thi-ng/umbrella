@@ -26,6 +26,7 @@
 		"@thi.ng/strings": "workspace:^"
 	},
 	"keywords": [
+		"browser",
 		"pixel"
 	],
 	"browser": {

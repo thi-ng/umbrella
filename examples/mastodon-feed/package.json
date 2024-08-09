@@ -47,6 +47,7 @@
 		"screenshot": "examples/mastodon-feed.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

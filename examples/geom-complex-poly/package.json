@@ -45,6 +45,9 @@
 		"screenshot": "examples/geom-complex-poly.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"geometry"
 	]
 }

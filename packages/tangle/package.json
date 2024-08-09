@@ -55,6 +55,7 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"cli",
 		"codegen",
 		"generator",
 		"literate-programming",
@@ -65,6 +66,7 @@
 		"tangle",
 		"template",
 		"text",
+		"tool",
 		"typescript",
 		"variable"
 	],

@@ -40,6 +40,13 @@
 		"screenshot": "examples/rdom-reactive-svg.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"circle",
+		"color",
+		"example",
+		"reactive",
+		"svg"
 	]
 }

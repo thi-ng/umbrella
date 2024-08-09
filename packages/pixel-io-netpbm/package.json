@@ -57,6 +57,7 @@
 		"fileformat",
 		"grayscale",
 		"image",
+		"pbm",
 		"pixel",
 		"rgb",
 		"typescript"

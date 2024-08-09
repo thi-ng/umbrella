@@ -39,6 +39,7 @@
 		"screenshot": "examples/kmeans-viz.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

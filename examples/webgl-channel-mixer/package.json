@@ -46,6 +46,20 @@
 		"screenshot": "examples/webgl-channel-mixer.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"color",
+		"component",
+		"download",
+		"example",
+		"export",
+		"image",
+		"import",
+		"interactive",
+		"rdom",
+		"reactive",
+		"tool",
+		"ui",
+		"webgl"
 	]
 }

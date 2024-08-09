@@ -49,8 +49,14 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"2d",
+		"browser",
 		"canvas",
-		"typescript"
+		"drawing",
+		"interop",
+		"typescript",
+		"webassembly",
+		"zig"
 	],
 	"publishConfig": {
 		"access": "public"

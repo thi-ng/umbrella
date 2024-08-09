@@ -17,6 +17,7 @@
 		"@thi.ng/porter-duff": "workspace:^"
 	},
 	"keywords": [
+		"browser",
 		"pixel"
 	],
 	"browser": {

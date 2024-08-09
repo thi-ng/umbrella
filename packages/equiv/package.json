@@ -45,7 +45,9 @@
 		"array",
 		"deep",
 		"equality",
-		"interface",
+		"map",
+		"object",
+		"set",
 		"typescript",
 		"value-semantics"
 	],

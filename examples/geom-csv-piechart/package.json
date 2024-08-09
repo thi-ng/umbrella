@@ -45,6 +45,11 @@
 		"screenshot": "examples/geom-csv-piechart.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"csv",
+		"example",
+		"geometry",
+		"visualization"
 	]
 }

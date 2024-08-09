@@ -50,8 +50,10 @@
 		"analysis",
 		"cluster",
 		"color",
+		"dominant",
 		"image",
 		"k-means",
+		"palette",
 		"typescript"
 	],
 	"publishConfig": {
@@ -75,6 +77,7 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/pixel",
-		"year": 2021
+		"year": 2021,
+		"screenshot": "pixel/dominant-colors-01.jpg"
 	}
 }

@@ -50,6 +50,8 @@
 		"channel",
 		"color",
 		"composition",
+		"float",
+		"image",
 		"pixel",
 		"porter-duff",
 		"premultiply",
@@ -85,6 +87,7 @@
 			"pixel",
 			"shader-ast-stdlib"
 		],
-		"year": 2018
+		"year": 2018,
+		"screenshot": "porter-duff/porter-duff2.png"
 	}
 }

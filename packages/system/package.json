@@ -52,10 +52,12 @@
 	"keywords": [
 		"clojure",
 		"component",
+		"dag",
 		"datastructure",
 		"dependency",
 		"graph",
-		"injection",
+		"ioc",
+		"lifecycle",
 		"sort",
 		"topology",
 		"typescript"

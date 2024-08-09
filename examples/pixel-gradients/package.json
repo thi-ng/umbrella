@@ -28,6 +28,7 @@
 		"@thi.ng/rstream": "workspace:^"
 	},
 	"keywords": [
+		"browser",
 		"gradient",
 		"pixel"
 	],

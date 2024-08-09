@@ -45,6 +45,15 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"browser",
+		"example",
+		"fork-join",
+		"fractal",
+		"generative",
+		"image",
+		"interactive",
+		"reactive",
+		"tool",
+		"worker"
 	]
 }

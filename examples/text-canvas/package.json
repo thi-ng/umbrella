@@ -45,6 +45,14 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"3d",
+		"animation",
+		"ansi",
+		"ascii",
+		"browser",
+		"canvas",
+		"example",
+		"line",
+		"text"
 	]
 }

@@ -48,6 +48,17 @@
 		"screenshot": "examples/geom-webgl-attrib-pool.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"color",
+		"conversion",
+		"example",
+		"geometry",
+		"instancing",
+		"memory-mapped",
+		"pool",
+		"shader",
+		"webgl"
 	]
 }

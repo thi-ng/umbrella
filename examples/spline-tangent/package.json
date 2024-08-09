@@ -37,6 +37,13 @@
 		"screenshot": "examples/spline-tangent.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"analysis",
+		"animation",
+		"bezier",
+		"browser",
+		"example",
+		"geometry",
+		"visualization"
 	]
 }

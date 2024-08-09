@@ -42,6 +42,17 @@
 		"screenshot": "examples/geom-unique-edges.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"example",
+		"fiber",
+		"geometry",
+		"graph",
+		"iterator",
+		"line",
+		"recursion",
+		"subdivision",
+		"tessellation"
 	]
 }

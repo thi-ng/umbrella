@@ -41,6 +41,17 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"analysis",
+		"browser",
+		"drawing",
+		"example",
+		"geometry",
+		"gesture",
+		"interactive",
+		"reactive",
+		"svg",
+		"transducer",
+		"vector"
 	]
 }

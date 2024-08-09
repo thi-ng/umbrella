@@ -37,6 +37,14 @@
 		"screenshot": "examples/zig-counter.png"
 	},
 	"keywords": [
-		"example"
+		"browser",
+		"counter",
+		"delay",
+		"event",
+		"example",
+		"time",
+		"ui",
+		"webassembly",
+		"zig"
 	]
 }

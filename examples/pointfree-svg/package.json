@@ -20,6 +20,7 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"browser",
 		"dsl",
 		"forth",
 		"geometry",

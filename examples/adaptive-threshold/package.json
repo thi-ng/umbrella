@@ -23,12 +23,17 @@
 	},
 	"keywords": [
 		"1bit",
+		"browser",
 		"convolution",
 		"example",
 		"image",
+		"interactive",
+		"io",
+		"kernel",
 		"pixel",
 		"reactive",
 		"threshold",
+		"tool",
 		"transducer"
 	],
 	"browser": {

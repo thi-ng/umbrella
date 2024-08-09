@@ -45,6 +45,13 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"example",
+		"image",
+		"interactive",
+		"line",
+		"scenegraph"
 	]
 }

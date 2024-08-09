@@ -51,7 +51,7 @@
 		"count",
 		"float",
 		"graycode",
-		"int",
+		"integer",
 		"logic",
 		"lut",
 		"mask",

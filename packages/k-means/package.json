@@ -55,6 +55,7 @@
 		"k-means++",
 		"k-medians",
 		"nd",
+		"self-organizing",
 		"typescript"
 	],
 	"publishConfig": {
@@ -81,6 +82,7 @@
 	"thi.ng": {
 		"alias": "kmeans",
 		"status": "beta",
-		"year": 2021
+		"year": 2021,
+		"screenshot": "examples/kmeans-viz.jpg"
 	}
 }

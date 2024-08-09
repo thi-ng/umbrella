@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/hex",
 	"version": "2.3.51",
-	"description": "Hex string formatters for 4/8/16/24/32/48/64bit words",
+	"description": "Hex string formatters for 4/8/16/24/32/48/64bit words, hexdump formatting of binary data",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -42,9 +42,11 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"base16",
 		"binary",
 		"format",
 		"hex",
+		"hexdump",
 		"string",
 		"typescript"
 	],

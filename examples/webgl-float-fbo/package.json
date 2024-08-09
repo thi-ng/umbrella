@@ -36,6 +36,17 @@
 		"screenshot": "examples/webgl-float-fbo.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"blend",
+		"browser",
+		"drawing",
+		"example",
+		"float",
+		"image",
+		"noise",
+		"random",
+		"shader",
+		"texture",
+		"webgl"
 	]
 }

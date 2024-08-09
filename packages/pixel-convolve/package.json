@@ -55,6 +55,7 @@
 		"edge",
 		"float",
 		"gaussian",
+		"kernel",
 		"mean",
 		"normal",
 		"pixel",

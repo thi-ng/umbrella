@@ -46,6 +46,7 @@
 		"screenshot": "examples/rdom-formgen.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

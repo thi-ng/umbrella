@@ -51,6 +51,17 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"audio",
+		"browser",
+		"delay",
+		"example",
+		"fft",
+		"frequency",
+		"imgui",
+		"interactive",
+		"oscillator",
+		"sequencer",
+		"synth",
+		"ui"
 	]
 }

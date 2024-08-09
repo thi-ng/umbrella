@@ -33,6 +33,20 @@
 		"screenshot": "examples/webgl-game-of-life.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"automata",
+		"browser",
+		"cellular",
+		"example",
+		"gpgpu",
+		"grid",
+		"multipass",
+		"pipeline",
+		"pixel",
+		"shader",
+		"simulation",
+		"texture",
+		"webgl"
 	]
 }

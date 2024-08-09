@@ -35,6 +35,7 @@
 		"screenshot": "examples/rdom-lazy-load.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

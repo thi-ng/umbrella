@@ -40,6 +40,11 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"3d",
+		"animation",
+		"browser",
+		"example",
+		"geometry",
+		"webgl"
 	]
 }

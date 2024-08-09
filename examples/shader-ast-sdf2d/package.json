@@ -32,6 +32,13 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"sdf",
+		"shader",
+		"shader-ast",
+		"transpiler",
+		"webgl"
 	]
 }

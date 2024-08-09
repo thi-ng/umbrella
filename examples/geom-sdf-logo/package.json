@@ -36,6 +36,12 @@
 		"screenshot": "examples/geom-sdf-logo.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"geometry",
+		"sdf",
+		"svg",
+		"typography"
 	]
 }

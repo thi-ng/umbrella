@@ -61,8 +61,6 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"D50",
-		"D65",
 		"color",
 		"conversion",
 		"cosine",
@@ -82,6 +80,7 @@
 		"lch",
 		"matrix",
 		"oklab",
+		"palette",
 		"random",
 		"rgb",
 		"sort",

@@ -59,7 +59,7 @@
 		"grammar",
 		"parser",
 		"peg",
-		"recursive",
+		"recursion",
 		"regexp",
 		"tree",
 		"typescript"

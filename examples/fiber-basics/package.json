@@ -46,6 +46,12 @@
 		"screenshot": "examples/fiber-basics.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"example",
+		"fiber",
+		"geometry",
+		"recursion"
 	]
 }

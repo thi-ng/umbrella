@@ -41,6 +41,7 @@
 		"screenshot": "examples/ramp-scroll-anim.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

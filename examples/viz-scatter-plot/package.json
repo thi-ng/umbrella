@@ -48,6 +48,17 @@
 		"screenshot": "examples/viz-scatter-plot.avif"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"interactive",
+		"low-discrepancy",
+		"maths",
+		"nonlinear",
+		"plot",
+		"reactive",
+		"scatter",
+		"ui",
+		"visualization"
 	]
 }

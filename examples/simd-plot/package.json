@@ -46,6 +46,19 @@
 		"screenshot": "examples/simd-plot.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"color",
+		"example",
+		"gradient",
+		"memory",
+		"memory-mapped",
+		"noise",
+		"plot",
+		"simd",
+		"visualization",
+		"wasm",
+		"webassembly"
 	]
 }

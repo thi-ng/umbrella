@@ -40,6 +40,17 @@
 		"screenshot": "examples/package-stats.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"bar",
+		"cli",
+		"dag",
+		"dependency",
+		"example",
+		"file",
+		"graph",
+		"plot",
+		"svg",
+		"tool",
+		"visualization"
 	]
 }

@@ -37,6 +37,7 @@
 		"screenshot": "examples/rasterize-blend.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

@@ -43,6 +43,18 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"codegen",
+		"evolutionary",
+		"example",
+		"generator",
+		"image",
+		"shader",
+		"shader-ast",
+		"texture",
+		"transpiler",
+		"webgl"
 	]
 }

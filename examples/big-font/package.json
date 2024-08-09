@@ -27,11 +27,14 @@
 	},
 	"keywords": [
 		"ascii",
+		"browser",
 		"example",
 		"font",
 		"generator",
+		"interactive",
 		"reactive",
 		"text",
+		"tool",
 		"typography"
 	],
 	"browser": {

@@ -39,6 +39,18 @@
 		"screenshot": "examples/zig-canvas.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"canvas",
+		"dom",
+		"download",
+		"drawing",
+		"example",
+		"history",
+		"interactive",
+		"ui",
+		"undo",
+		"webassembly",
+		"zig"
 	]
 }

@@ -37,6 +37,7 @@
 		"screenshot": "examples/meta-css-basics.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

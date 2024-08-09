@@ -56,9 +56,11 @@
 		"allocator",
 		"array",
 		"datastructure",
+		"interop",
 		"memory",
 		"memory-mapped",
 		"pool",
+		"simd",
 		"typedarray",
 		"typescript",
 		"wasm"

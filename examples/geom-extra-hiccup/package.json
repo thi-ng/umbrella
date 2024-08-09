@@ -37,6 +37,11 @@
 		"screenshot": "examples/geom-extra-hiccup.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"geometry",
+		"gradient",
+		"svg"
 	]
 }

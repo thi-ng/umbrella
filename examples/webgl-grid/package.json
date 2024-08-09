@@ -42,6 +42,7 @@
 		"screenshot": "examples/webgl-grid.jpg"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

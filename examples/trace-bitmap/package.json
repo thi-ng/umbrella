@@ -80,6 +80,24 @@
 		"screenshot": "examples/trace-bitmap.jpg"
 	},
 	"keywords": [
-		"example"
+		"1bit",
+		"2d",
+		"art",
+		"bitmap",
+		"browser",
+		"conversion",
+		"dither",
+		"example",
+		"generator",
+		"geometry",
+		"image",
+		"line",
+		"pattern",
+		"penplotter",
+		"rdom",
+		"reactive",
+		"svg",
+		"tool",
+		"vector"
 	]
 }

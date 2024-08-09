@@ -43,6 +43,14 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"cli",
+		"example",
+		"generator",
+		"git",
+		"heatmap",
+		"svg",
+		"tool",
+		"visualization"
 	]
 }

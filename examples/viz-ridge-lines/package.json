@@ -55,6 +55,16 @@
 		"screenshot": "examples/viz-ridge-lines.avif"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"area",
+		"browser",
+		"cursor",
+		"example",
+		"interactive",
+		"plot",
+		"reactive",
+		"svg",
+		"ui",
+		"visualization"
 	]
 }

@@ -37,6 +37,13 @@
 		"screenshot": "examples/geom-hexgrid.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"generative",
+		"geometry",
+		"grid",
+		"recursion",
+		"subdivision"
 	]
 }

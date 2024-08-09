@@ -40,6 +40,13 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"example",
+		"geometry",
+		"interactive",
+		"rdom",
+		"reactive",
+		"svg"
 	]
 }

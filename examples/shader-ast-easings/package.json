@@ -37,6 +37,17 @@
 		"screenshot": "examples/shader-ast-easings.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"example",
+		"interpolation",
+		"math",
+		"plot",
+		"shader",
+		"shader-ast",
+		"tween",
+		"visualization",
+		"webgl"
 	]
 }

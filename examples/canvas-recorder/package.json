@@ -35,6 +35,7 @@
 		"screenshot": "examples/canvas-recorder.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

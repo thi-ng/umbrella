@@ -35,6 +35,11 @@
 		"screenshot": "examples/thing-packages-quiz.avif"
 	},
 	"keywords": [
-		"example"
+		"browser",
+		"example",
+		"interactive",
+		"random",
+		"rdom",
+		"reactive"
 	]
 }

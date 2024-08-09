@@ -42,6 +42,7 @@
 		"screenshot": "examples/rdom-dnd.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

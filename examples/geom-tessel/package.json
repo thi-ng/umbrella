@@ -38,6 +38,13 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"example",
+		"geometry",
+		"recursion",
+		"subdivision",
+		"tessellation"
 	]
 }

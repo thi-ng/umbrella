@@ -46,6 +46,14 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"binary",
+		"color",
+		"fileformat",
+		"float",
+		"image",
+		"pfm",
+		"pixel",
+		"rgb",
 		"typescript"
 	],
 	"publishConfig": {

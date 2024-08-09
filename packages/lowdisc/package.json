@@ -45,11 +45,11 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"discrepancy",
 		"golden-ratio",
 		"halton",
 		"iterator",
 		"kronecker",
+		"low-discrepancy",
 		"monte-carlo",
 		"nd",
 		"plastic-number",

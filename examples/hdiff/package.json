@@ -21,6 +21,7 @@
 		"screenshot": "examples/hdiff.avif"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

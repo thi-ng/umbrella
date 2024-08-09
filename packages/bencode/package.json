@@ -54,6 +54,7 @@
 		"array",
 		"bencode",
 		"binary",
+		"decode",
 		"encode",
 		"fileformat",
 		"transducer",

@@ -40,6 +40,17 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"3d",
+		"animation",
+		"browser",
+		"canvas",
+		"example",
+		"render",
+		"shader",
+		"shader-ast",
+		"texture",
+		"transpiler",
+		"tunnel",
+		"webgl"
 	]
 }

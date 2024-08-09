@@ -50,6 +50,12 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"ast",
+		"constant-folding",
+		"optimization",
+		"rewrite",
+		"shader",
+		"shader-ast",
 		"typescript"
 	],
 	"publishConfig": {

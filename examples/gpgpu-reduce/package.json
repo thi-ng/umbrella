@@ -42,6 +42,11 @@
 		]
 	},
 	"keywords": [
-		"example"
+		"browser",
+		"example",
+		"gpgpu",
+		"multipass",
+		"pipeline",
+		"webgl"
 	]
 }

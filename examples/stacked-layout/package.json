@@ -39,6 +39,7 @@
 		"screenshot": "examples/stacked-layout.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

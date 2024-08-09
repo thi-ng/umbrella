@@ -57,6 +57,22 @@
 		"screenshot": "examples/dominant-colors.png"
 	},
 	"keywords": [
-		"example"
+		"browser",
+		"cluster",
+		"color",
+		"component",
+		"dominant",
+		"download",
+		"example",
+		"image",
+		"interactive",
+		"k-means",
+		"pixel",
+		"rdom",
+		"reactive",
+		"rstream",
+		"svg",
+		"tool",
+		"transducer"
 	]
 }

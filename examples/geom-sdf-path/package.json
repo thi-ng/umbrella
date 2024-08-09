@@ -37,6 +37,11 @@
 		"screenshot": "examples/geom-sdf-path.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"animation",
+		"browser",
+		"example",
+		"geometry",
+		"sdf"
 	]
 }

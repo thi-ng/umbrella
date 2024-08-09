@@ -64,9 +64,10 @@
 		"component",
 		"data-oriented",
 		"datastructure",
+		"ecs",
 		"entity",
+		"memory",
 		"memory-mapped",
-		"simd",
 		"typedarray",
 		"typescript"
 	],

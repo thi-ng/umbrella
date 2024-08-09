@@ -59,6 +59,7 @@
 		"hiccup",
 		"html",
 		"theme",
+		"tool",
 		"typescript"
 	],
 	"publishConfig": {

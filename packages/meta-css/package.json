@@ -68,7 +68,6 @@
 		"bundler",
 		"cli",
 		"codegen",
-		"combinatorial",
 		"compiler",
 		"component",
 		"css",
@@ -78,6 +77,7 @@
 		"generator",
 		"json",
 		"no-browser",
+		"tool",
 		"transpiler",
 		"typescript",
 		"ui"

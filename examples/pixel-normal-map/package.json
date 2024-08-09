@@ -21,6 +21,7 @@
 		"@thi.ng/pixel-convolve": "workspace:^"
 	},
 	"keywords": [
+		"browser",
 		"color",
 		"convolution",
 		"encode",

@@ -38,10 +38,12 @@
 		"encode",
 		"example",
 		"image",
+		"interactive",
+		"io",
 		"pixel",
 		"rdom",
 		"reactive",
-		"upload"
+		"tool"
 	],
 	"browser": {
 		"process": false

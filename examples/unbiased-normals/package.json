@@ -36,6 +36,7 @@
 		"screenshot": "examples/unbiased-normals.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

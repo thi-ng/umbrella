@@ -70,11 +70,11 @@
 		"schema",
 		"shared-memory",
 		"string",
+		"tool",
 		"typescript",
 		"wasm",
 		"webassembly",
-		"zig",
-		"ziglang"
+		"zig"
 	],
 	"publishConfig": {
 		"access": "public"

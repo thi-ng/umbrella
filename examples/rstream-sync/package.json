@@ -28,6 +28,7 @@
 		"screenshot": "examples/rstream-sync.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

@@ -42,6 +42,17 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"acceleration",
+		"browser",
+		"distance",
+		"example",
+		"geometry",
+		"interactive",
+		"neighborhood",
+		"query",
+		"random",
+		"spatial",
+		"tree"
 	]
 }

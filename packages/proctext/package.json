@@ -51,11 +51,13 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
+		"ast",
+		"bindings",
 		"generative",
 		"generator",
 		"grammar",
 		"parser",
-		"recursive",
+		"recursion",
 		"rewrite",
 		"syntax",
 		"template",

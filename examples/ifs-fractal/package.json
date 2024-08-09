@@ -39,6 +39,16 @@
 		"screenshot": "examples/ifs-fractal.jpg"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"canvas",
+		"example",
+		"fiber",
+		"float",
+		"fractal",
+		"generative",
+		"image",
+		"random",
+		"visualization"
 	]
 }

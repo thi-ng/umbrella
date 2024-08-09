@@ -47,6 +47,7 @@
 		"screenshot": "examples/render-audio.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

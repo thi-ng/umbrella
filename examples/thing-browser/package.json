@@ -35,10 +35,13 @@
 	"keywords": [
 		"browser",
 		"fuzzy",
+		"interactive",
 		"meta-css",
+		"query",
 		"rdom",
 		"reactive",
 		"search",
+		"tool",
 		"tree",
 		"ui"
 	],

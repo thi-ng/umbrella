@@ -50,10 +50,10 @@
 		"binary",
 		"counter",
 		"datastructure",
-		"freelist",
+		"free-list",
 		"identifier",
 		"typescript",
-		"versioning"
+		"version"
 	],
 	"publishConfig": {
 		"access": "public"

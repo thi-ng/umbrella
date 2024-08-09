@@ -48,6 +48,17 @@
 		"screenshot": "examples/color-themes.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"color",
+		"example",
+		"generator",
+		"interactive",
+		"palette",
+		"random",
+		"reactive",
+		"svg",
+		"ui",
+		"visualization"
 	]
 }

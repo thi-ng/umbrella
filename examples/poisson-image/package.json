@@ -34,6 +34,14 @@
 		"screenshot": "examples/poisson-image.avif"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"canvas",
+		"conversion",
+		"example",
+		"image",
+		"particles",
+		"poisson",
+		"sample"
 	]
 }

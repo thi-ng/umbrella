@@ -52,6 +52,7 @@
 		"screenshot": "examples/rstream-system-bus.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

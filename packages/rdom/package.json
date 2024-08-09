@@ -62,6 +62,7 @@
 		"dom",
 		"hiccup",
 		"html",
+		"lifecycle",
 		"reactive",
 		"rstream",
 		"svg",

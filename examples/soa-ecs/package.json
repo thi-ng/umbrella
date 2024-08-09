@@ -46,6 +46,16 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
-		"example"
+		"3d",
+		"browser",
+		"ecs",
+		"example",
+		"matrix",
+		"particles",
+		"shader",
+		"shader-ast",
+		"soa",
+		"vector",
+		"webgl"
 	]
 }

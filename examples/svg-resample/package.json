@@ -33,6 +33,7 @@
 		"screenshot": "examples/svg-resample.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

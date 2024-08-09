@@ -42,6 +42,15 @@
 		"screenshot": "examples/layout-gridgen.png"
 	},
 	"keywords": [
-		"example"
+		"2d",
+		"browser",
+		"color",
+		"example",
+		"generator",
+		"grid",
+		"layout",
+		"random",
+		"recursion",
+		"subdivision"
 	]
 }

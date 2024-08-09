@@ -45,6 +45,7 @@
 		"screenshot": "examples/csp-bus.png"
 	},
 	"keywords": [
+		"browser",
 		"example"
 	]
 }

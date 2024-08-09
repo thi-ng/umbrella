@@ -58,10 +58,8 @@
 		"time",
 		"timeout",
 		"typescript",
-		"wasm",
 		"webassembly",
-		"zig",
-		"ziglang"
+		"zig"
 	],
 	"publishConfig": {
 		"access": "public"
