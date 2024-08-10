@@ -1,7 +1,7 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { partial } from "@thi.ng/compose";
-import { BACK_TO_TOP, LAUNCH, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { BACK_TO_TOP, LAUNCH } from "@thi.ng/hiccup-carbon-icons";
 import {
 	anchor,
 	button,
@@ -15,7 +15,6 @@ import {
 } from "@thi.ng/hiccup-html";
 import {
 	$compile,
-	$input,
 	$inputTrigger,
 	$list,
 	$replace,
@@ -75,7 +74,7 @@ const branchBody = (items: Item[], existing: string[]) => {
 	);
 	return div(
 		{},
-		glossary(peek(existing)),
+		glossaryLink(peek(existing)),
 		selItems.length > 5 ? itemListReveal(selItems) : itemList(selItems),
 		selItems.length > 1
 			? div(
@@ -188,7 +187,7 @@ const glossaryDesc = (tag: string) => {
 	return entry ? span(".glossary-desc", {}, `(${entry[0]})`) : "";
 };
 
-const glossary = (tag: string) => {
+const glossaryLink = (tag: string) => {
 	const entry = GLOSSARY[tag];
 	if (!entry) return;
 	const [desc, gloss, wiki] = entry;
@@ -226,7 +225,12 @@ await $compile(
 	div(
 		{},
 		inputSearch({
-			oninput: $input(search),
+			id: "search",
+			oninput: (e) => {
+				const val = (<HTMLInputElement>e.target).value.toLowerCase();
+				if (!val) location.hash = "#";
+				search.next(val);
+			},
 			placeholder: "Fuzzy tag search",
 			value: search,
 		}),
@@ -245,7 +249,15 @@ await $compile(
 			anchor({ href: `#${tag}` }, id)
 		),
 		$list(searchResults, "div", {}, (tag) => branch(PKGS, [tag])),
-		anchor("#up", { href: "#", title: "back to top" }, BACK_TO_TOP)
+		anchor(
+			"#up",
+			{
+				href: "#",
+				title: "back to top",
+				onclick: () => document.getElementById("search")?.focus(),
+			},
+			BACK_TO_TOP
+		)
 	)
 ).mount(document.getElementById("app")!);
 
