@@ -34,6 +34,8 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"example",
+		"geometry",
+		"transducer"
 	]
 }

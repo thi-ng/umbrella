@@ -38,10 +38,14 @@
 	"keywords": [
 		"2d",
 		"browser",
+		"color",
 		"example",
 		"geometry",
+		"matrix",
+		"palette",
 		"sdf",
 		"svg",
-		"typography"
+		"typography",
+		"vector"
 	]
 }

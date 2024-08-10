@@ -26,8 +26,16 @@
 		"@thi.ng/strings": "workspace:^"
 	},
 	"keywords": [
+		"2d",
 		"browser",
-		"pixel"
+		"color",
+		"image",
+		"interactive",
+		"matrix",
+		"pixel",
+		"reactive",
+		"tool",
+		"ui"
 	],
 	"browser": {
 		"process": false

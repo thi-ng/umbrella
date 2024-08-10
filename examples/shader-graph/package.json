@@ -50,10 +50,13 @@
 		"2d",
 		"browser",
 		"example",
+		"matrix",
+		"reactive",
 		"shader",
 		"shader-ast",
 		"tool",
 		"ui",
+		"vector",
 		"webgl"
 	]
 }

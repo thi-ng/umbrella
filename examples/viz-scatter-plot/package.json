@@ -58,7 +58,10 @@
 		"plot",
 		"reactive",
 		"scatter",
+		"svg",
+		"transducer",
 		"ui",
+		"vector",
 		"visualization"
 	]
 }

@@ -50,6 +50,15 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"example",
+		"matrix",
+		"reactive",
+		"shader",
+		"shader-ast",
+		"transducer",
+		"ui",
+		"vector",
+		"webgl"
 	]
 }

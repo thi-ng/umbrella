@@ -35,6 +35,9 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"example",
+		"hiccup",
+		"transducer",
+		"ui"
 	]
 }

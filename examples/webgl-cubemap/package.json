@@ -48,11 +48,18 @@
 		"animation",
 		"blend",
 		"browser",
+		"canvas",
 		"cubemap",
+		"dsp",
 		"example",
 		"geometry",
 		"image",
+		"matrix",
+		"reactive",
+		"shader",
+		"shader-ast",
 		"texture",
+		"ui",
 		"webgl"
 	]
 }

@@ -43,7 +43,10 @@
 		"screenshot": "examples/rdom-router.jpg"
 	},
 	"keywords": [
+		"atom",
 		"browser",
-		"example"
+		"example",
+		"reactive",
+		"ui"
 	]
 }

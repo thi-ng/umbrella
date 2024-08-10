@@ -37,6 +37,11 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"dsp",
+		"example",
+		"matrix",
+		"transducer",
+		"vector"
 	]
 }

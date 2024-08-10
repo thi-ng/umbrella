@@ -41,12 +41,16 @@
 	},
 	"keywords": [
 		"2d",
+		"atom",
 		"browser",
 		"example",
 		"geometry",
 		"interactive",
 		"rdom",
 		"reactive",
-		"svg"
+		"svg",
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

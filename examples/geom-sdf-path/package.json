@@ -42,6 +42,7 @@
 		"browser",
 		"example",
 		"geometry",
-		"sdf"
+		"sdf",
+		"vector"
 	]
 }

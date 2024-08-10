@@ -36,6 +36,14 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"download",
+		"example",
+		"export",
+		"geometry",
+		"reactive",
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

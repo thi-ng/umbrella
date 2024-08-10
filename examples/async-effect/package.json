@@ -24,7 +24,8 @@
 		"hdom",
 		"interceptor",
 		"io",
-		"json"
+		"json",
+		"ui"
 	],
 	"browser": {
 		"process": false,

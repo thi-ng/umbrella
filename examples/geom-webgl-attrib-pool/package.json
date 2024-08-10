@@ -56,9 +56,11 @@
 		"example",
 		"geometry",
 		"instancing",
+		"matrix",
 		"memory-mapped",
 		"pool",
 		"shader",
+		"vector",
 		"webgl"
 	]
 }

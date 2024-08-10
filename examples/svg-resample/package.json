@@ -34,6 +34,11 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"example",
+		"geometry",
+		"reactive",
+		"svg",
+		"transducer",
+		"ui"
 	]
 }

@@ -30,8 +30,14 @@
 	},
 	"keywords": [
 		"browser",
+		"color",
+		"image",
+		"import",
 		"pixel",
-		"sort"
+		"reactive",
+		"sort",
+		"transducer",
+		"ui"
 	],
 	"browser": {
 		"process": false,

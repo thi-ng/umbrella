@@ -29,8 +29,14 @@
 	},
 	"keywords": [
 		"browser",
+		"color",
+		"download",
+		"export",
 		"gradient",
-		"pixel"
+		"palette",
+		"pixel",
+		"reactive",
+		"ui"
 	],
 	"browser": {
 		"process": false

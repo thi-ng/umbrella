@@ -42,11 +42,11 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"linkeddata",
+		"linked-data",
 		"namespace",
 		"prefix",
 		"rdf",
-		"semanticweb",
+		"semantic-web",
 		"uri",
 		"vocabulary",
 		"xml"

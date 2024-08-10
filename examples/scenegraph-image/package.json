@@ -48,10 +48,17 @@
 		"2d",
 		"animation",
 		"browser",
+		"canvas",
+		"dsp",
 		"example",
+		"geometry",
 		"image",
 		"interactive",
 		"line",
-		"scenegraph"
+		"matrix",
+		"scenegraph",
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

@@ -45,6 +45,15 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"dsp",
+		"example",
+		"matrix",
+		"reactive",
+		"shader",
+		"shader-ast",
+		"transducer",
+		"ui",
+		"vector",
+		"webgl"
 	]
 }

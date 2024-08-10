@@ -44,14 +44,20 @@
 		"2d",
 		"3d",
 		"browser",
+		"canvas",
+		"download",
 		"example",
+		"export",
 		"geometry",
 		"gis",
 		"image",
 		"line",
+		"reactive",
 		"render",
 		"svg",
 		"tool",
+		"transducer",
+		"vector",
 		"visualization"
 	]
 }

@@ -47,9 +47,12 @@
 	"keywords": [
 		"2d",
 		"browser",
+		"color",
 		"csv",
 		"example",
 		"geometry",
+		"transducer",
+		"vector",
 		"visualization"
 	]
 }

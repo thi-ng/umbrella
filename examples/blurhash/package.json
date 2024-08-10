@@ -35,6 +35,7 @@
 		"blurhash",
 		"browser",
 		"canvas",
+		"decode",
 		"encode",
 		"example",
 		"image",
@@ -43,7 +44,8 @@
 		"pixel",
 		"rdom",
 		"reactive",
-		"tool"
+		"tool",
+		"ui"
 	],
 	"browser": {
 		"process": false

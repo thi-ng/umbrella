@@ -41,6 +41,8 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"example",
+		"transducer",
+		"ui"
 	]
 }

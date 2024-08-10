@@ -49,9 +49,16 @@
 		"2d",
 		"animation",
 		"browser",
+		"canvas",
+		"color",
+		"download",
+		"dsp",
 		"example",
+		"export",
 		"fiber",
 		"geometry",
-		"recursion"
+		"recursion",
+		"transducer",
+		"ui"
 	]
 }

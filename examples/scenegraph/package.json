@@ -47,6 +47,7 @@
 		"2d",
 		"animation",
 		"browser",
+		"canvas",
 		"example",
 		"geometry",
 		"interactive",
@@ -54,6 +55,9 @@
 		"polygon",
 		"query",
 		"rect",
-		"scenegraph"
+		"scenegraph",
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

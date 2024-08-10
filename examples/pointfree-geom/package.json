@@ -34,12 +34,19 @@
 	"keywords": [
 		"animation",
 		"browser",
+		"canvas",
+		"download",
 		"dsl",
+		"export",
 		"forth",
 		"geometry",
+		"matrix",
 		"pointfree",
+		"reactive",
 		"repl",
-		"svg"
+		"svg",
+		"transducer",
+		"ui"
 	],
 	"browser": {
 		"process": false

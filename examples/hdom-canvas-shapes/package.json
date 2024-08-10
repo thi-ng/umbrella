@@ -57,11 +57,18 @@
 		"2d",
 		"browser",
 		"canvas",
+		"color",
 		"download",
 		"example",
+		"export",
 		"geometry",
+		"hiccup",
 		"interactive",
+		"matrix",
+		"reactive",
 		"svg",
-		"ui"
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

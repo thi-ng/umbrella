@@ -20,10 +20,14 @@
 		"typescript": "^5.5.3"
 	},
 	"keywords": [
-		"browser",
+		"2d",
 		"dsl",
+		"export",
+		"file",
 		"forth",
+		"generator",
 		"geometry",
+		"hiccup",
 		"pointfree",
 		"svg"
 	],

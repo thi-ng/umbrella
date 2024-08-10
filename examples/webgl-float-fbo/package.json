@@ -46,7 +46,10 @@
 		"noise",
 		"random",
 		"shader",
+		"shader-ast",
 		"texture",
+		"transducer",
+		"vector",
 		"webgl"
 	]
 }

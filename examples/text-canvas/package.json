@@ -51,8 +51,12 @@
 		"ascii",
 		"browser",
 		"canvas",
+		"dsp",
 		"example",
+		"geometry",
 		"line",
-		"text"
+		"matrix",
+		"text",
+		"vector"
 	]
 }

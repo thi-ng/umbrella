@@ -45,8 +45,10 @@
 		"pipeline",
 		"pixel",
 		"shader",
+		"shader-ast",
 		"simulation",
 		"texture",
+		"transducer",
 		"webgl"
 	]
 }

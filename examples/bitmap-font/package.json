@@ -34,7 +34,8 @@
 		"reactive",
 		"text",
 		"transducer",
-		"typography"
+		"typography",
+		"ui"
 	],
 	"browser": {
 		"process": false,

@@ -13,11 +13,16 @@
 		"canvas",
 		"delaunay",
 		"download",
+		"export",
 		"geometry",
 		"interactive",
+		"reactive",
 		"rstream",
 		"spline",
 		"svg",
+		"transducer",
+		"ui",
+		"vector",
 		"voronoi"
 	],
 	"scripts": {

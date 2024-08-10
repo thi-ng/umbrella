@@ -45,6 +45,12 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"color",
+		"example",
+		"geometry",
+		"reactive",
+		"transducer",
+		"vector"
 	]
 }

@@ -45,12 +45,15 @@
 	"keywords": [
 		"2d",
 		"cli",
+		"color",
 		"example",
 		"generator",
 		"git",
 		"heatmap",
+		"hiccup",
 		"svg",
 		"tool",
+		"transducer",
 		"visualization"
 	]
 }

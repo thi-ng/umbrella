@@ -51,17 +51,22 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
+		"atom",
 		"audio",
 		"browser",
+		"canvas",
 		"delay",
+		"dsp",
 		"example",
 		"fft",
 		"frequency",
 		"imgui",
 		"interactive",
 		"oscillator",
+		"reactive",
 		"sequencer",
 		"synth",
+		"transducer",
 		"ui"
 	]
 }

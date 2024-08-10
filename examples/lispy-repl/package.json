@@ -39,9 +39,12 @@
 		"lisp",
 		"parser",
 		"rdom",
+		"reactive",
 		"repl",
 		"s-expression",
-		"tool"
+		"tool",
+		"transducer",
+		"ui"
 	],
 	"browser": {
 		"process": false

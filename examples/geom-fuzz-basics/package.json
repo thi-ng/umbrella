@@ -39,11 +39,13 @@
 	"keywords": [
 		"2d",
 		"browser",
+		"canvas",
 		"example",
 		"fuzzy",
 		"geometry",
 		"hatch",
 		"line",
-		"polygon"
+		"polygon",
+		"reactive"
 	]
 }

@@ -32,6 +32,9 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"example",
+		"shader",
+		"shader-ast",
+		"webgl"
 	]
 }

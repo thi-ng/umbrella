@@ -22,9 +22,11 @@
 	},
 	"keywords": [
 		"browser",
+		"canvas",
 		"color",
 		"convolution",
 		"encode",
+		"generator",
 		"image",
 		"normal",
 		"pixel",

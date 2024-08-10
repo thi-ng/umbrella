@@ -43,6 +43,12 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"example",
+		"matrix",
+		"transducer",
+		"ui",
+		"vector",
+		"webgl"
 	]
 }

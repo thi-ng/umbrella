@@ -37,7 +37,19 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
+		"1d",
+		"automata",
+		"binary",
 		"browser",
-		"example"
+		"cellular",
+		"download",
+		"example",
+		"export",
+		"generative",
+		"obj",
+		"reactive",
+		"text",
+		"transducer",
+		"ui"
 	]
 }

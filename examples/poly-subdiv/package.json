@@ -38,6 +38,11 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"color",
+		"example",
+		"geometry",
+		"transducer",
+		"vector"
 	]
 }

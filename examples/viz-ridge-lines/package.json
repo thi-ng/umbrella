@@ -58,12 +58,16 @@
 		"2d",
 		"area",
 		"browser",
+		"color",
 		"cursor",
 		"example",
 		"interactive",
 		"plot",
 		"reactive",
+		"shader",
+		"shader-ast",
 		"svg",
+		"transducer",
 		"ui",
 		"visualization"
 	]

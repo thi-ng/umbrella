@@ -83,11 +83,16 @@
 		"1bit",
 		"2d",
 		"art",
+		"atom",
 		"bitmap",
 		"browser",
+		"canvas",
+		"color",
 		"conversion",
 		"dither",
+		"download",
 		"example",
+		"export",
 		"generator",
 		"geometry",
 		"image",
@@ -98,6 +103,8 @@
 		"reactive",
 		"svg",
 		"tool",
+		"transducer",
+		"ui",
 		"vector"
 	]
 }

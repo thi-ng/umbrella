@@ -51,6 +51,7 @@
 		"2d",
 		"acceleration",
 		"browser",
+		"canvas",
 		"distance",
 		"example",
 		"geometry",
@@ -61,6 +62,10 @@
 		"poisson",
 		"query",
 		"random",
-		"spatial"
+		"reactive",
+		"spatial",
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

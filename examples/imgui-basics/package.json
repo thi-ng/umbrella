@@ -38,6 +38,8 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"example",
+		"reactive"
 	]
 }

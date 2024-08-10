@@ -45,6 +45,8 @@
 		"2d",
 		"animation",
 		"browser",
+		"canvas",
+		"color",
 		"example",
 		"fiber",
 		"geometry",
@@ -53,6 +55,7 @@
 		"line",
 		"recursion",
 		"subdivision",
-		"tessellation"
+		"tessellation",
+		"transducer"
 	]
 }

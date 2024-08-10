@@ -37,7 +37,9 @@
 		]
 	},
 	"keywords": [
+		"atom",
 		"browser",
-		"example"
+		"example",
+		"ui"
 	]
 }

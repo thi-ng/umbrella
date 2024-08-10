@@ -40,7 +40,10 @@
 		"screenshot": "examples/rdom-klist.png"
 	},
 	"keywords": [
+		"atom",
 		"browser",
-		"example"
+		"example",
+		"reactive",
+		"ui"
 	]
 }

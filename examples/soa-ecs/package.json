@@ -48,6 +48,7 @@
 	"keywords": [
 		"3d",
 		"browser",
+		"canvas",
 		"ecs",
 		"example",
 		"matrix",
@@ -55,6 +56,7 @@
 		"shader",
 		"shader-ast",
 		"soa",
+		"ui",
 		"vector",
 		"webgl"
 	]

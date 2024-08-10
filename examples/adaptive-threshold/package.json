@@ -34,7 +34,8 @@
 		"reactive",
 		"threshold",
 		"tool",
-		"transducer"
+		"transducer",
+		"ui"
 	],
 	"browser": {
 		"process": false,

@@ -46,6 +46,7 @@
 		"plot",
 		"shader",
 		"shader-ast",
+		"transducer",
 		"tween",
 		"visualization",
 		"webgl"

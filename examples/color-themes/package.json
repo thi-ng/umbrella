@@ -51,13 +51,16 @@
 		"2d",
 		"browser",
 		"color",
+		"download",
 		"example",
+		"export",
 		"generator",
 		"interactive",
 		"palette",
 		"random",
 		"reactive",
 		"svg",
+		"transducer",
 		"ui",
 		"visualization"
 	]

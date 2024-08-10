@@ -41,10 +41,15 @@
 		"2d",
 		"animation",
 		"browser",
+		"canvas",
 		"example",
 		"geometry",
+		"reactive",
 		"recursion",
 		"subdivision",
-		"tessellation"
+		"tessellation",
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

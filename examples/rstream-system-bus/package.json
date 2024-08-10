@@ -52,7 +52,11 @@
 		"screenshot": "examples/rstream-system-bus.png"
 	},
 	"keywords": [
+		"atom",
 		"browser",
-		"example"
+		"example",
+		"reactive",
+		"transducer",
+		"ui"
 	]
 }

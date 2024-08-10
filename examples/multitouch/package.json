@@ -39,6 +39,10 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"example",
+		"reactive",
+		"transducer",
+		"ui"
 	]
 }

@@ -44,6 +44,11 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"example",
+		"geometry",
+		"transducer",
+		"ui",
+		"vector"
 	]
 }

@@ -45,6 +45,12 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"color",
+		"dsp",
+		"example",
+		"shader",
+		"shader-ast",
+		"webgl"
 	]
 }

@@ -38,6 +38,9 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"dsp",
+		"example",
+		"vector"
 	]
 }

@@ -46,6 +46,10 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"example",
+		"hiccup",
+		"reactive",
+		"transducer",
+		"ui"
 	]
 }

@@ -40,6 +40,10 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"color",
+		"example",
+		"reactive",
+		"transducer",
+		"ui"
 	]
 }

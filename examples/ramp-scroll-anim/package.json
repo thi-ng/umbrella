@@ -42,6 +42,8 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"example",
+		"reactive",
+		"ui"
 	]
 }

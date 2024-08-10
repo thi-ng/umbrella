@@ -47,6 +47,8 @@
 		"generator",
 		"geometry",
 		"low-discrepancy",
+		"reactive",
+		"transducer",
 		"vector",
 		"voronoi"
 	]

@@ -33,6 +33,12 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"canvas",
+		"dsp",
+		"example",
+		"geometry",
+		"reactive",
+		"transducer",
+		"vector"
 	]
 }

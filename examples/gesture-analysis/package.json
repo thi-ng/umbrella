@@ -52,6 +52,7 @@
 		"reactive",
 		"svg",
 		"transducer",
+		"ui",
 		"vector"
 	]
 }

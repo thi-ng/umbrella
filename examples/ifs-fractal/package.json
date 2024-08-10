@@ -42,12 +42,15 @@
 		"2d",
 		"browser",
 		"canvas",
+		"download",
 		"example",
+		"export",
 		"fiber",
 		"float",
 		"fractal",
 		"generative",
 		"image",
+		"matrix",
 		"random",
 		"visualization"
 	]

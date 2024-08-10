@@ -40,6 +40,10 @@
 	},
 	"keywords": [
 		"browser",
-		"example"
+		"color",
+		"example",
+		"geometry",
+		"transducer",
+		"vector"
 	]
 }

@@ -45,6 +45,10 @@
 		"browser",
 		"example",
 		"geometry",
+		"matrix",
+		"transducer",
+		"ui",
+		"vector",
 		"webgl"
 	]
 }

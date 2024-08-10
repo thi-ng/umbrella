@@ -47,7 +47,18 @@
 		"screenshot": "examples/render-audio.png"
 	},
 	"keywords": [
+		"audio",
 		"browser",
-		"example"
+		"download",
+		"dsp",
+		"example",
+		"export",
+		"generative",
+		"generator",
+		"reactive",
+		"synth",
+		"tool",
+		"transducer",
+		"ui"
 	]
 }

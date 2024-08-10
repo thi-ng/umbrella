@@ -44,9 +44,11 @@
 	"keywords": [
 		"2d",
 		"browser",
+		"color",
 		"conversion",
 		"example",
 		"geometry",
+		"matrix",
 		"pool",
 		"random",
 		"webgl"

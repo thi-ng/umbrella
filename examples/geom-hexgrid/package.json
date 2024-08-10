@@ -44,6 +44,8 @@
 		"geometry",
 		"grid",
 		"recursion",
-		"subdivision"
+		"subdivision",
+		"transducer",
+		"vector"
 	]
 }

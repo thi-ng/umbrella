@@ -44,8 +44,10 @@
 		"layout",
 		"math",
 		"reactive",
+		"transducer",
 		"ui",
-		"undo"
+		"undo",
+		"vector"
 	],
 	"browser": {
 		"process": false,

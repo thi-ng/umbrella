@@ -37,14 +37,17 @@
 		"behavior",
 		"boids",
 		"browser",
+		"canvas",
 		"color",
 		"distance",
 		"example",
 		"geometry",
 		"hash",
 		"particles",
+		"reactive",
 		"simulation",
 		"timestep",
+		"transducer",
 		"vector"
 	],
 	"browser": {

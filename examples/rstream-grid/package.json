@@ -56,11 +56,14 @@
 		"browser",
 		"download",
 		"example",
+		"export",
 		"generator",
 		"geometry",
+		"hiccup",
 		"history",
 		"reactive",
 		"svg",
+		"transducer",
 		"ui",
 		"undo"
 	]

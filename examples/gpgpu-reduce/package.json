@@ -47,6 +47,9 @@
 		"gpgpu",
 		"multipass",
 		"pipeline",
+		"shader",
+		"shader-ast",
+		"transducer",
 		"webgl"
 	]
 }

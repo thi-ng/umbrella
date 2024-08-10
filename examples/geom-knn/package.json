@@ -45,6 +45,7 @@
 		"2d",
 		"acceleration",
 		"browser",
+		"canvas",
 		"distance",
 		"example",
 		"geometry",
@@ -52,7 +53,11 @@
 		"neighborhood",
 		"query",
 		"random",
+		"reactive",
 		"spatial",
-		"tree"
+		"transducer",
+		"tree",
+		"ui",
+		"vector"
 	]
 }

@@ -47,6 +47,8 @@
 		"color",
 		"example",
 		"reactive",
-		"svg"
+		"svg",
+		"transducer",
+		"ui"
 	]
 }

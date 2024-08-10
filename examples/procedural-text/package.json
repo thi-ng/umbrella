@@ -48,7 +48,11 @@
 		"screenshot": "examples/procedural-text.jpg"
 	},
 	"keywords": [
+		"binary",
 		"browser",
-		"example"
+		"example",
+		"reactive",
+		"transducer",
+		"ui"
 	]
 }

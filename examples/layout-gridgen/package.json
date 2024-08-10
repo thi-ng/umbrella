@@ -51,6 +51,8 @@
 		"layout",
 		"random",
 		"recursion",
-		"subdivision"
+		"subdivision",
+		"transducer",
+		"ui"
 	]
 }

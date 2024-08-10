@@ -58,7 +58,10 @@
 		"interactive",
 		"rdom",
 		"reactive",
+		"shader",
+		"shader-ast",
 		"tool",
+		"transducer",
 		"ui",
 		"webgl"
 	]

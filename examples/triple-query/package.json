@@ -47,7 +47,10 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
+		"atom",
 		"browser",
-		"example"
+		"example",
+		"transducer",
+		"ui"
 	]
 }

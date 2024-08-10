@@ -42,12 +42,14 @@
 	},
 	"keywords": [
 		"2d",
+		"atom",
 		"browser",
 		"example",
 		"generator",
 		"interactive",
 		"reactive",
 		"svg",
+		"transducer",
 		"ui",
 		"visualization",
 		"waveform"

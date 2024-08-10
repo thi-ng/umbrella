@@ -48,6 +48,7 @@
 	"keywords": [
 		"2d",
 		"browser",
+		"canvas",
 		"example",
 		"geometry",
 		"graph",
@@ -55,7 +56,10 @@
 		"poisson",
 		"random",
 		"span",
+		"transducer",
 		"tree",
+		"ui",
+		"vector",
 		"voronoi"
 	]
 }

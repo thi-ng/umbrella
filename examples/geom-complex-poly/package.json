@@ -47,7 +47,10 @@
 	"keywords": [
 		"2d",
 		"browser",
+		"canvas",
+		"color",
 		"example",
-		"geometry"
+		"geometry",
+		"transducer"
 	]
 }
