@@ -67,7 +67,15 @@ var...
 Variables are case-sensitive (i.e. `NAME` is a different var than `name`) and
 can also be re-defined overridden in different parts of the document.
 
-Variables are referenced via: `<name>`:
+Variables are referenced via: `<name>`. By default, an error will be thrown if a
+variable cannot be resolved. Via the `missing` option given to `generate()` a
+default fallback value can be defined, which when given will **not** trigger an
+error in these cases.
+
+> [!NOTE]
+> The special variable reference `<empty>` can be used to produce an empty
+> string (or used as single value placeholder option inside another variable
+> definition). This variable can not be redefined.
 
 ```ts tangle:export/readme-intro.ts
 import { generate } from "@thi.ng/proctext";
@@ -358,13 +366,15 @@ For Node.js REPL:
 const pro = await import("@thi.ng/proctext");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.14 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.33 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)

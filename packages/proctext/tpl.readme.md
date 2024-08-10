@@ -37,7 +37,15 @@ var...
 Variables are case-sensitive (i.e. `NAME` is a different var than `name`) and
 can also be re-defined overridden in different parts of the document.
 
-Variables are referenced via: `<name>`:
+Variables are referenced via: `<name>`. By default, an error will be thrown if a
+variable cannot be resolved. Via the `missing` option given to `generate()` a
+default fallback value can be defined, which when given will **not** trigger an
+error in these cases.
+
+> [!NOTE]
+> The special variable reference `<empty>` can be used to produce an empty
+> string (or used as single value placeholder option inside another variable
+> definition). This variable can not be redefined.
 
 ```ts tangle:export/readme-intro.ts
 import { generate } from "@thi.ng/proctext";
