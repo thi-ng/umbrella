@@ -80,6 +80,9 @@
 		},
 		"./reverse": {
 			"default": "./reverse.js"
+		},
+		"./string": {
+			"default": "./string.js"
 		}
 	},
 	"thi.ng": {

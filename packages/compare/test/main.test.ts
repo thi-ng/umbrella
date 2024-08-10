@@ -4,6 +4,7 @@ import {
 	compareByKeys2,
 	compareByKeys3,
 	compareByKeys4,
+	compareLex,
 } from "../src/index.js";
 
 test("compareByKey", () => {
@@ -96,4 +97,10 @@ test("compareByKeys4", () => {
 			)
 		)
 	).toEqual(res);
+});
+
+test("compareLex", () => {
+	expect(
+		["2d", "16-bit", "base-36", "8bit", "1d", "base8"].sort(compareLex)
+	).toEqual(["1d", "2d", "8bit", "16-bit", "base8", "base-36"]);
 });
