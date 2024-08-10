@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-22T13:15:57Z
+- **Last updated**: 2024-08-10T15:03:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.6.0) (2024-08-10)
+
+#### 🚀 Features
+
+- add `$inputToggle()` HOF event handler ([50e0c29](https://github.com/thi-ng/umbrella/commit/50e0c29))
 
 ### [1.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@1.5.1) (2024-07-06)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-22T13:15:57Z
+- **Last updated**: 2024-08-10T15:03:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.4.0) (2024-08-10)
+
+#### 🚀 Features
+
+- add compareLex(), add tests ([015687c](https://github.com/thi-ng/umbrella/commit/015687c))
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.3.0) (2024-03-29)
 

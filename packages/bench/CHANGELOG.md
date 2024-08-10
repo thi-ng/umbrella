@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-07-22T13:15:57Z
+- **Last updated**: 2024-08-10T15:03:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bench@3.6.0) (2024-08-10)
+
+#### 🚀 Features
+
+- add poisson-image example ([87ec9e7](https://github.com/thi-ng/umbrella/commit/87ec9e7))
+  - update readmes
+  - cc @nkint :)
 
 ### [3.5.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/bench@3.5.7) (2024-06-21)
 
