@@ -41,11 +41,11 @@
 		"@thi.ng/wasm-api": "^1.6.6"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.47.0",
+		"@microsoft/api-extractor": "^7.47.5",
 		"@thi.ng/wasm-api-bindgen": "^0.5.11",
 		"esbuild": "^0.23.0",
-		"typedoc": "^0.26.3",
-		"typescript": "^5.5.3"
+		"typedoc": "^0.26.5",
+		"typescript": "^5.5.4"
 	},
 	"keywords": [
 		"browser",

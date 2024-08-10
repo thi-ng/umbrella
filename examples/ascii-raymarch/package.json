@@ -54,7 +54,7 @@
 		"screenshot": "examples/ascii-raymarch.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.5.3",
-		"vite": "^5.3.3"
+		"typescript": "^5.5.4",
+		"vite": "^5.4.0"
 	}
 }

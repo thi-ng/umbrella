@@ -40,7 +40,7 @@
 		"@thi.ng/random": "^4.0.1"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.47.0",
+		"@microsoft/api-extractor": "^7.47.5",
 		"@thi.ng/api": "^8.11.7",
 		"@thi.ng/dsp": "^4.7.40",
 		"@thi.ng/dsp-io-wav": "^2.1.127",
@@ -48,8 +48,8 @@
 		"@thi.ng/transducers": "^9.0.12",
 		"@thi.ng/vectors": "^7.11.6",
 		"esbuild": "^0.23.0",
-		"typedoc": "^0.26.3",
-		"typescript": "^5.5.3"
+		"typedoc": "^0.26.5",
+		"typescript": "^5.5.4"
 	},
 	"keywords": [
 		"1d",
