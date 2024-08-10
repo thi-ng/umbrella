@@ -149,7 +149,7 @@ iterable
 - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
 - [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing
 - [@thi.ng/rdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components) - Collection of unstyled, customizable components for [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations
 - [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/develop/packages/zipper) - Functional tree editing, manipulation & navigation
 
 ### Blog posts
@@ -196,7 +196,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-10 projects in this repo's
+11 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -204,6 +204,7 @@ directory are using this package:
 |:-------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                      |                                                                   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)              |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history   | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)            |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdiff.avif" width="240"/>                        | Applying thi.ng/hdiff to generate static HTML diff output              | [Demo](https://demo.thi.ng/umbrella/hdiff/)                       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdiff)                       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/>   | Generating pure CSS image transitions                                  | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-css-image-transition) |
 |                                                                                                                                      | Hiccup / hdom DOM hydration example                                    | [Demo](https://demo.thi.ng/umbrella/hydrate-basics/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)              |

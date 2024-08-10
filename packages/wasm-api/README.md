@@ -378,7 +378,7 @@ please also consult the information in
 
 ## Support packages
 
-- [@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen) - Polyglot bindings code generators for hybrid JS & WebAssembly projects
+- [@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen) - Polyglot bindings code generators (TS/JS, Zig, C11) for hybrid WebAssembly projects
 - [@thi.ng/wasm-api-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas) - HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications
 - [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom) - Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications
 - [@thi.ng/wasm-api-schedule](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-schedule) - Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps

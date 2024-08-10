@@ -19,6 +19,7 @@
 - [Installation](#installation)
   - [CLI installation & usage](#cli-installation--usage)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [computeDiff()](#computediff)
   - [generateHtml()](#generatehtml)
@@ -98,6 +99,16 @@ npx hdiff packages/webgl/src/shader.ts develop~500 HEAD > diff.html
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Screenshot                                                                                                    | Description                                               | Live demo                                   | Source                                                                   |
+|:--------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdiff.avif" width="240"/> | Applying thi.ng/hdiff to generate static HTML diff output | [Demo](https://demo.thi.ng/umbrella/hdiff/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdiff) |
 
 ## API
 

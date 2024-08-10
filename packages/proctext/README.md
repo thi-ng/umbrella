@@ -366,7 +366,7 @@ For Node.js REPL:
 const pro = await import("@thi.ng/proctext");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.33 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.34 KB
 
 ## Dependencies
 

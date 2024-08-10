@@ -59,12 +59,6 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-For Node.js REPL:
-
-```js
-const wac = await import("@thi.ng/wasm-api-canvas");
-```
-
 Package sizes (brotli'd, pre-treeshake): ESM: 2.65 KB
 
 ## Dependencies

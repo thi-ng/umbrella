@@ -63,7 +63,7 @@
 
 ## About
 
-Lightweight transducer implementations for ES6 / TypeScript.
+Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations.
 
 This library provides altogether ~170 transducers, reducers, sequence generators
 (ES6 generators/iterators) and additional supporting functions for composing
@@ -167,7 +167,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-71 projects in this repo's
+72 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -234,6 +234,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                                                   | [Demo](https://demo.thi.ng/umbrella/svg-resample/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo                                          | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png" width="240"/>                   | hdom based slide deck viewer & slides from my ClojureX 2018 keynote                                     | [Demo](http://media.thi.ng/2018/talks/clojurex/index.html) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>                | Tree-based UI to find & explore thi.ng projects via their associated keywords                           | [Demo](https://demo.thi.ng/umbrella/thing-browser/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                                                  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>                  | Triple store query results & sortable table                                                             | [Demo](https://demo.thi.ng/umbrella/triple-query/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                                             | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)      |

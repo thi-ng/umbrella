@@ -45,7 +45,7 @@
 
 ## About
 
-Polyglot bindings code generators for hybrid JS & WebAssembly projects. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Polyglot bindings code generators (TS/JS, Zig, C11) for hybrid WebAssembly projects. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
 
 Without any additional help, current data exchange between a WebAssembly module
 and the JS/TS host application is restricted to simple numeric values. Not even

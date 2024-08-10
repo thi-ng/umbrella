@@ -37,7 +37,7 @@ for a concrete usage example...
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransclude%5D+in%3Atitle)
 
@@ -45,6 +45,7 @@ for a concrete usage example...
 
 - [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
 - [@thi.ng/markdown-table](https://github.com/thi-ng/umbrella/tree/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
+- [@thi.ng/proctext](https://github.com/thi-ng/umbrella/tree/develop/packages/proctext) - Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions
 - [@thi.ng/tangle](https://github.com/thi-ng/umbrella/tree/develop/packages/tangle) - Literate programming code block tangling / codegen utility, inspired by org-mode & noweb
 
 ## Installation

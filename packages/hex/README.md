@@ -25,7 +25,7 @@
 
 ## About
 
-Hex string formatters for 4/8/16/24/32/48/64bit words.
+Hex string formatters for 4/8/16/24/32/48/64bit words, hexdump formatting of binary data.
 
 ## Status
 

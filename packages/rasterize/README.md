@@ -32,7 +32,7 @@
 
 ## About
 
-2D shape drawing & rasterization.
+Headless 2D shape drawing, filling & rasterization for arbitrary targets/purposes (no canvas required).
 
 The functions in this package can be used with any
 [`IGrid2D`](https://docs.thi.ng/umbrella/api/interfaces/IGrid2D.html) compatible

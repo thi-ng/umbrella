@@ -75,17 +75,18 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Five projects in this repo's
+Six projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                             | Description                                                        | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>      | k-means clustering visualization                                   | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/> | Randomized 4-point 2D color gradient image generator               | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>     | Animated, iterative polygon subdivisions & visualization           | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>  | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>  | Responsive & reactively computed stacked column layout             | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)  |
+| Screenshot                                                                                                             | Description                                                                   | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>      | k-means clustering visualization                                              | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/> | Randomized 4-point 2D color gradient image generator                          | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>     | Animated, iterative polygon subdivisions & visualization                      | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>  | Responsive image gallery with tag-based Jaccard similarity ranking            | [Demo](https://demo.thi.ng/umbrella/related-images/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>  | Responsive & reactively computed stacked column layout                        | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>  | Tree-based UI to find & explore thi.ng projects via their associated keywords | [Demo](https://demo.thi.ng/umbrella/thing-browser/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)   |
 
 ## API
 
