@@ -46,6 +46,7 @@ interface.
 - [`compareByKeys4()`](https://docs.thi.ng/umbrella/compare/functions/compareByKeys4.html)
 - [`compareLengthAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareLengthAsc.html)
 - [`compareLengthDesc()`](https://docs.thi.ng/umbrella/compare/functions/compareLengthDesc.html)
+- [`compareLex()`](https://docs.thi.ng/umbrella/compare/functions/compareLex.html)
 - [`compareNumAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumAsc.html)
 - [`compareNumDesc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumDesc.html)
 - [`reverse()`](https://docs.thi.ng/umbrella/compare/functions/reverse.html)
@@ -93,7 +94,7 @@ For Node.js REPL:
 const cmp = await import("@thi.ng/compare");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 629 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 804 bytes
 
 ## Dependencies
 
@@ -103,16 +104,17 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Four projects in this repo's
+Five projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                                                 | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>   | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-csv-piechart.png" width="240"/> | Piechart visualization of CSV data                                          | [Demo](https://demo.thi.ng/umbrella/geom-csv-piechart/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-csv-piechart) |
-|                                                                                                                          | Full umbrella repo doc string search w/ paginated results                   | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>      | Triple store query results & sortable table                                 | [Demo](https://demo.thi.ng/umbrella/triple-query/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)      |
+| Screenshot                                                                                                               | Description                                                                   | Live demo                                               | Source                                                                               |
+|:-------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>   | Color palette generation via dominant color extraction from uploaded images   | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-csv-piechart.png" width="240"/> | Piechart visualization of CSV data                                            | [Demo](https://demo.thi.ng/umbrella/geom-csv-piechart/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-csv-piechart) |
+|                                                                                                                          | Full umbrella repo doc string search w/ paginated results                     | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>    | Tree-based UI to find & explore thi.ng projects via their associated keywords | [Demo](https://demo.thi.ng/umbrella/thing-browser/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>      | Triple store query results & sortable table                                   | [Demo](https://demo.thi.ng/umbrella/triple-query/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)      |
 
 ## API
 

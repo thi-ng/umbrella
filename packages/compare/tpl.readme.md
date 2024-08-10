@@ -20,6 +20,7 @@ interface.
 - [`compareByKeys4()`](https://docs.thi.ng/umbrella/compare/functions/compareByKeys4.html)
 - [`compareLengthAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareLengthAsc.html)
 - [`compareLengthDesc()`](https://docs.thi.ng/umbrella/compare/functions/compareLengthDesc.html)
+- [`compareLex()`](https://docs.thi.ng/umbrella/compare/functions/compareLex.html)
 - [`compareNumAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumAsc.html)
 - [`compareNumDesc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumDesc.html)
 - [`reverse()`](https://docs.thi.ng/umbrella/compare/functions/reverse.html)
