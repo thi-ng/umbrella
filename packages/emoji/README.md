@@ -30,7 +30,11 @@ Bi-directional lookup tables mapping emoji names & their characters.
 There're lots of other emoji packages available, most of them with various
 additional functionality & dependencies. In contrast, this package merely
 provides simple bi-directional mappings between emoji names & their actual
-characters. Nothing more, nothing less.
+characters.
+
+The function [`replaceNames()`]() can be used to replace all _known_
+`:emoji_name:` occurrences in a given string with their corresponding emoji
+character...
 
 ### References
 
@@ -76,7 +80,7 @@ For Node.js REPL:
 const emoji = await import("@thi.ng/emoji");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.78 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.84 KB
 
 ## Dependencies
 
@@ -86,14 +90,17 @@ None
 
 [Generated API docs](https://docs.thi.ng/umbrella/emoji/)
 
-```ts
-import { EMOJI, NAMES } from "@thi.ng/emoji";
+```ts tangle:export/readme.ts
+import { EMOJI, NAMES, replaceNames } from "@thi.ng/emoji";
 
-EMOJI["minibus"]
+console.log(EMOJI["minibus"]);
 // "🚐"
 
-NAMES["🚐"]
+console.log(NAMES["🚐"]);
 // "minibus"
+
+console.log(replaceNames("Amazing :grin::heart_eyes::invalid:!"));
+// "Amazing 😁😍:invalid:!"
 ```
 
 ## Authors
