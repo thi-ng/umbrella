@@ -74,6 +74,9 @@
 		},
 		"./names": {
 			"default": "./names.js"
+		},
+		"./replace": {
+			"default": "./replace.js"
 		}
 	},
 	"thi.ng": {
