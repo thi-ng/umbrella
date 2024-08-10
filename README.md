@@ -48,9 +48,15 @@
 > type of music." &mdash;
 > [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901)
 > via Twitter
-
-**Please visit [thi.ng](https://thi.ng) for additional information & [topic based
-search](https://thi.ng/#tags) of packages relevant to your use cases...**
+>
+> Please visit [thi.ng](https://thi.ng) for additional information. You might
+> also find the following tools useful to find & explore projects in this vast
+> ecosystem:
+>
+> - [thi.ng tag browser](https://demo.thi.ng/umbrella/thing-browser/)
+> - [tag-based search on the thi.ng website](https://thi.ng/#tags)
+> - [repo-wide doc string search](https://demo.thi.ng/umbrella/rdom-search-docs/)
+> - [generated API docs](https://docs.thi.ng/)
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
@@ -300,14 +306,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-08-01
+As of: 2024-08-10
 
 | Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
 |:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/blurhash`](./packages/blurhash) | [![version](https://img.shields.io/npm/v/@thi.ng/blurhash.svg)](https://www.npmjs.com/package/@thi.ng/blurhash) | [changelog](./packages/blurhash/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/cache`](./packages/cache)       | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)       | [changelog](./packages/cache/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/canvas`](./packages/canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/canvas.svg)](https://www.npmjs.com/package/@thi.ng/canvas)     | [changelog](./packages/canvas/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel`](./packages/pixel)       | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)       | [changelog](./packages/pixel/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/compare`](./packages/compare)   | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)   | [changelog](./packages/compare/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/emoji`](./packages/emoji)       | [![version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)       | [changelog](./packages/emoji/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)         | [changelog](./packages/geom/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/proctext`](./packages/proctext) | [![version](https://img.shields.io/npm/v/@thi.ng/proctext.svg)](https://www.npmjs.com/package/@thi.ng/proctext) | [changelog](./packages/proctext/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom`](./packages/rdom)         | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)         | [changelog](./packages/rdom/CHANGELOG.md)     |
 
 ### Fundamentals
 
