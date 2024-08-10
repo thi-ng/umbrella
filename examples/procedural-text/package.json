@@ -21,6 +21,7 @@
 		"vite": "^5.3.3"
 	},
 	"dependencies": {
+		"@thi.ng/emoji": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/proctext": "workspace:^",
 		"@thi.ng/random": "workspace:^",

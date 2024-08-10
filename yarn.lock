@@ -1898,6 +1898,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/procedural-text@workspace:examples/procedural-text"
   dependencies:
+    "@thi.ng/emoji": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/proctext": "workspace:^"
@@ -4563,7 +4564,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/emoji@npm:^0.1.44, @thi.ng/emoji@workspace:packages/emoji":
+"@thi.ng/emoji@npm:^0.1.44, @thi.ng/emoji@workspace:^, @thi.ng/emoji@workspace:packages/emoji":
   version: 0.0.0-use.local
   resolution: "@thi.ng/emoji@workspace:packages/emoji"
   dependencies:

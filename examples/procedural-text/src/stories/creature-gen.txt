@@ -1,0 +1,134 @@
+[syllable]
+glo
+arb
+tru
+rip
+pol
+fra
+lus
+eng
+ang
+ear
+fur
+bar
+ick
+han
+
+[name]
+<syllable><syllable>
+<syllable><syllable>
+<syllable><syllable><syllable>
+<syllable><syllable><syllable><syllable>
+
+[env]
+beach
+deepsea
+desert
+glacier
+ocean
+sand
+swamp
+tidalpool
+tree
+water
+wetland
+woodland
+
+[kind]
+herbivore
+predator
+
+[predator.behavior]
+aggressive
+easily agitated
+high-energy
+hyperactive
+
+[predator.food]
+defenseless animals of all sizes
+
+[predator.consume]
+rips <with_organ>
+slays <with_organ>
+shreds into bitesize pieces <with_organ>
+
+[predator.organ]
+fangs
+horns
+multi-row set of teeth
+sabre teeth
+sharp beak
+spikey tail
+
+[herbivore.behavior]
+low-energy
+sleepy
+calm
+friendly
+
+[herbivore.food]
+dropped fruits
+juicy grasses
+fresh leaves
+flower nectar
+tree resins
+
+[herbivore.consume]
+chews on <with_organ>
+gorges on <with_organ>
+slurps in <with_organ>
+assimilates via its <skintype> skin
+
+[herbivore.organ]
+<probtype> proboscis
+mouth
+
+[probtype]
+long
+stretchable
+flexible
+wide
+funnel-like
+
+[skintype]
+multilayered <skintype>
+porous
+slimy
+
+[symbfreq]
+sometimes
+frequently
+occasionally
+from time to time
+
+[symbtype]
+weak
+strong
+
+[symbcause]
+behavior
+body size
+scent (<scent_emoji>)
+presence
+secretions
+
+# emojis are only supported via their `:name:` syntax
+
+[scent_emoji]
+:face_vomiting:
+:face_with_spiral_eyes:
+
+[symbeffect]
+attracting other food sources
+repelling parasites
+
+[with_organ]
+with its <type.organ>
+
+<!hero=name;cap>
+<!hero2=name;cap>
+<!type=kind>
+<!type2=kind>
+<!reason=symbcause>
+
+The <hero> is <type.behavior;withArticle> <habitat=env>-dwelling <type> living off <type.food>, which it <type.consume>. <symbfreq;cap> it forms a <symbtype> symbiosis with <hero2>, usually a more <type2.behavior> <type2>, but <hero>'s <reason;isAre> beneficial for <symbeffect>.

@@ -1,3 +1,4 @@
+import { replaceNames } from "@thi.ng/emoji";
 import { br, button, div, h1, main, para, textArea } from "@thi.ng/hiccup-html";
 import { generate } from "@thi.ng/proctext";
 import { SYSTEM } from "@thi.ng/random";
@@ -6,18 +7,20 @@ import { staticDropdownAlt } from "@thi.ng/rdom-components";
 import { reactive, resolve, stream } from "@thi.ng/rstream";
 import { filter, interpose } from "@thi.ng/transducers";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
-import STORY1 from "./stories/alice-bob.txt";
-import STORY2 from "./stories/modifiers.txt";
-import STORY3 from "./stories/hidden-assignment.txt";
-import STORY4 from "./stories/dynamic-lookups.txt";
-import STORY5 from "./stories/ngrams-5.txt";
+import ALICE_BOB from "./stories/alice-bob.txt";
+import CREATURE from "./stories/creature-gen.txt";
+import DYN_LOOKUP from "./stories/dynamic-lookups.txt";
+import HIDDEN from "./stories/hidden-assignment.txt";
+import MODIFIERS from "./stories/modifiers.txt";
+import NGRAMS from "./stories/ngrams-5.txt";
 
 const STORIES = {
-	"Alice & Bob": STORY1,
-	Modifiers: STORY2,
-	"Hidden assignments": STORY3,
-	"Dynamic lookups": STORY4,
-	"N-grams": STORY5,
+	"Alice & Bob": ALICE_BOB,
+	Modifiers: MODIFIERS,
+	"Hidden assignments": HIDDEN,
+	"Dynamic lookups": DYN_LOOKUP,
+	"Creature generator": CREATURE,
+	"N-grams": NGRAMS,
 	Custom: "",
 };
 
@@ -57,7 +60,11 @@ const generated = regenerate
 		const input = storyInput.deref();
 		if (!input) return div();
 		// parse input & generate story
-		const result = await generate(input, { vars: {}, rnd: SYSTEM });
+		const result = await generate(input, {
+			vars: {},
+			rnd: SYSTEM,
+			// missing: (id) => `<MISSING: ${id}>`,
+		});
 		// possibly return error message
 		if (result.err) {
 			return div(".error", {}, result.err.message);
@@ -65,9 +72,8 @@ const generated = regenerate
 			return div(
 				".output",
 				{},
-				// post-process generated text to handle paragraphs & linebreaks
-				...result.result
-					.trim()
+				// post-process generated text to handle emoji names, paragraphs & linebreaks
+				...replaceNames(result.result.trim())
 					.split(/\n{2,}/g)
 					.map((x) =>
 						para(".mt0", {}, interpose(br(), x.split("\n")))
