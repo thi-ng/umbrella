@@ -33,6 +33,7 @@
 	"keywords": [
 		"browser",
 		"canvas",
+		"dsl",
 		"example",
 		"shader",
 		"shader-ast",

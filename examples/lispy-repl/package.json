@@ -29,6 +29,7 @@
 		"@thi.ng/transducers": "workspace:^"
 	},
 	"keywords": [
+		"ast",
 		"browser",
 		"compiler",
 		"defmulti",

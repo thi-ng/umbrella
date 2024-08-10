@@ -36,10 +36,16 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
+		"2d",
+		"automata",
 		"binary",
 		"browser",
+		"cellular",
 		"example",
+		"generative",
+		"interactive",
 		"transducer",
-		"ui"
+		"ui",
+		"visualization"
 	]
 }

@@ -51,10 +51,12 @@
 		"vite": "^5.3.3"
 	},
 	"keywords": [
+		"ast",
 		"binary",
 		"browser",
 		"codegen",
 		"download",
+		"dsl",
 		"example",
 		"export",
 		"generator",

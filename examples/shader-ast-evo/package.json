@@ -47,6 +47,7 @@
 		"animation",
 		"browser",
 		"codegen",
+		"dsl",
 		"evolutionary",
 		"example",
 		"generator",

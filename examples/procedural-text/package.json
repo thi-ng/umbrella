@@ -51,8 +51,14 @@
 	"keywords": [
 		"binary",
 		"browser",
+		"codegen",
+		"dsl",
 		"example",
+		"generative",
+		"generator",
 		"reactive",
+		"syntax",
+		"text",
 		"transducer",
 		"ui"
 	]

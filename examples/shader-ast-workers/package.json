@@ -54,6 +54,7 @@
 		"browser",
 		"canvas",
 		"color",
+		"dsl",
 		"example",
 		"fork-join",
 		"raymarch",

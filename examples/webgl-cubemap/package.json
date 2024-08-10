@@ -50,6 +50,7 @@
 		"browser",
 		"canvas",
 		"cubemap",
+		"dsl",
 		"dsp",
 		"example",
 		"geometry",

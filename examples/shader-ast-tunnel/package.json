@@ -45,6 +45,7 @@
 		"browser",
 		"canvas",
 		"color",
+		"dsl",
 		"example",
 		"render",
 		"shader",
