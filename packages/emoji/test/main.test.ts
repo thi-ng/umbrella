@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { EMOJI, NAMES } from "../src/index.js";
+import { EMOJI, NAMES, replaceNames } from "../src/index.js";
 
 test("roundtrip", () => {
 	Object.keys(EMOJI).forEach((id) => {
@@ -15,4 +15,10 @@ test("no-hyphens", () => {
 		(id) => !(ignore.includes(id) || id.indexOf("-") == -1)
 	);
 	expect(invalid).toEqual([]);
+});
+
+test("replaceNames", () => {
+	expect(replaceNames("Amazing :grin::heart_eyes::invalid:!")).toBe(
+		"Amazing 😁😍:invalid:!"
+	);
 });
