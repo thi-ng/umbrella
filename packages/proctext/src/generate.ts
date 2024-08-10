@@ -10,12 +10,23 @@ import { capitalize, lower, upper } from "@thi.ng/strings/case";
 import type { GeneratorContext } from "./api.js";
 
 /**
- * Default variable modifiers (capitalize, uppercase, lowercase)
+ * Default variable modifiers
+ *
+ * @remarks
+ * Current list:
+ *
+ * - `cap`: capitalize body
+ * - `uc`: uppercase
+ * - `lc`: lowercase
+ * - `isAre`: append `is` or `are` verb (naive, english only)
+ * - `withArticle`: prepend `a` or `an` article (naive, english only)
  */
 export const DEFAULT_MODIFIERS: GeneratorContext["mods"] = {
 	cap: capitalize,
 	uc: upper,
 	lc: lower,
+	withArticle: (x) => (/[aeiou]/i.test(x[0]) ? "an " : "a ") + x,
+	isAre: (x) => x + (x.endsWith("s") ? " are" : " is"),
 };
 
 /**
