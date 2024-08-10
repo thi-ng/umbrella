@@ -38,7 +38,9 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.7",
 		"@thi.ng/arrays": "^2.9.13",
+		"@thi.ng/checks": "^3.6.9",
 		"@thi.ng/defmulti": "^3.0.45",
+		"@thi.ng/errors": "^2.5.13",
 		"@thi.ng/object-utils": "^1.1.0",
 		"@thi.ng/parse": "^2.4.48",
 		"@thi.ng/random": "^4.0.1",

@@ -1,4 +1,4 @@
-import type { Fn, MaybePromise } from "@thi.ng/api";
+import type { Fn, FnU, MaybePromise } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 
 export interface Var {
@@ -34,4 +34,10 @@ export interface GeneratorContext {
 	 * @defaultValue 10
 	 */
 	maxTrials: number;
+	/**
+	 * If given, variable references which cannot be resolved will be replaced
+	 * by this string. If undefined (default), throws an error when unable to
+	 * resolve a var.
+	 */
+	missing?: string | FnU<string>;
 }

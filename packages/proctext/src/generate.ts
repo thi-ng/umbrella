@@ -1,5 +1,7 @@
 import { peek } from "@thi.ng/arrays/peek";
+import { isString } from "@thi.ng/checks/is-string";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
+import { defError } from "@thi.ng/errors/deferror";
 import { mergeDeepObj } from "@thi.ng/object-utils/merge-deep";
 import type { ContextOpts, ParseScope } from "@thi.ng/parse";
 import { defContext } from "@thi.ng/parse/context";
@@ -8,6 +10,15 @@ import { SYSTEM } from "@thi.ng/random/system";
 import { pickRandomUnique } from "@thi.ng/random/unique-indices";
 import { capitalize, lower, upper } from "@thi.ng/strings/case";
 import type { GeneratorContext } from "./api.js";
+
+export const CyclicReferenceError = defError(
+	() => "error expanding variable",
+	(id) => `: "${id}" (cycle detected)`
+);
+
+export const UnknownModifierError = defError(() => "unknown modifier");
+
+export const UnknownVariableError = defError(() => "unknown variable");
 
 /**
  * Default variable modifiers
@@ -97,6 +108,7 @@ export const generate = async (
 					vars: {},
 					mods: DEFAULT_MODIFIERS,
 					rnd: SYSTEM,
+					maxHist: 1,
 					maxTrials: 10,
 				},
 				ctx
@@ -216,8 +228,14 @@ const __expandVar = async (
 	ctx: GeneratorContext
 ) => {
 	const id = __resolveVarName(children![0].result, ctx);
+	if (id === "empty") return "";
 	const $var = ctx.vars[id];
-	if (!$var) throw new Error(`unknown variable: ${id}`);
+	if (!$var) {
+		if (ctx.missing !== undefined) {
+			return isString(ctx.missing) ? ctx.missing : ctx.missing(id);
+		}
+		throw new UnknownVariableError(id);
+	}
 	// pick a new random value (attempt different choice than last time)
 	pickRandomUnique(1, $var.opts, $var.history, ctx.maxTrials, ctx.rnd);
 	// store value as last pick for this var (to ensure next pick will be different)
@@ -228,11 +246,9 @@ const __expandVar = async (
 	const result = await generate(choice, ctx);
 	// bail if there were any errors
 	if (result.err) {
-		throw new Error(
-			result.err.message.includes("recursion")
-				? `error expanding variable: ${id} (cycle detected)`
-				: result.err.message
-		);
+		throw result.err.message.includes("recursion")
+			? new CyclicReferenceError(id)
+			: result.err;
 	}
 	// apply modifiers in sequence, if any...
 	let value = result.result;
@@ -240,7 +256,7 @@ const __expandVar = async (
 		for (let mod of children![1].children) {
 			const modFn = ctx.mods[mod.result];
 			if (modFn) value = await modFn(value);
-			else throw new Error(`unknown modifier: ${mod.result}`);
+			else throw new UnknownModifierError(mod.result);
 		}
 	}
 	return value;
