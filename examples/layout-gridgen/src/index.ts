@@ -70,10 +70,6 @@ const defCell = (box: LayoutBox, depth: number): ComponentLike => {
 	);
 };
 
-// helper predicate to check if all column offsets/heights in the layout are equal
-const isEqualized = (layout: StackedLayout) =>
-	Math.min(...layout.offsets) === Math.max(...layout.offsets);
-
 // lazy & recursive grid cell generator: draws `num` random-sized cells from the
 // given layout generator and potentially nests itself up to `maxDepth`.
 // the resulting iterator yields individual <div> elements (in thi.ng/hiccup
@@ -106,7 +102,7 @@ const cellIterator = (
 				if (largest[0] < span[0] && largest[1] > 0) span = largest;
 			} else {
 				// fill up remaining bottom gap(s) then stop
-				if (isEqualized(layout)) return;
+				if (layout.isEqualized()) return;
 				// for each box limit available space to max configured (to avoid super-large cells)
 				span = layout.availableSpan([MAX_SPAN, MAX_SPAN]);
 			}
