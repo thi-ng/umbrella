@@ -111,6 +111,13 @@ export class StackedLayout extends GridLayout {
 		this.offsets.fill(newY, this.currCol, this.currCol + this.currSpan);
 		this.parent && this.parent.propagateSize(newY);
 	}
+
+	/**
+	 * Returns true if all column offsets/heights in the layout are equal.
+	 */
+	isEqualized() {
+		return Math.min(...this.offsets) === Math.max(...this.offsets);
+	}
 }
 
 /**
