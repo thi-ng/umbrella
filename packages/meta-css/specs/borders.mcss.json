@@ -40,6 +40,28 @@
 			"values": { "100": "100%", "pill": "9999px" }
 		},
 		{
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
+			"name": "br-pill-<vid>",
+			"props": {
+				"border-top<var>-radius": "<v>",
+				"border-bottom<var>-radius": "<v>"
+			},
+			"values": [50],
+			"unit": "%",
+			"vars": ["l", "r"]
+		},
+		{
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
+			"name": "br-pill-<vid>",
+			"props": {
+				"border<var>-left-radius": "<v>",
+				"border<var>-right-radius": "<v>"
+			},
+			"values": [50],
+			"unit": "%",
+			"vars": ["t", "b"]
+		},
+		{
 			"doc": { "group": "border width", "desc": "<var> <v>" },
 			"name": "bw<vid><k>",
 			"props": {
