@@ -4,7 +4,10 @@ import { safeDiv } from "./safe-div.js";
 
 /**
  * Produces a new function which computes derivative of the given single-arg
- * function. The extra optional arg `eps` is used to define the step width for
+ * function.
+ *
+ * @remarks
+ * The extra optional arg `eps` is used to define the step width for
  * computing derived values:
  *
  * `f'(x) = (f(x + eps) - f(x)) / eps`
@@ -24,9 +27,7 @@ export const derivative =
 		(f(x + eps) - f(x)) / eps;
 
 /**
- * Computes solution for linear equation: `ax + b = 0`.
- *
- * Note: Returns 0 iff `a == 0`
+ * Computes solution for linear equation: `ax + b = 0`. Returns 0 iff `a == 0`
  *
  * @param a - slope
  * @param b - constant offset
@@ -35,8 +36,11 @@ export const solveLinear: FnN2 = (a, b) => safeDiv(-b, a);
 
 /**
  * Computes solutions for quadratic equation: `ax^2 + bx + c = 0`. Returns array
- * of real solutions. Note: `a` MUST NOT be zero. If the quadratic term is
- * missing, use {@link solveLinear} instead.
+ * of real solutions.
+ *
+ * @remarks
+ * `a` MUST NOT be zero. If the quadratic term is missing, use
+ * {@link solveLinear} instead.
  *
  * - https://en.wikipedia.org/wiki/Quadratic_function
  * - https://en.wikipedia.org/wiki/Quadratic_equation
