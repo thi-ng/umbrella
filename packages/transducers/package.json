@@ -422,6 +422,9 @@
 		"./push-copy": {
 			"default": "./push-copy.js"
 		},
+		"./push-keys": {
+			"default": "./push-keys.js"
+		},
 		"./push-sort": {
 			"default": "./push-sort.js"
 		},
