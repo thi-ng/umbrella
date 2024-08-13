@@ -24,8 +24,12 @@ import { debounce, reactive, type Stream } from "@thi.ng/rstream";
 import { groupByObj } from "@thi.ng/transducers";
 import {
 	ASSET_BASE_URL,
+	DEMO_BASE_URL,
+	DOCS_BASE_URL,
 	EXAMPLE_BASE_URL,
 	GLOSSARY_URL,
+	LINK_TARGET,
+	MAX_RELATED_TAGS,
 	WIKI_URL,
 	type Item,
 } from "./api.js";
@@ -69,7 +73,7 @@ const branch = (items: Item[], existing: string[]): ComponentLike => {
 const branchBody = (items: Item[], existing: string[]) => {
 	const selItems = taggedItems(items, existing);
 	const sharedTags = sortedDifference(
-		commonTags(selItems),
+		commonTags(selItems, MAX_RELATED_TAGS),
 		new Set(existing)
 	);
 	return div(
@@ -117,13 +121,38 @@ const itemListReveal = (items: Item[]) => {
 };
 
 const branchItem = ({ id, desc, img: imgSrc }: Item) => {
-	const href = id.startsWith("@example")
-		? `${EXAMPLE_BASE_URL}/${id.substring(9)}`
+	const isExample = id.startsWith("@example");
+	const name = id.split("/")[1];
+	const href = isExample
+		? `${EXAMPLE_BASE_URL}/${name}`
 		: `https://${id.substring(1)}`;
-	const body = [
-		anchor(".link", { href, target: "_blank" }, id),
-		span(".desc", {}, ...withLinks(desc)),
+	const body: any[] = [
+		anchor(".link", { href, target: LINK_TARGET }, id),
+		div(".desc", {}, ...withLinks(desc)),
 	];
+	if (isExample) {
+		body.push(
+			anchor(
+				{ href: `${DEMO_BASE_URL}/${name}/`, target: LINK_TARGET },
+				"Live demo"
+			),
+			" / ",
+			anchor(
+				{
+					href: `${EXAMPLE_BASE_URL}/${name}/src/index.ts`,
+					target: LINK_TARGET,
+				},
+				"Source code"
+			)
+		);
+	} else {
+		body.push(
+			anchor(
+				{ href: `${DOCS_BASE_URL}/${name}/`, target: LINK_TARGET },
+				"Documentation"
+			)
+		);
+	}
 	return imgSrc
 		? div(
 				".project.with-img",
@@ -142,7 +171,10 @@ const withLinks = (body: string) => {
 	while ((match = re.exec(body))) {
 		if (match.index) res.push(body.substring(prev, match.index));
 		res.push(
-			anchor({ href: `https://${match[1]}`, target: "_blank" }, match[0])
+			anchor(
+				{ href: `https://${match[1]}`, target: LINK_TARGET },
+				match[0]
+			)
 		);
 		prev = match.index! + match[0].length;
 	}
@@ -196,20 +228,15 @@ const glossaryLink = (tag: string) => {
 		".glossary",
 		{},
 		gloss
-			? anchor(
-					{ href: GLOSSARY_URL + gloss, target: "_blank" },
-					i({}, LAUNCH),
-					"Glossary"
-			  )
+			? externalLink(GLOSSARY_URL + gloss, "Glossary")
 			: wiki
-			? anchor(
-					{ href: WIKI_URL + wiki, target: "_blank" },
-					i({}, LAUNCH),
-					"Wikipedia"
-			  )
+			? externalLink(WIKI_URL + wiki, "Wikipedia")
 			: desc
 	);
 };
+
+const externalLink = (href: string, label: string) =>
+	anchor({ href, target: LINK_TARGET }, i({}, LAUNCH), label);
 
 const inflect = (word: string, n: number) => word + (n > 1 ? "s" : "");
 

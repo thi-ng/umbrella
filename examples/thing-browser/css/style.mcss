@@ -6,17 +6,19 @@
 // (optional) variable declarations
 :root {
 	bg-color=#fff
-	text-color=#000
+	text-color=#333
 	tree-bg-color=#00000018
-	tree-hover-color=#ff00aa33
-	link-color=#f0a
-	visited-color=#f6a
+	link-color=#000
+	visited-color=#666
+	project-link-color=#f0a
+	project-visited-color=#f6a
 	border-color=#999
 
 	dark:bg-color=#111
-	dark:text-color=#fff
+	dark:text-color=#eee
 	dark:tree-bg-color=#ffffff18
-	dark:visited-color=#f6a
+	dark:link-color=#fff
+	dark:visited-color=#999
 	dark:border-color=#666
 }
 
@@ -28,7 +30,7 @@ body {
 
 h1 { lh-title ls--1 }
 
-p { l:maxw-50 o-60 }
+p { l:maxw-50 }
 
 a:link { color(link-color) }
 a:visited { color(visited-color) }
@@ -47,7 +49,7 @@ details[open] {
 details:not([open]) {
 	transition(background-color 0.25s\, padding-left 0.25s ease-out)
 	{
-		:hover { pl3 br2 bg-color(tree-hover-color) }
+		:hover { pl3 br2 bg-color(text-color) color(bg-color) }
 	}
 }
 
@@ -66,9 +68,15 @@ input[type=search] {
 }
 
 .project {
-	mb3 lh-title
+	mb3 lh-copy f6
 	{
-		a.link { db b }
+		a.link {
+			f5 b
+			{
+				:link { color(project-link-color) }
+				:visited { color(project-visited-color) }
+			}
+		}
 	}
 }
 
@@ -78,8 +86,6 @@ input[type=search] {
 		img { w-100 aspect-ratio(1,1) }
 	}
 }
-
-.desc { f6 }
 
 .tags { pl3 }
 
@@ -118,7 +124,7 @@ i svg { fill-current v-mid mr1 w1 h1 }
 }
 
 #up {
-	db fixed bottom-1 right-1 pa4 br-100 lh-0
+	db fixed bottom-2 right-0 pa4 br-pill-l lh-0
 	bg-color-gold color-black
 	{
 		svg { w2 h2 }

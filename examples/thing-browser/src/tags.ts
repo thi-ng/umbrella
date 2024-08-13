@@ -1,12 +1,18 @@
 import { compareLex } from "@thi.ng/compare";
 import {
 	comp,
+	conj,
 	filter,
 	filterFuzzy,
 	groupByObj,
 	iterator,
+	map,
 	mapcat,
 	pluck,
+	pushKeys,
+	sortedFrequencies,
+	take,
+	transduce,
 } from "@thi.ng/transducers";
 import type { Item } from "./api.js";
 
@@ -30,8 +36,18 @@ export const uniqueItemIDs = (items: Item[], tags: string[]) =>
 export const filteredTags = (tags: Set<string>, search: string) =>
 	[...filterFuzzy(search.toLowerCase(), {}, tags)].sort(compareLex);
 
-export const commonTags = (items: Item[]) =>
-	new Set(mapcat((x) => x.tags, items));
+export const itemsByTag = (items: Item[]) =>
+	groupByObj<string[], string[]>(
+		{ key: (x) => x[0], group: pushKeys(1) },
+		mapcat((x) => map((t) => [t, x.id], x.tags), items)
+	);
+
+export const commonTags = (items: Item[], thresh = Infinity) =>
+	transduce(
+		comp(take(thresh), pluck(0)),
+		conj<string>(),
+		sortedFrequencies(mapcat((x) => x.tags, items))
+	);
 
 export const difference = (base: Set<string>, exclusions: Set<string>) =>
 	new Set(filter((x) => !exclusions.has(x), base));
