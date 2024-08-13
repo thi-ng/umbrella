@@ -150,7 +150,7 @@ For Node.js REPL:
 const tx = await import("@thi.ng/transducers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 8.94 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 8.97 KB
 
 ## Dependencies
 
@@ -1071,9 +1071,11 @@ result (as if it would be called via `reduce()`).
 - [normFrequenciesAuto](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-frequencies-auto.ts)
 - [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push.ts)
 - [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-copy.ts)
+- [pushKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-keys.ts)
 - [pushSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-sort.ts)
 - [reductions](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/reductions.ts)
 - [some](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/some.ts)
+- [sortedFrequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sorted-frequencies.ts)
 - [str](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/str.ts)
 - [sub](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sub.ts)
 

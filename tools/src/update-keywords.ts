@@ -18,6 +18,7 @@ const PKG_TAGS: IObjectOf<string[]> = {
 	"/hiccup-svg": ["svg"],
 	"/meta-css": ["css"],
 	"/matrices": ["matrix"],
+	"/parse": ["parser"],
 	"/rdom": ["ui"],
 	"/rstream": ["reactive"],
 	"/shader-ast": ["dsl", "shader", "shader-ast"],

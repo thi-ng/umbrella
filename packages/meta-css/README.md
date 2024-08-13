@@ -1114,7 +1114,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 946 CSS utility classes (incl. 70 templates) defined in "MetaCSS base" (v0.12.0):
+Currently, there are 950 CSS utility classes (incl. 70 templates) defined in "MetaCSS base" (v0.13.0):
 
 ### Classes by category
 
@@ -1268,10 +1268,14 @@ Currently, there are 946 CSS utility classes (incl. 70 templates) defined in "Me
 
 #### Border radius
 
-<details><summary>27 items:</summary>
+<details><summary>31 items:</summary>
 
 - `br-100` (100%)
 - `br-pill` (9999px)
+- `br-pill-b` (bottom 50%)
+- `br-pill-l` (left 50%)
+- `br-pill-r` (right 50%)
+- `br-pill-t` (top 50%)
 - `br0` (0rem)
 - `br1` (.125rem)
 - `br2` (.25rem)

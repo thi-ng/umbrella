@@ -74,7 +74,7 @@ For Node.js REPL:
 const l = await import("@thi.ng/layout");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.19 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.21 KB
 
 ## Dependencies
 
