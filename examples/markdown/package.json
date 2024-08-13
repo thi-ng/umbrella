@@ -41,7 +41,11 @@
 	},
 	"keywords": [
 		"browser",
+		"conversion",
 		"example",
+		"html",
+		"markdown",
+		"parser",
 		"reactive",
 		"transducer",
 		"ui"

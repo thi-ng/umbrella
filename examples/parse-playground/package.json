@@ -60,6 +60,7 @@
 		"example",
 		"export",
 		"generator",
+		"parser",
 		"reactive",
 		"repl",
 		"tool",

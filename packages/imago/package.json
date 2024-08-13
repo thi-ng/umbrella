@@ -63,7 +63,7 @@
 		"bitmap",
 		"blur",
 		"color",
-		"composite",
+		"composition",
 		"conversion",
 		"crop",
 		"dither",

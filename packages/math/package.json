@@ -58,9 +58,9 @@
 		"math",
 		"prime",
 		"quadratic",
-		"smooth",
+		"smoothmax",
+		"smoothstep",
 		"solver",
-		"t-norm",
 		"trigonometry",
 		"typescript"
 	],

@@ -40,6 +40,8 @@
 		"canvas",
 		"color",
 		"example",
-		"transducer"
+		"hilbert",
+		"transducer",
+		"z-curve"
 	]
 }

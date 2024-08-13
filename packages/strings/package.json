@@ -51,6 +51,7 @@
 		"ansi",
 		"composition",
 		"conversion",
+		"cursor",
 		"escape",
 		"float",
 		"format",

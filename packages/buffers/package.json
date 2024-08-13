@@ -46,12 +46,13 @@
 		"typescript": "^5.5.4"
 	},
 	"keywords": [
+		"behavior",
 		"buffer",
 		"dropping",
 		"fifo",
 		"lifo",
 		"ring",
-		"sliding",
+		"sliding-window",
 		"typescript"
 	],
 	"publishConfig": {
