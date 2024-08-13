@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/webgl-shadertoy",
-	"version": "0.4.154",
+	"version": "0.4.155",
 	"description": "Basic WebGL scaffolding for running interactive fragment shaders via @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -37,9 +37,9 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.8",
-		"@thi.ng/shader-ast": "^0.15.24",
-		"@thi.ng/shader-ast-glsl": "^0.4.132",
-		"@thi.ng/webgl": "^6.9.10"
+		"@thi.ng/shader-ast": "^0.15.25",
+		"@thi.ng/shader-ast-glsl": "^0.4.133",
+		"@thi.ng/webgl": "^6.9.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.5",

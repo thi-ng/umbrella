@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-graph",
-	"version": "4.1.138",
+	"version": "4.1.139",
 	"description": "Declarative dataflow graph construction for @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -42,8 +42,8 @@
 		"@thi.ng/errors": "^2.5.14",
 		"@thi.ng/paths": "^5.1.88",
 		"@thi.ng/resolve-map": "^7.1.81",
-		"@thi.ng/rstream": "^8.5.10",
-		"@thi.ng/transducers": "^9.0.13"
+		"@thi.ng/rstream": "^8.5.11",
+		"@thi.ng/transducers": "^9.1.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.5",

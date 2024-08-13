@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-10T15:03:07Z
+- **Last updated**: 2024-08-13T19:40:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@3.1.0) (2024-08-13)
+
+#### 🚀 Features
+
+- add StackedLayout.isEqualized() ([b93702c](https://github.com/thi-ng/umbrella/commit/b93702c))
 
 ### [3.0.37](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@3.0.37) (2024-04-20)
 

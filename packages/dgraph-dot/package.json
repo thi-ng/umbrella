@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dgraph-dot",
-	"version": "2.1.128",
+	"version": "2.1.129",
 	"description": "Customizable Graphviz DOT serialization for @thi.ng/dgraph",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.8",
-		"@thi.ng/dgraph": "^2.1.127",
+		"@thi.ng/dgraph": "^2.1.128",
 		"@thi.ng/dot": "^2.1.82"
 	},
 	"devDependencies": {

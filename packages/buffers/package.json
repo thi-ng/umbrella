@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/buffers",
-	"version": "0.1.10",
+	"version": "0.1.11",
 	"description": "General purpose and generic read/write buffer implementations with different behaviors/orderings",
 	"type": "module",
 	"module": "./index.js",
