@@ -51,6 +51,7 @@ export * from "./push-copy.js";
 export * from "./push-sort.js";
 export * from "./reductions.js";
 export * from "./some.js";
+export * from "./sorted-frequencies.js";
 export * from "./str.js";
 export * from "./sub.js";
 

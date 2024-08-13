@@ -494,6 +494,9 @@
 		"./some": {
 			"default": "./some.js"
 		},
+		"./sorted-frequencies": {
+			"default": "./sorted-frequencies.js"
+		},
 		"./sorted-keys": {
 			"default": "./sorted-keys.js"
 		},
