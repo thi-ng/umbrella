@@ -2,7 +2,10 @@ import type { Reducer } from "./api.js";
 import { reducer } from "./reduce.js";
 
 /**
- * Reducer which collects inputs into a new array.
+ * Reducer which collects inputs into an array.
+ *
+ * @remarks
+ * Also see {@link pushCopy}, {@link pushKeys}, {@link pushSort}.
  */
 export function push<T>(): Reducer<T, T[]>;
 export function push<T>(src: Iterable<T>): T[];
