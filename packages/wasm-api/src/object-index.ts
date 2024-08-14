@@ -56,6 +56,20 @@ export class ObjectIndex<T> {
 	}
 
 	/**
+	 * Similar to {@link ObjectIndex.add}, but first checks if `item` has
+	 * already been indexed and if so returns the ID of already indexed item
+	 * without adding `item` to the index again. Uses `equiv` for checking item
+	 * equality (by default: `===`).
+	 *
+	 * @param item
+	 * @param equiv
+	 */
+	addUnique(item: T, equiv: Predicate<T> = (x) => x === item): number {
+		const id = this.find(equiv, false);
+		return id === undefined ? this.add(item) : id;
+	}
+
+	/**
 	 * Returns true if the given `id` is valid/active.
 	 *
 	 * @param id
