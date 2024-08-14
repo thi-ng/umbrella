@@ -271,6 +271,7 @@ const __mapStringArray = (
 /** @internal */
 const __primSlice = (type: string, _: number, __: CodeGenOpts) => [
 	// `const addr = ${__ptrShift(opts.target, offset, type)};`,
+	`addr >>>= ${__shift(type)};`,
 	`return mem.${type}.subarray(addr, addr + len);`,
 ];
 
@@ -462,7 +463,7 @@ const __generateField = (
 		case "slice":
 		case "enumSlice":
 			getter = [
-				`const addr = ${__ptr(opts.target, offset)};`,
+				`let addr = ${__ptr(opts.target, offset)};`,
 				`const len = ${__ptr(
 					opts.target,
 					offset + opts.target.sizeBytes

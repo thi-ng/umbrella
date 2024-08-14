@@ -915,13 +915,15 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 				));
 			},
 			get slice(): Uint32Array {
-				const addr = mem.u32[(base + 16) >>> 2];
+				let addr = mem.u32[(base + 16) >>> 2];
 				const len = mem.u32[(base + 20) >>> 2];
+				addr >>>= 2;
 				return mem.u32.subarray(addr, addr + len);
 			},
 			get constSlice(): Uint32Array {
-				const addr = mem.u32[(base + 24) >>> 2];
+				let addr = mem.u32[(base + 24) >>> 2];
 				const len = mem.u32[(base + 28) >>> 2];
+				addr >>>= 2;
 				return mem.u32.subarray(addr, addr + len);
 			},
 			get array(): Uint32Array {
@@ -1044,8 +1046,9 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return mem.i32.subarray(addr, addr + 2);
 			},
 			get slice(): Int32Array {
-				const addr = mem.u32[(base + 12) >>> 2];
+				let addr = mem.u32[(base + 12) >>> 2];
 				const len = mem.u32[(base + 16) >>> 2];
+				addr >>>= 2;
 				return mem.i32.subarray(addr, addr + len);
 			},
 			get ptr(): Pointer<A> {
@@ -1188,8 +1191,9 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return mem.u32.subarray(addr, addr + 2);
 			},
 			get slice(): Uint32Array {
-				const addr = mem.u32[(base + 20) >>> 2];
+				let addr = mem.u32[(base + 20) >>> 2];
 				const len = mem.u32[(base + 24) >>> 2];
+				addr >>>= 2;
 				return mem.u32.subarray(addr, addr + len);
 			},
 		};
@@ -1697,13 +1701,15 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return mem.u8.subarray(base, base + 108);
 			},
 			get slice(): Uint8Array {
-				const addr = mem.u32[base >>> 2];
+				let addr = mem.u32[base >>> 2];
 				const len = mem.u32[(base + 4) >>> 2];
+				addr >>>= 0;
 				return mem.u8.subarray(addr, addr + len);
 			},
 			get constSlice(): Uint8Array {
-				const addr = mem.u32[(base + 8) >>> 2];
+				let addr = mem.u32[(base + 8) >>> 2];
 				const len = mem.u32[(base + 12) >>> 2];
+				addr >>>= 0;
 				return mem.u8.subarray(addr, addr + len);
 			},
 			get ptr(): Pointer<number> {
@@ -1775,7 +1781,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				mem.u8.set(x.__bytes, (base + 76));
 			},
 			get aSlice(): A[] {
-				const addr = mem.u32[(base + 80) >>> 2];
+				let addr = mem.u32[(base + 80) >>> 2];
 				const len = mem.u32[(base + 84) >>> 2];
 				const inst = $A(mem);
 				const buf: A[] = [];
@@ -1783,7 +1789,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return buf;
 			},
 			get constASlice(): A[] {
-				const addr = mem.u32[(base + 88) >>> 2];
+				let addr = mem.u32[(base + 88) >>> 2];
 				const len = mem.u32[(base + 92) >>> 2];
 				const inst = $A(mem);
 				const buf: A[] = [];
