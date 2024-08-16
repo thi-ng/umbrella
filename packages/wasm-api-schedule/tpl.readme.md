@@ -11,10 +11,13 @@ calls via:
 
 - **once**: `setTimeout()` / `clearTimeout()`
 - **interval**: `setInterval()` / `clearInterval()`
-- **immediate**: `setImmediate()` / `clearImmediate()`
+- **immediate**: `setImmediate()` / `clearImmediate()`<sup>(1)</sup>
+- **raf**: `requestAnimationFrame()` / `cancelAnimationFrame()`<sup>(1)</sup>
+
+<sup>(1)</sup> Fallback provided in case the JS host env has no native support
 
 These different types of delayed execution are unified into the single
-`schedule()` function and the `TimerType` enum. Scheduled callbacks can be
+`schedule()` function and the `ScheduleType` enum. Scheduled callbacks can be
 cancelled via `cancel()`...
 
 Zig example:

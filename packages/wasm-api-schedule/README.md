@@ -32,10 +32,13 @@ calls via:
 
 - **once**: `setTimeout()` / `clearTimeout()`
 - **interval**: `setInterval()` / `clearInterval()`
-- **immediate**: `setImmediate()` / `clearImmediate()`
+- **immediate**: `setImmediate()` / `clearImmediate()`<sup>(1)</sup>
+- **raf**: `requestAnimationFrame()` / `cancelAnimationFrame()`<sup>(1)</sup>
+
+<sup>(1)</sup> Fallback provided in case the JS host env has no native support
 
 These different types of delayed execution are unified into the single
-`schedule()` function and the `TimerType` enum. Scheduled callbacks can be
+`schedule()` function and the `ScheduleType` enum. Scheduled callbacks can be
 cancelled via `cancel()`...
 
 Zig example:
@@ -108,7 +111,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 489 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 554 bytes
 
 ## Dependencies
 
@@ -119,7 +122,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Two projects in this repo's
+Three projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -127,6 +130,7 @@ directory are using this package:
 |:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/>   | Simple Zig/WASM click counter DOM component                        | [Demo](https://demo.thi.ng/umbrella/zig-counter/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/>   | Basic Zig/WASM WebGL bridge example                                | [Demo](https://demo.thi.ng/umbrella/zig-webgl/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-webgl)     |
 
 ## API
 
