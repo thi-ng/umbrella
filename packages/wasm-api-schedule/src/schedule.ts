@@ -20,6 +20,10 @@ const START: Record<ScheduleType, FnO<Fn0<void>, any>> = {
 		typeof setImmediate !== "undefined"
 			? setImmediate
 			: (x) => setTimeout(x, 0),
+	[ScheduleType.RAF]:
+		typeof requestAnimationFrame !== "undefined"
+			? requestAnimationFrame
+			: (x) => setTimeout(x, 16),
 };
 
 const CANCEL: Record<ScheduleType, Fn<any, void>> = {
@@ -27,6 +31,10 @@ const CANCEL: Record<ScheduleType, Fn<any, void>> = {
 	[ScheduleType.INTERVAL]: clearInterval,
 	[ScheduleType.IMMEDIATE]:
 		typeof clearImmediate !== "undefined" ? clearImmediate : clearTimeout,
+	[ScheduleType.RAF]:
+		typeof cancelAnimationFrame !== "undefined"
+			? cancelAnimationFrame
+			: clearTimeout,
 };
 
 export class WasmSchedule implements IWasmAPI<WasmScheduleExports> {
@@ -72,6 +80,8 @@ export class WasmSchedule implements IWasmAPI<WasmScheduleExports> {
 					delete this.listeners[listenerID];
 				}
 			},
+
+			now: () => performance.now(),
 		};
 	}
 }

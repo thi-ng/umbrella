@@ -9,7 +9,11 @@
 				"name": "interval",
 				"doc": "Recurring execution at fixed interval"
 			},
-			{ "name": "immediate", "doc": "As soon as possible execution" }
+			{ "name": "immediate", "doc": "As soon as possible execution" },
+			{
+				"name": "raf",
+				"doc": "Same as `requestAnimationFrame()` (or equivalent if not available in JS env)"
+			}
 		]
 	}
 ]

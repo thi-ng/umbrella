@@ -57,3 +57,6 @@ pub fn cancel(callID: u16) void {
     calls.remove(callID);
     _cancel(callID);
 }
+
+/// Returns fractional timestamp in milliseconds (using `performance.now()`)
+pub extern "schedule" fn now() f64;

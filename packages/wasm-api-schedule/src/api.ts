@@ -23,4 +23,8 @@ export interface WasmScheduleImports extends WebAssembly.ModuleImports {
 	 * @param listenerID
 	 */
 	_cancel(listenerID: number): void;
+	/**
+	 * Returns fractional timestamp in milliseconds (using `performance.now()`)
+	 */
+	now(): number;
 }
