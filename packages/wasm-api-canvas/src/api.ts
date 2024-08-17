@@ -1,3 +1,5 @@
+import type { WasmExports } from "@thi.ng/wasm-api";
+import type { WasmDomExports } from "@thi.ng/wasm-api-dom";
 import type {
 	FillRule,
 	FontKerning,
@@ -11,6 +13,8 @@ import type {
 } from "./generated/api.js";
 
 export * from "./generated/api.js";
+
+export interface WasmCanvas2DExports extends WasmExports, WasmDomExports {}
 
 export interface WasmCanvas2DImports extends WebAssembly.ModuleImports {
 	beginCtx(ctx: number): void;

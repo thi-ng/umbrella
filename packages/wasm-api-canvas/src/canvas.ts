@@ -1,5 +1,5 @@
 import { swapLane13 } from "@thi.ng/binary";
-import type { IWasmAPI, WasmExports } from "@thi.ng/wasm-api";
+import type { IWasmAPI } from "@thi.ng/wasm-api";
 import type { WasmDom } from "@thi.ng/wasm-api-dom/dom";
 import type { WasmBridge } from "@thi.ng/wasm-api/bridge";
 import { ObjectIndex } from "@thi.ng/wasm-api/object-index";
@@ -15,12 +15,11 @@ import {
 	TextAlign,
 	TextBaseline,
 	TextDirection,
+	type WasmCanvas2DExports,
 	type WasmCanvas2DImports,
 } from "./api.js";
 
 const TAU = Math.PI * 2;
-
-export interface WasmCanvas2DExports extends WasmExports {}
 
 export class WasmCanvas2D implements IWasmAPI<WasmCanvas2DExports> {
 	static readonly id = "canvas2d";
