@@ -1,4 +1,12 @@
-import type { EVENT_ALL, Fn, IDeref, ILength } from "@thi.ng/api";
+import type {
+	BigTypedArray,
+	EVENT_ALL,
+	Fn,
+	IDeref,
+	ILength,
+	TypedArray,
+	Values,
+} from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
 
 export const EVENT_MEMORY_CHANGED = "memory-changed";
@@ -147,6 +155,35 @@ export interface WasmExports {
 }
 
 export type MemorySlice = [addr: number, len: number];
+
+export type MemoryViewType =
+	| "i8"
+	| "u8"
+	| "i16"
+	| "u16"
+	| "i32"
+	| "u32"
+	| "i64"
+	| "u64"
+	| "f32"
+	| "f64";
+
+export interface MemoryViewTypeMap
+	extends Record<MemoryViewType, TypedArray | BigTypedArray> {
+	u8: Uint8Array;
+	u8c: Uint8ClampedArray;
+	i8: Int8Array;
+	u16: Uint16Array;
+	i16: Int16Array;
+	u32: Uint32Array;
+	i32: Int32Array;
+	i64: BigInt64Array;
+	u64: BigUint64Array;
+	f32: Float32Array;
+	f64: Float64Array;
+}
+
+export type MemoryView = Values<MemoryViewTypeMap>;
 
 export interface IWasmMemoryAccess {
 	i8: Int8Array;
