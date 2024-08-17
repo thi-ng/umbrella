@@ -512,14 +512,14 @@
 		"name": "EventBody",
 		"type": "union",
 		"fields": [
-			{ "name": "drag", "type": "DragEvent" },
-			{ "name": "input", "type": "InputEvent" },
-			{ "name": "key", "type": "KeyEvent" },
-			{ "name": "mouse", "type": "MouseEvent" },
-			{ "name": "pointer", "type": "PointerEvent" },
-			{ "name": "scroll", "type": "ScrollEvent" },
-			{ "name": "touch", "type": "TouchEvent" },
-			{ "name": "wheel", "type": "WheelEvent" }
+			{ "name": "drag", "type": "DragEvent", "setter": false },
+			{ "name": "input", "type": "InputEvent", "setter": false },
+			{ "name": "key", "type": "KeyEvent", "setter": false },
+			{ "name": "mouse", "type": "MouseEvent", "setter": false },
+			{ "name": "pointer", "type": "PointerEvent", "setter": false },
+			{ "name": "scroll", "type": "ScrollEvent", "setter": false },
+			{ "name": "touch", "type": "TouchEvent", "setter": false },
+			{ "name": "wheel", "type": "WheelEvent", "setter": false }
 		]
 	},
 	{
@@ -553,7 +553,8 @@
 					"- scroll",
 					"- touch",
 					"- wheel"
-				]
+				],
+				"setter": false
 			}
 		]
 	},
@@ -586,7 +587,9 @@
 			{
 				"name": "callback",
 				"type": "EventCallback",
-				"doc": "Event listener function. Takes an event and optional pointer to user supplied arbitrary context data provided when registering the handler via `addListener()`"
+				"doc": "Event listener function. Takes an event and optional pointer to user supplied arbitrary context data provided when registering the handler via `addListener()`",
+				"getter": false,
+				"setter": false
 			},
 			{
 				"name": "ctx",
@@ -597,7 +600,9 @@
 					"Optional type erased pointer to arbitrary user context. This pointer can be cast back into the desired type using this form:",
 					"`@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`",
 					"Also see: `wasmapi.ptrCast()`"
-				]
+				],
+				"getter": false,
+				"setter": false
 			}
 		]
 	},
@@ -633,7 +638,11 @@
 			"Also see `CreateCanvasOpts` for canvas specific use cases"
 		],
 		"fields": [
-			{ "name": "tag", "type": "string", "doc": "DOM element name" },
+			{
+				"name": "tag",
+				"type": "string",
+				"doc": "DOM element name"
+			},
 			{
 				"name": "ns",
 				"type": "string",
@@ -668,13 +677,15 @@
 				"name": "parent",
 				"type": "i32",
 				"doc": "Parent element ID. If >=0 the new element will be attached to that parent element. Set to -1 to leave new element unattached (default unless nested)",
-				"default": -1
+				"default": -1,
+				"setter": false
 			},
 			{
 				"name": "index",
 				"type": "i32",
 				"doc": "Insertion index for new element or -1 to append (default)",
-				"default": -1
+				"default": -1,
+				"setter": false
 			},
 			{
 				"name": "children",
@@ -702,12 +713,14 @@
 			{
 				"name": "width",
 				"type": "u16",
-				"doc": "Canvas width (in CSS pixels)"
+				"doc": "Canvas width (in CSS pixels)",
+				"setter": false
 			},
 			{
 				"name": "height",
 				"type": "u16",
-				"doc": "Canvas height (in CSS pixels)"
+				"doc": "Canvas height (in CSS pixels)",
+				"setter": false
 			},
 			{
 				"name": "id",
@@ -724,19 +737,22 @@
 			{
 				"name": "parent",
 				"type": "i32",
-				"doc": "Same as CreateElementOpts.parent"
+				"doc": "Same as CreateElementOpts.parent",
+				"setter": false
 			},
 			{
 				"name": "index",
 				"type": "i32",
 				"doc": "Same as CreateElementOpts.index",
-				"default": -1
+				"default": -1,
+				"setter": false
 			},
 			{
 				"name": "dpr",
 				"type": "u8",
 				"doc": "Device pixel ratio for computing physical pixel dimensions, see `getWindowInfo()`",
-				"default": 1
+				"default": 1,
+				"setter": false
 			},
 			{
 				"name": "attribs",
@@ -754,8 +770,8 @@
 		"doc": "DOM element attribute definition given as part of `CreateElementOpts`",
 		"fields": [
 			{ "name": "name", "type": "string" },
-			{ "name": "value", "type": "AttribValue" },
-			{ "name": "kind", "type": "AttribType" }
+			{ "name": "value", "type": "AttribValue", "setter": false },
+			{ "name": "kind", "type": "AttribType", "setter": false }
 		],
 		"body": {
 			"zig": [
@@ -781,10 +797,10 @@
 		"name": "AttribValue",
 		"type": "union",
 		"fields": [
-			{ "name": "event", "type": "EventListener" },
-			{ "name": "flag", "type": "u8" },
-			{ "name": "num", "type": "f64" },
-			{ "name": "str", "type": "string" }
+			{ "name": "event", "type": "EventListener", "setter": false },
+			{ "name": "flag", "type": "u8", "setter": false },
+			{ "name": "num", "type": "f64", "setter": false },
+			{ "name": "str", "type": "string", "setter": false }
 		]
 	},
 	{
