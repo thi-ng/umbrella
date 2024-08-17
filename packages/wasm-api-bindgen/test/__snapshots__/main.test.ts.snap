@@ -129,13 +129,13 @@ import { Pointer, WasmStringSlice, type IWasmMemoryAccess, type MemorySlice, typ
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface Foo extends WasmTypeBase {
-	single: WasmStringSlice;
-	constSingle: WasmStringSlice;
-	multi: WasmStringSlice[];
-	singlePtr: Pointer<WasmStringSlice>;
-	multiPtr: Pointer<WasmStringSlice[]>;
-	slice: WasmStringSlice[];
-	constSlice: WasmStringSlice[];
+	readonly single: WasmStringSlice;
+	readonly constSingle: WasmStringSlice;
+	readonly multi: WasmStringSlice[];
+	readonly singlePtr: Pointer<WasmStringSlice>;
+	readonly multiPtr: Pointer<WasmStringSlice[]>;
+	readonly slice: WasmStringSlice[];
+	readonly constSlice: WasmStringSlice[];
 }
 
 export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
@@ -443,13 +443,13 @@ import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type 
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface Foo extends WasmTypeBase {
-	single: WasmStringPtr;
-	constSingle: WasmStringPtr;
-	multi: WasmStringPtr[];
-	singlePtr: Pointer<WasmStringPtr>;
-	multiPtr: Pointer<WasmStringPtr[]>;
-	slice: WasmStringPtr[];
-	constSlice: WasmStringPtr[];
+	readonly single: WasmStringPtr;
+	readonly constSingle: WasmStringPtr;
+	readonly multi: WasmStringPtr[];
+	readonly singlePtr: Pointer<WasmStringPtr>;
+	readonly multiPtr: Pointer<WasmStringPtr[]>;
+	readonly slice: WasmStringPtr[];
+	readonly constSlice: WasmStringPtr[];
 }
 
 export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
@@ -681,7 +681,7 @@ export interface A extends WasmTypeBase {
 	/**
 	 * Zig type: \`*[3]u16\`
 	 */
-	c: Pointer<Uint16Array>;
+	readonly c: Pointer<Uint16Array>;
 	/**
 	 * Zig type: \`f64\`
 	 */
@@ -735,7 +735,7 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 });
 
 export interface B extends WasmTypeBase {
-	a: A[];
+	readonly a: A[];
 	/**
 	 * Zig type: \`u64\`
 	 */
@@ -839,31 +839,31 @@ export interface A extends WasmTypeBase {
 	/**
 	 * Zig type: \`*u32\`
 	 */
-	ptr: Pointer<number>;
+	readonly ptr: Pointer<number>;
 	/**
 	 * Zig type: \`*[2]u32\`
 	 */
-	ptr2: Pointer<Uint32Array>;
+	readonly ptr2: Pointer<Uint32Array>;
 	/**
 	 * Zig type: \`*const u32\`
 	 */
-	constPtr: Pointer<number>;
+	readonly constPtr: Pointer<number>;
 	/**
 	 * Zig type: \`U32Slice\`
 	 */
-	slice: Uint32Array;
+	readonly slice: Uint32Array;
 	/**
 	 * Zig type: \`ConstU32Slice\`
 	 */
-	constSlice: Uint32Array;
+	readonly constSlice: Uint32Array;
 	/**
 	 * Zig type: \`[3]u32\`
 	 */
-	array: Uint32Array;
+	readonly array: Uint32Array;
 	/**
 	 * Zig type: \`[3]u32\`
 	 */
-	constArray: Uint32Array;
+	readonly constArray: Uint32Array;
 }
 
 export const $A: WasmTypeConstructor<A> = (mem) => ({
@@ -997,10 +997,10 @@ export enum A {
 
 export interface B extends WasmTypeBase {
 	single: A;
-	array: Int32Array;
-	slice: Int32Array;
-	ptr: Pointer<A>;
-	ptr2: Pointer<Int32Array>;
+	readonly array: Int32Array;
+	readonly slice: Int32Array;
+	readonly ptr: Pointer<A>;
+	readonly ptr2: Pointer<Int32Array>;
 }
 
 export const $B: WasmTypeConstructor<B> = (mem) => ({
@@ -1120,19 +1120,19 @@ export interface B extends WasmTypeBase {
 	/**
 	 * Zig type: \`*u32\`
 	 */
-	ptr: Pointer<number>;
+	readonly ptr: Pointer<number>;
 	/**
 	 * Zig type: \`*[2]u32\`
 	 */
-	ptr2: Pointer<Uint32Array>;
+	readonly ptr2: Pointer<Uint32Array>;
 	/**
 	 * Zig type: \`[2]u32\`
 	 */
-	array: Uint32Array;
+	readonly array: Uint32Array;
 	/**
 	 * Zig type: \`U32Slice\`
 	 */
-	slice: Uint32Array;
+	readonly slice: Uint32Array;
 }
 
 export const $B: WasmTypeConstructor<B> = (mem) => ({
@@ -1574,35 +1574,35 @@ export interface B extends WasmTypeBase {
 	/**
 	 * Zig type: \`U8Slice\`
 	 */
-	slice: Uint8Array;
+	readonly slice: Uint8Array;
 	/**
 	 * Zig type: \`ConstU8Slice\`
 	 */
-	constSlice: Uint8Array;
+	readonly constSlice: Uint8Array;
 	/**
 	 * Zig type: \`*u8\`
 	 */
-	ptr: Pointer<number>;
+	readonly ptr: Pointer<number>;
 	/**
 	 * Zig type: \`*const u8\`
 	 */
-	constPtr: Pointer<number>;
+	readonly constPtr: Pointer<number>;
 	/**
 	 * Zig type: \`*[2]u8\`
 	 */
-	ptr2: Pointer<Uint8Array>;
+	readonly ptr2: Pointer<Uint8Array>;
 	/**
 	 * Zig type: \`*[2:0]u8\`
 	 */
-	ptr2sentinel: Pointer<Uint8Array>;
+	readonly ptr2sentinel: Pointer<Uint8Array>;
 	/**
 	 * Zig type: \`*const [2]u8\`
 	 */
-	constPtr2: Pointer<Uint8Array>;
+	readonly constPtr2: Pointer<Uint8Array>;
 	/**
 	 * Zig type: \`*const [2:0]u8\`
 	 */
-	constPtr2sentinel: Pointer<Uint8Array>;
+	readonly constPtr2sentinel: Pointer<Uint8Array>;
 	/**
 	 * Multi pointer: \`[*]u8\`
 	 * 
@@ -1634,16 +1634,16 @@ export interface B extends WasmTypeBase {
 	/**
 	 * Zig type: \`[2]i32\`
 	 */
-	array: Int32Array;
+	readonly array: Int32Array;
 	/**
 	 * Zig type: \`[2:0]i32\`
 	 */
-	arraySentinel: Int32Array;
+	readonly arraySentinel: Int32Array;
 	aSingle: A;
-	aSlice: A[];
-	constASlice: A[];
-	aPtr: Pointer<A>;
-	aPtr2: Pointer<A[]>;
+	readonly aSlice: A[];
+	readonly constASlice: A[];
+	readonly aPtr: Pointer<A>;
+	readonly aPtr2: Pointer<A[]>;
 	/**
 	 * Multiple A's
 	 * 
