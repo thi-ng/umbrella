@@ -8,11 +8,12 @@ import type {
 /** @internal */
 export const __instanceArray = <T>(
 	type: WasmType<T>,
-	base: number,
-	num: number
+	addr: number,
+	num: number,
+	size = type.size
 ) => {
 	const items: T[] = [];
-	for (; num-- > 0; base += type.size) items.push(type.instance(base));
+	for (; num-- > 0; addr += size) items.push(type.instance(addr));
 	return items;
 };
 
@@ -22,13 +23,7 @@ export const __array = <T>(
 	ctor: WasmTypeConstructor<T>,
 	addr: number,
 	len: number
-) => {
-	const buf: T[] = [];
-	const inst = ctor(mem);
-	const size = inst.size;
-	for (let i = 0; i < len; i++) buf.push(inst.instance(addr + i * size));
-	return buf;
-};
+) => __instanceArray(ctor(mem), addr, len);
 
 /** @internal */
 export const __slice32 = <T>(
