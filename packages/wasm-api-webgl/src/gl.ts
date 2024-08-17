@@ -5,10 +5,11 @@ import type {
 	IWasmAPI,
 	MemoryViewType,
 	WasmBridge,
+	WasmModuleSpec,
 	WasmType,
 	WasmTypeBase,
 } from "@thi.ng/wasm-api";
-import type { WasmDom } from "@thi.ng/wasm-api-dom";
+import { WasmDomModule, type WasmDom } from "@thi.ng/wasm-api-dom";
 import { ObjectIndex } from "@thi.ng/wasm-api/object-index";
 import type {
 	AttribBufferData,
@@ -59,12 +60,26 @@ import {
 	type UniformValue,
 } from "./generated/api.js";
 
+/**
+ * WASM module descriptor for use as dependency object in other module
+ * definitions or for direct use with
+ * [`WasmBridge`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html).
+ *
+ * @remarks
+ * Module defines the following dependencies:
+ * - [WasmDomModule](https://docs.thi.ng/umbrella/wasm-api-dom/variables/WasmDomModule.html)
+ *
+ * See
+ * [`WasmModuleSpec`](https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html)
+ * for more details.
+ */
+export const WasmWebGLModule: WasmModuleSpec<WasmWebGLExports> = {
+	id: "webgl",
+	deps: [WasmDomModule],
+	factory: () => new WasmWebGL(),
+};
+
 export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
-	static readonly id = "webgl";
-
-	readonly id = WasmWebGL.id;
-	readonly dependencies = ["dom"];
-
 	parent!: WasmBridge<WasmWebGLExports>;
 	dom!: WasmDom;
 
