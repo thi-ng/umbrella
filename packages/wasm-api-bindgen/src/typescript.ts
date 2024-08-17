@@ -43,7 +43,7 @@ interface AugmentedField {
 	field: Field;
 	type: string;
 	decl: Nullable<string>;
-	getter: string[];
+	getter: Nullable<string[]>;
 	setter: Nullable<string[]>;
 }
 
@@ -133,7 +133,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			const fields = <AugmentedField[]>(
 				struct.fields
 					.map((f) => __generateField(f, coll, opts))
-					.filter((f) => !!f)
+					.filter((f) => !!f && (f.getter || f.setter))
 			);
 
 			const lines: string[] = [];
@@ -143,7 +143,8 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			for (let f of fields) {
 				const doc = __docType(f.field, struct, coll, opts);
 				doc && gen.doc(doc, lines, opts);
-				lines.push(`${f.field.name}: ${f.type};`);
+				const decl = `${f.field.name}: ${f.type};`;
+				lines.push((!f.setter ? `readonly ` : "") + decl);
 			}
 			injectBody(lines, struct.body?.ts, "decl");
 			lines.push("}", "");
@@ -187,11 +188,13 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 
 			for (let f of fields) {
 				if (!f) continue;
-				lines.push(
-					`get ${f.field.name}(): ${f.type} {`,
-					...f.getter,
-					"},"
-				);
+				if (f.getter) {
+					lines.push(
+						`get ${f.field.name}(): ${f.type} {`,
+						...f.getter,
+						"},"
+					);
+				}
 				if (f.setter) {
 					lines.push(
 						`set ${f.field.name}(x: ${f.type}) {`,
@@ -322,7 +325,7 @@ const __generateField = (
 	const $isEnum = isEnum(field.type, coll);
 	let type = field.type;
 	let decl: Nullable<string>;
-	let getter: string[] = [];
+	let getter: Nullable<string[]>;
 	let setter: Nullable<string[]>;
 	let ptrType: string;
 	let tag: string;
@@ -507,5 +510,11 @@ const __generateField = (
 		default:
 			unsupported(`TODO: ${classifier} - please report as issue`);
 	}
-	return { field, type, decl, getter, setter };
+	return {
+		field,
+		type,
+		decl,
+		getter: field.getter !== false ? getter : undefined,
+		setter: field.setter !== false ? setter : undefined,
+	};
 };

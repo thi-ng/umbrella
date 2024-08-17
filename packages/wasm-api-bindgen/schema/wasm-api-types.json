@@ -201,6 +201,16 @@
 					"type": "boolean",
 					"default": false,
 					"description": "If true, code generation of this field will be skipped for WASM host environment languages (e.g. TypeScript)"
+				},
+				"getter": {
+					"type": "boolean",
+					"default": true,
+					"description": "If false, omits getter for languages which would usually define one (e.g. TypeScript)"
+				},
+				"setter": {
+					"type": "boolean",
+					"default": true,
+					"description": "If false, omits setter for languages which would usually define one (e.g. TypeScript)"
 				}
 			},
 			"required": ["name", "type"],

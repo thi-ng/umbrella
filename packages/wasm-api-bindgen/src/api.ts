@@ -216,6 +216,24 @@ export interface Field extends TypeInfo {
 	 * @defaultValue false
 	 */
 	skip?: boolean;
+	/**
+	 * If false, omits getter for languages which would usually define one (e.g.
+	 * for TypeScript). Useful to avoid obsolete code and reduce file size.
+	 *
+	 * @defaultValue true
+	 */
+	getter?: boolean;
+	/**
+	 * If false, omits setter for languages which would usually define one (e.g.
+	 * for TypeScript). Useful to avoid obsolete code and reduce file size.
+	 *
+	 * @remarks
+	 * If a field has its setter disabled, the generated TypeScript interface
+	 * will declare this field as `readonly`.
+	 *
+	 * @defaultValue true
+	 */
+	setter?: boolean;
 }
 
 export interface Enum extends TopLevelType {
