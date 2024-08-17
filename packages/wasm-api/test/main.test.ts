@@ -65,8 +65,6 @@ test("custom", async (done) => {
 		test_epoch: () => void;
 	}
 	class CustomAPI implements IWasmAPI {
-		readonly id = "custom";
-
 		parent!: WasmBridge;
 
 		async init(parent: WasmBridge) {
@@ -84,7 +82,10 @@ test("custom", async (done) => {
 	}
 
 	const logger = new MemoryLogger("wasm");
-	const bridge = new WasmBridge<CustomWasm>([new CustomAPI()], logger);
+	const bridge = new WasmBridge<CustomWasm>(
+		[{ id: "custom", factory: () => new CustomAPI() }],
+		logger
+	);
 	expect(
 		await bridge.instantiate(
 			readFileSync(resolve(__dirname + "/custom.wasm"))

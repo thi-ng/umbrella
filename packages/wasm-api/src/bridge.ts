@@ -24,6 +24,7 @@ import {
 	type IWasmMemoryAccess,
 	type MemorySlice,
 	type WasmExports,
+	type WasmModuleSpec,
 } from "./api.js";
 
 export const Panic = defError(() => "Panic");
@@ -66,10 +67,11 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	imports!: WebAssembly.Imports;
 	exports!: T;
 	api: CoreAPI;
-	modules: IObjectOf<IWasmAPI<T>>;
+	modules!: IObjectOf<IWasmAPI<T>>;
+	order!: string[];
 
 	constructor(
-		modules: IWasmAPI<T>[] = [],
+		modules: WasmModuleSpec<T>[] = [],
 		public logger: ILogger = new ConsoleLogger("wasm")
 	) {
 		const logN = (x: number) => this.logger.debug(x);
@@ -133,12 +135,45 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			timer: () => performance.now(),
 			epoch: () => BigInt(Date.now()),
 		};
-		this.modules = modules.reduce((acc, x) => {
+
+		this._buildModuleGraph(modules);
+	}
+
+	/**
+	 * Takes array of root module specs, extracts all transitive dependencies,
+	 * pre-computes their topological order, then calls
+	 * {@link WasmModuleSpec.factory} for each module and stores all modules for
+	 * future reference.
+	 *
+	 * @remarks
+	 * Note: The pre-instantiated modules will only be fully initialized later
+	 * via {@link WasmBridge.instantiate} or {@link WasmBridge.init}.
+	 *
+	 * @param specs
+	 */
+	protected _buildModuleGraph(specs: WasmModuleSpec<T>[]) {
+		const unique = new Set<WasmModuleSpec<T>>();
+		const queue = [...specs];
+		while (queue.length) {
+			const mod = queue.shift()!;
+			unique.add(mod);
+			if (!mod.deps) continue;
+			for (let d of mod.deps) {
+				if (!unique.has(d)) queue.push(d);
+			}
+		}
+		const graph = [...unique].reduce((acc, mod) => {
 			assert(
-				acc[x.id] === undefined && x.id !== this.id,
-				`duplicate API module ID: ${x.id}`
+				(acc[mod.id] === undefined || acc[mod.id] === mod) &&
+					mod.id !== this.id,
+				`duplicate API module ID: ${mod.id}`
 			);
-			acc[x.id] = x;
+			acc[mod.id] = mod;
+			return acc;
+		}, <IObjectOf<WasmModuleSpec<T>>>{});
+		this.order = topoSort(graph, (mod) => mod.deps?.map((x) => x.id));
+		this.modules = this.order.reduce((acc, id) => {
+			acc[id] = graph[id].factory(this);
 			return acc;
 		}, <IObjectOf<IWasmAPI<T>>>{});
 	}
@@ -183,11 +218,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	async init(exports: T) {
 		this.exports = exports;
 		this.ensureMemory(false);
-		for (let id of topoSort(
-			this.modules,
-			(module) => module.dependencies
-		)) {
-			assert(!!this.modules[id], `missing API module: ${id}`);
+		for (let id of this.order) {
 			this.logger.debug(`initializing API module: ${id}`);
 			const status = await this.modules[id].init(this);
 			if (!status) return false;

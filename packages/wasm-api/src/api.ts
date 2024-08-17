@@ -73,18 +73,6 @@ export type WasmTypeConstructor<T> = Fn<IWasmMemoryAccess, WasmType<T>>;
  */
 export interface IWasmAPI<T extends WasmExports = WasmExports> {
 	/**
-	 * The unique ID for grouping the WASM imports of this module. MUST be the
-	 * same as used by the native side of the module.
-	 */
-	readonly id: string;
-	/**
-	 * IDs of other WASM API modules which this module depends on. Used to infer
-	 * correct initialization order. The core module (w/ unique ID: `wasmapi`)
-	 * is always considered an implicit dependency, will be initialized first
-	 * and MUST NOT be stated here.
-	 */
-	readonly dependencies?: string[];
-	/**
 	 * Called by {@link WasmBridge.init} to initialize all child APIs (async)
 	 * after the WASM module has been instantiated. If the method returns false
 	 * the overall initialization process will be stopped/terminated.
@@ -98,6 +86,32 @@ export interface IWasmAPI<T extends WasmExports = WasmExports> {
 	 * it's recommended to use naming prefixes to avoid clashes.
 	 */
 	getImports(): WebAssembly.ModuleImports;
+}
+
+export interface WasmModuleSpec<T extends WasmExports = WasmExports> {
+	/**
+	 * The unique ID for grouping the WASM imports of this module. MUST be the
+	 * same as used by the native side of the module.
+	 */
+	id: string;
+	/**
+	 * Optional array of other {@link WasmModuleSpec}s which this module depends
+	 * on (element order is irrelevant). Used to construct a module dependency
+	 * graph and the correct initialization order of modules. The core module
+	 * (defined via {@link WasmBridge} w/ unique ID: `wasmapi`) is always
+	 * considered an implicit dependency, will be initialized first and MUST NOT
+	 * be stated here.
+	 */
+	deps?: WasmModuleSpec<T>[];
+	/**
+	 * Factory function to pre-instantiate the API module.
+	 *
+	 * @remarks
+	 * Note: All modules will only be fully initialized at a later point via
+	 * {@link WasmBridge.instantiate} or {@link WasmBridge.init} and each
+	 * modules own {@link IWasmAPI.init} method.
+	 */
+	factory: Fn<WasmBridge<T>, IWasmAPI<T>>;
 }
 
 /**
