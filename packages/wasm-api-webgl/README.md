@@ -18,6 +18,7 @@
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -64,6 +65,16 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.34 KB
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Screenshot                                                                                                        | Description                      | Live demo                                       | Source                                                                       |
+|:------------------------------------------------------------------------------------------------------------------|:---------------------------------|:------------------------------------------------|:-----------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-webgl.avif" width="240"/> | Basic Zig/WebAssembly WebGL demo | [Demo](https://demo.thi.ng/umbrella/zig-webgl/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-webgl) |
 
 ## API
 
