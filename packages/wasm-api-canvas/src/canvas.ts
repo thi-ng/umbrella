@@ -1,6 +1,6 @@
 import { swapLane13 } from "@thi.ng/binary";
-import type { IWasmAPI } from "@thi.ng/wasm-api";
-import type { WasmDom } from "@thi.ng/wasm-api-dom/dom";
+import type { IWasmAPI, WasmModuleSpec } from "@thi.ng/wasm-api";
+import { WasmDomModule, type WasmDom } from "@thi.ng/wasm-api-dom/dom";
 import type { WasmBridge } from "@thi.ng/wasm-api/bridge";
 import { ObjectIndex } from "@thi.ng/wasm-api/object-index";
 import {
@@ -19,14 +19,29 @@ import {
 	type WasmCanvas2DImports,
 } from "./api.js";
 
+/**
+ * WASM module descriptor for use as dependency object in other module
+ * definitions or for direct use with
+ * [`WasmBridge`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html).
+ *
+ * @remarks
+ * Module defines the following dependencies:
+ * - [WasmDomModule](https://docs.thi.ng/umbrella/wasm-api-dom/variables/WasmDomModule.html)
+ *
+ * See
+ * [`WasmModuleSpec`](https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html)
+ * for more details.
+ */
+export const WasmCanvas2DModule: WasmModuleSpec<WasmCanvas2DExports> = {
+	id: "canvas2d",
+	deps: [WasmDomModule],
+	factory: () => new WasmCanvas2D(),
+};
+
+/** @internal */
 const TAU = Math.PI * 2;
 
 export class WasmCanvas2D implements IWasmAPI<WasmCanvas2DExports> {
-	static readonly id = "canvas2d";
-
-	readonly id = WasmCanvas2D.id;
-	readonly dependencies = ["dom"];
-
 	parent!: WasmBridge<WasmCanvas2DExports>;
 	dom!: WasmDom;
 
