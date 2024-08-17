@@ -1,6 +1,6 @@
 # zig-webgl
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-webgl.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-webgl.avif)
 
 [Live demo](http://demo.thi.ng/umbrella/zig-webgl/)
 
