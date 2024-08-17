@@ -6,6 +6,7 @@ import {
 	type IWasmAPI,
 	type ReadonlyWasmString,
 	type WasmBridge,
+	type WasmModuleSpec,
 	type WasmType,
 	type WasmTypeBase,
 } from "@thi.ng/wasm-api";
@@ -24,6 +25,25 @@ import {
 	type WasmDomImports,
 	type Event as WasmEvent,
 } from "./api.js";
+
+/**
+ * WASM module descriptor for use as dependency object for other module
+ * definitions or direct use with
+ * [`WasmBridge`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html).
+ *
+ * @remarks
+ * Module defines the following dependencies:
+ *
+ * - none
+ *
+ * See
+ * [`WasmModuleSpec`](https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html)
+ * for more details.
+ */
+export const WasmDomModule: WasmModuleSpec<WasmDomExports> = {
+	id: "dom",
+	factory: () => new WasmDom(),
+};
 
 /**
  * Hidden property for managed DOM elements to track IDs of attached WASM event
@@ -72,10 +92,6 @@ interface WasmListener {
 }
 
 export class WasmDom implements IWasmAPI<WasmDomExports> {
-	static readonly id = "dom";
-
-	readonly id = WasmDom.id;
-
 	parent!: WasmBridge<WasmDomExports>;
 	$Event!: WasmType<WasmEvent>;
 	$CreateElementOpts!: WasmType<CreateElementOpts>;
