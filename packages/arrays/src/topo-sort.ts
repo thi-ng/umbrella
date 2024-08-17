@@ -1,5 +1,5 @@
-import type { Fn, Nullable, IObjectOf } from "@thi.ng/api";
-import { illegalState } from "@thi.ng/errors";
+import type { Fn2, IObjectOf, Nullable } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
 
 /**
  * Takes an object describing a DAG of nodes of type T with keys being node IDs.
@@ -39,18 +39,18 @@ import { illegalState } from "@thi.ng/errors";
  *
  * @param nodes
  * @param deps
- * @returns
  */
 export const topoSort = <T>(
 	nodes: IObjectOf<T>,
-	deps: Fn<T, Nullable<string[]>>
+	deps: Fn2<T, string, Nullable<string[]>>
 ) => {
 	const cycles: IObjectOf<boolean> = {};
 	const topology: string[] = [];
 	const sort = (id: string, path: string[]) => {
-		if (cycles[id]) illegalState(`dependency cycle: ${path.join(" -> ")}`);
+		assert(nodes[id] != null, `missing node: ${id}`);
+		assert(!cycles[id], `dependency cycle: ${path.join(" -> ")}`);
 		cycles[id] = true;
-		const nodeDeps = deps(nodes[id]);
+		const nodeDeps = deps(nodes[id], id);
 		if (nodeDeps) {
 			for (let d of nodeDeps) sort(d, [...path, d]);
 		}
