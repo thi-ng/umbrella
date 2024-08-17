@@ -3,6 +3,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
 	IWasmAPI,
+	MemoryViewType,
 	WasmBridge,
 	WasmType,
 	WasmTypeBase,
@@ -243,7 +244,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 			},
 
 			uniformInt: this.uniformScalar.bind(this),
-			uniformUint: this.uniformScalar.bind(this),
+			uniformUInt: this.uniformScalar.bind(this),
 			uniformFloat: this.uniformScalar.bind(this),
 
 			uniformVec: (
@@ -251,12 +252,21 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 				name: number,
 				value: number,
 				size: number
-			) => {
-				const spec = this.models.get(modelID);
-				const id = this.parent.getString(name);
-				const val = this.parent.getF32Array(value, size).slice();
-				spec.uniforms![id] = <GLVec>val;
-			},
+			) => this.uniformVec(modelID, name, "f32", value >> 2, size),
+
+			uniformIVec: (
+				modelID: number,
+				name: number,
+				value: number,
+				size: number
+			) => this.uniformVec(modelID, name, "i32", value >> 2, size),
+
+			uniformUVec: (
+				modelID: number,
+				name: number,
+				value: number,
+				size: number
+			) => this.uniformVec(modelID, name, "u32", value >> 2, size),
 
 			updateAttrib: (modelID, name, addr) => {
 				const model = this.models.get(modelID);
@@ -299,5 +309,18 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 		const spec = this.models.get(modelID);
 		const id = this.parent.getString(name);
 		spec.uniforms![id] = value;
+	}
+
+	uniformVec(
+		modelID: number,
+		name: number,
+		type: MemoryViewType,
+		addr: number,
+		size: number
+	) {
+		const spec = this.models.get(modelID);
+		const id = this.parent.getString(name);
+		const val = this.parent[type].subarray(addr, addr + size).slice();
+		spec.uniforms![id] = <GLVec>val;
 	}
 }

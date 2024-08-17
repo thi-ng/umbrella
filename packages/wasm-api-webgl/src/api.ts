@@ -10,8 +10,20 @@ export interface WasmWebGLImports extends WebAssembly.ModuleImports {
 	createTexture(ctxID: number, texSpec: number): number;
 	uniformFloat(modelID: number, name: number, value: number): void;
 	uniformInt(modelID: number, name: number, value: number): void;
-	uniformUint(modelID: number, name: number, value: number): void;
+	uniformUInt(modelID: number, name: number, value: number): void;
 	uniformVec(
+		modelID: number,
+		name: number,
+		value: number,
+		size: number
+	): void;
+	uniformIVec(
+		modelID: number,
+		name: number,
+		value: number,
+		size: number
+	): void;
+	uniformUVec(
 		modelID: number,
 		name: number,
 		value: number,
