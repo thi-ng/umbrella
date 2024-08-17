@@ -1,14 +1,9 @@
 import type { Fn0 } from "@thi.ng/api";
 import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
+import { WasmBridge, type IWasmAPI, type WasmType } from "@thi.ng/wasm-api";
+import { WasmDomModule, type WasmDomExports } from "@thi.ng/wasm-api-dom";
 import {
-	WasmBridge,
-	type IWasmAPI,
-	type WasmExports,
-	type WasmType,
-} from "@thi.ng/wasm-api";
-import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
-import {
-	WasmSchedule,
+	WasmScheduleModule,
 	type WasmScheduleExports,
 } from "@thi.ng/wasm-api-schedule";
 import { $Task, TaskState, type Task } from "./api";
@@ -22,7 +17,7 @@ import WASM_URL from "./main.wasm?url";
  * These are usually all functions/symbols which can be called/accessed from the
  * JS side.
  */
-interface WasmApp extends WasmExports, WasmDomExports, WasmScheduleExports {
+interface WasmApp extends WasmDomExports, WasmScheduleExports {
 	start: Fn0<void>;
 }
 
@@ -32,9 +27,6 @@ interface WasmApp extends WasmExports, WasmDomExports, WasmScheduleExports {
  * binary.
  */
 class TodoHandlers implements IWasmAPI<WasmApp> {
-	readonly id = "todo";
-	readonly dependencies = [WasmDom.id, WasmSchedule.id];
-
 	parent!: WasmBridge<WasmApp>;
 	$Task!: WasmType<Task>;
 
@@ -114,9 +106,13 @@ class TodoHandlers implements IWasmAPI<WasmApp> {
 (async () => {
 	// create new WASM bridge with extra API module
 	const bridge = new WasmBridge<WasmApp>([
-		new WasmDom(),
-		new WasmSchedule(),
-		new TodoHandlers(),
+		// module declaration, incl. dependencies
+		// see: https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html
+		{
+			id: "todo",
+			deps: [WasmDomModule, WasmScheduleModule],
+			factory: () => new TodoHandlers(),
+		},
 	]);
 	// instantiate WASM module & bindings
 	await bridge.instantiate(fetch(WASM_URL));

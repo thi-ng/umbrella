@@ -1,12 +1,11 @@
 import type { Fn0 } from "@thi.ng/api";
 import { ConsoleLogger, ROOT } from "@thi.ng/logger";
-import { WasmBridge, type WasmExports } from "@thi.ng/wasm-api";
-import { WasmDom } from "@thi.ng/wasm-api-dom";
+import { WasmBridge } from "@thi.ng/wasm-api";
 import {
-	WasmSchedule,
+	WasmScheduleModule,
 	type WasmScheduleExports,
 } from "@thi.ng/wasm-api-schedule";
-import { WasmWebGL, type WasmWebGLExports } from "@thi.ng/wasm-api-webgl";
+import { WasmWebGLModule, type WasmWebGLExports } from "@thi.ng/wasm-api-webgl";
 import WASM_URL from "./main.wasm?url";
 
 ROOT.set(new ConsoleLogger());
@@ -19,7 +18,7 @@ ROOT.set(new ConsoleLogger());
  * These are usually all functions/symbols which can be called/accessed from the
  * JS side.
  */
-interface WasmApp extends WasmExports, WasmScheduleExports, WasmWebGLExports {
+interface WasmApp extends WasmScheduleExports, WasmWebGLExports {
 	/**
 	 * Custom user defined start function (see /zig/main.zig)
 	 */
@@ -30,8 +29,10 @@ interface WasmApp extends WasmExports, WasmScheduleExports, WasmWebGLExports {
 
 (async () => {
 	// create new WASM bridge with extra API module
+	// we pass an array of additional module declarations
+	// see: https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html
 	const bridge = new WasmBridge<WasmApp>(
-		[new WasmWebGL(), new WasmDom(), new WasmSchedule()],
+		[WasmWebGLModule, WasmScheduleModule],
 		new ConsoleLogger("wasm")
 	);
 	// instantiate WASM module & bindings

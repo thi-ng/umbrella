@@ -1,8 +1,8 @@
 import type { Fn0 } from "@thi.ng/api";
-import { WasmBridge, type WasmExports } from "@thi.ng/wasm-api";
-import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
+import { WasmBridge } from "@thi.ng/wasm-api";
+import { WasmDomModule, type WasmDomExports } from "@thi.ng/wasm-api-dom";
 import {
-	WasmSchedule,
+	WasmScheduleModule,
 	type WasmScheduleExports,
 } from "@thi.ng/wasm-api-schedule";
 import WASM_URL from "./main.wasm?url";
@@ -15,7 +15,7 @@ import WASM_URL from "./main.wasm?url";
  * These are usually all functions/symbols which can be called/accessed from the
  * JS side.
  */
-interface WasmApp extends WasmExports, WasmDomExports, WasmScheduleExports {
+interface WasmApp extends WasmDomExports, WasmScheduleExports {
 	/**
 	 * Custom user defined start function (see /zig/main.zig)
 	 */
@@ -26,7 +26,9 @@ interface WasmApp extends WasmExports, WasmDomExports, WasmScheduleExports {
 
 (async () => {
 	// create new WASM bridge with extra API module
-	const bridge = new WasmBridge<WasmApp>([new WasmDom(), new WasmSchedule()]);
+	// we pass an array of additional module declarations
+	// see: https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html
+	const bridge = new WasmBridge<WasmApp>([WasmDomModule, WasmScheduleModule]);
 	// instantiate WASM module & bindings
 	await bridge.instantiate(fetch(WASM_URL));
 	// call WASM main function to kick off

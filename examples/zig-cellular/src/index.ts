@@ -1,10 +1,9 @@
 import type { Fn0 } from "@thi.ng/api";
 import { WasmBridge } from "@thi.ng/wasm-api";
 import {
-	WasmCanvas2D,
+	WasmCanvas2DModule,
 	type WasmCanvas2DExports,
 } from "@thi.ng/wasm-api-canvas";
-import { WasmDom } from "@thi.ng/wasm-api-dom";
 import WASM_URL from "./main.wasm?url";
 
 /**
@@ -26,7 +25,9 @@ interface WasmApp extends WasmCanvas2DExports {
 
 (async () => {
 	// create new WASM bridge with extra API modules
-	const bridge = new WasmBridge<WasmApp>([new WasmCanvas2D(), new WasmDom()]);
+	// we pass an array of additional module declarations
+	// see: https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html
+	const bridge = new WasmBridge<WasmApp>([WasmCanvas2DModule]);
 	// instantiate WASM module & bindings
 	await bridge.instantiate(fetch(WASM_URL));
 	// call WASM main function to kick off

@@ -2,8 +2,12 @@ import type { Fn0 } from "@thi.ng/api";
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { NULL_LOGGER } from "@thi.ng/logger";
 import { randomID } from "@thi.ng/random";
-import { WasmBridge, type IWasmAPI, type WasmExports } from "@thi.ng/wasm-api";
-import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
+import { WasmBridge, type IWasmAPI } from "@thi.ng/wasm-api";
+import {
+	WasmDomModule,
+	type WasmDom,
+	type WasmDomExports,
+} from "@thi.ng/wasm-api-dom";
 import WASM_URL from "./main.wasm?url";
 
 /**
@@ -14,7 +18,7 @@ import WASM_URL from "./main.wasm?url";
  * These are usually all functions/symbols which can be called/accessed from the
  * JS side.
  */
-interface WasmApp extends WasmExports, WasmDomExports {
+interface WasmApp extends WasmDomExports {
 	/**
 	 * Custom user defined start function (see /zig/main.zig)
 	 */
@@ -26,8 +30,6 @@ interface WasmApp extends WasmExports, WasmDomExports {
  * by `getImports()` are being made available to the WASM binary.
  */
 class CanvasHandlers implements IWasmAPI<WasmApp> {
-	readonly id = "canvas";
-
 	parent!: WasmBridge<WasmApp>;
 	dom!: WasmDom;
 	contexts: CanvasRenderingContext2D[] = [];
@@ -100,7 +102,15 @@ class CanvasHandlers implements IWasmAPI<WasmApp> {
 (async () => {
 	// create new WASM bridge with extra API modules
 	const bridge = new WasmBridge<WasmApp>(
-		[new WasmDom(), new CanvasHandlers()]
+		[
+			// module declaration, incl. dependencies
+			// see: https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html
+			{
+				id: "canvas",
+				deps: [WasmDomModule],
+				factory: () => new CanvasHandlers(),
+			},
+		]
 		// uncomment to suppress logging messages
 		// NULL_LOGGER
 	);
