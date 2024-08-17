@@ -1,10 +1,28 @@
 import type { Fn, Fn0, FnO } from "@thi.ng/api";
-import type { IWasmAPI, WasmBridge } from "@thi.ng/wasm-api";
+import type { IWasmAPI, WasmBridge, WasmModuleSpec } from "@thi.ng/wasm-api";
 import {
 	ScheduleType,
 	type WasmScheduleExports,
 	type WasmScheduleImports,
 } from "./api.js";
+
+/**
+ * WASM module descriptor for use as dependency object in other module
+ * definitions or for direct use with
+ * [`WasmBridge`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html).
+ *
+ * @remarks
+ * Module defines the following dependencies:
+ * - none
+ *
+ * See
+ * [`WasmModuleSpec`](https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleSpec.html)
+ * for more details.
+ */
+export const WasmScheduleModule: WasmModuleSpec<WasmScheduleExports> = {
+	id: "schedule",
+	factory: () => new WasmSchedule(),
+};
 
 /** @internal */
 interface ScheduledCall {
@@ -13,6 +31,7 @@ interface ScheduledCall {
 	kind: ScheduleType;
 }
 
+/** @internal */
 const START: Record<ScheduleType, FnO<Fn0<void>, any>> = {
 	[ScheduleType.ONCE]: setTimeout,
 	[ScheduleType.INTERVAL]: setInterval,
@@ -26,6 +45,7 @@ const START: Record<ScheduleType, FnO<Fn0<void>, any>> = {
 			: (x) => setTimeout(x, 16),
 };
 
+/** @internal */
 const CANCEL: Record<ScheduleType, Fn<any, void>> = {
 	[ScheduleType.ONCE]: clearTimeout,
 	[ScheduleType.INTERVAL]: clearInterval,
@@ -38,10 +58,6 @@ const CANCEL: Record<ScheduleType, Fn<any, void>> = {
 };
 
 export class WasmSchedule implements IWasmAPI<WasmScheduleExports> {
-	static readonly id = "schedule";
-
-	readonly id = WasmSchedule.id;
-
 	parent!: WasmBridge<WasmScheduleExports>;
 	listeners: Record<number, ScheduledCall> = {};
 
