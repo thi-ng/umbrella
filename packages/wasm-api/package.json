@@ -102,6 +102,9 @@
 		"./bridge": {
 			"default": "./bridge.js"
 		},
+		"./memory": {
+			"default": "./memory.js"
+		},
 		"./object-index": {
 			"default": "./object-index.js"
 		},
