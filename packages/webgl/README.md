@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 198 standalone projects, maintained as part
+> This is one of 199 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -79,6 +79,7 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 - [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/develop/packages/soa) - SOA & AOS memory mapped structured views with optional & extensible serialization
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools) - Data structures for managing & working with strided, memory mapped vectors
+- [@thi.ng/wasm-api-webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-webgl) - WebGL bridge API for hybrid TypeScript & WASM (Zig) applications
 
 ## Installation
 
@@ -125,7 +126,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-22 projects in this repo's
+23 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -153,6 +154,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-shadertoy.jpg" width="240"/>        | Shadertoy-like WebGL setup                                                    | [Demo](https://demo.thi.ng/umbrella/webgl-shadertoy/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-shadertoy)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg" width="240"/>             | WebGL screenspace ambient occlusion                                           | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)             |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>    | Interactively drawing to & reading from a WebGL offscreen render texture      | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-texture-paint)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-webgl.avif" width="240"/>             | Basic Zig/WebAssembly WebGL demo                                              | [Demo](https://demo.thi.ng/umbrella/zig-webgl/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-webgl)              |
 
 ## API
 

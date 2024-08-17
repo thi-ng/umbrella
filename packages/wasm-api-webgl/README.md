@@ -16,6 +16,7 @@
 
 - [About](#about)
 - [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -33,6 +34,10 @@ WebGL bridge API for hybrid TypeScript & WASM (Zig) applications. This is a supp
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api-webgl%5D+in%3Atitle)
+
+## Related packages
+
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Installation
 
@@ -54,7 +59,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.34 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.37 KB
 
 ## Dependencies
 

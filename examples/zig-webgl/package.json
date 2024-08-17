@@ -38,7 +38,8 @@
 			"wasm-api",
 			"wasm-api-dom",
 			"wasm-api-schedule",
-			"wasm-api-webgl"
+			"wasm-api-webgl",
+			"webgl"
 		],
 		"screenshot": "examples/zig-webgl.avif"
 	},

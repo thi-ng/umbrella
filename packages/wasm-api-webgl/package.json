@@ -89,6 +89,9 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
+		"related": [
+			"webgl"
+		],
 		"status": "alpha",
 		"year": 2024
 	}

@@ -220,7 +220,8 @@
 			"shader-ast",
 			"soa",
 			"vectors",
-			"vector-pools"
+			"vector-pools",
+			"wasm-api-webgl"
 		],
 		"year": 2014
 	}
