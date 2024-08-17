@@ -124,7 +124,9 @@ size_t __attribute__((used)) WASM_Foo_constSlice_size() {
 
 exports[`stringSlice 2`] = `
 "// @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringSlice, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringSlice, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface Foo extends WasmTypeBase {
 	single: WasmStringSlice;
@@ -144,9 +146,7 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 		return 56;
 	},
 	instanceArray(base, num) {
-		const items: Foo[] = [];
-		for (; num --> 0; base += 56) items.push(this.instance(base));
-		return items;
+		return __instanceArray<Foo>(this, base, num);
 	},
 	instance: (base) => {
 		let $singlePtr: Pointer<WasmStringSlice> | null = null;
@@ -438,7 +438,9 @@ size_t __attribute__((used)) WASM_Foo_constSlice_size() {
 
 exports[`stringPtr 2`] = `
 "// @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringPtr, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface Foo extends WasmTypeBase {
 	single: WasmStringPtr;
@@ -458,9 +460,7 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 		return 56;
 	},
 	instanceArray(base, num) {
-		const items: Foo[] = [];
-		for (; num --> 0; base += 56) items.push(this.instance(base));
-		return items;
+		return __instanceArray<Foo>(this, base, num);
 	},
 	instance: (base) => {
 		let $singlePtr: Pointer<WasmStringPtr> | null = null;
@@ -665,7 +665,9 @@ union WASM_B {
 
 exports[`union 2`] = `
 "// @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringPtr, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface A extends WasmTypeBase {
 	/**
@@ -694,9 +696,7 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 		return 24;
 	},
 	instanceArray(base, num) {
-		const items: A[] = [];
-		for (; num --> 0; base += 24) items.push(this.instance(base));
-		return items;
+		return __instanceArray<A>(this, base, num);
 	},
 	instance: (base) => {
 		let $c: Pointer<Uint16Array> | null = null;
@@ -750,9 +750,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 		return 72;
 	},
 	instanceArray(base, num) {
-		const items: B[] = [];
-		for (; num --> 0; base += 72) items.push(this.instance(base));
-		return items;
+		return __instanceArray<B>(this, base, num);
 	},
 	instance: (base) => {
 		return {
@@ -763,11 +761,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return mem.u8.subarray(base, base + 72);
 			},
 			get a(): A[] {
-				const addr = base;
-				const inst = $A(mem);
-				const buf: A[] = [];
-				for(let i = 0; i < 3; i++) buf.push(inst.instance(addr + i * 24));
-				return buf;
+				return __array(mem, $A, base, 3);
 			},
 			get b(): bigint {
 				return mem.u64[base >>> 3];
@@ -833,7 +827,9 @@ struct WASM_A {
 
 exports[`opaque 2`] = `
 "// @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringPtr, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface A extends WasmTypeBase {
 	/**
@@ -878,9 +874,7 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 		return 56;
 	},
 	instanceArray(base, num) {
-		const items: A[] = [];
-		for (; num --> 0; base += 56) items.push(this.instance(base));
-		return items;
+		return __instanceArray<A>(this, base, num);
 	},
 	instance: (base) => {
 		let $ptr: Pointer<number> | null = null;
@@ -915,16 +909,10 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 				));
 			},
 			get slice(): Uint32Array {
-				let addr = mem.u32[(base + 16) >>> 2];
-				const len = mem.u32[(base + 20) >>> 2];
-				addr >>>= 2;
-				return mem.u32.subarray(addr, addr + len);
+				return __primslice32(mem, mem.u32, (base + 16), 2);
 			},
 			get constSlice(): Uint32Array {
-				let addr = mem.u32[(base + 24) >>> 2];
-				const len = mem.u32[(base + 28) >>> 2];
-				addr >>>= 2;
-				return mem.u32.subarray(addr, addr + len);
+				return __primslice32(mem, mem.u32, (base + 24), 2);
 			},
 			get array(): Uint32Array {
 				const addr = (base + 32) >>> 2;
@@ -997,7 +985,9 @@ struct WASM_B {
 
 exports[`enum 2`] = `
 "// @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringPtr, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export enum A {
 	FOO,
@@ -1021,9 +1011,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 		return 28;
 	},
 	instanceArray(base, num) {
-		const items: B[] = [];
-		for (; num --> 0; base += 28) items.push(this.instance(base));
-		return items;
+		return __instanceArray<B>(this, base, num);
 	},
 	instance: (base) => {
 		let $ptr: Pointer<A> | null = null;
@@ -1046,10 +1034,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return mem.i32.subarray(addr, addr + 2);
 			},
 			get slice(): Int32Array {
-				let addr = mem.u32[(base + 12) >>> 2];
-				const len = mem.u32[(base + 16) >>> 2];
-				addr >>>= 2;
-				return mem.i32.subarray(addr, addr + len);
+				return __primslice32(mem, mem.i32, (base + 12), 2);
 			},
 			get ptr(): Pointer<A> {
 				return $ptr || ($ptr = new Pointer<A>(mem, (base + 20),
@@ -1123,7 +1108,9 @@ struct WASM_B {
 
 exports[`funcptr 2`] = `
 "// @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringPtr, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface B extends WasmTypeBase {
 	/**
@@ -1156,9 +1143,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 		return 28;
 	},
 	instanceArray(base, num) {
-		const items: B[] = [];
-		for (; num --> 0; base += 28) items.push(this.instance(base));
-		return items;
+		return __instanceArray<B>(this, base, num);
 	},
 	instance: (base) => {
 		let $ptr: Pointer<number> | null = null;
@@ -1191,10 +1176,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return mem.u32.subarray(addr, addr + 2);
 			},
 			get slice(): Uint32Array {
-				let addr = mem.u32[(base + 20) >>> 2];
-				const len = mem.u32[(base + 24) >>> 2];
-				addr >>>= 2;
-				return mem.u32.subarray(addr, addr + len);
+				return __primslice32(mem, mem.u32, (base + 20), 2);
 			},
 		};
 	}
@@ -1549,7 +1531,9 @@ size_t __attribute__((used)) WASM_B_aPtrMulti_size() {
 
 exports[`slices 2`] = `
 "// @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringPtr, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface A extends WasmTypeBase {
 	/**
@@ -1566,9 +1550,7 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 		return 2;
 	},
 	instanceArray(base, num) {
-		const items: A[] = [];
-		for (; num --> 0; base += 2) items.push(this.instance(base));
-		return items;
+		return __instanceArray<A>(this, base, num);
 	},
 	instance: (base) => {
 		return {
@@ -1680,9 +1662,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 		return 108;
 	},
 	instanceArray(base, num) {
-		const items: B[] = [];
-		for (; num --> 0; base += 108) items.push(this.instance(base));
-		return items;
+		return __instanceArray<B>(this, base, num);
 	},
 	instance: (base) => {
 		let $ptr: Pointer<number> | null = null;
@@ -1701,16 +1681,10 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				return mem.u8.subarray(base, base + 108);
 			},
 			get slice(): Uint8Array {
-				let addr = mem.u32[base >>> 2];
-				const len = mem.u32[(base + 4) >>> 2];
-				addr >>>= 0;
-				return mem.u8.subarray(addr, addr + len);
+				return __primslice32(mem, mem.u8, base, 0);
 			},
 			get constSlice(): Uint8Array {
-				let addr = mem.u32[(base + 8) >>> 2];
-				const len = mem.u32[(base + 12) >>> 2];
-				addr >>>= 0;
-				return mem.u8.subarray(addr, addr + len);
+				return __primslice32(mem, mem.u8, (base + 8), 0);
 			},
 			get ptr(): Pointer<number> {
 				return $ptr || ($ptr = new Pointer<number>(mem, (base + 16),
@@ -1781,20 +1755,10 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				mem.u8.set(x.__bytes, (base + 76));
 			},
 			get aSlice(): A[] {
-				let addr = mem.u32[(base + 80) >>> 2];
-				const len = mem.u32[(base + 84) >>> 2];
-				const inst = $A(mem);
-				const buf: A[] = [];
-				for(let i = 0; i < len; i++) buf.push(inst.instance(addr + i * 2));
-				return buf;
+				return __slice32(mem, $A, (base + 80));
 			},
 			get constASlice(): A[] {
-				let addr = mem.u32[(base + 88) >>> 2];
-				const len = mem.u32[(base + 92) >>> 2];
-				const inst = $A(mem);
-				const buf: A[] = [];
-				for(let i = 0; i < len; i++) buf.push(inst.instance(addr + i * 2));
-				return buf;
+				return __slice32(mem, $A, (base + 88));
 			},
 			get aPtr(): Pointer<A> {
 				return $aPtr || ($aPtr = new Pointer<A>(mem, (base + 96),
@@ -1803,12 +1767,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 			},
 			get aPtr2(): Pointer<A[]> {
 				return $aPtr2 || ($aPtr2 = new Pointer<A[]>(mem, (base + 100),
-				(addr) => {
-					const inst = $A(mem);
-					const buf: A[] = [];
-					for(let i = 0; i < 2; i++) buf.push(inst.instance(addr + i * 2));
-					return buf;
-				}
+				(addr) => __array(mem, $A, addr, 2)
 				));
 			},
 			get aPtrMulti(): number {

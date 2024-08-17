@@ -405,7 +405,9 @@ export interface ICodeGen {
 export interface WasmTarget {
 	isize: "i32" | "i64";
 	usize: "u32" | "u64";
+	bits: number;
 	sizeBytes: number;
+	shift: number;
 }
 
 /**
@@ -414,7 +416,9 @@ export interface WasmTarget {
 export const WASM32: WasmTarget = {
 	isize: "i32",
 	usize: "u32",
+	bits: 32,
 	sizeBytes: 4,
+	shift: 2,
 };
 
 /**
@@ -423,5 +427,7 @@ export const WASM32: WasmTarget = {
 export const WASM64: WasmTarget = {
 	isize: "i64",
 	usize: "u64",
+	bits: 64,
 	sizeBytes: 8,
+	shift: 3,
 };

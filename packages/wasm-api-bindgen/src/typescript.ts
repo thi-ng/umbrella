@@ -77,13 +77,24 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 	const gen: ICodeGen = {
 		id: "ts",
 
-		pre: (_, globalOpts) => {
+		pre: (coll, globalOpts) => {
 			const res = [
 				"// @ts-ignore possibly includes unused imports",
 				`import { Pointer, ${__stringImpl(
 					globalOpts
-				)}, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";`,
+				)}, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";`,
 			];
+			if (
+				Object.values(coll).some(
+					(t) => t.type === "struct" || t.type === "union"
+				)
+			) {
+				const bits = globalOpts.target.bits;
+				res.push(
+					"// @ts-ignore",
+					`import { __array, __instanceArray, __slice${bits}, __primslice${bits} } from "@thi.ng/wasm-api/memory";`
+				);
+			}
 			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
 			return res.join("\n");
 		},
@@ -160,9 +171,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 				`return ${struct.__size};`,
 				`},`,
 				`instanceArray(base, num) {`,
-				`const items: ${struct.name}[] = [];`,
-				`for (; num --> 0; base += ${struct.__size}) items.push(this.instance(base));`,
-				`return items;`,
+				`return __instanceArray<${struct.name}>(this, base, num);`,
 				`},`,
 				`instance: (base) => {`,
 				...pointerDecls,
@@ -243,16 +252,6 @@ const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
 
 /** @internal */
-const __mapArray = (f: Field, coll: TypeColl, len: NumOrString = "len") => [
-	`const inst = $${f.type}(mem);`,
-	`const buf: ${f.type}[] = [];`,
-	`for(let i = 0; i < ${len}; i++) buf.push(inst.instance(addr + i * ${
-		coll[f.type].__size
-	}));`,
-	`return buf;`,
-];
-
-/** @internal */
 const __mapStringArray = (
 	target: WasmTarget,
 	name: string,
@@ -266,13 +265,6 @@ const __mapStringArray = (
 		target.sizeBytes * (type === "WasmStringSlice" ? 2 : 1)
 	}, ${isConst}));`,
 	`return $${name};`,
-];
-
-/** @internal */
-const __primSlice = (type: string, _: number, __: CodeGenOpts) => [
-	// `const addr = ${__ptrShift(opts.target, offset, type)};`,
-	`addr >>>= ${__shift(type)};`,
-	`return mem.${type}.subarray(addr, addr + len);`,
 ];
 
 /** @internal */
@@ -428,9 +420,7 @@ const __generateField = (
 			} else {
 				ptrType = `Pointer<${type}[]>`;
 				getter = __ptrBody(ptrType, name, offset, [
-					`(addr) => {`,
-					...__mapArray(field, coll, field.len),
-					"}",
+					`(addr) => __array(mem, $${field.type}, addr, ${field.len})`,
 				]);
 			}
 			type = ptrType;
@@ -450,8 +440,9 @@ const __generateField = (
 			} else {
 				type += "[]";
 				getter = [
-					`const addr = ${__addr(offset)};`,
-					...__mapArray(field, coll, field.len),
+					`return __array(mem, $${field.type}, ${__addr(offset)}, ${
+						field.len
+					});`,
 				];
 			}
 			break;
@@ -462,23 +453,28 @@ const __generateField = (
 			break;
 		case "slice":
 		case "enumSlice":
-			getter = [
-				`let addr = ${__ptr(opts.target, offset)};`,
-				`const len = ${__ptr(
-					opts.target,
-					offset + opts.target.sizeBytes
-				)};`,
-			];
 			if (isPrim) {
-				getter.push(...__primSlice(type, offset, opts));
+				getter = [
+					`return __primslice${
+						opts.target.bits
+					}(mem, mem.${type}, ${__addr(offset)}, ${__shift(type)});`,
+				];
 				type = __arrayType(type);
 			} else if ($isEnum) {
 				tag = (<Enum>coll[type]).tag;
-				getter.push(...__primSlice(tag, offset, opts));
+				getter = [
+					`return __primslice${
+						opts.target.bits
+					}(mem, mem.${tag}, ${__addr(offset)}, ${__shift(tag)});`,
+				];
 				type = __arrayType(tag);
 			} else {
 				type += "[]";
-				getter.push(...__mapArray(field, coll));
+				getter = [
+					`return __slice${opts.target.bits}(mem, $${
+						field.type
+					}, ${__addr(offset)});`,
+				];
 			}
 			break;
 		case "single":
