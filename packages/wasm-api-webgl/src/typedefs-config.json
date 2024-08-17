@@ -1,0 +1,38 @@
+{
+	"global": {
+		"uppercaseEnums": false
+	},
+	"ts": {
+		"pre": [
+			"import type { GLType as ModelAttribType } from \"@thi.ng/api\";",
+			"// @ts-ignore possibly includes unused imports",
+			"import type { DrawMode, TextureFilter, TextureFormat, TextureRepeat, TextureTarget, TextureType } from \"@thi.ng/webgl\";"
+		]
+	},
+	"zig": {
+		"pre": [
+			"/// Syntax sugar for: `ConstModelAttribSpecSlice.wrap()`",
+			"pub inline fn modelAttribs(items: []const ModelAttribSpec) ConstModelAttribSpecSlice {",
+			"    return ConstModelAttribSpecSlice.wrap(items);",
+			"}",
+			"/// Syntax sugar for: `ConstModelUniformSlice.wrap()`",
+			"pub inline fn modelUniforms(items: []const ModelUniform) ConstModelUniformSlice {",
+			"    return ConstModelUniformSlice.wrap(items);",
+			"}",
+			"/// Syntax sugar for: `ConstShaderAttribSpecSlice.wrap()`",
+			"pub inline fn shaderAttribs(items: []const ShaderAttribSpec) ConstShaderAttribSpecSlice {",
+			"    return ConstShaderAttribSpecSlice.wrap(items);",
+			"}",
+			"",
+			"/// Syntax sugar for: `ShaderVaryingSpecSlice.wrap()`",
+			"pub inline fn shaderVaryings(items: []const ShaderVaryingSpec) ConstShaderVaryingSpecSlice {",
+			"    return ConstShaderVaryingSpecSlice.wrap(items);",
+			"}",
+			"",
+			"/// Syntax sugar for: `ConstShaderUniformSpecSlice.wrap()`",
+			"pub inline fn shaderUniforms(items: []const ShaderUniformSpec) ConstShaderUniformSpecSlice {",
+			"    return ConstShaderUniformSpecSlice.wrap(items);",
+			"}"
+		]
+	}
+}

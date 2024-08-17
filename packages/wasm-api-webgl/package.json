@@ -1,0 +1,95 @@
+{
+	"name": "@thi.ng/wasm-api-webgl",
+	"version": "0.0.1",
+	"description": "WebGL bridge API for hybrid TypeScript & WASM (Zig) applications",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://thi.ng/wasm-api-webgl",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"build:types": "npx wasm-api-bindgen  -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
+		"clean": "bun ../../tools/src/clean-package.ts",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.11.8",
+		"@thi.ng/errors": "^2.5.14",
+		"@thi.ng/wasm-api": "^1.6.7",
+		"@thi.ng/wasm-api-dom": "^0.11.104",
+		"@thi.ng/webgl": "^6.9.11"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.47.5",
+		"@thi.ng/wasm-api-bindgen": "^0.5.13",
+		"esbuild": "^0.23.0",
+		"typedoc": "^0.26.5",
+		"typescript": "^5.5.4"
+	},
+	"keywords": [
+		"browser",
+		"codegen",
+		"interop",
+		"shader",
+		"typescript",
+		"webassembly",
+		"webgl",
+		"zig"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts",
+		"zig",
+		"generated"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./gl": {
+			"default": "./gl.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/wasm-api",
+		"status": "alpha",
+		"year": 2024
+	}
+}

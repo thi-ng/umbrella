@@ -1,0 +1,534 @@
+[
+	{
+		"name": "WebGLContextOpts",
+		"type": "struct",
+		"doc": "WebGL rendering context options, used by `createCanvasContext()`",
+		"fields": [
+			{ "name": "alpha", "type": "u8", "default": 0, "setter": false },
+			{
+				"name": "antialias",
+				"type": "u8",
+				"default": 0,
+				"setter": false
+			},
+			{ "name": "depth", "type": "u8", "default": 1, "setter": false },
+			{
+				"name": "desynchronized",
+				"type": "u8",
+				"default": 0,
+				"setter": false
+			},
+			{
+				"name": "failIfMajorPerformanceCaveat",
+				"type": "u8",
+				"default": 0,
+				"setter": false
+			},
+			{
+				"name": "powerPreference",
+				"type": "WebGLPowerPreference",
+				"default": { "zig": ".default" },
+				"setter": false
+			},
+			{
+				"name": "premultipliedAlpha",
+				"type": "u8",
+				"default": 0,
+				"setter": false
+			},
+			{
+				"name": "preserveDrawingBuffer",
+				"type": "u8",
+				"default": 0,
+				"setter": false
+			},
+			{ "name": "stencil", "type": "u8", "default": 0, "setter": false }
+		]
+	},
+	{
+		"name": "WebGLPowerPreference",
+		"type": "enum",
+		"tag": "u8",
+		"values": ["default", "high_performance", "low_power"]
+	},
+	{
+		"name": "ShaderSpec",
+		"type": "struct",
+		"fields": [
+			{ "name": "vs", "type": "string" },
+			{ "name": "fs", "type": "string" },
+			{
+				"name": "attribs",
+				"type": "ShaderAttribSpec",
+				"tag": "slice",
+				"const": true,
+				"doc": "Slice of shader attribute specs",
+				"default": { "zig": "shaderAttribs(&[_]ShaderAttribSpec{})" },
+				"setter": false
+			},
+			{
+				"name": "varying",
+				"type": "ShaderVaryingSpec",
+				"tag": "slice",
+				"const": true,
+				"doc": "Slice of shader varying specs",
+				"default": { "zig": "shaderVaryings(&[_]ShaderVaryingSpec{})" },
+				"setter": false
+			},
+			{
+				"name": "uniforms",
+				"type": "ShaderUniformSpec",
+				"tag": "slice",
+				"const": true,
+				"doc": "Slice of shader uniform specs",
+				"default": { "zig": "shaderUniforms(&[_]ShaderUniformSpec{})" },
+				"setter": false
+			}
+		]
+	},
+	{
+		"name": "ShaderAttribSpec",
+		"type": "struct",
+		"fields": [
+			{ "name": "name", "type": "string" },
+			{ "name": "type", "type": "ShaderAttribType", "setter": false }
+		]
+	},
+	{
+		"name": "ShaderVaryingSpec",
+		"type": "struct",
+		"fields": [
+			{ "name": "name", "type": "string" },
+			{ "name": "type", "type": "ShaderAttribType", "setter": false }
+		]
+	},
+	{
+		"name": "ShaderUniformSpec",
+		"type": "struct",
+		"fields": [
+			{ "name": "name", "type": "string" },
+			{ "name": "type", "type": "UniformType", "setter": false },
+			{
+				"name": "default",
+				"type": "UniformValue",
+				"default": { "zig": ".{ .float = 0 }" },
+				"setter": false
+			}
+		]
+	},
+	{
+		"name": "ModelSpec",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "attribs",
+				"type": "ModelAttribSpec",
+				"tag": "slice",
+				"const": true,
+				"doc": "Slice of model attribute specs",
+				"default": { "zig": "modelAttribs(&[_]ModelAttribSpec{})" },
+				"setter": false
+			},
+			{
+				"name": "instances",
+				"type": "ModelAttribSpec",
+				"tag": "slice",
+				"const": true,
+				"doc": "Slice of instance attribute specs",
+				"default": { "zig": "modelAttribs(&[_]ModelAttribSpec{})" },
+				"setter": false
+			},
+			{
+				"name": "uniforms",
+				"type": "ModelUniform",
+				"tag": "slice",
+				"const": true,
+				"doc": "Slice of model uniforms",
+				"default": { "zig": "modelUniforms(&[_]ModelUniform{})" },
+				"setter": false
+			},
+			{
+				"name": "textures",
+				"type": "i32",
+				"tag": "slice",
+				"const": true,
+				"default": { "zig": "ConstI32Slice.wrap(&[_]i32{})" },
+				"setter": false
+			},
+			{ "name": "shader", "type": "i32", "setter": false },
+			{ "name": "num", "type": "usize", "setter": false },
+			{
+				"name": "numInstances",
+				"type": "usize",
+				"default": 0,
+				"setter": false
+			},
+			{
+				"name": "mode",
+				"type": "DrawMode",
+				"default": { "zig": ".triangles" },
+				"setter": false
+			}
+		]
+	},
+	{
+		"name": "ModelAttribSpec",
+		"type": "struct",
+		"fields": [
+			{ "name": "name", "type": "string" },
+			{ "name": "data", "type": "ModelAttribData", "setter": false },
+			{
+				"name": "type",
+				"type": "ModelAttribType",
+				"default": { "zig": ".f32" },
+				"setter": false
+			},
+			{
+				"name": "offset",
+				"type": "usize",
+				"default": 0,
+				"setter": false
+			},
+			{
+				"name": "stride",
+				"type": "usize",
+				"default": 0,
+				"setter": false
+			},
+			{ "name": "size", "type": "usize", "setter": false }
+		]
+	},
+	{
+		"name": "ModelAttribData",
+		"type": "union",
+		"fields": [
+			{ "name": "u8", "type": "i8", "tag": "slice", "const": true },
+			{ "name": "i8", "type": "u8", "tag": "slice", "const": true },
+			{ "name": "i16", "type": "i16", "tag": "slice", "const": true },
+			{ "name": "u16", "type": "u16", "tag": "slice", "const": true },
+			{ "name": "u32", "type": "i32", "tag": "slice", "const": true },
+			{ "name": "i32", "type": "u32", "tag": "slice", "const": true },
+			{ "name": "f32", "type": "f32", "tag": "slice", "const": true }
+		]
+	},
+	{
+		"name": "AttribUpdateSpec",
+		"type": "struct",
+		"fields": [
+			{ "name": "data", "type": "ModelAttribData", "setter": false },
+			{
+				"name": "type",
+				"type": "ModelAttribType",
+				"default": { "zig": ".f32" },
+				"setter": false
+			},
+			{
+				"name": "offset",
+				"type": "usize",
+				"default": 0,
+				"doc": "Start byte offset in WebGL buffer",
+				"setter": false
+			}
+		]
+	},
+	{
+		"name": "ModelUniform",
+		"type": "struct",
+		"fields": [
+			{ "name": "name", "type": "string" },
+			{ "name": "type", "type": "UniformType", "setter": false },
+			{ "name": "value", "type": "UniformValue", "setter": false }
+		]
+	},
+	{
+		"name": "UniformValue",
+		"type": "union",
+		"fields": [
+			{ "name": "float", "type": "f32", "setter": false },
+			{ "name": "vec2", "type": "f32", "tag": "vec", "len": 2 },
+			{ "name": "vec3", "type": "f32", "tag": "vec", "len": 3 },
+			{ "name": "vec4", "type": "f32", "tag": "vec", "len": 4 }
+		]
+	},
+	{
+		"name": "TextureSpec",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "img",
+				"type": "ImageData",
+				"default": { "zig": ".{ .none = 0 }" },
+				"setter": false
+			},
+			{ "name": "width", "type": "u16", "setter": false },
+			{ "name": "height", "type": "u16", "setter": false },
+			{ "name": "depth", "type": "u16", "default": 0, "setter": false },
+			{
+				"name": "format",
+				"type": "TextureFormat",
+				"default": { "zig": ".rgba" },
+				"setter": false
+			},
+			{
+				"name": "target",
+				"type": "TextureTarget",
+				"default": { "zig": ".texture_2d" },
+				"setter": false
+			},
+			{
+				"name": "type",
+				"type": "TextureType",
+				"default": { "zig": ".auto" },
+				"setter": false
+			},
+			{
+				"name": "filter",
+				"type": "TextureFilter",
+				"default": { "zig": ".nearest" },
+				"setter": false
+			},
+			{
+				"name": "wrap",
+				"type": "TextureRepeat",
+				"default": { "zig": ".clamp" },
+				"setter": false
+			},
+			{
+				"name": "imgType",
+				"type": "ImageType",
+				"default": { "zig": ".none" },
+				"setter": false
+			}
+		]
+	},
+	{
+		"name": "ImageData",
+		"type": "union",
+		"fields": [
+			{ "name": "none", "type": "usize", "setter": false },
+			{ "name": "u8", "type": "u8", "tag": "slice", "const": true },
+			{ "name": "u16", "type": "u16", "tag": "slice", "const": true },
+			{ "name": "u32", "type": "u32", "tag": "slice", "const": true },
+			{ "name": "f32", "type": "f32", "tag": "slice", "const": true }
+		]
+	},
+	{
+		"name": "ImageType",
+		"type": "enum",
+		"tag": "u8",
+		"values": ["none", "u8", "u16", "u32", "f32"]
+	},
+	{
+		"name": "ModelAttribType",
+		"type": "enum",
+		"tag": "u16",
+		"doc": "Same as https://docs.thi.ng/umbrella/api/enums/GLType.html",
+		"values": [
+			{ "name": "i8", "value": 5120 },
+			{ "name": "u8", "value": 5121 },
+			{ "name": "i16", "value": 5122 },
+			{ "name": "u16", "value": 5123 },
+			{ "name": "i32", "value": 5124 },
+			{ "name": "u32", "value": 5125 },
+			{ "name": "f32", "value": 5126 }
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "ShaderAttribType",
+		"type": "enum",
+		"tag": "u8",
+		"values": [
+			"float",
+			"int",
+			"uint",
+			"vec2",
+			"vec3",
+			"vec4",
+			"mat22",
+			"mat33",
+			"mat44"
+		]
+	},
+	{
+		"name": "UniformType",
+		"type": "enum",
+		"tag": "u8",
+		"values": [
+			"float",
+			"int",
+			"uint",
+			"vec2",
+			"vec3",
+			"vec4",
+			"mat22",
+			"mat33",
+			"mat44",
+			"sampler2D",
+			"sampler3D",
+			"samplerCube"
+		]
+	},
+	{
+		"name": "DrawMode",
+		"type": "enum",
+		"tag": "u8",
+		"doc": [
+			"Visualization mode for how geometry will be interpreted",
+			"Same as: https://docs.thi.ng/umbrella/webgl/enums/DrawMode.html"
+		],
+		"values": [
+			"points",
+			"lines",
+			"line_loop",
+			"line_strip",
+			"triangles",
+			"triangle_strip",
+			"triangle_fan"
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "TextureFilter",
+		"type": "enum",
+		"tag": "u16",
+		"doc": "Same as: https://docs.thi.ng/umbrella/webgl/enums/TextureFilter.html",
+		"values": [
+			{ "name": "linear", "value": 9729 },
+			{ "name": "nearest", "value": 9728 },
+			{ "name": "nearest_mipmap_nearest", "value": 9984 },
+			{ "name": "linear_mipmap_nearest" },
+			{ "name": "nearest_mipmap_linear" },
+			{ "name": "linear_mipmap_linear" }
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "TextureFormat",
+		"type": "enum",
+		"tag": "u16",
+		"doc": "Same as: https://docs.thi.ng/umbrella/webgl/enums/TextureFormat.html",
+		"values": [
+			{ "name": "alpha", "value": 6406 },
+			{ "name": "depth_component", "value": 6402 },
+			{ "name": "depth_component16", "value": 33189 },
+			{ "name": "depth_component24", "value": 33190 },
+			{ "name": "depth_component32f", "value": 36012 },
+			{ "name": "depth_stencil", "value": 34041 },
+			{ "name": "depth24_stencil8", "value": 35056 },
+			{ "name": "depth32f_stencil8", "value": 36013 },
+			{ "name": "luminance", "value": 6409 },
+			{ "name": "luminance_alpha", "value": 6410 },
+			{ "name": "r11f_g11f_b10f", "value": 35898 },
+			{ "name": "r16f", "value": 33325 },
+			{ "name": "r16i", "value": 33331 },
+			{ "name": "r16ui", "value": 33332 },
+			{ "name": "r32f", "value": 33326 },
+			{ "name": "r32i", "value": 33333 },
+			{ "name": "r32ui", "value": 33334 },
+			{ "name": "r8", "value": 33321 },
+			{ "name": "r8_snorm", "value": 36756 },
+			{ "name": "r8i", "value": 33329 },
+			{ "name": "r8ui", "value": 33330 },
+			{ "name": "red", "value": 6403 },
+			{ "name": "red_integer", "value": 36244 },
+			{ "name": "rg", "value": 33319 },
+			{ "name": "rg_integer", "value": 33320 },
+			{ "name": "rg16f", "value": 33327 },
+			{ "name": "rg16i", "value": 33337 },
+			{ "name": "rg16ui", "value": 33338 },
+			{ "name": "rg32f", "value": 33328 },
+			{ "name": "rg32i", "value": 33339 },
+			{ "name": "rg32ui", "value": 33340 },
+			{ "name": "rg8", "value": 33323 },
+			{ "name": "rg8_snorm", "value": 36757 },
+			{ "name": "rg8i", "value": 33335 },
+			{ "name": "rg8ui", "value": 33336 },
+			{ "name": "rgb", "value": 6407 },
+			{ "name": "rgb_integer", "value": 36248 },
+			{ "name": "rgb10_a2", "value": 32857 },
+			{ "name": "rgb10_a2ui", "value": 36975 },
+			{ "name": "rgb16f", "value": 34843 },
+			{ "name": "rgb16i", "value": 36233 },
+			{ "name": "rgb16ui", "value": 36215 },
+			{ "name": "rgb32f", "value": 34837 },
+			{ "name": "rgb32i", "value": 36227 },
+			{ "name": "rgb32ui", "value": 36209 },
+			{ "name": "rgb5_a1", "value": 32855 },
+			{ "name": "rgb565", "value": 36194 },
+			{ "name": "rgb8", "value": 32849 },
+			{ "name": "rgb8_snorm", "value": 36758 },
+			{ "name": "rgb8i", "value": 36239 },
+			{ "name": "rgb8ui", "value": 36221 },
+			{ "name": "rgb9_e5", "value": 35901 },
+			{ "name": "rgba", "value": 6408 },
+			{ "name": "rgba_integer", "value": 36249 },
+			{ "name": "rgba16f", "value": 34842 },
+			{ "name": "rgba16i", "value": 36232 },
+			{ "name": "rgba16ui", "value": 36214 },
+			{ "name": "rgba32f", "value": 34836 },
+			{ "name": "rgba32i", "value": 36226 },
+			{ "name": "rgba32ui", "value": 36208 },
+			{ "name": "rgba4", "value": 32854 },
+			{ "name": "rgba8", "value": 32856 },
+			{ "name": "rgba8_snorm", "value": 36759 },
+			{ "name": "rgba8i", "value": 36238 },
+			{ "name": "rgba8ui", "value": 36220 },
+			{ "name": "srgb8", "value": 35905 },
+			{ "name": "srgb8_alpha8", "value": 35907 }
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "TextureRepeat",
+		"type": "enum",
+		"tag": "u16",
+		"doc": "Same as: https://docs.thi.ng/umbrella/webgl/enums/TextureRepeat.html",
+		"values": [
+			{ "name": "repeat", "value": 10497 },
+			{ "name": "clamp", "value": 33071 },
+			{ "name": "repeat_mirror", "value": 33648 }
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "TextureTarget",
+		"type": "enum",
+		"tag": "u16",
+		"doc": "Same as: https://docs.thi.ng/umbrella/webgl/enums/TextureTarget.html",
+		"values": [
+			{ "name": "texture_2d", "value": 3553 },
+			{ "name": "texture_3d", "value": 32879 },
+			{ "name": "texture_cube_map", "value": 34067 },
+			{ "name": "texture_2d_array", "value": 35866 }
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "TextureType",
+		"type": "enum",
+		"tag": "u16",
+		"doc": "Same as: https://docs.thi.ng/umbrella/webgl/enums/TextureType.html",
+		"values": [
+			{ "name": "auto", "value": 0 },
+			{ "name": "byte", "value": 5120 },
+			{ "name": "unsigned_byte", "value": 5121 },
+			{ "name": "short", "value": 5122 },
+			{ "name": "unsigned_short", "value": 5123 },
+			{ "name": "int", "value": 5124 },
+			{ "name": "unsigned_int", "value": 5125 },
+			{ "name": "float", "value": 5126 },
+			{ "name": "half_float", "value": 5131 },
+			{ "name": "unsigned_short_4_4_4_4", "value": 32819 },
+			{ "name": "unsigned_short_5_5_5_1", "value": 32820 },
+			{ "name": "unsigned_short_5_6_5", "value": 33635 },
+			{ "name": "unsigned_int_2_10_10_10_rev", "value": 33640 },
+			{ "name": "unsigned_int_24_8", "value": 34042 },
+			{ "name": "unsigned_int_10f_11f_11f_rev", "value": 35899 },
+			{ "name": "unsigned_int_5_9_9_9_rev", "value": 35902 },
+			{ "name": "half_float_oes", "value": 36193 },
+			{ "name": "float_32_unsigned_int_24_8_rev", "value": 36269 }
+		],
+		"skip": ["ts"]
+	}
+]
