@@ -251,16 +251,23 @@ const tagInitials = searchResults.map(tagsByInitial);
 await $compile(
 	div(
 		{},
-		inputSearch({
-			id: "search",
-			oninput: (e) => {
-				const val = (<HTMLInputElement>e.target).value.toLowerCase();
-				if (!val) location.hash = "#";
-				search.next(val);
-			},
-			placeholder: "Fuzzy tag search",
-			value: search,
-		}),
+		div(
+			"#inputs",
+			{},
+			inputSearch({
+				id: "search",
+				oninput: (e) => {
+					const val = (<HTMLInputElement>(
+						e.target
+					)).value.toLowerCase();
+					if (!val) location.hash = "#";
+					search.next(val);
+				},
+				placeholder: "Fuzzy tag search",
+				value: search,
+			}),
+			button({ onclick: () => search.next("") }, "reset filter")
+		),
 		div(
 			{},
 			searchResults.map(

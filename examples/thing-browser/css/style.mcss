@@ -3,7 +3,6 @@
 // use `yarn css:build` or `yarn css:watch` to transpile to CSS
 // also see component-specific *.mcss files in /src folder
 
-// (optional) variable declarations
 :root {
 	bg-color=#fff
 	text-color=#333
@@ -55,9 +54,17 @@ details:not([open]) {
 
 summary { cursor-pointer }
 
-input[type=search] {
-	db mv3 pv2 ph3 br-pill bw1 border-color(text-color)
-	w-100 ns:width(30rem)
+#inputs {
+	grid grid-cols(1fr 8rem) gap4 mv3 l:maxw-50
+	{
+		input[type=search] {
+			pv2 ph3 br-pill bw1 border-color(text-color)
+			w-100
+		}
+		button {
+			pv2 ph3 br-pill bw0 bg-color(text-color) color(bg-color) v-mid
+		}
+	}
 }
 
 .grid {
