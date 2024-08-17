@@ -49,6 +49,7 @@
 		"export",
 		"history",
 		"interactive",
+		"interop",
 		"ui",
 		"undo",
 		"webassembly",

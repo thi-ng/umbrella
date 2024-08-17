@@ -47,11 +47,14 @@
 		"browser",
 		"canvas",
 		"color",
+		"drawing",
 		"dsl",
 		"dsp",
 		"example",
+		"interactive",
 		"shader",
 		"shader-ast",
+		"texture",
 		"webgl"
 	]
 }

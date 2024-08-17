@@ -42,10 +42,13 @@
 		"screenshot": "examples/webgl-grid.jpg"
 	},
 	"keywords": [
+		"animation",
 		"browser",
 		"canvas",
 		"example",
 		"matrix",
+		"shader",
+		"texture",
 		"transducer",
 		"ui",
 		"vector",

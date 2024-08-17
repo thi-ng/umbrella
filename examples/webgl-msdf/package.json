@@ -49,15 +49,19 @@
 		"screenshot": "examples/webgl-msdf.jpg"
 	},
 	"keywords": [
+		"animation",
 		"browser",
 		"canvas",
 		"dsl",
 		"example",
+		"font",
 		"matrix",
 		"reactive",
+		"sdf",
 		"shader",
 		"shader-ast",
 		"transducer",
+		"typography",
 		"ui",
 		"vector",
 		"webgl"

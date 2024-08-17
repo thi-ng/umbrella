@@ -35,6 +35,7 @@
 		"readme": [
 			"date",
 			"wasm-api",
+			"wasm-api-bindgen",
 			"wasm-api-dom",
 			"wasm-api-schedule"
 		],
@@ -42,8 +43,12 @@
 	},
 	"keywords": [
 		"browser",
+		"codegen",
 		"example",
+		"interop",
+		"time",
 		"todo",
+		"tool",
 		"ui",
 		"webassembly",
 		"zig"

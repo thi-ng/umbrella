@@ -45,15 +45,17 @@
 	"keywords": [
 		"browser",
 		"cli",
-		"converter",
+		"conversion",
 		"example",
 		"export",
 		"hiccup",
+		"interactive",
 		"json",
 		"reactive",
 		"syntax",
 		"tool",
 		"transducer",
-		"ui"
+		"ui",
+		"xml"
 	]
 }

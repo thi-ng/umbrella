@@ -61,7 +61,7 @@
 		"typescript",
 		"ui",
 		"validate",
-		"wildcards"
+		"wildcard"
 	],
 	"publishConfig": {
 		"access": "public"

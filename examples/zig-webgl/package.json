@@ -34,7 +34,24 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": false,
-		"screenshot": "examples/zig-webgl.png"
-	}
+		"readme": [
+			"wasm-api",
+			"wasm-api-dom",
+			"wasm-api-schedule",
+			"wasm-api-webgl"
+		],
+		"screenshot": "examples/zig-webgl.avif"
+	},
+	"keywords": [
+		"2d",
+		"animation",
+		"browser",
+		"example",
+		"interop",
+		"shader",
+		"time",
+		"webassembly",
+		"webgl",
+		"zig"
+	]
 }

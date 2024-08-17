@@ -53,7 +53,8 @@
 		"html",
 		"parser",
 		"tree",
-		"typescript"
+		"typescript",
+		"xml"
 	],
 	"publishConfig": {
 		"access": "public"

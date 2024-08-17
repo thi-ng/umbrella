@@ -47,6 +47,7 @@
 		"markdown",
 		"parser",
 		"reactive",
+		"text",
 		"transducer",
 		"ui"
 	]

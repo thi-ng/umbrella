@@ -42,6 +42,7 @@
 		"delay",
 		"event",
 		"example",
+		"interop",
 		"time",
 		"ui",
 		"webassembly",

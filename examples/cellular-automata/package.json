@@ -37,13 +37,16 @@
 	},
 	"keywords": [
 		"2d",
+		"ascii",
 		"automata",
 		"binary",
 		"browser",
 		"cellular",
+		"evolutionary",
 		"example",
 		"generative",
 		"interactive",
+		"text",
 		"transducer",
 		"ui",
 		"visualization"
