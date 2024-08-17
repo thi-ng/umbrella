@@ -4,7 +4,7 @@ import {
 	WasmCanvas2D,
 	type WasmCanvas2DExports,
 } from "@thi.ng/wasm-api-canvas";
-import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
+import { WasmDom } from "@thi.ng/wasm-api-dom";
 import WASM_URL from "./main.wasm?url";
 
 /**
@@ -15,7 +15,7 @@ import WASM_URL from "./main.wasm?url";
  * These are usually all functions/symbols which can be called/accessed from the
  * JS side.
  */
-interface WasmApp extends WasmCanvas2DExports, WasmDomExports {
+interface WasmApp extends WasmCanvas2DExports {
 	/**
 	 * Custom user defined start function (see /zig/main.zig)
 	 */
