@@ -39,5 +39,23 @@
 				"3px 3px 8px #0003"
 			]
 		}
+	],
+	"templates": [
+		{
+			"doc": {
+				"group": "shadow",
+				"args": ["body: CSS value/definition"]
+			},
+			"name": "box-shadow",
+			"props": "box-shadow"
+		},
+		{
+			"doc": {
+				"group": "shadow",
+				"args": ["body: CSS value/definition"]
+			},
+			"name": "text-shadow",
+			"props": "text-shadow"
+		}
 	]
 }

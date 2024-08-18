@@ -109,6 +109,7 @@
     - [Mask](#mask)
     - [Padding](#padding)
     - [Positions](#positions)
+    - [Shadow](#shadow)
     - [Svg](#svg)
     - [Text color](#text-color)
   - [Media queries](#media-queries)
@@ -1114,7 +1115,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 950 CSS utility classes (incl. 70 templates) defined in "MetaCSS base" (v0.13.0):
+Currently, there are 952 CSS utility classes (incl. 72 templates) defined in "MetaCSS base" (v0.13.0):
 
 ### Classes by category
 
@@ -2727,6 +2728,16 @@ Sets padding to custom size
 
 </details>
 
+#### Shadow
+
+##### `box-shadow(body)`
+
+- **body**: CSS value/definition
+
+##### `text-shadow(body)`
+
+- **body**: CSS value/definition
+
 #### Svg
 
 ##### `fill(name)`
@@ -2777,7 +2788,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.73 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.74 KB
 
 ## Dependencies
 
