@@ -97,7 +97,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 
 	async init(parent: WasmBridge<WasmWebGLExports>) {
 		this.parent = parent;
-		this.dom = <WasmDom>this.parent.modules.dom;
+		this.dom = <WasmDom>this.parent.modules[WasmDomModule.id];
 		const defIndex = <T>(name: string) =>
 			new ObjectIndex<T>({ name, logger: parent.logger });
 		this.contexts = defIndex("ctx");
