@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/idgen",
-	"version": "2.2.48",
+	"version": "2.2.49",
 	"description": "Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.8",
-		"@thi.ng/errors": "^2.5.14",
+		"@thi.ng/api": "^8.11.9",
+		"@thi.ng/errors": "^2.5.15",
 		"tslib": "^2.6.3"
 	},
 	"devDependencies": {

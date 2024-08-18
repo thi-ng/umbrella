@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-10T15:03:07Z
+- **Last updated**: 2024-08-18T14:11:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@1.0.0) (2024-08-18)
+
+#### 🛑 Breaking changes
+
+- update WasmDom, add WasmDomModule spec ([51bedd2](https://github.com/thi-ng/umbrella/commit/51bedd2))
+- BREAKING CHANGE: update WasmDom, add WasmDomModule spec
+
+#### ⏱ Performance improvements
+
+- update typedefs, optimize/minimize generated TS code ([08c6e01](https://github.com/thi-ng/umbrella/commit/08c6e01))
+
+#### ♻️ Refactoring
+
+- regenerate types ([ef98da6](https://github.com/thi-ng/umbrella/commit/ef98da6))
 
 ### [0.11.89](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.11.89) (2024-04-22)
 

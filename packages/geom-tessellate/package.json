@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-tessellate",
-	"version": "3.0.8",
+	"version": "3.0.9",
 	"description": "2D/3D convex polygon tessellators",
 	"type": "module",
 	"module": "./index.js",
@@ -37,15 +37,15 @@
 		"tool:viz": "bun tools/visualize.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.8",
-		"@thi.ng/checks": "^3.6.10",
-		"@thi.ng/geom-accel": "^4.1.1",
-		"@thi.ng/geom-isec": "^4.0.8",
-		"@thi.ng/geom-poly-utils": "^3.0.8",
-		"@thi.ng/math": "^5.11.7",
-		"@thi.ng/morton": "^3.1.94",
-		"@thi.ng/transducers": "^9.1.0",
-		"@thi.ng/vectors": "^7.11.8"
+		"@thi.ng/api": "^8.11.9",
+		"@thi.ng/checks": "^3.6.11",
+		"@thi.ng/geom-accel": "^4.1.2",
+		"@thi.ng/geom-isec": "^4.0.9",
+		"@thi.ng/geom-poly-utils": "^3.0.9",
+		"@thi.ng/math": "^5.11.8",
+		"@thi.ng/morton": "^3.1.95",
+		"@thi.ng/transducers": "^9.1.1",
+		"@thi.ng/vectors": "^7.11.9"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.5",

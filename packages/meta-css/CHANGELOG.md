@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-13T19:40:07Z
+- **Last updated**: 2024-08-18T14:11:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.14.0) (2024-08-18)
+
+#### 🚀 Features
+
+- add shadow templates ([5a1b3f9](https://github.com/thi-ng/umbrella/commit/5a1b3f9))
 
 ## [0.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.13.0) (2024-08-13)
 

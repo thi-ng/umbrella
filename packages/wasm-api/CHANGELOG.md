@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-10T15:03:07Z
+- **Last updated**: 2024-08-18T14:11:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.0.0) (2024-08-18)
+
+#### 🛑 Breaking changes
+
+- update WASM module dependency handling ([31f0358](https://github.com/thi-ng/umbrella/commit/31f0358))
+- BREAKING CHANGE: update WASM module dependency handling
+  - add `WasmModuleSpec` interface to declare WASM modules with their deps
+  - update `WasmBridge` ctor to accept array of module specs
+  - add buildModuleGraph() to process dependencies & init modules from specs
+  - add/update docstrings
+  - update tests
+
+#### 🚀 Features
+
+- add ObjectIndex.addUnique() ([e79275d](https://github.com/thi-ng/umbrella/commit/e79275d))
+- add MemoryView types ([b621adc](https://github.com/thi-ng/umbrella/commit/b621adc))
+- add internal memory view accessors ([6830337](https://github.com/thi-ng/umbrella/commit/6830337))
+  - these accessors are shared by various types generated via [@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/tree/main/packages/wasm-api-bindgen)
+    and help to drastically cut down filesize of generated code
+  - update pkg exports
+- update ObjectIndex ctor, make opts fully optional ([564e0f3](https://github.com/thi-ng/umbrella/commit/564e0f3))
+
+#### ♻️ Refactoring
+
+- update internal array mem accessors ([b442d92](https://github.com/thi-ng/umbrella/commit/b442d92))
 
 ## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@1.6.0) (2024-06-21)
 

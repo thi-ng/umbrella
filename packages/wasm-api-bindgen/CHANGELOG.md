@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-10T15:03:07Z
+- **Last updated**: 2024-08-18T14:11:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,25 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.6.0) (2024-08-18)
+
+#### 🚀 Features
+
+- update TS codegen to produce more compact results ([ee5e283](https://github.com/thi-ng/umbrella/commit/ee5e283))
+  - update array & slice handling to re-use new helpers in [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/main/packages/wasm-api)
+  - update test snapshots
+- add getter/setter field flags ([6e87558](https://github.com/thi-ng/umbrella/commit/6e87558))
+  - update JSON schema
+  - update TS codegen to handle optional getters/setters
+  - add doc strings
+
+#### 🩹 Bug fixes
+
+- fix TS codegen address divisor for prim slices ([dfd66ba](https://github.com/thi-ng/umbrella/commit/dfd66ba))
+  - update __primSlice()
+    - address needs to be divided based on type size
+  - update test snapshots
 
 ### [0.5.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.5.5) (2024-06-21)
 

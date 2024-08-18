@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-10T15:03:07Z
+- **Last updated**: 2024-08-18T14:11:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@1.0.0) (2024-08-18)
+
+#### 🛑 Breaking changes
+
+- update WasmSchedule, add WasmScheduleModule spec ([5d4dda7](https://github.com/thi-ng/umbrella/commit/5d4dda7))
+- BREAKING CHANGE: update WasmSchedule, add WasmScheduleModule spec
+  - add docs
+
+#### 🚀 Features
+
+- add RAF schedule type, add now() ([47bff01](https://github.com/thi-ng/umbrella/commit/47bff01))
 
 ### [0.3.47](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@0.3.47) (2023-11-09)
 
