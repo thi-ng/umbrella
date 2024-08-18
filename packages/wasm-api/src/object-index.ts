@@ -11,25 +11,34 @@ export interface ObjectIndexOpts {
 	/**
 	 * Optional logger instance
 	 */
-	logger?: ILogger;
+	logger: ILogger;
 	/**
 	 * Number of bits for IDs, [1..32] range.
 	 *
 	 * @defaultValue 32
 	 */
-	bits?: Range1_32;
+	bits: Range1_32;
 }
 
+/** @internal */
+let __nextID = 0;
+
+/**
+ * Object cache with numeric ID handle management.
+ *
+ * @remarks
+ * [Further reference](https://docs.thi.ng/umbrella/wasm-api/#md:object-indices--handles)
+ */
 export class ObjectIndex<T> {
 	public readonly name: string;
 	public logger?: ILogger;
 	protected idgen: IDGen;
 	protected items: T[] = [];
 
-	constructor(opts: ObjectIndexOpts) {
-		this.name = opts.name;
-		this.logger = opts.logger;
-		this.idgen = new IDGen(opts.bits || 32, 0);
+	constructor(opts?: Partial<ObjectIndexOpts>) {
+		this.name = opts?.name ?? `idx-${__nextID++}`;
+		this.logger = opts?.logger;
+		this.idgen = new IDGen(opts?.bits ?? 32, 0);
 	}
 
 	keys() {
@@ -60,6 +69,9 @@ export class ObjectIndex<T> {
 	 * already been indexed and if so returns the ID of already indexed item
 	 * without adding `item` to the index again. Uses `equiv` for checking item
 	 * equality (by default: `===`).
+	 *
+	 * @remarks
+	 * Currently an O(n) implementation.
 	 *
 	 * @param item
 	 * @param equiv
