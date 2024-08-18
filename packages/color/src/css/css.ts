@@ -25,6 +25,16 @@ import { srgbCss } from "../srgb/srgb-css.js";
 
 export type CSSConversions = Partial<Record<ColorMode, Fn<any, string>>>;
 
+/**
+ * CSS Color Module Level 3 compatible color conversion rules.
+ *
+ * @remarks
+ * Initial default setting for {@link css}. Also see
+ * {@link setDefaultCSSConversions} to change default.
+ *
+ * Reference:
+ * - https://www.w3.org/TR/css-color-3/
+ */
 export const CSS_LEVEL3: CSSConversions = {
 	abgr32: (x) => intArgb32Css(intAbgr32Argb32(x[0])),
 	argb32: (x) => intArgb32Css(x[0]),
@@ -39,7 +49,13 @@ export const CSS_LEVEL3: CSSConversions = {
 
 /**
  * Extended set of direct CSS conversions for use with CSS Color Module Level 4.
- * Based on {@link CSS_LEVEL3}.
+ * Based on {@link CSS_LEVEL3} and used for {@link css}.
+ *
+ * @remarks
+ * Use {@link setDefaultCSSConversions} to use as default.
+ *
+ * Reference:
+ * - https://www.w3.org/TR/css-color-4/
  */
 export const CSS_LEVEL4: CSSConversions = {
 	...CSS_LEVEL3,
@@ -49,6 +65,20 @@ export const CSS_LEVEL4: CSSConversions = {
 	oklab: oklabCss,
 	oklch: oklchCss,
 };
+
+/** @internal */
+let CSS_DEFAULT = CSS_LEVEL3;
+
+/**
+ * Sets the default set of {@link CSSConversions} functions used by {@link css}.
+ * The default is {@link CSS_LEVEL3}, but {@link CSS_LEVEL4} is also available
+ * and will provide better (direct) support for newer color spaces like
+ * {@link lch}, {@link oklab} or {@link oklch}.
+ *
+ * @param fns
+ */
+export const setDefaultCSSConversions = (fns: CSSConversions) =>
+	(CSS_DEFAULT = fns);
 
 /**
  * Takes a color in one of the following formats and tries to convert it to a
@@ -63,7 +93,8 @@ export const CSS_LEVEL4: CSSConversions = {
  * - string (passthrough)
  *
  * If CSS Color Module Level 4 support is desired, pass {@link CSS_LEVEL4} as
- * 2nd argument.
+ * 2nd argument or call {@link setDefaultCSSConversions}. If no `cssTarget` is
+ * given, uses current configured default (initially {@link CSS_LEVEL3}).
  *
  * If no direct conversion route for a given source color mode exists, the color
  * will be first converted to sRGB and serialized as such.
@@ -73,7 +104,7 @@ export const CSS_LEVEL4: CSSConversions = {
  */
 export const css = (
 	src: Exclude<MaybeColor, IParsedColor>,
-	cssTarget: CSSConversions = CSS_LEVEL3
+	cssTarget: CSSConversions = CSS_DEFAULT
 ) => {
 	let asCss: Maybe<Fn<any, string>>;
 	return isString(src)
