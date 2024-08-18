@@ -39,6 +39,7 @@ details:first-child { mt3 }
 details[open] {
 	pv2 ph3 mv2
 	bg-color(tree-bg-color) br3 fade-in(0.25)
+	box-shadow(1px 1px 3px #0003)
 	{
 		>summary { b mb2 f4 }
 		+details[open] { mt2 }
@@ -132,7 +133,7 @@ i svg { fill-current v-mid mr1 w1 h1 }
 
 #up {
 	db fixed bottom-2 right-0 pa4 br-pill-l lh-0
-	bg-color-gold color-black
+	bg-color-gold color-black box-shadow(-8px 8px 16px #0003)
 	{
 		svg { w2 h2 }
 	}

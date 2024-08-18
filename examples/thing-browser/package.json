@@ -12,7 +12,8 @@
 		"dev": "mprocs 'yarn css:watch' 'yarn start:only'",
 		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
 		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
-		"build": "yarn css:build && tsc && vite build --base='./'",
+		"build": "yarn build:env && yarn css:build && tsc && vite build --base='./'",
+		"build:env": "echo \"VITE_LAST_UPDATE='$(date -u +'%Y-%m-%d %H:%M:%S (UTC)')'\" > .env",
 		"preview": "vite preview --host --open",
 		"tool:packages": "bun tools/generate-package-list.ts"
 	},
