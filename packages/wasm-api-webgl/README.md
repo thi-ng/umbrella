@@ -37,6 +37,7 @@ WebGL bridge API for hybrid TypeScript & WASM (Zig) applications. This is a supp
 
 ## Related packages
 
+- [@thi.ng/wasm-api-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas) - HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Installation

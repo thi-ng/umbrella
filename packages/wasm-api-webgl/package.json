@@ -90,6 +90,7 @@
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
 		"related": [
+			"wasm-api-canvas",
 			"webgl"
 		],
 		"status": "alpha",

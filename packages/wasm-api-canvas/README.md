@@ -35,7 +35,7 @@ some additional drawing utilities to minimize boilerplate & WASM/JS cross-callin
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api-canvas%5D+in%3Atitle)
 
@@ -59,7 +59,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.65 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.66 KB
 
 ## Dependencies
 

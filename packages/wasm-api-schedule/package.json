@@ -90,7 +90,6 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
-		"status": "alpha",
 		"year": 2022
 	}
 }

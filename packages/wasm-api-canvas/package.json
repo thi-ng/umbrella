@@ -51,6 +51,7 @@
 	"keywords": [
 		"2d",
 		"browser",
+		"codegen",
 		"canvas",
 		"drawing",
 		"interop",
@@ -87,7 +88,6 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
-		"status": "alpha",
 		"year": 2022,
 		"screenshot": "wasm-api-canvas/readme.png"
 	}
