@@ -117,7 +117,12 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
-		"status": "alpha",
+		"related": [
+			"wasm-api-canvas",
+			"wasm-api-dom",
+			"wasm-api-schedule",
+			"wasm-api-webgl"
+		],
 		"year": 2022
 	}
 }
