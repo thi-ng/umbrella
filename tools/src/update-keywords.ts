@@ -25,6 +25,11 @@ const PKG_TAGS: IObjectOf<string[]> = {
 	"/transducers-binary": ["transducer", "binary"],
 	"/transducers": ["transducer"],
 	"/vectors": ["vector"],
+	"/wasm-api": ["webassembly", "interop"],
+	"/wasm-api-canvas": ["browser", "canvas"],
+	"/wasm-api-dom": ["browser"],
+	"/wasm-api-schedule": ["time"],
+	"/wasm-api-webgl": ["webgl"],
 	"/webgl": ["webgl"],
 };
 
