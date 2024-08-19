@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-18T14:11:34Z
+- **Last updated**: 2024-08-19T13:45:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.7.0) (2024-08-19)
+
+#### 🚀 Features
+
+- add setDefaultCSSConversions(), update css() ([2d9e505](https://github.com/thi-ng/umbrella/commit/2d9e505))
+  - add setDefaultCSSConversions() to set default CSS color conversion rules
+  - update css() to use current configured default instead of CSS_LEVEL3
+  - add/update docs
 
 ### [5.6.47](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.6.47) (2024-06-29)
 
