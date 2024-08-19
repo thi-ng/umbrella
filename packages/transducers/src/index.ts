@@ -119,6 +119,7 @@ export * from "./sliding-window.js";
 export * from "./stream-shuffle.js";
 export * from "./stream-sort.js";
 export * from "./struct.js";
+export * from "./sync-tuples.js";
 export * from "./swizzle.js";
 export * from "./take-nth.js";
 export * from "./take-last.js";

@@ -527,6 +527,9 @@
 		"./symmetric": {
 			"default": "./symmetric.js"
 		},
+		"./sync-tuples": {
+			"default": "./sync-tuples.js"
+		},
 		"./take-last": {
 			"default": "./take-last.js"
 		},
