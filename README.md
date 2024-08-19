@@ -61,7 +61,7 @@
 **This project is NOT a framework and all packages can be used in isolation.**
 
 Not including deprecations, this mono-repository is home to 199 individual
-TypeScript libraries/packages/tools and ~175 example projects illustrating their
+TypeScript libraries/packages/tools and ~180 example projects illustrating their
 usage, currently totalling ~208k SLOC and ~4100 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
@@ -144,7 +144,7 @@ All packages:
 A common misconception is to think of this repo as single project. It is not!
 The sheer number and varied nature & purpose of these [packages](#packages)
 makes it impossible to provide traditional "Getting started" tutorials — there
-would have to be dozens of them... To compensate, this repo provides ~175
+would have to be dozens of them... To compensate, this repo provides ~180
 [example projects](#examples--showcase), detailed package readmes (at the very
 least for all the larger and/or more important ones), as well as [hundreds of
 small usage examples/snippets in doc strings & readme
@@ -230,7 +230,7 @@ The following videos have been migrated from YouTube to their new home at
 
 ## Examples & Showcase
 
-There's a steadily growing number (~175) of standalone examples of different
+There's a steadily growing number (~180) of standalone examples of different
 complexities (often combining functionality from several packages) in the
 [**examples**](./examples/README.md) directory.
 
@@ -306,12 +306,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-08-18
+As of: 2024-08-19
 
 | Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
 |:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays)                       | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)                       | [changelog](./packages/arrays/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bitstream`](./packages/bitstream)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)                 | [changelog](./packages/bitstream/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)                         | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                         | [changelog](./packages/color/CHANGELOG.md)             |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/meta-css`](./packages/meta-css)                   | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                   | [changelog](./packages/meta-css/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                   | [changelog](./packages/wasm-api/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)   | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md)  |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api-canvas`](./packages/wasm-api-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-canvas.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-canvas)     | [changelog](./packages/wasm-api-canvas/CHANGELOG.md)   |
