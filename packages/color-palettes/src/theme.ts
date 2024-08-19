@@ -17,9 +17,16 @@ import { BINARY, NUM_THEMES } from "./binary.js";
 import { compFilter } from "./filter.js";
 
 /**
- * Returns given `theme` (array of colors or theme preset ID) as CSS hex colors.
- * If `reverse` is true (default: false), the theme colors will be returned in
- * reverse order.
+ * Returns given `theme` (array of colors or theme preset ID) as CSS color
+ * strings. If `reverse` is true (default: false), the theme colors will be
+ * returned in reverse order.
+ *
+ * @remarks
+ * The resulting format of CSS colors depends on the color type of the given
+ * theme (if given an array of colors), as well as on the currently active
+ * [default
+ * setting](https://docs.thi.ng/umbrella/color/functions/setDefaultCSSConversions.html)
+ * of the CSS conversions in thi.ng/color.
  *
  * @param theme
  * @param reverse
