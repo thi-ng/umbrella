@@ -150,7 +150,7 @@ For Node.js REPL:
 const tx = await import("@thi.ng/transducers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 8.97 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.05 KB
 
 ## Dependencies
 
@@ -991,6 +991,7 @@ transduce(map((x) => x*10), push(), range(4))
 - [streamShuffle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/stream-shuffle.ts)
 - [streamSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/stream-sort.ts)
 - [struct](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/struct.ts)
+- [syncTuples](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/syncTuples.ts)
 - [swizzle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/swizzle.ts)
 - [takeLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-last.ts)
 - [takeNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-nth.ts)
