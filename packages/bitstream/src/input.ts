@@ -1,7 +1,7 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 
-const U32 = Math.pow(2, 32);
+const U32 = 0x1_0000_0000;
 
 export class BitInputStream {
 	buffer: Uint8Array;
@@ -50,46 +50,46 @@ export class BitInputStream {
 		return this;
 	}
 
-	read(wordSize = 1): number {
+	read(wordSize = 1, safe = true): number {
 		if (wordSize > 32) {
-			return this.read(wordSize - 32) * U32 + this.read(32);
+			return this.read(wordSize - 32, safe) * U32 + this.read(32, safe);
 		} else if (wordSize > 8) {
 			let out = 0;
 			let n = wordSize & -8;
 			let msb = wordSize - n;
 			if (msb > 0) {
-				out = this._read(msb);
+				out = this._read(msb, safe);
 			}
 			while (n > 0) {
-				out = ((out << 8) | this._read(8)) >>> 0;
+				out = ((out << 8) | this._read(8, safe)) >>> 0;
 				n -= 8;
 			}
 			return out;
 		} else {
-			return this._read(wordSize);
+			return this._read(wordSize, safe);
 		}
 	}
 
-	readFields(fields: number[]) {
-		return fields.map((word) => this.read(word));
+	readFields(fields: number[], safe = true) {
+		return fields.map((word) => this.read(word, safe));
 	}
 
-	readWords(n: number, wordSize = 8) {
+	readWords(n: number, wordSize = 8, safe = true) {
 		let out = [];
 		while (n-- > 0) {
-			out.push(this.read(wordSize));
+			out.push(this.read(wordSize, safe));
 		}
 		return out;
 	}
 
-	readStruct(fields: [string, number][]) {
+	readStruct(fields: [string, number][], safe = true) {
 		return fields.reduce((acc: any, [id, word]) => {
-			return (acc[id] = this.read(word)), acc;
+			return (acc[id] = this.read(word, safe)), acc;
 		}, {});
 	}
 
-	readBit() {
-		this.checkLimit(1);
+	readBit(safe = true) {
+		safe && this.checkLimit(1);
 		this.bit--;
 		this.bitPos++;
 		let out = (this.buffer[this.pos] >>> this.bit) & 1;
@@ -100,8 +100,8 @@ export class BitInputStream {
 		return out;
 	}
 
-	protected _read(wordSize: number) {
-		this.checkLimit(wordSize);
+	protected _read(wordSize: number, safe = true) {
+		safe && this.checkLimit(wordSize);
 		let l = this.bit - wordSize,
 			out: number;
 		if (l >= 0) {

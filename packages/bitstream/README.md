@@ -67,7 +67,7 @@ For Node.js REPL:
 const bit = await import("@thi.ng/bitstream");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.33 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.35 KB
 
 ## Dependencies
 
@@ -131,7 +131,11 @@ auto-configured input stream can also be obtained via `output.reader()`.
 The class too implements the ES6 Iterator API for **bitwise** read
 access, as well as a `read()` method to read bitfields.
 
-**Note**: Attempting to read beyond capacity will throw an EOF error.
+**Note**: By default, attempting to read beyond capacity will throw an EOF
+error. However, all available read methods in `BitInputStream` support an
+optional argument to disable bounds checking (by passing `false` as extra arg).
+These unsafe reads will result in undefined behavior once read past EOF — use
+with caution!
 
 Using `input.seek(pos)`, the read position can be repositioned within
 stream limits.
