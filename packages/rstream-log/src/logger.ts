@@ -5,9 +5,9 @@ import {
 	type LogEntry,
 	type LogLevelName,
 } from "@thi.ng/logger/api";
-import { CloseMode, type ISubscriber } from "@thi.ng/rstream/api";
-import { Stream } from "@thi.ng/rstream/stream";
+import type { ISubscriber } from "@thi.ng/rstream";
 import { __nextID } from "@thi.ng/rstream/idgen";
+import { Stream } from "@thi.ng/rstream/stream";
 
 export class Logger extends ALogger implements ISubscriber<LogEntry> {
 	stream: Stream<LogEntry>;
@@ -20,7 +20,7 @@ export class Logger extends ALogger implements ISubscriber<LogEntry> {
 		super(id || `logger-${__nextID()}`, level, parent);
 		this.stream = new Stream<LogEntry>({
 			id: this.id,
-			closeOut: CloseMode.NEVER,
+			closeOut: "never",
 		});
 	}
 
