@@ -94,7 +94,7 @@ For Node.js REPL:
 const rsq = await import("@thi.ng/rstream-query");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.60 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
 
 ## Dependencies
 

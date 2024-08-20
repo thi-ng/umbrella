@@ -80,7 +80,7 @@ For Node.js REPL:
 const rsg = await import("@thi.ng/rstream-graph");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.02 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.00 KB
 
 ## Dependencies
 

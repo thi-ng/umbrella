@@ -78,7 +78,7 @@ For Node.js REPL:
 const rslog = await import("@thi.ng/rstream-log");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 766 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 753 bytes
 
 ## Dependencies
 
