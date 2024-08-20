@@ -6,56 +6,56 @@
 
 {{pkg.description}}
 
-This library provides & uses three key building blocks for reactive
-programming:
+This library provides & uses three key building blocks for reactive programming:
 
-- **Stream sources**: event targets, iterables, timers,
-  promises,watches, workers, manual-push...
-- **Subscriptions**: chained stream processors, each subscribable
-  (one-tmany) itself
-- **Transducers**: stream transformers, either as individual
-  subscription or to transform incoming values for a single
-  subscription. See packages/transducers) for 100+ composable operators.
-- **Recursive teardown**: Whenever possible, and depending on
-  configuration, unsubscriptions initiate cleanup and propagate to
-  parent(s).
-- **Workers**: highly configurable, web worker integration for
-  concurrent / parallel stream processing (fork-join, tunneled stream
-  processing, etc.)
+- **Stream sources**: event targets, iterables, timers, promises,watches,
+  workers, manual-push...
+- **Subscriptions**: chained stream processors, each subscribable (one-tmany)
+  itself
+- **Transducers**: stream transformers, either as individual subscription or to
+  transform incoming values for a single subscription. See packages/transducers)
+  for 100+ composable operators.
+- **Recursive teardown**: Whenever possible, and depending on configuration,
+  unsubscriptions initiate cleanup and propagate to parent(s).
+- **Workers**: highly configurable, web worker integration for concurrent /
+  parallel stream processing (fork-join, tunneled stream processing, etc.)
 
 ## Conceptual differences to RxJS
 
 (No value judgments implied - there's room for both approaches!)
 
-- Streams are not the same as Observables: I.e. stream sources are NOT
-  (often just cannot) re-run for each new sub added. Only the first sub
-  is guaranteed to receive **all** values. Subs added at a later time
-  MIGHT not receive earlier emitted values, but only the most recent
-  emitted and any future values
+- Streams are not the same as Observables: I.e. stream sources are NOT (often
+  just cannot) re-run for each new sub added. Only the first sub is guaranteed
+  to receive **all** values. Subs added at a later time MIGHT not receive
+  earlier emitted values, but only the most recent emitted and any future values
 - Every subscription supports any number of subscribers, which can be
   added/removed at any time
-- Depending on configuration options, every unsubscription recursively
-  triggers upstream unsubscriptions (provided a parent has no other
-  active child subscriptions)
-- Every subscription can have its own transducer transforming incoming
-  values (possibly into multiple new ones)
-- Transducers can create streams themselves (only for `merge()`
-  /`sync()`)
-- Transducers can cause early stream termination and subsequent
-  unwinding for its parent and downstream subscriptions.
-- Values can be manually injected into the stream pipeline / graph at
-  any point
-- Unhandled errors in a subscription will move the subscription into an
-  error state and cause unsubscription from parent (if any). Unhandled
-  errors in stream sources will cancel the stream.
-- _Much_ smaller API surface, since most common & custom operations can
-  be solved via available transducers. Therefore there's less of a need
-  to provide specialized functions (map / filter etc.) and gain more
-  flexibility in terms of composing new operations.
+- Depending on configuration options, every unsubscription recursively triggers
+  upstream unsubscriptions (provided a parent has no other active child
+  subscriptions)
+- Every subscription can have its own transducer transforming incoming values
+  (possibly into multiple new ones)
+- Transducers can create streams themselves (only for `merge()` /`sync()`)
+- Transducers can cause early stream termination and subsequent unwinding for
+  its parent and downstream subscriptions.
+- Values can be manually injected into the stream pipeline / graph at any point
+- Unhandled errors in a subscription will move the subscription into an error
+  state and cause unsubscription from parent (if any). Unhandled errors in
+  stream sources will cancel the stream.
+- _Much_ smaller API surface, since most common & custom operations can be
+  solved via available transducers. Therefore there's less of a need to provide
+  specialized functions (map / filter etc.) and gain more flexibility in terms
+  of composing new operations.
 - IMHO less confusing naming / terminology (only streams (producers) &
   subscriptions (consumers))
 
 {{meta.status}}
+
+### New features & breaking changes in 9.0.0
+
+The `CloseMode` enum has been replaced with a more compact & simple string union
+type, see [docs](https://docs.thi.ng/umbrella/rstream/types/CloseMode.html) and
+[usage](#common-configuration-options).
 
 ### New features & breaking changes in 6.0.0
 
@@ -116,9 +116,9 @@ src.transformTopic("foo", map((e) => e.value), { error: handleError })
 **Notes:**
 
 - (1): If using multiple transducers, they must be pre-composed with
-  [`comp()`](https://docs.thi.ng/umbrella/transducers/functions/comp.html). Other
-  signatures of `.transform()` method support up to 4 transducers and composes
-  them automatically.
+  [`comp()`](https://docs.thi.ng/umbrella/transducers/functions/comp.html).
+  Other signatures of `.transform()` method support up to 4 transducers and
+  composes them automatically.
 
 {{repo.supportPackages}}
 
@@ -144,44 +144,44 @@ src.transformTopic("foo", map((e) => e.value), { error: handleError })
 
 ### Common configuration options
 
-Since version 3.0.0 all stream and subscription factory functions take
-an optional object of configuration options with **at least** these keys
-(each optional):
+Since version 3.0.0 all stream and subscription factory functions take an
+optional object of [common configuration
+options](https://docs.thi.ng/umbrella/rstream/interfaces/CommonOpts.html) with
+**at least** these keys (each optional):
 
 ```ts
 interface CommonOpts {
-    /**
-     * Internal ID associated with this stream. If omitted, an
-     * autogenerated ID will be used.
-     */
-    id: string;
-    /**
-     * If false or `CloseMode.NEVER`, the stream stays active even if
-     * all inputs are done. If true (default) or `CloseMode.LAST`, the
-     * stream closes when the last input is done. If `CloseMode.FIRST`,
-     * the instance closes when the first input is done.
-     *
-     * @defaultValue CloseMode.LAST
-     */
-    closeIn: CloseMode;
-    /**
-     * If false or `CloseMode.NEVER`, the stream stays active once there
-     * are no more subscribers. If true (default) or `CloseMode.LAST`,
-     * the stream closes when the last subscriber has unsubscribed. If
-     * `CloseMode.FIRST`, the instance closes when the first subscriber
-     * disconnects.
-     *
-     * @defaultValue CloseMode.LAST
-     */
-    closeOut: CloseMode;
-    /**
-     * If true (default), stream caches last received value and pushes
-     * it to new subscriberswhen they subscribe. If false, calling
-     * `.deref()` on this stream will always return `undefined`.
-     *
-     * @defaultValue true
-     */
-    cache: boolean;
+	/**
+	 * Internal ID associated with this stream. If omitted, an autogenerated ID
+	 * will be used.
+	 */
+	id: string;
+	/**
+	 * If false or `"never"`, the stream stays active even if all inputs are
+	 * done. If true (default) or `"last"`, the stream closes when the last
+	 * input is done. If `"first"`, the instance closes when the first input is
+	 * done.
+	 *
+	 * @defaultValue "last"
+	 */
+	closeIn: CloseMode;
+	/**
+	 * If false or `"never"`, the stream stays active once there are no more
+	 * subscribers. If true (default) or `"last"`, the stream closes when the
+	 * last subscriber has unsubscribed. If `"first"`, the instance closes when
+	 * the first subscriber disconnects.
+	 *
+	 * @defaultValue "last"
+	 */
+	closeOut: CloseMode;
+	/**
+	 * If true (default), stream caches last received value and pushes it to new
+	 * subscriberswhen they subscribe. If false, calling `.deref()` on this
+	 * stream will always return `undefined`.
+	 *
+	 * @defaultValue true
+	 */
+	cache: boolean;
 }
 ```
 
@@ -191,17 +191,16 @@ interface CommonOpts {
 
 Docs: [stream()](https://docs.thi.ng/umbrella/rstream/functions/stream-1.html)
 
-Creates a new `Stream` instance, optionally with given `StreamSource`
-function and / or ID. If a `src` function is provided, the function
-will be only called (with the `Stream` instance as single argument)
-once the first subscriber has attached to the stream. If the function
-returns another function, it will be used for cleanup purposes if the
-stream is cancelled, e.g. if the last subscriber has unsubscribed.
-Streams are intended as (primarily async) data sources in a dataflow
-graph and are the primary construct for the various `from*()`
-functions provided by the package. However, streams can also be
-triggered manually (from outside the stream), in which case the user
-should call `stream.next()` to cause value propagation.
+Creates a new `Stream` instance, optionally with given `StreamSource` function
+and / or ID. If a `src` function is provided, the function will be only called
+(with the `Stream` instance as single argument) once the first subscriber has
+attached to the stream. If the function returns another function, it will be
+used for cleanup purposes if the stream is cancelled, e.g. if the last
+subscriber has unsubscribed. Streams are intended as (primarily async) data
+sources in a dataflow graph and are the primary construct for the various
+`from*()` functions provided by the package. However, streams can also be
+triggered manually (from outside the stream), in which case the user should call
+`stream.next()` to cause value propagation.
 
 ```ts
 import { stream, trace } from "@thi.ng/rstream";
@@ -232,36 +231,33 @@ b.next(42);
 
 ### IDeref support
 
-`Stream` (like all other types of `Subscription`) implements the
-[@thi.ng/api
-`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
-interface which provides read access to a stream's last received value.
-This is useful for various purposes, e.g. in combination with
-@thi.ng/hdom, which supports direct embedding of streams (i.e. their
-values) into UI components (and will be deref'd automatically). If the
-stream has not yet emitted a value or if the stream is already done, it
-will deref to `undefined`.
+`Stream` (like all other types of `Subscription`) implements the [@thi.ng/api
+`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) interface
+which provides read access to a stream's last received value. This is useful for
+various purposes, e.g. in combination with @thi.ng/hdom, which supports direct
+embedding of streams (i.e. their values) into UI components (and will be deref'd
+automatically). If the stream has not yet emitted a value or if the stream is
+already done, it will deref to `undefined`.
 
-Furthermore, all subscription types can be configured (via the `cache`
-option) to NOT retain their last emitted value, in which case `.deref()`
-will always return `undefined`.
+Furthermore, all subscription types can be configured (via the `cache` option)
+to NOT retain their last emitted value, in which case `.deref()` will always
+return `undefined`.
 
 #### Subscription
 
 Docs: [subscription()](https://docs.thi.ng/umbrella/rstream/functions/subscription-1.html)
 
-Creates a new `Subscription` instance, the fundamental datatype &
-building block provided by this package (`Stream`s are `Subscription`s
-too). Subscriptions can be:
+Creates a new `Subscription` instance, the fundamental datatype & building block
+provided by this package (`Stream`s are `Subscription`s too). Subscriptions can
+be:
 
 - linked into directed graphs (if async, not necessarily DAGs)
 - transformed using transducers (incl. early termination)
-- can have any number of subscribers (optionally each w/ their own
-  transducer)
-- recursively unsubscribe themselves from parent after their last
-  subscriber unsubscribed
-- will go into a non-recoverable error state if NONE of the subscribers
-  has an error handler itself
+- can have any number of subscribers (optionally each w/ their own transducer)
+- recursively unsubscribe themselves from parent after their last subscriber
+  unsubscribed
+- will go into a non-recoverable error state if NONE of the subscribers has an
+  error handler itself
 - implement the @thi.ng/api `IDeref` interface
 
 ```ts
@@ -307,24 +303,22 @@ s.next(42);
 
 Docs: [metaStream()](https://docs.thi.ng/umbrella/rstream/functions/metaStream-1.html)
 
-`MetaStream`s are streams of streams. A `MetaStream` is a subscription
-type which transforms each incoming value into a new stream, subscribes
-to it (via an hidden / internal subscription) and then only passes
-values from that stream to its own subscribers. If a new value is
-received, the meta stream first unsubscribes from the possibly still
-active stream created from the previous input, before creating and
-subscribing to the new stream. Hence this stream type is useful for
-cases where streams need to be dynamically and invisibly created &
-inserted into an existing dataflow topology without changing it, and
-with the guarantee that never more than one of these is active at the
-same time. Similar behavior (without the restriction in number) can be
-achieved using `merge()` (see further below).
+`MetaStream`s are streams of streams. A `MetaStream` is a subscription type
+which transforms each incoming value into a new stream, subscribes to it (via an
+hidden / internal subscription) and then only passes values from that stream to
+its own subscribers. If a new value is received, the meta stream first
+unsubscribes from the possibly still active stream created from the previous
+input, before creating and subscribing to the new stream. Hence this stream type
+is useful for cases where streams need to be dynamically and invisibly created &
+inserted into an existing dataflow topology without changing it, and with the
+guarantee that never more than one of these is active at the same time. Similar
+behavior (without the restriction in number) can be achieved using `merge()`
+(see further below).
 
-The user supplied `factory` function will be called for each incoming
-value and is responsible for creating the new stream instances. If the
-function returns `null` / `undefined`, no further action will be taken
-(acts like a `filter` transducer, i.e. the incoming value is simply
-ignored).
+The user supplied `factory` function will be called for each incoming value and
+is responsible for creating the new stream instances. If the function returns
+`null` / `undefined`, no further action will be taken (acts like a `filter`
+transducer, i.e. the incoming value is simply ignored).
 
 ```ts
 import { metastream, fromIterable, trace } from "@thi.ng/rstream";
@@ -354,28 +348,27 @@ a.next(43)
 // odd: 43
 ```
 
-The factory function does NOT need to create new streams, but too can
-merely return other existing streams, and so making the meta stream act
-like a switch / stream selector.
+The factory function does NOT need to create new streams, but too can merely
+return other existing streams, and so making the meta stream act like a switch /
+stream selector.
 
-If the meta stream is the only subscriber to these input streams, you'll
-need to use the `closeOut: CloseMode.NEVER` option when creating the
-inputs. This keeps them alive and allows for dynamic switching between
-them.
+If the meta stream is the only subscriber to these input streams, you'll need to
+use the `closeOut: "never"` option when creating the inputs. This keeps them
+alive and allows for dynamic switching between them.
 
 ```ts
-import { metastream, fromIterable, trace, CloseMode } from "@thi.ng/rstream";
+import { metastream, fromIterable, trace } from "@thi.ng/rstream";
 import { repeat } from "@thi.ng/transducers";
 
 // infinite inputs
 a = fromIterable(
   repeat("a"),
-  { delay: 1000, closeOut: CloseMode.NEVER }
+  { delay: 1000, closeOut: "never" }
 );
 
 b = fromIterable(
   repeat("b"),
-  { delay: 1000, closeOut: CloseMode.NEVER }
+  { delay: 1000, closeOut: "never" }
 );
 
 // stream selector / switch
@@ -400,12 +393,12 @@ Docs: [merge()](https://docs.thi.ng/umbrella/rstream/functions/merge.html)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-merge.png)
 
-Returns a new `StreamMerge` instance, a subscription type consuming
-inputs from multiple inputs and passing received values on to any
-subscribers. Input streams can be added and removed dynamically. By
-default, `StreamMerge` calls `done()` when the last active input is
-done, but this behavior can be overridden via the `close` option, using
-`CloseMode` enums.
+Returns a new `StreamMerge` instance, a subscription type consuming inputs from
+multiple inputs and passing received values on to any subscribers. Input streams
+can be added and removed dynamically. By default, `StreamMerge` calls `done()`
+when the last active input is done, but this behavior can be overridden via the
+[`closeIn`
+option](https://docs.thi.ng/umbrella/rstream/interfaces/StreamMergeOpts.html#closeIn).
 
 ```ts
 import { merge, fromIterable, trace } from "@thi.ng/rstream";
@@ -457,10 +450,9 @@ for further reference of the various behavior options.
 
 ##### Adding inputs automatically
 
-If the `StreamMerge` receives a `Subscription`-like value from any of
-its inputs, it will not be processed as usual, but instead will be added
-as new input to the merge and then automatically remove once that stream
-is exhausted.
+If the `StreamMerge` receives a `Subscription`-like value from any of its
+inputs, it will not be processed as usual, but instead will be added as new
+input to the merge and then automatically remove once that stream is exhausted.
 
 ```ts
 import { merge, stream, fromIterable, trace } from "@thi.ng/rstream";
@@ -492,24 +484,24 @@ Docs: [sync()](https://docs.thi.ng/umbrella/rstream/functions/sync.html)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sync.png)
 
-Similar to `StreamMerge` above, but with extra synchronization of
-inputs. Before emitting any new values, `StreamSync` collects values
-until at least one has been received from _all_ inputs. Once that's the
-case, the collected values are sent as labeled tuple object to
-downstream subscribers. Each value in the emitted tuple objects is
-stored under their input stream's ID. Only the last value received from
-each input is passed on. After the initial tuple has been emitted, you
-can choose from two possible behaviors:
+Similar to `StreamMerge` above, but with extra synchronization of inputs. Before
+emitting any new values, `StreamSync` collects values until at least one has
+been received from _all_ inputs. Once that's the case, the collected values are
+sent as labeled tuple object to downstream subscribers. Each value in the
+emitted tuple objects is stored under their input stream's ID. Only the last
+value received from each input is passed on. After the initial tuple has been
+emitted, you can choose from two possible behaviors:
 
-1. Any future change in any input will produce a new result tuple. These
-   tuples will retain the most recently read values from other inputs.
-   This behavior is the default and illustrated in the above schematic.
-2. If the `reset` option is `true`, every input will have to provide at
-   least one new value again until another result tuple is produced.
+1. Any future change in any input will produce a new result tuple. These tuples
+   will retain the most recently read values from other inputs. This behavior is
+   the default and illustrated in the above schematic.
+2. If the `reset` option is `true`, every input will have to provide at least
+   one new value again until another result tuple is produced.
 
-Any done inputs are automatically removed. By default, `StreamSync`
-calls `done()` when the last active input is done, but this behavior can
-be overridden via the `close` constructor option, using `CloseMode` enums.
+Any done inputs are automatically removed. By default, `StreamSync` calls
+`done()` when the last active input is done, but this behavior can be overridden
+via the [`closeIn`
+option](https://docs.thi.ng/umbrella/rstream/interfaces/StreamMergeOpts.html#closeIn).
 
 ```ts
 import { sync, stream, trace } from "@thi.ng/rstream";
@@ -522,13 +514,13 @@ b.next(2);
 // result: { a: 1, b: 2 }
 ```
 
-Input streams can be added and removed dynamically and the emitted tuple
-size adjusts to the current number of inputs (the next time a value is
-received from any input).
+Input streams can be added and removed dynamically and the emitted tuple size
+adjusts to the current number of inputs (the next time a value is received from
+any input).
 
-If the `reset` option is enabled, the last emitted tuple is allowed to
-be incomplete, by default. To only allow complete tuples, also set the
-`all` option to `false`.
+If the `reset` option is enabled, the last emitted tuple is allowed to be
+incomplete, by default. To only allow complete tuples, also set the `all` option
+to `false`.
 
 The synchronization is done via the
 [`partitionSync()`](https://docs.thi.ng/umbrella/transducers/functions/partitionSync-1.html)
@@ -548,32 +540,30 @@ Docs: [pubsub()](https://docs.thi.ng/umbrella/rstream/functions/pubsub-1.html)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-pubsub.png)
 
-Topic based stream splitter. Applies `topic` function to each
-received value and only forwards it to child subscriptions for
-returned topic. The actual topic (return value from `topic` fn) can
-be of any type, apart from `undefined`. Complex topics (e.g objects /
-arrays) are allowed and they're matched with registered topics using
-@thi.ng/equiv by default (but customizable via `equiv` option).
-Each topic can have any number of subscribers.
+Topic based stream splitter. Applies `topic` function to each received value and
+only forwards it to child subscriptions for returned topic. The actual topic
+(return value from `topic` fn) can be of any type, apart from `undefined`.
+Complex topics (e.g objects / arrays) are allowed and they're matched with
+registered topics using @thi.ng/equiv by default (but customizable via `equiv`
+option). Each topic can have any number of subscribers.
 
-If a transducer is specified for the `PubSub`, it is always applied
-prior to passing the input to the topic function. I.e. in this case
-the topic function will receive the transformed inputs.
+If a transducer is specified for the `PubSub`, it is always applied prior to
+passing the input to the topic function. I.e. in this case the topic function
+will receive the transformed inputs.
 
 PubSub supports dynamic topic subscriptions and unsubscriptions via
 `subscribeTopic()` and `unsubscribeTopic()`. However, **the standard
-`subscribe()` / `unsubscribe()` methods are NOT supported** (since
-meaningless here) and will throw an error! `unsubscribe()` can only be
-called WITHOUT argument to unsubscribe the entire `PubSub` instance
-(incl. all topic subscriptions) from the parent stream.
+`subscribe()` / `unsubscribe()` methods are NOT supported** (since meaningless
+here) and will throw an error! `unsubscribe()` can only be called WITHOUT
+argument to unsubscribe the entire `PubSub` instance (incl. all topic
+subscriptions) from the parent stream.
 
 #### Splitting via predicate
 
 Docs: [bisect()](https://docs.thi.ng/umbrella/rstream/functions/bisect.html)
 
-Returns a new `PubSub` instance using given predicate `pred` as boolean
-topic function and `a` & `b` as subscribers for truthy (`a`) and falsy
-`b` values.
+Returns a new `PubSub` instance using given predicate `pred` as boolean topic
+function and `a` & `b` as subscribers for truthy (`a`) and falsy `b` values.
 
 ```ts
 import { bisect, fromIterable, trace } from "@thi.ng/rstream";
@@ -589,9 +579,9 @@ fromIterable([1, 2, 3, 4]).subscribe(
 // even done
 ```
 
-If `a` or `b` need to be subscribed to directly, then `a` / `b` MUST be
-first created as `Subscription` (if not already) and a reference kept
-prior to calling `bisect()`.
+If `a` or `b` need to be subscribed to directly, then `a` / `b` MUST be first
+created as `Subscription` (if not already) and a reference kept prior to calling
+`bisect()`.
 
 ```ts
 import { bisect, fromIterable, subscription, trace } from "@thi.ng/rstream";
@@ -622,11 +612,10 @@ Docs: [sidechainPartition()](https://docs.thi.ng/umbrella/rstream/functions/side
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sidechain-partition.png)
 
-Buffers values from `src` until side chain fires, then emits buffer
-(unless empty) and repeats process until either input is done. By
-default, the value read from the side chain is ignored, however the
-optional predicate can be used to only trigger for specific values /
-conditions.
+Buffers values from `src` until side chain fires, then emits buffer (unless
+empty) and repeats process until either input is done. By default, the value
+read from the side chain is ignored, however the optional predicate can be used
+to only trigger for specific values / conditions.
 
 ```ts
 import {
@@ -670,12 +659,11 @@ Docs: [sidechainToggle()](https://docs.thi.ng/umbrella/rstream/functions/sidecha
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sidechain-toggle.png)
 
-Filters values from input based on values received from side chain. By
-default, the value read from the side chain is ignored, however the
-optional predicate can be used to only trigger for specific
-values/conditions. Every time the predicate fn returns true, the filter
-will be toggled on/off. Whilst switched off, no input values will be
-forwarded.
+Filters values from input based on values received from side chain. By default,
+the value read from the side chain is ignored, however the optional predicate
+can be used to only trigger for specific values/conditions. Every time the
+predicate fn returns true, the filter will be toggled on/off. Whilst switched
+off, no input values will be forwarded.
 
 ```ts
 import { sidechainToggle, fromInterval, trace } from "@thi.ng/rstream";
@@ -779,9 +767,9 @@ src.next(new Array(16).fill(1));
 
 Docs: [tunnel()](https://docs.thi.ng/umbrella/rstream/functions/tunnel-1.html)
 
-Delegate stream value processing to workers and pass on their responses
-to downstream subscriptions. Supports multiple worker instances and
-worker termination / restart for each new stream value received.
+Delegate stream value processing to workers and pass on their responses to
+downstream subscriptions. Supports multiple worker instances and worker
+termination / restart for each new stream value received.
 
 Docs: [postWorker()](https://docs.thi.ng/umbrella/rstream/functions/postWorker.html)
 
@@ -807,8 +795,8 @@ be found in [this issue](https://github.com/thi-ng/umbrella/issues/281)**
 The `ISubscriber` interface supports optional error handlers which will be
 called if code in the `next()` or `done()` handlers throws an error. If no error
 handler is defined for a subscriber, the wrapping `Subscription`'s own error
-handler will be called, which _might_ put this subscription into an error
-state and stop it from receiving new values.
+handler will be called, which _might_ put this subscription into an error state
+and stop it from receiving new values.
 
 ```ts
 import { subscription, State } from "@thi.ng/rstream";
