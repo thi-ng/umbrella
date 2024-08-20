@@ -1,7 +1,6 @@
-import { beforeEach, expect, test } from "bun:test";
 import { frequencies, map, mapcat } from "@thi.ng/transducers";
+import { beforeEach, expect, test } from "bun:test";
 import {
-	CloseMode,
 	fromIterable,
 	fromIterableSync,
 	merge,
@@ -47,7 +46,7 @@ test("merges dynamic inputs", (done) => {
 });
 
 test("merges dynamic inputs (synchronous)", (done) => {
-	src = merge({ closeIn: CloseMode.NEVER });
+	src = merge({ closeIn: "never" });
 	src.subscribe(check([1, 2, 3, 4, 10, 20], done));
 	src.add(fromIterableSync([1, 2, 3, 4]));
 	src.add(fromIterableSync([10, 20]));

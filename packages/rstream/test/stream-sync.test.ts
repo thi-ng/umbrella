@@ -2,7 +2,6 @@ import { Atom } from "@thi.ng/atom";
 import { comp, filter, last, map, take } from "@thi.ng/transducers";
 import { expect, test } from "bun:test";
 import {
-	CloseMode,
 	State,
 	fromInterval,
 	fromIterable,
@@ -199,8 +198,8 @@ test("never closes", (done) => {
 			a: fromIterable([1, 2, 3], { delay: TIMEOUT, id: "a" }),
 			b: fromIterable([1, 2, 3, 4], { delay: TIMEOUT, id: "b" }),
 		},
-		closeIn: CloseMode.NEVER,
-		closeOut: CloseMode.NEVER,
+		closeIn: "never",
+		closeOut: "never",
 		reset: true,
 	});
 

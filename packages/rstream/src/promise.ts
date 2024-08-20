@@ -1,4 +1,4 @@
-import { CloseMode, State, type WithErrorHandlerOpts } from "./api.js";
+import { State, type WithErrorHandlerOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream } from "./stream.js";
 
@@ -33,7 +33,7 @@ export const fromPromise = <T>(
 						err = null;
 					} else {
 						stream.next(x);
-						stream.closeIn !== CloseMode.NEVER && stream.done();
+						stream.closeIn !== "never" && stream.done();
 					}
 				}
 			},

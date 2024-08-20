@@ -1,11 +1,6 @@
 import type { Fn, Nullable } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import {
-	CloseMode,
-	State,
-	type CommonOpts,
-	type ISubscription,
-} from "./api.js";
+import { State, type CommonOpts, type ISubscription } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { Subscription } from "./subscription.js";
 
@@ -75,17 +70,17 @@ export interface MetaStreamOpts extends CommonOpts {
  *
  * @example
  * ```ts tangle:../export/metastream-2.ts
- * import { CloseMode, fromIterable, metaStream, trace } from "@thi.ng/rstream";
+ * import { fromIterable, metaStream, trace } from "@thi.ng/rstream";
  * import { cycle, repeat } from "@thi.ng/transducers";
  *
- * // infinite inputs (important: closeOut mode = never!)
+ * // infinite inputs (important: closeOut mode = "never"!)
  * const a = fromIterable(
  *   repeat("a"),
- *   { delay: 100, closeOut: CloseMode.NEVER }
+ *   { delay: 100, closeOut: "never" }
  * );
  * const b = fromIterable(
  *   repeat("b"),
- *   { delay: 100, closeOut: CloseMode.NEVER }
+ *   { delay: 100, closeOut: "never" }
  * );
  *
  * // stream selector / switch
@@ -174,7 +169,7 @@ export class MetaStream<A, B> extends Subscription<A, B> {
 			if (this.stream) {
 				this.detach(true);
 			}
-			this.closeIn !== CloseMode.NEVER && super.done();
+			this.closeIn !== "never" && super.done();
 		}
 	}
 
@@ -186,7 +181,7 @@ export class MetaStream<A, B> extends Subscription<A, B> {
 	}
 
 	protected detach(force: boolean) {
-		if (force || this.closeOut !== CloseMode.NEVER) {
+		if (force || this.closeOut !== "never") {
 			assert(!!this.stream, "input stream already removed");
 			this.stream!.unsubscribe(this.sub);
 			delete this.stream;

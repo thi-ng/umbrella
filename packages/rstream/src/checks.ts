@@ -1,5 +1,5 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { CloseMode, type ISubscribable } from "./api.js";
+import type { CloseMode, ISubscribable } from "./api.js";
 
 export const isSubscribable = (x: any): x is ISubscribable<any> =>
 	implementsFunction(x, "subscribe");
@@ -10,4 +10,4 @@ export const isSubscribable = (x: any): x is ISubscribable<any> =>
  * @internal
  */
 export const isFirstOrLastInput = (mode: CloseMode, num: number) =>
-	mode === CloseMode.FIRST || (mode === CloseMode.LAST && !num);
+	mode === "first" || (mode === "last" && !num);

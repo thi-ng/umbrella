@@ -1,7 +1,6 @@
 import { map, partition } from "@thi.ng/transducers";
 import { expect, test } from "bun:test";
 import {
-	CloseMode,
 	State,
 	Stream,
 	fromIterable,
@@ -160,7 +159,7 @@ test("completing transducer sends all values", (done) => {
 
 test("transform", () => {
 	let buf: any[] = [];
-	fromIterableSync([1], { closeIn: CloseMode.NEVER })
+	fromIterableSync([1], { closeIn: "never" })
 		.transform(map((x: number) => x + 10))
 		.subscribe({
 			next(x) {
@@ -172,7 +171,7 @@ test("transform", () => {
 
 test("sub w/ xform", () => {
 	let buf: any[] = [];
-	fromIterableSync([1], { closeIn: CloseMode.NEVER }).subscribe(
+	fromIterableSync([1], { closeIn: "never" }).subscribe(
 		{
 			next(x) {
 				buf.push(x);
@@ -185,7 +184,7 @@ test("sub w/ xform", () => {
 
 test("child sub w/ xform", () => {
 	let buf: any[] = [];
-	fromIterableSync([1], { closeIn: CloseMode.NEVER }).subscribe(
+	fromIterableSync([1], { closeIn: "never" }).subscribe(
 		subscription({
 			next(x) {
 				buf.push(x);

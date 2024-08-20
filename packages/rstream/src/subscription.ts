@@ -11,8 +11,8 @@ import { map } from "@thi.ng/transducers/map";
 import { push } from "@thi.ng/transducers/push";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import {
-	CloseMode,
 	State,
+	type CloseMode,
 	type CommonOpts,
 	type ISubscriber,
 	type ISubscription,
@@ -101,8 +101,8 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 		opts?: Partial<SubscriptionOpts<A, B>>
 	) {
 		opts = __optsWithID(`sub`, {
-			closeIn: CloseMode.LAST,
-			closeOut: CloseMode.LAST,
+			closeIn: "last",
+			closeOut: "last",
 			cache: true,
 			...opts,
 		});
@@ -250,8 +250,8 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 		if (idx >= 0) {
 			this.subs.splice(idx, 1);
 			if (
-				this.closeOut === CloseMode.FIRST ||
-				(!this.subs.length && this.closeOut !== CloseMode.NEVER)
+				this.closeOut === "first" ||
+				(!this.subs.length && this.closeOut !== "never")
 			) {
 				this.unsubscribe();
 			}
@@ -382,7 +382,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 
 	protected ensureState() {
 		if (this.state >= State.DONE) {
-			illegalState(`operation not allowed in state ${this.state}`);
+			illegalState(`operation not allowed in state ${State[this.state]}`);
 		}
 	}
 

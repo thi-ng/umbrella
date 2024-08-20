@@ -3,7 +3,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { scan } from "@thi.ng/transducers/scan";
-import { CloseMode, type ISubscribable } from "./api.js";
+import type { ISubscribable } from "./api.js";
 import { fromInterval } from "./interval.js";
 import { fromRAF } from "./raf.js";
 import { sync } from "./sync.js";
@@ -84,7 +84,7 @@ export const tween = <T>(
 					? fromInterval(clock)
 					: clock,
 		},
-		closeIn: CloseMode.FIRST,
+		closeIn: "first",
 	}).transform(
 		scan(
 			reducer(

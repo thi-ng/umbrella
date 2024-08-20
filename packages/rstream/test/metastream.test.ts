@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { CloseMode, fromIterable, metaStream, reactive } from "../src/index.js";
+import { fromIterable, metaStream, reactive } from "../src/index.js";
 import { TIMEOUT } from "./config.js";
 import { assertActive, assertUnsub } from "./utils.js";
 
@@ -48,7 +48,7 @@ test("null", (done) => {
 test("closein", (done) => {
 	const src = fromIterable([1], { delay: TIMEOUT });
 	const meta = metaStream((x) => fromIterable([x]), {
-		closeIn: CloseMode.NEVER,
+		closeIn: "never",
 	});
 	const sub = src.subscribe(meta);
 	const child = sub.subscribe({});
@@ -65,8 +65,8 @@ test("closeout", (done) => {
 	const src = fromIterable([1], { delay: TIMEOUT });
 	const meta = src.subscribe(
 		metaStream((x) => fromIterable([x * 10]), {
-			closeIn: CloseMode.NEVER,
-			closeOut: CloseMode.NEVER,
+			closeIn: "never",
+			closeOut: "never",
 		})
 	);
 	const acc: number[] = [];

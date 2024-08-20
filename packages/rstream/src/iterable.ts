@@ -1,4 +1,4 @@
-import { CloseMode, type CommonOpts } from "./api.js";
+import type { CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream } from "./stream.js";
 
@@ -37,7 +37,7 @@ export const fromIterable = <T>(
 			let val: IteratorResult<T>;
 			if ((val = iter.next()).done) {
 				clearInterval(id);
-				stream.closeIn !== CloseMode.NEVER && stream.done();
+				stream.closeIn !== "never" && stream.done();
 			} else {
 				stream.next(val.value);
 			}
@@ -63,5 +63,5 @@ export const fromIterableSync = <T>(
 		for (let s of src) {
 			stream.next(s);
 		}
-		stream.closeIn !== CloseMode.NEVER && stream.done();
+		stream.closeIn !== "never" && stream.done();
 	}, __optsWithID("iterable-sync", opts));

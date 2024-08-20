@@ -1,15 +1,14 @@
 import type { Maybe } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
-import {
-	CloseMode,
-	type CommonOpts,
-	type IStream,
-	type ISubscriber,
-	type ISubscription,
-	type StreamCancel,
-	type StreamSource,
-	type TransformableOpts,
-	type WithErrorHandlerOpts,
+import type {
+	CommonOpts,
+	IStream,
+	ISubscriber,
+	ISubscription,
+	StreamCancel,
+	StreamSource,
+	TransformableOpts,
+	WithErrorHandlerOpts,
 } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";
@@ -158,7 +157,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
 			res &&
 			(!sub ||
 				((!this.subs || !this.subs.length) &&
-					this.closeOut !== CloseMode.NEVER))
+					this.closeOut !== "never"))
 		) {
 			this.cancel();
 		}

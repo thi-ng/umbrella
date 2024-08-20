@@ -2,13 +2,12 @@ import type { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative/equiv-map";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type { Transducer } from "@thi.ng/transducers";
-import {
-	CloseMode,
-	type ISubscriber,
-	type ISubscription,
-	type SubscriptionOpts,
-	type TransformableOpts,
-	type WithErrorHandlerOpts,
+import type {
+	ISubscriber,
+	ISubscription,
+	SubscriptionOpts,
+	TransformableOpts,
+	WithErrorHandlerOpts,
 } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";
@@ -121,9 +120,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 				topicID,
 				(t = subscription(
 					undefined,
-					__optsWithID("topic", {
-						closeOut: CloseMode.NEVER,
-					})
+					__optsWithID("topic", { closeOut: "never" })
 				))
 			);
 		return t.subscribe(sub, opts);

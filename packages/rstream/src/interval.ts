@@ -1,4 +1,4 @@
-import { CloseMode, type CommonOpts } from "./api.js";
+import type { CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream } from "./stream.js";
 
@@ -40,7 +40,7 @@ export const fromInterval = (
 			stream.next(i++);
 			if (--count <= 0) {
 				clearInterval(id);
-				stream.closeIn !== CloseMode.NEVER && stream.done();
+				stream.closeIn !== "never" && stream.done();
 			}
 		}, delay);
 		return () => clearInterval(id);
