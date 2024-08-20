@@ -6,7 +6,7 @@ import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { absPath, resolve, type ResolveFn } from "@thi.ng/resolve-map";
-import { CloseMode, type ISubscription } from "@thi.ng/rstream/api";
+import type { ISubscription } from "@thi.ng/rstream";
 import { fromIterableSync } from "@thi.ng/rstream/iterable";
 import { sync, type StreamSync } from "@thi.ng/rstream/sync";
 import { fromViewUnsafe } from "@thi.ng/rstream/view";
@@ -136,7 +136,7 @@ const __getNodeInput = (
 			: i.stream(resolve)
 		: i.const !== undefined
 		? fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const], {
-				closeIn: CloseMode.NEVER,
+				closeIn: "never",
 		  })
 		: illegalArgs(`invalid node input: ${id}`);
 
