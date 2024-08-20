@@ -1,6 +1,6 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
-import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
+import { StreamSync, sync, trigger } from "@thi.ng/rstream";
 import { gestureStream, type GestureEvent } from "@thi.ng/rstream-gestures";
 import {
 	filter,
@@ -137,7 +137,7 @@ const app = (main: StreamSync<any, any>) => {
 // user interactions...
 const main = sync<any, any>({
 	src: { trigger: trigger() },
-	closeIn: CloseMode.NEVER,
+	closeIn: "never",
 });
 // transform result stream using the
 // root component fn and the hdom differential

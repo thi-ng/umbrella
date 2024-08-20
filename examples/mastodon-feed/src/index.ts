@@ -2,7 +2,7 @@ import type { Nullable } from "@thi.ng/api";
 import { asPromise, timeSliceIterable } from "@thi.ng/fibers";
 import { div, progress as progressBar } from "@thi.ng/hiccup-html";
 import { $compile, $klist, $refresh } from "@thi.ng/rdom";
-import { CloseMode, reactive, stream } from "@thi.ng/rstream";
+import { reactive, stream } from "@thi.ng/rstream";
 import { percent } from "@thi.ng/strings";
 import { iterator } from "@thi.ng/transducers";
 import type { Account, MediaItem, Message } from "./api.js";
@@ -18,7 +18,7 @@ const messages = stream<Message[]>();
 const mediaSelection = reactive<Nullable<MediaItem>>(null);
 // value for progress bar, the options are required to keep the stream alive
 // even when no progress bar is currently subscribed
-const progress = reactive(0, { closeOut: CloseMode.NEVER });
+const progress = reactive(0, { closeOut: "never" });
 
 // update hash fragment when user ID changes
 userID.subscribe({

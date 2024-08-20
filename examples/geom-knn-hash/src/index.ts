@@ -5,7 +5,7 @@ import { HashGrid2 } from "@thi.ng/geom-accel";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { stratifiedGrid2 } from "@thi.ng/poisson";
 import { XsAdd } from "@thi.ng/random";
-import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
+import { StreamSync, sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -96,7 +96,7 @@ const app = (main: StreamSync<any, any>) => {
 
 const main = sync<any, any>({
 	src: { _: trigger() },
-	closeIn: CloseMode.NEVER,
+	closeIn: "never",
 });
 
 main.transform(map(app(main)), updateDOM());

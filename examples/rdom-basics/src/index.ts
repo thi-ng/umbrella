@@ -5,7 +5,6 @@ import { button, div, h1, header, li, span } from "@thi.ng/hiccup-html";
 import { SYSTEM, pickRandomUnique } from "@thi.ng/random";
 import { $compile, $list, $replace } from "@thi.ng/rdom";
 import {
-	CloseMode,
 	fromDOMEvent,
 	fromInterval,
 	fromIterable,
@@ -43,7 +42,7 @@ const names = [
 ];
 
 const typing = fromIterable(dedupe(choices(names)), { delay: 2000 }).subscribe(
-	metaStream(typewriter(16, 100), { closeOut: CloseMode.NEVER })
+	metaStream(typewriter(16, 100), { closeOut: "never" })
 );
 
 const itemChoices = [date.map((d) => d.toISOString()), body, typing, ...names];

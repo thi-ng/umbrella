@@ -1,6 +1,6 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { memoize1 } from "@thi.ng/memoize";
-import { CloseMode, sync, trigger } from "@thi.ng/rstream";
+import { sync, trigger } from "@thi.ng/rstream";
 import {
 	gestureStream,
 	type GestureEvent,
@@ -43,7 +43,7 @@ const MTCanvas = memoize1((id: string) => {
 // main stream w/ initial trigger input
 const main = sync<any, any>({
 	src: { temp: trigger() },
-	closeIn: CloseMode.NEVER,
+	closeIn: "never",
 });
 
 main.transform(

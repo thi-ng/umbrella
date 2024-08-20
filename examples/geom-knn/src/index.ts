@@ -1,7 +1,7 @@
 import { timedResult } from "@thi.ng/bench";
 import { KdTreeMap } from "@thi.ng/geom-accel";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
+import { StreamSync, sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -97,7 +97,7 @@ const app = (main: StreamSync<any, any>) => {
 // user interactions...
 const main = sync<any, any>({
 	src: { trigger: trigger() },
-	closeIn: CloseMode.NEVER,
+	closeIn: "never",
 });
 // transform result stream using the
 // root component fn and the hdom differential

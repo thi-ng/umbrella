@@ -18,7 +18,7 @@ import {
 	range,
 	toggle,
 } from "@thi.ng/rdom-forms";
-import { CloseMode, reactive, stream, sync } from "@thi.ng/rstream";
+import { reactive, stream, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 
 interface ProcessParams {
@@ -109,7 +109,7 @@ const result = sync({
 		min,
 		max,
 	},
-	closeOut: CloseMode.NEVER,
+	closeOut: "never",
 	xform: map((params) => processImage(params.image, params)),
 });
 

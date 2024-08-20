@@ -13,11 +13,11 @@ import {
 	staticDropdown,
 	tabs,
 } from "@thi.ng/rdom-components";
-import { CloseMode, metaStream, reactive, sync } from "@thi.ng/rstream";
+import { metaStream, reactive, sync } from "@thi.ng/rstream";
 import { interpolate } from "@thi.ng/strings";
 import { filter, map, pluck, range } from "@thi.ng/transducers";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
-import type { ParseResult, Status } from "./api";
+import type { ParseResult, Status } from "./api.js";
 import {
 	BG_COLS,
 	BUTTON_CLASSES,
@@ -32,7 +32,7 @@ import {
 	PANEL_CLASSES,
 	SRC_URL,
 	TAB_CLASSES,
-} from "./config";
+} from "./config.js";
 
 // attempt to restore app state from URI hash fragment
 // this uses a base64 & msgpack encoded version of the two editors
@@ -47,11 +47,11 @@ const parseState = ((): Nullable<string[]> => {
 })() || [DEFAULT_GRAMMAR, DEFAULT_RULE, ...DEFAULT_INPUTS];
 
 // init reactive stream values from parsed state (or defaults) the
-// `CloseMode` config is required only for the `srcInputs` and force the
+// `closeOut` config is required only for the `srcInputs` to force the
 // streams to remain active, even if there're no current subscribers...
 // (usually a stream terminates when its last subscriber has unsubscribed)
 const [srcGrammar, activeRule, ...srcInputs] = parseState.map((src) =>
-	reactive(src, { closeOut: CloseMode.NEVER })
+	reactive(src, { closeOut: "never" })
 );
 console.log(srcGrammar.deref());
 console.log(srcInputs[0].deref());
