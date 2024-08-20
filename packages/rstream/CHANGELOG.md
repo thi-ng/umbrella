@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-18T14:11:34Z
+- **Last updated**: 2024-08-20T11:41:56Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [9.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@9.0.0) (2024-08-20)
+
+#### 🛑 Breaking changes
+
+- replace `CloseMode` enum w/ string union type ([33b1d16](https://github.com/thi-ng/umbrella/commit/33b1d16))
+- BREAKING CHANGE: replace `CloseMode` enum w/ string union type
+  - this simplifies all usage sites, now only using (and removing obsolete enum import):
+    - `CloseMode.FIRST` => `"first"`
+    - `CloseMode.LAST` => `"last"`
+    - `CloseMode.NEVER` => `"never"`
+  - update docs & all sites
 
 ## [8.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@8.5.0) (2024-05-08)
 

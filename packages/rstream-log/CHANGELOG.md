@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-18T14:11:34Z
+- **Last updated**: 2024-08-20T11:41:56Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.1.32](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@5.1.32) (2024-08-20)
+
+#### ♻️ Refactoring
+
+- update internal close mode handling (33b1d16f34) ([700e566](https://github.com/thi-ng/umbrella/commit/700e566))
 
 ## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@5.1.0) (2024-02-28)
 
