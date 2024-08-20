@@ -4,9 +4,8 @@ import { equiv } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { min3id } from "@thi.ng/math/interval";
-import type { Subscription } from "@thi.ng/rstream";
+import type { ISubscription, Subscription } from "@thi.ng/rstream";
 import { serialize, type DotOpts, type IToDot } from "@thi.ng/rstream-dot";
-import { CloseMode, type ISubscription } from "@thi.ng/rstream/api";
 import { __nextID } from "@thi.ng/rstream/idgen";
 import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/sync";
@@ -72,10 +71,10 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 			p: new Map(),
 			o: new Map(),
 		};
-		this.streamS = new Stream({ id: "S", closeOut: CloseMode.NEVER });
-		this.streamP = new Stream({ id: "P", closeOut: CloseMode.NEVER });
-		this.streamO = new Stream({ id: "O", closeOut: CloseMode.NEVER });
-		this.streamAll = new Stream({ id: "ALL", closeOut: CloseMode.NEVER });
+		this.streamS = new Stream({ id: "S", closeOut: "never" });
+		this.streamP = new Stream({ id: "P", closeOut: "never" });
+		this.streamO = new Stream({ id: "O", closeOut: "never" });
+		this.streamAll = new Stream({ id: "ALL", closeOut: "never" });
 		this.allIDs = new Set<number>();
 		this.NEXT_ID = 0;
 		if (triples) {
