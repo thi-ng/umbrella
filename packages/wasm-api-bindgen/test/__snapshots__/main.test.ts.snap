@@ -2089,3 +2089,222 @@ export fn B_aPtrMulti_size() usize {
 }
 "
 `;
+
+exports[`external 1`] = `
+"#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdalign.h>
+#include "wasmapi.h"
+
+
+typedef struct { Bar* ptr; size_t len; } BarSlice;
+typedef struct { const Bar* ptr; size_t len; } ConstBarSlice;
+
+typedef struct WASM_Foo WASM_Foo;
+
+// external type: Bar (size: 18, align: 16)
+
+struct WASM_Foo {
+    Bar a;
+    Bar* b;
+    Bar c[2];
+    BarSlice d;
+};
+
+size_t __attribute__((used)) WASM_Foo_align() {
+    return alignof(WASM_Foo);
+}
+
+size_t __attribute__((used)) WASM_Foo_size() {
+    return sizeof(WASM_Foo);
+}
+
+size_t __attribute__((used)) WASM_Foo_a_align() {
+    return alignof(Bar);
+}
+
+size_t __attribute__((used)) WASM_Foo_a_offset() {
+    return offsetof(WASM_Foo, a);
+}
+
+size_t __attribute__((used)) WASM_Foo_a_size() {
+    return sizeof(Bar);
+}
+
+size_t __attribute__((used)) WASM_Foo_b_align() {
+    return alignof(Bar*);
+}
+
+size_t __attribute__((used)) WASM_Foo_b_offset() {
+    return offsetof(WASM_Foo, b);
+}
+
+size_t __attribute__((used)) WASM_Foo_b_size() {
+    return sizeof(Bar*);
+}
+
+size_t __attribute__((used)) WASM_Foo_c_align() {
+    return alignof(Bar[2]);
+}
+
+size_t __attribute__((used)) WASM_Foo_c_offset() {
+    return offsetof(WASM_Foo, c);
+}
+
+size_t __attribute__((used)) WASM_Foo_c_size() {
+    return sizeof(Bar[2]);
+}
+
+size_t __attribute__((used)) WASM_Foo_d_align() {
+    return alignof(BarSlice);
+}
+
+size_t __attribute__((used)) WASM_Foo_d_offset() {
+    return offsetof(WASM_Foo, d);
+}
+
+size_t __attribute__((used)) WASM_Foo_d_size() {
+    return sizeof(BarSlice);
+}
+
+
+#ifdef __cplusplus
+}
+#endif
+"
+`;
+
+exports[`external 2`] = `
+"// @ts-ignore possibly includes unused imports
+import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
+// @ts-ignore
+import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
+
+// external type: Bar (size: 18, align: 16)
+
+export interface Foo extends WasmTypeBase {
+	a: Bar;
+	readonly b: Pointer<Bar>;
+	readonly c: Bar[];
+	readonly d: Bar[];
+}
+
+export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
+	get align() {
+		return 16;
+	},
+	get size() {
+		return 112;
+	},
+	instanceArray(base, num) {
+		return __instanceArray<Foo>(this, base, num);
+	},
+	instance: (base) => {
+		let $b: Pointer<Bar> | null = null;
+		return {
+			get __base() {
+				return base;
+			},
+			get __bytes() {
+				return mem.u8.subarray(base, base + 112);
+			},
+			get a(): Bar {
+				return $Bar(mem).instance(base);
+			},
+			set a(x: Bar) {
+				mem.u8.set(x.__bytes, base);
+			},
+			get b(): Pointer<Bar> {
+				return $b || ($b = new Pointer<Bar>(mem, (base + 32),
+				(addr) => $Bar(mem).instance(addr)
+				));
+			},
+			get c(): Bar[] {
+				return __array(mem, $Bar, (base + 48), 2);
+			},
+			get d(): Bar[] {
+				return __slice32(mem, $Bar, (base + 96));
+			},
+		};
+	}
+});
+"
+`;
+
+exports[`external 3`] = `
+"const std = @import("std");
+const bindgen = @import("wasm-api-bindgen");
+
+pub const BarSlice = bindgen.Slice([]Bar, [*]Bar);
+pub const ConstBarSlice = bindgen.Slice([]const Bar, [*]const Bar);
+
+// external type: Bar (size: 18, align: 16)
+
+pub const Foo = extern struct {
+    a: Bar,
+    b: *Bar,
+    c: [2]Bar,
+    d: BarSlice,
+};
+
+export fn Foo_align() usize {
+    return @alignOf(Foo);
+}
+
+export fn Foo_size() usize {
+    return @sizeOf(Foo);
+}
+
+export fn Foo_a_align() usize {
+    return @alignOf(Bar);
+}
+
+export fn Foo_a_offset() usize {
+    return @offsetOf(Foo, "a");
+}
+
+export fn Foo_a_size() usize {
+    return @sizeOf(Bar);
+}
+
+export fn Foo_b_align() usize {
+    return @alignOf(*Bar);
+}
+
+export fn Foo_b_offset() usize {
+    return @offsetOf(Foo, "b");
+}
+
+export fn Foo_b_size() usize {
+    return @sizeOf(*Bar);
+}
+
+export fn Foo_c_align() usize {
+    return @alignOf([2]Bar);
+}
+
+export fn Foo_c_offset() usize {
+    return @offsetOf(Foo, "c");
+}
+
+export fn Foo_c_size() usize {
+    return @sizeOf([2]Bar);
+}
+
+export fn Foo_d_align() usize {
+    return @alignOf(BarSlice);
+}
+
+export fn Foo_d_offset() usize {
+    return @offsetOf(Foo, "d");
+}
+
+export fn Foo_d_size() usize {
+    return @sizeOf(BarSlice);
+}
+"
+`;

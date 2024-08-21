@@ -8,6 +8,7 @@ import {
 	prepareTypes,
 	type CodeGenOpts,
 	type Enum,
+	type External,
 	type FuncPointer,
 	type ICodeGen,
 	type Struct,
@@ -495,6 +496,28 @@ test("slices", () => {
 					len: 0,
 					doc: "Multiple A's",
 				},
+			],
+		},
+	};
+	checkAll(coll, { ...OPTS, debug: true });
+});
+
+test("external", () => {
+	const coll = {
+		Bar: <External>{
+			name: "Bar",
+			type: "ext",
+			align: 16,
+			size: 18,
+		},
+		Foo: <Struct>{
+			name: "Foo",
+			type: "struct",
+			fields: [
+				{ name: "a", type: "Bar" },
+				{ name: "b", type: "Bar", tag: "ptr" },
+				{ name: "c", type: "Bar", tag: "array", len: 2 },
+				{ name: "d", type: "Bar", tag: "slice" },
 			],
 		},
 	};
