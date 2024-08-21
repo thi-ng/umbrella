@@ -18,6 +18,7 @@
 - [Data bindings & code generators](#data-bindings--code-generators)
   - [Code independence](#code-independence)
   - [Supported data types](#supported-data-types)
+  - [External types](#external-types)
   - [Struct/union field types](#structunion-field-types)
     - [Primitives](#primitives)
     - [Type variations](#type-variations)
@@ -31,6 +32,8 @@
   - [Omitting getters & setters](#omitting-getters--setters)
 - [JSON schema for type definitions](#json-schema-for-type-definitions)
 - [CLI generator](#cli-generator)
+- [Configuration](#configuration)
+  - [Additional code injection](#additional-code-injection)
 - [Example usage](#example-usage)
   - [Type definitions](#type-definitions)
   - [Generated TypeScript source code](#generated-typescript-source-code)
@@ -95,11 +98,32 @@ unions. See API docs for supported options & further details:
 
 - [`Enum`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Enum.html)
 - [`EnumValue`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/EnumValue.html) (individual enum value spec)
+- [`External`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/External.html) (stub for external types)
 - [`Field`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Field.html) (individual spec for values contained in structs/unions)
 - [`FuncPointer`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/FuncPointer.html)
 - [`Struct`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Struct.html)
 - [`Union`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Union.html)
 - [`TopLevelType`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/TopLevelType.html)
+
+### External types
+
+The code generators support external types for which only alignment and size
+needs to be known & specified (both in bytes), like so:
+
+```json
+{
+    "name": "TypeName",
+    "type": "ext",
+    "size": 28,
+    "align": 4,
+}
+```
+
+Once defined, these types can be used just like any others in type specs.
+However, since these definitions will not have any form of code generation
+themselves and only exist to aid the computation of alignments & sizes of other
+types, it's the user's responsibility to provide necessary
+[preludes/imports](#additional-code-injection) themselves.
 
 ### Struct/union field types
 
@@ -508,6 +532,8 @@ wasm-api-bindgen \
   typedefs.json
 ```
 
+## Configuration
+
 The structure of the config file is as follows (all optional):
 
 ```json
@@ -525,6 +551,8 @@ More details about possible
 [`ts`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/TSOpts.html) and
 [`zig`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/ZigOpts.html) config
 options & values.
+
+### Additional code injection
 
 All code generators have support for custom code prologues & epilogues which can
 be specified via the above options. These config options exist for both non-CLI
@@ -908,7 +936,7 @@ For Node.js REPL:
 const wab = await import("@thi.ng/wasm-api-bindgen");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.13 KB
 
 ## Dependencies
 
