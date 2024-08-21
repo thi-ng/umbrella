@@ -10,6 +10,7 @@ import {
 	type AlignStrategy,
 	type CodeGenOpts,
 	type Enum,
+	type External,
 	type Field,
 	type FuncPointer,
 	type ICodeGen,
@@ -88,6 +89,8 @@ const __sizeOf = defmulti<
 			return (field.__size = align.size(size, field.__align!));
 		},
 
+		ext: (type) => (type.__size = (<External>type).size),
+
 		enum: (type) => {
 			if (type.__size) return type.__size;
 			return (type.__size = SIZEOF[(<Enum>type).tag]);
@@ -152,6 +155,11 @@ const __alignOf = defmulti<
 						selectAlignment(coll[field.type]),
 						opts
 				  ));
+		},
+
+		ext: (type) => {
+			const e = <External>type;
+			return (e.__align = <Pow2>e.align);
 		},
 
 		enum: (type, _, align) => {

@@ -94,7 +94,7 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 					res.push(
 						__funcptr(<FuncPointer>type, coll, opts, typePrefix)
 					);
-				} else {
+				} else if (type.type !== "ext") {
 					res.push(
 						`\ntypedef ${type.type} ${typePrefix}${type.name} ${typePrefix}${type.name};`
 					);
@@ -120,6 +120,12 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 
 		doc: (doc, acc, opts) => {
 			acc.push(...prefixLines("// ", doc, opts.lineWidth));
+		},
+
+		ext: (e, _, acc) => {
+			acc.push(
+				`// external type: ${e.name} (size: ${e.size}, align: ${e.align})`
+			);
 		},
 
 		enum: (e, _, acc, opts) => {

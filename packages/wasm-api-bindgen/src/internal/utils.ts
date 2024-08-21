@@ -54,6 +54,9 @@ export const isFuncPointer = (type: string, coll: TypeColl) =>
 export const isEnum = (type: string, coll: TypeColl) =>
 	coll[type]?.type === "enum";
 
+export const isExternal = (type: string, coll: TypeColl) =>
+	coll[type]?.type === "ext";
+
 export const isSlice = (x: Field["tag"]): x is "slice" => x === "slice";
 
 export const isOpaque = (x: string): x is "opaque" => x === "opaque";

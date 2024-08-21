@@ -55,7 +55,7 @@ export interface TopLevelType extends TypeInfo {
 	 * The {@link TYPESCRIPT} codegen doesn't emit function pointer types
 	 * themselves and only supports them indirectly, e.g. as struct fields.
 	 */
-	type: "enum" | "funcptr" | "struct" | "union";
+	type: "enum" | "ext" | "funcptr" | "struct" | "union";
 	/**
 	 * Optional object of user provided source codes to be injected into the
 	 * generated type (language dependent, only structs or unions, after
@@ -76,6 +76,18 @@ export interface TopLevelType extends TypeInfo {
 export interface InjectedBody {
 	decl?: string | string[];
 	impl?: string | string[];
+}
+
+export interface External extends TopLevelType {
+	type: "ext";
+	/**
+	 * Type alignment (in bytes)
+	 */
+	align: number;
+	/**
+	 * Type's byte size
+	 */
+	size: number;
 }
 
 export interface Struct extends TopLevelType {
@@ -376,48 +388,74 @@ export interface ICodeGen {
 	 */
 	post?: Fn2<TypeColl, CodeGenOpts, string>;
 	/**
-	 * Docstring codegen
+	 * Codegen for docstrings.
+	 *
+	 * @param doc
+	 * @param acc
+	 * @param opts
+	 * @param topLevel
 	 */
-	doc: (
+	doc(
 		doc: string | string[],
 		acc: string[],
 		opts: CodeGenOpts,
 		topLevel?: boolean
-	) => void;
+	): void;
 	/**
 	 * Codegen for enum types.
+	 *
+	 * @param type
+	 * @param coll
+	 * @param acc
+	 * @param opts
 	 */
-	enum: (
-		type: Enum,
-		coll: TypeColl,
-		acc: string[],
-		opts: CodeGenOpts
-	) => void;
+	enum(type: Enum, coll: TypeColl, acc: string[], opts: CodeGenOpts): void;
 	/**
-	 * Codegen for struct types.
+	 * Codegen for external types.
+	 *
+	 * @param type
+	 * @param coll
+	 * @param acc
+	 * @param opts
 	 */
-	struct: (
-		type: Struct,
-		coll: TypeColl,
-		acc: string[],
-		opts: CodeGenOpts
-	) => void;
+	ext(type: External, coll: TypeColl, acc: string[], opts: CodeGenOpts): void;
 	/**
-	 * Codegen for union types.
+	 * Code gen for function pointers.
+	 *
+	 * @param type
+	 * @param coll
+	 * @param acc
+	 * @param opts
 	 */
-	union: (
-		type: Union,
-		coll: TypeColl,
-		acc: string[],
-		opts: CodeGenOpts
-	) => void;
-
-	funcptr: (
+	funcptr(
 		type: FuncPointer,
 		coll: TypeColl,
 		acc: string[],
 		opts: CodeGenOpts
-	) => void;
+	): void;
+	/**
+	 * Codegen for struct types.
+	 *
+	 * @param type
+	 * @param coll
+	 * @param acc
+	 * @param opts
+	 */
+	struct(
+		type: Struct,
+		coll: TypeColl,
+		acc: string[],
+		opts: CodeGenOpts
+	): void;
+	/**
+	 * Codegen for union types.
+	 *
+	 * @param type
+	 * @param coll
+	 * @param acc
+	 * @param opts
+	 */
+	union(type: Union, coll: TypeColl, acc: string[], opts: CodeGenOpts): void;
 }
 
 export interface WasmTarget {

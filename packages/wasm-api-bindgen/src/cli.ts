@@ -29,6 +29,7 @@ import type {
 import { C11, type C11Opts } from "./c11.js";
 import { generateTypes } from "./codegen.js";
 import {
+	isExternal,
 	isOpaque,
 	isPadding,
 	isSizeT,
@@ -141,7 +142,7 @@ const addTypeSpec = (
 	spec: TopLevelType
 ) => {
 	if (!(spec.name && spec.type)) invalidSpec(path);
-	if (!["enum", "funcptr", "struct", "union"].includes(spec.type))
+	if (!["enum", "ext", "funcptr", "struct", "union"].includes(spec.type))
 		invalidSpec(path, `${spec.name} type: ${spec.type}`);
 	if (coll[spec.name]) invalidSpec(path, `duplicate name: ${spec.name}`);
 
@@ -171,6 +172,7 @@ const validateTypeRefs = (coll: TypeColl) => {
 					isSizeT(f.type) ||
 					isOpaque(f.type) ||
 					isWasmString(f.type) ||
+					isExternal(f.type, coll) ||
 					coll[f.type]
 				)
 			) {

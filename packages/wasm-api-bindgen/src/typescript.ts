@@ -110,6 +110,12 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			acc.push("/**", ...prefixLines(" * ", doc, opts.lineWidth), " */");
 		},
 
+		ext: (e, _, acc) => {
+			acc.push(
+				`// external type: ${e.name} (size: ${e.size}, align: ${e.align})`
+			);
+		},
+
 		enum: (e, _, acc, opts) => {
 			const res: string[] = [];
 			res.push(`export enum ${e.name} {`);
