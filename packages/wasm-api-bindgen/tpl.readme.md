@@ -78,6 +78,11 @@ themselves and only exist to aid the computation of alignments & sizes of other
 types, it's the user's responsibility to provide necessary
 [preludes/imports](#additional-code-injection) themselves.
 
+Note: Any optionally configured [type prefix for the C11 code
+generator](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/C11Opts.html#typePrefix)
+will **not** be used for external types!
+
+
 ### Struct/union field types
 
 Struct field types can be any of the supported WASM primitives or other user
