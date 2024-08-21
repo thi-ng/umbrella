@@ -85,26 +85,30 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 			for (let id of slices) {
 				const prim = PRIM_ALIASES[<WasmPrim>id];
 				if (!prim) continue;
-				res.push(__sliceDef(prim, typePrefix, capitalize(id!)));
+				res.push(
+					...__sliceDef(prim, typePrefix, capitalize(id!), coll)
+				);
 			}
 			// ...then pre-declare any custom types in dependency order
 			for (let id of __declOrder(coll)) {
 				const type = coll[id];
+				const name = __prefixedName(typePrefix, type.name, coll);
 				if (type.type == "funcptr") {
 					res.push(
 						__funcptr(<FuncPointer>type, coll, opts, typePrefix)
 					);
 				} else if (type.type !== "ext") {
-					res.push(
-						`\ntypedef ${type.type} ${typePrefix}${type.name} ${typePrefix}${type.name};`
-					);
+					res.push(`\ntypedef ${type.type} ${name} ${name};`);
 				}
 				if (slices.has(id)) {
 					const [ptr, name] =
 						id === "opaque"
 							? ["void*", "Opaque"]
-							: [typePrefix + id, capitalize(id!)];
-					res.push(__sliceDef(ptr, typePrefix, name));
+							: [
+									__prefixedName(typePrefix, id, coll),
+									capitalize(id!),
+							  ];
+					res.push(...__sliceDef(ptr, typePrefix, name, coll));
 				}
 			}
 			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
@@ -124,7 +128,7 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 
 		ext: (e, _, acc) => {
 			acc.push(
-				`// external type: ${e.name} (size: ${e.size}, align: ${e.align})`
+				`// external type: ${e.name} (size: ${e.size}, align: ${e.align})\n`
 			);
 		},
 
@@ -332,7 +336,8 @@ const __fieldType = (
 		}
 	} else {
 		const $const = isConst ? "const " : "";
-		type = PRIM_ALIASES[<WasmPrim>type] || prefix + type;
+		type =
+			PRIM_ALIASES[<WasmPrim>type] || __prefixedName(prefix, type, coll);
 		switch (classifier) {
 			case "ptr":
 			case "ptrFixed":
@@ -345,7 +350,7 @@ const __fieldType = (
 				break;
 			case "slice":
 			case "enumSlice":
-				type = `${prefix}${$isConst}${capitalize(f.type)}Slice`;
+				type = __sliceName(prefix, f.type, coll, isConst);
 				decl = `${type} ${f.name}`;
 				break;
 			case "array":
@@ -404,7 +409,7 @@ const __funcptr = (
 	opts: CodeGenOpts,
 	typePrefix: string
 ) => {
-	const name = typePrefix + ptr.name;
+	const name = __prefixedName(typePrefix, ptr.name, coll);
 	const args = ptr.args
 		.map((a) => __fieldType(a, coll, opts, typePrefix).decl)
 		.join(", ");
@@ -429,6 +434,46 @@ const __funcptr = (
  *
  *  @internal
  */
-const __sliceDef = (ptr: string, prefix: string, name: string) =>
-	`\ntypedef struct { ${ptr}* ptr; size_t len; } ${prefix}${name}Slice;` +
-	`\ntypedef struct { const ${ptr}* ptr; size_t len; } ${prefix}Const${name}Slice;`;
+const __sliceDef = (
+	ptr: string,
+	prefix: string,
+	name: string,
+	coll: TypeColl
+) => [
+	"",
+	`typedef struct { ${ptr}* ptr; size_t len; } ${__sliceName(
+		prefix,
+		name,
+		coll,
+		false
+	)};`,
+	`typedef struct { const ${ptr}* ptr; size_t len; } ${__sliceName(
+		prefix,
+		name,
+		coll,
+		true
+	)};`,
+];
+
+const __sliceName = (
+	prefix: string,
+	name: string,
+	coll: TypeColl,
+	isConst: boolean
+) =>
+	`${__prefixedName(
+		prefix,
+		capitalize(name),
+		coll,
+		isConst ? "Const" : ""
+	)}Slice`;
+
+const __prefixedName = (
+	prefix: string,
+	name: string,
+	coll: TypeColl,
+	qualifier = ""
+) => __prefix(prefix, name, coll) + qualifier + name;
+
+const __prefix = (prefix: string, name: string, coll: TypeColl) =>
+	coll[name]?.type !== "ext" ? prefix : "";
