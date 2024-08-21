@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-18T14:11:34Z
+- **Last updated**: 2024-08-21T13:14:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.7.0) (2024-08-21)
+
+#### 🚀 Features
+
+- add support for external types ([af1a44d](https://github.com/thi-ng/umbrella/commit/af1a44d))
+  - update ICodeGen interface & all impls (C, TS, Zig)
+- update JSON schema ([e7bd5a9](https://github.com/thi-ng/umbrella/commit/e7bd5a9))
+
+#### 🩹 Bug fixes
+
+- update type prefix handling in C11 codegen ([5b6fcc2](https://github.com/thi-ng/umbrella/commit/5b6fcc2))
+  - don't add prefix for external types
+  - add naming convention helper fns
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.6.0) (2024-08-18)
 

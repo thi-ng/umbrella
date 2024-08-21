@@ -6855,7 +6855,30 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^0.6.0, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@thi.ng/wasm-api-bindgen@npm:0.6.0"
+  dependencies:
+    "@thi.ng/api": "npm:^8.11.9"
+    "@thi.ng/args": "npm:^2.3.42"
+    "@thi.ng/arrays": "npm:^2.10.0"
+    "@thi.ng/binary": "npm:^3.4.32"
+    "@thi.ng/checks": "npm:^3.6.11"
+    "@thi.ng/compare": "npm:^2.4.1"
+    "@thi.ng/defmulti": "npm:^3.0.47"
+    "@thi.ng/errors": "npm:^2.5.15"
+    "@thi.ng/file-io": "npm:^2.1.11"
+    "@thi.ng/logger": "npm:^3.0.19"
+    "@thi.ng/paths": "npm:^5.1.89"
+    "@thi.ng/strings": "npm:^3.8.4"
+    "@thi.ng/wasm-api": "npm:^2.0.0"
+  bin:
+    wasm-api-bindgen: bin/wasm-api-bindgen
+  checksum: 10/ecc66bab9f01fd0b4579064c8e7606bbd089b91d3969e89d98d325bdb170277d14a67b6ebd4f8ab34a59f8f801141dd4507bda693d8310e6312043f7d3c4232a
+  languageName: node
+  linkType: hard
+
+"@thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
