@@ -112,7 +112,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 
 		ext: (e, _, acc) => {
 			acc.push(
-				`// external type: ${e.name} (size: ${e.size}, align: ${e.align})`
+				`// external type: ${e.name} (size: ${e.size}, align: ${e.align})\n`
 			);
 		},
 
