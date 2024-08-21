@@ -8,6 +8,7 @@
 		"type": "object",
 		"oneOf": [
 			{ "$ref": "#/$defs/enum" },
+			{ "$ref": "#/$defs/ext" },
 			{ "$ref": "#/$defs/funcptr" },
 			{ "$ref": "#/$defs/struct" },
 			{ "$ref": "#/$defs/union" }
@@ -54,6 +55,26 @@
 				}
 			},
 			"required": ["name", "type", "values"]
+		},
+		"ext": {
+			"type": "object",
+			"properties": {
+				"doc": { "$ref": "#/$defs/doc" },
+				"name": { "$ref": "#/$defs/name" },
+				"type": {
+					"const": "ext",
+					"description": "This spec describes an external type."
+				},
+				"align": {
+					"type": "integer",
+					"description": "Type alignment (in bytes)"
+				},
+				"size": {
+					"type": "integer",
+					"description": "Type size (in bytes)"
+				}
+			},
+			"required": ["name", "type", "align", "size"]
 		},
 		"funcptr": {
 			"type": "object",
