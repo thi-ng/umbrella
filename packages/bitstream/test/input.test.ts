@@ -1,5 +1,11 @@
 import { expect, test } from "bun:test";
-import { BitInputStream } from "../src/index.js";
+import {
+	BitInputStream,
+	bitReader,
+	read16,
+	read24,
+	read32,
+} from "../src/index.js";
 
 let src = new Uint8Array([
 	0xbe, 0xef, 0xde, 0xca, 0xfb, 0xad, 0xf0, 0x0b, 0xaa,
@@ -64,4 +70,14 @@ test("position", () => {
 	expect(i.position).toBe(16);
 	expect(() => new BitInputStream(src, 16)).toThrow();
 	expect(() => i.read(1)).toThrow();
+});
+
+test("simple", () => {
+	const r = bitReader([
+		0xff, 0xfe, 0xfd, 0xfc, 0xfb, 0xfa, 0xf9, 0xf8, 0xf7, 0xf6,
+	]);
+	expect(r(4)).toBe(0xf);
+	expect(read16(r)).toBe(0xffef);
+	expect(read24(r)).toBe(0xdfcfbf);
+	expect(read32(r)).toBe(0xaf9f8f7f);
 });

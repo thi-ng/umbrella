@@ -79,3 +79,26 @@ export const bitReader = (buf: Uint8Array | number[]) => {
 		return out;
 	};
 };
+
+/**
+ * Wrapper for {@link bitReader} to read a 16bit word (big endian)
+ *
+ * @param read
+ */
+export const read16 = (read: (n: number) => number) => (read(8) << 8) | read(8);
+
+/**
+ * Wrapper for {@link bitReader} to read a 24bit word (big endian)
+ *
+ * @param read
+ */
+export const read24 = (read: (n: number) => number) =>
+	(read16(read) << 8) | read(8);
+
+/**
+ * Wrapper for {@link bitReader} to read a 32bit word (big endian, unsigned)
+ *
+ * @param read
+ */
+export const read32 = (read: (n: number) => number) =>
+	((read16(read) << 16) | read16(read)) >>> 0;
