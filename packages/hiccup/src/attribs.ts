@@ -40,8 +40,12 @@ import { isString } from "@thi.ng/checks/is-string";
  * @param existing -
  * @param val -
  */
-export const mergeClasses = (existing: string, val: any) => {
+export const mergeClasses = (
+	existing: string | SVGAnimatedString,
+	val: any
+) => {
 	val = deref(val);
+	if (existing instanceof SVGAnimatedString) existing = existing.baseVal;
 	if (val == null) return existing;
 	if (isArray(val)) val = val.join(" ");
 	if (isString(val)) return existing ? existing + " " + val : val;
