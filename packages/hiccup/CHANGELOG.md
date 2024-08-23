@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-18T14:11:34Z
+- **Last updated**: 2024-08-23T16:18:16Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.2.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.2.11) (2024-08-23)
+
+#### 🩹 Bug fixes
+
+- update mergeClasses() arg types ([eaca539](https://github.com/thi-ng/umbrella/commit/eaca539))
+  - add support for SVGAnimatedString as `existing` arg
+    to enable full support for SVG elements
+- update SVGAnimatedString handling in `mergeClasses()` ([540cc70](https://github.com/thi-ng/umbrella/commit/540cc70))
 
 ### [5.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.2.2) (2024-06-21)
 
