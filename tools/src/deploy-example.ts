@@ -1,5 +1,5 @@
 import { type Fn } from "@thi.ng/api";
-import { cliApp, flag, type CommandCtx } from "@thi.ng/args";
+import { cliApp, flag, string, strings, type CommandCtx } from "@thi.ng/args";
 import { dirs, files, readJSON } from "@thi.ng/file-io";
 import type { ILogger } from "@thi.ng/logger";
 import { preferredType } from "@thi.ng/mime";
@@ -22,6 +22,7 @@ interface UploadOpts {
 }
 interface CLIOpts {
 	noInvalidate: boolean;
+	base: string;
 }
 
 interface CLICtx extends CommandCtx<CLIOpts, any> {}
@@ -37,18 +38,19 @@ const execAWS = (args: string, logger: ILogger) => {
 };
 
 const deploy = async ({ opts, logger }: CLICtx, name: string) => {
-	const PKG = readJSON(resolve(`examples/${name}/package.json`), logger);
+	const BASE = `${opts.base}/${name}`;
+	const BUILD = `${opts.base}/${name}/dist/`;
+	const DEST_DIR = `${DEST_BASE}/${name}`;
+	const PKG = readJSON(resolve(`${BASE}/package.json`), logger);
+
 	if (PKG["thi.ng"]?.online === false) {
 		logger.warn("example marked as offline-only, skipping...");
 		return;
 	}
 
-	const BUILD = `examples/${name}/dist/`;
-	const DEST_DIR = `${DEST_BASE}/${name}`;
-
 	execFileSync(
 		"find",
-		`examples/${name} -type f -name '*.DS_Store' -ls -delete`.split(" ")
+		`${BASE} -type f -name '*.DS_Store' -ls -delete`.split(" ")
 	);
 
 	const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
@@ -95,7 +97,13 @@ const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 
 cliApp<CLIOpts, CLICtx>({
 	opts: {
+		base: string({
+			alias: "b",
+			desc: "Examples base directory",
+			default: "examples",
+		}),
 		noInvalidate: flag({
+			alias: "n",
 			desc: "Don't create a CDN invalidation for the example(s)",
 		}),
 	},
@@ -106,7 +114,7 @@ cliApp<CLIOpts, CLICtx>({
 				let inputs = ctx.inputs;
 				let isAll = !inputs.length;
 				if (isAll) {
-					inputs = [...map(basename, dirs("examples", "", 1))];
+					inputs = [...map(basename, dirs(ctx.opts.base, "", 1))];
 					ctx.opts.noInvalidate = true;
 				}
 				for (let name of inputs) {
