@@ -306,13 +306,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-08-20
+As of: 2024-08-23
 
 | Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
 |:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/arrays`](./packages/arrays)                       | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)                       | [changelog](./packages/arrays/CHANGELOG.md)            |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/bitstream`](./packages/bitstream)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)                 | [changelog](./packages/bitstream/CHANGELOG.md)         |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/color`](./packages/color)                         | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                         | [changelog](./packages/color/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/hiccup`](./packages/hiccup)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)                       | [changelog](./packages/hiccup/CHANGELOG.md)            |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/meta-css`](./packages/meta-css)                   | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                   | [changelog](./packages/meta-css/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rstream`](./packages/rstream)                     | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                     | [changelog](./packages/rstream/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
