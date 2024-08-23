@@ -45,11 +45,14 @@ export const mergeClasses = (
 	val: any
 ) => {
 	val = deref(val);
-	if (existing instanceof SVGAnimatedString) existing = existing.baseVal;
-	if (val == null) return existing;
+	const $existing =
+		(<SVGAnimatedString>existing).baseVal != undefined
+			? (<SVGAnimatedString>existing).baseVal
+			: <string>existing;
+	if (val == null) return $existing;
 	if (isArray(val)) val = val.join(" ");
-	if (isString(val)) return existing ? existing + " " + val : val;
-	const classes = new Set(existing ? existing.split(" ") : undefined);
+	if (isString(val)) return $existing ? $existing + " " + val : val;
+	const classes = new Set($existing ? $existing.split(" ") : undefined);
 	for (let id in val) {
 		deref(val[id]) ? classes.add(id) : classes.delete(id);
 	}
