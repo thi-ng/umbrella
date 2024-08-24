@@ -457,11 +457,11 @@ export const $style = (el: Element, rules: string | any) => {
 	if (isString(rules)) {
 		el.setAttribute("style", rules);
 	} else {
-		const style: any = (<HTMLElement>el).style;
+		const style = (<HTMLElement>el).style;
 		for (let id in rules) {
 			let v = deref(rules[id]);
 			isFunction(v) && (v = v(rules));
-			style[id] = v != null ? v : "";
+			style.setProperty(id, v != null ? v : "");
 		}
 	}
 };
