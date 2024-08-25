@@ -53,6 +53,7 @@ export interface IRamp<T> extends IReadonlyRamp<T> {
 
 	setStopAt(t: number, y: T, eps?: number): boolean;
 	removeStopAt(t: number, eps?: number): boolean;
+	removeStopAtIndex(i: number): boolean;
 	closestIndex(t: number, eps?: number): number;
 	clampedIndexTime(i: number, t: number, eps?: number): number;
 }

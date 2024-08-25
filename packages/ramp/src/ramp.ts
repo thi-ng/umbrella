@@ -112,14 +112,16 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 	}
 
 	removeStopAt(t: number, eps = 0.01) {
-		if (this.stops.length > 2) {
-			const i = this.closestIndex(t, eps);
-			if (i !== -1) {
-				this.stops.splice(i, 1);
-				return true;
-			}
-		}
-		return false;
+		return this.stops.length > 2
+			? this.removeStopAtIndex(this.closestIndex(t, eps))
+			: false;
+	}
+
+	removeStopAtIndex(i: number) {
+		const stops = this.stops;
+		if (i < 0 || i >= stops.length || stops.length <= 2) return false;
+		stops.splice(i, 1);
+		return true;
 	}
 
 	closestIndex(t: number, eps = 0.01) {
