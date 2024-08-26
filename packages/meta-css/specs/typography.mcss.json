@@ -149,6 +149,14 @@
 			},
 			"name": "font-family",
 			"props": "font-family"
+		},
+		{
+			"doc": {
+				"group": "font size",
+				"args": ["body: CSS value/definition"]
+			},
+			"name": "font-size",
+			"props": "font-size"
 		}
 	]
 }

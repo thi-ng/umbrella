@@ -102,6 +102,7 @@
     - [Color scheme](#color-scheme)
     - [Dimensions](#dimensions)
     - [Font families](#font-families)
+    - [Font size](#font-size)
     - [Fx](#fx)
     - [Grid layout](#grid-layout)
     - [Layout](#layout)
@@ -1115,7 +1116,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 952 CSS utility classes (incl. 72 templates) defined in "MetaCSS base" (v0.13.0):
+Currently, there are 953 CSS utility classes (incl. 73 templates) defined in "MetaCSS base" (v0.13.0):
 
 ### Classes by category
 
@@ -2575,6 +2576,12 @@ Sets width to given value
 #### Font families
 
 ##### `font-family(body)`
+
+- **body**: CSS value/definition
+
+#### Font size
+
+##### `font-size(body)`
 
 - **body**: CSS value/definition
 
