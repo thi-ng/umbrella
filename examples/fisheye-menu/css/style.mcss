@@ -1,0 +1,23 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+body { system-sans-serif ma3 }
+
+a:link { ph2 no-underline color-blue }
+a:visited { color-gray }
+
+.fisheye {
+	db mb4 pl0 list
+	overflow-y-hidden
+	relative
+	{
+		li {
+			absolute
+			height(var(--height))
+			font-size(var(--height))
+		}
+		a:hover, a:focus { bg-color-hot-pink color-white }
+	}
+}

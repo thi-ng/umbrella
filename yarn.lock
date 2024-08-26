@@ -716,6 +716,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/fisheye-menu@workspace:examples/fisheye-menu":
+  version: 0.0.0-use.local
+  resolution: "@example/fisheye-menu@workspace:examples/fisheye-menu"
+  dependencies:
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: "npm:^5.5.4"
+    vite: "npm:^5.4.0"
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-classify-point@workspace:examples/geom-classify-point":
   version: 0.0.0-use.local
   resolution: "@example/geom-classify-point@workspace:examples/geom-classify-point"
