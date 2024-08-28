@@ -30,7 +30,10 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": false,
+		"readme": [
+			"math",
+			"rdom"
+		],
 		"screenshot": "examples/fisheye-menu.avif"
 	}
 }

@@ -67,7 +67,7 @@ For Node.js REPL:
 const bit = await import("@thi.ng/bitstream");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.35 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.40 KB
 
 ## Dependencies
 
