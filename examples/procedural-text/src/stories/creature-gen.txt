@@ -108,7 +108,7 @@ strong
 [symbcause]
 behavior
 body size
-scent (<scent_emoji>)
+intense scent (<scent_emoji>)
 presence
 secretions
 
@@ -131,4 +131,4 @@ with its <type.organ>
 <!type2=kind>
 <!reason=symbcause>
 
-The <hero> is <type.behavior;withArticle> <habitat=env>-dwelling <type> living off <type.food>, which it <type.consume>. <symbfreq;cap> it forms a <symbtype> symbiosis with <hero2>, usually a more <type2.behavior> <type2>, but <hero>'s <reason;isAre> beneficial for <symbeffect>.
+The <hero> is <type.behavior;withArticle> <habitat=env>-dwelling <type> living off <type.food>, which it <type.consume>. <symbfreq;cap> it forms a <symbtype> symbiosis with <hero2>, usually a more <type2.behavior> <type2>, but its <reason;isAre> beneficial for <symbeffect>.
