@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers",
-	"version": "9.2.0",
+	"version": "9.2.1",
 	"description": "Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations",
 	"type": "module",
 	"module": "./index.js",
@@ -46,7 +46,7 @@
 		"@thi.ng/compare": "^2.4.1",
 		"@thi.ng/compose": "^3.0.12",
 		"@thi.ng/errors": "^2.5.15",
-		"@thi.ng/math": "^5.11.8",
+		"@thi.ng/math": "^5.11.9",
 		"@thi.ng/random": "^4.0.3"
 	},
 	"devDependencies": {

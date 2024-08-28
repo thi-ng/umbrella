@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/simd",
-	"version": "0.6.131",
+	"version": "0.6.132",
 	"description": "WASM based SIMD vector operations for batch processing",
 	"type": "module",
 	"module": "./index.js",
@@ -38,7 +38,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.9",
-		"@thi.ng/transducers-binary": "^2.1.131"
+		"@thi.ng/transducers-binary": "^2.1.132"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.5",

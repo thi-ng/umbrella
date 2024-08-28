@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-20T11:41:56Z
+- **Last updated**: 2024-08-28T14:01:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.15.0) (2024-08-28)
+
+#### 🚀 Features
+
+- update font-family tpl ([56dd1d3](https://github.com/thi-ng/umbrella/commit/56dd1d3))
 
 ## [0.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.14.0) (2024-08-18)
 
