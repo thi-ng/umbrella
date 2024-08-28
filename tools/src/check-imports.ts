@@ -26,6 +26,7 @@ const RE_IMPORT = /\}? from "(?!\.)([a-z0-9@/.-]+)";/;
 const NON_COMMENT_LINES = filter((line: string) => !/^\s+\*\s/.test(line));
 
 const xform = comp(
+	// trace<string>(),
 	mapcat((f: string) => split(readText(f, LOGGER))),
 	NON_COMMENT_LINES,
 	map((line) => RE_IMPORT.exec(line)),
@@ -47,7 +48,7 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 		map((src) => usedDependencies(src)),
 		unionR<string>(),
 		// check /src or /src.xyz folders, but not under /dev or /export
-		dirs(root, /(?<!\/(dev|export).*)\/src(\.\w+)?$/)
+		dirs(root, /(?<!\/(dev|export|node_modules).*)\/src(\.\w+)?$/)
 	);
 	const pkg = readJSON(pkgPath);
 	!pkg.dependencies && (pkg.dependencies = {});
