@@ -9,7 +9,7 @@ import { xfJoin } from "./join.js";
  *
  * @remarks
  * The nested parser is applied to a separate {@link ParseContext} and if
- * successful, the resulting AST will be transplated into the current parse
+ * successful, the resulting AST will be transplanted into the current parse
  * scope. If the nested parser fails, the scope will remain untouched.
  *
  * If the current parse context retains line/column details, the inner parse
@@ -22,7 +22,7 @@ export const xfNest =
 	(parser: Parser<string>): ScopeTransform<string> =>
 	(scope, ctx) => {
 		if (!scope) return;
-		const src = scope.result || xfJoin({ ...scope })!.result;
+		const src = scope.result || xfJoin(scope.copy())!.result;
 		const inner = defContext(src, ctx.opts);
 		const state = scope.state;
 		if (state) {

@@ -7,7 +7,6 @@ import type {
 	DynamicParser,
 	GrammarOpts,
 	Language,
-	ParseScope,
 	Parser,
 	RuleTransforms,
 } from "./api.js";
@@ -19,7 +18,7 @@ import { not } from "./combinators/not.js";
 import { oneOrMore, repeat, zeroOrMore } from "./combinators/repeat.js";
 import { seq, seqD } from "./combinators/seq.js";
 import { xform } from "./combinators/xform.js";
-import { defContext } from "./context.js";
+import { defContext, type ParseScope } from "./context.js";
 import { ALPHA, ALPHA_NUM } from "./presets/alpha.js";
 import { BIT } from "./presets/bits.js";
 import { DIGIT } from "./presets/digits.js";

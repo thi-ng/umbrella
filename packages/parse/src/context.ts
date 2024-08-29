@@ -1,10 +1,43 @@
+import type { ICopy, Nullable } from "@thi.ng/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isString } from "@thi.ng/checks/is-string";
-import type { ContextOpts, IReader, ParseScope, ParseState } from "./api.js";
+import type { ContextOpts, IReader } from "./api.js";
 import { parseError } from "./error.js";
 import { defArrayReader } from "./readers/array-reader.js";
 import { defStringReader } from "./readers/string-reader.js";
 import { __indent } from "./utils.js";
+
+export class ParseState<T> implements ICopy<ParseState<T>> {
+	constructor(
+		public p: number,
+		public l: number,
+		public c: number,
+		public done?: boolean,
+		public last?: T
+	) {}
+
+	copy() {
+		return new ParseState<T>(this.p, this.l, this.c, this.done, this.last);
+	}
+}
+
+export class ParseScope<T> implements ICopy<ParseScope<T>> {
+	constructor(
+		public id: string,
+		public state?: Nullable<ParseState<T>>,
+		public children?: Nullable<ParseScope<T>[]>,
+		public result?: any
+	) {}
+
+	copy() {
+		return new ParseScope<T>(
+			this.id,
+			this.state,
+			this.children,
+			this.result
+		);
+	}
+}
 
 export class ParseContext<T> {
 	public opts: ContextOpts;
@@ -25,12 +58,7 @@ export class ParseContext<T> {
 	}
 
 	reset() {
-		this._curr = {
-			id: "root",
-			state: { p: 0, l: 1, c: 1 },
-			children: null,
-			result: null,
-		};
+		this._curr = new ParseScope("root", new ParseState(0, 1, 1));
 		this._scopes = [this._curr];
 		this._peakDepth = 1;
 		this.reader.isDone(this._curr.state!);
@@ -38,16 +66,14 @@ export class ParseContext<T> {
 	}
 
 	start(id: string) {
-		if (this._scopes.length >= this._maxDepth) {
-			parseError(this, `recursion limit reached ${this._maxDepth}`);
+		const { _scopes: scopes, _maxDepth } = this;
+		if (scopes.length >= _maxDepth) {
+			parseError(this, `recursion limit reached ${_maxDepth}`);
 		}
-		const scopes = this._scopes;
-		const scope: ParseScope<T> = {
+		const scope = new ParseScope<T>(
 			id,
-			state: { ...scopes[scopes.length - 1].state! },
-			children: null,
-			result: null,
-		};
+			scopes[scopes.length - 1].state!.copy()
+		);
 		scopes.push(scope);
 		this._peakDepth = Math.max(this._peakDepth, scopes.length);
 		this._debug &&
@@ -71,15 +97,11 @@ export class ParseContext<T> {
 		const child = scopes.pop()!;
 		const parent = scopes[scopes.length - 1];
 		const cstate = child.state;
-		let pstate: ParseState<T>;
 		this._debug &&
 			console.log(
 				`${__indent(scopes.length + 1)}end: ${child.id} (${cstate!.p})`
 			);
-		child.state = this._retain
-			? ((pstate = parent.state!),
-			  { p: pstate.p, l: pstate.l, c: pstate.c })
-			: null;
+		child.state = this._retain ? parent.state!.copy() : null;
 		parent.state = cstate;
 		const children = parent.children;
 		children ? children.push(child) : (parent.children = [child]);
@@ -93,26 +115,23 @@ export class ParseContext<T> {
 		newState: ParseState<T> | boolean = false
 	) {
 		const curr = this._curr;
-		const cstate = curr.state;
-		const child: ParseScope<T> = {
+		const child = new ParseScope<T>(
 			id,
-			state: this._retain
-				? { p: cstate!.p, l: cstate!.l, c: cstate!.c }
-				: null,
-			children: null,
-			result,
-		};
+			this._retain ? curr.state!.copy() : null,
+			null,
+			result
+		);
 		this._debug &&
 			console.log(
 				`${__indent(this._scopes.length + 1)}addChild: ${id} (${
-					cstate!.p
+					curr.state!.p
 				})`
 			);
 		const children = curr.children;
 		children ? children.push(child) : (curr.children = [child]);
 		if (newState !== false) {
 			newState === true
-				? this.reader.next(cstate!)
+				? this.reader.next(curr.state!)
 				: (this._curr.state = newState);
 		}
 		return true;

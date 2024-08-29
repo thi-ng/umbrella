@@ -27,7 +27,7 @@ import type { Parser } from "../api.js";
 export const skipWhile =
 	<T>(pred: Predicate<T>): Parser<T> =>
 	(ctx) => {
-		const state = { ...ctx.state };
+		const state = ctx.state.copy();
 		const reader = ctx.reader;
 		while (!state.done) {
 			if (!pred(reader.read(state))) break;

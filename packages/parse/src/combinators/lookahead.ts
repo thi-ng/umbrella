@@ -83,7 +83,7 @@ export const lookahead =
 		ctx.start(id);
 		let pass = false;
 		while (true) {
-			const state = capture ? null : { ...ctx.state };
+			const state = capture ? null : ctx.state.copy();
 			if (ahead(ctx)) {
 				!capture && (ctx.state = state!);
 				return pass ? ctx.end() : ctx.discard();

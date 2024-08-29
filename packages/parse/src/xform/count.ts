@@ -8,7 +8,7 @@ import { xform } from "../combinators/xform.js";
  * @param scope -
  */
 export const xfCount: ScopeTransform<any> = (scope) => {
-	scope!.result = scope!.children ? scope!.children.length : 0;
+	scope!.result = scope!.children?.length || 0;
 	scope!.children = null;
 	return scope;
 };

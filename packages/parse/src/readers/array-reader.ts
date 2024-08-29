@@ -1,4 +1,5 @@
-import type { ParseState, IReader } from "../api.js";
+import type { IReader } from "../api.js";
+import type { ParseState } from "../context.js";
 
 export class ArrayReader<T> implements IReader<T> {
 	constructor(protected _src: ArrayLike<T>) {}

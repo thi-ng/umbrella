@@ -1,20 +1,5 @@
 import type { Fn, Fn0, IObjectOf, Nullable } from "@thi.ng/api";
-import type { ParseContext } from "./context.js";
-
-export interface ParseScope<T> {
-	id: string;
-	state: Nullable<ParseState<T>>;
-	children: Nullable<ParseScope<T>[]>;
-	result: any;
-}
-
-export interface ParseState<T> {
-	p: number;
-	l: number;
-	c: number;
-	done?: boolean;
-	last?: T;
-}
+import type { ParseContext, ParseScope, ParseState } from "./context.js";
 
 export interface IReader<T> {
 	read(state: ParseState<T>): T;

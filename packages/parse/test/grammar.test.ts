@@ -1,6 +1,12 @@
 import { assert } from "@thi.ng/errors";
 import { expect, test } from "bun:test";
-import { defContext, defGrammar, type Parser } from "../src/index.js";
+import {
+	defContext,
+	defGrammar,
+	ParseScope,
+	ParseState,
+	type Parser,
+} from "../src/index.js";
 
 const check = (
 	parser: Parser<string>,
@@ -81,14 +87,9 @@ test("rule ref xform", () => {
 	const ctx = defContext("abc,def,g,hij,", { retain: true });
 	expect(lang!.rules.b(ctx)).toBeTrue();
 	expect(ctx.children).toEqual([
-		{ id: "a", state: { p: 0, l: 1, c: 1 }, children: null, result: "abc" },
-		{ id: "a", state: { p: 4, l: 1, c: 5 }, children: null, result: "def" },
-		{ id: "a", state: { p: 8, l: 1, c: 9 }, children: null, result: "g" },
-		{
-			id: "a",
-			state: { p: 10, l: 1, c: 11 },
-			children: null,
-			result: "hij",
-		},
+		new ParseScope("a", new ParseState(0, 1, 1, false), null, "abc"),
+		new ParseScope("a", new ParseState(4, 1, 5, false, ","), null, "def"),
+		new ParseScope("a", new ParseState(8, 1, 9, false, ","), null, "g"),
+		new ParseScope("a", new ParseState(10, 1, 11, false, ","), null, "hij"),
 	]);
 });

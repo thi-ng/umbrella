@@ -1,6 +1,7 @@
 import type { Nullable } from "@thi.ng/api";
-import type { Parser, ParseScope } from "../api.js";
+import type { Parser } from "../api.js";
 import { xform } from "../combinators/xform.js";
+import type { ParseScope } from "../context.js";
 
 /**
  * Recursively joins non-null results of all children into a single

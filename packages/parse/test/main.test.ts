@@ -2,6 +2,7 @@ import { assert } from "@thi.ng/errors";
 import { expect, test } from "bun:test";
 import {
 	DIGIT,
+	ParseState,
 	WS,
 	defContext,
 	oneOrMore,
@@ -22,18 +23,8 @@ const check = (
 };
 
 test("initial ctx", () => {
-	expect(defContext("").state).toEqual({
-		p: 0,
-		l: 1,
-		c: 1,
-		done: true,
-	});
-	expect(defContext(" ").state).toEqual({
-		p: 0,
-		l: 1,
-		c: 1,
-		done: false,
-	});
+	expect(defContext("").state).toEqual(new ParseState(0, 1, 1, true));
+	expect(defContext(" ").state).toEqual(new ParseState(0, 1, 1, false));
 });
 
 test("zeroOrMore", () => {
