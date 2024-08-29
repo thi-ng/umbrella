@@ -306,12 +306,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-08-28
+As of: 2024-08-29
 
-| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
-|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/ramp`](./packages/ramp)         | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)         | [changelog](./packages/ramp/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom`](./packages/rdom)         | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)         | [changelog](./packages/rdom/CHANGELOG.md)     |
+| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
+|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| ![](https://img.shields.io/badge/-perf-cyan)  | [`@thi.ng/parse`](./packages/parse) | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse) | [changelog](./packages/parse/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/ramp`](./packages/ramp)   | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)   | [changelog](./packages/ramp/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom`](./packages/rdom)   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)   | [changelog](./packages/rdom/CHANGELOG.md)  |
 
 ### Fundamentals
 
