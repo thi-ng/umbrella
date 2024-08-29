@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-18T14:11:34Z
+- **Last updated**: 2024-08-29T12:31:25Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.4.52](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.4.52) (2024-08-29)
+
+#### ⏱ Performance improvements
+
+- update ParseState & ParseScope handling (result: 1.2-1.6x faster) ([c94b5cf](https://github.com/thi-ng/umbrella/commit/c94b5cf))
+  - refactor ParseState/Scope as data classes (keep same structure)
+  - minor update scope transforms
+  - update tests
 
 ### [2.4.43](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.4.43) (2024-06-21)
 

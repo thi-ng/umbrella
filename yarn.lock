@@ -5286,7 +5286,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.47.5"
     "@thi.ng/api": "npm:^8.11.9"
     "@thi.ng/defmulti": "npm:^3.0.47"
-    "@thi.ng/parse": "npm:^2.4.51"
+    "@thi.ng/parse": "npm:^2.4.52"
     "@thi.ng/strings": "npm:^3.8.4"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.5"
@@ -5319,7 +5319,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.15"
     "@thi.ng/hiccup": "npm:^5.2.12"
     "@thi.ng/logger": "npm:^3.0.19"
-    "@thi.ng/parse": "npm:^2.4.51"
+    "@thi.ng/parse": "npm:^2.4.52"
     "@thi.ng/strings": "npm:^3.8.4"
     "@thi.ng/text-canvas": "npm:^3.0.35"
     esbuild: "npm:^0.23.0"
@@ -5736,7 +5736,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/parse@npm:^2.4.51, @thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
+"@thi.ng/parse@npm:^2.4.52, @thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/parse@workspace:packages/parse"
   dependencies:
@@ -5956,7 +5956,7 @@ __metadata:
     "@thi.ng/defmulti": "npm:^3.0.47"
     "@thi.ng/errors": "npm:^2.5.15"
     "@thi.ng/object-utils": "npm:^1.1.2"
-    "@thi.ng/parse": "npm:^2.4.51"
+    "@thi.ng/parse": "npm:^2.4.52"
     "@thi.ng/random": "npm:^4.0.3"
     "@thi.ng/strings": "npm:^3.8.4"
     esbuild: "npm:^0.23.0"
@@ -6903,14 +6903,14 @@ __metadata:
     "@thi.ng/binary": "npm:^3.4.32"
     "@thi.ng/wasm-api": "npm:^2.0.0"
     "@thi.ng/wasm-api-bindgen": "npm:^0.7.0"
-    "@thi.ng/wasm-api-dom": "npm:^1.0.0"
+    "@thi.ng/wasm-api-dom": "npm:^1.0.1"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.5"
     typescript: "npm:^5.5.4"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@npm:^1.0.0, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@npm:^1.0.1, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -6950,7 +6950,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.15"
     "@thi.ng/wasm-api": "npm:^2.0.0"
     "@thi.ng/wasm-api-bindgen": "npm:^0.7.0"
-    "@thi.ng/wasm-api-dom": "npm:^1.0.0"
+    "@thi.ng/wasm-api-dom": "npm:^1.0.1"
     "@thi.ng/webgl": "npm:^6.9.14"
     esbuild: "npm:^0.23.0"
     typedoc: "npm:^0.26.5"
