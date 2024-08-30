@@ -56,6 +56,7 @@ export * from "./dist.js";
 export * from "./dist-braycurtis.js";
 export * from "./dist-canberra.js";
 export * from "./dist-chebyshev.js";
+export * from "./dist-cosine.js";
 export * from "./dist-hamming.js";
 export * from "./dist-haversine.js";
 export * from "./dist-jaccard.js";
