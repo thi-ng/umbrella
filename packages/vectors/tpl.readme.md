@@ -418,10 +418,18 @@ Component wise op with one input vector and single scalar:
 |-----------------------|---------|-------|---------|-----|---------------------|
 | `dist`                | ✓       |       |         |     |                     |
 | `distSq`              | ✓       | 2-4   |         |     |                     |
+| `distBrayCurtis`      | ✓       |       |         |     |                     |
+| `distCanberra`        | ✓       |       |         |     |                     |
 | `distChebyshev`       | ✓       | 2-4   |         |     |                     |
+| `distCosine`          | ✓       |       |         |     |                     |
+| `distHamming`         | ✓       |       |         |     |                     |
 | `distHaversineLatLon` |         | 2     |         |     | lat/lon coordinates |
 | `distHaversineLonLat` |         | 2     |         |     | lon/lat coordinates |
+| `distJaccard`         | ✓       |       |         |     |                     |
 | `distManhattan`       | ✓       | 2-4   |         |     |                     |
+| `distMinkowski`       | ✓       |       |         |     |                     |
+| `distSorensenDice`    | ✓       |       |         |     |                     |
+| `distWeighted`        | ✓       |       |         |     |                     |
 | `pointOnRay`          | ✓       | 2-3   |         |     | point at distance   |
 
 ### Orientation
