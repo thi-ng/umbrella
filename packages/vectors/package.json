@@ -258,6 +258,9 @@
 		"./dist-chebyshev": {
 			"default": "./dist-chebyshev.js"
 		},
+		"./dist-cosine": {
+			"default": "./dist-cosine.js"
+		},
 		"./dist-hamming": {
 			"default": "./dist-hamming.js"
 		},
