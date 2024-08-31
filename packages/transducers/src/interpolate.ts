@@ -10,9 +10,10 @@ import { partition } from "./partition.js";
 
 /**
  * Higher order interpolation transducer. The resulting transducer forms a
- * sliding window and calls `fn` (the given interpolation function) `n` times
- * with the current window and a normalized time value to produce the requested
- * number of interpolated values per interval.
+ * sliding window of input values and calls `fn` (the given interpolation
+ * function) `n` times for the current window and a normalized time value to
+ * produce the requested number of interpolated values per interval. Yields a
+ * sequence of interpolated values.
  *
  * @remarks
  * If the optional `src` iterable is given, `interpolate` returns an iterator of
@@ -33,9 +34,13 @@ import { partition } from "./partition.js";
  * import { interpolate } from "@thi.ng/transducers";
  *
  * const res = [...interpolate(
+ *   // interpolation function
  *   ([a, b], t) => a + (b - a) * t,
+ *   // window size
  *   2,
+ *   // num samples per window
  *   8,
+ *   // input values
  *   [0, 1, 0, 2]
  * )];
  *
