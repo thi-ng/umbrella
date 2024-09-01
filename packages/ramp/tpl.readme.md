@@ -9,9 +9,15 @@
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ramp/readme.png)
 
 This package can perform keyframe interpolation for ramps of numeric values,
-n-dimensional vectors and nested objects of the same. It provides linear and
-cubic hermite interpolation out of the box, but can be extended by implementing
-a simple interface to achieve other interpolation methods.
+n-dimensional vectors and nested objects of the same. It provides several
+interpolation methods out of the box, but can be extended by implementing a
+simple interface to achieve other interpolation methods.
+
+Built-in interpolation modes:
+
+- [linear](https://docs.thi.ng/umbrella/ramp/functions/linear.html)
+- [cubic hermite](https://docs.thi.ng/umbrella/ramp/functions/hermite.html)
+- [arbitrary easing functions](https://docs.thi.ng/umbrella/ramp/functions/easing.html)
 
 {{meta.status}}
 
@@ -40,27 +46,30 @@ a simple interface to achieve other interpolation methods.
 ### Numeric
 
 ```ts tangle:export/readme.ts
-import { linear, hermite } from "@thi.ng/ramp";
+import { linear, hermite, easing } from "@thi.ng/ramp";
 
-const rampL = linear([[0.1, 0], [0.5, 1], [0.9, 0]]);
-const rampH = hermite([[0.1, 0], [0.5, 1], [0.9, 0]]);
+const stops = [[0.1, 0], [0.5, 1], [0.9, 0]];
+
+const rampL = linear(stops);
+const rampH = hermite(stops);
+const rampE = easing(stops);
 
 for(let i = 0; i <= 10; i++) {
 	const t = i / 10;
-    console.log(t, rampL.at(t).toFixed(2), rampH.at(t).toFixed(2));
+    console.log(t, rampL.at(t).toFixed(3), rampH.at(t).toFixed(3), rampE.at(t).toFixed(3));
 }
 
-// 0   0.00 0.00
-// 0.1 0.00 0.00
-// 0.2 0.25 0.16
-// 0.3 0.50 0.50
-// 0.4 0.75 0.84
-// 0.5 1.00 1.00
-// 0.6 0.75 0.84
-// 0.7 0.50 0.50
-// 0.8 0.25 0.16
-// 0.9 0.00 0.00
-// 1   0.00 0.00
+// 0   0.000 0.000 0.000
+// 0.1 0.000 0.000 0.000
+// 0.2 0.250 0.156 0.016
+// 0.3 0.500 0.500 0.500
+// 0.4 0.750 0.844 0.984
+// 0.5 1.000 1.000 1.000
+// 0.6 0.750 0.844 0.984
+// 0.7 0.500 0.500 0.500
+// 0.8 0.250 0.156 0.016
+// 0.9 0.000 0.000 0.000
+// 1   0.000 0.000 0.000
 ```
 
 ### nD vectors
