@@ -95,6 +95,9 @@
 		"./domain": {
 			"default": "./domain.js"
 		},
+		"./easing": {
+			"default": "./easing.js"
+		},
 		"./group": {
 			"default": "./group.js"
 		},
