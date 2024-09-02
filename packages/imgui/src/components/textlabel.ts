@@ -1,5 +1,6 @@
 import type { Fn, Maybe } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { text } from "@thi.ng/geom/text";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { Color, GUITheme } from "../api.js";
@@ -16,19 +17,20 @@ export const textLabel = (
 	const theme = gui.theme;
 	const { x, y, h } = layoutBox(layout);
 	gui.draw &&
-		gui.add([
-			"text",
-			{ fill: gui.textColor(false) },
-			[x + (pad ? theme.pad : 0), y + h / 2 + theme.baseLine],
-			label,
-		]);
+		gui.add(
+			text(
+				[x + (pad ? theme.pad : 0), y + h / 2 + theme.baseLine],
+				label,
+				{ fill: gui.textColor(false) }
+			)
+		);
 };
 
 export const textLabelRaw = (
 	p: ReadonlyVec,
 	attribs: Color | any,
 	label: string
-) => ["text", isPlainObject(attribs) ? attribs : { fill: attribs }, p, label];
+) => text(p, label, isPlainObject(attribs) ? attribs : { fill: attribs });
 
 export const textTransformH = (
 	theme: GUITheme,
