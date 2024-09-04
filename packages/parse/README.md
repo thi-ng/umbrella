@@ -73,6 +73,8 @@ grammars](https://makertube.net/w/ursFuQNJQQskmejx1ydL7q)
 
 ## Related packages
 
+- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
+- [@thi.ng/proctext](https://github.com/thi-ng/umbrella/tree/develop/packages/proctext) - Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
 
 ## Installation
@@ -101,7 +103,7 @@ For Node.js REPL:
 const parse = await import("@thi.ng/parse");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.21 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.27 KB
 
 ## Dependencies
 

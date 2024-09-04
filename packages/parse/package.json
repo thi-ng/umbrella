@@ -236,6 +236,8 @@
 	},
 	"thi.ng": {
 		"related": [
+			"hiccup-markdown",
+			"proctext",
 			"transducers-fsm"
 		],
 		"year": 2020
