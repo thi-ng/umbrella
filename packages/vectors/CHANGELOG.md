@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-18T14:11:34Z
+- **Last updated**: 2024-09-05T12:23:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.12.0) (2024-09-05)
+
+#### 🚀 Features
+
+- add distCosine() (cosine similarity) ([2af6010](https://github.com/thi-ng/umbrella/commit/2af6010))
 
 ## [7.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.11.0) (2024-06-21)
 

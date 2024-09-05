@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-08-28T14:01:19Z
+- **Last updated**: 2024-09-05T12:23:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ramp@3.3.0) (2024-09-05)
+
+#### 🚀 Features
+
+- add easing ramp implementations ([1e23b61](https://github.com/thi-ng/umbrella/commit/1e23b61))
+  - add `easing()`
+  - add `EASING_N` / `EASING_V`
+  - update pkg exports
 
 ## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ramp@3.2.0) (2024-08-28)
 
