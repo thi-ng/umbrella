@@ -8,6 +8,7 @@ export * from "./components/dropdown.js";
 export * from "./components/icon-button.js";
 export * from "./components/radial-menu.js";
 export * from "./components/radio.js";
+export * from "./components/ramp.js";
 export * from "./components/ring.js";
 export * from "./components/sliderh.js";
 export * from "./components/sliderv.js";
