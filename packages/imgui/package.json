@@ -42,6 +42,7 @@
 		"@thi.ng/geom-isec": "^4.0.11",
 		"@thi.ng/layout": "^3.1.1",
 		"@thi.ng/math": "^5.11.9",
+		"@thi.ng/ramp": "^3.2.0",
 		"@thi.ng/transducers": "^9.2.1",
 		"@thi.ng/vectors": "^7.11.11"
 	},
@@ -110,6 +111,9 @@
 		},
 		"./components/radio": {
 			"default": "./components/radio.js"
+		},
+		"./components/ramp": {
+			"default": "./components/ramp.js"
 		},
 		"./components/ring": {
 			"default": "./components/ring.js"
