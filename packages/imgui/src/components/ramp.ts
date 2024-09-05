@@ -10,6 +10,7 @@ import { roundTo } from "@thi.ng/math/prec";
 import type { Frame, Ramp } from "@thi.ng/ramp";
 import { map } from "@thi.ng/transducers/map";
 import { ONE2, ZERO2, type Vec } from "@thi.ng/vectors/api";
+import { clamp01_2 } from "@thi.ng/vectors/clamp";
 import { fit2 } from "@thi.ng/vectors/fit";
 import { hash } from "@thi.ng/vectors/hash";
 import { mix2 } from "@thi.ng/vectors/mix";
@@ -43,7 +44,7 @@ export const ramp = (
 	let res: Maybe<Ramp<number>>;
 	const focused = gui.requestFocus(id);
 	if (hover) {
-		sel = fit2([], gui.mouse, pos, maxPos, ZERO2, ONE2);
+		sel = clamp01_2(null, fit2([], gui.mouse, pos, maxPos, ZERO2, ONE2));
 		selID = ramp.closestIndex(sel[0], 0.05);
 		if (gui.isMouseDown()) {
 			gui.activeID = id;
