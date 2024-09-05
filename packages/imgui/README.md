@@ -88,6 +88,7 @@ The above screenshot shows most of the currently available components:
 - Dropdown
 - Radial menu
 - Radio button group (h / v)
+- Ramp (keyframe-based control curve editor)
 - Slider  & slider groups (h / v)
 - Text input (single line, filtered input)
 - Text label
@@ -261,7 +262,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.66 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 7.11 KB
 
 ## Dependencies
 
@@ -271,6 +272,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 6.66 KB
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/ramp](https://github.com/thi-ng/umbrella/tree/develop/packages/ramp)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 

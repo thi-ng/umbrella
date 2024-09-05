@@ -60,6 +60,7 @@ The above screenshot shows most of the currently available components:
 - Dropdown
 - Radial menu
 - Radio button group (h / v)
+- Ramp (keyframe-based control curve editor)
 - Slider  & slider groups (h / v)
 - Text input (single line, filtered input)
 - Text label
