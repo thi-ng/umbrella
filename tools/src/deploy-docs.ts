@@ -1,3 +1,4 @@
+import { cliApp, string, type CommandCtx } from "@thi.ng/args";
 import { dirs, files, readText, writeText } from "@thi.ng/file-io";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
@@ -8,6 +9,12 @@ import {
 	S3_OPTS,
 	S3_PREFIX,
 } from "./aws-config.js";
+
+interface CLIOpts {
+	base: string;
+}
+
+interface CLICtx extends CommandCtx<CLIOpts, any> {}
 
 const SYNC_OPTS = `${S3_OPTS} --include "*" --exclude "*.sass" --exclude "*.ts"`;
 
@@ -93,9 +100,9 @@ const invalidatePaths = (paths: string) => {
 	);
 };
 
-const processPackage = (id: string) => {
-	LOGGER.info("processing package", id);
-	const root = `packages/${id}/doc`;
+const processPackage = (base: string, id: string) => {
+	LOGGER.info("processing package", base, id);
+	const root = `${base}/${id}/doc`;
 	try {
 		sanitizePackage(root);
 		minifyPackage(root);
@@ -105,23 +112,48 @@ const processPackage = (id: string) => {
 	}
 };
 
-const doAll = process.argv.length < 3;
-
-const packages = doAll ? [...dirs("packages", "", 1)] : process.argv.slice(2);
-
-const invalidations: string[] = [];
-if (doAll) invalidations.push(`${S3_PREFIX}/*`);
-
-for (let id of packages) {
-	id = id.replace("packages/", "");
-	processPackage(id);
-	if (!doAll) invalidations.push(`${S3_PREFIX}/${id}/*`);
-}
-
-execFileSync("bun", ["tools/src/doc-table.ts"]);
-execFileSync(
-	"aws",
-	`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`.split(" ")
-);
-
-invalidatePaths(`/index.html ${invalidations.join(" ")}`);
+cliApp<CLIOpts, CLICtx>({
+	opts: {
+		base: string({
+			alias: "b",
+			desc: "Packages base directory",
+			default: "packages",
+		}),
+	},
+	commands: {
+		default: {
+			desc: "Deploy example(s) to CDN",
+			fn: async (ctx) => {
+				const base = ctx.opts.base;
+				let inputs = ctx.inputs;
+				let doAll = !inputs.length;
+				const invalidations: string[] = [];
+				if (doAll) invalidations.push(`${S3_PREFIX}/*`);
+				const packages = doAll ? [...dirs(base, "", 1)] : inputs;
+				for (let id of packages) {
+					id = id.replace(base + "/", "");
+					processPackage(base, id);
+					if (!doAll) invalidations.push(`${S3_PREFIX}/${id}/*`);
+				}
+				if (base === "packages") {
+					execFileSync("bun", ["tools/src/doc-table.ts"]);
+					execFileSync(
+						"aws",
+						`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`.split(
+							" "
+						)
+					);
+				}
+				invalidatePaths(`/index.html ${invalidations.join(" ")}`);
+			},
+			opts: {},
+		},
+	},
+	single: true,
+	name: "deploy-docs",
+	ctx: async (ctx) => ctx,
+	usage: {
+		prefix: "Usage: deploy-docs [OPTS] [NAME...]",
+		paramWidth: 20,
+	},
+});
