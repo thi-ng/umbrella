@@ -1,5 +1,5 @@
 import type { Maybe } from "@thi.ng/api";
-import type { GradientStop, Vec2Like } from "./api.js";
+import type { Attribs, GradientStop, Vec2Like } from "./api.js";
 import { fattribs, fcolor, ff } from "./format.js";
 
 const RE_ALPHA_COLOR =
@@ -8,7 +8,7 @@ const RE_ALPHA_COLOR =
 /** @internal */
 const __gradient = (
 	type: string,
-	attribs: any,
+	attribs: Attribs,
 	stops: GradientStop[]
 ): any[] => [type, fattribs(attribs), ...stops.map(__gradientStop)];
 
@@ -31,7 +31,7 @@ export const linearGradient = (
 	from: Vec2Like,
 	to: Vec2Like,
 	stops: GradientStop[],
-	attribs?: any
+	attribs?: Attribs
 ) =>
 	__gradient(
 		"linearGradient",
@@ -53,7 +53,7 @@ export const radialGradient = (
 	fr: number,
 	r: number,
 	stops: GradientStop[],
-	attribs?: any
+	attribs?: Attribs
 ) =>
 	__gradient(
 		"radialGradient",

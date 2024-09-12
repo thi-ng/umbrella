@@ -1,10 +1,10 @@
+import type { Attribs, Vec2Like } from "./api.js";
 import { fattribs, ff } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const text = (
 	p: Vec2Like,
 	body: string,
-	attribs?: any,
+	attribs?: Attribs,
 	...children: any[]
 ): any[] => [
 	"text",

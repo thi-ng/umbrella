@@ -1,5 +1,5 @@
+import type { Attribs, Vec2Like } from "./api.js";
 import { fattribs, ff, withoutKeys } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 /**
  * Shape instancing group.
@@ -20,12 +20,12 @@ export const points = (
 	pts: Iterable<Vec2Like>,
 	shape: string,
 	size = 1,
-	attribs?: any,
+	attribs?: Attribs,
 	...body: any[]
 ): any[] => {
 	const group = [
 		"g",
-		fattribs(withoutKeys(attribs, new Set(["shape", "size"]))),
+		fattribs(withoutKeys(attribs ?? {}, new Set(["shape", "size"]))),
 		...body,
 	];
 	const href = __buildSymbol(group, shape, size);
@@ -58,7 +58,7 @@ export const packedPoints = (
 	pts: ArrayLike<number>,
 	shape: string,
 	size = 1,
-	attribs?: any,
+	attribs?: Attribs,
 	...body: any[]
 ): any[] => {
 	attribs = {

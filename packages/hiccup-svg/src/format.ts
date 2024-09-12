@@ -1,7 +1,8 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isString } from "@thi.ng/checks/is-string";
 import { css } from "@thi.ng/color/css/css";
-import type { Vec2Like } from "./api.js";
+import type { Attribs, Vec2Like } from "./api.js";
+import type { Maybe } from "@thi.ng/api";
 
 export let PRECISION = 3;
 
@@ -41,7 +42,7 @@ const DEFAULT_NUMERIC_IDS = [
  *
  * @internal
  */
-const __numericAttribs = (attribs: any, ids: string[]) => {
+const __numericAttribs = (attribs: Attribs, ids: string[]) => {
 	let v: any;
 	for (let id of DEFAULT_NUMERIC_IDS.concat(ids)) {
 		typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
@@ -86,8 +87,8 @@ const __numericAttribs = (attribs: any, ids: string[]) => {
  *
  * @internal
  */
-export const fattribs = (attribs: any, ...numericIDs: string[]) => {
-	if (!attribs) return;
+export const fattribs = (attribs: Maybe<Attribs>, ...numericIDs: string[]) => {
+	if (!attribs) return {};
 	const res: any = __ftransforms(attribs);
 	let v: any;
 	(v = attribs.fill) && (res.fill = fcolor(v));
@@ -104,7 +105,7 @@ export const fattribs = (attribs: any, ...numericIDs: string[]) => {
  *
  * @internal
  */
-const __ftransforms = (attribs: any) => {
+const __ftransforms = (attribs: Attribs) => {
 	let v: any;
 	if (
 		(v = attribs.transform) ||
@@ -129,7 +130,7 @@ const __ftransforms = (attribs: any) => {
 /**
  * @internal
  */
-const __buildTransform = (attribs: any) => {
+const __buildTransform = (attribs: Attribs) => {
 	const tx: string[] = [];
 	let v: any;
 	if ((v = attribs.translate)) {
@@ -173,7 +174,10 @@ export const fcolor = (col: any) =>
 		: css(col);
 
 /** @internal */
-export const withoutKeys = (src: any, keys: Set<PropertyKey>) => {
+export const withoutKeys = (
+	src: Record<string, any>,
+	keys: Set<PropertyKey>
+) => {
 	const dest: any = {};
 	for (let k in src) {
 		src.hasOwnProperty(k) && !keys.has(k) && (dest[k] = src[<any>k]);

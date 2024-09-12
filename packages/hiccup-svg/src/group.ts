@@ -1,3 +1,4 @@
+import type { Attribs } from "./api.js";
 import { fattribs } from "./format.js";
 
 /**
@@ -11,14 +12,14 @@ import { fattribs } from "./format.js";
  * @param attribs
  * @param body
  */
-export const group = (attribs: any, ...body: any[]): any[] => [
+export const group = (attribs: Attribs, ...body: any[]): any[] => [
 	"g",
 	__groupLayerID(fattribs({ ...attribs })),
 	...body,
 ];
 
 /** @internal */
-export const __groupLayerID = (attribs: any) => {
+export const __groupLayerID = (attribs: Attribs) => {
 	if (attribs.__inkscapeLayer) {
 		attribs["inkscape:groupmode"] = "layer";
 		attribs["inkscape:label"] = attribs.__inkscapeLayer;

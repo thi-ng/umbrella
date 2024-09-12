@@ -1,11 +1,11 @@
+import type { Attribs, Vec2Like } from "./api.js";
 import { fattribs, ff } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const rect = (
 	p: Vec2Like,
 	width: number,
 	height: number,
-	attribs?: any,
+	attribs?: Attribs,
 	...body: any[]
 ) => roundedRect(p, width, height, 0, 0, attribs, ...body);
 

@@ -1,3 +1,5 @@
+export type Attribs = Record<string, any>;
+
 export type Vec2Like = ArrayLike<number>;
 
 // Reference:

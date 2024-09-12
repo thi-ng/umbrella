@@ -1,11 +1,11 @@
+import type { Attribs, PathSegment } from "./api.js";
 import { fattribs, ff, fpoint, fpoints } from "./format.js";
-import type { PathSegment } from "./api.js";
 
 const DEG = 180 / Math.PI;
 
 export const path = (
 	segments: PathSegment[],
-	attribs?: any,
+	attribs?: Attribs,
 	...body: any[]
 ): any[] => {
 	let res = [];

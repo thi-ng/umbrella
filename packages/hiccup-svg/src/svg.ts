@@ -1,6 +1,7 @@
 import { XML_INKSCAPE, XML_SVG, XML_XLINK } from "@thi.ng/prefixes/xml";
 import { convertTree } from "./convert.js";
 import { fattribs } from "./format.js";
+import type { Attribs } from "./api.js";
 
 /**
  * Defines an <svg> root element with default XML namespaces. By default
@@ -23,7 +24,7 @@ import { fattribs } from "./format.js";
  * @param attribs - attributes object
  * @param body - shape primitives
  */
-export const svg = (attribs: any, ...body: any[]): any[] => {
+export const svg = (attribs: Attribs, ...body: any[]): any[] => {
 	attribs = fattribs(
 		{
 			version: "1.1",

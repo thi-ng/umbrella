@@ -1,10 +1,10 @@
+import type { Attribs, Vec2Like } from "./api.js";
 import { fattribs, ff } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const circle = (
 	p: Vec2Like,
 	r: number,
-	attribs?: any,
+	attribs?: Attribs,
 	...body: any[]
 ): any[] => [
 	"circle",

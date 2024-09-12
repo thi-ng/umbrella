@@ -1,9 +1,9 @@
+import type { Attribs, Vec2Like } from "./api.js";
 import { fattribs, fpoints } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const polyline = (
 	pts: Vec2Like[],
-	attribs?: any,
+	attribs?: Attribs,
 	...body: any[]
 ): any[] => [
 	"polyline",

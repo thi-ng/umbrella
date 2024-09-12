@@ -1,10 +1,10 @@
+import type { Attribs, Vec2Like } from "./api.js";
 import { fattribs, ff } from "./format.js";
-import type { Vec2Like } from "./api.js";
 
 export const image = (
 	pos: Vec2Like,
 	url: string,
-	attribs?: any,
+	attribs?: Attribs,
 	...body: any[]
 ): any[] => [
 	"image",
