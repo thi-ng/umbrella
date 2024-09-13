@@ -525,6 +525,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/color-contrast@workspace:examples/color-contrast":
+  version: 0.0.0-use.local
+  resolution: "@example/color-contrast@workspace:examples/color-contrast"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.5.4"
+    vite: "npm:^5.4.0"
+  languageName: unknown
+  linkType: soft
+
 "@example/color-themes@workspace:examples/color-themes":
   version: 0.0.0-use.local
   resolution: "@example/color-themes@workspace:examples/color-themes"
