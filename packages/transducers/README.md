@@ -167,7 +167,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-72 projects in this repo's
+73 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -179,6 +179,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>                   | Figlet-style bitmap font creation with transducers                                                      | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                                                   | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-contrast)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                                       |                                                            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history                                    | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots                                  | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)         |

@@ -113,6 +113,9 @@
 		"./path": {
 			"default": "./path.js"
 		},
+		"./pattern": {
+			"default": "./pattern.js"
+		},
 		"./points": {
 			"default": "./points.js"
 		},

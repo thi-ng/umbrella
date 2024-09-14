@@ -232,7 +232,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-55 projects in this repo's
+56 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -244,6 +244,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>                      | Interactive & reactive image blurhash generator                                                         | [Demo](https://demo.thi.ng/umbrella/blurhash/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png" width="240"/>                   | Canvas based dial widget                                                                                | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-dial)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-contrast)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>                  | Probabilistic color theme generator                                                                     | [Demo](https://demo.thi.ng/umbrella/color-themes/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots                                  | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images                             | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)     |
