@@ -34,6 +34,48 @@ const col1 = reactive("#000000");
 const col2 = reactive("#ffffff");
 const inputs = sync({ src: { col1, col2 } });
 
+/**
+ * Creates swatch for a single bg color and 2 text color choices. Computes
+ * contrast for both variations and highlights the swatch as "invalid" if the
+ * max color contrast is less than the recommended WCAG threshold (4.5). Returns
+ * SVG group in hiccup format.
+ *
+ * https://www.w3.org/TR/WCAG/#contrast-minimum
+ *
+ * @param i
+ * @param bg
+ * @param hex1
+ * @param hex2
+ */
+const swatch = (i: number, bg: number[], hex1: string, hex2: string) => {
+	const bgColor = srgb(bg);
+	const colA = srgb(hex1);
+	const colB = srgb(hex2);
+	// compute contrast with background for both color choices
+	const ca = contrast(bgColor, colA);
+	const cb = contrast(bgColor, colB);
+	const maxC = Math.max(ca, cb);
+	// select color with higher contrast
+	const fill = ca > cb ? colA : colB;
+	return group(
+		// reduce opacity if max contrast < WCAG threshold
+		maxC < 4.5 ? { opacity: fit(maxC, 1, 4.5, 0.2, 1) } : {},
+		rect([0, i * 20], W - 2, 20, { fill: bgColor }),
+		// show hatch overlay if max contrast < WCAG threshold
+		maxC < 4.5
+			? rect([0, i * 20], W - 2, 20, {
+					fill: "url(#hatch)",
+			  })
+			: null,
+		// text label
+		text(
+			[10, i * 20 + 11],
+			`${css(bgColor)}: ${ca.toFixed(1)}/${cb.toFixed(1)}`,
+			{ fill, "dominant-baseline": "middle" }
+		)
+	);
+};
+
 // main swatch visualization:
 // generates a SVG document in hiccup format based on current color selection
 const main = inputs.map(({ col1, col2 }) =>
@@ -50,6 +92,7 @@ const main = inputs.map(({ col1, col2 }) =>
 				line([0, 0], [10, 10], { stroke: "#fff" })
 			)
 		),
+		// generate sequence of background colors and process them in chunks
 		iterator(
 			comp(
 				// chunk into groups of COLS colors
@@ -60,38 +103,10 @@ const main = inputs.map(({ col1, col2 }) =>
 					group(
 						{ translate: [(id % COLS) * W, ((id / COLS) | 0) * H] },
 						// create individual swatches for each RGB tuple
-						...mapIndexed((i, color) => {
-							const col = srgb(color);
-							const colA = srgb(col1);
-							const colB = srgb(col2);
-							// compute contrast with background for both color choices
-							const ca = contrast(col, colA);
-							const cb = contrast(col, colB);
-							const maxC = Math.max(ca, cb);
-							// select color with higher contrast
-							const fill = ca > cb ? colA : colB;
-							return group(
-								// reduce opacity if max contrast < WCAG threshold
-								maxC < 4.5
-									? { opacity: fit(maxC, 1, 4.5, 0.2, 1) }
-									: {},
-								rect([0, i * 20], W - 2, 20, { fill: col }),
-								// show hatch overlay if max contrast < WCAG threshold
-								maxC < 4.5
-									? rect([0, i * 20], W - 2, 20, {
-											fill: "url(#hatch)",
-									  })
-									: null,
-								// text label
-								text(
-									[10, i * 20 + 11],
-									`${css(col)}: ${ca.toFixed(1)}/${cb.toFixed(
-										1
-									)}`,
-									{ fill, "dominant-baseline": "middle" }
-								)
-							);
-						}, chunk)
+						...mapIndexed(
+							(i, bgCol) => swatch(i, bgCol, col1, col2),
+							chunk
+						)
 					)
 				)
 			),
