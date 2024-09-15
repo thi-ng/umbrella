@@ -351,13 +351,15 @@ between colors. These functions can also be used for sorting color arrays (see b
 - `distCIEDE2000`
 - `distCMC`
 
-The `sort()` function can be used to sort an array of colors using arbitrary
-sort criteria (basically any function which can transform a color into a
-number). The following comparators are bundled:
+The [`sort()`](https://docs.thi.ng/umbrella/color/functions/sort.html) function
+can be used to sort an array of colors using arbitrary sort criteria (basically
+any function which can transform a color into a number). The following
+comparators are bundled:
 
-- `selectChannel(i)` - sort by channel
-- `proximity(target, distFn)` - sort by distance to target color using given distance function
-- `luminance` / `luminanceRgb` / `luminanceSrgb` etc.
+- [`selectChannel(i)`](https://docs.thi.ng/umbrella/color/functions/selectChannel.html) - sort by channel
+- [`proximity(target, distFn)`](https://docs.thi.ng/umbrella/color/functions/proximity.html) - sort by distance to target color using given distance function
+- [`luminance`](https://docs.thi.ng/umbrella/color/functions/luminance.html) /
+  `luminanceRgb` / `luminanceSrgb` etc.
 
 ```ts tangle:export/readme-sort-theme.ts
 import {
@@ -386,9 +388,10 @@ sort(colors, proximity(lch("#fff"), distCIEDE2000()));
 #### Sorting memory-mapped colors
 
 Memory mapped colors (e.g. a mapped pixel buffer) can be sorted (in place) via
-`sortMapped()`. This function does NOT change the order of elements in the given
-colors array, BUT instead sorts the apparent order by swapping the contents of
-the backing memory.
+[`sortMapped()`](https://docs.thi.ng/umbrella/color/functions/sortMapped.html).
+This function does NOT change the order of elements in the given colors array,
+BUT instead sorts the apparent order by swapping the contents of the backing
+memory.
 
 See the [pixel sorting
 example](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)
@@ -428,12 +431,22 @@ console.log(buf);
 
 ### Gradients
 
+The package provides several approaches, functions and presets to declaratively
+define color gradients and then sample them at user-defined resolutions to
+compute arrays of colors which can then be used for look-up purposes (e.g.
+mapping data values to colors).
+
 #### Multi-stop gradients in any color space
 
-The `multiColorGradient()` function can be used to generate gradients in any
-color space and gradient stops must be using all the same color type. Colors are
-pairwise interpolated, and by default, uses generic `mix()` function which
-delegates to type specific strategies. See `GradientOpts` for details.
+The
+[`multiColorGradient()`](https://docs.thi.ng/umbrella/color/functions/multiColorGradient.html)
+function can be used to generate gradients in any color space and gradient stops
+must be using all the same color type. Colors are pairwise interpolated, and by
+default, uses generic
+[`mix()`](https://docs.thi.ng/umbrella/color/functions/mix.html) function which
+delegates to type specific strategies. See
+[`GradientOpts`](https://docs.thi.ng/umbrella/color/interfaces/GradientOpts.html)
+for details.
 
 ![LCH example gradient](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/lch-gradient.svg)
 
@@ -504,8 +517,10 @@ The following presets are bundled (in [`cosine-gradients.ts`](https://github.com
 
 ##### Two-color cosine gradients
 
-The `cosineCoeffs()` function can be used to compute the cosine gradient
-coefficients between 2 start/end colors:
+The
+[`cosineCoeffs()`](https://docs.thi.ng/umbrella/color/functions/cosineCoeffs-1.html)
+function can be used to compute the cosine gradient coefficients between 2
+start/end colors:
 
 ```ts tangle:export/readme-cosine-gradient.ts
 import { css, cosineCoeffs, cosineGradient } from "@thi.ng/color";
@@ -528,9 +543,11 @@ console.log(
 
 ##### Multi-stop gradients
 
-The `multiCosineGradient()` function returns an iterator of raw RGB
-colors based on given gradient stops. This iterator computes a cosine
-gradient between each color stop and yields a sequence of RGB values.
+The
+[`multiCosineGradient()`](https://docs.thi.ng/umbrella/color/functions/multiCosineGradient.html)
+function returns an iterator of raw RGB colors based on given gradient stops.
+This iterator computes a cosine gradient between each color stop and yields a
+sequence of RGB values.
 
 ```ts tangle:export/readme-multi-cosine-gradient.ts
 import { css, multiCosineGradient, srgb } from "@thi.ng/color";
