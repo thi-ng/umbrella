@@ -3,7 +3,7 @@ import { div, inputColor } from "@thi.ng/hiccup-html";
 import {
 	defs,
 	group,
-	line,
+	path,
 	pattern,
 	rect,
 	svg,
@@ -64,7 +64,7 @@ const swatch = (i: number, bg: number[], hex1: string, hex2: string) => {
 		// show hatch overlay if max contrast < WCAG threshold
 		maxC < 4.5
 			? rect([0, i * 20], W - 2, 20, {
-					fill: "url(#hatch)",
+					fill: "url(#invalid)",
 			  })
 			: null,
 		// text label
@@ -88,8 +88,14 @@ const main = inputs.map(({ col1, col2 }) =>
 		},
 		defs(
 			pattern(
-				{ id: "hatch", viewBox: "0 0 5 5", width: "2%", height: "20%" },
-				line([0, 0], [10, 10], { stroke: "#fff" })
+				{
+					id: "invalid",
+					width: 5,
+					height: 5,
+					patternUnits: "userSpaceOnUse",
+					stroke: "#fff",
+				},
+				path([], { d: "M-1,1l2,-2M0,5l5,-5M4,6l2,-2" })
 			)
 		),
 		// generate sequence of background colors and process them in chunks
