@@ -278,7 +278,7 @@ export const defOp = <MULTI, FIXED>(
 	pre?: string
 ): [MULTI, ...FIXED[]] => {
 	syms = syms || args;
-	pre = pre != null ? pre : __defaultOut(ret, args);
+	pre = pre != null ? pre : __defaultOut(ret, syms);
 	const fn: any = vop(dispatch);
 	const $ = (dim: number) =>
 		fn.add(dim, compile(dim, tpl, args, syms, ret, "", pre));
@@ -300,7 +300,7 @@ export const defHofOp = <MULTI, FIXED>(
 ): [MULTI, ...FIXED[]] => {
 	const _tpl = tpl || FN("op");
 	syms = syms || args;
-	pre = pre != null ? pre : __defaultOut(ret, args);
+	pre = pre != null ? pre : __defaultOut(ret, syms);
 	const fn: any = vop(dispatch);
 	const $ = (dim: number) =>
 		fn.add(
@@ -329,7 +329,7 @@ export const defOpS = <GENERIC, FIXED>(
 			syms,
 			ret,
 			"",
-			pre != null ? pre : __defaultOut(ret, args),
+			pre != null ? pre : __defaultOut(ret, syms),
 			"",
 			true
 		)
@@ -365,7 +365,7 @@ export const defHofOpS = <GENERIC, FIXED>(
 			syms,
 			ret,
 			"",
-			pre != null ? pre : __defaultOut(ret, args),
+			pre != null ? pre : __defaultOut(ret, syms),
 			"",
 			true
 		)
