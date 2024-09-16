@@ -45,10 +45,10 @@
 		"@thi.ng/transducers": "^9.2.3"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.47.5",
-		"esbuild": "^0.23.0",
-		"typedoc": "^0.26.5",
-		"typescript": "^5.5.4"
+		"@microsoft/api-extractor": "^7.47.9",
+		"esbuild": "^0.23.1",
+		"typedoc": "^0.26.7",
+		"typescript": "^5.6.2"
 	},
 	"keywords": [
 		"acceleration",

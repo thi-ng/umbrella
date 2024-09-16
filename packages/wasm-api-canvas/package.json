@@ -42,11 +42,11 @@
 		"@thi.ng/wasm-api-dom": "^1.0.1"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.47.5",
+		"@microsoft/api-extractor": "^7.47.9",
 		"@thi.ng/wasm-api-bindgen": "^0.7.0",
-		"esbuild": "^0.23.0",
-		"typedoc": "^0.26.5",
-		"typescript": "^5.5.4"
+		"esbuild": "^0.23.1",
+		"typedoc": "^0.26.7",
+		"typescript": "^5.6.2"
 	},
 	"keywords": [
 		"2d",

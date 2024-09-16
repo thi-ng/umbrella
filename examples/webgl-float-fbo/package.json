@@ -12,8 +12,8 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"typescript": "^5.5.4",
-		"vite": "^5.4.0"
+		"typescript": "^5.6.2",
+		"vite": "^5.4.5"
 	},
 	"dependencies": {
 		"@thi.ng/colored-noise": "workspace:^",

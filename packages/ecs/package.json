@@ -46,14 +46,14 @@
 		"@thi.ng/logger": "^3.0.19",
 		"@thi.ng/malloc": "^6.1.90",
 		"@thi.ng/transducers": "^9.2.3",
-		"tslib": "^2.6.3"
+		"tslib": "^2.7.0"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.47.5",
+		"@microsoft/api-extractor": "^7.47.9",
 		"@thi.ng/equiv": "^2.1.65",
-		"esbuild": "^0.23.0",
-		"typedoc": "^0.26.5",
-		"typescript": "^5.5.4"
+		"esbuild": "^0.23.1",
+		"typedoc": "^0.26.7",
+		"typescript": "^5.6.2"
 	},
 	"keywords": [
 		"acceleration",
