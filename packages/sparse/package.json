@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sparse",
-	"version": "0.3.132",
+	"version": "0.3.133",
 	"description": "Sparse vector & matrix implementations",
 	"type": "module",
 	"module": "./index.js",
@@ -35,9 +35,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.9",
-		"@thi.ng/errors": "^2.5.15",
-		"@thi.ng/transducers": "^9.2.3"
+		"@thi.ng/api": "^8.11.10",
+		"@thi.ng/errors": "^2.5.16",
+		"@thi.ng/transducers": "^9.2.4"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.9",
