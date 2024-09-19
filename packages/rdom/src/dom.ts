@@ -409,7 +409,7 @@ const __setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 
 /** @internal */
 const __updateValueAttrib = (el: HTMLInputElement, value: any) => {
-	let ev;
+	// let ev;
 	switch (el.type) {
 		case "text":
 		case "textarea":
@@ -418,11 +418,11 @@ const __updateValueAttrib = (el: HTMLInputElement, value: any) => {
 		case "number":
 		case "url":
 		case "tel":
-			if ((ev = el.value) !== undefined && isString(value)) {
-				const off =
-					value.length - (ev.length - (el.selectionStart || 0));
+			if (el.value !== undefined && isString(value)) {
+				const start = el.selectionStart;
+				const end = el.selectionEnd;
 				el.value = value;
-				el.selectionStart = el.selectionEnd = off;
+				!el.disabled && el.setSelectionRange(start, end);
 				break;
 			}
 		default:
