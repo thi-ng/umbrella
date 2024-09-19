@@ -42,5 +42,18 @@
 			"transducers"
 		],
 		"screenshot": "examples/color-contrast.avif"
-	}
+	},
+	"keywords": [
+		"accessibility",
+		"browser",
+		"color",
+		"contrast",
+		"example",
+		"interactive",
+		"reactive",
+		"svg",
+		"tool",
+		"ui",
+		"visualization"
+	]
 }
