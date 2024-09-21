@@ -409,8 +409,8 @@ const __setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 
 /** @internal */
 const __updateValueAttrib = (el: HTMLInputElement, value: any) => {
-	// let ev;
-	switch (el.type) {
+	const type = el instanceof HTMLTextAreaElement ? "text" : el.type;
+	switch (type) {
 		case "text":
 		case "textarea":
 		case "password":
@@ -422,7 +422,8 @@ const __updateValueAttrib = (el: HTMLInputElement, value: any) => {
 				const start = el.selectionStart;
 				const end = el.selectionEnd;
 				el.value = value;
-				!el.disabled && el.setSelectionRange(start, end);
+				!(el.disabled || el.readOnly) &&
+					el.setSelectionRange(start, end);
 				break;
 			}
 		default:
