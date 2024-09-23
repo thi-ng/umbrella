@@ -290,14 +290,15 @@ export const $html = (
  * [`mergeClasses()`](https://docs.thi.ng/umbrella/hiccup/functions/mergeClasses.html)
  * for details.
  *
- * CSS style rules can be defined via the `style` attrib. Please {@link $style}
- *  for further details.
+ * CSS style rules can be defined via the `style` attrib. Please see
+ * {@link $style} for further details.
  *
  * Data attributes are to be given as object under the `data` attribute name,
  * with its values being merged with the element's current `dataset` property.
  *
- * Depending on element type the `value` attribute will be updated keeping the
- * current cursor position / selection intact.
+ * Depending on element type, the `value` attribute will be updated keeping the
+ * current cursor position / selection intact. (**NOT** done for disabled or
+ * readonly elements due to issues with Safari)
  *
  * @param el -
  * @param attribs -
@@ -407,7 +408,16 @@ const __setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 	}
 };
 
-/** @internal */
+/**
+ * Updates an element's `value` property with special handling for text-based
+ * input elements, where we also restore the cursor position post-update
+ * (**NOT** done for disabled or readonly elements due to issues with Safari).
+ *
+ * @param el
+ * @param value
+ *
+ * @internal
+ */
 const __updateValueAttrib = (el: HTMLInputElement, value: any) => {
 	const type = el instanceof HTMLTextAreaElement ? "text" : el.type;
 	switch (type) {
