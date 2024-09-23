@@ -388,9 +388,9 @@ const __setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 			el.setAttribute(id, isString(val) ? val : formatPrefixes(val));
 			break;
 		default: {
-			const setter = __setter(el, id);
-			if (setter && val != null) {
-				return setter.call(el, val);
+			if (val != null) {
+				const setter = __setter(el, id);
+				if (setter) return setter.call(el, val);
 			}
 			const idx = id.indexOf(":");
 			if (idx < 0) {
