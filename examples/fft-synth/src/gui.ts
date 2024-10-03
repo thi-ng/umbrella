@@ -49,30 +49,30 @@ export const updateGUI = (draw: boolean) => {
 	inner = grid.nest(2);
 
 	if (
-		buttonH(
+		buttonH({
 			gui,
-			inner,
-			"audioToggle",
-			`Turn audio ${isAudioActive() ? "off" : "on"}`
-		)
+			layout: inner,
+			id: "audioToggle",
+			label: `Turn audio ${isAudioActive() ? "off" : "on"}`,
+		})
 	) {
 		isAudioActive() ? stopAudio() : initAudio(WINDOW_LEN * PITCH_SCALE);
 	}
 
 	gui.beginDisabled(!isAudioActive());
 
-	res = sliderH(
+	res = sliderH({
 		gui,
-		inner,
-		"gain",
-		0,
-		1,
-		0.001,
-		state.gain,
-		"Gain",
-		FMT,
-		"Master volume"
-	);
+		layout: inner,
+		id: "gain",
+		min: 0,
+		max: 1,
+		step: 0.001,
+		value: state.gain,
+		label: "Gain",
+		info: "Master volume",
+		fmt: FMT,
+	});
 	res !== undefined && setGain(res);
 
 	gui.endDisabled();
@@ -81,72 +81,71 @@ export const updateGUI = (draw: boolean) => {
 
 	grid.next();
 	inner = grid.nest(5);
-	toggle(
+	toggle({
 		gui,
-		inner,
-		"autoMode",
-		!!state.auto,
-		false,
-		"Auto mode",
-		"Randomized spectrum sequencer"
-	) !== undefined && toggleAutoMode();
+		layout: inner,
+		id: "autoMode",
+		value: !!state.auto,
+		label: "Auto mode",
+		info: "Randomized spectrum sequencer",
+	}) !== undefined && toggleAutoMode();
 
 	gui.beginDisabled(!state.auto);
 
-	res = sliderH(
+	res = sliderH({
 		gui,
-		inner,
-		"decay",
-		0.5,
-		0.999,
-		0.001,
-		state.decay,
-		"Decay",
-		FMT_PERCENT,
-		"Bin gain decay factor"
-	);
+		layout: inner,
+		id: "decay",
+		min: 0.5,
+		max: 0.999,
+		step: 0.001,
+		value: state.decay,
+		label: "Decay",
+		info: "Bin gain decay factor",
+		fmt: FMT_PERCENT,
+	});
 	res !== undefined && DB.resetIn(["decay"], res);
 
-	res = sliderH(
+	res = sliderH({
 		gui,
-		inner,
-		"attenuate",
-		0,
-		0.05,
-		0.0001,
-		state.attenuate,
-		"Attentuation",
-		FMT_PERCENT,
-		"Bin decay attenuation factor"
-	);
+		layout: inner,
+		id: "attenuate",
+		min: 0,
+		max: 0.05,
+		step: 0.0001,
+		value: state.attenuate,
+		label: "Attentuation",
+		info: "Bin decay attenuation factor",
+		fmt: FMT_PERCENT,
+	});
 	res !== undefined && DB.resetIn(["attenuate"], res);
 
-	res = sliderH(
+	res = sliderH({
 		gui,
-		inner,
-		"feedback",
-		0,
-		0.95,
-		0.01,
-		state.feedback,
-		"Feedback",
-		FMT_PERCENT,
-		"Delay line feedback"
-	);
+		layout: inner,
+		id: "feedback",
+		min: 0,
+		max: 0.95,
+		step: 0.01,
+		value: state.feedback,
+		label: "Feedback",
+		info: "Delay line feedback",
+		fmt: FMT_PERCENT,
+	});
 	res !== undefined && DB.resetIn(["feedback"], res);
 
-	res = sliderH(
+	res = sliderH({
 		gui,
-		inner,
-		"delay",
-		1,
-		100,
-		1,
-		state.interval,
-		"Interval",
-		FMT,
-		"Trigger interval"
-	);
+		layout: inner,
+		id: "delay",
+		min: 1,
+		max: 100,
+		step: 1,
+		value: state.interval,
+		label: "Interval",
+		info: "Trigger interval",
+		fmt: FMT,
+	});
 	res !== undefined && DB.resetIn(["interval"], res);
 
 	gui.endDisabled();
@@ -154,31 +153,51 @@ export const updateGUI = (draw: boolean) => {
 	// presets
 
 	inner = grid.nest(4);
-	buttonH(gui, inner, "clear", "Clear", undefined, "Clear all bins") &&
-		clearSpectrum();
-	buttonH(gui, inner, "presetSin", "Sine", undefined, "Apply preset") &&
-		setSpectrumPreset(0);
-	buttonH(gui, inner, "presetSaw", "Saw", undefined, "Apply preset") &&
-		setSpectrumPreset(1);
-	buttonH(gui, inner, "presetSq", "Square", undefined, "Apply preset") &&
-		setSpectrumPreset(2);
+	buttonH({
+		gui,
+		layout: inner,
+		id: "clear",
+		label: "Clear",
+		info: "Clear all bins",
+	}) && clearSpectrum();
+	buttonH({
+		gui,
+		layout: inner,
+		id: "presetSin",
+		label: "Sine",
+		info: "Apply preset",
+	}) && setSpectrumPreset(0);
+	buttonH({
+		gui,
+		layout: inner,
+		id: "presetSaw",
+		label: "Saw",
+		info: "Apply preset",
+	}) && setSpectrumPreset(1);
+	buttonH({
+		gui,
+		layout: inner,
+		id: "presetSq",
+		label: "Square",
+		info: "Apply preset",
+	}) && setSpectrumPreset(2);
 
 	// FFT bins
 
 	textLabel(gui, grid, "Frequency bins");
-	res = sliderVGroup(
+	res = sliderVGroup({
 		gui,
-		grid,
-		"bins",
-		0,
-		1,
-		0.001,
-		state.bins.slice(0, Math.min(width / 16, NUM_BINS)),
-		8,
-		[],
-		FMT,
-		BIN_LABELS
-	);
+		layout: grid,
+		id: "bins",
+		min: 0,
+		max: 1,
+		step: 0.001,
+		value: state.bins.slice(0, Math.min(width / 16, NUM_BINS)),
+		rows: 8,
+		label: [],
+		info: BIN_LABELS,
+		fmt: FMT,
+	});
 	res && updateSpectrumBin(res[0], res[1]);
 
 	textLabel(gui, grid, "Waveform");
