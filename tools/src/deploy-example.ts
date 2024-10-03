@@ -20,15 +20,16 @@ interface UploadOpts {
 	depth: number;
 	process: Fn<string, void>;
 }
+
 interface CLIOpts {
 	noInvalidate: boolean;
 	base: string;
+	dest: string;
 }
 
 interface CLICtx extends CommandCtx<CLIOpts, any> {}
 
 const COMPRESS_OPTS = `${S3_OPTS} --content-encoding br`;
-const DEST_BASE = "/umbrella";
 const NEVER_COMPRESS = new Set(["mp4"]);
 
 const execAWS = (args: string, logger: ILogger) => {
@@ -40,7 +41,7 @@ const execAWS = (args: string, logger: ILogger) => {
 const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 	const BASE = `${opts.base}/${name}`;
 	const BUILD = `${opts.base}/${name}/dist/`;
-	const DEST_DIR = `${DEST_BASE}/${name}`;
+	const DEST_DIR = `/${opts.dest}/${name}`;
 	const PKG = readJSON(resolve(`${BASE}/package.json`), logger);
 
 	if (PKG["thi.ng"]?.online === false) {
@@ -81,6 +82,7 @@ const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 	};
 
 	uploadAssets("assets");
+	uploadAssets("lib");
 
 	uploadAssets("js", { ext: ".js", depth: 2 });
 	uploadAssets("", { ext: ".js", depth: 1 });
@@ -101,6 +103,11 @@ cliApp<CLIOpts, CLICtx>({
 			alias: "b",
 			desc: "Examples base directory",
 			default: "examples",
+		}),
+		dest: string({
+			alias: "d",
+			desc: "Destination S3 directory",
+			default: "umbrella",
 		}),
 		noInvalidate: flag({
 			alias: "n",
@@ -133,7 +140,7 @@ cliApp<CLIOpts, CLICtx>({
 				if (isAll) {
 					ctx.logger.info("invaliding all");
 					execAWS(
-						`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths ${DEST_BASE}/* ${AWS_PROFILE}`,
+						`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths /${ctx.opts.dest}/* ${AWS_PROFILE}`,
 						ctx.logger
 					);
 				}
