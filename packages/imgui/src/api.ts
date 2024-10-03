@@ -1,4 +1,6 @@
 import type { Predicate } from "@thi.ng/api";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import type { IMGUI } from "./gui.js";
 
 export type Color = string | number | number[];
 
@@ -29,6 +31,14 @@ export interface GUITheme {
 
 export interface IMGUIOpts {
 	theme?: Partial<GUITheme>;
+}
+
+export interface ComponentOpts {
+	id: string;
+	gui: IMGUI;
+	layout: IGridLayout<any> | LayoutBox;
+	label?: string;
+	info?: string;
 }
 
 export enum MouseButton {

@@ -4,7 +4,6 @@ import { line } from "@thi.ng/geom/line";
 import { polygon } from "@thi.ng/geom/polygon";
 import { rect } from "@thi.ng/geom/rect";
 import { triangle } from "@thi.ng/geom/triangle";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { mix } from "@thi.ng/math/mix";
 import { roundTo } from "@thi.ng/math/prec";
 import type { Frame, Ramp } from "@thi.ng/ramp";
@@ -14,21 +13,19 @@ import { clamp01_2 } from "@thi.ng/vectors/clamp";
 import { fit2 } from "@thi.ng/vectors/fit";
 import { hash } from "@thi.ng/vectors/hash";
 import { mix2 } from "@thi.ng/vectors/mix";
-import { Key } from "../api.js";
+import { Key, type ComponentOpts } from "../api.js";
 import { isHoverSlider } from "../behaviors/slider.js";
 import type { IMGUI } from "../gui.js";
 import { layoutBox } from "../layout.js";
 import { tooltipRaw } from "./tooltip.js";
 
-export const ramp = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	ramp: Ramp<number>,
-	rampMode = 0,
-	info?: string
-) => {
-	let { x, y, w, h } = layoutBox(layout);
+export interface RampOpts extends Omit<ComponentOpts, "label"> {
+	ramp: Ramp<number>;
+	mode?: number;
+}
+
+export const ramp = ({ gui, layout, id, ramp, mode = 0, info }: RampOpts) => {
+	const { x, y, w, h } = layoutBox(layout);
 	const maxX = x + w;
 	const maxY = y + h;
 	const pos = [x, maxY];
@@ -71,7 +68,7 @@ export const ramp = (
 		};
 		gui.add(
 			box,
-			gui.resource(id, hash(stops.flatMap((x) => x)) + rampMode, () =>
+			gui.resource(id, hash(stops.flatMap((x) => x)) + mode, () =>
 				polygon(
 					[
 						[x, maxY],

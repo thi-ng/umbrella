@@ -11,54 +11,44 @@ import { normRange } from "@thi.ng/transducers/norm-range";
 import type { Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { hash } from "@thi.ng/vectors/hash";
+import type { ComponentOpts } from "../api.js";
 import { dialVal } from "../behaviors/dial.js";
 import { handleSlider1Keys } from "../behaviors/slider.js";
 import type { IMGUI } from "../gui.js";
 import { dialValueLabel } from "./textlabel.js";
 import { tooltipRaw } from "./tooltip.js";
 
-/** @internal */
-const __ringHeight: FnN2 = (w, thetaGap) =>
-	(w / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+export interface RingOpts extends ComponentOpts {
+	min: number;
+	max: number;
+	step: number;
+	value: number;
+	gap?: number;
+	rscale?: number;
+	fmt?: Fn<number, string>;
+}
 
-/** @internal */
-const __arcVerts = (
-	o: Vec,
-	r: number,
-	start: number,
-	end: number,
-	thetaRes = 12
-): Iterable<Vec> =>
-	r > 1
-		? map(
-				(t) => cartesian2(null, [r, mix(start, end, t)], o),
-				normRange(
-					Math.max(1, Math.abs(end - start) / (PI / thetaRes)) | 0
-				)
-		  )
-		: [o];
-
-export const ring = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	val: number,
-	thetaGap: number,
-	rscale: number,
-	label?: string,
-	fmt?: Fn<number, string>,
-	info?: string
-) => {
+export const ring = ({
+	gui,
+	layout,
+	id,
+	min,
+	max,
+	step,
+	value,
+	gap = Math.PI,
+	rscale = 0.5,
+	label,
+	info,
+	fmt,
+}: RingOpts) => {
 	let h: number;
 	let box: LayoutBox;
 	if (isLayout(layout)) {
-		h = __ringHeight(layout.cellW, thetaGap);
+		h = __ringHeight(layout.cellW, gap);
 		box = layout.next([1, layout.rowsForHeight(h) + 1]);
 	} else {
-		h = __ringHeight(layout.cw, thetaGap);
+		h = __ringHeight(layout.cw, gap);
 		box = layout;
 	}
 	return ringRaw(
@@ -70,9 +60,9 @@ export const ring = (
 		h,
 		min,
 		max,
-		prec,
-		val,
-		thetaGap,
+		step,
+		value,
+		gap,
 		rscale,
 		0,
 		h + box.ch / 2 + gui.theme.baseLine,
@@ -82,47 +72,43 @@ export const ring = (
 	);
 };
 
-export const ringGroup = (
-	gui: IMGUI,
-	layout: IGridLayout<any>,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	horizontal: boolean,
-	thetaGap: number,
-	rscale: number,
-	vals: number[],
-	label: string[],
-	fmt?: Fn<number, string>,
-	info: string[] = []
-) => {
-	const n = vals.length;
-	const nested = horizontal
-		? layout.nest(n, [n, 1])
-		: layout.nest(1, [
-				1,
-				(layout.rowsForHeight(__ringHeight(layout.cellW, thetaGap)) +
-					1) *
-					n,
-		  ]);
+export interface RingGroupOpts
+	extends Omit<RingOpts, "layout" | "value" | "label" | "info"> {
+	layout: IGridLayout<any>;
+	/**
+	 * If true (default), the controls will be arranged horizontally.
+	 */
+	horizontal?: boolean;
+	value: number[];
+	label: string[];
+	info?: string[];
+}
+
+export const ringGroup = (opts: RingGroupOpts) => {
+	const { layout, id, value, label, info } = opts;
+	const n = value.length;
+	const nested =
+		opts.horizontal !== false
+			? layout.nest(n, [n, 1])
+			: layout.nest(1, [
+					1,
+					(layout.rowsForHeight(
+						__ringHeight(layout.cellW, opts.gap ?? Math.PI)
+					) +
+						1) *
+						n,
+			  ]);
 	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
-		const v = ring(
-			gui,
-			nested,
-			`${id}-${i}`,
-			min,
-			max,
-			prec,
-			vals[i],
-			thetaGap,
-			rscale,
-			label[i],
-			fmt,
-			info[i]
-		);
+		const v = ring({
+			...opts,
+			layout: nested,
+			id: `${id}-${i}`,
+			value: value[i],
+			label: label[i],
+			info: info?.[i],
+		});
 		if (v !== undefined) {
 			res = v;
 			idx = i;
@@ -212,3 +198,24 @@ export const ringRaw = (
 	gui.lastID = id;
 	return res;
 };
+
+/** @internal */
+const __ringHeight: FnN2 = (w, thetaGap) =>
+	(w / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
+
+/** @internal */
+const __arcVerts = (
+	o: Vec,
+	r: number,
+	start: number,
+	end: number,
+	thetaRes = 12
+): Iterable<Vec> =>
+	r > 1
+		? map(
+				(t) => cartesian2(null, [r, mix(start, end, t)], o),
+				normRange(
+					Math.max(1, Math.abs(end - start) / (PI / thetaRes)) | 0
+				)
+		  )
+		: [o];

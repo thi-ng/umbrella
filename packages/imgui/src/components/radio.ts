@@ -1,21 +1,36 @@
 import type { Maybe } from "@thi.ng/api";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";
-import type { IMGUI } from "../gui.js";
+import type { ComponentOpts } from "../api.js";
 import { toggle } from "./toggle.js";
 
-export const radio = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	horizontal: boolean,
-	sel: number,
-	square: boolean,
-	labels: string[],
-	info: string[] = []
-) => {
-	const n = labels.length;
+export interface RadioOpts extends Omit<ComponentOpts, "label" | "info"> {
+	/**
+	 * If true (default: false), the radio buttons will be arranged
+	 * horizontally.
+	 */
+	horizontal?: boolean;
+	/**
+	 * If true (default: false), the radio buttons will be square and the labels
+	 * positioned next to it.
+	 */
+	square?: boolean;
+	value: number;
+	label: string[];
+	info?: string[];
+}
+
+export const radio = ({
+	gui,
+	layout,
+	id,
+	horizontal,
+	square,
+	value,
+	label,
+	info,
+}: RadioOpts) => {
+	const n = label.length;
 	const nested = isLayout(layout)
 		? horizontal
 			? layout.nest(n, [n, 1])
@@ -25,15 +40,15 @@ export const radio = (
 		: gridLayout(layout.x, layout.y, layout.w, 1, layout.ch, layout.gap);
 	let res: Maybe<number>;
 	for (let i = 0; i < n; i++) {
-		toggle(
+		toggle({
 			gui,
-			nested,
-			`${id}-${i}`,
-			sel === i,
 			square,
-			labels[i],
-			info[i]
-		) !== undefined && (res = i);
+			layout: nested,
+			id: `${id}-${i}`,
+			value: value === i,
+			label: label[i],
+			info: info?.[i],
+		}) !== undefined && (res = i);
 	}
 	return res;
 };

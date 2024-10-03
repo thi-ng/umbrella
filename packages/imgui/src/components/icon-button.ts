@@ -1,22 +1,25 @@
 import { rect } from "@thi.ng/geom/rect";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { hash } from "@thi.ng/vectors/hash";
-import type { IMGUI } from "../gui.js";
+import type { ComponentOpts } from "../api.js";
 import { mixHash } from "../hash.js";
 import { buttonRaw } from "./button.js";
 import { textLabelRaw } from "./textlabel.js";
 
-export const iconButton = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	icon: any,
-	iconW: number,
-	iconH: number,
-	label?: string,
-	info?: string
-) => {
+export interface IconButtonOpts extends ComponentOpts {
+	icon: any;
+	iconSize: [number, number];
+}
+
+export const iconButton = ({
+	gui,
+	layout,
+	id,
+	icon,
+	iconSize: [iconW, iconH],
+	label,
+	info,
+}: IconButtonOpts) => {
 	const theme = gui.theme;
 	const pad = theme.pad;
 	const bodyW = label

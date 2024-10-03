@@ -2,9 +2,10 @@ import type { Fn, Maybe } from "@thi.ng/api";
 import { line } from "@thi.ng/geom/line";
 import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import type { Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { fit2 } from "@thi.ng/vectors/fit";
 import { hash } from "@thi.ng/vectors/hash";
+import type { ComponentOpts } from "../api.js";
 import {
 	handleSlider2Keys,
 	isHoverSlider,
@@ -14,47 +15,48 @@ import type { IMGUI } from "../gui.js";
 import { textLabelRaw } from "./textlabel.js";
 import { tooltipRaw } from "./tooltip.js";
 
-/**
- * `mode` interpretation:
- *
- * - -2 = square
- * - -1 = proportional height (snapped to rows)
- * - >0 = fixed row height
- *
- * @param gui -
- * @param layout -
- * @param id -
- * @param min -
- * @param max -
- * @param prec -
- * @param val -
- * @param mode -
- * @param yUp -
- * @param label -
- * @param fmt -
- * @param info -
- */
-export const xyPad = (
-	gui: IMGUI,
-	layout: IGridLayout<any>,
-	id: string,
-	min: Vec,
-	max: Vec,
-	prec: number,
-	val: Vec,
-	mode: number,
-	yUp: boolean,
-	label?: string,
-	fmt?: Fn<Vec, string>,
-	info?: string
-) => {
+export interface XYPadOpts extends Omit<ComponentOpts, "layout"> {
+	layout: IGridLayout<any>;
+	min: ReadonlyVec;
+	max: ReadonlyVec;
+	step: number;
+	value: Vec;
+	/**
+	 * If `square` (default), the component will allocate a square, if `prop` an
+	 * area of proportional height (snapped to rows). If given a number > 0, the
+	 * component will occupy the given number of rows.
+	 */
+	mode?: "square" | "prop" | number;
+	/**
+	 * If true (default), the top-right corner of the XY pad corresponds to the
+	 * configured {@link XYPadOpts.max} value. Otherwise, the bottom-right
+	 * corner is used.
+	 */
+	yUp?: boolean;
+	fmt?: Fn<Vec, string>;
+}
+
+export const xyPad = ({
+	gui,
+	layout,
+	id,
+	min,
+	max,
+	step,
+	value,
+	mode = "square",
+	yUp = true,
+	label,
+	info,
+	fmt,
+}: XYPadOpts) => {
 	let box: LayoutBox;
 	const ch = layout.cellH;
 	const gap = layout.gap;
-	if (mode === -2) {
+	if (mode === "square") {
 		box = layout.nextSquare();
 	} else {
-		let rows = (mode > 0 ? mode : layout.cellW / (ch + gap)) | 0;
+		const rows = mode === "prop" ? (layout.cellW / (ch + gap)) | 0 : mode;
 		box = layout.next([1, rows + 1]);
 		box.h -= ch + gap;
 	}
@@ -67,8 +69,8 @@ export const xyPad = (
 		box.h,
 		min,
 		max,
-		prec,
-		val,
+		step,
+		value,
 		yUp,
 		0,
 		box.h + gap + ch / 2 + gui.theme.baseLine,

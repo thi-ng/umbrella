@@ -1,6 +1,5 @@
 import type { Fn, Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fit, norm } from "@thi.ng/math/fit";
 import { ZERO2 } from "@thi.ng/vectors/api";
 import { hash } from "@thi.ng/vectors/hash";
@@ -12,22 +11,23 @@ import {
 import type { IMGUI } from "../gui.js";
 import { valHash } from "../hash.js";
 import { layoutBox } from "../layout.js";
+import type { SliderGroupOpts, SliderOpts } from "./sliderh.js";
 import { textLabelRaw, textTransformV } from "./textlabel.js";
 import { tooltipRaw } from "./tooltip.js";
 
-export const sliderV = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	val: number,
-	rows: number,
-	label?: string,
-	fmt?: Fn<number, string>,
-	info?: string
-) => {
+export const sliderV = ({
+	gui,
+	layout,
+	id,
+	rows,
+	min,
+	max,
+	step,
+	value,
+	label,
+	info,
+	fmt,
+}: SliderOpts & { rows: number }) => {
 	const box = layoutBox(layout, [1, rows]);
 	return sliderVRaw(
 		gui,
@@ -38,45 +38,33 @@ export const sliderV = (
 		box.h,
 		min,
 		max,
-		prec,
-		val,
+		step,
+		value,
 		label,
 		fmt,
 		info
 	);
 };
 
-export const sliderVGroup = (
-	gui: IMGUI,
-	layout: IGridLayout<any>,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	vals: number[],
-	rows: number,
-	label: string[],
-	fmt?: Fn<number, string>,
-	info: string[] = []
-) => {
-	const n = vals.length;
-	const nested = layout.nest(n, [1, rows]);
+export interface SliderVGroupOpts extends Omit<SliderGroupOpts, "horizontal"> {
+	rows: number;
+}
+
+export const sliderVGroup = (opts: SliderVGroupOpts) => {
+	const { id, value, label, info } = opts;
+	const n = value.length;
+	const layout = opts.layout.nest(n, [1, opts.rows]);
 	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
-		const v = sliderV(
-			gui,
-			nested,
-			`${id}-${i}`,
-			min,
-			max,
-			prec,
-			vals[i],
-			rows,
-			label[i],
-			fmt,
-			info[i]
-		);
+		const v = sliderV({
+			...opts,
+			layout,
+			id: `${id}-${i}`,
+			value: value[i],
+			label: label[i],
+			info: info?.[i],
+		});
 		if (v !== undefined) {
 			res = v;
 			idx = i;

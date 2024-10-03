@@ -1,30 +1,39 @@
 import type { Fn, Maybe } from "@thi.ng/api";
 import { circle } from "@thi.ng/geom/circle";
 import { line } from "@thi.ng/geom/line";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
 import { norm } from "@thi.ng/math/fit";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { hash } from "@thi.ng/vectors/hash";
+import type { ComponentOpts } from "../api.js";
 import { dialVal } from "../behaviors/dial.js";
 import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider.js";
 import type { IMGUI } from "../gui.js";
 import { dialValueLabel } from "./textlabel.js";
 import { tooltipRaw } from "./tooltip.js";
 
-export const dial = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	val: number,
-	label?: string,
-	fmt?: Fn<number, string>,
-	info?: string
-) => {
+export interface DialOpts extends ComponentOpts {
+	min: number;
+	max: number;
+	step: number;
+	value: number;
+	fmt?: Fn<number, string>;
+}
+
+export const dial = ({
+	gui,
+	layout,
+	id,
+	min,
+	max,
+	step,
+	value,
+	label,
+	fmt,
+	info,
+}: DialOpts) => {
 	const { x, y, w, h, ch } = isLayout(layout) ? layout.nextSquare() : layout;
 	return dialRaw(
 		gui,
@@ -35,8 +44,8 @@ export const dial = (
 		h,
 		min,
 		max,
-		prec,
-		val,
+		step,
+		value,
 		gui.theme.pad,
 		h + ch / 2 + gui.theme.baseLine,
 		label,
@@ -45,38 +54,37 @@ export const dial = (
 	);
 };
 
-export const dialGroup = (
-	gui: IMGUI,
-	layout: IGridLayout<any>,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	horizontal: boolean,
-	vals: number[],
-	label: string[],
-	fmt?: Fn<number, string>,
-	info: string[] = []
-) => {
-	const n = vals.length;
-	const nested = horizontal
-		? layout.nest(n, [n, 1])
-		: layout.nest(1, [1, (layout.rowsForHeight(layout.cellW) + 1) * n]);
+export interface DialGroupOpts
+	extends Omit<DialOpts, "layout" | "value" | "label" | "info"> {
+	layout: IGridLayout<any>;
+	value: number[];
+	label: string[];
+	info?: string[];
+	/**
+	 * If true (default), the dials will be arranged horizontally.
+	 */
+	horizontal?: boolean;
+	fmt?: Fn<number, string>;
+}
+
+export const dialGroup = (opts: DialGroupOpts) => {
+	const { layout, id, value, label, info } = opts;
+	const n = opts.value.length;
+	const nested =
+		opts.horizontal !== false
+			? layout.nest(n, [n, 1])
+			: layout.nest(1, [1, (layout.rowsForHeight(layout.cellW) + 1) * n]);
 	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
-		const v = dial(
-			gui,
-			nested,
-			`${id}-${i}`,
-			min,
-			max,
-			prec,
-			vals[i],
-			label[i],
-			fmt,
-			info[i]
-		);
+		const v = dial({
+			...opts,
+			layout: nested,
+			id: `${id}-${i}`,
+			value: value[i],
+			label: label[i],
+			info: info?.[i],
+		});
 		if (v !== undefined) {
 			res = v;
 			idx = i;
@@ -94,8 +102,8 @@ export const dialRaw = (
 	h: number,
 	min: number,
 	max: number,
-	prec: number,
-	val: number,
+	step: number,
+	value: number,
 	lx: number,
 	ly: number,
 	label?: string,
@@ -111,13 +119,13 @@ export const dialRaw = (
 	const bgShape = gui.resource(id, key, () => circle(pos, r, {}));
 	const hover = isHoverSlider(gui, id, bgShape, "pointer");
 	const draw = gui.draw;
-	let v: Maybe<number> = val;
+	let v: Maybe<number> = value;
 	let res: Maybe<number>;
 	if (hover) {
 		gui.hotID = id;
 		if (gui.isMouseDown()) {
 			gui.activeID = id;
-			res = dialVal(gui.mouse, pos, startTheta, thetaGap, min, max, prec);
+			res = dialVal(gui.mouse, pos, startTheta, thetaGap, min, max, step);
 		}
 		info && draw && tooltipRaw(gui, info);
 	}
@@ -152,7 +160,7 @@ export const dialRaw = (
 	}
 	if (
 		focused &&
-		(v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined
+		(v = handleSlider1Keys(gui, min, max, step, v)) !== undefined
 	) {
 		return v;
 	}

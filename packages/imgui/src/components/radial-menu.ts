@@ -11,20 +11,28 @@ import { mod } from "@thi.ng/math/prec";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { add2 } from "@thi.ng/vectors/add";
 import { hash } from "@thi.ng/vectors/hash";
-import { Key, type Hash } from "../api.js";
-import type { IMGUI } from "../gui.js";
+import { Key, type ComponentOpts, type Hash } from "../api.js";
 import { buttonRaw } from "./button.js";
 import { textLabelRaw } from "./textlabel.js";
 
-export const radialMenu = (
-	gui: IMGUI,
-	id: string,
-	x: number,
-	y: number,
-	r: number,
-	items: string[],
-	info: string[]
-) => {
+export interface RadialMenuOpts
+	extends Omit<ComponentOpts, "layout" | "label" | "info"> {
+	x: number;
+	y: number;
+	r: number;
+	items: string[];
+	info?: string[];
+}
+
+export const radialMenu = ({
+	gui,
+	id,
+	x,
+	y,
+	r,
+	items,
+	info,
+}: RadialMenuOpts) => {
 	const n = items.length;
 	const key = hash([x, y, r, n, ~~gui.disabled]);
 	gui.registerID(id, key);
@@ -48,7 +56,7 @@ export const radialMenu = (
 	for (let i = 0; i < n; i++) {
 		const cell = cells[i];
 		const _id = id + i;
-		buttonRaw(gui, _id, cell[0], cell[1], cell[2], cell[3], info[i]) &&
+		buttonRaw(gui, _id, cell[0], cell[1], cell[2], cell[3], info?.[i]) &&
 			(res = i);
 		gui.focusID === _id && (sel = i);
 	}

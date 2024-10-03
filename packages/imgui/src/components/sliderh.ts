@@ -1,8 +1,9 @@
 import type { Fn, Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout } from "@thi.ng/layout";
 import { fit, norm } from "@thi.ng/math/fit";
 import { hash } from "@thi.ng/vectors/hash";
+import type { ComponentOpts } from "../api.js";
 import {
 	handleSlider1Keys,
 	isHoverSlider,
@@ -14,18 +15,26 @@ import { layoutBox } from "../layout.js";
 import { textLabelRaw } from "./textlabel.js";
 import { tooltipRaw } from "./tooltip.js";
 
-export const sliderH = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	val: number,
-	label?: string,
-	fmt?: Fn<number, string>,
-	info?: string
-) => {
+export interface SliderOpts extends ComponentOpts {
+	min: number;
+	max: number;
+	step: number;
+	value: number;
+	fmt?: Fn<number, string>;
+}
+
+export const sliderH = ({
+	gui,
+	layout,
+	id,
+	min,
+	max,
+	step,
+	value,
+	label,
+	info,
+	fmt,
+}: SliderOpts) => {
 	const box = layoutBox(layout);
 	return sliderHRaw(
 		gui,
@@ -36,44 +45,43 @@ export const sliderH = (
 		box.h,
 		min,
 		max,
-		prec,
-		val,
+		step,
+		value,
 		label,
 		fmt,
 		info
 	);
 };
 
-export const sliderHGroup = (
-	gui: IMGUI,
-	layout: IGridLayout<any>,
-	id: string,
-	min: number,
-	max: number,
-	prec: number,
-	horizontal: boolean,
-	vals: number[],
-	label: string[],
-	fmt?: Fn<number, string>,
-	info: string[] = []
-) => {
-	const n = vals.length;
-	const nested = horizontal ? layout.nest(n, [n, 1]) : layout.nest(1, [1, n]);
+export interface SliderGroupOpts
+	extends Omit<SliderOpts, "layout" | "value" | "label" | "info"> {
+	layout: IGridLayout<any>;
+	/**
+	 * If true (default: false), the sliders will be arranged horizontally.
+	 */
+	horizontal?: boolean;
+	value: number[];
+	label: string[];
+	info?: string[];
+}
+
+export const sliderHGroup = (opts: SliderGroupOpts) => {
+	const { layout, id, value, label, info } = opts;
+	const n = value.length;
+	const nested = opts.horizontal
+		? layout.nest(n, [n, 1])
+		: layout.nest(1, [1, n]);
 	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
-		const v = sliderH(
-			gui,
-			nested,
-			`${id}-${i}`,
-			min,
-			max,
-			prec,
-			vals[i],
-			label[i],
-			fmt,
-			info[i]
-		);
+		const v = sliderH({
+			...opts,
+			layout: nested,
+			id: `${id}-${i}`,
+			value: value[i],
+			label: label[i],
+			info: info?.[i],
+		});
 		if (v !== undefined) {
 			res = v;
 			idx = i;

@@ -1,33 +1,31 @@
 import type { Maybe } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom/polygon";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";
 import { clamp0 } from "@thi.ng/math/interval";
 import { hash } from "@thi.ng/vectors/hash";
-import { Key } from "../api.js";
+import { Key, type ComponentOpts } from "../api.js";
 import type { IMGUI } from "../gui.js";
 import { buttonH } from "./button.js";
 
-/**
- *
- * @param gui -
- * @param layout -
- * @param id -
- * @param sel -
- * @param items -
- * @param title -
- * @param info -
- */
-export const dropdown = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	sel: number,
-	items: string[],
-	title: string,
-	info?: string
-) => {
+export interface DropDownOpts extends ComponentOpts {
+	/**
+	 * Index of selected item.
+	 */
+	value: number;
+	items: string[];
+	title: string;
+}
+
+export const dropdown = ({
+	gui,
+	layout,
+	id,
+	value,
+	items,
+	title,
+	info,
+}: DropDownOpts) => {
 	const open = gui.state<boolean>(id, () => false);
 	const nested = isLayout(layout)
 		? layout.nest(1, [1, open ? items.length : 1])
@@ -40,7 +38,13 @@ export const dropdown = (
 	const ty = y + h / 2;
 	const draw = gui.draw;
 	if (open) {
-		const bt = buttonH(gui, box, `${id}-title`, title);
+		const bt = buttonH({
+			gui,
+			layout: box,
+			id: `${id}-title`,
+			label: title,
+			info,
+		});
 		draw &&
 			gui.add(
 				gui.resource(id, key + 1, () => __triangle(gui, tx, ty, true))
@@ -49,8 +53,15 @@ export const dropdown = (
 			gui.setState(id, false);
 		} else {
 			for (let i = 0, n = items.length; i < n; i++) {
-				if (buttonH(gui, nested, `${id}-${i}`, items[i])) {
-					i !== sel && (res = i);
+				if (
+					buttonH({
+						gui,
+						layout: nested,
+						id: `${id}-${i}`,
+						label: items[i],
+					})
+				) {
+					i !== value && (res = i);
 					gui.setState(id, false);
 				}
 			}
@@ -60,19 +71,28 @@ export const dropdown = (
 						gui.setState(id, false);
 						break;
 					case Key.UP:
-						return __update(gui, id, clamp0(sel - 1));
+						return __update(gui, id, clamp0(value - 1));
 					case Key.DOWN:
 						return __update(
 							gui,
 							id,
-							Math.min(items.length - 1, sel + 1)
+							Math.min(items.length - 1, value + 1)
 						);
 					default:
 				}
 			}
 		}
 	} else {
-		if (buttonH(gui, box, `${id}-${sel}`, items[sel], title, info)) {
+		if (
+			buttonH({
+				gui,
+				layout: box,
+				id: `${id}-${value}`,
+				label: items[value],
+				labelHover: title,
+				info,
+			})
+		) {
 			gui.setState(id, true);
 		}
 		draw &&

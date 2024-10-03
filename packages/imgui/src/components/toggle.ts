@@ -1,34 +1,30 @@
 import type { Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors/hash";
+import type { ComponentOpts } from "../api.js";
 import { handleButtonKeys, hoverButton } from "../behaviors/button.js";
 import type { IMGUI } from "../gui.js";
 import { layoutBox } from "../layout.js";
 import { textLabelRaw } from "./textlabel.js";
 
-/**
- * If `square` is true, the clickable area will not fill the entire
- * cell, but only a left-aligned square of cell/row height.
- *
- * @param gui -
- * @param layout -
- * @param id -
- * @param val -
- * @param i -
- * @param square -
- * @param label -
- * @param info -
- */
-export const toggle = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	val: boolean,
-	square?: boolean,
-	label?: string,
-	info?: string
-) => {
+export interface ToggleOpts extends ComponentOpts {
+	/**
+	 * If `square` is true (default: false), the clickable area will not fill
+	 * the entire cell, but only a left-aligned square of cell/row height.
+	 */
+	square?: boolean;
+	value: boolean;
+}
+
+export const toggle = ({
+	gui,
+	layout,
+	id,
+	value,
+	square,
+	label,
+	info,
+}: ToggleOpts) => {
 	const { x, y, w, h } = layoutBox(layout);
 	return toggleRaw(
 		gui,
@@ -38,7 +34,7 @@ export const toggle = (
 		square ? h : w,
 		h,
 		square ? h : 0,
-		val,
+		value,
 		label,
 		info
 	);

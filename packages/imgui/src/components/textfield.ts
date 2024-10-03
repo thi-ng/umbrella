@@ -1,8 +1,8 @@
 import type { Predicate } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
-import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fitClamped } from "@thi.ng/math/fit";
 import { hash } from "@thi.ng/vectors/hash";
+import type { ComponentOpts } from "../api.js";
 import { isHoverSlider } from "../behaviors/slider.js";
 import { handleTextfieldKeys } from "../behaviors/text.js";
 import type { IMGUI } from "../gui.js";
@@ -10,14 +10,19 @@ import { layoutBox } from "../layout.js";
 import { textLabelRaw } from "./textlabel.js";
 import { tooltipRaw } from "./tooltip.js";
 
-export const textField = (
-	gui: IMGUI,
-	layout: IGridLayout<any> | LayoutBox,
-	id: string,
-	label: string,
-	filter: Predicate<string> = () => true,
-	info?: string
-) => {
+export interface TextfieldOpts extends Omit<ComponentOpts, "label"> {
+	value: string;
+	filter?: Predicate<string>;
+}
+
+export const textField = ({
+	gui,
+	layout,
+	id,
+	value,
+	info,
+	filter = () => true,
+}: TextfieldOpts) => {
 	const box = layoutBox(layout);
 	return textFieldRaw(
 		gui,
@@ -26,7 +31,7 @@ export const textField = (
 		box.y,
 		box.w,
 		box.h,
-		label,
+		value,
 		filter,
 		info
 	);
