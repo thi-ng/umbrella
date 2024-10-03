@@ -119,15 +119,22 @@ import { toggle } from "@thi.ng/imgui";
 // example state (see @thi.ng/atom)
 const STATE = new History(new Atom({ foo: true }));
 
-//...IMGUI initialization omitted here
+//...IMGUI & layout initialization omitted here
 
 // get atom snapshot
 const curr = STATE.deref();
 
 // toggle component will only return result if user clicked it
-let res = toggle(gui, layout, "foo", curr.foo, false, curr.foo ? "ON" : "OFF");
+let res = toggle({
+    gui,
+    layout,
+    id: "foo",
+    value: curr.foo,
+    label: curr.foo ? "ON" : "OFF"
+});
+
 // conditional immutable update (w/ automatic undo snapshot)
-res !== undefined && STATE.resetIn("foo", res);
+if (res !== undefined) STATE.resetIn("foo", res);
 ```
 
 ### Layout support
@@ -157,6 +164,8 @@ multiple column/row spans.
 The code producing this structure:
 
 ```ts
+import { gridLayout } from "@thi.ng/layout";
+
 // create a single column layout @ position 10,10 / 200px wide
 // the last values are row height and cell spacing
 const layout = gridLayout(10, 10, 200, 1, 16, 4);
@@ -262,7 +271,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 7.14 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 7.43 KB
 
 ## Dependencies
 
