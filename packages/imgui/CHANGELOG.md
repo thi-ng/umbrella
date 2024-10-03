@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-09-19T21:09:34Z
+- **Last updated**: 2024-10-03T15:37:53Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.0.0) (2024-10-03)
+
+#### 🛑 Breaking changes
+
+- update all component/widget functions ([ffe21dd](https://github.com/thi-ng/umbrella/commit/ffe21dd))
+- BREAKING CHANGE: replace function args w/ option objects
 
 ### [2.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@2.3.1) (2024-09-05)
 
