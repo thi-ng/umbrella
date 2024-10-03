@@ -306,11 +306,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-09-19
+As of: 2024-10-03
 
-| Status                                        | Package                           | Version                                                                                                 | Changelog                                 |
-|:----------------------------------------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------|:------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/rdom`](./packages/rdom) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom) | [changelog](./packages/rdom/CHANGELOG.md) |
+| Status                                           | Package                             | Version                                                                                                   | Changelog                                  |
+|:-------------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/imgui`](./packages/imgui) | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui) | [changelog](./packages/imgui/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-perf-cyan)     | [`@thi.ng/rdom`](./packages/rdom)   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)   | [changelog](./packages/rdom/CHANGELOG.md)  |
 
 ### Fundamentals
 
