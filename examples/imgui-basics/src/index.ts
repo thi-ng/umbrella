@@ -69,17 +69,17 @@ const updateGUI = () => {
 	gui.begin();
 	// volume slider component
 	// returns a number (new value) if user interacted w/ slider
-	res = sliderH(
+	res = sliderH({
 		gui,
-		grid,
-		"vol",
-		0,
-		100,
-		1,
-		smoothedVolume.deref()!,
-		`Volume: ${volumeLabel.deref()!}`,
-		() => ""
-	);
+		layout: grid,
+		id: "vol",
+		min: 0,
+		max: 100,
+		step: 1,
+		value: smoothedVolume.deref()!,
+		label: `Volume: ${volumeLabel.deref()!}`,
+		fmt: () => "",
+	});
 	// update state if needed
 	res !== undefined && volume.next(res);
 
@@ -88,7 +88,12 @@ const updateGUI = () => {
 	// create button for each volume preset
 	// and update state if a button was pressed
 	for (let preset of PRESETS) {
-		res = buttonH(gui, inner, `bt${preset[0]}`, preset[0]);
+		res = buttonH({
+			gui,
+			layout: inner,
+			id: `bt${preset[0]}`,
+			label: preset[0],
+		});
 		res && volume.next(preset[2]);
 	}
 
