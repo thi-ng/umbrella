@@ -1,27 +1,7 @@
-import { ARandom } from "./arandom.js";
-
-const random = Math.random;
+import { WrappedRandom } from "./wrapped.js";
 
 /**
- * A `Math.random()` based {@link IRandom} implementation. Also @see
- * {@link SYSTEM}.
+ * {@link IRandom} wrapper for `Math.random()`. Used as default PRNG throughout
+ * most other thi.ng projects, though usually is configurable.
  */
-export class SystemRandom extends ARandom {
-	int() {
-		return (random() * 0x1_0000_0000) /* 2**32 */ >>> 0;
-	}
-
-	float(norm = 1) {
-		return random() * norm;
-	}
-
-	norm(norm = 1) {
-		return (random() - 0.5) * 2 * norm;
-	}
-}
-
-/**
- * Used as default PRNG throughout most other thi.ng projects, though usually is
- * configurable.
- */
-export const SYSTEM = new SystemRandom();
+export const SYSTEM = new WrappedRandom(Math.random);

@@ -134,6 +134,9 @@
 		"./weighted-random": {
 			"default": "./weighted-random.js"
 		},
+		"./wrapped": {
+			"default": "./wrapped.js"
+		},
 		"./xorshift128": {
 			"default": "./xorshift128.js"
 		},
