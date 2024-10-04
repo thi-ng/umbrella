@@ -39,12 +39,13 @@ Pseudo-random number generators w/ unified API, distributions, weighted choices,
 
 This package provides the `IRandom` interface and various (mostly seedable)
 pseudo-random number generator implementations, incl. `IRandom` wrappers for
-`Math.random()` and `window.crypto`:
+`Math.random()` (or other external PRNGs) and `window.crypto`:
 
 - [Crypto](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/crypto.ts)
 - [SFC32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/sfc32.ts)
 - [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush32.ts)
 - [System](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/system.ts)
+- [WrappedRandom](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/wrapped.ts)
 - [Xoshiro128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xoshiro128.ts)
 - [XorShift128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorshift128.ts)
 - [XorWow](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorwow.ts)
