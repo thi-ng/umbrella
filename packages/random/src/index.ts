@@ -16,6 +16,7 @@ export * from "./system.js";
 export * from "./unique-indices.js";
 export * from "./weighted-probability.js";
 export * from "./weighted-random.js";
+export * from "./wrapped.js";
 export * from "./xorshift128.js";
 export * from "./xorwow.js";
 export * from "./xoshiro128.js";
