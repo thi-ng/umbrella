@@ -31,7 +31,8 @@ export function canvasPixels(
 		ctx = c.ctx;
 	} else {
 		canvas = width;
-		ctx = canvas.getContext("2d")!;
+		// TODO remove cast again - temp workaround for TS5.6.2?
+		ctx = <any>canvas.getContext("2d");
 	}
 	if (parent && canvas instanceof HTMLCanvasElement)
 		parent.appendChild(canvas);

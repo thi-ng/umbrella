@@ -152,7 +152,9 @@ export const __blitCanvas = (
 		| OffscreenCanvasRenderingContext2D,
 	opts: Partial<BlitCanvasOpts> = {}
 ) =>
-	(canvas instanceof HTMLCanvasElement || canvas instanceof OffscreenCanvas
-		? canvas.getContext("2d")!
-		: canvas
-	).putImageData(buf.toImageData(opts.data), opts.x || 0, opts.y || 0);
+	(<CanvasImageData>(
+		(canvas instanceof HTMLCanvasElement ||
+		canvas instanceof OffscreenCanvas
+			? canvas.getContext("2d")!
+			: canvas)
+	)).putImageData(buf.toImageData(opts.data), opts.x || 0, opts.y || 0);

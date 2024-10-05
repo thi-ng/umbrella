@@ -2,6 +2,7 @@ import type { IDistance } from "@thi.ng/distance";
 import { argmin } from "@thi.ng/distance/argmin";
 import { DIST_SQ } from "@thi.ng/distance/squared";
 import { assert } from "@thi.ng/errors/assert";
+import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { weightedRandom } from "@thi.ng/random/weighted-random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -84,7 +85,7 @@ export const initKmeanspp = <T extends ReadonlyVec>(
 	k: number,
 	samples: T[],
 	dist: IDistance<ReadonlyVec> = DIST_SQ,
-	rnd = SYSTEM
+	rnd: IRandom = SYSTEM
 ) => {
 	const num = samples.length;
 	assert(num > 0, `missing samples`);

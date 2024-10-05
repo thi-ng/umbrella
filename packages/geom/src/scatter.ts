@@ -1,7 +1,8 @@
-import type { IShape } from "./api.js";
+import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Vec } from "@thi.ng/vectors";
 import { randMinMax } from "@thi.ng/vectors/rand-minmax";
+import type { IShape } from "./api.js";
 import { bounds } from "./bounds.js";
 import { pointInside } from "./point-inside.js";
 
@@ -23,7 +24,7 @@ import { pointInside } from "./point-inside.js";
 export const scatter = (
 	shape: IShape,
 	num: number,
-	rnd = SYSTEM,
+	rnd: IRandom = SYSTEM,
 	out: Vec[] = []
 ) => {
 	const b = bounds(shape);

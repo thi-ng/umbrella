@@ -95,9 +95,12 @@ export const encodeFromCanvas = (
 ) => {
 	return encode(
 		new Uint32Array(
-			canvas
-				.getContext("2d")!
-				.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+			(<CanvasImageData>canvas.getContext("2d")).getImageData(
+				0,
+				0,
+				canvas.width,
+				canvas.height
+			).data.buffer
 		),
 		canvas.width,
 		canvas.height,
