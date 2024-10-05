@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom",
-	"version": "8.1.10",
+	"version": "8.1.11",
 	"description": "Functional, polymorphic API for 2D geometry types & SVG generation",
 	"type": "module",
 	"module": "./index.js",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-sdf",
-	"version": "0.4.19",
+	"version": "0.4.20",
 	"description": "2D Signed Distance Field creation from @thi.ng/geom shapes, conversions, sampling, combinators",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 		"@thi.ng/checks": "^3.6.13",
 		"@thi.ng/defmulti": "^3.0.49",
 		"@thi.ng/errors": "^2.5.17",
-		"@thi.ng/geom": "^8.1.10",
+		"@thi.ng/geom": "^8.1.11",
 		"@thi.ng/geom-isoline": "^2.1.143",
 		"@thi.ng/geom-poly-utils": "^3.0.15",
 		"@thi.ng/geom-resample": "^3.0.15",

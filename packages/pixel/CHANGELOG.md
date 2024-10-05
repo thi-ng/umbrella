@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-10-05T12:12:32Z
+- **Last updated**: 2024-10-05T13:06:12Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [7.3.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@7.3.6) (2024-10-05)
+
+#### ♻️ Refactoring
+
+- add explicit type casts (TS5.6.2) ([dcbdd60](https://github.com/thi-ng/umbrella/commit/dcbdd60))
 
 ## [7.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@7.3.0) (2024-08-10)
 
