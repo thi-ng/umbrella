@@ -52,15 +52,23 @@ export interface Custom extends Pick<FormItem, "type"> {
 export interface Group extends FormItem {
 	type: "group";
 	items: FormItem[];
-	label?: string | false;
+	label?: StringAttrib | false;
 }
 
 export interface Value extends FormItem, Partial<CommonAttribs> {
 	id: string;
 	name?: string;
-	label?: string | false;
+	/**
+	 * If false, no `<label>` element will be generated for this control and the
+	 * {@link Value.desc} value will be unused.
+	 */
+	label?: StringAttrib | false;
 	desc?: any;
 	required?: boolean;
+	/**
+	 * If true, no input/change event handlers will be generated and the
+	 * `readonly` attribute will be set on the input DOM element.
+	 */
 	readonly?: boolean;
 	attribs?: Partial<InputAttribs>;
 }
@@ -82,7 +90,7 @@ export interface Num extends Value, WithPresets<number> {
 	type: "num";
 	min?: number;
 	max?: number;
-	placeholder?: string;
+	placeholder?: StringAttrib;
 	size?: number;
 	step?: number;
 	value?: ISubscription<number, number>;
@@ -99,7 +107,7 @@ export interface Str extends Value, WithPresets<string> {
 	min?: number;
 	max?: number;
 	pattern?: string | RegExp | Predicate<string>;
-	placeholder?: string;
+	placeholder?: StringAttrib;
 	size?: number;
 	value?: ISubscription<string, string>;
 	attribs?: Partial<InputTextAttribs>;
@@ -128,7 +136,7 @@ export interface Text extends Value {
 	type: "text";
 	cols?: number;
 	rows?: number;
-	placeholder?: string;
+	placeholder?: StringAttrib;
 	value?: ISubscription<string, string>;
 	attribs?: Partial<TextAreaAttribs>;
 }
@@ -211,20 +219,20 @@ export interface Toggle extends Value {
 
 export interface Trigger extends Value {
 	type: "trigger";
-	title: string;
+	title: StringAttrib;
 	value?: ISubscriber<boolean>;
 }
 
 export interface Submit extends Omit<Value, "required" | "readonly"> {
 	type: "submit";
-	title: string;
+	title: StringAttrib;
 	value?: ISubscriber<boolean>;
 	attribs?: Partial<InputSubmitAttribs>;
 }
 
 export interface Reset extends Omit<Value, "required" | "readonly"> {
 	type: "submit";
-	title: string;
+	title: StringAttrib;
 	value?: ISubscriber<boolean>;
 }
 
@@ -352,7 +360,8 @@ export interface BehaviorOpts {
 	 */
 	labels: boolean;
 	/**
-	 * If false, no `value` attributes and event handlers will be generated.
+	 * If false, no `value` attributes and event handlers will be generated,
+	 * even if a `value` option has been specified.
 	 *
 	 * @defaultValue true
 	 */

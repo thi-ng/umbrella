@@ -231,25 +231,22 @@ const __attribs = (
 	value: string | false = "value"
 ) => {
 	const id = __genID(val.id, opts);
-	Object.assign(
-		attribs,
-		{
-			id,
-			name: val.name || val.id,
-			list: val.list ? id + "--list" : undefined,
-			required: val.required,
-			readonly: val.readonly,
-		},
-		val.attribs
-	);
+	Object.assign(attribs, {
+		id,
+		name: val.name || val.id,
+		list: val.list ? id + "--list" : undefined,
+		required: val.required,
+		readonly: val.readonly,
+	});
 	if (__useValues(opts)) {
-		if (!val.readonly) {
+		if (!val.readonly && val.value !== undefined) {
 			Object.assign(attribs, events);
 		}
 		if (value !== false) {
 			attribs[value] = val.value;
 		}
 	}
+	if (val.attribs) Object.assign(attribs, val.attribs);
 	return attribs;
 };
 
