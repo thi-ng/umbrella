@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-async",
-	"version": "0.2.20",
+	"version": "0.2.21",
 	"description": "Async versions of various highly composable transducers, reducers and iterators",
 	"type": "module",
 	"module": "./index.js",
@@ -36,12 +36,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.10",
-		"@thi.ng/buffers": "^0.1.13",
-		"@thi.ng/checks": "^3.6.12",
-		"@thi.ng/compose": "^3.0.13",
-		"@thi.ng/errors": "^2.5.16",
-		"@thi.ng/transducers": "^9.2.4"
+		"@thi.ng/api": "^8.11.11",
+		"@thi.ng/buffers": "^0.1.14",
+		"@thi.ng/checks": "^3.6.13",
+		"@thi.ng/compose": "^3.0.14",
+		"@thi.ng/errors": "^2.5.17",
+		"@thi.ng/transducers": "^9.2.5"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.9",

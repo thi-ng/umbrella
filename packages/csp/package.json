@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/csp",
-	"version": "3.2.11",
+	"version": "3.2.12",
 	"description": "Primitives & operators for Communicating Sequential Processes based on async/await and async iterables",
 	"type": "module",
 	"module": "./index.js",
@@ -40,10 +40,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.10",
-		"@thi.ng/buffers": "^0.1.13",
-		"@thi.ng/checks": "^3.6.12",
-		"@thi.ng/errors": "^2.5.16"
+		"@thi.ng/api": "^8.11.11",
+		"@thi.ng/buffers": "^0.1.14",
+		"@thi.ng/checks": "^3.6.13",
+		"@thi.ng/errors": "^2.5.17"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.9",
