@@ -21,10 +21,29 @@ import { tooltipRaw } from "./tooltip.js";
 
 export interface RampOpts extends Omit<ComponentOpts, "label"> {
 	ramp: Ramp<number>;
+	/**
+	 * User defined interpolation mode. Only used to compute internal hash of
+	 * ramp curve geometry, i.e. if the {@link RampOpts.ramp} interpolation
+	 * method changes, so should this mode value.
+	 */
 	mode?: number;
+	/**
+	 * Normalized snap/selection tolerance for ramp control point positions
+	 *
+	 * @defaultValue 0.05
+	 */
+	eps?: number;
 }
 
-export const ramp = ({ gui, layout, id, ramp, mode = 0, info }: RampOpts) => {
+export const ramp = ({
+	gui,
+	layout,
+	id,
+	ramp,
+	mode = 0,
+	info,
+	eps = 0.05,
+}: RampOpts) => {
 	const { x, y, w, h } = layoutBox(layout);
 	const maxX = x + w;
 	const maxY = y + h;
@@ -42,7 +61,7 @@ export const ramp = ({ gui, layout, id, ramp, mode = 0, info }: RampOpts) => {
 	const focused = gui.requestFocus(id);
 	if (hover) {
 		sel = clamp01_2(null, fit2([], gui.mouse, pos, maxPos, ZERO2, ONE2));
-		selID = ramp.closestIndex(sel[0], 0.05);
+		selID = ramp.closestIndex(sel[0], eps);
 		if (gui.isMouseDown()) {
 			gui.activeID = id;
 			if (selID >= 0) {
@@ -51,12 +70,12 @@ export const ramp = ({ gui, layout, id, ramp, mode = 0, info }: RampOpts) => {
 				ramp.setStopAt(
 					roundTo(sel[0], 1e-3),
 					roundTo(sel[1], 1e-3),
-					0.05
+					eps
 				);
 			}
 			res = ramp;
 		}
-		if (focused && selID >= 0 && handleRampKeys(gui, ramp, selID)) {
+		if (focused && selID >= 0 && __handleRampKeys(gui, ramp, selID)) {
 			res = ramp;
 		}
 		info && gui.draw && tooltipRaw(gui, info);
@@ -73,7 +92,7 @@ export const ramp = ({ gui, layout, id, ramp, mode = 0, info }: RampOpts) => {
 					[
 						[x, maxY],
 						mix2([], pos, maxPos, [0, stops[0][1]]),
-						...rampVertices(ramp, pos, maxPos),
+						...__rampVertices(ramp, pos, maxPos),
 						mix2([], pos, maxPos, [1, stops[stops.length - 1][1]]),
 						[maxX, maxY],
 					],
@@ -106,14 +125,16 @@ export const ramp = ({ gui, layout, id, ramp, mode = 0, info }: RampOpts) => {
 	return res;
 };
 
-const rampVertices = (
+/** @internal */
+const __rampVertices = (
 	ramp: Ramp<number>,
 	pos: Vec,
 	maxPos: Vec,
 	numSamples = 100
 ) => map((p) => mix2(p, pos, maxPos, p), ramp.samples(numSamples));
 
-const handleRampKeys = (gui: IMGUI, ramp: Ramp<number>, selID: number) => {
+/** @internal */
+const __handleRampKeys = (gui: IMGUI, ramp: Ramp<number>, selID: number) => {
 	switch (gui.key) {
 		case Key.TAB:
 			gui.switchFocus();
