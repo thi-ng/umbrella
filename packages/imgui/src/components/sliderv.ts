@@ -1,6 +1,7 @@
 import type { Fn, Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
 import { fit, norm } from "@thi.ng/math/fit";
+import { clamp } from "@thi.ng/math/interval";
 import { ZERO2 } from "@thi.ng/vectors/api";
 import { hash } from "@thi.ng/vectors/hash";
 import {
@@ -82,7 +83,7 @@ export const sliderVRaw = (
 	h: number,
 	min: number,
 	max: number,
-	prec: number,
+	step: number,
 	val: number,
 	label?: string,
 	fmt?: Fn<number, string>,
@@ -95,7 +96,7 @@ export const sliderVRaw = (
 	const ymax = y + h;
 	const hover = isHoverSlider(gui, id, box, "ns-resize");
 	const draw = gui.draw;
-	let v: Maybe<number> = val;
+	let v: Maybe<number> = clamp(val, min, max);
 	let res: Maybe<number>;
 	if (hover) {
 		if (gui.isMouseDown()) {
@@ -104,7 +105,7 @@ export const sliderVRaw = (
 				fit(gui.mouse[1], ymax - 1, y, min, max),
 				min,
 				max,
-				prec
+				step
 			);
 		}
 		info && draw && tooltipRaw(gui, info);
@@ -132,7 +133,7 @@ export const sliderVRaw = (
 	}
 	if (
 		focused &&
-		(v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined
+		(v = handleSlider1Keys(gui, min, max, step, v)) !== undefined
 	) {
 		return v;
 	}

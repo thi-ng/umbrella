@@ -5,6 +5,7 @@ import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
 import { fitClamped, norm } from "@thi.ng/math/fit";
+import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
 import { map } from "@thi.ng/transducers/map";
 import { normRange } from "@thi.ng/transducers/norm-range";
@@ -126,12 +127,12 @@ export const ringRaw = (
 	h: number,
 	min: number,
 	max: number,
-	prec: number,
-	val: number,
+	step: number,
+	value: number,
 	thetaGap: number,
 	rscale: number,
-	lx: number,
-	ly: number,
+	labelX: number,
+	labelY: number,
 	label?: string,
 	fmt?: Fn<number, string>,
 	info?: string
@@ -147,14 +148,14 @@ export const ringRaw = (
 	const hover =
 		!gui.disabled &&
 		(aid === id || (aid === "" && pointInRect(gui.mouse, [x, y], [w, h])));
-	let v: Maybe<number> = val;
+	let v: Maybe<number> = clamp(value, min, max);
 	let res: Maybe<number>;
 	if (hover) {
 		gui.setCursor("pointer");
 		gui.hotID = id;
 		if (gui.isMouseDown()) {
 			gui.activeID = id;
-			res = dialVal(gui.mouse, pos, startTheta, thetaGap, min, max, prec);
+			res = dialVal(gui.mouse, pos, startTheta, thetaGap, min, max, step);
 		}
 		info && draw && tooltipRaw(gui, info);
 	}
@@ -179,8 +180,8 @@ export const ringRaw = (
 			id,
 			key,
 			v,
-			x + lx,
-			y + ly,
+			x + labelX,
+			y + labelY,
 			label,
 			fmt
 		);
@@ -191,7 +192,7 @@ export const ringRaw = (
 	}
 	if (
 		focused &&
-		(v = handleSlider1Keys(gui, min, max, prec, v)) !== undefined
+		(v = handleSlider1Keys(gui, min, max, step, v)) !== undefined
 	) {
 		return v;
 	}

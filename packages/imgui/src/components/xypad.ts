@@ -3,6 +3,7 @@ import { line } from "@thi.ng/geom/line";
 import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { clamp2 } from "@thi.ng/vectors/clamp";
 import { fit2 } from "@thi.ng/vectors/fit";
 import { hash } from "@thi.ng/vectors/hash";
 import type { ComponentOpts } from "../api.js";
@@ -89,11 +90,11 @@ export const xyPadRaw = (
 	h: number,
 	min: Vec,
 	max: Vec,
-	prec: number,
+	step: number,
 	val: Vec,
 	yUp = false,
-	lx: number,
-	ly: number,
+	labelX: number,
+	labelY: number,
 	label?: string,
 	fmt?: Fn<Vec, string>,
 	info?: string
@@ -108,7 +109,7 @@ export const xyPadRaw = (
 	const col = gui.textColor(false);
 	const hover = isHoverSlider(gui, id, box, "move");
 	const draw = gui.draw;
-	let v: Maybe<Vec> = val;
+	let v: Maybe<Vec> = clamp2([], val, min, max);
 	let res: Maybe<Vec>;
 	if (hover) {
 		if (gui.isMouseDown()) {
@@ -117,7 +118,7 @@ export const xyPadRaw = (
 				fit2([], gui.mouse, pos, maxPos, min, max),
 				min,
 				max,
-				prec
+				step
 			);
 		}
 		info && draw && tooltipRaw(gui, info);
@@ -138,7 +139,7 @@ export const xyPadRaw = (
 				stroke: col,
 			}),
 			textLabelRaw(
-				[x + lx, y + ly],
+				[x + labelX, y + labelY],
 				col,
 				(label ? label + " " : "") +
 					(fmt ? fmt(val) : `${val[0] | 0}, ${val[1] | 0}`)
@@ -147,7 +148,7 @@ export const xyPadRaw = (
 	}
 	if (
 		focused &&
-		(v = handleSlider2Keys(gui, min, max, prec, v, yUp)) !== undefined
+		(v = handleSlider2Keys(gui, min, max, step, v, yUp)) !== undefined
 	) {
 		return v;
 	}

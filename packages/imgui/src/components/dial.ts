@@ -5,6 +5,7 @@ import type { IGridLayout } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
 import { norm } from "@thi.ng/math/fit";
+import { clamp } from "@thi.ng/math/interval";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { hash } from "@thi.ng/vectors/hash";
 import type { ComponentOpts } from "../api.js";
@@ -104,8 +105,8 @@ export const dialRaw = (
 	max: number,
 	step: number,
 	value: number,
-	lx: number,
-	ly: number,
+	labelX: number,
+	labelY: number,
 	label?: string,
 	fmt?: Fn<number, string>,
 	info?: string
@@ -119,7 +120,7 @@ export const dialRaw = (
 	const bgShape = gui.resource(id, key, () => circle(pos, r, {}));
 	const hover = isHoverSlider(gui, id, bgShape, "pointer");
 	const draw = gui.draw;
-	let v: Maybe<number> = value;
+	let v: Maybe<number> = clamp(value, min, max);
 	let res: Maybe<number>;
 	if (hover) {
 		gui.hotID = id;
@@ -147,8 +148,8 @@ export const dialRaw = (
 			id,
 			key,
 			v,
-			x + lx,
-			y + ly,
+			x + labelX,
+			y + labelY,
 			label,
 			fmt
 		);
