@@ -8,13 +8,13 @@ import { Key, type ComponentOpts } from "../api.js";
 import type { IMGUI } from "../gui.js";
 import { buttonH } from "./button.js";
 
-export interface DropDownOpts extends ComponentOpts {
+export interface DropDownOpts extends Omit<ComponentOpts, "label"> {
 	/**
 	 * Index of selected item.
 	 */
 	value: number;
 	items: string[];
-	title: string;
+	label: string;
 }
 
 export const dropdown = ({
@@ -23,7 +23,7 @@ export const dropdown = ({
 	id,
 	value,
 	items,
-	title,
+	label,
 	info,
 }: DropDownOpts) => {
 	const open = gui.state<boolean>(id, () => false);
@@ -42,7 +42,7 @@ export const dropdown = ({
 			gui,
 			layout: box,
 			id: `${id}-title`,
-			label: title,
+			label,
 			info,
 		});
 		draw &&
@@ -89,7 +89,7 @@ export const dropdown = ({
 				layout: box,
 				id: `${id}-${value}`,
 				label: items[value],
-				labelHover: title,
+				labelHover: label,
 				info,
 			})
 		) {
