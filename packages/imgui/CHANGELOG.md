@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-10-05T12:12:32Z
+- **Last updated**: 2024-10-07T12:32:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.1.0) (2024-10-07)
+
+#### 🚀 Features
+
+- clamp value args to min/max range ([ee866b1](https://github.com/thi-ng/umbrella/commit/ee866b1))
+  - update dial, ring, sliders and XY pad components
+  - ensure provided value arg is within limits
+- update ramp component & RampOpts ([953f2fa](https://github.com/thi-ng/umbrella/commit/953f2fa))
+
+#### ♻️ Refactoring
+
+- update DropDownOpts ([fe0f080](https://github.com/thi-ng/umbrella/commit/fe0f080))
+  - rename `title` option => `label`
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.0.0) (2024-10-03)
 

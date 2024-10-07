@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-10-05T12:12:32Z
+- **Last updated**: 2024-10-07T12:32:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [4.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@4.1.1) (2024-10-07)
+
+#### 🩹 Bug fixes
+
+- add missing pkg export (WrappedRandom) ([8e4f7d5](https://github.com/thi-ng/umbrella/commit/8e4f7d5))
 
 ## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@4.1.0) (2024-10-05)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-log",
-	"version": "5.1.37",
+	"version": "5.1.38",
 	"description": "Structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -39,9 +39,9 @@
 		"@thi.ng/api": "^8.11.11",
 		"@thi.ng/checks": "^3.6.13",
 		"@thi.ng/logger": "^3.0.21",
-		"@thi.ng/rstream": "^9.0.5",
+		"@thi.ng/rstream": "^9.0.6",
 		"@thi.ng/strings": "^3.8.6",
-		"@thi.ng/transducers": "^9.2.5"
+		"@thi.ng/transducers": "^9.2.6"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.9",
