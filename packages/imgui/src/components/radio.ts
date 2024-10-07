@@ -15,8 +15,17 @@ export interface RadioOpts extends Omit<ComponentOpts, "label" | "info"> {
 	 * positioned next to it.
 	 */
 	square?: boolean;
+	/**
+	 * Index of selected radio item
+	 */
 	value: number;
+	/**
+	 * Radio item labels
+	 */
 	label: string[];
+	/**
+	 * Radio item tooltips
+	 */
 	info?: string[];
 }
 

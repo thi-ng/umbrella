@@ -37,7 +37,7 @@ export const handleSlider1Keys = (
 	min: number,
 	max: number,
 	prec: number,
-	val: number
+	value: number
 ) => {
 	switch (gui.key) {
 		case Key.TAB:
@@ -48,7 +48,7 @@ export const handleSlider1Keys = (
 			const step =
 				(gui.key === Key.UP ? prec : -prec) *
 				(gui.isShiftDown() ? 5 : 1);
-			return slider1Val(val + step, min, max, prec);
+			return slider1Val(value + step, min, max, prec);
 		}
 		default:
 	}
@@ -59,7 +59,7 @@ export const handleSlider2Keys = (
 	min: Vec,
 	max: Vec,
 	prec: number,
-	val: Vec,
+	value: Vec,
 	yUp: boolean
 ) => {
 	switch (gui.key) {
@@ -71,7 +71,7 @@ export const handleSlider2Keys = (
 			const step =
 				(gui.key === Key.RIGHT ? prec : -prec) *
 				(gui.isShiftDown() ? 5 : 1);
-			return slider2Val(add2([], val, [step, 0]), min, max, prec);
+			return slider2Val(add2([], value, [step, 0]), min, max, prec);
 		}
 		case Key.UP:
 		case Key.DOWN: {
@@ -79,7 +79,7 @@ export const handleSlider2Keys = (
 				(gui.key === Key.UP ? prec : -prec) *
 				(yUp ? 1 : -1) *
 				(gui.isShiftDown() ? 5 : 1);
-			return slider2Val(add2([], val, [0, step]), min, max, prec);
+			return slider2Val(add2([], value, [0, step]), min, max, prec);
 		}
 		default:
 	}

@@ -47,7 +47,7 @@ export const toggleRaw = (
 	y: number,
 	w: number,
 	h: number,
-	lx: number,
+	labelX: number,
 	val: boolean,
 	label?: string,
 	info?: string
@@ -71,8 +71,10 @@ export const toggleRaw = (
 		label &&
 			gui.add(
 				textLabelRaw(
-					[x + theme.pad + lx, y + h / 2 + theme.baseLine],
-					gui.textColor(hover && lx > 0 && lx < w - theme.pad),
+					[x + theme.pad + labelX, y + h / 2 + theme.baseLine],
+					gui.textColor(
+						hover && labelX > 0 && labelX < w - theme.pad
+					),
 					label
 				)
 			);

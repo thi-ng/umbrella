@@ -11,6 +11,10 @@ import { layoutBox } from "../layout.js";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel.js";
 
 export interface ButtonOpts extends ComponentOpts {
+	/**
+	 * Label text when button is in hover state (by default the same as
+	 * {@link ComponentOpts.label}).
+	 */
 	labelHover?: string;
 }
 

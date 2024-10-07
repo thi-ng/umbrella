@@ -7,14 +7,14 @@ import { slider1Val } from "./slider.js";
 
 export const dialVal = (
 	p: ReadonlyVec,
-	c: ReadonlyVec,
+	origin: ReadonlyVec,
 	startTheta: number,
 	thetaGap: number,
 	min: number,
 	max: number,
 	prec: number
 ) => {
-	let theta = heading(sub2([], p, c)) - startTheta;
+	let theta = heading(sub2([], p, origin)) - startTheta;
 	theta < -0.5 && (theta += TAU);
 	return slider1Val(
 		fit(Math.min(theta / (TAU - thetaGap)), 0, 1, min, max),
