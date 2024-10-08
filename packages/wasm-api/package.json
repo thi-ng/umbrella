@@ -90,7 +90,7 @@
 		"./*.js",
 		"./*.d.ts",
 		"include",
-		"zig"
+		"zig/*.zig"
 	],
 	"exports": {
 		".": {

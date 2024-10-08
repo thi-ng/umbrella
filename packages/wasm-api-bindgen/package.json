@@ -92,7 +92,7 @@
 		"bin",
 		"include",
 		"schema",
-		"zig",
+		"zig/*.zig",
 		"internal"
 	],
 	"exports": {
