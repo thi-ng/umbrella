@@ -31,7 +31,7 @@ const processPackage = (id: string) => {
 		...(hasInclude ? ["include"] : []),
 		...(hasSchema ? ["schema"] : []),
 		...(hasSpecs ? ["specs"] : []),
-		...(hasZig ? ["zig"] : []),
+		...(hasZig ? ["zig/*.zig"] : []),
 		...srcDirs,
 	];
 	if (!equivSet(oldFiles, new Set(newFiles))) {
