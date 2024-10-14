@@ -6,6 +6,7 @@ import {
 	concat,
 	delayed,
 	filter,
+	intercept,
 	iterator,
 	map,
 	mapcat,
@@ -71,6 +72,39 @@ test("filter", async (done) => {
 			[1, 2, 3]
 		)
 	).toEqual([1, 3]);
+	done();
+});
+
+test("intercept", async (done) => {
+	expect(
+		await transduce(
+			intercept<string>([
+				(x) => (x === "a" ? "A" : x),
+				(x) => (x === "b" ? "BB" : x),
+			]),
+			push(),
+			"abc"
+		)
+	).toEqual(["A", "BB", "c"]);
+
+	// example from docstring
+	const xform = intercept<string[]>([
+		(tags) =>
+			!tags.find((x) => /^title:/.test(x)) ? [...tags, "untitled"] : tags,
+	]);
+	// dynamically add 2nd interceptor
+	xform.prepend((tags) => (tags.includes("temp") ? null : tags));
+
+	expect(
+		await transduce(xform, push(), [
+			["photo1", "title:test"],
+			["photo2"],
+			["photo3", "temp"],
+		])
+	).toEqual([
+		["photo1", "title:test"],
+		["photo2", "untitled"],
+	]);
 	done();
 });
 

@@ -118,6 +118,9 @@
 		"./filter": {
 			"default": "./filter.js"
 		},
+		"./intercept": {
+			"default": "./intercept.js"
+		},
 		"./iterator": {
 			"default": "./iterator.js"
 		},

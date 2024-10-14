@@ -8,6 +8,7 @@ export * from "./delayed.js";
 export * from "./ensure.js";
 export * from "./events.js";
 export * from "./filter.js";
+export * from "./intercept.js";
 export * from "./iterator.js";
 export * from "./map.js";
 export * from "./mapcat.js";
