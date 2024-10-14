@@ -306,14 +306,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-10-05
+As of: 2024-10-14
 
-| Status                                           | Package                                       | Version                                                                                                             | Changelog                                       |
-|:-------------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/imgui`](./packages/imgui)           | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)           | [changelog](./packages/imgui/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/random`](./packages/random)         | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)         | [changelog](./packages/random/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-perf-cyan)     | [`@thi.ng/rdom`](./packages/rdom)             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)             | [changelog](./packages/rdom/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-forms`](./packages/rdom-forms) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms) | [changelog](./packages/rdom-forms/CHANGELOG.md) |
+| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
+|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/imgui`](./packages/imgui)                         | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)                         | [changelog](./packages/imgui/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/random`](./packages/random)                       | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)                       | [changelog](./packages/random/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-perf-cyan)     | [`@thi.ng/rdom`](./packages/rdom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                           | [changelog](./packages/rdom/CHANGELOG.md)              |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-forms`](./packages/rdom-forms)               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)               | [changelog](./packages/rdom-forms/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers-async`](./packages/transducers-async) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async) | [changelog](./packages/transducers-async/CHANGELOG.md) |
 
 ### Fundamentals
 
