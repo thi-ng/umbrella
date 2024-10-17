@@ -13,7 +13,7 @@ export const initUI = async ({ bus, counters, logger }: App) => ({
 				counters,
 				button(
 					".stop",
-					{ onclick: () => bus.write(["stop"]) },
+					{ onclick: () => bus.emit(["stop"]) },
 					"stop event bus"
 				),
 				textArea({

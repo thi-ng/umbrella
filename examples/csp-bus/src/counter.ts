@@ -3,7 +3,7 @@ import { Channel, Mult, channel, mult } from "@thi.ng/csp";
 import { button, div, progress } from "@thi.ng/hiccup-html";
 import { Component, type NumOrElement } from "@thi.ng/rdom";
 import { map } from "@thi.ng/transducers-async";
-import type { EventBus } from "./api.js";
+import type { EventBus } from "./events.js";
 
 // counter component with local state in the form of CSP channels
 export class Counter extends Component {
@@ -28,7 +28,7 @@ export class Counter extends Component {
 				button(
 					{
 						disabled: this.disabled,
-						onclick: () => this.bus.write(["start-counter", this]),
+						onclick: () => this.bus.emit(["start-counter", this]),
 					},
 					"start"
 				),
