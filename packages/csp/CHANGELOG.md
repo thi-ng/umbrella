@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-10-05T12:12:32Z
+- **Last updated**: 2024-10-17T15:38:52Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@3.2.13) (2024-10-17)
+
+#### ♻️ Refactoring
+
+- undeprecate `into()`, refactor `pipe()` ([c8788d9](https://github.com/thi-ng/umbrella/commit/c8788d9))
+  - update docstrings
 
 ### [3.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@3.2.2) (2024-06-21)
 
