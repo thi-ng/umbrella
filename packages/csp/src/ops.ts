@@ -129,25 +129,33 @@ export const merge = <T>(
 };
 
 /**
- * @deprecated use {@link pipe} instead.
+ * Receives values from `src` and writes them to `dest` for as long as it's
+ * accepting new writes (i.e. isn't closed from elsewhere). If `close` is true
+ * (default), the `dest` channel will be automatically closed once the `src` is
+ * exhausted. Returns a void-promise which resolves once done.
+ *
+ * @param dest
+ * @param src
+ * @param close
  */
 export const into = async <T, DEST extends IWriteable<T> & IClosable>(
-	chan: DEST,
+	dest: DEST,
 	src: Iterable<T> | AsyncIterable<T>,
 	close = false
 ) => {
 	for await (let x of src) {
-		if (!chan.writable()) break;
-		await chan.write(x);
+		if (!dest.writable()) break;
+		await dest.write(x);
 	}
-	close && chan.close();
+	close && dest.close();
 };
 
 /**
- * Receives values from `src` and writes them to `dest` for as long as it's
- * accepting new writes (i.e. isn't closed from elsewhere). If `close` is true
- * (default), the `dest` channel will be automatically closed once the `src` is
- * exhausted. Returns `dest` channel.
+ * Similar to {@link into} (and also calls that function asynchronously), but
+ * `pipe()` itself is synchronous and returns `dest` channel immediatedly.
+ *
+ * @remarks
+ * Also note different argument order!
  *
  * @param src
  * @param dest
@@ -158,13 +166,7 @@ export const pipe = <T, DEST extends IWriteable<T> & IClosable>(
 	dest: DEST,
 	close = true
 ) => {
-	(async () => {
-		for await (let x of src) {
-			await dest.write(x);
-			if (!dest.writable()) break;
-		}
-		close && dest.close();
-	})();
+	into(dest, src, close);
 	return dest;
 };
 
