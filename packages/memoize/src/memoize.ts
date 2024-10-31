@@ -1,4 +1,4 @@
-import type { Fn, Fn2, Fn3, Fn4, FnAny } from "@thi.ng/api";
+import type { FnAny } from "@thi.ng/api";
 import type { MapLike } from "./api.js";
 
 /**
@@ -18,24 +18,34 @@ import type { MapLike } from "./api.js";
  * @param fn -
  * @param cache -
  */
-export function memoize<A, B>(fn: Fn<A, B>, cache: MapLike<A, B>): Fn<A, B>;
-export function memoize<A, B, C>(
-	fn: Fn2<A, B, C>,
-	cache: MapLike<[A, B], C>
-): Fn2<A, B, C>;
-export function memoize<A, B, C, D>(
-	fn: Fn3<A, B, C, D>,
-	cache: MapLike<[A, B, C], D>
-): Fn3<A, B, C, D>;
-export function memoize<A, B, C, D, E>(
-	fn: Fn4<A, B, C, D, E>,
-	cache: MapLike<[A, B, C, D], E>
-): Fn4<A, B, C, D, E>;
-export function memoize(fn: FnAny<any>, cache: MapLike<any, any>): FnAny<any> {
+export function memoize<T extends FnAny<any>>(
+	fn: T,
+	cache: MapLike<any, any>
+): T {
+	// @ts-ignore
 	return (...args: any[]) => {
 		let res;
 		return cache.has(args)
 			? cache.get(args)
 			: (cache.set(args, (res = fn.apply(null, args))), res);
+	};
+}
+
+/**
+ * Async version of {@link memoize}.
+ *
+ * @param fn
+ * @param cache
+ */
+export function memoizeAsync<T extends FnAny<any>>(
+	fn: T,
+	cache: MapLike<any, any>
+): (...xs: Parameters<T>) => Promise<Awaited<ReturnType<T>>> {
+	// @ts-ignore
+	return async (...args: any[]) => {
+		let res;
+		return cache.has(args)
+			? cache.get(args)
+			: (cache.set(args, (res = await fn.apply(null, args))), res);
 	};
 }

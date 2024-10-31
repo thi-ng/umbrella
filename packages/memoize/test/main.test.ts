@@ -1,7 +1,7 @@
 import { EquivMap } from "@thi.ng/associative";
 import { LRUCache } from "@thi.ng/cache";
 import { expect, test } from "bun:test";
-import { memoize1, memoize2O, memoizeO } from "../src/index.js";
+import { memoize1, memoizeO } from "../src/index.js";
 
 test("memoize1", () => {
 	const calls: number[] = [];
@@ -16,7 +16,7 @@ test("memoize1", () => {
 
 test("memoizeO", () => {
 	const calls: number[] = [];
-	const f = memoizeO<number, number>((x) => (calls.push(x), x * 10));
+	const f = memoizeO((x: number) => (calls.push(x), x * 10));
 	expect(f(1)).toBe(10);
 	expect(f(2)).toBe(20);
 	expect(f(2)).toBe(20);
@@ -27,8 +27,10 @@ test("memoizeO", () => {
 
 test("memoize2O", () => {
 	const calls: number[][] = [];
-	const f = memoize2O<number, number, number>(
-		(a, b) => (calls.push([a, b]), a * b)
+	const cache: Record<string, number> = {};
+	const f = memoizeO(
+		(a: number, b: number) => (calls.push([a, b]), a * b),
+		cache
 	);
 	expect(f(1, 2)).toBe(2);
 	expect(f(1, 2)).toBe(2);
@@ -39,6 +41,11 @@ test("memoize2O", () => {
 		[2, 3],
 		[2, 1],
 	]);
+	expect(cache).toEqual({
+		"1-2": 2,
+		"2-1": 2,
+		"2-3": 6,
+	});
 });
 
 test("memoize1 (equivmap)", () => {

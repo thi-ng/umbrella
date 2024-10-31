@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, MaybePromise } from "@thi.ng/api";
 import type { MapLike } from "./api.js";
 
 /**
@@ -23,4 +23,19 @@ export const memoize1 =
 		return cache.has(x)
 			? cache.get(x)!
 			: (cache.set(x, (res = fn(x))), res);
+	};
+
+/**
+ * Async version of {@link memoize1}.
+ *
+ * @param fn
+ * @param cache
+ */
+export const memoizeAsync1 =
+	<A, B>(fn: Fn<A, MaybePromise<B>>, cache: MapLike<A, B> = new Map()) =>
+	async (x: A): Promise<B> => {
+		let res;
+		return cache.has(x)
+			? cache.get(x)!
+			: (cache.set(x, (res = await fn(x))), res);
 	};

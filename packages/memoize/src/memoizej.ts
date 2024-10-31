@@ -1,4 +1,4 @@
-import type { Fn, Fn2, Fn3, Fn4, FnAny, IObjectOf } from "@thi.ng/api";
+import type { FnAny, IObjectOf } from "@thi.ng/api";
 
 /**
  * Function memoization for arbitrary argument counts. Returns augmented
@@ -15,23 +15,11 @@ import type { Fn, Fn2, Fn3, Fn4, FnAny, IObjectOf } from "@thi.ng/api";
  * @param fn -
  * @param cache -
  */
-export function memoizeJ<A, B>(fn: Fn<A, B>, cache?: IObjectOf<B>): Fn<A, B>;
-export function memoizeJ<A, B, C>(
-	fn: Fn2<A, B, C>,
-	cache?: IObjectOf<C>
-): Fn2<A, B, C>;
-export function memoizeJ<A, B, C, D>(
-	fn: Fn3<A, B, C, D>,
-	cache?: IObjectOf<D>
-): Fn3<A, B, C, D>;
-export function memoizeJ<A, B, C, D, E>(
-	fn: Fn4<A, B, C, D, E>,
-	cache?: IObjectOf<E>
-): Fn4<A, B, C, D, E>;
-export function memoizeJ(
-	fn: FnAny<any>,
-	cache: Record<string, any> = Object.create(null)
-): FnAny<any> {
+export function memoizeJ<T extends FnAny<any>>(
+	fn: T,
+	cache: IObjectOf<any> = Object.create(null)
+): T {
+	// @ts-ignore
 	return (...args: any[]) => {
 		const key = JSON.stringify(args);
 		if (key !== undefined) {
@@ -40,5 +28,27 @@ export function memoizeJ(
 				: (cache[key] = fn.apply(null, args));
 		}
 		return fn.apply(null, args);
+	};
+}
+
+/**
+ * Async version of {@link memoizeJ}.
+ *
+ * @param fn
+ * @param cache
+ */
+export function memoizeAsyncJ<T extends FnAny<any>>(
+	fn: T,
+	cache: IObjectOf<any> = Object.create(null)
+): (...xs: Parameters<T>) => Promise<Awaited<ReturnType<T>>> {
+	// @ts-ignore
+	return async (...args: any[]) => {
+		const key = JSON.stringify(args);
+		if (key !== undefined) {
+			return key in cache
+				? cache[key]
+				: (cache[key] = await fn.apply(null, args));
+		}
+		return await fn.apply(null, args);
 	};
 }
