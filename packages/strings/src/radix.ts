@@ -2,10 +2,10 @@ import {
 	U16 as $16,
 	U24 as $24,
 	U32 as $32,
-	U64HL,
 	U8 as $8,
+	U64HL,
 } from "@thi.ng/hex";
-import { memoizeJ } from "@thi.ng/memoize/memoizej";
+import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { Stringer } from "./api.js";
 import { repeat } from "./repeat.js";
 
@@ -25,7 +25,7 @@ export const radix: (
 	radix: number,
 	len: number,
 	prefix?: string
-) => Stringer<number> = memoizeJ(
+) => Stringer<number> = memoizeO(
 	(radix: number, n: number, prefix: string = "") => {
 		const buf = repeat("0", n);
 		return (x: any) => {

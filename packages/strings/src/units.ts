@@ -1,4 +1,3 @@
-import type { Maybe } from "@thi.ng/api";
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
 import type { Stringer } from "./api.js";
 
@@ -8,36 +7,33 @@ export const units: (
 	exp: UnitDefs,
 	base: string,
 	prec?: number
-) => Stringer<number> = memoizeJ<
-	UnitDefs,
-	string,
-	Maybe<number>,
-	Stringer<number>
->((exp: UnitDefs, base: string, prec: number = 2) => {
-	const groups = exp
-		.map(
-			(x) =>
-				<[number, number, string]>[
-					x[0],
-					x[2] != null ? x[2] : prec,
-					x[1],
-				]
-		)
-		.sort((a, b) => a[0] - b[0]);
-	return (x: number) => {
-		if (x === 0) {
-			return `0${base}`;
-		}
-		const absX = Math.abs(x);
-		for (let i = groups.length; i-- > 0; ) {
-			const g = groups[i];
-			if (absX >= g[0] || i === 0) {
-				return (x / g[0]).toFixed(g[1]) + g[2];
+) => Stringer<number> = memoizeJ(
+	(exp: UnitDefs, base: string, prec: number = 2) => {
+		const groups = exp
+			.map(
+				(x) =>
+					<[number, number, string]>[
+						x[0],
+						x[2] != null ? x[2] : prec,
+						x[1],
+					]
+			)
+			.sort((a, b) => a[0] - b[0]);
+		return (x: number) => {
+			if (x === 0) {
+				return `0${base}`;
 			}
-		}
-		return "";
-	};
-});
+			const absX = Math.abs(x);
+			for (let i = groups.length; i-- > 0; ) {
+				const g = groups[i];
+				if (absX >= g[0] || i === 0) {
+					return (x / g[0]).toFixed(g[1]) + g[2];
+				}
+			}
+			return "";
+		};
+	}
+);
 
 const KB = 1024;
 
