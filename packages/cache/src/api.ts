@@ -98,7 +98,7 @@ export interface CacheOpts<K, V> {
 	 * Custom ES6 Map compatible implementation to use as the cache's backing
 	 * store.
 	 */
-	map: Fn0<Map<K, any>>;
+	map: Fn0<MapLike<K, any>>;
 	/**
 	 * Max number of items in the cache.
 	 */
@@ -114,4 +114,15 @@ export interface CacheEntry<K, V> {
 	k: K;
 	v: V;
 	s: number;
+}
+
+/**
+ * Simplified subset of the ES6 Map API needed for cache implementations.
+ */
+export interface MapLike<K, V> {
+	has(key: K): boolean;
+	get(key: K): Maybe<V>;
+	set(key: K, val: V): void;
+	delete(key: K): void;
+	clear(): void;
 }

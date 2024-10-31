@@ -1,6 +1,6 @@
 import type { Fn0, Maybe, Nullable } from "@thi.ng/api";
 import type { ConsCell, DCons } from "@thi.ng/dcons";
-import type { CacheEntry, CacheOpts } from "./api.js";
+import type { CacheEntry, CacheOpts, MapLike } from "./api.js";
 import { LRUCache } from "./lru.js";
 
 export interface TLRUCacheOpts<K, V> extends CacheOpts<K, V> {
@@ -50,7 +50,7 @@ export interface TLRUCacheEntry<K, V> extends CacheEntry<K, V> {
  */
 export class TLRUCache<K, V> extends LRUCache<K, V> {
 	protected declare opts: TLRUCacheOpts<K, V>;
-	protected declare map: Map<K, ConsCell<TLRUCacheEntry<K, V>>>;
+	protected declare map: MapLike<K, ConsCell<TLRUCacheEntry<K, V>>>;
 	protected declare items: DCons<TLRUCacheEntry<K, V>>;
 
 	constructor(

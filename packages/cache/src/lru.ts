@@ -1,10 +1,10 @@
 import type { Fn0, Maybe, Nullable } from "@thi.ng/api";
 import type { ConsCell } from "@thi.ng/dcons";
 import { DCons } from "@thi.ng/dcons/dcons";
-import type { CacheEntry, CacheOpts, ICache } from "./api.js";
+import type { CacheEntry, CacheOpts, ICache, MapLike } from "./api.js";
 
 export class LRUCache<K, V> implements ICache<K, V> {
-	protected map: Map<K, ConsCell<CacheEntry<K, V>>>;
+	protected map: MapLike<K, ConsCell<CacheEntry<K, V>>>;
 	protected items: DCons<CacheEntry<K, V>>;
 	protected opts: CacheOpts<K, V>;
 	protected _size: number;
