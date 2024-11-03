@@ -1,9 +1,7 @@
-import type { Transducer } from "@thi.ng/transducers";
-import { comp } from "@thi.ng/transducers/comp";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/map";
-import { partition } from "@thi.ng/transducers/partition";
-import { bounds } from "./bounds.js";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/compr";
+import { iterator1 } from "@thi.ng/transducers/iterator";
+import { Deque } from "./deque.js";
 
 /**
  * Computes Donchian channel, i.e. min/max values for sliding window.
@@ -22,6 +20,23 @@ export function donchian(
 ): IterableIterator<[number, number]>;
 export function donchian(period: number, src?: Iterable<number>): any {
 	return src
-		? iterator(donchian(period), src)
-		: comp<number, number[], number[]>(partition(period, 1), map(bounds));
+		? iterator1(donchian(period), src)
+		: (rfn: Reducer<[number, number], any>) => {
+				const samples: number[] = [];
+				const minDeque = new Deque(samples, (a, b) => a >= b);
+				const maxDeque = new Deque(samples, (a, b) => a <= b);
+				return compR(rfn, (acc: any, x: number) => {
+					const num = samples.push(x);
+					minDeque.add(x);
+					maxDeque.add(x);
+					if (num > period) {
+						samples.shift();
+						minDeque.shift();
+						maxDeque.shift();
+					}
+					return num >= period
+						? rfn[2](acc, [minDeque.head(), maxDeque.head()])
+						: acc;
+				});
+		  };
 }
