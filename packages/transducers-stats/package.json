@@ -36,6 +36,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
+		"@thi.ng/api": "^8.11.11",
 		"@thi.ng/checks": "^3.6.13",
 		"@thi.ng/dcons": "^3.2.131",
 		"@thi.ng/errors": "^2.5.17",
@@ -84,6 +85,9 @@
 		"./bounds": {
 			"default": "./bounds.js"
 		},
+		"./deque": {
+			"default": "./deque.js"
+		},
 		"./donchian": {
 			"default": "./donchian.js"
 		},
@@ -101,6 +105,12 @@
 		},
 		"./momentum": {
 			"default": "./momentum.js"
+		},
+		"./moving-maximum": {
+			"default": "./moving-maximum.js"
+		},
+		"./moving-minimum": {
+			"default": "./moving-minimum.js"
 		},
 		"./mse": {
 			"default": "./mse.js"

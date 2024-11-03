@@ -6793,6 +6793,7 @@ __metadata:
   resolution: "@thi.ng/transducers-stats@workspace:packages/transducers-stats"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.47.9"
+    "@thi.ng/api": "npm:^8.11.11"
     "@thi.ng/checks": "npm:^3.6.13"
     "@thi.ng/dcons": "npm:^3.2.131"
     "@thi.ng/errors": "npm:^2.5.17"
