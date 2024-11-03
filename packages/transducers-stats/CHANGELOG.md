@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-10-05T12:12:32Z
+- **Last updated**: 2024-11-03T16:41:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-stats@2.2.0) (2024-11-03)
+
+#### 🚀 Features
+
+- add moving min/max, update donchian ([188d11a](https://github.com/thi-ng/umbrella/commit/188d11a))
+  - add movingMaximum() transducer
+  - add movingMinimum() transducer
+  - refactor donchian()
+  - add internal Deque helper class
+  - add tests
 
 ### [2.1.113](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-stats@2.1.113) (2024-04-08)
 
