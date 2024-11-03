@@ -27,6 +27,8 @@ transforming ES6 iterator (generator) instead of a transducer.
 - [HMA (Hull Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/hma.ts)
 - [MACD (Moving Average Convergence/Divergence)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/macd.ts)
 - [Momentum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/momentum.ts)
+- [Moving Maximum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/moving-maximum.ts)
+- [Moving Minimum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/moving-minimum.ts)
 - [ROC (Rate of change)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/roc.ts)
 - [RSI (Relative Strength Index)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/rsi.ts)
 - [SD (Standard Deviation)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/sd.ts)
