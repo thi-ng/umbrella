@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/memoize",
 	"version": "4.0.0",
-	"description": "Function memoization with configurable caching",
+	"description": "Function memoization with configurable caching and support for async functions",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -45,6 +45,7 @@
 		"typescript": "^5.6.2"
 	},
 	"keywords": [
+		"async",
 		"cache",
 		"functional",
 		"memoization",

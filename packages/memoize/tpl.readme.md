@@ -22,10 +22,10 @@ based on different strategies. See doc strings for further details.
 - [defOnce()](https://docs.thi.ng/umbrella/memoize/functions/defOnce.html)
 - [delay()](https://docs.thi.ng/umbrella/memoize/functions/delay.html)
 - [doOnce()](https://docs.thi.ng/umbrella/memoize/functions/doOnce.html)
-- [memoize()](https://docs.thi.ng/umbrella/memoize/functions/memoize.html)
-- [memoize1()](https://docs.thi.ng/umbrella/memoize/functions/memoize1.html)
-- [memoizeJ()](https://docs.thi.ng/umbrella/memoize/functions/memoizeJ.html)
-- [memoizeO()](https://docs.thi.ng/umbrella/memoize/functions/memoizeO.html)
+- [memoize()](https://docs.thi.ng/umbrella/memoize/functions/memoize.html) / [memoizeAsync()](https://docs.thi.ng/umbrella/memoize/functions/memoizeAsync.html)
+- [memoize1()](https://docs.thi.ng/umbrella/memoize/functions/memoize1.html) / [memoizeAsync1()](https://docs.thi.ng/umbrella/memoize/functions/memoizeAsync1.html)
+- [memoizeJ()](https://docs.thi.ng/umbrella/memoize/functions/memoizeJ.html) / [memoizeAsyncJ()](https://docs.thi.ng/umbrella/memoize/functions/memoizeAsyncJ.html)
+- [memoizeO()](https://docs.thi.ng/umbrella/memoize/functions/memoizeO.html) / [memoizeAsyncO()](https://docs.thi.ng/umbrella/memoize/functions/memoizeAsyncO.html)
 
 {{meta.status}}
 
@@ -64,7 +64,10 @@ import { LRUCache } from "@thi.ng/cache";
 ```ts
 import { memoize1 } from "@thi.ng/memoize";
 
-foo = memoize1((x) => (console.log("exec"), x * 10));
+foo = memoize1((x: number) => {
+    console.log("exec");
+    return x * 10;
+});
 
 foo(1);
 // exec
@@ -76,8 +79,8 @@ import { EquivMap } from "@thi.ng/associative";
 
 // with custom cache
 foo = memoize1(
-    (x) => (console.log("exec"), x[0] * 10),
-	// custom ES6 Map impl which compares by value, not by reference
+    (x: number[]) => (console.log("exec"), x[0] * 10),
+    // custom ES6 Map impl which compares by value, not by reference
     new EquivMap()
 );
 
@@ -86,6 +89,7 @@ foo([1]);
 // 10
 
 // would be a cache miss w/ native ES6 Map
+// due to lack of value equality semantics
 foo([1]);
 // 10
 
@@ -93,7 +97,7 @@ import { LRUCache } from "@thi.ng/cache";
 
 // use LRU cache to limit cache size
 foo = memoize1(
-    (x) => (console.log("exec"), x[0] * 10),
+    (x: number[]) => (console.log("exec"), x[0] * 10),
     new LRUCache(null, { maxlen: 3 })
 );
 ```
@@ -105,7 +109,10 @@ import { memoize } from "@thi.ng/memoize";
 import { EquivMap } from "@thi.ng/associative";
 
 const dotProduct = memoize(
-    (x, y) => (console.log("exec"), x[0] * y[0] + x[1] * y[1]),
+    (x: number[], y: number[]) => {
+        console.log("exec");
+        return x[0] * y[0] + x[1] * y[1];
+    },
     new EquivMap()
 );
 
@@ -122,11 +129,16 @@ dotProduct([1,2], [3,4]);
 import { memoizeJ } from "@thi.ng/memoize";
 
 const dotProduct = memoizeJ(
-    (x, y) => (console.log("exec"), x[0] * y[0] + x[1] * y[1])
+    (x: number[], y: number[]) => {
+        console.log("exec");
+        return x[0] * y[0] + x[1] * y[1];
+    }
 );
+
 dotProduct([1, 2], [3, 4]);
 // exec
 // 11
+
 dotProduct([1, 2], [3, 4]);
 // 11
 ```
