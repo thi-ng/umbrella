@@ -145,7 +145,11 @@ export class WasmStringSlice implements ReadonlyWasmString {
 /**
  * Memory mapped string wrapper for C-style UTF-8 encoded and **always**
  * zero-terminated char pointers. The actual JS string can be obtained via
- * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
+ * {@link WasmStringPtr.deref} and mutated via {@link WasmStringPtr.set}.
+ *
+ * @remarks
+ * Pointers with addr=0 are interpreted as null/optional pointers. See
+ * {@link WasmStringPtr.length} and {@link WasmStringPtr.deref} for details.
  */
 export class WasmStringPtr implements ReadonlyWasmString {
 	constructor(
@@ -169,19 +173,26 @@ export class WasmStringPtr implements ReadonlyWasmString {
 
 	/**
 	 * Returns computed string length (scanning memory for zero sentinel)
+	 *
+	 * @remarks
+	 * Always returns 0 if null pointer (i.e. if {@link WasmStringPtr.addr} is
+	 * zero).
 	 */
 	get length() {
-		this.mem.ensureMemory();
-		const idx = this.mem.u8.indexOf(0, this.addr);
-		return idx >= 0 ? idx - this.addr : 0;
+		const addr = this.addr;
+		if (!addr) return 0;
+		const idx = this.mem.u8.indexOf(0, addr);
+		return idx >= 0 ? idx - addr : 0;
 	}
 
 	/**
-	 * Returns memory as JS string (aka wrapper for
-	 * {@link WasmBridge.getString}).
+	 * Returns memory as JS string (via {@link WasmBridge.getString}). Returns
+	 * empty string if null pointer (i.e. if {@link WasmStringPtr.addr} is
+	 * zero).
 	 */
 	deref() {
-		return this.mem.getString(this.addr, this.length);
+		const addr = this.addr;
+		return addr ? this.mem.getString(addr, this.length) : "";
 	}
 
 	/**
@@ -206,6 +217,7 @@ export class WasmStringPtr implements ReadonlyWasmString {
 	 */
 	set(str: string | WasmStringPtr) {
 		const addr = this.addr;
+		if (!addr) unsupported("can't mutate null pointer");
 		if (typeof str === "string") {
 			if (this.isConst) unsupported("can't mutate const string");
 			this.mem.ensureMemory();
