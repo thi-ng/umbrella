@@ -11,7 +11,7 @@ pub var WASM_ALLOCATOR: ?std.mem.Allocator = null;
 
 export fn check(addr: usize, len: usize) void {
     var mem = [2]usize{ addr, len };
-    js.printStr(@ptrCast(*[]u8, &mem).*);
+    js.printStr(@as(*[]u8, @ptrCast(&mem)).*);
 }
 
 export fn useFBA() void {

@@ -1,13 +1,14 @@
 import { MemoryLogger } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
 	EVENT_MEMORY_CHANGED,
 	WasmBridge,
+	WasmStringPtr,
 	type IWasmAPI,
 	type WasmExports,
 } from "../src/index.js";
-import { resolve } from "node:path";
 
 test("allocators", async (done) => {
 	interface Allocators extends WasmExports {
@@ -32,14 +33,14 @@ test("allocators", async (done) => {
 	expect(() => bridge.allocate(256)).toThrow();
 
 	bridge.exports.useFBA();
-	expect(bridge.allocate(256)).toEqual([0x100b0, 256]);
-	expect(bridge.allocate(16)).toEqual([0x101b0, 16]);
-	expect(bridge.setString("hello fba!", 0x101b0, 16)).toBe(10);
-	bridge.exports.check(0x101b0, 10);
-	expect(sizes).toEqual([131072]);
+	expect(bridge.allocate(256)).toEqual([0x1160, 256]);
+	expect(bridge.allocate(16)).toEqual([0x1260, 16]);
+	expect(bridge.setString("hello fba!", 0x1260, 16)).toBe(10);
+	bridge.exports.check(0x1260, 10);
+	expect(sizes).toEqual([0x10000]);
 
 	bridge.exports.useGPA();
-	expect(bridge.allocate(256)).toEqual([0x20000, 256]);
+	expect(bridge.allocate(256)).toEqual([0x10000, 256]);
 	expect(bridge.allocate(16)).toEqual([0x40000, 16]);
 	expect(bridge.setString("hello gpa!", 0x40000, 16)).toBe(10);
 	bridge.exports.check(0x40000, 10);
@@ -47,12 +48,12 @@ test("allocators", async (done) => {
 	bridge.exports.useNone();
 	expect(() => bridge.allocate(256)).toThrow();
 
-	expect(sizes).toEqual([131072, 262144, 393216]);
+	expect(sizes).toEqual([0x10000, 0x40000, 0x60000]);
 	expect(logger.journal.map((x) => x[3])).toEqual([
-		"allocated 256 bytes @ 0x000100b0 .. 0x000101af",
-		"allocated 16 bytes @ 0x000101b0 .. 0x000101bf",
+		"allocated 256 bytes @ 0x00001160 .. 0x0000125f",
+		"allocated 16 bytes @ 0x00001260 .. 0x0000126f",
 		"hello fba!",
-		"allocated 256 bytes @ 0x00020000 .. 0x000200ff",
+		"allocated 256 bytes @ 0x00010000 .. 0x000100ff",
 		"allocated 16 bytes @ 0x00040000 .. 0x0004000f",
 		"hello gpa!",
 	]);
@@ -63,9 +64,12 @@ test("custom", async (done) => {
 	interface CustomWasm extends WasmExports {
 		test_setVec2: () => void;
 		test_epoch: () => void;
+		test_optStringPtr: () => void;
+		test_optStringPtrNull: () => void;
 	}
 	class CustomAPI implements IWasmAPI {
 		parent!: WasmBridge;
+		optPtr!: WasmStringPtr;
 
 		async init(parent: WasmBridge) {
 			this.parent = parent;
@@ -77,11 +81,15 @@ test("custom", async (done) => {
 				setVec2: (addr: number) => {
 					this.parent.f32.set([10, 20], addr >> 2);
 				},
+				structWithOptPtr: (addr: number) => {
+					this.optPtr = new WasmStringPtr(this.parent, addr, true);
+				},
 			};
 		}
 	}
 
 	const logger = new MemoryLogger("wasm");
+	// const logger = new ConsoleLogger("wasm");
 	const bridge = new WasmBridge<CustomWasm>(
 		[{ id: "custom", factory: () => new CustomAPI() }],
 		logger
@@ -101,5 +109,20 @@ test("custom", async (done) => {
 	const epoch = bridge.api.epoch();
 	bridge.exports.test_epoch();
 	expect(logger.journal[0][3] >= epoch).toBeTrue();
+
+	bridge.exports.test_optStringPtrNull();
+	let ptr = (<CustomAPI>bridge.modules.custom).optPtr;
+	expect(ptr.addr).toBe(0);
+	expect(ptr.base).toBe(0x1000);
+	expect(ptr.length).toBe(0);
+	expect(ptr.deref()).toBe("");
+
+	bridge.exports.test_optStringPtr();
+	ptr = (<CustomAPI>bridge.modules.custom).optPtr;
+	expect(ptr.addr).toBe(0x1008);
+	expect(ptr.base).toBe(0x1004);
+	expect(ptr.length).toBe(3);
+	expect(ptr.deref()).toBe("foo");
+
 	done();
 });

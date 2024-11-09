@@ -33,7 +33,9 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "zig test zig/tests.zig && bun test",
-		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi zig/lib.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test",
+		"test:build-zig-allocators": "zig build-exe -fno-entry -fstrip --stack 4096 -OReleaseSmall -target wasm32-freestanding --dep wasmapi -Mroot=test/allocators.zig -Mwasmapi=zig/lib.zig --name allocators -rdynamic --import-symbols && wasm-dis -o allocators.wast allocators.wasm && mv allocators.wasm test",
+		"test:build-zig-custom": "zig build-exe -fno-entry -fstrip --stack 4096 -OReleaseSmall -target wasm32-freestanding --dep wasmapi -Mroot=test/custom.zig -Mwasmapi=zig/lib.zig --name custom -rdynamic --import-symbols && wasm-dis -o custom.wast custom.wasm && mv custom.wasm test",
+		"test:build-zig": "yarn test:build-zig-allocators && yarn test:build-zig-custom",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
