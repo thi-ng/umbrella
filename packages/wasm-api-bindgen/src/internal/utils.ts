@@ -87,6 +87,25 @@ export const isStruct = (x: TopLevelType): x is Struct => x.type === "struct";
 export const isUnion = (x: TopLevelType): x is Union => x.type === "union";
 
 /**
+ * Returns true if `x` is a struct or union and contains string fields.
+ *
+ * @param x
+ */
+export const hasStringFields = (x: TopLevelType) => {
+	if (!isStruct(x) || isUnion(x)) return false;
+	return x.fields.some((f) => f.type === "string");
+};
+
+/**
+ * Returns true if the given type collection contains structs or unions with
+ * string fields.
+ *
+ * @param coll
+ */
+export const usesStrings = (coll: TypeColl) =>
+	Object.values(coll).some(hasStringFields);
+
+/**
  * Returns filtered array of struct fields of with "ptr" tag or function
  * pointers.
  *

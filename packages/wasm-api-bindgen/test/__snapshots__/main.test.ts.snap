@@ -128,6 +128,9 @@ import { Pointer, WasmStringSlice, type IWasmMemoryAccess, type MemorySlice, typ
 // @ts-ignore
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
+// @ts-ignore possibly unused
+const __str = (mem: IWasmMemoryAccess, base: number, isConst = true) => new WasmStringSlice(mem, base, isConst);
+
 export interface Foo extends WasmTypeBase {
 	readonly single: WasmStringSlice;
 	readonly constSingle: WasmStringSlice;
@@ -161,27 +164,27 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				return mem.u8.subarray(base, base + 56);
 			},
 			get single(): WasmStringSlice {
-				return $single || ($single = new WasmStringSlice(mem, base, false));
+				return $single || ($single = __str(mem, base, false));
 			},
 			get constSingle(): WasmStringSlice {
-				return $constSingle || ($constSingle = new WasmStringSlice(mem, (base + 8), true));
+				return $constSingle || ($constSingle = __str(mem, (base + 8)));
 			},
 			get multi(): WasmStringSlice[] {
 				const addr = (base + 16);
 				const $multi: WasmStringSlice[] = [];
-				for(let i = 0; i < 2; i++) $multi.push(new WasmStringSlice(mem, addr + i * 8, true));
+				for(let i = 0; i < 2; i++) $multi.push(__str(mem, addr + i * 8));
 				return $multi;
 			},
 			get singlePtr(): Pointer<WasmStringSlice> {
 				return $singlePtr || ($singlePtr = new Pointer<WasmStringSlice>(mem, (base + 32),
-				(addr) => new WasmStringSlice(mem, addr, true)
+				(addr) => __str(mem, addr, true)
 				));
 			},
 			get multiPtr(): Pointer<WasmStringSlice[]> {
 				return $multiPtr || ($multiPtr = new Pointer<WasmStringSlice[]>(mem, (base + 36),
 				(addr) => {
 					const $buf: WasmStringSlice[] = [];
-					for(let i = 0; i < 2; i++) $buf.push(new WasmStringSlice(mem, addr + i * 8, true));
+					for(let i = 0; i < 2; i++) $buf.push(__str(mem, addr + i * 8));
 					return $buf;
 				}
 				));
@@ -190,14 +193,14 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				const addr = mem.u32[(base + 40) >>> 2];
 				const len = mem.u32[(base + 44) >>> 2];
 				const $slice: WasmStringSlice[] = [];
-				for(let i = 0; i < len; i++) $slice.push(new WasmStringSlice(mem, addr + i * 8, false));
+				for(let i = 0; i < len; i++) $slice.push(__str(mem, addr + i * 8, false));
 				return $slice;
 			},
 			get constSlice(): WasmStringSlice[] {
 				const addr = mem.u32[(base + 48) >>> 2];
 				const len = mem.u32[(base + 52) >>> 2];
 				const $constSlice: WasmStringSlice[] = [];
-				for(let i = 0; i < len; i++) $constSlice.push(new WasmStringSlice(mem, addr + i * 8, true));
+				for(let i = 0; i < len; i++) $constSlice.push(__str(mem, addr + i * 8));
 				return $constSlice;
 			},
 		};
@@ -442,6 +445,9 @@ import { Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySlice, type 
 // @ts-ignore
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
+// @ts-ignore possibly unused
+const __str = (mem: IWasmMemoryAccess, base: number, isConst = true) => new WasmStringPtr(mem, base, isConst);
+
 export interface Foo extends WasmTypeBase {
 	readonly single: WasmStringPtr;
 	readonly constSingle: WasmStringPtr;
@@ -475,27 +481,27 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				return mem.u8.subarray(base, base + 56);
 			},
 			get single(): WasmStringPtr {
-				return $single || ($single = new WasmStringPtr(mem, base, false));
+				return $single || ($single = __str(mem, base, false));
 			},
 			get constSingle(): WasmStringPtr {
-				return $constSingle || ($constSingle = new WasmStringPtr(mem, (base + 8), true));
+				return $constSingle || ($constSingle = __str(mem, (base + 8)));
 			},
 			get multi(): WasmStringPtr[] {
 				const addr = (base + 16);
 				const $multi: WasmStringPtr[] = [];
-				for(let i = 0; i < 2; i++) $multi.push(new WasmStringPtr(mem, addr + i * 4, true));
+				for(let i = 0; i < 2; i++) $multi.push(__str(mem, addr + i * 4));
 				return $multi;
 			},
 			get singlePtr(): Pointer<WasmStringPtr> {
 				return $singlePtr || ($singlePtr = new Pointer<WasmStringPtr>(mem, (base + 32),
-				(addr) => new WasmStringPtr(mem, addr, true)
+				(addr) => __str(mem, addr, true)
 				));
 			},
 			get multiPtr(): Pointer<WasmStringPtr[]> {
 				return $multiPtr || ($multiPtr = new Pointer<WasmStringPtr[]>(mem, (base + 36),
 				(addr) => {
 					const $buf: WasmStringPtr[] = [];
-					for(let i = 0; i < 2; i++) $buf.push(new WasmStringPtr(mem, addr + i * 4, true));
+					for(let i = 0; i < 2; i++) $buf.push(__str(mem, addr + i * 4));
 					return $buf;
 				}
 				));
@@ -504,14 +510,14 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				const addr = mem.u32[(base + 40) >>> 2];
 				const len = mem.u32[(base + 44) >>> 2];
 				const $slice: WasmStringPtr[] = [];
-				for(let i = 0; i < len; i++) $slice.push(new WasmStringPtr(mem, addr + i * 4, false));
+				for(let i = 0; i < len; i++) $slice.push(__str(mem, addr + i * 4, false));
 				return $slice;
 			},
 			get constSlice(): WasmStringPtr[] {
 				const addr = mem.u32[(base + 48) >>> 2];
 				const len = mem.u32[(base + 52) >>> 2];
 				const $constSlice: WasmStringPtr[] = [];
-				for(let i = 0; i < len; i++) $constSlice.push(new WasmStringPtr(mem, addr + i * 4, true));
+				for(let i = 0; i < len; i++) $constSlice.push(__str(mem, addr + i * 4));
 				return $constSlice;
 			},
 		};

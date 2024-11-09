@@ -35,6 +35,7 @@ import {
 	isWasmPrim,
 	isWasmString,
 	prefixLines,
+	usesStrings,
 	withIndentation,
 } from "./internal/utils.js";
 import { fieldType as zigFieldType } from "./zig.js";
@@ -78,11 +79,10 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 		id: "ts",
 
 		pre: (coll, globalOpts) => {
+			const str = __stringImpl(globalOpts);
 			const res = [
 				"// @ts-ignore possibly includes unused imports",
-				`import { Pointer, ${__stringImpl(
-					globalOpts
-				)}, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";`,
+				`import { Pointer, ${str}, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";`,
 			];
 			if (
 				Object.values(coll).some(
@@ -93,6 +93,13 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 				res.push(
 					"// @ts-ignore",
 					`import { __array, __instanceArray, __slice${bits}, __primslice${bits} } from "@thi.ng/wasm-api/memory";`
+				);
+			}
+			if (usesStrings(coll)) {
+				res.push(
+					"",
+					"// @ts-ignore possibly unused",
+					`const __str = (mem: IWasmMemoryAccess, base: number, isConst = true) => new ${str}(mem, base, isConst);`
 				);
 			}
 			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
@@ -270,9 +277,9 @@ const __mapStringArray = (
 	isLocal = false
 ) => [
 	isLocal ? `const $${name}: ${type}[] = [];` : `$${name} = [];`,
-	`for(let i = 0; i < ${len}; i++) $${name}.push(new ${type}(mem, addr + i * ${
+	`for(let i = 0; i < ${len}; i++) $${name}.push(__str(mem, addr + i * ${
 		target.sizeBytes * (type === "WasmStringSlice" ? 2 : 1)
-	}, ${isConst}));`,
+	}${isConst ? "" : ", false"}));`,
 	`return $${name};`,
 ];
 
@@ -339,16 +346,16 @@ const __generateField = (
 		case "str":
 			type = strType;
 			getter = [
-				`return $${name} || ($${name} = new ${strType}(mem, ${__addr(
-					offset
-				)}, ${isConst}));`,
+				`return $${name} || ($${name} = __str(mem, ${__addr(offset)}${
+					isConst ? "" : ", false"
+				}));`,
 			];
 			break;
 		case "strPtr":
 			type = `Pointer<${strType}>`;
 			decl = `let $${name}: ${type} | null = null;`;
 			getter = __ptrBody(type, name, offset, [
-				`(addr) => new ${strType}(mem, addr, ${isConst})`,
+				`(addr) => __str(mem, addr, ${isConst})`,
 			]);
 			break;
 		case "strPtrFixed":
