@@ -171,6 +171,10 @@ export class WasmStringPtr implements ReadonlyWasmString {
 		this.mem.u32[this.base >>> 2] = addr;
 	}
 
+	get isNull() {
+		return this.addr === 0;
+	}
+
 	/**
 	 * Returns computed string length (scanning memory for zero sentinel)
 	 *
