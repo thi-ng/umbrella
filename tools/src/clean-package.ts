@@ -65,7 +65,7 @@ for (let d of dirs(".", (x) => removeDirs.has(basename(x)), 1)) {
 	rmSync(d, { recursive: true, force: true });
 }
 
-for (let f of files(".", /\.(map|js|d\.ts|tsbuildinfo)$/)) {
+for (let f of files(".", /\.(map|js|d\.ts|tsbuildinfo|wasn|wast|o)$/)) {
 	if (f.indexOf("/bin/") === -1) {
 		console.log("removing file:", f);
 		unlinkSync(f);
