@@ -306,7 +306,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-11-03
+As of: 2024-11-09
 
 | Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
 |:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
@@ -314,6 +314,7 @@ As of: 2024-11-03
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/memoize`](./packages/memoize)                     | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)                     | [changelog](./packages/memoize/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/strings`](./packages/strings)                     | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                     | [changelog](./packages/strings/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers-stats`](./packages/transducers-stats) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats) | [changelog](./packages/transducers-stats/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api`](./packages/wasm-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                   | [changelog](./packages/wasm-api/CHANGELOG.md)          |
 
 ### Fundamentals
 
