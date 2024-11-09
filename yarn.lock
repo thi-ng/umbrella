@@ -6945,7 +6945,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^0.7.8, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^0.7.9, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
@@ -6978,15 +6978,15 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.47.9"
     "@thi.ng/binary": "npm:^3.4.34"
     "@thi.ng/wasm-api": "npm:^2.1.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.7.8"
-    "@thi.ng/wasm-api-dom": "npm:^1.0.7"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.7.9"
+    "@thi.ng/wasm-api-dom": "npm:^1.0.8"
     esbuild: "npm:^0.24.0"
     typedoc: "npm:^0.26.7"
     typescript: "npm:^5.6.2"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@npm:^1.0.7, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@npm:^1.0.8, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -6996,7 +6996,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.17"
     "@thi.ng/prefixes": "npm:^2.3.28"
     "@thi.ng/wasm-api": "npm:^2.1.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.7.8"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.7.9"
     esbuild: "npm:^0.24.0"
     typedoc: "npm:^0.26.7"
     typescript: "npm:^5.6.2"
@@ -7010,7 +7010,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.47.9"
     "@thi.ng/api": "npm:^8.11.11"
     "@thi.ng/wasm-api": "npm:^2.1.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.7.8"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.7.9"
     esbuild: "npm:^0.24.0"
     typedoc: "npm:^0.26.7"
     typescript: "npm:^5.6.2"
@@ -7025,8 +7025,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.11"
     "@thi.ng/errors": "npm:^2.5.17"
     "@thi.ng/wasm-api": "npm:^2.1.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.7.8"
-    "@thi.ng/wasm-api-dom": "npm:^1.0.7"
+    "@thi.ng/wasm-api-bindgen": "npm:^0.7.9"
+    "@thi.ng/wasm-api-dom": "npm:^1.0.8"
     "@thi.ng/webgl": "npm:^6.9.24"
     esbuild: "npm:^0.24.0"
     typedoc: "npm:^0.26.7"

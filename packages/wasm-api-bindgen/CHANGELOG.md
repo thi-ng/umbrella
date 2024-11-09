@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-10-08T20:41:04Z
+- **Last updated**: 2024-11-09T16:30:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.7.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.7.9) (2024-11-09)
+
+#### ♻️ Refactoring
+
+- update TypeScript codegen ([49d1bc5](https://github.com/thi-ng/umbrella/commit/49d1bc5))
+  - reduce filesize of generated code by injecting wrapper for string type ctor
+    if type collection uses strings
+  - update test snapshots
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.7.0) (2024-08-21)
 
