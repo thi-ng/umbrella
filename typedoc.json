@@ -1,0 +1,22 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"entryPoints": ["src/index.ts"],
+	"excludeInternal": true,
+	"excludePrivate": true,
+	"highlightLanguages": [
+		"bash",
+		"bibtex",
+		"c",
+		"css",
+		"glsl",
+		"html",
+		"js",
+		"json",
+		"jsonc",
+		"json5",
+		"ts",
+		"wasm",
+		"xml",
+		"zig"
+	]
+}
