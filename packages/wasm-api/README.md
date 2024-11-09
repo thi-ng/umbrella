@@ -460,7 +460,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.03 KB
 
 ## Dependencies
 
@@ -520,7 +520,7 @@ interface App extends WasmExports {
 
 ### Zig version
 
-Requires [Zig](https://ziglang.org) to be installed:
+Requires [Zig](https://ziglang.org) (v0.13.x) to be installed:
 
 ```zig tangle:export/hello.zig
 //! Example Zig application (hello.zig)
@@ -539,7 +539,7 @@ scenarios add the supplied .zig file(s) to your `build.zig` and/or source
 folder):
 
 ```bash
-# compile WASM binary (zig v0.12)
+# compile WASM binary (zig v0.13)
 zig build-exe \
     -fno-entry -fstrip -OReleaseSmall -target wasm32-freestanding \
     --name hello -rdynamic --import-symbols \
@@ -555,24 +555,29 @@ The resulting WASM:
 
 ```wasm
 (module
-  (type $t0 (func (param i32 i32)))
-  (type $t1 (func))
-  (type $t2 (func (param i32) (result i32)))
-  (import "wasmapi" "_printStr" (func $wasmapi._printStr (type $t0)))
-  (func $start (type $t1)
-    (call $wasmapi._printStr
-      (i32.const 1048576)
-      (i32.const 12)))
-  (func $_wasm_allocate (type $t2) (param $p0 i32) (result i32)
-    (i32.const 0))
-  (func $_wasm_free (type $t0) (param $p0 i32) (param $p1 i32))
-  (memory $memory 17)
-  (global $g0 (mut i32) (i32.const 1048576))
-  (export "memory" (memory $memory))
-  (export "start" (func $start))
-  (export "_wasm_allocate" (func $_wasm_allocate))
-  (export "_wasm_free" (func $_wasm_free))
-  (data $d0 (i32.const 1048576) "hello world!\00"))
+ (type $0 (func (param i32 i32)))
+ (type $1 (func))
+ (type $2 (func (param i32) (result i32)))
+ (import "wasmapi" "_printStr" (func $fimport$0 (param i32 i32)))
+ (global $global$0 (mut i32) (i32.const 1048576))
+ (memory $0 17)
+ (data $0 (i32.const 1048576) "hello world!\00")
+ (export "memory" (memory $0))
+ (export "start" (func $0))
+ (export "_wasm_allocate" (func $1))
+ (export "_wasm_free" (func $2))
+ (func $0
+  (call $fimport$0
+   (i32.const 1048576)
+   (i32.const 12)
+  )
+ )
+ (func $1 (param $0 i32) (result i32)
+  (i32.const 0)
+ )
+ (func $2 (param $0 i32) (param $1 i32)
+ )
+)
 ```
 
 ### C version
