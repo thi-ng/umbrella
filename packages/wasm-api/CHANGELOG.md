@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-10-08T20:41:04Z
+- **Last updated**: 2024-11-09T15:34:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.1.0) (2024-11-09)
+
+#### 🚀 Features
+
+- add null handling in WasmStringPtr ([e8a094d](https://github.com/thi-ng/umbrella/commit/e8a094d))
+  - update logic to interpret as null pointer if addr=0
+  - update doc strings
+- add null pointer checks, update tests ([247cbbf](https://github.com/thi-ng/umbrella/commit/247cbbf))
+  - update Pointer/Pointer64 deref logic to return undefined for null pointers
+  - add `.isNull` getter for all pointer types (incl. `WasmStringPtr`)
+  - update tests
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.0.0) (2024-08-18)
 

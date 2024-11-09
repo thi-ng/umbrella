@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/args",
-	"version": "2.3.46",
+	"version": "2.3.47",
 	"description": "Declarative, functional & typechecked CLI argument/options parser, value coercions etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 		"@thi.ng/checks": "^3.6.13",
 		"@thi.ng/errors": "^2.5.17",
 		"@thi.ng/logger": "^3.0.21",
-		"@thi.ng/strings": "^3.8.8",
+		"@thi.ng/strings": "^3.8.9",
 		"@thi.ng/text-format": "^2.2.16"
 	},
 	"devDependencies": {
