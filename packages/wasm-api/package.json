@@ -104,6 +104,9 @@
 		"./bridge": {
 			"default": "./bridge.js"
 		},
+		"./deftype": {
+			"default": "./deftype.js"
+		},
 		"./memory": {
 			"default": "./memory.js"
 		},
