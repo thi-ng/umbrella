@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-hdom",
-	"version": "3.1.150",
+	"version": "3.1.151",
 	"description": "Transducer based UI updater for @thi.ng/hdom",
 	"type": "module",
 	"module": "./index.js",
@@ -36,9 +36,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/hdom": "^9.4.50",
-		"@thi.ng/hiccup": "^5.2.17",
-		"@thi.ng/transducers": "^9.2.7"
+		"@thi.ng/hdom": "^9.4.51",
+		"@thi.ng/hiccup": "^5.2.18",
+		"@thi.ng/transducers": "^9.2.8"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.47.9",

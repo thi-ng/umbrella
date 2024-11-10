@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-11-09T16:30:54Z
+- **Last updated**: 2024-11-10T17:11:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@1.0.9) (2024-11-10)
+
+#### ♻️ Refactoring
+
+- regenerate typescript bindings ([07e939a](https://github.com/thi-ng/umbrella/commit/07e939a))
 
 ### [1.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@1.0.8) (2024-11-09)
 
