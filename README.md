@@ -306,16 +306,16 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-11-09
+As of: 2024-11-10
 
 | Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
 |:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/cache`](./packages/cache)                         | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)                         | [changelog](./packages/cache/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/memoize`](./packages/memoize)                     | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)                     | [changelog](./packages/memoize/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/strings`](./packages/strings)                     | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                     | [changelog](./packages/strings/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers-stats`](./packages/transducers-stats) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats) | [changelog](./packages/transducers-stats/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api`](./packages/wasm-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                   | [changelog](./packages/wasm-api/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)   | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)   | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-canvas`](./packages/wasm-api-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-canvas.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-canvas)     | [changelog](./packages/wasm-api-canvas/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)           | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)           | [changelog](./packages/wasm-api-dom/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-schedule`](./packages/wasm-api-schedule) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-schedule.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-schedule) | [changelog](./packages/wasm-api-schedule/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-webgl`](./packages/wasm-api-webgl)       | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-webgl.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-webgl)       | [changelog](./packages/wasm-api-webgl/CHANGELOG.md)    |
 
 ### Fundamentals
 
