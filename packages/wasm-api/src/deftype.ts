@@ -30,14 +30,16 @@ export const defType =
 		instanceArray(base, num) {
 			return __instanceArray<T>(this, base, num);
 		},
-		instance: (base) =>
-			<T>{
-				get __base() {
-					return base;
+		instance: (base) => {
+			const inst = instance(mem, base);
+			Object.defineProperties(inst, {
+				__base: { value: base },
+				__bytes: {
+					get() {
+						return mem.u8.subarray(base, base + size);
+					},
 				},
-				get __bytes() {
-					return mem.u8.subarray(base, base + size);
-				},
-				...instance(mem, base),
-			},
+			});
+			return <T>inst;
+		},
 	});
