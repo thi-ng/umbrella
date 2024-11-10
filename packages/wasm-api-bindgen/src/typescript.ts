@@ -82,7 +82,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			const str = __stringImpl(globalOpts);
 			const res = [
 				"// @ts-ignore possibly includes unused imports",
-				`import { Pointer, ${str}, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmType, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";`,
+				`import { defType, Pointer, ${str}, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmTypeBase } from "@thi.ng/wasm-api";`,
 			];
 			if (
 				Object.values(coll).some(
@@ -165,7 +165,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			const pointerDecls = fields
 				.filter((f) => isPointer(f.field.tag) && f.field.len !== 0)
 				.map((f) => {
-					return `let $${f.field.name}: ${f.type} | null = null;`;
+					return `let $${f.field.name}: ${f.type};`;
 				});
 			const stringDecls = fields
 				.filter(
@@ -173,30 +173,15 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 						isWasmString(f.field.type) &&
 						!["array", "ptr", "slice"].includes(f.field.tag!)
 				)
-				.map((f) => `let $${f.field.name}: ${strType} | null = null;`);
+				.map((f) => `let $${f.field.name}: ${strType};`);
 
 			// type implementation
 			lines.push(
-				`export const $${struct.name}: WasmTypeConstructor<${struct.name}> = (mem) => ({`,
-				`get align() {`,
-				`return ${struct.__align};`,
-				`},`,
-				`get size() {`,
-				`return ${struct.__size};`,
-				`},`,
-				`instanceArray(base, num) {`,
-				`return __instanceArray<${struct.name}>(this, base, num);`,
-				`},`,
-				`instance: (base) => {`,
+				"// @ts-ignore possibly unused args",
+				`export const $${struct.name} = defType<${struct.name}>(${struct.__align}, ${struct.__size}, (mem, base) => {`,
 				...pointerDecls,
 				...stringDecls,
-				`return {`,
-				`get __base() {`,
-				`return base;`,
-				`},`,
-				`get __bytes() {`,
-				`return mem.u8.subarray(base, base + ${struct.__size});`,
-				`},`
+				`return {`
 			);
 
 			for (let f of fields) {
@@ -217,7 +202,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 				}
 			}
 			injectBody(lines, struct.body?.ts);
-			lines.push("};", "}", "});", "");
+			lines.push("};", "});", "");
 			acc.push(...withIndentation(lines, indent, ...SCOPES));
 		},
 
