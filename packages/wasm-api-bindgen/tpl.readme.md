@@ -735,20 +735,23 @@ pub const Event = extern union {
 
 ### Building the Zig module
 
-The following command shows how to build a Zig WASM module and define a package
-for the supplied type wrappers:
+The following command shows how to build a Zig WASM module and include the
+`wasm-api-bindgen` Zig definitions for the supplied type wrappers:
 
 ```bash
-zig build-lib \
-    --pkg-begin wasm-api-bindgen node_modules/@thi.ng/wasm-api-bindgen/zig/lib.zig --pkg-end \
-    -target wasm32-freestanding \
-    -O ReleaseSmall -dynamic \
-    main.zig
+# compile WASM binary (zig v0.13)
+zig build-exe \
+    -fno-entry -fstrip -OReleaseSmall -target wasm32-freestanding \
+    --name test -rdynamic --import-symbols \
+    --dep wasm-api-bindgen \
+    -Mroot=main.zig \
+    -Mwasm-api-bindgen=node_modules/@thi.ng/wasm-api-bindgen/zig/lib.zig
 ```
 
-Alternatively, use a [more elaborate setup used by various example
-projects](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-todo-list/build.zig)
-in this repo, using Zig's native build system...
+Alternatively, use Zig's native build system with the [build file bundled with
+the thi.ng/wasm-api main
+package](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#using-the-zig-build-system)
+and which is being used by various example projects in this repo...
 
 ### Runtime example
 
