@@ -143,10 +143,8 @@ export interface Foo extends WasmTypeBase {
 
 // @ts-ignore possibly unused args
 export const $Foo = defType<Foo>(4, 56, (mem, base) => {
-	let $singlePtr: Pointer<WasmStringSlice>;
-	let $multiPtr: Pointer<WasmStringSlice[]>;
-	let $single: WasmStringSlice;
-	let $constSingle: WasmStringSlice;
+	let $singlePtr: Pointer<WasmStringSlice>, $multiPtr: Pointer<WasmStringSlice[]>;
+	let $single: WasmStringSlice, $constSingle: WasmStringSlice;
 	return {
 		get single(): WasmStringSlice {
 			return $single || ($single = __str(mem, base, false));
@@ -444,10 +442,8 @@ export interface Foo extends WasmTypeBase {
 
 // @ts-ignore possibly unused args
 export const $Foo = defType<Foo>(4, 56, (mem, base) => {
-	let $singlePtr: Pointer<WasmStringPtr>;
-	let $multiPtr: Pointer<WasmStringPtr[]>;
-	let $single: WasmStringPtr;
-	let $constSingle: WasmStringPtr;
+	let $singlePtr: Pointer<WasmStringPtr>, $multiPtr: Pointer<WasmStringPtr[]>;
+	let $single: WasmStringPtr, $constSingle: WasmStringPtr;
 	return {
 		get single(): WasmStringPtr {
 			return $single || ($single = __str(mem, base, false));
@@ -810,9 +806,7 @@ export interface A extends WasmTypeBase {
 
 // @ts-ignore possibly unused args
 export const $A = defType<A>(4, 56, (mem, base) => {
-	let $ptr: Pointer<number>;
-	let $ptr2: Pointer<Uint32Array>;
-	let $constPtr: Pointer<number>;
+	let $ptr: Pointer<number>, $ptr2: Pointer<Uint32Array>, $constPtr: Pointer<number>;
 	return {
 		get a(): number {
 			return mem.u32[base >>> 2];
@@ -931,8 +925,7 @@ export interface B extends WasmTypeBase {
 
 // @ts-ignore possibly unused args
 export const $B = defType<B>(4, 28, (mem, base) => {
-	let $ptr: Pointer<A>;
-	let $ptr2: Pointer<Int32Array>;
+	let $ptr: Pointer<A>, $ptr2: Pointer<Int32Array>;
 	return {
 		get single(): A {
 			return mem.i32[base >>> 2];
@@ -1047,8 +1040,7 @@ export interface B extends WasmTypeBase {
 
 // @ts-ignore possibly unused args
 export const $B = defType<B>(4, 28, (mem, base) => {
-	let $ptr: Pointer<number>;
-	let $ptr2: Pointer<Uint32Array>;
+	let $ptr: Pointer<number>, $ptr2: Pointer<Uint32Array>;
 	return {
 		get a(): number {
 			return mem.u32[base >>> 2];
@@ -1534,14 +1526,7 @@ export interface B extends WasmTypeBase {
 
 // @ts-ignore possibly unused args
 export const $B = defType<B>(4, 108, (mem, base) => {
-	let $ptr: Pointer<number>;
-	let $constPtr: Pointer<number>;
-	let $ptr2: Pointer<Uint8Array>;
-	let $ptr2sentinel: Pointer<Uint8Array>;
-	let $constPtr2: Pointer<Uint8Array>;
-	let $constPtr2sentinel: Pointer<Uint8Array>;
-	let $aPtr: Pointer<A>;
-	let $aPtr2: Pointer<A[]>;
+	let $ptr: Pointer<number>, $constPtr: Pointer<number>, $ptr2: Pointer<Uint8Array>, $ptr2sentinel: Pointer<Uint8Array>, $constPtr2: Pointer<Uint8Array>, $constPtr2sentinel: Pointer<Uint8Array>, $aPtr: Pointer<A>, $aPtr2: Pointer<A[]>;
 	return {
 		get slice(): Uint8Array {
 			return __primslice32(mem, mem.u8, base, 0);

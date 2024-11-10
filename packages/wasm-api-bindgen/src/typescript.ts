@@ -165,7 +165,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			const pointerDecls = fields
 				.filter((f) => isPointer(f.field.tag) && f.field.len !== 0)
 				.map((f) => {
-					return `let $${f.field.name}: ${f.type};`;
+					return `$${f.field.name}: ${f.type}`;
 				});
 			const stringDecls = fields
 				.filter(
@@ -173,14 +173,18 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 						isWasmString(f.field.type) &&
 						!["array", "ptr", "slice"].includes(f.field.tag!)
 				)
-				.map((f) => `let $${f.field.name}: ${strType};`);
+				.map((f) => `$${f.field.name}: ${strType}`);
 
 			// type implementation
 			lines.push(
 				"// @ts-ignore possibly unused args",
 				`export const $${struct.name} = defType<${struct.name}>(${struct.__align}, ${struct.__size}, (mem, base) => {`,
-				...pointerDecls,
-				...stringDecls,
+				...(pointerDecls.length
+					? [`let ${pointerDecls.join(", ")};`]
+					: []),
+				...(stringDecls.length
+					? [`let ${stringDecls.join(", ")};`]
+					: []),
 				`return {`
 			);
 
