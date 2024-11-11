@@ -1,5 +1,5 @@
 // Import JS core API
-const js = @import("wasmapi");
+const js = @import("wasm-api");
 const std = @import("std");
 
 var HEAP: [1024]u8 = undefined;
