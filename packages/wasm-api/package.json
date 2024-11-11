@@ -33,8 +33,8 @@
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
 		"pub": "yarn npm publish --access public",
 		"test": "zig test zig/tests.zig && yarn test:prepare && bun test",
-		"test:build-zig-allocators": "zig build-exe -fno-entry -fstrip --stack 4096 -OReleaseSmall -target wasm32-freestanding --dep wasm-api -Mroot=test/allocators.zig -Mwasm-api=zig/lib.zig --name allocators -rdynamic --import-symbols && wasm-dis -o allocators.wast allocators.wasm && mv allocators.wasm test",
-		"test:build-zig-custom": "zig build-exe -fno-entry -fstrip --stack 4096 -OReleaseSmall -target wasm32-freestanding --dep wasm-api -Mroot=test/custom.zig -Mwasm-api=zig/lib.zig --name custom -rdynamic --import-symbols && wasm-dis -o custom.wast custom.wasm && mv custom.wasm test",
+		"test:build-zig-allocators": "zig build-exe -fno-entry -fstrip --stack 4096 -OReleaseSmall -target wasm32-freestanding --dep wasm-api -Mroot=test/allocators.zig -Mwasm-api=zig/lib.zig --name allocators -rdynamic --import-symbols && mv allocators.wasm test",
+		"test:build-zig-custom": "zig build-exe -fno-entry -fstrip --stack 4096 -OReleaseSmall -target wasm32-freestanding --dep wasm-api -Mroot=test/custom.zig -Mwasm-api=zig/lib.zig --name custom -rdynamic --import-symbols && mv custom.wasm test",
 		"test:prepare": "yarn test:build-zig-allocators && yarn test:build-zig-custom",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
