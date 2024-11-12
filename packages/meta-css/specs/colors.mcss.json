@@ -213,7 +213,7 @@
 				"args": ["name: variable name (without `--` prefix)"]
 			},
 			"name": "<var>",
-			"props": { "<var>": "var(--color{0})" },
+			"props": { "<var>": "var(--{0})" },
 			"vars": ["fill-stroke"]
 		}
 	]
