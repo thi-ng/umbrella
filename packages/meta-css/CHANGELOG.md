@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-11-10T17:11:51Z
+- **Last updated**: 2024-11-13T12:46:52Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.15.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.15.11) (2024-11-13)
+
+#### 🩹 Bug fixes
+
+- fix `fill()` template spec ([9151d85](https://github.com/thi-ng/umbrella/commit/9151d85))
 
 ## [0.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.15.0) (2024-08-28)
 
