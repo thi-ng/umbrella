@@ -413,7 +413,11 @@ export const processSpec = (
 						);
 						if (
 							!specs.classes[id] &&
-							!(__isAssignment(id) || __isTemplateRef(id))
+							!(
+								__isVerbatimProp(id) ||
+								__isTemplateRef(id) ||
+								__isAssignment(id)
+							)
 						)
 							illegalArgs(`unknown class ID: ${id}`);
 						if (query) {
@@ -440,10 +444,11 @@ export function* splitLine(line: string) {
 	let from = -1;
 	let end = line.length;
 	let depth = 0;
+	let args = 0;
 	for (let i = 0; i < end; i++) {
 		const c = line[i];
 		if (c === " " || c === "\t") {
-			if (!depth && from >= 0) {
+			if (!(depth || args) && from >= 0) {
 				yield line.substring(from, i);
 				from = -1;
 			}
@@ -455,11 +460,17 @@ export function* splitLine(line: string) {
 			depth++;
 		} else if (c === ")") {
 			if (--depth < 0) illegalArgs(`invalid nesting in line: '${line}'`);
+		} else if (c === "[") {
+			args++;
+		} else if (c === "]") {
+			if (--args < 0)
+				illegalArgs(`invalid arg nesting in line: '${line}'`);
 		} else if (from < 0) {
 			from = i;
 		}
 	}
 	if (depth) illegalArgs("template calls must be fully on a single line");
+	if (args) illegalArgs("verbatim properties must be fully on a single line");
 	if (from >= 0) yield line.substring(from, end);
 }
 
@@ -515,7 +526,9 @@ const __buildDeclsForPath = (
 				{},
 				...map(
 					(x) =>
-						__isTemplateRef(x)
+						__isVerbatimProp(x)
+							? __verbatimPropDecl(x)
+							: __isTemplateRef(x)
 							? __templateDecl(specs, x)
 							: __isAssignment(x)
 							? __varDecl(x)
@@ -614,7 +627,16 @@ const __templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
 };
 
 /** @internal */
+const __verbatimPropDecl = (src: string) => {
+	const [_, id, value] = /^(.+)-\[(.+)\]/.exec(src)!;
+	return { [id]: value };
+};
+
+/** @internal */
 const __isAssignment = (x: string) => x.includes("=");
 
 /** @internal */
 const __isTemplateRef = (x: string) => x.includes("(");
+
+/** @internal */
+const __isVerbatimProp = (x: string) => x.includes("[");

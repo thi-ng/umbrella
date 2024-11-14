@@ -11,7 +11,7 @@ import {
 
 test("var decls", () => {
 	const proc: ProcessOpts = {
-		format: COMPACT,
+		css: { format: COMPACT },
 		logger: NULL_LOGGER,
 		specs: {
 			info: { name: "", version: "" },
@@ -36,7 +36,7 @@ test("var decls", () => {
 
 test("templates", () => {
 	const proc: ProcessOpts = {
-		format: COMPACT,
+		css: { format: COMPACT },
 		logger: NULL_LOGGER,
 		specs: {
 			info: { name: "", version: "" },
@@ -53,12 +53,37 @@ test("templates", () => {
 		mediaQueryIDs: new Set(["foo"]),
 	};
 	const bundle: string[] = [];
-	processSpec("#test { top(5) vars(2,3) foo:top(10) foo:vars(4,5) }", proc);
+	processSpec("#test { top(5) vars(2,3) foo:top(10) foo:vars(4, 5) }", proc);
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
 		"#test{top:5rem;--a:2rem;--b:3s;}",
 		"@media (foo){#test{top:10rem;--a:4rem;--b:5s;}}",
+	]);
+});
+
+test("verbatim", () => {
+	const proc: ProcessOpts = {
+		css: { format: COMPACT },
+		logger: NULL_LOGGER,
+		specs: {
+			info: { name: "", version: "" },
+			decls: [],
+			classes: {},
+			templates: {},
+			media: { foo: { foo: true } },
+		},
+		plainRules: {},
+		mediaQueryRules: {},
+		mediaQueryIDs: new Set(["foo"]),
+	};
+	const bundle: string[] = [];
+	processSpec(`#test { prop-name-[foo\ bar] foo:prop-name-[1px] }`, proc);
+	processPlainRules(bundle, proc);
+	processMediaQueries(bundle, proc);
+	expect(bundle).toEqual([
+		"#test{prop-name:foo bar;}",
+		"@media (foo){#test{prop-name:1px;}}",
 	]);
 });
 
@@ -77,6 +102,9 @@ test("split line", () => {
 		"f(a, b)",
 		"}",
 	]);
+	expect([...splitLine("a-[b c]")]).toEqual(["a-[b c]"]);
+	expect([...splitLine("a-[b [c]]")]).toEqual(["a-[b [c]]"]);
 	expect(() => [...splitLine("f(a,b))")]).toThrow();
 	expect(() => [...splitLine("a, b {f(a,b}")]).toThrow();
+	expect(() => [...splitLine("a-[b [c]")]).toThrow();
 });
