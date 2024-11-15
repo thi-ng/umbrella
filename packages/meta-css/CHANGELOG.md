@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-11-15T05:56:59Z
+- **Last updated**: 2024-11-15T16:47:21Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.16.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.16.1) (2024-11-15)
+
+#### 🩹 Bug fixes
+
+- fix parser to priortize var assignments ([937ed79](https://github.com/thi-ng/umbrella/commit/937ed79))
+  - order of checks in previous impl didn't allow for
+    `var2=var(--var1)` style assignments
+  - update tests
 
 ## [0.16.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.16.0) (2024-11-15)
 
