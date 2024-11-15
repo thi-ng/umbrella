@@ -304,7 +304,7 @@ const __items = (spec: Spec, config: Pick<GeneratorConfig, "tables">) => {
 			? (v) => String(v)
 			: spec.key === "i+1"
 			? (_, i) => String(i + 1)
-			: spec.key === undefined
+			: spec.key === "i" || spec.key === undefined
 			? (_, i) => String(i)
 			: illegalArgs(`invalid key type: ${spec.key}`);
 	return (<any[]>$values).reduce(
