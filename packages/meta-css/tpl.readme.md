@@ -23,7 +23,7 @@ data format to:
 declarations, and media query criteria, all of which are forming a framework
 2. as intermediate data format for generated CSS frameworks themselves
 
-**The entire toolkit (incl. all bundled dependencies) is currently only 36KB (unzipped)!**
+**The entire toolkit (incl. all bundled dependencies) is currently only 39KB (14KB brotli)!**
 
 This readme aims to provide a thorough overview of this toolchain, its
 possibilities and some concrete usage examples...
@@ -504,7 +504,7 @@ ALWAYS combined using `and`:
 | `print: "only"`                  | `only print`                   |
 
 See [media queries in the bundled base
-specs](https://github.com/thi-ng/umbrella/blob/f40ff9b9d7da496c2dd967c6185ca626cbbd9b4c/packages/meta-css/specs/_info.mcss.json#L6-L27)
+specs](https://github.com/thi-ng/umbrella/blob/10a1633519e744335853d3c64d9d23d06d63cda4/packages/meta-css/specs/_info.mcss.json#L6-L27)
 
 ### Custom declarations
 
@@ -784,6 +784,38 @@ body {
         transition: 0.2s background-color ease-in-out;
     }
 
+}
+```
+
+### Verbatim property definitions
+
+The `prop-name-[value]` syntax can be used to define CSS properties and their
+values directly. This syntax can be used alongside the other pre-defined classes
+and [templates](#templated-class-definitions) and be combined with [media query
+prefixes](#media-query-prefixes).
+
+```text tangle:export/readme-verbatim.mcss
+body {
+	background-image-[url(bg.png)]
+	dark:background-image-[url(bg-alt.png)]
+	ma0 pa3 sans-serif
+}
+```
+
+Resulting CSS:
+
+```css
+body {
+    background-image: url(bg.png);
+    margin: 0rem;
+    padding: 1rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme:dark) {
+    body {
+        background-image: url(bg-alt.png);
+    }
 }
 ```
 
