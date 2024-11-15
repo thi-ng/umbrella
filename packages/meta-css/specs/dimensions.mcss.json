@@ -1,5 +1,6 @@
 {
 	"tables": {
+		"sizes-abs0": [0, 1, 2, 4, 8, 16],
 		"sizes-abs": [1, 2, 4, 8, 16],
 		"sizes-rel": [
 			10, 16, 17, 20, 25, 30, 33, 34, 40, 50, 60, 66, 67, 70, 75, 80, 83,
@@ -14,9 +15,8 @@
 		{
 			"doc": { "group": "<var>", "desc": "<v>" },
 			"name": "<vid><k>",
-			"key": "i+1",
 			"props": "<var>",
-			"values": "sizes-abs",
+			"values": "sizes-abs0",
 			"unit": "rem",
 			"vars": ["w", "h"]
 		},
