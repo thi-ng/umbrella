@@ -24,12 +24,15 @@ test("var decls", () => {
 		mediaQueryRules: {},
 		mediaQueryIDs: new Set(["foo"]),
 	};
-	processSpec(":root { color1=#f00 foo:color2=#00f }", proc);
+	processSpec(
+		":root { color1=#f00 foo:color2=#00f color3=var(--color2) }",
+		proc
+	);
 	const bundle: string[] = [];
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		":root{--color1:#f00;}",
+		":root{--color1:#f00;--color3:var(--color2);}",
 		"@media (foo){:root{--color2:#00f;}}",
 	]);
 });

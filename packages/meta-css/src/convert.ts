@@ -414,9 +414,9 @@ export const processSpec = (
 						if (
 							!specs.classes[id] &&
 							!(
+								__isAssignment(id) ||
 								__isVerbatimProp(id) ||
-								__isTemplateRef(id) ||
-								__isAssignment(id)
+								__isTemplateRef(id)
 							)
 						)
 							illegalArgs(`unknown class ID: ${id}`);
@@ -528,10 +528,10 @@ const __buildDeclsForPath = (
 					(x) =>
 						__isVerbatimProp(x)
 							? __verbatimPropDecl(x)
-							: __isTemplateRef(x)
-							? __templateDecl(specs, x)
 							: __isAssignment(x)
 							? __varDecl(x)
+							: __isTemplateRef(x)
+							? __templateDecl(specs, x)
 							: withoutInternals(specs.classes[x]),
 					ids
 				)
