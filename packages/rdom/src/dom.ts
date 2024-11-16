@@ -140,7 +140,11 @@ export const $el = (
 ) => {
 	const match = RE_TAG.exec(tag);
 	if (match) {
-		attribs = mergeEmmetAttribs({ ...attribs }, match[2], match[3]);
+		attribs = mergeEmmetAttribs(
+			attribs ? { ...attribs } : {},
+			match[2],
+			match[3]
+		);
 		tag = match[1];
 	}
 	let el: Element;
