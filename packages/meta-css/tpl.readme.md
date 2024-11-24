@@ -1028,6 +1028,14 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
+> [!IMPORTANT]
+> Previous versions of the bundled framework included [template
+> definitions](#templated-class-definitions) which purely served as workaround
+> for the lack of [verbatim property syntax](#verbatim-property-definitions),
+> which has only been added in v0.16.0.
+>
+> Since v0.17.0 these templates have been removed, since obsolete now...
+
 <!-- include export/framework.md -->
 
 {{meta.status}}
