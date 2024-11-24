@@ -45,7 +45,7 @@ body { system-sans-serif }
 .range-label { f7 }
 
 button, input[type=submit], input[type=reset] {
-	w-100 height(3rem) bg-color-dark-blue color-white bw0 pa2
+	w-100 height-[3rem] bg-color-dark-blue color-white bw0 pa2
 	{
 		:hover { bg-color-blue }
 	}

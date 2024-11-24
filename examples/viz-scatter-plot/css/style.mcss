@@ -18,8 +18,8 @@ body { system-sans-serif ma3 }
 	{
 		>div { grid grid-cols(4rem 1fr) }
 		.range-label { ml3 }
-		input[type=range] { width(22rem) }
-		input[type=checkbox] { width(1rem) }
+		input[type=range] { width-[22rem] }
+		input[type=checkbox] { w1 }
 	}
 }
 

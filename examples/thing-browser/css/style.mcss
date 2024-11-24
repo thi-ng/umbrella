@@ -47,7 +47,7 @@ details[open] {
 }
 
 details:not([open]) {
-	transition(background-color 0.25s\, padding-left 0.25s ease-out)
+	transition-[background-color 0.25s, padding-left 0.25s ease-out]
 	{
 		:hover { pl3 br2 bg-color(text-color) color(bg-color) }
 	}

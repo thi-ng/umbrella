@@ -8,7 +8,7 @@
 	// color1=#fff
 }
 
-body { system-sans-serif ma3 max-width(30rem) center }
+body { system-sans-serif ma3 max-width-[30rem] center }
 
 h1 { ls--1 }
 

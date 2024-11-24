@@ -15,8 +15,8 @@ a:visited { color-gray }
 	{
 		li {
 			absolute
-			height(var(--height))
-			font-size(var(--height))
+			height-[var(--height)]
+			font-size-[var(--height)]
 		}
 		a:hover, a:focus { bg-color-hot-pink color-white }
 	}
