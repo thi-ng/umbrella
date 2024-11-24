@@ -70,37 +70,5 @@
 			"unit": "v<vid>",
 			"vars": ["w", "h"]
 		}
-	],
-	"templates": [
-		{
-			"doc": {
-				"group": "dimensions",
-				"desc": "Sets <var> to given value",
-				"args": ["<var>: incl. units"]
-			},
-			"name": "<var>",
-			"props": "<var>",
-			"vars": ["w", "h"]
-		},
-		{
-			"doc": {
-				"group": "dimensions",
-				"desc": "Sets min-<var> to given value",
-				"args": ["<var>: incl. units"]
-			},
-			"name": "min-<var>",
-			"props": "min-<var>",
-			"vars": ["w", "h"]
-		},
-		{
-			"doc": {
-				"group": "dimensions",
-				"desc": "Sets max-<var> to given value",
-				"args": ["<var>: incl. units"]
-			},
-			"name": "max-<var>",
-			"props": "max-<var>",
-			"vars": ["w", "h"]
-		}
 	]
 }

@@ -102,17 +102,12 @@
     - [Color adjustment](#color-adjustment)
     - [Color definitions](#color-definitions)
     - [Color scheme](#color-scheme)
-    - [Dimensions](#dimensions)
-    - [Font families](#font-families)
-    - [Font size](#font-size)
     - [Fx](#fx)
     - [Grid layout](#grid-layout)
     - [Layout](#layout)
     - [Margin](#margin)
-    - [Mask](#mask)
     - [Padding](#padding)
     - [Positions](#positions)
-    - [Shadow](#shadow)
     - [Svg](#svg)
     - [Text color](#text-color)
   - [Media queries](#media-queries)
@@ -1150,7 +1145,7 @@ These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...
 
-Currently, there are 962 CSS utility classes (incl. 73 templates) defined in "MetaCSS base" (v0.16.0):
+Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "MetaCSS base" (v0.17.0):
 
 ### Classes by category
 
@@ -1599,8 +1594,9 @@ Currently, there are 962 CSS utility classes (incl. 73 templates) defined in "Me
 
 #### Height
 
-<details><summary>29 items:</summary>
+<details><summary>30 items:</summary>
 
+- `h0` (0rem)
 - `h1` (1rem)
 - `h2` (2rem)
 - `h3` (4rem)
@@ -2263,12 +2259,13 @@ Currently, there are 962 CSS utility classes (incl. 73 templates) defined in "Me
 
 #### Width
 
-<details><summary>29 items:</summary>
+<details><summary>30 items:</summary>
 
 - `vw-25`
 - `vw-50`
 - `vw-75`
 - `vw-100`
+- `w0` (0rem)
 - `w1` (1rem)
 - `w2` (2rem)
 - `w3` (4rem)
@@ -2314,11 +2311,7 @@ Currently, there are 962 CSS utility classes (incl. 73 templates) defined in "Me
 
 #### Animation / transition
 
-<details><summary>15 items:</summary>
-
-##### `anim(body)`
-
-- **body**: CSS value/definition
+<details><summary>12 items:</summary>
 
 ##### `anim-delay(delay)`
 
@@ -2369,10 +2362,6 @@ Animation which shrinks the height from given initial value to zero. Target elem
 
 Animation which rotates element a full turn, looping indefinitely
 
-##### `transition(body)`
-
-- **body**: CSS value/definition
-
 ##### `transition-delay(delay)`
 
 - **delay**: time (in seconds)
@@ -2380,10 +2369,6 @@ Animation which rotates element a full turn, looping indefinitely
 ##### `transition-duration(duration)`
 
 - **duration**: time (in seconds)
-
-##### `transition-property(prop)`
-
-- **prop**: CSS value/definition
 
 ##### `transition-steps(num)`
 
@@ -2580,60 +2565,6 @@ Sets `stroke` color using CSS light-dark() function
 
 </details>
 
-#### Dimensions
-
-<details><summary>6 items:</summary>
-
-##### `height(height)`
-
-- **height**: incl. units
-
-Sets height to given value
-
-##### `max-height(height)`
-
-- **height**: incl. units
-
-Sets max-height to given value
-
-##### `max-width(width)`
-
-- **width**: incl. units
-
-Sets max-width to given value
-
-##### `min-height(height)`
-
-- **height**: incl. units
-
-Sets min-height to given value
-
-##### `min-width(width)`
-
-- **width**: incl. units
-
-Sets min-width to given value
-
-##### `width(width)`
-
-- **width**: incl. units
-
-Sets width to given value
-
-</details>
-
-#### Font families
-
-##### `font-family(body)`
-
-- **body**: CSS value/definition
-
-#### Font size
-
-##### `font-size(body)`
-
-- **body**: CSS value/definition
-
 #### Fx
 
 ##### `bg-blur(radius)`
@@ -2708,12 +2639,6 @@ Sets margin to custom size
 
 </details>
 
-#### Mask
-
-##### `mask-image(body)`
-
-- **body**: definition (e.g. url or gradient)
-
 #### Padding
 
 <details><summary>7 items:</summary>
@@ -2784,16 +2709,6 @@ Sets padding to custom size
 
 </details>
 
-#### Shadow
-
-##### `box-shadow(body)`
-
-- **body**: CSS value/definition
-
-##### `text-shadow(body)`
-
-- **body**: CSS value/definition
-
 #### Svg
 
 ##### `fill(name)`
@@ -2844,7 +2759,7 @@ distributed as CLI bundle with **no runtime dependencies**. The following
 dependencies are only shown for informational purposes and are (partially)
 included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.77 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.78 KB
 
 ## Dependencies
 

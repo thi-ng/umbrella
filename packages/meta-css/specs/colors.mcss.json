@@ -140,7 +140,9 @@
 				]
 			},
 			"name": "border-light-dark",
-			"props": { "border-color": "light-dark(var(--{0}), var(--{1}))" }
+			"props": {
+				"border-color": "light-dark(var(--{0}), var(--{1}))"
+			}
 		},
 		{
 			"doc": {
@@ -167,7 +169,7 @@
 			},
 			"name": "light-dark",
 			"props": {
-				"background-color": "light-dark(var(--{0}), var(--{1}))"
+				"color": "light-dark(var(--{0}), var(--{1}))"
 			}
 		},
 		{

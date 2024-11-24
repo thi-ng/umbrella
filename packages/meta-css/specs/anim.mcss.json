@@ -138,23 +138,6 @@
 			},
 			"name": "anim-iter",
 			"props": "animation-iteration-count"
-		},
-		{
-			"doc": {
-				"group": "animation / transition",
-				"args": ["body: CSS value/definition"]
-			},
-			"name": "<vid>",
-			"props": "<var>",
-			"vars": ["anim", "transition"]
-		},
-		{
-			"doc": {
-				"group": "animation / transition",
-				"args": ["prop: CSS value/definition"]
-			},
-			"name": "transition-property",
-			"props": "transition-property"
 		}
 	]
 }

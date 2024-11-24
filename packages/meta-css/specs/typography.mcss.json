@@ -140,23 +140,5 @@
 			},
 			"unit": "em"
 		}
-	],
-	"templates": [
-		{
-			"doc": {
-				"group": "font families",
-				"args": ["body: CSS value/definition"]
-			},
-			"name": "font-family",
-			"props": "font-family"
-		},
-		{
-			"doc": {
-				"group": "font size",
-				"args": ["body: CSS value/definition"]
-			},
-			"name": "font-size",
-			"props": "font-size"
-		}
 	]
 }
