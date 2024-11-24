@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-11-15T16:47:21Z
+- **Last updated**: 2024-11-24T18:15:48Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,30 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.17.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.17.0) (2024-11-24)
+
+#### 🚀 Features
+
+- update width/height specs ([5e59d5e](https://github.com/thi-ng/umbrella/commit/5e59d5e))
+- remove obsolete template defs, update readme ([2f607c0](https://github.com/thi-ng/umbrella/commit/2f607c0))
+  - commit which actually removed defs: [ecac29da87](https://github.com/thi-ng/umbrella/commit/ecac29da87)
+
+#### 🩹 Bug fixes
+
+- update `i` key/index handling in generator rules ([4150775](https://github.com/thi-ng/umbrella/commit/4150775))
+- update verbatim prop parsing ([0876811](https://github.com/thi-ng/umbrella/commit/0876811))
+  - fixes nested selectors in the form `[sel] { ... }`
+  - update tests
+
+#### ♻️ Refactoring
+
+- remove obsolete default template specs ([ecac29d](https://github.com/thi-ng/umbrella/commit/ecac29d))
+  - remove template specs from base framework which can be easily replicated
+    via verbatim properties
+    - i.e. `prop-name(value)` => `prop-name-[value]`
+  - update framework version
+  - update readme
 
 ### [0.16.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.16.1) (2024-11-15)
 

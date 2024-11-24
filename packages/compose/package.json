@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/compose",
-	"version": "3.0.15",
+	"version": "3.0.16",
 	"description": "Optimized functional composition helpers",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.12",
-		"@thi.ng/errors": "^2.5.18"
+		"@thi.ng/api": "^8.11.13",
+		"@thi.ng/errors": "^2.5.19"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.0",
