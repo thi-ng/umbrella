@@ -47,8 +47,8 @@
 		"screenshot": "examples/rstream-grid.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.6.2",
-		"vite": "^5.4.8"
+		"typescript": "^5.7.2",
+		"vite": "^5.4.11"
 	},
 	"keywords": [
 		"2d",

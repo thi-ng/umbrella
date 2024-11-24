@@ -40,9 +40,9 @@
 		"@thi.ng/equiv": "^2.1.68"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.47.9",
-		"typedoc": "^0.26.7",
-		"typescript": "^5.6.2"
+		"@microsoft/api-extractor": "^7.48.0",
+		"typedoc": "^0.26.11",
+		"typescript": "^5.7.2"
 	},
 	"keywords": [
 		"array",

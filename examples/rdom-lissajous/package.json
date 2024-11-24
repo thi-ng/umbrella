@@ -37,8 +37,8 @@
 		"screenshot": "examples/rdom-lissajous.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.6.2",
-		"vite": "^5.4.8"
+		"typescript": "^5.7.2",
+		"vite": "^5.4.11"
 	},
 	"keywords": [
 		"browser",
