@@ -461,6 +461,7 @@ export function* splitLine(line: string) {
 		} else if (c === ")") {
 			if (--depth < 0) illegalArgs(`invalid nesting in line: '${line}'`);
 		} else if (c === "[") {
+			if (from < 0) from = i;
 			args++;
 		} else if (c === "]") {
 			if (--args < 0)
@@ -639,4 +640,4 @@ const __isAssignment = (x: string) => x.includes("=");
 const __isTemplateRef = (x: string) => x.includes("(");
 
 /** @internal */
-const __isVerbatimProp = (x: string) => x.includes("[");
+const __isVerbatimProp = (x: string) => x.indexOf("-[") > 0 && x.endsWith("]");

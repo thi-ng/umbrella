@@ -81,11 +81,14 @@ test("verbatim", () => {
 		mediaQueryIDs: new Set(["foo"]),
 	};
 	const bundle: string[] = [];
-	processSpec(`#test { prop-name-[foo\ bar] foo:prop-name-[1px] }`, proc);
+	processSpec(
+		`#test { prop-name-[foo\ bar] foo:prop-name-[1px] { [type=test] { prop-name-[nested] } } }`,
+		proc
+	);
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		"#test{prop-name:foo bar;}",
+		"#test{prop-name:foo bar;}#test[type=test]{prop-name:nested;}",
 		"@media (foo){#test{prop-name:1px;}}",
 	]);
 });
