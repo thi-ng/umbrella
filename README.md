@@ -30,7 +30,7 @@
   - [WebGL / GPGPU](#webgl--gpgpu)
   - [Low-level, binary, memory management, interop](#low-level-binary-memory-management-interop)
   - [DSLs](#dsls)
-  - [Deprecated pacakges](#deprecated-packages)
+  - [Deprecated packages](#deprecated-packages)
 - [Building](#building)
   - [Building example projects](#building-example-projects)
   - [Testing](#testing)
