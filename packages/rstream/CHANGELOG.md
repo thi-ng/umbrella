@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-11-24T18:15:49Z
+- **Last updated**: 2024-12-04T15:08:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [9.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@9.1.0) (2024-12-04)
+
+#### 🚀 Features
+
+- update fromObject(), re-implement as full subscription ([6903507](https://github.com/thi-ng/umbrella/commit/6903507))
 
 # [9.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@9.0.0) (2024-08-20)
 
