@@ -1,34 +1,12 @@
-import type { Keys, Predicate2 } from "@thi.ng/api";
+import type { IObjectOf, Keys, NumOrString, Predicate2 } from "@thi.ng/api";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import type { CommonOpts, ISubscription, SubscriptionOpts } from "./api.js";
-import { __nextID } from "./idgen.js";
-import { subscription } from "./subscription.js";
+import { __optsWithID } from "./idgen.js";
+import { Subscription, subscription } from "./subscription.js";
 
 export type KeyStreams<T, K extends Keys<T>> = {
 	[id in K]-?: ISubscription<T[id], T[id]>;
 };
-
-/**
- * Result object type for {@link fromObject}.
- */
-export interface StreamObj<T, K extends Keys<T>> {
-	/**
-	 * Object of managed & typed streams for registered keys.
-	 */
-	streams: KeyStreams<T, K>;
-	/**
-	 * Feeds new values from `x` to each registered key's stream.
-	 * Satifies {@link ISubscriber.next} interface.
-	 *
-	 * @param x -
-	 */
-	next(x: T): void;
-	/**
-	 * Calls {@link ISubscriber.done} for all streams created. Satifies
-	 * {@link ISubscriber.done} interface.
-	 */
-	done(): void;
-}
 
 export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	/**
@@ -140,39 +118,65 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 export const fromObject = <T extends object, K extends Keys<T>>(
 	src: T,
 	opts: Partial<StreamObjOpts<T, K>> = {}
-) => {
-	const id = opts.id || `obj${__nextID()}`;
-	const keys = opts.keys || <K[]>Object.keys(src);
-	const _opts: Partial<SubscriptionOpts<any, any>> =
-		opts.dedupe !== false
-			? {
-					xform: dedupe<any>(opts.equiv || ((a, b) => a === b)),
-					...opts,
-			  }
-			: opts;
-	const streams: any = {};
-	for (let k of keys) {
-		streams[k] = subscription(undefined, {
-			..._opts,
-			id: `${id}-${String(k)}`,
-		});
+) => new StreamObj<T, K>(src, opts);
+
+/**
+ * See {@link fromObject} for details.
+ */
+export class StreamObj<
+	T extends object,
+	K extends Keys<T>
+> extends Subscription<T, T> {
+	/**
+	 * Object of managed & typed streams for registered keys.
+	 */
+	keys: NumOrString[];
+	streams: IObjectOf<Subscription<any, any>> = {};
+	defaults?: Partial<T>;
+
+	constructor(src: T, opts: Partial<StreamObjOpts<T, K>> = {}) {
+		super(undefined, __optsWithID("obj", opts));
+		this.keys = <NumOrString[]>opts.keys || Object.keys(src);
+		this.defaults = opts.defaults;
+		const _opts: Partial<SubscriptionOpts<any, any>> =
+			opts.dedupe !== false
+				? {
+						xform: dedupe<any>(opts.equiv || ((a, b) => a === b)),
+						...opts,
+				  }
+				: opts;
+		for (let k of this.keys) {
+			this.streams[k] = subscription(undefined, {
+				..._opts,
+				id: `${this.id}-${k}`,
+			});
+		}
+		opts.initial !== false && this.next(src);
 	}
-	const res = <StreamObj<T, K>>{
-		streams,
-		next(state) {
-			for (let k of keys) {
-				const val = state[k];
-				streams[k].next(
-					opts.defaults && val === undefined ? opts.defaults[k] : val
-				);
-			}
-		},
-		done() {
-			for (let k of keys) {
-				streams[k].done();
-			}
-		},
-	};
-	opts.initial !== false && res.next(src);
-	return res;
-};
+
+	/**
+	 * Feeds new values from `x` to each registered key's stream.
+	 * Satifies {@link ISubscriber.next} interface.
+	 *
+	 * @param x -
+	 */
+	next(x: T) {
+		this.cacheLast && (this.last = x);
+		for (let k of this.keys) {
+			const val = x[<K>k];
+			this.streams[k].next(
+				this.defaults && val === undefined ? this.defaults[<K>k] : val
+			);
+		}
+	}
+
+	/**
+	 * Calls {@link ISubscriber.done} for all streams created. Satifies
+	 * {@link ISubscriber.done} interface.
+	 */
+	done() {
+		for (let k of this.keys) {
+			this.streams[k].done();
+		}
+	}
+}
