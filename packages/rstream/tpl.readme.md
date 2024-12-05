@@ -294,6 +294,7 @@ s.next(42);
 - [fromPromise()](https://docs.thi.ng/umbrella/rstream/functions/fromPromise.html) - single value stream from promise
 - [fromPromises()](https://docs.thi.ng/umbrella/rstream/functions/fromPromises.html) - results from multiple promise
 - [fromRAF()](https://docs.thi.ng/umbrella/rstream/functions/fromRAF.html) - requestAnimationFrame() counter (w/ node fallback)
+- [fromTuple()](https://docs.thi.ng/umbrella/rstream/functions/fromTuple.html) - tuple/vector per-component streams
 - [fromView()](https://docs.thi.ng/umbrella/rstream/functions/fromView.html) - derived view value changes (see [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom))
 - [fromWorker()](https://docs.thi.ng/umbrella/rstream/functions/fromWorker.html) - messages received from worker
 - [toggle()](https://docs.thi.ng/umbrella/rstream/functions/toggle.html) - on/off switch-like stream
