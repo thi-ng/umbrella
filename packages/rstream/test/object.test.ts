@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { Subscription, fromObject, stream } from "../src/index.js";
+import { Subscription, fromObject, fromTuple, stream } from "../src/index.js";
 import { assertUnsub } from "./utils.js";
 
 type Foo = { a?: number; b: string };
@@ -95,4 +95,36 @@ test("defaults & dedupe", () => {
 		a: [0, 1, 0, 2, 0],
 		b: ["foo", "bar", "baz"],
 	});
+});
+
+test("fromTuple", () => {
+	const acc = new Map<number, number>();
+	const collect = {
+		next(x: number) {
+			acc.set(x, (acc.get(x) ?? 0) + 1);
+		},
+	};
+	const tup = fromTuple([1, 2, 3]);
+	expect(new Set(Object.keys(tup.streams))).toEqual(new Set(["0", "1", "2"]));
+	tup.streams[0].subscribe(collect);
+	tup.streams[1].subscribe(collect);
+	tup.streams[2].subscribe(collect);
+	expect(acc).toEqual(
+		new Map([
+			[1, 1],
+			[2, 1],
+			[3, 1],
+		])
+	);
+	tup.next([1, 20, 3]);
+	tup.next([10, 2, 3]);
+	expect(acc).toEqual(
+		new Map([
+			[1, 1],
+			[2, 2],
+			[3, 1],
+			[10, 1],
+			[20, 1],
+		])
+	);
 });
