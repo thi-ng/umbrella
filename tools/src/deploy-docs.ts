@@ -1,4 +1,11 @@
-import { cliApp, string, type CommandCtx } from "@thi.ng/args";
+import {
+	cliApp,
+	flag,
+	kvPairs,
+	string,
+	type CommandCtx,
+	type KVDict,
+} from "@thi.ng/args";
 import { dirs, files, readText, writeText } from "@thi.ng/file-io";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
@@ -7,14 +14,27 @@ import {
 	CF_DISTRO_DOCS,
 	S3_BUCKET_DOCS,
 	S3_OPTS,
-	S3_PREFIX,
 } from "./aws-config.js";
 
 interface CLIOpts {
+	alias?: KVDict;
 	base: string;
+	dest: string;
+	dryRun: boolean;
+	noMinify: boolean;
+	scope: string;
 }
 
 interface CLICtx extends CommandCtx<CLIOpts, any> {}
+
+interface DocCtx {
+	aliases: KVDict;
+	base: string;
+	dryRun: boolean;
+	minify: boolean;
+	s3Prefix: string;
+	scope: string;
+}
 
 const SYNC_OPTS = `${S3_OPTS} --include "*" --exclude "*.sass" --exclude "*.ts"`;
 
@@ -23,25 +43,35 @@ const MINIFY_OPTS =
 
 const COUNTER = `<script>window.goatcounter={path:p=>location.host+p};</script><script data-goatcounter="https://thing.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>`;
 
-const sanitizeFile = (f: string) => {
+const sanitizeFile = (ctx: DocCtx, f: string) => {
 	let updated = false;
+	const escapedScope = ctx.scope.replace(".", "\\.");
 	const src = readText(f, LOGGER)
 		.replace(
-			/\{@link\s+@thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^}]+)\}/g,
+			new RegExp(
+				`\\{@link\\s+${escapedScope}\\/([a-z0-9-]+)(#(\\w+))?\\s*\\|\\s*([^}]+)\\}`,
+				"g"
+			),
 			(_, id, label) => {
 				LOGGER.debug("match pkg", id, label);
 				updated = true;
-				return `<a href="${S3_PREFIX}/${id}/">${label}</a>`;
+				id = ctx.aliases[id] || id;
+				return `<a href="${ctx.s3Prefix}/${id}/">${label}</a>`;
 			}
 		)
 		.replace(
-			/\{@link\s+@thi\.ng\/([a-z0-9-]+)#(\w+)?\s*\}/g,
+			new RegExp(
+				`\\{@link\\s+${escapedScope}\\/([a-z0-9-]+)#(\\w+)?\\s*\\}`,
+				"g"
+			),
 			(_, id, sym) => {
 				LOGGER.debug("match sym", id, sym);
 				updated = true;
-				let path = `${S3_PREFIX}/${id}/`;
-				if (!sym)
-					return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
+				let path = `${ctx.s3Prefix}/${id}/`;
+				if (!sym) {
+					const destID = ctx.aliases[id] || id;
+					return `<a href="${ctx.s3Prefix}/${destID}/">${ctx.scope}/${id}</a>`;
+				}
 				if (sym.startsWith("I")) {
 					path += `interfaces/${sym.toLowerCase()}.html`;
 				} else if (/^[a-z]/.test(sym)) {
@@ -50,11 +80,17 @@ const sanitizeFile = (f: string) => {
 				return `<a href="${path}">${sym}</a>`;
 			}
 		)
-		.replace(/\{@link\s+@thi\.ng\/([a-z0-9-]+)#?\s*\}/g, (_, id) => {
-			LOGGER.debug("match pkg only", id);
-			updated = true;
-			return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
-		})
+		.replace(
+			new RegExp(
+				`\\{@link\\s+${escapedScope}\\/([a-z0-9-]+)#?\\s*\\}`,
+				"g"
+			),
+			(_, id) => {
+				LOGGER.debug("match pkg only", id);
+				updated = true;
+				return `<a href="${ctx.s3Prefix}/${id}/">${ctx.scope}/${id}</a>`;
+			}
+		)
 		.replace("</head>", () => {
 			updated = true;
 			return COUNTER + "</head>";
@@ -64,9 +100,9 @@ const sanitizeFile = (f: string) => {
 	}
 };
 
-const sanitizePackage = (root: string) => {
+const sanitizePackage = (ctx: DocCtx, root: string) => {
 	for (let f of files(root, ".html")) {
-		sanitizeFile(f);
+		sanitizeFile(ctx, f);
 	}
 };
 
@@ -78,16 +114,18 @@ const minifyPackage = (root: string) => {
 	);
 };
 
-const syncPackage = (id: string, root: string) => {
-	LOGGER.info("syncing", root);
-	LOGGER.info(
-		execFileSync(
-			"aws",
-			`s3 sync ${root} ${S3_BUCKET_DOCS}${S3_PREFIX}/${id} ${SYNC_OPTS}`.split(
-				" "
-			)
-		).toString()
-	);
+const syncPackage = (ctx: DocCtx, id: string, root: string) => {
+	const destID = ctx.aliases[id] || id;
+	const dest = `${S3_BUCKET_DOCS}${ctx.s3Prefix}/${destID}`;
+	LOGGER.info("syncing", root, "->", dest);
+	if (!ctx.dryRun) {
+		LOGGER.info(
+			execFileSync(
+				"aws",
+				`s3 sync ${root} ${dest} ${SYNC_OPTS}`.split(" ")
+			).toString()
+		);
+	}
 };
 
 const invalidatePaths = (paths: string) => {
@@ -100,13 +138,13 @@ const invalidatePaths = (paths: string) => {
 	);
 };
 
-const processPackage = (base: string, id: string) => {
-	LOGGER.info("processing package", base, id);
-	const root = `${base}/${id}/doc`;
+const processPackage = (ctx: DocCtx, id: string) => {
+	LOGGER.info("processing package", ctx.base, id);
+	const root = `${ctx.base}/${id}/doc`;
 	try {
-		sanitizePackage(root);
-		minifyPackage(root);
-		syncPackage(id, root);
+		sanitizePackage(ctx, root);
+		if (ctx.minify) minifyPackage(root);
+		syncPackage(ctx, id, root);
 	} catch (e) {
 		console.warn(e);
 	}
@@ -114,37 +152,73 @@ const processPackage = (base: string, id: string) => {
 
 cliApp<CLIOpts, CLICtx>({
 	opts: {
+		alias: kvPairs({
+			alias: "a",
+			desc: "Destination package name",
+		}),
 		base: string({
 			alias: "b",
 			desc: "Packages base directory",
 			default: "packages",
+		}),
+		dest: string({
+			alias: "d",
+			desc: "Destination S3 root directory",
+			default: "umbrella",
+		}),
+		dryRun: flag({
+			desc: "Dry run (no uploads)",
+		}),
+		noMinify: flag({
+			alias: "m",
+			desc: "Disable HTML minification",
+		}),
+		scope: string({
+			alias: "s",
+			desc: "Package scope",
+			default: "@thi.ng",
 		}),
 	},
 	commands: {
 		default: {
 			desc: "Deploy example(s) to CDN",
 			fn: async (ctx) => {
-				const base = ctx.opts.base;
+				const docCtx: DocCtx = {
+					aliases: ctx.opts.alias || {},
+					base: ctx.opts.base,
+					dryRun: ctx.opts.dryRun,
+					minify: !ctx.opts.noMinify,
+					scope: ctx.opts.scope,
+					s3Prefix: "/" + ctx.opts.dest,
+				};
 				let inputs = ctx.inputs;
 				let doAll = !inputs.length;
 				const invalidations: string[] = [];
-				if (doAll) invalidations.push(`${S3_PREFIX}/*`);
-				const packages = doAll ? [...dirs(base, "", 1)] : inputs;
+				if (doAll) invalidations.push(`${docCtx.s3Prefix}/*`);
+				const packages = doAll ? [...dirs(docCtx.base, "", 1)] : inputs;
 				for (let id of packages) {
-					id = id.replace(base + "/", "");
-					processPackage(base, id);
-					if (!doAll) invalidations.push(`${S3_PREFIX}/${id}/*`);
+					id = id.replace(docCtx.base + "/", "");
+					processPackage(docCtx, id);
+					if (!doAll) {
+						const destID = docCtx.aliases[id] || id;
+						LOGGER.debug("adding invalidation", destID);
+						invalidations.push(`${docCtx.s3Prefix}/${destID}/*`);
+					}
 				}
-				if (base === "packages") {
+				if (docCtx.base === "packages") {
 					execFileSync("bun", ["tools/src/doc-table.ts"]);
-					execFileSync(
-						"aws",
-						`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`.split(
-							" "
-						)
-					);
+					if (!docCtx.dryRun) {
+						execFileSync(
+							"aws",
+							`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`.split(
+								" "
+							)
+						);
+					}
 				}
-				invalidatePaths(`/index.html ${invalidations.join(" ")}`);
+				if (!docCtx.dryRun) {
+					invalidatePaths(`/index.html ${invalidations.join(" ")}`);
+				}
 			},
 			opts: {},
 		},
