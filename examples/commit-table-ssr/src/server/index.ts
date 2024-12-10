@@ -1,7 +1,7 @@
 import { TLRUCache } from "@thi.ng/cache";
 import { readText, writeJSON } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
-import express from "express";
+import { createServer } from "node:http";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer as createViteServer } from "vite";
@@ -30,57 +30,56 @@ const getCommits = async () => {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-async function createServer() {
-	const app = express();
+// https://vitejs.dev/guide/ssr#setting-up-the-dev-server
+const vite = await createViteServer({
+	server: { middlewareMode: true },
+	appType: "custom",
+});
 
-	// https://vitejs.dev/guide/ssr#setting-up-the-dev-server
-	const vite = await createViteServer({
-		server: { middlewareMode: true },
-		appType: "custom",
-	});
+const server = createServer(async (req, res) => {
+	switch (req.url) {
+		case "/":
+			{
+				try {
+					const template = await vite.transformIndexHtml(
+						req.url,
+						readText(resolve(__dirname, "../../index.html"), LOGGER)
+					);
+					res.writeHead(200)
+						.setHeader("Content-Type", "text/html")
+						.end(template);
+				} catch (e) {
+					vite.ssrFixStacktrace(<Error>e);
+					vite.middlewares(req, res);
+				}
+			}
+			break;
+		case "/commits":
+			{
+				const commits = await rawCache.getSet(
+					ctx.repo.path,
+					getCommits
+				);
+				res.setHeader("Content-Type", "application/json").end(
+					JSON.stringify(commits)
+				);
+			}
+			break;
+		case "/ssr":
+			{
+				const doc = await htmlCache.getSet(ctx.repo.path, async () =>
+					buildRepoTableHTML(
+						await rawCache.getSet(ctx.repo.path, getCommits)
+					)
+				);
+				res.setHeader("Content-Type", "text/html").end(doc);
+			}
+			break;
+		default:
+			vite.middlewares(req, res);
+			break;
+	}
+});
 
-	// route for browser version
-	app.get("/", async (req, res, next) => {
-		try {
-			const template = await vite.transformIndexHtml(
-				req.originalUrl,
-				readText(resolve(__dirname, "../../index.html"), LOGGER)
-			);
-			res.status(200).set({ "Content-Type": "text/html" }).end(template);
-		} catch (e) {
-			vite.ssrFixStacktrace(<Error>e);
-			next(e);
-		}
-	});
-
-	// route for the client to retrieve the commit log as JSON
-	app.get("/commits", (_, res) => {
-		// retrieve raw commit log from cache or
-		// (re)create if missing...
-		rawCache
-			.getSet(ctx.repo.path, getCommits)
-			.then((commits) => res.type("json").send(commits));
-	});
-
-	// route for server-side rendering
-	// uses both caches
-	app.get("/ssr", (_, res) => {
-		// retrieve rendered html from cache or
-		// (re)create if missing...
-		htmlCache
-			.getSet(ctx.repo.path, async () =>
-				buildRepoTableHTML(
-					await rawCache.getSet(ctx.repo.path, getCommits)
-				)
-			)
-			.then((doc) => res.send(doc));
-	});
-
-	// inject middleware after our routes, else our handlers will not be used!
-	app.use(vite.middlewares);
-
-	LOGGER.info("starting server @ http://localhost:5173");
-	app.listen(5173);
-}
-
-createServer();
+LOGGER.info("starting server @ http://localhost:5173");
+server.listen(5173);
