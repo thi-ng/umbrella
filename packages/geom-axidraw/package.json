@@ -51,7 +51,7 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.0",
 		"esbuild": "^0.24.0",
-		"typedoc": "^0.26.11",
+		"typedoc": "^0.27.4",
 		"typescript": "^5.7.2"
 	},
 	"keywords": [

@@ -27,7 +27,6 @@
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/transducers-hdom": "workspace:^",
 		"@types/express": "^5.0.0",
-		"express": "^4.21.1",
 		"vite": "^5.4.11"
 	},
 	"browser": {
