@@ -48,20 +48,26 @@ test("templates", () => {
 			templates: {
 				top: { top: "{0}rem", __arity: 1 },
 				vars: { "--a": "{0}rem", "--b": "{1}s", __arity: 2 },
+				bg: { backgound: "url({0})", __arity: 1 },
 			},
-			media: { foo: { foo: true } },
+			media: { foo: { foo: true }, bar: { bar: true } },
 		},
 		plainRules: {},
 		mediaQueryRules: {},
-		mediaQueryIDs: new Set(["foo"]),
+		mediaQueryIDs: new Set(["foo", "bar"]),
 	};
 	const bundle: string[] = [];
-	processSpec("#test { top(5) vars(2,3) foo:top(10) foo:vars(4, 5) }", proc);
+	processSpec(
+		`#test { top(5) vars(2,3) bg(data:image/png...) foo:top(10) foo:vars(4, 5) foo:bg(data:image/jpg...) }
+		#test2 { foo:bar:top(10) foo:bar:vars(4, 5) foo:bar:bg(data:image/jpg...) }`,
+		proc
+	);
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		"#test{top:5rem;--a:2rem;--b:3s;}",
-		"@media (foo){#test{top:10rem;--a:4rem;--b:5s;}}",
+		"#test{top:5rem;--a:2rem;--b:3s;backgound:url(data:image/png...);}",
+		"@media (foo){#test{top:10rem;--a:4rem;--b:5s;backgound:url(data:image/jpg...);}}",
+		"@media (foo) and (bar){#test2{top:10rem;--a:4rem;--b:5s;backgound:url(data:image/jpg...);}}",
 	]);
 });
 

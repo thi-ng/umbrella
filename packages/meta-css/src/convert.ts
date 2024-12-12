@@ -548,13 +548,21 @@ const __buildDeclsForPath = (
 /** @internal */
 const __parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
 	if (/^::?/.test(token)) return { token };
-	const idx = token.lastIndexOf(QUERY_SEP);
-	if (idx < 0) return { token };
-	const query = token.substring(0, idx);
+	let lastQueryIdx = token.lastIndexOf(QUERY_SEP);
+	if (lastQueryIdx < 0) return { token };
+	const tplArgIdx = token.indexOf("(");
+	if (tplArgIdx > 0) {
+		// check if template with query sep inside args only
+		if (tplArgIdx < lastQueryIdx && token.indexOf(QUERY_SEP) > tplArgIdx)
+			return { token };
+		// otherwise, find last query sep in template ID only
+		lastQueryIdx = token.substring(0, tplArgIdx).lastIndexOf(QUERY_SEP);
+	}
+	const query = token.substring(0, lastQueryIdx);
 	const parts = query.split(QUERY_SEP);
 	if (!parts.every((x) => mediaQueries.has(x)))
 		illegalArgs(`invalid media query in token: ${token}`);
-	return { token: token.substring(idx + 1), query };
+	return { token: token.substring(lastQueryIdx + 1), query };
 };
 
 /**
@@ -637,7 +645,7 @@ const __verbatimPropDecl = (src: string) => {
 const __isAssignment = (x: string) => x.includes("=");
 
 /** @internal */
-const __isTemplateRef = (x: string) => x.includes("(");
+const __isTemplateRef = (x: string) => x.includes("(") && x.endsWith(")");
 
 /** @internal */
 const __isVerbatimProp = (x: string) => x.indexOf("-[") > 0 && x.endsWith("]");
