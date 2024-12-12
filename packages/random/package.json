@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/random",
-	"version": "4.1.4",
+	"version": "4.1.5",
 	"description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
 	"type": "module",
 	"module": "./index.js",
@@ -36,8 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.13",
-		"@thi.ng/errors": "^2.5.19"
+		"@thi.ng/api": "^8.11.14",
+		"@thi.ng/errors": "^2.5.20"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.0",
