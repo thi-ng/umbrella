@@ -25,15 +25,15 @@ test("var decls", () => {
 		mediaQueryIDs: new Set(["foo"]),
 	};
 	processSpec(
-		":root { color1=#f00 foo:color2=#00f color3=var(--color2) }",
+		`:root { color-1=#f00 foo:color2=#00f color_3=var(--color2) content-["a=b"] foo:content-["c=d"] }`,
 		proc
 	);
 	const bundle: string[] = [];
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		":root{--color1:#f00;--color3:var(--color2);}",
-		"@media (foo){:root{--color2:#00f;}}",
+		':root{--color-1:#f00;--color_3:var(--color2);content:"a=b";}',
+		'@media (foo){:root{--color2:#00f;content:"c=d";}}',
 	]);
 });
 
@@ -58,16 +58,16 @@ test("templates", () => {
 	};
 	const bundle: string[] = [];
 	processSpec(
-		`#test { top(5) vars(2,3) bg(data:image/png...) foo:top(10) foo:vars(4, 5) foo:bg(data:image/jpg...) }
-		#test2 { foo:bar:top(10) foo:bar:vars(4, 5) foo:bar:bg(data:image/jpg...) }`,
+		`#test { top(5) vars(2,3) bg(data:image/png\\,...=) foo:top(10) foo:vars(4, 5) foo:bg(data:image/jpg\\,...=) }
+		#test2 { foo:bar:top(10) foo:bar:vars(4, 5) foo:bar:bg(data:image/gif\\,...=) }`,
 		proc
 	);
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		"#test{top:5rem;--a:2rem;--b:3s;backgound:url(data:image/png...);}",
-		"@media (foo){#test{top:10rem;--a:4rem;--b:5s;backgound:url(data:image/jpg...);}}",
-		"@media (foo) and (bar){#test2{top:10rem;--a:4rem;--b:5s;backgound:url(data:image/jpg...);}}",
+		"#test{top:5rem;--a:2rem;--b:3s;backgound:url(data:image/png,...=);}",
+		"@media (foo){#test{top:10rem;--a:4rem;--b:5s;backgound:url(data:image/jpg,...=);}}",
+		"@media (foo) and (bar){#test2{top:10rem;--a:4rem;--b:5s;backgound:url(data:image/gif,...=);}}",
 	]);
 });
 

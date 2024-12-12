@@ -642,7 +642,7 @@ const __verbatimPropDecl = (src: string) => {
 };
 
 /** @internal */
-const __isAssignment = (x: string) => x.includes("=");
+const __isAssignment = (x: string) => /^[a-z0-9:_-]+=.+/i.test(x);
 
 /** @internal */
 const __isTemplateRef = (x: string) => x.includes("(") && x.endsWith(")");
