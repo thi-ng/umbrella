@@ -83,9 +83,11 @@ const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 
 	uploadAssets("assets");
 	uploadAssets("lib");
+	uploadAssets("img");
 
 	uploadAssets("js", { ext: ".js", depth: 2 });
 	uploadAssets("", { ext: ".js", depth: 1 });
+	uploadAssets("", { ext: ".json", depth: 1 });
 	uploadAssets("", { ext: ".html" });
 
 	if (!opts.noInvalidate) {
