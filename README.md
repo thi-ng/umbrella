@@ -306,11 +306,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-12-12
+As of: 2024-12-13
 
 | Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
 |:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/meta-css`](./packages/meta-css) | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css) | [changelog](./packages/meta-css/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/ramp`](./packages/ramp)         | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)         | [changelog](./packages/ramp/CHANGELOG.md)     |
 
 ### Fundamentals
 
