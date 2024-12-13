@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/imgui",
-	"version": "3.1.7",
+	"version": "3.1.8",
 	"description": "Immediate mode GUI with flexible state handling & data only shape output",
 	"type": "module",
 	"module": "./index.js",
@@ -42,7 +42,7 @@
 		"@thi.ng/geom-isec": "^4.0.23",
 		"@thi.ng/layout": "^3.1.8",
 		"@thi.ng/math": "^5.11.14",
-		"@thi.ng/ramp": "^3.3.11",
+		"@thi.ng/ramp": "^3.3.12",
 		"@thi.ng/transducers": "^9.2.10",
 		"@thi.ng/vectors": "^7.12.11"
 	},

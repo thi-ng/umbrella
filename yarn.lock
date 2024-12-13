@@ -5485,7 +5485,7 @@ __metadata:
     "@thi.ng/geom-isec": "npm:^4.0.23"
     "@thi.ng/layout": "npm:^3.1.8"
     "@thi.ng/math": "npm:^5.11.14"
-    "@thi.ng/ramp": "npm:^3.3.11"
+    "@thi.ng/ramp": "npm:^3.3.12"
     "@thi.ng/transducers": "npm:^9.2.10"
     "@thi.ng/vectors": "npm:^7.12.11"
     esbuild: "npm:^0.24.0"
@@ -6037,7 +6037,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/ramp@npm:^3.3.11, @thi.ng/ramp@workspace:^, @thi.ng/ramp@workspace:packages/ramp":
+"@thi.ng/ramp@npm:^3.3.12, @thi.ng/ramp@workspace:^, @thi.ng/ramp@workspace:packages/ramp":
   version: 0.0.0-use.local
   resolution: "@thi.ng/ramp@workspace:packages/ramp"
   dependencies:
