@@ -160,11 +160,12 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 			}
 			return -1;
 		}
-		return binarySearch(
+		const idx = binarySearch(
 			stops,
 			<Frame<T>>[t, null],
 			(x) => x[0],
 			compareNumAsc
 		);
+		return idx < -1 ? -(idx + 2) : idx;
 	}
 }
