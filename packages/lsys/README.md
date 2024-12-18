@@ -81,11 +81,12 @@ For Node.js REPL:
 const lsys = await import("@thi.ng/lsys");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 691 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 692 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
@@ -135,7 +136,7 @@ examples.forEach(({ rules, delta, iter }, i) =>
                     // recursively expand start rule "s"
                     expand(rules, "s", iter)
                     //convert result paths to polylines for SVG export
-                ).paths.map(polyline)
+                ).paths.map((pts) => polyline(pts))
             )
         )
     )

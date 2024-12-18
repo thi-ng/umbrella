@@ -80,7 +80,7 @@ examples.forEach(({ rules, delta, iter }, i) =>
                     // recursively expand start rule "s"
                     expand(rules, "s", iter)
                     //convert result paths to polylines for SVG export
-                ).paths.map(polyline)
+                ).paths.map((pts) => polyline(pts))
             )
         )
     )
