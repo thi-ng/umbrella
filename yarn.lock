@@ -5616,6 +5616,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.0"
     "@thi.ng/api": "npm:^8.11.14"
+    "@thi.ng/checks": "npm:^3.6.16"
     "@thi.ng/compose": "npm:^3.0.17"
     "@thi.ng/errors": "npm:^2.5.20"
     "@thi.ng/math": "npm:^5.11.14"

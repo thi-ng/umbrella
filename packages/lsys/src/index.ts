@@ -1,4 +1,5 @@
-import type { Fn2, IObjectOf } from "@thi.ng/api";
+import type { Fn, Fn2, IObjectOf } from "@thi.ng/api";
+import { isFunction } from "@thi.ng/checks/is-function";
 import { partial } from "@thi.ng/compose/partial";
 import { threadLast } from "@thi.ng/compose/thread-last";
 import { illegalState } from "@thi.ng/errors/illegal-state";
@@ -14,8 +15,9 @@ import type { Vec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
 
 export type LSysSymbol = string | number;
+export type ProductionResult = ArrayLike<LSysSymbol> & Iterable<LSysSymbol>;
 export type ProductionRules = IObjectOf<
-	ArrayLike<LSysSymbol> & Iterable<LSysSymbol>
+	ProductionResult | Fn<LSysSymbol, ProductionResult>
 >;
 export type RuleImplementations<T> = IObjectOf<Fn2<T, LSysSymbol, void>>;
 
@@ -155,9 +157,46 @@ export const turtle2d = (state?: Partial<Turtle2D>): Turtle2D => ({
 	...state,
 });
 
+/**
+ * Lazily transforms `src` iterable of symbols by rewriting each using provided
+ * rewrite `rules`.
+ *
+ * @remarks
+ * Any symbol without a matching rewrite rule will remain as is. A rewrite rule
+ * can replace a source symbol with any number of new symbols. If the rule is
+ * given as function, the function will be called with the original symbol and
+ * the return values used as replacements.
+ *
+ * Used by {@link expand} to process/rewrite a single iteration.
+ *
+ * @example
+ * ```ts tangle:../export/rewrite.ts
+ * import { rewrite } from "@thi.ng/lsys";
+ *
+ * const RULES = {
+ *   a: ["b"],
+ *   b: ["a", "c"],
+ *   c: () => [Math.random() < 0.8 ? "a" : "x"]
+ * };
+ *
+ * console.log([...rewrite(RULES, "a/b/c")]);
+ * // [ "b", "/", "a", "c", "/", "x" ]
+ * ```
+ *
+ * @param rules
+ * @param syms
+ */
 export const rewrite = (rules: ProductionRules, syms: Iterable<LSysSymbol>) =>
-	mapcat((x) => rules[x] || [x], syms);
+	mapcat((x) => (isFunction(rules[x]) ? rules[x](x) : rules[x] || [x]), syms);
 
+/**
+ * Expands `src` iterable of symbols by iteratively rewriting each symbol using
+ * provided rewrite `rules` over `limit` iterations.
+ *
+ * @param rules
+ * @param initial
+ * @param limit
+ */
 export const expand = (
 	rules: ProductionRules,
 	initial: LSysSymbol,
@@ -170,14 +209,24 @@ export const expand = (
 		last
 	);
 
+/**
+ * Sequentially processes iterable of symbols using provided rule
+ * implementations and suitable execution context object.
+ *
+ * @remarks
+ * See {@link turtle2d} and {@link TURTLE_IMPL_2D}.
+ *
+ * @param ctx
+ * @param impls
+ * @param syms
+ */
 export const interpret = <T>(
 	ctx: T,
 	impls: RuleImplementations<T>,
 	syms: Iterable<LSysSymbol>
 ) => {
 	for (let s of syms) {
-		const op = impls[s];
-		op && op(ctx, s);
+		impls[s]?.(ctx, s);
 	}
 	return ctx;
 };
