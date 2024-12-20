@@ -1,15 +1,15 @@
 import type { Fn, Fn0, NumericArray } from "@thi.ng/api";
 import { fft, spectrumPow } from "@thi.ng/dsp";
-import { barChartHStr } from "@thi.ng/text-canvas";
+import { barChartVStr } from "@thi.ng/text-canvas";
 import { map, range, reducer, take, transduce } from "@thi.ng/transducers";
-import { add, divN, Vec, zeroes } from "@thi.ng/vectors";
+import { add, divN, zeroes, type Vec } from "@thi.ng/vectors";
 import {
 	blue,
-	ColoredNoiseOpts,
 	green,
 	pink,
 	red,
 	violet,
+	type ColoredNoiseOpts,
 } from "../src/index.js";
 
 const computeSpectrum = (src: Fn0<Iterable<number>>, size = 128, num = 1000) =>
@@ -26,7 +26,7 @@ const computeSpectrum = (src: Fn0<Iterable<number>>, size = 128, num = 1000) =>
 		num
 	);
 
-const spectrumString = (spec: Vec) => barChartHStr(12, spec, -72, -24);
+const spectrumString = (spec: Vec) => barChartVStr(12, spec, -72, -24);
 
 const printSpectrum = (id: string, fn: Fn0<Iterable<number>>) => {
 	console.log(id);

@@ -3,12 +3,12 @@ import { wavByteArray } from "@thi.ng/dsp-io-wav";
 import { writeFileSync } from "fs";
 import {
 	blue,
-	ColoredNoiseOpts,
 	green,
 	pink,
 	red,
 	violet,
 	white,
+	type ColoredNoiseOpts,
 } from "../src/index.js";
 
 const FS = 44100;
