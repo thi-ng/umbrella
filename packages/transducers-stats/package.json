@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-stats",
-	"version": "2.2.3",
+	"version": "2.2.4",
 	"description": "Transducers for statistical / technical analysis",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.14",
-		"@thi.ng/buffers": "^0.1.17",
+		"@thi.ng/buffers": "^0.2.0",
 		"@thi.ng/checks": "^3.6.16",
 		"@thi.ng/errors": "^2.5.20",
 		"@thi.ng/transducers": "^9.2.10"
