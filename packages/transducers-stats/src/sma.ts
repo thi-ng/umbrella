@@ -1,4 +1,4 @@
-import { DCons } from "@thi.ng/dcons/dcons";
+import { sliding } from "@thi.ng/buffers/sliding";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
@@ -24,17 +24,18 @@ export function sma(period: number, src?: Iterable<number>): any {
 		return iterator1(sma(period), src);
 	}
 	period |= 0;
-	period < 2 && illegalArgs("period must be >= 2");
+	period < 1 && illegalArgs("period must be >= 1");
 	return (rfn: Reducer<number, any>) => {
 		const reduce = rfn[2];
-		const window = new DCons<number>();
+		const window = sliding<number>(period);
 		let sum = 0;
 		return compR(rfn, (acc, x: number) => {
-			window.push(x);
-			const n = window.length;
+			if (window.length === period) {
+				sum -= window.read();
+			}
+			window.write(x);
 			sum += x;
-			n > period && (sum -= window.drop()!);
-			return n >= period ? reduce(acc, sum / period) : acc;
+			return window.length === period ? reduce(acc, sum / period) : acc;
 		});
 	};
 }

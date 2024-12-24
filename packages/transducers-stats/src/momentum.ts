@@ -1,4 +1,4 @@
-import { DCons } from "@thi.ng/dcons/dcons";
+import { sliding } from "@thi.ng/buffers/sliding";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
@@ -27,14 +27,13 @@ export function momentum(period: number, src?: Iterable<number>): any {
 	period < 1 && illegalArgs("period must be >= 1");
 	return (rfn: Reducer<number, any>) => {
 		const reduce = rfn[2];
-		const window = new DCons<number>();
+		const window = sliding<number>(period);
 		return compR(rfn, (acc, x: number) => {
-			window.push(x);
-			if (window.length <= period) {
-				return acc;
+			if (window.length === period) {
+				acc = reduce(acc, x - window.read());
 			}
-			const prev = window.drop()!;
-			return reduce(acc, x - prev);
+			window.write(x);
+			return acc;
 		});
 	};
 }
