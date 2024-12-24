@@ -76,7 +76,7 @@ For Node.js REPL:
 const ramp = await import("@thi.ng/ramp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.02 KB
 
 ## Dependencies
 
