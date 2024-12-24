@@ -6,6 +6,7 @@ test("fifo", () => {
 	expect(b.readable()).toBeFalse();
 	expect(b.writable()).toBeTrue();
 	expect(b.write(1)).toBeTrue();
+	expect(b.peek()).toBe(1);
 	expect(b.readable()).toBeTrue();
 	expect(b.writable()).toBeTrue();
 	expect(b.write(2)).toBeTrue();
@@ -28,6 +29,7 @@ test("lifo", () => {
 	expect(b.readable()).toBeFalse();
 	expect(b.writable()).toBeTrue();
 	expect(b.write(1)).toBeTrue();
+	expect(b.peek()).toBe(1);
 	expect(b.readable()).toBeTrue();
 	expect(b.writable()).toBeTrue();
 	expect(b.write(2)).toBeTrue();

@@ -17,9 +17,15 @@ export interface IReadBuffer<T> {
 	/**
 	 * Unguarded read operation. Assumes the caller checked
 	 * {@link IReadBuffer.readable} immediately before. Returns next value from
-	 * buffer.
+	 * buffer and removes it (from buffer).
 	 */
 	read(): T;
+	/**
+	 * Unguarded & immutable read operation. Assumes the caller checked
+	 * {@link IReadBuffer.readable} immediately before. Returns what would be
+	 * the next value read from buffer (without removing it).
+	 */
+	peek(): T;
 }
 
 /**

@@ -42,6 +42,10 @@ export class LIFOBuffer<T> implements IReadWriteBuffer<T> {
 		return this.buf.pop()!;
 	}
 
+	peek() {
+		return this.buf[this.buf.length - 1];
+	}
+
 	writable() {
 		return this.buf.length < this.cap;
 	}

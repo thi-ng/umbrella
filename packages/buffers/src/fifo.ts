@@ -59,6 +59,11 @@ export class FIFOBuffer<T> implements IReadWriteBuffer<T> {
 		return val;
 	}
 
+	peek() {
+		const { buf, rpos } = this;
+		return buf[rpos]!;
+	}
+
 	writable() {
 		return (this.wpos + 1) % this.buf.length !== this.rpos;
 	}
