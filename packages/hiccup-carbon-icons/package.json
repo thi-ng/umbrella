@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-carbon-icons",
-	"version": "3.1.72",
+	"version": "3.1.73",
 	"description": "Full set of IBM's Carbon icons in hiccup format",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",
-		"@thi.ng/hiccup": "^5.2.20",
+		"@thi.ng/hiccup": "^5.2.21",
 		"esbuild": "^0.24.2",
 		"typedoc": "^0.27.6",
 		"typescript": "^5.7.2"

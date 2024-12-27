@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-svg",
-	"version": "5.4.10",
+	"version": "5.4.11",
 	"description": "SVG element functions for @thi.ng/hiccup & related tooling",
 	"type": "module",
 	"module": "./index.js",
@@ -40,10 +40,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.14",
-		"@thi.ng/checks": "^3.6.16",
-		"@thi.ng/color": "^5.7.14",
-		"@thi.ng/prefixes": "^2.3.31"
+		"@thi.ng/api": "^8.11.15",
+		"@thi.ng/checks": "^3.6.17",
+		"@thi.ng/color": "^5.7.15",
+		"@thi.ng/prefixes": "^2.3.32"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",

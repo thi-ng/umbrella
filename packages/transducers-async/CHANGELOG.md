@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2024-12-12T10:11:58Z
+- **Last updated**: 2024-12-27T14:11:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.3.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-async@0.3.6) (2024-12-27)
+
+#### ♻️ Refactoring
+
+- update `throttleTime()` ([87e5ed3](https://github.com/thi-ng/umbrella/commit/87e5ed3))
+  - add [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/main/packages/timestamp) micro dependency
+  - update timestamp handling (more precise in some contexts)
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-async@0.3.0) (2024-10-14)
 

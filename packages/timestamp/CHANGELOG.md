@@ -9,9 +9,11 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/disjoint-set@1.1.0) (2024-07-22)
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/timestamp@1.1.0) (2024-12-27)
 
 #### 🚀 Features
 
-- import as new pkg ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([ebcef75](https://github.com/thi-ng/umbrella/commit/ebcef75))
-  - extract `DisjointSet` from [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/main/packages/adjacency)
+- add/extract as new package ([55bf7e4](https://github.com/thi-ng/umbrella/commit/55bf7e4))
+  - extract timestamp functions from [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/main/packages/bench) pkg
+  - add readme
+  - add test

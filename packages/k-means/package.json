@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/k-means",
-	"version": "0.7.18",
+	"version": "0.7.19",
 	"description": "Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors",
 	"type": "module",
 	"module": "./index.js",
@@ -40,11 +40,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.14",
-		"@thi.ng/distance": "^2.4.97",
-		"@thi.ng/errors": "^2.5.20",
-		"@thi.ng/random": "^4.1.5",
-		"@thi.ng/vectors": "^7.12.11"
+		"@thi.ng/api": "^8.11.15",
+		"@thi.ng/distance": "^2.4.98",
+		"@thi.ng/errors": "^2.5.21",
+		"@thi.ng/random": "^4.1.6",
+		"@thi.ng/vectors": "^7.12.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lowdisc",
-	"version": "0.3.79",
+	"version": "0.3.80",
 	"description": "n-dimensional low-discrepancy sequence generators/iterators",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.5.20"
+		"@thi.ng/errors": "^2.5.21"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",

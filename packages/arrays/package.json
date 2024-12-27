@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/arrays",
-	"version": "2.10.7",
+	"version": "2.10.8",
 	"description": "Array / Arraylike utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -40,12 +40,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.14",
-		"@thi.ng/checks": "^3.6.16",
-		"@thi.ng/compare": "^2.4.6",
-		"@thi.ng/equiv": "^2.1.70",
-		"@thi.ng/errors": "^2.5.20",
-		"@thi.ng/random": "^4.1.5"
+		"@thi.ng/api": "^8.11.15",
+		"@thi.ng/checks": "^3.6.17",
+		"@thi.ng/compare": "^2.4.7",
+		"@thi.ng/equiv": "^2.1.71",
+		"@thi.ng/errors": "^2.5.21",
+		"@thi.ng/random": "^4.1.6"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",
