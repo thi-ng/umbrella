@@ -51,10 +51,10 @@
 		"@thi.ng/transducers": "^9.2.10"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.0",
+		"@microsoft/api-extractor": "^7.48.1",
 		"@thi.ng/date": "^2.7.35",
-		"esbuild": "^0.24.0",
-		"typedoc": "^0.27.4",
+		"esbuild": "^0.24.2",
+		"typedoc": "^0.27.6",
 		"typescript": "^5.7.2"
 	},
 	"keywords": [
