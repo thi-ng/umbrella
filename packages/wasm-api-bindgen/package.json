@@ -20,6 +20,10 @@
 		{
 			"type": "patreon",
 			"url": "https://patreon.com/thing_umbrella"
+		},
+		{
+			"type": "liberapay",
+			"url": "https://liberapay.com/thi.ng"
 		}
 	],
 	"author": "Karsten Schmidt (https://thi.ng)",

@@ -79,6 +79,10 @@ cat << EOF > "$MODULE"/package.json
 		{
 			"type": "patreon",
 			"url": "https://patreon.com/thing_umbrella"
+		},
+		{
+			"type": "liberapay",
+			"url": "https://liberapay.com/thi.ng"
 		}
 	],
 	"author": "$AUTHOR ($AUTHOR_URL)",
