@@ -1,6 +1,6 @@
 import type { Fn, Fn0, Nullable, Predicate } from "@thi.ng/api";
 import { shuffle as $shuffle } from "@thi.ng/arrays/shuffle";
-import { now, timeDiff } from "@thi.ng/bench/now";
+import { now, timeDiff } from "@thi.ng/timestamp";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import {
@@ -158,7 +158,7 @@ export const timeSlice = (
 			do {
 				if ($fiber.state > STATE_ACTIVE || $fiber.next() > STATE_ACTIVE)
 					return;
-			} while (timeDiff(t0, now()) < maxTime);
+			} while (timeDiff(t0) < maxTime);
 			yield;
 		}
 	}, opts);
@@ -205,7 +205,7 @@ export const timeSliceIterable = <T>(
 					return;
 				}
 				buf.push(value);
-			} while (timeDiff(t0, now()) < maxTime);
+			} while (timeDiff(t0) < maxTime);
 			consume(buf);
 			yield;
 		}

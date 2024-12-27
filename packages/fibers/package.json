@@ -38,13 +38,13 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.14",
 		"@thi.ng/arrays": "^2.10.7",
-		"@thi.ng/bench": "^3.6.7",
 		"@thi.ng/buffers": "^0.2.0",
 		"@thi.ng/checks": "^3.6.16",
 		"@thi.ng/errors": "^2.5.20",
 		"@thi.ng/idgen": "^2.2.54",
 		"@thi.ng/logger": "^3.0.24",
-		"@thi.ng/random": "^4.1.5"
+		"@thi.ng/random": "^4.1.5",
+		"@thi.ng/timestamp": "^1.0.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.0",
