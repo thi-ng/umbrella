@@ -1,4 +1,5 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
+import { now, timeDiff, type Timestamp } from "@thi.ng/timestamp";
 import type { Transducer } from "./api.js";
 import { iterator } from "./iterator.js";
 import { partitionBy } from "./partition-by.js";
@@ -43,11 +44,11 @@ export function partitionTime<T>(period: number, src?: Iterable<T>): any {
 	return isIterable(src)
 		? iterator(partitionTime(period), src)
 		: partitionBy(() => {
-				let last = 0;
+				let prev: Timestamp = 0;
 				return () => {
-					const t = Date.now();
-					t - last >= period && (last = t);
-					return last;
+					const t = now();
+					timeDiff(prev, t) >= period && (prev = t);
+					return prev;
 				};
 		  }, true);
 }

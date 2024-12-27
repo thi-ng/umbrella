@@ -47,7 +47,8 @@
 		"@thi.ng/compose": "^3.0.17",
 		"@thi.ng/errors": "^2.5.20",
 		"@thi.ng/math": "^5.11.14",
-		"@thi.ng/random": "^4.1.5"
+		"@thi.ng/random": "^4.1.5",
+		"@thi.ng/timestamp": "^1.0.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.0",
@@ -60,6 +61,7 @@
 		"2d",
 		"3d",
 		"array",
+		"benchmark",
 		"clojure",
 		"composition",
 		"convolution",
