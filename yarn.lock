@@ -4073,6 +4073,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.0"
     "@thi.ng/api": "npm:^8.11.14"
+    "@thi.ng/timestamp": "npm:^1.0.0"
     "@types/node": "npm:^22.10.1"
     esbuild: "npm:^0.24.0"
     tools: "workspace:^"

@@ -36,7 +36,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.14"
+		"@thi.ng/api": "^8.11.14",
+		"@thi.ng/timestamp": "^1.0.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.0",
@@ -57,6 +58,7 @@
 		"statistics",
 		"table",
 		"time",
+		"timestamp",
 		"typescript"
 	],
 	"publishConfig": {

@@ -1,6 +1,6 @@
 import type { Fn, Fn0, Fn2 } from "@thi.ng/api";
 
-export type Timestamp = number | bigint;
+export type { Timestamp } from "@thi.ng/timestamp";
 
 export type TimingResult<T> = [T, number];
 

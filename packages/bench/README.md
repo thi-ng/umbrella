@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 199 standalone projects, maintained as part
+> This is one of 200 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -33,19 +33,10 @@
 
 Benchmarking & profiling utilities w/ various statistics & formatters (CSV, JSON, Markdown etc.).
 
-Though no public API change (only additions), since v2.0.0 this library
-internally (via
-[`now()`](https://docs.thi.ng/umbrella/bench/functions/now.html)) attempts to
-use high-res ES
-[`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
-timestamps (in Node via
-[`process.hrtime.bigint()`](https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process_hrtime_bigint))
-or falls back to `performance.now()` or lacking that to `Date.now()`. In all
-cases, returns a (possibly rounded) nanosec-scale timestamp, either as `bigint`
-or `number`. The
-[`timeDiff()`](https://docs.thi.ng/umbrella/bench/functions/timeDiff.html)
-function can be used to compute the difference between two such timestamp and
-return it as milliseconds.
+> [!IMPORTANT]
+> As of 2024-12-27, all timestamp-related functions have been extracted/migrated
+> to the new [@thi.ng/timestamp](https://thi.ng/timestamp) package, but are
+> still available here as re-exports too.
 
 ## Status
 
@@ -84,11 +75,12 @@ For Node.js REPL:
 const bench = await import("@thi.ng/bench");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.06 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
