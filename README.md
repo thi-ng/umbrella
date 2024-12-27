@@ -60,13 +60,13 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 199 individual
+Not including deprecations, this mono-repository is home to 200 individual
 TypeScript libraries/packages/tools and ~180 example projects illustrating their
 usage, currently totalling ~208k SLOC and ~4100 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
 
-Unlike most other large mono-repos this one is not for a single project, but a
+Unlike most other large mono-repos, this one is not for a single project, but a
 broad collection of jointly developed, yet independent libraries, tools and
 general purpose building blocks for the following **non-exhaustive** list of
 topics (see [package overview](#projects) below):
@@ -306,13 +306,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-12-24
+As of: 2024-12-27
 
 | Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
 |:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/buffers`](./packages/buffers)                     | [![version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)                     | [changelog](./packages/buffers/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/lsys`](./packages/lsys)                           | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                           | [changelog](./packages/lsys/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-stats`](./packages/transducers-stats) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats) | [changelog](./packages/transducers-stats/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/bench`](./packages/bench)                         | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)                         | [changelog](./packages/bench/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/fibers`](./packages/fibers)                       | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)                       | [changelog](./packages/fibers/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-new-green)     | [`@thi.ng/timestamp`](./packages/timestamp)                 | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)                 | [changelog](./packages/timestamp/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-async`](./packages/transducers-async) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async) | [changelog](./packages/transducers-async/CHANGELOG.md) |
 
 ### Fundamentals
 
@@ -340,6 +342,7 @@ As of: 2024-12-24
 | [`@thi.ng/paths`](./packages/paths)               | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)               | [changelog](./packages/paths/CHANGELOG.md)        | Immutable nested object accessors                        |
 | [`@thi.ng/strings`](./packages/strings)           | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)           | [changelog](./packages/strings/CHANGELOG.md)      | Higher-order string formatting utils                     |
 | [`@thi.ng/system`](./packages/system)             | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)             | [changelog](./packages/system/CHANGELOG.md)       | Minimal life cycle container for stateful app components |
+| [`@thi.ng/timestamp`](./packages/timestamp)       | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)       | [changelog](./packages/timestamp/CHANGELOG.md)    | Timestamp abstraction/wrapper                            |
 | [`@thi.ng/transclude`](./packages/transclude)     | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)     | [changelog](./packages/transclude/CHANGELOG.md)   | Template engine for text document generation             |
 | [`@thi.ng/units`](./packages/units)               | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)               | [changelog](./packages/units/CHANGELOG.md)        | Extensible SI unit conversions                           |
 
