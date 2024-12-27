@@ -41,6 +41,7 @@
 		"@thi.ng/checks": "^3.6.16",
 		"@thi.ng/compose": "^3.0.17",
 		"@thi.ng/errors": "^2.5.20",
+		"@thi.ng/timestamp": "^1.0.0",
 		"@thi.ng/transducers": "^9.2.10"
 	},
 	"devDependencies": {

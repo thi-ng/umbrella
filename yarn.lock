@@ -6718,6 +6718,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.6.16"
     "@thi.ng/compose": "npm:^3.0.17"
     "@thi.ng/errors": "npm:^2.5.20"
+    "@thi.ng/timestamp": "npm:^1.0.0"
     "@thi.ng/transducers": "npm:^9.2.10"
     esbuild: "npm:^0.24.0"
     typedoc: "npm:^0.27.4"
