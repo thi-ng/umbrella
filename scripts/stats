@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # usage: stats packages stats.csv (default)
+# usage: stats packages stats-zig.csv Zig
 # usage: stats examples stats-ex.csv
+# usage: stats examples stats-ex-zig.csv Zig
 
 if [ $# -gt 0 ]; then
     modules="$1/*"
@@ -15,16 +17,24 @@ else
     out=dev/stats.csv
 fi
 
+if [ $# -gt 2 ]; then
+    lang="$3"
+    srcdir="/$(echo "$3" | tr '[:upper:]' '[:lower:]')"
+else
+    lang="TypeScript"
+    srcdir="/src"
+fi
+
 echo "package,files,comments,sloc" > $out
 
 for m in $modules; do
     if [ -d "$m" ]; then
         skip=$(grep -e '"skip": true' "$m/package.json")
-        if [ -e "$m/.skip" ] || [ -n "$skip" ]; then
-            echo "\tskipping $m"
+        if [ -e "$m/.skip" ] || [ -n "$skip" ] || [ ! -d "$m$srcdir" ]; then
+            echo "\tskipping $m$srcdir"
         else
             echo "$m $skip"
-            echo "$m,$(cloc "$m"/src --csv | grep "TypeScript" | cut -d ',' -f1 -f4-5)" >> $out
+            echo "$m,$(cloc $m$srcdir --csv | grep $lang | cut -d ',' -f1 -f4-5)" >> $out
         fi
     fi
 done
