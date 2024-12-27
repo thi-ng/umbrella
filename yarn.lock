@@ -6665,6 +6665,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/timestamp@npm:^1.0.0, @thi.ng/timestamp@workspace:packages/timestamp":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/timestamp@workspace:packages/timestamp"
+  dependencies:
+    "@microsoft/api-extractor": "npm:^7.48.0"
+    esbuild: "npm:^0.24.0"
+    typedoc: "npm:^0.27.4"
+    typescript: "npm:^5.7.2"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/timestep@npm:^0.5.73, @thi.ng/timestep@workspace:^, @thi.ng/timestep@workspace:packages/timestep":
   version: 0.0.0-use.local
   resolution: "@thi.ng/timestep@workspace:packages/timestep"
