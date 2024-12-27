@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 199 standalone projects, maintained as part
+> This is one of 200 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -116,7 +116,7 @@ For Node.js REPL:
 const txa = await import("@thi.ng/transducers-async");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.20 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.22 KB
 
 ## Dependencies
 
@@ -125,6 +125,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.20 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)

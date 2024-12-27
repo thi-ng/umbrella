@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 199 standalone projects, maintained as part
+> This is one of 200 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -403,19 +403,19 @@ For Node.js REPL:
 const fib = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.45 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.44 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
 - [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
