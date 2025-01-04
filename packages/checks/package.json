@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/checks",
-	"version": "3.6.17",
+	"version": "3.6.18",
 	"description": "Collection of 70+ type, feature & value checks",
 	"type": "module",
 	"module": "./index.js",
