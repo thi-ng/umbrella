@@ -22,6 +22,7 @@ interface CLIOpts {
 	dest: string;
 	dryRun: boolean;
 	noMinify: boolean;
+	noToc: boolean;
 	scope: string;
 }
 
@@ -32,6 +33,7 @@ interface DocCtx {
 	base: string;
 	dryRun: boolean;
 	minify: boolean;
+	noToc: boolean;
 	s3Prefix: string;
 	scope: string;
 }
@@ -173,6 +175,9 @@ cliApp<CLIOpts, CLICtx>({
 			alias: "m",
 			desc: "Disable HTML minification",
 		}),
+		noToc: flag({
+			desc: "Disable doc table",
+		}),
 		scope: string({
 			alias: "s",
 			desc: "Package scope",
@@ -188,6 +193,7 @@ cliApp<CLIOpts, CLICtx>({
 					base: ctx.opts.base,
 					dryRun: ctx.opts.dryRun,
 					minify: !ctx.opts.noMinify,
+					noToc: ctx.opts.noToc,
 					scope: ctx.opts.scope,
 					s3Prefix: "/" + ctx.opts.dest,
 				};
@@ -205,7 +211,7 @@ cliApp<CLIOpts, CLICtx>({
 						invalidations.push(`${docCtx.s3Prefix}/${destID}/*`);
 					}
 				}
-				if (docCtx.base === "packages") {
+				if (!docCtx.noToc) {
 					execFileSync("bun", ["tools/src/doc-table.ts"]);
 					if (!docCtx.dryRun) {
 						execFileSync(
