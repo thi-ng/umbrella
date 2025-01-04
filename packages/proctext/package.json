@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/proctext",
-	"version": "0.2.15",
+	"version": "1.0.0",
 	"description": "Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions",
 	"type": "module",
 	"module": "./index.js",

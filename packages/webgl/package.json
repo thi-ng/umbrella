@@ -45,7 +45,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.15",
-		"@thi.ng/canvas": "^0.5.8",
+		"@thi.ng/canvas": "^1.0.0",
 		"@thi.ng/checks": "^3.6.17",
 		"@thi.ng/equiv": "^2.1.71",
 		"@thi.ng/errors": "^2.5.21",
@@ -54,9 +54,9 @@
 		"@thi.ng/memoize": "^4.0.5",
 		"@thi.ng/object-utils": "^1.1.8",
 		"@thi.ng/pixel": "^7.3.10",
-		"@thi.ng/shader-ast": "^0.15.38",
-		"@thi.ng/shader-ast-glsl": "^0.4.146",
-		"@thi.ng/shader-ast-stdlib": "^0.18.38",
+		"@thi.ng/shader-ast": "^1.0.0",
+		"@thi.ng/shader-ast-glsl": "^1.0.0",
+		"@thi.ng/shader-ast-stdlib": "^1.0.0",
 		"@thi.ng/transducers": "^9.2.11",
 		"@thi.ng/vector-pools": "^3.2.24",
 		"@thi.ng/vectors": "^7.12.12"

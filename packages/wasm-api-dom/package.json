@@ -45,14 +45,14 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.15",
-		"@thi.ng/canvas": "^0.5.8",
+		"@thi.ng/canvas": "^1.0.0",
 		"@thi.ng/errors": "^2.5.21",
 		"@thi.ng/prefixes": "^2.3.32",
 		"@thi.ng/wasm-api": "^2.2.6"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",
-		"@thi.ng/wasm-api-bindgen": "^0.8.6",
+		"@thi.ng/wasm-api-bindgen": "^1.0.0",
 		"esbuild": "^0.24.2",
 		"typedoc": "^0.27.6",
 		"typescript": "^5.7.2"

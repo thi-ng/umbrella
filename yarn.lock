@@ -3952,7 +3952,7 @@ __metadata:
     "@thi.ng/dcons": "npm:^3.2.135"
     "@thi.ng/disjoint-set": "npm:^1.1.8"
     "@thi.ng/errors": "npm:^2.5.21"
-    "@thi.ng/sparse": "npm:^0.3.140"
+    "@thi.ng/sparse": "npm:^1.0.0"
     "@thi.ng/vectors": "npm:^7.12.12"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
@@ -4054,7 +4054,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.25"
     "@thi.ng/math": "npm:^5.11.15"
     "@thi.ng/transducers": "npm:^9.2.11"
-    "@thi.ng/units": "npm:^0.5.13"
+    "@thi.ng/units": "npm:^1.0.0"
     "@thi.ng/vectors": "npm:^7.12.12"
     esbuild: "npm:^0.24.2"
     serialport: "npm:^13.0.0"
@@ -4157,14 +4157,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/blurhash@npm:^0.2.12, @thi.ng/blurhash@workspace:^, @thi.ng/blurhash@workspace:packages/blurhash":
+"@thi.ng/blurhash@npm:^1.0.0, @thi.ng/blurhash@workspace:^, @thi.ng/blurhash@workspace:packages/blurhash":
   version: 0.0.0-use.local
   resolution: "@thi.ng/blurhash@workspace:packages/blurhash"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
     "@thi.ng/base-n": "npm:^2.7.27"
-    "@thi.ng/canvas": "npm:^0.5.8"
+    "@thi.ng/canvas": "npm:^1.0.0"
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/math": "npm:^5.11.15"
     esbuild: "npm:^0.24.2"
@@ -4185,7 +4185,7 @@ __metadata:
     "@thi.ng/geom-closest-point": "npm:^2.1.152"
     "@thi.ng/geom-resample": "npm:^3.0.24"
     "@thi.ng/math": "npm:^5.11.15"
-    "@thi.ng/timestep": "npm:^0.5.74"
+    "@thi.ng/timestep": "npm:^1.0.0"
     "@thi.ng/vectors": "npm:^7.12.12"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
@@ -4193,7 +4193,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/buffers@npm:^0.2.1, @thi.ng/buffers@workspace:packages/buffers":
+"@thi.ng/buffers@npm:^1.0.0, @thi.ng/buffers@workspace:packages/buffers":
   version: 0.0.0-use.local
   resolution: "@thi.ng/buffers@workspace:packages/buffers"
   dependencies:
@@ -4219,7 +4219,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/canvas@npm:^0.5.8, @thi.ng/canvas@workspace:^, @thi.ng/canvas@workspace:packages/canvas":
+"@thi.ng/canvas@npm:^1.0.0, @thi.ng/canvas@workspace:^, @thi.ng/canvas@workspace:packages/canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/canvas@workspace:packages/canvas"
   dependencies:
@@ -4367,7 +4367,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/buffers": "npm:^0.2.1"
+    "@thi.ng/buffers": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/errors": "npm:^2.5.21"
     esbuild: "npm:^0.24.2"
@@ -4661,7 +4661,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/emoji@npm:^0.2.7, @thi.ng/emoji@workspace:^, @thi.ng/emoji@workspace:packages/emoji":
+"@thi.ng/emoji@npm:^1.0.0, @thi.ng/emoji@workspace:^, @thi.ng/emoji@workspace:packages/emoji":
   version: 0.0.0-use.local
   resolution: "@thi.ng/emoji@workspace:packages/emoji"
   dependencies:
@@ -4714,7 +4714,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
     "@thi.ng/arrays": "npm:^2.10.8"
-    "@thi.ng/buffers": "npm:^0.2.1"
+    "@thi.ng/buffers": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/idgen": "npm:^2.2.55"
@@ -5231,7 +5231,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/canvas": "npm:^0.5.8"
+    "@thi.ng/canvas": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/math": "npm:^5.11.15"
     "@thi.ng/transducers": "npm:^9.2.11"
@@ -5382,7 +5382,7 @@ __metadata:
     "@thi.ng/arrays": "npm:^2.10.8"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/defmulti": "npm:^3.0.53"
-    "@thi.ng/emoji": "npm:^0.2.7"
+    "@thi.ng/emoji": "npm:^1.0.0"
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/hiccup": "npm:^5.2.21"
     "@thi.ng/logger": "npm:^3.0.25"
@@ -5463,7 +5463,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/blurhash": "npm:^0.2.12"
+    "@thi.ng/blurhash": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/date": "npm:^2.7.36"
     "@thi.ng/defmulti": "npm:^3.0.53"
@@ -5534,7 +5534,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/k-means@npm:^0.7.19, @thi.ng/k-means@workspace:^, @thi.ng/k-means@workspace:packages/k-means":
+"@thi.ng/k-means@npm:^1.0.0, @thi.ng/k-means@workspace:^, @thi.ng/k-means@workspace:packages/k-means":
   version: 0.0.0-use.local
   resolution: "@thi.ng/k-means@workspace:packages/k-means"
   dependencies:
@@ -5871,7 +5871,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/k-means": "npm:^0.7.19"
+    "@thi.ng/k-means": "npm:^1.0.0"
     "@thi.ng/pixel": "npm:^7.3.10"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
@@ -5926,7 +5926,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/canvas": "npm:^0.5.8"
+    "@thi.ng/canvas": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/math": "npm:^5.11.15"
@@ -6128,7 +6128,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/canvas": "npm:^0.5.8"
+    "@thi.ng/canvas": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/hiccup-canvas": "npm:^3.1.29"
     "@thi.ng/object-utils": "npm:^1.1.8"
@@ -6428,7 +6428,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast-glsl@npm:^0.4.146, @thi.ng/shader-ast-glsl@workspace:^, @thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl":
+"@thi.ng/shader-ast-glsl@npm:^1.0.0, @thi.ng/shader-ast-glsl@workspace:^, @thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl"
   dependencies:
@@ -6436,7 +6436,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.15"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/errors": "npm:^2.5.21"
-    "@thi.ng/shader-ast": "npm:^0.15.38"
+    "@thi.ng/shader-ast": "npm:^1.0.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
@@ -6454,7 +6454,7 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.15"
     "@thi.ng/matrices": "npm:^2.4.24"
     "@thi.ng/pixel": "npm:^7.3.10"
-    "@thi.ng/shader-ast": "npm:^0.15.38"
+    "@thi.ng/shader-ast": "npm:^1.0.0"
     "@thi.ng/vectors": "npm:^7.12.12"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
@@ -6472,27 +6472,27 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/logger": "npm:^3.0.25"
     "@thi.ng/math": "npm:^5.11.15"
-    "@thi.ng/shader-ast": "npm:^0.15.38"
+    "@thi.ng/shader-ast": "npm:^1.0.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast-stdlib@npm:^0.18.38, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
+"@thi.ng/shader-ast-stdlib@npm:^1.0.0, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib"
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/shader-ast": "npm:^0.15.38"
+    "@thi.ng/shader-ast": "npm:^1.0.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast@npm:^0.15.38, @thi.ng/shader-ast@workspace:^, @thi.ng/shader-ast@workspace:packages/shader-ast":
+"@thi.ng/shader-ast@npm:^1.0.0, @thi.ng/shader-ast@workspace:^, @thi.ng/shader-ast@workspace:packages/shader-ast":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast@workspace:packages/shader-ast"
   dependencies:
@@ -6572,7 +6572,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/sparse@npm:^0.3.140, @thi.ng/sparse@workspace:packages/sparse":
+"@thi.ng/sparse@npm:^1.0.0, @thi.ng/sparse@workspace:packages/sparse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/sparse@workspace:packages/sparse"
   dependencies:
@@ -6684,7 +6684,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/timestep@npm:^0.5.74, @thi.ng/timestep@workspace:^, @thi.ng/timestep@workspace:packages/timestep":
+"@thi.ng/timestep@npm:^1.0.0, @thi.ng/timestep@workspace:^, @thi.ng/timestep@workspace:packages/timestep":
   version: 0.0.0-use.local
   resolution: "@thi.ng/timestep@workspace:packages/timestep"
   dependencies:
@@ -6721,7 +6721,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/buffers": "npm:^0.2.1"
+    "@thi.ng/buffers": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/compose": "npm:^3.0.18"
     "@thi.ng/errors": "npm:^2.5.21"
@@ -6800,7 +6800,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/buffers": "npm:^0.2.1"
+    "@thi.ng/buffers": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/transducers": "npm:^9.2.11"
@@ -6853,7 +6853,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/units@npm:^0.5.13, @thi.ng/units@workspace:^, @thi.ng/units@workspace:packages/units":
+"@thi.ng/units@npm:^1.0.0, @thi.ng/units@workspace:^, @thi.ng/units@workspace:packages/units":
   version: 0.0.0-use.local
   resolution: "@thi.ng/units@workspace:packages/units"
   dependencies:
@@ -6952,7 +6952,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^0.8.6, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^1.0.0, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
@@ -6985,7 +6985,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/binary": "npm:^3.4.38"
     "@thi.ng/wasm-api": "npm:^2.2.6"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.8.6"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.0.0"
     "@thi.ng/wasm-api-dom": "npm:^1.0.15"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
@@ -6999,11 +6999,11 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/canvas": "npm:^0.5.8"
+    "@thi.ng/canvas": "npm:^1.0.0"
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/prefixes": "npm:^2.3.32"
     "@thi.ng/wasm-api": "npm:^2.2.6"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.8.6"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.0.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
@@ -7017,7 +7017,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
     "@thi.ng/wasm-api": "npm:^2.2.6"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.8.6"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.0.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
@@ -7032,7 +7032,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.15"
     "@thi.ng/errors": "npm:^2.5.21"
     "@thi.ng/wasm-api": "npm:^2.2.6"
-    "@thi.ng/wasm-api-bindgen": "npm:^0.8.6"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.0.0"
     "@thi.ng/wasm-api-dom": "npm:^1.0.15"
     "@thi.ng/webgl": "npm:^6.9.28"
     esbuild: "npm:^0.24.2"
@@ -7065,7 +7065,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/shader-ast": "npm:^0.15.38"
+    "@thi.ng/shader-ast": "npm:^1.0.0"
     "@thi.ng/transducers": "npm:^9.2.11"
     "@thi.ng/vector-pools": "npm:^3.2.24"
     "@thi.ng/vectors": "npm:^7.12.12"
@@ -7082,8 +7082,8 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/shader-ast": "npm:^0.15.38"
-    "@thi.ng/shader-ast-glsl": "npm:^0.4.146"
+    "@thi.ng/shader-ast": "npm:^1.0.0"
+    "@thi.ng/shader-ast-glsl": "npm:^1.0.0"
     "@thi.ng/webgl": "npm:^6.9.28"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
@@ -7097,7 +7097,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.15"
-    "@thi.ng/canvas": "npm:^0.5.8"
+    "@thi.ng/canvas": "npm:^1.0.0"
     "@thi.ng/checks": "npm:^3.6.17"
     "@thi.ng/equiv": "npm:^2.1.71"
     "@thi.ng/errors": "npm:^2.5.21"
@@ -7106,9 +7106,9 @@ __metadata:
     "@thi.ng/memoize": "npm:^4.0.5"
     "@thi.ng/object-utils": "npm:^1.1.8"
     "@thi.ng/pixel": "npm:^7.3.10"
-    "@thi.ng/shader-ast": "npm:^0.15.38"
-    "@thi.ng/shader-ast-glsl": "npm:^0.4.146"
-    "@thi.ng/shader-ast-stdlib": "npm:^0.18.38"
+    "@thi.ng/shader-ast": "npm:^1.0.0"
+    "@thi.ng/shader-ast-glsl": "npm:^1.0.0"
+    "@thi.ng/shader-ast-stdlib": "npm:^1.0.0"
     "@thi.ng/transducers": "npm:^9.2.11"
     "@thi.ng/vector-pools": "npm:^3.2.24"
     "@thi.ng/vectors": "npm:^7.12.12"
@@ -9303,11 +9303,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.2
-  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=8c6c40"
+  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/ff27fc124bceb8969be722baa38af945b2505767cf794de3e2715e58f61b43780284060287d651fcbbdfb6f917f4653b20f4751991f17e0706db389b9bb3f75d
+  checksum: 10/d75ca10141afc64fd3474b41a8b082b640555bed388d237558aed64e5827ddadb48f90932c7f4205883f18f5bcab8b6a739a2cfac95855604b0dfeb34bc2f3eb
   languageName: node
   linkType: hard
 

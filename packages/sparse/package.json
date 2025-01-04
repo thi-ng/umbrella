@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sparse",
-	"version": "0.3.140",
+	"version": "1.0.0",
 	"description": "Sparse vector & matrix implementations",
 	"type": "module",
 	"module": "./index.js",

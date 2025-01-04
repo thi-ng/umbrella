@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/distance-transform",
-	"version": "0.1.81",
+	"version": "1.0.0",
 	"description": "Binary image to Distance Field transformation",
 	"type": "module",
 	"module": "./index.js",

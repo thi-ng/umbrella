@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.15",
-		"@thi.ng/k-means": "^0.7.19",
+		"@thi.ng/k-means": "^1.0.0",
 		"@thi.ng/pixel": "^7.3.10"
 	},
 	"devDependencies": {

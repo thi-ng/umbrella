@@ -46,7 +46,7 @@
 		"@thi.ng/math": "^5.11.15",
 		"@thi.ng/matrices": "^2.4.24",
 		"@thi.ng/pixel": "^7.3.10",
-		"@thi.ng/shader-ast": "^0.15.38",
+		"@thi.ng/shader-ast": "^1.0.0",
 		"@thi.ng/vectors": "^7.12.12"
 	},
 	"devDependencies": {

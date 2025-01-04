@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/imago",
-	"version": "0.8.23",
+	"version": "1.0.0",
 	"description": "JSON & API-based declarative and extensible image processing trees/pipelines",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.15",
-		"@thi.ng/blurhash": "^0.2.12",
+		"@thi.ng/blurhash": "^1.0.0",
 		"@thi.ng/checks": "^3.6.17",
 		"@thi.ng/date": "^2.7.36",
 		"@thi.ng/defmulti": "^3.0.53",

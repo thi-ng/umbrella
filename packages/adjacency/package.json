@@ -49,7 +49,7 @@
 		"@thi.ng/dcons": "^3.2.135",
 		"@thi.ng/disjoint-set": "^1.1.8",
 		"@thi.ng/errors": "^2.5.21",
-		"@thi.ng/sparse": "^0.3.140"
+		"@thi.ng/sparse": "^1.0.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",

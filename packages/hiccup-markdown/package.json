@@ -44,7 +44,7 @@
 		"@thi.ng/arrays": "^2.10.8",
 		"@thi.ng/checks": "^3.6.17",
 		"@thi.ng/defmulti": "^3.0.53",
-		"@thi.ng/emoji": "^0.2.7",
+		"@thi.ng/emoji": "^1.0.0",
 		"@thi.ng/errors": "^2.5.21",
 		"@thi.ng/hiccup": "^5.2.21",
 		"@thi.ng/logger": "^3.0.25",

@@ -46,7 +46,7 @@
 		"@thi.ng/geom-closest-point": "^2.1.152",
 		"@thi.ng/geom-resample": "^3.0.24",
 		"@thi.ng/math": "^5.11.15",
-		"@thi.ng/timestep": "^0.5.74",
+		"@thi.ng/timestep": "^1.0.0",
 		"@thi.ng/vectors": "^7.12.12"
 	},
 	"devDependencies": {
