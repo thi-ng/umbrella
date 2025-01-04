@@ -26,13 +26,14 @@ export const capitalize: FnS = (x) =>
  * Converts a CamelCase string into kebab case, with optional custom
  * delimiter (`-` by default).
  *
+ * @remarks
+ * See {@link snake} for alternative.
+ *
  * @example
  * ```ts tangle:../export/kebab.ts
  * import { kebab } from "@thi.ng/strings";
  *
- * console.log(
- *   kebab("FooBar23Baz")
- * );
+ * console.log(kebab("FooBar23Baz"));
  * // "foo-bar23-baz"
  * ```
  *
@@ -53,6 +54,17 @@ export const kebab: Stringer<string> = (x, delim = "-") =>
 /**
  * Short for {@link kebab} using `_` as delimiter.
  *
+ * @remarks
+ * Also see {@link upperSnake} for alternative.
+ *
+ * @example
+ * ```ts tangle:../export/snake.ts
+ * import { snake } from "@thi.ng/strings";
+ *
+ * console.log(snake("FooBar23Baz"));
+ * // "foo_bar23_baz"
+ * ```
+ *
  * @param x -
  */
 export const snake: FnS = (x) => kebab(x, "_");
@@ -60,13 +72,30 @@ export const snake: FnS = (x) => kebab(x, "_");
 /**
  * Uppercase version of {@link snake}.
  *
+ * @remarks
+ * Also see {@link snake} for alternative.
+ *
  * @param x -
  */
 export const upperSnake: FnS = (x) => snake(x).toUpperCase();
 
 /**
- * Converts a kebab-case or snake_case string into CamelCase. Uses `-`
- * as default delimiter.
+ * Converts a kebab-case or snake_case string into camelCase. Uses `-` as
+ * default delimiter.
+ *
+ * @remarks
+ * Alse see {@link pascal} for alternative.
+ *
+ * @example
+ * ```ts tangle:../export/camel.ts
+ * import { camel } from "@thi.ng/strings";
+ *
+ * console.log(camel("foo-bar23-baz"));
+ * // fooBar23Baz
+ *
+ * console.log(camel("FOO_BAR23_BAZ", "_"));
+ * // fooBar23Baz
+ * ```
  *
  * @param x -
  * @param delim -
