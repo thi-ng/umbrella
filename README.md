@@ -306,15 +306,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2024-12-27
+As of: 2025-01-04
 
-| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/bench`](./packages/bench)                         | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)                         | [changelog](./packages/bench/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/fibers`](./packages/fibers)                       | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)                       | [changelog](./packages/fibers/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-new-green)     | [`@thi.ng/timestamp`](./packages/timestamp)                 | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)                 | [changelog](./packages/timestamp/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/transducers-async`](./packages/transducers-async) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async) | [changelog](./packages/transducers-async/CHANGELOG.md) |
+| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
+|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings) | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings) | [changelog](./packages/strings/CHANGELOG.md) |
 
 ### Fundamentals
 
@@ -715,7 +711,7 @@ tasks:
 
 ## License
 
-&copy; 2015 - 2024 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2025 Karsten Schmidt // Apache Software License 2.0
 
 ## Contributors ✨
 
