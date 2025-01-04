@@ -501,4 +501,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2024 Karsten Schmidt // Apache License 2.0
+&copy; 2024 - 2025 Karsten Schmidt // Apache License 2.0

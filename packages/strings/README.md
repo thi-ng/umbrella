@@ -151,7 +151,7 @@ For Node.js REPL:
 const str = await import("@thi.ng/strings");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.52 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.51 KB
 
 ## Dependencies
 
@@ -223,4 +223,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2024 Karsten Schmidt // Apache License 2.0
+&copy; 2015 - 2025 Karsten Schmidt // Apache License 2.0
