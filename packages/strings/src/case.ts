@@ -73,3 +73,24 @@ export const upperSnake: FnS = (x) => snake(x).toUpperCase();
  */
 export const camel: Stringer<string> = (x, delim = "-") =>
 	lower(x).replace(new RegExp(`\\${delim}+(\\w)`, "g"), (_, c) => upper(c));
+
+/**
+ * Converts a kebab-case or snake_case string into PascalCase. Uses `-` as
+ * default delimiter.
+ *
+ * @example
+ * ```ts tangle:../export/pascal.ts
+ * import { pascal } from "@thi.ng/strings";
+ *
+ * console.log(pascal("foo-bar23-baz"));
+ * // FooBar23Baz
+ *
+ * console.log(pascal("FOO_BAR23_BAZ", "_"));
+ * // FooBar23Baz
+ * ```
+ *
+ * @param x
+ * @param delim
+ */
+export const pascal: Stringer<string> = (x, delim = "-") =>
+	capitalize(camel(x, delim));
