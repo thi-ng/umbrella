@@ -29,4 +29,4 @@ Features covered:
 
 - Karsten Schmidt
 
-&copy; 2018
+&copy; 2018 - 2025

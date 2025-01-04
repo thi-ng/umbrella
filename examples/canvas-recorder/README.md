@@ -13,4 +13,4 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 
 ## License
 
-&copy; 2023 Nicolas Lebrun // Apache Software License 2.0
+&copy; 2023 - 2025 Nicolas Lebrun // Apache Software License 2.0

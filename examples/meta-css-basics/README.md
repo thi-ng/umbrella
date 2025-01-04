@@ -17,4 +17,4 @@ Please refer to the instructions on the wiki:
 
 ## License
 
-&copy; 2023 Karsten Schmidt // Apache Software License 2.0
+&copy; 2023 - 2025 Karsten Schmidt // Apache Software License 2.0

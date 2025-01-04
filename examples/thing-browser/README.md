@@ -27,4 +27,4 @@ yarn tool:packages
 
 ## License
 
-&copy; 2024 Karsten Schmidt // Apache Software License 2.0
+&copy; 2024 - 2025 Karsten Schmidt // Apache Software License 2.0

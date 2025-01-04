@@ -93,4 +93,4 @@ bin/hiccup \
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2025 Karsten Schmidt // Apache Software License 2.0

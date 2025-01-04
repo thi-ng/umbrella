@@ -20,4 +20,4 @@ Download from here (or via package managers, e.g. homebrew):
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 - 2025 Karsten Schmidt // Apache Software License 2.0

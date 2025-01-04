@@ -20,4 +20,4 @@ Please refer to the instructions on the wiki:
 
 ## License
 
-&copy; 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2025 Karsten Schmidt // Apache Software License 2.0

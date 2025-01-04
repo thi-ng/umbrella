@@ -12,4 +12,4 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 
 ## License
 
-&copy; 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2025 Karsten Schmidt // Apache Software License 2.0
