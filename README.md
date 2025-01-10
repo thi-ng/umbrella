@@ -306,11 +306,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-01-04
+As of: 2025-01-10
 
-| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
-|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings) | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings) | [changelog](./packages/strings/CHANGELOG.md) |
+| Status                                        | Package                                                   | Version                                                                                                                         | Changelog                                             |
+|:----------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-html`](./packages/hiccup-html)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)           | [changelog](./packages/hiccup-html/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/rdom-forms`](./packages/rdom-forms)             | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)             | [changelog](./packages/rdom-forms/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)                 | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                 | [changelog](./packages/wasm-api/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen) | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md) |
 
 ### Fundamentals
 
