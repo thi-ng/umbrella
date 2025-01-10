@@ -264,8 +264,8 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * @remarks
 	 * Each API module's imports will be in their own WASM import object/table,
 	 * named using the same key which is defined by the JS side of the module
-	 * via {@link IWasmAPI.id}. The bridge's core API is named `wasmapi` and is
-	 * reserved.
+	 * via {@link WasmModuleSpec.id}. The bridge's core API is named `wasmapi`
+	 * and is reserved.
 	 *
 	 * @example
 	 * The following creates a bridge with a fictional `custom` API module:
