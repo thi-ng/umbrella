@@ -82,7 +82,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			const str = __stringImpl(globalOpts);
 			const res = [
 				"// @ts-ignore possibly includes unused imports",
-				`import { defType, Pointer, ${str}, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmTypeBase } from "@thi.ng/wasm-api";`,
+				`import { defType, Pointer, ${str}, type IWasmMemoryAccess, type MemorySlice, type MemoryView, type WasmTypeBase, type WasmTypeKeys } from "@thi.ng/wasm-api";`,
 			];
 			if (
 				Object.values(coll).some(
