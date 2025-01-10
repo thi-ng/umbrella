@@ -76,7 +76,7 @@ export interface TextAreaAttribs extends InputTextAttribs {
 export interface InputNumericAttribs extends InputAttribs {
 	min: NumericAttrib;
 	max: NumericAttrib;
-	step: NumericAttrib;
+	step: NumericAttrib | "any";
 	value: NumericAttrib;
 }
 
