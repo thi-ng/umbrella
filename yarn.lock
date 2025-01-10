@@ -5361,7 +5361,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-html@npm:^2.7.13, @thi.ng/hiccup-html@workspace:^, @thi.ng/hiccup-html@workspace:packages/hiccup-html":
+"@thi.ng/hiccup-html@npm:^2.7.14, @thi.ng/hiccup-html@workspace:^, @thi.ng/hiccup-html@workspace:packages/hiccup-html":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-html@workspace:packages/hiccup-html"
   dependencies:
@@ -6146,7 +6146,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.16"
-    "@thi.ng/hiccup-html": "npm:^2.7.13"
+    "@thi.ng/hiccup-html": "npm:^2.7.14"
     "@thi.ng/object-utils": "npm:^1.1.9"
     "@thi.ng/rdom": "npm:^1.7.18"
     "@thi.ng/rstream": "npm:^9.2.3"
@@ -6166,7 +6166,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.16"
     "@thi.ng/checks": "npm:^3.6.18"
     "@thi.ng/defmulti": "npm:^3.0.54"
-    "@thi.ng/hiccup-html": "npm:^2.7.13"
+    "@thi.ng/hiccup-html": "npm:^2.7.14"
     "@thi.ng/rdom": "npm:^1.7.18"
     "@thi.ng/rstream": "npm:^9.2.3"
     esbuild: "npm:^0.24.2"
@@ -6952,7 +6952,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^1.0.1, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^1.1.0, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
@@ -6969,7 +6969,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.26"
     "@thi.ng/paths": "npm:^5.1.96"
     "@thi.ng/strings": "npm:^3.9.0"
-    "@thi.ng/wasm-api": "npm:^2.2.7"
+    "@thi.ng/wasm-api": "npm:^2.3.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
@@ -6984,16 +6984,16 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/binary": "npm:^3.4.39"
-    "@thi.ng/wasm-api": "npm:^2.2.7"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.0.1"
-    "@thi.ng/wasm-api-dom": "npm:^1.0.16"
+    "@thi.ng/wasm-api": "npm:^2.3.0"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.1.0"
+    "@thi.ng/wasm-api-dom": "npm:^1.0.17"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@npm:^1.0.16, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@npm:^1.0.17, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -7002,8 +7002,8 @@ __metadata:
     "@thi.ng/canvas": "npm:^1.0.1"
     "@thi.ng/errors": "npm:^2.5.22"
     "@thi.ng/prefixes": "npm:^2.3.33"
-    "@thi.ng/wasm-api": "npm:^2.2.7"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.0.1"
+    "@thi.ng/wasm-api": "npm:^2.3.0"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.1.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
@@ -7016,8 +7016,8 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.16"
-    "@thi.ng/wasm-api": "npm:^2.2.7"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.0.1"
+    "@thi.ng/wasm-api": "npm:^2.3.0"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.1.0"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.2"
@@ -7031,9 +7031,9 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.16"
     "@thi.ng/errors": "npm:^2.5.22"
-    "@thi.ng/wasm-api": "npm:^2.2.7"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.0.1"
-    "@thi.ng/wasm-api-dom": "npm:^1.0.16"
+    "@thi.ng/wasm-api": "npm:^2.3.0"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.1.0"
+    "@thi.ng/wasm-api-dom": "npm:^1.0.17"
     "@thi.ng/webgl": "npm:^6.9.29"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
@@ -7041,7 +7041,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@npm:^2.2.7, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@npm:^2.3.0, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:

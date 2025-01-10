@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-01-10T10:06:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-forms@1.0.2) (2025-01-10)
+
+#### 🩹 Bug fixes
+
+- update `Num` element spec ([33b1f67](https://github.com/thi-ng/umbrella/commit/33b1f67))
+  - allow `any` as `step` value
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-forms@0.4.0) (2024-10-05)
 
