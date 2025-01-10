@@ -92,7 +92,7 @@ export interface Num extends Value, WithPresets<number> {
 	max?: number;
 	placeholder?: StringAttrib;
 	size?: number;
-	step?: number;
+	step?: number | "any";
 	value?: ISubscription<number, number>;
 	attribs?: Partial<InputNumericAttribs>;
 }
