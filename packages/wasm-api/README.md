@@ -27,6 +27,7 @@
 - [Naming & structural conventions](#naming--structural-conventions)
 - [Status](#status)
 - [Support packages](#support-packages)
+  - [Third party modules](#third-party-modules)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -439,6 +440,10 @@ please also consult the information in
 - [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom) - Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications
 - [@thi.ng/wasm-api-schedule](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-schedule) - Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps
 - [@thi.ng/wasm-api-webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-webgl) - WebGL bridge API for hybrid TypeScript & WASM (Zig) applications
+
+### Third party modules
+
+- [@genart-api/wasm](https://github.com/thi-ng/genart-api/tree/main/packages/wasm) — WASM/Zig bindings for [GenArtAPI](https://thi.ng/genart-api)
 
 ## Installation
 

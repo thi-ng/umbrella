@@ -395,6 +395,10 @@ please also consult the information in
 
 {{repo.supportPackages}}
 
+### Third party modules
+
+- [@genart-api/wasm](https://github.com/thi-ng/genart-api/tree/main/packages/wasm) — WASM/Zig bindings for [GenArtAPI](https://thi.ng/genart-api)
+
 {{repo.relatedPackages}}
 
 {{meta.blogPosts}}
