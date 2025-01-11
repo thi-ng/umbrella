@@ -16,7 +16,6 @@ export const satisfy = <T>(pred: Predicate<T>, id = "satisfy") =>
  */
 export const satisfyD = <T>(pred: Predicate<T>) => <LitParser<T>>((ctx) => {
 		if (ctx.done) return false;
-		const state = ctx.state!;
-		const reader = ctx.reader;
+		const { reader, state } = ctx;
 		return pred(reader.read(state)) ? (reader.next(state), true) : false;
 	});

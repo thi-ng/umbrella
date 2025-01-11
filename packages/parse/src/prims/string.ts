@@ -10,8 +10,7 @@ export const string =
 		const reader = ctx.reader;
 		for (let i = 0, n = str.length; i < n; i++) {
 			if (state.done) return false;
-			const r = reader.read(state);
-			if (r !== str[i]) {
+			if (reader.read(state) !== str[i]) {
 				return ctx.discard();
 			}
 			reader.next(state);
@@ -28,8 +27,7 @@ export const stringD =
 		const reader = ctx.reader;
 		for (let i = 0, n = str.length; i < n; i++) {
 			if (state.done) return false;
-			const r = reader.read(state);
-			if (r !== str[i]) {
+			if (reader.read(state) !== str[i]) {
 				return false;
 			}
 			reader.next(state);

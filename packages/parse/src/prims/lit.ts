@@ -16,11 +16,11 @@ export const litP =
  * @param c -
  * @param id -
  */
-export const lit = <T>(c: T, id = "lit") => satisfy<T>(litP(c), id);
+export const lit = <T>(c: T, id = "lit") => satisfy<T>((x) => x === c, id);
 
 /**
  * Discarded literal. Same as {@link lit}, but result will be discarded.
  *
  * @param c -
  */
-export const litD = <T>(c: T) => satisfyD<T>(litP(c));
+export const litD = <T>(c: T) => satisfyD<T>((x) => x === c);

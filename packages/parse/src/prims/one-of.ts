@@ -16,7 +16,7 @@ export const oneOfP = (
 		? (x) => opts.has(x)
 		: isPlainObject(opts)
 		? (x) => (<any>opts)[x]
-		: (x) => opts.indexOf(x) >= 0;
+		: (x) => opts.includes(x);
 
 /**
  * Matches single char against given options. Also see {@link noneOf}

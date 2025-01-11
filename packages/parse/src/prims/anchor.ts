@@ -4,25 +4,22 @@ import type { Parser } from "../api.js";
 
 export const anchor =
 	<T>(fn: Predicate2<Nullable<T>>): Parser<T> =>
-	(ctx) => {
-		const state = ctx.state;
-		return fn(state.last, state.done ? null : ctx.reader.read(state));
-	};
+	({ reader, state }) =>
+		fn(state.last, state.done ? null : reader.read(state));
 
 export const inputStart: Parser<any> = (ctx) => ctx.state.last == null;
 
-export const inputEnd: Parser<any> = (ctx) =>
-	ctx.state.done || ctx.reader.read(ctx.state) === undefined;
+export const inputEnd: Parser<any> = ({ reader, state }) =>
+	state.done || reader.read(state) === undefined;
 
 export const lineStart: Parser<string> = (ctx) => {
 	const l = ctx.state.last;
 	return l == null || l === "\n" || l === "\r";
 };
 
-export const lineEnd: Parser<string> = (ctx) => {
-	const state = ctx.state;
+export const lineEnd: Parser<string> = ({ reader, state }) => {
 	let c: string;
-	return state.done || (c = ctx.reader.read(state)) === "\n" || c === "\r";
+	return state.done || (c = reader.read(state)) === "\n" || c === "\r";
 };
 
 export const wordBoundaryP: Predicate2<Nullable<string>> = (prev, next) => {

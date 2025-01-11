@@ -103,8 +103,7 @@ export class ParseContext<T> {
 			);
 		child.state = this._retain ? parent.state!.copy() : null;
 		parent.state = cstate;
-		const children = parent.children;
-		children ? children.push(child) : (parent.children = [child]);
+		parent.children?.push(child) ?? (parent.children = [child]);
 		this._curr = parent;
 		return true;
 	}
@@ -127,8 +126,7 @@ export class ParseContext<T> {
 					curr.state!.p
 				})`
 			);
-		const children = curr.children;
-		children ? children.push(child) : (curr.children = [child]);
+		curr.children?.push(child) ?? (curr.children = [child]);
 		if (newState !== false) {
 			newState === true
 				? this.reader.next(curr.state!)
