@@ -71,7 +71,7 @@ For Node.js REPL:
 const seq = await import("@thi.ng/seq");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 533 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 537 bytes
 
 ## Dependencies
 

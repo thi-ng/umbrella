@@ -150,7 +150,7 @@ For Node.js REPL:
 const tx = await import("@thi.ng/transducers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 9.09 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.12 KB
 
 ## Dependencies
 
