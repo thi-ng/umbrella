@@ -10,7 +10,7 @@ import type { HDOMImplementation, HDOMOpts } from "./api.js";
 
 /** @internal */
 const __maybeInitElement = <T>(el: T, tree: any) =>
-	tree.__init && tree.__init.apply(tree.__this, [el, ...tree.__args]);
+	tree.__init?.apply(tree.__this, [el, ...tree.__args]);
 
 /**
  * See {@link HDOMImplementation} interface for further details.

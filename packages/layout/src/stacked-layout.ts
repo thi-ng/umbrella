@@ -70,7 +70,7 @@ export class StackedLayout extends GridLayout {
 		this.currCol = column;
 		offsets.fill(maxY + rspan, column, column + cspan);
 		this.currSpan = cspan;
-		this.parent && this.parent.propagateSize(Math.max(...this.offsets));
+		this.parent?.propagateSize(Math.max(...this.offsets));
 		return cell;
 	}
 
@@ -109,7 +109,7 @@ export class StackedLayout extends GridLayout {
 	propagateSize(rspan: number): void {
 		const newY = Math.max(this.currRow + rspan, this.offsets[this.currCol]);
 		this.offsets.fill(newY, this.currCol, this.currCol + this.currSpan);
-		this.parent && this.parent.propagateSize(newY);
+		this.parent?.propagateSize(newY);
 	}
 
 	/**

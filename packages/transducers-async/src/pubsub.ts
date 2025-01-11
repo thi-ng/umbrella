@@ -52,7 +52,7 @@ export class PubSub<K, V> {
 		for await (let val of this.src) {
 			const topic = this.topicFn(val);
 			const subs = this.topics.get(topic);
-			if (!(subs && subs.length)) continue;
+			if (!subs?.length) continue;
 			for (let s of subs) s.resolve(val);
 			await Promise.all(subs.map((x) => x.notifyP));
 		}

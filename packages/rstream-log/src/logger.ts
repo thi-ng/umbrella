@@ -39,7 +39,7 @@ export class Logger extends ALogger implements ISubscriber<LogEntry> {
 	logEntry(e: LogEntry): void {
 		if (e[0] >= this.level) {
 			this.stream.next(e);
-			this.parent && this.parent.logEntry(e);
+			this.parent?.logEntry(e);
 		}
 	}
 

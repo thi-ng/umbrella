@@ -165,7 +165,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
 	createTextElement(parent: HDOMNode, content: string) {
 		const el = new HDOMNode(TEXT);
 		el.body = content;
-		parent && parent.appendChild(el);
+		parent?.appendChild(el);
 		return el;
 	}
 

@@ -51,7 +51,7 @@ export class DVMesh<T> {
 		this.first = eab;
 		this.nextEID = 12;
 		this.nextVID = 3;
-		if (pts && pts.length) {
+		if (pts?.length) {
 			isNumber(pts[0][0])
 				? this.addKeys(<ReadonlyVec[]>pts)
 				: this.addAll(<Pair<ReadonlyVec, T>[]>pts);

@@ -70,7 +70,7 @@ export class MemMappedComponent<K extends string> extends AComponent<
 		this.sparse = sparse!;
 		this.dense = dense!;
 		this.vals = vals!;
-		this.cache && this.cache.clear();
+		this.cache?.clear();
 	}
 
 	get(id: number) {
@@ -115,6 +115,6 @@ export class MemMappedComponent<K extends string> extends AComponent<
 		const s = this.stride;
 		src *= s;
 		this.vals.copyWithin(dest * s, src, src + this.size);
-		this.cache && this.cache.delete(dest);
+		this.cache?.delete(dest);
 	}
 }

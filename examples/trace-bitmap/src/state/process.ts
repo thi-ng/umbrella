@@ -129,7 +129,7 @@ export const main = sync({
 			} else {
 				lines = res.lines;
 			}
-			if (lines && lines.length) {
+			if (lines?.length) {
 				numLines += lines.length;
 				root.add(
 					splitArcLength(
@@ -146,7 +146,7 @@ export const main = sync({
 					)
 				);
 			}
-			if (pts && pts.length) {
+			if (pts?.length) {
 				numPoints += pts.length;
 				root.add(
 					points(pts, {

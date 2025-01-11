@@ -68,10 +68,7 @@ export const packedPoints = (
 		...attribs,
 	};
 	const { start, cstride, estride } = attribs;
-	let num =
-		attribs && attribs.num != null
-			? attribs.num
-			: ((pts.length - start) / estride) | 0;
+	let num = attribs?.num ?? ((pts.length - start) / estride) | 0;
 	const group = [
 		"g",
 		fattribs(

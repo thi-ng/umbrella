@@ -24,7 +24,7 @@ export const createTempFile = (
 	ext?: string
 ) => {
 	const path = tempFilePath(name, ext);
-	logger && logger.debug("creating temp file:", path);
+	logger?.debug("creating temp file:", path);
 	ensureDirForFile(path);
 	writeFileSync(path, body, isString(body) ? "utf-8" : undefined);
 	return path;

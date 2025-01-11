@@ -131,7 +131,7 @@ const __complexComponent = (tree: any[]): CompiledComponent => ({
 				await c.unmount();
 			}
 		}
-		this.subs && this.subs.forEach((s) => s.unsubscribe());
+		this.subs?.forEach((s) => s.unsubscribe());
 		this.el && $remove(this.el);
 		this.el = this.children = this.subs = undefined;
 	},

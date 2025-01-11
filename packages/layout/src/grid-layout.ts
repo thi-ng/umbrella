@@ -110,8 +110,7 @@ export class GridLayout implements IGridLayout<GridLayout> {
 	propagateSize(rspan: number) {
 		let rows = this.rows;
 		this.rows = rows = Math.max(rows, this.currRow + rspan);
-		const parent = this.parent;
-		parent && parent.propagateSize(rows);
+		this.parent?.propagateSize(rows);
 	}
 }
 

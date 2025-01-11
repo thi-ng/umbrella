@@ -44,7 +44,7 @@ export function partitionWhen<T>(...args: any[]): any {
 			return <Reducer<T, any>>[
 				init,
 				(acc) => {
-					if (chunk && chunk.length) {
+					if (chunk?.length) {
 						acc = reduce(acc, chunk);
 						chunk = null;
 					}

@@ -19,7 +19,7 @@ export const readText = (
 		"ascii" | "latin1" | "utf-8" | "utf-16le" | "ucs-2"
 	> = "utf-8"
 ) => {
-	logger && logger.debug("reading file:", path);
+	logger?.debug("reading file:", path);
 	return readFileSync(path, encoding);
 };
 

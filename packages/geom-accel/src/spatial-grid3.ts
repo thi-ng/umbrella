@@ -60,7 +60,7 @@ export class SpatialGrid3<K extends ReadonlyVec, V> extends ASpatialGrid<K, V> {
 			for (y = y1; y <= y2; y += width) {
 				for (x = x1; x <= x2; x++) {
 					c = cells[z + y + x];
-					c && c.length && this.queryCell(distSq3, heap, c, k, limit);
+					c?.length && this.queryCell(distSq3, heap, c, k, limit);
 				}
 			}
 		}

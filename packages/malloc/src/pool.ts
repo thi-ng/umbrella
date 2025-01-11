@@ -99,7 +99,7 @@ export class MemPool implements IMemPool {
 
 	callocAs<T extends Type>(type: T, num: number, fill = 0) {
 		const block = this.mallocAs(type, num);
-		block && block.fill(fill);
+		block?.fill(fill);
 		return block;
 	}
 

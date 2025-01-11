@@ -59,7 +59,7 @@ export class ObjectIndex<T> {
 	 */
 	add(item: T): number {
 		const id = this.idgen.next();
-		this.logger && this.logger.debug(`adding ${this.name} ID: ${id}`);
+		this.logger?.debug(`adding ${this.name} ID: ${id}`);
 		this.items[id] = item;
 		return id;
 	}
@@ -100,7 +100,7 @@ export class ObjectIndex<T> {
 	 */
 	delete(id: number, ensure = true) {
 		if (this.idgen.has(id)) {
-			this.logger && this.logger.debug(`deleting ${this.name} ID: ${id}`);
+			this.logger?.debug(`deleting ${this.name} ID: ${id}`);
 			this.idgen.free(id);
 			delete this.items[id];
 			return true;

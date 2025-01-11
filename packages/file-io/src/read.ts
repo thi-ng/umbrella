@@ -8,7 +8,7 @@ import { readFileSync } from "node:fs";
  * @param logger
  */
 export const readBinary = (path: string, logger?: ILogger) => {
-	logger && logger.debug("reading file:", path);
+	logger?.debug("reading file:", path);
 	const buf = readFileSync(path);
 	return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
 };

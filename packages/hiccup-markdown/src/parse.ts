@@ -316,7 +316,7 @@ export const transformScope: Fn3<
 	void
 > = defmulti<ParseScope<string>, TransformCtx, any[], void>(
 	(x, ctx) => {
-		ctx.logger && ctx.logger.debug(x);
+		ctx.logger?.debug(x);
 		return x.id;
 	},
 	{

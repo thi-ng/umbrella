@@ -24,7 +24,7 @@ const __drawPoints = (
 	cmd: "fill" | "stroke",
 	cmdR: "fillRect" | "strokeRect"
 ) => {
-	const s: number = (opts && opts.size) || 1;
+	const s: number = opts?.size || 1;
 	if (opts.shape === "circle") {
 		for (let p of pts) {
 			ctx.beginPath();

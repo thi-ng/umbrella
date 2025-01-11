@@ -136,7 +136,7 @@ export abstract class AList<L extends AList<any, T>, T>
 	}
 
 	first() {
-		return this._head && this._head.value;
+		return this._head?.value;
 	}
 
 	abstract insertAfter(cell: ConsCell<T>, value: T): ConsCell<T>;
@@ -186,7 +186,7 @@ export abstract class AList<L extends AList<any, T>, T>
 	}
 
 	peek() {
-		return this.tail && this.tail.value;
+		return this.tail?.value;
 	}
 
 	abstract prepend(n: T): ConsCell<T>;

@@ -64,7 +64,7 @@ export const adaptiveCanvas2d = (
 	const canvas = document.createElement("canvas");
 	adaptDPI(canvas, width, height, opts.dpr);
 	opts.pixelated && (canvas.style.imageRendering = "pixelated");
-	parent && parent.appendChild(canvas);
+	parent?.appendChild(canvas);
 	return {
 		canvas,
 		ctx: canvas.getContext("2d", opts.ctx)!,

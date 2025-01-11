@@ -75,7 +75,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 
 	*[Symbol.iterator](): IterableIterator<Pair<K, V>> {
 		let node: Maybe<Node<K, V>> = this.firstNode();
-		while (node && node.k !== undefined) {
+		while (node?.k !== undefined) {
 			yield [node.k, node.v!];
 			node = node.next;
 		}
@@ -105,7 +105,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 		if (!size) return;
 		if (max) {
 			let node: Maybe<Node<K, V>> = this.firstNode();
-			while (node && node.k !== undefined && cmp(node.k, key) <= 0) {
+			while (node?.k !== undefined && cmp(node.k, key) <= 0) {
 				yield [node.k!, node.v!];
 				node = node.next;
 			}
@@ -181,7 +181,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 
 	first() {
 		const node = this.firstNode();
-		return node && node.k !== undefined ? [node.k, node.v] : undefined;
+		return node?.k !== undefined ? [node.k, node.v] : undefined;
 	}
 
 	get(key: K, notFound?: V): Maybe<V> {
@@ -290,7 +290,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 
 	$reduce<R>(rfn: ReductionFn<Pair<K, V>, R>, acc: R | Reduced<R>) {
 		let node: Maybe<Node<K, V>> = this.firstNode();
-		while (node && node.k !== undefined && !isReduced(acc)) {
+		while (node?.k !== undefined && !isReduced(acc)) {
 			acc = rfn(acc, [node.k, node.v!]);
 			node = node.next;
 		}

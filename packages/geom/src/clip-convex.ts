@@ -136,7 +136,7 @@ export const clipConvex = <ClipConvexFn>(
 					$.points[1],
 					ensureVertices(boundary)
 				);
-				return segments && segments.length
+				return segments?.length
 					? [new Line(segments[0], __copyAttribs($.attribs))]
 					: undefined;
 			},

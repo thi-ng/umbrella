@@ -13,6 +13,6 @@ export class ConsoleLogger extends ALogger {
 	logEntry(e: LogEntry) {
 		if (e[0] < this.level) return;
 		console.log(`[${LogLevel[e[0]]}] ${e[1]}:`, ...expandArgs(e.slice(3)));
-		this.parent && this.parent.logEntry(e);
+		this.parent?.logEntry(e);
 	}
 }

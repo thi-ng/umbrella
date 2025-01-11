@@ -120,7 +120,7 @@ const transformTree = (
 	if (tree.body) {
 		res.push(tree.body);
 	}
-	if (tree.children && tree.children.length) {
+	if (tree.children?.length) {
 		transduce<any, any, any>(
 			comp(
 				map((t: any) => transformTree(t, opts)),

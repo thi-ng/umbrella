@@ -42,5 +42,5 @@ export const mount = <T>(
 	};
 
 	render();
-	subscriptions && subscriptions(signal);
+	subscriptions?.(signal);
 };

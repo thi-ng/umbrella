@@ -21,7 +21,7 @@ export const writeFile = (
 	logger?: ILogger,
 	dryRun = false
 ) => {
-	logger && logger.info(`${dryRun ? "[dryrun] " : ""}writing file: ${path}`);
+	logger?.info(`${dryRun ? "[dryrun] " : ""}writing file: ${path}`);
 	if (dryRun) return;
 	ensureDirForFile(path);
 	writeFileSync(path, body, !opts && isString(body) ? "utf-8" : opts);

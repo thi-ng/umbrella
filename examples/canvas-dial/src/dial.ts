@@ -209,7 +209,7 @@ export const dial = (_opts: Partial<DialOpts>) => {
 
 		// clean up gesture event stream when component is released
 		release: () => {
-			events && events.unsubscribe();
+			events?.unsubscribe();
 		},
 
 		// there're a few args we're not interested in here, so we use var args instead.

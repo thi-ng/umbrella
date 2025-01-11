@@ -36,12 +36,12 @@ export class Draggable extends Component {
 						e.dataTransfer!.setData("text/plain", "");
 						this.active = true;
 						this.$style(opts.start);
-						opts.onstart && opts.onstart(e);
+						opts.onstart?.(e);
 					},
 					ondragend: (e) => {
 						this.active = false;
 						this.$style(opts.end);
-						opts.onend && opts.onend(e);
+						opts.onend?.(e);
 					},
 				},
 				this.inner
@@ -77,10 +77,10 @@ export class Draggable extends Component {
 							<Element>e.target
 						);
 						this.$moveTo(<Element>e.target);
-						opts.ondrop && opts.ondrop(e);
+						opts.ondrop?.(e);
 					}
 					this.active = false;
-					opts.onend && opts.onend(e);
+					opts.onend?.(e);
 				},
 			},
 			this.opts.scope

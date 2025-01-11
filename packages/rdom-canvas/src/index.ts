@@ -95,13 +95,13 @@ export class $Canvas
 		this.el = <HTMLCanvasElement>await this.inner.mount(parent, index);
 		this.ctx = this.el.getContext("2d", this.attribs.ctx)!;
 		this.resize(this.size.deref() || [1, 1]);
-		this.attribs.onmount && this.attribs.onmount(this.el, this.ctx);
+		this.attribs.onmount?.(this.el, this.ctx);
 		this.update(shapes);
 		return this.el;
 	}
 
 	async unmount() {
-		this.el && this.attribs.onunmount && this.attribs.onunmount(this.el);
+		this.el && this.attribs.onunmount?.(this.el);
 		await this.inner!.unmount();
 		this.sizeSub.unsubscribe();
 		this.inner = undefined;

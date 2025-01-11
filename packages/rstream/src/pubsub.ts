@@ -173,7 +173,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 			const sub = this.topics.get(t);
 			if (sub) {
 				try {
-					sub.next && sub.next(x);
+					sub.next?.(x);
 				} catch (e) {
 					if (!sub.error || !sub.error(e)) {
 						return this.unhandledError(e);

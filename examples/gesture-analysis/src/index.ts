@@ -53,9 +53,9 @@ const app = ({
 	),
 	[
 		"div.fixed.top-0.left-0.ma3",
-		["div", `raw: ${(raw && raw.length) || 0}`],
-		["div", `resampled: ${(processed && processed.path.length) || 0}`],
-		["div", `corners: ${(processed && processed.corners.length) || 0}`],
+		["div", `raw: ${raw?.length ?? 0}`],
+		["div", `resampled: ${processed?.path.length ?? 0}`],
+		["div", `corners: ${processed?.corners.length ?? 0}`],
 	],
 ];
 

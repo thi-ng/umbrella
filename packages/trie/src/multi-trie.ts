@@ -2,8 +2,9 @@ import type { Fn0, IObjectOf, Maybe, Nullable, Pair } from "@thi.ng/api";
 
 export interface MultiTrieOpts<V> {
 	/**
-	 * Custom value set factory (e.g. for using `Set` implementations from this
-	 * package). Uses native ES6 Set by default.
+	 * Custom value set factory (e.g. for using `Set` implementations from the
+	 * [thi.ng/associative](https://thi.ng/associative) package). Uses native
+	 * ES6 Set by default.
 	 */
 	vals: Fn0<Set<V>>;
 }
@@ -165,7 +166,7 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 		// and only collapse path if no other vals for key
 		if (val !== undefined) {
 			const vals = node.vals;
-			if (vals && vals.has(val)) {
+			if (vals?.has(val)) {
 				vals.delete(val);
 				if (vals.size > 0) return true;
 			} else {

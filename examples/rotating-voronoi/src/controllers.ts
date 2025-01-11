@@ -17,11 +17,8 @@ export const slider = (
 				min,
 				max,
 				step,
-				oninput: (e: Event) => {
-					const target = e.target as HTMLInputElement;
-					const value = target && target.value;
-					onChange(parseFloat(value));
-				},
+				oninput: (e: Event) =>
+					onChange(+(<HTMLInputElement>e.target).value),
 			},
 		],
 	];
@@ -40,11 +37,8 @@ export const checkbox = (
 				id: label,
 				type: "checkbox",
 				checked: value,
-				oninput: (e: Event) => {
-					const target = <HTMLInputElement>e.target;
-					const checked = target && target.checked;
-					onChange(checked);
-				},
+				oninput: (e: Event) =>
+					onChange((<HTMLInputElement>e.target).checked),
 			},
 		],
 		["label", { for: label }, label],

@@ -32,7 +32,7 @@ export const fileHash = async (
 	logger?: ILogger,
 	algo: HashAlgo = "sha256"
 ) => {
-	logger && logger.info("reading file:", path);
+	logger?.info("reading file:", path);
 	return await streamHash(createReadStream(path), logger, algo);
 };
 
@@ -55,7 +55,7 @@ export const streamHash = async (
 	const sum = createHash(algo);
 	for await (let chunk of src) sum.update(chunk);
 	const hash = sum.digest("hex");
-	logger && logger.info(`${algo} hash: ${hash}`);
+	logger?.info(`${algo} hash: ${hash}`);
 	return hash;
 };
 
@@ -73,6 +73,6 @@ export const bufferHash = (
 	algo: HashAlgo = "sha256"
 ) => {
 	const hash = createHash(algo).update(src).digest("hex");
-	logger && logger.info(`${algo} hash: ${hash}`);
+	logger?.info(`${algo} hash: ${hash}`);
 	return hash;
 };

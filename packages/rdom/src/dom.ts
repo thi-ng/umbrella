@@ -91,8 +91,7 @@ const $treeTag = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 		const tmp = /^\w+/.exec(tag);
 		if (tmp && NO_SPANS[tmp[0]]) {
 			// don't wrap single body in <span> here
-			parent = $el(tag, attribs, body, parent, idx);
-			return parent;
+			return $el(tag, attribs, body, parent, idx);
 		}
 	}
 	parent = $el(tag, attribs, null, parent, idx);
@@ -217,7 +216,7 @@ export const $addChild = (
  *
  * @param el
  */
-export const $remove = (el: Element | Comment) => el && el.remove();
+export const $remove = (el: Element | Comment) => el?.remove();
 
 /**
  * Migrates given element to `newParent`, following the same append or insertion

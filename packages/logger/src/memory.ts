@@ -22,7 +22,7 @@ export class MemoryLogger extends ALogger {
 		if (e[0] < this.level) return;
 		if (this.journal.length >= this.limit) this.journal.shift();
 		this.journal.push([e[0], e[1], e[2], ...expandArgs(e.slice(3))]);
-		this.parent && this.parent.logEntry(e);
+		this.parent?.logEntry(e);
 	}
 
 	/**

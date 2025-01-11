@@ -54,7 +54,7 @@ export class SpatialGrid2<K extends ReadonlyVec, V> extends ASpatialGrid<K, V> {
 		for (y = y1; y <= y2; y += stride) {
 			for (x = x1; x <= x2; x++) {
 				c = cells[y + x];
-				c && c.length && this.queryCell(distSq2, heap, c, k, limit);
+				c?.length && this.queryCell(distSq2, heap, c, k, limit);
 			}
 		}
 		return __addResults(fn, sel, acc);

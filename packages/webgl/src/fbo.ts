@@ -34,7 +34,7 @@ export class FBO implements IFbo {
 		this.gl = gl;
 		this.fbo = gl.createFramebuffer() || error("error creating FBO");
 		this.ext =
-			!isGL2Context(gl) && opts && opts!.tex && opts!.tex!.length > 1
+			!isGL2Context(gl) && opts?.tex && opts.tex.length > 1
 				? gl.getExtension("WEBGL_draw_buffers") ||
 				  error("missing WEBGL_draw_buffers ext")
 				: undefined;

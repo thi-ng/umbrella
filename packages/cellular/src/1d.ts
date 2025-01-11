@@ -369,7 +369,7 @@ export class MultiCA1D implements IClear {
 			$("mask", mask);
 			$("prob", prob);
 			probabilistic ? this.updateProbabilistic(rnd) : this.update();
-			onupdate && onupdate(this, y);
+			onupdate?.(this, y);
 			pixels.set(this.current, y * this.width);
 		}
 	}

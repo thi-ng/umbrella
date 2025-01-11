@@ -128,7 +128,7 @@ export const buildCallGraph = (
 	fn: Func<any>,
 	graph: DGraph<Func<any>> = new DGraph()
 ): DGraph<Func<any>> =>
-	fn.deps && fn.deps.length
+	fn.deps?.length
 		? fn.deps.reduce(
 				(graph, d) => buildCallGraph(d, graph.addDependency(fn, d)),
 				graph

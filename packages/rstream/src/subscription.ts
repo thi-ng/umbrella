@@ -238,7 +238,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 
 	protected unsubscribeSelf() {
 		LOGGER.debug(this.id, "unsub self");
-		this.parent && this.parent.unsubscribe(this);
+		this.parent?.unsubscribe(this);
 		this.state < State.UNSUBSCRIBED && (this.state = State.UNSUBSCRIBED);
 		this.release();
 		return true;
@@ -284,13 +284,13 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 		// only the wrapped sub's error handler gets a chance
 		// to deal with the error
 		const sub = this.wrapped;
-		const hasErrorHandler = sub && sub.error;
-		hasErrorHandler &&
+		const errorHandler = sub?.error;
+		errorHandler &&
 			LOGGER.debug(this.id, "attempting wrapped error handler");
 		// flag success if error handler returns true
 		// (i.e. it could handle/recover from the error)
 		// else detach this entire sub by going into error state...
-		return (hasErrorHandler && sub!.error!(e)) || this.unhandledError(e);
+		return errorHandler?.(e) || this.unhandledError(e);
 	}
 
 	protected unhandledError(e: any) {

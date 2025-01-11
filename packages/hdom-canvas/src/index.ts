@@ -116,7 +116,7 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
 		}
 		if (typeof tag === STR) {
 			const attribs = tree[1];
-			if (attribs && attribs.__normalize === false) {
+			if (attribs?.__normalize === false) {
 				return tree;
 			}
 			const res = [tree[0], attribs];

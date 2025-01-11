@@ -350,15 +350,15 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 			},
 
 			preventDefault: () => {
-				this.currEvent && this.currEvent.preventDefault();
+				this.currEvent?.preventDefault();
 			},
 
 			stopPropagation: () => {
-				this.currEvent && this.currEvent.stopPropagation();
+				this.currEvent?.stopPropagation();
 			},
 
 			stopImmediatePropagation: () => {
-				this.currEvent && this.currEvent.stopImmediatePropagation();
+				this.currEvent?.stopImmediatePropagation();
 			},
 
 			_removeListener: (listenerID: number) => {
@@ -445,7 +445,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 		} else if (opts.text?.length) {
 			(<HTMLElement>el).innerText = opts.text.deref();
 		}
-		if (attribs && attribs.length) {
+		if (attribs?.length) {
 			for (let attr of attribs) {
 				const name = attr.name.deref();
 				if (attr.kind === AttribType.EVENT) {

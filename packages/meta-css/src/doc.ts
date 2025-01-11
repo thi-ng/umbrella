@@ -135,7 +135,7 @@ const __groupedTypes = (
 
 /** @internal */
 const __formatSpec = (id: string, doc?: SpecDoc) => {
-	if (!(doc && doc.desc)) return `- \`${id}\``;
+	if (!doc?.desc) return `- \`${id}\``;
 	let desc = doc.desc;
 	if (/^-[a-z]/.test(desc)) desc = desc.substring(1);
 	// if (desc[0] === "#") desc = `$\\colorbox{${desc}}{\\${desc}}$`;
@@ -145,7 +145,7 @@ const __formatSpec = (id: string, doc?: SpecDoc) => {
 
 /** @internal */
 const __formatTemplate = (id: string, doc: Maybe<SpecDoc>, level: number) => {
-	if (!(doc && doc.args)) return `${__hd(level)} ${id}(...)\n\nTODO`;
+	if (!doc?.args) return `${__hd(level)} ${id}(...)\n\nTODO`;
 	const argList = doc.args.map((x) => /^\w+/.exec(x)![0]).join(", ");
 	return [
 		`${__hd(level)} \`${id}(${argList})\``,

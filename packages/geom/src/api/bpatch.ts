@@ -99,7 +99,7 @@ export class BPatch extends APC implements IHiccupShape2<BPatch> {
 	toHiccup() {
 		const attribs = this.attribs;
 		const acc: any[] = ["g", { fill: "none", ...attribs }];
-		if (attribs && attribs.res) {
+		if (attribs?.res) {
 			const res = attribs.res - 1;
 			const delta = 1 / res;
 			for (let u = 0; u <= res; u++) {

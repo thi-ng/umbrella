@@ -31,12 +31,12 @@ export function cancelableInput(themeCtxPath: Path) {
 					onkeydown: (e: KeyboardEvent) => {
 						switch (e.key) {
 							case "Escape":
-								args.oncancel && args.oncancel(e);
+								args.oncancel?.(e);
 								(<HTMLElement>e.target).blur();
 								break;
 							case "Enter":
 								// case "Tab":
-								args.onconfirm && args.onconfirm(e);
+								args.onconfirm?.(e);
 								(<HTMLInputElement>e.target).blur();
 								break;
 							default:

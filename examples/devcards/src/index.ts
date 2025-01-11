@@ -87,7 +87,7 @@ function slider(state: IAtom<any>, opts: SliderOpts) {
 		type: "range",
 		oninput: (e: Event) => {
 			state.reset((<HTMLInputElement>e.target).value);
-			opts.onchange && opts.onchange(e);
+			opts.onchange?.(e);
 		},
 	};
 	return () => [

@@ -65,14 +65,12 @@ const _canvas = (
 			adaptDPI(el, el.width, el.height);
 			ctx = el.getContext(type, opts);
 			time = Date.now();
-			handlers.init && handlers.init(el, ctx, hctx, ...args);
-			handlers.update &&
-				handlers.update(el, ctx, hctx, time, frame++, ...args);
+			handlers.init?.(el, ctx, hctx, ...args);
+			handlers.update?.(el, ctx, hctx, time, frame++, ...args);
 		},
 		render(hctx: any, ...args: any[]) {
 			ctx &&
-				handlers.update &&
-				handlers.update(
+				handlers.update?.(
 					el,
 					ctx,
 					hctx,
@@ -83,7 +81,7 @@ const _canvas = (
 			return ["canvas", args[0]];
 		},
 		release(hctx: any, ...args: any[]) {
-			handlers.release && handlers.release(el, ctx, hctx, ...args);
+			handlers.release?.(el, ctx, hctx, ...args);
 		},
 	};
 };

@@ -20,7 +20,7 @@ export const fromNodeJS = <T>(
 ): Stream<T> => {
 	const ingest = stream<T>();
 	stdout.on("data", (data) => ingest.next(data));
-	stderr && stderr.on("data", (data) => ingest.error(data));
+	stderr?.on("data", (data) => ingest.error(data));
 	close && stdout.on("close", () => ingest.done());
 	return ingest;
 };

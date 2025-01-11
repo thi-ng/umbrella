@@ -39,7 +39,7 @@ export const draw = (
 		opts.bindTex !== false && bindTextures(spec.textures);
 		opts.shaderState !== false && spec.shader.prepareState();
 		opts.bindShader !== false && spec.shader.bind(spec);
-		if (indices && indices.buffer) {
+		if (indices?.buffer) {
 			indices.buffer.bind();
 			if (spec.instances) {
 				__drawInstanced(gl, spec);

@@ -24,7 +24,7 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
 	opts.width && (canvas.width = opts.width);
 	opts.height && (canvas.height = opts.height);
 	opts.autoScale !== false && adaptDPI(canvas, canvas.width, canvas.height);
-	opts.parent && opts.parent.appendChild(canvas);
+	opts.parent?.appendChild(canvas);
 	const gl = <WebGLRenderingContext>canvas.getContext(
 		opts.version !== 1 ? "webgl2" : "webgl",
 		{

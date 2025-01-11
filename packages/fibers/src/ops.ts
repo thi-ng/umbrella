@@ -399,11 +399,11 @@ export const asPromise = <T>(task: MaybeFiber<T>, opts?: Partial<FiberOpts>) =>
 		fiber(task, {
 			...opts,
 			deinit: (ctx) => {
-				opts?.deinit && opts.deinit(ctx);
+				opts?.deinit?.(ctx);
 				ctx.state < STATE_ERROR && resolve(ctx.deref()!);
 			},
 			catch: (ctx, e) => {
-				if (opts?.catch && opts.catch(ctx, e)) return true;
+				if (opts?.catch?.(ctx, e)) return true;
 				reject(e);
 				return false;
 			},

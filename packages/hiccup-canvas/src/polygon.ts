@@ -61,10 +61,7 @@ export const __drawPackedPoly = (
 	pts: ArrayLike<number>
 ) => {
 	const { start = 0, cstride = 1, estride = 2 } = opts;
-	let num =
-		opts && opts.num != null
-			? opts.num
-			: ((pts.length - start) / estride) | 0;
+	let num = opts?.num ?? ((pts.length - start) / estride) | 0;
 	ctx.beginPath();
 	ctx.moveTo(pts[start], pts[start + cstride]);
 	for (let i = start + estride; num-- > 1; i += estride) {

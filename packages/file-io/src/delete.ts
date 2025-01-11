@@ -11,7 +11,7 @@ import { rmSync, unlinkSync } from "node:fs";
  * @param dryRun
  */
 export const deleteFile = (path: string, logger?: ILogger, dryRun = false) => {
-	logger && logger.info(`${dryRun ? "[dryrun] " : ""}deleting file: ${path}`);
+	logger?.info(`${dryRun ? "[dryrun] " : ""}deleting file: ${path}`);
 	if (dryRun) return;
 	unlinkSync(path);
 };
@@ -25,7 +25,7 @@ export const deleteFile = (path: string, logger?: ILogger, dryRun = false) => {
  * @param dryRun
  */
 export const deleteDir = (path: string, logger?: ILogger, dryRun = false) => {
-	logger && logger.info(`${dryRun ? "[dryrun] " : ""}deleting file: ${path}`);
+	logger?.info(`${dryRun ? "[dryrun] " : ""}deleting file: ${path}`);
 	if (dryRun) return;
 	rmSync(path, { recursive: true, force: true });
 };

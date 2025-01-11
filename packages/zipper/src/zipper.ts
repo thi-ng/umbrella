@@ -78,8 +78,8 @@ export class Location<T> {
 
 	get left(): Maybe<Location<T>> {
 		const path = this._path;
-		const lefts = path && path.l;
-		return lefts && lefts.length
+		const lefts = path?.l;
+		return lefts?.length
 			? new Location(
 					peek(lefts),
 					this._ops,
@@ -96,7 +96,7 @@ export class Location<T> {
 
 	get right(): Maybe<Location<T>> {
 		const path = this._path;
-		const rights = path && path.r;
+		const rights = path?.r;
 		if (!rights) return;
 		const r = rights.slice(1);
 		return new Location(
@@ -114,8 +114,8 @@ export class Location<T> {
 
 	get leftmost(): Location<T> {
 		const path = this._path;
-		const lefts = path && path.l;
-		return lefts && lefts.length
+		const lefts = path?.l;
+		return lefts?.length
 			? new Location(
 					lefts[0],
 					this._ops,
@@ -132,7 +132,7 @@ export class Location<T> {
 
 	get rightmost(): Location<T> {
 		const path = this._path;
-		const rights = path && path.r;
+		const rights = path?.r;
 		return rights
 			? new Location(
 					peek(rights),
@@ -171,7 +171,7 @@ export class Location<T> {
 
 	get up(): Maybe<Location<T>> {
 		let path = this._path;
-		const pnodes = path && path.nodes;
+		const pnodes = path?.nodes;
 		if (!pnodes) return;
 		const pnode = peek(pnodes);
 		if (path!.changed) {

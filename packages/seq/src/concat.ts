@@ -44,7 +44,7 @@ export const concatA = <T>(...args: Nullable<ArrayLike<T>>[]) => {
 	const seqs: ArrayLike<T>[] = [];
 	for (let i = 0, n = args.length; i < n; i++) {
 		const x = args[i];
-		x && x.length && seqs.push(x);
+		x?.length && seqs.push(x);
 	}
 	const $seq = (i: number, j: number): Maybe<ISeq<T>> => {
 		if (!seqs[i] || j >= seqs[i].length) {

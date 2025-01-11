@@ -238,7 +238,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 */
 	ensureMemory(notify = true) {
 		const buf = this.exports.memory.buffer;
-		if (this.u8 && this.u8.buffer === buf) return;
+		if (this.u8?.buffer === buf) return;
 		this.i8 = new Int8Array(buf);
 		this.u8 = new Uint8Array(buf);
 		this.i16 = new Int16Array(buf);

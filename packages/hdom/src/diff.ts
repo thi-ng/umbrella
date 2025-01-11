@@ -73,7 +73,7 @@ export const diffTree = <T>(
 		return;
 	}
 	const pattribs = prev[1];
-	if (pattribs && pattribs.__skip) {
+	if (pattribs?.__skip) {
 		impl.replaceChild(opts, parent, child, curr, false);
 		return;
 	}

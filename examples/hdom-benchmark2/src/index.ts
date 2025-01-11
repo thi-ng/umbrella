@@ -127,7 +127,7 @@ const grid = <any>{
 };
 
 const domStats = (_: any, grid: any, res: number, _static: number) =>
-	grid && grid.stats
+	grid?.stats
 		? [
 				"div",
 				["div", ["span.pink", grid.stats.cells], " cells updated"],
