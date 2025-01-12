@@ -43,6 +43,12 @@ All JS strings will be UTF-8 encoded. To write raw bytes without
 transformation, wrap them as `Uint8Array`. These too will be written as
 Bencode strings (e.g. `len:xxx...`), but are used as is.
 
+When decoding, UTF-8 is used by default, but can be disabled by passing `false`
+as 2nd argument to
+[`decode()`](https://docs.thi.ng/umbrella/bencode/functions/decode.html). In
+that case, strings will be decoded as `Uint8Array`s, with the exception of
+dictionary keys, which will be decoded via `String.fromCharCode()`.
+
 #### Floating point values
 
 This implementation has optional (non-standard) support for floating point
@@ -86,17 +92,19 @@ For Node.js REPL:
 const bc = await import("@thi.ng/bencode");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.22 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## API
 

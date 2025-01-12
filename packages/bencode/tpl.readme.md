@@ -19,6 +19,12 @@ All JS strings will be UTF-8 encoded. To write raw bytes without
 transformation, wrap them as `Uint8Array`. These too will be written as
 Bencode strings (e.g. `len:xxx...`), but are used as is.
 
+When decoding, UTF-8 is used by default, but can be disabled by passing `false`
+as 2nd argument to
+[`decode()`](https://docs.thi.ng/umbrella/bencode/functions/decode.html). In
+that case, strings will be decoded as `Uint8Array`s, with the exception of
+dictionary keys, which will be decoded via `String.fromCharCode()`.
+
 #### Floating point values
 
 This implementation has optional (non-standard) support for floating point

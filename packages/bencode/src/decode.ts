@@ -1,69 +1,60 @@
 import { peek } from "@thi.ng/arrays/peek";
-import { isArray } from "@thi.ng/checks/is-array";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { utf8Decode } from "@thi.ng/transducers-binary/utf8";
 
-/** @internal */
-const enum Type {
-	INT,
-	FLOAT,
-	STR,
-	BINARY,
-	DICT,
-	LIST,
-}
+const [MINUS, DOT, ZERO, NINE, COLON, DICT, END, FLOAT, INT, LIST] = [
+	0x2d, 0x2e, 0x30, 0x39, 0x3a, 0x64, 0x65, 0x66, 0x69, 0x6c,
+];
 
-/** @internal */
-const enum Lit {
-	MINUS = 0x2d,
-	DOT = 0x2e,
-	ZERO = 0x30,
-	NINE = 0x39,
-	COLON = 0x3a,
-	DICT = 0x64,
-	END = 0x65,
-	FLOAT = 0x66,
-	INT = 0x69,
-	LIST = 0x6c,
-}
+type DecodeCtx = { i: number; n: number; buf: Uint8Array };
 
-export const decode = (buf: Iterable<number>, utf8 = true) => {
-	const iter = buf[Symbol.iterator]();
+/**
+ * Decodes given byte array back into JS data(structure).
+ *
+ * @remarks
+ * UTF-8 is used by default, but can be disabled by setting `utf8` to false. In
+ * that case, strings will be decoded as `Uint8Array`s, with the exception of
+ * dictionary keys, which will be decoded via `String.fromCharCode()`.
+ *
+ * @param buf
+ * @param utf8
+ */
+export const decode = (buf: Uint8Array, utf8 = true) => {
+	const ctx: DecodeCtx = { i: 0, n: buf.length, buf };
 	const stack = [];
-	let i: IteratorResult<number>;
 	let x: any;
-	while (!(i = iter.next()).done) {
-		x = i.value;
+	while (ctx.i < buf.length) {
+		x = buf[ctx.i++];
 		switch (x) {
-			case Lit.DICT:
+			case DICT:
 				__ensureNotKey(stack, "dict");
-				stack.push({ type: Type.DICT, val: {} });
+				stack.push({ type: DICT, val: {} });
 				break;
-			case Lit.LIST:
+			case LIST:
 				__ensureNotKey(stack, "list");
-				stack.push({ type: Type.LIST, val: [] });
+				stack.push({ type: LIST, val: [] });
 				break;
-			case Lit.INT:
-				x = __collect(stack, __readInt(iter, 0));
+			case INT:
+				x = __collect(stack, __readInt(ctx, 0));
 				if (x !== undefined) {
 					return x;
 				}
 				break;
-			case Lit.FLOAT:
-				x = __collect(stack, __readFloat(iter));
+			case FLOAT:
+				x = __collect(stack, __readFloat(ctx));
 				if (x !== undefined) {
 					return x;
 				}
 				break;
-			case Lit.END:
+			case END:
 				x = stack.pop();
 				if (x) {
 					const parent = peek(stack);
 					if (parent) {
-						if (parent.type === Type.LIST) {
+						if (parent.type === LIST) {
 							(<any[]>parent.val).push(x.val);
-						} else if (parent.type === Type.DICT) {
+						} else if (parent.type === DICT) {
 							(<any>parent.val)[(<any>parent).key] = x.val;
 							(<any>parent).key = null;
 						}
@@ -75,19 +66,14 @@ export const decode = (buf: Iterable<number>, utf8 = true) => {
 				}
 				break;
 			default:
-				if (x >= Lit.ZERO && x <= Lit.NINE) {
-					x = __readBytes(
-						iter,
-						__readInt(iter, x - Lit.ZERO, Lit.COLON)!
-					);
+				if (x >= ZERO && x <= NINE) {
+					x = __readBytes(ctx, __readInt(ctx, x - ZERO, COLON));
 					x = __collect(stack, x, utf8);
 					if (x !== undefined) {
 						return x;
 					}
 				} else {
-					illegalState(
-						`unexpected value type: 0x${i.value.toString(16)}`
-					);
+					illegalState(`unexpected value type: 0x${x.toString(16)}`);
 				}
 		}
 	}
@@ -97,21 +83,19 @@ export const decode = (buf: Iterable<number>, utf8 = true) => {
 /** @internal */
 const __ensureNotKey = (stack: any[], type: string) => {
 	const x = peek(stack);
-	assert(
-		!x || x.type !== Type.DICT || x.key,
-		type + " not supported as dict key"
-	);
+	assert(!x || x.type !== DICT || x.key, type + " not supported as dict key");
 };
 
 /** @internal */
 const __collect = (stack: any[], x: any, utf8 = false) => {
 	const parent = peek(stack);
 	if (!parent) return x;
-	if (parent.type === Type.LIST) {
-		parent.val.push(utf8 && isArray(x) ? utf8Decode(x) : x);
+	utf8 &&= x instanceof Uint8Array;
+	if (parent.type === LIST) {
+		parent.val.push(utf8 ? utf8Decode(x) : x);
 	} else {
 		if (!parent.key) {
-			parent.key = isArray(x) ? utf8Decode(x) : x;
+			parent.key = utf8 ? utf8Decode(x) : __decodeAscii(x);
 		} else {
 			parent.val[parent.key] = utf8 ? utf8Decode(x) : x;
 			parent.key = null;
@@ -120,15 +104,14 @@ const __collect = (stack: any[], x: any, utf8 = false) => {
 };
 
 /** @internal */
-const __readInt = (iter: Iterator<number>, acc: number, end = Lit.END) => {
-	let i: IteratorResult<number>;
+const __readInt = (ctx: DecodeCtx, acc: number, end = END) => {
 	let x: number;
 	let isSigned = false;
-	while (!(i = iter.next()).done) {
-		x = i.value;
-		if (x >= Lit.ZERO && x <= Lit.NINE) {
-			acc = acc * 10 + x - Lit.ZERO;
-		} else if (x === Lit.MINUS) {
+	while (ctx.i < ctx.n) {
+		x = ctx.buf[ctx.i++];
+		if (x >= ZERO && x <= NINE) {
+			acc = acc * 10 + x - ZERO;
+		} else if (x === MINUS) {
 			assert(!isSigned, `invalid int literal`);
 			isSigned = true;
 		} else if (x === end) {
@@ -141,20 +124,15 @@ const __readInt = (iter: Iterator<number>, acc: number, end = Lit.END) => {
 };
 
 /** @internal */
-const __readFloat = (iter: Iterator<number>) => {
-	let i: IteratorResult<number>;
+const __readFloat = (ctx: DecodeCtx) => {
 	let x: number;
 	let acc = "";
-	while (!(i = iter.next()).done) {
-		x = i.value;
-		if (
-			(x >= Lit.ZERO && x <= Lit.NINE) ||
-			x === Lit.DOT ||
-			x === Lit.MINUS
-		) {
+	while (ctx.i < ctx.n) {
+		x = ctx.buf[ctx.i++];
+		if ((x >= ZERO && x <= NINE) || x === DOT || x === MINUS) {
 			acc += String.fromCharCode(x);
-		} else if (x === Lit.END) {
-			return parseFloat(acc);
+		} else if (x === END) {
+			return +acc;
 		} else {
 			illegalState(`expected digit or dot, got 0x${x.toString(16)}`);
 		}
@@ -163,11 +141,16 @@ const __readFloat = (iter: Iterator<number>) => {
 };
 
 /** @internal */
-const __readBytes = (iter: Iterator<number>, len: number) => {
-	let i: IteratorResult<number>;
-	let buf: number[] = [];
-	while (len-- > 0 && !(i = iter.next()).done) {
-		buf.push(i.value);
-	}
-	return len < 0 ? buf : illegalState(`expected string, reached EOF`);
+const __readBytes = (ctx: DecodeCtx, len: number) => {
+	if (ctx.i + len > ctx.n)
+		illegalState(`expected ${len} bytes, but reached EOF`);
+	return ctx.buf.subarray(ctx.i, (ctx.i += len));
+};
+
+/** @internal */
+const __decodeAscii = (buf: Uint8Array) => {
+	let res = "";
+	for (let i = 0, n = buf.length; i < n; i++)
+		res += String.fromCharCode(buf[i]);
+	return res;
 };
