@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-01-14T12:23:33Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bencode@3.0.0) (2025-01-14)
+
+#### 🛑 Breaking changes
+
+- major internal refactor & MUCH faster decode ([ce6d528](https://github.com/thi-ng/umbrella/commit/ce6d528))
+- BREAKING CHANGE: `decode()` now requires `Uint8Array` as input
+  - update `decode()` & `encode()` internals
+  - update non-UTF-8 decoding (also add note to readme)
+  - avoid use of iterators in `decode()`
+  - update `__readBytes()` to return sub-arrays (zero copy op)
+  - remove [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/main/packages/defmulti) dependency
+  - remove internal use of `const enum`s
+  - update tests
+  - update readme
 
 ### [2.1.128](https://github.com/thi-ng/umbrella/tree/@thi.ng/bencode@2.1.128) (2024-07-22)
 

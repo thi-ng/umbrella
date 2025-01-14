@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "Generic, modular, extensible API bridge and infrastructure for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
@@ -44,12 +44,12 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/arrays": "^2.10.9",
-		"@thi.ng/checks": "^3.6.18",
+		"@thi.ng/arrays": "^2.10.10",
+		"@thi.ng/checks": "^3.6.19",
 		"@thi.ng/errors": "^2.5.22",
 		"@thi.ng/hex": "^2.3.60",
 		"@thi.ng/idgen": "^2.2.56",
-		"@thi.ng/logger": "^3.0.26"
+		"@thi.ng/logger": "^3.0.27"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",

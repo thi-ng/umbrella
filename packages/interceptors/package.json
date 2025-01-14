@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/interceptors",
-	"version": "3.2.74",
+	"version": "3.2.75",
 	"description": "Interceptor based event bus, side effect & immutable state handling",
 	"type": "module",
 	"module": "./index.js",
@@ -44,11 +44,11 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/atom": "^5.3.16",
-		"@thi.ng/checks": "^3.6.18",
+		"@thi.ng/atom": "^5.3.17",
+		"@thi.ng/checks": "^3.6.19",
 		"@thi.ng/errors": "^2.5.22",
-		"@thi.ng/logger": "^3.0.26",
-		"@thi.ng/paths": "^5.1.96"
+		"@thi.ng/logger": "^3.0.27",
+		"@thi.ng/paths": "^5.1.97"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",
