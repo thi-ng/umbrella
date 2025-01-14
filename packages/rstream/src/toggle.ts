@@ -7,7 +7,7 @@ import { Subscription } from "./subscription.js";
  * {@link Subscription.next} call. The sub will be seeded with the given
  * `initial` value.
  *
- * @examples
+ * @example
  * ```ts tangle:../export/toggle.ts
  * import { toggle, trace } from "@thi.ng/rstream";
  *

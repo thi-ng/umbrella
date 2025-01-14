@@ -7,7 +7,7 @@ import type { ParseContext } from "../context.js";
  * later stage via calling `.set()`. The parser always fails until set, after
  * which it then delegates to the chosen impl.
  *
- * @examples
+ * @example
  * ```ts tangle:../../export/dynamic.ts
  * import { defContext, dynamic,lit  } from "@thi.ng/parse";
  *
