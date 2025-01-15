@@ -29,10 +29,10 @@ export const shuffleRange = <T extends AnyArray>(
 		`illegal range ${start}..${end}`
 	);
 	if (end - start > 1) {
-		for (let i = end; i-- > start; ) {
-			const a = rnd.minmax(start, i + 1) | 0;
+		for (let i = end; i > start; ) {
+			const a = rnd.minmaxInt(start, i);
 			const t = buf[a];
-			buf[a] = buf[i];
+			buf[a] = buf[--i];
 			buf[i] = t;
 		}
 	}

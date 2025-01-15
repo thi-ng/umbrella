@@ -15,9 +15,12 @@ test("shuffle", () => {
 	expect(() => shuffleRange(buf, 0, 100)).toThrow();
 	const rnd = new XsAdd(0xdeadbeef);
 	expect(shuffleRange(buf, 10, 20, rnd).join("")).toEqual(
-		"abcdefghijmqrotplksnuvwxyz"
+		"abcdefghijtqrpnoklmsuvwxyz"
 	);
 	expect(shuffle(buf, buf.length, rnd).join("")).toEqual(
-		"osqkrelubvwfdmanixthjzgypc"
+		"hfzmnrsgxjbdictoapluqvkyew"
 	);
+	expect(shuffle([])).toEqual([]);
+	expect(shuffle([1])).toEqual([1]);
+	expect(shuffle([1, 2], 2, new XsAdd(0xdecafbad))).toEqual([2, 1]);
 });
