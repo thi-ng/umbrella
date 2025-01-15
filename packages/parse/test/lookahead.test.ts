@@ -13,7 +13,7 @@ test("oneof (no capture)", () => {
 	const ctx = defContext("ababaaabbabba");
 	expect(join(lookahead(oneOf("ab"), stringD("abba")))(ctx)).toBeTrue();
 	expect(ctx.result).toBe("ababaa");
-	expect(ctx.state).toEqual({
+	expect(ctx.state).toEqual(<any>{
 		p: 6,
 		l: 1,
 		c: 7,
@@ -28,7 +28,7 @@ test("oneof (capture)", () => {
 	const ctx = defContext("ababaaabbabba");
 	expect(join(lookahead(oneOf("ab"), string("abba"), true))(ctx)).toBeTrue();
 	expect(ctx.result).toBe("ababaaabba");
-	expect(ctx.state).toEqual({
+	expect(ctx.state).toEqual(<any>{
 		p: 10,
 		l: 1,
 		c: 11,
@@ -43,7 +43,7 @@ test("string (no capture)", () => {
 	const ctx = defContext("abababbabba");
 	expect(join(lookahead(string("ab"), stringD("abba")))(ctx)).toBeTrue();
 	expect(ctx.result).toBe("abab");
-	expect(ctx.state).toEqual({
+	expect(ctx.state).toEqual(<any>{
 		p: 4,
 		l: 1,
 		c: 5,
@@ -58,7 +58,7 @@ test("string (capture)", () => {
 	const ctx = defContext("abababbabba");
 	expect(join(lookahead(string("ab"), string("abba"), true))(ctx)).toBeTrue();
 	expect(ctx.result).toBe("abababba");
-	expect(ctx.state).toEqual({
+	expect(ctx.state).toEqual(<any>{
 		p: 8,
 		l: 1,
 		c: 9,
@@ -75,7 +75,7 @@ test("grammar (no capture)", () => {
 	expect(lang).toBeDefined();
 	expect(lang!.rules.foo(ctx)).toBeTrue();
 	expect(ctx.result).toBe("ababaa");
-	expect(ctx.state).toEqual({
+	expect(ctx.state).toEqual(<any>{
 		p: 6,
 		l: 1,
 		c: 7,
@@ -92,7 +92,7 @@ test("grammar (capture)", () => {
 	expect(lang).toBeDefined();
 	expect(lang!.rules.foo(ctx)).toBeTrue();
 	expect(ctx.result).toBe("ababaaabba");
-	expect(ctx.state).toEqual({
+	expect(ctx.state).toEqual(<any>{
 		p: 10,
 		l: 1,
 		c: 11,
