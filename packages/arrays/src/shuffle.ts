@@ -28,13 +28,11 @@ export const shuffleRange = <T extends AnyArray>(
 		start >= 0 && end >= start && end <= buf.length,
 		`illegal range ${start}..${end}`
 	);
-	if (end - start > 1) {
-		for (let i = end; i > start; ) {
-			const a = rnd.minmaxInt(start, i);
-			const t = buf[a];
-			buf[a] = buf[--i];
-			buf[i] = t;
-		}
+	while (end > start + 1) {
+		const i = rnd.minmax(start, end) | 0;
+		const t = buf[i];
+		buf[i] = buf[--end];
+		buf[end] = t;
 	}
 	return buf;
 };
