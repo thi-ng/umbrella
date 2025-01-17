@@ -306,12 +306,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-01-14
+As of: 2025-01-17
 
-| Status                                           | Package                                 | Version                                                                                                       | Changelog                                    |
-|:-------------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/bencode`](./packages/bencode) | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode) | [changelog](./packages/bencode/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/parse`](./packages/parse)     | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)     | [changelog](./packages/parse/CHANGELOG.md)   |
+| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
+|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/array`](./packages/array) | [![version](https://img.shields.io/npm/v/@thi.ng/array.svg)](https://www.npmjs.com/package/@thi.ng/array) | [changelog](./packages/array/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/parse`](./packages/parse) | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse) | [changelog](./packages/parse/CHANGELOG.md) |
 
 ### Fundamentals
 
