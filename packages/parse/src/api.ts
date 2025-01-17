@@ -1,4 +1,4 @@
-import type { Fn, Fn0, IObjectOf, Nullable } from "@thi.ng/api";
+import type { Fn, Fn0, IDeref, IObjectOf, Maybe, Nullable } from "@thi.ng/api";
 import type { ParseContext, ParseScope, ParseState } from "./context.js";
 
 export interface IReader<T> {
@@ -39,9 +39,15 @@ export type Parser<T> = Fn<ParseContext<T>, boolean>;
 
 export type LitParser<T> = Parser<T> & { __lit: true };
 
-export type DynamicParser<T> = Parser<T> & {
-	set: Fn<Parser<T>, void>;
-};
+/**
+ * A {@link Parser} wrapper, whose actual implementation can (and must!) be
+ * defined dynamically via the exposed `.set()` function and which can be
+ * retrieved via `.deref()`.
+ */
+export type DynamicParser<T> = Parser<T> &
+	IDeref<Maybe<Parser<T>>> & {
+		set: Fn<Parser<T>, void>;
+	};
 
 export type PassValue<T> = T | Fn0<T>;
 

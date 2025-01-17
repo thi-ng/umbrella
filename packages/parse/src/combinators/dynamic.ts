@@ -1,4 +1,4 @@
-import type { Nullable } from "@thi.ng/api";
+import type { Maybe } from "@thi.ng/api";
 import type { DynamicParser, Parser } from "../api.js";
 import type { ParseContext } from "../context.js";
 
@@ -19,8 +19,9 @@ import type { ParseContext } from "../context.js";
  * ```
  */
 export const dynamic = <T = string>(): DynamicParser<T> => {
-	let impl: Nullable<Parser<T>>;
-	const wrapper: any = (ctx: ParseContext<T>) => (impl ? impl(ctx) : false);
+	let impl: Maybe<Parser<T>>;
+	const wrapper: any = (ctx: ParseContext<T>) => impl?.(ctx) ?? false;
+	wrapper.deref = () => impl;
 	wrapper.set = (p: Parser<T>) => (impl = p);
 	return wrapper;
 };
