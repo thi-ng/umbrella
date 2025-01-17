@@ -1,3 +1,4 @@
+import type { Maybe } from "@thi.ng/api";
 import type { IReader } from "../api.js";
 import type { ParseState } from "../context.js";
 
@@ -8,9 +9,12 @@ export class ArrayReader<T> implements IReader<T> {
 		return this._src[state.p];
 	}
 
+	prev(state: ParseState<T>): Maybe<T> {
+		return this._src[state.p - 1];
+	}
+
 	next(state: ParseState<T>): void {
 		if (state.done) return;
-		state.last = this._src[state.p];
 		state.done = ++state.p >= this._src.length;
 	}
 

@@ -12,12 +12,11 @@ export class ParseState<T> implements ICopy<ParseState<T>> {
 		public p: number,
 		public l: number,
 		public c: number,
-		public done?: boolean,
-		public last?: T
+		public done?: boolean
 	) {}
 
 	copy() {
-		return new ParseState<T>(this.p, this.l, this.c, this.done, this.last);
+		return new ParseState<T>(this.p, this.l, this.c, this.done);
 	}
 }
 

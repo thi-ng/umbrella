@@ -5,15 +5,16 @@ import type { Parser } from "../api.js";
 export const anchor =
 	<T>(fn: Predicate2<Nullable<T>>): Parser<T> =>
 	({ reader, state }) =>
-		fn(state.last, state.done ? null : reader.read(state));
+		fn(reader.prev(state), state.done ? null : reader.read(state));
 
-export const inputStart: Parser<any> = (ctx) => ctx.state.last == null;
+export const inputStart: Parser<any> = (ctx) =>
+	ctx.reader.prev(ctx.state) == null;
 
 export const inputEnd: Parser<any> = ({ reader, state }) =>
 	state.done || reader.read(state) === undefined;
 
 export const lineStart: Parser<string> = (ctx) => {
-	const l = ctx.state.last;
+	const l = ctx.reader.prev(ctx.state);
 	return l == null || l === "\n" || l === "\r";
 };
 

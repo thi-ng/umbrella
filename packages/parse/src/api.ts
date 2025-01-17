@@ -2,9 +2,36 @@ import type { Fn, Fn0, IObjectOf, Nullable } from "@thi.ng/api";
 import type { ParseContext, ParseScope, ParseState } from "./context.js";
 
 export interface IReader<T> {
+	/**
+	 * Returns the char/value at the current read position. No bounds checking
+	 * done, assumes reader is not yet {@link IReader.isDone}.
+	 *
+	 * @param state
+	 */
 	read(state: ParseState<T>): T;
+	/**
+	 * Returns the char/value at the previous read position (if any).
+	 *
+	 * @param state
+	 */
+	prev(state: ParseState<T>): Maybe<T>;
+	/**
+	 * Updates the reader's read position.
+	 *
+	 * @param state
+	 */
 	next(state: ParseState<T>): void;
+	/**
+	 * Returns true if the reader already consumed all chars/values.
+	 *
+	 * @param state
+	 */
 	isDone(state: ParseState<T>): boolean;
+	/**
+	 * Returns a string formatted version of the reader's position.
+	 *
+	 * @param state
+	 */
 	format(state: ParseState<T>): string;
 }
 
