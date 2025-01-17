@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-14T12:23:33Z
+- **Last updated**: 2025-01-17T14:10:58Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,24 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.5.0) (2025-01-17)
+
+#### 🚀 Features
+
+- update `DynamicParser`, add `IDeref` support ([cf0d51c](https://github.com/thi-ng/umbrella/commit/cf0d51c))
+
+#### ♻️ Refactoring
+
+- remove `ParseState.last`, update `IReader` & impls ([20fc5cf](https://github.com/thi-ng/umbrella/commit/20fc5cf))
+  - remove `ParseState.last` to lower RAM usage
+  - add `IReader.prev()` to obtain previous char, add docs
+  - update reader impls
+  - update anchor parsers
+  - update tests
+- minor internal updates ([ef97aee](https://github.com/thi-ng/umbrella/commit/ef97aee))
+  - update `ParseContext.start()`
+  - update `check()` combinator impl
 
 ### [2.4.64](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.4.64) (2025-01-14)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-01-17T14:10:58Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.10.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.10.11) (2025-01-17)
+
+#### 🩹 Bug fixes
+
+- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([21a4c41](https://github.com/thi-ng/umbrella/commit/21a4c41))
+  - fix/undo [8cbfc7b0c8](https://github.com/thi-ng/umbrella/commit/8cbfc7b0c8)
+  - update loop type & condition to skip last iteration
+  - switch back to using `rnd.minmax()`
+  - see [comment](https://github.com/thi-ng/umbrella/issues/495#issuecomment-2595138357)
+
+#### ⏱ Performance improvements
+
+- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([8cbfc7b](https://github.com/thi-ng/umbrella/commit/8cbfc7b))
+  - update loop to skip last iteration (obsolete)
+  - use `rnd.minmaxInt()` to compute swap index
 
 ## [2.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.10.0) (2024-08-18)
 

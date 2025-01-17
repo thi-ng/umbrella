@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom-forms",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Data-driven declarative & extensible HTML form generation",
 	"type": "module",
 	"module": "./index.js",
@@ -44,8 +44,8 @@
 		"@thi.ng/checks": "^3.6.19",
 		"@thi.ng/defmulti": "^3.0.55",
 		"@thi.ng/hiccup-html": "^2.7.14",
-		"@thi.ng/rdom": "^1.7.19",
-		"@thi.ng/rstream": "^9.2.4"
+		"@thi.ng/rdom": "^1.7.20",
+		"@thi.ng/rstream": "^9.2.5"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",
