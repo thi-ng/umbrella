@@ -38,7 +38,6 @@ export const textLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 		`<text x="${x}" y="${y}" text-anchor="${align}" dy="${valign}em" fill="${color}" font-family="${font}" font-size="${fontSize}">${$body}</text>`,
 		`</svg>`,
 	].join("");
-	// writeText("text-debug.svg", svg);
 	return {
 		input: Buffer.from(svg),
 		...positionOrGravity(bounds, ctx.size, layer),

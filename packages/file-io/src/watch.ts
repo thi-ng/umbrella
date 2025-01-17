@@ -79,7 +79,6 @@ export class Watcher implements IClear, INotify {
 				if (!currPath) return;
 				currPath = isDir ? join(path, currPath) : path;
 				if (!pred(currPath)) return;
-				// console.log(event, currPath, path, isDir);
 				setTimeout(() => {
 					if (event === "change") {
 						this.opts.logger.info(`file changed: ${currPath}`);

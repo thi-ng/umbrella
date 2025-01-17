@@ -156,7 +156,6 @@ export class Shader implements IShader {
 			if (u) {
 				let val = specUnis[id];
 				val = isFunction(val) ? val(shaderUnis, specUnis) : deref(val);
-				// console.log(id, val);
 				u.setter(<UniformValue>val);
 			} else {
 				this.warnUni(id);
@@ -172,7 +171,6 @@ export class Shader implements IShader {
 				const val = u.defaultFn
 					? u.defaultFn(shaderUnis, specUnis)
 					: u.defaultVal;
-				// console.log("default", id, val);
 				u.setter(val);
 			}
 		}

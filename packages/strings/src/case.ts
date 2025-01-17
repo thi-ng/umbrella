@@ -43,9 +43,6 @@ export const capitalize: FnS = (x) =>
 export const kebab: Stringer<string> = (x, delim = "-") =>
 	lower(
 		x.replace(
-			// TC39
-			// /(?<=[a-z0-9\u00e0-\u00fd])(?=[A-Z\u00c0-\u00dd])/g,
-			// (_, i) => (i ? delim : "")
 			/([a-z0-9\u00e0-\u00fd])([A-Z\u00c0-\u00dd])/g,
 			(_, a, b) => a + delim + b
 		)

@@ -93,7 +93,6 @@ export const diffTree = <T>(
 	let status: number;
 	let val: any;
 	if (edits[0] !== 0 || prev[1].key !== attribs.key) {
-		// LOGGER.fine("replace:", prev, curr);
 		releaseTree(prev);
 		impl.replaceChild(opts, parent, child, curr);
 		return;
@@ -166,11 +165,9 @@ const __diffDeleted = <T>(
 		if (k !== undefined && equivKeys[k][2] !== undefined) {
 			const eq = equivKeys[k];
 			k = eq[0];
-			// LOGGER.fine(`diff equiv key @ ${k}:`, prev[k], curr[eq[2]]);
 			diffTree(opts, impl, el, prev[k], curr[eq[2]], offsets[k]);
 		} else {
 			const idx = edits[ii + 1];
-			// LOGGER.fine("remove @", offsets[idx], val);
 			releaseTree(val);
 			impl.removeChild(el, offsets[idx]);
 			__incOffsets(offsets, prevLength, idx);
@@ -198,7 +195,6 @@ const __diffAdded = <T>(
 		const k = val[1].key;
 		if (k === undefined || equivKeys[k][0] === undefined) {
 			const idx = edits[ii + 1];
-			// LOGGER.fine("insert @", offsets[idx], val);
 			impl.createTree(opts, el, val, offsets[idx]);
 			__decOffsets(offsets, prevLength, idx);
 		}
@@ -272,7 +268,6 @@ export const releaseTree = (tree: any) => {
 			return;
 		}
 		if ((<any>tree).__release) {
-			// LOGGER.fine("call __release", tag);
 			(<any>tree).__release.apply((<any>tree).__this, (<any>tree).__args);
 			delete (<any>tree).__release;
 		}

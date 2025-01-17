@@ -88,7 +88,6 @@ export const createTree = (
 	canvas: HTMLCanvasElement,
 	tree: any
 ) => {
-	// console.log(Date.now(), "draw");
 	const ctx = canvas.getContext("2d");
 	assert(!!ctx, "canvas ctx unavailable");
 	const attribs = tree[1];

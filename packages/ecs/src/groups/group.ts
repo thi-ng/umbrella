@@ -186,7 +186,6 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 		let swapped = false;
 		for (let i = owned.length; i-- > 0; ) {
 			const comp = owned[i];
-			// console.log(`moving id: ${id} in ${comp.id}...`);
 			swapped = comp.swapIndices(comp.sparse[id], n) || swapped;
 		}
 		if (swapped) {

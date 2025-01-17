@@ -15,7 +15,6 @@ export class StringReader implements IReader<string> {
 
 	next(state: ParseState<string>): void {
 		if (state.done) return;
-		// state.last = this._src[state.p];
 		if (this._src[state.p] === "\n") {
 			state.l++;
 			state.c = 1;

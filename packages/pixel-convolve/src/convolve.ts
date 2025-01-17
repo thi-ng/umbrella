@@ -247,7 +247,6 @@ export const defKernel = (
 		`return ${inner};`,
 		"}",
 	].join("\n");
-	// console.log(fnBody);
 	return <Fn<FloatBuffer, FnN3>>new Function("src", fnBody);
 };
 

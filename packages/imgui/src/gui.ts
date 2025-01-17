@@ -391,7 +391,6 @@ export class IMGUI implements IClear, IToHiccup {
 	registerID(id: string, hash: Hash) {
 		this.currIDs.add(id);
 		if (this.sizes.get(id) !== hash) {
-			// console.warn("cache miss:", id, hash);
 			this.sizes.set(id, hash);
 			this.resources.delete(id);
 		}

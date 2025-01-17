@@ -131,7 +131,6 @@ const __initShader = (
 	textures: IObjectOf<ITexture>
 ) => {
 	const isGL2 = isGL2Context(gl);
-	// const numIns = pass.inputs.length;
 	const numOuts = pass.outputs.length;
 	const ext: ExtensionBehaviors = { ...pass.ext };
 	const spec: ShaderSpec = {
