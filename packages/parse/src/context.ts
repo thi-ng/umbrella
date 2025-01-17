@@ -66,15 +66,12 @@ export class ParseContext<T> {
 
 	start(id: string) {
 		const { _scopes: scopes, _maxDepth } = this;
-		if (scopes.length >= _maxDepth) {
+		const num = scopes.length;
+		if (num >= _maxDepth) {
 			parseError(this, `recursion limit reached ${_maxDepth}`);
 		}
-		const scope = new ParseScope<T>(
-			id,
-			scopes[scopes.length - 1].state!.copy()
-		);
-		scopes.push(scope);
-		this._peakDepth = Math.max(this._peakDepth, scopes.length);
+		const scope = new ParseScope<T>(id, scopes[num - 1].state!.copy());
+		this._peakDepth = Math.max(this._peakDepth, scopes.push(scope));
 		this._debug &&
 			console.log(
 				`${__indent(scopes.length)}start: ${id} (${scope.state!.p})`

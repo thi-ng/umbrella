@@ -9,7 +9,6 @@ export const check = <T>(
 	pred: Predicate<ParseScope<T>>,
 	msg = "check failed"
 ) =>
-	xform(parser, (scope, ctx) => {
-		if (!pred(scope!)) parseError(ctx, msg);
-		return scope;
-	});
+	xform(parser, (scope, ctx) =>
+		pred(scope!) ? scope : parseError(ctx, msg)
+	);
