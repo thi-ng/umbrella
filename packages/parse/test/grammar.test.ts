@@ -88,8 +88,8 @@ test("rule ref xform", () => {
 	expect(lang!.rules.b(ctx)).toBeTrue();
 	expect(ctx.children).toEqual([
 		new ParseScope("a", new ParseState(0, 1, 1, false), null, "abc"),
-		new ParseScope("a", new ParseState(4, 1, 5, false, ","), null, "def"),
-		new ParseScope("a", new ParseState(8, 1, 9, false, ","), null, "g"),
-		new ParseScope("a", new ParseState(10, 1, 11, false, ","), null, "hij"),
+		new ParseScope("a", new ParseState(4, 1, 5, false), null, "def"),
+		new ParseScope("a", new ParseState(8, 1, 9, false), null, "g"),
+		new ParseScope("a", new ParseState(10, 1, 11, false), null, "hij"),
 	]);
 });

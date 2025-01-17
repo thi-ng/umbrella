@@ -18,7 +18,6 @@ test("oneof (no capture)", () => {
 		l: 1,
 		c: 7,
 		done: false,
-		last: "a",
 	});
 	expect(string("abba")(ctx)).toBeTrue();
 	expect(ctx.done).toBeFalse();
@@ -33,7 +32,6 @@ test("oneof (capture)", () => {
 		l: 1,
 		c: 11,
 		done: false,
-		last: "a",
 	});
 	expect(string("bba")(ctx)).toBeTrue();
 	expect(ctx.done).toBeTrue();
@@ -48,7 +46,6 @@ test("string (no capture)", () => {
 		l: 1,
 		c: 5,
 		done: false,
-		last: "b",
 	});
 	expect(string("abba")(ctx)).toBeTrue();
 	expect(ctx.done).toBeFalse();
@@ -63,7 +60,6 @@ test("string (capture)", () => {
 		l: 1,
 		c: 9,
 		done: false,
-		last: "a",
 	});
 	expect(string("bba")(ctx)).toBeTrue();
 	expect(ctx.done).toBeTrue();
@@ -80,7 +76,6 @@ test("grammar (no capture)", () => {
 		l: 1,
 		c: 7,
 		done: false,
-		last: "a",
 	});
 	expect(string("abba")(ctx)).toBeTrue();
 	expect(ctx.done).toBeFalse();
@@ -97,7 +92,6 @@ test("grammar (capture)", () => {
 		l: 1,
 		c: 11,
 		done: false,
-		last: "a",
 	});
 	expect(string("bba")(ctx)).toBeTrue();
 	expect(ctx.done).toBeTrue();
