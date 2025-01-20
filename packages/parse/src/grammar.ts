@@ -293,11 +293,21 @@ const __compile: MultiFn4<
 		},
 		charSel: ($, lang, opts, flags) => {
 			opts.debug && console.log("charSel", flags);
-			const choices = __nth($, 1).children!.map((c) =>
-				__compile(c, lang, opts, flags)
-			);
+			let parser: Parser<string>;
+			const children = __nth($, 1).children!;
+			if (children.length === 1) {
+				parser = __compile(children[0], lang, opts, flags);
+			} else {
+				const onlyChars = children.every((x) => x.id === "char");
+				if (onlyChars) {
+					parser = oneOf(children.map((x) => x.result).join(""));
+				} else {
+					parser = alt(
+						children.map((c) => __compile(c, lang, opts, flags))
+					);
+				}
+			}
 			const invert = __first($).result;
-			const parser = choices.length > 1 ? alt(choices) : choices[0];
 			opts.debug && console.log(`invert: ${invert}`);
 			return invert
 				? not(parser, flags.discard ? alwaysD() : always())
