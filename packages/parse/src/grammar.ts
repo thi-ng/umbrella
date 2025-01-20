@@ -157,6 +157,19 @@ interface CompileFlags {
 	discard?: boolean;
 }
 
+const __hasDynRuleRefs = (
+	term: ParseScope<string>,
+	builtins: Set<string>
+): boolean => {
+	let res = term.id === "ref" && !builtins.has(__first(term).result);
+	if (term.children) {
+		for (let x of term.children) {
+			res ||= __hasDynRuleRefs(x, builtins);
+		}
+	}
+	return res;
+};
+
 /** @internal */
 const __compile: MultiFn4<
 	ParseScope<string>,
@@ -172,17 +185,29 @@ const __compile: MultiFn4<
 	{
 		[DEFAULT]: ($: ParseScope<string>) =>
 			unsupported(`unknown op: ${$.id}`),
-		root: ($, lang, opts, flags) => {
+		root: ($, lang: Language, opts, flags) => {
 			const rules = __first($).children!;
-			rules.reduce(
-				(acc, r) => ((acc[__first(r).result] = dynamic()), acc),
-				lang.rules
-			);
+			const builtins = new Set(Object.keys(lang.rules));
+			// static rules = no refs or only refs to builtins
+			const staticRules = new Set<ParseScope<string>>();
+			// dynamic rules = incl. refs to other rules
+			const dynamicRules = new Set<ParseScope<string>>();
 			for (let r of rules) {
+				if (__hasDynRuleRefs(r, builtins)) {
+					lang.rules[__first(r).result] = dynamic();
+					dynamicRules.add(r);
+				} else {
+					staticRules.add(r);
+				}
+			}
+			for (let r of [...staticRules, ...dynamicRules]) {
 				const id = __first(r).result;
-				(<DynamicParser<string>>lang.rules[id]).set(
-					__compile(r, lang, opts, flags)
-				);
+				const parser = __compile(r, lang, opts, flags);
+				if (dynamicRules.has(r)) {
+					(<DynamicParser<string>>lang.rules[id]).set(parser);
+				} else {
+					lang.rules[id] = parser;
+				}
 			}
 			return lang;
 		},
