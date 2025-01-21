@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, MaybeAsyncIterable, MaybePromise } from "@thi.ng/api";
 import { NO_OP } from "@thi.ng/api/api";
 import type { AsyncTxLike } from "./api.js";

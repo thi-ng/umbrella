@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { abs2 } from "./abs.js";
 import { acos2 } from "./acos.js";
 import { add2 } from "./add.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EPS } from "@thi.ng/math/api";
 import type { VecOpSGVO, VecOpSVO } from "./api.js";
 import { magS, magS2, magS3, magS4 } from "./mags.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { cossin } from "@thi.ng/math/angle";
 import { TAU } from "@thi.ng/math/api";
 import { setC4 } from "@thi.ng/vectors/setc";

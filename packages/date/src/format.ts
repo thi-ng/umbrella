@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";

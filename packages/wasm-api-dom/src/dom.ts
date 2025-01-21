@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, NumOrString } from "@thi.ng/api";
 import { adaptDPI } from "@thi.ng/canvas";
 import { assert } from "@thi.ng/errors/assert";

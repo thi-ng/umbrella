@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { binarySearch } from "@thi.ng/arrays";
 import { benchmark, benchResult } from "@thi.ng/bench";
 import { SYSTEM } from "@thi.ng/random";

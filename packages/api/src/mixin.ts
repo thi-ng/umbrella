@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Class behavior mixin based on:
  * - http://raganwald.com/2015/06/26/decorators-in-es7.html

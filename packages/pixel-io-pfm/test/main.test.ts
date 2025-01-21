@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { FloatBuffer, RGB888, intBuffer } from "@thi.ng/pixel";
 import { expect, test } from "bun:test";
 import { asPFM, readPFM } from "../src/index.js";

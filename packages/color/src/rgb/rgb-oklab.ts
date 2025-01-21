@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { powN3 } from "@thi.ng/vectors/pown";
 import type { ColorOp } from "../api.js";
 import { OKLAB_M2 } from "../api/constants.js";

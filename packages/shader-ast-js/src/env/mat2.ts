@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { add22 } from "@thi.ng/matrices/add";
 import { addN22 } from "@thi.ng/matrices/addn";
 import { div22 } from "@thi.ng/matrices/div";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api";
 import { compare, reverse } from "@thi.ng/compare";
 import { expect, test } from "bun:test";

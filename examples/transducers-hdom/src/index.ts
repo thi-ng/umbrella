@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fromInterval, stream, sync } from "@thi.ng/rstream";
 import { count, map, scan } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";

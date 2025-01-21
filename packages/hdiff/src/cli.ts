@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";

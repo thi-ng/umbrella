@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { RampImpl } from "./api.js";
 
 export type NestedImpl<T extends Record<string, any>> = {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IBoidAccel } from "./api.js";
 import type { Boid } from "./boid.js";
 

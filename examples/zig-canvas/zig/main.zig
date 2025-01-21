@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Main Zig application (aka root package)
 
 const std = @import("std");

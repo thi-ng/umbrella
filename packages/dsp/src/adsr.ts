@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, IReset } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { add } from "./add.js";

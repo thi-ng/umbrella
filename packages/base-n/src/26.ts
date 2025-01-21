@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defBase } from "./base.js";
 import * as c from "./chars/26.js";
 export * from "./chars/26.js";

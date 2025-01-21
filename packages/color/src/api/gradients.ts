@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnU, Tuple } from "@thi.ng/api";
 import type { Color, ColorMixFn, ReadonlyColor } from "../api.js";
 

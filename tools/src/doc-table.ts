@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { comp, filter, map, push, transduce } from "@thi.ng/transducers";

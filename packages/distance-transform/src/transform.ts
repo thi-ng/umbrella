@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid2D, NumericArray } from "@thi.ng/api";
 import type { DTMetric } from "./api.js";
 import { EUCLEDIAN } from "./metric.js";

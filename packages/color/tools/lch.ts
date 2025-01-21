@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asSvg, circle, group, line, polygon, svgDoc } from "@thi.ng/geom";
 import { setPrecision } from "@thi.ng/hiccup-svg";
 import { TAU } from "@thi.ng/math";

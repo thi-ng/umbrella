@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { comment } from "./comment.js";
 import { at_import } from "./import.js";
 import { at_keyframes } from "./keyframes.js";

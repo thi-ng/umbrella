@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asInt } from "@thi.ng/api/typedarray";
 import { clipped, intersectRectCircle } from "./clipping.js";
 import { hline } from "./hvline.js";

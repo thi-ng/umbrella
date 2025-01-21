@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, FnN } from "@thi.ng/api";
 import { normRange } from "./norm-range.js";
 import { repeat } from "./repeat.js";

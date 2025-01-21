@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { LogLevel, MemoryLogger, type LogEntry } from "../src/index.js";
 

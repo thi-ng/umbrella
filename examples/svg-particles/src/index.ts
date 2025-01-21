@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { start } from "@thi.ng/hdom";
 import { SYSTEM } from "@thi.ng/random";
 import { U24 } from "@thi.ng/strings";

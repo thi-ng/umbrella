@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ColorOp, ReadonlyColor } from "../api.js";
 import { D50, D65 } from "../api/constants.js";

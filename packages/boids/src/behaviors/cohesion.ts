@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec } from "@thi.ng/vectors";
 import type { IBoidBehavior, ScalarOrField } from "../api.js";
 import { __ensureFn } from "../internal/ensure.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { partial } from "@thi.ng/compose";

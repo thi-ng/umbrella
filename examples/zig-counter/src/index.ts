@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { WasmBridge } from "@thi.ng/wasm-api";
 import { WasmDomModule, type WasmDomExports } from "@thi.ng/wasm-api-dom";

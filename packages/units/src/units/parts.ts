@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defUnit, dimensionless } from "../unit.js";
 
 export const percent = defUnit("%", "percent", dimensionless(1e-2));

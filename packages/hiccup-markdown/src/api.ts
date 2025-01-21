@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { ParseState } from "@thi.ng/parse";

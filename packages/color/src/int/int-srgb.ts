@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color } from "../api.js";
 import { INV8BIT } from "../api/constants.js";

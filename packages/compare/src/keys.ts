@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn, Keys, Val1 } from "@thi.ng/api";
 import { compare } from "./compare.js";
 

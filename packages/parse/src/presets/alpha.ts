@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	ALPHA as _ALPHA,
 	ALPHA_NUM as _ALPHA_NUM,

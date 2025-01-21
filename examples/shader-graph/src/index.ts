@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { exposeGlobal } from "@thi.ng/expose";
 import { ConsoleLogger } from "@thi.ng/logger";

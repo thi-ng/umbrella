@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ceilPow2 } from "@thi.ng/binary/pow";
 import { demux2 } from "@thi.ng/morton/mux";
 import type { GridIterOpts2D } from "./api.js";

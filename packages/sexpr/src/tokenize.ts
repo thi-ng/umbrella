@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DEFAULT_SYNTAX, type SyntaxOpts, type Token } from "./api.js";
 
 /**

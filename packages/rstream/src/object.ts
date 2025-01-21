@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Keys, NumOrString, Predicate2 } from "@thi.ng/api";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import { range } from "@thi.ng/transducers/range";

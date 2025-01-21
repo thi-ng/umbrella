@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { asInt } from "@thi.ng/api/typedarray";
 import type { GridIterOpts2D } from "./api.js";

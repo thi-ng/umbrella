@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn, Fn0, IObjectOf } from "@thi.ng/api";
 import type { Reduced } from "./reduced.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs, PCLike, PCLikeConstructor } from "../api.js";
 import { map } from "@thi.ng/transducers/map";
 import type { Vec } from "@thi.ng/vectors";

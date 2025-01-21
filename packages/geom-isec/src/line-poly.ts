@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mag } from "@thi.ng/vectors/mag";
 import { normalize2 } from "@thi.ng/vectors/normalize";

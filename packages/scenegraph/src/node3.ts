@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, IToHiccup, Nullable } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { invert44 } from "@thi.ng/matrices/invert";

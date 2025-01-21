@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { juxtR } from "./juxtr.js";
 import { max } from "./max.js";
 import { min } from "./min.js";

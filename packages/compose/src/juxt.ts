@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, FnA } from "@thi.ng/api";
 
 export function juxt<T, A>(a: Fn<T, A>): Fn<T, [A]>;

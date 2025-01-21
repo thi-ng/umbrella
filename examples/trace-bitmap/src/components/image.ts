@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { div, inputColor, inputNumber } from "@thi.ng/hiccup-html";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { fromView } from "@thi.ng/rstream";

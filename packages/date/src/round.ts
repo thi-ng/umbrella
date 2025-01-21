@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DAY, HOUR, MINUTE, SECOND, WEEK, type RoundingFn } from "./api.js";
 import { ensureDate } from "./checks.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU4 } from "@thi.ng/api";
 import { EPS, type Crossing } from "./api.js";
 import { eqDelta } from "./eqdelta.js";

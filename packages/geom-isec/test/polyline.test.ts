@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { IntersectionType } from "@thi.ng/geom-isec";
 import { expect, test } from "bun:test";
 import {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const B26_UC_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 export const B26_LC_CHARS = "abcdefghijklmnopqrstuvwxyz";

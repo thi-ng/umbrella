@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { fract } from "@thi.ng/math/prec";
 import { setC4 } from "@thi.ng/vectors/setc";

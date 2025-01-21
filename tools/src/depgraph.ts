@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defDGraph } from "@thi.ng/dgraph";
 import { serializeGraph, type Node } from "@thi.ng/dot";
 import { files, readJSON, writeText } from "@thi.ng/file-io";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { boundingCircle, bounds2 } from "@thi.ng/geom-poly-utils/bounds";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { addmN2 } from "@thi.ng/vectors/addmn";

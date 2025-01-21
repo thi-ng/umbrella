@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api/fn";
 import { assert } from "@thi.ng/errors/assert";
 import { utf8Decode, utf8Encode } from "@thi.ng/transducers-binary/utf8";

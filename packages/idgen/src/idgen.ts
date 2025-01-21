@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Event, IClear, IIDGen, INotify, Listener } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { assert } from "@thi.ng/errors/assert";

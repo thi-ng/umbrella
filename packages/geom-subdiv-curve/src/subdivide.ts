@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { comp } from "@thi.ng/transducers/comp";
 import { mapcatIndexed } from "@thi.ng/transducers/mapcat-indexed";
 import { partition } from "@thi.ng/transducers/partition";

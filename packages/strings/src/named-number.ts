@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Stringer } from "./api.js";
 import { int } from "./int.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3, Maybe, NumericArray } from "@thi.ng/api";
 import type { ComplexArray } from "./api.js";
 import { isComplex } from "./complex.js";

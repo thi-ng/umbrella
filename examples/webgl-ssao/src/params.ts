@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { reactive, type Stream } from "@thi.ng/rstream";
 import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";

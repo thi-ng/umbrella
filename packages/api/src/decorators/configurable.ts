@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Property decorator factory. Sets `configurable` flag of PropertyDescriptor
  * to given state.

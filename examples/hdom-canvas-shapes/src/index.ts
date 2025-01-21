@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { hsv } from "@thi.ng/color";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { pathBuilder, points } from "@thi.ng/geom";

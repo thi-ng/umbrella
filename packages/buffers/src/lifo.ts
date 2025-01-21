@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IReadWriteBuffer } from "./api.js";
 import { assert } from "@thi.ng/errors/assert";
 

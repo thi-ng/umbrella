@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Nullable } from "@thi.ng/api";
 import type { Transducer } from "./api.js";
 import { cat } from "./cat.js";

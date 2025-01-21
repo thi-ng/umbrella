@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { safeDiv as _div } from "@thi.ng/math/safe-div";
 import type { MultiVecOpVV, VecOpVV } from "./api.js";
 import { defHofOp } from "./compile/emit.js";

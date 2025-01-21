@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 /**
  * Generated @ 2023-05-06T11:43:12Z

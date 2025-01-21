@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DEFAULT_IMPL, normalizeTree, replaceChild } from "@thi.ng/hdom";
 import { memoize1 } from "@thi.ng/memoize";
 import { fromInterval } from "@thi.ng/rstream";

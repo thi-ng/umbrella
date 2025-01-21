@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { readText } from "@thi.ng/file-io";
 import { resolve } from "node:path";
 import type { TemplateFn } from "../api.js";

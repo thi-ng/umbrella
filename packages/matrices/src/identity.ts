@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { vop } from "@thi.ng/vectors/vop";
 import type { MultiMatOp1 } from "./api.js";
 import { IDENT22, IDENT23, IDENT33, IDENT44 } from "./constants.js";

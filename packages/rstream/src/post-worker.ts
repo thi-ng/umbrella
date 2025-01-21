@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isTransferable } from "@thi.ng/checks/is-transferable";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import type { ISubscriber } from "./api.js";

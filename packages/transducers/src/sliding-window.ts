@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { deref, type MaybeDeref } from "@thi.ng/api/deref";
 import type { Reducer, Transducer } from "./api.js";
 import { compR } from "./compr.js";

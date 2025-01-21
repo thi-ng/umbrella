@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, Path } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";

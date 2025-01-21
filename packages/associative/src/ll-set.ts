@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, Maybe, Pair, Predicate2 } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { DCons } from "@thi.ng/dcons/dcons";

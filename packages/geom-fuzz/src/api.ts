@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import type { IColor } from "@thi.ng/color";
 import type { CubicOpts, IHiccupShape2, Polygon } from "@thi.ng/geom";

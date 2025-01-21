@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec } from "@thi.ng/vectors";
 import { set } from "@thi.ng/vectors/set";
 import type { Attribs, IHiccupShape2 } from "../api.js";

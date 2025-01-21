@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { pager } from "@thi.ng/hdom-components";
 import type { AppContext } from "../api";
 import { SET_PAGE, SET_SORT } from "../events";

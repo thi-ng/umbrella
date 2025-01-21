@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { binarySearch } from "@thi.ng/arrays/binary-search";
 import type { Reducer, SortOpts, Transducer } from "./api.js";
 import { __drain } from "./internal/drain.js";

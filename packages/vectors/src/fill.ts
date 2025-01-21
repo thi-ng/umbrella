@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IVector } from "./api.js";
 import { mapV } from "./map.js";
 import { set } from "./set.js";

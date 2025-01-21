@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAtom } from "@thi.ng/atom";
 import { type AppState } from "../api";
 import { computeCanvasSize } from "./canvas";

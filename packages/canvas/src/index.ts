@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface Canvas2DOpts {
 	/**
 	 * (Native) options passed to `canvas.getContext("2d")`

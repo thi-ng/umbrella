@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAtom } from "@thi.ng/atom";
 import { repeat } from "@thi.ng/transducers";
 import { makeBins, updateAudio } from "./audio";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { start } from "@thi.ng/hdom";
 import { map, mapIndexed } from "@thi.ng/transducers";
 import _commits from "./commits.json";

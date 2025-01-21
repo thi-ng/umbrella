@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { srgb, srgbIntArgb32, type ReadonlyColor } from "@thi.ng/color";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 

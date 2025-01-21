@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isString } from "@thi.ng/checks/is-string";
 import { css } from "@thi.ng/color/css/css";

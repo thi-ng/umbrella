@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { wrap as _wrap } from "@thi.ng/math/interval";
 import type { MultiVecOpVVV, VecOpVVV } from "./api.js";
 import { defHofOp } from "./compile/emit.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import type { Reducer, Transducer } from "./api.js";

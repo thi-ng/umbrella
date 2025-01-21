@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import type { EditorOpts } from "@thi.ng/rdom-components";
 import type { CodeTemplate, Status } from "./api";

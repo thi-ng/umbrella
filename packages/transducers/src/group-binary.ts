@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, IObjectOf } from "@thi.ng/api";
 import type { Reducer } from "./api.js";
 import { groupByObj } from "./group-by-obj.js";

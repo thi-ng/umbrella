@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "./api.js";
 import { normalize, normalize2, normalize3 } from "./normalize.js";
 import { sub, sub2, sub3 } from "./sub.js";

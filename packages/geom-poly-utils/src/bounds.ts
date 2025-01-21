@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { max3id } from "@thi.ng/math/interval";
 import { addmN2, addmN3 } from "@thi.ng/vectors/addmn";
 import { addW2 } from "@thi.ng/vectors/addw";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { max2id, max3id, max4id } from "@thi.ng/math/interval";
 import type { MultiVecOpRoV } from "./api.js";
 import { vop } from "./vop.js";

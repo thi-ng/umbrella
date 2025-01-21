@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { typedArrayOfVec, type IObjectOf, type Maybe } from "@thi.ng/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import type { MultiFn1O } from "@thi.ng/defmulti";

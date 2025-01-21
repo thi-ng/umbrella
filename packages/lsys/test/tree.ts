@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import * as g from "@thi.ng/geom";
 import { PI } from "@thi.ng/math";
 import { XsAdd } from "@thi.ng/random";

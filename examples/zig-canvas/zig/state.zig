@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! App state model & operations for drawn gestures
 
 const std = @import("std");

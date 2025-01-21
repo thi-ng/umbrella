@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, FnN3 } from "@thi.ng/api";
 import { DAYS_IN_MONTH, DAYS_IN_MONTH_OFFSET } from "./api.js";
 import { isLeapYear } from "./checks.js";

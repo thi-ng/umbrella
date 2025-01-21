@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Parser } from "../api.js";
 import { string } from "../prims/string.js";
 import { discard } from "../xform/discard.js";

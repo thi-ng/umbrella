@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { ensureIterable } from "@thi.ng/arrays/ensure-iterable";
 

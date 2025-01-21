@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Vec } from "@thi.ng/vectors";

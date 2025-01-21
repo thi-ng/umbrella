@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 import { tween } from "@thi.ng/transducers/tween";
 import { setS4 } from "@thi.ng/vectors/sets";

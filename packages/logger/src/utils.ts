@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const expandArgs = (args: any[]) =>
 	args.map((x) => (typeof x === "function" ? x() : x));
 

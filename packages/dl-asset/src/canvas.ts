@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CanvasRecorderOpts } from "./api.js";
 import { downloadWithMime } from "./raw.js";
 

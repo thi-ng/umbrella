@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative/equiv-map";
 import { unsupported } from "@thi.ng/errors/unsupported";

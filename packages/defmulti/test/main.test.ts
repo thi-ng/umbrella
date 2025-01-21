@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api";
 import { MemoryLogger } from "@thi.ng/logger";
 import { expect, test } from "bun:test";

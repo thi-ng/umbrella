@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, UIntArray } from "@thi.ng/api";
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { intBufferFromCanvas, type IntBuffer } from "@thi.ng/pixel/int";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "./api.js";
 import { direction2 } from "./direction.js";
 import { perpendicularCCW, perpendicularCW } from "./perpendicular.js";

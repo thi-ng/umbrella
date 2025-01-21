@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { X3, Y3, Z3, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { mulQ } from "./mulq.js";
 import { quatFromAxisAngle } from "./quat-axis-angle.js";

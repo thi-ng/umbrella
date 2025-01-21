@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { FloatBuffer } from "@thi.ng/pixel";
 import { convolveChannel, POOL_THRESHOLD } from "@thi.ng/pixel-convolve";
 

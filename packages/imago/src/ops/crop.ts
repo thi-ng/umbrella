@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import type { CropSpec, Dim, Processor } from "../api.js";

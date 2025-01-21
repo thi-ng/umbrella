@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity, type Fn, type Fn4 } from "@thi.ng/api/fn";
 import type { Attribs } from "@thi.ng/hiccup-html";
 import { div } from "@thi.ng/hiccup-html/blocks";

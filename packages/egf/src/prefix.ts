@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { TrieMap } from "@thi.ng/trie/trie-map";
 import type { Prefixes } from "./api.js";

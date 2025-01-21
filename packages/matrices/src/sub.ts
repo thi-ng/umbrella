@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sub as _sub, sub4 } from "@thi.ng/vectors/sub";
 import type { MatOpMM, MultiMatOpMM } from "./api.js";
 import { defMath } from "./compile/emit.js";

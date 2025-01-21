@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isPrimitive } from "@thi.ng/checks/is-primitive";
 import { distEucledian3, distLch } from "@thi.ng/color/distance";
 import { hsv } from "@thi.ng/color/hsv/hsv";

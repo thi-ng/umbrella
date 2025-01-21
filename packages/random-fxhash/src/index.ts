@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { B58_CHARS_LC } from "@thi.ng/base-n/chars/58";
 import type { IRandom } from "@thi.ng/random";

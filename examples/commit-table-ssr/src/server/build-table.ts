@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Commit } from "../common/api";
 import { header } from "../common/components/header";
 import { repoTable } from "../common/components/repo-table";

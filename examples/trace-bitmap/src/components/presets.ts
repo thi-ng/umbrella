@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { div } from "@thi.ng/hiccup-html";
 import { PRESETS, type PresetID } from "../api";
 import { applyPresetForID, loadPreset, savePreset } from "../state/presets";

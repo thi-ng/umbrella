@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sma } from "@thi.ng/transducers-stats/sma";
 import { step } from "@thi.ng/transducers/step";
 import { sparkline, type SparklineOpts } from "./sparkline.js";

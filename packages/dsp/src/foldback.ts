@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { foldback as _foldback } from "@thi.ng/math/interval";
 import { AProc } from "./aproc.js";
 

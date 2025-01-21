@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { equiv as _eq } from "@thi.ng/equiv";
 
 /**

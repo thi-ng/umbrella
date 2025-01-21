@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, NumOrString } from "@thi.ng/api";
 
 export enum Align {

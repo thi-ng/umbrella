@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { HALF_PI, PI } from "@thi.ng/math/api";
 import { addmN } from "./addmn.js";
 import type { ReadonlyVec, Vec, VecOpRoVV } from "./api.js";

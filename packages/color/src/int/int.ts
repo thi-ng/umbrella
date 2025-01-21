@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ArrayLikeIterable, Fn, NumericArray } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";

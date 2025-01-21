@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
 import { $compile } from "./compile.js";

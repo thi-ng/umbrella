@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MatOp1, MatOpN } from "./api.js";
 import { identity22, identity23, identity33, identity44 } from "./identity.js";
 

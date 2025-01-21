@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate } from "@thi.ng/api";
 import { clamp0 } from "@thi.ng/math/interval";
 import { Key } from "../api.js";

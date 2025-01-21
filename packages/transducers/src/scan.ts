@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Reducer, Transducer } from "./api.js";
 import { __iter, iterator } from "./iterator.js";
 import { ensureReduced, isReduced, unreduced } from "./reduced.js";

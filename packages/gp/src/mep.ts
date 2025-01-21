@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { inRange } from "@thi.ng/math/interval";
 import { SYSTEM } from "@thi.ng/random/system";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";

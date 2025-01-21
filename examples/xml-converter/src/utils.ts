@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISubscriber } from "@thi.ng/rstream";
 import { splice } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";

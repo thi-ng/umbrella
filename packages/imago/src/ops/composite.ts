@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defmulti } from "@thi.ng/defmulti";
 import type { OverlayOptions, Sharp } from "sharp";
 import type { CompLayer, CompSpec, ImgProcCtx, Processor } from "../api.js";

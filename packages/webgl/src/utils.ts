@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import type { Sym, Term } from "@thi.ng/shader-ast";
 import { add, mul } from "@thi.ng/shader-ast/ast/ops";

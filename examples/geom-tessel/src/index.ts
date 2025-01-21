@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { partial } from "@thi.ng/compose";
 import {
 	arcLength,

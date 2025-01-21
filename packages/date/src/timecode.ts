@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Z2 } from "@thi.ng/strings/pad-left";
 import { decomposeDuration } from "./duration.js";
 

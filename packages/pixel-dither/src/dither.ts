@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IntBuffer } from "@thi.ng/pixel";
 import { __range } from "@thi.ng/pixel/internal/range";
 import type { DitherKernel, DitherOpts } from "./api.js";

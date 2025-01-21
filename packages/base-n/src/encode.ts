@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IBaseEncode } from "./api.js";
 import { B16_LC_CHARS } from "./chars/16.js";
 

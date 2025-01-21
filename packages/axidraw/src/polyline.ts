@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { DrawCommand, PolylineOpts } from "./api.js";
 import { DOWN, MOVE, PEN, UP } from "./commands.js";

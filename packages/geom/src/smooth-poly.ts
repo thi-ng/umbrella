@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { Attribs, CubicOpts, SamplingOpts } from "./api.js";
 import { Polygon } from "./api/polygon.js";

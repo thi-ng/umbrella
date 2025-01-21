@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnO, Path } from "@thi.ng/api";
 
 export type Patch = "set" | "insert" | "update" | "delete";

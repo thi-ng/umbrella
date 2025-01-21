@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";

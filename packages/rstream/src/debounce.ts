@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { __optsWithID } from "./idgen.js";
 import { fromIterable } from "./iterable.js";
 import { metaStream, type MetaStreamOpts } from "./metastream.js";

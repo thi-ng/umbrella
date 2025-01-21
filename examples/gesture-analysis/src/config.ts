@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Vec2 } from "@thi.ng/vectors";
 
 // initial call to action gesture

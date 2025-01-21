@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { replaceNames } from "@thi.ng/emoji";
 import { br, button, div, h1, main, para, textArea } from "@thi.ng/hiccup-html";
 import { generate } from "@thi.ng/proctext";

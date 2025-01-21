@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clipLinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { bounds } from "@thi.ng/geom/bounds";
 import { group } from "@thi.ng/geom/group";

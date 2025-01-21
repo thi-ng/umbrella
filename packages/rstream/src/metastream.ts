@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Nullable } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { State, type CommonOpts, type ISubscription } from "./api.js";

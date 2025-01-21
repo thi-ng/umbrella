@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { floatBufferFromInt, type FloatBuffer } from "@thi.ng/pixel/float";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
 import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";

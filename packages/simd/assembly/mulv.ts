@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export function mul_m22v2_aos(
     out: usize,
     mat: usize,

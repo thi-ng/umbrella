@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IBind, IRelease } from "@thi.ng/api";
 import type { ITexture } from "./texture.js";
 

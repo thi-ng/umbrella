@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	fit as _fit,
 	fit01 as _fit01,

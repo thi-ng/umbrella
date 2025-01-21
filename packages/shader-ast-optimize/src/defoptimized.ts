@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnBody0 } from "@thi.ng/shader-ast";
 import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { constantFolding } from "./constant-folding.js";

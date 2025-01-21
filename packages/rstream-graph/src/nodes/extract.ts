@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Path } from "@thi.ng/api";
 import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { map } from "@thi.ng/transducers/map";

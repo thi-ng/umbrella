@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Channel } from "@thi.ng/csp";
 import type { CommonOpts } from "@thi.ng/rstream";
 import { LOGGER } from "@thi.ng/rstream/logger";

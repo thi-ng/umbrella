@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { pointInTriangle2 } from "@thi.ng/geom-isec/point";
 import { polyArea2 } from "@thi.ng/geom-poly-utils/area";
 import { range } from "@thi.ng/transducers/range";

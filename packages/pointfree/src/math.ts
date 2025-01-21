@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StackContext } from "./api.js";
 import { defOp1, defOp2 } from "./ops.js";
 import { swap } from "./stack.js";

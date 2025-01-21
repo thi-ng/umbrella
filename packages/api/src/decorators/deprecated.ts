@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Method property decorator factory. Augments original method with
  * deprecation message (via console), shown when method is invoked.

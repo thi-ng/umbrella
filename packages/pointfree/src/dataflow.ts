@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StackContext } from "./api.js";
 import { and, or } from "./logic.js";
 import { $ } from "./safe.js";

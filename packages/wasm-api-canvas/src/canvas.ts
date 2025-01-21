@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { swapLane13 } from "@thi.ng/binary";
 import type { IWasmAPI, WasmModuleSpec } from "@thi.ng/wasm-api";
 import { WasmDomModule, type WasmDom } from "@thi.ng/wasm-api-dom/dom";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { reactive, syncRAF } from "@thi.ng/rstream";
 import { gestureStream, type GestureStream } from "@thi.ng/rstream-gestures";
 import { add2, mulN2, type Vec } from "@thi.ng/vectors";

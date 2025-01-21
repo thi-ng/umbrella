@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Takes an object of RDF/XML prefixes and returns formatted string for
  * the RDFa `prefix` attribute.

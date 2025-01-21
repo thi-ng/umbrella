@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Keys } from "@thi.ng/api";
 import { css, hcy } from "@thi.ng/color";
 import { deleteIn } from "@thi.ng/paths";

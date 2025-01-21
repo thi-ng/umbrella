@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Rect } from "@thi.ng/geom/api/rect";
 import { bounds } from "@thi.ng/geom/bounds";
 import { __ensurePCLike } from "@thi.ng/geom/internal/pclike";

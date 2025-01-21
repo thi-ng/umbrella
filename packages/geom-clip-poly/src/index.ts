@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { intersectLineLine } from "@thi.ng/geom-isec/line-line";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { EPS } from "@thi.ng/math/api";

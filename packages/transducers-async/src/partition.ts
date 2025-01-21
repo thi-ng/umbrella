@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MaybeAsyncIterable } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { unreduced } from "@thi.ng/transducers/reduced";

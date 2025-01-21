@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Returns iterator of all prime numbers ≤ given `x` using Sieve of
  * Eratosthenes.

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN4 } from "@thi.ng/api";
 import { MASKS } from "@thi.ng/binary/constants";
 import { assert } from "@thi.ng/errors/assert";

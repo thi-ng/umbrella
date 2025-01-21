@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, FnO, IDeref, Maybe } from "@thi.ng/api";
 import type { IReadWriteBuffer } from "@thi.ng/buffers";
 import { fifo } from "@thi.ng/buffers/fifo";

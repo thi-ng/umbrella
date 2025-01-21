@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays";
 import { isArray, isBoolean, isNumber, isPlainObject } from "@thi.ng/checks";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";

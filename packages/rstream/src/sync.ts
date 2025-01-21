@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Always, Derefed, IObjectOf } from "@thi.ng/api";
 import { comp } from "@thi.ng/transducers/comp";
 import { labeled } from "@thi.ng/transducers/labeled";

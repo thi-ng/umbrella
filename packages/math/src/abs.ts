@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2 } from "@thi.ng/api";
 import { EPS } from "./api.js";
 

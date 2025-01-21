@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, IDeref } from "@thi.ng/api";
 import type { INeighborhood } from "@thi.ng/distance";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

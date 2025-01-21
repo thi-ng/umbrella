@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ColorOp } from "../api.js";
 import { rgbXyz, rgbXyzD65 } from "./rgb-xyz.js";
 import { xyzLab, xyzLabD65 } from "../xyz/xyz-lab.js";

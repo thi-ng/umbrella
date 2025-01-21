@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { fromIterable, metaStream, reactive } from "../src/index.js";
 import { TIMEOUT } from "./config.js";

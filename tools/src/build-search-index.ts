@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ArraySet } from "@thi.ng/associative";
 import { timed } from "@thi.ng/bench";
 import {

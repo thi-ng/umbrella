@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
 import { DEFAULT_EPS } from "@thi.ng/api/api";
 import { isString } from "@thi.ng/checks/is-string";

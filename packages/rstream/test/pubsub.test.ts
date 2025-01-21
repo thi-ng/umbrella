@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EquivMap } from "@thi.ng/associative";
 import { map, mapIndexed } from "@thi.ng/transducers";
 import { expect, test } from "bun:test";

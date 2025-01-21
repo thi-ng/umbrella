@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { $compile, $lazy } from "@thi.ng/rdom";
 import { map, range } from "@thi.ng/transducers";
 

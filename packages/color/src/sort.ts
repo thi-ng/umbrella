@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { typedArray, typedArrayType } from "@thi.ng/api/typedarray";
 import { quickSort } from "@thi.ng/arrays/quicksort";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf, Keys, Range0_3 } from "@thi.ng/api";
 import {
 	extractSegmentsX,

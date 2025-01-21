@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { juxt } from "@thi.ng/compose/juxt";
 import type { MultiplexTxLike, Transducer } from "./api.js";
 import { map } from "./map.js";

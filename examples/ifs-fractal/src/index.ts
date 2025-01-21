@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas2d } from "@thi.ng/canvas";
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { fiber, timeSlice } from "@thi.ng/fibers";

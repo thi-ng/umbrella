@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, Range } from "@thi.ng/api";
 import { norm } from "@thi.ng/math/fit";
 import { clamp0 } from "@thi.ng/math/interval";

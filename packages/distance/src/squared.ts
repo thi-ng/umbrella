@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { distSq, distSq2, distSq3 } from "@thi.ng/vectors/distsq";
 import type { IDistance, Metric } from "./api.js";

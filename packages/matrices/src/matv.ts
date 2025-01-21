@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { setVV16, setVV4, setVV6, setVV9 } from "@thi.ng/vectors/setvv";
 
 /**

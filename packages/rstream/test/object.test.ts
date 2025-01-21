@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { Subscription, fromObject, fromTuple, stream } from "../src/index.js";
 import { assertUnsub } from "./utils.js";

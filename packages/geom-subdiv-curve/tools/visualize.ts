@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { COSINE_GRADIENTS, cosineColor } from "@thi.ng/color";
 import { writeText } from "@thi.ng/file-io";
 import { asSvg, group, points, polygon, polyline, svgDoc } from "@thi.ng/geom";

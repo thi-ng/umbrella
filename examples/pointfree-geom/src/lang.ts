@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, FnAny, IObjectOf } from "@thi.ng/api";
 import { isArray, isNumber } from "@thi.ng/checks";
 import {

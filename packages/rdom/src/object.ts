@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Keys } from "@thi.ng/api";
 import type { ISubscribable, StreamObj, StreamObjOpts } from "@thi.ng/rstream";
 import { fromObject } from "@thi.ng/rstream/object";

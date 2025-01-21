@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { WasmExports } from "@thi.ng/wasm-api";
 import type { ScheduleType } from "./generated/api.js";
 

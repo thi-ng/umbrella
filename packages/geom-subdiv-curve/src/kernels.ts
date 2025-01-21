@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";

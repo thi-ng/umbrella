@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "./api.js";
 import { dot } from "./dot.js";
 import { magSq } from "./magsq.js";

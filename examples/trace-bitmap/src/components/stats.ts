@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { div } from "@thi.ng/hiccup-html";
 import { $replace } from "@thi.ng/rdom";
 import { geometryStats, imageProcessor } from "../state/process";

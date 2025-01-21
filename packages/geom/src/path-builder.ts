@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Always } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { unsupported } from "@thi.ng/errors/unsupported";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, IClear, IDeref } from "@thi.ng/api";
 import type { DefuzzStrategy, FuzzyFn, LVarDomain } from "@thi.ng/fuzzy";
 import { variable } from "@thi.ng/fuzzy/var";

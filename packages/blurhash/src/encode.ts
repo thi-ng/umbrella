@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN3, FnN4 } from "@thi.ng/api";
 import { B83_CHARS } from "@thi.ng/base-n/chars/83";
 import { BaseNEncoder } from "@thi.ng/base-n/encode";

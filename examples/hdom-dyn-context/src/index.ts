@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { VecOpSGN, VecOpSN } from "./api.js";
 import { defOpS } from "./compile/emit.js";
 import { SET_N } from "./compile/templates.js";

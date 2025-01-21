@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { __inflightIters, __iterNext, __iterRemove } from "./internal/iter.js";
 
 /**

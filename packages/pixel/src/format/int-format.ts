@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { clamp01 } from "@thi.ng/math/interval";

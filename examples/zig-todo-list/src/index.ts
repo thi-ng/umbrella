@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
 import { WasmBridge, type IWasmAPI, type WasmType } from "@thi.ng/wasm-api";

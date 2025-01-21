@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sin } from "@thi.ng/dsp";
 import { group, polyline } from "@thi.ng/geom";
 import { start } from "@thi.ng/hdom";

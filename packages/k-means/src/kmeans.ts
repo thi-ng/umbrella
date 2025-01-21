@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDistance } from "@thi.ng/distance";
 import { argmin } from "@thi.ng/distance/argmin";
 import { DIST_SQ } from "@thi.ng/distance/squared";

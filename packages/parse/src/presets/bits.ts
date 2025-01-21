@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { repeat } from "../combinators/repeat.js";
 import { xform } from "../combinators/xform.js";
 import { oneOf } from "../prims/one-of.js";

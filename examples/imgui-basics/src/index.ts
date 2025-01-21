@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { buttonH, DEFAULT_THEME, defGUI, Key, sliderH } from "@thi.ng/imgui";
 import { gridLayout } from "@thi.ng/layout";
 import { $canvas } from "@thi.ng/rdom-canvas";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, FnN2 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { assert } from "@thi.ng/errors/assert";

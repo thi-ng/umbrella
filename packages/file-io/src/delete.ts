@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ILogger } from "@thi.ng/logger";
 import { rmSync, unlinkSync } from "node:fs";
 

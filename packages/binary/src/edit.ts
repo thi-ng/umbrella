@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU3 } from "@thi.ng/api";
 import type { Bit } from "./api.js";
 import { defMask } from "./mask.js";

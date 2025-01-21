@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { Atom, defAtom, defViewUnsafe } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";

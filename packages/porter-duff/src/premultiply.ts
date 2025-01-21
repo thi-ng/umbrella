@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Color, ReadonlyColor } from "./api.js";
 import { setC4, setV4 } from "./utils.js";
 

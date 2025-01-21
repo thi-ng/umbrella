@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { asPromise, timeSliceIterable } from "@thi.ng/fibers";
 import { div, progress as progressBar } from "@thi.ng/hiccup-html";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const geo = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 export const geom = "http://data.ign.fr/def/geometrie";
 export const geonames = "http://www.geonames.org/ontology#";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { Component, type NumOrElement } from "@thi.ng/rdom";
 import type { ISubscribable } from "@thi.ng/rstream";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dotsV, lch, tint, tone, ycc, type LCH } from "@thi.ng/color";
 import { circle } from "@thi.ng/geom";
 import { PI } from "@thi.ng/math";

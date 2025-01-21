@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defUnit, dimensionless, mul, prefix } from "../unit.js";
 
 export const bit = defUnit("bit", "bit", dimensionless(1, 0, true));

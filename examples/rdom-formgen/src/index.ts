@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { serialize } from "@thi.ng/hiccup";
 import { anchor, div, span, type Attribs } from "@thi.ng/hiccup-html";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";

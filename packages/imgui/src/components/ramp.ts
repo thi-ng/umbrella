@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { group } from "@thi.ng/geom/group";
 import { line } from "@thi.ng/geom/line";

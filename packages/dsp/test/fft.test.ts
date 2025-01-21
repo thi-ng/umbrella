@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 import { eqDelta, TAU } from "@thi.ng/math";
 import { expect, test } from "bun:test";

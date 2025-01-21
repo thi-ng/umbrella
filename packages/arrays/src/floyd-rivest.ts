@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, TypedArray } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { swap } from "./swap.js";

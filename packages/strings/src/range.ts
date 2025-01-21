@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Yields iterator of characters [`from`..`to`] (inclusive). Uses
  * reverse ordering if `to` < `from`.

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, FnN, FnN2, Range } from "@thi.ng/api";
 
 export type FuzzyFn = FnN;

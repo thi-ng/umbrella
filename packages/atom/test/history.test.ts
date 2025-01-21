@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { beforeEach, expect, test } from "bun:test";
 import { Atom, defCursor, defHistory } from "../src/index.js";
 

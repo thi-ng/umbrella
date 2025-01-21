@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CompareOp, MultiCompareOp } from "./api.js";
 import { defOp } from "./compile/emit.js";
 import { MATH } from "./compile/templates.js";

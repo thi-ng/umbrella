@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CSSOpts, RuleFn } from "./api.js";
 import { formatDecls, indent } from "./impl.js";
 

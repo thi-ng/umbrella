@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defBitOp, defBitOpN } from "./compile/emit.js";
 
 export const [addI, addI2, addI3, addI4] = defBitOp("+", true);

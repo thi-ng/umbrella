@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { NULL_LOGGER } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
 import { expandSpec, expandTemplateSpec } from "../src/generate.js";

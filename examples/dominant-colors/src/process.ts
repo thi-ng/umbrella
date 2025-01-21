@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { timed } from "@thi.ng/bench";
 import { lch, srgb, distEucledian3 } from "@thi.ng/color";
 import { FLOAT_RGB, floatBuffer, intBufferFromImage } from "@thi.ng/pixel";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ESCAPES } from "@thi.ng/strings/escape";
 import { repeat } from "../combinators/repeat.js";
 import { seq } from "../combinators/seq.js";

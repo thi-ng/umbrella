@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "./api.js";
 import { mag } from "./mag.js";
 import { vmean } from "./mean.js";

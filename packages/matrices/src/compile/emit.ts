@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { compile } from "@thi.ng/vectors/compile/emit";
 import {
 	ARGS_VN,

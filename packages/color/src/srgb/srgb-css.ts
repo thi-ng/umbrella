@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { U24 } from "@thi.ng/strings/radix";
 import type { ReadonlyColor } from "../api.js";
 import { FF } from "../api/constants.js";

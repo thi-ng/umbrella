@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { comp as _comp } from "@thi.ng/compose/comp";
 import type { Transducer, TxLike } from "./api.js";
 import { ensureTransducer } from "./ensure.js";

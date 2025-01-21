@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { renderOnce } from "@thi.ng/hdom";
 import { clamp } from "@thi.ng/math";
 import {

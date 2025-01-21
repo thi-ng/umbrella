@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Returns true iff all chars are in ASCII range [0x00 .. 0x7f]
  *

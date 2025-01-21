@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, TypedArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { FloatFormat, IntFormat } from "./api.js";

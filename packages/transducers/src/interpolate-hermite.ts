@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mixHermite } from "@thi.ng/math/mix";
 import type { Transducer } from "./api.js";
 import { interpolate } from "./interpolate.js";

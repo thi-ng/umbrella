@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { U32 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";

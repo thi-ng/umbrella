@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Processor, RotateSpec } from "../api.js";
 import { coerceColor } from "../units.js";
 

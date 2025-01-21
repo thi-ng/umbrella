@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DOCTYPE_HTML } from "@thi.ng/hiccup/api";
 import { serialize } from "@thi.ng/hiccup/serialize";
 import { DEFAULT_THEME, type Theme } from "./api.js";

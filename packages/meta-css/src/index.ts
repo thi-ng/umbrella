@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { cliApp, flag } from "@thi.ng/args";
 import { readJSON } from "@thi.ng/file-io";
 import { LogLevel } from "@thi.ng/logger";

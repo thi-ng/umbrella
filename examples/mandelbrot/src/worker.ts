@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit01 } from "@thi.ng/math";
 import { GRADIENTS } from "./gradient";
 

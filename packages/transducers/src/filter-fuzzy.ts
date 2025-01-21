@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import { fuzzyMatch } from "@thi.ng/arrays/fuzzy-match";
 import type { Transducer } from "./api.js";

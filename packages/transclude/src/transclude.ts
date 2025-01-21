@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { SomeRequired } from "@thi.ng/api";
 import { readText } from "@thi.ng/file-io/text";
 import { ConsoleLogger } from "@thi.ng/logger";

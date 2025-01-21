@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import type { FboOpts, IFbo } from "./api/buffers.js";
 import { TEX_FORMATS, type ITexture } from "./api/texture.js";

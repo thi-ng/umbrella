@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { adaptDPI } from "@thi.ng/canvas";
 import { ECS, type GroupInfo, type GroupTuple } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";

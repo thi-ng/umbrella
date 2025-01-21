@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { MouseButton } from "./api.js";
 import type { IMGUI } from "./gui.js";
 

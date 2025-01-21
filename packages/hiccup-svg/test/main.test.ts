@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { hsv } from "@thi.ng/color";
 import { expect, test } from "bun:test";
 import { convertTree } from "../src/index.js";

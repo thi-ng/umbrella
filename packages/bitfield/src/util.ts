@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { Fn2 } from "@thi.ng/api";
 import { B8 } from "@thi.ng/strings/radix";

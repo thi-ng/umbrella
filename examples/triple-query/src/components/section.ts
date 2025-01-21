@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { title } from "@thi.ng/hdom-components";
 
 const h1 = title({ subAttribs: { class: "moon-gray" } });

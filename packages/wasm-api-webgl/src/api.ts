@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { WasmExports } from "@thi.ng/wasm-api";
 import type { WasmDomExports } from "@thi.ng/wasm-api-dom";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./as-object.js";
 export * from "./common-keys.js";
 export * from "./copy.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dotC4, dotC6 } from "@thi.ng/vectors/dotc";
 import type { ReadonlyMat } from "./api.js";
 

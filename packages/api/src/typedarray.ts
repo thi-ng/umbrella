@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "./null.js";
 
 export type ArrayLikeIterable<T> = ArrayLike<T> & Iterable<T>;

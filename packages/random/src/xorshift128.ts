@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api.js";
 import { ARandom } from "./arandom.js";

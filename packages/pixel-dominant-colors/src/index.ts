@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, NumericArray } from "@thi.ng/api";
 import type { KMeansOpts } from "@thi.ng/k-means";
 import { kmeans } from "@thi.ng/k-means/kmeans";

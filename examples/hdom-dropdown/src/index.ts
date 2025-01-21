@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAtom } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { EventBus, trace } from "@thi.ng/interceptors";

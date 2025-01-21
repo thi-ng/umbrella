@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { TransformSpec } from "./api.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { range } from "./range.js";
 

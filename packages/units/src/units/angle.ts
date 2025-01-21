@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defUnit, dimensionless, mul } from "../unit.js";
 
 const PI = Math.PI;

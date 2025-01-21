@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { TimingResult } from "./api.js";
 import { timed, timedResult } from "./timed.js";
 

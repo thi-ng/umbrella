@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit, norm } from "@thi.ng/math/fit";
 import type { Vec } from "@thi.ng/vectors";
 import type { Frame, RampImpl, RampOpts, VecAPI } from "./api.js";

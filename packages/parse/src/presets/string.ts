@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { alt } from "../combinators/alt.js";
 import { zeroOrMore } from "../combinators/repeat.js";
 import { seq } from "../combinators/seq.js";

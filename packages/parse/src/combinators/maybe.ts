@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Parser, PassValue } from "../api.js";
 import { pass } from "../prims/pass.js";
 

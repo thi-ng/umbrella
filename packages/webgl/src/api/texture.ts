@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IBind, IObjectOf, IRelease } from "@thi.ng/api";
 import type { IConfigure } from "./buffers.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { bounds2 } from "@thi.ng/geom-poly-utils/bounds";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors/api";
 import type { IShape } from "./api.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EVENT_DISABLE, EVENT_ENABLE } from "../api.js";
 import type { IEnable } from "../enable.js";
 import type { Event } from "../event.js";

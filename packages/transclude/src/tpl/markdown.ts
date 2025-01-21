@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { repeat } from "@thi.ng/strings/repeat";
 import { slugifyGH } from "@thi.ng/strings/slugify";
 import { split } from "@thi.ng/strings/split";

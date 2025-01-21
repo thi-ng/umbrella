@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU4 } from "@thi.ng/api";
 import { closestPointSegment } from "@thi.ng/geom-closest-point/line";
 import { EPS } from "@thi.ng/math/api";

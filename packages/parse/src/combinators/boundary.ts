@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Parser } from "../api.js";
 import { inputEnd, inputStart, lineEnd, lineStart } from "../prims/anchor.js";
 import { seq } from "./seq.js";

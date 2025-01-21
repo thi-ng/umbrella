@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defUnit, mul, prefix, unit } from "../unit.js";
 
 export const g = defUnit("g", "gram", unit(0, 1e-3, 0, true));

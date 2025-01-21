@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { group } from "@thi.ng/geom/group";
 import type { FillFn } from "./api.js";
 

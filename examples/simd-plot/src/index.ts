@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { align } from "@thi.ng/binary";
 import { COSINE_GRADIENTS, cosineColor } from "@thi.ng/color";
 import { violet } from "@thi.ng/colored-noise";

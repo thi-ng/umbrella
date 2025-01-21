@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { every2, every3, every4 } from "@thi.ng/vectors/every";
 import { not2, not3, not4 } from "@thi.ng/vectors/not";
 import { some2, some3, some4 } from "@thi.ng/vectors/some";

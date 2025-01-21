@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import type { SIMD } from "./api.js";

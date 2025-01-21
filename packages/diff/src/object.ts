@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Nullable, Predicate2 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import type { ObjectDiff } from "./api.js";

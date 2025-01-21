@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import type { DrawCommand } from "@thi.ng/axidraw";
 import type { IShape2, SamplingOpts } from "@thi.ng/geom";

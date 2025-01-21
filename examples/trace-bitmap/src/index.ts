@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { exposeGlobal } from "@thi.ng/expose";
 import { div, main } from "@thi.ng/hiccup-html";
 import { ConsoleLogger } from "@thi.ng/logger";

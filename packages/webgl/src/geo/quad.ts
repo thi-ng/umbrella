@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DrawMode, type ModelSpec } from "../api/model.js";
 
 export interface QuadOpts {

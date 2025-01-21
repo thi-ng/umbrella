@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { map, mapIndexed, repeat } from "@thi.ng/transducers";
 import type { AppContext } from "../api";
 import { section } from "./section";

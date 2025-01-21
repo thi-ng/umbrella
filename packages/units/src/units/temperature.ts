@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { coherent, defUnit, unit } from "../unit.js";
 
 export const K = defUnit("K", "kelvin", coherent(4));

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { intersectLinePolylineAll } from "@thi.ng/geom-isec/line-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { intersectRayPolylineAll } from "@thi.ng/geom-isec/ray-poly";

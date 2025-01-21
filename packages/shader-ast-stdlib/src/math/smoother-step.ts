@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { PrimTypeMap, TaggedFn1 } from "@thi.ng/shader-ast";
 import { F, V2, V3, V4 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";

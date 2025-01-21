@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { wrapOnce } from "@thi.ng/math/interval";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { clamp2 as $clamp2, clamp3 as $clamp3 } from "@thi.ng/vectors/clamp";

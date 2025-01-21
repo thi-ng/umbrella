@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
 import { CSR } from "@thi.ng/sparse/csr";
 import type { DegreeType, Edge, IGraph } from "./api.js";

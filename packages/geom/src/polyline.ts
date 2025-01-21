@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { mix } from "@thi.ng/math/mix";
 import { map } from "@thi.ng/transducers/map";

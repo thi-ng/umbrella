@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IDeref } from "@thi.ng/api";
 import type { IWasmMemoryAccess } from "./api.js";
 

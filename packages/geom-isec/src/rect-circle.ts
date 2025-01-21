@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn4, FnN3 } from "@thi.ng/api";
 import type { MultiVecOpImpl, ReadonlyVec } from "@thi.ng/vectors";
 import { vop } from "@thi.ng/vectors/vop";

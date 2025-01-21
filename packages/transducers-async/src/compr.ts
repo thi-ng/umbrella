@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { AsyncReducer, AsyncReduction } from "./api.js";
 
 export const compR = <A, B, C>(

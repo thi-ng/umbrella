@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { map } from "@thi.ng/transducers/map";
 import { range } from "@thi.ng/transducers/range";
 

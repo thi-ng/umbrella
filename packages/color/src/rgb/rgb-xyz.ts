@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Color, ColorOp, ReadonlyColor } from "../api.js";
 import { RGB_XYZ_D50, RGB_XYZ_D65 } from "../api/constants.js";
 import { clamp } from "../clamp.js";

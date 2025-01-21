@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	clamp as _clamp,
 	clamp01 as _clamp01,

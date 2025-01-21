@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { SQRT2_2, SQRT3 } from "@thi.ng/math/api";

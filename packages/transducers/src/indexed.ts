@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Transducer } from "./api.js";
 import { __iter } from "./iterator.js";
 import { mapIndexed } from "./map-indexed.js";

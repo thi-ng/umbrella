@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { typedArray } from "@thi.ng/api";
 import { ABGR8888, GRAY8, Lane, intBuffer } from "@thi.ng/pixel";
 import {

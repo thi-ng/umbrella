@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid2D, TypedArray } from "@thi.ng/api";
 import { circleClipped } from "@thi.ng/grid-iterators/circle";
 import type { Shader2D } from "./api.js";

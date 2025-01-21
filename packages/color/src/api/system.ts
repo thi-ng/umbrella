@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * @remarks
  * Reference: https://www.w3.org/TR/css-color-4/#typedef-system-color

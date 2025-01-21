@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, FnAnyT, IObjectOf, Predicate } from "@thi.ng/api";
 import { ConsoleLogger, LogLevel, ROOT, type ILogger } from "@thi.ng/logger";
 import { split } from "@thi.ng/strings";

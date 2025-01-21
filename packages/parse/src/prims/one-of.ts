@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isSet } from "@thi.ng/checks/is-set";

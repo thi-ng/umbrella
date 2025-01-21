@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Computes factorial for `n`. Throws an error if `n < 0`.
  *

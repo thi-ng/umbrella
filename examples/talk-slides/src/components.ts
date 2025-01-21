@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const link = (ctx: any, href: string, body?: any) => [
 	"a",
 	{ ...ctx.link, href },

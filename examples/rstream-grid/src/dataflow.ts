@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { group, rect, svg } from "@thi.ng/hiccup-svg";
 import type { EventBus } from "@thi.ng/interceptors";
 import { initGraph, node } from "@thi.ng/rstream-graph";

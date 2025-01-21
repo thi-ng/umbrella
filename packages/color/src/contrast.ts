@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MaybeColor } from "./api.js";
 import { luminanceRgb } from "./luminance-rgb.js";
 import { rgb } from "./rgb/rgb.js";

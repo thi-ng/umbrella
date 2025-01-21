@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import type { Button, ButtonArgs } from "./button.js";
 import { mergeAttribs } from "./utils/merge-attribs.js";

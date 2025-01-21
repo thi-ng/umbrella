@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec2Term, Vec3Term, Vec4Term } from "@thi.ng/shader-ast";
 import { add, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";

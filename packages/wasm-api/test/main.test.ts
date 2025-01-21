@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { MemoryLogger } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
 import { readFileSync } from "node:fs";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ILength } from "@thi.ng/api";
 import { SIZEOF, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import { assert } from "@thi.ng/errors/assert";

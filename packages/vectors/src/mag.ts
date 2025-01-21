@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { VecOpRoV } from "./api.js";
 import { magSq, magSq2, magSq3, magSq4 } from "./magsq.js";
 

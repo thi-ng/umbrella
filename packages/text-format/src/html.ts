@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { U8 } from "@thi.ng/hex";
 import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { HtmlFormatOpts, StringFormat } from "./api.js";

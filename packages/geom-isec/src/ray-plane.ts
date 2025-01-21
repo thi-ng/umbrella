@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sign } from "@thi.ng/math/abs";
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";

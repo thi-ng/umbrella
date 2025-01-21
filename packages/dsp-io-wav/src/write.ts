@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { f32u16, f32u24, f32u32, f32u8 } from "@thi.ng/binary/float";
 import { assert } from "@thi.ng/errors/assert";

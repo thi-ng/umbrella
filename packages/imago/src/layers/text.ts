@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isFunction } from "@thi.ng/checks";
 import { XML_SVG } from "@thi.ng/prefixes";
 import type { CompLayerFn, Dim, TextLayer } from "../api.js";

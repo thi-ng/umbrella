@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Takes a string, linear index position and optional line split delimiter (or
  * regexp, default: "\n"). Computes and returns position of index as cursor

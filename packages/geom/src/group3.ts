@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs, IHiccupShape3 } from "./api.js";
 import { Group3 } from "./api/group3.js";
 

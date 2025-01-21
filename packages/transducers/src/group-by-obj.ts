@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import type { GroupByOpts, Reducer } from "./api.js";
 import { __groupByOpts } from "./internal/group-opts.js";

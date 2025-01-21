@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mix } from "@thi.ng/math/mix";
 import type { ColorMatrix, ReadonlyColor } from "./api.js";
 import { RGB_LUMINANCE_REC709, WHITE } from "./api/constants.js";

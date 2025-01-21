@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, Fn2, Fn3, Fn4, Fn5, Fn6, Keys } from "@thi.ng/api";
 import type { Mat } from "@thi.ng/matrices";
 import type { Term } from "@thi.ng/shader-ast";

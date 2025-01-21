@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IntBuffer } from "@thi.ng/pixel";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { syncRAF } from "@thi.ng/rstream";

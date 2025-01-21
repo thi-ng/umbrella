@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import type { ReadonlyVec, Vec } from "./api.js";
 import { zeroes } from "./setn.js";

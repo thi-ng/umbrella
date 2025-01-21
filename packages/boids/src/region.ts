@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { type IDeref } from "@thi.ng/api";
 import type { IDistance, INeighborhood } from "@thi.ng/distance";

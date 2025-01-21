@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { XML_INKSCAPE, XML_SVG, XML_XLINK } from "@thi.ng/prefixes/xml";
 import { convertTree } from "./convert.js";
 import { fattribs } from "./format.js";

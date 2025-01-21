@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Common types & declarations
 
 const std = @import("std");

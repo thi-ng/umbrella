@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Event, INotify, Listener, Maybe } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { uintTypeForSize } from "@thi.ng/api/typedarray";

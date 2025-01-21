@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { atan2Abs, cossin } from "@thi.ng/math/angle";
 import { DEG2RAD, PI, SIXTH_PI, TAU, THIRD_PI } from "@thi.ng/math/api";
 import { ONE3, type ReadonlyVec } from "@thi.ng/vectors/api";

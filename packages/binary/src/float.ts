@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2, FnN3 } from "@thi.ng/api";
 
 const F64 = new Float64Array(1);

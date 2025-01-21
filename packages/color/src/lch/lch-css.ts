@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyColor } from "../api.js";
 import { __lchCss } from "../internal/css.js";
 

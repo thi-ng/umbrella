@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Mat, ReadonlyMat } from "./api.js";
 import { mulM } from "./mulm.js";
 

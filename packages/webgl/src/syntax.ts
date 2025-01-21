@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { GLSLVersion } from "@thi.ng/shader-ast-glsl/api";
 import type { GLSL } from "./api/glsl.js";

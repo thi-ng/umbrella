@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, Maybe } from "@thi.ng/api";
 import type { IDistance } from "@thi.ng/distance";
 import type { IRandom } from "@thi.ng/random";

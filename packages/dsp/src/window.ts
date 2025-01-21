@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatArray, Fn, FnU3, FnU4, NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { PI, TAU } from "@thi.ng/math/api";

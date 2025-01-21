@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { derefContext } from "@thi.ng/hiccup/deref";
 import type { HDOMImplementation, HDOMOpts } from "./api.js";
 import { DEFAULT_IMPL } from "./default.js";

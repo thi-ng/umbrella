@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta as _eq } from "@thi.ng/math/eqdelta";

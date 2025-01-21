@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, Predicate, Predicate2 } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { cossin } from "@thi.ng/math/angle";

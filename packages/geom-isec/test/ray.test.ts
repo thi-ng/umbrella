@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { eqDelta, maddN3, mulN3, normalize3, type Vec } from "@thi.ng/vectors";
 import { expect, test } from "bun:test";
 import { intersectRayAABB } from "../src/index.js";

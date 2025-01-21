@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Maybe } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { IClosable, IWriteable } from "./api.js";

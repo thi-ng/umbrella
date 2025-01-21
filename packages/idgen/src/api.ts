@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { EVENT_ALL } from "@thi.ng/api";
 
 export const EVENT_ADDED = "added";

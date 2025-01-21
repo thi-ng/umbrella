@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { FORMAT_MD, suite } from "@thi.ng/bench";
 import { Router } from "../src/router.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { download } from "@thi.ng/dl-asset";
 import { adsr, product } from "@thi.ng/dsp";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";

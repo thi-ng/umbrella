@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { div, inputText, pre } from "@thi.ng/hiccup-html";
 import { $compile, $input } from "@thi.ng/rdom";

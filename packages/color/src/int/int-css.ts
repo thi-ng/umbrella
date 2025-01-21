@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { U24 } from "@thi.ng/strings/radix";
 import { FF, INV8BIT } from "../api/constants.js";
 

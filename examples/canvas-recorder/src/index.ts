@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { adaptDPI } from "@thi.ng/canvas";
 import { canvasRecorder } from "@thi.ng/dl-asset";
 import { group, text } from "@thi.ng/geom";

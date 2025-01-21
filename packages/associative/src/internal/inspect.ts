@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:export
 import { mixin } from "@thi.ng/api/mixin";
 import { isNode } from "@thi.ng/checks/is-node";

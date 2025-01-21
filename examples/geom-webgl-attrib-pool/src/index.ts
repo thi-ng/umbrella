@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { meldDeepObj } from "@thi.ng/object-utils";
 import { colorFromRange, srgb } from "@thi.ng/color";
 import {

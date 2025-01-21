@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { lengthAnsi } from "./ansi.js";
 import type { IWordSplit, WordWrapOpts } from "./api.js";
 import { split } from "./split.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import type { DegreeType, Edge, IGraph } from "./api.js";
 import { __into, __invert, __toDot } from "./utils.js";

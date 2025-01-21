@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Assign, Op1, Op2, Sym, Term } from "../api/nodes.js";

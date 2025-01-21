@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // @ts-ignore: decorator
 @inline
 export function align(x: usize, base: usize): usize {

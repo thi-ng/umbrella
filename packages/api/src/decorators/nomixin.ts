@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Method property decorator. Sets `configurable` flag of
  * PropertyDescriptor to `false` (same as `@configurable(false)`).

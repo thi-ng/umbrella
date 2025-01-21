@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const csvw = "http://www.w3.org/ns/csvw#";
 export const dcat = "http://www.w3.org/ns/dcat#";
 export const http = "http://www.w3.org/2011/http#";

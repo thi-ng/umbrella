@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MaybeAsyncIterable } from "@thi.ng/api";
 
 export function zip<A>(a: MaybeAsyncIterable<A>): AsyncIterableIterator<[A]>;

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Iterator which yields all names of given object's own properties
  * (Similar to `Object.keys()`).

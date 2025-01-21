@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Like {@link commonKeysObj}, but for ES6 Maps.
  *

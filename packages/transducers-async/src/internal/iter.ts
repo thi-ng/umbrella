@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /** @internal */
 export const __inflightIters = <T extends { iter: AsyncIterator<any> }>(
 	iters: T[]

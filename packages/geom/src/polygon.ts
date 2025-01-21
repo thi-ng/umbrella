@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { TAU } from "@thi.ng/math/api";
 import { cycle } from "@thi.ng/transducers/cycle";

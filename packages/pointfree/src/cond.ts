@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { StackContext, StackProc } from "./api.js";

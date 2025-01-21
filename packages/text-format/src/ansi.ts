@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { StringFormat } from "./api.js";
 import { defFormat } from "./format.js";

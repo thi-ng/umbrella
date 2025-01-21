@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { safeDiv } from "@thi.ng/math/safe-div";
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { ColorOp } from "../api.js";

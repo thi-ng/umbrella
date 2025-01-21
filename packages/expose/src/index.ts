@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Exposes given `value` as `id` in global scope, iff `always = true` (default:
  * false) or if `process.env.NODE_ENV != "production"` or if the

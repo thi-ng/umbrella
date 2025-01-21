@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { __hadd4_f32 } from "./inline/hadd";
 
 export function sum4_f32(a: usize, num: usize, sa: usize): f32 {

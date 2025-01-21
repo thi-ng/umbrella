@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, Nullable, Predicate } from "@thi.ng/api";
 import { shuffle as $shuffle } from "@thi.ng/arrays/shuffle";
 import { now, timeDiff } from "@thi.ng/timestamp";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { Atom, History } from "@thi.ng/atom";
 import { timedResult } from "@thi.ng/bench";

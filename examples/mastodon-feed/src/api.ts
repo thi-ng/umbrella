@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ComponentLike } from "@thi.ng/rdom";
 
 export interface Account {

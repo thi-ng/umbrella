@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
 

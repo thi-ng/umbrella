@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";

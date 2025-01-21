@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { float } from "@thi.ng/strings/float";
 import type { AxisSpec } from "../api.js";
 

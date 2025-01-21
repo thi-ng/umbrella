@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import type { Assign, Swizzle, Term } from "../api/nodes.js";
 import type { Assignable, Type } from "../api/types.js";

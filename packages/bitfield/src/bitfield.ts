@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, IClear, ICopy, ILength } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
 import { popCountArray } from "@thi.ng/binary/count";

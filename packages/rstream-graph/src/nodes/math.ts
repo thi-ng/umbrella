@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { map } from "@thi.ng/transducers/map";
 import type { NodeFactory } from "../api.js";

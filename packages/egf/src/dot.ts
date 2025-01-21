@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { serializeGraph, type Edge, type GraphAttribs } from "@thi.ng/dot";

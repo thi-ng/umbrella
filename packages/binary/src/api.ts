@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Lane16 = 0 | 1;
 
 export type Lane8 = 0 | 1 | 2 | 3;

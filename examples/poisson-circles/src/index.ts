@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asSvg, circle, svgDoc } from "@thi.ng/geom";
 import { KdTreeSet } from "@thi.ng/geom-accel";
 import { fit01 } from "@thi.ng/math";

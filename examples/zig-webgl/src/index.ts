@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { WasmBridge } from "@thi.ng/wasm-api";

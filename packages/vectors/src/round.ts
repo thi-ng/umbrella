@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { roundTo as _round } from "@thi.ng/math/prec";
 import type { MultiVecOpVO, MultiVecOpVV, VecOpVO, VecOpVV } from "./api.js";
 import { defHofOp } from "./compile/emit.js";

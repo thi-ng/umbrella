@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnU3 } from "@thi.ng/api";
 import { inRange } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";

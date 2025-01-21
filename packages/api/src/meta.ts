@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Generic interface for types supporting metadata. Implementations MUST
  * exclude metadata from any comparisons, equality checks & hashing.

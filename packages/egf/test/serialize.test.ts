@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { rdf, schema } from "@thi.ng/prefixes";
 import { expect, test } from "bun:test";
 // import { writeFileSync } from "node:fs";

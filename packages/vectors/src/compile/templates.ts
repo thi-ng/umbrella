@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, FnU2 } from "@thi.ng/api";
 import type { Template } from "../api.js";
 

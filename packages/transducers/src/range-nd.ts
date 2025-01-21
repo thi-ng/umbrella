@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ArrayLikeIterable } from "@thi.ng/api";
 import { map } from "./map.js";
 import { permutations } from "./permutations.js";

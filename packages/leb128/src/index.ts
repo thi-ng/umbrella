@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { hasWASM } from "@thi.ng/checks/has-wasm";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import { unsupported } from "@thi.ng/errors/unsupported";

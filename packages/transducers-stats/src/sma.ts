@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sliding } from "@thi.ng/buffers/sliding";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "@thi.ng/transducers";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { NO_OP } from "@thi.ng/api/api";
 import type { Reducer } from "./api.js";
 import { reduce, reducer } from "./reduce.js";

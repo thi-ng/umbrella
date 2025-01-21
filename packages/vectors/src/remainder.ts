@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { remainder as _remainder } from "@thi.ng/math/libc";
 import type { MultiVecOpVV, VecOpVV } from "./api.js";
 import { defHofOp } from "./compile/emit.js";

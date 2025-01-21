@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StackContext } from "@thi.ng/pointfree";
 import { ensureStack, ffi, run, runWord } from "@thi.ng/pointfree-lang";
 

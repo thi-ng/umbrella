@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, FnU2, FnU3 } from "@thi.ng/api";
 
 export type GridCoord2D = [number, number];

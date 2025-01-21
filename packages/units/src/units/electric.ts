@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { m2 } from "./area.js";
 import { J } from "./energy.js";
 import { h, s } from "./time.js";

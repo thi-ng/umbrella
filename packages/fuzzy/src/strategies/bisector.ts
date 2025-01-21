@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit } from "@thi.ng/math/fit";
 import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
 import { __defaultOpts } from "./opts.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Mat } from "./api.js";
 import { frustum, frustumBounds } from "./frustum.js";
 

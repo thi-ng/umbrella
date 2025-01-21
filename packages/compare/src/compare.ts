@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Generic comparator (for arbitrary types) with support for
  * [ICompare](https://docs.thi.ng/umbrella/api/interfaces/ICompare.html)

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface IEquiv {
 	/**
 	 * Returns `true` if this *value* is equivalent to `o`. Also see

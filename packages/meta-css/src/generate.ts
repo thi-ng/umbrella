@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { Fn, Fn2, IObjectOf, NumOrString } from "@thi.ng/api";
 import type { Command } from "@thi.ng/args";

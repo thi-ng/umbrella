@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISubscribable } from "@thi.ng/rstream";
 import { serialize } from "@thi.ng/rstream-dot";
 import { mapcat, vals } from "@thi.ng/transducers";

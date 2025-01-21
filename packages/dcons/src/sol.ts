@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Predicate } from "@thi.ng/api";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import type { ConsCell } from "./api.js";

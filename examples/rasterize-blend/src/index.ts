@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 import { adaptiveCanvas2d } from "@thi.ng/canvas";
 import { osc, sin } from "@thi.ng/dsp";

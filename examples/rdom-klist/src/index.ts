@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { swap } from "@thi.ng/arrays";
 import { defAtom } from "@thi.ng/atom";
 import { uniqueIndices } from "@thi.ng/random";

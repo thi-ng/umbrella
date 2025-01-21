@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { resolve as resolveMap } from "@thi.ng/resolve-map";
 import {
 	fromInterval,

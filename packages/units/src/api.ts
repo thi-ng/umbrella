@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface Unit {
 	/**
 	 * SI base dimension vector ({@link Dimensions})

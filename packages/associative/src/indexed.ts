@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { empty } from "@thi.ng/object-utils/empty";
 import { selectKeysObj } from "@thi.ng/object-utils/select-keys";
 import { EquivMap } from "./equiv-map.js";

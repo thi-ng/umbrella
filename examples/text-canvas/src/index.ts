@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { add, osc, saw, sin } from "@thi.ng/dsp";
 import { aabb, center, rect, vertices } from "@thi.ng/geom";
 import {

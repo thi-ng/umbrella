@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EPS, TAU } from "@thi.ng/math/api";
 import { abs2 } from "@thi.ng/vectors/abs";
 import { angleBetween2 } from "@thi.ng/vectors/angle-between";

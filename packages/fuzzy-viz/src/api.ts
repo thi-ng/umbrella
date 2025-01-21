@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn3 } from "@thi.ng/api";
 import type { FuzzyFn, LVarDomain } from "@thi.ng/fuzzy";
 

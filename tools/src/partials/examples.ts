@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dirs, readJSON } from "@thi.ng/file-io";
 import { tableKeys } from "@thi.ng/markdown-table";
 import { capitalize, namedNumber } from "@thi.ng/strings";

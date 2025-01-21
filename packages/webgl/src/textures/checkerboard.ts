@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvasPixels } from "@thi.ng/pixel/canvas";
 import { ARGB8888 } from "@thi.ng/pixel/format/argb8888";
 

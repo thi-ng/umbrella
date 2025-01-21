@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { GroupByOpts } from "../api.js";
 import { push } from "../push.js";
 

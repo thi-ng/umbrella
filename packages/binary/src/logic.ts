@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2, FnN3, FnN4, FnN5, FnU3, FnU4 } from "@thi.ng/api";
 import { maskL } from "./mask.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3 } from "@thi.ng/api";
 import { map } from "@thi.ng/transducers/map";
 import type { DomainValues, PlotFn } from "../api.js";

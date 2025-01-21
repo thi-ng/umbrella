@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /** @internal */
 const __px = (x: number | string) => (typeof x === "string" ? x : x + "px");
 

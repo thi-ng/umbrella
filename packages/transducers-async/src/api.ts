@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, MaybePromise } from "@thi.ng/api";
 import type { Reduced } from "@thi.ng/transducers";
 

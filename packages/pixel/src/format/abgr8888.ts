@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api/fn";
 import { Lane } from "../api.js";
 import { defIntFormat } from "./int-format.js";

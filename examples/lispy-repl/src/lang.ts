@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DEFAULT, defmulti, type MultiFn2 } from "@thi.ng/defmulti";
 import { assert } from "@thi.ng/errors";
 import {

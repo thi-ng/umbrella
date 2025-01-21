@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISubscribable } from "@thi.ng/rstream";
 
 let NEXT_ID = 0;

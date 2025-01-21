@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { LVar } from "@thi.ng/fuzzy";
 import { convertTree } from "@thi.ng/hiccup-svg/convert";
 import { svg } from "@thi.ng/hiccup-svg/svg";

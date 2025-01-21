@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { float } from "@thi.ng/strings/float";

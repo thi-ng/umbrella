@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ISubscription, WithErrorHandlerOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";

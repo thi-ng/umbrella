@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Keys } from "@thi.ng/api";
 import { DGraph } from "@thi.ng/dgraph";
 import {

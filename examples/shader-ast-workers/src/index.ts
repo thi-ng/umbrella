@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { polyline } from "@thi.ng/hiccup-canvas";
 import { fitClamped } from "@thi.ng/math";
 import { canvasPixels } from "@thi.ng/pixel";

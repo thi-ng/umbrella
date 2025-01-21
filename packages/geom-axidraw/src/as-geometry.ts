@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DrawCommand } from "@thi.ng/axidraw";
 import type { Attribs } from "@thi.ng/geom";
 import { group } from "@thi.ng/geom/group";

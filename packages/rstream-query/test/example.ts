@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { trace } from "@thi.ng/rstream";
 import * as q from "../src/index.js";
 

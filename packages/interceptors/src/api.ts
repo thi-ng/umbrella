@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import { ROOT } from "@thi.ng/logger/root";
 

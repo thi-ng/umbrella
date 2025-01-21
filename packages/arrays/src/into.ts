@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Appends `max` items (default: all) from `src` iterable to `dest` array.
  * Returns `dest`.

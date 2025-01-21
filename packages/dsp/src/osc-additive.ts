@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity, type Fn } from "@thi.ng/api/fn";
 import { gibbs } from "./anti-alias.js";
 import type { StatelessOscillator } from "./api.js";

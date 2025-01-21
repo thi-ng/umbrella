@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { uuid as $uuid } from "@thi.ng/hex";
 
 /**

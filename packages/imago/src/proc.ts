@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArrayBufferView, isString } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import { createTempFile, deleteFile } from "@thi.ng/file-io";

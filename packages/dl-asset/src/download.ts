@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { TypedArray } from "@thi.ng/api";
 import { preferredType } from "@thi.ng/mime";
 import type { DownloadOpts } from "./api.js";

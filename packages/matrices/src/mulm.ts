@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors/dots";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
 import { vop } from "@thi.ng/vectors/vop";

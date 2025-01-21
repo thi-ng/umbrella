@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas } from "@thi.ng/hdom-canvas";
 import { fit, fitClamped } from "@thi.ng/math";
 import { fromAtom, fromDOMEvent, merge, sync, syncRAF } from "@thi.ng/rstream";

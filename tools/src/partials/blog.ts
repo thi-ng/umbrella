@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { BlogPost } from "../api.js";
 import { link } from "./link.js";
 import { list } from "./list.js";

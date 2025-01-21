@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Replaces `home` (default: `process.env.HOME`) sub-path with given `mask`
  * (default: `~`).

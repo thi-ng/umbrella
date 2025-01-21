@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fract } from "@thi.ng/math/prec";
 import type { StatelessOscillator } from "./api.js";
 

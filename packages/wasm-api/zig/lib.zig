@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Zig API for https://thi.ng/wasm-api
 
 const std = @import("std");

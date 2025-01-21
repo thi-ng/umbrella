@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { type AppContext, StatusType } from "../api";
 import { LOAD_USER, SET_STATUS } from "../events";
 import { status } from "./status";

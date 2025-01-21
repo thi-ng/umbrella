@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Mat } from "./api.js";
 import { mulM23 } from "./mulm.js";
 import { scale23 } from "./scale.js";

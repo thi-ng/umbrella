@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
 import { __defaultOpts } from "./opts.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sincos } from "@thi.ng/math/angle";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { normalize3 } from "@thi.ng/vectors/normalize";

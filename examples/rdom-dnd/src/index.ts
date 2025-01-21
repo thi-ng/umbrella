@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ADD_ALT, CLOSE_OUTLINE } from "@thi.ng/hiccup-carbon-icons";
 import { div, para } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";

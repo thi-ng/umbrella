@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";

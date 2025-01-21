@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { selectDefinedKeysObj } from "@thi.ng/object-utils";
 
 export const normalizePackage = (pkg: any) => {

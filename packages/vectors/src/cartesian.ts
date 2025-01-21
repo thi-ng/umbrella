@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { cossin } from "@thi.ng/math/angle";
 import { add2 } from "./add.js";
 import { ZERO2, ZERO3, type MultiVecOpVO, type ReadonlyVec } from "./api.js";

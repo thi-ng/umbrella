@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const simplifyRatio = (num: number, denom: number) => {
 	let e1 = Math.abs(num);
 	let e2 = Math.abs(denom);

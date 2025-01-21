@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, NumericArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { AABBLike } from "@thi.ng/geom";

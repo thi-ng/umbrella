@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const DEFAULT_SEED_32 = 0xdecafbad;
 
 export const DEFAULT_SEED_128 = [

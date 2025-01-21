@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { beforeEach, expect, test } from "bun:test";
 import { sidechainPartition, Stream, stream } from "../src/index.js";
 import { assertUnsub } from "./utils.js";

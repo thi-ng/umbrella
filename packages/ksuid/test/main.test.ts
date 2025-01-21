@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { XsAdd } from "@thi.ng/random";
 import { expect, test } from "bun:test";
 import { defKSUID32, defKSUID64, defULID, type IKSUID } from "../src/index.js";

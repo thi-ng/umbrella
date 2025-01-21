@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ArrayLikeIterable, Fn, Fn3, IObjectOf } from "@thi.ng/api";
 import { assocObj } from "@thi.ng/transducers/assoc-obj";
 import { comp } from "@thi.ng/transducers/comp";

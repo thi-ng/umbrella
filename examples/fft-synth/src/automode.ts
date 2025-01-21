@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { weightedRandom } from "@thi.ng/random";
 import { map, range } from "@thi.ng/transducers";
 import { updateAudio } from "./audio";

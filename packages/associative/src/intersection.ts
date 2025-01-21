@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { empty } from "@thi.ng/object-utils/empty";
 import type { Reducer } from "@thi.ng/transducers";
 import { __combineSet } from "./internal/combine.js";

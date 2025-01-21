@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { unionR } from "@thi.ng/associative";
 import { compareByKeys2 } from "@thi.ng/compare";
 import { dirs, files, readJSON, readText } from "@thi.ng/file-io";

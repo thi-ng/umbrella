@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU2 } from "@thi.ng/api";
 import type { Dual, Op2, OpV2 } from "./api.js";
 import { add, div, dual, mul, sub } from "./ops.js";

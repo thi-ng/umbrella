@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mix as _mix } from "@thi.ng/math/mix";
 import type { StatelessOscillator } from "./api.js";
 

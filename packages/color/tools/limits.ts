@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { vector } from "@thi.ng/strings";
 import { map, normRange3d, reducer, transduce } from "@thi.ng/transducers";
 import { MAX4, MIN4, max4, min4, type Vec } from "@thi.ng/vectors";

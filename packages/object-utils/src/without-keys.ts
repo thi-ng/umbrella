@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Keys } from "@thi.ng/api";
 import { isSet } from "@thi.ng/checks/is-set";
 import { empty } from "./empty.js";

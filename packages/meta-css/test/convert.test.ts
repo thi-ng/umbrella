@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { COMPACT } from "@thi.ng/hiccup-css";
 import { NULL_LOGGER } from "@thi.ng/logger";
 import { expect, test } from "bun:test";

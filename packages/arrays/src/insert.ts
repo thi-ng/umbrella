@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Inserts `x` into `buf` at index `i` and ensures that array length doesn't
  * grow beyond max `k` items (default: unbounded).

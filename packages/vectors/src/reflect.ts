@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { VecOpVV } from "./api.js";
 import { dot } from "./dot.js";
 import { maddN } from "./maddn.js";

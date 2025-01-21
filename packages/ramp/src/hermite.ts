@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { norm } from "@thi.ng/math/fit";
 import { mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
 import type { Vec } from "@thi.ng/vectors";

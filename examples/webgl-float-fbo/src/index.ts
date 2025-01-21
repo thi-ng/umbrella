@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { red } from "@thi.ng/colored-noise";
 import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { V2, V4 } from "@thi.ng/shader-ast";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Iterator producing an exponential curve (with adjustable curvature) between
  * `start` and `end` values over `num` steps. This is the exponential equivalent

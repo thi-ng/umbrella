@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0, Maybe, Nullable } from "@thi.ng/api";
 import type { ConsCell } from "@thi.ng/dcons";
 import { DCons } from "@thi.ng/dcons/dcons";

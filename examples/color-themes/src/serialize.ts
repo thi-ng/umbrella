@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { lch, type ColorRangePreset, type ColorThemePart } from "@thi.ng/color";
 import type { ISubscribable, ISubscriber } from "@thi.ng/rstream";

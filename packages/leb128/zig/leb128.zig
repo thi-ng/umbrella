@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export var buf: [10]u8 = undefined;
 
 /// Encodes 64bit uint `src` and writes result bytes into `dest` (must

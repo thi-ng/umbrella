@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureArrayLike } from "@thi.ng/arrays/ensure-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { range } from "./range.js";

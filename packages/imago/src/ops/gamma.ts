@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { GammaSpec, Processor } from "../api.js";
 
 export const gammaProc: Processor = async (spec, input) => {

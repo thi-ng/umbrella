@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IEmpty, Predicate2 } from "@thi.ng/api";
 import type { INeighborhood } from "@thi.ng/distance";
 import { assert } from "@thi.ng/errors/assert";

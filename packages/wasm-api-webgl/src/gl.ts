@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { GLType } from "@thi.ng/api/typedarray";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupported } from "@thi.ng/errors/unsupported";

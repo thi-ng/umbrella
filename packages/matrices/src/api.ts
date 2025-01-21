@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, Tuple, TypedArray } from "@thi.ng/api";
 import type { IVector, MultiVecOp, ReadonlyVec, Vec } from "@thi.ng/vectors";
 

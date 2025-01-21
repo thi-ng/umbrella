@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Prim, PrimTerm, Term, TermType } from "@thi.ng/shader-ast";
 import { F } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";

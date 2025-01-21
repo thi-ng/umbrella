@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { typedArrayOfVec } from "@thi.ng/api";
 import { shuffle } from "@thi.ng/arrays";
 import {

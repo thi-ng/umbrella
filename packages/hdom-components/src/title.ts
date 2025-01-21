@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface TitleOpts {
 	/**
 	 * Element name for main title. Default: `h1`

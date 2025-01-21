@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { argMin, selectThresholdMin } from "@thi.ng/arrays";
 import type { LayoutItem, RankedItem } from "./api.js";
 

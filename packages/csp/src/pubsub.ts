@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { IClosable, IWriteable, TopicFn } from "./api.js";

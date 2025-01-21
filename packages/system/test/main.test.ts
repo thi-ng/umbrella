@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { defSystem, LOGGER, type ILifecycle } from "../src/index.js";
 import { MemoryLogger } from "@thi.ng/logger";

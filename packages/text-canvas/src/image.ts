@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, FnN4, NumOrString, UIntArray } from "@thi.ng/api";
 import { blit1d, blitPred1d } from "@thi.ng/arrays/blit";
 import { peek } from "@thi.ng/arrays/peek";

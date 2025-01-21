@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOp1, defOp2 } from "./ops.js";
 
 //////////////////// Binary ops ////////////////////

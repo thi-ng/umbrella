@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, NumericArray } from "@thi.ng/api";
 import { EPS } from "./api.js";
 import { safeDiv } from "./safe-div.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, Val1 } from "@thi.ng/api";
 
 export const INC = "inc";

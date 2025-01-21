@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";
 import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
 import { resolveRoot } from "@thi.ng/hdom/resolve";

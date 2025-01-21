@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Nullable } from "@thi.ng/api";
 import type { Stringer } from "@thi.ng/strings";
 

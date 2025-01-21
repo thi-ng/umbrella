@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface SIMD {
 	// prettier-ignore
 	abs4_f32(out: number, a: number, num: number, so: number, sa: number): number;

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN4 } from "@thi.ng/api";
 import type { IShape } from "@thi.ng/geom";
 import { pointInside } from "@thi.ng/geom/point-inside";

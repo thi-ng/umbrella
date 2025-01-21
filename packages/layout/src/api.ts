@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type CellSpan = [number, number];
 
 export interface LayoutBox {

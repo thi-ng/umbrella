@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Class decorator. Seals both constructor and prototype.
  *

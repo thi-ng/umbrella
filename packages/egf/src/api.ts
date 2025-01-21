@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, IDeref, IEquiv, IObjectOf, Maybe } from "@thi.ng/api";
 import { isNode } from "@thi.ng/checks/is-node";
 import { unsupported } from "@thi.ng/errors/unsupported";

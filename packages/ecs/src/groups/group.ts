@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Event, FnO2, FnO3, IID } from "@thi.ng/api";
 import { intersectionR } from "@thi.ng/associative/intersection";
 import { assert } from "@thi.ng/errors/assert";

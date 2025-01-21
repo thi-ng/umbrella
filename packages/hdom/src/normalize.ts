@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray as isa } from "@thi.ng/checks/is-array";
 import { isNotStringAndIterable as isi } from "@thi.ng/checks/is-not-string-iterable";
 import { isPlainObject as iso } from "@thi.ng/checks/is-plain-object";

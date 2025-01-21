@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Multi-behavior 2D cellular automata
 //!
 //! Cells can be in a configurable number of states with each state

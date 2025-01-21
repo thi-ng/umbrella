@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { syncRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";

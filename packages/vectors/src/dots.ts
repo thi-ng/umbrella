@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, VecOpSRoVV } from "./api.js";
 import { compile } from "./compile/emit.js";
 import { DOT, SARGS_V } from "./compile/templates.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0, IClear, IToHiccup } from "@thi.ng/api";
 import type { Vec } from "@thi.ng/vectors";
 import { set2 } from "@thi.ng/vectors/set";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { writeText } from "@thi.ng/file-io";
 import {
 	asSvg,

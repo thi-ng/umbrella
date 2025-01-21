@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import { Channel, consumeWith, into, pubsub } from "@thi.ng/csp";
 import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { compareNumAsc } from "@thi.ng/compare/numeric";
 import type { IShape2 } from "@thi.ng/geom";

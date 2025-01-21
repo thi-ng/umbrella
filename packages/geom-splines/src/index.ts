@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./cubic-arc.js";
 export * from "./cubic-bounds.js";
 export * from "./cubic-closest-point.js";

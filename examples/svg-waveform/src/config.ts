@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors";
 import type { AppConfig } from "./api";
 import { main } from "./components/main";

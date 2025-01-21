@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { anchor, li, ul, type Attribs } from "@thi.ng/hiccup-html";
 import { clamp, lens } from "@thi.ng/math";
 import { $compile } from "@thi.ng/rdom";

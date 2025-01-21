@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, FnU, FnU2, FnU3, FnU4 } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta } from "@thi.ng/math/eqdelta";

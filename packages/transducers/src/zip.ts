@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Accepts a number of iterables and combines them into an iterable of
  * tuples of successively consumed input values.

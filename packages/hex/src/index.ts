@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const P32 = 0x100000000;
 
 /**

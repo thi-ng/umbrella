@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { iterator, __iter } from "@thi.ng/transducers/iterator";
 import { isReduced } from "@thi.ng/transducers/reduced";

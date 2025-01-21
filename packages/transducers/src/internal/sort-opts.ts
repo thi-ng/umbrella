@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { compare } from "@thi.ng/compare/compare";
 import type { SortOpts } from "../api.js";
 

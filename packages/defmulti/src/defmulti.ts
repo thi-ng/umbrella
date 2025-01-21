@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {

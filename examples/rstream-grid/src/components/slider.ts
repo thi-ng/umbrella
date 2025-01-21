@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { AppContext } from "../api";
 
 export interface SliderOpts {

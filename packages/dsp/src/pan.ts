@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { QUARTER_PI } from "@thi.ng/math/api";
 import { clamp11 } from "@thi.ng/math/interval";
 import type { IGen } from "./api.js";

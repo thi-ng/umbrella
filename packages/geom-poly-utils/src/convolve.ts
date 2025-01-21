@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { maddN } from "@thi.ng/vectors/maddn";

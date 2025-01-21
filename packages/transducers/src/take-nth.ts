@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { clamp0 } from "@thi.ng/math/interval";
 import type { Transducer } from "./api.js";

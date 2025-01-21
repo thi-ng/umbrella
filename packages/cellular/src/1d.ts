@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IClear, TypedArray, UIntArray } from "@thi.ng/api";
 import { rotateTyped } from "@thi.ng/arrays/rotate";
 import { isBigInt } from "@thi.ng/checks/is-bigint";

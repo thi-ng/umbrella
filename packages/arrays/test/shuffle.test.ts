@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { XsAdd } from "@thi.ng/random";
 import { expect, test } from "bun:test";
 import { shuffle, shuffleRange } from "../src/index.js";

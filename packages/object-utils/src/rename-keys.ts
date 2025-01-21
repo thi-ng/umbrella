@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { empty } from "./empty.js";

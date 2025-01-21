@@ -1,1 +1,2 @@
+// SPDX-License-Identifier: Apache-2.0
 export const B36_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";

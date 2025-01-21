@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { type Fn } from "@thi.ng/api";
 import { cliApp, flag, string, strings, type CommandCtx } from "@thi.ng/args";
 import { dirs, files, readJSON } from "@thi.ng/file-io";

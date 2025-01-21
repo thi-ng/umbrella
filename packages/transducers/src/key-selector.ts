@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { renamer } from "./renamer.js";
 
 export const keySelector = (keys: PropertyKey[]) =>

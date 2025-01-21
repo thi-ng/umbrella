@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { files, writeText } from "@thi.ng/file-io";
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
 import { table } from "@thi.ng/markdown-table";

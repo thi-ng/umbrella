@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, NumericArray } from "@thi.ng/api";
 import type { StridedVec, Vec } from "@thi.ng/vectors";
 import type { VecFactory } from "./api.js";

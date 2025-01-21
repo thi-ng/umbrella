@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, FnU2, NumOrString, Predicate2 } from "@thi.ng/api";
 
 export type VClock = Record<NumOrString, number>;

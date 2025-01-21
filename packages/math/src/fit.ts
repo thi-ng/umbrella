@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3, FnN5 } from "@thi.ng/api";
 import { clamp01, clamp11 } from "./interval.js";
 

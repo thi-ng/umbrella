@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { quantity, unit } from "../unit.js";
 import { m_s2 } from "../units/accel.js";
 import { m } from "../units/length.js";

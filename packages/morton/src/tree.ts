@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ceilPow2 } from "@thi.ng/binary/pow";
 
 export const treeToMorton = (t: number[], dim: number) => {

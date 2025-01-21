@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { GRAY8, intBuffer } from "@thi.ng/pixel";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { expect, test } from "bun:test";

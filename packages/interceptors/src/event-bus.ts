@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref, IObjectOf, Maybe } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
 import { Atom } from "@thi.ng/atom/atom";

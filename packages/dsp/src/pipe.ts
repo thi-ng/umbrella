@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGen, IProc } from "./api.js";
 import { MapG1 } from "./mapg.js";
 import { serial } from "./serial.js";

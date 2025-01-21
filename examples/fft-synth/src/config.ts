@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { binFreq } from "@thi.ng/dsp";
 import { float, percent } from "@thi.ng/strings";
 import { map, mapcat, range, repeat } from "@thi.ng/transducers";

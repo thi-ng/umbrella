@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Keys } from "@thi.ng/api";
 import { ROOT } from "@thi.ng/logger/root";
 import type { System } from "./system.js";

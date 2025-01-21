@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DEG2RAD } from "@thi.ng/math/api";
 import { setC } from "@thi.ng/vectors/setc";
 import type { Mat } from "./api.js";

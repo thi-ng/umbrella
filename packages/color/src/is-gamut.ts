@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { inRange } from "@thi.ng/math/interval";
 import type { TypedColor } from "./api.js";
 import { rgb } from "./rgb/rgb.js";

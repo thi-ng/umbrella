@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp as _clamp } from "@thi.ng/math/interval";
 import type { MultiVecOpVNN, VecOpVNN } from "./api.js";
 import { defHofOp } from "./compile/emit.js";

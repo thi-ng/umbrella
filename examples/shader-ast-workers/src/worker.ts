@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { timedResult } from "@thi.ng/bench";
 import { hueRgb } from "@thi.ng/color";
 import {

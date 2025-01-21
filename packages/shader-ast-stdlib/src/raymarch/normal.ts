@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Swizzle2_3, Vec2Sym } from "@thi.ng/shader-ast";
 import { F, V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";

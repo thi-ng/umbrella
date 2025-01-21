@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ColorOp } from "../api.js";
 import { __mulV33 } from "../internal/matrix-ops.js";
 

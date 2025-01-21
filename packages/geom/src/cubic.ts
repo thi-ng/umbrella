@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { cubicFromArc as $arc } from "@thi.ng/geom-splines/cubic-arc";
 import { cubicFromLine as $line } from "@thi.ng/geom-splines/cubic-line";
 import { cubicFromQuadratic as $quad } from "@thi.ng/geom-splines/cubic-quadratic";

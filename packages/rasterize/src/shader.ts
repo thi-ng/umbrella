@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid2D, NumericArray, TypedArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { BlendFnF, BlendFnI, ReadonlyColor } from "@thi.ng/porter-duff";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Helper function / generator to (re)provide given iterable in iterator
  * form.

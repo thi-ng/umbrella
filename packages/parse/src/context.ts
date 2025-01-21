@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, Nullable } from "@thi.ng/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isString } from "@thi.ng/checks/is-string";

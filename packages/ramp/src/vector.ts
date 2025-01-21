@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { max, max2, max3, max4 } from "@thi.ng/vectors/max";
 import { min, min2, min3, min4 } from "@thi.ng/vectors/min";
 import { mixN, mixN2, mixN3, mixN4 } from "@thi.ng/vectors/mixn";

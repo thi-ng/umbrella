@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { div, inputNumber } from "@thi.ng/hiccup-html";
 import { fromView } from "@thi.ng/rstream";
 import { PAPER_SIZES } from "../api";

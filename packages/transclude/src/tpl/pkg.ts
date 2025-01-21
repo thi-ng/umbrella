@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, IObjectOf } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { TemplateFn } from "../api.js";

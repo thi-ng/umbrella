@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks";
 import { GRAVITY_POSITION, type Processor, type ResizeSpec } from "../api.js";
 import { coerceColor, computeSize } from "../units.js";

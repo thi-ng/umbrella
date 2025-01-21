@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { Lane, type FloatFormat } from "../api.js";
 

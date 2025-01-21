@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { cosineGradient, COSINE_GRADIENTS } from "@thi.ng/color";
 import { asSvg, circle, svgDoc } from "@thi.ng/geom";
 import { setPrecision } from "@thi.ng/hiccup-svg";

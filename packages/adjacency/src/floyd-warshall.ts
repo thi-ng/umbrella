@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import type { CostFn, IGraph } from "./api.js";

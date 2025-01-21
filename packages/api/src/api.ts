@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const DEFAULT_EPS = 1e-6;
 
 /**

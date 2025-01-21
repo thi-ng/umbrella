@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IClear, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 
 export interface ISpatialMap<K, V>

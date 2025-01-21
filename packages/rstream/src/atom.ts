@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate2 } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import type { CommonOpts } from "./api.js";

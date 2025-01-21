@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Keys } from "@thi.ng/api";
 import type { Reducer } from "./api.js";
 import { reducer } from "./reduce.js";

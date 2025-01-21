@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Iterator version of `String.prototype.split()`. Yields iterable of substrings
  * of `src`, delimited by given regexp (default: unix & windows linebreaks).

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { IGrid2D, Nullable, TypedArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";

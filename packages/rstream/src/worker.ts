@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { WithErrorHandlerOpts, WorkerSource } from "./api.js";
 import { defWorker } from "./defworker.js";
 import { __optsWithID } from "./idgen.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IID, Maybe, Nullable } from "@thi.ng/api";
 import type { Mat } from "@thi.ng/matrices";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

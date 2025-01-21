@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { VecOpSRoV } from "./api.js";
 import { dotS2, dotS3, dotS4 } from "./dots.js";
 

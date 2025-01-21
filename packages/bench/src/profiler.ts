@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnAny, IDeref, IEnable, IObjectOf, IReset } from "@thi.ng/api";
 import type { Timestamp } from "./api.js";
 import { benchResult } from "./bench.js";

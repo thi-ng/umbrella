@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { peek as _peek } from "@thi.ng/arrays/peek";
 import type { Transducer } from "./api.js";
 import { map } from "./map.js";

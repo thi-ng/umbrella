@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Syntax sugar for {@link appendStyleSheet}. Injects given CSS string as global
  * stylesheet in DOM head. If `first` is true, inserts it as first stylesheet,

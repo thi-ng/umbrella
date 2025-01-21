@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnAny, MaybeAsyncIterable } from "@thi.ng/api";
 import { NO_OP, SEMAPHORE } from "@thi.ng/api/api";
 import { isAsyncIterable } from "@thi.ng/checks/is-async-iterable";

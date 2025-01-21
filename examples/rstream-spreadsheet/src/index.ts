@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks";
 import { exposeGlobal } from "@thi.ng/expose";
 import { fromAtom } from "@thi.ng/rstream";

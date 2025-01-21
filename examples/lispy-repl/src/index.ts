@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2 } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { OPERATORS } from "@thi.ng/compare";

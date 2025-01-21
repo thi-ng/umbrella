@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
 const wasm = @import("wasm-api");
 const api = @import("api.zig");

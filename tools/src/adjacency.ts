@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAdjBitMatrix } from "@thi.ng/adjacency";
 import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { CDATA, COMMENT, serialize } from "@thi.ng/hiccup";

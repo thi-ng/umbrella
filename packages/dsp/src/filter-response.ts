@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU3, NumericArray } from "@thi.ng/api";
 import { cossin } from "@thi.ng/math/angle";
 import { TAU } from "@thi.ng/math/api";

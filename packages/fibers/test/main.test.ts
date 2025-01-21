@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { fiber, sequence, untilEvent, wait } from "../src/index.js";
 

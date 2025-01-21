@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Interface to provide enabled/disabled functionality. Also see
  * `@IEnable` decorator mixin

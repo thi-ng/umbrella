@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { N } from "./force.js";
 import { m } from "./length.js";
 import { defUnit, mul, prefix } from "../unit.js";

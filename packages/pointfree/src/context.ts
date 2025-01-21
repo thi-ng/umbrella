@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Stack, StackContext, StackEnv } from "./api.js";
 
 /**

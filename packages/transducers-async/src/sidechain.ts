@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface SidechainOpts {
 	/**
 	 * If true (default), only emits the last received value when the sidechain

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { hash } from "@thi.ng/vectors/hash";
 
 const BUF = new Array(1024);

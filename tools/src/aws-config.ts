@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const AWS_PROFILE = "--profile thing-umbrella";
 
 export const S3_BUCKET_DOCS = "s3://docs.thi.ng";

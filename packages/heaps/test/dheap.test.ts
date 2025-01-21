@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { compare } from "@thi.ng/compare";
 import { beforeEach, expect, test } from "bun:test";
 import { DHeap } from "../src/index.js";

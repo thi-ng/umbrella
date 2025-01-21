@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN } from "@thi.ng/api";
 import { easeInOut5 } from "@thi.ng/math/easing";
 import { norm } from "@thi.ng/math/fit";

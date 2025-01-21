@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import { kronecker } from "./kronecker.js";
 import { lowDiscrepancy } from "./lowdisc.js";

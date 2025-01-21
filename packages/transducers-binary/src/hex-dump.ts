@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { juxt } from "@thi.ng/compose/juxt";
 import { U32, U8 } from "@thi.ng/hex";
 import type { Transducer } from "@thi.ng/transducers";

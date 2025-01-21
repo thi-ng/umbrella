@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:export
 import { withoutKeysObj } from "@thi.ng/object-utils/without-keys";
 import type { Vec } from "@thi.ng/vectors";

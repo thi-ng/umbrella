@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { selectThresholdMin } from "@thi.ng/arrays";
 import { unionR } from "@thi.ng/associative";
 import { defBidirIndex } from "@thi.ng/bidir-index";

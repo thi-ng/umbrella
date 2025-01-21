@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { floatToUintBits, floatToUintBits64 } from "./float.js";
 
 export const bytes16 = (x: number, le = false) => {

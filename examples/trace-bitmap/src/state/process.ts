@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { anchor, button, div, h1, inputText, li } from "@thi.ng/hiccup-html";
 import { pickRandom } from "@thi.ng/random";
 import { $compile, $input, $list } from "@thi.ng/rdom";

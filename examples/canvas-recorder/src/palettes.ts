@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // Palette generated from Khroma.com (lazy artist here)
 // You can scrap palette with these snippets (from your browser console dev tool)
 // https://gist.github.com/nclslbrn/1df279bbef404e028f76e91654210d52

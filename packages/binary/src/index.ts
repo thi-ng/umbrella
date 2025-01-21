@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./align.js";
 export * from "./api.js";
 export * from "./bytes.js";

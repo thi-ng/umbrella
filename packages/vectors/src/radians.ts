@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { rad } from "@thi.ng/math/angle";
 import type { MultiVecOpV, VecOpV } from "./api.js";
 import { defHofOp } from "./compile/emit.js";

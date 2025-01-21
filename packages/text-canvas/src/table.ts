@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays/peek";
 import { isString } from "@thi.ng/checks/is-string";
 import { wordWrapLines } from "@thi.ng/strings/word-wrap";

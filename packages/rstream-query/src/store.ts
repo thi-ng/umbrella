@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";

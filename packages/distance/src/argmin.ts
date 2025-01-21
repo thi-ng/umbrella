@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, NumericArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { ReadonlyVec } from "@thi.ng/vectors";

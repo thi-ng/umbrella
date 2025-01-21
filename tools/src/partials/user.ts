@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { readText } from "@thi.ng/file-io";
 import { RE_USER } from "../api.js";
 import { CONFIG } from "../config.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { deg, rad } from "@thi.ng/math/angle";
 import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";

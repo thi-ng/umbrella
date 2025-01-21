@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { adaptDPI } from "@thi.ng/canvas";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";

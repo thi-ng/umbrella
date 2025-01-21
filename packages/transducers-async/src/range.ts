@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Range } from "@thi.ng/transducers/range";
 import { wait } from "./delayed.js";
 

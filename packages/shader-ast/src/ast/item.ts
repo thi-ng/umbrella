@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import type { Term } from "../api/nodes.js";
 import type { FloatTerm } from "../api/terms.js";

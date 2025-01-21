@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref } from "@thi.ng/api";
 import { rotateRight } from "@thi.ng/binary/rotate";
 import { interleave4_12_24, interleave4_16_32 } from "@thi.ng/binary/splat";

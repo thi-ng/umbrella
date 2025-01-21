@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { CONFIG } from "../config.js";
 
 export const asset = (file: string, alt = "", prefix = CONFIG.assetURL) =>

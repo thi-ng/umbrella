@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
 import type { MatOpNV } from "./api.js";

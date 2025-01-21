@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";

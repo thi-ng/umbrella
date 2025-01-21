@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const px = (x: number) => x.toFixed(3) + "px";
 
 // @thi.ng/hdom UI component function

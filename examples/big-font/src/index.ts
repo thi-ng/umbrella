@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Keys, Maybe } from "@thi.ng/api";
 import { div, pre } from "@thi.ng/hiccup-html";
 import { getIn, setIn } from "@thi.ng/paths";

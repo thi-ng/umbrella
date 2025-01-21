@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dotsH, lch } from "@thi.ng/color";
 import { compareByKey, compareNumDesc } from "@thi.ng/compare";
 import { serialize } from "@thi.ng/hiccup";

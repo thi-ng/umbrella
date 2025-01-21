@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, ICompare, ICopy, IEmpty, ISeq, Maybe } from "@thi.ng/api";
 import { AList } from "./alist.js";
 import type { ConsCell } from "./api.js";

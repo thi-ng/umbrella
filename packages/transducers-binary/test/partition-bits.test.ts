@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { radix } from "@thi.ng/strings";
 import {
 	comp,

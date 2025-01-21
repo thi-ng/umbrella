@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, Maybe, Nullable, NumOrString } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import { readText, writeText } from "./text.js";

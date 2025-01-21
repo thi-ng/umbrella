@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn5 } from "@thi.ng/api";
 import { range2d } from "@thi.ng/transducers/range2d";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

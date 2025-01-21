@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0, IClear, ICopy, ILength, IReset } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";

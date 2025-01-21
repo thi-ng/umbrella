@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, MaybeAsyncIterable, MaybePromise } from "@thi.ng/api";
 import type { AsyncReducer, AsyncTransducer } from "./api.js";
 import { compR } from "./compr.js";

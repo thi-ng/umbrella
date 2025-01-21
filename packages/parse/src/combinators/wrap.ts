@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Parser } from "../api.js";
 import { litD } from "../prims/lit.js";
 import { hoist } from "../xform/hoist.js";

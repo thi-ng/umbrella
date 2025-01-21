@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { minError } from "@thi.ng/math/min-error";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";

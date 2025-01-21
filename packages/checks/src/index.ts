@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./exists-not-null.js";
 export * from "./exists.js";
 export * from "./has-bigint.js";

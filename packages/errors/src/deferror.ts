@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface CustomError extends Error {
 	/**
 	 * The original message given to the error ctor (prior to applying

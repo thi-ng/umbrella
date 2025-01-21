@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU4, Range } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN } from "@thi.ng/vectors/maddn";

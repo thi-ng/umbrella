@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISubscriber } from "@thi.ng/rstream";
 import { appendFile } from "node:fs";
 

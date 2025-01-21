@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatTerm, Term, Type } from "@thi.ng/shader-ast";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
 import { float } from "@thi.ng/shader-ast/ast/lit";

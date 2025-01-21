@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EV_REDO, EV_UNDO } from "@thi.ng/interceptors";
 
 // best practice tip: define event & effect names as consts or enums

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { serialize } from "@thi.ng/hiccup";
 import { snapshot, valueSetter } from "@thi.ng/interceptors";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { setS2, setS3, setS4 } from "@thi.ng/vectors/sets";
 import { vop } from "@thi.ng/vectors/vop";
 import type { MultiVecOpMN, VecOpMN } from "./api.js";

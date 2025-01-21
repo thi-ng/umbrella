@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MultiVecOpRoVV } from "./api.js";
 import { compile, compileG } from "./compile/emit.js";
 import { DOT, DOT_G } from "./compile/templates.js";

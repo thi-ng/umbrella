@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Quantity, quantity } from "../unit.js";
 import { dpi } from "../units/density.js";
 import { inch, mm } from "../units/length.js";

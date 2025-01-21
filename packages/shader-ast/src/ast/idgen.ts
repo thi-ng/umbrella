@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 let symID = 0;
 
 /**

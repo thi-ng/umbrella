@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./api.js";
 export * from "./binary.js";
 export * from "./floyd-warshall.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU, FnU2, NumericArray } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose/partial";
 import { TAU } from "@thi.ng/math/api";

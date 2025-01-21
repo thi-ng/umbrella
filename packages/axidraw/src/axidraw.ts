@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IReset } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { delayed } from "@thi.ng/compose/delayed";

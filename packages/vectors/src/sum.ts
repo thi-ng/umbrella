@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { add } from "@thi.ng/transducers/add";
 import { reduce } from "@thi.ng/transducers/reduce";
 import type { MultiVecOpRoV } from "./api.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { LogLevel } from "@thi.ng/logger";
 import { State, type ISubscriber } from "@thi.ng/rstream";
 import { expect, test } from "bun:test";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { quantity } from "../unit.js";
 import { kg_m3 } from "../units/density.js";
 

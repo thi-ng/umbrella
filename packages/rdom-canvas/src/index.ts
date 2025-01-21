@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, Fn3, IToHiccup } from "@thi.ng/api";
 import { adaptDPI } from "@thi.ng/canvas";
 import { implementsFunction } from "@thi.ng/checks/implements-function";

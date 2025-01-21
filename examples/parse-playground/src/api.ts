@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Status = "ok" | "partial" | "fail" | "err";
 
 export interface State {

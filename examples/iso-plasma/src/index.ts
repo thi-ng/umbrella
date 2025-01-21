@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2 } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom";
 import { isolines, setBorder } from "@thi.ng/geom-isoline";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DAY, durationAs } from "@thi.ng/date";
 import {
 	deleteFile,

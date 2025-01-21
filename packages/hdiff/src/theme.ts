@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { css } from "@thi.ng/hiccup-css/css";
 import type { BgFg, BgFgBorder, Theme } from "./api.js";
 

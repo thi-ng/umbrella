@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { delayed } from "@thi.ng/compose";
 import { FMT_yyyyMMdd } from "@thi.ng/date";

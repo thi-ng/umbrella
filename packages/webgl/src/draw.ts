@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import type { ModelSpec } from "./api/model.js";
 import { isGL2Context } from "./checks.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IView } from "@thi.ng/atom";
 import { EV_SET_VALUE } from "@thi.ng/interceptors";
 import { toPath } from "@thi.ng/paths";

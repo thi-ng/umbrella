@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { timed } from "@thi.ng/bench";
 import { abgr32, luminanceAbgr32, sortMapped } from "@thi.ng/color";
 import { div, h1 } from "@thi.ng/hiccup-html";

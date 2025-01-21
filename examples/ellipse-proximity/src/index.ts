@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { closestPointEllipse } from "@thi.ng/geom-closest-point";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
 import { hash } from "@thi.ng/vectors/hash";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { Channel, Mult, channel, mult } from "@thi.ng/csp";
 import { button, div, progress } from "@thi.ng/hiccup-html";

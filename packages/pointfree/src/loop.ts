@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StackContext, StackProc } from "./api.js";
 import { $ } from "./safe.js";
 import { $stackFn } from "./word.js";

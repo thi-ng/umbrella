@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const gen = @import("api-generated.zig");
 
 pub usingnamespace gen;

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { equiv } from "@thi.ng/equiv";
 import {
 	pointAt as arcPointAt,

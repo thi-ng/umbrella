@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { always, identity, never } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import { filter, range } from "../src/index.js";

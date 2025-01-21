@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
 import { partition } from "@thi.ng/transducers/partition";
 import { ASparseMatrix } from "./amatrix.js";

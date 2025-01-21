@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { comparator2, distSq } from "@thi.ng/vectors";
 import { expect, test } from "bun:test";
 import { mst } from "../src/index.js";

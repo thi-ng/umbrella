@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Range = [number, number];
 
 export type Range0_1 = 0 | 1;

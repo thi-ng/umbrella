@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { assert } from "@thi.ng/errors/assert";
 import { add } from "@thi.ng/transducers/add";

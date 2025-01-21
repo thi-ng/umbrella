@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Removes given `keys` from `coll` (a Map or Set), then returns `coll`.
  *

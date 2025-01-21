@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";

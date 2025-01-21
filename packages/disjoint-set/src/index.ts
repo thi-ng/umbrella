@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Typed array based Disjoint Set implementation with quick union and path
  * compression, after Sedgewick & Wayne.

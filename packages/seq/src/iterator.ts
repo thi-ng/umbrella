@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISeq, ISeqable, Nullable } from "@thi.ng/api";
 import { ensureSeq } from "./ensure.js";
 

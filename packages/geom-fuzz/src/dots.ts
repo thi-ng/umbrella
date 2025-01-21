@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { bounds } from "@thi.ng/geom/bounds";
 import { pointInside } from "@thi.ng/geom/point-inside";
 import { points } from "@thi.ng/geom/points";

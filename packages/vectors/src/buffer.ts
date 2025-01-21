@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray, TypedArrayTypeMap } from "@thi.ng/api";
 import { SIZEOF, typedArray, type Type } from "@thi.ng/api/typedarray";
 import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api.js";

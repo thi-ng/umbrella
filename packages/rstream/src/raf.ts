@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNode } from "@thi.ng/checks/is-node";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { CommonOpts } from "./api.js";

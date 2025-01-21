@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { threadLast } from "@thi.ng/compose";
 import { osc, parabolic, sin } from "@thi.ng/dsp";
 import { circle, group } from "@thi.ng/geom";

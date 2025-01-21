@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Atom } from "@thi.ng/atom";
 import { foaf } from "@thi.ng/prefixes";
 import { escapeEntities } from "@thi.ng/strings";

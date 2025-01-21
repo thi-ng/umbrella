@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { encode } from "@thi.ng/blurhash";
 import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { writeFile, writeJSON } from "@thi.ng/file-io";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { normalize3, normalize4 } from "@thi.ng/vectors/normalize";

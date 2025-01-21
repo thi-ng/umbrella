@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EquivMap } from "@thi.ng/associative";
 import { LRUCache } from "@thi.ng/cache";
 import { expect, test } from "bun:test";

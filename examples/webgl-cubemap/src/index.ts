@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { adaptDPI } from "@thi.ng/canvas";
 import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";

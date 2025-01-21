@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { conditional } from "./conditional.js";
 import type { Conditional, RuleFn } from "./api.js";
 

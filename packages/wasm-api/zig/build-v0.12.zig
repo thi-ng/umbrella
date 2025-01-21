@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Build helpers for using modules/packages distributed via NPM
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!

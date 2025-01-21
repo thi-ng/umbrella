@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp0 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
 import type { ReadonlyColor } from "../api.js";

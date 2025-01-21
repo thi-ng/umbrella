@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { repeat } from "./repeat.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { renderOnce } from "@thi.ng/hdom";
 import { fit } from "@thi.ng/math";
 import { map, mapcat, range } from "@thi.ng/transducers";

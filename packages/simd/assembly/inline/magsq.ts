@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { __hadd2_f32, __hadd4_f32 } from "./hadd";
 
 // @ts-ignore: decorator

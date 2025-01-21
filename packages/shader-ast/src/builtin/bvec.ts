@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnCall, Term } from "../api/nodes.js";
 import type { BVec } from "../api/types.js";
 import { builtinCall } from "../ast/function.js";

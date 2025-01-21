@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import type { ILogger } from "@thi.ng/logger";
 import { readFileSync } from "node:fs";

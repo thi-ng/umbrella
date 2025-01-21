@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN3, FnN4 } from "@thi.ng/api";
 
 export interface DTMetric {

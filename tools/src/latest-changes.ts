@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { FMT_yyyyMMdd } from "@thi.ng/date";
 import { table } from "@thi.ng/markdown-table";

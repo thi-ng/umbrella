@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import type { FloatTerm, Vec4Sym } from "@thi.ng/shader-ast";
 import { V4 } from "@thi.ng/shader-ast/api/types";

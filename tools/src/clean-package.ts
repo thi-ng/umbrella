@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { readdirSync, rmSync, statSync, unlinkSync } from "node:fs";
 import { basename, sep } from "node:path";
 

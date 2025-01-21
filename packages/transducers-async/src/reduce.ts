@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asyncIdentity, type MaybeAsyncIterable } from "@thi.ng/api/async";
 import { isReduced } from "@thi.ng/transducers/reduced";
 import type { AsyncReducer, AsyncReducerInit, AsyncReduction } from "./api.js";

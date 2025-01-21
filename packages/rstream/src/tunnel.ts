@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0 } from "@thi.ng/api";
 import { State } from "./api.js";
 import { __nextID } from "./idgen.js";

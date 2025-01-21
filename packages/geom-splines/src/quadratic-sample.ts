@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
 import { __sample, __sampleArray } from "./internal/sample.js";
 

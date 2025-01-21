@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, Predicate } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "./api.js";

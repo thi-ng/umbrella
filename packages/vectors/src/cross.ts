@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec, VecOpRoVV } from "./api.js";
 import { setC3 } from "./setc.js";
 

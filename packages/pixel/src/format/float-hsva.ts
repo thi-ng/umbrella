@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EPS } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { Lane } from "../api.js";

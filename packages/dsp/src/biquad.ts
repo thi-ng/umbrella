@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IReset } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { PI, SQRT2, SQRT2_2 } from "@thi.ng/math/api";

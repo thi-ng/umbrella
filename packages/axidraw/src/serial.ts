@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { SerialPort } from "serialport";
 import type { ISerial, SerialConnection } from "./api.js";

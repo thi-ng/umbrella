@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { BitField } from "@thi.ng/bitfield/bitfield";
 import { DCons } from "@thi.ng/dcons/dcons";

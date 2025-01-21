@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dist } from "@thi.ng/vectors/dist";

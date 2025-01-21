@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { setIn } from "@thi.ng/paths";
 import { FLOAT_GRAY, floatBufferFromImage } from "@thi.ng/pixel";

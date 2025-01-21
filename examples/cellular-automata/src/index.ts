@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { start } from "@thi.ng/hdom";
 import { dropdown, type DropDownOption } from "@thi.ng/hdom-components";
 import {

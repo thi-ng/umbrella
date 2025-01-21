@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { comp } from "@thi.ng/compose";
 import { preferredType, preferredExtension } from "../src/index.js";

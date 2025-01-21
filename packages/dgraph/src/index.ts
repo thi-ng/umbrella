@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, Nullable, Pair } from "@thi.ng/api";
 import { ArraySet } from "@thi.ng/associative/array-set";
 import { EquivMap } from "@thi.ng/associative/equiv-map";

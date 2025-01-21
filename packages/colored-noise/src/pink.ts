@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ctz32 } from "@thi.ng/binary/count";
 import { DEFAULT_OPTS, type ColoredNoiseOpts } from "./api.js";
 import { preseed, sum } from "./utils.js";

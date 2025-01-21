@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const dbo = "http://dbpedia.org/ontology/";
 export const dbp = "http://dbpedia.org/property/";
 export const dbr = "http://dbpedia.org/resource/";

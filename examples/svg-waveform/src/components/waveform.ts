@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defs, linearGradient, polyline, svg } from "@thi.ng/hiccup-svg";
 import { map, range, reduce, reducer } from "@thi.ng/transducers";
 import type { AppContext } from "../api";

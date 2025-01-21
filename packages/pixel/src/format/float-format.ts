@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, FnN2, IObjectOf, NumericArray } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { Lane, type FloatFormat, type FloatFormatSpec } from "../api.js";

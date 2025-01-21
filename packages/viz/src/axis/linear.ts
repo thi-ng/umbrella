@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit } from "@thi.ng/math/fit";
 import { inRange } from "@thi.ng/math/interval";
 import { roundTo } from "@thi.ng/math/prec";

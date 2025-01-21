@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, IEmpty, IStack } from "@thi.ng/api";
 import type { DHeapOpts } from "./api.js";
 import { Heap } from "./heap.js";

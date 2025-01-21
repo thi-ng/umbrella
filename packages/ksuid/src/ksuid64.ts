@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { AKSUID } from "./aksuid.js";
 import type { KSUIDOpts } from "./api.js";
 

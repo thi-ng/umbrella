@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { defAtom, defCursor, defView, type IAtom } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";

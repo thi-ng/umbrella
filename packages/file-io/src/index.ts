@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./delete.js";
 export * from "./dir.js";
 export * from "./ext.js";

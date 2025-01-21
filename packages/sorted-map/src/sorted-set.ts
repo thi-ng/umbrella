@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, ICompare, Maybe, Pair } from "@thi.ng/api";
 import type { IEquivSet } from "@thi.ng/associative";
 import { dissoc } from "@thi.ng/associative/dissoc";

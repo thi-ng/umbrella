@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isString } from "@thi.ng/checks";
 import { parse, Type, type ParseElement, type ParseEvent } from "@thi.ng/sax";
 import {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import type { Tessellator } from "./api.js";
 

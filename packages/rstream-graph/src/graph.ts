@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe, Path, Tuple } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
 import { isFunction } from "@thi.ng/checks/is-function";

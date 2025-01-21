@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { MaybeColor } from "./api.js";
 import { rgb } from "./rgb/rgb.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 

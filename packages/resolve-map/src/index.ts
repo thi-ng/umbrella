@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IDeref, IObjectOf, NumOrString } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";

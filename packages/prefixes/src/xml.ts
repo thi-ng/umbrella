@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const XML = "http://www.w3.org/XML/1998/namespace";
 export const XML_FN = "http://www.w3.org/2005/xpath-functions";
 export const XML_FO = "http://www.w3.org/1999/XSL/Format";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { readText } from "@thi.ng/file-io";
 import type { CompLayerFn, SVGLayer } from "../api.js";
 import { positionOrGravity } from "../units.js";

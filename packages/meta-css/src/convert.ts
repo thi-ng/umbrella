@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { Fn0, IObjectOf } from "@thi.ng/api";
 import { flag, type Command } from "@thi.ng/args";

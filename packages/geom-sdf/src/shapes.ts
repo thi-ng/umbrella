@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { distSq2, type ReadonlyVec } from "@thi.ng/vectors";
 import { sub2 } from "@thi.ng/vectors/sub";
 import type { SDFAttribs, SDFn } from "./api.js";

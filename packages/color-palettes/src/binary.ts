@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 // generated @ 20240206-182342 - DO NOT EDIT!
 import { B64_CHARS } from "@thi.ng/base-n/chars/64";

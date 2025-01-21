@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mergeAttribs } from "./utils/merge-attribs.js";
 import type { IObjectOf } from "@thi.ng/api";
 

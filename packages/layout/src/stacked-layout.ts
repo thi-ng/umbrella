@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { argMax, argMin } from "@thi.ng/arrays/argmin";
 import type { CellSpan, LayoutBox } from "./api.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { step as _step } from "@thi.ng/math/step";
 import type { MultiVecOpVV, VecOpVV } from "./api.js";
 import { defHofOp } from "./compile/emit.js";

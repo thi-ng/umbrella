@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import type { PathPattern, Pattern } from "./api.js";
 import { autoQVar, isQVar, qvarName } from "./qvar.js";

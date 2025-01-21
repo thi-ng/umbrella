@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { DisjointSet } from "@thi.ng/disjoint-set";

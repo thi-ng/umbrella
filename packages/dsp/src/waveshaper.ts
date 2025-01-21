@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import { PI } from "@thi.ng/math/api";
 import { AProc } from "./aproc.js";

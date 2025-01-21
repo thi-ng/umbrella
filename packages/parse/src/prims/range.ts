@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumOrString, Predicate } from "@thi.ng/api";
 import type { LitParser } from "../api.js";
 import { satisfy, satisfyD } from "./satisfy.js";

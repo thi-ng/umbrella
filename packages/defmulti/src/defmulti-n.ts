@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { Implementation } from "./api.js";
 import { DEFAULT, defmulti } from "./defmulti.js";

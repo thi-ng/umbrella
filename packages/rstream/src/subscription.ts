@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { peek } from "@thi.ng/arrays/peek";

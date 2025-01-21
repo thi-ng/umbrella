@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { Quantity } from "@thi.ng/units";

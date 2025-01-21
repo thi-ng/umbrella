@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { mergeDeepObj } from "@thi.ng/object-utils";

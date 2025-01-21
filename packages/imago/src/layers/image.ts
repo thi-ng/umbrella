@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArgs } from "@thi.ng/errors";
 import sharp from "sharp";
 import type { CompLayerFn, Dim, ImgLayer } from "../api.js";

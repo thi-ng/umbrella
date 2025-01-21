@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { BASE64 } from "@thi.ng/base-n";
 import { argb32 } from "@thi.ng/color";
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";

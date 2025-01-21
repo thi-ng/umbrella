@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { ConsoleLogger, LogLevel, type LogLevelName } from "@thi.ng/logger";
 import type { Package as $Package } from "@thi.ng/transclude";

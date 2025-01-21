@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { centroidStrategy, gaussian } from "@thi.ng/fuzzy";
 import { eqDelta } from "@thi.ng/math";
 import { expect, test } from "bun:test";

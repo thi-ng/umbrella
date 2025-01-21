@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import { dropdown } from "@thi.ng/hdom-components";

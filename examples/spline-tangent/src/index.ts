@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU5 } from "@thi.ng/api";
 import { $, dot, mul, sub, type Dual } from "@thi.ng/dual-algebra";
 import { asSvg, circle, cubic, line, svgDoc, text } from "@thi.ng/geom";

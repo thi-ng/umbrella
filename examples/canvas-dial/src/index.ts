@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { reactive, sync } from "@thi.ng/rstream";
 import { percent } from "@thi.ng/strings";
 import { comp, map } from "@thi.ng/transducers";

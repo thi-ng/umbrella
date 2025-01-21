@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, FnN, FnU } from "@thi.ng/api";
 
 export type Domain = number[];

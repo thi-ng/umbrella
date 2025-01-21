@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "@thi.ng/hiccup-html";
 import { anchor } from "@thi.ng/hiccup-html/inline";
 import { table, tbody, td, tr } from "@thi.ng/hiccup-html/table";

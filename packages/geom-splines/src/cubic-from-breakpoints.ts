@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cornerBisector } from "@thi.ng/vectors/bisect";
 import { corner2 } from "@thi.ng/vectors/clockwise";

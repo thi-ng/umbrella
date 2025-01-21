@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ILifecycle } from "@thi.ng/hdom";
 import { start } from "@thi.ng/hdom";
 

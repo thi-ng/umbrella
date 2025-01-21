@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity, type Fn } from "@thi.ng/api/fn";
 import { repeat } from "@thi.ng/strings/repeat";
 import type { ArgSpec, KVDict, KVMultiDict, Tuple } from "./api.js";

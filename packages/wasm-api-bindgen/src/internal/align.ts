@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { SIZEOF } from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
 import { align as $align } from "@thi.ng/binary/align";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ExtendSpec, Processor } from "../api.js";
 import { coerceColor, computeMargins } from "../units.js";
 

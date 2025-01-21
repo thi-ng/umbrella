@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fiber, untilPromise } from "@thi.ng/fibers";
 import { div } from "@thi.ng/hiccup-html";
 import { imageFromURL } from "@thi.ng/pixel";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn3, IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { dissoc } from "@thi.ng/associative/dissoc";
 import { __equivMap } from "@thi.ng/associative/internal/equiv";

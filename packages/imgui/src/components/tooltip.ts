@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { rect } from "@thi.ng/geom/rect";
 import { add2 } from "@thi.ng/vectors/add";
 import type { IMGUI } from "../gui.js";

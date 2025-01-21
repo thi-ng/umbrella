@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { rechunk } from "@thi.ng/transducers/rechunk";
 import type { Readable } from "node:stream";
 import { stream, type Stream } from "./stream.js";

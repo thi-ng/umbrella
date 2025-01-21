@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mulN as _mulN, mulN4 } from "@thi.ng/vectors/muln";
 import type { MatOpMN, MultiMatOpMN } from "./api.js";
 import { defMathN } from "./compile/emit.js";

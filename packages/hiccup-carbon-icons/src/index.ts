@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./with-size.js";
 export * from "./api-1.js";
 export * from "./cad.js";

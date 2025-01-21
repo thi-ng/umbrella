@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { abs4 } from "@thi.ng/vectors/abs";
 import { acos4 } from "@thi.ng/vectors/acos";
 import { add4 } from "@thi.ng/vectors/add";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Atom, Cursor, History } from "@thi.ng/atom";
 import { expect, test } from "bun:test";
 import { fromAtom } from "../src/index.js";

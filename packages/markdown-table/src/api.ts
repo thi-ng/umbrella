@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable, NumOrString } from "@thi.ng/api";
 
 export type Align = "c" | "l" | "r";

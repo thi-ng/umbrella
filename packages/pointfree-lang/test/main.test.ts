@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import * as pf from "@thi.ng/pointfree";
 import { run, runU } from "@thi.ng/pointfree-lang";
 import { expect, test } from "bun:test";

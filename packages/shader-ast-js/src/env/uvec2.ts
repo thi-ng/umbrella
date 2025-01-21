@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { addNU2, addU2 } from "@thi.ng/vectors/addi";
 import { bitAndU2 } from "@thi.ng/vectors/bit-and";
 import { bitNotU2 } from "@thi.ng/vectors/bit-not";

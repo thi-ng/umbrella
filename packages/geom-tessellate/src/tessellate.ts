@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isFunction } from "@thi.ng/checks/is-function";
 import { repeat } from "@thi.ng/transducers/repeat";
 import type { ReadonlyVec } from "@thi.ng/vectors";

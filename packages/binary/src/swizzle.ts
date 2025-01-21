@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN3 } from "@thi.ng/api";
 import type { Lane16, Lane2, Lane4, Lane8 } from "./api.js";
 

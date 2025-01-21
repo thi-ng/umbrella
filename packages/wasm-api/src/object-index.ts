@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, Predicate, Range1_32 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { IDGen } from "@thi.ng/idgen";

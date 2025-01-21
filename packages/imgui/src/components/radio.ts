@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";

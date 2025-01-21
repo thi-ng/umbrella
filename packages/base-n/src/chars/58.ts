@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const D = "123456789";
 const U = "ABCDEFGHJKLMNPQRSTUVWXYZ";
 const L = "abcdefghijkmnopqrstuvwxyz";

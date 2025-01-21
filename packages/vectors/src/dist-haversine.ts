@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN5 } from "@thi.ng/api";
 import type { ReadonlyVec } from "./api.js";
 import { radians2 } from "./radians.js";

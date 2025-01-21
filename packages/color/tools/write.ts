@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
 import { writeFileSync } from "fs";

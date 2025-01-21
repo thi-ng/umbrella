@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { AppContext } from "../api";
 import * as ev from "../events";
 import { buttonGroup } from "./button-group";

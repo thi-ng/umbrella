@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { lch, type LCH } from "./lch/lch.js";
 import { rotate } from "./rotate.js";

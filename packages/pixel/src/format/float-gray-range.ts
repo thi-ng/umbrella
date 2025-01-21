@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit, fitClamped } from "@thi.ng/math/fit";
 import { mix } from "@thi.ng/math/mix";
 import { Lane, type FloatFormat } from "../api.js";

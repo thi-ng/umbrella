@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3 } from "@thi.ng/api";
 import { THIRD, TWO_THIRD } from "@thi.ng/math/api";
 import { solveTridiagonal } from "@thi.ng/math/solve";

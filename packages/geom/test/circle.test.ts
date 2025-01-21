@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { PI } from "@thi.ng/math";
 import { IDENT23 } from "@thi.ng/matrices";
 import { describe, expect, test } from "bun:test";
