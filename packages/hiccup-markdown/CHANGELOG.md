@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-14T12:23:33Z
+- **Last updated**: 2025-01-21T11:16:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.118](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@3.2.118) (2025-01-21)
+
+#### ⏱ Performance improvements
+
+- update parser grammar ([18b3032](https://github.com/thi-ng/umbrella/commit/18b3032))
+  - update grammar rules to use more char selections
 
 ### [3.2.116](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@3.2.116) (2025-01-14)
 

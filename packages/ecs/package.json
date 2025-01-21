@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ecs",
-	"version": "0.7.146",
+	"version": "0.7.147",
 	"description": "Entity Component System based around typed arrays & sparse sets",
 	"type": "module",
 	"module": "./index.js",
