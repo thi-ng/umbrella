@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-canvas",
-	"version": "3.0.52",
+	"version": "3.0.53",
 	"description": "Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. ANSI/HTML)",
 	"type": "module",
 	"module": "./index.js",
@@ -40,15 +40,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/arrays": "^2.10.11",
-		"@thi.ng/checks": "^3.6.19",
-		"@thi.ng/errors": "^2.5.22",
-		"@thi.ng/geom-clip-line": "^2.3.118",
-		"@thi.ng/math": "^5.11.16",
-		"@thi.ng/strings": "^3.9.1",
-		"@thi.ng/text-format": "^2.2.21",
-		"@thi.ng/transducers": "^9.2.14"
+		"@thi.ng/api": "^8.11.17",
+		"@thi.ng/arrays": "^2.10.12",
+		"@thi.ng/checks": "^3.6.20",
+		"@thi.ng/errors": "^2.5.23",
+		"@thi.ng/geom-clip-line": "^2.3.119",
+		"@thi.ng/math": "^5.11.17",
+		"@thi.ng/strings": "^3.9.2",
+		"@thi.ng/text-format": "^2.2.22",
+		"@thi.ng/transducers": "^9.2.15"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-01-21T15:46:52Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transclude@1.1.0) (2025-01-21)
+
+#### 🚀 Features
+
+- support recursive includes (w/ cycle detection) ([923d968](https://github.com/thi-ng/umbrella/commit/923d968))
+  - update `preincludeFile()` transform to support recursive includes
+  - add tests/assets
+  - update deps
 
 ### [0.1.91](https://github.com/thi-ng/umbrella/tree/@thi.ng/transclude@0.1.91) (2024-06-21)
 

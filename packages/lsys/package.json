@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lsys",
-	"version": "2.2.5",
+	"version": "2.2.6",
 	"description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
 	"type": "module",
 	"module": "./index.js",
@@ -40,14 +40,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/checks": "^3.6.19",
-		"@thi.ng/compose": "^3.0.19",
-		"@thi.ng/errors": "^2.5.22",
-		"@thi.ng/math": "^5.11.16",
-		"@thi.ng/random": "^4.1.7",
-		"@thi.ng/transducers": "^9.2.14",
-		"@thi.ng/vectors": "^7.12.16"
+		"@thi.ng/api": "^8.11.17",
+		"@thi.ng/checks": "^3.6.20",
+		"@thi.ng/compose": "^3.0.20",
+		"@thi.ng/errors": "^2.5.23",
+		"@thi.ng/math": "^5.11.17",
+		"@thi.ng/random": "^4.1.8",
+		"@thi.ng/transducers": "^9.2.15",
+		"@thi.ng/vectors": "^7.12.17"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.48.1",
