@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
 // @ts-ignore
 import type { Fn } from "@thi.ng/api";
 
