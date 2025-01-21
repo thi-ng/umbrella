@@ -135,6 +135,75 @@
 		"./grammar": {
 			"default": "./grammar.js"
 		},
+		"./packrat/api": {
+			"default": "./packrat/api.js"
+		},
+		"./packrat/combinators/alt": {
+			"default": "./packrat/combinators/alt.js"
+		},
+		"./packrat/combinators/dynamic": {
+			"default": "./packrat/combinators/dynamic.js"
+		},
+		"./packrat/combinators/lookahead": {
+			"default": "./packrat/combinators/lookahead.js"
+		},
+		"./packrat/combinators/maybe": {
+			"default": "./packrat/combinators/maybe.js"
+		},
+		"./packrat/combinators/not": {
+			"default": "./packrat/combinators/not.js"
+		},
+		"./packrat/combinators/repeat": {
+			"default": "./packrat/combinators/repeat.js"
+		},
+		"./packrat/combinators/seq": {
+			"default": "./packrat/combinators/seq.js"
+		},
+		"./packrat/combinators/xform": {
+			"default": "./packrat/combinators/xform.js"
+		},
+		"./packrat/context": {
+			"default": "./packrat/context.js"
+		},
+		"./packrat/defparser": {
+			"default": "./packrat/defparser.js"
+		},
+		"./packrat/error": {
+			"default": "./packrat/error.js"
+		},
+		"./packrat/main": {
+			"default": "./packrat/main.js"
+		},
+		"./packrat/presets": {
+			"default": "./packrat/presets.js"
+		},
+		"./packrat/prims/always": {
+			"default": "./packrat/prims/always.js"
+		},
+		"./packrat/prims/char": {
+			"default": "./packrat/prims/char.js"
+		},
+		"./packrat/prims/one-of": {
+			"default": "./packrat/prims/one-of.js"
+		},
+		"./packrat/prims/pass": {
+			"default": "./packrat/prims/pass.js"
+		},
+		"./packrat/prims/string": {
+			"default": "./packrat/prims/string.js"
+		},
+		"./packrat/utils": {
+			"default": "./packrat/utils.js"
+		},
+		"./packrat/xform/count": {
+			"default": "./packrat/xform/count.js"
+		},
+		"./packrat/xform/join": {
+			"default": "./packrat/xform/join.js"
+		},
+		"./packrat/xform/upper": {
+			"default": "./packrat/xform/upper.js"
+		},
 		"./presets/alpha": {
 			"default": "./presets/alpha.js"
 		},
