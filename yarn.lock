@@ -6705,6 +6705,7 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.48.1"
     "@thi.ng/api": "npm:^8.11.16"
     "@thi.ng/checks": "npm:^3.6.19"
+    "@thi.ng/errors": "npm:^2.5.22"
     "@thi.ng/file-io": "npm:^2.1.22"
     "@thi.ng/logger": "npm:^3.0.27"
     "@thi.ng/strings": "npm:^3.9.1"
