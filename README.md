@@ -306,10 +306,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-01-21
+As of: 2025-01-22
 
 | Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
 |:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup`](./packages/hiccup)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)                   | [changelog](./packages/hiccup/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-perf-cyan)  | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/parse`](./packages/parse)                     | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)                     | [changelog](./packages/parse/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transclude`](./packages/transclude)           | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)           | [changelog](./packages/transclude/CHANGELOG.md)      |
