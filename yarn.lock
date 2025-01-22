@@ -5951,7 +5951,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.0.28"
     "@thi.ng/pointfree": "npm:^3.1.99"
     esbuild: "npm:^0.24.2"
-    pegjs: "npm:0.11.0-master.b7b87ea"
+    pegjs: "npm:0.11.0-master.f69239d"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.3"
   bin:
@@ -8687,12 +8687,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pegjs@npm:0.11.0-master.b7b87ea":
-  version: 0.11.0-master.b7b87ea
-  resolution: "pegjs@npm:0.11.0-master.b7b87ea"
+"pegjs@npm:0.11.0-master.f69239d":
+  version: 0.11.0-master.f69239d
+  resolution: "pegjs@npm:0.11.0-master.f69239d"
   bin:
     pegjs: bin/peg.js
-  checksum: 10/c30092da58452cc484801bc1cb85a2cae7fe4654e59b0bc63fc7505352de8d941380c8223f919667e91a05c7707873301599071d75ab57c8d504c33c7057ea87
+  checksum: 10/52c6bc3ed92f92175cd087aa60b918919bb0861783576538520b85eaec8c4bb80d22f79a94bb56fe7b4e122b30b7d3cd9db9623219afed2c0e80090bbe9fe12a
   languageName: node
   linkType: hard
 
