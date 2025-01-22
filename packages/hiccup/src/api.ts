@@ -15,6 +15,9 @@ export const RE_TAG = /^([^\s.#]+)(?:#([^\s.#]+))?(?:\.([^\s#]+))?$/;
 export const COMMENT = "__COMMENT__";
 
 /** @internal */
+export const INLINE = "__INLINE__";
+
+/** @internal */
 export const CDATA = "!CDATA";
 
 /** @internal */
