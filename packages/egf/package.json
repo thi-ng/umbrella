@@ -52,7 +52,6 @@
 		"@thi.ng/trie": "^1.1.11"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.49.1",
 		"@thi.ng/equiv": "^2.1.73",
 		"esbuild": "^0.24.2",
 		"typedoc": "^0.27.6",

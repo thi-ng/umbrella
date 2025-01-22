@@ -40,7 +40,6 @@
 		"@thi.ng/vectors": "^7.11.0"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.47.0",
 		"esbuild": "^0.21.5",
 		"typedoc": "^0.25.13",
 		"typescript": "^5.5.2"

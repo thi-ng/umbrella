@@ -7,8 +7,6 @@
 		"tools"
 	],
 	"devDependencies": {
-		"@microsoft/api-documenter": "^7.26.5",
-		"@microsoft/api-extractor": "^7.49.1",
 		"bun-types": "^1.1.45",
 		"esbuild": "^0.24.2",
 		"html-minifier-terser": "^7.2.0",

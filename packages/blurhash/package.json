@@ -47,7 +47,6 @@
 		"@thi.ng/math": "^5.11.17"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.49.1",
 		"esbuild": "^0.24.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.27.6",
