@@ -40,11 +40,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.1",
-		"@types/node": "^22.10.2",
+		"@microsoft/api-extractor": "^7.49.1",
+		"@types/node": "^22.10.7",
 		"esbuild": "^0.24.2",
 		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"typescript": "^5.7.3"
 	},
 	"keywords": [
 		"assert",

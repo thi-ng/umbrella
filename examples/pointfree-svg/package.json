@@ -17,7 +17,7 @@
 		"@thi.ng/pointfree-lang": "workspace:^"
 	},
 	"devDependencies": {
-		"typescript": "^5.7.2"
+		"typescript": "^5.7.3"
 	},
 	"keywords": [
 		"2d",
