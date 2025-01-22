@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fuzzy-viz",
-	"version": "2.1.177",
+	"version": "2.1.178",
 	"description": "Visualization, instrumentation & introspection utils for @thi.ng/fuzzy",
 	"type": "module",
 	"module": "./index.js",
@@ -42,7 +42,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.17",
 		"@thi.ng/fuzzy": "^2.1.99",
-		"@thi.ng/hiccup": "^5.2.25",
+		"@thi.ng/hiccup": "^5.3.0",
 		"@thi.ng/hiccup-svg": "^5.4.16",
 		"@thi.ng/math": "^5.11.17",
 		"@thi.ng/strings": "^3.9.2",
