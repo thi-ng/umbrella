@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom-mock",
-	"version": "2.1.126",
+	"version": "2.1.127",
 	"description": "Mock base implementation for @thi.ng/hdom API",
 	"type": "module",
 	"module": "./index.js",
@@ -40,9 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.17",
-		"@thi.ng/checks": "^3.6.20",
-		"@thi.ng/hdom": "^9.4.59"
+		"@thi.ng/api": "^8.11.18",
+		"@thi.ng/checks": "^3.6.21",
+		"@thi.ng/hdom": "^9.4.60"
 	},
 	"devDependencies": {
 		"esbuild": "^0.24.2",

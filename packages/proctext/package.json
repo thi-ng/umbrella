@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/proctext",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions",
 	"type": "module",
 	"module": "./index.js",
@@ -40,15 +40,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.17",
-		"@thi.ng/arrays": "^2.10.12",
-		"@thi.ng/checks": "^3.6.20",
-		"@thi.ng/defmulti": "^3.0.56",
-		"@thi.ng/errors": "^2.5.23",
-		"@thi.ng/object-utils": "^1.1.11",
-		"@thi.ng/parse": "^2.6.1",
-		"@thi.ng/random": "^4.1.8",
-		"@thi.ng/strings": "^3.9.2"
+		"@thi.ng/api": "^8.11.18",
+		"@thi.ng/arrays": "^2.10.13",
+		"@thi.ng/checks": "^3.6.21",
+		"@thi.ng/defmulti": "^3.0.57",
+		"@thi.ng/errors": "^2.5.24",
+		"@thi.ng/object-utils": "^1.1.12",
+		"@thi.ng/parse": "^2.6.2",
+		"@thi.ng/random": "^4.1.9",
+		"@thi.ng/strings": "^3.9.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.24.2",

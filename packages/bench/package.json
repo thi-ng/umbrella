@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bench",
-	"version": "3.6.10",
+	"version": "3.6.11",
 	"description": "Benchmarking & profiling utilities w/ various statistics & formatters (CSV, JSON, Markdown etc.)",
 	"type": "module",
 	"module": "./index.js",
@@ -40,8 +40,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.17",
-		"@thi.ng/timestamp": "^1.1.2"
+		"@thi.ng/api": "^8.11.18",
+		"@thi.ng/timestamp": "^1.1.3"
 	},
 	"devDependencies": {
 		"@types/node": "^22.10.7",
