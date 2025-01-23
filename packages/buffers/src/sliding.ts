@@ -2,7 +2,7 @@
 import { FIFOBuffer } from "./fifo.js";
 
 /**
- * Returns a {@link SlidingBuffer} with given max. capacity.
+ * Returns a {@link SlidingBuffer} ring buffer with given max. capacity.
  *
  * @remarks
  * With this implementation, writes are **always** possible, but not guaranteed

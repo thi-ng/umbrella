@@ -2,7 +2,7 @@
 import { FIFOBuffer } from "./fifo.js";
 
 /**
- * Returns a {@link DroppingBuffer} with given max. capacity.
+ * Returns a {@link DroppingBuffer} ring buffer with given max. capacity.
  *
  * @remarks
  * With this implementation, writes are **always** possible, but not guaranteed
