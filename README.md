@@ -306,15 +306,16 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-01-23
+As of: 2025-01-24
 
-| Status                                           | Package                                                 | Version                                                                                                                       | Changelog                                            |
-|:-------------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/buffers`](./packages/buffers)                 | [![version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)                 | [changelog](./packages/buffers/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup`](./packages/hiccup)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)                   | [changelog](./packages/hiccup/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-perf-cyan)     | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/parse`](./packages/parse)                     | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)                     | [changelog](./packages/parse/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transclude`](./packages/transclude)           | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)           | [changelog](./packages/transclude/CHANGELOG.md)      |
+| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
+|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/buffers`](./packages/buffers)                     | [![version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)                     | [changelog](./packages/buffers/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup`](./packages/hiccup)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)                       | [changelog](./packages/hiccup/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-perf-cyan)     | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown)     | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)     | [changelog](./packages/hiccup-markdown/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/parse`](./packages/parse)                         | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)                         | [changelog](./packages/parse/CHANGELOG.md)             |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transclude`](./packages/transclude)               | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)               | [changelog](./packages/transclude/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers-async`](./packages/transducers-async) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async) | [changelog](./packages/transducers-async/CHANGELOG.md) |
 
 ### Fundamentals
 
