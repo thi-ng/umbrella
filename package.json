@@ -23,7 +23,6 @@
 		"build:examples": "yarn @example run build",
 		"clean": "yarn @thi.ng run clean",
 		"doc": "yarn @thi.ng run doc",
-		"doc:ae": "yarn @thi.ng run doc:ae && scripts/collect-apis",
 		"doc:readme": "yarn @thi.ng run doc:readme",
 		"doc:examples": "bun tools/src/readme-examples.ts",
 		"pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && bun tools/src/deploy-docs.ts",
