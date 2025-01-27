@@ -18,12 +18,12 @@ import type {
 	Without7,
 	Without8,
 } from "@thi.ng/api";
-import { toPath } from "./path.js";
+import { disallowProtoPath } from "./path.js";
 import { updateIn } from "./update-in.js";
 
 /**
- * Unchecked version of {@link deleteIn}. Path can be given as string or
- * tuple.
+ * Non-typechecked version of {@link deleteIn}. Path can be given as string or
+ * tuple. Path will be checked via {@link disallowProtoPath}.
  *
  * @example
  * ```ts tangle:../export/delete-in-unsafe.ts
@@ -43,15 +43,15 @@ export const deleteInUnsafe = (state: any, path: Path): any =>
 	deleteIn(state, <any>path);
 
 /**
- * Uses {@link updateIn} and returns updated state with key for given
- * path removed. Does not modify original state. Returns `undefined` if
- * `path` is an empty string or array.
+ * Uses {@link updateIn} and returns updated state with key for given path
+ * removed. Does not modify original state. Returns `undefined` if `path` is an
+ * empty string or array.
  *
  * @remarks
- * Only the first 8 path levels are type checked. The result type will
- * have the path value removed too.
+ * Only the first 8 path levels are type checked. The result type will have the
+ * path value removed too.
  *
- * See {@link deleteInUnsafe} for unchecked version.
+ * See {@link deleteInUnsafe} for non-typechecked version.
  *
  * @example
  * ```ts tangle:../export/delete-in.ts
@@ -137,7 +137,7 @@ export function deleteIn<
 	path: readonly [A, B, C, D, E, F, G, H]
 ): Without8<T, A, B, C, D, E, F, G, H>;
 export function deleteIn(state: any, path: Path): any {
-	const ks = toPath(path).slice();
+	const ks = disallowProtoPath(path).slice();
 	if (ks.length) {
 		const k = ks.pop()!;
 		return updateIn(
