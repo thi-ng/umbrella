@@ -19,11 +19,11 @@ import { identity } from "@thi.ng/api/fn";
 import { toPath } from "./path.js";
 
 /**
- * Unchecked version of {@link defGetter}.
+ * Non-typechecked version of {@link defGetter}.
  *
  * @remarks
- * The type parameter `T` can be used to indicate the type of the nested
- * value to be retrieved (default: `any`).
+ * The type parameter `T` can be used to indicate the type of the nested value
+ * to be retrieved (default: `any`).
  *
  * Also see: {@link getIn}, {@link getInUnsafe}
  *

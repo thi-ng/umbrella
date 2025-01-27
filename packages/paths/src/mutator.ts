@@ -17,11 +17,11 @@ import type {
 import { disallowProtoPath } from "./path.js";
 
 /**
- * Unchecked version of {@link defMutator}.
+ * Non-typechecked version of {@link defMutator}.
  *
  * @remarks
- * The type parameter `T` can be used to indicate the type of the nested
- * value to be mutated (default: `any`).
+ * The type parameter `T` can be used to indicate the type of the nested value
+ * to be mutated (default: `any`).
  *
  * @param path -
  */
@@ -29,16 +29,15 @@ export const defMutatorUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
 	defMutator(<any>path);
 
 /**
- * Higher-order function, similar to {@link defSetter}. Returns a
- * function, which when called, mutates given object/array at given path
- * location.
+ * Higher-order function, similar to {@link defSetter}. Returns a function,
+ * which when called, mutates given object/array at given path location. Path
+ * will be checked via {@link disallowProtoPath}.
  *
  * @remarks
- * The returned function bails if any intermediate path values are
- * non-indexable (only the very last path element can be missing in the
- * actual object structure). If successful, returns original (mutated)
- * object, else `undefined`. This function provides optimized versions
- * for path lengths <= 4.
+ * The returned function bails if any intermediate path values are non-indexable
+ * (only the very last path element can be missing in the actual object
+ * structure). If successful, returns original (mutated) object, else
+ * `undefined`. This function provides optimized versions for path lengths <= 4.
  *
  * Only the first 8 path levels are type checked.
  *

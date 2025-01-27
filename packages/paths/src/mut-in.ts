@@ -16,7 +16,7 @@ import type {
 import { defMutator } from "./mutator.js";
 
 /**
- * Unchecked version of {@link mutIn}.
+ * Non-typechecked version of {@link mutIn}.
  *
  * @remarks
  * The type parameter `T` can be used to indicate the type of the nested

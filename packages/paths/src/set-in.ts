@@ -16,11 +16,11 @@ import type {
 import { defSetter } from "./setter.js";
 
 /**
- * Unchecked version of {@link setIn}.
+ * Non-typechecked version of {@link setIn}.
  *
  * @remarks
- * The type parameter `T` can be used to indicate the type of the nested
- * value to be set (default: `any`).
+ * The type parameter `T` can be used to indicate the type of the nested value
+ * to be set (default: `any`).
  *
  * @example
  * ```ts tangle:../export/set-in-unsafe.ts
