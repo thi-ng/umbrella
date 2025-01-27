@@ -1,13 +1,30 @@
 // SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import {
+	deleteIn,
 	exists,
 	getIn,
 	getInUnsafe,
 	mutIn,
 	setIn,
 	setInUnsafe,
+	toPath,
 } from "../src/index.js";
+
+test("toPath", () => {
+	expect(toPath([])).toEqual([]);
+	expect(toPath(["a"])).toEqual(["a"]);
+	expect(toPath(["a", 1])).toEqual(["a", 1]);
+	expect(toPath("a.1")).toEqual(["a", "1"]);
+	expect(toPath("a.1.2")).toEqual(["a", "1", "2"]);
+	expect(() => toPath("a.")).toThrow();
+	expect(() => toPath("a..")).toThrow();
+	expect(() => toPath([""])).toThrow();
+	expect(() => toPath(["a", ""])).toThrow();
+	expect(() => toPath(<any>["a", null])).toThrow();
+	expect(() => toPath(<any>[null])).toThrow();
+	expect(() => toPath(<any>[undefined])).toThrow();
+});
 
 test("getIn", () => {
 	const src: any = { a: { b: { c: [23, { d: 42 }] } } };
@@ -173,4 +190,11 @@ test("mutIn", () => {
 	expect(() => mutIn(a, ["__proto__", "polluted"], true)).toThrow();
 	expect(() => mutIn(a, <any>[["__proto__"], "polluted"], true)).toThrow();
 	expect(() => mutIn(a, <any>[[["__proto__"]], "polluted"], true)).toThrow();
+});
+
+test("deleteIn", () => {
+	const a: any = {};
+	expect(() => deleteIn(a, ["__proto__", "polluted"])).toThrow();
+	expect(() => deleteIn(a, <any>[["__proto__"], "polluted"])).toThrow();
+	expect(() => deleteIn(a, <any>[[["__proto__"]], "polluted"])).toThrow();
 });
