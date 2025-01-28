@@ -22,7 +22,7 @@
 		"event",
 		"example",
 		"hdom",
-		"interceptor",
+		"interceptors",
 		"io",
 		"json",
 		"ui"

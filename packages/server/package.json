@@ -58,30 +58,84 @@
 		"typescript": "^5.7.3"
 	},
 	"keywords": [
+		"cookie",
+		"compression",
+		"file",
+		"formdata",
+		"headers",
 		"http",
 		"https",
 		"interceptors",
+		"logger",
+		"multipart",
 		"nodejs",
+		"querystring",
+		"security",
 		"server",
+		"session",
 		"typescript"
 	],
 	"publishConfig": {
 		"access": "public"
 	},
-	"engines": {
-		"node": ">=18"
-	},
 	"browser": {
 		"process": false,
 		"setTimeout": false
 	},
+	"engines": {
+		"node": ">=18"
+	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+		"interceptors",
+		"utils"
 	],
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./interceptors/auth-route": {
+			"default": "./interceptors/auth-route.js"
+		},
+		"./interceptors/inject-headers": {
+			"default": "./interceptors/inject-headers.js"
+		},
+		"./interceptors/logging": {
+			"default": "./interceptors/logging.js"
+		},
+		"./interceptors/referrer-policy": {
+			"default": "./interceptors/referrer-policy.js"
+		},
+		"./interceptors/session": {
+			"default": "./interceptors/session.js"
+		},
+		"./interceptors/strict-transport": {
+			"default": "./interceptors/strict-transport.js"
+		},
+		"./interceptors/x-origin-opener": {
+			"default": "./interceptors/x-origin-opener.js"
+		},
+		"./interceptors/x-origin-resource": {
+			"default": "./interceptors/x-origin-resource.js"
+		},
+		"./server": {
+			"default": "./server.js"
+		},
+		"./static": {
+			"default": "./static.js"
+		},
+		"./utils/cookies": {
+			"default": "./utils/cookies.js"
+		},
+		"./utils/formdata": {
+			"default": "./utils/formdata.js"
+		},
+		"./utils/multipart": {
+			"default": "./utils/multipart.js"
 		}
 	},
 	"thi.ng": {
