@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks";
 import { LogLevel, type LogLevelName } from "@thi.ng/logger";
-import type { Interceptor } from "../api";
+import type { Interceptor } from "../api.js";
 
 const __method = (level: LogLevel | LogLevelName) =>
 	<"fine" | "debug" | "info" | "warn" | "severe">(

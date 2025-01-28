@@ -1,4 +1,4 @@
-import type { Interceptor } from "../api";
+import type { Interceptor } from "../api.js";
 
 /**
  * Pre-interceptor to inject given headers into the response.

@@ -2,14 +2,18 @@ import { NULL_LOGGER } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
 import { join, resolve } from "node:path";
 import {
+	crossOriginOpenerPolicy,
+	crossOriginResourcePolicy,
 	injectHeaders,
 	logRequest,
 	logResponse,
 	parseCoookies,
 	parseQuerystring,
+	referrerPolicy,
 	Server,
 	serverSession,
 	staticFiles,
+	strictTransportSecurity,
 } from "../src/index.js";
 
 test("server", async (done) => {
@@ -41,16 +45,38 @@ test("server", async (done) => {
 		intercept: [
 			logRequest(),
 			logResponse(),
+			referrerPolicy(),
+			crossOriginOpenerPolicy(),
+			crossOriginResourcePolicy(),
+			strictTransportSecurity(3600),
 			injectHeaders({ "x-foo": "bar" }),
 			serverSession<TestSession>({
 				factory: (ctx) => ({ id: "1234", user: ctx.cookies?.name }),
 			}),
+			{
+				pre: ({ res }) => {
+					expect(res.getHeader("cross-origin-opener-policy")).toBe(
+						"same-origin"
+					);
+					expect(res.getHeader("cross-origin-resource-policy")).toBe(
+						"same-origin"
+					);
+					expect(res.getHeader("referrer-policy")).toBe(
+						"no-referrer"
+					);
+
+					expect(res.getHeader("strict-transport-security")).toBe(
+						"max-age=3600; includeSubDomains"
+					);
+					return true;
+				},
+			},
 			// test we can read session info and add additional cookie
 			{
-				pre: (ctx) => {
-					ctx.res.appendHeader(
+				pre: ({ res, session }) => {
+					res.appendHeader(
 						"set-cookie",
-						`user=${(<TestSession>ctx.session)?.user}`
+						`user=${(<TestSession>session)?.user}`
 					);
 					return true;
 				},
@@ -62,6 +88,7 @@ test("server", async (done) => {
 	let res = await fetch("http://localhost:8080/hello/world?name=test", {
 		headers: { "set-cookie": "name=test;" },
 	});
+	// console.log(res.headers);
 	expect(res.status).toBe(200);
 	expect(res.headers.get("content-type")).toBe("text/plain");
 	expect(res.headers.get("x-foo")).toBe("bar");
