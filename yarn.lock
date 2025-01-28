@@ -4062,7 +4062,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/cache@workspace:^, @thi.ng/cache@workspace:packages/cache":
+"@thi.ng/cache@npm:^2.3.21, @thi.ng/cache@workspace:^, @thi.ng/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@thi.ng/cache@workspace:packages/cache"
   dependencies:
@@ -5951,7 +5951,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/router@workspace:^, @thi.ng/router@workspace:packages/router":
+"@thi.ng/router@npm:^4.1.16, @thi.ng/router@workspace:^, @thi.ng/router@workspace:packages/router":
   version: 0.0.0-use.local
   resolution: "@thi.ng/router@workspace:packages/router"
   dependencies:
@@ -6125,6 +6125,28 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.18"
     "@thi.ng/checks": "npm:^3.6.21"
+    esbuild: "npm:^0.24.2"
+    typedoc: "npm:^0.27.6"
+    typescript: "npm:^5.7.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/server@workspace:packages/server":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/server@workspace:packages/server"
+  dependencies:
+    "@thi.ng/api": "npm:^8.11.18"
+    "@thi.ng/arrays": "npm:^2.10.13"
+    "@thi.ng/cache": "npm:^2.3.21"
+    "@thi.ng/checks": "npm:^3.6.21"
+    "@thi.ng/errors": "npm:^2.5.24"
+    "@thi.ng/file-io": "npm:^2.1.24"
+    "@thi.ng/logger": "npm:^3.0.29"
+    "@thi.ng/mime": "npm:^2.6.24"
+    "@thi.ng/paths": "npm:^5.1.99"
+    "@thi.ng/router": "npm:^4.1.16"
+    "@thi.ng/uuid": "npm:^1.1.15"
+    "@types/node": "npm:^22.10.10"
     esbuild: "npm:^0.24.2"
     typedoc: "npm:^0.27.6"
     typescript: "npm:^5.7.3"
@@ -6557,7 +6579,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/uuid@workspace:packages/uuid":
+"@thi.ng/uuid@npm:^1.1.15, @thi.ng/uuid@workspace:packages/uuid":
   version: 0.0.0-use.local
   resolution: "@thi.ng/uuid@workspace:packages/uuid"
   dependencies:
