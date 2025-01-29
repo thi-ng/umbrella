@@ -55,6 +55,16 @@ export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
 };
 
 /**
+ * Similar to {@link preferredType}, but accepts a file path and first
+ * auto-extracts file extension.
+ *
+ * @param path
+ * @param fallback
+ */
+export const preferredTypeForPath = (path: string, fallback?: string) =>
+	preferredType(path.substring(path.lastIndexOf(".")), fallback);
+
+/**
  * Reverse lookup to {@link preferredType}. Takes MIME type string and returns
  * preferred file extension (or failing that) returns `fallback` (default:
  * "bin").
