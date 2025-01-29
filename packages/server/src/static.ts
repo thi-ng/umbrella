@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import { preferredType } from "@thi.ng/mime";
+import { preferredTypeForPath } from "@thi.ng/mime";
 import { existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import type { Interceptor, ServerRoute } from "./api.js";
@@ -37,18 +37,18 @@ export interface StaticOpts {
 	 */
 	headers: Record<string, string | string[]>;
 	/**
-	 * If true (default), files will be served with brotli or gzip compression
-	 * (if the client supports it).
+	 * If true (default: false), files will be served with brotli, gzip or deflate
+	 * compression (if the client supports it).
 	 *
-	 * @defaultValue true
+	 * @defaultValue false
 	 */
 	compress: boolean;
 }
 
 /**
  * Defines a configurable {@link ServerRoute} and handler for serving static
- * files from a local directory. Unless disabled (via given options) and if the
- * client supports it, files will be served with gzip encoding.
+ * files from a local directory (optionally with compression, see
+ * {@link StaticOpts.compress} for details).
  *
  * @param opts
  */
@@ -57,9 +57,9 @@ export const staticFiles = ({
 	rootDir = ".",
 	intercept = [],
 	filter = () => true,
-	compress = true,
+	compress = false,
 	headers,
-}: Partial<StaticOpts>): ServerRoute => ({
+}: Partial<StaticOpts> = {}): ServerRoute => ({
 	id: "__static",
 	match: [prefix, "+"],
 	handlers: {
@@ -69,9 +69,7 @@ export const staticFiles = ({
 				if (!(existsSync(path) && filter(path)))
 					return server.missing(res);
 				res.writeHead(200, {
-					"content-type": preferredType(
-						path.substring(path.lastIndexOf("."))
-					),
+					"content-type": preferredTypeForPath(path),
 					"content-length": String(statSync(path).size),
 					...headers,
 				});
@@ -81,8 +79,7 @@ export const staticFiles = ({
 		get: {
 			fn: (ctx) => {
 				const path = join(rootDir, ...ctx.match.rest!);
-				if (!(existsSync(path) && filter(path)))
-					return ctx.server.missing(ctx.res);
+				if (!filter(path)) return ctx.server.missing(ctx.res);
 				return ctx.server.sendFile(ctx, path, headers, compress);
 			},
 			intercept,

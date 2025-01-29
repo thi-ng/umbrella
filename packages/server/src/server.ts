@@ -1,14 +1,14 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Fn0 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { readText } from "@thi.ng/file-io";
 import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
-import { preferredType } from "@thi.ng/mime";
+import { preferredTypeForPath } from "@thi.ng/mime";
 import { Router, type RouteMatch } from "@thi.ng/router";
 import { createReadStream } from "node:fs";
 import * as http from "node:http";
 import * as https from "node:https";
-import { pipeline } from "node:stream";
-import { createGzip, createBrotliCompress } from "node:zlib";
+import { pipeline, Transform } from "node:stream";
+import { createBrotliCompress, createDeflate, createGzip } from "node:zlib";
 import type {
 	CompiledHandler,
 	CompiledServerRoute,
@@ -151,8 +151,10 @@ export class Server {
 			if (post && !(await runPhase(post))) return;
 			ctx.res.end();
 		} catch (e) {
-			this.logger.warn(`handler error: ${e}`);
-			ctx.res.writeHead(500).end();
+			this.logger.warn(`handler error:`, e);
+			if (!ctx.res.headersSent) {
+				ctx.res.writeHead(500).end();
+			}
 		}
 	}
 
@@ -200,33 +202,34 @@ export class Server {
 		{ req, res }: RequestCtx,
 		path: string,
 		headers?: http.OutgoingHttpHeaders,
-		compress = true
+		compress = false
 	) {
-		const mime =
-			headers?.["content-type"] ??
-			preferredType(path.substring(path.lastIndexOf(".")));
+		const mime = headers?.["content-type"] ?? preferredTypeForPath(path);
 		const accept = <string>req.headers["accept-encoding"];
-		// FIXME
-		const useBrotli = compress && accept?.includes("br");
-		const useGzip = compress && !useBrotli && accept?.includes("gzip");
+		const encoding =
+			compress && accept
+				? (<{ mode: string; tx: Fn0<Transform> }[]>[
+						{ mode: "br", tx: createBrotliCompress },
+						{ mode: "gzip", tx: createGzip },
+						{ mode: "deflate", tx: createDeflate },
+				  ]).find((x) => accept.includes(x.mode))
+				: undefined;
 		return new Promise<void>((resolve) => {
 			try {
 				this.logger.debug("sending file:", path, "mime:", mime, accept);
 				const src = createReadStream(path);
-				res.writeHead(200, { "content-type": mime, ...headers });
+				const mergedHeaders = { "content-type": mime, ...headers };
+				if (encoding) {
+					mergedHeaders["content-encoding"] = encoding.mode;
+				}
+				res.writeHead(200, mergedHeaders);
 				const finalize = (err: any) => {
 					if (err) res.end();
 					resolve();
 				};
-				if (useBrotli) {
-					res.appendHeader("content-encoding", "br");
-					pipeline(src, createBrotliCompress(), res, finalize);
-				} else if (useGzip) {
-					res.appendHeader("content-encoding", "gzip");
-					pipeline(src, createGzip(), res, finalize);
-				} else {
-					pipeline(src, res, finalize);
-				}
+				encoding
+					? pipeline(src, encoding.tx(), res, finalize)
+					: pipeline(src, res, finalize);
 			} catch (e) {
 				this.logger.warn((<Error>e).message);
 				this.missing(res);
