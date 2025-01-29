@@ -242,6 +242,10 @@ export class Server {
 		res.writeHead(403, "Forbidden").end();
 	}
 
+	unmodified(res: http.ServerResponse) {
+		res.writeHead(304, "Not modified").end();
+	}
+
 	missing(res: http.ServerResponse) {
 		res.writeHead(404, "Not found").end();
 	}

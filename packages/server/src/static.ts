@@ -1,8 +1,11 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Fn, MaybePromise, Predicate } from "@thi.ng/api";
+import { fileHash as $fileHash, type HashAlgo } from "@thi.ng/file-io";
 import { preferredTypeForPath } from "@thi.ng/mime";
 import { existsSync, statSync } from "node:fs";
+import type { OutgoingHttpHeaders } from "node:http";
 import { join } from "node:path";
-import type { Interceptor, ServerRoute } from "./api.js";
+import type { Interceptor, RequestCtx, ServerRoute } from "./api.js";
+import { isUnmodified } from "./utils/cache.js";
 
 /**
  * Static file configuration options.
@@ -35,7 +38,7 @@ export interface StaticOpts {
 	/**
 	 * Additional common headers (e.g. cache control) for all static files
 	 */
-	headers: Record<string, string | string[]>;
+	headers: OutgoingHttpHeaders;
 	/**
 	 * If true (default: false), files will be served with brotli, gzip or deflate
 	 * compression (if the client supports it).
@@ -43,6 +46,11 @@ export interface StaticOpts {
 	 * @defaultValue false
 	 */
 	compress: boolean;
+	/**
+	 * User defined function to compute an Etag value for given file path. The
+	 * file is guaranteed to exist when this function is called.
+	 */
+	etag: Fn<string, MaybePromise<string>>;
 }
 
 /**
@@ -58,31 +66,89 @@ export const staticFiles = ({
 	intercept = [],
 	filter = () => true,
 	compress = false,
+	etag,
 	headers,
 }: Partial<StaticOpts> = {}): ServerRoute => ({
 	id: "__static",
 	match: [prefix, "+"],
 	handlers: {
 		head: {
-			fn: async ({ server, match, res }) => {
-				const path = join(rootDir, ...match.rest!);
-				if (!(existsSync(path) && filter(path)))
-					return server.missing(res);
-				res.writeHead(200, {
+			fn: async (ctx) => {
+				const path = join(rootDir, ...ctx.match.rest!);
+				const $headers = await __fileHeaders(
+					path,
+					ctx,
+					filter,
+					etag,
+					headers
+				);
+				if (!$headers) return;
+				ctx.res.writeHead(200, {
 					"content-type": preferredTypeForPath(path),
-					"content-length": String(statSync(path).size),
-					...headers,
+					...$headers,
 				});
 			},
 			intercept,
 		},
 		get: {
-			fn: (ctx) => {
+			fn: async (ctx) => {
 				const path = join(rootDir, ...ctx.match.rest!);
-				if (!filter(path)) return ctx.server.missing(ctx.res);
-				return ctx.server.sendFile(ctx, path, headers, compress);
+				const $headers = await __fileHeaders(
+					path,
+					ctx,
+					filter,
+					etag,
+					headers
+				);
+				if (!$headers) return;
+				return ctx.server.sendFile(ctx, path, $headers, compress);
 			},
 			intercept,
 		},
 	},
 });
+
+const __fileHeaders = async (
+	path: string,
+	ctx: RequestCtx,
+	filter: StaticOpts["filter"],
+	etag?: StaticOpts["etag"],
+	headers?: OutgoingHttpHeaders
+) => {
+	if (!(existsSync(path) && filter(path))) {
+		return ctx.server.missing(ctx.res);
+	}
+	if (etag) {
+		const etagValue = await etag(path);
+		return isUnmodified(etagValue, ctx.req.headers["if-none-match"])
+			? ctx.server.unmodified(ctx.res)
+			: { ...headers, etag: etagValue };
+	}
+	return { ...headers };
+};
+
+/**
+ * Etag header value function for {@link StaticOpts.etag}. Computes Etag based
+ * on file modified date.
+ *
+ * @remarks
+ * Also see {@link etagFileHash}.
+ *
+ * @param path
+ */
+export const etagFileTimeModified = (path: string) =>
+	String(statSync(path).mtimeMs);
+
+/**
+ * Higher-order Etag header value function for {@link StaticOpts.etag}. Computes
+ * Etag value by computing the hash digest of a given file. Uses MD5 by default.
+ *
+ * @remarks
+ * Also see {@link etagFileTimeModified}.
+ *
+ * @param algo
+ */
+export const etagFileHash =
+	(algo: HashAlgo = "md5") =>
+	(path: string) =>
+		$fileHash(path, undefined, algo);

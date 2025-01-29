@@ -13,5 +13,6 @@ export * from "./interceptors/x-origin-opener.js";
 export * from "./interceptors/x-origin-resource.js";
 
 export * from "./utils/cookies.js";
+export * from "./utils/cache.js";
 export * from "./utils/formdata.js";
 export * from "./utils/multipart.js";

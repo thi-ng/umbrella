@@ -5,6 +5,7 @@ import {
 	cacheControl,
 	crossOriginOpenerPolicy,
 	crossOriginResourcePolicy,
+	etagFileHash,
 	injectHeaders,
 	logRequest,
 	logResponse,
@@ -24,6 +25,7 @@ test("server", async (done) => {
 		routes: [
 			staticFiles({
 				rootDir: join(resolve(__dirname), "fixtures"),
+				etag: etagFileHash(),
 				compress: true,
 			}),
 			{
@@ -108,7 +110,7 @@ test("server", async (done) => {
 	});
 	expect(res.status).toBe(200);
 	expect(res.headers.get("content-type")).toBe("application/json");
-	expect(res.headers.get("content-length")).toBe("19");
+	expect(res.headers.get("etag")).toBe("d06f04fccf68d0b228a5923187ce1afd");
 
 	res = await fetch("http://localhost:8080/static/foo/bar.json");
 	expect(res.status).toBe(200);
