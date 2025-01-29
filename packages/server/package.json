@@ -49,6 +49,7 @@
 		"@thi.ng/mime": "^2.6.24",
 		"@thi.ng/paths": "^5.1.99",
 		"@thi.ng/router": "^4.1.16",
+		"@thi.ng/strings": "^3.9.3",
 		"@thi.ng/uuid": "^1.1.15"
 	},
 	"devDependencies": {
@@ -100,6 +101,9 @@
 		},
 		"./interceptors/auth-route": {
 			"default": "./interceptors/auth-route.js"
+		},
+		"./interceptors/cache-control": {
+			"default": "./interceptors/cache-control.js"
 		},
 		"./interceptors/inject-headers": {
 			"default": "./interceptors/inject-headers.js"

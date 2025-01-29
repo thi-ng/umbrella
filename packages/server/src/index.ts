@@ -3,6 +3,7 @@ export * from "./server.js";
 export * from "./static.js";
 
 export * from "./interceptors/auth-route.js";
+export * from "./interceptors/cache-control.js";
 export * from "./interceptors/inject-headers.js";
 export * from "./interceptors/logging.js";
 export * from "./interceptors/referrer-policy.js";

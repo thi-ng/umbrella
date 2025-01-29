@@ -6145,6 +6145,7 @@ __metadata:
     "@thi.ng/mime": "npm:^2.6.24"
     "@thi.ng/paths": "npm:^5.1.99"
     "@thi.ng/router": "npm:^4.1.16"
+    "@thi.ng/strings": "npm:^3.9.3"
     "@thi.ng/uuid": "npm:^1.1.15"
     "@types/node": "npm:^22.10.10"
     esbuild: "npm:^0.24.2"

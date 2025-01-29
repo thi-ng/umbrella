@@ -2,6 +2,7 @@ import { NULL_LOGGER } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
 import { join, resolve } from "node:path";
 import {
+	cacheControl,
 	crossOriginOpenerPolicy,
 	crossOriginResourcePolicy,
 	injectHeaders,
@@ -23,6 +24,7 @@ test("server", async (done) => {
 		routes: [
 			staticFiles({
 				rootDir: join(resolve(__dirname), "fixtures"),
+				compress: true,
 			}),
 			{
 				id: "hello",
@@ -49,12 +51,16 @@ test("server", async (done) => {
 			crossOriginOpenerPolicy(),
 			crossOriginResourcePolicy(),
 			strictTransportSecurity(3600),
+			cacheControl({ maxAge: 3600, mustRevalidate: true }),
 			injectHeaders({ "x-foo": "bar" }),
 			serverSession<TestSession>({
 				factory: (ctx) => ({ id: "1234", user: ctx.cookies?.name }),
 			}),
 			{
 				pre: ({ res }) => {
+					expect(res.getHeader("cache-control")).toBe(
+						"max-age=3600, must-revalidate"
+					);
 					expect(res.getHeader("cross-origin-opener-policy")).toBe(
 						"same-origin"
 					);
