@@ -258,3 +258,5 @@ export class Server {
 		this.redirectTo(res, this.router.format(route));
 	}
 }
+
+export const server = (opts?: Partial<ServerOpts>) => new Server(opts);
