@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/server",
 	"version": "0.0.1",
-	"description": "Minimal HTTP server with declarative routing, extensible via pre/post interceptors",
+	"description": "Minimal HTTP server with declarative routing, static file serving and freely extensible via pre/post interceptors",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -131,6 +131,9 @@
 		},
 		"./static": {
 			"default": "./static.js"
+		},
+		"./utils/cache": {
+			"default": "./utils/cache.js"
 		},
 		"./utils/cookies": {
 			"default": "./utils/cookies.js"
