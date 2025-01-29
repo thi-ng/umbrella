@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rasterize",
-	"version": "1.0.133",
+	"version": "1.0.134",
 	"description": "Headless 2D shape drawing, filling & rasterization for arbitrary targets/purposes (no canvas required)",
 	"type": "module",
 	"module": "./index.js",
@@ -39,13 +39,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.18",
-		"@thi.ng/checks": "^3.6.21",
-		"@thi.ng/equiv": "^2.1.74",
-		"@thi.ng/grid-iterators": "^4.0.105",
-		"@thi.ng/porter-duff": "^2.1.96",
-		"@thi.ng/random": "^4.1.9",
-		"@thi.ng/transducers": "^9.2.16"
+		"@thi.ng/api": "^8.11.19",
+		"@thi.ng/checks": "^3.6.22",
+		"@thi.ng/equiv": "^2.1.75",
+		"@thi.ng/grid-iterators": "^4.0.106",
+		"@thi.ng/porter-duff": "^2.1.97",
+		"@thi.ng/random": "^4.1.10",
+		"@thi.ng/transducers": "^9.2.17"
 	},
 	"devDependencies": {
 		"esbuild": "^0.24.2",

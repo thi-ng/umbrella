@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/imago",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "JSON & API-based declarative and extensible image processing trees/pipelines",
 	"type": "module",
 	"module": "./index.js",
@@ -39,22 +39,22 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.18",
-		"@thi.ng/blurhash": "^1.0.4",
-		"@thi.ng/checks": "^3.6.21",
-		"@thi.ng/date": "^2.7.41",
-		"@thi.ng/defmulti": "^3.0.57",
-		"@thi.ng/errors": "^2.5.24",
-		"@thi.ng/file-io": "^2.1.24",
-		"@thi.ng/logger": "^3.0.29",
-		"@thi.ng/object-utils": "^1.1.12",
-		"@thi.ng/pixel": "^7.3.14",
-		"@thi.ng/pixel-dither": "^1.1.154",
-		"@thi.ng/prefixes": "^2.3.35",
+		"@thi.ng/api": "^8.11.19",
+		"@thi.ng/blurhash": "^1.0.5",
+		"@thi.ng/checks": "^3.6.22",
+		"@thi.ng/date": "^2.7.42",
+		"@thi.ng/defmulti": "^3.0.58",
+		"@thi.ng/errors": "^2.5.25",
+		"@thi.ng/file-io": "^2.1.25",
+		"@thi.ng/logger": "^3.0.30",
+		"@thi.ng/object-utils": "^1.1.13",
+		"@thi.ng/pixel": "^7.3.15",
+		"@thi.ng/pixel-dither": "^1.1.155",
+		"@thi.ng/prefixes": "^2.3.36",
 		"sharp": "^0.33.5"
 	},
 	"devDependencies": {
-		"@thi.ng/vectors": "^7.12.18",
+		"@thi.ng/vectors": "^7.12.19",
 		"esbuild": "^0.24.2",
 		"typedoc": "^0.27.6",
 		"typescript": "^5.7.3"

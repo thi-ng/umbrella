@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-sdf",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "2D Signed Distance Field creation from @thi.ng/geom shapes, conversions, sampling, combinators",
 	"type": "module",
 	"module": "./index.js",
@@ -39,17 +39,17 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.18",
-		"@thi.ng/checks": "^3.6.21",
-		"@thi.ng/defmulti": "^3.0.57",
-		"@thi.ng/errors": "^2.5.24",
-		"@thi.ng/geom": "^8.1.27",
-		"@thi.ng/geom-isoline": "^2.1.158",
-		"@thi.ng/geom-poly-utils": "^3.0.30",
-		"@thi.ng/geom-resample": "^3.0.30",
-		"@thi.ng/math": "^5.11.18",
-		"@thi.ng/transducers": "^9.2.16",
-		"@thi.ng/vectors": "^7.12.18"
+		"@thi.ng/api": "^8.11.19",
+		"@thi.ng/checks": "^3.6.22",
+		"@thi.ng/defmulti": "^3.0.58",
+		"@thi.ng/errors": "^2.5.25",
+		"@thi.ng/geom": "^8.1.28",
+		"@thi.ng/geom-isoline": "^2.1.159",
+		"@thi.ng/geom-poly-utils": "^3.0.31",
+		"@thi.ng/geom-resample": "^3.0.31",
+		"@thi.ng/math": "^5.11.19",
+		"@thi.ng/transducers": "^9.2.17",
+		"@thi.ng/vectors": "^7.12.19"
 	},
 	"devDependencies": {
 		"esbuild": "^0.24.2",

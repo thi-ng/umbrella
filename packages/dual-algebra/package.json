@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dual-algebra",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Multivariate dual number algebra, automatic differentiation",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.18"
+		"@thi.ng/api": "^8.11.19"
 	},
 	"devDependencies": {
 		"esbuild": "^0.24.2",
