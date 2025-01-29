@@ -37,13 +37,13 @@ for more details.
 
 - [`authenticateWith()`](https://docs.thi.ng/umbrella/server/functions/authenticateWith.html)
 - [`cacheControl()`](https://docs.thi.ng/umbrella/server/functions/cacheControl.html)
-- [`crossOriginOpenerPolicy()`](https://docs.thi.ng/umbrella/server/functions/crossOriginOpenerPolicy.html)
-- [`crossOriginResourcePolicy()`](https://docs.thi.ng/umbrella/server/functions/crossOriginResourcePolicy.html)
+- [`crossOriginOpenerPolicy()`](https://docs.thi.ng/umbrella/server/functions/crossOriginOpenerPolicy-1.html)
+- [`crossOriginResourcePolicy()`](https://docs.thi.ng/umbrella/server/functions/crossOriginResourcePolicy-1.html)
 - [`injectHeaders()`](https://docs.thi.ng/umbrella/server/functions/injectHeaders.html)
 - [`logRequest()`](https://docs.thi.ng/umbrella/server/functions/logRequest.html)
 - [`logResponse()`](https://docs.thi.ng/umbrella/server/functions/logResponse.html)
-- [`referrerPolicy()`](https://docs.thi.ng/umbrella/server/functions/referrerPolicy.html)
-- [`serverSession()`](https://docs.thi.ng/umbrella/server/functions/serverSession.html)
+- [`referrerPolicy()`](https://docs.thi.ng/umbrella/server/functions/referrerPolicy-1.html)
+- [`serverSession()`](https://docs.thi.ng/umbrella/server/functions/serverSession-1.html)
 - [`strictTransportSecurity()`](https://docs.thi.ng/umbrella/server/functions/strictTransportSecurity.html)
 
 #### Custom interceptors
