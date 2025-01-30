@@ -114,9 +114,6 @@
 		"./interceptors/referrer-policy": {
 			"default": "./interceptors/referrer-policy.js"
 		},
-		"./interceptors/session": {
-			"default": "./interceptors/session.js"
-		},
 		"./interceptors/strict-transport": {
 			"default": "./interceptors/strict-transport.js"
 		},
@@ -128,6 +125,12 @@
 		},
 		"./server": {
 			"default": "./server.js"
+		},
+		"./session/memory": {
+			"default": "./session/memory.js"
+		},
+		"./session/session": {
+			"default": "./session/session.js"
 		},
 		"./static": {
 			"default": "./static.js"

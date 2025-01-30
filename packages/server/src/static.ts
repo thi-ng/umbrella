@@ -10,7 +10,7 @@ import { isUnmodified } from "./utils/cache.js";
 /**
  * Static file configuration options.
  */
-export interface StaticOpts {
+export interface StaticOpts<CTX extends RequestCtx = RequestCtx> {
 	/**
 	 * Path to local root directory for static assets. Also see
 	 * {@link StaticOpts.prefix}
@@ -34,7 +34,7 @@ export interface StaticOpts {
 	/**
 	 * Additional route specific interceptors.
 	 */
-	intercept: Interceptor[];
+	intercept: Interceptor<CTX>[];
 	/**
 	 * Additional common headers (e.g. cache control) for all static files
 	 */
@@ -51,6 +51,13 @@ export interface StaticOpts {
 	 * file is guaranteed to exist when this function is called.
 	 */
 	etag: Fn<string, MaybePromise<string>>;
+	/**
+	 * If true, the route will have its `auth` flag enabled, e.g. for use with
+	 * the {@link authenticateWith} interceptor.
+	 *
+	 * @defaultValue false
+	 */
+	auth: boolean;
 }
 
 /**
@@ -60,17 +67,19 @@ export interface StaticOpts {
  *
  * @param opts
  */
-export const staticFiles = ({
+export const staticFiles = <CTX extends RequestCtx = RequestCtx>({
 	prefix = "static",
 	rootDir = ".",
 	intercept = [],
 	filter = () => true,
 	compress = false,
+	auth = false,
 	etag,
 	headers,
-}: Partial<StaticOpts> = {}): ServerRoute => ({
+}: Partial<StaticOpts<CTX>> = {}): ServerRoute<CTX> => ({
 	id: "__static",
 	match: [prefix, "+"],
+	auth,
 	handlers: {
 		head: {
 			fn: async (ctx) => {

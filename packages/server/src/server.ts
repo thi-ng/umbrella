@@ -1,4 +1,4 @@
-import type { Fn, Fn0 } from "@thi.ng/api";
+import { identity, type Fn, type Fn0 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { readText } from "@thi.ng/file-io";
 import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
@@ -21,17 +21,21 @@ import type {
 } from "./api.js";
 import { parseCoookies } from "./utils/cookies.js";
 import { parseSearchParams } from "./utils/formdata.js";
+import { upper } from "@thi.ng/strings";
 
 const MISSING = "__missing";
 
-export class Server {
+export class Server<CTX extends RequestCtx = RequestCtx> {
 	logger: ILogger;
-	router: Router;
+	router: Router<CompiledServerRoute<CTX>>;
 	server!: http.Server;
 
-	constructor(public opts: Partial<ServerOpts> = {}) {
+	protected augmentCtx: Fn<RequestCtx, CTX>;
+
+	constructor(public opts: Partial<ServerOpts<CTX>> = {}) {
 		this.logger = opts.logger ?? new ConsoleLogger("server");
-		const routes: ServerRoute[] = [
+		this.augmentCtx = opts.context ?? <any>identity;
+		const routes: ServerRoute<CTX>[] = [
 			{
 				id: MISSING,
 				match: ["__404__"],
@@ -83,7 +87,10 @@ export class Server {
 		return true;
 	}
 
-	async listener(req: http.IncomingMessage, res: http.ServerResponse) {
+	protected async listener(
+		req: http.IncomingMessage,
+		res: http.ServerResponse
+	) {
 		const url = new URL(req.url!, `http://${req.headers.host}`);
 		if (this.opts.host && this.opts.host !== url.host) {
 			res.writeHead(503).end();
@@ -96,9 +103,11 @@ export class Server {
 			const route = <CompiledServerRoute>(
 				this.router.routeForID(match.id)!.spec
 			);
-			const rawCookies = req.headers["set-cookie"]?.join(";");
+			const rawCookies =
+				req.headers["cookie"] || req.headers["set-cookie"]?.join(";");
 			const cookies = rawCookies ? parseCoookies(rawCookies) : {};
-			const ctx: RequestCtx = {
+			const ctx = this.augmentCtx({
+				// @ts-ignore
 				server: this,
 				logger: this.logger,
 				req,
@@ -108,7 +117,7 @@ export class Server {
 				cookies,
 				route,
 				match,
-			};
+			});
 			if (match.id === MISSING) {
 				this.runHandler(route.handlers.get!, ctx);
 				return;
@@ -116,6 +125,12 @@ export class Server {
 			let method = <Method>(
 				(ctx.query?.__method || req.method!.toLowerCase())
 			);
+			if (method === "options" && !route.handlers.options) {
+				res.writeHead(204, {
+					allow: Object.keys(route.handlers).map(upper).join(", "),
+				}).end();
+				return;
+			}
 			if (
 				method === "head" &&
 				!route.handlers.head &&
@@ -135,8 +150,8 @@ export class Server {
 		}
 	}
 
-	async runHandler({ fn, pre, post }: CompiledHandler, ctx: RequestCtx) {
-		const runPhase = async (fns: Fn<RequestCtx, InterceptorResult>[]) => {
+	protected async runHandler({ fn, pre, post }: CompiledHandler, ctx: CTX) {
+		const runPhase = async (fns: Fn<CTX, InterceptorResult>[]) => {
 			for (let f of fns) {
 				if (!(await f(ctx))) {
 					ctx.res.end();
@@ -158,12 +173,12 @@ export class Server {
 		}
 	}
 
-	protected compileRoute(route: ServerRoute): CompiledServerRoute {
+	protected compileRoute(route: ServerRoute<CTX>): CompiledServerRoute<CTX> {
 		const compilePhase = (
-			handler: RequestHandler,
+			handler: RequestHandler<CTX>,
 			phase: "pre" | "post"
 		) => {
-			const fns: Fn<RequestCtx, InterceptorResult>[] = [];
+			const fns: Fn<CTX, InterceptorResult>[] = [];
 			for (let x of this.opts.intercept ?? []) {
 				if (x[phase]) fns.push(x[phase].bind(x));
 			}
@@ -178,7 +193,7 @@ export class Server {
 					: fns
 				: undefined;
 		};
-		const result: CompiledServerRoute = { ...route, handlers: {} };
+		const result: CompiledServerRoute<CTX> = { ...route, handlers: {} };
 		for (let method in route.handlers) {
 			const handler = route.handlers[<Method>method]!;
 			result.handlers[<Method>method] = {
@@ -259,4 +274,6 @@ export class Server {
 	}
 }
 
-export const server = (opts?: Partial<ServerOpts>) => new Server(opts);
+export const server = <CTX extends RequestCtx>(
+	opts?: Partial<ServerOpts<CTX>>
+) => new Server(opts);

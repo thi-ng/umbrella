@@ -16,12 +16,16 @@ import {
 	serverSession,
 	staticFiles,
 	strictTransportSecurity,
+	type RequestCtx,
+	type ServerSession,
 } from "../src/index.js";
 
 test("server", async (done) => {
-	type TestSession = { id: string; user?: string };
-	const server = new Server({
+	type TestCtx = RequestCtx & { extra: string };
+	type TestSession = ServerSession & { user?: string };
+	const server = new Server<TestCtx>({
 		logger: NULL_LOGGER,
+		context: (ctx) => ({ ...ctx, extra: "dummy" }),
 		routes: [
 			staticFiles({
 				rootDir: join(resolve(__dirname), "fixtures"),
@@ -32,9 +36,10 @@ test("server", async (done) => {
 				id: "hello",
 				match: "/hello/?name",
 				handlers: {
-					get: async ({ cookies, res, match, query }) => {
+					get: async ({ cookies, res, match, query, extra }) => {
 						expect(cookies).toBeObject();
 						expect(query).toBeObject();
+						expect(extra).toBe("dummy");
 						res.writeHead(200, {
 							"content-type": "text/plain",
 						}).end(
@@ -55,7 +60,7 @@ test("server", async (done) => {
 			strictTransportSecurity(3600),
 			cacheControl({ maxAge: 3600, mustRevalidate: true }),
 			injectHeaders({ "x-foo": "bar" }),
-			serverSession<TestSession>({
+			serverSession<TestCtx, TestSession>({
 				factory: (ctx) => ({ id: "1234", user: ctx.cookies?.name }),
 			}),
 			{

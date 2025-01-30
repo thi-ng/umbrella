@@ -19,12 +19,11 @@ export const logRequest = (
 ): Interceptor => {
 	const method = __method(level);
 	return {
-		pre: ({ logger, req, match, query }) => {
+		pre: ({ logger, req, match, query, cookies }) => {
 			logger[method]("request route", req.method, match);
 			logger[method]("request headers", req.headers);
-			if (Object.keys(query).length) {
-				logger[method]("request query", query);
-			}
+			logger[method]("request cookies", cookies);
+			logger[method]("request query", query);
 			return true;
 		},
 	};

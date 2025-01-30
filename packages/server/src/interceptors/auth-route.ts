@@ -15,7 +15,9 @@ import type { Interceptor, RequestCtx } from "../api.js";
  *
  * @param pred
  */
-export const authenticateWith = (pred: Predicate<RequestCtx>): Interceptor => ({
+export const authenticateWith = <CTX extends RequestCtx>(
+	pred: Predicate<CTX>
+): Interceptor<CTX> => ({
 	pre: (ctx) => {
 		if (ctx.route.auth && !pred(ctx)) {
 			ctx.server.unauthorized(ctx.res);

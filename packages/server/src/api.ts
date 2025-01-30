@@ -3,9 +3,17 @@ import type { ILogger } from "@thi.ng/logger";
 import type { Route, RouteMatch } from "@thi.ng/router";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { Server } from "./server.js";
-import type { ServerSession } from "./interceptors/session.js";
 
-export interface ServerOpts {
+export type Method =
+	| "get"
+	| "put"
+	| "post"
+	| "delete"
+	| "head"
+	| "options"
+	| "patch";
+
+export interface ServerOpts<CTX extends RequestCtx = RequestCtx> {
 	logger: ILogger;
 	/**
 	 * SSL configuration
@@ -30,7 +38,7 @@ export interface ServerOpts {
 	 * Initial list of routes (more can be added dynamically via
 	 * {@link Server.addRoutes}).
 	 */
-	routes: ServerRoute[];
+	routes: ServerRoute<CTX>[];
 	/**
 	 * Route prefix. Default: `/`. All routes are assumed to have this prefix
 	 * prepended. If given, the prefix MUST end with `/`.
@@ -45,15 +53,26 @@ export interface ServerOpts {
 	 * Interceptors (aka pre/post middlewares) which are to be applied to all
 	 * route handlers (in the given order).
 	 */
-	intercept: Interceptor[];
+	intercept: Interceptor<CTX>[];
+	/**
+	 * User defined function to augment the {@link RequestCtx} object for each
+	 * request before processing its handler & interceptors.
+	 */
+	context: Fn<RequestCtx, CTX>;
 }
 
-export interface ServerRoute extends Route {
-	handlers: Partial<Record<Method, RequestHandler>>;
+export interface ServerRoute<CTX extends RequestCtx = RequestCtx>
+	extends Route {
+	handlers: Partial<Record<Method, RequestHandler<CTX>>>;
 }
 
-export interface CompiledServerRoute extends Route {
-	handlers: Partial<Record<Method, CompiledHandler>>;
+/**
+ * Version of {@link ServerRoute} whose handlers/interceptors already have been
+ * pre-processed.
+ */
+export interface CompiledServerRoute<CTX extends RequestCtx = RequestCtx>
+	extends Route {
+	handlers: Partial<Record<Method, CompiledHandler<CTX>>>;
 }
 
 export interface RequestCtx {
@@ -67,17 +86,20 @@ export interface RequestCtx {
 	query: Record<string, any>;
 	cookies?: Record<string, string>;
 	session?: ServerSession;
-	[id: string]: any;
 }
 
-export type HandlerResult = MaybePromise<Maybe<RequestCtx> | void>;
+export type HandlerResult = MaybePromise<void>;
 
-export type RequestHandler =
-	| Fn<RequestCtx, HandlerResult>
-	| InterceptedRequestHandler;
+export type InterceptorResult = MaybePromise<boolean>;
 
-export interface InterceptedRequestHandler {
-	fn: Fn<RequestCtx, HandlerResult>;
+export type RequestHandler<CTX extends RequestCtx = RequestCtx> =
+	| Fn<CTX, HandlerResult>
+	| InterceptedRequestHandler<CTX>;
+
+export interface InterceptedRequestHandler<
+	CTX extends RequestCtx = RequestCtx
+> {
+	fn: Fn<CTX, HandlerResult>;
 	/**
 	 * List of interceptors which will be executed when processing the main
 	 * handler {@link InterceptedRequestHandler.fn}.
@@ -94,16 +116,16 @@ export interface InterceptedRequestHandler {
 	 * If an interceptor function returns false, further processing stops and
 	 * response will be closed.
 	 */
-	intercept: Interceptor[];
+	intercept: Interceptor<CTX>[];
 }
 
-export interface CompiledHandler {
-	fn: Fn<RequestCtx, HandlerResult>;
-	pre?: Fn<RequestCtx, InterceptorResult>[];
-	post?: Fn<RequestCtx, InterceptorResult>[];
+export interface CompiledHandler<CTX extends RequestCtx = RequestCtx> {
+	fn: Fn<CTX, HandlerResult>;
+	pre?: Fn<CTX, InterceptorResult>[];
+	post?: Fn<CTX, InterceptorResult>[];
 }
 
-export interface Interceptor {
+export interface Interceptor<CTX extends RequestCtx = RequestCtx> {
 	/**
 	 * Interceptor function which will be run BEFORE the main route handler (aka
 	 * {@link InterceptedRequestHandler.fn}). If an interceptor needs to cancel
@@ -111,23 +133,49 @@ export interface Interceptor {
 	 * pre-interceptors, the main handler and all post-interceptors will be
 	 * skipped.
 	 */
-	pre?: Fn<RequestCtx, InterceptorResult>;
+	pre?: Fn<CTX, InterceptorResult>;
 	/**
 	 * Interceptor function which will be run AFTER the main route handler (aka
 	 * {@link InterceptedRequestHandler.fn}). If an interceptor needs to cancel
 	 * the request processing it must return `false`. In this case any further
 	 * post-interceptors will be skipped.
 	 */
-	post?: Fn<RequestCtx, InterceptorResult>;
+	post?: Fn<CTX, InterceptorResult>;
 }
 
-export type InterceptorResult = MaybePromise<boolean>;
+export interface ServerSession {
+	id: string;
+	flash?: FlashMsg;
+}
 
-export type Method =
-	| "get"
-	| "put"
-	| "post"
-	| "delete"
-	| "head"
-	| "options"
-	| "patch";
+export interface FlashMsg {
+	type: "success" | "info" | "warn" | "error";
+	body: any;
+}
+
+export interface ISessionStore<T extends ServerSession = ServerSession> {
+	/**
+	 * Attempts to retrieve the session for given `id`.
+	 *
+	 * @param id
+	 */
+	get(id: string): MaybePromise<Maybe<T>>;
+	/**
+	 * Adds given `session` to underlying storage.
+	 *
+	 * @param session
+	 */
+	set(session: T): MaybePromise<boolean>;
+	/**
+	 * Attempts to delete the session for given `id` from storage. Returns true
+	 * if successful.
+	 *
+	 * @param id
+	 */
+	delete(id: string): MaybePromise<boolean>;
+	/**
+	 * Configured Time-To-Live for stored sessions. Will also be used to
+	 * configure the `max-age` attribute of the session ID cookie.
+	 */
+	readonly ttl: number;
+}
