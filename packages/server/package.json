@@ -90,6 +90,7 @@
 		"./*.js",
 		"./*.d.ts",
 		"interceptors",
+		"session",
 		"utils"
 	],
 	"exports": {
