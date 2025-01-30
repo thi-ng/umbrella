@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-29T16:25:48Z
+- **Last updated**: 2025-01-30T15:45:22Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.2.0) (2025-01-30)
+
+#### 🚀 Features
+
+- add generics, various other updates ([a340f65](https://github.com/thi-ng/umbrella/commit/a340f65))
+  - add generics to most main types/interfaces
+  - refactor `SessionInterceptor` as class w/ pluggable storage
+  - add `ISessionStore` and `InMemorySessionStore` impl
+  - update ServerOpts to allow augmenting request context object
+  - add default HTTP OPTIONS handler
+  - update Server cookie parsing
+  - add StaticOpts.auth flag
+  - update logRequest() interceptor
+  - update pkg exports
+  - update tests
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.1.0) (2025-01-29)
 
