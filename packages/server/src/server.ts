@@ -54,9 +54,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 	}
 
 	async start() {
-		const ssl = this.opts.ssl;
-		const port = this.opts.port ?? (ssl ? 443 : 8080);
-		const host = this.opts.host ?? "localhost";
+		const { ssl, host = "localhost", port = ssl ? 443 : 8080 } = this.opts;
 		try {
 			this.server = ssl
 				? https.createServer(
@@ -142,7 +140,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 			if (handler) {
 				this.runHandler(handler, ctx);
 			} else {
-				res.writeHead(405).end();
+				this.notAllowed(res);
 			}
 		} catch (e) {
 			this.logger.warn("error:", (<Error>e).message);
@@ -205,7 +203,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 		return result;
 	}
 
-	addRoutes(routes: ServerRoute[]) {
+	addRoutes(routes: ServerRoute<CTX>[]) {
 		for (let r of routes) {
 			this.logger.debug("registering route:", r.id, r.match);
 		}
@@ -253,16 +251,28 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 		});
 	}
 
-	unauthorized(res: http.ServerResponse) {
-		res.writeHead(403, "Forbidden").end();
-	}
-
 	unmodified(res: http.ServerResponse) {
 		res.writeHead(304, "Not modified").end();
 	}
 
-	missing(res: http.ServerResponse) {
-		res.writeHead(404, "Not found").end();
+	unauthorized(res: http.ServerResponse, body?: any) {
+		res.writeHead(401, "Unauthorized").end(body);
+	}
+
+	forbidden(res: http.ServerResponse, body?: any) {
+		res.writeHead(403, "Forbidden").end(body);
+	}
+
+	missing(res: http.ServerResponse, body?: any) {
+		res.writeHead(404, "Not found").end(body);
+	}
+
+	notAllowed(res: http.ServerResponse, body?: any) {
+		res.writeHead(405, "Method not allowed").end(body);
+	}
+
+	notAcceptable(res: http.ServerResponse, body?: any) {
+		res.writeHead(406, "Not acceptable").end(body);
 	}
 
 	redirectTo(res: http.ServerResponse, location: string) {
