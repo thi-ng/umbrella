@@ -59,16 +59,14 @@ export class SessionInterceptor<
 	}
 
 	async pre(ctx: CTX) {
-		const { res, logger, cookies } = ctx;
-		const id = cookies?.[this.cookieName];
+		const id = ctx.cookies?.[this.cookieName];
 		let session = id ? await this.store.get(id) : undefined;
 		if (!session) {
-			session = this.factory(ctx);
-			logger.info("new session:", session.id);
-			this.store.set(session);
+			session = await this.newSession(ctx);
+			if (!session) return false;
 		}
 		ctx.session = session;
-		this.withSession(res, session.id);
+		this.withSession(ctx.res, session.id);
 		return true;
 	}
 
@@ -83,8 +81,18 @@ export class SessionInterceptor<
 		}
 	}
 
+	async newSession(ctx: CTX) {
+		const session = this.factory(ctx);
+		ctx.logger.info("new session:", session.id);
+		if (!(await this.store.set(session))) {
+			ctx.logger.warn("could not store session...");
+			return;
+		}
+		return session;
+	}
+
 	withSession(res: ServerResponse, sessionID: string) {
-		res.appendHeader(
+		return res.appendHeader(
 			"set-cookie",
 			`${this.cookieName}=${sessionID};Max-Age=${this.store.ttl};${this.cookieOpts}`
 		);

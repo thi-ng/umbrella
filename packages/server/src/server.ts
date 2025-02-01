@@ -4,9 +4,11 @@ import { readText } from "@thi.ng/file-io";
 import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
 import { preferredTypeForPath } from "@thi.ng/mime";
 import { Router, type RouteMatch } from "@thi.ng/router";
+import { upper } from "@thi.ng/strings";
 import { createReadStream } from "node:fs";
 import * as http from "node:http";
 import * as https from "node:https";
+import { isIPv6 } from "node:net";
 import { pipeline, Transform } from "node:stream";
 import { createBrotliCompress, createDeflate, createGzip } from "node:zlib";
 import type {
@@ -21,26 +23,29 @@ import type {
 } from "./api.js";
 import { parseCoookies } from "./utils/cookies.js";
 import { parseSearchParams } from "./utils/formdata.js";
-import { upper } from "@thi.ng/strings";
+import { isMatchingHost, normalizeIPv6Address } from "./utils/host.js";
 
 const MISSING = "__missing";
 
 export class Server<CTX extends RequestCtx = RequestCtx> {
 	logger: ILogger;
 	router: Router<CompiledServerRoute<CTX>>;
-	server!: http.Server;
+	server!: http.Server<typeof http.IncomingMessage, typeof ServerResponse>;
+	host: string;
 
 	protected augmentCtx: Fn<RequestCtx, CTX>;
 
 	constructor(public opts: Partial<ServerOpts<CTX>> = {}) {
 		this.logger = opts.logger ?? new ConsoleLogger("server");
+		this.host = opts.host ?? "localhost";
+		if (isIPv6(this.host)) this.host = normalizeIPv6Address(this.host);
 		this.augmentCtx = opts.context ?? <any>identity;
 		const routes: ServerRoute<CTX>[] = [
 			{
 				id: MISSING,
 				match: ["__404__"],
 				handlers: {
-					get: async ({ res }) => this.missing(res),
+					get: async ({ res }) => res.missing(),
 				},
 			},
 			...(this.opts.routes ?? []),
@@ -61,10 +66,14 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 						{
 							key: readText(ssl.key, this.logger),
 							cert: readText(ssl.cert, this.logger),
+							ServerResponse,
 						},
 						this.listener.bind(this)
 				  )
-				: http.createServer({}, this.listener.bind(this));
+				: http.createServer(
+						{ ServerResponse },
+						this.listener.bind(this)
+				  );
 			this.server.listen(port, host, undefined, () => {
 				this.logger.info(
 					`starting server: http${ssl ? "s" : ""}://${host}:${port}`
@@ -85,17 +94,17 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 		return true;
 	}
 
-	protected async listener(
-		req: http.IncomingMessage,
-		res: http.ServerResponse
-	) {
-		const url = new URL(req.url!, `http://${req.headers.host}`);
-		if (this.opts.host && this.opts.host !== url.host) {
-			res.writeHead(503).end();
-			return;
-		}
-		const path = decodeURIComponent(url.pathname);
+	protected async listener(req: http.IncomingMessage, res: ServerResponse) {
 		try {
+			const url = new URL(req.url!, `http://${req.headers.host}`);
+			if (
+				this.opts.host &&
+				!isMatchingHost(url.hostname, this.opts.host)
+			) {
+				res.writeHead(503).end();
+				return;
+			}
+			const path = decodeURIComponent(url.pathname);
 			const query = parseSearchParams(url.searchParams);
 			const match = this.router.route(path)!;
 			const route = <CompiledServerRoute>(
@@ -140,7 +149,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 			if (handler) {
 				this.runHandler(handler, ctx);
 			} else {
-				this.notAllowed(res);
+				res.notAllowed();
 			}
 		} catch (e) {
 			this.logger.warn("error:", (<Error>e).message);
@@ -245,45 +254,59 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 					: pipeline(src, res, finalize);
 			} catch (e) {
 				this.logger.warn((<Error>e).message);
-				this.missing(res);
+				res.missing();
 				resolve();
 			}
 		});
 	}
 
-	unmodified(res: http.ServerResponse) {
-		res.writeHead(304, "Not modified").end();
-	}
-
-	unauthorized(res: http.ServerResponse, body?: any) {
-		res.writeHead(401, "Unauthorized").end(body);
-	}
-
-	forbidden(res: http.ServerResponse, body?: any) {
-		res.writeHead(403, "Forbidden").end(body);
-	}
-
-	missing(res: http.ServerResponse, body?: any) {
-		res.writeHead(404, "Not found").end(body);
-	}
-
-	notAllowed(res: http.ServerResponse, body?: any) {
-		res.writeHead(405, "Method not allowed").end(body);
-	}
-
-	notAcceptable(res: http.ServerResponse, body?: any) {
-		res.writeHead(406, "Not acceptable").end(body);
-	}
-
-	redirectTo(res: http.ServerResponse, location: string) {
-		res.writeHead(302, { location }).end();
-	}
-
-	redirectToRoute(res: http.ServerResponse, route: RouteMatch) {
-		this.redirectTo(res, this.router.format(route));
+	redirectToRoute(res: ServerResponse, route: RouteMatch) {
+		res.redirectTo(this.router.format(route));
 	}
 }
 
 export const server = <CTX extends RequestCtx>(
 	opts?: Partial<ServerOpts<CTX>>
 ) => new Server(opts);
+
+/**
+ * Extended version of the default NodeJS ServerResponse with additional methods
+ * for various commonly used HTTP statuses/errors.
+ */
+export class ServerResponse extends http.ServerResponse<http.IncomingMessage> {
+	noContent(headers?: http.OutgoingHttpHeaders) {
+		this.writeHead(204, headers).end();
+	}
+
+	redirectTo(location: string, headers?: http.OutgoingHttpHeaders) {
+		this.writeHead(302, { ...headers, location }).end();
+	}
+
+	seeOther(location: string, headers?: http.OutgoingHttpHeaders) {
+		this.writeHead(303, { ...headers, location }).end();
+	}
+
+	unmodified(headers?: http.OutgoingHttpHeaders) {
+		this.writeHead(304, headers).end();
+	}
+
+	unauthorized(headers?: http.OutgoingHttpHeaders, body?: any) {
+		this.writeHead(401, headers).end(body);
+	}
+
+	forbidden(headers?: http.OutgoingHttpHeaders, body?: any) {
+		this.writeHead(403, headers).end(body);
+	}
+
+	missing(headers?: http.OutgoingHttpHeaders, body?: any) {
+		this.writeHead(404, headers).end(body);
+	}
+
+	notAllowed(headers?: http.OutgoingHttpHeaders, body?: any) {
+		this.writeHead(405, headers).end(body);
+	}
+
+	notAcceptable(headers?: http.OutgoingHttpHeaders, body?: any) {
+		this.writeHead(406, headers).end(body);
+	}
+}

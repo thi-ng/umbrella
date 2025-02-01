@@ -20,7 +20,7 @@ export const authenticateWith = <CTX extends RequestCtx>(
 ): Interceptor<CTX> => ({
 	pre: (ctx) => {
 		if (ctx.route.auth && !pred(ctx)) {
-			ctx.server.unauthorized(ctx.res);
+			ctx.res.unauthorized();
 			return false;
 		}
 		return true;

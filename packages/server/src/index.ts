@@ -16,5 +16,6 @@ export * from "./session/memory.js";
 
 export * from "./utils/cookies.js";
 export * from "./utils/cache.js";
+export * from "./utils/host.js";
 export * from "./utils/formdata.js";
 export * from "./utils/multipart.js";

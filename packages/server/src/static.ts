@@ -125,12 +125,12 @@ const __fileHeaders = async (
 	headers?: OutgoingHttpHeaders
 ) => {
 	if (!(existsSync(path) && filter(path))) {
-		return ctx.server.missing(ctx.res);
+		return ctx.res.missing();
 	}
 	if (etag) {
 		const etagValue = await etag(path);
 		return isUnmodified(etagValue, ctx.req.headers["if-none-match"])
-			? ctx.server.unmodified(ctx.res)
+			? ctx.res.unmodified()
 			: { ...headers, etag: etagValue };
 	}
 	return { ...headers };

@@ -1,8 +1,8 @@
 import type { Fn, Maybe, MaybePromise } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { Route, RouteMatch } from "@thi.ng/router";
-import type { IncomingMessage, ServerResponse } from "node:http";
-import type { Server } from "./server.js";
+import type { IncomingMessage } from "node:http";
+import type { ServerResponse, Server } from "./server.js";
 
 export type Method =
 	| "get"
