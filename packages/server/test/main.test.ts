@@ -9,6 +9,7 @@ import {
 	injectHeaders,
 	logRequest,
 	logResponse,
+	normalizeIPv6Address,
 	parseCoookies,
 	parseQuerystring,
 	referrerPolicy,
@@ -187,4 +188,23 @@ test("parseQueryString", () => {
 	expect(parseQuerystring("?__proto__=1")).toEqual({});
 	expect(() => parseQuerystring("?[0]=1")).toThrow();
 	expect(() => parseQuerystring("?a[=1")).toThrow();
+});
+
+test("normalizeIPv6Address", () => {
+	expect(normalizeIPv6Address("::")).toBe("0:0:0:0:0:0:0:0");
+	expect(normalizeIPv6Address("::1")).toBe("0:0:0:0:0:0:0:1");
+	expect(normalizeIPv6Address("1::")).toBe("1:0:0:0:0:0:0:0");
+	expect(normalizeIPv6Address("1::2")).toBe("1:0:0:0:0:0:0:2");
+	expect(normalizeIPv6Address("1:2::3")).toBe("1:2:0:0:0:0:0:3");
+	expect(normalizeIPv6Address("1::2:3")).toBe("1:0:0:0:0:0:2:3");
+	expect(
+		normalizeIPv6Address("0123:4567:89ab:cdef:0123:4567:89ab:cdef")
+	).toBe("123:4567:89ab:cdef:123:4567:89ab:cdef");
+	expect(() => normalizeIPv6Address(":")).toThrow();
+	expect(() => normalizeIPv6Address(":::")).toThrow();
+	expect(() => normalizeIPv6Address("1:2:3")).toThrow();
+	expect(() => normalizeIPv6Address("1:::")).toThrow();
+	expect(() => normalizeIPv6Address("1::2::3")).toThrow();
+	expect(() => normalizeIPv6Address("g::")).toThrow();
+	expect(() => normalizeIPv6Address("12345:::")).toThrow();
 });
