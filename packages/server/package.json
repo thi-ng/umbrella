@@ -145,6 +145,9 @@
 		"./utils/formdata": {
 			"default": "./utils/formdata.js"
 		},
+		"./utils/host": {
+			"default": "./utils/host.js"
+		},
 		"./utils/multipart": {
 			"default": "./utils/multipart.js"
 		}
