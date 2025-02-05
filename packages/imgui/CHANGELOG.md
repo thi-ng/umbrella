@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-02-05T13:48:14Z
+- **Last updated**: 2025-02-05T15:49:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.2.1) (2025-02-05)
+
+#### 🩹 Bug fixes
+
+- update dropdown label handling ([8dc2e93](https://github.com/thi-ng/umbrella/commit/8dc2e93))
+  - show label in default state if selected value is undefined
+    (e.g. because `value` was set to -1)
+- update ramp color handling, add `fill` option ([874d701](https://github.com/thi-ng/umbrella/commit/874d701))
 
 ## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.2.0) (2025-02-05)
 
