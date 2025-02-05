@@ -307,15 +307,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-01-29
+As of: 2025-02-05
 
-| Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/mime`](./packages/mime)                           | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                           | [changelog](./packages/mime/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/path`](./packages/path)                           | [![version](https://img.shields.io/npm/v/@thi.ng/path.svg)](https://www.npmjs.com/package/@thi.ng/path)                           | [changelog](./packages/path/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/paths`](./packages/paths)                         | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)                         | [changelog](./packages/paths/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server)                       | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)                       | [changelog](./packages/server/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers-async`](./packages/transducers-async) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async) | [changelog](./packages/transducers-async/CHANGELOG.md) |
+| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
+|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/imgui`](./packages/imgui)   | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)   | [changelog](./packages/imgui/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
