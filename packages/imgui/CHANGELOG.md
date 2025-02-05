@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-29T16:25:48Z
+- **Last updated**: 2025-02-05T13:48:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.2.0) (2025-02-05)
+
+#### 🚀 Features
+
+- add RampOpts.samples ([8aaaae5](https://github.com/thi-ng/umbrella/commit/8aaaae5))
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.1.0) (2024-10-07)
 
