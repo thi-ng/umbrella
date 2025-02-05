@@ -645,7 +645,7 @@ const app = () => {
 							id: "theme",
 							value: state.theme,
 							items: THEME_IDS,
-							title: "GUI theme",
+							label: "GUI theme",
 						})) !== undefined
 					) {
 						DB.resetIn(["theme"], res);
@@ -658,7 +658,7 @@ const app = () => {
 							id: "theme2",
 							value: state.theme,
 							items: THEME_IDS,
-							title: "GUI theme",
+							label: "GUI theme",
 						})) !== undefined
 					) {
 						DB.resetIn(["theme"], res);
