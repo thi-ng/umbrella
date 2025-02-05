@@ -26,6 +26,8 @@ export interface RampOpts extends Omit<ComponentOpts, "label"> {
 	 * User defined interpolation mode. Only used to compute internal hash of
 	 * ramp curve geometry, i.e. if the {@link RampOpts.ramp} interpolation
 	 * method changes, so should this mode value.
+	 *
+	 * @defaultValue 0
 	 */
 	mode?: number;
 	/**
@@ -34,6 +36,12 @@ export interface RampOpts extends Omit<ComponentOpts, "label"> {
 	 * @defaultValue 0.05
 	 */
 	eps?: number;
+	/**
+	 * Ramp resolution (number of vertices for area plot)
+	 *
+	 * @defaultValue 100
+	 */
+	samples?: number;
 }
 
 export const ramp = ({
@@ -44,6 +52,7 @@ export const ramp = ({
 	mode = 0,
 	info,
 	eps = 0.05,
+	samples = 100,
 }: RampOpts) => {
 	const { x, y, w, h } = layoutBox(layout);
 	const maxX = x + w;
@@ -93,7 +102,7 @@ export const ramp = ({
 					[
 						[x, maxY],
 						mix2([], pos, maxPos, [0, stops[0][1]]),
-						...__rampVertices(ramp, pos, maxPos),
+						...__rampVertices(ramp, pos, maxPos, samples),
 						mix2([], pos, maxPos, [1, stops[stops.length - 1][1]]),
 						[maxX, maxY],
 					],
@@ -131,7 +140,7 @@ const __rampVertices = (
 	ramp: Ramp<number>,
 	pos: Vec,
 	maxPos: Vec,
-	numSamples = 100
+	numSamples: number
 ) => map((p) => mix2(p, pos, maxPos, p), ramp.samples(numSamples));
 
 /** @internal */
