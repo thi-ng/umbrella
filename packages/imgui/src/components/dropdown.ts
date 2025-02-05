@@ -89,7 +89,7 @@ export const dropdown = ({
 				gui,
 				layout: box,
 				id: `${id}-${value}`,
-				label: items[value],
+				label: items[value] ?? label,
 				labelHover: label,
 				info,
 			})
