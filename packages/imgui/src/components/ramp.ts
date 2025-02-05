@@ -14,7 +14,7 @@ import { clamp01_2 } from "@thi.ng/vectors/clamp";
 import { fit2 } from "@thi.ng/vectors/fit";
 import { hash } from "@thi.ng/vectors/hash";
 import { mix2 } from "@thi.ng/vectors/mix";
-import { Key, type ComponentOpts } from "../api.js";
+import { Key, type Color, type ComponentOpts } from "../api.js";
 import { isHoverSlider } from "../behaviors/slider.js";
 import type { IMGUI } from "../gui.js";
 import { layoutBox } from "../layout.js";
@@ -42,6 +42,10 @@ export interface RampOpts extends Omit<ComponentOpts, "label"> {
 	 * @defaultValue 100
 	 */
 	samples?: number;
+	/**
+	 * Optional fill color override (default: GUI text color)
+	 */
+	fill?: Color;
 }
 
 export const ramp = ({
@@ -53,6 +57,7 @@ export const ramp = ({
 	info,
 	eps = 0.05,
 	samples = 100,
+	fill = gui.textColor(false),
 }: RampOpts) => {
 	const { x, y, w, h } = layoutBox(layout);
 	const maxX = x + w;
@@ -62,7 +67,6 @@ export const ramp = ({
 	const key = hash([x, y, w, h]);
 	gui.registerID(id, key);
 	const box = gui.resource(id, key, () => rect([x, y], [w, h]));
-	const col = gui.textColor(false);
 	const hover = isHoverSlider(gui, id, box, "move");
 	const stops = ramp.stops;
 	let selID = -1;
@@ -106,7 +110,7 @@ export const ramp = ({
 						mix2([], pos, maxPos, [1, stops[stops.length - 1][1]]),
 						[maxX, maxY],
 					],
-					{ fill: col }
+					{ fill }
 				)
 			),
 			...stops.map(([t], i) => {
