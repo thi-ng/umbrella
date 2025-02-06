@@ -144,13 +144,18 @@ export interface Interceptor<CTX extends RequestCtx = RequestCtx> {
 }
 
 export interface ServerSession {
+	/**
+	 * Unique session ID
+	 */
 	id: string;
-	flash?: FlashMsg;
-}
-
-export interface FlashMsg {
-	type: "success" | "info" | "warn" | "error";
-	body: any;
+	/**
+	 * Client's remote IP address when session was originally created. To
+	 * counteract session fixation, each request's remote address is being
+	 * checked (by {@link SessionInterceptor.pre}) against this stored address.
+	 * If there's a mismatch between the two, then a new session will be
+	 * generated automatically.
+	 */
+	ip: string;
 }
 
 export interface ISessionStore<T extends ServerSession = ServerSession> {

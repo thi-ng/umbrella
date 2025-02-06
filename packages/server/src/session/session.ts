@@ -48,7 +48,11 @@ export class SessionInterceptor<
 
 	constructor({
 		store = inMemorySessionStore<SESSION>(),
-		factory = () => <SESSION>{ id: uuid() },
+		factory = (ctx) =>
+			<SESSION>{
+				id: uuid(),
+				ip: ctx.req.socket.remoteAddress,
+			},
 		cookieName = "__sid",
 		cookieOpts = "Secure;HttpOnly;SameSite=Strict;Path=/",
 	}: Partial<SessionOpts<CTX, SESSION>> = {}) {
@@ -61,7 +65,7 @@ export class SessionInterceptor<
 	async pre(ctx: CTX) {
 		const id = ctx.cookies?.[this.cookieName];
 		let session = id ? await this.store.get(id) : undefined;
-		if (!session) {
+		if (!session || session.ip !== ctx.req.socket.remoteAddress) {
 			session = await this.newSession(ctx);
 			if (!session) return false;
 		}
@@ -70,7 +74,7 @@ export class SessionInterceptor<
 		return true;
 	}
 
-	async delete(ctx: CTX, sessionID: string) {
+	async deleteSession(ctx: CTX, sessionID: string) {
 		if (await this.store.delete(sessionID)) {
 			ctx.logger.info("delete session:", sessionID);
 			ctx.session = undefined;
@@ -89,6 +93,23 @@ export class SessionInterceptor<
 			return;
 		}
 		return session;
+	}
+
+	/**
+	 * Calls {@link SessionInterceptor.newSession} to create a new session and,
+	 * if successful, associates it with current context & response. Deletes
+	 * existing session (if any). Returns new session object.
+	 *
+	 * @param ctx
+	 */
+	async replaceSession(ctx: CTX) {
+		const session = await this.newSession(ctx);
+		if (session) {
+			if (ctx.session?.id) this.store.delete(ctx.session.id);
+			ctx.session = session;
+			this.withSession(ctx.res, session.id);
+			return session;
+		}
 	}
 
 	withSession(res: ServerResponse, sessionID: string) {
