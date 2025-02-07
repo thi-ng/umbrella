@@ -17,10 +17,19 @@ import { HEX } from "@thi.ng/strings";
  *
  * @internal
  */
-export const isMatchingHost = (test: string, expected: string) =>
-	/^\[[0-9a-f:]+\]$/.test(test)
-		? normalizeIPv6Address(test.substring(1, test.length - 1)) === expected
-		: test === expected;
+export const isMatchingHost = (test: string, expected: string) => {
+	if (/^\[[0-9a-f:]{1,39}\]$/.test(test)) {
+		try {
+			return (
+				normalizeIPv6Address(test.substring(1, test.length - 1)) ===
+				expected
+			);
+		} catch (_) {
+			return false;
+		}
+	}
+	return test === expected;
+};
 
 /**
  * Parses given IPv6 address into an 8-tuple of 16bit uints. Throws error if

@@ -97,12 +97,13 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 	protected async listener(req: http.IncomingMessage, res: ServerResponse) {
 		try {
 			const url = new URL(req.url!, `http://${req.headers.host}`);
-			if (
-				this.opts.host &&
-				!isMatchingHost(url.hostname, this.opts.host)
-			) {
-				res.writeHead(503).end();
-				return;
+			if (this.opts.host && !isMatchingHost(url.hostname, this.host)) {
+				this.logger.debug(
+					"ignoring request, host mismatch:",
+					url.hostname,
+					this.host
+				);
+				return res.noResponse();
 			}
 			const path = decodeURIComponent(url.pathname);
 			const query = parseSearchParams(url.searchParams);
@@ -308,5 +309,17 @@ export class ServerResponse extends http.ServerResponse<http.IncomingMessage> {
 
 	notAcceptable(headers?: http.OutgoingHttpHeaders, body?: any) {
 		this.writeHead(406, headers).end(body);
+	}
+
+	rateLimit(headers?: http.OutgoingHttpHeaders, body?: any) {
+		this.writeHead(429, headers).end(body);
+	}
+
+	/**
+	 * HTTP 444. Indicates the server has returned no information to the client and closed
+	 * the connection (useful as a deterrent for malware)
+	 */
+	noResponse() {
+		this.writeHead(444).end();
 	}
 }

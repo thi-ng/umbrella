@@ -7,6 +7,7 @@ import {
 	crossOriginResourcePolicy,
 	etagFileHash,
 	injectHeaders,
+	isMatchingHost,
 	logRequest,
 	logResponse,
 	normalizeIPv6Address,
@@ -62,7 +63,11 @@ test("server", async (done) => {
 			cacheControl({ maxAge: 3600, mustRevalidate: true }),
 			injectHeaders({ "x-foo": "bar" }),
 			serverSession<TestCtx, TestSession>({
-				factory: (ctx) => ({ id: "1234", user: ctx.cookies?.name }),
+				factory: (ctx) => ({
+					id: "1234",
+					ip: ctx.req.socket.remoteAddress || "",
+					user: ctx.cookies?.name,
+				}),
 			}),
 			{
 				pre: ({ res }) => {
@@ -207,4 +212,24 @@ test("normalizeIPv6Address", () => {
 	expect(() => normalizeIPv6Address("1::2::3")).toThrow();
 	expect(() => normalizeIPv6Address("g::")).toThrow();
 	expect(() => normalizeIPv6Address("12345:::")).toThrow();
+});
+
+test("isMatchingHost", () => {
+	expect(isMatchingHost("[::1]", "0:0:0:0:0:0:0:1")).toBeTrue();
+	expect(
+		isMatchingHost(
+			"[0123:4567:89ab:cdef:0123:4567:89ab:cdef]",
+			"123:4567:89ab:cdef:123:4567:89ab:cdef"
+		)
+	).toBeTrue();
+	expect(
+		isMatchingHost(
+			"[0123:4567:89ab:cdef:0123:4567:89ab:cdeff]",
+			"123:4567:89ab:cdef:123:4567:89ab:cdef"
+		)
+	).toBeFalse();
+	// invalid ipv6 addr throws internal error
+	expect(isMatchingHost("[12345::1]", "ignore")).toBeFalse();
+	expect(isMatchingHost("::1", "0:0:0:0:0:0:0:1")).toBeFalse();
+	expect(isMatchingHost("localhost", "example.com")).toBeFalse();
 });
