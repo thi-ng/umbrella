@@ -147,7 +147,7 @@ For Node.js REPL:
 const ser = await import("@thi.ng/server");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.02 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.56 KB
 
 ## Dependencies
 
@@ -229,10 +229,12 @@ const app = srv.server<AppCtx>({
                     const { user, pass } = await srv.parseRequestFormData(ctx.req);
                     ctx.logger.info("login details", user, pass);
                     if (user === "thi.ng" && pass === "1234") {
-                        ctx.session!.user = user;
+                        // create new session for security reasons (session fixation)
+                        const newSession = await session.replaceSession(ctx)!;
+                        newSession!.user = user;
                         ctx.res.writeHead(200).end("logged in as " + user);
                     } else {
-                        ctx.res.writeHead(403).end("login failed");
+                        ctx.res.unauthorized({}, "login failed");
                     }
                 },
             },
@@ -246,7 +248,7 @@ const app = srv.server<AppCtx>({
             handlers: {
                 get: async (ctx) => {
                     // remove session & force expire session cookie
-                    await session.delete(ctx, ctx.session!.id);
+                    await session.deleteSession(ctx, ctx.session!.id);
                     ctx.res.writeHead(200).end("logged out");
                 },
             },
