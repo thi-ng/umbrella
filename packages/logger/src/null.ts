@@ -17,5 +17,6 @@ export const NULL_LOGGER: ILogger = Object.freeze({
 	info() {},
 	warn() {},
 	severe() {},
+	none() {},
 	logEntry() {},
 });

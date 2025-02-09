@@ -54,6 +54,8 @@ export abstract class ALogger implements ILogger {
 		this.log(LogLevel.SEVERE, args);
 	}
 
+	none() {}
+
 	protected log(level: LogLevel, args: any[]) {
 		this.level <= level &&
 			this.logEntry([level, this.id, Date.now(), ...args]);

@@ -68,6 +68,12 @@ export interface ILogger {
 	 */
 	severe(...args: any[]): void;
 	/**
+	 * Dummy method only. MUST not produce any logging effects.
+	 *
+	 * @param args
+	 */
+	none(...args: any[]): void;
+	/**
 	 * If this logger has a {@link ILogger.parent}, it will simply forward the
 	 * given log entry to it. Otherwise this method performs the actual logging.
 	 *
