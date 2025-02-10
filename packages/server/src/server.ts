@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity, type Fn, type Fn0 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { readText } from "@thi.ng/file-io";
@@ -106,14 +107,21 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 				return res.noResponse();
 			}
 			const path = decodeURIComponent(url.pathname);
-			const query = parseSearchParams(url.searchParams);
 			const match = this.router.route(path)!;
+			if (match.id === MISSING) return res.missing();
 			const route = <CompiledServerRoute>(
 				this.router.routeForID(match.id)!.spec
 			);
+			let method = <Method>req.method!.toLowerCase();
+			if (method === "options" && !route.handlers.options) {
+				return res.noContent({
+					allow: Object.keys(route.handlers).map(upper).join(", "),
+				});
+			}
 			const rawCookies =
 				req.headers["cookie"] || req.headers["set-cookie"]?.join(";");
 			const cookies = rawCookies ? parseCoookies(rawCookies) : {};
+			const query = parseSearchParams(url.searchParams);
 			const ctx = this.augmentCtx({
 				// @ts-ignore
 				server: this,
@@ -126,19 +134,6 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 				route,
 				match,
 			});
-			if (match.id === MISSING) {
-				this.runHandler(route.handlers.get!, ctx);
-				return;
-			}
-			let method = <Method>(
-				(ctx.query?.__method || req.method!.toLowerCase())
-			);
-			if (method === "options" && !route.handlers.options) {
-				res.writeHead(204, {
-					allow: Object.keys(route.handlers).map(upper).join(", "),
-				}).end();
-				return;
-			}
 			if (
 				method === "head" &&
 				!route.handlers.head &&
