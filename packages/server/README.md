@@ -147,7 +147,7 @@ For Node.js REPL:
 const ser = await import("@thi.ng/server");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.56 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.24 KB
 
 ## Dependencies
 
@@ -162,6 +162,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.56 KB
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 - [@thi.ng/router](https://github.com/thi-ng/umbrella/tree/develop/packages/router)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
 - [@thi.ng/uuid](https://github.com/thi-ng/umbrella/tree/develop/packages/uuid)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
