@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { TLRUCache } from "@thi.ng/cache";
 import type { ISessionStore, ServerSession } from "../api.js";
 

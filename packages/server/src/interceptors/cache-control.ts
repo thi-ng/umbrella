@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { kebab } from "@thi.ng/strings";
 import type { Interceptor } from "../api";
 

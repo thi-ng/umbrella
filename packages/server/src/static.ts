@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, MaybePromise, Predicate } from "@thi.ng/api";
 import { fileHash as $fileHash, type HashAlgo } from "@thi.ng/file-io";
 import { preferredTypeForPath } from "@thi.ng/mime";

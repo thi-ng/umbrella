@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { findSequence } from "@thi.ng/arrays";
 import { illegalArgs } from "@thi.ng/errors";
 import type { IncomingMessage } from "node:http";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray, isProtoPath } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
