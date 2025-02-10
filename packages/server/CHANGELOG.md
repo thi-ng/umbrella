@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-02-02T22:46:17Z
+- **Last updated**: 2025-02-10T21:44:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,36 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.4.0) (2025-02-10)
+
+#### 🚀 Features
+
+- update ServerSession & interceptor ([71d26bb](https://github.com/thi-ng/umbrella/commit/71d26bb))
+  - add `ServerSession.ip`
+  - update `SessionInterceptor` to validate stored IP addr
+  - rename `.delete()` => `.deleteSession()`
+  - add `.replaceSession()`
+  - remove obsolete `FlashMsg` (for now)
+- update ServerResponse, update host matching ([25a07f3](https://github.com/thi-ng/umbrella/commit/25a07f3))
+  - update `isMatchingHost()`
+  - add `ServerResponse.rateLimit()` and `.noResponse()`
+  - update tests
+- update SessionInterceptor to create signed cookie ([d240107](https://github.com/thi-ng/umbrella/commit/d240107))
+  - add `SessionOpts.secret`
+  - sign session ID with salt & SHA256
+  - add validateSession()
+  - update pre() interceptor
+- add `rateLimiter()` interceptor ([245cc9d](https://github.com/thi-ng/umbrella/commit/245cc9d))
+- add `measure()` interceptor ([4702e84](https://github.com/thi-ng/umbrella/commit/4702e84))
+  - refactor logRequest/Response() interceptors
+
+#### ⏱ Performance improvements
+
+- update Server 404 & OPTIONS handling, remove method override ([71307af](https://github.com/thi-ng/umbrella/commit/71307af))
+  - process 404 asap (without full request ctx)
+  - process default HTTP OPTIONS handler asap
+  - in both cases no interceptors will be run anymore
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.3.0) (2025-02-02)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/egf",
-	"version": "0.6.159",
+	"version": "0.6.160",
 	"description": "Extensible Graph Format",
 	"type": "module",
 	"module": "./index.js",
@@ -44,7 +44,7 @@
 		"@thi.ng/checks": "^3.6.22",
 		"@thi.ng/dot": "^2.1.94",
 		"@thi.ng/errors": "^2.5.25",
-		"@thi.ng/logger": "^3.0.30",
+		"@thi.ng/logger": "^3.1.0",
 		"@thi.ng/prefixes": "^2.3.36",
 		"@thi.ng/strings": "^3.9.4",
 		"@thi.ng/transducers-binary": "^2.1.152",

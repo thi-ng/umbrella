@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color",
-	"version": "5.7.22",
+	"version": "5.7.23",
 	"description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
 	"type": "module",
 	"module": "./index.js",
@@ -49,7 +49,7 @@
 		"@thi.ng/checks": "^3.6.22",
 		"@thi.ng/compare": "^2.4.11",
 		"@thi.ng/compose": "^3.0.22",
-		"@thi.ng/defmulti": "^3.0.58",
+		"@thi.ng/defmulti": "^3.0.59",
 		"@thi.ng/errors": "^2.5.25",
 		"@thi.ng/math": "^5.11.19",
 		"@thi.ng/random": "^4.1.10",
