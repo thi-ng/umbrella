@@ -50,6 +50,7 @@
 		"@thi.ng/paths": "^5.2.0",
 		"@thi.ng/router": "^4.1.17",
 		"@thi.ng/strings": "^3.9.4",
+		"@thi.ng/timestamp": "^1.1.4",
 		"@thi.ng/uuid": "^1.1.16"
 	},
 	"devDependencies": {
@@ -111,6 +112,12 @@
 		},
 		"./interceptors/logging": {
 			"default": "./interceptors/logging.js"
+		},
+		"./interceptors/measure": {
+			"default": "./interceptors/measure.js"
+		},
+		"./interceptors/rate-limit": {
+			"default": "./interceptors/rate-limit.js"
 		},
 		"./interceptors/referrer-policy": {
 			"default": "./interceptors/referrer-policy.js"

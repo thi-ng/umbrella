@@ -6146,6 +6146,7 @@ __metadata:
     "@thi.ng/paths": "npm:^5.2.0"
     "@thi.ng/router": "npm:^4.1.17"
     "@thi.ng/strings": "npm:^3.9.4"
+    "@thi.ng/timestamp": "npm:^1.1.4"
     "@thi.ng/uuid": "npm:^1.1.16"
     "@types/node": "npm:^22.10.10"
     esbuild: "npm:^0.24.2"
