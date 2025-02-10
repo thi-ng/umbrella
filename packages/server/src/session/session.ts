@@ -1,5 +1,8 @@
-import type { Fn } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
+import type { Fn, Maybe } from "@thi.ng/api";
+import { isNumber, isString } from "@thi.ng/checks";
 import { uuid } from "@thi.ng/uuid";
+import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import { ServerResponse } from "node:http";
 import type {
 	Interceptor,
@@ -14,14 +17,13 @@ export interface SessionOpts<
 	SESSION extends ServerSession = ServerSession
 > {
 	/**
-	 * Session storage implementation. Default: {@link InMemorySessionStore}.
-	 */
-	store: ISessionStore<SESSION>;
-	/**
-	 * Factory function to create a new session object. By default the object
-	 * only contains a {@link ServerSession.id} (UUID v4).
+	 * Factory function to create a new session object. See {@link createSession}.
 	 */
 	factory: Fn<CTX, SESSION>;
+	/**
+	 * Session storage implementation. Default: {@link InMemorySessionStore}.
+	 */
+	store?: ISessionStore<SESSION>;
 	/**
 	 * Session cookie name
 	 *
@@ -34,6 +36,11 @@ export interface SessionOpts<
 	 * @defaultValue "Secure;HttpOnly;SameSite=Strict;Path=/"
 	 */
 	cookieOpts?: string;
+	/**
+	 * HMAC key/secret used for signing cookies (using SHA256). Max length 64
+	 * bytes. If given as number, generates N random bytes.
+	 */
+	secret?: number | string | Buffer;
 }
 
 export class SessionInterceptor<
@@ -41,29 +48,40 @@ export class SessionInterceptor<
 	SESSION extends ServerSession = ServerSession
 > implements Interceptor<CTX>
 {
-	store: ISessionStore<SESSION>;
 	factory: Fn<CTX, SESSION>;
+	store: ISessionStore<SESSION>;
 	cookieName: string;
 	cookieOpts: string;
+	secret: Buffer;
 
 	constructor({
+		factory,
 		store = inMemorySessionStore<SESSION>(),
-		factory = (ctx) =>
-			<SESSION>{
-				id: uuid(),
-				ip: ctx.req.socket.remoteAddress,
-			},
 		cookieName = "__sid",
 		cookieOpts = "Secure;HttpOnly;SameSite=Strict;Path=/",
-	}: Partial<SessionOpts<CTX, SESSION>> = {}) {
-		this.store = store;
+		secret = 32,
+	}: SessionOpts<CTX, SESSION>) {
 		this.factory = factory;
+		this.store = store;
+		this.secret = isNumber(secret)
+			? randomBytes(secret)
+			: isString(secret)
+			? Buffer.from(secret)
+			: secret;
 		this.cookieName = cookieName;
 		this.cookieOpts = cookieOpts;
 	}
 
 	async pre(ctx: CTX) {
-		const id = ctx.cookies?.[this.cookieName];
+		const cookie = ctx.cookies?.[this.cookieName];
+		let id: Maybe<string>;
+		if (cookie) {
+			id = this.validateSession(cookie);
+			if (!id) {
+				ctx.res.forbidden();
+				return false;
+			}
+		}
 		let session = id ? await this.store.get(id) : undefined;
 		if (!session || session.ip !== ctx.req.socket.remoteAddress) {
 			session = await this.newSession(ctx);
@@ -113,10 +131,32 @@ export class SessionInterceptor<
 	}
 
 	withSession(res: ServerResponse, sessionID: string) {
+		const cookie = sessionID + ":" + randomBytes(8).toString("base64url");
+		const signature = createHmac("sha256", this.secret)
+			.update(cookie, "ascii")
+			.digest()
+			.toString("base64url");
 		return res.appendHeader(
 			"set-cookie",
-			`${this.cookieName}=${sessionID};Max-Age=${this.store.ttl};${this.cookieOpts}`
+			`${this.cookieName}=${cookie}:${signature};Max-Age=${this.store.ttl};${this.cookieOpts}`
 		);
+	}
+
+	validateSession(cookie: string) {
+		const parts = cookie.split(":");
+		if (parts.length < 3) return;
+		const actual = Buffer.from(parts[2], "base64url");
+		const expected = createHmac("sha256", this.secret)
+			.update(
+				cookie.substring(0, cookie.length - parts[2].length - 1),
+				"ascii"
+			)
+			.digest();
+		const sameLength = actual.length === expected.length;
+		return timingSafeEqual(sameLength ? actual : expected, expected) &&
+			sameLength
+			? parts[0]
+			: undefined;
 	}
 }
 
@@ -129,5 +169,21 @@ export const serverSession = <
 	CTX extends RequestCtx = RequestCtx,
 	SESSION extends ServerSession = ServerSession
 >(
-	opts?: Partial<SessionOpts<CTX, SESSION>>
+	opts: SessionOpts<CTX, SESSION>
 ) => new SessionInterceptor(opts);
+
+/**
+ * Creates a new basic {@link ServerSession}, using a UUID v4 for
+ * {@link ServerSession.id}.
+ *
+ * @remarks
+ * Intended to be used for {@link SessionOpts.factory} and/or as basis for
+ * creating custom session objects.
+ *
+ * @param ctx
+ */
+export const createSession = (ctx: RequestCtx) =>
+	<ServerSession>{
+		id: uuid(),
+		ip: ctx.req.socket.remoteAddress,
+	};
