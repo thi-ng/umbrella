@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { LogLevel, type LogLevelName } from "./api";
+import { LogLevel, type LogLevelName } from "./api.js";
 
 export const expandArgs = (args: any[]) =>
 	args.map((x) => (typeof x === "function" ? x() : x));
