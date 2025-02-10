@@ -1,11 +1,6 @@
-import { isString } from "@thi.ng/checks";
-import { LogLevel, type LogLevelName } from "@thi.ng/logger";
+// SPDX-License-Identifier: Apache-2.0
+import { LogLevel, methodForLevel, type LogLevelName } from "@thi.ng/logger";
 import type { Interceptor } from "../api.js";
-
-const __method = (level: LogLevel | LogLevelName) =>
-	<"fine" | "debug" | "info" | "warn" | "severe">(
-		(isString(level) ? level : LogLevel[level]).toLowerCase()
-	);
 
 /**
  * Pre-interceptor to log request details (route, headers, query string args)
@@ -17,7 +12,7 @@ const __method = (level: LogLevel | LogLevelName) =>
 export const logRequest = (
 	level: LogLevel | LogLevelName = "INFO"
 ): Interceptor => {
-	const method = __method(level);
+	const method = methodForLevel(level);
 	return {
 		pre: ({ logger, req, match, query, cookies }) => {
 			logger[method]("request route", req.method, match);
@@ -39,7 +34,7 @@ export const logRequest = (
 export const logResponse = (
 	level: LogLevel | LogLevelName = "INFO"
 ): Interceptor => {
-	const method = __method(level);
+	const method = methodForLevel(level);
 	return {
 		post: ({ logger, match, res }) => {
 			logger[method]("response status", res.statusCode, match);
