@@ -307,11 +307,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-02-05
+As of: 2025-02-10
 
 | Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
 |:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/imgui`](./packages/imgui)   | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)   | [changelog](./packages/imgui/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger) | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger) | [changelog](./packages/logger/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) |
 
 ### Algorithms & data structures
@@ -535,9 +535,9 @@ As of: 2025-02-05
 
 ### Network
 
-| Project                               | Version                                                                                                     | Changelog                                   | Description         |
-|---------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------|---------------------|
-| [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) | Minimal HTTP server |
+| Project                               | Version                                                                                                     | Changelog                                   | Description                                        |
+|---------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------|----------------------------------------------------|
+| [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) | Minimal, extensible, interceptor-based HTTP server |
 
 ### Randomness
 
