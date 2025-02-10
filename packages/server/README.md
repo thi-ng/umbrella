@@ -75,8 +75,10 @@ for more details.
 - [`crossOriginOpenerPolicy()`](https://docs.thi.ng/umbrella/server/functions/crossOriginOpenerPolicy-1.html): Policy header injection
 - [`crossOriginResourcePolicy()`](https://docs.thi.ng/umbrella/server/functions/crossOriginResourcePolicy-1.html): Policy header injection
 - [`injectHeaders()`](https://docs.thi.ng/umbrella/server/functions/injectHeaders.html): Arbitrary header injection
+- [`measure()`](https://docs.thi.ng/umbrella/server/functions/measure.html): Request process timing info
 - [`logRequest()`](https://docs.thi.ng/umbrella/server/functions/logRequest.html): Request detail logging
 - [`logResponse()`](https://docs.thi.ng/umbrella/server/functions/logResponse.html): Response logging
+- [`rateLimiter()`](https://docs.thi.ng/umbrella/server/functions/rateLimiter-1.html): Configurable rate limiting
 - [`referrerPolicy()`](https://docs.thi.ng/umbrella/server/functions/referrerPolicy-1.html): Policy header injection
 - [`serverSession()`](https://docs.thi.ng/umbrella/server/functions/serverSession-1.html): User defined in-memory sessions with TTL
 - [`strictTransportSecurity()`](https://docs.thi.ng/umbrella/server/functions/strictTransportSecurity.html): Policy header injection
