@@ -25,7 +25,7 @@
 	"thi.ng": {},
 	"devDependencies": {
 		"typescript": "^5.7.3",
-		"vite": "^5.4.14"
+		"vite": "^6.1.0"
 	},
 	"keywords": [
 		"browser",
