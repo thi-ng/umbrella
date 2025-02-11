@@ -307,12 +307,19 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-02-10
+As of: 2025-02-11
 
-| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
-|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger) | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger) | [changelog](./packages/logger/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) |
+| Status                                        | Package                                                   | Version                                                                                                                         | Changelog                                             |
+|:----------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hdiff`](./packages/hdiff)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)                       | [changelog](./packages/hdiff/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/ksuid`](./packages/ksuid)                       | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                       | [changelog](./packages/ksuid/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger)                     | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                     | [changelog](./packages/logger/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/meta-css`](./packages/meta-css)                 | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                 | [changelog](./packages/meta-css/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang)     | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)     | [changelog](./packages/pointfree-lang/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server)                     | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)                     | [changelog](./packages/server/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tangle`](./packages/tangle)                     | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                     | [changelog](./packages/tangle/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen) | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md) |
+
 
 ### Algorithms & data structures
 
