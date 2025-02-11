@@ -20,6 +20,7 @@ import { __equivMap } from "./internal/equiv.js";
 import { __inspectable } from "./internal/inspect.js";
 import { into } from "./into.js";
 
+/** @internal */
 interface HashMapState<K, V> {
 	hash: Fn<K, number>;
 	equiv: Predicate2<K>;
@@ -229,6 +230,7 @@ export class HashMap<K, V>
 		};
 	}
 
+	/** @internal */
 	protected find(key: K, $this: HashMapState<K, V>) {
 		const { bins, equiv, mask } = $this;
 		let i = mask;
@@ -241,6 +243,7 @@ export class HashMap<K, V>
 		return h;
 	}
 
+	/** @internal */
 	protected resize($this: HashMapState<K, V>) {
 		const src = $this.bins;
 		const cap = ($this.mask + 1) * 2;

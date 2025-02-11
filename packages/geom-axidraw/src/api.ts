@@ -8,7 +8,7 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  * Package-specific shape attributes used to control conversion behavior. MUST
  * be stored under the `__axi` attribute name.
  *
- * @remark
+ * @remarks
  * Important: TODO keep this in sync with
  * [PolylineOpts](https://docs.thi.ng/umbrella/axidraw/interfaces/PolylineOpts.html)
  *

@@ -37,7 +37,7 @@ export type TransformVerticesFn = {
  * provided function, which is being called for each vertex individually and
  * should produce a transformation matrix.
  *
- * @remark
+ * @remarks
  * Some shape types will be automatically converted to other types prior to
  * transformation because they cannot be reliably represented in their original
  * type anymore, this includes:

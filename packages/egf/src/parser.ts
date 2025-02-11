@@ -234,7 +234,7 @@ const __initContext = (ctx: Partial<ParseContext> = {}) => {
 	};
 };
 
-/** @interal */
+/** @internal */
 export const $parseFile = (path: string, ctx?: Partial<ParseContext>) => {
 	const $ctx = __initContext(ctx);
 	$ctx.file = path = resolvePath($ctx.cwd, path);
