@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-29T16:25:48Z
+- **Last updated**: 2025-02-11T10:30:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.18.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.18.0) (2025-02-11)
+
+#### 🚀 Features
+
+- update CLI wrapper, make `bun` optional ([a694c9d](https://github.com/thi-ng/umbrella/commit/a694c9d))
+  - check if `bun` is available, otherwise fallback to `node`
+  - update CLI args (add metacss pkg dir)
+  - update readme
 
 ### [0.17.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.17.8) (2025-01-14)
 

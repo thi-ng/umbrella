@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-01-29T16:25:48Z
+- **Last updated**: 2025-02-11T10:30:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@1.1.0) (2025-02-11)
+
+#### 🚀 Features
+
+- update CLI wrapper ([c92991c](https://github.com/thi-ng/umbrella/commit/c92991c))
+  - check if `bun` is available, otherwise fallback to `node`
 
 ### [0.3.129](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@0.3.129) (2024-06-21)
 
