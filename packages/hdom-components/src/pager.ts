@@ -97,7 +97,7 @@ export interface PagerOpts {
  * buttons then the pager will look like this (the `|` character here
  * indicates button group boundaries):
  *
- * ```text
+ * ```text noweb:no
  * << < | 4 5 6 | > >>
  * ```
  *
