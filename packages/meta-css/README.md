@@ -2762,12 +2762,12 @@ Sets padding to custom size
 npx @thi.ng/meta-css --help
 ```
 
-[Bun](https://bun.sh) is required instead of Node JS. The toolchain itself is
-distributed as CLI bundle with **no runtime dependencies**. The following
-dependencies are only shown for informational purposes and are (partially)
-included in the bundle.
+If [Bun](https://bun.sh) is installed, MetaCSS will use it instead of Node JS.
+The toolchain itself is distributed as CLI bundle with **no runtime
+dependencies**. The following dependencies are only shown for informational
+purposes and are (partially) included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.84 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.86 KB
 
 ## Dependencies
 

@@ -1052,10 +1052,10 @@ framework(s)...
 npx @thi.ng/meta-css --help
 ```
 
-[Bun](https://bun.sh) is required instead of Node JS. The toolchain itself is
-distributed as CLI bundle with **no runtime dependencies**. The following
-dependencies are only shown for informational purposes and are (partially)
-included in the bundle.
+If [Bun](https://bun.sh) is installed, MetaCSS will use it instead of Node JS.
+The toolchain itself is distributed as CLI bundle with **no runtime
+dependencies**. The following dependencies are only shown for informational
+purposes and are (partially) included in the bundle.
 
 {{pkg.size}}
 

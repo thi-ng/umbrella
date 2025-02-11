@@ -11,7 +11,7 @@ import { DOC } from "./doc.js";
 import { EXPORT } from "./export.js";
 import { GENERATE } from "./generate.js";
 
-const PKG = readJSON(join((<any>import.meta).dir, "package.json"));
+const PKG = readJSON(join(process.argv[2], "package.json"));
 
 cliApp<CommonOpts, AppCtx<any>>({
 	name: "metacss",
@@ -32,6 +32,7 @@ cliApp<CommonOpts, AppCtx<any>>({
 		if (ctx.opts.verbose) ctx.logger.level = LogLevel.DEBUG;
 		return { ...ctx, format: PRESET_ANSI16 };
 	},
+	start: 3,
 	usage: {
 		prefix: `
  █ █   █           │
