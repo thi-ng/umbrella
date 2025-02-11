@@ -10,7 +10,7 @@ import {
 } from "@thi.ng/args";
 import { readJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
-import { resolve } from "node:path";
+import { join } from "node:path";
 import type { TangleCtx } from "./api.js";
 import { tangleFile } from "./tangle.js";
 
@@ -29,9 +29,7 @@ const argOpts: Args<CLIOpts> = {
 	}),
 };
 
-export const INSTALL_DIR = resolve(`${process.argv[2]}/..`);
-
-export const PKG = readJSON(`${INSTALL_DIR}/package.json`);
+export const PKG = readJSON(join(process.argv[2], "package.json"));
 
 export const APP_NAME = PKG.name.split("/")[1];
 
