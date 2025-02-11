@@ -18,7 +18,7 @@ import { illegalArgs } from "@thi.ng/errors";
 import { readJSON, readText, writeJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
 import { mutIn } from "@thi.ng/paths";
-import { dirname, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
@@ -101,9 +101,7 @@ const argOpts: Args<CLIOpts> = {
 	}),
 };
 
-export const INSTALL_DIR = resolve(`${process.argv[2]}/..`);
-
-export const PKG = readJSON(`${INSTALL_DIR}/package.json`);
+export const PKG = readJSON(join(process.argv[2], "package.json"));
 
 export const APP_NAME = PKG.name.split("/")[1];
 

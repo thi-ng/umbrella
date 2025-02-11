@@ -2,11 +2,19 @@
 
 # https://stackoverflow.com/a/246128/294515
 SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do
+while [ -L "$SOURCE" ]; do
   DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
   SOURCE="$(readlink "$SOURCE")"
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+DIR="$(dirname $DIR)"
 
-/usr/bin/env node "$DIR/../cli.js" "$DIR" "$@"
+# prefer using bun
+if [ -x "$(command -v bun)" ]; then
+  CMD=bun
+else
+  CMD=node
+fi
+
+/usr/bin/env $CMD "$DIR/cli.js" "$DIR" "$@"
