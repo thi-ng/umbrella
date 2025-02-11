@@ -9,7 +9,7 @@ let src1;
 let src2;
 let headerBody;
 
-const args = process.argv.slice(2);
+const args = process.argv.slice(3);
 if (args.length === 3) {
 	const [path, rev1, rev2] = args;
 	src1 = execSync(`git show ${rev1}:${path}`).toString();
