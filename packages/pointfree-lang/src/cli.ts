@@ -7,7 +7,7 @@ import { readJSON, readText, writeFile } from "@thi.ng/file-io";
 import { LogLevel } from "@thi.ng/logger";
 import { ensureStack, type StackContext } from "@thi.ng/pointfree";
 import { readFileSync, readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import { join } from "node:path";
 import { ffi, run, runU } from "./runtime.js";
 
 interface CLIOpts {
@@ -15,7 +15,7 @@ interface CLIOpts {
 	exec?: string;
 }
 
-const PKG = readJSON(resolve(process.argv[2], "../package.json"));
+const PKG = readJSON(join(process.argv[2], "package.json"));
 
 const CMD: Command<CLIOpts, CLIOpts> = {
 	desc: "",
