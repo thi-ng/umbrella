@@ -39,7 +39,7 @@ export const fitClamped: FnN5 = (x, a, b, c, d) =>
 	c + (d - c) * clamp01(norm(x, a, b));
 
 /**
- * Similar to {@link fitClamped}, assuming [0,1] as source interval.
+ * Similar to {@link fitClamped}, assuming `[0,1]` as source interval.
  *
  * @param x
  * @param a
@@ -48,7 +48,7 @@ export const fitClamped: FnN5 = (x, a, b, c, d) =>
 export const fit01: FnN3 = (x, a, b) => a + (b - a) * clamp01(x);
 
 /**
- * Similar to {@link fitClamped}, assuming the reverse ordered [1,0] as source
+ * Similar to {@link fitClamped}, assuming the reverse ordered `[1,0]` as source
  * interval.
  *
  * @param x
@@ -58,7 +58,7 @@ export const fit01: FnN3 = (x, a, b) => a + (b - a) * clamp01(x);
 export const fit10: FnN3 = (x, a, b) => b + (a - b) * clamp01(x);
 
 /**
- * Similar to {@link fitClamped}, assuming [-1,1] as source interval.
+ * Similar to {@link fitClamped}, assuming `[-1,1]` as source interval.
  *
  * @param x
  * @param a

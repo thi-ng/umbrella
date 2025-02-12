@@ -20,7 +20,7 @@ export const generateUVPointIndex: UVGen = (shape) => {
 
 /**
  * Higher-order UV coordinate generator. Maps 2D shape vertices into the given
- * target UV rect (by default full [0,1] range), using the shape's bounding
+ * target UV rect (by default full `[0,1]` range), using the shape's bounding
  * rect.
  *
  * @remarks

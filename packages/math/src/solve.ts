@@ -115,13 +115,15 @@ export const solveCubic = (
 };
 
 /**
- * Solves a system of linear equations for N unknowns: `a[i]*x[i−1] + b[i]*x[i]
- * + c[i]*x[i+1] = d[i]`, where a[0]=0 and c[N-1]=0. Writes solutions `x[i]` back into
- * array of input coefficients `d` and returns it. The other arrays are not modified.
+ * Solves a system of linear equations for N unknowns:
+ *
+ * `a[i]*x[i−1] + b[i]*x[i] + c[i]*x[i+1] = d[i]`,
+ *
+ * where `a[0]=0` and `c[N-1]=0`. Writes solutions `x[i]` back into array of
+ * input coefficients `d` and returns it. The other arrays are not modified.
  *
  * @remarks
- * Reference:
- * https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm
+ * Reference: https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm
  *
  * @param a - subdiagonal [1,N-1], a[0] is lower left corner
  * @param b - main diagonal [0,N-1]

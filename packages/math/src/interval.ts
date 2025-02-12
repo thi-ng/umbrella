@@ -18,14 +18,14 @@ export const clamp: FnN3 = (x, min, max) => (x < min ? min : x > max ? max : x);
 export const clamp0: FnN = (x) => (x > 0 ? x : 0);
 
 /**
- * Clamps value `x` to closed [0 .. 1] interval.
+ * Clamps value `x` to closed `[0,1]` interval.
  *
  * @param x -
  */
 export const clamp01: FnN = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
 /**
- * Clamps value `x` to closed [-1 .. 1] interval.
+ * Clamps value `x` to closed `[-1,1]` interval.
  *
  * @param x -
  */
@@ -82,14 +82,14 @@ export const wrapOnce: FnN3 = (x, min, max) =>
 	x < min ? x - min + max : x > max ? x - max + min : x;
 
 /**
- * Similar to {@link wrapOnce} for [0..1] interval.
+ * Similar to {@link wrapOnce} for `[0,1]` interval.
  *
  * @param x -
  */
 export const wrap01: FnN = (x) => (x < 0 ? x + 1 : x > 1 ? x - 1 : x);
 
 /**
- * Similar to {@link wrapOnce} for [-1..1] interval.
+ * Similar to {@link wrapOnce} for `[-1,1]` interval.
  *
  * @param x -
  */
@@ -198,8 +198,8 @@ export const absMin: FnN2 = (a, b) => (Math.abs(a) < Math.abs(b) ? a : b);
 export const absMax: FnN2 = (a, b) => (Math.abs(a) > Math.abs(b) ? a : b);
 
 /**
- * If `abs(x) > abs(e)`, recursively mirrors `x` back into `[-e .. +e]`
- * interval at respective positive/negative boundary.
+ * If `abs(x) > abs(e)`, recursively mirrors `x` back into `[-e .. +e]` interval
+ * at respective positive/negative boundary.
  *
  * @remarks
  * References:
@@ -215,7 +215,7 @@ export const foldback: FnN2 = (e, x) =>
 
 /**
  * Similar to {@link foldback}, but with fixed target range: Folds `x` into the
- * closed [0..1] interval, using infinite internal reflection on either side of
+ * closed `[0,1]` interval, using infinite internal reflection on either side of
  * the interval.
  *
  * @param x
@@ -223,7 +223,7 @@ export const foldback: FnN2 = (e, x) =>
 export const foldback01: FnN = (x) => ((x = Math.abs(x) % 2) > 1 ? 2 - x : x);
 
 /**
- * Returns true iff `x` is in closed interval `[min .. max]`
+ * Returns true iff `x` is in closed interval `[min,max]`
  *
  * @param x -
  * @param min -
@@ -233,7 +233,7 @@ export const inRange: FnU3<number, boolean> = (x, min, max) =>
 	x >= min && x <= max;
 
 /**
- * Returns true iff `x` is in open interval `(min .. max)`
+ * Returns true iff `x` is in open interval `(min,max)`
  *
  * @param x -
  * @param min -

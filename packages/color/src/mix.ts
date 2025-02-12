@@ -31,8 +31,8 @@ export const defMix: FnU4<FnN3, ColorMixFn> =
  * Single channel interpolation for (normalized) hues. Always interpolates via
  * smallest angle difference, i.e. such that the effective `abs(a-b) <= 0.5`.
  *
- * @param a - start hue in [0,1) interval
- * @param b - end hue in [0,1) interval
+ * @param a - start hue in `[0,1)` interval
+ * @param b - end hue in `[0,1)` interval
  * @param t - interpolation factor
  */
 export const mixH: FnN3 = (a, b, t) => {
@@ -64,7 +64,7 @@ export const mixHNNN = defMix(mixH, mixN, mixN, mixN);
 export const mixNNHN = defMix(mixN, mixN, mixH, mixN);
 
 /**
- * Channelwise linear interpolation between colors `a` and `b` using `t` [0..1]
+ * Channelwise linear interpolation between colors `a` and `b` using `t` `[0,1]`
  * as blend factor.
  *
  * @param out -
@@ -76,7 +76,7 @@ export const mixNNNN: ColorMixFn = mixN4;
 
 /**
  * Channelwise and {@link ColorMode}-aware interpolation between colors `a` and
- * `b` using `t` [0..1] as blend factor. `a` and `b` MUST be of same color
+ * `b` using `t` `[0,1]` as blend factor. `a` and `b` MUST be of same color
  * type.
  *
  * @remarks

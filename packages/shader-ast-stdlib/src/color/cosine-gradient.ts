@@ -11,7 +11,7 @@ import {
 /**
  * Inline function. Computes the unclamped cosine-based color gradient value:
  * `a+b*cos(2π*(c*t+d))`, where `a`..`d` are the gradient coefficients and `t`
- * the gradient position in the [0,1] interval.
+ * the gradient position in the `[0,1]` interval.
  *
  * @remarks
  * Based on technique by Inigo Quilez

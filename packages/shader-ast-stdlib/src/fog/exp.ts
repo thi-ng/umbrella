@@ -7,8 +7,8 @@ import { exp } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "../math/clamp.js";
 
 /**
- * Computes exponential fog factor [0..1], based on given fully
- * saturated fog distance and density.
+ * Computes exponential fog factor `[0,1]`, based on given fully saturated fog
+ * distance and density.
  *
  * @param dist - float
  * @param density - float

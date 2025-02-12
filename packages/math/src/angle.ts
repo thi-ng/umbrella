@@ -109,7 +109,7 @@ export const loc: FnN3 = (a, b, gamma) =>
 	Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(gamma));
 
 /**
- * Approximates cos(xπ) for x in [-1,1]
+ * Approximates cos(xπ) for x in `[-1,1]`
  *
  * @param x -
  */

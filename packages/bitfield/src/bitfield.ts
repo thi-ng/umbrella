@@ -171,7 +171,7 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 
 	/**
 	 * Computes the Jaccard similarity with given `field`. Returns a value in
-	 * [0..1] interval: 1.0 if `a` and `b` are equal, or 0.0 if none of the
+	 * `[0,1]` interval: 1.0 if `a` and `b` are equal, or 0.0 if none of the
 	 * components match.
 	 *
 	 * @remarks

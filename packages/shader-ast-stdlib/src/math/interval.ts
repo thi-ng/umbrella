@@ -31,8 +31,10 @@ export const modulo = defn(F, null, [F, F], (x, y) => [
 ]);
 
 /**
- * Same as thi.ng/math foldback01(). Folds `x` into the closed [0..1] interval,
- * using infinite internal reflection on either side of the interval.
+ * Same as
+ * [`foldback01`](https://docs.thi.ng/umbrella/math/functions/foldback01.html).
+ * Folds `x` into the closed `[0,1]` interval, using infinite internal
+ * reflection on either side of the interval.
  *
  * @param x
  */

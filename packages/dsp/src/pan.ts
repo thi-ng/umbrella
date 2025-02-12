@@ -8,7 +8,7 @@ import type { NumericArray } from "@thi.ng/api";
 
 /**
  * Positions and converts a mono signal into a stereo signal using given `pos`
- * in the [-1..1] range to control the panning (-1 = left, +1 = right).
+ * in the `[-1,1]` range to control the panning (-1 = left, +1 = right).
  *
  * @remarks
  * Reference:

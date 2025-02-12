@@ -36,10 +36,10 @@ import { hash32 } from "./hash.js";
  * IQ's parametric 2D voronoise. Depending on `u` and `v`, this function
  * produces 4 different noise types
  *
- * - cell noise (0,0)
- * - voronoi (1,0)
- * - perlin noise (0,1)
- * - voronoise (1,1)
+ * - cell noise `(0,0)`
+ * - voronoi `(1,0)`
+ * - perlin noise `(0,1)`
+ * - voronoise `(1,1)`
  *
  * http://www.iquilezles.org/www/articles/voronoise/voronoise.htm
  *

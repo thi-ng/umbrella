@@ -9,8 +9,8 @@ import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { dot, fract } from "@thi.ng/shader-ast/builtin/math";
 
 /**
- * Encodes a float value in [0,1) interval to a vec4 suitable for a 8bit/channel
- * render texture. Use {@link unpackFloat} for reverse op.
+ * Encodes a float value in `[0,1)` interval to a vec4 suitable for a
+ * 8bit/channel render texture. Use {@link unpackFloat} for reverse op.
  *
  * @remarks
  * Reference:

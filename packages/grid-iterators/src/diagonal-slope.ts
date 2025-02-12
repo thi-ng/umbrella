@@ -12,9 +12,9 @@ export interface DiagonalSlopeOpts extends GridIterOpts2D {
 
 /**
  * Similar to {@link diagonalSlopeX}. Yields sequence of 2D grid coordinates in
- * diagonal order with configurable slope, starting at [0,0]. Each diagonal
- * starts at y=0 and progresses in +y direction and every `step` steps, one
- * step in -x direction.
+ * diagonal order with configurable slope, starting at `[0,0]`. Each diagonal
+ * starts at y=0 and progresses in +y direction and every `step` steps, one step
+ * in -x direction.
  *
  * @example
  * ```ts tangle:../export/diagonal-slopey.ts

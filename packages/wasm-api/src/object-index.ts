@@ -14,7 +14,7 @@ export interface ObjectIndexOpts {
 	 */
 	logger: ILogger;
 	/**
-	 * Number of bits for IDs, [1..32] range.
+	 * Number of bits for IDs, `[1,32]` range.
 	 *
 	 * @defaultValue 32
 	 */

@@ -46,8 +46,8 @@ export interface IRandom extends INorm {
 	 */
 	float(max?: number): number;
 	/**
-	 *  Calls {@link IRandom.float} and returns true iff result is < `p`
-	 *  (assumed to be in [0..1] interval).
+	 * Calls {@link IRandom.float} and returns true iff result is < `p` (assumed
+	 * to be in `[0,1]` interval).
 	 *
 	 * @param p
 	 */

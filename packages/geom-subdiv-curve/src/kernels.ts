@@ -143,7 +143,7 @@ export const SUBDIV_DLG: SubdivKernel = {
  *
  * @remarks
  * The original edge end points are always remaining in place. The normalized
- * split positions `t` must be in the open (0,1) interval.
+ * split positions `t` must be in the open `(0,1)` interval.
  *
  * @example
  * ```ts tangle:../export/subdiv-displace.ts

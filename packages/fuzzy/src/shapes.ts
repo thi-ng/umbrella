@@ -7,7 +7,7 @@ import { gaussian as $gaussian, sigmoid as $sigmoid } from "@thi.ng/math/mix";
 import type { FuzzyFn } from "./api.js";
 
 /**
- * HOF {@link FuzzyFn} always yielding given `x` (should be in [0,1]
+ * HOF {@link FuzzyFn} always yielding given `x` (should be in `[0,1]`
  * interval).
  *
  * @param x -
@@ -31,7 +31,7 @@ export const point =
 
 /**
  * HOF {@link FuzzyFn} yielding a rising ramp in [a,b] interval, clamped to
- * [0,1] outputs. Returns 0.0 for inputs <= `a` and 1.0 for inputs >= `b`.
+ *`[0,1]`outputs. Returns 0.0 for inputs <= `a` and 1.0 for inputs >= `b`.
  *
  * @param a -
  * @param b -

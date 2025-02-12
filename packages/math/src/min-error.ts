@@ -2,19 +2,18 @@
 import { EPS } from "./api.js";
 
 /**
- * Recursively evaluates function `fn` for `res` uniformly spaced values
- * `t` in the closed parametric interval `[start,end]` and computes
- * corresponding sample values `p`. For each `p` then calls `error`
- * function to compute the error to query target value `q` and
- * eventually returns the `t` producing the overall minimum error. At
- * each level of recursion the search interval is increasingly narrowed
- * / centered around the best `t` of the current iteration.
+ * Recursively evaluates function `fn` for `res` uniformly spaced values `t` in
+ * the closed parametric interval `[start,end]` and computes corresponding
+ * sample values `p`. For each `p` then calls `error` function to compute the
+ * error to query target value `q` and eventually returns the `t` producing the
+ * overall minimum error. At each level of recursion the search interval is
+ * increasingly narrowed / centered around the best `t` of the current
+ * iteration.
  *
- * The search is terminated early if the best error value is less than
- * `eps`.
+ * The search is terminated early if the best error value is less than `eps`.
  *
- * The interval end points `start` and `end` MUST be normalized values
- * in the closed [0,1] interval.
+ * The interval end points `start` and `end` MUST be normalized values in the
+ * closed `[0,1]` interval.
  *
  * @param fn - function to evaluate
  * @param error - error function

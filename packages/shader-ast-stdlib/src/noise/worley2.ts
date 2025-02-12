@@ -34,7 +34,7 @@ export const worleyDistManhattan = defn(
 /**
  * Higher order function. Computes 2D Worley noise using provided distance
  * function. The returned function takes 2 args: position and jitter amount, the
- * latter in [0..1] interval. Returns noise components as vec2, with the x
+ * latter in `[0,1]` interval. Returns noise components as vec2, with the x
  * component containing the distance from closest simplex center and y the noise
  * value. The vector components can be used individually or combined (e.g.
  * `noise.y - noise.x`)...

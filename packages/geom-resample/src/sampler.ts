@@ -128,7 +128,7 @@ export class Sampler {
 
 	/**
 	 * Returns vertex array for given interval of parametric positions (both
-	 * MUST be in [0..1] range).
+	 * MUST be in `[0,1]` range).
 	 *
 	 * @example
 	 * ```ts tangle:../export/extract-range.ts

@@ -383,8 +383,8 @@ export interface OutputSpec extends ProcSpec {
 	 * {@link OutputSpec.path} will be ignored and no file will be written.
 	 *
 	 * @remarks
-	 * The value given is the blurhash detail setting in the [1,9] range (usual
-	 * default is 4), possibly given separately for X/Y axes.
+	 * The value given is the blurhash detail setting in the `[1,9]` range
+	 * (usual default is 4), possibly given separately for X/Y axes.
 	 *
 	 * Important: Ensure the image has already been downsized to ~50-500 pixels.
 	 * Larger images are causing unnecessary & long processing...

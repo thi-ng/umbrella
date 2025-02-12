@@ -21,9 +21,9 @@ export const cubicFromQuadratic: FnU3<ReadonlyVec, Vec[]> = (a, b, c) => [
 
 /**
  * Splits given cubic curve (defined by given control points) into 2 quadratic
- * curve segments approximating the original curve. The `gamma` param (in [0..1]
- * interval) can be used to control the split point (default: 0.5). Returns
- * array of new curves (each a 3-tuple of control points).
+ * curve segments approximating the original curve. The `gamma` param (in
+ * `[0,1]` interval) can be used to control the split point (default: 0.5).
+ * Returns array of new curves (each a 3-tuple of control points).
  *
  * @remarks
  * Reference: https://ttnghia.github.io/pdf/QuadraticApproximation.pdf

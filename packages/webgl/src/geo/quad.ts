@@ -13,8 +13,8 @@ export interface QuadOpts {
 	 */
 	uv: boolean;
 	/**
-	 * If true, the quad's position will be centered around (0,0). If false, the
-	 * quad's bottom-left corner will be at (0,0).
+	 * If true, the quad's position will be centered around `(0,0)`. If false,
+	 * the quad's bottom-left corner will be at `(0,0)` .
 	 *
 	 * @defaultValue true
 	 */

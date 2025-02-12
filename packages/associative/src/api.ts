@@ -72,7 +72,7 @@ export interface HashMapOpts<K> {
 	 */
 	equiv?: Predicate2<K>;
 	/**
-	 * Normalized max load factor in the open (0..1) interval. The map
+	 * Normalized max load factor in the open `(0,1)` interval. The map
 	 * will be resized (doubled in size) and all existing keys rehashed
 	 * every time a new key is to be added and the current size exceeds
 	 * this normalized load.

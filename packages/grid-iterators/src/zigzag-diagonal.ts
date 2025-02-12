@@ -4,7 +4,7 @@ import { __opts } from "./utils.js";
 
 /**
  * Similar to {@link diagonal2d}, but yields 2D grid coordinates in zigzag
- * diagonal order starting at [0,0] and using given `cols` and `rows`.
+ * diagonal order starting at `[0,0]` and using given `cols` and `rows`.
  *
  * @param opts -
  */

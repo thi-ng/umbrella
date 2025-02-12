@@ -51,12 +51,12 @@ export interface VizualizeVarOpts {
 	 */
 	labels: boolean;
 	/**
-	 * Color factory function. Converts number in [0..1) interval into an CSS
+	 * Color factory function. Converts number in `[0,1)` interval into an CSS
 	 * color string.
 	 */
 	stroke: Fn<number, string>;
 	/**
-	 * Color factory function. Converts number in [0..1) interval into an CSS
+	 * Color factory function. Converts number in `[0,1)` interval into an CSS
 	 * color string.
 	 */
 	fill: Fn<number, string>;

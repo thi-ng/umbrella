@@ -41,7 +41,7 @@ export declare class LCH implements TypedColor<LCH> {
  *
  * @remarks
  * Note: As with other hue-based color modes in this package, the hue is stored
- * normalized (in [0..1] interval) and NOT as degrees.
+ * normalized (in `[0,1]` interval) and NOT as degrees.
  */
 export const lch = <ColorFactory<LCH>>defColor({
 	mode: "lch",

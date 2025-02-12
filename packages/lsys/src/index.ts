@@ -24,7 +24,9 @@ export type RuleImplementations<T> = IObjectOf<Fn2<T, LSysSymbol, void>>;
 
 export interface Turtle2D {
 	/**
-	 * Current position. Default: [0,0]
+	 * Current position.
+	 *
+	 * @defaultValue `[0,0]`
 	 */
 	pos: Vec;
 	/**
@@ -36,40 +38,52 @@ export interface Turtle2D {
 	 */
 	delta: number;
 	/**
-	 * Max. random direction change when processing "/" symbol.
-	 * Normalized percentage of `delta`. Default: 0.25 (25%)
+	 * Max. random direction change when processing "/" symbol. Normalized
+	 * percentage of `delta`.
+	 *
+	 * @defaultValue 0.25 (25%)
 	 */
 	jitter: number;
 	/**
-	 * Step distance. Default: 1
+	 * Step distance.
+	 *
+	 * @defaultValue 1
 	 */
 	step: number;
 	/**
-	 * Probability to keep current branch alive when processing "k"
-	 * symbol. Default: 0.99
+	 * Probability to keep current branch alive when processing "k" symbol.
+	 *
+	 * @defaultValue 0.99
 	 */
 	aliveProb: number;
 	/**
-	 * Decay factor for `delta`. Should be in (0,1) interval.
-	 * Default: 0.9
+	 * Decay factor for `delta`. Should be in `(0,1)` interval.
+	 *
+	 * @defaultValue 0.9
 	 */
 	decayDelta: number;
 	/**
-	 * Decay factor for `step`. Should be in (0,1) interval.
-	 * Default: 0.9
+	 * Decay factor for `step`. Should be in `(0,1)` interval.
+	 *
+	 * @defaultValue 0.9
 	 */
 	decayStep: number;
 	/**
 	 * Decay factor for `aliveProp`.
-	 * Default: 0.95
+	 *
+	 * @defaultValue 0.95
 	 */
 	decayAlive: number;
 	/**
-	 * PRNG to use for probability checks. Default: SYSTEM
+	 * PRNG to use for probability checks.
+	 *
+	 * @defaultValue [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)
 	 */
 	rnd: IRandom;
 	/**
-	 * Alive flag. Default: true
+	 * Alive flag.
+	 *
+	 * @defaultValue true
 	 */
 	alive: boolean;
 	/**

@@ -38,7 +38,7 @@ export declare class Oklch implements TypedColor<Oklch> {
  *
  * @remarks
  * Note: As with other hue-based color modes in this package, the hue is stored
- * normalized (in [0..1] interval) and NOT as degrees.
+ * normalized (in `[0,1]` interval) and NOT as degrees.
  *
  * Reference: https://bottosson.github.io/posts/oklab/
  */

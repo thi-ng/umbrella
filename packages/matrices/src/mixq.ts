@@ -6,10 +6,9 @@ import { mulN4 } from "@thi.ng/vectors/muln";
 import { set4 } from "@thi.ng/vectors/set";
 
 /**
- * Interpolates quaternion `a` to `b` by given amount `t` [0...1], using
- * SLERP. Writes result to `out`. The optional `eps` (default 1e-3) is
- * used to switch to linear interpolation if the angular difference is
- * very small.
+ * Interpolates quaternion `a` to `b` by given amount `t` `[0,1]`, using SLERP.
+ * Writes result to `out`. The optional `eps` (default 1e-3) is used to switch
+ * to linear interpolation if the angular difference is very small.
  *
  * @param out -
  * @param a -

@@ -25,7 +25,7 @@ export interface ADSROpts {
 	 */
 	d: number;
 	/**
-	 * Sustain level/gain (in [0..1] range). Default: 1
+	 * Sustain level/gain (in `[0,1]` range). Default: 1
 	 */
 	s: number;
 	/**

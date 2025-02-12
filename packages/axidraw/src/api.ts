@@ -13,7 +13,7 @@ export type StopCommand = ["stop"];
 /** Return plotter to initial XY position */
 export type HomeCommand = ["home"];
 
-/** Reset curr position as home (0,0) */
+/** Reset curr position as home `(0,0)` */
 export type ResetCommand = ["reset"];
 
 /** Turn XY motors on/off */
@@ -115,7 +115,7 @@ export interface AxiDrawOpts {
 	 * thi.ng/units `quantity()`), the units used to define these dimensions are
 	 * irrelevant (and independent of {@link AxiDrawOpts.unitsPerInch}!) and
 	 * will be automatically converted. Also, the resulting bounds will always
-	 * be based on [0, 0].
+	 * be based on `[0,0]`.
 	 *
 	 * List of paper sizes/presets:
 	 * https://github.com/thi-ng/umbrella/blob/develop/packages/units/README.md#constants
@@ -205,7 +205,7 @@ export interface AxiDrawOpts {
 	 * means the available horizontal drawing space will be reduced by the same
 	 * amount...
 	 *
-	 * @defaultValue [0, 0]
+	 * @defaultValue `[0,0]`
 	 */
 	home: ReadonlyVec;
 	/**

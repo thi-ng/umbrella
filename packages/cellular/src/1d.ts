@@ -76,7 +76,7 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  * ```
  *
  * This example kernel defines a 5-cell neighborhood with a max. short term
- * memory of one additional previous generation (i.e. the [-2,1] and [2,1]
+ * memory of one additional previous generation (i.e. the `[-2,1]` and `[2,1]`
  * offsets)
  *
  * The rules related to this kernel have a 32 bit address space (4 billion

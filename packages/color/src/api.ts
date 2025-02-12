@@ -79,7 +79,7 @@ export interface ChannelSpec {
 	 * color spaces to be slightly outside that sRGB gamut. These are soft
 	 * limits, for orientation only.
 	 *
-	 * @defaultValue [0,1]
+	 * @defaultValue `[0,1]`
 	 */
 	range?: Range;
 	/**
@@ -226,7 +226,7 @@ export interface TypedColor<T>
 
 	/**
 	 * Randomizes all color channels based on channel ranges defined for this
-	 * color type (usually [0..1] interval). Alpha channel will remain
+	 * color type (usually `[0,1]` interval). Alpha channel will remain
 	 * untouched.
 	 *
 	 * @param rnd -

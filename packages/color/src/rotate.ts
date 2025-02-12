@@ -14,7 +14,7 @@ import { __ensureAlpha } from "./internal/ensure.js";
  * If `out` is null, the resulting will be written back into `src`.
  *
  * As with all hue-based color modes in this package, the hue is stored
- * normalized (in [0..1] interval) and NOT as degrees. The same goes for the
+ * normalized (in `[0,1]` interval) and NOT as degrees. The same goes for the
  * rotation angle `theta`.
  *
  * Only supported for hue based color modes:

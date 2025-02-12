@@ -58,7 +58,7 @@ export const midLevelGammaRGB = (mid: Vec3Term) =>
 
 /**
  * Applies level remapping from `input` to `output` (each given as
- * `vec2(min,max)`) with `gamma` correction. Results will be clamped to [0..1]
+ * `vec2(min,max)`) with `gamma` correction. Results will be clamped to `[0,1]`
  * range.
  */
 export const levelAdjustGamma = defn(

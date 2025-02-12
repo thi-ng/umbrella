@@ -6,7 +6,7 @@ import { __luminanceABGR } from "../internal/utils.js";
 
 /**
  * Higher order, single channel float pixel format using provided [min..max]
- * value range, instead of usual [0..1] interval.
+ * value range, instead of usual `[0,1]` interval.
  *
  * @param min
  * @param max

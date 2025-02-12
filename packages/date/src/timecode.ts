@@ -3,8 +3,8 @@ import { Z2 } from "@thi.ng/strings/pad-left";
 import { decomposeDuration } from "./duration.js";
 
 /**
- * Returns a time formatter for given FPS (frames / second, in [1..1000] range),
- * e.g. `HH:mm:ss:ff`. The returned function takes a single arg (time in
+ * Returns a time formatter for given FPS (frames / second, in `[1,1000]`
+ * range), e.g. `HH:mm:ss:ff`. The returned function takes a single arg (time in
  * milliseconds) and returns formatted string.
  *
  * @remarks

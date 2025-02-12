@@ -7,7 +7,7 @@ import { EPS, HALF_PI, PI } from "./api.js";
  *
  * @param a - start value
  * @param b - end value
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
 
@@ -75,7 +75,7 @@ export const mixCubic: FnN5 = (a, b, c, d, t) => {
  * {@link mixCubicHermite} with one of the tangent generators supporting
  * non-uniform spacing of points.
  *
- * See: https://www.desmos.com/calculator/j4gf8g9vkr
+ * [Interactive graph](https://www.desmos.com/calculator/j4gf8g9vkr)
  *
  * Source:
  * https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html
@@ -253,7 +253,7 @@ export const tangentDiff3 = (
 
 /**
  * HOF interpolator. Takes a timing function `f` and interval `[from,to]`.
- * Returns function which takes normalized time (in [0,1] range) as single arg
+ * Returns function which takes normalized time (in `[0,1]` range) as single arg
  * and returns interpolated value.
  *
  * @example
@@ -289,9 +289,9 @@ export const tween =
  * Circular interpolation (ease out): `sqrt(1 - (1 - t)^2)`
  *
  * @remarks
- * Reference: https://www.desmos.com/calculator/tisoiazdrw
+ * [Interactive graph](https://www.desmos.com/calculator/tisoiazdrw)
  *
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const circular: FnN = (t) => {
 	t = 1 - t;
@@ -302,9 +302,9 @@ export const circular: FnN = (t) => {
  * Inverse/flipped version of {@link circular} (ease in).
  *
  * @remarks
- * Reference: https://www.desmos.com/calculator/tisoiazdrw
+ * [Interactive graph](https://www.desmos.com/calculator/tisoiazdrw)
  *
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const invCircular: FnN = (t) => 1 - circular(1 - t);
 
@@ -313,8 +313,8 @@ export const invCircular: FnN = (t) => 1 - circular(1 - t);
  * strength.
  *
  * @remarks
- * Lens position must be given in (0..1) interval. Lens strength must be in
- * [-1,1] range. If negative, the lens will be bundling values near `pos`, if
+ * Lens position must be given in `(0,1)` interval. Lens strength must be in
+ * `[-1,1]` range. If negative, the lens will be bundling values near `pos`, if
  * positive the lens has dilating characteristics and will spread values near
  * `pos` towards the edges.
  *
@@ -348,7 +348,7 @@ export const invCircular: FnN = (t) => 1 - circular(1 - t);
  *
  * @param pos - lens pos
  * @param strength - lens strength
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const lens: FnN3 = (pos, strength, t) => {
 	const impl = strength > 0 ? invCircular : circular;
@@ -365,8 +365,7 @@ export const decimated: FnN2 = (n, t) => Math.floor(t * n) / n;
  * Spring oscillator with damping.
  *
  * @remarks
- * Interactive graph:
- * https://www.desmos.com/calculator/tywbpw8pck
+ * [Interactive graph](https://www.desmos.com/calculator/tywbpw8pck)
  *
  * @param k
  * @param amp
@@ -438,7 +437,7 @@ export const sincNormalized: FnN2 = (k, t) => sinc(PI * k * t);
  * returns 0.
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/pmypqgefle
+ * [Interactive graph](https://www.desmos.com/calculator/pmypqgefle)
  *
  * @param a -
  * @param t -
@@ -461,7 +460,7 @@ export const sigmoid: FnN3 = (bias, k, t) =>
 	t != bias ? 1 / (1 + Math.exp(-k * (t - bias))) : 0.5;
 
 /**
- * Sigmoid function for inputs in [0..1] interval. Center bias = 0.5.
+ * Sigmoid function for inputs in `[0,1]` interval. Center bias = 0.5.
  *
  * @param k - steepness
  * @param t - input value
@@ -469,7 +468,7 @@ export const sigmoid: FnN3 = (bias, k, t) =>
 export const sigmoid01: FnN2 = (k, t) => sigmoid(0.5, k, t);
 
 /**
- * Sigmoid function for inputs in [-1..+1] interval. Center bias = 0
+ * Sigmoid function for inputs in `[-1,1]` interval. Center bias = 0
  *
  * @param k -
  * @param t -
@@ -481,12 +480,11 @@ export const sigmoid11: FnN2 = (k, t) => sigmoid(0, k, t);
  * https://arxiv.org/abs/2010.09714
  *
  * @remarks
- * Interactive graph:
- * https://www.desmos.com/calculator/u6bkm5rb7t
+ * [Interactive graph](https://www.desmos.com/calculator/u6bkm5rb7t)
  *
- * @param a - curve strength. recommended (0..64]
- * @param b - pivot position [0..1]
- * @param t - input val [0..1]
+ * @param a - curve strength. recommended `(0,64]`
+ * @param b - pivot position `[0,1]`
+ * @param t - input val `[0,1]`
  */
 export const schlick: FnN3 = (a, b, t) =>
 	t <= b
@@ -494,9 +492,9 @@ export const schlick: FnN3 = (a, b, t) =>
 		: ((1 - b) * (t - 1)) / (1 - t - a * (b - t) + EPS) + 1;
 
 /**
- * Computes exponential factor to interpolate from `a` to `b` over
- * `num` steps. I.e. multiplying `a` with the returned factor will yield
- * `b` after `num` steps. All args must be > 0.
+ * Computes exponential factor to interpolate from `a` to `b` over `num` steps.
+ * I.e. multiplying `a` with the returned factor will yield `b` after `num`
+ * steps. All args must be > 0.
  *
  * @param a -
  * @param b -
@@ -508,7 +506,7 @@ export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);
  * Computes gaussian bell curve for given center `bias` and `sigma` (spread).
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/aq6hdzxprv
+ * [Interactive graph](https://www.desmos.com/calculator/aq6hdzxprv)
  *
  * @param bias -
  * @param sigma -

@@ -7,7 +7,7 @@ import { preseed, sum } from "./utils.js";
  * Exponential decay (1/f) noise, based on Voss-McCarthy algorithm.
  *
  * @remarks
- * The number of internal states should be in the [4..32] range (default: 8).
+ * The number of internal states should be in the `[4,32]` range (default: 8).
  * Due to JS integer limitations, `n` > 32 are meaningless.
  *
  * References:

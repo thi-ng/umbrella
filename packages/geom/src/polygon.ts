@@ -15,7 +15,7 @@ export const polygon = (pts?: Iterable<Vec>, attribs?: Attribs) =>
 	new Polygon(pts, attribs);
 
 /**
- * Syntax sugar for {@link starWithCentroid}, using [0,0] as center.
+ * Syntax sugar for {@link starWithCentroid}, using `[0,0]` as center.
  *
  * @param r
  * @param n

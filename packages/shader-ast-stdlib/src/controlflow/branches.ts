@@ -6,7 +6,7 @@ import { lt } from "@thi.ng/shader-ast/ast/ops";
 
 /**
  * Utility function to create an n-ary conditional based on given float value
- * `x` in [0,1] range and any number of branch terms (at least 1). Returns a
+ * `x` in `[0,1]` range and any number of branch terms (at least 1). Returns a
  * nested ternary expression.
  *
  * @remarks

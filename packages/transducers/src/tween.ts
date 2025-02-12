@@ -53,7 +53,7 @@ export interface TweenOpts<A, B, C> {
  *
  * Depending on the overall `num`ber of samples requested and the distance
  * between keyframes, some keyframes MIGHT be skipped. E.g. if requesting 10
- * samples within [0,1], the interval between two successive keyframes at 0.12
+ * samples within `[0,1]`, the interval between two successive keyframes at 0.12
  * and 0.19 would be skipped entirely, since samples will only be taken at
  * multiples of `1/num` (i.e. 0.0, 0.1, 0.2... in this example).
  *

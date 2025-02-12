@@ -2,7 +2,7 @@
 import type { DistanceFn } from "./api.js";
 
 /**
- * Bray-Curtis **dissimilarity** metric. Result always in [0..1] interval.
+ * Bray-Curtis **dissimilarity** metric. Result always in `[0,1]` interval.
  *
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity

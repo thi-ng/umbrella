@@ -45,8 +45,7 @@ export const additive = (
  * each partial.
  *
  * @remarks
- * Interactive graph of this oscillator:
- * https://www.desmos.com/calculator/irugw6gnhy
+ * [Interactive graph of this oscillator](https://www.desmos.com/calculator/irugw6gnhy)
  *
  * @param n - number of partials
  * @param useGibbs -
@@ -65,8 +64,7 @@ export const squareAdditive = (n = 8, useGibbs = true) =>
  * {@link gibbs} to each partial.
  *
  * @remarks
- * Interactive graph of this oscillator:
- * https://www.desmos.com/calculator/irugw6gnhy
+ * [Interactive graph of this oscillator](https://www.desmos.com/calculator/irugw6gnhy)
  *
  * @param n - number of partials
  * @param useGibbs -

@@ -16,7 +16,7 @@ import { set2 } from "@thi.ng/vectors/set";
 
 /**
  * Fits a cubic bezier spline to the given array of `points` and tension param
- * `omega` (in [0,1] range), using John D. Hobby's algorithm/paper: "Smooth,
+ * `omega` (in `[0,1]` range), using John D. Hobby's algorithm/paper: "Smooth,
  * Easy to Compute Interpolating Splines".
  *
  * @remarks

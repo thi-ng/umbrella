@@ -5,7 +5,7 @@ import { repeatedly } from "@thi.ng/transducers/repeatedly";
 
 /**
  * Returns an iterator of random bits, with 1's occurring w/ given probability
- * `prob` (in the [0,1] interval). If `num` is given, only that many bits will
+ * `prob` (in the `[0,1]` interval). If `num` is given, only that many bits will
  * be produced.
  *
  * By default, uses system PRNG, but a custom

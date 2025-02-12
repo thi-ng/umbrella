@@ -11,7 +11,7 @@ import type { ReadonlyVec, Vec } from "./api.js";
  * @param b -
  * @param c -
  * @param d -
- * @param t - interpolation coeff [0..1]
+ * @param t - interpolation coeff `[0,1]`
  */
 export const mixCubic = (
 	out: Vec | null,

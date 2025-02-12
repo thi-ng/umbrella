@@ -8,20 +8,18 @@ import type { StatelessOscillator } from "./api.js";
  * `y(t) = (1-a^2) * sin(2πt) / (1 + a^2 - 2a * cos(b * 2πt))`
  *
  * @remarks
- * `alpha` should be in [0..1) interval, `beta` is used as factor for
- * the base `freq` and used for the cosine modulation term. The default
- * config for both params is 0.5, 1.0 respectively, creating a waveform
- * similar to a bandlimited sawtooth. If both params are zero, the
- * result is a pure sine.
+ * `alpha` should be in `[0,1)` interval, `beta` is used as factor for the base
+ * `freq` and used for the cosine modulation term. The default config for both
+ * params is 0.5, 1.0 respectively, creating a waveform similar to a bandlimited
+ * sawtooth. If both params are zero, the result is a pure sine.
  *
- * Note: Higher `alpha` values cause an increasing number (and
- * amplitude) of spikes in the waveform. Therefore, the higher the
- * `alpha`, the lower `amp` should be to avoid excessive out-of-range
- * values.
+ * Note: Higher `alpha` values cause an increasing number (and amplitude) of
+ * spikes in the waveform. Therefore, the higher the `alpha`, the lower `amp`
+ * should be to avoid excessive out-of-range values.
  *
  * References:
  *
- * - https://www.desmos.com/calculator/klvl9oszfm
+ * - [Interactive graph](https://www.desmos.com/calculator/klvl9oszfm)
  * - https://ccrma.stanford.edu/files/papers/stanm5.pdf
  *
  * @param phase -

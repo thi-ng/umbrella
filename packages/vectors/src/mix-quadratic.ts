@@ -4,13 +4,13 @@ import type { ReadonlyVec, Vec } from "./api.js";
 
 /**
  * Vector version of
- * [`mixQuadratic()`](https://docs.thi.ng/umbrella/math/functions/mixQuadratic.html).
+ * [`mixQuadratic`](https://docs.thi.ng/umbrella/math/functions/mixQuadratic.html).
  *
  * @param out - result
  * @param a -
  * @param b -
  * @param c -
- * @param t - interpolation coeff [0..1]
+ * @param t - interpolation coeff `[0,1]`
  */
 export const mixQuadratic = (
 	out: Vec | null,

@@ -167,7 +167,7 @@ export const COSINE_GRADIENTS: Record<CosineGradientPreset, CosGradientSpec> = {
 
 /**
  * Computes a single linear RGBA color for given gradient spec and normalized
- * position `t` (in [0..1] interval).
+ * position `t` (in `[0,1]` interval).
  *
  * @param spec -
  * @param t -

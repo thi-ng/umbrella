@@ -11,9 +11,9 @@ import { set } from "@thi.ng/vectors/set";
 import { sub } from "@thi.ng/vectors/sub";
 
 /**
- * Computes the parametric distance `t` of point `p` projected onto line
- * `a` -> `b`, relative to `a`. I.e. the projection of `p` can then be
- * computed like so:
+ * Computes the parametric distance `t` of point `p` projected onto line `a` ->
+ * `b`, relative to `a`. I.e. the projection of `p` can then be computed like
+ * so:
  *
  * @example
  * ```ts
@@ -23,7 +23,7 @@ import { sub } from "@thi.ng/vectors/sub";
  * mixN([], a, b, closestT(p, a, b))
  * ```
  *
- * If the return value is outside the closed [0,1] interval, the
+ * If the return value is outside the closed `[0,1]` interval, the
  * projected point lies outside the line segment. Returns `undefined` if
  * `a` and `b` are coincident.
  *

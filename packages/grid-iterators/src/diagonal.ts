@@ -3,7 +3,7 @@ import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
 /**
- * Yields sequence of 2D grid coordinates in diagonal order starting at [0,0]
+ * Yields sequence of 2D grid coordinates in diagonal order starting at `[0,0]`
  * and using given `cols` and `rows`. Each diagonal starts at y=0 and progresses
  * in -x,+y direction.
  *

@@ -196,7 +196,7 @@ export interface FloatFormat extends IABGRConvert<NumericArray> {
 	range: [number, number];
 
 	/**
-	 * Maps given value to [0..1] interval. Used in combination with
+	 * Maps given value to `[0,1]` interval. Used in combination with
 	 * {@link IntChannel.setFloat}.
 	 *
 	 * @param val

@@ -13,7 +13,7 @@ const $ = <N extends 1 | 2 | 3 | 4, T extends PrimTypeMap[N]>(n: N, type: T) =>
 
 /**
  * Specialized version of {@link smootherStep}, assuming edges are 0/1
- * respectively and `x` is in [0..1]. No clamping performed.
+ * respectively and `x` is in `[0,1]`. No clamping performed.
  *
  * @param x
  */

@@ -2,7 +2,7 @@
 import type { DistanceFn } from "./api.js";
 
 /**
- * Cosine **similarity** metric. Result always in [-1,1] interval.
+ * Cosine **similarity** metric. Result always in `[-1,1]` interval.
  *
  * @remarks
  * Similar to: `dot(a, b) / (magSq(a) * magSq(b))`. Returns zero if one of the

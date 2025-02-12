@@ -6,8 +6,8 @@ import type { Color, ReadonlyColor } from "./api.js";
 import { __ensureAlpha } from "./internal/ensure.js";
 
 /**
- * Clamps all color channels to [0,1] interval and calls `ensureAlpha` to ensure
- * alpha channel is defined (if missing sets it to `alpha`, default: 1).
+ * Clamps all color channels to `[0,1]` interval and calls `ensureAlpha` to
+ * ensure alpha channel is defined (if missing sets it to `alpha`, default: 1).
  *
  * @remarks
  * If `out` is null, the resulting color will be written back into `src`.
@@ -31,8 +31,8 @@ export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
 	);
 
 /**
- * Similar to {@link clamp}, but calls `ensureHue` to fold (instead of
- * clamping) the hue into [0,1] interval.
+ * Similar to {@link clamp}, but calls `ensureHue` to fold (instead of clamping)
+ * the hue into the `[0,1]` interval.
  *
  * @remarks
  * If `out` is null, the resulting color will be written back into `src`.

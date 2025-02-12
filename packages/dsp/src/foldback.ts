@@ -7,8 +7,7 @@ import { AProc } from "./aproc.js";
  * amplifies it with `amp` (default: 1/thresh).
  *
  * @remarks
- * Reference:
- * https://www.desmos.com/calculator/lkyf2ag3ta
+ * [Interactive graph](https://www.desmos.com/calculator/lkyf2ag3ta)
  *
  * @param thresh - fold threshold
  * @param amp - post amplifier

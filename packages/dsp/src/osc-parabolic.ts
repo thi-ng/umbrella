@@ -6,8 +6,7 @@ import type { StatelessOscillator } from "./api.js";
  * Parabolic waveform oscillator.
  *
  * @remarks
- * Reference:
- * https://www.desmos.com/calculator/gsobpc8hsy
+ * [Interactive graph](https://www.desmos.com/calculator/gsobpc8hsy)
  *
  * @param phase -
  * @param freq -

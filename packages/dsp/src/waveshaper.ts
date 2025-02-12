@@ -6,16 +6,14 @@ import { AProc } from "./aproc.js";
 export type WaveShaperFn = Fn2<number, number, number>;
 
 /**
- * Customizable wave shaper for user defined shaping function supporting
- * one (optional, implementation specific) adjustable curve parameter.
- * By default uses {@link waveshapeTan} and supports configurable
- * curvature. Post-amplification is applied to the transformed result
- * value (see remarks).
+ * Customizable wave shaper for user defined shaping function supporting one
+ * (optional, implementation specific) adjustable curve parameter. By default
+ * uses {@link waveshapeTan} and supports configurable curvature.
+ * Post-amplification is applied to the transformed result value (see remarks).
  *
  * @remarks
- * If `amp` is `true` (default), the curve will be normalized such that
- * input values in the [-1 .. 1] range will be mapped to the same output
- * interval.
+ * If `amp` is `true` (default), the curve will be normalized such that input
+ * values in the `[-1,1]` range will be mapped to the same output interval.
  *
  * The following wave shaping functions are supplied by default:
  *

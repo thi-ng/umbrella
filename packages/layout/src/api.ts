@@ -19,13 +19,13 @@ export interface LayoutBox {
 	 */
 	h: number;
 	/**
-	 * Single cell column width (always w/o col span), based on
-	 * layout's available space and configured number of columns.
+	 * Single cell column width (always w/o col span), based on layout's
+	 * available space and configured number of columns.
 	 */
 	cw: number;
 	/**
-	 * Single cell row height (always same as `rowHeight` arg given to
-	 * layout ctor).
+	 * Single cell row height (always same as `rowHeight` arg given to layout
+	 * ctor).
 	 */
 	ch: number;
 	/**
@@ -67,8 +67,7 @@ export interface IGridLayout<T extends IGridLayout<T>>
 	rowsForHeight(height: number): number;
 
 	/**
-	 * Calculates the required number of columns & rows for the given
-	 * size.
+	 * Calculates the required number of columns & rows for the given size.
 	 *
 	 * @param size -
 	 */
@@ -76,26 +75,25 @@ export interface IGridLayout<T extends IGridLayout<T>>
 	spanForSize(w: number, h: number): CellSpan;
 
 	/**
-	 * Returns a squared {@link LayoutBox} based on this layout's column
-	 * width. This box will consume `ceil(columnWidth / rowHeight)`
-	 * rows, but the returned box height might be less to satisfy the
-	 * square constraint.
+	 * Returns a squared {@link LayoutBox} based on this layout's column width.
+	 * This box will consume `ceil(columnWidth / rowHeight)` rows, but the
+	 * returned box height might be less to satisfy the square constraint.
 	 */
 	nextSquare(): LayoutBox;
 
 	/**
-	 * Requests a `spans` sized cell from this layout (via `.next()`)
-	 * and creates and returns a new child {@link GridLayout} for the returned
-	 * box / grid cell. This child layout is configured to use `cols`
-	 * columns and shares same `gap` as this (parent) layout. The
-	 * configured row span only acts as initial minimum vertical space
-	 * reseervation, but is allowed to grow and if needed will propagate
-	 * the new space requirements to parent layouts.
+	 * Requests a `spans` sized cell from this layout (via `.next()`) and
+	 * creates and returns a new child {@link GridLayout} for the returned box /
+	 * grid cell. This child layout is configured to use `cols` columns and
+	 * shares same `gap` as this (parent) layout. The configured row span only
+	 * acts as initial minimum vertical space reseervation, but is allowed to
+	 * grow and if needed will propagate the new space requirements to parent
+	 * layouts.
 	 *
-	 * Note: this size child-parent size propagation ONLY works until
-	 * the next cell is requested from any parent. IOW, child layouts
-	 * MUST be completed/populated first before continuing with
-	 * siblings/ancestors of this current layout.
+	 * Note: this size child-parent size propagation ONLY works until the next
+	 * cell is requested from any parent. IOW, child layouts MUST be
+	 * completed/populated first before continuing with siblings/ancestors of
+	 * this current layout.
 	 *
 	 * ```
 	 * import { gridLayout } from "@thi.ng/layout";
@@ -120,7 +118,7 @@ export interface IGridLayout<T extends IGridLayout<T>>
 	 * ```
 	 *
 	 * @param cols - columns in nested layout
-	 * @param spans - default [1, 1] (i.e. size of single cell)
+	 * @param spans - default `[1,1]` (i.e. size of single cell)
 	 * @param gap - gap for child layout
 	 */
 	nest(cols: number, spans?: CellSpan, gap?: number): T;
