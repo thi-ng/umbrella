@@ -8,7 +8,7 @@ import type { FnN } from "@thi.ng/api";
  *
  * @remarks
  * Reference:
- * - https://en.wikipedia.org/wiki/Gray_code
+ * https://en.wikipedia.org/wiki/Gray_code
  *
  * @param x - u32
  */
@@ -19,7 +19,7 @@ export const encodeGray32: FnN = (x) => (x ^ (x >>> 1)) >>> 0;
  *
  * @remarks
  * Reference:
- * - https://en.wikipedia.org/wiki/Gray_code
+ * https://en.wikipedia.org/wiki/Gray_code
  */
 export const decodeGray32: FnN = (x) => {
 	x = x ^ (x >>> 16);

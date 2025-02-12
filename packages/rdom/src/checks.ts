@@ -9,6 +9,7 @@ import type { IComponent } from "./api.js";
  *
  * @remarks
  * See thi.ng/hiccup docs for reference:
+ *
  * - https://docs.thi.ng/umbrella/hiccup/functions/serialize.html
  *
  * @param tree

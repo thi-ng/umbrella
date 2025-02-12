@@ -139,7 +139,7 @@ export const sync = <A extends IObjectOf<ISubscribable<any>>, B = SyncTuple<A>>(
 ) => new StreamSync<A, B>(opts);
 
 /**
- * @see {@link sync} for reference & examples.
+ * See {@link sync} for reference & examples.
  */
 export class StreamSync<
 	A extends IObjectOf<ISubscribable<any>>,

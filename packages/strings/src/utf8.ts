@@ -82,6 +82,7 @@ export const utf8Decode = (buf: Uint8Array, start: number, num: number) => {
  * `4 * src.length`.
  *
  * Based on:
+ *
  * - https://github.com/thi-ng/umbrella/blob/main/packages/transducers-binary/src/utf8.ts
  * - https://gist.github.com/pascaldekloe/62546103a1576803dade9269ccf76330
  *

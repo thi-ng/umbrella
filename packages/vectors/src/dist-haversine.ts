@@ -11,6 +11,7 @@ import { radians2 } from "./radians.js";
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Haversine_formula
  * - https://stackoverflow.com/a/21623206
  *

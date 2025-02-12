@@ -6,6 +6,7 @@ import type { Stringer } from "./api.js";
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Hollerith_constant
  * - https://en.wikipedia.org/wiki/IGES#File_format
  *

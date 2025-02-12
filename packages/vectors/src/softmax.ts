@@ -17,6 +17,7 @@ import { sum } from "./sum.js";
  * output classes.
  *
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Softmax_function
  * - https://victorzhou.com/blog/softmax/
  *

@@ -13,9 +13,10 @@ import type { PatchObjOp } from "./api.js";
  *
  * @remarks
  * Only the following patch types are supported:
- * - SET
- * - UPDATE
- * - DELETE
+ *
+ * - `SET`
+ * - `UPDATE`
+ * - `DELETE`
  */
 export function patchObj(): Reducer<PatchObjOp, any>;
 export function patchObj(init: any, patches: Iterable<PatchObjOp>): any;

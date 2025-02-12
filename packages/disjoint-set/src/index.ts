@@ -4,6 +4,8 @@
  * compression, after Sedgewick & Wayne.
  *
  * @remarks
+ * References:
+ *
  * - https://en.wikipedia.org/wiki/Disjoint-set_data_structure
  * - https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf
  */

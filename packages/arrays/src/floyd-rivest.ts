@@ -26,7 +26,7 @@ import { swap } from "./swap.js";
  * ```
  *
  * Based on pseudo-code from:
- * - https://en.wikipedia.org/wiki/Floyd%E2%80%93Rivest_algorithm
+ * https://en.wikipedia.org/wiki/Floyd%E2%80%93Rivest_algorithm
  *
  * @param buf
  * @param k

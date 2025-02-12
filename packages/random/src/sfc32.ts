@@ -8,8 +8,8 @@ import { DEFAULT_SEED_128 } from "./constants.js";
  * Simple Fast Counter PRNG (32bit version)
  *
  * @remarks
- * References:
- * - http://pracrand.sourceforge.net/
+ * Reference:
+ * http://pracrand.sourceforge.net/
  */
 export class SFC32
 	extends ARandom

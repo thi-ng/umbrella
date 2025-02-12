@@ -134,6 +134,8 @@ export interface MicroformatAttribs {
  * RDFa attributes
  *
  * @remarks
+ * References:
+ *
  * - https://www.w3.org/TR/html-rdfa/
  * - https://www.w3.org/TR/rdfa-core/#rdfa-attributes
  */
@@ -558,7 +560,7 @@ export type CSSProperty =
  * Additional CSS properties for SVG elements.
  *
  * @remarks
- * Reference:
+ * References:
  *
  * - https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation
  * - https://css-tricks.com/svg-properties-and-css/

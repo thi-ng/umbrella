@@ -6,6 +6,7 @@ import type { DitherKernel } from "./api.js";
  *
  * @remarks
  * References:
+ *
  * - https://beyondloom.com/blog/dither.html
  * - https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
  */

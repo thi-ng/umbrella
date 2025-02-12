@@ -20,6 +20,7 @@ import type { StatelessOscillator } from "./api.js";
  * values.
  *
  * References:
+ *
  * - https://www.desmos.com/calculator/klvl9oszfm
  * - https://ccrma.stanford.edu/files/papers/stanm5.pdf
  *

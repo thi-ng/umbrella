@@ -7,6 +7,8 @@ import type { IObjectOf } from "@thi.ng/api";
  * `Object.entries(x)`.
  *
  * @remarks
+ * See also:
+ *
  * - {@link vals}
  * - {@link zip}
  *

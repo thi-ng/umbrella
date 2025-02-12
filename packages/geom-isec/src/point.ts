@@ -17,11 +17,11 @@ import { vop } from "@thi.ng/vectors/vop";
 
 /**
  * Returns classifier for point `p`, relative to infinite 2D line defined by
- * point `a` and line direction `dir`. one of the following:
+ * point `a` and line direction `dir`. One of the following:
  *
- * - 0 if `p` lies on the line (using `eps` as tolerance)
- * - -1 if `p` is right (clockwise) of the line segment
- * - +1 if `p` is left (counterclockwise) of the line segment
+ * - `0` if `p` lies on the line (using `eps` as tolerance)
+ * - `-1` if `p` is right (clockwise) of the line segment
+ * - `+1` if `p` is left (counterclockwise) of the line segment
  *
  * @param p
  * @param a

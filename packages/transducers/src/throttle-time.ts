@@ -12,7 +12,8 @@ import { throttle } from "./throttle.js";
  * @remarks
  * Only to be used in async contexts and NOT with {@link transduce} directly.
  *
- * Also see:
+ * See also:
+ *
  * - [`thi.ng/rstream`](https://thi.ng/rstream)
  * - [`thi.ng/csp`](https://thi.ng/csp).
  *

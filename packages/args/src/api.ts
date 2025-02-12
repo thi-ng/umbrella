@@ -101,7 +101,7 @@ export interface ParseOpts {
 	/**
 	 * Only used if `showUsage` is enabled.
 	 *
-	 * @see {@link UsageOpts}
+	 * Also see {@link UsageOpts}
 	 */
 	usageOpts: Partial<UsageOpts>;
 	/**

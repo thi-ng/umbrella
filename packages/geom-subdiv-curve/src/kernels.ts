@@ -125,7 +125,7 @@ const DLG_MAIN = kernel5(
  *
  * @remarks
  * Reference:
- * - https://web.archive.org/web/20060816003547/https://algorithmicbotany.org/papers/subgpu.sig2003.pdf
+ * https://web.archive.org/web/20060816003547/https://algorithmicbotany.org/papers/subgpu.sig2003.pdf
  */
 export const SUBDIV_DLG: SubdivKernel = {
 	fn: (pts) => DLG_MAIN(pts),

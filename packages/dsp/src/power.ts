@@ -79,6 +79,7 @@ export const invPowerScale = (scale: number | NumericArray, base = 1) =>
  *
  * @remarks
  * References:
+ *
  * - http://www.it.uom.gr/teaching/linearalgebra/NumericalRecipiesInC/c13-4.pdf
  * - http://www.hep.ucl.ac.uk/~rjn/saltStuff/fftNormalisation.pdf
  *
@@ -94,6 +95,7 @@ export const powerSumSquared = (window: NumericArray | ComplexArray) =>
  *
  * @remarks
  * References:
+ *
  * - http://www.it.uom.gr/teaching/linearalgebra/NumericalRecipiesInC/c13-4.pdf
  * - http://www.hep.ucl.ac.uk/~rjn/saltStuff/fftNormalisation.pdf
  *
@@ -109,6 +111,7 @@ export const powerMeanSquared = (window: NumericArray | ComplexArray) =>
  *
  * @remarks
  * References:
+ *
  * - http://www.it.uom.gr/teaching/linearalgebra/NumericalRecipiesInC/c13-4.pdf
  * - http://www.hep.ucl.ac.uk/~rjn/saltStuff/fftNormalisation.pdf
  *

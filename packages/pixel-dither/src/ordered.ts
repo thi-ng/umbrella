@@ -33,7 +33,7 @@ const __init = (
  *
  * @remarks
  * Reference:
- * - https://en.wikipedia.org/wiki/Ordered_dithering
+ * https://en.wikipedia.org/wiki/Ordered_dithering
  *
  * @param size -
  */

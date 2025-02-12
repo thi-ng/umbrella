@@ -77,6 +77,7 @@ export interface RadialPaletteOpts extends BasePaletteOpts {
  * of https://thi.ng/geom-axidraw.
  *
  * Also see:
+ *
  * - {@link LinearPaletteOpts} for options
  * - {@link radialPalette} for circular/elliptical palette layouts
  * - {@link dip} (used internally for dipping sequence)
@@ -172,6 +173,7 @@ export const linearPalette = (opts: LinearPaletteOpts) => {
  *
  * @remarks
  * Also see:
+ *
  * - {@link RadialPaletteOpts} for options
  * - {@link linearPalette} for more details & code example
  * - {@link dip} (used internally for dipping sequence)

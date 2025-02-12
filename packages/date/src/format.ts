@@ -315,7 +315,7 @@ export const FMT_ss = defFormat(["ss"]);
  * Returns {@link LOCALE.now} if absolute difference is < `eps` milliseconds
  * (default: 100).
  *
- * @see {@link formatRelativeParts} for alternative output.
+ * See {@link formatRelativeParts} for alternative output.
  *
  *
  * @example

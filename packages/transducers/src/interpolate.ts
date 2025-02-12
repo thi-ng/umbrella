@@ -26,6 +26,7 @@ import { partition } from "./partition.js";
  * iterator...
  *
  * See also:
+ *
  * - {@link interpolateHermite}
  * - {@link interpolateLinear}
  * - {@link extendSides}

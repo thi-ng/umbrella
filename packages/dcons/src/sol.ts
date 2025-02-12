@@ -24,7 +24,7 @@ export type SOFn<T> = Fn2<SOL<T>, ConsCell<T>, ConsCell<T>>;
  * - `findWith()`
  *
  * Reference:
- * - https://en.wikipedia.org/wiki/Self-organizing_list
+ * https://en.wikipedia.org/wiki/Self-organizing_list
  */
 export class SOL<T> extends DCons<T> {
 	constructor(protected _reorder: SOFn<T>, src?: Iterable<T>) {
@@ -78,7 +78,7 @@ export class SOL<T> extends DCons<T> {
  *
  * @remarks
  * Reference:
- * - https://en.wikipedia.org/wiki/Self-organizing_list#Move_to_front_method_(MTF)
+ * https://en.wikipedia.org/wiki/Self-organizing_list#Move_to_front_method_(MTF)
  */
 export const defMTF = <T>(src?: Iterable<T>) =>
 	new SOL((list, cell) => (list.asHead(cell), cell), src);
@@ -88,7 +88,7 @@ export const defMTF = <T>(src?: Iterable<T>) =>
  *
  * @remarks
  * Reference:
- * - https://en.wikipedia.org/wiki/Self-organizing_list#Transpose_method
+ * https://en.wikipedia.org/wiki/Self-organizing_list#Transpose_method
  */
 export const defTranspose = <T>(src?: Iterable<T>) =>
 	new SOL(

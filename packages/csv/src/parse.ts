@@ -52,6 +52,7 @@ const DEFAULT_OPTS: Partial<CommonCSVOpts> = {
  * result objects will only contain values of the columns specified in `cols`.
  *
  * Also see:
+ *
  * - thi.ng/transducers
  * - {@link CSVOpts}
  * - {@link parseCSVFromString}.

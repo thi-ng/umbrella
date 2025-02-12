@@ -12,6 +12,7 @@ import { interpolate } from "./interpolate.js";
  * produced if there're less than 2 inputs.
  *
  * See also:
+ *
  * - {@link interpolate}
  * - {@link interpolateHermite}
  *

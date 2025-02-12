@@ -7,6 +7,7 @@ import { DEFAULT_SEED_128 } from "./constants.js";
 /**
  * @remarks
  * References:
+ *
  * - http://prng.di.unimi.it/
  * - http://prng.di.unimi.it/xoshiro128plusplus.c
  */

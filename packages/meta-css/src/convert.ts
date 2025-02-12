@@ -552,12 +552,19 @@ const __parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
 	let lastQueryIdx = token.lastIndexOf(QUERY_SEP);
 	if (lastQueryIdx < 0) return { token };
 	const tplArgIdx = token.indexOf("(");
-	if (tplArgIdx > 0) {
+	const verbatimArgIdx = token.indexOf("[");
+	if (tplArgIdx > 0 || verbatimArgIdx > 0) {
+		const idx =
+			tplArgIdx > 0
+				? verbatimArgIdx > 0
+					? Math.min(tplArgIdx, verbatimArgIdx)
+					: tplArgIdx
+				: verbatimArgIdx;
 		// check if template with query sep inside args only
-		if (tplArgIdx < lastQueryIdx && token.indexOf(QUERY_SEP) > tplArgIdx)
+		if (idx < lastQueryIdx && token.indexOf(QUERY_SEP) > idx)
 			return { token };
 		// otherwise, find last query sep in template ID only
-		lastQueryIdx = token.substring(0, tplArgIdx).lastIndexOf(QUERY_SEP);
+		lastQueryIdx = token.substring(0, idx).lastIndexOf(QUERY_SEP);
 	}
 	const query = token.substring(0, lastQueryIdx);
 	const parts = query.split(QUERY_SEP);

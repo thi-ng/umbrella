@@ -81,35 +81,34 @@ export interface PagerOpts {
 }
 
 /**
- * Higher order container component for paged navigation buttons. The
- * returned component function takes these arguments:
+ * Higher order container component for paged navigation buttons. The returned
+ * component function takes these arguments:
  *
  * - `ctx` - hdom context object
  * - `id` - current page ID (zero-based)
  * - `numItems` - current number of items
  * - `pageLen` - number of items per page (only used for calculation)
- * - `maxButtons` - number of page buttons to show (default: 5). If
- *   zero, only the prev / next and first / last buttons will be shown.
+ * - `maxButtons` - number of page buttons to show (default: 5). If zero, only
+ *   the prev / next and first / last buttons will be shown.
  *
- * If there are more pages than the specified number, only the
- * neighboring page IDs (relative to the current page) are shown. E.g.
- * If there are 10 pages, the current page ID is 5 and 3 visible page
- * buttons then the pager will look like this (the `|` character here
- * indicates button group boundaries):
+ * If there are more pages than the specified number, only the neighboring page
+ * IDs (relative to the current page) are shown. E.g. If there are 10 pages, the
+ * current page ID is 5 and 3 visible page buttons then the pager will look like
+ * this (the `|` character here indicates button group boundaries):
  *
  * ```text noweb:no
  * << < | 4 5 6 | > >>
  * ```
  *
- * Providing `pageLen` and `maxButtons` as arguments allows to
- * dynamically control the number of page buttons at runtime, e.g. in
- * response to window resizing.
+ * Providing `pageLen` and `maxButtons` as arguments allows to dynamically
+ * control the number of page buttons at runtime, e.g. in response to window
+ * resizing.
  *
  * Yields a component of page buttons and prev / next and first / last
- * navigation buttons. The actual button and button group components are
- * defined via the user supplied options. The first / prev and next /
- * last nav buttons are paired within inner `div` elements (one per
- * pair) and can be styled (or hidden) separately.
+ * navigation buttons. The actual button and button group components are defined
+ * via the user supplied options. The first / prev and next / last nav buttons
+ * are paired within inner `div` elements (one per pair) and can be styled (or
+ * hidden) separately.
  *
  * ```ts
  * import { pager } from "@thi.ng/hdom-components";

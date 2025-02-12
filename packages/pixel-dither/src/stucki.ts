@@ -10,8 +10,8 @@ const D = 8 * A;
  * Stucki dither kernel (similar/improved version of {@link JARVIS_JUDICE_NINKE}).
  *
  * @remarks
- * References:
- * - https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
+ * Reference:
+ * https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
  */
 export const STUCKI: DitherKernel = {
 	ox: [1, 2, -2, -1, 0, 1, 2, -2, -1, 0, 1, 2],

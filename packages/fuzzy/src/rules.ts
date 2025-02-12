@@ -15,7 +15,7 @@ import { snormMax, tnormMin, tnormProduct } from "./tnorms.js";
  * The optional rule weight (default: 1) is used by {@link defuzz} to adjust
  * rule importance.
  *
- * Also @see {@link and}, {@link strongAnd}, {@link or} for syntax sugar.
+ * Also see {@link and}, {@link strongAnd}, {@link or} for syntax sugar.
  *
  * @example
  * ```ts

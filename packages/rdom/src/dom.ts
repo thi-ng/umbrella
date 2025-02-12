@@ -169,7 +169,7 @@ export const $el = (
  *
  * @remarks
  * See thi.ng/hiccup docs for reference:
- * - https://docs.thi.ng/umbrella/hiccup/functions/serialize.html
+ * https://docs.thi.ng/umbrella/hiccup/functions/serialize.html
  *
  * @param body
  * @param parent

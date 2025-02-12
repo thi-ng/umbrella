@@ -27,8 +27,8 @@ import type {
  * @remarks
  * Use {@link convolveImage} to process multiple or all channels in a buffer.
  *
- * References:
- * - https://en.wikipedia.org/wiki/Kernel_(image_processing)
+ * Reference:
+ * https://en.wikipedia.org/wiki/Kernel_(image_processing)
  *
  * @param src -
  * @param opts -

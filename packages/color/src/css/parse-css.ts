@@ -24,7 +24,7 @@ import { intArgb32Srgb } from "../int/int-srgb.js";
  * The following syntax versions are supported:
  *
  * - CSS named colors
- * - CSS system colors @see {@link CSS_SYSTEM_COLORS}
+ * - CSS system colors, see {@link CSS_SYSTEM_COLORS}
  * - hex3/4/6/8
  * - `rgb(r% g% b% / a%?)`
  * - `rgb(r g b / a?)`
@@ -126,7 +126,7 @@ export const parseCss = (src: string | IDeref<string>): IParsedColor => {
  *
  * @remarks
  * Reference:
- * - https://www.w3.org/TR/css-values-4/#angle-value
+ * https://www.w3.org/TR/css-values-4/#angle-value
  *
  * @internal
  */

@@ -39,7 +39,8 @@ export const imageCanvas = (
  * `cors` arg.
  *
  * @remarks
- * Reference:
+ * References:
+ *
  * - https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin
  * - https://stackoverflow.com/a/55136314/294515
  *

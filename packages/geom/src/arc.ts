@@ -17,11 +17,13 @@ import { PI } from "@thi.ng/math/api";
  * - xl = true if |start-end| > PI
  * - clockwise = true if end > start
  *
- * Reference:
+ * References:
+ *
  * - https://svgwg.org/svg2-draft/paths.html#PathDataEllipticalArcCommands
  * - https://svgwg.org/svg2-draft/images/paths/arcs02.svg
  *
- * Also see {@link arcFrom2Points}, {@link pathFromSvg} for an alternative construction.
+ * Also see {@link arcFrom2Points}, {@link pathFromSvg} for an alternative
+ * construction.
  *
  * @param center
  * @param radii
@@ -62,7 +64,8 @@ export const arc = (
  * This function returns `undefined` if it's mathematically impossible to create
  * an arc with the given parameters.
  *
- * Reference:
+ * References:
+ *
  * - https://svgwg.org/svg2-draft/paths.html#PathDataEllipticalArcCommands
  * - https://svgwg.org/svg2-draft/images/paths/arcs02.svg
  * - https://svgwg.org/svg2-draft/implnote.html#ArcConversionEndpointToCenter

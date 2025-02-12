@@ -126,6 +126,7 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
 	 *
 	 * @remarks
 	 * References:
+	 *
 	 * - https://en.wikipedia.org/wiki/Laplacian_matrix
 	 * - https://en.wikipedia.org/wiki/Discrete_Laplace_operator
 	 *

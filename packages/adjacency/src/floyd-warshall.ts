@@ -20,7 +20,8 @@ import type { CostFn, IGraph } from "./api.js";
  * i.e. ~8MB for a graph with 1000 nodes. If possible, use {@link BFS} to
  * perform individual shortest-path queries (rather than this global approach).
  *
- * Reference:
+ * References:
+ *
  * - https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
  */
 export class FloydWarshall {

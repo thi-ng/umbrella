@@ -154,7 +154,7 @@ export interface ISubscribable<A> extends IDeref<Maybe<A>>, IID<string> {
 	 * attached to the returned wrapped sub will also only receive those
 	 * transformed values.
 	 *
-	 * @see {@link ITransformable}
+	 * See {@link ITransformable}
 	 *
 	 * @param sub -
 	 * @param opts -

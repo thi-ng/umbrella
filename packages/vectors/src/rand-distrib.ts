@@ -14,6 +14,7 @@ import { NEW_OUT_A } from "./compile/templates.js";
  * and initialized to the desired size/length.
  *
  * References:
+ *
  * - https://docs.thi.ng/umbrella/random/#random-distributions
  * - https://docs.thi.ng/umbrella/random/functions/normal.html
  *

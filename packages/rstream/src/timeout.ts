@@ -37,7 +37,7 @@ export const timeout = <T>(
 ): Subscription<T, T> => new Timeout(timeoutMs, opts);
 
 /**
- * @see {@link timeout} for reference & examples.
+ * See {@link timeout} for reference & examples.
  */
 class Timeout<T> extends Subscription<T, T> {
 	protected timeoutMs: number;

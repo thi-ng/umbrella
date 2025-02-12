@@ -30,7 +30,7 @@ import { clamp01 } from "../math/clamp.js";
  *
  * @remarks
  * Based on original GLSL impl by Inigo Quilez:
- * - https://iquilezles.org/articles/distfunctions2d/
+ * https://iquilezles.org/articles/distfunctions2d/
  *
  * @param N
  */

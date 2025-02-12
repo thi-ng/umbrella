@@ -203,7 +203,8 @@ export const absMax: FnN2 = (a, b) => (Math.abs(a) > Math.abs(b) ? a : b);
  *
  * @remarks
  * References:
- * - https://www.desmos.com/calculator/lkyf2ag3ta
+ *
+ * - [Interactive graph](https://www.desmos.com/calculator/lkyf2ag3ta)
  * - https://www.musicdsp.org/en/latest/Effects/203-fold-back-distortion.html
  *
  * @param e - threshold (> 0)

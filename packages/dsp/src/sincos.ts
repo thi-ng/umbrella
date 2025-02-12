@@ -15,6 +15,7 @@ import { AGen } from "./agen.js";
  * for higher frequencies.
  *
  * References:
+ *
  * - http://www.earlevel.com/main/2003/03/02/the-digital-state-variable-filter/
  *
  * @param freq - normalized freq

@@ -426,7 +426,7 @@ export const sinc: FnN = (t) => (t !== 0 ? Math.sin(t) / t : 1);
  * @remarks
  * https://en.wikipedia.org/wiki/Sinc_function
  *
- * @see {@link sinc}
+ * See {@link sinc}
  *
  * @param k -
  * @param t -

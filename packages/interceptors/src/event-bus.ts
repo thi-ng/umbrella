@@ -35,32 +35,30 @@ import {
 } from "./api.js";
 
 /**
- * Batched event processor for using composable interceptors for event
- * handling and side effects to execute the result of handled events.
+ * Batched event processor for using composable interceptors for event handling
+ * and side effects to execute the result of handled events.
  *
  * @remarks
- * Events processed by this class are simple 2-element tuples/arrays of
- * this form: `["event-id", payload?]`, where the `payload` is optional
- * and can be of any type.
+ * Events processed by this class are simple 2-element tuples/arrays of this
+ * form: `["event-id", payload?]`, where the `payload` is optional and can be of
+ * any type.
  *
- * Events are processed by registered handlers which transform each
- * event into a number of side effect descriptions to be executed later.
- * This separation ensures event handlers themselves are pure functions
- * and leads to more efficient reuse of side effecting operations. The
- * pure data nature until the last stage of processing (the application
- * side effects) too means that event flow can be much easier inspected
- * and debugged.
+ * Events are processed by registered handlers which transform each event into a
+ * number of side effect descriptions to be executed later. This separation
+ * ensures event handlers themselves are pure functions and leads to more
+ * efficient reuse of side effecting operations. The pure data nature until the
+ * last stage of processing (the application side effects) too means that event
+ * flow can be much easier inspected and debugged.
  *
- * In this model a single event handler itself is an array of objects
- * with `pre` and/or `post` keys and functions attached to each key.
- * These functions are called interceptors, since each intercepts the
- * processing of an event and can contribute their own side effects.
- * Each event's interceptor chain is processed bi-directionally (`pre`
- * in forward, `post` in reverse order) and the effects returned from
- * each interceptor are merged/collected. The outcome of this setup is a
- * more aspect-oriented, composable approach to event handling and
- * allows to inject common, re-usable behaviors for multiple event types
- * (logging, validation, undo/redo triggers etc.).
+ * In this model a single event handler itself is an array of objects with `pre`
+ * and/or `post` keys and functions attached to each key. These functions are
+ * called interceptors, since each intercepts the processing of an event and can
+ * contribute their own side effects. Each event's interceptor chain is
+ * processed bi-directionally (`pre` in forward, `post` in reverse order) and
+ * the effects returned from each interceptor are merged/collected. The outcome
+ * of this setup is a more aspect-oriented, composable approach to event
+ * handling and allows to inject common, re-usable behaviors for multiple event
+ * types (logging, validation, undo/redo triggers etc.).
  *
  * Side effects are only processed after all event handlers have run.
  * Furthermore, their order of execution can be configured with optional
@@ -73,18 +71,17 @@ import {
  * - {@link StatelessEventBus.processEffects}
  * - {@link StatelessEventBus.mergeEffects}
  *
- * The overall approach of this type of event processing is heavily
- * based on the pattern initially pioneered by @Day8/re-frame, with the
- * following differences:
+ * The overall approach of this type of event processing is heavily based on the
+ * pattern initially pioneered by @Day8/re-frame, with the following
+ * differences:
  *
- * - stateless (see {@link EventBus} for the more common stateful
- *   alternative)
+ * - stateless (see {@link EventBus} for the more common stateful alternative)
  * - standalone implementation (no assumptions about surrounding
  *   context/framework)
  * - manual control over event queue processing
  * - supports event cancellation (via FX_CANCEL side effect)
- * - side effect collection (multiple side effects for same effect type
- *   per frame)
+ * - side effect collection (multiple side effects for same effect type per
+ *   frame)
  * - side effect priorities (to control execution order)
  * - dynamic addition/removal of handlers & effects
  */

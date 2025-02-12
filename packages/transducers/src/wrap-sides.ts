@@ -14,6 +14,7 @@ import { inRange } from "@thi.ng/math/interval";
  * either `nXXX < 0` or larger than `src.length`.
  *
  * See also:
+ *
  * - {@link extendSides}
  * - {@link padSides}
  *

@@ -3,7 +3,8 @@ import type { FnN2 } from "@thi.ng/api";
 import { HALF_PI } from "@thi.ng/math/api";
 
 /**
- * Reference:
+ * References:
+ *
  * - https://en.wikipedia.org/wiki/Gibbs_phenomenon
  * - https://web.archive.org/web/20031210115616/http://www.musicdsp.org/files/bandlimited.pdf
  *

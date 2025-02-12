@@ -14,7 +14,8 @@ import type { SubdivKernel } from "./api.js";
  * points define a closed or open geometry (i.e. polygon vs. polyline).
  *
  * @remarks
- * Reference:
+ * References:
+ *
  * - https://web.archive.org/web/20060816003547/https://algorithmicbotany.org/papers/subgpu.sig2003.pdf
  * - https://www.csl.mtu.edu/cs3621/common/Subdivision.pdf
  *

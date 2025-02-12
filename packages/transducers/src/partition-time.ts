@@ -13,7 +13,8 @@ import { partitionBy } from "./partition-by.js";
  * @remarks
  * Only to be used in async contexts, NOT with {@link transduce} directly.
  *
- * Also see:
+ * See also:
+ *
  * - [`thi.ng/transducers-async`](https://thi.ng/transducers-async).
  * - [`thi.ng/rstream`](https://thi.ng/rstream)
  *

@@ -117,7 +117,7 @@ export const metaStream = <A, B>(
 ) => new MetaStream(factory, opts);
 
 /**
- * @see {@link metaStream} for reference & examples.
+ * See {@link metaStream} for reference & examples.
  */
 export class MetaStream<A, B> extends Subscription<A, B> {
 	factory: Fn<A, Nullable<ISubscription<B, B>>>;

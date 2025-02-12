@@ -34,7 +34,7 @@ export type CSSConversions = Partial<Record<ColorMode, Fn<any, string>>>;
  * {@link setDefaultCSSConversions} to change default.
  *
  * Reference:
- * - https://www.w3.org/TR/css-color-3/
+ * https://www.w3.org/TR/css-color-3/
  */
 export const CSS_LEVEL3: CSSConversions = {
 	abgr32: (x) => intArgb32Css(intAbgr32Argb32(x[0])),
@@ -56,7 +56,7 @@ export const CSS_LEVEL3: CSSConversions = {
  * Use {@link setDefaultCSSConversions} to use as default.
  *
  * Reference:
- * - https://www.w3.org/TR/css-color-4/
+ * https://www.w3.org/TR/css-color-4/
  */
 export const CSS_LEVEL4: CSSConversions = {
 	...CSS_LEVEL3,

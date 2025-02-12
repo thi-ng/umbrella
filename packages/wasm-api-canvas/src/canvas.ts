@@ -27,6 +27,7 @@ import {
  *
  * @remarks
  * Module defines the following dependencies:
+ *
  * - [WasmDomModule](https://docs.thi.ng/umbrella/wasm-api-dom/variables/WasmDomModule.html)
  *
  * See

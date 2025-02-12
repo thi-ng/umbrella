@@ -23,8 +23,7 @@ export type WaveShaperFn = Fn2<number, number, number>;
  * - {@link waveshapeSigmoid}
  * - {@link waveshapeSin}
  *
- * Interactive graph:
- * - https://www.desmos.com/calculator/hg4i7o836i
+ * [Interactive graph](https://www.desmos.com/calculator/hg4i7o836i)
  *
  * @param thresh - fold threshold
  * @param amp - post amplifier / autogain flag

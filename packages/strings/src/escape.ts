@@ -32,6 +32,7 @@ export const ESCAPES_REV: Record<number, string> = {
  * backslash escape sequences.
  *
  * @remarks
+ *
  * - Well-known low-ASCII control chars will be escaped using simple `\`, e.g.
  *   0x0a => `\n`
  * - Non-BMP chars will be escaped using `\Uxxxxxxxx`

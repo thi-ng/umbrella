@@ -7,6 +7,7 @@
  * Source: https://github.com/omnidan/node-emoji/blob/master/lib/emoji.json
  *
  * Changes:
+ *
  * - sorted alphabetically
  * - updated names, replaced all hyphens with underscores
  */

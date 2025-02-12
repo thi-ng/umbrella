@@ -17,10 +17,11 @@ import type { PatchArrayOp } from "./api.js";
  * in a non-destructive manner.
  *
  * The following patch types are supported:
- * - SET
- * - UPDATE
- * - INSERT
- * - DELETE
+ *
+ * - `SET`
+ * - `UPDATE`
+ * - `INSERT`
+ * - `DELETE`
  *
  * @example
  * ```ts tangle:../export/patch-array.ts

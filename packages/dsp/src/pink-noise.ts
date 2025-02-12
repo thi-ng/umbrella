@@ -23,6 +23,7 @@ const PROB = <PNoiseCoeffs>[0.00198, 0.0128, 0.049, 0.17, 0.682];
  * is scale relative to the sum of given `amp` values.
  *
  * References:
+ *
  * - http://web.archive.org/web/20160513114217/http://home.earthlink.net/~ltrammell/tech/newpink.htm
  * - http://web.archive.org/web/20160515145318if_/http://home.earthlink.net/~ltrammell/tech/pinkalg.htm
  * - https://www.musicdsp.org/en/latest/Synthesis/220-trammell-pink-noise-c-class.html

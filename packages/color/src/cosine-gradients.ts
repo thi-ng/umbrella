@@ -212,7 +212,7 @@ export const cosineGradient = (
  *
  * @remarks
  * Intended use case for this function: 1D texturemap/tonemap generation, e.g.
- * for dataviz etc. Also @see {@link multiColorGradientBuffer}.
+ * for dataviz etc. Also see {@link multiColorGradientBuffer}.
  *
  * @param n -  number of colors
  * @param spec - gradient spec

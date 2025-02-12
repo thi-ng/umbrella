@@ -68,7 +68,7 @@ export const pubsub = <A, B = A, T = any>(opts: PubSubOpts<A, B, T>) =>
 	new PubSub(opts);
 
 /**
- * @see {@link pubsub} for reference & examples.
+ * See {@link pubsub} for reference & examples.
  */
 export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 	topicfn: Fn<B, T>;

@@ -169,7 +169,8 @@ export const invAlphaCut =
  * - S-norm like function: 0.0
  *
  * References:
- * - https://www.desmos.com/calculator/pnq6kqzfb5 (interactive graph)
+ *
+ * - [Interactive graph](https://www.desmos.com/calculator/pnq6kqzfb5)
  * - https://en.wikipedia.org/wiki/T-norm
  * - https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/tnorms.ts
  *

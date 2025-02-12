@@ -19,6 +19,7 @@ const B3 = 0.453646839257496;
 /**
  * @remarks
  * Based on:
+ *
  * - https://github.com/neilbartlett/color-temperature/blob/develop/index.js
  * - http://www.zombieprototypes.com/?p=210
  *

@@ -17,6 +17,7 @@ import {
  * Based on technique by Inigo Quilez
  *
  * References:
+ *
  * - https://iquilezles.org/articles/palettes/
  * - https://github.com/thi-ng/umbrella/tree/develop/packages/color#cosine-gradients
  *

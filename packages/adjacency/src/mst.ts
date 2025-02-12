@@ -23,6 +23,7 @@ import { DisjointSet } from "@thi.ng/disjoint-set";
  * for details).
  *
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
  *
  * @example

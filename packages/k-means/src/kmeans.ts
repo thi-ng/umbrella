@@ -73,6 +73,7 @@ export const kmeans = <T extends ReadonlyVec>(
  * Throws an error if `samples` are empty.
  *
  * References:
+ *
  * - https://en.wikipedia.org/wiki/K-means%2B%2B
  * - http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf
  * - http://vldb.org/pvldb/vol5/p622_bahmanbahmani_vldb2012.pdf (TODO)

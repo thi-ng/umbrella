@@ -13,6 +13,7 @@ const __nodeLoc = (node: ASTNode) =>
 
 /**
  * Looks up given symbol (word name) in this order of priority:
+ *
  * - current `env.__words`
  * - {@link ALIASES}
  * - @thi.ng/pointfree built-ins

@@ -7,7 +7,7 @@ import type { StatelessOscillator } from "./api.js";
  *
  * @remarks
  * Reference:
- * - https://www.desmos.com/calculator/gsobpc8hsy
+ * https://www.desmos.com/calculator/gsobpc8hsy
  *
  * @param phase -
  * @param freq -

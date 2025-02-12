@@ -24,7 +24,7 @@ export interface QueryNeighborhoodOpts {
  *
  * @remarks
  * Grid data structure based on:
- * - https://matthias-research.github.io/pages/tenMinutePhysics/11-hashing.pdf
+ * https://matthias-research.github.io/pages/tenMinutePhysics/11-hashing.pdf
  */
 export abstract class AHashGrid<T> {
 	invSize: number;

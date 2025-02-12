@@ -13,6 +13,7 @@ import type { CostFn, IGraph } from "./api.js";
  * Also see {@link bfs} for ad hoc queries.
  *
  * Reference:
+ *
  * - https://en.wikipedia.org/wiki/Breadth-first_search
  * - https://algs4.cs.princeton.edu/40graphs/
  */
@@ -82,6 +83,7 @@ export class BFS {
  * topological distance.
  *
  * Reference:
+ *
  * - https://en.wikipedia.org/wiki/Breadth-first_search
  * - https://algs4.cs.princeton.edu/40graphs/
  *

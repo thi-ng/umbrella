@@ -7,7 +7,7 @@ import { DEFAULT_SEED_32 } from "./constants.js";
 /**
  * @remarks
  * References:
- * -
+ *
  * - https://github.com/thi-ng/ct-head/blob/master/random.h
  * - https://gist.github.com/voidqk/d112165a26b45244a65298933c0349a4
  */

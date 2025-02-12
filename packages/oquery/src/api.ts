@@ -23,6 +23,7 @@ export type QueryObj = Record<string, any>;
  * All 27 possible query types.
  *
  * @remarks
+ *
  * - l => literal
  * - n => null / wildcard
  * - f => function / predicate

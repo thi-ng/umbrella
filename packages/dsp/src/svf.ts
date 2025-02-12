@@ -21,7 +21,7 @@ export const svfAllpass = (fc: number, q?: number) => new SVF("all", fc, q);
  * Multi-type state variable filter w/ trapezoidal integration, after
  * Andrew Simper.
  *
- * Reference:
+ * References:
  *
  * - https://cytomic.com/files/dsp/SvfLinearTrapOptimised2.pdf
  * - https://en.wikipedia.org/wiki/Trapezoidal_rule

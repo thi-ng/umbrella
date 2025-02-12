@@ -7,6 +7,7 @@ import type { IObjectOf } from "@thi.ng/api";
  *
  * @remarks
  * See also:
+ *
  * - {@link keys}
  * - {@link pairs}
  *

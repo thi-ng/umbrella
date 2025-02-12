@@ -8,7 +8,7 @@ import { __ensureAlpha } from "../internal/ensure.js";
 /**
  * @remarks
  * Reference:
- * - https://github.com/w3c/csswg-drafts/blob/main/css-color-4/conversions.js
+ * https://github.com/w3c/csswg-drafts/blob/main/css-color-4/conversions.js
  *
  * @param out
  * @param src

@@ -17,6 +17,7 @@ import { sum } from "./sum.js";
  * ...where `a'` and `b'` are {@link center}'ed versions of given input vectors.
  *
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Correlation
  * - https://www.youtube.com/watch?v=2bcmklvrXTQ
  *

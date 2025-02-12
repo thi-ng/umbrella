@@ -89,14 +89,15 @@ test("verbatim", () => {
 	};
 	const bundle: string[] = [];
 	processSpec(
-		`#test { prop-name-[foo\ bar] foo:prop-name-[1px] { [type=test] { prop-name-[nested] } } }`,
+		`#test { prop-name-[foo\ bar] foo:prop-name-[1px] { [type=test] { prop-name-[nested] } } }
+		#test2 { content-["test:"] foo:content-["foo:"] }`,
 		proc
 	);
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		"#test{prop-name:foo bar;}#test[type=test]{prop-name:nested;}",
-		"@media (foo){#test{prop-name:1px;}}",
+		`#test{prop-name:foo bar;}#test[type=test]{prop-name:nested;}#test2{content:"test:";}`,
+		'@media (foo){#test{prop-name:1px;}#test2{content:"foo:";}}',
 	]);
 });
 

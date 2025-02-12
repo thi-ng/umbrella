@@ -61,6 +61,7 @@ export const fmod: FnN2 = (x, y) => x % y;
  * tuple of `[sig, exp]`.
  *
  * @remarks
+ *
  * - If `x` is zero, both parts (significand and exponent) are zero.
  * - If `x` is negative, the significand returned by this function is negative.
  *

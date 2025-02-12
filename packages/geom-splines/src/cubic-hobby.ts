@@ -21,6 +21,7 @@ import { set2 } from "@thi.ng/vectors/set";
  *
  * @remarks
  * References:
+ *
  * - https://link.springer.com/content/pdf/10.1007/BF02187690.pdf
  * - https://web.archive.org/web/20220816011347/https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/hobby/hobby.pdf
  * - http://weitz.de/hobby/

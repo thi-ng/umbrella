@@ -152,7 +152,7 @@ export class AxiDraw implements IReset {
 	 * {@link AxiDrawOpts.control} for details).
 	 *
 	 * Reference:
-	 * - http://evil-mad.github.io/EggBot/ebb.html
+	 * http://evil-mad.github.io/EggBot/ebb.html
 	 *
 	 * Also see {@link complete}.
 	 *
@@ -441,7 +441,7 @@ export class AxiDraw implements IReset {
 	 *
 	 * @remarks
 	 * Reference:
-	 * - https://github.com/evil-mad/AxiDraw-Processing/blob/80d81a8c897b8a1872b0555af52a8d1b5b13cec4/AxiGen1/AxiGen1.pde#L213
+	 * https://github.com/evil-mad/AxiDraw-Processing/blob/80d81a8c897b8a1872b0555af52a8d1b5b13cec4/AxiGen1/AxiGen1.pde#L213
 	 *
 	 * @param id
 	 * @param x

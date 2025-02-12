@@ -78,7 +78,7 @@ export function multiColorGradient<T extends TypedColor<any>>(
  *
  * @remarks
  * Intended use case for this function: 1D texturemap/tonemap generation, e.g.
- * for dataviz etc. Also @see {@link cosineGradientBuffer}.
+ * for dataviz etc. Also see {@link cosineGradientBuffer}.
  *
  * @param opts -
  * @param buffer - target buffer/array

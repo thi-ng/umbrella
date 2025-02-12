@@ -9,6 +9,7 @@ import { sum } from "./sum.js";
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Covariance
  * - https://www.youtube.com/watch?v=2bcmklvrXTQ
  *

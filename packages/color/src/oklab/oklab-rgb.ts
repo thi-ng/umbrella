@@ -5,7 +5,7 @@ import { __mulV33 } from "../internal/matrix-ops.js";
 /**
  * @remarks
  * Reference:
- * - https://bottosson.github.io/posts/oklab/#converting-from-linear-srgb-to-oklab
+ * https://bottosson.github.io/posts/oklab/#converting-from-linear-srgb-to-oklab
  *
  * @internal
  */

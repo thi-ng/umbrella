@@ -39,6 +39,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * similar checks as this function.
  *
  * Also see:
+ *
  * - {@link closestPoint}
  * - {@link pointInside}
  * - {@link proximity}

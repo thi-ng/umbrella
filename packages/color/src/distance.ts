@@ -40,7 +40,8 @@ export const distHsv: ColorDistance = (a, b) => {
  * a cyclinder (using Law of Cosines).
  *
  * @remarks
- * Reference:
+ * References:
+ *
  * - https://math.stackexchange.com/a/3612602
  * - https://en.wikipedia.org/wiki/Law_of_cosines
  *
@@ -135,6 +136,7 @@ const H275 = 275 * DEG2RAD;
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Color_difference#CIEDE2000
  * - http://www2.ece.rochester.edu/~gsharma/ciede2000/ciede2000noteCRNA.pdf
  *
@@ -227,6 +229,7 @@ const H345 = 345 * DEG2RAD;
  * `distCMC(a, b) !== distCMC(b, a)`
  *
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Color_difference#CMC_l:c_(1984)
  */
 export const distCMC =

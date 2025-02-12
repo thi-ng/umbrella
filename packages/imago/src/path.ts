@@ -28,20 +28,20 @@ const _ = undefined;
  * the {@link ImgProcOpts.pathParts} options provided to {@link processImage}.
  * Any others will remain as is. Custom IDs take precedence over built-in ones.
  *
- * - name: original base filename (w/o ext)
- * - sha1/224/256/384/512: truncated hash of output
- * - w: current width
- * - h: current height
- * - aspect: "p" (portrait), "l" (landscape) or "sq" (square)
- * - date: yyyyMMdd
- * - time: HHmmss
- * - year: 4-digit year
- * - month: 2-digit month
- * - week: 2-digit week
- * - day: 2-digit day in month
- * - hour: 2-digit hour (24h system)
- * - minute: 2-digit minute
- * - second: 2-digit second
+ * - `name`: original base filename (w/o ext)
+ * - `sha1/224/256/384/512`: truncated hash of output
+ * - `w`: current width
+ * - `h`: current height
+ * - `aspect`: "p" (portrait), "l" (landscape) or "sq" (square)
+ * - `date`: yyyyMMdd
+ * - `time`: HHmmss
+ * - `year`: 4-digit year
+ * - `month`: 2-digit month
+ * - `week`: 2-digit week
+ * - `day`: 2-digit day in month
+ * - `hour`: 2-digit hour (24h system)
+ * - `minute`: 2-digit minute
+ * - `second`: 2-digit second
  *
  * All date/time related values will be in UTC.
  *

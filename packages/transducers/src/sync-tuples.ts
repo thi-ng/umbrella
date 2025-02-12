@@ -11,6 +11,7 @@ import { __iter, iterator } from "./iterator.js";
  *
  * @remarks
  * The following behavior is used:
+ *
  * - 1st input: `[null,null]` => no output
  * - 2nd input: `[0, null]` => no output
  * - 3rd input: `[null, 1]` => `[0, 1]`

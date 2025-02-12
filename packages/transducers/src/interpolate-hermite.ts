@@ -18,6 +18,7 @@ import { interpolate } from "./interpolate.js";
  * interval.
  *
  * See also:
+ *
  * - {@link interpolate}
  * - {@link interpolateLinear}
  * - {@link extendSides}

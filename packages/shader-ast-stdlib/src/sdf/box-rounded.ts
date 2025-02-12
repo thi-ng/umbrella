@@ -16,7 +16,7 @@ import { maxComp2 } from "../math/maxcomp.js";
  *
  * @remarks
  * Ported from original GLSL impl by Inigo Quilez:
- * - https://iquilezles.org/articles/distfunctions2d/
+ * https://iquilezles.org/articles/distfunctions2d/
  *
  * @param p - vec2
  * @param size - vec2
