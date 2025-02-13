@@ -6,7 +6,7 @@ import { __opts } from "./utils.js";
 
 /**
  * Yields sequence of 2D grid coordinates in row-major order. Same as
- * [`range2d()`](https://docs.thi.ng/umbrella/transducers/functions/range2d.html).
+ * [`range2d`](https://docs.thi.ng/umbrella/transducers/functions/range2d.html).
  *
  * @param opts -
  */

@@ -4,7 +4,7 @@ import type { ReadonlyVec, Vec } from "./api.js";
 
 /**
  * Vector version of
- * [`mixCubic()`](https://docs.thi.ng/umbrella/math/functions/mixCubic.html).
+ * [`mixCubic`](https://docs.thi.ng/umbrella/math/functions/mixCubic.html).
  *
  * @param out - result
  * @param a -

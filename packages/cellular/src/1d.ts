@@ -65,7 +65,7 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  *
  * Automata rules are encoded as JS `BigInt` values and are considered
  * anisotropic by default. If isotropy is desired, it has to be explicitly
- * pre-encoded [out of scope of this library]. There's also built-in optional
+ * pre-encoded (out of scope of this library). There's also built-in optional
  * support for position independent neighborhood encoding, only considering the
  * number/count of non-zero cells. An encoded rule ID and its overall magnitude
  * is directly related and dependent on the size and shape of its kernel config,

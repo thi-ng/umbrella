@@ -5,7 +5,7 @@ import { defBitField } from "@thi.ng/bitfield/bitfield";
 /**
  * Yields iterator of 2D grid coordinates based on the recursive Diamond Square
  * algorithm. The given `exp` is a power of 2 exponent and the resulting
- * coordinates (in both directions) will be in the closed [0..2^exp] interval
+ * coordinates (in both directions) will be in the closed `[0,2^exp]` interval
  * (i.e. each axis is always a power-of-2 plus 1).
  *
  * @remarks

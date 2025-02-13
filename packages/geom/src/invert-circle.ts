@@ -32,7 +32,7 @@ export const invertCircle = (c: Circle, ref: Circle) => {
  * Applies inversion of point `p` in regards to reference circle `ref`.
  *
  * @remarks
- * From Wikipedia: "[...]for a point inside the circle, the nearer the point to
+ * From Wikipedia: "...for a point inside the circle, the nearer the point to
  * the center, the further away its transformation. While for any point (inside
  * or outside the circle), the nearer the point to the circle, the closer its
  * transformation."

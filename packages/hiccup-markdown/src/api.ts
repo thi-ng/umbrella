@@ -44,7 +44,7 @@ export interface TagTransforms {
 	 */
 	blockquote(ctx: TransformCtx, body: any[], meta?: any): any;
 	/**
-	 * Handler for forced line breaks (aka lines ending with `\`).
+	 * Handler for forced line breaks (aka lines ending with backslash).
 	 *
 	 * @param ctx
 	 */

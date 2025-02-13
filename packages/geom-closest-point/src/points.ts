@@ -7,7 +7,7 @@ import { set } from "@thi.ng/vectors/set";
 /**
  * Returns closest point to `p` in given point array, optionally using custom
  * distance function `dist` (default:
- * [`distSq()`](https://docs.thi.ng/umbrella/vectors/functions/distSq.html)).
+ * [`distSq`](https://docs.thi.ng/umbrella/vectors/functions/distSq.html)).
  *
  * @param p -
  * @param pts -

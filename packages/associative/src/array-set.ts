@@ -23,7 +23,7 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
  * customizable equality/equivalence predicate and so is more useful when
  * dealing with structured data. Implements full API of native Set and by the
  * default uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
  * equivalence checking.
  *
  * Additionally, the type also implements the

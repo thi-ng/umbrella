@@ -42,7 +42,7 @@ export class EquivMap<K, V>
 	 * Creates a new instance with optional initial key-value pairs and provided
 	 * options. If no `opts` are given, uses `ArraySet` for storing canonical
 	 * keys and
-	 * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+	 * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
 	 * checking key equivalence.
 	 *
 	 * @param pairs - key-value pairs

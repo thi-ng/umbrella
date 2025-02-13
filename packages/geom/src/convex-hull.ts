@@ -21,7 +21,7 @@ export type ConvexHullFn = {
  *
  * @remarks
  * Internally uses
- * [`grahamScan2()`](https://docs.thi.ng/umbrella/geom-hull/functions/grahamScan2.html).
+ * [`grahamScan2`](https://docs.thi.ng/umbrella/geom-hull/functions/grahamScan2.html).
  *
  * Currently implemented for:
  *

@@ -291,7 +291,7 @@ export const $html = (
  * string, a string array or an object of booleans. If the latter, the given
  * class names are either added to or removed from the current list of classes.
  * See
- * [`mergeClasses()`](https://docs.thi.ng/umbrella/hiccup/functions/mergeClasses.html)
+ * [`mergeClasses`](https://docs.thi.ng/umbrella/hiccup/functions/mergeClasses.html)
  * for details.
  *
  * CSS style rules can be defined via the `style` attrib. Please see

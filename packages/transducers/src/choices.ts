@@ -12,7 +12,7 @@ import { repeatedly } from "./repeatedly.js";
  *
  * @remarks
  * Internally uses
- * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
+ * [`weightedRandom`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
  *
  * @example
  * ```ts tangle:../export/choices.ts

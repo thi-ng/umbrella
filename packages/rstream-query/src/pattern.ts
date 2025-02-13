@@ -20,11 +20,10 @@ export const patternVars = ([s, p, o]: Pattern) => {
 };
 
 /**
- * Takes a path triple pattern and max depth. The pattern's predicate
- * must be a seq of preds. Returns a 2-elem vector [patterns vars],
- * where `patterns` is a list of generated sub-query patterns with
- * injected temp qvars for in between patterns and `vars` are the temp
- * qvars themselves.
+ * Takes a path triple pattern and max depth. The pattern's predicate must be a
+ * seq of preds. Returns a 2-elem vector `[patterns,vars]`, where `patterns` is
+ * a list of generated sub-query patterns with injected temp qvars for in
+ * between patterns and `vars` are the temp qvars themselves.
  *
  * Example:
  *

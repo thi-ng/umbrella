@@ -13,7 +13,7 @@ export interface StreamShuffleOpts {
 	 */
 	n: number;
 	/**
-	 * Max. shuffle ops per new input (in [0..n] range)
+	 * Max. shuffle ops per new input (in `[0,n]` range)
 	 *
 	 * @defaultValue same as `n`
 	 */

@@ -5,7 +5,7 @@ import { map } from "./map.js";
 
 /**
  * Transducer version of
- * [`peek()`](https://docs.thi.ng/umbrella/arrays/functions/peek.html), i.e.
+ * [`peek`](https://docs.thi.ng/umbrella/arrays/functions/peek.html), i.e.
  * extracts the last item of an array.
  *
  * @example

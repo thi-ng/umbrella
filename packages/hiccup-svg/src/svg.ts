@@ -5,7 +5,7 @@ import { fattribs } from "./format.js";
 import type { Attribs } from "./api.js";
 
 /**
- * Defines an <svg> root element with default XML namespaces. By default
+ * Defines an `<svg>` root element with default XML namespaces. By default
  * currently still defaults to SVG version to 1.1 to support Safari and other
  * legacy tooling (can be overridden).
  *
@@ -18,7 +18,8 @@ import type { Attribs } from "./api.js";
  * The root `<svg>` element will contain XML namespace declarations for these
  * namespaces:
  *
- * - [svg (default NS)](https://docs.thi.ng/umbrella/prefixes/variables/XML_SVG.html)
+ * - [svg (default
+ *   NS)](https://docs.thi.ng/umbrella/prefixes/variables/XML_SVG.html)
  * - [`xmlns:inkscape`](https://docs.thi.ng/umbrella/prefixes/variables/XML_INKSCAPE.html)
  * - [`xmlns:xlink`](https://docs.thi.ng/umbrella/prefixes/variables/XML_XLINK.html)
  *

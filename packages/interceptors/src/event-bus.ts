@@ -651,7 +651,7 @@ export class EventBus
 	 * #### `EV_SET_VALUE`
 	 *
 	 * Resets state path to provided value. See
-	 * [`setIn()`](https://docs.thi.ng/umbrella/paths/functions/setIn.html).
+	 * [`setIn`](https://docs.thi.ng/umbrella/paths/functions/setIn.html).
 	 *
 	 * Example event definition:
 	 * ```js
@@ -664,7 +664,7 @@ export class EventBus
 	 *
 	 * Updates a state path's value with provided function and optional extra
 	 * arguments. See
-	 * [`updateIn()`](https://docs.thi.ng/umbrella/paths/functions/updateIn.html).
+	 * [`updateIn`](https://docs.thi.ng/umbrella/paths/functions/updateIn.html).
 	 *
 	 * Example event definition:
 	 * ```js

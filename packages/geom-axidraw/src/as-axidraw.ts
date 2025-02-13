@@ -44,7 +44,7 @@ import { pointsByNearestNeighbor } from "./sort.js";
  *
  * Currently supported shape types (at least all types which are supported by
  * the
- * [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)
+ * [`asPolyline`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)
  * function):
  *
  * - arc

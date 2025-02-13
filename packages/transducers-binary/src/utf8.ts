@@ -195,7 +195,8 @@ export function utf8Encode(src?: string): any {
 }
 
 /**
- * Re-export of [utf8Length()](https://docs.thi.ng/umbrella/strings/functions/utf8Length.html).
+ * Re-export of
+ * [`utf8Length`](https://docs.thi.ng/umbrella/strings/functions/utf8Length.html).
  *
  * @deprecated migrated to thi.ng/strings pkg
  */

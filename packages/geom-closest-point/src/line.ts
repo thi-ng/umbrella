@@ -69,21 +69,20 @@ export const distToLine: FnU3<ReadonlyVec, number> = (p, a, b) =>
 	dist(p, closestPointLine(p, a, b) || a);
 
 /**
- * Returns closest point to `p` on line segment `a` -> `b`. By default,
- * if the result point lies outside the segment, returns a copy of the
- * closest end point. The result is written to the optional `out` vector
- * (or if omitted, a new one is created).
+ * Returns closest point to `p` on line segment `a` -> `b`. By default, if the
+ * result point lies outside the segment, returns a copy of the closest end
+ * point. The result is written to the optional `out` vector (or if omitted, a
+ * new one is created).
  *
- * If `insideOnly` is true, only returns the closest point iff it
- * actually is inside the segment. The behavior of this configurable via
- * the optional `eps` arg and by default includes both end points. This
- * function uses {@link closestT} to compute the parametric position of the
- * result point and determine if it lies within the line segment. If
- * `eps > 0`, the end points `a` and `b` will be excluded from the
- * match, effectively shortening the valid line segment from both ends,
- * i.e. the valid interval of the parametric position will be
- * [eps,1-eps]. If the result lies outside this interval, the function
- * returns `undefined`. Likewise, if `a` and `b` are coincident.
+ * If `insideOnly` is true, only returns the closest point iff it actually is
+ * inside the segment. The behavior of this configurable via the optional `eps`
+ * arg and by default includes both end points. This function uses
+ * {@link closestT} to compute the parametric position of the result point and
+ * determine if it lies within the line segment. If `eps > 0`, the end points
+ * `a` and `b` will be excluded from the match, effectively shortening the valid
+ * line segment from both ends, i.e. the valid interval of the parametric
+ * position will be `[eps,1-eps]`. If the result lies outside this interval, the
+ * function returns `undefined`. Likewise, if `a` and `b` are coincident.
  *
  * @param p - query point
  * @param a - line point A

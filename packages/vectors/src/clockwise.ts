@@ -7,7 +7,7 @@ import { signedArea2 } from "./signed-area.js";
 /**
  * Syntax sugar for `sign(signedArea2(a, b, c))`.
  *
- * - [`sign()`](https://docs.thi.ng/umbrella/math/functions/sign.html)
+ * - [`sign`](https://docs.thi.ng/umbrella/math/functions/sign.html)
  * - {@link signedArea2}
  *
  * @param a -

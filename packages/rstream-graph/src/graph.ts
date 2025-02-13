@@ -31,7 +31,7 @@ import type {
  * needed) and an object of {@link NodeSpec} values or functions returning
  * {@link Node} objects. Calls `nodeFromSpec()` for each spec and then
  * recursively resolves references via
- * [`resolve()`](https://docs.thi.ng/umbrella/resolve-map/functions/resolve.html).
+ * [`resolve`](https://docs.thi.ng/umbrella/resolve-map/functions/resolve.html).
  * Returns new initialized graph object of {@link Node} objects and
  * [`thi.ng/rstream`](https://thi.ng/rstream) stream constructs. Does NOT mutate
  * original {@link GraphSpec} object.

@@ -136,7 +136,7 @@ export function defViewUnsafe<T = undefined>(
  *
  * Related, the actual value change predicate can be customized. If not given,
  * the default
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) will be
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) will be
  * used.
  *
  * @example

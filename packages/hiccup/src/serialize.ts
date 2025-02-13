@@ -41,7 +41,7 @@ export interface SerializeOpts {
 	/**
 	 * Only used if {@link SerializeOpts.escape} is enabled. Function to escape
 	 * entities. By default uses
-	 * [`escapeEntitiesNum()`](https://docs.thi.ng/umbrella/strings/functions/escapeEntitiesNum.html).
+	 * [`escapeEntitiesNum`](https://docs.thi.ng/umbrella/strings/functions/escapeEntitiesNum.html).
 	 */
 	escapeFn: FnU<string>;
 	/**

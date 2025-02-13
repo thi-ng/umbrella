@@ -107,7 +107,7 @@ export const mixHermiteDiff3 = (
 
 /**
  * Vector version of
- * [`tangentCardinal()`](https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html).
+ * [`tangentCardinal`](https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html).
  *
  * @param out -
  * @param prev -
@@ -127,7 +127,7 @@ export const tangentCardinal = (
 
 /**
  * Vector version of
- * [`tangentDiff3()`](https://docs.thi.ng/umbrella/math/functions/tangentDiff3.html).
+ * [`tangentDiff3`](https://docs.thi.ng/umbrella/math/functions/tangentDiff3.html).
  *
  * @param out - result
  * @param prev -

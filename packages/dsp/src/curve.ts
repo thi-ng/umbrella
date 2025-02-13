@@ -2,18 +2,18 @@
 import { MAdd } from "./madd.js";
 
 /**
- * Returns new {@link MAdd} gen, producing an exponential curve (with
- * adjustable curvature) between `start` and `end` values over `num`
- * steps. This is the exponential equivalent of {@link line}.
+ * Returns new {@link MAdd} gen, producing an exponential curve (with adjustable
+ * curvature) between `start` and `end` values over `num` steps. This is the
+ * exponential equivalent of {@link line}.
  *
  * @remarks
- * Unless `skipFirst` is true (default: false), the `end` value is only
- * reached at `num + 1` steps. Unless `clampEnd` is true (default:
- * false), the curve will NOT stop at `end` but continue indefinitely if
- * more values are requested from the generator.
+ * Unless `skipFirst` is true (default: false), the `end` value is only reached
+ * at `num + 1` steps. Unless `clampEnd` is true (default: false), the curve
+ * will NOT stop at `end` but continue indefinitely if more values are requested
+ * from the generator.
  *
- * The curvature can be controlled via the logarithmic `rate` param.
- * Recommended range [0.0001 - 10000] (curved -> linear). Default: 0.1
+ * The curvature can be controlled via the logarithmic `rate` param. Recommended
+ * range `[0.0001,10000]` (curved -> linear). Default: 0.1
  *
  * Also see {@link madd}.
  *

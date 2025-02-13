@@ -59,8 +59,8 @@ export type ConvoleFn = {
  * @remarks
  * Implementations:
  *
- * - [`convolveClosed()`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveClosed.html))
- * - [`convolveOpen()`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveOpen.html))
+ * - [`convolveClosed`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveClosed.html))
+ * - [`convolveOpen`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveOpen.html))
  *
  * Currently only implemented for:
  *

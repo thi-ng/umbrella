@@ -7,7 +7,7 @@ import { $ } from "./safe.js";
 /**
  * Prints TOS to console
  *
- * ( x -- )
+ * Stack effect: `( x -- )`
  *
  * @param ctx -
  */

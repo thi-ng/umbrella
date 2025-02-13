@@ -10,8 +10,8 @@ import { sin } from "./osc-sin.js";
  *
  * @remarks
  * The `freqFn` and `ampFn` functions are used to compute respective frequency
- * and amplitude factors for each of the `n` requested harmonics (given in [i,n]
- * range).
+ * and amplitude factors for each of the `n` requested harmonics (given in
+ * `[i,n]` range).
  *
  * @param osc -
  * @param freqFn -

@@ -66,10 +66,9 @@ interface ParametricOps {
 }
 
 /**
- * Takes an
- * [`IShape`](https://docs.thi.ng/umbrella/geom/interfaces/IShape.html)
+ * Takes an [`IShape`](https://docs.thi.ng/umbrella/geom/interfaces/IShape.html)
  * instance (possibly a tree, e.g. via
- * [`group()`](https://docs.thi.ng/umbrella/geom/functions/group.html)) and
+ * [`group`](https://docs.thi.ng/umbrella/geom/functions/group.html)) and
  * converts it into a {@link SDFn}.
  *
  * @remarks
@@ -93,7 +92,7 @@ interface ParametricOps {
  * number of vertices. If not specified
  * [`DEFAULT_SAMPLES`](https://docs.thi.ng/umbrella/geom-resample/variables/DEFAULT_SAMPLES.html)
  * will be used (which can be globally set via
- * [`setDefaultSamples()`](https://docs.thi.ng/umbrella/geom-resample/functions/setDefaultSamples.html)).
+ * [`setDefaultSamples`](https://docs.thi.ng/umbrella/geom-resample/functions/setDefaultSamples.html)).
  */
 export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 	__dispatch,

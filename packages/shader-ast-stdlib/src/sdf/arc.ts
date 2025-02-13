@@ -11,7 +11,7 @@ import { abs, cos, length, sin } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Returns signed distance from `p` to 2D circular arc with `aperture` (in
- * [0..π] interval), radius `ra` and `thickness`.
+ * `[0,π]` interval), radius `ra` and `thickness`.
  *
  * @remarks
  * Slightly modified version (easier to use aperture control) of original GLSL

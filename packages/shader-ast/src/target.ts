@@ -10,7 +10,7 @@ import type { TargetImpl } from "./api/target.js";
  * / compile target function which serializes a given AST using the provided
  * node type implementations.
  *
- * [`targetGLSL()`](https://docs.thi.ng/umbrella/shader-ast-glsl/functions/targetGLSL.html)
+ * [`targetGLSL`](https://docs.thi.ng/umbrella/shader-ast-glsl/functions/targetGLSL.html)
  *
  * @param impls -
  */

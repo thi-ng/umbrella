@@ -9,8 +9,8 @@ import { mix } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "./clamp.js";
 
 /**
- * Returns normalized value of `x` WRT to interval [a,b]. Returns 0, if
- * `a` equals `b`.
+ * Returns normalized value of `x` WRT to interval `[a,b]`. Returns 0, if `a`
+ * equals `b`.
  *
  * @param x -
  * @param a -
@@ -22,7 +22,7 @@ export const fitNorm1 = defn(F, "fitNorm1", [F, F, F], (x, a, b) => [
 
 /**
  * Similar to {@link fitNorm1} but also for vector types and without checking if
- * `a == b`. Scales value `x` from closed interval [a,b] to closed `[0,1]`
+ * `a == b`. Scales value `x` from closed interval `[a,b]` to closed `[0,1]`
  * interval. No clamping performed.
  *
  * @param x
@@ -33,7 +33,7 @@ export const fitNorm = <T extends Prim>(x: Term<T>, a: Term<T>, b: Term<T>) =>
 	div(sub(x, a), sub(b, a));
 
 /**
- * Fits value `x` from closed interval [a,b] to closed interval [c,d]. No
+ * Fits value `x` from closed interval `[a,b]` to closed interval `[c,d]`. No
  * clamping performed.
  *
  * @param x -
@@ -51,7 +51,7 @@ export const fit = <T extends Prim>(
 ) => mix(c, d, fitNorm(x, a, b));
 
 /**
- * Same as {@link fit}, but first clamps `x` to closed [a,b] interval.
+ * Same as {@link fit}, but first clamps `x` to closed `[a,b]` interval.
  *
  * @param x -
  * @param a -
@@ -68,7 +68,7 @@ export const fitClamped = <T extends Prim>(
 ) => mix(c, d, clamp01(div(sub(x, a), sub(b, a))));
 
 /**
- * Inline function. Fits value `a` in `[0,1]` interval to new interval [b..c].
+ * Inline function. Fits value `a` in `[0,1]` interval to new interval `[b,c]`.
  * No clamping performed. Same as `mix(b, c, a)`
  *
  * @param a -

@@ -18,7 +18,7 @@ export interface QueryNeighborhoodOpts {
 /**
  * Abstract base class for an spatially unbounded hash grid. Conceptually
  * similar to {@link ASpatialGrid}, but using a more efficient internal data
- * storage and different query API using [neighborhoods]() (also see
+ * storage and different query API using {@link INeighborhood}s (also see
  * {@link AHashGrid#queryNeighborhood}). Does not support incremental indexing
  * or removal of individual items.
  *

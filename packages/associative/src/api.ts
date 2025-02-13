@@ -35,7 +35,7 @@ export interface EquivSetOpts<T> {
 	 * considered equal.
 	 *
 	 * @defaultValue
-	 * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)
+	 * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)
 	 */
 	equiv: Predicate2<T>;
 }
@@ -68,7 +68,7 @@ export interface HashMapOpts<K> {
 	 * Optional key equality predicate.
 	 *
 	 * @defaultValue
-	 * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)
+	 * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)
 	 */
 	equiv?: Predicate2<K>;
 	/**

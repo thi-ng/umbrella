@@ -23,8 +23,9 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  *   {@link SortedSet.disj}
  *
  * Furthermore, this class implements the
- * [`ICopy`](https://docs.thi.ng/umbrella/api/interfaces/ICopy.html), IEmpty`,
- * [`ICompare`](https://docs.thi.ng/umbrella/api/interfaces/ICompare.html) and
+ * [`ICopy`](https://docs.thi.ng/umbrella/api/interfaces/ICopy.html),
+ * [`ICompare`](https://docs.thi.ng/umbrella/api/interfaces/ICompare.html),
+ * [`IEmpty`](https://docs.thi.ng/umbrella/api/interfaces/IEmpty.html) and
  * [`IEquiv`](https://docs.thi.ng/umbrella/api/interfaces/IEquiv.html)
  * interfaces defined by [`thi.ng/api`](https://thi.ng/api). The latter two
  * allow instances to be used as keys themselves in other data types defined in

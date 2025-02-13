@@ -14,10 +14,11 @@ export const defDHeap = <T>(
  *
  * @remarks
  * By default, implements min-heap ordering and uses
- * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html).
- * The arity `d` must be >= 2 (default: 4). If `d=2`, the default binary
+ * [`compare`](https://docs.thi.ng/umbrella/compare/functions/compare.html). The
+ * arity `d` must be >= 2 (default: 4). If `d=2`, the default binary
  * {@link Heap} implementation will be faster.
  *
+ * Reference:
  * https://en.wikipedia.org/wiki/D-ary_heap
  */
 export class DHeap<T>

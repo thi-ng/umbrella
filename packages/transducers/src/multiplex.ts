@@ -6,7 +6,7 @@ import { step } from "./step.js";
 
 /**
  * Yields a new transducer which applies given transducers in parallel (using
- * [`juxt()`](https://docs.thi.ng/umbrella/compose/functions/juxt.html) &
+ * [`juxt`](https://docs.thi.ng/umbrella/compose/functions/juxt.html) &
  * {@link step}) and produces tuples of results.
  *
  * @remarks

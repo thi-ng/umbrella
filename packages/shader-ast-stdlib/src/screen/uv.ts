@@ -36,7 +36,7 @@ export const aspectCorrectedUV = defn(
 
 /**
  * Returns true if at least one coordinate of the given point is within the
- * `width` internal border region of UV rect ([0,0] .. [1,1]).
+ * `width` internal border region of UV rect (`[0,0]`..`[1,1]`).
  *
  * ```c
  * borderMask(vec2(0.91, 0.5), 0.1) // true

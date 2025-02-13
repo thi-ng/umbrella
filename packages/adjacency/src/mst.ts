@@ -19,7 +19,7 @@ import { DisjointSet } from "@thi.ng/disjoint-set";
  * criteria. The result edges will be in ascending order, based on the supplied
  * cost function. The cost function is called once for each edge and return
  * values will be cached prior to sorting (see
- * [`sortByCachedKey()`](https://docs.thi.ng/umbrella/arrays/functions/sortByCachedKey.html)
+ * [`sortByCachedKey`](https://docs.thi.ng/umbrella/arrays/functions/sortByCachedKey.html)
  * for details).
  *
  * References:

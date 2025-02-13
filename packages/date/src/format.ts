@@ -168,7 +168,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * default.
  *
  * See {@link FORMATTERS} for available date component format IDs. To escape a
- * formatter and use as a string literal, prefix the term with `\\`.
+ * formatter and use as a string literal, prefix the term with a backslash.
  *
  * @example
  * ```ts tangle:../export/def-format.ts

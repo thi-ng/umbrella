@@ -17,7 +17,7 @@ export interface SortedMapOpts<K> {
 	 * comparisons.
 	 *
 	 * @defaultValue
-	 * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html)
+	 * [`compare`](https://docs.thi.ng/umbrella/compare/functions/compare.html)
 	 */
 	compare: Comparator<K>;
 	/**

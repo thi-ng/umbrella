@@ -24,7 +24,7 @@ const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
  * [`DCons`](https://docs.thi.ng/umbrella/dcons/classes/DCons.html) linked list
  * as backing store and a customizable value equality / equivalence predicate.
  * By the default uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
  * equivalence checking.
  *
  * Additionally, the type also implements the

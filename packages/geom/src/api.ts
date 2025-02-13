@@ -211,12 +211,12 @@ export interface CubicOpts {
 	 * Controls behavior of curve conversion/interpolation:
 	 *
 	 * - `default`: Original vertices are used control points (see
-	 *   [`closedCubicFromControlPoints()`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromControlPoints.html))
+	 *   [`closedCubicFromControlPoints`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromControlPoints.html))
 	 * - `break`: Original vertices are used as curve points, tangents are
 	 *   computed automatically (see
-	 *   [`closedCubicFromBreakPoints()`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromBreakPoints.html))
+	 *   [`closedCubicFromBreakPoints`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromBreakPoints.html))
 	 * - `hobby`: Use John Hobby's interpolation algorithm (see
-	 *   [`cubicHobby2()`](https://docs.thi.ng/umbrella/geom-splines/functions/cubicHobby2.html))
+	 *   [`cubicHobby2`](https://docs.thi.ng/umbrella/geom-splines/functions/cubicHobby2.html))
 	 */
 	mode: "default" | "break" | "hobby";
 	/**

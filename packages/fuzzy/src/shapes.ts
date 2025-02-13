@@ -30,7 +30,7 @@ export const point =
 		eqDelta(x, p, eps) ? 1 : 0;
 
 /**
- * HOF {@link FuzzyFn} yielding a rising ramp in [a,b] interval, clamped to
+ * HOF {@link FuzzyFn} yielding a rising ramp in `[a,b]` interval, clamped to
  *`[0,1]`outputs. Returns 0.0 for inputs <= `a` and 1.0 for inputs >= `b`.
  *
  * @param a -
@@ -41,8 +41,8 @@ export const ramp: FnU2<number, FuzzyFn> = (a, b) => (x) =>
 
 /**
  * HOF {@link FuzzyFn} yielding a triangle in the input range `[a..b..c]` with
- * `b` defining the position of the peak value (1.0). Returns 0.0 for inputs <
- * `a` or > `c`.
+ * `b` defining the position of the peak value (1.0). Returns 0.0 for inputs
+ * outside the `[a,c]` interval.
  *
  * @param a -
  * @param b -

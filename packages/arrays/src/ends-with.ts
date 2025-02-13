@@ -9,7 +9,7 @@ import { equiv as _eq } from "@thi.ng/equiv";
  * be true.
  *
  * By default, uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
  * equality checking.
  *
  * {@link startsWith}

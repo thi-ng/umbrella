@@ -75,7 +75,7 @@ export const probability = (p: number, rnd: IRandom = RND) =>
 
 /**
  * Wrapper for
- * [pickRandom()](https://docs.thi.ng/umbrella/random/functions/pickRandom.html).
+ * [`pickRandom`](https://docs.thi.ng/umbrella/random/functions/pickRandom.html).
  * Returns a random item from given `choices`.
  *
  * @param choices
@@ -86,7 +86,7 @@ export const pick = <T>(choices: T[], rnd: IRandom = RND) =>
 
 /**
  * Wrapper for
- * [pickRandomKey()](https://docs.thi.ng/umbrella/random/functions/pickRandomKey.html).
+ * [`pickRandomKey`](https://docs.thi.ng/umbrella/random/functions/pickRandomKey.html).
  * Returns a random key from given `object`.
  *
  * @param obj
@@ -114,10 +114,11 @@ export const pickAlt = <T>(fn: Fn0<T>, orig: T) => {
 };
 
 /**
- * Same as thi.ng/random's [pickRandomUnique](), but pre-configured to use
- * {@link RND} as default PRNG. Picks up to `k` unique values from `src` array
- * (each with `maxTrials`) and adds them to given `existing` array (or creates a
- * new one by default) and returns it.
+ * Same as thi.ng/random's
+ * [pickRandomUnique](https://docs.thi.ng/umbrella/random/functions/pickRandomUnique.html),
+ * but pre-configured to use {@link RND} as default PRNG. Picks up to `k` unique
+ * values from `src` array (each with `maxTrials`) and adds them to given
+ * `existing` array (or creates a new one by default) and returns it.
  *
  * @remarks
  * Internally uses `Array.includes()` to check for duplicates.
@@ -138,13 +139,13 @@ export const pickUnique = <T>(
 
 /**
  * One-shot wrapper for
- * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
+ * [`weightedRandom`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
  * Takes an array of `choices` and an array of `weights`, returns random item
  * from `choices`, taking relative weights into account.
  *
  * @remarks
  * If repeated use (with the same choices/weights) is required, then using
- * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html)
+ * [`weightedRandom`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html)
  * directly is more efficient since the pre-calculations will be cached.
  *
  * @param choices
@@ -159,13 +160,13 @@ export const weighted = <T>(
 
 /**
  * One-shot wrapper for
- * [`weightedRandomKey()`](https://docs.thi.ng/umbrella/random/functions/weightedRandomKey.html),
+ * [`weightedRandomKey`](https://docs.thi.ng/umbrella/random/functions/weightedRandomKey.html),
  * accepting an object of weights. Return keys of given `choices` object, taking
  * into account the weights given for each key.
  *
  * @remarks
  * If repeated use (with the same choices/weights) is required, then using
- * [`weightedRandomKey()`](https://docs.thi.ng/umbrella/random/functions/weightedRandomKey.html)
+ * [`weightedRandomKey`](https://docs.thi.ng/umbrella/random/functions/weightedRandomKey.html)
  * directly is more efficient since the pre-calculations will be cached.
  *
  * @param choices

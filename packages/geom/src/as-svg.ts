@@ -64,10 +64,10 @@ export const asSvg = (...args: any[]) =>
 
 /**
  * Creates a hiccup SVG doc element container for given {@link IShape}s and
- * attribs (merged with {@link SVG_DEFAULT_ATTRIBS}). If the attribs do not include
- * a `viewBox`, it will be computed automatically. Furthermore (and only for the
- * case a viewbox needs to be computed), a `__margin` attrib can be provided to
- * include a bleed/margin for the viewbox (in world space units).
+ * attribs (merged with {@link SVG_DEFAULT_ATTRIBS}). If the attribs do not
+ * include a `viewBox`, it will be computed automatically. Furthermore (and only
+ * for the case a viewbox needs to be computed), a `__margin` attrib can be
+ * provided to include a bleed/margin for the viewbox (in world space units).
  *
  * @remarks
  * Use {@link asSvg} to serialize the resulting doc to an SVG string.
@@ -81,9 +81,9 @@ export const asSvg = (...args: any[]) =>
  * (default: 3).
  *
  * Also see
- * [`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
+ * [`convertTree`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
  * and
- * [`setPrecision()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/setPrecision.html).
+ * [`setPrecision`](https://docs.thi.ng/umbrella/hiccup-svg/functions/setPrecision.html).
  *
  * @param attribs
  * @param shapes

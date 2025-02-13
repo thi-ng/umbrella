@@ -53,7 +53,7 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  *
  * @example
  * Use the
- * [`labeled()`](https://docs.thi.ng/umbrella/transducers/functions/labeled.html)
+ * [`labeled`](https://docs.thi.ng/umbrella/transducers/functions/labeled.html)
  * transducer for each input to create a stream of labeled values and
  * track their provenance:
  *

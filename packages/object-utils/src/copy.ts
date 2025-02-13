@@ -9,7 +9,7 @@ export const copy = (x: any, ctor: Function) =>
 
 /**
  * Creates shallow copy of `src` object without any properties for which
- * [`isIllegalKey()`](https://docs.thi.ng/umbrella/checks/functions/isIllegalKey.html)
+ * [`isIllegalKey`](https://docs.thi.ng/umbrella/checks/functions/isIllegalKey.html)
  * returns true.
  *
  * @param src

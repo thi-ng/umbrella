@@ -2,8 +2,10 @@
 import { delayed as $ } from "@thi.ng/compose/delayed";
 
 /**
- * Same as [thi.ng/compose `delayed()`](). Re-exported for convenience. Yields
- * `x` as promise which only resolves after `delay` milliseconds.
+ * Same as [thi.ng/compose
+ * `delayed()`](https://docs.thi.ng/umbrella/compose/functions/delayed.html).
+ * Re-exported for convenience. Yields `x` as promise which only resolves after
+ * `delay` milliseconds.
  *
  * @remarks
  * Also see {@link wait}.

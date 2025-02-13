@@ -16,8 +16,7 @@ import { mix as $mix } from "./mix.js";
  * array of numbers will be returned.
  *
  * @remarks
- * See
- * [`tween()`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
+ * See [`tween`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
  *
  * @example
  * ```ts tangle:../export/multi-color-gradient.ts

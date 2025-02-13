@@ -9,7 +9,7 @@ import { $stackFn } from "./word.js";
  * Higher order word. Takes a `test` and `body` stack program. Applies
  * test to copy of TOS and executes body. Repeats while test is truthy.
  *
- * ( -- ? )
+ * Stack effect: `( -- ? )`
  *
  * @example
  * ```js
@@ -44,7 +44,7 @@ export const defLoop = (test: StackProc, body: StackProc) => {
  * Non-HOF version of {@link defLoop}. Expects test result and body quotation /
  * word on d-stack.
  *
- * ( testq bodyq -- ? )
+ * Stack effect: `( testq bodyq -- ? )`
  *
  * @param ctx -
  */
@@ -83,7 +83,7 @@ export const loopq = (ctx: StackContext) => {
  * // [ 0, 1, 2 ]
  * ```
  *
- * ( n body -- ? )
+ * Stack effect: `( n body -- ? )`
  *
  * @param body -
  */

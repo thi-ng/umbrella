@@ -44,8 +44,8 @@ const DEFAULT_COLOR = [1, 1, 1, 1];
  * attrib, which must comply with partial {@link AsWebGLOpts}. Furthermore,
  * shape types which also require conversion to polygon or polyline (e.g.
  * circle), can control that conversion via their `__sample` control attrib (see
- * [`asPolygon()`](https://docs.thi.ng/umbrella/geom/functions/asPolygon.html)
- * for reference).
+ * [`asPolygon`](https://docs.thi.ng/umbrella/geom/functions/asPolygon.html) for
+ * reference).
  *
  * Currently supported shape types (only 2D so far):
  *

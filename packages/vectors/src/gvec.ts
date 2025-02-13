@@ -57,14 +57,14 @@ const __keys = memoizeO<number, StringOrSym[]>((size: number) => [
  *
  * Read/write access for the following properties:
  *
- * - array indices in the [0 .. `size`) interval
+ * - array indices in the `[0,size)` interval
  * - `offset` - start index
  * - `stride` - component stride
  * - `buf` - backing buffer (readonly)
  * - `length` - vector size
  *
- * Array index access uses bounds checking against the [0 .. `size`) interval,
- * but, for performance reasons, **not** against the actual wrapped buffer.
+ * Array index access uses bounds checking against the `[0,size)` interval, but,
+ * for performance reasons, **not** against the actual wrapped buffer.
  *
  * Note: ES6 proxies are ~10x slower than standard array accesses. If several
  * computations are to be performed on such vectors it will be much more

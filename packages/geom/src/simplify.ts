@@ -24,7 +24,7 @@ export type SimplifyFn = {
 /**
  * Simplifies given 2D shape boundary using Douglas-Peucker algorithm
  * (implemented by
- * [`simplify()`](https://docs.thi.ng/umbrella/geom-resample/functions/simplify.html))
+ * [`simplify`](https://docs.thi.ng/umbrella/geom-resample/functions/simplify.html))
  * and given `threshold` distance (default: 1e-6, which removes only co-linear
  * vertices).
  *

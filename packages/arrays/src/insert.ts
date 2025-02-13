@@ -5,7 +5,7 @@
  *
  * @remarks
  * The function will have no effect iff `i<0` or `i>=k` or `k<1`. If
- * `buf.length` is larger than `k`, only the index range [i..k) will be
+ * `buf.length` is larger than `k`, only the index range `[i,k)` will be
  * modified.
  *
  * In benchmarking with 4, 8, 16, 32, 64 element arrays, this function is

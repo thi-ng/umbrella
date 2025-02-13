@@ -6,7 +6,7 @@ import { ARGS_VV, FN2 } from "./compile/templates.js";
 
 /**
  * Componentwise application of
- * [`safeDiv()`](https://docs.thi.ng/umbrella/math/functions/safeDiv.html).
+ * [`safeDiv`](https://docs.thi.ng/umbrella/math/functions/safeDiv.html).
  *
  * @param out -
  * @param a -

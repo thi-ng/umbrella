@@ -10,7 +10,7 @@ import { $, $n } from "./safe.js";
 /**
  * Higher order word. Replaces TOS of d-stack with result of given op.
  *
- * ( x -- y )
+ * Stack effect: `( x -- y )`
  *
  * @param op -
  */
@@ -28,7 +28,7 @@ export const defOp1 = (op: Fn<any, any>) => {
  * Higher order word. Takes 2 values from d-stack and writes back result
  * from given op. The arg order is (TOS, TOS-1)
  *
- * ( a b -- c )
+ * Stack effect: `( a b -- c )`
  *
  * @param op -
  */
@@ -46,8 +46,8 @@ export const defOp2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
  * The result will have the same length as the shortest arg (if `a` and
  * `b` have different lengths).
  *
- * - ( a b -- a ), if `a` is an array
- * - ( a b -- b ), if `a` is not an array
+ * - `( a b -- a )`, if `a` is an array
+ * - `( a b -- b )`, if `a` is not an array
  *
  * @param f -
  */

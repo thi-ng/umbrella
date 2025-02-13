@@ -54,7 +54,7 @@ export interface Source<T> extends ClosableAsyncGenerator<T>, IDeref<Maybe<T>> {
  * @remarks
  * See [thi.ng/buffers](https://thi.ng/buffers) for available buffer
  * implementations. By default a
- * [`fifo()`](https://docs.thi.ng/umbrella/buffers/functions/fifo.html) buffer
+ * [`fifo`](https://docs.thi.ng/umbrella/buffers/functions/fifo.html) buffer
  * with capacity=1 is used.
  *
  * If `initial` is given, the source will immediately deliver this value once a

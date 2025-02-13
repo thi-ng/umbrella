@@ -17,7 +17,7 @@ export class DisjointSet {
 	/**
 	 * Creates new instance with `n` initial singular subsets.
 	 *
-	 * @param n - initial capacity, ID range [0..n)
+	 * @param n - initial capacity, ID range `[0,n)`
 	 */
 	constructor(n: number) {
 		const roots = (this.roots = new Uint32Array(n));

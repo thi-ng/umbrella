@@ -581,7 +581,7 @@ const __parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
  *
  * @remarks
  * See
- * [`at_media()`](https://docs.thi.ng/umbrella/hiccup-css/functions/at_media.html)
+ * [`at_media`](https://docs.thi.ng/umbrella/hiccup-css/functions/at_media.html)
  * for details
  *
  * @param mediaQueryDefs

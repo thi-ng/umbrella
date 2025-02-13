@@ -11,7 +11,7 @@ import { min as $min } from "@thi.ng/transducers/min";
 import { BARS_H, BARS_V } from "./api.js";
 
 /**
- * Visualizes given values (in `[min..max]`interval) as vertical bar chart.
+ * Visualizes given values (in `[min,max]` interval) as vertical bar chart.
  * Returns array of line strings.
  *
  * @param height
@@ -57,7 +57,7 @@ export const barChartVStr = (
 ) => barChartVLines(height, vals, min, max).join("\n");
 
 /**
- * Visualizes given values (in `[min..max]`interval) as horizontal bar chart.
+ * Visualizes given values (in `[min,max]` interval) as horizontal bar chart.
  * Returns array of line strings.
  *
  * @param height

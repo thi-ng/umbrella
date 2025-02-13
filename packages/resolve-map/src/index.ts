@@ -460,7 +460,7 @@ export const resolved = <T>(val: T) => new Resolved<T>(val);
 
 /**
  * Special version of
- * [`getInUnsafe()`](https://docs.thi.ng/umbrella/paths/functions/getInUnsafe.html)
+ * [`getInUnsafe`](https://docs.thi.ng/umbrella/paths/functions/getInUnsafe.html)
  * with extra support for intermediate wrapped {@link Resolved} values and
  * returning tuple of: `[val,isResolved]`.
  *

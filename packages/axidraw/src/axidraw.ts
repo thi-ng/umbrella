@@ -399,7 +399,7 @@ export class AxiDraw implements IReset {
 	}
 
 	/**
-	 * Syntax sugar for {@link AxiDraw.moveTo}([0, 0]).
+	 * Syntax sugar for {@link AxiDraw.moveTo} position `[0,0]`.
 	 */
 	home() {
 		return this.moveTo(ZERO2);

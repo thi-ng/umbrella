@@ -12,13 +12,13 @@ export type KeyStreams<T, K extends Keys<T>> = {
 
 export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	/**
-	 * Array of selected `keys` (else selects all by default) for which
-	 * to create streams.
+	 * Array of selected `keys` (else selects all by default) for which to
+	 * create streams.
 	 */
 	keys: K[];
 	/**
-	 * If true (default), all created streams will be seeded with key
-	 * values from the source object.
+	 * If true (default), all created streams will be seeded with key values
+	 * from the source object.
 	 *
 	 * @defaultValue true
 	 */
@@ -29,7 +29,7 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	defaults: Partial<T>;
 	/**
 	 * If true, attaches
-	 * [`dedupe()`](https://docs.thi.ng/umbrella/transducers/functions/dedupe.html)
+	 * [`dedupe`](https://docs.thi.ng/umbrella/transducers/functions/dedupe.html)
 	 * transducer to each key's value stream to avoid obsolete downstream
 	 * propagation when a key's value hasn't actually changed.
 	 *
@@ -37,8 +37,8 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	 */
 	dedupe: boolean;
 	/**
-	 * Generic equality predicate to be used for `dedupe` (`===` by
-	 * default). Ignored if `dedupe` option is false.
+	 * Generic equality predicate to be used for `dedupe` (`===` by default).
+	 * Ignored if `dedupe` option is false.
 	 */
 	equiv: Predicate2<any>;
 }

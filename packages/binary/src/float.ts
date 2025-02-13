@@ -21,8 +21,8 @@ export const intBitsToFloat: FnN = (x) => ((I32[0] = x), F32[0]);
 export const uintBitsToFloat: FnN = (x) => ((U32[0] = x), F32[0]);
 
 /**
- * Returns i32 representation of f64 as [hi, lo] tuple (takes
- * environment's Little Endianess into account).
+ * Returns i32 representation of f64 as `[hi, lo]` tuple (takes environment's
+ * Little Endianess into account).
  *
  * @param x -
  */
@@ -31,8 +31,8 @@ export const floatToIntBits64 = (x: number): [number, number] => (
 );
 
 /**
- * Returns u32 representation of f64 as [hi, lo] tuple (takes
- * environment's Little Endianess into account).
+ * Returns u32 representation of f64 as `[hi, lo]` tuple (takes environment's
+ * Little Endianess into account).
  *
  * @param x -
  */
@@ -85,28 +85,28 @@ const __f2u: FnN3 = (x, n, p) =>
 	x < 0 ? (x < -1 ? n : x * n) : x > 1 ? p : x * p;
 
 /**
- * Converts normalized float ([-1..1] range) to u8.
+ * Converts normalized float (`[-1,1]` range) to u8.
  *
  * @param x -
  */
 export const f32u8: FnN = (x) => __f2u(x, 0x80, 0x7f) & 0xff;
 
 /**
- * Converts normalized float ([-1..1] range) to u16.
+ * Converts normalized float (`[-1,1]` range) to u16.
  *
  * @param x -
  */
 export const f32u16: FnN = (x) => __f2u(x, 0x8000, 0x7fff) & 0xffff;
 
 /**
- * Converts normalized float ([-1..1] range) to u24.
+ * Converts normalized float (`[-1,1]` range) to u24.
  *
  * @param x -
  */
 export const f32u24: FnN = (x) => __f2u(x, 0x80_0000, 0x7f_ffff) & 0xff_ffff;
 
 /**
- * Converts normalized float ([-1..1] range) to u32.
+ * Converts normalized float (`[-1,1]` range) to u32.
  *
  * @param x -
  */

@@ -9,13 +9,13 @@ import { equiv as _eq } from "@thi.ng/equiv";
  * @remarks
  * The optional `equiv` predicate can be used to customize item equality
  * checking. Uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) by
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) by
  * default.
  *
  * Adapted and generalized from: https://github.com/bevacqua/fufuzzyzzysearch
  * (MIT licensed)
  *
- * [`filterFuzzy()`](https://docs.thi.ng/umbrella/transducers/functions/filterFuzzy.html)
+ * [`filterFuzzy`](https://docs.thi.ng/umbrella/transducers/functions/filterFuzzy.html)
  *
  * @param domain - array
  * @param query - search value

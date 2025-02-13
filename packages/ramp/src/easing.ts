@@ -14,7 +14,7 @@ import { Ramp } from "./ramp.js";
  *
  * @remarks
  * Easing functions remap time values in the `[0,1]` range. By default uses
- * [`easeInOut5()`](https://docs.thi.ng/umbrella/math/functions/easeInOut5.html).
+ * [`easeInOut5`](https://docs.thi.ng/umbrella/math/functions/easeInOut5.html).
  *
  * For vector-valued ramps, use {@link ramp} with {@link EASING_V}.
  *
@@ -32,7 +32,7 @@ export const easing = (
  *
  * @remarks
  * Easing functions remap time values in the `[0,1]` range. By default uses
- * [`easeInOut5()`](https://docs.thi.ng/umbrella/math/functions/easeInOut5.html).
+ * [`easeInOut5`](https://docs.thi.ng/umbrella/math/functions/easeInOut5.html).
  *
  * @param easing
  */
@@ -54,7 +54,7 @@ export const EASING_N = (easing: FnN = easeInOut5): RampImpl<number> => {
  *
  * @remarks
  * Easing functions remap time values in the `[0,1]` range. By default uses
- * [`easeInOut5()`](https://docs.thi.ng/umbrella/math/functions/easeInOut5.html).
+ * [`easeInOut5`](https://docs.thi.ng/umbrella/math/functions/easeInOut5.html).
  *
  * @param vec
  * @param easing

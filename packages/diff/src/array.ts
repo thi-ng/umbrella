@@ -59,7 +59,7 @@ const __simpleDiff = <T>(
  *
  * @remarks
  * Various optimizations, fixes & refactorings. By default uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
  * equality checks.
  *
  * - https://publications.mpi-cbg.de/Wu_1990_6334.pdf

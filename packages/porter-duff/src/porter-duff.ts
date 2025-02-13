@@ -156,7 +156,7 @@ export const porterDuffPInt =
 
 /**
  * Porter-Duff operator. None of the terms are used. Always results in
- * [0, 0, 0, 0].
+ * `[0,0,0,0]`.
  *
  * {@link porterDuff}
  *
@@ -391,8 +391,8 @@ export const opacity = (out: Color | null, src: ReadonlyColor, t: number) =>
 	setC4(out || src, src[0], src[1], src[2], min(1, src[3] * t));
 
 /**
- * Porter-Duff darken modifier for packed ints. Multiplies RGB
- * components of `src` with `t` ([0..1] range).
+ * Porter-Duff darken modifier for packed ints. Multiplies RGB components of
+ * `src` with `t` (`[0,1]` range).
  *
  * @param src -
  * @param t -
@@ -405,7 +405,7 @@ export const darkenInt: FnN2 = (src, t) =>
 
 /**
  * Porter-Duff dissolve modifier for packed ints. Multiplies all
- * components of `src` with `t` ([0..1] range).
+ * components of `src` with `t` (`[0,1]` range).
  *
  * @param src -
  * @param t -
@@ -417,8 +417,8 @@ export const dissolveInt: FnN2 = (src, t) =>
 	min(0xff, (src & 0xff) * t);
 
 /**
- * Porter-Duff opacity modifier for packed ints. Multiplies alpha
- * component of `src` with `t` ([0..1] range).
+ * Porter-Duff opacity modifier for packed ints. Multiplies alpha component of
+ * `src` with `t` (`[0,1]` range).
  *
  * @param src -
  * @param t -

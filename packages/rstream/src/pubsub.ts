@@ -16,19 +16,18 @@ import { Subscription, subscription } from "./subscription.js";
 
 export interface PubSubOpts<A, B, T> {
 	/**
-	 * Topic function. Incoming values will be routed to topic
-	 * subscriptions using this function's return value.
+	 * Topic function. Incoming values will be routed to topic subscriptions
+	 * using this function's return value.
 	 */
 	topic: Fn<B, T>;
 	/**
-	 * Optional transformer for incoming values. If given, `xform` will
-	 * be applied first and the transformed value passed to the
-	 * `topic` fn.
+	 * Optional transformer for incoming values. If given, `xform` will be
+	 * applied first and the transformed value passed to the `topic` fn.
 	 */
 	xform?: Transducer<A, B>;
 	/**
-	 * Equivalence check for topic values. Should return truthy result
-	 * if given topics are considered equal.
+	 * Equivalence check for topic values. Should return truthy result if given
+	 * topics are considered equal.
 	 */
 	equiv?: Predicate2<T>;
 	/**
@@ -46,9 +45,9 @@ export interface PubSubOpts<A, B, T> {
  * `undefined`. If the latter is returned, the incoming value will not be
  * processed further. Complex topics (e.g objects / arrays) are allowed and
  * they're matched against registered topics using
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) by
- * default (but customizable via `equiv` option). Each topic can have any number
- * of subscribers.
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) by default
+ * (but customizable via `equiv` option). Each topic can have any number of
+ * subscribers.
  *
  * If a `xform` transducer is given, it is always applied prior to passing the
  * input to the topic function. I.e. in this case the topic function will

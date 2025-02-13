@@ -105,7 +105,8 @@ export const nop = (ctx: StackContext) => ctx;
 /**
  * Pushes current d-stack size on d-stack.
  *
- * ( -- n )
+ * Stack effect: `( -- n )`
+ *
  * @param ctx -
  */
 export const dsp = __xsp(0);
@@ -114,7 +115,7 @@ export const dsp = __xsp(0);
  * Uses TOS as index to look up a deeper d-stack value, then places it
  * as new TOS. Throws error if stack depth is < `x`.
  *
- * ( ... x -- ... stack[x] )
+ * Stack effect: `( ... x -- ... stack[x] )`
  *
  * @param ctx -
  */
@@ -130,7 +131,7 @@ export const pick = (ctx: StackContext) => {
 /**
  * Removes TOS from d-stack.
  *
- * ( x -- )
+ * Stack effect: `( x -- )`
  *
  * @param ctx -
  */
@@ -139,7 +140,7 @@ export const drop = __drop(0);
 /**
  * Removes top 2 vals from d-stack.
  *
- * ( x y -- )
+ * Stack effect: `( x y -- )`
  *
  * @param ctx -
  */
@@ -148,11 +149,11 @@ export const drop2 = __drop(0, 2);
 /**
  * If TOS is truthy then drop it:
  *
- * ( x -- )
+ * Stack effect: `( x -- )`
  *
  * Else, no effect:
  *
- * ( x -- x )
+ * Stack effect: `( x -- x )`
  */
 export const dropif = (ctx: StackContext) => (
 	$(ctx[0], 1), tos(ctx[0]) && ctx[0].length--, ctx
@@ -161,7 +162,7 @@ export const dropif = (ctx: StackContext) => (
 /**
  * Higher order word. Pushes given args verbatim on d-stack.
  *
- * ( -- ...args )
+ * Stack effect: `( -- ...args )`
  *
  * @param args -
  */
@@ -172,7 +173,7 @@ export const defPush =
 /**
  * Duplicates TOS on d-stack.
  *
- * ( x -- x x )
+ * Stack effect: `( x -- x x )`
  *
  * @param ctx -
  */
@@ -181,7 +182,7 @@ export const dup = __dup(0);
 /**
  * Duplicates top 2 vals on d-stack.
  *
- * ( x y -- x y x y )
+ * Stack effect: `( x y -- x y x y )`
  *
  * @param ctx -
  */
@@ -190,7 +191,7 @@ export const dup2 = __dup2(0);
 /**
  * Duplicates top 3 vals on d-stack.
  *
- * ( x y -- x y x y )
+ * Stack effect: `( x y -- x y x y )`
  *
  * @param ctx -
  */
@@ -199,11 +200,11 @@ export const dup3 = __dup3(0);
 /**
  * If TOS is truthy then push copy of it on d-stack:
  *
- * ( x -- x x )
+ * Stack effect: `( x -- x x )`
  *
  * Else, no effect:
  *
- * ( x -- x )
+ * Stack effect: `( x -- x )`
  *
  * @param ctx -
  */
@@ -217,7 +218,7 @@ export const dupif = (ctx: StackContext) => {
 /**
  * Swaps the two topmost d-stack items.
  *
- * ( x y -- y x )
+ * Stack effect: `( x y -- y x )`
  *
  * @param ctx -
  */
@@ -226,7 +227,7 @@ export const swap = __swap(0);
 /**
  * Swaps the two topmost d-stack pairs.
  *
- * ( a b c d -- c d a b )
+ * Stack effect: `( a b c d -- c d a b )`
  *
  * @param ctx -
  */
@@ -235,7 +236,7 @@ export const swap2 = __swap2(0);
 /**
  * Removes second topmost item from d-stack.
  *
- * ( x y -- y )
+ * Stack effect: `( x y -- y )`
  *
  * @param ctx -
  */
@@ -250,7 +251,7 @@ export const nip = (ctx: StackContext) => {
 /**
  * Inserts copy of TOS @ TOS-2 in d-stack.
  *
- * ( x y -- y x y )
+ * Stack effect: `( x y -- y x y )`
  *
  * @param ctx -
  */
@@ -265,7 +266,7 @@ export const tuck = (ctx: StackContext) => {
 /**
  * Rotates three topmost d-stack items downwards/to the left.
  *
- * ( x y z -- y z x )
+ * Stack effect: `( x y z -- y z x )`
  *
  * @param ctx -
  */
@@ -283,7 +284,7 @@ export const rot = (ctx: StackContext) => {
 /**
  * Rotates three topmost d-stack items upwards/to the right.
  *
- * ( x y z -- z x y )
+ * Stack effect: `( x y z -- z x y )`
  *
  * @param ctx -
  */
@@ -301,21 +302,21 @@ export const invrot = (ctx: StackContext) => {
 /**
  * Pushes copy of TOS-1 as new TOS on d-stack.
  *
- * ( x y -- x y x )
+ * Stack effect: `( x y -- x y x )`
  *
  * @param ctx -
  */
 export const over = __over(0);
 
 /**
- * ( x -- x+1 )
+ * Stack effect: `( x -- x+1 )`
  *
  * @param ctx -
  */
 export const inc = __incdec(0, 1);
 
 /**
- * ( x -- x-1 )
+ * Stack effect: `( x -- x-1 )`
  *
  * @param ctx -
  */
@@ -326,7 +327,7 @@ export const dec = __incdec(0, -1);
 /**
  * Pushes current r-stack size on d-stack.
  *
- * ( -- n )
+ * Stack effect: `( -- n )`
  *
  * @param ctx -
  */
@@ -335,7 +336,7 @@ export const rsp = __xsp(1);
 /**
  * Duplicates TOS on r-stack.
  *
- * ( x -- x x )
+ * Stack effect: `( x -- x x )`
  *
  * @param ctx -
  */
@@ -344,7 +345,7 @@ export const rdup = __dup(1);
 /**
  * Duplicates top 2 vals on r-stack.
  *
- * ( x y -- x y x y )
+ * Stack effect: `( x y -- x y x y )`
  *
  * @param ctx -
  */
@@ -353,7 +354,7 @@ export const rdup2 = __dup2(1);
 /**
  * Duplicates top 3 vals on r-stack.
  *
- * ( x y -- x y x y )
+ * Stack effect: `( x y -- x y x y )`
  *
  * @param ctx -
  */
@@ -362,7 +363,7 @@ export const rdup3 = __dup3(1);
 /**
  * Removes TOS from r-stack.
  *
- * ( x -- )
+ * Stack effect: `( x -- )`
  *
  * @param ctx -
  */
@@ -371,7 +372,7 @@ export const rdrop = __drop(1);
 /**
  * Removes top 2 vals from r-stack.
  *
- * ( x y -- )
+ * Stack effect: `( x y -- )`
  *
  * @param ctx -
  */
@@ -396,7 +397,7 @@ export const cprd2 = __copy2(1, 0);
 /**
  * Swaps the two topmost r-stack items.
  *
- * ( x y -- y x )
+ * Stack effect: `( x y -- y x )`
  *
  * @param ctx -
  */
@@ -405,7 +406,7 @@ export const rswap = __swap(1);
 /**
  * Swaps the two topmost d-stack pairs.
  *
- * ( a b c d -- c d a b )
+ * Stack effect: `( a b c d -- c d a b )`
  *
  * @param ctx -
  */
@@ -414,7 +415,7 @@ export const rswap2 = __swap2(1);
 /**
  * Pushes copy of TOS-1 as new TOS on r-stack.
  *
- * ( x y -- x y x )
+ * Stack effect: `( x y -- x y x )`
  *
  * @param ctx -
  */

@@ -10,7 +10,7 @@ export interface FromRAFOpts extends CommonOpts {
 	/**
 	 * Browser only. If true (default: false), passes the timestamps received
 	 * via `requestAnimationFrame()` as stream values. If false, a simple
-	 * counter [0..∞) will be emitted.
+	 * counter `[0,∞)` will be emitted.
 	 *
 	 * @defaultValue false
 	 */

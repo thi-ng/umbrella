@@ -5,7 +5,7 @@ import { radians2 } from "./radians.js";
 
 /**
  * Returns distance between 2 points along a great circle on a sphere, using the
- * Haversine formula, with each point given as [lat, lon] (in WGS84 format).
+ * Haversine formula, with each point given as `[lat, lon]` (in WGS84 format).
  * Uses Earth's radius `r=6371` by default, therefore returns distance in km (by
  * default).
  *
@@ -31,7 +31,7 @@ export const distHaversineLatLon = (
 
 /**
  * Same as {@link distHaversineLatLon}, only for coordinates defined in
- * [lon,lat] order.
+ * `[lon,lat]` order.
  *
  * @param a -
  * @param b -

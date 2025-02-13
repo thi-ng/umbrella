@@ -9,7 +9,7 @@ import type { ISeq, Maybe, Nullable } from "@thi.ng/api";
  * @remarks
  * If given, `start` MUST be < `end`. The latter defaults to the end of the
  * array (`.length`). Also see
- * [`arrayIterator()`](https://docs.thi.ng/umbrella/arrays/functions/arrayIterator.html)
+ * [`arrayIterator`](https://docs.thi.ng/umbrella/arrays/functions/arrayIterator.html)
  * for related functionality.
  *
  * @param buf - array
@@ -43,7 +43,7 @@ export const aseq = <T>(
  * @remarks
  * If given, `start` MUST be > `end`. The latter defaults to beginning of the
  * array (-1). Also see
- * [`arrayIterator()`](https://docs.thi.ng/umbrella/arrays/functions/arrayIterator.html)
+ * [`arrayIterator`](https://docs.thi.ng/umbrella/arrays/functions/arrayIterator.html)
  * for related functionality.
  *
  * @param buf - array

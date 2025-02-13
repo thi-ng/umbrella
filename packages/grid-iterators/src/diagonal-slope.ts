@@ -73,9 +73,9 @@ export function* diagonalSlopeY(opts: DiagonalSlopeOpts) {
 
 /**
  * Similar to {@link diagonalSlopeY}. Yields sequence of 2D grid coordinates in
- * diagonal order with configurable slope, starting at [step-1,0]. Each
- * diagonal starts at y=0 and progresses in -x direction and every `step`
- * steps, one step in +y direction.
+ * diagonal order with configurable slope, starting at `[step-1,0]`. Each
+ * diagonal starts at y=0 and progresses in -x direction and every `step` steps,
+ * one step in +y direction.
  *
  * @param opts -
  */
