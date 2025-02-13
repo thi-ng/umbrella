@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-io-obj",
-	"version": "0.3.159",
+	"version": "0.3.160",
 	"description": "Wavefront OBJ parser (& exporter soon)",
 	"type": "module",
 	"module": "./index.js",
@@ -39,9 +39,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.19",
-		"@thi.ng/errors": "^2.5.25",
-		"@thi.ng/vectors": "^7.12.19"
+		"@thi.ng/api": "^8.11.20",
+		"@thi.ng/errors": "^2.5.26",
+		"@thi.ng/vectors": "^7.12.20"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/compose",
-	"version": "3.0.22",
+	"version": "3.0.23",
 	"description": "Optimized functional composition helpers",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.19",
-		"@thi.ng/errors": "^2.5.25"
+		"@thi.ng/api": "^8.11.20",
+		"@thi.ng/errors": "^2.5.26"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",

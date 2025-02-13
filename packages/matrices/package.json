@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/matrices",
-	"version": "2.4.31",
+	"version": "2.4.32",
 	"description": "Matrix & quaternion operations for 2D/3D geometry processing",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.19",
-		"@thi.ng/checks": "^3.6.22",
-		"@thi.ng/math": "^5.11.19",
-		"@thi.ng/vectors": "^7.12.19"
+		"@thi.ng/api": "^8.11.20",
+		"@thi.ng/checks": "^3.6.23",
+		"@thi.ng/math": "^5.11.20",
+		"@thi.ng/vectors": "^7.12.20"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",
