@@ -229,5 +229,8 @@
 		"./watch": {
 			"default": "./watch.js"
 		}
+	},
+	"thi.ng": {
+		"tag": "none"
 	}
 }
