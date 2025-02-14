@@ -120,6 +120,7 @@
 			"hiccup-canvas",
 			"hiccup-svg"
 		],
+		"tag": "fuzzy",
 		"year": 2020
 	}
 }

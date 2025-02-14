@@ -50,7 +50,9 @@
 		"atom",
 		"browser",
 		"example",
+		"query",
 		"transducer",
+		"triples",
 		"ui"
 	]
 }

@@ -60,7 +60,7 @@
 		"time",
 		"timeout",
 		"typescript",
-		"webassembly",
+		"wasm",
 		"zig"
 	],
 	"publishConfig": {
@@ -92,6 +92,7 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
+		"tag": "wasm",
 		"year": 2022
 	}
 }

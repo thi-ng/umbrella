@@ -77,7 +77,6 @@
 		"typescript",
 		"utf8",
 		"wasm",
-		"webassembly",
 		"zig"
 	],
 	"publishConfig": {
@@ -124,6 +123,7 @@
 	},
 	"thi.ng": {
 		"status": "alpha",
+		"tag": "wasm",
 		"year": 2022
 	}
 }

@@ -67,7 +67,6 @@
 		"typescript",
 		"ui",
 		"wasm",
-		"webassembly",
 		"zig"
 	],
 	"publishConfig": {
@@ -99,6 +98,7 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
+		"tag": "wasm",
 		"year": 2022
 	}
 }

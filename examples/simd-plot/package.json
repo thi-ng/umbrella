@@ -64,7 +64,6 @@
 		"transducer",
 		"vector",
 		"visualization",
-		"wasm",
-		"webassembly"
+		"wasm"
 	]
 }

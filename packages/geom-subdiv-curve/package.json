@@ -90,6 +90,7 @@
 		"parent": "@thi.ng/geom",
 		"related": [
 			"geom-splines"
-		]
+		],
+		"tag": "subdivision"
 	}
 }

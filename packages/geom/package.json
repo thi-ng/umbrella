@@ -530,6 +530,7 @@
 			"viz",
 			"webgl"
 		],
+		"tag": "geometry",
 		"year": 2013
 	}
 }

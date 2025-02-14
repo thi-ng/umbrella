@@ -58,7 +58,7 @@
 		"drawing",
 		"interop",
 		"typescript",
-		"webassembly",
+		"wasm",
 		"zig"
 	],
 	"publishConfig": {
@@ -90,7 +90,8 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/wasm-api",
-		"year": 2022,
-		"screenshot": "wasm-api-canvas/readme.png"
+		"screenshot": "wasm-api-canvas/readme.png",
+		"tag": "wasm",
+		"year": 2022
 	}
 }

@@ -47,7 +47,7 @@
 		"example",
 		"generative",
 		"interop",
-		"webassembly",
+		"wasm",
 		"zig"
 	]
 }

@@ -52,7 +52,7 @@
 		"interop",
 		"ui",
 		"undo",
-		"webassembly",
+		"wasm",
 		"zig"
 	]
 }

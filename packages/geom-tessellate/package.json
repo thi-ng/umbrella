@@ -120,6 +120,7 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/geom",
+		"tag": "tessellation",
 		"year": 2013
 	}
 }

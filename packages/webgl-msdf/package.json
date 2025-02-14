@@ -93,6 +93,7 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/webgl",
+		"tag": "msdf",
 		"year": 2019
 	}
 }

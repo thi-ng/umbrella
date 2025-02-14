@@ -63,7 +63,6 @@
 		"typescript",
 		"varint",
 		"wasm",
-		"webassembly",
 		"zig"
 	],
 	"publishConfig": {

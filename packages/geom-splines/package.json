@@ -146,6 +146,7 @@
 		"parent": "@thi.ng/geom",
 		"related": [
 			"geom-subdiv-curve"
-		]
+		],
+		"tag": "bezier"
 	}
 }

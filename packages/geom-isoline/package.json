@@ -78,6 +78,7 @@
 	"thi.ng": {
 		"alias": "iso",
 		"parent": "@thi.ng/geom",
+		"tag": "contours",
 		"year": 2015
 	}
 }

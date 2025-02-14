@@ -88,6 +88,7 @@
 	},
 	"thi.ng": {
 		"status": "alpha",
+		"tag": "webgl",
 		"year": 2024
 	}
 }

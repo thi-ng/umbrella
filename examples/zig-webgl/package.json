@@ -51,7 +51,7 @@
 		"interop",
 		"shader",
 		"time",
-		"webassembly",
+		"wasm",
 		"webgl",
 		"zig"
 	]

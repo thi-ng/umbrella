@@ -43,8 +43,10 @@
 		"vite": "^6.1.0"
 	},
 	"keywords": [
+		"2d",
 		"browser",
 		"canvas",
+		"contours",
 		"example",
 		"geometry",
 		"transducer",

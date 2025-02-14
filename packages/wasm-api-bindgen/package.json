@@ -75,7 +75,6 @@
 		"tool",
 		"typescript",
 		"wasm",
-		"webassembly",
 		"zig"
 	],
 	"publishConfig": {
@@ -125,6 +124,7 @@
 			"wasm-api-schedule",
 			"wasm-api-webgl"
 		],
+		"tag": "wasm",
 		"year": 2022
 	}
 }

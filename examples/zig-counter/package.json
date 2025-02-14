@@ -45,7 +45,7 @@
 		"interop",
 		"time",
 		"ui",
-		"webassembly",
+		"wasm",
 		"zig"
 	]
 }

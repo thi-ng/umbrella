@@ -84,6 +84,7 @@
 			"dgraph"
 		],
 		"status": "beta",
+		"tag": "graphviz",
 		"year": 2018
 	}
 }

@@ -127,6 +127,7 @@
 			"shader-ast-stdlib"
 		],
 		"status": "alpha",
+		"tag": "sdf",
 		"year": 2022
 	}
 }

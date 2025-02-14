@@ -97,6 +97,7 @@
 	"thi.ng": {
 		"alias": "arc",
 		"parent": "@thi.ng/geom",
+		"tag": "geometry",
 		"year": 2018
 	}
 }

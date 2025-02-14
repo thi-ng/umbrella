@@ -120,6 +120,7 @@
 	},
 	"thi.ng": {
 		"alias": "accel",
+		"tag": "geometry",
 		"year": 2013
 	}
 }

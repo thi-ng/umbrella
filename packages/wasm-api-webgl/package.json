@@ -58,7 +58,7 @@
 		"interop",
 		"shader",
 		"typescript",
-		"webassembly",
+		"wasm",
 		"webgl",
 		"zig"
 	],
@@ -96,6 +96,7 @@
 			"webgl"
 		],
 		"status": "alpha",
+		"tag": "wasm",
 		"year": 2024
 	}
 }

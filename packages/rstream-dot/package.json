@@ -86,6 +86,7 @@
 			"dgraph-dot",
 			"dot"
 		],
+		"tag": "triples",
 		"year": 2018
 	}
 }

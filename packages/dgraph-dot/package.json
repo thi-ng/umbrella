@@ -75,6 +75,7 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/dgraph",
+		"tag": "graphviz",
 		"year": 2020
 	}
 }
