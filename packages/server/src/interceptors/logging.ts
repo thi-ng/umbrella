@@ -39,7 +39,6 @@ export const logResponse = (
 		post: ({ logger, match, res }) => {
 			logger[method]("response status", res.statusCode, match);
 			logger[method]("response headers", res.getHeaders());
-			return true;
 		},
 	};
 };

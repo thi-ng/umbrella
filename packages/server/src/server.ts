@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { identity, type Fn, type Fn0 } from "@thi.ng/api";
+import { identity, type Fn, type Fn0, type Maybe } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { readText } from "@thi.ng/file-io";
 import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
@@ -15,8 +15,10 @@ import { createBrotliCompress, createDeflate, createGzip } from "node:zlib";
 import type {
 	CompiledHandler,
 	CompiledServerRoute,
-	InterceptorResult,
+	Interceptor,
 	Method,
+	PostInterceptorResult,
+	PreInterceptorResult,
 	RequestCtx,
 	RequestHandler,
 	ServerOpts,
@@ -154,19 +156,25 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 	}
 
 	protected async runHandler({ fn, pre, post }: CompiledHandler, ctx: CTX) {
-		const runPhase = async (fns: Fn<CTX, InterceptorResult>[]) => {
-			for (let f of fns) {
-				if (!(await f(ctx))) {
-					ctx.res.end();
-					return false;
+		try {
+			let failed: Maybe<number>;
+			if (pre) {
+				for (let i = 0, n = pre.length; i < n; i++) {
+					const fn = pre[i];
+					if (fn && !(await fn(ctx))) {
+						ctx.res.end();
+						failed = i;
+						break;
+					}
 				}
 			}
-			return true;
-		};
-		try {
-			if (pre && !(await runPhase(pre))) return;
-			await fn(ctx);
-			if (post && !(await runPhase(post))) return;
+			if (failed === undefined) await fn(ctx);
+			if (post) {
+				for (let i = failed ?? post.length; --i >= 0; ) {
+					const fn = post[i];
+					if (fn) await fn(ctx);
+				}
+			}
 			ctx.res.end();
 		} catch (e) {
 			this.logger.warn(`handler error:`, e);
@@ -177,32 +185,31 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 	}
 
 	protected compileRoute(route: ServerRoute<CTX>): CompiledServerRoute<CTX> {
-		const compilePhase = (
+		const compilePhase = <T>(
 			handler: RequestHandler<CTX>,
 			phase: "pre" | "post"
 		) => {
-			const fns: Fn<CTX, InterceptorResult>[] = [];
-			for (let x of this.opts.intercept ?? []) {
-				if (x[phase]) fns.push(x[phase].bind(x));
-			}
+			let isPhaseUsed = false;
+			const $bind = (iceps?: Interceptor<CTX>[]) =>
+				(iceps ?? []).map((x) => {
+					if (x[phase]) {
+						isPhaseUsed = true;
+						return <any>x[phase].bind(x);
+					}
+				});
+			const fns: Maybe<Fn<CTX, T>>[] = [...$bind(this.opts.intercept)];
 			if (!isFunction(handler)) {
-				for (let x of handler.intercept ?? []) {
-					if (x[phase]) fns.push(x[phase].bind(x));
-				}
+				fns.push(...$bind(handler.intercept));
 			}
-			return fns.length
-				? phase === "post"
-					? fns.reverse()
-					: fns
-				: undefined;
+			return isPhaseUsed ? fns : undefined;
 		};
 		const result: CompiledServerRoute<CTX> = { ...route, handlers: {} };
 		for (let method in route.handlers) {
 			const handler = route.handlers[<Method>method]!;
 			result.handlers[<Method>method] = {
 				fn: isFunction(handler) ? handler : handler.fn,
-				pre: compilePhase(handler, "pre"),
-				post: compilePhase(handler, "post"),
+				pre: compilePhase<PreInterceptorResult>(handler, "pre"),
+				post: compilePhase<PostInterceptorResult>(handler, "post"),
 			};
 		}
 		return result;

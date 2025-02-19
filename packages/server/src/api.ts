@@ -91,7 +91,8 @@ export interface RequestCtx {
 
 export type HandlerResult = MaybePromise<void>;
 
-export type InterceptorResult = MaybePromise<boolean>;
+export type PreInterceptorResult = MaybePromise<boolean>;
+export type PostInterceptorResult = MaybePromise<void>;
 
 export type RequestHandler<CTX extends RequestCtx = RequestCtx> =
 	| Fn<CTX, HandlerResult>
@@ -122,8 +123,8 @@ export interface InterceptedRequestHandler<
 
 export interface CompiledHandler<CTX extends RequestCtx = RequestCtx> {
 	fn: Fn<CTX, HandlerResult>;
-	pre?: Fn<CTX, InterceptorResult>[];
-	post?: Fn<CTX, InterceptorResult>[];
+	pre?: Maybe<Fn<CTX, PreInterceptorResult>>[];
+	post?: Maybe<Fn<CTX, PostInterceptorResult>>[];
 }
 
 export interface Interceptor<CTX extends RequestCtx = RequestCtx> {
@@ -131,17 +132,19 @@ export interface Interceptor<CTX extends RequestCtx = RequestCtx> {
 	 * Interceptor function which will be run BEFORE the main route handler (aka
 	 * {@link InterceptedRequestHandler.fn}). If an interceptor needs to cancel
 	 * the request processing it must return `false`. In this case any further
-	 * pre-interceptors, the main handler and all post-interceptors will be
-	 * skipped.
+	 * pre-interceptors and the main handler will be skipped. In the post-phase,
+	 * only the interceptors preceding the failed one will be run (though in
+	 * reverse order). E.g. If the 3rd pre-interceptor failed, only the post
+	 * phases of the first two will still be run (if available)...
 	 */
-	pre?: Fn<CTX, InterceptorResult>;
+	pre?: Fn<CTX, PreInterceptorResult>;
 	/**
 	 * Interceptor function which will be run AFTER the main route handler (aka
-	 * {@link InterceptedRequestHandler.fn}). If an interceptor needs to cancel
-	 * the request processing it must return `false`. In this case any further
-	 * post-interceptors will be skipped.
+	 * {@link InterceptedRequestHandler.fn}). Post-interceptors cannot cancel
+	 * request processing and are mainly intended for logging or clean-up
+	 * purposes. Post interceptors
 	 */
-	post?: Fn<CTX, InterceptorResult>;
+	post?: Fn<CTX, PostInterceptorResult>;
 }
 
 export interface ServerSession {

@@ -30,7 +30,6 @@ export const measure = (
 					`request processed in: ${timeDiff(t0).toFixed(3)}ms`
 				);
 			}
-			return true;
 		},
 	};
 };
