@@ -62,7 +62,7 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 201 individual
+Not including deprecations, this mono-repository is home to 202 individual
 TypeScript libraries/packages/tools and ~180 example projects illustrating their
 usage, currently totalling ~208k SLOC and ~4100 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
@@ -312,19 +312,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-02-11
+As of: 2025-02-19
 
-| Status                                        | Package                                                   | Version                                                                                                                         | Changelog                                             |
-|:----------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hdiff`](./packages/hdiff)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)                       | [changelog](./packages/hdiff/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/ksuid`](./packages/ksuid)                       | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                       | [changelog](./packages/ksuid/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger)                     | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                     | [changelog](./packages/logger/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/meta-css`](./packages/meta-css)                 | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                 | [changelog](./packages/meta-css/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang)     | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)     | [changelog](./packages/pointfree-lang/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server)                     | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)                     | [changelog](./packages/server/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tangle`](./packages/tangle)                     | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                     | [changelog](./packages/tangle/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen) | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md) |
-
+| Status                                           | Package                                 | Version                                                                                                       | Changelog                                    |
+|:-------------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/server`](./packages/server)   | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)   | [changelog](./packages/server/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/session`](./packages/session) | [![version](https://img.shields.io/npm/v/@thi.ng/session.svg)](https://www.npmjs.com/package/@thi.ng/session) | [changelog](./packages/session/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/tsne`](./packages/tsne)       | [![version](https://img.shields.io/npm/v/@thi.ng/tsne.svg)](https://www.npmjs.com/package/@thi.ng/tsne)       | [changelog](./packages/tsne/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/vectors`](./packages/vectors) | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors) | [changelog](./packages/vectors/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
@@ -492,6 +487,7 @@ As of: 2025-02-11
 | [`@thi.ng/rasterize`](./packages/rasterize)                         | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)                         | [changelog](./packages/rasterize/CHANGELOG.md)             | Shape drawing, filling & rasterization              |
 | [`@thi.ng/scenegraph`](./packages/scenegraph)                       | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)                       | [changelog](./packages/scenegraph/CHANGELOG.md)            | Extensible 2D/3D scenegraph                         |
 | [`@thi.ng/simd`](./packages/simd)                                   | [![version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)                                   | [changelog](./packages/simd/CHANGELOG.md)                  | WebAssembly SIMD vector batch processing            |
+| [`@thi.ng/tsne`](./packages/tsne)                                   | [![version](https://img.shields.io/npm/v/@thi.ng/tsne.svg)](https://www.npmjs.com/package/@thi.ng/tsne)                                   | [changelog](./packages/tsne/CHANGELOG.md)                  | Configurable t-SNE visualization solver             |
 | [`@thi.ng/viz`](./packages/viz)                                     | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)                                     | [changelog](./packages/viz/CHANGELOG.md)                   | Declarative & functional data visualization toolkit |
 
 ### Iterator, stream & sequence processing
