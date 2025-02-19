@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 201 standalone projects, maintained as part
+> This is one of 202 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -715,7 +715,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-27 projects in this repo's
+28 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -746,6 +746,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>                     | Fitting, transforming & plotting 10k data points per frame using SIMD            | [Demo](https://demo.thi.ng/umbrella/simd-plot/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)              |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>                | Responsive & reactively computed stacked column layout                           | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                           | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/tsne-colors.avif" width="240"/>                  | Animated t-SNE visualization of 4D data                                          | [Demo](https://demo.thi.ng/umbrella/tsne-colors/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/tsne-colors)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                      | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>           | Interactively drawing to & reading from a WebGL offscreen render texture         | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-texture-paint)    |
 

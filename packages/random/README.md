@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 201 standalone projects, maintained as part
+> This is one of 202 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -121,7 +121,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-18 projects in this repo's
+19 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -144,6 +144,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming                                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>        | Responsive & reactively computed stacked column layout                                   | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-packages-quiz.avif" width="240"/>  | thi.ng/rdom & thi.ng/rstream based quiz to guess thi.ng package names                    | [Demo](https://demo.thi.ng/umbrella/thing-packages-quiz/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-packages-quiz)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/tsne-colors.avif" width="240"/>          | Animated t-SNE visualization of 4D data                                                  | [Demo](https://demo.thi.ng/umbrella/tsne-colors/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/tsne-colors)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-game-of-life.png" width="240"/>    | Game of Life implemented as WebGL2 multi-pass shader pipeline                            | [Demo](https://demo.thi.ng/umbrella/webgl-game-of-life/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-game-of-life)    |
 
 ## API

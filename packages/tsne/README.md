@@ -18,6 +18,7 @@
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -80,6 +81,16 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.42 KB
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory is using this package:
+
+| Screenshot                                                                                                          | Description                             | Live demo                                         | Source                                                                         |
+|:--------------------------------------------------------------------------------------------------------------------|:----------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/tsne-colors.avif" width="240"/> | Animated t-SNE visualization of 4D data | [Demo](https://demo.thi.ng/umbrella/tsne-colors/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/tsne-colors) |
 
 ## API
 
