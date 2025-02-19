@@ -2936,6 +2936,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/tsne-colors@workspace:examples/tsne-colors":
+  version: 0.0.0-use.local
+  resolution: "@example/tsne-colors@workspace:examples/tsne-colors"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/tsne": "workspace:^"
+    typescript: "npm:^5.7.3"
+    vite: "npm:^6.1.0"
+  languageName: unknown
+  linkType: soft
+
 "@example/unbiased-normals@workspace:examples/unbiased-normals":
   version: 0.0.0-use.local
   resolution: "@example/unbiased-normals@workspace:examples/unbiased-normals"
@@ -6592,7 +6611,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/tsne@workspace:packages/tsne":
+"@thi.ng/tsne@workspace:^, @thi.ng/tsne@workspace:packages/tsne":
   version: 0.0.0-use.local
   resolution: "@thi.ng/tsne@workspace:packages/tsne"
   dependencies:
