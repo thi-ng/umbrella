@@ -16,7 +16,7 @@ import {
 	parseQuerystring,
 	referrerPolicy,
 	Server,
-	serverSession,
+	sessionInterceptor,
 	staticFiles,
 	strictTransportSecurity,
 	type RequestCtx,
@@ -63,7 +63,7 @@ test("server", async (done) => {
 			strictTransportSecurity(3600),
 			cacheControl({ maxAge: 3600, mustRevalidate: true }),
 			injectHeaders({ "x-foo": "bar" }),
-			serverSession<TestCtx, TestSession>({
+			sessionInterceptor<TestCtx, TestSession>({
 				factory: (ctx) => ({
 					id: "1234",
 					ip: ctx.req.socket.remoteAddress || "",

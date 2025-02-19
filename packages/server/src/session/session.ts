@@ -12,12 +12,16 @@ import type {
 } from "../api.js";
 import { inMemorySessionStore } from "./memory.js";
 
+/**
+ * Configuration options for {@link SessionInterceptor}.
+ */
 export interface SessionOpts<
 	CTX extends RequestCtx = RequestCtx,
 	SESSION extends ServerSession = ServerSession
 > {
 	/**
-	 * Factory function to create a new session object. See {@link createSession}.
+	 * Factory function to create a new session object. See
+	 * {@link createSession} for a base implementation.
 	 */
 	factory: Fn<CTX, SESSION>;
 	/**
@@ -43,6 +47,13 @@ export interface SessionOpts<
 	secret?: number | string | Buffer;
 }
 
+/**
+ * Pre-interceptor which parses & validates session cookie (if available) from
+ * current request and injects/updates session cookie in response. Only a signed
+ * session ID will be stored in the cookie. Thr actual session data is held
+ * server side, via configured session storage (see {@link SessionOpts.store})
+ * (by default uses {@link InMemorySessionStore}).
+ */
 export class SessionInterceptor<
 	CTX extends RequestCtx = RequestCtx,
 	SESSION extends ServerSession = ServerSession
@@ -92,6 +103,17 @@ export class SessionInterceptor<
 		return true;
 	}
 
+	/**
+	 * Attempts to delete session for given ID and if successful also sets
+	 * force-expired cookie in response.
+	 *
+	 * @remarks
+	 * Intended for logout handlers and/or switching sessions when a user has
+	 * successfully authenticated (to avoid session fixation).
+	 *
+	 * @param ctx
+	 * @param sessionID
+	 */
 	async deleteSession(ctx: CTX, sessionID: string) {
 		if (await this.store.delete(sessionID)) {
 			ctx.logger.info("delete session:", sessionID);
@@ -103,6 +125,13 @@ export class SessionInterceptor<
 		}
 	}
 
+	/**
+	 * Creates a new session object (via configured {@link SessionOpts.factory})
+	 * and submits it to configured {@link SessionOpts.store}, Returns session
+	 * if successful, otherwise returns `undefined`.
+	 *
+	 * @param ctx
+	 */
 	async newSession(ctx: CTX) {
 		const session = this.factory(ctx);
 		ctx.logger.info("new session:", session.id);
@@ -161,11 +190,12 @@ export class SessionInterceptor<
 }
 
 /**
- * Factory function to create a new {@link SessionInterceptor} instance.
+ * Factory function to create a new {@link SessionInterceptor} instance
+ * configured with given options.
  *
  * @param opts
  */
-export const serverSession = <
+export const sessionInterceptor = <
 	CTX extends RequestCtx = RequestCtx,
 	SESSION extends ServerSession = ServerSession
 >(
