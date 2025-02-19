@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/meta-css",
-	"version": "0.18.1",
+	"version": "0.18.2",
 	"description": "Data-driven CSS framework codegen, transpiler & bundler",
 	"type": "module",
 	"module": "./index.js",
@@ -44,20 +44,20 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.20",
-		"@thi.ng/args": "^2.3.59",
-		"@thi.ng/arrays": "^2.10.15",
-		"@thi.ng/checks": "^3.6.23",
-		"@thi.ng/compare": "^2.4.12",
-		"@thi.ng/errors": "^2.5.26",
-		"@thi.ng/file-io": "^2.1.27",
-		"@thi.ng/hiccup-css": "^2.7.38",
-		"@thi.ng/logger": "^3.1.1",
-		"@thi.ng/memoize": "^4.0.10",
-		"@thi.ng/rstream": "^9.2.10",
-		"@thi.ng/strings": "^3.9.5",
-		"@thi.ng/text-format": "^2.2.25",
-		"@thi.ng/transducers": "^9.2.18"
+		"@thi.ng/api": "^8.11.21",
+		"@thi.ng/args": "^2.3.60",
+		"@thi.ng/arrays": "^2.10.16",
+		"@thi.ng/checks": "^3.6.24",
+		"@thi.ng/compare": "^2.4.13",
+		"@thi.ng/errors": "^2.5.27",
+		"@thi.ng/file-io": "^2.1.28",
+		"@thi.ng/hiccup-css": "^2.7.39",
+		"@thi.ng/logger": "^3.1.2",
+		"@thi.ng/memoize": "^4.0.11",
+		"@thi.ng/rstream": "^9.2.11",
+		"@thi.ng/strings": "^3.9.6",
+		"@thi.ng/text-format": "^2.2.26",
+		"@thi.ng/transducers": "^9.2.19"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",

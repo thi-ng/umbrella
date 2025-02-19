@@ -11,14 +11,8 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [4.1.174](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-canvas@4.1.174) (2025-01-14)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tsne@0.1.0) (2025-02-19)
 
-#### ♻️ Refactoring
+#### 🚀 Features
 
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
-
-### [4.1.91](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-canvas@4.1.91) (2023-11-09)
-
-#### ♻️ Refactoring
-
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- import as new pkg ([6761949](https://github.com/thi-ng/umbrella/commit/6761949))
