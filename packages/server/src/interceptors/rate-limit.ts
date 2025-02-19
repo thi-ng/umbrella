@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, Maybe } from "@thi.ng/api";
 import { TLRUCache } from "@thi.ng/cache";
 import { isNumber } from "@thi.ng/checks";

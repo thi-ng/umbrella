@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatArray, Fn0 } from "@thi.ng/api";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import { mix } from "@thi.ng/math/mix";
