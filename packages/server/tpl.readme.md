@@ -54,7 +54,7 @@ for more details.
 - [`logResponse()`](https://docs.thi.ng/umbrella/server/functions/logResponse.html): Response logging
 - [`rateLimiter()`](https://docs.thi.ng/umbrella/server/functions/rateLimiter-1.html): Configurable rate limiting
 - [`referrerPolicy()`](https://docs.thi.ng/umbrella/server/functions/referrerPolicy-1.html): Policy header injection
-- [`serverSession()`](https://docs.thi.ng/umbrella/server/functions/serverSession-1.html): User defined in-memory sessions with TTL
+- [`sessionInterceptor()`](https://docs.thi.ng/umbrella/server/functions/sessionInterceptor-1.html): User defined in-memory sessions with TTL
 - [`strictTransportSecurity()`](https://docs.thi.ng/umbrella/server/functions/strictTransportSecurity.html): Policy header injection
 
 #### Custom interceptors
@@ -134,7 +134,9 @@ interface AppSession extends srv.ServerSession {
 
 // interceptor for injecting/managing sessions
 // by default uses in-memory storage/cache
-const session = srv.serverSession<AppCtx, AppSession>();
+const session = srv.sessionInterceptor<AppCtx, AppSession>({
+	factory: srv.createSession
+});
 
 // create server with given config
 const app = srv.server<AppCtx>({

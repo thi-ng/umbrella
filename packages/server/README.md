@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 201 standalone projects, maintained as part
+> This is one of 202 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -80,7 +80,7 @@ for more details.
 - [`logResponse()`](https://docs.thi.ng/umbrella/server/functions/logResponse.html): Response logging
 - [`rateLimiter()`](https://docs.thi.ng/umbrella/server/functions/rateLimiter-1.html): Configurable rate limiting
 - [`referrerPolicy()`](https://docs.thi.ng/umbrella/server/functions/referrerPolicy-1.html): Policy header injection
-- [`serverSession()`](https://docs.thi.ng/umbrella/server/functions/serverSession-1.html): User defined in-memory sessions with TTL
+- [`sessionInterceptor()`](https://docs.thi.ng/umbrella/server/functions/sessionInterceptor-1.html): User defined in-memory sessions with TTL
 - [`strictTransportSecurity()`](https://docs.thi.ng/umbrella/server/functions/strictTransportSecurity.html): Policy header injection
 
 #### Custom interceptors
@@ -149,7 +149,7 @@ For Node.js REPL:
 const ser = await import("@thi.ng/server");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.24 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.28 KB
 
 ## Dependencies
 
@@ -192,7 +192,9 @@ interface AppSession extends srv.ServerSession {
 
 // interceptor for injecting/managing sessions
 // by default uses in-memory storage/cache
-const session = srv.serverSession<AppCtx, AppSession>();
+const session = srv.sessionInterceptor<AppCtx, AppSession>({
+    factory: srv.createSession
+});
 
 // create server with given config
 const app = srv.server<AppCtx>({
