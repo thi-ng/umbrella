@@ -25,7 +25,7 @@ export const logRequest = (
 };
 
 /**
- * Pre-interceptor to log response details (status, route, headers) using the
+ * Post-interceptor to log response details (status, route, headers) using the
  * server's {@link ServerOpts.logger}. The `level` arg can be used to customize
  * which log level to use.
  *

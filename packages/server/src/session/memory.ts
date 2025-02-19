@@ -24,8 +24,8 @@ export interface InMemorySessionOpts<T extends ServerSession = ServerSession> {
 }
 
 /**
- * Session storage implementation for use with {@link serverSession}, using an
- * in-memory TLRU Cache with configurable TTL.
+ * Session storage implementation for use with {@link sessionInterceptor}, using
+ * an in-memory TLRU Cache with configurable TTL.
  */
 export class InMemorySessionStore<T extends ServerSession = ServerSession>
 	implements ISessionStore<T>
