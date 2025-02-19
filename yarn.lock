@@ -6592,6 +6592,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/tsne@workspace:packages/tsne":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/tsne@workspace:packages/tsne"
+  dependencies:
+    "@thi.ng/api": "npm:^8.11.20"
+    "@thi.ng/math": "npm:^5.11.20"
+    "@thi.ng/random": "npm:^4.1.11"
+    "@thi.ng/transducers": "npm:^9.2.18"
+    "@thi.ng/vectors": "npm:^7.12.20"
+    esbuild: "npm:^0.25.0"
+    typedoc: "npm:^0.27.7"
+    typescript: "npm:^5.7.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/unionstruct@workspace:packages/unionstruct":
   version: 0.0.0-use.local
   resolution: "@thi.ng/unionstruct@workspace:packages/unionstruct"
