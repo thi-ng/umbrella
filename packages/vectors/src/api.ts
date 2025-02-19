@@ -80,7 +80,7 @@ export interface MultiVecOp<VOP> {
 	 *
 	 * @param dim -
 	 */
-	impl(dim: number): VOP;
+	impl(dim?: number): VOP;
 }
 
 export type VecPair = [Vec, Vec];

@@ -19,7 +19,8 @@ export const vop = <T extends Function>(dispatch = 0) => {
 	};
 	fn.add = (dim: number, fn: T) => (impls[dim] = fn);
 	fn.default = (fn: T) => (fallback = fn);
-	fn.impl = (dim: number): T => impls[dim] || fallback;
+	fn.impl = (dim?: number): T =>
+		dim != null ? impls[dim] || fallback : fallback;
 	// fn.impls = impls;
 	return fn;
 };
