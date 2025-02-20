@@ -13,19 +13,16 @@ import {
 	zeroes,
 	type DistanceFn,
 	type ReadonlyVec,
+	type VecOpVN,
+	type VecOpVV,
 } from "@thi.ng/vectors";
 import type { TSNEOpts, TweenParam } from "./api.js";
-
-// pre-lookup arbitrary length implementations of various vector ops
-const $distSq = distSq.impl();
-const $divN = divN.impl();
-const $sub = sub.impl();
 
 const EPS = Number.EPSILON;
 
 export const DEFAULT_OPTS: TSNEOpts = {
 	rnd: SYSTEM,
-	dist: $distSq,
+	dist: distSq,
 	perplexity: 10,
 	rate: 100,
 	eps: 1e-4,
@@ -58,6 +55,9 @@ export class TSNE {
 	points!: number[][];
 	steps!: number[][];
 	gains!: number[][];
+	opDist!: DistanceFn;
+	opDivN!: VecOpVN;
+	opSub!: VecOpVV;
 
 	constructor(points: ReadonlyVec[], opts: Partial<TSNEOpts> = {}) {
 		this.opts = { ...DEFAULT_OPTS, ...opts };
@@ -68,8 +68,12 @@ export class TSNE {
 		const opts = this.opts;
 		const n = (this.n = points.length);
 		const dim = (this.dim = points[0].length);
+		// pre-lookup size-optimized implementations of vector ops
+		this.opDist = opts.dist === distSq ? distSq.impl(dim) : opts.dist;
+		this.opDivN = divN.impl(dim);
+		this.opSub = sub.impl(dim);
 		this.p = initProbabilities(
-			pairwiseDistances(points, opts.dist),
+			pairwiseDistances(points, this.opDist),
 			n,
 			opts.perplexity,
 			opts.eps,
@@ -85,7 +89,7 @@ export class TSNE {
 
 	update() {
 		if (++this.iter >= this.opts.maxIter) return 0;
-		const { n, dim, points, steps, gains } = this;
+		const { n, dim, points, steps, gains, opDivN, opSub } = this;
 		const {
 			rate,
 			minGain,
@@ -118,14 +122,13 @@ export class TSNE {
 				ymean[d] += row[d];
 			}
 		}
-		$divN(null, ymean, n);
-		for (i = 0; i < n; i++) $sub(null, points[i], ymean);
+		opDivN(null, ymean, n);
+		for (i = 0; i < n; i++) opSub(null, points[i], ymean);
 		return cost;
 	}
 
 	computeGradient() {
-		const { n, dim, points: y, p, q, qu } = this;
-		const { dist, gradientScale } = this.opts;
+		const { n, dim, points: y, p, q, qu, opDist } = this;
 		let i: number, j: number, rowIdx: number, d: number;
 		let rowI: number[], rowJ: number[];
 		let qsum = 0;
@@ -133,7 +136,7 @@ export class TSNE {
 			rowIdx = i * n;
 			rowI = y[i];
 			for (j = i + 1; j < n; j++) {
-				d = 1 / (1 + dist(rowI, y[j]));
+				d = 1 / (1 + opDist(rowI, y[j]));
 				qu[rowIdx + j] = d;
 				qu[j * n + i] = d;
 				qsum += 2 * d;
@@ -146,7 +149,7 @@ export class TSNE {
 
 		let cost = 0;
 		const gradient: ReadonlyVec[] = new Array(n);
-		const gscale = tweenParam(gradientScale, this.iter);
+		const gscale = tweenParam(this.opts.gradientScale, this.iter);
 		for (i = 0; i < n; i++) {
 			rowIdx = i * n;
 			rowI = y[i];
