@@ -49,6 +49,7 @@ Collection of 70+ type, feature & value checks.
 - [`isBlob`](https://docs.thi.ng/umbrella/checks/functions/isBlob.html)
 - [`isBoolean`](https://docs.thi.ng/umbrella/checks/functions/isBoolean.html)
 - [`isChrome`](https://docs.thi.ng/umbrella/checks/functions/isChrome.html)
+- [`isDarkMode`](https://docs.thi.ng/umbrella/checks/functions/isDarkMode.html)
 - [`isDataURL`](https://docs.thi.ng/umbrella/checks/functions/isDataURL.html)
 - [`isDate`](https://docs.thi.ng/umbrella/checks/functions/isDate.html)
 - [`isEven`](https://docs.thi.ng/umbrella/checks/functions/isEven.html)
@@ -134,7 +135,7 @@ For Node.js REPL:
 const ch = await import("@thi.ng/checks");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.65 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.70 KB
 
 ## Dependencies
 
