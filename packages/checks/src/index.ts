@@ -21,6 +21,7 @@ export * from "./is-bigint.js";
 export * from "./is-blob.js";
 export * from "./is-boolean.js";
 export * from "./is-chrome.js";
+export * from "./is-dark-mode.js";
 export * from "./is-data-url.js";
 export * from "./is-date.js";
 export * from "./is-even.js";
