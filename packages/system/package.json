@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/system",
-	"version": "3.1.46",
+	"version": "3.1.47",
 	"description": "Minimal and explicit dependency-injection & lifecycle container for stateful app components",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.21",
-		"@thi.ng/dgraph": "^2.1.149",
+		"@thi.ng/dgraph": "^2.1.150",
 		"@thi.ng/logger": "^3.1.2"
 	},
 	"devDependencies": {

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-02-19T20:59:58Z
+- **Last updated**: 2025-02-21T21:54:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.6.0) (2025-02-21)
+
+#### 🚀 Features
+
+- update `sessionInterceptor()` cookie signing/handling ([bdd4d66](https://github.com/thi-ng/umbrella/commit/bdd4d66))
+  - update `SessionInterceptor.newSession()`
+  - pre-compute session metadata (HMAC & cookie values), store in WeakMap
+  - update `.withSession()`
+  - update `.validateSession()` to use cached signature
+  - update tests
+- add/update `ServerOpts` ([23b5321](https://github.com/thi-ng/umbrella/commit/23b5321))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.5.0) (2025-02-19)
 

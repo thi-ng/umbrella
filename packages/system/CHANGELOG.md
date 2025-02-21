@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-02-19T20:59:58Z
+- **Last updated**: 2025-02-21T21:54:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.1.47](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.1.47) (2025-02-21)
+
+#### ♻️ Refactoring
+
+- switch use of `Promise` to `MaybePromise` ([59b3ae1](https://github.com/thi-ng/umbrella/commit/59b3ae1))
+  - update `ILifeCycle` and `ComponentFactory` to not require async
+  - update tests
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.1.0) (2024-03-09)
 
