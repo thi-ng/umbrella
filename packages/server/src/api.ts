@@ -170,7 +170,7 @@ export interface ISessionStore<T extends ServerSession = ServerSession> {
 	 */
 	get(id: string): MaybePromise<Maybe<T>>;
 	/**
-	 * Adds given `session` to underlying storage.
+	 * Adds to or updates given `session` in underlying storage.
 	 *
 	 * @param session
 	 */

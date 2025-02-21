@@ -48,22 +48,33 @@ export interface SessionOpts<
 }
 
 /**
+ * Cached session metadata, stored in a WeakMap.
+ *
+ * @internal
+ */
+export interface SessionMeta {
+	hmac: Buffer;
+	cookie: string;
+}
+
+/**
  * Pre-interceptor which parses & validates session cookie (if available) from
  * current request and injects/updates session cookie in response. Only a signed
- * session ID will be stored in the cookie. Thr actual session data is held
- * server side, via configured session storage (see {@link SessionOpts.store})
- * (by default uses {@link InMemorySessionStore}).
+ * session ID will be stored in the cookie. Thr actual session data and HMAC is
+ * held server side (via configured session storage, see
+ * {@link SessionOpts.store}; by default uses {@link InMemorySessionStore}).
  */
 export class SessionInterceptor<
 	CTX extends RequestCtx = RequestCtx,
 	SESSION extends ServerSession = ServerSession
 > implements Interceptor<CTX>
 {
-	factory: Fn<CTX, SESSION>;
+	factory: SessionOpts<CTX, SESSION>["factory"];
 	store: ISessionStore<SESSION>;
+	meta: WeakMap<SESSION, SessionMeta> = new WeakMap();
+	secret: Buffer;
 	cookieName: string;
 	cookieOpts: string;
-	secret: Buffer;
 
 	constructor({
 		factory,
@@ -85,21 +96,20 @@ export class SessionInterceptor<
 
 	async pre(ctx: CTX) {
 		const cookie = ctx.cookies?.[this.cookieName];
-		let id: Maybe<string>;
+		let session: Maybe<SESSION>;
 		if (cookie) {
-			id = this.validateSession(cookie);
-			if (!id) {
+			session = await this.validateSession(cookie);
+			if (!session) {
 				ctx.res.forbidden();
 				return false;
 			}
 		}
-		let session = id ? await this.store.get(id) : undefined;
 		if (!session || session.ip !== ctx.req.socket.remoteAddress) {
 			session = await this.newSession(ctx);
 			if (!session) return false;
 		}
 		ctx.session = session;
-		this.withSession(ctx.res, session.id);
+		this.withSession(ctx.res, session);
 		return true;
 	}
 
@@ -126,9 +136,9 @@ export class SessionInterceptor<
 	}
 
 	/**
-	 * Creates a new session object (via configured {@link SessionOpts.factory})
-	 * and submits it to configured {@link SessionOpts.store}, Returns session
-	 * if successful, otherwise returns `undefined`.
+	 * Creates a new session object (via configured {@link SessionOpts.factory}), pre-computes HMAC
+	 * and submits it to configured {@link SessionOpts.store}. If successful, Returns session
+	 * , otherwise returns `undefined`.
 	 *
 	 * @param ctx
 	 */
@@ -139,6 +149,14 @@ export class SessionInterceptor<
 			ctx.logger.warn("could not store session...");
 			return;
 		}
+		const hmac = createHmac("sha256", this.secret)
+			.update(session.id, "ascii")
+			.update(randomBytes(8))
+			.digest();
+		this.meta.set(session, {
+			hmac,
+			cookie: session.id + ":" + hmac.toString("base64url"),
+		});
 		return session;
 	}
 
@@ -154,37 +172,31 @@ export class SessionInterceptor<
 		if (session) {
 			if (ctx.session?.id) this.store.delete(ctx.session.id);
 			ctx.session = session;
-			this.withSession(ctx.res, session.id);
+			this.withSession(ctx.res, session);
 			return session;
 		}
 	}
 
-	withSession(res: ServerResponse, sessionID: string) {
-		const cookie = sessionID + ":" + randomBytes(8).toString("base64url");
-		const signature = createHmac("sha256", this.secret)
-			.update(cookie, "ascii")
-			.digest()
-			.toString("base64url");
+	withSession(res: ServerResponse, session: SESSION) {
+		const cookie = this.meta.get(session)?.cookie;
 		return res.appendHeader(
 			"set-cookie",
-			`${this.cookieName}=${cookie}:${signature};Max-Age=${this.store.ttl};${this.cookieOpts}`
+			`${this.cookieName}=${cookie};Max-Age=${this.store.ttl};${this.cookieOpts}`
 		);
 	}
 
-	validateSession(cookie: string) {
+	async validateSession(cookie: string) {
 		const parts = cookie.split(":");
-		if (parts.length < 3) return;
-		const actual = Buffer.from(parts[2], "base64url");
-		const expected = createHmac("sha256", this.secret)
-			.update(
-				cookie.substring(0, cookie.length - parts[2].length - 1),
-				"ascii"
-			)
-			.digest();
+		if (parts.length !== 2) return;
+		const session = await this.store.get(parts[0]);
+		if (!session) return;
+		const actual = Buffer.from(parts[1], "base64url");
+		const expected = this.meta.get(session)?.hmac;
+		if (!expected) return;
 		const sameLength = actual.length === expected.length;
 		return timingSafeEqual(sameLength ? actual : expected, expected) &&
 			sameLength
-			? parts[0]
+			? session
 			: undefined;
 	}
 }

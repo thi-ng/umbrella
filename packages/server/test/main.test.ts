@@ -113,7 +113,7 @@ test("server", async (done) => {
 	expect(res.headers.get("content-type")).toBe("text/plain");
 	expect(res.headers.get("x-foo")).toBe("bar");
 	expect(res.headers.get("set-cookie")).toMatch(
-		/^__sid=1234:([0-9a-zA-Z_-]+):([0-9a-zA-Z_-]+);Max-Age=3600;Secure;HttpOnly;SameSite=Strict;Path=\/, user=test$/
+		/^__sid=1234:([0-9a-zA-Z_-]+);Max-Age=3600;Secure;HttpOnly;SameSite=Strict;Path=\/, user=test$/
 	);
 	expect(await res.text()).toBe("hello, world (test)");
 
@@ -129,7 +129,7 @@ test("server", async (done) => {
 	expect(res.headers.get("content-type")).toBe("application/json");
 	expect(res.headers.get("content-encoding")).toBe("br");
 	expect(res.headers.get("set-cookie")).toMatch(
-		/^__sid=1234:([0-9a-zA-Z_-]+):([0-9a-zA-Z_-]+);Max-Age=3600;Secure;HttpOnly;SameSite=Strict;Path=\/, user=undefined$/
+		/^__sid=1234:([0-9a-zA-Z_-]+);Max-Age=3600;Secure;HttpOnly;SameSite=Strict;Path=\/, user=undefined$/
 	);
 	expect(await res.json()).toEqual({ status: "ok" });
 
