@@ -62,7 +62,14 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 	}
 
 	async start() {
-		const { ssl, host = "localhost", port = ssl ? 443 : 8080 } = this.opts;
+		const {
+			ssl,
+			host = "localhost",
+			port = ssl ? 443 : 8080,
+			uniqueHeaders,
+			blockList,
+			requestTimeout,
+		} = this.opts;
 		try {
 			this.server = ssl
 				? https.createServer(
@@ -70,6 +77,9 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 							key: readText(ssl.key, this.logger),
 							cert: readText(ssl.cert, this.logger),
 							ServerResponse,
+							uniqueHeaders,
+							blockList,
+							requestTimeout,
 						},
 						this.listener.bind(this)
 				  )

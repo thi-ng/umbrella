@@ -3,7 +3,8 @@ import type { Fn, Maybe, MaybePromise } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { Route, RouteMatch } from "@thi.ng/router";
 import type { IncomingMessage } from "node:http";
-import type { ServerResponse, Server } from "./server.js";
+import type { BlockList } from "node:net";
+import type { Server, ServerResponse } from "./server.js";
 
 export type Method =
 	| "get"
@@ -60,6 +61,22 @@ export interface ServerOpts<CTX extends RequestCtx = RequestCtx> {
 	 * request before processing its handler & interceptors.
 	 */
 	context: Fn<RequestCtx, CTX>;
+	/**
+	 * Timeout in milliseconds for receiving the entire request from the client.
+	 */
+	requestTimeout: number;
+	/**
+	 * List of response headers that should be sent only once.
+	 */
+	uniqueHeaders: string[];
+	/**
+	 * Used for disabling inbound access to specific IP addresses, IP ranges, or
+	 * IP subnets. This does not work if the server is behind a reverse proxy.
+	 *
+	 * @remarks
+	 * Reference: https://nodejs.org/api/net.html#class-netblocklist
+	 */
+	blockList: BlockList;
 }
 
 export interface ServerRoute<CTX extends RequestCtx = RequestCtx>
