@@ -48,7 +48,7 @@ export const candlePlot =
 		];
 	};
 
-export const candle = (opts: Partial<CandleShapeOpts> = {}) => {
+export const candle = (opts: Partial<CandleShapeOpts> = {}): CandleShapeFn => {
 	const {
 		up = () => ({ stroke: [1, 0, 0], fill: [1, 0, 0] }),
 		down = () => ({ stroke: [0, 0.8, 0], fill: [0, 0.8, 0] }),
