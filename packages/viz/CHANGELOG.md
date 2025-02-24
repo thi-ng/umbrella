@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-02-19T20:59:58Z
+- **Last updated**: 2025-02-24T12:15:28Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.7.0) (2025-02-24)
+
+#### 🚀 Features
+
+- update BarPlot shape function args ([3037d59](https://github.com/thi-ng/umbrella/commit/3037d59))
+  - first arg to provide original full datum
 
 ### [0.6.58](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.6.58) (2024-07-16)
 
