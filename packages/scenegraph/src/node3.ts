@@ -6,7 +6,10 @@ import { mulM44 } from "@thi.ng/matrices/mulm";
 import { mulV344 } from "@thi.ng/matrices/mulv";
 import { transform44 } from "@thi.ng/matrices/transform";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { madd3 } from "@thi.ng/vectors/madd";
 import { set3 } from "@thi.ng/vectors/set";
+import { setN3 } from "@thi.ng/vectors/setn";
+import { sub3 } from "@thi.ng/vectors/sub";
 import { ANode } from "./anode.js";
 import type { ISceneNode } from "./api.js";
 import { toHiccup } from "./hiccup.js";
@@ -68,6 +71,20 @@ export class Node3D
 
 	mapLocalPointToNode(dest: Node3D, p: ReadonlyVec) {
 		return mulV344(null, dest.invMat, mulV344([], this.mat, p)!);
+	}
+
+	scaleWithReferencePoint(ref: ReadonlyVec, scale: ReadonlyVec | number) {
+		if (this.enabled) {
+			const currScale = isNumber(this.scale)
+				? setN3([], this.scale)
+				: this.scale;
+			const newScale = isNumber(scale) ? setN3([], scale) : scale;
+			const delta = sub3([], currScale, newScale);
+			this.scale = newScale;
+			this.translate = madd3(null, ref, delta, this.translate);
+			this.update();
+		}
+		return this;
 	}
 
 	/**
