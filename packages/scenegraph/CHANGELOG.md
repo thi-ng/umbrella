@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-02-19T20:59:58Z
+- **Last updated**: 2025-02-25T13:25:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,29 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/scenegraph@2.0.0) (2025-02-25)
+
+#### 🛑 Breaking changes
+
+- switch to using option objects for node ctors ([9b85ae7](https://github.com/thi-ng/umbrella/commit/9b85ae7))
+- BREAKING CHANGE: replace positional ctor args w/ options objects (aka named params)
+  - add `CommonNodeOpts`, `Node2DOpts`, `Node3DOpts`
+  - update all ctors: `ANode`, `Node2D`, `Node3D`
+  - migrate `enabled`/`display` flags to `ISceneNode` interface
+  - update tests
+
+#### 🚀 Features
+
+- add `scaleWithReferencePoint()` ([60b388c](https://github.com/thi-ng/umbrella/commit/60b388c))
+  - add `ISceneNode.scaleWithReferencePoint()` and impls in `Node2D`/`Node3D`
+  - add/update `ISceneNode` doc strings
+  - minor update/cleanup `ANode`
+  - add tests
+- add `scaleWithReferencePoint()` ([3cef74c](https://github.com/thi-ng/umbrella/commit/3cef74c))
+  - add `ISceneNode.scaleWithReferencePoint()` and impls in `Node2D`/`Node3D`
+  - add/update `ISceneNode` doc strings
+  - minor update/cleanup `ANode`
 
 ### [1.0.41](https://github.com/thi-ng/umbrella/tree/@thi.ng/scenegraph@1.0.41) (2024-04-20)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/meta-css",
-	"version": "0.18.3",
+	"version": "0.18.4",
 	"description": "Data-driven CSS framework codegen, transpiler & bundler",
 	"type": "module",
 	"module": "./index.js",
@@ -45,19 +45,19 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.21",
-		"@thi.ng/args": "^2.3.61",
-		"@thi.ng/arrays": "^2.10.17",
-		"@thi.ng/checks": "^3.7.0",
+		"@thi.ng/args": "^2.3.62",
+		"@thi.ng/arrays": "^2.10.18",
+		"@thi.ng/checks": "^3.7.1",
 		"@thi.ng/compare": "^2.4.13",
 		"@thi.ng/errors": "^2.5.27",
-		"@thi.ng/file-io": "^2.1.29",
-		"@thi.ng/hiccup-css": "^2.7.40",
+		"@thi.ng/file-io": "^2.1.30",
+		"@thi.ng/hiccup-css": "^2.7.41",
 		"@thi.ng/logger": "^3.1.2",
 		"@thi.ng/memoize": "^4.0.11",
-		"@thi.ng/rstream": "^9.2.12",
+		"@thi.ng/rstream": "^9.2.13",
 		"@thi.ng/strings": "^3.9.6",
 		"@thi.ng/text-format": "^2.2.26",
-		"@thi.ng/transducers": "^9.2.20"
+		"@thi.ng/transducers": "^9.2.21"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",
