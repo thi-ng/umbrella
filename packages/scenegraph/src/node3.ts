@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { ICopy, IToHiccup, Nullable } from "@thi.ng/api";
+import type { ICopy, IToHiccup } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { invert44 } from "@thi.ng/matrices/invert";
 import { mulM44 } from "@thi.ng/matrices/mulm";
@@ -11,8 +11,14 @@ import { set3 } from "@thi.ng/vectors/set";
 import { setN3 } from "@thi.ng/vectors/setn";
 import { sub3 } from "@thi.ng/vectors/sub";
 import { ANode } from "./anode.js";
-import type { ISceneNode } from "./api.js";
+import type { CommonNodeOpts, ISceneNode } from "./api.js";
 import { toHiccup } from "./hiccup.js";
+
+export interface Node3DOpts extends CommonNodeOpts<Node3D> {
+	translate?: Vec;
+	rotate?: Vec;
+	scale?: Vec | number;
+}
 
 export class Node3D
 	extends ANode<Node3D>
@@ -22,30 +28,24 @@ export class Node3D
 	rotate: Vec;
 	scale: Vec | number;
 
-	constructor(
-		id: string,
-		parent?: Nullable<Node3D>,
-		translate: Vec = [0, 0, 0],
-		rotate: Vec = [0, 0, 0],
-		scale: Vec | number = 1,
-		body?: any
-	) {
-		super(id, parent, body);
-		this.translate = translate;
-		this.rotate = rotate;
+	constructor(opts: Node3DOpts) {
+		super(opts);
+		this.translate = opts.translate ?? [0, 0, 0];
+		this.rotate = opts.rotate ?? [0, 0, 0];
+		const scale = opts.scale ?? 1;
 		this.scale = isNumber(scale) ? [scale, scale, scale] : scale;
 		this.update();
 	}
 
 	copy() {
-		return new Node3D(
-			this.id,
-			this.parent,
-			set3([], this.translate),
-			set3([], this.rotate),
-			set3([], <Vec>this.scale),
-			this.body
-		);
+		return new Node3D({
+			id: this.id,
+			parent: this.parent,
+			translate: set3([], this.translate),
+			rotate: set3([], this.rotate),
+			scale: set3([], <Vec>this.scale),
+			body: this.body,
+		});
 	}
 
 	update() {

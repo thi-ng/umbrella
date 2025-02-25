@@ -4,7 +4,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { assert } from "@thi.ng/errors/assert";
 import type { Mat } from "@thi.ng/matrices";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { ISceneNode, NodeInfo } from "./api.js";
+import type { CommonNodeOpts, ISceneNode, NodeInfo } from "./api.js";
 
 export abstract class ANode<T extends ISceneNode<any>> {
 	id: string;
@@ -19,7 +19,13 @@ export abstract class ANode<T extends ISceneNode<any>> {
 	enabled: boolean;
 	display: boolean;
 
-	constructor(id: string, parent?: Nullable<T>, body?: any) {
+	constructor({
+		id,
+		parent,
+		body,
+		enabled = true,
+		display = true,
+	}: CommonNodeOpts<T>) {
 		this.id = id;
 		this.parent = parent;
 		this.children = [];
@@ -29,8 +35,8 @@ export abstract class ANode<T extends ISceneNode<any>> {
 		this.body = body;
 		this.mat = [];
 		this.invMat = [];
-		this.enabled = true;
-		this.display = true;
+		this.enabled = enabled;
+		this.display = display;
 	}
 
 	appendChild(node: T) {
