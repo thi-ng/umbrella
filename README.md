@@ -312,16 +312,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-02-24
+As of: 2025-02-25
 
-| Status                                           | Package                                 | Version                                                                                                       | Changelog                                    |
-|:-------------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/checks`](./packages/checks)   | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)   | [changelog](./packages/checks/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/server`](./packages/server)   | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)   | [changelog](./packages/server/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/system`](./packages/system)   | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)   | [changelog](./packages/system/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/tsne`](./packages/tsne)       | [![version](https://img.shields.io/npm/v/@thi.ng/tsne.svg)](https://www.npmjs.com/package/@thi.ng/tsne)       | [changelog](./packages/tsne/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/vectors`](./packages/vectors) | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors) | [changelog](./packages/vectors/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/viz`](./packages/viz)         | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)         | [changelog](./packages/viz/CHANGELOG.md)     |
+| Status                                           | Package                                       | Version                                                                                                             | Changelog                                       |
+|:-------------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/checks`](./packages/checks)         | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)         | [changelog](./packages/checks/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/scenegraph`](./packages/scenegraph) | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph) | [changelog](./packages/scenegraph/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/server`](./packages/server)         | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)         | [changelog](./packages/server/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/system`](./packages/system)         | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)         | [changelog](./packages/system/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/tsne`](./packages/tsne)             | [![version](https://img.shields.io/npm/v/@thi.ng/tsne.svg)](https://www.npmjs.com/package/@thi.ng/tsne)             | [changelog](./packages/tsne/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/vectors`](./packages/vectors)       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)       | [changelog](./packages/vectors/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/viz`](./packages/viz)               | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)               | [changelog](./packages/viz/CHANGELOG.md)        |
 
 ### Algorithms & data structures
 
