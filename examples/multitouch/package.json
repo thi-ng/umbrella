@@ -41,7 +41,9 @@
 		"browser",
 		"canvas",
 		"example",
+		"interactive",
 		"reactive",
+		"touch",
 		"transducer",
 		"ui"
 	]

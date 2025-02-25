@@ -68,7 +68,7 @@ For Node.js REPL:
 const sg = await import("@thi.ng/scenegraph");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 975 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
 
 ## Dependencies
 
@@ -82,15 +82,16 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Three projects in this repo's
+Four projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                              | Description                                           | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>       | 2D scenegraph & shape picking                         | [Demo](https://demo.thi.ng/umbrella/scenegraph/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/> | 2D scenegraph & image map based geometry manipulation | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>     | Minimal shader graph developed during livestream #2   | [Demo](https://demo.thi.ng/umbrella/shader-graph/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)     |
+| Screenshot                                                                                                                  | Description                                             | Live demo                                                 | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>           | 2D scenegraph & shape picking                           | [Demo](https://demo.thi.ng/umbrella/scenegraph/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>     | 2D scenegraph & image map based geometry manipulation   | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/> | Basic 2D scenegraph example with pan/zoom functionality | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-pan-zoom) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>         | Minimal shader graph developed during livestream #2     | [Demo](https://demo.thi.ng/umbrella/shader-graph/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)        |
 
 ## API
 

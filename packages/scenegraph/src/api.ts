@@ -10,6 +10,9 @@ export interface ISceneNode<T extends ISceneNode<T>> extends IID<string> {
 	mat: Mat;
 	invMat: Mat;
 
+	enabled: boolean;
+	display: boolean;
+
 	appendChild(node: T): this;
 
 	insertChild(i: number, node: T): this;
@@ -79,8 +82,9 @@ export interface ISceneNode<T extends ISceneNode<T>> extends IID<string> {
 
 	/**
 	 * Scales node to new given `scale` factor and translates it such that given
-	 * `ref`erence point (in local space) stays constant. Useful for zoomable
-	 * UIs.
+	 * `ref`erence point (given in local space) would stay constant in world
+	 * space. Useful for zoomable UIs, e.g. for zooming relative to the mouse
+	 * position.
 	 *
 	 * @remarks
 	 * This function is a no-op if the node is currently not enabled.
@@ -106,4 +110,33 @@ export interface NodeInfo<T> {
 	 * Point in node local coordinate space.
 	 */
 	p?: Vec;
+}
+
+export interface CommonNodeOpts<T extends ISceneNode<any>> {
+	/**
+	 * Node ID
+	 */
+	id: string;
+	/**
+	 * Parent node (if any).
+	 */
+	parent?: Nullable<T>;
+	/**
+	 * Arbitrary node data/content
+	 */
+	body?: any;
+	/**
+	 * If false, node (and its children) will not be updated via
+	 * {@link ISceneNode.update}.
+	 *
+	 * @defaultValue true
+	 */
+	enabled?: boolean;
+	/**
+	 * If false, node (and its children) will not be processed via
+	 * {@link ISceneNode.draw}.
+	 *
+	 * @defaultValue true
+	 */
+	display?: boolean;
 }

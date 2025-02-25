@@ -70,7 +70,7 @@ For Node.js REPL:
 const tsne = await import("@thi.ng/tsne");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.42 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.46 KB
 
 ## Dependencies
 

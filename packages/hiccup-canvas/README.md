@@ -121,7 +121,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-14 projects in this repo's
+15 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -141,6 +141,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-arcs.jpg" width="240"/>            | Animated arcs & drawing using hiccup-canvas                              | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-arcs/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-canvas-arcs)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-basics.png" width="240"/>          | Basic hiccup-based canvas drawing                                        | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-canvas-basics)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                 | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/>          | Basic 2D scenegraph example with pan/zoom functionality                  | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-pan-zoom)   |
 
 ## API
 
