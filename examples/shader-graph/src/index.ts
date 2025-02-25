@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Nullable } from "@thi.ng/api";
 import { exposeGlobal } from "@thi.ng/expose";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { ortho } from "@thi.ng/matrices";
@@ -32,9 +31,8 @@ import {
 	fit1101,
 	snoise3,
 } from "@thi.ng/shader-ast-stdlib";
-import { add2, copy, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
+import { add2, copy, type ReadonlyVec } from "@thi.ng/vectors";
 import {
-	LOGGER,
 	clearCanvas,
 	compileModel,
 	defQuadModel,
@@ -42,8 +40,8 @@ import {
 	glCanvas,
 	type GLMat4,
 } from "@thi.ng/webgl";
-import type { AppCtx } from "./api";
-import { OpNode } from "./opnode";
+import type { AppCtx } from "./api.js";
+import { OpNode } from "./opnode.js";
 
 // LOGGER.set(new ConsoleLogger());
 
@@ -114,24 +112,18 @@ const CTX: AppCtx = {
 };
 
 // scenegraph root node (no spatial transformation, purely used as reference frame)
-const ROOT = new Node2D("root");
+const ROOT = new Node2D({ id: "root" });
 
 // main conent root in scenegraph
 // all shader nodes will be assigned as children of this node
-const CONTENT = new Node2D("content", ROOT, [CTX.width / 2, CTX.height / 2]);
+const CONTENT = new Node2D({
+	id: "content",
+	parent: ROOT,
+	translate: [CTX.width / 2, CTX.height / 2],
+});
 
 // scenegraph node for centered quad of unit size
 class QuadNode extends Node2D {
-	constructor(
-		id: string,
-		parent?: Nullable<Node2D>,
-		translate: Vec = [0, 0],
-		rotate = 0,
-		scale: Vec | number = 1
-	) {
-		super(id, parent, translate, rotate, scale);
-	}
-
 	// hit test impl
 	containsLocalPoint([x, y]: ReadonlyVec) {
 		return x >= -0.5 && x <= 0.5 && y >= -0.5 && y <= 0.5;
@@ -182,7 +174,12 @@ const op1 = new OpNode(CTX, {
 	// texture inputs from other shader nodes
 	inputs: [],
 	// scene graph node for drawing in main canvas
-	node: new QuadNode("op1", CONTENT, [-264, 0], 0, CTX.texSize),
+	node: new QuadNode({
+		id: "op1",
+		parent: CONTENT,
+		translate: [-264, 0],
+		scale: CTX.texSize,
+	}),
 });
 
 // chromatic aberration shader
@@ -208,7 +205,12 @@ const op2 = new OpNode(CTX, {
 		shiftB: [V2, [0.02, 0]],
 	},
 	inputs: [op1.tex],
-	node: new QuadNode("op2", CONTENT, [0, 132], 0, CTX.texSize),
+	node: new QuadNode({
+		id: "op2",
+		parent: CONTENT,
+		translate: [0, 132],
+		scale: CTX.texSize,
+	}),
 });
 
 // noise shader node
@@ -237,7 +239,12 @@ const op3 = new OpNode(CTX, {
 	],
 	unis: {},
 	inputs: [],
-	node: new QuadNode("op3", CONTENT, [0, -132], 0, CTX.texSize),
+	node: new QuadNode({
+		id: "op3",
+		parent: CONTENT,
+		translate: [0, -132],
+		scale: CTX.texSize,
+	}),
 });
 
 // displacement shader node
@@ -257,7 +264,12 @@ const op4 = new OpNode(CTX, {
 	],
 	unis: {},
 	inputs: [op2.tex, op3.tex],
-	node: new QuadNode("op4", CONTENT, [264, 0], 0, CTX.texSize),
+	node: new QuadNode({
+		id: "op4",
+		parent: CONTENT,
+		translate: [264, 0],
+		scale: CTX.texSize,
+	}),
 });
 
 // update loop
@@ -305,8 +317,11 @@ gestureStream(CTX.canvas, { minZoom: 0.1, maxZoom: 4, smooth: 0.05 }).subscribe(
 					CONTENT.update();
 					break;
 				case "zoom":
-					CONTENT.scale = e.zoom;
-					CONTENT.update();
+					CONTENT.scaleWithReferencePoint(
+						CONTENT.mapGlobalPoint(e.pos),
+						e.zoom
+					);
+					break;
 			}
 		},
 	}

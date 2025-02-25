@@ -10,10 +10,16 @@ import {
 	floatBufferFromImage,
 	imageFromURL,
 } from "@thi.ng/pixel";
-import { Node2D } from "@thi.ng/scenegraph";
+import { Node2D, type Node2DOpts } from "@thi.ng/scenegraph";
 import { map, range } from "@thi.ng/transducers";
 import { setN2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 import LOGO from "./logo-256.png";
+
+interface ImgNodeOpts extends Node2DOpts {
+	img: HTMLImageElement;
+	size: Vec;
+	alpha?: number;
+}
 
 /**
  * Specialized scene graph node for images.
@@ -21,23 +27,21 @@ import LOGO from "./logo-256.png";
 class ImgNode extends Node2D {
 	img: HTMLImageElement;
 
-	constructor(
-		id: string,
-		parent: Node2D,
-		t: Vec,
-		r: number,
-		s: Vec | number,
-		img: HTMLImageElement,
-		size: Vec,
-		alpha = 1
-	) {
-		super(id, parent, t, r, s, [
-			"img",
-			{ alpha, width: size[0], height: size[1] },
-			img,
-			[0, 0],
-		]);
-		this.img = img;
+	constructor(opts: ImgNodeOpts) {
+		super({
+			...opts,
+			body: [
+				"img",
+				{
+					alpha: opts.alpha ?? 1,
+					width: opts.size[0],
+					height: opts.size[1],
+				},
+				opts.img,
+				[0, 0],
+			],
+		});
+		this.img = opts.img;
 	}
 
 	containsLocalPoint(p: ReadonlyVec) {
@@ -57,26 +61,28 @@ imageFromURL(LOGO).then((img) => {
 
 	// scene graph definition
 	// set root node scale to window.devicePixelRatio
-	const root = new Node2D("root", null);
+	const root = new Node2D({ id: "root" });
 
-	const main = new Node2D("main", root, [300, 300], 0, 1);
-	const imgRoot = new Node2D("imgroot", main, [0, 0], 0, 2);
-	const geom = new Node2D("waves", main, [0, 0], 0, 1, <any>null);
+	const main = new Node2D({
+		id: "main",
+		parent: root,
+		translate: [300, 300],
+	});
+	const imgRoot = new Node2D({ id: "imgroot", parent: main, scale: 2 });
+	const geom = new Node2D({ id: "waves", parent: main });
 
 	// create pixel buffer & sampler allowing for interpolated sub-pixel access
 	const imgMap = floatBufferFromImage(img, FLOAT_GRAY, 256, 256);
 	const sampler = defSampler(imgMap, "cubic", "clamp");
 
-	const imgNode = new ImgNode(
-		"img",
-		imgRoot,
-		[-imgMap.width / 2, -imgMap.height / 2],
-		0,
-		1,
-		img,
-		[imgMap.width, imgMap.height],
-		0.5
-	);
+	const imgNode = new ImgNode({
+		id: "img",
+		parent: imgRoot,
+		translate: [-imgMap.width / 2, -imgMap.height / 2],
+		img: img,
+		size: [imgMap.width, imgMap.height],
+		alpha: 0.5,
+	});
 	imgNode.display = false;
 
 	// mousemove event handler
