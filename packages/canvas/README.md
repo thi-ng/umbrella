@@ -76,7 +76,7 @@ None
 
 ## Usage examples
 
-25 projects in this repo's
+26 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -100,6 +100,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>          | Animated, iterative polygon subdivisions & visualization                                     | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/>      | Port-Duff image compositing / alpha blending                                                 | [Demo](https://demo.thi.ng/umbrella/porter-duff/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/>      | Steering behavior drawing with alpha-blended shapes                                          | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/> | Basic 2D scenegraph example with pan/zoom functionality                                      | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-pan-zoom)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>         | Entity Component System w/ 100k 3D particles                                                 | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)              |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/unbiased-normals.png" width="240"/>     | Visual comparison of biased vs. unbiased normal vectors projected on the surface of a sphere | [Demo](https://demo.thi.ng/umbrella/unbiased-normals/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/unbiased-normals)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>        | WebGL cube maps with async texture loading                                                   | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)        |

@@ -487,7 +487,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-38 projects in this repo's
+39 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -526,6 +526,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/>       | Animated Voronoi diagram, cubic splines & SVG download                           | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>             | 2D scenegraph & shape picking                                                    | [Demo](https://demo.thi.ng/umbrella/scenegraph/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)             |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>       | 2D scenegraph & image map based geometry manipulation                            | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/>   | Basic 2D scenegraph example with pan/zoom functionality                          | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-pan-zoom)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/spline-tangent.png" width="240"/>         | Compute cubic spline position & tangent using Dual Numbers                       | [Demo](https://demo.thi.ng/umbrella/spline-tangent/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/spline-tangent)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>           | SVG path parsing & dynamic resampling                                            | [Demo](https://demo.thi.ng/umbrella/svg-resample/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>            | 3D wireframe textmode demo                                                       | [Demo](https://demo.thi.ng/umbrella/text-canvas/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)            |
