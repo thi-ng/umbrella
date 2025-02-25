@@ -142,6 +142,9 @@
 		"./is-chrome": {
 			"default": "./is-chrome.js"
 		},
+		"./is-dark-mode": {
+			"default": "./is-dark-mode.js"
+		},
 		"./is-data-url": {
 			"default": "./is-data-url.js"
 		},
