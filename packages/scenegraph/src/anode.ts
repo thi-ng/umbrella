@@ -58,8 +58,6 @@ export abstract class ANode<T extends ISceneNode<any>> {
 		return false;
 	}
 
-	abstract update(): void;
-
 	draw<T>(ctx: T) {
 		if (this.display) {
 			for (let c of this.children) {
@@ -68,16 +66,6 @@ export abstract class ANode<T extends ISceneNode<any>> {
 		}
 	}
 
-	/**
-	 * Checks all children in reverse order, then (if no child matched)
-	 * node itself for containment of given point (in world/screen
-	 * coords). Returns `NodeInfo` object with matched node (if any) or
-	 * undefined.
-	 *
-	 * **Important:** Disabled nodes and their children will be skipped!
-	 *
-	 * @param p -
-	 */
 	childForPoint(p: ReadonlyVec): Maybe<NodeInfo<T>> {
 		if (this.enabled) {
 			const children = this.children;
@@ -94,42 +82,20 @@ export abstract class ANode<T extends ISceneNode<any>> {
 		}
 	}
 
-	/**
-	 * Returns copy of world space point `p`, transformed into this
-	 * node's local coordinate system.
-	 *
-	 * @param p -
-	 */
-	abstract mapGlobalPoint(p: ReadonlyVec): Maybe<Vec>;
-
-	/**
-	 * Returns copy of node local space point `p`, transformed into the global
-	 * worldspace.
-	 *
-	 * @param p
-	 */
-	abstract mapLocalPointToGlobal(p: ReadonlyVec): Maybe<Vec>;
-
-	/**
-	 * Returns copy of node local space point `p`, transformed into the
-	 * coordinate system of `dest` node.
-	 *
-	 * @param dest -
-	 * @param p -
-	 */
-	abstract mapLocalPointToNode(dest: T, p: ReadonlyVec): Maybe<Vec>;
-
-	/**
-	 * Returns true, if given point is contained within the boundary of
-	 * this node. Since this class is used as generic base
-	 * implementation for other, more specialized scene graph nodes,
-	 * this base impl always returns false (meaning these nodes cannot
-	 * will not be selectable by the user unless a subclass overrides
-	 * this method).
-	 *
-	 * @param p -
-	 */
 	containsLocalPoint(_: ReadonlyVec) {
 		return false;
 	}
+
+	abstract update(): void;
+
+	abstract mapGlobalPoint(p: ReadonlyVec): Maybe<Vec>;
+
+	abstract mapLocalPointToGlobal(p: ReadonlyVec): Maybe<Vec>;
+
+	abstract mapLocalPointToNode(dest: T, p: ReadonlyVec): Maybe<Vec>;
+
+	abstract scaleWithReferencePoint(
+		ref: ReadonlyVec,
+		scale: ReadonlyVec | number
+	): this;
 }

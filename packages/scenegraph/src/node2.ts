@@ -6,7 +6,10 @@ import { mulM23 } from "@thi.ng/matrices/mulm";
 import { mulV23 } from "@thi.ng/matrices/mulv";
 import { transform23 } from "@thi.ng/matrices/transform";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { madd2 } from "@thi.ng/vectors/madd";
 import { set2 } from "@thi.ng/vectors/set";
+import { setN2 } from "@thi.ng/vectors/setn";
+import { sub2 } from "@thi.ng/vectors/sub";
 import { ANode } from "./anode.js";
 import type { ISceneNode } from "./api.js";
 import { toHiccup } from "./hiccup.js";
@@ -68,6 +71,20 @@ export class Node2D
 
 	mapLocalPointToNode(dest: Node2D, p: ReadonlyVec) {
 		return mulV23(null, dest.invMat, mulV23([], this.mat, p));
+	}
+
+	scaleWithReferencePoint(ref: ReadonlyVec, scale: ReadonlyVec | number) {
+		if (this.enabled) {
+			const currScale = isNumber(this.scale)
+				? setN2([], this.scale)
+				: this.scale;
+			const newScale = isNumber(scale) ? setN2([], scale) : scale;
+			const delta = sub2([], currScale, newScale);
+			this.scale = newScale;
+			this.translate = madd2([], ref, delta, this.translate);
+			this.update();
+		}
+		return this;
 	}
 
 	/**
