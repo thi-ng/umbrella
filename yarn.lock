@@ -2476,6 +2476,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/scenegraph-pan-zoom@workspace:examples/scenegraph-pan-zoom":
+  version: 0.0.0-use.local
+  resolution: "@example/scenegraph-pan-zoom@workspace:examples/scenegraph-pan-zoom"
+  dependencies:
+    "@thi.ng/canvas": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/scenegraph": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: "npm:^5.7.3"
+    vite: "npm:^6.1.0"
+  languageName: unknown
+  linkType: soft
+
 "@example/scenegraph@workspace:examples/scenegraph":
   version: 0.0.0-use.local
   resolution: "@example/scenegraph@workspace:examples/scenegraph"

@@ -1,0 +1,58 @@
+{
+	"name": "@example/scenegraph-pan-zoom",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Basic 2D scenegraph example with pan/zoom functionality",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "yarn css:build && yarn start:only",
+		"start:only": "vite --host --open",
+		"dev": "mprocs 'yarn css:watch' 'yarn start:only'",
+		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss src/*.mcss",
+		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss src/*.mcss",
+		"build": "yarn css:build && tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"@thi.ng/meta-css": "workspace:^",
+		"typescript": "^5.7.3",
+		"vite": "^6.1.0"
+	},
+	"dependencies": {
+		"@thi.ng/canvas": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/hiccup-canvas": "workspace:^",
+		"@thi.ng/rstream-gestures": "workspace:^",
+		"@thi.ng/scenegraph": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"canvas",
+			"geom",
+			"hiccup-canvas",
+			"rstream-gestures",
+			"scenegraph"
+		],
+		"screenshot": "examples/scenegraph-pan-zoom.avif"
+	},
+	"keywords": [
+		"2d",
+		"browser",
+		"canvas",
+		"example",
+		"geometry",
+		"grid",
+		"interactive",
+		"polygon",
+		"scenegraph",
+		"ui",
+		"vector"
+	]
+}
