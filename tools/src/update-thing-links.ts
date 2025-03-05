@@ -86,7 +86,7 @@ for (let f of pkgDirs) {
 		writeText(tmpFile, $html, LOGGER);
 		execFileSync(
 			"aws",
-			`s3 cp ${tmpFile} s3://thi.ng/${id} ${S3_OPTS} --content-type text/html --cache-control ${CACHE_CTRL}`.split(
+			`s3 cp ${tmpFile} s3://thi-ng/${id} ${S3_OPTS} --content-type text/html --cache-control ${CACHE_CTRL}`.split(
 				" "
 			)
 		);
