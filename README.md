@@ -62,9 +62,9 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 202 individual
+Not including deprecations, this mono-repository is home to 203 individual
 TypeScript libraries/packages/tools and ~180 example projects illustrating their
-usage, currently totalling ~208k SLOC and ~4100 source files... Some of the
+usage, currently totalling ~226k SLOC and ~4100 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
 
@@ -312,17 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-02-25
+As of: 2025-03-09
 
-| Status                                           | Package                                       | Version                                                                                                             | Changelog                                       |
-|:-------------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/checks`](./packages/checks)         | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)         | [changelog](./packages/checks/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/scenegraph`](./packages/scenegraph) | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph) | [changelog](./packages/scenegraph/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/server`](./packages/server)         | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)         | [changelog](./packages/server/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/system`](./packages/system)         | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)         | [changelog](./packages/system/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/tsne`](./packages/tsne)             | [![version](https://img.shields.io/npm/v/@thi.ng/tsne.svg)](https://www.npmjs.com/package/@thi.ng/tsne)             | [changelog](./packages/tsne/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/vectors`](./packages/vectors)       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)       | [changelog](./packages/vectors/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/viz`](./packages/viz)               | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)               | [changelog](./packages/viz/CHANGELOG.md)        |
+| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
+|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/leaky-bucket`](./packages/leaky-bucket) | [![version](https://img.shields.io/npm/v/@thi.ng/leaky-bucket.svg)](https://www.npmjs.com/package/@thi.ng/leaky-bucket) | [changelog](./packages/leaky-bucket/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server)             | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)             | [changelog](./packages/server/CHANGELOG.md)       |
 
 ### Algorithms & data structures
 
@@ -347,6 +342,7 @@ As of: 2025-02-25
 | [`@thi.ng/heaps`](./packages/heaps)               | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)               | [changelog](./packages/heaps/CHANGELOG.md)        | Binary & d-ary heap impls                      |
 | [`@thi.ng/idgen`](./packages/idgen)               | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)               | [changelog](./packages/idgen/CHANGELOG.md)        | Versioned ID generation / free-list            |
 | [`@thi.ng/k-means`](./packages/k-means)           | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)           | [changelog](./packages/k-means/CHANGELOG.md)      | K-means clustering of n-D data                 |
+| [`@thi.ng/leaky-bucket`](./packages/leaky-bucket) | [![version](https://img.shields.io/npm/v/@thi.ng/leaky-bucket.svg)](https://www.npmjs.com/package/@thi.ng/leaky-bucket) | [changelog](./packages/leaky-bucket/CHANGELOG.md) | Counter-based Leaky Bucket implementation      |
 | [`@thi.ng/ramp`](./packages/ramp)                 | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)                 | [changelog](./packages/ramp/CHANGELOG.md)         | Parametric, interpolated lookup tables         |
 | [`@thi.ng/quad-edge`](./packages/quad-edge)       | [![version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)       | [changelog](./packages/quad-edge/CHANGELOG.md)    | Quad-edge, dual-graph data structure           |
 | [`@thi.ng/resolve-map`](./packages/resolve-map)   | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)   | [changelog](./packages/resolve-map/CHANGELOG.md)  | DAG computations & value resolution            |
