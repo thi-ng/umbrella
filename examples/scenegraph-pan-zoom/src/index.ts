@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { adaptiveCanvas2d } from "@thi.ng/canvas";
 import {
 	asPolygon,

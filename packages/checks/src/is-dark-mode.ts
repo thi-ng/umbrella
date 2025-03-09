@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Browser only. Returns true if client has currently dark mode enabled. Always
  * returns false if no global `window` object is available.

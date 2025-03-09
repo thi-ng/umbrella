@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // generated @ 2025-01-28T23:31:33.204Z - DO NOT EDIT!
 // run `yarn tool:packages` to re-generate...
 
