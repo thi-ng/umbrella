@@ -62,7 +62,7 @@ For Node.js REPL:
 const lb = await import("@thi.ng/leaky-bucket");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 580 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 591 bytes
 
 ## Dependencies
 

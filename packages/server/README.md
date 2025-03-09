@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 202 standalone projects, maintained as part
+> This is one of 203 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -149,7 +149,7 @@ For Node.js REPL:
 const ser = await import("@thi.ng/server");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.33 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.15 KB
 
 ## Dependencies
 
@@ -159,6 +159,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.33 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
+- [@thi.ng/leaky-bucket](https://github.com/thi-ng/umbrella/tree/develop/packages/leaky-bucket)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
