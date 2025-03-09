@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Fn2 } from "@thi.ng/api";
+import type { Fn, Fn2, Maybe } from "@thi.ng/api";
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { assert } from "@thi.ng/errors/assert";
@@ -203,7 +203,7 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 );
 
 /** @internal */
-const __sdfAttribs = (attribs?: Attribs): Partial<SDFAttribs> =>
+const __sdfAttribs = (attribs?: Attribs): Maybe<Partial<SDFAttribs>> =>
 	attribs ? attribs.__sdf : undefined;
 
 const OPS = <const>["chamfer", "round", "smooth", "steps"];

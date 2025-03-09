@@ -132,7 +132,7 @@ export class SortedSet<T>
 		__private.get(this)!.clear();
 	}
 
-	first(): T {
+	first(): Maybe<T> {
 		const first = __private.get(this)!.first();
 		return first ? first[0] : undefined;
 	}

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { IObjectOf } from "@thi.ng/api";
+import type { Fn, IObjectOf, Maybe } from "@thi.ng/api";
 import type { Term } from "../api/nodes.js";
 import type { FloatTerm } from "../api/terms.js";
 import type { Int, IVec, Prim, Type, UVec } from "../api/types.js";
@@ -37,8 +37,10 @@ export const matchingPrimFor = <T extends Prim>(
 	t: Term<T>,
 	x: FloatTerm
 ): Term<T> => {
-	const ctor = (<any>{ vec2, vec3, vec4 })[t.type];
-	return ctor ? ctor(x) : x;
+	const ctor: Maybe<Fn<FloatTerm, Term<T>>> = (<any>{ vec2, vec3, vec4 })[
+		t.type
+	];
+	return ctor ? ctor(x) : <Term<T>>x;
 };
 
 export const matchingBoolType = <T extends Prim | Int | IVec | UVec>(
