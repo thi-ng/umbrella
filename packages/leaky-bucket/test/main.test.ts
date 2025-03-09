@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { delayed } from "@thi.ng/compose";
 import { expect, test } from "bun:test";
 import { LeakyBucketMap } from "../src/index.js";

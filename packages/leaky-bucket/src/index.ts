@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IRelease, Maybe } from "@thi.ng/api";
 
 /**
@@ -88,11 +89,19 @@ export class LeakyBucketMap<K> implements IRelease {
 
 	/**
 	 * Calls {@link LeakyBucket.update} for given bucket ID and returns its
-	 * result, or creates a new bucket if no bucket yet exist.
+	 * result. Creates a new bucket if no bucket yet exist. Returns true if the
+	 * bucket still had capacity or false if capacity had already been reached.
+	 *
+	 * @remarks
+	 * If `capacity` is given, it's used to define a custom per-bucket capacity,
+	 * but will only be used for bucket creation, i.e. if no active bucket for
+	 * the given `key` already exists. If no `capacity` is given, the bucket
+	 * will use the capacity configured for this {@link LeakyBucketMap}.
 	 *
 	 * @param key
+	 * @param capacity
 	 */
-	update(key: K) {
+	update(key: K, capacity = this.opts.capacity) {
 		const bucket = this.buckets.get(key);
 		if (bucket) {
 			return bucket.update();
@@ -100,7 +109,7 @@ export class LeakyBucketMap<K> implements IRelease {
 			if (this.buckets.size >= this.maxBuckets) return false;
 			this.buckets.set(
 				key,
-				new LeakyBucket({ ...this.opts, autoLeak: false }, 1)
+				new LeakyBucket({ ...this.opts, capacity, autoLeak: false }, 1)
 			);
 		}
 		return true;
