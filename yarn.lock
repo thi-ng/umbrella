@@ -5423,6 +5423,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/leaky-bucket@workspace:packages/leaky-bucket":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/leaky-bucket@workspace:packages/leaky-bucket"
+  dependencies:
+    "@thi.ng/api": "npm:^8.11.21"
+    esbuild: "npm:^0.25.0"
+    typedoc: "npm:^0.27.7"
+    typescript: "npm:^5.7.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/leb128@workspace:packages/leb128":
   version: 0.0.0-use.local
   resolution: "@thi.ng/leb128@workspace:packages/leb128"
