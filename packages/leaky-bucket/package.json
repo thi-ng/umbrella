@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/leaky-bucket",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Configurable, counter-based Leaky Bucket abstractions",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.21"
+		"@thi.ng/api": "^8.11.22"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",

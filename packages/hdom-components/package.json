@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom-components",
-	"version": "5.1.155",
+	"version": "5.1.156",
 	"description": "Raw, skinnable UI & SVG components for @thi.ng/hdom",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.21",
-		"@thi.ng/canvas": "^1.0.8",
-		"@thi.ng/checks": "^3.7.1",
-		"@thi.ng/math": "^5.11.21",
-		"@thi.ng/transducers": "^9.2.21",
-		"@thi.ng/transducers-stats": "^2.2.15"
+		"@thi.ng/api": "^8.11.22",
+		"@thi.ng/canvas": "^1.0.9",
+		"@thi.ng/checks": "^3.7.2",
+		"@thi.ng/math": "^5.11.22",
+		"@thi.ng/transducers": "^9.2.22",
+		"@thi.ng/transducers-stats": "^2.2.16"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-02-25T13:25:07Z
+- **Last updated**: 2025-03-09T19:21:53Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.7.0) (2025-03-09)
+
+#### 🚀 Features
+
+- update RateLimiter to use leaky buckets ([f342fde](https://github.com/thi-ng/umbrella/commit/f342fde))
+  - update `RateLimterOpts`
+  - update/simplify `RateLimiter` interceptor
+  - update deps
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.6.0) (2025-02-21)
 

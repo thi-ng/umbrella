@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pointfree",
-	"version": "3.1.105",
+	"version": "3.1.106",
 	"description": "Pointfree functional composition / Forth style stack execution engine",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.21",
-		"@thi.ng/checks": "^3.7.1",
-		"@thi.ng/compose": "^3.0.24",
-		"@thi.ng/equiv": "^2.1.77",
-		"@thi.ng/errors": "^2.5.27"
+		"@thi.ng/api": "^8.11.22",
+		"@thi.ng/checks": "^3.7.2",
+		"@thi.ng/compose": "^3.0.25",
+		"@thi.ng/equiv": "^2.1.78",
+		"@thi.ng/errors": "^2.5.28"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sax",
-	"version": "2.2.33",
+	"version": "2.2.34",
 	"description": "Transducer-based, SAX-like, non-validating, speedy & tiny XML parser",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.21",
-		"@thi.ng/strings": "^3.9.6",
-		"@thi.ng/transducers": "^9.2.21",
-		"@thi.ng/transducers-fsm": "^2.2.119"
+		"@thi.ng/api": "^8.11.22",
+		"@thi.ng/strings": "^3.9.7",
+		"@thi.ng/transducers": "^9.2.22",
+		"@thi.ng/transducers-fsm": "^2.2.120"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",
