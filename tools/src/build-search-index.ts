@@ -10,10 +10,10 @@ import {
 } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/msgpack";
 import { MultiTrie } from "@thi.ng/trie";
-import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
-import { AWS_PROFILE, CF_DISTRO_DOCS, S3_PREFIX } from "./aws-config.js";
+import { S3_BUCKET_DOCS, S3_COMPRESS_OPTS } from "./aws-config.js";
 import { build, defEncoder } from "./search.js";
+import { compressFile, execAWS } from "./utils.js";
 
 const RE_DOC_START = /^\s*\/\*\*$/;
 const RE_DOC_END = /^\s+\*\/$/;
@@ -115,21 +115,15 @@ writeFile(
 	{},
 	LOGGER
 );
-execFileSync("gzip", "-9 -f assets/search.bin".split(" "));
+compressFile("assets/search.bin");
 
 console.log("uploading...");
 console.log(
-	execFileSync(
-		"aws",
-		"s3 cp assets/search.bin.gz s3://docs.thi.ng/umbrella/search-index-latest.bin --content-encoding gzip --acl public-read --profile thing-umbrella".split(
-			" "
-		)
-	).toString()
-);
-
-execFileSync(
-	"aws",
-	`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${S3_PREFIX}/search-index-latest.bin ${AWS_PROFILE}`.split(
-		" "
+	execAWS(
+		`s3 cp assets/search.bin.br ${S3_BUCKET_DOCS}/umbrella/search-index-latest.bin ${S3_COMPRESS_OPTS}`
 	)
 );
+
+// execAWS(
+// 	`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${S3_PREFIX}/search-index-latest.bin ${AWS_PROFILE}`
+// );
