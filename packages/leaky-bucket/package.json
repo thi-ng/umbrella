@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/leaky-bucket",
 	"version": "0.1.0",
-	"description": "Configurable, counter-based Leaky Bucket abstractions",
+	"description": "Configurable, counter-based Leaky Bucket abstractions for generalized rate-limiting purposes",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
