@@ -79,10 +79,21 @@ export class LeakyBucketMap<K> implements IRelease {
 		}
 	}
 
+	/**
+	 * Returns true, if there's an active bucket for given `key`.
+	 *
+	 * @param key
+	 */
 	has(key: K) {
 		return this.buckets.has(key);
 	}
 
+	/**
+	 * Attempts to look up bucket for given `key` and returns it (or `undefined`
+	 * if there's no active bucket for that key).
+	 *
+	 * @param key
+	 */
 	get(key: K) {
 		return this.buckets.get(key);
 	}
@@ -197,13 +208,13 @@ export class LeakyBucket implements IRelease {
 	leak(now = Date.now()): Maybe<boolean> {
 		const delta = now - this.lastLeak;
 		if (delta < this.leakInterval || !this.level) return;
+		this.lastLeak = now;
 		const loss = Math.floor(delta / this.leakInterval);
 		if (this.level <= loss) {
 			this.level = 0;
 			return false;
 		}
 		this.level -= loss;
-		this.lastLeak = now;
 		return true;
 	}
 
