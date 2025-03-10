@@ -6,9 +6,9 @@
 
 {{pkg.description}}
 
-Leaky Buckets are commonly used in communication networks for rate limiting,
-traffic shaping and bandwidth control, but are equally useful in other domains
-requiring similar constraints.
+[Leaky Buckets](https://en.wikipedia.org/wiki/Leaky_bucket) are commonly used in
+communication networks for rate limiting, traffic shaping and bandwidth control,
+but are equally useful in other domains requiring similar constraints.
 
 A Leaky Bucket is a managed counter with an enforced maximum value (i.e. bucket
 capacity). The counter is incremented for each a new event to check if it
@@ -48,9 +48,15 @@ setInterval(() => {
 // ...
 ```
 
-Reference:
+In addition to individual `LeakyBucket`s, this package also provides a
+`LeakyBucketMap` for managing multiple buckets in a key-value store, with shared
+configuration and more efficient updates (only using a single timer). Other
+features include:
 
-- https://en.wikipedia.org/wiki/Leaky_bucket
+- enforces max number of active (non-empty) buckets
+- auto-pruning of empty buckets
+- auto-creation of new buckets
+- per-bucket capacity overrides
 
 {{meta.status}}
 
@@ -85,9 +91,9 @@ const buckets = new LeakyBucketMap({
 	leakInterval: 1000,
 });
 
-buckets.update("a") //true
-buckets.update("a") //true
-buckets.update("a") //true
+buckets.update("a") // true
+buckets.update("a") // true
+buckets.update("a") // true
 
 // max capacity=3 reached
 buckets.update("a"); // false
