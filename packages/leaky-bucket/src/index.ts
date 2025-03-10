@@ -127,6 +127,20 @@ export class LeakyBucketMap<K> implements IRelease {
 	}
 
 	/**
+	 * Returns true if bucket for given `key` has free capacity, or if no such
+	 * bucket yet exists, if the map itself has capacity for creating a new
+	 * bucket.
+	 *
+	 * @param key
+	 */
+	hasCapacity(key: K) {
+		const bucket = this.buckets.get(key);
+		return bucket
+			? bucket.level < bucket.capacity
+			: this.buckets.size < this.maxBuckets;
+	}
+
+	/**
 	 * Leaks all bucket counters (taking into account current/given timestamp)
 	 * and removes those which emptied. If {@link LeakyBucketMapOpts.onEmpty} is
 	 * defined, also calls that function before removing the bucket.
@@ -191,6 +205,13 @@ export class LeakyBucket implements IRelease {
 		if (this.level >= this.capacity) return false;
 		this.level++;
 		return true;
+	}
+
+	/**
+	 * Returns true if the bucket has free capacity.
+	 */
+	hasCapacity() {
+		return this.level < this.capacity;
 	}
 
 	/**
