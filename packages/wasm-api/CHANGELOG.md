@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-03-09T19:21:53Z
+- **Last updated**: 2025-03-11T13:30:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.3.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.3.12) (2025-03-11)
+
+#### ♻️ Refactoring
+
+- minor update core lib (Zig v0.14.0) ([ebe1533](https://github.com/thi-ng/umbrella/commit/ebe1533))
 
 ### [2.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.3.1) (2025-01-14)
 
