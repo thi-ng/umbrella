@@ -312,12 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-03-09
+As of: 2025-03-11
 
-| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
-|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/leaky-bucket`](./packages/leaky-bucket) | [![version](https://img.shields.io/npm/v/@thi.ng/leaky-bucket.svg)](https://www.npmjs.com/package/@thi.ng/leaky-bucket) | [changelog](./packages/leaky-bucket/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server)             | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)             | [changelog](./packages/server/CHANGELOG.md)       |
+| Status                                           | Package                                   | Version                                                                                                         | Changelog                                     |
+|:-------------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/leb128`](./packages/leb128)     | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)     | [changelog](./packages/leb128/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
@@ -337,7 +337,6 @@ As of: 2025-03-09
 | [`@thi.ng/disjoint-set`](./packages/disjoint-set) | [![version](https://img.shields.io/npm/v/@thi.ng/disjoint-set.svg)](https://www.npmjs.com/package/@thi.ng/disjoint-set) | [changelog](./packages/disjoint-set/CHANGELOG.md) | Disjoint Set data structure                    |
 | [`@thi.ng/dgraph`](./packages/dgraph)             | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)             | [changelog](./packages/dgraph/CHANGELOG.md)       | Dependency graph                               |
 | [`@thi.ng/ecs`](./packages/ecs)                   | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)                   | [changelog](./packages/ecs/CHANGELOG.md)          | Entity-Component System                        |
-| [`@thi.ng/egf`](./packages/egf)                   | [![version](https://img.shields.io/npm/v/@thi.ng/egf.svg)](https://www.npmjs.com/package/@thi.ng/egf)                   | [changelog](./packages/egf/CHANGELOG.md)          | Extensible Graph Format                        |
 | [`@thi.ng/gp`](./packages/gp)                     | [![version](https://img.shields.io/npm/v/@thi.ng/gp.svg)](https://www.npmjs.com/package/@thi.ng/gp)                     | [changelog](./packages/gp/CHANGELOG.md)           | Genetic programming helpers / AST gen          |
 | [`@thi.ng/heaps`](./packages/heaps)               | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)               | [changelog](./packages/heaps/CHANGELOG.md)        | Binary & d-ary heap impls                      |
 | [`@thi.ng/idgen`](./packages/idgen)               | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)               | [changelog](./packages/idgen/CHANGELOG.md)        | Versioned ID generation / free-list            |
@@ -370,6 +369,7 @@ As of: 2025-03-09
 | [`@thi.ng/csv`](./packages/csv)                             | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                             | [changelog](./packages/csv/CHANGELOG.md)               | Customizable CSV parser/object mapper           |
 | [`@thi.ng/dot`](./packages/dot)                             | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                             | [changelog](./packages/dot/CHANGELOG.md)               | Graphviz DOM & export                           |
 | [`@thi.ng/dsp-io-wav`](./packages/dsp-io-wav)               | [![version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)               | [changelog](./packages/dsp-io-wav/CHANGELOG.md)        | WAV file format exporter                        |
+| [`@thi.ng/egf`](./packages/egf)                             | [![version](https://img.shields.io/npm/v/@thi.ng/egf.svg)](https://www.npmjs.com/package/@thi.ng/egf)                             | [changelog](./packages/egf/CHANGELOG.md)               | Extensible Graph Format                         |
 | [`@thi.ng/file-io`](./packages/file-io)                     | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                     | [changelog](./packages/file-io/CHANGELOG.md)           | Assorted file I/O utils for NodeJS              |
 | [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)             | [changelog](./packages/geom-io-obj/CHANGELOG.md)       | Wavefront OBJ model parser                      |
 | [`@thi.ng/hiccup-css`](./packages/hiccup-css)               | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)               | [changelog](./packages/hiccup-css/CHANGELOG.md)        | CSS from nested JS data structures              |
