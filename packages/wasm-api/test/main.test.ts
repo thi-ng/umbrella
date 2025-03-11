@@ -34,28 +34,28 @@ test("allocators", async (done) => {
 	expect(() => bridge.allocate(256)).toThrow();
 
 	bridge.exports.useFBA();
-	expect(bridge.allocate(256)).toEqual([0x1160, 256]);
-	expect(bridge.allocate(16)).toEqual([0x1260, 16]);
-	expect(bridge.setString("hello fba!", 0x1260, 16)).toBe(10);
-	bridge.exports.check(0x1260, 10);
+	expect(bridge.allocate(256)).toEqual([0x10e0, 256]);
+	expect(bridge.allocate(16)).toEqual([0x11e0, 16]);
+	expect(bridge.setString("hello fba!", 0x11e0, 16)).toBe(10);
+	bridge.exports.check(0x11e0, 10);
 	expect(sizes).toEqual([0x10000]);
 
 	bridge.exports.useGPA();
 	expect(bridge.allocate(256)).toEqual([0x10000, 256]);
-	expect(bridge.allocate(16)).toEqual([0x40000, 16]);
-	expect(bridge.setString("hello gpa!", 0x40000, 16)).toBe(10);
-	bridge.exports.check(0x40000, 10);
+	expect(bridge.allocate(16)).toEqual([0x30000, 16]);
+	expect(bridge.setString("hello gpa!", 0x30000, 16)).toBe(10);
+	bridge.exports.check(0x30000, 10);
 
 	bridge.exports.useNone();
 	expect(() => bridge.allocate(256)).toThrow();
 
-	expect(sizes).toEqual([0x10000, 0x40000, 0x60000]);
+	expect(sizes).toEqual([0x10000, 0x30000, 0x50000]);
 	expect(logger.journal.map((x) => x[3])).toEqual([
-		"allocated 256 bytes @ 0x00001160 .. 0x0000125f",
-		"allocated 16 bytes @ 0x00001260 .. 0x0000126f",
+		"allocated 256 bytes @ 0x000010e0 .. 0x000011df",
+		"allocated 16 bytes @ 0x000011e0 .. 0x000011ef",
 		"hello fba!",
 		"allocated 256 bytes @ 0x00010000 .. 0x000100ff",
-		"allocated 16 bytes @ 0x00040000 .. 0x0004000f",
+		"allocated 16 bytes @ 0x00030000 .. 0x0003000f",
 		"hello gpa!",
 	]);
 	done();
