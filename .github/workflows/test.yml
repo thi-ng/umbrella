@@ -27,7 +27,7 @@ jobs:
                   cache: "yarn"
             - uses: goto-bus-stop/setup-zig@abea47f85e598557f500fa1fd2ab7464fcb39406
               with:
-                  version: 0.13.0
+                  version: 0.14.0
             - uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5
               with:
                   bun-version: latest
