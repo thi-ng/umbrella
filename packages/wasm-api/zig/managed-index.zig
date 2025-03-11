@@ -13,7 +13,7 @@ const Allocator = std.mem.Allocator;
 /// unused items and mark their slot IDs for re-use.
 pub fn ManagedIndex(comptime T: type, comptime I: type) type {
     const info = @typeInfo(I);
-    if (!(info == .Int and info.Int.bits > 0 and info.Int.signedness == std.builtin.Signedness.unsigned)) {
+    if (!(info == .int and info.int.bits > 0 and info.int.signedness == std.builtin.Signedness.unsigned)) {
         @compileError("require unsigned int as index type");
     }
     const Item = union(enum) {

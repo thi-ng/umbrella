@@ -13,7 +13,7 @@ pub const ManagedIndex = @import("managed-index.zig").ManagedIndex;
 pub fn ptrCast(comptime T: type, ptr: ?*anyopaque) ?T {
     if (ptr == null) return null;
     const info = @typeInfo(T);
-    if (info != .Pointer) @compileError("require pointer type");
+    if (info != .pointer) @compileError("require pointer type");
     return @ptrCast(@alignCast(ptr));
 }
 
