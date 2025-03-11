@@ -58,7 +58,7 @@ pub fn updateStroke(self: *Self, x: i16, y: i16) void {
 
 /// Attempts to discard most recent stroke. Returns true if successful
 pub fn undoStroke(self: *Self) void {
-    if (self.strokes.popOrNull()) |stroke| {
+    if (self.strokes.pop()) |stroke| {
         stroke.clearAndFree();
         self.requestRedraw();
         self.currStroke = null;

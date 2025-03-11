@@ -13,7 +13,7 @@
 		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
 		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
 		"build": "yarn build:zig && yarn css:build && tsc && vite build --base='./'",
-		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/bin/main.wasm -o src/main.wasm -O3 && wasm-dis -o src/main.wast src/main.wasm",
+		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/bin/main.wasm -o src/main.wasm -O3 -all && wasm-dis -o src/main.wast src/main.wasm",
 		"prepare:zig": "cp ../../node_modules/@thi.ng/wasm-api/zig/build.zig wasm-api-build.zig",
 		"preview": "vite preview --host --open"
 	},

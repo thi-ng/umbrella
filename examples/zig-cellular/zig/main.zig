@@ -22,7 +22,7 @@ var fba = std.heap.FixedBufferAllocator.init(&mem);
 pub const WASM_ALLOCATOR = fba.allocator();
 
 // initialize PRNG instance
-var rnd = std.rand.DefaultPrng.init(0xdecafbad);
+var rnd = std.Random.DefaultPrng.init(0xdecafbad);
 
 var sim: CA = undefined;
 var canvas: i32 = 0;
