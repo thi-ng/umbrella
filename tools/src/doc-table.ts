@@ -75,13 +75,15 @@ writeText(
 						rel: "stylesheet",
 					},
 				],
+				["script", {}, "window.goatcounter={path:p=>location.host+p};"],
 				[
 					"script",
 					{
+						data: {
+							goatcounter: "https://thing.goatcounter.com/count",
+						},
 						async: true,
-						defer: true,
-						"data-domain": "thi.ng",
-						src: "https://plausible.io/js/plausible.js",
+						src: "//gc.zgo.at/count.js",
 					},
 				],
 			],
