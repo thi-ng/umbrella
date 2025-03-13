@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/server",
-	"version": "0.7.1",
+	"version": "0.8.0",
 	"description": "Minimal HTTP server with declarative routing, static file serving and freely extensible via pre/post interceptors",
 	"type": "module",
 	"module": "./index.js",
