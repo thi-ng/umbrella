@@ -10,6 +10,7 @@ export * from "./interceptors/logging.js";
 export * from "./interceptors/measure.js";
 export * from "./interceptors/rate-limit.js";
 export * from "./interceptors/referrer-policy.js";
+export * from "./interceptors/reject-useragent.js";
 export * from "./interceptors/strict-transport.js";
 export * from "./interceptors/x-origin-opener.js";
 export * from "./interceptors/x-origin-resource.js";
