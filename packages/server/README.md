@@ -80,6 +80,7 @@ for more details.
 - [`logResponse()`](https://docs.thi.ng/umbrella/server/functions/logResponse.html): Response logging
 - [`rateLimiter()`](https://docs.thi.ng/umbrella/server/functions/rateLimiter-1.html): Configurable rate limiting
 - [`referrerPolicy()`](https://docs.thi.ng/umbrella/server/functions/referrerPolicy-1.html): Policy header injection
+- [`rejectUserAgents()`](https://docs.thi.ng/umbrella/server/functions/rejectUserAgents.html): Configurable UA blocking
 - [`sessionInterceptor()`](https://docs.thi.ng/umbrella/server/functions/sessionInterceptor-1.html): User defined in-memory sessions with TTL
 - [`strictTransportSecurity()`](https://docs.thi.ng/umbrella/server/functions/strictTransportSecurity.html): Policy header injection
 
@@ -149,7 +150,7 @@ For Node.js REPL:
 const ser = await import("@thi.ng/server");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.21 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.15 KB
 
 ## Dependencies
 
@@ -203,6 +204,8 @@ const app = srv.server<AppCtx>({
     intercept: [
         // log all requests (using server's configured logger)
         srv.logRequest(),
+        // block known AI bots
+        srv.rejectUserAgents(srv.USER_AGENT_AI_BOTS),
         // lookup/create sessions (using above interceptor)
         session,
         // ensure routes with `auth` flag have a logged-in user
