@@ -123,6 +123,9 @@
 		"./interceptors/referrer-policy": {
 			"default": "./interceptors/referrer-policy.js"
 		},
+		"./interceptors/reject-useragent": {
+			"default": "./interceptors/reject-useragent.js"
+		},
 		"./interceptors/strict-transport": {
 			"default": "./interceptors/strict-transport.js"
 		},
