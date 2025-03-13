@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Maybe, MaybePromise } from "@thi.ng/api";
+import type { Fn, Fn2, Maybe, MaybePromise } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { Route, RouteMatch } from "@thi.ng/router";
 import type { IncomingMessage } from "node:http";
@@ -77,6 +77,16 @@ export interface ServerOpts<CTX extends RequestCtx = RequestCtx> {
 	 * Reference: https://nodejs.org/api/net.html#class-netblocklist
 	 */
 	blockList: BlockList;
+	/**
+	 * HTTP method adapter/converter. The default implementation only converts
+	 * {@link Method} `head` to `get` if the route does not provide a `head`
+	 * handler.
+	 */
+	method: Fn2<
+		Method,
+		Pick<RequestCtx, "req" | "route" | "match" | "cookies" | "query">,
+		Method
+	>;
 }
 
 export interface ServerRoute<CTX extends RequestCtx = RequestCtx>
@@ -100,6 +110,8 @@ export interface RequestCtx {
 	res: ServerResponse;
 	route: CompiledServerRoute;
 	match: RouteMatch;
+	method: Method;
+	origMethod: Method;
 	path: string;
 	query: Record<string, any>;
 	cookies?: Record<string, string>;

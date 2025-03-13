@@ -37,10 +37,17 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 	host: string;
 
 	protected augmentCtx: Fn<RequestCtx, CTX>;
+	protected methodAdapter: ServerOpts["method"];
 
 	constructor(public opts: Partial<ServerOpts<CTX>> = {}) {
 		this.logger = opts.logger ?? new ConsoleLogger("server");
 		this.host = opts.host ?? "localhost";
+		this.methodAdapter =
+			opts.method ??
+			((method, { route }) =>
+				method === "head" && !route.handlers.head && route.handlers.get
+					? (console.log("adapted head"), "get")
+					: method);
 		if (isIPv6(this.host)) this.host = normalizeIPv6Address(this.host);
 		this.augmentCtx = opts.context ?? <any>identity;
 		const routes: ServerRoute<CTX>[] = [
@@ -124,16 +131,23 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 			const route = <CompiledServerRoute>(
 				this.router.routeForID(match.id)!.spec
 			);
-			let method = <Method>req.method!.toLowerCase();
+			const rawCookies =
+				req.headers["cookie"] || req.headers["set-cookie"]?.join(";");
+			const cookies = rawCookies ? parseCoookies(rawCookies) : {};
+			const query = parseSearchParams(url.searchParams);
+			const origMethod = <Method>req.method!.toLowerCase();
+			const method = this.methodAdapter(origMethod, {
+				req,
+				route,
+				match,
+				query,
+				cookies,
+			});
 			if (method === "options" && !route.handlers.options) {
 				return res.noContent({
 					allow: Object.keys(route.handlers).map(upper).join(", "),
 				});
 			}
-			const rawCookies =
-				req.headers["cookie"] || req.headers["set-cookie"]?.join(";");
-			const cookies = rawCookies ? parseCoookies(rawCookies) : {};
-			const query = parseSearchParams(url.searchParams);
 			const ctx = this.augmentCtx({
 				// @ts-ignore
 				server: this,
@@ -145,14 +159,9 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 				cookies,
 				route,
 				match,
+				method,
+				origMethod,
 			});
-			if (
-				method === "head" &&
-				!route.handlers.head &&
-				route.handlers.get
-			) {
-				method = "get";
-			}
 			const handler = route.handlers[method];
 			if (handler) {
 				this.runHandler(handler, ctx);
@@ -287,42 +296,116 @@ export const server = <CTX extends RequestCtx>(
  * for various commonly used HTTP statuses/errors.
  */
 export class ServerResponse extends http.ServerResponse<http.IncomingMessage> {
+	/**
+	 * Writes a HTTP 204 header (plus given `headers`) and ends the response.
+	 *
+	 * @param headers
+	 */
 	noContent(headers?: http.OutgoingHttpHeaders) {
 		this.writeHead(204, headers).end();
 	}
 
+	/**
+	 * Writes a HTTP 302 header to redirect to given URL, add given additional
+	 * `headers` and ends the response.
+	 *
+	 * @remarks
+	 * Also see {@link ServerResponse.seeOther}.
+	 *
+	 * @param headers
+	 */
 	redirectTo(location: string, headers?: http.OutgoingHttpHeaders) {
 		this.writeHead(302, { ...headers, location }).end();
 	}
 
+	/**
+	 * Writes a HTTP 303 header to redirect to given URL, add given additional
+	 * `headers` and ends the response.
+	 *
+	 * @remarks
+	 * Also see {@link ServerResponse.redirectTo}.
+	 *
+	 * @param headers
+	 */
 	seeOther(location: string, headers?: http.OutgoingHttpHeaders) {
 		this.writeHead(303, { ...headers, location }).end();
 	}
 
+	/**
+	 * Writes a HTTP 304 header (plus given `headers`) and ends the response.
+	 *
+	 * @param headers
+	 */
 	unmodified(headers?: http.OutgoingHttpHeaders) {
 		this.writeHead(304, headers).end();
 	}
 
+	/**
+	 * Writes a HTTP 400 header (plus given `headers`) and ends the response
+	 * (with optional `body`).
+	 *
+	 * @param headers
+	 */
+	badRequest(headers?: http.OutgoingHttpHeaders, body?: any) {
+		this.writeHead(400, headers).end(body);
+	}
+
+	/**
+	 * Writes a HTTP 401 header (plus given `headers`) and ends the response
+	 * (with optional `body`).
+	 *
+	 * @param headers
+	 */
 	unauthorized(headers?: http.OutgoingHttpHeaders, body?: any) {
 		this.writeHead(401, headers).end(body);
 	}
 
+	/**
+	 * Writes a HTTP 403 header (plus given `headers`) and ends the response
+	 * (with optional `body`).
+	 *
+	 * @param headers
+	 */
 	forbidden(headers?: http.OutgoingHttpHeaders, body?: any) {
 		this.writeHead(403, headers).end(body);
 	}
 
+	/**
+	 * Writes a HTTP 404 header (plus given `headers`) and ends the response
+	 * (with optional `body`).
+	 *
+	 * @param headers
+	 */
 	missing(headers?: http.OutgoingHttpHeaders, body?: any) {
 		this.writeHead(404, headers).end(body);
 	}
 
+	/**
+	 * Writes a HTTP 405 header (plus given `headers`) and ends the response
+	 * (with optional `body`).
+	 *
+	 * @param headers
+	 */
 	notAllowed(headers?: http.OutgoingHttpHeaders, body?: any) {
 		this.writeHead(405, headers).end(body);
 	}
 
+	/**
+	 * Writes a HTTP 406 header (plus given `headers`) and ends the response
+	 * (with optional `body`).
+	 *
+	 * @param headers
+	 */
 	notAcceptable(headers?: http.OutgoingHttpHeaders, body?: any) {
 		this.writeHead(406, headers).end(body);
 	}
 
+	/**
+	 * Writes a HTTP 429 header (plus given `headers`) and ends the response
+	 * (with optional `body`).
+	 *
+	 * @param headers
+	 */
 	rateLimit(headers?: http.OutgoingHttpHeaders, body?: any) {
 		this.writeHead(429, headers).end(body);
 	}
