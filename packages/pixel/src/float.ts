@@ -32,10 +32,16 @@ import type {
 	IPixelBuffer,
 	IResizable,
 	IRotate,
+	ISetImageData,
 	IToImageData,
 	IntFormat,
 } from "./api.js";
-import { ensureChannel, ensureImageData, ensureSize } from "./checks.js";
+import {
+	ensureChannel,
+	ensureImageData,
+	ensureImageDataSize,
+	ensureSize,
+} from "./checks.js";
 import { defFloatFormat } from "./format/float-format.js";
 import { FLOAT_GRAY } from "./format/float-gray.js";
 import { FLOAT_RGBA, ROT_IDS } from "./index.js";
@@ -123,6 +129,7 @@ export class FloatBuffer
 		IInvert<FloatBuffer>,
 		IResizable<FloatBuffer, FloatSampler>,
 		IRotate<FloatBuffer>,
+		ISetImageData,
 		IToImageData
 {
 	readonly size: [number, number];
@@ -364,6 +371,21 @@ export class FloatBuffer
 		opts: Partial<BlitCanvasOpts> = {}
 	) {
 		__blitCanvas(this, canvas, opts);
+	}
+
+	setImageData(idata: ImageData) {
+		ensureImageDataSize(idata, this.width, this.height);
+		const src = new Uint32Array(idata.data.buffer);
+		const {
+			data: dest,
+			format: { fromABGR },
+			stride: [stride],
+		} = this;
+		const tmp: number[] = [];
+		for (let i = src.length; i-- > 0; ) {
+			dest.set(fromABGR(src[i], tmp), i * stride);
+		}
+		return this;
 	}
 
 	toImageData(idata?: ImageData) {

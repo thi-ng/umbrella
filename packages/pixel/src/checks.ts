@@ -18,12 +18,19 @@ export const ensureImageData = (
 	height: number
 ) =>
 	data
-		? (assert(
-				data.width === width && data.height === height,
-				"imagedata has wrong dimensions"
-		  ),
-		  data)
+		? (ensureImageDataSize(data, width, height), data)
 		: new ImageData(width, height);
+
+/** @internal */
+export const ensureImageDataSize = (
+	data: ImageData,
+	width: number,
+	height: number
+) =>
+	assert(
+		data.width === width && data.height === height,
+		"imagedata has wrong dimensions"
+	);
 
 /** @internal */
 export const ensureChannel = (fmt: IntFormat | FloatFormat, id: number) => {

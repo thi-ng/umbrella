@@ -27,6 +27,7 @@ import {
 	type IPixelBuffer,
 	type IResizable,
 	type IRotate,
+	type ISetImageData,
 	type IToImageData,
 	type IntChannel,
 	type IntFormat,
@@ -38,6 +39,7 @@ import {
 	ensureAlpha,
 	ensureChannel,
 	ensureImageData,
+	ensureImageDataSize,
 	ensureSize,
 } from "./checks.js";
 import { ABGR8888 } from "./format/abgr8888.js";
@@ -138,6 +140,7 @@ export class IntBuffer
 		IInvert<IntBuffer>,
 		IResizable<IntBuffer, IntSampler>,
 		IRotate<IntBuffer>,
+		ISetImageData,
 		IToImageData
 {
 	readonly size: [number, number];
@@ -304,6 +307,17 @@ export class IntBuffer
 		opts: Partial<BlitCanvasOpts> = {}
 	) {
 		__blitCanvas(this, canvas, opts);
+	}
+
+	setImageData(idata: ImageData) {
+		ensureImageDataSize(idata, this.width, this.height);
+		const src = new Uint32Array(idata.data.buffer);
+		const dest = this.data;
+		const fmt = this.format.fromABGR;
+		for (let i = src.length; i-- > 0; ) {
+			dest[i] = fmt(src[i]);
+		}
+		return this;
 	}
 
 	toImageData(idata?: ImageData) {

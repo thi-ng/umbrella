@@ -265,6 +265,10 @@ export interface IBlit<T extends IPixelBuffer> {
 	): void;
 }
 
+export interface ISetImageData {
+	setImageData(idata: ImageData): this;
+}
+
 export interface IToImageData {
 	/**
 	 * Returns the contents of the pixel buffer as HTML canvas `ImageData`.
