@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
+import { writeText } from "@thi.ng/file-io";
 import * as g from "@thi.ng/geom";
 import * as lsys from "@thi.ng/lsys";
-import * as fs from "node:fs";
 
 // example L-Systems shown above
 interface Example {
@@ -31,12 +31,8 @@ const examples: Example[] = [
 
 const impl = lsys.TURTLE_IMPL_2D;
 
-try {
-	fs.mkdirSync("export");
-} catch (_) {}
-
 examples.forEach(({ rules, delta, iter }, i) =>
-	fs.writeFileSync(
+	writeText(
 		`export/lsys-ex${i}.svg`,
 		g.asSvg(
 			g.svgDoc(
