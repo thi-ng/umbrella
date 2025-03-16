@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-03-09T19:21:53Z
+- **Last updated**: 2025-03-16T16:57:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@7.4.0) (2025-03-16)
+
+#### 🚀 Features
+
+- add `.setImageData()` ([91c17df](https://github.com/thi-ng/umbrella/commit/91c17df))
+  - add `ISetImageData` and impls for int & float buffers
 
 ### [7.3.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@7.3.6) (2024-10-05)
 
