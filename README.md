@@ -312,11 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-03-11
+As of: 2025-03-16
 
 | Status                                           | Package                                   | Version                                                                                                         | Changelog                                     |
 |:-------------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/leb128`](./packages/leb128)     | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)     | [changelog](./packages/leb128/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/lsys`](./packages/lsys)   | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)   | [changelog](./packages/lsys/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel`](./packages/pixel) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel) | [changelog](./packages/pixel/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/server`](./packages/server)     | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)     | [changelog](./packages/server/CHANGELOG.md)   |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
 
