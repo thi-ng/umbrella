@@ -15,11 +15,25 @@ import { take } from "@thi.ng/transducers/take";
 import type { Vec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
 
+/**
+ * Symbol used as fallback for unmatched symbols in {@link RuleImplementations}.
+ */
+export const DEFAULT: unique symbol = Symbol();
+
 export type LSysSymbol = string | number;
 export type ProductionResult = ArrayLike<LSysSymbol> & Iterable<LSysSymbol>;
 export type ProductionRules = IObjectOf<
 	ProductionResult | Fn<LSysSymbol, ProductionResult>
 >;
+
+/**
+ * Object with L-System symbols as keys and their implementations/operators as
+ * values.
+ *
+ * @remarks
+ * The {@link DEFAULT} symbol can be used as fallback impl, used for any
+ * unmatched symbols.
+ */
 export type RuleImplementations<T> = IObjectOf<Fn2<T, LSysSymbol, void>>;
 
 export interface Turtle2D {
@@ -225,8 +239,8 @@ export const expand = (
 	);
 
 /**
- * Sequentially processes iterable of symbols using provided rule
- * implementations and suitable execution context object.
+ * Sequentially processes iterable of symbols using provided
+ * {@link RuleImplementations} and suitable execution context object.
  *
  * @remarks
  * See {@link turtle2d} and {@link TURTLE_IMPL_2D}.
@@ -240,8 +254,9 @@ export const interpret = <T>(
 	impls: RuleImplementations<T>,
 	syms: Iterable<LSysSymbol>
 ) => {
+	const defaultImpl = impls[<any>DEFAULT];
 	for (let s of syms) {
-		impls[s]?.(ctx, s);
+		(impls[s] || defaultImpl)?.(ctx, s);
 	}
 	return ctx;
 };
