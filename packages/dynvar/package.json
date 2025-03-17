@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dynvar",
-	"version": "0.3.94",
+	"version": "0.3.95",
 	"description": "Dynamically scoped variable bindings",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.22",
-		"@thi.ng/errors": "^2.5.28"
+		"@thi.ng/api": "^8.11.23",
+		"@thi.ng/errors": "^2.5.29"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.1",

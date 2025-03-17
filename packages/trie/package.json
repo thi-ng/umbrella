@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/trie",
-	"version": "1.1.16",
+	"version": "1.1.17",
 	"description": "Trie-based map data structure with prefix search/query support",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.22"
+		"@thi.ng/api": "^8.11.23"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.1",

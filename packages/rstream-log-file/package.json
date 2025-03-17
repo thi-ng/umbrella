@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-log-file",
-	"version": "2.1.162",
+	"version": "2.1.163",
 	"description": "File output handler for structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/rstream": "^9.2.14"
+		"@thi.ng/rstream": "^9.2.15"
 	},
 	"devDependencies": {
 		"@types/node": "^22.13.10",
