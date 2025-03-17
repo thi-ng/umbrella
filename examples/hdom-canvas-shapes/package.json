@@ -50,8 +50,8 @@
 		"screenshot": "hdom-canvas/hdom-canvas-shapes-results.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.7.3",
-		"vite": "^6.1.0"
+		"typescript": "^5.8.2",
+		"vite": "^6.2.2"
 	},
 	"keywords": [
 		"2d",

@@ -44,9 +44,9 @@
 		"@thi.ng/mime": "^2.7.4"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.0",
-		"typedoc": "^0.27.7",
-		"typescript": "^5.7.3"
+		"esbuild": "^0.25.1",
+		"typedoc": "^0.28.0",
+		"typescript": "^5.8.2"
 	},
 	"keywords": [
 		"browser",

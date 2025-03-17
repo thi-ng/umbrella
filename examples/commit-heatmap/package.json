@@ -40,7 +40,7 @@
 		"util": false
 	},
 	"devDependencies": {
-		"typescript": "^5.7.3"
+		"typescript": "^5.8.2"
 	},
 	"keywords": [
 		"2d",
