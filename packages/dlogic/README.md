@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/dlogic](https://media.thi.ng/umbrella/banners-20230807/thing-dlogic.svg?56a254aa)
+# ![@thi.ng/dlogic](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-dlogic.svg?56a254aa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dlogic.svg)

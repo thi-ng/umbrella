@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rstream-log-file](https://media.thi.ng/umbrella/banners-20230807/thing-rstream-log-file.svg?23117c57)
+# ![@thi.ng/rstream-log-file](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rstream-log-file.svg?23117c57)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-log-file.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log-file)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-log-file.svg)

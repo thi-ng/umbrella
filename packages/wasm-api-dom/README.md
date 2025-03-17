@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/wasm-api-dom](https://media.thi.ng/umbrella/banners-20230807/thing-wasm-api-dom.svg?1770a2af)
+# ![@thi.ng/wasm-api-dom](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-wasm-api-dom.svg?1770a2af)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-dom.svg)

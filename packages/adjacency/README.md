@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/adjacency](https://media.thi.ng/umbrella/banners-20230807/thing-adjacency.svg?74dfa3d1)
+# ![@thi.ng/adjacency](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-adjacency.svg?74dfa3d1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adjacency.svg)

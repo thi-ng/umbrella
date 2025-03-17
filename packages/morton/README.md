@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/morton](https://media.thi.ng/umbrella/banners-20230807/thing-morton.svg?ad8d232e)
+# ![@thi.ng/morton](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-morton.svg?ad8d232e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/morton.svg)

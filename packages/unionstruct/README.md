@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/unionstruct](https://media.thi.ng/umbrella/banners-20230807/thing-unionstruct.svg?f9302bd7)
+# ![@thi.ng/unionstruct](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-unionstruct.svg?f9302bd7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/unionstruct.svg)

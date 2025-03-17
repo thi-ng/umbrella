@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hdom-canvas](https://media.thi.ng/umbrella/banners-20230807/thing-hdom-canvas.svg?90a46ad6)
+# ![@thi.ng/hdom-canvas](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hdom-canvas.svg?90a46ad6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-canvas.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/resolve-map](https://media.thi.ng/umbrella/banners-20230807/thing-resolve-map.svg?f54b0127)
+# ![@thi.ng/resolve-map](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-resolve-map.svg?f54b0127)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/resolve-map.svg)

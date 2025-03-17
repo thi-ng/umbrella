@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-fuzz](https://media.thi.ng/umbrella/banners-20230807/thing-geom-fuzz.svg?45938d4b)
+# ![@thi.ng/geom-fuzz](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-fuzz.svg?45938d4b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-fuzz.svg)](https://www.npmjs.com/package/@thi.ng/geom-fuzz)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-fuzz.svg)

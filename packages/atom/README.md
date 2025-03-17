@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners-20230807/thing-atom.svg?e4171739)
+# ![@thi.ng/atom](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-atom.svg?e4171739)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/atom.svg)

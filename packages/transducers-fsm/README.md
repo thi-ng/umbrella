@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers-fsm](https://media.thi.ng/umbrella/banners-20230807/thing-transducers-fsm.svg?f037ded1)
+# ![@thi.ng/transducers-fsm](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers-fsm.svg?f037ded1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-fsm.svg)

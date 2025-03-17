@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/csp](https://media.thi.ng/umbrella/banners-20230807/thing-csp.svg?83a7775a)
+# ![@thi.ng/csp](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-csp.svg?83a7775a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/csp.svg)

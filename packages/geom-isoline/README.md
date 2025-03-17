@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-isoline](https://media.thi.ng/umbrella/banners-20230807/thing-geom-isoline.svg?d5f8bb02)
+# ![@thi.ng/geom-isoline](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-isoline.svg?d5f8bb02)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-isoline.svg)

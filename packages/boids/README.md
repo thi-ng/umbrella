@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/boids](https://media.thi.ng/umbrella/banners-20230807/thing-boids.svg?2fecdc5a)
+# ![@thi.ng/boids](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-boids.svg?2fecdc5a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/boids.svg)

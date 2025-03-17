@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/scenegraph](https://media.thi.ng/umbrella/banners-20230807/thing-scenegraph.svg?2c02f09b)
+# ![@thi.ng/scenegraph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-scenegraph.svg?2c02f09b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/scenegraph.svg)

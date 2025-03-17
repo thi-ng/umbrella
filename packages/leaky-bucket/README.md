@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/leaky-bucket](https://media.thi.ng/umbrella/banners-20230807/thing-leaky-bucket.svg?92dc6543)
+# ![@thi.ng/leaky-bucket](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-leaky-bucket.svg?92dc6543)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/leaky-bucket.svg)](https://www.npmjs.com/package/@thi.ng/leaky-bucket)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/leaky-bucket.svg)

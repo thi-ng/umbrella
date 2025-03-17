@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/sparse-set](https://media.thi.ng/umbrella/banners-20230807/thing-sparse-set.svg?eb275e55)
+# ![@thi.ng/sparse-set](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-sparse-set.svg?eb275e55)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sparse-set.svg)](https://www.npmjs.com/package/@thi.ng/sparse-set)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sparse-set.svg)

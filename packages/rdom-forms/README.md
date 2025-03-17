@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rdom-forms](https://media.thi.ng/umbrella/banners-20230807/thing-rdom-forms.svg?772a2e23)
+# ![@thi.ng/rdom-forms](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rdom-forms.svg?772a2e23)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rdom-forms.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transclude](https://media.thi.ng/umbrella/banners-20230807/thing-transclude.svg?652d2a29)
+# ![@thi.ng/transclude](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transclude.svg?652d2a29)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transclude.svg)

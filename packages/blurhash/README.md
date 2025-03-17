@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/blurhash](https://media.thi.ng/umbrella/banners-20230807/thing-blurhash.svg?8ea0a899)
+# ![@thi.ng/blurhash](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-blurhash.svg?8ea0a899)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/blurhash.svg)](https://www.npmjs.com/package/@thi.ng/blurhash)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/blurhash.svg)

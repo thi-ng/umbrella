@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hdiff](https://media.thi.ng/umbrella/banners-20230807/thing-hdiff.svg?56c7517e)
+# ![@thi.ng/hdiff](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hdiff.svg?56c7517e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdiff.svg)

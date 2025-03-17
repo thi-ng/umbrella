@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/vector-pools](https://media.thi.ng/umbrella/banners-20230807/thing-vector-pools.svg?68fa60af)
+# ![@thi.ng/vector-pools](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-vector-pools.svg?68fa60af)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vector-pools.svg)

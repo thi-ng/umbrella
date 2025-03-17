@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners-20230807/thing-rstream-gestures.svg?6cd449bb)
+# ![@thi.ng/rstream-gestures](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rstream-gestures.svg?6cd449bb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-gestures.svg)

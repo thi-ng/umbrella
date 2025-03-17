@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/quad-edge](https://media.thi.ng/umbrella/banners-20230807/thing-quad-edge.svg?83a8d81f)
+# ![@thi.ng/quad-edge](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-quad-edge.svg?83a8d81f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/quad-edge.svg)

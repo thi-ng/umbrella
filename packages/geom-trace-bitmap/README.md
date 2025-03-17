@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-trace-bitmap](https://media.thi.ng/umbrella/banners-20230807/thing-geom-trace-bitmap.svg?0454d29d)
+# ![@thi.ng/geom-trace-bitmap](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-trace-bitmap.svg?0454d29d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-trace-bitmap.svg)](https://www.npmjs.com/package/@thi.ng/geom-trace-bitmap)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-trace-bitmap.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/lowdisc](https://media.thi.ng/umbrella/banners-20230807/thing-lowdisc.svg?54818180)
+# ![@thi.ng/lowdisc](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-lowdisc.svg?54818180)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lowdisc.svg)
