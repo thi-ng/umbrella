@@ -5,9 +5,9 @@ export const link = (ctx: any, href: string, body?: any) => [
 	body || href,
 ];
 
-export const twitterLink = (_: any, username: string) => [
+export const socialLink = (_: any, username: string) => [
 	link,
-	`https://twitter.com/${username}`,
+	`https://mastodon.thi.ng/${username}`,
 	"@" + username,
 ];
 
