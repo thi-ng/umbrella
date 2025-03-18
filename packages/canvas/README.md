@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 203 standalone projects, maintained as part
+> This is one of 204 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -76,7 +76,7 @@ None
 
 ## Usage examples
 
-26 projects in this repo's
+27 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -92,6 +92,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>       | Visualization of different grid iterator strategies                                          | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-basics.png" width="240"/> | Basic hiccup-based canvas drawing                                                            | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-canvas-basics) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>          | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>        | Optical flow analysis of web cam or video inputs                                             | [Demo](https://demo.thi.ng/umbrella/optical-flow/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>            | Pixel buffer manipulations                                                                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg" width="240"/>         | Showcase of various dithering algorithms                                                     | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-dither)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/>        | Image dithering and remapping using indexed palettes                                         | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed)        |

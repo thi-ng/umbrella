@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 203 standalone projects, maintained as part
+> This is one of 204 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -332,7 +332,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-50 projects in this repo's
+51 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -353,6 +353,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/lispy-repl.png" width="240"/>           | Browser REPL for a Lispy S-expression based mini language                                               | [Demo](https://demo.thi.ng/umbrella/lispy-repl/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>        | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/>      | Basic thi.ng/meta-css usage & testbed                                                                   | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>        | Optical flow analysis of web cam or video inputs                                                        | [Demo](https://demo.thi.ng/umbrella/optical-flow/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>     | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>    | Matrix-based image color adjustments                                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>      | Randomized 4-point 2D color gradient image generator                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)     |

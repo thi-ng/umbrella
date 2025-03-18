@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 203 standalone projects, maintained as part
+> This is one of 204 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -181,6 +181,7 @@ const img = src.resize(1024, 256, "cubic");
 - [@thi.ng/pixel-convolve](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-convolve) - Extensible bitmap image convolution, kernel presets, normal map & image pyramid generation
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither) - Extensible image dithering w/ various algorithm presets
 - [@thi.ng/pixel-dominant-colors](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dominant-colors) - k-means based dominant color extraction from images/pixel buffers
+- [@thi.ng/pixel-flow](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-flow) - Naive, lightweight CPU-based dense optical flow implementation
 - [@thi.ng/pixel-io-geotiff](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-geotiff) - GeoTIFF reader support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-io-pfm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-pfm) - Portable FloatMap image format support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
@@ -234,7 +235,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-26 projects in this repo's
+27 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -246,6 +247,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>    | Color palette generation via dominant color extraction from uploaded images                  | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-terrain-viz.jpg" width="240"/>   | 2.5D hidden line visualization of digital elevation files (DEM)                              | [Demo](https://demo.thi.ng/umbrella/geom-terrain-viz/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-terrain-viz)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>        | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>      | Optical flow analysis of web cam or video inputs                                             | [Demo](https://demo.thi.ng/umbrella/optical-flow/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>          | Pixel buffer manipulations                                                                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>  | Matrix-based image color adjustments                                                         | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg" width="240"/>       | Showcase of various dithering algorithms                                                     | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-dither)       |
