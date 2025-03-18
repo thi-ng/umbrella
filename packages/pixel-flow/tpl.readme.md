@@ -20,8 +20,7 @@ A short 40 second video demonstration (from 2008), first showing the low-res
 flow field and averaged movement vector, then adding a 3D cube being rotated via
 hand movments:
 
-https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel-flow/20080729-optical-flow.mp4
-
+https://github.com/user-attachments/assets/7929dee1-b78e-4fd2-8756-129b5db14c58
 
 ### Alogrithm description
 
