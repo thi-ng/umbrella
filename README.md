@@ -62,8 +62,8 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 203 individual
-TypeScript libraries/packages/tools and ~180 example projects illustrating their
+Not including deprecations, this mono-repository is home to 204 individual
+TypeScript libraries/packages/tools and ~185 example projects illustrating their
 usage, currently totalling ~226k SLOC and ~4100 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
@@ -312,15 +312,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-03-16
+As of: 2025-03-18
 
-| Status                                           | Package                                   | Version                                                                                                         | Changelog                                     |
-|:-------------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/leb128`](./packages/leb128)     | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)     | [changelog](./packages/leb128/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/lsys`](./packages/lsys)   | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)   | [changelog](./packages/lsys/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel`](./packages/pixel) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel) | [changelog](./packages/pixel/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/server`](./packages/server)     | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)     | [changelog](./packages/server/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
+| Status                                        | Package                                       | Version                                                                                                             | Changelog                                       |
+|:----------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-flow`](./packages/pixel-flow) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow) | [changelog](./packages/pixel-flow/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
