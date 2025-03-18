@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dsp-io-wav",
-	"version": "2.1.158",
+	"version": "2.1.159",
 	"description": "WAV file format generation",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.23",
-		"@thi.ng/binary": "^3.4.46",
-		"@thi.ng/errors": "^2.5.29",
-		"@thi.ng/transducers": "^9.2.23",
-		"@thi.ng/transducers-binary": "^2.1.158"
+		"@thi.ng/api": "^8.11.24",
+		"@thi.ng/binary": "^3.4.47",
+		"@thi.ng/errors": "^2.5.30",
+		"@thi.ng/transducers": "^9.2.24",
+		"@thi.ng/transducers-binary": "^2.1.159"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.1",
