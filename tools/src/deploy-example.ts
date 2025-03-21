@@ -18,9 +18,10 @@ interface UploadOpts {
 }
 
 interface CLIOpts {
-	noInvalidate: boolean;
+	// noInvalidate: boolean;
 	base: string;
 	dest: string;
+	rename?: string;
 }
 
 interface CLICtx extends CommandCtx<CLIOpts, any> {}
@@ -30,7 +31,7 @@ const NEVER_COMPRESS = new Set(["mp4"]);
 const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 	const BASE = `${opts.base}/${name}`;
 	const BUILD = `${opts.base}/${name}/dist/`;
-	const DEST_DIR = `/${opts.dest}/${name}`;
+	const DEST_DIR = `/${opts.dest}/${opts.rename ?? name}`;
 	const PKG = readJSON(resolve(`${BASE}/package.json`), logger);
 
 	if (PKG["thi.ng"]?.online === false) {
@@ -100,10 +101,15 @@ cliApp<CLIOpts, CLICtx>({
 			desc: "Destination S3 directory",
 			default: "umbrella",
 		}),
-		noInvalidate: flag({
-			alias: "n",
-			desc: "Don't create a CDN invalidation for the example(s)",
+		rename: string({
+			alias: "r",
+			desc: "New name on S3 (only for single uploads)",
+			required: false,
 		}),
+		// noInvalidate: flag({
+		// 	alias: "n",
+		// 	desc: "Don't create a CDN invalidation for the example(s)",
+		// }),
 	},
 	commands: {
 		default: {
@@ -113,7 +119,7 @@ cliApp<CLIOpts, CLICtx>({
 				let isAll = !inputs.length;
 				if (isAll) {
 					inputs = [...map(basename, dirs(ctx.opts.base, "", 1))];
-					ctx.opts.noInvalidate = true;
+					// ctx.opts.noInvalidate = true;
 				}
 				for (let name of inputs) {
 					ctx.logger.info("--------------------------------");
@@ -145,6 +151,6 @@ cliApp<CLIOpts, CLICtx>({
 	ctx: async (ctx) => ctx,
 	usage: {
 		prefix: "Usage: deploy-example [OPTS] [NAME...]",
-		paramWidth: 20,
+		paramWidth: 24,
 	},
 });
