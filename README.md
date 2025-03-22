@@ -312,11 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-03-18
+As of: 2025-03-22
 
 | Status                                        | Package                                       | Version                                                                                                             | Changelog                                       |
 |:----------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-flow`](./packages/pixel-flow) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow) | [changelog](./packages/pixel-flow/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server)         | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)         | [changelog](./packages/server/CHANGELOG.md)     |
 
 ### Algorithms & data structures
 
