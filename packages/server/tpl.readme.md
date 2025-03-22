@@ -23,9 +23,9 @@ implementations.
 	- Global interceptors for all routes and/or local for individual routes & HTTP methods
 - Automatic parsing of cookies and URL query strings (incl. nested params)
 - In-memory session storage & route interceptor
-- Configurable file serving (`ReadableStream`-based) with automatic MIME-type
-  detection and support for Etags, as well as Brotli, Gzip and Deflate
-  compression
+- Configurable [static file serving](#static-file-serving)
+  (`ReadableStream`-based) with automatic MIME-type detection and support for
+  Etags, as well as Brotli, Gzip and Deflate compression
 - Utilities for parsing form-encoded multipart request bodies
 
 ### Interceptors
@@ -91,6 +91,19 @@ import { cacheControl } from "@thi.ng/server";
 	}
 }
 ```
+
+### Static file serving
+
+The
+[`staticFiles()`](https://docs.thi.ng/umbrella/server/functions/staticFiles.html)
+route provider can be used to serve files from a given local root directory.
+Multiple such routes can be defined. The handler is highly configurable in terms
+of path validation/filtering, global and/or per-file headers, Etag generation,
+compression. It also supports its own set of [interceptors](#interceptors).
+
+See
+[`StaticOpts`](https://docs.thi.ng/umbrella/server/interfaces/StaticOpts.html)
+and example below for more details.
 
 {{meta.status}}
 
@@ -161,7 +174,7 @@ const app = srv.server<AppCtx>({
 			// use compression (if client supports it)
 			compress: true,
 			// route prefix
-			prefix: "assets",
+			prefix: "/assets",
 			// map to current CWD
 			rootDir: ".",
 			// strategy for computing etags (optional)
