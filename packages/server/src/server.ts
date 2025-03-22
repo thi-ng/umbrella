@@ -169,7 +169,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 				res.notAllowed();
 			}
 		} catch (e) {
-			this.logger.warn("error:", (<Error>e).message);
+			this.logger.warn(`error:`, req.url!, (<Error>e).message);
 			res.writeHead(500).end();
 		}
 	}
