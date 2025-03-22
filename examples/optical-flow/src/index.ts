@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench";
 import { pixelCanvas2d, type CanvasContext } from "@thi.ng/canvas";

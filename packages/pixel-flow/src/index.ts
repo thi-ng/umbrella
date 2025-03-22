@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy } from "@thi.ng/api";
 import type { IPixelBuffer } from "@thi.ng/pixel";
 
