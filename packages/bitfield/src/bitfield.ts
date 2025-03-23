@@ -216,6 +216,40 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 		return this.binOp(this, bitNot);
 	}
 
+	/**
+	 * Returns position of first 0-bit, starting at given `from` search
+	 * position. Returns -1 if unsuccessful.
+	 *
+	 * @param from
+	 */
+	firstZero(from = 0) {
+		const { data } = this;
+		for (let i = from >>> 3, len = data.length; i < len; i++) {
+			const x = data[i];
+			if (x === 0xff) continue;
+			const b = (i << 3) + Math.clz32(x ^ 0xff) - 24;
+			if (b >= from) return b;
+		}
+		return -1;
+	}
+
+	/**
+	 * Returns position of first 1-bit, starting at given `from` search
+	 * position. Returns -1 if unsuccessful.
+	 *
+	 * @param from
+	 */
+	firstOne(from = 0) {
+		const { data } = this;
+		for (let i = from >>> 3, len = data.length; i < len; i++) {
+			const x = data[i];
+			if (!x) continue;
+			const b = (i << 3) + Math.clz32(x) - 24;
+			if (b >= from) return b;
+		}
+		return -1;
+	}
+
 	toString() {
 		return toString(this.data);
 	}
