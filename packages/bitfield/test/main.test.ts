@@ -42,3 +42,25 @@ test("similarity", () => {
 	expect(a.similarity([0, 0, 0, 0, 0, 0])).toBe(0);
 	expect(() => a.similarity([])).toThrow();
 });
+
+test("firstZero", () => {
+	const a = defBitField(32);
+	a.data.set([255, 0b0011_0111, 255, 255]);
+	expect(a.firstZero()).toBe(8);
+	expect(a.firstZero(8)).toBe(8);
+	expect(a.firstZero(9)).toBe(9);
+	expect(a.firstZero(10)).toBe(12);
+	expect(a.firstZero(12)).toBe(12);
+	expect(a.firstZero(13)).toBe(-1);
+});
+
+test("firstOne", () => {
+	const a = defBitField(32);
+	a.data.set([0, 0b1100_1000, 0, 0]);
+	expect(a.firstOne()).toBe(8);
+	expect(a.firstOne(8)).toBe(8);
+	expect(a.firstOne(9)).toBe(9);
+	expect(a.firstOne(10)).toBe(12);
+	expect(a.firstOne(12)).toBe(12);
+	expect(a.firstOne(13)).toBe(-1);
+});

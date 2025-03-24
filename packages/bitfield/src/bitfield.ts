@@ -224,8 +224,16 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 */
 	firstZero(from = 0) {
 		const { data } = this;
-		for (let i = from >>> 3, len = data.length; i < len; i++) {
-			const x = data[i];
+		for (
+			let i = from >>> 3, len = data.length, first = true;
+			i < len;
+			i++
+		) {
+			let x = data[i];
+			if (first) {
+				x |= 0xff ^ ((1 << (8 - (from & 7))) - 1);
+				first = false;
+			}
 			if (x === 0xff) continue;
 			const b = (i << 3) + Math.clz32(x ^ 0xff) - 24;
 			if (b >= from) return b;
@@ -241,8 +249,16 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 */
 	firstOne(from = 0) {
 		const { data } = this;
-		for (let i = from >>> 3, len = data.length; i < len; i++) {
-			const x = data[i];
+		for (
+			let i = from >>> 3, len = data.length, first = true;
+			i < len;
+			i++
+		) {
+			let x = data[i];
+			if (first) {
+				x &= (1 << (8 - (from & 7))) - 1;
+				first = false;
+			}
 			if (!x) continue;
 			const b = (i << 3) + Math.clz32(x) - 24;
 			if (b >= from) return b;
