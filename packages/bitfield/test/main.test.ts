@@ -16,6 +16,21 @@ test("setAt (number)", () => {
 	expect(bf.at(1)).toBeTruthy();
 });
 
+test("fill", () => {
+	expect([...defBitField(32).fill(1, 5).data]).toEqual([
+		0b0000_0111, 255, 255, 255,
+	]);
+	expect([...defBitField(32).fill(1, 3, 7).data]).toEqual([
+		0b0001_1110, 0, 0, 0,
+	]);
+	expect([...defBitField(32).fill(1, 3, 18).data]).toEqual([
+		0b0001_1111, 255, 0b1100_0000, 0,
+	]);
+	expect([...defBitField(32).fill(1).fill(0, 3, 18).data]).toEqual([
+		0b1110_0000, 0, 0b0011_1111, 255,
+	]);
+});
+
 test("positions", () => {
 	expect([
 		// prettier-ignore
