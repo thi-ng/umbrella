@@ -41,7 +41,7 @@
 	"devDependencies": {
 		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.8.2",
-		"vite": "^6.2.2"
+		"vite": "^6.2.4"
 	},
 	"keywords": [
 		"browser",

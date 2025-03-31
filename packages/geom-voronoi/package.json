@@ -51,8 +51,8 @@
 		"@thi.ng/vectors": "^7.12.26"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.1",
-		"typedoc": "^0.28.0",
+		"esbuild": "^0.25.2",
+		"typedoc": "^0.28.1",
 		"typescript": "^5.8.2"
 	},
 	"keywords": [
