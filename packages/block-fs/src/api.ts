@@ -29,3 +29,20 @@ export interface BlockStorageOpts {
 	numBlocks: number;
 	blockSize: Pow2;
 }
+
+export interface EntrySpec {
+	type: EntryType;
+	locked?: boolean;
+	owner: number;
+	name: string;
+	size?: bigint;
+	ctime?: number;
+	mtime?: number;
+	start: number;
+	end?: number;
+}
+
+export enum EntryType {
+	FILE,
+	DIR,
+}

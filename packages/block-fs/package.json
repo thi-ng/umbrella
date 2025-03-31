@@ -78,17 +78,29 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./directory": {
+			"default": "./directory.js"
+		},
+		"./entry": {
+			"default": "./entry.js"
+		},
 		"./fs": {
 			"default": "./fs.js"
 		},
 		"./lock": {
 			"default": "./lock.js"
 		},
+		"./storage/astorage": {
+			"default": "./storage/astorage.js"
+		},
 		"./storage/file": {
 			"default": "./storage/file.js"
 		},
 		"./storage/memory": {
 			"default": "./storage/memory.js"
+		},
+		"./utils": {
+			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {
