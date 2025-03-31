@@ -5,7 +5,7 @@ import type { ILogger } from "@thi.ng/logger";
 export interface IBlock {
 	load(): Promise<Uint8Array>;
 
-	save(): Promise<void>;
+	save(data: Uint8Array): Promise<void>;
 
 	delete(): Promise<void>;
 }
@@ -19,7 +19,7 @@ export interface IBlockStorage {
 
 	loadBlock(id: number): Promise<Uint8Array>;
 
-	saveBlock(id: number): Promise<void>;
+	saveBlock(id: number, data: Uint8Array): Promise<void>;
 
 	deleteBlock(id: number): Promise<void>;
 }

@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 import { align } from "@thi.ng/binary/align";
 import { defBitField, type BitField } from "@thi.ng/bitfield/bitfield";
+import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { utf8Length } from "@thi.ng/strings/utf8";
 import type { IBlockStorage } from "./api.js";
 import { Lock } from "./lock.js";
 
@@ -27,9 +29,16 @@ export class BlockFS {
 	readonly dataStartBlockID: number;
 	/** Special block ID to mark EOF */
 	readonly sentinelID: number;
+	/** Start byte offset of first entry in a directory block */
+	readonly dirDataOffset: number;
+	/** Root directory */
 	rootDir!: Directory;
 
 	constructor(public storage: IBlockStorage, public opts: BlockFSOpts) {
+		assert(
+			storage.blockSize > DirEntry.SIZE,
+			`too small block size, require at least: ${DirEntry.SIZE} bytes`
+		);
 		this.blockIndex = defBitField(storage.numBlocks);
 		this.blockIDBytes =
 			align(Math.ceil(Math.log2(storage.numBlocks)), 8) >> 3;
@@ -41,6 +50,7 @@ export class BlockFS {
 			align(this.blockIndex.data.length, storage.blockSize) /
 			storage.blockSize;
 		this.dataStartBlockID = this.rootDirBlockID + 1;
+		this.dirDataOffset = this.blockDataOffset + this.blockIDBytes;
 		this.sentinelID = storage.numBlocks - 1;
 	}
 
@@ -59,12 +69,26 @@ export class BlockFS {
 				this.blockIndex.data.set(data, offset);
 			}
 		}
-		this.blockIndex.setRange(0, "1".repeat(this.dataStartBlockID));
-		const hasRootDir = await this.storage.hasBlock(this.rootDirBlockID);
-		const root = await this.storage.loadBlock(this.rootDirBlockID);
-		if (!hasRootDir) this.setBlockMeta(root, this.sentinelID, 0);
+		this.blockIndex.fill(1, 0, this.dataStartBlockID);
 		this.rootDir = new Directory(this, this.rootDirBlockID);
 		return this;
+	}
+
+	async entryForPath(path: string) {
+		let dir = this.rootDir;
+		const $path = path.split("/");
+		for (let i = 0; i < $path.length; i++) {
+			let entry = await dir.findName($path[i]);
+			if (!entry) break;
+			if (i === $path.length - 1) return entry;
+			if (entry.type !== EntryType.DIR) illegalArgs(path);
+			dir = new Directory(this, entry.start);
+		}
+		illegalArgs(path);
+	}
+
+	async blockForEntry(path: string | number) {
+		return isString(path) ? (await this.entryForPath(path)).start : path;
 	}
 
 	async allocateBlocks(bytes: number) {
@@ -116,7 +140,8 @@ export class BlockFS {
 		}
 	}
 
-	async readText(blockID: number) {
+	async readText(path: number | string) {
+		const blockID = await this.blockForEntry(path);
 		const buffer = [];
 		for await (let block of this.readFile(blockID)) buffer.push(...block);
 		return new TextDecoder().decode(new Uint8Array(buffer));
@@ -143,7 +168,7 @@ export class BlockFS {
 				data.subarray(offset, offset + this.blockDataSize),
 				this.blockDataOffset
 			);
-			await this.storage.saveBlock(id);
+			await this.storage.saveBlock(id, block);
 			offset += this.blockDataSize;
 		}
 		return {
@@ -187,7 +212,7 @@ export class BlockFS {
 			);
 			newEndBlockID = lastBlockID;
 		}
-		await this.storage.saveBlock(lastBlockID);
+		await this.storage.saveBlock(lastBlockID, lastBlock);
 		return { start: blockID, end: newEndBlockID };
 	}
 
@@ -218,16 +243,16 @@ export class BlockFS {
 			this.blockIndex.setAt(id, state);
 			updatedBlocks.add(((id >>> 3) / blockSize) | 0);
 		}
+		const tmp = new Uint8Array(blockSize);
 		for (let id of updatedBlocks) {
 			this.storage.logger!.debug("update block index", id);
-			const block = await this.storage.loadBlock(id);
-			block.set(
-				this.blockIndex.data.subarray(
-					id * blockSize,
-					(id + 1) * blockSize
-				)
+			const chunk = this.blockIndex.data.subarray(
+				id * blockSize,
+				(id + 1) * blockSize
 			);
-			await this.storage.saveBlock(id);
+			tmp.set(chunk);
+			if (chunk.length < blockSize) tmp.fill(0, chunk.length);
+			await this.storage.saveBlock(id, tmp);
 		}
 	}
 
@@ -244,9 +269,23 @@ export class BlockFS {
 	}
 
 	/** @internal */
-	setBlockMeta(block: Uint8Array, next: number, size: number) {
-		encodeBytes(block, next, 0, this.blockIDBytes);
-		encodeBytes(block, size, this.blockIDBytes, this.blockDataSizeBytes);
+	setBlockMeta(block: Uint8Array, next: number, num: number) {
+		this.setBlockLink(block, next);
+		this.setBlockDataLength(block, num);
+	}
+
+	/** @internal */
+	setBlockLink(block: Uint8Array, next: number, offset = 0) {
+		encodeBytes(block, next, offset, this.blockIDBytes);
+	}
+
+	/** @internal */
+	setBlockDataLength(
+		block: Uint8Array,
+		num: number,
+		offset = this.blockIDBytes
+	) {
+		encodeBytes(block, num, offset, this.blockDataSizeBytes);
 	}
 }
 
@@ -276,16 +315,15 @@ export class Directory {
 		while (true) {
 			blocks.push(blockID);
 			const block = await this.fs.storage.loadBlock(blockID);
-			const { next, size } = this.fs.getBlockMeta(block);
+			let { next, size } = this.fs.getBlockMeta(block);
+			if (!next) next = this.fs.sentinelID;
 			for (let i = 0; i < size; i++) {
 				entries.push(
 					new DirEntry(
-						block.subarray(
-							this.fs.blockDataOffset + i * 52,
-							this.fs.blockDataOffset + (i + 1) * 52
-						),
 						this,
-						blockID
+						blockID,
+						block,
+						this.fs.dirDataOffset + i * DirEntry.SIZE
 					)
 				);
 			}
@@ -295,98 +333,125 @@ export class Directory {
 		return { blocks, entries };
 	}
 
+	async findName(name: string) {
+		for await (let e of this) {
+			if (!e.free && e.name === name) return e;
+		}
+	}
+
 	async mkdir(name: string) {
+		const traversed = await this.traverse();
+		this.ensureUniqueName(name, traversed.entries);
 		const block = (await this.fs.allocateBlocks(1))[0];
 		const data = await this.fs.storage.loadBlock(block);
 		this.fs.setBlockMeta(data, this.fs.sentinelID, 0);
-		await this.fs.storage.saveBlock(block);
-		return this.addEntry({
-			name,
-			type: EntryType.DIR,
-			owner: this.parent?.owner ?? 0,
-			start: block,
-		});
+		this.fs.setBlockLink(data, this.blockID, this.fs.dataStartBlockID);
+		await this.fs.storage.saveBlock(block, data);
+		return this.addEntry(
+			{
+				name,
+				type: EntryType.DIR,
+				owner: this.parent?.owner ?? 0,
+				start: block,
+			},
+			traversed
+		);
 	}
 
-	async addEntry(spec: DirEntrySpec) {
-		const { blocks, entries } = await this.traverse();
+	async addEntry(
+		spec: DirEntrySpec,
+		state?: { blocks: number[]; entries: DirEntry[] }
+	) {
+		const { blocks, entries } = state ? state : await this.traverse();
+		this.ensureUniqueName(spec.name, entries);
 		let entry = entries.find((e) => e.free);
 		if (entry) {
 			entry.free = false;
 			entry.set(spec);
-			this.fs.storage.saveBlock(entry.blockID);
+			await entry.save();
 			return entry;
 		}
-		let lastBlockID = blocks[blocks.length - 1];
-		let lastBlock = await this.fs.storage.loadBlock(lastBlockID);
-		let numEntries = decodeBytes(
-			lastBlock,
-			this.fs.blockIDBytes,
-			this.fs.blockDataSizeBytes
-		);
-		const maxEntriesPerBlock = this.fs.blockDataSize / 52;
-		if (numEntries < maxEntriesPerBlock) {
-			encodeBytes(
-				lastBlock,
-				numEntries + 1,
-				this.fs.blockIDBytes,
-				this.fs.blockDataSizeBytes
-			);
+		const lastBlockID = blocks[blocks.length - 1];
+		const lastBlock = await this.fs.storage.loadBlock(lastBlockID);
+		let { next, size } = this.fs.getBlockMeta(lastBlock);
+		if (!next) {
+			next = this.fs.sentinelID;
+			this.fs.setBlockMeta(lastBlock, next, 0);
+		}
+		const maxEntriesPerBlock =
+			((this.fs.storage.blockSize - this.fs.dirDataOffset) /
+				DirEntry.SIZE) |
+			0;
+		if (size < maxEntriesPerBlock) {
+			this.fs.setBlockDataLength(lastBlock, size + 1);
 			entry = new DirEntry(
-				lastBlock.subarray(
-					this.fs.blockDataOffset + numEntries * 52,
-					this.fs.blockDataOffset + (numEntries + 1) * 52
-				),
 				this,
-				lastBlockID
+				lastBlockID,
+				lastBlock,
+				this.fs.dirDataOffset + size * DirEntry.SIZE
 			);
 		} else {
-			const newBlockID = (await this.fs.allocateBlocks(52))[0];
+			const newBlockID = (await this.fs.allocateBlocks(DirEntry.SIZE))[0];
 			const newBlock = await this.fs.storage.loadBlock(newBlockID);
 			encodeBytes(lastBlock, newBlockID, 0, this.fs.blockIDBytes);
-			await this.fs.storage.saveBlock(lastBlockID);
+			await this.fs.storage.saveBlock(lastBlockID, lastBlock);
 			this.fs.setBlockMeta(newBlock, this.fs.sentinelID, 1);
 			entry = new DirEntry(
-				newBlock.subarray(
-					this.fs.blockDataOffset,
-					this.fs.blockDataOffset + 52
-				),
 				this,
-				newBlockID
+				newBlockID,
+				newBlock,
+				this.fs.dirDataOffset
 			);
 		}
 		entry.set(spec);
-		this.fs.storage.saveBlock(entry.blockID);
+		await entry.save();
 		return entry;
+	}
+
+	protected ensureUniqueName(name: string, entries: DirEntry[]) {
+		if (entries.some((e) => !e.free && e.name === name))
+			illegalArgs(`entry already exists: ${name}`);
 	}
 }
 
 interface DirEntrySpec {
-	name: string;
 	type: EntryType;
 	locked?: boolean;
 	owner: number;
-	size?: number;
-	start: number;
-	end?: number;
+	name: string;
+	size?: bigint;
 	ctime?: number;
 	mtime?: number;
+	start: number;
+	end?: number;
 }
 
 class DirEntry {
+	static readonly NAME_MAX_LENGTH = 31;
+	static readonly SIZE = 64;
+
+	protected view: DataView;
+
 	constructor(
-		public readonly data: Uint8Array,
 		public readonly parent: Directory,
-		public readonly blockID: number
-	) {}
+		public readonly blockID: number,
+		public readonly data: Uint8Array,
+		public readonly offset: number
+	) {
+		this.view = new DataView(
+			data.buffer,
+			data.byteOffset + offset,
+			DirEntry.SIZE
+		);
+	}
 
 	get free() {
-		return !!(this.data[0] & 0b1000_0000);
+		return !!(this.data[this.offset] & 0b1000_0000);
 	}
 
 	set free(free: boolean) {
-		if (free) this.data[0] |= 0b1000_0000;
-		else this.data[0] &= 0b0111_1111;
+		if (free) this.data[this.offset] |= 0b1000_0000;
+		else this.data[this.offset] &= 0b0111_1111;
 	}
 
 	get type() {
@@ -394,102 +459,109 @@ class DirEntry {
 	}
 
 	set type(type: EntryType) {
-		if (type) this.data[0] |= 0b0100_0000;
-		else this.data[0] &= 0b1011_1111;
+		if (type) this.data[this.offset] |= 0b0100_0000;
+		else this.data[this.offset] &= 0b1011_1111;
 	}
 
 	get locked() {
-		return !!(this.data[0] & 0b0010_0000);
+		return !!(this.data[this.offset] & 0b0010_0000);
 	}
 
 	set locked(locked: boolean) {
-		if (locked) this.data[0] |= 0b0010_0000;
-		else this.data[0] &= 0b1101_1111;
+		if (locked) this.data[this.offset] |= 0b0010_0000;
+		else this.data[this.offset] &= 0b1101_1111;
 	}
 
 	get owner() {
-		return this.data[0] & 0b0001_1111;
+		return this.data[this.offset] & 0b0001_1111;
 	}
 
 	set owner(owner: number) {
 		if (owner < 0 || owner > 31) illegalArgs("illegal owner ID");
-		this.data[0] = (this.data[0] & 0b1110_0000) | owner;
+		this.data[this.offset] = (this.data[this.offset] & 0b1110_0000) | owner;
 	}
 
 	get name() {
 		if (this.free) return "";
-		let terminator = this.data.indexOf(0, 1);
-		assert(terminator !== 1, "illegal filename (zero len)");
-		if (terminator < 0 || terminator > 1 + 31) terminator = 1 + 31;
-		return new TextDecoder().decode(this.data.subarray(1, terminator));
+		const offset = this.offset + 1;
+		let terminator = this.data.indexOf(0, offset);
+		if (terminator === offset) illegalArgs("invalid filename");
+		if (terminator < 0 || terminator > offset + DirEntry.NAME_MAX_LENGTH)
+			terminator = offset + DirEntry.NAME_MAX_LENGTH;
+		return new TextDecoder().decode(this.data.subarray(offset, terminator));
 	}
 
 	set name(name: string) {
-		if (name.length < 1 || name.length > 31)
+		const length = utf8Length(name);
+		if (length < 1 || length > DirEntry.NAME_MAX_LENGTH)
 			illegalArgs("invalid file name");
-		this.data.fill(0, 1, 1 + 31);
-		new TextEncoder().encodeInto(name, this.data.subarray(1, 1 + 31));
-	}
-
-	get start() {
-		return decodeBytes(this.data, 32, 4);
-	}
-
-	set start(block: number) {
-		encodeBytes(this.data, block, 32, 4);
-	}
-
-	get end() {
-		return decodeBytes(this.data, 36, 4);
-	}
-
-	set end(block: number) {
-		encodeBytes(this.data, block, 36, 4);
+		const offset = this.offset + 1;
+		this.data.fill(0, offset, offset + DirEntry.NAME_MAX_LENGTH);
+		new TextEncoder().encodeInto(
+			name,
+			this.data.subarray(offset, offset + DirEntry.NAME_MAX_LENGTH)
+		);
 	}
 
 	get size() {
-		return decodeBytes(this.data, 40, 4);
+		return this.view.getBigUint64(32);
 	}
 
-	set size(size: number) {
-		encodeBytes(this.data, size, 40, 4);
+	set size(size: bigint) {
+		this.view.setBigUint64(32, size);
 	}
 
 	get ctime() {
-		return decodeBytes(this.data, 44, 4);
+		return Number(this.view.getBigUint64(40));
 	}
 
 	set ctime(epoch: number) {
-		encodeBytes(this.data, epoch, 44, 4);
+		this.view.setBigUint64(40, BigInt(epoch));
 	}
 
 	get mtime() {
-		return decodeBytes(this.data, 48, 4);
+		return Number(this.view.getBigUint64(48));
 	}
 
 	set mtime(epoch: number) {
-		encodeBytes(this.data, epoch, 48, 4);
+		this.view.setBigUint64(48, BigInt(epoch));
+	}
+
+	get start() {
+		return this.view.getUint32(56);
+	}
+
+	set start(block: number) {
+		this.view.setUint32(56, block);
+	}
+
+	get end() {
+		return this.view.getUint32(60);
+	}
+
+	set end(block: number) {
+		this.view.setUint32(60, block);
 	}
 
 	set(spec: DirEntrySpec) {
 		this.type = spec.type;
-		this.name = spec.name;
 		this.locked = spec.locked ?? false;
 		this.owner = spec.owner;
-		this.size = spec.size ?? 0;
+		this.name = spec.name;
+		this.size = spec.size ?? 0n;
+		this.ctime = spec.ctime ?? Date.now();
+		this.mtime = spec.mtime ?? spec.ctime ?? Date.now();
 		this.start = spec.start;
 		this.end = spec.end ?? spec.start;
-		this.ctime = spec.ctime ?? Date.now();
-		this.mtime = spec.mtime ?? Date.now();
 	}
 
 	release() {
-		this.data.fill(0);
+		this.data.fill(0, this.offset, this.offset + DirEntry.SIZE);
 		this.free = true;
 	}
 
 	async save() {
-		this.parent.fs.storage.saveBlock(this.blockID);
+		this.parent.fs.storage.saveBlock(this.blockID, this.data);
 	}
 }
 

@@ -19,12 +19,14 @@ export abstract class ABlockStorage<T extends IBlock> implements IBlockStorage {
 
 	abstract hasBlock(id: number): Promise<boolean>;
 
-	abstract loadBlock(id: number): Promise<Uint8Array>;
+	abstract ensureBlock(id: number): T;
 
-	saveBlock(id: number) {
-		const block = this.blocks[id];
-		assert(!!block, `block not yet initialized`);
-		return block!.save();
+	loadBlock(id: number) {
+		return this.ensureBlock(id).load();
+	}
+
+	saveBlock(id: number, data: Uint8Array) {
+		return this.ensureBlock(id).save(data);
 	}
 
 	deleteBlock(id: number) {
