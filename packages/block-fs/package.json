@@ -55,6 +55,15 @@
 		"typescript": "^5.8.2"
 	},
 	"keywords": [
+		"binary",
+		"block",
+		"file",
+		"file-system",
+		"memory",
+		"memory-mapped",
+		"path",
+		"storage",
+		"typedarray",
 		"typescript"
 	],
 	"publishConfig": {
@@ -105,6 +114,6 @@
 	},
 	"thi.ng": {
 		"status": "alpha",
-		"year": 2025
+		"year": 2024
 	}
 }
