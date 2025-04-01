@@ -1,11 +1,16 @@
 import type { Nullable } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { utf8Length } from "@thi.ng/strings/utf8";
-import { EntryType, type EntrySpec } from "./api.js";
+import {
+	EntryType,
+	type EntrySpec,
+	type IDirectory,
+	type IEntry,
+} from "./api.js";
 import { Directory } from "./directory.js";
 import type { BlockFS } from "./fs.js";
 
-export class Entry {
+export class Entry implements IEntry {
 	static readonly NAME_MAX_LENGTH = 31;
 	static readonly SIZE = 64;
 
@@ -13,7 +18,7 @@ export class Entry {
 
 	constructor(
 		public readonly fs: BlockFS,
-		public readonly parent: Directory | null,
+		public readonly parent: IDirectory | null,
 		public readonly blockID: number,
 		public readonly data: Uint8Array,
 		public readonly offset: number
@@ -150,8 +155,8 @@ export class Entry {
 	 * Returns absolute path for this entry
 	 */
 	get path() {
-		let path: string[] = [];
-		let entry: Nullable<Entry> = this;
+		const path: string[] = [];
+		let entry: Nullable<IEntry> = this;
 		while (entry) {
 			path.unshift(entry.name);
 			entry = entry.parent?.entry;
@@ -160,10 +165,10 @@ export class Entry {
 	}
 
 	/**
-	 * Returns {@link Directory} wrapper for this entry (only if a directory,
+	 * Returns {@link IDirectory} wrapper for this entry (only if a directory,
 	 * else throws errror).
 	 */
-	get directory() {
+	get directory(): IDirectory {
 		if (this.type !== EntryType.DIR) illegalArgs("entry isn't a directory");
 		return new Directory(this.fs, this);
 	}

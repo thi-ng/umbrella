@@ -1,14 +1,18 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { utf8Length } from "@thi.ng/strings/utf8";
-import { EntryType, type EntrySpec } from "./api.js";
+import {
+	EntryType,
+	type EntrySpec,
+	type IDirectory,
+	type IEntry,
+} from "./api.js";
 import { Entry } from "./entry.js";
 import type { BlockFS } from "./fs.js";
-import { encodeBytes } from "./utils.js";
 
-export class Directory {
-	constructor(public fs: BlockFS, public entry: Entry) {}
+export class Directory implements IDirectory {
+	constructor(public fs: BlockFS, public entry: IEntry) {}
 
-	async *[Symbol.asyncIterator]() {
+	async *[Symbol.asyncIterator](): AsyncIterableIterator<IEntry> {
 		const fs = this.fs;
 		let blockID = this.entry.start;
 		while (true) {
@@ -16,13 +20,7 @@ export class Directory {
 			let { next, size } = fs.getBlockMeta(block);
 			if (!next) next = fs.sentinelID;
 			for (let i = 0; i < size; i++) {
-				const entry = new Entry(
-					fs,
-					this,
-					blockID,
-					block,
-					fs.dirDataOffset + i * Entry.SIZE
-				);
+				const entry = this.defEntry(i, blockID, block);
 				if (!entry.free) yield entry;
 			}
 			if (next === fs.sentinelID) break;
@@ -30,7 +28,7 @@ export class Directory {
 		}
 	}
 
-	async *tree(): AsyncIterableIterator<Entry> {
+	async *tree(): AsyncIterableIterator<IEntry> {
 		for await (let entry of this) {
 			yield entry;
 			if (entry.type === EntryType.DIR) yield* entry.directory.tree();
@@ -39,7 +37,7 @@ export class Directory {
 
 	async traverse() {
 		const blocks: number[] = [];
-		const entries: Entry[] = [];
+		const entries: IEntry[] = [];
 		let blockID = this.entry.start;
 		while (true) {
 			blocks.push(blockID);
@@ -47,15 +45,7 @@ export class Directory {
 			let { next, size } = this.fs.getBlockMeta(block);
 			if (!next) next = this.fs.sentinelID;
 			for (let i = 0; i < size; i++) {
-				entries.push(
-					new Entry(
-						this.fs,
-						this,
-						blockID,
-						block,
-						this.fs.dirDataOffset + i * Entry.SIZE
-					)
-				);
+				entries.push(this.defEntry(i, blockID, block));
 			}
 			if (next === this.fs.sentinelID) break;
 			blockID = next;
@@ -93,8 +83,8 @@ export class Directory {
 
 	async addEntry(
 		spec: EntrySpec,
-		state?: { blocks: number[]; entries: Entry[] }
-	) {
+		state?: { blocks: number[]; entries: IEntry[] }
+	): Promise<IEntry> {
 		const { blocks, entries } = state ? state : await this.traverse();
 		this.ensureUniqueName(spec.name, entries);
 		let entry = entries.find((e) => e.free);
@@ -104,46 +94,41 @@ export class Directory {
 			await entry.save();
 			return entry;
 		}
+		const fs = this.fs;
 		const lastBlockID = blocks[blocks.length - 1];
-		const lastBlock = await this.fs.storage.loadBlock(lastBlockID);
-		let { next, size } = this.fs.getBlockMeta(lastBlock);
+		const lastBlock = await fs.storage.loadBlock(lastBlockID);
+		let { next, size } = fs.getBlockMeta(lastBlock);
 		if (!next) {
-			next = this.fs.sentinelID;
-			this.fs.setBlockMeta(lastBlock, next, 0);
+			next = fs.sentinelID;
+			fs.setBlockMeta(lastBlock, next, 0);
 		}
 		const maxEntriesPerBlock =
-			((this.fs.storage.blockSize - this.fs.dirDataOffset) / Entry.SIZE) |
+			((fs.storage.blockSize - fs.dirDataOffset) / fs.opts.entry.size) |
 			0;
 		if (size < maxEntriesPerBlock) {
-			this.fs.setBlockDataLength(lastBlock, size + 1);
-			entry = new Entry(
-				this.fs,
-				this,
-				lastBlockID,
-				lastBlock,
-				this.fs.dirDataOffset + size * Entry.SIZE
-			);
+			fs.setBlockDataLength(lastBlock, size + 1);
+			entry = this.defEntry(size, lastBlockID, lastBlock);
 		} else {
-			const newBlockID = (await this.fs.allocateBlocks(Entry.SIZE))[0];
-			const newBlock = await this.fs.storage.loadBlock(newBlockID);
-			encodeBytes(lastBlock, newBlockID, 0, this.fs.blockIDBytes);
-			await this.fs.storage.saveBlock(lastBlockID, lastBlock);
-			this.fs.setBlockMeta(newBlock, this.fs.sentinelID, 1);
-			entry = new Entry(
-				this.fs,
-				this,
-				newBlockID,
-				newBlock,
-				this.fs.dirDataOffset
-			);
+			const newBlockID = (await fs.allocateBlocks(1))[0];
+			const newBlock = await fs.storage.loadBlock(newBlockID);
+			fs.setBlockLink(lastBlock, newBlockID);
+			await fs.storage.saveBlock(lastBlockID, lastBlock);
+			fs.setBlockMeta(newBlock, fs.sentinelID, 1);
+			entry = this.defEntry(0, newBlockID, newBlock);
 		}
 		entry.set(spec);
 		await entry.save();
 		return entry;
 	}
 
-	protected ensureUniqueName(name: string, entries: Entry[]) {
+	protected ensureUniqueName(name: string, entries: IEntry[]) {
 		if (entries.some((e) => !e.free && e.name === name))
 			illegalArgs(`entry already exists: '${name}'`);
+	}
+
+	protected defEntry(i: number, blockID: number, block: Uint8Array) {
+		const fs = this.fs;
+		const { factory, size } = fs.opts.entry;
+		return factory(fs, this, blockID, block, fs.dirDataOffset + i * size);
 	}
 }

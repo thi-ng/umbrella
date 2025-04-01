@@ -4,19 +4,56 @@ import { defBitField, type BitField } from "@thi.ng/bitfield/bitfield";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { EntryType, type IBlockStorage } from "./api.js";
+import {
+	EntryType,
+	type IBlockStorage,
+	type IDirectory,
+	type IEntry,
+} from "./api.js";
 import { Directory } from "./directory.js";
 import { Entry } from "./entry.js";
 import { Lock } from "./lock.js";
 import { decodeBytes, encodeBytes } from "./utils.js";
 
-export interface BlockFSOpts {}
+export interface BlockFSOpts {
+	/**
+	 * Customizable directory/file entry implementation. Also see
+	 * {@link DEFAULT_ENTRY}.
+	 */
+	entry: {
+		/** Entry size in bytes */
+		readonly size: number;
+		/** Max number of bytes in entry name (per directory). Default impl. uses 31 */
+		readonly maxLength: number;
+		/** Factory function to define a new entry */
+		factory: (
+			fs: BlockFS,
+			parent: IDirectory | null,
+			blockID: number,
+			data: Uint8Array,
+			offset: number
+		) => IEntry;
+	};
+}
+
+/**
+ * Default {@link IEnty} implementation
+ */
+export const DEFAULT_ENTRY: BlockFSOpts["entry"] = {
+	size: Entry.SIZE,
+	maxLength: Entry.NAME_MAX_LENGTH,
+	factory(fs, parent, blockID, data, offset) {
+		return new Entry(fs, parent, blockID, data, offset);
+	},
+};
 
 export class BlockFS {
 	protected blockIndex!: BitField;
 
 	protected lock = new Lock();
 
+	/** Configuration options */
+	readonly opts: BlockFSOpts;
 	/** Number of bytes needed to store block ID (max. 4 bytes) */
 	readonly blockIDBytes: number;
 	/** Number of bytes needed to store data size in a block */
@@ -36,10 +73,14 @@ export class BlockFS {
 	/** Root directory */
 	rootDir!: Directory;
 
-	constructor(public storage: IBlockStorage, public opts: BlockFSOpts) {
+	constructor(public storage: IBlockStorage, opts?: Partial<BlockFSOpts>) {
+		this.opts = {
+			entry: DEFAULT_ENTRY,
+			...opts,
+		};
 		assert(
-			storage.blockSize > Entry.SIZE,
-			`too small block size, require at least: ${Entry.SIZE} bytes`
+			storage.blockSize > this.opts.entry.size,
+			`too small block size, require at least: ${this.opts.entry.size} bytes`
 		);
 		this.blockIndex = defBitField(storage.numBlocks);
 		this.blockIDBytes =
@@ -72,11 +113,11 @@ export class BlockFS {
 			}
 		}
 		this.blockIndex.fill(1, 0, this.dataStartBlockID);
-		const rootEntry = new Entry(
+		const rootEntry = this.opts.entry.factory(
 			this,
 			null,
 			this.rootDirBlockID,
-			new Uint8Array(Entry.SIZE),
+			new Uint8Array(this.opts.entry.size),
 			0
 		);
 		rootEntry.set({
