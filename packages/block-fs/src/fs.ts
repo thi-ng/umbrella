@@ -4,6 +4,8 @@ import { defBitField, type BitField } from "@thi.ng/bitfield/bitfield";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import type { ILogger } from "@thi.ng/logger";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
 import {
 	EntryType,
 	type IBlockStorage,
@@ -16,6 +18,7 @@ import { Lock } from "./lock.js";
 import { decodeBytes, encodeBytes } from "./utils.js";
 
 export interface BlockFSOpts {
+	logger: ILogger;
 	/**
 	 * Customizable {@link IDirectory} factory function. By default creates
 	 * {@link Directory} views of given {@link IEntry}.
@@ -90,10 +93,11 @@ export class BlockFS {
 	/** Start byte offset of first entry in a directory block */
 	readonly dirDataOffset: number;
 	/** Root directory */
-	rootDir!: IDirectory;
+	root!: IDirectory;
 
 	constructor(public storage: IBlockStorage, opts?: Partial<BlockFSOpts>) {
 		this.opts = {
+			logger: NULL_LOGGER,
 			directory: (fs, entry) => new Directory(fs, entry),
 			entry: DEFAULT_ENTRY,
 			...opts,
@@ -147,12 +151,12 @@ export class BlockFS {
 			start: this.rootDirBlockID,
 			owner: 0,
 		});
-		this.rootDir = this.opts.directory(this, rootEntry);
+		this.root = this.opts.directory(this, rootEntry);
 		return this;
 	}
 
 	async entryForPath(path: string) {
-		let dir = this.rootDir;
+		let dir = this.root;
 		if (path[0] === "/") path = path.substring(1);
 		if (path === "") return dir.entry;
 		const $path = path.split("/");
@@ -167,7 +171,7 @@ export class BlockFS {
 	}
 
 	async ensureEntryForPath(path: string, type: EntryType) {
-		let dir = this.rootDir;
+		let dir = this.root;
 		if (path[0] === "/") path = path.substring(1);
 		if (path === "") return dir.entry;
 		const $path = path.split("/");
@@ -184,7 +188,13 @@ export class BlockFS {
 					});
 				}
 			}
-			if (i === $path.length - 1) return entry;
+			if (i === $path.length - 1) {
+				if (entry.type !== type)
+					illegalArgs(
+						`path exists, but is not a ${EntryType[type]}: ${path}`
+					);
+				return entry;
+			}
 			if (!entry.isDirectory()) illegalArgs(path);
 			dir = this.opts.directory(this, entry);
 		}
@@ -224,7 +234,11 @@ export class BlockFS {
 		}
 	}
 
-	async *readFile(path: string | number) {
+	async mkdir(path: string) {
+		return this.ensureEntryForPath(path, EntryType.DIR);
+	}
+
+	async *readFileRaw(path: string | number) {
 		let blockID = isString(path)
 			? (await this.entryForPath(path)).start
 			: path;
@@ -243,10 +257,14 @@ export class BlockFS {
 		}
 	}
 
-	async readText(path: string | number) {
+	async readFile(path: string | number) {
 		const buffer = [];
-		for await (let block of this.readFile(path)) buffer.push(...block);
-		return new TextDecoder().decode(new Uint8Array(buffer));
+		for await (let block of this.readFileRaw(path)) buffer.push(...block);
+		return new Uint8Array(buffer);
+	}
+
+	async readText(path: string | number) {
+		return new TextDecoder().decode(await this.readFile(path));
 	}
 
 	async readJSON(path: string | number) {
@@ -385,7 +403,7 @@ export class BlockFS {
 			updatedBlocks.add(((id >>> 3) / blockSize) | 0);
 		}
 		for (let id of updatedBlocks) {
-			this.storage.logger!.debug("update block index", id);
+			this.opts.logger.debug("update block index", id);
 			const chunk = this.blockIndex.data.subarray(
 				id * blockSize,
 				(id + 1) * blockSize

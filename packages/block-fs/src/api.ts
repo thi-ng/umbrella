@@ -27,7 +27,7 @@ export interface IBlockStorage {
 }
 
 export interface BlockStorageOpts {
-	logger: ILogger;
+	logger?: ILogger;
 	numBlocks: number;
 	blockSize: Pow2;
 }
