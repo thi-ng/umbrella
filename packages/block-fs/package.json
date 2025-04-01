@@ -42,6 +42,7 @@
 		"@thi.ng/api": "^8.11.24",
 		"@thi.ng/binary": "^3.4.47",
 		"@thi.ng/bitfield": "^2.3.69",
+		"@thi.ng/checks": "^3.7.4",
 		"@thi.ng/errors": "^2.5.30",
 		"@thi.ng/file-io": "^2.1.33",
 		"@thi.ng/logger": "^3.1.5",
@@ -49,9 +50,9 @@
 		"@thi.ng/strings": "^3.9.9"
 	},
 	"devDependencies": {
-		"@types/node": "^22.13.10",
-		"esbuild": "^0.25.1",
-		"typedoc": "^0.28.0",
+		"@types/node": "^22.13.14",
+		"esbuild": "^0.25.2",
+		"typedoc": "^0.28.1",
 		"typescript": "^5.8.2"
 	},
 	"keywords": [
