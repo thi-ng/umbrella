@@ -33,7 +33,7 @@ export interface BlockStorageOpts {
 export interface EntrySpec {
 	type: EntryType;
 	locked?: boolean;
-	owner: number;
+	owner?: number;
 	name: string;
 	size?: bigint;
 	ctime?: number;

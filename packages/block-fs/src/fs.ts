@@ -72,19 +72,34 @@ export class BlockFS {
 			}
 		}
 		this.blockIndex.fill(1, 0, this.dataStartBlockID);
-		this.rootDir = new Directory(this, this.rootDirBlockID);
+		const rootEntry = new Entry(
+			this,
+			null,
+			this.rootDirBlockID,
+			new Uint8Array(Entry.SIZE),
+			0
+		);
+		rootEntry.set({
+			name: "",
+			type: EntryType.DIR,
+			start: this.rootDirBlockID,
+			owner: 0,
+		});
+		this.rootDir = new Directory(this, rootEntry);
 		return this;
 	}
 
 	async entryForPath(path: string) {
 		let dir = this.rootDir;
+		if (path[0] === "/") path = path.substring(1);
+		if (path === "") return dir.entry;
 		const $path = path.split("/");
 		for (let i = 0; i < $path.length; i++) {
 			let entry = await dir.findName($path[i]);
 			if (!entry) break;
 			if (i === $path.length - 1) return entry;
 			if (entry.type !== EntryType.DIR) illegalArgs(path);
-			dir = new Directory(this, entry.start);
+			dir = new Directory(this, entry);
 		}
 		illegalArgs(path);
 	}
