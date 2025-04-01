@@ -23,7 +23,10 @@ export class MemoryBlock implements IBlock {
 		this.storage.buffer.set(data, this.id * this.storage.blockSize);
 	}
 
-	async delete() {}
+	async delete() {
+		const size = this.storage.blockSize;
+		this.storage.buffer.fill(0, this.id * size, (this.id + 1) * size);
+	}
 }
 
 export class MemoryBlockStorage extends ABlockStorage<MemoryBlock> {
