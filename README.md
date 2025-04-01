@@ -312,12 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-03-22
+As of: 2025-04-01
 
-| Status                                        | Package                                       | Version                                                                                                             | Changelog                                       |
-|:----------------------------------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-flow`](./packages/pixel-flow) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow) | [changelog](./packages/pixel-flow/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/server`](./packages/server)         | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)         | [changelog](./packages/server/CHANGELOG.md)     |
+| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
+|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bitfield`](./packages/bitfield) | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield) | [changelog](./packages/bitfield/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/block-fs`](./packages/block-fs) | [![version](https://img.shields.io/npm/v/@thi.ng/block-fs.svg)](https://www.npmjs.com/package/@thi.ng/block-fs) | [changelog](./packages/block-fs/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)   | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)   | [changelog](./packages/vectors/CHANGELOG.md)  |
 
 ### Algorithms & data structures
 
