@@ -6,7 +6,6 @@ import {
 	type IDirectory,
 	type IEntry,
 } from "./api.js";
-import { Entry } from "./entry.js";
 import type { BlockFS } from "./fs.js";
 
 export class Directory implements IDirectory {
@@ -31,7 +30,7 @@ export class Directory implements IDirectory {
 	async *tree(): AsyncIterableIterator<IEntry> {
 		for await (let entry of this) {
 			yield entry;
-			if (entry.type === EntryType.DIR) yield* entry.directory.tree();
+			if (entry.isDirectory()) yield* entry.directory.tree();
 		}
 	}
 
@@ -61,7 +60,7 @@ export class Directory implements IDirectory {
 
 	async mkdir(name: string) {
 		const length = utf8Length(name);
-		if (!length || length > Entry.NAME_MAX_LENGTH)
+		if (!length || length > this.fs.opts.entry.maxLength)
 			illegalArgs(`invalid name: '${name}'`);
 		const traversed = await this.traverse();
 		this.ensureUniqueName(name, traversed.entries);

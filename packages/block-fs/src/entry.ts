@@ -7,7 +7,6 @@ import {
 	type IDirectory,
 	type IEntry,
 } from "./api.js";
-import { Directory } from "./directory.js";
 import type { BlockFS } from "./fs.js";
 
 export class Entry implements IEntry {
@@ -169,8 +168,8 @@ export class Entry implements IEntry {
 	 * else throws errror).
 	 */
 	get directory(): IDirectory {
-		if (this.type !== EntryType.DIR) illegalArgs("entry isn't a directory");
-		return new Directory(this.fs, this);
+		if (!this.isDirectory()) illegalArgs("entry isn't a directory");
+		return this.fs.opts.directory(this.fs, this);
 	}
 
 	isDirectory() {

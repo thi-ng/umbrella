@@ -17,7 +17,16 @@ import { decodeBytes, encodeBytes } from "./utils.js";
 
 export interface BlockFSOpts {
 	/**
-	 * Customizable directory/file entry implementation. Also see
+	 * Customizable {@link IDirectory} factory function. By default creates
+	 * {@link Directory} views of given {@link IEntry}.
+	 *
+	 * @param fs
+	 * @param entry
+	 */
+	directory: (fs: BlockFS, entry: IEntry) => IDirectory;
+
+	/**
+	 * Customizable filesystem entry implementation. Also see
 	 * {@link DEFAULT_ENTRY}.
 	 */
 	entry: {
@@ -25,7 +34,16 @@ export interface BlockFSOpts {
 		readonly size: number;
 		/** Max number of bytes in entry name (per directory). Default impl. uses 31 */
 		readonly maxLength: number;
-		/** Factory function to define a new entry */
+		/**
+		 * Factory function to define a new entry instance, a memory-mapped view
+		 * of given byte array chunk.
+		 *
+		 * @param fs
+		 * @param parent
+		 * @param blockID
+		 * @param data
+		 * @param offset
+		 */
 		factory: (
 			fs: BlockFS,
 			parent: IDirectory | null,
@@ -49,8 +67,9 @@ export const DEFAULT_ENTRY: BlockFSOpts["entry"] = {
 
 export class BlockFS {
 	protected blockIndex!: BitField;
-
 	protected lock = new Lock();
+	/** Temporaty block/scratch storage space */
+	protected tmp: Uint8Array;
 
 	/** Configuration options */
 	readonly opts: BlockFSOpts;
@@ -71,10 +90,11 @@ export class BlockFS {
 	/** Start byte offset of first entry in a directory block */
 	readonly dirDataOffset: number;
 	/** Root directory */
-	rootDir!: Directory;
+	rootDir!: IDirectory;
 
 	constructor(public storage: IBlockStorage, opts?: Partial<BlockFSOpts>) {
 		this.opts = {
+			directory: (fs, entry) => new Directory(fs, entry),
 			entry: DEFAULT_ENTRY,
 			...opts,
 		};
@@ -95,6 +115,7 @@ export class BlockFS {
 		this.dataStartBlockID = this.rootDirBlockID + 1;
 		this.dirDataOffset = this.blockDataOffset + this.blockIDBytes;
 		this.sentinelID = storage.numBlocks - 1;
+		this.tmp = new Uint8Array(storage.blockSize);
 	}
 
 	async init() {
@@ -126,7 +147,7 @@ export class BlockFS {
 			start: this.rootDirBlockID,
 			owner: 0,
 		});
-		this.rootDir = new Directory(this, rootEntry);
+		this.rootDir = this.opts.directory(this, rootEntry);
 		return this;
 	}
 
@@ -139,13 +160,13 @@ export class BlockFS {
 			let entry = await dir.findName($path[i]);
 			if (!entry) break;
 			if (i === $path.length - 1) return entry;
-			if (entry.type !== EntryType.DIR) illegalArgs(path);
-			dir = new Directory(this, entry);
+			if (!entry.isDirectory()) illegalArgs(path);
+			dir = this.opts.directory(this, entry);
 		}
 		illegalArgs(path);
 	}
 
-	async ensureEntryForFilePath(path: string) {
+	async ensureEntryForPath(path: string, type: EntryType) {
 		let dir = this.rootDir;
 		if (path[0] === "/") path = path.substring(1);
 		if (path === "") return dir.entry;
@@ -157,21 +178,17 @@ export class BlockFS {
 					entry = await dir.mkdir($path[i]);
 				} else {
 					return await dir.addEntry({
+						type,
 						name: $path[i],
-						type: EntryType.FILE,
 						start: this.sentinelID,
 					});
 				}
 			}
 			if (i === $path.length - 1) return entry;
-			if (entry.type !== EntryType.DIR) illegalArgs(path);
-			dir = new Directory(this, entry);
+			if (!entry.isDirectory()) illegalArgs(path);
+			dir = this.opts.directory(this, entry);
 		}
 		illegalArgs(path);
-	}
-
-	async blockForEntry(path: string | number) {
-		return isString(path) ? (await this.entryForPath(path)).start : path;
 	}
 
 	async allocateBlocks(bytes: number) {
@@ -207,7 +224,10 @@ export class BlockFS {
 		}
 	}
 
-	async *readFile(blockID: number) {
+	async *readFile(path: string | number) {
+		let blockID = isString(path)
+			? (await this.entryForPath(path)).start
+			: path;
 		while (true) {
 			if (!this.blockIndex.at(blockID)) {
 				throw new Error(`invalid block ref: ${blockID}`);
@@ -223,18 +243,18 @@ export class BlockFS {
 		}
 	}
 
-	async readText(path: number | string) {
-		const blockID = await this.blockForEntry(path);
+	async readText(path: string | number) {
 		const buffer = [];
-		for await (let block of this.readFile(blockID)) buffer.push(...block);
+		for await (let block of this.readFile(path)) buffer.push(...block);
 		return new TextDecoder().decode(new Uint8Array(buffer));
 	}
 
-	async readJSON(blockID: number) {
-		return JSON.parse(await this.readText(blockID));
+	async readJSON(path: string | number) {
+		return JSON.parse(await this.readText(path));
 	}
 
-	async writeFileRaw(blocks: number[], data: Uint8Array) {
+	async writeFileRaw(blocks: number[] | null, data: Uint8Array) {
+		if (!blocks) blocks = await this.allocateBlocks(data.length);
 		let offset = 0;
 		for (let i = 0, numBlocks = blocks.length - 1; i <= numBlocks; i++) {
 			const id = blocks[i];
@@ -246,30 +266,25 @@ export class BlockFS {
 						this.sentinelID,
 						data.length - offset
 				  );
-			block.set(
-				data.subarray(offset, offset + this.blockDataSize),
-				this.blockDataOffset
-			);
+			const chunk = data.subarray(offset, offset + this.blockDataSize);
+			block.set(chunk, this.blockDataOffset);
+			if (chunk.length < this.blockDataSize) {
+				block.fill(0, this.blockDataOffset + chunk.length);
+			}
 			await this.storage.saveBlock(id, block);
 			offset += this.blockDataSize;
 		}
 		return {
 			start: blocks[0],
 			end: blocks[blocks.length - 1],
-			size: data.length,
+			size: Math.min(data.length, offset),
 		};
 	}
 
-	async writeFile(data: Uint8Array) {
-		return this.writeFileRaw(await this.allocateBlocks(data.length), data);
-	}
-
-	writeText(text: string) {
-		return this.writeFile(new TextEncoder().encode(text));
-	}
-
-	async writeFilePath(path: string, data: Uint8Array) {
-		const entry = await this.ensureEntryForFilePath(path);
+	async writeFile(path: string | null, data: Uint8Array | string) {
+		if (isString(data)) data = new TextEncoder().encode(data);
+		if (!path) return this.writeFileRaw(null, data);
+		const entry = await this.ensureEntryForPath(path, EntryType.FILE);
 		let blocks = await this.blockList(entry.start);
 		const overflow = data.length - blocks.length * this.blockDataSize;
 		if (overflow > 0) {
@@ -288,12 +303,8 @@ export class BlockFS {
 		return this.writeFileRaw(blocks, data);
 	}
 
-	async writeTextPath(path: string, text: string) {
-		return this.writeFilePath(path, new TextEncoder().encode(text));
-	}
-
 	async appendFileRaw(blockID: number, data: Uint8Array) {
-		if (blockID === this.sentinelID) return this.writeFile(data);
+		if (blockID === this.sentinelID) return this.writeFileRaw(null, data);
 		const blocks = await this.blockList(blockID);
 		const lastBlockID = blocks[blocks.length - 1];
 		const lastBlock = await this.storage.loadBlock(lastBlockID);
@@ -310,7 +321,8 @@ export class BlockFS {
 		);
 		let newEndBlockID: number;
 		if (data.length > remaining) {
-			const { start, end } = await this.writeFile(
+			const { start, end } = await this.writeFileRaw(
+				null,
 				data.subarray(remaining)
 			);
 			this.setBlockMeta(lastBlock, start, this.blockDataSize);
@@ -327,8 +339,10 @@ export class BlockFS {
 		return { start: blockID, end: newEndBlockID };
 	}
 
-	async appendFilePath(path: string, data: Uint8Array) {
-		const entry = await this.ensureEntryForFilePath(path);
+	async appendFile(path: string | number, data: Uint8Array | string) {
+		if (isString(data)) data = new TextEncoder().encode(data);
+		if (!isString(path)) return this.appendFileRaw(path, data);
+		const entry = await this.ensureEntryForPath(path, EntryType.FILE);
 		const { start, end } = await this.appendFileRaw(entry.end, data);
 		if (entry.start === this.sentinelID) entry.start = start;
 		entry.end = end;
@@ -338,23 +352,16 @@ export class BlockFS {
 		return { start: entry.start, end: entry.end, size: Number(entry.size) };
 	}
 
-	appendText(blockID: number, text: string) {
-		return this.appendFileRaw(blockID, new TextEncoder().encode(text));
-	}
-
-	async appendTextPath(path: string, text: string) {
-		return this.appendFilePath(path, new TextEncoder().encode(text));
-	}
-
-	async deleteFile(blockID: number) {
-		return this.freeBlocks(await this.blockList(blockID));
-	}
-
-	async deleteFilePath(path: string) {
-		const entry = await this.entryForPath(path);
-		await this.deleteFile(entry.start);
-		entry.release();
-		await entry.save();
+	async deleteFile(path: string | number) {
+		if (isString(path)) {
+			const entry = await this.entryForPath(path);
+			if (entry.isDirectory()) illegalArgs("path is a directory");
+			await this.freeBlocks(await this.blockList(entry.start));
+			entry.release();
+			await entry.save();
+		} else {
+			await this.freeBlocks(await this.blockList(path));
+		}
 	}
 
 	async blockList(blockID: number) {
@@ -377,16 +384,15 @@ export class BlockFS {
 			this.blockIndex.setAt(id, state);
 			updatedBlocks.add(((id >>> 3) / blockSize) | 0);
 		}
-		const tmp = new Uint8Array(blockSize);
 		for (let id of updatedBlocks) {
 			this.storage.logger!.debug("update block index", id);
 			const chunk = this.blockIndex.data.subarray(
 				id * blockSize,
 				(id + 1) * blockSize
 			);
-			tmp.set(chunk);
-			if (chunk.length < blockSize) tmp.fill(0, chunk.length);
-			await this.storage.saveBlock(id, tmp);
+			this.tmp.set(chunk);
+			if (chunk.length < blockSize) this.tmp.fill(0, chunk.length);
+			await this.storage.saveBlock(id, this.tmp);
 		}
 	}
 
