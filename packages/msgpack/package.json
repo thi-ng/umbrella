@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/msgpack",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "Small & fast msgpack serialization & deserialization",
 	"type": "module",
 	"module": "./index.js",
@@ -39,9 +39,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.7.4",
-		"@thi.ng/errors": "^2.5.30",
-		"@thi.ng/strings": "^3.9.9"
+		"@thi.ng/checks": "^3.7.5",
+		"@thi.ng/errors": "^2.5.31",
+		"@thi.ng/strings": "^3.9.10"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.2",
