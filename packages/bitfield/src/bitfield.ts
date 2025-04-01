@@ -135,6 +135,23 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 					: (<ArrayLike<boolean | number>>vals)[i]
 			);
 		}
+		return this;
+	}
+
+	/**
+	 * Set bits from `start` until `end` index to given `value`. If `end` is
+	 * omitted, defaults to end of entire field.
+	 *
+	 * @param value
+	 * @param start
+	 * @param end
+	 */
+	fill(value: boolean | number, start = 0, end = this.n) {
+		const $end = end === this.n ? align(start, 8) : end;
+		for (let i = start; i < $end; i++) this.setAt(i, value);
+		// fill remaining bytes
+		if (end === this.n) this.data.fill(value ? 0xff : 0, $end >>> 3);
+		return this;
 	}
 
 	/**

@@ -1,0 +1,120 @@
+{
+	"name": "@thi.ng/block-fs",
+	"version": "0.0.1",
+	"description": "Customizable block-based storage, adapters & file system layer",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://thi.ng/block-fs",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		},
+		{
+			"type": "liberapay",
+			"url": "https://liberapay.com/thi.ng"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "bun ../../tools/src/clean-package.ts",
+		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "yarn npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.11.24",
+		"@thi.ng/binary": "^3.4.47",
+		"@thi.ng/bitfield": "^2.3.69",
+		"@thi.ng/checks": "^3.7.4",
+		"@thi.ng/errors": "^2.5.30",
+		"@thi.ng/file-io": "^2.1.33",
+		"@thi.ng/logger": "^3.1.5",
+		"@thi.ng/random": "^4.1.15",
+		"@thi.ng/strings": "^3.9.9"
+	},
+	"devDependencies": {
+		"@types/node": "^22.13.14",
+		"esbuild": "^0.25.2",
+		"typedoc": "^0.28.1",
+		"typescript": "^5.8.2"
+	},
+	"keywords": [
+		"binary",
+		"block",
+		"file",
+		"file-system",
+		"memory",
+		"memory-mapped",
+		"path",
+		"storage",
+		"typedarray",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./directory": {
+			"default": "./directory.js"
+		},
+		"./entry": {
+			"default": "./entry.js"
+		},
+		"./fs": {
+			"default": "./fs.js"
+		},
+		"./lock": {
+			"default": "./lock.js"
+		},
+		"./storage/astorage": {
+			"default": "./storage/astorage.js"
+		},
+		"./storage/file": {
+			"default": "./storage/file.js"
+		},
+		"./storage/memory": {
+			"default": "./storage/memory.js"
+		},
+		"./utils": {
+			"default": "./utils.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2024
+	}
+}
