@@ -172,4 +172,8 @@ export class Entry implements IEntry {
 		if (this.type !== EntryType.DIR) illegalArgs("entry isn't a directory");
 		return new Directory(this.fs, this);
 	}
+
+	isDirectory() {
+		return this.type === EntryType.DIR;
+	}
 }

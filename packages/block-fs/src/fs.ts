@@ -145,6 +145,31 @@ export class BlockFS {
 		illegalArgs(path);
 	}
 
+	async ensureEntryForFilePath(path: string) {
+		let dir = this.rootDir;
+		if (path[0] === "/") path = path.substring(1);
+		if (path === "") return dir.entry;
+		const $path = path.split("/");
+		for (let i = 0; i < $path.length; i++) {
+			let entry = await dir.findName($path[i]);
+			if (!entry) {
+				if (i < $path.length - 1) {
+					entry = await dir.mkdir($path[i]);
+				} else {
+					return await dir.addEntry({
+						name: $path[i],
+						type: EntryType.FILE,
+						start: this.sentinelID,
+					});
+				}
+			}
+			if (i === $path.length - 1) return entry;
+			if (entry.type !== EntryType.DIR) illegalArgs(path);
+			dir = new Directory(this, entry);
+		}
+		illegalArgs(path);
+	}
+
 	async blockForEntry(path: string | number) {
 		return isString(path) ? (await this.entryForPath(path)).start : path;
 	}
@@ -209,9 +234,8 @@ export class BlockFS {
 		return JSON.parse(await this.readText(blockID));
 	}
 
-	async writeFile(data: Uint8Array) {
+	async writeFileRaw(blocks: number[], data: Uint8Array) {
 		let offset = 0;
-		const blocks = await this.allocateBlocks(data.length);
 		for (let i = 0, numBlocks = blocks.length - 1; i <= numBlocks; i++) {
 			const id = blocks[i];
 			const block = await this.storage.loadBlock(id);
@@ -236,11 +260,40 @@ export class BlockFS {
 		};
 	}
 
+	async writeFile(data: Uint8Array) {
+		return this.writeFileRaw(await this.allocateBlocks(data.length), data);
+	}
+
 	writeText(text: string) {
 		return this.writeFile(new TextEncoder().encode(text));
 	}
 
-	async appendFile(blockID: number, data: Uint8Array) {
+	async writeFilePath(path: string, data: Uint8Array) {
+		const entry = await this.ensureEntryForFilePath(path);
+		let blocks = await this.blockList(entry.start);
+		const overflow = data.length - blocks.length * this.blockDataSize;
+		if (overflow > 0) {
+			blocks.push(...(await this.allocateBlocks(overflow)));
+		} else if (overflow < 0) {
+			const needed = Math.ceil(data.length / this.blockDataSize);
+			await this.freeBlocks(blocks.slice(needed));
+			blocks = blocks.slice(0, needed);
+		}
+		blocks.sort();
+		entry.start = blocks[0];
+		entry.end = blocks[blocks.length - 1];
+		entry.size = BigInt(data.length);
+		entry.mtime = Date.now();
+		await entry.save();
+		return this.writeFileRaw(blocks, data);
+	}
+
+	async writeTextPath(path: string, text: string) {
+		return this.writeFilePath(path, new TextEncoder().encode(text));
+	}
+
+	async appendFileRaw(blockID: number, data: Uint8Array) {
+		if (blockID === this.sentinelID) return this.writeFile(data);
 		const blocks = await this.blockList(blockID);
 		const lastBlockID = blocks[blocks.length - 1];
 		const lastBlock = await this.storage.loadBlock(lastBlockID);
@@ -274,16 +327,39 @@ export class BlockFS {
 		return { start: blockID, end: newEndBlockID };
 	}
 
+	async appendFilePath(path: string, data: Uint8Array) {
+		const entry = await this.ensureEntryForFilePath(path);
+		const { start, end } = await this.appendFileRaw(entry.end, data);
+		if (entry.start === this.sentinelID) entry.start = start;
+		entry.end = end;
+		entry.size += BigInt(data.length);
+		entry.mtime = Date.now();
+		await entry.save();
+		return { start: entry.start, end: entry.end, size: Number(entry.size) };
+	}
+
 	appendText(blockID: number, text: string) {
-		return this.appendFile(blockID, new TextEncoder().encode(text));
+		return this.appendFileRaw(blockID, new TextEncoder().encode(text));
+	}
+
+	async appendTextPath(path: string, text: string) {
+		return this.appendFilePath(path, new TextEncoder().encode(text));
 	}
 
 	async deleteFile(blockID: number) {
 		return this.freeBlocks(await this.blockList(blockID));
 	}
 
+	async deleteFilePath(path: string) {
+		const entry = await this.entryForPath(path);
+		await this.deleteFile(entry.start);
+		entry.release();
+		await entry.save();
+	}
+
 	async blockList(blockID: number) {
 		const blocks: number[] = [];
+		if (blockID === this.sentinelID) return blocks;
 		while (true) {
 			blocks.push(blockID);
 			const block = await this.storage.loadBlock(blockID);

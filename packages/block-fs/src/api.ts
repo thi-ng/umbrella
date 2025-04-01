@@ -61,6 +61,8 @@ export interface IEntry extends Required<EntrySpec> {
 	release(): void;
 
 	save(): Promise<void>;
+
+	isDirectory(): boolean;
 }
 
 export interface IDirectory extends AsyncIterable<IEntry> {
