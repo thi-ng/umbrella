@@ -78,8 +78,8 @@ cat << EOF > "$MODULE"/package.json
 	},
 	"devDependencies": {
 		"@thi.ng/meta-css": "workspace:^",
-		"typescript": "^5.7.3",
-		"vite": "^6.1.0"
+		"typescript": "^5.8.2",
+		"vite": "^6.2.4"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
