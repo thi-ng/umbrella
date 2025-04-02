@@ -128,7 +128,7 @@ export class BlockFS {
 			storage.blockSize;
 		this.dataStartBlockID = this.rootDirBlockID + 1;
 		this.dirDataOffset = this.blockDataOffset + this.blockIDBytes;
-		this.sentinelID = storage.numBlocks - 1;
+		this.sentinelID = 2 ** (this.blockIDBytes * 8) - 1;
 		this.tmp = new Uint8Array(storage.blockSize);
 	}
 
