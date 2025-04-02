@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { utf8Length } from "@thi.ng/strings/utf8";
 import {
@@ -35,18 +36,22 @@ export class Directory implements IDirectory {
 	}
 
 	async traverse() {
+		const {
+			fs,
+			fs: { sentinelID, storage },
+		} = this;
 		const blocks: number[] = [];
 		const entries: IEntry[] = [];
 		let blockID = this.entry.start;
 		while (true) {
 			blocks.push(blockID);
-			const block = await this.fs.storage.loadBlock(blockID);
-			let { next, size } = this.fs.getBlockMeta(block);
-			if (!next) next = this.fs.sentinelID;
+			const block = await storage.loadBlock(blockID);
+			let { next, size } = fs.getBlockMeta(block);
+			if (!next) next = sentinelID;
 			for (let i = 0; i < size; i++) {
 				entries.push(this.defEntry(i, blockID, block));
 			}
-			if (next === this.fs.sentinelID) break;
+			if (next === sentinelID) break;
 			blockID = next;
 		}
 		return { blocks, entries };
@@ -59,16 +64,17 @@ export class Directory implements IDirectory {
 	}
 
 	async mkdir(name: string) {
+		const fs = this.fs;
 		const length = utf8Length(name);
-		if (!length || length > this.fs.opts.entry.maxLength)
+		if (!length || length > fs.opts.entry.maxLength)
 			illegalArgs(`invalid name: '${name}'`);
 		const traversed = await this.traverse();
 		this.ensureUniqueName(name, traversed.entries);
-		const block = (await this.fs.allocateBlocks(1))[0];
-		const data = await this.fs.storage.loadBlock(block);
-		this.fs.setBlockMeta(data, this.fs.sentinelID, 0);
-		this.fs.setBlockLink(data, this.entry.start, this.fs.dataStartBlockID);
-		await this.fs.storage.saveBlock(block, data);
+		const block = (await fs.allocateBlocks(1))[0];
+		const data = await fs.storage.loadBlock(block);
+		fs.setBlockMeta(data, fs.sentinelID, 0);
+		fs.setBlockLink(data, this.entry.start, fs.dataStartBlockID);
+		await fs.storage.saveBlock(block, data);
 		return this.addEntry(
 			{
 				name,

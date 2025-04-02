@@ -28,19 +28,36 @@ export interface IBlockStorage {
 
 export interface BlockStorageOpts {
 	logger?: ILogger;
+	/**
+	 * Max. number of blocks. Will be rounded up to a multiple of 8.
+	 */
 	numBlocks: number;
+	/**
+	 * Block size in bytes. Must be a power of 2. For usage with
+	 * {@link BlockFS}, requires a minimum size of 128 bytes (though in practice
+	 * should be larger to minimize overhead per block).
+	 */
 	blockSize: Pow2;
 }
 
 export interface EntrySpec {
+	/** Entry type (file or directory) */
 	type: EntryType;
+	/** TODO currently still unused */
 	locked?: boolean;
+	/** Owner ID */
 	owner?: number;
+	/** Entry name */
 	name: string;
+	/** Only used for files. File size as bigint */
 	size?: bigint;
+	/** Entry creation timestamp */
 	ctime?: number;
+	/** Entry modification timestamp */
 	mtime?: number;
+	/** Data start block ID */
 	start: number;
+	/** Data end block ID */
 	end?: number;
 }
 

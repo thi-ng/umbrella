@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { utf8Length } from "@thi.ng/strings/utf8";
@@ -160,7 +161,7 @@ export class Entry implements IEntry {
 			path.unshift(entry.name);
 			entry = entry.parent?.entry;
 		}
-		return path.join("/");
+		return path.join(this.fs.opts.separator);
 	}
 
 	/**

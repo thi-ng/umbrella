@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ILogger } from "@thi.ng/logger";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
 import type { BlockStorageOpts, IBlock, IBlockStorage } from "../api.js";

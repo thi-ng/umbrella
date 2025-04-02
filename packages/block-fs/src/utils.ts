@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const encodeBytes = (
 	bytes: Uint8Array,
 	value: number,
