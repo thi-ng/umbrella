@@ -171,33 +171,53 @@ npx @thi.ng/block-fs list dummy.dat
 # /utils.ts
 
 npx @thi.ng/block-fs list --tree dummy.dat
-# ├─api.ts
-# ├─cli.ts
-# ├─directory.ts
-# ├─entry.ts
-# ├─fs.ts
-# ├─index.ts
-# ├─lock.ts
-# ├─storage
-# │ ├─astorage.ts
-# │ ├─file.ts
-# │ ├─memory.ts
-# ├─utils.ts
+# ├── api.ts
+# ├── cli.ts
+# ├── directory.ts
+# ├── entry.ts
+# ├── fs.ts
+# ├── index.ts
+# ├── lock.ts
+# ├── storage
+# │   ├── astorage.ts
+# │   ├── file.ts
+# │   └── memory.ts
+# └── utils.ts
 
 # display file sizes & modification times
 npx @thi.ng/block-fs list --tree --all dummy.dat
-# ├─api.ts        2204  2025-04-02T10:22:55.573Z
-# ├─cli.ts        6613  2025-04-02T15:36:28.321Z
-# ├─directory.ts  3994  2025-04-02T13:47:00.108Z
-# ├─entry.ts      4130  2025-04-02T10:22:55.574Z
-# ├─fs.ts         16377 2025-04-02T13:46:36.608Z
-# ├─index.ts      317   2025-04-01T21:38:08.232Z
-# ├─lock.ts       1501  2025-04-01T21:38:08.232Z
-# ├─storage             2025-04-02T15:42:35.297Z
-# │ ├─astorage.ts 1205  2025-04-02T10:22:55.574Z
-# │ ├─file.ts     1780  2025-04-02T14:25:12.461Z
-# │ ├─memory.ts   1802  2025-04-02T14:26:02.163Z
-# ├─utils.ts      418   2025-04-02T10:22:55.574Z
+# ├── api.ts           2204   2025-04-02T10:22:55.573Z
+# ├── cli.ts           6799   2025-04-02T18:07:58.895Z
+# ├── directory.ts     3994   2025-04-02T13:47:00.108Z
+# ├── entry.ts         4130   2025-04-02T10:22:55.574Z
+# ├── fs.ts            16377  2025-04-02T13:46:36.608Z
+# ├── index.ts         317    2025-04-01T21:38:08.232Z
+# ├── lock.ts          1501   2025-04-01T21:38:08.232Z
+# ├── storage                 2025-04-02T18:33:47.389Z
+# │   ├── astorage.ts  1205   2025-04-02T10:22:55.574Z
+# │   ├── file.ts      1780   2025-04-02T14:25:12.461Z
+# │   └── memory.ts    1802   2025-04-02T14:26:02.163Z
+# └── utils.ts         418    2025-04-02T10:22:55.574Z
+```
+
+General usage:
+
+```text
+npx @thi.ng/block-fs list --help
+
+Usage: blockfs <cmd> [opts] input
+
+Flags:
+
+-a, --all                       Display all attribs
+-t, --tree                      List files as tree
+-v, --verbose                   Display extra process information
+-m, --with-mtime                Display modified times
+-s, --with-size                 Display file sizes
+
+Main:
+
+-bs BYTES, --block-size BYTES   Block size (default: 1024)
 ```
 
 ## Status
