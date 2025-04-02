@@ -73,7 +73,7 @@ export class Directory implements IDirectory {
 		const block = (await fs.allocateBlocks(1))[0];
 		const data = await fs.storage.loadBlock(block);
 		fs.setBlockMeta(data, fs.sentinelID, 0);
-		fs.setBlockLink(data, this.entry.start, fs.dataStartBlockID);
+		fs.setBlockLink(data, this.entry.start, fs.blockDataOffset);
 		await fs.storage.saveBlock(block, data);
 		return this.addEntry(
 			{
