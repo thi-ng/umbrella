@@ -27,6 +27,7 @@ The package also provides an hierarchical filesystem layer with pluggable
 storage providers and other customizable aspects. The default implementation
 supports:
 
+- 8 - 32bit block IDs
 - arbitrarily nested directories
 - filenames of max. 31 bytes (UTF-8) per directory level
 - max. 32 owner IDs
@@ -46,6 +47,9 @@ The API provides functions to:
 The filesystem stores a [bitfield](https://thi.ng/bitfield) of block allocations
 in the first N blocks. The number of blocks used depends on configured block
 size and the max. number of blocks in the storage backend.
+
+Blocks can be reserved for custom purposes by calling
+[`.allocateBlocks()`](https://docs.thi.ng/umbrella/block-fs/classes/BlockFS.html#allocateblocks).
 
 #### Root directory
 
@@ -144,7 +148,10 @@ console.log(await fs.readFile("/deeply/nested/paths/are-ok"));
 
 // iterate all files & directory entries in root dir
 for await (let entry of fs.root.tree()) {
-	console.log(entry.type, entry.path, entry.size, new Date(entry.ctime));
+	// entry.path is absolute path
+	// entry.size is always a bigint
+	// entry.ctime/mtime is UNIX epoch
+	console.log(entry.path, entry.size, new Date(entry.ctime));
 }
 
 // /hello 0n 2025-04-01T20:18:55.916Z
