@@ -361,6 +361,24 @@ export class BlockFS {
 	}
 
 	/**
+	 * Fully reads given file into a single byte buffer and returns it as blob
+	 * object URL, optionally typed with given MIME type.
+	 *
+	 * @remarks
+	 * Reference:
+	 *
+	 * - https://developer.mozilla.org/en-US/docs/Web/API/Blob#creating_a_url_representing_the_contents_of_a_typed_array
+	 *
+	 * @param path
+	 * @param type
+	 */
+	async readAsObjectURL(path: string | number, type?: string) {
+		return URL.createObjectURL(
+			new Blob([await this.readFile(path)], { type })
+		);
+	}
+
+	/**
 	 * Takes an array of block IDs (or `null`) and a `data` byte array. Writes
 	 * chunks of data into given blocks and connecting each block as linked
 	 * list. Returns object of start/end block IDs and data size.
