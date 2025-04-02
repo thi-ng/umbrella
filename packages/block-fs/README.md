@@ -21,6 +21,9 @@
     - [Root directory](#root-directory)
     - [Directory entries](#directory-entries)
     - [File blocks](#file-blocks)
+  - [Command line app](#command-line-app)
+    - [Convert file tree into single BlockFS blob](#convert-file-tree-into-single-blockfs-blob)
+    - [List file tree of a BlockFS blob](#list-file-tree-of-a-blockfs-blob)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -102,6 +105,101 @@ the max. number of blocks in the storage backend.
 
 TODO diagram
 
+### Command line app
+
+The package includes a mult-command CLI app with the following operations:
+
+#### Convert file tree into single BlockFS blob
+
+The `convert` command is used to bundle an entire file tree from the host system
+into a single binary blob based on `BlockFS` with configured block size. The
+file tree MUST fit into the RAM available to `bun` (or `node`).
+
+Once bundled, the binary blob can then be used together with
+[`MemoryBlockStorage`](https://docs.thi.ng/umbrella/block-fs/classes/MemoryBlockStorage.html)
+and [`BlockFS`](https://docs.thi.ng/umbrella/block-fs/classes/BlockFS.html) for
+other purposes (e.g. distributed with your web app to provide a virtual
+filesystem).
+
+Example usage to bundle the source directory of this package:
+
+```bash
+npx @thi.ng/block-fs convert -o dummy.dat packages/block-fs/src/
+
+# [INFO] blockfs: number of files: 11
+# [INFO] blockfs: number of directories: 2
+# [INFO] blockfs: total file size: 40341
+# [INFO] blockfs: number of blocks: 56
+# [INFO] blockfs: writing file: dummy.dat
+```
+
+General usage:
+
+```text
+npx @thi.ng/block-fs convert --help
+
+Usage: blockfs <cmd> [opts] input
+
+Flags:
+
+-v, --verbose                   Display extra process information
+
+Main:
+
+-bs BYTES, --block-size BYTES   Block size (default: 1024)
+-n INT, --num-blocks INT        Number of blocks (multiple of 8)
+-o STR, --out STR               [required] Output file path
+```
+
+#### List file tree of a BlockFS blob
+
+The `list` command is used to list the files & directories stored in a binary blob created via the `convert` command. Several output options (e.g. `tree`-like output) are supported.
+
+```bash
+npx @thi.ng/block-fs list dummy.dat
+# /api.ts
+# /cli.ts
+# /directory.ts
+# /entry.ts
+# /fs.ts
+# /index.ts
+# /lock.ts
+# /storage
+# /storage/astorage.ts
+# /storage/file.ts
+# /storage/memory.ts
+# /utils.ts
+
+npx @thi.ng/block-fs list --tree dummy.dat
+# ├─api.ts
+# ├─cli.ts
+# ├─directory.ts
+# ├─entry.ts
+# ├─fs.ts
+# ├─index.ts
+# ├─lock.ts
+# ├─storage
+# │ ├─astorage.ts
+# │ ├─file.ts
+# │ ├─memory.ts
+# ├─utils.ts
+
+# display file sizes & modification times
+npx @thi.ng/block-fs list --tree --all dummy.dat
+# ├─api.ts        2204  2025-04-02T10:22:55.573Z
+# ├─cli.ts        6613  2025-04-02T15:36:28.321Z
+# ├─directory.ts  3994  2025-04-02T13:47:00.108Z
+# ├─entry.ts      4130  2025-04-02T10:22:55.574Z
+# ├─fs.ts         16377 2025-04-02T13:46:36.608Z
+# ├─index.ts      317   2025-04-01T21:38:08.232Z
+# ├─lock.ts       1501  2025-04-01T21:38:08.232Z
+# ├─storage             2025-04-02T15:42:35.297Z
+# │ ├─astorage.ts 1205  2025-04-02T10:22:55.574Z
+# │ ├─file.ts     1780  2025-04-02T14:25:12.461Z
+# │ ├─memory.ts   1802  2025-04-02T14:26:02.163Z
+# ├─utils.ts      418   2025-04-02T10:22:55.574Z
+```
+
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -134,11 +232,12 @@ For Node.js REPL:
 const bf = await import("@thi.ng/block-fs");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.32 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.43 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
