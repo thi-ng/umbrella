@@ -5,6 +5,9 @@
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
+	"bin": {
+		"blockfs": "bin/blockfs"
+	},
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
@@ -40,6 +43,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.25",
+		"@thi.ng/args": "^2.3.66",
 		"@thi.ng/binary": "^3.4.48",
 		"@thi.ng/bitfield": "^2.4.0",
 		"@thi.ng/checks": "^3.7.5",
@@ -58,10 +62,13 @@
 	"keywords": [
 		"binary",
 		"block",
+		"cli",
+		"conversion",
 		"file",
 		"file-system",
 		"memory",
 		"memory-mapped",
+		"nodejs",
 		"path",
 		"storage",
 		"typedarray",
@@ -80,6 +87,7 @@
 	"files": [
 		"./*.js",
 		"./*.d.ts",
+		"bin",
 		"storage"
 	],
 	"exports": {
@@ -88,6 +96,9 @@
 		},
 		"./api": {
 			"default": "./api.js"
+		},
+		"./cli": {
+			"default": "./cli.js"
 		},
 		"./directory": {
 			"default": "./directory.js"
