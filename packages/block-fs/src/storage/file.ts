@@ -13,21 +13,18 @@ export class FileBlock implements IBlock {
 	constructor(public storage: FileBlockStorage, public id: number) {}
 
 	async load() {
-		const path = this.storage.getPath(this.id);
+		const { storage } = this;
+		const path = storage.getPath(this.id);
 		return existsSync(path)
-			? readBinary(path, this.storage.logger)
-			: new Uint8Array(this.storage.blockSize);
+			? readBinary(path, storage.logger)
+			: new Uint8Array(storage.blockSize);
 	}
 
 	async save(data: Uint8Array) {
-		if (data.length !== this.storage.blockSize)
+		const { storage } = this;
+		if (data.length !== storage.blockSize)
 			illegalArgs(`wrong block size: ${data.length}`);
-		writeFile(
-			this.storage.getPath(this.id),
-			data,
-			null,
-			this.storage.logger
-		);
+		writeFile(storage.getPath(this.id), data, null, storage.logger);
 	}
 
 	async delete() {
@@ -35,7 +32,13 @@ export class FileBlock implements IBlock {
 	}
 }
 
+/**
+ * Configuration options for {@link FileBlockStorage}.
+ */
 export interface FileBlockStorageOpts extends BlockStorageOpts {
+	/**
+	 * Path to host filesystem base directory used for storing blocks.
+	 */
 	baseDir: string;
 }
 

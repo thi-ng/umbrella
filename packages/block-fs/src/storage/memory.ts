@@ -10,17 +10,17 @@ export class MemoryBlock implements IBlock {
 	) {}
 
 	async load() {
-		const size = this.storage.blockSize;
-		return this.storage.buffer.subarray(
-			this.id * size,
-			(this.id + 1) * size
-		);
+		const { storage } = this;
+		storage.logger.debug("load block", this.id);
+		const size = storage.blockSize;
+		return storage.buffer.subarray(this.id * size, (this.id + 1) * size);
 	}
 
 	async save(data: Uint8Array) {
-		if (data.length !== this.storage.blockSize)
-			illegalArgs(`wrong block size`);
-		this.storage.buffer.set(data, this.id * this.storage.blockSize);
+		const { storage } = this;
+		if (data.length !== storage.blockSize) illegalArgs(`wrong block size`);
+		storage.logger.debug("save block", this.id);
+		storage.buffer.set(data, this.id * storage.blockSize);
 	}
 
 	async delete() {
@@ -29,12 +29,29 @@ export class MemoryBlock implements IBlock {
 	}
 }
 
+/**
+ * Configuration options for {@link MemoryBlockStorage}.
+ */
+export interface MemoryBlockStorageOpts extends BlockStorageOpts {
+	/**
+	 * Optional, pre-defined/loaded byte buffer. Must have at least `numBlocks *
+	 * blockSize` capacity.
+	 */
+	buffer?: Uint8Array;
+}
+
 export class MemoryBlockStorage extends ABlockStorage<MemoryBlock> {
 	buffer: Uint8Array;
 
-	constructor(opts: BlockStorageOpts) {
+	constructor(opts: MemoryBlockStorageOpts) {
 		super(opts);
-		this.buffer = new Uint8Array(this.numBlocks * this.blockSize);
+		const size = this.numBlocks * this.blockSize;
+		if (opts.buffer && opts.buffer.length < size) {
+			illegalArgs(
+				`given buffer is too small, expected at least ${size} bytes`
+			);
+		}
+		this.buffer = opts.buffer ?? new Uint8Array(size);
 	}
 
 	async hasBlock(id: number) {
