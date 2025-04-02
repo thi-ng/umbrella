@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-02T10:24:13Z
+- **Last updated**: 2025-04-02T18:47:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,30 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/block-fs@0.3.0) (2025-04-02)
+
+#### 🚀 Features
+
+- add `BlockFS.readAsObjectURL()` ([551327c](https://github.com/thi-ng/umbrella/commit/551327c))
+- add mem storage opts, add logging ([27016d6](https://github.com/thi-ng/umbrella/commit/27016d6))
+  - add `MemoryBlockStorage` support for pre-loaded buffers
+  - add logging
+  - add docs
+- add CLI app wrapper ([68abe74](https://github.com/thi-ng/umbrella/commit/68abe74))
+  - add CLI app wrapper with these commands:
+    - `convert`: convert file tree into single BlockFS blob
+    - `list`: list file tree of a BlockFS blob
+  - update deps
+- improve tree display (`list` cmd) ([a23866c](https://github.com/thi-ng/umbrella/commit/a23866c))
+
+#### 🩹 Bug fixes
+
+- fix parent dir linkage ([a121e76](https://github.com/thi-ng/umbrella/commit/a121e76))
+
+#### ♻️ Refactoring
+
+- update sentinel block ID ([51a1e44](https://github.com/thi-ng/umbrella/commit/51a1e44))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/block-fs@0.2.0) (2025-04-02)
 
