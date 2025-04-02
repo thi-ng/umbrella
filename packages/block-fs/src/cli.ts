@@ -200,23 +200,26 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 		});
 		const bfs = new BlockFS(storage, { logger: ctx.logger });
 		await bfs.init();
-		const tree: [string, IEntry][] = [];
+		const tree: [string, number, IEntry][] = [];
 		for await (let entry of bfs.root.tree()) {
-			tree.push([entry.path, entry]);
+			const path = entry.path;
+			const depth = path.split("/").length - 2;
+			tree.push([path, depth, entry]);
 		}
 		tree.sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
 		const rows: string[][] = [];
 		const maxWidths: number[] = [0, 0, 0];
-		for (let f of tree) {
+		for (let i = 0, num = tree.length - 1; i <= num; i++) {
+			const f = tree[i];
+			const isLast = i === num || f[1] > tree[i + 1][1];
 			const row: string[] = ctx.opts.tree
-				? ["│ ".repeat(f[0].split("/").length - 2) + "├─" + f[1].name]
-				: [f[1].path];
-
+				? ["│   ".repeat(f[1]) + (isLast ? "└── " : "├── ") + f[2].name]
+				: [f[0]];
 			if (ctx.opts.withSize) {
-				row.push(f[1].isDirectory() ? "" : String(Number(f[1].size)));
+				row.push(f[2].isDirectory() ? "" : String(Number(f[2].size)));
 			}
 			if (ctx.opts.withMtime) {
-				row.push(new Date(f[1].mtime).toISOString());
+				row.push(new Date(f[2].mtime).toISOString());
 			}
 			rows.push(row);
 			for (let i = 0; i < row.length; i++) {
@@ -224,7 +227,7 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 			}
 		}
 		for (let row of rows) {
-			console.log(row.map((x, i) => x.padEnd(maxWidths[i])).join(" "));
+			console.log(row.map((x, i) => x.padEnd(maxWidths[i])).join("  "));
 		}
 	},
 };
