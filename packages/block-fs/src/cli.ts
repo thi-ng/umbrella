@@ -22,11 +22,13 @@ const PKG = readJSON(join(process.argv[2], "package.json"));
 
 interface CLIOpts {
 	verbose: boolean;
+	quiet: boolean;
 }
 
 interface ConvertOpts extends CLIOpts {
 	numBlocks?: number;
 	blockSize: number;
+	exclude?: string[];
 	include?: string[];
 	out: string;
 }
@@ -67,25 +69,30 @@ interface CollectedFiles {
 	size: number;
 }
 
-const collectFiles = (ctx: AppCtx<ConvertOpts>): CollectedFiles => {
-	const root = resolve(ctx.inputs[0]);
+const collectFiles = ({
+	opts: { include, exclude },
+	inputs,
+}: AppCtx<ConvertOpts>): CollectedFiles => {
+	const root = resolve(inputs[0]);
 	const filtered: CollectedFiles["files"] = [];
 	const dirs = new Set<string>();
+	const $include = include?.map((x) => new RegExp(x));
+	const $exclude = exclude?.map((x) => new RegExp(x));
 	let total = 0;
 	for (let f of files(root)) {
 		const stats = statSync(f);
-		if (stats.isFile()) {
-			const dest = relative(root, f);
-			filtered.push({
-				src: f,
-				dest,
-				size: stats.size,
-				ctime: stats.ctimeMs,
-				mtime: stats.mtimeMs,
-			});
-			dirs.add(dirname(dest));
-			total += stats.size;
-		}
+		if ($exclude && $exclude.some((x) => x.test(f))) continue;
+		if ($include && !$include.some((x) => x.test(f))) continue;
+		const dest = relative(root, f);
+		filtered.push({
+			src: f,
+			dest,
+			size: stats.size,
+			ctime: stats.ctimeMs,
+			mtime: stats.mtimeMs,
+		});
+		dirs.add(dirname(dest));
+		total += stats.size;
 	}
 	return { files: filtered, dirs: [...dirs], size: total };
 };
@@ -128,9 +135,14 @@ export const CONVERT: Command<ConvertOpts, CLIOpts, AppCtx<ConvertOpts>> = {
 			desc: "Output file path",
 			optional: false,
 		}),
+		exclude: strings({
+			alias: "e",
+			desc: "File exclusion regexp",
+			hint: "EXT",
+		}),
 		include: strings({
 			alias: "i",
-			desc: "Only include file extensions",
+			desc: "File inclusion regexp",
 			hint: "EXT",
 		}),
 	},
@@ -155,7 +167,7 @@ export const CONVERT: Command<ConvertOpts, CLIOpts, AppCtx<ConvertOpts>> = {
 		const bfs = new BlockFS(storage, { logger: ctx.logger });
 		await bfs.init();
 		for (let f of collected.files) {
-			ctx.logger.debug("writing file:", f.dest);
+			ctx.logger.info("writing file:", f.dest);
 			await bfs.writeFile(f.dest, readBinary(f.src));
 			const entry = await bfs.entryForPath(f.dest);
 			entry.ctime = f.ctime;
@@ -236,7 +248,11 @@ cliApp<CLIOpts, AppCtx<any>>({
 	opts: {
 		verbose: flag({
 			alias: "v",
-			desc: "Display extra process information",
+			desc: "Display extra logging information",
+		}),
+		quiet: flag({
+			alias: "q",
+			desc: "Disable logging",
 		}),
 	},
 	commands: {
@@ -245,7 +261,8 @@ cliApp<CLIOpts, AppCtx<any>>({
 	},
 	name: "blockfs",
 	ctx: async (ctx) => {
-		if (ctx.opts.verbose) ctx.logger.level = LogLevel.DEBUG;
+		if (ctx.opts.quiet) ctx.logger.level = LogLevel.NONE;
+		else if (ctx.opts.verbose) ctx.logger.level = LogLevel.DEBUG;
 		return ctx;
 	},
 	start: 3,
