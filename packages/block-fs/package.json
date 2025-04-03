@@ -50,6 +50,7 @@
 		"@thi.ng/errors": "^2.5.31",
 		"@thi.ng/file-io": "^2.1.34",
 		"@thi.ng/logger": "^3.1.6",
+		"@thi.ng/mime": "^2.7.7",
 		"@thi.ng/random": "^4.1.16",
 		"@thi.ng/strings": "^3.9.10"
 	},
@@ -60,14 +61,16 @@
 		"typescript": "^5.8.2"
 	},
 	"keywords": [
+		"async",
 		"binary",
 		"block",
 		"cli",
 		"conversion",
 		"file",
-		"file-system",
+		"filesystem",
 		"memory",
 		"memory-mapped",
+		"mime",
 		"nodejs",
 		"path",
 		"storage",
