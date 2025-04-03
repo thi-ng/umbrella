@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
+import { isArrayBufferLike } from "@thi.ng/checks/is-arraybufferlike";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { BlockStorageOpts, IBlock } from "../api.js";
 import { ABlockStorage } from "./astorage.js";
@@ -37,7 +38,7 @@ export interface MemoryBlockStorageOpts extends BlockStorageOpts {
 	 * Optional, pre-defined/loaded byte buffer. Must have at least `numBlocks *
 	 * blockSize` capacity.
 	 */
-	buffer?: Uint8Array;
+	buffer?: Uint8Array | ArrayBufferLike;
 }
 
 export class MemoryBlockStorage extends ABlockStorage<MemoryBlock> {
@@ -46,12 +47,17 @@ export class MemoryBlockStorage extends ABlockStorage<MemoryBlock> {
 	constructor(opts: MemoryBlockStorageOpts) {
 		super(opts);
 		const size = this.numBlocks * this.blockSize;
-		if (opts.buffer && opts.buffer.length < size) {
+		const buffer = opts.buffer
+			? isArrayBufferLike(opts.buffer)
+				? new Uint8Array(opts.buffer)
+				: opts.buffer
+			: undefined;
+		if (buffer && buffer.length < size) {
 			illegalArgs(
 				`given buffer is too small, expected at least ${size} bytes`
 			);
 		}
-		this.buffer = opts.buffer ?? new Uint8Array(size);
+		this.buffer = buffer ?? new Uint8Array(size);
 	}
 
 	async hasBlock(id: number) {
