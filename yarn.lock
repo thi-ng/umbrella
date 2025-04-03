@@ -4118,6 +4118,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.31"
     "@thi.ng/file-io": "npm:^2.1.34"
     "@thi.ng/logger": "npm:^3.1.6"
+    "@thi.ng/mime": "npm:^2.7.7"
     "@thi.ng/random": "npm:^4.1.16"
     "@thi.ng/strings": "npm:^3.9.10"
     "@types/node": "npm:^22.13.14"

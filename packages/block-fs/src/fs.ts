@@ -7,6 +7,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { ILogger } from "@thi.ng/logger";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
+import { preferredTypeForPath } from "@thi.ng/mime";
 import {
 	EntryType,
 	type IBlockStorage,
@@ -365,6 +366,10 @@ export class BlockFS {
 	 * object URL, optionally typed with given MIME type.
 	 *
 	 * @remarks
+	 * If `type` is omitted, it will be attempted to be inferred automatically
+	 * via [thi.ng/mime](https://thi.ng/mime).
+	 *
+	 * @remarks
 	 * Reference:
 	 *
 	 * - https://developer.mozilla.org/en-US/docs/Web/API/Blob#creating_a_url_representing_the_contents_of_a_typed_array
@@ -374,7 +379,11 @@ export class BlockFS {
 	 */
 	async readAsObjectURL(path: string | number, type?: string) {
 		return URL.createObjectURL(
-			new Blob([await this.readFile(path)], { type })
+			new Blob([await this.readFile(path)], {
+				type:
+					type ??
+					(isString(path) ? preferredTypeForPath(path) : undefined),
+			})
 		);
 	}
 
