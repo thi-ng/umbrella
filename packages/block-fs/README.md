@@ -28,6 +28,8 @@
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [Basic usage](#basic-usage)
+  - [Working with a converted file system blob](#working-with-a-converted-file-system-blob)
 - [Authors](#authors)
 - [License](#license)
 
@@ -119,7 +121,8 @@ Once bundled, the binary blob can then be used together with
 [`MemoryBlockStorage`](https://docs.thi.ng/umbrella/block-fs/classes/MemoryBlockStorage.html)
 and [`BlockFS`](https://docs.thi.ng/umbrella/block-fs/classes/BlockFS.html) for
 other purposes (e.g. distributed with your web app to provide a virtual
-filesystem).
+filesystem). Also see [API example further
+below](#working-with-a-converted-file-system-blob).
 
 Example usage to bundle the source directory of this package:
 
@@ -138,15 +141,31 @@ General usage:
 ```text
 npx @thi.ng/block-fs convert --help
 
-Usage: blockfs <cmd> [opts] input
+ █ █   █           │
+██ █               │
+ █ █ █ █   █ █ █ █ │ @thi.ng/block-fs 0.4.0
+ █ █ █ █ █ █ █ █ █ │ Block-based storage & file system layer
+                 █ │
+               █ █ │
+
+Usage: blockfs <cmd> [opts] input [...]
+       blockfs <cmd> --help
+
+Available commands:
+
+convert         : Convert file tree into single BlockFS blob
+list            : List file tree of a BlockFS blob
 
 Flags:
 
--v, --verbose                   Display extra process information
+-q, --quiet                     Disable logging
+-v, --verbose                   Display extra logging information
 
 Main:
 
 -bs BYTES, --block-size BYTES   Block size (default: 1024)
+-i EXT, --exclude EXT           [multiple] File exclusion regexp
+-i EXT, --include EXT           [multiple] File inclusion regexp
 -n INT, --num-blocks INT        Number of blocks (multiple of 8)
 -o STR, --out STR               [required] Output file path
 ```
@@ -252,7 +271,7 @@ For Node.js REPL:
 const bf = await import("@thi.ng/block-fs");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.43 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.50 KB
 
 ## Dependencies
 
@@ -264,6 +283,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.43 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
@@ -273,7 +293,9 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 [Generated API docs](https://docs.thi.ng/umbrella/block-fs/)
 
-```ts tangle:export/readme.ts
+### Basic usage
+
+```ts tangle:export/readme-1.ts
 import { BlockFS, MemoryBlockStorage } from "@thi.ng/block-fs";
 
 // create in-memory storage (64KB)
@@ -333,6 +355,45 @@ for await (let entry of fs.root.tree()) {
 // /deeply/nested 0n 2025-04-01T20:18:55.919Z
 // /deeply/nested/paths 0n 2025-04-01T20:18:55.919Z
 // /deeply/nested/paths/are-ok 4n 2025-04-01T20:18:55.919Z
+```
+
+### Working with a converted file system blob
+
+This example shows how to use a binary blob created via the [CLI `blockfs
+convert` command](#convert-file-tree-into-single-blockfs-blob) as a virtual file
+system...
+
+```ts tangle:export/readme-2.ts
+import { BlockFS, MemoryBlockStorage } from "@thi.ng/block-fs";
+
+// load binary blob
+const response = await fetch("./blocks.dat");
+const buffer = await response.arrayBuffer();
+
+// wrap as block storage
+const storage = new MemoryBlockStorage({
+    buffer,
+    blockSize: 1024,
+    numBlocks: buffer.byteLength / 1024
+});
+
+// wrap as file system
+const fs = new BlockFS(storage);
+
+// list all entries (recursive)
+for await(let f of fs.root.tree()) {
+    console.log(f.path);
+}
+
+// list all entries in a directory
+const dir = (await fs.entryForPath("/path/to/dir")).directory;
+for await (let f of dir) {
+    console.log(f.path);
+}
+
+// load an image as blob URL (MIME type is inferred automatically)
+const img = new Image();
+img.src = await fs.readAsObjectURL("/assets/test.jpg");
 ```
 
 ## Authors
