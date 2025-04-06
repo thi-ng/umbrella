@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-02T18:47:59Z
+- **Last updated**: 2025-04-06T13:54:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/block-fs@0.4.0) (2025-04-06)
+
+#### 🚀 Features
+
+- add support for wrapping `ArrayBuffer` ([e23f008](https://github.com/thi-ng/umbrella/commit/e23f008))
+  - update `MemoryBlockStorageOpts.buffer` to allow array buffers
+  - update `MemoryBlockStorage` ctor
+- auto-infer MIME type in `.readAsObjectURL()` ([8fbcebd](https://github.com/thi-ng/umbrella/commit/8fbcebd))
+  - use `preferredTypeForPath()` as MIME type fallback
+  - update deps
+- update CLI, add include/exclude regexp, logging ([ef04e09](https://github.com/thi-ng/umbrella/commit/ef04e09))
+  - add support for multiple include/exclude regexps in `convert` command
+  - add `--quiet` flag to disable logging
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/block-fs@0.3.0) (2025-04-02)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/poisson",
-	"version": "3.2.32",
+	"version": "3.2.33",
 	"description": "nD Stratified grid and Poisson-disc sampling w/ support for spatial density functions and custom PRNGs",
 	"type": "module",
 	"module": "./index.js",
@@ -41,9 +41,9 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.25",
 		"@thi.ng/checks": "^3.7.5",
-		"@thi.ng/geom-accel": "^4.1.32",
+		"@thi.ng/geom-accel": "^4.1.33",
 		"@thi.ng/random": "^4.1.16",
-		"@thi.ng/vectors": "^7.13.0"
+		"@thi.ng/vectors": "^7.13.1"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.2",
