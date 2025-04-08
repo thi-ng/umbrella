@@ -12,6 +12,8 @@ interface FnSpec {
 	name: string;
 	/** Function type */
 	type: string;
+	/** Generic (nD) function type */
+	typeGeneric?: string;
 	/** Higher order fn name (to replace `op` in original code) */
 	op?: string;
 	/** VOP dispatch argument index, default 1 */
@@ -22,11 +24,15 @@ interface FnSpec {
 	sep?: string;
 	/** Object of param descriptors */
 	params?: IObjectOf<string>;
+	/** Object of param descriptors for generic version */
+	paramsGeneric?: IObjectOf<string>;
 	/** Object of custom imports. Keys = pkg names, values = syms */
 	imports?: IObjectOf<string>;
 	/** Custom imports for generic versions, defaults to {@link FnSpec.imports} */
 	importsGeneric?: IObjectOf<string>;
 	pre?: string[];
+	/** If true (default), op has a multi-method */
+	multi?: boolean;
 }
 
 const formatFunction = (
@@ -62,16 +68,20 @@ const formatDocs = (
 const emitFamily = ({
 	name,
 	type,
+	typeGeneric = "Multi" + type,
 	dispatch = 1,
 	doc = [],
 	params,
+	paramsGeneric = params,
 	imports = {},
 	importsGeneric,
 	sep = "",
 	pre = [],
+	multi = true,
 	op,
 }: FnSpec) => {
 	const nakedType = type.replace(/<[a-z0-9, ]+>$/i, "");
+	const nakedTypeGeneric = typeGeneric.replace(/<[a-z0-9, ]+>$/i, "");
 	const typeImport = `import type { ${nakedType} } from "../src/api.js";`;
 	const userImportsFixed = Object.entries(imports).map(
 		([pkg, syms]) => `import { ${syms} } from "${pkg}";`
@@ -79,31 +89,39 @@ const emitFamily = ({
 	const userImportsGeneric = Object.entries(importsGeneric ?? imports).map(
 		([pkg, syms]) => `import { ${syms} } from "${pkg}";`
 	);
-	const $imports = [
-		...userImportsGeneric,
-		`import { vop } from "../src/vop.js";`,
-	];
+	const $imports = [...userImportsGeneric];
+	if (multi) $imports.push(`import { vop } from "../src/vop.js";`);
 	const $docs = doc.join("\n");
-	const adds = [
-		...formatDocs(
-			$docs +
-				"\n\n@remarks\nMulti-method, auto-delegates to optimized versions where possible.",
-			"n",
-			params
-		),
-		`export const ${name}: Multi${type} = vop(${dispatch});`,
-		`${name}.default(${formatFunction(
-			name,
-			(<any>v)[name].impl().toString(),
-			type,
-			"",
-			op
-		)});`,
-	];
+	const generic = multi
+		? [
+				...formatDocs(
+					$docs +
+						"\n\n@remarks\nMulti-method, auto-delegates to optimized versions where possible.",
+					"n",
+					paramsGeneric
+				),
+				`export const ${name}: ${typeGeneric} = vop(${dispatch});`,
+				`${name}.default(${formatFunction(
+					name,
+					(<any>v)[name].impl().toString(),
+					type,
+					"",
+					op
+				)});`,
+		  ]
+		: [
+				...formatDocs($docs, "n", paramsGeneric),
+				`export const ${name}: ${typeGeneric} = ${formatFunction(
+					name,
+					(<any>v)[name].toString(),
+					type,
+					"",
+					op
+				)};`,
+		  ];
 	for (let d of [2, 3, 4]) {
 		const id = name + sep + d;
 		if (!(<any>v)[id]) continue;
-		$imports.push(`import { ${id} } from "./${id}.js";`);
 		writeText(
 			`${OUT_DIR}/${id}.ts`,
 			[
@@ -122,16 +140,19 @@ const emitFamily = ({
 			],
 			LOGGER
 		);
-		adds.push(`${name}.add(${d}, ${id});`);
+		if (multi) {
+			$imports.push(`import { ${id} } from "./${id}.js";`);
+			generic.push(`${name}.add(${d}, ${id});`);
+		}
 	}
 	writeText(
 		`${OUT_DIR}/${name}.ts`,
 		[
-			`import type { Multi${nakedType} } from "../src/api.js";`,
+			`import type { ${nakedTypeGeneric} } from "../src/api.js";`,
 			...$imports,
 			"",
 			...pre,
-			...adds,
+			...generic,
 		],
 		LOGGER
 	);
@@ -175,6 +196,52 @@ const PARAMS_VVN = {
 };
 
 const PARAMS_N = { a: "vector", n: "scalar" };
+
+const PARAMS_SVV = {
+	out: "output vector",
+	a: "input vector",
+	b: "input vector",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
+};
+
+const PARAMS_SGVV = {
+	out: "output vector",
+	a: "input vector",
+	b: "input vector",
+	size: "vector size",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
+};
+
+const PARAMS_SVN = {
+	out: "output vector",
+	a: "input vector",
+	n: "scalar",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+};
+
+const PARAMS_SGVN = {
+	out: "output vector",
+	a: "input vector",
+	n: "scalar",
+	size: "vector size",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+};
 
 const SPECS: FnSpec[] = [
 	{
@@ -240,6 +307,26 @@ const SPECS: FnSpec[] = [
 		type: "VecOpVN",
 		doc: ["Componentwise {0}D vector addition with a uniform scalar."],
 		params: PARAMS_VN,
+	},
+	{
+		name: "addNS",
+		type: "VecOpSVN",
+		typeGeneric: "VecOpSGVN",
+		doc: [
+			"Componentwise {0}D strided vector addition with uniform scalar.",
+		],
+		params: PARAMS_SVN,
+		paramsGeneric: PARAMS_SGVN,
+		multi: false,
+	},
+	{
+		name: "addS",
+		type: "VecOpSVV",
+		typeGeneric: "VecOpSGVV",
+		doc: ["Componentwise {0}D strided vector addition."],
+		params: PARAMS_SVV,
+		paramsGeneric: PARAMS_SGVV,
+		multi: false,
 	},
 	{
 		name: "asBVec",
@@ -525,6 +612,26 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_VV,
 	},
 	{
+		name: "divNS",
+		type: "VecOpSVN",
+		typeGeneric: "VecOpSGVN",
+		doc: [
+			"Componentwise {0}D strided vector division with uniform scalar.",
+		],
+		params: PARAMS_SVN,
+		paramsGeneric: PARAMS_SGVN,
+		multi: false,
+	},
+	{
+		name: "divS",
+		type: "VecOpSVV",
+		typeGeneric: "VecOpSGVV",
+		doc: ["Componentwise {0}D strided vector division."],
+		params: PARAMS_SVV,
+		paramsGeneric: PARAMS_SGVV,
+		multi: false,
+	},
+	{
 		name: "dot",
 		type: "VecOpRoVV<number>",
 		doc: ["Computes dot product of given {0}D vectors."],
@@ -553,6 +660,11 @@ const SPECS: FnSpec[] = [
 			"../src/eqdelta": "eqDeltaS",
 		},
 		dispatch: 0,
+	},
+	{
+		name: "every",
+		type: "BVecOpRoV<boolean>",
+		doc: ["Returns true if all vector components are truthy."],
 	},
 	{
 		name: "exp",
@@ -887,6 +999,26 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_VN,
 	},
 	{
+		name: "mulNS",
+		type: "VecOpSVN",
+		typeGeneric: "VecOpSGVN",
+		doc: [
+			"Componentwise {0}D strided vector multiplication with uniform scalar.",
+		],
+		params: PARAMS_SVN,
+		paramsGeneric: PARAMS_SGVN,
+		multi: false,
+	},
+	{
+		name: "mulS",
+		type: "VecOpSVV",
+		typeGeneric: "VecOpSGVV",
+		doc: ["Componentwise {0}D strided vector multiplication."],
+		params: PARAMS_SVV,
+		paramsGeneric: PARAMS_SGVV,
+		multi: false,
+	},
+	{
 		name: "neq",
 		type: "CompareOp",
 		doc: [
@@ -1086,6 +1218,11 @@ const SPECS: FnSpec[] = [
 		},
 	},
 	{
+		name: "some",
+		type: "BVecOpRoV<boolean>",
+		doc: ["Returns true if at least one vector component is truthy."],
+	},
+	{
 		name: "sqrt",
 		type: "VecOpV",
 		doc: ["Componentwise `Math.sqrt` of given {0}D vector."],
@@ -1159,6 +1296,26 @@ const SPECS: FnSpec[] = [
 		type: "VecOpVN",
 		doc: ["Componentwise {0}D vector subtraction with a uniform scalar."],
 		params: PARAMS_VN,
+	},
+	{
+		name: "subNS",
+		type: "VecOpSVN",
+		typeGeneric: "VecOpSGVN",
+		doc: [
+			"Componentwise {0}D strided vector subtraction with uniform scalar.",
+		],
+		params: PARAMS_SVN,
+		paramsGeneric: PARAMS_SGVN,
+		multi: false,
+	},
+	{
+		name: "subS",
+		type: "VecOpSVV",
+		typeGeneric: "VecOpSGVV",
+		doc: ["Componentwise {0}D strided vector subtraction."],
+		params: PARAMS_SVV,
+		paramsGeneric: PARAMS_SGVV,
+		multi: false,
 	},
 	{
 		name: "tan",
