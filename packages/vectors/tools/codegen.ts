@@ -26,6 +26,7 @@ interface FnSpec {
 	imports?: IObjectOf<string>;
 	/** Custom imports for generic versions, defaults to {@link FnSpec.imports} */
 	importsGeneric?: IObjectOf<string>;
+	pre?: string[];
 }
 
 const formatFunction = (
@@ -67,6 +68,7 @@ const emitFamily = ({
 	imports = {},
 	importsGeneric,
 	sep = "",
+	pre = [],
 	op,
 }: FnSpec) => {
 	const nakedType = type.replace(/<[a-z0-9, ]+>$/i, "");
@@ -108,6 +110,7 @@ const emitFamily = ({
 				...userImportsFixed,
 				typeImport,
 				"",
+				...pre,
 				...formatDocs($docs, d, params),
 				formatFunction(
 					id,
@@ -127,6 +130,7 @@ const emitFamily = ({
 			`import type { Multi${nakedType} } from "../src/api.js";`,
 			...$imports,
 			"",
+			...pre,
 			...adds,
 		],
 		LOGGER
@@ -170,6 +174,8 @@ const PARAMS_VVN = {
 	n: "scalar",
 };
 
+const PARAMS_N = { a: "vector", n: "scalar" };
+
 const SPECS: FnSpec[] = [
 	{
 		name: "abs",
@@ -187,6 +193,34 @@ const SPECS: FnSpec[] = [
 		name: "add",
 		type: "VecOpVV",
 		doc: ["Componentwise {0}D vector addition."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "addI",
+		type: "VecOpVV",
+		doc: ["Componentwise {0}D signed integer vector addition."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "addNI",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise {0}D signed integer vector addition with uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "addNU",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise {0}D unsigned integer vector addition with uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "addU",
+		type: "VecOpVV",
+		doc: ["Componentwise {0}D unsigned integer vector addition."],
 		params: PARAMS_VV,
 	},
 	{
@@ -416,6 +450,17 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_V,
 	},
 	{
+		name: "degrees",
+		type: "VecOpV",
+		doc: [
+			"Componentwise computes converts radians to degrees of given {0}D vector. Also see {@link radians}.",
+		],
+		params: PARAMS_V,
+		imports: {
+			"@thi.ng/math/angle": "deg as op",
+		},
+	},
+	{
 		name: "distChebyshev",
 		type: "VecOpRoVV<number>",
 		dispatch: 0,
@@ -483,6 +528,7 @@ const SPECS: FnSpec[] = [
 		name: "dot",
 		type: "VecOpRoVV<number>",
 		doc: ["Computes dot product of given {0}D vectors."],
+		dispatch: 0,
 	},
 	{
 		name: "eq",
@@ -506,6 +552,7 @@ const SPECS: FnSpec[] = [
 			"@thi.ng/math/api": "EPS",
 			"../src/eqdelta": "eqDeltaS",
 		},
+		dispatch: 0,
 	},
 	{
 		name: "exp",
@@ -594,6 +641,130 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_V,
 	},
 	{
+		name: "gt",
+		type: "CompareOp",
+		doc: [
+			"Compnentwise checks if given {0}D vector `a` is greater than `b` and writes results to boolean output vector. If `out` is null, creates a new result vector.",
+		],
+	},
+	{
+		name: "gte",
+		type: "CompareOp",
+		doc: [
+			"Compnentwise checks if given {0}D vector `a` is greater than or equal to `b` and writes results to boolean output vector. If `out` is null, creates a new result vector.",
+		],
+	},
+	{
+		name: "invert",
+		type: "VecOpV",
+		doc: [
+			"Componentwise computes the reciprocal (1/x) of given {0}D vector.",
+		],
+		params: PARAMS_V,
+	},
+	{
+		name: "invSqrt",
+		type: "VecOpV",
+		doc: [
+			"Componentwise computes the inverse squareroot of given {0}D vector.",
+		],
+		params: PARAMS_V,
+	},
+	{
+		name: "isInf",
+		type: "ToBVecOpV",
+		doc: [
+			"Componentwise checks if given {0}D vector is infinite and writes results to boolean output vector. If `out` is null, creates a new result vector.",
+		],
+		params: PARAMS_V,
+	},
+	{
+		name: "isNaN",
+		type: "ToBVecOpV",
+		doc: [
+			"Componentwise checks if given {0}D vector is NaN and writes results to boolean output vector. If `out` is null, creates a new result vector.",
+		],
+		params: PARAMS_V,
+		pre: ["const op = globalThis.isNaN;\n"],
+	},
+	{
+		name: "log",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.log` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	// TODO fix original naming to: log2_2, log2_3, log2_4
+	{
+		name: "log_2",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.log2` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "logicAnd",
+		type: "BVecOpVV",
+		doc: ["Componentwise logical AND of given {0}D boolean vectors."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "logicNot",
+		type: "BVecOpV",
+		doc: ["Componentwise logical NOT of given {0}D boolean vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "logicOr",
+		type: "BVecOpVV",
+		doc: ["Componentwise logical OR of given {0}D boolean vectors."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "lshiftI",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise binary left shift of given {0}D signed integer vector `a`. Vector `b` contains the shift amounts.",
+		],
+		params: PARAMS_VV,
+	},
+	{
+		name: "lshiftNI",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise binary left shift of given {0}D signed integer vector by uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "lshiftNU",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise binary left shift of given {0}D unsigned integer vector by uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "lshiftU",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise binary left shift of given {0}D unsigned integer vector `a`. Vector `b` contains the shift amounts.",
+		],
+		params: PARAMS_VV,
+	},
+	{
+		name: "lt",
+		type: "CompareOp",
+		doc: [
+			"Compnentwise checks if given {0}D vector `a` is less than `b` and writes results to boolean output vector. If `out` is null, creates a new result vector.",
+		],
+	},
+	{
+		name: "lte",
+		type: "CompareOp",
+		doc: [
+			"Compnentwise checks if given {0}D vector `a` is less than or equal to `b` and writes results to boolean output vector. If `out` is null, creates a new result vector.",
+		],
+	},
+	{
 		name: "madd",
 		type: "VecOpVVV",
 		doc: ["Componentwise {0}D vector multiply-add.", "`o = a * b + c`"],
@@ -607,6 +778,24 @@ const SPECS: FnSpec[] = [
 			"`o = a * n + b`",
 		],
 		params: PARAMS_VNV,
+	},
+	{
+		name: "magSq",
+		type: "VecOpRoV<number>",
+		doc: ["Computes the squared magnitude of given {0}D vector"],
+		dispatch: 0,
+	},
+	{
+		name: "max",
+		type: "VecOpVV",
+		doc: ["Componentwise `Math.max` of given {0}D vectors."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "min",
+		type: "VecOpVV",
+		doc: ["Componentwise `Math.min` of given {0}D vectors."],
+		params: PARAMS_VV,
 	},
 	{
 		name: "mix",
@@ -625,6 +814,17 @@ const SPECS: FnSpec[] = [
 			"`o = a + (b - a) * n`",
 		],
 		params: PARAMS_VVN,
+	},
+	{
+		name: "mod",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise computes modulo of given {0}D vector. Similar to {@link fmod}, {@link remainder}. Returns `a - b * floor(a / b)` (same as GLSL `mod(a, b)`).",
+		],
+		params: PARAMS_V,
+		imports: {
+			"@thi.ng/math/prec": "mod as op",
+		},
 	},
 	{
 		name: "msub",
@@ -651,6 +851,34 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_VV,
 	},
 	{
+		name: "mulI",
+		type: "VecOpVV",
+		doc: ["Componentwise {0}D signed integer vector multiplication."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "mulNI",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise {0}D signed integer vector multiplication with uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "mulNU",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise {0}D unsigned integer vector multiplication with uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "mulU",
+		type: "VecOpVV",
+		doc: ["Componentwise {0}D unsigned integer vector multiplication."],
+		params: PARAMS_VV,
+	},
+	{
 		name: "mulN",
 		type: "VecOpVN",
 		doc: [
@@ -659,9 +887,253 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_VN,
 	},
 	{
+		name: "neq",
+		type: "CompareOp",
+		doc: [
+			"Compnentwise checks if given {0}D vectors `a` and `b` are not equal (using `!==` for comparison) and writes results to boolean output vector. If `out` is null, creates a new result vector.",
+		],
+	},
+	{
+		name: "pow",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise `Math.pow` of given {0}D vector `a`. Vector `b` contains exponents.",
+		],
+		params: PARAMS_VV,
+	},
+	{
+		name: "powN",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise `Math.pow` of given {0}D vector and uniform scalar exponent.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "radians",
+		type: "VecOpV",
+		doc: [
+			"Componentwise computes converts degrees to radians of given {0}D vector. Also see {@link degrees}.",
+		],
+		params: PARAMS_V,
+		imports: {
+			"@thi.ng/math/angle": "rad as op",
+		},
+	},
+	{
+		name: "randMinMax",
+		type: "VecOpVVO<IRandom>",
+		doc: [],
+		params: {
+			a: "vector",
+			b: "input vector (min. bounds)",
+			c: "input vector (max. bounds)",
+			rnd: "PRNG instance",
+		},
+		imports: {
+			"@thi.ng/random": "type IRandom",
+			"@thi.ng/random/system": "SYSTEM as op",
+		},
+	},
+	{
+		name: "random",
+		type: "VecOpOOO<number, number, IRandom>",
+		doc: [
+			"Sets `a` to random vector, with each component in the semi-open interval `[b,c)`. If no `rnd` instance is given, uses [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html). Creates new vector if `a` is null.",
+			"",
+			"**IMPORTANT:** The non-fixed sized version of this function can ONLY be used if `a` is given and initialized to the desired size/length.",
+		],
+		params: {
+			a: "vector",
+			b: "scalar (min. bounds, default: -1)",
+			c: "scalar (max. bounds, default: 1)",
+			rnd: "PRNG instance",
+		},
+		imports: {
+			"@thi.ng/random": "type IRandom",
+			"@thi.ng/random/system": "SYSTEM as op",
+		},
+		dispatch: 0,
+	},
+	{
+		name: "remainder",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise computes modulo of given {0}D vector. Uses the same logic as the standard C function `remainder()`, i.e. componentwise `a - b * round(a / b)`. Also see {@link mod}, {@link fmod}.",
+		],
+		params: PARAMS_VV,
+		imports: {
+			"@thi.ng/math/libc": "remainder as op",
+		},
+	},
+	{
+		name: "remainderN",
+		type: "VecOpVN",
+		doc: [
+			"Same as {@link remainder}, but but second operand is a single scalar (uniform domain for all vector components).",
+		],
+		params: PARAMS_VN,
+		imports: {
+			"@thi.ng/math/libc": "remainder as op",
+		},
+	},
+	{
+		name: "round",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise rounds given {0}D vector `a` to multiples of components in vector `b`.",
+		],
+		params: PARAMS_VV,
+		imports: {
+			"@thi.ng/math/prec": "roundTo as op",
+		},
+	},
+	{
+		name: "roundN",
+		type: "VecOpVO<number>",
+		doc: [
+			"Componentwise rounds given {0}D vector `a` to multiples of uniform scalar `n` (default: 1).",
+		],
+		params: PARAMS_VN,
+		imports: {
+			"@thi.ng/math/prec": "roundTo as op",
+		},
+	},
+	{
+		name: "rshiftI",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise binary right shift of given {0}D signed integer vector `a`. Vector `b` contains the shift amounts.",
+		],
+		params: PARAMS_VV,
+	},
+	{
+		name: "rshiftNI",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise binary right shift of given {0}D signed integer vector by uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "rshiftNU",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise binary right shift of given {0}D unsigned integer vector by uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "rshiftU",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise binary right shift of given {0}D unsigned integer vector `a`. Vector `b` contains the shift amounts.",
+		],
+		params: PARAMS_VV,
+	},
+	{
+		name: "safeDiv",
+		type: "VecOpVV",
+		doc: [
+			"Componentwise divides given {0}D vector `a` by vector `b`. If a divisor component is zero, the result will be zero too.",
+		],
+		params: PARAMS_VV,
+		imports: {
+			"@thi.ng/math/safe-div": "safeDiv as op",
+		},
+	},
+	{
+		name: "set",
+		type: "VecOpV",
+		doc: [
+			"Copies {0}D vector `a` to `o` (or if latter is null, creates a new vector).",
+		],
+		params: PARAMS_V,
+	},
+	{
+		name: "setN",
+		type: "VecOpN",
+		doc: ["Sets all components of {0}D vector `a` to scalar value `n`."],
+		params: PARAMS_N,
+	},
+	{
+		name: "sign",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.sign` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "sin",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.sin` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "sinh",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.sinh` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "smoothStep",
+		type: "VecOpVVV",
+		doc: [
+			'Componentwise computes GLSL `smoothstep()` for given {0}D vector `c` and using "edge" vectors `a` and `b`.',
+		],
+		params: PARAMS_VVV,
+		imports: {
+			"@thi.ng/math/step": "smoothStep as op",
+		},
+	},
+	{
+		name: "sqrt",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.sqrt` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "step",
+		type: "VecOpVV",
+		doc: [
+			'Componentwise computes GLSL `step()` for given {0}D vector `b` and "edge" vectors `a`.',
+		],
+		params: PARAMS_VV,
+		imports: {
+			"@thi.ng/math/step": "step as op",
+		},
+	},
+	{
 		name: "sub",
 		type: "VecOpVV",
 		doc: ["Componentwise {0}D vector subtraction."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "subI",
+		type: "VecOpVV",
+		doc: ["Componentwise {0}D signed integer vector subtraction."],
+		params: PARAMS_VV,
+	},
+	{
+		name: "subNI",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise {0}D signed integer vector subtraction with uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "subNU",
+		type: "VecOpVN",
+		doc: [
+			"Componentwise {0}D unsigned integer vector subtraction with uniform scalar.",
+		],
+		params: PARAMS_VN,
+	},
+	{
+		name: "subU",
+		type: "VecOpVV",
+		doc: ["Componentwise {0}D unsigned integer vector subtraction."],
 		params: PARAMS_VV,
 	},
 	{
@@ -687,6 +1159,35 @@ const SPECS: FnSpec[] = [
 		type: "VecOpVN",
 		doc: ["Componentwise {0}D vector subtraction with a uniform scalar."],
 		params: PARAMS_VN,
+	},
+	{
+		name: "tan",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.tan` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "tanh",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.tanh` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "trunc",
+		type: "VecOpV",
+		doc: ["Componentwise `Math.trunc` of given {0}D vector."],
+		params: PARAMS_V,
+	},
+	{
+		name: "wrap",
+		type: "VecOpVVV",
+		doc: [
+			"Componentwise folds given {0}D vector `a` into the closed interval defined by vectors `b` and `c`.",
+		],
+		params: PARAMS_VVV,
+		imports: {
+			"@thi.ng/math/interval": "wrap as op",
+		},
 	},
 ];
 
