@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { VecOpSGN, VecOpSN } from "./api.js";
 import { defOpS } from "./compile/emit.js";
-import { SET_N } from "./compile/templates.js";
+import { NEW_OUT, SET_N } from "./compile/templates.js";
 
 export const [setNS, setNS2, setNS3, setNS4] = defOpS<VecOpSGN, VecOpSN>(
 	SET_N,
@@ -9,5 +9,5 @@ export const [setNS, setNS2, setNS3, setNS4] = defOpS<VecOpSGN, VecOpSN>(
 	"io=0,so=1",
 	"o",
 	"o",
-	""
+	NEW_OUT
 );
