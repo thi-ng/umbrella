@@ -67,6 +67,15 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./avec": {
+			"default": "./avec.js"
+		},
+		"./format": {
+			"default": "./format.js"
 		}
 	},
 	"thi.ng": {
