@@ -1,14 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { IRandom } from "@thi.ng/random";
-import { SYSTEM } from "@thi.ng/random/system";
-import type { Vec, VecOpOOO } from "./api.js";
-import { normalize } from "./normalize.js";
+import type { VecOpOO } from "./api.js";
+import { normalize, normalize2, normalize3, normalize4 } from "./normalize.js";
 import { random, random2, random3, random4 } from "./random.js";
-
-const $norm =
-	(random: VecOpOOO<number, number, IRandom>) =>
-	(v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
-		normalize(null, random(v, -1, 1, rnd), n);
 
 /**
  * Sets `v` to a random vector (using {@link random}), normalized to length `n`
@@ -24,7 +18,14 @@ const $norm =
  * @param n -
  * @param rnd -
  */
-export const randNorm = $norm(random);
-export const randNorm2 = $norm(random2);
-export const randNorm3 = $norm(random3);
-export const randNorm4 = $norm(random4);
+export const randNorm: VecOpOO<number, IRandom> = (v, n = 1, rnd) =>
+	normalize(null, random(v, -1, 1, rnd), n);
+
+export const randNorm2: VecOpOO<number, IRandom> = (v, n = 1, rnd) =>
+	normalize2(null, random2(v, -1, 1, rnd), n);
+
+export const randNorm3: VecOpOO<number, IRandom> = (v, n = 1, rnd) =>
+	normalize3(null, random3(v, -1, 1, rnd), n);
+
+export const randNorm4: VecOpOO<number, IRandom> = (v, n = 1, rnd) =>
+	normalize4(null, random4(v, -1, 1, rnd), n);

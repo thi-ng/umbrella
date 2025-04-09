@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import type { MultiVecOpOOO, ReadonlyVec, VecOpOOO } from "./api.js";
+import type { MultiVecOpVVO, VecOpVVO } from "./api.js";
 import { defHofOp } from "./compile/emit.js";
 
 /**
@@ -14,8 +14,8 @@ import { defHofOp } from "./compile/emit.js";
  * @param rnd -
  */
 export const [randMinMax, randMinMax2, randMinMax3, randMinMax4] = defHofOp<
-	MultiVecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>,
-	VecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>
+	MultiVecOpVVO<IRandom>,
+	VecOpVVO<IRandom>
 >(
 	SYSTEM,
 	([o, a, b]) => `${o}=rnd.minmax(${a},${b});`,
