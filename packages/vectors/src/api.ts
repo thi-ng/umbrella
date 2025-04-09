@@ -86,7 +86,7 @@ export interface MultiVecOp<VOP> {
 export type VecPair = [Vec, Vec];
 
 export type VecOpV = Fn2<Vec | null, ReadonlyVec, Vec>;
-export type VecOpN = Fn2<Vec | null, number, Vec>;
+export type VecOpN = Fn2<Vec, number, Vec>;
 export type VecOpVV = Fn3<Vec | null, ReadonlyVec, ReadonlyVec, Vec>;
 export type VecOpVN = Fn3<Vec | null, ReadonlyVec, number, Vec>;
 export type VecOpVVV = Fn4<
@@ -120,8 +120,15 @@ export type VecOpVVVVNN = Fn7<
 >;
 
 export type VecOpVO<T> = (out: Vec | null, a: ReadonlyVec, b?: T) => Vec;
+export type VecOpVVO<T> = (
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c?: T
+) => Vec;
 export type VecOpOO<A, B> = (out: Vec | null, a?: A, b?: B) => Vec;
 export type VecOpOOO<A, B, C> = (out: Vec | null, a?: A, b?: B, c?: C) => Vec;
+export type VecOpNO<T> = (out: Vec | null, a: number, b?: T) => Vec;
 export type VecOpNNO<T> = (out: Vec | null, a: number, b: number, c?: T) => Vec;
 
 export type VecOpRoV<T> = Fn<ReadonlyVec, T>;
@@ -418,6 +425,7 @@ export type MultiVecOpVVVVV = MultiVecOpImpl<VecOpVVVVV>;
 export type MultiVecOpVVVVNN = MultiVecOpImpl<VecOpVVVVNN>;
 
 export type MultiVecOpVO<T> = MultiVecOpImpl<VecOpVO<T>>;
+export type MultiVecOpVVO<T> = MultiVecOpImpl<VecOpVVO<T>>;
 export type MultiVecOpOO<A, B> = MultiVecOpImpl<VecOpOO<A, B>>;
 export type MultiVecOpOOO<A, B, C> = MultiVecOpImpl<VecOpOOO<A, B, C>>;
 export type MultiVecOpNNO<T> = MultiVecOpImpl<VecOpNNO<T>>;
@@ -567,8 +575,8 @@ export interface VecAPI {
 	radians: VecOpV;
 	random: VecOpOOO<number, number, IRandom>;
 	randomDistrib: VecOpFNO;
-	randMinMax: VecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>;
-	randNorm: (v: Vec | null, n?: number, rnd?: IRandom) => Vec;
+	randMinMax: VecOpVVO<IRandom>;
+	randNorm: VecOpOO<number, IRandom>;
 	randNormDistrib: VecOpNFO;
 	round: VecOpVV;
 	set: VecOpV;
