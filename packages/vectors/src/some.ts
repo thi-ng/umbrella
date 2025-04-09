@@ -3,8 +3,7 @@ import type { MultiBVecOpRoV } from "./api.js";
 import { vop } from "./vop.js";
 
 /**
- * Returns returns true if at least one vector component in `v` is
- * truthy.
+ * Returns true if at least one vector component in `v` is truthy.
  *
  * @param v -
  */
