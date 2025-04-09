@@ -1,11 +1,11 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
-import { bytes, interpolate, wordWrapLines } from "@thi.ng/strings";
+import { bytes, interpolate, lower, wordWrapLines } from "@thi.ng/strings";
 import * as v from "@thi.ng/vectors";
 
-const OUT_DIR = "src2";
-const API_PREFIX = "../src";
+const OUT_DIR = "packages";
+const API_IMPORT = "@thi.ng/vec-api";
 const LOGGER = new ConsoleLogger("codegen");
 
 let TOTAL_SIZE = 0;
@@ -13,10 +13,14 @@ let TOTAL_SIZE = 0;
 interface FnSpec {
 	/** Function name */
 	name: string;
+	/** Derived function name for import/filename, default: `lower(name)` */
+	importName?: string;
 	/** Function type */
 	type: string;
 	/** Generic (nD) function type */
 	typeGeneric?: string;
+	/** Polymorphic (nD) function type */
+	typePoly?: string;
 	/** Higher order fn name (to replace `op` in original code) */
 	op?: string;
 	/** VOP dispatch argument index, default 1 */
@@ -75,8 +79,10 @@ const formatDocs = (
 
 const emitFamily = ({
 	name,
+	importName = lower(name),
 	type,
-	typeGeneric = "Multi" + type,
+	typeGeneric = type,
+	typePoly = "Multi" + typeGeneric,
 	dispatch = 1,
 	doc = [],
 	params,
@@ -88,19 +94,35 @@ const emitFamily = ({
 	multi = true,
 	op,
 }: FnSpec) => {
+	LOGGER.debug("emitting family:", name);
 	const nakedType = type.replace(/<[a-z0-9, ]+>$/i, "");
 	const nakedTypeGeneric = typeGeneric.replace(/<[a-z0-9, ]+>$/i, "");
-	const typeImport = `import type { ${nakedType} } from "${API_PREFIX}/api.js";`;
+	const nakedTypePoly = typePoly.replace(/<[a-z0-9, ]+>$/i, "");
+	const typeImport = `import type { ${nakedType} } from "${API_IMPORT}";`;
+	const typeImportGeneric = `import type { ${nakedTypeGeneric} } from "${API_IMPORT}";`;
 	const userImportsFixed = Object.entries(imports).map(
 		([pkg, syms]) => `import { ${syms} } from "${pkg}";`
 	);
 	const userImportsGeneric = Object.entries(importsGeneric ?? imports).map(
 		([pkg, syms]) => `import { ${syms} } from "${pkg}";`
 	);
-	const $imports = [...userImportsGeneric];
-	if (multi) $imports.push(`import { vop } from "${API_PREFIX}/vop.js";`);
+	const polyImports = [
+		`import { ${name} as $${name} } from "@thi.ng/vec-nd/${importName}";`,
+	];
 	const $docs = doc.join("\n");
-	const generic = multi
+	const generic = [
+		...formatDocs($docs, paramsGeneric, "n", ""),
+		formatFunction(
+			name,
+			multi
+				? (<any>v)[name].impl().toString()
+				: (<any>v)[name].toString(),
+			typeGeneric,
+			undefined,
+			op
+		) + ";",
+	];
+	let polymorphic = multi
 		? [
 				...formatDocs(
 					$docs +
@@ -109,25 +131,10 @@ const emitFamily = ({
 					"n",
 					""
 				),
-				`export const ${name}: ${typeGeneric} = vop(${dispatch});`,
-				`${name}.default(${formatFunction(
-					name,
-					(<any>v)[name].impl().toString(),
-					type,
-					"",
-					op
-				)});`,
+				`export const ${name}: ${typePoly} = vop(${dispatch});`,
+				`${name}.default($${name})`,
 		  ]
-		: [
-				...formatDocs($docs, paramsGeneric, "n", ""),
-				`export const ${name}: ${typeGeneric} = ${formatFunction(
-					name,
-					(<any>v)[name].toString(),
-					type,
-					"",
-					op
-				)};`,
-		  ];
+		: [];
 	let body: string;
 	for (let d of [2, 3, 4]) {
 		const id = name + sep + d;
@@ -141,22 +148,39 @@ const emitFamily = ({
 			formatFunction(id, (<any>v)[id].toString(), type, undefined, op) +
 				";",
 		].join("\n");
-		writeText(`${OUT_DIR}/${id}.ts`, body, LOGGER);
+		writeText(`${OUT_DIR}/vec${d}/src/${importName}.ts`, body, LOGGER);
 		TOTAL_SIZE += body.length;
 		if (multi) {
-			$imports.push(`import { ${id} } from "./${id}.js";`);
-			generic.push(`${name}.add(${d}, ${id});`);
+			polyImports.push(
+				`import { ${id} } from "@thi.ng/vec${d}/${importName}";`
+			);
+			polymorphic!.push(`${name}.add(${d}, ${id});`);
 		}
 	}
+
+	// generic n-dimensional
 	body = [
-		`import type { ${nakedTypeGeneric} } from "${API_PREFIX}/api.js";`,
-		...$imports,
+		...userImportsGeneric,
+		typeImportGeneric,
 		"",
 		...pre,
 		...generic,
 	].join("\n");
-	writeText(`${OUT_DIR}/${name}.ts`, body, LOGGER);
+	writeText(`${OUT_DIR}/vec-nd/src/${importName}.ts`, body, LOGGER);
 	TOTAL_SIZE += body.length;
+
+	if (multi) {
+		// polymorphic
+		body = [
+			`import type { ${nakedTypePoly} } from "./api.js";`,
+			...polyImports,
+			`import { vop } from "./vop.js";`,
+			"",
+			...polymorphic,
+		].join("\n");
+		writeText(`${OUT_DIR}/vec-poly/src/${importName}.ts`, body, LOGGER);
+		TOTAL_SIZE += body.length;
+	}
 };
 
 const PARAMS_V = { o: "output vector", a: "input vector" };
@@ -474,18 +498,21 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "asBVec",
+		importName: "as-bvec",
 		type: "ToBVecOpV",
 		doc: ["Componentwise converts given {0}D vector to boolean."],
 		params: PARAMS_V,
 	},
 	{
 		name: "asIVec",
+		importName: "as-ivec",
 		type: "VecOpV",
 		doc: ["Componentwise converts given {0}D vector to signed integer."],
 		params: PARAMS_V,
 	},
 	{
 		name: "asUVec",
+		importName: "as-uvec",
 		type: "VecOpV",
 		doc: ["Componentwise converts given {0}D vector to unsigned integer."],
 		params: PARAMS_V,
@@ -506,6 +533,7 @@ const SPECS: FnSpec[] = [
 	// TODO fix original naming to: atan2_2 / atan2_3 ...
 	{
 		name: "atan_2",
+		importName: "atan2",
 		type: "VecOpVV",
 		doc: [
 			"Componentwise computes `Math.atan2` of the two given {0}D vectors.",
@@ -693,6 +721,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "distChebyshev",
+		importName: "dist-chebyshev",
 		type: "VecOpRoVV<number>",
 		dispatch: 0,
 		doc: [
@@ -702,6 +731,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "distManhattan",
+		importName: "dist-manhattan",
 		type: "VecOpRoVV<number>",
 		dispatch: 0,
 		doc: [
@@ -801,7 +831,7 @@ const SPECS: FnSpec[] = [
 		importsGeneric: {
 			"@thi.ng/checks/implements-function": "implementsFunction",
 			"@thi.ng/math/api": "EPS",
-			[`${API_PREFIX}/eqdelta`]: "eqDeltaS",
+			[`${API_IMPORT}/eqdelta`]: "eqDeltaS",
 		},
 		dispatch: 0,
 	},
@@ -818,6 +848,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "exp_2",
+		importName: "exp2",
 		type: "VecOpV",
 		doc: ["Componentwise computes `2^x` of given {0}D vector."],
 		params: PARAMS_V,
@@ -890,6 +921,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "fromBVec",
+		importName: "from-bvec",
 		type: "FromBVecOpV",
 		doc: [
 			"Componentwise converts given {0}D boolean vector to floating point (0 or 1).",
@@ -928,6 +960,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "isInf",
+		importName: "is-inf",
 		type: "ToBVecOpV",
 		doc: [
 			"Componentwise checks if given {0}D vector is infinite and writes results to boolean output vector. If `out` is null, creates a new result vector.",
@@ -936,6 +969,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "isNaN",
+		importName: "is-nan",
 		type: "ToBVecOpV",
 		doc: [
 			"Componentwise checks if given {0}D vector is NaN and writes results to boolean output vector. If `out` is null, creates a new result vector.",
@@ -952,6 +986,7 @@ const SPECS: FnSpec[] = [
 	// TODO fix original naming to: log2_2, log2_3, log2_4
 	{
 		name: "log_2",
+		importName: "log2",
 		type: "VecOpV",
 		doc: ["Componentwise `Math.log2` of given {0}D vector."],
 		params: PARAMS_V,
@@ -1114,6 +1149,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "mixBilinear",
+		importName: "mix-bilinear",
 		type: "VecOpVVVVNN",
 		doc: ["Componentwise {0}D vector bilinear interpolation."],
 		params: {
@@ -1325,6 +1361,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "randDistrib",
+		importName: "rand-distrib",
 		type: "VecOpFNO",
 		doc: [
 			"Sets `v` to random vector, with each component drawn from given random distribution function (default: gaussian/normal distribution) and scaled to `n` (default: 1). Creates new vector if `v` is null.",
@@ -1348,6 +1385,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "randMinMax",
+		importName: "rand-minmax",
 		type: "VecOpVVO<IRandom>",
 		doc: [],
 		params: {
@@ -1363,6 +1401,7 @@ const SPECS: FnSpec[] = [
 	},
 	{
 		name: "randMinMaxS",
+		importName: "rand-minmaxs",
 		type: "VecOpSVVO<IRandom>",
 		typeGeneric: "VecOpSGVVO<IRandom>",
 		doc: ["Like {@link randMinMax{1}} but for {0}D strided vectors."],
