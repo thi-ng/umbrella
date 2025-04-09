@@ -51,14 +51,14 @@
 		"@thi.ng/pixel": "^7.4.3",
 		"@thi.ng/pixel-dither": "^1.1.164",
 		"@thi.ng/prefixes": "^2.3.42",
-		"sharp": "^0.33.5"
+		"sharp": "^0.34.1"
 	},
 	"devDependencies": {
 		"@thi.ng/vectors": "^7.13.0",
-		"@types/node": "^22.13.14",
+		"@types/node": "^22.14.0",
 		"esbuild": "^0.25.2",
-		"typedoc": "^0.28.1",
-		"typescript": "^5.8.2"
+		"typedoc": "^0.28.2",
+		"typescript": "^5.8.3"
 	},
 	"keywords": [
 		"avif",

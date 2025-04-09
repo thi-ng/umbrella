@@ -43,8 +43,8 @@
 		"@thi.ng/equiv": "^2.1.81"
 	},
 	"devDependencies": {
-		"typedoc": "^0.28.1",
-		"typescript": "^5.8.2"
+		"typedoc": "^0.28.2",
+		"typescript": "^5.8.3"
 	},
 	"keywords": [
 		"array",

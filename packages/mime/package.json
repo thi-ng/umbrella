@@ -42,8 +42,8 @@
 	"devDependencies": {
 		"@thi.ng/api": "^8.11.25",
 		"esbuild": "^0.25.2",
-		"typedoc": "^0.28.1",
-		"typescript": "^5.8.2"
+		"typedoc": "^0.28.2",
+		"typescript": "^5.8.3"
 	},
 	"keywords": [
 		"database",

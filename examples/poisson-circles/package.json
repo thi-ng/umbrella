@@ -32,8 +32,8 @@
 		"screenshot": "poisson/poisson.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.8.2",
-		"vite": "^6.2.4"
+		"typescript": "^5.8.3",
+		"vite": "^6.2.5"
 	},
 	"keywords": [
 		"browser",

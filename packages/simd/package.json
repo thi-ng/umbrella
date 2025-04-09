@@ -46,8 +46,8 @@
 	"devDependencies": {
 		"assemblyscript": "0.27.35",
 		"esbuild": "^0.25.2",
-		"typedoc": "^0.28.1",
-		"typescript": "^5.8.2"
+		"typedoc": "^0.28.2",
+		"typescript": "^5.8.3"
 	},
 	"keywords": [
 		"acceleration",

@@ -46,10 +46,10 @@
 		"@thi.ng/random": "^4.1.16"
 	},
 	"devDependencies": {
-		"@types/node": "^22.13.14",
+		"@types/node": "^22.14.0",
 		"esbuild": "^0.25.2",
-		"typedoc": "^0.28.1",
-		"typescript": "^5.8.2"
+		"typedoc": "^0.28.2",
+		"typescript": "^5.8.3"
 	},
 	"keywords": [
 		"async",

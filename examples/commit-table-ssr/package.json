@@ -13,7 +13,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"typescript": "^5.8.2"
+		"typescript": "^5.8.3"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
@@ -26,7 +26,7 @@
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/transducers-hdom": "workspace:^",
-		"vite": "^6.2.4"
+		"vite": "^6.2.5"
 	},
 	"browser": {
 		"process": false,
