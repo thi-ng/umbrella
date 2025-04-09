@@ -1,11 +1,14 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
-import { interpolate, wordWrapLines } from "@thi.ng/strings";
+import { bytes, interpolate, wordWrapLines } from "@thi.ng/strings";
 import * as v from "@thi.ng/vectors";
 
 const OUT_DIR = "src2";
+const API_PREFIX = "../src";
 const LOGGER = new ConsoleLogger("codegen");
+
+let TOTAL_SIZE = 0;
 
 interface FnSpec {
 	/** Function name */
@@ -26,7 +29,11 @@ interface FnSpec {
 	params?: IObjectOf<string>;
 	/** Object of param descriptors for generic version */
 	paramsGeneric?: IObjectOf<string>;
-	/** Object of custom imports. Keys = pkg names, values = syms */
+	/**
+	 * Object of custom imports. Keys = pkg names, values = syms.
+	 *
+	 * Values are interpolated with current dimension ID, i.e. `{0}` will be replaced with d-value
+	 */
 	imports?: IObjectOf<string>;
 	/** Custom imports for generic versions, defaults to {@link FnSpec.imports} */
 	importsGeneric?: IObjectOf<string>;
@@ -49,10 +56,11 @@ const formatFunction = (
 
 const formatDocs = (
 	docs: string,
+	params: FnSpec["params"],
 	d: string | number,
-	params: FnSpec["params"]
+	dalt: string | number = d
 ) => {
-	const wrappedDocs = wordWrapLines(interpolate(docs, d), {
+	const wrappedDocs = wordWrapLines(interpolate(docs, d, dalt), {
 		width: 76,
 	});
 	const res = ["/**", " * " + wrappedDocs.join("\n * ")];
@@ -82,7 +90,7 @@ const emitFamily = ({
 }: FnSpec) => {
 	const nakedType = type.replace(/<[a-z0-9, ]+>$/i, "");
 	const nakedTypeGeneric = typeGeneric.replace(/<[a-z0-9, ]+>$/i, "");
-	const typeImport = `import type { ${nakedType} } from "../src/api.js";`;
+	const typeImport = `import type { ${nakedType} } from "${API_PREFIX}/api.js";`;
 	const userImportsFixed = Object.entries(imports).map(
 		([pkg, syms]) => `import { ${syms} } from "${pkg}";`
 	);
@@ -90,15 +98,16 @@ const emitFamily = ({
 		([pkg, syms]) => `import { ${syms} } from "${pkg}";`
 	);
 	const $imports = [...userImportsGeneric];
-	if (multi) $imports.push(`import { vop } from "../src/vop.js";`);
+	if (multi) $imports.push(`import { vop } from "${API_PREFIX}/vop.js";`);
 	const $docs = doc.join("\n");
 	const generic = multi
 		? [
 				...formatDocs(
 					$docs +
 						"\n\n@remarks\nMulti-method, auto-delegates to optimized versions where possible.",
+					paramsGeneric,
 					"n",
-					paramsGeneric
+					""
 				),
 				`export const ${name}: ${typeGeneric} = vop(${dispatch});`,
 				`${name}.default(${formatFunction(
@@ -110,7 +119,7 @@ const emitFamily = ({
 				)});`,
 		  ]
 		: [
-				...formatDocs($docs, "n", paramsGeneric),
+				...formatDocs($docs, paramsGeneric, "n", ""),
 				`export const ${name}: ${typeGeneric} = ${formatFunction(
 					name,
 					(<any>v)[name].toString(),
@@ -119,43 +128,35 @@ const emitFamily = ({
 					op
 				)};`,
 		  ];
+	let body: string;
 	for (let d of [2, 3, 4]) {
 		const id = name + sep + d;
 		if (!(<any>v)[id]) continue;
-		writeText(
-			`${OUT_DIR}/${id}.ts`,
-			[
-				...userImportsFixed,
-				typeImport,
-				"",
-				...pre,
-				...formatDocs($docs, d, params),
-				formatFunction(
-					id,
-					(<any>v)[id].toString(),
-					type,
-					undefined,
-					op
-				) + ";",
-			],
-			LOGGER
-		);
+		body = [
+			...userImportsFixed.map((x) => interpolate(x, d)),
+			typeImport,
+			"",
+			...pre,
+			...formatDocs($docs, params, d),
+			formatFunction(id, (<any>v)[id].toString(), type, undefined, op) +
+				";",
+		].join("\n");
+		writeText(`${OUT_DIR}/${id}.ts`, body, LOGGER);
+		TOTAL_SIZE += body.length;
 		if (multi) {
 			$imports.push(`import { ${id} } from "./${id}.js";`);
 			generic.push(`${name}.add(${d}, ${id});`);
 		}
 	}
-	writeText(
-		`${OUT_DIR}/${name}.ts`,
-		[
-			`import type { ${nakedTypeGeneric} } from "../src/api.js";`,
-			...$imports,
-			"",
-			...pre,
-			...generic,
-		],
-		LOGGER
-	);
+	body = [
+		`import type { ${nakedTypeGeneric} } from "${API_PREFIX}/api.js";`,
+		...$imports,
+		"",
+		...pre,
+		...generic,
+	].join("\n");
+	writeText(`${OUT_DIR}/${name}.ts`, body, LOGGER);
+	TOTAL_SIZE += body.length;
 };
 
 const PARAMS_V = { o: "output vector", a: "input vector" };
@@ -197,6 +198,15 @@ const PARAMS_VVN = {
 
 const PARAMS_N = { a: "vector", n: "scalar" };
 
+const PARAMS_SV = {
+	out: "output vector",
+	a: "input vector",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+};
+
 const PARAMS_SVV = {
 	out: "output vector",
 	a: "input vector",
@@ -207,6 +217,31 @@ const PARAMS_SVV = {
 	so: "stride (default: 1)",
 	sa: "stride (default: 1)",
 	sb: "stride (default: 1)",
+};
+
+const PARAMS_SVVV = {
+	out: "output vector",
+	a: "input vector",
+	b: "input vector",
+	c: "input vector",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	ic: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
+	sc: "stride (default: 1)",
+};
+
+const PARAMS_SGV = {
+	out: "output vector",
+	a: "input vector",
+	size: "vector size",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
 };
 
 const PARAMS_SGVV = {
@@ -222,6 +257,37 @@ const PARAMS_SGVV = {
 	sb: "stride (default: 1)",
 };
 
+const PARAMS_SGVVV = {
+	out: "output vector",
+	a: "input vector",
+	b: "input vector",
+	c: "input vector",
+	size: "vector size",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	ic: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
+	sc: "stride (default: 1)",
+};
+
+const PARAMS_SN = {
+	out: "output vector",
+	n: "scalar",
+	io: "index (default: 0)",
+	so: "stride (default: 1)",
+};
+
+const PARAMS_SGN = {
+	out: "output vector",
+	n: "scalar",
+	size: "vector size",
+	io: "index (default: 0)",
+	so: "stride (default: 1)",
+};
+
 const PARAMS_SVN = {
 	out: "output vector",
 	a: "input vector",
@@ -230,6 +296,32 @@ const PARAMS_SVN = {
 	ia: "index (default: 0)",
 	so: "stride (default: 1)",
 	sa: "stride (default: 1)",
+};
+
+const PARAMS_SVNV = {
+	out: "output vector",
+	a: "input vector",
+	n: "scalar",
+	b: "input vector",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
+};
+
+const PARAMS_SVVN = {
+	out: "output vector",
+	a: "input vector",
+	b: "input vector",
+	n: "scalar",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
 };
 
 const PARAMS_SGVN = {
@@ -243,6 +335,34 @@ const PARAMS_SGVN = {
 	sa: "stride (default: 1)",
 };
 
+const PARAMS_SGVNV = {
+	out: "output vector",
+	a: "input vector",
+	n: "scalar",
+	b: "input vector",
+	size: "vector size",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
+};
+
+const PARAMS_SGVVN = {
+	out: "output vector",
+	a: "input vector",
+	b: "input vector",
+	n: "scalar",
+	size: "vector size",
+	io: "index (default: 0)",
+	ia: "index (default: 0)",
+	ib: "index (default: 0)",
+	so: "stride (default: 1)",
+	sa: "stride (default: 1)",
+	sb: "stride (default: 1)",
+};
+
 const SPECS: FnSpec[] = [
 	{
 		name: "abs",
@@ -253,7 +373,7 @@ const SPECS: FnSpec[] = [
 	{
 		name: "acos",
 		type: "VecOpV",
-		doc: ["Componentwise computes the arc cosine of given {0}D vector."],
+		doc: ["Componentwise computes `Math.acos` of given {0}D vector."],
 		params: PARAMS_V,
 	},
 	{
@@ -329,6 +449,30 @@ const SPECS: FnSpec[] = [
 		multi: false,
 	},
 	{
+		name: "addmNS",
+		type: "VecOpSVVN",
+		typeGeneric: "VecOpSGVVN",
+		doc: [
+			"Componentwise {0}D strided vector add-multiply with uniform scalar.",
+			"`o = (a + b) * n`",
+		],
+		params: PARAMS_SVVN,
+		paramsGeneric: PARAMS_SGVVN,
+		multi: false,
+	},
+	{
+		name: "addmS",
+		type: "VecOpSVVV",
+		typeGeneric: "VecOpSGVVV",
+		doc: [
+			"Componentwise {0}D strided vector add-multiply.",
+			"`o = (a + b) * c`",
+		],
+		params: PARAMS_SVVV,
+		paramsGeneric: PARAMS_SGVVV,
+		multi: false,
+	},
+	{
 		name: "asBVec",
 		type: "ToBVecOpV",
 		doc: ["Componentwise converts given {0}D vector to boolean."],
@@ -349,14 +493,14 @@ const SPECS: FnSpec[] = [
 	{
 		name: "asin",
 		type: "VecOpV",
-		doc: ["Componentwise computes the arcsine of given {0}D vector."],
+		doc: ["Componentwise computes `Math.asin` of given {0}D vector."],
 		params: PARAMS_V,
 	},
 	// TODO fix original naming to: atan_2 / atan_3 ...
 	{
 		name: "atan",
 		type: "VecOpV",
-		doc: ["Componentwise computes the arctangent of given {0}D vector."],
+		doc: ["Componentwise computes `Math.atan` of given {0}D vector."],
 		params: PARAMS_V,
 	},
 	// TODO fix original naming to: atan2_2 / atan2_3 ...
@@ -540,7 +684,7 @@ const SPECS: FnSpec[] = [
 		name: "degrees",
 		type: "VecOpV",
 		doc: [
-			"Componentwise computes converts radians to degrees of given {0}D vector. Also see {@link radians}.",
+			"Componentwise computes converts radians to degrees of given {0}D vector. Also see {@link radians{1}}.",
 		],
 		params: PARAMS_V,
 		imports: {
@@ -657,7 +801,7 @@ const SPECS: FnSpec[] = [
 		importsGeneric: {
 			"@thi.ng/checks/implements-function": "implementsFunction",
 			"@thi.ng/math/api": "EPS",
-			"../src/eqdelta": "eqDeltaS",
+			[`${API_PREFIX}/eqdelta`]: "eqDeltaS",
 		},
 		dispatch: 0,
 	},
@@ -723,7 +867,7 @@ const SPECS: FnSpec[] = [
 		name: "fmod",
 		type: "VecOpVV",
 		doc: [
-			"Similar to {@link mod}, {@link remainder}. This version of modulo uses the same logic as the standard C function `fmod` and/or the JS `%` operator, yielding results with the same sign as `a`, i.e. computes `a-b*trunc(a/b)`.",
+			"Similar to {@link mod{1}}, {@link remainder{1}}. This version of modulo uses the same logic as the standard C function `fmod` and/or the JS `%` operator, yielding results with the same sign as `a`, i.e. computes `a-b*trunc(a/b)`.",
 		],
 		params: PARAMS_VV,
 	},
@@ -731,7 +875,7 @@ const SPECS: FnSpec[] = [
 		name: "fmodN",
 		type: "VecOpVN",
 		doc: [
-			"Same as {@link fmod}, but 2nd operand is a scalar (uniform domain for all vector components).",
+			"Same as {@link fmod{1}}, but 2nd operand is a scalar (uniform domain for all vector components).",
 		],
 		params: PARAMS_VN,
 	},
@@ -892,10 +1036,47 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_VNV,
 	},
 	{
+		name: "maddNS",
+		type: "VecOpSVNV",
+		typeGeneric: "VecOpSGVNV",
+		doc: [
+			"Componentwise {0}D strided vector multiply-add with uniform scalar.",
+			"`o = a * n + b`",
+		],
+		params: PARAMS_SVNV,
+		paramsGeneric: PARAMS_SGVNV,
+		multi: false,
+	},
+	{
+		name: "maddS",
+		type: "VecOpSVVV",
+		typeGeneric: "VecOpSGVVV",
+		doc: [
+			"Componentwise {0}D strided vector multiply-add.",
+			"`o = a * b + c`",
+		],
+		params: PARAMS_SVVV,
+		paramsGeneric: PARAMS_SGVVV,
+		multi: false,
+	},
+	{
 		name: "magSq",
 		type: "VecOpRoV<number>",
 		doc: ["Computes the squared magnitude of given {0}D vector"],
 		dispatch: 0,
+	},
+	{
+		name: "major",
+		type: "VecOpRoV<number>",
+		doc: [
+			"Returns index of major component/axis in `v`, i.e. where `|v[i]|` is the largest.",
+		],
+		dispatch: 0,
+		pre: ["const abs = Math.abs;", ""],
+		imports: {
+			"@thi.ng/math/interval": "max{0}id",
+		},
+		importsGeneric: {},
 	},
 	{
 		name: "max",
@@ -910,6 +1091,19 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_VV,
 	},
 	{
+		name: "minor",
+		type: "VecOpRoV<number>",
+		doc: [
+			"Returns index of minor component/axis in given {0}D vector, i.e. where `|v[i]|` is the smallest.",
+		],
+		dispatch: 0,
+		pre: ["const abs = Math.abs;", ""],
+		imports: {
+			"@thi.ng/math/interval": "min{0}id",
+		},
+		importsGeneric: {},
+	},
+	{
 		name: "mix",
 		type: "VecOpVVV",
 		doc: [
@@ -917,6 +1111,24 @@ const SPECS: FnSpec[] = [
 			"`o = a + (b - a) * c`",
 		],
 		params: PARAMS_VVV,
+	},
+	{
+		name: "mixBilinear",
+		type: "VecOpVVVVNN",
+		doc: ["Componentwise {0}D vector bilinear interpolation."],
+		params: {
+			o: "output vector",
+			a: "input vector",
+			b: "lower-left boundary",
+			c: "lower-right boundary",
+			d: "upper-left boundary",
+			e: "upper-right boundary",
+			u: "1st interpolation factor in U direction (along `[b,c]` and `[d,e]`)",
+			v: "2nd interpolation factor in V direction",
+		},
+		imports: {
+			"@thi.ng/math/mix": "mixBilinear as op",
+		},
 	},
 	{
 		name: "mixN",
@@ -928,12 +1140,47 @@ const SPECS: FnSpec[] = [
 		params: PARAMS_VVN,
 	},
 	{
+		name: "mixNS",
+		type: "VecOpSVVN",
+		typeGeneric: "VecOpSGVVN",
+		doc: [
+			"Componentwise {0}D strided vector linear interpolation with uniform scalar.",
+			"`o = a + (b - a) * n`",
+		],
+		params: PARAMS_SVNV,
+		paramsGeneric: PARAMS_SGVNV,
+		multi: false,
+	},
+	{
+		name: "mixS",
+		type: "VecOpSVVV",
+		typeGeneric: "VecOpSGVVV",
+		doc: [
+			"Componentwise {0}D strided vector linear interpolation.",
+			"`o = a + (b - a) * c`",
+		],
+		params: PARAMS_SVVV,
+		paramsGeneric: PARAMS_SGVVV,
+		multi: false,
+	},
+	{
 		name: "mod",
 		type: "VecOpVV",
 		doc: [
-			"Componentwise computes modulo of given {0}D vector. Similar to {@link fmod}, {@link remainder}. Returns `a - b * floor(a / b)` (same as GLSL `mod(a, b)`).",
+			"Componentwise computes modulo of given {0}D vector. Similar to {@link fmod{1}}, {@link remainder{1}}. Returns `a - b * floor(a / b)` (same as GLSL `mod(a, b)`).",
 		],
-		params: PARAMS_V,
+		params: PARAMS_VV,
+		imports: {
+			"@thi.ng/math/prec": "mod as op",
+		},
+	},
+	{
+		name: "modN",
+		type: "VecOpVN",
+		doc: [
+			"Same as {@link mod{1}}, but 2nd operand is a single scalar (uniform domain for all vector components).",
+		],
+		params: PARAMS_VN,
 		imports: {
 			"@thi.ng/math/prec": "mod as op",
 		},
@@ -955,6 +1202,30 @@ const SPECS: FnSpec[] = [
 			"`o = a * n - b`",
 		],
 		params: PARAMS_VNV,
+	},
+	{
+		name: "msubNS",
+		type: "VecOpSVNV",
+		typeGeneric: "VecOpSGVNV",
+		doc: [
+			"Componentwise {0}D strided vector multiply-subtract with uniform scalar.",
+			"`o = a * n - b`",
+		],
+		params: PARAMS_SVNV,
+		paramsGeneric: PARAMS_SGVNV,
+		multi: false,
+	},
+	{
+		name: "msubS",
+		type: "VecOpSVVV",
+		typeGeneric: "VecOpSGVVV",
+		doc: [
+			"Componentwise {0}D strided vector multiply-subtract.",
+			"`o = a * b - c`",
+		],
+		params: PARAMS_SVVV,
+		paramsGeneric: PARAMS_SGVVV,
+		multi: false,
 	},
 	{
 		name: "mul",
@@ -1045,11 +1316,34 @@ const SPECS: FnSpec[] = [
 		name: "radians",
 		type: "VecOpV",
 		doc: [
-			"Componentwise computes converts degrees to radians of given {0}D vector. Also see {@link degrees}.",
+			"Componentwise computes converts degrees to radians of given {0}D vector. Also see {@link degrees{1}}.",
 		],
 		params: PARAMS_V,
 		imports: {
 			"@thi.ng/math/angle": "rad as op",
+		},
+	},
+	{
+		name: "randDistrib",
+		type: "VecOpFNO",
+		doc: [
+			"Sets `v` to random vector, with each component drawn from given random distribution function (default: gaussian/normal distribution) and scaled to `n` (default: 1). Creates new vector if `v` is null.",
+			"",
+			"@remarks",
+			"The non-fixed sized version of this function can ONLY be used if `v` is given and initialized to the desired size/length.",
+			"",
+			"References:",
+			"",
+			"- https://docs.thi.ng/umbrella/random/#random-distributions",
+			"- https://docs.thi.ng/umbrella/random/functions/normal.html",
+		],
+		params: {
+			o: "output vector",
+			rnd: "random distribution function",
+			n: "scale factor",
+		},
+		imports: {
+			"@thi.ng/random/distributions/normal": "normal as op",
 		},
 	},
 	{
@@ -1066,6 +1360,23 @@ const SPECS: FnSpec[] = [
 			"@thi.ng/random": "type IRandom",
 			"@thi.ng/random/system": "SYSTEM as op",
 		},
+	},
+	{
+		name: "randMinMaxS",
+		type: "VecOpSVVO<IRandom>",
+		typeGeneric: "VecOpSGVVO<IRandom>",
+		doc: ["Like {@link randMinMax{1}} but for {0}D strided vectors."],
+		params: {
+			a: "vector",
+			b: "input vector (min. bounds)",
+			c: "input vector (max. bounds)",
+			rnd: "PRNG instance",
+		},
+		imports: {
+			"@thi.ng/random": "type IRandom",
+			"@thi.ng/random/system": "SYSTEM as op",
+		},
+		multi: false,
 	},
 	{
 		name: "random",
@@ -1088,10 +1399,29 @@ const SPECS: FnSpec[] = [
 		dispatch: 0,
 	},
 	{
+		name: "randomS",
+		type: "VecOpSOOO<number, number, IRandom>",
+		typeGeneric: "VecOpSGOOO<number, number, IRandom>",
+		doc: ["Like {@link random{1}} but for {0}D strided vectors"],
+		imports: {
+			"@thi.ng/random": "type IRandom",
+			"@thi.ng/random/system": "SYSTEM as op",
+		},
+		params: {
+			a: "output vector",
+			n: "min bounds (default: -1)",
+			m: "max bounds (default: 1)",
+			rnd: "PRNG instance",
+			ia: "index (default: 0)",
+			sa: "stride (default: 1)",
+		},
+		multi: false,
+	},
+	{
 		name: "remainder",
 		type: "VecOpVV",
 		doc: [
-			"Componentwise computes modulo of given {0}D vector. Uses the same logic as the standard C function `remainder()`, i.e. componentwise `a - b * round(a / b)`. Also see {@link mod}, {@link fmod}.",
+			"Componentwise computes modulo of given {0}D vector. Uses the same logic as the standard C function `remainder()`, i.e. componentwise `a - b * round(a / b)`. Also see {@link mod{1}}, {@link fmod{1}}.",
 		],
 		params: PARAMS_VV,
 		imports: {
@@ -1102,7 +1432,7 @@ const SPECS: FnSpec[] = [
 		name: "remainderN",
 		type: "VecOpVN",
 		doc: [
-			"Same as {@link remainder}, but but second operand is a single scalar (uniform domain for all vector components).",
+			"Same as {@link remainder{1}}, but but second operand is a single scalar (uniform domain for all vector components).",
 		],
 		params: PARAMS_VN,
 		imports: {
@@ -1185,8 +1515,28 @@ const SPECS: FnSpec[] = [
 	{
 		name: "setN",
 		type: "VecOpN",
-		doc: ["Sets all components of {0}D vector `a` to scalar value `n`."],
+		doc: ["Sets all components of {0}D vector to scalar value `n`."],
 		params: PARAMS_N,
+	},
+	{
+		name: "setNS",
+		type: "VecOpSN",
+		typeGeneric: "VecOpSGN",
+		doc: [
+			"Sets all components of {0}D strided vector to scalar value `n`.",
+		],
+		params: PARAMS_SN,
+		paramsGeneric: PARAMS_SGN,
+		multi: false,
+	},
+	{
+		name: "setS",
+		type: "VecOpSV",
+		typeGeneric: "VecOpSGV",
+		doc: ["Copies {0}D strided vector `a` to `o`."],
+		params: PARAMS_SV,
+		paramsGeneric: PARAMS_SGV,
+		multi: false,
 	},
 	{
 		name: "sign",
@@ -1318,6 +1668,30 @@ const SPECS: FnSpec[] = [
 		multi: false,
 	},
 	{
+		name: "submNS",
+		type: "VecOpSVVN",
+		typeGeneric: "VecOpSGVVN",
+		doc: [
+			"Componentwise {0}D strided vector subtract-multiply with uniform scalar.",
+			"`o = (a - b) * n`",
+		],
+		params: PARAMS_SVVN,
+		paramsGeneric: PARAMS_SGVVN,
+		multi: false,
+	},
+	{
+		name: "submS",
+		type: "VecOpSVVV",
+		typeGeneric: "VecOpSGVVV",
+		doc: [
+			"Componentwise {0}D strided vector subtract-multiply.",
+			"`o = (a - b) * c`",
+		],
+		params: PARAMS_SVVV,
+		paramsGeneric: PARAMS_SGVVV,
+		multi: false,
+	},
+	{
 		name: "tan",
 		type: "VecOpV",
 		doc: ["Componentwise `Math.tan` of given {0}D vector."],
@@ -1353,3 +1727,4 @@ for (let spec of SPECS) {
 }
 
 LOGGER.info("num functions:", SPECS.length * 5);
+LOGGER.info("total size:", bytes(TOTAL_SIZE));
