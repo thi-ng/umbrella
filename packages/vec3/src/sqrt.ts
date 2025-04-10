@@ -1,4 +1,4 @@
-import type { VecOpV } from "@thi.ng/vec-api";
+import { defOpV } from "./defop.js";
 
 /**
  * Componentwise `Math.sqrt` of given 3D vector.
@@ -6,6 +6,4 @@ import type { VecOpV } from "@thi.ng/vec-api";
  * @param o - output vector
  * @param a - input vector
  */
-export const sqrt3: VecOpV = (o,a) => {
-!o && (o=a);o[0]=Math.sqrt(a[0]);o[1]=Math.sqrt(a[1]);o[2]=Math.sqrt(a[2]);return o;
-};
+export const sqrt3 = defOpV(Math.sqrt);

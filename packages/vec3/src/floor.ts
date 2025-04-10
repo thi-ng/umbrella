@@ -1,4 +1,4 @@
-import type { VecOpV } from "@thi.ng/vec-api";
+import { defOpV } from "./defop.js";
 
 /**
  * Componentwise `Math.floor` of given 3D vector.
@@ -6,6 +6,4 @@ import type { VecOpV } from "@thi.ng/vec-api";
  * @param o - output vector
  * @param a - input vector
  */
-export const floor3: VecOpV = (o,a) => {
-!o && (o=a);o[0]=Math.floor(a[0]);o[1]=Math.floor(a[1]);o[2]=Math.floor(a[2]);return o;
-};
+export const floor3 = defOpV(Math.floor);

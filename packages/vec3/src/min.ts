@@ -1,4 +1,4 @@
-import type { VecOpVV } from "@thi.ng/vec-api";
+import { defOpVV } from "./defop.js";
 
 /**
  * Componentwise `Math.min` of given 3D vectors.
@@ -7,6 +7,4 @@ import type { VecOpVV } from "@thi.ng/vec-api";
  * @param a - input vector
  * @param b - input vector
  */
-export const min3: VecOpVV = (o,a,b) => {
-!o && (o=a);o[0]=Math.min(a[0],b[0]);o[1]=Math.min(a[1],b[1]);o[2]=Math.min(a[2],b[2]);return o;
-};
+export const min3 = defOpVV(Math.min);

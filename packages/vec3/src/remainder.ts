@@ -1,5 +1,5 @@
-import { remainder as op } from "@thi.ng/math/libc";
-import type { VecOpVV } from "@thi.ng/vec-api";
+import { remainder } from "@thi.ng/math/libc";
+import { defOpVN, defOpVV } from "./defop.js";
 
 /**
  * Componentwise computes modulo of given 3D vector. Uses the same logic as the
@@ -10,4 +10,14 @@ import type { VecOpVV } from "@thi.ng/vec-api";
  * @param a - input vector
  * @param b - input vector
  */
-export const remainder3: VecOpVV = (o,a,b)=>{!o && (o=a);o[0]=op(a[0],b[0]);o[1]=op(a[1],b[1]);o[2]=op(a[2],b[2]);return o;};
+export const remainder3 = defOpVV(remainder);
+
+/**
+ * Same as {@link remainder3}, but but second operand is a single scalar
+ * (uniform domain for all vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const remainderN3 = defOpVN(remainder);

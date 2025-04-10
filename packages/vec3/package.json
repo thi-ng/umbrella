@@ -111,6 +111,9 @@
 		"./addu": {
 			"default": "./addu.js"
 		},
+		"./angle": {
+			"default": "./angle.js"
+		},
 		"./api": {
 			"default": "./api.js"
 		},
@@ -180,23 +183,20 @@
 		"./clamp": {
 			"default": "./clamp.js"
 		},
-		"./clamp01": {
-			"default": "./clamp01.js"
-		},
-		"./clamp11": {
-			"default": "./clamp11.js"
-		},
-		"./clampn": {
-			"default": "./clampn.js"
-		},
 		"./cos": {
 			"default": "./cos.js"
 		},
 		"./cosh": {
 			"default": "./cosh.js"
 		},
-		"./degrees": {
-			"default": "./degrees.js"
+		"./cross": {
+			"default": "./cross.js"
+		},
+		"./defop": {
+			"default": "./defop.js"
+		},
+		"./direction": {
+			"default": "./direction.js"
 		},
 		"./dist-chebyshev": {
 			"default": "./dist-chebyshev.js"
@@ -204,8 +204,8 @@
 		"./dist-manhattan": {
 			"default": "./dist-manhattan.js"
 		},
-		"./distsq": {
-			"default": "./distsq.js"
+		"./dist": {
+			"default": "./dist.js"
 		},
 		"./div": {
 			"default": "./div.js"
@@ -240,6 +240,9 @@
 		"./eqdelta": {
 			"default": "./eqdelta.js"
 		},
+		"./equals": {
+			"default": "./equals.js"
+		},
 		"./every": {
 			"default": "./every.js"
 		},
@@ -252,20 +255,11 @@
 		"./fit": {
 			"default": "./fit.js"
 		},
-		"./fit01": {
-			"default": "./fit01.js"
-		},
-		"./fit11": {
-			"default": "./fit11.js"
-		},
 		"./floor": {
 			"default": "./floor.js"
 		},
 		"./fmod": {
 			"default": "./fmod.js"
-		},
-		"./fmodn": {
-			"default": "./fmodn.js"
 		},
 		"./fract": {
 			"default": "./fract.js"
@@ -279,6 +273,9 @@
 		"./gte": {
 			"default": "./gte.js"
 		},
+		"./heading": {
+			"default": "./heading.js"
+		},
 		"./invert": {
 			"default": "./invert.js"
 		},
@@ -290,6 +287,12 @@
 		},
 		"./is-nan": {
 			"default": "./is-nan.js"
+		},
+		"./jitter": {
+			"default": "./jitter.js"
+		},
+		"./limit": {
+			"default": "./limit.js"
 		},
 		"./log": {
 			"default": "./log.js"
@@ -336,8 +339,8 @@
 		"./madds": {
 			"default": "./madds.js"
 		},
-		"./magsq": {
-			"default": "./magsq.js"
+		"./mag": {
+			"default": "./mag.js"
 		},
 		"./major": {
 			"default": "./major.js"
@@ -368,9 +371,6 @@
 		},
 		"./mod": {
 			"default": "./mod.js"
-		},
-		"./modn": {
-			"default": "./modn.js"
 		},
 		"./msub": {
 			"default": "./msub.js"
@@ -408,17 +408,17 @@
 		"./mulu": {
 			"default": "./mulu.js"
 		},
+		"./neg": {
+			"default": "./neg.js"
+		},
 		"./neq": {
 			"default": "./neq.js"
 		},
+		"./normalize": {
+			"default": "./normalize.js"
+		},
 		"./pow": {
 			"default": "./pow.js"
-		},
-		"./pown": {
-			"default": "./pown.js"
-		},
-		"./radians": {
-			"default": "./radians.js"
 		},
 		"./rand-distrib": {
 			"default": "./rand-distrib.js"
@@ -429,6 +429,12 @@
 		"./rand-minmaxs": {
 			"default": "./rand-minmaxs.js"
 		},
+		"./rand-norm": {
+			"default": "./rand-norm.js"
+		},
+		"./rand-normdistrib": {
+			"default": "./rand-normdistrib.js"
+		},
 		"./random": {
 			"default": "./random.js"
 		},
@@ -438,14 +444,8 @@
 		"./remainder": {
 			"default": "./remainder.js"
 		},
-		"./remaindern": {
-			"default": "./remaindern.js"
-		},
 		"./round": {
 			"default": "./round.js"
-		},
-		"./roundn": {
-			"default": "./roundn.js"
 		},
 		"./rshifti": {
 			"default": "./rshifti.js"
@@ -464,6 +464,12 @@
 		},
 		"./set": {
 			"default": "./set.js"
+		},
+		"./setc": {
+			"default": "./setc.js"
+		},
+		"./setcs": {
+			"default": "./setcs.js"
 		},
 		"./setn": {
 			"default": "./setn.js"
@@ -539,6 +545,9 @@
 		},
 		"./trunc": {
 			"default": "./trunc.js"
+		},
+		"./vec3-api": {
+			"default": "./vec3-api.js"
 		},
 		"./wrap": {
 			"default": "./wrap.js"

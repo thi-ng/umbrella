@@ -1,4 +1,4 @@
-import type { VecOpV } from "@thi.ng/vec-api";
+import { defOpV } from "./defop.js";
 
 /**
  * Componentwise computes `Math.atan` of given 3D vector.
@@ -6,6 +6,4 @@ import type { VecOpV } from "@thi.ng/vec-api";
  * @param o - output vector
  * @param a - input vector
  */
-export const atan3: VecOpV = (o,a) => {
-!o && (o=a);o[0]=Math.atan(a[0]);o[1]=Math.atan(a[1]);o[2]=Math.atan(a[2]);return o;
-};
+export const atan_3 = defOpV(Math.atan);
