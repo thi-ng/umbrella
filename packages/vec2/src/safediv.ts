@@ -1,5 +1,5 @@
-import { safeDiv as op } from "@thi.ng/math/safe-div";
-import type { VecOpVV } from "@thi.ng/vec-api";
+import { safeDiv } from "@thi.ng/math/safe-div";
+import { defOpVV } from "./defop.js";
 
 /**
  * Componentwise divides given 2D vector `a` by vector `b`. If a divisor
@@ -9,4 +9,4 @@ import type { VecOpVV } from "@thi.ng/vec-api";
  * @param a - input vector
  * @param b - input vector
  */
-export const safeDiv2: VecOpVV = (o,a,b)=>{!o && (o=a);o[0]=op(a[0],b[0]);o[1]=op(a[1],b[1]);return o;};
+export const safeDiv2 = defOpVV(safeDiv);

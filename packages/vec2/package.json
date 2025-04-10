@@ -111,6 +111,9 @@
 		"./addu": {
 			"default": "./addu.js"
 		},
+		"./angle": {
+			"default": "./angle.js"
+		},
 		"./api": {
 			"default": "./api.js"
 		},
@@ -174,20 +177,14 @@
 		"./bitxoru": {
 			"default": "./bitxoru.js"
 		},
+		"./cartesian": {
+			"default": "./cartesian.js"
+		},
 		"./ceil": {
 			"default": "./ceil.js"
 		},
 		"./clamp": {
 			"default": "./clamp.js"
-		},
-		"./clamp01": {
-			"default": "./clamp01.js"
-		},
-		"./clamp11": {
-			"default": "./clamp11.js"
-		},
-		"./clampn": {
-			"default": "./clampn.js"
 		},
 		"./cos": {
 			"default": "./cos.js"
@@ -195,8 +192,14 @@
 		"./cosh": {
 			"default": "./cosh.js"
 		},
-		"./degrees": {
-			"default": "./degrees.js"
+		"./cross": {
+			"default": "./cross.js"
+		},
+		"./defop": {
+			"default": "./defop.js"
+		},
+		"./direction": {
+			"default": "./direction.js"
 		},
 		"./dist-chebyshev": {
 			"default": "./dist-chebyshev.js"
@@ -204,8 +207,8 @@
 		"./dist-manhattan": {
 			"default": "./dist-manhattan.js"
 		},
-		"./distsq": {
-			"default": "./distsq.js"
+		"./dist": {
+			"default": "./dist.js"
 		},
 		"./div": {
 			"default": "./div.js"
@@ -240,6 +243,9 @@
 		"./eqdelta": {
 			"default": "./eqdelta.js"
 		},
+		"./equals": {
+			"default": "./equals.js"
+		},
 		"./every": {
 			"default": "./every.js"
 		},
@@ -251,12 +257,6 @@
 		},
 		"./fit": {
 			"default": "./fit.js"
-		},
-		"./fit01": {
-			"default": "./fit01.js"
-		},
-		"./fit11": {
-			"default": "./fit11.js"
 		},
 		"./floor": {
 			"default": "./floor.js"
@@ -279,6 +279,9 @@
 		"./gte": {
 			"default": "./gte.js"
 		},
+		"./heading": {
+			"default": "./heading.js"
+		},
 		"./invert": {
 			"default": "./invert.js"
 		},
@@ -290,6 +293,9 @@
 		},
 		"./is-nan": {
 			"default": "./is-nan.js"
+		},
+		"./limit": {
+			"default": "./limit.js"
 		},
 		"./log": {
 			"default": "./log.js"
@@ -336,6 +342,9 @@
 		"./madds": {
 			"default": "./madds.js"
 		},
+		"./mag": {
+			"default": "./mag.js"
+		},
 		"./magsq": {
 			"default": "./magsq.js"
 		},
@@ -368,9 +377,6 @@
 		},
 		"./mod": {
 			"default": "./mod.js"
-		},
-		"./modn": {
-			"default": "./modn.js"
 		},
 		"./msub": {
 			"default": "./msub.js"
@@ -408,17 +414,29 @@
 		"./mulu": {
 			"default": "./mulu.js"
 		},
+		"./neg": {
+			"default": "./neg.js"
+		},
 		"./neq": {
 			"default": "./neq.js"
 		},
+		"./normal": {
+			"default": "./normal.js"
+		},
+		"./normalize": {
+			"default": "./normalize.js"
+		},
+		"./perpendicular": {
+			"default": "./perpendicular.js"
+		},
+		"./point-on-ray": {
+			"default": "./point-on-ray.js"
+		},
+		"./polar": {
+			"default": "./polar.js"
+		},
 		"./pow": {
 			"default": "./pow.js"
-		},
-		"./pown": {
-			"default": "./pown.js"
-		},
-		"./radians": {
-			"default": "./radians.js"
 		},
 		"./rand-distrib": {
 			"default": "./rand-distrib.js"
@@ -429,6 +447,12 @@
 		"./rand-minmaxs": {
 			"default": "./rand-minmaxs.js"
 		},
+		"./rand-norm": {
+			"default": "./rand-norm.js"
+		},
+		"./rand-normdistrib": {
+			"default": "./rand-normdistrib.js"
+		},
 		"./random": {
 			"default": "./random.js"
 		},
@@ -438,14 +462,14 @@
 		"./remainder": {
 			"default": "./remainder.js"
 		},
-		"./remaindern": {
-			"default": "./remaindern.js"
+		"./rotate": {
+			"default": "./rotate.js"
+		},
+		"./rotates": {
+			"default": "./rotates.js"
 		},
 		"./round": {
 			"default": "./round.js"
-		},
-		"./roundn": {
-			"default": "./roundn.js"
 		},
 		"./rshifti": {
 			"default": "./rshifti.js"
@@ -465,6 +489,9 @@
 		"./set": {
 			"default": "./set.js"
 		},
+		"./setc": {
+			"default": "./setc.js"
+		},
 		"./setn": {
 			"default": "./setn.js"
 		},
@@ -476,6 +503,9 @@
 		},
 		"./sign": {
 			"default": "./sign.js"
+		},
+		"./signed-area": {
+			"default": "./signed-area.js"
 		},
 		"./sin": {
 			"default": "./sin.js"
@@ -539,6 +569,9 @@
 		},
 		"./trunc": {
 			"default": "./trunc.js"
+		},
+		"./vec2-api": {
+			"default": "./vec2-api.js"
 		},
 		"./wrap": {
 			"default": "./wrap.js"

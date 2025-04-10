@@ -1,4 +1,4 @@
-import type { VecOpVV } from "@thi.ng/vec-api";
+import { defOpVN, defOpVV } from "./defop.js";
 
 /**
  * Componentwise `Math.pow` of given 2D vector `a`. Vector `b` contains
@@ -8,6 +8,13 @@ import type { VecOpVV } from "@thi.ng/vec-api";
  * @param a - input vector
  * @param b - input vector
  */
-export const pow2: VecOpVV = (o,a,b) => {
-!o && (o=a);o[0]=Math.pow(a[0],b[0]);o[1]=Math.pow(a[1],b[1]);return o;
-};
+export const pow2 = defOpVV(Math.pow);
+
+/**
+ * Componentwise `Math.pow` of given 2D vector and uniform scalar exponent.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const powN2 = defOpVN(Math.pow);

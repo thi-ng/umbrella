@@ -11,5 +11,7 @@ export {
 	type ReadonlyBVec,
 	type ReadonlyVec,
 	type Vec,
+	type VecAPI,
 	type Vec2Like,
+	type VecPair,
 } from "@thi.ng/vec-api";

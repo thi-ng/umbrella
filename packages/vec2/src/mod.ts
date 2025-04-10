@@ -1,5 +1,5 @@
-import { mod as op } from "@thi.ng/math/prec";
-import type { VecOpVV } from "@thi.ng/vec-api";
+import { mod } from "@thi.ng/math/prec";
+import { defOpVN, defOpVV } from "./defop.js";
 
 /**
  * Componentwise computes modulo of given 2D vector. Similar to {@link fmod2},
@@ -10,4 +10,14 @@ import type { VecOpVV } from "@thi.ng/vec-api";
  * @param a - input vector
  * @param b - input vector
  */
-export const mod2: VecOpVV = (o,a,b)=>{!o && (o=a);o[0]=op(a[0],b[0]);o[1]=op(a[1],b[1]);return o;};
+export const mod2 = defOpVV(mod);
+
+/**
+ * Same as {@link mod2}, but 2nd operand is a single scalar (uniform domain for
+ * all vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const modN2 = defOpVN(mod);
