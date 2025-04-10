@@ -353,9 +353,6 @@
 		"./mag": {
 			"default": "./mag.js"
 		},
-		"./magsq": {
-			"default": "./magsq.js"
-		},
 		"./major": {
 			"default": "./major.js"
 		},

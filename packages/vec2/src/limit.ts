@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { VecOpVN } from "@thi.ng/vec-api";
-import { magSq2 } from "./magsq.js";
+import { magSq2 } from "./mag.js";
 import { mulN2 } from "./muln.js";
 import { set2 } from "./set.js";
 

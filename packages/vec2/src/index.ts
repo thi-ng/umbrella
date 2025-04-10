@@ -92,7 +92,6 @@ export * from "./maddn.js";
 export * from "./maddns.js";
 export * from "./madds.js";
 export * from "./mag.js";
-export * from "./magsq.js";
 export * from "./major.js";
 export * from "./max.js";
 export * from "./min.js";
