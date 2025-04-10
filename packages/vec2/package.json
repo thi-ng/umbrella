@@ -39,6 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
+		"@thi.ng/api": "^8.11.25",
+		"@thi.ng/checks": "^3.7.5",
 		"@thi.ng/math": "^5.11.25",
 		"@thi.ng/random": "^4.1.16",
 		"@thi.ng/vec-api": "^0.0.1"
@@ -186,6 +188,12 @@
 		"./clamp": {
 			"default": "./clamp.js"
 		},
+		"./clockwise": {
+			"default": "./clockwise.js"
+		},
+		"./copy": {
+			"default": "./copy.js"
+		},
 		"./cos": {
 			"default": "./cos.js"
 		},
@@ -264,9 +272,6 @@
 		"./fmod": {
 			"default": "./fmod.js"
 		},
-		"./fmodn": {
-			"default": "./fmodn.js"
-		},
 		"./fract": {
 			"default": "./fract.js"
 		},
@@ -293,6 +298,9 @@
 		},
 		"./is-nan": {
 			"default": "./is-nan.js"
+		},
+		"./jitter": {
+			"default": "./jitter.js"
 		},
 		"./limit": {
 			"default": "./limit.js"
@@ -491,6 +499,9 @@
 		},
 		"./setc": {
 			"default": "./setc.js"
+		},
+		"./setcs": {
+			"default": "./setcs.js"
 		},
 		"./setn": {
 			"default": "./setn.js"

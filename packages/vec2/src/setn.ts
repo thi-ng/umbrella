@@ -12,6 +12,6 @@ export const setN2: VecOpN = (a, n) => {
 	return a;
 };
 
-export const zeroes = (n: number): Vec => new Array<number>(n).fill(0);
+export const zeroes2 = (): Vec => [0, 0];
 
-export const ones = (n: number): Vec => new Array<number>(n).fill(1);
+export const ones2 = (): Vec => [1, 1];

@@ -13,7 +13,7 @@ import { atan2_2 } from "./atan2.js";
 import { ceil2 } from "./ceil.js";
 import { clamp01_2, clamp2, clampN2 } from "./clamp.js";
 import { cos2 } from "./cos.js";
-import { dist2,distSq2 } from "./dist.js";
+import { dist2, distSq2 } from "./dist.js";
 import { div2 } from "./div.js";
 import { divN2 } from "./divn.js";
 import { dot2 } from "./dot.js";
@@ -51,7 +51,7 @@ import { mul2 } from "./mul.js";
 import { mulN2 } from "./muln.js";
 import { neq2 } from "./neq.js";
 import { normalize2 } from "./normalize.js";
-import { pow2,powN2 } from "./pow.js";
+import { pow2, powN2 } from "./pow.js";
 import { randDistrib2 } from "./rand-distrib.js";
 import { randMinMax2 } from "./rand-minmax.js";
 import { randNorm2 } from "./rand-norm.js";
@@ -59,7 +59,7 @@ import { randNormDistrib2 } from "./rand-normdistrib.js";
 import { random2 } from "./random.js";
 import { round2 } from "./round.js";
 import { set2 } from "./set.js";
-import { ones, setN2, zeroes } from "./setn.js";
+import { ones2, setN2, zeroes2 } from "./setn.js";
 import { sign2 } from "./sign.js";
 import { sin2 } from "./sin.js";
 import { smoothStep2 } from "./smoothstep.js";
@@ -76,8 +76,8 @@ export const VEC2: VecAPI = {
 	ZERO: ZERO2,
 	ONE: ONE2,
 
-	zeroes: () => zeroes(2),
-	ones: () => ones(2),
+	zeroes: () => zeroes2(),
+	ones: () => ones2(),
 
 	abs: abs2,
 	acos: acos2,
