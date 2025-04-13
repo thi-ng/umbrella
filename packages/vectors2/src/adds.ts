@@ -1,6 +1,7 @@
 import { defOpSVV } from "./defopsvv.js";
+import { $add } from "./ops.js";
 
-const [a, b, c, d] = defOpSVV((a, b) => a + b);
+const [a, b, c, d] = defOpSVV($add);
 
 /**
  * Componentwise nD strided vector addition.

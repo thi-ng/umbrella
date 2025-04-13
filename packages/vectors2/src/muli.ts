@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $mulI } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => (a * b) | 0);
+const [a, b, c, d] = defOpVV($mulI);
 
 /**
  * Componentwise nD signed integer vector multiplication. Multi-method.

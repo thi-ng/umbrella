@@ -1,6 +1,7 @@
 import { defOpVNV } from "./defopvnv.js";
+import { $msub } from "./ops.js";
 
-const [a, b, c, d] = defOpVNV((a, n, b) => a * n - b);
+const [a, b, c, d] = defOpVNV($msub);
 
 /**
  * Componentwise nD vector multiply-sub with a uniform scalar factor.

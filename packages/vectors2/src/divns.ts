@@ -1,6 +1,7 @@
 import { defOpSVN } from "./defopsvn.js";
+import { $div } from "./ops.js";
 
-const [a, b, c, d] = defOpSVN((a, n) => a / n);
+const [a, b, c, d] = defOpSVN($div);
 
 /**
  * Componentwise nD strided vector division with uniform scalar.

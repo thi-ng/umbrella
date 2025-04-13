@@ -1,6 +1,7 @@
 import { defOpVVV } from "./defopvvv.js";
+import { $msub } from "./ops.js";
 
-const [a, b, c, d] = defOpVVV((a, b, c) => a * b - c);
+const [a, b, c, d] = defOpVVV($msub);
 
 /**
  * Componentwise nD vector multiply-subtract. `o = a * b - c`. Multi-method.

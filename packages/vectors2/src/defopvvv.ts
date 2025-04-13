@@ -5,7 +5,7 @@ import { vop } from "./vop.js";
 export const defOpVVV = <T = number>(
 	op: FnU3<T>,
 	dispatch = 1,
-	outA?: boolean
+	outA = true
 ) => {
 	const a: VecOpVVV<T> = outA
 		? (o, a, b, c) => {

@@ -1,6 +1,7 @@
 import { defOpVNV } from "./defopvnv.js";
+import { $madd } from "./ops.js";
 
-const [a, b, c, d] = defOpVNV((a, n, b) => a * n + b);
+const [a, b, c, d] = defOpVNV($madd);
 
 /**
  * Componentwise nD vector multiply-add with a uniform scalar factor.

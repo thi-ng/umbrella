@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $bxorU } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, n) => (a ^ n) >>> 0);
+const [a, b, c, d] = defOpVN($bxorU);
 
 /**
  * Componentwise binary XOR of given nD unsigned integer vector and uniform

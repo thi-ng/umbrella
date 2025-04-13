@@ -1,7 +1,7 @@
-import { mix as op } from "@thi.ng/math/mix";
 import { defOpVVV } from "./defopvvv.js";
+import { $mix } from "./ops.js";
 
-const [a, b, c, d] = defOpVVV(op);
+const [a, b, c, d] = defOpVVV($mix);
 
 /**
  * Componentwise nD vector linear interpolation.

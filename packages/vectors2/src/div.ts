@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $div } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => a / b);
+const [a, b, c, d] = defOpVV($div);
 
 /**
  * Componentwise nD vector division. Multi-method.

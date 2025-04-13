@@ -2,11 +2,7 @@ import type { FnU2 } from "@thi.ng/api";
 import type { MultiVecOpVV, VecOpVV } from "./api.js";
 import { vop } from "./vop.js";
 
-export const defOpVV = <T = number>(
-	op: FnU2<T>,
-	dispatch = 1,
-	outA?: boolean
-) => {
+export const defOpVV = <T = number>(op: FnU2<T>, dispatch = 1, outA = true) => {
 	const a: VecOpVV<T> = outA
 		? (o, a, b) => {
 				!o && (o = a);

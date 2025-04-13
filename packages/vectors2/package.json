@@ -77,6 +77,9 @@
 		"./abs": {
 			"default": "./abs.js"
 		},
+		"./accessors": {
+			"default": "./accessors.js"
+		},
 		"./acos": {
 			"default": "./acos.js"
 		},
@@ -149,47 +152,47 @@
 		"./bisect": {
 			"default": "./bisect.js"
 		},
-		"./bitandi": {
-			"default": "./bitandi.js"
+		"./bit-andi": {
+			"default": "./bit-andi.js"
 		},
-		"./bitandni": {
-			"default": "./bitandni.js"
+		"./bit-andni": {
+			"default": "./bit-andni.js"
 		},
-		"./bitandnu": {
-			"default": "./bitandnu.js"
+		"./bit-andnu": {
+			"default": "./bit-andnu.js"
 		},
-		"./bitandu": {
-			"default": "./bitandu.js"
+		"./bit-andu": {
+			"default": "./bit-andu.js"
 		},
-		"./bitnoti": {
-			"default": "./bitnoti.js"
+		"./bit-noti": {
+			"default": "./bit-noti.js"
 		},
-		"./bitnotu": {
-			"default": "./bitnotu.js"
+		"./bit-notu": {
+			"default": "./bit-notu.js"
 		},
-		"./bitori": {
-			"default": "./bitori.js"
+		"./bit-ori": {
+			"default": "./bit-ori.js"
 		},
-		"./bitorni": {
-			"default": "./bitorni.js"
+		"./bit-orni": {
+			"default": "./bit-orni.js"
 		},
-		"./bitornu": {
-			"default": "./bitornu.js"
+		"./bit-ornu": {
+			"default": "./bit-ornu.js"
 		},
-		"./bitoru": {
-			"default": "./bitoru.js"
+		"./bit-oru": {
+			"default": "./bit-oru.js"
 		},
-		"./bitxori": {
-			"default": "./bitxori.js"
+		"./bit-xori": {
+			"default": "./bit-xori.js"
 		},
-		"./bitxorni": {
-			"default": "./bitxorni.js"
+		"./bit-xorni": {
+			"default": "./bit-xorni.js"
 		},
-		"./bitxornu": {
-			"default": "./bitxornu.js"
+		"./bit-xornu": {
+			"default": "./bit-xornu.js"
 		},
-		"./bitxoru": {
-			"default": "./bitxoru.js"
+		"./bit-xoru": {
+			"default": "./bit-xoru.js"
 		},
 		"./buffer": {
 			"default": "./buffer.js"
@@ -626,6 +629,9 @@
 		"./normalizes": {
 			"default": "./normalizes.js"
 		},
+		"./ops": {
+			"default": "./ops.js"
+		},
 		"./ortho-normal": {
 			"default": "./ortho-normal.js"
 		},
@@ -716,8 +722,8 @@
 		"./rss": {
 			"default": "./rss.js"
 		},
-		"./safediv": {
-			"default": "./safediv.js"
+		"./safe-div": {
+			"default": "./safe-div.js"
 		},
 		"./select": {
 			"default": "./select.js"

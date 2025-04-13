@@ -1,6 +1,7 @@
 import { defOpSVN } from "./defopsvn.js";
+import { $sub } from "./ops.js";
 
-const [a, b, c, d] = defOpSVN((a, n) => a - n);
+const [a, b, c, d] = defOpSVN($sub);
 
 /**
  * Componentwise nD strided vector subtraction with uniform scalar.

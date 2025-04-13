@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $mulU } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, n) => (a * n) >>> 0);
+const [a, b, c, d] = defOpVN($mulU);
 
 /**
  * Componentwise nD unsigned integer vector multiplication with uniform scalar.

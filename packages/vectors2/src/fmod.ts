@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $fmod } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => a % b);
+const [a, b, c, d] = defOpVV($fmod);
 
 /**
  * Multi-method. Similar to {@link mod}, {@link remainder}. This version of

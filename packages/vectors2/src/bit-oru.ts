@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $borU } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => (a | b) >>> 0);
+const [a, b, c, d] = defOpVV($borU);
 
 /**
  * Componentwise binary OR of given nD unsigned integer vectors. Multi-method.

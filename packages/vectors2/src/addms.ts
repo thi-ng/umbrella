@@ -1,6 +1,7 @@
 import { defOpSVVV } from "./defopsvvv.js";
+import { $addm } from "./ops.js";
 
-const [a, b, c, d] = defOpSVVV((a, b, c) => (a + b) * c);
+const [a, b, c, d] = defOpSVVV($addm);
 
 /**
  * Componentwise 2D strided vector add-multiply.

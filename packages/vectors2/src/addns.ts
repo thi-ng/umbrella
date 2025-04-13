@@ -1,6 +1,7 @@
 import { defOpSVN } from "./defopsvn.js";
+import { $add } from "./ops.js";
 
-const [a, b, c, d] = defOpSVN((a, n) => a + n);
+const [a, b, c, d] = defOpSVN($add);
 
 /**
  * Componentwise nD strided vector addition with uniform scalar.

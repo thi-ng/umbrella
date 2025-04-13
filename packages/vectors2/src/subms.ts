@@ -1,6 +1,7 @@
 import { defOpSVVV } from "./defopsvvv.js";
+import { $subm } from "./ops.js";
 
-const [a, b, c, d] = defOpSVVV((a, b, c) => (a - b) * c);
+const [a, b, c, d] = defOpSVVV($subm);
 
 /**
  * Componentwise nD strided vector subtract-multiply.

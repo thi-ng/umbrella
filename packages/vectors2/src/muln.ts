@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $mul } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, b) => a * b);
+const [a, b, c, d] = defOpVN($mul);
 
 /**
  * Componentwise nD vector multiplication with a uniform scalar. Multi-method.

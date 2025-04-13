@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $lsI } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => a << b);
+const [a, b, c, d] = defOpVV($lsI);
 
 /**
  * Componentwise binary left shift of given nD signed integer vector `a`.

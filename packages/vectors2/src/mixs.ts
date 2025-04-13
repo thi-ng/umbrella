@@ -1,7 +1,7 @@
-import { mix } from "@thi.ng/math/mix";
 import { defOpSVVV } from "./defopsvvv.js";
+import { $mix } from "./ops.js";
 
-const [a, b, c, d] = defOpSVVV(mix);
+const [a, b, c, d] = defOpSVVV($mix);
 
 /**
  * Componentwise nD strided vector linear interpolation.

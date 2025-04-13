@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $fmod } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, b) => a % b);
+const [a, b, c, d] = defOpVN($fmod);
 
 /**
  * Same as {@link fmod}, but 2nd operand is a scalar (uniform domain for all

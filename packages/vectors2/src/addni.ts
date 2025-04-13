@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $addI } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, n) => (a + n) | 0);
+const [a, b, c, d] = defOpVN($addI);
 
 /**
  * Componentwise nD signed integer vector addition with uniform scalar.

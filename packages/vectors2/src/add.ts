@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $add } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => a + b);
+const [a, b, c, d] = defOpVV($add);
 
 /**
  * Componentwise nD vector addition. Multi-method.

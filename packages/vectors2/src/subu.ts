@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $subU } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => (a - b) >>> 0);
+const [a, b, c, d] = defOpVV($subU);
 
 /**
  * Componentwise nD unsigned integer vector subtraction. Multi-method.

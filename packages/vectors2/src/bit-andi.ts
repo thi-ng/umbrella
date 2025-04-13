@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $bandI } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => a & b);
+const [a, b, c, d] = defOpVV($bandI);
 
 /**
  * Componentwise binary AND of given nD signed integer vectors. Multi-method.

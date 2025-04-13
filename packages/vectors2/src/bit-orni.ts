@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $borI } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, n) => a | n);
+const [a, b, c, d] = defOpVN($borI);
 
 /**
  * Componentwise binary OR of given nD signed integer vector and uniform

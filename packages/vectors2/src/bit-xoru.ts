@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $bxorU } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => (a ^ b) >>> 0);
+const [a, b, c, d] = defOpVV($bxorU);
 
 /**
  * Componentwise binary XOR of given nD unsigned integer vectors. Multi-method.

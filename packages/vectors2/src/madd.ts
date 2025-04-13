@@ -1,6 +1,7 @@
 import { defOpVVV } from "./defopvvv.js";
+import { $madd } from "./ops.js";
 
-const [a, b, c, d] = defOpVVV((a, b, c) => a * b + c);
+const [a, b, c, d] = defOpVVV($madd);
 
 /**
  * Componentwise nD vector multiply-add. `o = a * b + c`. Multi-method.

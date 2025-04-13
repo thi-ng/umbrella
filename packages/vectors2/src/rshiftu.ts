@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $rsU } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => a >>> b);
+const [a, b, c, d] = defOpVV($rsU);
 
 /**
  * Componentwise binary rightshift of given nD unsigned integer vector `a`.

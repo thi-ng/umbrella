@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $rsU } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, n) => a >>> n);
+const [a, b, c, d] = defOpVN($rsU);
 
 /**
  * Componentwise binary right shift of given nD unsigned integer vector by uniform

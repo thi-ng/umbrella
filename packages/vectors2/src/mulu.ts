@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $mulU } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => (a * b) >>> 0);
+const [a, b, c, d] = defOpVV($mulU);
 
 /**
  * Componentwise nD unsigned integer vector multiplication. Multi-method.

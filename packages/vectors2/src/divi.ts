@@ -1,6 +1,7 @@
 import { defOpVV } from "./defopvv.js";
+import { $divI } from "./ops.js";
 
-const [a, b, c, d] = defOpVV((a, b) => (a / b) | 0);
+const [a, b, c, d] = defOpVV($divI);
 
 /**
  * Componentwise nD signed integer vector division. Multi-method.

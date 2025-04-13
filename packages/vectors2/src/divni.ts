@@ -1,6 +1,7 @@
 import { defOpVN } from "./defopvn.js";
+import { $divI } from "./ops.js";
 
-const [a, b, c, d] = defOpVN((a, n) => (a / n) | 0);
+const [a, b, c, d] = defOpVN($divI);
 
 /**
  * Componentwise nD signed integer vector division with uniform scalar.
