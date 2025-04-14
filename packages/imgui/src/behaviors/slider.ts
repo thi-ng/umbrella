@@ -7,7 +7,7 @@ import { roundTo } from "@thi.ng/math/prec";
 import type { Vec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";
 import { clamp2 } from "@thi.ng/vectors/clamp";
-import { roundN2 } from "@thi.ng/vectors/round";
+import { roundN2 } from "@thi.ng/vectors/roundn";
 import { Key } from "../api.js";
 import type { IMGUI } from "../gui.js";
 

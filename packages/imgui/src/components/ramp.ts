@@ -10,7 +10,7 @@ import { roundTo } from "@thi.ng/math/prec";
 import type { Frame, Ramp } from "@thi.ng/ramp";
 import { map } from "@thi.ng/transducers/map";
 import { ONE2, ZERO2, type Vec } from "@thi.ng/vectors/api";
-import { clamp01_2 } from "@thi.ng/vectors/clamp";
+import { clamp01_2 } from "@thi.ng/vectors/clamp01";
 import { fit2 } from "@thi.ng/vectors/fit";
 import { hash } from "@thi.ng/vectors/hash";
 import { mix2 } from "@thi.ng/vectors/mix";
