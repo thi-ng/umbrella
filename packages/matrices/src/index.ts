@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 export * from "./api.js";
 export * from "./constants.js";
-export * from "./compile/emit.js";
 
 export * from "./add.js";
 export * from "./addn.js";
