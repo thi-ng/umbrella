@@ -116,6 +116,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 
 	protected async listener(req: http.IncomingMessage, res: ServerResponse) {
 		try {
+			if (req.url!.includes("#")) return res.badRequest();
 			const url = new URL(req.url!, `http://${req.headers.host}`);
 			if (this.opts.host && !isMatchingHost(url.hostname, this.host)) {
 				this.logger.debug(
@@ -152,6 +153,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 				// @ts-ignore
 				server: this,
 				logger: this.logger,
+				url,
 				req,
 				res,
 				path,

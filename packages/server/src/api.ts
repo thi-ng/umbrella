@@ -104,17 +104,69 @@ export interface CompiledServerRoute<CTX extends RequestCtx = RequestCtx>
 }
 
 export interface RequestCtx {
+	/**
+	 * Server instance.
+	 */
 	server: Server;
+	/**
+	 * Logger instance.
+	 */
 	logger: ILogger;
+	/**
+	 * Parsed request URL.
+	 *
+	 * @remarks
+	 * Route handlers SHOULD only use this url instead of
+	 * {@link RequestCtx.req}'s `.url` property. This ensures, that the
+	 * hash-fragment (`#...`) part is properly dealt with, avoiding security
+	 * issues related to HTTP `request-target`
+	 * (https://datatracker.ietf.org/doc/html/rfc9112#section-3.2).
+	 *
+	 * Note: The server already responds to any request containing a `#` in its
+	 * URL with a HTTP 400.
+	 *
+	 * Also see {@link RequestCtx.path} and {@link RequestCtx.query}.
+	 */
+	url: URL;
+	/**
+	 * HTTP request instance.
+	 */
 	req: IncomingMessage;
+	/**
+	 * HTTP server response instance.
+	 */
 	res: ServerResponse;
+	/**
+	 * Pre-compiled route handler and its interceptors
+	 */
 	route: CompiledServerRoute;
+	/**
+	 * Parsed route details.
+	 */
 	match: RouteMatch;
+	/**
+	 * Request method (possibly adapted). Also see {@link RequestCtx.origMethod}.
+	 */
 	method: Method;
+	/**
+	 * Original request method. Also see {@link RequestCtx.method}.
+	 */
 	origMethod: Method;
+	/**
+	 * URI-decoded path part of request URL.
+	 */
 	path: string;
+	/**
+	 * Parsed query string params (aka URL search params).
+	 */
 	query: Record<string, any>;
+	/**
+	 * Parsed cookies, if any.
+	 */
 	cookies?: Record<string, string>;
+	/**
+	 * Server session (only if {@link SessionInterceptor} is used).
+	 */
 	session?: ServerSession;
 }
 
