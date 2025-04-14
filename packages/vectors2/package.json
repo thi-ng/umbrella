@@ -659,6 +659,9 @@
 		"./rand-distrib": {
 			"default": "./rand-distrib.js"
 		},
+		"./rand-distribs": {
+			"default": "./rand-distribs.js"
+		},
 		"./rand-minmax": {
 			"default": "./rand-minmax.js"
 		},
@@ -670,6 +673,9 @@
 		},
 		"./rand-normdistrib": {
 			"default": "./rand-normdistrib.js"
+		},
+		"./rand-normdistribs": {
+			"default": "./rand-normdistribs.js"
 		},
 		"./rand-norms": {
 			"default": "./rand-norms.js"
