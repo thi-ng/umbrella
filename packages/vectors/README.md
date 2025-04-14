@@ -51,7 +51,6 @@
   - [Boolean vector logic](#boolean-vector-logic)
   - [Componentwise comparisons](#componentwise-comparisons)
   - [Hashing](#hashing)
-  - [Code generator](#code-generator)
 - [Authors](#authors)
 - [License](#license)
 
@@ -559,7 +558,7 @@ Component wise op with one input vector and single scalar:
 | Function    | Generic | Fixed | Strided | Int | Comments             |
 |-------------|---------|-------|---------|-----|----------------------|
 | `limit`     | ✓       |       |         |     |                      |
-| `mag`       | ✓       |       | S2-S4   |     |                      |
+| `mag`       | ✓       | 2-4   | S2-S4   |     |                      |
 | `magSq`     | ✓       | 2-4   | S2-S4   |     |                      |
 | `normalize` | ✓       |       | S2-S4   |     | w/ opt target length |
 
@@ -567,7 +566,7 @@ Component wise op with one input vector and single scalar:
 
 | Function              | Generic | Fixed | Strided | Int | Comments            |
 |-----------------------|---------|-------|---------|-----|---------------------|
-| `dist`                | ✓       |       |         |     |                     |
+| `dist`                | ✓       | 2-4   |         |     |                     |
 | `distSq`              | ✓       | 2-4   |         |     |                     |
 | `distBrayCurtis`      | ✓       |       |         |     |                     |
 | `distCanberra`        | ✓       |       |         |     |                     |
@@ -589,11 +588,11 @@ Component wise op with one input vector and single scalar:
 |--------------------|---------|-------|---------|-----|--------------------------|
 | `angleBetween`     |         | 2, 3  |         |     |                          |
 | `angleRatio`       | ✓       |       |         |     |                          |
-| `atan_2`           | ✓       | 2-4   |         |     | `Math.atan2(y, x)`       |
+| `atan2`            | ✓       | 2-4   |         |     | `Math.atan2(y, x)`       |
 | `bisect`           |         | 2     |         |     |                          |
 | `cornerBisector`   | ✓       |       |         |     |                          |
 | `degrees`          | ✓       | 2-4   |         |     |                          |
-| `direction`        | ✓       |       |         |     | normalize(b - a)         |
+| `direction`        | ✓       | 2-3   |         |     | normalize(b - a)         |
 | `faceForward`      | ✓       |       |         |     |                          |
 | `heading`          | ✓       |       |         |     | alias `headingXY`        |
 | `headingXY`        | ✓       |       |         |     |                          |
@@ -655,11 +654,13 @@ All ops support custom PRNG impls based on the
 | `abs`             | ✓       | 2-4   |         |     |                    |
 | `acos`            | ✓       | 2-4   |         |     |                    |
 | `asin`            | ✓       | 2-4   |         |     |                    |
-| `atan`            | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
+| `atan` (1)        | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
+| `atan2` (1)       | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
 | `ceil`            | ✓       | 2-4   |         |     |                    |
 | `cos`             | ✓       | 2-4   |         |     |                    |
 | `cosh`            | ✓       | 2-4   |         |     |                    |
-| `exp`             | ✓       | 2-4   |         |     |                    |
+| `exp` (1)         | ✓       | 2-4   |         |     |                    |
+| `exp2` (1)        | ✓       | 2-4   |         |     |                    |
 | `floor`           | ✓       | 2-4   |         |     |                    |
 | `fract`           | ✓       | 2-4   |         |     |                    |
 | `fromHomogeneous` | ✓       | 3, 4  |         |     | 3D/4D only         |
@@ -667,7 +668,8 @@ All ops support custom PRNG impls based on the
 | `invSqrt`         | ✓       | 2-4   |         |     |                    |
 | `isInf`           | ✓       | 2-4   |         |     |                    |
 | `isNaN`           | ✓       | 2-4   |         |     |                    |
-| `log`             | ✓       | 2-4   |         |     |                    |
+| `log` (1)         | ✓       | 2-4   |         |     |                    |
+| `log2` (1)        | ✓       | 2-4   |         |     |                    |
 | `major`           | ✓       | 2-4   |         |     |                    |
 | `minor`           | ✓       | 2-4   |         |     |                    |
 | `round`           | ✓       | 2-4   |         |     |                    |
@@ -679,6 +681,8 @@ All ops support custom PRNG impls based on the
 | `tan`             | ✓       | 2-4   |         |     |                    |
 | `trunc`           | ✓       | 2-4   |         |     |                    |
 | `wrap`            | ✓       | 2-4   |         |     |                    |
+
+- (1): Fixed names are suffixed with `_2`, `_3`, `_4`
 
 ### Vector array batch processing
 
@@ -733,7 +737,6 @@ forced accordingly.
 | `logicNot`  | ✓       | 2-4   |         |     |                   |
 | `every`     | ✓       | 2-4   |         |     | returns `boolean` |
 | `some`      | ✓       | 2-4   |         |     | returns `boolean` |
-| `not`       | ✓       | 2-4   |         |     |                   |
 
 ### Componentwise comparisons
 
@@ -751,19 +754,6 @@ All resulting in boolean vectors:
 ### Hashing
 
 - `hash`
-
-### Code generator
-
-- `compile` / `compileG` / `compileGHOF` / `compileHOF`
-- `defOp` / `defOpS` / `defFnOp` / `defHofOp`
-- `defMathNOp` / `defMathOp`
-- `vop`
-
-For more information about the code generator see:
-
-- [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/emit.ts)
-- [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/templates.ts)
-- [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
 
 ## Authors
 
