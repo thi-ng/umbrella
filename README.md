@@ -62,9 +62,9 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 204 individual
+Not including deprecations, this mono-repository is home to 205 individual
 TypeScript libraries/packages/tools and ~185 example projects illustrating their
-usage, currently totalling ~226k SLOC and ~4100 source files... Some of the
+usage, currently totalling ~234k SLOC and ~4200 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
 
