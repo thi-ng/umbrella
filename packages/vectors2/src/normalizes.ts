@@ -39,15 +39,15 @@ export const normalizeS: VecOpSGVO<number> = (
 };
 
 const $ =
-	(
-		magSq: VecOpSRoV<number>,
-		mulN: VecOpSVN,
-		set: VecOpSV
-	): VecOpSVO<number> =>
-	(out, v, n = 1) => {
+	(mag: VecOpSRoV<number>, mulN: VecOpSVN, set: VecOpSV): VecOpSVO<number> =>
+	(out, v, n = 1, io = 0, ia = 0, so = 1, sa = 1) => {
 		!out && (out = v);
-		const m = Math.sqrt(magSq(v));
-		return m >= EPS ? mulN(out, v, n / m) : out !== v ? set(out, v) : out;
+		const m = mag(v, ia, sa);
+		return m >= EPS
+			? mulN(out, v, n / m, io, ia, so, sa)
+			: out !== v
+			? set(out, v, io, ia, so, sa)
+			: out;
 	};
 
 /**
