@@ -69,9 +69,9 @@ export class TSNE {
 		const n = (this.n = points.length);
 		const dim = (this.dim = points[0].length);
 		// pre-lookup size-optimized implementations of vector ops
-		this.opDist = opts.dist === distSq ? distSq.impl(dim) : opts.dist;
-		this.opDivN = divN.impl(dim);
-		this.opSub = sub.impl(dim);
+		this.opDist = opts.dist === distSq ? distSq.impl(dim)! : opts.dist;
+		this.opDivN = divN.impl(dim)!;
+		this.opSub = sub.impl(dim)!;
 		this.p = initProbabilities(
 			pairwiseDistances(points, this.opDist),
 			n,
