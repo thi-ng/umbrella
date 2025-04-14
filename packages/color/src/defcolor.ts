@@ -11,7 +11,7 @@ import type { IRandom } from "@thi.ng/random";
 import { vector } from "@thi.ng/strings/vector";
 import { mapStridedBuffer } from "@thi.ng/vectors/buffer";
 import { clamp4 } from "@thi.ng/vectors/clamp";
-import { declareIndices } from "@thi.ng/vectors/compile/accessors";
+import { declareIndices } from "@thi.ng/vectors/accessors";
 import { eqDelta4 } from "@thi.ng/vectors/eqdelta";
 import { stridedValues } from "@thi.ng/vectors/iterator";
 import { randMinMax } from "@thi.ng/vectors/rand-minmax";
