@@ -5,27 +5,28 @@ import { add3 } from "@thi.ng/vectors/add";
 import { addN3 } from "@thi.ng/vectors/addn";
 import { ZERO3 } from "@thi.ng/vectors/api";
 import { asin3 } from "@thi.ng/vectors/asin";
-import { atan3, atan_23 } from "@thi.ng/vectors/atan";
+import { atan_3 } from "@thi.ng/vectors/atan";
+import { atan2_3 } from "@thi.ng/vectors/atan2";
 import { ceil3 } from "@thi.ng/vectors/ceil";
 import { clamp3 } from "@thi.ng/vectors/clamp";
 import { cos3 } from "@thi.ng/vectors/cos";
 import { cross3 } from "@thi.ng/vectors/cross";
 import { degrees3 } from "@thi.ng/vectors/degrees";
-import { dist } from "@thi.ng/vectors/dist";
+import { dist3 } from "@thi.ng/vectors/dist";
 import { div3 } from "@thi.ng/vectors/div";
 import { divN3 } from "@thi.ng/vectors/divn";
 import { dot3 } from "@thi.ng/vectors/dot";
 import { eq3 } from "@thi.ng/vectors/eq";
-import { exp3 } from "@thi.ng/vectors/exp";
-import { exp_23 } from "@thi.ng/vectors/exp_2";
+import { exp_3 } from "@thi.ng/vectors/exp";
+import { exp2_3 } from "@thi.ng/vectors/exp2";
 import { faceForward } from "@thi.ng/vectors/face-forward";
 import { floor3 } from "@thi.ng/vectors/floor";
 import { fract3 } from "@thi.ng/vectors/fract";
 import { gt3 } from "@thi.ng/vectors/gt";
 import { gte3 } from "@thi.ng/vectors/gte";
 import { invSqrt3 } from "@thi.ng/vectors/invsqrt";
-import { log3 } from "@thi.ng/vectors/log";
-import { log_23 } from "@thi.ng/vectors/log_2";
+import { log_3 } from "@thi.ng/vectors/log";
+import { log2_3 } from "@thi.ng/vectors/log2";
 import { lt3 } from "@thi.ng/vectors/lt";
 import { lte3 } from "@thi.ng/vectors/lte";
 import { mag } from "@thi.ng/vectors/mag";
@@ -62,8 +63,8 @@ export const VEC3 = ({ next, uniform }: Pool): JSBuiltinsVec3 => ({
 	addnv: (a, b) => addN3(next(), b, a),
 	addvn: (a, b) => addN3(next(), a, b),
 	asin: (a) => asin3(next(), a),
-	atan: (a) => atan3(next(), a),
-	atannn: (a, b) => atan_23(next(), a, b),
+	atan: (a) => atan_3(next(), a),
+	atannn: (a, b) => atan2_3(next(), a, b),
 	ceil: (a) => ceil3(next(), a),
 	clamp: (x, a, b) => clamp3(next(), x, a, b),
 	cos: (a) => cos3(next(), a),
@@ -72,13 +73,13 @@ export const VEC3 = ({ next, uniform }: Pool): JSBuiltinsVec3 => ({
 	degrees: (a) => degrees3(next(), a),
 	dFdx: () => ZERO3,
 	dFdy: () => ZERO3,
-	distance: dist,
+	distance: dist3,
 	div: (a, b) => div3(next(), a, b),
 	divnv: (a, b) => div3(null, uniform(a), b),
 	divvn: (a, b) => divN3(next(), a, b),
 	dot: (a, b) => dot3(a, b),
-	exp: (a) => exp3(next(), a),
-	exp2: (a) => exp_23(next(), a),
+	exp: (a) => exp_3(next(), a),
+	exp2: (a) => exp2_3(next(), a),
 	faceForward: (a, b, c) => faceForward(next(), a, b, c),
 	floor: (a) => floor3(next(), a),
 	fract: (a) => fract3(next(), a),
@@ -86,8 +87,8 @@ export const VEC3 = ({ next, uniform }: Pool): JSBuiltinsVec3 => ({
 	inc: (a) => addN3(next(), a, 1),
 	inversesqrt: (a) => invSqrt3(next(), a),
 	length: mag,
-	log: (a) => log3(next(), a),
-	log2: (a) => log_23(next(), a),
+	log: (a) => log_3(next(), a),
+	log2: (a) => log2_3(next(), a),
 	max: (a, b) => max3(next(), a, b),
 	min: (a, b) => min3(next(), a, b),
 	mix: (a, b, t) => mix3(next(), a, b, t),

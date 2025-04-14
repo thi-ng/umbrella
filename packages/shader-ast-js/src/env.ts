@@ -3,7 +3,7 @@ import { identity } from "@thi.ng/api/fn";
 import { mat22n, mat33n, mat44n } from "@thi.ng/matrices/matn";
 import { mat22v, mat33v, mat44v } from "@thi.ng/matrices/matv";
 import { ZERO3, ZERO4 } from "@thi.ng/vectors/api";
-import { fromBVec2, fromBVec3, fromBVec4 } from "@thi.ng/vectors/convert";
+import { fromBVec2, fromBVec3, fromBVec4 } from "@thi.ng/vectors/from-bvec";
 import { setVN3, setVN4 } from "@thi.ng/vectors/setvn";
 import { setVV4 } from "@thi.ng/vectors/setvv";
 import {

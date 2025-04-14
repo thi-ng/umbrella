@@ -5,26 +5,27 @@ import { add4 } from "@thi.ng/vectors/add";
 import { addN4 } from "@thi.ng/vectors/addn";
 import { ZERO4 } from "@thi.ng/vectors/api";
 import { asin4 } from "@thi.ng/vectors/asin";
-import { atan4, atan_24 } from "@thi.ng/vectors/atan";
+import { atan_4 } from "@thi.ng/vectors/atan";
+import { atan2_4 } from "@thi.ng/vectors/atan2";
 import { ceil4 } from "@thi.ng/vectors/ceil";
 import { clamp4 } from "@thi.ng/vectors/clamp";
 import { cos4 } from "@thi.ng/vectors/cos";
 import { degrees4 } from "@thi.ng/vectors/degrees";
-import { dist } from "@thi.ng/vectors/dist";
+import { dist4 } from "@thi.ng/vectors/dist";
 import { div4 } from "@thi.ng/vectors/div";
 import { divN4 } from "@thi.ng/vectors/divn";
 import { dot4 } from "@thi.ng/vectors/dot";
 import { eq4 } from "@thi.ng/vectors/eq";
-import { exp4 } from "@thi.ng/vectors/exp";
-import { exp_24 } from "@thi.ng/vectors/exp_2";
+import { exp_4 } from "@thi.ng/vectors/exp";
+import { exp2_4 } from "@thi.ng/vectors/exp2";
 import { faceForward } from "@thi.ng/vectors/face-forward";
 import { floor4 } from "@thi.ng/vectors/floor";
 import { fract4 } from "@thi.ng/vectors/fract";
 import { gt4 } from "@thi.ng/vectors/gt";
 import { gte4 } from "@thi.ng/vectors/gte";
 import { invSqrt4 } from "@thi.ng/vectors/invsqrt";
-import { log4 } from "@thi.ng/vectors/log";
-import { log_24 } from "@thi.ng/vectors/log_2";
+import { log_4 } from "@thi.ng/vectors/log";
+import { log2_4 } from "@thi.ng/vectors/log2";
 import { lt4 } from "@thi.ng/vectors/lt";
 import { lte4 } from "@thi.ng/vectors/lte";
 import { mag } from "@thi.ng/vectors/mag";
@@ -61,8 +62,8 @@ export const VEC4 = ({ next, uniform }: Pool): JSBuiltinsVec => ({
 	addnv: (a, b) => addN4(next(), b, a),
 	addvn: (a, b) => addN4(next(), a, b),
 	asin: (a) => asin4(next(), a),
-	atan: (a) => atan4(next(), a),
-	atannn: (a, b) => atan_24(next(), a, b),
+	atan: (a) => atan_4(next(), a),
+	atannn: (a, b) => atan2_4(next(), a, b),
 	ceil: (a) => ceil4(next(), a),
 	clamp: (x, a, b) => clamp4(next(), x, a, b),
 	cos: (a) => cos4(next(), a),
@@ -70,13 +71,13 @@ export const VEC4 = ({ next, uniform }: Pool): JSBuiltinsVec => ({
 	degrees: (a) => degrees4(next(), a),
 	dFdx: () => ZERO4,
 	dFdy: () => ZERO4,
-	distance: dist,
+	distance: dist4,
 	div: (a, b) => div4(next(), a, b),
 	divnv: (a, b) => div4(null, uniform(a), b),
 	divvn: (a, b) => divN4(next(), a, b),
 	dot: (a, b) => dot4(a, b),
-	exp: (a) => exp4(next(), a),
-	exp2: (a) => exp_24(next(), a),
+	exp: (a) => exp_4(next(), a),
+	exp2: (a) => exp2_4(next(), a),
 	faceForward: (a, b, c) => faceForward(next(), a, b, c),
 	floor: (a) => floor4(next(), a),
 	fract: (a) => fract4(next(), a),
@@ -84,8 +85,8 @@ export const VEC4 = ({ next, uniform }: Pool): JSBuiltinsVec => ({
 	inc: (a) => addN4(next(), a, 1),
 	inversesqrt: (a) => invSqrt4(next(), a),
 	length: mag,
-	log: (a) => log4(next(), a),
-	log2: (a) => log_24(next(), a),
+	log: (a) => log_4(next(), a),
+	log2: (a) => log2_4(next(), a),
 	max: (a, b) => max4(next(), a, b),
 	min: (a, b) => min4(next(), a, b),
 	mix: (a, b, t) => mix4(next(), a, b, t),
