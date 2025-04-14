@@ -53,9 +53,12 @@ export const distHaversineLonLat = (
 export const distHaversine = distHaversineLonLat;
 
 /** @internal */
+const { cos } = Math;
+
+/** @internal */
 const __dist: FnN5 = (lat1, lon1, lat2, lon2, r) => {
-	const dlat = 0.5 - Math.cos(lat2 - lat1) * 0.5;
-	const dlon = (1 - Math.cos(lon2 - lon1)) * 0.5;
-	const combined = dlat + Math.cos(lat1) * Math.cos(lat2) * dlon;
+	const dlat = 0.5 - cos(lat2 - lat1) * 0.5;
+	const dlon = (1 - cos(lon2 - lon1)) * 0.5;
+	const combined = dlat + cos(lat1) * cos(lat2) * dlon;
 	return 2 * r * Math.asin(Math.sqrt(combined));
 };

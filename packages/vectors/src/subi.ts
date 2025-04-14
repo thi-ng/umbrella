@@ -1,10 +1,40 @@
-// SPDX-License-Identifier: Apache-2.0
-import { defBitOp, defBitOpN } from "./compile/emit.js";
+import { defOpVV } from "./defopvv.js";
+import { $subI } from "./ops.js";
 
-export const [subI, subI2, subI3, subI4] = defBitOp("-", true);
+const [a, b, c, d] = defOpVV($subI);
 
-export const [subU, subU2, subU3, subU4] = defBitOp("-");
+/**
+ * Componentwise nD signed integer vector subtraction. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const subI = a;
 
-export const [subNI, subNI2, subNI3, subNI4] = defBitOpN("-", true);
+/**
+ * Componentwise 2D signed integer vector subtraction.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const subI2 = b;
 
-export const [subNU, subNU2, subNU3, subNU4] = defBitOpN("-");
+/**
+ * Componentwise 3D signed integer vector subtraction.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const subI3 = c;
+
+/**
+ * Componentwise 4D signed integer vector subtraction.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const subI4 = d;

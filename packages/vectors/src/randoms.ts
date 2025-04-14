@@ -1,153 +1,103 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { IRandom } from "@thi.ng/random";
-import { normal } from "@thi.ng/random/distributions/normal";
-import { SYSTEM } from "@thi.ng/random/system";
-import type {
-	VecOpSFN,
-	VecOpSGFN,
-	VecOpSGOO,
-	VecOpSGOOO,
-	VecOpSGVVO,
-	VecOpSOO,
-	VecOpSOOO,
-	VecOpSVO,
-	VecOpSVVO,
-} from "./api.js";
-import { defHofOpS } from "./compile/emit.js";
-import { NEW_OUT_A, SARGS_VV } from "./compile/templates.js";
-import {
-	normalizeS,
-	normalizeS2,
-	normalizeS3,
-	normalizeS4,
-} from "./normalizes.js";
+import { type IRandom } from "@thi.ng/random";
+import { SYSTEM as op } from "@thi.ng/random/system";
+import type { VecOpSGOOO, VecOpSOOO } from "./api.js";
 
 /**
- * Randomizes `v` with each component in interval `[n..m)`. If no `rnd`
- * instance is given, uses [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html), i.e.
- * `Math.random`.
+ * Like {@link random2} but for 2D strided vectors
  *
- * @param v -
- * @param n - default -1
- * @param m - default 1
- * @param rnd -
- * @param ia -
- * @param sa -
+ * @param a - output vector
+ * @param n - min bounds (default: -1)
+ * @param m - max bounds (default: 1)
+ * @param rnd - PRNG instance
+ * @param ia - index (default: 0)
+ * @param sa - stride (default: 1)
  */
-export const [randomS, randomS2, randomS3, randomS4] = defHofOpS<
-	VecOpSGOOO<number, number, IRandom>,
-	VecOpSOOO<number, number, IRandom>
->(
-	SYSTEM,
-	([a]) => `${a}=rnd.minmax(n,m);`,
-	"a",
-	"n=-1,m=1,rnd=op,ia=0,sa=1",
-	"a",
-	"a",
-	NEW_OUT_A
-);
-
-export const [
-	randomDistribS,
-	randomDistribS2,
-	randomDistribS3,
-	randomDistribS4,
-] = defHofOpS<VecOpSGFN, VecOpSFN>(
-	normal,
-	([a]) => `${a}=rnd()*n;`,
-	"a",
-	"rnd=op(),n=1,ia=0,sa=1",
-	"a",
-	"a",
-	NEW_OUT_A
-);
-
-const $norm =
-	(
-		normalize: VecOpSVO<number>,
-		random: VecOpSOOO<number, number, IRandom>
-	): VecOpSOO<number, IRandom> =>
-	(a, n = 1, rnd?, ia = 0, sa = 1) =>
-		normalize(null, random(a, -1, 1, rnd, ia, sa), n, ia, ia, sa, sa);
-
-const $normDist =
-	(normalize: VecOpSVO<number>, random: VecOpSFN): VecOpSFN =>
-	(a, rnd, n = 1, ia = 0, sa = 1) =>
-		normalize(null, random(a, rnd, 1, ia, sa), n, ia, ia, sa, sa);
-
-/**
- * Sets `v` to random strided vector, normalized to length `n` (default: 1). If
- * no `rnd` instance is given, uses
- * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html), i.e.
- * `Math.random`.
- *
- * @param v -
- * @param num -
- * @param n -
- * @param rnd -
- * @param ia -
- * @param sa -
- */
-export const randNormS: VecOpSGOO<number, IRandom> = (
+export const randomS2: VecOpSOOO<number, number, IRandom> = (
 	a,
-	num,
-	n = 1,
-	rnd?,
+	n = -1,
+	m = 1,
+	rnd = op,
 	ia = 0,
 	sa = 1
-) =>
-	normalizeS(
-		(a = randomS(a, num, -1, 1, rnd, ia, sa)),
-		a,
-		num,
-		n,
-		ia,
-		ia,
-		sa,
-		sa
-	);
-
-export const randNormS2 = $norm(normalizeS2, randomS2);
-export const randNormS3 = $norm(normalizeS3, randomS3);
-export const randNormS4 = $norm(normalizeS4, randomS4);
-
-export const randNormDistribS: VecOpSGFN = (
-	a,
-	num,
-	rnd,
-	n = 1,
-	ia = 0,
-	sa = 1
-) =>
-	normalizeS(
-		null,
-		randomDistribS(a, num, rnd, 1, ia, sa),
-		num,
-		n,
-		ia,
-		ia,
-		sa,
-		sa
-	);
-
-export const randNormDistribS2 = $normDist(normalizeS2, randomDistribS2);
-export const randNormDistribS3 = $normDist(normalizeS3, randomDistribS3);
-export const randNormDistribS4 = $normDist(normalizeS4, randomDistribS4);
+) => {
+	!a && (a = []);
+	a[ia] = rnd.minmax(n, m);
+	a[ia + sa] = rnd.minmax(n, m);
+	return a;
+};
 
 /**
- * Sets `out` to random vector with each component in the semi-open
- * interval defined by [min,max).
+ * Like {@link random3} but for 3D strided vectors
  *
- * @param out -
- * @param min -
- * @param max -
- * @param rnd -
+ * @param a - output vector
+ * @param n - min bounds (default: -1)
+ * @param m - max bounds (default: 1)
+ * @param rnd - PRNG instance
+ * @param ia - index (default: 0)
+ * @param sa - stride (default: 1)
  */
-export const [randMinMaxS, randMinMaxS2, randMinMaxS3, randMinMaxS4] =
-	defHofOpS<VecOpSGVVO<IRandom>, VecOpSVVO<IRandom>>(
-		SYSTEM,
-		([o, a, b]) => `${o}=rnd.minmax(${a},${b});`,
-		"o,a,b",
-		`rnd=op,${SARGS_VV}`,
-		"o,a,b"
-	);
+export const randomS3: VecOpSOOO<number, number, IRandom> = (
+	a,
+	n = -1,
+	m = 1,
+	rnd = op,
+	ia = 0,
+	sa = 1
+) => {
+	!a && (a = []);
+	a[ia] = rnd.minmax(n, m);
+	a[ia + sa] = rnd.minmax(n, m);
+	a[ia + 2 * sa] = rnd.minmax(n, m);
+	return a;
+};
+
+/**
+ * Like {@link random4} but for 4D strided vectors
+ *
+ * @param a - output vector
+ * @param n - min bounds (default: -1)
+ * @param m - max bounds (default: 1)
+ * @param rnd - PRNG instance
+ * @param ia - index (default: 0)
+ * @param sa - stride (default: 1)
+ */
+export const randomS4: VecOpSOOO<number, number, IRandom> = (
+	a,
+	n = -1,
+	m = 1,
+	rnd = op,
+	ia = 0,
+	sa = 1
+) => {
+	!a && (a = []);
+	a[ia] = rnd.minmax(n, m);
+	a[ia + sa] = rnd.minmax(n, m);
+	a[ia + 2 * sa] = rnd.minmax(n, m);
+	a[ia + 3 * sa] = rnd.minmax(n, m);
+	return a;
+};
+
+/**
+ * Like {@link random4} but for 4D strided vectors
+ *
+ * @param a - output vector
+ * @param num - vector size
+ * @param n - min bounds (default: -1)
+ * @param m - max bounds (default: 1)
+ * @param rnd - PRNG instance
+ * @param ia - index (default: 0)
+ * @param sa - stride (default: 1)
+ */
+export const randomS: VecOpSGOOO<number, number, IRandom> = (
+	a,
+	num,
+	n = -1,
+	m = 1,
+	rnd = op,
+	ia = 0,
+	sa = 1
+) => {
+	!a && (a = []);
+	while (num-- > 0) a[ia + num * sa] = rnd.minmax(n, m);
+	return a;
+};

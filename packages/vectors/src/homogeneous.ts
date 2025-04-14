@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { MultiVecOpV } from "./api.js";
-import { vop } from "./vop.js";
 import { setC2, setC3 } from "./setc.js";
+import { vop } from "./vop.js";
 
 export const fromHomogeneous: MultiVecOpV = vop(1);
 

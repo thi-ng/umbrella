@@ -1,15 +1,44 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { MultiVecOpVVV, VecOpVVV } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { ARGS_VVV, MATH2 } from "./compile/templates.js";
+import { defOpVVV } from "./defopvvv.js";
+import { $subm } from "./ops.js";
+
+const [a, b, c, d] = defOpVVV($subm);
 
 /**
- * Returns `out = (a - b) * c`.
+ * Componentwise nD vector subtract-multiply. `o = (a - b) * c`. Multi-method.
  *
- * - {@link madd}
- * - {@link addm}
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
  */
-export const [subm, subm2, subm3, subm4] = defOp<MultiVecOpVVV, VecOpVVV>(
-	MATH2("-", "*"),
-	ARGS_VVV
-);
+export const subm = a;
+
+/**
+ * Componentwise 2D vector subtract-multiply. `o = (a - b) * c`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const subm2 = b;
+
+/**
+ * Componentwise 3D vector subtract-multiply. `o = (a - b) * c`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const subm3 = c;
+
+/**
+ * Componentwise 4D vector subtract-multiply. `o = (a - b) * c`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const subm4 = d;

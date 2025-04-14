@@ -7,7 +7,12 @@ export const setCS2 = (
 	y: number,
 	io = 0,
 	so = 1
-) => (!out && (out = []), (out[io] = x), (out[io + so] = y), out);
+) => {
+	!out && (out = []);
+	out[io] = x;
+	out[io + so] = y;
+	return out;
+};
 
 export const setCS3 = (
 	out: Vec | null,
@@ -16,13 +21,13 @@ export const setCS3 = (
 	z: number,
 	io = 0,
 	so = 1
-) => (
-	!out && (out = []),
-	(out[io] = x),
-	(out[io + so] = y),
-	(out[io + 2 * so] = z),
-	out
-);
+) => {
+	!out && (out = []);
+	out[io] = x;
+	out[io + so] = y;
+	out[io + 2 * so] = z;
+	return out;
+};
 
 export const setCS4 = (
 	out: Vec | null,
@@ -32,11 +37,11 @@ export const setCS4 = (
 	w: number,
 	io = 0,
 	so = 1
-) => (
-	!out && (out = []),
-	(out[io] = x),
-	(out[io + so] = y),
-	(out[io + 2 * so] = z),
-	(out[io + 3 * so] = w),
-	out
-);
+) => {
+	!out && (out = []);
+	out[io] = x;
+	out[io + so] = y;
+	out[io + 2 * so] = z;
+	out[io + 3 * so] = w;
+	return out;
+};

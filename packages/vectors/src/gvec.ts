@@ -2,8 +2,6 @@
 import type { NumericArray, StringOrSym } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import { memoizeO } from "@thi.ng/memoize/memoizeo";
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
 import type { IVector } from "./api.js";
 import { eqDeltaS } from "./eqdelta.js";
 import { stridedValues } from "./iterator.js";
@@ -36,10 +34,12 @@ const PROPS = new Set<StringOrSym>([
 ]);
 
 /** @internal */
-const __keys = memoizeO<number, StringOrSym[]>((size: number) => [
-	...map(String, range(size)),
-	...PROPS,
-]);
+const __keys = memoizeO<number, StringOrSym[]>((size: number) => {
+	const keys: StringOrSym[] = [];
+	for (let i = 0; i < size; i++) keys.push(String(i));
+	keys.push(...PROPS);
+	return keys;
+});
 
 /**
  * Wrapper for strided, arbitrary length vectors.

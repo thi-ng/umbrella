@@ -1,14 +1,44 @@
-// SPDX-License-Identifier: Apache-2.0
-import { remainder as _remainder } from "@thi.ng/math/libc";
-import type { MultiVecOpVN, VecOpVN } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { ARGS_V, ARGS_VN, FN_N } from "./compile/templates.js";
+import { remainder as op } from "@thi.ng/math/libc";
+import { defOpVN } from "./defopvn.js";
+
+const [a, b, c, d] = defOpVN(op);
 
 /**
- * Same as {@link remainder}, but 2nd operand is a single scalar (uniform domain
- * for all vector components).
+ * Same as {@link remainder2}, but but second operand is a single scalar
+ * (uniform domain for all vector components). Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
  */
-export const [remainderN, remainderN2, remainderN3, remainderN4] = defHofOp<
-	MultiVecOpVN,
-	VecOpVN
->(_remainder, FN_N("op"), ARGS_VN, ARGS_V);
+export const remainderN = a;
+
+/**
+ * Same as {@link remainder2}, but but second operand is a single scalar
+ * (uniform domain for all vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const remainderN2 = b;
+
+/**
+ * Same as {@link remainder3}, but but second operand is a single scalar
+ * (uniform domain for all vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const remainderN3 = c;
+
+/**
+ * Same as {@link remainder4}, but but second operand is a single scalar
+ * (uniform domain for all vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const remainderN4 = d;

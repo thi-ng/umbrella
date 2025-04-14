@@ -7,9 +7,12 @@ import { addmN4 } from "./addmn.js";
 import { addN4 } from "./addn.js";
 import { ONE4, ZERO4, type VecAPI } from "./api.js";
 import { asin4 } from "./asin.js";
-import { atan4, atan_24 } from "./atan.js";
+import { atan_4 } from "./atan.js";
+import { atan2_4 } from "./atan2.js";
 import { ceil4 } from "./ceil.js";
-import { clamp01_4, clamp4 } from "./clamp.js";
+import { clamp4 } from "./clamp.js";
+import { clampN4 } from "./clampn.js";
+import { clamp01_4 } from "./clamp01.js";
 import { cos4 } from "./cos.js";
 import { degrees4 } from "./degrees.js";
 import { dist4 } from "./dist.js";
@@ -20,9 +23,10 @@ import { dot4 } from "./dot.js";
 import { eq4 } from "./eq.js";
 import { eqDelta4 } from "./eqdelta.js";
 import { equals4 } from "./equals.js";
-import { exp4 } from "./exp.js";
-import { exp_24 } from "./exp_2.js";
-import { fit01_4, fit4 } from "./fit.js";
+import { exp_4 } from "./exp.js";
+import { exp2_4 } from "./exp2.js";
+import { fit4 } from "./fit.js";
+import { fit01_4 } from "./fit01.js";
 import { floor4 } from "./floor.js";
 import { fmod4 } from "./fmod.js";
 import { fract4 } from "./fract.js";
@@ -30,8 +34,8 @@ import { gt4 } from "./gt.js";
 import { gte4 } from "./gte.js";
 import { invSqrt4 } from "./invsqrt.js";
 import { limit4 } from "./limit.js";
-import { log4 } from "./log.js";
-import { log_24 } from "./log_2.js";
+import { log_4 } from "./log.js";
+import { log2_4 } from "./log2.js";
 import { lt4 } from "./lt.js";
 import { lte4 } from "./lte.js";
 import { madd4 } from "./madd.js";
@@ -89,10 +93,11 @@ export const VEC4: VecAPI = {
 	addm: addm4,
 	addmN: addmN4,
 	asin: asin4,
-	atan: atan4,
-	atan2: atan_24,
+	atan: atan_4,
+	atan2: atan2_4,
 	ceil: ceil4,
 	clamp: clamp4,
+	clampN: clampN4,
 	clamp01: clamp01_4,
 	cos: cos4,
 	degrees: degrees4,
@@ -103,8 +108,8 @@ export const VEC4: VecAPI = {
 	dot: dot4,
 	eqDelta: eqDelta4,
 	equals: equals4,
-	exp: exp4,
-	exp2: exp_24,
+	exp: exp_4,
+	exp2: exp2_4,
 	fit: fit4,
 	fit01: fit01_4,
 	floor: floor4,
@@ -116,8 +121,8 @@ export const VEC4: VecAPI = {
 	mag: mag4,
 	magSq: magSq4,
 	limit: limit4,
-	log: log4,
-	log2: log_24,
+	log: log_4,
+	log2: log2_4,
 	major: major4,
 	max: max4,
 	min: min4,

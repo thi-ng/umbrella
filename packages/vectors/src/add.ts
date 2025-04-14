@@ -1,4 +1,40 @@
-// SPDX-License-Identifier: Apache-2.0
-import { defMathOp } from "./compile/emit.js";
+import { defOpVV } from "./defopvv.js";
+import { $add } from "./ops.js";
 
-export const [add, add2, add3, add4] = defMathOp("+");
+const [a, b, c, d] = defOpVV($add);
+
+/**
+ * Componentwise nD vector addition. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const add = a;
+
+/**
+ * Componentwise 2D vector addition.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const add2 = b;
+
+/**
+ * Componentwise 3D vector addition.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const add3 = c;
+
+/**
+ * Componentwise 4D vector addition.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const add4 = d;

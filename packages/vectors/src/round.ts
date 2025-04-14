@@ -1,27 +1,44 @@
-// SPDX-License-Identifier: Apache-2.0
-import { roundTo as _round } from "@thi.ng/math/prec";
-import type { MultiVecOpVO, MultiVecOpVV, VecOpVO, VecOpVV } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { ARGS_VV, FN2, FN_N } from "./compile/templates.js";
+import { roundTo } from "@thi.ng/math/prec";
+import { defOpVV } from "./defopvv.js";
+
+const [a, b, c, d] = defOpVV(roundTo);
 
 /**
- * Rounds components of the first input to multiples of the 2nd input vector.
+ * Componentwise rounds given 2D vector `a` to multiples of components in
+ * vector `b`. Multi-method.
  *
- * @remarks
- * Unitl v4.8.0 errorneously defined what should have been {@link roundN}. Now
- * correctly using 2 input vectors.
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
  */
-export const [round, round2, round3, round4] = defHofOp<MultiVecOpVV, VecOpVV>(
-	_round,
-	FN2("op"),
-	ARGS_VV
-);
+export const round = a;
 
 /**
- * Similar to {@link round}, but only uses a single scalar to round all vector
- * components.
+ * Componentwise rounds given 2D vector `a` to multiples of components in
+ * vector `b`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
  */
-export const [roundN, roundN2, roundN3, roundN4] = defHofOp<
-	MultiVecOpVO<number>,
-	VecOpVO<number>
->(_round, FN_N("op"), "o,a,n=1", "o,a");
+export const round2 = b;
+
+/**
+ * Componentwise rounds given 3D vector `a` to multiples of components in
+ * vector `b`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const round3 = c;
+
+/**
+ * Componentwise rounds given 4D vector `a` to multiples of components in
+ * vector `b`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const round4 = d;

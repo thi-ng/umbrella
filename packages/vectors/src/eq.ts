@@ -1,13 +1,31 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { CompareOp, MultiCompareOp } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { MATH, NEW_OUT } from "./compile/templates.js";
+import { defOpVVNew } from "./defopvv-new.js";
 
-export const [eq, eq2, eq3, eq4] = defOp<MultiCompareOp, CompareOp>(
-	MATH("==="),
-	undefined,
-	undefined,
-	undefined,
-	undefined,
-	NEW_OUT
-);
+const [a, b, c, d] = defOpVVNew<number, boolean>((a, b) => a === b);
+
+/**
+ * Compnentwise checks if given 4D vectors `a` and `b` are equal (using `===`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector. Multi-method.
+ */
+export const eq = a;
+
+/**
+ * Compnentwise checks if given 2D vectors `a` and `b` are equal (using `===`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector.
+ */
+export const eq2 = b;
+
+/**
+ * Compnentwise checks if given 3D vectors `a` and `b` are equal (using `===`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector.
+ */
+export const eq3 = c;
+
+/**
+ * Compnentwise checks if given 4D vectors `a` and `b` are equal (using `===`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector.
+ */
+export const eq4 = d;

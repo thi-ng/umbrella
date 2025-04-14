@@ -1,16 +1,34 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { MultiVecOpRoVV } from "./api.js";
-import { compile, compileG } from "./compile/emit.js";
-import { DOT, DOT_G } from "./compile/templates.js";
+import type { MultiVecOpRoVV, VecOpRoVV } from "./api.js";
 import { vop } from "./vop.js";
 
-const $ = (dim: number) =>
-	dot.add(dim, compile(dim, DOT, "a,b", undefined, "", "+", "return ", ";"));
+/**
+ * Computes dot product of given 2D vectors.
+ */
+export const dot2: VecOpRoVV<number> = (a, b) => a[0] * b[0] + a[1] * b[1];
 
-export const dot: MultiVecOpRoVV<number> = vop();
+/**
+ * Computes dot product of given 3D vectors.
+ */
+export const dot3: VecOpRoVV<number> = (a, b) =>
+	a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 
-dot.default(compileG(DOT_G, "a,b", undefined, "s", "let s=0;"));
+/**
+ * Computes dot product of given 4D vectors.
+ */
+export const dot4: VecOpRoVV<number> = (a, b) =>
+	a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
 
-export const dot2 = $(2);
-export const dot3 = $(3);
-export const dot4 = $(4);
+/**
+ * Computes dot product of given nD vectors. Multi-method.
+ */
+export const dot: MultiVecOpRoVV<number> = vop(
+	0,
+	(a, b) => {
+		let sum = 0;
+		for (let i = a.length; i-- > 0; ) sum += a[i] * b[i];
+		return sum;
+	},
+	dot2,
+	dot3,
+	dot4
+);
