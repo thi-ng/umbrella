@@ -671,6 +671,9 @@
 		"./rand-normdistrib": {
 			"default": "./rand-normdistrib.js"
 		},
+		"./rand-norms": {
+			"default": "./rand-norms.js"
+		},
 		"./random": {
 			"default": "./random.js"
 		},

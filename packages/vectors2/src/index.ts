@@ -197,6 +197,7 @@ export * from "./rand-minmax.js";
 export * from "./rand-minmaxs.js";
 export * from "./rand-norm.js";
 export * from "./rand-normdistrib.js";
+export * from "./rand-norms.js";
 export * from "./random.js";
 export * from "./randoms.js";
 export * from "./reflect.js";
