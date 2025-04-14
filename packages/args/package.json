@@ -47,7 +47,7 @@
 		"@thi.ng/text-format": "^2.2.30"
 	},
 	"devDependencies": {
-		"@types/node": "^22.14.0",
+		"@types/node": "^22.14.1",
 		"esbuild": "^0.25.2",
 		"typedoc": "^0.28.2",
 		"typescript": "^5.8.3"
