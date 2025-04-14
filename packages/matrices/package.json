@@ -108,9 +108,6 @@
 		"./column": {
 			"default": "./column.js"
 		},
-		"./compile/emit": {
-			"default": "./compile/emit.js"
-		},
 		"./concat": {
 			"default": "./concat.js"
 		},
@@ -119,6 +116,9 @@
 		},
 		"./constants": {
 			"default": "./constants.js"
+		},
+		"./defmath": {
+			"default": "./defmath.js"
 		},
 		"./determinant": {
 			"default": "./determinant.js"

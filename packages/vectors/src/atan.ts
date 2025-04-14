@@ -1,13 +1,35 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { MultiVecOpV, MultiVecOpVV, VecOpV, VecOpVV } from "./api.js";
-import { defFnOp, defOp } from "./compile/emit.js";
-import { ARGS_VV, FN2 } from "./compile/templates.js";
+import { defOpV } from "./defopv.js";
 
-export const [atan, atan2, atan3, atan4] = defFnOp<MultiVecOpV, VecOpV>(
-	"Math.atan"
-);
+const [a, b, c, d] = defOpV(Math.atan);
 
-export const [atan_2, atan_22, atan_23, atan_24] = defOp<MultiVecOpVV, VecOpVV>(
-	FN2("Math.atan2"),
-	ARGS_VV
-);
+/**
+ * Componentwise computes `Math.atan` of given nD vector. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const atan = a;
+
+/**
+ * Componentwise computes `Math.atan` of given 2D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const atan_2 = b;
+
+/**
+ * Componentwise computes `Math.atan` of given 3D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const atan_3 = c;
+
+/**
+ * Componentwise computes `Math.atan` of given 4D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const atan_4 = d;

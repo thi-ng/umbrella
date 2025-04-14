@@ -1,33 +1,109 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { IRandom } from "@thi.ng/random";
+import { type IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import type { MultiVecOpOOO, VecOpOOO } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { NEW_OUT_A } from "./compile/templates.js";
+import type { VecOpOOO } from "./api.js";
 
 /**
- * Sets `v` to random vector, with each component in interval `[n..m)`. If no
- * `rnd` instance is given, uses [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html), i.e.
- * `Math.random`. Creates new vector if `v` is null.
+ * Sets `a` to random 2D vector, with each component in the semi-open interval
+ * `[b,c)`. If no `rnd` instance is given, uses
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html).
+ * Creates new vector if `a` is null.
  *
- * @remarks
- * The non-fixed sized version of this function can ONLY be used if `v` is given
- * and initialized to the desired size/length.
+ * **IMPORTANT:** The non-fixed sized version of this function can ONLY be used
+ * if `a` is given and initialized to the desired size/length.
  *
- * @param v -
- * @param n - default -1
- * @param m - default 1
- * @param rnd -
+ * @param a - vector
+ * @param b - scalar (min. bounds, default: -1)
+ * @param c - scalar (max. bounds, default: 1)
+ * @param rnd - PRNG instance
  */
-export const [random, random2, random3, random4] = defHofOp<
-	MultiVecOpOOO<number, number, IRandom>,
-	VecOpOOO<number, number, IRandom>
->(
-	SYSTEM,
-	([a]) => `${a}=rnd.minmax(n,m);`,
-	"a,n=-1,m=1,rnd=op",
-	"a",
-	"a",
-	0,
-	NEW_OUT_A
-);
+export const random2: VecOpOOO<number, number, IRandom> = (
+	a,
+	n = -1,
+	m = 1,
+	rnd = SYSTEM
+) => {
+	!a && (a = []);
+	a[0] = rnd.minmax(n, m);
+	a[1] = rnd.minmax(n, m);
+	return a;
+};
+
+/**
+ * Sets `a` to random 3D vector, with each component in the semi-open interval
+ * `[b,c)`. If no `rnd` instance is given, uses
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html).
+ * Creates new vector if `a` is null.
+ *
+ * **IMPORTANT:** The non-fixed sized version of this function can ONLY be used
+ * if `a` is given and initialized to the desired size/length.
+ *
+ * @param a - vector
+ * @param b - scalar (min. bounds, default: -1)
+ * @param c - scalar (max. bounds, default: 1)
+ * @param rnd - PRNG instance
+ */
+export const random3: VecOpOOO<number, number, IRandom> = (
+	a,
+	n = -1,
+	m = 1,
+	rnd = SYSTEM
+) => {
+	!a && (a = []);
+	a[0] = rnd.minmax(n, m);
+	a[1] = rnd.minmax(n, m);
+	a[2] = rnd.minmax(n, m);
+	return a;
+};
+
+/**
+ * Sets `a` to random 4D vector, with each component in the semi-open interval
+ * `[b,c)`. If no `rnd` instance is given, uses
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html).
+ * Creates new vector if `a` is null.
+ *
+ * **IMPORTANT:** The non-fixed sized version of this function can ONLY be used
+ * if `a` is given and initialized to the desired size/length.
+ *
+ * @param a - vector
+ * @param b - scalar (min. bounds, default: -1)
+ * @param c - scalar (max. bounds, default: 1)
+ * @param rnd - PRNG instance
+ */
+export const random4: VecOpOOO<number, number, IRandom> = (
+	a,
+	n = -1,
+	m = 1,
+	rnd = SYSTEM
+) => {
+	!a && (a = []);
+	a[0] = rnd.minmax(n, m);
+	a[1] = rnd.minmax(n, m);
+	a[2] = rnd.minmax(n, m);
+	a[3] = rnd.minmax(n, m);
+	return a;
+};
+
+/**
+ * Sets `a` to random vector, with each component in the semi-open interval
+ * `[b,c)`. If no `rnd` instance is given, uses
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html).
+ * Creates new vector if `a` is null.
+ *
+ * **IMPORTANT:** The non-fixed sized version of this function can ONLY be used
+ * if `a` is given and initialized to the desired size/length.
+ *
+ * @param a - vector
+ * @param b - scalar (min. bounds, default: -1)
+ * @param c - scalar (max. bounds, default: 1)
+ * @param rnd - PRNG instance
+ */
+export const random: VecOpOOO<number, number, IRandom> = (
+	a,
+	n = -1,
+	m = 1,
+	rnd = SYSTEM
+) => {
+	!a && (a = []);
+	for (let i = a.length; i-- > 0; ) a[i] = rnd.minmax(n, m);
+	return a;
+};

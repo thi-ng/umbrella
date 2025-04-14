@@ -1,8 +1,43 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { MultiVecOpVV, VecOpVV } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { FN2 } from "./compile/templates.js";
+import { defOpVV } from "./defopvv.js";
 
-export const [pow, pow2, pow3, pow4] = defOp<MultiVecOpVV, VecOpVV>(
-	FN2("Math.pow")
-);
+const [a, b, c, d] = defOpVV(Math.pow);
+
+/**
+ * Componentwise `Math.pow` of given nD vector `a`. Vector `b` contains
+ * exponents. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const pow = a;
+
+/**
+ * Componentwise `Math.pow` of given 2D vector `a`. Vector `b` contains
+ * exponents.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const pow2 = b;
+
+/**
+ * Componentwise `Math.pow` of given 3D vector `a`. Vector `b` contains
+ * exponents.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const pow3 = c;
+
+/**
+ * Componentwise `Math.pow` of given 4D vector `a`. Vector `b` contains
+ * exponents.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const pow4 = d;

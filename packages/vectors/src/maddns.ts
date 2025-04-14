@@ -1,9 +1,34 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { VecOpSGVNV, VecOpSVNV } from "./api.js";
-import { defOpS } from "./compile/emit.js";
-import { ARGS_VNV, MATH2A_N, SARGS_VV } from "./compile/templates.js";
+import type { VecOpSVNV } from "./api.js";
 
-export const [maddNS, maddNS2, maddNS3, maddNS4] = defOpS<
-	VecOpSGVNV,
-	VecOpSVNV
->(MATH2A_N("*", "+"), ARGS_VNV, SARGS_VV);
+/**
+ * Componentwise 2D strided vector multiply-add with uniform scalar.
+ * `o = a * n + b`
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param b - input vector
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param ib - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ * @param sb - stride (default: 1)
+ */
+export const maddNS2: VecOpSVNV = (
+	o,
+	a,
+	n,
+	b,
+	io = 0,
+	ia = 0,
+	ib = 0,
+	so = 1,
+	sa = 1,
+	sb = 1
+) => {
+	!o && (o = a);
+	o[io] = a[ia] * n + b[ib];
+	o[io + so] = a[ia + sa] * n + b[ib + sb];
+	return o;
+};

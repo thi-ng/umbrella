@@ -15,10 +15,9 @@ export const bisect2: VecOpRoVV<number> = (a, b) => {
 };
 
 /**
- * Returns normalized bisector vector for point `b` in the triangle `a`
- * -> `b` -> `c`. If `out` is null, creates a new result vector. The `n`
- * arg can be used to scale the result vector to given length (default:
- * 1).
+ * Returns normalized bisector nD vector for point `b` in the triangle `a` ->
+ * `b` -> `c`. If `out` is null, creates a new result vector. The `n` arg can be
+ * used to scale the result vector to given length (default: 1).
  *
  * @param out -
  * @param a -
@@ -32,9 +31,9 @@ export const cornerBisector = (
 	b: ReadonlyVec,
 	c: ReadonlyVec,
 	n = 1
-) => (
-	!out && (out = []),
-	normalize(
+) => {
+	!out && (out = []);
+	return normalize(
 		out,
 		addmN(
 			out,
@@ -43,19 +42,19 @@ export const cornerBisector = (
 			0.5
 		),
 		n
-	)
-);
+	);
+};
 
 /**
  * 2D version of {@link cornerBisector} which doesn't always bisect the
- * smaller/inside angle, but also doesn't suffer sign/orientation
- * flipping of returned bisector vector.
+ * smaller/inside angle, but also doesn't suffer sign/orientation flipping of
+ * returned bisector vector.
  *
  * @remarks
- * Instead, the direction of the result is dependent on the orientation
- * of the input triangle. If `a`, `b`, `c` are in CW order, the result
- * will point away from the triangle's centroid. If CCW, the result will
- * point towards the inside.
+ * Instead, the direction of the result is dependent on the orientation of the
+ * input triangle. If `a`, `b`, `c` are in CW order, the result will point away
+ * from the triangle's centroid. If CCW, the result will point towards the
+ * inside.
  *
  * @param out -
  * @param a -
@@ -69,14 +68,14 @@ export const cornerBisector2 = (
 	b: ReadonlyVec,
 	c: ReadonlyVec,
 	n = 1
-) => (
-	!out && (out = []),
-	perpendicularCCW(
+) => {
+	!out && (out = []);
+	return perpendicularCCW(
 		out,
 		normalize2(
 			out,
 			mixN2(out, direction2(out, a, b), direction2([], b, c), 0.5),
 			n
 		)
-	)
-);
+	);
+};

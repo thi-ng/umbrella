@@ -1,8 +1,44 @@
-// SPDX-License-Identifier: Apache-2.0
-import { defMathOpN } from "./compile/emit.js";
+import { defOpVN } from "./defopvn.js";
+import { $fmod } from "./ops.js";
+
+const [a, b, c, d] = defOpVN($fmod);
 
 /**
- * Same as {@link fmod}, but 2nd operand is a single scalar (uniform domain for
- * all vector components).
+ * Same as {@link fmod}, but 2nd operand is a scalar (uniform domain for all
+ * vector components). Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
  */
-export const [fmodN, fmodN2, fmodN3, fmodN4] = defMathOpN("%");
+export const fmodN = a;
+
+/**
+ * Same as {@link fmod2}, but 2nd operand is a scalar (uniform domain for all
+ * vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const fmodN2 = b;
+
+/**
+ * Same as {@link fmod3}, but 2nd operand is a scalar (uniform domain for all
+ * vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const fmodN3 = c;
+
+/**
+ * Same as {@link fmod4}, but 2nd operand is a scalar (uniform domain for all
+ * vector components).
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ */
+export const fmodN4 = d;

@@ -1,9 +1,42 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { MultiToBVecOpV, ToBVecOpV } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { ARGS_V, FN, NEW_OUT } from "./compile/templates.js";
+import { defOpVNew } from "./defopv-new.js";
 
-export const [isNaN, isNaN2, isNaN3, isNaN4] = defHofOp<
-	MultiToBVecOpV,
-	ToBVecOpV
->(globalThis.isNaN, FN("op"), ARGS_V, undefined, undefined, undefined, NEW_OUT);
+const op = globalThis.isNaN;
+
+const [a, b, c, d] = defOpVNew<number, boolean>((a) => op(a), 1);
+
+/**
+ * Componentwise checks if given 2D vector is `NaN` and writes results to
+ * boolean output vector. If `out` is null, creates a new result vector.
+ * Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const isNaN = a;
+
+/**
+ * Componentwise checks if given 2D vector is `NaN` and writes results to
+ * boolean output vector. If `out` is null, creates a new result vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const isNaN2 = b;
+
+/**
+ * Componentwise checks if given 3D vector is `NaN` and writes results to
+ * boolean output vector. If `out` is null, creates a new result vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const isNaN3 = c;
+
+/**
+ * Componentwise checks if given 4D vector is `NaN` and writes results to
+ * boolean output vector. If `out` is null, creates a new result vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const isNaN4 = d;

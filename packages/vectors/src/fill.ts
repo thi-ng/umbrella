@@ -34,4 +34,4 @@ export const fill = (
 	v: IVector<any>,
 	num: number,
 	so = out.length * out.stride
-) => mapV(set.impl(v.length), out, v, num, so, 0);
+) => mapV(set.impl(v.length)!, out, v, num, so, 0);

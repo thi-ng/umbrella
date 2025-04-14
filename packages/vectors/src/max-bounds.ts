@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "./api.js";
-import { __ensureInputs } from "./internal/ensure.js";
+import { __ensureInputs } from "./ensure.js";
 import { max } from "./max.js";
 import { setN } from "./setn.js";
 import { vecOf } from "./vec-of.js";

@@ -1,7 +1,35 @@
-// SPDX-License-Identifier: Apache-2.0
-import type { MultiVecOpV, VecOpV } from "./api.js";
-import { defFnOp } from "./compile/emit.js";
+import { defOpV } from "./defopv.js";
 
-export const [acos, acos2, acos3, acos4] = defFnOp<MultiVecOpV, VecOpV>(
-	"Math.acos"
-);
+const [a, b, c, d] = defOpV(Math.acos);
+
+/**
+ * Componentwise computes `Math.acos` of given nD vector. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const acos = a;
+
+/**
+ * Componentwise computes `Math.acos` of given 2D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const acos2 = b;
+
+/**
+ * Componentwise computes `Math.acos` of given 3D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const acos3 = c;
+
+/**
+ * Componentwise computes `Math.acos` of given 4D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const acos4 = d;

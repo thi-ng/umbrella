@@ -7,7 +7,7 @@ import { set } from "./set.js";
 /**
  * Writes identity matrix into given matrix.
  */
-export const identity: MultiMatOp1 = vop();
+export const identity: MultiMatOp1 = vop(0);
 
 export const identity22 = identity.add(4, (m) => set(m, IDENT22));
 
