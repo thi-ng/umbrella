@@ -19,10 +19,10 @@ import {
 } from "@thi.ng/vectors/api";
 import { clamp2 } from "@thi.ng/vectors/clamp";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import { mag } from "@thi.ng/vectors/mag";
+import { mag2 } from "@thi.ng/vectors/mag";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import { set2 } from "@thi.ng/vectors/set";
-import { zero } from "@thi.ng/vectors/setn";
+import { setN2 } from "@thi.ng/vectors/setn";
 import { sub2 } from "@thi.ng/vectors/sub";
 import {
 	AxiDrawState,
@@ -93,8 +93,8 @@ export class AxiDraw implements IReset {
 	}
 
 	reset() {
-		zero(this.pos);
-		zero(this.targetPos);
+		setN2(this.pos, 0);
+		setN2(this.targetPos, 0);
 		this.send("R\r");
 		return this;
 	}
@@ -433,7 +433,7 @@ export class AxiDraw implements IReset {
 			(1000 * maxAxis) /
 			((isPenDown ? opts.speedDown : opts.speedUp) * tempo);
 		this.send(`XM,${duration | 0},${delta[0] | 0},${delta[1] | 0}\r`);
-		return [duration, mag(delta) / scale];
+		return [duration, mag2(delta) / scale];
 	}
 
 	/**
