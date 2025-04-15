@@ -134,12 +134,13 @@ export const SUBDIV_DLG: SubdivKernel = {
 };
 
 /**
- * Higher-order subdiv kernel. Takes an array of 2-tuples of `[t,x]` where `t`
- * is the normalized split position (along each edge) and `x` is the normalized
- * displacement amount (relative to edge length). The `closed` flag indicates if
- * to be used for open/closed curves. Returns a {@link SubdivKernel} which
- * results in `displace.length` points for each original edge and displaces each
- * point by `displace[i][1] * edgeLength` units along the normal of the edge.
+ * Higher-order 2D only subdiv kernel. Takes an array of 2-tuples of `[t,x]`
+ * where `t` is the normalized split position (along each edge) and `x` is the
+ * normalized displacement amount (relative to edge length). The `closed` flag
+ * indicates if to be used for open/closed curves. Returns a
+ * {@link SubdivKernel} which results in `displace.length` points for each
+ * original edge and displaces each point by `displace[i][1] * edgeLength` units
+ * along the normal of the edge.
  *
  * @remarks
  * The original edge end points are always remaining in place. The normalized
