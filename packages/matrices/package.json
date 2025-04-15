@@ -86,8 +86,7 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts",
-		"compile"
+		"./*.d.ts"
 	],
 	"exports": {
 		".": {
