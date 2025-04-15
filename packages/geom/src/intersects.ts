@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import { intersectCircleCircle } from "@thi.ng/geom-isec/circle-circle";
+import {
+	intersectCircleCircle,
+	testCircleCircle,
+} from "@thi.ng/geom-isec/circle-circle";
 import { intersectLineLine } from "@thi.ng/geom-isec/line-line";
 import { intersectLinePolylineAll } from "@thi.ng/geom-isec/line-poly";
 import { intersectPlanePlane } from "@thi.ng/geom-isec/plane-plane";
@@ -96,7 +99,6 @@ export const intersects: MultiFn2O<
 		"ray3-sphere": "ray3-circle",
 		"ray-quad": "ray-poly",
 		"ray-tri": "ray-poly",
-		"sphere-sphere": "circle-circle",
 	},
 	{
 		"aabb-aabb": (a: AABB, b: AABB) => ({
@@ -207,6 +209,12 @@ export const intersects: MultiFn2O<
 
 		"rect-rect": (a: Rect, b: Rect) => ({
 			type: testRectRect(a.pos, a.size, b.pos, b.size)
+				? IntersectionType.INTERSECT
+				: IntersectionType.NONE,
+		}),
+
+		"sphere-sphere": (a: Sphere, b: Sphere) => ({
+			type: testCircleCircle(a.pos, b.pos, a.r, b.r)
 				? IntersectionType.INTERSECT
 				: IntersectionType.NONE,
 		}),
