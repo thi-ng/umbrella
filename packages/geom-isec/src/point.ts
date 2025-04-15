@@ -9,7 +9,7 @@ import { clockwise2 } from "@thi.ng/vectors/clockwise";
 import { direction2 } from "@thi.ng/vectors/direction";
 import { distSq } from "@thi.ng/vectors/distsq";
 import { dot2, dot3 } from "@thi.ng/vectors/dot";
-import { magSq } from "@thi.ng/vectors/magsq";
+import { magSq2 } from "@thi.ng/vectors/magsq";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
@@ -98,7 +98,7 @@ export const pointInSegments = (
 };
 
 /**
- * Returns true if point `p` is inside the circle defined by `pos` and `r`.
+ * Returns true if point `p` is inside the nD circle defined by `pos` and `r`.
  *
  * @param p
  * @param pos
@@ -107,6 +107,7 @@ export const pointInSegments = (
 export const pointInCircle = (p: ReadonlyVec, pos: ReadonlyVec, r: number) =>
 	distSq(pos, p) <= r * r;
 
+/** Alias for {@link pointInCircle} */
 export const pointInSphere = pointInCircle;
 
 /**
@@ -229,8 +230,8 @@ export const pointIn4Sphere: FnU5<ReadonlyVec, number> = (
 };
 
 /**
- * Returns true if point `p` is in the circumcircle of triangle defined by `a`,
- * `b`, `c`.
+ * 2D only. Returns true if point `p` is in the circumcircle of triangle defined
+ * by `a`, `b`, `c`.
  *
  * @param p
  * @param a
@@ -238,10 +239,10 @@ export const pointIn4Sphere: FnU5<ReadonlyVec, number> = (
  * @param c
  */
 export const pointInCircumCircle: FnU4<ReadonlyVec, boolean> = (p, a, b, c) =>
-	magSq(a) * signedArea2(b, c, p) -
-		magSq(b) * signedArea2(a, c, p) +
-		magSq(c) * signedArea2(a, b, p) -
-		magSq(p) * signedArea2(a, b, c) >
+	magSq2(a) * signedArea2(b, c, p) -
+		magSq2(b) * signedArea2(a, c, p) +
+		magSq2(c) * signedArea2(a, b, p) -
+		magSq2(p) * signedArea2(a, b, c) >
 	0;
 
 /**
