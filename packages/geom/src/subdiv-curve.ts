@@ -141,7 +141,7 @@ export type SubdivCurveFn = {
  *
  * - {@link SUBDIV_CHAIKIN}
  * - {@link SUBDIV_CUBIC}
- * - {@link SUBDIV_DISPLACE} (higher order kernel)
+ * - {@link SUBDIV_DISPLACE} (2D only, higher order kernel)
  * - {@link SUBDIV_DLG}
  * - {@link SUBDIV_MID}
  * - {@link SUBDIV_THIRDS}
