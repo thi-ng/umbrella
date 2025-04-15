@@ -19,7 +19,19 @@ if (args.length === 3) {
 	const [rev1, rev2] = args;
 	src1 = readFileSync(rev1).toString();
 	src2 = readFileSync(rev2).toString();
-	headerBody = ["header", ["h1", "File diff"], ["code", `${rev1} ⇌ ${rev2}`]];
+	headerBody = [
+		"header",
+		[
+			"h1",
+			"File diff",
+			[
+				"small",
+				"Made with ",
+				["a", { href: "https://thi.ng/hdiff" }, "thi.ng/hdiff"],
+			],
+		],
+		["code", `${rev1} ⇌ ${rev2}`],
+	];
 } else {
 	console.log("Usage:\n\thdiff file1 file2\n\thdiff relpath gitrev1 gitrev2");
 	process.exit(1);
