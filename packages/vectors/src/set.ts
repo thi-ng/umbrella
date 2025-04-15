@@ -51,7 +51,7 @@ export const set4: VecOpV = (o, a) => {
  * @param a - input vector
  */
 export const set: MultiVecOpV = vop(
-	0,
+	1,
 	(o, a) => {
 		!o && (o = []);
 		for (let i = a.length; i-- > 0; ) o[i] = a[i];
