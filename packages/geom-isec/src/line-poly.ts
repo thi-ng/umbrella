@@ -22,12 +22,13 @@ export const intersectLinePolylineAll = (
 	closed = false
 ): IntersectionResult => {
 	const dir = sub2([], b, a);
+	const maxD = mag2(dir);
 	return intersectRayPolylineAll(
 		a,
 		normalize2(null, dir),
 		pts,
 		closed,
 		0,
-		mag2(dir)
+		maxD
 	);
 };
