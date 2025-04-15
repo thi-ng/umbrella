@@ -13,7 +13,7 @@ import { last } from "@thi.ng/transducers/last";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { take } from "@thi.ng/transducers/take";
 import type { Vec } from "@thi.ng/vectors";
-import { add } from "@thi.ng/vectors/add";
+import { add2 } from "@thi.ng/vectors/add";
 
 /**
  * Symbol used as fallback for unmatched symbols in {@link RuleImplementations}.
@@ -34,7 +34,9 @@ export type ProductionRules = IObjectOf<
  * The {@link DEFAULT} symbol can be used as fallback impl, used for any
  * unmatched symbols.
  */
-export type RuleImplementations<T> = IObjectOf<Fn2<T, LSysSymbol, void>>;
+export type RuleImplementations<T extends object> = IObjectOf<
+	Fn2<T, LSysSymbol, void>
+>;
 
 export interface Turtle2D {
 	/**
@@ -118,14 +120,14 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
 	// move forward
 	f: (ctx) => {
 		if (ctx.alive) {
-			ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
+			ctx.pos = add2([], ctx.pos, cossin(ctx.theta, ctx.step));
 			ctx.curr.push(ctx.pos);
 		}
 	},
 	g: (ctx) => {
 		if (ctx.alive) {
 			ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
-			ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
+			ctx.pos = add2([], ctx.pos, cossin(ctx.theta, ctx.step));
 			ctx.curr = [ctx.pos];
 		}
 	},
@@ -249,7 +251,7 @@ export const expand = (
  * @param impls
  * @param syms
  */
-export const interpret = <T>(
+export const interpret = <T extends object>(
 	ctx: T,
 	impls: RuleImplementations<T>,
 	syms: Iterable<LSysSymbol>
