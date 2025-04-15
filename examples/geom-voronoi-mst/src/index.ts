@@ -27,7 +27,7 @@ import {
 	push,
 	transduce,
 } from "@thi.ng/transducers";
-import { dist, floor, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
+import { dist2, floor2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 
 const W = 500;
 const R = W / 2;
@@ -38,7 +38,7 @@ const bounds = center(rect(W))!;
 const pts = timed(() =>
 	samplePoisson({
 		points: () => scatter(poly, 1)![0],
-		density: (p) => fit(dist(p, closestPoint(poly, p)!), 0, R, 1, 20),
+		density: (p) => fit(dist2(p, closestPoint(poly, p)!), 0, R, 1, 20),
 		max: 10000,
 		quality: 1000,
 		index: new KdTreeSet(2),
@@ -50,7 +50,7 @@ const mesh = timed(() => new DVMesh(pts, 1e4));
 const _mst = timed(() => {
 	const edges = [
 		...map(
-			(e) => [floor(null, e[0]), floor(null, e[1])],
+			(e) => [floor2(null, e[0]), floor2(null, e[1])],
 			mesh.edges(false, [
 				[-R, -R],
 				[R, R],
@@ -73,7 +73,7 @@ const _mst = timed(() => {
 		([a, b]) => {
 			const ia = idx.queryValues(a, Infinity, 1)[0];
 			const ib = idx.queryValues(b, Infinity, 1)[0];
-			return [ia, ib, a, b, dist(a, b)];
+			return [ia, ib, a, b, dist2(a, b)];
 		}
 	);
 

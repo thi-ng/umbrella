@@ -11,7 +11,7 @@ import { concat, skewX23, translation23 } from "@thi.ng/matrices";
 import { fromRAF, stream, sync, type ISubscriber } from "@thi.ng/rstream";
 import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { addN } from "@thi.ng/vectors";
+import { addN2 } from "@thi.ng/vectors";
 import logo from "./logo-64.png";
 
 // for testing SVG conversion
@@ -286,7 +286,7 @@ const TESTS: any = {
 						"ellipse",
 						{ stroke: hsv(x / 20, 1, 1) },
 						[150, 150], // pos
-						addN(null, sincos(t + x * 0.1, 75), 75), // radii
+						addN2(null, sincos(t + x * 0.1, 75), 75), // radii
 						Math.sin(t * 0.25), // axis
 					],
 					range(30)

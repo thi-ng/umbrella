@@ -21,7 +21,7 @@ import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
 import { fromRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
-import { polar, type Vec } from "@thi.ng/vectors";
+import { polar2, type Vec } from "@thi.ng/vectors";
 
 type Tint = (p: Polygon) => string;
 
@@ -45,7 +45,7 @@ const W2 = W / 2;
  * space to HSL.
  */
 const centroidToHSL = (p: IShape) => {
-	const c = polar(null, centroid(p)!);
+	const c = polar2(null, centroid(p)!);
 	const h = deg(c[1]);
 	const s = fit01(c[0] / W2, 0, 100);
 	const l = fit01(c[0] / W2, 100, 50);
@@ -106,6 +106,7 @@ const main = fromRAF().map((time) => {
 			weight: 0.25,
 		},
 		tessellation(time, SUBDIVS, partial(arclengthToHSL, 250))
+		// tessellation(time, SUBDIVS, centroidToHSL)
 	);
 });
 

@@ -10,7 +10,7 @@ import { step } from "@thi.ng/transducers";
 import { donchian } from "@thi.ng/transducers-stats";
 import {
 	maddN2,
-	mag,
+	mag2,
 	normalize2,
 	perpendicularCCW,
 	type Vec,
@@ -88,7 +88,7 @@ class OpticalFlowViz {
 			}
 		}
 		// compute overall movement
-		const delta = mag(sum);
+		const delta = mag2(sum);
 		// update min/max
 		const bounds = this.movement(delta);
 		ctx.fillStyle = "#000";
