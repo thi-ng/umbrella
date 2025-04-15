@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { dist } from "@thi.ng/vectors/dist";
+import { dist3 } from "@thi.ng/vectors/dist";
 import { mixN3 } from "@thi.ng/vectors/mixn";
 import { Sphere } from "./api/sphere.js";
 import { __argsVN } from "./internal/args.js";
@@ -18,4 +18,4 @@ export const sphereFrom2Points = (
 	a: ReadonlyVec,
 	b: ReadonlyVec,
 	attribs?: Attribs
-) => new Sphere(mixN3([], a, b, 0.5), dist(a, b) / 2, attribs);
+) => new Sphere(mixN3([], a, b, 0.5), dist3(a, b) / 2, attribs);

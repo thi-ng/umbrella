@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { circumCenter2 } from "@thi.ng/geom-poly-utils/circumcenter";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { dist } from "@thi.ng/vectors/dist";
+import { dist2 } from "@thi.ng/vectors/dist";
 import { mixN2 } from "@thi.ng/vectors/mixn";
 import type { Attribs } from "./api.js";
 import { Circle } from "./api/circle.js";
@@ -19,7 +19,7 @@ export const circleFrom2Points = (
 	a: ReadonlyVec,
 	b: ReadonlyVec,
 	attribs?: Attribs
-) => new Circle(mixN2([], a, b, 0.5), dist(a, b) / 2, attribs);
+) => new Circle(mixN2([], a, b, 0.5), dist2(a, b) / 2, attribs);
 
 export const circleFrom3Points = (
 	a: ReadonlyVec,
@@ -28,5 +28,5 @@ export const circleFrom3Points = (
 	attribs?: Attribs
 ) => {
 	const o = circumCenter2(a, b, c);
-	return o ? new Circle(o, dist(a, o), attribs) : undefined;
+	return o ? new Circle(o, dist2(a, o), attribs) : undefined;
 };
