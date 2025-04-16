@@ -65,16 +65,33 @@ entries/sizes. The default [`Entry`
 implementation](https://docs.thi.ng/umbrella/block-fs/classes/Entry.html)
 requires 64 bytes.
 
-TODO diagram
+![Memory layout diagram for a single directory entry](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/direntry-01.png)
 
 #### File blocks
 
 Files are stored as linked lists of blocks, with the first few bytes of each
-block reserved for linkage and number of data bytes in the block. The number of
-bytes effectively available for data depends on the configured block size and
-the max. number of blocks in the storage backend.
+block reserved for linkage and number of data bytes in the block.
 
-TODO diagram
+![Memory layout diagram for a single file block](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/block-layout-01.png)
+
+The number of bytes effectively available for data depends on the configured
+block size and the max. number of blocks in the storage backend. For example, a
+max. block count of 65536 and a block size of 256 bytes only requires a two
+bytes for linkage and a third byte for storing the number of data bytes used in
+the block. Hence, in this configuration 253 bytes per block are available for
+data.
+
+The following diagram shows a block which links to block ID 0x1234 and uses the
+full 253 (0xfd in hex) bytes of data available:
+
+![Memory layout diagram for a single file block](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/block-layout-02.png)
+
+The last block of a file uses a special sentinel marker to indicate that no
+other blocks follow. This sentinel value again depends on the configured max.
+block count, and in this example is 0xffff. This example block only stores 64
+(0x40 in hex) bytes of data, with the remainder zeroed out.
+
+![Memory layout diagram for a sentinel file block](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/block-layout-03.png)
 
 ### Command line app
 
