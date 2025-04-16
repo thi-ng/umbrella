@@ -90,44 +90,44 @@ export class Entry implements IEntry {
 		);
 	}
 
-	get size() {
-		return this.view.getBigUint64(32, true);
-	}
-
-	set size(size: bigint) {
-		this.view.setBigUint64(32, size, true);
-	}
-
-	get ctime() {
-		return Number(this.view.getBigUint64(40, true));
-	}
-
-	set ctime(epoch: number) {
-		this.view.setBigUint64(40, BigInt(epoch), true);
-	}
-
-	get mtime() {
-		return Number(this.view.getBigUint64(48, true));
-	}
-
-	set mtime(epoch: number) {
-		this.view.setBigUint64(48, BigInt(epoch), true);
-	}
-
 	get start() {
-		return this.view.getUint32(56, true);
+		return this.view.getUint32(32, true);
 	}
 
 	set start(block: number) {
-		this.view.setUint32(56, block, true);
+		this.view.setUint32(32, block, true);
 	}
 
 	get end() {
-		return this.view.getUint32(60, true);
+		return this.view.getUint32(36, true);
 	}
 
 	set end(block: number) {
-		this.view.setUint32(60, block, true);
+		this.view.setUint32(36, block, true);
+	}
+
+	get size() {
+		return this.view.getBigUint64(40, true);
+	}
+
+	set size(size: bigint) {
+		this.view.setBigUint64(40, size, true);
+	}
+
+	get ctime() {
+		return Number(this.view.getBigUint64(48, true));
+	}
+
+	set ctime(epoch: number) {
+		this.view.setBigUint64(48, BigInt(epoch), true);
+	}
+
+	get mtime() {
+		return Number(this.view.getBigUint64(56, true));
+	}
+
+	set mtime(epoch: number) {
+		this.view.setBigUint64(56, BigInt(epoch), true);
 	}
 
 	set(spec: EntrySpec) {
