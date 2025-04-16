@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-01T21:42:04Z
+- **Last updated**: 2025-04-16T11:11:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [8.1.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.1.39) (2025-04-16)
+
+#### 🩹 Bug fixes
+
+- update `asCubic()` for some 3D shapes ([5abc2aa](https://github.com/thi-ng/umbrella/commit/5abc2aa))
+  - update `polygon3`, `polyline3`, `quad3`, `tri3` impls to exclude "break" & "hobby" conversion modes
+    (these modes are currently not supported in 3D)
+  - add/update docs
+- update sphere/sphere `intersects()` impl ([43f4059](https://github.com/thi-ng/umbrella/commit/43f4059))
+
+#### ♻️ Refactoring
+
+- minor internal optimizations (vector ops) ([c51b0de](https://github.com/thi-ng/umbrella/commit/c51b0de))
 
 ### [8.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.1.22) (2025-01-14)
 

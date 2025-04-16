@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bencode",
-	"version": "3.0.13",
+	"version": "3.0.14",
 	"description": "Bencode binary encoder / decoder with optional UTF8 encoding & floating point support",
 	"type": "module",
 	"module": "./index.js",
@@ -39,13 +39,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.25",
-		"@thi.ng/arrays": "^2.10.22",
-		"@thi.ng/checks": "^3.7.5",
-		"@thi.ng/errors": "^2.5.31",
-		"@thi.ng/strings": "^3.9.10",
-		"@thi.ng/transducers": "^9.2.25",
-		"@thi.ng/transducers-binary": "^2.1.160"
+		"@thi.ng/api": "^8.11.26",
+		"@thi.ng/arrays": "^2.10.23",
+		"@thi.ng/checks": "^3.7.6",
+		"@thi.ng/errors": "^2.5.32",
+		"@thi.ng/strings": "^3.9.11",
+		"@thi.ng/transducers": "^9.2.26",
+		"@thi.ng/transducers-binary": "^2.1.161"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.2",

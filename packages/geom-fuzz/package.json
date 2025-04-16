@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-fuzz",
-	"version": "3.0.45",
+	"version": "3.0.46",
 	"description": "Highly configurable, fuzzy line & polygon creation with presets and composable fill & stroke styles. Canvas & SVG support",
 	"type": "module",
 	"module": "./index.js",
@@ -39,15 +39,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.25",
-		"@thi.ng/color": "^5.7.32",
-		"@thi.ng/geom": "^8.1.38",
-		"@thi.ng/geom-clip-line": "^2.3.130",
-		"@thi.ng/geom-resample": "^3.0.40",
-		"@thi.ng/grid-iterators": "^4.0.114",
-		"@thi.ng/object-utils": "^1.1.21",
-		"@thi.ng/transducers": "^9.2.25",
-		"@thi.ng/vectors": "^7.13.1"
+		"@thi.ng/api": "^8.11.26",
+		"@thi.ng/color": "^5.7.33",
+		"@thi.ng/geom": "^8.1.39",
+		"@thi.ng/geom-clip-line": "^2.3.131",
+		"@thi.ng/geom-resample": "^3.0.41",
+		"@thi.ng/grid-iterators": "^4.0.115",
+		"@thi.ng/object-utils": "^1.1.22",
+		"@thi.ng/transducers": "^9.2.26",
+		"@thi.ng/vectors": "^8.0.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.2",

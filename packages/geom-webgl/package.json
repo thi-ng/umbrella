@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-webgl",
-	"version": "0.1.50",
+	"version": "0.1.51",
 	"description": "WebGL geometry/shape conversion & interop",
 	"type": "module",
 	"module": "./index.js",
@@ -39,16 +39,16 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.25",
-		"@thi.ng/checks": "^3.7.5",
-		"@thi.ng/defmulti": "^3.0.65",
-		"@thi.ng/errors": "^2.5.31",
-		"@thi.ng/geom": "^8.1.38",
-		"@thi.ng/object-utils": "^1.1.21",
-		"@thi.ng/transducers": "^9.2.25",
-		"@thi.ng/vector-pools": "^3.2.41",
-		"@thi.ng/vectors": "^7.13.1",
-		"@thi.ng/webgl": "^6.9.47"
+		"@thi.ng/api": "^8.11.26",
+		"@thi.ng/checks": "^3.7.6",
+		"@thi.ng/defmulti": "^3.0.66",
+		"@thi.ng/errors": "^2.5.32",
+		"@thi.ng/geom": "^8.1.39",
+		"@thi.ng/object-utils": "^1.1.22",
+		"@thi.ng/transducers": "^9.2.26",
+		"@thi.ng/vector-pools": "^3.2.42",
+		"@thi.ng/vectors": "^8.0.0",
+		"@thi.ng/webgl": "^6.9.48"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.2",

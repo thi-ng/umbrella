@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-01T21:42:04Z
+- **Last updated**: 2025-04-16T11:11:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.10.0) (2025-04-16)
+
+#### 🚀 Features
+
+- add `#` in URL safety check, update `RequestCtx` ([f0a7025](https://github.com/thi-ng/umbrella/commit/f0a7025))
+  - respond with HTTP 400 if request URL contains `#`
+    - this stops maliciously contructed requests via HTTP `request-target`
+  - add docs
 
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.9.0) (2025-03-22)
 

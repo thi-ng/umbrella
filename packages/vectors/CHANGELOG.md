@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-06T13:54:45Z
+- **Last updated**: 2025-04-16T11:11:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,46 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.0.0) (2025-04-16)
+
+#### 🛑 Breaking changes
+
+- replace 99% of vector ops with new  versions ([734c202](https://github.com/thi-ng/umbrella/commit/734c202))
+- BREAKING CHANGE: Due to major refactoring & restructuring related to [#497](https://github.com/thi-ng/umbrella/issues/497), some direct imports & function names have changed
+  - replace former codegen approach with higher-order functions
+  - split up various operations into more granular source files
+  - add doc strings for almost all functions (🎉 — lack of was a former major criticism of this pkg)
+  - update/remove deps
+
+#### 🚀 Features
+
+- import as new pkg (temporary only, will replace vectors pkg) ([d1146ac](https://github.com/thi-ng/umbrella/commit/d1146ac))
+- add/update various ops ([46ca962](https://github.com/thi-ng/umbrella/commit/46ca962))
+- add randNormS() ([508f8ca](https://github.com/thi-ng/umbrella/commit/508f8ca))
+- add random ops for strided vectors ([b6250ef](https://github.com/thi-ng/umbrella/commit/b6250ef))
+- copy tests from old pkg ([f046945](https://github.com/thi-ng/umbrella/commit/f046945))
+
+#### 🩹 Bug fixes
+
+- update compare ops to use new result vectors ([9481206](https://github.com/thi-ng/umbrella/commit/9481206))
+  - do not use `a` as result if `out` is null
+  - update all `eq`, `gt`, `gte`, `lt`, `lte`, `neq` ops
+- update signatures & default outputs ([47e6185](https://github.com/thi-ng/umbrella/commit/47e6185))
+  - update args for `invert()`, `invSqrt()`
+  - update `isInf()` and `isNaN()` to create new result vec if needed
+    (rather than attempting to re-use input vec, which is wrong type)
+- update `setNS2/3/4()` default out handling ([d4e2f25](https://github.com/thi-ng/umbrella/commit/d4e2f25))
+  - use same logic as `setS()`, i.e. create new vector if `out` is null
+- fix fit3/4 ([072f5c0](https://github.com/thi-ng/umbrella/commit/072f5c0))
+- fix normalizeS2/3/4() ([301ecb1](https://github.com/thi-ng/umbrella/commit/301ecb1))
+- update `set()` dispatch arg ([b7cf843](https://github.com/thi-ng/umbrella/commit/b7cf843))
+
+#### ♻️ Refactoring
+
+- minor internal update/perf `exp_2` ([976ed41](https://github.com/thi-ng/umbrella/commit/976ed41))
+- add/update/fix vec op types/signatures ([2ceca38](https://github.com/thi-ng/umbrella/commit/2ceca38))
+- update random fns types & impls ([d8b828a](https://github.com/thi-ng/umbrella/commit/d8b828a))
 
 ## [7.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.13.0) (2025-04-01)
 

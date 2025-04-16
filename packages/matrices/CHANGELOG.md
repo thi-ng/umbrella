@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-01T21:42:04Z
+- **Last updated**: 2025-04-16T11:11:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,24 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@3.0.0) (2025-04-16)
+
+#### 🛑 Breaking changes
+
+- update to remove dynamic codegen ([#497](https://github.com/thi-ng/umbrella/issues/497)) ([7c6835e](https://github.com/thi-ng/umbrella/commit/7c6835e))
+- BREAKING CHANGE: Refactoring & restructuring related to [#497](https://github.com/thi-ng/umbrella/issues/497)
+  - replace former codegen approach with higher-order functions
+  - add new`defMath()` &  `defMathN()` impls
+
+#### 🩹 Bug fixes
+
+- minor update `identity()` ([222aea1](https://github.com/thi-ng/umbrella/commit/222aea1))
+  - use correct dispatch arg (due to change in [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/main/packages/vectors))
+
+#### ♻️ Refactoring
+
+- minor internal optimizations (vector ops) ([696578e](https://github.com/thi-ng/umbrella/commit/696578e))
 
 ## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.4.0) (2024-06-21)
 
