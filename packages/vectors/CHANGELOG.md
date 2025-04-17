@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-16T11:11:14Z
+- **Last updated**: 2025-04-17T12:40:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [8.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.0.1) (2025-04-17)
+
+#### 🩹 Bug fixes
+
+- update minor2/3/4() ([ed4ae3b](https://github.com/thi-ng/umbrella/commit/ed4ae3b))
+  - update to use `minid2/3/4()` fns
 
 # [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.0.0) (2025-04-16)
 
