@@ -7,7 +7,8 @@ import { vecOf } from "./vec-of.js";
 
 /**
  * Takes an array of vectors and computes componentwise maximum. Writes result
- * to `out` (or a new vector).
+ * to `out` (or a new vector). If `out` is given is MUST have at least the size
+ * of given input vectors (otherwise some components will have NaN results).
  *
  * @param out -
  * @param src -
