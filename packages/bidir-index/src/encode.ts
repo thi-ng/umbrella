@@ -41,11 +41,53 @@ export const encodeObject = <V, K extends string = string>(
 	const keys = <K[]>Object.keys(obj);
 	const ids = indexKeys ? index.addAll(keys) : index.getAll(keys);
 	const res = new Array<V>(index.size).fill(defaultValue);
-	for (let i = keys.length; i-- > 0; ) {
-		const val = obj[keys[i]];
-		if (val != null) res[ids[i]] = val;
+	for (let id of ids) {
+		const val = obj[index.getID(id)!];
+		if (val != null) res[id] = val;
 	}
 	return res;
+};
+
+/**
+ * Similar to {@link encodeObject}, but implemented as an iterator for
+ * processing multiple objects into a single flat iterable.
+ *
+ * @example
+ * ```ts tangle:../export/encode-object-iterator.ts
+ * import { defBidirIndex, encodeObjectIterator } from "@thi.ng/bidir-index";
+ *
+ * const index = defBidirIndex<string>();
+ *
+ * // source data objects
+ * const data = [
+ *   { r: 1, g: 2, b: 3},
+ *   { x: 4, y: 5, z: 6}
+ * ];
+ *
+ * // directly encode into a typedarray
+ * const buf = new Uint8Array(encodeObjectIterator(index, data, 0));
+ *
+ * console.log(buf);
+ * // Uint8Array(12) [ 1, 2, 3, 0, 0, 0, 0, 0, 0, 4, 5, 6 ]
+ * ```
+ *
+ * @param index
+ * @param objects
+ * @param defaultValue
+ * @param indexKeys
+ */
+export const encodeObjectIterator = function* <V, K extends string = string>(
+	index: BidirIndex<K>,
+	objects: Partial<Record<K, V>>[],
+	defaultValue: V,
+	indexKeys = true
+) {
+	if (indexKeys) {
+		for (let o of objects) index.addAll(<K[]>Object.keys(o));
+	}
+	for (let o of objects) {
+		yield* encodeObject(index, o, defaultValue, false);
+	}
 };
 
 /**
@@ -95,3 +137,41 @@ export const decodeObject = <V, K extends string = string>(
 	}
 	return res;
 };
+
+/**
+ * Reverse op of {@link encodeObjectIterator}. An iterator which takes an array
+ * of encoded values and yields sequence of objects decoded via
+ * {@link decodeObject}.
+ *
+ * @example
+ * ```ts tangle:../export/decode-object-iterator.ts
+ * import { defBidirIndex, decodeObjectIterator } from "@thi.ng/bidir-index";
+ *
+ * const index = defBidirIndex<string>();
+ * index.addAll("rgbxyz");
+ *
+ * const data = [1, 2, 3, 0, 0, 0, 0, 0, 0, 4, 5, 6];
+ *
+ * for(let obj of decodeObjectIterator(index, data, 6)) {
+ *   console.log(obj);
+ * }
+ *
+ * // { r: 1, g: 2, b: 3, x: 0, y: 0, z: 0 }
+ * // { r: 0, g: 0, b: 0, x: 4, y: 5, z: 6 }
+ * ```
+ *
+ * @param index
+ * @param values
+ * @param size
+ * @param defaults
+ */
+export function* decodeObjectIterator<V, K extends string = string>(
+	index: Iterable<[K, number]>,
+	values: V[],
+	size: number,
+	defaults?: Partial<Record<K, V>>
+) {
+	for (let i = 0, num = values.length; i < num; i += size) {
+		yield decodeObject(index, values.slice(i, i + size), defaults);
+	}
+}
