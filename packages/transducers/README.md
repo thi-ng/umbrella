@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 205 standalone projects, maintained as part
+> This is one of 206 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -150,7 +150,7 @@ For Node.js REPL:
 const tx = await import("@thi.ng/transducers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 9.12 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.16 KB
 
 ## Dependencies
 
@@ -935,6 +935,7 @@ transduce(map((x) => x*10), push(), range(4))
 ```
 
 - [benchmark](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/benchmark.ts)
+- [binned](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/binned.ts)
 - [cat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/cat.ts)
 - [converge](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/converge.ts)
 - [convolve2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/convolve.ts)
