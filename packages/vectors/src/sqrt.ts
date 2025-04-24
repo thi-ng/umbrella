@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpV } from "./defopv.js";
 
 const [a, b, c, d] = defOpV(Math.sqrt);

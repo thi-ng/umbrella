@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpVNew } from "./defopv-new.js";
 
 const [a, b, c, d] = defOpVNew<number, boolean>((x) => !!x, 1);

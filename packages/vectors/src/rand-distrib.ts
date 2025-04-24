@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { normal as op } from "@thi.ng/random/distributions/normal";
 import type { MultiVecOpFNO, VecOpFNO } from "./api.js";
 import { vop } from "./vop.js";

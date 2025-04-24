@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fract as op } from "@thi.ng/math/prec";
 import { defOpV } from "./defopv.js";
 

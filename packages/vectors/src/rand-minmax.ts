@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { type IRandom } from "@thi.ng/random";
 import { SYSTEM as op } from "@thi.ng/random/system";
 import type { MultiVecOpVVO, VecOpVVO } from "./api.js";

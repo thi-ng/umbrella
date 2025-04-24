@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mixBilinear as op } from "@thi.ng/math/mix";
 import type { MultiVecOpVVVVNN, VecOpVVVVNN } from "./api.js";
 import { vop } from "./vop.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit as op } from "@thi.ng/math/fit";
 import type { MultiVecOpVVVVV, VecOpVVVVV } from "./api.js";
 import { vop } from "./vop.js";

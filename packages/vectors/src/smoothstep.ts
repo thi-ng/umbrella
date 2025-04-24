@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { smoothStep as op } from "@thi.ng/math/step";
 import { defOpVVV } from "./defopvvv.js";
 

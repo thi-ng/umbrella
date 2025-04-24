@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { safeDiv as op } from "@thi.ng/math/safe-div";
 import { defOpVV } from "./defopvv.js";
 

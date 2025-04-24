@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { remainder as op } from "@thi.ng/math/libc";
 import { defOpVN } from "./defopvn.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { VecOpNFO } from "./api.js";
 import { normalize, normalize2, normalize3, normalize4 } from "./normalize.js";
 import {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpVV } from "./defopvv.js";
 
 const [a, b, c, d] = defOpVV<boolean>((a, b) => a || b);

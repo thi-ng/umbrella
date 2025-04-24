@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit01 as op } from "@thi.ng/math/fit";
 import { defOpVVV } from "./defopvvv.js";
 

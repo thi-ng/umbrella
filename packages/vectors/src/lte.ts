@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpVVNew } from "./defopvv-new.js";
 
 const [a, b, c, d] = defOpVVNew<number, boolean>((a, b) => a <= b);

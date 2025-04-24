@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpSVV } from "./defopsvv.js";
 import { $add } from "./ops.js";
 

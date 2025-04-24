@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { roundTo } from "@thi.ng/math/prec";
 import { defOpVV } from "./defopvv.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { step as op } from "@thi.ng/math/step";
 import { defOpVV } from "./defopvv.js";
 

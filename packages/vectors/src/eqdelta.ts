@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EPS as e } from "@thi.ng/math/api";
 import { eqDelta as eq } from "@thi.ng/math/eqdelta";
 import type { MultiVecOpRoVVO, ReadonlyVec, VecOpRoVVO } from "./api.js";

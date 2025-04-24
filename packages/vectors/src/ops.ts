@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, FnN3 } from "@thi.ng/api";
 
 export const $add: FnN2 = (a, b) => a + b;

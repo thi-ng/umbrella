@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpVNew } from "./defopv-new.js";
 
 const op = globalThis.isNaN;
