@@ -60,6 +60,7 @@ export * from "./sub.js";
 // transducers
 
 export * from "./benchmark.js";
+export * from "./binned.js";
 export * from "./cat.js";
 export * from "./converge.js";
 export * from "./convolve.js";

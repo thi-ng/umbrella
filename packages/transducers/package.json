@@ -135,6 +135,9 @@
 		"./benchmark": {
 			"default": "./benchmark.js"
 		},
+		"./binned": {
+			"default": "./binned.js"
+		},
 		"./cat": {
 			"default": "./cat.js"
 		},
