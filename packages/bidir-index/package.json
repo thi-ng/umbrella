@@ -46,6 +46,8 @@
 	"keywords": [
 		"bidirectional",
 		"datastructure",
+		"decode",
+		"encode",
 		"identifier",
 		"invert",
 		"iterator",
@@ -70,6 +72,15 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./bidir-index": {
+			"default": "./bidir-index.js"
+		},
+		"./encode": {
+			"default": "./encode.js"
 		}
 	},
 	"thi.ng": {
