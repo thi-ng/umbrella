@@ -694,6 +694,9 @@
 		"./pown": {
 			"default": "./pown.js"
 		},
+		"./product": {
+			"default": "./product.js"
+		},
 		"./project": {
 			"default": "./project.js"
 		},

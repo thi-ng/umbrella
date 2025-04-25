@@ -177,6 +177,7 @@ export * from "./point-on-ray.js";
 export * from "./polar.js";
 export * from "./pow.js";
 export * from "./pown.js";
+export * from "./product.js";
 export * from "./project.js";
 export * from "./radians.js";
 export * from "./rand-distrib.js";
