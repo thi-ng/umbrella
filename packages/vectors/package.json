@@ -736,6 +736,12 @@
 		"./refract": {
 			"default": "./refract.js"
 		},
+		"./relu": {
+			"default": "./relu.js"
+		},
+		"./relus": {
+			"default": "./relus.js"
+		},
 		"./remainder": {
 			"default": "./remainder.js"
 		},
@@ -804,6 +810,12 @@
 		},
 		"./setvv": {
 			"default": "./setvv.js"
+		},
+		"./sigmoid": {
+			"default": "./sigmoid.js"
+		},
+		"./sigmoids": {
+			"default": "./sigmoids.js"
 		},
 		"./sign": {
 			"default": "./sign.js"
@@ -888,6 +900,9 @@
 		},
 		"./tanh": {
 			"default": "./tanh.js"
+		},
+		"./tanhs": {
+			"default": "./tanhs.js"
 		},
 		"./tensor": {
 			"default": "./tensor.js"
