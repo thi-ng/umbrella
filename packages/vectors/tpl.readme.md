@@ -348,31 +348,31 @@ addS2([], [1,0,2,0], [0,10,0,0,0,20], 0, 0, 1, 1, 2, 4)
 
 Component wise op with one input vector and single scalar:
 
-| Function     | Generic | Fixed | Strided | Int          | Comments                   |
-|--------------|---------|-------|---------|--------------|----------------------------|
-| `addN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `divN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `mulN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `subN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `neg`        | ✓       |       |         |              | same as `mulN(out, v, -1)` |
-| `fmodN`      | ✓       | 2-4   |         |              | (C/JS behavior)            |
-| `modN`       | ✓       | 2-4   |         |              | (GLSL behavior)            |
-| `powN`       | ✓       | 2-4   |         |              |                            |
-| `remainderN` | ✓       | 2-4   |         |              | (C behavior)               |
-| `roundN`     | ✓       | 2-4   |         |              |                            |
+| Function     | Generic | Fixed | Strided  | Int          | Comments                   |
+|--------------|---------|-------|----------|--------------|----------------------------|
+| `addN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `divN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `mulN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `subN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `neg`        | ✓       | 2-4   |          |              | same as `mulN(out, v, -1)` |
+| `fmodN`      | ✓       | 2-4   |          |              | (C/JS behavior)            |
+| `modN`       | ✓       | 2-4   |          |              | (GLSL behavior)            |
+| `powN`       | ✓       | 2-4   |          |              |                            |
+| `remainderN` | ✓       | 2-4   |          |              | (C behavior)               |
+| `roundN`     | ✓       | 2-4   |          |              |                            |
 
 ### Combined operations
 
-| Function | Generic | Fixed | Strided | Int | Comments    |
-|----------|---------|-------|---------|-----|-------------|
-| `addm`   | ✓       | 2-4   | S2-S4   |     | (a + b) * c |
-| `addmN`  | ✓       | 2-4   | S2-S4   |     | (a + b) * n |
-| `madd`   | ✓       | 2-4   | S2-S4   |     | a * n + c   |
-| `maddN`  | ✓       | 2-4   | S2-S4   |     | a * n + b   |
-| `msub`   | ✓       | 2-4   | S2-S4   |     | a * n - c   |
-| `msubN`  | ✓       | 2-4   | S2-S4   |     | a * n - b   |
-| `subm`   | ✓       | 2-4   | S2-S4   |     | (a - b) * c |
-| `submN`  | ✓       | 2-4   | S2-S4   |     | (a - b) * n |
+| Function | Generic | Fixed | Strided  | Int | Comments    |
+|----------|---------|-------|----------|-----|-------------|
+| `addm`   | ✓       | 2-4   | S, S2-S4 |     | (a + b) * c |
+| `addmN`  | ✓       | 2-4   | S, S2-S4 |     | (a + b) * n |
+| `madd`   | ✓       | 2-4   | S, S2-S4 |     | a * n + c   |
+| `maddN`  | ✓       | 2-4   | S, S2-S4 |     | a * n + b   |
+| `msub`   | ✓       | 2-4   | S, S2-S4 |     | a * n - c   |
+| `msubN`  | ✓       | 2-4   | S, S2-S4 |     | a * n - b   |
+| `subm`   | ✓       | 2-4   | S, S2-S4 |     | (a - b) * c |
+| `submN`  | ✓       | 2-4   | S, S2-S4 |     | (a - b) * n |
 
 ### Constraints
 
@@ -395,33 +395,33 @@ Component wise op with one input vector and single scalar:
 
 ### Dot product
 
-| Function | Generic | Fixed | Strided | Cwise      | Comments |
-|----------|---------|-------|---------|------------|----------|
-| `dot`    | ✓       | 2-4   | S2-S4   | C4, C6, C8 |          |
+| Function | Generic | Fixed | Strided  | Cwise      | Comments |
+|----------|---------|-------|----------|------------|----------|
+| `dot`    | ✓       | 2-4   | S, S2-S4 | C4, C6, C8 |          |
 
 ### Interpolation
 
-| Function       | Generic | Fixed   | Strided | Int | Comments |
-|----------------|---------|---------|---------|-----|----------|
-| `fit`          | ✓       | 2-4     |         |     |          |
-| `fit01`        | ✓       | _2 - _4 |         |     |          |
-| `fit11`        | ✓       | _2 - _4 |         |     |          |
-| `mix`          | ✓       | 2-4     | S2 - S4 |     |          |
-| `mixN`         | ✓       | 2-4     | S2 - S4 |     |          |
-| `mixBilinear`  | ✓       | 2-4     |         |     |          |
-| `mixCubic`     | ✓       |         |         |     |          |
-| `mixQuadratic` | ✓       |         |         |     |          |
-| `smoothStep`   | ✓       | 2-4     |         |     |          |
-| `step`         | ✓       | 2-4     |         |     |          |
+| Function       | Generic | Fixed   | Strided    | Int | Comments |
+|----------------|---------|---------|------------|-----|----------|
+| `fit`          | ✓       | 2-4     |            |     |          |
+| `fit01`        | ✓       | _2 - _4 |            |     |          |
+| `fit11`        | ✓       | _2 - _4 |            |     |          |
+| `mix`          | ✓       | 2-4     | S, S2 - S4 |     |          |
+| `mixN`         | ✓       | 2-4     | S, S2 - S4 |     |          |
+| `mixBilinear`  | ✓       | 2-4     |            |     |          |
+| `mixCubic`     | ✓       |         |            |     |          |
+| `mixQuadratic` | ✓       |         |            |     |          |
+| `smoothStep`   | ✓       | 2-4     |            |     |          |
+| `step`         | ✓       | 2-4     |            |     |          |
 
 ### Normalization / magnitude
 
-| Function    | Generic | Fixed | Strided | Int | Comments             |
-|-------------|---------|-------|---------|-----|----------------------|
-| `limit`     | ✓       |       |         |     |                      |
-| `mag`       | ✓       | 2-4   | S2-S4   |     |                      |
-| `magSq`     | ✓       | 2-4   | S2-S4   |     |                      |
-| `normalize` | ✓       |       | S2-S4   |     | w/ opt target length |
+| Function    | Generic | Fixed | Strided  | Int | Comments             |
+|-------------|---------|-------|----------|-----|----------------------|
+| `limit`     | ✓       |       |          |     |                      |
+| `mag`       | ✓       | 2-4   | S, S2-S4 |     |                      |
+| `magSq`     | ✓       | 2-4   | S, S2-S4 |     |                      |
+| `normalize` | ✓       |       | S, S2-S4 |     | w/ opt target length |
 
 ### Distances
 
@@ -499,14 +499,14 @@ All ops support custom PRNG impls based on the
 [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 `IRandom` interface and use `Math.random` by default:
 
-| Function          | Generic | Fixed | Strided | Int | Comments |
-|-------------------|---------|-------|---------|-----|----------|
-| `jitter`          | ✓       |       |         |     |          |
-| `randMinMax`      | ✓       | 2-4   | S2-S4   |     |          |
-| `randNorm`        | ✓       | 2-4   | S2-S4   |     |          |
-| `randNormDistrib` | ✓       | 2-4   | S2-S4   |     |          |
-| `random`          | ✓       | 2-4   | S2-S4   |     |          |
-| `randomDistrib`   | ✓       | 2-4   | S2-S4   |     |          |
+| Function          | Generic | Fixed | Strided  | Int | Comments |
+|-------------------|---------|-------|----------|-----|----------|
+| `jitter`          | ✓       |       |          |     |          |
+| `randMinMax`      | ✓       | 2-4   | S, S2-S4 |     |          |
+| `randNorm`        | ✓       | 2-4   | S, S2-S4 |     |          |
+| `randNormDistrib` | ✓       | 2-4   | S, S2-S4 |     |          |
+| `random`          | ✓       | 2-4   | S, S2-S4 |     |          |
+| `randomDistrib`   | ✓       | 2-4   | S, S2-S4 |     |          |
 
 ### Unary vector math ops
 
@@ -529,17 +529,21 @@ All ops support custom PRNG impls based on the
 | `invSqrt`         | ✓       | 2-4   |         |     |                    |
 | `isInf`           | ✓       | 2-4   |         |     |                    |
 | `isNaN`           | ✓       | 2-4   |         |     |                    |
+| `leakyRelu`       | ✓       |       | S       |     |                    |
 | `log` (1)         | ✓       | 2-4   |         |     |                    |
 | `log2` (1)        | ✓       | 2-4   |         |     |                    |
 | `major`           | ✓       | 2-4   |         |     |                    |
 | `minor`           | ✓       | 2-4   |         |     |                    |
+| `relu`            | ✓       |       | S       |     |                    |
 | `round`           | ✓       | 2-4   |         |     |                    |
+| `sigmoid`         | ✓       |       | S       |     |                    |
 | `sign`            | ✓       | 2-4   |         |     |                    |
 | `sin`             | ✓       | 2-4   |         |     |                    |
 | `sinh`            | ✓       | 2-4   |         |     |                    |
 | `sqrt`            | ✓       | 2-4   |         |     |                    |
 | `sum`             | ✓       | 2-4   |         |     |                    |
 | `tan`             | ✓       | 2-4   |         |     |                    |
+| `tanh`            | ✓       | 2-4   | S       |     |                    |
 | `trunc`           | ✓       | 2-4   |         |     |                    |
 | `wrap`            | ✓       | 2-4   |         |     |                    |
 
