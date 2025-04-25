@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 205 standalone projects, maintained as part
+> This is one of 206 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -60,7 +60,7 @@ For Node.js REPL:
 const arr = await import("@thi.ng/arrays");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.05 KB
 
 ## Dependencies
 
@@ -112,6 +112,7 @@ directory are using this package:
 - [`levenshtein()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/levenshtein.ts)
 - [`multiSwap()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [`peek()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/peek.ts)
+- [`permutation()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/permutation.ts)
 - [`quickSort()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/quicksort.ts)
 - [`rotate()` / `rotateTyped()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/rotate.ts)
 - [`selectThresholdMin()` / `selectThresholdMax()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/threshold.ts)
