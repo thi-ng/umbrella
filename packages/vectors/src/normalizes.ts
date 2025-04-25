@@ -17,7 +17,12 @@ import { setS, setS2, setS3, setS4 } from "./sets.js";
  *
  * @param out -
  * @param v -
- * @param n -
+ * @param num - vector size
+ * @param n - target length (default: 1)
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
  */
 export const normalizeS: VecOpSGVO<number> = (
 	out,
@@ -56,7 +61,12 @@ const $ =
  *
  * @param out -
  * @param v -
- * @param n -
+ * @param n - target length (default: 1)
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ *
  */
 export const normalizeS2 = $(magS2, mulNS2, setS2);
 
@@ -66,7 +76,11 @@ export const normalizeS2 = $(magS2, mulNS2, setS2);
  *
  * @param out -
  * @param v -
- * @param n -
+ * @param n - target length (default: 1)
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
  */
 export const normalizeS3 = $(magS3, mulNS3, setS3);
 
@@ -76,6 +90,10 @@ export const normalizeS3 = $(magS3, mulNS3, setS3);
  *
  * @param out -
  * @param v -
- * @param n -
+ * @param n - target length (default: 1)
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
  */
 export const normalizeS4 = $(magS4, mulNS4, setS4);
