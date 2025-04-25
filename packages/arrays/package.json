@@ -139,6 +139,9 @@
 		"./peek": {
 			"default": "./peek.js"
 		},
+		"./permutation": {
+			"default": "./permutation.js"
+		},
 		"./quicksort": {
 			"default": "./quicksort.js"
 		},
