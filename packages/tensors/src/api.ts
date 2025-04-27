@@ -1,50 +1,65 @@
 import type {
-	ILength,
+	Type as $Type,
 	ICopy,
-	IEmpty,
-	IEquiv,
 	IEqualsDelta,
+	IEquiv,
+	ILength,
 	NumericArray,
-	Nullable,
 } from "@thi.ng/api";
 
-export interface Tensor<T = number> extends Iterable<T>, ILength {
+export interface TensorData<T = number> extends Iterable<T>, ILength {
 	[id: number]: T;
 }
 
+export type Type = $Type | "num" | "str";
+
 export interface ITensor<T = number>
 	extends ICopy<ITensor<T>>,
-		IEmpty<ITensor<T>>,
 		IEquiv,
 		IEqualsDelta<ITensor<T>>,
 		Iterable<T> {
-	data: Tensor<T>;
-	shape: number[];
-	stride: number[];
-	offset: number;
+	readonly data: TensorData<T>;
+	readonly shape: number[];
+	readonly stride: number[];
+	readonly offset: number;
+
+	readonly storage: ITensorStorage<T>;
 
 	readonly length: number;
+
+	readonly type: Type;
+
+	empty(storage?: ITensorStorage<T>): ITensor<T>;
 
 	index(pos: NumericArray): number;
 
 	get(pos: NumericArray): T;
 
-	set(pos: NumericArray, value: T): void;
+	set(pos: NumericArray, value: T): this;
 
-	lo(pos: NumericArray | Nullable<number>[]): ITensor<T>;
+	lo(pos: NumericArray): ITensor<T>;
 
-	hi(pos: NumericArray | Nullable<number>[]): ITensor<T>;
+	hi(pos: NumericArray): ITensor<T>;
 
 	step(pos: NumericArray): ITensor<T>;
 
 	pick(pos: NumericArray): ITensor<T>;
 
-	pack(): ITensor<T>;
+	pack(storage?: ITensorStorage<T>): ITensor<T>;
+
+	resize(
+		newShape: number[],
+		fill?: T,
+		storage?: ITensorStorage<T>
+	): ITensor<T>;
 
 	transpose(pos: NumericArray): ITensor<T>;
 }
 
 export interface ITensorStorage<T> {
-	alloc(size: number): Tensor<T>;
-	release(buf: Tensor<T>): boolean;
+	alloc(size: number): TensorData<T>;
+	from(iter: Iterable<T>): TensorData<T>;
+	release(buf: TensorData<T>): boolean;
 }
+
+export type StorageRegistry = Record<Type, ITensorStorage<any>>;

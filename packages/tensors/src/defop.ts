@@ -215,7 +215,7 @@ export const mulM = (out: Tensor2 | null, a: Tensor2, b: Tensor2) => {
 		`incompatible matrix shapes, matrix b requires ${cola} rows`
 	);
 	if (out == null) {
-		out = <Tensor2>tensor(undefined, [rowa, colb]);
+		out = <Tensor2>tensor(a.type, [rowa, colb], { storage: a.storage });
 	}
 	const {
 		data: odata,
