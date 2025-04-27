@@ -151,14 +151,14 @@ export class Tensor1<T = number> extends ATensor<T> {
 			this.type,
 			this.storage,
 			this.data,
-			hi(select, this),
+			__hi(select, this),
 			this.stride,
 			this.offset
 		);
 	}
 
 	lo(select: NumericArray) {
-		const { shape, offset } = lo(select, this);
+		const { shape, offset } = __lo(select, this);
 		return new Tensor1(
 			this.type,
 			this.storage,
@@ -170,7 +170,7 @@ export class Tensor1<T = number> extends ATensor<T> {
 	}
 
 	step(select: NumericArray) {
-		const { shape, stride, offset } = step(select, this);
+		const { shape, stride, offset } = __step(select, this);
 		return new Tensor1(
 			this.type,
 			this.storage,
@@ -219,7 +219,11 @@ export class Tensor1<T = number> extends ATensor<T> {
 		) {
 			newData[j] = data[i];
 		}
-		return tensor(this.type, newShape, { data: newData, storage });
+		return tensor(this.type, newShape, {
+			storage,
+			data: newData,
+			copy: false,
+		});
 	}
 
 	transpose() {
@@ -300,14 +304,14 @@ export class Tensor2<T = number> extends ATensor<T> {
 			this.type,
 			this.storage,
 			this.data,
-			hi(select, this),
+			__hi(select, this),
 			this.stride,
 			this.offset
 		);
 	}
 
 	lo(select: NumericArray) {
-		const { shape, offset } = lo(select, this);
+		const { shape, offset } = __lo(select, this);
 		return new Tensor2(
 			this.type,
 			this.storage,
@@ -319,7 +323,7 @@ export class Tensor2<T = number> extends ATensor<T> {
 	}
 
 	step(select: NumericArray) {
-		const { shape, stride, offset } = step(select, this);
+		const { shape, stride, offset } = __step(select, this);
 		return new Tensor2(
 			this.type,
 			this.storage,
@@ -331,12 +335,13 @@ export class Tensor2<T = number> extends ATensor<T> {
 	}
 
 	pick(select: NumericArray) {
-		const { shape, stride, offset } = pick(select, this);
+		const { shape, stride, offset } = __pick(select, this);
 		return tensor(this.type, shape, {
+			storage: this.storage,
 			data: this.data,
+			copy: false,
 			stride,
 			offset,
-			storage: this.storage,
 		});
 	}
 
@@ -368,7 +373,11 @@ export class Tensor2<T = number> extends ATensor<T> {
 				newData[j] = data[i + y * ty];
 			}
 		}
-		return tensor(this.type, newShape, { data: newData, storage });
+		return tensor(this.type, newShape, {
+			storage,
+			data: newData,
+			copy: false,
+		});
 	}
 
 	transpose([x, y]: NumericArray) {
@@ -462,14 +471,14 @@ export class Tensor3<T = number> extends ATensor<T> {
 			this.type,
 			this.storage,
 			this.data,
-			hi(select, this),
+			__hi(select, this),
 			this.stride,
 			this.offset
 		);
 	}
 
 	lo(select: NumericArray) {
-		const { shape, offset } = lo(select, this);
+		const { shape, offset } = __lo(select, this);
 		return new Tensor3(
 			this.type,
 			this.storage,
@@ -481,7 +490,7 @@ export class Tensor3<T = number> extends ATensor<T> {
 	}
 
 	step(select: NumericArray) {
-		const { shape, stride, offset } = step(select, this);
+		const { shape, stride, offset } = __step(select, this);
 		return new Tensor3(
 			this.type,
 			this.storage,
@@ -493,10 +502,11 @@ export class Tensor3<T = number> extends ATensor<T> {
 	}
 
 	pick(select: NumericArray) {
-		const { shape, stride, offset } = pick(select, this);
+		const { shape, stride, offset } = __pick(select, this);
 		return tensor(this.type, shape, {
 			data: this.data,
 			storage: this.storage,
+			copy: false,
 			stride,
 			offset,
 		});
@@ -532,7 +542,11 @@ export class Tensor3<T = number> extends ATensor<T> {
 				}
 			}
 		}
-		return tensor(this.type, newShape, { data: newData, storage });
+		return tensor(this.type, newShape, {
+			storage,
+			data: newData,
+			copy: false,
+		});
 	}
 
 	transpose([x, y, z]: NumericArray) {
@@ -558,20 +572,58 @@ export class Tensor3<T = number> extends ATensor<T> {
 }
 
 export interface TensorOpts<T> {
+	/**
+	 * Tensor data. Unless {@link TensorOpts.copy} is false, by default will be
+	 * copied to memory obtained from configured storage.
+	 */
 	data?: TensorData<T>;
+	/**
+	 * Optionally configured storage provider. By default uses the
+	 * datatype-specific implementation from global {@link STORAGE} registry.
+	 */
 	storage?: ITensorStorage<T>;
+	/**
+	 * Optionally configured stride tuple. By default the strides will be
+	 * obtained from the tensor shape and will be in row-major order.
+	 */
 	stride?: ITensor["stride"];
+	/**
+	 * Optional start index of the data values (only inteded to be used if
+	 * {@link TensorOpts.data} is given).
+	 */
 	offset?: number;
+	/**
+	 * Only used if {@link TensorOpts.data} is given. If true (default), the
+	 * data will be copied to memory obtained from configured storage.
+	 */
+	copy?: boolean;
 }
 
+/**
+ * Creates a new {@link ITensor} instance for given data type, shape and
+ * options.
+ *
+ * @remarks
+ * Currently only 1D - 3D tensors are supported.
+ *
+ * @param type
+ * @param shape
+ * @param opts
+ */
 export const tensor = <T = number>(
 	type: Type,
 	shape: number[],
 	opts?: TensorOpts<T>
 ): ITensor<T> => {
 	const storage = opts?.storage ?? STORAGE[type];
-	const data = opts?.data ?? storage.alloc(product(shape!));
 	const stride = opts?.stride ?? shapeToStride(shape);
+	let data: TensorData<T>;
+	if (opts?.data) {
+		if (opts?.copy === false) data = opts.data;
+		else data = storage.from(opts.data);
+	} else {
+		data = storage.alloc(product(shape!));
+	}
 	let offset = opts?.offset;
 	if (offset === undefined) {
 		offset = 0;
@@ -610,7 +662,11 @@ export const strideOrder = (strides: number[]) =>
 		.sort((a, b) => abs(b[0]) - abs(a[0]))
 		.map((x) => x[1]);
 
-const lo = (select: NumericArray, { shape, stride, offset }: ITensor<any>) => {
+/** @internal */
+const __lo = (
+	select: NumericArray,
+	{ shape, stride, offset }: ITensor<any>
+) => {
 	const newShape: number[] = [];
 	for (let i = 0, n = shape.length; i < n; i++) {
 		const x = select[i];
@@ -621,7 +677,8 @@ const lo = (select: NumericArray, { shape, stride, offset }: ITensor<any>) => {
 	return { shape: newShape, offset };
 };
 
-const hi = (select: NumericArray, { shape }: ITensor<any>) => {
+/** @internal */
+const __hi = (select: NumericArray, { shape }: ITensor<any>) => {
 	const newShape: number[] = [];
 	for (let i = 0, n = shape.length; i < n; i++) {
 		const x = select[i];
@@ -630,7 +687,8 @@ const hi = (select: NumericArray, { shape }: ITensor<any>) => {
 	return newShape;
 };
 
-const step = (
+/** @internal */
+const __step = (
 	select: NumericArray,
 	{ shape, stride, offset }: ITensor<any>
 ) => {
@@ -651,7 +709,8 @@ const step = (
 	return { shape: newShape, stride: newStride, offset };
 };
 
-const pick = (
+/** @internal */
+const __pick = (
 	select: NumericArray,
 	{ shape, stride, offset }: ITensor<any>
 ) => {
