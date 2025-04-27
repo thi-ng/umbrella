@@ -18,16 +18,13 @@ export interface ITensor<T = number>
 		IEquiv,
 		IEqualsDelta<ITensor<T>>,
 		Iterable<T> {
+	readonly type: Type;
+	readonly storage: ITensorStorage<T>;
 	readonly data: TensorData<T>;
 	readonly shape: number[];
 	readonly stride: number[];
 	readonly offset: number;
-
-	readonly storage: ITensorStorage<T>;
-
 	readonly length: number;
-
-	readonly type: Type;
 
 	empty(storage?: ITensorStorage<T>): ITensor<T>;
 
