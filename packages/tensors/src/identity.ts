@@ -8,7 +8,7 @@ export const identity = <T extends Exclude<Type, "str">>(
 	opts?: Pick<TensorOpts<number>, "storage">
 ) => {
 	const storage = opts?.storage || STORAGE[type];
-	const data = storage.alloc(size * size).fill(0);
+	const data = storage.alloc(size * size);
 	for (let i = 0; i < data.length; i += size + 1) data[i] = 1;
 	return new Tensor2<number>(type, storage, data, [size, size], [size, 1]);
 };

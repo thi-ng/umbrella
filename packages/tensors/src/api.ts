@@ -2,6 +2,7 @@ import type {
 	Type as $Type,
 	Fn2,
 	Fn3,
+	Fn4,
 	ICopy,
 	IEqualsDelta,
 	IEquiv,
@@ -103,6 +104,12 @@ export interface ITensorStorage<T> {
 
 export type StorageRegistry = Record<Type, ITensorStorage<any>>;
 
+export type TensorOpN<
+	A = number,
+	B = A,
+	TB extends ITensor<B> = ITensor<B>
+> = Fn2<TB, A, TB>;
+
 export type TensorOpT<
 	A = number,
 	B = A,
@@ -117,6 +124,13 @@ export type TensorOpTN<
 	TB extends ITensor<B> = ITensor<B>
 > = Fn3<TB | null, TA, A, TB>;
 
+export type TensorOpTNN<
+	A = number,
+	B = A,
+	TA extends ITensor<A> = ITensor<A>,
+	TB extends ITensor<B> = ITensor<B>
+> = Fn4<TB | null, TA, A, A, TB>;
+
 export type TensorOpTT<
 	A = number,
 	B = A,
@@ -124,7 +138,19 @@ export type TensorOpTT<
 	TB extends ITensor<B> = ITensor<B>
 > = Fn3<TB | null, TA, TA, TB>;
 
+export type TensorOpTTT<
+	A = number,
+	B = A,
+	TA extends ITensor<A> = ITensor<A>,
+	TB extends ITensor<B> = ITensor<B>
+> = Fn4<TB | null, TA, TA, TA, TB>;
+
 export type TensorOpRT<A, B, TA extends ITensor<A> = ITensor<A>> = (a: TA) => B;
+
+export type TensorOpRTT<A, B, TA extends ITensor<A> = ITensor<A>> = (
+	a: TA,
+	b: TA
+) => B;
 
 export interface MultiTensorOp<TOP> {
 	/**
@@ -152,6 +178,10 @@ export interface MultiTensorOp<TOP> {
 
 export type MultiTensorOpImpl<T> = T & MultiTensorOp<T>;
 
+export type MultiTensorOpN<A = number, B = A> = MultiTensorOpImpl<
+	TensorOpN<A, B>
+>;
+
 export type MultiTensorOpT<A = number, B = A> = MultiTensorOpImpl<
 	TensorOpT<A, B>
 >;
@@ -160,10 +190,22 @@ export type MultiTensorOpTN<A = number, B = A> = MultiTensorOpImpl<
 	TensorOpTN<A, B>
 >;
 
+export type MultiTensorOpTNN<A = number, B = A> = MultiTensorOpImpl<
+	TensorOpTNN<A, B>
+>;
+
 export type MultiTensorOpTT<A = number, B = A> = MultiTensorOpImpl<
 	TensorOpTT<A, B>
 >;
 
+export type MultiTensorOpTTT<A = number, B = A> = MultiTensorOpImpl<
+	TensorOpTTT<A, B>
+>;
+
 export type MultiTensorOpRT<A = number, B = A> = MultiTensorOpImpl<
 	TensorOpRT<A, B>
+>;
+
+export type MultiTensorOpRTT<A = number, B = A> = MultiTensorOpImpl<
+	TensorOpRTT<A, B>
 >;
