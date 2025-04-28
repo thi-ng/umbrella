@@ -38,6 +38,7 @@ export * from "./product.js";
 export * from "./rand-distrib.js";
 export * from "./relu.js";
 export * from "./relun.js";
+export * from "./select.js";
 export * from "./set.js";
 export * from "./setn.js";
 export * from "./sigmoid.js";
