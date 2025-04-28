@@ -85,6 +85,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./cos": {
+			"default": "./cos.js"
+		},
 		"./defoprt": {
 			"default": "./defoprt.js"
 		},
@@ -118,6 +121,18 @@
 		"./log": {
 			"default": "./log.js"
 		},
+		"./max": {
+			"default": "./max.js"
+		},
+		"./maxn": {
+			"default": "./maxn.js"
+		},
+		"./min": {
+			"default": "./min.js"
+		},
+		"./minn": {
+			"default": "./minn.js"
+		},
 		"./mul": {
 			"default": "./mul.js"
 		},
@@ -130,6 +145,12 @@
 		"./mulv": {
 			"default": "./mulv.js"
 		},
+		"./pow": {
+			"default": "./pow.js"
+		},
+		"./pown": {
+			"default": "./pown.js"
+		},
 		"./product": {
 			"default": "./product.js"
 		},
@@ -139,8 +160,14 @@
 		"./relun": {
 			"default": "./relun.js"
 		},
+		"./sin": {
+			"default": "./sin.js"
+		},
 		"./softmax": {
 			"default": "./softmax.js"
+		},
+		"./sqrt": {
+			"default": "./sqrt.js"
 		},
 		"./storage": {
 			"default": "./storage.js"
@@ -153,6 +180,9 @@
 		},
 		"./sum": {
 			"default": "./sum.js"
+		},
+		"./tan": {
+			"default": "./tan.js"
 		},
 		"./tanh": {
 			"default": "./tanh.js"
