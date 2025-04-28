@@ -1,7 +1,7 @@
 import { $mul } from "@thi.ng/vectors/ops";
-import { defOpTT } from "./defoptt.js";
+import { defOpTN } from "./defoptn.js";
 
-const [a, b, c, d] = defOpTT($mul);
+const [a, b, c, d] = defOpTN($mul);
 
 /**
  * Componentwise nD tensor multiplication with uniform scalar `n`. Writes result

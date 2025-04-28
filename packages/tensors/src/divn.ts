@@ -1,7 +1,7 @@
 import { $div } from "@thi.ng/vectors/ops";
-import { defOpTT } from "./defoptt.js";
+import { defOpTN } from "./defoptn.js";
 
-const [a, b, c, d] = defOpTT($div);
+const [a, b, c, d] = defOpTN($div);
 
 /**
  * Componentwise nD tensor division with uniform scalar `n`. Writes result to

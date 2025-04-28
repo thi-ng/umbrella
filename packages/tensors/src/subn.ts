@@ -1,7 +1,7 @@
 import { $sub } from "@thi.ng/vectors/ops";
-import { defOpTT } from "./defoptt.js";
+import { defOpTN } from "./defoptn.js";
 
-const [a, b, c, d] = defOpTT($sub);
+const [a, b, c, d] = defOpTN($sub);
 
 /**
  * Componentwise nD tensor subtraction with uniform scalar `n`. Writes result to
