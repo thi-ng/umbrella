@@ -1,5 +1,4 @@
 import { assert } from "@thi.ng/errors/assert";
-import { dotS } from "@thi.ng/vectors/dots";
 import { tensor, type Tensor2 } from "./tensor.js";
 
 export const mulM = (out: Tensor2 | null, a: Tensor2, b: Tensor2) => {
@@ -37,7 +36,11 @@ export const mulM = (out: Tensor2 | null, a: Tensor2, b: Tensor2) => {
 		const ia = offa + i * txa;
 		for (let j = 0; j < colb; j++) {
 			const ib = offb + j * tyb;
-			odata[io + j * tyo] = dotS(adata, bdata, cola, ia, ib, tya, txb);
+			let dot = 0;
+			for (let j = 0; j < cola; j++) {
+				dot += adata[ia + j * tya] * bdata[ib + j * txb];
+			}
+			odata[io + j * tyo] = dot;
 		}
 	}
 	return out;
