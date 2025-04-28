@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/tensors",
 	"version": "0.0.1",
-	"description": "TODO",
+	"description": "1D/2D/3D tensors with extensible polymorphic operations and customizable storage",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -44,6 +44,8 @@
 		"@thi.ng/checks": "^3.7.6",
 		"@thi.ng/equiv": "^2.1.82",
 		"@thi.ng/errors": "^2.5.32",
+		"@thi.ng/math": "^5.11.26",
+		"@thi.ng/random": "^4.1.17",
 		"@thi.ng/strings": "^3.9.11",
 		"@thi.ng/vectors": "^8.0.1"
 	},
@@ -85,11 +87,23 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./clamp": {
+			"default": "./clamp.js"
+		},
+		"./clampn": {
+			"default": "./clampn.js"
+		},
 		"./cos": {
 			"default": "./cos.js"
 		},
+		"./defopn": {
+			"default": "./defopn.js"
+		},
 		"./defoprt": {
 			"default": "./defoprt.js"
+		},
+		"./defoprtt": {
+			"default": "./defoprtt.js"
 		},
 		"./defopt": {
 			"default": "./defopt.js"
@@ -97,14 +111,23 @@
 		"./defoptn": {
 			"default": "./defoptn.js"
 		},
+		"./defoptnn": {
+			"default": "./defoptnn.js"
+		},
 		"./defoptt": {
 			"default": "./defoptt.js"
+		},
+		"./defopttt": {
+			"default": "./defopttt.js"
 		},
 		"./div": {
 			"default": "./div.js"
 		},
 		"./divn": {
 			"default": "./divn.js"
+		},
+		"./dot": {
+			"default": "./dot.js"
 		},
 		"./errors": {
 			"default": "./errors.js"
@@ -120,6 +143,12 @@
 		},
 		"./log": {
 			"default": "./log.js"
+		},
+		"./mag": {
+			"default": "./mag.js"
+		},
+		"./magsq": {
+			"default": "./magsq.js"
 		},
 		"./max": {
 			"default": "./max.js"
@@ -145,6 +174,9 @@
 		"./mulv": {
 			"default": "./mulv.js"
 		},
+		"./normalize": {
+			"default": "./normalize.js"
+		},
 		"./pow": {
 			"default": "./pow.js"
 		},
@@ -154,11 +186,26 @@
 		"./product": {
 			"default": "./product.js"
 		},
+		"./rand-distrib": {
+			"default": "./rand-distrib.js"
+		},
 		"./relu": {
 			"default": "./relu.js"
 		},
 		"./relun": {
 			"default": "./relun.js"
+		},
+		"./select": {
+			"default": "./select.js"
+		},
+		"./set": {
+			"default": "./set.js"
+		},
+		"./setn": {
+			"default": "./setn.js"
+		},
+		"./sigmoid": {
+			"default": "./sigmoid.js"
 		},
 		"./sin": {
 			"default": "./sin.js"
@@ -168,6 +215,9 @@
 		},
 		"./sqrt": {
 			"default": "./sqrt.js"
+		},
+		"./step": {
+			"default": "./step.js"
 		},
 		"./storage": {
 			"default": "./storage.js"
@@ -196,6 +246,6 @@
 	},
 	"thi.ng": {
 		"status": "alpha",
-		"year": 2025
+		"year": 2018
 	}
 }

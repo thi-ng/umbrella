@@ -6546,6 +6546,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.6"
     "@thi.ng/equiv": "npm:^2.1.82"
     "@thi.ng/errors": "npm:^2.5.32"
+    "@thi.ng/math": "npm:^5.11.26"
+    "@thi.ng/random": "npm:^4.1.17"
     "@thi.ng/strings": "npm:^3.9.11"
     "@thi.ng/vectors": "npm:^8.0.1"
     esbuild: "npm:^0.25.2"
