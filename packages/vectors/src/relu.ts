@@ -5,7 +5,7 @@ import type { VecOpV, VecOpVN } from "./api.js";
  * Componentwise computes ReLU activation of given nD vector.
  *
  * @remarks
- * Also see {@link leakyRelu}.
+ * Also see {@link reluN} for leaky version.
  *
  * Reference:
  * https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
@@ -33,7 +33,7 @@ export const relu: VecOpV = (out, a) => {
  * @param a - input vector
  * @param n - gradient slope
  */
-export const leakyRelu: VecOpVN = (out, a, n) => {
+export const reluN: VecOpVN = (out, a, n) => {
 	!out && (out = a);
 	for (let i = a.length; i-- > 0; ) out[i] = a[i] >= 0 ? a[i] : a[i] * n;
 	return out;
