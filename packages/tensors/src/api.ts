@@ -124,6 +124,8 @@ export type TensorOpTT<
 	TB extends ITensor<B> = ITensor<B>
 > = Fn3<TB | null, TA, TA, TB>;
 
+export type TensorOpRT<A, B, TA extends ITensor<A> = ITensor<A>> = (a: TA) => B;
+
 export interface MultiTensorOp<TOP> {
 	/**
 	 * Adds / overwrites implementation for given tensor dimension.
@@ -160,4 +162,8 @@ export type MultiTensorOpTN<A = number, B = A> = MultiTensorOpImpl<
 
 export type MultiTensorOpTT<A = number, B = A> = MultiTensorOpImpl<
 	TensorOpTT<A, B>
+>;
+
+export type MultiTensorOpRT<A = number, B = A> = MultiTensorOpImpl<
+	TensorOpRT<A, B>
 >;
