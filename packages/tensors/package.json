@@ -85,6 +85,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./defoprt": {
+			"default": "./defoprt.js"
+		},
 		"./defopt": {
 			"default": "./defopt.js"
 		},
@@ -103,11 +106,17 @@
 		"./errors": {
 			"default": "./errors.js"
 		},
+		"./exp": {
+			"default": "./exp.js"
+		},
 		"./format": {
 			"default": "./format.js"
 		},
 		"./identity": {
 			"default": "./identity.js"
+		},
+		"./log": {
+			"default": "./log.js"
 		},
 		"./mul": {
 			"default": "./mul.js"
@@ -121,11 +130,17 @@
 		"./mulv": {
 			"default": "./mulv.js"
 		},
+		"./product": {
+			"default": "./product.js"
+		},
 		"./relu": {
 			"default": "./relu.js"
 		},
 		"./relun": {
 			"default": "./relun.js"
+		},
+		"./softmax": {
+			"default": "./softmax.js"
 		},
 		"./storage": {
 			"default": "./storage.js"
@@ -135,6 +150,9 @@
 		},
 		"./subn": {
 			"default": "./subn.js"
+		},
+		"./sum": {
+			"default": "./sum.js"
 		},
 		"./tanh": {
 			"default": "./tanh.js"
