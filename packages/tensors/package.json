@@ -73,20 +73,77 @@
 		".": {
 			"default": "./index.js"
 		},
+		"./abs": {
+			"default": "./abs.js"
+		},
+		"./add": {
+			"default": "./add.js"
+		},
+		"./addn": {
+			"default": "./addn.js"
+		},
 		"./api": {
 			"default": "./api.js"
 		},
-		"./defop": {
-			"default": "./defop.js"
+		"./defopt": {
+			"default": "./defopt.js"
+		},
+		"./defoptn": {
+			"default": "./defoptn.js"
+		},
+		"./defoptt": {
+			"default": "./defoptt.js"
+		},
+		"./div": {
+			"default": "./div.js"
+		},
+		"./divn": {
+			"default": "./divn.js"
+		},
+		"./errors": {
+			"default": "./errors.js"
 		},
 		"./format": {
 			"default": "./format.js"
 		},
+		"./identity": {
+			"default": "./identity.js"
+		},
+		"./mul": {
+			"default": "./mul.js"
+		},
+		"./mulm": {
+			"default": "./mulm.js"
+		},
+		"./muln": {
+			"default": "./muln.js"
+		},
+		"./mulv": {
+			"default": "./mulv.js"
+		},
+		"./relu": {
+			"default": "./relu.js"
+		},
+		"./relun": {
+			"default": "./relun.js"
+		},
 		"./storage": {
 			"default": "./storage.js"
 		},
+		"./sub": {
+			"default": "./sub.js"
+		},
+		"./subn": {
+			"default": "./subn.js"
+		},
+		"./tanh": {
+			"default": "./tanh.js"
+		},
 		"./tensor": {
 			"default": "./tensor.js"
+		},
+		"./top": {
+			"default": "./top.js"
 		}
 	},
 	"thi.ng": {
