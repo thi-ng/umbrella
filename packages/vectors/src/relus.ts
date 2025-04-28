@@ -4,6 +4,9 @@ import type { VecOpSGV, VecOpSGVN } from "./api.js";
 /**
  * Like {@link relu} but for nD strided vectors.
  *
+ * @remarks
+ * Also see {@link reluNS} for leaky version.
+ *
  * @param o - output vector
  * @param a - input vector
  * @param num - vector size
@@ -30,7 +33,7 @@ export const reluS: VecOpSGV = (
 };
 
 /**
- * Like {@link leakyRelu} but for nD strided vectors.
+ * Like {@link reluN} but for nD strided vectors.
  *
  * @param o - output vector
  * @param a - input vector
@@ -41,7 +44,7 @@ export const reluS: VecOpSGV = (
  * @param so - stride (default: 1)
  * @param sa - stride (default: 1)
  */
-export const leakyReluS: VecOpSGVN = (
+export const reluNS: VecOpSGVN = (
 	out,
 	a,
 	n,
