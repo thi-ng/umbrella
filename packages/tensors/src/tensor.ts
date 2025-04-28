@@ -6,7 +6,13 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import { dot2, dot3 } from "@thi.ng/vectors/dot";
 import { eqDeltaS as _eqDelta } from "@thi.ng/vectors/eqdelta";
 import { product, product2, product3 } from "@thi.ng/vectors/product";
-import type { ITensor, ITensorStorage, TensorData, Type } from "./api.js";
+import type {
+	ITensor,
+	ITensorStorage,
+	TensorData,
+	TensorOpts,
+	Type,
+} from "./api.js";
 import { format } from "./format.js";
 import { STORAGE } from "./storage.js";
 
@@ -75,6 +81,21 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	abstract pack(storage?: ITensorStorage<T>): ITensor<T>;
 
+	reshape(newShape: number[], newStride?: number[]) {
+		const newLength = product(newShape);
+		assert(
+			newLength === this.length,
+			`incompatible new shape: ${newShape}`
+		);
+		return tensor(this.type, newShape, {
+			storage: this.storage,
+			data: this.data,
+			copy: false,
+			stride: newStride ?? shapeToStride(newShape),
+			offset: this.offset,
+		});
+	}
+
 	abstract resize(
 		newShape: number[],
 		fill?: T,
@@ -95,7 +116,7 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 }
 
 export class Tensor1<T = number> extends ATensor<T> {
-	*[Symbol.iterator]() {
+	*[Symbol.iterator](): IterableIterator<T> {
 		let {
 			data,
 			length,
@@ -226,7 +247,7 @@ export class Tensor1<T = number> extends ATensor<T> {
 		});
 	}
 
-	transpose() {
+	transpose(_: number[]) {
 		return this.copy();
 	}
 
@@ -569,34 +590,6 @@ export class Tensor3<T = number> extends ATensor<T> {
 		}
 		return res.join("\n");
 	}
-}
-
-export interface TensorOpts<T> {
-	/**
-	 * Tensor data. Unless {@link TensorOpts.copy} is false, by default will be
-	 * copied to memory obtained from configured storage.
-	 */
-	data?: TensorData<T>;
-	/**
-	 * Optionally configured storage provider. By default uses the
-	 * datatype-specific implementation from global {@link STORAGE} registry.
-	 */
-	storage?: ITensorStorage<T>;
-	/**
-	 * Optionally configured stride tuple. By default the strides will be
-	 * obtained from the tensor shape and will be in row-major order.
-	 */
-	stride?: ITensor["stride"];
-	/**
-	 * Optional start index of the data values (only inteded to be used if
-	 * {@link TensorOpts.data} is given).
-	 */
-	offset?: number;
-	/**
-	 * Only used if {@link TensorOpts.data} is given. If true (default), the
-	 * data will be copied to memory obtained from configured storage.
-	 */
-	copy?: boolean;
 }
 
 /**
