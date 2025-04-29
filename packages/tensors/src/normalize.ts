@@ -1,0 +1,10 @@
+import type { ITensor } from "./api.js";
+import { magSq } from "./magsq.js";
+import { mulN } from "./muln.js";
+import { set } from "./set.js";
+
+export const normalize = (out: ITensor | null, a: ITensor, n = 1) => {
+	!out && (out = a);
+	const m = Math.sqrt(magSq(a));
+	return m >= 1e-6 ? mulN(out || a, a, n / m) : out !== a ? set(out, a) : out;
+};
