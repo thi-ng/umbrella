@@ -21,7 +21,7 @@ export const setFormat = (width: number, prec: number) => {
 
 setFormat(9, 4);
 
-export const print = ({ data, shape, stride, offset }: ITensor<any>) => {
+export const debug = ({ data, shape, stride, offset }: ITensor<any>) => {
 	let dim = shape.length;
 	const state = new Array(dim).fill(0);
 	dim--;
@@ -36,3 +36,13 @@ export const print = ({ data, shape, stride, offset }: ITensor<any>) => {
 		}
 	}
 };
+
+/**
+ * Syntax sugar for: `console.log(a.toString())`.
+ *
+ * @remarks
+ * Also see {@link debug} and {@link setFormat}.
+ *
+ * @param a - tensor
+ */
+export const print = (a: ITensor<any>) => console.log(a.toString(), "\n");
