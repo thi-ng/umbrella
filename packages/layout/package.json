@@ -44,8 +44,8 @@
 		"@thi.ng/checks": "^3.7.6"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.2",
-		"typedoc": "^0.28.2",
+		"esbuild": "^0.25.3",
+		"typedoc": "^0.28.3",
 		"typescript": "^5.8.3"
 	},
 	"keywords": [

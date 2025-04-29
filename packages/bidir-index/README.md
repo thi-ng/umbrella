@@ -67,7 +67,7 @@ For Node.js REPL:
 const bi = await import("@thi.ng/bidir-index");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 785 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 854 bytes
 
 ## Dependencies
 
