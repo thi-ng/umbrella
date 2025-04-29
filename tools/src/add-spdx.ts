@@ -3,7 +3,10 @@ import { files, readText, writeFile } from "@thi.ng/file-io";
 import { LOGGER } from "./api.js";
 
 const sourceFiles = [...files(".", /(?<!\.d)\.(ts|zig)$/)].filter(
-	(x) => !/\/(deprecated|dev|export|fixtures|node_modules|\.?zig-cache|zig\/api\.zig)/.test(x)
+	(x) =>
+		!/\/(deprecated|dev|export|fixtures|node_modules|generated|\.?zig-cache|zig\/api\.zig|binary.ts)/.test(
+			x
+		)
 );
 
 for (let f of sourceFiles) {
