@@ -45,6 +45,7 @@ export * from "./setn.js";
 export * from "./sigmoid.js";
 export * from "./sin.js";
 export * from "./softmax.js";
+export * from "./softplus.js";
 export * from "./sqrt.js";
 export * from "./step.js";
 export * from "./storage.js";

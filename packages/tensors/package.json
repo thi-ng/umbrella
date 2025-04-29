@@ -213,6 +213,9 @@
 		"./softmax": {
 			"default": "./softmax.js"
 		},
+		"./softplus": {
+			"default": "./softplus.js"
+		},
 		"./sqrt": {
 			"default": "./sqrt.js"
 		},
