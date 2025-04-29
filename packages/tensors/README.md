@@ -1,10 +1,34 @@
-<!-- include ../../assets/tpl/header.md -->
+<!-- This file is generated - DO NOT EDIT! -->
+<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/tensors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-tensors.svg?0d90e46c)
 
-<!-- toc -->
+[![npm version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/tensors.svg)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
+
+> [!NOTE]
+> This is one of 206 standalone projects, maintained as part
+> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> and anti-framework.
+>
+> 🚀 Please help me to work full-time on these projects by [sponsoring me on
+> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+
+- [About](#about)
+- [Built-in tensor operations](#built-in-tensor-operations)
+- [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [Basic usage](#basic-usage)
+  - [Matrix-matrix multiplication](#matrix-matrix-multiplication)
+  - [Matrix-vector multiplication](#matrix-vector-multiplication)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
-{{pkg.description}}
+1D/2D/3D tensors with extensible polymorphic operations and customizable storage.
 
 > [!NOTE]
 > This package contains code originally written in 2017/18 and, at the moment, is
@@ -63,29 +87,57 @@ conventions are closely aligned to the ones used by the
 - [tan](https://docs.thi.ng/umbrella/tensors/variables/tan.html)
 - [tanh](https://docs.thi.ng/umbrella/tensors/variables/tanh.html)
 
-{{meta.status}}
+## Status
 
-{{repo.supportPackages}}
+**ALPHA** - bleeding edge / work-in-progress
 
-{{repo.relatedPackages}}
-
-{{meta.blogPosts}}
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btensors%5D+in%3Atitle)
 
 ## Installation
 
-{{pkg.install}}
+```bash
+yarn add @thi.ng/tensors
+```
 
-{{pkg.size}}
+ESM import:
+
+```ts
+import * as ten from "@thi.ng/tensors";
+```
+
+Browser ESM import:
+
+```html
+<script type="module" src="https://esm.run/@thi.ng/tensors"></script>
+```
+
+[JSDelivr documentation](https://www.jsdelivr.com/)
+
+For Node.js REPL:
+
+```js
+const ten = await import("@thi.ng/tensors");
+```
+
+Package sizes (brotli'd, pre-treeshake): ESM: 5.98 KB
 
 ## Dependencies
 
-{{pkg.deps}}
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
-{{repo.examples}}
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## API
 
-{{pkg.docs}}
+[Generated API docs](https://docs.thi.ng/umbrella/tensors/)
 
 TODO
 
@@ -233,4 +285,21 @@ print(mulV(null, mat, vec));
 //  110.0000  205.0000
 ```
 
-<!-- include ../../assets/tpl/footer.md -->
+## Authors
+
+- [Karsten Schmidt](https://thi.ng)
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-tensors,
+  title = "@thi.ng/tensors",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/tensors",
+  year = 2018
+}
+```
+
+## License
+
+&copy; 2018 - 2025 Karsten Schmidt // Apache License 2.0
