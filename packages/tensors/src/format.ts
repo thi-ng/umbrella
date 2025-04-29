@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Stringer } from "@thi.ng/strings";
 import { floatFixedWidth } from "@thi.ng/strings/float";

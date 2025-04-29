@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { type Type as $Type } from "@thi.ng/api";
 import { always } from "@thi.ng/api/fn";
 import { typedArray, TYPEDARRAY_CTORS } from "@thi.ng/api/typedarray";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp as op } from "@thi.ng/math/interval";
 import { defOpTTT } from "./defopttt.js";
 

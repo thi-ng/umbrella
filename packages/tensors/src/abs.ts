@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpT } from "./defopt.js";
 
 const [a, b, c, d] = defOpT(Math.abs);

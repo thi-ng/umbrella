@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpTN } from "./defoptn.js";
 
 const [a, b, c, d] = defOpTN((a, b) => (a >= b ? 1 : 0));

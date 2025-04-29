@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ITensor } from "./api.js";
 import { defOpT } from "./defopt.js";
 import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";

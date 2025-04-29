@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0, Fn3 } from "@thi.ng/api";
 import type { MultiTensorOpRTT, TensorOpRTT } from "./api.js";
 import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";

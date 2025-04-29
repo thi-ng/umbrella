@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalShape } from "./errors.js";
 import { tensor, type Tensor1, type Tensor2 } from "./tensor.js";
 

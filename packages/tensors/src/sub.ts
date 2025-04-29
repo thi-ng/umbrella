@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { $sub } from "@thi.ng/vectors/ops";
 import { defOpTT } from "./defoptt.js";
 

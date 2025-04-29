@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defOpRT } from "./defoprt.js";
 
 const [a, b, c, d] = defOpRT(
