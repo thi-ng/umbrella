@@ -132,7 +132,7 @@ const __select = top<any>(0, undefined, select1, select2, select3);
  * component value and its position in the tensor. The `initial` value is used
  * to seed the search.
  *
- * @remark
+ * @remarks
  * This function is a generalization of {@link argMin} and {@link argMax} and
  * customizable via arbitrary predicates.
  *
