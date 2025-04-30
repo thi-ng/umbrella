@@ -11,6 +11,7 @@ import type {
 	Maybe,
 	NumericArray,
 } from "@thi.ng/api";
+import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
 
 export interface TensorData<T = number> extends Iterable<T>, ILength {
 	[id: number]: T;
@@ -19,7 +20,48 @@ export interface TensorData<T = number> extends Iterable<T>, ILength {
 
 export type Type = $Type | "num" | "str";
 
-export interface TensorOpts<T> {
+export type NumType = Type | "num";
+
+export type Shape1 = [number];
+export type Shape2 = [number, number];
+export type Shape3 = [number, number, number];
+export type Shape4 = [number, number, number, number];
+
+export type Shape = Shape1 | Shape2 | Shape3 | Shape4;
+
+export type ShapeTensor<S extends Shape, T> = S extends Shape4
+	? Tensor4<T>
+	: S extends Shape3
+	? Tensor3<T>
+	: S extends Shape2
+	? Tensor2<T>
+	: Tensor1<T>;
+
+export type Nested<T> = T[] | T[][] | T[][][] | T[][][][];
+
+export type NestedTensor<N extends Nested<T>, T> = N extends T[][][][]
+	? Tensor4<T>
+	: N extends T[][][]
+	? Tensor3<T>
+	: N extends T[][]
+	? Tensor2<T>
+	: Tensor1<T>;
+
+export interface TypeMap {
+	u8: number;
+	u8c: number;
+	i8: number;
+	u16: number;
+	i16: number;
+	u32: number;
+	i32: number;
+	f32: number;
+	f64: number;
+	num: number;
+	str: string;
+}
+
+export interface TensorOpts<T, S extends Shape> {
 	/**
 	 * Tensor data. Unless {@link TensorOpts.copy} is false, by default will be
 	 * copied to memory obtained from configured storage.
@@ -34,7 +76,7 @@ export interface TensorOpts<T> {
 	 * Optionally configured stride tuple. By default the strides will be
 	 * obtained from the tensor shape and will be in row-major order.
 	 */
-	stride?: ITensor["stride"];
+	stride?: S;
 	/**
 	 * Optional start index of the data values (only inteded to be used if
 	 * {@link TensorOpts.data} is given).
@@ -45,6 +87,11 @@ export interface TensorOpts<T> {
 	 * data will be copied to memory obtained from configured storage.
 	 */
 	copy?: boolean;
+}
+
+export interface TensorFromArrayOpts<T extends Type, V> {
+	type: T;
+	storage?: ITensorStorage<V>;
 }
 
 export interface ITensor<T = number>
@@ -66,7 +113,7 @@ export interface ITensor<T = number>
 
 	[Symbol.iterator](): IterableIterator<T>;
 
-	empty(storage?: ITensorStorage<T>): ITensor<T>;
+	empty(storage?: ITensorStorage<T>): this;
 
 	index(pos: NumericArray): number;
 
@@ -74,25 +121,25 @@ export interface ITensor<T = number>
 
 	set(pos: NumericArray, value: T): this;
 
-	lo(pos: NumericArray): ITensor<T>;
+	lo(pos: NumericArray): this;
 
-	hi(pos: NumericArray): ITensor<T>;
+	hi(pos: NumericArray): this;
 
-	step(pos: NumericArray): ITensor<T>;
+	step(select: NumericArray): this;
 
-	pick(pos: NumericArray): ITensor<T>;
+	pick(select: NumericArray): ITensor<T>;
 
-	pack(storage?: ITensorStorage<T>): ITensor<T>;
+	pack(storage?: ITensorStorage<T>): this;
 
-	reshape(newShape: number[], newStride?: number[]): ITensor<T>;
+	reshape<S extends Shape>(newShape: S, newStride?: S): ShapeTensor<S, T>;
 
-	resize(
-		newShape: number[],
+	resize<S extends Shape>(
+		newShape: S,
 		fill?: T,
 		storage?: ITensorStorage<T>
-	): ITensor<T>;
+	): ShapeTensor<S, T>;
 
-	transpose(pos: NumericArray): ITensor<T>;
+	transpose(order: NumericArray): this;
 
 	toJSON(): any;
 }

@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { NumericArray } from "@thi.ng/api";
+import type { Maybe, NumericArray } from "@thi.ng/api";
 import { swizzle } from "@thi.ng/arrays/swizzle";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { equiv, equivArrayLike } from "@thi.ng/equiv";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { dot2, dot3, dot4 } from "@thi.ng/vectors/dot";
@@ -10,10 +12,17 @@ import { product, product2, product3, product4 } from "@thi.ng/vectors/product";
 import type {
 	ITensor,
 	ITensorStorage,
+	Nested,
+	NestedTensor,
+	NumType,
+	Shape,
+	ShapeTensor,
 	TensorCtor,
 	TensorData,
+	TensorFromArrayOpts,
 	TensorOpts,
 	Type,
+	TypeMap,
 } from "./api.js";
 import { illegalShape } from "./errors.js";
 import { format } from "./format.js";
@@ -49,23 +58,27 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 	abstract [Symbol.iterator](): IterableIterator<T>;
 
 	copy() {
-		return new (<TensorCtor<T>>this.constructor)(
-			this.type,
-			this.storage,
-			this.data,
-			this.shape.slice(),
-			this.stride.slice(),
-			this.offset
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				this.storage,
+				this.data,
+				this.shape.slice(),
+				this.stride.slice(),
+				this.offset
+			)
 		);
 	}
 
 	empty(storage = this.storage) {
-		return new (<TensorCtor<T>>this.constructor)(
-			this.type,
-			storage,
-			storage.alloc(this.length),
-			this.shape.slice(),
-			shapeToStride(this.shape)
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				storage,
+				storage.alloc(this.length),
+				this.shape.slice(),
+				shapeToStride(this.shape)
+			)
 		);
 	}
 
@@ -92,89 +105,99 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	abstract set(pos: NumericArray, v: T): this;
 
-	hi(pos: NumericArray) {
-		return new (<TensorCtor<T>>this.constructor)(
-			this.type,
-			this.storage,
-			this.data,
-			__hi(pos, this),
-			this.stride,
-			this.offset
+	hi(pos: NumericArray): this {
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				this.storage,
+				this.data,
+				__hi(pos, this),
+				this.stride,
+				this.offset
+			)
 		);
 	}
 
-	lo(pos: NumericArray) {
+	lo(pos: NumericArray): this {
 		const { shape, offset } = __lo(pos, this);
-		return new (<TensorCtor<T>>this.constructor)(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			this.stride,
-			offset
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				this.storage,
+				this.data,
+				shape,
+				this.stride,
+				offset
+			)
 		);
 	}
 
 	step(select: NumericArray) {
 		const { shape, stride, offset } = __step(select, this);
-		return new (<TensorCtor<T>>this.constructor)(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			stride,
-			offset
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				this.storage,
+				this.data,
+				shape,
+				stride,
+				offset
+			)
 		);
 	}
 
-	pick(select: NumericArray) {
+	pick(select: NumericArray): ITensor<T> {
 		const { shape, stride, offset } = __pick(select, this);
-		return tensor(this.type, shape, {
+		return tensor<any, any>(this.type, shape, {
 			data: this.data,
 			storage: this.storage,
 			copy: false,
-			stride,
+			stride: <any>stride,
 			offset,
 		});
 	}
 
 	pack(storage = this.storage) {
-		return new (<TensorCtor<T>>this.constructor)(
-			this.type,
-			storage,
-			storage.from(this),
-			this.shape.slice(),
-			shapeToStride(this.shape)
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				storage,
+				storage.from(this),
+				this.shape.slice(),
+				shapeToStride(this.shape)
+			)
 		);
 	}
 
-	reshape(newShape: number[], newStride?: number[]) {
+	reshape<S extends Shape>(newShape: S, newStride?: S): ShapeTensor<S, T> {
 		const newLength = product(newShape);
 		if (newLength !== this.length) illegalShape(newShape);
-		return tensor(this.type, newShape, {
+		return tensor<any, S>(this.type, newShape, {
 			storage: this.storage,
 			data: this.data,
 			copy: false,
-			stride: newStride ?? shapeToStride(newShape),
+			stride: <any>newStride ?? shapeToStride(newShape),
 			offset: this.offset,
 		});
 	}
 
-	abstract resize(
-		newShape: number[],
+	abstract resize<S extends Shape>(
+		newShape: S,
 		fill?: T,
 		storage?: ITensorStorage<T>
-	): ITensor<T>;
+	): ShapeTensor<S, T>;
 
-	transpose(order: number[]) {
+	transpose(order: NumericArray) {
 		const reorder = swizzle(order);
-		return new (<TensorCtor<T>>this.constructor)(
-			this.type,
-			this.storage,
-			this.data,
-			reorder(this.shape),
-			reorder(this.stride),
-			this.offset
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				this.storage,
+				this.data,
+				reorder(this.shape),
+				reorder(this.stride),
+				this.offset
+			)
 		);
 	}
 
@@ -237,7 +260,11 @@ export class Tensor1<T = number> extends ATensor<T> {
 		);
 	}
 
-	resize(newShape: number[], fill?: T, storage = this.storage) {
+	resize<S extends Shape>(
+		newShape: S,
+		fill?: T,
+		storage = this.storage
+	): ShapeTensor<S, T> {
 		const newLength = product(newShape);
 		const newData = storage.alloc(newLength);
 		if (fill !== undefined) newData.fill(fill);
@@ -254,7 +281,7 @@ export class Tensor1<T = number> extends ATensor<T> {
 		) {
 			newData[ii] = data[i];
 		}
-		return tensor(this.type, newShape, {
+		return tensor<any, S>(this.type, newShape, {
 			storage,
 			data: newData,
 			copy: false,
@@ -313,7 +340,11 @@ export class Tensor2<T = number> extends ATensor<T> {
 		return this;
 	}
 
-	resize(newShape: number[], fill?: T, storage = this.storage) {
+	resize<S extends Shape>(
+		newShape: S,
+		fill?: T,
+		storage = this.storage
+	): ShapeTensor<S, T> {
 		const newLength = product(newShape);
 		const newData = storage.alloc(newLength);
 		if (fill !== undefined) newData.fill(fill);
@@ -328,7 +359,7 @@ export class Tensor2<T = number> extends ATensor<T> {
 				newData[i] = data[ox + y * ty];
 			}
 		}
-		return tensor(this.type, newShape, {
+		return tensor<any, S>(this.type, newShape, {
 			storage,
 			data: newData,
 			copy: false,
@@ -383,7 +414,11 @@ export class Tensor3<T = number> extends ATensor<T> {
 		return this;
 	}
 
-	resize(newShape: number[], fill?: T, storage = this.storage) {
+	resize<S extends Shape>(
+		newShape: S,
+		fill?: T,
+		storage = this.storage
+	): ShapeTensor<S, T> {
 		const newLength = product(newShape);
 		const newData = storage.alloc(newLength);
 		if (fill !== undefined) newData.fill(fill);
@@ -400,7 +435,7 @@ export class Tensor3<T = number> extends ATensor<T> {
 				}
 			}
 		}
-		return tensor(this.type, newShape, {
+		return tensor<any, S>(this.type, newShape, {
 			storage,
 			data: newData,
 			copy: false,
@@ -458,7 +493,11 @@ export class Tensor4<T = number> extends ATensor<T> {
 		return this;
 	}
 
-	resize(newShape: number[], fill?: T, storage = this.storage) {
+	resize<S extends Shape>(
+		newShape: S,
+		fill?: T,
+		storage = this.storage
+	): ShapeTensor<S, T> {
 		const newLength = product(newShape);
 		const newData = storage.alloc(newLength);
 		if (fill !== undefined) newData.fill(fill);
@@ -477,7 +516,7 @@ export class Tensor4<T = number> extends ATensor<T> {
 				}
 			}
 		}
-		return tensor(this.type, newShape, {
+		return tensor<any, S>(this.type, newShape, {
 			storage,
 			data: newData,
 			copy: false,
@@ -493,6 +532,24 @@ export class Tensor4<T = number> extends ATensor<T> {
 	}
 }
 
+export const TENSOR_IMPLS: Maybe<TensorCtor<any>>[] = [
+	undefined,
+	Tensor1,
+	Tensor2,
+	Tensor3,
+	Tensor4,
+];
+
+/** Syntax sugar for {@link tensorFromArray}. */
+export function tensor<T extends NumType, N extends Nested<number>>(
+	data: N,
+	opts?: TensorFromArrayOpts<T, number>
+): NestedTensor<N, number>;
+/** Syntax sugar for {@link tensorFromArray}. */
+export function tensor<N extends Nested<string>>(
+	data: N,
+	opts?: TensorFromArrayOpts<"str", string>
+): NestedTensor<N, string>;
 /**
  * Creates a new {@link ITensor} instance for given data type, shape and
  * options.
@@ -504,14 +561,19 @@ export class Tensor4<T = number> extends ATensor<T> {
  * @param shape
  * @param opts
  */
-export const tensor = <T = number>(
-	type: Type,
-	shape: number[],
-	opts?: TensorOpts<T>
-): ITensor<T> => {
+export function tensor<T extends Type, S extends Shape>(
+	type: T,
+	shape: S,
+	opts?: TensorOpts<TypeMap[T], S>
+): ShapeTensor<S, TypeMap[T]>;
+export function tensor(...args: any[]): ITensor<any> {
+	if (Array.isArray(args[0])) return tensorFromArray(args[0], args[1]);
+	const type: Type = args[0];
+	const shape: number[] = args[1];
+	const opts: Maybe<TensorOpts<any, any>> = args[2];
 	const storage = opts?.storage ?? STORAGE[type];
 	const stride = opts?.stride ?? shapeToStride(shape);
-	let data: TensorData<T>;
+	let data: TensorData<any>;
 	if (opts?.data) {
 		if (opts?.copy === false) data = opts.data;
 		else data = storage.from(opts.data);
@@ -527,23 +589,61 @@ export const tensor = <T = number>(
 			}
 		}
 	}
-	switch (shape.length) {
-		case 0:
-			return new Tensor1(type, storage, data, [1], [1], offset);
-		case 1:
-			return new Tensor1(type, storage, data, shape, stride, offset);
-		case 2:
-			return new Tensor2(type, storage, data, shape, stride, offset);
-		case 3:
-			return new Tensor3(type, storage, data, shape, stride, offset);
-		case 4:
-			return new Tensor4(type, storage, data, shape, stride, offset);
-		default:
-			unsupported(`unsupported dimension: ${shape.length}`);
-	}
-};
+	const ctor = TENSOR_IMPLS[shape.length];
+	return ctor
+		? new ctor(type, storage, data, shape, stride, offset)
+		: unsupported(`unsupported dimension: ${shape.length}`);
+}
 
-export const shapeToStride = (shape: number[]) => {
+/**
+ * Creates a new {@link ITensor} instance from given (possibly nested) numeric
+ * array, and options.
+ *
+ * @remarks
+ * Currently only 1D - 4D tensors are supported.
+ *
+ * @param data
+ * @param opts
+ */
+export function tensorFromArray<T extends NumType, N extends Nested<number>>(
+	data: N,
+	opts?: TensorFromArrayOpts<T, number>
+): NestedTensor<N, number>;
+/**
+ * Creates a new {@link ITensor} instance from given (possibly nested) string
+ * array, and options.
+ *
+ * @remarks
+ * Currently only 1D - 4D tensors are supported.
+ *
+ * @param data
+ * @param opts
+ */
+export function tensorFromArray<N extends Nested<string>>(
+	data: N,
+	opts?: TensorFromArrayOpts<"str", string>
+): NestedTensor<N, string>;
+export function tensorFromArray(
+	data: Nested<any>,
+	opts?: TensorFromArrayOpts<any, any>
+): ITensor<any> {
+	const shape: Shape = [data.length];
+	let $data: any[] = data;
+	while (Array.isArray($data[0])) {
+		shape.push($data[0].length);
+		$data = $data.flat();
+	}
+	const $type = opts?.type ?? <Type>(isNumber($data[0]) ? "num" : "str");
+	if ($type === "str" && isNumber($data[0]))
+		illegalArgs("mismatched data type");
+	return tensor<any, any>($type, shape, {
+		data: $data,
+		copy: $type !== "num" && $type !== "str",
+		storage: opts?.storage,
+	});
+}
+
+export const shapeToStride = (shape: NumericArray) => {
 	const n = shape.length;
 	const stride = new Array(n);
 	for (let i = n, s = 1; i-- > 0; s *= shape[i]) {
