@@ -119,7 +119,7 @@ For Node.js REPL:
 const ten = await import("@thi.ng/tensors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.98 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.87 KB
 
 ## Dependencies
 

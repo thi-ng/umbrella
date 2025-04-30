@@ -135,6 +135,9 @@
 		"./exp": {
 			"default": "./exp.js"
 		},
+		"./exp2": {
+			"default": "./exp2.js"
+		},
 		"./format": {
 			"default": "./format.js"
 		},
@@ -143,6 +146,9 @@
 		},
 		"./log": {
 			"default": "./log.js"
+		},
+		"./log2": {
+			"default": "./log2.js"
 		},
 		"./mag": {
 			"default": "./mag.js"
