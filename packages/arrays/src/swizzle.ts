@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn } from "@thi.ng/api";
+import type { Fn, NumericArray } from "@thi.ng/api";
 
 /**
  * Returns optimized function to immutably select, repeat, reshape and /
@@ -44,7 +44,9 @@ import type { Fn } from "@thi.ng/api";
  *
  * @param order - indices
  */
-export const swizzle = <T>(order: string | PropertyKey[]): Fn<T, any[]> => {
+export const swizzle = <T>(
+	order: string | PropertyKey[] | NumericArray
+): Fn<T, any[]> => {
 	const [a, b, c, d, e, f, g, h] = order;
 	switch (order.length) {
 		case 0:
