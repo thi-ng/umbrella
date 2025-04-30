@@ -62,9 +62,9 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 205 individual
+Not including deprecations, this mono-repository is home to 206 individual
 TypeScript libraries/packages/tools and ~185 example projects illustrating their
-usage, currently totalling ~234k SLOC and ~4200 source files... Some of the
+usage, currently totalling ~238k SLOC and ~4250 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
 
@@ -312,26 +312,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-04-16
+As of: 2025-04-30
 
-| Status                                           | Package                                                       | Version                                                                                                                             | Changelog                                               |
-|:-------------------------------------------------|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/axidraw`](./packages/axidraw)                       | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)                       | [changelog](./packages/axidraw/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/block-fs`](./packages/block-fs)                     | [![version](https://img.shields.io/npm/v/@thi.ng/block-fs.svg)](https://www.npmjs.com/package/@thi.ng/block-fs)                     | [changelog](./packages/block-fs/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-closest-point`](./packages/geom-closest-point) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-closest-point.svg)](https://www.npmjs.com/package/@thi.ng/geom-closest-point) | [changelog](./packages/geom-closest-point/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/geom-isec`](./packages/geom-isec)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)                   | [changelog](./packages/geom-isec/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)       | [changelog](./packages/geom-poly-utils/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/geom-splines`](./packages/geom-splines)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)             | [changelog](./packages/geom-splines/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hdiff`](./packages/hdiff)                           | [![version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)                           | [changelog](./packages/hdiff/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/imgui`](./packages/imgui)                           | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)                           | [changelog](./packages/imgui/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/lsys`](./packages/lsys)                             | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                             | [changelog](./packages/lsys/CHANGELOG.md)               |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/matrices`](./packages/matrices)                     | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)                     | [changelog](./packages/matrices/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/server`](./packages/server)                         | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)                         | [changelog](./packages/server/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/shader-ast-js`](./packages/shader-ast-js)           | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)           | [changelog](./packages/shader-ast-js/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/tsne`](./packages/tsne)                             | [![version](https://img.shields.io/npm/v/@thi.ng/tsne.svg)](https://www.npmjs.com/package/@thi.ng/tsne)                             | [changelog](./packages/tsne/CHANGELOG.md)               |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/vectors`](./packages/vectors)                       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                       | [changelog](./packages/vectors/CHANGELOG.md)            |
+| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
+|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays)           | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)           | [changelog](./packages/arrays/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bidir-index`](./packages/bidir-index) | [![version](https://img.shields.io/npm/v/@thi.ng/bidir-index.svg)](https://www.npmjs.com/package/@thi.ng/bidir-index) | [changelog](./packages/bidir-index/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-new-yellow) | [`@thi.ng/tensors`](./packages/tensors)         | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)         | [changelog](./packages/tensors/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)         | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)         | [changelog](./packages/vectors/CHANGELOG.md)     |
 
 ### Algorithms & data structures
 
