@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/tensors",
 	"version": "0.0.1",
-	"description": "1D/2D/3D tensors with extensible polymorphic operations and customizable storage",
+	"description": "1D/2D/3D/4D tensors with extensible polymorphic operations and customizable storage",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",

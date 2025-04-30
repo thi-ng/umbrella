@@ -31,7 +31,9 @@ conventions are closely aligned to the ones used by the
 - [divN](https://docs.thi.ng/umbrella/tensors/variables/divN.html)
 - [dot](https://docs.thi.ng/umbrella/tensors/variables/dot.html)
 - [exp](https://docs.thi.ng/umbrella/tensors/variables/exp.html)
+- [exp2](https://docs.thi.ng/umbrella/tensors/variables/exp2.html)
 - [log](https://docs.thi.ng/umbrella/tensors/variables/log.html)
+- [log2](https://docs.thi.ng/umbrella/tensors/variables/log2.html)
 - [mag](https://docs.thi.ng/umbrella/tensors/variables/mag.html)
 - [magSq](https://docs.thi.ng/umbrella/tensors/variables/magSq.html)
 - [max](https://docs.thi.ng/umbrella/tensors/variables/max.html)
@@ -192,7 +194,7 @@ t.print(t.sigmoid(null, b));
 import { tensor, mulM, print } from "@thi.ng/tensors";
 
 // create 2x3 matrix
-const m1 = tensor("f32", [2, 3], { data: [1, 2, 3, 4, 5, 6] });
+const m1 = tensor([[1, 2, 3], [4, 5, 6]]);
 
 print(m1);
 //    1.0000    2.0000    3.0000
@@ -218,15 +220,15 @@ print(mulM(null, m1, m2));
 ```ts tangle:export/readme-mulv.ts
 import { tensor, mulV, print } from "@thi.ng/tensors";
 
-// create 2x3 transformation matrix
-const mat = tensor("f32", [2,3], { data: [10, 0, 100, 0, 5, 200] });
+// create 2x3 transformation matrix (row-major)
+const mat = tensor([[10, 0, 100], [0, 5, 200]]);
 
 print(mat);
 //   10.0000         0  100.0000
 //         0    5.0000  200.0000
 
 // create vector
-const vec = tensor("f32", [3], { data: [1, 1, 1] });
+const vec = tensor([1, 1, 1]);
 
 // matrix-vector multiply
 print(mulV(null, mat, vec));
