@@ -2,7 +2,7 @@
 import type { NumericArray } from "@thi.ng/api";
 import { swizzle } from "@thi.ng/arrays/swizzle";
 import { equiv, equivArrayLike } from "@thi.ng/equiv";
-import { assert } from "@thi.ng/errors/assert";
+import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { dot2, dot3, dot4 } from "@thi.ng/vectors/dot";
 import { eqDeltaS as _eqDelta } from "@thi.ng/vectors/eqdelta";
@@ -10,10 +10,12 @@ import { product, product2, product3, product4 } from "@thi.ng/vectors/product";
 import type {
 	ITensor,
 	ITensorStorage,
+	TensorCtor,
 	TensorData,
 	TensorOpts,
 	Type,
 } from "./api.js";
+import { illegalShape } from "./errors.js";
 import { format } from "./format.js";
 import { STORAGE } from "./storage.js";
 
@@ -30,10 +32,11 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 	) {}
 
 	abstract get dim(): number;
-
-	abstract get order(): number[];
-
 	abstract get length(): number;
+
+	get order() {
+		return strideOrder(this.stride);
+	}
 
 	get orderedShape(): number[] {
 		return swizzle(this.order)(this.shape);
@@ -45,11 +48,26 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	abstract [Symbol.iterator](): IterableIterator<T>;
 
-	abstract index(pos: NumericArray): number;
+	copy() {
+		return new (<TensorCtor<T>>this.constructor)(
+			this.type,
+			this.storage,
+			this.data,
+			this.shape.slice(),
+			this.stride.slice(),
+			this.offset
+		);
+	}
 
-	abstract copy(): ITensor<T>;
-
-	abstract empty(storage?: ITensorStorage<T>): ITensor<T>;
+	empty(storage = this.storage) {
+		return new (<TensorCtor<T>>this.constructor)(
+			this.type,
+			storage,
+			storage.alloc(this.length),
+			this.shape.slice(),
+			shapeToStride(this.shape)
+		);
+	}
 
 	equiv(o: any) {
 		return (
@@ -68,26 +86,71 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 		);
 	}
 
+	abstract index(pos: NumericArray): number;
+
 	abstract get(pos: NumericArray): T;
 
 	abstract set(pos: NumericArray, v: T): this;
 
-	abstract lo(pos: NumericArray): ITensor<T>;
+	hi(pos: NumericArray) {
+		return new (<TensorCtor<T>>this.constructor)(
+			this.type,
+			this.storage,
+			this.data,
+			__hi(pos, this),
+			this.stride,
+			this.offset
+		);
+	}
 
-	abstract hi(pos: NumericArray): ITensor<T>;
+	lo(pos: NumericArray) {
+		const { shape, offset } = __lo(pos, this);
+		return new (<TensorCtor<T>>this.constructor)(
+			this.type,
+			this.storage,
+			this.data,
+			shape,
+			this.stride,
+			offset
+		);
+	}
 
-	abstract step(pos: NumericArray): ITensor<T>;
+	step(select: NumericArray) {
+		const { shape, stride, offset } = __step(select, this);
+		return new (<TensorCtor<T>>this.constructor)(
+			this.type,
+			this.storage,
+			this.data,
+			shape,
+			stride,
+			offset
+		);
+	}
 
-	abstract pick(pos: NumericArray): ITensor<T>;
+	pick(select: NumericArray) {
+		const { shape, stride, offset } = __pick(select, this);
+		return tensor(this.type, shape, {
+			data: this.data,
+			storage: this.storage,
+			copy: false,
+			stride,
+			offset,
+		});
+	}
 
-	abstract pack(storage?: ITensorStorage<T>): ITensor<T>;
+	pack(storage = this.storage) {
+		return new (<TensorCtor<T>>this.constructor)(
+			this.type,
+			storage,
+			storage.from(this),
+			this.shape.slice(),
+			shapeToStride(this.shape)
+		);
+	}
 
 	reshape(newShape: number[], newStride?: number[]) {
 		const newLength = product(newShape);
-		assert(
-			newLength === this.length,
-			`incompatible new shape: ${newShape}`
-		);
+		if (newLength !== this.length) illegalShape(newShape);
 		return tensor(this.type, newShape, {
 			storage: this.storage,
 			data: this.data,
@@ -103,7 +166,17 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 		storage?: ITensorStorage<T>
 	): ITensor<T>;
 
-	abstract transpose(pos: NumericArray): ITensor<T>;
+	transpose(order: number[]) {
+		const reorder = swizzle(order);
+		return new (<TensorCtor<T>>this.constructor)(
+			this.type,
+			this.storage,
+			this.data,
+			reorder(this.shape),
+			reorder(this.stride),
+			this.offset
+		);
+	}
 
 	abstract toString(): string;
 
@@ -121,10 +194,10 @@ export class Tensor1<T = number> extends ATensor<T> {
 		let {
 			data,
 			length,
-			stride: [s],
+			stride: [tx],
 			offset,
 		} = this;
-		for (; length-- > 0; offset += s) yield data[offset];
+		for (; length-- > 0; offset += tx) yield data[offset];
 	}
 
 	get dim() {
@@ -137,22 +210,6 @@ export class Tensor1<T = number> extends ATensor<T> {
 
 	get length() {
 		return this.shape[0];
-	}
-
-	copy() {
-		return new Tensor1<T>(
-			this.type,
-			this.storage,
-			this.data,
-			[this.shape[0]],
-			[this.stride[0]],
-			this.offset
-		);
-	}
-
-	empty(storage = this.storage) {
-		const n = this.shape[0];
-		return new Tensor1<T>(this.type, storage, storage.alloc(n), [n], [1]);
 	}
 
 	index([x]: NumericArray) {
@@ -168,43 +225,8 @@ export class Tensor1<T = number> extends ATensor<T> {
 		return this;
 	}
 
-	hi(select: NumericArray) {
-		return new Tensor1<T>(
-			this.type,
-			this.storage,
-			this.data,
-			__hi(select, this),
-			this.stride,
-			this.offset
-		);
-	}
-
-	lo(select: NumericArray) {
-		const { shape, offset } = __lo(select, this);
-		return new Tensor1(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			this.stride,
-			offset
-		);
-	}
-
-	step(select: NumericArray) {
-		const { shape, stride, offset } = __step(select, this);
-		return new Tensor1(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			stride,
-			offset
-		);
-	}
-
 	pick([x]: NumericArray) {
-		assert(x >= 0 && x < this.length);
+		if (x < 0 && x >= this.length) outOfBounds(x);
 		return new Tensor1(
 			this.type,
 			this.storage,
@@ -212,16 +234,6 @@ export class Tensor1<T = number> extends ATensor<T> {
 			[1],
 			[1],
 			this.offset + x * this.stride[0]
-		);
-	}
-
-	pack(storage = this.storage) {
-		return new Tensor1(
-			this.type,
-			this.storage,
-			storage.from(this),
-			[this.shape[0]],
-			[1]
 		);
 	}
 
@@ -288,27 +300,6 @@ export class Tensor2<T = number> extends ATensor<T> {
 		return abs(this.stride[1]) > abs(this.stride[0]) ? [1, 0] : [0, 1];
 	}
 
-	copy() {
-		return new Tensor2<T>(
-			this.type,
-			this.storage,
-			this.data,
-			this.shape.slice(),
-			this.stride.slice(),
-			this.offset
-		);
-	}
-
-	empty(storage = this.storage) {
-		return new Tensor2<T>(
-			this.type,
-			storage,
-			storage.alloc(this.length),
-			this.shape.slice(),
-			shapeToStride(this.shape)
-		);
-	}
-
 	index(pos: NumericArray) {
 		return this.offset + dot2(pos, this.stride);
 	}
@@ -320,62 +311,6 @@ export class Tensor2<T = number> extends ATensor<T> {
 	set(pos: NumericArray, v: T) {
 		this.data[this.offset + dot2(pos, this.stride)] = v;
 		return this;
-	}
-
-	hi(select: NumericArray) {
-		return new Tensor2<T>(
-			this.type,
-			this.storage,
-			this.data,
-			__hi(select, this),
-			this.stride,
-			this.offset
-		);
-	}
-
-	lo(select: NumericArray) {
-		const { shape, offset } = __lo(select, this);
-		return new Tensor2(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			this.stride,
-			offset
-		);
-	}
-
-	step(select: NumericArray) {
-		const { shape, stride, offset } = __step(select, this);
-		return new Tensor2(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			stride,
-			offset
-		);
-	}
-
-	pick(select: NumericArray) {
-		const { shape, stride, offset } = __pick(select, this);
-		return tensor(this.type, shape, {
-			storage: this.storage,
-			data: this.data,
-			copy: false,
-			stride,
-			offset,
-		});
-	}
-
-	pack(storage = this.storage) {
-		return new Tensor2(
-			this.type,
-			storage,
-			storage.from(this),
-			this.shape.slice(),
-			shapeToStride(this.shape)
-		);
 	}
 
 	resize(newShape: number[], fill?: T, storage = this.storage) {
@@ -398,19 +333,6 @@ export class Tensor2<T = number> extends ATensor<T> {
 			data: newData,
 			copy: false,
 		});
-	}
-
-	transpose([x, y]: NumericArray) {
-		const s = this.shape;
-		const t = this.stride;
-		return new Tensor2(
-			this.type,
-			this.storage,
-			this.data,
-			[s[x], s[y]],
-			[t[x], t[y]],
-			this.offset
-		);
 	}
 
 	toString() {
@@ -448,10 +370,6 @@ export class Tensor3<T = number> extends ATensor<T> {
 		return 3;
 	}
 
-	get order() {
-		return strideOrder(this.stride);
-	}
-
 	index(pos: NumericArray) {
 		return this.offset + dot3(pos, this.stride);
 	}
@@ -463,83 +381,6 @@ export class Tensor3<T = number> extends ATensor<T> {
 	set(pos: NumericArray, v: T) {
 		this.data[this.offset + dot3(pos, this.stride)] = v;
 		return this;
-	}
-
-	copy() {
-		return new Tensor3<T>(
-			this.type,
-			this.storage,
-			this.data,
-			this.shape.slice(),
-			this.stride.slice(),
-			this.offset
-		);
-	}
-
-	empty(storage = this.storage) {
-		return new Tensor3<T>(
-			this.type,
-			storage,
-			storage.alloc(this.length),
-			this.shape.slice(),
-			shapeToStride(this.shape)
-		);
-	}
-
-	hi(select: NumericArray) {
-		return new Tensor3<T>(
-			this.type,
-			this.storage,
-			this.data,
-			__hi(select, this),
-			this.stride,
-			this.offset
-		);
-	}
-
-	lo(select: NumericArray) {
-		const { shape, offset } = __lo(select, this);
-		return new Tensor3(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			this.stride,
-			offset
-		);
-	}
-
-	step(select: NumericArray) {
-		const { shape, stride, offset } = __step(select, this);
-		return new Tensor3(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			stride,
-			offset
-		);
-	}
-
-	pick(select: NumericArray) {
-		const { shape, stride, offset } = __pick(select, this);
-		return tensor(this.type, shape, {
-			data: this.data,
-			storage: this.storage,
-			copy: false,
-			stride,
-			offset,
-		});
-	}
-
-	pack(storage = this.storage) {
-		return new Tensor3(
-			this.type,
-			storage,
-			storage.from(this),
-			this.shape.slice(),
-			shapeToStride(this.shape)
-		);
 	}
 
 	resize(newShape: number[], fill?: T, storage = this.storage) {
@@ -564,19 +405,6 @@ export class Tensor3<T = number> extends ATensor<T> {
 			data: newData,
 			copy: false,
 		});
-	}
-
-	transpose([x, y, z]: NumericArray) {
-		const s = this.shape;
-		const t = this.stride;
-		return new Tensor3(
-			this.type,
-			this.storage,
-			this.data,
-			[s[x], s[y], s[z]],
-			[t[x], t[y], t[z]],
-			this.offset
-		);
 	}
 
 	toString() {
@@ -617,10 +445,6 @@ export class Tensor4<T = number> extends ATensor<T> {
 		return 4;
 	}
 
-	get order() {
-		return strideOrder(this.stride);
-	}
-
 	index(pos: NumericArray) {
 		return this.offset + dot4(pos, this.stride);
 	}
@@ -632,83 +456,6 @@ export class Tensor4<T = number> extends ATensor<T> {
 	set(pos: NumericArray, v: T) {
 		this.data[this.offset + dot4(pos, this.stride)] = v;
 		return this;
-	}
-
-	copy() {
-		return new Tensor4<T>(
-			this.type,
-			this.storage,
-			this.data,
-			this.shape.slice(),
-			this.stride.slice(),
-			this.offset
-		);
-	}
-
-	empty(storage = this.storage) {
-		return new Tensor4<T>(
-			this.type,
-			storage,
-			storage.alloc(this.length),
-			this.shape.slice(),
-			shapeToStride(this.shape)
-		);
-	}
-
-	hi(select: NumericArray) {
-		return new Tensor4<T>(
-			this.type,
-			this.storage,
-			this.data,
-			__hi(select, this),
-			this.stride,
-			this.offset
-		);
-	}
-
-	lo(select: NumericArray) {
-		const { shape, offset } = __lo(select, this);
-		return new Tensor4(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			this.stride,
-			offset
-		);
-	}
-
-	step(select: NumericArray) {
-		const { shape, stride, offset } = __step(select, this);
-		return new Tensor4(
-			this.type,
-			this.storage,
-			this.data,
-			shape,
-			stride,
-			offset
-		);
-	}
-
-	pick(select: NumericArray) {
-		const { shape, stride, offset } = __pick(select, this);
-		return tensor(this.type, shape, {
-			data: this.data,
-			storage: this.storage,
-			copy: false,
-			stride,
-			offset,
-		});
-	}
-
-	pack(storage = this.storage) {
-		return new Tensor4(
-			this.type,
-			storage,
-			storage.from(this),
-			this.shape.slice(),
-			shapeToStride(this.shape)
-		);
 	}
 
 	resize(newShape: number[], fill?: T, storage = this.storage) {
@@ -735,19 +482,6 @@ export class Tensor4<T = number> extends ATensor<T> {
 			data: newData,
 			copy: false,
 		});
-	}
-
-	transpose([x, y, z, w]: NumericArray) {
-		const s = this.shape;
-		const t = this.stride;
-		return new Tensor4(
-			this.type,
-			this.storage,
-			this.data,
-			[s[x], s[y], s[z], s[w]],
-			[t[x], t[y], t[z], t[w]],
-			this.offset
-		);
 	}
 
 	toString() {

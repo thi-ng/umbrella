@@ -97,6 +97,17 @@ export interface ITensor<T = number>
 	toJSON(): any;
 }
 
+export interface TensorCtor<T = number> {
+	new (
+		type: Type,
+		storage: ITensorStorage<T>,
+		data: TensorData<T>,
+		shape: number[],
+		stride: number[],
+		offset?: number
+	): ITensor<T>;
+}
+
 export interface ITensorStorage<T> {
 	alloc(size: number): TensorData<T>;
 	from(iter: Iterable<T>): TensorData<T>;
