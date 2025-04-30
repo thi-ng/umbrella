@@ -6,7 +6,7 @@ import { Tensor2 } from "./tensor.js";
 export const identity = <T extends Exclude<Type, "str">>(
 	type: T,
 	size: number,
-	opts?: Pick<TensorOpts<number>, "storage">
+	opts?: Pick<TensorOpts<any, any>, "storage">
 ) => {
 	const storage = opts?.storage || STORAGE[type];
 	const data = storage.alloc(size * size);
