@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { FnU3 } from "@thi.ng/api";
 import type { MultiTensorOpTTT, TensorOpTTT } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
+import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
 import { top } from "./top.js";
 
 /**
  * Higher order tensor op factory. Takes given `fn` and returns a 4-tuple of
  * {@link TensorOpTTT}s applying the given function component-wise. The result
- * tuple uses this order: `[polymorphic, 1d, 2d, 3d]`.
+ * tuple uses this order: `[polymorphic, 1d, 2d, 3d, 4d]`.
  *
  * @param fn
  * @param dispatch
@@ -17,30 +17,30 @@ export const defOpTTT = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		!out && (out = a);
 		const {
 			data: odata,
-			offset: io,
-			stride: [to],
+			offset: oo,
+			stride: [txo],
 		} = out;
 		const {
 			data: adata,
-			offset: ia,
-			shape: [n],
-			stride: [ta],
+			offset: oa,
+			shape: [sx],
+			stride: [txa],
 		} = a;
 		const {
 			data: bdata,
-			offset: ib,
-			stride: [tb],
+			offset: ob,
+			stride: [txb],
 		} = b;
 		const {
 			data: cdata,
-			offset: ic,
-			stride: [tc],
+			offset: oc,
+			stride: [txc],
 		} = c;
-		for (let k = 0; k < n; k++) {
-			odata[io + k * to] = fn(
-				adata[ia + k * ta],
-				bdata[ib + k * tb],
-				cdata[ic + k * tc]
+		for (let x = 0; x < sx; x++) {
+			odata[oo + x * txo] = fn(
+				adata[oa + x * txa],
+				bdata[ob + x * txb],
+				cdata[oc + x * txc]
 			);
 		}
 		return out;
@@ -50,35 +50,35 @@ export const defOpTTT = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		!out && (out = a);
 		const {
 			data: odata,
+			offset: oo,
 			stride: [txo, tyo],
-			offset: offo,
 		} = out;
 		const {
 			data: adata,
-			shape: [rows, cols],
+			offset: oa,
+			shape: [sx, sy],
 			stride: [txa, tya],
-			offset: offa,
 		} = a;
 		const {
 			data: bdata,
+			offset: ob,
 			stride: [txb, tyb],
-			offset: offb,
 		} = b;
 		const {
 			data: cdata,
+			offset: oc,
 			stride: [txc, tyc],
-			offset: offc,
 		} = c;
-		for (let i = 0; i < rows; i++) {
-			const io = offo + i * txo;
-			const ia = offa + i * txa;
-			const ib = offb + i * txb;
-			const ic = offc + i * txc;
-			for (let j = 0; j < cols; j++) {
-				odata[io + j * tyo] = fn(
-					adata[ia + j * tya],
-					bdata[ib + j * tyb],
-					cdata[ic + j * tyc]
+		for (let x = 0; x < sx; x++) {
+			const oox = oo + x * txo;
+			const oax = oa + x * txa;
+			const obx = ob + x * txb;
+			const ocx = oc + x * txc;
+			for (let y = 0; y < sy; y++) {
+				odata[oox + y * tyo] = fn(
+					adata[oax + y * tya],
+					bdata[obx + y * tyb],
+					cdata[ocx + y * tyc]
 				);
 			}
 		}
@@ -89,41 +89,92 @@ export const defOpTTT = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		!out && (out = a);
 		const {
 			data: odata,
+			offset: oo,
 			stride: [txo, tyo, tzo],
-			offset: offo,
 		} = out;
 		const {
 			data: adata,
-			shape: [slices, rows, cols],
+			offset: oa,
+			shape: [sx, sy, sz],
 			stride: [txa, tya, tza],
-			offset: offa,
 		} = a;
 		const {
 			data: bdata,
+			offset: ob,
 			stride: [txb, tyb, tzb],
-			offset: offb,
 		} = b;
 		const {
 			data: cdata,
+			offset: oc,
 			stride: [txc, tyc, tzc],
-			offset: offc,
 		} = c;
-		for (let i = 0; i < slices; i++) {
-			const $offo = offo + i * txo;
-			const $offa = offa + i * txa;
-			const $offb = offb + i * txb;
-			const $offc = offc + i * txc;
-			for (let j = 0; j < rows; j++) {
-				const io = $offo + j * tyo;
-				const ia = $offa + j * tya;
-				const ib = $offb + j * tyb;
-				const ic = $offc + j * tyc;
-				for (let k = 0; k < cols; k++) {
-					odata[io + k * tzo] = fn(
-						adata[ia + k * tza],
-						bdata[ib + k * tzb],
-						cdata[ic + k * tzc]
+		for (let x = 0; x < sx; x++) {
+			const oox = oo + x * txo;
+			const oax = oa + x * txa;
+			const obx = ob + x * txb;
+			const ocx = oc + x * txc;
+			for (let y = 0; y < sy; y++) {
+				const ooy = oox + y * tyo;
+				const oay = oax + y * tya;
+				const oby = obx + y * tyb;
+				const ocy = ocx + y * tyc;
+				for (let z = 0; z < sz; z++) {
+					odata[ooy + z * tzo] = fn(
+						adata[oay + z * tza],
+						bdata[oby + z * tzb],
+						cdata[ocy + z * tzc]
 					);
+				}
+			}
+		}
+		return out;
+	};
+
+	const f4: TensorOpTTT<T, T, Tensor4<T>, Tensor4<T>> = (out, a, b, c) => {
+		!out && (out = a);
+		const {
+			data: odata,
+			offset: oo,
+			stride: [txo, tyo, tzo, two],
+		} = out;
+		const {
+			data: adata,
+			offset: oa,
+			shape: [sx, sy, sz, sw],
+			stride: [txa, tya, tza, twa],
+		} = a;
+		const {
+			data: bdata,
+			offset: ob,
+			stride: [txb, tyb, tzb, twb],
+		} = b;
+		const {
+			data: cdata,
+			offset: oc,
+			stride: [txc, tyc, tzc, twc],
+		} = c;
+		for (let x = 0; x < sx; x++) {
+			const oox = oo + x * txo;
+			const oax = oa + x * txa;
+			const obx = ob + x * txb;
+			const ocx = oc + x * txc;
+			for (let y = 0; y < sy; y++) {
+				const ooy = oox + y * tyo;
+				const oay = oax + y * tya;
+				const oby = obx + y * tyb;
+				const ocy = ocx + y * tyc;
+				for (let z = 0; z < sz; z++) {
+					const ooz = ooy + z * tzo;
+					const oaz = oay + z * tza;
+					const obz = oby + z * tzb;
+					const ocz = ocy + z * tzc;
+					for (let w = 0; w < sw; w++) {
+						odata[ooz + w * two] = fn(
+							adata[oaz + w * twa],
+							bdata[obz + w * twb],
+							cdata[ocz + w * twc]
+						);
+					}
 				}
 			}
 		}
@@ -135,12 +186,14 @@ export const defOpTTT = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			MultiTensorOpTTT<T>,
 			TensorOpTTT<T, T, Tensor1<T>, Tensor1<T>>,
 			TensorOpTTT<T, T, Tensor2<T>, Tensor2<T>>,
-			TensorOpTTT<T, T, Tensor3<T>, Tensor3<T>>
+			TensorOpTTT<T, T, Tensor3<T>, Tensor3<T>>,
+			TensorOpTTT<T, T, Tensor4<T>, Tensor4<T>>
 		]
 	>[
-		top<TensorOpTTT<T, T, any, any>>(dispatch, undefined, f1, f2, f3),
+		top<TensorOpTTT<T, T, any, any>>(dispatch, undefined, f1, f2, f3, f4),
 		f1,
 		f2,
 		f3,
+		f4,
 	];
 };

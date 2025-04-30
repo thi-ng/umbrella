@@ -4,9 +4,9 @@ import { swizzle } from "@thi.ng/arrays/swizzle";
 import { equiv, equivArrayLike } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import { dot2, dot3 } from "@thi.ng/vectors/dot";
+import { dot2, dot3, dot4 } from "@thi.ng/vectors/dot";
 import { eqDeltaS as _eqDelta } from "@thi.ng/vectors/eqdelta";
-import { product, product2, product3 } from "@thi.ng/vectors/product";
+import { product, product2, product3, product4 } from "@thi.ng/vectors/product";
 import type {
 	ITensor,
 	ITensorStorage,
@@ -228,18 +228,19 @@ export class Tensor1<T = number> extends ATensor<T> {
 	resize(newShape: number[], fill?: T, storage = this.storage) {
 		const newLength = product(newShape);
 		const newData = storage.alloc(newLength);
-		if (fill !== undefined) (<any>newData).fill(fill); // FIXME type cast
+		if (fill !== undefined) newData.fill(fill);
 		const {
 			data,
 			shape: [sx],
 			stride: [tx],
 		} = this;
+		const n = min(sx, newLength);
 		for (
-			let i = this.offset, n = min(this.length, newLength), j = 0, x = 0;
-			x < sx && j < n;
-			x++, i += tx
+			let i = this.offset, ii = 0, x = 0;
+			x < sx && ii < n;
+			x++, i += tx, ii++
 		) {
-			newData[j] = data[i];
+			newData[ii] = data[i];
 		}
 		return tensor(this.type, newShape, {
 			storage,
@@ -268,9 +269,9 @@ export class Tensor2<T = number> extends ATensor<T> {
 			shape: [sx, sy],
 			stride: [tx, ty],
 		} = this;
-		for (let i = this.offset, x = 0; x < sx; x++, i += tx) {
+		for (let ox = this.offset, x = 0; x < sx; x++, ox += tx) {
 			for (let y = 0; y < sy; y++) {
-				yield data[i + y * ty];
+				yield data[ox + y * ty];
 			}
 		}
 	}
@@ -380,19 +381,16 @@ export class Tensor2<T = number> extends ATensor<T> {
 	resize(newShape: number[], fill?: T, storage = this.storage) {
 		const newLength = product(newShape);
 		const newData = storage.alloc(newLength);
-		if (fill !== undefined) (<any>newData).fill(fill); // FIXME type cast
+		if (fill !== undefined) newData.fill(fill);
 		const {
 			data,
 			shape: [sx, sy],
 			stride: [tx, ty],
 		} = this;
-		for (
-			let i = this.offset, n = min(this.length, newLength), j = 0, x = 0;
-			x < sx;
-			x++, i += tx
-		) {
-			for (let y = 0; y < sy && j < n; y++, j++) {
-				newData[j] = data[i + y * ty];
+		const n = min(this.length, newLength);
+		for (let ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
+			for (let y = 0; y < sy && i < n; y++, i++) {
+				newData[i] = data[ox + y * ty];
 			}
 		}
 		return tensor(this.type, newShape, {
@@ -433,10 +431,10 @@ export class Tensor3<T = number> extends ATensor<T> {
 			shape: [sx, sy, sz],
 			stride: [tx, ty, tz],
 		} = this;
-		for (let i = this.offset, x = 0; x < sx; x++, i += tx) {
-			for (let j = i, y = 0; y < sy; y++, j += ty) {
+		for (let ox = this.offset, x = 0; x < sx; x++, ox += tx) {
+			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
 				for (let z = 0; z < sz; z++) {
-					yield data[j + z * tz];
+					yield data[oy + z * tz];
 				}
 			}
 		}
@@ -547,20 +545,17 @@ export class Tensor3<T = number> extends ATensor<T> {
 	resize(newShape: number[], fill?: T, storage = this.storage) {
 		const newLength = product(newShape);
 		const newData = storage.alloc(newLength);
-		if (fill !== undefined) (<any>newData).fill(fill); // FIXME type cast
+		if (fill !== undefined) newData.fill(fill);
 		const {
 			data,
 			shape: [sx, sy, sz],
 			stride: [tx, ty, tz],
 		} = this;
-		for (
-			let i = this.offset, n = min(this.length, newLength), k = 0, x = 0;
-			x < sx;
-			x++, i += tx
-		) {
-			for (let j = i, y = 0; y < sy; y++, j += ty) {
-				for (let z = 0; z < sz && k < n; z++, k++) {
-					newData[k] = data[j + z * tz];
+		const n = min(this.length, newLength);
+		for (let ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
+			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
+				for (let z = 0; z < sz && i < n; z++, i++) {
+					newData[i] = data[oy + z * tz];
 				}
 			}
 		}
@@ -593,12 +588,183 @@ export class Tensor3<T = number> extends ATensor<T> {
 	}
 }
 
+export class Tensor4<T = number> extends ATensor<T> {
+	protected _n!: number;
+
+	*[Symbol.iterator]() {
+		const {
+			data,
+			shape: [sx, sy, sz, sw],
+			stride: [tx, ty, tz, tw],
+			offset,
+		} = this;
+		for (let ox = offset, x = 0; x < sx; x++, ox += tx) {
+			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
+				for (let oz = oy, z = 0; z < sz; z++, oz += tz) {
+					for (let w = 0; w < sw; w++) {
+						yield data[oz + w * tw];
+					}
+				}
+			}
+		}
+	}
+
+	get length() {
+		return this._n || (this._n = product4(this.shape));
+	}
+
+	get dim() {
+		return 4;
+	}
+
+	get order() {
+		return strideOrder(this.stride);
+	}
+
+	index(pos: NumericArray) {
+		return this.offset + dot4(pos, this.stride);
+	}
+
+	get(pos: NumericArray) {
+		return this.data[this.offset + dot4(pos, this.stride)];
+	}
+
+	set(pos: NumericArray, v: T) {
+		this.data[this.offset + dot4(pos, this.stride)] = v;
+		return this;
+	}
+
+	copy() {
+		return new Tensor4<T>(
+			this.type,
+			this.storage,
+			this.data,
+			this.shape.slice(),
+			this.stride.slice(),
+			this.offset
+		);
+	}
+
+	empty(storage = this.storage) {
+		return new Tensor4<T>(
+			this.type,
+			storage,
+			storage.alloc(this.length),
+			this.shape.slice(),
+			shapeToStride(this.shape)
+		);
+	}
+
+	hi(select: NumericArray) {
+		return new Tensor4<T>(
+			this.type,
+			this.storage,
+			this.data,
+			__hi(select, this),
+			this.stride,
+			this.offset
+		);
+	}
+
+	lo(select: NumericArray) {
+		const { shape, offset } = __lo(select, this);
+		return new Tensor4(
+			this.type,
+			this.storage,
+			this.data,
+			shape,
+			this.stride,
+			offset
+		);
+	}
+
+	step(select: NumericArray) {
+		const { shape, stride, offset } = __step(select, this);
+		return new Tensor4(
+			this.type,
+			this.storage,
+			this.data,
+			shape,
+			stride,
+			offset
+		);
+	}
+
+	pick(select: NumericArray) {
+		const { shape, stride, offset } = __pick(select, this);
+		return tensor(this.type, shape, {
+			data: this.data,
+			storage: this.storage,
+			copy: false,
+			stride,
+			offset,
+		});
+	}
+
+	pack(storage = this.storage) {
+		return new Tensor4(
+			this.type,
+			storage,
+			storage.from(this),
+			this.shape.slice(),
+			shapeToStride(this.shape)
+		);
+	}
+
+	resize(newShape: number[], fill?: T, storage = this.storage) {
+		const newLength = product(newShape);
+		const newData = storage.alloc(newLength);
+		if (fill !== undefined) newData.fill(fill);
+		const {
+			data,
+			shape: [sx, sy, sz, sw],
+			stride: [tx, ty, tz, tw],
+		} = this;
+		const n = min(this.length, newLength);
+		for (let ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
+			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
+				for (let oz = oy, z = 0; z < sz; z++, oz += tz) {
+					for (let w = 0; w < sw && i < n; w++, i++) {
+						newData[i] = data[oz + w * tw];
+					}
+				}
+			}
+		}
+		return tensor(this.type, newShape, {
+			storage,
+			data: newData,
+			copy: false,
+		});
+	}
+
+	transpose([x, y, z, w]: NumericArray) {
+		const s = this.shape;
+		const t = this.stride;
+		return new Tensor4(
+			this.type,
+			this.storage,
+			this.data,
+			[s[x], s[y], s[z], s[w]],
+			[t[x], t[y], t[z], t[w]],
+			this.offset
+		);
+	}
+
+	toString() {
+		const res = [];
+		for (let i = 0; i < this.shape[0]; i++) {
+			res.push(`--- cube ${i}: ---`, this.pick([i]).toString());
+		}
+		return res.join("\n");
+	}
+}
+
 /**
  * Creates a new {@link ITensor} instance for given data type, shape and
  * options.
  *
  * @remarks
- * Currently only 1D - 3D tensors are supported.
+ * Currently only 1D - 4D tensors are supported.
  *
  * @param type
  * @param shape
@@ -636,6 +802,8 @@ export const tensor = <T = number>(
 			return new Tensor2(type, storage, data, shape, stride, offset);
 		case 3:
 			return new Tensor3(type, storage, data, shape, stride, offset);
+		case 4:
+			return new Tensor4(type, storage, data, shape, stride, offset);
 		default:
 			unsupported(`unsupported dimension: ${shape.length}`);
 	}

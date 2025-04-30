@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { defOpRT } from "./defoprt.js";
 
-const [a, b, c, d] = defOpRT(
+const [a, b, c, d, e] = defOpRT(
 	(acc, x) => acc + x * x,
 	() => 0
 );
@@ -33,3 +33,10 @@ export const magSq2 = c;
  * @param a - input tensor
  */
 export const magSq3 = d;
+
+/**
+ * Squared magnitude of given 4D tensor.
+ *
+ * @param a - input tensor
+ */
+export const magSq4 = e;

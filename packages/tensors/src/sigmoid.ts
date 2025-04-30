@@ -3,7 +3,7 @@ import { defOpT } from "./defopt.js";
 
 const { exp } = Math;
 
-const [a, b, c, d] = defOpT((x) => 1 / (1 + exp(-x)));
+const [a, b, c, d, e] = defOpT((x) => 1 / (1 + exp(-x)));
 
 /**
  * Componentwise computes Sigmoid activation of given nD tensor. Writes result
@@ -39,3 +39,11 @@ export const sigmoid2 = c;
  * @param a - input tensor
  */
 export const sigmoid3 = d;
+
+/**
+ * Same as {@link sigmoid} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ */
+export const sigmoid4 = e;

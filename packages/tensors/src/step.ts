@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { defOpTN } from "./defoptn.js";
 
-const [a, b, c, d] = defOpTN((a, b) => (a >= b ? 1 : 0));
+const [a, b, c, d, e] = defOpTN((a, b) => (a >= b ? 1 : 0));
 
 /**
  * Componentwise computes step function for given nD tensor and uniform scalar
@@ -45,3 +45,12 @@ export const stepN2 = c;
  * @param n - scalar
  */
 export const stepN3 = d;
+
+/**
+ * Same as {@link stepN} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ * @param n - scalar
+ */
+export const stepN4 = e;

@@ -3,7 +3,7 @@ import { defOpTN } from "./defoptn.js";
 
 const { exp, log } = Math;
 
-const [a, b, c, d] = defOpTN((x, k) => log(1 + exp(x * k)) / k);
+const [a, b, c, d, e] = defOpTN((x, k) => log(1 + exp(x * k)) / k);
 
 /**
  * Componentwise computes Softplus activation of given nD tensor with given `k`
@@ -47,3 +47,12 @@ export const softPlus2 = c;
  * @param n - sharpness
  */
 export const softPlus3 = d;
+
+/**
+ * Same as {@link softPlus} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ * @param n - sharpness
+ */
+export const softPlus4 = e;

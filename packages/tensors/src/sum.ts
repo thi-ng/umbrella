@@ -2,7 +2,7 @@
 import { $add } from "@thi.ng/vectors/ops";
 import { defOpRT } from "./defoprt.js";
 
-const [a, b, c, d] = defOpRT($add, () => 0);
+const [a, b, c, d, e] = defOpRT($add, () => 0);
 
 /**
  * Componentwise sum of given nD tensor. Multi-method.
@@ -31,3 +31,10 @@ export const sum2 = c;
  * @param a - input tensor
  */
 export const sum3 = d;
+
+/**
+ * Componentwise sum of given 4D tensor.
+ *
+ * @param a - input tensor
+ */
+export const sum4 = e;

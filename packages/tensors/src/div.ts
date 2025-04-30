@@ -2,7 +2,7 @@
 import { $div } from "@thi.ng/vectors/ops";
 import { defOpTT } from "./defoptt.js";
 
-const [a, b, c, d] = defOpTT($div);
+const [a, b, c, d, e] = defOpTT($div);
 
 /**
  * Componentwise nD tensor division. Writes result to `out`. If `out` is null,
@@ -15,8 +15,7 @@ const [a, b, c, d] = defOpTT($div);
 export const div = a;
 
 /**
- * Componentwise 1D tensor division. Writes result to `out`. If `out` is null,
- * mutates `a`.
+ * Same as {@link div} for 1D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -25,8 +24,7 @@ export const div = a;
 export const div1 = b;
 
 /**
- * Componentwise 2D tensor division. Writes result to `out`. If `out` is null,
- * mutates `a`.
+ * Same as {@link div} for 2D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -35,11 +33,19 @@ export const div1 = b;
 export const div2 = c;
 
 /**
- * Componentwise 3D tensor division. Writes result to `out`. If `out` is null,
- * mutates `a`.
+ * Same as {@link div} for 3D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
  * @param n - scalar
  */
 export const div3 = d;
+
+/**
+ * Same as {@link div} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ * @param n - scalar
+ */
+export const div4 = e;

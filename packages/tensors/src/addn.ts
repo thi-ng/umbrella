@@ -2,7 +2,7 @@
 import { $add } from "@thi.ng/vectors/ops";
 import { defOpTN } from "./defoptn.js";
 
-const [a, b, c, d] = defOpTN($add);
+const [a, b, c, d, e] = defOpTN($add);
 
 /**
  * Componentwise nD tensor addition with uniform scalar `n`. Writes result to
@@ -15,8 +15,7 @@ const [a, b, c, d] = defOpTN($add);
 export const addN = a;
 
 /**
- * Componentwise 1D tensor addition with uniform scalar `n`. Writes result to
- * `out`. If `out` is null, mutates `a`.
+ * Same as {@link addN} for 1D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -25,8 +24,7 @@ export const addN = a;
 export const addN1 = b;
 
 /**
- * Componentwise 2D tensor addition with uniform scalar `n`. Writes result to
- * `out`. If `out` is null, mutates `a`.
+ * Same as {@link addN} for 2D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -35,11 +33,19 @@ export const addN1 = b;
 export const addN2 = c;
 
 /**
- * Componentwise 3D tensor addition with uniform scalar `n`. Writes result to
- * `out`. If `out` is null, mutates `a`.
+ * Same as {@link addN} for 3D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
  * @param n - scalar
  */
 export const addN3 = d;
+
+/**
+ * Same as {@link addN} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ * @param n - scalar
+ */
+export const addN4 = e;

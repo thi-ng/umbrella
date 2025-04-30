@@ -2,7 +2,7 @@
 import { clamp as op } from "@thi.ng/math/interval";
 import { defOpTNN } from "./defoptnn.js";
 
-const [a, b, c, d] = defOpTNN(op);
+const [a, b, c, d, e] = defOpTNN(op);
 
 /**
  * Componentwise clamps nD tensor `a` to closed interval defined by `[b,c]`.
@@ -16,8 +16,7 @@ const [a, b, c, d] = defOpTNN(op);
 export const clampN = a;
 
 /**
- * Componentwise clamps 1D tensor `a` to closed interval defined by `[b,c]`. If
- * `out` is null, mutates `a`.
+ * Same as {@link clampN} for 1D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -27,8 +26,7 @@ export const clampN = a;
 export const clampN1 = b;
 
 /**
- * Componentwise clamps 2D tensor `a` to closed interval defined by `[b,c]`. If
- * `out` is null, mutates `a`.
+ * Same as {@link clampN} for 2D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -38,8 +36,7 @@ export const clampN1 = b;
 export const clampN2 = c;
 
 /**
- * Componentwise clamps 3D tensor `a` to closed interval defined by `[b,c]`. If
- * `out` is null, mutates `a`.
+ * Same as {@link clampN} for 3D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -47,3 +44,13 @@ export const clampN2 = c;
  * @param c - scalar (max)
  */
 export const clampN3 = d;
+
+/**
+ * Same as {@link clampN} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ * @param b - scalar (min)
+ * @param c - scalar (max)
+ */
+export const clampN4 = e;

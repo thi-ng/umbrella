@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { defOpTN } from "./defoptn.js";
 
-const [a, b, c, d] = defOpTN(Math.min);
+const [a, b, c, d, e] = defOpTN(Math.min);
 
 /**
  * Componentwise computes `Math.min` of given nD tensor and uniform scalar `n`.
@@ -14,8 +14,7 @@ const [a, b, c, d] = defOpTN(Math.min);
 export const minN = a;
 
 /**
- * Componentwise computes `Math.min` of given 1D tensor and uniform scalar `n`.
- * Writes result to `out`. If `out` is null, mutates original.
+ * Same as {@link minN} for 1D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -24,8 +23,7 @@ export const minN = a;
 export const minN1 = b;
 
 /**
- * Componentwise computes `Math.min` of given 2D tensor and uniform scalar `n`.
- * Writes result to `out`. If `out` is null, mutates original.
+ * Same as {@link minN} for 2D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -34,11 +32,19 @@ export const minN1 = b;
 export const minN2 = c;
 
 /**
- * Componentwise computes `Math.min` of given 3D tensor and uniform scalar `n`.
- * Writes result to `out`. If `out` is null, mutates original.
+ * Same as {@link minN} for 3D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
  * @param n - scalar
  */
 export const minN3 = d;
+
+/**
+ * Same as {@link minN} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ * @param n - scalar
+ */
+export const minN4 = e;

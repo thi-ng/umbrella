@@ -10,12 +10,6 @@ import { top } from "./top.js";
  */
 export type SelectResult<T> = { arg: number[]; value: T };
 
-/** @internal */
-const lt: Predicate2<any> = (a, b) => a < b;
-
-/** @internal */
-const gt: Predicate2<any> = (a, b) => a > b;
-
 /**
  * Same as {@link select} for 1D tensors.
  *
@@ -33,16 +27,16 @@ export const select1 = <T>(
 	const {
 		data,
 		offset,
-		shape: [n],
-		stride: [ta],
+		shape: [sx],
+		stride: [tx],
 	} = a;
 	const arg: number[] = [-1];
 	let value = initial;
-	for (let i = 0; i < n; i++) {
-		const x = xform(data[offset + i * ta]);
-		if (pred(x, value)) {
-			value = x;
-			arg[0] = i;
+	for (let x = 0; x < sx; x++) {
+		const v = xform(data[offset + x * tx]);
+		if (pred(v, value)) {
+			value = v;
+			arg[0] = x;
 		}
 	}
 	return { arg, value };
@@ -65,19 +59,19 @@ export const select2 = <T>(
 	const {
 		data,
 		offset,
-		shape: [rows, cols],
+		shape: [sx, sy],
 		stride: [tx, ty],
 	} = a;
 	const arg: number[] = [-1, -1];
 	let value = initial;
-	for (let i = 0; i < rows; i++) {
-		const $off = offset + i * tx;
-		for (let j = 0; j < cols; j++) {
-			const x = xform(data[$off + j * ty]);
-			if (pred(x, value)) {
-				value = x;
-				arg[0] = i;
-				arg[1] = j;
+	for (let x = 0; x < sx; x++) {
+		const ox = offset + x * tx;
+		for (let y = 0; y < sy; y++) {
+			const v = xform(data[ox + y * ty]);
+			if (pred(v, value)) {
+				value = v;
+				arg[0] = x;
+				arg[1] = y;
 			}
 		}
 	}
@@ -101,22 +95,66 @@ export const select3 = <T>(
 	const {
 		data,
 		offset,
-		shape: [slices, rows, cols],
+		shape: [sx, sy, sz],
 		stride: [tx, ty, tz],
 	} = a;
 	const arg: number[] = [-1, -1, -1];
 	let value = initial;
-	for (let i = 0; i < slices; i++) {
-		const slice = offset + i * tx;
-		for (let j = 0; j < rows; j++) {
-			const row = slice + j * ty;
-			for (let k = 0; k < cols; k++) {
-				const x = xform(data[row + k * tz]);
-				if (pred(x, value)) {
-					value = x;
-					arg[0] = i;
-					arg[1] = j;
-					arg[2] = k;
+	for (let x = 0; x < sx; x++) {
+		const ox = offset + x * tx;
+		for (let y = 0; y < sy; y++) {
+			const oy = ox + y * ty;
+			for (let z = 0; z < sz; z++) {
+				const v = xform(data[oy + z * tz]);
+				if (pred(v, value)) {
+					value = v;
+					arg[0] = x;
+					arg[1] = y;
+					arg[2] = z;
+				}
+			}
+		}
+	}
+	return { arg, value };
+};
+
+/**
+ * Same as {@link select} for 4D tensors.
+ *
+ * @param a
+ * @param xform
+ * @param pred
+ * @param initial
+ */
+export const select4 = <T>(
+	a: Tensor3<T>,
+	xform: Fn<T, T>,
+	pred: Predicate2<T>,
+	initial: T
+): SelectResult<T> => {
+	const {
+		data,
+		offset,
+		shape: [sx, sy, sz, sw],
+		stride: [tx, ty, tz, tw],
+	} = a;
+	const arg: number[] = [-1, -1, -1, -1];
+	let value = initial;
+	for (let x = 0; x < sx; x++) {
+		const ox = offset + x * tx;
+		for (let y = 0; y < sy; y++) {
+			const oy = ox + y * ty;
+			for (let z = 0; z < sz; z++) {
+				const oz = oy + z * tz;
+				for (let w = 0; w < sw; w++) {
+					const v = xform(data[oz + w * tw]);
+					if (pred(v, value)) {
+						value = v;
+						arg[0] = x;
+						arg[1] = y;
+						arg[2] = z;
+						arg[3] = w;
+					}
 				}
 			}
 		}
@@ -125,7 +163,7 @@ export const select3 = <T>(
 };
 
 /** @internal */
-const __select = top<any>(0, undefined, select1, select2, select3);
+const __select = top<any>(0, undefined, select1, select2, select3, select4);
 
 /**
  * Uses given value transform `xform` and predicate `pred` to select a specific
@@ -133,8 +171,8 @@ const __select = top<any>(0, undefined, select1, select2, select3);
  * to seed the search.
  *
  * @remarks
- * This function is a generalization of {@link argMin} and {@link argMax} and
- * customizable via arbitrary predicates.
+ * This function is a generalization of {@link argMin}/{@link argMax}-like
+ * functionality and customizable via arbitrary predicates.
  *
  * @example
  * ```ts
@@ -144,11 +182,11 @@ const __select = top<any>(0, undefined, select1, select2, select3);
  *
  * // select smallest value
  * console.log(select(a, (x) => x, (a,b) => a < b, Infinity));
- * // { arg: [1,0], value: -3 }
+ * // { arg: [1, 0], value: -3 }
  *
  * // select smallest absolute value
  * console.log(select(a, Math.abs, (a,b) => a < b, Infinity));
- * // { arg: [0,0], value: 1 }
+ * // { arg: [0, 0], value: 1 }
  * ```
  *
  * @param a
@@ -164,19 +202,19 @@ export const select = <T>(
 ): SelectResult<T> => __select(a, xform, pred, initial);
 
 /**
- * Syntax sugar for {@link select} to find the smallest component value and its
+ * Syntax sugar for {@link select} to find the minimum component value and its
  * position in a tensor.
  *
  * @param a
  */
 export const argMin = (a: ITensor): SelectResult<number> =>
-	__select(a, identity, lt, Infinity);
+	__select(a, identity, (a: any, b: any) => a < b, Infinity);
 
 /**
- * Syntax sugar for {@link select} to find the largest component value and its
+ * Syntax sugar for {@link select} to find the maximum component value and its
  * position in a tensor.
  *
  * @param a
  */
 export const argMax = (a: ITensor): SelectResult<number> =>
-	__select(a, identity, gt, -Infinity);
+	__select(a, identity, (a: any, b: any) => a > b, -Infinity);

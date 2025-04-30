@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { defOpRTT } from "./defoprtt.js";
 
-const [a, b, c, d] = defOpRTT(
+const [a, b, c, d, e] = defOpRTT(
 	(acc, x, y) => acc + x * y,
 	() => 0
 );
@@ -33,3 +33,10 @@ export const dot2 = c;
  * @param a - input tensor
  */
 export const dot3 = d;
+
+/**
+ * Dot product of given 3D tensor.
+ *
+ * @param a - input tensor
+ */
+export const dot4 = e;

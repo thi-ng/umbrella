@@ -2,7 +2,7 @@
 import { $sub } from "@thi.ng/vectors/ops";
 import { defOpTN } from "./defoptn.js";
 
-const [a, b, c, d] = defOpTN($sub);
+const [a, b, c, d, e] = defOpTN($sub);
 
 /**
  * Componentwise nD tensor subtraction with uniform scalar `n`. Writes result to
@@ -15,8 +15,7 @@ const [a, b, c, d] = defOpTN($sub);
 export const subN = a;
 
 /**
- * Componentwise 1D tensor subtraction with uniform scalar `n`. Writes result to
- * `out`. If `out` is null, mutates `a`.
+ * Same as {@link subN} for 1D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -25,8 +24,7 @@ export const subN = a;
 export const subN1 = b;
 
 /**
- * Componentwise 2D tensor subtraction with uniform scalar `n`. Writes result to
- * `out`. If `out` is null, mutates `a`.
+ * Same as {@link subN} for 2D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -35,11 +33,19 @@ export const subN1 = b;
 export const subN2 = c;
 
 /**
- * Componentwise 3D tensor subtraction with uniform scalar `n`. Writes result to
- * `out`. If `out` is null, mutates `a`.
+ * Same as {@link subN} for 3D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
  * @param n - scalar
  */
 export const subN3 = d;
+
+/**
+ * Same as {@link subN} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ * @param n - scalar
+ */
+export const subN4 = e;

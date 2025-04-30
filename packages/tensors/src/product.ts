@@ -2,7 +2,7 @@
 import { $mul } from "@thi.ng/vectors/ops";
 import { defOpRT } from "./defoprt.js";
 
-const [a, b, c, d] = defOpRT($mul, () => 1);
+const [a, b, c, d, e] = defOpRT($mul, () => 1);
 
 /**
  * Componentwise product of given nD tensor. Multi-method.
@@ -31,3 +31,10 @@ export const product2 = c;
  * @param a - input tensor
  */
 export const product3 = d;
+
+/**
+ * Componentwise product of given 4D tensor.
+ *
+ * @param a - input tensor
+ */
+export const product4 = e;

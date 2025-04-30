@@ -20,7 +20,7 @@ export const top = <T extends Function>(
 		const g = impls[args[dispatch].dim] || fallback;
 		return g
 			? g(...args)
-			: unsupported(`no impl for dimension ${args[dispatch].length}`);
+			: unsupported(`no impl for dimension ${args[dispatch].dim}`);
 	};
 	fn.add = (dim: number, fn: T) => (impls[dim] = fn);
 	fn.default = (fn: T) => (fallback = fn);

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { defOpTT } from "./defoptt.js";
 
-const [a, b, c, d] = defOpTT(Math.pow);
+const [a, b, c, d, e] = defOpTT(Math.pow);
 
 /**
  * Componentwise computes `Math.pow` of given nD tensors and writes result to
@@ -13,8 +13,7 @@ const [a, b, c, d] = defOpTT(Math.pow);
 export const pow = a;
 
 /**
- * Componentwise computes `Math.pow` of given 1D tensors and writes result to
- * `out`. If `out` is null, mutates original.
+ * Same as {@link pow} for 1D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -22,8 +21,7 @@ export const pow = a;
 export const pow1 = b;
 
 /**
- * Componentwise computes `Math.pow` of given 2D tensors and writes result to
- * `out`. If `out` is null, mutates original.
+ * Same as {@link pow} for 2D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
@@ -31,10 +29,17 @@ export const pow1 = b;
 export const pow2 = c;
 
 /**
- * Componentwise computes `Math.pow` of given 3D tensors and writes result to
- * `out`. If `out` is null, mutates original.
+ * Same as {@link pow} for 3D tensors.
  *
  * @param out - output tensor
  * @param a - input tensor
  */
 export const pow3 = d;
+
+/**
+ * Same as {@link pow} for 4D tensors.
+ *
+ * @param out - output tensor
+ * @param a - input tensor
+ */
+export const pow4 = e;

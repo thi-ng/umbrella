@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn0, Fn2 } from "@thi.ng/api";
 import type { MultiTensorOpRT, TensorOpRT } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
+import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
 import { top } from "./top.js";
 
 /**
@@ -16,30 +16,30 @@ import { top } from "./top.js";
 export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 	const f1: TensorOpRT<A, B, Tensor1<A>> = (a) => {
 		const {
-			data: adata,
-			offset: ia,
-			shape: [n],
-			stride: [ta],
+			data,
+			offset,
+			shape: [sx],
+			stride: [tx],
 		} = a;
 		let res = init();
-		for (let k = 0; k < n; k++) {
-			res = rfn(res, adata[ia + k * ta]);
+		for (let x = 0; x < sx; x++) {
+			res = rfn(res, data[offset + x * tx]);
 		}
 		return res;
 	};
 
 	const f2: TensorOpRT<A, B, Tensor2<A>> = (a) => {
 		const {
-			data: adata,
-			shape: [rows, cols],
-			stride: [txa, tya],
-			offset: offa,
+			data,
+			offset,
+			shape: [sx, sy],
+			stride: [tx, ty],
 		} = a;
 		let res = init();
-		for (let i = 0; i < rows; i++) {
-			const ia = offa + i * txa;
-			for (let j = 0; j < cols; j++) {
-				res = rfn(res, adata[ia + j * tya]);
+		for (let x = 0; x < sx; x++) {
+			const ox = offset + x * tx;
+			for (let y = 0; y < sy; y++) {
+				res = rfn(res, data[ox + y * ty]);
 			}
 		}
 		return res;
@@ -47,18 +47,41 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 
 	const f3: TensorOpRT<A, B, Tensor3<A>> = (a) => {
 		const {
-			data: adata,
-			shape: [slices, rows, cols],
-			stride: [txa, tya, tza],
-			offset: offa,
+			data,
+			offset,
+			shape: [sx, sy, sz],
+			stride: [tx, ty, tz],
 		} = a;
 		let res = init();
-		for (let i = 0; i < slices; i++) {
-			const $offa = offa + i * txa;
-			for (let j = 0; j < rows; j++) {
-				const ia = $offa + j * tya;
-				for (let k = 0; k < cols; k++) {
-					res = rfn(res, adata[ia + k * tza]);
+		for (let x = 0; x < sx; x++) {
+			const ox = offset + x * tx;
+			for (let y = 0; y < sy; y++) {
+				const oy = ox + y * ty;
+				for (let z = 0; z < sz; z++) {
+					res = rfn(res, data[oy + z * tz]);
+				}
+			}
+		}
+		return res;
+	};
+
+	const f4: TensorOpRT<A, B, Tensor4<A>> = (a) => {
+		const {
+			data,
+			offset,
+			shape: [sx, sy, sz, sw],
+			stride: [tx, ty, tz, tw],
+		} = a;
+		let res = init();
+		for (let x = 0; x < sx; x++) {
+			const ox = offset + x * tx;
+			for (let y = 0; y < sy; y++) {
+				const oy = ox + y * ty;
+				for (let z = 0; z < sz; z++) {
+					const oz = oy + z * tz;
+					for (let w = 0; w < sw; w++) {
+						res = rfn(res, data[oz + w * tw]);
+					}
 				}
 			}
 		}
@@ -70,7 +93,8 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 			MultiTensorOpRT<A, B>,
 			TensorOpRT<A, B, Tensor1<A>>,
 			TensorOpRT<A, B, Tensor2<A>>,
-			TensorOpRT<A, B, Tensor3<A>>
+			TensorOpRT<A, B, Tensor3<A>>,
+			TensorOpRT<A, B, Tensor4<A>>
 		]
-	>[top<TensorOpRT<A, B, any>>(0, undefined, f1, f2, f3), f1, f2, f3];
+	>[top<TensorOpRT<A, B, any>>(0, undefined, f1, f2, f3, f4), f1, f2, f3, f4];
 };

@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { FnU3 } from "@thi.ng/api";
 import type { MultiTensorOpTNN, TensorOpTNN } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
+import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
 import { top } from "./top.js";
 
 /**
  * Higher order tensor op factory. Takes given `fn` and returns a 4-tuple of
  * {@link TensorOpTNN}s applying the given function component-wise. The result
- * tuple uses this order: `[polymorphic, 1d, 2d, 3d]`.
+ * tuple uses this order: `[polymorphic, 1d, 2d, 3d, 4d]`.
  *
  * @param fn
  * @param dispatch
@@ -17,17 +17,17 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		!out && (out = a);
 		const {
 			data: odata,
-			offset: io,
-			stride: [to],
+			offset: oo,
+			stride: [txo],
 		} = out;
 		const {
 			data: adata,
-			offset: ia,
-			shape: [l],
-			stride: [ta],
+			offset: oa,
+			shape: [sx],
+			stride: [txa],
 		} = a;
-		for (let k = 0; k < l; k++) {
-			odata[io + k * to] = fn(adata[ia + k * ta], n, m);
+		for (let x = 0; x < sx; x++) {
+			odata[oo + x * txo] = fn(adata[oa + x * txa], n, m);
 		}
 		return out;
 	};
@@ -36,20 +36,20 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		!out && (out = a);
 		const {
 			data: odata,
+			offset: oo,
 			stride: [txo, tyo],
-			offset: offo,
 		} = out;
 		const {
 			data: adata,
-			shape: [rows, cols],
+			offset: oa,
+			shape: [sx, sy],
 			stride: [txa, tya],
-			offset: offa,
 		} = a;
-		for (let i = 0; i < rows; i++) {
-			const io = offo + i * txo;
-			const ia = offa + i * txa;
-			for (let j = 0; j < cols; j++) {
-				odata[io + j * tyo] = fn(adata[ia + j * tya], n, m);
+		for (let x = 0; x < sx; x++) {
+			const oox = oo + x * txo;
+			const oax = oa + x * txa;
+			for (let y = 0; y < sy; y++) {
+				odata[oox + y * tyo] = fn(adata[oax + y * tya], n, m);
 			}
 		}
 		return out;
@@ -59,23 +59,54 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		!out && (out = a);
 		const {
 			data: odata,
+			offset: oo,
 			stride: [txo, tyo, tzo],
-			offset: offo,
 		} = out;
 		const {
 			data: adata,
-			shape: [slices, rows, cols],
+			offset: oa,
+			shape: [sx, sy, sz],
 			stride: [txa, tya, tza],
-			offset: offa,
 		} = a;
-		for (let i = 0; i < slices; i++) {
-			const $offo = offo + i * txo;
-			const $offa = offa + i * txa;
-			for (let j = 0; j < rows; j++) {
-				const io = $offo + j * tyo;
-				const ia = $offa + j * tya;
-				for (let k = 0; k < cols; k++) {
-					odata[io + k * tzo] = fn(adata[ia + k * tza], n, m);
+		for (let x = 0; x < sx; x++) {
+			const oox = oo + x * txo;
+			const oax = oa + x * txa;
+			for (let y = 0; y < sy; y++) {
+				const ooy = oox + y * tyo;
+				const oay = oax + y * tya;
+				for (let z = 0; z < sz; z++) {
+					odata[ooy + z * tzo] = fn(adata[oay + z * tza], n, m);
+				}
+			}
+		}
+		return out;
+	};
+
+	const f4: TensorOpTNN<T, T, Tensor4<T>, Tensor4<T>> = (out, a, n, m) => {
+		!out && (out = a);
+		const {
+			data: odata,
+			offset: oo,
+			stride: [txo, tyo, tzo, two],
+		} = out;
+		const {
+			data: adata,
+			offset: oa,
+			shape: [sx, sy, sz, sw],
+			stride: [txa, tya, tza, twa],
+		} = a;
+		for (let x = 0; x < sx; x++) {
+			const oox = oo + x * txo;
+			const oax = oa + x * txa;
+			for (let y = 0; y < sy; y++) {
+				const ooy = oox + y * tyo;
+				const oay = oax + y * tya;
+				for (let z = 0; z < sz; z++) {
+					const ooz = ooy + z * tzo;
+					const oaz = oay + z * tza;
+					for (let w = 0; w < sw; w++) {
+						odata[ooz + w * two] = fn(adata[oaz + w * twa], n, m);
+					}
 				}
 			}
 		}
@@ -87,12 +118,14 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			MultiTensorOpTNN<T>,
 			TensorOpTNN<T, T, Tensor1<T>, Tensor1<T>>,
 			TensorOpTNN<T, T, Tensor2<T>, Tensor2<T>>,
-			TensorOpTNN<T, T, Tensor3<T>, Tensor3<T>>
+			TensorOpTNN<T, T, Tensor3<T>, Tensor3<T>>,
+			TensorOpTNN<T, T, Tensor4<T>, Tensor4<T>>
 		]
 	>[
-		top<TensorOpTNN<T, T, any, any>>(dispatch, undefined, f1, f2, f3),
+		top<TensorOpTNN<T, T, any, any>>(dispatch, undefined, f1, f2, f3, f4),
 		f1,
 		f2,
 		f3,
+		f4,
 	];
 };
