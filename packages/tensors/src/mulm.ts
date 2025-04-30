@@ -2,6 +2,15 @@
 import { assert } from "@thi.ng/errors/assert";
 import { tensor, type Tensor2 } from "./tensor.js";
 
+/**
+ * Matrix-matrix multiplication between matrix `a` (MxN) and matrix `b` (PxQ).
+ * If `out` is given, it MUST be a MxQ tensor. If null then a new will be
+ * created, using `a`'s storage impl.
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 export const mulM = (out: Tensor2 | null, a: Tensor2, b: Tensor2) => {
 	const {
 		data: adata,
