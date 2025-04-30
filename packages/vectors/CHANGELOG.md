@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-17T12:40:59Z
+- **Last updated**: 2025-04-30T12:52:32Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.1.0) (2025-04-30)
+
+#### 🚀 Features
+
+- add relu, leakyRelu, sigmoid, tanh ops ([5e99427](https://github.com/thi-ng/umbrella/commit/5e99427))
+  - add various activation fns, incl. strided versions
+  - update pkg exports
+- add component `product()` functions, minor refactor `sum()` ([2223d9b](https://github.com/thi-ng/umbrella/commit/2223d9b))
+  - add `sum()` doc strings
+- add opt. value arg for `oneHot()` ([181de18](https://github.com/thi-ng/umbrella/commit/181de18))
+  - update doc string
+
+#### ♻️ Refactoring
+
+- rename `leakyRelu()` => `reluN()` ([0206e77](https://github.com/thi-ng/umbrella/commit/0206e77))
 
 ### [8.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.0.1) (2025-04-17)
 

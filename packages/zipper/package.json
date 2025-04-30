@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/zipper",
-	"version": "2.1.133",
+	"version": "2.1.134",
 	"description": "Functional tree editing, manipulation & navigation",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.26",
-		"@thi.ng/arrays": "^2.10.23",
-		"@thi.ng/checks": "^3.7.6",
-		"@thi.ng/errors": "^2.5.32"
+		"@thi.ng/api": "^8.11.27",
+		"@thi.ng/arrays": "^2.11.0",
+		"@thi.ng/checks": "^3.7.7",
+		"@thi.ng/errors": "^2.5.33"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.3",

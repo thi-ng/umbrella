@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ecs",
-	"version": "0.7.160",
+	"version": "0.7.161",
 	"description": "Entity Component System based around typed arrays & sparse sets",
 	"type": "module",
 	"module": "./index.js",
@@ -39,20 +39,20 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.26",
-		"@thi.ng/associative": "^7.0.32",
-		"@thi.ng/binary": "^3.4.49",
-		"@thi.ng/checks": "^3.7.6",
-		"@thi.ng/dcons": "^3.2.150",
-		"@thi.ng/errors": "^2.5.32",
-		"@thi.ng/idgen": "^2.2.66",
-		"@thi.ng/logger": "^3.1.7",
-		"@thi.ng/malloc": "^6.1.110",
-		"@thi.ng/transducers": "^9.2.26",
+		"@thi.ng/api": "^8.11.27",
+		"@thi.ng/associative": "^7.0.33",
+		"@thi.ng/binary": "^3.4.50",
+		"@thi.ng/checks": "^3.7.7",
+		"@thi.ng/dcons": "^3.2.151",
+		"@thi.ng/errors": "^2.5.33",
+		"@thi.ng/idgen": "^2.2.67",
+		"@thi.ng/logger": "^3.1.8",
+		"@thi.ng/malloc": "^6.1.111",
+		"@thi.ng/transducers": "^9.3.0",
 		"tslib": "^2.8.1"
 	},
 	"devDependencies": {
-		"@thi.ng/equiv": "^2.1.82",
+		"@thi.ng/equiv": "^2.1.83",
 		"esbuild": "^0.25.3",
 		"typedoc": "^0.28.3",
 		"typescript": "^5.8.3"
