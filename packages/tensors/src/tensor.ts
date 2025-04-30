@@ -643,6 +643,22 @@ export function tensorFromArray(
 	});
 }
 
+export const zeroes = <S extends Shape>(
+	shape: S,
+	type: NumType = "num",
+	storage?: ITensorStorage<number>
+): ShapeTensor<S, number> => tensor<any, S>(type, shape, { storage });
+
+export const ones = <S extends Shape>(
+	shape: S,
+	type: NumType = "num",
+	storage?: ITensorStorage<number>
+): ShapeTensor<S, number> => {
+	const res = tensor<any, S>(type, shape, { storage });
+	res.data.fill(1);
+	return res;
+};
+
 export const shapeToStride = (shape: NumericArray) => {
 	const n = shape.length;
 	const stride = new Array(n);
