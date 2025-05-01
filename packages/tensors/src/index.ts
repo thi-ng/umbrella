@@ -14,6 +14,7 @@ export * from "./defoptn.js";
 export * from "./defoptnn.js";
 export * from "./defoptt.js";
 export * from "./defopttt.js";
+export * from "./diagonal.js";
 export * from "./div.js";
 export * from "./divn.js";
 export * from "./dot.js";
