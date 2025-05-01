@@ -31,8 +31,9 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 			stride: [tx, ty],
 			offset,
 		} = out;
+		let ox: number;
 		for (let x = 0; x < sx; x++) {
-			const ox = offset + x * tx;
+			ox = offset + x * tx;
 			for (let y = 0; y < sy; y++) data[ox + y * ty] = fn(a);
 		}
 		return out;
@@ -45,10 +46,11 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 			stride: [tx, ty, tz],
 			offset,
 		} = out;
+		let ox: number, oy: number;
 		for (let x = 0; x < sx; x++) {
-			const ox = offset + x * tx;
+			ox = offset + x * tx;
 			for (let y = 0; y < sy; y++) {
-				const oy = ox + y * ty;
+				oy = ox + y * ty;
 				for (let z = 0; z < sz; z++) data[oy + z * tz] = fn(a);
 			}
 		}
@@ -62,12 +64,13 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 			stride: [tx, ty, tz, tw],
 			offset,
 		} = out;
+		let ox: number, oy: number, oz: number;
 		for (let x = 0; x < sx; x++) {
-			const ox = offset + x * tx;
+			ox = offset + x * tx;
 			for (let y = 0; y < sy; y++) {
-				const oy = ox + y * ty;
+				oy = ox + y * ty;
 				for (let z = 0; z < sz; z++) {
-					const oz = oy + z * tz;
+					oz = oy + z * tz;
 					for (let w = 0; w < sw; w++) data[oz + w * tw] = fn(a);
 				}
 			}

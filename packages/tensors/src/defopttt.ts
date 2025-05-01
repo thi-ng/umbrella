@@ -69,11 +69,12 @@ export const defOpTTT = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			offset: oc,
 			stride: [txc, tyc],
 		} = c;
+		let oox: number, oax: number, obx: number, ocx: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
-			const ocx = oc + x * txc;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
+			ocx = oc + x * txc;
 			for (let y = 0; y < sy; y++) {
 				odata[oox + y * tyo] = fn(
 					adata[oax + y * tya],
@@ -108,16 +109,24 @@ export const defOpTTT = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			offset: oc,
 			stride: [txc, tyc, tzc],
 		} = c;
+		let oox: number,
+			oax: number,
+			obx: number,
+			ocx: number,
+			ooy: number,
+			oay: number,
+			oby: number,
+			ocy: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
-			const ocx = oc + x * txc;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
+			ocx = oc + x * txc;
 			for (let y = 0; y < sy; y++) {
-				const ooy = oox + y * tyo;
-				const oay = oax + y * tya;
-				const oby = obx + y * tyb;
-				const ocy = ocx + y * tyc;
+				ooy = oox + y * tyo;
+				oay = oax + y * tya;
+				oby = obx + y * tyb;
+				ocy = ocx + y * tyc;
 				for (let z = 0; z < sz; z++) {
 					odata[ooy + z * tzo] = fn(
 						adata[oay + z * tza],
@@ -153,21 +162,33 @@ export const defOpTTT = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			offset: oc,
 			stride: [txc, tyc, tzc, twc],
 		} = c;
+		let oox: number,
+			oax: number,
+			obx: number,
+			ocx: number,
+			ooy: number,
+			oay: number,
+			oby: number,
+			ocy: number,
+			ooz: number,
+			oaz: number,
+			obz: number,
+			ocz: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
-			const ocx = oc + x * txc;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
+			ocx = oc + x * txc;
 			for (let y = 0; y < sy; y++) {
-				const ooy = oox + y * tyo;
-				const oay = oax + y * tya;
-				const oby = obx + y * tyb;
-				const ocy = ocx + y * tyc;
+				ooy = oox + y * tyo;
+				oay = oax + y * tya;
+				oby = obx + y * tyb;
+				ocy = ocx + y * tyc;
 				for (let z = 0; z < sz; z++) {
-					const ooz = ooy + z * tzo;
-					const oaz = oay + z * tza;
-					const obz = oby + z * tzb;
-					const ocz = ocy + z * tzc;
+					ooz = ooy + z * tzo;
+					oaz = oay + z * tza;
+					obz = oby + z * tzb;
+					ocz = ocy + z * tzc;
 					for (let w = 0; w < sw; w++) {
 						odata[ooz + w * two] = fn(
 							adata[oaz + w * twa],

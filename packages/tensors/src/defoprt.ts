@@ -36,8 +36,9 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 			stride: [tx, ty],
 		} = a;
 		let res = init();
+		let ox: number;
 		for (let x = 0; x < sx; x++) {
-			const ox = offset + x * tx;
+			ox = offset + x * tx;
 			for (let y = 0; y < sy; y++) {
 				res = rfn(res, data[ox + y * ty]);
 			}
@@ -53,10 +54,11 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 			stride: [tx, ty, tz],
 		} = a;
 		let res = init();
+		let ox: number, oy: number;
 		for (let x = 0; x < sx; x++) {
-			const ox = offset + x * tx;
+			ox = offset + x * tx;
 			for (let y = 0; y < sy; y++) {
-				const oy = ox + y * ty;
+				oy = ox + y * ty;
 				for (let z = 0; z < sz; z++) {
 					res = rfn(res, data[oy + z * tz]);
 				}
@@ -73,12 +75,13 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 			stride: [tx, ty, tz, tw],
 		} = a;
 		let res = init();
+		let ox: number, oy: number, oz: number;
 		for (let x = 0; x < sx; x++) {
-			const ox = offset + x * tx;
+			ox = offset + x * tx;
 			for (let y = 0; y < sy; y++) {
-				const oy = ox + y * ty;
+				oy = ox + y * ty;
 				for (let z = 0; z < sz; z++) {
-					const oz = oy + z * tz;
+					oz = oy + z * tz;
 					for (let w = 0; w < sw; w++) {
 						res = rfn(res, data[oz + w * tw]);
 					}

@@ -216,11 +216,11 @@ export class Tensor1<T = number> extends ATensor<T> {
 	*[Symbol.iterator](): IterableIterator<T> {
 		let {
 			data,
-			length,
+			shape: [sx],
 			stride: [tx],
 			offset,
 		} = this;
-		for (; length-- > 0; offset += tx) yield data[offset];
+		for (; sx-- > 0; offset += tx) yield data[offset];
 	}
 
 	get dim() {
@@ -308,8 +308,9 @@ export class Tensor2<T = number> extends ATensor<T> {
 			shape: [sx, sy],
 			stride: [tx, ty],
 		} = this;
-		for (let ox = this.offset, x = 0; x < sx; x++, ox += tx) {
-			for (let y = 0; y < sy; y++) {
+		let ox: number, x: number, y: number;
+		for (ox = this.offset, x = 0; x < sx; x++, ox += tx) {
+			for (y = 0; y < sy; y++) {
 				yield data[ox + y * ty];
 			}
 		}
@@ -354,8 +355,9 @@ export class Tensor2<T = number> extends ATensor<T> {
 			stride: [tx, ty],
 		} = this;
 		const n = min(this.length, newLength);
-		for (let ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
-			for (let y = 0; y < sy && i < n; y++, i++) {
+		let ox: number, x: number, y: number, i: number;
+		for (ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
+			for (y = 0; y < sy && i < n; y++, i++) {
 				newData[i] = data[ox + y * ty];
 			}
 		}
@@ -384,9 +386,10 @@ export class Tensor3<T = number> extends ATensor<T> {
 			shape: [sx, sy, sz],
 			stride: [tx, ty, tz],
 		} = this;
-		for (let ox = this.offset, x = 0; x < sx; x++, ox += tx) {
-			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
-				for (let z = 0; z < sz; z++) {
+		let ox: number, oy: number, x: number, y: number, z: number;
+		for (ox = this.offset, x = 0; x < sx; x++, ox += tx) {
+			for (oy = ox, y = 0; y < sy; y++, oy += ty) {
+				for (z = 0; z < sz; z++) {
 					yield data[oy + z * tz];
 				}
 			}
@@ -428,9 +431,10 @@ export class Tensor3<T = number> extends ATensor<T> {
 			stride: [tx, ty, tz],
 		} = this;
 		const n = min(this.length, newLength);
-		for (let ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
-			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
-				for (let z = 0; z < sz && i < n; z++, i++) {
+		let ox: number, oy: number, x: number, y: number, z: number, i: number;
+		for (ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
+			for (oy = ox, y = 0; y < sy; y++, oy += ty) {
+				for (z = 0; z < sz && i < n; z++, i++) {
 					newData[i] = data[oy + z * tz];
 				}
 			}
@@ -461,10 +465,17 @@ export class Tensor4<T = number> extends ATensor<T> {
 			stride: [tx, ty, tz, tw],
 			offset,
 		} = this;
-		for (let ox = offset, x = 0; x < sx; x++, ox += tx) {
-			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
-				for (let oz = oy, z = 0; z < sz; z++, oz += tz) {
-					for (let w = 0; w < sw; w++) {
+		let ox: number,
+			oy: number,
+			oz: number,
+			x: number,
+			y: number,
+			z: number,
+			w: number;
+		for (ox = offset, x = 0; x < sx; x++, ox += tx) {
+			for (oy = ox, y = 0; y < sy; y++, oy += ty) {
+				for (oz = oy, z = 0; z < sz; z++, oz += tz) {
+					for (w = 0; w < sw; w++) {
 						yield data[oz + w * tw];
 					}
 				}
@@ -507,10 +518,18 @@ export class Tensor4<T = number> extends ATensor<T> {
 			stride: [tx, ty, tz, tw],
 		} = this;
 		const n = min(this.length, newLength);
-		for (let ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
-			for (let oy = ox, y = 0; y < sy; y++, oy += ty) {
-				for (let oz = oy, z = 0; z < sz; z++, oz += tz) {
-					for (let w = 0; w < sw && i < n; w++, i++) {
+		let ox: number,
+			oy: number,
+			oz: number,
+			x: number,
+			y: number,
+			z: number,
+			w: number,
+			i: number;
+		for (ox = this.offset, i = 0, x = 0; x < sx; x++, ox += tx) {
+			for (oy = ox, y = 0; y < sy; y++, oy += ty) {
+				for (oz = oy, z = 0; z < sz; z++, oz += tz) {
+					for (w = 0; w < sw && i < n; w++, i++) {
 						newData[i] = data[oz + w * tw];
 					}
 				}

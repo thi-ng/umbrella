@@ -55,10 +55,11 @@ export const defOpTT = <T = number>(fn: FnU2<T>, dispatch = 1) => {
 			offset: ob,
 			stride: [txb, tyb],
 		} = b;
+		let oox: number, oax: number, obx: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
 			for (let y = 0; y < sy; y++) {
 				odata[oox + y * tyo] = fn(
 					adata[oax + y * tya],
@@ -87,14 +88,20 @@ export const defOpTT = <T = number>(fn: FnU2<T>, dispatch = 1) => {
 			offset: ob,
 			stride: [txb, tyb, tzb],
 		} = b;
+		let oox: number,
+			oax: number,
+			obx: number,
+			ooy: number,
+			oay: number,
+			oby: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
 			for (let y = 0; y < sy; y++) {
-				const ooy = oox + y * tyo;
-				const oay = oax + y * tya;
-				const oby = obx + y * tyb;
+				ooy = oox + y * tyo;
+				oay = oax + y * tya;
+				oby = obx + y * tyb;
 				for (let z = 0; z < sz; z++) {
 					odata[ooy + z * tzo] = fn(
 						adata[oay + z * tza],
@@ -124,18 +131,27 @@ export const defOpTT = <T = number>(fn: FnU2<T>, dispatch = 1) => {
 			offset: ob,
 			stride: [txb, tyb, tzb, twb],
 		} = b;
+		let oox: number,
+			oax: number,
+			obx: number,
+			ooy: number,
+			oay: number,
+			oby: number,
+			ooz: number,
+			oaz: number,
+			obz: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
 			for (let y = 0; y < sy; y++) {
-				const ooy = oox + y * tyo;
-				const oay = oax + y * tya;
-				const oby = obx + y * tyb;
+				ooy = oox + y * tyo;
+				oay = oax + y * tya;
+				oby = obx + y * tyb;
 				for (let z = 0; z < sz; z++) {
-					const ooz = ooy + z * tzo;
-					const oaz = oay + z * tza;
-					const obz = oby + z * tzb;
+					ooz = ooy + z * tzo;
+					oaz = oay + z * tza;
+					obz = oby + z * tzb;
 					for (let w = 0; w < sw; w++) {
 						odata[ooz + w * two] = fn(
 							adata[oaz + w * twa],

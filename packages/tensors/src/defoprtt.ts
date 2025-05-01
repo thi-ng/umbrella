@@ -49,9 +49,10 @@ export const defOpRTT = <A = number, B = A>(
 			stride: [txb, tyb],
 		} = b;
 		let res = init();
+		let oax: number, obx: number;
 		for (let x = 0; x < sx; x++) {
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
 			for (let y = 0; y < sy; y++) {
 				res = rfn(res, adata[oax + y * tya], bdata[obx + y * tyb]);
 			}
@@ -72,12 +73,13 @@ export const defOpRTT = <A = number, B = A>(
 			stride: [txb, tyb, tzb],
 		} = b;
 		let res = init();
+		let oax: number, obx: number, oay: number, oby: number;
 		for (let x = 0; x < sx; x++) {
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
 			for (let y = 0; y < sy; y++) {
-				const oay = oax + y * tya;
-				const oby = obx + y * tyb;
+				oay = oax + y * tya;
+				oby = obx + y * tyb;
 				for (let z = 0; z < sz; z++) {
 					res = rfn(res, adata[oay + z * tza], bdata[oby + z * tzb]);
 				}
@@ -99,15 +101,21 @@ export const defOpRTT = <A = number, B = A>(
 			stride: [txb, tyb, tzb, twb],
 		} = b;
 		let res = init();
+		let oax: number,
+			obx: number,
+			oay: number,
+			oby: number,
+			oaz: number,
+			obz: number;
 		for (let x = 0; x < sx; x++) {
-			const oax = oa + x * txa;
-			const obx = ob + x * txb;
+			oax = oa + x * txa;
+			obx = ob + x * txb;
 			for (let y = 0; y < sy; y++) {
-				const oay = oax + y * tya;
-				const oby = obx + y * tyb;
+				oay = oax + y * tya;
+				oby = obx + y * tyb;
 				for (let z = 0; z < sz; z++) {
-					const oaz = oay + z * tza;
-					const obz = oby + z * tzb;
+					oaz = oay + z * tza;
+					obz = oby + z * tzb;
 					for (let w = 0; w < sw; w++) {
 						res = rfn(
 							res,

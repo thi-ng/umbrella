@@ -45,9 +45,10 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			shape: [sx, sy],
 			stride: [txa, tya],
 		} = a;
+		let oox: number, oax: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
 			for (let y = 0; y < sy; y++) {
 				odata[oox + y * tyo] = fn(adata[oax + y * tya], n, m);
 			}
@@ -68,12 +69,13 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			shape: [sx, sy, sz],
 			stride: [txa, tya, tza],
 		} = a;
+		let oox: number, oax: number, ooy: number, oay: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
 			for (let y = 0; y < sy; y++) {
-				const ooy = oox + y * tyo;
-				const oay = oax + y * tya;
+				ooy = oox + y * tyo;
+				oay = oax + y * tya;
 				for (let z = 0; z < sz; z++) {
 					odata[ooy + z * tzo] = fn(adata[oay + z * tza], n, m);
 				}
@@ -95,15 +97,21 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 			shape: [sx, sy, sz, sw],
 			stride: [txa, tya, tza, twa],
 		} = a;
+		let oox: number,
+			oax: number,
+			ooy: number,
+			oay: number,
+			ooz: number,
+			oaz: number;
 		for (let x = 0; x < sx; x++) {
-			const oox = oo + x * txo;
-			const oax = oa + x * txa;
+			oox = oo + x * txo;
+			oax = oa + x * txa;
 			for (let y = 0; y < sy; y++) {
-				const ooy = oox + y * tyo;
-				const oay = oax + y * tya;
+				ooy = oox + y * tyo;
+				oay = oax + y * tya;
 				for (let z = 0; z < sz; z++) {
-					const ooz = ooy + z * tzo;
-					const oaz = oay + z * tza;
+					ooz = ooy + z * tzo;
+					oaz = oay + z * tza;
 					for (let w = 0; w < sw; w++) {
 						odata[ooz + w * two] = fn(adata[oaz + w * twa], n, m);
 					}
