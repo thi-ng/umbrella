@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors/unsupported";
+import type { MultiTensorOpImpl } from "./api.js";
 
 /**
  * Specialized / optimized version of
@@ -14,7 +15,7 @@ export const top = <T extends Function>(
 	dispatch = 1,
 	fallback?: T,
 	...optimized: Maybe<T>[]
-) => {
+): MultiTensorOpImpl<T> => {
 	const impls = (<Maybe<T>[]>[undefined]).concat(optimized);
 	const fn = (...args: any[]) => {
 		const g = impls[args[dispatch].dim] || fallback;
@@ -26,5 +27,5 @@ export const top = <T extends Function>(
 	fn.default = (fn: T) => (fallback = fn);
 	fn.impl = (dim?: number): Maybe<T> =>
 		dim != null ? impls[dim] || fallback : fallback;
-	return fn;
+	return <any>fn;
 };
