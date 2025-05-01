@@ -2,7 +2,7 @@
 import type { Fn0 } from "@thi.ng/api";
 import { normal as op } from "@thi.ng/random/distributions/normal";
 import type { ITensor } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
+import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
 import { top } from "./top.js";
 
 /**
@@ -81,7 +81,7 @@ export const randDistrib3 = (a: Tensor3, rnd = op(), n = 1) => {
  * @param rnd
  * @param n
  */
-export const randDistrib4 = (a: Tensor3, rnd = op(), n = 1) => {
+export const randDistrib4 = (a: Tensor4, rnd = op(), n = 1) => {
 	const {
 		data,
 		offset,
@@ -126,11 +126,11 @@ export const randDistrib4 = (a: Tensor3, rnd = op(), n = 1) => {
  * @param n - scale factor
  */
 export const randDistrib = top<
-	(a: ITensor, rnd?: Fn0<number>, n?: number) => ITensor
+	<T extends ITensor>(a: T, rnd?: Fn0<number>, n?: number) => T
 >(
 	0,
 	undefined,
-	randDistrib1,
+	<any>randDistrib1,
 	<any>randDistrib2,
 	<any>randDistrib3,
 	<any>randDistrib4

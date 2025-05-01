@@ -2,7 +2,7 @@
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import { identity } from "@thi.ng/api/fn";
 import type { ITensor } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
+import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
 import { top } from "./top.js";
 
 /**
@@ -18,12 +18,12 @@ export type SelectResult<T> = { arg: number[]; value: T };
  * @param pred
  * @param initial
  */
-export const select1 = <T>(
-	a: Tensor1<T>,
-	xform: Fn<T, T>,
-	pred: Predicate2<T>,
-	initial: T
-): SelectResult<T> => {
+export const select1 = <A, B>(
+	a: Tensor1<A>,
+	xform: Fn<A, B>,
+	pred: Predicate2<B>,
+	initial: B
+): SelectResult<B> => {
 	const {
 		data,
 		offset,
@@ -32,7 +32,7 @@ export const select1 = <T>(
 	} = a;
 	const arg: number[] = [-1];
 	let value = initial,
-		v: T;
+		v: B;
 	for (let x = 0; x < sx; x++) {
 		v = xform(data[offset + x * tx]);
 		if (pred(v, value)) {
@@ -51,12 +51,12 @@ export const select1 = <T>(
  * @param pred
  * @param initial
  */
-export const select2 = <T>(
-	a: Tensor2<T>,
-	xform: Fn<T, T>,
-	pred: Predicate2<T>,
-	initial: T
-): SelectResult<T> => {
+export const select2 = <A, B>(
+	a: Tensor2<A>,
+	xform: Fn<A, B>,
+	pred: Predicate2<B>,
+	initial: B
+): SelectResult<B> => {
 	const {
 		data,
 		offset,
@@ -65,7 +65,7 @@ export const select2 = <T>(
 	} = a;
 	const arg: number[] = [-1, -1];
 	let value = initial,
-		v: T;
+		v: B;
 	let ox: number, x: number, y: number;
 	for (x = 0; x < sx; x++) {
 		ox = offset + x * tx;
@@ -89,12 +89,12 @@ export const select2 = <T>(
  * @param pred
  * @param initial
  */
-export const select3 = <T>(
-	a: Tensor3<T>,
-	xform: Fn<T, T>,
-	pred: Predicate2<T>,
-	initial: T
-): SelectResult<T> => {
+export const select3 = <A, B>(
+	a: Tensor3<A>,
+	xform: Fn<A, B>,
+	pred: Predicate2<B>,
+	initial: B
+): SelectResult<B> => {
 	const {
 		data,
 		offset,
@@ -103,7 +103,7 @@ export const select3 = <T>(
 	} = a;
 	const arg: number[] = [-1, -1, -1];
 	let value = initial,
-		v: T;
+		v: B;
 	let ox: number, oy: number, x: number, y: number, z: number;
 	for (x = 0; x < sx; x++) {
 		ox = offset + x * tx;
@@ -131,12 +131,12 @@ export const select3 = <T>(
  * @param pred
  * @param initial
  */
-export const select4 = <T>(
-	a: Tensor3<T>,
-	xform: Fn<T, T>,
-	pred: Predicate2<T>,
-	initial: T
-): SelectResult<T> => {
+export const select4 = <A, B>(
+	a: Tensor4<A>,
+	xform: Fn<A, B>,
+	pred: Predicate2<B>,
+	initial: B
+): SelectResult<B> => {
 	const {
 		data,
 		offset,
@@ -145,7 +145,7 @@ export const select4 = <T>(
 	} = a;
 	const arg: number[] = [-1, -1, -1, -1];
 	let value = initial,
-		v: T;
+		v: B;
 	let ox: number,
 		oy: number,
 		oz: number,
@@ -207,12 +207,12 @@ const __select = top<any>(0, undefined, select1, select2, select3, select4);
  * @param pred
  * @param initial
  */
-export const select = <T>(
-	a: ITensor<T>,
-	xform: Fn<T, T>,
-	pred: Predicate2<T>,
-	initial: T
-): SelectResult<T> => __select(a, xform, pred, initial);
+export const select = <A, B>(
+	a: ITensor<A>,
+	xform: Fn<A, B>,
+	pred: Predicate2<B>,
+	initial: B
+): SelectResult<B> => __select(a, xform, pred, initial);
 
 /**
  * Syntax sugar for {@link select} to find the minimum component value and its

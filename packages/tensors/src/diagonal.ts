@@ -1,6 +1,6 @@
 import { sum as vsum } from "@thi.ng/vectors/sum";
 import type { ITensor } from "./api.js";
-import { sum1 } from "./sum.js";
+import { sum } from "./sum.js";
 import { Tensor1 } from "./tensor.js";
 
 /**
@@ -25,4 +25,4 @@ export const diagonal = <T>(a: ITensor<T>) => {
  *
  * @param a
  */
-export const trace = (a: ITensor) => sum1(diagonal(a));
+export const trace = (a: ITensor) => sum(diagonal(a));

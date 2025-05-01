@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn0, Fn3 } from "@thi.ng/api";
-import type { MultiTensorOpRTT, TensorOpRTT } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
-import { top } from "./top.js";
+import type { ITensor, TensorOpRTT } from "./api.js";
+import { broadcast } from "./broadcast.js";
 
 /**
  * Higher order tensor reduction op factory. Takes given reduction `rfn` and
- * `init` function to produce an initial result. Returns a 4-tuple of
- * {@link TensorOpRTT}s applying the given function component-wise. The result
- * tuple uses this order: `[polymorphic, 1d, 2d, 3d]`.
+ * `init` function to produce an initial result. Returns a {@link TensorOpRTT}
+ * applying the given function componentwise with broadcasting rules (see
+ * {@link broadcast} for details).
  *
  * @param rfn
  * @param init
@@ -16,8 +15,8 @@ import { top } from "./top.js";
 export const defOpRTT = <A = number, B = A>(
 	rfn: Fn3<B, A, A, B>,
 	init: Fn0<B>
-) => {
-	const f1: TensorOpRTT<A, B, Tensor1<A>> = (a, b) => {
+): TensorOpRTT<A, B> => {
+	const f1: TensorOpRTT<A, B> = (a, b) => {
 		const {
 			data: adata,
 			offset: oa,
@@ -36,7 +35,7 @@ export const defOpRTT = <A = number, B = A>(
 		return res;
 	};
 
-	const f2: TensorOpRTT<A, B, Tensor2<A>> = (a, b) => {
+	const f2: TensorOpRTT<A, B> = (a, b) => {
 		const {
 			data: adata,
 			offset: oa,
@@ -60,7 +59,7 @@ export const defOpRTT = <A = number, B = A>(
 		return res;
 	};
 
-	const f3: TensorOpRTT<A, B, Tensor3<A>> = (a, b) => {
+	const f3: TensorOpRTT<A, B> = (a, b) => {
 		const {
 			data: adata,
 			offset: oa,
@@ -88,7 +87,7 @@ export const defOpRTT = <A = number, B = A>(
 		return res;
 	};
 
-	const f4: TensorOpRTT<A, B, Tensor4<A>> = (a, b) => {
+	const f4: TensorOpRTT<A, B> = (a, b) => {
 		const {
 			data: adata,
 			offset: oa,
@@ -129,19 +128,12 @@ export const defOpRTT = <A = number, B = A>(
 		return res;
 	};
 
-	return <
-		[
-			MultiTensorOpRTT<A, B>,
-			TensorOpRTT<A, B, Tensor1<A>>,
-			TensorOpRTT<A, B, Tensor2<A>>,
-			TensorOpRTT<A, B, Tensor3<A>>,
-			TensorOpRTT<A, B, Tensor4<A>>
-		]
-	>[
-		top<TensorOpRTT<A, B, any>>(0, undefined, f1, f2, f3, f4),
-		f1,
-		f2,
-		f3,
-		f4,
-	];
+	const impls = [, f1, f2, f3, f4];
+
+	const wrapper = (a: ITensor<A>, b: ITensor<A>) => {
+		const { shape, a: $a, b: $b } = broadcast(a, b);
+		return impls[shape.length]!($a, $b);
+	};
+
+	return <any>wrapper;
 };

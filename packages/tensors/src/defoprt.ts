@@ -1,20 +1,18 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn0, Fn2 } from "@thi.ng/api";
-import type { MultiTensorOpRT, TensorOpRT } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
+import type { TensorOpRT } from "./api.js";
 import { top } from "./top.js";
 
 /**
  * Higher order tensor reduction op factory. Takes given reduction `rfn` and
- * `init` function to produce an initial result. Returns a 4-tuple of
- * {@link TensorOpRT}s applying the given function component-wise. The result
- * tuple uses this order: `[polymorphic, 1d, 2d, 3d]`.
+ * `init` function to produce an initial result. Returns a {@link TensorOpRT}
+ * applying the given function component-wise.
  *
  * @param rfn
  * @param init
  */
 export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
-	const f1: TensorOpRT<A, B, Tensor1<A>> = (a) => {
+	const f1: TensorOpRT<A, B> = (a) => {
 		const {
 			data,
 			offset,
@@ -28,7 +26,7 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 		return res;
 	};
 
-	const f2: TensorOpRT<A, B, Tensor2<A>> = (a) => {
+	const f2: TensorOpRT<A, B> = (a) => {
 		const {
 			data,
 			offset,
@@ -46,7 +44,7 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 		return res;
 	};
 
-	const f3: TensorOpRT<A, B, Tensor3<A>> = (a) => {
+	const f3: TensorOpRT<A, B> = (a) => {
 		const {
 			data,
 			offset,
@@ -67,7 +65,7 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 		return res;
 	};
 
-	const f4: TensorOpRT<A, B, Tensor4<A>> = (a) => {
+	const f4: TensorOpRT<A, B> = (a) => {
 		const {
 			data,
 			offset,
@@ -91,13 +89,12 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 		return res;
 	};
 
-	return <
-		[
-			MultiTensorOpRT<A, B>,
-			TensorOpRT<A, B, Tensor1<A>>,
-			TensorOpRT<A, B, Tensor2<A>>,
-			TensorOpRT<A, B, Tensor3<A>>,
-			TensorOpRT<A, B, Tensor4<A>>
-		]
-	>[top<TensorOpRT<A, B, any>>(0, undefined, f1, f2, f3, f4), f1, f2, f3, f4];
+	return top<TensorOpRT<A, B>>(
+		0,
+		undefined,
+		<any>f1,
+		<any>f2,
+		<any>f3,
+		<any>f4
+	);
 };

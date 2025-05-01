@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
-import type { MultiTensorOpN, TensorOpN } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
+import type { TensorOpN, ITensor } from "./api.js";
 import { top } from "./top.js";
 
 /**
- * Higher order tensor op factory. Takes given `fn` and returns a 4-tuple of
- * {@link TensorOpN}s applying the given function component-wise. The result
- * tuple uses this order: `[polymorphic, 1d, 2d, 3d, 4d]`.
+ * Higher order tensor op factory. Takes given `fn` and returns a
+ * {@link TensorOpN} applying the given function component-wise.
  *
  * @param fn
- * @param dispatch
  */
 export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
-	const f1: TensorOpN<A, B, Tensor1<B>> = (out, a) => {
+	type $OP = (out: ITensor<B>, n: A) => ITensor<B>;
+	const f1: $OP = (out, a) => {
 		const {
 			data,
 			offset,
@@ -24,7 +22,7 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 		return out;
 	};
 
-	const f2: TensorOpN<A, B, Tensor2<B>> = (out, a) => {
+	const f2: $OP = (out, a) => {
 		const {
 			data,
 			shape: [sx, sy],
@@ -39,7 +37,7 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 		return out;
 	};
 
-	const f3: TensorOpN<A, B, Tensor3<B>> = (out, a) => {
+	const f3: $OP = (out, a) => {
 		const {
 			data,
 			shape: [sx, sy, sz],
@@ -57,7 +55,7 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 		return out;
 	};
 
-	const f4: TensorOpN<A, B, Tensor4<B>> = (out, a) => {
+	const f4: $OP = (out, a) => {
 		const {
 			data,
 			shape: [sx, sy, sz, sw],
@@ -78,13 +76,12 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 		return out;
 	};
 
-	return <
-		[
-			MultiTensorOpN<A, B>,
-			TensorOpN<A, B, Tensor1<B>>,
-			TensorOpN<A, B, Tensor2<B>>,
-			TensorOpN<A, B, Tensor3<B>>,
-			TensorOpN<A, B, Tensor4<B>>
-		]
-	>[top<TensorOpN<A, B, any>>(0, undefined, f1, f2, f3, f4), f1, f2, f3, f4];
+	return top<TensorOpN<A, B>>(
+		0,
+		undefined,
+		<any>f1,
+		<any>f2,
+		<any>f3,
+		<any>f4
+	);
 };

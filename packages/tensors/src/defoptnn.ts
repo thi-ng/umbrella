@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { FnU3 } from "@thi.ng/api";
-import type { MultiTensorOpTNN, TensorOpTNN } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
+import type { TensorOpTNN, ITensor } from "./api.js";
 import { top } from "./top.js";
 
 /**
- * Higher order tensor op factory. Takes given `fn` and returns a 4-tuple of
- * {@link TensorOpTNN}s applying the given function component-wise. The result
- * tuple uses this order: `[polymorphic, 1d, 2d, 3d, 4d]`.
+ * Higher order tensor op factory. Takes given `fn` and returns a
+ * {@link TensorOpTNN} applying the given function component-wise.
  *
  * @param fn
- * @param dispatch
  */
-export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
-	const f1: TensorOpTNN<T, T, Tensor1<T>, Tensor1<T>> = (out, a, n, m) => {
+export const defOpTNN = <T = number>(fn: FnU3<T>) => {
+	type $OP = (out: ITensor<T>, a: ITensor<T>, n: T, m: T) => ITensor<T>;
+	const f1: $OP = (out, a, n, m) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -32,7 +30,7 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		return out;
 	};
 
-	const f2: TensorOpTNN<T, T, Tensor2<T>, Tensor2<T>> = (out, a, n, m) => {
+	const f2: $OP = (out, a, n, m) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -56,7 +54,7 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		return out;
 	};
 
-	const f3: TensorOpTNN<T, T, Tensor3<T>, Tensor3<T>> = (out, a, n, m) => {
+	const f3: $OP = (out, a, n, m) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -84,7 +82,7 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		return out;
 	};
 
-	const f4: TensorOpTNN<T, T, Tensor4<T>, Tensor4<T>> = (out, a, n, m) => {
+	const f4: $OP = (out, a, n, m) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -121,19 +119,12 @@ export const defOpTNN = <T = number>(fn: FnU3<T>, dispatch = 1) => {
 		return out;
 	};
 
-	return <
-		[
-			MultiTensorOpTNN<T>,
-			TensorOpTNN<T, T, Tensor1<T>, Tensor1<T>>,
-			TensorOpTNN<T, T, Tensor2<T>, Tensor2<T>>,
-			TensorOpTNN<T, T, Tensor3<T>, Tensor3<T>>,
-			TensorOpTNN<T, T, Tensor4<T>, Tensor4<T>>
-		]
-	>[
-		top<TensorOpTNN<T, T, any, any>>(dispatch, undefined, f1, f2, f3, f4),
-		f1,
-		f2,
-		f3,
-		f4,
-	];
+	return top<TensorOpTNN<T>>(
+		1,
+		undefined,
+		<any>f1,
+		<any>f2,
+		<any>f3,
+		<any>f4
+	);
 };

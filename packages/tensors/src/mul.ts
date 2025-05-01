@@ -2,50 +2,12 @@
 import { $mul } from "@thi.ng/vectors/ops";
 import { defOpTT } from "./defoptt.js";
 
-const [a, b, c, d, e] = defOpTT($mul);
-
 /**
  * Componentwise nD tensor multiplication. Writes result to `out`. If `out` is
- * null, mutates `a`. Multi-method.
+ * null, mutates `a`. Supports broadcasting (see {@link broadcast} for details).
  *
  * @param out - output tensor
  * @param a - input tensor
  * @param b - input tensor
  */
-export const mul = a;
-
-/**
- * Same as {@link mul} for 1D tensors.
- *
- * @param out - output tensor
- * @param a - input tensor
- * @param b - input tensor
- */
-export const mul1 = b;
-
-/**
- * Same as {@link mul} for 2D tensors.
- *
- * @param out - output tensor
- * @param a - input tensor
- * @param b - input tensor
- */
-export const mul2 = c;
-
-/**
- * Same as {@link mul} for 3D tensors.
- *
- * @param out - output tensor
- * @param a - input tensor
- * @param b - input tensor
- */
-export const mul3 = d;
-
-/**
- * Same as {@link mul} for 4D tensors.
- *
- * @param out - output tensor
- * @param a - input tensor
- * @param b - input tensor
- */
-export const mul4 = e;
+export const mul = defOpTT($mul);

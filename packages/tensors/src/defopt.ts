@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
-import type { MultiTensorOpT, TensorOpT } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
+import type { TensorOpT, ITensor } from "./api.js";
 import { top } from "./top.js";
 
 /**
- * Higher order tensor op factory. Takes given `fn` and returns a 4-tuple of
- * {@link TensorOpT}s applying the given function component-wise. The result
- * tuple uses this order: `[polymorphic, 1d, 2d, 3d, 4d]`.
+ * Higher order tensor op factory. Takes given `fn` and returns a
+ * {@link TensorOpT} applying the given function component-wise.
  *
  * @param fn
- * @param dispatch
  */
-export const defOpT = <T = number>(fn: Fn<T, T>, dispatch = 1) => {
-	const f1: TensorOpT<T, T, Tensor1<T>, Tensor1<T>> = (out, a) => {
+export const defOpT = <T = number>(fn: Fn<T, T>) => {
+	type $OP = (out: ITensor<T> | null, a: ITensor<T>) => ITensor<T>;
+	const f1: $OP = (out, a) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -32,7 +30,7 @@ export const defOpT = <T = number>(fn: Fn<T, T>, dispatch = 1) => {
 		return out;
 	};
 
-	const f2: TensorOpT<T, T, Tensor2<T>, Tensor2<T>> = (out, a) => {
+	const f2: $OP = (out, a) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -56,7 +54,7 @@ export const defOpT = <T = number>(fn: Fn<T, T>, dispatch = 1) => {
 		return out;
 	};
 
-	const f3: TensorOpT<T, T, Tensor3<T>, Tensor3<T>> = (out, a) => {
+	const f3: $OP = (out, a) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -84,7 +82,7 @@ export const defOpT = <T = number>(fn: Fn<T, T>, dispatch = 1) => {
 		return out;
 	};
 
-	const f4: TensorOpT<T, T, Tensor4<T>, Tensor4<T>> = (out, a) => {
+	const f4: $OP = (out, a) => {
 		!out && (out = a);
 		const {
 			data: odata,
@@ -121,19 +119,5 @@ export const defOpT = <T = number>(fn: Fn<T, T>, dispatch = 1) => {
 		return out;
 	};
 
-	return <
-		[
-			MultiTensorOpT<T>,
-			TensorOpT<T, T, Tensor1<T>, Tensor1<T>>,
-			TensorOpT<T, T, Tensor2<T>, Tensor2<T>>,
-			TensorOpT<T, T, Tensor3<T>, Tensor3<T>>,
-			TensorOpT<T, T, Tensor4<T>, Tensor4<T>>
-		]
-	>[
-		top<TensorOpT<T, T, any, any>>(dispatch, undefined, f1, f2, f3, f4),
-		f1,
-		f2,
-		f3,
-		f4,
-	];
+	return top<TensorOpT<T>>(1, undefined, <any>f1, <any>f2, <any>f3, <any>f4);
 };
