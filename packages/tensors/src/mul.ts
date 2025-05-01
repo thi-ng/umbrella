@@ -10,7 +10,7 @@ const [a, b, c, d, e] = defOpTT($mul);
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const mul = a;
 
@@ -19,7 +19,7 @@ export const mul = a;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const mul1 = b;
 
@@ -28,7 +28,7 @@ export const mul1 = b;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const mul2 = c;
 
@@ -37,7 +37,7 @@ export const mul2 = c;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const mul3 = d;
 
@@ -46,6 +46,6 @@ export const mul3 = d;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const mul4 = e;

@@ -9,6 +9,7 @@ const [a, b, c, d, e] = defOpTT(Math.pow);
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor (exponent)
  */
 export const pow = a;
 
@@ -17,6 +18,7 @@ export const pow = a;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor (exponent)
  */
 export const pow1 = b;
 
@@ -25,6 +27,7 @@ export const pow1 = b;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor (exponent)
  */
 export const pow2 = c;
 
@@ -33,6 +36,7 @@ export const pow2 = c;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor (exponent)
  */
 export const pow3 = d;
 
@@ -41,5 +45,6 @@ export const pow3 = d;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor (exponent)
  */
 export const pow4 = e;

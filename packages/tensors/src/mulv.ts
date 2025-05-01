@@ -13,34 +13,35 @@ import { tensor, type Tensor1, type Tensor2 } from "./tensor.js";
 export const mulV = (out: Tensor1 | null, a: Tensor2, b: Tensor1) => {
 	const {
 		data: adata,
-		offset: offa,
-		shape: [rowa, cola],
+		offset: oa,
+		shape: [sxa, sya],
 		stride: [txa, tya],
 	} = a;
 	const {
 		data: bdata,
-		offset: offb,
-		shape: [rowb],
+		offset: ob,
+		shape: [sxb],
 		stride: [txb],
 	} = b;
-	if (cola !== rowb) illegalShape(b.shape);
+	if (sya !== sxb) illegalShape(b.shape);
 	if (out == null) {
-		out = <Tensor1>tensor(b.type, [rowa], { storage: b.storage });
+		out = <Tensor1>tensor(b.type, [sxa], { storage: b.storage });
 	}
 	const {
 		data: odata,
-		offset: offo,
-		shape: [rowo],
+		offset: oo,
+		shape: [sxo],
 		stride: [txo],
 	} = out;
-	if (rowo !== rowa) illegalShape(out.shape);
-	for (let i = 0; i < rowa; i++) {
-		const ia = offa + i * txa;
-		let sum = 0;
-		for (let j = 0; j < cola; j++) {
-			sum += adata[ia + j * tya] * bdata[offb + j * txb];
+	if (sxo !== sxa) illegalShape(out.shape);
+	let oax: number, x: number, y: number, sum: number;
+	for (x = 0; x < sxa; x++) {
+		oax = oa + x * txa;
+		sum = 0;
+		for (y = 0; y < sya; y++) {
+			sum += adata[oax + y * tya] * bdata[ob + y * txb];
 		}
-		odata[offo + i * txo] = sum;
+		odata[oo + x * txo] = sum;
 	}
 	return out;
 };

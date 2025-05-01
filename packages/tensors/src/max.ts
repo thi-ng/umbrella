@@ -5,10 +5,11 @@ const [a, b, c, d, e] = defOpTT(Math.max);
 
 /**
  * Componentwise computes `Math.max` of given nD tensors and writes result to
- * `out`. If `out` is null, mutates original. Multi-method.
+ * `out`. If `out` is null, mutates `a`. Multi-method.
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const max = a;
 
@@ -17,6 +18,7 @@ export const max = a;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const max1 = b;
 
@@ -25,6 +27,7 @@ export const max1 = b;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const max2 = c;
 
@@ -33,6 +36,7 @@ export const max2 = c;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const max3 = d;
 
@@ -41,5 +45,6 @@ export const max3 = d;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const max4 = e;

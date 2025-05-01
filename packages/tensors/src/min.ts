@@ -5,10 +5,11 @@ const [a, b, c, d, e] = defOpTT(Math.min);
 
 /**
  * Componentwise computes `Math.min` of given nD tensors and writes result to
- * `out`. If `out` is null, mutates original. Multi-method.
+ * `out`. If `out` is null, mutates `a`. Multi-method.
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const min = a;
 
@@ -17,6 +18,7 @@ export const min = a;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const min1 = b;
 
@@ -25,6 +27,7 @@ export const min1 = b;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const min2 = c;
 
@@ -33,6 +36,7 @@ export const min2 = c;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const min3 = d;
 
@@ -41,5 +45,6 @@ export const min3 = d;
  *
  * @param out - output tensor
  * @param a - input tensor
+ * @param b - input tensor
  */
 export const min4 = e;

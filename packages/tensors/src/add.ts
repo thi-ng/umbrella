@@ -10,7 +10,7 @@ const [a, b, c, d, e] = defOpTT($add);
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const add = a;
 
@@ -19,7 +19,7 @@ export const add = a;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const add1 = b;
 
@@ -28,7 +28,7 @@ export const add1 = b;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const add2 = c;
 
@@ -37,7 +37,7 @@ export const add2 = c;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const add3 = d;
 
@@ -46,6 +46,6 @@ export const add3 = d;
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor
  */
 export const add4 = e;
