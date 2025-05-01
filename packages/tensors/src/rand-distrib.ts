@@ -6,7 +6,7 @@ import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
 import { top } from "./top.js";
 
 /**
- * Same as {@link randDistrib}, optimized for 1D tensors.
+ * Same as {@link randDistrib} for 1D tensors.
  *
  * @param a
  * @param rnd
@@ -16,15 +16,15 @@ export const randDistrib1 = (a: Tensor1, rnd = op(), n = 1) => {
 	const {
 		data,
 		offset,
-		shape: [l],
-		stride: [s],
+		shape: [sx],
+		stride: [tx],
 	} = a;
-	for (let i = 0; i < l; i++) data[offset + i * s] = rnd() * n;
+	for (let x = 0; x < sx; x++) data[offset + x * tx] = rnd() * n;
 	return a;
 };
 
 /**
- * Same as {@link randDistrib}, optimized for 2D tensors.
+ * Same as {@link randDistrib} for 2D tensors.
  *
  * @param a
  * @param rnd
@@ -32,22 +32,23 @@ export const randDistrib1 = (a: Tensor1, rnd = op(), n = 1) => {
  */
 export const randDistrib2 = (a: Tensor2, rnd = op(), n = 1) => {
 	const {
-		data: adata,
-		shape: [rows, cols],
-		stride: [txa, tya],
-		offset: offa,
+		data,
+		offset,
+		shape: [sx, sy],
+		stride: [tx, ty],
 	} = a;
-	for (let i = 0; i < rows; i++) {
-		const ia = offa + i * txa;
-		for (let j = 0; j < cols; j++) {
-			adata[ia + j * tya] = rnd() * n;
+	let ox: number, x: number, y: number;
+	for (x = 0; x < sx; x++) {
+		ox = offset + x * tx;
+		for (y = 0; y < sy; y++) {
+			data[ox + y * ty] = rnd() * n;
 		}
 	}
 	return a;
 };
 
 /**
- * Same as {@link randDistrib}, optimized for 3D tensors.
+ * Same as {@link randDistrib} for 3D tensors.
  *
  * @param a
  * @param rnd
@@ -55,17 +56,54 @@ export const randDistrib2 = (a: Tensor2, rnd = op(), n = 1) => {
  */
 export const randDistrib3 = (a: Tensor3, rnd = op(), n = 1) => {
 	const {
-		data: adata,
-		shape: [slices, rows, cols],
-		stride: [txa, tya, tza],
-		offset: offa,
+		data,
+		offset,
+		shape: [sx, sy, sz],
+		stride: [tx, ty, tz],
 	} = a;
-	for (let i = 0; i < slices; i++) {
-		const $offa = offa + i * txa;
-		for (let j = 0; j < rows; j++) {
-			const ia = $offa + j * tya;
-			for (let k = 0; k < cols; k++) {
-				adata[ia + k * tza] = rnd() * n;
+	let ox: number, oy: number, x: number, y: number, z: number;
+	for (x = 0; x < sx; x++) {
+		ox = offset + x * tx;
+		for (y = 0; y < sy; y++) {
+			oy = ox + y * ty;
+			for (z = 0; z < sz; z++) {
+				data[oy + z * tz] = rnd() * n;
+			}
+		}
+	}
+	return a;
+};
+
+/**
+ * Same as {@link randDistrib} for 3D tensors.
+ *
+ * @param a
+ * @param rnd
+ * @param n
+ */
+export const randDistrib4 = (a: Tensor3, rnd = op(), n = 1) => {
+	const {
+		data,
+		offset,
+		shape: [sx, sy, sz, sw],
+		stride: [tx, ty, tz, tw],
+	} = a;
+	let ox: number,
+		oy: number,
+		oz: number,
+		x: number,
+		y: number,
+		z: number,
+		w: number;
+	for (x = 0; x < sx; x++) {
+		ox = offset + x * tx;
+		for (y = 0; y < sy; y++) {
+			oy = ox + y * ty;
+			for (z = 0; z < sz; z++) {
+				oz = oy + z * tz;
+				for (w = 0; w < sw; w++) {
+					data[oz + w * tw] = rnd() * n;
+				}
 			}
 		}
 	}
@@ -89,4 +127,11 @@ export const randDistrib3 = (a: Tensor3, rnd = op(), n = 1) => {
  */
 export const randDistrib = top<
 	(a: ITensor, rnd?: Fn0<number>, n?: number) => ITensor
->(0, undefined, randDistrib1, <any>randDistrib2, <any>randDistrib3);
+>(
+	0,
+	undefined,
+	randDistrib1,
+	<any>randDistrib2,
+	<any>randDistrib3,
+	<any>randDistrib4
+);
