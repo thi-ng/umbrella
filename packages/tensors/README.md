@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 206 standalone projects, maintained as part
+> This is one of 207 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -43,51 +43,54 @@ listed below are also based on this approach. The function signatures and naming
 conventions are closely aligned to the ones used by the
 [thi.ng/vectors](https://thi.ng/vectors) package.
 
-- [abs](https://docs.thi.ng/umbrella/tensors/variables/abs.html)
-- [add](https://docs.thi.ng/umbrella/tensors/variables/add.html)
-- [addN](https://docs.thi.ng/umbrella/tensors/variables/addN.html)
-- [argMax](https://docs.thi.ng/umbrella/tensors/variables/argMax.html)
-- [argMin](https://docs.thi.ng/umbrella/tensors/variables/argMin.html)
-- [clamp](https://docs.thi.ng/umbrella/tensors/variables/clamp.html)
-- [clampN](https://docs.thi.ng/umbrella/tensors/variables/clampN.html)
-- [cos](https://docs.thi.ng/umbrella/tensors/variables/cos.html)
-- [div](https://docs.thi.ng/umbrella/tensors/variables/div.html)
-- [divN](https://docs.thi.ng/umbrella/tensors/variables/divN.html)
-- [dot](https://docs.thi.ng/umbrella/tensors/variables/dot.html)
-- [exp](https://docs.thi.ng/umbrella/tensors/variables/exp.html)
-- [exp2](https://docs.thi.ng/umbrella/tensors/variables/exp2.html)
-- [log](https://docs.thi.ng/umbrella/tensors/variables/log.html)
-- [log2](https://docs.thi.ng/umbrella/tensors/variables/log2.html)
-- [mag](https://docs.thi.ng/umbrella/tensors/variables/mag.html)
-- [magSq](https://docs.thi.ng/umbrella/tensors/variables/magSq.html)
-- [max](https://docs.thi.ng/umbrella/tensors/variables/max.html)
-- [maxN](https://docs.thi.ng/umbrella/tensors/variables/maxN.html)
-- [min](https://docs.thi.ng/umbrella/tensors/variables/min.html)
-- [minN](https://docs.thi.ng/umbrella/tensors/variables/minN.html)
-- [mul](https://docs.thi.ng/umbrella/tensors/variables/mul.html)
-- [mulN](https://docs.thi.ng/umbrella/tensors/variables/mulN.html)
+- [abs](https://docs.thi.ng/umbrella/tensors/variables/abs.html): componentwise `Math.abs`
+- [add](https://docs.thi.ng/umbrella/tensors/variables/add.html): tensor-tensor addition
+- [addN](https://docs.thi.ng/umbrella/tensors/variables/addN.html): tensor-scalar addition
+- [argMax](https://docs.thi.ng/umbrella/tensors/variables/argMax.html): maximum component index/value
+- [argMin](https://docs.thi.ng/umbrella/tensors/variables/argMin.html): minimum component index/value
+- [clamp](https://docs.thi.ng/umbrella/tensors/variables/clamp.html): tensor-tensor interval clamping
+- [clampN](https://docs.thi.ng/umbrella/tensors/variables/clampN.html): tensor-scalar interval clamping
+- [cos](https://docs.thi.ng/umbrella/tensors/variables/cos.html): componentwise `Math.cos`
+- [diagonal](https://docs.thi.ng/umbrella/tensors/variables/diagonal.html): diagonal extraction
+- [div](https://docs.thi.ng/umbrella/tensors/variables/div.html): tensor-tensor division
+- [divN](https://docs.thi.ng/umbrella/tensors/variables/divN.html): tensor-scalar division
+- [dot](https://docs.thi.ng/umbrella/tensors/variables/dot.html): dot product
+- [exp](https://docs.thi.ng/umbrella/tensors/variables/exp.html): componentwise `Math.exp`
+- [exp2](https://docs.thi.ng/umbrella/tensors/variables/exp2.html): componentwise `2^x`
+- [log](https://docs.thi.ng/umbrella/tensors/variables/log.html): componentwise `Math.log`
+- [log2](https://docs.thi.ng/umbrella/tensors/variables/log2.html): componentwise `Math.log2`
+- [mag](https://docs.thi.ng/umbrella/tensors/variables/mag.html): tensor magnitude
+- [magSq](https://docs.thi.ng/umbrella/tensors/variables/magSq.html): tensor squared magnitude
+- [max](https://docs.thi.ng/umbrella/tensors/variables/max.html): tensor-tensor maximum
+- [maxN](https://docs.thi.ng/umbrella/tensors/variables/maxN.html): tensor-scalar maximum
+- [min](https://docs.thi.ng/umbrella/tensors/variables/min.html): tensor-tensor minimum
+- [minN](https://docs.thi.ng/umbrella/tensors/variables/minN.html): tensor-scalar maximum
+- [mul](https://docs.thi.ng/umbrella/tensors/variables/mul.html): tensor-tensor multiplication
+- [mulN](https://docs.thi.ng/umbrella/tensors/variables/mulN.html): tensor-scalar multiplication
 - [mulM](https://docs.thi.ng/umbrella/tensors/variables/mulM.html): matrix-matrix product
 - [mulV](https://docs.thi.ng/umbrella/tensors/variables/mulV.html): matrix-vector product
-- [normalize](https://docs.thi.ng/umbrella/tensors/variables/normalize.html)
-- [pow](https://docs.thi.ng/umbrella/tensors/variables/pow.html)
-- [powN](https://docs.thi.ng/umbrella/tensors/variables/powN.html)
+- [normalize](https://docs.thi.ng/umbrella/tensors/variables/normalize.html): tensor normalization (w/ optional length)
+- [pow](https://docs.thi.ng/umbrella/tensors/variables/pow.html): tensor-tensor `Math.pow`
+- [powN](https://docs.thi.ng/umbrella/tensors/variables/powN.html): tensor-scalar `Math.pow`
 - [product](https://docs.thi.ng/umbrella/tensors/variables/product.html): component product
-- [randDistrib](https://docs.thi.ng/umbrella/tensors/variables/randDistrib.html)
+- [randDistrib](https://docs.thi.ng/umbrella/tensors/variables/randDistrib.html): fill with random data from distribution fn
 - [relu](https://docs.thi.ng/umbrella/tensors/variables/relu.html): ReLU activation
 - [reluN](https://docs.thi.ng/umbrella/tensors/variables/reluN.html): leaky ReLU activation
 - [select](https://docs.thi.ng/umbrella/tensors/variables/select.html): generalization of argMin/Max
 - [set](https://docs.thi.ng/umbrella/tensors/variables/set.html): tensor setter
 - [setN](https://docs.thi.ng/umbrella/tensors/variables/setN.html): tensor setter w/ uniform scalar
 - [sigmoid](https://docs.thi.ng/umbrella/tensors/variables/sigmoid.html): Sigmoid activation
-- [sin](https://docs.thi.ng/umbrella/tensors/variables/sin.html)
+- [sin](https://docs.thi.ng/umbrella/tensors/variables/sin.html): componentwise `Math.sin`
 - [softMax](https://docs.thi.ng/umbrella/tensors/variables/softMax.html): Soft Max activation
-- [sqrt](https://docs.thi.ng/umbrella/tensors/variables/sqrt.html)
+- [sqrt](https://docs.thi.ng/umbrella/tensors/variables/sqrt.html): componentwise `Math.sqrt`
 - [step](https://docs.thi.ng/umbrella/tensors/variables/step.html): Threshold function (as as GLSL `step()`)
-- [sub](https://docs.thi.ng/umbrella/tensors/variables/sub.html)
-- [subN](https://docs.thi.ng/umbrella/tensors/variables/subN.html)
+- [sub](https://docs.thi.ng/umbrella/tensors/variables/sub.html): tensor-tensor subtraction
+- [subN](https://docs.thi.ng/umbrella/tensors/variables/subN.html): tensor-scalar subtraction
 - [sum](https://docs.thi.ng/umbrella/tensors/variables/sum.html): component sum
-- [tan](https://docs.thi.ng/umbrella/tensors/variables/tan.html)
-- [tanh](https://docs.thi.ng/umbrella/tensors/variables/tanh.html)
+- [svd](https://docs.thi.ng/umbrella/tensors/variables/sum.html): singular value decomposition
+- [tan](https://docs.thi.ng/umbrella/tensors/variables/tan.html): componentwise `Math.tan`
+- [tanh](https://docs.thi.ng/umbrella/tensors/variables/tanh.html): componentwise `Math.tanh`
+- [trace](https://docs.thi.ng/umbrella/tensors/variables/trace.html): matrix trace (diagonal component sum)
 
 ## Status
 
@@ -121,7 +124,7 @@ For Node.js REPL:
 const ten = await import("@thi.ng/tensors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 7.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 8.45 KB
 
 ## Dependencies
 

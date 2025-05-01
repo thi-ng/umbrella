@@ -55,7 +55,32 @@
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
-		"typescript"
+		"1d",
+		"2d",
+		"3d",
+		"4d",
+		"activation",
+		"algebra",
+		"array",
+		"data-oriented",
+		"datastructure",
+		"decomposition",
+		"diagonal",
+		"dotproduct",
+		"equality",
+		"interval",
+		"math",
+		"matrix",
+		"memory-mapped",
+		"nd",
+		"polymorphic",
+		"random",
+		"step",
+		"svd",
+		"tensor",
+		"typedarray",
+		"typescript",
+		"vector"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -119,6 +144,9 @@
 		},
 		"./defopttt": {
 			"default": "./defopttt.js"
+		},
+		"./diagonal": {
+			"default": "./diagonal.js"
 		},
 		"./div": {
 			"default": "./div.js"
@@ -239,6 +267,9 @@
 		},
 		"./sum": {
 			"default": "./sum.js"
+		},
+		"./svd": {
+			"default": "./svd.js"
 		},
 		"./tan": {
 			"default": "./tan.js"
