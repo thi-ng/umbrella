@@ -31,9 +31,10 @@ export const select1 = <T>(
 		stride: [tx],
 	} = a;
 	const arg: number[] = [-1];
-	let value = initial;
+	let value = initial,
+		v: T;
 	for (let x = 0; x < sx; x++) {
-		const v = xform(data[offset + x * tx]);
+		v = xform(data[offset + x * tx]);
 		if (pred(v, value)) {
 			value = v;
 			arg[0] = x;
@@ -63,11 +64,13 @@ export const select2 = <T>(
 		stride: [tx, ty],
 	} = a;
 	const arg: number[] = [-1, -1];
-	let value = initial;
-	for (let x = 0; x < sx; x++) {
-		const ox = offset + x * tx;
-		for (let y = 0; y < sy; y++) {
-			const v = xform(data[ox + y * ty]);
+	let value = initial,
+		v: T;
+	let ox: number, x: number, y: number;
+	for (x = 0; x < sx; x++) {
+		ox = offset + x * tx;
+		for (y = 0; y < sy; y++) {
+			v = xform(data[ox + y * ty]);
 			if (pred(v, value)) {
 				value = v;
 				arg[0] = x;
@@ -99,13 +102,15 @@ export const select3 = <T>(
 		stride: [tx, ty, tz],
 	} = a;
 	const arg: number[] = [-1, -1, -1];
-	let value = initial;
-	for (let x = 0; x < sx; x++) {
-		const ox = offset + x * tx;
-		for (let y = 0; y < sy; y++) {
-			const oy = ox + y * ty;
-			for (let z = 0; z < sz; z++) {
-				const v = xform(data[oy + z * tz]);
+	let value = initial,
+		v: T;
+	let ox: number, oy: number, x: number, y: number, z: number;
+	for (x = 0; x < sx; x++) {
+		ox = offset + x * tx;
+		for (y = 0; y < sy; y++) {
+			oy = ox + y * ty;
+			for (z = 0; z < sz; z++) {
+				v = xform(data[oy + z * tz]);
 				if (pred(v, value)) {
 					value = v;
 					arg[0] = x;
@@ -139,15 +144,23 @@ export const select4 = <T>(
 		stride: [tx, ty, tz, tw],
 	} = a;
 	const arg: number[] = [-1, -1, -1, -1];
-	let value = initial;
-	for (let x = 0; x < sx; x++) {
-		const ox = offset + x * tx;
-		for (let y = 0; y < sy; y++) {
-			const oy = ox + y * ty;
-			for (let z = 0; z < sz; z++) {
-				const oz = oy + z * tz;
-				for (let w = 0; w < sw; w++) {
-					const v = xform(data[oz + w * tw]);
+	let value = initial,
+		v: T;
+	let ox: number,
+		oy: number,
+		oz: number,
+		x: number,
+		y: number,
+		z: number,
+		w: number;
+	for (x = 0; x < sx; x++) {
+		ox = offset + x * tx;
+		for (y = 0; y < sy; y++) {
+			oy = ox + y * ty;
+			for (z = 0; z < sz; z++) {
+				oz = oy + z * tz;
+				for (w = 0; w < sw; w++) {
+					v = xform(data[oz + w * tw]);
 					if (pred(v, value)) {
 						value = v;
 						arg[0] = x;
