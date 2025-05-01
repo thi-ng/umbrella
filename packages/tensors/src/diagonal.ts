@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sum as vsum } from "@thi.ng/vectors/sum";
 import type { ITensor } from "./api.js";
 import { sum } from "./sum.js";

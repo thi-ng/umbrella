@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, NumericArray } from "@thi.ng/api";
 import { swap } from "@thi.ng/arrays/swap";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
