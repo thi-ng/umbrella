@@ -68,6 +68,22 @@ conventions are closely aligned to the ones used by the
 - [tanh](https://docs.thi.ng/umbrella/tensors/variables/tanh.html): componentwise `Math.tanh`
 - [trace](https://docs.thi.ng/umbrella/tensors/variables/trace.html): matrix trace (diagonal component sum)
 
+### Broadcasting support
+
+Most of the built-in functions taking two or more tensors as input are
+supporting broadcasting, i.e. the shapes of the individual arguments only need
+to be compatible, not identical. The operators attempt to adjust the tensor
+shape & stride configurations to be compatible, applying the steps and rules
+below:
+
+- If the dimensions are unequal, the smaller tensor's dimensions will be
+  increased as needed. The size of each added dimension will be set to 1 and its
+  stride set to zero.
+- The size of each dimension will be compared and only the following cases are
+  accepted (otherwise will throw an error): sizes are equal or one side is 1
+- Any of the tensors requiring shape adjustments will be shallow copied with
+  new shape/stride config applied.
+
 {{meta.status}}
 
 {{repo.supportPackages}}
