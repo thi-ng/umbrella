@@ -54,6 +54,7 @@ export * from "./storage.js";
 export * from "./sub.js";
 export * from "./subn.js";
 export * from "./sum.js";
+export * from "./svd.js";
 export * from "./tan.js";
 export * from "./tanh.js";
 export * from "./tensor.js";
