@@ -113,6 +113,17 @@ export interface ITensor<T = number>
 
 	[Symbol.iterator](): IterableIterator<T>;
 
+	/**
+	 * Internal use only. Creates a shallow view used for broadcasting
+	 * operators. See {@link broadcast} for details.
+	 *
+	 * @param shape
+	 * @param stride
+	 *
+	 * @internal
+	 */
+	broadcast(shape: number[], stride: number[]): this;
+
 	empty(storage?: ITensorStorage<T>): this;
 
 	index(pos: NumericArray): number;
