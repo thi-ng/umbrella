@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-30T12:52:32Z
+- **Last updated**: 2025-05-02T08:39:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,31 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.2.0) (2025-05-02)
+
+#### 🚀 Features
+
+- add `zeroes()`/`ones()` ([eb6f82d](https://github.com/thi-ng/umbrella/commit/eb6f82d))
+- add singular value decomp `svd()` ([8902157](https://github.com/thi-ng/umbrella/commit/8902157))
+- add `diagonal()` and `trace()` fns ([47a0e73](https://github.com/thi-ng/umbrella/commit/47a0e73))
+- add broadcast(), add ITensor.broadcast() ([b9b2dfc](https://github.com/thi-ng/umbrella/commit/b9b2dfc))
+- update all tensor ops & op generators ([47b3e4e](https://github.com/thi-ng/umbrella/commit/47b3e4e))
+  - add broadcasting support where possible
+  - update all `defOpXXX` HOF generators
+  - replace & remove various `TensorOpXXX` function types
+  - update all tensor ops, only keep one version per op
+  - update doc strings
+
+#### 🩹 Bug fixes
+
+- add missing `randDistrib4()` ([eb2ded2](https://github.com/thi-ng/umbrella/commit/eb2ded2))
+
+#### ♻️ Refactoring
+
+- update internal local var handling in various tensor ops ([c02c2a6](https://github.com/thi-ng/umbrella/commit/c02c2a6))
+- internal updates dot(), identity(), select() ([c0ed334](https://github.com/thi-ng/umbrella/commit/c0ed334))
+- update top() return type ([dcab223](https://github.com/thi-ng/umbrella/commit/dcab223))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.1.0) (2025-04-30)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-30T12:52:32Z
+- **Last updated**: 2025-05-02T08:39:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [8.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.1.1) (2025-05-02)
+
+#### 🩹 Bug fixes
+
+- add size check in `equals2/3/4()` fns ([4f3b9a5](https://github.com/thi-ng/umbrella/commit/4f3b9a5))
 
 ## [8.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.1.0) (2025-04-30)
 
