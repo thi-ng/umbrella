@@ -4,7 +4,7 @@ import { tensor, type Tensor1, type Tensor2 } from "./tensor.js";
 
 /**
  * Matrix-vector multiplication. If `out` is null, a new 1D tensor will be
- * created, using vector `b`'s storage impl.
+ * created, using vector `b`'s type and storage impl.
  *
  * @param out
  * @param a

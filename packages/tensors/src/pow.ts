@@ -3,8 +3,9 @@ import { defOpTT } from "./defoptt.js";
 
 /**
  * Componentwise computes `Math.pow` of given nD tensors and writes result to
- * `out`. If `out` is null, mutates original. Supports broadcasting (see
- * {@link broadcast} for details).
+ * `out`. If `out` is null, creates a new tensor using `a`'s type and storage
+ * provider and shape as determined by broadcasting rules (see {@link broadcast}
+ * for details).
  *
  * @param out - output tensor
  * @param a - input tensor
