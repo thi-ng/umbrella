@@ -62,6 +62,7 @@
 		"activation",
 		"algebra",
 		"array",
+		"broadcast",
 		"data-oriented",
 		"datastructure",
 		"decomposition",
@@ -111,6 +112,9 @@
 		},
 		"./api": {
 			"default": "./api.js"
+		},
+		"./broadcast": {
+			"default": "./broadcast.js"
 		},
 		"./clamp": {
 			"default": "./clamp.js"
