@@ -3,13 +3,17 @@ import type { MultiVecOpRoVV, VecOpRoVV } from "./api.js";
 import { vop } from "./vop.js";
 
 export const equals2: VecOpRoVV<boolean> = (a, b) =>
-	a[0] === b[0] && a[1] === b[1];
+	a.length === b.length && a[0] === b[0] && a[1] === b[1];
 
 export const equals3: VecOpRoVV<boolean> = (a, b) =>
-	a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
+	a.length === b.length && a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
 
 export const equals4: VecOpRoVV<boolean> = (a, b) =>
-	a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
+	a.length === b.length &&
+	a[0] === b[0] &&
+	a[1] === b[1] &&
+	a[2] === b[2] &&
+	a[3] === b[3];
 
 export const equals: MultiVecOpRoVV<boolean> = vop(
 	0,
