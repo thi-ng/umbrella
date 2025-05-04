@@ -1,6 +1,5 @@
 import { peek } from "@thi.ng/arrays/peek";
 import { isPlainObject } from "@thi.ng/checks";
-import { range as $range } from "@thi.ng/transducers/range";
 import type { TensorOpts } from "./api.js";
 import { tensor, Tensor1 } from "./tensor.js";
 
@@ -31,6 +30,23 @@ export function range(
 ): Tensor1;
 export function range(...args: any[]) {
 	const opts = isPlainObject(peek(args)) ? args.pop() : undefined;
-	const data = [...$range(...(<[number]>args))];
+	let [from, to, step] = args;
+	if (to === undefined) {
+		to = from;
+		from = 0;
+	}
+	step = step === undefined ? (from < to ? 1 : -1) : step;
+	const data: number[] = [];
+	if (step > 0) {
+		while (from < to) {
+			data.push(from);
+			from += step;
+		}
+	} else if (step < 0) {
+		while (from > to) {
+			data.push(from);
+			from += step;
+		}
+	}
 	return tensor("num", [data.length], { ...opts, data });
 }
