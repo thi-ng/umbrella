@@ -9,6 +9,6 @@ import { defOpRTT } from "./defoprtt.js";
  * @param b - input tensor
  */
 export const dot = defOpRTT(
-	(acc, x, y) => acc + x * y,
+	(acc, adata, bdata, ia, ib) => acc + adata[ia] * bdata[ib],
 	() => 0
 );

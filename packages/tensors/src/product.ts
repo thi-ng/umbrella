@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import { $mul } from "@thi.ng/vectors/ops";
 import { defOpRT } from "./defoprt.js";
 
 /**
@@ -7,4 +6,7 @@ import { defOpRT } from "./defoprt.js";
  *
  * @param a - input tensor
  */
-export const product = defOpRT($mul, () => 1);
+export const product = defOpRT(
+	(acc, data, i) => acc * data[i],
+	() => 1
+);

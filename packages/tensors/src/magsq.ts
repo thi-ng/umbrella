@@ -7,6 +7,6 @@ import { defOpRT } from "./defoprt.js";
  * @param a - input tensor
  */
 export const magSq = defOpRT(
-	(acc, x) => acc + x * x,
+	(acc, data, i) => acc + data[i] ** 2,
 	() => 0
 );

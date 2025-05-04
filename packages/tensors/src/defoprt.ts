@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn0, Fn2 } from "@thi.ng/api";
-import type { TensorOpRT } from "./api.js";
+import type { Fn0 } from "@thi.ng/api";
+import type { TensorData, TensorOpRT } from "./api.js";
 import { top } from "./top.js";
 
 /**
@@ -11,7 +11,10 @@ import { top } from "./top.js";
  * @param rfn
  * @param init
  */
-export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
+export const defOpRT = <A = number, B = A>(
+	rfn: (acc: B, data: TensorData<A>, i: number) => B,
+	init: Fn0<B>
+) => {
 	const f1: TensorOpRT<A, B> = (a) => {
 		const {
 			data,
@@ -21,7 +24,7 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 		} = a;
 		let res = init();
 		for (let x = 0; x < sx; x++) {
-			res = rfn(res, data[offset + x * tx]);
+			res = rfn(res, data, offset + x * tx);
 		}
 		return res;
 	};
@@ -38,7 +41,7 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 		for (let x = 0; x < sx; x++) {
 			ox = offset + x * tx;
 			for (let y = 0; y < sy; y++) {
-				res = rfn(res, data[ox + y * ty]);
+				res = rfn(res, data, ox + y * ty);
 			}
 		}
 		return res;
@@ -58,7 +61,7 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 			for (let y = 0; y < sy; y++) {
 				oy = ox + y * ty;
 				for (let z = 0; z < sz; z++) {
-					res = rfn(res, data[oy + z * tz]);
+					res = rfn(res, data, oy + z * tz);
 				}
 			}
 		}
@@ -81,7 +84,7 @@ export const defOpRT = <A = number, B = A>(rfn: Fn2<B, A, B>, init: Fn0<B>) => {
 				for (let z = 0; z < sz; z++) {
 					oz = oy + z * tz;
 					for (let w = 0; w < sw; w++) {
-						res = rfn(res, data[oz + w * tw]);
+						res = rfn(res, data, oz + w * tw);
 					}
 				}
 			}

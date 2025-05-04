@@ -1,20 +1,28 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn0, Fn3 } from "@thi.ng/api";
-import type { ITensor, TensorOpRTT } from "./api.js";
+import type { Fn0 } from "@thi.ng/api";
+import type { ITensor, TensorData, TensorOpRTT } from "./api.js";
 import { broadcast } from "./broadcast.js";
 
 /**
  * Higher order tensor reduction op factory. Takes given reduction `rfn` and
  * `init` function to produce an initial result. Returns a {@link TensorOpRTT}
- * applying the given function componentwise with broadcasting rules (see
- * {@link broadcast} for details).
+ * applying the given function componentwise, by default with broadcasting rules
+ * (see {@link broadcast} for details).
  *
  * @param rfn
  * @param init
+ * @param useBroadcast
  */
 export const defOpRTT = <A = number, B = A>(
-	rfn: Fn3<B, A, A, B>,
-	init: Fn0<B>
+	rfn: (
+		acc: B,
+		adata: TensorData<A>,
+		bdata: TensorData<A>,
+		ia: number,
+		ib: number
+	) => B,
+	init: Fn0<B>,
+	useBroadcast = true
 ): TensorOpRTT<A, B> => {
 	const f1: TensorOpRTT<A, B> = (a, b) => {
 		const {
@@ -30,7 +38,7 @@ export const defOpRTT = <A = number, B = A>(
 		} = b;
 		let res = init();
 		for (let x = 0; x < sx; x++) {
-			res = rfn(res, adata[oa + x * txa], bdata[ob + x * txb]);
+			res = rfn(res, adata, bdata, oa + x * txa, ob + x * txb);
 		}
 		return res;
 	};
@@ -53,7 +61,7 @@ export const defOpRTT = <A = number, B = A>(
 			oax = oa + x * txa;
 			obx = ob + x * txb;
 			for (let y = 0; y < sy; y++) {
-				res = rfn(res, adata[oax + y * tya], bdata[obx + y * tyb]);
+				res = rfn(res, adata, bdata, oax + y * tya, obx + y * tyb);
 			}
 		}
 		return res;
@@ -80,7 +88,7 @@ export const defOpRTT = <A = number, B = A>(
 				oay = oax + y * tya;
 				oby = obx + y * tyb;
 				for (let z = 0; z < sz; z++) {
-					res = rfn(res, adata[oay + z * tza], bdata[oby + z * tzb]);
+					res = rfn(res, adata, bdata, oay + z * tza, oby + z * tzb);
 				}
 			}
 		}
@@ -118,8 +126,10 @@ export const defOpRTT = <A = number, B = A>(
 					for (let w = 0; w < sw; w++) {
 						res = rfn(
 							res,
-							adata[oaz + w * twa],
-							bdata[obz + w * twb]
+							adata,
+							bdata,
+							oaz + w * twa,
+							obz + w * twb
 						);
 					}
 				}
@@ -130,10 +140,12 @@ export const defOpRTT = <A = number, B = A>(
 
 	const impls = [, f1, f2, f3, f4];
 
-	const wrapper = (a: ITensor<A>, b: ITensor<A>) => {
-		const { shape, a: $a, b: $b } = broadcast(a, b);
-		return impls[shape.length]!($a, $b);
-	};
+	const wrapper = useBroadcast
+		? (a: ITensor<A>, b: ITensor<A>) => {
+				const { shape, a: $a, b: $b } = broadcast(a, b);
+				return impls[shape.length]!($a, $b);
+		  }
+		: (a: ITensor<A>, b: ITensor<A>) => impls[a.dim]!(a, b);
 
 	return <any>wrapper;
 };

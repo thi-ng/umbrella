@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import { $add } from "@thi.ng/vectors/ops";
 import { defOpRT } from "./defoprt.js";
 
 /**
@@ -7,4 +6,7 @@ import { defOpRT } from "./defoprt.js";
  *
  * @param a - input tensor
  */
-export const sum = defOpRT($add, () => 0);
+export const sum = defOpRT(
+	(acc, data, i) => acc + data[i],
+	() => 0
+);
