@@ -60,8 +60,8 @@ export const broadcast = <T = number>(a: ITensor<T>, b: ITensor<T>) => {
 	const shape = <Shape>max([], ashape, bshape);
 	return {
 		shape,
-		a: bcastA ? a.broadcast(shape, astride) : a,
-		b: bcastB ? b.broadcast(shape, bstride) : b,
+		a: bcastA ? a.broadcast(shape, <Shape>astride) : a,
+		b: bcastB ? b.broadcast(shape, <Shape>bstride) : b,
 	};
 };
 

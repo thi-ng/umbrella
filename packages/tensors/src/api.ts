@@ -119,7 +119,7 @@ export interface ITensor<T = number>
 	 *
 	 * @internal
 	 */
-	broadcast(shape: number[], stride: number[]): this;
+	broadcast<S extends Shape>(shape: S, stride: S): ShapeTensor<S, T>;
 
 	empty(storage?: ITensorStorage<T>): this;
 

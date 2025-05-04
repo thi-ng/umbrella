@@ -57,9 +57,9 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	abstract [Symbol.iterator](): IterableIterator<T>;
 
-	broadcast(shape: number[], stride: number[]) {
-		return <typeof this>(
-			new (<TensorCtor<T>>this.constructor)(
+	broadcast<S extends Shape>(shape: S, stride: S): ShapeTensor<S, T> {
+		return <any>(
+			new TENSOR_IMPLS[shape.length]!(
 				this.type,
 				this.storage,
 				this.data,
