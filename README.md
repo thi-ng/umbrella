@@ -312,12 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-05-02
+As of: 2025-05-08
 
 | Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
 |:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/boids`](./packages/boids)     | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)     | [changelog](./packages/boids/CHANGELOG.md)   |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors) | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors) | [changelog](./packages/tensors/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors) | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors) | [changelog](./packages/vectors/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
