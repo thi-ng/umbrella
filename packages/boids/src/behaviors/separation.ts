@@ -1,12 +1,25 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { FnU2 } from "@thi.ng/api";
 import type { Vec } from "@thi.ng/vectors";
 import type { IBoidBehavior, ScalarOrField } from "../api.js";
 import type { Boid } from "../boid.js";
 import { __ensureFn } from "../internal/ensure.js";
 
+/**
+ * Separation behavior. Attempts to repel other boids closer the given
+ * `minDist`. The behavior itself can be weighted via `weight`. The force for
+ * resolving individual boid "collisions" can be amplified via optional `amp`
+ * function, which receives current boid as first arg and current neighbor as
+ * second. The default `amp` is uniformly 1.
+ *
+ * @param minDist
+ * @param weight
+ * @param amp
+ */
 export const separation = (
 	minDist: ScalarOrField,
-	weight: ScalarOrField = 1
+	weight: ScalarOrField = 1,
+	amp?: FnU2<Boid, number>
 ): IBoidBehavior => {
 	const $minDist = __ensureFn(minDist);
 	const force: Vec = [];
@@ -24,10 +37,15 @@ export const separation = (
 				n = neighbors[i];
 				if (n !== boid) {
 					sub(delta, pos, n.pos.curr);
-					maddN(force, delta, 1 / (magSq(delta) + 1e-6), force);
+					maddN(
+						force,
+						delta,
+						(amp?.(boid, n) ?? 1) / (magSq(delta) + 1e-6),
+						force
+					);
 				}
 			}
-			return boid.computeSteer(force, num - 1);
+			return boid.averageForce(force, num - 1);
 		},
 	};
 };
