@@ -123,7 +123,27 @@ export interface ITensor<T = number>
 
 	empty(storage?: ITensorStorage<T>): this;
 
+	/**
+	 * Computes linear array index from given grid position. Reverse-op of
+	 * {@link ITensor.position}.
+	 *
+	 * @param pos
+	 */
 	index(pos: NumericArray): number;
+
+	/**
+	 * Computes nD grid position for given linear array index. Reverse-op of
+	 * {@link ITensor.index}.
+	 *
+	 * @remarks
+	 * **CAUTION:** Currently only supports tensors with positive strides,
+	 * otherwise will yield incorrect results! Tensors with negative strides
+	 * (aka flipped axes in reverse order) need to be first packed via
+	 * {@link ITensor.pack}.
+	 *
+	 * @param index
+	 */
+	position(index: number): number[];
 
 	get(pos: NumericArray): T;
 

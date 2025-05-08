@@ -114,6 +114,17 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	abstract index(pos: NumericArray): number;
 
+	position(index: number) {
+		const { order, stride } = this;
+		index -= this.offset;
+		const idx = order.map((o) => {
+			const i = ~~(index / stride[o]);
+			index -= i * stride[o];
+			return i;
+		});
+		return swizzle(order)(idx);
+	}
+
 	abstract get(pos: NumericArray): T;
 
 	abstract set(pos: NumericArray, v: T): this;
@@ -250,6 +261,11 @@ export class Tensor1<T = number> extends ATensor<T> {
 
 	index([x]: NumericArray) {
 		return this.offset + x * this.stride[0];
+	}
+
+	position(index: number): number[] {
+		// sign(this.stride[0]) * floor((index - this.offset) / abs(this.stride[0]))
+		return [~~((index - this.offset) / this.stride[0])];
 	}
 
 	get([x]: NumericArray) {
@@ -691,7 +707,7 @@ export const ones = <S extends Shape>(
 	return res;
 };
 
-export const shapeToStride = (shape: NumericArray) => {
+export const shapeToStride = (shape: number[]) => {
 	const n = shape.length;
 	const stride = new Array(n);
 	for (let i = n, s = 1; i-- > 0; s *= shape[i]) {
