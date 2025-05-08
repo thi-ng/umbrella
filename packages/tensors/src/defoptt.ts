@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { FnU2 } from "@thi.ng/api";
-import type { TensorOpTT, ITensor } from "./api.js";
+import type { ITensor, TensorOpTT } from "./api.js";
 import { broadcast } from "./broadcast.js";
 import { ensureShape } from "./errors.js";
 import { tensor } from "./tensor.js";

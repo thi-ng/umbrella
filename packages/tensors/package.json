@@ -170,6 +170,9 @@
 		"./exp2": {
 			"default": "./exp2.js"
 		},
+		"./filtered-indices": {
+			"default": "./filtered-indices.js"
+		},
 		"./format": {
 			"default": "./format.js"
 		},
@@ -227,6 +230,9 @@
 		"./rand-distrib": {
 			"default": "./rand-distrib.js"
 		},
+		"./range": {
+			"default": "./range.js"
+		},
 		"./relu": {
 			"default": "./relu.js"
 		},
@@ -274,6 +280,9 @@
 		},
 		"./svd": {
 			"default": "./svd.js"
+		},
+		"./swap": {
+			"default": "./swap.js"
 		},
 		"./tan": {
 			"default": "./tan.js"
