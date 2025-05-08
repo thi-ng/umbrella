@@ -28,15 +28,18 @@ export const cohesion = (
 		update: (boid) => {
 			const { add, mulN, setN } = boid.api;
 			const neighbors = boid.neighbors($maxDist(boid), boid.pos.curr);
-			const num = neighbors.length;
 			setN(centroid, 0);
+			let used = 0;
+			const num = neighbors.length;
 			for (let i = 0; i < num; i++) {
 				const n = neighbors[i];
-				if (n !== boid && pred(boid, n))
+				if (n !== boid && pred(boid, n)) {
 					add(centroid, centroid, n.pos.curr);
+					used++;
+				}
 			}
-			return num > 1
-				? boid.steerTowards(mulN(centroid, centroid, 1 / (num - 1)))
+			return used > 1
+				? boid.steerTowards(mulN(centroid, centroid, 1 / (used - 1)))
 				: centroid;
 		},
 	};
