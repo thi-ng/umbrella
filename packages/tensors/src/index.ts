@@ -22,6 +22,7 @@ export * from "./dot.js";
 export * from "./errors.js";
 export * from "./exp.js";
 export * from "./exp2.js";
+export * from "./filtered-indices.js";
 export * from "./format.js";
 export * from "./identity.js";
 export * from "./log.js";
