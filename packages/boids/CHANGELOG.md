@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-30T12:52:32Z
+- **Last updated**: 2025-05-08T15:13:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/boids@1.1.0) (2025-05-08)
+
+#### 🚀 Features
+
+- add optional amp param for behaviors ([74720a5](https://github.com/thi-ng/umbrella/commit/74720a5))
+  - update alignment(), cohesion(), separation() behaviors
+- add optional `BoidOpts.id` ([965c2ad](https://github.com/thi-ng/umbrella/commit/965c2ad))
+
+#### ♻️ Refactoring
+
+- rename Boid internals ([8bdd9cd](https://github.com/thi-ng/umbrella/commit/8bdd9cd))
+  - rename `.computeSteer()` => `.averageForce()`
+  - rename `.limitSteer()` => `.limitForce()`
+  - add docs
 
 ### [1.0.34](https://github.com/thi-ng/umbrella/tree/@thi.ng/boids@1.0.34) (2024-06-21)
 

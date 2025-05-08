@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-02T08:39:24Z
+- **Last updated**: 2025-05-08T15:13:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,25 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.3.0) (2025-05-08)
+
+#### 🚀 Features
+
+- add swap(), update defOpRT/TT() fns ([5d2dd2a](https://github.com/thi-ng/umbrella/commit/5d2dd2a))
+- add range() tensor factory ([a8a6365](https://github.com/thi-ng/umbrella/commit/a8a6365))
+- add ITensor.position() & impls ([595764d](https://github.com/thi-ng/umbrella/commit/595764d))
+- add filteredIndices() & presets ([edd8983](https://github.com/thi-ng/umbrella/commit/edd8983))
+  - add nonZeroIndices()
+  - add negativeIndices(), positiveIndices()
+
+#### 🩹 Bug fixes
+
+- update ITensor.broadcast() return type ([f7b2e7a](https://github.com/thi-ng/umbrella/commit/f7b2e7a))
+
+#### ♻️ Refactoring
+
+- update range() impl (w/o dependencies) ([ce89d71](https://github.com/thi-ng/umbrella/commit/ce89d71))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.2.0) (2025-05-02)
 
