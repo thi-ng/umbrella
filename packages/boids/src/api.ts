@@ -8,6 +8,10 @@ export type GlobalConstraint = Fn2<Vec, Boid, Vec>;
 
 export interface BoidOpts {
 	/**
+	 * Optional ID for this boid.
+	 */
+	id?: number;
+	/**
 	 * Boid behaviors
 	 */
 	behaviors: IBoidBehavior[];
