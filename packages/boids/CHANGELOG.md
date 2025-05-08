@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-08T16:48:10Z
+- **Last updated**: 2025-05-08T16:55:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/boids@1.1.2) (2025-05-08)
+
+#### 🩹 Bug fixes
+
+- update cohesion(), count used neighbors only ([9eef80c](https://github.com/thi-ng/umbrella/commit/9eef80c))
 
 ### [1.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/boids@1.1.1) (2025-05-08)
 
