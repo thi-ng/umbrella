@@ -38,8 +38,8 @@ export const cohesion = (
 					used++;
 				}
 			}
-			return used > 1
-				? boid.steerTowards(mulN(centroid, centroid, 1 / (used - 1)))
+			return used > 0
+				? boid.steerTowards(mulN(centroid, centroid, 1 / used))
 				: centroid;
 		},
 	};
