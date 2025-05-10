@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays/peek";
 import { isPlainObject } from "@thi.ng/checks";
 import type { TensorOpts } from "./api.js";
