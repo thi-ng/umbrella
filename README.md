@@ -312,12 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-05-08
+As of: 2025-05-10
 
-| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
-|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/boids`](./packages/boids)     | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)     | [changelog](./packages/boids/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors) | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors) | [changelog](./packages/tensors/CHANGELOG.md) |
+| Status                                        | Package                                               | Version                                                                                                                     | Changelog                                           |
+|:----------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/boids`](./packages/boids)                   | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)                   | [changelog](./packages/boids/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors)               | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)               | [changelog](./packages/tensors/CHANGELOG.md)        |
 
 ### Algorithms & data structures
 
@@ -347,6 +348,7 @@ As of: 2025-05-08
 | [`@thi.ng/resolve-map`](./packages/resolve-map)   | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)   | [changelog](./packages/resolve-map/CHANGELOG.md)  | DAG computations & value resolution            |
 | [`@thi.ng/sorted-map`](./packages/sorted-map)     | [![version](https://img.shields.io/npm/v/@thi.ng/sorted-map.svg)](https://www.npmjs.com/package/@thi.ng/sorted-map)     | [changelog](./packages/sorted-map/CHANGELOG.md)   | Sorted map & set datastructure                 |
 | [`@thi.ng/sparse-set`](./packages/sparse-set)     | [![version](https://img.shields.io/npm/v/@thi.ng/sparse-set.svg)](https://www.npmjs.com/package/@thi.ng/sparse-set)     | [changelog](./packages/sparse-set/CHANGELOG.md)   | Sparse set datastructure                       |
+| [`@thi.ng/tensors`](./packages/tensors)           | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)           | [changelog](./packages/tensors/CHANGELOG.md)      | 1D-4D tensors, views & operations              |
 | [`@thi.ng/trie`](./packages/trie)                 | [![version](https://img.shields.io/npm/v/@thi.ng/trie.svg)](https://www.npmjs.com/package/@thi.ng/trie)                 | [changelog](./packages/trie/CHANGELOG.md)         | Trie-based map datastructure w/ prefix queries |
 | [`@thi.ng/vclock`](./packages/vclock)             | [![version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)             | [changelog](./packages/vclock/CHANGELOG.md)       | Vector clock functions / comparators           |
 | [`@thi.ng/zipper`](./packages/zipper)             | [![version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)             | [changelog](./packages/zipper/CHANGELOG.md)       | Immutable tree editing / navigation            |
