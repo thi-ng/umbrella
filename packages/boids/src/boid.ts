@@ -22,6 +22,12 @@ export class Boid implements ITimeStep {
 	region: Radial<Boid>;
 	opts: BoidOpts;
 
+	/**
+	 * Pre-allocated vector for force accumulation, used by/for behavior
+	 * updates.
+	 */
+	force: Vec;
+
 	constructor(
 		opts: BoidOpts,
 		api: VecAPI,
@@ -43,6 +49,7 @@ export class Boid implements ITimeStep {
 			constrain(maddN(pos, this.vel.curr, dt, pos), this)
 		);
 		this.region = new Radial<Boid>(distance, pos, 1);
+		this.force = api.zeroes();
 	}
 
 	/**
