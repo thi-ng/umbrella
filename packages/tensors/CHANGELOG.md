@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-10T08:50:06Z
+- **Last updated**: 2025-05-12T07:03:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.4.0) (2025-05-12)
+
+#### 🚀 Features
+
+- add release() handling for tensors ([da06312](https://github.com/thi-ng/umbrella/commit/da06312))
+- add data type support for range() options ([90d02bc](https://github.com/thi-ng/umbrella/commit/90d02bc))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.3.0) (2025-05-08)
 
