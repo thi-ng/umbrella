@@ -95,6 +95,13 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 		);
 	}
 
+	/**
+	 * Calls {@link ITensorStorage.release} with this tensor's data.
+	 */
+	release() {
+		return this.storage.release(this.data);
+	}
+
 	equiv(o: any) {
 		return (
 			this === o ||

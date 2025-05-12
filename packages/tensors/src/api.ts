@@ -5,6 +5,7 @@ import type {
 	IEqualsDelta,
 	IEquiv,
 	ILength,
+	IRelease,
 	Maybe,
 	NumericArray,
 } from "@thi.ng/api";
@@ -17,7 +18,7 @@ export interface TensorData<T = number> extends Iterable<T>, ILength {
 
 export type Type = $Type | "num" | "str";
 
-export type NumType = Type | "num";
+export type NumType = $Type | "num";
 
 export type Shape1 = [number];
 export type Shape2 = [number, number];
@@ -94,7 +95,8 @@ export interface TensorFromArrayOpts<T extends Type, V> {
 export interface ITensor<T = number>
 	extends ICopy<ITensor<T>>,
 		IEquiv,
-		IEqualsDelta<ITensor<T>> {
+		IEqualsDelta<ITensor<T>>,
+		IRelease {
 	readonly type: Type;
 	readonly storage: ITensorStorage<T>;
 	readonly data: TensorData<T>;
@@ -184,8 +186,26 @@ export interface TensorCtor<T = number> {
 }
 
 export interface ITensorStorage<T> {
+	/**
+	 * Attempts to allocate/create an array for given number of items. Throws an
+	 * error if unsuccessful.
+	 *
+	 * @param size
+	 */
 	alloc(size: number): TensorData<T>;
+	/**
+	 * Attempts to allocate/create an array for given iterable. Throws an
+	 * error if unsuccessful.
+	 *
+	 * @param iter
+	 */
 	from(iter: Iterable<T>): TensorData<T>;
+	/**
+	 * Attempts to release the array/memory used by given buffer. Returns true
+	 * if successful.
+	 *
+	 * @param buf
+	 */
 	release(buf: TensorData<T>): boolean;
 }
 
