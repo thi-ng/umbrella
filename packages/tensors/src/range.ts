@@ -1,8 +1,18 @@
 // SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays/peek";
 import { isPlainObject } from "@thi.ng/checks";
-import type { TensorOpts } from "./api.js";
+import type { NumType, TensorOpts } from "./api.js";
 import { tensor, Tensor1 } from "./tensor.js";
+
+export interface RangeOpts<T extends NumType>
+	extends Pick<TensorOpts<T, [number]>, "storage"> {
+	/**
+	 * Tensor data type.
+	 *
+	 * @defaultValue "num"
+	 */
+	type: T;
+}
 
 /**
  * Creates a 1D tensor of monotonically increasing values in the interval `[0,max)`.
@@ -10,9 +20,9 @@ import { tensor, Tensor1 } from "./tensor.js";
  * @param max
  * @param opts
  */
-export function range(
+export function range<T extends NumType>(
 	max: number,
-	opts?: Pick<TensorOpts<number, any>, "storage">
+	opts?: RangeOpts<T>
 ): Tensor1;
 /**
  * Creates a 1D tensor of monotonically increasing values in the interval
@@ -23,20 +33,21 @@ export function range(
  * @param to
  * @param opts
  */
-export function range(
+export function range<T extends NumType>(
 	from: number,
 	to: number,
 	step?: number,
-	opts?: Pick<TensorOpts<number, any>, "storage">
+	opts?: RangeOpts<T>
 ): Tensor1;
 export function range(...args: any[]) {
 	const opts = isPlainObject(peek(args)) ? args.pop() : undefined;
+	const type = opts?.type ?? "num";
 	let [from, to, step] = args;
 	if (to === undefined) {
 		to = from;
 		from = 0;
 	}
-	step = step === undefined ? (from < to ? 1 : -1) : step;
+	step = step ?? (from < to ? 1 : -1);
 	const data: number[] = [];
 	if (step > 0) {
 		while (from < to) {
@@ -49,5 +60,5 @@ export function range(...args: any[]) {
 			from += step;
 		}
 	}
-	return tensor("num", [data.length], { ...opts, data });
+	return tensor(type, [data.length], { ...opts, copy: type !== "num", data });
 }
