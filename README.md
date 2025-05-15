@@ -312,12 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-05-10
+As of: 2025-05-16
 
 | Status                                        | Package                                               | Version                                                                                                                     | Changelog                                           |
 |:----------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/boids`](./packages/boids)                   | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)                   | [changelog](./packages/boids/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/router`](./packages/router)                 | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                 | [changelog](./packages/router/CHANGELOG.md)         |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors)               | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)               | [changelog](./packages/tensors/CHANGELOG.md)        |
 
 ### Algorithms & data structures
