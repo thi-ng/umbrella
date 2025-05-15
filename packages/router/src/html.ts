@@ -51,7 +51,8 @@ export class HTMLRouter<T = any> extends Router<T> {
 		const old = this.current;
 		const route = super.route(src, ctx);
 		if (route && !equiv(route, old)) {
-			this.currentPath = this.format(route);
+			this.currentPath =
+				this.format(route) + (this.useFragment ? "" : location.search);
 			if (mode === "push") {
 				history.pushState(this.currentPath, "", this.currentPath);
 			} else if (mode === "replace") {
