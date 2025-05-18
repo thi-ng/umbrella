@@ -1,15 +1,19 @@
 // SPDX-License-Identifier: Apache-2.0
 import { abs4 } from "@thi.ng/vectors/abs";
 import { acos4 } from "@thi.ng/vectors/acos";
+import { acosh4 } from "@thi.ng/vectors/acosh";
 import { add4 } from "@thi.ng/vectors/add";
 import { addN4 } from "@thi.ng/vectors/addn";
 import { ZERO4 } from "@thi.ng/vectors/api";
 import { asin4 } from "@thi.ng/vectors/asin";
+import { asinh4 } from "@thi.ng/vectors/asinh";
 import { atan_4 } from "@thi.ng/vectors/atan";
 import { atan2_4 } from "@thi.ng/vectors/atan2";
+import { atanh_4 } from "@thi.ng/vectors/atanh";
 import { ceil4 } from "@thi.ng/vectors/ceil";
 import { clamp4 } from "@thi.ng/vectors/clamp";
 import { cos4 } from "@thi.ng/vectors/cos";
+import { cosh4 } from "@thi.ng/vectors/cosh";
 import { degrees4 } from "@thi.ng/vectors/degrees";
 import { dist4 } from "@thi.ng/vectors/dist";
 import { div4 } from "@thi.ng/vectors/div";
@@ -46,27 +50,33 @@ import { reflect } from "@thi.ng/vectors/reflect";
 import { refract } from "@thi.ng/vectors/refract";
 import { sign4 } from "@thi.ng/vectors/sign";
 import { sin4 } from "@thi.ng/vectors/sin";
+import { sinh4 } from "@thi.ng/vectors/sinh";
 import { smoothStep4 } from "@thi.ng/vectors/smoothstep";
 import { sqrt4 } from "@thi.ng/vectors/sqrt";
 import { step4 } from "@thi.ng/vectors/step";
 import { sub4 } from "@thi.ng/vectors/sub";
 import { subN4 } from "@thi.ng/vectors/subn";
 import { tan4 } from "@thi.ng/vectors/tan";
+import { tanh4 } from "@thi.ng/vectors/tanh";
 import type { JSBuiltinsVec } from "../api.js";
 import { Pool } from "../pool.js";
 
 export const VEC4 = ({ next, uniform }: Pool): JSBuiltinsVec => ({
 	abs: (a) => abs4(next(), a),
 	acos: (a) => acos4(next(), a),
+	acosh: (a) => acosh4(next(), a),
 	add: (a, b) => add4(next(), a, b),
 	addnv: (a, b) => addN4(next(), b, a),
 	addvn: (a, b) => addN4(next(), a, b),
 	asin: (a) => asin4(next(), a),
+	asinh: (a) => asinh4(next(), a),
 	atan: (a) => atan_4(next(), a),
+	atanh: (a) => atanh_4(next(), a),
 	atannn: (a, b) => atan2_4(next(), a, b),
 	ceil: (a) => ceil4(next(), a),
 	clamp: (x, a, b) => clamp4(next(), x, a, b),
 	cos: (a) => cos4(next(), a),
+	cosh: (a) => cosh4(next(), a),
 	dec: (a) => subN4(next(), a, 1),
 	degrees: (a) => degrees4(next(), a),
 	dFdx: () => ZERO4,
@@ -103,6 +113,7 @@ export const VEC4 = ({ next, uniform }: Pool): JSBuiltinsVec => ({
 	refract: (a, b, c) => refract(next(), a, b, c),
 	sign: (a) => sign4(next(), a),
 	sin: (a) => sin4(next(), a),
+	sinh: (a) => sinh4(next(), a),
 	smoothstep: (a, b, t) => smoothStep4(next(), a, b, t),
 	sqrt: (a) => sqrt4(next(), a),
 	step: (a, b) => step4(next(), a, b),
@@ -111,6 +122,7 @@ export const VEC4 = ({ next, uniform }: Pool): JSBuiltinsVec => ({
 	subnv: (a, b) => sub4(null, uniform(a), b),
 	subvn: (a, b) => subN4(next(), a, b),
 	tan: (a) => tan4(next(), a),
+	tanh: (a) => tanh4(next(), a),
 
 	equal: (a, b) => eq4([], a, b),
 	notEqual: (a, b) => neq4([], a, b),
