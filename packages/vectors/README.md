@@ -206,7 +206,7 @@ For Node.js REPL:
 const vec = await import("@thi.ng/vectors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 15.37 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.43 KB
 
 ## Dependencies
 
@@ -653,8 +653,11 @@ All ops support custom PRNG impls based on the
 |-------------------|---------|-------|---------|-----|--------------------|
 | `abs`             | ✓       | 2-4   |         |     |                    |
 | `acos`            | ✓       | 2-4   |         |     |                    |
+| `acosh`           | ✓       | 2-4   |         |     |                    |
 | `asin`            | ✓       | 2-4   |         |     |                    |
+| `asinh`           | ✓       | 2-4   |         |     |                    |
 | `atan` (1)        | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
+| `atanh` (1)       | ✓       | 2-4   |         |     |                    |
 | `atan2` (1)       | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
 | `ceil`            | ✓       | 2-4   |         |     |                    |
 | `cos`             | ✓       | 2-4   |         |     |                    |
