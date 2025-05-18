@@ -127,6 +127,9 @@
 		"./acos": {
 			"default": "./acos.js"
 		},
+		"./acosh": {
+			"default": "./acosh.js"
+		},
 		"./add": {
 			"default": "./add.js"
 		},
@@ -184,11 +187,17 @@
 		"./asin": {
 			"default": "./asin.js"
 		},
+		"./asinh": {
+			"default": "./asinh.js"
+		},
 		"./atan": {
 			"default": "./atan.js"
 		},
 		"./atan2": {
 			"default": "./atan2.js"
+		},
+		"./atanh": {
+			"default": "./atanh.js"
 		},
 		"./avec": {
 			"default": "./avec.js"

@@ -2,6 +2,7 @@
 export * from "./abs.js";
 export * from "./accessors.js";
 export * from "./acos.js";
+export * from "./acosh.js";
 export * from "./add.js";
 export * from "./addi.js";
 export * from "./addm.js";
@@ -21,7 +22,9 @@ export * from "./as-bvec.js";
 export * from "./as-ivec.js";
 export * from "./as-uvec.js";
 export * from "./asin.js";
+export * from "./asinh.js";
 export * from "./atan.js";
+export * from "./atanh.js";
 export * from "./atan2.js";
 export * from "./avec.js";
 export * from "./bisect.js";
