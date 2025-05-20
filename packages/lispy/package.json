@@ -40,11 +40,14 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.27",
+		"@thi.ng/checks": "^3.7.7",
 		"@thi.ng/compare": "^2.4.19",
 		"@thi.ng/defmulti": "^3.0.67",
 		"@thi.ng/errors": "^2.5.33",
 		"@thi.ng/math": "^5.11.27",
-		"@thi.ng/sexpr": "^1.0.16"
+		"@thi.ng/object-utils": "^1.1.23",
+		"@thi.ng/sexpr": "^1.0.16",
+		"@thi.ng/strings": "^3.9.12"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.3",

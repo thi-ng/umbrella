@@ -126,16 +126,19 @@ For Node.js REPL:
 const lispy = await import("@thi.ng/lispy");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.53 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.50 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/sexpr](https://github.com/thi-ng/umbrella/tree/develop/packages/sexpr)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
