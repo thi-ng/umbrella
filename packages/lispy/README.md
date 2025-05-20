@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 208 standalone projects, maintained as part
+> This is one of 207 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -27,7 +27,8 @@
 
 Lightweight, extensible, interpreted Lisp-style DSL for embedding in other projects.
 
-> [!NOTE] This DSL implementation has been extracted as standalone package from
+> [!NOTE]
+> This DSL implementation has been extracted as standalone package from
 > existing work/examples bundled in the thi.ng/umbrella monorepo (i.e.
 > [lispy-repl](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl))
 
@@ -36,60 +37,60 @@ contains the following:
 
 - basic math ops (multi-arity)
 - logic operators (multi-arity)
-    - `and`
-    - `or`
-    - `not`
+    - `(and x y ...)`
+    - `(or x y ...)`
+    - `(not x)`
 - bitwise operators
-    - `<<`
-    - `>>` / `>>>`
-    - `bit-and`
-    - `bit-or`
-    - `bit-xor`
-    - `bit-not`
+    - `(<< x y)`
+    - `(>> x y)` / `(>>> x y)`
+    - `(bit-and x y)`
+    - `(bit-or x y)`
+    - `(bit-xor x y)`
+    - `(bit-not x)`
 - comparison operators
 - constants & functions from JS-native `Math`
 - selected utilities from [thi.ng/math](https://thi.ng/math) package
     - `HALF_PI`
     - `TAU`
-    - `clamp`: clamp value to interval
-    - `deg`: convert radians to degrees
-    - `fit`: fit value from one interval into another
-    - `mix`: linear interpolation (same as GLSL `mix()`)
-    - `rad`: convert degrees to radians
-    - `step`: same as GLSL `step()`
-    - `smoothstep`: same as GLSL `smoothstep()`
+    - `(clamp x min max)`: clamp value to interval
+    - `(deg x)`: convert radians to degrees
+    - `(fit x a b c d)`: fit value from interval `[a..b]` into `[c..d]`
+    - `(mix a b t)`: linear interpolation (same as GLSL `mix()`)
+    - `(rad x)`: convert degrees to radians
+    - `(step edge x)`: same as GLSL `step()`
+    - `(smoothstep e1 e2 x)`: same as GLSL `smoothstep()`
 - basic FP programming constructs
-    - `comp`: functional composition
-    - `def`: define global symbol
-    - `defn`: define global function
-    - `let`: locally scope var bindings/expression
-    - `partial`: partial application (currying)
+    - `(comp f g)`: functional composition
+    - `(def name val)`: define global symbol
+    - `(defn name (...args) body)`: define global function
+    - `(let (sym val ...) body)`: locally scope var bindings/expression
+    - `(partial fn arg)`: partial application (currying)
 - basic list/array processing
-    - `aget`: get array index
-    - `aset`: set array index
-    - `count`: number of items
-    - `concat`: same as `Array.prototype.concat(...)`
-    - `filter`: list/array filtering
-    - `first`: first item of array
-    - `map`: list/array transformation
-    - `next`: remaining array items (after first)
-    - `push`: same as `Array.prototype.push(...)`
-    - `reduce`: list/array reduction
+    - `(aget arr index)`: get array index
+    - `(aset arr index value)`: set array index
+    - `(count x)`: number of items (also for strings)
+    - `(concat x y ...)`: same as `Array.prototype.concat(...)`
+    - `(filter fn list)`: list/array filtering
+    - `(first x)`: first item of array
+    - `(map fn list)`: list/array transformation
+    - `(next x)`: remaining array items (after first)
+    - `(push arr x...)`: same as `Array.prototype.push(...)`
+    - `(reduce fn init list)`: list/array reduction
 - string/regexp processing
-    - `capitalize`
-    - `lower`
-    - `upper`
-    - `pad-left`
-    - `pad-right`
-    - `substr`
-    - `trim`
-    - `regexp`
-    - `re-match`
-    - `re-test`
-    - `replace`
+    - `(capitalize x)`
+    - `(lower x)`
+    - `(upper x)`
+    - `(pad-left x width fill)`
+    - `(pad-right x width fill)`
+    - `(substr x from to?)`
+    - `(trim x)`
+    - `(regexp str flags?)`
+    - `(re-match re x)`
+    - `(re-test re x)`
+    - `(replace x re replacement)`
 - misc utilities
-    - `print`: aka `console.log(...)`
-    - `env`: JSON stringified version of current root env
+    - `(print x...)`: aka `console.log(...)`
+    - `(env)`: JSON stringified version of current root env
 
 The core language can be easily customized/extended by defining new items in the
 root environment `ENV` (see example below).
