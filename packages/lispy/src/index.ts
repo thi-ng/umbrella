@@ -5,6 +5,7 @@ import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import { deg, rad } from "@thi.ng/math/angle";
 import { HALF_PI, TAU } from "@thi.ng/math/api";
 import { fit } from "@thi.ng/math/fit";
 import { clamp } from "@thi.ng/math/interval";
@@ -131,6 +132,20 @@ export const ENV: Env = {
 	// comparisons
 	...OPERATORS,
 
+	// boolean logic
+	and: (...args: any[]) => args.every((x) => !!x),
+	or: (...args: any[]) => args.some((x) => !!x),
+	not: (x: any) => !x,
+
+	// binary
+	"<<": (x: number, y: number) => x << y,
+	">>": (x: number, y: number) => x >> y,
+	">>>": (x: number, y: number) => x >>> y,
+	"bit-and": (x: number, y: number) => x & y,
+	"bit-or": (x: number, y: number) => x | y,
+	"bit-xor": (x: number, y: number) => x ^ y,
+	"bit-not": (x: number) => ~x,
+
 	// JS-native Math
 	...selectKeysObj(Math, [
 		"E",
@@ -182,13 +197,17 @@ export const ENV: Env = {
 	TAU,
 
 	clamp,
+	deg,
 	fit,
 	mix,
+	rad,
 	step,
 	smoothstep: smoothStep,
 
-	push: (list: any[], ...x: any[]) => list.push(...x),
+	aget: (arr: any[], i: number) => arr[i],
+	aset: (arr: any[], i: number, x: any) => (arr[i] = x),
 
+	push: (list: any[], ...x: any[]) => list.push(...x),
 	concat: (list: any[], ...x: any[]) => list.concat(...x),
 
 	// returns length of first argument (presumably a list or string)
