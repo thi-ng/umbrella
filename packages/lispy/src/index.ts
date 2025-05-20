@@ -15,6 +15,7 @@ import { selectKeysObj } from "@thi.ng/object-utils/select-keys";
 import type { ASTNode, Expression, Implementations, Sym } from "@thi.ng/sexpr";
 import { parse } from "@thi.ng/sexpr/parse";
 import { runtime } from "@thi.ng/sexpr/runtime";
+import { capitalize, lower, upper } from "@thi.ng/strings/case";
 import { KERNEL } from "./kernel.js";
 
 export type Env = Record<string, any>;
@@ -221,6 +222,23 @@ export const ENV: Env = {
 	// there're no further items
 	next: (arg: any) => (arg.length > 1 ? arg.slice(1) : undefined),
 
+	// strings
+	lower,
+	upper,
+	capitalize,
+	"pad-left": (x: string, width: number, fill: string) =>
+		x.padStart(width, fill),
+	"pad-right": (x: string, width: number, fill: string) =>
+		x.padEnd(width, fill),
+	substr: (x: string, from: number, to?: number) => x.substring(from, to),
+	trim: (x: string) => x.trimEnd(),
+	regexp: (src: string, flags?: string) => new RegExp(src, flags),
+	"re-test": (regexp: RegExp, x: string) => regexp.test(x),
+	"re-match": (regexp: RegExp, x: string) => regexp.exec(x),
+	replace: (x: string, regexp: RegExp, replacement: string) =>
+		x.replace(regexp, replacement),
+
+	// misc
 	print: console.log,
 
 	env: () =>
@@ -232,13 +250,13 @@ export const ENV: Env = {
 };
 
 /**
- * Evaluates given S-expression(s) and returns result of last. If no environment
- * is provided, uses {@link ENV}.
+ * Parses & evaluates given S-expression(s) and returns result of last one. If
+ * no environment is provided, uses {@link ENV}.
  *
  * @param src
  * @param env
  */
-export const evalExpressions = (src: string, env: Env = ENV) =>
+export const evalSource = (src: string, env: Env = ENV) =>
 	parse(src).children.reduce((_, x) => interpret(x, env), <any>undefined);
 
 export const evalArgs = (nodes: ASTNode[], env: Env = ENV) =>
@@ -252,4 +270,4 @@ export const interpret = runtime<Implementations<Env, any>, Env, any>({
 });
 
 // evaluate built-ins and inject into root env
-evalExpressions(KERNEL);
+evalSource(KERNEL);
