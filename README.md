@@ -62,7 +62,7 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 206 individual
+Not including deprecations, this mono-repository is home to 207 individual
 TypeScript libraries/packages/tools and ~185 example projects illustrating their
 usage, currently totalling ~238k SLOC and ~4250 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
@@ -312,10 +312,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-05-18
+As of: 2025-05-20
 
 | Status                                        | Package                                             | Version                                                                                                                   | Changelog                                          |
 |:----------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/lispy`](./packages/lispy)                 | [![version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)                 | [changelog](./packages/lispy/CHANGELOG.md)         |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast`](./packages/shader-ast)       | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)       | [changelog](./packages/shader-ast/CHANGELOG.md)    |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-js`](./packages/shader-ast-js) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js) | [changelog](./packages/shader-ast-js/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)             | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)             | [changelog](./packages/vectors/CHANGELOG.md)       |
@@ -357,6 +358,7 @@ As of: 2025-05-18
 
 | Project                                               | Version                                                                                                                     | Changelog                                           | Description                                   |
 |-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
+| [`@thi.ng/lispy`](./packages/lispy)                   | [![version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)                   | [changelog](./packages/lispy/CHANGELOG.md)          | Extensible, interpreted Lisp-style DSL        |
 | [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
 | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
 | [`@thi.ng/proctext`](./packages/proctext)             | [![version](https://img.shields.io/npm/v/@thi.ng/proctext.svg)](https://www.npmjs.com/package/@thi.ng/proctext)             | [changelog](./packages/proctext/CHANGELOG.md)       | Procedural text generation engine             |
