@@ -14,14 +14,27 @@ The core language is intentionally kept extremely minimal and currently only
 contains the following:
 
 - basic math ops (multi-arity)
+- logic operators (multi-arity)
+	- `and`
+	- `or`
+	- `not`
+- bitwise operators
+	- `<<`
+	- `>>` / `>>>`
+	- `bit-and`
+	- `bit-or`
+	- `bit-xor`
+	- `bit-not`
 - comparison operators
 - constants & functions from JS-native `Math`
 - selected utilities from [thi.ng/math](https://thi.ng/math) package
 	- `HALF_PI`
 	- `TAU`
 	- `clamp`: clamp value to interval
+	- `deg`: convert radians to degrees
 	- `fit`: fit value from one interval into another
 	- `mix`: linear interpolation (same as GLSL `mix()`)
+	- `rad`: convert degrees to radians
 	- `step`: same as GLSL `step()`
 	- `smoothstep`: same as GLSL `smoothstep()`
 - basic FP programming constructs
@@ -31,6 +44,8 @@ contains the following:
 	- `let`: locally scope var bindings/expression
 	- `partial`: partial application (currying)
 - basic list/array processing
+	- `aget`: get array index
+	- `aset`: set array index
 	- `count`: number of items
 	- `concat`: same as `Array.prototype.concat(...)`
 	- `filter`: list/array filtering
@@ -115,6 +130,16 @@ evalExpressions(SRC, {...ENV, name: "lispy"});
 //   "<=": "<function>",
 //   ">=": "<function>",
 //   ">": "<function>",
+//   "and": "<function>",
+//   "or": "<function>",
+//   "not": "<function>",
+//   "<<": "<function>",
+//   ">>": "<function>",
+//   ">>>": "<function>",
+//   "bit-and": "<function>",
+//   "bit-or": "<function>",
+//   "bit-xor": "<function>",
+//   "bit-not": "<function>",
 //   "E": 2.718281828459045,
 //   "LN10": 2.302585092994046,
 //   "LN2": 0.6931471805599453,
@@ -158,11 +183,17 @@ evalExpressions(SRC, {...ENV, name: "lispy"});
 //   "tan": "<function>",
 //   "tanh": "<function>",
 //   "trunc": "<function>",
+//   "HALF_PI": 1.5707963267948966,
+//   "TAU": 6.283185307179586,
 //   "clamp": "<function>",
+//   "deg": "<function>",
 //   "fit": "<function>",
 //   "mix": "<function>",
+//   "rad": "<function>",
 //   "step": "<function>",
-//   "smoothStep": "<function>",
+//   "smoothstep": "<function>",
+//   "aget": "<function>",
+//   "aset": "<function>",
 //   "push": "<function>",
 //   "concat": "<function>",
 //   "count": "<function>",
