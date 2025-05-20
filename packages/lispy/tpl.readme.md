@@ -54,6 +54,18 @@ contains the following:
 	- `next`: remaining array items (after first)
 	- `push`: same as `Array.prototype.push(...)`
 	- `reduce`: list/array reduction
+- string/regexp processing
+	- `capitalize`
+	- `lower`
+	- `upper`
+	- `pad-left`
+	- `pad-right`
+	- `substr`
+	- `trim`
+	- `regexp`
+	- `re-match`
+	- `re-test`
+	- `replace`
 - misc utilities
 	- `print`: aka `console.log(...)`
 	- `env`: JSON stringified version of current root env
@@ -86,7 +98,7 @@ root environment `ENV` (see example below).
 {{pkg.docs}}
 
 ```ts tangle:export/readme-1.ts
-import { evalExpressions, ENV } from "@thi.ng/lispy";
+import { evalSource, ENV } from "@thi.ng/lispy";
 
 // define custom FFI in the root environment
 // (here it's actually the same as default print fn)
@@ -112,7 +124,7 @@ const SRC = `
 (print (env))
 `;
 
-evalExpressions(SRC, {...ENV, name: "lispy"});
+evalSource(SRC, {...ENV, name: "lispy"});
 
 // output:
 // 10
@@ -199,6 +211,17 @@ evalExpressions(SRC, {...ENV, name: "lispy"});
 //   "count": "<function>",
 //   "first": "<function>",
 //   "next": "<function>",
+//   "lower": "<function>",
+//   "upper": "<function>",
+//   "capitalize": "<function>",
+//   "pad-left": "<function>",
+//   "pad-right": "<function>",
+//   "substr": "<function>",
+//   "trim": "<function>",
+//   "regexp": "<function>",
+//   "re-test": "<function>",
+//   "re-match": "<function>",
+//   "replace": "<function>",
 //   "print": "<function>",
 //   "env": "<function>",
 //   "partial": "<function>",
