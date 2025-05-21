@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays";
 import { div, inputText, pre } from "@thi.ng/hiccup-html";
-import { ENV, evalExpressions } from "@thi.ng/lispy";
+import { ENV, evalSource } from "@thi.ng/lispy";
 import { $compile, $klist } from "@thi.ng/rdom";
 import { reactive, syncRAF } from "@thi.ng/rstream";
 import { slidingWindow } from "@thi.ng/transducers";
@@ -23,19 +23,9 @@ const INTRO = `Welcome to Lispy
 
 Type your S-expressions in the input box below.
 Press Enter to evaluate.
+Click on a previous input to place it back in the prompt.
 
-(def sym val) — define new sym
-(defn sym (arg ...) body-expr ...) — define new function
-(fn (arg ...) body-expr ...) — anonymous function
-(let (sym val ...) body-expr ...) — local symbol bindings
-(if test truthy-expr else-expr) — conditional (else-expr is optional)
-(print ...) — print args
-(count x) — number of element in x
-(first x) — first element of x
-(next x) — remaining elements of x
-(map fn list) — list transformation
-(reduce fn acc list) — list reduction
-(env) — print global environment`;
+See https://thi.ng/lispy readme for details.`;
 
 // CSS classes for various REPL item types
 const STYLES: Record<REPLItemType, string> = {
@@ -78,7 +68,7 @@ const processInput = (e: KeyboardEvent) => {
 	el.value = "";
 	try {
 		// eval and add output to REPL
-		addItem("out", String(evalExpressions(src)));
+		addItem("out", String(evalSource(src)));
 	} catch (e) {
 		// add error message as REPL item
 		addItem("err", (<Error>e).message);

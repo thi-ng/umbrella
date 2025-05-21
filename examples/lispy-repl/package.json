@@ -51,6 +51,7 @@
 			"hiccup-html",
 			"rdom",
 			"rstream",
+			"sexpr",
 			"transducers"
 		],
 		"screenshot": "examples/lispy-repl.png"
