@@ -5533,7 +5533,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/object-utils": "npm:^1.1.23"
-    "@thi.ng/sexpr": "npm:^1.0.16"
+    "@thi.ng/sexpr": "npm:^1.0.17"
     "@thi.ng/strings": "npm:^3.9.12"
     esbuild: "npm:^0.25.3"
     typedoc: "npm:^0.28.3"
@@ -6347,7 +6347,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/sexpr@npm:^1.0.16, @thi.ng/sexpr@workspace:^, @thi.ng/sexpr@workspace:packages/sexpr":
+"@thi.ng/sexpr@npm:^1.0.17, @thi.ng/sexpr@workspace:^, @thi.ng/sexpr@workspace:packages/sexpr":
   version: 0.0.0-use.local
   resolution: "@thi.ng/sexpr@workspace:packages/sexpr"
   dependencies:
