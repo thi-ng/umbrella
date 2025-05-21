@@ -55,6 +55,19 @@
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
+		"array",
+		"clojure",
+		"composition",
+		"dsl",
+		"functional",
+		"interpreter",
+		"language",
+		"lisp",
+		"parser",
+		"regexp",
+		"runtime",
+		"s-expression",
+		"string",
 		"typescript"
 	],
 	"publishConfig": {
@@ -80,7 +93,7 @@
 		}
 	},
 	"thi.ng": {
-		"status": "alpha",
-		"year": 2025
+		"status": "beta",
+		"year": 2023
 	}
 }
