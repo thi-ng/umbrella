@@ -90,6 +90,7 @@
 	},
 	"thi.ng": {
 		"related": [
+			"lispy",
 			"parse"
 		],
 		"status": "alpha",

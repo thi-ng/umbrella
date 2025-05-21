@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 206 standalone projects, maintained as part
+> This is one of 207 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -53,6 +53,7 @@ Everything else is parsed as is, i.e. as symbol.
 
 ## Related packages
 
+- [@thi.ng/lispy](https://github.com/thi-ng/umbrella/tree/develop/packages/lispy) - Lightweight, extensible, interpreted Lisp-style DSL for embedding in other projects
 - [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse) - Purely functional parser combinators & AST generation for generic inputs
 
 ## Installation
