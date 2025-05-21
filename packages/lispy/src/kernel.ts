@@ -11,6 +11,9 @@ export const KERNEL = `
 ; functional composition for 2-arg fns
 (defn comp2 (f g) (fn (x y z) (f (g x y) z)))
 
+; calls f if x is nullish
+(defn fnull? (x f) (if (null? x) (f) x))
+
 ; list reduction
 (defn reduce (f acc xs) (if xs (reduce f (f acc (first xs)) (next xs)) acc))
 

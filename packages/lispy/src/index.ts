@@ -1,4 +1,5 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
+import { identity, always, never } from "@thi.ng/api/fn";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { OPERATORS } from "@thi.ng/compare/ops";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
@@ -47,6 +48,43 @@ const __fnImpl =
 		return body.reduce((_, x) => interpret(x, $env), <any>undefined);
 	};
 
+/** @internal */
+const __threadOp =
+	(fn: Fn2<ASTNode, ASTNode[], ASTNode[]>): Fn2<ASTNode[], Env, any> =>
+	([_, ...body], env) => {
+		const n = body.length;
+		if (!n) return;
+		let res = body[0];
+		for (let i = 1; i < n; i++) {
+			const curr = { ...body[i] };
+			assert(
+				curr.type === "expr",
+				`expected expression, got ${curr.type}`
+			);
+			const $curr = <Expression>curr;
+			$curr.children = fn(res, $curr.children);
+			res = $curr;
+		}
+		return interpret(res, env);
+	};
+
+const __injectBindings = (args: ASTNode, env: Env) => {
+	const pairs = (<Expression>args).children;
+	// ensure we've got pairwise bindings
+	assert(
+		args.type === "expr" && !(pairs.length % 2),
+		`require pairs of key-val bindings`
+	);
+	// inject bindings into local environment
+	for (let i = 0, n = pairs.length; i < n; i += 2) {
+		assert(
+			pairs[i].type === "sym",
+			`expected symbol, got: ${pairs[i].type}`
+		);
+		env[(<Sym>pairs[i]).value] = interpret(pairs[i + 1], env);
+	}
+};
+
 /**
  * DSL built-ins as multi-method which directly operates on AST nodes. For
  * userland extensions of the core language, it's likely more straightforward to
@@ -82,26 +120,52 @@ export const BUILTINS = defmulti<ASTNode[], Env, any>(
 		// create local symbol/variable bindings, e.g.
 		// `(let (a 1 b 2 c (+ a b)) (print a b c))`
 		let: ([_, args, ...body], env) => {
-			const pairs = (<Expression>args).children;
-			// ensure we've got pairwise bindings
-			assert(
-				args.type === "expr" && !(pairs.length % 2),
-				`require pairs of key-val bindings`
-			);
-			// inject bindings into local environment
-			let $env = { ...env };
-			for (let i = 0, n = pairs.length; i < n; i += 2) {
-				assert(
-					pairs[i].type === "sym",
-					`expected symbol, got: ${pairs[i].type}`
-				);
-				$env[(<Sym>pairs[i]).value] = interpret(pairs[i + 1], $env);
-			}
+			const $env = { ...env };
+			__injectBindings(args, $env);
 			// execute function body with local env, return result of last expr
 			return body.reduce((_, x) => interpret(x, $env), <any>undefined);
 		},
 
+		while: ([, test, ...body], env) => {
+			const n = body.length;
+			while (interpret(test, env)) {
+				for (let i = 0; i < n; i++) interpret(body[i], env);
+			}
+		},
+
+		"env!": ([_, args], env) => __injectBindings(args, env),
+
 		list: ([_, ...body], env) => evalArgs(body, env),
+
+		obj: ([_, ...body], env) => {
+			assert(!(body.length % 2), `require pairs of key-val bindings`);
+			const obj: any = {};
+			for (let i = 0, n = body.length; i < n; i += 2) {
+				const key =
+					body[i].type === "expr"
+						? interpret(body[i], env)
+						: (<Sym>body[i]).value;
+				obj[String(key)] = interpret(body[i + 1], env);
+			}
+			return obj;
+		},
+
+		// rewriting operators:
+		// iteratively threads first child as FIRST arg of next child
+		// (-> a (+ b) (* c)) = (* (+ a b) c)
+		"->": __threadOp((res, [f, ...children]) => [f, res, ...children]),
+		// iteratively threads first child as LAST arg of next child
+		// (->> a (+ b) (* c)) = (* c (+ b a))
+		"->>": __threadOp((res, children) => [...children, res]),
+
+		env: (_, env) =>
+			JSON.stringify(
+				env,
+				(_, val) => (isFunction(val) ? "<function>" : val),
+				2
+			),
+
+		syms: (_, env) => Object.keys(env),
 
 		// add default/fallback implementation to allow calling functions defined in
 		// the environment (either externally or via `defn`)
@@ -116,9 +180,9 @@ export const BUILTINS = defmulti<ASTNode[], Env, any>(
 );
 
 /**
- * Root environment bindings. This is the default env used by
- * {@link evalExpressions} and can be used to define extensions of the core
- * language. Functions defined here can receive any number of arguments.
+ * Root environment bindings. This is the default env used by {@link evalSource}
+ * and can be used to define extensions of the core language. Functions defined
+ * here can receive any number of arguments.
  */
 export const ENV: Env = {
 	// prettier-ignore
@@ -130,12 +194,37 @@ export const ENV: Env = {
 	// prettier-ignore
 	"/": __mathOp((acc, x) => acc / x, (x) => 1 / x),
 
+	inc: (x: number) => x + 1,
+	dec: (x: number) => x - 1,
+
+	// predicates
+	"null?": (x: any) => x == null,
+	"zero?": (x: number) => x === 0,
+	"neg?": (x: number) => x < 0,
+	"pos?": (x: number) => x > 0,
+	"nan?": (x: any) => isNaN(x),
+
 	// comparisons
 	...OPERATORS,
 
 	// boolean logic
-	and: (...args: any[]) => args.every((x) => !!x),
-	or: (...args: any[]) => args.some((x) => !!x),
+	T: true,
+	F: false,
+	null: null,
+
+	and: (...args: any[]) => {
+		let x: any;
+		for (x of args) {
+			if (!x) return false;
+		}
+		return x;
+	},
+	or: (...args: any[]) => {
+		for (let x of args) {
+			if (x) return x;
+		}
+		return false;
+	},
 	not: (x: any) => !x,
 
 	// binary
@@ -205,10 +294,10 @@ export const ENV: Env = {
 	step,
 	smoothstep: smoothStep,
 
-	aget: (arr: any[], i: number) => arr[i],
-	aset: (arr: any[], i: number, x: any) => (arr[i] = x),
+	get: (arr: any[], i: number) => arr[i],
+	"set!": (arr: any[], i: number, x: any) => (arr[i] = x),
 
-	push: (list: any[], ...x: any[]) => list.push(...x),
+	push: (list: any[], ...x: any[]) => (list.push(...x), list),
 	concat: (list: any[], ...x: any[]) => list.concat(...x),
 
 	// returns length of first argument (presumably a list or string)
@@ -223,6 +312,8 @@ export const ENV: Env = {
 	next: (arg: any) => (arg.length > 1 ? arg.slice(1) : undefined),
 
 	// strings
+	str: (...args: any[]) => args.join(""),
+	join: (sep: string, args: any[]) => args.join(sep),
 	lower,
 	upper,
 	capitalize,
@@ -238,15 +329,15 @@ export const ENV: Env = {
 	replace: (x: string, regexp: RegExp, replacement: string) =>
 		x.replace(regexp, replacement),
 
+	// functions
+	identity,
+	always,
+	never,
+	int: parseInt,
+	float: parseFloat,
+
 	// misc
 	print: console.log,
-
-	env: () =>
-		JSON.stringify(
-			ENV,
-			(_, val) => (isFunction(val) ? "<function>" : val),
-			2
-		),
 };
 
 /**
