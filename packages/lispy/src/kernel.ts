@@ -8,8 +8,7 @@ export const KERNEL = `
 ; functional composition for 1-arg fns
 (defn comp (f g) (fn (x) (f (g x))))
 
-; functional composition for 2-arg fns
-(defn comp2 (f g) (fn (x y z) (f (g x y) z)))
+(defn complement (f) (fn (x) (not (f x))))
 
 ; calls f if x is nullish
 (defn fnull? (x f) (if (null? x) (f) x))

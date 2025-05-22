@@ -150,6 +150,10 @@ export const BUILTINS = defmulti<ASTNode[], Env, any>(
 			return obj;
 		},
 
+		keys: ([_, x], env) => Object.keys(interpret(x, env)),
+		vals: ([_, x], env) => Object.values(interpret(x, env)),
+		pairs: ([_, x], env) => Object.entries(interpret(x, env)),
+
 		// rewriting operators:
 		// iteratively threads first child as FIRST arg of next child
 		// (-> a (+ b) (* c)) = (* (+ a b) c)
@@ -211,6 +215,8 @@ export const ENV: Env = {
 	T: true,
 	F: false,
 	null: null,
+	INF: Infinity,
+	"-INF": -Infinity,
 
 	and: (...args: any[]) => {
 		let x: any;
@@ -295,7 +301,7 @@ export const ENV: Env = {
 	smoothstep: smoothStep,
 
 	get: (arr: any[], i: number) => arr[i],
-	"set!": (arr: any[], i: number, x: any) => (arr[i] = x),
+	"set!": (arr: any[], i: number, x: any) => ((arr[i] = x), arr),
 
 	push: (list: any[], ...x: any[]) => (list.push(...x), list),
 	concat: (list: any[], ...x: any[]) => list.concat(...x),
