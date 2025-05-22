@@ -51,7 +51,8 @@ Lightweight, extensible, interpreted Lisp-style DSL for embedding in other proje
 ## Core language features
 
 The core language is intentionally kept minimal, aimed at data transformations,
-and currently only contains the following:
+configuration, user code snippets/expressions, and currently only contains the
+following:
 
 ### Constants
 - `T`: true
@@ -60,6 +61,8 @@ and currently only contains the following:
 - `PI`
 - `HALF_PI`
 - `TAU`
+- `INF`: ∞
+- `-INF`: -∞
 
 ### Predicates
 
@@ -218,7 +221,7 @@ For Node.js REPL:
 const lispy = await import("@thi.ng/lispy");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.92 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.95 KB
 
 ## Dependencies
 
@@ -247,6 +250,11 @@ directory is using this package:
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/lispy/)
+
+> [!NOTE]
+> Please also see
+> [/tests](https://github.com/thi-ng/umbrella/blob/develop/packages/lispy/test)
+> for more small code examples..
 
 ```ts tangle:export/readme-1.ts
 import { evalSource, ENV } from "@thi.ng/lispy";

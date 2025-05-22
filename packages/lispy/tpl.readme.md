@@ -14,7 +14,8 @@
 ## Core language features
 
 The core language is intentionally kept minimal, aimed at data transformations,
-and currently only contains the following:
+configuration, user code snippets/expressions, and currently only contains the
+following:
 
 ### Constants
 - `T`: true
@@ -23,6 +24,8 @@ and currently only contains the following:
 - `PI`
 - `HALF_PI`
 - `TAU`
+- `INF`: ∞
+- `-INF`: -∞
 
 ### Predicates
 
@@ -172,6 +175,11 @@ passing a custom environment to
 ## API
 
 {{pkg.docs}}
+
+> [!NOTE]
+> Please also see
+> [/tests](https://github.com/thi-ng/umbrella/blob/develop/packages/lispy/test)
+> for more small code examples..
 
 ```ts tangle:export/readme-1.ts
 import { evalSource, ENV } from "@thi.ng/lispy";
