@@ -96,7 +96,7 @@ All included...
 - `(env! (sym val ...))`: modify bindings in current env
 - `(if test truthy falsey?)`: conditional with optional false branch
 - `(let (sym val ...) body)`: locally scoped var bindings/expression
-- `(while test body... (recur (...))?)`: loop while test is truthy
+- `(while test body...)`: loop while test is truthy
 - `(-> ...)`: Clojure-style thread-first S-expression re-writing
 	- `(-> a (+ b) (* c))` → `(* (+ a b) c)`
 - `(->> ...)`: Clojure-style thread-last S-expression re-writing
