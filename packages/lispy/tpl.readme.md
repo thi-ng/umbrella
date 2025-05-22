@@ -144,8 +144,9 @@ All included...
 
 ## Extensibility
 
-The core language can be easily customized/extended by defining new items in the
-root environment `ENV` (see example below) or passing a custom environment to
+The core language can be easily customized/extended by defining new symbols (or
+redefining existing ones) in the root environment `ENV` (see example below) or
+passing a custom environment to
 [`evalSource()`](https://docs.thi.ng/umbrella/lispyfunctions/evalSource.html).
 
 {{meta.status}}
@@ -175,9 +176,14 @@ root environment `ENV` (see example below) or passing a custom environment to
 ```ts tangle:export/readme-1.ts
 import { evalSource, ENV } from "@thi.ng/lispy";
 
-// define custom FFI in the root environment
-// (here it's actually the same as default print fn)
-ENV.print = console.log;
+// define custom root environment
+const CUSTOM_ENV = {
+	...ENV,
+	// re-define print fn (actually the same as default)
+	print: console.log,
+	// pre-define new global variable
+	name: "lispy"
+};
 
 const SRC = `
 (print (+ 1 2 3 4))
@@ -191,7 +197,7 @@ const SRC = `
 ;; here, a curried version of the built-in print fn
 (def greetings! (partial print "hello,"))
 
-;; print greeting (name will be provided externally)
+;; print greeting ('name' symbol provided via custom env)
 (greetings! name)
 ;; hello, lispy!
 
@@ -215,7 +221,7 @@ const SRC = `
 `;
 
 // execute with customized environment
-evalSource(SRC, {...ENV, name: "lispy"});
+evalSource(SRC, CUSTOM_ENV);
 
 // output:
 // 10
