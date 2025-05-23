@@ -6,6 +6,7 @@ export * from "./api.js";
 export * from "./broadcast.js";
 export * from "./clamp.js";
 export * from "./clampn.js";
+export * from "./convolve.js";
 export * from "./cos.js";
 export * from "./defopn.js";
 export * from "./defoprt.js";
