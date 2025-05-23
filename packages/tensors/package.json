@@ -62,13 +62,19 @@
 		"activation",
 		"algebra",
 		"array",
+		"blur",
 		"broadcast",
+		"convolution",
 		"data-oriented",
 		"datastructure",
 		"decomposition",
+		"detect",
 		"diagonal",
 		"dotproduct",
+		"edge",
 		"equality",
+		"filter",
+		"gaussian",
 		"interval",
 		"math",
 		"matrix",
@@ -121,6 +127,9 @@
 		},
 		"./clampn": {
 			"default": "./clampn.js"
+		},
+		"./convolve": {
+			"default": "./convolve.js"
 		},
 		"./cos": {
 			"default": "./cos.js"
@@ -178,6 +187,9 @@
 		},
 		"./identity": {
 			"default": "./identity.js"
+		},
+		"./kernels": {
+			"default": "./kernels.js"
 		},
 		"./log": {
 			"default": "./log.js"
