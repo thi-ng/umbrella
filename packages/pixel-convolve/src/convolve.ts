@@ -341,12 +341,12 @@ export const POOL_THRESHOLD =
 	};
 
 export const SOBEL_X: KernelSpec = {
-	spec: [-1, -2, -1, 0, 0, 0, 1, 2, 1],
+	spec: [-1, 0, 1, -2, 0, 2, -1, 0, 1],
 	size: 3,
 };
 
 export const SOBEL_Y: KernelSpec = {
-	spec: [-1, 0, 1, -2, 0, 2, -1, 0, 1],
+	spec: [-1, -2, -1, 0, 0, 0, 1, 2, 1],
 	size: 3,
 };
 
