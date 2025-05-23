@@ -26,6 +26,7 @@ conventions are closely aligned to the ones used by the
 - [argMin](https://docs.thi.ng/umbrella/tensors/variables/argMin.html): Minimum component index/value
 - [clamp](https://docs.thi.ng/umbrella/tensors/variables/clamp.html): Tensor-tensor interval clamping
 - [clampN](https://docs.thi.ng/umbrella/tensors/variables/clampN.html): Tensor-scalar interval clamping
+- [convolve](https://docs.thi.ng/umbrella/tensors/variables/convolve.html): Tensor convolution (1D/2D/3D only)
 - [cos](https://docs.thi.ng/umbrella/tensors/variables/cos.html): Componentwise `Math.cos`
 - [diagonal](https://docs.thi.ng/umbrella/tensors/variables/diagonal.html): Diagonal extraction
 - [div](https://docs.thi.ng/umbrella/tensors/variables/div.html): Tensor-tensor division
@@ -123,6 +124,23 @@ print(add(null, tensor([[10, 20], [100, 200]]), tensor([[[1, 2], [3, 4]], [[5, 6
 //   15.0000   26.0000
 //  107.0000  208.0000
 ```
+
+### Convolution support
+
+Tensor convolution is only possible if both the domain tensor and the kernel
+tensor have same dimensionality. No broadcasting support.
+
+The following kernel presets and factories are included:
+
+- `BOX_BLUR2(radius)`: Box blur kernel factory
+- `BOX_BLUR2_3`: 3x3 Box blur kernel
+- `BOX_BLUR2_5`: 5x5 Box blur kernel
+- `GAUSSION2(radius)`: Gaussian blur kernel factory
+- `GAUSSION_BLUR2_3`: 3x3 Gaussian blur
+- `GAUSSION_BLUR2_5`: 5x5 Gaussian blur
+- `SOBEL1`: 1D Sobel kernel
+- `SOBEL2`: 2D Sobel kernel
+- `SOBEL3`: 3D Sobel kernel
 
 {{meta.status}}
 
