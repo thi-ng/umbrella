@@ -708,9 +708,16 @@ export const ones = <S extends Shape>(
 	shape: S,
 	type: NumType = "num",
 	storage?: ITensorStorage<number>
-): ShapeTensor<S, number> => {
+) => constant(shape, 1, type, storage);
+
+export const constant = <T extends Type, S extends Shape>(
+	shape: S,
+	value: TypeMap[T],
+	type: T,
+	storage?: ITensorStorage<TypeMap[T]>
+): ShapeTensor<S, TypeMap[T]> => {
 	const res = tensor<any, S>(type, shape, { storage });
-	res.data.fill(1);
+	res.data.fill(value);
 	return res;
 };
 
