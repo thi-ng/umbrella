@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 206 standalone projects, maintained as part
+> This is one of 208 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -156,17 +156,25 @@ print(add(null, tensor([[10, 20], [100, 200]]), tensor([[[1, 2], [3, 4]], [[5, 6
 Tensor convolution is only possible if both the domain tensor and the kernel
 tensor have same dimensionality. No broadcasting support.
 
-The following kernel presets and factories are included:
+The following kernel presets and tensor factories are included and can be used
+with
+[`convolve()`](https://docs.thi.ng/umbrella/tensors/variables/convolve.html):
 
 - `BOX_BLUR2(radius)`: Box blur kernel factory
-- `BOX_BLUR2_3`: 3x3 Box blur kernel
-- `BOX_BLUR2_5`: 5x5 Box blur kernel
 - `GAUSSION2(radius)`: Gaussian blur kernel factory
-- `GAUSSION_BLUR2_3`: 3x3 Gaussian blur
-- `GAUSSION_BLUR2_5`: 5x5 Gaussian blur
+- `EDGE2(radius)`: Edge/ridge detection kernel factory
 - `SOBEL1`: 1D Sobel kernel
 - `SOBEL2`: 2D Sobel kernel
 - `SOBEL3`: 3D Sobel kernel
+
+For more generalized convolution-like functionality, the following kernel
+factories can be used with
+[`applyKernel()`](https://docs.thi.ng/umbrella/tensors/variables/applyKernel.html):
+
+- `MAX2_POOL(width,height?)`: max pooling
+- `MIN2_POOL(width,height?)`: min pooling
+- `MAXIMA2(radius)`: local maxima detection
+- `MINIMA2(radius)`: local minima detection
 
 ## Status
 
@@ -200,7 +208,7 @@ For Node.js REPL:
 const ten = await import("@thi.ng/tensors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 8.83 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.30 KB
 
 ## Dependencies
 
