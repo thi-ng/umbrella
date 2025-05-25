@@ -75,12 +75,14 @@
 		"equality",
 		"filter",
 		"gaussian",
+		"gradient",
 		"interval",
 		"math",
 		"matrix",
 		"memory-mapped",
 		"nd",
 		"polymorphic",
+		"pool",
 		"random",
 		"step",
 		"svd",
@@ -118,6 +120,9 @@
 		},
 		"./api": {
 			"default": "./api.js"
+		},
+		"./apply-kernel": {
+			"default": "./apply-kernel.js"
 		},
 		"./broadcast": {
 			"default": "./broadcast.js"
