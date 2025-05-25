@@ -378,3 +378,42 @@ export interface MultiTensorOp<TOP> {
 }
 
 export type MultiTensorOpImpl<T> = T & MultiTensorOp<T>;
+
+/**
+ * Convolution kernel spec for use with {@link applyKernel}.
+ *
+ * @remarks
+ * Provided implementations:
+ *
+ * - {@link MAX2_MOORE}
+ * - {@link MAX2_VON_NEUMANN}
+ * - {@link MAXIMA2_MOORE}
+ * - {@link MAXIMA2_VON_NEUMANN}
+ */
+export interface KernelSpec<T = any> {
+	/**
+	 * Kernel shape/size
+	 */
+	shape: Shape;
+	/**
+	 * Windowed intialization. Returns initial accumulator for each new kernel
+	 * window.
+	 */
+	init: () => T;
+	/**
+	 * Windowed reduction function. Receives current accumulator, domain value
+	 * and kernel-local coordinates. Returns updated accumulator.
+	 *
+	 * @param acc
+	 * @param value
+	 * @param coords
+	 */
+	reduce: (acc: T, value: number, ...coords: number[]) => T;
+	/**
+	 * Windowed reducer result function. Produces final result from current
+	 * accumulator.
+	 *
+	 * @param acc
+	 */
+	complete: (acc: T) => number;
+}

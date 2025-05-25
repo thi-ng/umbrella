@@ -3,6 +3,7 @@ export * from "./abs.js";
 export * from "./add.js";
 export * from "./addn.js";
 export * from "./api.js";
+export * from "./apply-kernel.js";
 export * from "./broadcast.js";
 export * from "./clamp.js";
 export * from "./clampn.js";

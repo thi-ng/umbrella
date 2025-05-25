@@ -1,3 +1,5 @@
+import { identity } from "@thi.ng/api/fn";
+import type { KernelSpec } from "./api.js";
 import { constant, tensor } from "./tensor.js";
 
 /**
@@ -41,20 +43,23 @@ export const SOBEL3 = tensor([
 	],
 ]);
 
-export const EDGE2_3x3 = tensor([
-	[-1, -1, -1],
-	[-1, 8, -1],
-	[-1, -1, -1],
-]);
+/**
+ * 2D edge detection convolution kernel factory for given integer radius `r`.
+ * Returns 2D tensor of size `2*r+1`.
+ *
+ * @param r
+ */
+export const EDGE2 = (r: number) => {
+	r |= 0;
+	const w = 2 * r + 1;
+	const data = new Array(w * w).fill(-1);
+	data[data.length >> 1] = w * w - 1;
+	return tensor("num", [w, w], { data, copy: false });
+};
 
-export const EDGE2_5x5 = tensor([
-	[-1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1],
-	[-1, -1, 24, -1, -1],
-	[-1, -1, -1, -1, -1],
-	[-1, -1, -1, -1, -1],
-]);
-
+/**
+ * 2D sharpen 3x3 kernel preset.
+ */
 export const SHARPEN2_3x3 = tensor([
 	[0, -1, 0],
 	[-1, 5, -1],
@@ -62,8 +67,8 @@ export const SHARPEN2_3x3 = tensor([
 ]);
 
 /**
- * Higher order 2D box blur convolution kernel. Returns 2D tensor of size
- * `2*r+1`.
+ * 2D box blur convolution kernel factory for given integer radius `r`. Returns
+ * 2D tensor of size `2*r+1`.
  *
  * @param r
  */
@@ -73,32 +78,8 @@ export const BOX_BLUR2 = (r: number) => {
 };
 
 /**
- * 2D 3x3 box blur convolution kernel
- */
-export const BOX_BLUR2_3x3 = BOX_BLUR2(1);
-
-/**
- * 2D 5x5 box blur convolution kernel
- */
-export const BOX_BLUR2_5x5 = BOX_BLUR2(2);
-
-export const GAUSSIAN_BLUR2_3x3 = tensor([
-	[1 / 16, 1 / 8, 1 / 16],
-	[1 / 8, 1 / 4, 1 / 8],
-	[1 / 16, 1 / 8, 1 / 16],
-]);
-
-export const GAUSSIAN_BLUR2_5x5 = tensor([
-	[1 / 256, 1 / 64, 3 / 128, 1 / 64, 1 / 256],
-	[1 / 64, 1 / 16, 3 / 32, 1 / 16, 1 / 64],
-	[3 / 128, 3 / 32, 9 / 64, 3 / 32, 3 / 128],
-	[1 / 64, 1 / 16, 3 / 32, 1 / 16, 1 / 64],
-	[1 / 256, 1 / 64, 3 / 128, 1 / 64, 1 / 256],
-]);
-
-/**
- * Higher order Gaussian blur kernel for given integer radius `r`.
- * Returns 2D tensor with resulting kernel size of `2r+1`.
+ * 2D Gaussian blur kernel factory for given integer radius `r`. Returns 2D
+ * tensor of size `2r+1`.
  *
  * @param r -
  */
@@ -119,4 +100,82 @@ export const GAUSSIAN_BLUR2 = (r: number) => {
 		data: res.map((x) => x / sum),
 		copy: false,
 	});
+};
+
+const { max, min } = Math;
+
+/**
+ * Max. pool kernel factory for given window size and use with
+ * {@link applyKernel}. The kernel produces the maximum value in its window.
+ *
+ * @param w
+ * @param h
+ */
+export const MAX2_POOL = (w: number, h = w): KernelSpec<number> => {
+	return {
+		shape: [w, h],
+		init: () => -Infinity,
+		reduce: (acc, val) => max(acc, val),
+		complete: identity,
+	};
+};
+
+/**
+ * Min. pool kernel factory for given window size and use with
+ * {@link applyKernel}. The kernel produces the minimum value in its window.
+ *
+ * @param w
+ * @param h
+ */
+export const MIN2_POOL = (w: number, h = w): KernelSpec<number> => {
+	return {
+		shape: [w, h],
+		init: () => Infinity,
+		reduce: (acc, val) => min(acc, val),
+		complete: identity,
+	};
+};
+
+/**
+ * Kernel factory for given integer radius `r` and use with {@link applyKernel}.
+ * The kernel marks local maxima within its window and produces only 0 or 1
+ * result values (where 1 is used to mark the maxima).
+ *
+ * @param r
+ */
+export const MAXIMA2 = (r: number): KernelSpec<[number, number]> => {
+	r |= 0;
+	const w = 2 * r + 1;
+	return {
+		shape: [w, w],
+		init: () => [-Infinity, 0],
+		reduce: (acc, val, i, j) => {
+			if (i === r && j === r) acc[1] = val;
+			else acc[0] = max(acc[0], val);
+			return acc;
+		},
+		complete: (acc) => (acc[1] > acc[0] ? 1 : 0),
+	};
+};
+
+/**
+ * Kernel factory for given integer radius `r` and use with {@link applyKernel}.
+ * The kernel marks local minima within its window and produces only 0 or 1
+ * result values (where 1 is used to mark the minima).
+ *
+ * @param r
+ */
+export const MINIMA2 = (r: number): KernelSpec<[number, number]> => {
+	r |= 0;
+	const w = 2 * r + 1;
+	return {
+		shape: [w, w],
+		init: () => [Infinity, 0],
+		reduce: (acc, val, i, j) => {
+			if (i === r && j === r) acc[1] = val;
+			else acc[0] = min(acc[0], val);
+			return acc;
+		},
+		complete: (acc) => (acc[1] < acc[0] ? 1 : 0),
+	};
 };
