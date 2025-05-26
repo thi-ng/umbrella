@@ -201,7 +201,9 @@ export interface FloatFormat extends IABGRConvert<NumericArray> {
 	 *
 	 * @param val
 	 */
-	getNormalized(val: number): number;
+	normalized(val: number): number;
+
+	fromNormalized(val: number): number;
 }
 
 export interface RawPixelBuffer extends CanvasContext {

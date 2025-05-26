@@ -20,9 +20,8 @@ export const FLOAT_GRAY_RANGE = (min: number, max: number): FloatFormat => {
 		shift: { 3: 0 },
 		size: 1,
 		range: [min, max],
-		getNormalized: (val) => {
-			return fitClamped(val, min, max, 0, 1);
-		},
+		normalized: (val) => fitClamped(val, min, max, 0, 1),
+		fromNormalized: (val) => mix(min, max, val),
 		fromABGR: (src) => [mix(min, max, __luminanceABGR(src) / 255)],
 		toABGR: (src) =>
 			((fit(src[0], min, max, 0, 255) | 0) * 0x010101) | 0xff000000,
