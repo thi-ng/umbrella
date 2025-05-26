@@ -21,6 +21,7 @@ import {
 	type BlitCanvasOpts,
 	type BlitOpts,
 	type Filter,
+	type FloatFormat,
 	type IBlend,
 	type IBlit,
 	type IInvert,
@@ -42,6 +43,7 @@ import {
 	ensureImageDataSize,
 	ensureSize,
 } from "./checks.js";
+import { FloatBuffer } from "./float.js";
 import { ABGR8888 } from "./format/abgr8888.js";
 import { defIntFormat } from "./format/int-format.js";
 import { imageCanvas } from "./image.js";
@@ -187,8 +189,28 @@ export class IntBuffer
 		yield* this.data;
 	}
 
-	as(fmt: IntFormat): IntBuffer {
-		return this.getRegion(0, 0, this.width, this.height, fmt)!;
+	as(fmt: IntFormat): IntBuffer;
+	as(fmt: FloatFormat): FloatBuffer;
+	as(fmt: IntFormat | FloatFormat) {
+		if (!(<any>fmt).__float)
+			return this.getRegion(
+				0,
+				0,
+				this.width,
+				this.height,
+				<IntFormat>fmt
+			)!;
+		const dest = new FloatBuffer(this.width, this.height, <FloatFormat>fmt);
+		const {
+			data: dbuf,
+			format: dfmt,
+			stride: [stride],
+		} = dest;
+		const { data: sbuf, format: sfmt } = this;
+		for (let i = sbuf.length; i-- > 0; ) {
+			dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
+		}
+		return dest;
 	}
 
 	copy() {

@@ -88,6 +88,8 @@ export function floatBuffer(...args: any[]) {
  *
  * @param src -
  * @param fmt -
+ *
+ * @deprecated use `IntBuffer.as(float_format)` instead
  */
 export const floatBufferFromInt = (
 	src: IntBuffer,
@@ -108,15 +110,15 @@ export const floatBufferFromInt = (
 
 export const floatBufferFromImage = (
 	img: HTMLImageElement,
-	fmt?: FloatFormat | FloatFormatSpec,
+	fmt: FloatFormat = FLOAT_RGBA,
 	width?: number,
 	height = width
-) => floatBufferFromInt(intBufferFromImage(img, undefined, width, height), fmt);
+) => intBufferFromImage(img, undefined, width, height).as(fmt);
 
 export const floatBufferFromCanvas = (
 	canvas: HTMLCanvasElement | OffscreenCanvas,
-	fmt?: FloatFormat
-) => floatBufferFromInt(intBufferFromCanvas(canvas), fmt);
+	fmt: FloatFormat = FLOAT_RGBA
+) => intBufferFromCanvas(canvas).as(fmt);
 
 @IGrid2DMixin
 export class FloatBuffer
@@ -189,29 +191,58 @@ export class FloatBuffer
 		}
 	}
 
-	as(fmt: IntFormat) {
+	as(fmt: IntFormat): IntBuffer;
+	as(fmt: FloatFormat): FloatBuffer;
+	as(fmt: IntFormat | FloatFormat) {
 		const {
 			width,
 			height,
 			stride: [stride],
 			data,
-			format: sfmt,
+			format: { size, normalized: getNormalized, toABGR },
 		} = this;
-		const dest = new IntBuffer(width, height, fmt);
-		const dpixels = dest.data;
-		if (sfmt.size === 1 && fmt.channels.length === 1) {
-			const setFloat = fmt.channels[0].setFloat;
-			for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
-				dpixels[j] = setFloat(0, sfmt.getNormalized(data[i]));
+		let i = 0,
+			j = 0,
+			n = data.length;
+		if ((<any>fmt).__float) {
+			const $fmt = <FloatFormat>fmt;
+			const dest = new FloatBuffer(width, height, $fmt);
+			const {
+				data: dpixels,
+				stride: [dstride],
+			} = dest;
+			if (size === 1 && $fmt.channels.length === 1) {
+				const setNormalized = $fmt.fromNormalized;
+				for (; i < n; i += stride, j += dstride) {
+					dpixels[j] = setNormalized(getNormalized(data[i]));
+				}
+			} else {
+				for (; i < n; i += stride, j += dstride) {
+					dpixels.set(
+						$fmt.fromABGR(toABGR(data.subarray(i, i + stride))),
+						j
+					);
+				}
 			}
+			return dest;
 		} else {
-			for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
-				dpixels[j] = fmt.fromABGR(
-					sfmt.toABGR(data.subarray(i, i + stride))
-				);
+			const $fmt = <IntFormat>fmt;
+			const dest = new IntBuffer(width, height, $fmt);
+			const dpixels = dest.data;
+			if (size === 1 && $fmt.channels.length === 1) {
+				const setFloat = $fmt.channels[0].setFloat;
+				for (; i < n; i += stride, j++) {
+					dpixels[j] = setFloat(0, getNormalized(data[i]));
+				}
+			} else {
+				for (; i < n; i += stride, j++) {
+					dpixels[j] = $fmt.fromABGR(
+						toABGR(data.subarray(i, i + stride))
+					);
+				}
 			}
+			return dest;
 		}
-		return dest;
 	}
 
 	copy() {
