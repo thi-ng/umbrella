@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { floatBufferFromInt, type FloatBuffer } from "@thi.ng/pixel/float";
-import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
+import type { FloatBuffer } from "@thi.ng/pixel/float";
 import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";
 import { IntBuffer } from "@thi.ng/pixel/int";
 
@@ -30,12 +29,7 @@ export const asPFM = (
 	littleEndian = true,
 	linearRGB = true
 ) => {
-	if (img.format !== FLOAT_RGB) {
-		img = floatBufferFromInt(
-			img instanceof IntBuffer ? img : img.as(ABGR8888),
-			FLOAT_RGB
-		);
-	}
+	if (img.format !== FLOAT_RGB) img = img.as(FLOAT_RGB);
 	const {
 		width,
 		height,
