@@ -341,22 +341,64 @@ export const POOL_THRESHOLD =
 	};
 
 export const SOBEL_X: KernelSpec = {
-	spec: [-1, 0, 1, -2, 0, 2, -1, 0, 1],
+	// prettier-ignore
+	spec: [
+		-1, 0, 1,
+		-2, 0, 2,
+		-1, 0, 1
+	],
 	size: 3,
 };
 
 export const SOBEL_Y: KernelSpec = {
-	spec: [-1, -2, -1, 0, 0, 0, 1, 2, 1],
+	// prettier-ignore
+	spec: [
+		-1, -2, -1,
+		0, 0, 0,
+		1, 2, 1
+	],
 	size: 3,
 };
 
+export const EDGE3: KernelSpec = {
+	// prettier-ignore
+	spec: [
+		-1, -1, -1,
+		-1, 8, -1,
+		-1, -1, -1
+	],
+	size: 3,
+};
+
+export const EDGE5: KernelSpec = {
+	// prettier-ignore
+	spec: [
+		-1, -1, -1, -1, -1,
+		-1, -1, -1, -1, -1,
+		-1, -1, 24, -1, -1,
+		-1, -1, -1, -1, -1,
+		-1, -1, -1, -1, -1,
+	],
+	size: 5,
+};
+
 export const SHARPEN3: KernelSpec = {
-	spec: [0, -1, 0, -1, 5, -1, 0, -1, 0],
+	// prettier-ignore
+	spec: [
+		0, -1, 0,
+		-1, 5, -1,
+		0, -1, 0
+	],
 	size: 3,
 };
 
 export const HIGHPASS3: KernelSpec = {
-	spec: [-1, -1, -1, -1, 9, -1, -1, -1, -1],
+	// prettier-ignore
+	spec: [
+		-1, -1, -1,
+		-1, 9, -1,
+		-1, -1, -1
+	],
 	size: 3,
 };
 
@@ -371,7 +413,12 @@ export const BOX_BLUR5: KernelSpec = {
 };
 
 export const GAUSSIAN_BLUR3: KernelSpec = {
-	spec: [1 / 16, 1 / 8, 1 / 16, 1 / 8, 1 / 4, 1 / 8, 1 / 16, 1 / 8, 1 / 16],
+	// prettier-ignore
+	spec: [
+		1 / 16, 1 / 8, 1 / 16,
+		1 / 8, 1 / 4, 1 / 8,
+		1 / 16, 1 / 8, 1 / 16
+	],
 	size: 3,
 };
 
