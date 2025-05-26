@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 206 standalone projects, maintained as part
+> This is one of 208 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -48,6 +48,8 @@ following convolution kernel presets are provided for convenience:
 |------------------|-------------|
 | `BOX_BLUR3`      | 3x3         |
 | `BOX_BLUR5`      | 5x5         |
+| `EDGE3`          | 3x3         |
+| `EDGE5`          | 5x5         |
 | `GAUSSIAN_BLUR3` | 3x3         |
 | `GAUSSIAN_BLUR5` | 5x5         |
 | `GAUSSIAN(n)`    | 2n+1 x 2n+1 |
@@ -166,7 +168,7 @@ For Node.js REPL:
 const pc = await import("@thi.ng/pixel-convolve");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.27 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.29 KB
 
 ## Dependencies
 
