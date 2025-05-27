@@ -5766,7 +5766,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/pixel-convolve@workspace:^, @thi.ng/pixel-convolve@workspace:packages/pixel-convolve":
+"@thi.ng/pixel-analysis@workspace:packages/pixel-analysis":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/pixel-analysis@workspace:packages/pixel-analysis"
+  dependencies:
+    "@thi.ng/color": "npm:^5.7.37"
+    "@thi.ng/compare": "npm:^2.4.19"
+    "@thi.ng/math": "npm:^5.11.27"
+    "@thi.ng/pixel": "npm:^7.4.5"
+    "@thi.ng/pixel-convolve": "npm:^1.0.32"
+    "@thi.ng/pixel-dominant-colors": "npm:^1.1.45"
+    "@thi.ng/transducers": "npm:^9.3.0"
+    "@thi.ng/vectors": "npm:^8.2.0"
+    esbuild: "npm:^0.25.3"
+    typedoc: "npm:^0.28.3"
+    typescript: "npm:^5.8.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/pixel-convolve@npm:^1.0.32, @thi.ng/pixel-convolve@workspace:^, @thi.ng/pixel-convolve@workspace:packages/pixel-convolve":
   version: 0.0.0-use.local
   resolution: "@thi.ng/pixel-convolve@workspace:packages/pixel-convolve"
   dependencies:
@@ -5794,7 +5812,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/pixel-dominant-colors@workspace:^, @thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors":
+"@thi.ng/pixel-dominant-colors@npm:^1.1.45, @thi.ng/pixel-dominant-colors@workspace:^, @thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors":
   version: 0.0.0-use.local
   resolution: "@thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors"
   dependencies:
