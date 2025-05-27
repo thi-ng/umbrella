@@ -39,9 +39,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.3",
+		"esbuild": "^0.25.5",
 		"tools": "workspace:^",
-		"typedoc": "^0.28.3",
+		"typedoc": "^0.28.5",
 		"typescript": "^5.8.3"
 	},
 	"keywords": [

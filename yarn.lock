@@ -5,12 +5,12 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@emnapi/runtime@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@emnapi/runtime@npm:1.4.0"
+"@emnapi/runtime@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "@emnapi/runtime@npm:1.4.3"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: 10/38098887d0cb7189f37a020c194725f0b6900f56df146e4002f83a82a0add20db745cf85e4d49c215fd5de1e57e360d1bceb9ca27c8bb3c8445ee77c315f8732
+  checksum: 10/4f90852a1a5912982cc4e176b6420556971bcf6a85ee23e379e2455066d616219751367dcf43e6a6eaf41ea7e95ba9dc830665a52b5d979dfe074237d19578f8
   languageName: node
   linkType: hard
 
@@ -21,9 +21,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/aix-ppc64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/aix-ppc64@npm:0.25.3"
+"@esbuild/aix-ppc64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/aix-ppc64@npm:0.25.5"
   conditions: os=aix & cpu=ppc64
   languageName: node
   linkType: hard
@@ -35,9 +35,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/android-arm64@npm:0.25.3"
+"@esbuild/android-arm64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/android-arm64@npm:0.25.5"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
@@ -49,9 +49,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/android-arm@npm:0.25.3"
+"@esbuild/android-arm@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/android-arm@npm:0.25.5"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
@@ -63,9 +63,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/android-x64@npm:0.25.3"
+"@esbuild/android-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/android-x64@npm:0.25.5"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
@@ -77,9 +77,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-arm64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/darwin-arm64@npm:0.25.3"
+"@esbuild/darwin-arm64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/darwin-arm64@npm:0.25.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -91,9 +91,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/darwin-x64@npm:0.25.3"
+"@esbuild/darwin-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/darwin-x64@npm:0.25.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -105,9 +105,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-arm64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/freebsd-arm64@npm:0.25.3"
+"@esbuild/freebsd-arm64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/freebsd-arm64@npm:0.25.5"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -119,9 +119,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/freebsd-x64@npm:0.25.3"
+"@esbuild/freebsd-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/freebsd-x64@npm:0.25.5"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
@@ -133,9 +133,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-arm64@npm:0.25.3"
+"@esbuild/linux-arm64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-arm64@npm:0.25.5"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -147,9 +147,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-arm@npm:0.25.3"
+"@esbuild/linux-arm@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-arm@npm:0.25.5"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
@@ -161,9 +161,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ia32@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-ia32@npm:0.25.3"
+"@esbuild/linux-ia32@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-ia32@npm:0.25.5"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
@@ -175,9 +175,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-loong64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-loong64@npm:0.25.3"
+"@esbuild/linux-loong64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-loong64@npm:0.25.5"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
@@ -189,9 +189,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-mips64el@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-mips64el@npm:0.25.3"
+"@esbuild/linux-mips64el@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-mips64el@npm:0.25.5"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
@@ -203,9 +203,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ppc64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-ppc64@npm:0.25.3"
+"@esbuild/linux-ppc64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-ppc64@npm:0.25.5"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
@@ -217,9 +217,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-riscv64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-riscv64@npm:0.25.3"
+"@esbuild/linux-riscv64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-riscv64@npm:0.25.5"
   conditions: os=linux & cpu=riscv64
   languageName: node
   linkType: hard
@@ -231,9 +231,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-s390x@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-s390x@npm:0.25.3"
+"@esbuild/linux-s390x@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-s390x@npm:0.25.5"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
@@ -245,9 +245,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/linux-x64@npm:0.25.3"
+"@esbuild/linux-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/linux-x64@npm:0.25.5"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
@@ -259,9 +259,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-arm64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/netbsd-arm64@npm:0.25.3"
+"@esbuild/netbsd-arm64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/netbsd-arm64@npm:0.25.5"
   conditions: os=netbsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -273,9 +273,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/netbsd-x64@npm:0.25.3"
+"@esbuild/netbsd-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/netbsd-x64@npm:0.25.5"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -287,9 +287,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-arm64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/openbsd-arm64@npm:0.25.3"
+"@esbuild/openbsd-arm64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/openbsd-arm64@npm:0.25.5"
   conditions: os=openbsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -301,9 +301,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/openbsd-x64@npm:0.25.3"
+"@esbuild/openbsd-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/openbsd-x64@npm:0.25.5"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -315,9 +315,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/sunos-x64@npm:0.25.3"
+"@esbuild/sunos-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/sunos-x64@npm:0.25.5"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
@@ -329,9 +329,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-arm64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/win32-arm64@npm:0.25.3"
+"@esbuild/win32-arm64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/win32-arm64@npm:0.25.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -343,9 +343,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/win32-ia32@npm:0.25.3"
+"@esbuild/win32-ia32@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/win32-ia32@npm:0.25.5"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
@@ -357,9 +357,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-x64@npm:0.25.3":
-  version: 0.25.3
-  resolution: "@esbuild/win32-x64@npm:0.25.3"
+"@esbuild/win32-x64@npm:0.25.5":
+  version: 0.25.5
+  resolution: "@esbuild/win32-x64@npm:0.25.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -377,7 +377,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -397,7 +397,7 @@ __metadata:
     "@thi.ng/transducers-stats": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -409,7 +409,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -426,7 +426,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -442,7 +442,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -460,7 +460,7 @@ __metadata:
     "@thi.ng/rdom-forms": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -481,7 +481,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -501,7 +501,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -520,7 +520,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -533,7 +533,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -550,7 +550,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -571,7 +571,7 @@ __metadata:
     "@thi.ng/rstream-dot": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -607,7 +607,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -626,7 +626,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/transducers-stats": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -644,7 +644,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-async": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -656,7 +656,7 @@ __metadata:
     "@thi.ng/atom": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -681,7 +681,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -697,7 +697,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -719,7 +719,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -739,7 +739,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -753,7 +753,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -768,7 +768,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -786,7 +786,7 @@ __metadata:
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -798,7 +798,7 @@ __metadata:
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/hiccup-canvas": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -816,7 +816,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -829,7 +829,7 @@ __metadata:
     "@thi.ng/hiccup-canvas": "workspace:^"
     "@thi.ng/meta-css": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -843,7 +843,7 @@ __metadata:
     "@thi.ng/hiccup-canvas": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -856,7 +856,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -877,7 +877,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -894,7 +894,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -909,7 +909,7 @@ __metadata:
     "@thi.ng/matrices": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -922,7 +922,7 @@ __metadata:
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -941,7 +941,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -958,7 +958,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -974,7 +974,7 @@ __metadata:
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -994,7 +994,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1014,7 +1014,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1029,7 +1029,7 @@ __metadata:
     "@thi.ng/meta-css": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1045,7 +1045,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1062,7 +1062,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1075,7 +1075,7 @@ __metadata:
     "@thi.ng/grid-iterators": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1093,7 +1093,7 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1108,7 +1108,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1123,7 +1123,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1138,7 +1138,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1154,7 +1154,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1171,7 +1171,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1193,7 +1193,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1210,7 +1210,7 @@ __metadata:
     "@thi.ng/paths": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1225,7 +1225,7 @@ __metadata:
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/paths": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1236,7 +1236,7 @@ __metadata:
     "@thi.ng/atom": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1250,7 +1250,7 @@ __metadata:
     "@thi.ng/paths": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1260,7 +1260,7 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1274,7 +1274,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1285,7 +1285,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/paths": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1295,7 +1295,7 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1305,7 +1305,7 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1317,7 +1317,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/paths": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1328,7 +1328,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1340,7 +1340,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1359,7 +1359,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1376,7 +1376,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1390,7 +1390,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1404,7 +1404,7 @@ __metadata:
     "@thi.ng/hdom-components": "workspace:^"
     "@thi.ng/hiccup": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1420,7 +1420,7 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/random": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1434,7 +1434,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/rstream-gestures": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1460,7 +1460,7 @@ __metadata:
     "@thi.ng/transducers-stats": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1473,7 +1473,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1486,7 +1486,7 @@ __metadata:
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1503,7 +1503,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1514,7 +1514,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1530,7 +1530,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1545,7 +1545,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1560,7 +1560,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1574,7 +1574,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1593,7 +1593,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1608,7 +1608,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1628,7 +1628,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1641,7 +1641,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1656,7 +1656,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1676,7 +1676,7 @@ __metadata:
     "@thi.ng/transducers-stats": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1714,7 +1714,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1726,7 +1726,7 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/porter-duff": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1743,7 +1743,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1755,7 +1755,7 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-dither": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1774,7 +1774,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1788,7 +1788,7 @@ __metadata:
     "@thi.ng/pixel-dither": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1800,7 +1800,7 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-convolve": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1820,7 +1820,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1836,7 +1836,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1859,7 +1859,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1885,7 +1885,7 @@ __metadata:
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1899,7 +1899,7 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/poisson": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1913,7 +1913,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1934,7 +1934,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1946,7 +1946,7 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/porter-duff": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1965,7 +1965,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1981,7 +1981,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -1996,7 +1996,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2013,7 +2013,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2028,7 +2028,7 @@ __metadata:
     "@thi.ng/rasterize": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2041,7 +2041,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers-async": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2059,7 +2059,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2075,7 +2075,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2091,7 +2091,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2106,7 +2106,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2123,7 +2123,7 @@ __metadata:
     "@thi.ng/rdom-forms": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2141,7 +2141,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-fsm": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2156,7 +2156,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2168,7 +2168,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2184,7 +2184,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2200,7 +2200,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2218,7 +2218,7 @@ __metadata:
     "@thi.ng/router": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2237,7 +2237,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2253,7 +2253,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2267,7 +2267,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2289,7 +2289,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2309,7 +2309,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2329,7 +2329,7 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2344,7 +2344,7 @@ __metadata:
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/router": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2362,7 +2362,7 @@ __metadata:
     "@thi.ng/rstream-graph": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2376,7 +2376,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2398,7 +2398,7 @@ __metadata:
     "@thi.ng/rstream-graph": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2410,7 +2410,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2435,7 +2435,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2447,7 +2447,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2468,7 +2468,7 @@ __metadata:
     "@thi.ng/system": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2486,7 +2486,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2503,7 +2503,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2520,7 +2520,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2533,7 +2533,7 @@ __metadata:
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2548,7 +2548,7 @@ __metadata:
     "@thi.ng/webgl": "workspace:^"
     "@thi.ng/webgl-shadertoy": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2565,7 +2565,7 @@ __metadata:
     "@thi.ng/webgl": "workspace:^"
     "@thi.ng/webgl-shadertoy": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2579,7 +2579,7 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2593,7 +2593,7 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2607,7 +2607,7 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2622,7 +2622,7 @@ __metadata:
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2642,7 +2642,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-stats": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2663,7 +2663,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2683,7 +2683,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2701,7 +2701,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2716,7 +2716,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2732,7 +2732,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2744,7 +2744,7 @@ __metadata:
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2756,7 +2756,7 @@ __metadata:
     "@thi.ng/math": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2769,7 +2769,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2786,7 +2786,7 @@ __metadata:
     "@thi.ng/sax": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2803,7 +2803,7 @@ __metadata:
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2818,7 +2818,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2830,7 +2830,7 @@ __metadata:
     "@thi.ng/text-canvas": "workspace:^"
     "@thi.ng/text-format": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2846,7 +2846,7 @@ __metadata:
     "@thi.ng/text-format": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2865,7 +2865,7 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2879,7 +2879,7 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2892,7 +2892,7 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2931,7 +2931,7 @@ __metadata:
     "@thi.ng/units": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2943,7 +2943,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2963,7 +2963,7 @@ __metadata:
     "@thi.ng/rstream-query": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2982,7 +2982,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/tsne": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2997,7 +2997,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3021,7 +3021,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/viz": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3042,7 +3042,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/viz": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3062,7 +3062,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3078,7 +3078,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3096,7 +3096,7 @@ __metadata:
     "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3111,7 +3111,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3125,7 +3125,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3142,7 +3142,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3164,7 +3164,7 @@ __metadata:
     "@thi.ng/webgl": "workspace:^"
     "@thi.ng/webgl-msdf": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3178,7 +3178,7 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3191,7 +3191,7 @@ __metadata:
     "@thi.ng/webgl": "workspace:^"
     "@thi.ng/webgl-shadertoy": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3212,7 +3212,7 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3228,7 +3228,7 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3243,7 +3243,7 @@ __metadata:
     "@thi.ng/transducers-binary": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3261,7 +3261,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3276,7 +3276,7 @@ __metadata:
     "@thi.ng/wasm-api": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3289,7 +3289,7 @@ __metadata:
     "@thi.ng/wasm-api-canvas": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3302,7 +3302,7 @@ __metadata:
     "@thi.ng/wasm-api-dom": "workspace:^"
     "@thi.ng/wasm-api-schedule": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3317,7 +3317,7 @@ __metadata:
     "@thi.ng/wasm-api-dom": "workspace:^"
     "@thi.ng/wasm-api-schedule": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3333,7 +3333,7 @@ __metadata:
     "@thi.ng/wasm-api-schedule": "workspace:^"
     "@thi.ng/wasm-api-webgl": "workspace:^"
     typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.4"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3357,9 +3357,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-darwin-arm64@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-darwin-arm64@npm:0.34.1"
+"@img/sharp-darwin-arm64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-darwin-arm64@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-darwin-arm64": "npm:1.1.0"
   dependenciesMeta:
@@ -3369,9 +3369,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-darwin-x64@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-darwin-x64@npm:0.34.1"
+"@img/sharp-darwin-x64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-darwin-x64@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-darwin-x64": "npm:1.1.0"
   dependenciesMeta:
@@ -3444,9 +3444,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linux-arm64@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-linux-arm64@npm:0.34.1"
+"@img/sharp-linux-arm64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-linux-arm64@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-linux-arm64": "npm:1.1.0"
   dependenciesMeta:
@@ -3456,9 +3456,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linux-arm@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-linux-arm@npm:0.34.1"
+"@img/sharp-linux-arm@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-linux-arm@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-linux-arm": "npm:1.1.0"
   dependenciesMeta:
@@ -3468,9 +3468,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linux-s390x@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-linux-s390x@npm:0.34.1"
+"@img/sharp-linux-s390x@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-linux-s390x@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-linux-s390x": "npm:1.1.0"
   dependenciesMeta:
@@ -3480,9 +3480,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linux-x64@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-linux-x64@npm:0.34.1"
+"@img/sharp-linux-x64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-linux-x64@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-linux-x64": "npm:1.1.0"
   dependenciesMeta:
@@ -3492,9 +3492,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linuxmusl-arm64@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-linuxmusl-arm64@npm:0.34.1"
+"@img/sharp-linuxmusl-arm64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-linuxmusl-arm64@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-linuxmusl-arm64": "npm:1.1.0"
   dependenciesMeta:
@@ -3504,9 +3504,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linuxmusl-x64@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-linuxmusl-x64@npm:0.34.1"
+"@img/sharp-linuxmusl-x64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-linuxmusl-x64@npm:0.34.2"
   dependencies:
     "@img/sharp-libvips-linuxmusl-x64": "npm:1.1.0"
   dependenciesMeta:
@@ -3516,25 +3516,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-wasm32@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-wasm32@npm:0.34.1"
+"@img/sharp-wasm32@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-wasm32@npm:0.34.2"
   dependencies:
-    "@emnapi/runtime": "npm:^1.4.0"
+    "@emnapi/runtime": "npm:^1.4.3"
   conditions: cpu=wasm32
   languageName: node
   linkType: hard
 
-"@img/sharp-win32-ia32@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-win32-ia32@npm:0.34.1"
+"@img/sharp-win32-arm64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-win32-arm64@npm:0.34.2"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@img/sharp-win32-ia32@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-win32-ia32@npm:0.34.2"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@img/sharp-win32-x64@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@img/sharp-win32-x64@npm:0.34.1"
+"@img/sharp-win32-x64@npm:0.34.2":
+  version: 0.34.2
+  resolution: "@img/sharp-win32-x64@npm:0.34.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -3944,8 +3951,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/sparse": "npm:^1.0.16"
     "@thi.ng/vectors": "npm:^8.1.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -3954,8 +3961,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/api@workspace:packages/api"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -3970,9 +3977,9 @@ __metadata:
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/text-format": "npm:^2.2.32"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -3987,8 +3994,8 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.83"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/random": "npm:^4.1.18"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4005,9 +4012,9 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.83"
     "@thi.ng/object-utils": "npm:^1.1.23"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4020,9 +4027,9 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.83"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/paths": "npm:^5.2.10"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4041,9 +4048,9 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/units": "npm:^1.0.15"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     serialport: "npm:^13.0.0"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4052,8 +4059,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/base-n@workspace:packages/base-n"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4064,10 +4071,10 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/timestamp": "npm:^1.1.12"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
     tools: "workspace:^"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4083,8 +4090,8 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/transducers-binary": "npm:^2.1.162"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4093,8 +4100,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/bidir-index@workspace:packages/bidir-index"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4104,8 +4111,8 @@ __metadata:
   resolution: "@thi.ng/binary@workspace:packages/binary"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4118,8 +4125,8 @@ __metadata:
     "@thi.ng/binary": "npm:^3.4.50"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4129,8 +4136,8 @@ __metadata:
   resolution: "@thi.ng/bitstream@workspace:packages/bitstream"
   dependencies:
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4150,9 +4157,9 @@ __metadata:
     "@thi.ng/mime": "npm:^2.7.9"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/strings": "npm:^3.9.12"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   bin:
     blockfs: bin/blockfs
@@ -4168,9 +4175,9 @@ __metadata:
     "@thi.ng/canvas": "npm:^1.0.14"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/math": "npm:^5.11.27"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tools: "workspace:^"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4187,8 +4194,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/timestep": "npm:^1.0.21"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4199,8 +4206,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4211,8 +4218,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/dcons": "npm:^3.2.151"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4221,9 +4228,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/canvas@workspace:packages/canvas"
   dependencies:
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tools: "workspace:^"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4238,8 +4245,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4248,10 +4255,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/checks@workspace:packages/checks"
   dependencies:
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4266,8 +4273,8 @@ __metadata:
     "@thi.ng/color": "npm:^5.7.37"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/hex": "npm:^2.3.71"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4289,8 +4296,8 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4307,8 +4314,8 @@ __metadata:
     "@thi.ng/text-canvas": "npm:^3.0.67"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.1.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4318,8 +4325,8 @@ __metadata:
   resolution: "@thi.ng/compare@workspace:packages/compare"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4332,8 +4339,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4344,8 +4351,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4358,8 +4365,8 @@ __metadata:
     "@thi.ng/buffers": "npm:^1.0.12"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4372,8 +4379,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4385,8 +4392,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4402,8 +4409,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4415,8 +4422,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/logger": "npm:^3.1.8"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4428,8 +4435,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/dgraph": "npm:^2.1.157"
     "@thi.ng/dot": "npm:^2.1.104"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4443,8 +4450,8 @@ __metadata:
     "@thi.ng/equiv": "npm:^2.1.83"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4455,7 +4462,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/equiv": "npm:^2.1.83"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4464,8 +4471,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/disjoint-set@workspace:packages/disjoint-set"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4476,8 +4483,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4492,8 +4499,8 @@ __metadata:
     "@thi.ng/heaps": "npm:^2.1.99"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4505,8 +4512,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/mime": "npm:^2.7.9"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4516,8 +4523,8 @@ __metadata:
   resolution: "@thi.ng/dlogic@workspace:packages/dlogic"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4528,8 +4535,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4543,8 +4550,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/transducers-binary": "npm:^2.1.162"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4559,8 +4566,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4570,8 +4577,8 @@ __metadata:
   resolution: "@thi.ng/dual-algebra@workspace:packages/dual-algebra"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4582,8 +4589,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4603,9 +4610,9 @@ __metadata:
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/malloc": "npm:^6.1.111"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4624,9 +4631,9 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers-binary": "npm:^2.1.162"
     "@thi.ng/trie": "npm:^1.1.21"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4635,8 +4642,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/emoji@workspace:packages/emoji"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4645,8 +4652,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/equiv@workspace:packages/equiv"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4655,9 +4662,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/errors@workspace:packages/errors"
   dependencies:
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4666,9 +4673,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/expose@workspace:packages/expose"
   dependencies:
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4686,8 +4693,8 @@ __metadata:
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/timestamp": "npm:^1.1.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4701,9 +4708,9 @@ __metadata:
     "@thi.ng/hex": "npm:^2.3.71"
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/random": "npm:^4.1.18"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4719,8 +4726,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/text-canvas": "npm:^3.0.69"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4731,8 +4738,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/math": "npm:^5.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4752,8 +4759,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4766,8 +4773,8 @@ __metadata:
     "@thi.ng/geom-resample": "npm:^3.0.45"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4787,8 +4794,8 @@ __metadata:
     "@thi.ng/geom-isec": "npm:^4.0.45"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4800,8 +4807,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/geom-isec": "npm:^4.0.45"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4814,8 +4821,8 @@ __metadata:
     "@thi.ng/geom-poly-utils": "npm:^3.0.45"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4827,8 +4834,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4846,8 +4853,8 @@ __metadata:
     "@thi.ng/object-utils": "npm:^1.1.23"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4858,8 +4865,8 @@ __metadata:
   dependencies:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4871,8 +4878,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4885,8 +4892,8 @@ __metadata:
     "@thi.ng/geom-closest-point": "npm:^2.1.173"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4898,8 +4905,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4912,8 +4919,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4928,8 +4935,8 @@ __metadata:
     "@thi.ng/geom-isec": "npm:^4.0.45"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4949,8 +4956,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4965,8 +4972,8 @@ __metadata:
     "@thi.ng/geom-resample": "npm:^3.0.45"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4977,8 +4984,8 @@ __metadata:
   dependencies:
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -4996,8 +5003,8 @@ __metadata:
     "@thi.ng/morton": "npm:^3.1.114"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5012,8 +5019,8 @@ __metadata:
     "@thi.ng/matrices": "npm:^3.0.4"
     "@thi.ng/pixel": "npm:^7.4.5"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5032,8 +5039,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/quad-edge": "npm:^3.1.91"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5052,8 +5059,8 @@ __metadata:
     "@thi.ng/vector-pools": "npm:^3.2.46"
     "@thi.ng/vectors": "npm:^8.2.0"
     "@thi.ng/webgl": "npm:^6.9.52"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5089,8 +5096,8 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5105,8 +5112,8 @@ __metadata:
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/zipper": "npm:^2.1.134"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5123,8 +5130,8 @@ __metadata:
     "@thi.ng/morton": "npm:^3.1.114"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5138,9 +5145,9 @@ __metadata:
     "@thi.ng/hiccup": "npm:^5.3.12"
     "@thi.ng/hiccup-css": "npm:^2.7.47"
     "@thi.ng/strings": "npm:^3.9.12"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   bin:
     hdiff: bin/hdiff
@@ -5157,8 +5164,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/hdom": "npm:^9.4.72"
     "@thi.ng/hiccup-canvas": "npm:^3.1.52"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5173,8 +5180,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/transducers-stats": "npm:^2.2.21"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5186,8 +5193,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/hdom": "npm:^9.4.72"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5205,8 +5212,8 @@ __metadata:
     "@thi.ng/hiccup": "npm:^5.3.12"
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/prefixes": "npm:^2.3.44"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5218,8 +5225,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/compare": "npm:^2.4.19"
     "@thi.ng/equiv": "npm:^2.1.83"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5228,8 +5235,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/hex@workspace:packages/hex"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5245,8 +5252,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/pixel": "npm:^7.4.5"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5256,8 +5263,8 @@ __metadata:
   resolution: "@thi.ng/hiccup-carbon-icons@workspace:packages/hiccup-carbon-icons"
   dependencies:
     "@thi.ng/hiccup": "npm:^5.3.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5270,8 +5277,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5284,8 +5291,8 @@ __metadata:
     "@thi.ng/defmulti": "npm:^3.0.67"
     "@thi.ng/parse": "npm:^2.6.14"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5295,8 +5302,8 @@ __metadata:
   resolution: "@thi.ng/hiccup-html@workspace:packages/hiccup-html"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5316,8 +5323,8 @@ __metadata:
     "@thi.ng/parse": "npm:^2.6.14"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/text-canvas": "npm:^3.0.69"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5330,8 +5337,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/color": "npm:^5.7.37"
     "@thi.ng/prefixes": "npm:^2.3.44"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5345,8 +5352,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5357,9 +5364,9 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5374,8 +5381,8 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5397,10 +5404,10 @@ __metadata:
     "@thi.ng/pixel-dither": "npm:^1.1.166"
     "@thi.ng/prefixes": "npm:^2.3.44"
     "@thi.ng/vectors": "npm:^8.1.0"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    sharp: "npm:^0.34.1"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    sharp: "npm:^0.34.2"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5418,8 +5425,8 @@ __metadata:
     "@thi.ng/ramp": "npm:^3.3.35"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5434,8 +5441,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/paths": "npm:^5.2.10"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5448,8 +5455,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/dlogic": "npm:^2.1.94"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5463,8 +5470,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5477,8 +5484,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   bin:
     ksuid: bin/ksuid
@@ -5492,8 +5499,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/arrays": "npm:^2.11.0"
     "@thi.ng/checks": "npm:^3.7.7"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5503,8 +5510,8 @@ __metadata:
   resolution: "@thi.ng/leaky-bucket@workspace:packages/leaky-bucket"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5516,8 +5523,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/transducers-binary": "npm:^2.1.162"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5535,8 +5542,8 @@ __metadata:
     "@thi.ng/object-utils": "npm:^1.1.23"
     "@thi.ng/sexpr": "npm:^1.0.17"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5545,8 +5552,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/logger@workspace:packages/logger"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5556,8 +5563,8 @@ __metadata:
   resolution: "@thi.ng/lowdisc@workspace:packages/lowdisc"
   dependencies:
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5574,8 +5581,8 @@ __metadata:
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5588,8 +5595,8 @@ __metadata:
     "@thi.ng/binary": "npm:^3.4.50"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5604,8 +5611,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5615,8 +5622,8 @@ __metadata:
   resolution: "@thi.ng/math@workspace:packages/math"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5629,8 +5636,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5640,8 +5647,8 @@ __metadata:
   resolution: "@thi.ng/memoize@workspace:packages/memoize"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5664,9 +5671,9 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/text-format": "npm:^2.2.32"
     "@thi.ng/transducers": "npm:^9.3.0"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   bin:
     metacss: bin/metacss
@@ -5678,8 +5685,8 @@ __metadata:
   resolution: "@thi.ng/mime@workspace:packages/mime"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5692,8 +5699,8 @@ __metadata:
     "@thi.ng/binary": "npm:^3.4.50"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/math": "npm:^5.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5705,8 +5712,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5717,8 +5724,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5732,8 +5739,8 @@ __metadata:
     "@thi.ng/compare": "npm:^2.4.19"
     "@thi.ng/defmulti": "npm:^3.0.67"
     "@thi.ng/equiv": "npm:^2.1.83"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5747,8 +5754,8 @@ __metadata:
     "@thi.ng/defmulti": "npm:^3.0.67"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5760,8 +5767,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5778,8 +5785,8 @@ __metadata:
     "@thi.ng/pixel-dominant-colors": "npm:^1.1.45"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5793,8 +5800,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5806,8 +5813,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5819,8 +5826,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/k-means": "npm:^1.0.21"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5831,8 +5838,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5843,9 +5850,9 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     geotiff: "npm:2.1.3"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5857,8 +5864,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5869,8 +5876,8 @@ __metadata:
   dependencies:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/pixel": "npm:^7.4.5"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5885,9 +5892,9 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/porter-duff": "npm:^2.1.105"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5903,10 +5910,10 @@ __metadata:
     "@thi.ng/file-io": "npm:^2.1.36"
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/pointfree": "npm:^3.1.111"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
     pegjs: "npm:0.11.0-master.f69239d"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   bin:
     pointfree: bin/pointfree
@@ -5922,8 +5929,8 @@ __metadata:
     "@thi.ng/compose": "npm:^3.0.30"
     "@thi.ng/equiv": "npm:^2.1.83"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5937,8 +5944,8 @@ __metadata:
     "@thi.ng/geom-accel": "npm:^4.1.38"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5948,8 +5955,8 @@ __metadata:
   resolution: "@thi.ng/porter-duff@workspace:packages/porter-duff"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5958,8 +5965,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/prefixes@workspace:packages/prefixes"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5977,8 +5984,8 @@ __metadata:
     "@thi.ng/parse": "npm:^2.6.14"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -5988,8 +5995,8 @@ __metadata:
   resolution: "@thi.ng/quad-edge@workspace:packages/quad-edge"
   dependencies:
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6005,8 +6012,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6018,8 +6025,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/base-n": "npm:^2.7.39"
     "@thi.ng/random": "npm:^4.1.18"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6030,8 +6037,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6042,8 +6049,8 @@ __metadata:
   dependencies:
     "@thi.ng/bitstream": "npm:^2.4.19"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6059,8 +6066,8 @@ __metadata:
     "@thi.ng/porter-duff": "npm:^2.1.105"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6076,8 +6083,8 @@ __metadata:
     "@thi.ng/object-utils": "npm:^1.1.23"
     "@thi.ng/rdom": "npm:^1.7.36"
     "@thi.ng/rstream": "npm:^9.2.19"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6093,8 +6100,8 @@ __metadata:
     "@thi.ng/rstream": "npm:^9.2.19"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6109,8 +6116,8 @@ __metadata:
     "@thi.ng/hiccup-html": "npm:^2.7.25"
     "@thi.ng/rdom": "npm:^1.7.36"
     "@thi.ng/rstream": "npm:^9.2.19"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6127,8 +6134,8 @@ __metadata:
     "@thi.ng/prefixes": "npm:^2.3.44"
     "@thi.ng/rstream": "npm:^9.2.19"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6141,8 +6148,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/paths": "npm:^5.2.10"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6153,8 +6160,8 @@ __metadata:
   dependencies:
     "@thi.ng/bitstream": "npm:^2.4.19"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6167,9 +6174,9 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/equiv": "npm:^2.1.83"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6180,8 +6187,8 @@ __metadata:
   dependencies:
     "@thi.ng/csp": "npm:^3.2.33"
     "@thi.ng/rstream": "npm:^9.2.19"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6193,8 +6200,8 @@ __metadata:
     "@thi.ng/rstream": "npm:^9.2.19"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6208,8 +6215,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/rstream": "npm:^9.2.19"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6226,8 +6233,8 @@ __metadata:
     "@thi.ng/resolve-map": "npm:^7.1.103"
     "@thi.ng/rstream": "npm:^9.2.19"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6237,9 +6244,9 @@ __metadata:
   resolution: "@thi.ng/rstream-log-file@workspace:packages/rstream-log-file"
   dependencies:
     "@thi.ng/rstream": "npm:^9.2.19"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6254,8 +6261,8 @@ __metadata:
     "@thi.ng/rstream": "npm:^9.2.19"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6274,8 +6281,8 @@ __metadata:
     "@thi.ng/rstream": "npm:^9.2.19"
     "@thi.ng/rstream-dot": "npm:^3.0.124"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6292,9 +6299,9 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/transducers": "npm:^9.3.0"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6307,8 +6314,8 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/transducers-fsm": "npm:^2.2.125"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6322,8 +6329,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/matrices": "npm:^3.0.4"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6334,8 +6341,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6358,9 +6365,9 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/timestamp": "npm:^1.1.12"
     "@thi.ng/uuid": "npm:^1.1.24"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6372,8 +6379,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/defmulti": "npm:^3.0.67"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6386,8 +6393,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/shader-ast": "npm:^1.1.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6404,8 +6411,8 @@ __metadata:
     "@thi.ng/pixel": "npm:^7.4.5"
     "@thi.ng/shader-ast": "npm:^1.1.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6420,8 +6427,8 @@ __metadata:
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/shader-ast": "npm:^1.1.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6432,8 +6439,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/shader-ast": "npm:^1.1.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6448,8 +6455,8 @@ __metadata:
     "@thi.ng/dgraph": "npm:^2.1.157"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/logger": "npm:^3.1.8"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6461,8 +6468,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/transducers-binary": "npm:^2.1.162"
     assemblyscript: "npm:0.27.36"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6477,8 +6484,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/transducers-binary": "npm:^2.1.162"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6493,8 +6500,8 @@ __metadata:
     "@thi.ng/compare": "npm:^2.4.19"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6507,8 +6514,8 @@ __metadata:
     "@thi.ng/associative": "npm:^7.0.33"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6520,8 +6527,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6534,8 +6541,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/hex": "npm:^2.3.71"
     "@thi.ng/memoize": "npm:^4.0.17"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6547,8 +6554,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/dgraph": "npm:^2.1.157"
     "@thi.ng/logger": "npm:^3.1.8"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6567,9 +6574,9 @@ __metadata:
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   bin:
     tangle: bin/tangle
@@ -6589,8 +6596,8 @@ __metadata:
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6608,9 +6615,9 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/text-format": "npm:^2.2.32"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
+    esbuild: "npm:^0.25.5"
     tslib: "npm:^2.8.1"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6622,8 +6629,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/hex": "npm:^2.3.71"
     "@thi.ng/memoize": "npm:^4.0.17"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6632,8 +6639,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/timestamp@workspace:packages/timestamp"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6645,8 +6652,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6662,9 +6669,9 @@ __metadata:
     "@thi.ng/logger": "npm:^3.1.8"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6680,8 +6687,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/timestamp": "npm:^1.1.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6697,8 +6704,8 @@ __metadata:
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6709,8 +6716,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6722,8 +6729,8 @@ __metadata:
     "@thi.ng/hdom": "npm:^9.4.72"
     "@thi.ng/hiccup": "npm:^5.3.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6737,8 +6744,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/paths": "npm:^5.2.10"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6752,8 +6759,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6771,8 +6778,8 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.27"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/timestamp": "npm:^1.1.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6782,8 +6789,8 @@ __metadata:
   resolution: "@thi.ng/trie@workspace:packages/trie"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6797,8 +6804,8 @@ __metadata:
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6807,8 +6814,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/unionstruct@workspace:packages/unionstruct"
   dependencies:
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6821,8 +6828,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/equiv": "npm:^2.1.83"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6833,8 +6840,8 @@ __metadata:
   dependencies:
     "@thi.ng/hex": "npm:^2.3.71"
     "@thi.ng/random": "npm:^4.1.18"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6844,8 +6851,8 @@ __metadata:
   resolution: "@thi.ng/vclock@workspace:packages/vclock"
   dependencies:
     "@thi.ng/api": "npm:^8.11.27"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6862,8 +6869,8 @@ __metadata:
     "@thi.ng/malloc": "npm:^6.1.111"
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6880,8 +6887,8 @@ __metadata:
     "@thi.ng/memoize": "npm:^4.0.17"
     "@thi.ng/random": "npm:^4.1.18"
     "@thi.ng/strings": "npm:^3.9.12"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6898,8 +6905,8 @@ __metadata:
     "@thi.ng/object-utils": "npm:^1.1.23"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/transducers": "npm:^9.3.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6921,9 +6928,9 @@ __metadata:
     "@thi.ng/paths": "npm:^5.2.10"
     "@thi.ng/strings": "npm:^3.9.12"
     "@thi.ng/wasm-api": "npm:^2.3.17"
-    "@types/node": "npm:^22.15.3"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    "@types/node": "npm:^22.15.21"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   bin:
     wasm-api-bindgen: bin/wasm-api-bindgen
@@ -6938,8 +6945,8 @@ __metadata:
     "@thi.ng/wasm-api": "npm:^2.3.17"
     "@thi.ng/wasm-api-bindgen": "npm:^1.2.11"
     "@thi.ng/wasm-api-dom": "npm:^1.0.34"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6954,8 +6961,8 @@ __metadata:
     "@thi.ng/prefixes": "npm:^2.3.44"
     "@thi.ng/wasm-api": "npm:^2.3.17"
     "@thi.ng/wasm-api-bindgen": "npm:^1.2.11"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6967,8 +6974,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.11.27"
     "@thi.ng/wasm-api": "npm:^2.3.17"
     "@thi.ng/wasm-api-bindgen": "npm:^1.2.11"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -6983,8 +6990,8 @@ __metadata:
     "@thi.ng/wasm-api-bindgen": "npm:^1.2.11"
     "@thi.ng/wasm-api-dom": "npm:^1.0.34"
     "@thi.ng/webgl": "npm:^6.9.52"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -7000,8 +7007,8 @@ __metadata:
     "@thi.ng/hex": "npm:^2.3.71"
     "@thi.ng/idgen": "npm:^2.2.67"
     "@thi.ng/logger": "npm:^3.1.8"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -7016,8 +7023,8 @@ __metadata:
     "@thi.ng/vector-pools": "npm:^3.2.46"
     "@thi.ng/vectors": "npm:^8.2.0"
     "@thi.ng/webgl": "npm:^6.9.52"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -7030,8 +7037,8 @@ __metadata:
     "@thi.ng/shader-ast": "npm:^1.1.0"
     "@thi.ng/shader-ast-glsl": "npm:^1.0.19"
     "@thi.ng/webgl": "npm:^6.9.52"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -7056,8 +7063,8 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.3.0"
     "@thi.ng/vector-pools": "npm:^3.2.46"
     "@thi.ng/vectors": "npm:^8.2.0"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -7070,8 +7077,8 @@ __metadata:
     "@thi.ng/arrays": "npm:^2.11.0"
     "@thi.ng/checks": "npm:^3.7.7"
     "@thi.ng/errors": "npm:^2.5.33"
-    esbuild: "npm:^0.25.3"
-    typedoc: "npm:^0.28.3"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -7106,12 +7113,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.15.3":
-  version: 22.15.3
-  resolution: "@types/node@npm:22.15.3"
+"@types/node@npm:^22.15.21":
+  version: 22.15.21
+  resolution: "@types/node@npm:22.15.21"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/6b4ff03c36598432b419980f828281aa16383e2de6eb61f73275495ef8d2cbf8cb5607659b4cae5ff8b2b2ff69913ea07ffcc0be029e4280b6e8bc138dc6629b
+  checksum: 10/cb4189587cca445bfb8166c0ed39f9344d743f37f3da892f2999a99bbabda45dc773237e61ecb7d1dc83dd95718cb1b5715b0be5dd7953565b19019e36a7cf39
   languageName: node
   linkType: hard
 
@@ -7255,12 +7262,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bun-types@npm:^1.2.11":
-  version: 1.2.11
-  resolution: "bun-types@npm:1.2.11"
+"bun-types@npm:^1.2.14":
+  version: 1.2.14
+  resolution: "bun-types@npm:1.2.14"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10/0851f5c171f5480b0a862d1d42b5f5076a4e4e3a7976cca509f2d532715fef2e44ddb7b5860cfe7a6863fec66b25330e18ffcd18ade9890388415650bd152fd4
+  checksum: 10/2e5349d42a0d51f4a4fe1a704b10151b7c39f8c07d6198e179ff0c05a790e5e75017016d11c1debcb5ef2ecb832e442e96d853bdb51f908cc1524bfcb07943a9
   languageName: node
   linkType: hard
 
@@ -7434,10 +7441,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-libc@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "detect-libc@npm:2.0.3"
-  checksum: 10/b4ea018d623e077bd395f168a9e81db77370dde36a5b01d067f2ad7989924a81d31cb547ff764acb2aa25d50bb7fdde0b0a93bec02212b0cb430621623246d39
+"detect-libc@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "detect-libc@npm:2.0.4"
+  checksum: 10/136e995f8c5ffbc515955b0175d441b967defd3d5f2268e89fa695e9c7170d8bed17993e31a34b04f0fad33d844a3a598e0fd519a8e9be3cad5f67662d96fee0
   languageName: node
   linkType: hard
 
@@ -7574,35 +7581,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.25.3":
-  version: 0.25.3
-  resolution: "esbuild@npm:0.25.3"
+"esbuild@npm:^0.25.5":
+  version: 0.25.5
+  resolution: "esbuild@npm:0.25.5"
   dependencies:
-    "@esbuild/aix-ppc64": "npm:0.25.3"
-    "@esbuild/android-arm": "npm:0.25.3"
-    "@esbuild/android-arm64": "npm:0.25.3"
-    "@esbuild/android-x64": "npm:0.25.3"
-    "@esbuild/darwin-arm64": "npm:0.25.3"
-    "@esbuild/darwin-x64": "npm:0.25.3"
-    "@esbuild/freebsd-arm64": "npm:0.25.3"
-    "@esbuild/freebsd-x64": "npm:0.25.3"
-    "@esbuild/linux-arm": "npm:0.25.3"
-    "@esbuild/linux-arm64": "npm:0.25.3"
-    "@esbuild/linux-ia32": "npm:0.25.3"
-    "@esbuild/linux-loong64": "npm:0.25.3"
-    "@esbuild/linux-mips64el": "npm:0.25.3"
-    "@esbuild/linux-ppc64": "npm:0.25.3"
-    "@esbuild/linux-riscv64": "npm:0.25.3"
-    "@esbuild/linux-s390x": "npm:0.25.3"
-    "@esbuild/linux-x64": "npm:0.25.3"
-    "@esbuild/netbsd-arm64": "npm:0.25.3"
-    "@esbuild/netbsd-x64": "npm:0.25.3"
-    "@esbuild/openbsd-arm64": "npm:0.25.3"
-    "@esbuild/openbsd-x64": "npm:0.25.3"
-    "@esbuild/sunos-x64": "npm:0.25.3"
-    "@esbuild/win32-arm64": "npm:0.25.3"
-    "@esbuild/win32-ia32": "npm:0.25.3"
-    "@esbuild/win32-x64": "npm:0.25.3"
+    "@esbuild/aix-ppc64": "npm:0.25.5"
+    "@esbuild/android-arm": "npm:0.25.5"
+    "@esbuild/android-arm64": "npm:0.25.5"
+    "@esbuild/android-x64": "npm:0.25.5"
+    "@esbuild/darwin-arm64": "npm:0.25.5"
+    "@esbuild/darwin-x64": "npm:0.25.5"
+    "@esbuild/freebsd-arm64": "npm:0.25.5"
+    "@esbuild/freebsd-x64": "npm:0.25.5"
+    "@esbuild/linux-arm": "npm:0.25.5"
+    "@esbuild/linux-arm64": "npm:0.25.5"
+    "@esbuild/linux-ia32": "npm:0.25.5"
+    "@esbuild/linux-loong64": "npm:0.25.5"
+    "@esbuild/linux-mips64el": "npm:0.25.5"
+    "@esbuild/linux-ppc64": "npm:0.25.5"
+    "@esbuild/linux-riscv64": "npm:0.25.5"
+    "@esbuild/linux-s390x": "npm:0.25.5"
+    "@esbuild/linux-x64": "npm:0.25.5"
+    "@esbuild/netbsd-arm64": "npm:0.25.5"
+    "@esbuild/netbsd-x64": "npm:0.25.5"
+    "@esbuild/openbsd-arm64": "npm:0.25.5"
+    "@esbuild/openbsd-x64": "npm:0.25.5"
+    "@esbuild/sunos-x64": "npm:0.25.5"
+    "@esbuild/win32-arm64": "npm:0.25.5"
+    "@esbuild/win32-ia32": "npm:0.25.5"
+    "@esbuild/win32-x64": "npm:0.25.5"
   dependenciesMeta:
     "@esbuild/aix-ppc64":
       optional: true
@@ -7656,7 +7663,7 @@ __metadata:
       optional: true
   bin:
     esbuild: bin/esbuild
-  checksum: 10/f1ff72289938330312926421f90eea442025cbbac295a7a2e8cfc2abbd9e3a8bc1502883468b0487e4020f1369e4726c851a2fa4b65a7c71331940072c3a1808
+  checksum: 10/0fa4c3b42c6ddf1a008e75a4bb3dcab08ce22ac0b31dd59dc01f7fe8e21380bfaec07a2fe3730a7cf430da5a30142d016714b358666325a4733547afa42be405
   languageName: node
   linkType: hard
 
@@ -8485,11 +8492,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    bun-types: "npm:^1.2.11"
-    esbuild: "npm:^0.25.3"
+    bun-types: "npm:^1.2.14"
+    esbuild: "npm:^0.25.5"
     html-minifier-terser: "npm:^7.2.0"
     tools: "workspace:^"
-    typedoc: "npm:^0.28.3"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -8519,12 +8526,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.7.1":
-  version: 7.7.1
-  resolution: "semver@npm:7.7.1"
+"semver@npm:^7.7.2":
+  version: 7.7.2
+  resolution: "semver@npm:7.7.2"
   bin:
     semver: bin/semver.js
-  checksum: 10/4cfa1eb91ef3751e20fc52e47a935a0118d56d6f15a837ab814da0c150778ba2ca4f1a4d9068b33070ea4273629e615066664c2cfcd7c272caf7a8a0f6518b2c
+  checksum: 10/7a24cffcaa13f53c09ce55e05efe25cd41328730b2308678624f8b9f5fc3093fc4d189f47950f0b811ff8f3c3039c24a2c36717ba7961615c682045bf03e1dda
   languageName: node
   linkType: hard
 
@@ -8557,12 +8564,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.34.1":
-  version: 0.34.1
-  resolution: "sharp@npm:0.34.1"
+"sharp@npm:^0.34.2":
+  version: 0.34.2
+  resolution: "sharp@npm:0.34.2"
   dependencies:
-    "@img/sharp-darwin-arm64": "npm:0.34.1"
-    "@img/sharp-darwin-x64": "npm:0.34.1"
+    "@img/sharp-darwin-arm64": "npm:0.34.2"
+    "@img/sharp-darwin-x64": "npm:0.34.2"
     "@img/sharp-libvips-darwin-arm64": "npm:1.1.0"
     "@img/sharp-libvips-darwin-x64": "npm:1.1.0"
     "@img/sharp-libvips-linux-arm": "npm:1.1.0"
@@ -8572,18 +8579,19 @@ __metadata:
     "@img/sharp-libvips-linux-x64": "npm:1.1.0"
     "@img/sharp-libvips-linuxmusl-arm64": "npm:1.1.0"
     "@img/sharp-libvips-linuxmusl-x64": "npm:1.1.0"
-    "@img/sharp-linux-arm": "npm:0.34.1"
-    "@img/sharp-linux-arm64": "npm:0.34.1"
-    "@img/sharp-linux-s390x": "npm:0.34.1"
-    "@img/sharp-linux-x64": "npm:0.34.1"
-    "@img/sharp-linuxmusl-arm64": "npm:0.34.1"
-    "@img/sharp-linuxmusl-x64": "npm:0.34.1"
-    "@img/sharp-wasm32": "npm:0.34.1"
-    "@img/sharp-win32-ia32": "npm:0.34.1"
-    "@img/sharp-win32-x64": "npm:0.34.1"
+    "@img/sharp-linux-arm": "npm:0.34.2"
+    "@img/sharp-linux-arm64": "npm:0.34.2"
+    "@img/sharp-linux-s390x": "npm:0.34.2"
+    "@img/sharp-linux-x64": "npm:0.34.2"
+    "@img/sharp-linuxmusl-arm64": "npm:0.34.2"
+    "@img/sharp-linuxmusl-x64": "npm:0.34.2"
+    "@img/sharp-wasm32": "npm:0.34.2"
+    "@img/sharp-win32-arm64": "npm:0.34.2"
+    "@img/sharp-win32-ia32": "npm:0.34.2"
+    "@img/sharp-win32-x64": "npm:0.34.2"
     color: "npm:^4.2.3"
-    detect-libc: "npm:^2.0.3"
-    semver: "npm:^7.7.1"
+    detect-libc: "npm:^2.0.4"
+    semver: "npm:^7.7.2"
   dependenciesMeta:
     "@img/sharp-darwin-arm64":
       optional: true
@@ -8621,11 +8629,13 @@ __metadata:
       optional: true
     "@img/sharp-wasm32":
       optional: true
+    "@img/sharp-win32-arm64":
+      optional: true
     "@img/sharp-win32-ia32":
       optional: true
     "@img/sharp-win32-x64":
       optional: true
-  checksum: 10/aecb960c0780b56134bfef01b7aeaa4e6650320a8a1f491237b45e900fc670830ee5d0600f30e51878328109db82e376bb526931d07a2e9358510ef30ab5abe8
+  checksum: 10/8c7a6f20d58849a6e33bc69c4525f471d57eb3dea0072331b55ab12bae4b8bd8b99b65264aeaec38e54d52d692db13e3261f6e7bc29430b39b507c409838cbb0
   languageName: node
   linkType: hard
 
@@ -8800,9 +8810,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.28.3":
-  version: 0.28.3
-  resolution: "typedoc@npm:0.28.3"
+"typedoc@npm:^0.28.5":
+  version: 0.28.5
+  resolution: "typedoc@npm:0.28.5"
   dependencies:
     "@gerrit0/mini-shiki": "npm:^3.2.2"
     lunr: "npm:^2.3.9"
@@ -8813,7 +8823,7 @@ __metadata:
     typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x
   bin:
     typedoc: bin/typedoc
-  checksum: 10/12319b69d57709e4e0d68c30ac31772d2df688b0951408930406a781dd938317ba0c172081c9cac88fb8ceb39d7634966a662729e2d985d08c9aef7275c76129
+  checksum: 10/620426f4fd593dea5ffd37bce8741bfa996cb25e0f67c6aac11434788652c3cd10af2a9c47d1445f10b9fbb44304ffcf6ec59f5cedd353175e3b3d9a24cb5d29
   languageName: node
   linkType: hard
 
@@ -8876,9 +8886,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.3.4":
-  version: 6.3.4
-  resolution: "vite@npm:6.3.4"
+"vite@npm:^6.3.5":
+  version: 6.3.5
+  resolution: "vite@npm:6.3.5"
   dependencies:
     esbuild: "npm:^0.25.0"
     fdir: "npm:^6.4.4"
@@ -8927,7 +8937,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/347579b6571e591c1e4f54262e631f02e952e548171af09042aeffb40adfa5c9b43cf05cf115f0961cc553f6b7173fb9c2ee997a688007c01b6e13779d9a2bd4
+  checksum: 10/7bc3a1c5ef79413ad70daeeaf69b76cd1218d16aa18ed8ee08d74648ef17284f4a17c11f5cf42b573b6dc5e3d5f115110b67b1d23c2c699cfe404757764a634a
   languageName: node
   linkType: hard
 

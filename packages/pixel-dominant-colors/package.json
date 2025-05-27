@@ -44,8 +44,8 @@
 		"@thi.ng/pixel": "^7.4.5"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.3",
-		"typedoc": "^0.28.3",
+		"esbuild": "^0.25.5",
+		"typedoc": "^0.28.5",
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
