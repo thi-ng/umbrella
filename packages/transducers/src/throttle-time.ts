@@ -28,7 +28,7 @@ export function throttleTime<T>(delay: number, src?: Iterable<T>): any {
 	return isIterable(src)
 		? iterator1(throttleTime(delay), src)
 		: throttle<T>(() => {
-				let prev: Timestamp = 0;
+				let prev: Timestamp = now();
 				return () => {
 					const t = now();
 					return timeDiff(prev, t) >= delay
