@@ -147,7 +147,7 @@ export class IntBuffer
 {
 	readonly size: [number, number];
 	readonly stride: [number, number];
-	readonly format: IntFormat;
+	format: IntFormat;
 	data: UIntArray;
 
 	constructor(

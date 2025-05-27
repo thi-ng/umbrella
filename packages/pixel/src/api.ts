@@ -220,7 +220,16 @@ export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
 	extends IGrid2D<T, P> {
 	readonly width: number;
 	readonly height: number;
-	readonly format: IABGRConvert<any>;
+	/**
+	 * Pixel format.
+	 *
+	 * @remarks
+	 * When modifying this value, it's the user's responsibility to ensure
+	 * storage compatibility between old and new formats. If the number of
+	 * channels or channel resolution varies, use `.as(newFormat)` to trigger an
+	 * actual conversion.
+	 */
+	format: IABGRConvert<any>;
 
 	/**
 	 * Extracts region as new pixel buffer in same format.

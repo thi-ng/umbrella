@@ -136,7 +136,7 @@ export class FloatBuffer
 {
 	readonly size: [number, number];
 	readonly stride: [number, number];
-	readonly format: FloatFormat;
+	format: FloatFormat;
 	data: Float32Array;
 	protected __empty: NumericArray;
 
