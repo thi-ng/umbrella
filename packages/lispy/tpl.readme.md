@@ -150,7 +150,7 @@ All included...
 The core language can be easily customized/extended by defining new symbols (or
 redefining existing ones) in the root environment `ENV` (see example below) or
 passing a custom environment to
-[`evalSource()`](https://docs.thi.ng/umbrella/lispyfunctions/evalSource.html).
+[`evalSource()`](https://docs.thi.ng/umbrella/lispy/functions/evalSource.html).
 
 {{meta.status}}
 

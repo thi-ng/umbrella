@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 209 standalone projects, maintained as part
+> This is one of 208 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -187,7 +187,7 @@ All included...
 The core language can be easily customized/extended by defining new symbols (or
 redefining existing ones) in the root environment `ENV` (see example below) or
 passing a custom environment to
-[`evalSource()`](https://docs.thi.ng/umbrella/lispyfunctions/evalSource.html).
+[`evalSource()`](https://docs.thi.ng/umbrella/lispy/functions/evalSource.html).
 
 ## Status
 
@@ -221,7 +221,7 @@ For Node.js REPL:
 const lispy = await import("@thi.ng/lispy");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.95 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.96 KB
 
 ## Dependencies
 

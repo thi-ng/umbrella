@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 206 standalone projects, maintained as part
+> This is one of 208 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -178,6 +178,7 @@ const img = src.resize(1024, 256, "cubic");
 
 ## Support packages
 
+- [@thi.ng/pixel-analysis](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-analysis) - Image color & feature analysis utilities
 - [@thi.ng/pixel-convolve](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-convolve) - Extensible bitmap image convolution, kernel presets, normal map & image pyramid generation
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither) - Extensible image dithering w/ various algorithm presets
 - [@thi.ng/pixel-dominant-colors](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dominant-colors) - k-means based dominant color extraction from images/pixel buffers
@@ -220,7 +221,7 @@ For Node.js REPL:
 const pix = await import("@thi.ng/pixel");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 7.41 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 7.53 KB
 
 ## Dependencies
 

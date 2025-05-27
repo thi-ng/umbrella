@@ -58,7 +58,7 @@ For Node.js REPL:
 const pa = await import("@thi.ng/pixel-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.23 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.29 KB
 
 ## Dependencies
 
