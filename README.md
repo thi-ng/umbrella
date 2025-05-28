@@ -62,7 +62,7 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 207 individual
+Not including deprecations, this mono-repository is home to 208 individual
 TypeScript libraries/packages/tools and ~185 example projects illustrating their
 usage, currently totalling ~238k SLOC and ~4250 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
@@ -312,14 +312,18 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-05-20
+As of: 2025-05-28
 
-| Status                                        | Package                                             | Version                                                                                                                   | Changelog                                          |
-|:----------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/lispy`](./packages/lispy)                 | [![version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)                 | [changelog](./packages/lispy/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast`](./packages/shader-ast)       | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)       | [changelog](./packages/shader-ast/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-js`](./packages/shader-ast-js) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js) | [changelog](./packages/shader-ast-js/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)             | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)             | [changelog](./packages/vectors/CHANGELOG.md)       |
+| Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
+|:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/imago`](./packages/imago)                   | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)                   | [changelog](./packages/imago/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/lispy`](./packages/lispy)                   | [![version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)                   | [changelog](./packages/lispy/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel`](./packages/pixel)                   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                   | [changelog](./packages/pixel/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel-analysis`](./packages/pixel-analysis) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis) | [changelog](./packages/pixel-analysis/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel-convolve`](./packages/pixel-convolve) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-convolve.svg)](https://www.npmjs.com/package/@thi.ng/pixel-convolve) | [changelog](./packages/pixel-convolve/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/pixel-io-pfm`](./packages/pixel-io-pfm)     | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)     | [changelog](./packages/pixel-io-pfm/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/tensors`](./packages/tensors)               | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)               | [changelog](./packages/tensors/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/transducers`](./packages/transducers)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)       | [changelog](./packages/transducers/CHANGELOG.md)    |
 
 ### Algorithms & data structures
 
@@ -482,6 +486,7 @@ As of: 2025-05-20
 | [`@thi.ng/imago`](./packages/imago)                                 | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)                                 | [changelog](./packages/imago/CHANGELOG.md)                 | Declarative & extensible image processing pipelines |
 | [`@thi.ng/lsys`](./packages/lsys)                                   | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                                   | [changelog](./packages/lsys/CHANGELOG.md)                  | Extensible L-System architecture                    |
 | [`@thi.ng/pixel`](./packages/pixel)                                 | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                                 | [changelog](./packages/pixel/CHANGELOG.md)                 | Multi-format pixel buffers                          |
+| [`@thi.ng/pixel-analysis`](./packages/pixel-analysis)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis)               | [changelog](./packages/pixel-analysis/CHANGELOG.md)        | Image color & feature analysis utilities            |
 | [`@thi.ng/pixel-convolve`](./packages/pixel-convolve)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-convolve.svg)](https://www.npmjs.com/package/@thi.ng/pixel-convolve)               | [changelog](./packages/pixel-convolve/CHANGELOG.md)        | Extensible image convolution & kernel presets       |
 | [`@thi.ng/pixel-dominant-colors`](./packages/pixel-dominant-colors) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors) | [changelog](./packages/pixel-dominant-colors/CHANGELOG.md) | k-means based dominant colors extraction            |
 | [`@thi.ng/pixel-dither`](./packages/pixel-dither)                   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)                   | [changelog](./packages/pixel-dither/CHANGELOG.md)          | Image dithering w/ various algorithm presets        |
