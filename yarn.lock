@@ -1558,6 +1558,7 @@ __metadata:
     "@thi.ng/lispy": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: "npm:^5.8.3"
     vite: "npm:^6.3.5"

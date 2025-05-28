@@ -21,6 +21,7 @@
 		"@thi.ng/lispy": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/strings": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
 	"keywords": [

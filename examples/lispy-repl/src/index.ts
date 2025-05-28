@@ -4,6 +4,7 @@ import { div, inputText, pre } from "@thi.ng/hiccup-html";
 import { ENV, evalSource } from "@thi.ng/lispy";
 import { $compile, $klist } from "@thi.ng/rdom";
 import { reactive, syncRAF } from "@thi.ng/rstream";
+import { ESCAPES } from "@thi.ng/strings";
 import { slidingWindow } from "@thi.ng/transducers";
 
 // type definition for a single REPL item
@@ -25,7 +26,18 @@ Type your S-expressions in the input box below.
 Press Enter to evaluate.
 Click on a previous input to place it back in the prompt.
 
-See https://thi.ng/lispy readme for details.`;
+See https://thi.ng/lispy readme for details.
+
+Examples:
+
+(env)
+    Show current environment
+(print (join "\\n" (syms)))
+    Print symbols in current environment
+(def name value)
+    Define new global symbol
+(defn name (args...) ...body)
+    Define new function`;
 
 // CSS classes for various REPL item types
 const STYLES: Record<REPLItemType, string> = {
@@ -61,9 +73,9 @@ ENV.print = (...args: any[]) => addItem("print", args.join(" "));
 const processInput = (e: KeyboardEvent) => {
 	if (e.key !== "Enter") return;
 	const el = <HTMLInputElement>e.target;
-	const src = el.value;
+	const src = el.value.replace(/\\(\w)/g, (_, x) => ESCAPES[x] ?? `\\${x}`);
 	// add input text as REPL item
-	addItem("in", src);
+	addItem("in", el.value);
 	// reset input field
 	el.value = "";
 	try {
