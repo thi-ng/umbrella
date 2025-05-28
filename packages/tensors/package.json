@@ -134,6 +134,9 @@
 		"./clampn": {
 			"default": "./clampn.js"
 		},
+		"./convert": {
+			"default": "./convert.js"
+		},
 		"./convolve": {
 			"default": "./convolve.js"
 		},
