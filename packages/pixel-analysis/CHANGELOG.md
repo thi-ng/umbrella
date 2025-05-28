@@ -11,10 +11,8 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/object-utils@1.1.0) (2024-07-22)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.1.0) (2025-05-28)
 
 #### 🚀 Features
 
-- import as new package ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([9587f66](https://github.com/thi-ng/umbrella/commit/9587f66))
-  - extract `BidirIndex` from [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/main/packages/associative)
-- add sortedObject(), asObject(), update pkg ([b613a0c](https://github.com/thi-ng/umbrella/commit/b613a0c))
+- import as new pkg ([587b4da](https://github.com/thi-ng/umbrella/commit/587b4da))

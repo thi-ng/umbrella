@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-04-30T12:52:32Z
+- **Last updated**: 2025-05-28T12:02:40Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@7.5.0) (2025-05-28)
+
+#### 🚀 Features
+
+- update `FloatFormat` ([5e28d2f](https://github.com/thi-ng/umbrella/commit/5e28d2f))
+  - add `.fromNormalized()`
+  - rename `.getNormalized()` => `.normalized()`
+- update `.as()` impls to support float formats ([2cf71f6](https://github.com/thi-ng/umbrella/commit/2cf71f6))
+  - update `FloatBuffer.as()`, `IntBuffer.as()` to support both int & float formats
+  - deprecate `floatBufferFromInt()`
+
+#### ♻️ Refactoring
+
+- allow `.format` overrides in float/int buffers ([d5ad199](https://github.com/thi-ng/umbrella/commit/d5ad199))
 
 ## [7.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@7.4.0) (2025-03-16)
 

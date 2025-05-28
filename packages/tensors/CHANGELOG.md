@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-12T07:03:24Z
+- **Last updated**: 2025-05-28T12:02:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.5.0) (2025-05-28)
+
+#### 🚀 Features
+
+- add convolve() (1D/2D/3D versions) ([bc9a6eb](https://github.com/thi-ng/umbrella/commit/bc9a6eb))
+- add `constant()`, refactor `ones()` ([8cdd68c](https://github.com/thi-ng/umbrella/commit/8cdd68c))
+- add convolution kernel presets ([e553f06](https://github.com/thi-ng/umbrella/commit/e553f06))
+  - add 1D/2D/3D sobel kernels
+  - add 2D box blur
+  - add 2D gaussian blur
+- add/update/rename convolution kernels ([025c7ba](https://github.com/thi-ng/umbrella/commit/025c7ba))
+- add `applyKernel()`, add/update kernel presets ([b8c2a7a](https://github.com/thi-ng/umbrella/commit/b8c2a7a))
+- add `fromFloatBuffer()` conversion ([d78a0d3](https://github.com/thi-ng/umbrella/commit/d78a0d3))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.4.0) (2025-05-12)
 

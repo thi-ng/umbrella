@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-21T10:56:03Z
+- **Last updated**: 2025-05-28T12:02:40Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/lispy@0.3.0) (2025-05-28)
+
+#### 🚀 Features
+
+- add/update builtins ([ab7cdec](https://github.com/thi-ng/umbrella/commit/ab7cdec))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/lispy@0.2.0) (2025-05-21)
 

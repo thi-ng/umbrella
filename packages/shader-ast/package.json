@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets",
 	"type": "module",
 	"module": "./index.js",
@@ -42,12 +42,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.27",
-		"@thi.ng/checks": "^3.7.7",
-		"@thi.ng/defmulti": "^3.0.67",
-		"@thi.ng/dgraph": "^2.1.157",
-		"@thi.ng/errors": "^2.5.33",
-		"@thi.ng/logger": "^3.1.8"
+		"@thi.ng/api": "^8.11.28",
+		"@thi.ng/checks": "^3.7.8",
+		"@thi.ng/defmulti": "^3.0.68",
+		"@thi.ng/dgraph": "^2.1.158",
+		"@thi.ng/errors": "^2.5.34",
+		"@thi.ng/logger": "^3.1.9"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",
