@@ -18,6 +18,7 @@
 - [Built-in tensor operations](#built-in-tensor-operations)
   - [Broadcasting support](#broadcasting-support)
   - [Convolution support](#convolution-support)
+  - [Conversions](#conversions)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -176,6 +177,15 @@ factories can be used with
 - `MAXIMA2(radius)`: local maxima detection
 - `MINIMA2(radius)`: local minima detection
 
+### Conversions
+
+The following functions can be used to convert/coerce other data structures into
+tensors:
+
+- [`fromFloatBuffer()`](https://docs.thi.ng/umbrella/tensors/functions/fromFloatBuffer.html):
+  Coerce [thi.ng/pixel] float buffer/image (or compatible data structures) into
+  a 2D/3D tensor
+
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -208,7 +218,7 @@ For Node.js REPL:
 const ten = await import("@thi.ng/tensors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 9.30 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.40 KB
 
 ## Dependencies
 

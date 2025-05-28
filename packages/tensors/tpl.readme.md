@@ -150,6 +150,15 @@ factories can be used with
 - `MAXIMA2(radius)`: local maxima detection
 - `MINIMA2(radius)`: local minima detection
 
+### Conversions
+
+The following functions can be used to convert/coerce other data structures into
+tensors:
+
+- [`fromFloatBuffer()`](https://docs.thi.ng/umbrella/tensors/functions/fromFloatBuffer.html):
+  Coerce [thi.ng/pixel] float buffer/image (or compatible data structures) into
+  a 2D/3D tensor
+
 {{meta.status}}
 
 {{repo.supportPackages}}
