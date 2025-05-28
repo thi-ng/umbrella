@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { ExtendSpec, Processor } from "../api.js";
-import { coerceColor, computeMargins } from "../units.js";
+import { coerceColor, computeMargins } from "../utils.js";
 
 export const extendProc: Processor = async (spec, input, ctx) => {
 	const { bg, border, mode, ref, unit } = <ExtendSpec>spec;

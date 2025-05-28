@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { CompLayerFn, RawLayer } from "../api.js";
-import { positionOrGravity } from "../units.js";
+import { positionOrGravity } from "../utils.js";
 
 export const rawLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 	const {

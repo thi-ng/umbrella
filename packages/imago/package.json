@@ -181,8 +181,8 @@
 		"./proc": {
 			"default": "./proc.js"
 		},
-		"./units": {
-			"default": "./units.js"
+		"./utils": {
+			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {

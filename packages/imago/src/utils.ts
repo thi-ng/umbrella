@@ -1,6 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
-import { isArray, isArrayLike, isNumber, isString } from "@thi.ng/checks";
+import {
+	isArray,
+	isArrayLike,
+	isNumber,
+	isPlainObject,
+	isString,
+	isTypedArray,
+} from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import type { Metadata } from "sharp";
 import {
@@ -8,6 +15,7 @@ import {
 	type Color,
 	type Dim,
 	type Gravity,
+	type IntBufferLike,
 	type Position,
 	type Sides,
 	type Size,
@@ -16,6 +24,12 @@ import {
 } from "./api.js";
 
 const round = Math.round;
+
+export const isIntBufferLike = (x: any): x is IntBufferLike =>
+	isNumber(x.width) &&
+	isNumber(x.height) &&
+	isTypedArray(x.data) &&
+	isPlainObject(x.format);
 
 export const ensureSize = (meta: Metadata) =>
 	!(isNumber(meta.width) && isNumber(meta.height)) &&

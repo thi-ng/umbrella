@@ -6,6 +6,7 @@ import type {
 	Keys,
 	Range1_4,
 	TypedArray,
+	UIntArray,
 } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type {
@@ -84,6 +85,17 @@ export interface Position {
 }
 
 export type BufferLike = TypedArray | Buffer;
+
+/**
+ * Simplified interface of thi.ng/pixel `IntBuffer`, only defining parts
+ * relevant to the conversion for {@link processImage}.
+ */
+export interface IntBufferLike {
+	width: number;
+	height: number;
+	format: { channels: unknown[] };
+	data: UIntArray;
+}
 
 export type Processor = Fn3<
 	ProcSpec,

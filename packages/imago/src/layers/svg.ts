@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { readText } from "@thi.ng/file-io";
 import type { CompLayerFn, SVGLayer } from "../api.js";
-import { positionOrGravity } from "../units.js";
+import { positionOrGravity } from "../utils.js";
 import { illegalArgs } from "@thi.ng/errors";
 
 export const svgLayerImpl: CompLayerFn = async (layer, _, ctx) => {

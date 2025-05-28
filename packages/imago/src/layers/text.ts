@@ -2,7 +2,7 @@
 import { isFunction } from "@thi.ng/checks";
 import { XML_SVG } from "@thi.ng/prefixes";
 import type { CompLayerFn, Dim, TextLayer } from "../api.js";
-import { computeSize, gravityFlags, positionOrGravity } from "../units.js";
+import { computeSize, gravityFlags, positionOrGravity } from "../utils.js";
 import { readText } from "@thi.ng/file-io";
 
 export const textLayerImpl: CompLayerFn = async (layer, _, ctx) => {

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks";
 import { GRAVITY_POSITION, type Processor, type ResizeSpec } from "../api.js";
-import { coerceColor, computeSize } from "../units.js";
+import { coerceColor, computeSize } from "../utils.js";
 
 export const resizeProc: Processor = async (spec, input, ctx) => {
 	const { bg, filter, fit, gravity, ref, size, unit } = <ResizeSpec>spec;

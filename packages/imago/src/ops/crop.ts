@@ -8,7 +8,7 @@ import {
 	computeSizeWithAspect,
 	gravityPosition,
 	positionOrGravity,
-} from "../units.js";
+} from "../utils.js";
 
 export const cropProc: Processor = async (spec, input, ctx) => {
 	const { aspect, border, gravity, pos, size, ref, unit } = <CropSpec>spec;
