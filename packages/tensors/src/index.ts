@@ -7,6 +7,7 @@ export * from "./apply-kernel.js";
 export * from "./broadcast.js";
 export * from "./clamp.js";
 export * from "./clampn.js";
+export * from "./convert.js";
 export * from "./convolve.js";
 export * from "./cos.js";
 export * from "./defopn.js";
