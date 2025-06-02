@@ -1,5 +1,6 @@
 import type { FloatBuffer } from "@thi.ng/pixel/float";
 import { FLOAT_HSVA } from "@thi.ng/pixel/format/float-hsva";
+import type { IntBuffer } from "@thi.ng/pixel/int";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { mean } from "@thi.ng/transducers/mean";
@@ -15,7 +16,7 @@ import { transduce } from "@thi.ng/transducers/transduce";
  * @param minSat
  */
 export function* selectHueRangeHsv(
-	img: FloatBuffer,
+	img: IntBuffer | FloatBuffer,
 	minHue: number,
 	maxHue: number,
 	minSat: number
@@ -45,7 +46,7 @@ export function* selectHueRangeHsv(
  * @param minSat
  */
 export const countHueRangeHsv = (
-	img: FloatBuffer,
+	img: IntBuffer | FloatBuffer,
 	minHue: number,
 	maxHue: number,
 	minSat: number
@@ -78,7 +79,7 @@ export const countHueRangeHsv = (
  * @param minSat
  */
 export const hueRangeIntensityHsv = (
-	img: FloatBuffer,
+	img: IntBuffer | FloatBuffer,
 	hues: [number, number][],
 	minSat = 0.2
 ) => {
@@ -104,13 +105,14 @@ export const hueRangeIntensityHsv = (
  * @param img
  * @param minSat
  */
-export const warmIntensityHsv = (img: FloatBuffer, minSat?: number) =>
+export const warmIntensityHsv = (
+	img: IntBuffer | FloatBuffer,
+	minSat?: number
+) =>
 	hueRangeIntensityHsv(
 		img,
 		[
-			[15 / 360, 35 / 360],
-			[35 / 360, 55 / 360],
-			[345 / 360, 15 / 360],
+			[345 / 360, 55 / 360], // red, orange, yellow
 		],
 		minSat
 	);
