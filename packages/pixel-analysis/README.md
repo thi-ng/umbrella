@@ -15,6 +15,7 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [Color analysis](#color-analysis)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -25,6 +26,27 @@
 ## About
 
 Image color & feature analysis utilities. This is a support package for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+
+### Color analysis
+
+-   Dominant colors in different color modes/formats:
+    -   CSS
+    -   sRGB
+    -   HSV
+    -   Oklch (perceptual)
+-   Normalized areas of dominant color clusters
+-   Min/max HSV hue range of dominant colors
+-   Min/max HSV saturation range of dominant colors
+-   Min/max Oklch chroma range of dominant colors
+-   Min/max luminance range of dominant colors (obtained from SRGB)
+-   Min/max luminance range of entire grayscale image (obtained from SRGB)
+-   Normalized warmth, i.e. the area-weighted intensity of "warm" colors in the image
+-   Luminance contrast of dominant colors
+-   Luminance contrast of entire grayscale image
+-   Max. normalized WCAG color contrast of dominant colors
+-   Average luminance of dominant colors, weighted by area
+-   Average HSV saturation of dominant colors, weighted by area
+-   Average Oklch chroma of dominant colors, weighted by area
 
 ## Status
 
@@ -58,7 +80,7 @@ For Node.js REPL:
 const pa = await import("@thi.ng/pixel-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.28 KB
 
 ## Dependencies
 
