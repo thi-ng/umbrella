@@ -10,7 +10,6 @@ import {
 	distSq,
 	divN,
 	sub,
-	zeroes,
 	type DistanceFn,
 	type ReadonlyVec,
 	type VecOpVN,
@@ -19,6 +18,8 @@ import {
 import type { TSNEOpts, TweenParam } from "./api.js";
 
 const EPS = Number.EPSILON;
+
+const { exp, log, max, sign } = Math;
 
 export const DEFAULT_OPTS: TSNEOpts = {
 	rnd: SYSTEM,
@@ -55,6 +56,8 @@ export class TSNE {
 	points!: number[][];
 	steps!: number[][];
 	gains!: number[][];
+	gradient!: FloatArray[];
+	ymean!: FloatArray;
 	opDist!: DistanceFn;
 	opDivN!: VecOpVN;
 	opSub!: VecOpVV;
@@ -84,12 +87,14 @@ export class TSNE {
 		this.gains = initMatrix(n, dim, () => 1);
 		this.q = new Float64Array(n * n);
 		this.qu = new Float64Array(n * n);
+		this.ymean = new Float64Array(dim);
+		this.gradient = [...repeatedly(() => new Float64Array(dim), n)];
 		this.iter = 0;
 	}
 
 	update() {
 		if (++this.iter >= this.opts.maxIter) return 0;
-		const { n, dim, points, steps, gains, opDivN, opSub } = this;
+		const { n, dim, points, steps, gains, ymean, opDivN, opSub } = this;
 		const {
 			rate,
 			minGain,
@@ -99,7 +104,7 @@ export class TSNE {
 		} = this.opts;
 		const { cost, gradient } = this.computeGradient();
 		const momentum = tweenParam($momentum, this.iter);
-		const ymean = zeroes(dim);
+		ymean.fill(0);
 		let i: number, d: number;
 		for (i = 0; i < n; i++) {
 			const row = points[i];
@@ -108,9 +113,9 @@ export class TSNE {
 			const rowGains = gains[i];
 			for (d = 0; d < dim; d++) {
 				let step = rowStep[d];
-				const newGain = Math.max(
+				const newGain = max(
 					minGain,
-					Math.sign(rowGrad[d]) === Math.sign(step)
+					sign(rowGrad[d]) === sign(step)
 						? // rowGrad[d] * step < 0
 						  rowGains[d] * gainDecay
 						: rowGains[d] + gainBias
@@ -128,7 +133,7 @@ export class TSNE {
 	}
 
 	computeGradient() {
-		const { n, dim, points: y, p, q, qu, opDist } = this;
+		const { n, dim, gradient, points: y, p, q, qu, opDist } = this;
 		let i: number, j: number, rowIdx: number, d: number;
 		let rowI: number[], rowJ: number[];
 		let qsum = 0;
@@ -144,23 +149,26 @@ export class TSNE {
 		}
 		qsum = 1 / qsum;
 		for (i = n * n; i-- > 0; ) {
-			q[i] = Math.max(qu[i] * qsum, EPS);
+			q[i] = max(qu[i] * qsum, EPS);
 		}
 
 		let cost = 0;
-		const gradient: ReadonlyVec[] = new Array(n);
 		const gscale = tweenParam(this.opts.gradientScale, this.iter);
 		for (i = 0; i < n; i++) {
-			rowIdx = i * n;
+			const g = gradient[i].fill(0);
 			rowI = y[i];
-			const g = (gradient[i] = zeroes(dim));
+			rowIdx = i * n;
 			for (j = 0; j < n; j++) {
-				rowJ = y[j];
 				const ij = rowIdx + j;
-				cost += -p[ij] * Math.log(q[ij]);
-				const s = 4 * (gscale * p[ij] - q[ij]) * qu[ij];
-				for (d = 0; d < dim; d++) {
-					g[d] += s * (rowI[d] - rowJ[d]);
+				const pij = p[ij];
+				const qij = q[ij];
+				cost += -pij * log(qij);
+				const s = 4 * (gscale * pij - qij) * qu[ij];
+				if (i !== j) {
+					rowJ = y[j];
+					for (d = 0; d < dim; d++) {
+						g[d] += s * (rowI[d] - rowJ[d]);
+					}
 				}
 			}
 		}
@@ -192,7 +200,7 @@ const initProbabilities = (
 	eps: number,
 	iter: number
 ) => {
-	const htarget = Math.log(perplexity);
+	const htarget = log(perplexity);
 	const p = new Float64Array(n * n);
 	for (let i = 0; i < n; i++) {
 		distProbRow(
@@ -210,7 +218,7 @@ const initProbabilities = (
 	for (let i = 0; i < n; i++) {
 		const ii = i * n;
 		for (let j = 0; j < n; j++) {
-			res[ii + j] = Math.max((p[ii + j] + p[j * n + i]) * invN2, EPS);
+			res[ii + j] = max((p[ii + j] + p[j * n + i]) * invN2, EPS);
 		}
 	}
 	return res;
@@ -252,7 +260,7 @@ const rowEntropy = (
 	let psum = 0;
 	for (let j = 0; j < n; j++) {
 		if (i !== j) {
-			psum += row[j] = Math.exp(-distances[ii + j] * beta);
+			psum += row[j] = exp(-distances[ii + j] * beta);
 		} else {
 			row[j] = 0;
 		}
@@ -266,7 +274,7 @@ const normalizeRow = (row: FloatArray, n: number, psum: number) => {
 		psum = 1 / psum;
 		for (let i = 0; i < n; i++) {
 			const p = (row[i] *= psum);
-			if (p > 1e-7) h -= p * Math.log(p);
+			if (p > 1e-7) h -= p * log(p);
 		}
 	} else {
 		row.fill(0);
