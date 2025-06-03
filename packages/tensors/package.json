@@ -218,6 +218,9 @@
 		"./maxn": {
 			"default": "./maxn.js"
 		},
+		"./mean": {
+			"default": "./mean.js"
+		},
 		"./min": {
 			"default": "./min.js"
 		},

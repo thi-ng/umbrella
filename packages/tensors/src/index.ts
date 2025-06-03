@@ -35,6 +35,7 @@ export * from "./mag.js";
 export * from "./magsq.js";
 export * from "./max.js";
 export * from "./maxn.js";
+export * from "./mean.js";
 export * from "./min.js";
 export * from "./minn.js";
 export * from "./mul.js";
