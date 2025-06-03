@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-28T12:02:40Z
+- **Last updated**: 2025-06-03T13:13:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.1.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/tsne@0.1.15) (2025-06-03)
+
+#### ⏱ Performance improvements
+
+- avoid allocations, optimize computeGradient() ([8888892](https://github.com/thi-ng/umbrella/commit/8888892))
+  - pre-allocate arrays for gradient & yMean
+  - skip gradient update if same rows
+  - use destructured Math fns
 
 ### [0.1.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/tsne@0.1.9) (2025-04-16)
 
