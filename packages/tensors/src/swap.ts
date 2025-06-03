@@ -9,6 +9,7 @@ const $swap = defOpRTT<any, void>(
 		bdata[ib] = t;
 	},
 	() => {},
+	undefined,
 	false
 );
 

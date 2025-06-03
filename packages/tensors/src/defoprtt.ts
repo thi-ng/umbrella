@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn0 } from "@thi.ng/api";
+import { identity } from "@thi.ng/api/fn";
 import type { ITensor, TensorData, TensorOpRTT } from "./api.js";
 import { broadcast } from "./broadcast.js";
 
 /**
  * Higher order tensor reduction op factory. Takes given reduction `rfn` and
- * `init` function to produce an initial result. Returns a {@link TensorOpRTT}
- * applying the given function componentwise, by default with broadcasting rules
- * (see {@link broadcast} for details).
+ * `init` function to produce an initial result and optional `complete` to
+ * produce the final result. Returns a {@link TensorOpRTT} applying the given
+ * function componentwise, by default with broadcasting rules (see
+ * {@link broadcast} for details).
  *
  * @param rfn
  * @param init
+ * @param complete
  * @param useBroadcast
  */
 export const defOpRTT = <A = number, B = A>(
@@ -21,7 +23,8 @@ export const defOpRTT = <A = number, B = A>(
 		ia: number,
 		ib: number
 	) => B,
-	init: Fn0<B>,
+	init: () => B,
+	complete: (acc: B, a: ITensor<A>, b: ITensor<A>) => B = identity,
 	useBroadcast = true
 ): TensorOpRTT<A, B> => {
 	const f1: TensorOpRTT<A, B> = (a, b) => {
@@ -40,7 +43,7 @@ export const defOpRTT = <A = number, B = A>(
 		for (let x = 0; x < sx; x++) {
 			res = rfn(res, adata, bdata, oa + x * txa, ob + x * txb);
 		}
-		return res;
+		return complete(res, a, b);
 	};
 
 	const f2: TensorOpRTT<A, B> = (a, b) => {
@@ -64,7 +67,7 @@ export const defOpRTT = <A = number, B = A>(
 				res = rfn(res, adata, bdata, oax + y * tya, obx + y * tyb);
 			}
 		}
-		return res;
+		return complete(res, a, b);
 	};
 
 	const f3: TensorOpRTT<A, B> = (a, b) => {
@@ -92,7 +95,7 @@ export const defOpRTT = <A = number, B = A>(
 				}
 			}
 		}
-		return res;
+		return complete(res, a, b);
 	};
 
 	const f4: TensorOpRTT<A, B> = (a, b) => {
@@ -135,7 +138,7 @@ export const defOpRTT = <A = number, B = A>(
 				}
 			}
 		}
-		return res;
+		return complete(res, a, b);
 	};
 
 	const impls = [, f1, f2, f3, f4];

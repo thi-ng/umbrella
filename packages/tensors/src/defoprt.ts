@@ -1,19 +1,21 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn0 } from "@thi.ng/api";
-import type { TensorData, TensorOpRT } from "./api.js";
+import { identity } from "@thi.ng/api/fn";
+import type { ITensor, TensorData, TensorOpRT } from "./api.js";
 import { top } from "./top.js";
 
 /**
  * Higher order tensor reduction op factory. Takes given reduction `rfn` and
- * `init` function to produce an initial result. Returns a {@link TensorOpRT}
- * applying the given function component-wise.
+ * `init` function to produce an initial result and optional `complete` to
+ * produce the final result. Returns a {@link TensorOpRT} applying the given
+ * function component-wise.
  *
  * @param rfn
  * @param init
  */
 export const defOpRT = <A = number, B = A>(
 	rfn: (acc: B, data: TensorData<A>, i: number) => B,
-	init: Fn0<B>
+	init: () => B,
+	complete: (acc: B, a: ITensor<A>) => B = identity
 ) => {
 	const f1: TensorOpRT<A, B> = (a) => {
 		const {
@@ -26,7 +28,7 @@ export const defOpRT = <A = number, B = A>(
 		for (let x = 0; x < sx; x++) {
 			res = rfn(res, data, offset + x * tx);
 		}
-		return res;
+		return complete(res, a);
 	};
 
 	const f2: TensorOpRT<A, B> = (a) => {
@@ -44,7 +46,7 @@ export const defOpRT = <A = number, B = A>(
 				res = rfn(res, data, ox + y * ty);
 			}
 		}
-		return res;
+		return complete(res, a);
 	};
 
 	const f3: TensorOpRT<A, B> = (a) => {
@@ -65,7 +67,7 @@ export const defOpRT = <A = number, B = A>(
 				}
 			}
 		}
-		return res;
+		return complete(res, a);
 	};
 
 	const f4: TensorOpRT<A, B> = (a) => {
@@ -89,7 +91,7 @@ export const defOpRT = <A = number, B = A>(
 				}
 			}
 		}
-		return res;
+		return complete(res, a);
 	};
 
 	return top<TensorOpRT<A, B>>(
