@@ -100,6 +100,7 @@ export class SessionInterceptor<
 		if (cookie) {
 			session = await this.validateSession(cookie);
 			if (!session) {
+				this.expireCookie(ctx);
 				ctx.res.forbidden();
 				return false;
 			}
@@ -128,10 +129,7 @@ export class SessionInterceptor<
 		if (await this.store.delete(sessionID)) {
 			ctx.logger.info("delete session:", sessionID);
 			ctx.session = undefined;
-			ctx.res.appendHeader(
-				"set-cookie",
-				`${this.cookieName}=;Expires=Thu, 01 Jan 1970 00:00:00 GMT;${this.cookieOpts}`
-			);
+			this.expireCookie(ctx);
 		}
 	}
 
@@ -198,6 +196,18 @@ export class SessionInterceptor<
 			sameLength
 			? session
 			: undefined;
+	}
+
+	/**
+	 * Appends `set-cookie` header which forces immediate expiry of session cookie.
+	 *
+	 * @param ctx
+	 */
+	expireCookie(ctx: CTX) {
+		ctx.res.appendHeader(
+			"set-cookie",
+			`${this.cookieName}=;Expires=Thu, 01 Jan 1970 00:00:00 GMT;${this.cookieOpts}`
+		);
 	}
 }
 
