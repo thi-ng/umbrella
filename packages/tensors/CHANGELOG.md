@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-28T12:02:39Z
+- **Last updated**: 2025-06-05T12:59:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.6.0) (2025-06-05)
+
+#### 🚀 Features
+
+- update defOpRT()/defOpRTT() ([8099abc](https://github.com/thi-ng/umbrella/commit/8099abc))
+  - add optional `complete` fn to produce/transform final result (reducer like)
+- add mean() tensor op ([2f15d21](https://github.com/thi-ng/umbrella/commit/2f15d21))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.5.0) (2025-05-28)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-28T12:02:40Z
+- **Last updated**: 2025-06-05T12:59:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.11.0) (2025-06-05)
+
+#### 🚀 Features
+
+- force expire session cookie if invalid session ([ac6c208](https://github.com/thi-ng/umbrella/commit/ac6c208))
 
 ## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.10.0) (2025-04-16)
 
