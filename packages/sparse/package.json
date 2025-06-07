@@ -94,6 +94,9 @@
 		"./diag": {
 			"default": "./diag.js"
 		},
+		"./similarity": {
+			"default": "./similarity.js"
+		},
 		"./vec": {
 			"default": "./vec.js"
 		}
