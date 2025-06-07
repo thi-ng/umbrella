@@ -267,6 +267,9 @@
 		"./iterator": {
 			"default": "./iterator.js"
 		},
+		"./join": {
+			"default": "./join.js"
+		},
 		"./juxtr": {
 			"default": "./juxtr.js"
 		},

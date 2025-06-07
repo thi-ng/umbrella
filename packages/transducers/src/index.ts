@@ -82,6 +82,7 @@ export * from "./interpolate.js";
 export * from "./interpolate-hermite.js";
 export * from "./interpolate-linear.js";
 export * from "./interpose.js";
+export * from "./join.js";
 export * from "./keep.js";
 export * from "./labeled.js";
 export * from "./length.js";
