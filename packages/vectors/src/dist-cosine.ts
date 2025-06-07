@@ -34,5 +34,5 @@ export const distCosine: DistanceFn = (a, b) => {
 		bsum += bb * bb;
 		dot += aa * bb;
 	}
-	return asum && bsum ? dot / (Math.sqrt(asum) * Math.sqrt(bsum)) : 0;
+	return dot ? dot / (Math.sqrt(asum) * Math.sqrt(bsum)) : 0;
 };
