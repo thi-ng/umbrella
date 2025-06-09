@@ -120,6 +120,20 @@ export class BidirIndex<T> {
 	}
 
 	/**
+	 * Similar to {@link BidirIndex.addAll}, but returns indexed key IDs as ES6
+	 * Set, thereby removing any duplicates present in `keys`.
+	 *
+	 * @param keys
+	 */
+	addAllUnique(keys: Iterable<T>) {
+		const res = new Set<number>();
+		for (let k of keys) {
+			res.add(this.add(k));
+		}
+		return res;
+	}
+
+	/**
 	 * Removes bi-directional mapping for given `key` from the index. Returns
 	 * true if successful.
 	 *
@@ -167,6 +181,17 @@ export class BidirIndex<T> {
 	 */
 	getAll(keys: Iterable<T>, fail = false) {
 		return __iterate(this.fwd, keys, fail);
+	}
+
+	/**
+	 * Similar to {@link BidirIndex.getAll}, but returns result as ES6 Set,
+	 * thereby removing any duplicates in `keys`.
+	 *
+	 * @param keys
+	 * @param fail
+	 */
+	getAllUnique(keys: Iterable<T>, fail = false) {
+		return new Set(__iterate(this.fwd, keys, fail));
 	}
 
 	/**
