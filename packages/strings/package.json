@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/strings",
-	"version": "3.9.13",
+	"version": "3.9.14",
 	"description": "Various string formatting & utility functions",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.28",
-		"@thi.ng/errors": "^2.5.34",
-		"@thi.ng/hex": "^2.3.72",
-		"@thi.ng/memoize": "^4.0.18"
+		"@thi.ng/api": "^8.11.29",
+		"@thi.ng/errors": "^2.5.35",
+		"@thi.ng/hex": "^2.3.73",
+		"@thi.ng/memoize": "^4.0.19"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",

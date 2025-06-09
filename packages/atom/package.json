@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/atom",
-	"version": "5.3.31",
+	"version": "5.3.32",
 	"description": "Mutable wrappers for nested immutable values with optional undo/redo history and transaction support",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.28",
-		"@thi.ng/equiv": "^2.1.84",
-		"@thi.ng/errors": "^2.5.34",
-		"@thi.ng/paths": "^5.2.11",
+		"@thi.ng/api": "^8.11.29",
+		"@thi.ng/equiv": "^2.1.85",
+		"@thi.ng/errors": "^2.5.35",
+		"@thi.ng/paths": "^5.2.12",
 		"tslib": "^2.8.1"
 	},
 	"devDependencies": {

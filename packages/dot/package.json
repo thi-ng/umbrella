@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dot",
-	"version": "2.1.105",
+	"version": "2.1.106",
 	"description": "Graphviz document abstraction & serialization to DOT format",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.28",
-		"@thi.ng/checks": "^3.7.8"
+		"@thi.ng/api": "^8.11.29",
+		"@thi.ng/checks": "^3.7.9"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/system",
-	"version": "3.1.55",
+	"version": "3.1.56",
 	"description": "Minimal and explicit dependency-injection & lifecycle container for stateful app components",
 	"type": "module",
 	"module": "./index.js",
@@ -42,9 +42,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.28",
-		"@thi.ng/dgraph": "^2.1.158",
-		"@thi.ng/logger": "^3.1.9"
+		"@thi.ng/api": "^8.11.29",
+		"@thi.ng/dgraph": "^2.1.159",
+		"@thi.ng/logger": "^3.1.10"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/leaky-bucket",
-	"version": "0.2.6",
+	"version": "0.2.7",
 	"description": "Configurable, counter-based Leaky Bucket abstractions for generalized rate-limiting purposes",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.28"
+		"@thi.ng/api": "^8.11.29"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",

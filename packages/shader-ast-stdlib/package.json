@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-stdlib",
-	"version": "1.0.20",
+	"version": "1.0.21",
 	"description": "Function collection for modular GPGPU / shader programming with @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -42,8 +42,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.28",
-		"@thi.ng/shader-ast": "^1.1.1"
+		"@thi.ng/api": "^8.11.29",
+		"@thi.ng/shader-ast": "^1.1.2"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",

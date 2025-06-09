@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-05-28T12:02:40Z
+- **Last updated**: 2025-06-09T17:24:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [9.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@9.4.0) (2025-06-09)
+
+#### 🚀 Features
+
+- add join() transducer ([3bbc88d](https://github.com/thi-ng/umbrella/commit/3bbc88d))
 
 ### [9.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@9.3.1) (2025-05-28)
 
