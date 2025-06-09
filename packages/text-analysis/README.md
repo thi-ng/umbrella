@@ -58,7 +58,7 @@ For Node.js REPL:
 const ta = await import("@thi.ng/text-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.44 KB
 
 ## Dependencies
 

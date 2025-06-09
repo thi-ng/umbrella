@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 208 standalone projects, maintained as part
+> This is one of 209 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -69,7 +69,7 @@ For Node.js REPL:
 const spa = await import("@thi.ng/sparse");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.40 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.76 KB
 
 ## Dependencies
 
