@@ -22,7 +22,7 @@ export const jaccardSimilarity = (
 	{ data: bdata }: SparseVec
 ) => {
 	const an = adata.length;
-	const bn = adata.length;
+	const bn = bdata.length;
 	let numIsec = 0;
 	for (let i = 0, j = 0; i < an && j < bn; ) {
 		const apos = adata[i];
