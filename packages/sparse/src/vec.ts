@@ -1,10 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { FnN2 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
-import type { NzEntry } from "./api.js";
-
-export type BinOp = FnN2;
+import type { BinOp, NzEntry } from "./api.js";
 
 const ADD: BinOp = (a, b) => a + b;
 const SUB: BinOp = (a, b) => a - b;
