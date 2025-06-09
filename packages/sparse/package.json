@@ -79,6 +79,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./bvec": {
+			"default": "./bvec.js"
+		},
 		"./compressed": {
 			"default": "./compressed.js"
 		},
