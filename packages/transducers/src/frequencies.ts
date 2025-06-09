@@ -6,6 +6,10 @@ import { count } from "./count.js";
 import { groupByMap } from "./group-by-map.js";
 import { $$reduce } from "./reduce.js";
 
+/**
+ * Reducer. Computes histogram of given inputs. Returns a Map with unique inputs
+ * as keys and their occurrences as values.
+ */
 export function frequencies<A>(): Reducer<A, Map<A, number>>;
 export function frequencies<A>(src: Iterable<A>): Map<A, number>;
 export function frequencies<A, B>(key: Fn<A, B>): Reducer<A, Map<B, number>>;
