@@ -4097,7 +4097,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/bidir-index@workspace:^, @thi.ng/bidir-index@workspace:packages/bidir-index":
+"@thi.ng/bidir-index@npm:^1.2.1, @thi.ng/bidir-index@workspace:^, @thi.ng/bidir-index@workspace:packages/bidir-index":
   version: 0.0.0-use.local
   resolution: "@thi.ng/bidir-index@workspace:packages/bidir-index"
   dependencies:
@@ -6596,6 +6596,22 @@ __metadata:
     "@thi.ng/math": "npm:^5.11.28"
     "@thi.ng/random": "npm:^4.1.19"
     "@thi.ng/strings": "npm:^3.9.13"
+    "@thi.ng/vectors": "npm:^8.2.1"
+    esbuild: "npm:^0.25.5"
+    typedoc: "npm:^0.28.5"
+    typescript: "npm:^5.8.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/text-analysis@workspace:packages/text-analysis":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/text-analysis@workspace:packages/text-analysis"
+  dependencies:
+    "@thi.ng/api": "npm:^8.11.28"
+    "@thi.ng/bidir-index": "npm:^1.2.1"
+    "@thi.ng/checks": "npm:^3.7.8"
+    "@thi.ng/strings": "npm:^3.9.13"
+    "@thi.ng/transducers": "npm:^9.3.1"
     "@thi.ng/vectors": "npm:^8.2.1"
     esbuild: "npm:^0.25.5"
     typedoc: "npm:^0.28.5"
