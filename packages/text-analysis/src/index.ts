@@ -4,6 +4,7 @@ export * from "./replace.js";
 export * from "./similarity.js";
 export * from "./stem.js";
 export * from "./stop-words.js";
+export * from "./tf-idf.js";
 export * from "./tokenize.js";
 export * from "./vocab.js";
 export * from "./xform.js";
