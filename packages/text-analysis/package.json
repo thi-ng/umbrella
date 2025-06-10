@@ -52,16 +52,21 @@
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
+		"analysis",
 		"composition",
 		"decode",
 		"encode",
+		"frequency",
 		"functional",
+		"histogram",
 		"ngram",
 		"pipeline",
 		"similarity",
 		"stem",
 		"text",
+		"tf-idf",
 		"tokenizer",
+		"transducer",
 		"typescript",
 		"vector"
 	],
@@ -100,6 +105,9 @@
 		},
 		"./stop-words": {
 			"default": "./stop-words.js"
+		},
+		"./tf-idf": {
+			"default": "./tf-idf.js"
 		},
 		"./tokenize": {
 			"default": "./tokenize.js"
