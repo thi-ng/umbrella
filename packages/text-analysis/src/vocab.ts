@@ -97,7 +97,7 @@ export function defVocab(
  */
 export const encodeDense = (vocab: Vocab, src: Iterable<string>) => {
 	const vec = new Array(vocab.size).fill(0);
-	for (let i of vocab.getAll(src)) vec[i] = 1;
+	for (const i of vocab.getAll(src)) vec[i] = 1;
 	return vec;
 };
 
@@ -162,7 +162,7 @@ export const encodeSparse = (vocab: Vocab, src: Iterable<string>) =>
 export const decodeDense = (vocab: Vocab, vec: Iterable<number>) => {
 	const res: string[] = [];
 	let i = 0;
-	for (let x of vec) {
+	for (const x of vec) {
 		if (x) res.push(vocab.getID(i)!);
 		i++;
 	}
