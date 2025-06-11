@@ -52,8 +52,15 @@
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
+		"2d",
+		"3d",
+		"4d",
 		"distance",
+		"eucledian",
+		"haversine",
+		"jaccard",
 		"k-nearest",
+		"manhattan",
 		"metric",
 		"nd",
 		"neighborhood",
@@ -90,6 +97,9 @@
 		"./haversine": {
 			"default": "./haversine.js"
 		},
+		"./jaccard": {
+			"default": "./jaccard.js"
+		},
 		"./knearest": {
 			"default": "./knearest.js"
 		},
@@ -104,6 +114,9 @@
 		},
 		"./squared": {
 			"default": "./squared.js"
+		},
+		"./untransformed": {
+			"default": "./untransformed.js"
 		}
 	},
 	"thi.ng": {
