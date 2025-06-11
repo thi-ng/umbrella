@@ -4,14 +4,18 @@ import {
 	distHaversineLatLon,
 	distHaversineLonLat,
 } from "@thi.ng/vectors/dist-haversine";
-import { Eucledian } from "./eucledian.js";
+import { Untransformed } from "./untransformed.js";
 
 /**
  * Distance metric for geo locations given as `[lat,lon]` vectors.
  */
-export const HAVERSINE_LATLON = new Eucledian<ReadonlyVec>(distHaversineLatLon);
+export const HAVERSINE_LATLON = new Untransformed<ReadonlyVec>(
+	distHaversineLatLon
+);
 
 /**
  * Distance metric for geo locations given as `[lon,lat]` vectors.
  */
-export const HAVERSINE_LONLAT = new Eucledian<ReadonlyVec>(distHaversineLonLat);
+export const HAVERSINE_LONLAT = new Untransformed<ReadonlyVec>(
+	distHaversineLonLat
+);
