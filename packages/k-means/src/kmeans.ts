@@ -28,21 +28,23 @@ import type { CentroidStrategy, Cluster, KMeansOpts } from "./api.js";
 export const kmeans = <T extends ReadonlyVec>(
 	k: number,
 	samples: T[],
-	opts?: Partial<KMeansOpts>
+	opts: Partial<KMeansOpts> = {}
 ) => {
-	let { dist, initial, maxIter, rnd, strategy } = {
-		dist: DIST_SQ,
-		maxIter: 32,
-		strategy: means,
-		...opts,
-	};
+	let {
+		dim = samples[0].length,
+		dist = DIST_SQ,
+		maxIter = 32,
+		strategy = means,
+		exponent,
+		initial,
+		rnd,
+	} = opts;
 	const num = samples.length;
-	const dim = samples[0].length;
 	const centroidIDs = Array.isArray(initial)
 		? initial
 		: initial
 		? initial(k, samples, dist, rnd)
-		: initKmeanspp(k, samples, dist, rnd);
+		: initKmeanspp(k, samples, dist, rnd, exponent);
 	assert(centroidIDs.length > 0, `missing initial centroids`);
 	k = centroidIDs.length;
 	const centroids: Vec[] = centroidIDs.map((i) => samples[i]);
@@ -72,6 +74,11 @@ export const kmeans = <T extends ReadonlyVec>(
  * fulfilled (e.g. due to lower number of samples and/or distance metric).
  * Throws an error if `samples` are empty.
  *
+ * The optional `exponent` (default: 2) is applied to scale the distances to
+ * nearest centroid, which will be used to control the weight distribution for
+ * choosing next centroid. A higher exponent means that points with larger
+ * distances will be more prioritized in the random selection.
+ *
  * References:
  *
  * - https://en.wikipedia.org/wiki/K-means%2B%2B
@@ -82,12 +89,14 @@ export const kmeans = <T extends ReadonlyVec>(
  * @param samples -
  * @param dist -
  * @param rnd -
+ * @param exponent -
  */
 export const initKmeanspp = <T extends ReadonlyVec>(
 	k: number,
 	samples: T[],
 	dist: IDistance<ReadonlyVec> = DIST_SQ,
-	rnd: IRandom = SYSTEM
+	rnd: IRandom = SYSTEM,
+	exponent = 2
 ) => {
 	const num = samples.length;
 	assert(num > 0, `missing samples`);
@@ -101,7 +110,7 @@ export const initKmeanspp = <T extends ReadonlyVec>(
 		const probs = samples.map((p) => {
 			const d =
 				dist.from(metric(p, centroids[argmin(p, centroids, dist)!])) **
-				2;
+				exponent;
 			psum += d;
 			return d;
 		});

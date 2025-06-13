@@ -16,6 +16,10 @@ export interface KMeansOpts {
 	 */
 	dist: IDistance<ReadonlyVec>;
 	/**
+	 * Sample dimensions. If omitted uses length of first sample vector.
+	 */
+	dim: number;
+	/**
 	 * Max. iteration count
 	 */
 	maxIter: number;
@@ -27,6 +31,15 @@ export interface KMeansOpts {
 	 * Centroid refinement strategy (default: {@link means}).
 	 */
 	strategy: CentroidStrategy;
+	/**
+	 * Only used if no {@link KMeansOpts.initial} is given and the
+	 * {@link initKmeanspp} default is used. There the `exponent` is applied to
+	 * scale the distances to nearest centroid, which will be used to control
+	 * the weight distribution for choosing next centroid. A higher exponent
+	 * means that points with larger distances will be more prioritized in the
+	 * random selection.
+	 */
+	exponent: number;
 }
 
 /**
