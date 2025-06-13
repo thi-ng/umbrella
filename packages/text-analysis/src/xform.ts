@@ -1,8 +1,8 @@
 import { comp } from "@thi.ng/transducers/comp";
 import { filter } from "@thi.ng/transducers/filter";
 import { map } from "@thi.ng/transducers/map";
+import type { Vocab } from "./api.js";
 import { stemWord } from "./stem.js";
-import type { Vocab } from "./vocab.js";
 
 const RE_NON_ALPHA = /[^A-Za-z\u00c0-\u017f]/g;
 
