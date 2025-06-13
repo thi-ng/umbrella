@@ -40,8 +40,11 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.29",
+		"@thi.ng/arrays": "^2.11.2",
 		"@thi.ng/bidir-index": "^1.3.0",
 		"@thi.ng/checks": "^3.7.9",
+		"@thi.ng/distance": "^2.4.121",
+		"@thi.ng/k-means": "^1.0.23",
 		"@thi.ng/strings": "^3.9.14",
 		"@thi.ng/transducers": "^9.4.0",
 		"@thi.ng/vectors": "^8.3.0"
@@ -53,21 +56,27 @@
 	},
 	"keywords": [
 		"analysis",
+		"centroid",
+		"cluster",
 		"composition",
 		"decode",
+		"dense",
 		"encode",
 		"frequency",
 		"functional",
 		"histogram",
+		"k-means",
 		"ngram",
 		"pipeline",
 		"similarity",
+		"sparse",
 		"stem",
 		"text",
 		"tf-idf",
 		"tokenizer",
 		"transducer",
 		"typescript",
+		"vocabulary",
 		"vector"
 	],
 	"publishConfig": {
@@ -87,6 +96,9 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./cluster": {
+			"default": "./cluster.js"
 		},
 		"./frequencies": {
 			"default": "./frequencies.js"
