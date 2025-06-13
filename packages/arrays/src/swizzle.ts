@@ -69,10 +69,9 @@ export const swizzle = <T>(
 			return (x: any) => [x[a], x[b], x[c], x[d], x[e], x[f], x[g], x[h]];
 		default:
 			return (x: any) => {
-				const res = [];
-				for (let i = order.length; i-- > 0; ) {
-					res[i] = x[order[i]];
-				}
+				let n = order.length;
+				const res = new Array(n);
+				for (; n-- > 0; ) res[n] = x[order[n]];
 				return res;
 			};
 	}
