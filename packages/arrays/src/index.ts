@@ -18,6 +18,7 @@ export * from "./insert.js";
 export * from "./into.js";
 export * from "./iterator.js";
 export * from "./levenshtein.js";
+export * from "./lookup.js";
 export * from "./peek.js";
 export * from "./permutation.js";
 export * from "./quicksort.js";

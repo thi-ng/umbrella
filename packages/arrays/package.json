@@ -136,6 +136,9 @@
 		"./levenshtein": {
 			"default": "./levenshtein.js"
 		},
+		"./lookup": {
+			"default": "./lookup.js"
+		},
 		"./peek": {
 			"default": "./peek.js"
 		},
