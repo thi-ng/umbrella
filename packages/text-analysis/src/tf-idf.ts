@@ -1,8 +1,9 @@
 import type { Fn2 } from "@thi.ng/api";
 import { transduce } from "@thi.ng/transducers/transduce";
+import type { Vocab } from "./api.js";
 import { frequencies, normFrequencies } from "./frequencies.js";
-import type { Vocab } from "./vocab.js";
 import { vocabOnly } from "./xform.js";
+import { defVocab } from "./vocab.js";
 
 const { log10 } = Math;
 
@@ -77,7 +78,7 @@ export const defTFIDF =
 			for (const [word, f] of tf) {
 				acc.set(word, f * idf.get(word)!);
 			}
-			return { tf, idf, tfidf: acc };
+			return { doc, tf, idf, tfidf: acc };
 		});
 	};
 
@@ -97,3 +98,59 @@ export const defTFIDF =
  * @param tokenizedDocs
  */
 export const tfidf = defTFIDF(tfNormalized, idfClassic);
+
+/**
+ * Takes a vocab, an array of tokenized documents and a predicate function.
+ * Computes the IDF (Inverse Document Frequency, default: {@link idfClassic})
+ * and then filters each document using supplied predicate, which is called with
+ * a single word/token and its computed IDF. Only words are kept for which the
+ * predicate succeeds.
+ *
+ * @remarks
+ * The IDF for common words is close to zero. This function can be used as a
+ * pre-processing step for improved and more efficient vocabulary construction,
+ * vector encoding (e.g. via {@link encodeDense}), clustering etc. by pre-excluding
+ * tokens which do not contribute much information.
+ *
+ * @example
+ * ```ts tangle:../export/filter-docs-idf.ts
+ * import { filterDocsIDF } from "@thi.ng/text-analysis";
+ *
+ * const docs = [
+ *   ["a", "b", "c"],
+ *   ["a", "b", "d", "e"],
+ *   ["b", "f", "g"],
+ *   ["a", "b", "c", "f"],
+ *   ["a", "g", "h"]
+ * ];
+ *
+ * // remove common words, i.e. those with an IDF below given threshold
+ * const filtered = filterDocsIDF(docs, (_, x) => x > 0.3);
+ *
+ * // show before & after
+ * for(let i = 0; i < docs.length; i++) console.log(docs[i], "=>", filtered[i]);
+ *
+ * // [ "a", "b", "c" ] => [ "c" ]
+ * // [ "a", "b", "d", "e" ] => [ "d", "e" ]
+ * // [ "b", "f", "g" ] => [ "f", "g" ]
+ * // [ "a", "b", "c", "f" ] => [ "c", "f" ]
+ * // [ "a", "g", "h" ] => [ "g", "h" ]
+ * ```
+ *
+ * @param docs
+ * @param pred
+ * @param vocab
+ * @param fnIDF
+ */
+export const filterDocsIDF = (
+	docs: string[][],
+	pred: Fn2<string, number, boolean>,
+	vocab?: Vocab,
+	fnIDF: Fn2<Vocab, string[][], Map<string, number>> = idfClassic
+) => {
+	if (!vocab) vocab = defVocab(docs);
+	const idf = fnIDF(vocab, docs);
+	return docs.map((doc) =>
+		doc.filter((word) => vocab.has(word) && pred(word, idf.get(word)!))
+	);
+};
