@@ -58,13 +58,16 @@ For Node.js REPL:
 const ta = await import("@thi.ng/text-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.44 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.30 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/bidir-index](https://github.com/thi-ng/umbrella/tree/develop/packages/bidir-index)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/develop/packages/distance)
+- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
