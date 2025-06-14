@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-06-14T20:56:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.12.0) (2025-06-14)
+
+#### 🚀 Features
+
+- add lookup() / lookupUnsafe() fns ([deb2b37](https://github.com/thi-ng/umbrella/commit/deb2b37))
+
+#### ♻️ Refactoring
+
+- minor update swizzle() ([84d3aba](https://github.com/thi-ng/umbrella/commit/84d3aba))
 
 ## [2.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.11.0) (2025-04-30)
 

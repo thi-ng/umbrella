@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-06-14T20:56:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.2.0) (2025-06-14)
+
+#### 🚀 Features
+
+- add/migrate refactored tf-idf functions ([d311acc](https://github.com/thi-ng/umbrella/commit/d311acc))
+- add/update vocab & vector encoding helpers, restructure ([9e4f60c](https://github.com/thi-ng/umbrella/commit/9e4f60c))
+- add filterDocsIDF() ([f682b58](https://github.com/thi-ng/umbrella/commit/f682b58))
+- add k-mean clustering fns ([3533843](https://github.com/thi-ng/umbrella/commit/3533843))
+
+#### ♻️ Refactoring
+
+- update imports/exports ([a44be87](https://github.com/thi-ng/umbrella/commit/a44be87))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.1.0) (2025-06-09)
 

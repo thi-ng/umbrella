@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-06-14T20:56:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/distance@3.0.0) (2025-06-14)
+
+#### 🛑 Breaking changes
+
+- rename class Eucledian => Untransformed ([5ace461](https://github.com/thi-ng/umbrella/commit/5ace461))
+- BREAKING CHANGE: rename class `Eucledian` => `Untransformed`
+  - migrate to own src file
+  - update references
+  - update doc strings
+
+#### 🚀 Features
+
+- add JACCARD n-D distance metric ([ea48648](https://github.com/thi-ng/umbrella/commit/ea48648))
 
 ### [2.4.70](https://github.com/thi-ng/umbrella/tree/@thi.ng/distance@2.4.70) (2024-04-20)
 

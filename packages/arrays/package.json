@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/arrays",
-	"version": "2.11.2",
+	"version": "2.12.0",
 	"description": "Array / Arraylike utilities",
 	"type": "module",
 	"module": "./index.js",

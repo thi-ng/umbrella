@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom",
-	"version": "8.1.45",
+	"version": "8.1.46",
 	"description": "Functional, polymorphic API for 2D geometry types & SVG generation",
 	"type": "module",
 	"module": "./index.js",
@@ -40,9 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/adjacency": "^3.0.38",
+		"@thi.ng/adjacency": "^3.0.39",
 		"@thi.ng/api": "^8.11.29",
-		"@thi.ng/arrays": "^2.11.2",
+		"@thi.ng/arrays": "^2.12.0",
 		"@thi.ng/checks": "^3.7.9",
 		"@thi.ng/defmulti": "^3.0.69",
 		"@thi.ng/equiv": "^2.1.85",
@@ -56,16 +56,16 @@
 		"@thi.ng/geom-poly-utils": "^3.0.47",
 		"@thi.ng/geom-resample": "^3.0.47",
 		"@thi.ng/geom-splines": "^2.3.47",
-		"@thi.ng/geom-subdiv-curve": "^3.0.47",
-		"@thi.ng/geom-tessellate": "^3.0.47",
+		"@thi.ng/geom-subdiv-curve": "^3.0.48",
+		"@thi.ng/geom-tessellate": "^3.0.48",
 		"@thi.ng/hiccup": "^5.3.14",
-		"@thi.ng/hiccup-svg": "^5.4.35",
+		"@thi.ng/hiccup-svg": "^5.4.36",
 		"@thi.ng/math": "^5.11.29",
 		"@thi.ng/matrices": "^3.0.6",
 		"@thi.ng/object-utils": "^1.1.25",
 		"@thi.ng/random": "^4.1.20",
 		"@thi.ng/strings": "^3.9.14",
-		"@thi.ng/transducers": "^9.4.0",
+		"@thi.ng/transducers": "^9.4.1",
 		"@thi.ng/vectors": "^8.3.0"
 	},
 	"devDependencies": {

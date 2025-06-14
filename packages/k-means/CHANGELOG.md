@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-06-14T20:56:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/k-means@1.1.0) (2025-06-14)
+
+#### 🚀 Features
+
+- update initKmeanspp(), add configurable distance exponent ([2aed319](https://github.com/thi-ng/umbrella/commit/2aed319))
+  - add KMeansOpts.exponent
+  - update doc strings
 
 ### [0.7.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/k-means@0.7.10) (2024-10-05)
 
