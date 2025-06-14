@@ -97,6 +97,9 @@
 		".": {
 			"default": "./index.js"
 		},
+		"./api": {
+			"default": "./api.js"
+		},
 		"./cluster": {
 			"default": "./cluster.js"
 		},
@@ -123,6 +126,9 @@
 		},
 		"./tokenize": {
 			"default": "./tokenize.js"
+		},
+		"./vec": {
+			"default": "./vec.js"
 		},
 		"./vocab": {
 			"default": "./vocab.js"
