@@ -7,42 +7,87 @@ import { defVocab } from "./vocab.js";
 
 const { log10 } = Math;
 
+/**
+ * TF weighting function for {@link defTFIDF}. Computes {@link frequencies} for
+ * given words/tokens (only includes those defined in `vocab`).
+ */
 export const tfCount = (vocab: Vocab, docTokens: Iterable<string>) =>
 	transduce(vocabOnly(vocab), frequencies(), docTokens);
 
+/**
+ * TF weighting function for {@link defTFIDF}. Computes {@link normFrequencies}
+ * for given words/tokens (only includes those defined in `vocab`).
+ */
 export const tfNormalized = (vocab: Vocab, docTokens: Iterable<string>) =>
 	transduce(vocabOnly(vocab), normFrequencies(), docTokens);
 
+/**
+ * TF weighting function for {@link defTFIDF}. First computes
+ * {@link frequencies} for given words/tokens (only includes those defined in
+ * `vocab`), then transforms each value via `log10(1 + count)`.
+ */
 export const tfLog = (vocab: Vocab, docTokens: Iterable<string>) => {
 	const res = transduce(vocabOnly(vocab), frequencies(), docTokens);
 	for (const [word, count] of res) res.set(word, log10(1 + count));
 	return res;
 };
 
+/**
+ * Higher order Inverse Document Frequency, using provided weighting strategy
+ * function.
+ *
+ * @remarks
+ * Also see {@link defTFIDF} for full tf-idf implementation.
+ *
+ * References:
+ *
+ * - https://en.wikipedia.org/wiki/Tf%E2%80%93idf
+ * - https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Inverse_document_frequency
+ *
+ * Provided IDF impls for use with this function:
+ *
+ * - {@link idfClassic}
+ * - {@link idfSmooth}
+ * - {@link idfProbabilistic}
+ *
+ * @param fnIDF
+ */
 export const defIDF =
-	(fnIDF: (count: number, numDocs: number) => number) =>
+	(fnIDF: (docsWithTerm: number, numDocs: number) => number) =>
 	(vocab: Vocab, tokenizedDocs: string[][]) => {
 		const acc = new Map<string, number>();
 		for (const word of vocab.keys()) {
-			let n = 0;
+			let count = 0;
 			for (const doc of tokenizedDocs) {
-				if (doc.includes(word)) n++;
+				if (doc.includes(word)) count++;
 			}
-			acc.set(word, fnIDF(n, tokenizedDocs.length));
+			acc.set(word, fnIDF(count, tokenizedDocs.length));
 		}
 		return acc;
 	};
 
-export const idfClassic = defIDF((count, numDocs) =>
-	Math.log10(numDocs / count)
+/**
+ * IDF weighting function for {@link defIDF} and {@link defTFIDF}. Computes:
+ * `log10(numDocs / docsWithTerm)`
+ */
+export const idfClassic = defIDF((docsWithTerm, numDocs) =>
+	log10(numDocs / docsWithTerm)
 );
 
+/**
+ * IDF weighting function for {@link defIDF} and {@link defTFIDF}. Computes:
+ * `1 + log10(numDocs / (1 + docsWithTerm))`
+ */
 export const idfSmooth = defIDF(
-	(count, numDocs) => 1 + log10(numDocs / (1 + count))
+	(docsWithTerm, numDocs) => 1 + log10(numDocs / (1 + docsWithTerm))
 );
 
-export const idfProbabilistic = defIDF((count, numDocs) =>
-	log10((numDocs - count) / count)
+/**
+ * IDF weighting function for {@link defIDF} and {@link defTFIDF}. Computes:
+ * `log10((numDocs - docsWithTerm) / docsWithTerm)`
+ */
+export const idfProbabilistic = defIDF((docsWithTerm, numDocs) =>
+	log10((numDocs - docsWithTerm) / docsWithTerm)
 );
 
 /**
@@ -92,7 +137,7 @@ export const defTFIDF =
  *
  * - https://en.wikipedia.org/wiki/Tf%E2%80%93idf
  *
- * Also see {@link defTFIDF}
+ * Also see {@link defTFIDF}, {@link defIDF}.
  *
  * @param vocab
  * @param tokenizedDocs
