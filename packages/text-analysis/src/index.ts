@@ -1,3 +1,4 @@
+export * from "./api.js";
 export * from "./cluster.js";
 export * from "./frequencies.js";
 export * from "./ngrams.js";
