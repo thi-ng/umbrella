@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-analysis",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Text tokenization, transformation & analysis transducers, utilities, stop words, porter stemming, vector encodings, similarities",
 	"type": "module",
 	"module": "./index.js",
