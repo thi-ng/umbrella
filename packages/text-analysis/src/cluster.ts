@@ -34,7 +34,11 @@ export const kmeansDense = (
 	k: number,
 	docs: ReadonlyVec[],
 	opts?: Partial<KMeansOpts>
-) => kmeans(k, docs, { maxIter: 100, ...opts });
+) =>
+	kmeans(k, docs, { maxIter: 100, ...opts }).map((cluster) => ({
+		...cluster,
+		docs: lookup(docs, cluster.items),
+	}));
 
 /**
  * k-means clustering for sparse multi-hot vectors. First converts vectors into
