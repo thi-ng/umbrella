@@ -28,7 +28,7 @@
 
 ## About
 
-Shader AST code optimization passes/strategies. This is a support package for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
+Shader AST code/tree optimization passes/strategies. This is a support package for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
 
 ### defOptimized()
 
