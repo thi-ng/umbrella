@@ -54,7 +54,9 @@
 		"4bit",
 		"8bit",
 		"dither",
+		"image",
 		"kernel",
+		"palette",
 		"pixel",
 		"typescript"
 	],

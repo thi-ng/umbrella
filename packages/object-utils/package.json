@@ -54,6 +54,9 @@
 		"map",
 		"merge",
 		"object",
+		"partition",
+		"rename",
+		"select",
 		"sort",
 		"typescript"
 	],

@@ -59,6 +59,7 @@
 		"pattern",
 		"predicate",
 		"query",
+		"select",
 		"triples",
 		"typescript",
 		"union",

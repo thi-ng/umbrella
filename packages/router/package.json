@@ -59,6 +59,8 @@
 		"parametric",
 		"pattern",
 		"router",
+		"server",
+		"spa",
 		"trie",
 		"typescript",
 		"ui",

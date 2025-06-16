@@ -63,6 +63,8 @@
 		"peg",
 		"recursion",
 		"regexp",
+		"string",
+		"text",
 		"tree",
 		"typescript"
 	],

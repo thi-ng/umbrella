@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/shader-ast-optimize",
 	"version": "1.0.22",
-	"description": "Shader AST code optimization passes/strategies",
+	"description": "Shader AST code/tree optimization passes/strategies",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -53,12 +53,15 @@
 	},
 	"keywords": [
 		"ast",
+		"compiler",
 		"constant-folding",
 		"optimization",
 		"rewrite",
 		"shader",
 		"shader-ast",
-		"typescript"
+		"tree",
+		"typescript",
+		"webgl"
 	],
 	"publishConfig": {
 		"access": "public"
