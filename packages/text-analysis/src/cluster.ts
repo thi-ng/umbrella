@@ -1,5 +1,5 @@
 import { argSort } from "@thi.ng/arrays/arg-sort";
-import { lookup } from "@thi.ng/arrays/lookup";
+import { lookup, lookupUnsafe } from "@thi.ng/arrays/lookup";
 import { knearest as $knearest } from "@thi.ng/distance/knearest";
 import { Untransformed } from "@thi.ng/distance/untransformed";
 import { kmeans, type KMeansOpts } from "@thi.ng/k-means";
@@ -37,7 +37,7 @@ export const kmeansDense = (
 ) =>
 	kmeans(k, docs, { maxIter: 100, ...opts }).map((cluster) => ({
 		...cluster,
-		docs: lookup(docs, cluster.items),
+		docs: lookupUnsafe(docs, cluster.items),
 	}));
 
 /**
