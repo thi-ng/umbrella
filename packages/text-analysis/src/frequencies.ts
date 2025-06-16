@@ -1,3 +1,4 @@
+import type { Fn, Fn2 } from "@thi.ng/api";
 import { frequencies as $freq } from "@thi.ng/transducers/frequencies";
 import { normFrequenciesAuto as $norm } from "@thi.ng/transducers/norm-frequencies-auto";
 import { sortedFrequencies as $sorted } from "@thi.ng/transducers/sorted-frequencies";
@@ -62,3 +63,55 @@ export const normFrequencies = $norm;
  * ```
  */
 export const sortedFrequencies = $sorted;
+
+/**
+ * Takes an array of tokenized documents, a histogram function (`frequencies`)
+ * and a predicate function (`pred`). First computes the combined histogram of
+ * terms/works in all given docs using `frequencies`, then filters each document
+ * using supplied predicate, which is called with a single word/token and its
+ * computed frequency. Only words are kept for which the predicate succeeds.
+ *
+ * @remarks
+ * See {@link frequencies} and {@link normFrequencies} for histogram creation.
+ *
+ * @example
+ * ```ts tangle:../export/filter-docs-frequency.ts
+ * import { filterDocsFrequency, frequencies } from "@thi.ng/text-analysis";
+ *
+ * const docs = [
+ *   ["a", "b", "c"],
+ *   ["a", "b", "d", "e"],
+ *   ["b", "f", "g"],
+ *   ["a", "b", "c", "f"],
+ *   ["a", "g", "h"]
+ * ];
+ *
+ * // only keep words which occur more than once
+ * const filtered = filterDocsFrequency(docs, frequencies, (_, x) => x > 1);
+ *
+ * // show before & after
+ * for(let i = 0; i < docs.length; i++) console.log(docs[i], "=>", filtered[i]);
+ * // [ "a", "b", "c" ] => [ "a", "b", "c" ]
+ * // [ "a", "b", "d", "e" ] => [ "a", "b" ]
+ * // [ "b", "f", "g" ] => [ "b", "f", "g" ]
+ * // [ "a", "b", "c", "f" ] => [ "a", "b", "c", "f" ]
+ * // [ "a", "g", "h" ] => [ "a", "g" ]
+ * ```
+ *
+ * @param docs
+ * @param frequencies
+ * @param pred
+ */
+export const filterDocsFrequency = (
+	docs: string[][],
+	frequencies: Fn<Iterable<string>, Map<string, number>>,
+	pred: Fn2<string, number, boolean>
+) => {
+	const histogram = frequencies(docs.flat());
+	return docs.map((doc) =>
+		doc.filter((word) => {
+			const freq = histogram.get(word);
+			return freq !== undefined && pred(word, freq);
+		})
+	);
+};
