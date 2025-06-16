@@ -109,6 +109,9 @@
 		"./fill-range": {
 			"default": "./fill-range.js"
 		},
+		"./filter-all": {
+			"default": "./filter-all.js"
+		},
 		"./find-sequence": {
 			"default": "./find-sequence.js"
 		},

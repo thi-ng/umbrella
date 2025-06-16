@@ -9,6 +9,7 @@ export * from "./ends-with.js";
 export * from "./ensure-array.js";
 export * from "./ensure-iterable.js";
 export * from "./fill-range.js";
+export * from "./filter-all.js";
 export * from "./find.js";
 export * from "./find-sequence.js";
 export * from "./floyd-rivest.js";
