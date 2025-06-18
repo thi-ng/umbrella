@@ -17,6 +17,12 @@ storage providers are included:
 - [FileBlockStorage](https://docs.thi.ng/umbrella/block-fs/classes/FileBlockStorage.html):
   Host-filesystem based blocks (one block per file)
 
+> [IMPORTANT]
+> For browser-compatibility reasons, the `FileBlockStorage` is NOT exposed when
+> using package-level imports. Use the following import to use this class:
+>
+> `import { FileBlockStorage } from "@thi.ng/block-fs/storage/file";
+
 As the name indicates, block storage providers only support block-based
 read/write/delete access to arbitrary binary data (all ops are async). For
 file-based storage, blocks are created lazily/dynamically.
