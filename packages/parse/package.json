@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/parse",
-	"version": "2.6.16",
+	"version": "2.6.17",
 	"description": "Purely functional parser combinators & AST generation for generic inputs",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/checks": "^3.7.9",
 		"@thi.ng/defmulti": "^3.0.69",
 		"@thi.ng/errors": "^2.5.35",
-		"@thi.ng/strings": "^3.9.14"
+		"@thi.ng/strings": "^3.9.15"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",

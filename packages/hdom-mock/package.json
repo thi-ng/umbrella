@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom-mock",
-	"version": "2.1.141",
+	"version": "2.1.142",
 	"description": "Mock base implementation for @thi.ng/hdom API",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.29",
 		"@thi.ng/checks": "^3.7.9",
-		"@thi.ng/hdom": "^9.4.74"
+		"@thi.ng/hdom": "^9.4.75"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lispy",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"description": "Lightweight, extensible, interpreted Lisp-style DSL for embedding in other projects",
 	"type": "module",
 	"module": "./index.js",
@@ -45,9 +45,9 @@
 		"@thi.ng/defmulti": "^3.0.69",
 		"@thi.ng/errors": "^2.5.35",
 		"@thi.ng/math": "^5.11.29",
-		"@thi.ng/object-utils": "^1.1.25",
+		"@thi.ng/object-utils": "^1.1.26",
 		"@thi.ng/sexpr": "^1.0.19",
-		"@thi.ng/strings": "^3.9.14"
+		"@thi.ng/strings": "^3.9.15"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",
