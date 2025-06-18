@@ -11,9 +11,9 @@ import {
 import { align, isPow2, type Pow2 } from "@thi.ng/binary";
 import { illegalArgs } from "@thi.ng/errors";
 import { files, readBinary, readJSON, writeFile } from "@thi.ng/file-io";
-import { LogLevel } from "@thi.ng/logger";
+import { LogLevel, type ILogger } from "@thi.ng/logger";
 import { statSync } from "node:fs";
-import { dirname, join, relative, resolve } from "node:path";
+import { join, relative, resolve } from "node:path";
 import type { IEntry } from "./api.js";
 import { Entry } from "./entry.js";
 import { BlockFS } from "./fs.js";
@@ -70,6 +70,21 @@ interface CollectedFiles {
 	size: number;
 }
 
+/**
+ * Returns number of bytes needed to encode given value.
+ *
+ * @param x
+ */
+const requiredBytes = (x: number) => align(Math.ceil(Math.log2(x)), 8) >> 3;
+
+const pathsForFile = (f: string) => {
+	const parts = f.split("/");
+	const dirs: string[] = [];
+	for (let i = 1; i < parts.length; i++)
+		dirs.push(parts.slice(0, i).join("/"));
+	return dirs;
+};
+
 const collectFiles = ({
 	opts: { include, exclude },
 	inputs,
@@ -92,7 +107,7 @@ const collectFiles = ({
 			ctime: stats.ctimeMs,
 			mtime: stats.mtimeMs,
 		});
-		dirs.add(dirname(dest));
+		for (let d of pathsForFile(dest)) dirs.add(d);
 		total += stats.size;
 	}
 	return { files: filtered, dirs: [...dirs], size: total };
@@ -101,25 +116,28 @@ const collectFiles = ({
 const computeBlockCount = (
 	collected: CollectedFiles,
 	blockSize: number,
+	logger: ILogger,
 	numBlocks?: number
 ): number => {
 	let blocks = collected.dirs.length;
-	const blockIDBytes = numBlocks
-		? align(Math.ceil(Math.log2(numBlocks)), 8) >> 3
-		: align(Math.ceil(Math.log2(collected.size / blockSize + blocks)), 8) >>
-		  3;
-	const blockDataSizeBytes = align(Math.ceil(Math.log2(blockSize)), 8) >> 3;
-	const blockDataSize = blockSize - blockIDBytes - blockDataSizeBytes;
-	blocks += Math.ceil(
-		((collected.files.length + collected.dirs.length) * Entry.SIZE) /
-			blockDataSize
+	const blockIDBytes = requiredBytes(
+		numBlocks ?? collected.size / blockSize + blocks
 	);
+	const blockDataSizeBytes = requiredBytes(blockSize);
+	const blockDataSize = blockSize - blockIDBytes - blockDataSizeBytes;
+	const numEntries = collected.files.length + collected.dirs.length;
+	const numEntryBlocks = Math.ceil((numEntries * Entry.SIZE) / blockDataSize);
+	logger.info("num entries:", numEntries);
+	logger.info("num entry blocks:", numEntryBlocks);
+	blocks += numEntryBlocks;
 	for (let f of collected.files) {
-		blocks += Math.ceil(f.size / blockDataSize);
+		const size = Math.ceil(f.size / blockDataSize);
+		logger.debug("file:", f.src, "blocks:", size);
+		blocks += size;
 	}
-	const blockIDBytes2 = align(Math.ceil(Math.log2(blocks)), 8) >> 3;
+	const blockIDBytes2 = requiredBytes(blocks);
 	return blockIDBytes2 > blockIDBytes
-		? computeBlockCount(collected, blockSize, blocks)
+		? computeBlockCount(collected, blockSize, logger, blocks)
 		: blocks;
 };
 
@@ -152,7 +170,7 @@ export const CONVERT: Command<ConvertOpts, CLIOpts, AppCtx<ConvertOpts>> = {
 		const collected = collectFiles(ctx);
 		const numBlocks = align(
 			ctx.opts.numBlocks ??
-				computeBlockCount(collected, ctx.opts.blockSize),
+				computeBlockCount(collected, ctx.opts.blockSize, ctx.logger),
 			8
 		);
 		ctx.logger.info("number of files:", collected.files.length);
@@ -167,9 +185,15 @@ export const CONVERT: Command<ConvertOpts, CLIOpts, AppCtx<ConvertOpts>> = {
 		});
 		const bfs = new BlockFS(storage, { logger: ctx.logger });
 		await bfs.init();
+
+		ctx.logger.info("root dir block:", bfs.rootDirBlockID);
+		ctx.logger.info("first data block:", bfs.dataStartBlockID);
+		ctx.logger.info("block data size:", bfs.blockDataSize);
+
 		for (let f of collected.files) {
-			ctx.logger.info("writing file:", f.dest);
-			await bfs.writeFile(f.dest, readBinary(f.src));
+			const data = readBinary(f.src, ctx.logger);
+			ctx.logger.info("writing file:", f.dest, "size:", data.length);
+			await bfs.writeFile(f.dest, data);
 			const entry = await bfs.entryForPath(f.dest);
 			entry.ctime = f.ctime;
 			entry.mtime = f.mtime;

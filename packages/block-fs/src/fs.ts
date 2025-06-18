@@ -402,6 +402,7 @@ export class BlockFS {
 	async writeBlocks(blocks: number[] | null, data: Uint8Array) {
 		const { blockDataOffset, blockDataSize, sentinelID, storage } = this;
 		if (!blocks) blocks = await this.allocateBlocks(data.length);
+		this.opts.logger.debug("allocated blocks", blocks.length, blocks);
 		let offset = 0;
 		for (let i = 0, numBlocks = blocks.length - 1; i <= numBlocks; i++) {
 			if (offset >= data.length)
