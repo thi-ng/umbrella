@@ -4745,7 +4745,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-accel@npm:^4.1.42, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
+"@thi.ng/geom-accel@npm:^4.1.43, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-accel@workspace:packages/geom-accel"
   dependencies:
@@ -4789,8 +4789,8 @@ __metadata:
     "@thi.ng/axidraw": "npm:^1.1.131"
     "@thi.ng/compare": "npm:^2.4.21"
     "@thi.ng/defmulti": "npm:^3.0.69"
-    "@thi.ng/geom": "npm:^8.1.47"
-    "@thi.ng/geom-accel": "npm:^4.1.42"
+    "@thi.ng/geom": "npm:^8.1.48"
+    "@thi.ng/geom-accel": "npm:^4.1.43"
     "@thi.ng/geom-clip-line": "npm:^2.3.138"
     "@thi.ng/geom-isec": "npm:^4.0.48"
     "@thi.ng/transducers": "npm:^9.4.2"
@@ -4847,7 +4847,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.29"
     "@thi.ng/color": "npm:^5.7.41"
-    "@thi.ng/geom": "npm:^8.1.47"
+    "@thi.ng/geom": "npm:^8.1.48"
     "@thi.ng/geom-clip-line": "npm:^2.3.138"
     "@thi.ng/geom-resample": "npm:^3.0.48"
     "@thi.ng/grid-iterators": "npm:^4.0.120"
@@ -4950,7 +4950,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.9"
     "@thi.ng/defmulti": "npm:^3.0.69"
     "@thi.ng/errors": "npm:^2.5.35"
-    "@thi.ng/geom": "npm:^8.1.47"
+    "@thi.ng/geom": "npm:^8.1.48"
     "@thi.ng/geom-isoline": "npm:^2.1.177"
     "@thi.ng/geom-poly-utils": "npm:^3.0.48"
     "@thi.ng/geom-resample": "npm:^3.0.48"
@@ -4991,13 +4991,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-tessellate@npm:^3.0.49, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
+"@thi.ng/geom-tessellate@npm:^3.0.50, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-tessellate@workspace:packages/geom-tessellate"
   dependencies:
     "@thi.ng/api": "npm:^8.11.29"
     "@thi.ng/checks": "npm:^3.7.9"
-    "@thi.ng/geom-accel": "npm:^4.1.42"
+    "@thi.ng/geom-accel": "npm:^4.1.43"
     "@thi.ng/geom-isec": "npm:^4.0.48"
     "@thi.ng/geom-poly-utils": "npm:^3.0.48"
     "@thi.ng/math": "npm:^5.11.29"
@@ -5054,7 +5054,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.9"
     "@thi.ng/defmulti": "npm:^3.0.69"
     "@thi.ng/errors": "npm:^2.5.35"
-    "@thi.ng/geom": "npm:^8.1.47"
+    "@thi.ng/geom": "npm:^8.1.48"
     "@thi.ng/object-utils": "npm:^1.1.26"
     "@thi.ng/transducers": "npm:^9.4.2"
     "@thi.ng/vector-pools": "npm:^3.2.50"
@@ -5066,7 +5066,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@npm:^8.1.47, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@npm:^8.1.48, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -5087,7 +5087,7 @@ __metadata:
     "@thi.ng/geom-resample": "npm:^3.0.48"
     "@thi.ng/geom-splines": "npm:^2.3.48"
     "@thi.ng/geom-subdiv-curve": "npm:^3.0.49"
-    "@thi.ng/geom-tessellate": "npm:^3.0.49"
+    "@thi.ng/geom-tessellate": "npm:^3.0.50"
     "@thi.ng/hiccup": "npm:^5.3.15"
     "@thi.ng/hiccup-svg": "npm:^5.4.37"
     "@thi.ng/math": "npm:^5.11.29"
@@ -5419,7 +5419,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.29"
     "@thi.ng/checks": "npm:^3.7.9"
-    "@thi.ng/geom": "npm:^8.1.47"
+    "@thi.ng/geom": "npm:^8.1.48"
     "@thi.ng/geom-isec": "npm:^4.0.48"
     "@thi.ng/layout": "npm:^3.1.29"
     "@thi.ng/math": "npm:^5.11.29"
@@ -5942,7 +5942,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.11.29"
     "@thi.ng/checks": "npm:^3.7.9"
-    "@thi.ng/geom-accel": "npm:^4.1.42"
+    "@thi.ng/geom-accel": "npm:^4.1.43"
     "@thi.ng/random": "npm:^4.1.20"
     "@thi.ng/vectors": "npm:^8.3.1"
     esbuild: "npm:^0.25.5"
