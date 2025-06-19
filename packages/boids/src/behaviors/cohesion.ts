@@ -29,10 +29,12 @@ export const cohesion = (
 			const { add, mulN, setN } = boid.api;
 			const neighbors = boid.neighbors($maxDist(boid), boid.pos.curr);
 			setN(centroid, 0);
-			let used = 0;
 			const num = neighbors.length;
-			for (let i = 0; i < num; i++) {
-				const n = neighbors[i];
+			let used = 0,
+				i: number,
+				n: Boid;
+			for (i = 0; i < num; i++) {
+				n = neighbors[i];
 				if (n !== boid && pred(boid, n)) {
 					add(centroid, centroid, n.pos.curr);
 					used++;

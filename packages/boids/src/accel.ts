@@ -18,7 +18,10 @@ export const noAccel = (): IBoidAccel => {
 			boids = $boids;
 		},
 		queryNeighborhood(neighborhood) {
-			for (let b of boids) neighborhood.consider(b.pos.curr, b);
+			for (let i = 0, n = boids.length; i < n; i++) {
+				const b = boids[i];
+				neighborhood.consider(b.pos.curr, b);
+			}
 			return neighborhood;
 		},
 	};

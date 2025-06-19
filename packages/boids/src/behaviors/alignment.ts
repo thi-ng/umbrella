@@ -18,9 +18,10 @@ export const alignment = (
 			const { add, maddN, setN } = boid.api;
 			const neighbors = boid.neighbors($maxDist(boid), boid.pos.curr);
 			const num = neighbors.length;
+			let i: number, n: Boid;
 			setN(force, 0);
-			for (let i = 0; i < num; i++) {
-				const n = neighbors[i];
+			for (i = 0; i < num; i++) {
+				n = neighbors[i];
 				if (n !== boid) {
 					amp
 						? maddN(force, n.vel.curr, amp(boid, n), force)

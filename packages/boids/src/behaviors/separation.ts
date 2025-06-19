@@ -19,7 +19,7 @@ import { __ensureFn } from "../internal/ensure.js";
 export const separation = (
 	minDist: ScalarOrField,
 	weight: ScalarOrField = 1,
-	amp?: FnU2<Boid, number>
+	amp: FnU2<Boid, number> = () => 1
 ): IBoidBehavior => {
 	const $minDist = __ensureFn(minDist);
 	const force: Vec = [];
@@ -40,7 +40,7 @@ export const separation = (
 					maddN(
 						force,
 						delta,
-						(amp?.(boid, n) ?? 1) / (magSq(delta) + 1e-6),
+						amp(boid, n) / (magSq(delta) + 1e-6),
 						force
 					);
 				}
