@@ -226,11 +226,12 @@ export class HashGrid2<T> extends AHashGrid<T> implements IEmpty<HashGrid2<T>> {
 	) {
 		const { entries, indices, items, keyFn, tableSize } = this;
 		const { xmin, xmax, ymin, ymax } = this.queryBounds(neighborhood, opts);
-		for (let x = xmin; x <= xmax; x++) {
-			for (let y = ymin; y <= ymax; y++) {
-				const h = hash2(x, y) % tableSize;
-				for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
-					const val = items[entries[i]];
+		let x: number, y: number, i: number, j: number, h: number, val: T;
+		for (x = xmin; x <= xmax; x++) {
+			for (y = ymin; y <= ymax; y++) {
+				h = hash2(x, y) % tableSize;
+				for (i = indices[h], j = indices[h + 1]; i < j; i++) {
+					val = items[entries[i]];
 					neighborhood.consider(keyFn(val), val);
 				}
 			}
@@ -244,10 +245,11 @@ export class HashGrid2<T> extends AHashGrid<T> implements IEmpty<HashGrid2<T>> {
 	) {
 		const { entries, indices, items, keyFn, tableSize } = this;
 		const { xmin, xmax, ymin, ymax } = this.queryBounds(neighborhood, opts);
-		for (let x = xmin; x <= xmax; x++) {
-			for (let y = ymin; y <= ymax; y++) {
-				const h = hash2(x, y) % tableSize;
-				for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+		let x: number, y: number, i: number, j: number, h: number;
+		for (x = xmin; x <= xmax; x++) {
+			for (y = ymin; y <= ymax; y++) {
+				h = hash2(x, y) % tableSize;
+				for (i = indices[h], j = indices[h + 1]; i < j; i++) {
 					if (neighborhood.includesPosition(keyFn(items[entries[i]])))
 						return true;
 				}
@@ -298,12 +300,19 @@ export class HashGrid3<T> extends AHashGrid<T> implements IEmpty<HashGrid3<T>> {
 			neighborhood,
 			opts
 		);
-		for (let x = xmin; x <= xmax; x++) {
-			for (let y = ymin; y <= ymax; y++) {
-				for (let z = zmin; z <= zmax; z++) {
-					const h = hash3(x, y, z) % tableSize;
-					for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
-						const val = items[entries[i]];
+		let x: number,
+			y: number,
+			z: number,
+			i: number,
+			j: number,
+			h: number,
+			val: T;
+		for (x = xmin; x <= xmax; x++) {
+			for (y = ymin; y <= ymax; y++) {
+				for (z = zmin; z <= zmax; z++) {
+					h = hash3(x, y, z) % tableSize;
+					for (i = indices[h], j = indices[h + 1]; i < j; i++) {
+						val = items[entries[i]];
 						neighborhood.consider(keyFn(val), val);
 					}
 				}
@@ -321,11 +330,12 @@ export class HashGrid3<T> extends AHashGrid<T> implements IEmpty<HashGrid3<T>> {
 			neighborhood,
 			opts
 		);
-		for (let x = xmin; x <= xmax; x++) {
-			for (let y = ymin; y <= ymax; y++) {
-				for (let z = zmin; z <= zmax; z++) {
-					const h = hash3(x, y, z) % tableSize;
-					for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+		let x: number, y: number, z: number, i: number, j: number, h: number;
+		for (x = xmin; x <= xmax; x++) {
+			for (y = ymin; y <= ymax; y++) {
+				for (z = zmin; z <= zmax; z++) {
+					h = hash3(x, y, z) % tableSize;
+					for (i = indices[h], j = indices[h + 1]; i < j; i++) {
 						if (
 							neighborhood.includesPosition(
 								keyFn(items[entries[i]])
