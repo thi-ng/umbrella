@@ -13,7 +13,7 @@ pub usingnamespace wasm;
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/zig/lib.zig
-// var alloc = std.heap.GeneralPurposeAllocator(.{}){};
+// pub const WASM_ALLOCATOR = std.heap.wasm_allocator;
 var buf: [1024]u8 = undefined;
 var alloc = std.heap.FixedBufferAllocator.init(&buf);
 pub const WASM_ALLOCATOR = alloc.allocator();

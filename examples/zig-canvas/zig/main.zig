@@ -16,8 +16,7 @@ pub usingnamespace wasm;
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
-var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-pub const WASM_ALLOCATOR = gpa.allocator();
+pub const WASM_ALLOCATOR = std.heap.wasm_allocator;
 
 /// Pre-declare state, will be fully initialized via the initDOM()
 var STATE: State = undefined;

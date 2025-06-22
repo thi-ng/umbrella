@@ -18,8 +18,8 @@ pub usingnamespace wasm;
 // 2MB fixed "heap" buffer for allocator
 var mem: [2 * 1024 * 1024]u8 = undefined;
 // setup allocator
-var fba = std.heap.FixedBufferAllocator.init(&mem);
-pub const WASM_ALLOCATOR = fba.allocator();
+var alloc = std.heap.FixedBufferAllocator.init(&mem);
+pub const WASM_ALLOCATOR = alloc.allocator();
 
 // initialize PRNG instance
 var rnd = std.Random.DefaultPrng.init(0xdecafbad);
