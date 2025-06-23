@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const SUFFIXES_STEP2: Record<string, string> = {
 	alism: "al",
 	aliti: "al",

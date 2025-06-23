@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatBuffer } from "@thi.ng/pixel/float";
 import { FLOAT_HSVA } from "@thi.ng/pixel/format/float-hsva";
 import type { IntBuffer } from "@thi.ng/pixel/int";

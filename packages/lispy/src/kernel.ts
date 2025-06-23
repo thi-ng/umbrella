@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const KERNEL = `
 ; partial functional application (currying for 1 arg)
 (defn partial (f x) (fn (y) (f x y)))

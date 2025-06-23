@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { hueRangeIntensityHsv } from "../src/index.js";
 import { ARGB8888, FLOAT_HSVA, intBuffer, RGB888 } from "@thi.ng/pixel";

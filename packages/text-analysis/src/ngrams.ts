@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api/fn";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "@thi.ng/transducers";

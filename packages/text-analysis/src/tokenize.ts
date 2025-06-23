@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { split } from "@thi.ng/strings";
 import type { Transducer } from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { HSV, Oklch, SRGB } from "@thi.ng/color";
 import type { FloatBuffer } from "@thi.ng/pixel";
 

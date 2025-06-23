@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2 } from "@thi.ng/api";
 import { identity, always, never } from "@thi.ng/api/fn";
 import { isFunction } from "@thi.ng/checks/is-function";

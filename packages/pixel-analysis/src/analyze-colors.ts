@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { contrast } from "@thi.ng/color/contrast";
 import { css } from "@thi.ng/color/css/css";
 import { hsv } from "@thi.ng/color/hsv/hsv";

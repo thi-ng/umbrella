@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { argSort } from "@thi.ng/arrays/arg-sort";
 import { lookup, lookupUnsafe } from "@thi.ng/arrays/lookup";
 import { knearest as $knearest } from "@thi.ng/distance/knearest";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2 } from "@thi.ng/api";
 import { frequencies as $freq } from "@thi.ng/transducers/frequencies";
 import { normFrequenciesAuto as $norm } from "@thi.ng/transducers/norm-frequencies-auto";

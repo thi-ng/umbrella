@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mapcat } from "@thi.ng/transducers/mapcat";
 
 export const DEFAULT_REPLACEMENTS_EN: Record<string, string[]> = {

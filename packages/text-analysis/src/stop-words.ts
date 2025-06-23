@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { filter } from "@thi.ng/transducers/filter";
 
 // TODO split up into groups

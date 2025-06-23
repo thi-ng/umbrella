@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDistance, Metric } from "./api.js";
 
 export class Untransformed<T> implements IDistance<T> {

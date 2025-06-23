@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { bidirIndexFromJSON, defBidirIndex } from "@thi.ng/bidir-index";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isString } from "@thi.ng/checks/is-string";

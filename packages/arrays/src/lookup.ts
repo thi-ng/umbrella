@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 
 /**

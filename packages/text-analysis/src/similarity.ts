@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { distCosine } from "@thi.ng/vectors/dist-cosine";
 import { jaccardSimilarity as $jaccard } from "@thi.ng/vectors/dist-jaccard";
 import { distSq as $distSq } from "@thi.ng/vectors/distsq";

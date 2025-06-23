@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import { transduce } from "@thi.ng/transducers/transduce";
 import type { Vocab } from "./api.js";
