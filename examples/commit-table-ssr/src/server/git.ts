@@ -23,7 +23,7 @@ import type { Commit } from "../common/api";
 const gitLog = (repoPath: string) =>
 	execSync(
 		`git log --pretty=format:"%ad~~%an~~%h~~%s" --shortstat --date=iso-strict`,
-		{ cwd: resolve(repoPath) }
+		{ cwd: resolve(repoPath), maxBuffer: 4 * 1024 * 1024 }
 	)
 		.toString()
 		.trim();

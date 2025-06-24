@@ -2,7 +2,7 @@
 import { timed } from "@thi.ng/bench";
 import { lch, srgb, distEucledian3 } from "@thi.ng/color";
 import { FLOAT_RGB, floatBuffer, intBufferFromImage } from "@thi.ng/pixel";
-import { dominantColors } from "@thi.ng/pixel-dominant-colors";
+import { dominantColorsKmeans } from "@thi.ng/pixel-dominant-colors";
 import { map, minMax, transduce } from "@thi.ng/transducers";
 import { SORT_MODES, type DominantColor, type SortMode } from "./api";
 
@@ -25,7 +25,7 @@ export const processImage = (
 		buf = buf.scale(256 / Math.max(buf.width, buf.height), "nearest");
 		const fbuf = floatBuffer(buf, FLOAT_RGB);
 		const pixels = [...fbuf];
-		const colors = dominantColors(fbuf, num, {
+		const colors = dominantColorsKmeans(fbuf, num, {
 			// use min chroma as pre-filter criteria
 			filter: (p) => lch(srgb(p)).c >= minChroma,
 		}).map(
