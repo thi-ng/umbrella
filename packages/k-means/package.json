@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/k-means",
 	"version": "1.1.1",
-	"description": "Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors",
+	"description": "k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -51,12 +51,18 @@
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
+		"centroid",
 		"cluster",
 		"distance",
+		"eucledian",
+		"haversine",
 		"k-means",
 		"k-means++",
 		"k-medians",
+		"mean",
+		"median",
 		"nd",
+		"partition",
 		"self-organizing",
 		"typescript"
 	],
@@ -79,6 +85,9 @@
 		},
 		"./kmeans": {
 			"default": "./kmeans.js"
+		},
+		"./mean-cut": {
+			"default": "./mean-cut.js"
 		}
 	},
 	"thi.ng": {
