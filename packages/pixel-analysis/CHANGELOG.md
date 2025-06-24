@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-06-24T21:39:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.3.0) (2025-06-24)
+
+#### 🚀 Features
+
+- update dominant color extraction ([58c7ea5](https://github.com/thi-ng/umbrella/commit/58c7ea5))
+  - add `AnalysisOpts.dominantFn`
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.2.0) (2025-06-02)
 

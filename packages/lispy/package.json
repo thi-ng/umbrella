@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lispy",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "Lightweight, extensible, interpreted Lisp-style DSL for embedding in other projects",
 	"type": "module",
 	"module": "./index.js",

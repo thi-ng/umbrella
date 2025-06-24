@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-06-24T21:39:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@2.0.0) (2025-06-24)
+
+#### 🛑 Breaking changes
+
+- update dominantColors() ([9cf7a48](https://github.com/thi-ng/umbrella/commit/9cf7a48))
+- BREAKING CHANGE: rename `dominantColors()` => `dominantColorsKmeans()`, remove `dominantColorsArray()`
+  - merge `dominantColors()` & `dominantColorsArray()` => `dominantColorsKmeans()`
+  - add `DominantColor` result type
+  - add filterSamples helper
+
+#### 🚀 Features
+
+- add dominantColorsMeanCut()/dominantColorsMedianCut() ([2ab48c7](https://github.com/thi-ng/umbrella/commit/2ab48c7))
 
 ### [1.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@1.1.2) (2024-07-25)
 

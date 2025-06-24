@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-stats",
-	"version": "2.2.25",
+	"version": "2.2.26",
 	"description": "Transducers for statistical / technical analysis",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/buffers": "^1.0.14",
 		"@thi.ng/checks": "^3.7.9",
 		"@thi.ng/errors": "^2.5.35",
-		"@thi.ng/transducers": "^9.4.2"
+		"@thi.ng/transducers": "^9.4.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",
