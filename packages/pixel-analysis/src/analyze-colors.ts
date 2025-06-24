@@ -8,7 +8,7 @@ import { srgb } from "@thi.ng/color/srgb/srgb";
 import { compareByKey } from "@thi.ng/compare/keys";
 import { compareNumDesc } from "@thi.ng/compare/numeric";
 import { fit } from "@thi.ng/math/fit";
-import { dominantColors } from "@thi.ng/pixel-dominant-colors";
+import { dominantColorsKmeans } from "@thi.ng/pixel-dominant-colors/kmeans";
 import { FloatBuffer } from "@thi.ng/pixel/float";
 import { FLOAT_GRAY } from "@thi.ng/pixel/format/float-gray";
 import { FLOAT_HSVA } from "@thi.ng/pixel/format/float-hsva";
@@ -49,6 +49,7 @@ export const analyzeColors = (
 	}
 	const imgGray = $img.as(FLOAT_GRAY);
 	const imgHsv = $img.as(FLOAT_HSVA);
+	const dominantColors = opts?.dominantFn ?? dominantColorsKmeans;
 	const colors = dominantColors($img, opts?.numColors ?? 4).sort(
 		compareByKey("area", compareNumDesc)
 	);

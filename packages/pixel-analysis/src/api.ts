@@ -1,12 +1,19 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { Fn2 } from "@thi.ng/api";
 import type { HSV, Oklch, SRGB } from "@thi.ng/color";
 import type { FloatBuffer } from "@thi.ng/pixel";
+import type { DominantColor } from "@thi.ng/pixel-dominant-colors";
 
 export interface AnalysisOpts {
 	/**
 	 * Max. number of dominant colors.
 	 */
 	numColors: number;
+	/**
+	 * Dominant color extraction function. By default uses
+	 * [`dominantColorsKmeans()`](https://docs.thi.ng/umbrella/pixel-dominant-colors/functions/dominantColorsKmeans.html)
+	 */
+	dominantFn: Fn2<FloatBuffer, number, DominantColor[]>;
 	/**
 	 * Max. image size (longest side)
 	 */
