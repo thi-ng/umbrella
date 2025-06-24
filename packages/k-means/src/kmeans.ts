@@ -6,7 +6,7 @@ import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { weightedRandom } from "@thi.ng/random/weighted-random";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
 import { median } from "@thi.ng/vectors/median";
 import { mulN } from "@thi.ng/vectors/muln";
@@ -40,14 +40,13 @@ export const kmeans = <T extends ReadonlyVec>(
 		rnd,
 	} = opts;
 	const num = samples.length;
-	const centroidIDs = Array.isArray(initial)
+	const centroids = Array.isArray(initial)
 		? initial
 		: initial
 		? initial(k, samples, dist, rnd)
-		: initKmeanspp(k, samples, dist, rnd, exponent);
-	assert(centroidIDs.length > 0, `missing initial centroids`);
-	k = centroidIDs.length;
-	const centroids: Vec[] = centroidIDs.map((i) => samples[i]);
+		: kmeansPlusPlus(k, samples, dist, rnd, exponent);
+	assert(centroids.length > 0, `missing initial centroids`);
+	k = centroids.length;
 	const clusters = new Uint32Array(num).fill(k);
 	let update = true;
 	while (update && maxIter-- > 0) {
@@ -91,7 +90,7 @@ export const kmeans = <T extends ReadonlyVec>(
  * @param rnd -
  * @param exponent -
  */
-export const initKmeanspp = <T extends ReadonlyVec>(
+export const kmeansPlusPlus = <T extends ReadonlyVec>(
 	k: number,
 	samples: T[],
 	dist: IDistance<ReadonlyVec> = DIST_SQ,
@@ -122,7 +121,7 @@ export const initKmeanspp = <T extends ReadonlyVec>(
 		centroidIDs.push(id);
 		centroids.push(samples[id]);
 	}
-	return centroidIDs;
+	return centroids;
 };
 
 /** @internal */

@@ -10,7 +10,7 @@ export interface KMeansOpts {
 	 * array given to {@link kmeans}) or a function producing such. If omitted,
 	 * {@link initKmeanspp} is used as default.
 	 */
-	initial: number[] | KMeansInit<ReadonlyVec>;
+	initial: ReadonlyVec[] | KMeansInit;
 	/**
 	 * Distance function/metric to use for finding nearest centroid.
 	 */
@@ -45,12 +45,12 @@ export interface KMeansOpts {
 /**
  * k-means initialization function, e.g. {@link initKmeanspp}.
  */
-export type KMeansInit<T extends ReadonlyVec> = (
+export type KMeansInit = (
 	k: number,
-	samples: T[],
+	samples: ReadonlyVec[],
 	dist?: IDistance<ReadonlyVec>,
 	rnd?: IRandom
-) => number[];
+) => ReadonlyVec[];
 
 export type CentroidStrategy = Fn<
 	number,
