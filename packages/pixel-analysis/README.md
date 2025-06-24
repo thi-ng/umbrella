@@ -80,10 +80,11 @@ For Node.js REPL:
 const pa = await import("@thi.ng/pixel-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.28 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.30 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
@@ -92,6 +93,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.28 KB
 - [@thi.ng/pixel-dominant-colors](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dominant-colors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## API
 

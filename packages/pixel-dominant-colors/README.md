@@ -126,13 +126,14 @@ For Node.js REPL:
 const pdc = await import("@thi.ng/pixel-dominant-colors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.21 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 381 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

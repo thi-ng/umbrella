@@ -111,7 +111,7 @@ For Node.js REPL:
 const boids = await import("@thi.ng/boids");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.97 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.00 KB
 
 ## Dependencies
 

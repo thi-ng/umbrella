@@ -111,7 +111,7 @@ package.
 ## Related packages
 
 - [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
-- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) - Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors
+- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) - k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
 
 ## Installation
