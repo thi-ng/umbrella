@@ -55,7 +55,10 @@
 		"dominant",
 		"image",
 		"k-means",
+		"mean",
+		"median",
 		"palette",
+		"quantize",
 		"typescript"
 	],
 	"publishConfig": {
@@ -75,6 +78,18 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./kmeans": {
+			"default": "./kmeans.js"
+		},
+		"./mean-cut": {
+			"default": "./mean-cut.js"
+		},
+		"./utils": {
+			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {
