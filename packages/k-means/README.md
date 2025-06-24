@@ -25,7 +25,16 @@
 
 ## About
 
-Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors.
+k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors.
+
+In addition to the main
+[`kmeans()`](https://docs.thi.ng/umbrella/k-means/functions/kmeans.html)
+implementation, the following k-means centroid initialization functions are
+provided (can also be used in isolation to extract cluster centroids):
+
+- [`kmeansPlusPlus()`](https://docs.thi.ng/umbrella/k-means/functions/kmeansPlusPlus.html)
+- [`meanCut()`](https://docs.thi.ng/umbrella/k-means/functions/meanCut.html)
+- [`medianCut()`](https://docs.thi.ng/umbrella/k-means/functions/medianCut.html)
 
 ## Status
 
@@ -59,7 +68,7 @@ For Node.js REPL:
 const kmeans = await import("@thi.ng/k-means");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 898 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.10 KB
 
 ## Dependencies
 
