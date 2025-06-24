@@ -11,15 +11,18 @@ extracted from the [@thi.ng/pixel](https://thi.ng/pixel) package.
 
 ### Dominant color extraction
 
-The
-[`dominantColors()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColors.html)
-function applies [k-means
-clustering](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) to
-extract the dominant colors from the given image. The clustering can be
-configured. The function returns an array of `{ color, area }` objects (sorted
-by descending area), where `color` is a cluster's dominant color (in the format
-of the source image) and `area` the normalized cluster size (number of selected
-pixels over total number of pixels in the image).
+The package provides several methods to extract the dominant colors from a given image:
+
+- [`dominantColorsKmeans()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsKmeans.html)
+uses [k-means clustering](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
+- [`dominantColorsMeanCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMeanCut.html)
+- [`dominantColorsMedianCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMedianCut.html)
+
+In all cases the clustering can be configured. The functions return an array of
+`{ color, area }` objects (sorted by descending area), where `color` is a
+cluster's dominant color (in the format of the source image) and `area` the
+normalized cluster size (number of selected pixels over total number of pixels
+in the image).
 
 Also see the [dominant colors example project & online
 tool](https://demo.thi.ng/umbrella/dominant-colors/) based on this function.
