@@ -312,15 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-06-19
+As of: 2025-06-24
 
-| Status                                        | Package                                             | Version                                                                                                                   | Changelog                                          |
-|:----------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays)               | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)               | [changelog](./packages/arrays/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/block-fs`](./packages/block-fs)           | [![version](https://img.shields.io/npm/v/@thi.ng/block-fs.svg)](https://www.npmjs.com/package/@thi.ng/block-fs)           | [changelog](./packages/block-fs/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-perf-cyan)  | [`@thi.ng/boids`](./packages/boids)                 | [![version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)                 | [changelog](./packages/boids/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-perf-cyan)  | [`@thi.ng/geom-accel`](./packages/geom-accel)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)       | [changelog](./packages/geom-accel/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/text-analysis`](./packages/text-analysis) | [![version](https://img.shields.io/npm/v/@thi.ng/text-analysis.svg)](https://www.npmjs.com/package/@thi.ng/text-analysis) | [changelog](./packages/text-analysis/CHANGELOG.md) |
+| Status                                        | Package                                                             | Version                                                                                                                                   | Changelog                                                  |
+|:----------------------------------------------|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/k-means`](./packages/k-means)                             | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)                             | [changelog](./packages/k-means/CHANGELOG.md)               |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-analysis`](./packages/pixel-analysis)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis)               | [changelog](./packages/pixel-analysis/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-dominant-colors`](./packages/pixel-dominant-colors) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors) | [changelog](./packages/pixel-dominant-colors/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
