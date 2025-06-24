@@ -41,7 +41,8 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.29",
 		"@thi.ng/k-means": "^1.1.1",
-		"@thi.ng/pixel": "^7.5.1"
+		"@thi.ng/pixel": "^7.5.1",
+		"@thi.ng/vectors": "^8.3.1"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",
