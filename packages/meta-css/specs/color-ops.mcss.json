@@ -1,159 +1,80 @@
 {
 	"templates": [
 		{
-			"doc": {
-				"group": "color definitions",
-				"desc": "Defines a rgb() color variable with given name and additional derived vars for each channel (e.g. `--name-red`). Use `adjust-rgb()` to create derived versions from this base color.",
-				"args": [
-					"name: variable name (without `--` prefix)",
-					"red: [0,255] range",
-					"green: [0,255] range",
-					"blue: [0,255] range",
-					"alpha: in [0,1] range"
-				]
-			},
-			"name": "def-rgb",
-			"props": {
-				"--{0}-red": "{1}",
-				"--{0}-green": "{2}",
-				"--{0}-blue": "{3}",
-				"--{0}-alpha": "{4}",
-				"--{0}": "rgb(var(--{0}-red) var(--{0}-green) var(--{0}-blue)/var(--{0}-alpha))"
-			}
-		},
-		{
-			"name": "adjust-rgb",
+			"name": "adjust-color",
 			"doc": {
 				"group": "color adjustment",
-				"desc": "Assigns an adjusted version of a `def-rgb()`-defined color to given CSS property.",
+				"desc": "Assigns an adjusted version of `base` color to new variable `name`.",
 				"args": [
-					"prop: CSS target property",
-					"name: color variable name (without `--` prefix)",
-					"red: factor",
-					"green: factor",
-					"blue: factor",
-					"alpha: factor"
+					"name: new var name (without `--` prefix)",
+					"base: color var (without `--` prefix)",
+					"l: luminance offset",
+					"c: chroma offset",
+					"h: hue offset",
+					"a: alpha offset"
 				]
 			},
 			"props": {
-				"{0}": "rgb(calc(var(--{1}-red)*{2}) calc(var(--{1}-green)*{3}) calc(var(--{1}-blue)*{4})/calc(var(--{1}-alpha)*{5}))"
+				"--{0}": "oklch(from var(--{1}) calc(l + {2}) calc(c + {3}) calc(h + {4}) / calc(a + {5}))"
 			}
 		},
 		{
-			"doc": {
-				"group": "color definitions",
-				"desc": "Defines a hsl() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-hsl()` to create derived versions from this base color.",
-				"args": [
-					"name: variable name (without `--` prefix)",
-					"hue: in degrees",
-					"sat: in percent",
-					"lum: in percent",
-					"alpha: in [0,1] range"
-				]
-			},
-			"name": "def-hsl",
-			"props": {
-				"--{0}-hue": "{1}",
-				"--{0}-sat": "{2}%",
-				"--{0}-lum": "{3}%",
-				"--{0}-alpha": "{4}",
-				"--{0}": "hsl(var(--{0}-hue) var(--{0}-sat) var(--{0}-lum)/var(--{0}-alpha))"
-			}
-		},
-		{
-			"name": "adjust-hsl",
+			"name": "lighten-color",
 			"doc": {
 				"group": "color adjustment",
-				"desc": "Assigns an adjusted version of a `def-hsl()`-defined color to given CSS property.",
+				"desc": "Assigns an luminance-adjusted version of `base` color to new variable `name`.",
 				"args": [
-					"prop: CSS target property",
-					"name: color variable name (without `--` prefix)",
-					"hue: offset in degrees",
-					"sat: factor",
-					"lum: factor",
-					"alpha: factor"
+					"name: new var name (without `--` prefix)",
+					"base: color var (without `--` prefix)",
+					"l: luminance offset"
 				]
 			},
 			"props": {
-				"{0}": "hsl(calc(var(--{1}-hue) + {2}) calc(var(--{1}-sat)*{3}) calc(var(--{1}-lum)*{4})/calc(var(--{1}-alpha)*{5}))"
+				"--{0}": "oklch(from var(--{1}) calc(l + {2}) c h / a)"
 			}
 		},
 		{
-			"doc": {
-				"group": "color definitions",
-				"desc": "Defines a lch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-lch()` to create derived versions from this base color.",
-				"args": [
-					"name: variable name",
-					"luma: in percent",
-					"chroma: in percent",
-					"hue: in degrees",
-					"alpha: in [0,1] range"
-				]
-			},
-			"name": "def-lch",
-			"props": {
-				"--{0}-luma": "{1}%",
-				"--{0}-chroma": "{2}%",
-				"--{0}-hue": "{3}",
-				"--{0}-alpha": "{4}",
-				"--{0}": "lch(var(--{0}-luma) var(--{0}-chroma) var(--{0}-hue)/var(--{0}-alpha))"
-			}
-		},
-		{
-			"name": "adjust-lch",
+			"name": "saturate-color",
 			"doc": {
 				"group": "color adjustment",
-				"desc": "Assigns an adjusted version of a `def-lch()` defined color to given CSS property.",
+				"desc": "Assigns an chroma-adjusted version of `base` color to new variable `name`.",
 				"args": [
-					"prop: CSS target property",
-					"name: color variable name (without `--` prefix)",
-					"luma: factor",
-					"chroma: factor",
-					"hue: offset in degrees",
-					"alpha: factor"
+					"name: new var name (without `--` prefix)",
+					"base: color var (without `--` prefix)",
+					"l: chroma offset"
 				]
 			},
 			"props": {
-				"{0}": "lch(calc(var(--{1}-luma)*{2}) calc(var(--{1}-chroma)*{3}) calc(var(--{1}-hue) + {4})/calc(var(--{1}-alpha)*{5}))"
+				"--{0}": "oklch(from var(--{1}) l calc(c + {2}) h / a)"
 			}
 		},
 		{
-			"doc": {
-				"group": "color definitions",
-				"desc": "Defines a oklch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-oklch()` to create derived versions from this base color.",
-				"args": [
-					"name: variable name",
-					"luma: in percent",
-					"chroma: in percent",
-					"hue: in degrees",
-					"alpha: in [0,1] range"
-				]
-			},
-			"name": "def-oklch",
-			"props": {
-				"--{0}-luma": "{1}%",
-				"--{0}-chroma": "{2}%",
-				"--{0}-hue": "{3}",
-				"--{0}-alpha": "{4}",
-				"--{0}": "oklch(var(--{0}-luma) var(--{0}-chroma) var(--{0}-hue)/var(--{0}-alpha))"
-			}
-		},
-		{
-			"name": "adjust-oklch",
+			"name": "rotate-color",
 			"doc": {
 				"group": "color adjustment",
-				"desc": "Assigns an adjusted version of a `def-oklch()` defined color to given CSS property.",
+				"desc": "Assigns an hue-rotated version of `base` color to new variable `name`.",
 				"args": [
-					"prop: CSS target property",
-					"name: color variable name (without `--` prefix)",
-					"luma: factor",
-					"chroma: factor",
-					"hue: offset in degrees",
-					"alpha: alpha factor"
+					"name: new var name (without `--` prefix)",
+					"base: color var (without `--` prefix)",
+					"h: hue offset"
 				]
 			},
 			"props": {
-				"{0}": "oklch(calc(var(--{1}-luma)*{2}) calc(var(--{1}-chroma)*{3}) calc(var(--{1}-hue) + {4})/calc(var(--{1}-alpha)*{5}))"
+				"--{0}": "oklch(from var(--{1}) l c calc(h + {2}) / a)"
+			}
+		},
+		{
+			"name": "with-alpha",
+			"doc": {
+				"group": "color adjustment",
+				"args": [
+					"name: new var name (without `--` prefix)",
+					"base: color var (without `--` prefix)",
+					"a: alpha offset"
+				]
+			},
+			"props": {
+				"--{0}": "oklch(from var(--{1}) l c h / {2} )"
 			}
 		}
 	]
