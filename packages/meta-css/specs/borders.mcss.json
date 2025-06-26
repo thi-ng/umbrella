@@ -79,9 +79,25 @@
 				"border<var>-style": "solid",
 				"border<var>-width": "<v>"
 			},
-			"values": [1],
+			"values": [1, 2, 4],
 			"unit": "px",
 			"vars": ["", "t", "r", "b", "l"]
+		},
+		{
+			"doc": { "group": "border style" },
+			"name": "bs-<v>",
+			"props": "border-style",
+			"values": [
+				"none",
+				"dashed",
+				"dotted",
+				"solid",
+				"double",
+				"groove",
+				"ridge",
+				"inset",
+				"outset"
+			]
 		}
 	]
 }
