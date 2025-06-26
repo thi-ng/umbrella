@@ -81,6 +81,19 @@
 			"doc": {
 				"group": "animation / transition",
 				"args": ["duration: in seconds"],
+				"desc": "Transition tweening color, background-color, border-color"
+			},
+			"name": "tween-colors",
+			"props": {
+				"transition-property": "color, background-color, border-color",
+				"transition-duration": "{0}s",
+				"transition-timing-function": "ease-in-out"
+			}
+		},
+		{
+			"doc": {
+				"group": "animation / transition",
+				"args": ["duration: in seconds"],
 				"desc": "Animation which rotates element a full turn, looping indefinitely"
 			},
 			"name": "spin",
