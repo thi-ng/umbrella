@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-06-26T13:12:48Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.19.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.19.0) (2025-06-26)
+
+#### 🚀 Features
+
+- add support for string literals in var assignments ([2749c30](https://github.com/thi-ng/umbrella/commit/2749c30))
+  - use string lit to ignore white space in var assignments
+    - `name="a b c"` => `--name: a b c;`
+  - add/update tests
+- add tween-colors() template fn ([a5b8f9d](https://github.com/thi-ng/umbrella/commit/a5b8f9d))
+- add border-style specs ([c4cbd2f](https://github.com/thi-ng/umbrella/commit/c4cbd2f))
+- add/replace color ops ([ba78142](https://github.com/thi-ng/umbrella/commit/ba78142))
+  - replace existing `def-rgb/hsl/lch` / `adjust-rgb/hsl/lch` with:
+    - `adjust-color()`
+    - `lighten-color()`
+    - `rotate-color()`
+    - `saturate-color()`
+    - `with-alpha()`
+  - all color ops using `oklch()` now
+- add `font-family()` tpl fn ([38c65d4](https://github.com/thi-ng/umbrella/commit/38c65d4))
 
 ## [0.18.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.18.0) (2025-02-11)
 
