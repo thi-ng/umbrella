@@ -49,6 +49,7 @@
     - [Background color](#background-color)
     - [Border color](#border-color)
     - [Border radius](#border-radius)
+    - [Border style](#border-style)
     - [Border width](#border-width)
     - [Box sizing](#box-sizing)
     - [Color scheme](#color-scheme)
@@ -100,8 +101,8 @@
     - [Background color](#background-color)
     - [Border color](#border-color)
     - [Color adjustment](#color-adjustment)
-    - [Color definitions](#color-definitions)
     - [Color scheme](#color-scheme)
+    - [Font families](#font-families)
     - [Fx](#fx)
     - [Grid layout](#grid-layout)
     - [Layout](#layout)
@@ -1153,7 +1154,7 @@ framework(s)...
 >
 > Since v0.17.0 these templates have been removed, since obsolete now...
 
-Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "MetaCSS base" (v0.17.0):
+Currently, there are 968 CSS utility classes (incl. 58 templates) defined in "MetaCSS base" (v0.19.0):
 
 ### Classes by category
 
@@ -1342,9 +1343,24 @@ Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "Me
 - `brt4` (top 1rem)
 </details>
 
+#### Border style
+
+<details><summary>9 items:</summary>
+
+- `bs-dashed`
+- `bs-dotted`
+- `bs-double`
+- `bs-groove`
+- `bs-inset`
+- `bs-none`
+- `bs-outset`
+- `bs-ridge`
+- `bs-solid`
+</details>
+
 #### Border width
 
-<details><summary>35 items:</summary>
+<details><summary>45 items:</summary>
 
 - `bw0` ( 0rem)
 - `bw1` ( .125rem)
@@ -1353,6 +1369,8 @@ Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "Me
 - `bw4` ( 1rem)
 - `bw5` ( 2rem)
 - `bw-1px` ( 1px)
+- `bw-2px` ( 2px)
+- `bw-4px` ( 4px)
 - `bwb0` (bottom 0rem)
 - `bwb1` (bottom .125rem)
 - `bwb2` (bottom .25rem)
@@ -1360,6 +1378,8 @@ Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "Me
 - `bwb4` (bottom 1rem)
 - `bwb5` (bottom 2rem)
 - `bwb-1px` (bottom 1px)
+- `bwb-2px` (bottom 2px)
+- `bwb-4px` (bottom 4px)
 - `bwl0` (left 0rem)
 - `bwl1` (left .125rem)
 - `bwl2` (left .25rem)
@@ -1367,6 +1387,8 @@ Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "Me
 - `bwl4` (left 1rem)
 - `bwl5` (left 2rem)
 - `bwl-1px` (left 1px)
+- `bwl-2px` (left 2px)
+- `bwl-4px` (left 4px)
 - `bwr0` (right 0rem)
 - `bwr1` (right .125rem)
 - `bwr2` (right .25rem)
@@ -1374,6 +1396,8 @@ Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "Me
 - `bwr4` (right 1rem)
 - `bwr5` (right 2rem)
 - `bwr-1px` (right 1px)
+- `bwr-2px` (right 2px)
+- `bwr-4px` (right 4px)
 - `bwt0` (top 0rem)
 - `bwt1` (top .125rem)
 - `bwt2` (top .25rem)
@@ -1381,6 +1405,8 @@ Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "Me
 - `bwt4` (top 1rem)
 - `bwt5` (top 2rem)
 - `bwt-1px` (top 1px)
+- `bwt-2px` (top 2px)
+- `bwt-4px` (top 4px)
 </details>
 
 #### Box sizing
@@ -2319,7 +2345,7 @@ Currently, there are 950 CSS utility classes (incl. 59 templates) defined in "Me
 
 #### Animation / transition
 
-<details><summary>12 items:</summary>
+<details><summary>13 items:</summary>
 
 ##### `anim-delay(delay)`
 
@@ -2384,6 +2410,12 @@ Animation which rotates element a full turn, looping indefinitely
 
 Sets transition-timing-function to `steps(num)`
 
+##### `tween-colors(duration)`
+
+- **duration**: in seconds
+
+Transition tweening color, background-color, border-color
+
 </details>
 
 #### Appearance
@@ -2438,97 +2470,48 @@ Sets aspect ratio of background. Use with `bg-aspect-ratio-object` on child elem
 
 #### Color adjustment
 
-<details><summary>4 items:</summary>
+<details><summary>5 items:</summary>
 
-##### `adjust-hsl(prop, name, hue, sat, lum, alpha)`
+##### `adjust-color(name, base, l, c, h, a)`
 
-- **prop**: CSS target property
-- **name**: color variable name (without `--` prefix)
-- **hue**: offset in degrees
-- **sat**: factor
-- **lum**: factor
-- **alpha**: factor
+- **name**: new var name (without `--` prefix)
+- **base**: color var (without `--` prefix)
+- **l**: luminance offset
+- **c**: chroma offset
+- **h**: hue offset
+- **a**: alpha offset
 
-Assigns an adjusted version of a `def-hsl()`-defined color to given CSS property.
+Assigns an adjusted version of `base` color to new variable `name`.
 
-##### `adjust-lch(prop, name, luma, chroma, hue, alpha)`
+##### `lighten-color(name, base, l)`
 
-- **prop**: CSS target property
-- **name**: color variable name (without `--` prefix)
-- **luma**: factor
-- **chroma**: factor
-- **hue**: offset in degrees
-- **alpha**: factor
+- **name**: new var name (without `--` prefix)
+- **base**: color var (without `--` prefix)
+- **l**: luminance offset
 
-Assigns an adjusted version of a `def-lch()` defined color to given CSS property.
+Assigns an luminance-adjusted version of `base` color to new variable `name`.
 
-##### `adjust-oklch(prop, name, luma, chroma, hue, alpha)`
+##### `rotate-color(name, base, h)`
 
-- **prop**: CSS target property
-- **name**: color variable name (without `--` prefix)
-- **luma**: factor
-- **chroma**: factor
-- **hue**: offset in degrees
-- **alpha**: alpha factor
+- **name**: new var name (without `--` prefix)
+- **base**: color var (without `--` prefix)
+- **h**: hue offset
 
-Assigns an adjusted version of a `def-oklch()` defined color to given CSS property.
+Assigns an hue-rotated version of `base` color to new variable `name`.
 
-##### `adjust-rgb(prop, name, red, green, blue, alpha)`
+##### `saturate-color(name, base, l)`
 
-- **prop**: CSS target property
-- **name**: color variable name (without `--` prefix)
-- **red**: factor
-- **green**: factor
-- **blue**: factor
-- **alpha**: factor
+- **name**: new var name (without `--` prefix)
+- **base**: color var (without `--` prefix)
+- **l**: chroma offset
 
-Assigns an adjusted version of a `def-rgb()`-defined color to given CSS property.
+Assigns an chroma-adjusted version of `base` color to new variable `name`.
 
-</details>
+##### `with-alpha(name, base, a)`
 
-#### Color definitions
-
-<details><summary>4 items:</summary>
-
-##### `def-hsl(name, hue, sat, lum, alpha)`
-
-- **name**: variable name (without `--` prefix)
-- **hue**: in degrees
-- **sat**: in percent
-- **lum**: in percent
-- **alpha**: in [0,1] range
-
-Defines a hsl() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-hsl()` to create derived versions from this base color.
-
-##### `def-lch(name, luma, chroma, hue, alpha)`
-
-- **name**: variable name
-- **luma**: in percent
-- **chroma**: in percent
-- **hue**: in degrees
-- **alpha**: in [0,1] range
-
-Defines a lch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-lch()` to create derived versions from this base color.
-
-##### `def-oklch(name, luma, chroma, hue, alpha)`
-
-- **name**: variable name
-- **luma**: in percent
-- **chroma**: in percent
-- **hue**: in degrees
-- **alpha**: in [0,1] range
-
-Defines a oklch() color variable with given name and additional derived vars for each channel (e.g. `--name-hue`). Use `adjust-oklch()` to create derived versions from this base color.
-
-##### `def-rgb(name, red, green, blue, alpha)`
-
-- **name**: variable name (without `--` prefix)
-- **red**: [0,255] range
-- **green**: [0,255] range
-- **blue**: [0,255] range
-- **alpha**: in [0,1] range
-
-Defines a rgb() color variable with given name and additional derived vars for each channel (e.g. `--name-red`). Use `adjust-rgb()` to create derived versions from this base color.
+- **name**: new var name (without `--` prefix)
+- **base**: color var (without `--` prefix)
+- **a**: alpha offset
 
 </details>
 
@@ -2572,6 +2555,14 @@ Sets `color` using CSS light-dark() function
 Sets `stroke` color using CSS light-dark() function
 
 </details>
+
+#### Font families
+
+##### `font-family(name)`
+
+- **name**: variable name (without `--` prefix)
+
+Variable-based font-family
 
 #### Fx
 
@@ -2767,7 +2758,7 @@ The toolchain itself is distributed as CLI bundle with **no runtime
 dependencies**. The following dependencies are only shown for informational
 purposes and are (partially) included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 13.88 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 13.92 KB
 
 ## Dependencies
 
