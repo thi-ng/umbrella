@@ -18,27 +18,27 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "flex layout" },
 			"name": "flex-<v>",
+			"doc": { "group": "flex layout" },
 			"props": "flex-direction",
 			"values": ["column", "column-reverse", "row", "row-reverse"]
 		},
 		{
-			"doc": { "group": "flex layout" },
 			"name": "<vid>-content-<v>",
+			"doc": { "group": "flex layout" },
 			"props": "<vid>-content",
 			"values": "align",
 			"vars": ["align", "justify"]
 		},
 		{
-			"doc": { "group": "flex layout" },
 			"name": "flex-<v>",
+			"doc": { "group": "flex layout" },
 			"props": "flex-wrap",
 			"values": ["wrap", "nowrap", "wrap-reverse"]
 		},
 		{
-			"doc": { "group": "flex layout" },
 			"name": "flex-<vid><v>",
+			"doc": { "group": "flex layout" },
 			"props": "flex-<vid>",
 			"values": [0, 1],
 			"vars": ["grow", "shrink"]

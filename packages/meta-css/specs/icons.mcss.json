@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "icons", "desc": "<v>" },
 			"name": "icon-<k>",
+			"doc": { "group": "icons", "desc": "<v>" },
 			"key": "i+1",
 			"props": {
 				"display": "inline-block",
@@ -13,8 +13,8 @@
 			"unit": "rem"
 		},
 		{
-			"doc": { "group": "icons", "desc": "<v>" },
 			"name": "icon-<k>",
+			"doc": { "group": "icons", "desc": "<v>" },
 			"props": {
 				"display": "inline-block",
 				"width": "<v>",

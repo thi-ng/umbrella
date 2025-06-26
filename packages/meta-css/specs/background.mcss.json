@@ -1,14 +1,14 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "background" },
 			"name": "bg-<v>",
+			"doc": { "group": "background" },
 			"props": "background-size",
 			"values": ["cover", "contain"]
 		},
 		{
-			"doc": { "group": "background", "desc": "<v>" },
 			"name": "bg-pos-<k>",
+			"doc": { "group": "background", "desc": "<v>" },
 			"props": "background-position",
 			"values": {
 				"n": "top",
@@ -23,8 +23,8 @@
 			}
 		},
 		{
-			"doc": { "group": "background", "desc": "<v>" },
 			"name": "bg-repeat<k>",
+			"doc": { "group": "background", "desc": "<v>" },
 			"props": "background-repeat<k>",
 			"values": {
 				"-x": "repeat-x",
@@ -38,25 +38,25 @@
 	],
 	"templates": [
 		{
-			"doc": { "group": "background", "args": ["url: image URL"] },
 			"name": "bg-image",
+			"doc": { "group": "background", "args": ["url: image URL"] },
 			"props": "background-image",
 			"unit": "url"
 		},
 		{
+			"name": "bg-pos",
 			"doc": {
 				"group": "background",
 				"args": ["body: CSS value/definition"]
 			},
-			"name": "bg-pos",
 			"props": "background-position"
 		},
 		{
+			"name": "bg-size",
 			"doc": {
 				"group": "background",
 				"args": ["body: CSS value/definition"]
 			},
-			"name": "bg-size",
 			"props": "background-size"
 		}
 	]

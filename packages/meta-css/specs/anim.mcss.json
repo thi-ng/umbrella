@@ -16,36 +16,36 @@
 	},
 	"specs": [
 		{
+			"name": "anim-<v>",
 			"doc": {
 				"group": "animation / transition",
 				"desc": "direction"
 			},
-			"name": "anim-<v>",
 			"props": "animation-direction",
 			"values": ["normal", "reverse", "alternate", "alternate-reverse"]
 		},
 		{
-			"doc": { "group": "animation / transition" },
 			"name": "anim-<k>",
+			"doc": { "group": "animation / transition" },
 			"props": "animation-play-state",
 			"values": { "pause": "paused", "play": "running" }
 		},
 		{
+			"name": "<vid>-<v>",
 			"doc": {
 				"group": "animation / transition",
 				"desc": "timing function"
 			},
-			"name": "<vid>-<v>",
 			"props": "<var>-timing-function",
 			"values": ["ease", "ease-in", "ease-out", "ease-in-out", "linear"],
 			"vars": ["anim", "transition"]
 		},
 		{
+			"name": "transition-<k>",
 			"doc": {
 				"group": "animation / transition",
 				"desc": "<v>"
 			},
-			"name": "transition-<k>",
 			"props": "transition-property",
 			"values": {
 				"all": "all",
@@ -59,31 +59,31 @@
 	],
 	"templates": [
 		{
+			"name": "fade-<vid>",
 			"doc": {
 				"group": "animation / transition",
 				"args": ["duration: in seconds"],
 				"desc": "Animation to change opacity"
 			},
-			"name": "fade-<vid>",
 			"props": { "animation": "fade-<vid> {0}s ease-in-out forwards" },
 			"vars": ["in", "out"]
 		},
 		{
+			"name": "bg-anim",
 			"doc": {
 				"group": "animation / transition",
 				"args": ["duration: in seconds"],
 				"desc": "Transition to tween background color"
 			},
-			"name": "bg-anim",
 			"props": { "transition": "{0}s background-color ease-in-out" }
 		},
 		{
+			"name": "tween-colors",
 			"doc": {
 				"group": "animation / transition",
 				"args": ["duration: in seconds"],
 				"desc": "Transition tweening color, background-color, border-color"
 			},
-			"name": "tween-colors",
 			"props": {
 				"transition-property": "color, background-color, border-color",
 				"transition-duration": "{0}s",
@@ -91,15 +91,16 @@
 			}
 		},
 		{
+			"name": "spin",
 			"doc": {
 				"group": "animation / transition",
 				"args": ["duration: in seconds"],
 				"desc": "Animation which rotates element a full turn, looping indefinitely"
 			},
-			"name": "spin",
 			"props": { "animation": "spin {0}s linear infinite" }
 		},
 		{
+			"name": "shrink",
 			"doc": {
 				"group": "animation / transition",
 				"args": [
@@ -108,48 +109,47 @@
 				],
 				"desc": "Animation which shrinks the height from given initial value to zero. Target element must NOT have padding (use a wrapper if necessary)."
 			},
-			"name": "shrink",
 			"props": {
 				"--mcss-shrink-size": "{1}",
 				"animation": "shrink {0}s ease-out forwards"
 			}
 		},
 		{
+			"name": "<vid>-duration",
 			"doc": {
 				"group": "animation / transition",
 				"args": ["duration: time (in seconds)"]
 			},
-			"name": "<vid>-duration",
 			"props": "<var>-duration",
 			"unit": "second",
 			"vars": ["anim", "transition"]
 		},
 		{
+			"name": "<vid>-delay",
 			"doc": {
 				"group": "animation / transition",
 				"args": ["delay: time (in seconds)"]
 			},
-			"name": "<vid>-delay",
 			"props": "<var>-delay",
 			"unit": "second",
 			"vars": ["anim", "transition"]
 		},
 		{
+			"name": "<vid>-steps",
 			"doc": {
 				"group": "animation / transition",
 				"desc": "Sets <var>-timing-function to `steps(num)`",
 				"args": ["num: number of steps"]
 			},
-			"name": "<vid>-steps",
 			"props": { "<var>-timing-function": "steps({0})" },
 			"vars": ["anim", "transition"]
 		},
 		{
+			"name": "anim-iter",
 			"doc": {
 				"group": "animation / transition",
 				"args": ["iter: number of iterations"]
 			},
-			"name": "anim-iter",
 			"props": "animation-iteration-count"
 		}
 	]

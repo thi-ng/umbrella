@@ -8,24 +8,24 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "padding", "desc": "<var> <v>" },
 			"name": "p<vid><k>",
+			"doc": { "group": "padding", "desc": "<var> <v>" },
 			"props": "padding<var>",
 			"values": "margins",
 			"unit": "rem",
 			"vars": ["a", "h", "v", "t", "r", "b", "l"]
 		},
 		{
-			"doc": { "group": "margin", "desc": "<var> <v>" },
 			"name": "m<vid><k>",
+			"doc": { "group": "margin", "desc": "<var> <v>" },
 			"props": "margin<var>",
 			"values": "margins",
 			"unit": "rem",
 			"vars": ["a", "h", "v", "t", "r", "b", "l"]
 		},
 		{
-			"doc": { "group": "margin" },
 			"name": "<k>",
+			"doc": { "group": "margin" },
 			"props": {
 				"margin-left": "<v>",
 				"margin-right": "<v>"
@@ -33,16 +33,16 @@
 			"values": { "center": "auto" }
 		},
 		{
-			"doc": { "group": "padding", "desc": "block <var> <v>" },
 			"name": "pb<vid>-<k>",
+			"doc": { "group": "padding", "desc": "block <var> <v>" },
 			"props": "padding-block-<var>",
 			"values": "margins",
 			"unit": "rem",
 			"vars": ["s", "e"]
 		},
 		{
-			"doc": { "group": "margin", "desc": "block <var> <v>" },
 			"name": "mb<vid>-<k>",
+			"doc": { "group": "margin", "desc": "block <var> <v>" },
 			"props": "margin-block-<var>",
 			"values": "margins",
 			"unit": "rem",
@@ -51,22 +51,22 @@
 	],
 	"templates": [
 		{
+			"name": "p<vid>",
 			"doc": {
 				"group": "padding",
 				"desc": "Sets padding to custom size",
 				"args": ["size: incl. units"]
 			},
-			"name": "p<vid>",
 			"props": "padding<var>",
 			"vars": ["a", "h", "v", "t", "r", "b", "l"]
 		},
 		{
+			"name": "m<vid>",
 			"doc": {
 				"group": "margin",
 				"desc": "Sets margin to custom size",
 				"args": ["size: incl. units"]
 			},
-			"name": "m<vid>",
 			"props": "margin<var>",
 			"vars": ["a", "h", "v", "t", "r", "b", "l"]
 		}

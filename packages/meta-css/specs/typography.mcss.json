@@ -12,22 +12,22 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "font families" },
 			"name": "<k>",
+			"doc": { "group": "font families" },
 			"props": "font-family",
 			"values": "families"
 		},
 		{
-			"doc": { "group": "font sizes", "desc": "<v>" },
 			"name": "f<k>",
+			"doc": { "group": "font sizes", "desc": "<v>" },
 			"key": "i+1",
 			"props": "font-size",
 			"values": [3, 2.25, 1.5, 1.25, 1, 0.875, 0.75],
 			"unit": "rem"
 		},
 		{
-			"doc": { "group": "font sizes", "desc": "<v>" },
 			"name": "f-<k>",
+			"doc": { "group": "font sizes", "desc": "<v>" },
 			"props": "font-size",
 			"values": {
 				"title": 6,
@@ -36,14 +36,14 @@
 			"unit": "rem"
 		},
 		{
-			"doc": { "group": "font weights" },
 			"name": "fw<v>",
+			"doc": { "group": "font weights" },
 			"props": "font-weight",
 			"values": "100s"
 		},
 		{
-			"doc": { "group": "font weights", "desc": "<v>" },
 			"name": "<k>",
+			"doc": { "group": "font weights", "desc": "<v>" },
 			"props": "font-weight",
 			"values": {
 				"normal": 400,
@@ -51,20 +51,20 @@
 			}
 		},
 		{
-			"doc": { "group": "font variants" },
 			"name": "<v>",
+			"doc": { "group": "font variants" },
 			"props": "font-variant",
 			"values": ["small-caps"]
 		},
 		{
-			"doc": { "group": "font style" },
 			"name": "<v>",
+			"doc": { "group": "font style" },
 			"props": "font-style",
 			"values": ["italic"]
 		},
 		{
-			"doc": { "group": "text decorations" },
 			"name": "<k>",
+			"doc": { "group": "text decorations" },
 			"props": "text-decoration",
 			"values": {
 				"underline": "underline",
@@ -73,8 +73,8 @@
 			}
 		},
 		{
-			"doc": { "group": "text transforms", "desc": "<v>" },
 			"name": "tt<k>",
+			"doc": { "group": "text transforms", "desc": "<v>" },
 			"props": "text-transform",
 			"values": {
 				"c": "capitalize",
@@ -87,8 +87,8 @@
 			}
 		},
 		{
-			"doc": { "group": "text align", "desc": "<v>" },
 			"name": "t<k>",
+			"doc": { "group": "text align", "desc": "<v>" },
 			"props": "text-align",
 			"values": {
 				"c": "center",
@@ -98,8 +98,8 @@
 			}
 		},
 		{
-			"doc": { "group": "vertical align", "desc": "<v>" },
 			"name": "v-<k>",
+			"doc": { "group": "vertical align", "desc": "<v>" },
 			"props": "vertical-align",
 			"values": {
 				"base": "baseline",
@@ -109,8 +109,8 @@
 			}
 		},
 		{
-			"doc": { "group": "line heights", "desc": "<v>" },
 			"name": "lh-<k>",
+			"doc": { "group": "line heights", "desc": "<v>" },
 			"props": "line-height",
 			"values": {
 				"0": 0,
@@ -121,14 +121,14 @@
 			}
 		},
 		{
-			"doc": { "group": "whitespace" },
 			"name": "ws-<v>",
+			"doc": { "group": "whitespace" },
 			"props": "white-space",
 			"values": ["normal", "nowrap", "pre"]
 		},
 		{
-			"doc": { "group": "letter spacing", "desc": "<v>" },
 			"name": "ls-<k>",
+			"doc": { "group": "letter spacing", "desc": "<v>" },
 			"props": "letter-spacing",
 			"values": {
 				"-2": -0.05,
@@ -143,12 +143,12 @@
 	],
 	"templates": [
 		{
+			"name": "font-family",
 			"doc": {
 				"group": "font families",
 				"args": ["name: variable name (without `--` prefix)"],
 				"desc": "Variable-based font-family"
 			},
-			"name": "font-family",
 			"props": { "font-family": "var(--{0})" }
 		}
 	]

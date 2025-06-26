@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "cursors" },
 			"name": "cursor-<k>",
+			"doc": { "group": "cursors" },
 			"props": "cursor",
 			"values": {
 				"auto": "auto",

@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "transform" },
 			"name": "tx-origin-<k>",
+			"doc": { "group": "transform" },
 			"props": { "transform-origin": "<v>" },
 			"values": {
 				"tl": "top left",

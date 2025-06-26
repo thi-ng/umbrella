@@ -5,8 +5,8 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "print" },
 			"name": "break-<vid>-<v>",
+			"doc": { "group": "print" },
 			"props": "break-<vid>",
 			"values": [
 				"avoid",

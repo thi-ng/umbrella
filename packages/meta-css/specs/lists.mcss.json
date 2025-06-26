@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "lists" },
 			"name": "<k>",
+			"doc": { "group": "lists" },
 			"props": "list-style",
 			"values": { "list": "none" }
 		}

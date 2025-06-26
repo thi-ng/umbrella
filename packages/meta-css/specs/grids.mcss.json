@@ -10,8 +10,8 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "grid layout", "desc": "<v>" },
 			"name": "grid-<vid>-<k>",
+			"doc": { "group": "grid layout", "desc": "<v>" },
 			"key": "i+1",
 			"props": "grid-template-<var>",
 			"values": [
@@ -29,29 +29,29 @@
 			"vars": ["cols", "rows"]
 		},
 		{
-			"doc": { "group": "grid layout", "desc": "<v>" },
 			"name": "gap<k>",
+			"doc": { "group": "grid layout", "desc": "<v>" },
 			"props": "gap",
 			"values": [0, 0.125, 0.25, 0.5, 1, 2],
 			"unit": "rem"
 		},
 		{
-			"doc": { "group": "grid layout" },
 			"name": "gap-<v>px",
+			"doc": { "group": "grid layout" },
 			"props": "gap",
 			"values": [1, 2, 4, 8],
 			"unit": "px"
 		},
 		{
-			"doc": { "group": "grid layout" },
 			"name": "<vid>-self-<v>",
+			"doc": { "group": "grid layout" },
 			"props": "<vid>-self",
 			"values": "align",
 			"vars": ["align", "justify"]
 		},
 		{
-			"doc": { "group": "grid layout" },
 			"name": "<vid>-items-<v>",
+			"doc": { "group": "grid layout" },
 			"props": "<vid>-items",
 			"values": "align",
 			"vars": ["align", "justify"]
@@ -59,11 +59,11 @@
 	],
 	"templates": [
 		{
+			"name": "grid-<vid>",
 			"doc": {
 				"group": "grid layout",
 				"args": ["<vid>: CSS <vid> definitions"]
 			},
-			"name": "grid-<vid>",
 			"props": "grid-template-<var>",
 			"vars": ["cols", "rows"]
 		}

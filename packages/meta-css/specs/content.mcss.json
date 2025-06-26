@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "content", "desc": "<v> attrib" },
 			"name": "content-<v>",
+			"doc": { "group": "content", "desc": "<v> attrib" },
 			"props": { "content": "attr(<v>)" },
 			"values": ["id", "href", "name", "slot", "title", "data-lang"]
 		}
