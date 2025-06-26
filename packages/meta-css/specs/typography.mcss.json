@@ -140,5 +140,16 @@
 			},
 			"unit": "em"
 		}
+	],
+	"templates": [
+		{
+			"doc": {
+				"group": "font families",
+				"args": ["name: variable name (without `--` prefix)"],
+				"desc": "Variable-based font-family"
+			},
+			"name": "font-family",
+			"props": { "font-family": "var(--{0})" }
+		}
 	]
 }
