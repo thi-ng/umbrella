@@ -26,14 +26,22 @@ test("var decls", () => {
 		mediaQueryIDs: new Set(["foo"]),
 	};
 	processSpec(
-		`:root { color-1=#f00 foo:color2=#00f color_3=var(--color2) content-["a=b"] foo:content-["c=d"] }`,
+		`:root {
+		color-1=#f00
+		pad="1px 2px"
+		gradient=linear-gradient(white black)
+		foo:color2=#00f
+		color_3=var(--color2)
+		content-["a=b"]
+		foo:content-["c=d"]
+		}`,
 		proc
 	);
 	const bundle: string[] = [];
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		':root{--color-1:#f00;--color_3:var(--color2);content:"a=b";}',
+		':root{--color-1:#f00;--pad:1px 2px;--gradient:linear-gradient(white black);--color_3:var(--color2);content:"a=b";}',
 		'@media (foo){:root{--color2:#00f;content:"c=d";}}',
 	]);
 });
@@ -118,6 +126,8 @@ test("split line", () => {
 	]);
 	expect([...splitLine("a-[b c]")]).toEqual(["a-[b c]"]);
 	expect([...splitLine("a-[b [c]]")]).toEqual(["a-[b [c]]"]);
+	expect([...splitLine(`a="b,c"`)]).toEqual([`a="b,c"`]);
+	expect([...splitLine(`a-["b,c"]`)]).toEqual([`a-["b,c"]`]);
 	expect(() => [...splitLine("f(a,b))")]).toThrow();
 	expect(() => [...splitLine("a, b {f(a,b}")]).toThrow();
 	expect(() => [...splitLine("a-[b [c]")]).toThrow();

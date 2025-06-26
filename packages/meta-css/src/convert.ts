@@ -446,10 +446,19 @@ export function* splitLine(line: string) {
 	let end = line.length;
 	let depth = 0;
 	let args = 0;
+	let str = false;
 	for (let i = 0; i < end; i++) {
 		const c = line[i];
-		if (c === " " || c === "\t") {
-			if (!(depth || args) && from >= 0) {
+		if (c === '"' && !(depth || args)) {
+			if (str) {
+				yield line.substring(from, i + 1);
+				from = -1;
+				str = false;
+			} else {
+				str = true;
+			}
+		} else if (c === " " || c === "\t") {
+			if (!(depth || args || str) && from >= 0) {
 				yield line.substring(from, i);
 				from = -1;
 			}
@@ -471,6 +480,7 @@ export function* splitLine(line: string) {
 			from = i;
 		}
 	}
+	if (str) illegalArgs("string literals must be fully on a single line");
 	if (depth) illegalArgs("template calls must be fully on a single line");
 	if (args) illegalArgs("verbatim properties must be fully on a single line");
 	if (from >= 0) yield line.substring(from, end);
@@ -618,7 +628,9 @@ const __addPlainDef = (
 /** @internal */
 const __varDecl = (id: string): IObjectOf<any> => {
 	const idx = id.indexOf("=");
-	return { [`--${id.substring(0, idx)}`]: id.substring(idx + 1) };
+	const key = id.substring(0, idx);
+	const value = id.substring(idx + 1);
+	return { [`--${key}`]: value[0] === '"' ? value.slice(1, -1) : value };
 };
 
 /** @internal */
