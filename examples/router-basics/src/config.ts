@@ -7,14 +7,14 @@ import {
 	FX_DISPATCH_NOW,
 	valueUpdater,
 } from "@thi.ng/interceptors";
-import { type AppConfig, StatusType } from "./api";
-import { allUsers } from "./components/all-users";
-import { contact } from "./components/contact";
-import { home } from "./components/home";
-import { userProfile } from "./components/user-profile";
-import * as fx from "./effects";
-import * as ev from "./events";
-import * as routes from "./routes";
+import { type AppConfig, StatusType } from "./api.js";
+import { allUsers } from "./components/all-users.js";
+import { contact } from "./components/contact.js";
+import { home } from "./components/home.js";
+import { userProfile } from "./components/user-profile.js";
+import * as fx from "./effects.js";
+import * as ev from "./events.js";
+import * as routes from "./routes.js";
 
 // main App configuration
 export const CONFIG: AppConfig = {

@@ -10,9 +10,9 @@ import {
 	SET_KERNEL_WIDTH,
 	type AppState,
 	type Event,
-} from "./api";
-import { dispatch } from "./events";
-import { state } from "./state";
+} from "./api.js";
+import { dispatch } from "./events.js";
+import { state } from "./state.js";
 
 /**
  * Canvas component w/ life cycle methods

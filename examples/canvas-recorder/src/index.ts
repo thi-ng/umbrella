@@ -9,10 +9,10 @@ import { $compile } from "@thi.ng/rdom";
 import { reactive } from "@thi.ng/rstream";
 import { consume, repeatedly2d } from "@thi.ng/transducers";
 import { addN2, divNI2, maddN2, setN2 } from "@thi.ng/vectors";
-import type { AlterDefinition, State } from "./api";
-import { PALETTES } from "./palettes";
-import { SENTENCES } from "./sentences";
-import { SYMBOLS } from "./symbols";
+import type { AlterDefinition, State } from "./api.js";
+import { PALETTES } from "./palettes.js";
+import { SENTENCES } from "./sentences.js";
+import { SYMBOLS } from "./symbols.js";
 
 // random number generator to use
 const RND = SYSTEM;

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import { map, mapIndexed, repeat } from "@thi.ng/transducers";
 import type { AppContext } from "../api";
-import { section } from "./section";
-import { table } from "./table";
+import { section } from "./section.js";
+import { table } from "./table.js";
 
 export const queryResults = (
 	_: AppContext,

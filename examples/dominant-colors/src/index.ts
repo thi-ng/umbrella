@@ -14,12 +14,12 @@ import {
 import { reactive, stream, sync } from "@thi.ng/rstream";
 import { float } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
-import type { SortMode } from "./api";
-import { cssPalette } from "./components/css";
-import { PixelCanvas } from "./components/pixelcanvas";
-import { swatchMarkers } from "./components/swatches";
-import { downloadACT } from "./palette";
-import { postProcess, processImage } from "./process";
+import type { SortMode } from "./api.js";
+import { cssPalette } from "./components/css.js";
+import { PixelCanvas } from "./components/pixelcanvas.js";
+import { swatchMarkers } from "./components/swatches.js";
+import { downloadACT } from "./palette.js";
+import { postProcess, processImage } from "./process.js";
 
 // stream of input files
 const imgFile = stream<File>();

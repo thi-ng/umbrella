@@ -11,8 +11,8 @@ import {
 	range,
 	transduce,
 } from "@thi.ng/transducers";
-import { MAX_COL, NUM_ROWS, type Cell } from "./api";
-import { $eval } from "./dsl";
+import { MAX_COL, NUM_ROWS, type Cell } from "./api.js";
+import { $eval } from "./dsl.js";
 
 /**
  * Initializes state atom with default cell values. Later on, the

@@ -10,8 +10,8 @@ import {
 	type ISubscription,
 } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
-import { Pagination, pageControls } from "./pagination";
-import { search, type SearchIndex } from "./search";
+import { Pagination, pageControls } from "./pagination.js";
+import { search, type SearchIndex } from "./search.js";
 
 const INDEX_URL = "https://docs.thi.ng/umbrella/search-index-latest.bin";
 const REPO_URL = "https://github.com/thi-ng/umbrella/";

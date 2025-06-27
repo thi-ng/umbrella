@@ -9,7 +9,7 @@ import type {
 	LogEvent,
 	StartCounterEvent,
 	StopAllEvent,
-} from "./api";
+} from "./api.js";
 
 // the event bus is a simple wrapper for a pubsub CSP channel construct. events
 // are triggered by writing a new value to the pubsub

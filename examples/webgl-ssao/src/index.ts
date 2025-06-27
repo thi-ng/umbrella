@@ -28,8 +28,8 @@ import {
 	type TextureOpts,
 	defaultViewport,
 } from "@thi.ng/webgl";
-import { CONTROLS, PARAMS, PARAM_DEFS } from "./params";
-import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
+import { CONTROLS, PARAMS, PARAM_DEFS } from "./params.js";
+import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders.js";
 
 // FBO size
 const W = 1024;

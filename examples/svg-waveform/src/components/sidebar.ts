@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { AppContext } from "../api";
 import * as ev from "../events";
-import { buttonGroup } from "./button-group";
-import { link } from "./link";
-import { slider, type SliderOpts } from "./slider";
+import { buttonGroup } from "./button-group.js";
+import { link } from "./link.js";
+import { slider, type SliderOpts } from "./slider.js";
 
 export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
 	const sliders = specs.map((s) => slider(ctx, s));

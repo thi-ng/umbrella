@@ -2,8 +2,8 @@
 import type { ISubscribable } from "@thi.ng/rstream";
 import { serialize } from "@thi.ng/rstream-dot";
 import { mapcat, vals } from "@thi.ng/transducers";
-import { DB } from "./atom";
-import { canvasGestures } from "./canvas";
+import { DB } from "./atom.js";
+import { canvasGestures } from "./canvas.js";
 import {
 	canvasState,
 	geometryStats,
@@ -11,7 +11,7 @@ import {
 	jsonExportTrigger,
 	layerOrder,
 	svgExportTrigger,
-} from "./process";
+} from "./process.js";
 
 /**
  * Traverses this app's entire rstream graph topology and outputs as GraphViz

@@ -10,8 +10,8 @@ import {
 	type Event,
 	type EventType,
 	type EventTypeMap,
-} from "./api";
-import { state } from "./state";
+} from "./api.js";
+import { state } from "./state.js";
 
 /**
  * Event input stream (not exported)

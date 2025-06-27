@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { reactive } from "@thi.ng/rstream";
-import type { AppState } from "./api";
+import type { AppState } from "./api.js";
 
 /**
  * Stream of app state values.

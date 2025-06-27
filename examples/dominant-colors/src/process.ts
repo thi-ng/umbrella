@@ -4,7 +4,7 @@ import { lch, srgb, distEucledian3 } from "@thi.ng/color";
 import { FLOAT_RGB, floatBuffer, intBufferFromImage } from "@thi.ng/pixel";
 import { dominantColorsKmeans } from "@thi.ng/pixel-dominant-colors";
 import { map, minMax, transduce } from "@thi.ng/transducers";
-import { SORT_MODES, type DominantColor, type SortMode } from "./api";
+import { SORT_MODES, type DominantColor, type SortMode } from "./api.js";
 
 /**
  * Converts image into pixel buffer, resizes it to max 256 pixels (longest side)

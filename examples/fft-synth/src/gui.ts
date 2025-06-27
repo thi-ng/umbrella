@@ -9,8 +9,8 @@ import {
 	toggle,
 } from "@thi.ng/imgui";
 import { gridLayout, GridLayout } from "@thi.ng/layout";
-import { initAudio, isAudioActive, stopAudio } from "./audio";
-import { toggleAutoMode } from "./automode";
+import { initAudio, isAudioActive, stopAudio } from "./audio.js";
+import { toggleAutoMode } from "./automode.js";
 import {
 	BIN_LABELS,
 	FMT,
@@ -18,14 +18,14 @@ import {
 	NUM_BINS,
 	PITCH_SCALE,
 	WINDOW_LEN,
-} from "./config";
+} from "./config.js";
 import {
 	clearSpectrum,
 	DB,
 	setGain,
 	setSpectrumPreset,
 	updateSpectrumBin,
-} from "./state";
+} from "./state.js";
 
 export const gui = new IMGUI({
 	theme: {

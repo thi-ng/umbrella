@@ -3,7 +3,7 @@ import { div, inputNumber } from "@thi.ng/hiccup-html";
 import { fromView } from "@thi.ng/rstream";
 import { PAPER_SIZES } from "../api";
 import { DB } from "../state/atom";
-import { dropdown, title } from "./common";
+import { dropdown, title } from "./common.js";
 
 export const axidrawControls = div(
 	{},

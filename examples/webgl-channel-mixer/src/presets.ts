@@ -7,7 +7,7 @@ import {
 	DEFAULT_R,
 	type Controls,
 	type ReactiveControls,
-} from "./api";
+} from "./api.js";
 
 export const PRESETS: Record<string, Controls> = {
 	"<default>": {

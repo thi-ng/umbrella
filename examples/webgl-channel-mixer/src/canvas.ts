@@ -14,7 +14,7 @@ import {
 	draw,
 	type ModelSpec,
 } from "@thi.ng/webgl";
-import { DEFAULT_B, DEFAULT_G, DEFAULT_R, type Controls } from "./api";
+import { DEFAULT_B, DEFAULT_G, DEFAULT_R, type Controls } from "./api.js";
 
 /**
  * Reactive WebGL based image component implementing the actual channel editing,

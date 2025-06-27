@@ -19,7 +19,7 @@ import { $compile, $inputNum } from "@thi.ng/rdom";
 import { reactive, type ISubscription } from "@thi.ng/rstream";
 import { U32, defFormat, float, int, percent } from "@thi.ng/strings";
 import { map, take, throttleTime } from "@thi.ng/transducers";
-import { FS, Sequencer } from "./audio";
+import { FS, Sequencer } from "./audio.js";
 
 interface Progress {
 	total: number;

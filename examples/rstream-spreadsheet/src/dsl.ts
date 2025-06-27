@@ -36,8 +36,8 @@ import {
 	transduce,
 	type Reducer,
 } from "@thi.ng/transducers";
-import { RE_CELL_ID, RE_CELL_RANGE } from "./api";
-import { DB, graph, removeCell } from "./state";
+import { RE_CELL_ID, RE_CELL_RANGE } from "./api.js";
+import { DB, graph, removeCell } from "./state.js";
 
 /**
  * Runtime env, stores ID of result cell and tree/nesting depth of

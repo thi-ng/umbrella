@@ -2,9 +2,9 @@
 import { syncRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { NEXT, PREV, type AppState } from "./api";
-import { dispatch } from "./events";
-import { state } from "./state";
+import { NEXT, PREV, type AppState } from "./api.js";
+import { dispatch } from "./events.js";
+import { state } from "./state.js";
 
 /**
  * Main/root UI component, receives app state and returns hdom component tree.

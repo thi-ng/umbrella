@@ -3,8 +3,8 @@ import { group, rect, svg } from "@thi.ng/hiccup-svg";
 import type { EventBus } from "@thi.ng/interceptors";
 import { initGraph, node } from "@thi.ng/rstream-graph";
 import { map, repeatedly2d } from "@thi.ng/transducers";
-import * as ev from "./events";
-import * as paths from "./paths";
+import * as ev from "./events.js";
+import * as paths from "./paths.js";
 
 /**
  * Initializes data flow graph for generating SVG grid. Some of the

@@ -7,7 +7,7 @@ import {
 	dropdownListeners,
 	type DropdownItem,
 	type DropdownState,
-} from "./dropdown";
+} from "./dropdown.js";
 
 export interface FuzzyArgs {
 	state: IView<DropdownState>;

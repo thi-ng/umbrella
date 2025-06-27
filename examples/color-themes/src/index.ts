@@ -29,7 +29,7 @@ import {
 } from "@thi.ng/rdom";
 import { staticDropdown } from "@thi.ng/rdom-components";
 import { reactive } from "@thi.ng/rstream";
-import { RANGE_IDs, type MainOutputs } from "./api";
+import { RANGE_IDs, type MainOutputs } from "./api.js";
 import {
 	debouncedParts,
 	downloadTrigger,
@@ -40,7 +40,7 @@ import {
 	seed,
 	sorted,
 	variance,
-} from "./state";
+} from "./state.js";
 
 /**
  * UI root component for a set of controls for a single color theme part (range

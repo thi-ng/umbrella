@@ -5,7 +5,7 @@ import {
 	jsonExportTrigger,
 	svgExportTrigger,
 } from "../state/process";
-import { smallButton, title } from "./common";
+import { smallButton, title } from "./common.js";
 
 export const exportControls = div(
 	{

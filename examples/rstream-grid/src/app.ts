@@ -11,10 +11,10 @@ import {
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";
-import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
-import { initDataflow } from "./dataflow";
-import * as ev from "./events";
-import { PARAM_BASE } from "./paths";
+import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api.js";
+import { initDataflow } from "./dataflow.js";
+import * as ev from "./events.js";
+import { PARAM_BASE } from "./paths.js";
 
 /**
  * The app does not much more than:

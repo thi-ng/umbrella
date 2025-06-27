@@ -35,8 +35,8 @@ import {
 	type AxiDrawConfig,
 	type LayerParams,
 } from "../api";
-import { DB } from "./atom";
-import { addLayer } from "./layers";
+import { DB } from "./atom.js";
+import { addLayer } from "./layers.js";
 
 /**
  * Reactive transformer to reprocess a loaded image whenever the image itself or

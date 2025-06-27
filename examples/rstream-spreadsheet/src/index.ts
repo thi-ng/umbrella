@@ -14,7 +14,7 @@ import {
 	transduce,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, type UICell } from "./api";
+import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, type UICell } from "./api.js";
 import {
 	DB,
 	blurCell,
@@ -22,7 +22,7 @@ import {
 	focusCell,
 	graph,
 	updateCell,
-} from "./state";
+} from "./state.js";
 
 const formatCell = (x: string | number) => (isNumber(x) ? x.toFixed(2) : x);
 

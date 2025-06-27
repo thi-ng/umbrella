@@ -9,8 +9,8 @@ import {
 } from "@thi.ng/pixel";
 import { read } from "@thi.ng/pixel-io-netpbm";
 import type { DitherMode, ImageParam } from "../api";
-import { DB } from "./atom";
-import { resetCanvasView } from "./canvas";
+import { DB } from "./atom.js";
+import { resetCanvasView } from "./canvas.js";
 
 /**
  * Asynchronously loads an image and then places the result pixel buffer into

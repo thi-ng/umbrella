@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { AppContext } from "../api";
 import { SLIDERS } from "../sliders";
-import { sidebar } from "./sidebar";
-import { waveform } from "./waveform";
+import { sidebar } from "./sidebar.js";
+import { waveform } from "./waveform.js";
 
 export function main(ctx: AppContext) {
 	const bar = sidebar(ctx, ...SLIDERS);

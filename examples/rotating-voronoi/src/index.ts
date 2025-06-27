@@ -19,13 +19,13 @@ import { SYSTEM } from "@thi.ng/random";
 import { map, mapcat, normRange } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { cartesian2, type Vec } from "@thi.ng/vectors";
-import { checkbox, slider } from "./controllers";
+import { checkbox, slider } from "./controllers.js";
 import {
 	animationStream,
 	mainStream,
 	scaleStream,
 	type AppState,
-} from "./stream-state";
+} from "./stream-state.js";
 
 const edge = window.innerWidth * 0.7;
 const width = edge;

@@ -2,10 +2,10 @@
 import { defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { EventBus, trace } from "@thi.ng/interceptors";
-import { state, theme } from "./config";
-import { dropdown } from "./dropdown";
-import { fuzzyDropdown } from "./fuzzy";
-import { cancelableInput } from "./input";
+import { state, theme } from "./config.js";
+import { dropdown } from "./dropdown.js";
+import { fuzzyDropdown } from "./fuzzy.js";
+import { cancelableInput } from "./input.js";
 
 const bus = new EventBus(defAtom(state));
 bus.instrumentWith([trace]);

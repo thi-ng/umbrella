@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { AppContext } from "../api";
 import { SLIDERS } from "../sliders";
-import { sidebar } from "./sidebar";
+import { sidebar } from "./sidebar.js";
 
 export const main = (ctx: AppContext) => {
 	const bar = sidebar(ctx, ...SLIDERS);

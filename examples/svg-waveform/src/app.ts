@@ -10,8 +10,8 @@ import {
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";
-import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
-import * as ev from "./events";
+import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api.js";
+import * as ev from "./events.js";
 
 /**
  * Generic base app skeleton. You can use this as basis for your own

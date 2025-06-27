@@ -19,8 +19,8 @@ import {
 	page,
 	repeat,
 } from "@thi.ng/transducers";
-import * as fx from "./effects";
-import * as ev from "./events";
+import * as fx from "./effects.js";
+import * as ev from "./events.js";
 
 export const PAGE_LEN = 5;
 

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 import { weightedRandom } from "@thi.ng/random";
 import { map, range } from "@thi.ng/transducers";
-import { updateAudio } from "./audio";
-import { NUM_BINS } from "./config";
-import { DB, updateSpectrumBin } from "./state";
+import { updateAudio } from "./audio.js";
+import { NUM_BINS } from "./config.js";
+import { DB, updateSpectrumBin } from "./state.js";
 
 const weights = [
 	0,

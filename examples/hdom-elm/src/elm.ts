@@ -7,7 +7,7 @@ import {
 	type HDOMOpts,
 } from "@thi.ng/hdom";
 import { derefContext } from "@thi.ng/hiccup";
-import type { Event, Signal } from "./api";
+import type { Event, Signal } from "./api.js";
 
 export const mount = <T>(
 	model: T,

@@ -23,7 +23,7 @@ import {
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { angleBetween2, mixN2, sub2, type Vec } from "@thi.ng/vectors";
-import { CTA } from "./config";
+import { CTA } from "./config.js";
 
 /**
  * Root component function, attached to rstream (see further below).

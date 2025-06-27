@@ -2,7 +2,7 @@
 import { div } from "@thi.ng/hiccup-html";
 import { PRESETS, type PresetID } from "../api";
 import { applyPresetForID, loadPreset, savePreset } from "../state/presets";
-import { button, dropdown, fileButton, title } from "./common";
+import { button, dropdown, fileButton, title } from "./common.js";
 
 export const presetControls = div(
 	{},

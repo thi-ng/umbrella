@@ -8,7 +8,7 @@ import { serialize } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { extract, initGraph, mul, node, node1 } from "@thi.ng/rstream-graph";
 import { choices, comp, dedupe, map } from "@thi.ng/transducers";
-import { circle } from "./circle";
+import { circle } from "./circle.js";
 
 // infinite iterator of randomized colors (Tachyons CSS class names)
 // used by `color` graph node below

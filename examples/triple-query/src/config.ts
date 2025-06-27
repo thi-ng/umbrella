@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { AppConfig } from "./api";
-import { main } from "./components/main";
-import { EFFECTS, EVENTS } from "./handlers";
+import type { AppConfig } from "./api.js";
+import { main } from "./components/main.js";
+import { EFFECTS, EVENTS } from "./handlers.js";
 
 // main App configuration
 export const CONFIG: AppConfig = {

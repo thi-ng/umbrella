@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { AppContext, HTMLDoc } from "./api";
+import type { AppContext, HTMLDoc } from "./api.js";
 
 export const DEFAULT_DOC: HTMLDoc = {
 	head: {

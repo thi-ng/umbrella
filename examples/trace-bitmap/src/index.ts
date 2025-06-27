@@ -5,16 +5,16 @@ import { ConsoleLogger } from "@thi.ng/logger";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
 import { LOGGER } from "@thi.ng/rstream";
-import { axidrawControls } from "./components/axidraw";
-import { exportControls } from "./components/export";
-import { imageControls } from "./components/image";
-import { layerControls } from "./components/layer";
-import { presetControls } from "./components/presets";
-import { stats } from "./components/stats";
-import { DB } from "./state/atom";
-import { initGestures, resetCanvasView, resizeCanvas } from "./state/canvas";
-import { canvasState, scene } from "./state/process";
-import { visualizeTopology } from "./state/viz";
+import { axidrawControls } from "./components/axidraw.js";
+import { exportControls } from "./components/export.js";
+import { imageControls } from "./components/image.js";
+import { layerControls } from "./components/layer.js";
+import { presetControls } from "./components/presets.js";
+import { stats } from "./components/stats.js";
+import { DB } from "./state/atom.js";
+import { initGestures, resetCanvasView, resizeCanvas } from "./state/canvas.js";
+import { canvasState, scene } from "./state/process.js";
+import { visualizeTopology } from "./state/viz.js";
 
 // enable for logging all thi.ng/rstream constructs
 // LOGGER.set(new ConsoleLogger("rs", "INFO"));

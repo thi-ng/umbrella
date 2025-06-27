@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors";
-import type { AppConfig } from "./api";
-import { main } from "./components/main";
-import { SLIDERS } from "./sliders";
-// import * as ev from "./events";
-// import * as fx from "./effects";
+import type { AppConfig } from "./api.js";
+import { main } from "./components/main.js";
+import { SLIDERS } from "./sliders.js";
+// import * as ev from "./events.js";
+// import * as fx from "./effects.js";
 
 // main App configuration
 export const CONFIG: AppConfig = {

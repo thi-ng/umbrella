@@ -2,8 +2,8 @@
 import { type AppContext, StatusType, type User } from "../api";
 import { LOAD_USER_LIST, SET_STATUS } from "../events";
 import { USER_PROFILE } from "../routes";
-import { routeLink } from "./route-link";
-import { status } from "./status";
+import { routeLink } from "./route-link.js";
+import { status } from "./status.js";
 
 /**
  * Dummy user list component. Triggers JSON I/O request if user data has

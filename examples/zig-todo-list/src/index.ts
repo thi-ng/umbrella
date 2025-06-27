@@ -7,7 +7,7 @@ import {
 	WasmScheduleModule,
 	type WasmScheduleExports,
 } from "@thi.ng/wasm-api-schedule";
-import { $Task, TaskState, type Task } from "./api";
+import { $Task, TaskState, type Task } from "./api.js";
 import WASM_URL from "./main.wasm?url";
 
 /**

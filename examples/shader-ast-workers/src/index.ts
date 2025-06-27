@@ -4,7 +4,7 @@ import { fitClamped } from "@thi.ng/math";
 import { canvasPixels } from "@thi.ng/pixel";
 import { forkJoin, reactive } from "@thi.ng/rstream";
 import { bounds } from "@thi.ng/transducers-stats";
-import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
+import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api.js";
 import WORKER from "./worker?worker&inline";
 
 const W = 256;

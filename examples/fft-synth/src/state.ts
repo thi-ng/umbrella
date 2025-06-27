@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import { defAtom } from "@thi.ng/atom";
 import { repeat } from "@thi.ng/transducers";
-import { makeBins, updateAudio } from "./audio";
-import { NUM_BINS, PRESETS } from "./config";
+import { makeBins, updateAudio } from "./audio.js";
+import { NUM_BINS, PRESETS } from "./config.js";
 
 export const DB = defAtom({
 	auto: <any>null,

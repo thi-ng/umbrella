@@ -23,7 +23,7 @@ import {
 	updateLayerParam,
 } from "../state/layers";
 import { layerOrder } from "../state/process";
-import { button, dropdown, title } from "./common";
+import { button, dropdown, title } from "./common.js";
 
 const layerControlsForID = (layerID: string) => {
 	const { ctrls } = DB.deref().layers[layerID];

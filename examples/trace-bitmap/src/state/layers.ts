@@ -13,8 +13,8 @@ import {
 	type LayerParams,
 	type TraceMode,
 } from "../api";
-import { DB } from "./atom";
-import { main } from "./process";
+import { DB } from "./atom.js";
+import { main } from "./process.js";
 
 /**
  * Define default params for new layer (incl. random color)

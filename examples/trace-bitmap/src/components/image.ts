@@ -11,7 +11,7 @@ import {
 	setImageDither,
 	setImageParam,
 } from "../state/image";
-import { button, dropdown, fileButton, title } from "./common";
+import { button, dropdown, fileButton, title } from "./common.js";
 
 const param = (
 	id: Exclude<ImageParam, "buf" | "dither">,

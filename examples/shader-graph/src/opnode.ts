@@ -16,7 +16,7 @@ import {
 	type GLVec,
 	type ModelSpec,
 } from "@thi.ng/webgl";
-import type { AppCtx, OpSpec, UserUniforms } from "./api";
+import type { AppCtx, OpSpec, UserUniforms } from "./api.js";
 
 export class OpNode<T extends UserUniforms> {
 	tex: Texture;
