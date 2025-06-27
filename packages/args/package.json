@@ -96,6 +96,9 @@
 		"./coerce": {
 			"default": "./coerce.js"
 		},
+		"./header": {
+			"default": "./header.js"
+		},
 		"./parse": {
 			"default": "./parse.js"
 		},
