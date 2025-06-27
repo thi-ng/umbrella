@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { cliApp, flag } from "@thi.ng/args";
+import { cliApp, flag, THING_HEADER } from "@thi.ng/args";
 import { readJSON } from "@thi.ng/file-io";
 import { LogLevel } from "@thi.ng/logger";
 import { PRESET_ANSI16 } from "@thi.ng/text-format";
@@ -15,6 +15,7 @@ const PKG = readJSON(join(process.argv[2], "package.json"));
 
 cliApp<CommonOpts, AppCtx<any>>({
 	name: "metacss",
+	start: 3,
 	opts: {
 		verbose: flag({
 			alias: "v",
@@ -32,15 +33,8 @@ cliApp<CommonOpts, AppCtx<any>>({
 		if (ctx.opts.verbose) ctx.logger.level = LogLevel.DEBUG;
 		return { ...ctx, format: PRESET_ANSI16 };
 	},
-	start: 3,
 	usage: {
-		prefix: `
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ ${PKG.name} ${PKG.version}
- █ █ █ █ █ █ █ █ █ │ ${PKG.description}
-                 █ │
-               █ █ │
+		prefix: `${THING_HEADER(PKG.name, PKG.version, PKG.description)}
 
 Usage: metacss <cmd> [opts] input [...]
        metacss <cmd> --help\n`,
