@@ -49,9 +49,9 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 		map((src) => usedDependencies(src)),
 		unionR<string>(),
 		// check /src or /src.xyz folders, but not under /dev or /export
-		dirs(root, /(?<!\/(dev|export|node_modules).*)\/src(\.\w+)?$/)
+		dirs(root, /\/src(\.\w+)?$/)
 	);
-	const pkg = readJSON(pkgPath);
+	const pkg = readJSON(pkgPath, LOGGER);
 	!pkg.dependencies && (pkg.dependencies = {});
 	const mergedDeps = unionR<string>([deps, keys(pkg.dependencies)]);
 	let edit = false;
@@ -75,7 +75,10 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 				pairs.push([d, pkg.dependencies[d]]);
 			}
 		} else if (deps.has(d) && !pkg.dependencies[d]) {
-			const depPkg = readJSON(`${PKG_ROOT}/${shortName(d)}/package.json`);
+			const depPkg = readJSON(
+				`${PKG_ROOT}/${shortName(d)}/package.json`,
+				LOGGER
+			);
 			pairs.push([d, latest ? "workspace:^" : `^${depPkg.version}`]);
 			edit = true;
 		} else if (!deps.has(d)) {
@@ -113,7 +116,7 @@ const checkLocalImports = (root: string, exitOnFail = true) => {
 
 const checkPackage = (root: string, latest = false) => {
 	updateImports(root, latest, root.startsWith(PKG_ROOT));
-	if (root.startsWith(PKG_ROOT)) checkLocalImports(root);
+	checkLocalImports(root);
 };
 
 const checkPackages = (parent: string, latest = false) => {
