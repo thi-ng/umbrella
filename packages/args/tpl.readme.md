@@ -204,7 +204,7 @@ can be disabled (see
 [`UsageOpts`](https://docs.thi.ng/umbrella/args/interfaces/UsageOpts.html)).
 
 ```text
-ts-node index.ts --help
+bun index.ts --help
 
 -f, --force                     Force operation
 
@@ -227,7 +227,7 @@ represented in the result. Parsing stops with the first non-argument value (here
 result object.
 
 ```bash
-ts-node index.ts \
+bun index.ts \
     -f -t png --bg ff00ff --size 640x480 \
     -D author=toxi -D date=2018-03-24 \
     --xtra '{"foo": [23]}' \

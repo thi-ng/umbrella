@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/args",
 	"version": "2.3.71",
-	"description": "Declarative, functional & typechecked CLI argument/options parser, value coercions etc.",
+	"description": "Declarative, functional CLI argument/options parser, value coercions, sub-commands etc.",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",

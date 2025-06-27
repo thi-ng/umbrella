@@ -27,7 +27,7 @@
 
 ## About
 
-Declarative, functional & typechecked CLI argument/options parser, value coercions etc..
+Declarative, functional CLI argument/options parser, value coercions, sub-commands etc..
 
 Includes built-in support for the following argument types (of course custom arg types are supported too):
 
@@ -71,7 +71,7 @@ For Node.js REPL:
 const args = await import("@thi.ng/args");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.75 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.80 KB
 
 ## Dependencies
 
@@ -243,7 +243,7 @@ can be disabled (see
 [`UsageOpts`](https://docs.thi.ng/umbrella/args/interfaces/UsageOpts.html)).
 
 ```text
-ts-node index.ts --help
+bun index.ts --help
 
 -f, --force                     Force operation
 
@@ -266,7 +266,7 @@ represented in the result. Parsing stops with the first non-argument value (here
 result object.
 
 ```bash
-ts-node index.ts \
+bun index.ts \
     -f -t png --bg ff00ff --size 640x480 \
     -D author=toxi -D date=2018-03-24 \
     --xtra '{"foo": [23]}' \
