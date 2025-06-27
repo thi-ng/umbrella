@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { FnU, IObjectOf } from "@thi.ng/api";
-import { cliApp, flag, string, type Command } from "@thi.ng/args";
+import { cliApp, flag, string, THING_HEADER, type Command } from "@thi.ng/args";
 import { timedResult } from "@thi.ng/bench";
 import { readJSON, readText, writeFile } from "@thi.ng/file-io";
 import { LogLevel } from "@thi.ng/logger";
@@ -97,13 +97,7 @@ cliApp({
 	commands: { CMD },
 	single: true,
 	usage: {
-		prefix: `
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ ${PKG.name} v${PKG.version}
- █ █ █ █ █ █ █ █ █ │ Forth-style DSL & CLI
-                 █ │
-               █ █ │
+		prefix: `${THING_HEADER(PKG.name, PKG.version, "Forth-style DSL & CLI")}
 
 Usage: pointfree [opts] [file]\n\n`,
 		paramWidth: 24,
