@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-27T11:09:55Z
+- **Last updated**: 2025-06-27T13:16:16Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.5.0) (2025-06-27)
+
+#### 🚀 Features
+
+- update ColorTheme, add color support for cmd list ([75b1ef1](https://github.com/thi-ng/umbrella/commit/75b1ef1))
+  - add `ColorTheme.command` option
+  - migrate internal formatting helpers to own file
+  - refactor cliApp() & usage() internals
+- add thi.ng logo header tpl ([838e417](https://github.com/thi-ng/umbrella/commit/838e417))
 
 ## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.4.0) (2025-06-27)
 
