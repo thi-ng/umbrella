@@ -12,7 +12,7 @@ import type {
 	UsageOpts,
 } from "./api.js";
 import { parse } from "./parse.js";
-import { usage } from "./usage.js";
+import { __wrapWithIndent, usage } from "./usage.js";
 
 export const cliApp = async <
 	OPTS extends object,
@@ -39,7 +39,10 @@ export const cliApp = async <
 		} else {
 			cmdID = argv[start];
 			cmd = config.commands[cmdID];
-			usageOpts.prefix += __descriptions(config.commands);
+			usageOpts.prefix += __descriptions(
+				config.commands,
+				config.usage.lineWidth
+			);
 			if (!cmd) __usageAndExit(config, usageOpts);
 			start++;
 		}
@@ -81,11 +84,22 @@ const __usageAndExit = (
 	process.exit(1);
 };
 
-const __descriptions = (commands: IObjectOf<Command<any, any, any>>) =>
-	[
+const __descriptions = (
+	commands: IObjectOf<Command<any, any, any>>,
+	lineWidth = 80
+) => {
+	const names = Object.keys(commands);
+	const maxLength = Math.max(...names.map((x) => x.length));
+	return [
 		"\nAvailable commands:\n",
-		...Object.keys(commands).map(
-			(x) => `${padRight(16)(x)}: ${commands[x].desc}`
+		...names.map(
+			(x) =>
+				`${padRight(maxLength)(x)} : ${__wrapWithIndent(
+					commands[x].desc,
+					maxLength + 3,
+					lineWidth
+				)}`
 		),
 		"\n",
 	].join("\n");
+};

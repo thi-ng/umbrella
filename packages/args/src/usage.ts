@@ -33,9 +33,10 @@ export const usage = <T extends IObjectOf<any>>(
 		: opts.color
 		? DEFAULT_THEME
 		: <ColorTheme>{};
-	const indent = repeat(" ", opts.paramWidth!);
 	const format = (ids: string[]) =>
-		ids.map((id) => __argUsage(id, specs[id], opts, theme, indent));
+		ids.map((id) =>
+			__argUsage(id, specs[id], opts, theme, opts.paramWidth!)
+		);
 	const sortedIDs = Object.keys(specs).sort();
 	const groups: Pair<string, string[]>[] = opts.groups
 		? opts.groups
@@ -66,7 +67,7 @@ const __argUsage = (
 	spec: ArgSpecExt,
 	opts: Partial<UsageOpts>,
 	theme: ColorTheme,
-	indent: string
+	indent: number
 ) => {
 	const hint = __argHint(spec, theme);
 	const alias = __argAlias(spec, theme, hint);
@@ -82,9 +83,7 @@ const __argUsage = (
 		__argDefault(spec, opts, theme);
 	return (
 		padRight(opts.paramWidth!)(params, lengthAnsi(params)) +
-		__wrap(body, opts.lineWidth! - opts.paramWidth!)
-			.map((l, i) => (i > 0 ? indent + l : l))
-			.join("\n")
+		__wrapWithIndent(body, indent, opts.lineWidth!)
 	);
 };
 
@@ -139,3 +138,15 @@ const __wrap = (str: Maybe<string>, width: number) =>
 				hard: false,
 		  })
 		: [];
+
+/** @internal */
+export const __wrapWithIndent = (
+	body: string,
+	indent: number,
+	width: number
+) => {
+	const prefix = repeat(" ", indent);
+	return __wrap(body, width - indent)
+		.map((l, i) => (i ? prefix + l : l))
+		.join("\n");
+};

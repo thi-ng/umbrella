@@ -261,7 +261,7 @@ export interface Command<
 	CTX extends CommandCtx<OPTS, BASE> = CommandCtx<OPTS, BASE>
 > {
 	/**
-	 * Command description (short, single line)
+	 * Command description (any length, will be word wrapped if needed)
 	 */
 	desc: string;
 	/**
