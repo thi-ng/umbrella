@@ -26,7 +26,6 @@
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/logger": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
-		"@thi.ng/wasm-api-dom": "workspace:^",
 		"@thi.ng/wasm-api-schedule": "workspace:^",
 		"@thi.ng/wasm-api-webgl": "workspace:^"
 	},

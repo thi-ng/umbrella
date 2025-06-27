@@ -22,8 +22,7 @@
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
-		"@thi.ng/wasm-api-canvas": "workspace:^",
-		"@thi.ng/wasm-api-dom": "workspace:^"
+		"@thi.ng/wasm-api-canvas": "workspace:^"
 	},
 	"browser": {
 		"process": false
