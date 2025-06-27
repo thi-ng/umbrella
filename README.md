@@ -312,10 +312,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-06-26
+As of: 2025-06-27
 
 | Status                                        | Package                                                             | Version                                                                                                                                   | Changelog                                                  |
 |:----------------------------------------------|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/args`](./packages/args)                                   | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                                   | [changelog](./packages/args/CHANGELOG.md)                  |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/k-means`](./packages/k-means)                             | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)                             | [changelog](./packages/k-means/CHANGELOG.md)               |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/meta-css`](./packages/meta-css)                           | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                           | [changelog](./packages/meta-css/CHANGELOG.md)              |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-analysis`](./packages/pixel-analysis)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis)               | [changelog](./packages/pixel-analysis/CHANGELOG.md)        |
