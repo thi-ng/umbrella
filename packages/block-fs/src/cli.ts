@@ -5,6 +5,7 @@ import {
 	int,
 	string,
 	strings,
+	THING_HEADER,
 	type Command,
 	type CommandCtx,
 } from "@thi.ng/args";
@@ -270,6 +271,8 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 };
 
 cliApp<CLIOpts, AppCtx<any>>({
+	name: "blockfs",
+	start: 3,
 	opts: {
 		verbose: flag({
 			alias: "v",
@@ -284,21 +287,17 @@ cliApp<CLIOpts, AppCtx<any>>({
 		convert: CONVERT,
 		list: LIST,
 	},
-	name: "blockfs",
 	ctx: async (ctx) => {
 		if (ctx.opts.quiet) ctx.logger.level = LogLevel.NONE;
 		else if (ctx.opts.verbose) ctx.logger.level = LogLevel.DEBUG;
 		return ctx;
 	},
-	start: 3,
 	usage: {
-		prefix: `
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ ${PKG.name} ${PKG.version}
- █ █ █ █ █ █ █ █ █ │ Block-based storage & file system layer
-                 █ │
-               █ █ │
+		prefix: `${THING_HEADER(
+			PKG.name,
+			PKG.version,
+			"Block-based storage & file system layer"
+		)}
 
 Usage: blockfs <cmd> [opts] input [...]
        blockfs <cmd> --help\n`,
