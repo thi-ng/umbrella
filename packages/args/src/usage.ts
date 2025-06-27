@@ -1,19 +1,20 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { lengthAnsi } from "@thi.ng/strings/ansi";
+import type { IObjectOf, Pair } from "@thi.ng/api";
 import { capitalize, kebab } from "@thi.ng/strings/case";
-import { padRight } from "@thi.ng/strings/pad-right";
-import { repeat } from "@thi.ng/strings/repeat";
 import { stringify } from "@thi.ng/strings/stringify";
-import { SPLIT_ANSI, wordWrapLines } from "@thi.ng/strings/word-wrap";
 import {
-	DEFAULT_THEME,
 	type ArgSpecExt,
 	type Args,
 	type ColorTheme,
 	type UsageOpts,
 } from "./api.js";
+import {
+	__ansi,
+	__colorTheme,
+	__padRightAnsi,
+	__wrap,
+	__wrapWithIndent,
+} from "./utils.js";
 
 export const usage = <T extends IObjectOf<any>>(
 	specs: Args<T>,
@@ -28,11 +29,7 @@ export const usage = <T extends IObjectOf<any>>(
 		groups: ["flags", "main"],
 		...opts,
 	};
-	const theme = isPlainObject(opts.color)
-		? { ...DEFAULT_THEME, ...opts.color }
-		: opts.color
-		? DEFAULT_THEME
-		: <ColorTheme>{};
+	const theme = __colorTheme(opts.color);
 	const format = (ids: string[]) =>
 		ids.map((id) =>
 			__argUsage(id, specs[id], opts, theme, opts.paramWidth!)
@@ -82,7 +79,7 @@ const __argUsage = (
 		(spec.desc || "") +
 		__argDefault(spec, opts, theme);
 	return (
-		padRight(opts.paramWidth!)(params, lengthAnsi(params)) +
+		__padRightAnsi(params, opts.paramWidth!) +
 		__wrapWithIndent(body, indent, opts.lineWidth!)
 	);
 };
@@ -124,29 +121,3 @@ const __argDefault = (
 				theme.default
 		  )
 		: "";
-
-/** @internal */
-const __ansi = (x: string, col: number) =>
-	col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
-
-/** @internal */
-const __wrap = (str: Maybe<string>, width: number) =>
-	str
-		? wordWrapLines(str, {
-				width,
-				splitter: SPLIT_ANSI,
-				hard: false,
-		  })
-		: [];
-
-/** @internal */
-export const __wrapWithIndent = (
-	body: string,
-	indent: number,
-	width: number
-) => {
-	const prefix = repeat(" ", indent);
-	return __wrap(body, width - indent)
-		.map((l, i) => (i ? prefix + l : l))
-		.join("\n");
-};

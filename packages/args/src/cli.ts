@@ -2,7 +2,6 @@
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { StreamLogger } from "@thi.ng/logger/stream";
-import { padRight } from "@thi.ng/strings/pad-right";
 import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
 import type {
 	CLIAppConfig,
@@ -12,7 +11,13 @@ import type {
 	UsageOpts,
 } from "./api.js";
 import { parse } from "./parse.js";
-import { __wrapWithIndent, usage } from "./usage.js";
+import { usage } from "./usage.js";
+import {
+	__ansi,
+	__colorTheme,
+	__padRightAnsi,
+	__wrapWithIndent,
+} from "./utils.js";
 
 export const cliApp = async <
 	OPTS extends object,
@@ -39,10 +44,7 @@ export const cliApp = async <
 		} else {
 			cmdID = argv[start];
 			cmd = config.commands[cmdID];
-			usageOpts.prefix += __descriptions(
-				config.commands,
-				config.usage.lineWidth
-			);
+			usageOpts.prefix += __descriptions(config.commands, usageOpts);
 			if (!cmd) __usageAndExit(config, usageOpts);
 			start++;
 		}
@@ -86,15 +88,19 @@ const __usageAndExit = (
 
 const __descriptions = (
 	commands: IObjectOf<Command<any, any, any>>,
-	lineWidth = 80
+	{ color, lineWidth = 80 }: Partial<UsageOpts> = {}
 ) => {
 	const names = Object.keys(commands);
 	const maxLength = Math.max(...names.map((x) => x.length));
+	const theme = __colorTheme(color);
 	return [
 		"\nAvailable commands:\n",
 		...names.map(
 			(x) =>
-				`${padRight(maxLength)(x)} : ${__wrapWithIndent(
+				`${__padRightAnsi(
+					__ansi(x, theme.command),
+					maxLength
+				)} : ${__wrapWithIndent(
 					commands[x].desc,
 					maxLength + 3,
 					lineWidth
