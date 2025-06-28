@@ -2,6 +2,7 @@
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { StreamLogger } from "@thi.ng/logger/stream";
+import type { FormatPresets } from "@thi.ng/text-format";
 import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
 import type {
 	CLIAppConfig,
@@ -27,6 +28,7 @@ export const cliApp = async <
 ) => {
 	const argv = config.argv || process.argv;
 	const isColor = !process.env.NO_COLOR;
+	const format = isColor ? PRESET_ANSI16 : PRESET_NONE;
 	const usageOpts = {
 		prefix: "",
 		color: isColor,
@@ -44,21 +46,28 @@ export const cliApp = async <
 		} else {
 			cmdID = argv[start];
 			cmd = config.commands[cmdID];
-			usageOpts.prefix += __descriptions(config.commands, usageOpts);
-			if (!cmd) __usageAndExit(config, usageOpts);
+			if (!cmd) {
+				usageOpts.prefix += __descriptions(config.commands, usageOpts);
+				__usageAndExit(config, usageOpts);
+			}
 			start++;
 		}
 		let parsed: Maybe<ParseResult<OPTS>>;
 		try {
 			parsed = parse<OPTS>({ ...config.opts, ...cmd.opts }, argv, {
-				showUsage: true,
+				showUsage: false,
 				usageOpts,
 				start,
 			});
-		} catch (_) {}
-		if (!parsed) process.exit(1);
+		} catch (e) {
+			__printError((<Error>e).message, format);
+		}
+		if (!parsed) {
+			__usageAndExit(config, usageOpts);
+			process.exit(1); // extraneous, required for TS inference
+		}
 		if (cmd.inputs !== undefined && cmd.inputs !== parsed.rest.length) {
-			process.stderr.write(`expected ${cmd.inputs || 0} input(s)\n`);
+			__printError(`expected ${cmd.inputs || 0} input(s)`, format);
 			__usageAndExit(config, usageOpts);
 		}
 		const ctx: CTX = await config.ctx(
@@ -73,11 +82,12 @@ export const cliApp = async <
 		await cmd.fn(ctx);
 		if (config.post) await config.post(ctx, cmd);
 	} catch (e) {
-		process.stderr.write((<Error>e).message + "\n\n");
+		__printError((<Error>e).message, format);
 		process.exit(1);
 	}
 };
 
+/** @internal */
 const __usageAndExit = (
 	config: CLIAppConfig<any, any>,
 	usageOpts: Partial<UsageOpts>
@@ -86,6 +96,7 @@ const __usageAndExit = (
 	process.exit(1);
 };
 
+/** @internal */
 const __descriptions = (
 	commands: IObjectOf<Command<any, any, any>>,
 	{ color, lineWidth = 80 }: Partial<UsageOpts> = {}
@@ -109,3 +120,7 @@ const __descriptions = (
 		"\n",
 	].join("\n");
 };
+
+/** @internal */
+const __printError = (msg: string, fmt: FormatPresets) =>
+	process.stderr.write(fmt.red(msg) + "\n\n");
