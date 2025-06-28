@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/args",
-	"version": "2.5.0",
+	"version": "2.6.0",
 	"description": "Declarative, functional CLI argument/options parser, value coercions, sub-commands etc.",
 	"type": "module",
 	"module": "./index.js",
