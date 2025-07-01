@@ -260,6 +260,21 @@ be written.
 
 For all other formats, if no output path is provided in the spec, no file will
 be written, but the encoded image buffer itself will be recorded in the outputs.
+Use the `raw` output option to obtain the raw pixel data (number of channels
+used will depend on previous operations).
+
+```js
+import { processImage, output } from "@thi.ng/imago";
+
+const result = await processImage(
+    "example.png",
+    [output({id: "main", raw: { alpha: false } })]
+);
+
+// raw pixel data buffer
+result.outputs.main
+// <Buffer ...>
+```
 
 #### Templated output paths
 
@@ -360,7 +375,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.05 KB
 
 ## Dependencies
 
