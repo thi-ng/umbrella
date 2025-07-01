@@ -2,11 +2,11 @@
 import { encode } from "@thi.ng/blurhash";
 import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { writeFile, writeJSON } from "@thi.ng/file-io";
+import { firstNonNullKey } from "@thi.ng/object-utils/first-non-null";
 import { join, resolve } from "node:path";
 import type { Sharp } from "sharp";
 import type { ImgProcCtx, OutputSpec, Processor } from "../api.js";
 import { formatPath } from "../path.js";
-import { illegalArgs } from "@thi.ng/errors";
 
 export const outputProc: Processor = async (spec, input, ctx) => {
 	const opts = <OutputSpec>spec;
@@ -16,7 +16,6 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 		await __outputBlurHash(opts, output, ctx);
 		return [input, false];
 	}
-	if (!opts.path) illegalArgs("output path missing");
 	if (opts.raw) {
 		await __outputRaw(opts, output, ctx, outDir);
 		return [input, false];
@@ -34,7 +33,20 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 		ctx.logger.debug("using stored ICC profile:", ctx.iccFile);
 		output = output.withIccProfile(ctx.iccFile);
 	}
-	let format = /\.(\w+)$/.exec(opts.path)?.[1];
+	let format = opts.path
+		? /\.(\w+)$/.exec(opts.path)?.[1]
+		: firstNonNullKey(opts, [
+				"avif",
+				"gif",
+				"jp2",
+				"jpeg",
+				"jxl",
+				"png",
+				"raw",
+				"tile",
+				"tiff",
+				"webp",
+		  ]);
 	switch (format) {
 		case "avif":
 			if (opts.avif) output = output.avif(opts.avif);
