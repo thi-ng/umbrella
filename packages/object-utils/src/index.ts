@@ -4,6 +4,7 @@ export * from "./common-keys.js";
 export * from "./copy.js";
 export * from "./dissoc.js";
 export * from "./empty.js";
+export * from "./first-non-null.js";
 export * from "./from-keys.js";
 export * from "./invert.js";
 export * from "./merge.js";

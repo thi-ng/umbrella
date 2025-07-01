@@ -93,6 +93,9 @@
 		"./empty": {
 			"default": "./empty.js"
 		},
+		"./first-non-null": {
+			"default": "./first-non-null.js"
+		},
 		"./from-keys": {
 			"default": "./from-keys.js"
 		},
