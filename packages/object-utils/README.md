@@ -75,7 +75,7 @@ For Node.js REPL:
 const ou = await import("@thi.ng/object-utils");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 
