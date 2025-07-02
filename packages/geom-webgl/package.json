@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-webgl",
-	"version": "0.1.61",
+	"version": "0.1.62",
 	"description": "WebGL geometry/shape conversion & interop",
 	"type": "module",
 	"module": "./index.js",
@@ -43,12 +43,12 @@
 		"@thi.ng/checks": "^3.7.9",
 		"@thi.ng/defmulti": "^3.0.69",
 		"@thi.ng/errors": "^2.5.35",
-		"@thi.ng/geom": "^8.1.49",
-		"@thi.ng/object-utils": "^1.1.26",
+		"@thi.ng/geom": "^8.1.50",
+		"@thi.ng/object-utils": "^1.2.0",
 		"@thi.ng/transducers": "^9.4.3",
 		"@thi.ng/vector-pools": "^3.2.51",
 		"@thi.ng/vectors": "^8.3.1",
-		"@thi.ng/webgl": "^6.9.57"
+		"@thi.ng/webgl": "^6.9.58"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.5",
