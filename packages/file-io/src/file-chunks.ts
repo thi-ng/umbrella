@@ -3,6 +3,7 @@ import type { Nullable } from "@thi.ng/api";
 import { U32 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { open, type FileHandle } from "node:fs/promises";
+import { maskedPath } from "./mask.js";
 
 export interface FileChunkOpts {
 	/**
@@ -50,18 +51,17 @@ export async function* fileChunks(
 	opts: Partial<FileChunkOpts> = {}
 ) {
 	let { size = 1024, start = 0, end = Infinity, logger } = opts;
-	logger &&
-		logger.debug(`start reading file chunks (size: 0x${size}): ${path}`);
+	const mpath = maskedPath(path);
+	logger?.debug(`start reading file chunks (size: 0x${size}):`, mpath);
 	let fd: Nullable<FileHandle> = undefined;
 	try {
 		fd = await open(path, "r");
 		while (start < end) {
-			logger &&
-				logger.debug(
-					`reading chunk: 0x${U32(start)} - 0x${U32(
-						start + size - 1
-					)} (${path})`
-				);
+			logger?.debug(
+				`reading chunk: 0x${U32(start)} - 0x${U32(
+					start + size - 1
+				)} (${mpath})`
+			);
 			const { buffer, bytesRead } = await fd.read({
 				buffer: Buffer.alloc(size),
 				length: size,

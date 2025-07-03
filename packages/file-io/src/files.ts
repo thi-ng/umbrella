@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Predicate } from "@thi.ng/api";
+import type { Maybe, Predicate } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import { readdirSync } from "node:fs";
 import { sep } from "node:path";
 import { isDirectory } from "./dir.js";
 import { __ensurePred } from "./internal/ensure.js";
+import { maskedPath } from "./mask.js";
 
 /**
  * Recursively reads given directory (up to given max. depth, default: infinite)
@@ -50,8 +51,7 @@ function* __files(
 				yield curr;
 			}
 		} catch (e) {
-			logger &&
-				logger.warn(`ignoring file: ${f} (${(<Error>e).message})`);
+			__error(logger, f, <Error>e);
 		}
 	}
 }
@@ -94,8 +94,12 @@ function* __dirs(
 				yield* __dirs(curr, match, logger, maxDepth, depth + 1);
 			}
 		} catch (e) {
-			logger &&
-				logger.warn(`ignoring file/dir: ${f} (${(<Error>e).message})`);
+			__error(logger, f, <Error>e);
 		}
 	}
 }
+
+const __error = (logger: Maybe<ILogger>, path: string, e: Error) =>
+	logger?.warn(
+		`ignoring: ${maskedPath(path)} (${maskedPath((<Error>e).message)})`
+	);

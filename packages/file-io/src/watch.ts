@@ -11,10 +11,11 @@ import {
 import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
-import { watch as $watch, existsSync, type FSWatcher } from "node:fs";
+import { existsSync, watch, type FSWatcher } from "node:fs";
 import { join } from "node:path";
 import { isDirectory } from "./dir.js";
 import { __ensurePred } from "./internal/ensure.js";
+import { maskedPath } from "./mask.js";
 
 export interface WatcherOpts {
 	/**
@@ -72,8 +73,8 @@ export class Watcher implements IClear, INotify {
 		if (this.watchers[path]) return false;
 		const isDir = isDirectory(path);
 		const pred = __ensurePred(opts?.ext || "");
-		this.opts.logger.debug(`adding watcher for: ${path}`);
-		this.watchers[path] = $watch(
+		this.opts.logger.debug(`adding watcher for:`, maskedPath(path));
+		this.watchers[path] = watch(
 			path,
 			{ recursive: opts?.recursive !== false },
 			(event, currPath) => {
@@ -81,14 +82,15 @@ export class Watcher implements IClear, INotify {
 				currPath = isDir ? join(path, currPath) : path;
 				if (!pred(currPath)) return;
 				setTimeout(() => {
+					const mpath = maskedPath(currPath);
 					if (event === "change") {
-						this.opts.logger.info(`file changed: ${currPath}`);
+						this.opts.logger.info(`file changed: ${mpath}`);
 						this.notify({
 							id: EVENT_CHANGED,
 							value: currPath,
 						});
 					} else if (!isDir || path === currPath) {
-						this.opts.logger.info(`file removed: ${path}`);
+						this.opts.logger.info(`file removed: ${mpath}`);
 						this.notify({ id: EVENT_REMOVED, value: path });
 						this.remove(path);
 					} else {
@@ -97,7 +99,7 @@ export class Watcher implements IClear, INotify {
 						const id = existsSync(currPath!)
 							? EVENT_ADDED
 							: EVENT_REMOVED;
-						this.opts.logger.info(`file ${id}: ${path}`);
+						this.opts.logger.info(`file ${id}: ${mpath}`);
 						this.notify({ id, value: currPath });
 					}
 				}, this.opts.delay);
@@ -109,7 +111,7 @@ export class Watcher implements IClear, INotify {
 	remove(path: string) {
 		const watcher = this.watchers[path];
 		if (!watcher) return false;
-		this.opts.logger.debug(`removing watcher for: ${path}`);
+		this.opts.logger.debug(`removing watcher for:`, maskedPath(path));
 		watcher.close();
 		delete this.watchers[path];
 		return true;
@@ -142,4 +144,9 @@ export class Watcher implements IClear, INotify {
 	notify(event: Event<string>): boolean {}
 }
 
+/**
+ * Creates a new {@link Watcher} instance with given options.
+ *
+ * @param opts
+ */
 export const fileWatcher = (opts?: Partial<WatcherOpts>) => new Watcher(opts);
