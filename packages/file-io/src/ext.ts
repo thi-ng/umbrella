@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
+
 /**
- * Returns file extension of given file `path`.
+ * Returns file extension (always lowercase) of given file `path`.
  *
  * @param path
  */

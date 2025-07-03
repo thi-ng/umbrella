@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/file-io",
 	"version": "2.1.38",
-	"description": "Assorted file I/O utils (with logging support) for NodeJS/Bun",
+	"description": "Assorted file I/O utils (w/ logging support) for NodeJS/Bun",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -53,14 +53,19 @@
 	},
 	"keywords": [
 		"async",
+		"delete",
+		"directory",
 		"file",
 		"hash",
+		"iterator",
 		"json",
 		"logger",
 		"no-browser",
 		"nodejs",
 		"stream",
-		"typescript"
+		"text",
+		"typescript",
+		"watch"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -80,6 +85,9 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./copy": {
+			"default": "./copy.js"
 		},
 		"./delete": {
 			"default": "./delete.js"
