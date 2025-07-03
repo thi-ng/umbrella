@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-07-03T15:03:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@2.2.0) (2025-07-03)
+
+#### 🚀 Features
+
+- add makedPath() and mask registry fns ([74796f8](https://github.com/thi-ng/umbrella/commit/74796f8))
+- add copyFile() fns (incl. async version) ([19ad5f3](https://github.com/thi-ng/umbrella/commit/19ad5f3))
+- update logging calls to use masked paths only ([c25a2cb](https://github.com/thi-ng/umbrella/commit/c25a2cb))
+- add async versions of various file fns ([eff47b7](https://github.com/thi-ng/umbrella/commit/eff47b7))
+- add deleteFiles() and async versions ([1185911](https://github.com/thi-ng/umbrella/commit/1185911))
 
 ### [2.1.21](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@2.1.21) (2025-01-14)
 
