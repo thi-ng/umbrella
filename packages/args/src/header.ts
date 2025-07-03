@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Re-usable logo header for various thi.ng CLI tools.
  *

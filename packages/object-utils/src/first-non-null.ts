@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Returns first key of `obj` with non-nullish value. The key selection can be
  * constrained via given `keys` (default: `Object.keys()`) and keys will be
