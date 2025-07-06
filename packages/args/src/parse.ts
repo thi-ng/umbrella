@@ -111,7 +111,7 @@ const __parseKey = <T extends IObjectOf<any>>(
 
 /** @internal */
 const __parseValue = (spec: ArgSpecExt, acc: any, id: string, a: string) => {
-	/^-[a-z]/i.test(a) && illegalArgs(`missing value for: --${id}`);
+	// /^-[a-z]/i.test(a) && illegalArgs(`missing value for: --${id}`);
 	if (spec!.multi) {
 		isArray(acc[id!]) ? acc[id!].push(a) : (acc[id!] = [a]);
 	} else {

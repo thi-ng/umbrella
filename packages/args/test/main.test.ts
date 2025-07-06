@@ -231,3 +231,20 @@ test("long alias", () => {
 		})
 	).toEqual({ result: { a: "a" }, index: 2, done: true, rest: [] });
 });
+
+test("value w/ hyphen prefix", () => {
+	expect(
+		parse<{ a?: string }>({ a: string({}) }, ["--a", "-value"], {
+			start: 0,
+		})
+	).toEqual({ result: { a: "-value" }, index: 2, done: true, rest: [] });
+});
+
+test("missing value", () => {
+	expect(() =>
+		parse<{ a?: string }>({ a: string({}) }, ["--a"], {
+			start: 0,
+			showUsage: false,
+		})
+	).toThrow("missing value for: --a");
+});
