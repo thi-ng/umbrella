@@ -197,6 +197,9 @@
 		"./identity": {
 			"default": "./identity.js"
 		},
+		"./integrate": {
+			"default": "./integrate.js"
+		},
 		"./kernels": {
 			"default": "./kernels.js"
 		},

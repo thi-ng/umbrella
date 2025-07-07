@@ -28,6 +28,7 @@ export * from "./exp2.js";
 export * from "./filtered-indices.js";
 export * from "./format.js";
 export * from "./identity.js";
+export * from "./integrate.js";
 export * from "./kernels.js";
 export * from "./log.js";
 export * from "./log2.js";
