@@ -6,6 +6,11 @@ import { push } from "./push.js";
 import { isReduced } from "./reduced.js";
 
 /**
+ * Type of the function produced by {@link step}.
+ */
+export type StepFn<A, B> = Fn<A, Maybe<B | B[]>>;
+
+/**
  * Single-step transducer execution wrapper. Returns array if the given
  * transducer produces multiple results and undefined if there was no output. If
  * the transducer only produces a single result (per step) and if `unwrap`
@@ -71,10 +76,7 @@ import { isReduced } from "./reduced.js";
  * @param tx -
  * @param unwrap -
  */
-export const step = <A, B>(
-	tx: TxLike<A, B>,
-	unwrap = true
-): Fn<A, Maybe<B | B[]>> => {
+export const step = <A, B>(tx: TxLike<A, B>, unwrap = true): StepFn<A, B> => {
 	const [_, complete, reduce] = ensureTransducer(tx)(push());
 	let done = false;
 	return (x: A) => {
