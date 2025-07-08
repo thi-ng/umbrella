@@ -1,23 +1,16 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Maybe } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench";
 import { pixelCanvas2d, type CanvasContext } from "@thi.ng/canvas";
 import { button, div, inputFile, main } from "@thi.ng/hiccup-html";
 import { GRAY8, IntBuffer, intBuffer } from "@thi.ng/pixel";
 import { OpticalFlow } from "@thi.ng/pixel-flow";
 import { $attribs, $compile, $wrapEl } from "@thi.ng/rdom";
-import { step } from "@thi.ng/transducers";
+import { step, type StepFn } from "@thi.ng/transducers";
 import { donchian } from "@thi.ng/transducers-stats";
-import {
-	maddN2,
-	mag2,
-	normalize2,
-	perpendicularCCW,
-	type Vec,
-} from "@thi.ng/vectors";
+import { mag2, magSq2, normalize2, perpendicularCCW } from "@thi.ng/vectors";
 
-const W = 320;
-const H = 240;
+const W = 640;
+const H = 480;
 
 class OpticalFlowViz {
 	video: HTMLVideoElement;
@@ -27,8 +20,7 @@ class OpticalFlowViz {
 	frameBuffer!: IntBuffer;
 	prevFrame!: IntBuffer;
 	scale!: number;
-	movement: Fn<number, Maybe<[number, number] | [number, number][]>>;
-	$flow: Vec[] = [];
+	movement: StepFn<number, [number, number]>;
 
 	constructor() {
 		this.video = document.createElement("video");
@@ -48,27 +40,38 @@ class OpticalFlowViz {
 		this.frameBuffer = intBuffer(vw, vh, GRAY8);
 		this.prevFrame = intBuffer(vw, vh, GRAY8);
 		this.frameCanvas = pixelCanvas2d(vw, vh);
-		this.flow = new OpticalFlow(this.grabFrame(), { smooth: 0.25 });
-		$attribs(this.flowCanvas.canvas, { width: vw * 2, height: vh * 2 });
-		this.flowCanvas.ctx.scale(2, 2);
+		this.flow = new OpticalFlow(this.grabFrame(), {
+			smooth: 0.25,
+			threshold: 0.001,
+			// windowSize: 3,
+			// windowStep: 1,
+			mode: "max",
+		});
+		$attribs(this.flowCanvas.canvas, { width: vw, height: vh });
 		this.updateFlow();
 	}
 
 	updateFlow() {
 		const currFrame = this.grabFrame();
-		const [flowField, t] = timedResult(() => this.flow.update(currFrame));
+		const [
+			{
+				data: cells,
+				shape: [height, width],
+				dir,
+			},
+			t,
+		] = timedResult(() => this.flow.update(currFrame));
 		const ctx = this.flowCanvas.ctx;
 		ctx.drawImage(this.frameCanvas.canvas, 0, 0);
 		ctx.strokeStyle = "#00f";
 		ctx.lineWidth = 1 / this.scale;
 		const scale = this.flow.step;
 		ctx.font = `12px Arial`;
-		let sum = [0, 0];
-		const amp = 8;
-		for (let y = 0, i = 0; y < this.flow.flowHeight; y++) {
-			for (let x = 0; x < this.flow.flowWidth; x++, i++) {
-				const cell = flowField[i];
-				maddN2(sum, cell, 1, sum);
+		const amp = 32;
+		for (let y = 0, i = 0; y < height; y++) {
+			for (let x = 0; x < width; x++, i += 2) {
+				const cell = [cells[i], cells[i + 1]];
+				if (magSq2(cell) < 0.01) continue;
 				ctx.beginPath();
 				const sx = x * scale + this.flow.margin;
 				const sy = y * scale + this.flow.margin;
@@ -88,7 +91,7 @@ class OpticalFlowViz {
 			}
 		}
 		// compute overall movement
-		const delta = mag2(sum);
+		const delta = mag2(dir);
 		// update min/max
 		const bounds = this.movement(delta);
 		ctx.fillStyle = "#000";
@@ -104,12 +107,11 @@ class OpticalFlowViz {
 		// draw summed movment vector
 		const w2 = this.video.width / 2;
 		const h2 = this.video.height / 2;
-		maddN2(sum, sum, 0.05, [w2, h2]);
 		ctx.strokeStyle = "#f00";
 		ctx.lineWidth = 8 / this.scale;
 		ctx.beginPath();
 		ctx.moveTo(w2, h2);
-		ctx.lineTo(sum[0], sum[1]);
+		ctx.lineTo(dir[0] * 1000 + w2, dir[1] * 1000 + h2);
 		ctx.stroke();
 
 		requestAnimationFrame(this.updateFlow.bind(this));
