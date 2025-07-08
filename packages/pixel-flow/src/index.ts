@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { ICopy } from "@thi.ng/api";
+import type { ICopy, Predicate2 } from "@thi.ng/api";
 import type { IPixelBuffer } from "@thi.ng/pixel";
+
+const { abs, ceil } = Math;
 
 /**
  * Configuration options. See {@link OpticalFlow} for algorithm details.
@@ -27,7 +29,7 @@ export interface OpticalFlowOpts {
 	step: number;
 	/**
 	 * Maximum per-axis displacement distance in pixels used for computing the
-	 * frame differences. Should be a multiple of
+	 * frame differences. MUST be a multiple of
 	 * {@link OpticalFlowOpts.displaceStep}.
 	 *
 	 * @remarks
@@ -51,7 +53,7 @@ export interface OpticalFlowOpts {
 	displaceStep: number;
 	/**
 	 * Half the kernel window size, used to compute summed frame difference for
-	 * a displace region. Should be a multiple of
+	 * a displace region. MUST be a multiple of
 	 * {@link OpticalFlowOpts.windowStep}.
 	 *
 	 * @remarks
@@ -61,7 +63,8 @@ export interface OpticalFlowOpts {
 	 */
 	windowSize: number;
 	/**
-	 * Pixel step size to iterate a single kernel window.
+	 * Pixel step size to iterate a single kernel window. Also see
+	 * {@link OpticalFlowOpts.windowSize}.
 	 *
 	 * @defaultValue 3
 	 */
@@ -80,11 +83,33 @@ export interface OpticalFlowOpts {
 	smooth: number;
 	/**
 	 * Minimum summed difference threshold for a kernel window to be considered
-	 * as candidate.
+	 * as candidate. Values < 0 mean all deltas are considered.
 	 *
-	 * @defaultValue -1
+	 * @remarks
+	 * The summed window difference is computed as:
+	 *
+	 * ```text
+	 * sum(pow(abs(a[i]-b[i])/range,2)) / windowSize
+	 * ```
+	 *
+	 * Therefore, the thresold also is to be specified in the [0,1] interval.
+	 *
+	 * @defaultValue 0.001
 	 */
 	threshold: number;
+	/**
+	 * Pixel value range (default: 255). If processing float buffers, this
+	 * option likely will have to be set to 1.0.
+	 *
+	 * @defaultValue 255
+	 */
+	range: number;
+	/**
+	 * Displacement window selection mode (see {@link OpticalFlow} for more details).
+	 *
+	 * @defaultValue "min"
+	 */
+	mode: "min" | "max";
 }
 
 /**
@@ -95,18 +120,20 @@ export interface OpticalFlowOpts {
  * The algorithm requires a previous and current frame. The flow field is
  * obtained by sampling the current frame at a given
  * {@link OpticalFlowOpts.step} distance. For each of these sample/grid
- * positions a kernel window is being swept/applied to compute the differences
- * to the previous frame. To compute these differences, the previous frame is
- * offset multiple times in both X/Y directions within the `[-displace,
- * +displace)` interval. The kernel computes the summed difference for each of
- * these displaced window regions and selects the window with the minimum
- * change. The relative (displacement) position of that minimum is the flow
- * vector for that cell, which will then be linearly interpolated to apply
- * temporal smoothing of the field (configurable) and minimize jittering.
+ * positions a kernel window (of `2*windowSize+1` pixels) is being swept/applied
+ * to compute the differences to the previous frame. To compute these
+ * differences, the previous frame is offset multiple times in both X/Y
+ * directions within the `[-displace, +displace)` interval. The kernel computes
+ * the summed difference for each of these displaced window regions and selects
+ * the window with the minimum or maximum change (depending on
+ * {@link OpticalFlowOpts.mode}). The relative (displacement) position of that
+ * selected window is then used as the flow vector for that cell, which will
+ * then be linearly interpolated to apply temporal smoothing of the field
+ * (configurable via {@link OpticalFlowOpts.smooth}) and minimize jittering.
  */
 export class OpticalFlow<T extends IPixelBuffer & ICopy<T>> {
 	prev: T;
-	flow: number[][];
+	flow: Float64Array;
 	step: number;
 	displace: number;
 	displaceStep: number;
@@ -114,14 +141,16 @@ export class OpticalFlow<T extends IPixelBuffer & ICopy<T>> {
 	windowStep: number;
 	amp: number;
 	smooth: number;
-	flowWidth: number;
-	flowHeight: number;
+	width: number;
+	height: number;
 	margin: number;
 	threshold: number;
+	invRange: number;
+	mode: "min" | "max";
+	pred: Predicate2<number>;
 
-	constructor(initialFrame: T, opts: Partial<OpticalFlowOpts>) {
-		this.prev = initialFrame.copy();
-		this.step = opts?.step ?? 6;
+	constructor(startFrame: T, opts: Partial<OpticalFlowOpts>) {
+		this.prev = startFrame.copy();
 		this.displace = opts?.displace ?? 9;
 		this.displaceStep = opts?.displaceStep ?? 3;
 		this.windowSize = opts?.windowSize ?? 12;
@@ -129,80 +158,122 @@ export class OpticalFlow<T extends IPixelBuffer & ICopy<T>> {
 		this.amp = opts?.smooth ?? 1;
 		this.smooth = opts?.smooth ?? 0.25;
 		this.threshold = opts?.threshold ?? -1;
-		this.margin = this.windowSize + this.displace;
-		this.flowWidth = Math.ceil(
-			(initialFrame.width - 2 * this.margin) / this.step
-		);
-		this.flowHeight = Math.ceil(
-			(initialFrame.height - 2 * this.margin) / this.step
-		);
-		this.flow = new Array(this.flowWidth * this.flowHeight);
-		for (let i = 0; i < this.flow.length; i++) this.flow[i] = [0, 0];
+		this.invRange = 1 / (opts?.range ?? 255);
+		this.mode = opts?.mode ?? "min";
+		this.pred = this.mode == "min" ? (a, b) => a < b : (a, b) => a > b;
+		const margin = (this.margin = this.windowSize + this.displace);
+		const step = (this.step = opts?.step ?? 6);
+		this.width = ceil((startFrame.width - 2 * margin) / step);
+		this.height = ceil((startFrame.height - 2 * margin) / step);
+		this.flow = new Float64Array(this.width * this.height * 2);
 	}
 
+	/**
+	 * Computes optical flow between given frame and (stored) previous frame,
+	 * according to configured options. Returns updated flowfield in a format
+	 * compatible with thi.ng/tensors `asTensor()`.
+	 *
+	 * @remarks
+	 * See {@link OpticalFlow} class docs for more details.
+	 *
+	 * @param curr
+	 */
 	update(curr: T) {
 		const {
-			prev,
-			flow,
-			windowSize,
-			windowStep,
+			amp,
 			displace,
 			displaceStep,
+			flow,
+			invRange,
 			margin,
-			step,
+			mode,
+			pred,
+			prev,
 			smooth,
-			amp,
+			step,
 			threshold,
+			windowSize,
+			windowStep,
 		} = this;
 		const srcA = prev.data;
 		const srcB = curr.data;
 		const width = prev.width;
 		const w = prev.width - margin;
 		const h = prev.height - margin;
-		for (let y = margin, flowIndex = 0; y < h; y += step) {
-			const maxY = y + displace;
-			for (let x = margin; x < w; x += step) {
-				let min = Infinity;
-				let dx = 0;
-				let dy = 0;
-				const maxX = x + displace;
-				for (let y2 = y - displace; y2 <= maxY; y2 += displaceStep) {
-					for (
-						let x2 = x - displace;
-						x2 <= maxX;
-						x2 += displaceStep
-					) {
-						let sum = 0;
+		const invWindowScale = 1 / (1 + 2 * (windowSize / windowStep)) ** 2;
+		const isMax = mode === "max";
+		const initialDist = isMax ? threshold : Infinity;
+		const dirScale = amp / displace;
+		let x: number,
+			y: number,
+			x2: number,
+			y2: number,
+			maxX: number,
+			maxY: number,
+			i: number,
+			j: number,
+			idx: number,
+			idxA: number,
+			idxB: number,
+			sum: number,
+			dx: number,
+			dy: number,
+			candidate: number,
+			meanX = 0,
+			meanY = 0;
+		for (y = margin, idx = 0; y < h; y += step) {
+			maxY = y + displace;
+			for (x = margin; x < w; x += step) {
+				candidate = initialDist;
+				dx = 0;
+				dy = 0;
+				maxX = x + displace;
+				for (y2 = y - displace; y2 <= maxY; y2 += displaceStep) {
+					for (x2 = x - displace; x2 <= maxX; x2 += displaceStep) {
+						sum = 0;
 						for (
-							let j = -windowSize;
+							j = -windowSize;
 							j <= windowSize;
 							j += windowStep
 						) {
 							for (
-								let i = -windowSize,
+								i = -windowSize,
 									idxA = (y + j) * width + x,
 									idxB = (y2 + j) * width + x2;
 								i <= windowSize;
 								i += windowStep
 							) {
-								sum += Math.abs(srcA[idxA] - srcB[idxB]) ** 2;
+								sum +=
+									(abs(srcA[idxA] - srcB[idxB]) * invRange) **
+									2;
 								idxA += windowStep;
 								idxB += windowStep;
 							}
 						}
-						if (sum > threshold && sum < min) {
-							min = sum;
-							dx = x2 - x;
-							dy = y2 - y;
+						sum *= invWindowScale;
+						if (sum >= threshold && pred(sum, candidate)) {
+							candidate = sum;
+							dx = x - x2;
+							dy = y - y2;
 						}
 					}
 				}
-				const cell = flow[flowIndex++];
-				cell[0] += (dx * amp - cell[0]) * smooth;
-				cell[1] += (dy * amp - cell[1]) * smooth;
+				dx *= dirScale;
+				dy *= dirScale;
+				meanX += flow[idx] += (dx - flow[idx]) * smooth;
+				idx++;
+				meanY += flow[idx] += (dy - flow[idx]) * smooth;
+				idx++;
 			}
 		}
 		srcA.set(srcB);
-		return flow;
+		idx >>= 1;
+		return {
+			type: <const>"f64",
+			data: flow,
+			shape: <[number, number, number]>[this.height, this.width, 2],
+			stride: <[number, number, number]>[this.width * 2, 2, 1],
+			dir: [meanX / idx, meanY / idx],
+		};
 	}
 }
