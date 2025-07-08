@@ -92,6 +92,22 @@ export interface TensorFromArrayOpts<T extends Type, V> {
 	storage?: ITensorStorage<V>;
 }
 
+/**
+ * Source data type for tensor conversion via {@link asTensor}.
+ */
+export interface TensorLike<T extends Type, S extends Shape> {
+	/** Data type */
+	type: T;
+	/** Tensor data/values (MUST match `type`) */
+	data: TensorData<TypeMap[T]>;
+	/** Tensor shape */
+	shape: S;
+	/** Stride/layout information of data */
+	stride: S;
+	/** Start index (default: 0) */
+	offset?: number;
+}
+
 export interface ITensor<T = number>
 	extends ICopy<ITensor<T>>,
 		IEquiv,
