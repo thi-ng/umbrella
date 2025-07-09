@@ -13,14 +13,16 @@ import { EquivMap } from "./equiv-map.js";
  * import { indexed } from "@thi.ng/associative";
  *
  * console.log(
+ *   "%s",
  *   indexed(
  *     new Set([{a: 1, b: 1}, {a: 1, b: 2}, {a: 1, b: 1, c: 2}]),
  *     ["a","b"]
  *   )
  * );
- * // EquivMap {
+ * // EquivMap(2) {
  * //   { a: 1, b: 1 } => Set { { a: 1, b: 1 }, { a: 1, b: 1, c: 2 } },
- * //   { a: 1, b: 2 } => Set { { a: 1, b: 2 } } }
+ * //   { a: 1, b: 2 } => Set { { a: 1, b: 2 } }
+ * // }
  * ```
  *
  * @param records - objects to index

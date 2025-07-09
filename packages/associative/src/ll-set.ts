@@ -6,17 +6,8 @@ import { equiv } from "@thi.ng/equiv";
 import type { EquivSetOpts, IEquivSet } from "./api.js";
 import { dissoc } from "./dissoc.js";
 import { __equivSet } from "./internal/equiv.js";
-import { __inspectable } from "./internal/inspect.js";
+import { __tostringMixin } from "./internal/tostring.js";
 import { into } from "./into.js";
-
-interface SetProps<T> {
-	vals: DCons<T>;
-	equiv: Predicate2<T>;
-}
-
-const __private = new WeakMap<LLSet<any>, SetProps<any>>();
-
-const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
 
 /**
  * Similar to {@link ArraySet}, this class is an alternative implementation of
@@ -33,22 +24,23 @@ const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
  * [`IEquiv`](https://docs.thi.ng/umbrella/api/interfaces/IEquiv.html)
  * interfaces itself.
  */
-@__inspectable
+@__tostringMixin
 export class LLSet<T> extends Set<T> implements IEquivSet<T> {
+	#vals: DCons<T>;
+	#equiv: Predicate2<T>;
+
 	constructor(
 		vals?: Iterable<T> | null,
 		opts: Partial<EquivSetOpts<T>> = {}
 	) {
 		super();
-		__private.set(this, {
-			equiv: opts.equiv || equiv,
-			vals: new DCons<T>(),
-		});
+		this.#equiv = opts.equiv || equiv;
+		this.#vals = new DCons<T>();
 		vals && this.into(vals);
 	}
 
 	*[Symbol.iterator](): IterableIterator<T> {
-		yield* __vals(this);
+		yield* this.#vals;
 	}
 
 	get [Symbol.species]() {
@@ -60,12 +52,12 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 	}
 
 	get size(): number {
-		return __vals(this).length;
+		return this.#vals.length;
 	}
 
 	copy() {
 		const s = new LLSet<T>(null, this.opts());
-		__private.get(s)!.vals = __vals(this).copy();
+		s.#vals = this.#vals.copy();
 		return s;
 	}
 
@@ -74,17 +66,17 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 	}
 
 	clear() {
-		__vals(this).clear();
+		this.#vals.clear();
 	}
 
 	first(): Maybe<T> {
 		if (this.size) {
-			return __vals(this).head!.value;
+			return this.#vals.head!.value;
 		}
 	}
 
 	add(key: T) {
-		!this.has(key) && __vals(this).push(key);
+		!this.has(key) && this.#vals.push(key);
 		return this;
 	}
 
@@ -104,7 +96,8 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 	 * @param notFound - default value
 	 */
 	get(key: T, notFound?: T): Maybe<T> {
-		const { equiv, vals } = __private.get(this)!;
+		const equiv = this.#equiv;
+		const vals = this.#vals;
 		let i = vals.head;
 		while (i) {
 			if (equiv(i.value, key)) {
@@ -116,7 +109,8 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 	}
 
 	delete(key: T) {
-		const { equiv, vals } = __private.get(this)!;
+		const equiv = this.#equiv;
+		const vals = this.#vals;
 		let i = vals.head;
 		while (i) {
 			if (equiv(i.value, key)) {
@@ -145,7 +139,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 	 * @param thisArg -
 	 */
 	forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
-		let i = __vals(this).head;
+		let i = this.#vals.head;
 		while (i) {
 			fn.call(thisArg, i.value, i.value, this);
 			i = i.next;
@@ -153,21 +147,25 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
 	}
 
 	*entries(): IterableIterator<Pair<T, T>> {
-		for (let v of __vals(this)) {
+		for (let v of this.#vals) {
 			yield [v, v];
 		}
 	}
 
 	*keys(): IterableIterator<T> {
-		yield* __vals(this);
+		yield* this.#vals;
 	}
 
 	*values(): IterableIterator<T> {
-		yield* __vals(this);
+		yield* this.#vals;
 	}
 
 	opts(): EquivSetOpts<T> {
-		return { equiv: __private.get(this)!.equiv };
+		return { equiv: this.#equiv };
+	}
+
+	toString() {
+		return `${this[Symbol.toStringTag]}(${this.size}) { }`;
 	}
 }
 

@@ -118,8 +118,8 @@
 		"./internal/equiv": {
 			"default": "./internal/equiv.js"
 		},
-		"./internal/inspect": {
-			"default": "./internal/inspect.js"
+		"./internal/tostring": {
+			"default": "./internal/tostring.js"
 		},
 		"./intersection": {
 			"default": "./intersection.js"
