@@ -120,7 +120,7 @@ export const COMMENT = (msg: string): CommentCommand => ["comment", msg];
  * console.log(
  *   [...complete([ MOVE([0, 0]) ])]
  * );
- * // [ ["start"], ["M", [0, 0]], ["stop"] ]
+ * // [ ["start"], ["M", [0, 0], 1], ["stop"] ]
  * ```
  *
  * @param commands
