@@ -17,7 +17,7 @@ import { shuffle } from "./shuffle.js";
  * ```ts tangle:../export/permutation.ts
  * import { permutation } from "@thi.ng/arrays";
  *
- * console.log(permuation(8));
+ * console.log(permutation(8));
  * // [ 6, 2, 7, 5, 4, 0, 3, 1 ]
  * ```
  *
