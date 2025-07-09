@@ -250,6 +250,11 @@ The following shape specific attributes are used:
 - `shape`: `circle` or `rect` (default)
 - `size`: point size (radius for circles, width for rects) - default: 1
 
+> [!INFO]
+> By default points are rendered as 1x1 pixel squares, which may be difficult to
+> see on high-resolution displays. For better visibility, consider using a small
+> circle or specifying a larger size attribute.
+
 ### Text
 
 ```ts
