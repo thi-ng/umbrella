@@ -2,19 +2,10 @@
 import type { Fn3, IEquiv, Pair, UIntArray } from "@thi.ng/api";
 import type { IEquivSet } from "@thi.ng/associative/api";
 import { dissoc } from "@thi.ng/associative/dissoc";
-import { __inspectable } from "@thi.ng/associative/internal/inspect";
+import { __tostringMixin } from "@thi.ng/associative/internal/tostring";
 import { into } from "@thi.ng/associative/into";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-
-interface SparseSetProps {
-	dense: UIntArray;
-	sparse: UIntArray;
-	n: number;
-}
-
-/** @internal */
-const __private = new WeakMap<ASparseSet<any>, SparseSetProps>();
 
 /** @internal */
 const __fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
@@ -27,14 +18,19 @@ const __fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
  * - https://programmingpraxis.com/2012/03/09/sparse-sets/
  * - https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/
  */
-@__inspectable
+@__tostringMixin
 export abstract class ASparseSet<T extends UIntArray>
 	extends Set<number>
 	implements IEquiv
 {
+	#dense: UIntArray;
+	#sparse: UIntArray;
+	#n = 0;
+
 	protected constructor(dense: T, sparse: T) {
 		super();
-		__private.set(this, { dense, sparse, n: 0 });
+		this.#dense = dense;
+		this.#sparse = sparse;
 	}
 
 	[Symbol.iterator]() {
@@ -42,15 +38,15 @@ export abstract class ASparseSet<T extends UIntArray>
 	}
 
 	get size(): number {
-		return __private.get(this)!.n;
+		return this.#n;
 	}
 
 	get capacity(): number {
-		return __private.get(this)!.dense.length;
+		return this.#dense.length;
 	}
 
 	clear() {
-		__private.get(this)!.n = 0;
+		this.#n = 0;
 	}
 
 	equiv(o: any) {
@@ -60,9 +56,8 @@ export abstract class ASparseSet<T extends UIntArray>
 		if (!(o instanceof Set) || this.size !== o.size) {
 			return false;
 		}
-		const $this = __private.get(this)!;
-		const d = $this.dense;
-		for (let i = $this.n; i-- > 0; ) {
+		const d = this.#dense;
+		for (let i = this.#n; i-- > 0; ) {
 			if (!o.has(d[i])) {
 				return false;
 			}
@@ -71,24 +66,23 @@ export abstract class ASparseSet<T extends UIntArray>
 	}
 
 	add(key: number) {
-		const $this = __private.get(this)!;
-		const { dense, sparse, n } = $this;
-		const max = dense.length;
-		const i = sparse[key];
-		if (key < max && n < max && !(i < n && dense[i] === key)) {
-			dense[n] = key;
-			sparse[key] = n;
-			$this.n++;
+		const max = this.#dense.length;
+		const i = this.#sparse[key];
+		const n = this.#n;
+		if (key < max && n < max && !(i < n && this.#dense[i] === key)) {
+			this.#dense[n] = key;
+			this.#sparse[key] = n;
+			this.#n++;
 		}
 		return this;
 	}
 
 	delete(key: number) {
-		const $this = __private.get(this)!;
-		const { dense, sparse } = $this;
+		const dense = this.#dense;
+		const sparse = this.#sparse;
 		const i = sparse[key];
-		if (i < $this.n && dense[i] === key) {
-			const j = dense[--$this.n];
+		if (i < this.#n && dense[i] === key) {
+			const j = dense[--this.#n];
 			dense[i] = j;
 			sparse[j] = i;
 			return true;
@@ -97,9 +91,8 @@ export abstract class ASparseSet<T extends UIntArray>
 	}
 
 	has(key: number): boolean {
-		const $this = __private.get(this)!;
-		const i = $this.sparse[key];
-		return i < $this.n && $this.dense[i] === key;
+		const i = this.#sparse[key];
+		return i < this.#n && this.#dense[i] === key;
 	}
 
 	get(key: number, notFound = -1) {
@@ -107,8 +100,7 @@ export abstract class ASparseSet<T extends UIntArray>
 	}
 
 	first() {
-		const $this = __private.get(this)!;
-		return $this.n ? $this.dense[0] : undefined;
+		return this.#n ? this.#dense[0] : undefined;
 	}
 
 	into(keys: Iterable<number>) {
@@ -120,24 +112,25 @@ export abstract class ASparseSet<T extends UIntArray>
 	}
 
 	forEach(fn: Fn3<number, number, Set<number>, void>, thisArg?: any) {
-		const $this = __private.get(this)!;
-		const d = $this.dense;
-		const n = $this.n;
+		const dense = this.#dense;
+		const n = this.#n;
 		for (let i = 0; i < n; i++) {
-			const v = d[i];
+			const v = dense[i];
 			fn.call(thisArg, v, v, this);
 		}
 	}
 
 	*entries(): IterableIterator<Pair<number, number>> {
-		const { dense, n } = __private.get(this)!;
+		const dense = this.#dense;
+		const n = this.#n;
 		for (let i = 0; i < n; i++) {
 			yield [dense[i], dense[i]];
 		}
 	}
 
 	*keys(): IterableIterator<number> {
-		const { dense, n } = __private.get(this)!;
+		const dense = this.#dense;
+		const n = this.#n;
 		for (let i = 0; i < n; i++) {
 			yield dense[i];
 		}
@@ -148,11 +141,9 @@ export abstract class ASparseSet<T extends UIntArray>
 	}
 
 	protected __copyTo<S extends ASparseSet<T>>(dest: S) {
-		const $this = __private.get(this)!;
-		const $c = __private.get(dest)!;
-		$c.dense = $this.dense.slice();
-		$c.sparse = $this.sparse.slice();
-		$c.n = $this.n;
+		dest.#dense = this.#dense.slice();
+		dest.#sparse = this.#sparse.slice();
+		dest.#n = this.#n;
 		return dest;
 	}
 }
