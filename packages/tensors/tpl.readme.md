@@ -39,55 +39,61 @@ conventions are closely aligned to the ones used by the
 - [abs](https://docs.thi.ng/umbrella/tensors/variables/abs.html): Componentwise `Math.abs`
 - [add](https://docs.thi.ng/umbrella/tensors/variables/add.html): Tensor-tensor addition
 - [addN](https://docs.thi.ng/umbrella/tensors/variables/addN.html): Tensor-scalar addition
-- [argMax](https://docs.thi.ng/umbrella/tensors/variables/argMax.html): Maximum component index/value
-- [argMin](https://docs.thi.ng/umbrella/tensors/variables/argMin.html): Minimum component index/value
-- [asTensor](https://docs.thi.ng/umbrella/tensors/variables/asTensor.html): Convert/wrap data as tensor
+- [argMax](https://docs.thi.ng/umbrella/tensors/functions/argMax.html): Maximum component index/value
+- [argMin](https://docs.thi.ng/umbrella/tensors/functions/argMin.html): Minimum component index/value
+- [asTensor](https://docs.thi.ng/umbrella/tensors/functions/asTensor.html): Convert/wrap data as tensor
 - [clamp](https://docs.thi.ng/umbrella/tensors/variables/clamp.html): Tensor-tensor interval clamping
 - [clampN](https://docs.thi.ng/umbrella/tensors/variables/clampN.html): Tensor-scalar interval clamping
 - [convolve](https://docs.thi.ng/umbrella/tensors/variables/convolve.html): Tensor convolution (1D/2D/3D only)
 - [cos](https://docs.thi.ng/umbrella/tensors/variables/cos.html): Componentwise `Math.cos`
-- [diagonal](https://docs.thi.ng/umbrella/tensors/variables/diagonal.html): Diagonal extraction
+- [diagonal](https://docs.thi.ng/umbrella/tensors/functions/diagonal.html): Diagonal extraction
 - [div](https://docs.thi.ng/umbrella/tensors/variables/div.html): Tensor-tensor division
 - [divN](https://docs.thi.ng/umbrella/tensors/variables/divN.html): Tensor-scalar division
 - [dot](https://docs.thi.ng/umbrella/tensors/variables/dot.html): Dot product
 - [exp](https://docs.thi.ng/umbrella/tensors/variables/exp.html): Componentwise `Math.exp`
 - [exp2](https://docs.thi.ng/umbrella/tensors/variables/exp2.html): Componentwise `2^x`
-- [integrate](https://docs.thi.ng/umbrella/tensors/variables/dot.html): Integrate tensor along innermost dimension
+- [identity](https://docs.thi.ng/umbrella/tensors/functions/identity.html): Square identity matrix tensor
+- [integrate](https://docs.thi.ng/umbrella/tensors/functions/integrate.html): Integrate tensor along innermost dimension
 - [log](https://docs.thi.ng/umbrella/tensors/variables/log.html): Componentwise `Math.log`
 - [log2](https://docs.thi.ng/umbrella/tensors/variables/log2.html): Componentwise `Math.log2`
-- [mag](https://docs.thi.ng/umbrella/tensors/variables/mag.html): Tensor magnitude
+- [mag](https://docs.thi.ng/umbrella/tensors/functions/mag.html): Tensor magnitude
 - [magSq](https://docs.thi.ng/umbrella/tensors/variables/magSq.html): Tensor squared magnitude
 - [max](https://docs.thi.ng/umbrella/tensors/variables/max.html): Tensor-tensor maximum
 - [maxN](https://docs.thi.ng/umbrella/tensors/variables/maxN.html): Tensor-scalar maximum
-- [min](https://docs.thi.ng/umbrella/tensors/variables/min.html): Tensor-tensor minimum
+- [mean](https://docs.thi.ng/umbrella/tensors/functions/mean.html): Tensor mean value
+- [min](https://docs.thi.ng/umbrella/tensors/functions/min.html): Tensor-tensor minimum
 - [minN](https://docs.thi.ng/umbrella/tensors/variables/minN.html): Tensor-scalar maximum
 - [mul](https://docs.thi.ng/umbrella/tensors/variables/mul.html): Tensor-tensor multiplication
 - [mulN](https://docs.thi.ng/umbrella/tensors/variables/mulN.html): Tensor-scalar multiplication
-- [mulM](https://docs.thi.ng/umbrella/tensors/variables/mulM.html): Matrix-matrix product
-- [mulV](https://docs.thi.ng/umbrella/tensors/variables/mulV.html): Matrix-vector product
-- [normalize](https://docs.thi.ng/umbrella/tensors/variables/normalize.html): Tensor normalization (w/ optional length)
+- [mulM](https://docs.thi.ng/umbrella/tensors/functions/mulM.html): Matrix-matrix product
+- [mulV](https://docs.thi.ng/umbrella/tensors/functions/mulV.html): Matrix-vector product
+- [normalize](https://docs.thi.ng/umbrella/tensors/functions/normalize.html): Tensor normalization (w/ optional length)
+- [ones](https://docs.thi.ng/umbrella/tensors/functions/ones.html): One-filled tensor creation
 - [pow](https://docs.thi.ng/umbrella/tensors/variables/pow.html): Tensor-tensor `Math.pow`
 - [powN](https://docs.thi.ng/umbrella/tensors/variables/powN.html): Tensor-scalar `Math.pow`
+- [print](https://docs.thi.ng/umbrella/tensors/functions/print.html): Formatted tensor output
 - [product](https://docs.thi.ng/umbrella/tensors/variables/product.html): Component product
 - [randDistrib](https://docs.thi.ng/umbrella/tensors/variables/randDistrib.html): Fill with random data from distribution fn
-- [range](https://docs.thi.ng/umbrella/tensors/variables/range.html): Create 1D tensor of monotonically increasing/decreasing values
+- [range](https://docs.thi.ng/umbrella/tensors/functions/range.html): Create 1D tensor of monotonically increasing/decreasing values
 - [relu](https://docs.thi.ng/umbrella/tensors/variables/relu.html): ReLU activation
 - [reluN](https://docs.thi.ng/umbrella/tensors/variables/reluN.html): Leaky ReLU activation
-- [select](https://docs.thi.ng/umbrella/tensors/variables/select.html): Generalization of argMin/Max
-- [set](https://docs.thi.ng/umbrella/tensors/variables/set.html): Tensor setter
-- [setN](https://docs.thi.ng/umbrella/tensors/variables/setN.html): Tensor setter w/ uniform scalar
+- [select](https://docs.thi.ng/umbrella/tensors/functions/select.html): Generalization of argMin/Max
+- [set](https://docs.thi.ng/umbrella/tensors/functions/set.html): Tensor setter
+- [setN](https://docs.thi.ng/umbrella/tensors/functions/setN.html): Tensor setter w/ uniform scalar
 - [sigmoid](https://docs.thi.ng/umbrella/tensors/variables/sigmoid.html): Sigmoid activation
 - [sin](https://docs.thi.ng/umbrella/tensors/variables/sin.html): Componentwise `Math.sin`
-- [softMax](https://docs.thi.ng/umbrella/tensors/variables/softMax.html): Soft Max activation
+- [softMax](https://docs.thi.ng/umbrella/tensors/functions/softMax.html): Soft Max activation
 - [sqrt](https://docs.thi.ng/umbrella/tensors/variables/sqrt.html): Componentwise `Math.sqrt`
 - [step](https://docs.thi.ng/umbrella/tensors/variables/step.html): Threshold function (as as GLSL `step()`)
 - [sub](https://docs.thi.ng/umbrella/tensors/variables/sub.html): Tensor-tensor subtraction
 - [subN](https://docs.thi.ng/umbrella/tensors/variables/subN.html): Tensor-scalar subtraction
 - [sum](https://docs.thi.ng/umbrella/tensors/variables/sum.html): Component sum
-- [svd](https://docs.thi.ng/umbrella/tensors/variables/sum.html): Singular value decomposition
+- [svd](https://docs.thi.ng/umbrella/tensors/functions/svd.html): Singular value decomposition
+- [swap](https://docs.thi.ng/umbrella/tensors/functions/swap.html): Swap tensor values
 - [tan](https://docs.thi.ng/umbrella/tensors/variables/tan.html): Componentwise `Math.tan`
 - [tanh](https://docs.thi.ng/umbrella/tensors/variables/tanh.html): Componentwise `Math.tanh`
-- [trace](https://docs.thi.ng/umbrella/tensors/variables/trace.html): Matrix trace (diagonal component sum)
+- [trace](https://docs.thi.ng/umbrella/tensors/functions/trace.html): Matrix trace (diagonal component sum)
+- [zeroes](https://docs.thi.ng/umbrella/tensors/functions/zeroes.html): Zero-filled tensor creation
 
 ### Broadcasting support
 
