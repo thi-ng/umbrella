@@ -2,6 +2,7 @@
 import type { Fn3, IEquiv, Pair, UIntArray } from "@thi.ng/api";
 import type { IEquivSet } from "@thi.ng/associative/api";
 import { dissoc } from "@thi.ng/associative/dissoc";
+import { __disposableValues } from "@thi.ng/associative/internal/dispose";
 import { __tostringMixin } from "@thi.ng/associative/internal/tostring";
 import { into } from "@thi.ng/associative/into";
 import { isNumber } from "@thi.ng/checks/is-number";
@@ -18,6 +19,7 @@ const __fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
  * - https://programmingpraxis.com/2012/03/09/sparse-sets/
  * - https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/
  */
+@__disposableValues
 @__tostringMixin
 export abstract class ASparseSet<T extends UIntArray>
 	extends Set<number>
@@ -36,6 +38,9 @@ export abstract class ASparseSet<T extends UIntArray>
 	[Symbol.iterator]() {
 		return this.keys();
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	get size(): number {
 		return this.#n;
@@ -120,7 +125,7 @@ export abstract class ASparseSet<T extends UIntArray>
 		}
 	}
 
-	*entries(): IterableIterator<Pair<number, number>> {
+	*entries(): SetIterator<Pair<number, number>> {
 		const dense = this.#dense;
 		const n = this.#n;
 		for (let i = 0; i < n; i++) {
@@ -128,7 +133,7 @@ export abstract class ASparseSet<T extends UIntArray>
 		}
 	}
 
-	*keys(): IterableIterator<number> {
+	*keys(): SetIterator<number> {
 		const dense = this.#dense;
 		const n = this.#n;
 		for (let i = 0; i < n; i++) {
