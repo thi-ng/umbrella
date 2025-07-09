@@ -5,6 +5,7 @@ import { findIndex } from "@thi.ng/arrays/find";
 import { equiv } from "@thi.ng/equiv";
 import type { EquivSetOpts, IEquivSet } from "./api.js";
 import { dissoc } from "./dissoc.js";
+import { __disposableValues } from "./internal/dispose.js";
 import { __equivSet } from "./internal/equiv.js";
 import { __tostringMixin } from "./internal/tostring.js";
 import { into } from "./into.js";
@@ -23,6 +24,7 @@ import { into } from "./into.js";
  * [`IEquiv`](https://docs.thi.ng/umbrella/api/interfaces/IEquiv.html)
  * interfaces itself.
  */
+@__disposableValues
 @__tostringMixin
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 	#vals: T[];
@@ -38,9 +40,12 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 		vals && this.into(vals);
 	}
 
-	*[Symbol.iterator](): IterableIterator<T> {
+	*[Symbol.iterator](): SetIterator<T> {
 		yield* this.#vals;
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	get [Symbol.species]() {
 		return ArraySet;
@@ -135,17 +140,17 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 		}
 	}
 
-	*entries(): IterableIterator<Pair<T, T>> {
+	*entries(): SetIterator<Pair<T, T>> {
 		for (let v of this.#vals) {
 			yield [v, v];
 		}
 	}
 
-	*keys(): IterableIterator<T> {
+	*keys(): SetIterator<T> {
 		yield* this.#vals;
 	}
 
-	*values(): IterableIterator<T> {
+	*values(): SetIterator<T> {
 		yield* this.#vals;
 	}
 

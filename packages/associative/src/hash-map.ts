@@ -16,6 +16,7 @@ import { equiv } from "@thi.ng/equiv";
 import { map } from "@thi.ng/transducers/map";
 import type { HashMapOpts } from "./api.js";
 import { dissoc } from "./dissoc.js";
+import { __disposableEntries } from "./internal/dispose.js";
 import { __equivMap } from "./internal/equiv.js";
 import { __tostringMixin } from "./internal/tostring.js";
 import { into } from "./into.js";
@@ -45,6 +46,7 @@ const DEFAULT_LOAD = 0.75;
  * ```
  *
  */
+@__disposableEntries
 @__tostringMixin
 export class HashMap<K, V>
 	extends Map<K, V>
@@ -91,19 +93,22 @@ export class HashMap<K, V>
 		return this.entries();
 	}
 
-	*entries(): IterableIterator<Pair<K, V>> {
+	// mixin
+	[Symbol.dispose]() {}
+
+	*entries(): MapIterator<Pair<K, V>> {
 		for (let p of this.#bins) {
 			if (p) yield [p[0], p[1]];
 		}
 	}
 
-	*keys(): IterableIterator<K> {
+	*keys(): MapIterator<K> {
 		for (let p of this.#bins) {
 			if (p) yield p[0];
 		}
 	}
 
-	*values(): IterableIterator<V> {
+	*values(): MapIterator<V> {
 		for (let p of this.#bins) {
 			if (p) yield p[1];
 		}

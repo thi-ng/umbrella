@@ -15,10 +15,12 @@ import { pairs } from "@thi.ng/transducers/pairs";
 import type { EquivMapOpts, IEquivSet } from "./api.js";
 import { ArraySet } from "./array-set.js";
 import { dissoc } from "./dissoc.js";
+import { __disposableEntries } from "./internal/dispose.js";
 import { __equivMap } from "./internal/equiv.js";
 import { __tostringMixin } from "./internal/tostring.js";
 import { into } from "./into.js";
 
+@__disposableEntries
 @__tostringMixin
 export class EquivMap<K, V>
 	extends Map<K, V>
@@ -56,9 +58,12 @@ export class EquivMap<K, V>
 		}
 	}
 
-	[Symbol.iterator](): IterableIterator<Pair<K, V>> {
+	[Symbol.iterator](): MapIterator<Pair<K, V>> {
 		return this.entries();
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	get [Symbol.species]() {
 		return EquivMap;
@@ -145,15 +150,15 @@ export class EquivMap<K, V>
 		return <this>into(this, pairs);
 	}
 
-	entries(): IterableIterator<Pair<K, V>> {
+	entries(): MapIterator<Pair<K, V>> {
 		return this.#map.entries();
 	}
 
-	keys(): IterableIterator<K> {
+	keys(): MapIterator<K> {
 		return this.#map.keys();
 	}
 
-	values(): IterableIterator<V> {
+	values(): MapIterator<V> {
 		return this.#map.values();
 	}
 
