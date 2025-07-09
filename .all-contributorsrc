@@ -581,6 +581,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "bit-app-3000",
+      "name": "bit-app-3000",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42169423?v=4",
+      "profile": "https://github.com/bit-app-3000",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
