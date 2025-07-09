@@ -47,13 +47,14 @@ https://github.com/user-attachments/assets/7929dee1-b78e-4fd2-8756-129b5db14c58
 ### Alogrithm description
 
 The algorithm requires a previous and current frame. The flow field is obtained
-by sampling the current frame at a given `step` distance. For each of these
-sample/grid positions a kernel window is being swept/applied to compute the
-differences to the previous frame. To compute these difference, the previous
-frame is offset multiple times in both X/Y directions in the `[-displace,
-+displace]` interval. The kernel computes the summed absolute difference for
-each of these displaced window regions and selects the window with the minimum
-change. The relative (displacement) position of that minimum is the flow vector
+by sampling the current frame at a given step distance. For each of these
+sample/grid positions a kernel window (of `2*windowSize+1` pixels) is being
+swept/applied to compute the differences to the previous frame. To compute these
+differences, the previous frame is offset multiple times in both X/Y directions
+within the `[-displace, +displace)` interval. The kernel computes the summed
+difference for each of these displaced window regions and selects the window
+with the minimum or maximum change (depending on mode). The relative
+(displacement) position of that selected window is then used as the flow vector
 for that cell, which will then be linearly interpolated to apply temporal
 smoothing of the field (configurable) and minimize jittering.
 
@@ -89,7 +90,7 @@ For Node.js REPL:
 const pf = await import("@thi.ng/pixel-flow");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 675 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 851 bytes
 
 ## Dependencies
 
