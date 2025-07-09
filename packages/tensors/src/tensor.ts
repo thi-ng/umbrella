@@ -20,7 +20,6 @@ import type {
 	TensorCtor,
 	TensorData,
 	TensorFromArrayOpts,
-	TensorLike,
 	TensorOpts,
 	Type,
 	TypeMap,
@@ -698,41 +697,6 @@ export function tensorFromArray(
 		storage: opts?.storage,
 	});
 }
-
-/**
- * Converts/wraps given {@link TensorLike} `src` into a matching tensor
- * implementation. By default the source data is NOT copied.
- *
- * @example
- * ```ts tangle:../export/as-tensor.ts
- * import { asTensor, print } from "@thi.ng/tensors";
- *
- * const src = {
- *   data: [1, 2, 3, 4],
- *   type: <const>"num",
- *   shape: <[number,number]>[2, 2],
- *   stride: <[number,number]>[2, 1],
- * };
- *
- * print(asTensor(src));
- * //    1.0000    2.0000
- * //    3.0000    4.0000
- * ```
- *
- * @param src
- * @param opts
- */
-export const asTensor = <T extends Type, S extends Shape>(
-	src: TensorLike<T, S>,
-	opts?: Pick<TensorOpts<TypeMap[T], S>, "storage" | "copy">
-): ShapeTensor<S, TypeMap[T]> =>
-	tensor(src.type, src.shape, {
-		copy: false,
-		data: src.data,
-		stride: src.stride,
-		offset: src.offset,
-		...opts,
-	});
 
 export const zeroes = <S extends Shape>(
 	shape: S,
