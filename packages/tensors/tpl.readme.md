@@ -13,6 +13,23 @@
 
 ## Built-in tensor operations
 
+The [`ITensor`
+interface](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html) shared
+by all tensor implementations provides the following methods (non-exhaustive
+list here):
+
+- [.get(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#get-1): Get value at position
+- [.hi(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#hi-1): Crop tensor (high end, zero copy)
+- [.index(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#index-1): Get index for position
+- [.lo(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#lo-1): Crop tensor (low end, zero copy)
+- [.pack(storage?)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#pack-1): Copy tensor with data tightly packed
+- [.pick(axes)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#pick-1): Select axes only (zero copy)
+- [.position(index)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#position-1): Get position for index
+- [.reshape(newShape, newStride?)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#reshape-1): Reshape tensor (zero copy)
+- [.set(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#set-1): Set value at position
+- [.step(axes)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#step-1): Skip axes (zero copy)
+- [.transpose(order)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#transpose-1): Re-order axes (zero copy)
+
 The set of tensor polymorphic component-wise ops is easily extensible via
 provided higher-order functions in the `defOpXX()` family. Most of the ops
 listed below are also based on this approach. The function signatures and naming
@@ -24,6 +41,7 @@ conventions are closely aligned to the ones used by the
 - [addN](https://docs.thi.ng/umbrella/tensors/variables/addN.html): Tensor-scalar addition
 - [argMax](https://docs.thi.ng/umbrella/tensors/variables/argMax.html): Maximum component index/value
 - [argMin](https://docs.thi.ng/umbrella/tensors/variables/argMin.html): Minimum component index/value
+- [asTensor](https://docs.thi.ng/umbrella/tensors/variables/asTensor.html): Convert/wrap data as tensor
 - [clamp](https://docs.thi.ng/umbrella/tensors/variables/clamp.html): Tensor-tensor interval clamping
 - [clampN](https://docs.thi.ng/umbrella/tensors/variables/clampN.html): Tensor-scalar interval clamping
 - [convolve](https://docs.thi.ng/umbrella/tensors/variables/convolve.html): Tensor convolution (1D/2D/3D only)
@@ -34,6 +52,7 @@ conventions are closely aligned to the ones used by the
 - [dot](https://docs.thi.ng/umbrella/tensors/variables/dot.html): Dot product
 - [exp](https://docs.thi.ng/umbrella/tensors/variables/exp.html): Componentwise `Math.exp`
 - [exp2](https://docs.thi.ng/umbrella/tensors/variables/exp2.html): Componentwise `2^x`
+- [integrate](https://docs.thi.ng/umbrella/tensors/variables/dot.html): Integrate tensor along innermost dimension
 - [log](https://docs.thi.ng/umbrella/tensors/variables/log.html): Componentwise `Math.log`
 - [log2](https://docs.thi.ng/umbrella/tensors/variables/log2.html): Componentwise `Math.log2`
 - [mag](https://docs.thi.ng/umbrella/tensors/variables/mag.html): Tensor magnitude
