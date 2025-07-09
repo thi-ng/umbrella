@@ -49,8 +49,8 @@
 		"@thi.ng/text-canvas": "^3.0.71",
 		"@thi.ng/transducers": "^9.4.0",
 		"@thi.ng/vectors": "^8.3.0",
-		"esbuild": "^0.25.5",
-		"typedoc": "^0.28.5",
+		"esbuild": "^0.25.6",
+		"typedoc": "^0.28.7",
 		"typescript": "^5.8.3"
 	},
 	"keywords": [

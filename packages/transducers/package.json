@@ -54,8 +54,8 @@
 		"@thi.ng/timestamp": "^1.1.14"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.5",
-		"typedoc": "^0.28.5",
+		"esbuild": "^0.25.6",
+		"typedoc": "^0.28.7",
 		"typescript": "^5.8.3"
 	},
 	"keywords": [

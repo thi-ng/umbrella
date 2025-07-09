@@ -26,7 +26,7 @@
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/transducers-hdom": "workspace:^",
-		"vite": "^6.3.5"
+		"vite": "^7.0.3"
 	},
 	"browser": {
 		"process": false,

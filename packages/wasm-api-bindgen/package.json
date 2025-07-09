@@ -56,9 +56,9 @@
 		"@thi.ng/wasm-api": "^2.3.22"
 	},
 	"devDependencies": {
-		"@types/node": "^22.15.21",
-		"esbuild": "^0.25.5",
-		"typedoc": "^0.28.5",
+		"@types/node": "^24.0.12",
+		"esbuild": "^0.25.6",
+		"typedoc": "^0.28.7",
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
