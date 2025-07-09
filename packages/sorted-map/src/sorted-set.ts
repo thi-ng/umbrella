@@ -2,6 +2,7 @@
 import type { Fn3, ICompare, Maybe, Pair } from "@thi.ng/api";
 import type { IEquivSet } from "@thi.ng/associative";
 import { dissoc } from "@thi.ng/associative/dissoc";
+import { __disposableValues } from "@thi.ng/associative/internal/dispose";
 import { __equivSet } from "@thi.ng/associative/internal/equiv";
 import { __tostringMixin } from "@thi.ng/associative/internal/tostring";
 import { into } from "@thi.ng/associative/into";
@@ -32,6 +33,7 @@ import { SortedMap } from "./sorted-map.js";
  * This set uses a {@link SortedMap} as backing store and therefore has the same
  * resizing characteristics.
  */
+@__disposableValues
 @__tostringMixin
 export class SortedSet<T>
 	extends Set<T>
@@ -55,9 +57,12 @@ export class SortedSet<T>
 		);
 	}
 
-	[Symbol.iterator](): IterableIterator<T> {
+	[Symbol.iterator](): SetIterator<T> {
 		return this.keys();
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	get [Symbol.species]() {
 		return SortedSet;
@@ -104,15 +109,15 @@ export class SortedSet<T>
 		return this.#map.$reduce((_acc, x) => rfn(_acc, x[0]), acc);
 	}
 
-	entries(key?: T, max = false): IterableIterator<Pair<T, T>> {
+	entries(key?: T, max = false): SetIterator<Pair<T, T>> {
 		return this.#map.entries(key, max);
 	}
 
-	keys(key?: T, max = false): IterableIterator<T> {
+	keys(key?: T, max = false): SetIterator<T> {
 		return this.#map.keys(key, max);
 	}
 
-	values(key?: T, max = false): IterableIterator<T> {
+	values(key?: T, max = false): SetIterator<T> {
 		return this.#map.values(key, max);
 	}
 

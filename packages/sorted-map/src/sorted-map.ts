@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn3, IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { dissoc } from "@thi.ng/associative/dissoc";
+import { __disposableEntries } from "@thi.ng/associative/internal/dispose";
 import { __equivMap } from "@thi.ng/associative/internal/equiv";
 import { __tostringMixin } from "@thi.ng/associative/internal/tostring";
 import { into } from "@thi.ng/associative/into";
@@ -9,7 +10,6 @@ import { compare } from "@thi.ng/compare/compare";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Reduced, ReductionFn } from "@thi.ng/transducers";
-import { map } from "@thi.ng/transducers/map";
 import { isReduced } from "@thi.ng/transducers/reduced";
 import type { SortedMapOpts } from "./api.js";
 
@@ -35,6 +35,7 @@ class Node<K, V> {
  * - https://www.youtube.com/watch?v=kBwUoWpeH_Q (MIT courseware)
  * - https://www.educba.com/skip-list-java/
  */
+@__disposableEntries
 @__tostringMixin
 export class SortedMap<K, V> extends Map<K, V> {
 	#head: Node<K, V>;
@@ -70,13 +71,16 @@ export class SortedMap<K, V> extends Map<K, V> {
 		return "SortedMap";
 	}
 
-	*[Symbol.iterator](): IterableIterator<Pair<K, V>> {
+	*[Symbol.iterator](): MapIterator<Pair<K, V>> {
 		let node: Maybe<Node<K, V>> = this.firstNode();
 		while (node?.k !== undefined) {
 			yield [node.k, node.v!];
 			node = node.next;
 		}
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	/**
 	 * Yields iterator of sorted `[key, value]` pairs, optionally taking given
@@ -93,7 +97,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param key
 	 * @param max
 	 */
-	*entries(key?: K, max = false): IterableIterator<Pair<K, V>> {
+	*entries(key?: K, max = false): MapIterator<Pair<K, V>> {
 		if (key === undefined) {
 			yield* this;
 			return;
@@ -124,8 +128,10 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param key
 	 * @param max
 	 */
-	keys(key?: K, max = false): IterableIterator<K> {
-		return map((p) => p[0], this.entries(key, max));
+	*keys(key?: K, max = false): MapIterator<K> {
+		for (let p of this.entries(key, max)) {
+			yield p[0];
+		}
 	}
 
 	/**
@@ -134,8 +140,10 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param key
 	 * @param max
 	 */
-	values(key?: K, max = false): IterableIterator<V> {
-		return map((p) => p[1], this.entries(key, max));
+	*values(key?: K, max = false): MapIterator<V> {
+		for (let p of this.entries(key, max)) {
+			yield p[1];
+		}
 	}
 
 	clear() {
