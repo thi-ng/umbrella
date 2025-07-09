@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-03T15:03:31Z
+- **Last updated**: 2025-07-09T09:42:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.6.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.6.3) (2025-07-09)
+
+#### 🩹 Bug fixes
+
+- update parse logic to allow option values starting with `-` ([8a9050d](https://github.com/thi-ng/umbrella/commit/8a9050d))
+  - disable regex check in `__parseValue()`
+  - add tests
 
 ## [2.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.6.0) (2025-06-28)
 
