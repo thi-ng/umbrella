@@ -15,7 +15,7 @@ const BOUNDARY = /(\D\d|\d\D)/;
  * ```ts tangle:../export/compare-lex.ts
  * import { compareLex } from "@thi.ng/compare";
  *
- * const sr = ["2d", "16bit", "base36", "8bit", "1d", "base8"];
+ * const src = ["2d", "16bit", "base36", "8bit", "1d", "base8"];
  *
  * console.log("native", [...src].sort());
  * // [ "16bit", "1d", "2d", "8bit", "base36", "base8" ]
