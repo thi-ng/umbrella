@@ -312,12 +312,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-07-02
+As of: 2025-07-09
 
-| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
-|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/imago`](./packages/imago)               | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)               | [changelog](./packages/imago/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/object-utils`](./packages/object-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/object-utils.svg)](https://www.npmjs.com/package/@thi.ng/object-utils) | [changelog](./packages/object-utils/CHANGELOG.md) |
+| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
+|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/args`](./packages/args)               | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)               | [changelog](./packages/args/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-flow`](./packages/pixel-flow)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow)   | [changelog](./packages/pixel-flow/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors)         | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)         | [changelog](./packages/tensors/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
@@ -485,6 +487,7 @@ As of: 2025-07-02
 | [`@thi.ng/pixel-convolve`](./packages/pixel-convolve)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-convolve.svg)](https://www.npmjs.com/package/@thi.ng/pixel-convolve)               | [changelog](./packages/pixel-convolve/CHANGELOG.md)        | Extensible image convolution & kernel presets       |
 | [`@thi.ng/pixel-dominant-colors`](./packages/pixel-dominant-colors) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors) | [changelog](./packages/pixel-dominant-colors/CHANGELOG.md) | k-means based dominant colors extraction            |
 | [`@thi.ng/pixel-dither`](./packages/pixel-dither)                   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)                   | [changelog](./packages/pixel-dither/CHANGELOG.md)          | Image dithering w/ various algorithm presets        |
+| [`@thi.ng/pixel-flow`](./packages/pixel-flow)                       | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow)                       | [changelog](./packages/pixel-flow/CHANGELOG.md)            | Optical flow analysis                               |
 | [`@thi.ng/poisson`](./packages/poisson)                             | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                             | [changelog](./packages/poisson/CHANGELOG.md)               | nD Poisson disk sampling                            |
 | [`@thi.ng/porter-duff`](./packages/porter-duff)                     | [![version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)                     | [changelog](./packages/porter-duff/CHANGELOG.md)           | Alpha blending / compositing ops                    |
 | [`@thi.ng/rasterize`](./packages/rasterize)                         | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)                         | [changelog](./packages/rasterize/CHANGELOG.md)             | Shape drawing, filling & rasterization              |
