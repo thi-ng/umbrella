@@ -83,7 +83,7 @@ export const renameKeysObj = <T>(
  *       // rename a => aa
  *       a: "aa",
  *       // rename & transform
- *       b: ["bb", (x, src) => x * 10 + src.a]
+ *       b: ["bb", (x, src) => x * 10 + src.a],
  *       // ignored, since original c is null
  *       c: "cc"
  *     }
