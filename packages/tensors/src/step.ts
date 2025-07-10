@@ -1,18 +1,20 @@
 // SPDX-License-Identifier: Apache-2.0
-import { defOpTN } from "./defoptn.js";
+import { defOpTT } from "./defoptt.js";
 
 /**
- * Componentwise computes step function for given nD tensor and uniform scalar
- * threshold `n`. Writes result to `out`. If `out` is null, mutates `a`.
- * Multi-method.
+ * Componentwise computes step function for given nD tensor and threshold `b`.
+ * Writes result to `out`. If `out` is null, mutates `a`. Multi-method. Also see
+ * {@link stepN} and {@link smoothStep}.
  *
  * @remarks
- * Same logic as GLSL `step()` (but with different order of arguments). If
- * `n=0`, the op becomes the Heaviside function:
- * https://en.wikipedia.org/wiki/Heaviside_step_function
+ * Same logic as GLSL `step()` (but with swapped order of arguments).
+ *
+ * Reference:
+ *
+ * - https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
  *
  * @param out - output tensor
  * @param a - input tensor
- * @param n - scalar
+ * @param b - input tensor (threshold)
  */
-export const stepN = defOpTN((a, b) => (a >= b ? 1 : 0));
+export const step = defOpTT((a, b) => (a >= b ? 1 : 0));
