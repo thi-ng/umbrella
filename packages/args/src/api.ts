@@ -180,6 +180,7 @@ export interface UsageOpts {
 export interface ColorTheme {
 	default: number;
 	command: number;
+	error: number;
 	hint: number;
 	multi: number;
 	param: number;
@@ -189,6 +190,7 @@ export interface ColorTheme {
 export const DEFAULT_THEME: ColorTheme = {
 	default: 95,
 	command: 92,
+	error: 91,
 	hint: 90,
 	multi: 90,
 	param: 96,

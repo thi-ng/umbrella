@@ -2,14 +2,14 @@
 // thing:no-export
 import type { Maybe } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { lengthAnsi } from "@thi.ng/strings/ansi";
+import { padRight } from "@thi.ng/strings/pad-right";
 import { repeat } from "@thi.ng/strings/repeat";
 import { SPLIT_ANSI, wordWrapLines } from "@thi.ng/strings/word-wrap";
 import { DEFAULT_THEME, type ColorTheme } from "./api.js";
-import { lengthAnsi } from "@thi.ng/strings/ansi";
-import { padRight } from "@thi.ng/strings/pad-right";
 
 /** @internal */
-export const __ansi = (x: string, col: number) =>
+export const __ansi = (x: string, col?: number) =>
 	col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
 
 /** @internal */
@@ -42,6 +42,6 @@ export const __wrapWithIndent = (
 export const __colorTheme = (color?: boolean | Partial<ColorTheme>) =>
 	isPlainObject(color)
 		? { ...DEFAULT_THEME, ...color }
-		: color
+		: color !== false
 		? DEFAULT_THEME
 		: <ColorTheme>{};

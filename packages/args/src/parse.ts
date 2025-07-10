@@ -6,6 +6,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { camel } from "@thi.ng/strings/case";
 import type { ArgSpecExt, Args, ParseOpts, ParseResult } from "./api.js";
 import { usage } from "./usage.js";
+import { __ansi, __colorTheme } from "./utils.js";
 
 export const ParseError = defError(() => "parse error");
 
@@ -20,7 +21,12 @@ export const parse = <T extends IObjectOf<any>>(
 	} catch (e) {
 		if (opts.showUsage) {
 			console.log(
-				(<Error>e).message + "\n\n" + usage(specs, opts.usageOpts)
+				__ansi(
+					(<Error>e).message,
+					__colorTheme(opts.usageOpts?.color).error
+				) +
+					"\n\n" +
+					usage(specs, opts.usageOpts)
 			);
 		}
 		throw new ParseError((<Error>e).message);
