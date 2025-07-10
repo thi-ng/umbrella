@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-09T09:42:08Z
+- **Last updated**: 2025-07-10T14:20:23Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.8.0) (2025-07-10)
+
+#### 🚀 Features
+
+- add `step()`/`smoothStep()` variations ([b433462](https://github.com/thi-ng/umbrella/commit/b433462))
+- add ITensor.crop() ([77e294d](https://github.com/thi-ng/umbrella/commit/77e294d))
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.7.0) (2025-07-09)
 

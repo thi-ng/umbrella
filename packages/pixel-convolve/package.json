@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-convolve",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "Extensible bitmap image convolution, kernel presets, normal map & image pyramid generation",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.29",
-		"@thi.ng/checks": "^3.7.9",
-		"@thi.ng/errors": "^2.5.35",
-		"@thi.ng/math": "^5.11.29",
-		"@thi.ng/pixel": "^7.5.1"
+		"@thi.ng/api": "^8.11.30",
+		"@thi.ng/checks": "^3.7.10",
+		"@thi.ng/errors": "^2.5.36",
+		"@thi.ng/math": "^5.11.30",
+		"@thi.ng/pixel": "^7.5.2"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",

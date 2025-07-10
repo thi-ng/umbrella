@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-06-09T17:24:08Z
+- **Last updated**: 2025-07-10T14:20:23Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@7.1.0) (2025-07-10)
+
+#### 🚀 Features
+
+- add `Symbol.dispose` support ([6a7bba9](https://github.com/thi-ng/umbrella/commit/6a7bba9))
+  - update all Set & Map impls
+  - add `__disposableValues()` helper
+  - add `__disposableEntries()` helper
+
+#### ♻️ Refactoring
+
+- update all Map/Set private state and `toString()` impls ([#505](https://github.com/thi-ng/umbrella/issues/505)) ([aef32a9](https://github.com/thi-ng/umbrella/commit/aef32a9))
+  - use private class properties instead of WeakMap to strore internal state
+  - replace `__inspectable` with `__tostringMixin`
+  - update code examples
 
 ### [7.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@7.0.2) (2024-07-25)
 

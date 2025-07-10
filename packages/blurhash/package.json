@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/blurhash",
-	"version": "1.0.16",
+	"version": "1.0.17",
 	"description": "Fast, optimized TS implementation of the Wolt Blurhash algorithm",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.29",
-		"@thi.ng/base-n": "^2.7.41",
-		"@thi.ng/canvas": "^1.0.16",
-		"@thi.ng/errors": "^2.5.35",
-		"@thi.ng/math": "^5.11.29"
+		"@thi.ng/api": "^8.11.30",
+		"@thi.ng/base-n": "^2.7.42",
+		"@thi.ng/canvas": "^1.0.17",
+		"@thi.ng/errors": "^2.5.36",
+		"@thi.ng/math": "^5.11.30"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sparse-set",
-	"version": "1.1.41",
+	"version": "1.2.0",
 	"description": "TypedArray-based sparse set implementations with extended ES Set API",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.29",
-		"@thi.ng/associative": "^7.0.41",
-		"@thi.ng/checks": "^3.7.9",
-		"@thi.ng/errors": "^2.5.35"
+		"@thi.ng/api": "^8.11.30",
+		"@thi.ng/associative": "^7.1.0",
+		"@thi.ng/checks": "^3.7.10",
+		"@thi.ng/errors": "^2.5.36"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",

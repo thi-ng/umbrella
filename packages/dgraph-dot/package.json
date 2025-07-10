@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dgraph-dot",
-	"version": "2.1.166",
+	"version": "2.1.167",
 	"description": "Customizable Graphviz DOT serialization for @thi.ng/dgraph",
 	"type": "module",
 	"module": "./index.js",
@@ -39,9 +39,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.29",
-		"@thi.ng/dgraph": "^2.1.165",
-		"@thi.ng/dot": "^2.1.106"
+		"@thi.ng/api": "^8.11.30",
+		"@thi.ng/dgraph": "^2.1.166",
+		"@thi.ng/dot": "^2.1.107"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",
