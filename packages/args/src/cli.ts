@@ -6,6 +6,7 @@ import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
 import { execFileSync } from "node:child_process";
 import type {
 	CLIAppConfig,
+	ColorTheme,
 	Command,
 	CommandCtx,
 	ParseResult,
@@ -28,8 +29,8 @@ export const cliApp = async <
 ) => {
 	const argv = config.argv || process.argv;
 	const isColor = !process.env.NO_COLOR;
-	const format = isColor ? PRESET_ANSI16 : PRESET_NONE;
-	const usageOpts = {
+	const theme = __colorTheme(isColor);
+	const usageOpts: Partial<UsageOpts> = {
 		prefix: "",
 		color: isColor,
 		...config.usage,
@@ -55,21 +56,18 @@ export const cliApp = async <
 		let parsed: Maybe<ParseResult<OPTS>>;
 		try {
 			parsed = parse<OPTS>({ ...config.opts, ...cmd.opts }, argv, {
-				showUsage: false,
 				usageOpts,
 				start,
 			});
 		} catch (e) {
-			__printError((<Error>e).message, format);
+			process.exit(1);
 		}
-		if (!parsed) {
-			__usageAndExit(config, usageOpts);
-			process.exit(1); // extraneous, required for TS inference
-		}
+		if (!parsed) process.exit(0); // bail out if `--help`
 		if (cmd.inputs !== undefined && cmd.inputs !== parsed.rest.length) {
-			__printError(`expected ${cmd.inputs || 0} input(s)`, format);
+			__printError(`expected ${cmd.inputs || 0} input(s)`, theme);
 			__usageAndExit(config, usageOpts);
 		}
+
 		const ctx: CTX = await config.ctx(
 			{
 				logger: new StreamLogger(process.stderr, config.name, "INFO"),
@@ -82,7 +80,7 @@ export const cliApp = async <
 		await cmd.fn(ctx);
 		if (config.post) await config.post(ctx, cmd);
 	} catch (e) {
-		__printError((<Error>e).message, format);
+		__printError((<Error>e).message, theme);
 		process.exit(1);
 	}
 };
@@ -122,6 +120,8 @@ const __descriptions = (
 };
 
 /** @internal */
+const __printError = (msg: string, theme: ColorTheme) =>
+	process.stderr.write(__ansi(msg, theme.error) + "\n\n");
 
 /**
  * Calls `tput cols` to obtain the number of columns in the current
