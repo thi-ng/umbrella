@@ -103,7 +103,7 @@ For Node.js REPL:
 const ss = await import("@thi.ng/sparse-set");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 988 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.12 KB
 
 ## Dependencies
 

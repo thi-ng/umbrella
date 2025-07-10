@@ -139,7 +139,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.70 KB
 
 ## Dependencies
 
-- [tslib](https://www.typescriptlang.org/)
+None
 
 ## API
 

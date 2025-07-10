@@ -79,7 +79,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.94 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [tslib](https://www.typescriptlang.org/)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

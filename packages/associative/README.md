@@ -187,7 +187,7 @@ For Node.js REPL:
 const assoc = await import("@thi.ng/associative");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.14 KB
 
 ## Dependencies
 
@@ -199,7 +199,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.16 KB
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://www.typescriptlang.org/)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
