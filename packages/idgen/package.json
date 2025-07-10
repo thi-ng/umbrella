@@ -40,8 +40,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.29",
-		"@thi.ng/errors": "^2.5.35",
-		"tslib": "^2.8.1"
+		"@thi.ng/errors": "^2.5.35"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",

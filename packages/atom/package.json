@@ -42,8 +42,7 @@
 		"@thi.ng/api": "^8.11.29",
 		"@thi.ng/equiv": "^2.1.85",
 		"@thi.ng/errors": "^2.5.35",
-		"@thi.ng/paths": "^5.2.12",
-		"tslib": "^2.8.1"
+		"@thi.ng/paths": "^5.2.12"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",

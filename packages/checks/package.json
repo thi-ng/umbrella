@@ -42,9 +42,6 @@
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
-	"dependencies": {
-		"tslib": "^2.8.1"
-	},
 	"devDependencies": {
 		"@types/node": "^24.0.12",
 		"esbuild": "^0.25.6",
