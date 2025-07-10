@@ -18,6 +18,7 @@ interface](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html) shared
 by all tensor implementations provides the following methods (non-exhaustive
 list here):
 
+- [.crop(pos, size)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#get-1): Crop tensor region (zero copy)
 - [.get(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#get-1): Get value at position
 - [.hi(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#hi-1): Crop tensor (high end, zero copy)
 - [.index(pos)](https://docs.thi.ng/umbrella/tensors/interfaces/ITensor.html#index-1): Get index for position
@@ -41,7 +42,6 @@ conventions are closely aligned to the ones used by the
 - [addN](https://docs.thi.ng/umbrella/tensors/variables/addN.html): Tensor-scalar addition
 - [argMax](https://docs.thi.ng/umbrella/tensors/functions/argMax.html): Maximum component index/value
 - [argMin](https://docs.thi.ng/umbrella/tensors/functions/argMin.html): Minimum component index/value
-- [asTensor](https://docs.thi.ng/umbrella/tensors/functions/asTensor.html): Convert/wrap data as tensor
 - [clamp](https://docs.thi.ng/umbrella/tensors/variables/clamp.html): Tensor-tensor interval clamping
 - [clampN](https://docs.thi.ng/umbrella/tensors/variables/clampN.html): Tensor-scalar interval clamping
 - [convolve](https://docs.thi.ng/umbrella/tensors/variables/convolve.html): Tensor convolution (1D/2D/3D only)
@@ -67,8 +67,11 @@ conventions are closely aligned to the ones used by the
 - [mulN](https://docs.thi.ng/umbrella/tensors/variables/mulN.html): Tensor-scalar multiplication
 - [mulM](https://docs.thi.ng/umbrella/tensors/functions/mulM.html): Matrix-matrix product
 - [mulV](https://docs.thi.ng/umbrella/tensors/functions/mulV.html): Matrix-vector product
+- [negativeIndices](https://docs.thi.ng/umbrella/tensors/variables/negativeIndices.html): Indices of negative component values
+- [nonZeroIndices](https://docs.thi.ng/umbrella/tensors/variables/nonZeroIndices.html): Indices of non-zero component values
 - [normalize](https://docs.thi.ng/umbrella/tensors/functions/normalize.html): Tensor normalization (w/ optional length)
 - [ones](https://docs.thi.ng/umbrella/tensors/functions/ones.html): One-filled tensor creation
+- [positiveIndices](https://docs.thi.ng/umbrella/tensors/variables/positiveIndices.html): Indices of positive component values
 - [pow](https://docs.thi.ng/umbrella/tensors/variables/pow.html): Tensor-tensor `Math.pow`
 - [powN](https://docs.thi.ng/umbrella/tensors/variables/powN.html): Tensor-scalar `Math.pow`
 - [print](https://docs.thi.ng/umbrella/tensors/functions/print.html): Formatted tensor output
@@ -82,9 +85,12 @@ conventions are closely aligned to the ones used by the
 - [setN](https://docs.thi.ng/umbrella/tensors/functions/setN.html): Tensor setter w/ uniform scalar
 - [sigmoid](https://docs.thi.ng/umbrella/tensors/variables/sigmoid.html): Sigmoid activation
 - [sin](https://docs.thi.ng/umbrella/tensors/variables/sin.html): Componentwise `Math.sin`
+- [smoothStep](https://docs.thi.ng/umbrella/tensors/variables/smoothStep.html): Smooth threshold function (as as GLSL `smoothstep()`)
+- [smoothStepN](https://docs.thi.ng/umbrella/tensors/variables/smoothStepN.html): Smooth threshold function (as as GLSL `smoothstep()`)
 - [softMax](https://docs.thi.ng/umbrella/tensors/functions/softMax.html): Soft Max activation
 - [sqrt](https://docs.thi.ng/umbrella/tensors/variables/sqrt.html): Componentwise `Math.sqrt`
 - [step](https://docs.thi.ng/umbrella/tensors/variables/step.html): Threshold function (as as GLSL `step()`)
+- [stepN](https://docs.thi.ng/umbrella/tensors/variables/stepN.html): Threshold function (as as GLSL `step()`)
 - [sub](https://docs.thi.ng/umbrella/tensors/variables/sub.html): Tensor-tensor subtraction
 - [subN](https://docs.thi.ng/umbrella/tensors/variables/subN.html): Tensor-scalar subtraction
 - [sum](https://docs.thi.ng/umbrella/tensors/variables/sum.html): Component sum
@@ -180,6 +186,8 @@ factories can be used with
 The following functions can be used to convert/coerce other data structures into
 tensors:
 
+- [`asTensor()`](https://docs.thi.ng/umbrella/tensors/functions/asTensor.html):
+  Convert/wrap data as tensor
 - [`fromFloatBuffer()`](https://docs.thi.ng/umbrella/tensors/functions/fromFloatBuffer.html):
   Coerce [thi.ng/pixel] float buffer/image (or compatible data structures) into
   a 2D/3D tensor
