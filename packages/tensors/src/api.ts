@@ -139,6 +139,13 @@ export interface ITensor<T = number>
 	 */
 	broadcast<S extends Shape>(shape: S, stride: S): ShapeTensor<S, T>;
 
+	/**
+	 * Returns a new tensor of same shape, but all values zeroed. Unless
+	 * `storage` is given, the new data will be allocated using this tensor's
+	 * storage provider.
+	 *
+	 * @param storage
+	 */
 	empty(storage?: ITensorStorage<T>): this;
 
 	/**
@@ -163,28 +170,300 @@ export interface ITensor<T = number>
 	 */
 	position(index: number): number[];
 
+	/**
+	 * Returns value at given grid position. No bounds checking.
+	 *
+	 * @param pos
+	 */
 	get(pos: NumericArray): T;
 
+	/**
+	 * Sets value at given grid position. No bounds checking.
+	 *
+	 * @param pos
+	 * @param value
+	 */
 	set(pos: NumericArray, value: T): this;
 
+	/**
+	 * Returns a new tensor of the bottom-right region starting from given
+	 * `pos`. View transform only, no data will be copied.
+	 *
+	 * @remarks
+	 * Also see {@link Itensor.hi}, {@link ITensor.crop}.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-lo.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * const a = range(16).reshape([4, 4]);
+	 * print(a);
+	 * //        0    1.0000    2.0000    3.0000
+	 * //   4.0000    5.0000    6.0000    7.0000
+	 * //   8.0000    9.0000   10.0000   11.0000
+	 * //  12.0000   13.0000   14.0000   15.0000
+	 *
+	 * const b = a.lo([2, 1]);
+	 * print(b);
+	 * //   9.0000   10.0000   11.0000
+	 * //  13.0000   14.0000   15.0000
+	 * ```
+	 *
+	 * @param pos
+	 */
 	lo(pos: NumericArray): this;
 
+	/**
+	 * Returns a new tensor of the top-left region until given `pos` (excluded).
+	 * View transform only, no data will be copied.
+	 *
+	 * @remarks
+	 * Also see {@link Itensor.lo}, {@link ITensor.crop}.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-hi.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * const a = range(16).reshape([4, 4]);
+	 * print(a);
+	 * //        0    1.0000    2.0000    3.0000
+	 * //   4.0000    5.0000    6.0000    7.0000
+	 * //   8.0000    9.0000   10.0000   11.0000
+	 * //  12.0000   13.0000   14.0000   15.0000
+	 *
+	 * const b = a.hi([2, 3]);
+	 * print(b);
+	 * //        0    1.0000    2.0000
+	 * //   4.0000    5.0000    6.0000
+	 * ```
+	 *
+	 * @param pos
+	 */
 	hi(pos: NumericArray): this;
 
+	/**
+	 * Returns a new tensor of the extracted region defined by `pos` and `size`.
+	 * This op is a combination of {@link ITensor.lo} and {@link ITensor.hi}.
+	 * View transform only, no data will be copied.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-crop.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * const a = range(16).reshape([4, 4]);
+	 * print(a);
+	 * //        0    1.0000    2.0000    3.0000
+	 * //   4.0000    5.0000    6.0000    7.0000
+	 * //   8.0000    9.0000   10.0000   11.0000
+	 * //  12.0000   13.0000   14.0000   15.0000
+	 *
+	 * const b = a.crop([1, 1], [2, 2]);
+	 * print(b);
+	 * //   5.0000    6.0000
+	 * //   9.0000   10.0000
+	 * ```
+	 *
+	 * @param pos
+	 * @param size
+	 */
+	crop(pos: NumericArray, size: NumericArray): this;
+
+	/**
+	 * Returns a new tensor with step sizes adjusted for selected axes (Using
+	 * zero for an axis will keep its current step size). View transform only,
+	 * no data will be copied.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-step.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * const a = range(16).reshape([4, 4]);
+	 * print(a);
+	 * //        0    1.0000    2.0000    3.0000
+	 * //   4.0000    5.0000    6.0000    7.0000
+	 * //   8.0000    9.0000   10.0000   11.0000
+	 * //  12.0000   13.0000   14.0000   15.0000
+	 *
+	 * // only select every 2nd row
+	 * const b = a.step([2, 1]);
+	 * print(b);
+	 * //        0    1.0000    2.0000    3.0000
+	 * //   8.0000    9.0000   10.0000   11.0000
+	 *
+	 * // keep rows as is (zero), only select every 2nd column
+	 * print(b.step([0, 2]));
+	 * //        0    2.0000
+	 * //   8.0000   10.0000
+	 * ```
+	 *
+	 * @param select
+	 */
 	step(select: NumericArray): this;
 
+	/**
+	 * Returns a new tensor with only the `select`ed axes. A -1 will select all
+	 * value in that axis. View transform only, no data will be copied.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-pick.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * // 3D 4x4x4 tensor with values in [0,64) range
+	 * const a = range(64).reshape([4, 4, 4]);
+	 *
+	 * // pick entire slice #2
+	 * print(a.pick([2]));
+	 * //  32.0000   33.0000   34.0000   35.0000
+	 * //  36.0000   37.0000   38.0000   39.0000
+	 * //  40.0000   41.0000   42.0000   43.0000
+	 * //  44.0000   45.0000   46.0000   47.0000
+	 *
+	 * // pick slice #2, row #2 (1D tensor)
+	 * print(a.pick([2, 2]));
+	 * //  40.0000   41.0000   42.0000   43.0000
+	 *
+	 * // pick slice #2, column #2 (1D tensor)
+	 * print(a.pick([2, -1, 2]));
+	 * //  34.0000   38.0000   42.0000   46.0000
+	 * ```
+	 *
+	 * @param select
+	 */
 	pick(select: NumericArray): ITensor<T>;
 
+	/**
+	 * Creates a "packed" copy of this tensor with dense striding and the new
+	 * data array only holding the values actually referenced by this tensor.
+	 * Unless `storage` is given, the new data will be allocated using this
+	 * tensor's storage provider.
+	 *
+	 * @remarks
+	 * Since most other `ITensor` ops are zero-copy, view-only transforms, often
+	 * resulting in "sparse" views which are only addressing a subset of the
+	 * values stored, using `.pack()` is useful to extract data into a dense
+	 * tensor/buffer.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-pack.ts
+	 * import { range } from "@thi.ng/tensors";
+	 *
+	 * const a = range(16).reshape([4, 4]);
+	 * console.log("a data", a.data);
+	 * // a data [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+	 *
+	 * // only select every 2nd row & column
+	 * const b = a.step([2, 2]);
+	 * console.log("b values", [...b]);
+	 * // b values [ 0, 2, 8, 10 ]
+	 * console.log("b data", b.data);
+	 * // b data [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+	 *
+	 * // create packed version of `b`
+	 * const c = b.pack();
+	 * console.log("c data", c.data);
+	 * // c data [ 0, 2, 8, 10 ]
+	 * ```
+	 *
+	 * @param storage
+	 */
 	pack(storage?: ITensorStorage<T>): this;
 
+	/**
+	 * Returns a new tensor with same data but given new shape (and optionally
+	 * new strides). The total number of elements of the new shape MUST match
+	 * that of the current shape (otherwise an error will be thrown).
+	 *
+	 * @remarks
+	 * Also see {@link ITensor.crop} and {@link ITensor.resize}
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-reshape.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * // 1D tensor
+	 * const a = range(16);
+	 *
+	 * // reshape as 2D tensor
+	 * print(a.reshape([4, 4]));
+	 * //         0    1.0000    2.0000    3.0000
+	 * //    4.0000    5.0000    6.0000    7.0000
+	 * //    8.0000    9.0000   10.0000   11.0000
+	 * //   12.0000   13.0000   14.0000   15.0000
+	 *
+	 * // reshape as 3D tensor
+	 * print(a.reshape([2, 2, 4]));
+	 * // --- 0: ---
+	 * //         0    1.0000    2.0000    3.0000
+	 * //    4.0000    5.0000    6.0000    7.0000
+	 * // --- 1: ---
+	 * //    8.0000    9.0000   10.0000   11.0000
+	 * //   12.0000   13.0000   14.0000   15.0000
+	 * ```
+	 *
+	 * @param newShape
+	 * @param newStride
+	 */
 	reshape<S extends Shape>(newShape: S, newStride?: S): ShapeTensor<S, T>;
 
+	/**
+	 * Returns a copy of the tensor resized to `newShape`. If the new shape is
+	 * larger than the current shape, the extra data values will be initialized
+	 * to `fill` (default: zero). Values will be copied in current iteration
+	 * order (same logic as numpy). Unless `storage` is given, the new data will
+	 * be allocated using this tensor's storage provider.
+	 *
+	 * @remarks
+	 * Also see {@link ITensor.crop}, {@link ITensor.reshape}.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-resize.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * // 2D 4x4 tensor with values in [0,16) range
+	 * const a = range(16).reshape([4, 4]);
+	 *
+	 * print(a.resize([4, 8]));
+	 * //        0    1.0000    2.0000    3.0000    4.0000    5.0000    6.0000    7.0000
+	 * //   8.0000    9.0000   10.0000   11.0000   12.0000   13.0000   14.0000   15.0000
+	 * //        0         0         0         0         0         0         0         0
+	 * //        0         0         0         0         0         0         0         0
+	 * ```
+	 *
+	 * @param newShape
+	 * @param fill
+	 * @param storage
+	 */
 	resize<S extends Shape>(
 		newShape: S,
 		fill?: T,
 		storage?: ITensorStorage<T>
 	): ShapeTensor<S, T>;
 
+	/**
+	 * Returns a new tensor with the given new axis `order`. View transform
+	 * only, no data will be copied.
+	 *
+	 * @example
+	 * ```ts tangle:../export/itensor-transpose.ts
+	 * import { print, range } from "@thi.ng/tensors";
+	 *
+	 * const a = range(12).reshape([3, 4]);
+	 * print(a);
+	 * //        0    1.0000    2.0000    3.0000
+	 * //   4.0000    5.0000    6.0000    7.0000
+	 * //   8.0000    9.0000   10.0000   11.0000
+	 *
+	 * // swap row & column order
+	 * const b = a.transpose([1, 0]);
+	 * print(b);
+	 * //        0    4.0000    8.0000
+	 * //   1.0000    5.0000    9.0000
+	 * //   2.0000    6.0000   10.0000
+	 * //   3.0000    7.0000   11.0000
+	 * ```
+	 *
+	 * @param order
+	 */
 	transpose(order: NumericArray): this;
 
 	toJSON(): any;
