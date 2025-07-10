@@ -2,8 +2,8 @@
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { StreamLogger } from "@thi.ng/logger/stream";
-import type { FormatPresets } from "@thi.ng/text-format";
 import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
+import { execFileSync } from "node:child_process";
 import type {
 	CLIAppConfig,
 	Command,
@@ -122,5 +122,17 @@ const __descriptions = (
 };
 
 /** @internal */
-const __printError = (msg: string, fmt: FormatPresets) =>
-	process.stderr.write(fmt.red(msg) + "\n\n");
+
+/**
+ * Calls `tput cols` to obtain the number of columns in the current
+ * terminal. Returns `fallback` in case of error.
+ *
+ * @param fallback
+ */
+export const terminalLineWidth = (fallback = 80) => {
+	try {
+		return +execFileSync("tput", ["cols"], { encoding: "ascii" });
+	} catch (e) {
+		return fallback;
+	}
+};
