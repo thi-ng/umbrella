@@ -40,7 +40,7 @@ variable](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy#linguis
 ```ts tangle:export/readme-svg.ts
 import { invSigmoid, sigmoid, trapezoid, variable } from "@thi.ng/fuzzy";
 import { varToSvg } from "@thi.ng/fuzzy-viz";
-import { writeFileSync } "node:fs";
+import { writeFileSync } from "node:fs";
 
 // temperature sets (in celsius)
 const temp = variable([-20, 40], {
