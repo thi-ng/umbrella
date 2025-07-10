@@ -64,6 +64,7 @@
 		"array",
 		"blur",
 		"broadcast",
+		"conversion",
 		"convolution",
 		"data-oriented",
 		"datastructure",
@@ -85,6 +86,7 @@
 		"pool",
 		"presets",
 		"random",
+		"smoothstep",
 		"step",
 		"svd",
 		"tensor",
@@ -281,6 +283,12 @@
 		"./sin": {
 			"default": "./sin.js"
 		},
+		"./smoothstep": {
+			"default": "./smoothstep.js"
+		},
+		"./smoothstepn": {
+			"default": "./smoothstepn.js"
+		},
 		"./softmax": {
 			"default": "./softmax.js"
 		},
@@ -292,6 +300,9 @@
 		},
 		"./step": {
 			"default": "./step.js"
+		},
+		"./stepn": {
+			"default": "./stepn.js"
 		},
 		"./storage": {
 			"default": "./storage.js"
