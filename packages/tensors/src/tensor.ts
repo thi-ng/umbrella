@@ -163,6 +163,20 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 		);
 	}
 
+	crop(pos: NumericArray, size: NumericArray): this {
+		const { shape, offset } = __crop(pos, size, this);
+		return <typeof this>(
+			new (<TensorCtor<T>>this.constructor)(
+				this.type,
+				this.storage,
+				this.data,
+				shape,
+				this.stride,
+				offset
+			)
+		);
+	}
+
 	step(select: NumericArray) {
 		const { shape, stride, offset } = __step(select, this);
 		return <typeof this>(
@@ -739,11 +753,12 @@ export const strideOrder = (strides: number[]) =>
 /** @internal */
 const __lo = (
 	select: NumericArray,
-	{ shape, stride, offset }: ITensor<any>
+	{ shape, stride, offset }: Pick<ITensor, "shape" | "stride" | "offset">
 ) => {
 	const newShape: number[] = [];
 	for (let i = 0, n = shape.length; i < n; i++) {
 		const x = select[i];
+		if (x > shape[i]) illegalShape(select);
 		newShape.push(
 			x >= 0 ? ((offset += stride[i] * x), shape[i] - x) : shape[i]
 		);
@@ -752,13 +767,25 @@ const __lo = (
 };
 
 /** @internal */
-const __hi = (select: NumericArray, { shape }: ITensor<any>) => {
+const __hi = (select: NumericArray, { shape }: Pick<ITensor, "shape">) => {
 	const newShape: number[] = [];
 	for (let i = 0, n = shape.length; i < n; i++) {
 		const x = select[i];
+		if (x > shape[i]) illegalShape(select);
 		newShape.push(x > 0 ? x : shape[i]);
 	}
 	return newShape;
+};
+
+/** @internal */
+const __crop = (
+	lo: NumericArray,
+	hi: NumericArray,
+	src: Pick<ITensor, "shape" | "stride" | "offset">
+) => {
+	const res = __lo(lo, src);
+	const shape = __hi(hi, res);
+	return { ...res, shape };
 };
 
 /** @internal */
