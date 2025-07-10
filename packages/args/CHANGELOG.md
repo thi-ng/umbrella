@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-10T14:20:23Z
+- **Last updated**: 2025-07-10T20:04:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.7.0) (2025-07-10)
+
+#### 🚀 Features
+
+- add `terminalLineWidth()` helper ([e8fdd27](https://github.com/thi-ng/umbrella/commit/e8fdd27))
+- update ColorTheme and error msg output ([c2bca13](https://github.com/thi-ng/umbrella/commit/c2bca13))
+
+#### ♻️ Refactoring
+
+- simplify error handling in cliApp() ([9973cf0](https://github.com/thi-ng/umbrella/commit/9973cf0))
 
 ### [2.6.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.6.3) (2025-07-09)
 
