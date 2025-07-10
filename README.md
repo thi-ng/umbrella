@@ -312,12 +312,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-07-09
+As of: 2025-07-10
 
 | Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
 |:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/args`](./packages/args)               | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)               | [changelog](./packages/args/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/associative`](./packages/associative) | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative) | [changelog](./packages/associative/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-flow`](./packages/pixel-flow)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow)   | [changelog](./packages/pixel-flow/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sorted-map`](./packages/sorted-map)   | [![version](https://img.shields.io/npm/v/@thi.ng/sorted-map.svg)](https://www.npmjs.com/package/@thi.ng/sorted-map)   | [changelog](./packages/sorted-map/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sparse-set`](./packages/sparse-set)   | [![version](https://img.shields.io/npm/v/@thi.ng/sparse-set.svg)](https://www.npmjs.com/package/@thi.ng/sparse-set)   | [changelog](./packages/sparse-set/CHANGELOG.md)  |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors)         | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)         | [changelog](./packages/tensors/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) |
 
