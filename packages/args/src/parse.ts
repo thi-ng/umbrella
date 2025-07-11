@@ -3,7 +3,7 @@ import type { IObjectOf, Maybe, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { defError } from "@thi.ng/errors/deferror";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { camel } from "@thi.ng/strings/case";
+import { camel, kebab } from "@thi.ng/strings/case";
 import type { ArgSpecExt, Args, ParseOpts, ParseResult } from "./api.js";
 import { usage } from "./usage.js";
 import { __ansi, __colorTheme } from "./utils.js";
@@ -62,7 +62,7 @@ const __parseOpts = <T extends IObjectOf<any>>(
 			i++;
 		}
 	}
-	id && illegalArgs(`missing value for: --${id}`);
+	id && illegalArgs(`missing value for: --${kebab(id)}`);
 	return {
 		result: __processResults(specs, acc),
 		index: i,
@@ -138,7 +138,7 @@ const __processResults = <T extends IObjectOf<any>>(
 			if (spec.default !== undefined) {
 				acc[id] = spec.default;
 			} else if (spec.optional === false) {
-				illegalArgs(`missing arg: --${id}`);
+				illegalArgs(`missing arg: --${kebab(id)}`);
 			}
 		} else if (spec.coerce) {
 			__coerceValue(spec, acc, id);
@@ -158,6 +158,6 @@ const __coerceValue = (spec: ArgSpecExt, acc: any, id: string) => {
 		}
 		acc[id] = spec.coerce!(acc[id]);
 	} catch (e) {
-		throw new Error(`arg --${id}: ${(<Error>e).message}`);
+		throw new Error(`arg --${kebab(id)}: ${(<Error>e).message}`);
 	}
 };
