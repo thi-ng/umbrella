@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Maybe } from "@thi.ng/api";
+import type { Comparator, Maybe } from "@thi.ng/api";
 import type { Pow2 } from "@thi.ng/binary";
 import type { ILogger } from "@thi.ng/logger";
 import type { BlockFS } from "./fs.js";
@@ -86,7 +86,7 @@ export interface IDirectory extends AsyncIterable<IEntry> {
 	readonly fs: BlockFS;
 	readonly entry: IEntry;
 
-	tree(): AsyncIterableIterator<IEntry>;
+	tree(cmp?: Comparator<IEntry>): AsyncIterableIterator<IEntry>;
 
 	traverse(): Promise<{ blocks: number[]; entries: IEntry[] }>;
 

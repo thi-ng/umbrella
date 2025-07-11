@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { Comparator } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { utf8Length } from "@thi.ng/strings/utf8";
 import {
@@ -28,10 +29,22 @@ export class Directory implements IDirectory {
 		}
 	}
 
-	async *tree(): AsyncIterableIterator<IEntry> {
-		for await (let entry of this) {
-			yield entry;
-			if (entry.isDirectory()) yield* entry.directory.tree();
+	async *tree(cmp?: Comparator<IEntry>): AsyncIterableIterator<IEntry> {
+		if (cmp) {
+			const entries = [];
+			for await (let entry of this) {
+				entries.push(entry);
+			}
+			entries.sort(cmp);
+			for (let entry of entries) {
+				yield entry;
+				if (entry.isDirectory()) yield* entry.directory.tree(cmp);
+			}
+		} else {
+			for await (let entry of this) {
+				yield entry;
+				if (entry.isDirectory()) yield* entry.directory.tree();
+			}
 		}
 	}
 
