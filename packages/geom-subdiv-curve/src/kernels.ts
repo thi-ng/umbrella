@@ -155,7 +155,7 @@ export const SUBDIV_DLG: SubdivKernel = {
  *
  * // subdivide polyline with the kernel
  * console.log(
- *   subdivide([[0,0], [100, 100], [200, 0]], kernel)
+ *   subdivide([[0,0], [100, 100], [200, 0]], [kernel])
  * );
  * // [
  * //   [ 0, 0 ], [ 50, 0 ], [ 50, 100 ], [ 100, 100 ],
