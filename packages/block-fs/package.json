@@ -100,6 +100,15 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./cli/api": {
+			"default": "./cli/api.js"
+		},
+		"./cli/convert": {
+			"default": "./cli/convert.js"
+		},
+		"./cli/list": {
+			"default": "./cli/list.js"
+		},
 		"./cli": {
 			"default": "./cli.js"
 		},
