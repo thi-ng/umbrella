@@ -91,6 +91,7 @@
 		"./*.js",
 		"./*.d.ts",
 		"bin",
+		"cli",
 		"storage"
 	],
 	"exports": {
