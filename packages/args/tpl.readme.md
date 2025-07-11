@@ -44,6 +44,19 @@ individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
 
 {{repo.examples}}
 
+## Projects using this package
+
+- [@thi.ng/block-fs](https://thi.ng/block-fs): Customizable block-based storage,
+  adapters & file system layer
+- [@thi.ng/meta-css](https://thi.ng/meta-css): Data-driven CSS framework
+  codegen, transpiler & bundler
+- [@thi.ng/pointfree-lang](https://thi.ng/pointfree-lang): Forth style syntax
+  layer/compiler & CLI for the [@thi.ng/pointfree](https://thi.ng/pointfree) DSL
+- [@thi.ng/tangle](https://thi.ng/tangle): Literate programming code block
+  tangling / codegen utility, inspired by org-mode & noweb
+- [@thi.ng/wasm-api-bindgen](https://thi.ng/wasm-api-bindgen): Polyglot bindings
+  code generators (TS/JS, Zig, C11) for hybrid WebAssembly projects
+
 ## API
 
 {{pkg.docs}}

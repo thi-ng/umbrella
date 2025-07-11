@@ -18,6 +18,7 @@
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Projects using this package](#projects-using-this-package)
 - [API](#api)
   - [Basic usage](#basic-usage)
     - [Generate & display help](#generate--display-help)
@@ -83,6 +84,19 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.99 KB
 - [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
+## Projects using this package
+
+- [@thi.ng/block-fs](https://thi.ng/block-fs): Customizable block-based storage,
+  adapters & file system layer
+- [@thi.ng/meta-css](https://thi.ng/meta-css): Data-driven CSS framework
+  codegen, transpiler & bundler
+- [@thi.ng/pointfree-lang](https://thi.ng/pointfree-lang): Forth style syntax
+  layer/compiler & CLI for the [@thi.ng/pointfree](https://thi.ng/pointfree) DSL
+- [@thi.ng/tangle](https://thi.ng/tangle): Literate programming code block
+  tangling / codegen utility, inspired by org-mode & noweb
+- [@thi.ng/wasm-api-bindgen](https://thi.ng/wasm-api-bindgen): Polyglot bindings
+  code generators (TS/JS, Zig, C11) for hybrid WebAssembly projects
 
 ## API
 
