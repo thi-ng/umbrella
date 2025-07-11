@@ -42,7 +42,7 @@ export const fromNodeJS = <T>(
  *
  * const cmd = spawn("ls", ["-la"]);
  *
- * linesFromNodeJS<string>(cmd.stdout, cmd.stderr).subscribe(trace("output"));
+ * linesFromNodeJS(cmd.stdout, cmd.stderr).subscribe(trace("output"));
  *
  * // output total 12760
  * // output drwxr-xr-x   37 foo  staff     1184 Nov 15 15:29 .
