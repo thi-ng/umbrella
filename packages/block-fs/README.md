@@ -294,7 +294,7 @@ For Node.js REPL:
 const bf = await import("@thi.ng/block-fs");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.33 KB
 
 ## Dependencies
 
