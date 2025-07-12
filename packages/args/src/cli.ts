@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { StreamLogger } from "@thi.ng/logger/stream";
 import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
@@ -63,9 +64,24 @@ export const cliApp = async <
 			process.exit(1);
 		}
 		if (!parsed) process.exit(0); // bail out if `--help`
-		if (cmd.inputs !== undefined && cmd.inputs !== parsed.rest.length) {
-			__printError(`expected ${cmd.inputs || 0} input(s)`, theme);
-			__usageAndExit(config, usageOpts);
+		if (cmd.inputs !== undefined) {
+			const num = parsed.rest.length;
+			let err: Maybe<string>;
+			if (isArray(cmd.inputs)) {
+				const [min, max] = cmd.inputs;
+				if (num < min || num > max) {
+					err =
+						max < Infinity
+							? `expected ${min}-${max} inputs`
+							: `expected at least ${min} inputs`;
+				}
+			} else if (num !== cmd.inputs) {
+				err = `expected ${cmd.inputs} input(s)`;
+			}
+			if (err) {
+				__printError(err, theme);
+				__usageAndExit(config, usageOpts);
+			}
 		}
 
 		const ctx: CTX = await config.ctx(

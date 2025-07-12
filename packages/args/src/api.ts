@@ -274,9 +274,10 @@ export interface Command<
 	opts: Args<Omit<OPTS, keyof BASE>>;
 	/**
 	 * Number of required rest input value (after all parsed options). Leave
-	 * unset to allow any number.
+	 * unset to allow any number. If given as tuple, the values are interpreted
+	 * as acceptable `[min,max]` range.
 	 */
-	inputs?: number;
+	inputs?: number | [number, number];
 	/**
 	 * Actual command function/implementation.
 	 */
