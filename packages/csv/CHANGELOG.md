@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-10T14:20:23Z
+- **Last updated**: 2025-07-12T12:28:22Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.4.0) (2025-07-12)
+
+#### 🚀 Features
+
+- add `json()` higher-order cell transform ([d8a95dd](https://github.com/thi-ng/umbrella/commit/d8a95dd))
 
 ### [2.3.87](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.87) (2024-06-21)
 
