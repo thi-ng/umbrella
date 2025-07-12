@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { flag, type Command } from "@thi.ng/args";
 import type { Pow2 } from "@thi.ng/binary";
 import { compareByKey } from "@thi.ng/compare";
@@ -38,19 +39,20 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 			desc: "Display file sizes",
 		}),
 	},
+	inputs: 1,
 	desc: "List file tree of a BlockFS blob",
-	fn: async (ctx) => {
-		if (ctx.opts.all) {
-			ctx.opts.withMtime = ctx.opts.withSize = true;
+	fn: async ({ inputs, opts, logger }) => {
+		if (opts.all) {
+			opts.withMtime = opts.withSize = true;
 		}
-		const buffer = readBinary(ctx.inputs[0]);
+		const buffer = readBinary(inputs[0], logger);
 		const storage = new MemoryBlockStorage({
-			numBlocks: (buffer.length / ctx.opts.blockSize) >>> 0,
-			blockSize: <Pow2>ctx.opts.blockSize,
-			logger: ctx.logger,
+			numBlocks: (buffer.length / opts.blockSize) >>> 0,
+			blockSize: <Pow2>opts.blockSize,
+			logger,
 			buffer,
 		});
-		const bfs = new BlockFS(storage, { logger: ctx.logger });
+		const bfs = new BlockFS(storage, { logger });
 		await bfs.init();
 		const tree: [string, number, IEntry][] = [];
 		for await (let entry of bfs.root.tree(compareByKey("name"))) {
@@ -71,7 +73,7 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 					break;
 				}
 			}
-			const row: string[] = ctx.opts.tree
+			const row: string[] = opts.tree
 				? [
 						[
 							...last.slice(0, depth).map((x) => INDENT[x]),
@@ -80,10 +82,10 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 						].join(""),
 				  ]
 				: [path];
-			if (ctx.opts.withSize) {
+			if (opts.withSize) {
 				row.push(entry.isDirectory() ? "" : String(Number(entry.size)));
 			}
-			if (ctx.opts.withMtime) {
+			if (opts.withMtime) {
 				row.push(new Date(entry.mtime).toISOString());
 			}
 			rows.push(row);

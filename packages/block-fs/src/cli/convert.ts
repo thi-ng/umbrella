@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { int, string, strings, type Command } from "@thi.ng/args";
 import { align, type Pow2 } from "@thi.ng/binary";
 import { files, readBinary, writeFile } from "@thi.ng/file-io";
@@ -41,41 +42,43 @@ export const CONVERT: Command<ConvertOpts, CLIOpts, AppCtx<ConvertOpts>> = {
 			hint: "EXT",
 		}),
 	},
+	inputs: 1,
 	desc: "Convert file tree into single BlockFS blob",
 	fn: async (ctx) => {
+		const { opts, logger } = ctx;
 		const collected = collectFiles(ctx);
 		const numBlocks = align(
-			ctx.opts.numBlocks ??
-				computeBlockCount(collected, ctx.opts.blockSize, ctx.logger),
+			opts.numBlocks ??
+				computeBlockCount(collected, opts.blockSize, ctx.logger),
 			8
 		);
-		ctx.logger.info("number of files:", collected.files.length);
-		ctx.logger.info("number of directories:", collected.dirs.length);
-		ctx.logger.info("total file size:", collected.size);
-		ctx.logger.info("number of blocks:", numBlocks);
+		logger.info("number of files:", collected.files.length);
+		logger.info("number of directories:", collected.dirs.length);
+		logger.info("total file size:", collected.size);
+		logger.info("number of blocks:", numBlocks);
 
 		const storage = new MemoryBlockStorage({
+			blockSize: <Pow2>opts.blockSize,
 			numBlocks,
-			blockSize: <Pow2>ctx.opts.blockSize,
-			logger: ctx.logger,
+			logger,
 		});
-		const bfs = new BlockFS(storage, { logger: ctx.logger });
+		const bfs = new BlockFS(storage, { logger });
 		await bfs.init();
 
-		ctx.logger.info("root dir block:", bfs.rootDirBlockID);
-		ctx.logger.info("first data block:", bfs.dataStartBlockID);
-		ctx.logger.info("block data size:", bfs.blockDataSize);
+		logger.info("root dir block:", bfs.rootDirBlockID);
+		logger.info("first data block:", bfs.dataStartBlockID);
+		logger.info("block data size:", bfs.blockDataSize);
 
 		for (let f of collected.files) {
-			const data = readBinary(f.src, ctx.logger);
-			ctx.logger.info("writing file:", f.dest, "size:", data.length);
+			const data = readBinary(f.src, logger);
+			logger.info("writing file:", f.dest, "size:", data.length);
 			await bfs.writeFile(f.dest, data);
 			const entry = await bfs.entryForPath(f.dest);
 			entry.ctime = f.ctime;
 			entry.mtime = f.mtime;
 			await entry.save();
 		}
-		writeFile(ctx.opts.out, storage.buffer, undefined, ctx.logger);
+		writeFile(opts.out, storage.buffer, undefined, logger);
 	},
 };
 
