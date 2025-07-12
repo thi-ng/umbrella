@@ -20,6 +20,22 @@ export const upper: CellTransform = (x) => x.toUpperCase();
 export const lower: CellTransform = (x) => x.toLowerCase();
 
 /**
+ * Higher-order cell parse value transform. Attempts to parse given input as
+ * JSON and returns it. Returns configured `defaultVal` in case of parse error.
+ *
+ * @param defaultVal
+ */
+export const json =
+	(defaultVal?: any): CellTransform =>
+	(x) => {
+		try {
+			return JSON.parse(x);
+		} catch (e) {
+			return defaultVal;
+		}
+	};
+
+/**
  * Higher-order cell parse value transform. Attempts to parse cell values as
  * floating point number or returns `defaultVal` if not possible.
  *
