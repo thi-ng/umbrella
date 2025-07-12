@@ -10,6 +10,8 @@ import { BlockFS } from "../fs.js";
 import { MemoryBlockStorage } from "../storage/memory.js";
 import { ARG_BLOCKSIZE, type AppCtx, type CLIOpts } from "./api.js";
 
+const { ceil, log2 } = Math;
+
 export interface ConvertOpts extends CLIOpts {
 	numBlocks?: number;
 	blockSize: number;
@@ -143,12 +145,13 @@ const computeBlockCount = (
 	const blockDataSizeBytes = requiredBytes(blockSize);
 	const blockDataSize = blockSize - blockIDBytes - blockDataSizeBytes;
 	const numEntries = collected.files.length + collected.dirs.length;
-	const numEntryBlocks = Math.ceil((numEntries * Entry.SIZE) / blockDataSize);
+	const maxEntriesPerBlock = ~~(blockDataSize / Entry.SIZE);
+	const numEntryBlocks = ceil(numEntries / maxEntriesPerBlock);
 	logger.info("num entries:", numEntries);
 	logger.info("num entry blocks:", numEntryBlocks);
 	blocks += numEntryBlocks;
 	for (let f of collected.files) {
-		const size = Math.ceil(f.size / blockDataSize);
+		const size = ceil(f.size / blockDataSize);
 		logger.debug("file:", f.src, "blocks:", size);
 		blocks += size;
 	}
@@ -163,4 +166,4 @@ const computeBlockCount = (
  *
  * @param x
  */
-const requiredBytes = (x: number) => align(Math.ceil(Math.log2(x)), 8) >> 3;
+const requiredBytes = (x: number) => align(ceil(log2(x)), 8) >> 3;
