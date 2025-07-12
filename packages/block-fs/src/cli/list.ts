@@ -1,5 +1,6 @@
 import { flag, type Command } from "@thi.ng/args";
 import type { Pow2 } from "@thi.ng/binary";
+import { compareByKey } from "@thi.ng/compare";
 import { readBinary } from "@thi.ng/file-io";
 import type { IEntry } from "../api.js";
 import { BlockFS } from "../fs.js";
@@ -52,12 +53,11 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 		const bfs = new BlockFS(storage, { logger: ctx.logger });
 		await bfs.init();
 		const tree: [string, number, IEntry][] = [];
-		for await (let entry of bfs.root.tree()) {
+		for await (let entry of bfs.root.tree(compareByKey("name"))) {
 			const path = entry.path;
 			const depth = path.split("/").length - 2;
 			tree.push([path, depth, entry]);
 		}
-		tree.sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
 		const rows: string[][] = [];
 		const maxWidths: number[] = [0, 0, 0];
 		const last: number[] = [];
