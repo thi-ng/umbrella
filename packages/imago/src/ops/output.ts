@@ -101,6 +101,7 @@ const __outputRaw = async (
 		? opts.raw
 		: {};
 	if (alpha) output = output.ensureAlpha();
+	else output = output.removeAlpha();
 	const { data, info } = await output
 		.raw()
 		.toBuffer({ resolveWithObject: true });
