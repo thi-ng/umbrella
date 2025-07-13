@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-patch",
-	"version": "0.4.163",
+	"version": "0.4.164",
 	"description": "Reducers for patch-based, immutable-by-default array & object editing",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/checks": "^3.7.10",
 		"@thi.ng/errors": "^2.5.36",
 		"@thi.ng/paths": "^5.2.13",
-		"@thi.ng/transducers": "^9.5.1"
+		"@thi.ng/transducers": "^9.6.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",

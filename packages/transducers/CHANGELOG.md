@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-10T14:20:23Z
+- **Last updated**: 2025-07-13T21:35:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [9.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@9.6.0) (2025-07-13)
+
+#### 🚀 Features
+
+- add result caching for `step()` ([101760b](https://github.com/thi-ng/umbrella/commit/101760b))
+  - update `StepFn` type, add `IDeref` support
+  - update `step()` to cache most recent result (can be disabled)
+
+#### ♻️ Refactoring
+
+- minor update `multiplex()` ([d2cae35](https://github.com/thi-ng/umbrella/commit/d2cae35))
+  - disable result caching for internal`step()` usage to reduce RAM usage
 
 ## [9.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@9.5.0) (2025-07-09)
 
