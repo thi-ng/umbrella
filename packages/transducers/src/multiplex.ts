@@ -124,7 +124,9 @@ export function multiplex(...args: any[]) {
 			null,
 			<any>(
 				args.map((xf) =>
-					Array.isArray(xf) ? step(xf[0], xf[1]) : step(xf)
+					Array.isArray(xf)
+						? step(xf[0], xf[1], false)
+						: step(xf, true, false)
 				)
 			)
 		)
