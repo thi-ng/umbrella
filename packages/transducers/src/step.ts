@@ -1,20 +1,24 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Maybe } from "@thi.ng/api";
+import type { Fn, IDeref, Maybe } from "@thi.ng/api";
 import type { TxLike } from "./api.js";
 import { ensureTransducer } from "./ensure.js";
 import { push } from "./push.js";
 import { isReduced } from "./reduced.js";
 
 /**
- * Type of the function produced by {@link step}.
+ * Type of the function produced by {@link step}. Unless disabled, by default
+ * the most recent result (if any) will be cached and can be (re)obtained via
+ * `.deref()`.
  */
-export type StepFn<A, B> = Fn<A, Maybe<B | B[]>>;
+export type StepFn<A, B> = Fn<A, Maybe<B | B[]>> & IDeref<Maybe<B | B[]>>;
 
 /**
  * Single-step transducer execution wrapper. Returns array if the given
  * transducer produces multiple results and undefined if there was no output. If
- * the transducer only produces a single result (per step) and if `unwrap`
- * is true (default), the function returns that single result value itself.
+ * the transducer only produces a single result (per step) and if `unwrap` is
+ * true (default), the function returns that single result value itself. Unless
+ * `cache` is set to false, by default the most recent result (if any) will be
+ * cached and can be (re)obtained via `.deref()`.
  *
  * @remarks
  * Likewise, once a transducer has produced a final / reduced value, all further
@@ -75,22 +79,33 @@ export type StepFn<A, B> = Fn<A, Maybe<B | B[]>>;
  *
  * @param tx -
  * @param unwrap -
+ * @param cache -
  */
-export const step = <A, B>(tx: TxLike<A, B>, unwrap = true): StepFn<A, B> => {
+export const step = <A, B>(
+	tx: TxLike<A, B>,
+	unwrap = true,
+	cache = true
+): StepFn<A, B> => {
 	const [_, complete, reduce] = ensureTransducer(tx)(push());
 	let done = false;
-	return (x: A) => {
+	let result: any;
+	const fn = (x: A) => {
 		if (!done) {
 			let acc = reduce([], x);
 			done = isReduced(acc);
 			if (done) {
 				acc = complete(acc.deref());
 			}
-			return acc.length === 1 && unwrap
-				? acc[0]
-				: acc.length > 0
-				? acc
-				: undefined;
+			const res =
+				acc.length === 1 && unwrap
+					? acc[0]
+					: acc.length > 0
+					? acc
+					: undefined;
+			if (cache) result = res;
+			return res;
 		}
 	};
+	fn.deref = () => result;
+	return fn;
 };
