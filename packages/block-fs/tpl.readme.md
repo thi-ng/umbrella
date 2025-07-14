@@ -325,7 +325,7 @@ This example shows how to use a binary blob created via the [CLI `blockfs
 convert` command](#convert-file-tree-into-single-blockfs-blob) as a virtual file
 system...
 
-```ts tangle:export/readme-2.ts
+```ts
 import { BlockFS, MemoryBlockStorage } from "@thi.ng/block-fs";
 
 // load binary blob
