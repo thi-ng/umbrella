@@ -72,6 +72,7 @@ export const processImage = async (
 	const ctx: ImgProcCtx = {
 		path: isString(src) ? src : parentCtx?.path,
 		outputs: parentCtx ? parentCtx.outputs : {},
+		outputMeta: parentCtx ? parentCtx.outputMeta : {},
 		env: parentCtx ? parentCtx.env : opts.env || {},
 		logger: opts.logger || LOGGER,
 		size: [meta.width!, meta.height!],
@@ -111,7 +112,13 @@ export const processImage = async (
 				},
 			});
 		}
-		return { img, meta, env: ctx.env, outputs: ctx.outputs };
+		return {
+			img,
+			meta,
+			env: ctx.env,
+			outputs: ctx.outputs,
+			outputMeta: ctx.outputMeta,
+		};
 	} finally {
 		if (ctx.iccFile) deleteFile(ctx.iccFile, ctx.logger);
 	}

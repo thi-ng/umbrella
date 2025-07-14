@@ -105,6 +105,9 @@ const __outputRaw = async (
 	const { data, info } = await output
 		.raw()
 		.toBuffer({ resolveWithObject: true });
+	if (meta) {
+		ctx.outputMeta[opts.id] = { ...info, exif: ctx.exif };
+	}
 	if (opts.path !== undefined) {
 		const path = join(outDir, formatPath(opts.path!, ctx, opts, data));
 		writeFile(path, data, null, ctx.logger);
@@ -112,7 +115,7 @@ const __outputRaw = async (
 		if (meta) {
 			writeJSON(
 				path + ".meta.json",
-				{ ...info, exif: ctx.exif },
+				ctx.outputMeta[opts.id],
 				undefined,
 				undefined,
 				ctx.logger
