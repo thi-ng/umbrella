@@ -554,7 +554,7 @@ export interface ImgProcCtx {
 	 * Recorded metadata of outputs which requested it, keyed by IDs given via
 	 * {@link OutputSpec} / {@link output} (current `raw` format only).
 	 */
-	outputMeta: Record<string, object>;
+	outputMeta: Record<string, Record<string, any>>;
 	/**
 	 * See {@link ImgProcOpts.env} for details/comments.
 	 */
