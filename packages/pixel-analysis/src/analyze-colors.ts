@@ -22,6 +22,7 @@ import { pluck } from "@thi.ng/transducers/pluck";
 import { reduce } from "@thi.ng/transducers/reduce";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { dot } from "@thi.ng/vectors/dot";
+import { roundN } from "@thi.ng/vectors/roundn";
 import type { AnalysisOpts, AnalyzedImage } from "./api.js";
 import { warmIntensityHsv } from "./hues.js";
 
@@ -50,9 +51,13 @@ export const analyzeColors = (
 	const imgGray = $img.as(FLOAT_GRAY);
 	const imgHsv = $img.as(FLOAT_HSVA);
 	const dominantColors = opts?.dominantFn ?? dominantColorsKmeans;
-	const colors = dominantColors($img, opts?.numColors ?? 4).sort(
-		compareByKey("area", compareNumDesc)
-	);
+	const prec = opts?.prec ?? 1e-3;
+	const colors = dominantColors($img, opts?.numColors ?? 4)
+		.sort(compareByKey("area", compareNumDesc))
+		.map((x) => {
+			roundN(null, x.color, prec);
+			return x;
+		});
 	const colorAreas = colors.map((x) => x.area);
 	const dominantLuma = colors.map((x) => luminanceSrgb(x.color));
 	const dominantSrgb = colors.map((x) => srgb(x.color));

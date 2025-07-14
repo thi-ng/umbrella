@@ -22,6 +22,12 @@ export interface AnalysisOpts {
 	 * Min. saturation to consider for computing {@link warmIntensity}.
 	 */
 	minSat: number;
+	/**
+	 * Channel precision for dominant colors.
+	 *
+	 * @defaultValue 0.001
+	 */
+	prec: number;
 }
 
 export interface AnalyzedImage {
