@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-10T14:20:23Z
+- **Last updated**: 2025-07-14T10:38:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.4.0) (2025-07-14)
+
+#### 🚀 Features
+
+- add color channel precision ([beb2c21](https://github.com/thi-ng/umbrella/commit/beb2c21))
+  - add `AnalysisOpts.prec`
+  - update `analyzeColors()`
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.3.0) (2025-06-24)
 
