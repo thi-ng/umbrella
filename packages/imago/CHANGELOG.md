@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-13T21:35:34Z
+- **Last updated**: 2025-07-14T10:05:28Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.2.0) (2025-07-14)
+
+#### 🚀 Features
+
+- add `outputMeta` for raw outputs ([37810d3](https://github.com/thi-ng/umbrella/commit/37810d3))
 
 ### [1.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.1.6) (2025-07-12)
 

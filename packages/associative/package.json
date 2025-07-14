@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/associative",
-	"version": "7.1.1",
+	"version": "7.1.2",
 	"description": "ES Map/Set-compatible implementations with customizable equality semantics & supporting operations",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.30",
 		"@thi.ng/arrays": "^2.13.2",
-		"@thi.ng/binary": "^3.4.53",
+		"@thi.ng/binary": "^3.4.54",
 		"@thi.ng/checks": "^3.7.10",
 		"@thi.ng/dcons": "^3.2.159",
 		"@thi.ng/equiv": "^2.1.86",

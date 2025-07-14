@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/webgl",
-	"version": "6.9.62",
+	"version": "6.9.63",
 	"description": "WebGL & GLSL abstraction layer",
 	"type": "module",
 	"module": "./index.js",
@@ -49,16 +49,16 @@
 		"@thi.ng/equiv": "^2.1.86",
 		"@thi.ng/errors": "^2.5.36",
 		"@thi.ng/logger": "^3.1.11",
-		"@thi.ng/matrices": "^3.0.8",
+		"@thi.ng/matrices": "^3.0.9",
 		"@thi.ng/memoize": "^4.0.20",
 		"@thi.ng/object-utils": "^1.2.2",
 		"@thi.ng/pixel": "^7.5.2",
-		"@thi.ng/shader-ast": "^1.1.10",
-		"@thi.ng/shader-ast-glsl": "^1.0.29",
-		"@thi.ng/shader-ast-stdlib": "^1.0.29",
+		"@thi.ng/shader-ast": "^1.1.11",
+		"@thi.ng/shader-ast-glsl": "^1.0.30",
+		"@thi.ng/shader-ast-stdlib": "^1.0.30",
 		"@thi.ng/transducers": "^9.6.0",
-		"@thi.ng/vector-pools": "^3.2.54",
-		"@thi.ng/vectors": "^8.3.2"
+		"@thi.ng/vector-pools": "^3.2.55",
+		"@thi.ng/vectors": "^8.3.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",
