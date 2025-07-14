@@ -9,12 +9,17 @@ import { MASKS } from "./constants.js";
  * @example
  * ```ts tangle:../export/mask.ts
  * import { defMask } from "@thi.ng/binary";
+ * import { U32 } from "@thi.ng/hex";
  *
- * console.log(defMask(1,31).toString(16));
+ * console.log(
+ *   U32(defMask(1,31))
+ * );
  * // 7ffffffe
  *
- * console.log(defMask(3,8).toString(16));
- * // f8
+ * console.log(
+ *   U32(defMask(3,8))
+ * );
+ * // 000000f8
  * ```
  *
  * @param a - first bit
