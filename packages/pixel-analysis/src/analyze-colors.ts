@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { contrast } from "@thi.ng/color/contrast";
+import { contrast as contrastWCAG } from "@thi.ng/color/contrast";
 import { css } from "@thi.ng/color/css/css";
 import { hsv } from "@thi.ng/color/hsv/hsv";
 import { luminanceSrgb } from "@thi.ng/color/luminance-rgb";
@@ -59,8 +59,55 @@ export const analyzeColors = (
 			return x;
 		});
 	const colorAreas = colors.map((x) => x.area);
-	const dominantLuma = colors.map((x) => luminanceSrgb(x.color));
-	const dominantSrgb = colors.map((x) => srgb(x.color));
+	const derived = derivedColorsResults(colors.map((x) => x.color));
+	const lumaRangeImg = reduce(minMax(), imgGray.data);
+	const weightedLuma = dot(derived.lumaRange, colorAreas);
+	const weightedChroma = dot(
+		derived.oklch.map((x) => x[1]),
+		colorAreas
+	);
+	const weightedSat = dot(
+		derived.hsv.map((x) => x[1]),
+		colorAreas
+	);
+	return {
+		img: $img,
+		imgGray,
+		imgHsv,
+		...derived,
+		area: colorAreas,
+		warmth: warmIntensityHsv(imgHsv, opts?.minSat),
+		contrastImg: lumaRangeImg[1] - lumaRangeImg[0],
+		lumaRangeImg,
+		weightedSat,
+		weightedLuma,
+		weightedChroma,
+	};
+};
+
+/**
+ * Computes a number of metrics (partial {@link AnalyzedImage}) derived from
+ * given raw SRGB colors. Helper function for {@link analyzeColors}.
+ *
+ * @param colors
+ */
+export const derivedColorsResults = (
+	colors: number[][]
+): Pick<
+	AnalyzedImage,
+	| "css"
+	| "srgb"
+	| "hsv"
+	| "oklch"
+	| "hueRange"
+	| "satRange"
+	| "chromaRange"
+	| "lumaRange"
+	| "contrast"
+	| "colorContrast"
+> => {
+	const dominantLuma = colors.map((x) => luminanceSrgb(x));
+	const dominantSrgb = colors.map((x) => srgb(x));
 	const dominantHsv = dominantSrgb.map((x) => hsv(x));
 	const dominantOklch = dominantSrgb.map((x) => oklch(x));
 	const dominantCss = dominantSrgb.map((x) => css(x));
@@ -68,19 +115,10 @@ export const analyzeColors = (
 	const satRange = transduce(pluck(1), minMax(), dominantHsv);
 	const chromaRange = transduce(pluck(1), minMax(), dominantOklch);
 	const lumaRange = reduce(minMax(), dominantLuma);
-	const lumaRangeImg = reduce(minMax(), imgGray.data);
-	const weightedLuma = dot(dominantLuma, colorAreas);
-	const weightedChroma = dot(
-		dominantOklch.map((x) => x[1]),
-		colorAreas
-	);
-	const weightedSat = dot(
-		dominantHsv.map((x) => x[1]),
-		colorAreas
-	);
+	const contrast = lumaRange[1] - lumaRange[0];
 	const colorContrast = fit(
 		transduce(
-			map((pair) => contrast(...pair)),
+			map((pair) => contrastWCAG(...pair)),
 			max(),
 			permutations(dominantSrgb, dominantSrgb)
 		),
@@ -90,25 +128,15 @@ export const analyzeColors = (
 		1
 	);
 	return {
-		img: $img,
-		imgGray,
-		imgHsv,
 		css: dominantCss,
 		srgb: dominantSrgb,
 		hsv: dominantHsv,
 		oklch: dominantOklch,
-		area: colorAreas,
 		hueRange,
 		satRange,
 		chromaRange,
 		lumaRange,
-		lumaRangeImg,
-		warmth: warmIntensityHsv(imgHsv, opts?.minSat),
-		contrast: lumaRange[1] - lumaRange[0],
-		contrastImg: lumaRangeImg[1] - lumaRangeImg[0],
+		contrast,
 		colorContrast,
-		weightedSat,
-		weightedLuma,
-		weightedChroma,
 	};
 };
