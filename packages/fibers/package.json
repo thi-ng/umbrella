@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fibers",
-	"version": "1.0.47",
+	"version": "1.0.48",
 	"description": "Process hierarchies & operators for cooperative multitasking",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.30",
-		"@thi.ng/arrays": "^2.13.2",
+		"@thi.ng/arrays": "^2.13.3",
 		"@thi.ng/buffers": "^1.0.15",
 		"@thi.ng/checks": "^3.7.10",
 		"@thi.ng/errors": "^2.5.36",

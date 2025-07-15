@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-async",
-	"version": "0.4.18",
+	"version": "0.4.19",
 	"description": "Async versions of various highly composable transducers, reducers and iterators",
 	"type": "module",
 	"module": "./index.js",
@@ -45,7 +45,7 @@
 		"@thi.ng/compose": "^3.0.33",
 		"@thi.ng/errors": "^2.5.36",
 		"@thi.ng/timestamp": "^1.1.15",
-		"@thi.ng/transducers": "^9.6.0"
+		"@thi.ng/transducers": "^9.6.1"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.6",

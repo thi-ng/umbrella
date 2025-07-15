@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-14T10:38:44Z
+- **Last updated**: 2025-07-15T09:30:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.4.1) (2025-07-15)
+
+#### ♻️ Refactoring
+
+- extract `derivedColorsResults()` ([c8fb4ed](https://github.com/thi-ng/umbrella/commit/c8fb4ed))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.4.0) (2025-07-14)
 

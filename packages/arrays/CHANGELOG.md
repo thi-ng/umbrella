@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-10T14:20:23Z
+- **Last updated**: 2025-07-15T09:30:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.13.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.13.3) (2025-07-15)
+
+#### ♻️ Refactoring
+
+- add optional generics ([ba81685](https://github.com/thi-ng/umbrella/commit/ba81685))
+  - update `ensureArray()`/`ensureArrayLike()`
+  - update `ensureIterable()`
 
 ## [2.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.13.0) (2025-06-18)
 
