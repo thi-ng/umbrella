@@ -7,7 +7,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  *
  * @param x -
  */
-export const ensureIterable = (x: any): Iterable<any> => {
+export const ensureIterable = <T = any>(x: any): Iterable<T> => {
 	(x == null || !x[Symbol.iterator]) &&
 		illegalArgs(`value is not iterable: ${x}`);
 	return x;
