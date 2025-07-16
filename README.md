@@ -612,6 +612,9 @@ The following packages have been deprecated. Their readmes describe reasons and 
 
 ## Building
 
+> [!IMPORTANT]
+> [Bun](https://bun.sh) is required for running some build & other project tasks.
+
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella
