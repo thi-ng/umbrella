@@ -45,7 +45,7 @@ import type { Parser } from "../api.js";
  * // "ababaa"
  *
  * console.log(ctx.state);
- * // { p: 6, l: 1, c: 7, done: false, last: 'a' }
+ * // { p: 6, l: 1, c: 7, done: false }
  * ```
  *
  * @example
@@ -64,7 +64,7 @@ import type { Parser } from "../api.js";
  * // "ababaaabba"
  *
  * console.log(ctx.state);
- * // { p: 10, l: 1, c: 11, done: false, last: 'a' }
+ * // { p: 10, l: 1, c: 11, done: false }
  * ```
  *
  * @param parser -

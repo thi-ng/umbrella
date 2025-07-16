@@ -20,7 +20,7 @@ import type { Parser } from "../api.js";
  * // true
  *
  * console.log(ctx.state);
- * // { p: 15, l: 2, c: 1, done: true, last: '\n' }
+ * // { p: 15, l: 2, c: 1, done: true }
  * ```
  *
  * @param pred -
