@@ -312,7 +312,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-07-15
+As of: 2025-07-17
 
 | Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
 |:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
@@ -328,6 +328,7 @@ As of: 2025-07-15
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/sparse-set`](./packages/sparse-set)         | [![version](https://img.shields.io/npm/v/@thi.ng/sparse-set.svg)](https://www.npmjs.com/package/@thi.ng/sparse-set)         | [changelog](./packages/sparse-set/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/tensors`](./packages/tensors)               | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)               | [changelog](./packages/tensors/CHANGELOG.md)        |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/transducers`](./packages/transducers)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)       | [changelog](./packages/transducers/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/viz`](./packages/viz)                       | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)                       | [changelog](./packages/viz/CHANGELOG.md)            |
 
 ### Algorithms & data structures
 
