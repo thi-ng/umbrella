@@ -97,7 +97,7 @@ For Node.js REPL:
 const viz = await import("@thi.ng/viz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.99 KB
 
 ## Dependencies
 
@@ -108,6 +108,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
 - [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
