@@ -6925,6 +6925,7 @@ __metadata:
     "@thi.ng/object-utils": "npm:^1.2.2"
     "@thi.ng/strings": "npm:^3.9.16"
     "@thi.ng/transducers": "npm:^9.6.1"
+    "@thi.ng/vectors": "npm:^8.3.3"
     esbuild: "npm:^0.25.6"
     typedoc: "npm:^0.28.7"
     typescript: "npm:^5.8.3"

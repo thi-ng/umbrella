@@ -51,7 +51,8 @@
 		"@thi.ng/math": "^5.11.30",
 		"@thi.ng/object-utils": "^1.2.2",
 		"@thi.ng/strings": "^3.9.16",
-		"@thi.ng/transducers": "^9.6.1"
+		"@thi.ng/transducers": "^9.6.1",
+		"@thi.ng/vectors": "^8.3.3"
 	},
 	"devDependencies": {
 		"@thi.ng/date": "^2.7.56",
@@ -135,6 +136,9 @@
 		},
 		"./plot/utils": {
 			"default": "./plot/utils.js"
+		},
+		"./plot/vector-field": {
+			"default": "./plot/vector-field.js"
 		},
 		"./plot": {
 			"default": "./plot.js"
