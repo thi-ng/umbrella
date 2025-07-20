@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-10T14:20:23Z
+- **Last updated**: 2025-07-20T14:56:01Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.4.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.4.7) (2025-07-20)
+
+#### 🩹 Bug fixes
+
+- fix [#532](https://github.com/thi-ng/umbrella/issues/532), fix centralTermsVec() ([6e19974](https://github.com/thi-ng/umbrella/commit/6e19974))
+  - update non-zero check
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.4.0) (2025-06-18)
 

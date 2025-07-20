@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-11T22:07:07Z
+- **Last updated**: 2025-07-20T14:56:01Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [9.2.33](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@9.2.33) (2025-07-20)
+
+#### 🩹 Bug fixes
+
+- fix [#531](https://github.com/thi-ng/umbrella/issues/531), update resolve() done() handling ([2dec309](https://github.com/thi-ng/umbrella/commit/2dec309))
+  - update done() handling to also dispatch if parent already unsubbed
+  - fix code example in docs
 
 ### [9.2.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@9.2.4) (2025-01-14)
 

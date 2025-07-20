@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-11T22:07:07Z
+- **Last updated**: 2025-07-20T14:56:01Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.2.0) (2025-07-20)
+
+#### 🚀 Features
+
+- update SVGDocAttribs, update docs ([7e4a252](https://github.com/thi-ng/umbrella/commit/7e4a252))
 
 ### [8.1.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.1.39) (2025-04-16)
 

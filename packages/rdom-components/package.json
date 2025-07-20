@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom-components",
-	"version": "1.0.33",
+	"version": "1.0.34",
 	"description": "Collection of unstyled, customizable components for @thi.ng/rdom",
 	"type": "module",
 	"module": "./index.js",
@@ -39,13 +39,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.30",
-		"@thi.ng/hiccup-html": "^2.7.28",
-		"@thi.ng/object-utils": "^1.2.2",
-		"@thi.ng/rdom": "^1.7.49",
-		"@thi.ng/rstream": "^9.2.32",
-		"@thi.ng/strings": "^3.9.16",
-		"@thi.ng/transducers": "^9.6.1"
+		"@thi.ng/api": "^8.11.31",
+		"@thi.ng/hiccup-html": "^2.7.29",
+		"@thi.ng/object-utils": "^1.2.3",
+		"@thi.ng/rdom": "^1.7.50",
+		"@thi.ng/rstream": "^9.2.33",
+		"@thi.ng/strings": "^3.9.17",
+		"@thi.ng/transducers": "^9.6.2"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",
