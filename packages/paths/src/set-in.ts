@@ -55,7 +55,7 @@ export const setInUnsafe = <T>(state: any, path: Path, val: T): any =>
  * );
  * // { a: { b: { c: 24 } } }
  *
- * // error (wrong value type)
+ * // type error (wrong value type for given path)
  * console.log(
  *   setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], "24")
  * );
