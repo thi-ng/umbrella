@@ -62,7 +62,7 @@ export const deleteInUnsafe = (state: any, path: Path): any =>
  *   deleteIn({ a: { b: { c: 23 } } }, ["a","b","c"])
  * );
  *
- * // error (invalid path)
+ * // type error (due to invalid path)
  * console.log(
  *   deleteIn({ a: { b: { c: 23 } } }, ["a","b","d"])
  * );
