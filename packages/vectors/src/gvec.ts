@@ -96,8 +96,8 @@ const __keys = memoizeO<number, StringOrSym[]>((size: number) => {
  * console.log(copy(a));
  * // [1, 2, 3]
  *
- * console.log(a.copyView());
- * // Proxy [ [ 1, 0, 2, 0, 3, 0 ], ... }
+ * console.log(a.copyView().toString());
+ * // [1.000, 2.000, 3.000]
  *
  * console.log(eqDelta(a, [1, 2, 3]));
  * // true
