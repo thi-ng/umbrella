@@ -27,7 +27,7 @@ export interface ResolverOpts extends IID<string> {
  * import { fromIterable, resolve, trace } from "@thi.ng/rstream";
  * import { delayed } from "@thi.ng/transducers";
  *
- * fromIterable([1, 2, 3], 500)
+ * fromIterable([1, 2, 3], { delay: 500 })
  *   .transform(delayed(1000))
  *   .subscribe(resolve())
  *   .subscribe(trace("result"));
@@ -75,9 +75,9 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
 	}
 
 	done() {
+		const pstate = this.parent?.getState();
 		if (
-			this.parent &&
-			this.parent.getState() === State.DONE &&
+			(pstate === State.DONE || pstate === State.UNSUBSCRIBED) &&
 			this.outstanding === 0
 		) {
 			super.done();
