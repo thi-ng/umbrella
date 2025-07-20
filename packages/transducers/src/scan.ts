@@ -45,7 +45,7 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  * );
  *
  * console.log(res);
- * // [ 'alpha beta gamma delta', 123 ]
+ * // [ 'alpha beta gamma delta', 23 ]
  * ```
  *
  * @param rfn - reducer used as scan operator
