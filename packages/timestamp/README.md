@@ -79,7 +79,7 @@ For Node.js REPL:
 const tim = await import("@thi.ng/timestamp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 214 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 213 bytes
 
 ## Dependencies
 

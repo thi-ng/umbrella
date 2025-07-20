@@ -487,8 +487,8 @@ print(lang!.rules.expr)(ctx);
 // the two top-level s-expressions...
 console.log(ctx.children);
 // [
-//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined },
-//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined }
+//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined, ... },
+//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined, ... }
 // ]
 ```
 
