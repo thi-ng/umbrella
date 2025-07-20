@@ -460,24 +460,24 @@ const ctx = defContext(`
 
 // parse & print AST
 print(lang!.rules.expr)(ctx);
-// expr: null
-//   list: null
-//     expr: null
+// expr: undefined
+//   list: undefined
+//     expr: undefined
 //       sym: "def"
 //       sym: "hello"
-//       list: null
-//         expr: null
+//       list: undefined
+//         expr: undefined
 //           sym: "x"
-//       list: null
-//         expr: null
+//       list: undefined
+//         expr: undefined
 //           sym: "str"
 //           string: "hello, "
 //           sym: "x"
-//   list: null
-//     expr: null
+//   list: undefined
+//     expr: undefined
 //       sym: "print"
-//       list: null
-//         expr: null
+//       list: undefined
+//         expr: undefined
 //           sym: "hello"
 //           real: 42
 
@@ -487,8 +487,8 @@ print(lang!.rules.expr)(ctx);
 // the two top-level s-expressions...
 console.log(ctx.children);
 // [
-//   { id: 'list', state: null, children: [ [Object] ], result: null },
-//   { id: 'list', state: null, children: [ [Object] ], result: null }
+//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined },
+//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined }
 // ]
 ```
 
