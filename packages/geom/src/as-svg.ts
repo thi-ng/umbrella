@@ -25,6 +25,31 @@ export interface SVGDocAttribs extends Attribs {
 	 * @defaultValue 0
 	 */
 	__margin: number;
+	/**
+	 * Number of fractional digits for floating point values.
+	 *
+	 * @defaultValue 3
+	 */
+	__prec: number;
+	/**
+	 * Marker flag for thi.ng/hiccup-svg to indicate enclosed hiccup needs to be
+	 * converted from the compact format used by thi.ng/geom.
+	 *
+	 * Note: The {@link asSvg} function explicitly converts the given hiccup,
+	 * therefore the {@link SVG_DEFAULT_ATTRIBS} do NOT specify this flag to
+	 * avoid double conversion. However, if you wish to serialize a
+	 * {@link svgDoc} document via other means (e.g. directly via
+	 * thi.ng/hiccup's `serialize()`), then you should enable this flag
+	 * manually.
+	 *
+	 * @remarks
+	 * External references:
+	 *
+	 * - [`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
+	 * - [`svg()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/svg.html)
+	 * - [`serialize()`](https://docs.thi.ng/umbrella/hiccup/functions/serialize.html)
+	 */
+	__convert: boolean;
 }
 
 /**
@@ -55,7 +80,18 @@ export const setSvgDefaultAttribs = (
 };
 
 /**
- * Serializes given hiccup tree to an actual SVG source string.
+ * Serializes given hiccup tree to an actual SVG source string. The given hiccup
+ * arguments are first converted via
+ * [`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
+ *
+ * @remarks
+ * The actual serialization is performed via the
+ * [thi.ng/hiccup](https://thi.ng/hiccup) and
+ * [thi.ng/hiccup-svg](https://thi.ng/hiccup-svg) packages. Floating point
+ * precision for various point coordinates can be controlled via the
+ * {@link SVGDocAttribs.__prec} attribute, either for the entire doc or on a
+ * per-shape basis. If omitted, the currently configured precision will be used
+ * (default: 3).
  *
  * @param args
  */
@@ -65,25 +101,18 @@ export const asSvg = (...args: any[]) =>
 /**
  * Creates a hiccup SVG doc element container for given {@link IShape}s and
  * attribs (merged with {@link SVG_DEFAULT_ATTRIBS}). If the attribs do not
- * include a `viewBox`, it will be computed automatically. Furthermore (and only
- * for the case a viewbox needs to be computed), a `__margin` attrib can be
- * provided to include a bleed/margin for the viewbox (in world space units).
+ * include a {@link SVGDocAttribs.viewBox}, it will be computed automatically.
+ * Furthermore (and only for the case a viewbox needs to be computed), a
+ * {@link SVGDocAttribs.__margin} attrib can be provided to include a
+ * bleed/margin for the viewbox (in world space units).
  *
  * @remarks
  * Use {@link asSvg} to serialize the resulting doc to an SVG string.
  *
- * The actual serialization is performed via the
- * [thi.ng/hiccup](https://thi.ng/hiccup) and
- * [thi.ng/hiccup-svg](https://thi.ng/hiccup-svg) packages. Floating point
- * precision for various point coordinates can be controlled via the `__prec`
- * attribute (number of fractional digits), either for the entire doc or on a
- * per-shape basis. If omitted, the currently configured precision will be used
- * (default: 3).
+ * References:
  *
- * Also see
- * [`convertTree`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
- * and
- * [`setPrecision`](https://docs.thi.ng/umbrella/hiccup-svg/functions/setPrecision.html).
+ * - [`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
+ * - [`setPrecision()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/setPrecision.html)
  *
  * @param attribs
  * @param shapes
