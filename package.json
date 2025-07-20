@@ -7,8 +7,8 @@
 		"tools"
 	],
 	"devDependencies": {
-		"bun-types": "1.2.17",
-		"esbuild": "^0.25.6",
+		"bun-types": "1.2.19",
+		"esbuild": "^0.25.8",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
 		"typedoc": "^0.28.7",

@@ -56,8 +56,8 @@
 		"@thi.ng/strings": "^3.9.16"
 	},
 	"devDependencies": {
-		"@types/node": "^24.0.12",
-		"esbuild": "^0.25.6",
+		"@types/node": "^24.0.15",
+		"esbuild": "^0.25.8",
 		"typedoc": "^0.28.7",
 		"typescript": "^5.8.3"
 	},

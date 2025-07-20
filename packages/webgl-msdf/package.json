@@ -47,7 +47,7 @@
 		"@thi.ng/webgl": "^6.9.64"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.6",
+		"esbuild": "^0.25.8",
 		"typedoc": "^0.28.7",
 		"typescript": "^5.8.3"
 	},

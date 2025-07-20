@@ -46,7 +46,7 @@
 		"@thi.ng/math": "^5.11.30"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.6",
+		"esbuild": "^0.25.8",
 		"tools": "workspace:^",
 		"typedoc": "^0.28.7",
 		"typescript": "^5.8.3"
