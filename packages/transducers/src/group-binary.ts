@@ -60,7 +60,7 @@ const __branchPred =
  * // [ 5 ]
  *
  * console.log(tree[0][1][1]);    // 011* == branch
- * // [ [ 6 ], [ 7 ] ]
+ * // { "0": [ 6 ], "1": [ 7 ] }
  * ```
  *
  * Using {@link frequencies} as leaf reducer:
