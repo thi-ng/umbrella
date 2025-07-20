@@ -17,7 +17,7 @@ import { flattenWith } from "./flatten-with.js";
  * import { flatten } from "@thi.ng/transducers";
  *
  * console.log(
- *   [...flatten([[1, [2, 3]], ["abc", "cde"]])]
+ *   [...flatten([[1, [2, 3]], ["abc", "def"]])]
  * );
  * // [1, 2, 3, "abc", "def"]
  *
