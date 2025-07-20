@@ -32,6 +32,11 @@
 
 ### Code example
 
+> [!NOTE]
+> For illustrative purposes only! Due to the active nature of the larger project
+> repo, example results/output might vary since this code was written
+> originally...
+
 ```ts tangle:export/readme-1.ts
 import { files, readJSON } from "@thi.ng/file-io";
 import {

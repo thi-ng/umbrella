@@ -59,7 +59,7 @@ For Node.js REPL:
 const ta = await import("@thi.ng/text-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.37 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.38 KB
 
 ## Dependencies
 
@@ -80,6 +80,11 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 [Generated API docs](https://docs.thi.ng/umbrella/text-analysis/)
 
 ### Code example
+
+> [!NOTE]
+> For illustrative purposes only! Due to the active nature of the larger project
+> repo, example results/output might vary since this code was written
+> originally...
 
 ```ts tangle:export/readme-1.ts
 import { files, readJSON } from "@thi.ng/file-io";
