@@ -140,7 +140,7 @@ export const centralTermsVec = (
 	vocab.getAllIDs(
 		argSort(centroid, (a, b) => b - a)
 			.slice(0, k)
-			.filter(Boolean)
+			.filter((i) => centroid[i] != 0)
 	);
 
 export const knearest = (
