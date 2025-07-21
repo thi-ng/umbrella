@@ -61,6 +61,7 @@
 		"algebra",
 		"aos",
 		"array",
+		"average",
 		"bezier",
 		"binary",
 		"cartesian",
@@ -82,6 +83,8 @@
 		"interval",
 		"manhattan",
 		"math",
+		"mean",
+		"median",
 		"memory-mapped",
 		"nd",
 		"polar",
@@ -94,8 +97,10 @@
 		"rotation",
 		"smoothstep",
 		"soa",
+		"statistics",
 		"step",
 		"typescript",
+		"variance",
 		"vector",
 		"wasm",
 		"webgl"
@@ -258,6 +263,9 @@
 		},
 		"./center": {
 			"default": "./center.js"
+		},
+		"./circular-mean": {
+			"default": "./circular-mean.js"
 		},
 		"./clamp": {
 			"default": "./clamp.js"
