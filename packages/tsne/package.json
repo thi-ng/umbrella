@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/tsne",
-	"version": "0.1.26",
+	"version": "0.1.27",
 	"description": "Highly configurable t-SNE implementation for arbitrary dimensions",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/math": "^5.11.31",
 		"@thi.ng/random": "^4.1.22",
 		"@thi.ng/transducers": "^9.6.2",
-		"@thi.ng/vectors": "^8.3.4"
+		"@thi.ng/vectors": "^8.4.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

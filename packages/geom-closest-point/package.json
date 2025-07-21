@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-closest-point",
-	"version": "2.1.179",
+	"version": "2.1.180",
 	"description": "2D / 3D closest point / proximity helpers",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.31",
 		"@thi.ng/math": "^5.11.31",
-		"@thi.ng/vectors": "^8.3.4"
+		"@thi.ng/vectors": "^8.4.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",
