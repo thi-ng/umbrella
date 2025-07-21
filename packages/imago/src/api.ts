@@ -450,6 +450,19 @@ export interface OutputSpec extends ProcSpec {
 	 * WebP output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#webp)
 	 */
 	webp?: WebpOptions;
+	/**
+	 * Only used if {@link OutputSpec.path} is NOT set. If true, output will be
+	 * captured as data URL, otherwise as binary data/buffer.
+	 *
+	 * @remarks
+	 * Other conditions:
+	 *
+	 * - Requires {@link OutputSpec.format} to be set to a data URL compatible
+	 *   image format.
+	 * - An error will be thrown during processing if the encoded image size
+	 *   exceeds 32KB.
+	 */
+	dataURL?: boolean;
 }
 
 export interface ResizeSpec extends ProcSpec {

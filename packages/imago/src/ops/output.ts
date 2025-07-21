@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 import { encode } from "@thi.ng/blurhash";
 import { isNumber, isPlainObject } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import { writeFile, writeJSON } from "@thi.ng/file-io";
-import { firstNonNullKey } from "@thi.ng/object-utils/first-non-null";
+import { firstNonNullKey } from "@thi.ng/object-utils";
 import { join, resolve } from "node:path";
 import type { Sharp } from "sharp";
 import type { ImgProcCtx, OutputSpec, Processor } from "../api.js";
@@ -85,7 +86,10 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 		writeFile(path, result, null, ctx.logger);
 		ctx.outputs[opts.id] = path;
 	} else {
-		ctx.outputs[opts.id] = result;
+		ctx.outputs[opts.id] =
+			format && opts.dataURL
+				? asDataURL(`image/${format}`, result)
+				: result;
 	}
 	return [input, false];
 };
@@ -147,4 +151,10 @@ const __outputBlurHash = async (
 	);
 	ctx.logger.debug("computed blurhash:", hash);
 	ctx.outputs[opts.id] = hash;
+};
+
+export const asDataURL = (mime: string, data: Buffer) => {
+	if (data.length > 0x8000)
+		illegalArgs("encoded image too large for dataURL (max. 32KB allowed)");
+	return `data:${mime};base64,${data.toString("base64")}`;
 };
