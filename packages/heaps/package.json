@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/heaps",
-	"version": "2.1.103",
+	"version": "2.1.104",
 	"description": "Various heap implementations for arbitrary values and with customizable ordering",
 	"type": "module",
 	"module": "./index.js",
@@ -40,9 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.31",
-		"@thi.ng/compare": "^2.4.23",
-		"@thi.ng/equiv": "^2.1.87"
+		"@thi.ng/api": "^8.11.32",
+		"@thi.ng/compare": "^2.4.24",
+		"@thi.ng/equiv": "^2.1.88"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

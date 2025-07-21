@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dlogic",
-	"version": "2.1.98",
+	"version": "2.1.99",
 	"description": "Assorted digital logic ops / constructs",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.31"
+		"@thi.ng/api": "^8.11.32"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

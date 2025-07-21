@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/cellular",
-	"version": "1.0.26",
+	"version": "1.0.27",
 	"description": "Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.31",
-		"@thi.ng/arrays": "^2.13.4",
-		"@thi.ng/checks": "^3.7.11",
-		"@thi.ng/errors": "^2.5.37",
-		"@thi.ng/random": "^4.1.22",
-		"@thi.ng/transducers": "^9.6.2"
+		"@thi.ng/api": "^8.11.32",
+		"@thi.ng/arrays": "^2.13.5",
+		"@thi.ng/checks": "^3.7.12",
+		"@thi.ng/errors": "^2.5.38",
+		"@thi.ng/random": "^4.1.23",
+		"@thi.ng/transducers": "^9.6.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

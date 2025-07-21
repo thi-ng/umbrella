@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-stats",
-	"version": "2.2.32",
+	"version": "2.2.33",
 	"description": "Transducers for statistical / technical analysis",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.31",
-		"@thi.ng/buffers": "^1.0.16",
-		"@thi.ng/checks": "^3.7.11",
-		"@thi.ng/errors": "^2.5.37",
-		"@thi.ng/transducers": "^9.6.2"
+		"@thi.ng/api": "^8.11.32",
+		"@thi.ng/buffers": "^1.0.17",
+		"@thi.ng/checks": "^3.7.12",
+		"@thi.ng/errors": "^2.5.38",
+		"@thi.ng/transducers": "^9.6.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",
