@@ -312,7 +312,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-07-20
+As of: 2025-07-21
 
 | Status                                        | Package                                             | Version                                                                                                                   | Changelog                                          |
 |:----------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
@@ -320,6 +320,7 @@ As of: 2025-07-20
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/rstream`](./packages/rstream)             | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)             | [changelog](./packages/rstream/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/text-analysis`](./packages/text-analysis) | [![version](https://img.shields.io/npm/v/@thi.ng/text-analysis.svg)](https://www.npmjs.com/package/@thi.ng/text-analysis) | [changelog](./packages/text-analysis/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/timestamp`](./packages/timestamp)         | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)         | [changelog](./packages/timestamp/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)             | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)             | [changelog](./packages/vectors/CHANGELOG.md)       |
 
 ### Algorithms & data structures
 
