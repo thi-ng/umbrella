@@ -113,7 +113,7 @@ writeFileSync(
 	g.asSvg(
 		g.svgDoc(
 			{
-				__bleed: 10,
+				__margin: 10,
 				font: "12px Menlo, monospace",
 				align: "center",
 				baseline: "middle",
@@ -210,7 +210,7 @@ writeFileSync(
 	g.asSvg(
 		g.svgDoc(
 			{
-				__bleed: 10,
+				__margin: 10,
 				font: "12px Menlo, monospace",
 				align: "center",
 				baseline: "middle",

@@ -74,7 +74,7 @@ For Node.js REPL:
 const l = await import("@thi.ng/layout");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.19 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.21 KB
 
 ## Dependencies
 
@@ -176,7 +176,7 @@ writeFileSync(
     g.asSvg(
         g.svgDoc(
             {
-                __bleed: 10,
+                __margin: 10,
                 font: "12px Menlo, monospace",
                 align: "center",
                 baseline: "middle",
@@ -273,7 +273,7 @@ writeFileSync(
     g.asSvg(
         g.svgDoc(
             {
-                __bleed: 10,
+                __margin: 10,
                 font: "12px Menlo, monospace",
                 align: "center",
                 baseline: "middle",
