@@ -5434,7 +5434,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.12"
     "@thi.ng/geom": "npm:^8.2.2"
     "@thi.ng/geom-isec": "npm:^4.0.53"
-    "@thi.ng/layout": "npm:^3.1.35"
+    "@thi.ng/layout": "npm:^3.2.0"
     "@thi.ng/math": "npm:^5.11.32"
     "@thi.ng/ramp": "npm:^3.3.48"
     "@thi.ng/transducers": "npm:^9.6.3"
@@ -5506,7 +5506,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/layout@npm:^3.1.35, @thi.ng/layout@workspace:^, @thi.ng/layout@workspace:packages/layout":
+"@thi.ng/layout@npm:^3.2.0, @thi.ng/layout@workspace:^, @thi.ng/layout@workspace:packages/layout":
   version: 0.0.0-use.local
   resolution: "@thi.ng/layout@workspace:packages/layout"
   dependencies:
