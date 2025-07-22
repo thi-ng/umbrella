@@ -45,6 +45,13 @@ export class GridLayout implements IGridLayout<GridLayout> {
 		this.rows = 0;
 	}
 
+	/**
+	 * The current total height of the layout.
+	 */
+	get height() {
+		return this.y + this.rows * this.cellHG;
+	}
+
 	colsForWidth(w: number) {
 		return Math.ceil(w / this.cellWG);
 	}
