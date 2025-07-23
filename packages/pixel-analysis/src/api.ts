@@ -63,31 +63,67 @@ export interface AnalyzedImage {
 	 * Normalized areas of dominant color clusters
 	 */
 	area: number[];
-	/**
-	 * Min/max HSV hue range of dominant colors
-	 */
-	hueRange: [number, number];
-	/**
-	 * Min/max HSV saturation range of dominant colors
-	 */
-	satRange: [number, number];
-	/**
-	 * Min/max Oklch chroma range of dominant colors
-	 */
-	chromaRange: [number, number];
-	/**
-	 * Min/max luminance range of dominant colors (obtained from SRGB)
-	 */
-	lumaRange: [number, number];
+	mean: {
+		/**
+		 * Normalized mean hue (using circular mean).
+		 */
+		hue: number;
+		/**
+		 * Mean saturation
+		 */
+		sat: number;
+		/**
+		 * Mean luminance
+		 */
+		luma: number;
+	};
+	sd: {
+		/**
+		 * Circular standard deviation of normalized hues.
+		 */
+		hue: number;
+		/**
+		 * Standard deviation of normalized saturation.
+		 */
+		sat: number;
+		/**
+		 * Standard deviation of normalized luminance.
+		 */
+		luma: number;
+	};
+	range: {
+		/**
+		 * Min/max HSV hue range of dominant colors. IMPORTANT: In case of
+		 * circular overflow (360 => 0 degrees), the min hue WILL be greater
+		 * than the max hue (e.g. a hue range of `[0.8, 0.2]` indicates the hue
+		 * range from magenta -> orange). Also see {@link AnalyzedImage.mean.hue}.
+		 */
+		hue: [number, number];
+		/**
+		 * Min/max HSV saturation range of dominant colors
+		 */
+		sat: [number, number];
+		/**
+		 * Min/max luminance range of dominant colors (obtained from SRGB)
+		 */
+		luma: [number, number];
+	};
 	/**
 	 * Min/max luminance range of entire grayscale image (obtained from SRGB)
 	 */
 	lumaRangeImg: [number, number];
 	/**
-	 * Normalized warmth, i.e. the area-weighted intensity of "warm" colors in
-	 * the image (see {@link warmIntensity} and {@link AnalysisOpts.minSat}).
+	 * Normalized color temperature/warmth, i.e. the normalized area of "warm"
+	 * colors in the image (see {@link temperature} and
+	 * {@link AnalysisOpts.minSat}).
 	 */
 	warmth: number;
+	/**
+	 * Normalized color temperature/warmth, i.e. the area-weighted intensity of
+	 * "warm" colors in the image (see {@link temperatureIntensity} and
+	 * {@link AnalysisOpts.minSat}).
+	 */
+	warmthIntensity: number;
 	/**
 	 * Luminance contrast of dominant colors (i.e. delta of
 	 * {@link AnalyzedImage.lumaRange}).
