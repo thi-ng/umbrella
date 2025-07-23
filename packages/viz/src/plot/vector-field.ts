@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mapcatIndexed } from "@thi.ng/transducers";
 import { dist2, heading, type ReadonlyVec } from "@thi.ng/vectors";
 import type { PlotFn } from "../api.js";
