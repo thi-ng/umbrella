@@ -46,7 +46,7 @@ export * from "./buffer.js";
 export * from "./cartesian.js";
 export * from "./ceil.js";
 export * from "./center.js";
-export * from "./circular-mean.js";
+export * from "./circular.js";
 export * from "./clamp.js";
 export * from "./clamp01.js";
 export * from "./clamp11.js";

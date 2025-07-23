@@ -264,8 +264,8 @@
 		"./center": {
 			"default": "./center.js"
 		},
-		"./circular-mean": {
-			"default": "./circular-mean.js"
+		"./circular": {
+			"default": "./circular.js"
 		},
 		"./clamp": {
 			"default": "./clamp.js"

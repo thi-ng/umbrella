@@ -8,8 +8,8 @@ import { mean } from "./mean.js";
 import { sd, variance } from "./variance.js";
 
 /**
- * Converts given angles into polar coordinates and then computes their mean
- * angle.
+ * Converts given angles (in radians) into polar coordinates and then computes
+ * their mean angle (in radians).
  *
  * @remarks
  * Also see {@link cartesian2FromAngles}, {@link circularVariance},
