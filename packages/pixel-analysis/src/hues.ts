@@ -1,98 +1,159 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { FloatBuffer } from "@thi.ng/pixel/float";
-import { FLOAT_HSVA } from "@thi.ng/pixel/format/float-hsva";
-import type { IntBuffer } from "@thi.ng/pixel/int";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
+import { transduce } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { mean } from "@thi.ng/transducers/mean";
-import { transduce } from "@thi.ng/transducers/transduce";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**
- * Iterator yielding HSV pixel values/colors matching given hue range and
- * minimum saturation.
+ * Iterator consuming HSV colors and only yielding those matching given hue
+ * range and minimum saturation (all normalized in [0,1] range).
  *
- * @param img
+ * @remarks
+ * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
+ *
+ * If `minHue` is greater than `maxHue`, the range will be interpreted to wrap
+ * around at 1. E.g. the range `[0.8, 0.2]` selects hues >= 0.8 and hues
+ * < 0.2.
+ *
+ * @param colors
  * @param minHue
  * @param maxHue
  * @param minSat
  */
-export function* selectHueRangeHsv(
-	img: IntBuffer | FloatBuffer,
+export function* selectHueRange(
+	colors: Iterable<ReadonlyVec>,
 	minHue: number,
 	maxHue: number,
 	minSat: number
 ) {
-	if (img.format !== FLOAT_HSVA) img = img.as(FLOAT_HSVA);
-	const {
-		data,
-		stride: [stride],
-	} = img;
-	const pred =
-		minHue <= maxHue
-			? (i: number) => data[i] >= minHue && data[i] < maxHue
-			: (i: number) => data[i] >= minHue || data[i] < maxHue;
-	for (let i = 0, n = data.length; i < n; i += stride) {
-		if (data[i + 1] >= minSat && pred(i)) yield data.subarray(i, i + 4);
+	const pred = __hueSelector(minHue, maxHue);
+	for (let col of colors) {
+		if (col[1] >= minSat && pred(col[0])) yield col;
 	}
 }
 
 /**
- * Similar to {@link selectHueRangeHsv}, but only returns a count of HSV pixel
- * values/colors matching given hue range and minimum saturation (all
- * normalized).
+ * Similar to {@link selectHueRange}, but only yields indices/IDs of matching
+ * colors.
  *
- * @param img
+ * @remarks
+ * See {@link selectHueRange} for details about hue ranges.
+ *
+ * @param colors
  * @param minHue
  * @param maxHue
  * @param minSat
  */
-export const countHueRangeHsv = (
-	img: IntBuffer | FloatBuffer,
+export function* selectHueRangeIDs(
+	colors: Iterable<ReadonlyVec>,
+	minHue: number,
+	maxHue: number,
+	minSat: number
+) {
+	const pred = __hueSelector(minHue, maxHue);
+	let id = 0;
+	for (let col of colors) {
+		if (col[1] >= minSat && pred(col[0])) yield id;
+		id++;
+	}
+}
+
+/**
+ * Similar to {@link selectHueRange}, but only returns a count of inputs
+ * matching given hue range and minimum saturation (all normalized in [0,1]
+ * range).
+ *
+ * @remarks
+ * See {@link selectHueRange} for details about hue ranges.
+ *
+ * @param colors
+ * @param minHue
+ * @param maxHue
+ * @param minSat
+ */
+export const countHueRange = (
+	colors: Iterable<ReadonlyVec>,
 	minHue: number,
 	maxHue: number,
 	minSat: number
 ) => {
-	if (img.format !== FLOAT_HSVA) img = img.as(FLOAT_HSVA);
-	const {
-		data,
-		stride: [stride],
-	} = img;
-	const pred =
-		minHue <= maxHue
-			? (i: number) => data[i] >= minHue && data[i] < maxHue
-			: (i: number) => data[i] >= minHue || data[i] < maxHue;
+	const pred = __hueSelector(minHue, maxHue);
 	let count = 0;
-	for (let i = 0, n = data.length; i < n; i += stride) {
-		if (data[i + 1] >= minSat && pred(i)) count++;
+	for (let col of colors) {
+		if (col[1] >= minSat && pred(col[0])) count++;
 	}
 	return count;
 };
 
+/** @internal */
+const __hueSelector = (min: number, max: number) =>
+	min <= max
+		? (h: number) => h >= min && h < max
+		: (h: number) => h >= min || h < max;
+
 /**
- * Takes a list of hue ranges and computes the area-weighted mean intensity of
- * matching pixels in the given image. Also see {@link warmIntensityHsv}.
+ * Takes a list of HSV colors, a list of min/max hue ranges and a min saturation
+ * (all normalized in [0,1] range). Computes the normalized area of all matching
+ * colors.
  *
  * @remarks
- * Intensity here means the product of HSV `saturation * brightness`.
+ * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format. Also see
+ * {@link temperature}.
  *
- * @param img
- * @param hues
+ * See {@link selectHueRange} for details about hue ranges.
+ *
+ * @param colors
+ * @param hueRanges
  * @param minSat
  */
-export const hueRangeIntensityHsv = (
-	img: IntBuffer | FloatBuffer,
-	hues: [number, number][],
+export const hueRangeArea = (
+	colors: Iterable<ReadonlyVec>,
+	hueRanges: [number, number][],
 	minSat = 0.2
 ) => {
-	if (img.format !== FLOAT_HSVA) img = img.as(FLOAT_HSVA);
+	const $img = ensureArray(colors);
 	// select colors matching hue ranges
-	const selected = [
-		...mapcat((range) => selectHueRangeHsv(img, ...range, minSat), hues),
-	];
-	const area = selected.length / (img.data.length / 4);
-	// average intensity of selection
+	const selected = new Set(
+		mapcat((range) => selectHueRangeIDs($img, ...range, minSat), hueRanges)
+	);
+	return selected.size / $img.length;
+};
+
+/**
+ * Takes a list of hue ranges and computes the area-weighted mean intensity of
+ * matching pixels in the given image. Also see {@link temperatureIntensity}.
+ *
+ * @remarks
+ * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
+ *
+ * Intensity here means the product of HSV `saturation * brightness`.
+ *
+ * See {@link selectHueRange} for details about hue ranges.
+ *
+ * @param colors
+ * @param hueRanges
+ * @param minSat
+ */
+export const hueRangeAreaIntensity = (
+	colors: Iterable<ReadonlyVec>,
+	hueRanges: [number, number][],
+	minSat = 0.2
+) => {
+	const $colors = ensureArray(colors);
+	const selected = new Set(
+		mapcat(
+			(range) => selectHueRangeIDs($colors, ...range, minSat),
+			hueRanges
+		)
+	);
+	const area = selected.size / $colors.length;
 	const intensity = transduce(
-		map((x) => x[1] * x[2]),
+		map((id) => {
+			const color = $colors[id];
+			return color[1] * color[2];
+		}),
 		mean(),
 		selected
 	);
@@ -100,20 +161,63 @@ export const hueRangeIntensityHsv = (
 };
 
 /**
- * Syntax sugar for {@link hueRangeIntensityHsv} to compute the area-weighted mean
- * intensity of pixels in the yellow/orange/red hue ranges.
+ * Computes the average intensity of given HSV colors. If given a pixel buffer
+ * as input, it MUST be in `FLOAT_HSVA` format.
  *
- * @param img
+ * @remarks
+ * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
+ *
+ * Intensity here means the product of HSV `saturation * brightness`.
+ *
+ * @param colors
+ */
+export const meanIntensity = (colors: Iterable<ReadonlyVec>) =>
+	transduce(
+		map((x) => x[1] * x[2]),
+		mean(),
+		colors
+	);
+
+const WARM_HUES: [number, number][] = [
+	// pink-red, red, orange, yellow
+	[330 / 360, 60 / 360],
+];
+
+/**
+ * Computes an abstract measure of a normalized "color temperature" of given HSV
+ * `colors` (also normalized in [0,1] range). Syntax sugar for
+ * {@link hueRangeArea} to compute the normalized area of pixels in the
+ * yellow/orange/red/red-pink hue ranges. Results closer to 1.0 indicate a
+ * prevalence of warmer colors, results closer to 0.0 mean more colder/blue-ish
+ * colors present.
+ *
+ * @remarks
+ * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
+ *
+ * Also see {@link temperatureIntensity}.
+ *
+ * @param colors
  * @param minSat
  */
-export const warmIntensityHsv = (
-	img: IntBuffer | FloatBuffer,
+export const temperature = (colors: Iterable<ReadonlyVec>, minSat?: number) =>
+	hueRangeArea(colors, WARM_HUES, minSat);
+
+/**
+ * Computes an abstract measure of a normalized "color temperature" of given HSV
+ * `colors` (also normalized in [0,1] range). Syntax sugar for
+ * {@link hueRangeAreaIntensity} to compute the area-weighted mean intensity of
+ * pixels in the yellow/orange/red/red-pink hue ranges. Results closer to 1.0
+ * indicate a prevalence of saturated, bright warm colors.
+ *
+ * @remarks
+ * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
+ *
+ * Also see {@link temperature} for a more simple version.
+ *
+ * @param colors
+ * @param minSat
+ */
+export const temperatureIntensity = (
+	colors: Iterable<ReadonlyVec>,
 	minSat?: number
-) =>
-	hueRangeIntensityHsv(
-		img,
-		[
-			[345 / 360, 55 / 360], // red, orange, yellow
-		],
-		minSat
-	);
+) => hueRangeAreaIntensity(colors, WARM_HUES, minSat);
