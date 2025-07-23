@@ -40,6 +40,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.11.32",
+		"@thi.ng/arrays": "^2.13.5",
 		"@thi.ng/color": "^5.7.50",
 		"@thi.ng/compare": "^2.4.24",
 		"@thi.ng/math": "^5.11.32",
@@ -64,10 +65,14 @@
 		"gradient",
 		"grayscale",
 		"hsv",
+		"hue",
 		"luminance",
+		"mean",
 		"oklch",
 		"rgb",
 		"saturation",
+		"standard-deviation",
+		"statistics",
 		"temperature",
 		"typescript"
 	],

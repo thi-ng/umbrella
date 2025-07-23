@@ -5792,6 +5792,7 @@ __metadata:
   resolution: "@thi.ng/pixel-analysis@workspace:packages/pixel-analysis"
   dependencies:
     "@thi.ng/api": "npm:^8.11.32"
+    "@thi.ng/arrays": "npm:^2.13.5"
     "@thi.ng/color": "npm:^5.7.50"
     "@thi.ng/compare": "npm:^2.4.24"
     "@thi.ng/math": "npm:^5.11.32"
