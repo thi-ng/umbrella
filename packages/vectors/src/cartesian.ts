@@ -1,7 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 import { cossin } from "@thi.ng/math/angle";
 import { add2 } from "./add.js";
-import { ZERO2, ZERO3, type MultiVecOpVO, type ReadonlyVec } from "./api.js";
+import {
+	ZERO2,
+	ZERO3,
+	type MultiVecOpVO,
+	type ReadonlyVec,
+	type Vec,
+} from "./api.js";
 import { setC3 } from "./setc.js";
 import { vop } from "./vop.js";
 
@@ -53,3 +59,15 @@ export const cartesian3 = cartesian.add(3, (out, v, offset = ZERO3) => {
 		r * sin(theta) + offset[2]
 	);
 });
+
+/**
+ * Converts given vector of angles (in radians) to an array of 2D cartesian
+ * coordinates scaled by `n` (default: 1).
+ *
+ * @param angles
+ */
+export const cartesian2FromAngles = (angles: ReadonlyVec, n?: number) => {
+	const polar: Vec[] = [];
+	for (let x of angles) polar.push(cossin(x, n));
+	return polar;
+};
