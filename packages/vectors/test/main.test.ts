@@ -30,13 +30,13 @@ test("variance", () => {
 });
 
 test("sd", () => {
-	expect($eq(sd(SAMPLES), 2.138, 0.001)).toBeTrue();
+	expect($eq(sd(SAMPLES, false, true), 2.138, 0.001)).toBeTrue();
 });
 
 test("standardize", () => {
 	expect(
 		eqDelta(
-			standardize([], SAMPLES),
+			standardize([], SAMPLES, false, true),
 			[0.9354, -0.4677, 1.8708, -0.4677, 0, -0.4677, 0, -1.4031],
 			0.001
 		)
