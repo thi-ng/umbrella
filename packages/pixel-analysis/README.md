@@ -30,23 +30,23 @@ Image color & feature analysis utilities. This is a support package for [@thi.ng
 ### Color analysis
 
 -   Dominant colors in different color modes/formats:
-    -   CSS
+    -   CSS (hex)
     -   sRGB
     -   HSV
     -   Oklch (perceptual)
 -   Normalized areas of dominant color clusters
--   Min/max HSV hue range of dominant colors
+-   Min/max HSV hue range of dominant colors (considering angular wrap-around)
 -   Min/max HSV saturation range of dominant colors
--   Min/max Oklch chroma range of dominant colors
 -   Min/max luminance range of dominant colors (obtained from SRGB)
 -   Min/max luminance range of entire grayscale image (obtained from SRGB)
--   Normalized warmth, i.e. the area-weighted intensity of "warm" colors in the image
+-   Average values for hue (circular mean), saturation, luminance
+-   Area-weighted average saturation of dominant colors
+-   Area-weighted average luminance of dominant colors
+-   Standard deviation for hue, saturation, luminance
+-   Normalized warmth, incl. area-weighted intensity of "warm" colors
 -   Luminance contrast of dominant colors
 -   Luminance contrast of entire grayscale image
 -   Max. normalized WCAG color contrast of dominant colors
--   Average luminance of dominant colors, weighted by area
--   Average HSV saturation of dominant colors, weighted by area
--   Average Oklch chroma of dominant colors, weighted by area
 
 ## Status
 
@@ -80,11 +80,12 @@ For Node.js REPL:
 const pa = await import("@thi.ng/pixel-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.36 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.53 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
