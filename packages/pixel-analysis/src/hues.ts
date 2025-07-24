@@ -224,6 +224,9 @@ export const temperature = (
 			return num >= 1 ? repeat(hue * TAU, num) : null;
 		}, hues),
 	];
+	if (!angles.length) {
+		return { hues, meanHue: 0, temp: 0, areaTemp: 0, area: 0 };
+	}
 	const meanHue = circularMean(angles) / TAU;
 	const temp = hueTemperature(meanHue);
 	const areaTemp = temp * area;
