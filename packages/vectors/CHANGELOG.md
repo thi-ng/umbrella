@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-21T08:21:58Z
+- **Last updated**: 2025-07-24T19:45:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [8.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.4.1) (2025-07-21)
+## [8.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.5.0) (2025-07-24)
+
+#### 🚀 Features
+
+- add cartesian2FromAngles() ([8c11416](https://github.com/thi-ng/umbrella/commit/8c11416))
+- update variance(), sd(), sdError(), add meanAD() ([17da925](https://github.com/thi-ng/umbrella/commit/17da925))
+- update circularMean(), add centerCircular(), circularVariance(), circularSD() ([4642241](https://github.com/thi-ng/umbrella/commit/4642241))
+- update standardize() ([5cbb33e](https://github.com/thi-ng/umbrella/commit/5cbb33e))
+
+#### ♻️ Refactoring
+
+- rename src file (circular.ts), update pkg exports ([628fcfb](https://github.com/thi-ng/umbrella/commit/628fcfb))
+
+## [8.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.4.0) (2025-07-21)
 
 #### 🚀 Features
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-21T08:21:58Z
+- **Last updated**: 2025-07-24T19:45:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@1.0.0) (2025-07-24)
+
+#### 🛑 Breaking changes
+
+- major update/rewrite hue range analysis fns ([5730fea](https://github.com/thi-ng/umbrella/commit/5730fea))
+- BREAKING CHANGE: replace/update hue range analysis fns
+- major update/rewrite hue range analysis fns ([9b12898](https://github.com/thi-ng/umbrella/commit/9b12898))
+- BREAKING CHANGE: update AnalyzedImage result, update color analysis fns
+  - update structure & details of `AnalyzedImage` result type
+  - update `derivedColorsResults()`
+  - update/split `analyzeColors()`
+- replace temperature calculation ([2a23cfa](https://github.com/thi-ng/umbrella/commit/2a23cfa))
+- BREAKING CHANGE: replace temperature calculation with whole new approach
+  - replace existing `temperature()` with new method/approach
+  - add `TemperatureResult`
+  - update `analyzeColors()`, `derivedColorsResult()`
 
 ### [0.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@0.4.1) (2025-07-15)
 
