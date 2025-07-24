@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-24T19:45:06Z
+- **Last updated**: 2025-07-24T21:23:41Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@1.0.1) (2025-07-24)
+
+#### 🩹 Bug fixes
+
+- bail out if insufficient samples ([41ba4c3](https://github.com/thi-ng/umbrella/commit/41ba4c3))
+  - update `temperature()` to return empty result if insufficient color samples
+- update hue standard deviation ([9b0ea02](https://github.com/thi-ng/umbrella/commit/9b0ea02))
+  - return normalized hue SD (not in radians)
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@1.0.0) (2025-07-24)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-analysis",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Image color & feature analysis utilities",
 	"type": "module",
 	"module": "./index.js",
