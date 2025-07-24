@@ -121,7 +121,7 @@ export const derivedColorsResult = (
 			luma: vmean(dominantLuma),
 		},
 		sd: {
-			hue: circularSD(hues),
+			hue: circularSD(hues) / TAU,
 			sat: sd(sats),
 			luma: sd(dominantLuma),
 		},
