@@ -28,7 +28,7 @@ import { vmean } from "@thi.ng/vectors/mean";
 import { roundN } from "@thi.ng/vectors/roundn";
 import { sd } from "@thi.ng/vectors/variance";
 import type { AnalysisOpts, AnalyzedImage } from "./api.js";
-import { temperature, temperatureIntensity } from "./hues.js";
+import { temperature } from "./hues.js";
 
 /**
  * Performs a set of image/color analyses on provided pixel buffer.
@@ -47,7 +47,7 @@ export const analyzeColors = (
 	const imgHsv = $img.as(FLOAT_HSVA);
 	const colors = __dominantColors($img, opts);
 	const colorAreas = colors.map((x) => x.area);
-	const derived = derivedColorsResults(colors.map((x) => x.color));
+	const derived = derivedColorsResult(colors.map((x) => x.color));
 	const lumaRangeImg = reduce(minMax(), imgGray.data);
 	const weightedLuma = dot(derived.range.luma, colorAreas);
 	const weightedChroma = dot(
@@ -64,8 +64,7 @@ export const analyzeColors = (
 		imgHsv,
 		...derived,
 		area: colorAreas,
-		warmth: temperature(imgHsv, opts?.minSat),
-		warmthIntensity: temperatureIntensity(imgHsv, opts?.minSat),
+		temperature: temperature(imgHsv, opts?.minSat),
 		contrastImg: lumaRangeImg[1] - lumaRangeImg[0],
 		lumaRangeImg,
 		weightedSat,
@@ -80,7 +79,7 @@ export const analyzeColors = (
  *
  * @param colors
  */
-export const derivedColorsResults = (
+export const derivedColorsResult = (
 	colors: number[][],
 	minSat?: number
 ): Pick<
@@ -94,8 +93,7 @@ export const derivedColorsResults = (
 	| "range"
 	| "contrast"
 	| "colorContrast"
-	| "warmth"
-	| "warmthIntensity"
+	| "temperature"
 > => {
 	const dominantLuma = colors.map((x) => luminanceSrgb(x));
 	const dominantSrgb = colors.map((x) => srgb(x));
@@ -144,8 +142,7 @@ export const derivedColorsResults = (
 			0,
 			1
 		),
-		warmth: temperature(dominantHsv, minSat),
-		warmthIntensity: temperatureIntensity(dominantHsv, minSat),
+		temperature: temperature(dominantHsv, minSat),
 	};
 };
 

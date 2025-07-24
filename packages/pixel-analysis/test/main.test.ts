@@ -1,11 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { FLOAT_HSVA, intBuffer, RGB888 } from "@thi.ng/pixel";
 import { expect, test } from "bun:test";
-import {
-	hueRangeAreaIntensity,
-	temperature,
-	temperatureIntensity,
-} from "../src/index.js";
+import { hueRangeAreaIntensity } from "../src/index.js";
 
 const img = intBuffer(
 	8,
@@ -32,28 +28,4 @@ test("hueRangeIntensityHsv", () => {
 	expect(hueRangeAreaIntensity(img, [[150 / 360, 300 / 360]])).toBe(
 		(hsv[17] * hsv[18] + hsv[21] * hsv[22] + hsv[25] * hsv[26]) / img.width
 	);
-});
-
-test("temperature", () => {
-	expect(temperature(img)).toEqual(0.5);
-	expect(
-		temperature([
-			[0, 1, 1],
-			[0.3, 1, 1],
-			[0.5, 1, 1],
-			[0.6, 1, 1],
-		])
-	).toEqual(0.25);
-});
-
-test("temperatureIntensity", () => {
-	expect(temperatureIntensity(img)).toBeCloseTo(0.5);
-	expect(
-		temperatureIntensity([
-			[0, 0.5, 1],
-			[0.3, 1, 1],
-			[0.5, 1, 1],
-			[0.6, 1, 1],
-		])
-	).toBeCloseTo(0.125);
 });

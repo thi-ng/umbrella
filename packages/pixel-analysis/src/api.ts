@@ -19,7 +19,7 @@ export interface AnalysisOpts {
 	 */
 	size: number;
 	/**
-	 * Min. saturation to consider for computing {@link warmIntensity}.
+	 * Min. saturation to consider for computing {@link temperature}.
 	 */
 	minSat: number;
 	/**
@@ -113,17 +113,10 @@ export interface AnalyzedImage {
 	 */
 	lumaRangeImg: [number, number];
 	/**
-	 * Normalized color temperature/warmth, i.e. the normalized area of "warm"
-	 * colors in the image (see {@link temperature} and
-	 * {@link AnalysisOpts.minSat}).
+	 * Comprehensive {@link TemperatureResult} as produced by
+	 * {@link temperature}. Also see {@link AnalysisOpts.minSat}.
 	 */
-	warmth: number;
-	/**
-	 * Normalized color temperature/warmth, i.e. the area-weighted intensity of
-	 * "warm" colors in the image (see {@link temperatureIntensity} and
-	 * {@link AnalysisOpts.minSat}).
-	 */
-	warmthIntensity: number;
+	temperature: TemperatureResult;
 	/**
 	 * Luminance contrast of dominant colors (i.e. delta of
 	 * {@link AnalyzedImage.lumaRange}).
@@ -150,4 +143,35 @@ export interface AnalyzedImage {
 	 * Average Oklch chroma of dominant colors, weighted by area.
 	 */
 	weightedChroma: number;
+}
+
+/**
+ * Result type for {@link temparature}.
+ */
+export interface TemperatureResult {
+	/**
+	 * Hue-based histogram (up to 12 bins), each item: `[hue, count]` (all
+	 * normalized).
+	 */
+	hues: [number, number][];
+	/**
+	 * Normalized weighted mean hue, based on histogram distribution.
+	 */
+	meanHue: number;
+	/**
+	 * Normalized abstract color temperature (see {@link hueTemperature}) based
+	 * on weighted {@link TemperatureResult.meanHue}. Red/orange/yellow hues
+	 * produce results close to 1.0, cyan/blue/purple hues produce results
+	 * closer to -1.0.
+	 */
+	temp: number;
+	/**
+	 * {@link TemperatureResult.temp} weighted by {@link TemperatureResult.area}
+	 */
+	areaTemp: number;
+	/**
+	 * Normalized area (percentage) of the filtered (sufficiently) saturated
+	 * colors which were used to compute the histogram & temperature.
+	 */
+	area: number;
 }

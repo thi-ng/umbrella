@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
-import { transduce } from "@thi.ng/transducers";
+import { compareByKey } from "@thi.ng/compare";
+import { roundTo, smoothStep, TAU } from "@thi.ng/math";
+import { normFrequenciesAuto, repeat, transduce } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { mean } from "@thi.ng/transducers/mean";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { circularMean } from "@thi.ng/vectors/circular";
+import type { TemperatureResult } from "./api.js";
 
 /**
  * Iterator consuming HSV colors and only yielding those matching given hue
@@ -161,13 +165,11 @@ export const hueRangeAreaIntensity = (
 };
 
 /**
- * Computes the average intensity of given HSV colors. If given a pixel buffer
- * as input, it MUST be in `FLOAT_HSVA` format.
+ * Computes the average intensity of given HSV colors. Intensity here means the
+ * product of `saturation * value` (ignoring hues).
  *
  * @remarks
  * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
- *
- * Intensity here means the product of HSV `saturation * brightness`.
  *
  * @param colors
  */
@@ -178,20 +180,23 @@ export const meanIntensity = (colors: Iterable<ReadonlyVec>) =>
 		colors
 	);
 
-const WARM_HUES: [number, number][] = [
-	// pink-red, red, orange, yellow
-	[330 / 360, 60 / 360],
-];
-
 /**
- * Computes an abstract measure of a normalized "color temperature" of given HSV
- * `colors` (also normalized in [0,1] range). Syntax sugar for
- * {@link hueRangeArea} to compute the normalized area of pixels in the
- * yellow/orange/red/red-pink hue ranges. Results closer to 1.0 indicate a
- * prevalence of warmer colors, results closer to 0.0 mean more colder/blue-ish
- * colors present.
+ * Computes an abstract measure of a normalized "color temperature" of the given
+ * HSV `colors` (also normalized in [0,1] range). Results closer to 1.0 indicate
+ * a prevalence of warmer colors, results closer to -1.0 mean more
+ * colder/blue-ish colors present.
  *
  * @remarks
+ * Computation is as follows:
+ * - Discard colors with lower saturation than given `minSat`
+ * - Compute normalized area (percentage) of qualifying saturated colors
+ * - Compute the histogram for 12 evenly spread hues
+ * - Produce a weighted list of hue angles, based on histogram
+ * - Compute circular mean of hue angles
+ * - Use {@link hueTemperature} to compute normalized temperature in [-1,1] range
+ * - Scale temparature by normlized area
+ * - Return object of the various result metrics
+ *
  * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
  *
  * Also see {@link temperatureIntensity}.
@@ -199,25 +204,47 @@ const WARM_HUES: [number, number][] = [
  * @param colors
  * @param minSat
  */
-export const temperature = (colors: Iterable<ReadonlyVec>, minSat?: number) =>
-	hueRangeArea(colors, WARM_HUES, minSat);
+export const temperature = (
+	colors: Iterable<ReadonlyVec>,
+	minSat = 0.2
+): TemperatureResult => {
+	const $colors = ensureArray(colors);
+	const filtered = $colors.filter((x) => x[1] >= minSat);
+	const area = filtered.length / $colors.length;
+	const hues = [
+		...transduce(
+			map((x) => roundTo(x[0], 1 / 12) % 1),
+			normFrequenciesAuto<number>(),
+			filtered
+		),
+	].sort(compareByKey(0));
+	const angles = [
+		...mapcat(([hue, num]) => {
+			num *= 50;
+			return num >= 1 ? repeat(hue * TAU, num) : null;
+		}, hues),
+	];
+	const meanHue = circularMean(angles) / TAU;
+	const temp = hueTemperature(meanHue);
+	const areaTemp = temp * area;
+	return { hues, meanHue, temp, areaTemp, area };
+};
 
 /**
- * Computes an abstract measure of a normalized "color temperature" of given HSV
- * `colors` (also normalized in [0,1] range). Syntax sugar for
- * {@link hueRangeAreaIntensity} to compute the area-weighted mean intensity of
- * pixels in the yellow/orange/red/red-pink hue ranges. Results closer to 1.0
- * indicate a prevalence of saturated, bright warm colors.
+ * Computes an abstract measure of a normalized "color temperature" ([-1,1]
+ * range) for the given `hue` (in [0,1] range). Red/orange/yellow hues produce
+ * results close to 1.0, cyan/blue/purple-ish hues produce results closer to
+ * -1.0.
  *
  * @remarks
- * If given a pixel buffer as input, it MUST be in `FLOAT_HSVA` format.
+ * Uses one of two smoothstep curves for non-linear interpolation, depending on
+ * input hue.
  *
- * Also see {@link temperature} for a more simple version.
- *
- * @param colors
- * @param minSat
+ * @param hue
  */
-export const temperatureIntensity = (
-	colors: Iterable<ReadonlyVec>,
-	minSat?: number
-) => hueRangeAreaIntensity(colors, WARM_HUES, minSat);
+export const hueTemperature = (hue: number) =>
+	2 *
+		(hue < 2 / 3
+			? smoothStep(0.6, 0.1, hue)
+			: smoothStep(0.72, 0.92, hue)) -
+	1;
