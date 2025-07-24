@@ -22,7 +22,8 @@
 -   Area-weighted average saturation of dominant colors
 -   Area-weighted average luminance of dominant colors
 -   Standard deviation for hue, saturation, luminance
--   Normalized warmth, incl. area-weighted intensity of "warm" colors
+-   Normalized color temperature, incl. area-weighted indicator of "cold" vs
+    "warm" hues present
 -   Luminance contrast of dominant colors
 -   Luminance contrast of entire grayscale image
 -   Max. normalized WCAG color contrast of dominant colors
