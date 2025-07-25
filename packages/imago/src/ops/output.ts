@@ -4,21 +4,19 @@ import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { writeFile, writeJSON } from "@thi.ng/file-io";
 import { firstNonNullKey } from "@thi.ng/object-utils";
-import { join, resolve } from "node:path";
 import type { Sharp } from "sharp";
 import type { ImgProcCtx, OutputSpec, Processor } from "../api.js";
 import { formatPath } from "../path.js";
 
 export const outputProc: Processor = async (spec, input, ctx) => {
 	const opts = <OutputSpec>spec;
-	const outDir = resolve(ctx.opts.outDir || ".");
 	let output = input.clone();
 	if (opts.blurhash) {
 		await __outputBlurHash(opts, output, ctx);
 		return [input, false];
 	}
 	if (opts.raw) {
-		await __outputRaw(opts, output, ctx, outDir);
+		await __outputRaw(opts, output, ctx);
 		return [input, false];
 	}
 	if (ctx.meta.exif && ctx.opts.keepEXIF) {
@@ -79,10 +77,7 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 	if (format) output = output.toFormat(<any>format);
 	const result = await output.toBuffer();
 	if (opts.path !== undefined) {
-		const path = join(
-			outDir,
-			formatPath(opts.path, ctx, <OutputSpec>spec, result)
-		);
+		const path = formatPath(opts.path, ctx, <OutputSpec>spec, result);
 		writeFile(path, result, null, ctx.logger);
 		ctx.outputs[opts.id] = path;
 	} else {
@@ -98,8 +93,7 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 const __outputRaw = async (
 	opts: OutputSpec,
 	output: Sharp,
-	ctx: ImgProcCtx,
-	outDir: string
+	ctx: ImgProcCtx
 ) => {
 	const { alpha = false, meta = false } = isPlainObject(opts.raw)
 		? opts.raw
@@ -113,7 +107,7 @@ const __outputRaw = async (
 		ctx.outputMeta[opts.id] = { ...info, exif: ctx.exif };
 	}
 	if (opts.path !== undefined) {
-		const path = join(outDir, formatPath(opts.path!, ctx, opts, data));
+		const path = formatPath(opts.path!, ctx, opts, data);
 		writeFile(path, data, null, ctx.logger);
 		ctx.outputs[opts.id] = path;
 		if (meta) {

@@ -14,16 +14,20 @@ import {
 } from "@thi.ng/date";
 import { illegalArgs as unsupported } from "@thi.ng/errors";
 import { createHash } from "node:crypto";
-import { basename } from "node:path";
+import { basename, isAbsolute, join, resolve } from "node:path";
 import type { ImgProcCtx, OutputSpec } from "./api.js";
 
 /** @internal */
 const _ = undefined;
 
 /**
- * Expands/replaces all `{xyz}`-templated identifiers in given file path.
+ * Expands/replaces all `{xyz}`-templated identifiers in given file path and
+ * makes result an absolute path (if needed).
  *
  * @remarks
+ * If the input path is not yet absolute, it will be joined with the
+ * {@link ImgProcOpts.outDir}.
+ *
  * The following built-in IDs are supported and custom IDs will be looked up via
  * the {@link ImgProcOpts.pathParts} options provided to {@link processImage}.
  * Any others will remain as is. Custom IDs take precedence over built-in ones.
@@ -55,8 +59,8 @@ export const formatPath = (
 	ctx: ImgProcCtx,
 	spec: OutputSpec,
 	buf: Buffer | TypedArray
-) =>
-	path.replace(/\{(\w+)\}/g, (match, id) => {
+) => {
+	path = path.replace(/\{(\w+)\}/g, (match, id) => {
 		const custom = ctx.opts.pathParts?.[id];
 		if (custom != null) {
 			return isFunction(custom) ? custom(ctx, spec, buf) : custom;
@@ -106,3 +110,7 @@ export const formatPath = (
 		}
 		return match;
 	});
+	return isAbsolute(path)
+		? path
+		: join(resolve(ctx.opts.outDir || "."), path);
+};
