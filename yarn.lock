@@ -5417,7 +5417,7 @@ __metadata:
     "@thi.ng/pixel": "npm:^7.5.4"
     "@thi.ng/pixel-dither": "npm:^1.1.172"
     "@thi.ng/prefixes": "npm:^2.3.49"
-    "@thi.ng/vectors": "npm:^8.4.1"
+    "@thi.ng/vectors": "npm:^8.5.0"
     "@types/node": "npm:^24.0.15"
     esbuild: "npm:^0.25.8"
     sharp: "npm:^0.34.3"

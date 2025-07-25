@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-21T15:28:55Z
+- **Last updated**: 2025-07-25T00:04:12Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.4.0) (2025-07-25)
+
+#### 🚀 Features
+
+- add support for absolute output paths ([c440e25](https://github.com/thi-ng/umbrella/commit/c440e25))
+  - update `formatPath()` to always return abs path
+  - simplify `outputProc()` path handling
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.3.0) (2025-07-21)
 
