@@ -191,3 +191,14 @@ export interface TemperatureResult {
 	 */
 	area: number;
 }
+
+export interface FeatureAnalysisResult {
+	imgEdge: FloatBuffer;
+	imgSobelX: FloatBuffer;
+	imgSobelY: FloatBuffer;
+
+	edge: number;
+	sobel: number;
+	sobelX: number;
+	sobelY: number;
+}
