@@ -1,6 +1,19 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { CellSpan, LayoutBox } from "./api.js";
 
+/**
+ * Creates a {@link LayoutBox} object with given details.
+ *
+ * @param x
+ * @param y
+ * @param w
+ * @param h
+ * @param cw
+ * @param ch
+ * @param gapX
+ * @param gapY
+ * @param span
+ */
 export const layoutBox = (
 	x: number,
 	y: number,
@@ -8,7 +21,8 @@ export const layoutBox = (
 	h: number,
 	cw: number,
 	ch: number,
-	gap: number,
+	gapX: number,
+	gapY = gapX,
 	span?: CellSpan
 ): LayoutBox => ({
 	x,
@@ -17,6 +31,7 @@ export const layoutBox = (
 	h,
 	cw,
 	ch,
-	gap,
+	gapX,
+	gapY,
 	span: span || [~~(w / cw), ~~(h / ch)],
 });
