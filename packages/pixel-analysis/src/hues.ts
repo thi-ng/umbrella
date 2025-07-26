@@ -1,14 +1,18 @@
 // SPDX-License-Identifier: Apache-2.0
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { compareByKey } from "@thi.ng/compare";
-import { roundTo, smoothStep, TAU } from "@thi.ng/math";
+import { TAU } from "@thi.ng/math/api";
 import { normFrequenciesAuto, repeat, transduce } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { mean } from "@thi.ng/transducers/mean";
+import { minMax } from "@thi.ng/transducers/min-max";
+import { reduce } from "@thi.ng/transducers/reduce";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { circularMean } from "@thi.ng/vectors/circular";
 import type { TemperatureResult } from "./api.js";
+import { fract, roundTo } from "@thi.ng/math/prec";
+import { smoothStep } from "@thi.ng/math/step";
 
 /**
  * Iterator consuming HSV colors and only yielding those matching given hue
@@ -179,6 +183,42 @@ export const meanIntensity = (colors: Iterable<ReadonlyVec>) =>
 		mean(),
 		colors
 	);
+
+/**
+ * Constructs the min/max range of given normalized `hues` around given mean hue
+ * (also normalized), considering circular wrap-around. If `min > max` in the
+ * result `[min,max]`, then the hue range is crossing 0 degrees.
+ *
+ * @param hues
+ * @param range
+ * @param mean
+ */
+export const computeHueRange = (
+	hues: number[],
+	mean: number
+): [number, number] => {
+	const range = reduce(minMax(), hues);
+	const [min, max] = range;
+	if (mean < min || mean > max) {
+		return [
+			hues.reduce(
+				(acc, x) => {
+					const d = fract(mean - x);
+					return d < 0.5 && d > acc[1] ? [x, d] : acc;
+				},
+				[max, fract(mean - max)]
+			)[0],
+			hues.reduce(
+				(acc, x) => {
+					const d = fract(x - mean);
+					return d < 0.5 && d > acc[1] ? [x, d] : acc;
+				},
+				[min, fract(min - mean)]
+			)[0],
+		];
+	}
+	return range;
+};
 
 /**
  * Computes an abstract measure of a normalized "color temperature" of the given

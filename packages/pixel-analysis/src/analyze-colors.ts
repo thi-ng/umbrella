@@ -19,16 +19,20 @@ import { map } from "@thi.ng/transducers/map";
 import { max } from "@thi.ng/transducers/max";
 import { minMax } from "@thi.ng/transducers/min-max";
 import { permutations } from "@thi.ng/transducers/permutations";
-import { pluck } from "@thi.ng/transducers/pluck";
 import { reduce } from "@thi.ng/transducers/reduce";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { circularMean, circularSD } from "@thi.ng/vectors/circular";
 import { dot } from "@thi.ng/vectors/dot";
 import { vmean } from "@thi.ng/vectors/mean";
+import { mulN } from "@thi.ng/vectors/muln";
 import { roundN } from "@thi.ng/vectors/roundn";
 import { sd } from "@thi.ng/vectors/variance";
-import type { AnalysisOpts, AnalyzedImage } from "./api.js";
-import { temperature } from "./hues.js";
+import type { ColorAnalysisOpts, ColorAnalysisResult } from "./api.js";
+import {
+	computeHueRange,
+	temperature,
+	type DEFAULT_TEMPERATURE_COEFFS,
+} from "./hues.js";
 
 /**
  * Performs a set of image/color analyses on provided pixel buffer.
@@ -38,8 +42,8 @@ import { temperature } from "./hues.js";
  */
 export const analyzeColors = (
 	img: FloatBuffer | IntBuffer,
-	opts?: Partial<AnalysisOpts>
-): AnalyzedImage => {
+	opts?: Partial<ColorAnalysisOpts>
+): ColorAnalysisResult => {
 	let $img =
 		img.format !== FLOAT_RGBA ? img.as(FLOAT_RGBA) : <FloatBuffer>img;
 	if (opts?.size) $img = __resize($img, opts.size);
@@ -47,9 +51,13 @@ export const analyzeColors = (
 	const imgHsv = $img.as(FLOAT_HSVA);
 	const colors = __dominantColors($img, opts);
 	const colorAreas = colors.map((x) => x.area);
-	const derived = derivedColorsResult(colors.map((x) => x.color));
+	const derived = derivedColorResults(
+		colors.map((x) => x.color),
+		opts?.minSat,
+		opts?.tempCoeffs
+	);
 	const lumaRangeImg = reduce(minMax(), imgGray.data);
-	const weightedLuma = dot(derived.range.luma, colorAreas);
+	const weightedLuma = dot(derived.luma.range, colorAreas);
 	const weightedChroma = dot(
 		derived.oklch.map((x) => x[1]),
 		colorAreas
@@ -64,7 +72,7 @@ export const analyzeColors = (
 		imgHsv,
 		...derived,
 		area: colorAreas,
-		temperature: temperature(imgHsv, opts?.minSat),
+		temperature: temperature(imgHsv, opts?.minSat, opts?.tempCoeffs),
 		contrastImg: lumaRangeImg[1] - lumaRangeImg[0],
 		lumaRangeImg,
 		weightedSat,
@@ -74,23 +82,26 @@ export const analyzeColors = (
 };
 
 /**
- * Computes a number of metrics (partial {@link AnalyzedImage}) derived from
+ * Computes a number of metrics (partial {@link ColorAnalysisResult}) derived from
  * given raw SRGB colors. Helper function for {@link analyzeColors}.
  *
  * @param colors
+ * @param minSat
+ * @param tempCoeffs
  */
-export const derivedColorsResult = (
+export const derivedColorResults = (
 	colors: number[][],
-	minSat?: number
+	minSat?: number,
+	tempCoeffs?: typeof DEFAULT_TEMPERATURE_COEFFS
 ): Pick<
-	AnalyzedImage,
+	ColorAnalysisResult,
 	| "css"
 	| "srgb"
 	| "hsv"
 	| "oklch"
-	| "mean"
-	| "sd"
-	| "range"
+	| "hue"
+	| "sat"
+	| "luma"
 	| "contrast"
 	| "colorContrast"
 	| "temperature"
@@ -100,35 +111,31 @@ export const derivedColorsResult = (
 	const dominantHsv = dominantSrgb.map((x) => hsv(x));
 	const dominantOklch = dominantSrgb.map((x) => oklch(x));
 	const dominantCss = dominantSrgb.map((x) => css(x));
-	const $hueRange = transduce(pluck(0), minMax(), dominantHsv);
-	const hues = dominantHsv.map((x) => x[0] * TAU);
+	const hues = dominantHsv.map((x) => x[0]);
+	const huesRad = mulN([], hues, TAU);
 	const sats = dominantHsv.map((x) => x[1]);
-	const meanHue = circularMean(hues) / TAU;
-	// build final hue range around mean hue, considering wrap-around
-	const hueRange: [number, number] =
-		meanHue > $hueRange[1] || meanHue < $hueRange[0]
-			? [$hueRange[1], $hueRange[0]]
-			: $hueRange;
+	const meanHue = circularMean(huesRad) / TAU;
+	const hueRange = computeHueRange(hues, meanHue);
 	const lumaRange = reduce(minMax(), dominantLuma);
 	return {
 		css: dominantCss,
 		srgb: dominantSrgb,
 		hsv: dominantHsv,
 		oklch: dominantOklch,
-		mean: {
-			hue: meanHue,
-			sat: vmean(sats),
-			luma: vmean(dominantLuma),
+		hue: {
+			mean: meanHue,
+			range: hueRange,
+			sd: circularSD(huesRad) / TAU,
 		},
-		sd: {
-			hue: circularSD(hues) / TAU,
-			sat: sd(sats),
-			luma: sd(dominantLuma),
+		sat: {
+			mean: vmean(sats),
+			range: reduce(minMax(), sats),
+			sd: sd(sats),
 		},
-		range: {
-			hue: hueRange,
-			sat: reduce(minMax(), sats),
-			luma: lumaRange,
+		luma: {
+			mean: vmean(dominantLuma),
+			range: lumaRange,
+			sd: sd(dominantLuma),
 		},
 		contrast: lumaRange[1] - lumaRange[0],
 		colorContrast: fit(
@@ -142,7 +149,7 @@ export const derivedColorsResult = (
 			0,
 			1
 		),
-		temperature: temperature(dominantHsv, minSat),
+		temperature: temperature(dominantHsv, minSat, tempCoeffs),
 	};
 };
 
@@ -153,7 +160,9 @@ const __dominantColors = (
 		dominantFn = dominantColorsKmeans,
 		numColors = 4,
 		prec = 1e-3,
-	}: Partial<Pick<AnalysisOpts, "dominantFn" | "numColors" | "prec">> = {}
+	}: Partial<
+		Pick<ColorAnalysisOpts, "dominantFn" | "numColors" | "prec">
+	> = {}
 ) =>
 	dominantFn(img, numColors)
 		.sort(compareByKey("area", compareNumDesc))
