@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-analysis",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Image color & feature analysis utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -41,14 +41,14 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.32",
 		"@thi.ng/arrays": "^2.13.5",
-		"@thi.ng/color": "^5.7.51",
+		"@thi.ng/color": "^5.7.52",
 		"@thi.ng/compare": "^2.4.24",
 		"@thi.ng/math": "^5.11.32",
 		"@thi.ng/pixel": "^7.5.4",
 		"@thi.ng/pixel-convolve": "^1.1.4",
-		"@thi.ng/pixel-dominant-colors": "^2.0.6",
+		"@thi.ng/pixel-dominant-colors": "^2.0.7",
 		"@thi.ng/transducers": "^9.6.3",
-		"@thi.ng/vectors": "^8.5.0"
+		"@thi.ng/vectors": "^8.5.1"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

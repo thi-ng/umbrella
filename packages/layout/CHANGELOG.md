@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-22T10:52:52Z
+- **Last updated**: 2025-07-26T12:33:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@4.0.0) (2025-07-26)
+
+#### 🛑 Breaking changes
+
+- add support for separate X/Y gaps/gutters ([cdc3385](https://github.com/thi-ng/umbrella/commit/cdc3385))
+- BREAKING CHANGE: update `LayoutBox` and `IGridLayout`, split `gap` into `gapX` and `gapY`
+  - update `LayoutBox`, `IGridLayout`
+  - update `IGridLayout.nest()` to support differing gaps/gutters
+  - update `GridLayout` and `StackedLayout` impls
+  - add/update docs
 
 ## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@3.2.0) (2025-07-22)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-21T08:21:58Z
+- **Last updated**: 2025-07-26T12:33:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.2.36) (2025-07-26)
+
+#### ♻️ Refactoring
+
+- minor update layout handling in components ([91885c9](https://github.com/thi-ng/umbrella/commit/91885c9))
 
 ### [3.2.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@3.2.12) (2025-04-16)
 
