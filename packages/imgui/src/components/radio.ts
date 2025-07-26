@@ -46,8 +46,24 @@ export const radio = ({
 			? layout.nest(n, [n, 1])
 			: layout.nest(1, [1, n])
 		: horizontal
-		? gridLayout(layout.x, layout.y, layout.w, n, layout.ch, layout.gap)
-		: gridLayout(layout.x, layout.y, layout.w, 1, layout.ch, layout.gap);
+		? gridLayout(
+				layout.x,
+				layout.y,
+				layout.w,
+				n,
+				layout.ch,
+				layout.gapX,
+				layout.gapY
+		  )
+		: gridLayout(
+				layout.x,
+				layout.y,
+				layout.w,
+				1,
+				layout.ch,
+				layout.gapX,
+				layout.gapY
+		  );
 	let res: Maybe<number>;
 	for (let i = 0; i < n; i++) {
 		toggle({
