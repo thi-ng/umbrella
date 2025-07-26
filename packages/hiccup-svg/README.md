@@ -66,8 +66,9 @@ definitions and recursively converts it into an hiccup flavor which is ready for
 SVG serialization (i.e. using stringified geometry attribs). This conversion
 also involves translation & re-organization of various attributes. This function
 returns a new tree. The original remains untouched, as will any unrecognized
-tree / shape nodes (those will be transferred as-is to the result tree). See
-example below.
+tree / shape nodes (those will be transferred as-is to the result tree).
+Conversion can be explicitly disabled for individual elements (tree branches) by
+setting the `__convert: false` control attribute. See example below.
 
 Tree conversion can be implicitly triggered by providing a `__convert: true`
 attribute to the root `svg()` element. This conversion also supports the
@@ -179,7 +180,7 @@ For Node.js REPL:
 const svg = await import("@thi.ng/hiccup-svg");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.49 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB
 
 ## Dependencies
 
