@@ -183,7 +183,7 @@ export const meanIntensity = (colors: Iterable<ReadonlyVec>) =>
 /**
  * Computes an abstract measure of a normalized "color temperature" of the given
  * HSV `colors` (also normalized in [0,1] range). Results closer to 1.0 indicate
- * a prevalence of warmer colors, results closer to -1.0 mean more
+ * a prevalence of warmer (red/orange) colors, results closer to -1.0 mean more
  * colder/blue-ish colors present.
  *
  * @remarks
@@ -203,10 +203,12 @@ export const meanIntensity = (colors: Iterable<ReadonlyVec>) =>
  *
  * @param colors
  * @param minSat
+ * @param coeffs
  */
 export const temperature = (
 	colors: Iterable<ReadonlyVec>,
-	minSat = 0.2
+	minSat = 0.2,
+	coeffs?: typeof DEFAULT_TEMPERATURE_COEFFS
 ): TemperatureResult => {
 	const $colors = ensureArray(colors);
 	const filtered = $colors.filter((x) => x[1] >= minSat);
@@ -228,10 +230,28 @@ export const temperature = (
 		return { hues, meanHue: 0, temp: 0, areaTemp: 0, area: 0 };
 	}
 	const meanHue = circularMean(angles) / TAU;
-	const temp = hueTemperature(meanHue);
+	const temp = hueTemperature(meanHue, coeffs);
 	const areaTemp = temp * area;
 	return { hues, meanHue, temp, areaTemp, area };
 };
+
+/**
+ * Default temperature curve hues/coefficients for {@link hueTemperature}.
+ *
+ * @remarks
+ * The four values (all in [0,1] range) are to be giving in this order:
+ *
+ * - A: start hue of warm falloff
+ * - B: end hue of warm falloff
+ * - C: start hue of warm rise
+ * - D: end hue of warm rise
+ *
+ * Note: The hot point is fixed at 0 (aka red) and the cold point is fixed at
+ * 2/3 (= 0.666... aka blue), meaning C & D MUST be greater.
+ */
+export const DEFAULT_TEMPERATURE_COEFFS: [number, number, number, number] = [
+	0.1, 0.6, 0.72, 0.92,
+];
 
 /**
  * Computes an abstract measure of a normalized "color temperature" ([-1,1]
@@ -244,10 +264,9 @@ export const temperature = (
  * input hue.
  *
  * @param hue
+ * @param coeffs
  */
-export const hueTemperature = (hue: number) =>
-	2 *
-		(hue < 2 / 3
-			? smoothStep(0.6, 0.1, hue)
-			: smoothStep(0.72, 0.92, hue)) -
-	1;
+export const hueTemperature = (
+	hue: number,
+	[a, b, c, d] = DEFAULT_TEMPERATURE_COEFFS
+) => 2 * (hue < 2 / 3 ? smoothStep(b, a, hue) : smoothStep(c, d, hue)) - 1;
