@@ -57,7 +57,7 @@ export const analyzeColors = (
 		opts?.tempCoeffs
 	);
 	const lumaRangeImg = reduce(minMax(), imgGray.data);
-	const weightedLuma = dot(derived.luma.range, colorAreas);
+	const weightedLuma = dot(derived.srgb.map(luminanceSrgb), colorAreas);
 	const weightedChroma = dot(
 		derived.oklch.map((x) => x[1]),
 		colorAreas
