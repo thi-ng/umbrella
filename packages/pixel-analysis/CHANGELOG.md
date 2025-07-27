@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-26T12:33:06Z
+- **Last updated**: 2025-07-27T10:14:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@1.1.0) (2025-07-27)
+
+#### 🚀 Features
+
+- make temperature()/hueTemperature() parametric ([f61955e](https://github.com/thi-ng/umbrella/commit/f61955e))
+  - add coefficients as optional arg
+  - add `DEFAULT_TEMPERATURE_COEFFS`
+- update analyzeColors() & ColorAnalysisResult ([595064d](https://github.com/thi-ng/umbrella/commit/595064d))
+  - update/rename `AnalysisOpts` => `ColorAnalysisOpts`
+  - add `ColorAnalysisOpts.tempCoeffs`
+  - rename `AnalyzedImage` => `ColorAnalysisResult`
+  - update `ColorAnalysisResult` internal structure
+  - add `computeHueRange()`
+- update `analyzeFeatures()`, add `FeatureAnalysisResult` ([e276eb8](https://github.com/thi-ng/umbrella/commit/e276eb8))
 
 ### [1.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-analysis@1.0.1) (2025-07-24)
 
