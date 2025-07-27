@@ -10,7 +10,7 @@ import { FLOAT_GRAY } from "@thi.ng/pixel/format/float-gray";
 import { FLOAT_GRAY_RANGE } from "@thi.ng/pixel/format/float-gray-range";
 import type { IntBuffer } from "@thi.ng/pixel/int";
 import { magSq } from "@thi.ng/vectors/magsq";
-import type { FeatureAnalysisResult } from "./api";
+import type { FeatureAnalysisResult } from "./api.ts";
 
 const { sqrt } = Math;
 
