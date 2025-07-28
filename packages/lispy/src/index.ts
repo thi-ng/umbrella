@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2 } from "@thi.ng/api";
-import { identity, always, never } from "@thi.ng/api/fn";
+import { always, identity, never } from "@thi.ng/api/fn";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { OPERATORS } from "@thi.ng/compare/ops";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
@@ -14,7 +14,13 @@ import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
 import { smoothStep, step } from "@thi.ng/math/step";
 import { selectKeysObj } from "@thi.ng/object-utils/select-keys";
-import type { ASTNode, Expression, Implementations, Sym } from "@thi.ng/sexpr";
+import type {
+	ASTNode,
+	Expression,
+	Implementations,
+	Sym,
+	SyntaxOpts,
+} from "@thi.ng/sexpr";
 import { parse } from "@thi.ng/sexpr/parse";
 import { runtime } from "@thi.ng/sexpr/runtime";
 import { capitalize, lower, upper } from "@thi.ng/strings/case";
@@ -349,13 +355,22 @@ export const ENV: Env = {
 
 /**
  * Parses & evaluates given S-expression(s) and returns result of last one. If
- * no environment is provided, uses {@link ENV}.
+ * no environment is provided, uses {@link ENV}. Furthermore, `opts` can be used
+ * to customize the syntax rules for parsing.
  *
  * @param src
  * @param env
+ * @param opts
  */
-export const evalSource = (src: string, env: Env = ENV) =>
-	parse(src).children.reduce((_, x) => interpret(x, env), <any>undefined);
+export const evalSource = (
+	src: string,
+	env: Env = ENV,
+	opts?: Partial<SyntaxOpts>
+) =>
+	parse(src, opts).children.reduce(
+		(_, x) => interpret(x, env),
+		<any>undefined
+	);
 
 export const evalArgs = (nodes: ASTNode[], env: Env = ENV) =>
 	nodes.map((a) => interpret(a, env));
