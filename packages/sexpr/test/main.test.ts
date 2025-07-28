@@ -181,3 +181,16 @@ test("line comment", () => {
 		],
 	});
 });
+
+test("string escapes", () => {
+	expect(parse(`(foo "{\\"a\\":\\"\\ud83d\\ude0e\\"}")`).children[0]).toEqual(
+		{
+			type: "expr",
+			value: "(",
+			children: [
+				{ type: "sym", value: "foo" },
+				{ type: "str", value: '{"a":"😎"}' },
+			],
+		}
+	);
+});
