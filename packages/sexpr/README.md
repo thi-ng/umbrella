@@ -82,13 +82,14 @@ For Node.js REPL:
 const sexpr = await import("@thi.ng/sexpr");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 865 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 876 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

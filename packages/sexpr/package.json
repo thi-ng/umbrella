@@ -41,7 +41,8 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.11.32",
 		"@thi.ng/checks": "^3.7.12",
-		"@thi.ng/defmulti": "^3.0.72"
+		"@thi.ng/defmulti": "^3.0.72",
+		"@thi.ng/strings": "^3.9.18"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",
