@@ -349,6 +349,10 @@ export const ENV: Env = {
 	int: parseInt,
 	float: parseFloat,
 
+	//json
+	"json-parse": JSON.parse,
+	"json-str": JSON.stringify,
+
 	// misc
 	print: console.log,
 };
