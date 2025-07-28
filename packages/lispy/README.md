@@ -221,7 +221,7 @@ For Node.js REPL:
 const lispy = await import("@thi.ng/lispy");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.96 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.99 KB
 
 ## Dependencies
 
