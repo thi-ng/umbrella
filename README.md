@@ -312,20 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-07-26
+As of: 2025-07-29
 
-| Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
-|:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/geom`](./packages/geom)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                     | [changelog](./packages/geom/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)         | [changelog](./packages/hiccup-svg/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/imago`](./packages/imago)                   | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)                   | [changelog](./packages/imago/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/imgui`](./packages/imgui)                   | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)                   | [changelog](./packages/imgui/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/layout`](./packages/layout)                 | [![version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)                 | [changelog](./packages/layout/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel-analysis`](./packages/pixel-analysis) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis) | [changelog](./packages/pixel-analysis/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rstream`](./packages/rstream)               | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)               | [changelog](./packages/rstream/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/text-analysis`](./packages/text-analysis)   | [![version](https://img.shields.io/npm/v/@thi.ng/text-analysis.svg)](https://www.npmjs.com/package/@thi.ng/text-analysis)   | [changelog](./packages/text-analysis/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/timestamp`](./packages/timestamp)           | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)           | [changelog](./packages/timestamp/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/vectors`](./packages/vectors)               | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)               | [changelog](./packages/vectors/CHANGELOG.md)        |
+| Status                                        | Package                                               | Version                                                                                                                     | Changelog                                           |
+|:----------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/lispy`](./packages/lispy)                   | [![version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)                   | [changelog](./packages/lispy/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-analysis`](./packages/pixel-analysis) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis) | [changelog](./packages/pixel-analysis/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          |
 
 ### Algorithms & data structures
 
