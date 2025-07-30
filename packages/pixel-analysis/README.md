@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 209 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -81,7 +81,7 @@ For Node.js REPL:
 const pa = await import("@thi.ng/pixel-analysis");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.90 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.87 KB
 
 ## Dependencies
 
@@ -90,6 +90,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.90 KB
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/metrics](https://github.com/thi-ng/umbrella/tree/develop/packages/metrics)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-convolve](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-convolve)
 - [@thi.ng/pixel-dominant-colors](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dominant-colors)
