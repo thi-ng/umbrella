@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/metrics",
 	"version": "0.0.1",
-	"description": "Utilities for computing & merging normalized value metrics (mean, min/max, sd), incl. support for circular domains",
+	"description": "Utilities for computing & aggregating value metrics (mean, min/max, sd), incl. support for circular domains",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -49,10 +49,11 @@
 		"typescript": "^5.8.3"
 	},
 	"keywords": [
+		"aggregation",
 		"circular",
 		"interval",
 		"mean",
-		"merge",
+		"range",
 		"standard-deviation",
 		"typescript"
 	],
@@ -82,7 +83,7 @@
 		}
 	},
 	"thi.ng": {
-		"status": "alpha",
+		"status": "beta",
 		"year": 2025
 	}
 }

@@ -24,11 +24,11 @@
 
 ## About
 
-Utilities for computing & merging normalized value metrics (mean, min/max, sd), incl. support for circular domains.
+Utilities for computing & aggregating value metrics (mean, min/max, sd), incl. support for circular domains.
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**BETA** - possibly breaking changes forthcoming
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmetrics%5D+in%3Atitle)
 
