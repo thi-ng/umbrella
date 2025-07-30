@@ -62,9 +62,9 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 209 individual
+Not including deprecations, this mono-repository is home to 210 individual
 TypeScript libraries/packages/tools and ~185 example projects illustrating their
-usage, currently totalling ~238k SLOC and ~4250 source files... Some of the
+usage, currently totalling ~244k SLOC and ~4300 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
 
@@ -312,13 +312,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-07-29
+As of: 2025-07-31
 
-| Status                                        | Package                                               | Version                                                                                                                     | Changelog                                           |
-|:----------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/lispy`](./packages/lispy)                   | [![version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)                   | [changelog](./packages/lispy/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-analysis`](./packages/pixel-analysis) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis) | [changelog](./packages/pixel-analysis/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          |
+| Status                                           | Package                                                             | Version                                                                                                                                   | Changelog                                                  |
+|:-------------------------------------------------|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/metrics`](./packages/metrics)                             | [![version](https://img.shields.io/npm/v/@thi.ng/metrics.svg)](https://www.npmjs.com/package/@thi.ng/metrics)                             | [changelog](./packages/metrics/CHANGELOG.md)               |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel-analysis`](./packages/pixel-analysis)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis)               | [changelog](./packages/pixel-analysis/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/pixel-dominant-colors`](./packages/pixel-dominant-colors) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors) | [changelog](./packages/pixel-dominant-colors/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/vectors`](./packages/vectors)                             | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                             | [changelog](./packages/vectors/CHANGELOG.md)               |
 
 ### Algorithms & data structures
 
@@ -439,6 +440,7 @@ As of: 2025-07-29
 | [`@thi.ng/hex`](./packages/hex)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)                   | [changelog](./packages/hex/CHANGELOG.md)          | Hex value formatters for U4-64 words                     |
 | [`@thi.ng/logger`](./packages/logger)             | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)             | [changelog](./packages/logger/CHANGELOG.md)       | Basis infrastructure for arbitrary logging               |
 | [`@thi.ng/memoize`](./packages/memoize)           | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)           | [changelog](./packages/memoize/CHANGELOG.md)      | Function memoization w/ customizable caching             |
+| [`@thi.ng/metrics`](./packages/metrics)           | [![version](https://img.shields.io/npm/v/@thi.ng/metrics.svg)](https://www.npmjs.com/package/@thi.ng/metrics)           | [changelog](./packages/metrics/CHANGELOG.md)      | Computing & aggregating value metrics (mean, range, sd)  |
 | [`@thi.ng/object-utils`](./packages/object-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/object-utils.svg)](https://www.npmjs.com/package/@thi.ng/object-utils) | [changelog](./packages/object-utils/CHANGELOG.md) | Plain JS object & map manipulation                       |
 | [`@thi.ng/oquery`](./packages/oquery)             | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)             | [changelog](./packages/oquery/CHANGELOG.md)       | Pattern based query engine for JS objects                |
 | [`@thi.ng/parse`](./packages/parse)               | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)               | [changelog](./packages/parse/CHANGELOG.md)        | Parser combinators & AST generator/transformer           |
