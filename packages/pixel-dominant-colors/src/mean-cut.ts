@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, NumericArray } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 import { computeCutWith } from "@thi.ng/k-means/mean-cut";
 import type { FloatBuffer } from "@thi.ng/pixel/float";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -9,13 +9,13 @@ import type { DominantColor, DominantColorOpts } from "./api.js";
 import { filterSamples } from "./utils.js";
 
 export const dominantColorsMeanCut = (
-	img: FloatBuffer | NumericArray[],
+	img: FloatBuffer | ReadonlyVec[],
 	num: number,
 	opts?: Partial<DominantColorOpts>
 ) => __dominantColors(vmean, img, num, opts);
 
 export const dominantColorsMedianCut = (
-	img: FloatBuffer | NumericArray[],
+	img: FloatBuffer | ReadonlyVec[],
 	num: number,
 	opts?: Partial<DominantColorOpts>
 ) => __dominantColors(vmedian, img, num, opts);
@@ -23,7 +23,7 @@ export const dominantColorsMedianCut = (
 /** @internal */
 const __dominantColors = (
 	cut: Fn<ReadonlyVec, number>,
-	img: FloatBuffer | NumericArray[],
+	img: FloatBuffer | ReadonlyVec[],
 	num: number,
 	opts?: Partial<DominantColorOpts>
 ) => {

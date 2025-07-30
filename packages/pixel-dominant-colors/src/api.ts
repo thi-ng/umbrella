@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn2, NumericArray } from "@thi.ng/api";
+import type { Fn2 } from "@thi.ng/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**
  * Options for {@link dominantColors}, an extension of
@@ -14,7 +15,7 @@ export interface DominantColorOpts {
 	 *
 	 * If omitted, all pixels will be included (default).
 	 */
-	filter: Fn2<NumericArray, number, boolean>;
+	filter: Fn2<ReadonlyVec, number, boolean>;
 }
 
 /**
