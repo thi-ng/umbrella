@@ -1,14 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import type { HSV, Oklch, SRGB } from "@thi.ng/color";
+import type { Metric, WeightedMetric } from "@thi.ng/metrics";
 import type { FloatBuffer } from "@thi.ng/pixel";
 import type { DominantColor } from "@thi.ng/pixel-dominant-colors";
 import type { DEFAULT_TEMPERATURE_COEFFS } from "./hues.js";
-
-/**
- * 2-tuple representing a closed [min,max] value range/interval
- */
-export type Range = [number, number];
 
 export interface ColorAnalysisOpts {
 	/**
@@ -41,22 +37,7 @@ export interface ColorAnalysisOpts {
 	prec: number;
 }
 
-/**
- * Result data structure returned by {@link analyzeColors}.
- */
-export interface ColorAnalysisResult {
-	/**
-	 * Input image, possibly converted to float RGBA & resized.
-	 */
-	img: FloatBuffer;
-	/**
-	 * Float grayscale version of {@link ColorAnalysisResult.img}.
-	 */
-	imgGray: FloatBuffer;
-	/**
-	 * Float HSV version of {@link ColorAnalysisResult.img}.
-	 */
-	imgHsv: FloatBuffer;
+export interface BaseColorAnalysisResult {
 	/**
 	 * Dominant colors as CSS (hex) strings
 	 */
@@ -74,58 +55,31 @@ export interface ColorAnalysisResult {
 	 */
 	oklch: Oklch[];
 	/**
-	 * Normalized areas of dominant color clusters
+	 * HSV hue metrics of dominant colors.
+	 *
+	 * @remarks
+	 * The mean and standard deviation are computed using circular versions. In
+	 * case of circular overflow (1.0 => 0, aka 360 => 0 degrees), the min hue
+	 * WILL be greater than the max hue (e.g. a hue range of `[0.8, 0.2]`
+	 * indicates the hue range from magenta -> orange).
 	 */
-	area: number[];
-	hue: {
-		/**
-		 * Normalized mean hue (using circular mean).
-		 */
-		mean: number;
-		/**
-		 * Min/max HSV hue range of dominant colors. IMPORTANT: In case of
-		 * circular overflow (360 => 0 degrees), the min hue WILL be greater
-		 * than the max hue (e.g. a hue range of `[0.8, 0.2]` indicates the hue
-		 * range from magenta -> orange). Also see {@link ColorAnalysisResult.hue.mean}.
-		 */
-		range: Range;
-		/**
-		 * Circular standard deviation of normalized hues.
-		 */
-		sd: number;
-	};
-	sat: {
-		/**
-		 * Mean saturation
-		 */
-		mean: number;
-		/**
-		 * Min/max HSV saturation range of dominant colors
-		 */
-		range: Range;
-		/**
-		 * Standard deviation of normalized saturation.
-		 */
-		sd: number;
-	};
-	luma: {
-		/**
-		 * Mean luminance
-		 */
-		mean: number;
-		/**
-		 * Min/max luminance range of dominant colors (obtained from SRGB)
-		 */
-		range: Range;
-		/**
-		 * Standard deviation of normalized luminance.
-		 */
-		sd: number;
-	};
+	hue: Metric;
 	/**
-	 * Min/max luminance range of entire grayscale image (obtained from SRGB)
+	 * HSV saturation metrics of dominant colors.
 	 */
-	lumaRangeImg: Range;
+	sat: WeightedMetric;
+	/**
+	 * Oklch chroma metrics of dominant colors.
+	 */
+	chroma: WeightedMetric;
+	/**
+	 * sRGB-based luminance metrics of dominant colors.
+	 */
+	lum: WeightedMetric;
+	/**
+	 * Normalized areas of dominant colors
+	 */
+	areas: number[];
 	/**
 	 * Comprehensive {@link TemperatureResult} as produced by
 	 * {@link temperature}. Also see {@link ColorAnalysisOpts.minSat} and
@@ -138,27 +92,61 @@ export interface ColorAnalysisResult {
 	 */
 	contrast: number;
 	/**
-	 * Luminance contrast of entire grayscale image (i.e. delta of
-	 * {@link ColorAnalysisResult.lumaRangeImg}).
-	 */
-	contrastImg: number;
-	/**
 	 * Max. normalized WCAG color contrast of dominant colors. The original WCAG
 	 * result range [1,21] is rescaled to [0,1].
 	 */
 	colorContrast: number;
+}
+
+/**
+ * Result data structure returned by {@link analyzeColors}.
+ */
+export interface ColorAnalysisResult extends BaseColorAnalysisResult {
 	/**
-	 * Average luminance of dominant colors, weighted by area.
+	 * Input image, possibly converted to float RGBA & resized.
 	 */
-	weightedLuma: number;
+	img: FloatBuffer;
 	/**
-	 * Average HSV saturation of dominant colors, weighted by area.
+	 * Float grayscale version of {@link ColorAnalysisResult.img}.
 	 */
-	weightedSat: number;
+	imgGray: FloatBuffer;
 	/**
-	 * Average Oklch chroma of dominant colors, weighted by area.
+	 * Float HSV version of {@link ColorAnalysisResult.img}.
 	 */
-	weightedChroma: number;
+	imgHsv: FloatBuffer;
+	/**
+	 * Min/max luminance range of entire grayscale image (obtained from SRGB)
+	 */
+	lumImg: Metric;
+	/**
+	 * Luminance contrast of entire grayscale image (i.e. delta of
+	 * {@link ColorAnalysisResult.lumaRangeImg}).
+	 */
+	contrastImg: number;
+}
+
+/**
+ * Aggregated version of {@link BaseColorAnalysisResult}. Return type of
+ * {@link aggregateColorResults}.
+ */
+export interface AggregatedColorAnalysisResult {
+	css: string[];
+	srgb: SRGB[];
+	hsv: HSV[];
+	oklch: Oklch[];
+	hue: Metric;
+	sat: WeightedMetric;
+	chroma: WeightedMetric;
+	lum: WeightedMetric;
+	lumImg: Metric;
+	contrast: Metric;
+	contrastImg: Metric;
+	colorContrast: Metric;
+	temperature: {
+		meanHue: Metric;
+		temp: Metric;
+		areaTemp: Metric;
+	};
 }
 
 /**

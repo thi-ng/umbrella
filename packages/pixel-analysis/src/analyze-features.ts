@@ -20,17 +20,15 @@ const FMT_SOBEL = FLOAT_GRAY_RANGE(-4, 4);
 export const analyzeFeatures = (
 	img: FloatBuffer | IntBuffer
 ): FeatureAnalysisResult => {
+	const { width, height } = img;
+	const numPixels = width * height;
 	const $img =
 		img.format !== FLOAT_GRAY ? img.as(FLOAT_GRAY) : <FloatBuffer>img;
-	const { width, height } = $img;
-	const numPixels = width * height;
 
 	const imgEdge = convolveImage($img, { kernel: EDGE5 });
 	imgEdge.format = FMT_EDGE;
-
 	const imgSobelX = convolveImage($img, { kernel: SOBEL_X });
 	imgSobelX.format = FMT_SOBEL;
-
 	const imgSobelY = convolveImage($img, { kernel: SOBEL_Y });
 	imgSobelY.format = FMT_SOBEL;
 

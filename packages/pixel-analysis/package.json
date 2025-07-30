@@ -44,6 +44,7 @@
 		"@thi.ng/color": "^5.7.52",
 		"@thi.ng/compare": "^2.4.24",
 		"@thi.ng/math": "^5.11.32",
+		"@thi.ng/metrics": "^0.0.1",
 		"@thi.ng/pixel": "^7.5.4",
 		"@thi.ng/pixel-convolve": "^1.1.4",
 		"@thi.ng/pixel-dominant-colors": "^2.0.7",

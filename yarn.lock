@@ -5694,7 +5694,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/metrics@workspace:packages/metrics":
+"@thi.ng/metrics@npm:^0.0.1, @thi.ng/metrics@workspace:packages/metrics":
   version: 0.0.0-use.local
   resolution: "@thi.ng/metrics@workspace:packages/metrics"
   dependencies:
@@ -5809,6 +5809,7 @@ __metadata:
     "@thi.ng/color": "npm:^5.7.52"
     "@thi.ng/compare": "npm:^2.4.24"
     "@thi.ng/math": "npm:^5.11.32"
+    "@thi.ng/metrics": "npm:^0.0.1"
     "@thi.ng/pixel": "npm:^7.5.4"
     "@thi.ng/pixel-convolve": "npm:^1.1.4"
     "@thi.ng/pixel-dominant-colors": "npm:^2.0.7"
