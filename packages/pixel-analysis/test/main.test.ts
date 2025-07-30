@@ -3,7 +3,7 @@ import { TAU } from "@thi.ng/math";
 import { FLOAT_HSVA, intBuffer, RGB888 } from "@thi.ng/pixel";
 import { circularMean, mulN } from "@thi.ng/vectors";
 import { expect, test } from "bun:test";
-import { computeHueRange, hueRangeAreaIntensity } from "../src/index.js";
+import { hueRange, hueRangeAreaIntensity } from "../src/index.js";
 
 const img = intBuffer(
 	8,
@@ -37,11 +37,11 @@ test("computeHueRange (w/ wrap around)", () => {
 	const hues = [0.99, 0.89, 0.15, 0.08];
 	const mean = circularMean(mulN([], hues, TAU)) / TAU;
 	expect(mean).toBeCloseTo(0.03, 2);
-	expect(computeHueRange(hues, mean)).toEqual([0.89, 0.15]);
+	expect(hueRange(hues, mean)).toEqual([0.89, 0.15]);
 
 	// mean > max hue
 	const hues2 = [0.81, 0.55, 0.12, 0.03];
 	const mean2 = circularMean(mulN([], hues2, TAU)) / TAU;
 	expect(mean2).toBeCloseTo(0.95, 2);
-	expect(computeHueRange(hues2, mean2)).toEqual([0.55, 0.12]);
+	expect(hueRange(hues2, mean2)).toEqual([0.55, 0.12]);
 });
