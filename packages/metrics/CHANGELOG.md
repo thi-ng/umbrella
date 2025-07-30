@@ -11,14 +11,8 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.3.67](https://github.com/thi-ng/umbrella/tree/@thi.ng/lowdisc@0.3.67) (2024-06-21)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/metrics@0.1.0) (2025-07-30)
 
-#### ♻️ Refactoring
+#### 🚀 Features
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [0.3.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/lowdisc@0.3.39) (2023-11-09)
-
-#### ♻️ Refactoring
-
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- import as new pkg ([6c9b8f6](https://github.com/thi-ng/umbrella/commit/6c9b8f6))

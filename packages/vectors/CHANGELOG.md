@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-26T12:33:06Z
+- **Last updated**: 2025-07-30T22:32:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.6.0) (2025-07-30)
+
+#### 🚀 Features
+
+- add vmin()/vmax() ([c9e0fee](https://github.com/thi-ng/umbrella/commit/c9e0fee))
 
 ## [8.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.5.0) (2025-07-24)
 

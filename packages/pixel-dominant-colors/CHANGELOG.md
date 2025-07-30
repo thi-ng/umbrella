@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-21T08:21:58Z
+- **Last updated**: 2025-07-30T22:32:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@2.0.8) (2025-07-30)
+
+#### ♻️ Refactoring
+
+- update arg types ([80826ff](https://github.com/thi-ng/umbrella/commit/80826ff))
+  - use `NumericArray` => `ReadonlyVec`
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@2.0.0) (2025-06-24)
 

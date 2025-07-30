@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/porter-duff",
-	"version": "2.1.110",
+	"version": "2.1.111",
 	"description": "Porter-Duff operators for packed ints & float-array alpha compositing",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.32"
+		"@thi.ng/api": "^8.11.33"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",
