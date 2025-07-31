@@ -6,6 +6,8 @@ export type Range = [number, number];
 export interface Metric {
 	/** Average value */
 	mean: number;
+	/** Median value */
+	median: number;
 	/** Minimum value */
 	min: number;
 	/** Maximum value */
