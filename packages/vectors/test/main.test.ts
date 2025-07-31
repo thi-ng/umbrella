@@ -18,7 +18,7 @@ test("vmean", () => {
 });
 
 test("vmedian", () => {
-	expect(vmedian(SAMPLES)).toBe(5);
+	expect(vmedian(SAMPLES)).toBe(4.5);
 });
 
 test("center", () => {

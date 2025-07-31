@@ -23,15 +23,15 @@ import { __ensureInputs } from "./ensure.js";
 export const median = (out: Vec | null, src: ReadonlyVec[]) => {
 	__ensureInputs(src);
 	out = out || [];
-	const m = src.length >> 1;
 	for (let i = src[0].length; i-- > 0; ) {
-		out[i] = src.map((x) => x[i]).sort((a, b) => a - b)[m];
+		out[i] = vmedian(src.map((x) => x[i]));
 	}
 	return out;
 };
 
 /**
- * Computes the median component of given vector. Returns 0 if vector is empty.
+ * Computes the median component value of given vector. If |v| is even, returns
+ * the mean of the two center values. Returns 0 if vector is empty.
  *
  * @example
  * ```ts tangle:../export/vmedian.ts
@@ -47,6 +47,8 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
  */
 export const vmedian = (a: ReadonlyVec) => {
 	if (!a.length) return 0;
+	const n = a.length;
+	const m = n >> 1;
 	a = [...a].sort((a, b) => a - b);
-	return a[a.length >> 1];
+	return n & 1 ? a[m] : (a[m - 1] + a[m]) * 0.5;
 };
