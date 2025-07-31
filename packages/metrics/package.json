@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/metrics",
 	"version": "0.1.0",
-	"description": "Utilities for computing & aggregating value metrics (mean, min/max, sd), incl. support for circular domains",
+	"description": "Utilities for computing & aggregating value metrics (mean, median, min/max, sd), incl. support for circular domains",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -53,6 +53,7 @@
 		"circular",
 		"interval",
 		"mean",
+		"median",
 		"range",
 		"standard-deviation",
 		"typescript"
@@ -83,7 +84,6 @@
 		}
 	},
 	"thi.ng": {
-		"status": "beta",
 		"year": 2025
 	}
 }

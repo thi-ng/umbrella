@@ -24,11 +24,11 @@
 
 ## About
 
-Utilities for computing & aggregating value metrics (mean, min/max, sd), incl. support for circular domains.
+Utilities for computing & aggregating value metrics (mean, median, min/max, sd), incl. support for circular domains.
 
 ## Status
 
-**BETA** - possibly breaking changes forthcoming
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmetrics%5D+in%3Atitle)
 
@@ -58,7 +58,7 @@ For Node.js REPL:
 const met = await import("@thi.ng/metrics");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 545 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 698 bytes
 
 ## Dependencies
 
