@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-30T22:32:35Z
+- **Last updated**: 2025-07-31T10:48:56Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [8.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.6.1) (2025-07-31)
+
+#### 🩹 Bug fixes
+
+- update median() & vmedian() for even-sized vectors ([42fd75e](https://github.com/thi-ng/umbrella/commit/42fd75e))
 
 ## [8.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@8.6.0) (2025-07-30)
 
