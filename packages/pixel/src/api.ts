@@ -208,12 +208,12 @@ export interface FloatFormat extends IABGRConvert<NumericArray> {
 
 export interface RawPixelBuffer extends CanvasContext {
 	img: ImageData;
-	data: Uint32Array;
+	data: Uint32Array<ArrayBuffer>;
 }
 
 export interface OffscreenRawPixelBuffer extends OffscreenCanvasContext {
 	img: ImageData;
-	data: Uint32Array;
+	data: Uint32Array<ArrayBuffer>;
 }
 
 export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
