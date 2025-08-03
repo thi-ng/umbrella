@@ -3,30 +3,34 @@ import type { Maybe } from "./null.js";
 
 export type ArrayLikeIterable<T> = ArrayLike<T> & Iterable<T>;
 
-export type NumericArray = number[] | TypedArray;
+export type NumericArray<T extends ArrayBufferLike = ArrayBufferLike> =
+	| number[]
+	| TypedArray<T>;
 
-export type TypedArray =
-	| Float32Array
-	| Float64Array
-	| Int8Array
-	| Int16Array
-	| Int32Array
-	| Uint8Array
-	| Uint8ClampedArray
-	| Uint16Array
-	| Uint32Array;
+export type TypedArray<T extends ArrayBufferLike = ArrayBufferLike> =
+	| FloatArray<T>
+	| FloatArray<T>
+	| IntArray<T>
+	| UIntArray<T>;
 
-export type BigTypedArray = BigInt64Array | BigUint64Array;
+export type BigTypedArray<T extends ArrayBufferLike = ArrayBufferLike> =
+	| BigInt64Array<T>
+	| BigUint64Array<T>;
 
-export type FloatArray = Float32Array | Float64Array;
+export type FloatArray<T extends ArrayBufferLike = ArrayBufferLike> =
+	| Float32Array<T>
+	| Float64Array<T>;
 
-export type IntArray = Int8Array | Int16Array | Int32Array;
+export type IntArray<T extends ArrayBufferLike = ArrayBufferLike> =
+	| Int8Array<T>
+	| Int16Array<T>
+	| Int32Array<T>;
 
-export type UIntArray =
-	| Uint8Array
-	| Uint8ClampedArray
-	| Uint16Array
-	| Uint32Array;
+export type UIntArray<T extends ArrayBufferLike = ArrayBufferLike> =
+	| Uint8Array<T>
+	| Uint8ClampedArray<T>
+	| Uint16Array<T>
+	| Uint32Array<T>;
 
 export type FloatArrayConstructor =
 	| Float32ArrayConstructor
@@ -192,28 +196,31 @@ export const TYPEDARRAY_CTORS: Record<Type, TypedArrayConstructor> = {
 	...UINT_ARRAY_CTORS,
 };
 
-export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
-	u8: Uint8Array;
-	u8c: Uint8ClampedArray;
-	i8: Int8Array;
-	u16: Uint16Array;
-	i16: Int16Array;
-	u32: Uint32Array;
-	i32: Int32Array;
-	f32: Float32Array;
-	f64: Float64Array;
-	[GLType.U8]: Uint8Array;
-	[GLType.I8]: Int8Array;
-	[GLType.U16]: Uint16Array;
-	[GLType.I16]: Int16Array;
-	[GLType.U32]: Uint32Array;
-	[GLType.I32]: Int32Array;
-	[GLType.F32]: Float32Array;
+export interface TypedArrayTypeMap<T extends ArrayBufferLike = ArrayBufferLike>
+	extends Record<Type | GLType, TypedArray<T>> {
+	u8: Uint8Array<T>;
+	u8c: Uint8ClampedArray<T>;
+	i8: Int8Array<T>;
+	u16: Uint16Array<T>;
+	i16: Int16Array<T>;
+	u32: Uint32Array<T>;
+	i32: Int32Array<T>;
+	f32: Float32Array<T>;
+	f64: Float64Array<T>;
+	[GLType.U8]: Uint8Array<T>;
+	[GLType.I8]: Int8Array<T>;
+	[GLType.U16]: Uint16Array<T>;
+	[GLType.I16]: Int16Array<T>;
+	[GLType.U32]: Uint32Array<T>;
+	[GLType.I32]: Int32Array<T>;
+	[GLType.F32]: Float32Array<T>;
 }
 
-export interface BigTypedArrayTypeMap extends Record<BigType, BigTypedArray> {
-	i64: BigInt64Array;
-	u64: BigUint64Array;
+export interface BigTypedArrayTypeMap<
+	T extends ArrayBufferLike = ArrayBufferLike
+> extends Record<BigType, BigTypedArray<T>> {
+	i64: BigInt64Array<T>;
+	u64: BigUint64Array<T>;
 }
 
 /**
@@ -290,30 +297,30 @@ export function typedArray<T extends Type | GLType>(
 	type: T,
 	length: number
 ): TypedArrayTypeMap[T];
-export function typedArray<T extends Type | GLType>(
+export function typedArray<T extends Type | GLType, B extends ArrayBufferLike>(
 	type: T,
-	src: ArrayLike<number> | ArrayBufferLike
-): TypedArrayTypeMap[T];
-export function typedArray<T extends Type | GLType>(
+	src: ArrayLike<number> | B
+): TypedArrayTypeMap<B>[T];
+export function typedArray<T extends Type | GLType, B extends ArrayBufferLike>(
 	type: T,
-	buf: ArrayBufferLike,
+	buf: B,
 	byteOffset: number,
 	length?: number
-): TypedArrayTypeMap[T];
-export function typedArray<T extends BigType>(
+): TypedArrayTypeMap<B>[T];
+export function typedArray<T extends BigType, B extends ArrayBufferLike>(
 	type: T,
 	length: number
-): BigTypedArrayTypeMap[T];
-export function typedArray<T extends BigType>(
+): BigTypedArrayTypeMap<B>[T];
+export function typedArray<T extends BigType, B extends ArrayBufferLike>(
 	type: T,
-	src: ArrayLike<bigint> | ArrayBufferLike
-): BigTypedArrayTypeMap[T];
-export function typedArray<T extends BigType>(
+	src: ArrayLike<bigint> | B
+): BigTypedArrayTypeMap<B>[T];
+export function typedArray<T extends BigType, B extends ArrayBufferLike>(
 	type: T,
 	buf: ArrayBufferLike,
 	byteOffset: number,
 	length?: number
-): BigTypedArrayTypeMap[T];
+): BigTypedArrayTypeMap<B>[T];
 export function typedArray<T extends Type | GLType | BigType>(
 	type: T,
 	...args: any[]
