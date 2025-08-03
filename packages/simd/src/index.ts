@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
-import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import type { SIMD } from "./api.js";
 import { BINARY } from "./binary.js";
 
@@ -34,7 +33,9 @@ export const init = (memory: WebAssembly.Memory): Maybe<SIMD> => {
 	const buf = memory.buffer;
 	return <SIMD>{
 		...new WebAssembly.Instance(
-			new WebAssembly.Module(base64Decode(BINARY)),
+			new WebAssembly.Module(
+				new Uint8Array([...atob(BINARY)].map((x) => x.charCodeAt(0)))
+			),
 			{
 				env: {
 					memory,
