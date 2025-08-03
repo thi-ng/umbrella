@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { TypedArray } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { DownloadOpts } from "./api.js";
 
@@ -27,7 +26,7 @@ import type { DownloadOpts } from "./api.js";
  */
 export const downloadWithMime = (
 	name: string,
-	src: string | TypedArray | ArrayBuffer | Blob,
+	src: BlobPart,
 	opts: Partial<DownloadOpts> & { mime: string }
 ) => {
 	const _opts = {
