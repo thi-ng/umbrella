@@ -226,7 +226,7 @@ const __makeField = (
 export const typedef = (
 	spec: Field[],
 	struct: boolean,
-	buf?: ArrayBuffer | null,
+	buf?: ArrayBufferLike | null,
 	offset = 0,
 	doAlign = true,
 	le = false
