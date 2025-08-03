@@ -39,7 +39,6 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.33",
 		"@thi.ng/checks": "^3.7.13",
 		"@thi.ng/mime": "^2.7.15"
 	},
