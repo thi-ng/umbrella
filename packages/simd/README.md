@@ -144,12 +144,11 @@ For Node.js REPL:
 const simd = await import("@thi.ng/simd");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.14 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

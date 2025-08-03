@@ -89,13 +89,12 @@ For Node.js REPL:
 const leb = await import("@thi.ng/leb128");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1019 bytes
 
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
 
 ## API
 
