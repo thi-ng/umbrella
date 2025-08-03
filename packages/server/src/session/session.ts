@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Maybe } from "@thi.ng/api";
+import type { Fn, Fn2, Maybe } from "@thi.ng/api";
 import { isNumber, isString } from "@thi.ng/checks";
 import { uuid } from "@thi.ng/uuid";
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
@@ -45,6 +45,16 @@ export interface SessionOpts<
 	 * bytes. If given as number, generates N random bytes.
 	 */
 	secret?: number | string | Buffer;
+	/**
+	 * Callback if session cookie is present, but failed validation. When this
+	 * function needs to be called, its result is used as the result of
+	 * {@link SessionInterceptor.pre}.
+	 *
+	 * @remarks
+	 * The default implementation simply expires the cookie in the response and
+	 * terminates the interceptor chain with a 403.
+	 */
+	onInvalid?: Fn2<CTX, SessionInterceptor<CTX, SESSION>, Promise<boolean>>;
 }
 
 /**
@@ -70,6 +80,7 @@ export class SessionInterceptor<
 > implements Interceptor<CTX>
 {
 	factory: SessionOpts<CTX, SESSION>["factory"];
+	onInvalid: Fn2<CTX, SessionInterceptor<CTX, SESSION>, Promise<boolean>>;
 	store: ISessionStore<SESSION>;
 	meta: WeakMap<SESSION, SessionMeta> = new WeakMap();
 	secret: Buffer;
@@ -82,8 +93,14 @@ export class SessionInterceptor<
 		cookieName = "__sid",
 		cookieOpts = "Secure;HttpOnly;SameSite=Strict;Path=/",
 		secret = 32,
+		onInvalid = async (ctx, session) => {
+			session.expireCookie(ctx);
+			ctx.res.forbidden();
+			return false;
+		},
 	}: SessionOpts<CTX, SESSION>) {
 		this.factory = factory;
+		this.onInvalid = onInvalid;
 		this.store = store;
 		this.secret = isNumber(secret)
 			? randomBytes(secret)
@@ -100,9 +117,7 @@ export class SessionInterceptor<
 		if (cookie) {
 			session = await this.validateSession(cookie);
 			if (!session) {
-				this.expireCookie(ctx);
-				ctx.res.forbidden();
-				return false;
+				return await this.onInvalid(ctx, this);
 			}
 		}
 		if (!session || session.ip !== ctx.req.socket.remoteAddress) {
@@ -134,9 +149,10 @@ export class SessionInterceptor<
 	}
 
 	/**
-	 * Creates a new session object (via configured {@link SessionOpts.factory}), pre-computes HMAC
-	 * and submits it to configured {@link SessionOpts.store}. If successful, Returns session
-	 * , otherwise returns `undefined`.
+	 * Creates a new session object (via configured
+	 * {@link SessionOpts.factory}), pre-computes HMAC and submits it to
+	 * configured {@link SessionOpts.store}. If successful, Returns session ,
+	 * otherwise returns `undefined`.
 	 *
 	 * @param ctx
 	 */
