@@ -29,7 +29,7 @@ export interface GeoTiffOpts {
 }
 
 export const readGeoTiff = async (
-	src: ArrayBufferView,
+	src: ArrayBufferView<ArrayBuffer>,
 	opts: Partial<GeoTiffOpts> = {}
 ): Promise<{ img: FloatBuffer; tiff: GeoTIFFImage }> => {
 	const tiff = await fromArrayBuffer(src.buffer);
