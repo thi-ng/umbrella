@@ -365,7 +365,7 @@ export class AttribPool implements IRelease {
 /** @internal */
 const __resizeAttribs = (
 	specs: IObjectOf<AttribSpec>,
-	buf: ArrayBuffer,
+	buf: ArrayBufferLike,
 	dest: number,
 	stride: number,
 	num: number
