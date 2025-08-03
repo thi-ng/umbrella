@@ -57,8 +57,8 @@
 	"devDependencies": {
 		"@thi.ng/date": "^2.7.59",
 		"esbuild": "^0.25.8",
-		"typedoc": "^0.28.7",
-		"typescript": "^5.8.3"
+		"typedoc": "^0.28.9",
+		"typescript": "^5.9.2"
 	},
 	"keywords": [
 		"2d",

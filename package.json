@@ -11,8 +11,8 @@
 		"esbuild": "^0.25.8",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.28.7",
-		"typescript": "^5.8.3"
+		"typedoc": "^0.28.9",
+		"typescript": "^5.9.2"
 	},
 	"scripts": {
 		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",
