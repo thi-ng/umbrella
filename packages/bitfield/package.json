@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bitfield",
-	"version": "2.4.10",
+	"version": "2.4.11",
 	"description": "1D / 2D bit field implementations",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.33",
-		"@thi.ng/binary": "^3.4.57",
-		"@thi.ng/errors": "^2.5.39",
-		"@thi.ng/strings": "^3.9.19"
+		"@thi.ng/api": "^8.12.0",
+		"@thi.ng/binary": "^3.4.58",
+		"@thi.ng/errors": "^2.5.40",
+		"@thi.ng/strings": "^3.9.20"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-dom",
-	"version": "1.0.44",
+	"version": "1.0.45",
 	"description": "Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications",
 	"type": "module",
 	"module": "./index.js",
@@ -43,14 +43,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.33",
-		"@thi.ng/canvas": "^1.0.20",
-		"@thi.ng/errors": "^2.5.39",
-		"@thi.ng/prefixes": "^2.3.50",
-		"@thi.ng/wasm-api": "^2.3.27"
+		"@thi.ng/api": "^8.12.0",
+		"@thi.ng/canvas": "^1.0.21",
+		"@thi.ng/errors": "^2.5.40",
+		"@thi.ng/prefixes": "^2.3.51",
+		"@thi.ng/wasm-api": "^2.3.28"
 	},
 	"devDependencies": {
-		"@thi.ng/wasm-api-bindgen": "^1.2.33",
+		"@thi.ng/wasm-api-bindgen": "^1.2.34",
 		"esbuild": "^0.25.8",
 		"typedoc": "^0.28.9",
 		"typescript": "^5.9.2"

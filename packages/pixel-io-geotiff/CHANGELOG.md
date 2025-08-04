@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-30T22:32:35Z
+- **Last updated**: 2025-08-04T08:45:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.1.134](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-geotiff@0.1.134) (2025-08-04)
+
+#### ♻️ Refactoring
+
+- add required typedarray generics (TS5.9) ([f1aecd0](https://github.com/thi-ng/umbrella/commit/f1aecd0))
 
 ### [0.1.45](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-geotiff@0.1.45) (2023-11-09)
 

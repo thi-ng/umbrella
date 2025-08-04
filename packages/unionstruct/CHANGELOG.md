@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-30T22:32:35Z
+- **Last updated**: 2025-08-04T08:45:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.91](https://github.com/thi-ng/umbrella/tree/@thi.ng/unionstruct@2.1.91) (2025-08-04)
+
+#### ♻️ Refactoring
+
+- minor update internal arg types (TS5.9) ([f477f05](https://github.com/thi-ng/umbrella/commit/f477f05))
 
 ### [2.1.60](https://github.com/thi-ng/umbrella/tree/@thi.ng/unionstruct@2.1.60) (2024-06-21)
 

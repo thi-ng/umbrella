@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/vectors",
-	"version": "8.6.1",
+	"version": "8.6.2",
 	"description": "Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts",
 	"type": "module",
 	"module": "./index.js",
@@ -39,14 +39,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.33",
-		"@thi.ng/binary": "^3.4.57",
-		"@thi.ng/checks": "^3.7.13",
-		"@thi.ng/errors": "^2.5.39",
-		"@thi.ng/math": "^5.11.33",
-		"@thi.ng/memoize": "^4.0.23",
-		"@thi.ng/random": "^4.1.24",
-		"@thi.ng/strings": "^3.9.19"
+		"@thi.ng/api": "^8.12.0",
+		"@thi.ng/binary": "^3.4.58",
+		"@thi.ng/checks": "^3.7.14",
+		"@thi.ng/errors": "^2.5.40",
+		"@thi.ng/math": "^5.11.34",
+		"@thi.ng/memoize": "^4.0.24",
+		"@thi.ng/random": "^4.1.25",
+		"@thi.ng/strings": "^3.9.20"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

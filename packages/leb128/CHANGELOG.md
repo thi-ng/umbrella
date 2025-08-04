@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-07-30T22:32:35Z
+- **Last updated**: 2025-08-04T08:45:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.1.62](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@3.1.62) (2025-08-04)
+
+#### ♻️ Refactoring
+
+- update b64 decoding, remove obsolete deps ([eb4a5be](https://github.com/thi-ng/umbrella/commit/eb4a5be))
 
 ### [3.1.42](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@3.1.42) (2025-03-11)
 
