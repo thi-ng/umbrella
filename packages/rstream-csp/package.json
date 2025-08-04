@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-csp",
-	"version": "3.1.187",
+	"version": "3.1.188",
 	"description": "@thi.ng/csp bridge module for @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/csp": "^3.2.40",
-		"@thi.ng/rstream": "^9.2.36"
+		"@thi.ng/csp": "^3.2.41",
+		"@thi.ng/rstream": "^9.2.37"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

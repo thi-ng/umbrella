@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-schedule",
-	"version": "1.0.45",
+	"version": "1.0.46",
 	"description": "Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps",
 	"type": "module",
 	"module": "./index.js",
@@ -40,11 +40,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.0",
-		"@thi.ng/wasm-api": "^2.3.28"
+		"@thi.ng/api": "^8.12.1",
+		"@thi.ng/wasm-api": "^2.3.29"
 	},
 	"devDependencies": {
-		"@thi.ng/wasm-api-bindgen": "^1.2.34",
+		"@thi.ng/wasm-api-bindgen": "^1.2.35",
 		"esbuild": "^0.25.8",
 		"typedoc": "^0.28.9",
 		"typescript": "^5.9.2"
