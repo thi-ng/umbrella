@@ -312,11 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-08-04
+As of: 2025-08-06
 
 | Status                                           | Package                                                       | Version                                                                                                                             | Changelog                                               |
 |:-------------------------------------------------|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/api`](./packages/api)                               | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                               | [changelog](./packages/api/CHANGELOG.md)                |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/csv`](./packages/csv)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                               | [changelog](./packages/csv/CHANGELOG.md)                |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/dl-asset`](./packages/dl-asset)                     | [![version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)                     | [changelog](./packages/dl-asset/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/leb128`](./packages/leb128)                         | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)                         | [changelog](./packages/leb128/CHANGELOG.md)             |
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/pixel`](./packages/pixel)                           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                           | [changelog](./packages/pixel/CHANGELOG.md)              |
