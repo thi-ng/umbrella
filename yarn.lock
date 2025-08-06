@@ -4393,6 +4393,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.1"
     "@thi.ng/checks": "npm:^3.7.15"
+    "@thi.ng/errors": "npm:^2.5.41"
     "@thi.ng/strings": "npm:^3.9.21"
     "@thi.ng/transducers": "npm:^9.6.6"
     esbuild: "npm:^0.25.8"
