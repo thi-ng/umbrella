@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-06T11:48:03Z
+- **Last updated**: 2025-08-06T12:38:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.5.2) (2025-08-06)
+
+#### 🩹 Bug fixes
+
+- update default handling (empty) ([b223719](https://github.com/thi-ng/umbrella/commit/b223719))
+  - include empty columns/cells for default eligibility
+  - update `ColumnSpec` docs (re: role of cell transforms)
+  - update tests
 
 ### [2.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.5.1) (2025-08-06)
 
