@@ -2,6 +2,7 @@
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { LogLevel, type ILogger } from "@thi.ng/logger/api";
 import { StreamLogger } from "@thi.ng/logger/stream";
 import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
 import { execFileSync } from "node:child_process";
@@ -151,4 +152,13 @@ export const terminalLineWidth = (fallback = 80) => {
 	} catch (e) {
 		return fallback;
 	}
+};
+
+export const configureLogLevel = (
+	logger: ILogger,
+	verbose: boolean,
+	quiet = false
+) => {
+	if (quiet) logger.level = LogLevel.NONE;
+	else if (verbose) logger.level = LogLevel.DEBUG;
 };
