@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import {
+	ARG_DRY_RUN,
+	ARG_VERBOSE,
 	ParseError,
+	THING_HEADER,
 	flag,
 	parse,
 	usage,
@@ -15,36 +18,31 @@ import type { TangleCtx } from "./api.js";
 import { tangleFile } from "./tangle.js";
 
 interface CLIOpts {
-	debug: boolean;
 	dryRun: boolean;
 	noComments: boolean;
+	verbose: boolean;
 }
 
 const argOpts: Args<CLIOpts> = {
+	...ARG_DRY_RUN,
+	...ARG_VERBOSE,
 	noComments: flag({ default: false, desc: "don't generate comments" }),
-	debug: flag({ alias: "d", default: false, desc: "enable debug output" }),
-	dryRun: flag({
-		default: false,
-		desc: "enable dry run (don't overwrite files)",
-	}),
 };
 
 export const PKG = readJSON(join(process.argv[2], "package.json"));
 
 export const APP_NAME = PKG.name.split("/")[1];
 
-export const HEADER = `
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ ${PKG.name} ${PKG.version}
- █ █ █ █ █ █ █ █ █ │ Literate programming code block tangling
-                 █ │
-               █ █ │
-`;
+export const HEADER = THING_HEADER(
+	PKG.name,
+	PKG.version,
+	"Literate programming code block tangling"
+);
 
 const usageOpts: Partial<UsageOpts> = {
 	lineWidth: process.stdout.columns,
 	prefix: `${HEADER}
+
 usage: ${APP_NAME} [OPTS] SOURCE-FILES(S) ...
        ${APP_NAME} --help
 
@@ -66,7 +64,7 @@ try {
 	if (!rest.length) showUsage();
 
 	let ctx: Partial<TangleCtx> = {
-		logger: new ConsoleLogger("tangle", opts.debug ? "DEBUG" : "INFO"),
+		logger: new ConsoleLogger("tangle", opts.verbose ? "DEBUG" : "INFO"),
 		opts: {
 			comments: opts.noComments !== true,
 		},
