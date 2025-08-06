@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
-import { cliApp, flag, THING_HEADER } from "@thi.ng/args";
+import {
+	ARG_QUIET,
+	ARG_VERBOSE,
+	cliApp,
+	configureLogLevel,
+	THING_HEADER,
+} from "@thi.ng/args";
 import { readJSON } from "@thi.ng/file-io";
-import { LogLevel } from "@thi.ng/logger";
 import { join } from "node:path";
 import type { AppCtx, CLIOpts } from "./cli/api.js";
 import { CONVERT } from "./cli/convert.js";
@@ -13,22 +18,15 @@ cliApp<CLIOpts, AppCtx<any>>({
 	name: "blockfs",
 	start: 3,
 	opts: {
-		verbose: flag({
-			alias: "v",
-			desc: "Display extra logging information",
-		}),
-		quiet: flag({
-			alias: "q",
-			desc: "Disable logging",
-		}),
+		...ARG_QUIET,
+		...ARG_VERBOSE,
 	},
 	commands: {
 		convert: CONVERT,
 		list: LIST,
 	},
 	ctx: async (ctx) => {
-		if (ctx.opts.quiet) ctx.logger.level = LogLevel.NONE;
-		else if (ctx.opts.verbose) ctx.logger.level = LogLevel.DEBUG;
+		configureLogLevel(ctx.logger, ctx.opts.verbose, ctx.opts.quiet);
 		return ctx;
 	},
 	usage: {
