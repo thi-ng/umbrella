@@ -65,6 +65,7 @@ Flags:
 
 -p, --pretty            Pretty print output
 -v, --verbose           Display extra process information
+-w, --watch             Watch input files for changes
 
 Main:
 
@@ -561,7 +562,7 @@ Flags:
 --no-header             Don't emit generated header comment
 --no-write              Don't write files, use stdout only
 -p, --pretty            Pretty print output
--v, --verbose           Display extra process information
+-v, --verbose           Display extra information
 -w, --watch             Watch input files for changes
 
 Main:
@@ -872,7 +873,7 @@ Flags:
 --no-header             Don't emit generated header comment
 --only-decls            Only emit framework decls
 -p, --pretty            Pretty print output
--v, --verbose           Display extra process information
+-v, --verbose           Display extra information
 
 Main:
 
@@ -930,7 +931,7 @@ Flags:
 -d, --no-decls          Don't emit framework decls
 --no-header             Don't emit generated header comment
 -p, --pretty            Pretty print output
--v, --verbose           Display extra process information
+-v, --verbose           Display extra information
 -w, --watch             Watch input files for changes
 
 Main:
@@ -958,13 +959,13 @@ Usage: metacss doc [opts] input [...]
 
 Flags:
 
--v, --verbose           Display extra process information
+-v, --verbose           Display extra information
 
 Main:
 
 -l INT, --level INT     Initial heading level (default: 1)
 -o STR, --out STR       Output file (or stdout)
--t STR, --title STR     Main title, set to 'none' to disable (default: "meta")
+-t STR, --title STR     Custom main title, set to NONE to disable
 ```
 
 The command allows for customization of the initial heading level and title.

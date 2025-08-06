@@ -485,7 +485,7 @@ $ npx @thi.ng/wasm-api
 
  █ █   █           │
 ██ █               │
- █ █ █ █   █ █ █ █ │ @thi.ng/wasm-api-bindgen 0.6.0
+ █ █ █ █   █ █ █ █ │ @thi.ng/wasm-api-bindgen v1.2.35
  █ █ █ █ █ █ █ █ █ │ Multi-language data bindings code generator
                  █ │
                █ █ │
@@ -495,8 +495,8 @@ usage: wasm-api-bindgen [OPTS] JSON-INPUT-FILE(S) ...
 
 Flags:
 
--d, --debug                     enable debug output & functions
---dry-run                       enable dry run (don't overwrite files)
+--dry-run                       Dry run (no changes applied)
+-v, --verbose                   Display extra information
 
 Main:
 

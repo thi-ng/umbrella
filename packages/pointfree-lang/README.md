@@ -129,13 +129,18 @@ The package includes a `pointfree` CLI command to evaluate strings or files:
 ```text
 npx @thi.ng/pointfree-lang
 
-Usage: pointfree [options] [file]
+ █ █   █           │
+██ █               │
+ █ █ █ █   █ █ █ █ │ @thi.ng/pointfree-lang v2.3.30
+ █ █ █ █ █ █ █ █ █ │ Forth-style DSL & CLI
+                 █ │
+               █ █ │
 
-Options:
-  -V, --version     output the version number
-  -d, --debug       print debug info
-  -e, --exec <src>  execute given string
-  -h, --help        display help for command
+Usage: pointfree [opts] [file]
+
+-v, --verbose           Display extra information
+
+-e STR, --exec STR      Execute given string
 ```
 
 For CLI usage, in addition to the other language features discussed further below, the following words are available too (more to be added):

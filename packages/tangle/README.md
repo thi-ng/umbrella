@@ -189,24 +189,24 @@ lib.md (e.g. maybe a library of useful snippets for a larger project):
 Calling the `tangle` CLI util, we can process these example files and produce
 the following two outputs:
 
-```bash
+```text
 npx @thi.ng/tangle --help
 
-#  █ █   █           │
-# ██ █               │
-#  █ █ █ █   █ █ █ █ │ @thi.ng/tangle 0.1.0
-#  █ █ █ █ █ █ █ █ █ │ Literate programming code block tangling
-#                  █ │
-#                █ █ │
-#
-# usage: tangle [OPTS] SOURCE-FILES(S) ...
-#        tangle --help
-#
-# Flags:
-#
-# -d, --debug         enable debug output
-# --dry-run           enable dry run (don't overwrite files)
-# --no-comments       don't generate comments
+ █ █   █           │
+██ █               │
+ █ █ █ █   █ █ █ █ │ @thi.ng/tangle v1.1.33
+ █ █ █ █ █ █ █ █ █ │ Literate programming code block tangling
+                 █ │
+               █ █ │
+
+usage: tangle [OPTS] SOURCE-FILES(S) ...
+       tangle --help
+
+Flags:
+
+--dry-run           Dry run (no changes applied)
+--no-comments       don't generate comments
+-v, --verbose       Display extra information
 ```
 
 ```bash
