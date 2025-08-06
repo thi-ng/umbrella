@@ -33,11 +33,15 @@ export interface ColumnSpec {
 	 */
 	tx?: CellTransform;
 	/**
-	 * Default value or function to use if column is missing. If `default` is a
-	 * function, it will be called with the entire {@link CSVRecord} constructed
-	 * so far and the return value used as default.
+	 * Default value or function to use if column is missing entirely, or if a
+	 * column/cell value is empty string and there is no {@link ColumnSpec.tx}
+	 * defined (which would always be called first).
 	 *
 	 * @remarks
+	 * If `default` is a function, it will be called with the entire
+	 * {@link CSVRecord} constructed so far and the return value used as
+	 * default.
+	 *
 	 * Also see note about {@link ColumnSpec.alias}.
 	 */
 	default?: any;

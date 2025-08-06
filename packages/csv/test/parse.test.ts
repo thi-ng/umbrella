@@ -112,11 +112,18 @@ test("default values (missing column, array)", () => {
 test("default values (missing in row)", () => {
 	expect([
 		...parseCSVFromString(
-			{ cols: { a: { tx: int() }, b: { tx: int(), default: 42 } } },
-			`a,b\n23,\n24,43`
+			{
+				cols: {
+					a: { tx: int() },
+					b: { tx: int(), default: 42 },
+					c: { default: "?" },
+				},
+			},
+			`a,b,c\n23,\n24,43,\n25,,c3`
 		),
 	]).toEqual([
-		{ a: 23, b: 42 },
-		{ a: 24, b: 43 },
+		{ a: 23, b: 42, c: "?" },
+		{ a: 24, b: 43, c: "?" },
+		{ a: 25, b: 0, c: "c3" },
 	]);
 });
