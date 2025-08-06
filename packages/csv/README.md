@@ -87,12 +87,13 @@ For Node.js REPL:
 const csv = await import("@thi.ng/csv");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.56 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.71 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
