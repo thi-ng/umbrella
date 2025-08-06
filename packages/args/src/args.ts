@@ -316,3 +316,84 @@ export const vec = <S extends Partial<ArgSpec<Tuple<number>>>>(
 	spec: S,
 	delim = ","
 ) => tuple(coerceFloat, size, spec, delim);
+
+/////////////////// arg presets
+
+/**
+ * Re-usable preset arg spec for a `--dry-run` flag.
+ */
+export const ARG_DRY_RUN = {
+	dryRun: flag({
+		desc: "Dry run (no changes applied)",
+	}),
+};
+
+/**
+ * Re-usable preset arg spec for a `--quiet` / `-q` flag.
+ */
+export const ARG_QUIET = {
+	quiet: flag({
+		alias: "q",
+		desc: "Disable all logging",
+	}),
+};
+
+/**
+ * Re-usable preset arg spec for a `--verbose` / `-v` flag.
+ */
+export const ARG_VERBOSE = {
+	verbose: flag({
+		alias: "v",
+		desc: "Display extra information",
+	}),
+};
+
+/**
+ * Higher-order re-usable preset arg spec for a `--out-dir` / `-O` arg. Accepts
+ * optional default value (e.g. sourced from an env var). If the the
+ * `defaultVal` is defined, the arg is declared as optional, otherwise
+ * mandatory.
+ *
+ * @param defaultVal
+ * @param desc
+ */
+export const ARG_OUT_DIR = <T extends string | undefined>(
+	defaultVal?: string,
+	desc?: string
+): {
+	outDir: ReturnType<typeof string> &
+		(T extends string ? { default: string } : { optional: false });
+} => ({
+	outDir: <any>string({
+		alias: "O",
+		desc: "Output directory" + (desc ?? ""),
+		hint: "PATH",
+		default: defaultVal,
+		optional: !!defaultVal,
+	}),
+});
+
+/**
+ * Higher-order re-usable preset arg spec for a `--out-file` / `-o` arg. Accepts
+ * optional default value (e.g. sourced from an env var). If the the
+ * `defaultVal` is defined, the arg is declared as optional, otherwise
+ * mandatory.
+ *
+ * @param defaultVal
+ * @param desc
+ */
+export const ARG_OUT_FILE = <T extends string | undefined>(
+	defaultVal?: T,
+	desc?: string
+): {
+	outFile: ReturnType<typeof string> &
+		(T extends string ? { default: string } : { optional: false });
+} => ({
+	outFile: <any>string({
+		alias: "o",
+		desc: "Output file" + (desc ?? ""),
+		hint: "PATH",
+		default: defaultVal,
+		optional: !!defaultVal,
+	}),
+});
