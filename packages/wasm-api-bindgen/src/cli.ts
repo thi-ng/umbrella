@@ -2,7 +2,9 @@
 // thing:no-export
 import type { Keys } from "@thi.ng/api";
 import {
+	ARG_DRY_RUN,
 	ParseError,
+	THING_HEADER,
 	flag,
 	oneOf,
 	oneOfMulti,
@@ -68,6 +70,7 @@ interface GenConfig {
 }
 
 const argOpts: Args<CLIOpts> = {
+	...ARG_DRY_RUN,
 	analytics: string({
 		alias: "a",
 		hint: "FILE",
@@ -82,10 +85,6 @@ const argOpts: Args<CLIOpts> = {
 		alias: "d",
 		default: false,
 		desc: "enable debug output & functions",
-	}),
-	dryRun: flag({
-		default: false,
-		desc: "enable dry run (don't overwrite files)",
 	}),
 	lang: oneOfMulti(<Language[]>Object.keys(GENERATORS), {
 		alias: "l",
@@ -105,18 +104,16 @@ export const PKG = readJSON(join(process.argv[2], "package.json"));
 
 export const APP_NAME = PKG.name.split("/")[1];
 
-export const HEADER = `
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ ${PKG.name} ${PKG.version}
- █ █ █ █ █ █ █ █ █ │ Multi-language data bindings code generator
-                 █ │
-               █ █ │
-`;
+export const HEADER = THING_HEADER(
+	PKG.name,
+	PKG.version,
+	"Multi-language data bindings code generator"
+);
 
 const usageOpts: Partial<UsageOpts> = {
 	lineWidth: process.stdout.columns,
 	prefix: `${HEADER}
+
 usage: ${APP_NAME} [OPTS] JSON-INPUT-FILE(S) ...
        ${APP_NAME} --help
 
