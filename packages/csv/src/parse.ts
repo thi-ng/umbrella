@@ -152,7 +152,9 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 
 				const collectDefaults = (row: CSVRecord) =>
 					defaults!.reduce((acc, { alias, default: val }) => {
-						if (acc[alias!] === undefined) acc[alias!] = val;
+						if (acc[alias!] === undefined) {
+							acc[alias!] = isFunction(val) ? val(acc) : val;
+						}
 						return acc;
 					}, row);
 

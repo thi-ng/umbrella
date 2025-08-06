@@ -85,8 +85,16 @@ test("quotes in header", () => {
 
 test("default values (missing column)", () => {
 	expect([
-		...parseCSVFromString({ cols: { b: { default: 42 } } }, `"a"\n23\n`),
-	]).toEqual([{ a: "23", b: 42 }]);
+		...parseCSVFromString(
+			{
+				cols: {
+					b: { default: 42 },
+					c: { default: (row: any) => row.a + "/" + row.b },
+				},
+			},
+			`"a"\n23\n`
+		),
+	]).toEqual([{ a: "23", b: 42, c: "23/42" }]);
 });
 
 test("default values (missing column, array)", () => {
