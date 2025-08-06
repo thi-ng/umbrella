@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Nullable } from "@thi.ng/api";
+import type { Maybe, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isIterable } from "@thi.ng/checks/is-iterable";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { ESCAPES } from "@thi.ng/strings/escape";
 import { split } from "@thi.ng/strings/split";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
@@ -114,13 +115,17 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 				const reduce = rfn[2];
 				let index: Record<string, IndexEntry>;
 				let revIndex: Record<number, string>;
+				let defaults: Maybe<ColumnSpec[]>;
 				let first = true;
 				let isQuoted = false;
 				let record: string[] = [];
 
 				const init = (header: string[]) => {
-					cols && (index = __initIndex(header, cols));
-					all && (revIndex = __initRevIndex(header));
+					if (cols) {
+						index = __initIndex(header, cols);
+						defaults = __initDefaults(cols);
+					}
+					if (all) revIndex = __initRevIndex(header);
 					first = false;
 				};
 
@@ -145,6 +150,12 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 						return acc;
 					}, row);
 
+				const collectDefaults = (row: CSVRecord) =>
+					defaults!.reduce((acc, { alias, default: val }) => {
+						if (acc[alias!] === undefined) acc[alias!] = val;
+						return acc;
+					}, row);
+
 				header && init(header);
 
 				return compR(rfn, (acc, line: string) => {
@@ -166,6 +177,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 						const row: CSVRecord = {};
 						all && collectAll(row);
 						index && collectIndexed(row);
+						defaults && collectDefaults(row);
 						record = [];
 						return reduce(acc, row);
 					} else {
@@ -394,10 +406,35 @@ const __initIndex = (
 		  }, <Record<string, IndexEntry>>{})
 		: line.reduce(
 				(acc, id, i) =>
-					cols![id] ? ((acc[id] = { i, spec: cols![id] }), acc) : acc,
+					cols[id] ? ((acc[id] = { i, spec: cols[id] }), acc) : acc,
 				<Record<string, IndexEntry>>{}
 		  );
 
 /** @internal */
 const __initRevIndex = (line: string[]) =>
 	line.reduce((acc, x, i) => ((acc[i] = x), acc), <Record<number, string>>{});
+
+/** @internal */
+const __initDefaults = (
+	cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>
+) => {
+	const defaults = isArray(cols)
+		? <ColumnSpec[]>cols.filter((c) => {
+				if (!c || c.default == undefined) return false;
+				if (!c.alias)
+					illegalArgs(
+						`missing column alias for default: ${c.default}`
+					);
+				return true;
+		  })
+		: Object.entries(cols).reduce((acc, [k, v]) => {
+				if (v.default !== undefined) {
+					acc.push({
+						alias: v.alias ?? k,
+						default: v.default,
+					});
+				}
+				return acc;
+		  }, <ColumnSpec[]>[]);
+	return defaults.length ? defaults : undefined;
+};

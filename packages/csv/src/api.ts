@@ -21,7 +21,9 @@ export type CellTransform = Fn2<string, any, any>;
 
 export interface ColumnSpec {
 	/**
-	 * Rename column to given name in result objects.
+	 * Rename column to given name in result objects. MUST be given if
+	 * {@link ColumnSpec.default} is defined and column specs are provided to
+	 * {@link parseCSV} as array (rather than as object).
 	 */
 	alias?: string;
 	/**
@@ -30,6 +32,13 @@ export interface ColumnSpec {
 	 * actual value for the cell.
 	 */
 	tx?: CellTransform;
+	/**
+	 * Default value to use if column is missing.
+	 *
+	 * @remarks
+	 * Also see note about {@link ColumnSpec.alias}.
+	 */
+	default?: any;
 }
 
 export type ColumnSpecs = Record<string, ColumnSpec>;
