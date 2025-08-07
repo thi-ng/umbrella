@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-04T09:13:01Z
+- **Last updated**: 2025-08-07T16:21:26Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.7.16](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.7.16) (2025-08-07)
+
+#### 🩹 Bug fixes
+
+- fix [#540](https://github.com/thi-ng/umbrella/issues/540), update hasCrypto() & hasWASM() checks ([a626425](https://github.com/thi-ng/umbrella/commit/a626425))
+  - use `self` vs `window` to include worker support
 
 ## [3.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.7.0) (2025-02-21)
 
