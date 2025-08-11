@@ -2,6 +2,8 @@
 .cache
 .DS_Store
 .meta
+*.br
+*.csv
 *.d.ts
 *.gz
 *.js
@@ -21,6 +23,7 @@ bench
 dist
 dev
 doc
+docs
 export
 lib
 .zig-cache
