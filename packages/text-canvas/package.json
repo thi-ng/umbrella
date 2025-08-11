@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-canvas",
-	"version": "3.0.89",
+	"version": "3.0.90",
 	"description": "Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. ANSI/HTML)",
 	"type": "module",
 	"module": "./index.js",
@@ -40,14 +40,14 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.1",
-		"@thi.ng/arrays": "^2.13.9",
-		"@thi.ng/checks": "^3.7.16",
+		"@thi.ng/arrays": "^2.13.10",
+		"@thi.ng/checks": "^3.7.17",
 		"@thi.ng/errors": "^2.5.41",
-		"@thi.ng/geom-clip-line": "^2.3.150",
+		"@thi.ng/geom-clip-line": "^2.3.151",
 		"@thi.ng/math": "^5.11.35",
 		"@thi.ng/strings": "^3.9.21",
 		"@thi.ng/text-format": "^2.2.40",
-		"@thi.ng/transducers": "^9.6.7"
+		"@thi.ng/transducers": "^9.6.8"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",

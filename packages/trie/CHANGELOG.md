@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-04T09:13:01Z
+- **Last updated**: 2025-08-11T16:41:24Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,27 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/trie@2.0.0) (2025-08-11)
+
+#### 🛑 Breaking changes
+
+- major update `TrieMap` & `MultiTrie` ([d7f4a12](https://github.com/thi-ng/umbrella/commit/d7f4a12))
+- BREAKING CHANGE: major update `TrieMap` & `MultiTrie`
+  - update `MultiTrie` to only support array-based keys
+    - switch internals to using Map for storing branches
+    - update arg types in all methods
+    - add `.toJSON()` method to support serialization
+  - rename `MultiTrieOpts.vals` => `.values`
+  - add/update/dedupe iterators in both impls
+  - replace `.suffixes()` iterator in both impls w/ extra args passed to `.keys()`
+  - add `defTrieMapFromJSON()` and `defMultiTrieFromJSON()`
+  - add/update tests
+
+#### ♻️ Refactoring
+
+- update internals ([065cc27](https://github.com/thi-ng/umbrella/commit/065cc27))
+  - remove obsolete size/count in MultiTrie
 
 ### [1.1.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/trie@1.1.10) (2025-01-14)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-io-geotiff",
-	"version": "0.1.136",
+	"version": "0.1.137",
 	"description": "GeoTIFF reader support for @thi.ng/pixel",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.1",
-		"@thi.ng/pixel": "^7.5.8",
+		"@thi.ng/pixel": "^7.5.9",
 		"geotiff": "2.1.4-beta.0"
 	},
 	"devDependencies": {

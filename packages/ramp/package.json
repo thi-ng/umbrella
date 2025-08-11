@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ramp",
-	"version": "3.3.55",
+	"version": "3.3.56",
 	"description": "Extensible keyframe interpolation/tweening of arbitrary, nested types",
 	"type": "module",
 	"module": "./index.js",
@@ -40,12 +40,12 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.1",
-		"@thi.ng/arrays": "^2.13.9",
+		"@thi.ng/arrays": "^2.13.10",
 		"@thi.ng/compare": "^2.4.27",
 		"@thi.ng/errors": "^2.5.41",
 		"@thi.ng/math": "^5.11.35",
-		"@thi.ng/transducers": "^9.6.7",
-		"@thi.ng/vectors": "^8.6.4"
+		"@thi.ng/transducers": "^9.6.8",
+		"@thi.ng/vectors": "^8.6.5"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.8",
