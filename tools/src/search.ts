@@ -26,14 +26,14 @@ export const defDecoder =
 		[(id >>> psh) & pmsk, (id >>> fsh) & fmsk, (id >>> lsh) & lmsk];
 
 const pack = (trie: MultiTrie<string, number>): PackedTrie => {
-	const next = Object.keys((<any>trie).next).reduce((acc, k) => {
-		acc[k] = pack((<any>trie).next[k]);
+	const next = [...trie.next].reduce((acc, [k, v]) => {
+		acc[k] = pack(v);
 		return acc;
 	}, <any>{});
-	return (<any>trie).vals ? [next, [...(<any>trie).vals]] : [next];
+	return trie.vals ? [next, [...trie.vals]] : [next];
 };
 
-const mapToArray = (m: Map<string, number>) => {
+const reverseMapToArray = (m: Map<string, number>) => {
 	const res = new Array<string>(m.size);
 	for (let [k, v] of m) {
 		res[v] = k;
@@ -51,8 +51,8 @@ export const build = (
 	trie: MultiTrie<string, number>
 ): SearchIndex => ({
 	bits,
-	packages: mapToArray(pkgs),
-	files: mapToArray(files),
+	packages: reverseMapToArray(pkgs),
+	files: reverseMapToArray(files),
 	root: pack(trie),
 	numFiles,
 	numKeys,

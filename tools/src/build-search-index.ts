@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import { ArraySet } from "@thi.ng/associative";
 import { timed } from "@thi.ng/bench";
 import {
 	files,
@@ -25,9 +24,10 @@ type IndexValue = number;
 
 const fileIDs = new Map<string, number>();
 const pkgIDs = new Map<string, number>();
-const index = new MultiTrie<string, IndexValue>(null, {
-	vals: () => new ArraySet<IndexValue>(),
-});
+const index = new MultiTrie<string, IndexValue>(
+	null
+	// { values: () => new ArraySet<IndexValue>() }
+);
 const ignore = new Set(readJSON("./tools/ignore-words.json", LOGGER));
 
 const encodeConfig = [
@@ -74,7 +74,7 @@ for (let f of files("packages", ".ts")) {
 				continue;
 			if (!knownWords.has(word)) {
 				// knownWords.add(word);
-				index.add(word, encode(pkgId, fileId, ln));
+				index.add(word.split(""), encode(pkgId, fileId, ln));
 				indexed = true;
 			}
 		} else if (isComment && !isCode) {
@@ -85,7 +85,7 @@ for (let f of files("packages", ".ts")) {
 				if (ignore.has(word)) continue;
 				if (!knownWords.has(word)) {
 					// knownWords.add(word);
-					index.add(word, encode(pkgId, fileId, ln));
+					index.add(word.split(""), encode(pkgId, fileId, ln));
 					indexed = true;
 				}
 			}
