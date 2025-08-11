@@ -2,8 +2,9 @@
 import type { Fn2, IObjectOf, Maybe, Pair } from "@thi.ng/api";
 
 export class TrieMap<T> {
-	protected next: IObjectOf<TrieMap<T>> = {};
-	protected val?: T;
+	next: IObjectOf<TrieMap<T>> = {};
+	val?: T;
+
 	protected n = 0;
 
 	constructor(pairs?: Iterable<Pair<string, T>>) {

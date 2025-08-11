@@ -15,9 +15,8 @@ export interface MultiTrieOpts<V> {
  * multiple unique values per key.
  */
 export class MultiTrie<K, V> {
-	protected next: Map<K, MultiTrie<K, V>> = new Map();
-	protected vals?: Set<V>;
-	protected n = 0;
+	next: Map<K, MultiTrie<K, V>> = new Map();
+	vals?: Set<V>;
 
 	constructor(
 		pairs?: Nullable<Iterable<Pair<K[], V>>>,
@@ -50,7 +49,6 @@ export class MultiTrie<K, V> {
 
 	clear() {
 		this.next.clear();
-		this.n = 0;
 		this.vals = undefined;
 	}
 
@@ -108,7 +106,6 @@ export class MultiTrie<K, V> {
 			const k = key[i];
 			const next = node.next.get(k);
 			if (!next) {
-				node.n++;
 				const newNode = new MultiTrie<K, V>(null, this.opts);
 				node.next.set(k, newNode);
 				node = newNode;
@@ -157,7 +154,7 @@ export class MultiTrie<K, V> {
 		// collapse path
 		while ((node = path[--i])) {
 			node.next.delete(key[i]);
-			if (--node.n) break;
+			if (node.next.size) break;
 		}
 		return true;
 	}
