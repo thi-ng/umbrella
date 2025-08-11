@@ -1,101 +1,77 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn0, IObjectOf, Maybe, Nullable, Pair } from "@thi.ng/api";
+import type { Fn0, Fn2, Maybe, Nullable, Pair } from "@thi.ng/api";
 
 export interface MultiTrieOpts<V> {
 	/**
-	 * Custom value set factory (e.g. for using `Set` implementations from the
+	 * Custom value set factory (e.g. `Set` implementations from the
 	 * [thi.ng/associative](https://thi.ng/associative) package). Uses native
 	 * ES6 Set by default.
 	 */
-	vals: Fn0<Set<V>>;
+	values: Fn0<Set<V>>;
 }
 
-export class MultiTrie<K extends ArrayLike<any>, V> {
-	protected next: IObjectOf<MultiTrie<K, V>> = {};
+/**
+ * Multi-Map-like trie implementation for array-based keys and supporting
+ * multiple unique values per key.
+ */
+export class MultiTrie<K, V> {
+	protected next: Map<K, MultiTrie<K, V>> = new Map();
 	protected vals?: Set<V>;
 	protected n = 0;
 
 	constructor(
-		pairs?: Nullable<Iterable<Pair<K, V>>>,
+		pairs?: Nullable<Iterable<Pair<K[], V>>>,
 		protected opts?: Partial<MultiTrieOpts<V>>
 	) {
 		pairs && this.into(pairs);
 	}
 
-	*[Symbol.iterator]() {
-		const queue: [string, MultiTrie<K, V>][] = [["", this]];
-		while (queue.length) {
-			const [prefix, node] = queue.pop()!;
-			if (node.vals) {
-				for (let v of node.vals) yield [prefix, v];
-			} else {
-				node.queueChildren(queue, prefix);
-			}
-		}
+	[Symbol.iterator]() {
+		return this.iterate((key, node) =>
+			[...node.vals!].map((v) => <Pair<K, V>>[key, v])
+		);
 	}
 
-	*keys(sep = "", prefix = "") {
-		const queue: [string, MultiTrie<K, V>][] = [[prefix, this]];
-		while (queue.length) {
-			const [key, node] = queue.pop()!;
-			if (node.vals) {
-				yield key;
-			} else {
-				node.queueChildren(queue, key, sep);
-			}
-		}
+	keys(prefix: K[] = [], includePrefix = true) {
+		return this.iterate((key) => [key], prefix, includePrefix);
 	}
 
-	*values() {
-		const queue: MultiTrie<K, V>[] = [this];
-		while (queue.length) {
-			const node = queue.pop()!;
-			if (node.vals) {
-				yield* node.vals;
-			} else {
-				queue.push(...Object.values(node.next));
-			}
-		}
+	values(prefix?: K[]) {
+		return this.iterate((_, node) => node.vals!, prefix);
 	}
 
-	*suffixes(prefix: K, withPrefix = false, sep = "") {
-		const node = this.find(prefix);
-		if (node) {
-			yield* node.keys(
-				sep,
-				withPrefix
-					? Array.isArray(prefix)
-						? prefix.join(sep)
-						: prefix.toString()
-					: ""
-			);
-		}
+	entries(prefix?: K[], includePrefix = true) {
+		return this.iterate(
+			(key, node) => [...node.vals!].map((v) => <Pair<K, V>>[key, v]),
+			prefix,
+			includePrefix
+		);
 	}
 
 	clear() {
-		this.next = {};
+		this.next.clear();
 		this.n = 0;
 		this.vals = undefined;
 	}
 
-	has(key: K) {
+	has(key: K[]) {
 		return !!this.get(key);
 	}
 
-	hasPrefix(prefix: K) {
+	hasPrefix(prefix: K[]) {
 		return !!this.find(prefix);
 	}
 
-	get(key: K): Maybe<Set<V>> {
+	get(key: K[]): Maybe<Set<V>> {
 		const node = this.find(key);
 		return node ? node.vals : undefined;
 	}
 
-	find(key: K) {
+	find(key: K[]) {
 		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: Maybe<MultiTrie<K, V>> = this;
 		for (let i = 0, n = key.length; i < n; i++) {
-			node = node!.next[key[i].toString()];
+			node = node!.next.get(key[i]);
 			if (!node) return;
 		}
 		return node;
@@ -107,13 +83,13 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 	 *
 	 * @param key -
 	 */
-	knownPrefix(key: K) {
+	knownPrefix(key: K[]) {
 		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: Maybe<MultiTrie<K, V>> = this;
 		const prefix: K[] = [];
 		for (let i = 0, n = key.length; i < n; i++) {
-			const k = key[i].toString();
-			const next: Maybe<MultiTrie<K, V>> = node!.next[k];
+			const k = key[i];
+			const next: Maybe<MultiTrie<K, V>> = node!.next.get(k);
 			if (!next) break;
 			prefix.push(k);
 			node = next;
@@ -121,46 +97,50 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 		return prefix;
 	}
 
-	hasKnownPrefix(key: K) {
+	hasKnownPrefix(key: K[]) {
 		return this.knownPrefix(key).length > 0;
 	}
 
-	add(key: K, val: V) {
+	add(key: K[], val: V) {
 		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: MultiTrie<K, V> = this;
 		for (let i = 0, n = key.length; i < n; i++) {
-			const k = key[i].toString();
-			const next = node.next[k];
-			node = !next
-				? (node.n++, (node.next[k] = new MultiTrie(null, this.opts)))
-				: next;
+			const k = key[i];
+			const next = node.next.get(k);
+			if (!next) {
+				node.n++;
+				const newNode = new MultiTrie<K, V>(null, this.opts);
+				node.next.set(k, newNode);
+				node = newNode;
+			} else {
+				node = next;
+			}
 		}
 		if (!node.vals) {
-			const ctor = this.opts?.vals;
-			node.vals = ctor ? ctor() : new Set<V>();
+			node.vals = this.opts?.values?.() ?? new Set<V>();
 		}
 		node.vals.add(val);
 	}
 
-	into(pairs: Iterable<[K, V]>) {
+	into(pairs: Iterable<[K[], V]>) {
 		for (let [k, v] of pairs) {
 			this.add(k, v);
 		}
 	}
 
-	delete(prefix: K, val?: V) {
+	delete(prefix: K[], val?: V) {
 		const n = prefix.length;
 		if (n < 1) return false;
 		const path: MultiTrie<K, V>[] = [];
-		const key: string[] = [];
+		const key: K[] = [];
 		let i = 0;
 		// eslint-disable-next-line no-this-alias -- tree traversal
 		let node: Maybe<MultiTrie<K, V>> = this;
 		for (; i < n; i++) {
-			const k = prefix[i].toString();
+			const k = prefix[i];
 			key.push(k);
 			path.push(node);
-			node = node.next[k];
+			node = node.next.get(k);
 			if (!node) return false;
 		}
 		// if val is given, remove from set
@@ -176,27 +156,74 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
 		}
 		// collapse path
 		while ((node = path[--i])) {
-			delete node.next[key[i]];
+			node.next.delete(key[i]);
 			if (--node.n) break;
 		}
 		return true;
 	}
 
-	protected queueChildren(
-		queue: [string, MultiTrie<any, any>][],
-		prefix: string,
-		sep = ""
+	toJSON(): SerializedMultiTrie<V> {
+		return {
+			next: [...this.next].reduce(
+				(acc, [k, v]) => ((acc[k] = v.toJSON()), acc),
+				<any>{}
+			),
+			vals: this.vals ? [...this.vals] : undefined,
+		};
+	}
+
+	protected *iterate<T>(
+		fn: Fn2<K[], MultiTrie<K, V>, Iterable<T>>,
+		prefix: K[] = [],
+		includePrefix = true
 	) {
-		prefix = prefix.length ? prefix + sep : prefix;
-		queue.push(
-			...Object.keys(this.next).map(
-				(k) => <[string, MultiTrie<any, any>]>[prefix + k, this.next[k]]
-			)
-		);
+		const root = this.find(prefix);
+		if (!root) return;
+		const queue: [K[], MultiTrie<K, V>][] = [
+			[includePrefix ? prefix : [], root],
+		];
+		while (queue.length) {
+			const [key, node] = queue.pop()!;
+			if (node.vals) yield* fn(key, node);
+			queue.push(
+				...[...node.next].map(
+					([k, v]) => <[K[], MultiTrie<any, any>]>[key.concat(k), v]
+				)
+			);
+		}
 	}
 }
 
-export const defMultiTrie = <K extends ArrayLike<any>, V>(
-	pairs?: Iterable<Pair<K, V>>,
+export const defMultiTrie = <K, V>(
+	pairs?: Nullable<Iterable<Pair<K[], V>>>,
 	opts?: Partial<MultiTrieOpts<V>>
 ) => new MultiTrie(pairs, opts);
+
+export type SerializedMultiTrie<V> = {
+	next: Record<string, SerializedMultiTrie<V>>;
+	vals?: any[];
+};
+
+/**
+ * Reconstruct a {@link MultiTrie} from serialized JSON.
+ *
+ * @param src
+ * @param opts
+ */
+export const defMultiTrieFromJSON = <V>(
+	src: SerializedMultiTrie<V>,
+	opts?: Partial<MultiTrieOpts<V>>
+) => {
+	const res = defMultiTrie<string, V>(null, opts);
+	const queue = <[string[], SerializedMultiTrie<V>][]>[[[], src]];
+	while (queue.length) {
+		const [key, node] = queue.pop()!;
+		if (node.vals) {
+			for (let v of node.vals) res.add(key, v);
+		}
+		for (let [k, child] of Object.entries(node.next)) {
+			queue.push([[...key, k], child]);
+		}
+	}
+	return res;
+};
