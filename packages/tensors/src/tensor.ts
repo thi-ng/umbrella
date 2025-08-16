@@ -121,8 +121,9 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	abstract index(pos: NumericArray): number;
 
-	position(index: number) {
+	position(index: number): number[] {
 		const { order, stride } = this;
+		index |= 0;
 		index -= this.offset;
 		const idx = order.map((o) => {
 			const i = ~~(index / stride[o]);
@@ -286,7 +287,7 @@ export class Tensor1<T = number> extends ATensor<T> {
 
 	position(index: number): number[] {
 		// sign(this.stride[0]) * floor((index - this.offset) / abs(this.stride[0]))
-		return [~~((index - this.offset) / this.stride[0])];
+		return [~~(((index | 0) - this.offset) / this.stride[0])];
 	}
 
 	get([x]: NumericArray) {
@@ -338,8 +339,8 @@ export class Tensor1<T = number> extends ATensor<T> {
 		});
 	}
 
-	transpose(_: number[]) {
-		return this.copy();
+	transpose(_: number[]): this {
+		return unsupported();
 	}
 
 	toString() {
@@ -642,21 +643,13 @@ export function tensor(...args: any[]): ITensor<any> {
 	const opts: Maybe<TensorOpts<any, any>> = args[2];
 	const storage = opts?.storage ?? STORAGE[type];
 	const stride = opts?.stride ?? shapeToStride(shape);
+	const offset = opts?.offset ?? computeOffset(shape, stride);
 	let data: TensorData<any>;
 	if (opts?.data) {
 		if (opts?.copy === false) data = opts.data;
 		else data = storage.from(opts.data);
 	} else {
 		data = storage.alloc(product(shape!));
-	}
-	let offset = opts?.offset;
-	if (offset === undefined) {
-		offset = 0;
-		for (let i = 0; i < shape.length; i++) {
-			if (stride[i] < 0) {
-				offset -= (shape[i] - 1) * stride[i];
-			}
-		}
 	}
 	const ctor = TENSOR_IMPLS[shape.length];
 	return ctor
@@ -737,7 +730,7 @@ export const constant = <T extends Type, S extends Shape>(
 
 export const shapeToStride = (shape: number[]) => {
 	const n = shape.length;
-	const stride = new Array(n);
+	const stride = new Array<number>(n);
 	for (let i = n, s = 1; i-- > 0; s *= shape[i]) {
 		stride[i] = s;
 	}
@@ -749,6 +742,16 @@ export const strideOrder = (strides: number[]) =>
 		.map((x, i) => [x, i])
 		.sort((a, b) => abs(b[0]) - abs(a[0]))
 		.map((x) => x[1]);
+
+export const computeOffset = (shape: number[], stride: number[]) => {
+	let offset = 0;
+	for (let i = 0; i < shape.length; i++) {
+		if (stride[i] < 0) {
+			offset -= (shape[i] - 1) * stride[i];
+		}
+	}
+	return offset;
+};
 
 /** @internal */
 const __lo = (

@@ -152,6 +152,10 @@ export interface ITensor<T = number>
 	 * Computes linear array index from given grid position. Reverse-op of
 	 * {@link ITensor.position}.
 	 *
+	 * @remarks
+	 * The given `pos` is assumed to be integral and valid. No bounds checking
+	 * performed.
+	 *
 	 * @param pos
 	 */
 	index(pos: NumericArray): number;
@@ -161,6 +165,8 @@ export interface ITensor<T = number>
 	 * {@link ITensor.index}.
 	 *
 	 * @remarks
+	 * The given `index` is assumed to be valid. No bounds checking performed.
+	 *
 	 * **CAUTION:** Currently only supports tensors with positive strides,
 	 * otherwise will yield incorrect results! Tensors with negative strides
 	 * (aka flipped axes in reverse order) need to be first packed via
