@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-04T09:13:01Z
+- **Last updated**: 2025-08-16T18:12:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.9.0) (2025-08-16)
+
+#### 🚀 Features
+
+- add 0-dim (wrapped scalar) tensor support ([cd22ee6](https://github.com/thi-ng/umbrella/commit/cd22ee6))
+  - add `Tensor0`, `Shape0`
+  - update HOF tensor op generators
+  - add/update tests
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.8.0) (2025-07-10)
 
