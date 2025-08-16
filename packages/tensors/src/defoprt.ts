@@ -17,6 +17,9 @@ export const defOpRT = <A = number, B = A>(
 	init: () => B,
 	complete: (acc: B, a: ITensor<A>) => B = identity
 ) => {
+	const f0: TensorOpRT<A, B> = (a) =>
+		complete(rfn(init(), a.data, a.offset), a);
+
 	const f1: TensorOpRT<A, B> = (a) => {
 		const {
 			data,
@@ -96,7 +99,7 @@ export const defOpRT = <A = number, B = A>(
 
 	return top<TensorOpRT<A, B>>(
 		0,
-		undefined,
+		<any>f0,
 		<any>f1,
 		<any>f2,
 		<any>f3,

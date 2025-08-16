@@ -9,7 +9,7 @@ import type {
 	Maybe,
 	NumericArray,
 } from "@thi.ng/api";
-import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
+import type { Tensor0, Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
 
 export interface TensorData<T = number> extends Iterable<T>, ILength {
 	[id: number]: T;
@@ -20,12 +20,13 @@ export type Type = $Type | "num" | "str";
 
 export type NumType = $Type | "num";
 
+export type Shape0 = [];
 export type Shape1 = [number];
 export type Shape2 = [number, number];
 export type Shape3 = [number, number, number];
 export type Shape4 = [number, number, number, number];
 
-export type Shape = Shape1 | Shape2 | Shape3 | Shape4;
+export type Shape = Shape0 | Shape1 | Shape2 | Shape3 | Shape4;
 
 export type ShapeTensor<S extends Shape, T> = S extends Shape4
 	? Tensor4<T>
@@ -33,7 +34,9 @@ export type ShapeTensor<S extends Shape, T> = S extends Shape4
 	? Tensor3<T>
 	: S extends Shape2
 	? Tensor2<T>
-	: Tensor1<T>;
+	: S extends Shape1
+	? Tensor1<T>
+	: Tensor0<T>;
 
 export type Nested<T> = T[] | T[][] | T[][][] | T[][][][];
 
@@ -514,112 +517,199 @@ export type StorageRegistry = Record<Type, ITensorStorage<any>>;
 
 // pretier-ignore
 export interface TensorOpT<T = number> {
+	(out: Tensor0<T> | null, a: Tensor0<T>): Tensor0<T>;
 	(out: Tensor1<T> | null, a: Tensor1<T>): Tensor1<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>): Tensor4<T>;
 }
 
+// Code gen for signatures:
+// tx.transduce(tx.comp(tx.map(([a,b])=>`(out: Tensor${Math.max(a,b)}<T> | null, a: Tensor${a}<T>, b: Tensor${b}<T>): Tensor${Math.max(a,b)}<T>;`), tx.distinct(), tx.partition(5), tx.map(x=>x.join("\n"))), tx.str("\n\n"), tx.permutations(d=[0,1,2,3,4],d,d))
+
 // pretier-ignore
 export interface TensorOpTT<T = number> {
+	(out: Tensor0<T> | null, a: Tensor0<T>, b: Tensor0<T>): Tensor0<T>;
+	(out: Tensor1<T> | null, a: Tensor0<T>, b: Tensor1<T>): Tensor1<T>;
+	(out: Tensor2<T> | null, a: Tensor0<T>, b: Tensor2<T>): Tensor2<T>;
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor1<T> | null, a: Tensor1<T>, b: Tensor0<T>): Tensor1<T>;
 	(out: Tensor1<T> | null, a: Tensor1<T>, b: Tensor1<T>): Tensor1<T>;
 	(out: Tensor2<T> | null, a: Tensor1<T>, b: Tensor2<T>): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor0<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor1<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor2<T>): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor0<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor1<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor2<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor3<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor4<T>): Tensor4<T>;
 }
 
+// Code gen for signatures:
+// tx.transduce(tx.comp(tx.map(([a,b,c])=>`(out: Tensor${Math.max(a,b,c)}<T> | null, a: Tensor${a}<T>, b: Tensor${b}<T>, c: Tensor${c}<T>): Tensor${Math.max(a,b,c)}<T>;`), tx.distinct(), tx.partition(5), tx.map(x=>x.join("\n"))), tx.str("\n\n"), tx.permutations(d=[0,1,2,3,4],d,d))
+
 // prettier-ignore
 export interface TensorOpTTT<T = number> {
+	(out: Tensor0<T> | null, a: Tensor0<T>, b: Tensor0<T>, c: Tensor0<T>): Tensor0<T>;
+	(out: Tensor1<T> | null, a: Tensor0<T>, b: Tensor0<T>, c: Tensor1<T>): Tensor1<T>;
+	(out: Tensor2<T> | null, a: Tensor0<T>, b: Tensor0<T>, c: Tensor2<T>): Tensor2<T>;
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor0<T>, c: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor0<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor1<T> | null, a: Tensor0<T>, b: Tensor1<T>, c: Tensor0<T>): Tensor1<T>;
+	(out: Tensor1<T> | null, a: Tensor0<T>, b: Tensor1<T>, c: Tensor1<T>): Tensor1<T>;
+	(out: Tensor2<T> | null, a: Tensor0<T>, b: Tensor1<T>, c: Tensor2<T>): Tensor2<T>;
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor1<T>, c: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor1<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor2<T> | null, a: Tensor0<T>, b: Tensor2<T>, c: Tensor0<T>): Tensor2<T>;
+	(out: Tensor2<T> | null, a: Tensor0<T>, b: Tensor2<T>, c: Tensor1<T>): Tensor2<T>;
+	(out: Tensor2<T> | null, a: Tensor0<T>, b: Tensor2<T>, c: Tensor2<T>): Tensor2<T>;
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor2<T>, c: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor2<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor3<T>, c: Tensor0<T>): Tensor3<T>;
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor3<T>, c: Tensor1<T>): Tensor3<T>;
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor3<T>, c: Tensor2<T>): Tensor3<T>;
+	(out: Tensor3<T> | null, a: Tensor0<T>, b: Tensor3<T>, c: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor3<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor4<T>, c: Tensor0<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor4<T>, c: Tensor1<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor4<T>, c: Tensor2<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor4<T>, c: Tensor3<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor0<T>, b: Tensor4<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor1<T> | null, a: Tensor1<T>, b: Tensor0<T>, c: Tensor0<T>): Tensor1<T>;
+	(out: Tensor1<T> | null, a: Tensor1<T>, b: Tensor0<T>, c: Tensor1<T>): Tensor1<T>;
+	(out: Tensor2<T> | null, a: Tensor1<T>, b: Tensor0<T>, c: Tensor2<T>): Tensor2<T>;
+	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor0<T>, c: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor0<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor1<T> | null, a: Tensor1<T>, b: Tensor1<T>, c: Tensor0<T>): Tensor1<T>;
 	(out: Tensor1<T> | null, a: Tensor1<T>, b: Tensor1<T>, c: Tensor1<T>): Tensor1<T>;
 	(out: Tensor2<T> | null, a: Tensor1<T>, b: Tensor1<T>, c: Tensor2<T>): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor1<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor1<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor2<T> | null, a: Tensor1<T>, b: Tensor2<T>, c: Tensor0<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor1<T>, b: Tensor2<T>, c: Tensor1<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor1<T>, b: Tensor2<T>, c: Tensor2<T>): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor2<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor2<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor3<T>, c: Tensor0<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor3<T>, c: Tensor1<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor3<T>, c: Tensor2<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor1<T>, b: Tensor3<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor3<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor4<T>, c: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor4<T>, c: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor4<T>, c: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor4<T>, c: Tensor3<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor1<T>, b: Tensor4<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor0<T>, c: Tensor0<T>): Tensor2<T>;
+	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor0<T>, c: Tensor1<T>): Tensor2<T>;
+	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor0<T>, c: Tensor2<T>): Tensor2<T>;
+	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor0<T>, c: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor0<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor1<T>, c: Tensor0<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor1<T>, c: Tensor1<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor1<T>, c: Tensor2<T>): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor1<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor1<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor2<T>, c: Tensor0<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor2<T>, c: Tensor1<T>): Tensor2<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>, b: Tensor2<T>, c: Tensor2<T>): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor2<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor2<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor3<T>, c: Tensor0<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor3<T>, c: Tensor1<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor3<T>, c: Tensor2<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor2<T>, b: Tensor3<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor3<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor4<T>, c: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor4<T>, c: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor4<T>, c: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor4<T>, c: Tensor3<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor2<T>, b: Tensor4<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor0<T>, c: Tensor0<T>): Tensor3<T>;
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor0<T>, c: Tensor1<T>): Tensor3<T>;
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor0<T>, c: Tensor2<T>): Tensor3<T>;
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor0<T>, c: Tensor3<T>): Tensor3<T>;
+	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor0<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor1<T>, c: Tensor0<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor1<T>, c: Tensor1<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor1<T>, c: Tensor2<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor1<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor1<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor2<T>, c: Tensor0<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor2<T>, c: Tensor1<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor2<T>, c: Tensor2<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor2<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor2<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor3<T>, c: Tensor0<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor3<T>, c: Tensor1<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor3<T>, c: Tensor2<T>): Tensor3<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, b: Tensor3<T>, c: Tensor3<T>): Tensor3<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor3<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor4<T>, c: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor4<T>, c: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor4<T>, c: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor4<T>, c: Tensor3<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor3<T>, b: Tensor4<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor0<T>, c: Tensor0<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor0<T>, c: Tensor1<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor0<T>, c: Tensor2<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor0<T>, c: Tensor3<T>): Tensor4<T>;
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor0<T>, c: Tensor4<T>): Tensor4<T>;
+
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor1<T>, c: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor1<T>, c: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor1<T>, c: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor1<T>, c: Tensor3<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor1<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor2<T>, c: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor2<T>, c: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor2<T>, c: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor2<T>, c: Tensor3<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor2<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor3<T>, c: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor3<T>, c: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor3<T>, c: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor3<T>, c: Tensor3<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor3<T>, c: Tensor4<T>): Tensor4<T>;
 
+	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor4<T>, c: Tensor0<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor4<T>, c: Tensor1<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor4<T>, c: Tensor2<T>): Tensor4<T>;
 	(out: Tensor4<T> | null, a: Tensor4<T>, b: Tensor4<T>, c: Tensor3<T>): Tensor4<T>;
@@ -627,6 +717,7 @@ export interface TensorOpTTT<T = number> {
 }
 
 export interface TensorOpN<A = number, B = A> {
+	(out: Tensor0<B>, n: A): Tensor0<B>;
 	(out: Tensor1<B>, n: A): Tensor1<B>;
 	(out: Tensor2<B>, n: A): Tensor2<B>;
 	(out: Tensor3<B>, n: A): Tensor3<B>;
@@ -634,6 +725,7 @@ export interface TensorOpN<A = number, B = A> {
 }
 
 export interface TensorOpTN<T = number> {
+	(out: Tensor0<T> | null, a: Tensor0<T>, n: T): Tensor0<T>;
 	(out: Tensor1<T> | null, a: Tensor1<T>, n: T): Tensor1<T>;
 	(out: Tensor2<T> | null, a: Tensor2<T>, n: T): Tensor2<T>;
 	(out: Tensor3<T> | null, a: Tensor3<T>, n: T): Tensor3<T>;
@@ -641,6 +733,7 @@ export interface TensorOpTN<T = number> {
 }
 
 export interface TensorOpTNN<T = number> {
+	(out: Tensor0<T>, a: Tensor0<T>, n: T, m: T): Tensor0<T>;
 	(out: Tensor1<T>, a: Tensor1<T>, n: T, m: T): Tensor1<T>;
 	(out: Tensor2<T>, a: Tensor2<T>, n: T, m: T): Tensor2<T>;
 	(out: Tensor3<T>, a: Tensor3<T>, n: T, m: T): Tensor3<T>;
@@ -695,7 +788,7 @@ export interface KernelSpec<T = any> {
 	/**
 	 * Kernel shape/size
 	 */
-	shape: Shape;
+	shape: Exclude<Shape, Shape0>;
 	/**
 	 * Windowed intialization. Returns initial accumulator for each new kernel
 	 * window.

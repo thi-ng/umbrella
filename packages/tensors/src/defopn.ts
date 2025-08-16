@@ -11,6 +11,12 @@ import { top } from "./top.js";
  */
 export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 	type $OP = (out: ITensor<B>, n: A) => ITensor<B>;
+
+	const f0: $OP = (out, a) => {
+		out.data[out.offset] = fn(a);
+		return out;
+	};
+
 	const f1: $OP = (out, a) => {
 		const {
 			data,
@@ -76,12 +82,5 @@ export const defOpN = <A = number, B = A>(fn: Fn<A, B>) => {
 		return out;
 	};
 
-	return top<TensorOpN<A, B>>(
-		0,
-		undefined,
-		<any>f1,
-		<any>f2,
-		<any>f3,
-		<any>f4
-	);
+	return top<TensorOpN<A, B>>(0, <any>f0, <any>f1, <any>f2, <any>f3, <any>f4);
 };

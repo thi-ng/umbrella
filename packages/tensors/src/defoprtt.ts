@@ -27,6 +27,9 @@ export const defOpRTT = <A = number, B = A>(
 	complete: (acc: B, a: ITensor<A>, b: ITensor<A>) => B = identity,
 	useBroadcast = true
 ): TensorOpRTT<A, B> => {
+	const f0: TensorOpRTT<A, B> = (a, b) =>
+		complete(rfn(init(), a.data, b.data, a.offset, b.offset), a, b);
+
 	const f1: TensorOpRTT<A, B> = (a, b) => {
 		const {
 			data: adata,
@@ -141,7 +144,7 @@ export const defOpRTT = <A = number, B = A>(
 		return complete(res, a, b);
 	};
 
-	const impls = [, f1, f2, f3, f4];
+	const impls = [f0, f1, f2, f3, f4];
 
 	const wrapper = useBroadcast
 		? (a: ITensor<A>, b: ITensor<A>) => {

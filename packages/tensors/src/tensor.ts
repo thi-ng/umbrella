@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Maybe, NumericArray } from "@thi.ng/api";
+import type { Maybe, NumericArray, NumOrString } from "@thi.ng/api";
 import { swizzle } from "@thi.ng/arrays/swizzle";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { equiv, equivArrayLike } from "@thi.ng/equiv";
@@ -258,6 +258,77 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 	}
 }
 
+export class Tensor0<T = number> extends ATensor<T> {
+	*[Symbol.iterator](): IterableIterator<T> {
+		yield this.data[this.offset];
+	}
+
+	get dim() {
+		return 0;
+	}
+
+	get order() {
+		return [0];
+	}
+
+	get length() {
+		return 1;
+	}
+
+	index() {
+		return this.offset;
+	}
+
+	position(): number[] {
+		return [0];
+	}
+
+	get() {
+		return this.data[this.offset];
+	}
+
+	set(_: NumericArray, v: T) {
+		this.data[this.offset] = v;
+		return this;
+	}
+
+	pick([x]: NumericArray) {
+		if (x !== 0) outOfBounds(x);
+		return new Tensor0<T>(
+			this.type,
+			this.storage,
+			this.data,
+			[],
+			[],
+			this.offset
+		);
+	}
+
+	resize<S extends Shape>(
+		newShape: S,
+		fill?: T,
+		storage = this.storage
+	): ShapeTensor<S, T> {
+		const newLength = product(newShape);
+		const newData = storage.alloc(newLength);
+		if (fill !== undefined) newData.fill(fill);
+		newData[0] = this.get();
+		return tensor<any, S>(this.type, newShape, {
+			storage,
+			data: newData,
+			copy: false,
+		});
+	}
+
+	transpose(_: number[]): this {
+		return unsupported();
+	}
+
+	toString() {
+		return format(this.get());
+	}
+}
+
 export class Tensor1<T = number> extends ATensor<T> {
 	*[Symbol.iterator](): IterableIterator<T> {
 		let {
@@ -299,14 +370,14 @@ export class Tensor1<T = number> extends ATensor<T> {
 		return this;
 	}
 
-	pick([x]: NumericArray) {
+	pick([x]: NumericArray): ITensor<T> {
 		if (x < 0 && x >= this.length) outOfBounds(x);
-		return new Tensor1(
+		return new Tensor0(
 			this.type,
 			this.storage,
 			this.data,
-			[1],
-			[1],
+			[],
+			[],
 			this.offset + x * this.stride[0]
 		);
 	}
@@ -602,14 +673,17 @@ export class Tensor4<T = number> extends ATensor<T> {
 	}
 }
 
-export const TENSOR_IMPLS: Maybe<TensorCtor<any>>[] = [
-	undefined,
+export const TENSOR_IMPLS: TensorCtor<any>[] = [
+	Tensor0,
 	Tensor1,
 	Tensor2,
 	Tensor3,
 	Tensor4,
 ];
 
+/** Syntax sugar for wrapping a single scalar value */
+export function tensor(value: number): Tensor0<number>;
+export function tensor(value: string): Tensor0<string>;
 /** Syntax sugar for {@link tensorFromArray}. */
 export function tensor<T extends NumType, N extends Nested<number>>(
 	data: N,
@@ -638,8 +712,10 @@ export function tensor<T extends Type, S extends Shape>(
 ): ShapeTensor<S, TypeMap[T]>;
 export function tensor(...args: any[]): ITensor<any> {
 	if (Array.isArray(args[0])) return tensorFromArray(args[0], args[1]);
+	if (args.length === 1) return __tensor0(args[0]);
 	const type: Type = args[0];
 	const shape: number[] = args[1];
+	const dim = shape.length;
 	const opts: Maybe<TensorOpts<any, any>> = args[2];
 	const storage = opts?.storage ?? STORAGE[type];
 	const stride = opts?.stride ?? shapeToStride(shape);
@@ -649,13 +725,33 @@ export function tensor(...args: any[]): ITensor<any> {
 		if (opts?.copy === false) data = opts.data;
 		else data = storage.from(opts.data);
 	} else {
-		data = storage.alloc(product(shape!));
+		data = storage.alloc(dim > 0 ? product(shape!) : 1);
 	}
-	const ctor = TENSOR_IMPLS[shape.length];
+	const ctor = TENSOR_IMPLS[dim];
 	return ctor
 		? new ctor(type, storage, data, shape, stride, offset)
-		: unsupported(`unsupported dimension: ${shape.length}`);
+		: unsupported(`unsupported dimension: ${dim}`);
 }
+
+/** @internal */
+const __tensor0 = (x: NumOrString) => {
+	const type = isNumber(x) ? "num" : "str";
+	const storage = STORAGE[type];
+	const data = storage.alloc(1);
+	data[0] = x;
+	return new Tensor0(type, storage, data, [], []);
+};
+
+/**
+ * Returns a matching tensor impl for given shape. If `shape=[1]` the function
+ * returns {@link Tensor0}. Returns undefined if no matching impl is available.
+ *
+ * @param shape
+ */
+export const tensorImpl = (shape: number[]) =>
+	shape.length === 1 && shape[0] === 1
+		? <TensorCtor<any>>Tensor0
+		: TENSOR_IMPLS[shape.length];
 
 /**
  * Creates a new {@link ITensor} instance from given (possibly nested) numeric

@@ -2,6 +2,21 @@
 import { expect, test } from "bun:test";
 import { asTensor, range, tensor } from "../src/index.js";
 
+test("tensor (0d)", () => {
+	const a = tensor(1);
+	expect(a.type).toBe("num");
+	expect(a.shape).toEqual([]);
+	expect(a.stride).toEqual([]);
+	expect(a.data).toEqual([1]);
+	expect(a.offset).toEqual(0);
+	const b = tensor("u8", [], { data: [0, 0, 1], offset: 2 });
+	expect(b.type).toBe("u8");
+	expect(b.shape).toEqual([]);
+	expect(b.stride).toEqual([]);
+	expect(b.offset).toEqual(2);
+	expect(b.data).toEqual(new Uint8Array([0, 0, 1]));
+});
+
 test("tensor (1d)", () => {
 	const a = tensor([1, 2, 3, 4]);
 	expect(a.type).toBe("num");

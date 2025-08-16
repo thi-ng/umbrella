@@ -19,6 +19,15 @@ export const defOpTTT = <T = number>(fn: FnU3<T>): TensorOpTTT<T> => {
 		b: ITensor<T>,
 		c: ITensor<T>
 	) => ITensor<T>;
+	const f0: $OP = (out, a, b, c) => {
+		out.data[out.offset] = fn(
+			a.data[a.offset],
+			b.data[b.offset],
+			c.data[c.offset]
+		);
+		return out;
+	};
+
 	const f1: $OP = (out, a, b, c) => {
 		const {
 			data: odata,
@@ -204,7 +213,7 @@ export const defOpTTT = <T = number>(fn: FnU3<T>): TensorOpTTT<T> => {
 		return out;
 	};
 
-	const impls = [, f1, f2, f3, f4];
+	const impls = [f0, f1, f2, f3, f4];
 
 	const wrapper = (
 		out: ITensor<T> | null,
@@ -217,9 +226,7 @@ export const defOpTTT = <T = number>(fn: FnU3<T>): TensorOpTTT<T> => {
 		if (out) {
 			ensureShape(out, shape);
 		} else {
-			out = <ITensor<T>>(
-				tensor(a.type, shape, { storage: <any>a.storage })
-			);
+			out = tensor<any, any>(a.type, shape, { storage: <any>a.storage });
 		}
 		return impls[shape.length]!(out, $a2, $b, $c);
 	};

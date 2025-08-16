@@ -15,6 +15,12 @@ import { tensor } from "./tensor.js";
  */
 export const defOpTT = <T = number>(fn: FnU2<T>): TensorOpTT<T> => {
 	type $OP = (out: ITensor<T>, a: ITensor<T>, b: ITensor<T>) => ITensor<T>;
+	const f0: $OP = (out, a, b) => {
+		!out && (out = a);
+		out.data[out.offset] = fn(a.data[a.offset], b.data[b.offset]);
+		return out;
+	};
+
 	const f1: $OP = (out, a, b) => {
 		!out && (out = a);
 		const {
@@ -166,16 +172,14 @@ export const defOpTT = <T = number>(fn: FnU2<T>): TensorOpTT<T> => {
 		return out;
 	};
 
-	const impls = [, f1, f2, f3, f4];
+	const impls = [f0, f1, f2, f3, f4];
 
 	const wrapper = (out: ITensor<T> | null, a: ITensor<T>, b: ITensor<T>) => {
 		const { shape, a: $a, b: $b } = broadcast(a, b);
 		if (out) {
 			ensureShape(out, shape);
 		} else {
-			out = <ITensor<T>>(
-				tensor(a.type, shape, { storage: <any>a.storage })
-			);
+			out = tensor<any, any>(a.type, shape, { storage: <any>a.storage });
 		}
 		return impls[shape.length]!(out, $a, $b);
 	};
