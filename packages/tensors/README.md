@@ -31,12 +31,11 @@
 
 ## About
 
-1D/2D/3D/4D tensors with extensible polymorphic operations and customizable storage.
+0D/1D/2D/3D/4D tensors with extensible polymorphic operations and customizable storage.
 
 > [!NOTE]
-> This package contains code originally written in 2017/18 and, at the moment, is
-> undergoing heavy refactoring to be stylistically more aligned with other thi.ng
-> packages — use with caution!
+> This package contains code originally written in 2017/18 and has been
+> refactored to be stylistically more aligned with other thi.ng packages.
 
 ## Built-in tensor operations
 
@@ -251,7 +250,7 @@ For Node.js REPL:
 const ten = await import("@thi.ng/tensors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 9.75 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 10.06 KB
 
 ## Dependencies
 

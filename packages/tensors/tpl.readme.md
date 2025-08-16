@@ -7,9 +7,8 @@
 {{pkg.description}}
 
 > [!NOTE]
-> This package contains code originally written in 2017/18 and, at the moment, is
-> undergoing heavy refactoring to be stylistically more aligned with other thi.ng
-> packages — use with caution!
+> This package contains code originally written in 2017/18 and has been
+> refactored to be stylistically more aligned with other thi.ng packages.
 
 ## Built-in tensor operations
 
