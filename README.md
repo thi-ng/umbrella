@@ -312,18 +312,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-08-07
+As of: 2025-08-16
 
-| Status                                           | Package                                                   | Version                                                                                                                         | Changelog                                             |
-|:-------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/args`](./packages/args)                         | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                         | [changelog](./packages/args/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/block-fs`](./packages/block-fs)                 | [![version](https://img.shields.io/npm/v/@thi.ng/block-fs.svg)](https://www.npmjs.com/package/@thi.ng/block-fs)                 | [changelog](./packages/block-fs/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/checks`](./packages/checks)                     | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)                     | [changelog](./packages/checks/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/csv`](./packages/csv)                           | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                           | [changelog](./packages/csv/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/meta-css`](./packages/meta-css)                 | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css)                 | [changelog](./packages/meta-css/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/pointfree-lang`](./packages/pointfree-lang)     | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)     | [changelog](./packages/pointfree-lang/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/tangle`](./packages/tangle)                     | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                     | [changelog](./packages/tangle/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen) | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md) |
+| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
+|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors) | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors) | [changelog](./packages/tensors/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
