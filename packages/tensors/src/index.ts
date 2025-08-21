@@ -51,6 +51,7 @@ export * from "./rand-distrib.js";
 export * from "./range.js";
 export * from "./relu.js";
 export * from "./relun.js";
+export * from "./sample.js";
 export * from "./select.js";
 export * from "./set.js";
 export * from "./setn.js";
