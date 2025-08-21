@@ -99,6 +99,11 @@ export const mixTrilinear = (
 
 /**
  * Computes quadratic bezier interpolation for normalized value `t`.
+ * Interpolated result is between end points `a` and `c` with `b` a control
+ * point.
+ *
+ * @remarks
+ * [Interactive graph](https://www.desmos.com/calculator/s3cvphot1o)
  *
  * @param a
  * @param b
@@ -111,7 +116,11 @@ export const mixQuadratic: FnN4 = (a, b, c, t) => {
 };
 
 /**
- * Computes cubic bezier interpolation for normalized value `t`.
+ * Computes cubic bezier interpolation for normalized value `t`. Interpolated
+ * result is between end points `a` and `d` with `b` and `c` control points.
+ *
+ * @remarks
+ * [Interactive graph](https://www.desmos.com/calculator/dfc6twzlmk)
  *
  * @param a
  * @param b
@@ -132,6 +141,7 @@ export const mixCubic: FnN5 = (a, b, c, d, t) => {
  * inform the tangent of the interpolation curve. The interpolated result is
  * that of `b` and `c`.
  *
+ * @remarks
  * Assumes all inputs are uniformly spaced. If that's not the case, use
  * {@link mixCubicHermite} with one of the tangent generators supporting
  * non-uniform spacing of points.
@@ -259,6 +269,35 @@ export const mixBicubic = (
 		mixCubicHermiteFromPoints(s30, s31, s32, s33, u),
 		v
 	);
+
+/**
+ * Parametric interpolation function for 4 samples `a`...`d` and interpolation
+ * `kernel` and factor `t`. The interpolation is assumed to be between `b` and
+ * `c`, using `a` and `d` as neighbors. Interpolation factor `t` is in the [0,1]
+ * range.
+ *
+ * @remarks
+ * The `kernel` is avaluated for 4 different `t`s @ `t-1`, `t`, `t+1`, `t+2`
+ * (corresponding to samples `a`..`d`).
+ *
+ * This function can be used with e.g. {@link defLanczos} (filter radius=2) or
+ * {@link defMitchell}.
+ *
+ * @param kernel
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param t
+ */
+export const mixKernel4 = (
+	kernel: FnN,
+	a: number,
+	b: number,
+	c: number,
+	d: number,
+	t: number
+) => a * kernel(t + 1) + b * kernel(t) + c * kernel(t - 1) + d * kernel(t - 2);
 
 /**
  * Helper function for {@link mixCubicHermite}. Computes cardinal tangents based
@@ -498,13 +537,68 @@ export const sincNormalized: FnN2 = (k, t) => sinc(PI * k * t);
  * returns 0.
  *
  * @remarks
- * [Interactive graph](https://www.desmos.com/calculator/pmypqgefle)
+ * References:
+ *
+ * - [Interactive graph](https://www.desmos.com/calculator/ccpog9yol8)
+ * - https://en.wikipedia.org/wiki/Lanczos_resampling
  *
  * @param a -
  * @param t -
  */
 export const lanczos: FnN2 = (a, t) =>
-	t !== 0 ? (-a < t && t < a ? sinc(PI * t) * sinc((PI * t) / a) : 0) : 1;
+	t !== 0
+		? -a < t && t < a
+			? ((t *= PI), (a * Math.sin(t) * Math.sin(t / a)) / (t * t))
+			: 0
+		: 1;
+
+/**
+ * Higher-order version of {@link lanczos} for filter size `a` (should be 1, 2
+ * or 3). Returns function which takes single param `t` and computes its Lanczos
+ * filter coefficient.
+ *
+ * @param a
+ */
+export const defLanczos =
+	(a: number): FnN =>
+	(t) =>
+		lanczos(a, t);
+
+/**
+ * Higher-order Mitchell-Netravali filter kernel for params `b` and `c`. Returns
+ * function which takes single param `t` and computes its filter coefficient.
+ *
+ * @remarks
+ * Default `b` and `c` values are: b=1/3, c=1/3. The returned function can be
+ * used with {@link mixKernel4}.
+ *
+ * References:
+ *
+ * - https://en.wikipedia.org/wiki/Mitchell%E2%80%93Netravali_filters
+ *
+ * @param b
+ * @param c
+ */
+export const defMitchell = (b = 1 / 3, c = 1 / 3) => {
+	const b12 = 12 * b;
+	const c6 = 6 * c;
+	const k1 = 12 - 9 * b - c6;
+	const k2 = -18 + b12 + c6;
+	const k3 = 6 - 2 * b;
+	const k4 = -b - c6;
+	const k5 = 6 * b + 30 * c;
+	const k6 = -b12 - 48 * c;
+	const k7 = 8 * b + 24 * c;
+	return (t: number) => {
+		if (t < 0) t = -t;
+		const t2 = t * t;
+		return t < 1
+			? (k1 * t2 * t + k2 * t2 + k3) / 6
+			: t < 2
+			? (k4 * t2 * t + k5 * t2 + k6 * t + k7) / 6
+			: 0;
+	};
+};
 
 /**
  * Sigmoid function for inputs arounds center bias.
