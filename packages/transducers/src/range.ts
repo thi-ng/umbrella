@@ -38,17 +38,14 @@ export class Range implements Iterable<number>, IReducible<number, any> {
 	}
 
 	*[Symbol.iterator]() {
-		let { from, to, step } = this;
-		if (step > 0) {
-			while (from < to) {
-				yield from;
-				from += step;
-			}
-		} else if (step < 0) {
-			while (from > to) {
-				yield from;
-				from += step;
-			}
+		const { from, to, step } = this;
+		for (
+			let i = 0, x: number;
+			(x = from + i * step),
+				(step >= 0 && x < to) || (step < 0 && x > to);
+			i++
+		) {
+			yield x;
 		}
 	}
 
@@ -56,23 +53,15 @@ export class Range implements Iterable<number>, IReducible<number, any> {
 		rfn: ReductionFn<number, T>,
 		acc: T | Reduced<T>
 	): T | Reduced<T> {
-		const step = this.step;
-		if (step > 0) {
-			for (
-				let i = this.from, n = this.to;
-				i < n && !isReduced(acc);
-				i += step
-			) {
-				acc = rfn(acc, i);
-			}
-		} else {
-			for (
-				let i = this.from, n = this.to;
-				i > n && !isReduced(acc);
-				i += step
-			) {
-				acc = rfn(acc, i);
-			}
+		const { from, to, step } = this;
+		for (
+			let i = 0, x: number;
+			(x = from + i * step),
+				!isReduced(acc) &&
+					((step >= 0 && x < to) || (step < 0 && x > to));
+			i++
+		) {
+			acc = rfn(<T>acc, x);
 		}
 		return acc;
 	}
