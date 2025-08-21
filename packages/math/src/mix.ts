@@ -37,6 +37,67 @@ export const mixBilinear: FnN6 = (a, b, c, d, u, v) => {
 };
 
 /**
+ * Trilinear interpolation of given values (`a`..`h`) with interpolation factors
+ * `u`,`v`,`w` (in `[0,1]` range).
+ *
+ * @example
+ * ```text
+ * c +-------+ d
+ *   |\      :\
+ *   | \     : \
+ *   |g +-------+ h
+ *   |  |    :  |
+ * a +··|····+ b|
+ *    \ |     \ |
+ *     \|      \|
+ *    e +-------+ f
+ * ```
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param e
+ * @param f
+ * @param g
+ * @param h
+ * @param u
+ * @param v
+ * @param w
+ */
+export const mixTrilinear = (
+	a: number,
+	b: number,
+	c: number,
+	d: number,
+	e: number,
+	f: number,
+	g: number,
+	h: number,
+	u: number,
+	v: number,
+	w: number
+) => {
+	const iu = 1 - u;
+	const iv = 1 - v;
+	const iw = 1 - w;
+	const uv = u * v;
+	const u_iv = u * iv;
+	const iu_v = iu * v;
+	const iuv = iu * iv;
+	return (
+		a * iuv * iw +
+		b * u_iv * iw +
+		c * iu_v * iw +
+		d * uv * iw +
+		e * iuv * w +
+		f * u_iv * w +
+		g * iu_v * w +
+		h * uv * w
+	);
+};
+
+/**
  * Computes quadratic bezier interpolation for normalized value `t`.
  *
  * @param a
