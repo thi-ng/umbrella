@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * 2-tuple representing a closed [min,max] value range/interval
  */
