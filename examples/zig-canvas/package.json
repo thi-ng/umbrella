@@ -8,7 +8,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"start": "yarn build:zig && vite --open --host",
-		"clean": "bun ../../tools/src/clean-package.ts zig-cache zig-out",
+		"clean": "bun ../../tools/src/clean-package.ts .zig-cache zig-out",
 		"docs": "yarn prepare:zig && zig build docs -p .",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
 		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/bin/main.wasm -o src/main.wasm -O3 -all && wasm-dis -o src/main.wast src/main.wasm",

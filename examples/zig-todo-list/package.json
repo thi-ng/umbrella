@@ -8,7 +8,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"start": "yarn build:zig && vite --open --host",
-		"clean": "bun ../../tools/src/clean-package.ts zig-cache zig-out",
+		"clean": "bun ../../tools/src/clean-package.ts .zig-cache zig-out",
 		"docs": "yarn prepare:zig && zig build docs -p .",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
 		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/types.ts --lang zig -o zig/types.zig src/typedefs.json",
