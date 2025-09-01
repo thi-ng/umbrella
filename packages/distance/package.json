@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/distance",
-	"version": "3.0.15",
+	"version": "3.0.16",
 	"description": "N-dimensional distance metrics & K-nearest neighborhoods for point queries",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.1",
-		"@thi.ng/checks": "^3.7.17",
-		"@thi.ng/errors": "^2.5.41",
-		"@thi.ng/heaps": "^2.1.107",
-		"@thi.ng/math": "^5.11.35",
-		"@thi.ng/vectors": "^8.6.5"
+		"@thi.ng/api": "^8.12.2",
+		"@thi.ng/checks": "^3.7.18",
+		"@thi.ng/errors": "^2.5.42",
+		"@thi.ng/heaps": "^2.1.108",
+		"@thi.ng/math": "^5.12.0",
+		"@thi.ng/vectors": "^8.6.6"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.9",

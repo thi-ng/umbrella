@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-06T18:02:31Z
+- **Last updated**: 2025-09-01T16:38:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.12.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.12.5) (2025-09-01)
+
+#### ♻️ Refactoring
+
+- fix type import ([8e90657](https://github.com/thi-ng/umbrella/commit/8e90657))
 
 ## [0.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.12.0) (2025-08-04)
 

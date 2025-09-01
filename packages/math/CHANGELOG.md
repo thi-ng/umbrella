@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-04T09:13:01Z
+- **Last updated**: 2025-09-01T16:38:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.12.0) (2025-09-01)
+
+#### 🚀 Features
+
+- add `mixTrilinear()` ([5914ced](https://github.com/thi-ng/umbrella/commit/5914ced))
+- add/update interpolation fns ([91e8fbd](https://github.com/thi-ng/umbrella/commit/91e8fbd))
+  - add defLanczos(), defMitchell()
+  - add mixKernel4()
+  - add interactive Desmos graphs
+  - update docs
 
 ## [5.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.11.0) (2024-06-21)
 

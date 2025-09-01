@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-04T09:13:01Z
+- **Last updated**: 2025-09-01T16:38:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [9.6.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@9.6.9) (2025-09-01)
+
+#### ♻️ Refactoring
+
+- internal update range(), improve precision ([437021f](https://github.com/thi-ng/umbrella/commit/437021f))
+  - use `from + i * step` to avoid float error accumulation
+  - update Range iterator and `$reduce()` impls
+  - add tests
 
 ## [9.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@9.6.0) (2025-07-13)
 

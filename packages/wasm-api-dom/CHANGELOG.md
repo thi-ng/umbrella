@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-04T09:13:01Z
+- **Last updated**: 2025-09-01T16:38:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@2.0.0) (2025-09-01)
+
+#### 🛑 Breaking changes
+
+- internal restructure of generated types ([23b5676](https://github.com/thi-ng/umbrella/commit/23b5676))
+- BREAKING CHANGE: internal restructure due to breaking Zig 0.15.1 changes
+  - `usenamespace` deprecated in Zig 0.15.1, so earlier struct/namespace merging not possible anymore
+  - instead, sub-namespaces exposed via: `events`, `fullscreen`, `types`
 
 ### [1.0.18](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@1.0.18) (2025-01-14)
 

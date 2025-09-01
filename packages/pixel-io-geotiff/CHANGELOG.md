@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-04T09:13:01Z
+- **Last updated**: 2025-09-01T16:38:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.1.135](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-geotiff@0.1.135) (2025-08-04)
+### [0.1.134](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-geotiff@0.1.134) (2025-08-04)
 
 #### ♻️ Refactoring
 

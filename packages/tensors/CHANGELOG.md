@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-08-16T18:12:02Z
+- **Last updated**: 2025-09-01T16:38:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.10.0) (2025-09-01)
+
+#### 🚀 Features
+
+- add 1D/2D/3D samplers and resampling fns ([2130067](https://github.com/thi-ng/umbrella/commit/2130067))
+  - add `defSampler1/2/3/4()` and supporting helpers
+  - add sampling kernel presets:
+    - `SAMPLE_NEAREST`
+    - `SAMPLE_LINEAR`
+    - `SAMPLE_CUBIC`
+    - `SAMPLE_LANCZOS` (higher order)
+  - add `resample1/2/3()` fns
 
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.9.0) (2025-08-16)
 

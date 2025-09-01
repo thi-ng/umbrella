@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/errors",
-	"version": "2.5.41",
+	"version": "2.5.42",
 	"description": "Custom error types and error factory functions",
 	"type": "module",
 	"module": "./index.js",
