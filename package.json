@@ -7,11 +7,11 @@
 		"tools"
 	],
 	"devDependencies": {
-		"bun-types": "1.2.19",
-		"esbuild": "^0.25.8",
+		"bun-types": "1.2.21",
+		"esbuild": "^0.25.9",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.28.9",
+		"typedoc": "^0.28.12",
 		"typescript": "^5.9.2"
 	},
 	"scripts": {

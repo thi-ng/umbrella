@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.9.2",
-		"vite": "^7.0.6"
+		"vite": "^7.1.4"
 	},
 	"dependencies": {
 		"@thi.ng/hiccup-html": "workspace:^",

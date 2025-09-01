@@ -53,8 +53,8 @@
 	},
 	"devDependencies": {
 		"@thi.ng/atom": "^5.3.41",
-		"esbuild": "^0.25.8",
-		"typedoc": "^0.28.9",
+		"esbuild": "^0.25.9",
+		"typedoc": "^0.28.12",
 		"typescript": "^5.9.2"
 	},
 	"keywords": [
