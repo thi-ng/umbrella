@@ -11,9 +11,9 @@ import type {
 	TextAlign,
 	TextBaseline,
 	TextDirection,
-} from "./generated/api.js";
+} from "./generated/types.js";
 
-export * from "./generated/api.js";
+export * from "./generated/types.js";
 
 export interface WasmCanvas2DExports extends WasmExports, WasmDomExports {}
 

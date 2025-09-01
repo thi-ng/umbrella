@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
-const api = @import("api.zig");
+pub const types = @import("types.zig");
 
 pub const none = "none";
 
@@ -15,10 +15,10 @@ pub extern "canvas2d" fn rotate(theta: f32) void;
 pub extern "canvas2d" fn transform(addr: [*:0]const u8) void;
 
 pub extern "canvas2d" fn setFont(addr: [*:0]const u8) void;
-pub extern "canvas2d" fn setFontKerning(addr: api.FontKerning) void;
-pub extern "canvas2d" fn setTextAlign(mode: api.TextAlign) void;
-pub extern "canvas2d" fn setTextBaseline(mode: api.TextBaseline) void;
-pub extern "canvas2d" fn setTextDirection(mode: api.TextDirection) void;
+pub extern "canvas2d" fn setFontKerning(addr: types.FontKerning) void;
+pub extern "canvas2d" fn setTextAlign(mode: types.TextAlign) void;
+pub extern "canvas2d" fn setTextBaseline(mode: types.TextBaseline) void;
+pub extern "canvas2d" fn setTextDirection(mode: types.TextDirection) void;
 
 pub extern "canvas2d" fn setFill(addr: [*:0]const u8) void;
 pub extern "canvas2d" fn setGradientFill(id: u32) void;
@@ -27,34 +27,34 @@ pub extern "canvas2d" fn setStroke(addr: [*:0]const u8) void;
 pub extern "canvas2d" fn setGradientStroke(id: u32) void;
 pub extern "canvas2d" fn setPatternStroke(id: u32) void;
 pub extern "canvas2d" fn setLineWidth(w: f32) void;
-pub extern "canvas2d" fn setLineCap(mode: api.LineCap) void;
-pub extern "canvas2d" fn setLineJoin(mode: api.LineJoin) void;
+pub extern "canvas2d" fn setLineCap(mode: types.LineCap) void;
+pub extern "canvas2d" fn setLineJoin(mode: types.LineJoin) void;
 pub extern "canvas2d" fn setMiterLimit(mode: f32) void;
 pub extern "canvas2d" fn _setLineDash(addr: [*]f32, num: usize) void;
 pub extern "canvas2d" fn setLineDashOffset(offset: f32) void;
 pub extern "canvas2d" fn setShadow(addr: [*:0]const u8, x: f32, y: f32, blur: f32) void;
 pub extern "canvas2d" fn setGlobalAlpha(alpha: f32) void;
-pub extern "canvas2d" fn setGlobalCompositeOp(mode: api.GlobalCompositeOp) void;
+pub extern "canvas2d" fn setGlobalCompositeOp(mode: types.GlobalCompositeOp) void;
 pub extern "canvas2d" fn setFilter(addr: [*:0]const u8) void;
 
-pub extern "canvas2d" fn _createLinearGradient(x1: f32, y1: f32, x2: f32, y2: f32, addr: [*]const api.GradientColorStop, num: usize) u32;
-pub fn createLinearGradient(x1: f32, y1: f32, x2: f32, y2: f32, stops: []const api.GradientColorStop) u32 {
+pub extern "canvas2d" fn _createLinearGradient(x1: f32, y1: f32, x2: f32, y2: f32, addr: [*]const types.GradientColorStop, num: usize) u32;
+pub fn createLinearGradient(x1: f32, y1: f32, x2: f32, y2: f32, stops: []const types.GradientColorStop) u32 {
     return _createLinearGradient(x1, y1, x2, y2, stops.ptr, stops.len);
 }
-pub extern "canvas2d" fn _createRadialGradient(x1: f32, y1: f32, r1: f32, x2: f32, y2: f32, r2: f32, addr: [*]const api.GradientColorStop, num: usize) u32;
-pub fn createRadialGradient(x1: f32, y1: f32, r1: f32, x2: f32, y2: f32, r2: f32, stops: []const api.GradientColorStop) u32 {
+pub extern "canvas2d" fn _createRadialGradient(x1: f32, y1: f32, r1: f32, x2: f32, y2: f32, r2: f32, addr: [*]const types.GradientColorStop, num: usize) u32;
+pub fn createRadialGradient(x1: f32, y1: f32, r1: f32, x2: f32, y2: f32, r2: f32, stops: []const types.GradientColorStop) u32 {
     return _createRadialGradient(x1, y1, r1, x2, y2, r2, stops.ptr, stops.len);
 }
-pub extern "canvas2d" fn _createConicGradient(startTheta: f32, x: f32, y: f32, addr: [*]const api.GradientColorStop, num: usize) u32;
-pub fn createConicGradient(startTheta: f32, x: f32, y: f32, stops: []const api.GradientColorStop) u32 {
+pub extern "canvas2d" fn _createConicGradient(startTheta: f32, x: f32, y: f32, addr: [*]const types.GradientColorStop, num: usize) u32;
+pub fn createConicGradient(startTheta: f32, x: f32, y: f32, stops: []const types.GradientColorStop) u32 {
     return _createConicGradient(startTheta, x, y, stops.ptr, stops.len);
 }
-pub extern "canvas2d" fn createPattern(pixels: [*]const u32, width: u32, height: u32, repeat: api.PatternRepeat) u32;
+pub extern "canvas2d" fn createPattern(pixels: [*]const u32, width: u32, height: u32, repeat: types.PatternRepeat) u32;
 
 pub extern "canvas2d" fn beginPath() void;
 pub extern "canvas2d" fn closePath() void;
 pub extern "canvas2d" fn fill() void;
-pub extern "canvas2d" fn fillWithRule(rule: api.FillRule) void;
+pub extern "canvas2d" fn fillWithRule(rule: types.FillRule) void;
 pub extern "canvas2d" fn stroke() void;
 pub extern "canvas2d" fn clip() void;
 
@@ -82,9 +82,9 @@ pub fn polyline(pts: []const [2]f32, isFilled: bool) void {
 
 pub extern "canvas2d" fn fillText(addr: [*:0]const u8, x: f32, y: f32, w: f32) void;
 pub extern "canvas2d" fn strokeText(addr: [*:0]const u8, x: f32, y: f32, w: f32) void;
-pub extern "canvas2d" fn _measureText(addr: [*:0]const u8, metrics: *api.TextMetrics) void;
-pub fn measureText(addr: [*:0]const u8) api.TextMetrics {
-    var metrics: api.TextMetrics = undefined;
+pub extern "canvas2d" fn _measureText(addr: [*:0]const u8, metrics: *types.TextMetrics) void;
+pub fn measureText(addr: [*:0]const u8) types.TextMetrics {
+    var metrics: types.TextMetrics = undefined;
     _measureText(addr, &metrics);
     return metrics;
 }
