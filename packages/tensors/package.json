@@ -268,6 +268,9 @@
 		"./relun": {
 			"default": "./relun.js"
 		},
+		"./sample": {
+			"default": "./sample.js"
+		},
 		"./select": {
 			"default": "./select.js"
 		},
