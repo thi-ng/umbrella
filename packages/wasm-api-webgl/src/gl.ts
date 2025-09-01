@@ -59,7 +59,7 @@ import {
 	type ShaderSpec,
 	type TextureSpec,
 	type UniformValue,
-} from "./generated/api.js";
+} from "./generated/types.js";
 
 /**
  * WASM module descriptor for use as dependency object in other module

@@ -2,7 +2,7 @@
 import type { WasmExports } from "@thi.ng/wasm-api";
 import type { WasmDomExports } from "@thi.ng/wasm-api-dom";
 
-export * from "./generated/api.js";
+export * from "./generated/types.js";
 
 export interface WasmWebGLImports extends WebAssembly.ModuleImports {
 	canvasGLContext(canvasID: number, opts: number): number;
