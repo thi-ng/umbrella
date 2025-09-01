@@ -343,15 +343,13 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
-### Zig v0.14 or newer
+### Zig v0.15 or newer
 
-**IMPORTANT:** Due to recent syntax & build system changes in Zig
-[v0.12.0](https://ziglang.org/download/0.12.0/release-notes.html),
-[v0.13.0](https://ziglang.org/download/0.13.0/release-notes.html) and
-[v0.14.0](https://ziglang.org/download/0.14.0/release-notes.html), older Zig
-versions are not actively supported anymore (however, [build files for older
-versions are still
-included](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig))
+**IMPORTANT:** Due to breaking syntax & build system changes in recent Zig
+versions, older Zig versions than
+[v0.15.1](https://ziglang.org/download/0.15.1/release-notes.html), are not
+actively supported anymore (however, [build files for older versions are still
+included](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig)).
 
 Please see [bundled examples](#usage-examples) for more details...
 
