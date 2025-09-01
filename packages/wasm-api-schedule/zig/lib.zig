@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
 const wasm = @import("wasm-api");
-const api = @import("api.zig");
 
-pub usingnamespace api;
+pub const types = @import("types.zig");
 
 pub const Callback = *const fn (?*anyopaque) void;
 
-pub const ScheduledCall = struct {
+const ScheduledCall = struct {
     /// Actual callback function. Takes an optional pointer to user
     /// supplied arbitrary context data provided when registering the handler
     /// via setTimeout() or setInterval()
@@ -35,17 +34,17 @@ export fn _schedule_init() void {
 }
 
 /// Internal callback. Called from JS
-export fn _schedule_callback(callID: u16, remove: api.ScheduleType) void {
+export fn _schedule_callback(callID: u16, remove: types.ScheduleType) void {
     if (calls.get(callID)) |callback| {
         if (remove != .interval) calls.remove(callID);
         callback.callback(callback.ctx);
     }
 }
 
-pub extern "schedule" fn _schedule(kind: api.ScheduleType, delay: usize, callID: u16) void;
+pub extern "schedule" fn _schedule(kind: types.ScheduleType, delay: usize, callID: u16) void;
 
 /// Schedules given timer callback of given kind and returns an unique ID handle.
-pub fn schedule(kind: api.ScheduleType, delay: usize, callback: Callback, ctx: ?*anyopaque) !u16 {
+pub fn schedule(kind: types.ScheduleType, delay: usize, callback: Callback, ctx: ?*anyopaque) !u16 {
     const callID = try calls.add(.{ .callback = callback, .ctx = ctx });
     _schedule(kind, delay, callID);
     return callID;
