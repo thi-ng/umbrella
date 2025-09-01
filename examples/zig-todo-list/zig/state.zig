@@ -3,14 +3,16 @@ const std = @import("std");
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
 const schedule = @import("wasm-api-schedule").schedule;
-const todo = @import("api.zig");
+
+const api = @import("api.zig");
+const types = @import("types.zig");
 
 allocator: std.mem.Allocator,
 tasks: std.ArrayList(*TaskItem),
 
 pub const TaskItem = struct {
     parent: *Self,
-    task: todo.Task,
+    task: types.Task,
     root: i32 = undefined,
     date: i32 = undefined,
 
@@ -24,7 +26,7 @@ pub const TaskItem = struct {
         };
     }
 
-    pub fn initFromTask(parent: *Self, task: *const todo.Task) TaskItem {
+    pub fn initFromTask(parent: *Self, task: *const types.Task) TaskItem {
         return TaskItem{ .parent = parent, .task = task.* };
     }
 
@@ -38,8 +40,8 @@ pub const TaskItem = struct {
                     .tag = "input",
                     .class = "db h2",
                     .attribs = dom.attribs(&.{
-                        dom.Attrib.string("type", "checkbox"),
-                        dom.Attrib.event("change", onTaskComplete, self),
+                        dom.types.Attrib.string("type", "checkbox"),
+                        dom.types.Attrib.event("change", onTaskComplete, self),
                     }),
                 },
                 .{
@@ -54,12 +56,12 @@ pub const TaskItem = struct {
         self.date = dom.createElement(&.{
             .tag = "span",
             .class = "ml3 tr",
-            .text = todo.formatDateTime(self.task.dateCreated, &buf),
+            .text = api.formatDateTime(self.task.dateCreated, &buf),
             .parent = self.root,
         });
     }
 
-    fn onTaskComplete(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+    fn onTaskComplete(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.C) void {
         if (wasm.ptrCast(*TaskItem, raw)) |self| {
             self.markDone();
             self.parent.storeTasks();
@@ -77,7 +79,7 @@ pub const TaskItem = struct {
         var buf: [32]u8 = undefined;
         self.task.state = .done;
         self.task.dateDone = @intCast(wasm.epoch() / 1000);
-        dom.setInnerText(self.date, todo.formatDateTime(self.task.dateDone, &buf));
+        dom.setInnerText(self.date, api.formatDateTime(self.task.dateDone, &buf));
         dom.addClass(self.root, "task-done");
         dom.addClass(self.root, "fadeout");
     }
@@ -119,12 +121,12 @@ pub fn addExisting(self: *Self, item: TaskItem) !*TaskItem {
 }
 
 pub fn storeTasks(self: *const Self) void {
-    var tasks = std.ArrayList(todo.Task).init(self.allocator);
+    var tasks = std.ArrayList(types.Task).init(self.allocator);
     defer tasks.deinit();
     for (self.tasks.items) |item| {
         if (item.task.state == .open) {
             tasks.append(item.task) catch |e| @panic(@errorName(e));
         }
     }
-    todo.persistTasks(tasks.items.ptr, tasks.items.len);
+    api.persistTasks(tasks.items.ptr, tasks.items.len);
 }

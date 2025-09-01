@@ -4,9 +4,6 @@ const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
 const schedule = @import("wasm-api-schedule").schedule;
 
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
-
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
@@ -46,7 +43,7 @@ const Counter = struct {
             .parent = parent,
             .attribs = dom.attribs(&.{
                 // define & add click event listener w/ user context arg
-                dom.Attrib.event("click", onClick, self),
+                dom.types.Attrib.event("click", onClick, self),
             }),
         });
     }
@@ -76,7 +73,7 @@ const Counter = struct {
     }
 
     /// event listener & state update
-    fn onClick(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+    fn onClick(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.C) void {
         // safely cast raw pointer
         if (wasm.ptrCast(*Self, raw)) |self| {
             self.clicks += self.step;

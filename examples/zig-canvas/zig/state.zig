@@ -9,7 +9,7 @@ const api = @import("api.zig");
 /// Allocator to use for recorded strokes/gestures
 allocator: std.mem.Allocator,
 /// Browser window measurements
-window: dom.WindowInfo = undefined,
+window: dom.types.WindowInfo = undefined,
 /// List of recorded strokes/gestures
 strokes: std.ArrayList(*api.Stroke) = undefined,
 /// Current stroke (or null if none active)
@@ -73,7 +73,7 @@ pub fn requestRedraw(self: *Self) void {
             if (wasm.ptrCast(*const Self, raw)) |state| state.redraw();
         }
     };
-    _ = dom.requestAnimationFrame(wrapper.handler, self) catch return;
+    _ = dom.events.requestAnimationFrame(wrapper.handler, self) catch return;
 }
 
 /// Calls into JS API to clear canvas and redraw all recorded strokes.

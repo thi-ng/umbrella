@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-const gen = @import("api-generated.zig");
+const types = @import("types.zig");
 
-pub usingnamespace gen;
-
-pub extern "todo" fn loadTasks(tasks: *[]gen.Task) void;
-pub extern "todo" fn persistTasks(tasks: [*]gen.Task, num: usize) void;
+pub extern "todo" fn loadTasks(tasks: *[]types.Task) void;
+pub extern "todo" fn persistTasks(tasks: [*]types.Task, num: usize) void;
 
 pub extern "todo" fn _formatDateTime(epoch: u32, addr: *anyopaque, maxLen: usize) usize;
 

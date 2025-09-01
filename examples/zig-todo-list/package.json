@@ -11,7 +11,7 @@
 		"clean": "bun ../../tools/src/clean-package.ts zig-cache zig-out",
 		"docs": "yarn prepare:zig && zig build docs -p .",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
-		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o zig/api-generated.zig src/typedefs.json",
+		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/types.ts --lang zig -o zig/types.zig src/typedefs.json",
 		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/bin/main.wasm -o src/main.wasm -O3 -all && wasm-dis -o src/main.wast src/main.wasm",
 		"prepare:zig": "cp ../../node_modules/@thi.ng/wasm-api/zig/build.zig wasm-api-build.zig",
 		"preview": "vite preview --host --open"

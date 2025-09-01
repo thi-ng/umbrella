@@ -7,9 +7,6 @@ const canvas2d = @import("wasm-api-canvas");
 const dom = @import("wasm-api-dom");
 const CA = @import("ca.zig");
 
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
-
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
@@ -124,7 +121,7 @@ fn update(_: f64, _: ?*anyopaque) callconv(.C) void {
 
 /// Triggers next sim frame via requestAnimationFrame
 fn requestLoop() void {
-    _ = dom.requestAnimationFrame(update, null) catch |e| @panic(@errorName(e));
+    _ = dom.events.requestAnimationFrame(update, null) catch |e| @panic(@errorName(e));
 }
 
 /// Main entry point (called from JS)

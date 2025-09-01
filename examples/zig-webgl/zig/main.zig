@@ -5,9 +5,6 @@ const dom = @import("wasm-api-dom");
 const schedule = @import("wasm-api-schedule");
 const gl = @import("wasm-api-webgl");
 
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
-
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
@@ -125,7 +122,7 @@ fn init() !void {
                 .value = .{ .vec3 = [_]f32{ 1, 0, 0 } },
             },
         }),
-        .textures = gl.ConstI32Slice.wrap(&[_]i32{tex}),
+        .textures = gl.types.ConstI32Slice.wrap(&[_]i32{tex}),
         .mode = .triangles,
         .num = 3,
         .numInstances = 3,
