@@ -58,13 +58,7 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 	const pairs: [string, string][] = [];
 	for (let d of mergedDeps) {
 		if (!d.startsWith("@thi.ng")) {
-			if (
-				d.startsWith("@types") ||
-				d.startsWith("node:") ||
-				d.startsWith("bun:") ||
-				d === "tslib"
-			)
-				continue;
+			if (/^(@types|node:|bun:)/.test(d) || d === "tslib") continue;
 			if (deps.has(d) && !pkg.dependencies[d]) {
 				LOGGER.warn("missing 3rd party dependency:", d);
 				exitOnFail && process.exit(1);
@@ -100,7 +94,9 @@ const checkLocalImports = (root: string, exitOnFail = true) => {
 		const badImports = transduce(
 			comp(
 				NON_COMMENT_LINES,
-				map((line) => /from "(\.\/[a-z0-9/-]+)"/.exec(line!)),
+				map((line) =>
+					/from ["']((\.\/|(\.\.\/)+)[a-z0-9/-]+)["']/.exec(line!)
+				),
 				keep(),
 				pluck(1)
 			),
