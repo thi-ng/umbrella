@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 const wasm = @import("wasm-api");
-const dom = @import("api.zig");
-const event = @import("events.zig");
-const fullscreen = @import("fullscreen.zig");
 
-pub usingnamespace dom;
-pub usingnamespace event;
-pub usingnamespace fullscreen;
+pub const events = @import("events.zig");
+pub const fullscreen = @import("fullscreen.zig");
+pub const types = @import("types.zig");
+
+// hoist generated helpers
+pub const children = types.children;
+pub const attribs = types.attribs;
 
 /// Reserved reference handle for the browser window itself (e.g. used for event targets)
 pub const window: i32 = -1;
@@ -22,19 +23,19 @@ pub const DOMError = error{
 /// Auto-initialization hook called from JS when the module initializes
 export fn _dom_init() void {
     if (wasm.allocator()) |allocator| {
-        event.init(allocator);
+        events.init(allocator);
     }
 }
 
-pub extern "dom" fn getWindowInfo(desc: *dom.WindowInfo) void;
+pub extern "dom" fn getWindowInfo(desc: *types.WindowInfo) void;
 
 pub extern "dom" fn getElementByID(id: [*:0]const u8) i32;
 
-pub extern "dom" fn createElement(opts: *const dom.CreateElementOpts) i32;
+pub extern "dom" fn createElement(opts: *const types.CreateElementOpts) i32;
 
 pub extern "dom" fn removeElement(elementID: i32) bool;
 
-pub extern "dom" fn createCanvas(opts: *const dom.CreateCanvasOpts) i32;
+pub extern "dom" fn createCanvas(opts: *const types.CreateCanvasOpts) i32;
 
 pub extern "dom" fn setCanvasSize(elementID: i32, width: u16, height: u16, dpr: u8) void;
 

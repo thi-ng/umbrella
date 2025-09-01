@@ -2,7 +2,7 @@
 import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
 import type { WasmExports } from "@thi.ng/wasm-api";
 
-export * from "./generated/api.js";
+export * from "./generated/types.js";
 
 export interface WasmDomExports extends WasmExports {
 	_dom_init(): void;
