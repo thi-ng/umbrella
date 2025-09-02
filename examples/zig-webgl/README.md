@@ -23,16 +23,16 @@ this project):
 asdf plugin-add zig https://github.com/cheetah/asdf-zig.git
 
 # asdf supports multiple versions of a tool, here to install latest dev version
-asdf install zig 0.14.1
+asdf install zig 0.15.1
 
 # global use of that version
-asdf global zig 0.14.1
+asdf global zig 0.15.1
 
 # or only use that version in this project (already pre-configured)
-asdf local zig 0.14.1
+asdf local zig 0.15.1
 ```
 
--   [Zig](https://ziglang.org) v0.14.0 or newer versions (see
+-   [Zig](https://ziglang.org) v0.15.1 or newer versions (see
     [comments](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#using-the-zig-build-system))
 -   [Binaryen](https://github.com/WebAssembly/binaryen)
 
