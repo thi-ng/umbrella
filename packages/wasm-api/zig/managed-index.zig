@@ -182,7 +182,7 @@ test "ManagedIndex" {
     const expect = std.testing.expect;
     const expectEqualSlices = std.testing.expectEqualSlices;
 
-    var index = try ManagedIndex(f64, u8).init(allocator);
+    var index = ManagedIndex(f64, u8).init(allocator);
     defer index.deinit();
     try expect(try index.add(123) == 0);
     try expect(try index.add(123) == 1);
