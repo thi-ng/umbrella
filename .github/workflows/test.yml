@@ -27,7 +27,7 @@ jobs:
                   cache: "yarn"
             - uses: mlugg/setup-zig@7dccf5e6d09267c55f815f2db29495f30ba2ebca
               with:
-                  version: 0.14.0
+                  version: 0.15.1
             - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
               with:
                   bun-version: latest
