@@ -25,7 +25,7 @@ jobs:
               with:
                   node-version: "23.11.1"
                   cache: "yarn"
-            - uses: mlugg/setup-zig@7dccf5e6d09267c55f815f2db29495f30ba2ebca
+            - uses: mlugg/setup-zig@8d6198c65fb0feaa111df26e6b467fea8345e46f
               with:
                   version: 0.15.1
             - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
