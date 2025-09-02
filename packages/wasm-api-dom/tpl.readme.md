@@ -44,9 +44,6 @@ const std = @import("std");
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
 
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
-
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
@@ -101,8 +98,6 @@ elements via `dom.children()`, as shown here:
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
 
-const Attrib = dom.Attrib;
-
 // snippet taken from the zig-todo-list example project
 
 const handle = dom.createElement(&.{
@@ -119,12 +114,12 @@ const handle = dom.createElement(&.{
             .id = "newtask",
             // attribute & event listener definitions
             .attribs = dom.attribs(&.{
-                Attrib.string("placeholder", "What needs to be done?"),
-                Attrib.flag("autofocus", true),
+                dom.types.Attrib.string("placeholder", "What needs to be done?"),
+                dom.types.Attrib.flag("autofocus", true),
                 // event listener setup:
                 // last arg is optional opaque pointer to arbitrary user state/context
-                Attrib.event("keydown", onKeydown, &STATE),
-                Attrib.event("input", onInput, null),
+                dom.types.Attrib.event("keydown", onKeydown, &STATE),
+                dom.types.Attrib.event("input", onInput, null),
             }),
         },
         .{
@@ -132,13 +127,13 @@ const handle = dom.createElement(&.{
             // Element .innerText content
             .text = "Add Task",
             .attribs = dom.attribs(&.{
-                Attrib.event("click", onAddTask, null),
+                dom.types.Attrib.event("click", onAddTask, null),
             }),
         },
     }),
 });
 
-fn onInput(e: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
+fn onInput(e: *const dom.types.Event, _: ?*anyopaque) callconv(.C) void {
     wasm.printStr(e.body.input.getValue());
 }
 ```
@@ -172,14 +167,14 @@ _ = dom.createElement(&.{
     // optional attrib declarations
     .attribs = dom.attribs(&.{
         // string attrib
-        dom.Attrib.string("type", "range"),
+        dom.types.Attrib.string("type", "range"),
         // numeric attribs
-        dom.Attrib.number("min", 0),
-        dom.Attrib.number("max", 100),
-        dom.Attrib.number("step", 10),
-        dom.Attrib.number("value", 20),
+        dom.types.Attrib.number("min", 0),
+        dom.types.Attrib.number("max", 100),
+        dom.types.Attrib.number("step", 10),
+        dom.types.Attrib.number("value", 20),
         // boolean attrib (only will be created if true)
-        dom.Attrib.flag("disabled", true),
+        dom.types.Attrib.flag("disabled", true),
     }),
 });
 ```
@@ -233,7 +228,7 @@ const Counter = struct {
             .parent = parent,
             .attribs = dom.attribs(&.{
                 // define & add click event listener w/ user context arg
-                dom.Attrib.event("click", onClick, self),
+                dom.types.Attrib.event("click", onClick, self),
             }),
         });
     }
@@ -247,7 +242,7 @@ const Counter = struct {
     }
 
     /// event listener & state update
-    fn onClick(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+    fn onClick(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.C) void {
         // safely cast raw pointer
         if (wasm.ptrCast(*Self, raw)) |self| {
             self.clicks += self.step;
