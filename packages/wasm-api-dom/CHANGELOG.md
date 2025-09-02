@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-09-02T13:15:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@2.0.1) (2025-09-02)
+
+#### 🩹 Bug fixes
+
+- update function pointer types ([3e5ea93](https://github.com/thi-ng/umbrella/commit/3e5ea93))
+  - update/fix `callconv(.c)`
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@2.0.0) (2025-09-01)
 

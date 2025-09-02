@@ -6965,7 +6965,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^1.2.39, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^1.2.40, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
@@ -6981,7 +6981,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.1.17"
     "@thi.ng/paths": "npm:^5.2.21"
     "@thi.ng/strings": "npm:^3.9.22"
-    "@thi.ng/wasm-api": "npm:^2.4.0"
+    "@thi.ng/wasm-api": "npm:^2.4.1"
     "@types/node": "npm:^24.3.0"
     esbuild: "npm:^0.25.9"
     typedoc: "npm:^0.28.12"
@@ -6996,16 +6996,16 @@ __metadata:
   resolution: "@thi.ng/wasm-api-canvas@workspace:packages/wasm-api-canvas"
   dependencies:
     "@thi.ng/binary": "npm:^3.4.60"
-    "@thi.ng/wasm-api": "npm:^2.4.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.39"
-    "@thi.ng/wasm-api-dom": "npm:^2.0.0"
+    "@thi.ng/wasm-api": "npm:^2.4.1"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.40"
+    "@thi.ng/wasm-api-dom": "npm:^2.0.1"
     esbuild: "npm:^0.25.9"
     typedoc: "npm:^0.28.12"
     typescript: "npm:^5.9.2"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@npm:^2.0.0, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@npm:^2.0.1, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -7013,8 +7013,8 @@ __metadata:
     "@thi.ng/canvas": "npm:^1.0.23"
     "@thi.ng/errors": "npm:^2.5.42"
     "@thi.ng/prefixes": "npm:^2.3.53"
-    "@thi.ng/wasm-api": "npm:^2.4.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.39"
+    "@thi.ng/wasm-api": "npm:^2.4.1"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.40"
     esbuild: "npm:^0.25.9"
     typedoc: "npm:^0.28.12"
     typescript: "npm:^5.9.2"
@@ -7026,8 +7026,8 @@ __metadata:
   resolution: "@thi.ng/wasm-api-schedule@workspace:packages/wasm-api-schedule"
   dependencies:
     "@thi.ng/api": "npm:^8.12.2"
-    "@thi.ng/wasm-api": "npm:^2.4.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.39"
+    "@thi.ng/wasm-api": "npm:^2.4.1"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.40"
     esbuild: "npm:^0.25.9"
     typedoc: "npm:^0.28.12"
     typescript: "npm:^5.9.2"
@@ -7040,9 +7040,9 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.2"
     "@thi.ng/errors": "npm:^2.5.42"
-    "@thi.ng/wasm-api": "npm:^2.4.0"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.39"
-    "@thi.ng/wasm-api-dom": "npm:^2.0.0"
+    "@thi.ng/wasm-api": "npm:^2.4.1"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.40"
+    "@thi.ng/wasm-api-dom": "npm:^2.0.1"
     "@thi.ng/webgl": "npm:^6.9.76"
     esbuild: "npm:^0.25.9"
     typedoc: "npm:^0.28.12"
@@ -7050,7 +7050,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@npm:^2.4.0, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@npm:^2.4.1, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:
