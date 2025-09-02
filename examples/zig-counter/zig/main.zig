@@ -73,7 +73,7 @@ const Counter = struct {
     }
 
     /// event listener & state update
-    fn onClick(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.C) void {
+    fn onClick(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
         // safely cast raw pointer
         if (wasm.ptrCast(*Self, raw)) |self| {
             self.clicks += self.step;
@@ -82,7 +82,7 @@ const Counter = struct {
             // Supply a snapshot of current state as user context for the update
             // Since this is a one-off callback, we don't have to hold on
             // to the returned listener ID (auto-cleanup)
-            _ = schedule(.once, 500, onTimeout, self.snapshot()) catch return;
+            _ = schedule(.once, 1000, onTimeout, self.snapshot()) catch return;
         }
     }
 

@@ -61,7 +61,7 @@ pub const TaskItem = struct {
         });
     }
 
-    fn onTaskComplete(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.C) void {
+    fn onTaskComplete(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
         if (wasm.ptrCast(*TaskItem, raw)) |self| {
             self.markDone();
             self.parent.storeTasks();
@@ -102,7 +102,7 @@ const Self = @This();
 pub fn init(allocator: std.mem.Allocator) Self {
     return Self{
         .allocator = allocator,
-        .tasks = std.ArrayList(*TaskItem).init(allocator),
+        .tasks = std.ArrayList(*TaskItem).empty,
     };
 }
 
@@ -114,18 +114,18 @@ pub fn addTask(self: *Self, body: []const u8) !*TaskItem {
 
 pub fn addExisting(self: *Self, item: TaskItem) !*TaskItem {
     var itemAlloc = try self.allocator.create(TaskItem);
-    try self.tasks.append(itemAlloc);
+    try self.tasks.append(self.allocator, itemAlloc);
     itemAlloc.* = item;
     itemAlloc.initUI();
     return itemAlloc;
 }
 
 pub fn storeTasks(self: *const Self) void {
-    var tasks = std.ArrayList(types.Task).init(self.allocator);
-    defer tasks.deinit();
+    var tasks = std.ArrayList(types.Task).empty;
+    defer tasks.deinit(self.allocator);
     for (self.tasks.items) |item| {
         if (item.task.state == .open) {
-            tasks.append(item.task) catch |e| @panic(@errorName(e));
+            tasks.append(self.allocator, item.task) catch |e| @panic(@errorName(e));
         }
     }
     api.persistTasks(tasks.items.ptr, tasks.items.len);

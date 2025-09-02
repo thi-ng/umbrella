@@ -23,7 +23,7 @@ const Self = @This();
 pub fn init(allocator: std.mem.Allocator) Self {
     var self = Self{
         .allocator = allocator,
-        .strokes = std.ArrayList(*api.Stroke).init(allocator),
+        .strokes = std.ArrayList(*api.Stroke).empty,
     };
     dom.getWindowInfo(&self.window);
     return self;
@@ -32,10 +32,10 @@ pub fn init(allocator: std.mem.Allocator) Self {
 /// Starts a new stroke and appends it to the list
 pub fn startStroke(self: *Self, x: i16, y: i16) void {
     const stroke: *api.Stroke = self.allocator.create(api.Stroke) catch return;
-    var strokeInst = api.Stroke.init(self.allocator);
-    strokeInst.append(self.scaledPoint(x, y)) catch return;
+    var strokeInst = api.Stroke.empty;
+    strokeInst.append(self.allocator, self.scaledPoint(x, y)) catch return;
     stroke.* = strokeInst;
-    self.strokes.append(stroke) catch return;
+    self.strokes.append(self.allocator, stroke) catch return;
     self.currStroke = stroke;
 }
 
@@ -51,7 +51,7 @@ pub fn endStroke(self: *Self) void {
 /// Returns true if successful
 pub fn updateStroke(self: *Self, x: i16, y: i16) void {
     if (self.currStroke) |curr| {
-        curr.append(self.scaledPoint(x, y)) catch return;
+        curr.append(self.allocator, self.scaledPoint(x, y)) catch return;
         self.requestRedraw();
     }
 }
@@ -59,7 +59,7 @@ pub fn updateStroke(self: *Self, x: i16, y: i16) void {
 /// Attempts to discard most recent stroke. Returns true if successful
 pub fn undoStroke(self: *Self) void {
     if (self.strokes.pop()) |stroke| {
-        stroke.clearAndFree();
+        stroke.clearAndFree(self.allocator);
         self.requestRedraw();
         self.currStroke = null;
     }
@@ -69,7 +69,7 @@ pub fn undoStroke(self: *Self) void {
 /// but we NEVER want to do so from the event loop!
 pub fn requestRedraw(self: *Self) void {
     const wrapper = struct {
-        pub fn handler(_: f64, raw: ?*anyopaque) callconv(.C) void {
+        pub fn handler(_: f64, raw: ?*anyopaque) callconv(.c) void {
             if (wasm.ptrCast(*const Self, raw)) |state| state.redraw();
         }
     };

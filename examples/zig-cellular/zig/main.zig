@@ -112,7 +112,7 @@ fn initApp() !void {
     requestLoop();
 }
 
-fn update(_: f64, _: ?*anyopaque) callconv(.C) void {
+fn update(_: f64, _: ?*anyopaque) callconv(.c) void {
     sim.update();
     // write pixels (using current palette) to canvas
     canvas2d.putPixelsIndexed(sim.cells.ptr, &palette, palette.len);
