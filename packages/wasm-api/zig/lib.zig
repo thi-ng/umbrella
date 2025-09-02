@@ -52,7 +52,7 @@ pub inline fn allocator() ?std.mem.Allocator {
 /// Note: For SIMD compatibility all allocations are aligned to 16 bytes
 pub export fn _wasm_allocate(numBytes: usize) usize {
     if (allocator()) |alloc| {
-        const mem = alloc.alignedAlloc(u8, 16, numBytes) catch return 0;
+        const mem = alloc.alignedAlloc(u8, .@"16", numBytes) catch return 0;
         return @intFromPtr(mem.ptr);
     }
     return 0;

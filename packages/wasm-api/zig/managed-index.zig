@@ -24,6 +24,7 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
     };
 
     return struct {
+        allocator: Allocator,
         /// backing array list
         list: std.ArrayList(Item),
         /// Index of the head of the implicitly stored list of free slots
@@ -37,22 +38,24 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
         const Self = @This();
 
         /// Initializes the underlying array list
-        pub fn init(allocator: Allocator) Self {
+        pub fn init(alloc: Allocator) Self {
             return .{
-                .list = std.ArrayList(Item).init(allocator),
+                .allocator = alloc,
+                .list = std.ArrayList(Item).empty,
             };
         }
 
         /// Initializes the underlying array list with given initial capacity
-        pub fn initCapacity(allocator: Allocator, num: usize) !Self {
+        pub fn initCapacity(alloc: Allocator, num: usize) Allocator.Error!Self {
             return .{
-                .list = try std.ArrayList(Item).initCapacity(allocator, num),
+                .allocator = alloc,
+                .list = try std.ArrayList(Item).initCapacity(alloc, num),
             };
         }
 
         /// De-initializes the underlying array list
         pub fn deinit(self: *Self) void {
-            self.list.deinit();
+            self.list.deinit(self.allocator);
         }
 
         /// Clears, frees & resets this list and its backing array list.
@@ -72,7 +75,7 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
                 return @intCast(id);
             } else {
                 const id = self.list.items.len;
-                try self.list.append(.{ .value = item });
+                try self.list.append(self.allocator, .{ .value = item });
                 self.used += 1;
                 return @intCast(id);
             }
@@ -179,53 +182,53 @@ test "ManagedIndex" {
     const expect = std.testing.expect;
     const expectEqualSlices = std.testing.expectEqualSlices;
 
-    var list = ManagedIndex(f64, u8).init(allocator);
-    defer list.deinit();
-    try expect(try list.add(123) == 0);
-    try expect(try list.add(123) == 1);
+    var index = try ManagedIndex(f64, u8).init(allocator);
+    defer index.deinit();
+    try expect(try index.add(123) == 0);
+    try expect(try index.add(123) == 1);
 
-    try expect(list.has(0));
-    try expect(list.has(1));
-    try expect(list.used == 2);
+    try expect(index.has(0));
+    try expect(index.has(1));
+    try expect(index.used == 2);
 
-    list.remove(0);
-    try expect(!list.has(0));
-    try expect(!list.has(2));
-    try expect(list.used == 1);
+    index.remove(0);
+    try expect(!index.has(0));
+    try expect(!index.has(2));
+    try expect(index.used == 1);
 
-    try expect(try list.add(123) == 0);
-    try expect(try list.add(123) == 2);
-    try expect(list.has(2));
-    try expect(list.used == 3);
+    try expect(try index.add(123) == 0);
+    try expect(try index.add(123) == 2);
+    try expect(index.has(2));
+    try expect(index.used == 3);
 
-    list.remove(1);
-    list.remove(2);
+    index.remove(1);
+    index.remove(2);
 
-    const ids = try list.freeIndicesAsSlice(allocator);
+    const ids = try index.freeIndicesAsSlice(allocator);
     defer allocator.free(ids);
     try expectEqualSlices(u8, &[_]u8{ 2, 1 }, ids);
 
-    try expect(try list.add(202) == 2);
-    list.remove(0);
-    try expect(try list.add(200) == 0);
-    try expect(try list.add(201) == 1);
-    try expect(list.freeID == null);
+    try expect(try index.add(202) == 2);
+    index.remove(0);
+    try expect(try index.add(200) == 0);
+    try expect(try index.add(201) == 1);
+    try expect(index.freeID == null);
 
-    var iter = list.values();
+    var iter = index.values();
     try expect(if (iter.next()) |v| v == 200 else false);
     try expect(if (iter.next()) |v| v == 201 else false);
     try expect(if (iter.next()) |v| v == 202 else false);
     try expect(iter.next() == null);
 
-    const slice = try list.valuesAsSlice(allocator);
+    const slice = try index.valuesAsSlice(allocator);
     defer allocator.free(slice);
     try expectEqualSlices(f64, &[_]f64{ 200, 201, 202 }, slice);
 
-    list.remove(0);
-    list.remove(2);
-    list.remove(1);
+    index.remove(0);
+    index.remove(2);
+    index.remove(1);
 
-    const ids2 = try list.freeIndicesAsSlice(allocator);
+    const ids2 = try index.freeIndicesAsSlice(allocator);
     defer allocator.free(ids2);
     try expectEqualSlices(u8, &[_]u8{ 1, 2, 0 }, ids2);
 }
