@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-09-04T09:11:23Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.10.0) (2025-09-04)
+
+#### 🚀 Features
+
+- update cliApp() to show current cmd info w/ usage ([2991527](https://github.com/thi-ng/umbrella/commit/2991527))
 
 ## [2.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.9.0) (2025-08-06)
 
