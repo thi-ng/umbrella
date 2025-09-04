@@ -52,6 +52,12 @@ export const cliApp = async <
 			if (!cmd) {
 				usageOpts.prefix += __descriptions(config.commands, usageOpts);
 				__usageAndExit(config, usageOpts);
+			} else {
+				usageOpts.prefix += __descriptions(
+					{ [cmdID]: cmd },
+					usageOpts,
+					"\nCurrent command:\n"
+				);
 			}
 			start++;
 		}
@@ -114,13 +120,14 @@ const __usageAndExit = (
 /** @internal */
 const __descriptions = (
 	commands: IObjectOf<Command<any, any, any>>,
-	{ color, lineWidth = 80 }: Partial<UsageOpts> = {}
+	{ color, lineWidth = 80 }: Partial<UsageOpts> = {},
+	prefix = "\nAvailable commands:\n"
 ) => {
 	const names = Object.keys(commands);
 	const maxLength = Math.max(...names.map((x) => x.length));
 	const theme = __colorTheme(color);
 	return [
-		"\nAvailable commands:\n",
+		prefix,
 		...names.map(
 			(x) =>
 				`${__padRightAnsi(
