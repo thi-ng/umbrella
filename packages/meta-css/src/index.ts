@@ -36,7 +36,7 @@ cliApp<CommonOpts, AppCtx<any>>({
 		prefix: `${THING_HEADER(PKG.name, PKG.version, PKG.description)}
 
 Usage: metacss <cmd> [opts] input [...]
-       metacss <cmd> --help\n\n`,
+       metacss <cmd> --help\n`,
 		showGroupNames: true,
 		paramWidth: 24,
 	},
