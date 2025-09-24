@@ -99,7 +99,7 @@ For Node.js REPL:
 const ld = await import("@thi.ng/lowdisc");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 456 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 458 bytes
 
 ## Dependencies
 
