@@ -38,7 +38,7 @@ export const cacheControl = (
 				acc.push("s-maxage=" + v);
 				break;
 			default:
-				acc.push(kebab(k));
+				if (v) acc.push(kebab(k));
 		}
 	}
 	const value = acc.join(", ");
