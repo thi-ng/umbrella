@@ -35,7 +35,8 @@
 			"rstream-gestures",
 			"rstream-graph",
 			"transducers"
-		]
+		],
+		"screenshot": "examples/rs-dflow.png"
 	},
 	"devDependencies": {
 		"typescript": "^5.9.2",

@@ -4,6 +4,8 @@
 
 ## About
 
+![example graph output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png)
+
 {{pkg.description}}
 
 {{meta.status}}
