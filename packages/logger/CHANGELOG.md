@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-09-25T15:15:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.2.0) (2025-09-25)
+
+#### 🚀 Features
+
+- update MemoryLogger & `expandArgsJSON()` ([2bf3731](https://github.com/thi-ng/umbrella/commit/2bf3731))
+  - add MemoryLogger ctor, add optional expand arg
+  - update `expandArgsJSON()` to return array (not string), same as `expandArgs()`
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.1.0) (2025-02-10)
 

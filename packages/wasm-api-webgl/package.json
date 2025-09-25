@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-webgl",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "WebGL bridge API for hybrid TypeScript & WASM (Zig) applications",
 	"type": "module",
 	"module": "./index.js",
@@ -42,12 +42,12 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.2",
 		"@thi.ng/errors": "^2.5.42",
-		"@thi.ng/wasm-api": "^2.4.1",
-		"@thi.ng/wasm-api-dom": "^2.0.1",
-		"@thi.ng/webgl": "^6.9.77"
+		"@thi.ng/wasm-api": "^2.4.2",
+		"@thi.ng/wasm-api-dom": "^2.0.2",
+		"@thi.ng/webgl": "^6.9.78"
 	},
 	"devDependencies": {
-		"@thi.ng/wasm-api-bindgen": "^1.2.42",
+		"@thi.ng/wasm-api-bindgen": "^1.2.43",
 		"esbuild": "^0.25.9",
 		"typedoc": "^0.28.12",
 		"typescript": "^5.9.2"
