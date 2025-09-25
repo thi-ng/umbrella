@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/server",
-	"version": "0.12.5",
+	"version": "0.12.6",
 	"description": "Minimal HTTP server with declarative routing, static file serving and freely extensible via pre/post interceptors",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.2",
 		"@thi.ng/arrays": "^2.13.11",
-		"@thi.ng/cache": "^2.3.49",
+		"@thi.ng/cache": "^2.3.50",
 		"@thi.ng/checks": "^3.7.18",
 		"@thi.ng/errors": "^2.5.42",
 		"@thi.ng/file-io": "^2.2.9",

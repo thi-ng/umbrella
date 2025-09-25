@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-09-25T11:10:32Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.12.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.12.6) (2025-09-25)
+
+#### 🩹 Bug fixes
+
+- update cacheControl() ([21b48a4](https://github.com/thi-ng/umbrella/commit/21b48a4))
+  - don't set field if its value is false
 
 ### [0.12.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/server@0.12.5) (2025-09-01)
 

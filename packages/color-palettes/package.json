@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color-palettes",
-	"version": "1.5.23",
+	"version": "1.5.24",
 	"description": "Collection of 200+ image based color themes & composable theme query filters",
 	"type": "module",
 	"module": "./index.js",
@@ -44,7 +44,7 @@
 		"@thi.ng/api": "^8.12.2",
 		"@thi.ng/base-n": "^2.7.48",
 		"@thi.ng/checks": "^3.7.18",
-		"@thi.ng/color": "^5.7.59",
+		"@thi.ng/color": "^5.7.60",
 		"@thi.ng/errors": "^2.5.42",
 		"@thi.ng/hex": "^2.3.80"
 	},
