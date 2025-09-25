@@ -6,9 +6,7 @@
 
 {{pkg.description}}
 
-> [!NOTE]
-> See here for [information about the included CLI app
-> framework](#declarative-multi-command-cli-application-wrapper)
+### Built-in argument types
 
 The parser includes built-in support for the following argument types (of course
 custom arg types are supported too):
@@ -28,6 +26,42 @@ If multiple values/repetitions are allowed for an argument, the values will be
 collected into an array (apart from KV pairs, which will yield an object).
 Furthermore, for multi-args and tuples, an optional delimiter can be specified
 to extract individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
+
+### Re-usable argument presets
+
+The following commonly used arguments are available as predefined presets:
+
+- [`ARG_DRY_RUN`](https://docs.thi.ng/umbrella/args/variables/ARG_DRY_RUN.html)
+- [`ARG_QUIET`](https://docs.thi.ng/umbrella/args/variables/ARG_QUIET.html)
+- [`ARG_VERBOSE`](https://docs.thi.ng/umbrella/args/variables/ARG_VERBOSE.html)
+
+Higher order, configurable preset specs:
+
+- [`ARG_OUT_DIR`](https://docs.thi.ng/umbrella/args/functions/ARG_OUT_DIR.html)
+- [`ARG_OUT_FILE`](https://docs.thi.ng/umbrella/args/functions/ARG_OUT_FILE.html)
+
+To use these presets, simply import and splice them into your own arg
+definitions (see code examples below).
+
+### CLI app framework
+
+The package provides a simple framework to conveniently define single and
+multi-command applications in a declarative and modular manner. Such apps are
+defined via command specs and other configuration options. The framework then
+handles all argument parsing, validation, usage display and delegation to
+sub-commands.
+
+The wrapper defines a user-customizable [command
+context](https://docs.thi.ng/umbrella/args/interfaces/CommandCtx.html) with all
+important information which is passed to the commands and also includes a logger
+(writing to `stderr`). Other help/usage and error output also respects the
+[`NO_COLOR` convention](https://no-color.org/).
+
+A [fully documented code example](#declarative-multi-command-cli-application) is
+further below.
+
+For some _publicly available_ production uses, please see the [related packages
+section](#projects-using-this-package) in this readme.
 
 {{meta.status}}
 
@@ -70,6 +104,7 @@ to extract individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
 
 ```ts tangle:export/readme.ts
 import {
+    ARG_VERBOSE,
     flag,
     hex,
     json,
@@ -96,10 +131,14 @@ interface TestArgs {
     pos?: Tuple<number>;
     xtra?: { a: number; b: string };
     define?: KVDict;
+    verbose: boolean;
 }
 
 // arg specifications
 const specs: Args<TestArgs> = {
+    // re-use predefined preset (see readme section above)
+    ...ARG_VERBOSE,
+
     // string arg
     configPath: string({
         alias: "c",
@@ -177,7 +216,6 @@ color highlights):
 ```text
 illegal argument(s): missing arg: --type
 
-
  █ █   █           │
 ██ █               │
  █ █ █ █   █ █ █ █ │ @thi.ng/args demo app
@@ -188,6 +226,7 @@ illegal argument(s): missing arg: --type
 Flags:
 
 -f, --force                     Force operation
+-v, --verbose                   Display extra information
 
 Main:
 
@@ -221,22 +260,6 @@ By default, ANSI colors are used to format the result string of `usage()`, but
 can be disabled (see
 [`UsageOpts`](https://docs.thi.ng/umbrella/args/interfaces/UsageOpts.html)).
 
-```text
-bun index.ts --help
-
--f, --force                     Force operation
-
---bg HEX                        Background color
--c PATH, --config-path PATH     Config file path (CLI args always take
-                                precedence over those settings)
--D key=val, --define key=val    [multiple] Define dict entry
---pos N,N                       Lat/Lon
---size WxH                      Target size
--t ID, --type ID                [required] Image type: 'png', 'jpg', 'gif',
-                                'tiff'
--x JSON, --xtra JSON            Extra options
-```
-
 ### Parsing, value coercions & side effects
 
 The below invocation demonstrates how the various argument types are handled &
@@ -260,6 +283,7 @@ bun index.ts \
 #     size: Tuple { value: [640, 480] }
 #     define: { author: 'toxi', date: '2018-03-24' },
 #     xtra: { foo: [23] },
+#     verbose: false,
 #   },
 #   index: 15,
 #   rest: [ 'sourcefile.png' ],
@@ -267,149 +291,134 @@ bun index.ts \
 # }
 ```
 
-## Declarative, multi-command CLI application wrapper
+## Declarative, multi-command CLI application
 
-The package provides a simple framework to conveniently define single and
-multi-command applications in a declarative and modular manner. Such apps are
-defined via command specs and other configuration options. The framework then
-handles all argument parsing, validation, usage display and delegation to
-sub-commands.
-
-The wrapper defines a user-customizable [command
-context](https://docs.thi.ng/umbrella/args/interfaces/CommandCtx.html) with all
-important information which is passed to the commands and also includes a logger
-(writing to `stderr`). Other help/usage and error output also respects the
-[`NO_COLOR` convention](https://no-color.org/).
-
-For some _publicly available_ production uses, please see the following
-projects:
-
-- [thi.ng/block-fs](https://thi.ng/block-fs)
-- [thi.ng/meta-css](https://thi.ng/meta-css)
-- [thi.ng/pointfree-lang](https://thi.ng/pointfree-lang)
-- [thi.ng/tangle](https://thi.ng/tangle)
-- [thi.ng/wasm-api-bindgen](https://thi.ng/wasm-api-bindgen)
+The following example defines a CLI app with two sub-commands: `hello` and
+`list`. Each command has its own options, in addition to common/shared ones.
+Each command is defined in a modular manner (usually in its own source file).
+All aspects like arg parsing, validation, and command selection/delegation is
+handled by the `cliApp()` wrapper.
 
 ```ts tangle:export/readme-cliapp.ts
 import {
-	ARG_VERBOSE,
-	cliApp,
-	configureLogLevel,
-	int,
-	string,
-	type Command,
-	type CommandCtx,
+    ARG_VERBOSE,
+    cliApp,
+    configureLogLevel,
+    int,
+    string,
+    type Command,
+    type CommandCtx,
 } from "@thi.ng/args";
 import { files } from "@thi.ng/file-io";
 
 // common command opts
 interface CommonOpts {
-	verbose: boolean;
+    verbose: boolean;
 }
 
 // custom command context
 interface AppCtx<T extends CommonOpts> extends CommandCtx<T, CommonOpts> {
-	// plus any custom additions here...
+    // plus any custom additions here...
 }
 
 // command-specific options
 interface HelloOpts extends CommonOpts {
-	name: string;
+    name: string;
 }
 
 // command definition
 const HELLO: Command<HelloOpts, CommonOpts> = {
-	// brief description (for `--help` usage)
-	desc: "Print out a greeting",
-	// command specific options (arguments)
-	// (will be combined with common opts)
-	opts: {
-		name: string({
-			alias: "n",
-			desc: "Name for greeting",
-			optional: false,
-		}),
-	},
-	// this command does not accept any inputs
-	inputs: 0,
-	// command implementation
-	fn: async (ctx) => {
-		// log message only shown if `--verbose`/`-v` given
-		ctx.logger.debug("opts", ctx.opts);
-		console.log(`Hello, ${ctx.opts.name}!`);
-	},
+    // brief description (for `--help` usage)
+    desc: "Print out a greeting",
+    // command specific options (arguments)
+    // (will be combined with common opts)
+    opts: {
+        name: string({
+            alias: "n",
+            desc: "Name for greeting",
+            optional: false,
+        }),
+    },
+    // this command does not accept any inputs
+    inputs: 0,
+    // command implementation
+    fn: async (ctx) => {
+        // log message only shown if `--verbose`/`-v` given
+        ctx.logger.debug("opts", ctx.opts);
+        console.log(`Hello, ${ctx.opts.name}!`);
+    },
 };
 
 // command-specific options
 interface ListFilesOpts extends CommonOpts {
-	depth: number;
-	filter?: string;
+    depth: number;
+    filter?: string;
 }
 
 // command definition
 const LIST_FILES: Command<ListFilesOpts, CommonOpts> = {
-	// brief description (for `--help` usage)
-	desc: "List files in given dir",
-	// command specific options
-	opts: {
-		filter: string({
-			alias: "f",
-			desc: "Filter regexp",
-		}),
-		depth: int({
-			alias: "d",
-			desc: "Recursion depth (directory levels)",
-			default: Infinity,
-		}),
-	},
-	// this command requires exactly 1 input
-	// (if supporting a range, use `[min, max]`)
-	inputs: 1,
-	// command implementation
-	fn: async (ctx) => {
-		for (let f of files(ctx.inputs[0], ctx.opts.filter, ctx.opts.depth)) {
-			console.log(f);
-		}
-	},
+    // brief description (for `--help` usage)
+    desc: "List files in given dir",
+    // command specific options
+    opts: {
+        filter: string({
+            alias: "f",
+            desc: "Filter regexp",
+        }),
+        depth: int({
+            alias: "d",
+            desc: "Recursion depth (directory levels)",
+            default: Infinity,
+        }),
+    },
+    // this command requires exactly 1 input
+    // (if supporting a range, use `[min, max]`)
+    inputs: 1,
+    // command implementation
+    fn: async (ctx) => {
+        for (let f of files(ctx.inputs[0], ctx.opts.filter, ctx.opts.depth)) {
+            console.log(f);
+        }
+    },
 };
 
 // define & start CLI app
 cliApp<CommonOpts, AppCtx<any>>({
-	// app name
-	name: "example",
-	// process.argv index from which to start parsing from
-	start: 2,
-	// list common command opts here
-	opts: {
-		// re-use verbose flag arg spec preset
-		...ARG_VERBOSE,
-	},
-	// list of commands
-	commands: {
-		hello: HELLO,
-		list: LIST_FILES,
-	},
-	// set to true if only a single command
-	// in this case the command name would NOT be required/expected
-	// single: true,
+    // app name
+    name: "example",
+    // process.argv index from which to start parsing from
+    start: 2,
+    // list common command opts here
+    opts: {
+        // re-use verbose flag arg spec preset
+        ...ARG_VERBOSE,
+    },
+    // list of commands
+    commands: {
+        hello: HELLO,
+        list: LIST_FILES,
+    },
+    // set to true if only a single command
+    // in this case the command name would NOT be required/expected
+    // single: true,
 
-	// usage opts
-	usage: {
-		// prefix/header string
-		prefix: `Example app
+    // usage opts
+    usage: {
+        // prefix/header string
+        prefix: `Example app
 ===================================
 Usage: example [opts] [inputs]\n`,
-		// configure column width for param usage info
-		paramWidth: 24,
-		lineWidth: 80,
-	},
+        // configure column width for param usage info
+        paramWidth: 24,
+        lineWidth: 80,
+    },
 
-	// context initialization/augmentation
-	// (called before arg parsing commences)
-	ctx: async (ctx) => {
-		configureLogLevel(ctx.logger, ctx.opts.verbose);
-		return ctx;
-	},
+    // context initialization/augmentation
+    // (called before arg parsing commences)
+    ctx: async (ctx) => {
+        configureLogLevel(ctx.logger, ctx.opts.verbose);
+        return ctx;
+    },
 });
 ```
 

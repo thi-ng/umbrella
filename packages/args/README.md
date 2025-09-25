@@ -15,6 +15,9 @@
 > GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
 
 - [About](#about)
+  - [Built-in argument types](#built-in-argument-types)
+  - [Re-usable argument presets](#re-usable-argument-presets)
+  - [CLI app framework](#cli-app-framework)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -23,7 +26,7 @@
 - [Basic usage](#basic-usage)
   - [Generate & display help](#generate--display-help)
   - [Parsing, value coercions & side effects](#parsing-value-coercions--side-effects)
-- [Declarative, multi-command CLI application wrapper](#declarative-multi-command-cli-application-wrapper)
+- [Declarative, multi-command CLI application](#declarative-multi-command-cli-application)
 - [Authors](#authors)
 - [License](#license)
 
@@ -31,9 +34,7 @@
 
 Declarative, functional CLI argument/options parser, app framework, arg value coercions, multi/sub-commands, usage generation, error handling etc..
 
-> [!NOTE]
-> See here for [information about the included CLI app
-> framework](#declarative-multi-command-cli-application-wrapper)
+### Built-in argument types
 
 The parser includes built-in support for the following argument types (of course
 custom arg types are supported too):
@@ -53,6 +54,42 @@ If multiple values/repetitions are allowed for an argument, the values will be
 collected into an array (apart from KV pairs, which will yield an object).
 Furthermore, for multi-args and tuples, an optional delimiter can be specified
 to extract individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
+
+### Re-usable argument presets
+
+The following commonly used arguments are available as predefined presets:
+
+- [`ARG_DRY_RUN`](https://docs.thi.ng/umbrella/args/variables/ARG_DRY_RUN.html)
+- [`ARG_QUIET`](https://docs.thi.ng/umbrella/args/variables/ARG_QUIET.html)
+- [`ARG_VERBOSE`](https://docs.thi.ng/umbrella/args/variables/ARG_VERBOSE.html)
+
+Higher order, configurable preset specs:
+
+- [`ARG_OUT_DIR`](https://docs.thi.ng/umbrella/args/functions/ARG_OUT_DIR.html)
+- [`ARG_OUT_FILE`](https://docs.thi.ng/umbrella/args/functions/ARG_OUT_FILE.html)
+
+To use these presets, simply import and splice them into your own arg
+definitions (see code examples below).
+
+### CLI app framework
+
+The package provides a simple framework to conveniently define single and
+multi-command applications in a declarative and modular manner. Such apps are
+defined via command specs and other configuration options. The framework then
+handles all argument parsing, validation, usage display and delegation to
+sub-commands.
+
+The wrapper defines a user-customizable [command
+context](https://docs.thi.ng/umbrella/args/interfaces/CommandCtx.html) with all
+important information which is passed to the commands and also includes a logger
+(writing to `stderr`). Other help/usage and error output also respects the
+[`NO_COLOR` convention](https://no-color.org/).
+
+A [fully documented code example](#declarative-multi-command-cli-application) is
+further below.
+
+For some _publicly available_ production uses, please see the [related packages
+section](#projects-using-this-package) in this readme.
 
 ## Status
 
@@ -112,6 +149,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ```ts tangle:export/readme.ts
 import {
+    ARG_VERBOSE,
     flag,
     hex,
     json,
@@ -138,10 +176,14 @@ interface TestArgs {
     pos?: Tuple<number>;
     xtra?: { a: number; b: string };
     define?: KVDict;
+    verbose: boolean;
 }
 
 // arg specifications
 const specs: Args<TestArgs> = {
+    // re-use predefined preset (see readme section above)
+    ...ARG_VERBOSE,
+
     // string arg
     configPath: string({
         alias: "c",
@@ -229,6 +271,7 @@ illegal argument(s): missing arg: --type
 Flags:
 
 -f, --force                     Force operation
+-v, --verbose                   Display extra information
 
 Main:
 
@@ -262,22 +305,6 @@ By default, ANSI colors are used to format the result string of `usage()`, but
 can be disabled (see
 [`UsageOpts`](https://docs.thi.ng/umbrella/args/interfaces/UsageOpts.html)).
 
-```text
-bun index.ts --help
-
--f, --force                     Force operation
-
---bg HEX                        Background color
--c PATH, --config-path PATH     Config file path (CLI args always take
-                                precedence over those settings)
--D key=val, --define key=val    [multiple] Define dict entry
---pos N,N                       Lat/Lon
---size WxH                      Target size
--t ID, --type ID                [required] Image type: 'png', 'jpg', 'gif',
-                                'tiff'
--x JSON, --xtra JSON            Extra options
-```
-
 ### Parsing, value coercions & side effects
 
 The below invocation demonstrates how the various argument types are handled &
@@ -301,6 +328,7 @@ bun index.ts \
 #     size: Tuple { value: [640, 480] }
 #     define: { author: 'toxi', date: '2018-03-24' },
 #     xtra: { foo: [23] },
+#     verbose: false,
 #   },
 #   index: 15,
 #   rest: [ 'sourcefile.png' ],
@@ -308,28 +336,13 @@ bun index.ts \
 # }
 ```
 
-## Declarative, multi-command CLI application wrapper
+## Declarative, multi-command CLI application
 
-The package provides a simple framework to conveniently define single and
-multi-command applications in a declarative and modular manner. Such apps are
-defined via command specs and other configuration options. The framework then
-handles all argument parsing, validation, usage display and delegation to
-sub-commands.
-
-The wrapper defines a user-customizable [command
-context](https://docs.thi.ng/umbrella/args/interfaces/CommandCtx.html) with all
-important information which is passed to the commands and also includes a logger
-(writing to `stderr`). Other help/usage and error output also respects the
-[`NO_COLOR` convention](https://no-color.org/).
-
-For some _publicly available_ production uses, please see the following
-projects:
-
-- [thi.ng/block-fs](https://thi.ng/block-fs)
-- [thi.ng/meta-css](https://thi.ng/meta-css)
-- [thi.ng/pointfree-lang](https://thi.ng/pointfree-lang)
-- [thi.ng/tangle](https://thi.ng/tangle)
-- [thi.ng/wasm-api-bindgen](https://thi.ng/wasm-api-bindgen)
+The following example defines a CLI app with two sub-commands: `hello` and
+`list`. Each command has its own options, in addition to common/shared ones.
+Each command is defined in a modular manner (usually in its own source file).
+All aspects like arg parsing, validation, and command selection/delegation is
+handled by the `cliApp()` wrapper.
 
 ```ts tangle:export/readme-cliapp.ts
 import {
