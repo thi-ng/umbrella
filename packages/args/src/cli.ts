@@ -80,7 +80,7 @@ export const cliApp = async <
 					err =
 						max < Infinity
 							? `expected ${min}-${max} inputs`
-							: `expected at least ${min} inputs`;
+							: `expected at least ${min} input(s)`;
 				}
 			} else if (num !== cmd.inputs) {
 				err = `expected ${cmd.inputs} input(s)`;
