@@ -10,7 +10,8 @@ export class MemoryLogger extends ALogger {
 		id?: string,
 		level?: LogLevel | LogLevelName,
 		parent?: ILogger,
-		public limit = 1e3
+		public limit = 1e3,
+		public expand = expandArgs
 	) {
 		super(id, level, parent);
 	}
@@ -22,7 +23,7 @@ export class MemoryLogger extends ALogger {
 	logEntry(e: LogEntry) {
 		if (e[0] < this.level) return;
 		if (this.journal.length >= this.limit) this.journal.shift();
-		this.journal.push([e[0], e[1], e[2], ...expandArgs(e.slice(3))]);
+		this.journal.push([e[0], e[1], e[2], ...this.expand(e.slice(3))]);
 		this.parent?.logEntry(e);
 	}
 

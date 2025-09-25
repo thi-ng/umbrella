@@ -30,7 +30,9 @@ export class StreamLogger extends ALogger {
 	logEntry(e: LogEntry) {
 		if (e[0] < this.level) return;
 		this.target.write(
-			`[${LogLevel[e[0]]}] ${e[1]}: ${expandArgsJSON(e.slice(3))}\n`
+			`[${LogLevel[e[0]]}] ${e[1]}: ${expandArgsJSON(e.slice(3)).join(
+				" "
+			)}\n`
 		);
 		this.parent?.logEntry(e);
 	}
