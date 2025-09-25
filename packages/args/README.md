@@ -140,6 +140,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
   tangling / codegen utility, inspired by org-mode & noweb
 - [@thi.ng/wasm-api-bindgen](https://thi.ng/wasm-api-bindgen): Polyglot bindings
   code generators (TS/JS, Zig, C11) for hybrid WebAssembly projects
+- [thing-tools](https://codeberg.org/thi.ng/thing-tools)
 
 ## API
 
