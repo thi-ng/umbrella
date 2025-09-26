@@ -254,17 +254,19 @@ cliApp<CLIOpts, CommandCtx<CLIOpts, CLIOpts>>({
 			default: false,
 			desc: "enable debug output & functions",
 		}),
-		lang: oneOfMulti(<Language[]>Object.keys(GENERATORS), {
+		lang: oneOfMulti({
 			alias: "l",
 			desc: "target language",
+			opts: <Language[]>Object.keys(GENERATORS),
 			default: ["ts", "zig"],
 			delim: ",",
 		}),
 		out: strings({ alias: "o", hint: "FILE", desc: "output file path" }),
-		string: oneOf(["slice", "ptr"], {
+		string: oneOf({
 			alias: "s",
 			hint: "TYPE",
 			desc: "Force string type implementation",
+			opts: ["slice", "ptr"],
 		}),
 	},
 	commands: { CMD },
