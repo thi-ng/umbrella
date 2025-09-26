@@ -40,7 +40,7 @@ const __parseOpts = <T extends IObjectOf<any>>(
 	opts: Partial<ParseOpts>
 ): Maybe<ParseResult<T>> => {
 	const aliases = __aliasIndex<T>(specs);
-	const acc: any = {};
+	const acc: IObjectOf<any> = {};
 	let id: Nullable<string>;
 	let spec: Nullable<ArgSpecExt>;
 	let i = opts.start!;
@@ -88,35 +88,38 @@ interface ParseKeyResult {
 const __parseKey = <T extends IObjectOf<any>>(
 	specs: Args<T>,
 	aliases: IObjectOf<string>,
-	acc: any,
+	acc: IObjectOf<any>,
 	a: string
 ): ParseKeyResult => {
-	if (a[0] === "-") {
-		let id: Maybe<string>;
-		if (a[1] === "-") {
-			// terminator arg, stop parsing
-			if (a === "--") return { state: 1 };
-			id = camel(a.substring(2));
-		} else {
-			id = aliases[a.substring(1)];
-			!id && illegalArgs(`unknown option: ${a}`);
-		}
-		const spec: ArgSpecExt = specs[id];
-		!spec && illegalArgs(id);
-		if (spec.flag) {
-			acc[id] = true;
-			id = undefined;
-			// stop parsing if fn returns false
-			if (spec.fn && !spec.fn("true")) return { state: 1, spec };
-		}
-		return { state: 0, id, spec };
+	// stop parsing if no option arg
+	if (a[0] !== "-") return { state: 2 };
+	let id: Maybe<string>;
+	if (a[1] === "-") {
+		// terminator arg, stop parsing
+		if (a.length === 2) return { state: 1 };
+		id = camel(a.substring(2));
+	} else {
+		id = aliases[a.substring(1)];
+		!id && illegalArgs(`unknown option: ${a}`);
 	}
-	// no option arg, stop parsing
-	return { state: 2 };
+	const spec: ArgSpecExt = specs[id];
+	!spec && illegalArgs(id);
+	if (spec.type === "flag") {
+		acc[id] = true;
+		id = undefined;
+		// stop parsing if fn returns false
+		if (spec.fn && !spec.fn("true")) return { state: 1, spec };
+	}
+	return { state: 0, id, spec };
 };
 
 /** @internal */
-const __parseValue = (spec: ArgSpecExt, acc: any, id: string, a: string) => {
+const __parseValue = (
+	spec: ArgSpecExt,
+	acc: IObjectOf<any>,
+	id: string,
+	a: string
+) => {
 	// /^-[a-z]/i.test(a) && illegalArgs(`missing value for: --${id}`);
 	if (spec!.multi) {
 		isArray(acc[id!]) ? acc[id!].push(a) : (acc[id!] = [a]);
@@ -129,7 +132,7 @@ const __parseValue = (spec: ArgSpecExt, acc: any, id: string, a: string) => {
 /** @internal */
 const __processResults = <T extends IObjectOf<any>>(
 	specs: Args<T>,
-	acc: any
+	acc: IObjectOf<any>
 ) => {
 	let spec: Nullable<ArgSpecExt>;
 	for (let id in specs) {
@@ -137,22 +140,22 @@ const __processResults = <T extends IObjectOf<any>>(
 		if (acc[id] === undefined) {
 			if (spec.default !== undefined) {
 				acc[id] = spec.default;
-			} else if (spec.optional === false) {
+			} else if (spec.required) {
 				illegalArgs(`missing arg: --${kebab(id)}`);
 			}
 		} else if (spec.coerce) {
 			__coerceValue(spec, acc, id);
 		}
 	}
-	return acc;
+	return <T>acc;
 };
 
 /** @internal */
 const __coerceValue = (spec: ArgSpecExt, acc: any, id: string) => {
 	try {
-		if (spec.multi && spec.delim) {
+		if (spec.multi && spec.delim && spec.split !== false) {
 			acc[id] = (<string[]>acc[id]).reduce(
-				(acc, x) => (acc.push(...x.split(spec!.delim!)), acc),
+				(acc, x) => (acc.push(...x.split(spec.delim!)), acc),
 				<string[]>[]
 			);
 		}

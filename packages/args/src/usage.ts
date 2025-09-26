@@ -70,7 +70,7 @@ const __argUsage = (
 	const alias = __argAlias(spec, theme, hint);
 	const name = __ansi(`--${kebab(id)}`, theme.param!);
 	const params = `${alias}${name}${hint}`;
-	const isRequired = spec.optional === false && spec.default === undefined;
+	const isRequired = !!spec.required && spec.default === undefined;
 	const prefixes: string[] = [];
 	isRequired && prefixes.push("required");
 	spec.multi && prefixes.push("multiple");

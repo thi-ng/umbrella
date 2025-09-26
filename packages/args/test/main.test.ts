@@ -42,7 +42,7 @@ test("basic / string", () => {
 		})
 	).toEqual({ result: { a: "a" }, index: 0, done: true, rest: [] });
 	expect(() =>
-		parse<{ a: string }>({ a: string({ optional: false }) }, [], {
+		parse<{ a: string }>({ a: string({ required: true }) }, [], {
 			showUsage: false,
 		})
 	).toThrow();
@@ -55,7 +55,7 @@ test("flag", () => {
 		})
 	).toEqual({ result: { a: true }, index: 1, done: true, rest: [] });
 	expect(
-		parse<{ a: boolean }>({ a: flag({ default: false }) }, [], {
+		parse<{ a: boolean }>({ a: flag({}) }, [], {
 			start: 0,
 		})
 	).toEqual({ result: { a: false }, index: 0, done: true, rest: [] });
@@ -125,9 +125,13 @@ test("kv", () => {
 		rest: [],
 	});
 	expect(
-		parse<{ a?: KVDict }>({ a: kvPairs({}, ":") }, ["--a", "foo:bar"], {
-			start: 0,
-		})
+		parse<{ a?: KVDict }>(
+			{ a: kvPairs({ delim: ":" }) },
+			["--a", "foo:bar"],
+			{
+				start: 0,
+			}
+		)
 	).toEqual({
 		result: { a: { foo: "bar" } },
 		index: 2,
@@ -135,10 +139,14 @@ test("kv", () => {
 		rest: [],
 	});
 	expect(() =>
-		parse<{ a?: KVDict }>({ a: kvPairs({}, ":", true) }, ["--a", "foo"], {
-			start: 0,
-			showUsage: false,
-		})
+		parse<{ a?: KVDict }>(
+			{ a: kvPairs({ delim: ":", strict: true }) },
+			["--a", "foo"],
+			{
+				start: 0,
+				showUsage: false,
+			}
+		)
 	).toThrow();
 });
 
@@ -175,7 +183,7 @@ test("number[]", () => {
 	).toEqual({ result: { a: [1, 2] }, index: 4, done: true, rest: [] });
 	expect(
 		parse<{ a?: number[] }>(
-			{ a: ints({ delim: "," }) },
+			{ a: ints({ delim: ",", required: true }) },
 			["--a", "1,2", "--a", "3,4"],
 			{
 				start: 0,
@@ -193,7 +201,7 @@ test("tuple", () => {
 	};
 	expect(
 		parse<{ a?: Tuple<number> }>(
-			{ a: tuple(coerceInt, 3, {}) },
+			{ a: tuple(3, coerceInt, {}) },
 			["--a", "1,2,3"],
 			{
 				start: 0,
@@ -202,7 +210,7 @@ test("tuple", () => {
 	).toEqual(res);
 	expect(
 		parse<{ a?: Tuple<number> }>(
-			{ a: size(3, {}, "x") },
+			{ a: size(3, { delim: "x" }) },
 			["--a", "1x2x3"],
 			{
 				start: 0,
