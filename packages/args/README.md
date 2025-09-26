@@ -19,6 +19,7 @@
   - [Re-usable argument presets](#re-usable-argument-presets)
   - [CLI app framework](#cli-app-framework)
 - [Status](#status)
+  - [Breaking changes in 3.0.0](#breaking-changes-in-300)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Projects using this package](#projects-using-this-package)
@@ -97,6 +98,15 @@ section](#projects-using-this-package) in this readme.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bargs%5D+in%3Atitle)
 
+### Breaking changes in 3.0.0
+
+- Required arguments are now to be specified using either `required: true` or
+  given a `default` value
+- Tuple argument order has been swapped (to be more aligned with `size` and
+  `vec`) to: `tuple(size, coerce, {...})`
+- Where applicable, `delim`iters are now to be included in the arg spec (rather
+  than given as separate function arg)
+
 ## Installation
 
 ```bash
@@ -115,7 +125,7 @@ For Node.js REPL:
 const args = await import("@thi.ng/args");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.31 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.39 KB
 
 ## Dependencies
 
@@ -191,42 +201,50 @@ const specs: Args<TestArgs> = {
         hint: "PATH",
         desc: "Config file path (CLI args always take precedence over those settings)",
     }),
+
     // boolean flag (default: false)
     force: flag({
         alias: "f",
         desc: "Force operation",
-        // side effect & predicate
-        // parsing only continues if fn returns true
+        // side effect and/or validation
+        // parsing only continues if function returns true
         fn: (_) => (console.log("force mode enabled"), true),
     }),
+
     // hex int value
     bg: hex({
         desc: "Background color",
-        // mandatory args require a `default` value and/or `optional: false`
+        // mandatory args require a `default` value and/or `required: true`
         default: 0xffffff,
         defaultHint: "ffffff",
     }),
+
     // enum value (mandatory)
     type: oneOf(["png", "jpg", "gif", "tiff"], {
         alias: "t",
         desc: "Image type",
-        // mandatory args require a `default` value and/or `optional: false`
-        optional: false,
+        // mandatory args require a `default` value and/or `required: true`
+        required: true,
     }),
+
     // fixed size numeric tuple w/ `x` as delimiter
-    // size: tuple(coerceInt, 2, { hint: "WxH", desc: "Target size" }, "x"),
-    // syntax sugar for above:
-    size: size(2, { hint: "WxH", desc: "Target size" }),
+    size: size(2, { hint: "WxH", desc: "Target size", delim: "x" }),
+    // syntax sugar for:
+    // size: tuple(2, coerceInt, { hint: "WxH", desc: "Target size" }, "x"),
+
     // another version for tuples of floating point values
-    // pos: tuple(coerceFloat, 2, { desc: "Lat/Lon" }, ","),
-    pos: vec(2, { desc: "Lat/Lon coordinates" }),
+    pos: vec(2, { desc: "Lat/Lon coordinates", hint: "LAT,LON" }),
+    // syntax sugar for:
+    // pos: tuple(2, coerceFloat, { desc: "Lat/Lon" }),
+
     // JSON string arg
     xtra: json({
         alias: "x",
         desc: "Extra options",
         group: "extra",
     }),
-    // key-value pairs parsed into an object
+
+    // key-value pairs parsed into an object (multiple allowed)
     define: kvPairs({
         alias: "D",
         desc: "Define dict entry",
@@ -382,7 +400,7 @@ const HELLO: Command<HelloOpts, CommonOpts> = {
         name: string({
             alias: "n",
             desc: "Name for greeting",
-            optional: false,
+            required: true,
         }),
     },
     // this command does not accept any inputs
