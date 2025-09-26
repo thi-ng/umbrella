@@ -26,12 +26,11 @@ export const CONVERT: Command<ConvertOpts, CLIOpts, AppCtx<ConvertOpts>> = {
 		numBlocks: int({
 			alias: "n",
 			desc: "Number of blocks (multiple of 8)",
-			optional: true,
 		}),
 		out: string({
 			alias: "o",
 			desc: "Output file path",
-			optional: false,
+			required: true,
 		}),
 		exclude: strings({
 			alias: "e",
