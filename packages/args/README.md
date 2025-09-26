@@ -102,8 +102,12 @@ section](#projects-using-this-package) in this readme.
 
 - Required arguments are now to be specified using either `required: true` or
   given a `default` value
-- Tuple argument order has been swapped (to be more aligned with `size` and
-  `vec`) to: `tuple(size, coerce, {...})`
+- All factory functions now only accept a single arg spec, with any type-specific
+  options moved into the spec, for example:
+    - old: `oneOf(["a","b","c"], {...})`
+    - new: `oneOf({ opts: ["a","b","c"], ...})`
+    - old: `tuple(identity, 3, {...})`
+    - new: `tuple({ size: 3, coerce: identity, ...})`
 - Where applicable, `delim`iters are now to be included in the arg spec (rather
   than given as separate function arg)
 
@@ -125,7 +129,7 @@ For Node.js REPL:
 const args = await import("@thi.ng/args");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.39 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.47 KB
 
 ## Dependencies
 
@@ -220,20 +224,21 @@ const specs: Args<TestArgs> = {
     }),
 
     // enum value (mandatory)
-    type: oneOf(["png", "jpg", "gif", "tiff"], {
+    type: oneOf({
         alias: "t",
         desc: "Image type",
+        opts: ["png", "jpg", "gif", "tiff"],
         // mandatory args require a `default` value and/or `required: true`
         required: true,
     }),
 
     // fixed size numeric tuple w/ `x` as delimiter
-    size: size(2, { hint: "WxH", desc: "Target size", delim: "x" }),
+    size: size({ size: 2, hint: "WxH", desc: "Target size", delim: "x" }),
     // syntax sugar for:
     // size: tuple(2, coerceInt, { hint: "WxH", desc: "Target size" }, "x"),
 
     // another version for tuples of floating point values
-    pos: vec(2, { desc: "Lat/Lon coordinates", hint: "LAT,LON" }),
+    pos: vec({ size: 2, desc: "Lat/Lon coordinates", hint: "LAT,LON" }),
     // syntax sugar for:
     // pos: tuple(2, coerceFloat, { desc: "Lat/Lon" }),
 

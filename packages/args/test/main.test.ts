@@ -89,12 +89,12 @@ test("enum", () => {
 	type E = "abc" | "xyz";
 	const opts: E[] = ["abc", "xyz"];
 	expect(
-		parse<{ a?: E }>({ a: oneOf(opts, {}) }, ["--a", "abc"], {
+		parse<{ a?: E }>({ a: oneOf({ opts }) }, ["--a", "abc"], {
 			start: 0,
 		})
 	).toEqual({ result: { a: "abc" }, index: 2, done: true, rest: [] });
 	expect(
-		parse<{ a?: E }>({ a: oneOf(opts, { default: "xyz" }) }, [])
+		parse<{ a?: E }>({ a: oneOf({ opts, default: "xyz" }) }, [])
 	).toEqual({
 		result: { a: "xyz" },
 		index: 2,
@@ -102,7 +102,7 @@ test("enum", () => {
 		rest: [],
 	});
 	expect(() =>
-		parse<{ a?: E }>({ a: oneOf(opts, {}) }, ["--a", "def"], {
+		parse<{ a?: E }>({ a: oneOf({ opts }) }, ["--a", "def"], {
 			start: 0,
 			showUsage: false,
 		})
@@ -201,7 +201,7 @@ test("tuple", () => {
 	};
 	expect(
 		parse<{ a?: Tuple<number> }>(
-			{ a: tuple(3, coerceInt, {}) },
+			{ a: tuple({ size: 3, coerce: coerceInt }) },
 			["--a", "1,2,3"],
 			{
 				start: 0,
@@ -210,7 +210,7 @@ test("tuple", () => {
 	).toEqual(res);
 	expect(
 		parse<{ a?: Tuple<number> }>(
-			{ a: size(3, { delim: "x" }) },
+			{ a: size({ size: 3, delim: "x" }) },
 			["--a", "1x2x3"],
 			{
 				start: 0,

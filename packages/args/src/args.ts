@@ -158,8 +158,7 @@ export const hexes = defMulti("hexes", coerceHexInt, "HEX");
  * @param spec -
  */
 export const oneOf = <K extends string, S extends ArgDef | ArgDefRequired<K>>(
-	opts: readonly K[],
-	spec: S
+	spec: S & { opts: readonly K[] }
 ): S & {
 	type: "oneOf";
 	coerce: Fn<string, K>;
@@ -170,11 +169,10 @@ export const oneOf = <K extends string, S extends ArgDef | ArgDefRequired<K>>(
 } => ({
 	...spec,
 	type: "oneOf",
-	coerce: coerceOneOf(opts),
+	coerce: coerceOneOf(spec.opts),
 	hint: spec.hint ?? "ID",
-	desc: __desc(opts, spec.desc),
 	group: spec.group ?? "main",
-	opts,
+	desc: __desc(spec.opts, spec.desc),
 });
 
 /**
@@ -189,8 +187,7 @@ export const oneOfMulti = <
 	K extends string,
 	S extends ArgDef | ArgDefRequired<K>
 >(
-	opts: readonly K[],
-	spec: S & { delim?: string }
+	spec: S & { opts: readonly K[]; delim?: string }
 ): S & {
 	type: "oneOfMulti";
 	coerce: Fn<string, K>;
@@ -203,12 +200,11 @@ export const oneOfMulti = <
 } => ({
 	...spec,
 	type: "oneOfMulti",
-	coerce: coerceOneOf(opts),
+	coerce: coerceOneOf(spec.opts),
 	hint: spec.hint ?? __hint("ID", spec.delim),
-	desc: __desc(opts, spec.desc),
 	group: spec.group ?? "main",
+	desc: __desc(spec.opts, spec.desc),
 	multi: true,
-	opts,
 });
 
 /**
@@ -284,10 +280,18 @@ export const kvPairsMulti = <S extends ArgDef | ArgDefRequired<KVMultiDict>>(
  *
  * @example
  * ```ts tangle:../export/tuple.ts
- * import { coerceInt, parse, tuple } from "@thi.ng/args";
+ * import { coerceInt, parse, tuple, type Tuple } from "@thi.ng/args";
+ *
+ * interface A {
+ *   a?: Tuple<number>;
+ * }
  *
  * console.log(
- *   parse({ a: tuple(2, coerceInt, {})}, ["--a", "1,2"])
+ *   parse<A>(
+ *     { a: tuple({ size: 2, coerce: coerceInt }) },
+ *     ["--a", "1,2"],
+ *     { start: 0 }
+ *   )
  * );
  * // {
  * //   result: { a: Tuple { value: [1, 2] } },
@@ -297,14 +301,10 @@ export const kvPairsMulti = <S extends ArgDef | ArgDefRequired<KVMultiDict>>(
  * // }
  * ```
  *
- * @param size -
- * @param coerce -
  * @param spec -
  */
 export const tuple = <T, S extends ArgDef | ArgDefRequired<Tuple<T>>>(
-	size: number,
-	coerce: Fn<string, T>,
-	spec: S & { delim?: string }
+	spec: S & { size: number; coerce: Fn<string, T>; delim?: string }
 ): S & {
 	type: "tuple";
 	coerce: Fn<string, Tuple<T>>;
@@ -315,12 +315,11 @@ export const tuple = <T, S extends ArgDef | ArgDefRequired<Tuple<T>>>(
 } => {
 	if (!spec.delim) spec.delim = ",";
 	return {
-		type: "tuple",
-		hint: [...repeat("N", size)].join(spec.delim),
-		coerce: coerceTuple(coerce, size, spec.delim),
-		group: "main",
-		size,
 		...spec,
+		type: "tuple",
+		coerce: coerceTuple(spec.coerce, spec.size, spec.delim),
+		hint: spec.hint ?? [...repeat("N", spec.size)].join(spec.delim),
+		group: spec.group ?? "main",
 	};
 };
 
@@ -328,25 +327,21 @@ export const tuple = <T, S extends ArgDef | ArgDefRequired<Tuple<T>>>(
  * Syntax sugar for `tuple(size, coerceInt, {...})`. See {@link tuple} for
  * further details.
  *
- * @param size -
  * @param spec -
  */
 export const size = <S extends ArgDef | ArgDefRequired<Tuple<number>>>(
-	size: number,
-	spec: S & { delim?: string }
-) => tuple(size, coerceInt, spec);
+	spec: S & { size: number; delim?: string }
+) => tuple({ ...spec, coerce: coerceInt });
 
 /**
  * Syntax sugar for `tuple(size, coerceFloat, {...})`. See {@link tuple} for
  * further details.
  *
- * @param size -
  * @param spec -
  */
 export const vec = <S extends ArgDef | ArgDefRequired<Tuple<number>>>(
-	size: number,
-	spec: S & { delim?: string }
-) => tuple(size, coerceInt, spec);
+	spec: S & { size: number; delim?: string }
+) => tuple({ ...spec, coerce: coerceFloat });
 
 /**
  * Returns full {@link ArgSpec} for a JSON value arg. The raw CLI value string
@@ -421,7 +416,7 @@ export const ARG_OUT_DIR = <T extends string | undefined>(
 		desc: "Output directory" + (desc ?? ""),
 		hint: "PATH",
 		default: defaultVal,
-		optional: !!defaultVal,
+		required: !!defaultVal,
 	}),
 });
 
@@ -446,6 +441,6 @@ export const ARG_OUT_FILE = <T extends string | undefined>(
 		desc: "Output file" + (desc ?? ""),
 		hint: "PATH",
 		default: defaultVal,
-		optional: !!defaultVal,
+		required: !!defaultVal,
 	}),
 });
