@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-26T11:53:06Z
+- **Last updated**: 2025-09-26T13:50:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@3.1.0) (2025-09-26)
+
+#### 🚀 Features
+
+- add ARG_TYPES index ([5f68489](https://github.com/thi-ng/umbrella/commit/5f68489))
+
+#### ♻️ Refactoring
+
+- update factory fns to only take single arg (spec) ([2766125](https://github.com/thi-ng/umbrella/commit/2766125))
+  - update `oneOf`, `oneOfMulti`, `tuple`, `size`, `vec`
+  - fix `required`-handling in `ARG_OUT_DIR` & `ARG_OUT_FILE` presets
+  - fix code example for `tuple()`
+  - update tests
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@3.0.0) (2025-09-26)
 

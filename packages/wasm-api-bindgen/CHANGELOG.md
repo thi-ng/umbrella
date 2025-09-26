@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-25T11:10:32Z
+- **Last updated**: 2025-09-26T13:50:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.2.45](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.2.45) (2025-09-26)
+
+#### ♻️ Refactoring
+
+- update CLI arg specs ([7c43dac](https://github.com/thi-ng/umbrella/commit/7c43dac))
 
 ### [1.2.42](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.2.42) (2025-09-25)
 

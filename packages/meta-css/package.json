@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/meta-css",
-	"version": "0.19.28",
+	"version": "0.19.29",
 	"description": "Data-driven CSS framework codegen, transpiler & bundler",
 	"type": "module",
 	"module": "./index.js",
@@ -45,7 +45,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/args": "^3.0.0",
+		"@thi.ng/args": "^3.1.0",
 		"@thi.ng/arrays": "^2.13.11",
 		"@thi.ng/checks": "^3.7.18",
 		"@thi.ng/compare": "^2.4.28",
