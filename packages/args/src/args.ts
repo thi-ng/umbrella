@@ -364,6 +364,27 @@ export const json = <T, S extends ArgDef | ArgDefRequired<T>>(
 	...spec,
 });
 
+/**
+ * Index which maps arg type IDs to their factory functions
+ */
+export const ARG_TYPES: Record<string, Fn<any, ArgSpec<any>>> = {
+	flag,
+	float,
+	floats,
+	hex,
+	hexes,
+	int,
+	ints,
+	json,
+	kvPairs,
+	kvPairsMulti,
+	oneOf,
+	oneOfMulti,
+	string,
+	strings,
+	tuple,
+};
+
 /////////////////// arg presets
 
 /**
