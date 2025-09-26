@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-25T11:10:32Z
+- **Last updated**: 2025-09-26T11:53:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@3.0.0) (2025-09-26)
+
+#### 🛑 Breaking changes
+
+- update arg specs & arg factory fns, simplify types ([7ad3efb](https://github.com/thi-ng/umbrella/commit/7ad3efb))
+- BREAKING CHANGES: update arg specs & arg factory fns, simplify types
+  - add `type` field in all arg specs
+  - add/update arg-related types
+  - update required arg handling: `optional: false` => `required: true`
+  - update delimiter handling (move into arg specs)
+  - update `tuple()` arg order
+  - remove obsolete coercion fns (`coerceFloats()` etc.)
+  - update tests
 
 ## [2.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.10.0) (2025-09-04)
 

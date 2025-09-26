@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-09-26T11:53:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.6.18](https://github.com/thi-ng/umbrella/tree/@thi.ng/block-fs@0.6.18) (2025-09-26)
+
+#### ♻️ Refactoring
+
+- update CLI arg specs ([691ea5d](https://github.com/thi-ng/umbrella/commit/691ea5d))
 
 ### [0.6.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/block-fs@0.6.11) (2025-08-06)
 

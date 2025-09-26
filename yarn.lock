@@ -3992,7 +3992,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/args@npm:^2.10.2, @thi.ng/args@workspace:^, @thi.ng/args@workspace:packages/args":
+"@thi.ng/args@npm:^3.0.0, @thi.ng/args@workspace:^, @thi.ng/args@workspace:packages/args":
   version: 0.0.0-use.local
   resolution: "@thi.ng/args@workspace:packages/args"
   dependencies:
@@ -4170,7 +4170,7 @@ __metadata:
   resolution: "@thi.ng/block-fs@workspace:packages/block-fs"
   dependencies:
     "@thi.ng/api": "npm:^8.12.2"
-    "@thi.ng/args": "npm:^2.10.2"
+    "@thi.ng/args": "npm:^3.0.0"
     "@thi.ng/binary": "npm:^3.4.60"
     "@thi.ng/bitfield": "npm:^2.4.13"
     "@thi.ng/checks": "npm:^3.7.18"
@@ -5678,7 +5678,7 @@ __metadata:
   resolution: "@thi.ng/meta-css@workspace:packages/meta-css"
   dependencies:
     "@thi.ng/api": "npm:^8.12.2"
-    "@thi.ng/args": "npm:^2.10.2"
+    "@thi.ng/args": "npm:^3.0.0"
     "@thi.ng/arrays": "npm:^2.13.11"
     "@thi.ng/checks": "npm:^3.7.18"
     "@thi.ng/compare": "npm:^2.4.28"
@@ -5940,7 +5940,7 @@ __metadata:
   resolution: "@thi.ng/pointfree-lang@workspace:packages/pointfree-lang"
   dependencies:
     "@thi.ng/api": "npm:^8.12.2"
-    "@thi.ng/args": "npm:^2.10.2"
+    "@thi.ng/args": "npm:^3.0.0"
     "@thi.ng/bench": "npm:^3.6.29"
     "@thi.ng/errors": "npm:^2.5.42"
     "@thi.ng/file-io": "npm:^2.2.10"
@@ -6600,7 +6600,7 @@ __metadata:
   resolution: "@thi.ng/tangle@workspace:packages/tangle"
   dependencies:
     "@thi.ng/api": "npm:^8.12.2"
-    "@thi.ng/args": "npm:^2.10.2"
+    "@thi.ng/args": "npm:^3.0.0"
     "@thi.ng/checks": "npm:^3.7.18"
     "@thi.ng/compare": "npm:^2.4.28"
     "@thi.ng/date": "npm:^2.7.64"
@@ -6970,7 +6970,7 @@ __metadata:
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
     "@thi.ng/api": "npm:^8.12.2"
-    "@thi.ng/args": "npm:^2.10.2"
+    "@thi.ng/args": "npm:^3.0.0"
     "@thi.ng/arrays": "npm:^2.13.11"
     "@thi.ng/binary": "npm:^3.4.60"
     "@thi.ng/checks": "npm:^3.7.18"
