@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Maybe } from "@thi.ng/api";
+import { shuffle } from "@thi.ng/arrays/shuffle";
 import { assert } from "@thi.ng/errors/assert";
 import type { IClosable, IWriteable } from "./api.js";
 import { Channel } from "./channel.js";
@@ -175,7 +176,11 @@ export const pipe = <T, DEST extends IWriteable<T> & IClosable>(
  * Takes one or more input channels and attempts to read from all of them at
  * once (via {@link Channel.race}, a blocking op). Returns a promise which
  * resolves once one of the inputs becomes available or was closed, selects that
- * channel to read from it and returns tuple of `[value, channel]`.
+ * channel to read from it and returns tuple of `[value, channel]`. If the
+ * selected channel already is closed, returns `[undefined, channel]`.
+ *
+ * @remarks
+ * Since v3.3.0 inputs are automatically shuffled to avoid selection bias.
  *
  * @param input - first input
  * @param rest - other inputs
@@ -184,7 +189,7 @@ export const select = async <T>(
 	input: Channel<T>,
 	...rest: Channel<T>[]
 ): Promise<[Maybe<T>, Channel<T>]> => {
-	const inputs = [input, ...rest];
+	const inputs = shuffle([input, ...rest]);
 	const sel = await Promise.race(inputs.map((x) => x.race()));
 	for (let chan of inputs) {
 		if (chan !== sel) chan.races.shift();
