@@ -2,20 +2,21 @@
 import { ALogger } from "./alogger.js";
 import {
 	LogLevel,
+	type ILogger,
 	type LogEntry,
 	type LogLevelName,
-	type ILogger,
 } from "./api.js";
 import { expandArgsJSON } from "./utils.js";
 
 /**
  * {@link ILogger} implementation writing messages to provided NodeJS-compatible
- * `WriteStream`, e.g. `process.stderr`. Any non-string or non-numeric args
- * given to {@link StreamLogger.log} will be automatically serialized to JSON.
+ * `WritableStream`, e.g. `process.stderr` or `http.ServerResponse`. Any
+ * non-string or non-numeric args given to {@link StreamLogger.log} will be
+ * automatically serialized to JSON (using {@link expandArgsJSON}).
  */
 export class StreamLogger extends ALogger {
 	constructor(
-		protected target: NodeJS.WriteStream,
+		protected target: NodeJS.WritableStream,
 		id?: string,
 		level?: LogLevel | LogLevelName,
 		parent?: ILogger
