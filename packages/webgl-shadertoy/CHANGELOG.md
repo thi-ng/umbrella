@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-10-07T11:51:57Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl-shadertoy@1.1.0) (2025-10-07)
+
+#### 🚀 Features
+
+- refactor/update types & impl ([4e9e929](https://github.com/thi-ng/umbrella/commit/4e9e929))
+  - rename `ShaderToy` interface => `IShaderToy`
+  - update impl to use proper class `ShaderToy`, thus allowing
+    custom extensions to update loop etc.
 
 ### [0.4.115](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl-shadertoy@0.4.115) (2024-02-06)
 

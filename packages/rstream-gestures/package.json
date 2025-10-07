@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-gestures",
-	"version": "5.0.141",
+	"version": "5.0.142",
 	"description": "Unified mouse, mouse wheel & multi-touch event stream abstraction",
 	"type": "module",
 	"module": "./index.js",
@@ -46,7 +46,7 @@
 		"@thi.ng/api": "^8.12.2",
 		"@thi.ng/checks": "^3.7.18",
 		"@thi.ng/math": "^5.12.0",
-		"@thi.ng/rstream": "^9.2.42",
+		"@thi.ng/rstream": "^9.2.43",
 		"@thi.ng/transducers": "^9.6.10"
 	},
 	"devDependencies": {
