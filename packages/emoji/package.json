@@ -39,9 +39,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.9",
-		"typedoc": "^0.28.12",
-		"typescript": "^5.9.2"
+		"esbuild": "^0.25.10",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"keywords": [
 		"bidirectional",

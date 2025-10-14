@@ -37,8 +37,8 @@
 		"screenshot": "examples/ellipse-proximity.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.9.2",
-		"vite": "^7.1.4"
+		"typescript": "^5.9.3",
+		"vite": "^7.1.9"
 	},
 	"keywords": [
 		"browser",

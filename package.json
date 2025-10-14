@@ -7,12 +7,12 @@
 		"tools"
 	],
 	"devDependencies": {
-		"bun-types": "1.2.21",
-		"esbuild": "^0.25.9",
+		"bun-types": "1.3.0",
+		"esbuild": "^0.25.10",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.28.12",
-		"typescript": "^5.9.2"
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"scripts": {
 		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",
@@ -28,7 +28,7 @@
 		"pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && bun tools/src/deploy-docs.ts",
 		"test": "yarn build:esbuild && yarn test:prepare && yarn test:only",
 		"test:prepare": "yarn @thi.ng run test:prepare",
-		"test:only": "(cd packages && bun test)",
+		"test:only": "yarn @thi.ng run test:prepare && (cd packages && bun test)",
 		"tool:cleanup": "bun tools/src/cleanup.ts",
 		"tool:deps": "bun tools/src/adjacency.ts",
 		"tool:exports": "bun tools/src/generate-export-maps.ts && bun tools/src/check-exports.ts",

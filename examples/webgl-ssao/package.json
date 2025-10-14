@@ -40,8 +40,8 @@
 		"screenshot": "examples/webgl-ssao.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.9.2",
-		"vite": "^7.1.4"
+		"typescript": "^5.9.3",
+		"vite": "^7.1.9"
 	},
 	"keywords": [
 		"browser",
