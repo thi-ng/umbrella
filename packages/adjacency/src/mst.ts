@@ -32,10 +32,10 @@ import { DisjointSet } from "@thi.ng/disjoint-set";
  * import { distSq } from "@thi.ng/vectors";
  *
  * // 2D vectors
- * verts = [[0,0], [0,1], [1,1], [1,2], [4,2]]
+ * const verts = [[0,0], [0,1], [1,1], [1,2], [4,2]]
  *
  * // connections (vertex ID pairs)
- * edges = [[0,1], [0,4], [1,2], [1,3], [2,3], [2,4]]
+ * const edges = [[0,1], [0,4], [1,2], [1,3], [2,3], [2,4]]
  *
  * console.log(
  *   mst(
@@ -48,7 +48,7 @@ import { DisjointSet } from "@thi.ng/disjoint-set";
  *     (e) => e
  *   )
  * );
- * // [ [ 0, 1 ], [ 1, 2 ], [ 2, 3 ], [ 2, 4 ] ]
+ * // [ [ 1, 2 ], [ 2, 3 ], [ 0, 1 ], [ 2, 4 ] ]
  * ```
  *
  * @param edges - edge pairs
