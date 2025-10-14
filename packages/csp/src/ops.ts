@@ -189,10 +189,10 @@ export const select = async <T>(
 	input: Channel<T>,
 	...rest: Channel<T>[]
 ): Promise<[Maybe<T>, Channel<T>]> => {
-	const inputs = shuffle([input, ...rest]);
-	const sel = await Promise.race(inputs.map((x) => x.race()));
-	for (let chan of inputs) {
-		if (chan !== sel) chan.races.shift();
+	const races = shuffle([input, ...rest]).map((x) => x.race());
+	const sel = await Promise.race(races.map((x) => x.promise));
+	for (let race of races) {
+		if (sel !== race.channel) race.abort();
 	}
 	if (sel.writes.readable()) {
 		const [msg, write] = sel.writes.read();

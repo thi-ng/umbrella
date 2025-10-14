@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Maybe } from "@thi.ng/api";
+import type { Fn, Fn0, Maybe } from "@thi.ng/api";
 import { fifo } from "@thi.ng/buffers/fifo";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -16,6 +16,25 @@ const STATE_CLOSED = 2;
 
 export interface ChannelOpts {
 	id: string;
+}
+
+export interface Race<T> {
+	/**
+	 * Parent channel this race belongs to.
+	 */
+	channel: Channel<T>;
+	/**
+	 * This race's promise. Will be resolved by the channel or can be rejected
+	 * via {@link Race.abort}.
+	 */
+	promise: Promise<Channel<T>>;
+	/**
+	 * Aborts this race by rejecting its promise and removing the race from the
+	 * parent channel's queue of ongoing races.
+	 */
+	abort: Fn0<void>;
+	/** @internal */
+	__resolve: Fn<Channel<T>, void>;
 }
 
 /**
@@ -39,7 +58,7 @@ export class Channel<T> implements IChannel<T> {
 	writes: ChannelBuffer<T>;
 	queue: ChannelValue<T>[] = [];
 	reads: Fn<Maybe<T>, void>[] = [];
-	races: Fn<Channel<T>, void>[] = [];
+	races: Race<T>[] = [];
 	protected state = STATE_OPEN;
 
 	/**
@@ -192,7 +211,7 @@ export class Channel<T> implements IChannel<T> {
 			if (reads.length) {
 				this.deliver();
 			} else if (races.length) {
-				races.shift()!(this);
+				races.shift()!.__resolve(this);
 			}
 		});
 	}
@@ -214,26 +233,38 @@ export class Channel<T> implements IChannel<T> {
 	}
 
 	/**
-	 * Queues a "race" operation & returns a promise which resolves with the
-	 * channel itself when the channel becomes readable, but no other queued
-	 * read operations are waiting (which always have priority). If the channel
-	 * is already closed, the promise resolves immediately.
+	 * Queues and returns a {@link Race} operation, including a promise which
+	 * resolves with the channel itself when the channel becomes readable, but
+	 * no other queued read operations are waiting (which always have priority).
+	 * If the channel is already closed, the promise resolves immediately. The
+	 * race can be aborted via {@link Race.abort}, which also removes it from
+	 * the channel's queue of ongoing races.
 	 *
 	 * @remarks
 	 * This op is used internally by {@link select} to choose a channel to read
 	 * from next.
 	 */
 	race() {
-		return new Promise<Channel<T>>((resolve) => {
+		const race: Race<T> = <any>{ channel: this };
+		race.promise = new Promise<Channel<T>>((resolve, reject) => {
+			race.__resolve = resolve;
+			race.abort = () => {
+				const index = this.races.indexOf(race);
+				if (index >= 0) {
+					this.races.splice(index, 1);
+					reject(this);
+				}
+			};
 			if (!this.readable()) {
 				resolve(this);
 				return;
 			}
-			this.races.push(resolve);
+			this.races.push(race);
 			if (this.writes.readable()) {
-				this.races.shift()!(this);
+				this.races.shift()!.__resolve(this);
 			}
 		});
+		return race;
 	}
 
 	/**
@@ -257,7 +288,7 @@ export class Channel<T> implements IChannel<T> {
 			while (reads.length) reads.shift()!(undefined);
 		}
 		this.state = writes.readable() ? STATE_CLOSING : STATE_CLOSED;
-		while (races.length) races.shift()!(this);
+		while (races.length) races.shift()!.__resolve(this);
 	}
 
 	/**
