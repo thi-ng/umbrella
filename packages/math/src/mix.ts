@@ -658,6 +658,53 @@ export const schlick: FnN3 = (a, b, t) =>
 export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);
 
 /**
+ * Computes framerate-independent interpolation factor `t` for use with
+ * `mix(a,b, t)`, where `delta` is the time passed since last frame, `rate` is a
+ * user-defined interpolation rate and `fps` is the reference framerate (default
+ * = 60).
+ *
+ * @remarks
+ * Reference:
+ * https://blog.pkh.me/p/41-fixing-the-iterative-damping-interpolation-in-video-games.html
+ *
+ * @example
+ * ```ts tangle:../export/exp-rate.ts
+ * import { mix, expRate } from "@thi.ng/math";
+ *
+ * // fixed example framerate
+ * const FPS = 5;
+ * // arbitrary interpolation rate
+ * const RATE = 0.5;
+ *
+ * // start value
+ * let value = 0;
+ *
+ * // interpolate for 3 seconds at given FPS
+ * for(let i = 0; i < 3 * FPS; i++) {
+ *   // compute current frame delta time (here static)
+ *   const delta = 1 / FPS;
+ *   // iteratively interpolate to target=100 in a framerate agnostic manner,
+ *   // using RATE and 60 fps as reference frame rate
+ *   value = mix(value, 100, expRate(delta, RATE, 60));
+ *   console.log(i, value);
+ * }
+ * // 0 9.554162585016023
+ * // 1 18.195504943022847
+ * // 2 26.01123940261784
+ * // ...
+ * // 12 72.89486380583645
+ * // 13 75.48453258671687
+ * // 14 77.82678020185855
+ * ```
+ *
+ * @param delta
+ * @param rate
+ * @param fps
+ */
+export const expRate = (delta: number, rate: number, fps = 60) =>
+	1 - Math.exp(-delta * -fps * Math.log(1 - rate / fps));
+
+/**
  * Computes gaussian bell curve for given center `bias` and `sigma` (spread).
  *
  * @remarks
