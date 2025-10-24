@@ -43,7 +43,7 @@
 		"@thi.ng/dcons": "^3.2.169"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.10",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

@@ -56,7 +56,7 @@
 	},
 	"devDependencies": {
 		"@thi.ng/date": "^2.7.64",
-		"esbuild": "^0.25.10",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},
