@@ -200,7 +200,7 @@ export const oneOfMulti = <
 } => ({
 	...spec,
 	type: "oneOfMulti",
-	coerce: coerceOneOf(spec.opts),
+	coerce: (vals) => vals.map(coerceOneOf(spec.opts)),
 	hint: spec.hint ?? __hint("ID", spec.delim),
 	group: spec.group ?? "main",
 	desc: __desc(spec.opts, spec.desc),
