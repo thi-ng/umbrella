@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-25T11:10:32Z
+- **Last updated**: 2025-10-24T13:42:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.3.0) (2025-10-24)
+
+#### 🚀 Features
+
+- add basic `offset()` support for convex polygons ([fe51702](https://github.com/thi-ng/umbrella/commit/fe51702))
+  - add/update docs
 
 ## [8.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.2.0) (2025-07-20)
 
