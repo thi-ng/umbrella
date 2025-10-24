@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-binary",
-	"version": "2.1.184",
+	"version": "2.1.185",
 	"description": "Binary data related transducers & reducers",
 	"type": "module",
 	"module": "./index.js",
@@ -39,13 +39,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/binary": "^3.4.63",
-		"@thi.ng/compose": "^3.0.42",
-		"@thi.ng/errors": "^2.5.45",
-		"@thi.ng/hex": "^2.3.83",
-		"@thi.ng/random": "^4.1.30",
-		"@thi.ng/strings": "^3.9.25",
-		"@thi.ng/transducers": "^9.6.13"
+		"@thi.ng/binary": "^3.4.64",
+		"@thi.ng/compose": "^3.0.43",
+		"@thi.ng/errors": "^2.5.46",
+		"@thi.ng/hex": "^2.3.84",
+		"@thi.ng/random": "^4.1.31",
+		"@thi.ng/strings": "^3.9.26",
+		"@thi.ng/transducers": "^9.6.14"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-js",
-	"version": "1.2.30",
+	"version": "1.2.31",
 	"description": "Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -39,14 +39,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.5",
-		"@thi.ng/checks": "^3.7.21",
-		"@thi.ng/errors": "^2.5.45",
-		"@thi.ng/math": "^5.13.2",
-		"@thi.ng/matrices": "^3.0.24",
-		"@thi.ng/pixel": "^7.5.13",
-		"@thi.ng/shader-ast": "^1.1.26",
-		"@thi.ng/vectors": "^8.6.9"
+		"@thi.ng/api": "^8.12.6",
+		"@thi.ng/checks": "^3.7.22",
+		"@thi.ng/errors": "^2.5.46",
+		"@thi.ng/math": "^5.13.3",
+		"@thi.ng/matrices": "^3.0.25",
+		"@thi.ng/pixel": "^7.5.14",
+		"@thi.ng/shader-ast": "^1.1.27",
+		"@thi.ng/vectors": "^8.6.10"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-analysis",
-	"version": "2.0.12",
+	"version": "2.0.13",
 	"description": "Image color & feature analysis utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -39,17 +39,17 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.5",
-		"@thi.ng/arrays": "^2.13.14",
-		"@thi.ng/color": "^5.7.65",
-		"@thi.ng/compare": "^2.4.31",
-		"@thi.ng/math": "^5.13.2",
-		"@thi.ng/metrics": "^0.2.8",
-		"@thi.ng/pixel": "^7.5.13",
-		"@thi.ng/pixel-convolve": "^1.1.13",
-		"@thi.ng/pixel-dominant-colors": "^2.0.17",
-		"@thi.ng/transducers": "^9.6.13",
-		"@thi.ng/vectors": "^8.6.9"
+		"@thi.ng/api": "^8.12.6",
+		"@thi.ng/arrays": "^2.13.15",
+		"@thi.ng/color": "^5.7.66",
+		"@thi.ng/compare": "^2.4.32",
+		"@thi.ng/math": "^5.13.3",
+		"@thi.ng/metrics": "^0.2.9",
+		"@thi.ng/pixel": "^7.5.14",
+		"@thi.ng/pixel-convolve": "^1.1.14",
+		"@thi.ng/pixel-dominant-colors": "^2.0.18",
+		"@thi.ng/transducers": "^9.6.14",
+		"@thi.ng/vectors": "^8.6.10"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

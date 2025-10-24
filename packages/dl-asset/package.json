@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dl-asset",
-	"version": "2.3.124",
+	"version": "2.3.125",
 	"description": "Canvas, video recording & file asset download helpers for web apps",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.7.21",
-		"@thi.ng/mime": "^2.7.21"
+		"@thi.ng/checks": "^3.7.22",
+		"@thi.ng/mime": "^2.7.22"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",
