@@ -103,6 +103,9 @@
 		"./equilateral": {
 			"default": "./equilateral.js"
 		},
+		"./offset-convex": {
+			"default": "./offset-convex.js"
+		},
 		"./perimeter": {
 			"default": "./perimeter.js"
 		},
