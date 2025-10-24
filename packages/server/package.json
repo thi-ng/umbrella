@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/server",
-	"version": "0.12.10",
+	"version": "0.12.11",
 	"description": "Minimal HTTP server with declarative routing, static file serving and freely extensible via pre/post interceptors",
 	"type": "module",
 	"module": "./index.js",
@@ -39,20 +39,20 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.4",
-		"@thi.ng/arrays": "^2.13.13",
-		"@thi.ng/cache": "^2.3.52",
-		"@thi.ng/checks": "^3.7.20",
-		"@thi.ng/errors": "^2.5.44",
-		"@thi.ng/file-io": "^2.2.13",
-		"@thi.ng/leaky-bucket": "^0.2.16",
-		"@thi.ng/logger": "^3.2.3",
-		"@thi.ng/mime": "^2.7.20",
-		"@thi.ng/paths": "^5.2.23",
-		"@thi.ng/router": "^4.1.43",
-		"@thi.ng/strings": "^3.9.24",
-		"@thi.ng/timestamp": "^1.1.23",
-		"@thi.ng/uuid": "^1.1.35"
+		"@thi.ng/api": "^8.12.5",
+		"@thi.ng/arrays": "^2.13.14",
+		"@thi.ng/cache": "^2.3.53",
+		"@thi.ng/checks": "^3.7.21",
+		"@thi.ng/errors": "^2.5.45",
+		"@thi.ng/file-io": "^2.2.14",
+		"@thi.ng/leaky-bucket": "^0.2.17",
+		"@thi.ng/logger": "^3.2.4",
+		"@thi.ng/mime": "^2.7.21",
+		"@thi.ng/paths": "^5.2.24",
+		"@thi.ng/router": "^4.1.44",
+		"@thi.ng/strings": "^3.9.25",
+		"@thi.ng/timestamp": "^1.1.24",
+		"@thi.ng/uuid": "^1.1.36"
 	},
 	"devDependencies": {
 		"@types/node": "^24.9.1",

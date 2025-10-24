@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom",
-	"version": "1.7.62",
+	"version": "1.7.63",
 	"description": "Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and @thi.ng/hiccup compatible",
 	"type": "module",
 	"module": "./index.js",
@@ -40,14 +40,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.4",
-		"@thi.ng/checks": "^3.7.20",
-		"@thi.ng/errors": "^2.5.44",
-		"@thi.ng/hiccup": "^5.3.26",
-		"@thi.ng/paths": "^5.2.23",
-		"@thi.ng/prefixes": "^2.3.55",
-		"@thi.ng/rstream": "^9.3.1",
-		"@thi.ng/strings": "^3.9.24"
+		"@thi.ng/api": "^8.12.5",
+		"@thi.ng/checks": "^3.7.21",
+		"@thi.ng/errors": "^2.5.45",
+		"@thi.ng/hiccup": "^5.3.27",
+		"@thi.ng/paths": "^5.2.24",
+		"@thi.ng/prefixes": "^2.3.56",
+		"@thi.ng/rstream": "^9.3.2",
+		"@thi.ng/strings": "^3.9.25"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

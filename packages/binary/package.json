@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/binary",
-	"version": "3.4.62",
+	"version": "3.4.63",
 	"description": "100+ assorted binary / bitwise operations, conversions, utilities, lookup tables",
 	"type": "module",
 	"module": "./index.js",
@@ -39,7 +39,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.4"
+		"@thi.ng/api": "^8.12.5"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

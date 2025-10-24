@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/disjoint-set",
-	"version": "1.1.31",
+	"version": "1.1.32",
 	"description": "TypedArray-based disjoint set implementation with quick union & path compression",
 	"type": "module",
 	"module": "./index.js",
