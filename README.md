@@ -312,13 +312,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-10-07
+As of: 2025-10-24
 
 | Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
 |:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/csp`](./packages/csp)                         | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                         | [changelog](./packages/csp/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/logger`](./packages/logger)                   | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                   | [changelog](./packages/logger/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy) | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy) | [changelog](./packages/webgl-shadertoy/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/args`](./packages/args)                       | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                       | [changelog](./packages/args/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                       | [changelog](./packages/geom/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils) | [changelog](./packages/geom-poly-utils/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/math`](./packages/math)                       | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                       | [changelog](./packages/math/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rstream`](./packages/rstream)                 | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                 | [changelog](./packages/rstream/CHANGELOG.md)         |
 
 ### Algorithms & data structures
 
