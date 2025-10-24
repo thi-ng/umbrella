@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel",
-	"version": "7.5.11",
+	"version": "7.5.12",
 	"description": "Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution",
 	"type": "module",
 	"module": "./index.js",
@@ -42,12 +42,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.3",
-		"@thi.ng/canvas": "^1.0.24",
-		"@thi.ng/checks": "^3.7.19",
-		"@thi.ng/errors": "^2.5.43",
-		"@thi.ng/math": "^5.13.0",
-		"@thi.ng/porter-duff": "^2.1.115"
+		"@thi.ng/api": "^8.12.4",
+		"@thi.ng/canvas": "^1.0.25",
+		"@thi.ng/checks": "^3.7.20",
+		"@thi.ng/errors": "^2.5.44",
+		"@thi.ng/math": "^5.13.1",
+		"@thi.ng/porter-duff": "^2.1.116"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

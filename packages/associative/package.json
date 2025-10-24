@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/associative",
-	"version": "7.1.13",
+	"version": "7.1.14",
 	"description": "ES Map/Set-compatible implementations with customizable equality semantics & supporting operations",
 	"type": "module",
 	"module": "./index.js",
@@ -39,14 +39,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.3",
-		"@thi.ng/arrays": "^2.13.12",
-		"@thi.ng/binary": "^3.4.61",
-		"@thi.ng/checks": "^3.7.19",
-		"@thi.ng/dcons": "^3.2.170",
-		"@thi.ng/equiv": "^2.1.93",
-		"@thi.ng/object-utils": "^1.2.11",
-		"@thi.ng/transducers": "^9.6.11"
+		"@thi.ng/api": "^8.12.4",
+		"@thi.ng/arrays": "^2.13.13",
+		"@thi.ng/binary": "^3.4.62",
+		"@thi.ng/checks": "^3.7.20",
+		"@thi.ng/dcons": "^3.2.171",
+		"@thi.ng/equiv": "^2.1.94",
+		"@thi.ng/object-utils": "^1.2.12",
+		"@thi.ng/transducers": "^9.6.12"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

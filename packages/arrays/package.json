@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/arrays",
-	"version": "2.13.12",
+	"version": "2.13.13",
 	"description": "Array / Arraylike utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.3",
-		"@thi.ng/checks": "^3.7.19",
-		"@thi.ng/compare": "^2.4.29",
-		"@thi.ng/equiv": "^2.1.93",
-		"@thi.ng/errors": "^2.5.43",
-		"@thi.ng/random": "^4.1.28"
+		"@thi.ng/api": "^8.12.4",
+		"@thi.ng/checks": "^3.7.20",
+		"@thi.ng/compare": "^2.4.30",
+		"@thi.ng/equiv": "^2.1.94",
+		"@thi.ng/errors": "^2.5.44",
+		"@thi.ng/random": "^4.1.29"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

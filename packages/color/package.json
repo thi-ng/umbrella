@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color",
-	"version": "5.7.63",
+	"version": "5.7.64",
 	"description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
 	"type": "module",
 	"module": "./index.js",
@@ -43,19 +43,19 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.3",
-		"@thi.ng/arrays": "^2.13.12",
-		"@thi.ng/binary": "^3.4.61",
-		"@thi.ng/checks": "^3.7.19",
-		"@thi.ng/compare": "^2.4.29",
-		"@thi.ng/compose": "^3.0.40",
-		"@thi.ng/defmulti": "^3.0.79",
-		"@thi.ng/errors": "^2.5.43",
-		"@thi.ng/math": "^5.13.0",
-		"@thi.ng/random": "^4.1.28",
-		"@thi.ng/strings": "^3.9.23",
-		"@thi.ng/transducers": "^9.6.11",
-		"@thi.ng/vectors": "^8.6.7"
+		"@thi.ng/api": "^8.12.4",
+		"@thi.ng/arrays": "^2.13.13",
+		"@thi.ng/binary": "^3.4.62",
+		"@thi.ng/checks": "^3.7.20",
+		"@thi.ng/compare": "^2.4.30",
+		"@thi.ng/compose": "^3.0.41",
+		"@thi.ng/defmulti": "^3.0.80",
+		"@thi.ng/errors": "^2.5.44",
+		"@thi.ng/math": "^5.13.1",
+		"@thi.ng/random": "^4.1.29",
+		"@thi.ng/strings": "^3.9.24",
+		"@thi.ng/transducers": "^9.6.12",
+		"@thi.ng/vectors": "^8.6.8"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",
