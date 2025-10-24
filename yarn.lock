@@ -1672,7 +1672,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/optical-flow@workspace:examples/optical-flow"
   dependencies:
-    "@thi.ng/api": "workspace:^"
     "@thi.ng/bench": "workspace:^"
     "@thi.ng/canvas": "workspace:^"
     "@thi.ng/hiccup-html": "workspace:^"
@@ -2325,9 +2324,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/rotating-voronoi@workspace:examples/rotating-voronoi"
   dependencies:
+    "@thi.ng/api": "workspace:^"
     "@thi.ng/dl-asset": "workspace:^"
     "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-resample": "workspace:^"
     "@thi.ng/geom-voronoi": "workspace:^"
     "@thi.ng/hdom-canvas": "workspace:^"
     "@thi.ng/math": "workspace:^"

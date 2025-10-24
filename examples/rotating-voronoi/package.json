@@ -31,9 +31,9 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/api": "workspace:^",
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/geom-resample": "workspace:^",
 		"@thi.ng/geom-voronoi": "workspace:^",
 		"@thi.ng/hdom-canvas": "workspace:^",
 		"@thi.ng/math": "workspace:^",
