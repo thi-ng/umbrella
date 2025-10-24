@@ -34,7 +34,7 @@
 		"clean": "bun ../../tools/src/clean-package.ts axis plot",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:bars": "bun tools/bars.ts",
 		"tool:candles": "bun tools/candles.ts",

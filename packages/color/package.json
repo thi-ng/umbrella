@@ -34,7 +34,7 @@
 		"clean": "bun ../../tools/src/clean-package.ts css hcy hsi hsl hsv int lab lch oklab oklch rgb srgb xyy xyz ycc",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:limits": "bun tools/limits.ts",
 		"tool:maxchroma": "bun tools/max-chroma.ts",
