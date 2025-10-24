@@ -8,7 +8,7 @@ import {
 	intBufferFromImage,
 } from "@thi.ng/pixel";
 import { read } from "@thi.ng/pixel-io-netpbm";
-import type { DitherMode, ImageParam } from "../api";
+import type { DitherMode, ImageParam } from "../api.js";
 import { DB } from "./atom.js";
 import { resetCanvasView } from "./canvas.js";
 

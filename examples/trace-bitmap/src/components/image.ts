@@ -2,15 +2,15 @@
 import { div, inputColor, inputNumber } from "@thi.ng/hiccup-html";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { fromView } from "@thi.ng/rstream";
-import { DITHER_MODES, type DitherMode, type ImageParam } from "../api";
-import { DB } from "../state/atom";
-import { setCanvasBackground } from "../state/canvas";
+import { DITHER_MODES, type DitherMode, type ImageParam } from "../api.js";
+import { DB } from "../state/atom.js";
+import { setCanvasBackground } from "../state/canvas.js";
 import {
 	loadImage,
 	rotateImage,
 	setImageDither,
 	setImageParam,
-} from "../state/image";
+} from "../state/image.js";
 import { button, dropdown, fileButton, title } from "./common.js";
 
 const param = (

@@ -12,7 +12,7 @@ import {
 	type LayerControls,
 	type LayerParams,
 	type TraceMode,
-} from "../api";
+} from "../api.js";
 import { DB } from "./atom.js";
 import { main } from "./process.js";
 

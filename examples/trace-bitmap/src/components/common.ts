@@ -13,7 +13,7 @@ import {
 	type ISubscribable,
 	type ISubscription,
 } from "@thi.ng/rstream";
-import { DB } from "../state/atom";
+import { DB } from "../state/atom.js";
 
 export const title = (title: string) => h3({}, title);
 

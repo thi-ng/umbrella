@@ -13,7 +13,7 @@ import {
 } from "@thi.ng/transducers";
 import { execSync } from "node:child_process";
 import { resolve } from "node:path";
-import type { Commit } from "../common/api";
+import type { Commit } from "../common/api.js";
 
 /**
  * Calls out to git to retrieve raw log string.

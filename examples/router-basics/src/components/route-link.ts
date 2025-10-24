@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { AppContext } from "../api";
-import { ROUTE_TO } from "../events";
+import type { AppContext } from "../api.js";
+import { ROUTE_TO } from "../events.js";
 
 /**
  * Customizable hyperlink component emitting EV_ROUTE_TO event when clicked.

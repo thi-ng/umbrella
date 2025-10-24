@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { AppContext } from "../api";
-import { CONTACT, HOME, USER_LIST } from "../routes";
+import type { AppContext } from "../api.js";
+import { CONTACT, HOME, USER_LIST } from "../routes.js";
 import { routeLink } from "./route-link.js";
 
 /**

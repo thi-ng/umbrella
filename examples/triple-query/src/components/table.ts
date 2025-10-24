@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { map } from "@thi.ng/transducers";
-import type { AppContext } from "../api";
+import type { AppContext } from "../api.js";
 
 const row = (ctx: AppContext, body: Iterable<any>) => [
 	"tr",

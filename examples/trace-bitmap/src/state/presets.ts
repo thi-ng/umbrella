@@ -2,7 +2,7 @@
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { map, push, transduce } from "@thi.ng/transducers";
-import { PRESETS, type Preset, type PresetID } from "../api";
+import { PRESETS, type Preset, type PresetID } from "../api.js";
 import { DB } from "./atom.js";
 import { setCanvasBackground } from "./canvas.js";
 import { setImageDither } from "./image.js";

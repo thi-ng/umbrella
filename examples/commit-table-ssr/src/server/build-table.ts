@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Commit } from "../common/api";
-import { header } from "../common/components/header";
-import { repoTable } from "../common/components/repo-table";
-import { ctx } from "../common/config";
+import type { Commit } from "../common/api.js";
+import { header } from "../common/components/header.js";
+import { repoTable } from "../common/components/repo-table.js";
+import { ctx } from "../common/config.js";
 import { html } from "./html.js";
 
 /**

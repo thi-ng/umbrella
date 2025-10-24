@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { AppContext } from "../api";
+import type { AppContext } from "../api.js";
 import { queryResults } from "./query-results.js";
 import { tripleTable } from "./triple-table.js";
 

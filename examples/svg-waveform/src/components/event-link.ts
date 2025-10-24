@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Event } from "@thi.ng/interceptors";
-import type { AppContext } from "../api";
+import type { AppContext } from "../api.js";
 
 /**
  * Customizable hyperlink component emitting given event on event bus

@@ -4,7 +4,7 @@ import {
 	geometryStats,
 	jsonExportTrigger,
 	svgExportTrigger,
-} from "../state/process";
+} from "../state/process.js";
 import { smallButton, title } from "./common.js";
 
 export const exportControls = div(
