@@ -12,6 +12,7 @@ import {
 	kvPairs,
 	kvPairsMulti,
 	oneOf,
+	oneOfMulti,
 	parse,
 	size,
 	string,
@@ -85,7 +86,7 @@ test("number", () => {
 	).toThrow();
 });
 
-test("enum", () => {
+test("oneOf", () => {
 	type E = "abc" | "xyz";
 	const opts: E[] = ["abc", "xyz"];
 	expect(
@@ -103,6 +104,39 @@ test("enum", () => {
 	});
 	expect(() =>
 		parse<{ a?: E }>({ a: oneOf({ opts }) }, ["--a", "def"], {
+			start: 0,
+			showUsage: false,
+		})
+	).toThrow();
+});
+
+test("oneOfMulti", () => {
+	type E = "abc" | "xyz";
+	const opts: E[] = ["abc", "xyz"];
+	expect(
+		parse<{ a?: E[] }>(
+			{ a: oneOfMulti({ opts }) },
+			["--a", "abc", "--a", "xyz"],
+			{
+				start: 0,
+			}
+		)
+	).toEqual({
+		result: { a: ["abc", "xyz"] },
+		index: 4,
+		done: true,
+		rest: [],
+	});
+	expect(
+		parse<{ a?: E[] }>({ a: oneOfMulti({ opts, default: ["xyz"] }) }, [])
+	).toEqual({
+		result: { a: ["xyz"] },
+		index: 2,
+		done: true,
+		rest: [],
+	});
+	expect(() =>
+		parse<{ a?: E[] }>({ a: oneOfMulti({ opts }) }, ["--a", "def"], {
 			start: 0,
 			showUsage: false,
 		})
