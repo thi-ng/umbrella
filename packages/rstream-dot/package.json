@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-dot",
-	"version": "3.0.152",
+	"version": "3.0.153",
 	"description": "Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies",
 	"type": "module",
 	"module": "./index.js",
@@ -39,9 +39,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/rstream": "^9.3.3",
-		"@thi.ng/strings": "^3.9.26",
-		"@thi.ng/transducers": "^9.6.14"
+		"@thi.ng/rstream": "^9.3.4",
+		"@thi.ng/strings": "^3.9.27",
+		"@thi.ng/transducers": "^9.6.15"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

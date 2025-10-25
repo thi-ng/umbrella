@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api",
-	"version": "2.4.7",
+	"version": "2.4.8",
 	"description": "Generic, modular, extensible API bridge and infrastructure for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
@@ -42,13 +42,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.6",
-		"@thi.ng/arrays": "^2.13.15",
-		"@thi.ng/checks": "^3.7.22",
-		"@thi.ng/errors": "^2.5.46",
-		"@thi.ng/hex": "^2.3.84",
-		"@thi.ng/idgen": "^2.2.80",
-		"@thi.ng/logger": "^3.2.5"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/arrays": "^2.13.16",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/hex": "^2.3.85",
+		"@thi.ng/idgen": "^2.2.81",
+		"@thi.ng/logger": "^3.2.6"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

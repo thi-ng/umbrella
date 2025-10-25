@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/layout",
-	"version": "4.0.10",
+	"version": "4.0.11",
 	"description": "Configurable nested 2D grid layout generators",
 	"type": "module",
 	"module": "./index.js",
@@ -39,9 +39,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.6",
-		"@thi.ng/arrays": "^2.13.15",
-		"@thi.ng/checks": "^3.7.22"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/arrays": "^2.13.16",
+		"@thi.ng/checks": "^3.7.23"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",

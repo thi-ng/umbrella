@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lispy",
-	"version": "0.4.12",
+	"version": "0.4.13",
 	"description": "Lightweight, extensible, interpreted Lisp-style DSL for embedding in other projects",
 	"type": "module",
 	"module": "./index.js",
@@ -39,15 +39,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.6",
-		"@thi.ng/checks": "^3.7.22",
-		"@thi.ng/compare": "^2.4.32",
-		"@thi.ng/defmulti": "^3.0.82",
-		"@thi.ng/errors": "^2.5.46",
-		"@thi.ng/math": "^5.13.3",
-		"@thi.ng/object-utils": "^1.2.14",
-		"@thi.ng/sexpr": "^1.1.12",
-		"@thi.ng/strings": "^3.9.26"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/compare": "^2.4.33",
+		"@thi.ng/defmulti": "^3.0.83",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/math": "^5.13.4",
+		"@thi.ng/object-utils": "^1.2.15",
+		"@thi.ng/sexpr": "^1.1.13",
+		"@thi.ng/strings": "^3.9.27"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.11",
