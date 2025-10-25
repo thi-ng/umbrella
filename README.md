@@ -312,11 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-10-24
+As of: 2025-10-26
 
 | Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
 |:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/args`](./packages/args)                       | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                       | [changelog](./packages/args/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)                     | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                     | [changelog](./packages/color/CHANGELOG.md)           |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                       | [changelog](./packages/geom/CHANGELOG.md)            |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils) | [changelog](./packages/geom-poly-utils/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/math`](./packages/math)                       | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                       | [changelog](./packages/math/CHANGELOG.md)            |
