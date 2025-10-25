@@ -339,6 +339,91 @@ writeFileSync("swatches-ex01.svg", serialize(doc));
 
 ![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
 
+### Color theme strategies
+
+In addition to the above approaches to create color themes, the package also
+provides these more standard strategies to derive a color theme from a given
+base color (all configurable, examples shown here only use default params).
+These functions accept colors in any format, but computation and results are
+always in LCH.
+
+#### Analog colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/analogStrategy.html)
+
+```ts tangle:export/analog-strategy.ts
+import { analogStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(analogStrategy("#f90")));
+// [ "#ff9900", "#ff745b", "#beb700" ]
+```
+
+#### Split-analog colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/splitAnalogStrategy.html)
+
+```ts tangle:export/split-analog-strategy.ts
+import { splitAnalogStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(splitAnalogStrategy("#f90")));
+// [ "#ff9900", "#00d4ff", "#48b3ff", "#beb700" ]
+```
+
+#### Complementary colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/complementaryStrategy.html)
+
+```ts tangle:export/complementary-strategy.ts
+import { complementaryStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(complementaryStrategy("#f90")));
+// [ "#ff9900", "#00c9ff" ]
+```
+
+#### Split-complementary colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/splitComplementaryStrategy.html)
+
+```ts tangle:export/split-complementary-strategy.ts
+import { splitComplementaryStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(splitComplementaryStrategy("#f90")));
+// [ "#ff9900", "#00d4ff", "#48b3ff" ]
+```
+
+#### Monochrome colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/monochromeStrategy.html)
+
+```ts tangle:export/monochrome-strategy.ts
+import { monochromeStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(monochromeStrategy("#f90")));
+// [ "#3d0000", "#701f00", "#b85d00", "#ff9f0e", "#ffe462" ]
+```
+
+#### Triadic colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/triadicStrategy.html)
+
+```ts tangle:export/triadic-strategy.ts
+import { triadicStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(triadicStrategy("#f90")));
+// [ "#ff9900", "#00d7c2", "#da91ff" ]
+```
+
+#### Tetradic colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/tetradicStrategy.html)
+
+```ts tangle:export/tetradic-strategy.ts
+import { tetradicStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(tetradicStrategy("#f90")));
+// [ "#ff9900", "#beb700", "#00c9ff", "#48b3ff" ]
+```
+
 ### Color sorting & distance
 
 The package provides several functions to compute full or channel-wise distances
