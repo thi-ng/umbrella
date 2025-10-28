@@ -150,7 +150,7 @@ export const triadicStrategy = (
  */
 export const tetradicStrategy = (
 	src: MaybeColor,
-	theta = 1 / 12,
+	theta = 1 / 6,
 	deltaL?: number,
 	deltaC?: number
 ) => {

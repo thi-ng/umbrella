@@ -354,9 +354,11 @@ always in LCH.
 ```ts tangle:export/analog-strategy.ts
 import { analogStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(analogStrategy("#f90")));
-// [ "#ff9900", "#ff745b", "#beb700" ]
+console.log(cssColors(analogStrategy("#f60")));
+// [ "#ff6600", "#ff2c63", "#c58f00" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/analog-strategy.svg)
 
 #### Split-analog colors
 
@@ -365,9 +367,11 @@ console.log(cssColors(analogStrategy("#f90")));
 ```ts tangle:export/split-analog-strategy.ts
 import { splitAnalogStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(splitAnalogStrategy("#f90")));
-// [ "#ff9900", "#00d4ff", "#48b3ff", "#beb700" ]
+console.log(cssColors(splitAnalogStrategy("#f60")));
+// [ "#ff6600", "#00bcd4", "#00a6ff", "#c58f00" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-analog-strategy.svg)
 
 #### Complementary colors
 
@@ -376,9 +380,11 @@ console.log(cssColors(splitAnalogStrategy("#f90")));
 ```ts tangle:export/complementary-strategy.ts
 import { complementaryStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(complementaryStrategy("#f90")));
-// [ "#ff9900", "#00c9ff" ]
+console.log(cssColors(complementaryStrategy("#f60")));
+// [ "#ff6600", "#00b6ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/complementary-strategy.svg)
 
 #### Split-complementary colors
 
@@ -387,9 +393,11 @@ console.log(cssColors(complementaryStrategy("#f90")));
 ```ts tangle:export/split-complementary-strategy.ts
 import { splitComplementaryStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(splitComplementaryStrategy("#f90")));
-// [ "#ff9900", "#00d4ff", "#48b3ff" ]
+console.log(cssColors(splitComplementaryStrategy("#f60")));
+// [ "#ff6600", "#00bcd4", "#00a6ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-complementary-strategy.svg)
 
 #### Monochrome colors
 
@@ -398,9 +406,11 @@ console.log(cssColors(splitComplementaryStrategy("#f90")));
 ```ts tangle:export/monochrome-strategy.ts
 import { monochromeStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(monochromeStrategy("#f90")));
-// [ "#3d0000", "#701f00", "#b85d00", "#ff9f0e", "#ffe462" ]
+console.log(cssColors(monochromeStrategy("#f60")));
+// [ "#490000", "#880000", "#d44100", "#ff872d", "#ffce71" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/monochrome-strategy.svg)
 
 #### Triadic colors
 
@@ -409,9 +419,11 @@ console.log(cssColors(monochromeStrategy("#f90")));
 ```ts tangle:export/triadic-strategy.ts
 import { triadicStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(triadicStrategy("#f90")));
-// [ "#ff9900", "#00d7c2", "#da91ff" ]
+console.log(cssColors(triadicStrategy("#f60")));
+// [ "#ff6600", "#00bb7e", "#7f88ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/triadic-strategy.svg)
 
 #### Tetradic colors
 
@@ -420,9 +432,11 @@ console.log(cssColors(triadicStrategy("#f90")));
 ```ts tangle:export/tetradic-strategy.ts
 import { tetradicStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(tetradicStrategy("#f90")));
-// [ "#ff9900", "#beb700", "#00c9ff", "#48b3ff" ]
+console.log(cssColors(tetradicStrategy("#f60")));
+// [ "#ff6600", "#75a800", "#00b6ff", "#7f88ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/tetradic-strategy.svg)
 
 ### Color sorting & distance
 

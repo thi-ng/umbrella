@@ -382,7 +382,11 @@ writeFileSync("swatches-ex01.svg", serialize(doc));
 
 ### Color theme strategies
 
-In addition to the above approaches to create color themes, the package also provides these more standard strategies to derive a color theme from a given base color:
+In addition to the above approaches to create color themes, the package also
+provides these more standard strategies to derive a color theme from a given
+base color (all configurable, examples shown here only use default params).
+These functions accept colors in any format, but computation and results are
+always in LCH.
 
 #### Analog colors
 
@@ -391,9 +395,11 @@ In addition to the above approaches to create color themes, the package also pro
 ```ts tangle:export/analog-strategy.ts
 import { analogStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(analogStrategy("#f90")));
-//
+console.log(cssColors(analogStrategy("#f60")));
+// [ "#ff6600", "#ff2c63", "#c58f00" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/analog-strategy.svg)
 
 #### Split-analog colors
 
@@ -402,9 +408,11 @@ console.log(cssColors(analogStrategy("#f90")));
 ```ts tangle:export/split-analog-strategy.ts
 import { splitAnalogStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(splitAnalogStrategy("#f90")));
-//
+console.log(cssColors(splitAnalogStrategy("#f60")));
+// [ "#ff6600", "#00bcd4", "#00a6ff", "#c58f00" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-analog-strategy.svg)
 
 #### Complementary colors
 
@@ -413,9 +421,11 @@ console.log(cssColors(splitAnalogStrategy("#f90")));
 ```ts tangle:export/complementary-strategy.ts
 import { complementaryStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(complementaryStrategy("#f90")));
-//
+console.log(cssColors(complementaryStrategy("#f60")));
+// [ "#ff6600", "#00b6ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/complementary-strategy.svg)
 
 #### Split-complementary colors
 
@@ -424,9 +434,11 @@ console.log(cssColors(complementaryStrategy("#f90")));
 ```ts tangle:export/split-complementary-strategy.ts
 import { splitComplementaryStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(splitComplementaryStrategy("#f90")));
-//
+console.log(cssColors(splitComplementaryStrategy("#f60")));
+// [ "#ff6600", "#00bcd4", "#00a6ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-complementary-strategy.svg)
 
 #### Monochrome colors
 
@@ -435,9 +447,11 @@ console.log(cssColors(splitComplementaryStrategy("#f90")));
 ```ts tangle:export/monochrome-strategy.ts
 import { monochromeStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(monochromeStrategy("#f90")));
-//
+console.log(cssColors(monochromeStrategy("#f60")));
+// [ "#490000", "#880000", "#d44100", "#ff872d", "#ffce71" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/monochrome-strategy.svg)
 
 #### Triadic colors
 
@@ -446,9 +460,11 @@ console.log(cssColors(monochromeStrategy("#f90")));
 ```ts tangle:export/triadic-strategy.ts
 import { triadicStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(triadicStrategy("#f90")));
-//
+console.log(cssColors(triadicStrategy("#f60")));
+// [ "#ff6600", "#00bb7e", "#7f88ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/triadic-strategy.svg)
 
 #### Tetradic colors
 
@@ -457,9 +473,11 @@ console.log(cssColors(triadicStrategy("#f90")));
 ```ts tangle:export/tetradic-strategy.ts
 import { tetradicStrategy, cssColors } from "@thi.ng/color";
 
-console.log(cssColors(tetradicStrategy("#f90")));
-//
+console.log(cssColors(tetradicStrategy("#f60")));
+// [ "#ff6600", "#75a800", "#00b6ff", "#7f88ff" ]
 ```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/tetradic-strategy.svg)
 
 ### Color sorting & distance
 
@@ -782,7 +800,7 @@ For Node.js REPL:
 const color = await import("@thi.ng/color");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 15.80 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.84 KB
 
 ## Dependencies
 
