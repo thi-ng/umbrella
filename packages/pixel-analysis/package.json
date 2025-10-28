@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-analysis",
-	"version": "2.0.14",
+	"version": "2.0.15",
 	"description": "Image color & feature analysis utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.7",
 		"@thi.ng/arrays": "^2.13.16",
-		"@thi.ng/color": "^5.8.0",
+		"@thi.ng/color": "^5.8.1",
 		"@thi.ng/compare": "^2.4.33",
 		"@thi.ng/math": "^5.13.4",
 		"@thi.ng/metrics": "^0.2.10",

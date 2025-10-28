@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-10-25T22:30:00Z
+- **Last updated**: 2025-10-28T10:15:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.8.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.8.1) (2025-10-28)
+
+#### ♻️ Refactoring
+
+- update writeSVG() helper ([df320cc](https://github.com/thi-ng/umbrella/commit/df320cc))
 
 ## [5.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.8.0) (2025-10-25)
 

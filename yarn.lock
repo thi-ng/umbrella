@@ -4299,7 +4299,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.7"
     "@thi.ng/base-n": "npm:^2.7.53"
     "@thi.ng/checks": "npm:^3.7.23"
-    "@thi.ng/color": "npm:^5.8.0"
+    "@thi.ng/color": "npm:^5.8.1"
     "@thi.ng/errors": "npm:^2.5.47"
     "@thi.ng/hex": "npm:^2.3.85"
     esbuild: "npm:^0.25.11"
@@ -4308,7 +4308,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/color@npm:^5.8.0, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
+"@thi.ng/color@npm:^5.8.1, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
   version: 0.0.0-use.local
   resolution: "@thi.ng/color@workspace:packages/color"
   dependencies:
@@ -4751,7 +4751,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.7"
     "@thi.ng/fuzzy": "npm:^2.1.123"
     "@thi.ng/hiccup": "npm:^5.3.29"
-    "@thi.ng/hiccup-svg": "npm:^5.5.15"
+    "@thi.ng/hiccup-svg": "npm:^5.5.16"
     "@thi.ng/math": "npm:^5.13.4"
     "@thi.ng/strings": "npm:^3.9.27"
     "@thi.ng/text-canvas": "npm:^3.0.97"
@@ -4817,7 +4817,7 @@ __metadata:
     "@thi.ng/axidraw": "npm:^1.1.157"
     "@thi.ng/compare": "npm:^2.4.33"
     "@thi.ng/defmulti": "npm:^3.0.83"
-    "@thi.ng/geom": "npm:^8.3.4"
+    "@thi.ng/geom": "npm:^8.3.5"
     "@thi.ng/geom-accel": "npm:^4.1.67"
     "@thi.ng/geom-clip-line": "npm:^2.3.157"
     "@thi.ng/geom-isec": "npm:^4.0.67"
@@ -4874,8 +4874,8 @@ __metadata:
   resolution: "@thi.ng/geom-fuzz@workspace:packages/geom-fuzz"
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
-    "@thi.ng/color": "npm:^5.8.0"
-    "@thi.ng/geom": "npm:^8.3.4"
+    "@thi.ng/color": "npm:^5.8.1"
+    "@thi.ng/geom": "npm:^8.3.5"
     "@thi.ng/geom-clip-line": "npm:^2.3.157"
     "@thi.ng/geom-resample": "npm:^3.0.67"
     "@thi.ng/grid-iterators": "npm:^4.0.140"
@@ -4978,7 +4978,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.23"
     "@thi.ng/defmulti": "npm:^3.0.83"
     "@thi.ng/errors": "npm:^2.5.47"
-    "@thi.ng/geom": "npm:^8.3.4"
+    "@thi.ng/geom": "npm:^8.3.5"
     "@thi.ng/geom-isoline": "npm:^2.1.201"
     "@thi.ng/geom-poly-utils": "npm:^3.1.4"
     "@thi.ng/geom-resample": "npm:^3.0.67"
@@ -5082,7 +5082,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.7.23"
     "@thi.ng/defmulti": "npm:^3.0.83"
     "@thi.ng/errors": "npm:^2.5.47"
-    "@thi.ng/geom": "npm:^8.3.4"
+    "@thi.ng/geom": "npm:^8.3.5"
     "@thi.ng/object-utils": "npm:^1.2.15"
     "@thi.ng/transducers": "npm:^9.6.15"
     "@thi.ng/vector-pools": "npm:^3.2.76"
@@ -5094,7 +5094,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@npm:^8.3.4, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@npm:^8.3.5, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -5117,7 +5117,7 @@ __metadata:
     "@thi.ng/geom-subdiv-curve": "npm:^3.0.74"
     "@thi.ng/geom-tessellate": "npm:^3.0.74"
     "@thi.ng/hiccup": "npm:^5.3.29"
-    "@thi.ng/hiccup-svg": "npm:^5.5.15"
+    "@thi.ng/hiccup-svg": "npm:^5.5.16"
     "@thi.ng/math": "npm:^5.13.4"
     "@thi.ng/matrices": "npm:^3.0.26"
     "@thi.ng/object-utils": "npm:^1.2.15"
@@ -5192,7 +5192,7 @@ __metadata:
     "@thi.ng/diff": "npm:^5.1.108"
     "@thi.ng/errors": "npm:^2.5.47"
     "@thi.ng/hdom": "npm:^9.4.92"
-    "@thi.ng/hiccup-canvas": "npm:^3.1.82"
+    "@thi.ng/hiccup-canvas": "npm:^3.1.83"
     esbuild: "npm:^0.25.11"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"
@@ -5270,13 +5270,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-canvas@npm:^3.1.82, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
+"@thi.ng/hiccup-canvas@npm:^3.1.83, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
     "@thi.ng/checks": "npm:^3.7.23"
-    "@thi.ng/color": "npm:^5.8.0"
+    "@thi.ng/color": "npm:^5.8.1"
     "@thi.ng/geom-arc": "npm:^2.1.200"
     "@thi.ng/math": "npm:^5.13.4"
     "@thi.ng/pixel": "npm:^7.5.15"
@@ -5358,13 +5358,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@npm:^5.5.15, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@npm:^5.5.16, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
     "@thi.ng/checks": "npm:^3.7.23"
-    "@thi.ng/color": "npm:^5.8.0"
+    "@thi.ng/color": "npm:^5.8.1"
     "@thi.ng/prefixes": "npm:^2.3.58"
     esbuild: "npm:^0.25.11"
     typedoc: "npm:^0.28.14"
@@ -5446,7 +5446,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
     "@thi.ng/checks": "npm:^3.7.23"
-    "@thi.ng/geom": "npm:^8.3.4"
+    "@thi.ng/geom": "npm:^8.3.5"
     "@thi.ng/geom-isec": "npm:^4.0.67"
     "@thi.ng/layout": "npm:^4.0.11"
     "@thi.ng/math": "npm:^5.13.4"
@@ -5819,7 +5819,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
     "@thi.ng/arrays": "npm:^2.13.16"
-    "@thi.ng/color": "npm:^5.8.0"
+    "@thi.ng/color": "npm:^5.8.1"
     "@thi.ng/compare": "npm:^2.4.33"
     "@thi.ng/math": "npm:^5.13.4"
     "@thi.ng/metrics": "npm:^0.2.10"
@@ -6122,7 +6122,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.7"
     "@thi.ng/canvas": "npm:^1.0.28"
     "@thi.ng/checks": "npm:^3.7.23"
-    "@thi.ng/hiccup-canvas": "npm:^3.1.82"
+    "@thi.ng/hiccup-canvas": "npm:^3.1.83"
     "@thi.ng/object-utils": "npm:^1.2.15"
     "@thi.ng/rdom": "npm:^1.7.65"
     "@thi.ng/rstream": "npm:^9.3.4"
