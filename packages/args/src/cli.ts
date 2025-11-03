@@ -123,7 +123,7 @@ const __descriptions = (
 	{ color, lineWidth = 80 }: Partial<UsageOpts> = {},
 	prefix = "\nAvailable commands:\n"
 ) => {
-	const names = Object.keys(commands);
+	const names = Object.keys(commands).sort();
 	const maxLength = Math.max(...names.map((x) => x.length));
 	const theme = __colorTheme(color);
 	return [
