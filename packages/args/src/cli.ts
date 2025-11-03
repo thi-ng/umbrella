@@ -7,6 +7,7 @@ import { StreamLogger } from "@thi.ng/logger/stream";
 import { PRESET_ANSI16, PRESET_NONE } from "@thi.ng/text-format/presets";
 import { execFileSync } from "node:child_process";
 import type {
+	Args,
 	CLIAppConfig,
 	ColorTheme,
 	Command,
@@ -49,21 +50,22 @@ export const cliApp = async <
 		} else {
 			cmdID = argv[start];
 			cmd = config.commands[cmdID];
-			if (!cmd) {
-				usageOpts.prefix += __descriptions(config.commands, usageOpts);
-				__usageAndExit(config, usageOpts);
-			} else {
+			if (cmd) {
 				usageOpts.prefix += __descriptions(
 					{ [cmdID]: cmd },
 					usageOpts,
 					"\nCurrent command:\n"
 				);
+			} else {
+				usageOpts.prefix += __descriptions(config.commands, usageOpts);
+				__usageAndExit(config.opts, usageOpts);
 			}
 			start++;
 		}
+		const mergedOpts = { ...config.opts, ...cmd.opts };
 		let parsed: Maybe<ParseResult<OPTS>>;
 		try {
-			parsed = parse<OPTS>({ ...config.opts, ...cmd.opts }, argv, {
+			parsed = parse<OPTS>(mergedOpts, argv, {
 				usageOpts,
 				start,
 			});
@@ -87,7 +89,7 @@ export const cliApp = async <
 			}
 			if (err) {
 				__printError(err, theme);
-				__usageAndExit(config, usageOpts);
+				__usageAndExit(mergedOpts, usageOpts);
 			}
 		}
 
@@ -109,11 +111,8 @@ export const cliApp = async <
 };
 
 /** @internal */
-const __usageAndExit = (
-	config: CLIAppConfig<any, any>,
-	usageOpts: Partial<UsageOpts>
-) => {
-	process.stderr.write(usage(config.opts, usageOpts));
+const __usageAndExit = (opts: Args<any>, usageOpts: Partial<UsageOpts>) => {
+	process.stderr.write(usage(opts, usageOpts));
 	process.exit(1);
 };
 
