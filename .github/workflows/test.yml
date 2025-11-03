@@ -23,7 +23,7 @@ jobs:
             - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
             - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
               with:
-                  node-version: "23.11.1"
+                  node-version: "24.11.0"
                   cache: "yarn"
             - uses: mlugg/setup-zig@8d6198c65fb0feaa111df26e6b467fea8345e46f
               with:
