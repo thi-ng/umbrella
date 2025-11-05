@@ -255,15 +255,15 @@ defaults/outputs.
 
 Example with custom link elements:
 
-```ts
+```ts tangle:export/readme-parse.ts
 import { parse, type TagTransforms } from "@thi.ng/hiccup-markdown";
 
 const tags: Partial<TagTransforms> = {
-    link: (ctx, href, body) => ["a.link.blue", { href }, ...body]
+    link: (ctx, href, title, body) => ["a.link.blue", { href }, ...body]
 };
 
 // parse with custom tag transform overrides
-parse("[label](url)", { tags }).result;
+console.log(parse("[label](url)", { tags }).result);
 // [
 //   ["p", {}, ["a.link.blue", { href: "url" }, "label"]]
 // ]
@@ -271,14 +271,14 @@ parse("[label](url)", { tags }).result;
 
 ### Serializing to HTML
 
-```ts
+```ts tangle:export/readme-serialize.ts
 import { serialize } from "@thi.ng/hiccup";
 import { parse } from "@thi.ng/hiccup-markdown";
 
 const src = `# Hello world\n[This is a _test_](http://example.com) :smile:`;
 
 // convert to hiccup tree
-parse(src).result
+console.log(parse(src).result);
 // [
 //   [ "h1", { id: "hello-world" }, "Hello world" ],
 //   [
@@ -295,8 +295,8 @@ parse(src).result
 //   ]
 // ]
 
-// or serialize to HTML
-serialize(parse(src).result);
+// roundtrip, serialize back to HTML
+console.log(serialize(parse(src).result));
 // <h1 id="hello-world">Hello world</h1><p><a href="http://example.com">This is a <em>test</em></a> 😄</p>
 ```
 
@@ -346,7 +346,7 @@ See source code for reference.
 
 ### Usage examples
 
-```ts
+```ts tangle:export/readme-serialize2.ts
 import { serialize } from "@thi.ng/hiccup-markdown";
 
 // list component
@@ -367,6 +367,7 @@ const thingLink = (_, id, label) =>
 
 // Note: the same hiccup tree can be serialized to HTML via @thi.ng/hiccup or
 // used interactively in the browser w/ @thi.ng/hdom
+console.log(
 serialize(
     ["div",
         ["h1", "Hello Markdown"],
@@ -400,6 +401,7 @@ serialize(
     // optional context object passed to all component functions
     { magic: 42 }
 )
+);
 ```
 
 Resulting Markdown:
