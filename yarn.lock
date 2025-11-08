@@ -6209,7 +6209,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/router@npm:^4.1.46, @thi.ng/router@workspace:^, @thi.ng/router@workspace:packages/router":
+"@thi.ng/router@npm:^4.1.47, @thi.ng/router@workspace:^, @thi.ng/router@workspace:packages/router":
   version: 0.0.0-use.local
   resolution: "@thi.ng/router@workspace:packages/router"
   dependencies:
@@ -6403,7 +6403,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.2.6"
     "@thi.ng/mime": "npm:^2.7.23"
     "@thi.ng/paths": "npm:^5.2.26"
-    "@thi.ng/router": "npm:^4.1.46"
+    "@thi.ng/router": "npm:^4.1.47"
     "@thi.ng/strings": "npm:^3.9.27"
     "@thi.ng/timestamp": "npm:^1.1.26"
     "@thi.ng/uuid": "npm:^1.1.38"

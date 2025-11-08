@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-10-25T22:30:00Z
+- **Last updated**: 2025-11-08T10:48:58Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [4.1.47](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@4.1.47) (2025-11-08)
+
+#### 🩹 Bug fixes
+
+- fix [#496](https://github.com/thi-ng/umbrella/issues/496) use correct order of URL parts ([eb44951](https://github.com/thi-ng/umbrella/commit/eb44951))
+  - ensure querystring is in correct URL order, depending on `useFragment`
 
 ### [4.1.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@4.1.28) (2025-05-15)
 
