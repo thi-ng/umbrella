@@ -4,6 +4,10 @@ import { NO_OP } from "@thi.ng/api/api";
 import { unescapeEntities } from "@thi.ng/strings/entities";
 import { ESCAPES } from "@thi.ng/strings/escape";
 import type { Transducer } from "@thi.ng/transducers";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
+import { last } from "@thi.ng/transducers/last";
 import { fsm, type FSMState, type FSMStateMap } from "@thi.ng/transducers-fsm";
 import { __iter, iterator } from "@thi.ng/transducers/iterator";
 
@@ -172,6 +176,66 @@ export function parse(...args: any[]): any {
 		terminate: State.ERROR,
 	});
 }
+
+/**
+ * Convenience helper for certain applications of {@link parse} to produce a
+ * tree of the parsed document.
+ *
+ * @remarks
+ * This functions always enables the {@link ParseOpts.children} option, only
+ * keeps {@link Type.ELEM_END} events and only returns the last one, i.e that of
+ * the root element (including all children).
+ *
+ * Also see {@link parseAsHiccup}.
+ *
+ * @param src
+ * @param opts
+ */
+export const parseAsTree = (src: string, opts?: Partial<ParseOpts>) =>
+	transduce(
+		comp(
+			parse({ ...opts, children: true }),
+			filter((x) => x.type === Type.ELEM_END)
+		),
+		last<ParseEvent>(),
+		src
+	);
+
+/**
+ * Convenience helper for certain applications of {@link parse} to produce a
+ * tree of the parsed document in thi.ng/hiccup format.
+ *
+ * @remarks
+ * Uses {@link parseAsTree} and then transforms result.
+ *
+ * @example
+ * ```ts tangle:../export/parse-as-hiccup.ts
+ * import { parseAsHiccup } from "@thi.ng/sax";
+ *
+ * const doc = `<svg><g id="foo"><circle x="0" y="0" r="100"/></g></svg>`;
+ *
+ * console.log(parseAsHiccup(doc));
+ * // ["svg", {}, ["g", { id: "foo" }, ["circle", { x: "0", y: "0", r: "100" }]]]
+ * ```
+ *
+ * @param src
+ * @param opts
+ */
+export const parseAsHiccup = (src: string, opts?: Partial<ParseOpts>) =>
+	__toHiccup(parseAsTree(src, opts));
+
+/** @internal */
+const __toHiccup = (
+	root: Partial<ParseElement>
+): [string, IObjectOf<string>, ...any[]] => [
+	root.tag!,
+	root.attribs ?? {},
+	...(root.children?.length
+		? root.children.map(__toHiccup)
+		: root.body
+		? [root.body]
+		: []),
+];
 
 /** @internal */
 const __isWS = (x: string) => {
