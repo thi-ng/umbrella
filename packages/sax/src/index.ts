@@ -248,16 +248,37 @@ const __isWS = (x: string) => {
 	);
 };
 
-/** @internal */
+/**
+ * Reference:
+ * https://www.w3.org/TR/xml11/#sec-common-syn
+ *
+ * @internal */
 const __isTagChar = (x: string) => {
 	const c = x.charCodeAt(0);
 	return (
-		(c >= 0x41 && c <= 0x5a) || // A-Z
 		(c >= 0x61 && c <= 0x7a) || // a-z
 		(c >= 0x30 && c <= 0x39) || // 0-9
-		c == 0x2d || // -
-		c == 0x5f || // _
-		c == 0x3a // :
+		(c >= 0x41 && c <= 0x5a) || // A-Z
+		c === 0x3a || // :
+		c === 0x2d || // -
+		c === 0x5f || // _
+		c === 0x2e || // .
+		c === 0xb7 ||
+		(c >= 0xc0 && c <= 0xd6) ||
+		(c >= 0xf8 && c <= 0x2ff) ||
+		(c >= 0x300 && c <= 0x36f) ||
+		(c >= 0x370 && c <= 0x37d) ||
+		(c >= 0x37f && c <= 0x1fff) ||
+		(c >= 0x37f && c <= 0x1fff) ||
+		c === 0x200c ||
+		c === 0x200d ||
+		c === 0x203f ||
+		c === 0x2040 ||
+		(c >= 0x2070 && c <= 0x218f) ||
+		(c >= 0x2c00 && c <= 0x2fef) ||
+		(c >= 0x3001 && c <= 0xd7ff) ||
+		(c >= 0xf900 && c <= 0xfdcf) ||
+		(c >= 0xfdf0 && c <= 0xfffd)
 	);
 };
 
