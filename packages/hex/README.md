@@ -20,6 +20,7 @@
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [Creating hexdumps](#creating-hexdumps)
 - [Authors](#authors)
 - [License](#license)
 
@@ -63,7 +64,7 @@ For Node.js REPL:
 const hex = await import("@thi.ng/hex");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 631 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 616 bytes
 
 ## Dependencies
 
@@ -73,7 +74,7 @@ None
 
 [Generated API docs](https://docs.thi.ng/umbrella/hex/)
 
-```ts
+```ts tangle:export/readme.ts
 import * as h from "@thi.ng/hex";
 
 const cssColor = (x: number) => "#" + h.U24(x);
@@ -111,6 +112,32 @@ h.U32LE(BUF, 0)
 
 h.U32LE(BUF, 4)
 // "40302010"
+```
+
+### Creating hexdumps
+
+The following functions are provided to create customizable hexdumps:
+
+- [hexdump()](https://docs.thi.ng/umbrella/hex/functions/hexdump.html)
+- [hexdumpLines()](https://docs.thi.ng/umbrella/hex/functions/hexdumpLines.html)
+- [printHexdump()](https://docs.thi.ng/umbrella/hex/functions/printHexdump.html)
+
+```ts tangle:export/readme-hexdump.ts
+import { printHexdump } from "@thi.ng/hex";
+import { readFileSync } from "node:fs";
+
+const bytes = readFileSync("README.md");
+
+// hexdump of the first 100 bytes
+printHexdump(bytes, 0, 100);
+
+// 00000000 21 5b 74 68 69 2e 6e 67 2f 75 6d 62 72 65 6c 6c ![thi.ng/umbrell
+// 00000010 61 5d 28 68 74 74 70 73 3a 2f 2f 72 61 77 2e 67 a](https://raw.g
+// 00000020 69 74 68 75 62 75 73 65 72 63 6f 6e 74 65 6e 74 ithubusercontent
+// 00000030 2e 63 6f 6d 2f 74 68 69 2d 6e 67 2f 75 6d 62 72 .com/thi-ng/umbr
+// 00000040 65 6c 6c 61 2f 64 65 76 65 6c 6f 70 2f 61 73 73 ella/develop/ass
+// 00000050 65 74 73 2f 62 61 6e 6e 65 72 73 2f 74 68 69 6e ets/banners/thin
+// 00000060 67 2d 75 6d                                     g-um
 ```
 
 ## Authors
