@@ -205,18 +205,77 @@ export const uuid = (id: ArrayLike<number>, i = 0) =>
 	// prettier-ignore
 	`${U32BE(id, i)}-${U16BE(id, i + 4)}-${U16BE(id, i + 6)}-${U16BE(id, i + 8)}-${U48BE(id, i + 10)}`;
 
+/**
+ * Takes a byte array, and optional start address, length and other opts.
+ * Produces a hexdump as string.
+ *
+ * @remarks
+ * Also see {@link printHexdump}, {@link hexdumpLines}.
+ *
+ * @example
+ * ```ts tangle:../export/hexdump.ts
+ * import { printHexdump } from "@thi.ng/hex";
+ *
+ * const bytes = new TextEncoder().encode("Hellö Wørld! 👋🤝🫶 ...so long!");
+ * printHexdump(bytes);
+ *
+ * // 00000000 48 65 6c 6c c3 b6 20 57 c3 b8 72 6c 64 21 20 f0 Hell.. W..rld! .
+ * // 00000010 9f 91 8b f0 9f a4 9d f0 9f ab b6 20 2e 2e 2e 73 ........... ...s
+ * // 00000020 6f 20 6c 6f 6e 67 21                            o long!
+ * ```
+ *
+ * @param bytes
+ * @param addr
+ * @param len
+ * @param width
+ * @param ascii
+ */
 export const hexdump = (
 	bytes: Uint8Array | Uint8ClampedArray,
-	addr: number,
-	len: number,
+	addr?: number,
+	len?: number,
 	width?: number,
 	ascii?: boolean
 ) => hexdumpLines(bytes, addr, len, width, ascii).join("\n");
 
+/**
+ * Syntax sugar for `console.log(hexdump(...))`.
+ *
+ * @param bytes
+ * @param addr
+ * @param len
+ * @param width
+ * @param ascii
+ */
+export const printHexdump = (
+	bytes: Uint8Array | Uint8ClampedArray,
+	addr?: number,
+	len?: number,
+	width?: number,
+	ascii?: boolean
+) => console.log(hexdump(bytes, addr, len, width, ascii));
+
+/**
+ * Takes a byte array, and optional start address, length and other opts.
+ * Produces a hexdump as string array.
+ *
+ * @remarks
+ * The `width` arg specifies the number of bytes per line. The `ascii` flag
+ * indicates if the bytes of each row should also be formatted as ASCII in an
+ * additional column (non-printable ASCII values are represented as `.`).
+ *
+ * Also see {@link printHexdump}, {@link hexdumpLines}.
+ *
+ * @param bytes
+ * @param addr
+ * @param len
+ * @param width
+ * @param ascii
+ */
 export const hexdumpLines = (
 	bytes: Uint8Array | Uint8ClampedArray,
-	addr: number,
-	len: number,
+	addr = 0,
+	len = bytes.length - addr,
 	width = 16,
 	ascii = true
 ) => {
